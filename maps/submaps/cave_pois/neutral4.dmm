@@ -2,40 +2,40 @@
 "a" = (
 /obj/spawner/junk,
 /turf/simulated/floor/plating/under/airless,
-/area/template_noop)
+/area/asteroid/cave)
 "b" = (
-/turf/template_noop,
-/area/template_noop)
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
 "d" = (
 /turf/simulated/wall/r_wall,
-/area/template_noop)
+/area/asteroid/cave)
 "e" = (
 /turf/simulated/floor/plating/under/airless,
-/area/template_noop)
+/area/asteroid/cave)
 "f" = (
 /obj/structure/girder,
 /turf/simulated/floor/plating/under/airless,
-/area/template_noop)
+/area/asteroid/cave)
 "g" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under/airless,
-/area/template_noop)
+/area/asteroid/cave)
 "h" = (
 /obj/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/plating/under/airless,
-/area/template_noop)
+/area/asteroid/cave)
 "i" = (
 /obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under/airless,
-/area/template_noop)
+/area/asteroid/cave)
 "j" = (
 /mob/living/simple_animal/hostile/carp,
 /turf/simulated/floor/plating/under/airless,
-/area/template_noop)
+/area/asteroid/cave)
 "D" = (
 /obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
 
 (1,1,1) = {"
 a

@@ -10,12 +10,12 @@
 	var/suffix = null
 	template_flags = 0 // No duplicates by default
 
-    var/spawn_prob = 0
-    var/min_seismic_lvl = 1  // Minimal seismic level for the poi to spawn
-    var/size_x = 0
-    var/size_y = 0
+	var/spawn_prob = 0
+	var/min_seismic_lvl = 1  // Minimal seismic level for the poi to spawn
+	var/size_x = 0
+	var/size_y = 0
 
-/datum/map_template/junk/New()
+/datum/map_template/cave_pois/New()
 	mappath += (prefix + suffix)
 
 	..()
@@ -23,12 +23,11 @@
 // Neutral rooms
 
 /datum/map_template/cave_pois/neutral
-    spawn_prob = PROB_HIGH
-    min_seismic_lvl = 1
-    size_x = 5
-    size_y = 5
+	spawn_prob = PROB_HIGH
+	min_seismic_lvl = 1
+	size_x = 5
+	size_y = 5
 
-/datum/map_template/cave_pois/neutral/neutral1
 	name = "neutral 1"
 	id = "cave_neutral1"
 	suffix = "neutral1.dmm"
@@ -56,12 +55,11 @@
 // Huts
 
 /datum/map_template/cave_pois/hut
-    spawn_prob = PROB_MID
-    min_seismic_lvl = 3
-    size_x = 7
-    size_y = 7
+	spawn_prob = PROB_MID
+	min_seismic_lvl = 3
+	size_x = 7
+	size_y = 7
 
-/datum/map_template/cave_pois/hut/hut1
 	name = "hut 1"
 	id = "cave_hut1"
 	suffix = "hut1.dmm"
@@ -82,10 +80,10 @@
 	name = "crashed pod"
 	id = "cave_crashed_pod"
 	suffix = "crashed_pod.dmm"
-    spawn_prob = PROB_MID
-    min_seismic_lvl = 4
-    size_x = 12
-    size_y = 16
+	spawn_prob = PROB_MID
+	min_seismic_lvl = 4
+	size_x = 12
+	size_y = 16
 
 #undef PROB_HIGH
 #undef PROB_MID

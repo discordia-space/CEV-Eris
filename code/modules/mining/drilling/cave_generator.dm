@@ -32,10 +32,13 @@
 	simulated = FALSE
 	invisibility = 0 // 101
 
+	var/lock = FALSE  // Lock generator to avoid having several iterations running in parallel
 	var/map // map with 0 (free turf) and 1+ (wall or mineral)
 	var/obj/structure/multiz/ladder/cave_hole/ladder_down
 	var/obj/structure/multiz/ladder/up/cave/ladder_up
 	var/list/datum/map_template/cave_pois/pool_pois = list() // Pool of cave points of interest
+	var/list/datum/map_template/cave_pois/pois_placed = list()
+	var/list/pois_placed_pos = list()
 
 /obj/cave_generator/New()
 
@@ -48,7 +51,7 @@
 		log_world("Detected [T]")
 
 	// Honk
-	generate_map()
+	// generate_map()
 
 /obj/cave_generator/proc/generate_map(seismic_lvl = 1)
 	// Fill the map with random noise
@@ -198,38 +201,45 @@
 		var/N_trials = 10
 		while(!res[1] && N_trials > 0)
 			N_trials--
-			res = find_free_spot(rand(2, CAVE_SIZE - 2), rand(2, CAVE_SIZE - 2), round(poi.x_size / 2) + 1, round(poi.y_size / 2) + 1)
+			res = find_free_spot(rand(2, CAVE_SIZE - 2), rand(2, CAVE_SIZE - 2), round(poi.size_x / 2) + 1, round(poi.size_y / 2) + 1)
 			if(res[1])
-				res[1] = check_poi_overlap(res[2], res[3], poi.x_size, poi.y_size)
+				res[1] = check_poi_overlap(res[2], res[3], poi.size_x, poi.size_y)
 
 		if(!res[1])
 			log_world("Failed to find a free spot in the cave to place [poi.name].")
 			continue
 
 		// Chunks are spawned from bottom left corner
-		var/x_corner_bl = res[2] - round(poi.x_size / 2)
-		var/y_corner_bl = res[3] - round(poi.x_size / 2)
-		var/x_corner_tr = x_corner_bl + poi.x_size - 1
-		var/y_corner_tr = y_corner_bl + poi.y_size - 1
+		var/x_corner_bl = res[2] - round(poi.size_x / 2)
+		var/y_corner_bl = res[3] - round(poi.size_x / 2)
+		var/x_corner_tr = x_corner_bl + poi.size_x - 1
+		var/y_corner_tr = y_corner_bl + poi.size_y - 1
 		for(var/j = x_corner_bl to x_corner_tr)
-			for(var/k = 1 to y_corner_bl to y_corner_tr)
+			for(var/k = y_corner_bl to y_corner_tr)
 				map[j][k] = CAVE_POI
+		log_world("Saving [poi.name] with [x_corner_bl] [y_corner_bl] [x_corner_tr] [y_corner_tr]")
 		pois_placed += poi
-		pois_placed_pos += list(x_corner_bl, y_corner_bl, x_corner_tr, y_corner_tr)
+		pois_placed_pos += list(list(x_corner_bl, y_corner_bl, x_corner_tr, y_corner_tr))
 
 // Check if a potential poi does not overlap with already placed pois
-/obj/cave_generator/proc/check_poi_overlap(x_bl, y_bl, x_size, y_size) 
-	if(!LAZYLEN(pois_placed))
+/obj/cave_generator/proc/check_poi_overlap(x_bl, y_bl, size_x, size_y) 
+	if(!pois_placed.len)
 		// No overlap since no poi has been placed yet
 		return TRUE
+
+	log_world("Number of pois placed: [pois_placed.len]")
+	log_world("Number of pois placed pos: [pois_placed_pos.len]")
  
-	var/x_tr = x_bl + x_size
-	var/y_tr = y_bl + y_size
-	for(var/k = 1 to LAZYLEN(pois_placed))
+	var/x_tr = x_bl + size_x
+	var/y_tr = y_bl + size_y
+	for(var/k = 1 to pois_placed.len)
 		// If bottom left corner is on the right or above the top right corner of already placed poi, then it's clear
 		// If top right corner is on the left or under the bottom left corner of already placed poi, then it's clear
 		// Otherwise it means they overlap
-		if(!(x_bl > pois_placed_pos[k][3] || y_bl > pois_placed_pos[k][4] || x_tr < pois_placed_pos[k][1] || y_tr < pois_placed_pos[k][2]))
+		var/list/placed_pos = pois_placed_pos[k]
+		log_world("[placed_pos[1]] [placed_pos[2]] [placed_pos[3]] [placed_pos[4]]")
+			
+		if(!(x_bl > placed_pos[3] || y_bl > placed_pos[4] || x_tr < placed_pos[1] || y_tr < placed_pos[2]))
 			return FALSE
 	// No overlap
 	return TRUE
@@ -276,7 +286,7 @@
 			x1++
 			y0--
 			y1++
-			edge = (x0 == 1 + x_margin) || (x1 == CAVE_SIZE - x_margin) || (y0 == 1 + y_margin) || (y1 == CAVE_SIZE - y_margin)
+			edge = (x0 <= 1 + x_margin) || (x1 >= CAVE_SIZE - x_margin) || (y0 <= 1 + y_margin) || (y1 >= CAVE_SIZE - y_margin)
 	
 	// Hit an edge before finding an available spot
 	if(!found)
@@ -286,6 +296,9 @@
 
 // Place the up and down ladders and connect them
 /obj/cave_generator/proc/place_ladders(drill_x, drill_y, drill_z, seismic_lvl)
+
+	// Lock generator to avoid several iterations running in parallel
+	lock = TRUE
 
 	// Generate the map for the given seismic level
 	generate_map(seismic_lvl)
@@ -320,6 +333,7 @@
 	ladder_up.target = null
 	QDEL_NULL(ladder_down)
 	QDEL_NULL(ladder_up)
+	lock = FALSE
 
 // Place a mineral vein starting at the designated spot
 /obj/cave_generator/proc/place_mineral_vein(x_start, y_start, seismic_lvl)

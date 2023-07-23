@@ -253,7 +253,7 @@
 		else if(use_cell_power())
 			
 			if(!cave_connected)
-				if(cave_gen.ladder_down)
+				if(cave_gen.lock)
 					to_chat(user, SPAN_WARNING("A cave system is already being explored."))
 				else
 					var/turf/simulated/T = get_turf(loc)

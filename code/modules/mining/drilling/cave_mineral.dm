@@ -113,7 +113,7 @@
 	if(!mineral)
 		return
 	for (var/i = 1 to seismic_multiplier)
-		var/obj/item/ore/O = new mineral.ore (src)
+		new mineral.ore(src)
 
 /turf/simulated/cave_mineral/proc/GetDrilled()
 

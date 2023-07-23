@@ -7,81 +7,81 @@
 /obj/spawner/junkfood/low_chance,
 /obj/spawner/junkfood,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "b" = (
 /turf/simulated/wall/silver,
-/area/template_noop)
+/area/asteroid/cave)
 "c" = (
 /obj/structure/table/rack,
 /obj/spawner/voidsuit,
 /obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/gun/energy_cheap/low_chance,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "d" = (
 /obj/structure/table/marble,
 /obj/spawner/pack/tech_loot/onestar,
 /obj/spawner/booze,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "f" = (
 /obj/machinery/r_n_d/server,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "g" = (
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet,
-/area/template_noop)
+/area/asteroid/cave)
 "h" = (
 /obj/structure/inflatable/door,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "i" = (
 /obj/structure/filingcabinet,
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "k" = (
 /obj/structure/bed/chair/wheelchair,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "n" = (
-/turf/template_noop,
-/area/template_noop)
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
 "p" = (
 /obj/spawner/junk,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "q" = (
 /mob/living/simple_animal/hostile/hivebot/range,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "r" = (
 /mob/living/bot/medbot,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "C" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rainbow,
 /obj/spawner/lowkeyrandom,
 /turf/simulated/floor/carpet,
-/area/template_noop)
+/area/asteroid/cave)
 "G" = (
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "I" = (
 /obj/item/pen/multi,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 "K" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/floor/wood,
-/area/template_noop)
+/area/asteroid/cave)
 "Z" = (
 /obj/structure/table/marble,
 /obj/item/paper_bin,
 /turf/simulated/floor/tiled/dark,
-/area/template_noop)
+/area/asteroid/cave)
 
 (1,1,1) = {"
 b
