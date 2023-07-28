@@ -14,7 +14,14 @@ Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
 </div>
 {{else}}
     <h2>NO POWER</h2>
-    {{:helper.link('reconnect sattelite', 'radiation', { 'reconnect' : 1 },  null, null)}}
+	{{if data.reconnect_not_ready}}
+    	<div class='item'>
+        	<div class="itemLabel">
+        		<span class='bad'>The pulsar satellite takes 5 minutes to reconnect.</span>
+        	</div>
+    	</div>
+	{{/if}}
+	{{:helper.link('reconnect satellite', 'radiation', { 'reconnect' : 1 },  null, null)}}
 {{/if}}
 {{if data.portal_active}}
     <h2>PORTAL LINK ACTIVE AND STABLE</h2>

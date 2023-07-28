@@ -24,7 +24,6 @@
 	fire_delay = 4
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	move_delay = null
 	init_firemodes = list(
 		list(mode_name="Single-fire", mode_desc="Send Vagabonds flying back several paces", burst=1, icon="semi"),
 		list(mode_name="Both Barrels", mode_desc="Give them the side-by-side", burst=2, icon="burst"),

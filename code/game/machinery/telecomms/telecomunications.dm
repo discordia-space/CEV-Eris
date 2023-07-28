@@ -145,6 +145,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		else
 			for(var/obj/machinery/telecomms/T in telecomms_list)
 				add_link(T)
+		
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/Destroy()
 	telecomms_list -= src
@@ -191,6 +193,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			if(T.autolinkers.Find(x))
 				if(src != T)
 					links |= T
+					T.links |= src
 
 /obj/machinery/telecomms/update_icon()
 	if(on)

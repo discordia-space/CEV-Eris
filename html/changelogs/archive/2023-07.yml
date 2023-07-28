@@ -1,0 +1,50 @@
+2023-07-01:
+  Humonitarian:
+  - bugfix: no more unlimited speed from wrecked nerves
+  - rscdel: Removed bracing on tables
+  - bugfix: Foregrip gives foregrip modifier
+  - balance: Standing still improves accuracy when shooting, especially with larger
+      guns
+  - rscdel: Removed recoil gained from movement
+  - balance: Shooting guns no longer stuns your movement
+  - balance: Recoil provides a scaling slowdown
+  - balance: Takeshi stats nerfed, LMG recoil increased
+  - code_imp: some harddeletes resolved
+  MLGTASTICa:
+  - balance: Desctructive analyzer and handheld analyzers no longer receive any points
+      from deconstructing the same objects.
+  - bugfix: Fixed null epicenter runtime
+2023-07-08:
+  Humonitarian:
+  - balance: small organs have less health, large organs have more
+  - balance: organs are more likely to be hit the larger they are
+  - balance: damage no longer disappears if your bones aren't broken, bones now only
+      protect vital organs
+  - tweak: toughness mutation makes bones actually protect your organs
+  Vandu-Jr, Watler'Je:
+  - rscadd: Added a new Warden Jacket for the Gunny (Partially Watler)
+  - rscadd: Added a new peaked cap for the IHC (Watler)
+  - rscadd: Added a new syndicate lighter for the IHC, based on the oddity sprite
+      but functional.
+  - tweak: tiny sprite change to the full ballistic helmet. Instead of having separate
+      lenses, it's now conjoined.
+2023-07-15:
+  Hyperio:
+  - bugfix: Fix missing keyword args for linter
+  Twomoon-Github:
+  - tweak: 'tweaked ks23.dmi icon state = lefthand_doble, direction: north'
+  - rscadd: added spraypaint + graffitis
+  - soundadd: added a graffiti.ogg + graffity_empty.ogg
+  - imageadd: added spraypaint in items.dmi + wall_graffiti.dmi
+  - code_imp: added spraypaint.dm/changed cleanable/misc.dm/asters.dm and devices.dm
+      to add the spraypaint to the disk
+  thedarkcrusader:
+  - rscadd: Adds new grenade sprites and sprites for some of the grenade code. thanks
+      to kirov for sprites
+  - rscdel: Removed old  sprites
+2023-07-22:
+  Mycah142:
+  - bugfix: Cruciforms no longer emulate bone hurt juice.
+  Twomoon, SirRichardFrancis (KIROV):
+  - rscadd: Added new graffitis
+  - imageadd: added 8 more graffitis in wall_graffiti.dmi

@@ -56,6 +56,7 @@
 	new /obj/item/storage/backpack/satchel/ironhammer(src)
 	new /obj/item/clothing/head/beret/sec/navy/hos(src)
 	new /obj/item/clothing/head/HoS(src)
+	new /obj/item/clothing/head/caphat/ihc(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/clothing/suit/storage/greatcoat/ironhammer(src)
 	new /obj/item/clothing/under/rank/ih_commander(src)
@@ -75,6 +76,7 @@
 	new /obj/item/clothing/accessory/badge/commander(src)
 	new /obj/item/storage/pouch/holster(src)
 	new /obj/item/storage/pouch/holster/baton(src)
+	new /obj/item/flame/lighter/zippo/syndicate(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
@@ -93,6 +95,7 @@
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	new /obj/item/storage/belt/tactical/ironhammer(src)
 	new /obj/item/clothing/suit/storage/vest/ironhammer(src)
+	new /obj/item/clothing/suit/armor/vest/warden/ironhammer(src)
 	new /obj/item/clothing/under/rank/security/turtleneck(src)
 	new /obj/item/clothing/mask/gas/ihs(src)
 	new /obj/item/storage/box/teargas(src)

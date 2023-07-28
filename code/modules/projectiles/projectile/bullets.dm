@@ -49,7 +49,7 @@
 		blocked_damage = round(S.shield_integrity / 8)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		blocked_damage = round(D.maxhealth / 8)
+		blocked_damage = round(D.maxHealth / 8)
 		if(D.glass) blocked_damage /= 2
 	else if(istype(A, /obj/structure/girder))
 		return TRUE
@@ -57,7 +57,7 @@
 		blocked_damage = 20 // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
-		blocked_damage = round(T.maxhealth / 8)
+		blocked_damage = round(T.maxHealth / 8)
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
 		blocked_damage = round(B.material.integrity / 8)

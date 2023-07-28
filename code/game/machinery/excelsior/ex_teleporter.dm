@@ -135,18 +135,6 @@ var/global/excelsior_last_draft = 0
 		excelsior_energy = excelsior_max_energy
 		set_power_use(IDLE_POWER_USE)
 
-
-/obj/machinery/complant_teleporter/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				qdel(src)
-				return
-
-
  /**
   * The nano_ui_interact proc is used to open and update Nano UIs
   * If nano_ui_interact is not used then the UI will not update correctly

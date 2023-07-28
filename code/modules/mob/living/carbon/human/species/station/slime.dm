@@ -17,6 +17,8 @@
 	siemens_coefficient = 3 //conductive
 	darksight = 3
 
+	injury_type =  INJURY_TYPE_HOMOGENOUS
+
 	blood_color = "#05FF9B"
 	flesh_color = "#05FFFB"
 
@@ -24,7 +26,7 @@
 	death_message = "rapidly loses cohesion, splattering across the ground..."
 
 	has_process = list(
-		BP_BRAIN = /obj/item/organ/internal/brain/slime
+		BP_BRAIN = /obj/item/organ/internal/vital/brain/slime
 		)
 
 	breath_type = null

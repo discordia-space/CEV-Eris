@@ -1,4 +1,4 @@
-/obj/item/organ/internal/lungs
+/obj/item/organ/internal/vital/lungs
 	name = "lungs"
 	icon_state = "lungs"
 	gender = PLURAL
@@ -12,7 +12,7 @@
 	nutriment_req = 10
 	var/breath_modulo = 2
 
-/obj/item/organ/internal/lungs/long
+/obj/item/organ/internal/vital/lungs/long
 	name = "long lungs"
 	icon_state = "long_lungs"
 	desc = "Breathe in... Breathe in... You are still breathing in?!"

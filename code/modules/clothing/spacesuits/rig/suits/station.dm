@@ -35,7 +35,7 @@
 		melee = 10,
 		bullet = 10,
 		energy = 0,
-		bomb = 25,
+		bomb = 100,
 		bio = 100,
 		rad = 90
 	)
@@ -82,7 +82,7 @@
 		melee = 9,
 		bullet = 3,
 		energy = 3,
-		bomb = 10,
+		bomb = 25,
 		bio = 100,
 		rad = 100
 	)
@@ -245,7 +245,7 @@ Technomancer RIG
 		melee = 0,
 		bullet = 0,
 		energy = 8,
-		bomb = 90,
+		bomb = 350,
 		bio = 100,
 		rad = 100
 	)

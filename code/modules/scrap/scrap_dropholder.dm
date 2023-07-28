@@ -30,7 +30,7 @@
 /atom/movable/proc/end_fall()
 	for(var/atom/movable/AM in loc)
 		if(AM != src)
-			AM.ex_act(1)
+			AM.explosion_act(600, null)
 
 	for(var/mob/living/M in oviewers(6, src))
 		shake_camera(M, 2, 2)
@@ -46,5 +46,5 @@
 /obj/effect/falling_effect/singularity_pull()
 	return
 
-/obj/effect/falling_effect/ex_act()
-	return
+/obj/effect/falling_effect/explosion_act(target_power, explosion_handler/handler)
+	return 0

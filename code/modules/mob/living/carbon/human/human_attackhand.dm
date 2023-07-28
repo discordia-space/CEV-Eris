@@ -51,9 +51,6 @@
 
 			return
 
-	if(iscarbon(M))
-		M.spread_disease_to(src, "Contact")
-
 	switch(M.a_intent)
 		if(I_HELP)
 			if(can_operate(src, M) == CAN_OPERATE_ALL && do_surgery(src, M, null, TRUE))

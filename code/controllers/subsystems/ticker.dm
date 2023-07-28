@@ -135,8 +135,8 @@ SUBSYSTEM_DEF(ticker)
 			if(!nuke_in_progress && game_finished)
 				current_state = GAME_STATE_FINISHED
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
-				for(var/client/t in clients)
-					SSjob.SavePlaytimes(t)
+				for(var/client_key in SSinactivity_and_job_tracking.current_playtimes)
+					SSjob.SavePlaytimes(client_key)
 				declare_completion()
 
 				spawn(50)
@@ -465,7 +465,6 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
 				SSjob.EquipRank(player, player.mind.assigned_role)
-				equip_custom_items(player)
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))

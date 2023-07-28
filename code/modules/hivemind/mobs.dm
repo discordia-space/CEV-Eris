@@ -329,7 +329,7 @@
 /mob/living/simple_animal/hostile/hivemind/bomber/death()
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/robot)
-	explosion(get_turf(src), 0, 0, 2) //explosion almost equal to a full welding fuel tank, deadly
+	explosion(get_turf(src), 500, 250) //explosion almost equal to a full welding fuel tank, deadly
 	qdel(src)
 
 

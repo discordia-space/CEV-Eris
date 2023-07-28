@@ -317,6 +317,15 @@
 	prespawned_content_amount = 6
 	prespawned_content_type = /obj/item/ammo_casing/grenade/frag
 
+/obj/item/storage/box/teargas_rounds
+	name = "box of pepperspray Shells"
+	desc = "A box containing 6 tear gas shells for use with a launcher. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 50
+	prespawned_content_amount = 6
+	prespawned_content_type =  /obj/item/ammo_casing/grenade/teargas
+
 /obj/item/storage/box/emp_rounds
 	name = "box of EMP grenade shells"
 	desc = "A box containing 6 EMP grenade shells, designed to be fired from grenade launchers."

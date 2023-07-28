@@ -138,6 +138,7 @@
 	)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_RECOIL = 0.9,
+		GUN_UPGRADE_FOREGRIP
 	)
 	I.gun_loc_tag = GUN_UNDERBARREL
 

@@ -23,6 +23,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/list/saved_autopsy_weapons = list()
 	var/list/saved_symptoms = list()
 	var/list/saved_slimecores = list()
+	var/list/saved_object_types = list() // type = decon_count
 
 	// Special point amount for autopsy weapons
 	var/static/list/special_weapons = list(
@@ -58,6 +59,11 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/has_new_tech = FALSE
 	var/is_board = istype(I, /obj/item/electronics/circuitboard)
 
+	// No research value for what has been deconstructed already
+	if(I.type in saved_object_types)
+		// has to be 1 else division by 0
+		return 1
+
 	for(var/T in temp_tech)
 		if(tech_points[T])
 			if(ignoreRepeat)
@@ -84,6 +90,9 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 		if(!(temp_tech[T] in saved_tech_levels[T]))
 			saved_tech_levels[T] += temp_tech[T]
+
+	if(!(I.type in saved_object_types))
+		saved_object_types += I.type
 
 
 
@@ -150,8 +159,9 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 	channels = list("Science" = 1)
 
-/obj/item/device/radio/beacon/explosion_watcher/ex_act(severity)
-	return
+/obj/item/device/radio/beacon/explosion_watcher/explosion_act(target_power, explosion_handler/handler)
+	return 0
+
 
 /obj/item/device/radio/beacon/explosion_watcher/Initialize()
 	. = ..()
@@ -224,12 +234,6 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 				scanneddata += 1
 				scanned_autopsy_weapons += W.weapon
 
-	if(istype(O, /obj/item/paper/virus_report))
-		var/obj/item/paper/virus_report/report = O
-		for(var/symptom in report.symptoms)
-			if(!scanned_symptoms[symptom])
-				scanneddata += 1
-				scanned_symptoms[symptom] = report.symptoms[symptom]
 	if(istype(O, /obj/item/slime_extract))
 		if(!(O.type in scanned_slimecores))
 			scanned_slimecores += O.type

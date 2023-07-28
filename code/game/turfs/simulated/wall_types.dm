@@ -81,8 +81,9 @@
 	icon = 'icons/turf/shuttlepulsar.dmi'
 	icon_state = "pulsarwall1"
 
-/obj/structure/shuttle_part/ex_act(severity) //Making them indestructible, like shuttle walls
-    return 0
+/obj/structure/shuttle_part/explosion_act(target_power, explosion_handler/handler)
+	// full block
+	return target_power
 
 /turf/simulated/wall/iron/New(var/newloc)
 	..(newloc,MATERIAL_IRON)

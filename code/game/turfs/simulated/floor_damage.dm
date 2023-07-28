@@ -27,13 +27,13 @@
 	update_icon()
 
 
-/turf/simulated/floor/proc/take_damage(damage = 0, damage_type = BRUTE, ignore_resistance = FALSE)
+/turf/simulated/floor/take_damage(damage = 0, damage_type = BRUTE, ignore_resistance = FALSE)
 	if(is_hole)
 		//This turf is space or an open space, it can't break, burn or be damaged
 		//But we could break lattices in this tile
 		for(var/obj/structure/lattice/L in src)
 			if(damage > 75)
-				L.ex_act(1)
+				L.take_damage(damage)
 		return
 
 	damage -= flooring ? flooring.resistance : 0
@@ -47,7 +47,7 @@
 		//Leftover damage will carry over to whatever tile replaces this one
 		var/leftover = abs(health)
 		make_plating() //Destroy us and make the plating underneath
-		spawn()
+		//spawn()
 		//We'll spawn off a new stack in order to damage the next layer, incase it turns into a different turf object
 		damage_floor_at(x, y, z, leftover, damage_type, ignore_resistance)
 	else if(flooring)
@@ -66,3 +66,4 @@
 	var/turf/simulated/floor/F = locate(x,y,z)
 	if (istype(F))
 		F.take_damage(damage, damage_type, ignore_resistance)
+

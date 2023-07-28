@@ -22,6 +22,7 @@
 	price_tag = 3000
 	gun_parts = list(/obj/item/part/gun = 2, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1)
 	serial_type = "NT"
+	move_delay = 3
 
 /obj/item/gun/projectile/shotgun/pump/grenade/update_icon()
 	wielded_item_state = "_doble"
