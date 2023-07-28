@@ -60,3 +60,5 @@
 #define ERR_PAUSED "paused"
 #define ERR_NOINSIGHT "no insight"
 #define ERR_NOODDITY "no oddity"
+#define ERR_DISTANT "no users"
+#define ERR_STOPPED "lazy user"

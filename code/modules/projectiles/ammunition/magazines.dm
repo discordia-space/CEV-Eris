@@ -210,7 +210,7 @@
 	rarity_value = 20
 
 /obj/item/ammo_magazine/srifle/long/empty
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 4)
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/srifle/long/practice
@@ -244,7 +244,7 @@
 	spawn_blacklisted = TRUE // Not in use yet
 
 /obj/item/ammo_magazine/srifle/drum/empty
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 9)
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/srifle/drum/practice
@@ -542,6 +542,9 @@
 	w_class = ITEM_SIZE_TINY
 	ammo_states = list(1, 2, 3, 4, 5)
 
+/obj/item/ammo_magazine/sllrifle/empty
+	initial_ammo = 0
+
 /obj/item/ammo_magazine/sllrifle/hv
 	ammo_type = /obj/item/ammo_casing/lrifle/hv
 
@@ -570,6 +573,9 @@
 /obj/item/ammo_magazine/slsrifle/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/ammo_magazine/slsrifle/empty
+	initial_ammo = 0
 
 /obj/item/ammo_magazine/slsrifle/hv
 	ammo_type = /obj/item/ammo_casing/srifle/hv
@@ -633,6 +639,9 @@
 	for(var/obj/item/ammo_casing/AC in stored_ammo)
 		count++
 		overlays += "clrifle_[AC.shell_color]-[count]"
+
+/obj/item/ammo_magazine/slclrifle/empty
+	initial_ammo = 0
 
 /obj/item/ammo_magazine/slclrifle/Initialize()
 	. = ..()

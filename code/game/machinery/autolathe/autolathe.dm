@@ -41,6 +41,7 @@
 	var/storage_capacity = 120
 	var/speed = 2
 	var/mat_efficiency = 1
+	var/max_quality = 0
 
 	var/default_disk	// The disk that spawns in autolathe by default
 
@@ -63,7 +64,9 @@
 		ERR_NOREAGENT = "Not enough reagents.",
 		ERR_PAUSED = "**Construction Paused**",
 		ERR_NOINSIGHT = "Not enough insight.",
-		ERR_NOODDITY = "catalyst not found."
+		ERR_NOODDITY = "catalyst not found.",
+		ERR_DISTANT = "User too far to operate machine.",
+		ERR_STOPPED = "User stopped operating machine."
 	)
 
 	var/tmp/datum/wires/autolathe/wires
@@ -904,6 +907,7 @@
 		man_rating += M.rating
 		man_amount++
 	man_rating -= man_amount
+	max_quality = man_rating
 
 	var/las_rating = 0
 	var/las_amount = 0
@@ -941,9 +945,9 @@
 	consume_materials(design)
 
 	if(disk && disk.GetComponent(/datum/component/oldficator))
-		design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
+		design.Fabricate(drop_location(), mat_efficiency, src, TRUE, machine_rating = man_rating)
 	else
-		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, extra_quality_print)
+		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, machine_rating = man_rating, high_quality_print = extra_quality_print)
 
 	working = FALSE
 	current_file = null

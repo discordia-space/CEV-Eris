@@ -62,6 +62,8 @@
 	. = ..()
 	update_icon()
 
+/obj/item/gun/projectile/automatic/modular/set_quality(var/new_quality = 0, doesReset = TRUE)
+	for(var/part_path in required_parts)
 /obj/item/gun/projectile/automatic/modular/proc/get_initial_name()
 	return "gun"
 

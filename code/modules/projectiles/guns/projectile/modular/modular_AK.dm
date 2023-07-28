@@ -45,9 +45,9 @@
 	else
 		return "Car [caliber] \"Kalash\"" // No nikov
 
-/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities // Total points: 4, contains all the bits that make an IH ak an IH ak
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities // Total points: 5, contains all the bits that make an IH ak an IH ak
 	name = "FS AR .30 \"Venger\""
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/heavy = 0, /obj/item/part/gun/modular/barrel/lrifle = 0, /obj/item/part/gun/modular/grip/rubber = 0, /obj/item/part/gun/modular/stock = 0)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/heavy = 0, /obj/item/part/gun/modular/barrel/lrifle = 0, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/stock = 0)
 	spawn_blacklisted = TRUE
 	magazine_type = /obj/item/ammo_magazine/lrifle
 
@@ -57,15 +57,24 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	magazine_type = /obj/item/ammo_magazine/lrifle
 
-/obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 6, contains all the bits that make a serb ak a serb ak
+/obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 7, contains all the bits that make a serb ak a serb ak
 	name = "SA AR .30 \"Krinkov\""
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 0, /obj/item/part/gun/modular/barrel/lrifle/forged = 2, /obj/item/part/gun/modular/grip/serb = 0, /obj/item/part/gun/modular/stock = 0)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 0, /obj/item/part/gun/modular/barrel/lrifle = 2, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/stock = 0)
 	spawn_blacklisted = TRUE
 	magazine_type = /obj/item/ammo_magazine/lrifle/drum // Let em go wild
 
-/obj/item/gun/projectile/automatic/modular/ak/excelsior // Total points: 8, contains all the bits that make an excel ak an excel ak
+/obj/item/gun/projectile/automatic/modular/ak/serbian_arms/printed // Total points: 4, contains all the bits that make a serb ak a serb ak
+	name = "SA AR .30 \"Krinkov\""
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 0, /obj/item/part/gun/modular/barrel/lrifle = 0, /obj/item/part/gun/modular/grip/serb = 0, /obj/item/part/gun/modular/stock = 0)
+	spawn_blacklisted = TRUE
+	magazine_type = /obj/item/ammo_magazine/lrifle/drum // Let em go wild
+
+/obj/item/gun/projectile/automatic/modular/ak/serbian_arms/serbship // Total points: 9
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 1, /obj/item/part/gun/modular/barrel/lrifle/forged = 2, /obj/item/part/gun/modular/grip/serb = 2, /obj/item/part/gun/modular/stock = 0)
+
+/obj/item/gun/projectile/automatic/modular/ak/excelsior // Total points: 9, contains all the bits that make an excel ak an excel ak
 	name = "Excelsior Car .30 \"Kalashnikov\""
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined/excelsior = 1, /obj/item/part/gun/modular/barrel/lrifle = 1, /obj/item/part/gun/modular/grip/excel = 2)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/determined/excelsior = 2, /obj/item/part/gun/modular/barrel/lrifle = 1, /obj/item/part/gun/modular/grip/excel = 2)
 	spawn_blacklisted = TRUE
 	magazine_type = /obj/item/ammo_magazine/lrifle
 
