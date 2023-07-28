@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: Cyberpunk jacket, available in style vendor
+  - imageadd: Cyberpunk jacket sprites by INFRARED_BARON
