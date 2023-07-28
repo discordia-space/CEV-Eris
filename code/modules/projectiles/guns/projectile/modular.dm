@@ -1,5 +1,6 @@
 #define MODULAR_VERBS list(/obj/item/gun/projectile/automatic/modular/proc/quick_fold)
 
+
 /obj/item/gun/projectile/automatic/modular // Parent type
 	name = "\"Kalashnikov\"" // Names are also used by vendors. When making a specific gun, make sure it contains the right name.
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
@@ -64,6 +65,10 @@
 
 /obj/item/gun/projectile/automatic/modular/set_quality(var/new_quality = 0, doesReset = TRUE)
 	for(var/part_path in required_parts)
+		var/obj/item/part/gun/modular/gun_part = locate(part_path) in contents
+		gun_part.set_quality(doesReset ? new_quality : min(gun_part.old_quality + new_quality))
+	return TRUE
+
 /obj/item/gun/projectile/automatic/modular/proc/get_initial_name()
 	return "gun"
 
