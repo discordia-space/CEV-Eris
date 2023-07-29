@@ -29,43 +29,48 @@
 /obj/item/clothing/head/soft/red
 	name = "red cap"
 	initial_name = "red cap"
-	desc = "A baseball hat in a tasteless red color."
+	desc = "A baseball hat in a tasteful crimson color."
 	icon_state = "redsoft"
 
 /obj/item/clothing/head/soft/blue
 	name = "blue cap"
 	initial_name = "blue cap"
-	desc = "A peaked cap in a tasteless blue color."
+	desc = "A baseball cap in a tasteless blue color."
 	icon_state = "bluesoft"
 
 /obj/item/clothing/head/soft/green
 	name = "green cap"
 	initial_name = "green cap"
-	desc = "A peaked cap in a tasteless green color."
+	desc = "A baseball cap in a tasteless green color."
 	icon_state = "greensoft"
 
 /obj/item/clothing/head/soft/yellow
 	name = "yellow cap"
 	initial_name = "yellow cap"
-	desc = "A peaked cap in a tasteless yellow color."
+	desc = "A baseball cap in a tasteless yellow color."
 	icon_state = "yellowsoft"
 
 /obj/item/clothing/head/soft/grey
 	name = "grey cap"
 	initial_name = "grey cap"
-	desc = "A peaked cap in a tasteful grey color."
+	desc = "A baseball cap in a tasteful grey color. Reeks of welder fuel."
 	icon_state = "greysoft"
+
+/obj/item/clothing/head/soft/black
+	name = "black cap"
+	initial_name = "black cap"
+	desc = "A simple baseball cap in a tasteful black color."
 
 /obj/item/clothing/head/soft/orange
 	name = "orange cap"
 	initial_name = "orange cap"
-	desc = "A peaked cap in a tasteless orange color."
+	desc = "A baseball cap in a bleak orange color."
 	icon_state = "orangesoft"
 
 /obj/item/clothing/head/soft/mime
 	name = "white cap"
 	initial_name = "cap"
-	desc = "A peaked cap in a tasteless white color."
+	desc = "A baseball cap in a tasteless white color."
 	icon_state = "mimesoft"
 
 /obj/item/clothing/head/soft/purple
@@ -77,7 +82,7 @@
 /obj/item/clothing/head/soft/rainbow
 	name = "rainbow cap"
 	initial_name = "rainbow cap"
-	desc = "A peaked cap in a bright rainbow of colors."
+	desc = "A flimsy cap in a bright rainbow of colors."
 	icon_state = "rainbowsoft"
 
 /obj/item/clothing/head/soft/sec
@@ -86,10 +91,16 @@
 	desc = "A washed out red cap bearing logo of the long defunct \"Securitech\" company."
 	icon_state = "secsoft"
 
+/obj/item/clothing/head/soft/synd
+	name = "ancient syndicate cap"
+	initial name = "ancient syndicate cap"
+	desc = "A corporate war style field cap. Popular among patriots and veterans nowadays."
+	icon_state = "syndsoft"
+
 /obj/item/clothing/head/soft/sec/corp
 	name = "corporate security cap"
 	initial_name = "corporate security cap"
-	desc = "A field cap in corporate colors."
+	desc = "An old field cap for an ancient security corp. Popular fashion statement recently."
 	icon_state = "corpsoft"
 
 // S E R B I A //
