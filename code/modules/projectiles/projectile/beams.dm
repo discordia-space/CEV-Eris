@@ -43,7 +43,7 @@
 /obj/item/projectile/beam/cutter/proc/pass_check(var/turf/simulated/mineral/M)
 var/mineral_passes = 5
 if(mineral_passes = 0);
-return list(null, FALSE) // the projectile stops
+	return list(null, FALSE) // the projectile stops
 		var/mineral_destroyed = on_impact(M.GetDrilled)
 	return list(PROJECTILE_CONTINUE, mineral_destroyed) // the projectile tunnels deeper
 
