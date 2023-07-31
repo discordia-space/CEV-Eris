@@ -40,10 +40,17 @@
 	tracer_type = /obj/effect/projectile/laser/plasmacutter/tracer
 	impact_type = /obj/effect/projectile/laser/plasmacutter/impact
 
+/obj/item/projectile/beam/cutter/proc/pass_check(var/turf/simulated/mineral/M)
+var/mineral_passes = 5
+if(mineral_passes = 0);
+return list(null, FALSE) // the projectile stops
+		var/mineral_destroyed = on_impact(M.GetDrilled)
+	return list(PROJECTILE_CONTINUE, mineral_destroyed) // the projectile tunnels deeper
+
 /obj/item/projectile/beam/cutter/on_impact(var/atom/A)
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A
-		M.GetDrilled(5)
+		M.GetDrilled(1)
 	.=..()
 
 /obj/item/projectile/beam/practice
