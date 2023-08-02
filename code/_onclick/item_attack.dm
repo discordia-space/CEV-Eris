@@ -144,22 +144,39 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 /obj/item/proc/spin_attack(mob/user)
-	var/turf/G //Ground Zero, where the user is
-	G = get_turf(user)
+	var/free_space = TRUE // If there are walls or structures around us, we are hindered.
+	for(var/turf/T in range(1, user.loc))
+		if(istype(T, /turf/simulated/wall))
+			free_space = FALSE
+	if(!free_space)
+		to_chat(user, SPAN_WARNING("There isn't enough space to do this."))
+		return
+	if(free_space)
+		visible_message(SPAN_DANGER("[user] pivots, spinning their [src] around!"))
+	var/bufferzone
+	bufferzone = range(1, user.loc)
+	for(var/mob/living/L in bufferzone)
+		L.attackby(src, user)
+	tileattack(user, bufferzone)
+	sleep(1)
 	
-	var/buffer_zone //Define the area around the user to attack
-	buffer_zone = get_step(G, alldirs)
-	
-	var/obj/effect/effect/melee/swing/S = new() //Enact the swing on the defined attack area
-	S.dir = buffer_zone
-	user.visible_message(SPAN_DANGER("[user] spins \his [src] in a circle"))
-	playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
-	
-	var/dmg_modifier = 0.5 //Decide damage applied to targets in attack area
-	dmg_modifier = tileattack(user, buffer_zone, modifier = 1)
-	tileattack(user, buffer_zone, modifier = dmg_modifier)
-	QDEL_IN(S, 2 SECONDS)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
+//	var/spin = 2 //adjustable, the amount of tiles checked - 10 - X
+//	var/dir = user.dir // Defines the direction the user is facing
+//	if(dir & NORTH || dir & SOUTH)
+//		dir = turn(dir, 90)
+//	var/_turf //Defines the turf the user is facing
+//	while(spin < 10 && src) //we SPEEEN
+//		if((spin % 2) == 0)
+//			dir = turn(dir, 90)
+//			_turf = get_step(user, dir)
+//		spin++
+//		while(user.set_dir(dir))
+//			for(var/mob/living/L in _turf)
+//				L.attackby(src, user)
+//			swing_attack(_turf, user)
+//		sleep(1)
+
 
 /atom/proc/attackby(obj/item/W, mob/user, params)
 	return

@@ -535,7 +535,7 @@ var/global/list/items_blood_overlay_by_type = list()
 					unEquip(inhand_grab)
 		else
 			to_chat(src, SPAN_WARNING("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
-
+	
 	else if (I && !I.abstract && I.mob_can_unequip(src, get_active_hand_slot())) // being unable to unequip normally means
 		I.SpinAnimation(5,1) // that the item is stuck on or in, and so cannot spin
 		external_recoil(50)
