@@ -58,8 +58,7 @@
 		/obj/item/stack/medical,
 		/obj/item/roller
 	)
-	var/obj/item/storage/internal/container
-	var/storage_slots = 4
+	var/obj/item/storage/internal/pockets
 	var/max_w_class = ITEM_SIZE_NORMAL
 	var/list/can_hold = list(
 		/obj/item/device/scanner/health,
@@ -75,6 +74,27 @@
 		/obj/item/taperoll/medical,
 		/obj/item/bodybag
 	)
-		
+/obj/item/clothing/suit/space/medicus/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 4
+	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_storage_space = 8
 
-		
+/obj/item/clothing/suit/space/medicus/Destroy()
+	QDEL_NULL(pockets)
+	. = ..()
+
+/obj/item/clothing/suit/space/medicus/attack_hand(mob/user)
+	if ((is_worn() || is_held()) && !pockets.handle_attack_hand(user))
+		return TRUE
+	..(user)
+
+/obj/item/clothing/suit/space/medicus/MouseDrop(obj/over_object)
+	if(pockets.handle_mousedrop(usr, over_object))
+		return TRUE
+	..(over_object)
+
+/obj/item/clothing/suit/space/medicus/attackby(obj/item/W, mob/user)
+	..()
+	pockets.attackby(W, user)
