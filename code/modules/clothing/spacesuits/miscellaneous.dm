@@ -33,3 +33,48 @@
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
 	accompanying_object = /obj/item/clothing/head/space/emergency
 	slowdown = HEAVY_SLOWDOWN
+
+//Neotheology spacesuits
+/obj/item/clothing/head/space/medicus
+	name = "NT Medicus Helmet"
+	icon_state = "nt_habithat_visor"
+	item_state = "nt_habithat_visor"
+	desc = "Protective helmet meant more to safeguard against disease, retrofit to also be spaceworthy."
+	style = STYLE_HIGH //Very low defenses, but looks better than a normal spacesuit
+	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 5)
+
+/obj/item/clothing/suit/space/medicus
+	name = "NT Medicus Robes"
+	icon_state = "nt_habit"
+	item_state = "nt_habit"
+	desc = "Protective robes meant more to safeguard against disease, retrofit to also be spaceworthy. Has pockets for medical convenience."
+	style = STYLE_HIGH //Very low defenses, but looks better than a normal spacesuit
+	slowdown = LIGHT_SLOWDOWN
+	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 10)
+	item_flags = DRAG_AND_DROP_UNEQUIP
+	extra_allowed = list(
+		/obj/item/storage/firstaid,
+		/obj/item/device/scanner/health,
+		/obj/item/stack/medical,
+		/obj/item/roller
+	)
+	var/obj/item/storage/internal/container
+	var/storage_slots = 4
+	var/max_w_class = ITEM_SIZE_NORMAL
+	var/list/can_hold = list(
+		/obj/item/device/scanner/health,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/blood,
+		/obj/item/taperoll/medical,
+		/obj/item/bodybag
+	)
+		
+
+		

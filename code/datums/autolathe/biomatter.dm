@@ -85,6 +85,14 @@
 	name = "NT Church Garment"
 	build_path = /obj/item/clothing/under/rank/church
 
+/datum/design/bioprinter/nt/spacehelmet/medicus
+	name = "NT Medicus Helmet"
+	build_path = /obj/item/clothing/head/space/medicus
+
+/datum/design/bioprinter/nt/spacesuit/medicus
+	name = "NT Medicus Robes"
+	build_path = /obj/item/clothing/suit/space/medicus
+
 /datum/design/bioprinter/jackboots
 	name = "Custodian's jackboots"
 	build_path = /obj/item/clothing/shoes/jackboots/neotheology
@@ -338,6 +346,10 @@
 /datum/design/autolathe/nt/tool_upgrade/sanctifier
 	name = "sanctifier"
 	build_path = /obj/item/tool_upgrade/augment/sanctifier
+
+/datum/design/autolathe/nt/staff/nt_staff
+	name = "NT Crosier"
+	build_path = /obj/item/tool/hammer/staff/nt
 
 //[GRENADES]
 /datum/design/autolathe/nt/grenade/nt_smokebomb
