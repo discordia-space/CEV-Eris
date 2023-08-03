@@ -15,11 +15,11 @@ RECOIL: (bound to change)
 -FA - 2 point / 0.125
 
 FIREMODES:
-2-burst - 3 points
-3/5 burst - 4 points
-300 FA - 5 points
-400 FA - 6 points
-600 FA - 7 points
+2-burst - 4 points
+3/5 burst - 5 points
+300 FA - 7 points
+400 FA - 8 points
+600 FA - 9 points
 
 MODIFICATION:
 3-burst/FA doesn't accept drum - -1 points
@@ -467,9 +467,9 @@ semi accepts weird caliber - +1 points
 			Supports 3 and 5 shot bursts, and improves bullet penetration."
 	icon_state = "mechanism_autorifle"
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_IH // -1 points
-	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND) // +4 points
+	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND) // +5 points
 	divisor_bonus = 0.2 // +2 points
-	recoil_bonus = 1.125 // -1 point
+	recoil_bonus = 1.25 // -2 point
 	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
 
 // Light - good firerate, but heavy loss in damage. Total point value: +4
@@ -480,8 +480,8 @@ semi accepts weird caliber - +1 points
 	icon_state = "mechanism_autorifle"
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_SMG|MAG_WELL_IH
 	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE, CAL_PISTOL)
-	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_400) // +6 points
-	damage_bonus = -0.1 // -2 points
+	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_400) // +8 points
+	damage_bonus = -0.2 // -4 points
 
 // Determined - slower firerate, but no loss in damage. Total point value: +4
 /obj/item/part/gun/modular/mechanism/autorifle/determined
@@ -492,8 +492,8 @@ semi accepts weird caliber - +1 points
 	accepted_calibers = list(CAL_SRIFLE, CAL_CLRIFLE, CAL_LRIFLE)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L|MAG_WELL_RIFLE_D|MAG_WELL_IH
 	recoil_bonus = 1.25 // -2 points
-	damage_bonus = 0.05 // +1 points
-	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_300) // +5 points
+	damage_bonus = -0.05 // -1 points
+	bonus_firemodes = list(BURST_3_ROUND, BURST_5_ROUND, FULL_AUTO_300) // +7 points
 
 /obj/item/part/gun/modular/mechanism/autorifle/determined/excelsior
 	name = "Excelsior D-ArM \"Soviet March\""
@@ -521,9 +521,9 @@ semi accepts weird caliber - +1 points
 	accepted_calibers = list(CAL_SRIFLE, CAL_LRIFLE)
 	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_L
 	recoil_bonus = 1.25 // -1.5 points
-	damage_bonus = 0.25 // +5 points
+	damage_bonus = 0.2 // +4 points
 	divisor_bonus = -0.25 // -2.5 points, encourages use of .20 to make up for it
-	bonus_firemodes = list(BURST_2_ROUND) // +3 points
+	bonus_firemodes = list(BURST_2_ROUND) // +4 points
 
 /obj/item/part/gun/modular/mechanism/machinegun
 	name = "machine gun mechanism"

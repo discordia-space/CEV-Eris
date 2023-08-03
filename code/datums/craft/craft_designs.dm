@@ -10,10 +10,6 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 	category = "miscellaneous"
 	build_type = MAKESHIFT
 
-/datum/design/makeshift/part
-	name = "shotgun shells (slug)"
-	build_path = /obj/item/ammo_casing/shotgun/prespawned
-
 /datum/design/makeshift/grip
 	name = "makeshift grip"
 	category = "firearm grips"
@@ -23,27 +19,27 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 	name = "wood grip"
 	build_path = /obj/item/part/gun/modular/grip/wood
 
-/datum/design/makeshift/part/mechanism/pistol
+/datum/design/makeshift/mechanism/pistol
 	name = "generic pistol mechanism"
 	category = "pistol mechanisms"
 	build_path = /obj/item/part/gun/modular/mechanism/pistol
 
-/datum/design/makeshift/part/mechanism/revolver
+/datum/design/makeshift/mechanism/revolver
 	name = "generic revolver mechanism"
 	category = "revolver mechanisms"
 	build_path = /obj/item/part/gun/modular/mechanism/revolver
 
-/datum/design/makeshift/part/mechanism/shotgun
+/datum/design/makeshift/mechanism/shotgun
 	name = "generic shotgun mechanism"
 	category = "pump-action mechanisms"
 	build_path = /obj/item/part/gun/modular/mechanism/shotgun
 
-/datum/design/makeshift/part/mechanism/smg
+/datum/design/makeshift/mechanism/smg
 	name = "generic SMG mechanism"
 	category = "SMG mechanisms"
 	build_path = /obj/item/part/gun/modular/mechanism/smg
 
-/datum/design/makeshift/part/mechanism/autorifle
+/datum/design/makeshift/mechanism/autorifle
 	name = "generic self-loading mechanism"
 	category = "self-reloading mechanisms"
 	build_path = /obj/item/part/gun/modular/mechanism/autorifle
@@ -51,79 +47,86 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 
 // .35
 
-/datum/design/makeshift/part/mags/pistol
+/datum/design/makeshift/mags/pistol
 	name = "empty standard magazine (.35 Auto)"
 	category = ".35 caliber"
 	build_path = /obj/item/ammo_magazine/pistol/empty
 
-/datum/design/makeshift/part/mags/pistol/hpistol
+/datum/design/makeshift/mags/pistol/hpistol
 	name = "empty highcap magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/hpistol/empty
 
-/datum/design/makeshift/part/mags/pistol/smg
+/datum/design/makeshift/mags/pistol/smg
 	name = "empty SMG magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/smg/empty
 
-/datum/design/makeshift/part/mags/pistol/sl
+/datum/design/makeshift/mags/pistol/sl
 	name = "empty speed loader (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/slmagnum/empty
 
 
 // .40
 
-/datum/design/makeshift/part/mags/magnum
+/datum/design/makeshift/mags/magnum
 	name = "empty magazine (.40 Magnum)"
 	category = ".40 caliber"
 	build_path = /obj/item/ammo_magazine/magnum/empty
 
-/datum/design/makeshift/part/mags/magnum/msmg
+/datum/design/makeshift/mags/magnum/msmg
 	name = "empty SMG magazine (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/msmg/empty
 
-/datum/design/makeshift/part/mags/magnum/sl
+/datum/design/makeshift/mags/magnum/sl
 	name = "empty speed loader (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/slmagnum/empty
 
 
 // .20
 
-/datum/design/makeshift/part/mags/srifle
+/datum/design/makeshift/mags/srifle
 	name = "empty magazine (.20 Rifle)"
 	category = ".20 caliber"
 	build_path = /obj/item/ammo_magazine/srifle/empty
 
-/datum/design/makeshift/part/mags/srifle/long
+/datum/design/makeshift/mags/srifle/long
 	name = "empty extended magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle/long/empty
 
-/datum/design/makeshift/part/mags/srifle/drum
+/datum/design/makeshift/mags/srifle/drum
 	name = "empty drum magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle/drum/empty
 
-/datum/design/makeshift/part/mags/srifle/sl
+/datum/design/makeshift/mags/srifle/sl
 	name = "empty ammo strip (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/slsrifle/empty
 
 
 // .25
 
-/datum/design/makeshift/part/mags/clrifle
+/datum/design/makeshift/mags/clrifle
 	name = "empty magazine (.25 Caseless Rifle)"
 	category = ".25 caliber"
 	build_path = /obj/item/ammo_magazine/ihclrifle/empty
 
-/datum/design/makeshift/part/mags/clrifle/pistol
+/datum/design/makeshift/mags/clrifle/pistol
 	name = "empty pistol magazine (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/cspistol/empty
 
-/datum/design/makeshift/part/mags/srifle/sl
+/datum/design/makeshift/mags/srifle/sl
 	name = "empty ammo strip (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/slclrifle/empty
 
 
 // .50
 
-/datum/design/makeshift/part/mags/shot
+/datum/design/makeshift/mags/shot
 	name = "ammo drum (.50)"
 	category = "shotgun shells"
 	build_path = /obj/item/ammo_magazine/m12
+
+// frames
+
+/datum/design/makeshift/sermak
+	category = "firearm frames"
+	name = "\"Sermak\" rifle frame"
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/makeshift

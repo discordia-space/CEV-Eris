@@ -57,17 +57,14 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	magazine_type = /obj/item/ammo_magazine/lrifle
 
-/obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 7, contains all the bits that make a serb ak a serb ak
+/obj/item/gun/projectile/automatic/modular/ak/serbian_arms // Total points: 8, contains all the bits that make a serb ak a serb ak
 	name = "SA AR .30 \"Krinkov\""
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 0, /obj/item/part/gun/modular/barrel/lrifle = 2, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/stock = 0)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 1, /obj/item/part/gun/modular/barrel/lrifle/forged = 2, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/stock = 0)
 	spawn_blacklisted = TRUE
 	magazine_type = /obj/item/ammo_magazine/lrifle/drum // Let em go wild
 
-/obj/item/gun/projectile/automatic/modular/ak/serbian_arms/printed // Total points: 4, contains all the bits that make a serb ak a serb ak
-	name = "SA AR .30 \"Krinkov\""
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 0, /obj/item/part/gun/modular/barrel/lrifle = 0, /obj/item/part/gun/modular/grip/serb = 0, /obj/item/part/gun/modular/stock = 0)
-	spawn_blacklisted = TRUE
-	magazine_type = /obj/item/ammo_magazine/lrifle/drum // Let em go wild
+/obj/item/gun/projectile/automatic/modular/ak/serbian_arms/printed // Total points: 6, contains all the bits that make a serb ak a serb ak
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 1, /obj/item/part/gun/modular/barrel/lrifle = 0, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/stock = 0)
 
 /obj/item/gun/projectile/automatic/modular/ak/serbian_arms/serbship // Total points: 9
 	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/light = 1, /obj/item/part/gun/modular/barrel/lrifle/forged = 2, /obj/item/part/gun/modular/grip/serb = 2, /obj/item/part/gun/modular/stock = 0)
@@ -80,10 +77,6 @@
 
 /obj/item/gun/projectile/automatic/modular/ak/makeshift // Total points: 1
 	name = "MS AR .30 \"Sermak\""
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/simple = -1, /obj/item/part/gun/modular/barrel/lrifle/cheap = -1, /obj/item/part/gun/modular/grip/makeshift = -1, /obj/item/part/gun/modular/stock = 0)
-	spawn_tags = SPAWN_TAG_GUN_HANDMADE
-	magazine_type = /obj/item/ammo_magazine/lrifle
-
 	origin_tech = list(TECH_COMBAT = 1)
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 			This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
@@ -93,3 +86,8 @@
 
 /obj/item/gun/projectile/automatic/modular/ak/makeshift/get_initial_name()
 		return "MS [(PARTMOD_FOLDING_STOCK & spriteTags) ? "AR" : "Car"] [caliber] \"Sermak\"" // Unlike normal AKs, the makeshift variant's frame is easily distinguishable at closer inspection. The name reflects this.
+
+/obj/item/gun/projectile/automatic/modular/ak/makeshift/preset // Total points: 1
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/autorifle/simple = -1, /obj/item/part/gun/modular/barrel/lrifle/cheap = -1, /obj/item/part/gun/modular/grip/makeshift = -1, /obj/item/part/gun/modular/stock = 0)
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	magazine_type = /obj/item/ammo_magazine/lrifle

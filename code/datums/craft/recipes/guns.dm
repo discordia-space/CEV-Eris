@@ -109,7 +109,7 @@
 
 /datum/craft_recipe/gun/kalash
 	name = "HM AR \"Sermak\""
-	result = /obj/item/gun/projectile/automatic/modular/ak/makeshift
+	result = /obj/item/gun/projectile/automatic/modular/ak/makeshift/preset
 	steps = list(
 		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
