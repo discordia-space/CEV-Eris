@@ -51,7 +51,7 @@
 	style = STYLE_HIGH //Very low defenses, but looks better than a normal spacesuit
 	slowdown = LIGHT_SLOWDOWN
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 10)
-	item_flags = DRAG_AND_DROP_UNEQUIP
+	item_flags = DRAG_AND_DROP_UNEQUIP|STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 	extra_allowed = list(
 		/obj/item/storage/firstaid,
 		/obj/item/device/scanner/health,
