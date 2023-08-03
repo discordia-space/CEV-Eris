@@ -47,82 +47,133 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 
 // .35
 
-/datum/design/makeshift/mags/pistol
+/datum/design/makeshift/mags_pistol
 	name = "empty standard magazine (.35 Auto)"
 	category = ".35 caliber"
 	build_path = /obj/item/ammo_magazine/pistol/empty
 
-/datum/design/makeshift/mags/pistol/hpistol
+/datum/design/makeshift/mags_pistol/hpistol
 	name = "empty highcap magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/hpistol/empty
 
-/datum/design/makeshift/mags/pistol/smg
+/datum/design/makeshift/mags_pistol/smg
 	name = "empty SMG magazine (.35 Auto)"
 	build_path = /obj/item/ammo_magazine/smg/empty
 
-/datum/design/makeshift/mags/pistol/sl
-	name = "empty speed loader (.40 Magnum)"
-	build_path = /obj/item/ammo_magazine/slmagnum/empty
+/datum/design/makeshift/mags_pistol/sl
+	name = "empty speed loader (.35 Auto)"
+	build_path = /obj/item/ammo_magazine/slpistol/empty
 
+/datum/design/makeshift/mags_pistol/casings
+	name = "scrap ammunition pile (.35 Auto)"
+	build_path = /obj/item/ammo_casing/pistol/scrap/prespawned
 
 // .40
 
-/datum/design/makeshift/mags/magnum
+/datum/design/makeshift/mags_magnum
 	name = "empty magazine (.40 Magnum)"
 	category = ".40 caliber"
 	build_path = /obj/item/ammo_magazine/magnum/empty
 
-/datum/design/makeshift/mags/magnum/msmg
+/datum/design/makeshift/mags_magnum/msmg
 	name = "empty SMG magazine (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/msmg/empty
 
-/datum/design/makeshift/mags/magnum/sl
+/datum/design/makeshift/mags_magnum/sl
 	name = "empty speed loader (.40 Magnum)"
 	build_path = /obj/item/ammo_magazine/slmagnum/empty
 
+/datum/design/makeshift/mags_magnum/casings
+	name = "scrap ammunition pile (.40 Magnum)"
+	build_path = /obj/item/ammo_casing/magnum/scrap/prespawned
 
 // .20
 
-/datum/design/makeshift/mags/srifle
+/datum/design/makeshift/mags_srifle
 	name = "empty magazine (.20 Rifle)"
 	category = ".20 caliber"
 	build_path = /obj/item/ammo_magazine/srifle/empty
 
-/datum/design/makeshift/mags/srifle/long
+/datum/design/makeshift/mags_srifle/long
 	name = "empty extended magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle/long/empty
 
-/datum/design/makeshift/mags/srifle/drum
+/datum/design/makeshift/mags_srifle/drum
 	name = "empty drum magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle/drum/empty
 
-/datum/design/makeshift/mags/srifle/sl
+/datum/design/makeshift/mags_srifle/sl
 	name = "empty ammo strip (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/slsrifle/empty
 
+/datum/design/makeshift/mags_srifle/casings
+	name = "scrap ammunition pile (.20 Rifle)"
+	build_path = /obj/item/ammo_casing/srifle/scrap/prespawned
+
+// .30
+
+/datum/design/makeshift/mags_lrifle
+	name = "empty magazine (.30 Rifle)"
+	category = ".30 caliber"
+	build_path = /obj/item/ammo_magazine/lrifle/empty
+
+/datum/design/makeshift/mags_lrifle/drum
+	name = "empty drum magazine (.30 Rifle)"
+	build_path = /obj/item/ammo_magazine/lrifle/drum/empty
+
+/datum/design/makeshift/mags_lrifle/casings
+	name = "scrap ammunition pile (.30 Rifle)"
+	build_path = /obj/item/ammo_casing/lrifle/scrap/prespawned
 
 // .25
 
-/datum/design/makeshift/mags/clrifle
+/datum/design/makeshift/mags_clrifle
 	name = "empty magazine (.25 Caseless Rifle)"
 	category = ".25 caliber"
 	build_path = /obj/item/ammo_magazine/ihclrifle/empty
 
-/datum/design/makeshift/mags/clrifle/pistol
+/datum/design/makeshift/mags_clrifle/pistol
 	name = "empty pistol magazine (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/cspistol/empty
 
-/datum/design/makeshift/mags/srifle/sl
+/datum/design/makeshift/mags_clrifle/sl
 	name = "empty ammo strip (.25 Caseless Rifle)"
 	build_path = /obj/item/ammo_magazine/slclrifle/empty
 
+/datum/design/makeshift/mags_clrifle/casings
+	name = "scrap ammunition pile (.25 Caseless Rifle)"
+	build_path = /obj/item/ammo_casing/clrifle/scrap/prespawned
 
 // .50
 
-/datum/design/makeshift/mags/shot
+/datum/design/makeshift/mags_shot
 	name = "ammo drum (.50)"
 	category = "shotgun shells"
 	build_path = /obj/item/ammo_magazine/m12
+
+/datum/design/makeshift/mags_shot/casings
+	name = "scrap ammunition pile (.50 Slug)"
+	build_path = /obj/item/ammo_casing/shotgun/scrap/prespawned
+
+/datum/design/makeshift/mags_shot/casings/shot
+	name = "scrap ammunition pile (.50 Buckshot)"
+	build_path = /obj/item/ammo_casing/shotgun/pellet/prespawned
+
+/datum/design/makeshift/mags_shot/casings/bean
+	name = "scrap ammunition pile (.50 Beanbag)"
+	build_path = /obj/item/ammo_casing/shotgun/beanbag/scrap/prespawned
+
+// special
+
+/datum/design/makeshift/antim
+	name = "scrap shell pile (.60 Anti-Material)"
+	category = "special munitions"
+	build_path = /obj/item/ammo_casing/antim/scrap/prespawned
+
+/datum/design/makeshift/rocket
+	name = "scrap rocket (PG-7 shell)"
+	category = "special munitions"
+	build_path = /obj/item/ammo_casing/rocket/scrap/prespawned
 
 // frames
 
