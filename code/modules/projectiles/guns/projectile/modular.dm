@@ -66,7 +66,8 @@
 /obj/item/gun/projectile/automatic/modular/set_quality(var/new_quality = 0, doesReset = TRUE)
 	for(var/part_path in required_parts)
 		var/obj/item/part/gun/modular/gun_part = locate(part_path) in contents
-		gun_part.set_quality(doesReset ? new_quality : min(gun_part.old_quality + new_quality))
+		if(gun_part)
+			gun_part.set_quality(doesReset ? new_quality : min(gun_part.old_quality + new_quality))
 	return TRUE
 
 /obj/item/gun/projectile/automatic/modular/proc/get_initial_name()

@@ -421,7 +421,7 @@
 
 */
 //"apple", "banana", "lemon"
-// "firearm grips", "firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "self-reloading mechanisms"
+// "firearm grips", "firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "self-loading mechanisms"
 
 var/global/list/crafting_designs
 
@@ -441,15 +441,19 @@ var/global/list/crafting_designs
 	var/warmed_up = FALSE
 	var/mob/living/Crafter
 	var/list/designs = list()
-	categories = list("firearm frames", "firearm grips", "firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "SMG mechanisms", "self-reloading mechanisms", ".35 caliber", ".40 caliber", ".20 caliber", ".25 caliber", ".30 caliber", "shotgun shells", "special munitions", "miscellaneous")
+	categories = list("firearm frames", "firearm grips", "firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "SMG mechanisms", "self-loading mechanisms", ".35 caliber", ".40 caliber", ".20 caliber", ".25 caliber", ".30 caliber", "shotgun shells", "special munitions", "miscellaneous")
 
 /obj/machinery/autolathe/crafting_station/Initialize()
 	. = ..()
 	if(!crafting_designs)
-		for(var/design in subtypesof(/datum/design/makeshift))
+		for(var/designpath in subtypesof(/datum/design/makeshift))
 			var/datum/computer_file/binary/design/D = new
-			D.set_design_type(design)
-			LAZYADD(crafting_designs, D)
+			D.set_design_type(designpath)
+			if(istype(D.design))
+				LAZYADD(crafting_designs, D)
+			else
+				log_debug("Makeshift design file \"[D]\" did not possess [designpath]")
+				D.qdel_self()
 	LAZYADD(designs, crafting_designs)
 
 /obj/machinery/autolathe/crafting_station/res_load()
@@ -492,7 +496,7 @@ var/global/list/crafting_designs
 					icon_state = "[icon_state]_square"
 				if(".35 caliber", ".40 caliber", ".20 caliber", ".25 caliber", ".30 caliber", "shotgun shells", "special munitions")
 					icon_state = "[icon_state]_points"
-				if("firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "SMG mechanisms", "self-reloading mechanisms")
+				if("firearm barrels", "pistol mechanisms", "revolver mechanisms", "pump-action mechanisms", "SMG mechanisms", "self-loading mechanisms")
 					icon_state = "[icon_state]_cut"
 	else if(warmed_up)
 		flick("craft_done", src)

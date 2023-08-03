@@ -403,7 +403,7 @@ semi accepts weird caliber - +1 points
 			if(2)
 				damage_name = pick("exceptional", "flawless", "superb")
 		name = damage_name + " " + initial(name)
-	I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = 1 + damage_bonus - old_quality / 20
+	I.weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS] = damage_bonus - old_quality / 20
 
 /obj/item/part/gun/modular/mechanism/pistol
 	name = "pistol mechanism"

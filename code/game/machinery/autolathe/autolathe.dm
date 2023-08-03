@@ -945,9 +945,9 @@
 	consume_materials(design)
 
 	if(disk && disk.GetComponent(/datum/component/oldficator))
-		design.Fabricate(drop_location(), mat_efficiency, src, TRUE, machine_rating = man_rating)
+		design.Fabricate(drop_location(), mat_efficiency, src, TRUE, machine_rating = max_quality)
 	else
-		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, machine_rating = man_rating, high_quality_print = extra_quality_print)
+		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, machine_rating = max_quality, high_quality_print = extra_quality_print)
 
 	working = FALSE
 	current_file = null
