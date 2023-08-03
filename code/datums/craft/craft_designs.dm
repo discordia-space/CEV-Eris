@@ -93,7 +93,7 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 
 // generic mechanisms
 
-/datum/design/makeshift/mechanism/pistol
+/datum/design/makeshift/mechanism
 	name = "generic pistol mechanism"
 	category = "pistol mechanisms"
 	build_path = /obj/item/part/gun/modular/mechanism/pistol
