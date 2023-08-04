@@ -65,7 +65,7 @@ var/global/excelsior_last_draft = 0
 		)
 
 	var/list/IKEA_list = list(
-		/obj/item/machinery_crate/excelsior/shield = 300,
+		/obj/item/machinery_crate/excelsior/shield = 500,
 		/obj/item/machinery_crate/excelsior/autolathe = 300,
 		/obj/item/machinery_crate/excelsior/boombox = 400,
 		/obj/item/machinery_crate/excelsior/diesel_generator = 300,
