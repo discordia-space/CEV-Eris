@@ -205,13 +205,11 @@ var/global/excelsior_last_draft = 0
 	data["list_of_parts"] = order_list_p
 
 	var/list/order_list_i = list()
-	for(var/item in IKEA_list)
-		var/obj/item/machinery_crate/I = item
-		order_list_i += list(
-			list(
-				"name_i" = initial(I.name),
-				"price_i" = IKEA_list[item],
-				"commands_i" = list("order_i" = item)
+	for(var/obj/item/machinery_crate/I as anything in IKEA_list)
+		order_list_i += list(list(
+			"name_i" = initial(I.name),
+			"price_i" = IKEA_list[item],
+			"commands_i" = list("order_i" = I)
 			)
 		)
 

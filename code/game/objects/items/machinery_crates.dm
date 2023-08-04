@@ -22,63 +22,62 @@
 	..()
 	to_chat(user, "The piece of paper on the side reads: [machine_name]")
 
-/obj/item/machinery_crate/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/item/machinery_crate/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if(is_table_on_turf())
 		return
 	if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
 
 /obj/item/machinery_crate/attack_hand(mob/living/user)
 	if(!anchored)
 		return ..()
-	to_chat(user, "You start seek for activation button...")
+	to_chat(user, "Initializing construction…")
 	if(do_after(user, constructing_duration, src))
 		activate_constructing()
 
 /obj/item/machinery_crate/proc/activate_constructing()
-	if(!anchored)
-		return
-	if(activated)
+	if(!anchored || activated)
 		return
 	if(anim)
 		invisibility = INVISIBILITY_MAXIMUM
-		var/atom/movable/overlay/animation = null
-		animation = new(loc)
+		var/atom/movable/overlay/animation = new(loc)
 		animation.icon = 'icons/obj/machinery_crates.dmi'
 		animation.master = src
 		animation.density = TRUE
 		flick(anim, animation)
 		activated = TRUE
-		addtimer(CALLBACK(src, PROC_REF(check), animation), animation_duration)
+		addtimer(CALLBACK(src, PROC_REF(finish_construction), animation), animation_duration)
 		return
 	new constructing_machine(get_turf(src))
 	qdel(src)
 
-/obj/item/machinery_crate/proc/check(atom/movable/overlay/animation)
+/obj/item/machinery_crate/proc/finish_construction(atom/movable/overlay/animation)
 	new constructing_machine(get_turf(src))
-	if(animation)	qdel(animation)
-	if(src)			qdel(src)
+	if(!QDELETED(animation))
+		qdel(animation)
+	if(!QDELETED(src))
+		qdel(src)
 
 /obj/item/machinery_crate/proc/is_table_on_turf()
-	var/turf/turf = get_turf(src)
 	if(can_place_on_table)
 		return FALSE
-	for(var/obj/structure/table/I in turf.contents)
+	for(var/obj/structure/table/I in get_turf(src))
 		to_chat(usr, "You can't fasten [name] to [I.name]")
 		return TRUE
 	return FALSE
 
 /obj/item/machinery_crate/excelsior
 	icon_state = "excelsior"
+	bad_type = /obj/item/machinery_crate/excelsior
 
 /obj/item/machinery_crate/excelsior/shield
 	name = "shield generator IKEA"
 	icon_state = "shield_gen"
 	anim = "ESH_animation"
-	machine_name = "excelsior shield generator"
+	machine_name = "Excelsior shield generator"
 	animation_duration = 39
 	constructing_machine = /obj/machinery/shieldwallgen/excelsior
 
@@ -93,26 +92,26 @@
 	constructing_machine = /obj/machinery/craftingstation
 
 /obj/item/machinery_crate/excelsior/autolathe
-	name = "excelsior autolate IKEA"
-	machine_name = "excelsior autholate"
+	name = "Excelsior autolate IKEA"
+	machine_name = "Excelsior autolate"
 	constructing_machine = /obj/machinery/autolathe/excelsior
 
 /obj/item/machinery_crate/excelsior/boombox
-	name = "excelsior boombox IKEA"
+	name = "Excelsior boombox IKEA"
 	icon_state = "exboombox"
 	constructing_duration = 80
-	machine_name = "excelsior boombox"
+	machine_name = "Excelsior boombox"
 	constructing_machine = /obj/machinery/excelsior_boombox
 
 /obj/item/machinery_crate/excelsior/diesel_generator
-	name = "diesel_generator IKEA"
+	name = "diesel generator IKEA"
 	machine_name = "diesel generator"
 	constructing_machine = /obj/machinery/power/port_gen/pacman/diesel
 
 /obj/item/machinery_crate/excelsior/turret
 	name = "turret IKEA"
 	constructing_duration = 130
-	machine_name = "excelsior turret"
+	machine_name = "Excelsior turret"
 	constructing_machine = /obj/machinery/porta_turret/excelsior
 
 /obj/item/machinery_crate/pacman
