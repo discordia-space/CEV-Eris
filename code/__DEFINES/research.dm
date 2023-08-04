@@ -62,3 +62,4 @@
 #define ERR_NOODDITY "no oddity"
 #define ERR_DISTANT "no users"
 #define ERR_STOPPED "lazy user"
+#define ERR_SKILL_ISSUE "unskilled user"

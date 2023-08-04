@@ -66,7 +66,8 @@
 		ERR_NOINSIGHT = "Not enough insight.",
 		ERR_NOODDITY = "catalyst not found.",
 		ERR_DISTANT = "User too far to operate machine.",
-		ERR_STOPPED = "User stopped operating machine."
+		ERR_STOPPED = "User stopped operating machine.",
+		ERR_SKILL_ISSUE = "User does not understand this design."
 	)
 
 	var/tmp/datum/wires/autolathe/wires
@@ -87,6 +88,7 @@
 	var/obj/item/oddity
 	var/is_nanoforge = FALSE
 	var/list/saved_designs = list()
+	var/uses_stat = FALSE
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()
@@ -142,7 +144,7 @@
 	return data
 
 
-/obj/machinery/autolathe/nano_ui_data()
+/obj/machinery/autolathe/nano_ui_data(mob/user)
 	var/list/data = list()
 
 	data["have_disk"] = have_disk
@@ -232,6 +234,11 @@
 
 	data["use_license"] = !!disk
 	data["is_nanoforge"] = is_nanoforge
+
+	if(uses_stat)
+		data["uses_stat"] = uses_stat
+		data["max_quality"] = get_quality()
+
 	return data
 
 
@@ -945,9 +952,9 @@
 	consume_materials(design)
 
 	if(disk && disk.GetComponent(/datum/component/oldficator))
-		design.Fabricate(drop_location(), mat_efficiency, src, TRUE, machine_rating = max_quality)
+		design.Fabricate(drop_location(), mat_efficiency, src, TRUE, machine_rating = get_quality())
 	else
-		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, machine_rating = max_quality, high_quality_print = extra_quality_print)
+		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, machine_rating = get_quality(), high_quality_print = extra_quality_print)
 
 	working = FALSE
 	current_file = null
@@ -1000,6 +1007,10 @@
 	oddity = null
 	inspiration = null
 	SSnano.update_uis(src)
+
+/obj/machinery/autolathe/proc/get_quality(mob/living/user)
+	return max_quality
+
 
 #undef ERR_OK
 #undef ERR_NOTFOUND

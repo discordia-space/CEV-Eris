@@ -56,7 +56,7 @@
 	name = capitalize(name)
 
 	if(quality)
-		name = (quality > 0) ? "(+[quality]) ([item_name])" : "([quality]) [item_name)"
+		name = (quality > 0) ? "(+[quality]) ([item_name])" : "([quality]) [item_name]"
 
 //Try to make up a nice description if we don't have one
 /datum/design/proc/AssembleDesignDesc()

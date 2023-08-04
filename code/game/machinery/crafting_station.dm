@@ -438,6 +438,7 @@ var/global/list/crafting_designs
 	have_recycling = FALSE
 	use_power = NO_POWER_USE
 
+	uses_stat = TRUE
 	var/warmed_up = FALSE
 	var/mob/living/Crafter
 	var/list/designs = list()
@@ -466,12 +467,20 @@ var/global/list/crafting_designs
 	..()
 	Crafter = user
 
-/obj/machinery/autolathe/crafting_station/can_print(datum/computer_file/binary/design/design_file)
+/obj/machinery/autolathe/crafting_station/can_print(var/datum/computer_file/binary/design/design_file)
 	if(!Crafter.Adjacent(src))
 		return ERR_DISTANT
 	if(Crafter.incapacitated(INCAPACITATION_DEFAULT) || !(Crafter.machine == src))
 		return ERR_STOPPED
+	if(Crafter.stats.getStat(STAT_COG) < (design_file.design.minimum_quality * 15 + 15))
+		return ERR_SKILL_ISSUE
 	. = ..()
+
+/obj/machinery/autolathe/crafting_station/get_quality()
+	var/quality_level = -1
+	if(istype(Crafter))
+		quality_level = min(round((Crafter.stats.getStat(STAT_COG) - 15) / 15), max_quality) + (Crafter.stats.getPerk(/datum/perk/oddity/gunsmith) ? 1 : 0)
+	return quality_level
 
 /obj/machinery/autolathe/crafting_station/update_icon()
 	overlays.Cut()

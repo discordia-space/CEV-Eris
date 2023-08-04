@@ -11,6 +11,17 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 	build_type = MAKESHIFT
 	quality = 2
 
+/datum/design/makeshift/AssembleDesignName(atom/temp_atom)
+	if(!name && temp_atom)
+		name = temp_atom.name
+
+	item_name = name
+
+	if(name_category)
+		name = "[name_category] ([item_name])"
+
+	name = capitalize(name)
+
 // grips
 
 /datum/design/makeshift/grip
