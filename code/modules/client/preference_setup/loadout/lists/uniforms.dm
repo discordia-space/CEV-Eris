@@ -9,41 +9,23 @@
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
 
-/datum/gear/uniform/crewman
-	display_name = "jumpsuit, crewman"
-	path = /obj/item/clothing/under/rank/crewman
-
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
 	path = /obj/item/clothing/under/rainbow
 
 /datum/gear/uniform/jumpsuit/color_presets
 	display_name = "jumpsuit, color presets"
-	path = /obj/item/clothing/under/aqua
-	cost = 2
+	path = /obj/item/clothing/under/color/grey
+	cost = 1
 
 /datum/gear/uniform/jumpsuit/color_presets/New()
 	..()
 	var/jumpsuit = list(
 		"Black"			=	/obj/item/clothing/under/color/black,
 		"White"			=	/obj/item/clothing/under/color/white,
-		"Blue"			=	/obj/item/clothing/under/color/blue,
-		"Green"			=	/obj/item/clothing/under/color/green,
 		"Grey"			=	/obj/item/clothing/under/color/grey,
-		"Pink"			=	/obj/item/clothing/under/color/pink,
-		"Yellow"		=	/obj/item/clothing/under/color/yellow,
-		"Light-Blue"	=	/obj/item/clothing/under/lightblue,
-		"Red"			=	/obj/item/clothing/under/color/red,
-		"Aqua"			=	/obj/item/clothing/under/aqua,
-		"Purple"		=	/obj/item/clothing/under/purple,
-		"Light-Purple"	=	/obj/item/clothing/under/lightpurple,
-		"Light-Green"	=	/obj/item/clothing/under/lightgreen,
-		"Light-Brown"	=	/obj/item/clothing/under/lightbrown,
-		"Brown"			=	/obj/item/clothing/under/brown,
-		"Yellow-Green"	=	/obj/item/clothing/under/yellowgreen,
-		"Dark-Blue"		=	/obj/item/clothing/under/darkblue,
-		"Light-Red"		=	/obj/item/clothing/under/lightred,
-		"Dark-Red"		=	/obj/item/clothing/under/darkred,
+		"Orange"		=	/obj/item/clothing/under/color/orange,
+		"Crewman"		= 	/obj/item/clothing/under/rank/crewman
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
@@ -61,7 +43,8 @@
 	var/leisure = list(
 		"Brown Jacket" 			=	 /obj/item/clothing/under/leisure,
 		"White Blazer" 			=	 /obj/item/clothing/under/leisure/white,
-		"Patterned Pullover" 	=	 /obj/item/clothing/under/leisure/pullover
+		"Patterned Pullover" 	=	 /obj/item/clothing/under/leisure/pullover,
+		"Business Casual"		=	 /obj/item/clothing/under/leisure/joe
 	)
 	gear_tweaks += new /datum/gear_tweak/path(leisure)
 
@@ -166,7 +149,7 @@
 
 /datum/gear/uniform/punk
 	display_name = "punk outfit, selection"
-	path = /obj/item/clothing/under/genericb
+	path = /obj/item/clothing/under/johnny
 
 /datum/gear/uniform/punk/New()
 	..()

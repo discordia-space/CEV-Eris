@@ -204,6 +204,12 @@ obj/item/clothing/under/leisure/pullover
 	icon_state = "pullover"
 	item_state = "pullover"
 
+/obj/item/clothing/under/leisure/joe
+	name = "red casual suit"
+	desc = "A salmon colored casual suit for office workers."
+	icon_state = "joe"
+	item_state = "joe"
+
 obj/item/clothing/under/neon
 	name = "green neon tracksuit"
 	desc = "A tracksuit lined with green neon fibers. Slightly luminescent."
