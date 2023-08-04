@@ -1818,7 +1818,8 @@
 		/obj/item/clothing/suit/storage/aerostatic = 2,
 		/obj/item/clothing/suit/storage/jamrock = 2,
 		/obj/item/clothing/suit/storage/dante = 2,
-		/obj/item/clothing/suit/storage/akira = 2
+		/obj/item/clothing/suit/storage/akira = 2,
+		/obj/item/punk_lootbox = 8
 					)
 	prices = list(
 		/obj/item/clothing/mask/scarf/style = 250,
@@ -1913,7 +1914,8 @@
 		/obj/item/clothing/suit/storage/dante = 900,
 		/obj/item/clothing/suit/storage/triad = 1200,
 		/obj/item/clothing/suit/storage/akira = 600,
-		/obj/item/clothing/head/skull/drip = 100000
+		/obj/item/clothing/head/skull/drip = 100000,
+		/obj/item/punk_lootbox = 500
 					)
 
 	contraband = list(

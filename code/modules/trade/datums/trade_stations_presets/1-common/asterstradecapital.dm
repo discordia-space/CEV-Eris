@@ -112,6 +112,14 @@
 			/obj/item/storage/lunchbox/rainbow = good_data("Rainbow Lunchbox", list(1, 10), null),
 			/obj/item/storage/lunchbox/cat = good_data("Cat Lunchbox", list(1, 10), null),
 			/obj/item/contraband/poster
+		),
+		"IKEA crates" = list(
+		/obj/item/machinery_crate/crafting_station = custom_good_price(700),
+		/obj/item/machinery_crate/autholate = custom_good_price(600),
+		/obj/item/machinery_crate/pacman = custom_good_price(700),
+		/obj/item/machinery_crate/recharger = custom_good_price(700),
+		/obj/item/machinery_crate/beer_dispenser = custom_good_price(600),
+		/obj/item/machinery_crate/soda_dispenser = custom_good_price(600)
 		)
 	)
 	hidden_inventory = list(
