@@ -67,7 +67,7 @@
 		ERR_NOODDITY = "catalyst not found.",
 		ERR_DISTANT = "User too far to operate machine.",
 		ERR_STOPPED = "User stopped operating machine.",
-		ERR_SKILL_ISSUE = "User does not understand this design."
+		ERR_SKILL_ISSUE = "User cannot produce this design."
 	)
 
 	var/tmp/datum/wires/autolathe/wires

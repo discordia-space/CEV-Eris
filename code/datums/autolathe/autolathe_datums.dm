@@ -131,7 +131,7 @@
 /datum/design/proc/AssembleDesignUIData()
 	nano_ui_data = list(
 		"id" = "[id]", "name" = name, "desc" = desc, "time" = time,
-		"category" = category, "adjust_materials" = adjust_materials
+		"category" = category, "adjust_materials" = adjust_materials, "minimum_quality" = minimum_quality
 	)
 
 	if(length(materials))
