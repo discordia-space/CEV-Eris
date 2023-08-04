@@ -65,7 +65,7 @@
 	if(can_place_on_table)
 		return FALSE
 	for(var/obj/structure/table/I in get_turf(src))
-		to_chat(usr, "You can't fasten [name] to [I.name]")
+		to_chat(usr, "You can't fasten \the [name] here because of \the [I.name] in the way.")
 		return TRUE
 	return FALSE
 
