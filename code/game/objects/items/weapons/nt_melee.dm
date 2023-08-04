@@ -377,7 +377,7 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_crosier"
 	item_state = "nt_crosier"
-	wielded_icon = null //Asked spriter to create
+	wielded_icon = null //Asked spriter to create, is also missing belt, back equipped sprites.
 	force = WEAPON_FORCE_ROBUST //Stronger than makeshift spear, but just as equal pitiful armor pen. Bap.
 	matter = list(MATERIAL_BIOMATTER = 30, MATERIAL_STEEL = 15, MATERIAL_GOLD = 10)
 	aspects = list(SANCTIFIED)
