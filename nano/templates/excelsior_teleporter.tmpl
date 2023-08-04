@@ -1,7 +1,7 @@
-<!-- 
+<!--
 Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
  -->
-{{:helper.excelsiorMode()}} 
+{{:helper.excelsiorMode()}}
 <h2>Welcome Comrade</h2>
 {{if data.menu == 0}}
 	<div class="item">
@@ -21,7 +21,7 @@ Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
 			<div class="itemContent">
 				- {{:data.time_until_scan}}
 			</div>
-		</div>		
+		</div>
 		<div class="item">
 			<div class="itemLabel">
 				Mandates:
@@ -80,7 +80,24 @@ Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
 			</tr>
 		{{/for}}
 	</table>
-	
+	<div class="item">
+		<div class="itemLabel" style="width: 100%;">
+			Crates:
+		</div>
+	</div>
+	<table class='itemContent' style="width: 100%;">
+		<tr>
+			<td><b>Name</b></td>
+			<td><b>Energy Cost</b></td>
+		</tr>
+		{{for data.list_of_IKEA}}
+			<tr>
+			<td>{{:value.name_i}}</td>
+			<td>{{:helper.link(value.price_i, 'circle-arrow-s', value.commands_i, null, 'fixedLeft')}}</td>
+			</tr>
+		{{/for}}
+	</table>
+
 {{else data.menu == 1}}
 	<h2>Available Mandates:</h2>
 	<div class="item">

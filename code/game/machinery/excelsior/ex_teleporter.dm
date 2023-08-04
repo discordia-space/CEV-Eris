@@ -63,6 +63,14 @@ var/global/excelsior_last_draft = 0
 		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
 		/obj/item/electronics/circuitboard/diesel = 150
 		)
+
+	var/list/IKEA_list = list(
+		/obj/item/machinery_crate/excelsior/shield = 500,
+		/obj/item/machinery_crate/excelsior/autolathe = 300,
+		/obj/item/machinery_crate/excelsior/boombox = 400,
+		/obj/item/machinery_crate/excelsior/diesel_generator = 300,
+		/obj/item/machinery_crate/excelsior/turret = 400
+	)
 	var/entropy_value = 8
 
 /obj/machinery/complant_teleporter/Initialize()
@@ -196,6 +204,17 @@ var/global/excelsior_last_draft = 0
 
 	data["list_of_parts"] = order_list_p
 
+	var/list/order_list_i = list()
+	for(var/obj/item/machinery_crate/I as anything in IKEA_list)
+		order_list_i += list(list(
+			"name_i" = initial(I.name),
+			"price_i" = IKEA_list[I],
+			"commands_i" = list("order_i" = I)
+			)
+		)
+
+	data["list_of_IKEA"] = order_list_i
+
 	return data
 
 
@@ -218,6 +237,12 @@ var/global/excelsior_last_draft = 0
 		var/ordered_item = text2path(href_list["order_p"])
 		if (parts_list.Find(ordered_item))
 			var/order_energy_cost = parts_list[ordered_item]
+			send_order(ordered_item, order_energy_cost, 1)
+
+	if(href_list["order_i"])
+		var/ordered_item = text2path(href_list["order_i"])
+		if (IKEA_list.Find(ordered_item))
+			var/order_energy_cost = IKEA_list[ordered_item]
 			send_order(ordered_item, order_energy_cost, 1)
 
 	if(href_list["open_menu"])
