@@ -88,7 +88,7 @@
 	new /obj/item/computer_hardware/hard_drive/portable/design(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core(stash)
 	new /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons(stash)
-	new /obj/item/electronics/circuitboard/excelsiorautolathe(stash)
+	new /obj/item/machinery_crate/excelsior/autolathe(stash)
 	new /obj/item/electronics/circuitboard/excelsior_teleporter(stash)
 
 	H.put_in_hands(stash)

@@ -1,0 +1,143 @@
+/obj/item/machinery_crate
+	name = "IKEA"
+	desc = "Integrated Kit of Engineering Assembly."
+	icon = 'icons/obj/machinery_crates.dmi'
+	icon_state = "standart"
+
+	anchored = FALSE
+	w_class = ITEM_SIZE_HUGE
+	slowdown_hold = 0.5
+	throw_range = 2
+	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
+
+	var/machine_name
+	var/constructing_machine
+	var/constructing_duration = 50
+	var/anim
+	var/animation_duration = 5
+	var/activated
+	var/can_place_on_table = FALSE
+
+/obj/item/machinery_crate/examine(mob/user)
+	..()
+	to_chat(user, "The piece of paper on the side reads: [machine_name]")
+
+/obj/item/machinery_crate/attackby(var/obj/item/I, var/mob/user as mob)
+	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
+		return ..()
+	if(is_table_on_turf())
+		return
+	if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		anchored = !anchored
+
+/obj/item/machinery_crate/attack_hand(mob/living/user)
+	if(!anchored)
+		return ..()
+	to_chat(user, "You start seek for activation button...")
+	if(do_after(user, constructing_duration, src))
+		activate_constructing()
+
+/obj/item/machinery_crate/proc/activate_constructing()
+	if(!anchored)
+		return
+	if(activated)
+		return
+	if(anim)
+		invisibility = INVISIBILITY_MAXIMUM
+		var/atom/movable/overlay/animation = null
+		animation = new(loc)
+		animation.icon = 'icons/obj/machinery_crates.dmi'
+		animation.master = src
+		animation.density = TRUE
+		flick(anim, animation)
+		activated = TRUE
+		addtimer(CALLBACK(src, PROC_REF(check), animation), animation_duration)
+		return
+	new constructing_machine(get_turf(src))
+	qdel(src)
+
+/obj/item/machinery_crate/proc/check(atom/movable/overlay/animation)
+	new constructing_machine(get_turf(src))
+	if(animation)	qdel(animation)
+	if(src)			qdel(src)
+
+/obj/item/machinery_crate/proc/is_table_on_turf()
+	var/turf/turf = get_turf(src)
+	if(can_place_on_table)
+		return FALSE
+	for(var/obj/structure/table/I in turf.contents)
+		to_chat(usr, "You can't fasten [name] to [I.name]")
+		return TRUE
+	return FALSE
+
+/obj/item/machinery_crate/excelsior
+	icon_state = "excelsior"
+
+/obj/item/machinery_crate/excelsior/shield
+	name = "shield generator IKEA"
+	icon_state = "shield_gen"
+	anim = "ESH_animation"
+	machine_name = "excelsior shield generator"
+	animation_duration = 39
+	constructing_machine = /obj/machinery/shieldwallgen/excelsior
+
+/obj/item/machinery_crate/autholate
+	name = "autolate IKEA"
+	machine_name = "autholate"
+	constructing_machine = /obj/machinery/autolathe
+
+/obj/item/machinery_crate/crafting_station
+	name = "crafting station IKEA"
+	machine_name = "crafting station"
+	constructing_machine = /obj/machinery/craftingstation
+
+/obj/item/machinery_crate/excelsior/autolathe
+	name = "excelsior autolate IKEA"
+	machine_name = "excelsior autholate"
+	constructing_machine = /obj/machinery/autolathe/excelsior
+
+/obj/item/machinery_crate/excelsior/boombox
+	name = "excelsior boombox IKEA"
+	icon_state = "exboombox"
+	constructing_duration = 80
+	machine_name = "excelsior boombox"
+	constructing_machine = /obj/machinery/excelsior_boombox
+
+/obj/item/machinery_crate/excelsior/diesel_generator
+	name = "diesel_generator IKEA"
+	machine_name = "diesel generator"
+	constructing_machine = /obj/machinery/power/port_gen/pacman/diesel
+
+/obj/item/machinery_crate/excelsior/turret
+	name = "turret IKEA"
+	constructing_duration = 130
+	machine_name = "excelsior turret"
+	constructing_machine = /obj/machinery/porta_turret/excelsior
+
+/obj/item/machinery_crate/pacman
+	name = "P.A.C.M.A.N. IKEA"
+	machine_name = "P.A.C.M.A.N."
+	constructing_machine = /obj/machinery/power/port_gen/pacman
+
+/obj/item/machinery_crate/recharger
+	name = "recharger IKEA"
+	machine_name = "recharger"
+	constructing_machine = /obj/machinery/recharger
+
+/obj/item/machinery_crate/beer_dispenser
+	name = "a-dispenser IKEA"
+	machine_name = "alcohol dispenser"
+	can_place_on_table = TRUE
+	constructing_machine = /obj/machinery/chemical_dispenser/beer
+
+/obj/item/machinery_crate/soda_dispenser
+	name = "s-dispenser IKEA"
+	machine_name = "soda dispenser"
+	can_place_on_table = TRUE
+	constructing_machine = /obj/machinery/chemical_dispenser/soda
+
+
+
+
+
