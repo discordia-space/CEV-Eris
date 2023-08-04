@@ -67,7 +67,7 @@ Used In File(s): \code\game\machinery\autolathe.dm
 {{if data.uses_stat}}
 <div class="fixedWidest" style="width:100%; display: table-row">
 	<div class="block" style="padding: 0px 4px 2px 4px">
-	<b>With your skills and the current components, you may print "{{:data.max_quality < 0 ? '-' + data.max_quality : '+' + data.max_quality}}" quality parts.</b>
+	<b>With your skills and the current components, you may print "{{:data.max_quality < 0 ? data.max_quality : '+' + data.max_quality}}" quality parts.</b>
 	</div>
 </div>
 {{/if}}
