@@ -287,6 +287,19 @@
 	corpseid = 1
 	corpseidjob = "Ironhammer Operative"
 	corpseidaccess = "ihoper"
+	injury_level = 6
+
+/obj/landmark/corpse/scientist
+	name = "Moebius Scientist"
+	corpseuniform = /obj/item/clothing/under/rank/scientist
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsegloves = list(/obj/item/clothing/gloves/thick, /obj/item/clothing/gloves/latex)
+	corpseradio = /obj/item/device/radio/headset/headset_sci
+	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
+	corpsehelmet = list(/obj/item/clothing/head/beret/moebius, null)
+	corpseid = 1
+	corpseidjob = "Moebius Scientist"
+	corpseidaccess = "ihoper"
 	injury_level = 9
 
 ////LEGACY CORPSES////REPLACE WITH NEW CORPSES IF FOUND IN MAP////
