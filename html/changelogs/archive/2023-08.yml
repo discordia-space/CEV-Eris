@@ -1,6 +1,19 @@
-author: thevandie
-delete-after: true
-changes:
+2023-08-05:
+  Kopit32:
+  - rscadd: Added machinery_crates.dm file. Added new categories to excelsior teleporter
+      and guild's Solnyshko station.
+  - imageadd: added sprites for standart crates and excelsior's crates. Some things
+      have their own sprites(for some sprites thanks Kirov)
+  - code_imp: 'changed excelsior''s stash content: autolate plate replaced to crate
+      alternate'
+  Mycah142:
+  - rscadd: NT Medicus Robes, a healer's space suit.
+  - rscadd: NT Crosier, acolyte disciplinary tool.
+  - rscadd: A bunch of NT themed sprites from asset storage for future content.
+  Twomoon, SirRichardFrancis (KIROV):
+  - rscadd: Added 2 new decorations
+  - imageadd: added roachsign.dmi and os_workbench.dmi
+  thevandie:
   - rscadd: new sprite for the old generic jumpsuits, based on the crewman jumpsuit
   - rscadd: new sprites for old softcaps, to match the jumpsuits (Orange avoided because
       vagabond resprite is WIP)
