@@ -182,7 +182,7 @@
 		if(istype(O))
 			O.give_positive_attachment()
 
-	if(machine_rating || quality)
+	if(min(quality, machine_rating)) // Only call set_quality() if the resulting quality is non-zero
 		var/obj/O = A
 		if(istype(O))
 			O.set_quality(min(quality, machine_rating))
