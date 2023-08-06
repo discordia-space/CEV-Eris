@@ -64,7 +64,7 @@
 		ERR_NOREAGENT = "Not enough reagents.",
 		ERR_PAUSED = "**Construction Paused**",
 		ERR_NOINSIGHT = "Not enough insight.",
-		ERR_NOODDITY = "catalyst not found.",
+		ERR_NOODDITY = "Catalyst not found.",
 		ERR_DISTANT = "User too far to operate machine.",
 		ERR_STOPPED = "User stopped operating machine.",
 		ERR_SKILL_ISSUE = "User cannot produce this design."
