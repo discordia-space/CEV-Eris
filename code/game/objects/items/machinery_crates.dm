@@ -81,9 +81,9 @@
 	animation_duration = 39
 	constructing_machine = /obj/machinery/shieldwallgen/excelsior
 
-/obj/item/machinery_crate/autholate
-	name = "autolate IKEA"
-	machine_name = "autholate"
+/obj/item/machinery_crate/autholathe
+	name = "autolathe IKEA"
+	machine_name = "autholathe"
 	constructing_machine = /obj/machinery/autolathe
 
 /obj/item/machinery_crate/crafting_station
@@ -92,7 +92,7 @@
 	constructing_machine = /obj/machinery/autolathe/crafting_station
 
 /obj/item/machinery_crate/excelsior/autolathe
-	name = "Excelsior autolate IKEA"
+	name = "Excelsior autolathe IKEA"
 	machine_name = "Excelsior autolate"
 	constructing_machine = /obj/machinery/autolathe/excelsior
 
