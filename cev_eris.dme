@@ -322,6 +322,7 @@
 #include "code\datums\components\fabric.dm"
 #include "code\datums\components\jamming.dm"
 #include "code\datums\components\overlay_manager.dm"
+#include "code\datums\craft\craft_designs.dm"
 #include "code\datums\craft\crafting_items.dm"
 #include "code\datums\craft\gun_parts.dm"
 #include "code\datums\craft\item.dm"

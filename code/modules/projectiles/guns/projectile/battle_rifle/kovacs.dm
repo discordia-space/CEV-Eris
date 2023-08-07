@@ -56,5 +56,5 @@
 	icon_state = "frame_kovacs"
 	resultvars = list(/obj/item/gun/projectile/kovacs)
 	gripvars = list(/obj/item/part/gun/modular/grip/serb)
-	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/sharpshooter
 	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle)

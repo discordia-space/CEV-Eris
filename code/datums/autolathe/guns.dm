@@ -113,6 +113,7 @@
 /datum/design/autolathe/gun/zoric
 	name = "SA SMG .40 \"Zoric\""
 	build_path = /obj/item/gun/projectile/automatic/zoric
+	minimum_quality = 1
 
 /datum/design/autolathe/gun/atreides
 	name = "FS SMG .35 \"Atreides\""
@@ -129,6 +130,7 @@
 /datum/design/autolathe/gun/drozd
 	name = "Excelsior .40 \"Drozd\""
 	build_path = /obj/item/gun/projectile/automatic/drozd
+	minimum_quality = 1
 
 /datum/design/autolathe/gun/slaught_o_matic //alledgedly a handgun, but practically an SMG
 	name = "FS HG .35 \"Slaught-o-Matic\""
@@ -139,14 +141,17 @@
 /datum/design/autolathe/gun/vintorez
 	name = "Excelsior .20 \"Vintorez\""
 	build_path = /obj/item/gun/projectile/automatic/vintorez
+	minimum_quality = 2
 
 /datum/design/autolathe/gun/z8
 	name = "OR CAR .20 \"Z8 Bulldog\""
 	build_path = /obj/item/gun/projectile/automatic/z8
+	minimum_quality = 1
 
 /datum/design/autolathe/gun/wintermute
 	name = "FS AR .20 \"Wintermute\""
 	build_path = /obj/item/gun/projectile/automatic/modular/wintermute/finished
+	minimum_quality = 2
 
 /datum/design/autolathe/gun/kovacs
 	name = "SA BR .20 \"Kovacs\""
@@ -165,6 +170,7 @@
 /datum/design/autolathe/gun/dallas
 	name = "PAR .25 CS \"Dallas\""
 	build_path = /obj/item/gun/projectile/automatic/dallas
+	minimum_quality = 2
 
 // .30 Rifles
 
@@ -179,6 +185,7 @@
 /datum/design/autolathe/gun/ak47
 	name = "Excelsior Car .30 Kalashnikov"
 	build_path = /obj/item/gun/projectile/automatic/modular/ak/excelsior
+	minimum_quality = 2
 
 /datum/design/autolathe/gun/ak47_fs
 	name = "FS AR .30 \"Vipr\""
@@ -190,17 +197,19 @@
 
 /datum/design/autolathe/gun/ak47_sa
 	name = "SA AR .30 \"Krinkov\""
-	build_path = /obj/item/gun/projectile/automatic/modular/ak/serbian_arms
+	build_path = /obj/item/gun/projectile/automatic/modular/ak/serbian_arms/printed
 
 /datum/design/autolathe/gun/sts35
 	name = "OR SDF AR .30 \"STS-35\""
 	build_path = /obj/item/gun/projectile/automatic/sts35
+	minimum_quality = 2
 
 // Heavy
 
 /datum/design/autolathe/gun/heavysniper
 	name = "SA AMR .60 \"Hristov\""
 	build_path = /obj/item/gun/projectile/heavysniper
+	minimum_quality = 2
 
 /datum/design/autolathe/gun/mg_pk
 	name = "SA MG .30 \"Pulemyot Kalashnikova\""

@@ -1,7 +1,8 @@
 #define MODULAR_VERBS list(/obj/item/gun/projectile/automatic/modular/proc/quick_fold)
 
+
 /obj/item/gun/projectile/automatic/modular // Parent type
-	name = "\"Kalashnikov\""
+	name = "\"Kalashnikov\"" // Names are also used by vendors. When making a specific gun, make sure it contains the right name.
 	desc = "Weapon of the oppressed, oppressors, and extremists of all flavours. \
 		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price."
@@ -25,7 +26,7 @@
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/gun/projectile/automatic/modular
 
-	// Will be regenerated on init
+	// Parts generated when the item spawns. Keep empty for parent objects. Associated value determines quality.
 	gun_parts = list()
 
 	// Determines what parts the modular gun accepts and required. 0 means required, -1 means optional. Order matters.
@@ -55,12 +56,19 @@
 	gun_tags += GUN_MODULAR
 	for(var/partPath in gun_parts)
 		if(ispath(partPath))
-			var/obj/item/part/gun/modular/new_part = new partPath
+			var/obj/item/part/gun/modular/new_part = new partPath(quality = gun_parts[partPath])
 			if(!new_part.I.rapid_apply(src))
 				visible_message(SPAN_WARNING("Something seems wrong... Maybe you should ask a professional for help?"))
 	refresh_upgrades()
 	. = ..()
 	update_icon()
+
+/obj/item/gun/projectile/automatic/modular/set_quality(var/new_quality = 0, doesReset = TRUE)
+	for(var/part_path in required_parts)
+		var/obj/item/part/gun/modular/gun_part = locate(part_path) in contents
+		if(gun_part)
+			gun_part.set_quality(doesReset ? new_quality : min(gun_part.old_quality + new_quality))
+	return TRUE
 
 /obj/item/gun/projectile/automatic/modular/proc/get_initial_name()
 	return "gun"
