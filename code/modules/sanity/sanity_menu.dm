@@ -34,7 +34,7 @@
 	)
 
 	var/obj/item/implant/core_implant/cruciform/C = owner.get_core_implant(/obj/item/implant/core_implant/cruciform)
-	data["righteous_life"] = list(
+	data["righteous"] = list(
 		"present" = C ? TRUE : FALSE,
 		"value" = C?.righteous_life
 	)

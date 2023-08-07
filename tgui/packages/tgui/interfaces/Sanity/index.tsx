@@ -142,12 +142,12 @@ export const Sanity = (props: any, context: any) => {
                   desires={desires?.desires}
                   desc={TRAIT_DESCRIPTION.Desires}
                   bar={
-                    desires.resting && (
+                    desires.resting ? (
                       <TraitBar
                         value={desires.value}
                         label={TRAIT_LABEL.Desires}
                       />
-                    )
+                    ) : undefined
                   }
                 />
               }
@@ -155,7 +155,7 @@ export const Sanity = (props: any, context: any) => {
               img={TRAIT_ASSET.Desires}
             />
           </Stack.Item>
-          {righteous.present && (
+          {!!righteous.present && (
             <Stack.Item>
               <Trait
                 fluff={
