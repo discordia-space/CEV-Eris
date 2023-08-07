@@ -81,9 +81,9 @@
 	animation_duration = 39
 	constructing_machine = /obj/machinery/shieldwallgen/excelsior
 
-/obj/item/machinery_crate/autholathe
+/obj/item/machinery_crate/autolathe
 	name = "autolathe IKEA"
-	machine_name = "autholathe"
+	machine_name = "autolathe"
 	constructing_machine = /obj/machinery/autolathe
 
 /obj/item/machinery_crate/crafting_station

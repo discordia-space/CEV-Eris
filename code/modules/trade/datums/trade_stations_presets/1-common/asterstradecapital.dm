@@ -115,7 +115,7 @@
 		),
 		"IKEA crates" = list(
 		/obj/item/machinery_crate/crafting_station = custom_good_price(700),
-		/obj/item/machinery_crate/autholathe = custom_good_price(600),
+		/obj/item/machinery_crate/autolathe = custom_good_price(600),
 		/obj/item/machinery_crate/pacman = custom_good_price(700),
 		/obj/item/machinery_crate/recharger = custom_good_price(700)
 		)
