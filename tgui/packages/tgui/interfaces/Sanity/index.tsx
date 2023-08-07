@@ -11,7 +11,7 @@ export const TraitBar = (props: TraitBarProps) => {
   return (
     <LabeledList.Item textAlign="right" label={label}>
       <ProgressBar
-        width="380px"
+        width="55vw"
         value={value}
         minValue={minValue ? minValue : 0}
         maxValue={maxValue ? maxValue : 100}
@@ -29,7 +29,13 @@ export const TraitFluff = (props: TraitFluffProps) => {
   const { bar, desc } = props;
   return (
     <Stack fill vertical>
-      <Stack.Item grow>
+      <Stack.Item
+        grow
+        style={{
+          'overflow': 'hidden',
+          'white-space': 'wrap',
+          'text-overflow': 'ellipsis',
+        }}>
         <BlockQuote>{desc}</BlockQuote>
       </Stack.Item>
       <Stack.Item>{bar}</Stack.Item>
@@ -41,7 +47,13 @@ export const DesiresTraitFluff = (props: DesiresTraitFluffProps) => {
   const { bar, desc, active, desires } = props;
   return (
     <Stack fill vertical>
-      <Stack.Item grow>
+      <Stack.Item
+        grow
+        style={{
+          'overflow': 'hidden',
+          'white-space': 'wrap',
+          'text-overflow': 'ellipsis',
+        }}>
         <BlockQuote>{desc}</BlockQuote>
       </Stack.Item>
       <Stack.Item />
@@ -82,8 +94,8 @@ export const Sanity = (props: any, context: any) => {
   const { style, sanity, desires, righteous, insight } = data;
 
   return (
-    <Window width={650} height={righteous.present ? 800 : 650}>
-      <Window.Content style={{ 'background-image': 'none' }}>
+    <Window width={650} height={righteous.present ? 802 : 650}>
+      <Window.Content style={{ 'background-image': 'none' }} scrollable>
         <Stack vertical>
           <Stack.Item>
             <Trait
