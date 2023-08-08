@@ -1,62 +1,70 @@
+import { round, toFixed } from 'common/math';
 import { useBackend } from '../backend';
 import { Button, LabeledList, ProgressBar, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
 const MODE2COLOR = {
   Off: 'bad',
-  Pressurizing: 'average',
-  Ready: 'good',
   Panel: 'bad',
+  Ready: 'good',
+  Pressurizing: 'average',
 };
 
 type DisposalUnitData = {
-  flush: boolean;
+  isai: boolean;
   mode: string;
   panel: boolean;
   eject: boolean;
+  handle: boolean;
   pressure: number;
 };
 
 export const DisposalUnit = (props: any, context: any) => {
   const { act, data } = useBackend<DisposalUnitData>(context);
-  const { flush, mode, panel, eject, pressure } = data;
+  const { isai, mode, handle, panel, eject, pressure } = data;
+  let modeColor = MODE2COLOR[panel ? 'Panel' : mode];
+  let modeText = panel ? 'Power Disabled' : mode;
 
   return (
-    <Window width={300} height={182} title="Waste Disposal Unit">
+    <Window width={300} height={183} title="Waste Disposal Unit">
       <Window.Content>
         <Section>
           <Stack fill vertical>
             <Stack.Item>
               <LabeledList>
-                <LabeledList.Item label="Status" color={MODE2COLOR[mode]}>
-                  {mode}
+                <LabeledList.Item label="Status" color={modeColor}>
+                  {modeText}
                 </LabeledList.Item>
                 <LabeledList.Item label="Pressure">
                   <ProgressBar
                     value={pressure}
                     minValue={0}
-                    maxvalue={100}
+                    maxValue={100}
                     ranges={{
-                      good: [0, Infinity],
+                      bad: [-Infinity, 0],
+                      average: [0, 100],
+                      good: [100, Infinity],
                     }}
                   />
                 </LabeledList.Item>
                 <LabeledList.Item label="Handle">
                   <Button
-                    icon={!flush ? 'toggle-on' : 'toggle-off'}
-                    content={!flush ? 'Disengage' : 'Engage'}
+                    icon={handle ? 'toggle-on' : 'toggle-off'}
+                    content={handle ? 'Disengage' : 'Engage'}
                     onClick={() => {
                       act('toggle', { handle: true });
                     }}
+                    disabled={isai}
                   />
                 </LabeledList.Item>
                 <LabeledList.Item label="Pump">
                   <Button
                     icon="power-off"
-                    selected={mode === ('Pressurizing' || 'Ready')}
+                    selected={mode != 'Off'}
                     onClick={() => {
                       act('toggle', { pump: true });
                     }}
+                    disabled={panel}
                   />
                 </LabeledList.Item>
               </LabeledList>
@@ -69,6 +77,9 @@ export const DisposalUnit = (props: any, context: any) => {
                 content="Eject"
                 textAlign="center"
                 style={{ 'font-size': '15px' }}
+                onClick={() => {
+                  act('eject');
+                }}
               />
             </Stack.Item>
           </Stack>

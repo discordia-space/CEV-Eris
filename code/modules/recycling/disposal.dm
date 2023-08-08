@@ -249,9 +249,12 @@
 	return
 
 /obj/machinery/disposal/ui_state(mob/user)
-	return GLOB.physical_state
+	return GLOB.notcontained_state
 
 /obj/machinery/disposal/ui_interact(mob/user, datum/tgui/ui)
+	if(stat & BROKEN)
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DisposalUnit")
@@ -260,11 +263,12 @@
 
 /obj/machinery/disposal/ui_data(mob/user)
 	var/list/data = list(
-		"flush" = flush,
+		"isai" = isAI(user),
 		"mode" = mode,
+		"handle" = flush,
 		"panel" = panel_open,
 		"eject" = length(contents) ? TRUE : FALSE,
-		"pressure" = 100 * air_contents.return_pressure() / SEND_PRESSURE
+		"pressure" = CLAMP01(100 * air_contents.return_pressure() / SEND_PRESSURE)
 	)
 	return data
 
@@ -273,26 +277,21 @@
 	if(.)
 		return TRUE
 
-	if(flushing)
-		return TRUE
-
 	switch(action)
 		if("toggle")
 			if(params["pump"])
 				mode = (mode == DISPOSALS_OFF) ? DISPOSALS_CHARGING : DISPOSALS_OFF
 				update()
 			else if(params["handle"])
+				if(panel_open)
+					return TRUE
 				flush = !flush
 				update()
 			return TRUE
 
 		if("eject")
-			if(usr.loc == src)
-				return TRUE
 			eject()
 			return TRUE
-
-	return TRUE
 
 // eject the contents of the disposal unit
 /obj/machinery/disposal/proc/eject()
@@ -1395,7 +1394,7 @@
 	layer = BELOW_OBJ_LAYER //So we can see things that are being ejected
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
-	var/mode = 0
+	var/mode = DISPOSALS_OFF
 
 	New()
 		..()
