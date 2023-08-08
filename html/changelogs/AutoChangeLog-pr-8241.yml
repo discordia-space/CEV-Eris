@@ -1,8 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - refactor: Crafting Station refactored, has an UI now
-  - tweak: Lots of modular gun and part tweaks
-  - balance: Modular Fullauto and Burst nerfed, modular AK sets rebalanced
-  - bugfix: Lots of modular sprite bugs squashed
-  - code_imp: Autolathes and designs now support quality, determined by component

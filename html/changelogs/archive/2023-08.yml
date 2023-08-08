@@ -26,3 +26,10 @@
   - rscadd: new casual suit for people to use, a salmon shirt and corduroy pants.
       Perfect for an office worker
   - rscadd: variants of boots and reinforced shoes to the loadout (IH and oberth)
+2023-08-08:
+  Humonitarian:
+  - refactor: Crafting Station refactored, has an UI now
+  - tweak: Lots of modular gun and part tweaks
+  - balance: Modular Fullauto and Burst nerfed, modular AK sets rebalanced
+  - bugfix: Lots of modular sprite bugs squashed
+  - code_imp: Autolathes and designs now support quality, determined by component
