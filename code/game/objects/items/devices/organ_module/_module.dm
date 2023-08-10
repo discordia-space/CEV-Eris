@@ -24,3 +24,12 @@
 /obj/item/organ_module/proc/organ_removed(obj/item/organ/external/E, mob/living/carbon/human/H)
 
 /obj/item/organ_module/proc/organ_installed(obj/item/organ/external/E, mob/living/carbon/human/H)
+
+/obj/item/organ_module/attackby(obj/item/I, mob/user)
+	..()
+	if(istype(I, /obj/item/implanter/installer))
+		var/obj/item/implanter/installer/M = I
+		if(!M.mod && user.unEquip(src, M))
+			M.mod = src
+			M.update_icon()
+		return TRUE

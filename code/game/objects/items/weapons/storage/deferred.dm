@@ -56,7 +56,7 @@
 	name = "infantryman's rations kit"
 	icon_state = "irp_box"
 	item_state = "irp_box"
-	desc = "A box of preserved, ready-to-eat food for soldiers and spacefarers on the go."
+	desc = "A box of preserved, ready-to-eat, and medicinally enhanced food for soldiers and spacefarers on the go."
 	initial_contents = list(/obj/item/storage/ration_pack = 7)
 
 
@@ -73,6 +73,11 @@
 	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field."
 	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/storage/pouch/holster = 1)
 	//One guaranteed holster and plenty of randoms
+
+/obj/item/storage/deferred/accarmors
+	name = "uniform accessory armor kit"
+	desc = "A box full of various armor plates and holsters designed to attach to uniforms for a bit extra cushion between user and death."
+	initial_contents = list(/obj/item/clothing/accessory/armor = 2, /obj/item/clothing/accessory/armor/bullet = 2, /obj/item/clothing/accessory/armor/platecarrier = 1, /obj/item/clothing/accessory/armor/riot = 1, /obj/item/clothing/accessory/armor/laser = 1, /obj/item/clothing/accessory/holster = 6)
 
 /obj/item/storage/deferred/comms
 	name = "communications kit"
