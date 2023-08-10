@@ -1,8 +1,8 @@
 import { useBackend } from '../backend';
-import { UserDetails } from './Vending';
 import { BlockQuote, Box, Button, Collapsible, Flex, NumberInput, Section, Stack, TextArea } from '../components';
 import { formatMoney } from '../format';
 import { Window } from '../layouts';
+import { UserDetails } from './common/UserDetails';
 
 export const BountyBoard = (props, context) => {
   return (
