@@ -1,0 +1,7 @@
+author: thevandie
+delete-after: true
+changes:
+  - rscadd: added a new sprite for the syndicate turtleneck
+  - rscadd: added a new syndicate beret, to go along with the cap from last week
+  - rscadd: added a brown syndicate beret
+  - rscadd: added all of those to the loadout menu
