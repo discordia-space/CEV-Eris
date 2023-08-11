@@ -34,7 +34,6 @@ export const UserDetails = (props, context) => {
                 {user.job || 'Unemployed'}
               </LabeledList.Item>
             </LabeledList>
-            );
           </Stack.Item>
         </Stack>
       </Section>
