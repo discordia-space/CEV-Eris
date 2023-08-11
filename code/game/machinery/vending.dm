@@ -107,9 +107,13 @@
 	var/vend_delay = 10 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/data/vending_product/currently_vending = null // What we're requesting payment for right now
-	var/managing = 0 //Are we in the vendor management screen?
-	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
-	var/status_error = 0 // Set to 1 if status_message is an error
+
+	// UI-related
+	var/management_message = ""
+	var/management_error = FALSE
+
+	var/purchase_message = ""
+	var/purchase_error = FALSE
 
 	/*
 		Variables used to initialize the product list
@@ -207,8 +211,6 @@
 	else
 		new_inventory(W)
 
-	SSnano.update_uis(src)
-
 	return TRUE
 
 /obj/machinery/vending/proc/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
@@ -237,10 +239,6 @@
 	spawn_money(buying_price,loc,usr)
 
 	to_chat(user, SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits."))
-
-
-	SSnano.update_uis(src)
-
 
 /**
  *  Build src.produdct_records from the products lists
@@ -330,7 +328,6 @@
 				overlays.Cut()
 				if(panel_open)
 					overlays += image(icon, "[icon_type]-panel")
-				SSnano.update_uis(src)
 			return
 		if(QUALITY_WELDING)
 			if(custom_vendor)
@@ -379,23 +376,18 @@
 		if(paid)
 			vend(currently_vending, user)
 			return
+
 		else if(handled)
-			SSnano.update_uis(src)
 			return // don't smack that machine with your 2 credits
 
 	if(custom_vendor && ID)
 		var/datum/money_account/user_account = get_account(ID.associated_account_number)
-		managing = 1
 		if(!user_account)
-			status_message = "Error: Unable to access account. Please contact technical support if problem persists."
-			status_error = 1
-			SSnano.update_uis(src)
+			to_chat(user, SPAN_WARNING("Unable to access account! Please contact technical support if problem persists."))
 			return
 
 		if(user_account.suspended)
-			status_message = "Unable to access account: account suspended."
-			status_error = 1
-			SSnano.update_uis(src)
+			to_chat(user, SPAN_WARNING("Unable to access account! Account is suspended."))
 			return
 
 		if(machine_vendor_account == user_account || !machine_vendor_account || vendor_department)
@@ -404,12 +396,9 @@
 				var/datum/job/userjob = SSjob.GetJob(CR.get_job())
 				if(userjob.department == vendor_department)
 					locked = !locked
-					status_error = 0
-					status_message = "Affiliation confirmed. Vendor has been [locked ? "" : "un"]locked."
+					to_chat(user, SPAN_NOTICE("\The [src] has been [locked ? "" : "un"]locked."))
 				else
-					status_error = 1
-					status_message = "Error: You are not authorized to manage this Vendomat."
-				SSnano.update_uis(src)
+					to_chat(user, SPAN_NOTICE("You are not authorized to manage \the [src]."))
 				return
 
 			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
@@ -417,20 +406,16 @@
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num | null
 				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
 				if(!user_account)
-					status_message = "Unable to access account: incorrect credentials."
-					status_error = 1
-					SSnano.update_uis(src)
+					to_chat(user, SPAN_WARNING("Unable to access account! Credentials are incorrect."))
 					return
 
 			if(!machine_vendor_account)
 				machine_vendor_account = user_account
 				earnings_account = user_account
 			locked = !locked
-			status_error = 0
-			status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 60, 1)
+			to_chat(user, SPAN_NOTICE("You [locked ? "" : "un"]lock \the [src]."))
 			visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it.</span>")
-			SSnano.update_uis(src)
 			return
 
 	if(I && istype(I, /obj/item/spacecash))
@@ -446,7 +431,6 @@
 		coin = I
 		categories |= CAT_COIN
 		to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
-		SSnano.update_uis(src)
 		return
 	else if(istype(I, /obj/item/device/spy_bug))
 		user.drop_item()
@@ -500,13 +484,13 @@
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
 	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
 	if(currently_vending.price > wallet.worth)
-		status_message = "Insufficient funds on chargecard."
-		status_error = 1
-		return 0
+		purchase_message = "Insufficient funds on chargecard."
+		purchase_error = TRUE
+		return FALSE
 	else
 		wallet.worth -= currently_vending.price
 		credit_purchase("[wallet.owner_name] (chargecard)")
-		return 1
+		return TRUE
 
 /**
  * Scan a card and attempt to transfer payment from associated account.
@@ -521,14 +505,14 @@
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
-		status_message = "Error: Unable to access account. Please contact technical support if problem persists."
-		status_error = 1
-		return 0
+		purchase_message = "Error: Unable to access account. Please contact technical support if problem persists."
+		purchase_error = TRUE
+		return FALSE
 
 	if(customer_account.suspended)
-		status_message = "Unable to access account: account suspended."
-		status_error = 1
-		return 0
+		purchase_message = "Unable to access account: account suspended."
+		purchase_error = TRUE
+		return FALSE
 
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
@@ -537,14 +521,14 @@
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
-			status_message = "Unable to access account: incorrect credentials."
-			status_error = 1
-			return 0
+			purchase_message = "Unable to access account: incorrect credentials."
+			purchase_error = TRUE
+			return FALSE
 
 	if(currently_vending.price > customer_account.money)
-		status_message = "Insufficient funds in account."
-		status_error = 1
-		return 0
+		purchase_message = "Insufficient funds in account."
+		purchase_error = TRUE
+		return FALSE
 	else
 		// Okay to move the money at this point
 
@@ -604,178 +588,185 @@
 			return
 
 	wires.Interact(user)
-	nano_ui_interact(user)
+	ui_interact(user)
 
 /**
- *  Display the NanoUI window for the vending machine.
+ *  Display the TGUI window for the vending machine.
  *
- *  See NanoUI documentation for details.
+ *  See TGUI documentation for details.
  */
-/obj/machinery/vending/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	user.set_machine(src)
-
-	var/list/data = list()
-
-	data["unlocked"] = !locked
-	data["custom"] = custom_vendor
-	if(custom_vendor && machine_vendor_account && machine_vendor_account.owner_name)
-		data["owner_name"] = machine_vendor_account.get_name()
-
-	if(managing)
-		data["mode"] = 2
-		data["message"] = status_message
-		data["message_err"] = status_error
-	else if(currently_vending)
-		data["mode"] = 1
-		data["product"] = currently_vending.product_name
-		data["description"] = currently_vending.product_desc
-		data["price"] = currently_vending.price
-		data["message_err"] = 0
-		data["message"] = status_message
-		data["message_err"] = status_error
-	else
-		data["advertisement"] = ads_list.len ? pick(ads_list) : null
-		data["markup"] = buying_percentage
-		data["mode"] = 0
-		var/list/listed_products = list()
-
-		for(var/key = 1 to product_records.len)
-			var/datum/data/vending_product/I = product_records[key]
-
-			if(!(I.category & categories))
-				continue
-
-			listed_products.Add(list(list(
-				"key" = key,
-				"name" = strip_improper(I.product_name),
-				"price" = I.price,
-				"color" = I.display_color,
-				"amount" = I.get_amount())))
-
-		data["products"] = listed_products
-
-	if(coin)
-		data["coin"] = coin.name
-
-	if(panel_open)
-		data["panel"] = 1
-		data["speaker"] = shut_up ? 0 : 1
-	else
-		data["panel"] = 0
-
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
+/obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "vending_machine.tmpl", name, 440, 600)
-		ui.set_initial_data(data)
+		ui = new(user, src, "Vending")
+		ui.set_autoupdate(TRUE)
 		ui.open()
 
-/obj/machinery/vending/Topic(href, href_list)
-	if(stat & (BROKEN|NOPOWER))
-		return
-	if(usr.stat || usr.restrained())
-		return
+/obj/machinery/vending/ui_static_data(mob/user)
+	var/list/data = list(
+		"advertisement" = length(ads_list) ? pick(ads_list) : null
+	)
+	return data
 
-	if(href_list["remove_coin"] && !issilicon(usr))
-		if(!coin)
-			to_chat(usr, "There is no coin in this machine.")
-			return
+/obj/machinery/vending/ui_data(mob/user)
+	var/list/data = list()
 
-		coin.loc = loc
-		if(!usr.get_active_hand())
-			usr.put_in_hands(coin)
-		to_chat(usr, SPAN_NOTICE("You remove the [coin] from the [src]"))
-		coin = null
-		categories &= ~CAT_COIN
+	data["name"] = name
+	data["panel"] = panel_open
+	data["isCustom"] = custom_vendor
 
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
-		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
+	if(custom_vendor && machine_vendor_account)
+		data["ownerData"] = list(
+			"name" = machine_vendor_account?.get_name(),
+			"dept" = vendor_department
+		)
+
+	data["isManaging"] = !locked
+	data["managingData"] = list(
+		"message" = management_message,
+		"isError" = management_error
+	)
+
+	data["isVending"] = currently_vending ? TRUE : FALSE
+	data["vendingData"] = list(
+		"name" = currently_vending?.product_name,
+		"desc" = currently_vending?.product_desc,
+		"price" = currently_vending?.price,
+		"message" = purchase_message,
+		"isError" = purchase_error
+	)
+
+	var/list/listed_products = list()
+	for(var/key = 1 to length(product_records))
+		var/datum/data/vending_product/I = product_records[key]
+
+		if(!(I.category & categories))
+			continue
+
+		listed_products.Add(list(list(
+			"key" = key,
+			"name" = strip_improper(I.product_name),
+			"icon" = icon2base64html(I.product_path),
+			"price" = I.price,
+			"color" = I.display_color,
+			"amount" = I.get_amount())))
+
+	data["products"] = listed_products
+	data["markup"] = buying_percentage
+
+	if(panel_open)
+		data["speaker"] = !shut_up
+
+	return data
+
+/obj/machinery/vending/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return TRUE
+
+	switch(action)
+		if("vend")
+			if(!vend_ready || currently_vending)
+				return TRUE
+
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-				to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
-				flick(icon_deny,src)
-				return
+				to_chat(usr, SPAN_WARNING("Access denied!"))	//Unless emagged of course
+				flick(icon_deny, src)
+				return TRUE
 
-			var/key = text2num(href_list["vend"])
+			var/key = text2num(params["key"])
 			var/datum/data/vending_product/R = product_records[key]
 
-			// This should not happen unless the request from NanoUI was bad
+			// This should not happen unless the request from TGUI was bad
 			if(!(R.category & categories))
-				return
+				return TRUE
 
 			if(R.price <= 0 || !locked)
 				vend(R, usr)
 			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				to_chat(usr, SPAN_DANGER("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled."))
-				return
+				return TRUE
+
 			else
 				currently_vending = R
 				if(!earnings_account || earnings_account.suspended)
-					status_message = "This machine is currently unable to process payments due to problems with the associated account."
-					status_error = 1
+					purchase_message = "This machine is currently unable to process payments due to problems with the associated account."
+					purchase_error = TRUE
 				else
-					status_message = "Please swipe a card or insert cash to pay for the item."
+					purchase_message = "Please swipe a card or insert cash to pay for the item."
 					if(no_criminals)
-						status_message += " We are legally required to ask if you are currently wanted by any law enforcement organizations. If so, please cancel the purchase, announce your location to local law enforcement and wait for them to collect you."
-					status_error = 0
+						purchase_message += " We are legally required to ask if you are currently wanted by any law enforcement organizations. If so, please cancel the purchase, announce your location to local law enforcement and wait for them to collect you."
+					purchase_error = FALSE
+			return TRUE
 
-		else if(href_list["setprice"] && !locked)
-			var/key = text2num(href_list["setprice"])
+		if("setprice")
+			if(locked)
+				return TRUE
+
+			var/key = text2num(params["key"])
 			var/datum/data/vending_product/R = product_records[key]
 
 			R.price = input("Enter item price.", "Item price") as num | null
+			return TRUE
 
-		else if(href_list["remove"] && !locked)
-			var/key = text2num(href_list["remove"])
+		if("remove")
+			if(locked)
+				return TRUE
+
+			var/key = text2num(params["key"])
 			var/datum/data/vending_product/R = product_records[key]
 
 			qdel(R)
+			return TRUE
 
-		else if(href_list["return"])
-			managing = FALSE
-
-		else if(href_list["management"])
-			managing = TRUE
-			status_message = "Welcome to the management screen."
-			status_error = 0
-
-		else if(href_list["setaccount"])
+		if("setaccount")
 			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num | null)
 			if(!newaccount)
-				status_message = "No account specified. No change to earnings account has been made."
+				management_message = "No account specified. No change to earnings account has been made."
+				management_error = TRUE
 			else
 				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num | null
 				if(input_pin == newaccount.remote_access_pin)
-					status_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
-					status_error = 0
+					management_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
+					management_error = FALSE
 					earnings_account = newaccount
 				else
-					status_message = "Error: PIN incorrect. No change to earnings account has been made."
-					status_error = 1
+					management_message = "Error: PIN incorrect. No change to earnings account has been made."
+					management_error = TRUE
+			return TRUE
 
-		else if(href_list["markup"])
+		if("markup")
 			if(vendor_department)
-				status_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
-				status_error = 1
+				management_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
+				management_error = TRUE
 			else
 				var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num | null
 				if(newpercent)
 					buying_percentage = max(0, min(newpercent,100))
+			return TRUE
 
-		else if(href_list["setdepartment"])
+		if("setdepartment")
 			set_department()
+			return TRUE
 
-		else if(href_list["unregister"])
+		if("unregister")
 			machine_vendor_account = null
 			earnings_account = null
+			return TRUE
 
-		else if(href_list["cancelpurchase"])
+		if("cancelpurchase")
 			currently_vending = null
+			return TRUE
 
-		else if((href_list["togglevoice"]) && (panel_open))
+		if("togglevoice")
+			if(!panel_open)
+				return TRUE
+
 			shut_up = !shut_up
+			return TRUE
 
-		add_fingerprint(usr)
-		playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
-		SSnano.update_uis(src)
+	add_fingerprint(usr)
+	playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
@@ -783,9 +774,8 @@
 		flick(icon_deny,src)
 		return
 	vend_ready = 0 //One thing at a time!!
-	status_message = "Vending..."
-	status_error = 0
-	SSnano.update_uis(src)
+	purchase_message = "Vending..."
+	purchase_error = FALSE
 
 	if(R.category & CAT_COIN)
 		if(!coin)
@@ -813,13 +803,10 @@
 	spawn(vend_delay)
 		if(R.get_product(get_turf(src)))
 			playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)
-		status_message = ""
-		status_error = 0
+		purchase_message = ""
+		purchase_error = FALSE
 		vend_ready = 1
 		currently_vending = null
-		SSnano.update_uis(src)
-
-
 
 /obj/machinery/vending/Process()
 	if(stat & (BROKEN|NOPOWER))
@@ -906,17 +893,17 @@
 	if(!newdepartment)
 		return
 	if(newdepartment == "Privately Owned")
-		status_message = "This Vendomat now belongs only to you."
+		management_message = "This Vendomat now belongs only to you."
 		desc = "A custom Vendomat."
 		vendor_department = null
 		earnings_account = null
 	else
-		status_message = "This Vendomat is now property of \"[newdepartment]\"."
+		management_message = "This Vendomat is now property of \"[newdepartment]\"."
 		desc = "A custom Vendomat. It bears the logo of [newdepartment]."
 		vendor_department = newdepartment:id
 		earnings_account = department_accounts[vendor_department]
 		buying_percentage = 0
-	status_error = 0
+	management_error = FALSE
 
 /*
  * Vending machine types
