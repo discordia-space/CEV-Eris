@@ -1,6 +1,6 @@
 /obj/item/clothing/under/syndicate
 	name = "tactical turtleneck"
-	desc = "A nondescript turtleneck, popular among syndicate fans."
+	desc = "A nondescript turtleneck, popular among Syndicate fans."
 	icon_state = "syndicate"
 	item_state = "bl_suit"
 	siemens_coefficient = 0.8
