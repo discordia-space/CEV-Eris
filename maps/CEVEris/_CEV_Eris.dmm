@@ -29732,6 +29732,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/railing{
+	anchored = 1;
+	dir = 4;
+	icon_state = "railing0";
+	tag = "icon-railing0 (EAST)"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bsW" = (
@@ -93031,10 +93037,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
-"esM" = (
-/obj/structure/railing,
-/turf/space,
-/area/eris/maintenance/section4deck4port)
 "esN" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -165505,7 +165507,7 @@ epd
 tCA
 aaa
 bqj
-esM
+bsW
 bum
 bzK
 bDU
