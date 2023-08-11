@@ -18,7 +18,7 @@ export const UserDetails = (props, context) => {
 
   if (!user) {
     return (
-      <NoticeBox>No ID detected! Contact the Head of Personnel.</NoticeBox>
+      <NoticeBox>No ID detected! Contact your supervisor.</NoticeBox>
     );
   } else {
     return (
