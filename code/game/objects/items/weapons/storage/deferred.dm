@@ -320,7 +320,7 @@
 	/obj/item/storage/fancy/cigarettes = 1)
 
 /obj/item/storage/deferred/crate/german_uniform
-	name = "german uniform crate"
+	name = "oberthian uniform crate"
 	desc = "A moderately sized crate full of clothes."
 	icon_state = "germancrate_deferred"
 	initial_contents = list(
