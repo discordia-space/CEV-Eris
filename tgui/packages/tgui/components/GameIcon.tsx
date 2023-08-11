@@ -8,7 +8,7 @@ type GameIconProps = {
 
 export const GameIcon = (props: GameIconProps) => {
   const { html, className, style, key } = props;
-  const iconSrc = html.match('src=["\'](.*)["\']')[1];
+  const iconSrc = html.match('src=["\'](.*)["\']')![1];
 
   return (
     <img
