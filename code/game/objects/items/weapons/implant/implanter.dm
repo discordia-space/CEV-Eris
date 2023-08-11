@@ -107,6 +107,8 @@
 /obj/item/implanter/installer/update_icon()
 	if(mod)
 		icon_state = "installer_full"
+	if(!mod)
+		icon_state = "installer_empty"
 
 /obj/item/implanter/installer/attack(mob/living/M, mob/living/user)
 	if(!istype(M) || !mod)
@@ -125,7 +127,7 @@
 			to_chat(user, SPAN_NOTICE("You cannot install the [mod] into the [affected]."))
 			return
 	
-		if(mod in affected.module) //Currently not working
+		if(affected.module != null) //Probably not the most effective way to do this, but it works.
 			to_chat(user, SPAN_WARNING("[mod] cannot be installed into this [affected], as it's already occupied."))
 			return
 

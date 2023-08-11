@@ -128,7 +128,8 @@
 	desc = "Contains advanced medical treatments."
 	icon_state = "combat_medical_kit"
 	item_state = "combat_medical_kit"
-	initial_contents = list(/obj/item/storage/pill_bottle/bicaridine,
+	initial_contents = list(
+	/obj/item/storage/pill_bottle/meralyne,
 	/obj/item/storage/pill_bottle/dermaline,
 	/obj/item/storage/pill_bottle/dexalin_plus,
 	/obj/item/storage/pill_bottle/dylovene,

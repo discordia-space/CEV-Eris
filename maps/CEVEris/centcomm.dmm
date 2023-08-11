@@ -5486,6 +5486,7 @@
 /area/holodeck/source/spacebar)
 "Dg" = (
 /obj/structure/table/standard,
+/obj/item/implanter/installer,
 /obj/item/storage/deferred/surgery,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor3"

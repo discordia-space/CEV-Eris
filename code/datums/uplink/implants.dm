@@ -47,3 +47,13 @@
 	name = "Internal Energy Armblade Implant"
 	item_cost = 6
 	path = /obj/item/organ_module/active/simple/armblade/energy_blade
+
+/datum/uplink_item/item/implants/subdermal_armor
+	name = "Subdermal Armor Implant"
+	item_cost = 3
+	path = /obj/item/organ_module/armor
+
+/datum/uplink_item/item/implants/leg_muscle
+	name = "Leg Muscle Implant"
+	item_cost = 3
+	path = /obj/item/organ_module/muscle
