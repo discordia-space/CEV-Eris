@@ -5486,7 +5486,6 @@
 /area/holodeck/source/spacebar)
 "Dg" = (
 /obj/structure/table/standard,
-/obj/item/implanter/installer,
 /obj/item/storage/deferred/surgery,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor3"
@@ -6552,6 +6551,13 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/space)
+"Qz" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/cybernetics,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "QG" = (
 /obj/effect/floor_decal/industrial/danger/corner{
 	dir = 8
@@ -35851,7 +35857,7 @@ iX
 iX
 iX
 iX
-iX
+Qz
 gZ
 hl
 hl

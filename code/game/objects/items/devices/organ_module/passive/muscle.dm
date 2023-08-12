@@ -1,3 +1,9 @@
+/obj/item/implanter/installer/disposable/muscle
+	name = "disposable cybernetic installer (muscle)"
+	desc = "A set of mechanical muscles designed to be implanted into legs, increasing the efficacy of your legs."
+	mod = /obj/item/organ_module/muscle
+	spawn_tags = null
+
 /obj/item/organ_module/muscle
 	name = "mechanical muscles"
 	desc = "A set of mechanical muscles designed to be implanted into legs, increasing the efficacy of your legs."

@@ -122,6 +122,13 @@
 		/obj/item/stack/medical/advanced/bruise_pack
 		)
 
+/obj/item/storage/deferred/cybernetics
+	name = "soldier cybernetic kit"
+	desc = "Contains various single use cybernetic applicators."
+	initial_contents = list(
+		/obj/item/implanter/installer/disposable/armor = 6,
+		/obj/item/implanter/installer/disposable/muscle = 12
+	)
 
 /obj/item/storage/deferred/meds
 	name = "combat medical kit"

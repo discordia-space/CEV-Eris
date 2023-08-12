@@ -152,3 +152,13 @@
 
 		mod = null
 		update_icon()
+
+/obj/item/implanter/installer/disposable
+	name = "cybernetic installer (disposable)"
+	desc = "A single use medical applicator of cybernetics."
+
+/obj/item/implanter/installer/disposable/New()
+	..()
+	if(ispath(mod))
+		mod = new mod(src)
+		update_icon()

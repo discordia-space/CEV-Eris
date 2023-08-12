@@ -37,6 +37,12 @@
 	allowed_organs = list(BP_R_ARM, BP_L_ARM)
 	holding_type = /obj/item/tool/armblade/claws
 
+/obj/item/implanter/installer/disposable/energy_blade
+	name = "disposable cybernetic installer (energy blade)"
+	desc = "A energy blade designed to be inserted into an arm. Gives you a nice advantage in a brawl."
+	mod = /obj/item/organ_module/active/simple/armblade/energy_blade
+	spawn_tags = null
+
 /obj/item/organ_module/active/simple/armblade/energy_blade
 	name = "energy armblade"
 	desc = "A energy blade designed to be inserted into an arm. Gives you a nice advantage in a brawl."

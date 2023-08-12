@@ -27,9 +27,17 @@
 
 /obj/item/organ_module/attackby(obj/item/I, mob/user)
 	..()
+	if(istype(I, /obj/item/implanter/installer/disposable))
+		to_chat(user, SPAN_NOTICE("You cannot refill a single-use applicator."))
+		return
+
 	if(istype(I, /obj/item/implanter/installer))
 		var/obj/item/implanter/installer/M = I
 		if(!M.mod && user.unEquip(src, M))
 			M.mod = src
 			M.update_icon()
 		return TRUE
+
+	if(istype(I, /obj/item/implanter))
+		to_chat(user, SPAN_NOTICE("You cannot insert cybernetics into an implant applicator."))
+		return

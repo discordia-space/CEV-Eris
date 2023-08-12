@@ -1,3 +1,9 @@
+/obj/item/implanter/installer/disposable/armor
+	name = "disposable cybernetic installer (armor)"
+	desc = "A set of subdermal steel plates, designed to provide additional impact protection to the torso while remaining lightweight."
+	mod = /obj/item/organ_module/armor
+	spawn_tags = null
+
 /obj/item/organ_module/armor
 	name = "subdermal armor"
 	desc = "A set of subdermal steel plates, designed to provide additional impact protection to the torso while remaining lightweight."
