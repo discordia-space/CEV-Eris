@@ -87,6 +87,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 3)
 	var/obj/item/organ_module/mod
+	var/mod_overlay = null
 	spawn_blacklisted = TRUE
 
 /obj/item/implanter/installer/New()
@@ -106,6 +107,8 @@
 
 /obj/item/implanter/installer/update_icon()
 	if(mod)
+		icon_state = mod.mod_overlay
+	if(mod.mod_overlay == null)
 		icon_state = "installer_full"
 	if(!mod)
 		icon_state = "installer_empty"

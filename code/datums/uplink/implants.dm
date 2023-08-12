@@ -51,6 +51,10 @@
 //	spawn_tags = null
 //Then here, you reference the new /obj/item/implanter/instaler/disposable/CYBERNETIC as the path. If this doesn't work, god be with ye.
 
+//For the mod_overlay, go to the cybernetic in question, and add:
+//	mod_overlay = "installer_CYBERNETIC"
+//Then add the sprites to the items.dmi, named "installer_CYBERNETIC"
+
 /datum/uplink_item/item/implants/energy_blade
 	name = "Internal Energy Armblade Cybernetic"
 	item_cost = 6
