@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - balance: Removed beer and chem dispensers from FTS Solnishko
-  - spellcheck: Changes autholate to autolathe in code

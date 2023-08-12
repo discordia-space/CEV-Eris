@@ -33,3 +33,16 @@
   - balance: Modular Fullauto and Burst nerfed, modular AK sets rebalanced
   - bugfix: Lots of modular sprite bugs squashed
   - code_imp: Autolathes and designs now support quality, determined by component
+2023-08-12:
+  Firefox13:
+  - balance: Removed beer and chem dispensers from FTS Solnishko
+  - spellcheck: Changes autholate to autolathe in code
+  Mycah142:
+  - bugfix: The power of Disco sealed a hole in techno maint.
+  - tweak: Corrected name of THE uniform crate to accurately represent inworld lore.
+  - bugfix: Removed unintended trash catholics.
+  thevandie:
+  - rscadd: added a new sprite for the syndicate turtleneck
+  - rscadd: added a new syndicate beret, to go along with the cap from last week
+  - rscadd: added a brown syndicate beret
+  - rscadd: added all of those to the loadout menu
