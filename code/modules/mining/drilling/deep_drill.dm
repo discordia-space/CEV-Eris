@@ -177,8 +177,8 @@
 
 	// Wrench / Unwrench the drill
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(active)
-			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+		if(cave_connected)
+			to_chat(user, SPAN_WARNING("You have to collapse the cave first!"))
 			return
 		else if (check_surroundings())
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
