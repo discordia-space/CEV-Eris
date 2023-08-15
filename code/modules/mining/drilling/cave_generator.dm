@@ -5,6 +5,7 @@
 #define CAVE_CORRIDORS 10  // Number of corridors to guide cave generation
 #define CAVE_WALL_PROPORTION 70 // Proportion of wall in random noise generation
 #define CAVE_VWEIGHT 10 // Base mineral weight for choice of mineral vein
+#define CAVE_COOLDOWN 5 MINUTES
 
 // Types of turfs in the cave
 #define CAVE_FREE 0
@@ -33,6 +34,7 @@
 	invisibility = 0 // 101
 
 	var/lock = FALSE  // Lock generator to avoid having several iterations running in parallel
+	var/cave_time = 0  // Cooldown timer to avoid spamming cave generation
 	var/map // map with 0 (free turf) and 1+ (wall or mineral)
 	var/obj/structure/multiz/ladder/cave_hole/ladder_down
 	var/obj/structure/multiz/ladder/up/cave/ladder_up
@@ -294,10 +296,16 @@
 
 	return list(TRUE, x_start, y_start)
 
+// Check cooldown to avoid spamming cave generation
+/obj/cave_generator/proc/check_cooldown()
+	return world.time > (cave_time + CAVE_COOLDOWN)
+
 // Place the up and down ladders and connect them
 /obj/cave_generator/proc/place_ladders(drill_x, drill_y, drill_z, seismic_lvl)
 
 	// Lock generator to avoid several iterations running in parallel
+	if(lock)
+		return FALSE
 	lock = TRUE
 
 	// Generate the map for the given seismic level
@@ -311,6 +319,7 @@
 		res = find_free_spot(rand(2, CAVE_SIZE - 2), rand(2, CAVE_SIZE - 2))
 	if(!res[1])
 		log_world("Failed to find a free spot in the cave to place a ladder.")
+		lock = FALSE
 		return FALSE
 
 	// Place the up ladder on free spot
