@@ -90,5 +90,5 @@
 	icon_state = "frame_pug"
 	resultvars = list(/obj/item/gun/projectile/automatic/z8)
 	gripvars = list(/obj/item/part/gun/modular/grip/black)
-	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/heavy
 	barrelvars = list(/obj/item/part/gun/modular/barrel/srifle)

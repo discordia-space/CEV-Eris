@@ -1,0 +1,35 @@
+2023-08-05:
+  Kopit32:
+  - rscadd: Added machinery_crates.dm file. Added new categories to excelsior teleporter
+      and guild's Solnyshko station.
+  - imageadd: added sprites for standart crates and excelsior's crates. Some things
+      have their own sprites(for some sprites thanks Kirov)
+  - code_imp: 'changed excelsior''s stash content: autolate plate replaced to crate
+      alternate'
+  Mycah142:
+  - rscadd: NT Medicus Robes, a healer's space suit.
+  - rscadd: NT Crosier, acolyte disciplinary tool.
+  - rscadd: A bunch of NT themed sprites from asset storage for future content.
+  Twomoon, SirRichardFrancis (KIROV):
+  - rscadd: Added 2 new decorations
+  - imageadd: added roachsign.dmi and os_workbench.dmi
+  thevandie:
+  - rscadd: new sprite for the old generic jumpsuits, based on the crewman jumpsuit
+  - rscadd: new sprites for old softcaps, to match the jumpsuits (Orange avoided because
+      vagabond resprite is WIP)
+  - rscadd: completely new syndicate cap for crew to use, an old piece of fashion
+      still produced for patriots and history fans alike. Possibly a veteran or two
+      as well
+  - rscadd: new sprite for the baseball bat based on the nailbat's sprite
+  - rscadd: recolor of the galoshes to look better. Matches with insuls, they are
+      both rubber after all
+  - rscadd: new casual suit for people to use, a salmon shirt and corduroy pants.
+      Perfect for an office worker
+  - rscadd: variants of boots and reinforced shoes to the loadout (IH and oberth)
+2023-08-08:
+  Humonitarian:
+  - refactor: Crafting Station refactored, has an UI now
+  - tweak: Lots of modular gun and part tweaks
+  - balance: Modular Fullauto and Burst nerfed, modular AK sets rebalanced
+  - bugfix: Lots of modular sprite bugs squashed
+  - code_imp: Autolathes and designs now support quality, determined by component

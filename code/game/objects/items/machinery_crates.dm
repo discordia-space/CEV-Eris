@@ -89,7 +89,7 @@
 /obj/item/machinery_crate/crafting_station
 	name = "crafting station IKEA"
 	machine_name = "crafting station"
-	constructing_machine = /obj/machinery/craftingstation
+	constructing_machine = /obj/machinery/autolathe/crafting_station
 
 /obj/item/machinery_crate/excelsior/autolathe
 	name = "Excelsior autolate IKEA"

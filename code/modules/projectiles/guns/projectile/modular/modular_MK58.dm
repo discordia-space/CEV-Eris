@@ -62,21 +62,21 @@
 	spawn_blacklisted = FALSE // Spawns in gun part loot
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray/stock
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/black)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol = 0, /obj/item/part/gun/modular/barrel/pistol = 0, /obj/item/part/gun/modular/grip/black = 0)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/gray/wood
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/wood)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol = 0, /obj/item/part/gun/modular/barrel/pistol = 0, /obj/item/part/gun/modular/grip/wood = 0)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/black/army
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol = 0, /obj/item/part/gun/modular/barrel/pistol = 0, /obj/item/part/gun/modular/grip/excel = 1)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/gun/projectile/automatic/modular/mk58/tan/army
-	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol, /obj/item/part/gun/modular/barrel/pistol, /obj/item/part/gun/modular/grip/excel)
+	gun_parts = list(/obj/item/part/gun/modular/mechanism/pistol = 0, /obj/item/part/gun/modular/barrel/pistol = 0, /obj/item/part/gun/modular/grip/excel = 1)
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
 	magazine_type = /obj/item/ammo_magazine/pistol
