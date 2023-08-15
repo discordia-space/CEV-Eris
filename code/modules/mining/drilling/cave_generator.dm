@@ -458,7 +458,7 @@
 
 			switch(map[i][j])
 				if(CAVE_FREE)
-					turf_type = /turf/simulated/floor/asteroid
+					turf_type = /turf/simulated/floor/asteroid/cave
 				if(CAVE_WALL)
 					turf_type = /turf/simulated/impassable_rock
 				if(CAVE_POI)
@@ -481,7 +481,7 @@
 					turf_type = /turf/simulated/cave_mineral/platinum
 				else
 					//log_world("Unknown turf type ([map[i][j]]) for cave generator at ([x + i], [y + j], [z]).")
-					turf_type = /turf/simulated/floor/asteroid
+					turf_type = /turf/simulated/floor/asteroid/cave
 
 			var/turf/T = get_turf(locate(x + i, y + j, z))
 			if(!istype(T, turf_type))

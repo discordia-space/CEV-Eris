@@ -1,3 +1,8 @@
+/turf/simulated/floor/asteroid/cave
+	// Low pressure version of /turf/simulated/floor/asteroid
+	oxygen = 14
+	nitrogen = 23
+
 /turf/simulated/impassable_rock
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
@@ -18,14 +23,14 @@
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	oxygen = 0
-	nitrogen = 0
+	oxygen = 14
+	nitrogen = 23
 	opacity = 1
 	density = TRUE
 	layer = EDGED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C
-	var/mined_turf = /turf/simulated/floor/asteroid
+	var/mined_turf = /turf/simulated/floor/asteroid/cave
 	var/ore/mineral
 	var/mineral_name
 	var/mined_ore = 0
@@ -124,7 +129,7 @@
 			DropMineral()
 
 	// Add some rubble, you did just clear out a big chunk of rock.
-	var/turf/simulated/floor/asteroid/N = ChangeTurf(mined_turf)
+	var/turf/simulated/floor/asteroid/cave/N = ChangeTurf(mined_turf)
 	if(istype(N))
 		N.overlay_detail = "asteroid[rand(0,9)]"
 		N.updateMineralOverlays(1)
