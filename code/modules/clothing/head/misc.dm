@@ -285,6 +285,14 @@
 	icon_state = "beret_mercenary"
 	spawn_blacklisted = TRUE
 
+/obj/item/clothing/head/beret/syndicate
+	name = "ancient Syndicate beret"
+	desc = "An old beret, styled after one used by the Syndicate. Veterans and patriots love these."
+	icon_state = "syndberet"
+
+/obj/item/clothing/head/beret/syndicate/brown
+	icon_state = "syndberet2"
+
 /obj/item/clothing/head/beret/oldsec
 	name = "old security beret"
 	desc = "A washed out and dusty corporate security beret from the long defunct \"Securitech\" company."

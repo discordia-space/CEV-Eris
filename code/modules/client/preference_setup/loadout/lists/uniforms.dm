@@ -188,6 +188,10 @@
 	display_name = "turtleneck and camo pants"
 	path = /obj/item/clothing/under/camopants
 
+/datum/gear/uniform/syndicate
+	display_name = "Syndicate turtleneck"
+	path = /obj/item/clothing/under/syndicate
+
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop

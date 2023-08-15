@@ -41,6 +41,7 @@
 	item_state = "nt_habithat_visor"
 	desc = "Protective helmet meant more to safeguard against disease, retrofit to also be spaceworthy."
 	style = STYLE_HIGH //Very low defenses, but looks better than a normal spacesuit
+	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 5)
 
 /obj/item/clothing/suit/space/medicus
@@ -49,6 +50,7 @@
 	item_state = "nt_habit"
 	desc = "Protective robes meant more to safeguard against disease, retrofit to also be spaceworthy. Has pockets for medical convenience."
 	style = STYLE_HIGH //Very low defenses, but looks better than a normal spacesuit
+	spawn_blacklisted = TRUE
 	slowdown = LIGHT_SLOWDOWN
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 10)
 	item_flags = DRAG_AND_DROP_UNEQUIP|STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
