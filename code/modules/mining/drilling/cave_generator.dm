@@ -329,10 +329,14 @@
 
 // Disconnect and remove the ladders
 /obj/cave_generator/proc/remove_ladders()
-	ladder_down.target = null
-	ladder_up.target = null
-	QDEL_NULL(ladder_down)
-	QDEL_NULL(ladder_up)
+	// Checks in case one of the ladders got qdeled for some reason (like shuttle landing on it)
+	if(ladder_down)
+		ladder_down.target = null
+		QDEL_NULL(ladder_down)
+	if(ladder_up)
+		ladder_up.target = null
+		QDEL_NULL(ladder_up)
+	// Unlock generator to allow a new cave to be generated
 	lock = FALSE
 
 // Place a mineral vein starting at the designated spot
