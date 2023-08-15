@@ -61,6 +61,13 @@
 	cell = C
 	update_icon()
 
+/obj/machinery/mining/deep_drill/Destroy()
+	if(cave_connected)
+		// In case the drill gets destroyed with an active cave system
+		cave_gen.remove_ladders()
+		cave_connected = FALSE
+	. = ..()
+
 /obj/machinery/mining/deep_drill/Process()
 	if(!active)
 		return
