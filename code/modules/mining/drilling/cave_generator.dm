@@ -446,6 +446,8 @@
 
 	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
 		if((M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
+			if(ishuman(M))
+				log_and_message_admins("[key_name(M)] got killed in cave collapse.")
 			M.death(FALSE)
 			M.ghostize()
 
