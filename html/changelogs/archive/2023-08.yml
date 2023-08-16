@@ -46,3 +46,6 @@
   - rscadd: added a new syndicate beret, to go along with the cap from last week
   - rscadd: added a brown syndicate beret
   - rscadd: added all of those to the loadout menu
+2023-08-16:
+  intercepti0n:
+  - refactor: converted sanity to TGUI.
