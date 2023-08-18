@@ -1,0 +1,22 @@
+.Vending {
+  &--text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &--icon {
+    text-align: center;
+    width: 5.9ch;
+    height: 5.9ch;
+  }
+  &--modal {
+    width: 30rem;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+  &--cancel {
+    height: 4ch;
+    text-align: center;
+    font-weight: bold;
+  }
+}

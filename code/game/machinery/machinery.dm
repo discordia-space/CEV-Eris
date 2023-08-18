@@ -169,6 +169,9 @@
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
 
+/obj/machinery/ui_state(mob/user)
+	return GLOB.machinery_state
+
 /obj/machinery/CanUseTopic(mob/user)
 	if(stat & BROKEN)
 		return STATUS_CLOSE
