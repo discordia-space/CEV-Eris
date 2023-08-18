@@ -8,10 +8,15 @@
     width: 5.9ch;
     height: 5.9ch;
   }
+  &--game-icon {
+    width: 2.5rem;
+    align-items: center;
+  }
   &--modal {
     width: 30rem;
-    height: 15rem;
+    min-height: 15rem;
     overflow: hidden;
+    text-overflow: "";
     border-radius: 0.5rem;
   }
   &--cancel {
