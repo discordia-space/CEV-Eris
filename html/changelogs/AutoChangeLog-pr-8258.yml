@@ -1,0 +1,4 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - bugfix: missing materials for some grenade launcher's shells
