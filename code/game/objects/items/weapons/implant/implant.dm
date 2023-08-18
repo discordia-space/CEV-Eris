@@ -23,6 +23,10 @@
 
 /obj/item/implant/attackby(obj/item/I, mob/user)
 	..()
+	if(istype(I, /obj/item/implanter/installer))
+		to_chat(user, SPAN_NOTICE("You cannot insert implants into a cybernetic applicator."))
+		return
+
 	if(istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
 		if(is_external())

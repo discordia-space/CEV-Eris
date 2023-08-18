@@ -1917,6 +1917,7 @@
 /obj/structure/sign/faction/serbian{
 	pixel_y = 32
 	},
+/obj/item/storage/deferred/crate/shotgun,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1950,6 +1951,7 @@
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
+/obj/structure/table/rack,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -4953,6 +4955,13 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"wx" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/accarmors,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "wO" = (
 /obj/effect/floor_decal/industrial/danger,
 /obj/effect/floor_decal/industrial/danger{
@@ -6542,6 +6551,13 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/space)
+"Qz" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/cybernetics,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "QG" = (
 /obj/effect/floor_decal/industrial/danger/corner{
 	dir = 8
@@ -35639,7 +35655,7 @@ iX
 iX
 iX
 iX
-iX
+wx
 gZ
 gZ
 gZ
@@ -35841,7 +35857,7 @@ iX
 iX
 iX
 iX
-iX
+Qz
 gZ
 hl
 hl
