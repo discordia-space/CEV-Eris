@@ -1,0 +1,16 @@
+author: Mycah142
+delete-after: true
+changes:
+  - rscadd: Cybernetic Installer to Uplink
+  - rscadd: Cybernetic Installer Kit to Serb Base
+  - rscadd: Uniform Accessory Kit for uniform armors and concealed holsters (Serb
+      Only)
+  - rscadd: Missing Serb Shotgun crate missed in a previous PR
+  - tweak: Serb stats slightly hire, closer to IHC round start values
+  - tweak: Subdermal Armor Description to accurately represent it as a torso only
+      cybernetic
+  - tweak: Serb MRE Description to better represent medicinal properties
+  - tweak: SCAF armor fire damage threshold to be half that of the firesuit
+  - imageadd: Cybernetic Installer has it's own sprite, thanks to SirRichardFrancis
+      (chad only)
+  - imageadd: Cybernetic Installer cybernetic-unique sprites, again thank you SirRichardFrancis
