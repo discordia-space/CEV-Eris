@@ -107,10 +107,11 @@
 
 /obj/item/implanter/installer/update_icon()
 	if(mod)
-		icon_state = mod.mod_overlay
-	if(mod.mod_overlay == null)
-		icon_state = "installer_full"
-	if(!mod)
+		if(mod.mod_overlay == null)
+			icon_state = "installer_full"
+		else
+			icon_state = mod.mod_overlay
+	else
 		icon_state = "installer_empty"
 
 /obj/item/implanter/installer/attack(mob/living/M, mob/living/user)
