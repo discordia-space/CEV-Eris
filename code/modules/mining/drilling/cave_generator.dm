@@ -44,16 +44,10 @@
 
 /obj/cave_generator/New()
 
-	// log_world("Cave generator at [x] [y] [z]")
-
 	// Get pool of points of interest
 	for(var/T in subtypesof(/datum/map_template/cave_pois))
 		var/datum/map_template/cave_pois/cave_poi_tmpl = T
 		pool_pois += new cave_poi_tmpl
-		log_world("Detected [T]")
-
-	// Honk
-	// generate_map()
 
 /obj/cave_generator/proc/generate_map(seismic_lvl = 1)
 	// Fill the map with random noise
@@ -66,18 +60,15 @@
 	for(var/i = 1 to 3)
 		run_cellular_automata()
 
-	log_world("Placing points of interest")
+	// Place the points of interest
 	generate_pois(seismic_lvl)
 
-	log_world("Generating veins")
 	// Generate mineral veins from processed map
 	generate_mineral_veins(seismic_lvl)
 
-	log_world("Cleaning turfs")
 	// Clean the map
 	clean_turfs()
 
-	log_world("Placing turfs")
 	// Place the walls, ores and free space
 	place_turfs(seismic_lvl)
 
@@ -144,14 +135,7 @@
 
 	for(var/i = 2 to CAVE_SIZE - 1)
 		for(var/j = 2 to CAVE_SIZE - 1)
-			if(isnull(map[i][j]) && i < 5 && j < 5)
-				log_world("Problemu at [i] [j]")
-
-	for(var/i = 2 to CAVE_SIZE - 1)
-		for(var/j = 2 to CAVE_SIZE - 1)
 			map[i][j] = place_wall_logic(i, j)
-			if(isnull(map[i][j]) && i < 5 && j < 5)
-				log_world("Problem at [i] [j]")
 
 // Wall placement logic for the cellular automata
 /obj/cave_generator/proc/place_wall_logic(x0, y0)
@@ -189,7 +173,6 @@
 		if(cave_poi_tmpl.min_seismic_lvl >= seismic_lvl)
 			pool += cave_poi_tmpl.type
 			pool[cave_poi_tmpl.type] = cave_poi_tmpl.spawn_prob
-			log_world("Considering [cave_poi_tmpl.name] for spawning")
 
 	// Place a few pois on the map
 	var/N_pois = rand(2, 4)
@@ -219,7 +202,6 @@
 		for(var/j = x_corner_bl to x_corner_tr)
 			for(var/k = y_corner_bl to y_corner_tr)
 				map[j][k] = CAVE_POI
-		log_world("Saving [poi.name] with [x_corner_bl] [y_corner_bl] [x_corner_tr] [y_corner_tr]")
 		pois_placed += poi
 		pois_placed_pos += list(list(x_corner_bl, y_corner_bl, x_corner_tr, y_corner_tr))
 
@@ -228,9 +210,6 @@
 	if(!pois_placed.len)
 		// No overlap since no poi has been placed yet
 		return TRUE
-
-	log_world("Number of pois placed: [pois_placed.len]")
-	log_world("Number of pois placed pos: [pois_placed_pos.len]")
  
 	var/x_tr = x_bl + size_x
 	var/y_tr = y_bl + size_y
@@ -239,7 +218,6 @@
 		// If top right corner is on the left or under the bottom left corner of already placed poi, then it's clear
 		// Otherwise it means they overlap
 		var/list/placed_pos = pois_placed_pos[k]
-		log_world("[placed_pos[1]] [placed_pos[2]] [placed_pos[3]] [placed_pos[4]]")
 			
 		if(!(x_bl > placed_pos[3] || y_bl > placed_pos[4] || x_tr < placed_pos[1] || y_tr < placed_pos[2]))
 			return FALSE
@@ -252,7 +230,6 @@
 	var/y_vein = 0
 	var/N_veins = rand(15, 20 * (1 + 0.5 * (seismic_lvl - SEISMIC_MIN) / (SEISMIC_MAX - SEISMIC_MIN)))
 	var/N_trials = 50
-	log_world("Placing [N_veins] mineral veins at seismic level [seismic_lvl]")
 	while(N_veins > 0 && N_trials > 0)
 		N_trials--
 		x_vein = rand(CAVE_MARGIN, CAVE_SIZE - CAVE_MARGIN)
@@ -323,11 +300,9 @@
 		return FALSE
 
 	// Place the up ladder on free spot
-	log_world("Placing up ladder at [x + res[2]] [y + res[3]] [z]")
 	ladder_up = new /obj/structure/multiz/ladder/up/cave(locate(x + res[2], y + res[3], z))
 
 	// Place the down ladder near the drill
-	log_world("Placing down ladder at [drill_x] [drill_y] [drill_z]")
 	ladder_down = new /obj/structure/multiz/ladder/cave_hole(locate(drill_x, drill_y - 1, drill_z))
 
 	// Connect ladders
@@ -409,7 +384,6 @@
 	var/datum/cave_vein/CV = new vein_path()
 
 	// Place mineral vein at the available spot in a recursive manner
-	// log_world("Placing [CV.name] at [x] [y]")
 	place_recursive_mineral(x_start, y_start, CV.p_spread, CV.size_max, CV.size_min, CV.mineral) 
 	return 1
 
@@ -417,8 +391,7 @@
 /obj/cave_generator/proc/place_recursive_mineral(x0, y0, p, size, size_min, mineral)
 
 	map[x0][y0] = mineral
-	if(isnull(map[x0][y0]))
-		log_world("Problema at [x0] [y0]")
+
 	// Last turf of the vein
 	if(size == 0)
 		return
@@ -463,10 +436,6 @@
 	var/turf_type
 	for(var/i = 1 to CAVE_SIZE)
 		for(var/j = 1 to CAVE_SIZE)
-			// log_world("Placing [i] [j] as [map[i][j]]")
-			//if(isnull(map[i][j]))
-			//	log_world("Problemo at [i] [j]")
-
 			switch(map[i][j])
 				if(CAVE_FREE)
 					turf_type = /turf/simulated/floor/asteroid/cave
@@ -491,7 +460,6 @@
 				if(CAVE_PLATINUM)
 					turf_type = /turf/simulated/cave_mineral/platinum
 				else
-					//log_world("Unknown turf type ([map[i][j]]) for cave generator at ([x + i], [y + j], [z]).")
 					turf_type = /turf/simulated/floor/asteroid/cave
 
 			var/turf/T = get_turf(locate(x + i, y + j, z))
@@ -508,7 +476,6 @@
  
 	for(var/k = 1 to LAZYLEN(pois_placed))
 		var/turf/corner_turf = get_turf(locate(x + pois_placed_pos[k][1], y + pois_placed_pos[k][2], z))
-		log_world("Loading [pois_placed[k].name] at [corner_turf.x] [corner_turf.y] [corner_turf.z]")
 		pois_placed[k].load(corner_turf)
 
 // Spawn golems on free turfs depending on seismic level
