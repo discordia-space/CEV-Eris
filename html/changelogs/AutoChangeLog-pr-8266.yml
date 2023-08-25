@@ -1,0 +1,6 @@
+author: Twomoon
+delete-after: true
+changes:
+  - rscadd: Added 2 new haircut
+  - imageadd: Added 2 haircut icons
+  - code_imp: Added 2 haitcut to the char setup
