@@ -142,7 +142,7 @@ const product = (product: ProductData, context: any) => {
             onClick={() => act('vend', { key: product.key })}>
             <Stack fill align="center">
               <Stack.Item>
-                <GameIcon html={product.icon} />
+                <GameIcon html={product.icon} className="Vending--game-icon" />
               </Stack.Item>
               <Stack.Item grow={4} textAlign="left" className="Vending--text">
                 {product.name}
