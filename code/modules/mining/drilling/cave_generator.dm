@@ -257,7 +257,7 @@
 			y_start = y0
 		else if(map[x_start][y1] == CAVE_FREE)
 			y_start = y1
-		else:
+		else
 			found = FALSE
 		
 		if(!found)
@@ -352,7 +352,7 @@
 			if(search_for == CAVE_FREE)
 				y1--
 			y_start = y1
-		else:
+		else
 			found = FALSE
 		
 		if(!found)
