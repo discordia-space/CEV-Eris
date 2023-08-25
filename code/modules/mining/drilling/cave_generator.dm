@@ -42,7 +42,9 @@
 	var/list/datum/map_template/cave_pois/pois_placed = list()
 	var/list/pois_placed_pos = list()
 
-/obj/cave_generator/New()
+/obj/cave_generator/LateInitialize()
+	// Late initialize to ensure SSmapping.maploader has been created
+	// before preloading the templates
 
 	// Get pool of points of interest
 	for(var/T in subtypesof(/datum/map_template/cave_pois))
