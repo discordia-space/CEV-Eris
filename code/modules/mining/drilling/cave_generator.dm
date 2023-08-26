@@ -42,8 +42,8 @@
 	var/list/datum/map_template/cave_pois/pois_placed = list()
 	var/list/pois_placed_pos = list()
 
-/obj/cave_generator/LateInitialize()
-	// Late initialize to ensure SSmapping.maploader has been created
+/obj/cave_generator/Initialize()
+	// Initialize and not New to ensure SSmapping.maploader has been created
 	// before preloading the templates
 
 	// Get pool of points of interest
@@ -286,6 +286,7 @@
 	if(lock)
 		return FALSE
 	lock = TRUE
+	cave_time = world.time
 
 	// Generate the map for the given seismic level
 	generate_map(seismic_lvl)
