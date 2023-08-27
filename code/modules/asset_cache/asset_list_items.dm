@@ -23,15 +23,6 @@
 		"tgfont.css" = file("tgui/packages/tgfont/static/tgfont.css"),
 	)
 
-/datum/asset/simple/sanity
-	assets = list(
-		"desire.png" = 'icons/ui_icons/sanity/desire.png',
-		"style.png" = 'icons/ui_icons/sanity/style.png',
-		"insight.png" = 'icons/ui_icons/sanity/insight.png',
-		"kneeling.png" = 'icons/ui_icons/sanity/kneeling.png',
-		"sanity.png" = 'icons/ui_icons/sanity/sanity.png'
-	)
-
 // /datum/asset/simple/headers
 // 	assets = list(
 // 		"alarm_green.gif" = 'icons/program_icons/alarm_green.gif',
@@ -399,15 +390,6 @@
 // 	assets = list(
 // 		"view_variables.css" = 'html/admin/view_variables.css'
 // 	)
-
-/datum/asset/spritesheet/sheetmaterials
-	name = "sheetmaterials"
-
-/datum/asset/spritesheet/sheetmaterials/register()
-	InsertAll("", 'icons/obj/stack/material.dmi')
-	// Special case on RCD objects
-	Insert("rcd", 'icons/obj/ammo.dmi', "rcd")
-	..()
 
 /* === ERIS STUFF === */
 /datum/asset/simple/design_icons/register()
