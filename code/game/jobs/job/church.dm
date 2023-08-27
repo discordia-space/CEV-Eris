@@ -12,7 +12,7 @@
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_CLERGY
 	cruciform_access = list(
-		access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels
+		access_morgue, access_chapel_office, access_nt_acolyte, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels
 	)
 
 	access = list(

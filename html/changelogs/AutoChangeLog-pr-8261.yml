@@ -1,0 +1,5 @@
+author: intercepti0n
+delete-after: true
+changes:
+  - bugfix: vending UI buttons no longer go offscreen.
+  - bugfix: long messages in vending UI are yet again readable.

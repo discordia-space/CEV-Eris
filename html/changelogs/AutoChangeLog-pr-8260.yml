@@ -1,0 +1,5 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - bugfix: toxins no longer twice as lethal as intended
+  - bugfix: modular guns no longer have extreme damage multipliers
