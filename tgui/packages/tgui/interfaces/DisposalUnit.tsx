@@ -1,4 +1,3 @@
-import { round, toFixed } from 'common/math';
 import { useBackend } from '../backend';
 import { Button, LabeledList, ProgressBar, Section, Stack } from '../components';
 import { Window } from '../layouts';
@@ -60,7 +59,7 @@ export const DisposalUnit = (props: any, context: any) => {
                 <LabeledList.Item label="Pump">
                   <Button
                     icon="power-off"
-                    selected={mode != 'Off'}
+                    selected={mode !== 'Off'}
                     onClick={() => {
                       act('toggle', { pump: true });
                     }}
