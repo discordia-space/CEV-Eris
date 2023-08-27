@@ -33,6 +33,18 @@
 	display_name = "beret, old security"
 	path = /obj/item/clothing/head/beret/oldsec
 
+/datum/gear/head/beret/syndicate
+	display_name = "berets, Syndicate"
+	path = /obj/item/clothing/head/beret/syndicate
+
+/datum/gear/head/beret/syndicate/New()
+	..()
+	var/syndicate = list(
+		"black" 		=	 /obj/item/clothing/head/beret/syndicate,
+		"brown"			=	 /obj/item/clothing/head/beret/syndicate/brown
+	)
+	gear_tweaks += new /datum/gear_tweak/path(syndicate)
+
 /datum/gear/head/beret/bsec
 	display_name = "beret, Operative"
 	path = /obj/item/clothing/head/beret/sec/navy/officer

@@ -8,10 +8,10 @@
 import { decodeHtmlEntities } from 'common/string';
 import { useBackend, useSharedState, useLocalState } from '../backend';
 import { BountyBoardContent } from './BountyBoard';
-import { UserDetails } from './Vending';
 import { BlockQuote, Box, Button, Divider, LabeledList, Modal, Section, Stack, Tabs, TextArea } from '../components';
 import { marked } from 'marked';
 import { sanitizeText } from '../sanitize';
+import { UserDetails } from './common/UserDetails';
 
 const CENSOR_MESSAGE =
   'This channel has been deemed as threatening to \

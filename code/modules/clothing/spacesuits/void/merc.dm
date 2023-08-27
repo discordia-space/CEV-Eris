@@ -12,6 +12,7 @@
 		rad = 30
 	)
 	siemens_coefficient = 0.35
+	max_heat_protection_temperature = 15000 //Halfway between Space Suit 5000 and Firesuit 30000
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green"
@@ -31,6 +32,7 @@
 		rad = 30
 	)
 	siemens_coefficient = 0.35
+	max_heat_protection_temperature = 15000 //Halfway between Space Suit 5000 and Firesuit 30000
 	breach_threshold = 10
 	resilience = 0.07
 	species_restricted = list(SPECIES_HUMAN)

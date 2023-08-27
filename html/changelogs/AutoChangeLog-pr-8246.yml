@@ -1,9 +1,0 @@
-author: Kopit32
-delete-after: true
-changes:
-  - rscadd: Added machinery_crates.dm file. Added new categories to excelsior teleporter
-      and guild's Solnyshko station.
-  - imageadd: added sprites for standart crates and excelsior's crates. Some things
-      have their own sprites(for some sprites thanks Kirov)
-  - code_imp: "changed excelsior's stash content: autolate plate replaced to crate
-      alternate"
