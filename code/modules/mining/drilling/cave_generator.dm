@@ -34,7 +34,7 @@
 	invisibility = 0 // 101
 
 	var/lock = FALSE  // Lock generator to avoid having several iterations running in parallel
-	var/cave_time = 0  // Cooldown timer to avoid spamming cave generation
+	var/cave_time = -CAVE_COOLDOWN  // Cooldown timer to avoid spamming cave generation
 	var/map // map with 0 (free turf) and 1+ (wall or mineral)
 	var/obj/structure/multiz/ladder/cave_hole/ladder_down
 	var/obj/structure/multiz/ladder/up/cave/ladder_up
@@ -562,13 +562,14 @@
 	icon = 'icons/obj/burrows.dmi'
 	icon_state = "maint_hole"
 
+/obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
+	if(M.pulling)
+		to_chat(M, SPAN_NOTICE("The hole is too narrow to enter while pulling something."))
+		return
+	. = ..()
+
 /obj/structure/multiz/ladder/up/cave
 	name = "cave network exit"
-
-/*my_burrow.audio("crumble", 80)
-		for(var/mob/M in seen)
-			M.show_message(SPAN_NOTICE("The burrow collapses inwards!"), 1)*/
-
 
 #undef CAVE_SIZE
 #undef CAVE_MARGIN
