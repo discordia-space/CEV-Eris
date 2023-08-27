@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Box, Section, Stack, Table, Tabs, Tooltip } from '../components';
+import { Box, Section, Stack, Tabs, Tooltip } from '../components';
 import { Window } from '../layouts';
 import { capitalize } from 'common/string';
 import { classes } from 'common/react';
