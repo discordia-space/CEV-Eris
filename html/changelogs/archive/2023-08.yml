@@ -85,3 +85,6 @@
   intercepti0n:
   - bugfix: vending UI buttons no longer go offscreen.
   - bugfix: long messages in vending UI are yet again readable.
+2023-08-29:
+  Hyperio:
+  - rscadd: Mining rework (cavern system)
