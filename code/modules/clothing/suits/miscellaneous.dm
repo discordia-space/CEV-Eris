@@ -321,7 +321,6 @@
 	icon_state = jacket_type
 	update_icon()
 
-
 /obj/item/clothing/suit/storage/toggle/hoodie
 	name = "grey hoodie"
 	desc = "A warm, grey sweatshirt."
