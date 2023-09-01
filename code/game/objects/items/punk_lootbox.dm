@@ -32,7 +32,7 @@
 
 	var/logo_type = input(user, "Choose logo type", "Gang affiliation much?") as null|anything in logo_list
 
-	new /obj/item/clothing/suit/storage/greatcoat/punk(loc = get_turf(loc), jacket_type = jacket_list[jacket_type], logo_type = logo_list[logo_type], is_natural_spawn = FALSE)
+	new /obj/item/clothing/suit/storage/leather_jacket/punk(loc = get_turf(loc), jacket_type = jacket_list[jacket_type], logo_type = logo_list[logo_type], is_natural_spawn = FALSE)
 	to_chat(user, SPAN_NOTICE("You take out the jacket."))
 	icon_state = "jacket_box_open"
 	update_icon()
