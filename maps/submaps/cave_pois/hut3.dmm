@@ -1,0 +1,192 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"b" = (
+/turf/simulated/wall/silver,
+/area/asteroid/cave)
+"c" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"d" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "atmos_airlock_door_int";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"h" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/spawner/booze,
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"i" = (
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"n" = (
+/obj/structure/bed,
+/obj/item/bedsheet/rainbow,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"p" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/asteroid/cave)
+"r" = (
+/obj/spawner/junk,
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"t" = (
+/obj/structure/closet/crate/freezer,
+/obj/spawner/junkfood,
+/obj/spawner/junkfood,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"u" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"w" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"z" = (
+/obj/structure/bed/chair/comfy/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"C" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"D" = (
+/obj/structure/table/rack,
+/obj/spawner/material,
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"G" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/pouch,
+/obj/spawner/pouch,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/asteroid/cave)
+"I" = (
+/obj/structure/table/rack,
+/obj/spawner/voidsuit,
+/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"K" = (
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"L" = (
+/obj/structure/closet,
+/obj/item/stack/material/steel{
+	amount = 10
+	},
+/obj/item/stack/material/wood{
+	amount = 50
+	},
+/obj/item/stack/tile/carpet/turcarpet{
+	amount = 50
+	},
+/obj/item/stack/material/glass/reinforced{
+	amount = 10
+	},
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/asteroid/cave)
+"N" = (
+/obj/structure/inflatable/door,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"Y" = (
+/obj/structure/table/rack,
+/obj/spawner/material/resources,
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"Z" = (
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+
+(1,1,1) = {"
+a
+a
+Y
+D
+b
+N
+b
+"}
+(2,1,1) = {"
+b
+b
+b
+b
+b
+Z
+b
+"}
+(3,1,1) = {"
+b
+p
+G
+L
+b
+d
+b
+"}
+(4,1,1) = {"
+u
+c
+w
+Z
+c
+Z
+b
+"}
+(5,1,1) = {"
+b
+i
+r
+K
+w
+t
+u
+"}
+(6,1,1) = {"
+b
+n
+h
+z
+I
+C
+b
+"}
+(7,1,1) = {"
+b
+b
+b
+b
+u
+b
+b
+"}

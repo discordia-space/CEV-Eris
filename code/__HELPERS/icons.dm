@@ -1066,6 +1066,10 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 /proc/generate_asset_name(file)
 	return "asset.[md5(fcopy_rsc(file))]"
 
+/proc/path2icon(path, dir = SOUTH, frame = 1, moving)
+	var/atom/A = path
+	return icon(initial(A.icon), initial(A.icon_state), dir, frame, moving)
+
 /**
  * Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
  * exporting it as text, and then parsing the base64 from that.
@@ -1150,37 +1154,30 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
 
 /proc/icon2base64html(thing)
-	if (!thing)
-		return
 	var/static/list/bicon_cache = list()
-	if (isicon(thing))
-		var/icon/I = thing
-		var/icon_base64 = icon2base64(I)
 
-		if (I.Height() > world.icon_size || I.Width() > world.icon_size)
-			var/icon_md5 = md5(icon_base64)
-			icon_base64 = bicon_cache[icon_md5]
-			if (!icon_base64) // Doesn't exist yet, make it.
-				bicon_cache[icon_md5] = icon_base64 = icon2base64(I)
+	ASSERT(thing)
 
+	if(ispath(thing))
+		var/atom/A = thing
+		var/key = "[initial(A.icon)]:[initial(A.icon_state)]"
+		var/cached = bicon_cache[key]
 
-		return "<img class='icon icon-misc' src='data:image/png;base64,[icon_base64]'>"
+		if(!cached)
+			bicon_cache[key] = cached = icon2base64(path2icon(A))
 
-	// Either an atom or somebody fucked up and is gonna get a runtime, which I'm fine with.
-	var/atom/A = thing
-	var/key = "[istype(A.icon, /icon) ? "[REF(A.icon)]" : A.icon]:[A.icon_state]"
+		return "<img class='game-icon' src='data:image/png;base64,[cached]'>"
 
+	if(isicon(thing))
+		var/key = REF(thing)
+		var/cached = bicon_cache[key]
 
-	if (!bicon_cache[key]) // Doesn't exist, make it.
-		var/icon/I = icon(A.icon, A.icon_state, SOUTH, 1)
-		if (ishuman(thing)) // Shitty workaround for a BYOND issue.
-			var/icon/temp = I
-			I = icon()
-			I.Insert(temp, dir = SOUTH)
+		if(!cached)
+			bicon_cache[key] = cached = icon2base64(thing)
 
-		bicon_cache[key] = icon2base64(I)
+		return "<img class='game-icon' src='data:image/png;base64,[cached]'>"
 
-	return "<img class='icon icon-[A.icon_state]' src='data:image/png;base64,[bicon_cache[key]]'>"
+	CRASH("[thing] must be a path or an icon")
 
 //Costlier version of icon2html() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
 /proc/costly_icon2html(thing, target, sourceonly = FALSE)
