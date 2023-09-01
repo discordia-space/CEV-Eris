@@ -2748,6 +2748,7 @@
 #include "code\modules\tgui\tgui_window.dm"
 #include "code\modules\tgui\states\always.dm"
 #include "code\modules\tgui\states\machinery.dm"
+#include "code\modules\tgui\states\notcontained.dm"
 #include "code\modules\tips_and_tricks\gameplay.dm"
 #include "code\modules\tips_and_tricks\jobs.dm"
 #include "code\modules\tips_and_tricks\mobs.dm"
