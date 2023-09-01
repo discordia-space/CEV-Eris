@@ -42968,7 +42968,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/landmark/join/start/acolyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "bYm" = (
@@ -54910,11 +54909,14 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "cCp" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
+/obj/machinery/camera/network/third_section{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
 "cCq" = (
 /obj/spawner/lowkeyrandom/low_chance,
@@ -55384,6 +55386,9 @@
 	d1 = 32;
 	d2 = 4;
 	icon_state = "32-4"
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down{
+	dir = 4
 	},
 /turf/simulated/open,
 /area/eris/maintenance/section3deck3starboard)
@@ -77667,6 +77672,9 @@
 /area/eris/quartermaster/storage)
 "dFZ" = (
 /obj/structure/disposalpipe/down{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/zpipe/down{
 	dir = 4
 	},
 /turf/simulated/open,
@@ -100160,7 +100168,7 @@
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
-/obj/structure/closet/secure_closet/acolyte,
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "hbQ" = (
@@ -100328,7 +100336,7 @@
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/acolyte,
+/obj/structure/table/rack/shelf,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "huE" = (
@@ -101682,17 +101690,7 @@
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/artistoffice)
 "kAt" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -28
-	},
-/obj/machinery/camera/network/third_section{
-	dir = 1
-	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
 "kEr" = (
@@ -102066,6 +102064,13 @@
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/storage)
+"lEC" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/dark/golden,
+/area/eris/crew_quarters/janitor)
 "lEW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -103420,7 +103425,6 @@
 /turf/simulated/wall/r_wall,
 /area/eris/engineering/long_range_scanner)
 "peX" = (
-/obj/landmark/join/start/acolyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "pfh" = (
@@ -104749,9 +104753,6 @@
 /turf/space,
 /area/space)
 "sHg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = -22
@@ -161254,9 +161255,9 @@ bTT
 cFv
 bUK
 bUK
+bUK
+bUK
 bUZ
-dfF
-cCp
 cFv
 abF
 abF
@@ -161456,11 +161457,11 @@ jgX
 cFv
 haf
 snT
-dFn
-dFn
+snT
+snT
 sHg
 cFv
-abF
+cFv
 abF
 abF
 aaa
@@ -161661,7 +161662,7 @@ cvX
 pyD
 czs
 kAt
-cFv
+cCp
 cFv
 bUG
 bUG
@@ -162062,8 +162063,8 @@ ojk
 cFv
 dsa
 dFn
-dFn
-dFn
+bUQ
+bUQ
 dFn
 mUH
 cFv
@@ -162263,10 +162264,10 @@ cjZ
 cjZ
 cFv
 drI
-bUQ
+lEC
 bVd
-bUQ
 cCt
+dfF
 cCP
 cFv
 eow
