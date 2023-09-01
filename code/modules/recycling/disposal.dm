@@ -110,7 +110,7 @@
 				return
 
 			if(!panel_open || mode != DISPOSALS_OFF)
-			    to_chat(user, "You cannot work on the disposal unit if it is not turned off with its power connection exposed.")
+				to_chat(user, "You cannot work on the disposal unit if it is not turned off with its power connection exposed.")
 				return
 
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
