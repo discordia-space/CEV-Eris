@@ -44566,13 +44566,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
-"ccy" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/neotheology/churchbarracks)
 "ccz" = (
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/tiled/techmaint,
@@ -45393,16 +45386,16 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
@@ -45740,9 +45733,8 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/surgery)
 "ceX" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/cargo,
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "ceY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -54916,7 +54908,7 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "cCq" = (
 /obj/spawner/lowkeyrandom/low_chance,
@@ -99652,7 +99644,7 @@
 /turf/space,
 /area/space)
 "fOG" = (
-/obj/structure/closet/secure_closet/personal,
+/obj/structure/closet/secure_closet/acolyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "fPb" = (
@@ -100104,10 +100096,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
 "gWZ" = (
-/obj/structure/table/woodentable,
-/obj/machinery/firealarm{
-	pixel_y = 28
-	},
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = 22
@@ -100115,6 +100103,7 @@
 /obj/machinery/camera/network/third_section{
 	dir = 8
 	},
+/obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "gXX" = (
@@ -100165,11 +100154,18 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck4port)
 "hbk" = (
-/obj/machinery/firealarm{
-	pixel_y = 28
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "maint_hatch_acolyte";
+	name = "Maintenance Hatch Control";
+	req_access = null;
+	pixel_x = -24
 	},
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/dark/techfloor_grid,
+/obj/structure/table/woodentable,
+/obj/structure/sign/faction/neotheology_cross/gold{
+	pixel_y = 32
+	},
+/turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "hbQ" = (
 /obj/machinery/reagentgrinder/industrial,
@@ -100332,13 +100328,6 @@
 	},
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
-"hug" = (
-/obj/machinery/camera/network/third_section{
-	dir = 4
-	},
-/obj/structure/table/rack/shelf,
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/eris/neotheology/churchbarracks)
 "huE" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -101220,7 +101209,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/main/section2)
 "jyw" = (
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "jAw" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -101580,13 +101569,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
-"koc" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/acolyte,
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/eris/neotheology/churchbarracks)
 "ksh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -103269,12 +103251,8 @@
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
 "oOF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/landmark/join/start/acolyte,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/churchbarracks)
+/turf/simulated/floor/tiled/dark/gray_platform,
+/area/eris/crew_quarters/janitor)
 "oOP" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4;
@@ -103425,6 +103403,7 @@
 /turf/simulated/wall/r_wall,
 /area/eris/engineering/long_range_scanner)
 "peX" = (
+/obj/landmark/join/start/acolyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "pfh" = (
@@ -103852,8 +103831,15 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/sorter)
 "qmJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark/golden,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "maint_hatch_acolyte";
+	layer = 3.3;
+	name = "Maintenance Hatch"
+	},
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/techmaint,
 /area/eris/neotheology/churchbarracks)
 "qnc" = (
 /obj/structure/closet/oldstyle,
@@ -104499,14 +104485,6 @@
 /obj/item/pen,
 /turf/simulated/floor/carpet,
 /area/eris/medical/psych)
-"seI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/landmark/join/start/acolyte,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/churchbarracks)
 "sfs" = (
 /obj/machinery/optable/altar,
 /turf/simulated/floor/carpet/bcarpet,
@@ -104838,13 +104816,6 @@
 /obj/machinery/power/nt_obelisk,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
-"sNY" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/structure/closet/secure_closet/acolyte,
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/eris/neotheology/churchbarracks)
 "sOb" = (
 /obj/machinery/atmospherics/pipe/zpipe/up{
 	dir = 4;
@@ -104959,19 +104930,8 @@
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/chapelritualroom)
 "tgq" = (
-/obj/machinery/button/remote/blast_door{
-	dir = 1;
-	id = "maint_hatch_acolyte";
-	name = "Maintenance Hatch Control";
-	pixel_y = -24;
-	req_access = null
-	},
-/obj/machinery/power/nt_obelisk,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/churchbarracks)
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/neotheology/churchcorridor)
 "tiH" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -105704,17 +105664,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
-"uYj" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "maint_hatch_acolyte";
-	layer = 3.3;
-	name = "Maintenance Hatch"
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/eris/neotheology/churchbarracks)
 "uZh" = (
 /obj/structure/lattice,
 /turf/simulated/open,
@@ -105920,9 +105869,6 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/janitor)
 "vwL" = (
-/obj/structure/sign/faction/neotheology_cross/gold{
-	pixel_y = 32
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -105933,6 +105879,9 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/machinery/firealarm{
+	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
@@ -106314,6 +106263,7 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/landmark/join/start/acolyte,
 /turf/simulated/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "wwo" = (
@@ -119232,7 +119182,7 @@ asp
 sxh
 iPh
 bBQ
-bBQ
+tgq
 xhY
 xhY
 xhY
@@ -120854,14 +120804,14 @@ btM
 can
 eCH
 fZK
-bZO
-bZO
-bZO
-bZO
-bZO
+can
+awR
+awR
+awR
+asR
 bBQ
 alg
-aaa
+alg
 aaa
 aCL
 aLM
@@ -121056,14 +121006,14 @@ eaG
 can
 cdS
 ceJ
-bZO
-koc
-hug
-sNY
-bZO
+can
+awR
+awR
+awR
+asR
 bBQ
+sBi
 alg
-aaa
 aaa
 aCM
 aCW
@@ -121258,13 +121208,13 @@ cbR
 cbR
 cdd
 ceq
-ccy
-seI
+bZO
+bZO
 qmJ
-oOF
-uYj
+bZO
+bZO
+bZO
 bBQ
-alg
 alg
 aaa
 aCM
@@ -121463,9 +121413,9 @@ nJR
 bZO
 hbk
 jyw
-tgq
+mmX
+glk
 bZO
-sBi
 bBQ
 alg
 aad
@@ -121663,8 +121613,8 @@ cbR
 cuR
 caO
 bZO
-bZO
 ceX
+jyw
 bZO
 bZO
 bZO
@@ -162065,7 +162015,7 @@ dsa
 dFn
 bUQ
 bUQ
-dFn
+oOF
 mUH
 cFv
 bWh
