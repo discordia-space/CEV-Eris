@@ -69,3 +69,22 @@
   - tweak: acolyte's locker and custodian's locker now lockable
   intercepti0n:
   - refactor: converted vending unit UI to TGUI.
+2023-08-26:
+  Humonitarian:
+  - bugfix: toxins no longer twice as lethal as intended
+  - bugfix: modular guns no longer have extreme damage multipliers
+  Mycah142:
+  - bugfix: Plant Gene splicing machine can apply multiple genes per seed, as code
+      originally implied.
+  TheLeopold:
+  - bugfix: missing acolyte's access for preacher
+  Twomoon:
+  - rscadd: Added 2 new haircut
+  - imageadd: Added 2 haircut icons
+  - code_imp: Added 2 haitcut to the char setup
+  intercepti0n:
+  - bugfix: vending UI buttons no longer go offscreen.
+  - bugfix: long messages in vending UI are yet again readable.
+2023-08-29:
+  Hyperio:
+  - rscadd: Mining rework (cavern system)

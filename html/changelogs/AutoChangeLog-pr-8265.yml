@@ -1,5 +1,0 @@
-author: Mycah142
-delete-after: true
-changes:
-  - bugfix: Plant Gene splicing machine can apply multiple genes per seed, as code
-      originally implied.

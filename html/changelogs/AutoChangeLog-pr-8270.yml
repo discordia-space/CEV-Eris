@@ -1,0 +1,7 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: Punk jacket (from style vendor) is now a subtype of leather_jacket instead
+      of greatcoat.
+  - balance: because punk jacket is now a subtype of leather_jacket instead of greatcoat
+      it lost a lot of protection and no longer covers legs (for some reason)

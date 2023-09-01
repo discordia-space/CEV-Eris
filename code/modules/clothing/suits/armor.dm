@@ -140,45 +140,6 @@
 	slowdown = LIGHT_SLOWDOWN
 	valid_accessory_slots = list("armband","decor")
 	restricted_accessory_slots = list("armband")
-/obj/item/clothing/suit/storage/greatcoat/punk
-	name = "punk jacket"
-	desc = "Authentic leather for an authentic punk."
-	icon_state = "punk_highlight"
-
-/obj/item/clothing/suit/storage/greatcoat/punk/New(loc, jacket_type = "punk_highlight", logo_type, is_natural_spawn = TRUE)
-	..()
-	if(is_natural_spawn) // From junk pile or some such
-		logo_type = pick(list(
-			null, null, null, null, // 50% chance of not having any logo
-			"punk_over_valentinos",
-			"punk_over_samurai",
-			"punk_over_jager_roach",
-			"punk_over_tunnel_snakes"
-		))
-		jacket_type = pick(list(
-			"punk_bright",
-			"punk_dark",
-			"punk_highlight"
-		))
-
-	if(logo_type)
-		var/obj/item/clothing/accessory/logo/logo = new
-		logo.icon_state = logo_type
-		accessories += logo
-		logo.has_suit = src
-		loc = src
-		switch(logo_type) // All of the following names associated with some group of people, thus capitalized 
-			if("punk_over_valentinos")
-				name = "Valentinos jacket"
-			if("punk_over_samurai")
-				name = "Samurai jacket"
-			if("punk_over_jager_roach")
-				name = "Jager Roaches jacket"
-			if("punk_over_tunnel_snakes")
-				name = "Tunnel Snakes jacket"
-
-	icon_state = jacket_type
-	update_icon()
 
 /obj/item/clothing/suit/storage/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"

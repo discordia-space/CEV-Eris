@@ -496,12 +496,7 @@
 	return
 
 /obj/machinery/cryopod/relaymove(var/mob/user)
-	..()
-	//set_occupant(null, FALSE)
-	go_out()
-	for(var/obj/item/thing in contents)
-		thing.forceMove(loc)
-		user.equip_to_appropriate_slot(thing)
+	eject()
 
 
 /obj/machinery/cryopod/proc/go_out()

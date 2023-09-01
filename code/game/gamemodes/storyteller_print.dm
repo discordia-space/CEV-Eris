@@ -258,9 +258,9 @@
 
 				var/result = evt.create(href_list["severity"])
 				if (result)
-					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
+					log_and_message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
 				else
-					message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")
+					log_and_message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")
 			if(href_list["ev_debug"] && usr && usr.client)
 				usr.client.debug_variables(evt)
 			if(href_list["ev_set_weight"])

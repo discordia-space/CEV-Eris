@@ -1,0 +1,4 @@
+author: Firefox13
+delete-after: true
+changes:
+  - admin: Admin-forced events, no matter successful or not, are now logged.

@@ -9,6 +9,10 @@
 #define PRESSURE_TANK_VOLUME 150	//L
 #define PUMP_MAX_FLOW_RATE 90		//L/s - 4 m/s using a 15 cm by 15 cm inlet
 
+#define DISPOSALS_OFF "Off"
+#define DISPOSALS_CHARGING "Pressurizing"
+#define DISPOSALS_CHARGED "Ready"
+
 /obj/machinery/disposal
 	name = "disposal unit"
 	desc = "A pneumatic waste disposal unit."
@@ -19,7 +23,7 @@
 	density = TRUE
 	layer = LOW_OBJ_LAYER //This allows disposal bins to be underneath tables
 	var/datum/gas_mixture/air_contents	// internal reservoir
-	var/mode = 1	// item mode 0=off 1=charging 2=charged
+	var/mode = DISPOSALS_OFF
 	var/flush = 0	// true if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
 	var/flushing = 0	// true if flushing in progress
@@ -36,7 +40,7 @@
 	spawn(5)
 		trunk = locate() in src.loc
 		if(!trunk)
-			mode = 0
+			mode = DISPOSALS_OFF
 			flush = 0
 		else
 			trunk.linked = src	// link the pipe trunk to self
@@ -74,9 +78,9 @@
 	src.add_fingerprint(user)
 
 	var/list/usable_qualities = list()
-	if(mode<=0)
+	if(mode == DISPOSALS_OFF)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
-	if(mode==-1)
+	if(panel_open)
 		usable_qualities.Add(QUALITY_WELDING)
 
 
@@ -84,36 +88,41 @@
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
-			if(contents.len > 0)
+			if(length(contents) > 0)
 				to_chat(user, "Eject the items first!")
 				return
-			if(mode<=0)
-				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-					if(mode==0) // It's off but still not unscrewed
-						mode=-1 // Set it to doubleoff l0l
-						to_chat(user, "You remove the screws around the power connection.")
-						return
-					else if(mode==-1)
-						mode=0
-						to_chat(user, "You attach the screws around the power connection.")
-						return
+
+			if(mode != DISPOSALS_OFF)
+				to_chat(user, "Turn off the pump first!")
+				return
+
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				to_chat(user, "You [panel_open ? "attach" : "remove"] the screws around the power connection.")
+				panel_open = !panel_open
+				return
+
 			return
 
 		if(QUALITY_WELDING)
-			if(contents.len > 0)
+			if(length(contents) > 0)
 				to_chat(user, "Eject the items first!")
 				return
-			if(mode==-1)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					to_chat(user, "You sliced the floorweld off the disposal unit.")
-					var/obj/structure/disposalconstruct/C = new (src.loc)
-					src.transfer_fingerprints_to(C)
-					C.pipe_type = PIPE_TYPE_BIN
-					C.anchored = TRUE
-					C.density = TRUE
-					C.update()
-					qdel(src)
+
+			if(!panel_open || mode != DISPOSALS_OFF)
+				to_chat(user, "You cannot work on the disposal unit if it is not turned off with its power connection exposed.")
+				return
+
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				to_chat(user, "You sliced the floorweld off the disposal unit.")
+				var/obj/structure/disposalconstruct/C = new (src.loc)
+				src.transfer_fingerprints_to(C)
+				C.pipe_type = PIPE_TYPE_BIN
+				C.anchored = TRUE
+				C.density = TRUE
+				C.update()
+				qdel(src)
+
 			return
 
 		if(ABORT_CHECK)
@@ -241,107 +250,50 @@
 	update()
 	return
 
-// ai as human but can't flush
-/obj/machinery/disposal/attack_ai(mob/user as mob)
-	interact(user, 1)
+/obj/machinery/disposal/ui_state(mob/user)
+	return GLOB.notcontained_state
 
-// human interact with machine
-/obj/machinery/disposal/attack_hand(mob/user as mob)
-
+/obj/machinery/disposal/ui_interact(mob/user, datum/tgui/ui)
 	if(stat & BROKEN)
 		return
 
-	if(user && user.loc == src)
-		to_chat(usr, "\red You cannot reach the controls from inside.")
-		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "DisposalUnit")
+		ui.set_autoupdate(TRUE)
+		ui.open()
 
-	// Clumsy folks can only flush it.
-	if(user.IsAdvancedToolUser(1))
-		interact(user, 0)
-	else
-		flush = !flush
-		update()
-	return
+/obj/machinery/disposal/ui_data(mob/user)
+	var/list/data = list(
+		"isai" = isAI(user),
+		"mode" = mode,
+		"handle" = flush,
+		"panel" = panel_open,
+		"eject" = length(contents) ? TRUE : FALSE,
+		"pressure" = CLAMP01(100 * air_contents.return_pressure() / SEND_PRESSURE)
+	)
+	return data
 
-// user interaction
-/obj/machinery/disposal/interact(mob/user, var/ai=0)
+/obj/machinery/disposal/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return TRUE
 
-	src.add_fingerprint(user)
-	if(stat & BROKEN)
-		user.unset_machine()
-		return
-
-	var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT><B>Waste Disposal Unit</B><HR>"
-
-	if(!ai)  // AI can't pull flush handle
-		if(flush)
-			dat += "Disposal handle: <A href='?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
-		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=\ref[src];handle=1'>Engage</A>"
-
-		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
-
-	if(mode <= 0)
-		dat += "Pump: <B>Off</B> <A href='?src=\ref[src];pump=1'>On</A><BR>"
-	else if(mode == 1)
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
-	else
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
-
-	var/per = 100* air_contents.return_pressure() / (SEND_PRESSURE)
-
-	dat += "Pressure: [round(per, 1)]%<BR></body>"
-
-
-	user.set_machine(src)
-	user << browse(dat, "window=disposal;size=360x170")
-	onclose(user, "disposal")
-
-// handle machine interaction
-
-/obj/machinery/disposal/Topic(href, href_list)
-	if(usr.loc == src)
-		to_chat(usr, "\red You cannot reach the controls from inside.")
-		return
-
-	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
-		to_chat(usr, "\red The disposal units power is disabled.")
-		return
-	if(..())
-		return
-
-	if(stat & BROKEN)
-		return
-	if(usr.stat || usr.restrained() || src.flushing)
-		return
-
-	if(istype(src.loc, /turf))
-		usr.set_machine(src)
-
-		if(href_list["close"])
-			usr.unset_machine()
-			usr << browse(null, "window=disposal")
-			return
-
-		if(href_list["pump"])
-			if(text2num(href_list["pump"]))
-				mode = 1
-			else
-				mode = 0
-			update()
-
-		if(!isAI(usr))
-			if(href_list["handle"])
-				flush = text2num(href_list["handle"])
+	switch(action)
+		if("toggle")
+			if(params["pump"])
+				mode = (mode == DISPOSALS_OFF) ? DISPOSALS_CHARGING : DISPOSALS_OFF
 				update()
+			else if(params["handle"])
+				if(panel_open)
+					return TRUE
+				flush = !flush
+				update()
+			return TRUE
 
-			if(href_list["eject"])
-				eject()
-	else
-		usr << browse(null, "window=disposal")
-		usr.unset_machine()
-		return
-	return
+		if("eject")
+			eject()
+			return TRUE
 
 // eject the contents of the disposal unit
 /obj/machinery/disposal/proc/eject()
@@ -355,7 +307,7 @@
 	overlays.Cut()
 	if(stat & BROKEN)
 		icon_state = "disposal-broken"
-		mode = 0
+		mode = DISPOSALS_OFF
 		flush = 0
 		return
 
@@ -364,7 +316,7 @@
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
 
 	// only handle is shown if no power
-	if(stat & NOPOWER || mode == -1)
+	if(stat & NOPOWER || mode == DISPOSALS_OFF)
 		return
 
 	// 	check for items in disposal - occupied light
@@ -372,9 +324,9 @@
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-full")
 
 	// charging and ready light
-	if(mode == 1)
+	if(mode == DISPOSALS_CHARGING)
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-charge")
-	else if(mode == 2)
+	else if(mode == DISPOSALS_CHARGED)
 		overlays += image('icons/obj/pipes/disposal.dmi', "dispover-ready")
 
 // timed process
@@ -387,7 +339,7 @@
 	flush_count++
 	if( flush_count >= flush_every_ticks )
 		if( contents.len )
-			if(mode == 2)
+			if(mode == DISPOSALS_CHARGED)
 				spawn(0)
 					flush()
 		flush_count = 0
@@ -397,10 +349,10 @@
 	if(flush && air_contents.return_pressure() >= SEND_PRESSURE )	// flush can happen even without power
 		flush()
 
-	if(mode != 1) //if off or ready, no need to charge
+	if(mode != DISPOSALS_CHARGING)
 		update_use_power(1)
 	else if(air_contents.return_pressure() >= SEND_PRESSURE)
-		mode = 2 //if full enough, switch to ready mode
+		mode = DISPOSALS_CHARGED
 		update()
 	else
 		src.pressurize() //otherwise charge
@@ -455,8 +407,8 @@
 	flushing = 0
 	// now reset disposal state
 	flush = 0
-	if(mode == 2)	// if was ready,
-		mode = 1	// switch to charging
+	if(mode == DISPOSALS_CHARGED)
+		mode = DISPOSALS_CHARGING
 	update()
 	return
 
@@ -1444,7 +1396,7 @@
 	layer = BELOW_OBJ_LAYER //So we can see things that are being ejected
 	var/active = 0
 	var/turf/target	// this will be where the output objects are 'thrown' to.
-	var/mode = 0
+	var/mode = DISPOSALS_OFF
 
 	New()
 		..()
