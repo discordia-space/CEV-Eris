@@ -465,6 +465,7 @@
 
 		if(QUALITY_WELDING)
 			if(!panel_open || mode != DISPOSALS_OFF)
+			        to_chat(user, "You cannot work on the delivery chute if it is not turned off with its power connection exposed.")
 				return
 
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
