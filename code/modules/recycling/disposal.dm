@@ -93,6 +93,7 @@
 				return
 
 			if(mode != DISPOSALS_OFF)
+				to_chat(user, "Turn off the pump first!")
 				return
 
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
