@@ -468,7 +468,7 @@
 				return
 
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
-				to_chat(user, "You sliced the floorweld off the disposal unit.")
+				to_chat(user, "You sliced the floorweld off the delivery chute.")
 				var/obj/structure/disposalconstruct/C = new (src.loc)
 				src.transfer_fingerprints_to(C)
 				C.pipe_type = PIPE_TYPE_INTAKE
