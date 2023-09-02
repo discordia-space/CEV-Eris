@@ -1,0 +1,13 @@
+2023-09-02:
+  Firefox13:
+  - admin: Admin-forced events, no matter successful or not, are now logged.
+  - tweak: Punk jacket (from style vendor) is now a subtype of leather_jacket instead
+      of greatcoat.
+  - balance: because punk jacket is now a subtype of leather_jacket instead of greatcoat
+      it lost a lot of protection and no longer covers legs (for some reason)
+  Mycah142:
+  - balance: Removed Double Tact from the Energy Armblade cybernetic.
+  SirRichardFrancis:
+  - bugfix: Intercoms being added to player inventory on exiting a cryopod
+  intercepti0n:
+  - refactor: converted Disposal Unit from browser to TGUI.

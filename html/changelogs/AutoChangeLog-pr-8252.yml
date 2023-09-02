@@ -1,4 +1,0 @@
-author: intercepti0n
-delete-after: true
-changes:
-  - refactor: converted Disposal Unit from browser to TGUI.

@@ -1,4 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - bugfix: Intercoms being added to player inventory on exiting a cryopod
