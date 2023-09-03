@@ -93,18 +93,13 @@
 
 
 
-
-	for(var/A in GLOB.player_list)
-		var/mob/M = A
-		if (QDELETED(M))
-			GLOB.player_list -= M
-			continue
-		if (!M.client || istype(M, /mob/new_player))
+	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
+		if(!M.client)
 			continue
 		messagemobs += M
-
-		if(get_turf(M) in messageturfs)
-			messagemobs += M
+	for(var/mob/ghosty in GLOB.player_ghost_list)
+		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
+			messagemobs |= ghosty
 
 	for(var/A in messagemobs)
 		var/mob/M = A
