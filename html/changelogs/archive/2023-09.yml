@@ -11,3 +11,6 @@
   - bugfix: Intercoms being added to player inventory on exiting a cryopod
   intercepti0n:
   - refactor: converted Disposal Unit from browser to TGUI.
+2023-09-03:
+  intercepti0n:
+  - refactor: converted stats Ui to TGUI.
