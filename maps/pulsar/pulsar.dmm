@@ -8,74 +8,921 @@
 /turf/space,
 /area/space)
 "al" = (
-/obj/structure/table/rack,
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
+/turf/space{
+	icon_state = "black";
+	opacity = 1
+	},
+/area/space)
 "ao" = (
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "escapeshuttle_leave";
+	teleport_x = 25;
+	teleport_x_offset = 245;
+	teleport_y = 25;
+	teleport_y_offset = 245;
+	teleport_z = 6;
+	teleport_z_offset = 6
+	},
+/turf/space,
+/area/space)
 "as" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
+/turf/space/pulsar,
+/area/space)
 "aB" = (
 /obj/cave_generator,
 /turf/simulated/impassable_rock,
 /area/asteroid/cave)
 "aR" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/simulated/wall/r_wall,
 /area/outpost/pulsar/maintenance)
 "aS" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/outpost/pulsar/maintenance)
 "aT" = (
-/obj/spawner/junkfood/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/obj/structure/table/standard,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "be" = (
-/obj/machinery/computer/arcade,
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
+/obj/structure/table/standard,
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
 "bm" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1420;
-	icon_state = "door_locked";
-	id_tag = "satellite_airlock_door_ext";
-	locked = 1;
-	name = "External Satellite Airlock"
-	},
-/turf/simulated/floor/tiled/steel/cargo,
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "by" = (
+/obj/structure/computerframe{
+	anchored = 1;
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"bJ" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"bP" = (
+/obj/structure/computerframe{
+	anchored = 1;
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"bV" = (
+/obj/structure/lattice,
+/turf/space/pulsar,
+/area/space)
+"cl" = (
+/obj/spawner/scrap/sparse,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"cs" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"cG" = (
+/obj/spawner/pizza,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"cQ" = (
+/turf/simulated/wall,
+/area/outpost/pulsar/maintenance)
+"cR" = (
+/obj/spawner/junk,
+/obj/spawner/junk,
+/obj/spawner/junk,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"de" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"dj" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"bJ" = (
+"dk" = (
+/obj/spawner/closet/maintloot,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"do" = (
+/obj/structure/table/standard,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost,
+/obj/spawner/medical_lowcost/low_chance,
+/obj/spawner/medical_lowcost/low_chance,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"dA" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"dK" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"dV" = (
+/obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"dW" = (
+/obj/structure/sign/atmos_o2{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"dX" = (
+/obj/structure/catwalk,
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"ee" = (
+/obj/spawner/scrap,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"eA" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"eJ" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"eM" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"fo" = (
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"fG" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"fR" = (
+/obj/spawner/closet/tech/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"fT" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"fW" = (
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"gN" = (
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"gZ" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"hn" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"hp" = (
+/obj/machinery/atmospherics/unary/engine,
+/turf/space/pulsar,
+/area/space)
+"hM" = (
+/obj/structure/catwalk,
+/obj/spawner/traps/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"hS" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"hT" = (
+/obj/spawner/scrap/sparse/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"hY" = (
+/obj/structure/table/rack/shelf,
+/obj/spawner/electronics,
+/obj/spawner/electronics/low_chance,
+/obj/spawner/pack/rare/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"ic" = (
+/obj/structure/table/rack,
+/obj/spawner/material/resources/rare/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"ii" = (
+/obj/spawner/mob/roaches/cluster,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"iI" = (
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"iL" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"iR" = (
+/obj/structure/railing,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"jg" = (
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"jt" = (
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
 /obj/spawner/knife/low_chance,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"bP" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/bluegrid,
+"jA" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing,
+/turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"bV" = (
-/obj/spawner/junk/low_chance,
+"jV" = (
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"jZ" = (
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"cl" = (
+"ks" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"lf" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"lh" = (
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"lk" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"lv" = (
+/obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"lB" = (
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"lQ" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/outpost/pulsar)
+"lS" = (
+/obj/spawner/junk/low_chance,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"mk" = (
+/obj/structure/bed/padded,
+/obj/spawner/pizza/low_chance,
+/obj/item/bedsheet/yellow,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"nD" = (
+/obj/machinery/computer/arcade,
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"nE" = (
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"nK" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"or" = (
+/obj/item/stool/padded,
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"oO" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"oR" = (
+/obj/structure/sign/atmos_o2{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"oV" = (
+/obj/spawner/closet/maintloot/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"oW" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -3;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"pc" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/outpost/pulsar/maintenance)
+"py" = (
+/obj/structure/table/rack,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/pulsar/maintenance)
+"pD" = (
+/obj/structure/table/rack,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/pulsar/maintenance)
+"pL" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/pulsar/maintenance)
+"pT" = (
+/obj/structure/table/standard,
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"qx" = (
+/turf/simulated/wall/r_wall,
+/area/outpost/pulsar)
+"qL" = (
+/obj/machinery/holoposter{
+	pixel_x = -32
+	},
+/obj/machinery/vending/cigarette{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"qP" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/machinery/holoposter{
+	pixel_x = 32
+	},
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"qW" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/outpost/pulsar)
+"rp" = (
+/obj/machinery/door/window/eastright{
+	base_state = "left";
+	icon_state = "left";
+	name = "Shower"
+	},
+/obj/item/bikehorn/rubberducky,
+/turf/simulated/floor/tiled/steel/airless,
+/area/outpost/pulsar/maintenance)
+"rs" = (
+/turf/simulated/floor/tiled/dark/techfloor_grid/airless,
+/area/outpost/pulsar/maintenance)
+"rK" = (
+/turf/simulated/floor/tiled/dark/gray_platform/airless,
+/area/outpost/pulsar/maintenance)
+"rP" = (
+/turf/simulated/floor/plating/under/airless,
+/area/outpost/pulsar/maintenance)
+"rR" = (
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"st" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"sx" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/gun_loot/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"sN" = (
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/outpost/pulsar)
+"sZ" = (
+/obj/structure/filingcabinet,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"th" = (
+/obj/machinery/photocopier,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"to" = (
+/obj/structure/cyberplant,
+/turf/simulated/floor/wood,
+/area/outpost/pulsar)
+"tq" = (
+/obj/structure/jtb_pillar,
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
+"ty" = (
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
+"tV" = (
+/obj/machinery/shower{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/remains/human,
+/obj/spawner/oddities/low_chance,
+/turf/simulated/floor/tiled/steel/airless,
+/area/outpost/pulsar/maintenance)
+"uB" = (
+/obj/structure/table/standard,
+/obj/spawner/junkfood/rotten/low_chance,
+/turf/simulated/floor/tiled/dark/gray_platform/airless,
+/area/outpost/pulsar/maintenance)
+"vi" = (
+/obj/spawner/closet/maintloot,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/pulsar/maintenance)
+"vw" = (
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"vG" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"vH" = (
+/obj/structure/computerframe{
+	anchored = 1;
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/outpost/pulsar)
+"vQ" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/outpost/pulsar)
+"vW" = (
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"wr" = (
+/obj/structure/sign/faction/technomancers{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"wu" = (
+/obj/structure/sign/faction/technomancers{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"wJ" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"wU" = (
+/obj/machinery/pulsar,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/outpost/pulsar)
+"wX" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Engine Access";
+	req_access = list(11)
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"xh" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Engine Access";
+	req_access = list(11)
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
+"xj" = (
+/obj/effect/map_effect/simple_portal{
+	portal_tag = "pulsar"
+	},
+/turf/simulated/floor/reinforced,
+/area/outpost/pulsar)
+"xo" = (
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp{
+	pixel_x = 3
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"xr" = (
+/obj/structure/computerframe,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"xB" = (
+/obj/structure/table/standard,
+/obj/spawner/medical_lowcost,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"xH" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"xR" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"ya" = (
+/obj/structure/table/standard,
+/obj/item/board,
+/obj/item/clothing/mask/smokable/cigarette/dromedaryco{
+	pixel_x = 3;
+	pixel_y = 14
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"yh" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/item/trash/cigbutt{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/trash/cigbutt{
+	pixel_x = -14;
+	pixel_y = -4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"yj" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"yl" = (
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"yo" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"yO" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 4
+	},
+/turf/space/pulsar,
+/area/space)
+"yT" = (
+/obj/spawner/scrap/sparse/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"zq" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/outpost/pulsar)
+"zu" = (
+/obj/machinery/light,
+/obj/structure/dispenser/plasma,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"zv" = (
+/obj/structure/pulsar_fuel_tank/filled,
+/turf/simulated/floor/tiled/dark,
+/area/outpost/pulsar)
+"zB" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"zI" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"zM" = (
+/obj/structure/table/standard,
+/obj/item/paper_bin,
+/obj/item/pen/blue{
+	pixel_x = -3;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"Ad" = (
+/obj/structure/filingcabinet/filingcabinet,
+/turf/simulated/floor/tiled/steel/gray_perforated,
+/area/outpost/pulsar/maintenance)
+"Af" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"Aq" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Engine Access";
+	req_access = list(11)
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar)
+"Av" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/lathe_disk/low_chance,
+/obj/spawner/lathe_disk/low_chance,
+/turf/simulated/floor/tiled/techmaint_perforated,
+/area/outpost/pulsar/maintenance)
+"AD" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"Ba" = (
+/obj/structure/table/standard,
+/obj/spawner/boxes,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"Bj" = (
+/obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar)
+"By" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"BG" = (
+/obj/structure/table/standard,
+/obj/spawner/boxes,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"BK" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 8
+	},
+/turf/space/pulsar,
+/area/space)
+"BT" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/techmaint_perforated,
+/area/outpost/pulsar/maintenance)
+"Cf" = (
+/obj/structure/table/standard,
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"Cp" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"Cx" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar)
+"Cz" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"CL" = (
+/obj/spawner/flora/low_chance,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"CN" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar)
+"Df" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"Di" = (
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"Dr" = (
+/obj/spawner/flora/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"Dv" = (
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"Dy" = (
+/obj/spawner/pack/machine,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"DT" = (
+/obj/spawner/junkfood/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"Ef" = (
+/obj/spawner/closet/tech/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"EF" = (
+/obj/spawner/contraband/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"EK" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"EM" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"ET" = (
+/obj/structure/table/standard,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"EX" = (
+/obj/spawner/mob/spiders/cluster/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"Fk" = (
+/obj/structure/catwalk,
+/obj/spawner/oddities/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"Fu" = (
+/obj/machinery/door/airlock/engineering{
+	name = "Engine Access";
+	req_access = list(11)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"FC" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"FD" = (
+/obj/structure/catwalk,
+/turf/space/pulsar,
+/area/space)
+"FG" = (
+/obj/structure/sign/faction/technomancers{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"Ge" = (
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1420;
+	master_tag = "satellite_access_console";
+	name = "Satellite Airlock - Internal Access Button";
+	pixel_x = 25;
+	pixel_y = 25
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"Gi" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1420;
+	icon_state = "door_locked";
+	id_tag = "satellite_airlock_door_int";
+	locked = 1;
+	name = "Internal Satellite Airlock"
+	},
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"Gt" = (
 /obj/machinery/airlock_sensor{
 	frequency = 1420;
 	id_tag = "satellite_airlock_sensor";
@@ -95,429 +942,17 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
-"cs" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"cG" = (
-/obj/machinery/light,
-/obj/structure/dispenser/plasma,
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"cQ" = (
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/pulsar/maintenance)
-"cR" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"de" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"dj" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
-/obj/structure/sign/securearea{
-	name = "EXPLOSION HAZARD";
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"dk" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
-/obj/structure/sign/nosmoking_2{
-	pixel_y = -32
-	},
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"do" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"dA" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/space/pulsar,
-/area/space)
-"dK" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"dV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/catwalk,
-/obj/structure/sign/atmos_o2{
-	pixel_x = 32
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"dW" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"dX" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/outpost/pulsar/maintenance)
-"ee" = (
-/obj/structure/sign/faction/technomancers{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"eA" = (
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"eJ" = (
-/obj/machinery/pulsar,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/outpost/pulsar)
-"eM" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"fo" = (
-/obj/structure/table/standard,
-/obj/spawner/boxes,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"fG" = (
-/obj/spawner/scrap,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"fR" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"fT" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"fW" = (
-/obj/structure/computerframe,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"gN" = (
-/obj/machinery/photocopier,
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"gZ" = (
-/turf/space{
-	icon_state = "black";
-	opacity = 1
-	},
-/area/space)
-"hn" = (
-/obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"hp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"hM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"hS" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"hT" = (
-/obj/structure/table/standard,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/item/clothing/mask/smokable/cigarette/dromedaryco{
-	pixel_x = 3;
-	pixel_y = 14
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"hY" = (
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar)
-"ic" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"ii" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
+"GR" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1420;
 	icon_state = "door_locked";
-	id_tag = "satellite_airlock_door_int";
+	id_tag = "satellite_airlock_door_ext";
 	locked = 1;
-	name = "Internal Satellite Airlock"
+	name = "External Satellite Airlock"
 	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"iI" = (
-/obj/structure/table/standard,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/bluegrid,
-/area/outpost/pulsar/maintenance)
-"iL" = (
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/outpost/pulsar/maintenance)
-"iR" = (
-/obj/structure/cyberplant,
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
-"jg" = (
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"jt" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"jA" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	icon_state = "door_locked";
-	locked = 1;
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/outpost/pulsar/maintenance)
-"jV" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1420;
-	icon_state = "door_locked";
-	id_tag = "satellite_airlock_door_int";
-	locked = 1;
-	name = "Internal Satellite Airlock"
-	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"jZ" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"ks" = (
-/obj/spawner/flora/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"lf" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 6;
-	teleport_z_offset = 6
-	},
-/turf/space,
-/area/space)
-"lh" = (
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"lk" = (
-/obj/structure/toilet,
-/obj/spawner/oddities/low_chance,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/outpost/pulsar/maintenance)
-"lv" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 4
-	},
-/turf/space/pulsar,
-/area/space)
-"lB" = (
-/obj/structure/table/rack,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"lQ" = (
-/obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"lS" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/outpost/pulsar)
-"mk" = (
-/obj/spawner/closet/maintloot/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"nD" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/item/trash/cigbutt{
-	pixel_x = 10;
-	pixel_y = -6
-	},
-/obj/item/trash/cigbutt{
-	pixel_x = -14;
-	pixel_y = -4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"nE" = (
-/obj/effect/map_effect/simple_portal{
-	portal_tag = "pulsar"
-	},
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
-"nK" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"or" = (
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"oO" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/lathe_disk/low_chance,
-/obj/spawner/lathe_disk/low_chance,
-/turf/simulated/floor/tiled/techmaint_perforated,
-/area/outpost/pulsar/maintenance)
-"oR" = (
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1420;
-	master_tag = "satellite_access_console";
-	name = "Satellite Airlock - Internal Access Button";
-	pixel_x = 25;
-	pixel_y = 25
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"oV" = (
-/obj/structure/table/standard,
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/dark/gray_platform/airless,
-/area/outpost/pulsar/maintenance)
-"oW" = (
-/obj/spawner/contraband/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"pc" = (
-/obj/structure/bed/padded,
-/obj/spawner/pizza/low_chance,
-/obj/item/bedsheet/yellow,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"py" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"pD" = (
-/obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"pL" = (
-/obj/structure/railing,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"pT" = (
-/turf/simulated/floor/tiled/dark/techfloor_grid/airless,
-/area/outpost/pulsar/maintenance)
-"qx" = (
-/obj/structure/table/rack/shelf,
-/obj/spawner/electronics,
-/obj/spawner/electronics/low_chance,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"qL" = (
-/obj/structure/bed/padded,
-/obj/spawner/pizza/low_chance,
-/obj/item/bedsheet/yellow,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"qP" = (
-/obj/machinery/portable_atmospherics/canister,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/outpost/pulsar/maintenance)
-"qW" = (
-/turf/space/pulsar,
-/area/space)
-"rp" = (
-/turf/simulated/wall/r_wall,
-/area/outpost/pulsar/maintenance)
-"rs" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"rK" = (
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"rP" = (
-/obj/structure/table/rack,
-/obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/pulsar/maintenance)
-"rR" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engine Access";
-	req_access = list(11)
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"st" = (
-/obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"sx" = (
+"GZ" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1420;
@@ -529,343 +964,53 @@
 /obj/structure/catwalk,
 /turf/space/pulsar,
 /area/space)
-"sN" = (
-/obj/structure/table/standard,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"sZ" = (
-/obj/structure/table/standard,
-/obj/spawner/powercell,
-/obj/spawner/powercell,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/outpost/pulsar/maintenance)
-"th" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"to" = (
-/obj/structure/table/standard,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"tq" = (
-/obj/spawner/flora/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"ty" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/outpost/pulsar/maintenance)
-"tV" = (
-/obj/structure/table/standard,
-/obj/item/paper_bin,
-/obj/item/pen/blue{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"uB" = (
-/obj/spawner/closet/maintloot,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"vi" = (
-/obj/structure/table/standard,
-/obj/spawner/material/building,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/outpost/pulsar/maintenance)
-"vw" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"vG" = (
-/obj/structure/table/standard,
-/obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"vH" = (
-/obj/machinery/telecomms/relay/preset/pulsar,
-/turf/simulated/floor/bluegrid,
-/area/outpost/pulsar/maintenance)
-"vQ" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/tiled/white,
-/area/outpost/pulsar/maintenance)
-"vW" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/floor/bluegrid,
-/area/outpost/pulsar/maintenance)
-"wr" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"wu" = (
-/obj/structure/table/rack,
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"wJ" = (
-/obj/structure/table/rack,
-/obj/spawner/material/resources/rare/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"wU" = (
-/obj/structure/filingcabinet,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"wX" = (
-/turf/simulated/wall,
-/area/outpost/pulsar/maintenance)
-"xh" = (
-/obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"xj" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"xo" = (
-/obj/machinery/space_heater,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"xr" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"xB" = (
-/obj/machinery/portable_atmospherics/powered/pump,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"xH" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"xR" = (
-/obj/structure/dispenser/oxygen,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"ya" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"yh" = (
-/obj/structure/sign/faction/technomancers{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"yj" = (
-/obj/structure/catwalk,
-/obj/spawner/oddities/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"yl" = (
-/obj/spawner/junkfood/low_chance,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"yo" = (
-/turf/simulated/floor/tiled/dark/gray_platform/airless,
-/area/outpost/pulsar/maintenance)
-"yO" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"yT" = (
-/obj/machinery/vending/assist,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"zq" = (
-/obj/effect/window_lwall_spawn/smartspawn,
+"Ht" = (
+/obj/structure/grille,
 /turf/simulated/floor/plating,
 /area/outpost/pulsar/maintenance)
-"zu" = (
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"zv" = (
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
-"zB" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
-"zI" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"zM" = (
-/obj/structure/table/standard,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
+"Hu" = (
+/obj/structure/sign/atmos_o2{
+	pixel_x = -32
 	},
-/obj/item/pen,
-/turf/simulated/floor/bluegrid,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"Ad" = (
-/obj/structure/table/standard,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"Af" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Aq" = (
-/obj/spawner/scrap,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Av" = (
+"Hw" = (
+/obj/structure/railing{
+	dir = 1
+	},
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/railing,
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"AD" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/techmaint_perforated,
-/area/outpost/pulsar/maintenance)
-"Ba" = (
-/obj/structure/table/standard,
-/obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"Bj" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"By" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/outpost/pulsar/maintenance)
-"BG" = (
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
+"HC" = (
+/obj/structure/catwalk,
+/obj/structure/sign/faction/technomancers{
+	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"BK" = (
-/turf/simulated/floor/tiled/steel/gray_perforated,
+"HD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"BT" = (
-/obj/machinery/light/small{
+"HL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"Cf" = (
-/obj/structure/bed/chair{
-	dir = 1
+/obj/machinery/door/airlock/external{
+	frequency = 1420;
+	icon_state = "door_locked";
+	id_tag = "satellite_airlock_door_int";
+	locked = 1;
+	name = "Internal Satellite Airlock"
 	},
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"Cp" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Cx" = (
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"Cz" = (
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
-"CL" = (
-/obj/structure/table/standard,
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"CN" = (
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar)
-"Df" = (
-/obj/structure/table/standard,
-/obj/spawner/medical_lowcost,
-/obj/spawner/medical_lowcost,
-/obj/spawner/medical_lowcost,
-/obj/spawner/medical_lowcost/low_chance,
-/obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"Di" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"Dr" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/outpost/pulsar)
-"Dv" = (
+"HO" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
 	frequency = 1420;
@@ -873,7 +1018,20 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
-"Dy" = (
+"HY" = (
+/obj/structure/table/standard,
+/obj/spawner/toolbox,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"Ij" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"Il" = (
 /obj/structure/bed/chair,
 /obj/item/trash/cigbutt{
 	pixel_x = 10;
@@ -885,452 +1043,219 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"DT" = (
-/obj/machinery/atmospherics/pipe/tank/air{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+"Ip" = (
+/turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
-"Ef" = (
+"Iq" = (
+/obj/structure/reagent_dispensers/fueltank/huge,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"Ir" = (
+/obj/machinery/portable_atmospherics/powered/pump,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"Iu" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"IV" = (
 /obj/structure/table/standard,
-/obj/spawner/booze,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"EF" = (
-/obj/structure/computerframe{
-	anchored = 1;
-	dir = 8
-	},
-/turf/simulated/floor/bluegrid,
-/area/outpost/pulsar/maintenance)
-"EK" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"EM" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"ET" = (
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"EX" = (
-/obj/structure/table/standard,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"Fk" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"Fu" = (
-/obj/structure/catwalk,
-/obj/machinery/door/airlock/maintenance_engineering{
-	name = "Engineering Maintenance";
-	req_access = list(10)
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"FC" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar)
-"FD" = (
-/obj/machinery/portable_atmospherics/powered/scrubber,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"FG" = (
-/turf/simulated/floor/bluegrid,
-/area/outpost/pulsar/maintenance)
-"Ge" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
+/obj/item/device/lighting/toggleable/lamp,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"Gi" = (
-/obj/spawner/mob/spiders/cluster/low_chance,
+"Jq" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"Gt" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_x = -4;
-	pixel_y = 9
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_x = -3;
-	pixel_y = -1
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
-	pixel_x = 5;
-	pixel_y = 3
-	},
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
-"GR" = (
+"JO" = (
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/outpost/pulsar/maintenance)
+"Kh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"GZ" = (
-/obj/structure/table/standard,
-/obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"Ht" = (
-/obj/spawner/closet/maintloot,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/pulsar/maintenance)
-"Hu" = (
-/obj/structure/table/standard,
-/obj/spawner/booze/low_chance,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"Hw" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"HC" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"HD" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/drinkingglass{
-	pixel_x = -5;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/obj/machinery/holoposter{
+/obj/structure/sign/atmos_o2{
 	pixel_x = 32
 	},
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
-"HL" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"Kw" = (
 /obj/structure/catwalk,
 /obj/structure/sign/faction/technomancers{
 	pixel_x = -32
 	},
+/turf/space/pulsar,
+/area/space)
+"KB" = (
+/obj/spawner/scrap/sparse,
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"HO" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"HY" = (
-/obj/structure/pulsar_fuel_tank/filled,
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"Ij" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 12;
-	pixel_y = 2
-	},
-/turf/simulated/floor/tiled/white,
-/area/outpost/pulsar/maintenance)
-"Il" = (
-/obj/spawner/pack/tech_loot,
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"Ip" = (
+"KC" = (
 /obj/structure/table/standard,
-/obj/item/board,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco{
 	pixel_x = 3;
 	pixel_y = 14
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"Iq" = (
-/obj/structure/computerframe{
-	anchored = 1;
+"KR" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"Lp" = (
+/obj/structure/reagent_dispensers/fueltank/huge,
+/obj/structure/sign/securearea{
+	name = "EXPLOSION HAZARD";
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"Lv" = (
+/obj/machinery/portable_atmospherics/powered/scrubber,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"LD" = (
+/obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/outpost/pulsar)
-"Ir" = (
+/turf/simulated/floor/tiled/steel/cargo,
+/area/outpost/pulsar/maintenance)
+"LN" = (
 /obj/structure/table/standard,
-/obj/spawner/booze,
-/turf/simulated/floor/bluegrid,
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
-"Iu" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"IV" = (
-/obj/structure/table/standard,
-/obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/outpost/pulsar/maintenance)
-"Jq" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"JO" = (
-/obj/structure/filingcabinet/filingcabinet,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"Kh" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"Kw" = (
-/obj/spawner/mob/roaches/cluster,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"KB" = (
+"LP" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/simulated/floor/tiled/techmaint_cargo,
 /area/outpost/pulsar/maintenance)
-"KC" = (
-/obj/spawner/closet/maintloot,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"KR" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"Lp" = (
-/obj/structure/table/standard,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"Lv" = (
-/obj/structure/railing{
-	dir = 8
+"LR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
 	},
-/obj/structure/railing,
+/obj/structure/catwalk,
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"LD" = (
-/turf/simulated/floor/tiled/steel,
+"LT" = (
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
-"LN" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"LP" = (
-/obj/spawner/junk/low_chance,
+"Mj" = (
+/obj/spawner/junkfood/low_chance,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
-"LR" = (
-/obj/structure/sign/atmos_o2{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"LT" = (
-/obj/structure/computerframe{
-	anchored = 1;
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"Mj" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
 "Mm" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Nc" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/outpost/pulsar)
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
 "Nh" = (
-/obj/structure/bed/chair{
-	dir = 1
+/obj/structure/reagent_dispensers/fueltank/huge,
+/obj/structure/sign/nosmoking_2{
+	pixel_y = -32
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Ny" = (
+/obj/structure/catwalk,
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"NN" = (
+/obj/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"NZ" = (
+/obj/structure/dispenser/oxygen,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"Om" = (
+/obj/spawner/junkfood/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"Ow" = (
+/obj/structure/railing,
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"OO" = (
+/obj/structure/table/standard,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"OX" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/turf/simulated/floor/tiled/white/brown_perforated,
+/area/outpost/pulsar/maintenance)
+"Pc" = (
+/obj/structure/table/standard,
+/obj/spawner/powercell,
+/obj/spawner/powercell,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
+"Pd" = (
+/obj/structure/table/standard,
+/obj/spawner/material/building,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
+"Pj" = (
+/obj/structure/table/standard,
+/obj/spawner/material/building,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
+"Pq" = (
+/obj/spawner/junk/low_chance,
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"Px" = (
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"PF" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"NN" = (
-/obj/structure/catwalk,
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"NZ" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 8
-	},
-/turf/space/pulsar,
-/area/space)
-"Om" = (
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Ow" = (
-/obj/structure/catwalk,
-/obj/structure/sign/faction/technomancers{
-	pixel_x = -32
-	},
-/turf/space/pulsar,
-/area/space)
-"OO" = (
-/obj/machinery/suit_storage_unit/standard_unit,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/pulsar/maintenance)
-"OX" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/outpost/pulsar)
-"Pc" = (
-/obj/structure/catwalk,
-/turf/space/pulsar,
-/area/space)
-"Pd" = (
-/obj/structure/table/rack,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/pulsar/maintenance)
-"Pj" = (
-/obj/structure/sign/atmos_o2{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"Pq" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engine Access";
-	req_access = list(11)
-	},
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar)
-"Px" = (
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"PF" = (
-/obj/structure/sign/atmos_o2{
-	pixel_y = -32
-	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/steel,
 /area/outpost/pulsar/maintenance)
 "PH" = (
 /turf/unsimulated/wall,
 /area/asteroid/cave)
 "PQ" = (
-/obj/structure/table/standard,
-/obj/spawner/boxes/low_chance,
-/obj/spawner/boxes/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/simulated/floor/tiled/steel,
 /area/outpost/pulsar/maintenance)
 "QC" = (
 /obj/structure/table/standard,
-/obj/spawner/ammo/lowcost/low_chance,
-/obj/spawner/ammo/lowcost/low_chance,
-/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "QF" = (
-/obj/structure/sign/faction/technomancers{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"QK" = (
-/obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/lowkeyrandom/low_chance,
-/obj/structure/table/rack,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"QN" = (
-/obj/structure/lattice,
-/turf/space,
-/area/space)
-"QS" = (
-/obj/spawner/pizza,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"QY" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Rg" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/outpost/pulsar)
-"Rv" = (
-/obj/structure/table/standard,
-/obj/spawner/toolbox,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"RS" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/firstaid/regular,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/outpost/pulsar)
-"Sk" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engine Access";
-	req_access = list(11)
-	},
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
-"So" = (
-/obj/structure/table/standard,
-/obj/item/tank/emergency_oxygen/double,
-/obj/item/tank/emergency_oxygen/double,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/outpost/pulsar/maintenance)
-"Sx" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/outpost/pulsar/maintenance)
-"SY" = (
-/obj/structure/computerframe{
-	anchored = 1;
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"TS" = (
 /obj/structure/closet,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
@@ -1338,142 +1263,217 @@
 /obj/spawner/lowkeyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
-"Uy" = (
-/obj/structure/catwalk,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Uz" = (
-/obj/structure/table/standard,
-/obj/spawner/boxes,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/outpost/pulsar/maintenance)
-"UF" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
-/area/outpost/pulsar/maintenance)
-"UI" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/pulsar/maintenance)
-"UW" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp{
-	pixel_x = 3
-	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/outpost/pulsar/maintenance)
-"Vb" = (
-/turf/simulated/wall/r_wall,
-/area/outpost/pulsar)
-"VO" = (
-/obj/spawner/junk/low_chance,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Wj" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"Wp" = (
-/obj/structure/lattice,
-/turf/space/pulsar,
-/area/space)
-"WC" = (
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/techmaint,
-/area/outpost/pulsar/maintenance)
-"WQ" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/outpost/pulsar/maintenance)
-"Xq" = (
-/obj/spawner/junkfood/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"Xw" = (
-/obj/spawner/scrap/sparse,
+"QK" = (
+/obj/structure/toilet,
+/obj/spawner/oddities/low_chance,
 /obj/machinery/light/small{
-	dir = 8
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/white,
 /area/outpost/pulsar/maintenance)
-"XB" = (
+"QN" = (
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/outpost/pulsar/maintenance)
+"QS" = (
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/outpost/pulsar/maintenance)
+"QY" = (
+/obj/machinery/portable_atmospherics/canister,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
+"Rg" = (
+/obj/structure/table/standard,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
+"Rv" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/outpost/pulsar/maintenance)
+"RS" = (
+/obj/structure/catwalk,
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/plating/under,
+/area/outpost/pulsar/maintenance)
+"Sk" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled/white,
+/area/outpost/pulsar/maintenance)
+"So" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 12;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/white,
+/area/outpost/pulsar/maintenance)
+"Sx" = (
+/obj/structure/table/standard,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/obj/spawner/ammo/lowcost/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"SY" = (
+/obj/structure/table/standard,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/obj/spawner/gun_parts/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"TS" = (
+/obj/structure/table/standard,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"Uy" = (
+/obj/structure/railing{
+	dir = 4
+	},
 /obj/structure/railing{
 	dir = 1
 	},
-/obj/structure/railing{
-	dir = 4
-	},
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"XI" = (
-/obj/item/stool/padded,
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
-"XP" = (
-/obj/structure/table/standard,
-/obj/spawner/gun_parts/low_chance,
-/obj/spawner/gun_parts/low_chance,
-/obj/spawner/gun_parts/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
-/area/outpost/pulsar/maintenance)
-"Ys" = (
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/outpost/pulsar/maintenance)
-"YD" = (
+"Uz" = (
+/obj/spawner/pack/tech_loot,
+/obj/spawner/junkfood/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"YE" = (
-/obj/structure/table/standard,
-/obj/spawner/booze,
-/turf/simulated/floor/tiled/techmaint_panels,
+"UF" = (
+/obj/spawner/closet/tech/low_chance,
+/turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
-"YJ" = (
-/obj/machinery/atmospherics/unary/engine,
-/turf/space/pulsar,
-/area/space)
-"YP" = (
-/obj/machinery/shower{
+"UI" = (
+/obj/structure/bed/padded,
+/obj/spawner/pizza/low_chance,
+/obj/item/bedsheet/yellow,
+/obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/remains/human,
-/obj/spawner/oddities/low_chance,
-/turf/simulated/floor/tiled/steel/airless,
+/turf/simulated/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
-"YX" = (
+"UW" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/steel/orangecorner,
+/area/outpost/pulsar/maintenance)
+"Vb" = (
+/obj/structure/railing{
+	dir = 8
+	},
 /obj/spawner/junk/low_chance,
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
-"YY" = (
-/obj/machinery/holoposter{
-	pixel_x = -32
+"VO" = (
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"Wj" = (
+/obj/machinery/door/airlock/maintenance_engineering{
+	name = "Engineering Maintenance";
+	req_access = list(10)
 	},
-/obj/machinery/vending/cigarette{
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"Wp" = (
+/obj/structure/table/rack,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/obj/spawner/material/building,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"WC" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"WQ" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/space/pulsar,
+/area/space)
+"Xq" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"Xw" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/outpost/pulsar/maintenance)
+"XB" = (
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot/low_chance,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/simulated/floor/tiled/techmaint_panels,
+/area/outpost/pulsar/maintenance)
+"XI" = (
+/obj/machinery/vending/assist,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"XP" = (
+/obj/spawner/scrap,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
+"Ys" = (
+/obj/machinery/telecomms/relay/preset/pulsar,
+/turf/simulated/floor/bluegrid,
+/area/outpost/pulsar/maintenance)
+"YD" = (
+/turf/simulated/floor/bluegrid,
+/area/outpost/pulsar/maintenance)
+"YE" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/floor/bluegrid,
+/area/outpost/pulsar/maintenance)
+"YJ" = (
+/obj/structure/computerframe{
+	anchored = 1;
 	dir = 8
 	},
-/turf/simulated/floor/wood,
-/area/outpost/pulsar)
+/turf/simulated/floor/bluegrid,
+/area/outpost/pulsar/maintenance)
+"YP" = (
+/obj/structure/table/rack,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"YX" = (
+/obj/structure/table/rack,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/outpost/pulsar/maintenance)
+"YY" = (
+/obj/spawner/closet/maintloot,
+/turf/simulated/floor/tiled/techmaint,
+/area/outpost/pulsar/maintenance)
 "Zi" = (
-/obj/structure/jtb_pillar,
-/turf/simulated/floor/reinforced,
-/area/outpost/pulsar)
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/bluegrid,
+/area/outpost/pulsar/maintenance)
 "Zq" = (
 /turf/simulated/impassable_rock,
 /area/asteroid/cave)
@@ -1481,23 +1481,23 @@
 /turf/simulated/floor/asteroid,
 /area/asteroid/cave)
 "ZD" = (
-/turf/simulated/floor/tiled/techmaint/airless,
+/obj/structure/table/standard,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "ZE" = (
-/obj/machinery/door/airlock/engineering{
-	name = "Engine Access";
-	req_access = list(11)
-	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/table/standard,
+/obj/spawner/booze,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "ZZ" = (
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	icon_state = "left";
-	name = "Shower"
-	},
-/obj/item/bikehorn/rubberducky,
-/turf/simulated/floor/tiled/steel/airless,
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 
 (1,1,1) = {"
@@ -1829,79 +1829,79 @@ aa
 aa
 aa
 aa
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (3,1,1) = {"
@@ -2031,79 +2031,79 @@ aa
 aa
 aa
 aa
-gZ
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (4,1,1) = {"
@@ -2233,8 +2233,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -2304,8 +2302,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (5,1,1) = {"
@@ -2435,8 +2435,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -2506,8 +2504,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (6,1,1) = {"
@@ -2637,8 +2637,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -2708,8 +2706,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (7,1,1) = {"
@@ -2839,8 +2839,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -2910,8 +2908,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (8,1,1) = {"
@@ -3041,8 +3041,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -3112,8 +3110,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (9,1,1) = {"
@@ -3243,8 +3243,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -3314,8 +3312,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (10,1,1) = {"
@@ -3445,8 +3445,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -3516,8 +3514,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (11,1,1) = {"
@@ -3647,8 +3647,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -3718,8 +3716,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (12,1,1) = {"
@@ -3849,8 +3849,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -3920,8 +3918,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (13,1,1) = {"
@@ -4051,8 +4051,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -4122,8 +4120,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (14,1,1) = {"
@@ -4253,8 +4253,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -4324,8 +4322,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (15,1,1) = {"
@@ -4455,8 +4455,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -4526,8 +4524,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (16,1,1) = {"
@@ -4657,8 +4657,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -4728,8 +4726,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (17,1,1) = {"
@@ -4859,8 +4859,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -4891,17 +4889,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
 aa
 aa
 aa
@@ -4930,8 +4917,21 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (18,1,1) = {"
@@ -5061,50 +5061,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-qW
-qW
-qW
-lv
-rp
-rp
-rp
-rp
-rp
-zq
-zq
-rp
-rp
-qW
-qW
 aa
 aa
 aa
@@ -5132,8 +5088,52 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (19,1,1) = {"
@@ -5263,8 +5263,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -5288,30 +5286,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-qW
-rp
-rp
-rp
-rp
-zq
-rp
-oO
-AD
-wX
-LN
-LN
-LN
-LN
-rp
-rp
-lv
-qW
-qW
-lv
-qW
-qW
 aa
 aa
 aa
@@ -5334,8 +5308,34 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (20,1,1) = {"
@@ -5465,8 +5465,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -5490,30 +5488,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rp
-rp
-Ht
-wX
-vG
-eA
-wX
-bV
-YD
-wX
-Ys
-rK
-Gi
-Xq
-wX
-rp
-zq
-rp
-rp
-zq
-rp
-qW
 aa
 aa
 aa
@@ -5536,8 +5510,34 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (21,1,1) = {"
@@ -5667,8 +5667,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -5689,36 +5687,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-qW
-Wp
-rp
-rP
-lh
-lh
-wX
-ya
-eA
-BG
-YD
-bV
-wX
-rK
-Xq
-Ys
-rK
-wX
-Rv
-eA
-yl
-aT
-eA
-rp
-Wp
-Wp
-qW
-qW
 aa
 aa
 aa
@@ -5738,8 +5706,40 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (22,1,1) = {"
@@ -5869,8 +5869,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -5891,36 +5889,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-zq
-rp
-rp
-Pd
-Mm
-lh
-wX
-wX
-wX
-wX
-YD
-YD
-wX
-LN
-LN
-wX
-cR
-wX
-UF
-eA
-eA
-eA
-eA
-rp
-rp
-rp
-rp
-qW
 aa
 aa
 aa
@@ -5940,8 +5908,40 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (23,1,1) = {"
@@ -6071,58 +6071,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-YJ
-zq
-eA
-LP
-wX
-UI
-lh
-as
-wr
-YD
-pD
-wX
-Iu
-HC
-wX
-wX
-wX
-wX
-GR
-wX
-wX
-wX
-wX
-wX
-BG
-wX
-or
-QC
-rp
-qW
 aa
 aa
 aa
@@ -6142,8 +6090,60 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (24,1,1) = {"
@@ -6273,8 +6273,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -6292,41 +6290,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-rp
-rp
-rp
-eA
-qL
-wX
-wX
-wX
-wX
-wX
-YD
-pD
-wX
-wX
-Ny
-wX
-KC
-wX
-yj
-GR
-GR
-vw
-jt
-wX
-pL
-GR
-GR
-GR
-XP
-rp
-Wp
-qW
-qW
 aa
 aa
 aa
@@ -6344,8 +6307,45 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (25,1,1) = {"
@@ -6475,8 +6475,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -6493,44 +6491,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-rp
-rp
-sN
-wX
-BG
-wX
-wX
-YE
-KR
-Ba
-wX
-Ny
-wX
-wX
-Uz
-GR
-cs
-ks
-wX
-WQ
-Lv
-GR
-vw
-YX
-Cp
-Om
-WQ
-eM
-GR
-PQ
-rp
-rp
-rp
-qW
-qW
-qW
 aa
 aa
 aa
@@ -6546,8 +6506,48 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (26,1,1) = {"
@@ -6677,8 +6677,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -6694,46 +6692,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-rp
-rp
-Px
-YD
-or
-YD
-YD
-Ny
-YD
-YD
-YD
-WC
-YD
-WC
-cR
-GR
-GR
-GR
-GZ
-wX
-hn
-zu
-GR
-vw
-YX
-Cp
-jt
-hn
-zu
-GR
-wX
-wX
-jt
-rp
-rp
-rp
-qW
-qW
 aa
 aa
 aa
@@ -6748,8 +6706,50 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (27,1,1) = {"
@@ -6879,8 +6879,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -6895,47 +6893,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-rp
-rp
-sN
-YD
-HC
-YD
-YD
-bV
-rp
-rp
-rp
-zq
-zq
-zq
-rp
-rp
-rp
-Hu
-GR
-GZ
-wX
-wX
-wX
-Ny
-wX
-wX
-wX
-wX
-wX
-wX
-ty
-wX
-EM
-EM
-EM
-EM
-rp
-rp
-qW
 aa
 aa
 aa
@@ -6950,8 +6907,51 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (28,1,1) = {"
@@ -7081,8 +7081,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -7097,48 +7095,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rp
-wX
-wX
-Ny
-wX
-wX
-wX
-rp
-rp
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-rp
-rp
-GR
-GR
-LN
-wX
-bV
-YD
-Dy
-hT
-fR
-Iu
-YD
-YD
-YD
-YD
-GR
-Af
-GR
-GR
-YD
-zq
-qW
-qW
 aa
 aa
 aa
@@ -7152,8 +7108,52 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (29,1,1) = {"
@@ -7283,8 +7283,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -7298,49 +7296,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-rp
-Aq
-YX
-zu
-GR
-rK
-KC
-rp
-rp
-qW
-qW
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-rp
-rp
-GR
-GR
-Ny
-YD
-YD
-YD
-dX
-wX
-wX
-wX
-by
-wX
-wX
-eM
-GR
-HO
-eM
-YD
-rp
-rp
-qW
 aa
 aa
 aa
@@ -7354,8 +7309,53 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (30,1,1) = {"
@@ -7485,8 +7485,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -7500,49 +7498,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rp
-EM
-EM
-QY
-GR
-rK
-rp
-rp
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-qW
-rp
-rp
-st
-rp
-YD
-dX
-ET
-ET
-dW
-wX
-sZ
-LD
-qP
-wX
-zu
-GR
-vw
-zu
-YD
-Hw
-rp
-qW
 aa
 aa
 aa
@@ -7556,8 +7511,53 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (31,1,1) = {"
@@ -7687,8 +7687,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -7701,51 +7699,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-zq
-GR
-GR
-Af
-GR
-GR
-rp
-rp
-qW
-qW
-qW
-qW
-OX
-OX
-OX
-OX
-OX
-qW
-qW
-qW
-qW
-rp
-rp
-rp
-YD
-dX
-ET
-ic
-dk
-wX
-vi
-LD
-So
-wX
-zu
-GR
-vw
-zu
-Fk
-Hw
-rp
-qW
-qW
 aa
 aa
 aa
@@ -7758,8 +7711,55 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (32,1,1) = {"
@@ -7889,8 +7889,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -7903,51 +7901,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rp
-GR
-HO
-WQ
-rp
-zq
-rp
-qW
-qW
-aa
-qW
-OX
-OX
-Iq
-eJ
-Iq
-OX
-OX
-qW
-aa
-qW
-Wp
-rp
-rp
-Ny
-wX
-dW
-dj
-dW
-wX
-IV
-LD
-aR
-wX
-zu
-NN
-xr
-wX
-wX
-wX
-rp
-rp
-qW
 aa
 aa
 aa
@@ -7960,8 +7913,55 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (33,1,1) = {"
@@ -8091,8 +8091,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -8105,51 +8103,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-LN
-GR
-vw
-YX
-rp
-qW
-qW
-qW
-aa
-aa
-qW
-OX
-Dr
-Nc
-Nc
-Nc
-RS
-OX
-qW
-aa
-QN
-Wp
-Wp
-rp
-YD
-wX
-wX
-wX
-wX
-wX
-wX
-by
-wX
-wX
-zu
-GR
-GR
-BG
-eA
-eA
-eA
-zq
-dA
 aa
 aa
 aa
@@ -8162,8 +8115,55 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (34,1,1) = {"
@@ -8293,8 +8293,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -8307,51 +8305,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rp
-GR
-vw
-hn
-rp
-qW
-aa
-aa
-aa
-aa
-qW
-Vb
-wU
-ao
-ao
-ao
-cG
-Vb
-qW
-QN
-QN
-aa
-qW
-rp
-th
-wX
-xB
-FD
-wX
-YX
-zu
-GR
-vw
-YX
-zu
-GR
-HO
-wX
-fo
-eA
-eA
-zq
-dA
 aa
 aa
 aa
@@ -8364,8 +8317,55 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (35,1,1) = {"
@@ -8495,66 +8495,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-qW
-qW
-Wp
-rp
-Ny
-wX
-rp
-rp
-qW
-aa
-qW
-qW
-qW
-qW
-Vb
-gN
-ao
-ao
-ao
-HY
-Vb
-Wp
-QN
-aa
-aa
-qW
-zq
-YD
-Pj
-YD
-bV
-wX
-YX
-zu
-GR
-vw
-YX
-QY
-GR
-XB
-wX
-wX
-wX
-wX
-rp
-qW
-qW
 aa
 aa
 aa
@@ -8566,8 +8506,68 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (36,1,1) = {"
@@ -8697,66 +8697,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-rp
-zq
-zq
-rp
-wX
-WC
-QK
-rp
-qW
-qW
-aa
-qW
-OX
-OX
-OX
-Vb
-Vb
-Vb
-rR
-Vb
-Vb
-Vb
-qW
-aa
-aa
-aa
-qW
-zq
-YD
-HC
-YD
-YD
-wX
-wX
-wX
-ty
-wX
-wX
-Bj
-YD
-Bj
-wX
-bV
-Iu
-fG
-rp
-rp
-qW
 aa
 aa
 aa
@@ -8768,8 +8708,68 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (37,1,1) = {"
@@ -8899,66 +8899,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-zq
-CL
-LT
-Xw
-wX
-LR
-YD
-zq
-qW
-aa
-aa
-qW
-OX
-be
-XI
-YY
-iR
-ee
-ao
-do
-ao
-lS
-qW
-qW
-qW
-qW
-qW
-rp
-YD
-wX
-xo
-YD
-ty
-YD
-YD
-YD
-bV
-wX
-Bj
-YD
-Bj
-wX
-YD
-YD
-bV
-uB
-rp
-qW
 aa
 aa
 aa
@@ -8970,8 +8910,68 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (38,1,1) = {"
@@ -9101,66 +9101,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-zq
-Ef
-Nh
-YD
-Ny
-YD
-bV
-zq
-qW
-aa
-aa
-qW
-OX
-zv
-zv
-zv
-zv
-ao
-ao
-ao
-ao
-Vb
-lS
-lS
-lS
-lS
-lS
-rp
-QF
-wX
-wX
-wX
-wX
-wX
-wX
-wX
-ty
-wX
-wX
-wX
-wX
-wX
-ty
-wX
-wX
-wX
-rp
-qW
 aa
 aa
 aa
@@ -9172,8 +9112,68 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (39,1,1) = {"
@@ -9303,66 +9303,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-zq
-Jq
-SY
-QS
-wX
-YD
-YD
-zq
-qW
-aa
-aa
-qW
-OX
-aS
-zv
-zv
-zv
-ao
-ao
-ao
-ao
-Pq
-hY
-FC
-CN
-CN
-CN
-ZE
-th
-wX
-Wj
-Ge
-rK
-nK
-wX
-EX
-GR
-vw
-Aq
-wX
-YX
-zu
-YD
-wX
-vH
-iI
-rp
-qW
 aa
 aa
 aa
@@ -9374,8 +9314,68 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (40,1,1) = {"
@@ -9505,66 +9505,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-rp
-zq
-rp
-wX
-wX
-YD
-lQ
-rp
-qW
-qW
-aa
-qW
-OX
-XI
-XI
-XI
-zv
-ao
-ao
-ao
-ao
-Vb
-lS
-lS
-lS
-lS
-lS
-rp
-YD
-wX
-zI
-Ad
-rK
-nK
-wX
-TS
-GR
-xr
-EM
-wX
-EM
-Av
-bV
-xH
-FG
-zM
-zq
-qW
 aa
 aa
 aa
@@ -9576,8 +9516,68 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (41,1,1) = {"
@@ -9707,66 +9707,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-qW
-rp
-rs
-wX
-Ny
-wX
-rp
-rp
-qW
-aa
-qW
-OX
-zB
-Gt
-HD
-zv
-yh
-ao
-Rg
-ao
-lS
-qW
-qW
-qW
-qW
-qW
-rp
-YD
-wX
-rK
-rK
-rK
-nK
-wX
-TS
-GR
-GR
-GR
-Af
-GR
-GR
-YD
-wX
-vW
-Ir
-zq
-qW
 aa
 aa
 aa
@@ -9778,8 +9718,68 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (42,1,1) = {"
@@ -9909,8 +9909,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -9922,53 +9920,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rs
-wX
-GR
-cs
-qx
-zq
-qW
-qW
-qW
-OX
-OX
-OX
-Vb
-Vb
-Vb
-Sk
-Vb
-Vb
-Vb
-qW
-aa
-aa
-aa
-qW
-rp
-Ny
-wX
-Sx
-cR
-Sx
-wX
-wX
-TS
-bV
-Il
-xh
-wX
-fT
-Lv
-YD
-wX
-EF
-bP
-rp
-qW
 aa
 aa
 aa
@@ -9980,8 +9931,57 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (43,1,1) = {"
@@ -10111,8 +10111,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -10124,53 +10122,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rp
-wX
-GR
-rK
-wJ
-rp
-rp
-qW
-qW
-qW
-qW
-qW
-lS
-Zi
-Cz
-Cz
-Cz
-Zi
-lS
-qW
-aa
-aa
-aa
-qW
-zq
-GR
-vw
-zu
-GR
-Uy
-wX
-wX
-wX
-wX
-wX
-wX
-wX
-wX
-wX
-KB
-wX
-wX
-rp
-rp
-qW
 aa
 aa
 aa
@@ -10182,8 +10133,57 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (44,1,1) = {"
@@ -10313,8 +10313,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -10326,53 +10324,6 @@ aa
 aa
 aa
 aa
-qW
-Wp
-rp
-KC
-GR
-Mj
-cs
-bJ
-zq
-qW
-qW
-aa
-aa
-qW
-lS
-Cz
-Cz
-Cz
-Cz
-Cz
-lS
-qW
-aa
-aa
-qW
-qW
-zq
-GR
-XB
-QY
-GR
-GR
-Fu
-GR
-GR
-GR
-YD
-YD
-Bj
-wX
-lB
-hS
-hS
-wu
-rp
-qW
-qW
 aa
 aa
 aa
@@ -10384,8 +10335,57 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (45,1,1) = {"
@@ -10515,8 +10515,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -10529,51 +10527,6 @@ aa
 aa
 aa
 aa
-Wp
-rp
-wX
-Fu
-wX
-wX
-wX
-rp
-rp
-qW
-aa
-aa
-qW
-Vb
-Cz
-Cz
-nE
-Cz
-Cz
-Vb
-qW
-aa
-qW
-qW
-rp
-rp
-GR
-GR
-Af
-GR
-GR
-wX
-WQ
-Lv
-GR
-YD
-YD
-Bj
-wX
-By
-hS
-hS
-al
-rp
-qW
 aa
 aa
 aa
@@ -10586,8 +10539,55 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (46,1,1) = {"
@@ -10717,8 +10717,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -10731,51 +10729,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-Df
-GR
-LN
-LN
-LN
-LN
-rp
-qW
-qW
-qW
-qW
-Vb
-Cz
-Cz
-Cz
-Cz
-Cz
-Vb
-qW
-qW
-qW
-rp
-rp
-Om
-WQ
-Lv
-GR
-HO
-WQ
-wX
-YX
-zu
-NN
-yO
-WQ
-wX
-wX
-By
-hS
-hS
-rp
-rp
-qW
 aa
 aa
 aa
@@ -10788,8 +10741,55 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (47,1,1) = {"
@@ -10919,8 +10919,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -10933,51 +10931,6 @@ aa
 aa
 aa
 aa
-qW
-zq
-Lp
-GR
-GR
-GR
-GR
-GR
-rp
-rp
-rp
-qW
-qW
-Vb
-Cz
-Cz
-Cz
-Cz
-Cz
-Vb
-qW
-qW
-rp
-rp
-oW
-YX
-Om
-zu
-GR
-vw
-hn
-wX
-VO
-zu
-GR
-vw
-YX
-wX
-hS
-hS
-BT
-hS
-zq
-qW
-qW
 aa
 aa
 aa
@@ -10990,8 +10943,55 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (48,1,1) = {"
@@ -11121,64 +11121,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-zq
-Lp
-GR
-yO
-WQ
-Lv
-GR
-vw
-hn
-rp
-Wp
-Wp
-Vb
-Vb
-Vb
-Vb
-Vb
-Vb
-Vb
-Wp
-Wp
-rp
-hn
-Om
-Om
-wX
-wX
-Fu
-wX
-wX
-wX
-YX
-zu
-GR
-vw
-YX
-wX
-KB
-wX
-wX
-yT
-rp
-qW
 aa
 aa
 aa
@@ -11192,8 +11134,66 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (49,1,1) = {"
@@ -11323,64 +11323,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-rp
-Df
-GR
-vw
-Kw
-zu
-Af
-vw
-Om
-rp
-qW
-qW
-qW
-qW
-qW
-Wp
-qW
-qW
-qW
-qW
-qW
-rp
-YX
-YX
-zu
-YD
-YD
-GR
-YD
-YD
-wX
-wX
-zu
-GR
-vw
-YX
-wX
-YD
-pD
-rp
-rp
-rp
-qW
 aa
 aa
 aa
@@ -11394,8 +11336,66 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (50,1,1) = {"
@@ -11525,64 +11525,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-rp
-rp
-rp
-YX
-Om
-zu
-GR
-vw
-YX
-rp
-qW
-qW
-qW
-aa
-qW
-Wp
-qW
-qW
-qW
-qW
-qW
-rp
-EM
-EM
-Av
-GR
-GR
-GR
-GR
-GR
-Px
-wX
-wX
-vQ
-wX
-wX
-wX
-YD
-YD
-rp
-Wp
-qW
-qW
 aa
 aa
 aa
@@ -11596,8 +11538,66 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (51,1,1) = {"
@@ -11727,62 +11727,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-Wp
-rp
-rp
-Aq
-zu
-GR
-vw
-wX
-rp
-rp
-rp
-qW
-qW
-qW
-rp
-zq
-zq
-rp
-rp
-rp
-rp
-mk
-GR
-GR
-GR
-GR
-GR
-GR
-GR
-bV
-wX
-lk
-Ij
-wX
-YD
-WC
-YD
-pD
-rp
-qW
 aa
 aa
 aa
@@ -11798,8 +11742,64 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (52,1,1) = {"
@@ -11929,62 +11929,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-rp
-wX
-wX
-BG
-wX
-wX
-Aq
-YX
-rp
-rp
-rp
-rp
-rp
-Ip
-Cf
-wX
-dK
-Di
-wX
-mk
-GR
-WC
-YD
-YD
-YD
-GR
-YD
-bV
-wX
-wX
-wX
-wX
-BG
-wX
-rp
-rp
-rp
-qW
 aa
 aa
 aa
@@ -12000,8 +11944,64 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (53,1,1) = {"
@@ -12131,8 +12131,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -12148,45 +12146,6 @@ aa
 aa
 aa
 aa
-qW
-YJ
-zq
-eA
-eA
-xj
-wX
-YX
-Om
-wX
-ZZ
-YP
-wX
-Px
-nD
-th
-wX
-bV
-bV
-wX
-wX
-Fu
-wX
-wX
-wX
-wX
-Fu
-wX
-wX
-wX
-iL
-iL
-wX
-eA
-eA
-zq
-dA
-qW
-qW
 aa
 aa
 aa
@@ -12202,8 +12161,49 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (54,1,1) = {"
@@ -12333,60 +12333,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-rp
-rp
-ya
-eA
-wX
-EM
-EM
-wX
-pT
-oV
-wX
-LR
-HC
-YD
-wX
-wX
-Ny
-wX
-Bj
-GR
-vw
-hn
-hn
-zu
-GR
-Cp
-Aq
-wX
-ZD
-ZD
-wX
-pc
-Kh
-rp
-qW
 aa
 aa
 aa
@@ -12404,8 +12350,62 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (55,1,1) = {"
@@ -12535,60 +12535,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-YJ
-zq
-eA
-Cx
-BG
-GR
-GR
-jA
-yo
-yo
-jA
-YD
-YD
-WC
-Ny
-YD
-YD
-wX
-Bj
-GR
-vw
-Om
-YX
-zu
-Af
-Cp
-YX
-wX
-ZD
-ZD
-rp
-rp
-rp
-rp
-qW
 aa
 aa
 aa
@@ -12606,8 +12552,62 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (56,1,1) = {"
@@ -12737,8 +12737,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -12756,41 +12754,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-rp
-zq
-rp
-YD
-PF
-wX
-yo
-yo
-wX
-wX
-xH
-wX
-wX
-YD
-tq
-wX
-wX
-py
-wX
-wX
-wX
-wX
-ty
-wX
-wX
-wX
-cQ
-cQ
-rp
-qW
-qW
-qW
-qW
 aa
 aa
 aa
@@ -12808,8 +12771,45 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (57,1,1) = {"
@@ -12939,57 +12939,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-qW
-qW
-rp
-rp
-mk
-wX
-cQ
-cQ
-wX
-UW
-BK
-tV
-wX
-bV
-YD
-YD
-YD
-WC
-Ny
-GR
-HL
-GR
-GR
-jg
-OO
-wX
-cQ
-Wp
-Wp
-qW
 aa
 aa
 aa
@@ -13010,8 +12959,59 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (58,1,1) = {"
@@ -13141,55 +13141,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-Wp
-rp
-rp
-rp
-Wp
-cQ
-rp
-fW
-EK
-JO
-wX
-wX
-wX
-BG
-wX
-wX
-rp
-oR
-hp
-dV
-hM
-jg
-OO
-rp
-Wp
-qW
 aa
 aa
 aa
@@ -13212,8 +13163,57 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (59,1,1) = {"
@@ -13343,54 +13343,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-qW
-qW
-qW
-qW
-qW
-Wp
-rp
-zq
-zq
-rp
-rp
-fo
-eA
-eA
-eA
-de
-rp
-jV
-ii
-rp
-DT
-xR
-rp
-rp
-qW
 aa
 aa
 aa
@@ -13414,8 +13366,56 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (60,1,1) = {"
@@ -13545,8 +13545,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -13572,27 +13570,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-qW
-qW
-qW
-qW
-zq
-eA
-eA
-jZ
-eA
-to
-rp
-cl
-Dv
-rp
-rp
-rp
-rp
-qW
-qW
 aa
 aa
 aa
@@ -13616,8 +13593,31 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (61,1,1) = {"
@@ -13747,8 +13747,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -13779,21 +13777,6 @@ aa
 aa
 aa
 aa
-qW
-rp
-zq
-zq
-rp
-rp
-zq
-rp
-bm
-bm
-rp
-qW
-qW
-qW
-qW
 aa
 aa
 aa
@@ -13818,8 +13801,25 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (62,1,1) = {"
@@ -13949,8 +13949,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -13981,18 +13979,6 @@ aa
 aa
 aa
 aa
-qW
-qW
-NZ
-NZ
-qW
-qW
-NZ
-Pc
-sx
-Pc
-Ow
-qW
 aa
 aa
 aa
@@ -14020,8 +14006,22 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (63,1,1) = {"
@@ -14151,8 +14151,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -14222,8 +14220,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (64,1,1) = {"
@@ -14353,8 +14353,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -14424,8 +14422,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (65,1,1) = {"
@@ -14555,8 +14555,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -14626,8 +14624,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (66,1,1) = {"
@@ -14757,8 +14757,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -14828,8 +14826,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (67,1,1) = {"
@@ -14959,8 +14959,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -15030,8 +15028,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (68,1,1) = {"
@@ -15161,8 +15161,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -15232,8 +15230,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (69,1,1) = {"
@@ -15363,8 +15363,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -15434,8 +15432,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (70,1,1) = {"
@@ -15565,8 +15565,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -15636,8 +15634,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (71,1,1) = {"
@@ -15767,8 +15767,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -15838,8 +15836,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (72,1,1) = {"
@@ -15969,8 +15969,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -16040,8 +16038,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (73,1,1) = {"
@@ -16171,8 +16171,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -16242,8 +16240,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (74,1,1) = {"
@@ -16373,8 +16373,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -16444,8 +16442,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (75,1,1) = {"
@@ -16575,8 +16575,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -16646,8 +16644,10 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
 aa
 "}
 (76,1,1) = {"
@@ -16777,8 +16777,6 @@ aa
 aa
 aa
 aa
-gZ
-lf
 aa
 aa
 aa
@@ -16819,7 +16817,6 @@ aa
 aa
 aa
 aa
-qW
 aa
 aa
 aa
@@ -16848,8 +16845,11 @@ aa
 aa
 aa
 aa
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (77,1,1) = {"
@@ -16979,79 +16979,79 @@ aa
 aa
 aa
 aa
-gZ
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (78,1,1) = {"
@@ -17181,79 +17181,79 @@ aa
 aa
 aa
 aa
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
-gZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 "}
 (79,1,1) = {"
@@ -17585,79 +17585,79 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
 aa
 "}
 (81,1,1) = {"
@@ -17787,79 +17787,79 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+al
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+al
 aa
 "}
 (82,1,1) = {"
@@ -17989,6 +17989,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -18058,10 +18060,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (83,1,1) = {"
@@ -18191,6 +18191,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -18260,10 +18262,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (84,1,1) = {"
@@ -18393,6 +18393,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -18462,10 +18464,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (85,1,1) = {"
@@ -18595,6 +18595,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -18664,10 +18666,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (86,1,1) = {"
@@ -18797,6 +18797,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -18866,10 +18868,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (87,1,1) = {"
@@ -18999,6 +18999,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -19068,10 +19070,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (88,1,1) = {"
@@ -19201,6 +19201,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -19270,10 +19272,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (89,1,1) = {"
@@ -19403,6 +19403,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -19472,10 +19474,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (90,1,1) = {"
@@ -19605,6 +19605,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -19674,10 +19676,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (91,1,1) = {"
@@ -19807,6 +19807,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -19876,10 +19878,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (92,1,1) = {"
@@ -20009,6 +20009,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -20078,10 +20080,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (93,1,1) = {"
@@ -20211,6 +20211,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -20280,10 +20282,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (94,1,1) = {"
@@ -20413,6 +20413,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -20482,10 +20484,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (95,1,1) = {"
@@ -20615,6 +20615,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -20645,6 +20647,17 @@ aa
 aa
 aa
 aa
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
 aa
 aa
 aa
@@ -20673,21 +20686,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (96,1,1) = {"
@@ -20817,6 +20817,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -20842,6 +20844,23 @@ aa
 aa
 aa
 aa
+as
+as
+as
+as
+as
+yO
+aR
+aR
+aR
+aR
+aR
+aS
+aS
+aR
+aR
+as
+as
 aa
 aa
 aa
@@ -20869,27 +20888,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (97,1,1) = {"
@@ -21019,6 +21019,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -21042,6 +21044,30 @@ aa
 aa
 aa
 aa
+as
+as
+as
+aR
+aR
+aR
+aR
+aS
+aR
+Av
+BT
+cQ
+de
+de
+de
+de
+aR
+aR
+yO
+as
+as
+yO
+as
+as
 aa
 aa
 aa
@@ -21064,34 +21090,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (98,1,1) = {"
@@ -21221,6 +21221,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -21244,6 +21246,30 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+aR
+vi
+cQ
+xB
+jV
+cQ
+fG
+cs
+cQ
+Di
+fW
+EX
+DT
+cQ
+aR
+aS
+aR
+aR
+aS
+aR
+as
 aa
 aa
 aa
@@ -21266,34 +21292,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (99,1,1) = {"
@@ -21423,6 +21423,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -21443,6 +21445,36 @@ aa
 aa
 aa
 aa
+as
+as
+as
+bV
+aR
+py
+rR
+rR
+cQ
+lf
+jV
+ks
+cs
+fG
+cQ
+fW
+DT
+Di
+fW
+cQ
+HY
+jV
+Mj
+Om
+jV
+aR
+bV
+bV
+as
+as
 aa
 aa
 aa
@@ -21462,40 +21494,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (100,1,1) = {"
@@ -21625,6 +21625,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -21645,6 +21647,36 @@ aa
 aa
 aa
 aa
+as
+aR
+aS
+aR
+aR
+pD
+st
+rR
+cQ
+cQ
+cQ
+cQ
+cs
+cs
+cQ
+de
+de
+cQ
+Af
+cQ
+Ij
+jV
+jV
+jV
+jV
+aR
+aR
+aR
+aR
+as
 aa
 aa
 aa
@@ -21664,40 +21696,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (101,1,1) = {"
@@ -21827,6 +21827,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -21845,6 +21847,38 @@ aa
 aa
 aa
 aa
+as
+as
+hp
+aS
+jV
+lS
+cQ
+pL
+rR
+vw
+wJ
+cs
+yT
+cQ
+AD
+lh
+cQ
+cQ
+cQ
+cQ
+dK
+cQ
+cQ
+cQ
+cQ
+cQ
+ks
+cQ
+lB
+Sx
+aR
+as
 aa
 aa
 aa
@@ -21864,42 +21898,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (102,1,1) = {"
@@ -22029,6 +22029,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -22046,6 +22048,41 @@ aa
 aa
 aa
 aa
+as
+as
+aR
+aR
+aR
+jV
+mk
+cQ
+cQ
+cQ
+cQ
+cQ
+cs
+yT
+cQ
+cQ
+dj
+cQ
+dk
+cQ
+Fk
+dK
+dK
+eM
+KB
+cQ
+Ow
+dK
+dK
+dK
+SY
+aR
+bV
+as
+as
 aa
 aa
 aa
@@ -22063,45 +22100,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (103,1,1) = {"
@@ -22231,6 +22231,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -22247,6 +22249,44 @@ aa
 aa
 aa
 aa
+as
+as
+aR
+aR
+iL
+cQ
+ks
+cQ
+cQ
+pT
+sx
+vG
+cQ
+dj
+cQ
+cQ
+Ba
+dK
+fT
+Dr
+cQ
+hS
+jA
+dK
+eM
+hn
+Mm
+iI
+hS
+Px
+dK
+TS
+aR
+aR
+aR
+as
+as
+as
 aa
 aa
 aa
@@ -22262,48 +22302,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (104,1,1) = {"
@@ -22433,6 +22433,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -22448,6 +22450,46 @@ aa
 aa
 aa
 aa
+as
+as
+aR
+aR
+jZ
+cs
+lB
+cs
+cs
+dj
+cs
+cs
+cs
+dV
+cs
+dV
+Af
+dK
+dK
+dK
+Dv
+cQ
+hT
+iR
+dK
+eM
+hn
+Mm
+KB
+hT
+iR
+dK
+cQ
+cQ
+KB
+aR
+aR
+aR
+as
+as
 aa
 aa
 aa
@@ -22462,50 +22504,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (105,1,1) = {"
@@ -22635,6 +22635,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -22649,6 +22651,47 @@ aa
 aa
 aa
 aa
+as
+as
+aR
+aR
+iL
+cs
+lh
+cs
+cs
+fG
+aR
+aR
+aR
+aS
+aS
+aS
+aR
+aR
+aR
+Cf
+dK
+Dv
+cQ
+cQ
+cQ
+dj
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+LP
+cQ
+eA
+eA
+eA
+eA
+aR
+aR
+as
 aa
 aa
 aa
@@ -22663,51 +22706,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (106,1,1) = {"
@@ -22837,6 +22837,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -22851,6 +22853,48 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+cQ
+cQ
+dj
+cQ
+cQ
+cQ
+aR
+aR
+as
+as
+as
+as
+as
+as
+as
+aR
+aR
+dK
+dK
+de
+cQ
+fG
+cs
+Il
+KC
+Nc
+AD
+cs
+cs
+cs
+cs
+dK
+hM
+dK
+dK
+cs
+aS
+as
+as
 aa
 aa
 aa
@@ -22864,52 +22908,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (107,1,1) = {"
@@ -23039,6 +23039,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -23052,11 +23054,49 @@ aa
 aa
 aa
 aa
+as
+as
+aR
+ee
+hn
+iR
+dK
+fW
+dk
+aR
+aR
+as
+as
 aa
 aa
 aa
 aa
 aa
+as
+as
+aR
+aR
+dK
+dK
+dj
+cs
+cs
+cs
+Ht
+cQ
+cQ
+cQ
+PF
+cQ
+cQ
+Px
+dK
+eJ
+Px
+cs
+aR
+aR
+as
 aa
 aa
 aa
@@ -23070,48 +23110,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (108,1,1) = {"
@@ -23241,6 +23241,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -23254,6 +23256,49 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+eA
+eA
+jg
+dK
+fW
+aR
+aR
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+as
+aR
+aR
+Ef
+aR
+cs
+Ht
+Ip
+Ip
+Iq
+cQ
+Pc
+PQ
+QY
+cQ
+iR
+dK
+eM
+iR
+cs
+XB
+aR
+as
 aa
 aa
 aa
@@ -23267,53 +23312,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (109,1,1) = {"
@@ -23443,6 +23443,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -23455,6 +23457,51 @@ aa
 aa
 aa
 aa
+as
+as
+aS
+dK
+dK
+hM
+dK
+dK
+aR
+aR
+as
+as
+as
+as
+lQ
+lQ
+lQ
+lQ
+lQ
+as
+as
+as
+as
+aR
+aR
+aR
+cs
+Ht
+Ip
+KR
+Nh
+cQ
+Pd
+PQ
+Rg
+cQ
+iR
+dK
+eM
+iR
+Xq
+XB
+aR
+as
+as
 aa
 aa
 aa
@@ -23467,55 +23514,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (110,1,1) = {"
@@ -23645,6 +23645,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -23657,8 +23659,51 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+dK
+eJ
+hS
+aR
+aS
+aR
+as
+as
 aa
+as
+lQ
+lQ
+vH
+wU
+vH
+lQ
+lQ
+as
 aa
+as
+bV
+aR
+aR
+dj
+cQ
+Iq
+Lp
+Iq
+cQ
+Pj
+PQ
+Rv
+cQ
+iR
+RS
+Uy
+cQ
+cQ
+cQ
+aR
+aR
+as
 aa
 aa
 aa
@@ -23671,53 +23716,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (111,1,1) = {"
@@ -23847,6 +23847,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -23859,9 +23861,51 @@ aa
 aa
 aa
 aa
+as
+aR
+de
+dK
+eM
+hn
+aR
+as
+as
+as
 aa
 aa
+as
+lQ
+sN
+vQ
+vQ
+vQ
+zq
+lQ
+as
 aa
+Cp
+bV
+bV
+aR
+cs
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+PF
+cQ
+cQ
+iR
+dK
+dK
+ks
+jV
+jV
+jV
+aS
+WQ
 aa
 aa
 aa
@@ -23874,52 +23918,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (112,1,1) = {"
@@ -24049,6 +24049,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -24061,11 +24063,51 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+dK
+eM
+hT
+aR
+as
 aa
 aa
 aa
 aa
+as
+qx
+sZ
+vW
+vW
+vW
+zu
+qx
+as
+Cp
+Cp
 aa
+as
+aR
+zI
+cQ
+Ir
+Lv
+cQ
+hn
+iR
+dK
+eM
+hn
+iR
+dK
+eJ
+cQ
+BG
+jV
+jV
+aS
+WQ
 aa
 aa
 aa
@@ -24078,50 +24120,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (113,1,1) = {"
@@ -24251,6 +24251,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -24260,9 +24262,55 @@ aa
 aa
 aa
 aa
+as
+as
+as
+as
+bV
+aR
+dj
+cQ
+aR
+aR
+as
 aa
+as
+as
+as
+as
+qx
+th
+vW
+vW
+vW
+zv
+qx
+bV
+Cp
 aa
 aa
+as
+aS
+cs
+Hu
+cs
+fG
+cQ
+hn
+iR
+dK
+eM
+hn
+jg
+dK
+Hw
+cQ
+cQ
+cQ
+cQ
+aR
+as
+as
 aa
 aa
 aa
@@ -24274,56 +24322,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (114,1,1) = {"
@@ -24453,6 +24453,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -24462,10 +24464,55 @@ aa
 aa
 aa
 aa
+as
+aR
+aS
+aS
+aR
+cQ
+dV
+fo
+aR
+as
+as
 aa
+as
+lQ
+lQ
+lQ
+qx
+qx
+qx
+wX
+qx
+qx
+qx
+as
 aa
 aa
 aa
+as
+aS
+cs
+lh
+cs
+cs
+cQ
+cQ
+cQ
+LP
+cQ
+cQ
+Dy
+cs
+Dy
+cQ
+fG
+AD
+XP
+aR
+aR
+as
 aa
 aa
 aa
@@ -24477,55 +24524,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (115,1,1) = {"
@@ -24655,6 +24655,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -24664,8 +24666,55 @@ aa
 aa
 aa
 aa
+as
+aS
+aT
+by
+cl
+cQ
+dW
+cs
+aS
+as
 aa
 aa
+as
+lQ
+nD
+or
+qL
+to
+wr
+vW
+xH
+vW
+qW
+as
+as
+as
+as
+as
+aR
+cs
+cQ
+Iu
+cs
+LP
+cs
+cs
+cs
+fG
+cQ
+Dy
+cs
+Dy
+cQ
+cs
+cs
+fG
+YY
+aR
+as
 aa
 aa
 aa
@@ -24677,57 +24726,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (116,1,1) = {"
@@ -24857,6 +24857,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -24866,8 +24868,55 @@ aa
 aa
 aa
 aa
+as
+aS
+be
+bJ
+cs
+dj
+cs
+fG
+aS
+as
 aa
 aa
+as
+lQ
+nE
+nE
+nE
+nE
+vW
+vW
+vW
+vW
+qx
+qW
+qW
+qW
+qW
+qW
+aR
+FG
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+LP
+cQ
+cQ
+cQ
+cQ
+cQ
+LP
+cQ
+cQ
+cQ
+aR
+as
 aa
 aa
 aa
@@ -24879,57 +24928,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (117,1,1) = {"
@@ -25059,6 +25059,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -25068,8 +25070,55 @@ aa
 aa
 aa
 aa
+as
+aS
+bm
+bP
+cG
+cQ
+cs
+cs
+aS
+as
 aa
 aa
+as
+lQ
+nK
+nE
+nE
+nE
+vW
+vW
+vW
+vW
+Aq
+Bj
+Cx
+CN
+CN
+CN
+Fu
+zI
+cQ
+IV
+LD
+fW
+OO
+cQ
+QC
+dK
+eM
+ee
+cQ
+hn
+iR
+cs
+cQ
+Ys
+Zi
+aR
+as
 aa
 aa
 aa
@@ -25081,57 +25130,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (118,1,1) = {"
@@ -25261,6 +25261,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -25270,7 +25272,55 @@ aa
 aa
 aa
 aa
+as
+aR
+aS
+aR
+cQ
+cQ
+cs
+fR
+aR
+as
+as
 aa
+as
+lQ
+or
+or
+or
+nE
+vW
+vW
+vW
+vW
+qx
+qW
+qW
+qW
+qW
+qW
+aR
+cs
+cQ
+Jq
+LN
+fW
+OO
+cQ
+QF
+dK
+Uy
+eA
+cQ
+eA
+FC
+fG
+yj
+YD
+ZD
+aS
+as
 aa
 aa
 aa
@@ -25282,58 +25332,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (119,1,1) = {"
@@ -25463,6 +25463,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -25472,7 +25474,55 @@ aa
 aa
 aa
 aa
+as
+as
+as
+aR
+cR
+cQ
+dj
+cQ
+aR
+aR
+as
 aa
+as
+lQ
+oO
+oW
+qP
+nE
+wu
+vW
+xR
+vW
+qW
+as
+as
+as
+as
+as
+aR
+cs
+cQ
+fW
+fW
+fW
+OO
+cQ
+QF
+dK
+dK
+dK
+hM
+dK
+dK
+cs
+cQ
+YE
+ZE
+aS
+as
 aa
 aa
 aa
@@ -25484,58 +25534,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (120,1,1) = {"
@@ -25665,6 +25665,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -25676,9 +25678,53 @@ aa
 aa
 aa
 aa
+as
+aR
+cR
+cQ
+dK
+fT
+hY
+aS
+as
+as
+as
+lQ
+lQ
+lQ
+qx
+qx
+qx
+xh
+qx
+qx
+qx
+as
 aa
 aa
 aa
+as
+aR
+dj
+cQ
+JO
+Af
+JO
+cQ
+cQ
+QF
+fG
+Uz
+UF
+cQ
+Vb
+jA
+cs
+cQ
+YJ
+ZZ
+aR
+as
 aa
 aa
 aa
@@ -25690,54 +25736,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (121,1,1) = {"
@@ -25867,6 +25867,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -25878,9 +25880,53 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+cQ
+dK
+fW
+ic
+aR
+aR
+as
+as
+as
+as
+as
+qW
+tq
+ty
+ty
+ty
+tq
+qW
+as
 aa
 aa
 aa
+as
+aS
+dK
+eM
+iR
+dK
+Ny
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+cQ
+Wj
+cQ
+cQ
+aR
+aR
+as
 aa
 aa
 aa
@@ -25892,54 +25938,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (122,1,1) = {"
@@ -26069,6 +26069,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -26080,10 +26082,53 @@ aa
 aa
 aa
 aa
+as
+bV
+aR
+dk
+dK
+gN
+fT
+jt
+aS
+as
+as
 aa
 aa
+as
+qW
+ty
+ty
+ty
+ty
+ty
+qW
+as
 aa
 aa
+as
+as
+aS
+dK
+Hw
+jg
+dK
+dK
+dX
+dK
+dK
+dK
+cs
+cs
+Dy
+cQ
+Wp
+VO
+VO
+YP
+aR
+as
+as
 aa
 aa
 aa
@@ -26095,53 +26140,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (123,1,1) = {"
@@ -26271,6 +26271,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -26283,9 +26285,51 @@ aa
 aa
 aa
 aa
+bV
+aR
+cQ
+dX
+cQ
+cQ
+cQ
+aR
+aR
+as
 aa
 aa
+as
+qx
+ty
+ty
+xj
+ty
+ty
+qx
+as
 aa
+as
+as
+aR
+aR
+dK
+dK
+hM
+dK
+dK
+cQ
+hS
+jA
+dK
+cs
+cs
+Dy
+cQ
+WC
+VO
+VO
+YX
+aR
+as
 aa
 aa
 aa
@@ -26298,52 +26342,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (124,1,1) = {"
@@ -26473,6 +26473,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -26485,6 +26487,51 @@ aa
 aa
 aa
 aa
+as
+aR
+do
+dK
+de
+de
+de
+de
+aR
+as
+as
+as
+as
+qx
+ty
+ty
+ty
+ty
+ty
+qx
+as
+as
+as
+aR
+aR
+iI
+hS
+jA
+dK
+eJ
+hS
+cQ
+hn
+iR
+RS
+gZ
+hS
+cQ
+cQ
+WC
+VO
+VO
+aR
+aR
+as
 aa
 aa
 aa
@@ -26497,55 +26544,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (125,1,1) = {"
@@ -26675,6 +26675,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -26687,6 +26689,51 @@ aa
 aa
 aa
 aa
+as
+aS
+dA
+dK
+dK
+dK
+dK
+dK
+aR
+aR
+aR
+as
+as
+qx
+ty
+ty
+ty
+ty
+ty
+qx
+as
+as
+aR
+aR
+EF
+hn
+iI
+iR
+dK
+eM
+hT
+cQ
+Pq
+iR
+dK
+eM
+hn
+cQ
+VO
+VO
+Xw
+VO
+aS
+as
+as
 aa
 aa
 aa
@@ -26699,55 +26746,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (126,1,1) = {"
@@ -26877,6 +26877,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -26889,6 +26891,50 @@ aa
 aa
 aa
 aa
+as
+aS
+dA
+dK
+gZ
+hS
+jA
+dK
+eM
+hT
+aR
+bV
+bV
+qx
+qx
+qx
+qx
+qx
+qx
+qx
+bV
+bV
+aR
+hT
+iI
+iI
+cQ
+cQ
+dX
+cQ
+cQ
+cQ
+hn
+iR
+dK
+eM
+hn
+cQ
+Wj
+cQ
+cQ
+XI
+aR
+as
 aa
 aa
 aa
@@ -26902,54 +26948,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (127,1,1) = {"
@@ -27079,6 +27079,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -27091,6 +27093,50 @@ aa
 aa
 aa
 aa
+as
+aR
+do
+dK
+eM
+ii
+iR
+hM
+eM
+iI
+aR
+as
+as
+as
+as
+as
+bV
+as
+as
+as
+as
+as
+aR
+hn
+hn
+iR
+cs
+cs
+dK
+cs
+cs
+cQ
+cQ
+iR
+dK
+eM
+hn
+cQ
+cs
+yT
+aR
+aR
+aR
+as
 aa
 aa
 aa
@@ -27104,54 +27150,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (128,1,1) = {"
@@ -27281,6 +27281,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -27293,7 +27295,50 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+aR
+hn
+iI
+iR
+dK
+eM
+hn
+aR
+as
+as
+as
 aa
+as
+bV
+as
+as
+as
+as
+as
+aR
+eA
+eA
+FC
+dK
+dK
+dK
+dK
+dK
+jZ
+cQ
+cQ
+Sk
+cQ
+cQ
+cQ
+cs
+cs
+aR
+bV
+as
+as
 aa
 aa
 aa
@@ -27307,53 +27352,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (129,1,1) = {"
@@ -27483,6 +27483,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -27495,6 +27497,48 @@ aa
 aa
 aa
 aa
+as
+as
+bV
+aR
+aR
+ee
+iR
+dK
+eM
+cQ
+aR
+aR
+aR
+as
+as
+as
+aR
+aS
+aS
+aR
+aR
+aR
+aR
+oV
+dK
+dK
+dK
+dK
+dK
+dK
+dK
+fG
+cQ
+QK
+So
+cQ
+cs
+dV
+cs
+yT
+aR
+as
 aa
 aa
 aa
@@ -27510,52 +27554,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (130,1,1) = {"
@@ -27685,6 +27685,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -27699,6 +27701,46 @@ aa
 aa
 aa
 aa
+as
+as
+aR
+cQ
+cQ
+ks
+cQ
+cQ
+ee
+hn
+aR
+aR
+aR
+aR
+aR
+ya
+zB
+cQ
+By
+Cz
+cQ
+oV
+dK
+dV
+cs
+cs
+cs
+dK
+cs
+fG
+cQ
+cQ
+cQ
+cQ
+ks
+cQ
+aR
+aR
+aR
+as
 aa
 aa
 aa
@@ -27714,50 +27756,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (131,1,1) = {"
@@ -27887,6 +27887,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -27902,6 +27904,45 @@ aa
 aa
 aa
 aa
+as
+hp
+aS
+jV
+jV
+lk
+cQ
+hn
+iI
+cQ
+rp
+tV
+cQ
+jZ
+yh
+zI
+cQ
+fG
+fG
+cQ
+cQ
+dX
+cQ
+cQ
+cQ
+cQ
+dX
+cQ
+cQ
+cQ
+QN
+QN
+cQ
+jV
+jV
+aS
+WQ
+as
+as
 aa
 aa
 aa
@@ -27917,49 +27958,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (132,1,1) = {"
@@ -28089,6 +28089,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -28105,6 +28107,42 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+lf
+jV
+cQ
+eA
+eA
+cQ
+rs
+uB
+cQ
+dW
+lh
+cs
+cQ
+cQ
+dj
+cQ
+Dy
+dK
+eM
+hT
+hT
+iR
+dK
+Mm
+ee
+cQ
+QS
+QS
+cQ
+UI
+UW
+aR
+as
 aa
 aa
 aa
@@ -28122,46 +28160,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (133,1,1) = {"
@@ -28291,6 +28291,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -28307,6 +28309,42 @@ aa
 aa
 aa
 aa
+as
+hp
+aS
+jV
+lv
+ks
+dK
+dK
+pc
+rK
+rK
+pc
+cs
+cs
+dV
+dj
+cs
+cs
+cQ
+Dy
+dK
+eM
+iI
+hn
+iR
+hM
+Mm
+hn
+cQ
+QS
+QS
+aR
+aR
+aR
+aR
+as
 aa
 aa
 aa
@@ -28324,46 +28362,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (134,1,1) = {"
@@ -28493,6 +28493,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -28510,6 +28512,41 @@ aa
 aa
 aa
 aa
+as
+aR
+aR
+aS
+aR
+cs
+oR
+cQ
+rK
+rK
+cQ
+cQ
+yj
+cQ
+cQ
+cs
+CL
+cQ
+cQ
+EK
+cQ
+cQ
+cQ
+cQ
+LP
+cQ
+cQ
+cQ
+rP
+rP
+aR
+as
+as
+as
+as
 aa
 aa
 aa
@@ -28527,45 +28564,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (135,1,1) = {"
@@ -28695,6 +28695,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -28712,6 +28714,38 @@ aa
 aa
 aa
 aa
+as
+as
+as
+as
+aR
+aR
+oV
+cQ
+rP
+rP
+cQ
+xo
+yl
+zM
+cQ
+fG
+cs
+cs
+cs
+dV
+dj
+dK
+HC
+dK
+dK
+NN
+OX
+cQ
+rP
+bV
+bV
+as
 aa
 aa
 aa
@@ -28732,42 +28766,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (136,1,1) = {"
@@ -28897,6 +28897,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -28917,6 +28919,33 @@ aa
 aa
 aa
 aa
+as
+bV
+aR
+aR
+aR
+bV
+rP
+aR
+xr
+yo
+Ad
+cQ
+cQ
+cQ
+ks
+cQ
+cQ
+aR
+Ge
+HD
+Kh
+LR
+NN
+OX
+aR
+bV
+as
 aa
 aa
 aa
@@ -28939,37 +28968,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (137,1,1) = {"
@@ -29099,6 +29099,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -29120,6 +29122,31 @@ aa
 aa
 aa
 aa
+as
+as
+as
+as
+as
+bV
+aR
+aS
+aS
+aR
+aR
+BG
+jV
+jV
+jV
+EM
+aR
+Gi
+HL
+aR
+LT
+NZ
+aR
+aR
+as
 aa
 aa
 aa
@@ -29143,35 +29170,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (138,1,1) = {"
@@ -29301,6 +29301,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -29326,6 +29328,27 @@ aa
 aa
 aa
 aa
+as
+as
+as
+as
+as
+as
+aS
+jV
+jV
+Df
+jV
+ET
+aR
+Gt
+HO
+aR
+aR
+aR
+aR
+as
+as
 aa
 aa
 aa
@@ -29349,31 +29372,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (139,1,1) = {"
@@ -29503,6 +29503,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -29533,6 +29535,21 @@ aa
 aa
 aa
 aa
+as
+aR
+aS
+aS
+aR
+aR
+aS
+aR
+GR
+GR
+aR
+as
+as
+as
+as
 aa
 aa
 aa
@@ -29557,25 +29574,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (140,1,1) = {"
@@ -29705,6 +29705,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -29735,6 +29737,18 @@ aa
 aa
 aa
 aa
+as
+as
+BK
+BK
+as
+as
+BK
+FD
+GZ
+FD
+Kw
+as
 aa
 aa
 aa
@@ -29762,22 +29776,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (141,1,1) = {"
@@ -29907,6 +29907,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -29976,10 +29978,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (142,1,1) = {"
@@ -30109,6 +30109,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -30178,10 +30180,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (143,1,1) = {"
@@ -30311,6 +30311,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -30380,10 +30382,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (144,1,1) = {"
@@ -30513,6 +30513,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -30582,10 +30584,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (145,1,1) = {"
@@ -30715,6 +30715,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -30784,10 +30786,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (146,1,1) = {"
@@ -30917,6 +30917,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -30986,10 +30988,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (147,1,1) = {"
@@ -31119,6 +31119,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -31188,10 +31190,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (148,1,1) = {"
@@ -31321,6 +31321,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -31390,10 +31392,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (149,1,1) = {"
@@ -31523,6 +31523,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -31592,10 +31594,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (150,1,1) = {"
@@ -31725,6 +31725,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -31794,10 +31796,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (151,1,1) = {"
@@ -31927,6 +31927,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -31996,10 +31998,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (152,1,1) = {"
@@ -32129,6 +32129,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -32198,10 +32200,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (153,1,1) = {"
@@ -32331,6 +32331,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -32400,10 +32402,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (154,1,1) = {"
@@ -32533,6 +32533,8 @@ aa
 aa
 aa
 aa
+al
+ao
 aa
 aa
 aa
@@ -32573,6 +32575,7 @@ aa
 aa
 aa
 aa
+as
 aa
 aa
 aa
@@ -32601,11 +32604,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ao
+al
 aa
 "}
 (155,1,1) = {"
@@ -32735,79 +32735,79 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+al
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+al
 aa
 "}
 (156,1,1) = {"
@@ -32937,79 +32937,79 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
+al
 aa
 "}
 (157,1,1) = {"
