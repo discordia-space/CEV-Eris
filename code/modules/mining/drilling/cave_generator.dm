@@ -279,6 +279,10 @@
 /obj/cave_generator/proc/check_cooldown()
 	return world.time > (cave_time + CAVE_COOLDOWN)
 
+// Return remaining time to open a new cave
+/obj/cave_generator/proc/check_cooldown()
+	return cave_time + CAVE_COOLDOWN - world.time
+
 // Place the up and down ladders and connect them
 /obj/cave_generator/proc/place_ladders(drill_x, drill_y, drill_z, seismic_lvl)
 
