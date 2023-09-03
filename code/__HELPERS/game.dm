@@ -166,7 +166,7 @@
 				mobs[M] = TRUE
 
 		objs |= getHearersInRangeChunked(T, range)
-	*/
+	/*
 	
 	for(var/obj in GLOB.hearing_objects)
 		if(get_turf(obj) in hearturfs)
