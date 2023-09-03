@@ -91,12 +91,13 @@
 
 		messageturfs += turf
 
-
-
+	
+	
 	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
 		if(!M.client)
 			continue
 		messagemobs += M
+
 	for(var/mob/ghosty in GLOB.player_ghost_list)
 		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
 			messagemobs |= ghosty
