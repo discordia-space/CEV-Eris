@@ -279,7 +279,6 @@ var/list/channel_to_radio_key = new
 				listening |= M
 				continue //To avoid seeing BOTH normal message and quiet message
 			else if(M.locs.len && (M.locs[1] in hear_falloff))
-			else
 				listening_falloff |= M
 
 			for(var/obj in GLOB.hearing_objects)
