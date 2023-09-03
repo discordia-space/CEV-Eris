@@ -566,12 +566,6 @@
 	icon = 'icons/obj/burrows.dmi'
 	icon_state = "maint_hole"
 
-/obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
-	if(M.pulling)
-		to_chat(M, SPAN_NOTICE("The hole is too narrow to enter while pulling something."))
-		return
-	. = ..()
-
 /obj/structure/multiz/ladder/up/cave
 	name = "cave network exit"
 
