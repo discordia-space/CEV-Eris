@@ -1,0 +1,4 @@
+author: Firefox13
+delete-after: true
+changes:
+  - bugfix: fixed people not hearing local things
