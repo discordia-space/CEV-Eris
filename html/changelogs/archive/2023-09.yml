@@ -14,3 +14,8 @@
 2023-09-03:
   intercepti0n:
   - refactor: converted stats Ui to TGUI.
+2023-09-04:
+  Firefox13:
+  - bugfix: fixed people not hearing local things
+  - bugfix: chat broke fixed again
+  - bugfix: fixed chat bug (again)
