@@ -35,9 +35,9 @@
 	icon_state = "stunrevolver"
 	item_state = "stunrevolver"
 	fire_sound = 'sound/weapons/Gunshot.ogg'
-	can_dual = TRUE
+	can_dual = FALSE
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	charge_cost = 50
+	charge_cost = 100
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6, MATERIAL_SILVER = 2)
 	price_tag = 1500
 	suitable_cell = /obj/item/cell/small
@@ -45,6 +45,7 @@
 	projectile_type = /obj/item/projectile/energy/electrode
 	init_recoil = HANDGUN_RECOIL(1)
 	serial_type = "NT"
+
 
 /obj/item/gun/energy/stunrevolver/moebius
 	name = "ML SP \"Suez\""	//Ersatz name
