@@ -53,7 +53,9 @@
 		"Mining Gear" = list(
 			/obj/machinery/mining/deep_drill,
 			/obj/item/tool/pickaxe,
-			/obj/item/tool/pickaxe/excavation
+			/obj/item/tool/pickaxe/excavation,
+			/obj/item/storage/bag/ore,
+			/obj/structure/ore_box
 		),
 		"Toys" = list(
 			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50), null),
