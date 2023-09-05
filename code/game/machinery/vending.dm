@@ -1606,7 +1606,7 @@
 	name = "From Serbia with love"
 	desc = "How did this end up here?"
 	icon_state = "serbomat"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem.;Our ERPs are definitely free of food additives and totally not laced to the brim with harmful chems. Try it out!."
+	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem.;Our ERPs are definitely free of food additives and totally not laced to the brim with harmful chems. Try it out!"
 	products = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 60, // ghetto antihacking, have fun
 					/obj/item/storage/deferred/crate/uniform_green = 4,

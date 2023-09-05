@@ -252,7 +252,7 @@
 					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger.\n\
 					To find out why, turn on debug mode in the storyteller panel and try again. \n\
 					You can also try to bypass the requirement and force it anyway, but this is unlikely to work\n \
-					 Would you like to force it anyway?.", "Force Event? ", "yes", "no")
+					 Would you like to force it anyway?", "Force Event? ", "yes", "no")
 					if (answer == "no")
 						return
 

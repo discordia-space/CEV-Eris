@@ -63,7 +63,7 @@
 		affected = H.organs_by_name[organ]
 
 		if(!affected)
-			to_chat(user, SPAN_WARNING("[H] is missing that body part!."))
+			to_chat(user, SPAN_WARNING("[H] is missing that body part!"))
 			return
 
 		if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))

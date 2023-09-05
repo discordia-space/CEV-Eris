@@ -20,7 +20,7 @@
 	name = "Shield Diffuser"
 	item_cost = 4
 	path = /obj/item/device/shield_diffuser
-	desc = "A handheld device that disrupts shields, allowing you to effortlessly pass through. Be sure to bring some spare power cells!."
+	desc = "A handheld device that disrupts shields, allowing you to effortlessly pass through. Be sure to bring some spare power cells!"
 
 /datum/uplink_item/item/tools/money
 	name = "Operations Funding"

@@ -450,7 +450,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			candidates -= target
 			continue
 		targets += target
-	desc = "Activate propaganda chips in 3 different areas: [english_list(targets, and_text = " or ")] and let them spread the revolution!."
+	desc = "Activate propaganda chips in 3 different areas: [english_list(targets, and_text = " or ")] and let them spread the revolution!"
 	..()
 
 /datum/antag_contract/excel/propaganda/can_place()

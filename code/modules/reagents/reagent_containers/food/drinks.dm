@@ -291,7 +291,7 @@
 	center_of_mass = "x=16;y=7"
 
 /obj/item/reagent_containers/food/drinks/flask
-	name = "Captain's Flask"
+	name = "captain's flask"
 	desc = "A metal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
@@ -308,7 +308,7 @@
 	icon_state = "lithiumflask"
 
 /obj/item/reagent_containers/food/drinks/flask/detflask
-	name = "Inspector's Flask"
+	name = "inspector's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the inspector."
 	icon_state = "detflask"
 	volume = 60
