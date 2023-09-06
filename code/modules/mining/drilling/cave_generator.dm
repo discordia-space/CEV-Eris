@@ -351,7 +351,7 @@
 // Initiate the collapse countdown
 /obj/cave_generator/proc/initiate_collapse()
 	if(status != CAVE_OPENED)
-			return
+		return
 
 	status = CAVE_COLLAPSING
 	cave_collapse_time = world.time + CAVE_COLLAPSE
