@@ -357,22 +357,29 @@
 	cave_collapse_time = world.time + CAVE_COLLAPSE
 
 	// Warn miners so that they have time to get out
-	collapse_warning()
+	collapse_warning(TRUE)
 
 	// You better be out when this is called
 	addtimer(CALLBACK(src, PROC_REF(collapse)), CAVE_COLLAPSE)
 
 // Display a message to everyone in the cave
-/obj/cave_generator/proc/collapse_warning()
+/obj/cave_generator/proc/collapse_warning(first_warning = FALSE)
 
 	var/minutes_remaining = round((cave_collapse_time - world.time) / (1 MINUTES))
-	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
-		if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
-			to_chat(M, SPAN_WARNING("Warning: cave collapse initiated!\nYou have [minutes_remaining] minutes left to exit!"))
+	if(first_warning)
+		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
+			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
+				to_chat(M, SPAN_WARNING("WARNING: Cave collapse protocol has been engaged. \
+										The cave will collapse in T-[minutes_remaining] minutes. \
+										Miners, evacuate as many precious minerals as possible!"))
+	else
+		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
+			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
+				to_chat(M, SPAN_WARNING("WARNING: Cave collapse in T-[minutes_remaining]. Remember, the Guild is counting on this haul!"))
 
-	// Call again in 1 minute
-	if(cave_collapse_time - world.time > 1.5 MINUTE)
-		addtimer(CALLBACK(src, PROC_REF(collapse_warning)), 1 MINUTE)
+	// Call again in 30 seconds
+	if(cave_collapse_time - world.time > 45 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(collapse_warning)), 30 SECONDS)
 
 // Collapse the cave system and clean it
 /obj/cave_generator/proc/collapse()
