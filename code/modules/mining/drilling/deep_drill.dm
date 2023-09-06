@@ -268,10 +268,12 @@
 				else
 					var/turf/simulated/T = get_turf(loc)
 					cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
+					update_icon()
 			else
 				log_and_message_admins("[key_name(user)] has collapsed an active cave system.")
 				cave_gen.remove_ladders()
 				cave_connected = FALSE
+				update_icon()
 
 			/* // Only if on mother load
 			active = !active
@@ -296,7 +298,7 @@
 /obj/machinery/mining/deep_drill/update_icon()
 	if(need_player_check)
 		icon_state = "mining_drill_error"
-	else if(active)
+	else if(active || cave_connected)
 		icon_state = "mining_drill_active"
 	else
 		icon_state = "mining_drill"
