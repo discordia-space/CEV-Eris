@@ -516,7 +516,7 @@
 
 	var/list/cave_content = get_area_contents(/area/asteroid/cave)
 	for (var/atom/movable/A in cave_content)
-		if(isturf(A) || istype(A, /obj/cave_generator))
+		if(isturf(A) || istype(A, /obj/cave_generator || istype(A, /atom/movable/lighting_overlay)))
 			continue
 		else if(!(A.type in blacklist))
 			qdel(A)
@@ -663,11 +663,13 @@
 /obj/structure/multiz/ladder/cave_hole/attackby(obj/item/I, mob/user)
 	if(!cave_gen || cave_gen.status != CAVE_OPENED)
 		to_chat(user, SPAN_NOTICE("\The cave system is not opened yet."))
+		return
 	. = ..()
 
 /obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
 	if(!cave_gen || cave_gen.status != CAVE_OPENED)
 		to_chat(M, SPAN_NOTICE("\The cave system is not opened yet."))
+		return
 	. = ..()
 
 /obj/structure/multiz/ladder/up/cave
