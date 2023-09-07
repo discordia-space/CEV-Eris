@@ -10118,6 +10118,11 @@
 	pixel_y = 32
 	},
 /obj/machinery/camera/network/third_section,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "ayF" = (
@@ -10371,16 +10376,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/eris/maintenance/disposal)
-"azn" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/firedoor,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating,
-/area/eris/neotheology/bioreactor)
 "azo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11430,11 +11425,6 @@
 "aBN" = (
 /obj/structure/bed/chair{
 	dir = 1
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
@@ -25191,13 +25181,15 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/maintenance/section3deck1central)
 "bil" = (
+/obj/machinery/door/firedoor,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/bioreactor)
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating,
+/area/eris/crew_quarters/hydroponics)
 "bim" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -26434,16 +26426,16 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bkR" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
@@ -27088,11 +27080,6 @@
 	pixel_x = -32
 	},
 /obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/sorter)
 "bmr" = (
@@ -35506,6 +35493,11 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/trunk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bGH" = (
@@ -35762,10 +35754,20 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "bHq" = (
 /obj/machinery/smartfridge/seeds,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bHr" = (
@@ -39869,6 +39871,11 @@
 /area/eris/maintenance/section3deck5port)
 "bQb" = (
 /obj/machinery/seed_extractor,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "bQc" = (
@@ -39904,6 +39911,11 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 27
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
@@ -40021,10 +40033,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
-"bQx" = (
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/churchcorridor)
 "bQz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -40042,6 +40050,11 @@
 /obj/structure/sign/faction/neotheology_cross/gold{
 	pixel_y = 32
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "bQB" = (
@@ -40054,13 +40067,18 @@
 /obj/item/device/radio/intercom{
 	pixel_y = 24
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "bQF" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
@@ -41734,10 +41752,6 @@
 /area/eris/maintenance/section1deck2central)
 "bUY" = (
 /obj/machinery/power/nt_obelisk,
-/obj/structure/sign/biohazard{
-	desc = "BIOHAZARD. Toxic biomatter in this area.";
-	pixel_x = -32
-	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "bUZ" = (
@@ -43802,10 +43816,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4starboard)
 "car" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/structure/sign/biohazard{
+	desc = "BIOHAZARD. Toxic biomatter in this area.";
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
@@ -43820,14 +43833,6 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/biogenerator)
-"cat" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/churchcorridor)
 "cau" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp/green,
@@ -44265,15 +44270,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/turret_protected/ai)
-"cbF" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/bioreactor)
 "cbG" = (
 /obj/machinery/door/window{
 	name = "AI Core Door";
@@ -45824,11 +45820,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/tech)
 "cfb" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
@@ -46009,11 +46000,6 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbay)
 "cfv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "cfw" = (
@@ -46282,11 +46268,6 @@
 /obj/structure/sign/biohazard{
 	desc = "BIOHAZARD. Toxic biomatter in this area.";
 	pixel_x = 32
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
@@ -59557,11 +59538,6 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "cOu" = (
@@ -63603,11 +63579,6 @@
 /area/eris/maintenance/section1deck2central)
 "cYR" = (
 /obj/machinery/door/firedoor,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/door/holy,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
@@ -63638,15 +63609,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
-"cYU" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/sorter)
 "cYV" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -67288,6 +67250,11 @@
 /area/eris/maintenance/section3deck3port)
 "dhi" = (
 /obj/machinery/power/nt_obelisk,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics)
 "dhj" = (
@@ -73255,6 +73222,15 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/sign/biohazard{
+	desc = "BIOHAZARD. Toxic biomatter in this area.";
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "duX" = (
@@ -75290,10 +75266,10 @@
 /turf/simulated/wall/r_wall,
 /area/eris/maintenance/section1deck2central)
 "dAg" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/eris/neotheology/bioreactor)
+/obj/machinery/door/holy,
+/turf/simulated/floor/tiled/techmaint_cargo,
+/area/eris/crew_quarters/hydroponics)
 "dAh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -81710,11 +81686,6 @@
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
-"dQz" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/eris/neotheology/biogenerator)
 "dQA" = (
 /obj/structure/railing{
 	dir = 4
@@ -85756,6 +85727,11 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "eaP" = (
@@ -85769,12 +85745,22 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "eaQ" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/machinery/firealarm{
 	pixel_y = 28
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
@@ -102823,9 +102809,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/sign/biohazard{
-	desc = "BIOHAZARD. Toxic biomatter in this area.";
-	pixel_x = -32
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
@@ -103283,18 +103270,6 @@
 /obj/item/storage/bag/produce,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
-"nQX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
-/area/eris/neotheology/churchcorridor)
 "nQZ" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor/tiled/steel/monofloor,
@@ -106621,7 +106596,7 @@
 /area/eris/neotheology/office)
 "vPW" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/smartfridge/chemistry,
+/obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/hydroponics)
 "vRG" = (
@@ -123129,9 +123104,9 @@ yjh
 can
 cbR
 cbR
-dQz
+cbR
 cxC
-dQz
+cbR
 cbR
 cbR
 cbR
@@ -123337,7 +123312,7 @@ duW
 mGO
 eaO
 xUk
-nQX
+ybE
 ybE
 gqH
 byF
@@ -123533,13 +123508,13 @@ ceU
 aHP
 can
 bVb
-cat
+cdS
 cAs
 dyO
 dUD
 eaP
 esT
-bQx
+cdS
 cdS
 sug
 bZO
@@ -123734,14 +123709,14 @@ alg
 ceU
 aKO
 bBJ
-cEa
-cat
-cAH
 cdS
+cEa
+cAH
+cEa
 eBl
-cgn
+bil
 azt
-eBl
+vPW
 vPW
 hfc
 bZO
@@ -123937,9 +123912,9 @@ aCn
 aCn
 aCn
 aCn
-azn
+aCn
 cCh
-dAg
+aCn
 aCn
 dhi
 bpV
@@ -124139,7 +124114,7 @@ btg
 aNS
 bBS
 bVh
-bil
+btg
 cCo
 btg
 aCn
@@ -124341,7 +124316,7 @@ avO
 btg
 bBT
 bVk
-cbF
+bVk
 cCz
 bts
 aCn
@@ -125351,7 +125326,7 @@ ayu
 btg
 btg
 btg
-bil
+btg
 cMs
 bTW
 aCn
@@ -125958,9 +125933,9 @@ atu
 bEb
 aCn
 chs
-cYU
+oHP
 bmq
-fuR
+dAg
 bQF
 bTc
 bYZ
