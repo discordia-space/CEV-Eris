@@ -332,7 +332,7 @@
 			clean_turfs(locate(drill_x, drill_y - 1, drill_z)) // Clean the map for next generation
 			cave_time = world.time
 			status = CAVE_CLOSED
-			return FALSE
+			return
 
 		// Place the up ladder on free spot
 		ladder_up = new /obj/structure/multiz/ladder/up/cave(locate(x + res[2], y + res[3], z))
