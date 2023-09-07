@@ -11,7 +11,7 @@
 	nitrogen = 0
 	opacity = 1
 	density = TRUE
-	layer = EDGED_TURF_LAYER
+	layer = CLOSED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C
 
@@ -27,7 +27,7 @@
 	nitrogen = 23
 	opacity = 1
 	density = TRUE
-	layer = EDGED_TURF_LAYER
+	layer = CLOSED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C
 	var/mined_turf = /turf/simulated/floor/asteroid/cave

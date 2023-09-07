@@ -306,7 +306,7 @@
 
 // Return remaining time to open a new cave
 /obj/cave_generator/proc/remaining_cooldown()
-	return round((cave_time + CAVE_COOLDOWN - world.time) / (1 MINUTES))
+	return round((cave_time + CAVE_COOLDOWN - world.time) / (1 MINUTES), 0.5)
 
 // Place the up and down ladders and connect them
 /obj/cave_generator/proc/place_ladders(drill_x, drill_y, drill_z, seismic_lvl)
@@ -365,7 +365,7 @@
 // Display a message to everyone in the cave
 /obj/cave_generator/proc/collapse_warning(first_warning = FALSE)
 
-	var/minutes_remaining = round((cave_collapse_time - world.time) / (1 MINUTES))
+	var/minutes_remaining = round((cave_collapse_time - world.time) / (1 MINUTES), 0.5)
 	if(first_warning)
 		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
 			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
@@ -375,7 +375,7 @@
 	else
 		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
 			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
-				to_chat(M, SPAN_WARNING("WARNING: Cave collapse in T-[minutes_remaining]. Remember, the Guild is counting on this haul!"))
+				to_chat(M, SPAN_WARNING("WARNING: Cave collapse in T-[minutes_remaining] minutes. Remember, the Guild is counting on this haul!"))
 
 	// Call again in 30 seconds
 	if(cave_collapse_time - world.time > 45 SECONDS)
@@ -516,8 +516,7 @@
 
 	var/list/cave_content = get_area_contents(/area/asteroid/cave)
 	for (var/atom/movable/A in cave_content)
-		if(isturf(A))
-			log_world("Skipping turf [A.type]")
+		if(isturf(A) || istype(A, /obj/cave_generator))
 			continue
 		else if(!(A.type in blacklist))
 			qdel(A)
