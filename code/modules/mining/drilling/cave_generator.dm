@@ -663,7 +663,7 @@
 
 /obj/structure/multiz/ladder/cave_hole/attackby(obj/item/I, mob/user)
 	if(!cave_gen || cave_gen.status != CAVE_OPENED)
-		to_chat(M, SPAN_NOTICE("\The cave system is not opened yet."))
+		to_chat(user, SPAN_NOTICE("\The cave system is not opened yet."))
 	. = ..()
 
 /obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
