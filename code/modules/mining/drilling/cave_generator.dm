@@ -525,6 +525,15 @@
 			if(!isobserver(A))
 				log_and_message_admins("[A] has been moved to [admin_jump_link(dump, src)] to avoid deletion in cave collapse.")
 
+	// Clean up shards and rods created when girders and windows are deleted at previous step
+	var/list/cave_content = get_area_contents(/area/asteroid/cave)
+	for (var/atom/movable/A in cave_content)
+		if(isturf(A) || istype(A, /obj/cave_generator || istype(A, /atom/movable/lighting_overlay)))
+			continue
+		else if(!(A.type in blacklist))
+			qdel(A)
+		// No need to do forcemove since everything relevant is already displaced
+
 
 /obj/cave_generator/proc/place_turfs(seismic_lvl)
 

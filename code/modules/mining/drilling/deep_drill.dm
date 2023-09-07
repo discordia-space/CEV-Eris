@@ -270,7 +270,7 @@
 				else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
 					to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
 				else if(!cave_gen.check_cooldown())
-					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system.\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
+					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
 				else
 					var/turf/simulated/T = get_turf(loc)
 					cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
