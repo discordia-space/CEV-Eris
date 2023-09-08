@@ -50186,9 +50186,9 @@
 /area/eris/maintenance/section3deck4central)
 "cqk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/sortjunction/flipped{
+	dir = 8;
+	sortType = list("Club")
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
@@ -50650,9 +50650,9 @@
 	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/structure/disposalpipe/junction{
+/obj/structure/disposalpipe/sortjunction/flipped{
 	dir = 1;
-	icon_state = "pipe-j2"
+	sortType = list("Church","Preacher Office","Club")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
@@ -56228,7 +56228,7 @@
 	},
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/sortjunction/flipped{
-	sortType = list("Church","Guild Desk","Preacher Office","Merchant Office")
+	sortType = list("Guild Desk","Merchant Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
@@ -94044,6 +94044,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
 "evn" = (
@@ -96875,11 +96876,11 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/engineering/propulsion/left)
 "eBu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/firealarm{
 	pixel_y = 28
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
@@ -100102,6 +100103,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/quartermaster/hangarsupply)
+"gWL" = (
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/simulated/floor/hull,
+/area/space)
 "gWZ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/firealarm{
@@ -100721,6 +100726,18 @@
 	},
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/storage)
+"ipl" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/hydroponics/garden)
 "iun" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -102935,13 +102952,14 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "nNg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 8;
+	icon_state = "pipe-j2"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
@@ -103303,8 +103321,7 @@
 /area/eris/neotheology/churchbarracks)
 "oOP" = (
 /obj/structure/disposalpipe/junction{
-	dir = 4;
-	icon_state = "pipe-j2"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
@@ -201297,7 +201314,7 @@ duI
 duI
 ccz
 cAh
-abF
+gWL
 aCM
 aMP
 aDb
@@ -201690,7 +201707,7 @@ nNg
 evl
 evl
 evl
-evl
+ipl
 lSm
 fBM
 ldW
