@@ -60,7 +60,7 @@
 		fail("[T.name]\'s mutated flesh rejects your will.", user, C)
 		return FALSE
 
-	to_chat(T, SPAN_NOTICE("You feel better as your pain eases, although still lightheaded.."))
+	to_chat(T, SPAN_NOTICE("You feel better as your pain eases, although still lightheaded."))
 	to_chat(user, SPAN_NOTICE("You ease the pain of [T.name]."))
 
 	T.reagents.add_reagent("deusblessing", 15)
