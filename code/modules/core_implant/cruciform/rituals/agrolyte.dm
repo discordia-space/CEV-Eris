@@ -47,7 +47,7 @@
 /datum/ritual/cruciform/agrolyte/mercy
 	name = "Hand of mercy"
 	phrase = "Non est verus dolor."
-	desc = "Relieves the pain of a person in front of you. More impactful than one applies to oneself."
+	desc = "Relieves the pain of a person in front of you. More impactful than the Relief litany applied to oneself."
 	power = 5
 
 /datum/ritual/cruciform/agrolyte/mercy/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
