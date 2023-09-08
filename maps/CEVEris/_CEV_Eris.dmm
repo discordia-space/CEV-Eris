@@ -55197,6 +55197,10 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/eris/neotheology/office)
 "cDa" = (
@@ -56123,9 +56127,6 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck4starboard)
 "cFo" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
@@ -99839,7 +99840,6 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
 "gnx" = (
-/obj/machinery/light,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/button/remote/blast_door{
 	dir = 4;
@@ -103592,6 +103592,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/crew_quarters/fitness)
+"pwe" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/mug/new_nt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/golden,
+/area/eris/neotheology/chapelritualroom)
 "pxg" = (
 /obj/spawner/closet,
 /turf/simulated/floor/tiled/techmaint,
@@ -103827,6 +103835,10 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
 /turf/simulated/floor/wood,
 /area/eris/neotheology/storage)
 "qet" = (
@@ -104570,9 +104582,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/firealarm{
-	pixel_y = 28
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
@@ -106117,6 +106126,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/eris/neotheology/office)
@@ -163121,7 +163133,7 @@ cIS
 cIS
 aaa
 hQD
-vGD
+pwe
 pHi
 rBd
 hQD
