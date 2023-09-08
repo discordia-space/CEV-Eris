@@ -49,6 +49,7 @@
 
 /obj/item/mine/old/armed
 	armed = TRUE
+	anchored = TRUE
 	deployed = TRUE
 	rarity_value = 55
 	spawn_frequency = 10
@@ -66,6 +67,7 @@
 
 /obj/item/mine/improv/armed
 	armed = TRUE
+	anchored = TRUE
 	deployed = TRUE
 	rarity_value = 44
 	spawn_frequency = 10
@@ -96,13 +98,13 @@
 	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("you begin deploying \the [src]!")
+			SPAN_DANGER("You begin deploying \the [src]!")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("you have deployed \the [src]!")
+				SPAN_DANGER("You have deployed \the [src]!")
 				)
 
 			deployed = TRUE
