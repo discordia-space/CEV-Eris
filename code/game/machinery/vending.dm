@@ -1469,7 +1469,7 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(/obj/item/clothing/suit/storage/toggle/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/device/flash = 4,
-					/obj/item/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/health = 3,
+					/obj/item/cell/large = 1, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/health = 3,
 					/obj/item/tool/scalpel = 2,/obj/item/tool/saw/circular = 2,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/tool/screwdriver = 5,/obj/item/tool/crowbar = 5)
 	auto_price = FALSE
