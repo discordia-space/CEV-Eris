@@ -1,0 +1,7 @@
+author: Firefox13
+delete-after: true
+changes:
+  - bugfix: Spriteless swimsuit parent item shouldn't appear anymore
+  - spellcheck: Fixed multiple uppercases where there should be lowercases across
+      some items and prompts
+  - spellcheck: Fixed extra punctuation (?.) in some decriptions
