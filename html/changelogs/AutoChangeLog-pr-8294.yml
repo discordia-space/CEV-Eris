@@ -1,5 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - bugfix: Roundstart mines can no longer be pulled around.
-  - spellcheck: Fixed a typo in mine deployment message.

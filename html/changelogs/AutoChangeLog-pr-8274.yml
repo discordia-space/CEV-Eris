@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - tweak: Playtime requirements work off total playtime now instead of departament
-      based.

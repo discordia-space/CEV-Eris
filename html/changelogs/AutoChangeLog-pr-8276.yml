@@ -1,4 +1,0 @@
-author: LenSkozzy
-delete-after: true
-changes:
-  - rscadd: Added comments to deepmaint/proc/makeNiche, findNicheTurfs, and checkForWalls.
