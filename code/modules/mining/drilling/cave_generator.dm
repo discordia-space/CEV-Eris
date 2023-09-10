@@ -344,6 +344,9 @@
 		ladder_down.target = ladder_up
 		ladder_up.target = ladder_down
 
+		// Link with cave gen
+		ladder_down.cave_gen = src
+
 		status = CAVE_OPENED
 
 	return TRUE
@@ -670,14 +673,14 @@
 	. = ..()
 
 /obj/structure/multiz/ladder/cave_hole/attackby(obj/item/I, mob/user)
-	if(!cave_gen || cave_gen.status != CAVE_OPENED)
-		to_chat(user, SPAN_NOTICE("\The cave system is not opened yet."))
+	if(!cave_gen || !((cave_gen.status == CAVE_OPENED) || (cave_gen.status == CAVE_COLLAPSING)))
+		to_chat(user, SPAN_NOTICE("The cave system is not opened yet."))
 		return
 	. = ..()
 
 /obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
-	if(!cave_gen || cave_gen.status != CAVE_OPENED)
-		to_chat(M, SPAN_NOTICE("\The cave system is not opened yet."))
+	if(!cave_gen || !((cave_gen.status == CAVE_OPENED) || (cave_gen.status == CAVE_COLLAPSING)))
+		to_chat(M, SPAN_NOTICE("The cave system is not opened yet."))
 		return
 	. = ..()
 
