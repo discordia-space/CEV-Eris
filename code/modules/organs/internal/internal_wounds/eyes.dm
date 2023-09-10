@@ -14,3 +14,4 @@
 
 /datum/component/internal_wound/organic/eyes/iris //iris hehehehe 
     name = "iris tears"
+    
