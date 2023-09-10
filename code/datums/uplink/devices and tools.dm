@@ -407,7 +407,7 @@
 /datum/uplink_item/item/tools/blitz_flash_resist
 	name = "Blitzshell Flash Resistance"
 	desc = "Activates the embedded flash reflection module."
-	item_cost = 1
+	item_cost = 8
 	antag_roles = list(ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/blitz_flash_resist/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
@@ -422,7 +422,7 @@
 /datum/uplink_item/item/tools/blitz_parkour
 	name = "Blitzshell Wall-Scaling Module"
 	desc = "Activates the embedded wall-scaling module."
-	item_cost = 1
+	item_cost = 20
 	antag_roles = list(ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/blitz_parkour/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
