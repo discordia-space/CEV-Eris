@@ -229,6 +229,13 @@
 	path = /obj/item/device/mental_imprinter
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
+/datum/uplink_item/item/tools/mindreader
+	name = "Mindreader"
+	desc = "Place on your victim's head to extract memories from their brain after a mental breakdown."
+	item_cost = 20
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	path = /obj/item/clothing/head/mindreader
+
 //********** Blitzshell unique uplink items **********//
 
 /datum/uplink_item/item/tools/blitz_hp_upgrade
@@ -380,7 +387,7 @@
 		var/mob/living/silicon/robot/drone/blitzshell/BS = new /mob/living/silicon/robot/drone/blitzshell(loc)
 		BS.request_player()
 	return 1
-
+/* DOES NOT WORK
 /datum/uplink_item/item/tools/blitz_harpoon
 	name = "Blitzshell Blue Space Harpoon"
 	desc = "Activates the embedded bluespace harpoon."
@@ -395,10 +402,34 @@
 			return
 		BS.module.modules += new /obj/item/bluespace_harpoon/mounted/blitz(BS.module)
 		return TRUE
+*/
 
-/datum/uplink_item/item/tools/mindreader
-	name = "Mindreader"
-	desc = "Place on your victim's head to extract memories from their brain after a mental breakdown."
-	item_cost = 20
-	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
-	path = /obj/item/clothing/head/mindreader
+/datum/uplink_item/item/tools/blitz_flash_resist
+	name = "Blitzshell Flash Resistance"
+	desc = "Activates the embedded flash reflection module."
+	item_cost = 1
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_flash_resist/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(BS.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
+			to_chat(BS, SPAN_WARNING("You already have flash reflection installed."))
+			return
+		BS.AddTrait(CYBORG_TRAIT_FLASH_RESISTANT)
+		return TRUE
+
+/datum/uplink_item/item/tools/blitz_parkour
+	name = "Blitzshell Wall-Scaling Module"
+	desc = "Activates the embedded wall-scaling module."
+	item_cost = 1
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/tools/blitz_parkour/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(BS.HasTrait(CYBORG_TRAIT_PARKOUR))
+			to_chat(BS, SPAN_WARNING("You already have embedded wall-scaling installed."))
+			return
+		BS.AddTrait(CYBORG_TRAIT_PARKOUR)
+		return TRUE
