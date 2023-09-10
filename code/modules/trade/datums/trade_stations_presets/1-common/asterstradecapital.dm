@@ -53,7 +53,9 @@
 		"Mining Gear" = list(
 			/obj/machinery/mining/deep_drill,
 			/obj/item/tool/pickaxe,
-			/obj/item/tool/pickaxe/excavation
+			/obj/item/tool/pickaxe/excavation,
+			/obj/item/storage/bag/ore,
+			/obj/structure/ore_box
 		),
 		"Toys" = list(
 			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50), null),
@@ -115,11 +117,9 @@
 		),
 		"IKEA crates" = list(
 		/obj/item/machinery_crate/crafting_station = custom_good_price(700),
-		/obj/item/machinery_crate/autholate = custom_good_price(600),
+		/obj/item/machinery_crate/autolathe = custom_good_price(600),
 		/obj/item/machinery_crate/pacman = custom_good_price(700),
-		/obj/item/machinery_crate/recharger = custom_good_price(700),
-		/obj/item/machinery_crate/beer_dispenser = custom_good_price(600),
-		/obj/item/machinery_crate/soda_dispenser = custom_good_price(600)
+		/obj/item/machinery_crate/recharger = custom_good_price(700)
 		)
 	)
 	hidden_inventory = list(

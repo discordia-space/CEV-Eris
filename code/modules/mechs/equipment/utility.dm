@@ -402,7 +402,7 @@
 								for(var/obj/item/ore/ore in range(T,1))
 									if(get_dir(owner,ore)&owner.dir)
 										ore.Move(ore_box)
-
+								to_chat(user, SPAN_NOTICE("The drill automatically loaded the ore into the ore box."))
 					playsound(src, 'sound/weapons/rapidslice.ogg', 50, 1)
 
 			else

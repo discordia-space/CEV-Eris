@@ -21,12 +21,14 @@
 	possible_objectives = list()
 	survive_objective = null
 
+//Experienced, battle-tested mercenaries should be at least as strong as a round start Ironhammer Commander.
 	stat_modifiers = list(
-		STAT_ROB = 30,
-		STAT_TGH = 30,
-		STAT_VIG = 30,
+		STAT_ROB = 40,
+		STAT_TGH = 40,
+		STAT_VIG = 40,
 		STAT_BIO = 10,
-		STAT_MEC = 20
+		STAT_MEC = 20,
+		STAT_COG = 20
 	)
 
 	perks = list(PERK_SURVIVOR, PERK_CODESPEAK_SERB)

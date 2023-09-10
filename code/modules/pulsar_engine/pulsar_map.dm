@@ -83,7 +83,7 @@
 			if(O.type == /obj/effect/pulsar_beam)
 				beam_collision = TRUE
 				if(!crash_timer_id)
-					radio.autosay("WARNING: COLLISION WITH RADIATION BEAMS IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
+					radio.autosay("WARNING: collision with radiation beams imminent! ETA: 3 minutes!", "Pulsar Monitor", "Engineering", TRUE)
 					crash_timer_id = addtimer(CALLBACK(src, .proc/crash_into_beam), 3 MINUTES, TIMER_STOPPABLE)
 		if(!beam_collision)
 			stop_rad_storm()
@@ -106,7 +106,7 @@
 /obj/effect/pulsar_ship/proc/try_overcharge(start = TRUE)
 	if(start && !block_events)
 		if(!overcharge_timer_id)
-			radio.autosay("WARNING: PULSAR OVERCHARGE IMMINENT! ETA: 3 MINUTES!", "Pulsar Monitor", "Engineering", TRUE)
+			radio.autosay("WARNING: pulsar overcharge imminent! ETA: 3 minutes!", "Pulsar Monitor", "Engineering", TRUE)
 			overcharge_timer_id = addtimer(CALLBACK(src, .proc/overcharge), 3 MINUTES, TIMER_STOPPABLE)
 	else 
 		if(overcharge_timer_id)

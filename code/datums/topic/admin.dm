@@ -766,7 +766,7 @@
 	if(!ismob(M))
 		to_chat(usr, "this can only be used on instances of type /mob")
 
-	var/speech = input("What will [key_name(M)] say?.", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins. //don't trust your admins.
+	var/speech = input("What will [key_name(M)] say?", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins. //don't trust your admins.
 	if(!speech)
 		return
 	M.say(speech)

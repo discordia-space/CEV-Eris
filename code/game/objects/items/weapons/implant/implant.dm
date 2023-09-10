@@ -23,6 +23,10 @@
 
 /obj/item/implant/attackby(obj/item/I, mob/user)
 	..()
+	if(istype(I, /obj/item/implanter/installer))
+		to_chat(user, SPAN_NOTICE("You cannot insert implants into a cybernetic applicator."))
+		return
+
 	if(istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
 		if(is_external())
@@ -59,7 +63,7 @@
 		affected = H.organs_by_name[organ]
 
 		if(!affected)
-			to_chat(user, SPAN_WARNING("[H] is missing that body part!."))
+			to_chat(user, SPAN_WARNING("[H] is missing that body part!"))
 			return
 
 		if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))

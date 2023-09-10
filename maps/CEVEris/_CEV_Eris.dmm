@@ -29732,6 +29732,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/railing{
+	anchored = 1;
+	dir = 4;
+	icon_state = "railing0";
+	tag = "icon-railing0 (EAST)"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bsW" = (
@@ -41598,7 +41604,7 @@
 /area/eris/maintenance/section3deck3port)
 "bUK" = (
 /obj/item/reagent_containers/spray/cleaner,
-/obj/structure/closet/custodial,
+/obj/structure/closet/secure_closet/custodial,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "bUL" = (
@@ -93031,10 +93037,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
-"esM" = (
-/obj/structure/railing,
-/turf/space,
-/area/eris/maintenance/section4deck4port)
 "esN" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -100155,10 +100157,10 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck4port)
 "hbk" = (
-/obj/structure/closet/acolyte,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/structure/closet/secure_closet/acolyte,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "hbQ" = (
@@ -100323,10 +100325,10 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "hug" = (
-/obj/structure/closet/acolyte,
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/acolyte,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "huE" = (
@@ -101571,10 +101573,10 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemstor)
 "koc" = (
-/obj/structure/closet/acolyte,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/acolyte,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "ksh" = (
@@ -104836,10 +104838,10 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "sNY" = (
-/obj/structure/closet/acolyte,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/structure/closet/secure_closet/acolyte,
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/churchbarracks)
 "sOb" = (
@@ -106994,7 +106996,7 @@
 /turf/simulated/wall/r_wall,
 /area/eris/neotheology/chapel)
 "yll" = (
-/obj/structure/closet/secure_closet/personal/agrolyte,
+/obj/structure/closet/secure_closet/agrolyte,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 
@@ -165505,7 +165507,7 @@ epd
 tCA
 aaa
 bqj
-esM
+bsW
 bum
 bzK
 bDU

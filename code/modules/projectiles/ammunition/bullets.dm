@@ -455,6 +455,7 @@
 	icon_state = "baton-round"
 	spent_icon = "grenadeshell"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 2)
 	w_class = ITEM_SIZE_SMALL
 	caliber = CAL_GRENADE
 	is_caseless = TRUE
@@ -478,6 +479,7 @@
 	name = "NT SR \"Dard\""
 	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of details makes it ubiquitous."
 	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting/weak
+	matter = list(MATERIAL_STEEL = 5)
 	rarity_value = 10
 
 /obj/item/ammo_casing/grenade/blast
@@ -516,6 +518,7 @@
 			There\'s an inscription along the sides. \'For those who disbelieve, for them are cut out garments of fire, boiling water shall be poured over their heads.\'"
 	icon_state = "incendiary"
 	projectile_type = /obj/item/projectile/bullet/grenade/heatwave
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 20, MATERIAL_PLASMA = 1)
 	rarity_value = 40 // Neotheology
 
 //// Other ////
