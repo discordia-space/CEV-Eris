@@ -1,0 +1,8 @@
+#define VAULT_BALANCE "balance"
+#define VAULT_ITEMS "items"
+#define VAULT_ITEMS_DUBS "items_dubs"
+#define VAULT_PATRON "patron"
+#define VAULT_PATRON_0 "None"
+#define VAULT_PATRON_1 "Vagabond"
+#define VAULT_PATRON_2 "Guild Member"
+#define VAULT_PATRON_3 "Neotheology Patron"

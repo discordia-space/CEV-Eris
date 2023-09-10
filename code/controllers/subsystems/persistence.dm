@@ -39,6 +39,7 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/get_vault_account(player_ckey)
     if(!player_ckey)
         return
+    player_ckey = ckey(player_ckey)
     var/datum/player_vault/PV = vault_accounts[player_ckey]
     if(!PV)
         PV = new()
@@ -59,10 +60,10 @@ SUBSYSTEM_DEF(persistence)
         var/datum/player_vault/PV
         if(player_ckey in vault_accounts)
             PV = vault_accounts[player_ckey]
-            PV.load_from_list(vault_data[player_ckey])
+            PV.load_from_list(vault_data[player_ckey], player_ckey)
             return
         PV = new()
-        PV.load_from_list(vault_data[player_ckey])
+        PV.load_from_list(vault_data[player_ckey], player_ckey)
 
 /datum/controller/subsystem/persistence/proc/save_vault_json()
     var/list/player_data = list()

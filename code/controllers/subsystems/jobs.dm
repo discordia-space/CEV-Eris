@@ -649,21 +649,24 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 		for(var/thing in H.client.prefs.Gear())
 			var/datum/gear/G = gear_datums[thing]
 			if(G)
-				var/permitted = 1
+				var/permitted = TRUE
 				if(permitted)
 					if(G.allowed_roles)
 						if(job.title in G.allowed_roles)
-							permitted = 1
+							permitted = TRUE
 						else
-							permitted = 0
+							permitted = FALSE
 					else
-						permitted = 1
+						permitted = TRUE
 
 				if(G.whitelisted && (!(H.species.name in G.whitelisted)))
-					permitted = 0
+					permitted = FALSE
+
+				if(!G.is_allowed_to_equip(H))
+					permitted = FALSE
 
 				if(!permitted)
-					to_chat(H, "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>")
+					to_chat(H, "<span class='warning'>Your current job, whitelist status or vault configuration does not permit you to spawn with [thing]!</span>")
 					continue
 
 				if(!G.slot || G.slot == slot_accessory_buffer || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
