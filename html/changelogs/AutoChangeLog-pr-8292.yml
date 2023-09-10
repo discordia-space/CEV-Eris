@@ -1,4 +1,0 @@
-author: Hyperio
-delete-after: true
-changes:
-  - tweak: Shifted pulsar satellite position to avoid issues with pulsar overmap

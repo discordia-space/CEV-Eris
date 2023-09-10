@@ -38,3 +38,6 @@
   - tweak: NT Agrolyte's Pain Relief for others is now also a reagent, more powerful
       than the personal pain relief.
   - rscadd: Added Mining Satchel and Ore Crate to Asters' trade ship.
+2023-09-10:
+  Hyperio:
+  - tweak: Shifted pulsar satellite position to avoid issues with pulsar overmap
