@@ -10,6 +10,7 @@
 	station_drone = FALSE
 	eyecolor = null
 	ai_access = FALSE
+	local_transmit = 0 // Give these fellas at least the bare MINIMUM of RP capacity.
 
 /mob/living/silicon/robot/drone/blitzshell/updatename()
 	real_name = "\"Blitzshell\" assault drone ([rand(100,999)])"
