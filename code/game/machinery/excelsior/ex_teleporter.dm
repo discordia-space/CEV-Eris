@@ -390,7 +390,21 @@ var/global/excelsior_last_draft = 0
 	conscript.stats.setStat(STAT_VIG, 30)
 	conscript.stats.setStat(STAT_ROB, 30)
 	conscript.stats.setStat(STAT_MEC, 10)
-	conscript.stats.setStat(STAT_BIO, 10)
+	conscript.stats.setStat(STAT_BIO, 10)	
+	//randomize gender agnostic traits
+	var/conscript_hair_color = RANDOM_RGB //pick a random hair color for hair and facial hair
+	conscript.change_skin_tone(roll("1d8") * -10) //skintone randomization borrowed from corpse spawner. Increment by 10 to increase variance
+	conscript.change_hair(pick(GLOB.hair_styles_list)) //pick from hairstyles
+	conscript.change_hair_color(conscript_hair_color)
+	conscript.change_facial_hair_color(conscript_hair_color)
+	//set gender and gender specific traits
+	var/conscript_gender = pick(MALE, FEMALE)
+	if(conscript_gender == FEMALE) //defaults are MALE so set additional stuff for FEMALE
+		conscript.first_name = pick(GLOB.first_names_female)
+		conscript.tts_seed = TTS_SEED_DEFAULT_FEMALE //needs better way to get list of TTS by gender
+	else
+		conscript.change_facial_hair(pick(GLOB.facial_hair_styles_list)) //pick a random facial hair
+		conscript.tts_seed = TTS_SEED_DEFAULT_MALE
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
 	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())
