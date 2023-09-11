@@ -392,7 +392,7 @@ var/global/excelsior_last_draft = 0
 	conscript.stats.setStat(STAT_MEC, 10)
 	conscript.stats.setStat(STAT_BIO, 10)	
 	//randomize gender agnostic traits
-	var/conscript_hair_color = RANDOM_RGB //pick a random hair color for hair and facial hair
+	var/conscript_hair_color = rgb(25 * rand(3,8),25 * rand(1,3),25 * rand(1,3),rand(100,250)) //curated hair color
 	conscript.change_skin_tone(roll("1d10") * -10) //skintone randomization borrowed from corpse spawner. Increment by 10 to increase variance
 	conscript.change_hair(pick(GLOB.hair_styles_list)) //pick from hairstyles
 	conscript.change_hair_color(conscript_hair_color)
