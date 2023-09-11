@@ -913,7 +913,7 @@
 	taste_description = "the future"
 	color = "#100800"
 	adj_temp = -5
-	nerve_system_accumulations = 50
+	nerve_system_accumulations = 30
 	taste_tag = list(TASTE_SWEET,TASTE_BUBBLY)
 
 	glass_unique_appearance = TRUE
