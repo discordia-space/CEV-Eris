@@ -393,14 +393,15 @@ var/global/excelsior_last_draft = 0
 	conscript.stats.setStat(STAT_BIO, 10)	
 	//randomize gender agnostic traits
 	var/conscript_hair_color = RANDOM_RGB //pick a random hair color for hair and facial hair
-	conscript.change_skin_tone(roll("1d8") * -10) //skintone randomization borrowed from corpse spawner. Increment by 10 to increase variance
+	conscript.change_skin_tone(roll("1d10") * -10) //skintone randomization borrowed from corpse spawner. Increment by 10 to increase variance
 	conscript.change_hair(pick(GLOB.hair_styles_list)) //pick from hairstyles
 	conscript.change_hair_color(conscript_hair_color)
 	conscript.change_facial_hair_color(conscript_hair_color)
 	//set gender and gender specific traits
 	var/conscript_gender = pick(MALE, FEMALE)
-	if(conscript_gender == FEMALE) //defaults are MALE so set additional stuff for FEMALE
-		conscript.first_name = pick(GLOB.first_names_female)
+	if(conscript_gender == FEMALE) //defaults are MALE so check for FEMALE first, use MALE as default case
+		conscript.change_gender(conscript_gender)
+		conscript.first_name = pick(GLOB.first_names_female) //First names default to male sounding
 		conscript.tts_seed = TTS_SEED_DEFAULT_FEMALE //needs better way to get list of TTS by gender
 	else
 		conscript.change_facial_hair(pick(GLOB.facial_hair_styles_list)) //pick a random facial hair
