@@ -70,9 +70,11 @@
 	if(istype(O))
 		O.color = color
 
+/* // some other day, maybe. mainly used by powergamers to color themselves black so they're harder to spot in low light condition
 /datum/reagent/other/paint/touch_mob(mob/M)
 	if(istype(M) && !isobserver(M)) //painting observers: not allowed
 		M.color = color //maybe someday change this to paint only clothes and exposed body parts for human mobs.
+*/
 
 /datum/reagent/other/paint/get_data()
 	return color
