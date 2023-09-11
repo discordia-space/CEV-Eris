@@ -399,13 +399,21 @@ var/global/excelsior_last_draft = 0
 	conscript.change_facial_hair_color(conscript_hair_color)
 	//set gender and gender specific traits
 	var/conscript_gender = pick(MALE, FEMALE)
+	var/list/conscript_voices = new()
 	if(conscript_gender == FEMALE) //defaults are MALE so check for FEMALE first, use MALE as default case
 		conscript.change_gender(conscript_gender)
 		conscript.first_name = pick(GLOB.first_names_female) //First names default to male sounding
-		conscript.tts_seed = TTS_SEED_DEFAULT_FEMALE //needs better way to get list of TTS by gender
+		conscript_voices += TTS_SEED_DEFAULT_FEMALE //Failsafe voice
 	else
 		conscript.change_facial_hair(pick(GLOB.facial_hair_styles_list)) //pick a random facial hair
-		conscript.tts_seed = TTS_SEED_DEFAULT_MALE
+		conscript_voices += TTS_SEED_DEFAULT_MALE //Failsafe voice
+	//Set voice based on gender
+	for(var/i in tts_seeds) //from tts_seeds, add voices that match gender tag to list conscript_voices
+		var/list/V = tts_seeds[i]
+		if((V["gender"] == conscript_gender || V["category"] == "any") && (V["category"] == "human" || V["gender"] == "any")) //cribbed from /code/modules/client/preference_setup/general/01_basic.dm
+			conscript_voices += i
+	conscript.tts_seed = pick(conscript_voices) //pick a random voice from list conscript_voices
+	//Equip conscript
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
 	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())
