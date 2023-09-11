@@ -198,7 +198,7 @@
 	desc = "A heart attack that fits in your pocket."
 	icon_state = "energy_drink"
 	center_of_mass = list("x"=15, "y"=13)
-	preloaded_reagents = list("sugar" = 10, "nuka_cola" = 20)
+	preloaded_reagents = list("sugar" = 10, "adrenaline" = 20)
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
 

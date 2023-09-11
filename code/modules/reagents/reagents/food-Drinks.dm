@@ -913,7 +913,6 @@
 	taste_description = "the future"
 	color = "#100800"
 	adj_temp = -5
-	adj_sleepy = -2
 	nerve_system_accumulations = 50
 	taste_tag = list(TASTE_SWEET,TASTE_BUBBLY)
 
@@ -925,12 +924,13 @@
 
 /datum/reagent/drink/nuka_cola/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.2)
+	M.add_chemical_effect(CE_PULSE, 2)
 	M.make_jittery(20 * effect_multiplier)
 	M.druggy = max(M.druggy, 30 * effect_multiplier)
 	M.dizziness += 5 * effect_multiplier
 	M.drowsyness = 0
-	M.apply_effect(0.5 * effect_multiplier, IRRADIATE, 0)
+	M.apply_effect(1 * effect_multiplier, IRRADIATE, 0)
 
 /datum/reagent/drink/grenadine
 	name = "Grenadine Syrup"
