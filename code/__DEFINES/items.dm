@@ -50,6 +50,7 @@
 
 //Int multiplier
 #define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
+#define GUN_UPGRADE_HALLOSS_MULT "halloss_mult"
 #define GUN_UPGRADE_PEN_MULT "penetration_mult"
 #define GUN_UPGRADE_PIERC_MULT "pierce_mult"
 #define GUN_UPGRADE_RICO_MULT "ricochet_mult"
