@@ -390,30 +390,8 @@ var/global/excelsior_last_draft = 0
 	conscript.stats.setStat(STAT_VIG, 30)
 	conscript.stats.setStat(STAT_ROB, 30)
 	conscript.stats.setStat(STAT_MEC, 10)
-	conscript.stats.setStat(STAT_BIO, 10)	
-	//randomize gender agnostic traits
-	var/conscript_hair_color = rgb(25 * rand(3,8),25 * rand(1,3),25 * rand(1,3),rand(100,250)) //curated hair color
-	conscript.change_skin_tone(roll("1d10") * -10) //skintone randomization borrowed from corpse spawner. Increment by 10 to increase variance
-	conscript.change_hair(pick(GLOB.hair_styles_list)) //pick from hairstyles
-	conscript.change_hair_color(conscript_hair_color)
-	conscript.change_facial_hair_color(conscript_hair_color)
-	//set gender and gender specific traits
-	var/conscript_gender = pick(MALE, FEMALE)
-	var/list/conscript_voices = new()
-	if(conscript_gender == FEMALE) //defaults are MALE so check for FEMALE first, use MALE as default case
-		conscript.change_gender(conscript_gender)
-		conscript.first_name = pick(GLOB.first_names_female) //First names default to male sounding
-		conscript_voices += TTS_SEED_DEFAULT_FEMALE //Failsafe voice
-	else
-		conscript.change_facial_hair(pick(GLOB.facial_hair_styles_list)) //pick a random facial hair
-		conscript_voices += TTS_SEED_DEFAULT_MALE //Failsafe voice
-	//Set voice based on gender
-	for(var/i in tts_seeds) //from tts_seeds, add voices that match gender tag to list conscript_voices
-		var/list/V = tts_seeds[i]
-		if((V["gender"] == conscript_gender || V["category"] == "any") && (V["category"] == "human" || V["gender"] == "any")) //cribbed from /code/modules/client/preference_setup/general/01_basic.dm
-			conscript_voices += i
-	conscript.tts_seed = pick(conscript_voices) //pick a random voice from list conscript_voices
-	//Equip conscript
+	conscript.stats.setStat(STAT_BIO, 10)
+	conscript.randomize_appearance()
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
 	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())
