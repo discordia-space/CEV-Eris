@@ -183,9 +183,10 @@
 	change_facial_hair_color(hair_color)
 	age = rand(20,40)
 	//set gender and gender specific traits
-	change_gender = pick(MALE, FEMALE)
+	var/gender = pick(MALE, FEMALE)
 	var/list/tts_voices = new()
 	if(gender == FEMALE) //defaults are MALE so check for FEMALE first, use MALE as default case
+		change_gender(gender)
 		first_name = pick(GLOB.first_names_female) //First names default to male sounding
 		tts_voices += TTS_SEED_DEFAULT_FEMALE //Failsafe voice
 	else
