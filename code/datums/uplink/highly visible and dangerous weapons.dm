@@ -125,3 +125,169 @@
 	item_cost = 100
 	path = /obj/item/storage/box/syndie_kit/pickle
 */
+
+//********** Blitzshell weapon uplink upgrades **********//
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_burst
+	name = "Blitzshell Plasma Burst Mechanism"
+	desc = "Activates the burstfire mechanism of the embedded Sprengen plasma rifle."
+	item_cost = 5
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_burst/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
+		if(istype(GUN))
+			GUN.init_firemodes += list(list(mode_name="Burst", mode_desc="A three-round burst of light plasma rounds, for dealing with unruly crowds", projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/energy/melt.ogg', burst=3, fire_delay=12, burst_delay=1, charge_cost=15, icon="burst", projectile_color = "#0088ff"))
+			GUN.refresh_upgrades()
+			U.blacklist += name
+			return TRUE
+	return FALSE
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_burst/can_view(obj/item/device/uplink/U)
+	return ..() && !(name in U.blacklist)
+
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate
+	name = "Blitzshell Plasma Detonation Mechanism"
+	desc = "Activates the AP mechanism of the embedded Sprengen plasma rifle."
+	item_cost = 8
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
+		if(istype(GUN))
+			GUN.init_firemodes += list(list(mode_name="Detonate", mode_desc="A heavy armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/aoe/heat, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=16, charge_cost=90, icon="destroy", projectile_color = "#FFFFFF"))
+			GUN.refresh_upgrades()
+			U.blacklist += name
+			return TRUE
+	return FALSE
+
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate
+	name = "Blitzshell Plasma Detonation Mechanism"
+	desc = "Activates the AP mechanism of the embedded Sprengen plasma rifle."
+	item_cost = 8
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
+		if(istype(GUN))
+			GUN.init_firemodes += list(list(mode_name="Detonate", mode_desc="A heavy armor-stripping plasma round", projectile_type=/obj/item/projectile/plasma/aoe/heat, fire_sound='sound/weapons/energy/incinerate.ogg', burst=1, fire_delay=18, charge_cost=90, icon="destroy", projectile_color = "#FFFFFF"))
+			GUN.refresh_upgrades()
+			U.blacklist += name
+			return TRUE
+	return FALSE
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_detonate/can_view(obj/item/device/uplink/U)
+	return ..() && !(name in U.blacklist)
+
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_emp
+	name = "Blitzshell Plasma EMP Mechanism"
+	desc = "Activates the EMP mechanism of the embedded Sprengen plasma rifle."
+	item_cost = 8
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_emp/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/gun/energy/plasma/mounted/blitz/GUN = locate(/obj/item/gun/energy/plasma/mounted/blitz) in BS.module.modules
+		if(istype(GUN))
+			GUN.init_firemodes += list(list(mode_name="Pulse", mode_desc="A plasma round configured to cause a pulse of EMP", projectile_type=/obj/item/projectile/plasma/aoe/ion, fire_sound='sound/weapons/Taser.ogg', burst=1, fire_delay=12, charge_cost=90, icon="stun", projectile_color = "#00FFFF"))
+			GUN.refresh_upgrades()
+			U.blacklist += name
+			return TRUE
+	return FALSE
+
+/datum/uplink_item/item/visible_weapons/blitz_plasma_emp/can_view(obj/item/device/uplink/U)
+	return ..() && !(name in U.blacklist)
+
+
+/datum/uplink_item/item/visible_weapons/blitz_laserweapon
+	name = "Blitzshell Laser Weapons Upgrade"
+	desc = "Activates the embedded laser weapon system."
+	item_cost = 10
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_laserweapon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a laser system installed."))
+			return 0
+		BS.module.modules += new /obj/item/gun/energy/laser/mounted/blitz(BS.module)
+		U.blacklist += name
+		return TRUE
+	return FALSE
+
+/datum/uplink_item/item/visible_weapons/blitz_laserweapon/can_view(obj/item/device/uplink/U)
+	return ..() && !(name in U.blacklist)
+
+
+/datum/uplink_item/item/visible_weapons/blitz_laser_stun
+	name = "Blitzshell Laser Stun Mechanism"
+	desc = "Activates the stun mechanism of the embedded Strahl laser rifle."
+	item_cost = 5
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_laser_stun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/gun/energy/laser/mounted/blitz/GUN = locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules
+		if(istype(GUN))
+			GUN.init_firemodes += list(STUNBOLT)
+			GUN.refresh_upgrades()
+			U.blacklist += name
+			return TRUE
+	return FALSE
+
+/datum/uplink_item/item/visible_weapons/blitz_laser_stun/can_view(obj/item/device/uplink/U)
+	return ..() && !(name in U.blacklist) && ("Blitzshell Laser Weapons Upgrade" in U.blacklist)
+
+
+/datum/uplink_item/item/visible_weapons/blitz_laser_burst
+	name = "Blitzshell Laser Dual Mechanism"
+	desc = "Activates the dual-firing mechanism of the embedded Strahl laser rifle."
+	item_cost = 10
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_laser_burst/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		var/obj/item/gun/energy/laser/mounted/blitz/GUN = locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules
+		if(istype(GUN))
+			GUN.init_firemodes += list(BURST_2_BEAM)
+			GUN.refresh_upgrades()
+			U.blacklist += name
+			return TRUE
+	return FALSE
+
+/datum/uplink_item/item/visible_weapons/blitz_laser_burst/can_view(obj/item/device/uplink/U)
+	return ..() && !(name in U.blacklist) && ("Blitzshell Laser Weapons Upgrade" in U.blacklist)
+
+
+/datum/uplink_item/item/visible_weapons/blitz_shotgun
+	name = "Blitzshell electro-shrapnel cannon"
+	desc = "Activates the embedded pneumatic weapon system."
+	item_cost = 25
+	antag_roles = list(ROLE_BLITZ)
+
+/datum/uplink_item/item/visible_weapons/blitz_shotgun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
+		var/mob/living/silicon/robot/drone/blitzshell/BS = user
+		if(locate(/obj/item/gun/energy/shrapnel/mounted) in BS.module.modules)
+			to_chat(BS, SPAN_WARNING("You already have a shrapnel cannon installed."))
+			return FALSE
+		BS.module.modules += new /obj/item/gun/energy/shrapnel/mounted(BS.module)
+		U.blacklist += name
+		return TRUE
+	return FALSE
+
+/datum/uplink_item/item/visible_weapons/blitz_shotgun/can_view(obj/item/device/uplink/U)
+	return ..() && !(name in U.blacklist)
