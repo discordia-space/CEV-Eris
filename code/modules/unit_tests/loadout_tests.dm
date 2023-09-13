@@ -2,7 +2,7 @@
 
 /datum/unit_test/loadout_has_cost_and_name/Run()
 	// vault_items' are blank gear and fill up in runtime
-	for(var/geartype in subtypesof(/datum/gear) - subtypesof(/datum/gear/vault_item))
+	for(var/geartype in subtypesof(/datum/gear) - typesof(/datum/gear/vault_item))
 		var/datum/gear/G = geartype
 		Check(G)
 
