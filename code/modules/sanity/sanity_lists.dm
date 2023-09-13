@@ -184,7 +184,6 @@
 			"This is the end of the road for you. I think you understand why.",
 			"We all make mistakes, don't you think? We humans need strict supervision.",
 			"The relics of the past... they will never bring mankind prosperity.",
-			"Can we wear drugs?",
 			"A ship is a station that moves, but what is an unmoving ship?"
 		)
 		for(var/i in 0 to 9)
