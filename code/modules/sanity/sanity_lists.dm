@@ -185,7 +185,7 @@
 			"We all make mistakes, don't you think? We humans need strict supervision.",
 			"The relics of the past... they will never bring mankind prosperity.",
 			"Can we wear drugs?",
-			"A station is a ship that moves, but what is an unmoving ship?"
+			"A ship is a station that moves, but what is an unmoving ship?"
 		)
 		for(var/i in 0 to 9)
 			sanity_quotes_20 += "[i] is the number."
