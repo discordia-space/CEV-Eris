@@ -176,7 +176,7 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	hair_color = rgb(25 * rand(3,8),25 * rand(1,3),25 * rand(1,3)) //curated hair color
-	change_skin_tone(roll("1d10") * -10) //skintone randomization borrowed from corpse spawner. Increment by 10 to increase variance
+	change_skin_tone(roll("1d20") * -10) //skintone randomization borrowed from corpse spawner. Increment by 10 to increase variance
 	change_hair(pick(GLOB.hair_styles_list)) //pick from hairstyles
 	change_hair_color(hair_color)
 	change_facial_hair_color(hair_color)
