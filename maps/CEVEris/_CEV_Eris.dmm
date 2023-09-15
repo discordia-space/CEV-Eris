@@ -101281,7 +101281,7 @@
 /area/eris/maintenance/section3deck5port)
 "jlF" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/holy,
+/obj/machinery/door/holy/public,
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "jlN" = (
