@@ -86,7 +86,7 @@
 		"You have chosen your answer. Now see it through.",
 		"No one cared who I was until I put on the scarf.",
 		"Pills. Vape. Inject.",
-		"The snow. It calls to me... but the warm holds me tightly.",
+		"The cold. It calls to me... but the warm holds me tightly.",
 		"Can we wear drugs?"
 	)
 	return pick(sanity_quotes_40)
