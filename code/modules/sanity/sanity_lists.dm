@@ -84,7 +84,7 @@
 		"A burger would be good. Anything edible, really.",
 		"What can possibly be gained by upsetting the current order?",
 		"You have chosen your answer. Now see it through.",
-		"Noone cared who I was until I put on the scarf.",
+		"No one cared who I was until I put on the scarf.",
 		"Pills. Vape. Inject.",
 		"The snow. It calls to me... but the warm holds me tightly.",
 		"Can we wear drugs?"
