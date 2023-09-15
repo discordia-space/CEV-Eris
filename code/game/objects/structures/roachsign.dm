@@ -6,3 +6,6 @@
 	density = FALSE
 	anchored = TRUE
 	layer = SIGN_LAYER
+
+/obj/structure/roachsign/Initialize()
+	set_light(2, 2, "#82C2D8")
