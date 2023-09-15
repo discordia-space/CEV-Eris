@@ -204,6 +204,7 @@
 	M.add_chemical_effect(CE_PAINKILLER, 15)
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "adrenaline")
 	M.add_chemical_effect(CE_TOXIN, 3)
+	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
 	M.adjustOxyLoss(15)
