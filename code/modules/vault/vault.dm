@@ -81,8 +81,6 @@
 		var/datum/loadout_category/LC = loadout_categories[use_category]
 		gear_datums[use_name] = item
 		LC.gear[use_name] = gear_datums[use_name]
-	
-	equip_item(item)
 
 /datum/player_vault/proc/create_item(list/item_data, add_to_vault = FALSE)
 	if(!length(item_data))
@@ -90,15 +88,6 @@
 	var/path = text2path(item_data[1])
 	var/datum/gear/vault_item/item = new path(arglist(item_data.Copy(2)))
 	add_item(item, TRUE, add_to_vault)
-
-/datum/player_vault/proc/equip_item(datum/gear/vault_item/item)
-	var/client/C = directory[player_ckey]
-	if(!C)
-		return
-	var/datum/preferences/pref = SScharacter_setup.preferences_datums[player_ckey]
-	if(!pref)
-		return
-	pref.gear_list[pref.gear_slot] += item.display_name
 
 /datum/player_vault/proc/buy_item(datum/gear/vault_item/item)
 	ASSERT(istype(item))
@@ -113,10 +102,7 @@
 
 	iriska_balance -= round(price * mod, 1)
 
-	if(price > 0)
-		add_item(item, FALSE)
-	else
-		remove_item(item)
+	add_item(item, FALSE)
 
 	item.on_buy_action(src)
 

@@ -7,8 +7,6 @@
 	var/display_anyone = FALSE
 	var/can_be_saved = TRUE
 	price = 5
-	cost = 0
-	price_coeff = -0.5
 
 /datum/gear/vault_item/New(item_type, item_ckey)
 	. = ..()
@@ -65,7 +63,6 @@
 	display_anyone = TRUE
 	can_be_saved = FALSE
 	price = 10
-	price_coeff = 1
 
 /datum/gear/vault_item/perk/random/on_buy_action(datum/player_vault/player_vault)
 	player_vault.get_random_perk_for_vault()

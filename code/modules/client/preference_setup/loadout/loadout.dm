@@ -191,12 +191,12 @@ var/list/gear_datums = list()
 			continue
 		entry += "<tr style='vertical-align:top;'><td width=25%>"
 		var/true_price = G.get_price()
-		if(!G.price)
+		if(!G.price || player_vault.has_item(G))
 			entry += "<a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[G.display_name]'>[G.display_name]</a>"
 		else
 			entry += "<a style='white-space:normal;' class='gold' href='?src=\ref[src];buy_gear=[G.display_name]'>[G.display_name] ([true_price > 0 ? "Buy" : "Sell"])</a>"
 		entry += "</td>"
-		entry += "<td width = 10% style='vertical-align:top'>[G.cost ? G.cost : "[true_price > 0 ? true_price : "+[-1*true_price]"] iriski"]</td>"
+		entry += "<td width = 10% style='vertical-align:top'>[true_price && !player_vault.has_item(G) ? "[true_price]" : "[G.cost]" ]</td>"
 		entry += "<td><font size=2>[G.get_description(get_gear_metadata(G,1))]</font>"
 		var/allowed = 1
 		if(allowed && G.allowed_roles)
@@ -369,7 +369,7 @@ var/list/gear_datums = list()
 	LC.gear.Remove(display_name)
 
 /datum/gear/proc/get_price()
-	return round(price * price_coeff, 1)
+	return abs(round(price * price_coeff, 1))
 
 /datum/gear/proc/is_allowed_to_equip(mob/user)
 	if(!is_allowed_to_display(user))
