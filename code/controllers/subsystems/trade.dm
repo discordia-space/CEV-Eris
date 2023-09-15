@@ -446,7 +446,7 @@ SUBSYSTEM_DEF(trade)
 	var/obj/structure/closet/secure_closet/personal/trade/C
 	var/count_of_all = collect_counts_from(shopList)
 	var/price_for_all = collect_price_for_list(shopList)
-	if(isnum(count_of_all) && count_of_all > 1)
+	if((isnum(count_of_all) && count_of_all > 1) || shopList.Find("/obj/machinery/power/supermatter") > 0)
 		C = senderBeacon.drop(/obj/structure/closet/secure_closet/personal/trade)
 		if(is_order)
 			C.locked = TRUE

@@ -91,12 +91,13 @@
 
 		messageturfs += turf
 
-
-
+	
+	
 	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
 		if(!M.client)
 			continue
 		messagemobs += M
+
 	for(var/mob/ghosty in GLOB.player_ghost_list)
 		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
 			messagemobs |= ghosty
@@ -1117,65 +1118,15 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
 /mob/verb/browse_mine_stats()
-	set name		= "Show stats and perks"
-	set desc		= "Browse your character stats and perks."
-	set category	= "IC"
-	set src			= usr
+	set name = "Show stats and perks"
+	set desc = "Browse your character stats and perks."
+	set category = "IC"
+	set src = usr
 
-	browse_src_stats(src)
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		return
 
-/mob/proc/browse_src_stats(mob/user)
-	var/additionalcss = {"
-		<style>
-			table {
-				float: left;
-			}
-			table, th, td {
-				border: #3333aa solid 1px;
-				border-radius: 5px;
-				padding: 5px;
-				text-align: center;
-			}
-			th{
-				background:#633;
-			}
-		</style>
-	"}
-	var/table_header = "<th>Stat Name<th>Stat Value"
-	var/list/S = list()
-	for(var/TS in ALL_STATS)
-		S += "<td>[TS]<td>[getStatStats(TS)]"
-	var/data = {"
-		[additionalcss]
-		[user == src ? "Your stats:" : "[name]'s stats"]<br>
-		<table width=20%>
-			<tr>[table_header]
-			<tr>[S.Join("<tr>")]
-		</table>
-	"}
-	// Perks
-	var/list/Plist = list()
-	if (stats) // Check if mob has stats. Otherwise we cannot read null.perks
-		for(var/perk in stats.perks)
-			var/datum/perk/P = perk
-			Plist += "<td valign='middle'><img src=[SSassets.transport.get_asset_url(P.type)]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
-	data += {"
-		<table width=80%>
-			<th colspan=2>Perks</th>
-			<tr>[Plist.Join("</tr><tr>")]</tr>
-		</table>
-	"}
-
-	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 1000, 345)
-	B.set_content(data)
-	B.set_window_options("can_minimize=0")
-	B.open()
-
-/mob/proc/getStatStats(typeOfStat)
-	if (SSticker.current_state != GAME_STATE_PREGAME)
-		if(stats)
-			return stats.getStat(typeOfStat)
-		return 0
+	stats?.ui_interact(usr)
 
 /mob/proc/set_face_dir(var/newdir)
 	if(!isnull(facing_dir) && newdir == facing_dir)

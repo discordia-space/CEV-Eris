@@ -50,6 +50,7 @@
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(loc)
+	H.randomize_appearance()
 	visible_message(SPAN_DANGER("[src] morphs into a human body!"))
 	gibs(loc, null)
 	var/obj/item/organ/internal/carrion/core/core = locate(/obj/item/organ/internal/carrion/core) in contents

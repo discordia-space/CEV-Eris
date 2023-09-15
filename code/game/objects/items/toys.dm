@@ -647,7 +647,7 @@
 
 /obj/item/toy/plushie/fumo
 	name = "fumo"
-	desc = "A plushie of a....?."
+	desc = "A plushie of a....?"
 	icon_state = "fumoplushie_marisa"
 	spawn_blacklisted = TRUE
 

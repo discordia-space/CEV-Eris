@@ -198,7 +198,7 @@
 	desc = "A heart attack that fits in your pocket."
 	icon_state = "energy_drink"
 	center_of_mass = list("x"=15, "y"=13)
-	preloaded_reagents = list("sugar" = 10, "nuka_cola" = 20)
+	preloaded_reagents = list("sugar" = 10, "adrenaline" = 20)
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
 
@@ -291,7 +291,7 @@
 	center_of_mass = "x=16;y=7"
 
 /obj/item/reagent_containers/food/drinks/flask
-	name = "Captain's Flask"
+	name = "captain's flask"
 	desc = "A metal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
@@ -308,7 +308,7 @@
 	icon_state = "lithiumflask"
 
 /obj/item/reagent_containers/food/drinks/flask/detflask
-	name = "Inspector's Flask"
+	name = "inspector's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the inspector."
 	icon_state = "detflask"
 	volume = 60

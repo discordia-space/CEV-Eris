@@ -10,6 +10,7 @@
 	station_drone = FALSE
 	eyecolor = null
 	ai_access = FALSE
+	local_transmit = 0 // Give these fellas at least the bare MINIMUM of RP capacity.
 
 /mob/living/silicon/robot/drone/blitzshell/updatename()
 	real_name = "\"Blitzshell\" assault drone ([rand(100,999)])"
@@ -27,6 +28,7 @@
 	remove_language(LANGUAGE_ROBOT)
 	remove_language(LANGUAGE_DRONE)
 	add_language(LANGUAGE_BLITZ, 1)
+	add_language(LANGUAGE_GERMAN, 1) // Oberth drone. Give these fellas at least the bare MINIMUM of RP capacity.
 	UnlinkSelf()
 
 /mob/living/silicon/robot/drone/blitzshell/GetIdCard()
