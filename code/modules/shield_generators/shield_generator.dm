@@ -731,8 +731,10 @@
 
 			if (origin_atom)
 				var/turf/T = get_turf(origin_atom)
-				if (T)
+				if(T)
 					logstring += " at [T.x],[T.y],[T.z]"
+				else
+					logstring += " -"
 
 			logstring += " Integrity [round(field_integrity())]%"
 
