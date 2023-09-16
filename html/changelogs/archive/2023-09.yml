@@ -53,3 +53,31 @@
       leave it
   - bugfix: Fixed cavern wall layering
   - bugfix: Fix access to caverns
+2023-09-16:
+  Firefox13:
+  - balance: nuka cola now has lower speedboost, lower NSA, doesn't instantly wake
+      you up, irradiates you more and increases heartbeat
+  - tweak: adrenaline increases heartbeat (does this even do anything? a mystery)
+  - tweak: energy drinks now contain adrenaline instead of nuka cola
+  - rscdel: Paint removed, reduced to ashes, no longer existing.
+  Humonitarian:
+  - rscadd: new insanity lines
+  - tweak: blitz speaks language
+  Iglpigl:
+  - bugfix: pack of dice is no longer a pill bottle
+  Mycah142:
+  - bugfix: Fixed exploitative Overdrive gun upgrade not reducing pain along with
+      damage.
+  TheLeopold:
+  - balance: Increased Custodian slots 2->4; Decreased Acolyte slots 4->2.
+  - bugfix: fixed missing downward pipes near guild
+  Twomoon:
+  - tweak: tweaked the roachsign code
+  null-Aurelian:
+  - tweak: randomizes body creation for various spawns
+  - code_imp: adds the randomize_appearance() proc in appearances.dm for humans
+  - refactor: refactor location of commune(), psychic_whisper(), morph(), phaze_trough(),
+      forcespeak(), remotesay(), remoteobserve(), roach_pheromones(), spider_pheromones()
+      and inner_fuhrer()
+  - tweak: added a check to creating an order from the trade beacon so that orders
+      containing an SM shard are crated on spawn.

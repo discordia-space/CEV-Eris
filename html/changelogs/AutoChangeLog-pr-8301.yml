@@ -1,5 +1,0 @@
-author: Mycah142
-delete-after: true
-changes:
-  - bugfix: Fixed exploitative Overdrive gun upgrade not reducing pain along with
-      damage.

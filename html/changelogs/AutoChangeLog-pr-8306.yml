@@ -1,5 +1,0 @@
-author: null-Aurelian
-delete-after: true
-changes:
-  - tweak: added a check to creating an order from the trade beacon so that orders
-      containing an SM shard are crated on spawn.

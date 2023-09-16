@@ -1,6 +1,0 @@
-author: null-Aurelian
-delete-after: true
-changes:
-  - refactor: refactor location of commune(), psychic_whisper(), morph(), phaze_trough(),
-      forcespeak(), remotesay(), remoteobserve(), roach_pheromones(), spider_pheromones()
-      and inner_fuhrer()
