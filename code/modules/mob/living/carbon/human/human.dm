@@ -24,8 +24,6 @@
 
 	GLOB.human_mob_list |= src
 
-	. = ..()
-
 	if(!species)
 		if(new_species)
 			set_species(new_species,1)
@@ -37,6 +35,9 @@
 		name = real_name
 		if(mind)
 			mind.name = real_name
+	. = ..()
+
+
 
 	sync_organ_dna()
 	make_blood()
@@ -100,65 +101,44 @@
 		return
 	..(duration, drop_items, doblind, doblurry)
 
-/mob/living/carbon/human/ex_act(severity, epicenter)
-	flash(5, FALSE, TRUE , TRUE, 5)
+/mob/living/carbon/human/explosion_act(target_power, explosion_handler/handle)
+	var/BombDamage = target_power - (getarmor(null, ARMOR_BOMB) + mob_bomb_defense)
+	var/obj/item/rig/hardsuitChad = back
+	if(back && istype(hardsuitChad))
+		BombDamage -= hardsuitChad.block_explosion(src, target_power)
+	var/BlockCoefficient = 0.2
+	if(handle)
+		var/ThrowTurf = get_turf(src)
+		var/ThrowDistance = round(target_power / 100)
+		if(ThrowTurf != handle.epicenter && ThrowDistance)
+			ThrowTurf = get_turf_away_from_target_simple(src, handle.epicenter, 8)
+			throw_at(ThrowTurf, ThrowDistance, ThrowDistance, "explosion")
+		// Heroic sacrifice
+		else if(ThrowTurf == handle.epicenter && lying)
+			if(BombDamage > 500)
+				BlockCoefficient = 0.8
+		if(BombDamage < 0)
+			return target_power * BlockCoefficient
 
-	var/b_loss = 0
-	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
-	var/target_turf // null means epicenter is same tile
-	if(epicenter != get_turf(src))
-		target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
-	var/throw_distance = 8 - 2*severity
-	var/not_slick = TRUE
-	if(target_turf) // this means explosions on the same tile will not fling you
-		throw_at(target_turf, throw_distance, 5)
-		not_slick = FALSE // only explosions that fling you can be survived with slickness
-	if(slickness < (9-(2*severity)) * 10)
-		Weaken(severity) // If they don't get knocked out , weaken them for a bit.
-		not_slick = TRUE // if you don't have enough slickness, you can't safely ride the boom
-	else
-		slickness -= (9-(2*severity)) * 10 // awesome feats aren't something you can do constantly.
+	// 10% reduction for  takin cover down i guess
+	if(lying && BlockCoefficient != 0.8)
+		BombDamage *= 0.9
+		BlockCoefficient = 0.1
 
-	switch(severity)
-		if(1)
-			b_loss += 500
-			if(!prob(bomb_defense))
-				gib()
-				return
-		if(2)
-			b_loss = 120
-			if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(30, 120)
+	if(BombDamage > 1000)
+		gib()
 
-		if(3)
-			if(not_slick)
-				b_loss += 80
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(15, 60)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
-		if(4)
-			if(not_slick)
-				b_loss += 50
-				if(!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-					adjustEarDamage(10, 30)
-			else
-				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
-				dodge_time = get_game_time()
-				confidence = FALSE
+	else if(BombDamage > 600)
+		var/earProtection = earcheck()
+		if(earProtection * 100 < BombDamage)
+			adjustEarDamage((BombDamage - earProtection*100)/ 10,(BombDamage - earProtection*100)/ 100)
 
-	if(bomb_defense)
-		b_loss = max(b_loss - bomb_defense, 0)
+	var/DamageToApply = round(BombDamage / 4)
 
-	var/organ_hit = BP_CHEST //Chest is hit first
-	var/exp_damage = 0
-	while(b_loss > 0)
-		b_loss -= exp_damage
-		exp_damage = rand(0, b_loss)
-		src.apply_damage(exp_damage, BRUTE, organ_hit)
-		organ_hit = pickweight(list(BP_HEAD = 0.1, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
+	for(var/limb in BP_BY_DEPTH)
+		if (limb in organ_rel_size)
+			apply_damage(DamageToApply * (organ_rel_size[limb] / 100), BRUTE, limb)
+	return BombDamage * BlockCoefficient
 
 /mob/living/carbon/human/restrained()
 	if(handcuffed)
@@ -618,6 +598,13 @@ var/list/rank_prefix = list(\
 
 	return flash_protection
 
+/mob/living/carbon/human/earcheck()
+	if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))
+		. += 2
+	if(istype(head, /obj/item/clothing/head/armor/helmet))
+		. += 1
+	return .
+
 //Used by various things that knock people out by applying blunt trauma to the head.
 //Checks that the species has a "head" (brain containing organ) and that hit_zone refers to it.
 /mob/living/carbon/human/proc/headcheck(target_zone, brain_tag = BP_BRAIN)
@@ -700,83 +687,8 @@ var/list/rank_prefix = list(\
 			location.add_vomit_floor(src, 1)
 
 		adjustNutrition(-40)
-		regen_slickness(-3)
-		dodge_time = get_game_time()
-		confidence = FALSE
 		spawn(350)	//wait 35 seconds before next volley
 			lastpuke = 0
-
-/mob/living/carbon/human/proc/morph()
-	set name = "Morph"
-	set category = "Abilities"
-
-	if(stat)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	// Can use ability multiple times in a row if necessary, but there is a price
-	vessel.remove_reagent("blood", 50)
-
-	var/new_facial = input("Please select facial hair color.", "Character Generation",facial_color) as color
-	if(new_facial)
-		facial_color = new_facial
-
-	var/new_hair = input("Please select hair color.", "Character Generation",hair_color) as color
-	if(new_hair)
-		hair_color = new_hair
-
-	var/new_eyes = input("Please select eye color.", "Character Generation",eyes_color) as color
-	if(new_eyes)
-		eyes_color = new_eyes
-		update_eyes()
-
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
-
-	if(!new_tone)
-		new_tone = 35
-	s_tone = max(min(round(text2num(new_tone)), 220), 1)
-	s_tone =  -s_tone + 35
-
-	// hair
-	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
-	var/list/hairs = list()
-
-	// loop through potential hairs
-	for(var/x in all_hairs)
-		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
-		hairs.Add(H.name) // add hair name to hairs
-		qdel(H) // delete the hair after it's all done
-
-	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
-
-	// if new style selected (not cancel)
-	if(new_style)
-		h_style = new_style
-
-	// facial hair
-	var/list/all_fhairs = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
-	var/list/fhairs = list()
-
-	for(var/x in all_fhairs)
-		var/datum/sprite_accessory/facial_hair/H = new x
-		fhairs.Add(H.name)
-		qdel(H)
-
-	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
-
-	if(new_style)
-		f_style = new_style
-
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
-	if(new_gender)
-		if(new_gender == "Male")
-			gender = MALE
-		else
-			gender = FEMALE
-	regenerate_icons()
-
-	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
 
 
 /mob/living/carbon/human/proc/check_ability_cooldown(cooldown)
@@ -786,205 +698,6 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		to_chat(src, SPAN_NOTICE("You can't use that yet! [cooldown / 10] seconds should pass after last ability activation. Only [time_passed / 10] seconds have passed."))
-
-
-/mob/living/carbon/human/proc/phaze_trough()
-	set name = "Phaze"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	// TODO: Here and in other psionic abilities - add checks for NT obelisks,
-	// reality cores and whatever else could prevent use of said abilities -- KIROV
-
-	var/original_x = pixel_x
-	var/original_y = pixel_y
-
-	var/atom/bingo
-	var/turf/T = get_step(loc, dir)
-	if(T.density)
-		bingo = T
-	else
-		for(var/atom/i in T)
-			if(i.density)
-				bingo = i
-				break
-
-	if(bingo)
-		to_chat(src, SPAN_NOTICE("You begin to phaze trough \the [bingo]"))
-		var/target_y = 0
-		var/target_x = 0
-		switch(dir)
-			if(NORTH)
-				target_y = 32
-			if(SOUTH)
-				target_y = -32
-			if(WEST)
-				target_x = -32
-			if(EAST)
-				target_x = 32
-		animate(src, pixel_x = target_x, pixel_y = target_y, time = 15 SECONDS, easing = LINEAR_EASING, flags = ANIMATION_END_NOW)
-		if(do_after(src, 15 SECONDS, bingo))
-			forceMove(get_turf(bingo))
-
-		animate(src)
-		pixel_x = original_x
-		pixel_y = original_y
-
-
-/mob/living/carbon/human/proc/forcespeak()
-	set name = "Force Speak"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	var/list/mobs_in_view = list()
-	for(var/i in mobs_in_view(7, src))
-		var/mob/living/carbon/human/H = i
-		if(istype(H) && !H.stat)
-			mobs_in_view += H
-
-	if(!mobs_in_view.len)
-		to_chat(src, SPAN_NOTICE("There is no valid targets around."))
-		return
-
-	var/mob/living/carbon/human/H = input("", "Who do you want to speak as?") as null|mob in mobs_in_view
-	if(H && istype(H))
-		var/message = input("", "Say") as text|null
-		if(message)
-			log_admin("[key_name(usr)] forced [key_name(H)] to say: [message]")
-			H.say(message)
-			if(prob(70))
-				to_chat(H, SPAN_WARNING("You see [src]\'s image in your head, commanding you to speak."))
-
-
-/mob/living/carbon/human/proc/remotesay()
-	set name = "Project mind"
-	set category = "Abilities"
-
-	if(stat)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	var/list/mobs = list()
-	for(var/mob/living/carbon/C in SSmobs.mob_list | SShumans.mob_list)
-		mobs += C
-
-	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
-	if(isnull(target))
-		return
-
-	var/say = sanitize(input("What do you wish to say"))
-	if(get_active_mutation(target, MUTATION_REMOTESAY))
-		target.show_message("\blue You hear [real_name]'s voice: [say]")
-	else
-		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
-	show_message("\blue You project your mind into [target.real_name]: [say]")
-	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
-	for(var/mob/observer/ghost/G in world)
-		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
-
-/mob/living/carbon/human/proc/remoteobserve()
-	set name = "Remote View"
-	set category = "Abilities"
-
-	if(stat)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	if(client.eye != client.mob)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	if(!check_ability_cooldown(1 MINUTE))
-		return
-
-	var/list/mobs = list()
-
-	for(var/mob/living/carbon/H in SSmobs.mob_list | SShumans.mob_list)
-		if(H.ckey && H.stat == CONSCIOUS)
-			mobs += H
-
-	mobs -= src
-	var/mob/target = input("", "Who do you want to project your mind to?") as mob in mobs
-
-	if(target)
-		remoteview_target = target
-		reset_view(target)
-		to_chat(target, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
-	else
-		remoteview_target = null
-		reset_view(0)
-
-
-/mob/living/carbon/human/proc/roach_pheromones()
-	set name = "Release roach pheromones"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	if(check_ability_cooldown(2 MINUTES))
-		for(var/M in mobs_in_view(7, src) - src)
-			if(isroach(M))
-				var/mob/living/carbon/superior_animal/roach/R = M
-				R.target_mob = null
-				R.set_faction(faction)
-				addtimer(CALLBACK(R, PROC_REF(set_faction)), 1 MINUTE)
-
-			else if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(!H.get_breath_from_internal() && !(H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-					to_chat(H, "You feel disgusting smell coming from [src]")
-					H.sanity.changeLevel(-20)
-
-
-/mob/living/carbon/human/proc/spider_pheromones()
-	set name = "Release spider pheromones"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	if(check_ability_cooldown(2 MINUTES))
-		for(var/M in mobs_in_view(7, src) - src)
-			if(istype(M, /mob/living/carbon/superior_animal/giant_spider))
-				var/mob/living/carbon/superior_animal/giant_spider/S = M
-				S.target_mob = null
-				S.set_faction(faction)
-				addtimer(CALLBACK(S, PROC_REF(set_faction)), 1 MINUTE)
-
-			else if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(!H.get_breath_from_internal() && !(H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-					to_chat(H, "You feel disgusting smell coming from [src]")
-					H.sanity.changeLevel(-20)
-
-
-/mob/living/carbon/human/proc/inner_fuhrer()
-	set name = "Screech"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	if(check_ability_cooldown(2 MINUTES))
-		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-		spawn(2)
-			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-		visible_message(SPAN_DANGER("[src] emits a frightening screech as you feel the ground tramble!"))
-		for(var/obj/structure/burrow/B in find_nearby_burrows(src))
-			B.distress(TRUE)
 
 
 /mob/living/carbon/human/proc/get_visible_gender()
@@ -998,17 +711,12 @@ var/list/rank_prefix = list(\
 		fixblood()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for(var/obj/item/organ/internal/brain/H in world)
+		for(var/obj/item/organ/internal/vital/brain/H in world)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
-
-
-	for(var/ID in virus2)
-		var/datum/disease2/disease/V = virus2[ID]
-		V.cure(src)
 
 	losebreath = 0
 
@@ -1100,37 +808,7 @@ var/list/rank_prefix = list(\
 	set desc		= "Browse your character sanity."
 	set category	= "IC"
 	set src			= usr
-	nano_ui_interact(src)
-
-/mob/living/carbon/human/nano_ui_data()
-	var/list/data = list()
-
-	data["style"] = get_total_style()
-	data["min_style"] = MIN_HUMAN_STYLE
-	data["max_style"] = MAX_HUMAN_STYLE
-	data["sanity"] = sanity.level
-	data["sanity_max_level"] = sanity.max_level
-	data["insight"] = sanity.insight
-	data["desires"] = sanity.desires
-	data["rest"] = sanity.resting
-	data["insight_rest"] = sanity.insight_rest
-
-	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
-	if(C)
-		data["cruciform"] = TRUE
-		data["righteous_life"] = C.righteous_life
-
-	return data
-
-/mob/living/carbon/human/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = nano_ui_data()
-
-	ui = SSnano.try_update_ui(user, user, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "sanity.tmpl", name, 650, 550, state = state)
-		ui.auto_update_layout = 1
-		ui.set_initial_data(data)
-		ui.open()
+	sanity?.ui_interact(src)
 
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
@@ -1482,11 +1160,9 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
-		return 0
-	..(slipped_on,stun_duration)
-	regen_slickness(-3)
-	dodge_time = get_game_time()
-	confidence = FALSE
+		return FALSE
+	return ..(slipped_on,stun_duration)
+
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
@@ -1519,15 +1195,6 @@ var/list/rank_prefix = list(\
 	if(stat) return
 	holding_back = !holding_back
 	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
-	return
-
-/mob/living/carbon/human/verb/toggle_dodging()
-	set name = "Toggle Dodging"
-	set desc = "Just stand still while under fire."
-	set category = "IC"
-	if(stat) return
-	dodging = !dodging
-	to_chat(src, "<span class='notice'>You are now [dodging ? "dodging incoming fire" : "not dodging incoming fire"].</span>")
 	return
 
 /mob/living/carbon/human/verb/access_holster()
@@ -1681,8 +1348,8 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	var/obj/item/organ/internal/heart_organ = random_organ_by_process(OP_HEART)
-	var/obj/item/organ/internal/brain_organ = random_organ_by_process(BP_BRAIN)
+	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 
 	if(!is_asystole() && !(heart_organ && brain_organ) || (heart_organ.is_broken() || brain_organ.is_broken()))
 		return 0

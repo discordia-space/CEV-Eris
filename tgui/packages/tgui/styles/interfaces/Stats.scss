@@ -1,0 +1,31 @@
+.Stats {
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__box {
+    padding: 0.3rem;
+    border: 0.03rem solid;
+    border-radius: 0.3rem;
+
+    &--icon {
+      @extend .Stats__box;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-color: black;
+      background-color: black;
+    }
+    &--text {
+      @extend .Stats__box;
+      border-color: #3e6189;
+    }
+    &--skill {
+      @extend .Stats__box;
+      border-color: #3333aa;
+      background-color: #3333aa;
+    }
+  }
+}

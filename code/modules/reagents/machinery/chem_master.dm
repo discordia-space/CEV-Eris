@@ -37,14 +37,6 @@
 		reagents.trans_to_holder(G, amount)
 	..()
 
-/obj/machinery/chem_master/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				qdel(src)
-
 /obj/machinery/chem_master/MouseDrop_T(atom/movable/I, mob/user, src_location, over_location, src_control, over_control, params)
 	if(!Adjacent(user) || !I.Adjacent(user) || user.stat)
 		return ..()

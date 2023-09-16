@@ -3,7 +3,8 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 	var/datum/research/files
-	var/health = 100
+	health = 100
+	maxHealth = 100
 	var/list/id_with_upload = list()	//List of R&D consoles with upload to server access.
 	var/list/id_with_download = list()	//List of R&D consoles with download from server access.
 	var/id_with_upload_string = ""		//String versions for easy editing in map editor.
@@ -62,9 +63,9 @@
 	griefProtection()
 	..()
 
-/obj/machinery/r_n_d/server/ex_act(severity)
+/obj/machinery/r_n_d/server/explosion_act(target_power, explosion_handler/handler)
 	griefProtection()
-	..()
+	. = ..()
 
 //Backup files to centcom to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()

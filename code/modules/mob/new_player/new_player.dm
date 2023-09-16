@@ -252,10 +252,17 @@
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)	return 0
-	if(!job.is_position_available()) return 0
-	if(jobban_isbanned(src,rank))	return 0
-	return 1
+	if(!job)	
+		return FALSE
+	if(!job.is_position_available())	
+		return FALSE
+	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title])	
+		return FALSE
+	if(!SSjob.ckey_to_job_to_can_play[client.ckey][job.title])
+		return FALSE
+	if(jobban_isbanned(src,rank))	
+		return FALSE
+	return TRUE
 
 /mob/new_player/proc/AttemptLateSpawn(rank, var/spawning_at)
 	if(src != usr)
@@ -298,7 +305,6 @@
 	var/datum/spawnpoint/spawnpoint = SSjob.get_spawnpoint_for(character.client, rank, late = TRUE)
 	spawnpoint.put_mob(character) // This can fail, and it'll result in the players being left in space and not being teleported to the station. But atleast they'll be equipped. Needs to be fixed so a default case for extreme situations is added.
 	character = SSjob.EquipRank(character, rank) //equips the human
-	equip_custom_items(character)
 	character.lastarea = get_area(loc)
 
 	if(SSjob.ShouldCreateRecords(job.title))
@@ -332,6 +338,7 @@
 			dat += "<font color='red'>The vessel is currently undergoing crew transfer procedures.</font><br>"
 
 	dat += "Choose from the following open/valid positions:<br>"
+	SSjob.UpdatePlayableJobs(client.ckey)
 	for(var/datum/job/job in SSjob.occupations)
 		if(job && IsJobAvailable(job.title))
 			if(job.is_restricted(client.prefs))
@@ -361,12 +368,12 @@
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 		if(is_species_whitelisted(chosen_species) || has_admin_rights())
-			new_character = new(loc, use_species_name)
+			new_character = new(NULLSPACE, use_species_name)
 
 	if(!new_character)
-		new_character = new(loc)
+		new_character = new(NULLSPACE)
 
-	new_character.lastarea = get_area(loc)
+	new_character.lastarea = get_area(NULLSPACE)
 
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = all_languages[lang]
@@ -450,5 +457,5 @@
 /mob/new_player/hear_radio(var/message, var/verb="says", var/datum/language/language=null, var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0)
 	return
 
-mob/new_player/MayRespawn()
+/mob/new_player/MayRespawn()
 	return 1

@@ -1,0 +1,71 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/lattice,
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"b" = (
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"c" = (
+/obj/structure/lattice,
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"d" = (
+/turf/simulated/wall/r_wall,
+/area/asteroid/cave)
+"e" = (
+/mob/living/simple_animal/hostile/carp,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"f" = (
+/obj/spawner/scrap/dense,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"g" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"l" = (
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"N" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating/airless,
+/area/asteroid/cave)
+
+(1,1,1) = {"
+c
+l
+l
+c
+b
+"}
+(2,1,1) = {"
+b
+c
+e
+f
+b
+"}
+(3,1,1) = {"
+c
+a
+d
+d
+c
+"}
+(4,1,1) = {"
+N
+l
+d
+g
+g
+"}
+(5,1,1) = {"
+g
+l
+b
+a
+b
+"}

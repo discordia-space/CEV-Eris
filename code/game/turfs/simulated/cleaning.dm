@@ -114,7 +114,6 @@
 				B.blood_DNA = list()
 			if(!B.blood_DNA[M.dna_trace])
 				B.blood_DNA[M.dna_trace] = M.b_type
-				B.virus2 = virus_copylist(M.virus2)
 			return 1 //we bloodied the floor
 		blood_splatter(src,M.get_blood(),1)
 		return 1 //we bloodied the floor

@@ -34,12 +34,6 @@
 // Weapon minimum fire_delay
 #define GUN_MINIMUM_FIRETIME 1.1 // 110 MS , ~9 shots per second.
 
-// Modular weapon defines
-
-#define STOCK_FOLDED -1
-#define STOCK_UNFOLDED 1
-#define STOCK_MISSING 0
-
 // When present as a spritetag, this denotes whether the part is installed. When present as a parttag, it denotes that the sprite is currently activated.
 // Used for sprite handling, when present as both parts it will modify the base sprite and all overlays.
 #define PARTMOD_STRIPPED 0
@@ -56,6 +50,7 @@
 
 //Int multiplier
 #define GUN_UPGRADE_DAMAGE_MULT "damage_mult"
+#define GUN_UPGRADE_HALLOSS_MULT "halloss_mult"
 #define GUN_UPGRADE_PEN_MULT "penetration_mult"
 #define GUN_UPGRADE_PIERC_MULT "pierce_mult"
 #define GUN_UPGRADE_RICO_MULT "ricochet_mult"

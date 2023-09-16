@@ -61,6 +61,8 @@
 	//Air!
 	var/use_air = FALSE
 
+	injury_type = INJURY_TYPE_UNLIVING // Has no soft vitals, but also contains delicate electronics
+
 // Interface stuff.
 	var/list/hud_elements = list()
 	var/list/hardpoint_hud_elements = list()

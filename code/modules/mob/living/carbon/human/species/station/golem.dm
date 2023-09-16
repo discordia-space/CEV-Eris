@@ -11,6 +11,8 @@
 	spawn_flags = IS_RESTRICTED
 	siemens_coefficient = 0
 
+	injury_type =  INJURY_TYPE_HOMOGENOUS
+
 	breath_type = null
 	poison_type = null
 
@@ -18,7 +20,7 @@
 	flesh_color = "#137E8F"
 
 	has_process = list(
-		BP_BRAIN = /obj/item/organ/internal/brain/golem
+		BP_BRAIN = /obj/item/organ/internal/vital/brain/golem
 		)
 
 	death_message = "becomes completely motionless..."

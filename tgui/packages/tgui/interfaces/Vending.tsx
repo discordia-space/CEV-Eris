@@ -1,387 +1,282 @@
-import { classes } from 'common/react';
-import { capitalizeAll } from 'common/string';
-import { useBackend, useLocalState } from 'tgui/backend';
-import { Box, Button, Icon, LabeledList, NoticeBox, Section, Stack, Table } from 'tgui/components';
-import { Window } from 'tgui/layouts';
+import { capitalize } from 'common/string';
+import { useBackend } from '../backend';
+import { BlockQuote, Box, Button, Icon, LabeledList, Modal, NoticeBox, Section, Stack } from '../components';
+import { GameIcon } from '../components/GameIcon';
+import { Window } from '../layouts';
 
-type VendingData = {
-  onstation: boolean;
-  department: string;
-  jobDiscount: number;
-  product_records: ProductRecord[];
-  coin_records: CoinRecord[];
-  hidden_records: HiddenRecord[];
-  user: UserData;
-  stock: StockItem[];
-  extended_inventory: boolean;
-  access: boolean;
-  vending_machine_input: CustomInput[];
-  categories: Record<string, Category>;
-};
+interface OwnerData {
+  name: string;
+  dept: string;
+}
 
-type Category = {
+interface ErrorData {
+  message: string;
+  isError: boolean;
+}
+
+interface VendingProductData extends ErrorData {
+  name: string;
+  desc: string;
+  price: number;
+}
+
+interface ProductData {
+  key: number;
+  name: string;
   icon: string;
-};
-
-type ProductRecord = {
-  path: string;
-  name: string;
   price: number;
-  max_amount: number;
-  ref: string;
-  category: string;
-};
-
-type CoinRecord = ProductRecord & {
-  premium: boolean;
-};
-
-type HiddenRecord = ProductRecord & {
-  premium: boolean;
-};
-
-type UserData = {
-  name: string;
-  cash: number;
-  job: string;
-  department: string;
-};
-
-type StockItem = {
-  name: string;
+  color?: null;
   amount: number;
-  colorable: boolean;
-};
+}
 
-type CustomInput = {
+interface VendingData {
   name: string;
-  price: number;
-  img: string;
-};
+  panel: boolean;
+  isCustom: string;
+  ownerData?: OwnerData;
+  isManaging: boolean;
+  managingData: ErrorData;
+  isVending: boolean;
+  vendingData: VendingProductData;
+  products?: ProductData[];
+  markup?: number;
+  speaker?: string;
+  advertisement?: string;
+}
 
-export const Vending = (props, context) => {
-  const { data } = useBackend<VendingData>(context);
-
-  const {
-    onstation,
-    product_records = [],
-    coin_records = [],
-    hidden_records = [],
-    stock,
-  } = data;
-
-  const [selectedCategory, setSelectedCategory] = useLocalState<string>(
-    context,
-    'selectedCategory',
-    Object.keys(data.categories)[0]
-  );
-
-  let inventory: (ProductRecord | CustomInput)[];
-  let custom = false;
-  if (data.vending_machine_input) {
-    inventory = data.vending_machine_input;
-    custom = true;
-  } else {
-    inventory = [...product_records, ...coin_records];
-    if (data.extended_inventory) {
-      inventory = [...inventory, ...hidden_records];
-    }
-  }
-
-  inventory = inventory
-    // Just in case we still have undefined values in the list
-    .filter((item) => !!item);
-
-  const filteredCategories = Object.fromEntries(
-    Object.entries(data.categories).filter(([categoryName]) => {
-      return inventory.find((product) => {
-        if ('category' in product) {
-          return product.category === categoryName;
-        } else {
-          return false;
-        }
-      });
-    })
-  );
+const managing = (managingData: ErrorData, context: any) => {
+  const { act } = useBackend<VendingData>(context);
 
   return (
-    <Window width={450} height={600}>
-      <Window.Content>
-        <Stack fill vertical>
-          {!!onstation && (
-            <Stack.Item>
-              <UserDetails />
-            </Stack.Item>
-          )}
+    <>
+      <Stack.Item>
+        {managingData.message.length > 0 && (
+          <NoticeBox
+            style={{
+              'overflow': 'hidden',
+              'word-break': 'break-all',
+            }}>
+            {managingData.message}
+          </NoticeBox>
+        )}
+      </Stack.Item>
+      <Stack.Item>
+        <Stack justify="space-between" textAlign="center">
           <Stack.Item grow>
-            <ProductDisplay
-              custom={custom}
-              inventory={inventory}
-              selectedCategory={selectedCategory}
+            <Button
+              fluid
+              ellipsis
+              icon="building"
+              content="Organization"
+              onClick={() => act('setdepartment')}
             />
           </Stack.Item>
-
-          {Object.keys(filteredCategories).length > 1 && (
-            <Stack.Item>
-              <CategorySelector
-                categories={filteredCategories}
-                selectedCategory={selectedCategory!}
-                onSelect={setSelectedCategory}
-              />
-            </Stack.Item>
-          )}
+          <Stack.Item grow>
+            <Button
+              fluid
+              ellipsis
+              icon="id-card"
+              content="Account"
+              onClick={() => act('setaccount')}
+            />
+          </Stack.Item>
+          <Stack.Item grow>
+            <Button
+              fluid
+              ellipsis
+              icon="tags"
+              content="Markup"
+              onClick={() => act('markup')}
+            />
+          </Stack.Item>
         </Stack>
-      </Window.Content>
-    </Window>
+      </Stack.Item>
+    </>
   );
 };
 
-/** Displays user details if an ID is present and the user is on the station */
-export const UserDetails = (props, context) => {
-  const { data } = useBackend<VendingData>(context);
-  const { user } = data;
+const custom = (props: any, context: any) => {
+  const { act, data } = useBackend<VendingData>(context);
+  const { ownerData } = data;
 
-  if (!user) {
-    return (
-      <NoticeBox>No ID detected! Contact the Head of Personnel.</NoticeBox>
-    );
-  } else {
-    return (
-      <Section>
+  return (
+    <Section title={data.isManaging ? 'Managment' : 'Commercial Info'}>
+      <Stack fill vertical>
         <Stack>
-          <Stack.Item>
-            <Icon name="id-card" size={3} mr={1} />
+          <Stack.Item align="center">
+            <Icon name="toolbox" size={3} mx={1} />
           </Stack.Item>
           <Stack.Item>
             <LabeledList>
-              <LabeledList.Item label="User">{user.name}</LabeledList.Item>
-              <LabeledList.Item label="Occupation">
-                {user.job || 'Unemployed'}
+              <LabeledList.Item label="Owner">
+                {ownerData?.name || 'Unknown'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Department">
+                {ownerData?.dept || 'Not Specified'}
+              </LabeledList.Item>
+              <LabeledList.Item label="Murkup">
+                {(data?.markup && data?.markup > 0 && (
+                  <Box>{data.markup}</Box>
+                )) ||
+                  'None'}
               </LabeledList.Item>
             </LabeledList>
           </Stack.Item>
         </Stack>
-      </Section>
-    );
-  }
-};
-
-/** Displays  products in a section, with user balance at top */
-const ProductDisplay = (
-  props: {
-    custom: boolean;
-    selectedCategory: string | null;
-    inventory: (ProductRecord | CustomInput)[];
-  },
-  context
-) => {
-  const { data } = useBackend<VendingData>(context);
-  const { custom, inventory, selectedCategory } = props;
-  const { stock, onstation, user } = data;
-
-  return (
-    <Section
-      fill
-      scrollable
-      title="Products"
-      buttons={
-        !!onstation &&
-        user && (
-          <Box fontSize="16px" color="green">
-            {(user && user.cash) || 0} cr <Icon name="coins" color="gold" />
-          </Box>
-        )
-      }>
-      <Table>
-        {inventory
-          .filter((product) => {
-            if ('category' in product) {
-              return product.category === selectedCategory;
-            } else {
-              return true;
-            }
-          })
-          .map((product) => (
-            <VendingRow
-              key={product.name}
-              custom={custom}
-              product={product}
-              productStock={stock[product.name]}
-            />
-          ))}
-      </Table>
-    </Section>
-  );
-};
-
-/** An individual listing for an item.
- * Uses a table layout. Labeledlist might be better,
- * but you cannot use item icons as labels currently.
- */
-const VendingRow = (props, context) => {
-  const { data } = useBackend<VendingData>(context);
-  const { custom, product, productStock } = props;
-  const { access, department, jobDiscount, onstation, user } = data;
-  const free = !onstation || product.price === 0;
-  const discount = !product.premium && department === user?.department;
-  const remaining = custom ? product.amount : productStock.amount;
-  const redPrice = Math.round(product.price * jobDiscount);
-  const disabled =
-    remaining === 0 ||
-    (onstation && !user) ||
-    (onstation &&
-      !access &&
-      (discount ? redPrice : product.price) > user?.cash);
-
-  return (
-    <Table.Row>
-      <Table.Cell collapsing>
-        <ProductImage product={product} />
-      </Table.Cell>
-      <Table.Cell bold>{capitalizeAll(product.name)}</Table.Cell>
-      <Table.Cell>
-        {!!productStock?.colorable && (
-          <ProductColorSelect disabled={disabled} product={product} />
-        )}
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="right">
-        <ProductStock custom={custom} product={product} remaining={remaining} />
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-        <ProductButton
-          custom={custom}
-          disabled={disabled}
-          discount={discount}
-          free={free}
-          product={product}
-          redPrice={redPrice}
-        />
-      </Table.Cell>
-    </Table.Row>
-  );
-};
-
-/** Displays the product image. Displays a default if there is none. */
-const ProductImage = (props) => {
-  const { product } = props;
-
-  return product.img ? (
-    <img
-      src={`data:image/jpeg;base64,${product.img}`}
-      style={{
-        'vertical-align': 'middle',
-        'horizontal-align': 'middle',
-      }}
-    />
-  ) : (
-    <span
-      className={classes(['vending32x32', product.path])}
-      style={{
-        'vertical-align': 'middle',
-        'horizontal-align': 'middle',
-      }}
-    />
-  );
-};
-
-/** In the case of customizable items, ie: shoes,
- * this displays a color wheel button that opens another window.
- */
-const ProductColorSelect = (props, context) => {
-  const { act } = useBackend<VendingData>(context);
-  const { disabled, product } = props;
-
-  return (
-    <Button
-      icon="palette"
-      tooltip="Change color"
-      disabled={disabled}
-      onClick={() => act('select_colors', { ref: product.ref })}
-    />
-  );
-};
-
-/** Displays a colored indicator for remaining stock */
-const ProductStock = (props) => {
-  const { custom, product, remaining } = props;
-
-  return (
-    <Box
-      color={
-        (remaining <= 0 && 'bad') ||
-        (!custom && remaining <= product.max_amount / 2 && 'average') ||
-        'good'
-      }>
-      {remaining} left
-    </Box>
-  );
-};
-
-/** The main button to purchase an item. */
-const ProductButton = (props, context) => {
-  const { act, data } = useBackend<VendingData>(context);
-  const { access } = data;
-  const { custom, discount, disabled, free, product, redPrice } = props;
-  const customPrice = access ? 'FREE' : product.price + ' cr';
-  let standardPrice = product.price + ' cr';
-  if (free) {
-    standardPrice = 'FREE';
-  } else if (discount) {
-    standardPrice = redPrice + ' cr';
-  }
-  return custom ? (
-    <Button
-      fluid
-      disabled={disabled}
-      onClick={() =>
-        act('dispense', {
-          'item': product.name,
-        })
-      }>
-      {customPrice}
-    </Button>
-  ) : (
-    <Button
-      fluid
-      disabled={disabled}
-      onClick={() =>
-        act('vend', {
-          'ref': product.ref,
-        })
-      }>
-      {standardPrice}
-    </Button>
-  );
-};
-
-const CATEGORY_COLORS = {
-  'Contraband': 'red',
-  'Premium': 'yellow',
-};
-
-const CategorySelector = (props: {
-  categories: Record<string, Category>;
-  selectedCategory: string;
-  onSelect: (category: string) => void;
-}) => {
-  const { categories, selectedCategory, onSelect } = props;
-
-  return (
-    <Section>
-      <Stack grow>
-        <Stack.Item>
-          {Object.entries(categories).map(([name, category]) => (
-            <Button
-              key={name}
-              selected={name === selectedCategory}
-              color={CATEGORY_COLORS[name]}
-              icon={category.icon}
-              onClick={() => onSelect(name)}>
-              {name}
-            </Button>
-          ))}
-        </Stack.Item>
+        {(data.isManaging && managing(data.managingData, context)) || null}
       </Stack>
     </Section>
+  );
+};
+
+const product = (product: ProductData, context: any) => {
+  const { act, data } = useBackend<VendingData>(context);
+
+  return (
+    <Stack.Item>
+      <Stack fill height="5.9ch">
+        <Stack.Item grow>
+          <Button
+            fluid
+            ellipsis
+            onClick={() => act('vend', { key: product.key })}>
+            <Stack fill align="center">
+              <Stack.Item>
+                <GameIcon html={product.icon} className="Vending--game-icon" />
+              </Stack.Item>
+              <Stack.Item grow={4} textAlign="left" className="Vending--text">
+                {product.name}
+              </Stack.Item>
+              <Stack.Item grow textAlign="right" className="Vending--text">
+                {product.amount}
+                <Icon name="box" pl="0.6em" />
+              </Stack.Item>
+              {(product.price > 0 && (
+                <Stack.Item grow textAlign="right" className="Vending--text">
+                  {product.price}
+                  <Icon name="money-bill" pl="0.6em" />
+                </Stack.Item>
+              )) ||
+                null}
+            </Stack>
+          </Button>
+        </Stack.Item>
+        {(data.isManaging && (
+          <>
+            <Stack.Item fill>
+              <Button
+                icon="tag"
+                color="yellow"
+                title="Change Price"
+                className="Vending--icon"
+                verticalAlignContent="middle"
+                onClick={() => act('setprice', { key: product.key })}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                icon="eject"
+                color="red"
+                title="Remove"
+                className="Vending--icon"
+                verticalAlignContent="middle"
+                onClick={() => act('remove', { key: product.key })}
+              />
+            </Stack.Item>
+          </>
+        )) ||
+          null}
+      </Stack>
+    </Stack.Item>
+  );
+};
+
+const pay = (vendingProduct: VendingProductData, context: any) => {
+  const { act } = useBackend<VendingData>(context);
+
+  return (
+    <Modal className="Vending--modal">
+      <Stack fill vertical justify="space-between">
+        <Stack.Item>
+          <LabeledList>
+            <LabeledList.Item label="Name">
+              {capitalize(vendingProduct.name)}
+            </LabeledList.Item>
+            <LabeledList.Item label="Description">
+              {vendingProduct.desc}
+            </LabeledList.Item>
+            <LabeledList.Item label="Price">
+              {vendingProduct.price}
+            </LabeledList.Item>
+          </LabeledList>
+        </Stack.Item>
+        <Stack.Item>
+          <NoticeBox color={vendingProduct.isError ? 'red' : ''}>
+            {vendingProduct.message}
+          </NoticeBox>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            fluid
+            icon="ban"
+            color="red"
+            content="Cancel"
+            className="Vending--cancel"
+            verticalAlignContent="middle"
+            onClick={() => act('cancelpurchase')}
+          />
+        </Stack.Item>
+      </Stack>
+    </Modal>
+  );
+};
+
+export const Vending = (props: any, context: any) => {
+  const { act, data } = useBackend<VendingData>(context);
+
+  return (
+    <Window width={450} height={600} title={`Vending Machine - ${data.name}`}>
+      <Window.Content>
+        <Stack fill vertical>
+          {(data.isCustom && (
+            <Stack.Item>{custom(data, context)}</Stack.Item>
+          )) ||
+            null}
+          {(data.panel && (
+            <Stack.Item>
+              <Button
+                fluid
+                bold
+                my={1}
+                py={1}
+                icon={data.speaker ? 'comment' : 'comment-slash'}
+                content={`Speaker ${data.speaker ? 'Enabled' : 'Disabled'}`}
+                textAlign="center"
+                color={data.speaker ? 'green' : 'red'}
+                onClick={() => act('togglevoice')}
+              />
+            </Stack.Item>
+          )) ||
+            null}
+          {(data.advertisement && data.advertisement.length > 0 && (
+            <Stack.Item>
+              <Section>
+                <BlockQuote>{data.advertisement}</BlockQuote>
+              </Section>
+            </Stack.Item>
+          )) ||
+            null}
+          <Stack.Item grow>
+            <Section scrollable fill title="Products">
+              <Stack fill vertical>
+                {data.products &&
+                  data.products.map((value, i) => product(value, context))}
+              </Stack>
+            </Section>
+          </Stack.Item>
+        </Stack>
+      </Window.Content>
+      {(data.isVending && pay(data.vendingData, context)) || null}
+    </Window>
   );
 };

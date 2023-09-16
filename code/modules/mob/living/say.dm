@@ -281,9 +281,9 @@ var/list/channel_to_radio_key = new
 			else if(M.locs.len && (M.locs[1] in hear_falloff))
 				listening_falloff |= M
 
-		for(var/obj in GLOB.hearing_objects)
-			if(get_turf(obj) in hear)
-				listening_obj |= obj
+			for(var/obj in GLOB.hearing_objects)
+				if(get_turf(obj) in hear)
+					listening_obj |= obj
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
@@ -321,9 +321,8 @@ var/list/channel_to_radio_key = new
 		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_broadcast, src, message, seed, speaking)
 
 	for(var/obj/O in listening_obj)
-		spawn(0)
-			if(!QDELETED(O)) //It's possible that it could be deleted in the meantime.
-				O.hear_talk(src, message, verb, speaking, getSpeechVolume(message), message_pre_stutter)
+		if(!QDELETED(O)) //It's possible that it could be deleted in the meantime.
+			O.hear_talk(src, message, verb, speaking, getSpeechVolume(message), message_pre_stutter)
 
 
 	log_say("[name]/[key] : [message]")

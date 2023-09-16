@@ -206,3 +206,75 @@
 	icon_state = "asteroid0"
 	random_rotation = 2
 	random_icon_states = list("asteroid0", "asteroid1", "asteroid2", "asteroid3", "asteroid4", "asteroid5", "asteroid6","asteroid7","asteroid8")
+
+/obj/effect/decal/cleanable/graffiti
+	name = "graffiti"
+	desc = "A graffiti."
+	density = FALSE
+	anchored = TRUE
+	plane = -1
+	icon = 'icons/effects/wall_graffiti.dmi'
+	icon_state = "kot"
+	random_rotation = 0
+
+/obj/effect/decal/cleanable/graffiti/graffiti_kot
+	desc = "A graffiti of a very happy cat."
+	icon_state = "kot"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_onestar
+	desc = "A graffiti of one star's eye."
+	icon_state = "onestar"
+
+
+/obj/effect/decal/cleanable/graffiti/graffiti_doodle
+	desc = "A vagabond beaten by IH, this is mercenary brutality."
+	icon_state = "doodle"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_piss
+	desc = "A graffiti of, well."
+	icon_state = "piss"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_clown
+	desc = "A graffiti of a clown."
+	icon_state = "clown"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_skull
+	desc = "A graffiti of a skull."
+	icon_state = "skull"
+
+
+/obj/effect/decal/cleanable/graffiti/graffiti_heart
+	desc = "A graffiti of a heart."
+	icon_state = "heart"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_excelsior
+	desc = "Ever Upwards!"
+	icon_state = "excelsior"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ironhammer
+	desc = "The best of the best."
+	icon_state = "ironhammer"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_moebius
+	desc = "Science never stops."
+	icon_state = "moebius"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_neotheo
+	desc = "Mutants not welcomed."
+	icon_state = "neotheo"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_techno
+	desc = "Kickstart the Engine."
+	icon_state = "techno"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_aster
+	desc = "Blood is the oldest currency."
+	icon_state = "aster"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ancapyes
+	desc = "The great Capital approves."
+	icon_state = "ancapyes"
+
+/obj/effect/decal/cleanable/graffiti/graffiti_ancapno
+	desc = "The free market isn't happy."
+	icon_state = "ancapno"

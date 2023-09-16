@@ -7,6 +7,10 @@
 	price_tag = 50
 	var/inflamed = 0 //Counter, not boolean
 
+	max_damage = IORGAN_SMALL_HEALTH
+	min_bruised_damage = IORGAN_SMALL_BRUISE
+	min_broken_damage = IORGAN_SMALL_BREAK
+
 /obj/item/organ/internal/appendix/update_icon()
 	..()
 	if(inflamed)

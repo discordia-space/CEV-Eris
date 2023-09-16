@@ -1,0 +1,1007 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating,
+/area/asteroid/cave)
+"ab" = (
+/turf/simulated/wall/r_wall,
+/area/asteroid/cave)
+"ac" = (
+/obj/machinery/atmospherics/unary/engine,
+/turf/simulated/floor/plating,
+/area/asteroid/cave)
+"ad" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1;
+	icon_state = "heater"
+	},
+/obj/structure/girder,
+/obj/effect/window_lwall_spawn/plasma/reinforced,
+/turf/simulated/floor/plating,
+/area/asteroid/cave)
+"ah" = (
+/obj/machinery/alarm{
+	dir = 4;
+	locked = 0;
+	pixel_x = -25;
+	pixel_y = 0
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"ai" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/raisins,
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"ak" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"al" = (
+/obj/structure/sign/kiddieplaque{
+	desc = "A plaque with information regarding this particular lifepod. It reads: 'Armalev Industries Skyfin-E, Exoplanetary Suvival Pod' there's a registry number, and an assigned mothership, but they've both been scratched to illegiblity.";
+	name = "\improper Lifepod Plaque";
+	pixel_y = 30
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"ao" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/tastybread,
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"ap" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/curtain/open/shower/engineering,
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/item/mirror{
+	pixel_x = 27
+	},
+/obj/item/electronics/circuitboard/solar_control,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"ar" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"as" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/power/apc{
+	dir = 2;
+	locked = 0;
+	name = "south bump";
+	operating = 1;
+	pixel_y = -28
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"at" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/smes/buildable{
+	charge = 50000;
+	inputting = 1;
+	outputting = 1
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"au" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aw" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"ax" = (
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
+/area/asteroid/cave)
+"ay" = (
+/turf/simulated/wall,
+/area/asteroid/cave)
+"aB" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aC" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/engineering,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aE" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aF" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aG" = (
+/obj/structure/closet/crate,
+/obj/effect/floor_decal/industrial/danger,
+/obj/item/device/scanner/gas,
+/obj/item/electronics/circuitboard/unary_atmos/cooler,
+/obj/item/electronics/circuitboard/unary_atmos/heater,
+/obj/item/tank/oxygen/red,
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/item/stack/material/uranium{
+	amount = 10
+	},
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under/low_chance,
+/obj/spawner/junkfood,
+/obj/item/trash/liquidfood,
+/obj/item/stock_parts/matter_bin/super,
+/obj/item/electronics/circuitboard/biogenerator,
+/obj/item/bedsheet/orange,
+/obj/item/bedsheet/orange,
+/obj/item/stock_parts/matter_bin/adv,
+/obj/item/stock_parts/micro_laser/ultra,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/stack/material/sandstone{
+	amount = 50
+	},
+/mob/living/simple_animal/hostile/roomba/gun_ba,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aH" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aI" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/curtain/open/shower/engineering,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aK" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/mop,
+/obj/effect/decal/cleanable/dirt,
+/obj/spawner/junkfood,
+/obj/item/trash/liquidfood,
+/obj/spawner/cloth/head,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aL" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aM" = (
+/obj/machinery/pipedispenser,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aN" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/obj/item/solar_assembly,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aR" = (
+/obj/machinery/autolathe,
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"aS" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/tastybread,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aU" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aW" = (
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aX" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aY" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"aZ" = (
+/obj/landmark/corpse/doctor,
+/obj/structure/bed/chair/comfy/black,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/asteroid/cave)
+"bc" = (
+/obj/landmark/corpse/engineer,
+/obj/structure/bed/chair/comfy/black,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/asteroid/cave)
+"bd" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/item/device/radio,
+/obj/spawner/toy/plushie,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/asteroid/cave)
+"be" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/bed/chair,
+/obj/structure/closet/wall_mounted/firecloset{
+	pixel_x = -27
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bf" = (
+/obj/landmark/corpse/chef,
+/obj/structure/bed/chair/comfy/black,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/asteroid/cave)
+"bh" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bi" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bj" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/recharger,
+/obj/effect/decal/cleanable/dirt,
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/dark/techfloor,
+/area/asteroid/cave)
+"bk" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bm" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/decal/cleanable/dirt,
+/obj/spawner/junkfood,
+/obj/item/trash/liquidfood,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bn" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bq" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"br" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bu" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/reagent_containers/food/condiment/saltshaker,
+/obj/item/reagent_containers/food/condiment/peppermill,
+/obj/effect/decal/cleanable/flour,
+/obj/spawner/junkfood,
+/obj/machinery/reagentgrinder,
+/obj/item/reagent_containers/food/condiment/sugar,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bx" = (
+/obj/machinery/alarm{
+	dir = 4;
+	locked = 0;
+	pixel_x = -25;
+	pixel_y = 0
+	},
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bB" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/engineering,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bD" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bF" = (
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bH" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bI" = (
+/obj/structure/closet/crate,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bJ" = (
+/obj/machinery/door/airlock/external{
+	name = "escape pod airlock"
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bK" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/ash,
+/obj/item/trash/cigbutt/cigarbutt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bL" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"bM" = (
+/obj/structure/closet,
+/obj/spawner/cloth,
+/obj/spawner/cloth,
+/obj/spawner/cloth,
+/obj/spawner/cloth,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/gloves,
+/obj/spawner/cloth/gloves,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under/low_chance,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bN" = (
+/obj/machinery/seed_extractor,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bO" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/table/steel_reinforced,
+/obj/item/device/binoculars,
+/obj/effect/decal/cleanable/dirt,
+/obj/spawner/junkfood,
+/obj/spawner/booze/low_chance,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bP" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bQ" = (
+/obj/structure/closet,
+/obj/spawner/cloth,
+/obj/spawner/cloth,
+/obj/spawner/cloth,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/gloves/low_chance,
+/obj/spawner/cloth/gloves/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under/low_chance,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bR" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/tastybread,
+/obj/spawner/techpart/low_chance,
+/obj/spawner/techpart/low_chance,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bS" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/space/emergency,
+/obj/item/clothing/head/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bT" = (
+/obj/structure/closet/emcloset,
+/obj/machinery/light/small,
+/obj/item/tool/crowbar,
+/obj/item/tool/crowbar,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bU" = (
+/obj/structure/closet,
+/obj/spawner/cloth,
+/obj/spawner/cloth,
+/obj/spawner/cloth,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/suit/low_chance,
+/obj/spawner/cloth/gloves,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/head/low_chance,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under,
+/obj/spawner/cloth/under/low_chance,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"bV" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/suit/space/emergency,
+/obj/item/clothing/head/space/emergency,
+/obj/item/clothing/head/space/emergency,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bW" = (
+/obj/structure/closet/crate/medical,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
+/obj/spawner/firstaid,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/dylovene,
+/obj/item/storage/pill_bottle/tramadol,
+/obj/item/storage/pill_bottle/tramadol,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/storage/pill_bottle/antitox,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bX" = (
+/obj/structure/closet/crate,
+/obj/spawner/gun/cheap,
+/obj/spawner/gun/cheap,
+/obj/spawner/gun/cheap,
+/obj/item/tool/pickaxe,
+/obj/item/tool/pickaxe,
+/obj/item/tool/pickaxe,
+/obj/item/stack/material/glass{
+	amount = 50
+	},
+/obj/item/stack/material/glass{
+	amount = 50
+	},
+/obj/item/stack/material/plasteel{
+	amount = 50
+	},
+/obj/item/device/lighting/toggleable/lantern,
+/obj/item/device/lighting/toggleable/lantern,
+/obj/item/storage/deferred/lights,
+/obj/item/storage/deferred/lights,
+/obj/item/storage/deferred/lights,
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/item/stack/material/steel{
+	amount = 50
+	},
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/obj/spawner/toolbox,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bY" = (
+/obj/structure/closet/crate/freezer/rations,
+/obj/item/storage/bag/trash,
+/obj/item/storage/bag/trash,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/reagent_containers/food/drinks/milk,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidfood,
+/obj/item/beartrap,
+/obj/item/tool/knife/butch,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"bZ" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"ca" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/storage/backpack/industrial,
+/obj/item/paper_bin,
+/obj/spawner/booze,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/pen,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"cb" = (
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart,
+/obj/spawner/techpart/low_chance,
+/obj/spawner/techpart/low_chance,
+/obj/spawner/techpart/low_chance,
+/obj/spawner/techpart/low_chance,
+/obj/structure/closet/crate,
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+"cc" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/tool/multitool,
+/obj/item/tool/screwdriver,
+/obj/item/cell/small/high,
+/obj/item/cell/medium/high,
+/obj/item/cell/small,
+/obj/item/storage/box/lights,
+/obj/item/device/scanner/gas,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/spawner/booze/low_chance,
+/obj/item/storage/box/monkeycubes,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/spawner/booze,
+/obj/item/pen/blue,
+/obj/item/pen,
+/obj/item/pen/red,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"cd" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/item/seeds/potatoseed,
+/obj/item/seeds/potatoseed,
+/obj/item/seeds/wheatseed,
+/obj/item/seeds/wheatseed,
+/obj/item/seeds/orangeseed,
+/obj/item/seeds/orangeseed,
+/obj/item/seeds/cornseed,
+/obj/item/seeds/cornseed,
+/obj/item/tool/hatchet,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/tool/minihoe,
+/obj/item/plantspray/pests,
+/obj/item/plantspray/pests,
+/obj/item/plantspray/weeds,
+/obj/item/seeds/poppyseed,
+/obj/item/seeds/towermycelium,
+/obj/item/seeds/glowshroom,
+/obj/item/seeds/whitebeetseed,
+/obj/item/storage/bag/produce,
+/obj/item/seeds/bananaseed,
+/turf/simulated/floor/tiled/steel/techfloor_grid,
+/area/asteroid/cave)
+"zb" = (
+/mob/living/simple_animal/hostile/roomba/gun_ba,
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/asteroid/cave)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ax
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(2,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+aE
+aB
+ay
+be
+ca
+bx
+bK
+ay
+bV
+bS
+ab
+"}
+(3,1,1) = {"
+ac
+ad
+ah
+aq
+aC
+aF
+aN
+aS
+bG
+bG
+bC
+bL
+bJ
+zb
+bD
+bJ
+"}
+(4,1,1) = {"
+ab
+ab
+ai
+as
+ay
+aK
+bA
+ay
+aZ
+bh
+bG
+bO
+ab
+ab
+ab
+ab
+"}
+(5,1,1) = {"
+ac
+ad
+aj
+ar
+ay
+aH
+bG
+ay
+bc
+bi
+bA
+bR
+ay
+bY
+bX
+ab
+"}
+(6,1,1) = {"
+ab
+ab
+ak
+at
+ax
+aI
+bG
+ax
+bd
+bk
+bG
+bF
+bB
+bF
+bZ
+ax
+"}
+(7,1,1) = {"
+ab
+ab
+al
+aG
+ax
+aI
+bA
+ax
+bj
+bi
+bA
+bM
+ay
+bW
+cc
+ab
+"}
+(8,1,1) = {"
+ac
+ad
+aj
+au
+ay
+aP
+aT
+ay
+bc
+bm
+bA
+bQ
+ay
+ay
+ay
+ab
+"}
+(9,1,1) = {"
+ab
+ab
+aw
+bA
+ay
+aU
+aW
+ay
+bf
+bn
+bA
+bU
+ay
+bH
+bN
+ab
+"}
+(10,1,1) = {"
+ac
+ad
+ao
+aw
+aC
+aL
+aX
+aY
+bA
+bA
+bA
+bF
+bB
+bI
+cb
+ax
+"}
+(11,1,1) = {"
+ab
+ab
+ap
+aJ
+ay
+aM
+aR
+ay
+bq
+bu
+br
+bT
+ay
+bP
+cd
+ab
+"}
+(12,1,1) = {"
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ax
+ab
+ab
+ab
+ab
+ab
+ab
+"}

@@ -97,7 +97,7 @@
 	if(circuit)
 		component_parts += circuit
 
-	component_parts += new /obj/item/organ/internal/brain
+	component_parts += new /obj/item/organ/internal/vital/brain
 	component_parts += new /obj/item/organ/internal/bone/head		// Doesn't do anything
 	component_parts += new /obj/item/organ/internal/nerve			// Doesn't do anything
 	component_parts += new /obj/item/organ/internal/blood_vessel	// Doesn't do anything
@@ -178,7 +178,7 @@
 				for(var/reagent_type in accepted_reagents)
 					if(istype(R, reagent_type))
 						biomatter_counter += round(R.volume * accepted_reagents[reagent_type] * substrate_conversion_factor, 0.01)
-	
+
 	// Check biomatter content and contained objects (depth of 2, include self)
 	for(var/path in accepted_objects)
 		if(!istype(I, path))
@@ -243,7 +243,7 @@
 
 	var/message = pickweight(list(
 		"When you study and object from a distance, only its principle may be seen." = 1,									// Children of Dune
-		"Knowledge is an unending adventure at the edge of uncertainty." = 1,												// 
+		"Knowledge is an unending adventure at the edge of uncertainty." = 1,												//
 		"To know a thing well, know its limits; Only when pushed beyond its tolerance will its true nature be seen." = 1,	//
 		"You do not take from this universe. It grants what it will." = 1,							// Dune Messiah
 		"Belief can be manipulated. Only knowledge is dangerous." = 1,								//
@@ -358,8 +358,8 @@
 			/datum/reagent/toxin/aranecolmin = 2
 		))
 
-	capacity_mod = round(stomach_eff / 15, 1) 
-	tick_reduction = round(muscle_eff / 20, 1) 
+	capacity_mod = round(stomach_eff / 15, 1)
+	tick_reduction = round(muscle_eff / 20, 1)
 	conversion_mod = round((stomach_eff + (liver_eff * 0.25) + (kidney_eff * 0.25) + (carrion_maw_eff * 4)) / 100, 0.01)
 	research_mod = clamp(round(brain_eff / 65, 1) - 1, 0, spits_until_unlock - 1)
 

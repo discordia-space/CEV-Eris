@@ -51,9 +51,6 @@
 
 			return
 
-	if(iscarbon(M))
-		M.spread_disease_to(src, "Contact")
-
 	switch(M.a_intent)
 		if(I_HELP)
 			if(can_operate(src, M) == CAN_OPERATE_ALL && do_surgery(src, M, null, TRUE))
@@ -120,7 +117,6 @@
 						M.put_in_active_hand(G)
 						G.synch()
 						LAssailant = M
-						H.regen_slickness() //sick skills!
 
 						break_all_grabs(H)
 
@@ -280,12 +276,6 @@
 							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 							visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
 							return
-					if (ishuman(M))
-						var/mob/living/carbon/human/stylish = M
-						stylish.regen_slickness() // disarming your opponent looks slick
-					regen_slickness(-1) // being disarmed looks clumsy
-					dodge_time = get_game_time()
-					confidence = FALSE
 					if(istype(I, /obj/item/twohanded/offhand)) //did someone dare to switch to offhand to not get disarmed?
 						unEquip(src.get_inactive_hand())
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))

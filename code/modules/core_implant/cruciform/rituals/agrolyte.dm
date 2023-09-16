@@ -6,7 +6,7 @@
 
 /datum/ritual/cruciform/agrolyte/accelerated_growth
 	name = "Accelerated growth"
-	phrase = "Plantae crescere in divinum lumen tua"
+	phrase = "Plantae crescere in divinum lumen tua."
 	desc = "This litany boosts the growth of all plants in sight for about ten minutes. "
 	cooldown = TRUE
 	cooldown_time = 5 MINUTES
@@ -39,15 +39,15 @@
 	addtimer(CALLBACK(src, PROC_REF(take_boost), S), effect_time)
 
 /datum/ritual/cruciform/agrolyte/accelerated_growth/proc/take_boost(datum/seed/S, stat, amount)
-	// take_boost is automatically triggered by a callback function when the boost ends but the seed 
+	// take_boost is automatically triggered by a callback function when the boost ends but the seed
 	// may have been deleted during the duration of the boost
 	if(S) // check if seed still exist otherwise we cannot read null.stats
 		S.set_trait(TRAIT_BOOSTED_GROWTH, 1)
 
 /datum/ritual/cruciform/agrolyte/mercy
 	name = "Hand of mercy"
-	phrase = "Non est verus dolor"
-	desc = "Relieves the pain of a person in front of you."
+	phrase = "Non est verus dolor."
+	desc = "Relieves the pain of a person in front of you. More impactful than the Relief litany applied to oneself."
 	power = 5
 
 /datum/ritual/cruciform/agrolyte/mercy/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -60,16 +60,16 @@
 		fail("[T.name]\'s mutated flesh rejects your will.", user, C)
 		return FALSE
 
-	to_chat(T, SPAN_NOTICE("You feel slightly better as your pain eases."))
+	to_chat(T, SPAN_NOTICE("You feel better as your pain eases, although still lightheaded."))
 	to_chat(user, SPAN_NOTICE("You ease the pain of [T.name]."))
 
-	T.add_chemical_effect(CE_PAINKILLER, 15)  // painkiller effect to target
+	T.reagents.add_reagent("deusblessing", 15)
 
 	return TRUE
 
 /datum/ritual/cruciform/agrolyte/absolution
 	name = "Absolution of wounds"
-	phrase = "Surge et ambula"
+	phrase = "Surge et ambula."
 	desc = "Stabilizes the health of a person in front of you."
 	power = 10
 

@@ -1,9 +1,11 @@
 #define EVENT_DAMAGE_PHYSICAL 	0
 #define EVENT_DAMAGE_EM 		1
 #define EVENT_DAMAGE_HEAT 		2
-#define EVENT_ENABLED 			3
-#define EVENT_DISABLED 			4
-#define EVENT_RECONFIGURED		5
+#define EVENT_DAMAGE_SPECIAL	3
+#define EVENT_ENABLED 			4
+#define EVENT_DISABLED 			5
+#define EVENT_RECONFIGURED		6
+
 /obj/machinery/power/shield_generator
 	name = "advanced shield generator"
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
@@ -154,7 +156,6 @@
 /obj/machinery/power/shield_generator/proc/shutdown_field()
 	for(var/obj/effect/shield/S in field_segments)
 		qdel(S)
-		CHECK_TICK
 
 	running = SHIELD_OFF
 	mitigation_em = 0
@@ -475,7 +476,7 @@
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shield_generator/proc/take_damage(var/damage, var/shield_damtype, var/atom/damager = null)
+/obj/machinery/power/shield_generator/proc/take_shield_damage(var/damage, var/shield_damtype, var/atom/damager = null)
 	var/energy_to_use = damage * ENERGY_PER_HP
 
 	// Even if the shield isn't currently modulating, it can still use old modulation buildup to reduce damage
@@ -486,6 +487,8 @@
 			energy_to_use *= 1 - (mitigation_em / 100)
 		if(SHIELD_DAMTYPE_HEAT)
 			energy_to_use *= 1 - (mitigation_heat / 100)
+		if(SHIELD_DAMTYPE_SPECIAL)
+			energy_to_use *= 1 - (mitigation_em / 100)
 
 	mitigation_em -= MITIGATION_HIT_LOSS
 	mitigation_heat -= MITIGATION_HIT_LOSS
@@ -499,6 +502,8 @@
 				mitigation_em += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
 			if(SHIELD_DAMTYPE_HEAT)
 				mitigation_heat += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
+			if(SHIELD_DAMTYPE_SPECIAL)
+				mitigation_em += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
 
 	mitigation_em = between(0, mitigation_em, mitigation_max)
 	mitigation_heat = between(0, mitigation_heat, mitigation_max)
@@ -513,6 +518,8 @@
 			log_event(EVENT_DAMAGE_EM, damager)
 		if(SHIELD_DAMTYPE_HEAT)
 			log_event(EVENT_DAMAGE_HEAT, damager)
+		if(SHIELD_DAMTYPE_SPECIAL)
+			log_event(EVENT_DAMAGE_SPECIAL, damager)
 
 	// Overload the shield, which will shut it down until we recharge above 5% again
 	if(current_energy < 0)
@@ -708,7 +715,7 @@
 /obj/machinery/power/shield_generator/proc/log_event(var/event_type, var/atom/origin_atom)
 	var/logstring = "[stationtime2text()]: "
 	switch (event_type)
-		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_HEAT)
+		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_SPECIAL)
 			switch (event_type)
 				if (EVENT_DAMAGE_PHYSICAL)
 					logstring += "Impact registered"
@@ -716,14 +723,18 @@
 					logstring += "EM Signature"
 				if (EVENT_DAMAGE_HEAT)
 					logstring += "Energy discharge"
+				if (EVENT_DAMAGE_SPECIAL)
+					logstring += "Gravitational wavefronts"
 				else
 					return
 
 
 			if (origin_atom)
 				var/turf/T = get_turf(origin_atom)
-				if (T)
+				if(T)
 					logstring += " at [T.x],[T.y],[T.z]"
+				else
+					logstring += " -"
 
 			logstring += " Integrity [round(field_integrity())]%"
 
@@ -883,6 +894,7 @@
 #undef EVENT_DAMAGE_PHYSICAL
 #undef EVENT_DAMAGE_EM
 #undef EVENT_DAMAGE_HEAT
+#undef EVENT_DAMAGE_SPECIAL
 #undef EVENT_ENABLED
 #undef EVENT_DISABLED
 #undef EVENT_RECONFIGURED

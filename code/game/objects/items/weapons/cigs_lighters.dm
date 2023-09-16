@@ -145,7 +145,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(ishuman(loc))
 				if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 					reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2) // Most of it is not inhaled... balance reasons.
-					C.regen_slickness() // smoking is cool, but don't try this at home
 			else // else just remove some of the reagents
 				reagents.remove_any(REM)
 
@@ -489,6 +488,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "zippo"
 	item_state = "zippo"
 	price_tag = 50
+
+/obj/item/flame/lighter/zippo/syndicate
+	name = "\improper syndicate lighter"
+	desc = "A zippo specifically designed for syndicate officers. Obviously no longer in production."
+	icon_state = "syndicate_lighter"
+	item_state = "syndicate_lighter"
+
 
 /obj/item/flame/lighter/random
 

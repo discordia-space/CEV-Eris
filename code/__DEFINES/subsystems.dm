@@ -88,6 +88,8 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 99
+#define INIT_ORDER_CHUNKS 98
+#define INIT_ORDER_EXPLOSIONS 97
 #define INIT_ORDER_SKYBOX 20
 #define INIT_ORDER_DBCORE 19
 #define INIT_ORDER_BLACKBOX 18
@@ -117,12 +119,14 @@
 #define INIT_ORDER_TICKETS -10
 #define INIT_ORDER_LIGHTING -20
 #define INIT_ORDER_SHUTTLE -21
+#define INIT_ORDER_JAMMING -22
 #define INIT_ORDER_SQUEAK -40
 #define INIT_ORDER_XENOARCH	-50
 #define INIT_ORDER_PERSISTENCE -100
 #define INIT_OPEN_SPACE -150
 #define INIT_ORDER_LATELOAD -180
 #define INIT_ORDER_CHAT	-185
+
 
 // SS runlevels
 

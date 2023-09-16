@@ -101,13 +101,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	/obj/item/device/camera_film,
 	/obj/item/storage/photo_album,
 	/obj/item/packageWrap,
-	/obj/item/reagent_containers/glass/paint/red,
-	/obj/item/reagent_containers/glass/paint/green,
-	/obj/item/reagent_containers/glass/paint/blue,
-	/obj/item/reagent_containers/glass/paint/yellow,
-	/obj/item/reagent_containers/glass/paint/purple,
-	/obj/item/reagent_containers/glass/paint/black,
-	/obj/item/reagent_containers/glass/paint/white,
 	/obj/item/contraband/poster,
 	/obj/item/wrapping_paper,
 	/obj/item/wrapping_paper,
@@ -280,11 +273,11 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/shotgunammo_beanbag
 	name = "FS Shotgun shells (Beanbag)"
-	contains = list(/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags,
-					/obj/item/ammo_magazine/ammobox/shotgun/beanbags)
+	contains = list(/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag,
+					/obj/item/ammo_magazine/ammobox/shotgun/beanbag)
 	cost = 1000
 	crate_name = "FS Shotgun shells (Beanbag)"
 	group = "Security"
@@ -886,18 +879,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	cost = 1000
 	containertype = /obj/structure/closet/crate/medical
 	crate_name = "Medical supply crate"
-	group = "Medical / Science"
-
-/datum/supply_pack/virus
-	name = "Virus sample crate"
-	contains = list(/obj/item/virusdish/random,
-					/obj/item/virusdish/random,
-					/obj/item/virusdish/random,
-					/obj/item/virusdish/random)
-	cost = 2500
-	containertype = /obj/structure/closet/crate/secure
-	crate_name = "Virus sample crate"
-	access = access_cmo
 	group = "Medical / Science"
 
 /datum/supply_pack/research

@@ -246,7 +246,7 @@
 	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
-	M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.5)
 	M.add_chemical_effect(CE_PULSE, 2)
 
 /datum/reagent/drug/hyperzine/withdrawal_act(mob/living/carbon/M)

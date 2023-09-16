@@ -16,6 +16,8 @@
 	var/starts_unlocked = FALSE		//If the design starts unlocked.
 	var/list/factions = list()				//What faction the design is tied to, currently only used so the NT autolathe can print NT designs perfectly.
 	var/olddesign = FALSE
+	var/quality = 0 // Quality rating of the design, determines max quality
+	var/minimum_quality = -INFINITY // Minimum quality required
 
 	var/list/nano_ui_data			//Pre-generated UI data, to be sent into NanoUI/TGUI interfaces.
 
@@ -52,6 +54,9 @@
 		name = "[name_category] ([item_name])"
 
 	name = capitalize(name)
+
+	if(quality)
+		name = (quality > 0) ? "(+[quality]) ([item_name])" : "([quality]) [item_name]"
 
 //Try to make up a nice description if we don't have one
 /datum/design/proc/AssembleDesignDesc()
@@ -126,7 +131,7 @@
 /datum/design/proc/AssembleDesignUIData()
 	nano_ui_data = list(
 		"id" = "[id]", "name" = name, "desc" = desc, "time" = time,
-		"category" = category, "adjust_materials" = adjust_materials
+		"category" = category, "adjust_materials" = adjust_materials, "minimum_quality" = minimum_quality
 	)
 
 	if(length(materials))
@@ -154,7 +159,7 @@
 
 //Returns a new instance of the item for this design
 //This is to allow additional initialization to be performed, including possibly additional contructor arguments.
-/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator, oldify_result, high_quality_print)
+/datum/design/proc/Fabricate(newloc, mat_efficiency, var/obj/machinery/autolathe/fabricator, oldify_result, high_quality_print, machine_rating)
 	if(!build_path)
 		return
 
@@ -177,6 +182,10 @@
 		if(istype(O))
 			O.give_positive_attachment()
 
+	if(min(quality, machine_rating)) // Only call set_quality() if the resulting quality is non-zero
+		var/obj/O = A
+		if(istype(O))
+			O.set_quality(min(quality, machine_rating))
 
 	return A
 

@@ -166,7 +166,6 @@
 	extended_reach = TRUE
 	push_attack = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTEEL = 10) // More expensive, high-end spear
-	style_damage = 50
 
 /obj/item/tool/sword/nt/spear/equipped(mob/living/W)
 	..()
@@ -364,7 +363,6 @@
 	price_tag = 150
 	allow_spin = FALSE
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // Easy to mass-produce and arm the faithful
-	style_damage = 30
 
 /obj/item/stack/thrown/nt/verutum/launchAt()
 	embed_mult = 600
@@ -372,3 +370,15 @@
 
 /obj/item/stack/thrown/nt/verutum/full
 	amount = 3
+
+/obj/item/tool/hammer/staff/nt
+	name = "NT Crosier"
+	desc = "A saintly golden staff. A proper shepard\'s only tool to lead their flock. Perfect protection from the wolves that would do the flock harm with reach and blocking capabilities."
+	icon = 'icons/obj/nt_melee.dmi'
+	icon_state = "nt_crosier"
+	item_state = "nt_crosier"
+	wielded_icon = null //Asked spriter to create, is also missing belt, back equipped sprites.
+	force = WEAPON_FORCE_ROBUST //Stronger than makeshift spear, but just as equal pitiful armor pen. Bap.
+	matter = list(MATERIAL_BIOMATTER = 30, MATERIAL_STEEL = 15, MATERIAL_GOLD = 10)
+	aspects = list(SANCTIFIED)
+	spawn_blacklisted = TRUE

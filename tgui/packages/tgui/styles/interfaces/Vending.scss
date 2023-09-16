@@ -1,0 +1,27 @@
+.Vending {
+  &--text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &--icon {
+    text-align: center;
+    width: 5.9ch;
+    height: 5.9ch;
+  }
+  &--game-icon {
+    width: 2.5rem;
+    align-items: center;
+  }
+  &--modal {
+    width: 30rem;
+    min-height: 15rem;
+    overflow: hidden;
+    text-overflow: '';
+    border-radius: 0.5rem;
+  }
+  &--cancel {
+    height: 4ch;
+    text-align: center;
+    font-weight: bold;
+  }
+}

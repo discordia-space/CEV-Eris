@@ -25,14 +25,11 @@
 
 /obj/item/projectile/bullet/grenade/blast
 	name = "blast shell"
-	var/devastation_range = 0
-	var/heavy_impact_range = 0
-	var/light_impact_range = 1
-	var/lightest_impact_range = 3
-	var/flash_range = 10
+	var/explosion_power = 200
+	var/explosion_falloff = 50
 
 /obj/item/projectile/bullet/grenade/blast/grenade_effect(target)
-	explosion(target, devastation_range, heavy_impact_range, light_impact_range, flash_range, singe_impact_range = lightest_impact_range)
+	explosion(get_turf(target), explosion_power, explosion_falloff)
 
 /obj/item/projectile/bullet/grenade/heatwave
 	name = "heatwave shell"
@@ -68,6 +65,7 @@
 
 /obj/item/projectile/bullet/grenade/frag/grenade_effect(target)
 	fragment_explosion(target, range, f_type, f_amount, f_damage, f_step, same_turf_hit_chance)
+	explosion(get_turf(target), 60, 40)
 
 /obj/item/projectile/bullet/grenade/frag/sting/weak
 	name = "sting shell"
@@ -82,3 +80,21 @@
 
 /obj/item/projectile/bullet/grenade/emp/grenade_effect(target)
 	empulse(target, heavy_emp_range, light_emp_range)
+
+/obj/item/projectile/bullet/grenade/emp/low_yield
+	heavy_emp_range = 4
+	light_emp_range = 1
+
+//handgrenade shell: Drops a grenade that insta detonates for effects like gas
+/obj/item/projectile/bullet/grenade/handgrenade
+	icon_state = "grenade"
+	name = "cs grenade"
+	var/obj/item/grenade/hand_gren = /obj/item/grenade/chem_grenade/teargas
+
+/obj/item/projectile/bullet/grenade/handgrenade/grenade_effect(target)
+	var/obj/item/grenade/G = new hand_gren(src)
+	G.prime()
+
+/obj/item/projectile/bullet/grenade/handgrenade/teargas    // Because why not
+	name = "cs shell"
+

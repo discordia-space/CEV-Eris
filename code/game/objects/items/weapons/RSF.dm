@@ -87,7 +87,7 @@ RSF
 			product = new /obj/item/pen()
 			used_energy = 50
 		if(5)
-			product = new /obj/item/storage/pill_bottle/dice()
+			product = new /obj/item/storage/box/dice()
 			used_energy = 200
 
 	to_chat(user, "Dispensing [product ? product : "product"]...")

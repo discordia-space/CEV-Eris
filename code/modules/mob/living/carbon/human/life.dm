@@ -36,7 +36,6 @@
 	var/stasis_timeofdeath = 0
 	var/pulse = PULSE_NORM
 	var/global/list/overlays_cache = null
-	var/dodge_time = 0 // will be set to timeofgame on dodging
 
 /mob/living/carbon/human/Life()
 	set invisibility = 0
@@ -79,12 +78,6 @@
 		handle_pain()
 
 		handle_medical_side_effects()
-
-		if (life_tick % 4 == 1 && (get_game_time() >= dodge_time + 5 SECONDS))
-			if (confidence == FALSE && style > 0)
-				to_chat(src, SPAN_NOTICE("You feel confident again."))
-				confidence = TRUE
-			regen_slickness()
 
 		if(life_tick % 2)	//Upadated every 2 life ticks, lots of for loops in this, needs to feel smother in the UI
 			for(var/obj/item/organ/external/E in organs)
@@ -299,13 +292,6 @@
 		return
 	..()
 
-/mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
-	..()
-	//spread some viruses while we are at it
-	if(breath && virus2.len > 0 && prob(10))
-		for(var/mob/living/carbon/M in view(1,src))
-			src.spread_disease_to(M)
-
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
 	if(internal)
@@ -328,7 +314,7 @@
 
 /mob/living/carbon/human/get_breath_modulo()
 	var/breath_modulo_total
-	for(var/obj/item/organ/internal/lungs/L in organ_list_by_process(OP_LUNGS))
+	for(var/obj/item/organ/internal/vital/lungs/L in organ_list_by_process(OP_LUNGS))
 		breath_modulo_total += L.breath_modulo
 	if(!isnull(breath_modulo_total))
 		return breath_modulo_total
@@ -999,17 +985,10 @@
 		hud_list[LIFE_HUD] = holder
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
-		var/foundVirus = 0
-		for (var/ID in virus2)
-			if (ID in virusDB)
-				foundVirus = 1
-				break
 
 		var/image/holder = hud_list[STATUS_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
-		else if(foundVirus)
-			holder.icon_state = "hudill"
 		else if(has_brain_worms())
 			var/mob/living/simple_animal/borer/B = get_brain_worms()
 			if(B.controlling)
@@ -1024,8 +1003,6 @@
 			holder2.icon_state = "huddead"
 		else if(has_brain_worms())
 			holder2.icon_state = "hudbrainworm"
-		else if(virus2.len)
-			holder2.icon_state = "hudill"
 		else
 			holder2.icon_state = "hudhealthy"
 
@@ -1152,7 +1129,7 @@
 					upper_body_nature = E.nature
 			else
 				qdel(E)		// Will regrow
-		
+
 		var/datum/preferences/user_pref = client ? client.prefs : null
 
 		for(var/tag in tags_to_grow)
@@ -1207,15 +1184,6 @@
 		sight |= SEE_TURFS|SEE_OBJS|SEE_MOBS
 	else if(get_active_mutation(src, MUTATION_THERMAL_VISION))
 		sight |= SEE_MOBS
-
-
-/mob/living/carbon/human/proc/regen_slickness(var/source_modifier = 1)
-	var/slick = TRUE
-	if (slickness == style*10) // is slickness at the maximum?
-		slick = FALSE
-	slickness = max(min(slickness + 1 * source_modifier * style, style*10), 0)
-	if (slick && slickness == style*10 && style > 0) // if slickness was not at the maximum and now is
-		to_chat(src, SPAN_NOTICE("You feel slick!")) // notify of slickness entering maximum
 
 /mob/living/carbon/human/proc/EnterStasis()
 	in_stasis = TRUE

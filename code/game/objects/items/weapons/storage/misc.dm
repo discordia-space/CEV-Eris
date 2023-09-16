@@ -1,11 +1,11 @@
-/obj/item/storage/pill_bottle/dice
+/obj/item/storage/box/dice
 	name = "pack of dice"
 	desc = "A small container with dice inside."
 	spawn_tags = SPAWN_TAG_ITEM
 	prespawned_content_type = /obj/item/dice/d20
 	prespawned_content_amount = 1
 
-/obj/item/storage/pill_bottle/dice/populate_contents()
+/obj/item/storage/box/dice/populate_contents()
 	for(var/i in 1 to prespawned_content_amount)
 		new prespawned_content_type(src)
 	new /obj/item/dice(src)

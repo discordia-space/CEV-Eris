@@ -74,6 +74,7 @@ var/datum/controller/process/open_space/OS_controller = null
 	. = ..()
 	OS_controller.add_turf(get_turf(src))
 */
+
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
 	. = ..()
 	OS_controller.add_turf(src)

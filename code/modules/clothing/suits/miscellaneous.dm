@@ -71,7 +71,7 @@
 
 
 /obj/item/clothing/suit/chickensuit
-	name = "Chicken Suit"
+	name = "chicken suit"
 	desc = "A suit made long ago by the ancient empire KFC."
 	icon_state = "chickensuit"
 	item_state = "chickensuit"
@@ -81,7 +81,7 @@
 
 
 /obj/item/clothing/suit/monkeysuit
-	name = "Monkey Suit"
+	name = "monkey suit"
 	desc = "A suit that looks like a primate"
 	icon_state = "monkeysuit"
 	item_state = "monkeysuit"
@@ -149,6 +149,7 @@
 /obj/item/clothing/under/swimsuit
 	siemens_coefficient = 1
 	body_parts_covered = 0
+	bad_type = /obj/item/clothing/under/swimsuit
 
 /obj/item/clothing/under/swimsuit/black
 	name = "black swimsuit"
@@ -264,22 +265,62 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
-	name = "Sleek leather Jacket"
+	name = "sleek leather jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl."
 	icon_state = "tunnelsnake_blank"
 	item_state = "tunnelsnake_blank"
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
-	name = "Jaeger leather Jacket"
+	name = "Jaeger leather jacket"
 	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. This jacket has a Jaeger roach pictured on the back. Jaeger Roach rules!"
 	icon_state = "tunnelsnake_jager"
 	item_state = "tunnelsnake_jager"
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake
-	name = "Tunnelsnake Jacket"
+	name = "Tunnelsnake jacket"
 	desc = "Tunnelsnakes Rule! That's us! And we Rule!"
 	icon_state = "tunnelsnake"
 	item_state = "tunnelsnake"
+
+/obj/item/clothing/suit/storage/leather_jacket/punk
+	name = "punk jacket"
+	desc = "Authentic leather for an authentic punk."
+	icon_state = "punk_highlight"
+
+/obj/item/clothing/suit/storage/leather_jacket/punk/New(loc, jacket_type = "punk_highlight", logo_type, is_natural_spawn = TRUE)
+	..()
+	if(is_natural_spawn) // From junk pile or some such
+		logo_type = pick(list(
+			null, null, null, null, // 50% chance of not having any logo
+			"punk_over_valentinos",
+			"punk_over_samurai",
+			"punk_over_jager_roach",
+			"punk_over_tunnel_snakes"
+		))
+		jacket_type = pick(list(
+			"punk_bright",
+			"punk_dark",
+			"punk_highlight"
+		))
+
+	if(logo_type)
+		var/obj/item/clothing/accessory/logo/logo = new
+		logo.icon_state = logo_type
+		accessories += logo
+		logo.has_suit = src
+		loc = src
+		switch(logo_type) // All of the following names associated with some group of people, thus capitalized 
+			if("punk_over_valentinos")
+				name = "Valentinos jacket"
+			if("punk_over_samurai")
+				name = "Samurai jacket"
+			if("punk_over_jager_roach")
+				name = "Jager Roaches jacket"
+			if("punk_over_tunnel_snakes")
+				name = "Tunnel Snakes jacket"
+
+	icon_state = jacket_type
+	update_icon()
 
 /obj/item/clothing/suit/storage/toggle/hoodie
 	name = "grey hoodie"

@@ -685,7 +685,7 @@
 	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
-	var/obj/item/organ/internal/heart/S = H.random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/vital/heart/S = H.random_organ_by_process(OP_HEART)
 	if(istype(S))
 		S.take_damage(dose/2, FALSE, TOX)
 	var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
@@ -856,6 +856,7 @@
 
 /datum/reagent/toxin/tar
 	name = "Tar"
+	id = "tar"
 	description = "A dark, viscous liquid."
 	taste_description = "petroleum"
 	color = "#140b30"

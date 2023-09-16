@@ -140,24 +140,13 @@
 /*************
 	ACT PROCS
 **************/
-/obj/effect/plant/ex_act(severity)
-	switch(severity)
-		if(1)
-			die_off()
-			return
-		if(2)
-			if (prob(95))
-				die_off()
-				return
-		if(3)
-			if (prob(75))
-				die_off()
-				return
-		if(4)
-			if(prob(40))
-				die_off()
-				return
-	return
+
+/obj/effect/plant/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > 100)
+		die_off()
+	else
+		. = ..()
+	return 0
 
 //Fire is instakill. Deploy flamethrowers
 /obj/effect/plant/fire_act()

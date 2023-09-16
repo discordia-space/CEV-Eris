@@ -265,18 +265,17 @@
 			// Uses best of BIO and COG
 			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
 
+		seed.modified += round(rand(30, 50) * stat_multiplier)
 		if(!isnull(plant_controller.seeds[seed.seed.name]))
 			seed.seed = seed.seed.diverge(1)
 			seed.seed_type = seed.seed.name
 			seed.update_seed()
 
-		if(prob(seed.modified * stat_multiplier))
+		if(seed.modified >= 100)
 			failed_task = TRUE
 			seed.modified = 100
 
 		seed.seed.apply_gene(loaded_gene)
-		seed.modified += round(rand(10, 15) * stat_multiplier)
-		seed.modified = max(seed.modified, 100)
 
 		start_task()
 		return 1

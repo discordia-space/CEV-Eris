@@ -13,7 +13,7 @@
 	supervisors = "the First Officer"
 	selection_color = "#dddddd"
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 15, LANGUAGE_JIVE = 80)
-	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club)
+	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club, access_artist)
 	initial_balance = 3000
 	perks = list(PERK_CLUB)
 	wage = WAGE_NONE // Makes his own money
@@ -79,3 +79,39 @@
 	icon_state = "player-grey"
 	join_tag = /datum/job/clubworker
 
+/datum/job/artist
+	title = "Club Artist"
+	flag = ARTIST
+	department = DEPARTMENT_CIVILIAN
+	department_flag = SERVICE
+	faction = "CEV Eris"
+	total_positions = 2
+	spawn_positions = 1
+	supervisors = "the Club Manager"
+	selection_color = "#dddddd"
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_JIVE = 40, LANGUAGE_MONKEY = 20)
+	access = list(access_bar, access_kitchen, access_maint_tunnels, access_artist, access_theatre)
+	initial_balance = 600
+	outfit_type = /decl/hierarchy/outfit/job/service/artist
+	wage = WAGE_NONE //They should get paid by the club owner, otherwise you know what to do.
+	stat_modifiers = list(
+		STAT_TGH = 30,
+	)
+
+	perks = list(PERK_ARTIST)
+
+	description = "You are a creative soul aboard this vessel. You have been given home by the Club to create masterful works of art to be displayed or sold at mind-boggling prices... and something about the CEV Eris and it's doomed journey sparks the fire of creation within you.<br>\
+	You do not gain desires like other members of the crew. Instead, you stop gaining insight once you max out at 100 points.<br>\
+	You can gain desires by spending this insight at your Artist's Bench to build a work of art, this art you create vary wildly in type, quality, and value. Sell your artwork to the unwashed masses, display it in the club or give you work to the merchant to sell for a profit."
+
+	duties = "Create works of art using your insight.<br>\
+	Display your work, or sell it to the crew or Asters Guild for a profit.<br>\
+	Be in the midst of action or combat to level your insight faster."
+
+	loyalties = "You are loyal to your soul, first and foremost. You are fascinated by this cursed ship, and want to mold this interest into your works of art.<br>\
+	Your second loyalty is to the manager and the Club as a whole. After all, they're the ones giving you housing, payment, and materials to create your art."
+
+/obj/landmark/join/start/artist
+	name = "Club Artist"
+	icon_state = "player-grey"
+	join_tag = /datum/job/artist

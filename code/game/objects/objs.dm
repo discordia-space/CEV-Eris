@@ -11,7 +11,6 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_divisor = 1
-	var/style_damage = 30 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
 
@@ -176,9 +175,11 @@
 	return
 
 /obj/proc/add_hearing()
+	//InitiateHearerTracking()
 	GLOB.hearing_objects |= src
 
 /obj/proc/remove_hearing()
+	//chunkHearerClearSelf()
 	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
@@ -251,13 +252,10 @@
 /obj/proc/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
 
-/obj/proc/multiply_projectile_style_damage(newmult)
-	style_damage = initial(style_damage) * newmult
-
 /obj/proc/multiply_pierce_penetration(newmult)
 
 /obj/proc/multiply_ricochet(newmult)
 
 /obj/proc/multiply_projectile_step_delay(newmult)
 
-/obj/proc/multiply_projectile_agony(newmult)
+/obj/proc/multiply_projectile_halloss(newmult)

@@ -1,0 +1,74 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/mob/living/simple_animal/hostile/carp,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"b" = (
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"c" = (
+/obj/structure/lattice,
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"d" = (
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/plating/airless,
+/area/asteroid/cave)
+"e" = (
+/turf/simulated/wall/r_wall,
+/area/asteroid/cave)
+"f" = (
+/obj/spawner/scrap/sparse,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"g" = (
+/obj/spawner/junk/low_chance,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"h" = (
+/obj/spawner/scrap/sparse/low_chance,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"x" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/under/airless,
+/area/asteroid/cave)
+"O" = (
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+
+(1,1,1) = {"
+O
+O
+b
+c
+x
+"}
+(2,1,1) = {"
+c
+a
+d
+h
+d
+"}
+(3,1,1) = {"
+b
+f
+e
+c
+O
+"}
+(4,1,1) = {"
+c
+c
+g
+g
+c
+"}
+(5,1,1) = {"
+O
+O
+O
+b
+x
+"}

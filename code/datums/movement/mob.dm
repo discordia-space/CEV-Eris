@@ -290,14 +290,12 @@
 		mob.lastarea = get_area(mob.loc)
 
 	//We are now going to move
-	mob.moving = 1
+	mob.moving = TRUE
 
 	direction = mob.AdjustMovementDirection(direction)
 	var/old_turf = get_turf(mob)
 	step(mob, direction)
 
-	if(!MOVING_DELIBERATELY(mob))
-		mob.handle_movement_recoil()
 	mob.add_momentum(direction)
 	// Something with pulling things
 	var/extra_delay = HandleGrabs(direction, old_turf)
@@ -311,7 +309,9 @@
 	for (var/obj/item/grab/G in mob.grabbed_by)
 		G.adjust_position()
 	*/
-	mob.moving = 0
+	mob.moving = FALSE
+
+	mob.update_cursor()
 
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
