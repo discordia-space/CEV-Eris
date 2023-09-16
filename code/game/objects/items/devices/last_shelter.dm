@@ -89,6 +89,7 @@ var/list/shelter_blacklist = list(
 				if(ishuman(container))
 					var/mob/living/carbon/human/body = container
 					if((body.stat == DEAD) && (world.time >= (body.timeofdeath + NECROZTIME)))
+						picked.uninstall()
 						return picked
 				cruciforms_temporary -= picked
 				continue
