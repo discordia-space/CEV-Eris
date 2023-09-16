@@ -26,7 +26,7 @@
 		A = A.loc
 		if(isturf(A))
 			return FALSE
-	return TRUE
+	return A
 
 /atom/proc/add_overlay(overlay)
 	ASSERT(overlay)

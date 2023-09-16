@@ -84,7 +84,12 @@ var/list/shelter_blacklist = list(
 		var/list/cruciforms_temporary = lost_cruciforms.Copy()
 		while(cruciforms_temporary.len)
 			var/obj/item/implant/core_implant/picked = pick(cruciforms_temporary)
-			if(picked.is_inside(shelter_blacklist))
+			var/container = picked.is_inside(shelter_blacklist)
+			if(container)
+				if(ishuman(container))
+					var/mob/living/carbon/human/body = container
+					if((body.stat == DEAD) && (world.time >= (body.timeofdeath + NECROZTIME)))
+						return picked
 				cruciforms_temporary -= picked
 				continue
 			else
