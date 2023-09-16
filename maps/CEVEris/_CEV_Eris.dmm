@@ -11630,10 +11630,6 @@
 /turf/simulated/wall/r_wall,
 /area/eris/neotheology/bioreactor)
 "aCp" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
@@ -11682,27 +11678,27 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/disposaldrop)
 "aCw" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating/under,
-/area/eris/maintenance/section4deck5port)
+/area/eris/maintenance/section4deck4port)
 "aCx" = (
 /obj/landmark/event/lightsout,
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/security/prisoncells)
 "aCy" = (
-/obj/machinery/atmospherics/pipe/zpipe/up{
-	dir = 8
-	},
-/obj/structure/disposalpipe/up{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/maintenance/section4deck5port)
+/turf/space,
+/turf/simulated/wall/r_wall,
+/area/eris/neotheology/office)
 "aCz" = (
 /obj/structure/multiz/ladder,
 /turf/simulated/floor/tiled/techmaint_panels,
@@ -11736,12 +11732,15 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aCF" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
@@ -11755,10 +11754,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/disposal)
 "aCH" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -11766,6 +11761,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
@@ -11957,7 +11955,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck5port)
 "aDj" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
@@ -12015,7 +12012,10 @@
 	dir = 8
 	},
 /obj/spawner/flora/low_chance,
-/obj/structure/disposalpipe/junction,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
 "aDs" = (
@@ -12029,7 +12029,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/security/prison)
 "aDu" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
@@ -12162,10 +12161,6 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aDN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
@@ -12179,10 +12174,6 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5port)
 "aDO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
@@ -29520,14 +29511,11 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "bsu" = (
-/obj/machinery/atmospherics/pipe/zpipe/down{
-	dir = 4
-	},
-/obj/structure/disposalpipe/down{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/maintenance/section4deck4port)
+/obj/machinery/door/firedoor,
+/obj/effect/window_lwall_spawn/smartspawn,
+/turf/space,
+/turf/simulated/floor/plating,
+/area/eris/neotheology/office)
 "bsv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /obj/spawner/gun_parts/low_chance,
@@ -29592,9 +29580,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/sorter)
 "bsD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
@@ -29681,9 +29666,6 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/robotics)
 "bsQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -29707,9 +29689,6 @@
 /turf/simulated/wall,
 /area/eris/hallway/side/section3port)
 "bsU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/railing,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -29717,10 +29696,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bsV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/structure/railing,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -30605,9 +30580,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/teleporter)
 "bvo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 4
 	},
@@ -30620,6 +30592,9 @@
 	dir = 4
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bvp" = (
@@ -30806,9 +30781,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/teleporter)
 "bvM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 4;
@@ -30819,6 +30791,9 @@
 	dir = 4
 	},
 /obj/spawner/traps/low_chance,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bvN" = (
@@ -30860,9 +30835,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/command/teleporter)
 "bvT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 4;
@@ -30872,13 +30844,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bvU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 4;
@@ -30888,10 +30859,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bvV" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 2;
@@ -32272,11 +32246,11 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section4)
 "bze" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/railing{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bzf" = (
@@ -32484,10 +32458,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section4)
 "bzC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /obj/structure/railing{
 	dir = 1
 	},
@@ -32596,9 +32566,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/engeva)
 "bzK" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 1
 	},
@@ -32822,9 +32789,6 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/drone_fabrication)
 "bAn" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -32839,6 +32803,10 @@
 	dir = 1
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bAo" = (
@@ -33864,12 +33832,12 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
@@ -33882,10 +33850,10 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "bDg" = (
-/obj/structure/disposalpipe/segment{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/plating/under,
@@ -34163,13 +34131,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
 "bDU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/sign/atmos_waste{
 	pixel_y = -32
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/plating/under,
@@ -34237,10 +34205,6 @@
 /turf/simulated/open,
 /area/eris/security/prison)
 "bEd" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -34250,6 +34214,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bEe" = (
@@ -123985,7 +123950,7 @@ hYb
 alg
 aaa
 aai
-aCw
+avo
 aCH
 aDj
 aDu
@@ -124187,7 +124152,7 @@ cjd
 alg
 aaa
 aai
-aCy
+avq
 aCI
 aCW
 auy
@@ -158913,9 +158878,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+abF
+abF
+abF
 abF
 abF
 abF
@@ -159116,8 +159081,8 @@ bUG
 bUG
 bUG
 bUG
-aaa
-aaa
+abF
+abF
 abF
 abF
 abF
@@ -159318,8 +159283,8 @@ bUG
 hPK
 qtF
 bUG
-aaa
-aaa
+abF
+abF
 abF
 abF
 abF
@@ -159520,8 +159485,8 @@ bUG
 qsa
 jby
 bUG
-aaa
-aaa
+abF
+abF
 abF
 abF
 abF
@@ -159722,11 +159687,11 @@ bUG
 wdn
 cvr
 cJu
+aCy
 tnz
-tnz
+bsu
 cJu
 cJu
-abF
 abF
 abF
 aaa
@@ -159926,8 +159891,8 @@ oTR
 sfv
 ceX
 tpE
+tpE
 kEr
-cJu
 cJu
 abF
 abF
@@ -161545,12 +161510,12 @@ cJu
 cJu
 cJu
 cJu
-bUG
-bUG
-bUG
-bUG
-bUG
-bUG
+cFv
+cFv
+cFv
+cFv
+cFv
+cFv
 abF
 aCM
 aCM
@@ -161955,7 +161920,7 @@ snT
 snT
 sHg
 cFv
-aae
+cFv
 abF
 abF
 aaa
@@ -164588,7 +164553,7 @@ egG
 bUG
 aaa
 bqj
-bsu
+bqH
 buF
 aCW
 aCW
@@ -164791,7 +164756,7 @@ bUG
 aaa
 bqj
 bsD
-buU
+aCw
 aCW
 bHf
 bCh
@@ -214677,7 +214642,7 @@ czH
 czH
 czH
 egj
-avn
+cgO
 cDz
 ets
 cDK
@@ -214879,7 +214844,7 @@ cxc
 etd
 czI
 cAJ
-avn
+cgO
 cDz
 cFl
 cEd
@@ -215081,7 +215046,7 @@ cgO
 cgO
 cgO
 cgO
-avn
+cgO
 avn
 avn
 avn
