@@ -38,11 +38,11 @@ export const DisposalUnit = (props: any, context: any) => {
                   <ProgressBar
                     value={pressure}
                     minValue={0}
-                    maxValue={100}
+                    maxValue={1}
                     ranges={{
-                      bad: [-Infinity, 0],
-                      average: [0, 100],
-                      good: [100, Infinity],
+                      bad: [-Infinity, 0.7],
+                      average: [0.7, 0.99],
+                      good: [0.99, Infinity],
                     }}
                   />
                 </LabeledList.Item>
@@ -71,10 +71,11 @@ export const DisposalUnit = (props: any, context: any) => {
             <Stack.Item>
               <Button
                 fluid
-                icon="eject"
-                disabled={!eject}
-                content="Eject"
+                color="red"
                 textAlign="center"
+                icon="eject"
+                content="Eject"
+                disabled={!eject}
                 style={{ 'font-size': '15px' }}
                 onClick={() => {
                   act('eject');

@@ -6,6 +6,14 @@
 #define CAVE_WALL_PROPORTION 70 // Proportion of wall in random noise generation
 #define CAVE_VWEIGHT 10 // Base mineral weight for choice of mineral vein
 #define CAVE_COOLDOWN 5 MINUTES
+#define CAVE_COLLAPSE 3 MINUTES
+
+// Cave generator statuses
+#define CAVE_CLOSED 0
+#define CAVE_GENERATING 1
+#define CAVE_OPENED 2
+#define CAVE_COLLAPSING 3
+#define CAVE_CLEANING 4
 
 // Types of turfs in the cave
 #define CAVE_FREE 0
@@ -33,14 +41,18 @@
 	simulated = FALSE
 	invisibility = 0 // 101
 
-	var/lock = FALSE  // Lock generator to avoid having several iterations running in parallel
+	var/status = CAVE_CLOSED  // Status of the cave generator
 	var/cave_time = -CAVE_COOLDOWN  // Cooldown timer to avoid spamming cave generation
+	var/cave_collapse_time = 0  // Time for cave collapse warning
 	var/map // map with 0 (free turf) and 1+ (wall or mineral)
 	var/obj/structure/multiz/ladder/cave_hole/ladder_down
 	var/obj/structure/multiz/ladder/up/cave/ladder_up
 	var/list/datum/map_template/cave_pois/pool_pois = list() // Pool of cave points of interest
 	var/list/datum/map_template/cave_pois/pois_placed = list()
 	var/list/pois_placed_pos = list()
+	var/list/blacklist = list(/mob/observer,
+							/obj/machinery/nuclearbomb,
+							/obj/item/disk/nuclear)
 
 /obj/cave_generator/Initialize()
 	// Initialize and not New to ensure SSmapping.maploader has been created
@@ -67,9 +79,6 @@
 
 	// Generate mineral veins from processed map
 	generate_mineral_veins(seismic_lvl)
-
-	// Clean the map
-	clean_turfs()
 
 	// Place the walls, ores and free space
 	place_turfs(seismic_lvl)
@@ -275,44 +284,127 @@
 
 	return list(TRUE, x_start, y_start)
 
+// Checks for cave statuses
+/obj/cave_generator/proc/is_closed()
+	return status == CAVE_CLOSED
+
+/obj/cave_generator/proc/is_generating()
+	return status == CAVE_GENERATING
+
+/obj/cave_generator/proc/is_opened()
+	return status == CAVE_OPENED
+
+/obj/cave_generator/proc/is_collapsing()
+	return status == CAVE_COLLAPSING
+
+/obj/cave_generator/proc/is_cleaning()
+	return status == CAVE_CLEANING
+
 // Check cooldown to avoid spamming cave generation
 /obj/cave_generator/proc/check_cooldown()
 	return world.time > (cave_time + CAVE_COOLDOWN)
+
+// Return remaining time to open a new cave
+/obj/cave_generator/proc/remaining_cooldown()
+	return round((cave_time + CAVE_COOLDOWN - world.time) / (1 MINUTES), 0.5)
 
 // Place the up and down ladders and connect them
 /obj/cave_generator/proc/place_ladders(drill_x, drill_y, drill_z, seismic_lvl)
 
 	// Lock generator to avoid several iterations running in parallel
-	if(lock)
+	if(status != CAVE_CLOSED)
 		return FALSE
-	lock = TRUE
-	cave_time = world.time
+	status = CAVE_GENERATING
 
-	// Generate the map for the given seismic level
-	generate_map(seismic_lvl)
+	spawn(0)
+		// Generate the map for the given seismic level
+		generate_map(seismic_lvl)
 
-	// Place the up ladder on a free spot in the cave
-	var/list/res = list(FALSE, 0, 0)
-	var/N_trials = 10
-	while(!res[1] && N_trials > 0)
-		N_trials--
-		res = find_free_spot(rand(2, CAVE_SIZE - 2), rand(2, CAVE_SIZE - 2))
-	if(!res[1])
-		log_world("Failed to find a free spot in the cave to place a ladder.")
-		lock = FALSE
-		return FALSE
+		// Place the up ladder on a free spot in the cave
+		var/list/res = list(FALSE, 0, 0)
+		var/N_trials = 10
+		while(!res[1] && N_trials > 0)
+			N_trials--
+			res = find_free_spot(rand(2, CAVE_SIZE - 2), rand(2, CAVE_SIZE - 2))
+		if(!res[1])
+			log_world("Failed to find a free spot in the cave to place a ladder.")
+			status = CAVE_CLEANING
+			clean_turfs(locate(drill_x, drill_y - 1, drill_z)) // Clean the map for next generation
+			cave_time = world.time
+			status = CAVE_CLOSED
+			return
 
-	// Place the up ladder on free spot
-	ladder_up = new /obj/structure/multiz/ladder/up/cave(locate(x + res[2], y + res[3], z))
+		// Place the up ladder on free spot
+		ladder_up = new /obj/structure/multiz/ladder/up/cave(locate(x + res[2], y + res[3], z))
 
-	// Place the down ladder near the drill
-	ladder_down = new /obj/structure/multiz/ladder/cave_hole(locate(drill_x, drill_y - 1, drill_z))
+		// Place the down ladder near the drill
+		ladder_down = new /obj/structure/multiz/ladder/cave_hole(locate(drill_x, drill_y - 1, drill_z))
 
-	// Connect ladders
-	ladder_down.target = ladder_up
-	ladder_up.target = ladder_down
+		// Connect ladders
+		ladder_down.target = ladder_up
+		ladder_up.target = ladder_down
+
+		// Link with cave gen
+		ladder_down.cave_gen = src
+
+		status = CAVE_OPENED
 
 	return TRUE
+
+// Initiate the collapse countdown
+/obj/cave_generator/proc/initiate_collapse()
+	if(status != CAVE_OPENED)
+		return
+
+	status = CAVE_COLLAPSING
+	cave_collapse_time = world.time + CAVE_COLLAPSE
+
+	// Warn miners so that they have time to get out
+	collapse_warning(TRUE)
+
+	// You better be out when this is called
+	addtimer(CALLBACK(src, PROC_REF(collapse)), CAVE_COLLAPSE)
+
+// Display a message to everyone in the cave
+/obj/cave_generator/proc/collapse_warning(first_warning = FALSE)
+
+	var/minutes_remaining = round((cave_collapse_time - world.time) / (1 MINUTES), 0.5)
+	if(first_warning)
+		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
+			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
+				to_chat(M, SPAN_WARNING("WARNING: Cave collapse protocol has been engaged. \
+										The cave will collapse in T-[minutes_remaining] minutes. \
+										Miners, evacuate as many precious minerals as possible!"))
+	else
+		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
+			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
+				to_chat(M, SPAN_WARNING("WARNING: Cave collapse in T-[minutes_remaining] minutes. Remember, the Guild is counting on this haul!"))
+
+	// Call again in 30 seconds
+	if(cave_collapse_time - world.time > 45 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(collapse_warning)), 30 SECONDS)
+
+// Collapse the cave system and clean it
+/obj/cave_generator/proc/collapse()
+	if(status != CAVE_COLLAPSING)
+		return
+
+	// Cave is being cleaned
+	status = CAVE_CLEANING
+
+	// Dump blacklisted content on this turf
+	var/turf/dump = get_turf(ladder_down)
+
+	// Disconnect and remove the ladders
+	remove_ladders()
+
+	// Clean the map
+	spawn(0)
+		clean_turfs(dump)
+
+		// The cave is ready for the next generation
+		cave_time = world.time
+		status = CAVE_CLOSED
 
 // Disconnect and remove the ladders
 /obj/cave_generator/proc/remove_ladders()
@@ -323,8 +415,6 @@
 	if(ladder_up)
 		ladder_up.target = null
 		QDEL_NULL(ladder_up)
-	// Unlock generator to allow a new cave to be generated
-	lock = FALSE
 
 // Place a mineral vein starting at the designated spot
 /obj/cave_generator/proc/place_mineral_vein(x_start, y_start, seismic_lvl)
@@ -418,7 +508,7 @@
 		place_recursive_mineral(xs[j], ys[j], p, size - 1, size_min, mineral)
 
 // Remove everything from all tiles except the turfs themselves
-/obj/cave_generator/proc/clean_turfs()
+/obj/cave_generator/proc/clean_turfs(turf/dump)
 
 	for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
 		if((M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
@@ -427,12 +517,26 @@
 			M.death(FALSE)
 			M.ghostize()
 
-	for(var/i = 1 to CAVE_SIZE)
-		for(var/j = 1 to CAVE_SIZE)
-			var/turf/T = get_turf(locate(x + i, y + j, z))
-			for (var/atom/A in T.contents)
-				if(!isobserver(A))
-					qdel(A)
+	var/list/cave_content = get_area_contents(/area/asteroid/cave)
+	for (var/atom/movable/A in cave_content)
+		if(isturf(A) || istype(A, /obj/cave_generator || istype(A, /atom/movable/lighting_overlay)))
+			continue
+		else if(!(A.type in blacklist))
+			qdel(A)
+		else
+			A.forceMove(dump)
+			if(!isobserver(A))
+				log_and_message_admins("[A] has been moved to [admin_jump_link(dump, src)] to avoid deletion in cave collapse.")
+
+	// Clean up shards and rods created when girders and windows are deleted at previous step
+	cave_content = get_area_contents(/area/asteroid/cave)
+	for (var/atom/movable/A in cave_content)
+		if(isturf(A) || istype(A, /obj/cave_generator || istype(A, /atom/movable/lighting_overlay)))
+			continue
+		else if(!(A.type in blacklist))
+			qdel(A)
+		// No need to do forcemove since everything relevant is already displaced
+
 
 /obj/cave_generator/proc/place_turfs(seismic_lvl)
 
@@ -561,21 +665,45 @@
 	desc = "A hole in the ground leading to an extensive cavern network."
 	icon = 'icons/obj/burrows.dmi'
 	icon_state = "maint_hole"
+	var/obj/cave_generator/cave_gen
+
+/obj/structure/multiz/ladder/cave_hole/Destroy()
+	if(cave_gen)
+		cave_gen = null
+	. = ..()
+
+/obj/structure/multiz/ladder/cave_hole/attackby(obj/item/I, mob/user)
+	if(!cave_gen || !((cave_gen.status == CAVE_OPENED) || (cave_gen.status == CAVE_COLLAPSING)))
+		to_chat(user, SPAN_NOTICE("The cave system is not opened yet."))
+		return
+	. = ..()
 
 /obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
-	if(M.pulling)
-		to_chat(M, SPAN_NOTICE("The hole is too narrow to enter while pulling something."))
+	if(!cave_gen || !((cave_gen.status == CAVE_OPENED) || (cave_gen.status == CAVE_COLLAPSING)))
+		to_chat(M, SPAN_NOTICE("The cave system is not opened yet."))
 		return
 	. = ..()
 
 /obj/structure/multiz/ladder/up/cave
 	name = "cave network exit"
 
+// Undefine cave constants
 #undef CAVE_SIZE
 #undef CAVE_MARGIN
 #undef CAVE_CORRIDORS
 #undef CAVE_WALL_PROPORTION
 #undef CAVE_VWEIGHT
+#undef CAVE_COOLDOWN
+#undef CAVE_COLLAPSE
+
+// Undefine statuses
+#undef CAVE_CLOSED
+#undef CAVE_GENERATING
+#undef CAVE_OPENED
+#undef CAVE_COLLAPSING
+#undef CAVE_CLEANING
+
+// Undefine cave tiles
 #undef CAVE_FREE
 #undef CAVE_WALL
 #undef CAVE_POI

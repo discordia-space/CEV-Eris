@@ -1,0 +1,5 @@
+author: null-Aurelian
+delete-after: true
+changes:
+  - tweak: randomizes body creation for various spawns
+  - code_imp: adds the randomize_appearance() proc in appearances.dm for humans

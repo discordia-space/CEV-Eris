@@ -108,7 +108,7 @@
 
 //Club
 /obj/item/clothing/suit/storage/toggle/club
-	name = "Manager's jacket"
+	name = "manager's jacket"
 	desc = "A well tailored and rich jacket of the club manager"
 	icon_state = "cm_coat"
 	item_state = "cm_coat"

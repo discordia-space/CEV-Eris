@@ -1,0 +1,7 @@
+author: Firefox13
+delete-after: true
+changes:
+  - balance: nuka cola now has lower speedboost, lower NSA, doesn't instantly wake
+      you up, irradiates you more and increases heartbeat
+  - tweak: adrenaline increases heartbeat (does this even do anything? a mystery)
+  - tweak: energy drinks now contain adrenaline instead of nuka cola

@@ -22,7 +22,7 @@
 		if(do_after(user, 2 SECONDS, target))
 			to_chat(user, SPAN_NOTICE("You start tagging \the [target.name]!"))
 		else
-			to_chat(user, SPAN_NOTICE("You must stand still while tagging \the [target.name]!."))
+			to_chat(user, SPAN_NOTICE("You must stand still while tagging \the [target.name]!"))
 			return FALSE
 		switch(graffititype)
 			if("Kot")

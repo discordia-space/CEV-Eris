@@ -19,3 +19,37 @@
   - bugfix: fixed people not hearing local things
   - bugfix: chat broke fixed again
   - bugfix: fixed chat bug (again)
+2023-09-09:
+  Firefox13:
+  - bugfix: Spriteless swimsuit parent item shouldn't appear anymore
+  - spellcheck: Fixed multiple uppercases where there should be lowercases across
+      some items and prompts
+  - spellcheck: Fixed extra punctuation (?.) in some decriptions
+  - bugfix: Roundstart mines can no longer be pulled around.
+  - spellcheck: Fixed a typo in mine deployment message.
+  - balance: Robotech Deluxe now only has one 1000L large cell instead of twelve 5000L
+  LenSkozzy:
+  - rscadd: Added comments to deepmaint/proc/makeNiche, findNicheTurfs, and checkForWalls.
+  MLGTASTICa:
+  - tweak: Playtime requirements work off total playtime now instead of departament
+      based.
+  Mycah142:
+  - rscadd: Added Exosuit Drill message to report ore deposited into Clamp's ore box.
+  - tweak: NT Agrolyte's Pain Relief for others is now also a reagent, more powerful
+      than the personal pain relief.
+  - rscadd: Added Mining Satchel and Ore Crate to Asters' trade ship.
+2023-09-10:
+  Hyperio:
+  - tweak: Shifted pulsar satellite position to avoid issues with pulsar overmap
+2023-09-11:
+  Hyperio:
+  - rscadd: Added "(1-6)" to the seimic activity display to indicate the possible
+      range
+  - rscadd: The remaining cooldown time is now displayed when trying to regenerate
+      a cavern
+  - tweak: Tweaked the cavern cleaning mechanism
+  - rscadd: Cavern collapse has now a countdown instead of being instantaneous, with
+      a warning displayed to all people inside the cavern so that they have time to
+      leave it
+  - bugfix: Fixed cavern wall layering
+  - bugfix: Fix access to caverns

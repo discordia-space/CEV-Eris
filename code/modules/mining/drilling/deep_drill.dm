@@ -65,8 +65,10 @@
 	if(cave_connected)
 		// In case the drill gets destroyed with an active cave system
 		log_and_message_admins("Collapsing active cave system as its associated drill got destroyed.")
-		cave_gen.remove_ladders()
+		cave_gen.initiate_collapse()
 		cave_connected = FALSE
+	if(cave_gen)
+		cave_gen = null
 	. = ..()
 
 /obj/machinery/mining/deep_drill/Process()
@@ -261,17 +263,24 @@
 		else if(use_cell_power())
 			
 			if(!cave_connected)
-				if(cave_gen.lock)
+				if(cave_gen.is_generating())
+					to_chat(user, SPAN_WARNING("A cave system is already being dug."))
+				else if(cave_gen.is_opened())
 					to_chat(user, SPAN_WARNING("A cave system is already being explored."))
+				else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
+					to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
 				else if(!cave_gen.check_cooldown())
-					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system."))
+					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
 				else
 					var/turf/simulated/T = get_turf(loc)
 					cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
+					update_icon()
 			else
-				log_and_message_admins("[key_name(user)] has collapsed an active cave system.")
-				cave_gen.remove_ladders()
+				if(!cave_gen.is_closed())  // If cave is already closed, something went wrong
+					log_and_message_admins("[key_name(user)] has collapsed an active cave system.")
+					cave_gen.initiate_collapse()
 				cave_connected = FALSE
+				update_icon()
 
 			/* // Only if on mother load
 			active = !active
@@ -296,7 +305,7 @@
 /obj/machinery/mining/deep_drill/update_icon()
 	if(need_player_check)
 		icon_state = "mining_drill_error"
-	else if(active)
+	else if(active || cave_connected)
 		icon_state = "mining_drill_active"
 	else
 		icon_state = "mining_drill"
