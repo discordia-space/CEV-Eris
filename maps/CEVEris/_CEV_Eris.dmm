@@ -63565,9 +63565,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
-"cYU" = (
-/turf/simulated/floor/tiled/dark/golden,
-/area/space)
 "cYV" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -72909,7 +72906,7 @@
 "duz" = (
 /obj/structure/closet/coffin,
 /turf/simulated/floor/tiled/dark/golden,
-/area/space)
+/area/eris/neotheology/funeral)
 "duA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/medical{
@@ -100956,7 +100953,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark/golden,
-/area/space)
+/area/eris/neotheology/funeral)
 "iWU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -118477,9 +118474,9 @@ aaa
 aaa
 aaa
 aaa
-aae
-aae
-aae
+exE
+exE
+exE
 exE
 gWL
 sBv
@@ -118679,9 +118676,9 @@ aaa
 alg
 alg
 alg
-alg
+exE
 duz
-cYU
+eoI
 xTu
 eoI
 xgV
@@ -118881,9 +118878,9 @@ aaa
 alg
 bIy
 bYm
-alg
+exE
 duz
-cYU
+eoI
 xhY
 vHq
 rUN
@@ -119083,7 +119080,7 @@ aaa
 alg
 bNR
 bYI
-alg
+exE
 iVN
 duz
 xhY
@@ -119285,9 +119282,9 @@ aaa
 alg
 bQa
 bYR
-alg
-ayb
-ayb
+exE
+xhY
+xhY
 xhY
 sbP
 rJj
@@ -202906,7 +202903,7 @@ djq
 bSx
 abF
 abF
-cmE
+duu
 cmE
 duY
 etS
