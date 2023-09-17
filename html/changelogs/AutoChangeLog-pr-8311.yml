@@ -1,7 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - bugfix: Harmonic feedback surge anomaly weather event no longer physically deletes
-      the shield generator, now instead properly damages it
-  - rscadd: special shield damage type reserved for harmonic feedback anomaly event
-      used in shield generator logs

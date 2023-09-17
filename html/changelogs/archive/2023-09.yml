@@ -81,3 +81,10 @@
       and inner_fuhrer()
   - tweak: added a check to creating an order from the trade beacon so that orders
       containing an SM shard are crated on spawn.
+2023-09-17:
+  Firefox13:
+  - bugfix: Harmonic feedback surge anomaly weather event no longer physically deletes
+      the shield generator, now instead properly damages it
+  - rscadd: special shield damage type reserved for harmonic feedback anomaly event
+      used in shield generator logs
+  - balance: added caps to pacmans explosion power
