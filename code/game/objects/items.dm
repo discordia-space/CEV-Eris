@@ -376,7 +376,7 @@
 				SPAN_DANGER("You stab yourself in the eyes with [src]!") \
 			)
 
-		eyes.damage += rand(3,4)
+		eyes.take_damage(rand(24, 32), BRUTE, sharp = TRUE)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != DEAD)
 				if(BP_IS_ORGANIC(eyes) || BP_IS_ASSISTED(eyes)) //robot eyes bleeding might be a bit silly
