@@ -549,13 +549,14 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/vital/heart/heart = H.random_organ_by_process(OP_HEART)
+		if(BP_IS_ROBOTIC(heart)) // neither it should work on robotic hearts, chemistry and stuf
+			return
 		if(heart)
 			heart.damage += 0.5
 			if(prob(30))
 				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
 		if(H.stat == DEAD)
-			if(!BP_IS_ROBOTIC(heart) // neither it should work on robotic hearts, chemistry n' stuff
-				H.resuscitate()
+			H.resuscitate()
 
 /datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
 	. = ..()
