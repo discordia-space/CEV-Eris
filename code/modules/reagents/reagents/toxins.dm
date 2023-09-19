@@ -545,29 +545,40 @@
 	color = "#13BC5E"
 
 /datum/reagent/toxin/aslimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier) // TODO: check if there's similar code anywhere else
+	var/cruciformed = FALSE
+	var/prosthetic = M.isSynthetic()
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
-	to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-	ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
-	M.canmove = 0
-	M.icon = null
-	M.overlays.Cut()
-	M.invisibility = 101
-	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/implant)) //TODO: Carn. give implants a dropped() or something
-			qdel(W)
-			continue
-		W.layer = initial(W.layer)
-		W.loc = M.loc
-		W.dropped(M)
-	var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
-	new_mob.a_intent = "hurt"
-	new_mob.universal_speak = 1
-	if(M.mind)
-		M.mind.transfer_to(new_mob)
+	if(!prosthetic) //Check if is not FBP
+		to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+		ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
+		M.canmove = 0
+		M.icon = null
+		M.overlays.Cut()
+		M.invisibility = 101
+		for(var/obj/item/W in M) //for every item in a entity including internal components and inventory
+			if(istype(W, /obj/item/implant) || istype(W, /obj/item/organ/external/robotic))  //Check if item is implant or prosthetic
+				if(istype(W, /obj/item/implant/core_implant/cruciform)) //If cruciform is present victim is gibbed instead of transformed
+					cruciformed = TRUE
+				W.dropped() //use the baseline dropped() 
+				continue
+			W.layer = initial(W.layer)
+			W.loc = M.loc
+			W.dropped(M)
+		if(!cruciformed) //If not cruciformed, get slimed
+			var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
+			new_mob.a_intent = "hurt"
+			new_mob.universal_speak = 1
+			if(M.mind)
+				M.mind.transfer_to(new_mob)
+			else
+				new_mob.key = M.key
+			qdel(M)
+		else //if victim was cruciformed, gib the body instead of creating a slime. Deus saves
+			M.gib()
 	else
-		new_mob.key = M.key
-	qdel(M)
+		var/mob/living/carbon/human/MH = M //Because I don't know how to cast objects in BYOND
+		MH.vomit() //Otherwise the toxin spams as the body attempts to process it. Gets it out of the system quickly and we can stop trying to process this.
 
 /datum/reagent/other/xenomicrobes
 	name = "Xenomicrobes"
