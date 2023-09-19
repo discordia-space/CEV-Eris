@@ -542,8 +542,10 @@
 	affects_dead = TRUE
 	reagent_type = "Medicine"
 
-/datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/resuscitator/affect_ingest(mob/living/carbon/M, var/alien, effect_multiplier)
+	return // since it's a "cardiac stimulant" it shouldn't really work unless injected
 
+/datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/vital/heart/heart = H.random_organ_by_process(OP_HEART)
@@ -552,7 +554,8 @@
 			if(prob(30))
 				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
 		if(H.stat == DEAD)
-			H.resuscitate()
+			if(!BP_IS_ROBOTIC(heart) // neither it should work on robotic hearts, chemistry n' stuff
+				H.resuscitate()
 
 /datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
 	. = ..()
