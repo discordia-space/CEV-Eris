@@ -212,6 +212,8 @@
 				P.pixel_y = rand(-7, 7)
 				P.icon_state = bottlesprite
 				reagents.trans_to_obj(P,60)
+				if(P.name != "bottle") // if the bottle isn't unnamed (happens when you create a bottle with nothing in chemmaster)
+					P.force_label = TRUE									 // we force a label on sprite
 				P.toggle_lid()
 			else
 				var/obj/item/reagent_containers/food/condiment/P = new/obj/item/reagent_containers/food/condiment(src.loc)
