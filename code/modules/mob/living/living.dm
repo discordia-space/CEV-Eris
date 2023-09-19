@@ -797,7 +797,6 @@ default behaviour is:
 
 	if(isobj(AM)) // even if we fail all the checks assume they touched the thing
 		AM.add_fingerprint(usr)
-		message_admins("[AM] now has [usr] fingeprints because he pulled it.")
 
 	if (AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
