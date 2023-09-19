@@ -83,7 +83,7 @@
 
 /obj/item/reagent_containers/glass/beaker/hivemind
 	preloaded_reagents = list("nanites" = 30, "uncap nanites" = 30)
-	desc = "A small glass vial. Contains a mix of nanites."
+	desc = "A beaker. Contains a mix of nanites."
 	spawn_blacklisted = TRUE
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone

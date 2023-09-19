@@ -12,7 +12,7 @@
 	filling_states = "20;40;60;80;100"
 	label_icon_state = "label_bottle"
 	lid_icon_state = "lid_bottle"
-	var/force_label = FALSE // whether or not we force a label on sprite, used for chemmaster
+	var/force_label = FALSE // if we force a label appear on the sprite, needed for chemmaster bottles
 
 /obj/item/reagent_containers/glass/bottle/update_icon()
 	cut_overlays()
@@ -27,7 +27,7 @@
 		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
-	if(label_text || (preloaded_reagents && display_label) || force_label)
+	if(label_text || force_label || (preloaded_reagents && display_label))
 		var/label_icon = label_icon_state ? label_icon_state : "label_[icon_state]"
 		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
 		add_overlay(label)
