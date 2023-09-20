@@ -532,8 +532,11 @@
 /datum/reagent/toxin/slimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name != SPECIES_SLIME)
+		if(H.species.name != SPECIES_SLIME && !H.isSynthetic()) //cannot transform if already a slime perosn or lack flesh to transform
 			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+			for(var/obj/item/W in H) //Check all items on the person
+				if(istype(W, /obj/item/organ/external/robotic)) //drop prosthetic limbs, you are a slime now. Implants will still stay on though
+					W.dropped()
 			H.set_species(SPECIES_SLIME)
 
 /datum/reagent/toxin/aslimetoxin
@@ -546,7 +549,11 @@
 
 /datum/reagent/toxin/aslimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier) // TODO: check if there's similar code anywhere else
 	var/cruciformed = FALSE
-	var/prosthetic = M.isSynthetic()
+	var/prosthetic = FALSE
+	var/mob/living/carbon/human/MH
+	if(istype(M, /mob/living/carbon/human)) //If it is human cast to human type for human procs
+		MH = M 
+		prosthetic = MH.isSynthetic()
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
 	if(!prosthetic) //Check if is not FBP
@@ -577,7 +584,6 @@
 		else //if victim was cruciformed, gib the body instead of creating a slime. Deus saves
 			M.gib()
 	else
-		var/mob/living/carbon/human/MH = M //Because I don't know how to cast objects in BYOND
 		MH.vomit() //Otherwise the toxin spams as the body attempts to process it. Gets it out of the system quickly and we can stop trying to process this.
 
 /datum/reagent/other/xenomicrobes
