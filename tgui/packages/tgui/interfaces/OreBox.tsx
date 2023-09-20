@@ -1,6 +1,6 @@
 import { toTitleCase } from 'common/string';
-import { Box, Button, Section, Table } from '../components';
-import { useBackend } from '../backend';
+import { Box, Button, NumberInput, Section, Table } from '../components';
+import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
 
 type Data = {
@@ -21,7 +21,7 @@ export const OreBox = (props, context) => {
   const { materials } = data;
 
   return (
-    <Window width={335} height={415}>
+    <Window width={460} height={415}>
       <Window.Content scrollable>
         <Section
           title="Ores"
@@ -39,20 +39,21 @@ export const OreBox = (props, context) => {
               </Table.Cell>
             </Table.Row>
             {materials.map((material) => (
-              <Table.Row key={material.type}>
-                <Table.Cell>{toTitleCase(material.name)}</Table.Cell>
-                <Table.Cell collapsing textAlign="center">
-                  <Box color="label" inline>
-                    {material.amount}
-                  </Box>
-                </Table.Cell>
-                <Table.Cell collapsing textAlign="right">
-                  <Button
-                    content="Eject All"
-                    onClick={() => act('ejectall', { name: material.name })}
-                  />
-                </Table.Cell>
-              </Table.Row>
+              <OreRow
+                key={material.type}
+                material={material}
+                onRelease={(type, amount) =>
+                  act('eject', {
+                    type: type,
+                    qty: amount,
+                  })
+                }
+                onReleaseAll={(type) =>
+                  act('ejectall', {
+                    type: type,
+                  })
+                }
+              />
             ))}
           </Table>
         </Section>
@@ -61,5 +62,46 @@ export const OreBox = (props, context) => {
         </Section>
       </Window.Content>
     </Window>
+  );
+};
+
+const OreRow = (props, context) => {
+  const { material, onRelease, onReleaseAll } = props;
+
+  const [amount, setAmount] = useLocalState(
+    context,
+    'amount' + material.name,
+    1
+  );
+
+  const amountAvailable = Math.floor(material.amount);
+  return (
+    <Table.Row>
+      <Table.Cell>{toTitleCase(material.name)}</Table.Cell>
+      <Table.Cell collapsing textAlign="right">
+        <Box mr={2} color="label" inline>
+          {amountAvailable}
+        </Box>
+      </Table.Cell>
+      <Table.Cell collapsing>
+        <NumberInput
+          width="32px"
+          step={1}
+          stepPixelSize={5}
+          minValue={1}
+          maxValue={100}
+          value={amount}
+          onChange={(e, value) => setAmount(value)}
+        />
+        <Button
+          content="Eject Amount"
+          onClick={() => onRelease(material.type, amount)}
+        />
+        <Button
+          content="Eject All"
+          onClick={() => onReleaseAll(material.type)}
+        />
+      </Table.Cell>
+    </Table.Row>
   );
 };
