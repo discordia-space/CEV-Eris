@@ -532,12 +532,16 @@
 /datum/reagent/toxin/slimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/list/implants = list() //Create an empty list to store implants
 		if(H.species.name != SPECIES_SLIME && !H.isSynthetic()) //cannot transform if already a slime perosn or lack flesh to transform
-			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-			for(var/obj/item/W in H) //Check all items on the person
-				if(istype(W, /obj/item/organ/external/robotic)) //drop prosthetic limbs, you are a slime now. Implants will still stay on though
-					W.dropped()
-			H.set_species(SPECIES_SLIME)
+			if(istype(H.get_core_implant(), /obj/item/implant/core_implant/cruciform))
+				H.gib() //Deus saves
+			else
+				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+				for(var/obj/item/W in H) //Check all items on the person
+					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now. 
+						W.dropped()
+				H.set_species(SPECIES_SLIME)
 
 /datum/reagent/toxin/aslimetoxin
 	name = "Advanced Mutation Toxin"
