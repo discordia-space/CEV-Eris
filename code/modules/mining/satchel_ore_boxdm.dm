@@ -120,19 +120,22 @@
 	if(Adjacent(user))
 		ui_interact(user)
 
-/obj/structure/ore_box/proc/dump_box_contents()
+/obj/structure/ore_box/proc/dump_box_contents(ore_name)
 	var/drop = drop_location()
 	for(var/obj/item/ore/O in src)
 		if(QDELETED(O))
 			continue
 		if(QDELETED(src))
 			break
+		if(ore_name && O.name != ore_name)
+			continue
 		O.forceMove(drop)
 
 /obj/structure/ore_box/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "OreBox", name)
+		ui.set_autoupdate(TRUE)
 		ui.open()
 
 /obj/structure/ore_box/ui_data()
@@ -150,11 +153,16 @@
 	if(!Adjacent(usr))
 		return
 	add_fingerprint(usr)
-	usr.set_machine(src)
 	switch(action)
-		if("removeall")
+		if("ejectallores")
 			dump_box_contents()
-			to_chat(usr, span_notice("You open the release hatch on the box.."))
+			to_chat(usr, span_notice("You release all the content of the box."))
+			return TRUE
+		if("ejectall")
+			var/ore_name = params["name"]
+			dump_box_contents(ore_name)
+			to_chat(usr, span_notice("You release all the [ore_name] ores."))
+			return TRUE
 
 
 /*

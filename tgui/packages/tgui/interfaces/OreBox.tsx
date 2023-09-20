@@ -25,7 +25,12 @@ export const OreBox = (props, context) => {
       <Window.Content scrollable>
         <Section
           title="Ores"
-          buttons={<Button content="Empty" onClick={() => act('removeall')} />}>
+          buttons={
+            <Button
+              content="Eject All Ores"
+              onClick={() => act('ejectallores')}
+            />
+          }>
           <Table>
             <Table.Row header>
               <Table.Cell>Ore</Table.Cell>
@@ -36,21 +41,23 @@ export const OreBox = (props, context) => {
             {materials.map((material) => (
               <Table.Row key={material.type}>
                 <Table.Cell>{toTitleCase(material.name)}</Table.Cell>
-                <Table.Cell collapsing textAlign="right">
+                <Table.Cell collapsing textAlign="center">
                   <Box color="label" inline>
                     {material.amount}
                   </Box>
+                </Table.Cell>
+                <Table.Cell collapsing textAlign="right">
+                  <Button
+                    content="Eject All"
+                    onClick={() => act('ejectall', { name: material.name })}
+                  />
                 </Table.Cell>
               </Table.Row>
             ))}
           </Table>
         </Section>
         <Section>
-          <Box>
-            {OREBOX_INFO}
-            <br />
-            Gibtonite is not accepted.
-          </Box>
+          <Box>{OREBOX_INFO}</Box>
         </Section>
       </Window.Content>
     </Window>
