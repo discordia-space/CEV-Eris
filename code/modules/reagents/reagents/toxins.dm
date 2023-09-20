@@ -532,7 +532,6 @@
 /datum/reagent/toxin/slimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/list/implants = list() //Create an empty list to store implants
 		if(H.species.name != SPECIES_SLIME && !H.isSynthetic()) //cannot transform if already a slime perosn or lack flesh to transform
 			if(istype(H.get_core_implant(), /obj/item/implant/core_implant/cruciform))
 				H.gib() //Deus saves
