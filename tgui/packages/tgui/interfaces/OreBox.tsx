@@ -34,7 +34,7 @@ export const OreBox = (props, context) => {
             <Stack.Item>
               <Section>
                 <Stack vertical>
-                  <Stack>
+                  <Stack align="start">
                     <Stack.Item basis="30%">
                       <Box bold>Ore</Box>
                     </Stack.Item>
@@ -43,7 +43,6 @@ export const OreBox = (props, context) => {
                         <Box bold>Amount</Box>
                       </Section>
                     </Stack.Item>
-                    <Stack.Item basis="50%"></Stack.Item>
                   </Stack>
                   {materials.map((material) => (
                     <OreRow
