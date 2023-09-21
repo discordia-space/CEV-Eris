@@ -6,3 +6,6 @@
 #define VAULT_PATRON_1 "Vagabond"
 #define VAULT_PATRON_2 "Guild Member"
 #define VAULT_PATRON_3 "Neotheology Patron"
+
+#define VAULT_TRANSACTION_TYPE_PURCHASE "vault_buy"
+#define VAULT_TRANSACTION_TYPE_SELL "vault_sell"

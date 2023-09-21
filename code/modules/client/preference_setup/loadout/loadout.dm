@@ -280,10 +280,17 @@ var/list/gear_datums = list()
 		if(!istype(G))
 			return TOPIC_NOACTION
 		ASSERT(G.price)
-		if(G.get_price() > 0 && user.client.player_vault.has_item(G))
+		var/adjusted_price = G.get_price()
+		if(adjusted_price > 0 && user.client.player_vault.has_item(G))
 			return
-		if(user.client.player_vault.buy_item(G))
+		var/comment = "Donation store purchase: [G.display_name]"
+		var/transaction = SSdonations.create_transaction(user.client, -adjusted_price, VAULT_TRANSACTION_TYPE_PURCHASE, comment)
+		var/datum/player_vault/PV = user.client.player_vault
+		if((transaction || !config.donation_track) && PV.add_item(G, FALSE, transaction_id=transaction))
+			G.on_buy_action(PV)
 			return TOPIC_REFRESH
+		else if(transaction)
+			SSdonations.remove_transaction(transaction)
 		return TOPIC_NOACTION
 	if(href_list["next_slot"])
 		pref.gear_slot = pref.gear_slot+1
@@ -336,7 +343,7 @@ var/list/gear_datums = list()
 	var/path               //Path to item.
 	var/cost = 1           //Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
 	var/price              //Price of item, iriski
-	var/price_coeff = 1	   //Multiply it by price to get true tm price of item, if negatibe, you sell.
+	var/price_coeff = 1	   //Multiply it by price to get true tm price of item
 	var/slot               //Slot to equip to.
 	var/list/allowed_roles //Roles that can spawn with this item.
 	var/list/allowed_branches //Service branches that can spawn with it.

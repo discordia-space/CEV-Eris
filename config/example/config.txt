@@ -80,6 +80,9 @@ LOG_RUNTIME
 ## sql switching
 SQL_ENABLED
 
+## donation sql switch
+donation_track
+
 ## disconnect players who did nothing during 10 minutes
 # KICK_INACTIVE
 

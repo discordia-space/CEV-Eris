@@ -1,6 +1,7 @@
 /datum/player_vault
 	var/iriska_balance = 0
 	var/player_ckey
+	var/donator = FALSE
 	var/patreon_tier = VAULT_PATRON_0
 	// picked up when generating loadout
 	// list of item types and thier data (job, fate, etc)
@@ -10,10 +11,14 @@
 	var/list/iriska_duplicates = list()
 	var/static/list/patreon_modifier = list(
 		VAULT_PATRON_0 = 1,
-		VAULT_PATRON_1 = 0.75,
-		VAULT_PATRON_2 = 0.5,
-		VAULT_PATRON_3 = 0.25
+		VAULT_PATRON_1 = 1.25,
+		VAULT_PATRON_2 = 1.5,
+		VAULT_PATRON_3 = 1.75
 	)
+
+/datum/player_vault/New(ckey)
+	. = ..()
+	player_ckey = ckey
 
 /datum/player_vault/proc/load_from_list(list/data, p_ckey)
 	if(isnull(data) || isnull(p_ckey))
@@ -58,19 +63,22 @@
 		original = iriska_duplicates[original]
 	iriska_duplicates[original] = data
 
-/datum/player_vault/proc/add_item(datum/gear/vault_item/item, add_to_regisrty = TRUE, add_to_vault = TRUE)
+/datum/player_vault/proc/add_item(datum/gear/vault_item/item, add_to_regisrty = TRUE, add_to_vault = TRUE, transaction_id = null)
 	ASSERT(istype(item))
 
 	item.ckey = player_ckey
 	item.player_vault = WEAKREF(src)
 
-	if(add_to_vault)
+	if(add_to_vault && item.can_be_saved)
 		var/list/info = list()
 		info.Add(item.get_save_info())
 		if(has_item(item))
 			recursive_add_dubs(item, info)
 		else
 			iriska_items.Add(list(info))
+		// add item to DB
+		if(transaction_id && config.donation_track)
+			return SSdonations.give_item(player_ckey, json_encode(info), transaction_id)
 
 	if(add_to_regisrty)
 		var/use_name = item.display_name
@@ -81,6 +89,7 @@
 		var/datum/loadout_category/LC = loadout_categories[use_category]
 		gear_datums[use_name] = item
 		LC.gear[use_name] = gear_datums[use_name]
+	return TRUE
 
 /datum/player_vault/proc/create_item(list/item_data, add_to_vault = FALSE)
 	if(!length(item_data))
@@ -88,25 +97,6 @@
 	var/path = text2path(item_data[1])
 	var/datum/gear/vault_item/item = new path(arglist(item_data.Copy(2)))
 	add_item(item, TRUE, add_to_vault)
-
-/datum/player_vault/proc/buy_item(datum/gear/vault_item/item)
-	ASSERT(istype(item))
-	var/price = item.get_price()
-	ASSERT(price)
-	if(iriska_balance < price)
-		return FALSE
-	
-	var/mod = get_patron_modifier()
-	if(price < 0)
-		mod = 2 - mod // that's makes 0.75 into 1.25
-
-	iriska_balance -= round(price * mod, 1)
-
-	add_item(item, FALSE)
-
-	item.on_buy_action(src)
-
-	return TRUE
 
 /datum/player_vault/proc/remove_item(datum/gear/vault_item/item)
 	if(!istype(item))
