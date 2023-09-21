@@ -13,8 +13,6 @@ type Material = {
   amount: number;
 };
 
-const OREBOX_INFO = `The miner's best friend!`;
-
 export const OreBox = (props, context) => {
   const { act, data } = useBackend<Data>(context);
   const { materials } = data;
@@ -37,8 +35,14 @@ export const OreBox = (props, context) => {
               <Section>
                 <Stack vertical>
                   <Stack>
-                    <Stack.Item basis="30%"><Box bold>Ore</Box></Stack.Item>
-                    <Stack.Item basis="20%"><Section align="center"><Box bold>Amount</Box></Section></Stack.Item>
+                    <Stack.Item basis="30%">
+                      <Box bold>Ore</Box>
+                    </Stack.Item>
+                    <Stack.Item basis="20%">
+                      <Section align="center">
+                        <Box bold>Amount</Box>
+                      </Section>
+                    </Stack.Item>
                     <Stack.Item basis="50%"></Stack.Item>
                   </Stack>
                   {materials.map((material) => (
@@ -84,9 +88,10 @@ const OreRow = (props, context) => {
         <Stack.Item basis="30%">{toTitleCase(material.name)}</Stack.Item>
         <Stack.Item basis="20%">
           <Section align="center">
-          <Box mr={0} color="label" inline>
-            {amountAvailable}
-          </Box></Section>
+            <Box mr={0} color="label" inline>
+              {amountAvailable}
+            </Box>
+          </Section>
         </Stack.Item>
         <Stack.Item basis="50%">
           <NumberInput
