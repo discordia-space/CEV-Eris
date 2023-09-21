@@ -131,7 +131,6 @@
 			break
 		if(ore_name && O.name != ore_name)
 			continue
-		log_world("Eject [O.name] with filter [ore_name] with amount [ore_amount]")
 		ore_amount--
 		O.forceMove(drop)
 
@@ -171,44 +170,7 @@
 		if("eject")
 			var/ore_name = params["type"]
 			var/ore_amount = params["qty"]
-			log_world("Received name [ore_name]")
 			dump_box_contents(ore_name, ore_amount)
 			to_chat(usr, span_notice("You release [ore_amount] [ore_name] ores."))
 			update_ore_count()
 			return TRUE
-
-
-/*
-/obj/structure/ore_box/attack_hand(mob/user)
-	ui_interact(user)
-
-/obj/structure/ore_box/ui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "OreBox")
-		ui.set_autoupdate(TRUE)
-		ui.open()
-
-/obj/structure/ore_box/ui_data(mob/user)
-	var/list/data = list()
-
-	var/list/listed_ores = list()
-	for(var/ore in stored_ore)
-		listed_ores.Add(list(list(
-			"name" = ore,
-			"amount" = stored_ore[ore])))
-	data["ores"] = listed_ores
-
-	return data
-
-/obj/structure/ore_box/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	. = ..()
-	if(.)
-		return TRUE
-
-	switch(action)
-		if("drop")
-			var/ore_name = text2num(params["name"])
-			log_world("DROP [ore_name]")
-			return TRUE
-*/
