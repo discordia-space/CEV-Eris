@@ -3,7 +3,7 @@
 	name = "Psi-Armour"
 	icon_state = "psiarmour_off"
 
-/obj/screen/psi/armour/on_update_icon()
+/obj/screen/psi/armour/update_icon()
 	..()
 	if(invisibility == 0)
 		icon_state = owner.psi.use_psi_armour ? "psiarmour_on" : "psiarmour_off"
@@ -37,7 +37,7 @@
 		psi.hidden = set_hidden
 	controller.update_icon()
 
-/obj/screen/psi/toggle_psi_menu/on_update_icon()
+/obj/screen/psi/toggle_psi_menu/update_icon()
 	if(hidden)
 		icon_state = "arrow_left"
 	else

@@ -1,5 +1,5 @@
 /obj/screen/psi
-	icon = 'icons/screen/psi.dmi'
+	icon = 'icons/HUD/psi.dmi'
 	var/mob/living/owner
 	var/hidden = TRUE
 
@@ -14,8 +14,8 @@
 		owner.client.screen -= src
 	. = ..()
 
-/obj/screen/psi/on_update_icon()
+/obj/screen/psi/update_icon()
 	if(hidden)
-		invisibility = INVISIBILITY_ABSTRACT
+		invisibility = INVISIBILITY_MAXIMUM
 	else
 		invisibility = 0

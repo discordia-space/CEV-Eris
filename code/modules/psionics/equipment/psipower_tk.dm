@@ -47,7 +47,7 @@
 /obj/item/psychic_power/telekinesis/attack_self(mob/user)
 	user.visible_message(SPAN_NOTICE("\The [user] makes a strange gesture."))
 	sparkle()
-	return focus.do_simple_ranged_interaction(user)
+	return focus.attack_tk(user)
 
 /obj/item/psychic_power/telekinesis/afterattack(atom/target, mob/living/user, proximity)
 
