@@ -28,17 +28,17 @@
 	sound_to(owner, 'sound/effects/psi/power_fail.ogg')
 	user.drop_from_inventory(src)
 
-/obj/item/psychic_power/attack(mob/living/M, mob/living/user)
-	. = FALSE
+/obj/item/psychic_power/attack(mob/living/M, mob/living/user, params)
+	. = ..(M, user, params)
 	if(M.do_psionics_check(max(force, maintain_cost), user))
 		to_chat(user, SPAN_DANGER("\The [src] flickers violently out of phase!"))
 		return TRUE
 
-/obj/item/psychic_power/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/psychic_power/afterattack(atom/target, mob/living/user, proximity, params)
 	if(target.do_psionics_check(max(force, maintain_cost), user))
 		to_chat(user, SPAN_DANGER("\The [src] flickers violently out of phase!"))
 		return
-	. = ..(target, user, proximity)
+	. = ..(target, user, proximity, params)
 
 /obj/item/psychic_power/dropped()
 	..()

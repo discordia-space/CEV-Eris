@@ -2561,6 +2561,7 @@
 #include "code\modules\psionics\mob\mob_assay.dm"
 #include "code\modules\psionics\mob\mob_interactions.dm"
 #include "code\modules\psionics\null\_null.dm"
+#include "code\modules\psionics\null\~null.dm"
 #include "code\modules\pulsar_engine\_defines.dm"
 #include "code\modules\pulsar_engine\pulsar_consoles.dm"
 #include "code\modules\pulsar_engine\pulsar_events.dm"

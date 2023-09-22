@@ -68,7 +68,6 @@
 		if(pk_rank >= PSI_RANK_LATENT && redaction_rank >= PSI_RANK_OPERANT)
 			var/removal_size = clamp(5-pk_rank, 0, 5)
 
-
 			for(var/obj/item/organ/external/limb in target)
 				for(var/obj/thing in limb.implants)
 					if(!istype(thing, /obj/item/implant) && thing.w_class >= removal_size)
