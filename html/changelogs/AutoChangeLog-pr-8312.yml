@@ -1,0 +1,10 @@
+author: Firefox13
+delete-after: true
+changes:
+  - tweak: oldificator now hides chemical bottles names and changes desc to obfuscate
+      their contents
+  - tweak: all bottles, beakers and vials with preloaded reagents are now spawned
+      with lid on and a label on sprite
+  - tweak: chemmaster bottles now spawn with labels if they have contents
+  - tweak: most prespawned bottles now have identical to chemmaster naming names
+  - bugfix: fixed broken vape vial icons
