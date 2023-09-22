@@ -115,7 +115,7 @@
 
 /obj/item/reagent_containers/glass/beaker/vial/nanites
 	preloaded_reagents = list("nanites" = 30)
-	desc = "A small glas vial. Contains raw industrial nanobots."
+	desc = "A small glass vial. Contains raw industrial nanobots."
 	rarity_value = 40
 
 /obj/item/reagent_containers/glass/beaker/vial/uncapnanites
