@@ -1,0 +1,4 @@
+author: Chasu
+delete-after: true
+changes:
+  - bugfix: Fixes the emergency shutter closing animation
