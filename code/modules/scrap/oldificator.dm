@@ -182,7 +182,7 @@
 	.=..()
 	if(.)
 		name = "[pick("scratched", "cracked", "dirty", "chipped")] bottle"
-		desc = "An old small glass bottle."
+		desc = "A small old glass bottle."
 		if(display_label)
 			desc += " The label is unreadable."
 
