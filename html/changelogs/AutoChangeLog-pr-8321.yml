@@ -1,0 +1,6 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - rscadd: Added Club, Tool storage and Dormitories to the list of possible mail
+      recipients. Added trash bin to the Preacher Office.
+  - bugfix: fixed disposal mail delivery
