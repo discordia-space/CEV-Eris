@@ -38,6 +38,7 @@
 #define ROLE_BANTYPE_CARRION ROLE_CARRION
 #define ROLE_BANTYPE_CREW_SIDED ROLE_MARSHAL
 #define ROLE_BANTYPE_BLITZ ROLE_BLITZ
+#define ROLE_BANTYPE_PARAMOUNT ROLE_PARAMOUNT
 
 // antag template macros.
 #define ROLE_BORER "borer"
@@ -48,6 +49,7 @@
 #define ROLE_DEATHSQUAD "deathsquad"
 #define ROLE_ARTIST "artist"
 #define ROLE_MERCENARY "mercenary"
+#define ROLE_PARAMOUNT "paramount"
 #define ROLE_CARRION "carrion"
 #define ROLE_MONKEY "monkey"
 #define ROLE_MALFUNCTION "malf"
@@ -65,6 +67,7 @@
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"
 #define FACTION_SERBS	"serbians"
+#define FACTION_FOUNDERS "founders"
 #define FACTION_NEOTHEOLOGY	"neotheologists"
 
 #define ROLES_CONTRACT_COMPLETE list(ROLE_CONTRACTOR,ROLE_CARRION,ROLE_BLITZ)

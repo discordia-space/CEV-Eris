@@ -226,6 +226,10 @@ proc/n_ceil(var/num)
 	if(isnum(num))
 		return round(num)+1
 
+// Slightly more accurate than n_ceil
+/proc/ceil(number)
+	return -round(-number)
+
 // Find leftmost bit using bitshifting
 proc/leftmost_bit(num)
 	var/pos = 0
