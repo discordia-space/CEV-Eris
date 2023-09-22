@@ -13,7 +13,7 @@
 	. = ..()
 
 /mob/living/proc/set_psi_rank(faculty, rank, take_larger, defer_update, temporary)
-	if(!src.zone_sel)
+	if(!src.targeted_organ) // What is this for?
 		to_chat(src, SPAN_NOTICE("You feel something strange brush against your mind... but your brain is not able to grasp it."))
 		return
 	if(!psi)

@@ -105,7 +105,7 @@
 			else if(owner.stat == UNCONSCIOUS)
 				stamina = min(max_stamina, stamina + rand(3,5))
 
-		if(!owner.nervous_system_failure() && owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
+		if(owner.stat == CONSCIOUS && stamina && !suppressed && get_rank(PSI_REDACTION) >= PSI_RANK_OPERANT)
 			attempt_regeneration()
 
 	var/next_aura_size = max(0.1,((stamina/max_stamina)*min(3,rating))/5)
@@ -181,7 +181,7 @@
 				var/obj/item/organ/internal/vital/brain_organ = H.random_organ_by_process(BP_BRAIN)
 
 				if(!H.is_asystole() && !(heart_organ && brain_organ) || (heart_organ.is_broken() || brain_organ.is_broken()))
-					H.visible_message(SPAN_WARNING("\The [src] cannot be resusciated in this state!"))
+					H.visible_message(SPAN_WARNING("\The [src] cannot be resuscitated in this state!"))
 				else if (spend_power(heal_rate))
 					H.resuscitate()
 
@@ -205,7 +205,7 @@
 					if(BP_IS_ROBOTIC(E))
 						continue
 
-					if(heal_internal && (E.status & ORGAN_BROKEN) && E.damage < (E.min_broken_damage * config.organ_health_multiplier)) // So we don't mend and autobreak.
+					if(heal_internal && (E.status & ORGAN_BROKEN) && E.damage < (E.min_broken_damage * ORGAN_HEALTH_MULTIPLIER)) // So we don't mend and autobreak.
 						if(spend_power(heal_rate))
 							if(E.mend_fracture())
 								to_chat(H, SPAN_NOTICE("Your autoredactive faculty coaxes together the shattered bones in your [E.name]."))

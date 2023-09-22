@@ -17,8 +17,8 @@
 	)
 	START_PROCESSING(SSprocessing, src)
 
-/obj/screen/psi/hub/on_update_icon()
-
+/obj/screen/psi/hub/update_icon()
+	..()
 	if(!owner.psi)
 		return
 

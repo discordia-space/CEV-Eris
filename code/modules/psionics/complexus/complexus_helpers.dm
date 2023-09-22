@@ -87,10 +87,10 @@
 	owner.adjustBrainLoss(value)
 	if(ishuman(owner))
 		var/mob/living/carbon/human/pop = owner
-		if(pop.should_have_organ(BP_BRAIN))
-			var/obj/item/organ/internal/brain/sponge = pop.internal_organs_by_name[BP_BRAIN]
+		if(pop.random_organ_by_process(BP_BRAIN))
+			var/obj/item/organ/internal/vital/brain/sponge = pop.random_organ_by_process(BP_BRAIN)
 			if(sponge && sponge.damage >= sponge.max_damage)
-				var/obj/item/organ/external/affecting = pop.get_organ(sponge.parent_organ)
+				var/obj/item/organ/external/affecting = pop.get_organ(sponge.parent)
 				if(affecting && !affecting.is_stump())
 					affecting.droplimb(0, DROPLIMB_BLUNT)
 					if(sponge) qdel(sponge)

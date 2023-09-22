@@ -3,7 +3,7 @@
 	role_text = "Paramount"
 	role_text_plural = "Paramounts"
 	bantype = ROLE_BANTYPE_PARAMOUNT
-	welcome_text = WELCOME_PARAMOUNT
+	welcome_text = ""
 	antaghud_indicator = "hudmalai"
 	id_type = /obj/item/card/id/syndicate
 
@@ -40,21 +40,21 @@
 	if(!owner.current)
 		return FALSE
 
-//	player.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/psi_amp(player), slot_head)
-	player.set_psi_rank(PSI_REDACTION, 3,     defer_update = TRUE)
-	player.set_psi_rank(PSI_COERCION, 3,      defer_update = TRUE)
-	player.set_psi_rank(PSI_PSYCHOKINESIS, 3, defer_update = TRUE)
-	player.set_psi_rank(PSI_ENERGISTICS, 3,   defer_update = TRUE)
-	player.psi.update(TRUE)
+//	owner.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/psi_amp(owner), slot_head)
+	L.set_psi_rank(PSI_REDACTION, 3,     defer_update = TRUE)
+	L.set_psi_rank(PSI_COERCION, 3,      defer_update = TRUE)
+	L.set_psi_rank(PSI_PSYCHOKINESIS, 3, defer_update = TRUE)
+	L.set_psi_rank(PSI_ENERGISTICS, 3,   defer_update = TRUE)
+	L.psi.update(TRUE)
 
 /*
-	player.equip_to_slot_or_del(new /obj/item/clothing/under/psysuit(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/psypurple(player), slot_wear_suit)
-	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(player), slot_shoes)
-	player.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(player), slot_back)
+	owner.equip_to_slot_or_del(new /obj/item/clothing/under/psysuit(owner), slot_w_uniform)
+	owner.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/psypurple(owner), slot_wear_suit)
+	owner.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(owner), slot_shoes)
+	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(owner), slot_back)
 	var/obj/item/clothing/gloves/color/gloves = new()
 	gloves.color = COLOR_GRAY80
-	player.equip_to_slot_or_del(gloves, slot_gloves)
+	owner.equip_to_slot_or_del(gloves, slot_gloves)
 */
 	return TRUE
 
@@ -84,7 +84,7 @@
 	return TRUE
 
 
-/datum/antagonist/paramount/create_objectives(datum/mind/player)
+/datum/antagonist/paramount/create_objectives()
 
 	if(!..())
 		return
@@ -94,32 +94,32 @@
 		switch(pick(objective_list))
 			if(1)//Kill
 				var/datum/objective/assassinate/objective = new
-				objective.owner = player
+				objective.owner = owner
 				objective.target = objective.find_target()
 				if(objective.target != "Free Objective")
-					player.objectives += objective
+					owner.individual_objectives += objective
 				else
 					i++
 				objective_list -= 1 // No more than one kill objective
 			if(2)//Protect
 				var/datum/objective/protect/objective = new
-				objective.owner = player
+				objective.owner = owner
 				objective.target = objective.find_target()
 				if(objective.target != "Free Objective")
-					player.objectives += objective
+					owner.individual_objectives += objective
 				else
 					i++
 					objective_list -= 3
 			if(3)//Harm
 				var/datum/objective/harm/objective = new
-				objective.owner = player
+				objective.owner = owner
 				objective.target = objective.find_target()
 				if(objective.target != "Free Objective")
-					player.objectives += objective
+					owner.individual_objectives += objective
 				else
 					i++
 					objective_list -= 4
 
 	var/datum/objective/survive/objective = new
-	objective.owner = player
-	player.objectives += objective
+	objective.owner = owner
+	owner.individual_objectives += objective

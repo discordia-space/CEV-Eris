@@ -55,9 +55,9 @@
 
 		else if(href_list["change_mode"])
 			var/obj/item/implant/psi_control/I = locate(href_list["change_mode"])
-			if(I.implant && !I.malfunction)
+			if(I.wearer && !I.malfunction)
 				var/choice = input("Select a new implant mode.", "Psi Dampener") as null|anything in list(PSI_IMPLANT_AUTOMATIC, PSI_IMPLANT_SHOCK, PSI_IMPLANT_WARN, PSI_IMPLANT_LOG, PSI_IMPLANT_DISABLED)
-				if(choice && I && I.implant && !I.malfunction)
+				if(choice && I && I.wearer && !I.malfunction)
 					I.psi_mode = choice
 					I.update_functionality()
 					. = 1
@@ -83,9 +83,9 @@
 	dat += "<tr><td><b>Operant</b></td><td><b>System load</b></td><td><b>Mode</b></td></tr>"
 	for(var/thing in SSpsi.psi_dampeners)
 		var/obj/item/implant/psi_control/I = thing
-		if(!I.implant)
+		if(!I.wearer)
 			continue
-		dat += "<tr><td>[I.implant.name]</td>"
+		dat += "<tr><td>[I.wearer.name]</td>"
 		if(I.malfunction)
 			dat += "<td>ERROR</td><td>ERROR</td>"
 		else
@@ -110,8 +110,8 @@
 	popup.open()
 
 
-/obj/machinery/psi_monitor/proc/report_failure(obj/item/implant/psi_control/implant)
-	psi_violations += SPAN_NOTICE("Critical system failure - [implant.implant.name].")
+/obj/machinery/psi_monitor/proc/report_failure(obj/item/implant/psi_control/I)
+	psi_violations += SPAN_NOTICE("Critical system failure - [I.wearer.name].")
 
-/obj/machinery/psi_monitor/proc/report_violation(obj/item/implant/psi_control/implant, stress)
-	psi_violations += "Sigma [round(stress/10)] event - [implant.implant.name]."
+/obj/machinery/psi_monitor/proc/report_violation(obj/item/implant/psi_control/I, stress)
+	psi_violations += "Sigma [round(stress/10)] event - [I.wearer.name]."

@@ -15,6 +15,6 @@
 			check_latency_trigger(100, "outside intervention", redactive = TRUE)
 			. = TRUE
 		if(.)
-			var/datum/admins/admin = GLOB.admins[usr.key]
-			if(istype(admin))
-				admin.show_player_panel(owner)
+			var/datum/admins/admin_datum = admin_datums[usr.ckey]
+			if(istype(admin_datum))
+				admin_datum.show_player_panel(owner)

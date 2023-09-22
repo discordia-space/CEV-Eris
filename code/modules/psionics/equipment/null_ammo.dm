@@ -8,7 +8,7 @@
 	return src
 
 /obj/item/projectile/bullet/magnum/on_hit(mob/living/target, def_zone = BP_CHEST)
-    if(istype(target))
+ //   if(istype(target))
  //TODO: uncomment       var/obj/item/material/shard/nullglass/N = new(null)
  //       target.embed(N, def_zone)
 

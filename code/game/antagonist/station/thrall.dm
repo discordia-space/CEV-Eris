@@ -8,23 +8,23 @@
 
 	var/list/thrall_controllers = list()
 
-/datum/antagonist/thrall/create_objectives(datum/mind/player)
-	var/mob/living/controller = thrall_controllers["\ref[player]"]
+/datum/antagonist/thrall/create_objectives()
+	var/mob/living/controller = thrall_controllers["\ref[owner]"]
 	if(!controller)
 		return // Someone is playing with buttons they shouldn't be.
 	var/datum/objective/obey = new
-	obey.owner = player
+	obey.owner = owner
 	obey.explanation_text = "Obey your master, [controller.real_name], in all things."
-	player.individual_objectives |= obey
+	owner.individual_objectives |= obey
 
-/datum/antagonist/thrall/add_antagonist(datum/mind/player, ignore_role, do_not_equip, move_to_spawn, do_not_announce, preserve_appearance, mob/new_controller)
+/datum/antagonist/thrall/create_antagonist(datum/mind/owner, ignore_role, do_not_equip, move_to_spawn, do_not_announce, preserve_appearance, mob/new_controller)
 	if(!new_controller)
 		return 0
 	. = ..()
-	if(.) thrall_controllers["\ref[player]"] = new_controller
+	if(.) thrall_controllers["\ref[owner]"] = new_controller
 
-/datum/antagonist/thrall/greet(datum/mind/player)
+/datum/antagonist/thrall/greet()
 	. = ..()
-	var/mob/living/controller = thrall_controllers["\ref[player]"]
+	var/mob/living/controller = thrall_controllers["\ref[owner]"]
 	if(controller)
-		to_chat(player, SPAN_DANGER("Your will has been subjugated by that of [controller.real_name]. Obey them in all things."))
+		to_chat(owner, SPAN_DANGER("Your will has been subjugated by that of [controller.real_name]. Obey them in all things."))

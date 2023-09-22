@@ -122,7 +122,7 @@
 	if(!istype(target))
 		return FALSE
 
-	if(!(user.targeted_organ in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
+	if(!(user.targeted_organ in list(BP_L_ARM, BP_R_ARM)))
 		return FALSE
 
 	. = ..()
@@ -132,7 +132,7 @@
 		to_chat(target, SPAN_DANGER("The muscles in your arms cramp horrendously!"))
 		if(prob(75))
 			target.emote("scream")
-		for (var/obj/item/item as anything in target.GetAllHeld())
+		for (var/obj/item/item as anything in list(target.r_hand, target.l_hand))
 			if (item.simulated && prob(75) && target.unEquip(item))
 				target.visible_message(SPAN_DANGER("\The [target] drops \the [item] as their hand spasms!"))
 		return TRUE
@@ -156,9 +156,10 @@
 		if(!target.mind || !target.key)
 			to_chat(user, SPAN_WARNING("\The [target] is mindless!"))
 			return TRUE
-		if(GLOB.thralls.is_antagonist(target.mind))
-			to_chat(user, SPAN_WARNING("\The [target] is already in thrall to someone!"))
-			return TRUE
+		for(var/datum/antagonist/A in target.mind.antagonist)
+			if(A.id == ROLE_THRALL)
+				to_chat(user, SPAN_WARNING("\The [target] is already in thrall to someone!"))
+				return TRUE
 		user.visible_message(SPAN_DANGER("<i>\The [user] seizes the head of \the [target] in both hands...</i>"))
 		to_chat(user, SPAN_WARNING("You plunge your mentality into that of \the [target]..."))
 		to_chat(target, SPAN_DANGER("Your mind is invaded by the presence of \the [user]! They are trying to make you a slave!"))
@@ -167,7 +168,7 @@
 			return TRUE
 		to_chat(user, SPAN_DANGER("You sear through \the [target]'s neurons, reshaping as you see fit and leaving them subservient to your will!"))
 		to_chat(target, SPAN_DANGER("Your defenses have eroded away and \the [user] has made you their mindslave."))
-		GLOB.thralls.add_antagonist(target.mind, new_controller = user)
+		make_antagonist(target.mind, ROLE_THRALL)
 		return TRUE
 
 /decl/psionic_power/coercion/assay

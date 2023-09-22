@@ -34,7 +34,7 @@
 	. = ..()
 	if(.)
 		user.visible_message(SPAN_NOTICE("\The [user] rests a hand on \the [target]."))
-		to_chat(user, medical_scan_results(target, TRUE, SKILL_MAX))
+		to_chat(user, medical_scan_results(target, TRUE, STAT_LEVEL_GODLIKE))
 		return TRUE
 
 /decl/psionic_power/redaction/mend
@@ -65,22 +65,21 @@
 
 		var/redaction_rank = user.psi.get_rank(PSI_REDACTION)
 		var/pk_rank = user.psi.get_rank(PSI_PSYCHOKINESIS)
-		if(pk_rank >= PSI_RANK_LATENT && redaction_rank >= PSI_RANK_MASTER)
+		if(pk_rank >= PSI_RANK_LATENT && redaction_rank >= PSI_RANK_OPERANT)
 			var/removal_size = clamp(5-pk_rank, 0, 5)
-			var/valid_objects = list()
-			for(var/thing in E.implants)
-				var/obj/imp = thing
 
-				if(!imp)
-					continue
 
-				if(imp.w_class >= removal_size && !istype(imp, /obj/item/implant))
-					valid_objects += imp
-			if(LAZYLEN(valid_objects))
-				var/removing = pick(valid_objects)
-				target.remove_implant(removing, TRUE)
-				to_chat(user, SPAN_NOTICE("You extend a tendril of psychokinetic-redactive power and carefully tease \the [removing] free of \the [E]."))
-				return TRUE
+			for(var/obj/item/organ/external/limb in target)
+				for(var/obj/thing in limb.implants)
+					if(!istype(thing, /obj/item/implant) && thing.w_class >= removal_size)
+						limb.remove_item(thing)
+
+						if(!prob(redaction_rank * 22)) // 56% chance of damage for operant, 34% for master, 12% for grandmaster
+							limb.take_damage(rand(5, 10))
+							to_chat(target, SPAN_DANGER("[thing.name] rips through your [limb.name]."))
+							to_chat(user, SPAN_NOTICE("You extend a tendril of psychokinetic-redactive power and rip out \the [thing.name]."))
+						else
+							to_chat(user, SPAN_NOTICE("You extend a tendril of psychokinetic-redactive power and carefully tease \the [thing.name] free of \the [limb.name]."))
 
 		if(redaction_rank >= PSI_RANK_MASTER)
 			if(E.status & ORGAN_BROKEN)
@@ -145,10 +144,10 @@
 
 /decl/psionic_power/revive
 	name =            "Revive"
-	cost =            25
+	cost =            40 // This ability is literally an exploit on its own
 	cooldown =        80
 	use_grab =        TRUE
-	min_rank =        PSI_RANK_PARAMOUNT
+	min_rank =        PSI_RANK_PARAMOUNT // But at least it is limited to the HIGHLY red paragraph antagonist
 	faculty =         PSI_REDACTION
 	use_description = "Obtain a grab on a dead target, target the head, then select help intent and use the grab against them to attempt to bring them back to life. The process is lengthy and failure is punished harshly."
 	admin_log = FALSE
@@ -162,21 +161,27 @@
 			to_chat(user, SPAN_WARNING("This person is already alive!"))
 			return TRUE
 
-		if((world.time - target.timeofdeath) > 6000)
-			to_chat(user, SPAN_WARNING("\The [target] has been dead for too long to revive."))
-			return TRUE
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+
+			var/obj/item/organ/internal/vital/brain_organ = H.random_organ_by_process(BP_BRAIN)
+
+			if(!(brain_organ))
+				to_chat(user, SPAN_WARNING("You sense no brain."))
+				return FALSE
+
+		if(!target.is_asystole())
+			to_chat(user, SPAN_WARNING("This person is still alive!"))
+			return FALSE
+
+		if(world.time >= (target.timeofdeath + NECROZTIME))
+			to_chat(user, SPAN_WARNING("This person has been dead for too long."))
+			return FALSE
 
 		user.visible_message(SPAN_NOTICE("<i>\The [user] splays out their hands over \the [target]'s body...</i>"))
 		if(!do_after(user, 10 SECONDS, target, TRUE, TRUE, INCAPACITATION_DEFAULT, TRUE))
 			user.psi.backblast(rand(10,25))
 			return TRUE
 
-		for(var/mob/observer/G in GLOB.dead_mobs)
-			if(G.mind && G.mind.current == target && G.client)
-				to_chat(G, SPAN_NOTICE(FONT_LARGE("<b>Your body has been revived, <b>Re-Enter Corpse</b> to return to it.</b>")))
-				break
-		to_chat(target, SPAN_NOTICE(FONT_LARGE("<b>Life floods back into your body!</b>")))
-		target.visible_message(SPAN_NOTICE("\The [target] shudders violently!"))
-		target.adjustOxyLoss(-rand(15,20))
-		target.basic_revival()
+		target.rejuvenate()
 		return TRUE

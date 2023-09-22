@@ -2,13 +2,6 @@
 
 	if(!viewer) viewer = usr
 
-	var/use_He_is =  "You are"
-	var/use_He_has = "You have"
-	if(istype(machine) || viewer != src)
-		var/datum/gender/G = GLOB.gender_datums[gender]
-		use_He_is =  "[G.He] [G.is]"
-		use_He_has = "[G.He] [G.has]"
-
 	var/list/dat = list()
 
 	dat += "<h2>Summary</h2>"
@@ -24,11 +17,18 @@
 			effective_rating = max(0, psi.rating-2)
 		var/rating_descriptor
 		if(mind && !psi.suppressed)
-			if(GLOB.paramounts.is_antagonist(mind))
+			var/is_thrall = FALSE
+			var/is_paramount = FALSE
+			for(var/datum/antagonist/A in mind.antagonist)
+				if(A.id == ROLE_THRALL)
+					is_thrall = TRUE
+				if(A.id == ROLE_PARAMOUNT)
+					is_paramount = TRUE
+			if(is_paramount)
 				use_rating = SPAN_NOTICE("<b>[effective_rating]-Alpha-Plus</b>")
 				rating_descriptor = "This indicates a completely deviant psi complexus, either beyond or outside anything currently recorded. Approach with care."
 			// This space intentionally left blank (for Omega-Minus psi vampires. todo)
-			if(viewer != usr && GLOB.thralls.is_antagonist(mind) && ishuman(viewer))
+			if(viewer != usr && is_thrall && ishuman(viewer))
 				var/mob/living/H = viewer
 				if(H.psi && H.psi.get_rank(PSI_REDACTION) >= PSI_RANK_GRANDMASTER)
 					dat += SPAN_NOTICE("<b>Their mind has been cored like an apple, and enslaved by another operant psychic.</b>")
@@ -54,20 +54,20 @@
 					use_rating = "[effective_rating]-Lambda"
 					rating_descriptor = "This indicates the presence of trace latent psi capabilities."
 
-		dat += "[use_He_has] an overall psi rating of [use_rating].<br><i>[rating_descriptor]</i><hr>"
+		dat += "They have an overall psi rating of [use_rating].<br><i>[rating_descriptor]</i><hr>"
 
 		if(!istype(machine))
 
-			dat += "[use_He_is] currently <b>[psi.suppressed ? "suppressing" : "not suppressing"]</b> your psychic operancy.<br>"
-			dat += "[use_He_has] <b>[psi.stamina]/[psi.max_stamina]</b> psi stamina remaining.<br>"
+			dat += "They are currently <b>[psi.suppressed ? "suppressing" : "not suppressing"]</b> your psychic operancy.<br>"
+			dat += "They have <b>[psi.stamina]/[psi.max_stamina]</b> psi stamina remaining.<br>"
 			dat += "<hr>"
 
 			for(var/faculty_id in psi.ranks)
 				var/decl/psionic_faculty/faculty = SSpsi.get_faculty(faculty_id)
 				if(psi.ranks[faculty.id] > 0)
-					dat += "[use_He_is] assayed at the rank of <b>[GLOB.psychic_ranks_to_strings[psi.ranks[faculty.id]]]</b> for the <b>[faculty.name] faculty</b>.<br>"
+					dat += "They are assayed at the rank of <b>[GLOB.psychic_ranks_to_strings[psi.ranks[faculty.id]]]</b> for the <b>[faculty.name] faculty</b>.<br>"
 				else
-					dat += "[use_He_has] no notable power within the <b>[faculty.name] faculty</b>.<br>"
+					dat += "They have no notable power within the <b>[faculty.name] faculty</b>.<br>"
 			dat += "<hr>"
 
 			if(viewer == usr)
@@ -76,12 +76,12 @@
 					var/list/check_powers = psi.get_powers_by_faculty(faculty_id)
 					if(LAZYLEN(check_powers))
 						var/decl/psionic_faculty/faculty = SSpsi.get_faculty(faculty_id)
-						dat += "<tr><td colspan = 2>[use_He_has] access to the following psi-powers within the <b>[faculty.name] faculty</b>:</td></tr>"
+						dat += "<tr><td colspan = 2>They have access to the following psi-powers within the <b>[faculty.name] faculty</b>:</td></tr>"
 						for(var/decl/psionic_power/power in check_powers)
 							dat += "<tr><td><b>[power.name]</b></td><td>[power.use_description]</td></tr>"
 				dat += "</table>"
 	else
-		dat += "[use_He_has] no notable psychic latency or operancy."
+		dat += "They have no notable psychic latency or operancy."
 
 	if(istype(machine))
 		dat += "<a href='?src=\ref[machine];print=1'>Print</a> <a href='?src=\ref[machine];clear=1'>Clear Buffer</a>"
