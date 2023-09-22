@@ -970,15 +970,15 @@
 	auto_price = FALSE
 
 /obj/machinery/vending/drink_showcase
-	name = "Club Cocktail Showcase"
-	desc = "A vending machine to showcase cocktails."
+	name = "Club Showcase"
+	desc = "A vending machine to showcase cocktails and meals."
 	icon_state = "showcase"
 	var/icon_fill = "showcase-fill"
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vendor_department = DEPARTMENT_CIVILIAN
 	custom_vendor = TRUE
-	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/drinks, /obj/item/reagent_containers/food/condiment)
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food)
 
 /obj/machinery/vending/drink_showcase/update_icon()
 	..()
