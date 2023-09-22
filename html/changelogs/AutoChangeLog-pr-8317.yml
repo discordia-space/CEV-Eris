@@ -1,0 +1,5 @@
+author: Firefox13
+delete-after: true
+changes:
+  - balance: Resuscitator now needs to be injected to work
+  - balance: Resuscitator no longer revives people with robotic hearts
