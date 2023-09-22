@@ -99578,11 +99578,6 @@
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
-"fTM" = (
-/obj/spawner/traps/low_chance,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/maintenance/section3deck4port)
 "fUC" = (
 /obj/spawner/junk/low_chance,
 /obj/machinery/camera/network/command,
@@ -163333,7 +163328,7 @@ wcb
 gQg
 dHB
 bWh
-fTM
+eow
 dRu
 bUG
 abF
