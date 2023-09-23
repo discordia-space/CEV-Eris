@@ -63,11 +63,12 @@
 		original = iriska_duplicates[original]
 	iriska_duplicates[original] = data
 
-/datum/player_vault/proc/add_item(datum/gear/vault_item/item, add_to_regisrty = TRUE, add_to_vault = TRUE, transaction_id = null)
+/datum/player_vault/proc/add_item(datum/gear/vault_item/item, add_to_regisrty = TRUE, add_to_vault = TRUE, save_to_db = TRUE, transaction_id = null)
 	ASSERT(istype(item))
 
 	item.ckey = player_ckey
 	item.player_vault = WEAKREF(src)
+	item.display_name += " ([player_ckey])"
 
 	if(add_to_vault && item.can_be_saved)
 		var/list/info = list()
@@ -77,7 +78,7 @@
 		else
 			iriska_items.Add(list(info))
 		// add item to DB
-		if(transaction_id && config.donation_track)
+		if(transaction_id && config.donation_track && save_to_db)
 			return SSdonations.give_item(player_ckey, json_encode(info), transaction_id)
 
 	if(add_to_regisrty)
@@ -91,16 +92,20 @@
 		LC.gear[use_name] = gear_datums[use_name]
 	return TRUE
 
-/datum/player_vault/proc/create_item(list/item_data, add_to_vault = FALSE)
+/datum/player_vault/proc/create_item(list/item_data, add_to_vault = FALSE, transaction_id = null)
 	if(!length(item_data))
 		return
 	var/path = text2path(item_data[1])
 	var/datum/gear/vault_item/item = new path(arglist(item_data.Copy(2)))
-	add_item(item, TRUE, add_to_vault)
+	item.transaction_id = transaction_id
+	add_item(item, TRUE, add_to_vault, save_to_db=FALSE, transaction_id=transaction_id)
 
 /datum/player_vault/proc/remove_item(datum/gear/vault_item/item)
 	if(!istype(item))
 		return
+
+	if(item.transaction_id)
+		SSdonations.remove_item(item.transaction_id, player_ckey)
 	var/list/data = item.get_save_info()
 	for(var/list/item_data in iriska_items)
 		if(!length(item_data))

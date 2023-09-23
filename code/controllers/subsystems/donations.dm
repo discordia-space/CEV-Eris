@@ -102,7 +102,8 @@ SUBSYSTEM_DEF(donations)
 
 	var/DBQuery/query = dbcon_don.NewQuery({"
 		SELECT 
-			item_data
+			item_data,
+			transaction
 		FROM 
 			store_players_items
 		WHERE 
@@ -112,7 +113,7 @@ SUBSYSTEM_DEF(donations)
 	query.Execute_safe()
 
 	while(query.NextRow())
-		player.player_vault.create_item(json_decode(query.item[1]), TRUE)
+		player.player_vault.create_item(json_decode(query.item[1]), TRUE, transaction_id = text2num(query.item[2]))
 
 	return TRUE
 
@@ -137,6 +138,22 @@ SUBSYSTEM_DEF(donations)
 	query.Execute_safe()
 
 	return TRUE
+
+/datum/controller/subsystem/donations/proc/remove_item(transaction_id = null, player)
+	if(!establish_don_db_connection())
+		return FALSE
+	ASSERT(isnum(transaction_id))
+
+	log_debug("\[Donations DB] Transaction [transaction_id] item deletion is called! User is '[player]'.")
+
+	var/DBQuery/query = dbcon_don.NewQuery({"
+		DELETE FROM
+			store_players_items
+		WHERE
+			transaction = [transaction_id]
+	"})
+
+	query.Execute_safe()
 
 /datum/controller/subsystem/donations/proc/create_transaction(client/player, change, type, comment)
 	if(!establish_don_db_connection())

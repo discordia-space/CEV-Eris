@@ -6,6 +6,7 @@
 	var/ckey
 	var/display_anyone = FALSE
 	var/can_be_saved = TRUE
+	var/transaction_id
 	price = 5
 
 /datum/gear/vault_item/New(item_type, item_ckey)
