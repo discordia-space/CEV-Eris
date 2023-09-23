@@ -1,8 +1,0 @@
-author: null-Aurelian
-delete-after: true
-changes:
-  - balance: FBPs can no longer be turned into grey slimes. Cruciformed humans are
-      gibbed but not transformed.
-  - bugfix: Implants and prosthetics are not deleted by transforming into a grey slime
-      or a slimeperson. They will instead be dropped on the ground.
-  - code_imp: added a dropped() implementation for prosthetic limbs

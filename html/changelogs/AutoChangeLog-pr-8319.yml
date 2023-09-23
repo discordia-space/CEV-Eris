@@ -1,4 +1,0 @@
-author: Firefox13
-delete-after: true
-changes:
-  - rscadd: You now leave fingerprints on objects you (try to) pull.

@@ -1,7 +1,0 @@
-author: Humonitarian
-delete-after: true
-changes:
-  - rscadd: New Blitzshell items
-  - balance: Reworked blitzshell uplink
-  - balance: Blitzshell starts with basic plasma firemode, can purchase new ones
-  - bugfix: Blitz can no longer order the broken BS harpoon and BSDMs

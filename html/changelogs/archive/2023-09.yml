@@ -88,3 +88,36 @@
   - rscadd: special shield damage type reserved for harmonic feedback anomaly event
       used in shield generator logs
   - balance: added caps to pacmans explosion power
+2023-09-23:
+  Chasu:
+  - bugfix: Fixes the emergency shutter closing animation
+  Firefox13:
+  - balance: Resuscitator now needs to be injected to work
+  - balance: Resuscitator no longer revives people with robotic hearts
+  - tweak: oldificator now hides chemical bottles names and changes desc to obfuscate
+      their contents
+  - tweak: all bottles, beakers and vials with preloaded reagents are now spawned
+      with lid on and a label on sprite
+  - tweak: chemmaster bottles now spawn with labels if they have contents
+  - tweak: most prespawned bottles now have identical to chemmaster naming names
+  - bugfix: fixed broken vape vial icons
+  - rscadd: You now leave fingerprints on objects you (try to) pull.
+  Humonitarian:
+  - imageadd: new fumo skin
+  - rscadd: New Blitzshell items
+  - balance: Reworked blitzshell uplink
+  - balance: Blitzshell starts with basic plasma firemode, can purchase new ones
+  - bugfix: Blitz can no longer order the broken BS harpoon and BSDMs
+  Mycah142:
+  - tweak: tweaked Club Showcase to allow whole food items as well as drinks.
+  - tweak: Minor reorganization of the Church to allow "public" visitors.
+  TheLeopold:
+  - rscadd: Added Club, Tool storage and Dormitories to the list of possible mail
+      recipients. Added trash bin to the Preacher Office.
+  - bugfix: fixed disposal mail delivery
+  null-Aurelian:
+  - balance: FBPs can no longer be turned into grey slimes. Cruciformed humans are
+      gibbed but not transformed.
+  - bugfix: Implants and prosthetics are not deleted by transforming into a grey slime
+      or a slimeperson. They will instead be dropped on the ground.
+  - code_imp: added a dropped() implementation for prosthetic limbs
