@@ -72,14 +72,14 @@
 *******************/
 //Departments subsidised by an external organisation. These pay their own employees
 /datum/department/moebius_medical
-	name = "Moebius Corp: Medical Division"
+	name = "Moebius Labs: Medical Division"
 	id = DEPARTMENT_MEDICAL
-	funding_source = "Moebius Corp."
+	funding_source = "Moebius Labs."
 
 /datum/department/moebius_research
-	name = "Moebius Corp: Research Division"
+	name = "Moebius Labs: Research Division"
 	id = DEPARTMENT_SCIENCE
-	funding_source = "Moebius Corp."
+	funding_source = "Moebius Labs."
 
 /datum/department/church
 	name = "Church of NeoTheology"
