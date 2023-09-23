@@ -101954,13 +101954,6 @@
 	},
 /turf/simulated/floor/dirt,
 /area/eris/neotheology/chapelritualroom)
-"lml" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	name = "Chapel Garden"
-	},
-/turf/space,
-/area/space)
 "lnk" = (
 /obj/machinery/neotheology/reader,
 /turf/simulated/floor/tiled/white/golden,
@@ -199465,7 +199458,7 @@ aaa
 aaa
 aaa
 aaa
-lml
+aaa
 aaa
 aaa
 aaa
