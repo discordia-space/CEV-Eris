@@ -457,9 +457,9 @@
 
 /obj/screen/sanity_alt
 	name = "inspiration"
-	desc = "The color of the icon displays how close you are to receive an epiphany from your experiences.\
-	Once your inspiration is high enough, you will crave for food, drinks or drugs, to be able to reflect upon all you've learned so far. \
-	Satisfy these cravings and you'll be able to \"rest\", improving upon your stats slightly, or depending on any anomalies held, \
+	desc = "The color of the icon displays how close you are to receive an inspiration from your experiences.\
+	Once you gain an inspiration, you will crave for food, drinks or drugs, to be able to reflect upon all you've learned so far. \
+	Satisfy these cravings and you'll be able to \"rest\", improving upon your stats slightly, or depending on any oddities held, \
 	you'll gain a new perk, for ill or good, and better stat gains."
 	icon_state = "insight1"
 
