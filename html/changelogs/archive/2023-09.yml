@@ -121,3 +121,6 @@
   - bugfix: Implants and prosthetics are not deleted by transforming into a grey slime
       or a slimeperson. They will instead be dropped on the ground.
   - code_imp: added a dropped() implementation for prosthetic limbs
+2023-09-24:
+  TheLeopold:
+  - rscdel: Removed airlock floating in space
