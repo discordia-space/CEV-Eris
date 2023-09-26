@@ -2,7 +2,7 @@
 	name = "beaker"
 	desc = "A beaker."
 	description_info = "Can be heated using a lighter."
-	description_antag = "You can spill reagents onto people with this. Spilling acid melts clothes off, provided its in high enough doses."
+	description_antag = "You can spill reagents onto people with this. Spilling acid melts clothes off, provided it's in high enough doses."
 	icon_state = "beaker"
 	item_state = "beaker"
 	label_icon_state = "label_beaker"
@@ -13,6 +13,9 @@
 /obj/item/reagent_containers/glass/beaker/Initialize()
 	. = ..()
 	desc += " Can hold up to [volume] units."
+	if(preloaded_reagents)
+		if(!has_lid())
+			toggle_lid()
 
 /obj/item/reagent_containers/glass/beaker/pickup(mob/user)
 	..()
@@ -35,19 +38,12 @@
 		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
-	if(label_text)
+	if(label_text || (preloaded_reagents && display_label))
 		var/label_icon = label_icon_state ? label_icon_state : "label_[icon_state]"
 		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
 		add_overlay(label)
 
 //// Subtypes ////
-
-/obj/item/reagent_containers/glass/beaker/cryoxadone
-	preloaded_reagents = list("cryoxadone" = 30)
-	spawn_blacklisted = TRUE
-
-/obj/item/reagent_containers/glass/beaker/sulphuric
-	preloaded_reagents = list("sacid" = 60)
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
@@ -83,12 +79,30 @@
 	spawn_blacklisted = TRUE
 	price_tag = 300
 
+//// Preloaded beakers ////
+
+/obj/item/reagent_containers/glass/beaker/hivemind
+	preloaded_reagents = list("nanites" = 30, "uncap nanites" = 30)
+	desc = "A beaker. Contains a mix of nanites."
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/beaker/cryoxadone
+	preloaded_reagents = list("cryoxadone" = 30)
+	desc = "A beaker. Contains pure cryoxadone, meant to be used in cryo cells."
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/beaker/sulphuric
+	desc = "A beaker. Contains dangerous sulphuric acid."
+	preloaded_reagents = list("sacid" = 60)
+
+//// Vial(s) ////
 
 /obj/item/reagent_containers/glass/beaker/vial
 	name = "vial"
 	desc = "A small glass vial."
 	icon_state = "vial"
 	label_icon_state = "label_vial"
+	lid_icon_state = "lid_vial"
 	matter = list(MATERIAL_GLASS = 1)
 	volume = 30
 	w_class = ITEM_SIZE_TINY
@@ -97,29 +111,35 @@
 	spawn_tags = SPAWN_TAG_VIAL
 	rarity_value = 20
 
+//// Preloaded vials ////
+
 /obj/item/reagent_containers/glass/beaker/vial/nanites
 	preloaded_reagents = list("nanites" = 30)
+	desc = "A small glass vial. Contains raw industrial nanobots."
 	rarity_value = 40
 
 /obj/item/reagent_containers/glass/beaker/vial/uncapnanites
 	preloaded_reagents = list("uncap nanites" = 30)
 	spawn_blacklisted = TRUE
+	display_label = FALSE
 
 /obj/item/reagent_containers/glass/beaker/vial/kognim
 	preloaded_reagents = list("kognim" = 30)
 	spawn_blacklisted = TRUE
+	display_label = FALSE
 
 /obj/item/reagent_containers/glass/beaker/vial/psilocybin
 	preloaded_reagents = list("psilocybin" = 30)
+	desc = "A small glass vial. Contains Psilocybin."
 	spawn_frequency = 5
 	rarity_value = 30
 
+
 /obj/item/reagent_containers/glass/beaker/vial/vape
 	name = "vape vial"
-	desc = "A small plastic vial."
-	icon_state = "vial_plastic"
 	matter = list(MATERIAL_PLASTIC = 1)
 	spawn_tags = null
+	bad_type = /obj/item/reagent_containers/glass/beaker/vial/vape
 
 /obj/item/reagent_containers/glass/beaker/vial/vape/berry
 	name = "berry vape vial"
@@ -137,9 +157,39 @@
 	name = "nicotine vape vial"
 	preloaded_reagents = list("nicotine" = 30)
 
+
+/obj/item/reagent_containers/glass/beaker/vial/random
+	rarity_value = 30
+	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
+
+/obj/item/reagent_containers/glass/beaker/vial/random/toxin
+	rarity_value = 30
+	random_reagent_list = list(
+		list("amatoxin" = 10, "potassium_chloride" = 20)	= 3,
+		list("carpotoxin" = 15)							= 2,
+		list("impedrezene" = 15)						= 2,
+		list("zombiepowder" = 10)						= 1)
+
+/obj/item/reagent_containers/glass/beaker/vial/random/Initialize()
+	. = ..()
+
+	var/list/picked_reagents = pickweight(random_reagent_list)
+	for(var/reagent in picked_reagents)
+		reagents.add_reagent(reagent, picked_reagents[reagent])
+
+	var/list/names = new
+	for(var/datum/reagent/R in reagents.reagent_list)
+		names += R.name
+
+	if(!has_lid())
+		toggle_lid()
+
+
+//// Other ////
+
 /obj/item/reagent_containers/glass/bucket
-	desc = "A bucket."
 	name = "bucket"
+	desc = "A bucket."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	item_state = "bucket"
@@ -173,7 +223,3 @@
 	if(has_lid())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
 		overlays += lid
-
-/obj/item/reagent_containers/glass/beaker/hivemind
-	preloaded_reagents = list("nanites" = 30, "uncap nanites" = 30)
-	spawn_blacklisted = TRUE

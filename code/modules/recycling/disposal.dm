@@ -23,7 +23,7 @@
 	density = TRUE
 	layer = LOW_OBJ_LAYER //This allows disposal bins to be underneath tables
 	var/datum/gas_mixture/air_contents	// internal reservoir
-	var/mode = DISPOSALS_OFF
+	var/mode = DISPOSALS_CHARGING
 	var/flush = 0	// true if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
 	var/flushing = 0	// true if flushing in progress
@@ -270,7 +270,7 @@
 		"handle" = flush,
 		"panel" = panel_open,
 		"eject" = length(contents) ? TRUE : FALSE,
-		"pressure" = CLAMP01(100 * air_contents.return_pressure() / SEND_PRESSURE)
+		"pressure" = CLAMP01(air_contents.return_pressure() / SEND_PRESSURE)
 	)
 	return data
 
