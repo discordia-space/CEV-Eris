@@ -241,3 +241,6 @@
 
 /datum/component/internal_wound/robotic/eyes_build_up/clog
 	name = "clogged circuitry"
+	severity_max = 5
+	hal_damage = IWOUND_MEDIUM_DAMAGE
+  

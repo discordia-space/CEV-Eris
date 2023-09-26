@@ -346,7 +346,13 @@
 	scannable = 1
 
 /datum/reagent/medicine/alkysine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effect_multiplier)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/list/big_brain = H.internal_organs - H.internal_organs + H.internal_organs_by_efficiency[BP_BRAIN]
+		for(var/obj/item/organ/I in big_brain)
+			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
+			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(25))
+				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))  //NOTE: this is bad and cheesy, other chems with enough blood clotting are capable of healing the brain (need unique internal_wounds for eyes/brain)
 	M.add_chemical_effect(CE_PAINKILLER, 10)
 
 /datum/reagent/medicine/imidazoline
@@ -395,7 +401,9 @@
 		for(var/obj/item/organ/I in organs_sans_brain_and_bones)
 			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
 			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
-				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+				M.add_chemical_effect(CE_ONCOCIDAL, 1)
+				M.add_chemical_effect(CE_BLOODCLOT, 1)
+				M.add_chemical_effect(CE_ANTITOX, 2)
 
 /datum/reagent/medicine/peridaxon/overdose(mob/living/carbon/M, alien)
 	. = ..()

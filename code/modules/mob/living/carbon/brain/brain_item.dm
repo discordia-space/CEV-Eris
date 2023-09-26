@@ -49,6 +49,39 @@
 		health = 0
 		..(wound_damage, damage_type, wounding_multiplier, sharp, edge, silent)
 
+/obj/item/organ/internal/vital/brain/get_possible_wounds(damage_type, sharp, edge)
+	var/list/possible_wounds = list()
+
+	// Determine possible wounds based on nature and damage type
+	var/is_robotic = BP_IS_ROBOTIC(src)
+	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
+
+	switch(damage_type)
+		if(BRUTE)
+			if(!edge)
+				if(sharp)
+					if(is_organic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_sharp))
+					if(is_robotic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sharp))
+				else
+					if(is_organic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_blunt))
+					if(is_robotic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/blunt))
+			else
+				if(is_organic)
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_edge))
+				if(is_robotic)
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/edge))
+		if(BURN)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_burn))
+			if(is_robotic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))
+
+	return possible_wounds
+
 /// Brain blood oxygenation is handled via oxyloss
 /obj/item/organ/internal/vital/brain/handle_blood()
 	if(BP_IS_ROBOTIC(src) || !owner)
