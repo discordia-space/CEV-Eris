@@ -279,9 +279,15 @@
 /mob/living/silicon/robot/can_fall(turf/below, turf/simulated/open/dest = src.loc)
 	if (CanAvoidGravity())
 		return FALSE
-
+	if(HasTrait(CYBORG_TRAIT_PARKOUR))
+		var/tile_view = view(src, 1)
+		for(var/obj/structure/low_wall/LW in tile_view)
+			return FALSE
+		for(var/obj/structure/railing/R in get_turf(src))
+			return FALSE
+		for(var/turf/simulated/wall/W in tile_view)
+			return FALSE
 	return ..()
-
 
 // Ladders and stairs pulling movement
 /obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)
