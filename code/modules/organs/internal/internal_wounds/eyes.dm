@@ -4,7 +4,7 @@
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_EYEHEAL = 1)
 	severity = 0
-	severity_max = 5
+	severity_max = IORGAN_MAX_HEALTH / 3
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -25,7 +25,7 @@
 	treatments_tool = list(QUALITY_LASER_CUTTING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_EYEHEAL = 1)
 	severity = 0
-	severity_max = 5
+	severity_max = IORGAN_MAX_HEALTH / 3
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -45,7 +45,7 @@
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_EYEHEAL = 1)
 	severity = 0
-	severity_max = 5
+	severity_max = IORGAN_MAX_HEALTH / 3
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -66,7 +66,7 @@
 	treatments_chem = list(CE_EYEHEAL = 1)
 	scar = /datum/component/internal_wound/organic/necrosis_start
 	severity = 0
-	severity_max = 5
+	severity_max = IORGAN_MAX_HEALTH / 3
 	next_wound = /datum/component/internal_wound/organic/infection
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
@@ -128,7 +128,7 @@
 	treatments_tool = list(QUALITY_SCREW_DRIVING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_MECH_REPAIR = 0.55)		// repair nanites + 3 metals OR repair nanite OD + a metal
 	severity = 0
-	severity_max = 5
+	severity_max = IORGAN_MAX_HEALTH / 3
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -150,7 +150,7 @@
 	treatments_tool = list()
 	treatments_chem = list(CE_MECH_REPAIR = 0.85)		// repair nanites + 6 metals OR repair nanite OD + 7 metals
 	severity = 0
-	severity_max = 5
+	severity_max = IORGAN_MAX_HEALTH / 3
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -172,7 +172,7 @@
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_MECH_REPAIR = 0.85)
 	severity = 0
-	severity_max = 5
+	severity_max = IORGAN_MAX_HEALTH / 3
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -193,13 +193,13 @@
 	treatments_tool = list(QUALITY_WIRE_CUTTING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_MECH_REPAIR = 0.95)	// repair nanite OD + all metals
 	severity = 0
-	severity_max = 5
-	next_wound = /datum/component/internal_wound/robotic/eye_overheat
+	severity_max = IORGAN_MAX_HEALTH / 3
+	next_wound = /datum/component/internal_wound/robotic/eyes_overheat
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
 /datum/component/internal_wound/robotic/eyes_emp_burn/pixels
-	name = "burnt sensor"
+	name = "burnt matrix pixels"
 	treatments_item = list(/obj/item/stack/nanopaste = 1)
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_HARD)
 
@@ -208,3 +208,36 @@
 
 /datum/component/internal_wound/robotic/eyes_emp_burn/carbonized
 	name = "mangaled wiring"
+
+/datum/component/internal_wound/robotic/eyes_overheat
+	treatments_item = list(/obj/item/stack/cable_coil = 10, /obj/item/stack/nanopaste = 2)
+	treatments_chem = list(CE_MECH_STABLE = 0.5)	// coolant or refrigerant
+	severity = 0
+	severity_max = IORGAN_MAX_HEALTH
+	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
+	diagnosis_difficulty = STAT_LEVEL_EXPERT
+
+/datum/component/internal_wound/robotic/eyes_overheat/standard
+	name = "overheating link"
+
+/datum/component/internal_wound/robotic/eyes_overheat/alt
+	name = "thermal blackout"
+
+// Tox - UNUSED
+/datum/component/internal_wound/robotic/eyes_build_up
+	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_HARD)	// Clear any clog wtih a thin tool
+	treatments_chem = list(CE_MECH_ACID = 1)		// sulphiric acid
+	severity = 0
+	severity_max = 3
+	next_wound = /datum/component/internal_wound/robotic/corrosion
+	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
+	diagnosis_difficulty = STAT_LEVEL_EXPERT
+
+/datum/component/internal_wound/robotic/eyes_build_up/breach
+	name = "breached bioisolation"
+	treatments_tool = list(QUALITY_ADHESIVE = FAILCHANCE_HARD)
+	treatments_item = list(/obj/item/stack/nanopaste = 1)
+	treatments_chem = list(CE_MECH_REPAIR = 0.30)
+
+/datum/component/internal_wound/robotic/eyes_build_up/clog
+	name = "clogged circuitry"
