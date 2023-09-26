@@ -38,6 +38,10 @@
 /obj/item/organ/external/robotic/removed()
 	deactivate(emergency=TRUE)
 	..()
+	
+/obj/item/organ/external/robotic/dropped()
+	removed()
+	..()
 
 /obj/item/organ/external/robotic/setBleeding()
 	return FALSE

@@ -24,7 +24,7 @@
 	name = "Spying Implant"
 	item_cost = 1
 	path = /obj/item/storage/box/syndie_kit/imp_spying
-	antag_roles = ROLES_CONTRACT_COMPLETE
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_CARRION,ROLE_BLITZ)
 
 /datum/uplink_item/item/implants/imp_spying/buy(obj/item/device/uplink/U)
 	. = ..()

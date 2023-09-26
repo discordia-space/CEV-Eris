@@ -1,9 +1,10 @@
 #define EVENT_DAMAGE_PHYSICAL 	0 //copied from shield_generator.dm
 #define EVENT_DAMAGE_EM 		1
 #define EVENT_DAMAGE_HEAT 		2
-#define EVENT_ENABLED 			3
-#define EVENT_DISABLED 			4
-#define EVENT_RECONFIGURED		5
+#define EVENT_DAMAGE_SPECIAL	3
+#define EVENT_ENABLED 			4
+#define EVENT_DISABLED 			5
+#define EVENT_RECONFIGURED		6
 
 /datum/computer_file/program/shield_control
 	filename = "shieldcontrol"
@@ -242,6 +243,7 @@
 #undef EVENT_DAMAGE_PHYSICAL
 #undef EVENT_DAMAGE_EM
 #undef EVENT_DAMAGE_HEAT
+#undef EVENT_DAMAGE_SPECIAL
 #undef EVENT_ENABLED
 #undef EVENT_DISABLED
 #undef EVENT_RECONFIGURED

@@ -34,6 +34,7 @@
 
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
+	var/halloss_multiplier = 1 //Multiplies agony damage of projectiles fired from this gun
 	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
@@ -94,7 +95,6 @@
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
-	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int), damage is divided for pellets
 	var/darkness_view = 0
 	var/vision_flags = 0
@@ -397,7 +397,6 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-
 		projectile.add_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
@@ -406,7 +405,7 @@
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
-		projectile.multiply_projectile_agony(proj_agony_multiplier)
+		projectile.multiply_projectile_halloss(halloss_multiplier)
 
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
@@ -966,11 +965,11 @@
 /obj/item/gun/refresh_upgrades()
 	//First of all, lets reset any var that could possibly be altered by an upgrade
 	damage_multiplier = initial(damage_multiplier)
+	halloss_multiplier = initial(halloss_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
 	ricochet_multiplier = initial(ricochet_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
-	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
 	burst_delay = initial(burst_delay)
 	move_delay = initial(move_delay)
