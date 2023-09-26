@@ -2096,7 +2096,7 @@
 
 /datum/chemical_reaction/nanosymbiotes
 	result = "nanosymbiotes"
-	required_reagents = list("nanites" = 1, "peridaxon" = 1)
+	required_reagents = list("nanites" = 1, "bicaridine" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/oxyrush
@@ -2106,7 +2106,7 @@
 
 /datum/chemical_reaction/trauma_control_system
 	result = "trauma_control_system"
-	required_reagents = list("nanites" = 1, "bicaridine" = 1)
+	required_reagents = list("nanites" = 1, "peridaxon" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/nanopurgers
