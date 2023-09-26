@@ -4,7 +4,7 @@
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_EYEHEAL = 1)
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3 // with 3 health it takes around 3 wounds to kill eyes
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -25,7 +25,7 @@
 	treatments_tool = list(QUALITY_LASER_CUTTING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_EYEHEAL = 1)
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -45,7 +45,7 @@
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_EYEHEAL = 1)
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -66,7 +66,7 @@
 	treatments_chem = list(CE_EYEHEAL = 1)
 	scar = /datum/component/internal_wound/organic/necrosis_start
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3
 	next_wound = /datum/component/internal_wound/organic/infection
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
@@ -128,7 +128,7 @@
 	treatments_tool = list(QUALITY_SCREW_DRIVING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_MECH_REPAIR = 0.55)		// repair nanites + 3 metals OR repair nanite OD + a metal
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -150,7 +150,7 @@
 	treatments_tool = list()
 	treatments_chem = list(CE_MECH_REPAIR = 0.85)		// repair nanites + 6 metals OR repair nanite OD + 7 metals
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -172,7 +172,7 @@
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_MECH_REPAIR = 0.85)
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
@@ -193,7 +193,7 @@
 	treatments_tool = list(QUALITY_WIRE_CUTTING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_MECH_REPAIR = 0.95)	// repair nanite OD + all metals
 	severity = 0
-	severity_max = IORGAN_MAX_HEALTH / 3
+	severity_max = 3
 	next_wound = /datum/component/internal_wound/robotic/eyes_overheat
 	hal_damage = IWOUND_INSIGNIFICANT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
