@@ -913,7 +913,6 @@
 				var/obj/item/weldpack/P = O
 				P.explode()
 			return
-/*
 		else if(istype(O, /mob/living/carbon/superior_animal/roach/benzin))
 			var/mob/living/carbon/superior_animal/roach/benzin/B = O
 			if(B.stat != DEAD)
@@ -924,7 +923,6 @@
 					to_chat(user, SPAN_NOTICE("[src] refueled"))
 					playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
-*/
 		if(switched_on)
 			var/turf/location = get_turf(user)
 			if(isliving(O))
