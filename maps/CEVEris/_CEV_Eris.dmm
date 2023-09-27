@@ -105985,6 +105985,9 @@
 /obj/structure/table/woodentable,
 /obj/item/packageWrap,
 /obj/item/device/destTagger,
+/obj/item/device/eftpos{
+	eftpos_name = "Neotheology EFTPOS scanner"
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
 "uCf" = (
@@ -106160,6 +106163,11 @@
 /area/eris/engineering/engine_room)
 "vcS" = (
 /obj/structure/table/standard,
+/obj/item/device/eftpos{
+	eftpos_name = "Neotheology EFTPOS scanner"
+	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/churchbooth)
 "vdS" = (
