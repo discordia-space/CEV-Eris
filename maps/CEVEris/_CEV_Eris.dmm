@@ -93706,6 +93706,8 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "euv" = (
