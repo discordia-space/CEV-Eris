@@ -346,7 +346,7 @@
 
 /obj/item/storage/deferred/crate/clown_crime
 	name = "mastermind suit bag"
-	desc = "A duffelbag filled with clothing and... a second duffelbag?."
+	desc = "A duffelbag filled with clothing and... a second duffelbag?"
 	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "lootbag"
 	spawn_blacklisted = TRUE

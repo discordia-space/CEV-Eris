@@ -89,8 +89,7 @@
 		var/mob/living/silicon/robot/robo = M
 		if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
 			flashfail = TRUE
-		else
-			robo.flash(rand(5,10), FALSE , FALSE , FALSE)
+		robo.flash(rand(5,10), FALSE , FALSE , FALSE) // Flash resistance handled in robot.dm
 	else
 		flashfail = TRUE
 

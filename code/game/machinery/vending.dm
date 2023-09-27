@@ -970,15 +970,15 @@
 	auto_price = FALSE
 
 /obj/machinery/vending/drink_showcase
-	name = "Club Cocktail Showcase"
-	desc = "A vending machine to showcase cocktails."
+	name = "Club Showcase"
+	desc = "A vending machine to showcase cocktails and meals."
 	icon_state = "showcase"
 	var/icon_fill = "showcase-fill"
 	vend_delay = 15
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vendor_department = DEPARTMENT_CIVILIAN
 	custom_vendor = TRUE
-	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food/drinks, /obj/item/reagent_containers/food/condiment)
+	can_stock = list(/obj/item/reagent_containers/glass, /obj/item/reagent_containers/food)
 
 /obj/machinery/vending/drink_showcase/update_icon()
 	..()
@@ -1469,7 +1469,7 @@
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	products = list(/obj/item/clothing/suit/storage/toggle/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/device/flash = 4,
-					/obj/item/cell/large/high = 12, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/health = 3,
+					/obj/item/cell/large = 1, /obj/item/device/assembly/prox_sensor = 3,/obj/item/device/assembly/signaler = 3,/obj/item/device/scanner/health = 3,
 					/obj/item/tool/scalpel = 2,/obj/item/tool/saw/circular = 2,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,
 					/obj/item/tool/screwdriver = 5,/obj/item/tool/crowbar = 5)
 	auto_price = FALSE
@@ -1606,7 +1606,7 @@
 	name = "From Serbia with love"
 	desc = "How did this end up here?"
 	icon_state = "serbomat"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem.;Our ERPs are definitely free of food additives and totally not laced to the brim with harmful chems. Try it out!."
+	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem.;Our ERPs are definitely free of food additives and totally not laced to the brim with harmful chems. Try it out!"
 	products = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 60, // ghetto antihacking, have fun
 					/obj/item/storage/deferred/crate/uniform_green = 4,

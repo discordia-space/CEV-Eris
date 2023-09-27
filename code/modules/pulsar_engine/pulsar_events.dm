@@ -85,7 +85,7 @@
 	. = ..()
 	for(var/datum/weather/rad_storm/R in SSweather.processing)
 		R.wind_down()
-	command_announcement.Announce("The pulsar sattelite has passed the radiation beams. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
+	command_announcement.Announce("The pulsar satellite has passed the radiation beams. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 	revoke_maint_all_access()
 
 
@@ -97,7 +97,7 @@
 	var/list/pulsar_rifts = list()
 
 /datum/event/pulsar_overcharge/announce()
-	command_announcement.Announce("The pulsar sattelite has been overloaded with power, expect excess energy to be dumped onto your vessel.", "Technomancer Pulsar Monitor")
+	command_announcement.Announce("The pulsar satellite has been overloaded with power, expect excess energy to be dumped onto your vessel.", "Technomancer Pulsar Monitor")
 
 /datum/event/pulsar_overcharge/tick()
 	. = ..()
@@ -126,7 +126,7 @@
 	for(var/obj/effect/pulsar_rift/p as anything in pulsar_rifts)
 		pulsar_rifts -= p
 		qdel(p)
-	command_announcement.Announce("Pulsar sattelite energy levels stabilized.", "Technomancer Pulsar Monitor")
+	command_announcement.Announce("Pulsar satellite energy levels stabilized.", "Technomancer Pulsar Monitor")
 	. = ..()
 
 /obj/effect/pulsar_rift

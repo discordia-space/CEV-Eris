@@ -94,6 +94,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 	if(!MN)
 		return FALSE
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
+	H.randomize_appearance()
 	for(var/stat in ALL_STATS)
 		H.stats.changeStat(stat, rand(STAT_LEVEL_ADEPT, STAT_LEVEL_PROF))
 	var/datum/perk/perk_random = pick(subtypesof(/datum/perk/oddity))

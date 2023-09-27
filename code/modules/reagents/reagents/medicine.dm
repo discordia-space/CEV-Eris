@@ -279,6 +279,12 @@
 	if(prob(3 - (2 * M.stats.getMult(STAT_TGH))))
 		M.Stun(3)
 
+/datum/reagent/medicine/tramadol/holy
+	id = "deusblessing"
+	overdose = REAGENTS_OVERDOSE * 3
+	scannable = 0
+	nerve_system_accumulations = 0
+
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
 	id = "oxycodone"

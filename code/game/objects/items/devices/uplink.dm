@@ -30,6 +30,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	var/bsdm_time = 0
 
+	var/list/blacklist = list() // Single purchase items are sent here
+
 /obj/item/device/uplink/nano_host()
 	return loc
 

@@ -61,9 +61,8 @@
 					// Plasma ball on location
 					visible_message(SPAN_DANGER("\The [src] explodes into a ball of burning palsma!"))
 					for(var/turf/simulated/floor/target_tile in range(2, loc))
-						target_tile.assume_gas("plasma", 0.3, 400 + T0C)
-						target_tile.assume_gas("oxygen", 0.3, 400 + T0C)
-						spawn (0) target_tile.hotspot_expose(700, 400)
+						new /obj/effect/decal/cleanable/liquid_fuel(target_tile, 2, 1)
+						spawn (0) target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code
 					. = ..()
 	else if(det_status == DET_DEFUSED)  // Will triger when hit by melee while blowing
 		. = ..()

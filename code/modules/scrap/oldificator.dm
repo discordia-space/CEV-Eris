@@ -177,6 +177,15 @@
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 		reagents.add_reagent("mold", rand(0, actual_volume - reagents.total_volume))
 
+//Old chemical bottles also hide their reagents
+/obj/item/reagent_containers/glass/bottle/make_old(low_quality_oldification)
+	.=..()
+	if(.)
+		name = "[pick("scratched", "cracked", "dirty", "chipped")] bottle"
+		desc = "A small old glass bottle."
+		if(display_label)
+			desc += " The label is unreadable."
+
 /obj/item/reagent_containers/food/snacks/make_old(low_quality_oldification)
 	.=..()
 	if(.)
