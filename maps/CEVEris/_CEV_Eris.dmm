@@ -3757,6 +3757,8 @@
 /obj/item/device/eftpos{
 	eftpos_name = "Ironhammer EFTPOS scanner"
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/wood,
 /area/eris/command/commander)
 "aiZ" = (
@@ -39020,6 +39022,8 @@
 /obj/item/reagent_containers/food/drinks/flask/shiny,
 /obj/item/device/eftpos,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/clubmanager)
 "bOj" = (
@@ -55547,6 +55551,8 @@
 /obj/item/device/eftpos{
 	eftpos_name = "Moebius Labs EFTPOS scanner"
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/carpet/purcarpet,
 /area/eris/command/meo)
 "cDX" = (
@@ -67890,6 +67896,8 @@
 /obj/item/device/eftpos{
 	eftpos_name = "Technomancers EFTPOS scanner"
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/tiled/steel/brown_perforated,
 /area/eris/command/exultant)
 "diR" = (
@@ -69136,6 +69144,8 @@
 /obj/item/device/eftpos{
 	eftpos_name = "Command EFTPOS scanner"
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dlB" = (
@@ -73962,6 +73972,8 @@
 /obj/item/device/eftpos{
 	eftpos_name = "Command EFTPOS scanner"
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/wood,
 /area/eris/command/fo/quarters)
 "dxd" = (
@@ -75127,6 +75139,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/command/mbo)
 "dzY" = (
@@ -75911,6 +75925,8 @@
 /obj/item/device/eftpos{
 	eftpos_name = "Medbay EFTPOS scanner"
 	},
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/reception)
 "dBO" = (
@@ -93942,6 +93958,8 @@
 "evf" = (
 /obj/structure/table/standard,
 /obj/item/device/eftpos,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "evg" = (
@@ -95211,6 +95229,8 @@
 	pixel_x = 26
 	},
 /obj/item/reagent_containers/food/drinks/mug/aster,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/office)
 "exW" = (
@@ -99167,6 +99187,13 @@
 /obj/spawner/soda,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/side/section3deck2port)
+"eVa" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen)
 "eWR" = (
 /obj/structure/table/rack,
 /obj/item/contraband/poster/placed{
@@ -99766,6 +99793,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/neotheology/storage)
+"gnS" = (
+/obj/structure/multiz/stairs/enter/bottom{
+	dir = 8
+	},
+/turf/simulated/floor/plating/under,
+/area/eris/crew_quarters/kitchen)
 "gol" = (
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
@@ -100705,6 +100738,14 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"iwg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/fitness)
 "iwp" = (
 /obj/structure/table/rack,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -101095,12 +101136,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
-"jkg" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/eris/crew_quarters/fitness)
 "jkF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -101280,6 +101315,14 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/eris/medical/morgue)
+"jDH" = (
+/obj/machinery/door/blast/regular/open{
+	id = "ClubTotalLockdown";
+	layer = 2.6;
+	name = "Club Total Lockdown"
+	},
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/crew_quarters/kitchen)
 "jDU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
@@ -101302,12 +101345,9 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/chemstor)
 "jEd" = (
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/crew_quarters/kitchen)
+/obj/machinery/door/holy/public,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/neotheology/chapel)
 "jFt" = (
 /obj/machinery/door/airlock/maintenance_common,
 /obj/structure/disposalpipe/segment,
@@ -101652,18 +101692,6 @@
 /obj/structure/closet/wardrobe/color/white,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/altar)
-"krR" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	name = "Fitness Room"
-	},
-/obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
-	layer = 2.6;
-	name = "Club Total Lockdown"
-	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/crew_quarters/kitchen)
 "ksh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -101733,14 +101761,6 @@
 	},
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
-"ktS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/steel,
-/area/eris/crew_quarters/fitness)
 "kvL" = (
 /obj/structure/sign/faction/neotheology_cross/gold{
 	pixel_y = 32
@@ -102965,7 +102985,7 @@
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/bioprinter)
 "nAr" = (
-/obj/structure/multiz/stairs/enter/bottom{
+/obj/structure/multiz/stairs/active/bottom{
 	dir = 8
 	},
 /turf/simulated/floor/plating/under,
@@ -103995,14 +104015,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
-"qgo" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/tiled/steel/monofloor,
-/area/eris/crew_quarters/fitness)
 "qhu" = (
 /obj/structure/railing,
 /turf/simulated/open,
@@ -104277,23 +104289,6 @@
 /obj/structure/bed/chair/comfy/beige,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/storage)
-"qJc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel/monofloor,
-/area/eris/crew_quarters/fitness)
 "qJx" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white/golden,
@@ -104566,12 +104561,6 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
-"rDx" = (
-/obj/structure/multiz/stairs/active/bottom{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/crew_quarters/kitchen)
 "rDZ" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -104664,9 +104653,13 @@
 /turf/simulated/wall,
 /area/eris/rnd/lab)
 "rOg" = (
-/obj/machinery/door/holy/public,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapel)
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/crew_quarters/fitness)
 "rOp" = (
 /obj/machinery/conveyor/northwest{
 	id = "hangar_to_disposal"
@@ -105397,6 +105390,10 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/clubmanager)
 "tpd" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 2;
+	name = "Fitness Room"
+	},
 /obj/machinery/door/blast/regular/open{
 	id = "ClubTotalLockdown";
 	layer = 2.6;
@@ -105595,6 +105592,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
+"tNd" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/eris/crew_quarters/kitchen)
 "tNx" = (
 /obj/machinery/light,
 /obj/machinery/button/remote/blast_door{
@@ -105982,8 +105982,11 @@
 /turf/simulated/wall,
 /area/eris/engineering/post)
 "uBj" = (
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/crew_quarters/kitchen)
+/obj/structure/table/woodentable,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
+/turf/simulated/floor/carpet/bcarpet,
+/area/eris/neotheology/office)
 "uCf" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
@@ -106410,6 +106413,23 @@
 /obj/structure/jtb_pillar,
 /turf/simulated/floor/tiled/dark/danger,
 /area/eris/maintenance/junk)
+"vGh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel/monofloor,
+/area/eris/crew_quarters/fitness)
 "vGy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -107167,6 +107187,12 @@
 /obj/item/device/scanner/plant,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
+"xyn" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel/techfloor,
+/area/eris/crew_quarters/fitness)
 "xzg" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/steel/monofloor,
@@ -159951,7 +159977,7 @@ bmX
 oTR
 sfv
 ceX
-tpE
+uBj
 tpE
 kEr
 cJu
@@ -204192,7 +204218,7 @@ eqd
 evu
 cmE
 cmE
-rOg
+jEd
 wsA
 qcs
 tJY
@@ -204393,8 +204419,8 @@ crW
 cte
 evu
 cmE
-rDx
-jEd
+nAr
+eVa
 wsA
 qtc
 efZ
@@ -204595,8 +204621,8 @@ crX
 evu
 fYJ
 cmE
-nAr
-uBj
+gnS
+tNd
 wsA
 dYf
 dYf
@@ -204797,8 +204823,8 @@ fuj
 cmE
 cmE
 cmE
+jDH
 tpd
-krR
 wsA
 qOT
 tSk
@@ -244187,7 +244213,7 @@ fdQ
 dxq
 qyZ
 uXf
-qgo
+rOg
 mFk
 xLP
 uXf
@@ -244593,7 +244619,7 @@ hEe
 mQJ
 rqQ
 sZH
-jkg
+xyn
 uXf
 awr
 uls
@@ -245401,7 +245427,7 @@ qyZ
 uXf
 khZ
 awt
-ktS
+iwg
 fex
 nNN
 oEI
@@ -245601,7 +245627,7 @@ cDN
 awr
 qxd
 uXf
-qJc
+vGh
 eSm
 wVm
 icS
