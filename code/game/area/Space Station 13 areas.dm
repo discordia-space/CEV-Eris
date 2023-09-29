@@ -412,6 +412,7 @@ area/space/atmosalert()
 	icon_state = "cave"
 	requires_power = 0
 	sound_env = ASTEROID
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/asteroid/artifactroom
 	name = "\improper Moon - Artifact"
