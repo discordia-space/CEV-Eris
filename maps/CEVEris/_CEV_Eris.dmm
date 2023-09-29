@@ -95259,13 +95259,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/steel,
 /area/eris/storage/primary)
-"eya" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/open,
-/area/eris/maintenance/section3deck1central)
 "eyd" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
@@ -99190,11 +99183,8 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/hallway/side/section3deck2port)
 "eVa" = (
-/obj/structure/railing/grey{
-	dir = 1
-	},
 /obj/machinery/light,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen)
 "eWR" = (
 /obj/structure/table/rack,
@@ -99795,12 +99785,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/eris/neotheology/storage)
-"gnS" = (
-/obj/structure/multiz/stairs/enter/bottom{
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/crew_quarters/kitchen)
 "gol" = (
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
@@ -101317,14 +101301,6 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
 /area/eris/medical/morgue)
-"jDH" = (
-/obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
-	layer = 2.6;
-	name = "Club Total Lockdown"
-	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/crew_quarters/kitchen)
 "jDU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_medical{
@@ -101346,10 +101322,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/chemstor)
-"jEd" = (
-/obj/machinery/door/holy/public,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapel)
 "jFt" = (
 /obj/machinery/door/airlock/maintenance_common,
 /obj/structure/disposalpipe/segment,
@@ -102947,12 +102919,6 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/altar)
-"nsA" = (
-/obj/structure/multiz/stairs/active{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/crew_quarters/fitness)
 "ntp" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -102987,17 +102953,11 @@
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/bioprinter)
 "nAr" = (
-/obj/structure/multiz/stairs/active/bottom{
-	dir = 8
-	},
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen)
 "nBk" = (
 /obj/structure/table/reinforced,
 /obj/spawner/toy/figure,
-/obj/structure/railing/grey{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
 "nCx" = (
@@ -104580,7 +104540,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/railing/grey,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/crew_quarters/fitness)
 "rGA" = (
@@ -105061,21 +105020,6 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
-"sHp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/railing/grey,
-/turf/simulated/floor/tiled/steel/monofloor,
-/area/eris/crew_quarters/fitness)
 "sHI" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -105391,18 +105335,6 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/clubmanager)
-"tpd" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	name = "Fitness Room"
-	},
-/obj/machinery/door/blast/regular/open{
-	id = "ClubTotalLockdown";
-	layer = 2.6;
-	name = "Club Total Lockdown"
-	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/eris/crew_quarters/kitchen)
 "tpE" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet/bcarpet,
@@ -105594,9 +105526,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
-"tNd" = (
-/turf/simulated/floor/tiled/techmaint,
-/area/eris/crew_quarters/kitchen)
 "tNx" = (
 /obj/machinery/light,
 /obj/machinery/button/remote/blast_door{
@@ -106088,12 +106017,6 @@
 	},
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/long_range_scanner)
-"uQi" = (
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel/monofloor,
-/area/eris/crew_quarters/fitness)
 "uVI" = (
 /obj/structure/sign/faction/neotheology_cross/gold{
 	pixel_y = 32
@@ -107274,12 +107197,6 @@
 "xIm" = (
 /turf/simulated/wall/r_wall,
 /area/eris/hallway/side/section3port)
-"xJN" = (
-/obj/structure/multiz/stairs/enter{
-	dir = 4
-	},
-/turf/simulated/floor/plating/under,
-/area/eris/crew_quarters/fitness)
 "xLv" = (
 /obj/effect/shuttle_landmark/merc/sec2west,
 /turf/space,
@@ -204228,7 +204145,7 @@ eqd
 evu
 cmE
 cmE
-jEd
+cmE
 wsA
 qcs
 tJY
@@ -204631,8 +204548,8 @@ crX
 evu
 fYJ
 cmE
-gnS
-tNd
+nAr
+nAr
 wsA
 dYf
 dYf
@@ -204833,8 +204750,8 @@ fuj
 cmE
 cmE
 cmE
-jDH
-tpd
+mXZ
+mXZ
 wsA
 qOT
 tSk
@@ -244830,7 +244747,7 @@ awr
 mye
 gif
 rEb
-xJN
+eSm
 xLP
 qeb
 awr
@@ -245031,8 +244948,8 @@ fdQ
 awr
 qxd
 uXf
-sHp
-nsA
+ujt
+eSm
 nBk
 pYi
 awr
@@ -245234,7 +245151,7 @@ dxq
 qyZ
 uXf
 ujt
-uQi
+eSm
 cDi
 hSc
 awr
@@ -285633,7 +285550,7 @@ kLT
 erG
 emG
 erX
-eya
+blY
 aLZ
 aLZ
 aZv
