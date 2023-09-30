@@ -17,8 +17,8 @@
 	armor_divisor = ARMOR_PEN_HALF // It's a pickaxe. It's destined to poke holes in things, even armor.
 	throwforce = WEAPON_FORCE_NORMAL
 	sharp = TRUE
-	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE //Drills and picks are made for getting through hard materials
-	embed_mult = 1.2 //Digs deep
+	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE // Drills and picks are made for getting through hard materials
+	embed_mult = 1.2 // Digs deep
 	
 	// Spawn and value related
 	spawn_blacklisted = TRUE
@@ -26,7 +26,7 @@
 
 	// Turn on-off related
 	toggleable = TRUE
-	tool_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10) //So it still shares its switch off quality despite not yet being used.
+	tool_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10, QUALITY_CUTTING = 5) // So it still shares its switch off quality despite not yet being used.
 	switched_off_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10, QUALITY_CUTTING = 5)
 	switched_on_qualities = list(QUALITY_DIGGING = 30, QUALITY_WELDING = 10)
 	suitable_cell = /obj/item/cell/medium/high
@@ -67,12 +67,15 @@
 		karl_icon += "_gun"
 	else
 		karl_icon += "_axe"
+		if(switched_on)
+			karl_icon += "_on"
 
-	if(switched_on)
-		karl_icon += "_on"
+	icon_state = karl_icon  // Item sprite
 
-	icon_state = karl_icon
-	item_state = karl_icon
+	if(wielded)
+		karl_icon += "_wielded"
+
+	item_state = karl_icon  // On-suit sprite
 
 /obj/item/tool/karl/equipped(mob/user)
 	..()
@@ -94,7 +97,7 @@
 					if(cell)  // Check the cell is still there in case big brain player chose to remove it during pumping
 						log_and_message_admins("Recharging KARL battery by pumping")
 						cell.give(use_power_cost * 1 SECOND) // Enough to use the tool during 1 second
-						to_chat(user, SPAN_NOTICE("You recharge \the [src] by pumping it, cell charge at [cell.percent()]%."))
+						to_chat(user, SPAN_NOTICE("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
 						// Continue pumping till user cancels the pumping
 						attack_self(user)
 			else
@@ -151,6 +154,7 @@
 			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
 			return
 		shootAt(target, user.targeted_organ)
+		user.setClickCooldown(1 SECOND)
 		return
 
 	return ..()
