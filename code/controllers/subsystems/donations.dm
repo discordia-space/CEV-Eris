@@ -37,7 +37,9 @@ SUBSYSTEM_DEF(donations)
 	if(!establish_don_db_connection())
 		return FALSE
 
-	dbcon_don.NewQuery("INSERT IGNORE INTO players (ckey) VALUES '[player.ckey]'")
+	var/DBQuery/query = dbcon_don.NewQuery("INSERT IGNORE INTO players (ckey) VALUES ('[player.ckey]')")
+
+	query.Execute_safe()
 
 	return TRUE
 
@@ -226,3 +228,56 @@ SUBSYSTEM_DEF(donations)
 	if(player)
 		update_donator(player)
 	return TRUE
+
+/datum/controller/subsystem/donations/proc/CheckToken(client/player, token)
+	if(!establish_don_db_connection())
+		return FALSE
+
+	var/DBQuery/query = dbcon_don.NewQuery({"
+		SELECT 
+			token, discord
+		FROM 
+			tokens
+		WHERE 
+			token = '[token]'
+		LIMIT 0,1
+	"})
+	query.Execute_safe()
+
+	if(!query.NextRow())
+		return
+	var/discord_id = query.item[2]
+	
+	query = dbcon_don.NewQuery({"
+		UPDATE 
+			players
+		SET 
+			discord = '[discord_id]'
+		WHERE 
+			ckey = '[player.ckey]'
+	"})
+
+	query.Execute_safe()
+
+	query = dbcon_don.NewQuery("DELETE FROM tokens WHERE token = '[token]'")
+
+	query.Execute_safe()
+
+	return TRUE
+
+/client/verb/verify_link(token as text)
+	set name = ".verify_discord_link"
+	set hidden = TRUE
+
+	if(!config.sql_enabled)
+		to_chat(usr, "Donations system cannot be used, because SQL is disabled by configuration!")
+		return
+
+	if(!config.donation_track)
+		to_chat(usr, "Donations system is disabled by configuration!")
+		return
+
+	if(SSdonations.CheckToken(src, token))
+		to_chat(usr, "Discord account was successfully linked with your BYOND ckey!")
+	else
+		to_chat(usr, "Failed to link discord account with BYOND ckey!")

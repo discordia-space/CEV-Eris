@@ -18,6 +18,9 @@ CREATE TABLE IF NOT EXISTS `patron_types` (
   KEY `Primary Key` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
+-- default init
+INSERT IGNORE INTO `patron_types` (`id`, `type`) VALUES (0, 'None')
+
 --
 -- Table structure for table `players`
 --
@@ -25,12 +28,14 @@ CREATE TABLE IF NOT EXISTS `patron_types` (
 CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(50) NOT NULL,
+  `discord` varchar(50) DEFAULT NULL,
   `points` float DEFAULT 0,
   `patron_type` int(11) DEFAULT 0,
-  `overall_donation` float DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Index 4` (`ckey`),
+  KEY `FK_players_discord_users` (`discord`),
   KEY `FK_players_patron_types` (`patron_type`),
+  CONSTRAINT `FK_players_discord_users` FOREIGN KEY (`discord`) REFERENCES `discord_users` (`id`),
   CONSTRAINT `FK_players_patron_types` FOREIGN KEY (`patron_type`) REFERENCES `patron_types` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=805150 DEFAULT CHARSET=utf8;
 
@@ -68,6 +73,29 @@ CREATE TABLE IF NOT EXISTS `store_players_items` (
   CONSTRAINT `FK_store_players_items_players` FOREIGN KEY (`player`) REFERENCES `players` (`id`),
   CONSTRAINT `FK_store_players_items_points_transactions` FOREIGN KEY (`transaction`) REFERENCES `points_transactions` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=772 DEFAULT CHARSET=utf8mb4;
+
+
+--
+-- Table structure for table `points_transactions_types`
+--
+
+CREATE TABLE IF NOT EXISTS `tokens` (
+  `token` varchar(50) NOT NULL,
+  `discord` varchar(50) NOT NULL,
+  PRIMARY KEY (`token`),
+  KEY `FK_tokens_discord_users` (`discord`),
+  CONSTRAINT `FK_tokens_discord_users` FOREIGN KEY (`discord`) REFERENCES `discord_users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `discord_users`
+--
+
+CREATE TABLE IF NOT EXISTS `discord_users` (
+  `id` varchar(50) NOT NULL,
+  `nickname` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `points_transactions_types`
