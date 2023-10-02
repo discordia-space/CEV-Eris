@@ -1,7 +1,8 @@
 
 
 /var/all_ui_styles = list(
-	"ErisStyle"
+	"ErisStyle",
+	"LibertyStyle"
 	)
 /proc/ui_style2icon(ui_style)
 	if(ui_style in all_ui_styles)
@@ -36,6 +37,9 @@
 	var/UI_style_new = input(usr, "Select a style.") as null|anything in all_ui_styles
 	if(UI_style_new)
 		prefs.UI_style = UI_style_new
+		if(ishuman(mob))
+			var/mob/living/carbon/human/human = mob
+			human.check_HUD()
 
 	var/UI_style_alpha_new = input(usr, "Select a new alpha (transparency) parameter for your UI, between 50 and 255","Alpha",prefs.UI_style_alpha) as null|num
 	if(UI_style_alpha_new && (UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
@@ -45,8 +49,8 @@
 	if(UI_style_color_new)
 		prefs.UI_style_color = UI_style_color_new
 
+	var/mob/living/carbon/human/H = mob
 	prefs.save_preferences()
-	var/mob/living/carbon/human/H = src.mob
 	H.regenerate_icons()
 
 

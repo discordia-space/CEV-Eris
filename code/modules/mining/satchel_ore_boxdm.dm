@@ -109,3 +109,68 @@
 		O.take_damage(damage)
 	return 0
 
+/obj/structure/ore_box/attack_hand(mob/user, list/modifiers)
+	. = ..()
+	if(.)
+		return
+	if(Adjacent(user))
+		ui_interact(user)
+
+/obj/structure/ore_box/attack_robot(mob/user)
+	if(Adjacent(user))
+		ui_interact(user)
+
+/obj/structure/ore_box/proc/dump_box_contents(ore_name, ore_amount=-1)
+	var/drop = drop_location()
+	for(var/obj/item/ore/O in src)
+		if(ore_amount == 0)
+			break
+		if(QDELETED(O))
+			continue
+		if(QDELETED(src))
+			break
+		if(ore_name && O.name != ore_name)
+			continue
+		ore_amount--
+		O.forceMove(drop)
+
+/obj/structure/ore_box/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "OreBox", name)
+		ui.open()
+
+/obj/structure/ore_box/ui_data()
+	var/data = list()
+	data["materials"] = list()
+	for(var/ore in stored_ore)
+		data["materials"] += list(list("name" = ore, "amount" = stored_ore[ore], "type" = ore))
+
+	return data
+
+/obj/structure/ore_box/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+	if(!Adjacent(usr))
+		return
+	add_fingerprint(usr)
+	switch(action)
+		if("ejectallores")
+			dump_box_contents()
+			to_chat(usr, span_notice("You release all the content of the box."))
+			update_ore_count()
+			return TRUE
+		if("ejectall")
+			var/ore_name = params["type"]
+			dump_box_contents(ore_name)
+			to_chat(usr, span_notice("You release all the [ore_name] ores."))
+			update_ore_count()
+			return TRUE
+		if("eject")
+			var/ore_name = params["type"]
+			var/ore_amount = params["qty"]
+			dump_box_contents(ore_name, ore_amount)
+			to_chat(usr, span_notice("You release [ore_amount] [ore_name] ores."))
+			update_ore_count()
+			return TRUE
