@@ -99,7 +99,7 @@
 	bad_type = /obj/item/clothing/suit/space
 	style = STYLE_NEG_HIGH
 	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
-	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit
 	slowdown = HEAVY_SLOWDOWN * 0.5
 
 /obj/item/clothing/suit/space/equipped(mob/M)
