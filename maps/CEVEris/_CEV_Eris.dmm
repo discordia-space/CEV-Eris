@@ -77773,7 +77773,8 @@
 /obj/structure/table/standard,
 /obj/machinery/door/window{
 	dir = 1;
-	name = "NeoTheology Shop"
+	name = "NeoTheology Shop";
+	req_access = list(27)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
@@ -106454,7 +106455,8 @@
 /obj/machinery/door/firedoor,
 /obj/structure/table/woodentable,
 /obj/machinery/door/window{
-	name = "Agrocultural Window"
+	name = "Agrocultural Window";
+	req_access = list(73)
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/hydroponics)
