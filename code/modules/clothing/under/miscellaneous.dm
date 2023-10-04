@@ -212,7 +212,7 @@ obj/item/clothing/under/leisure/pullover
 
 /obj/item/clothing/under/leisure/casual/blue
 	name = "blue casual suit"
-	desc = "an aqua colored casual suit for office workers."
+	desc = "An aqua colored casual suit for office workers."
 	icon_state = "business_blue"
 	item_state = "business_blue"
 
