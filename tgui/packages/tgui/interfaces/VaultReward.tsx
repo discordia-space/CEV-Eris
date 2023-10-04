@@ -92,10 +92,10 @@ export const VaultReward = (props: any, context: any) => {
 
     if (searchQuery !== null) {
         itemsToDisplay = itemsToDisplay.filter(
-            (vault_item, _) => vault_item.name.search(searchQuery) >= 0
+            (vault_item, _) => vault_item && vault_item.name && vault_item.name.search(searchQuery) >= 0
         );
         equipped_items = equipped_items.filter(
-            (vault_item, _) => vault_item.name.search(searchQuery) >= 0
+            (vault_item, _) => vault_item && vault_item.name && vault_item.name.search(searchQuery) >= 0
         );
     }
 

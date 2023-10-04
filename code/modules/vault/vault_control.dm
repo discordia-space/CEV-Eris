@@ -90,6 +90,8 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 	return ROOT(26, score)
 
 /hook/roundend/proc/claim_players_rewards()
+	if(!length(clients))
+		return
 	for(var/client/C in clients)
 		var/datum/player_vault/PV = SSpersistence.get_vault_account(C.ckey)
 		if(!PV)
