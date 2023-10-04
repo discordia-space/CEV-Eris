@@ -1,29 +1,29 @@
 .Reward {
-    &--text {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+  &--text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    &--cost {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: goldenrod;
-    }
+  &--cost {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: goldenrod;
+  }
 
-    &--icon {
-        text-align: center;
-        width: 5.9ch;
-        height: 5.9ch;
-    }
+  &--icon {
+    text-align: center;
+    width: 5.9ch;
+    height: 5.9ch;
+  }
 
-    &--game-icon {
-        width: 2.5rem;
-        align-items: center;
-    }
+  &--game-icon {
+    width: 2.5rem;
+    align-items: center;
+  }
 
-    &--name {
-        width: 100%;
-        text-align: center;
-        font-weight: bold;
-    }
+  &--name {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+  }
 }
