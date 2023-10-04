@@ -41,7 +41,7 @@
 //Guild Technician
 /obj/item/clothing/suit/storage/cargo_jacket
 	name = "guild technician jacket"
-	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm."
+	desc = "An orange and grey jacket, a sort of hybrid between a hazard vest and a proper coat. Likely bought half-priced."
 	icon_state = "cargo_jacket"
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
@@ -57,8 +57,8 @@
 	)
 
 /obj/item/clothing/suit/storage/cargo_jacket/old
-	name = "black guild technician jacket"
-	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm. This one is done in dark black color."
+	name = "old black guild coat"
+	desc = "An old but still stylish black coat, originally owned by the merchant. Passed down to the techs."
 	icon_state = "cargo_jacket_old"
 	item_state = "cargo_jacket_old"
 	blood_overlay_type = "coat"
@@ -76,7 +76,7 @@
 //Merchant
 /obj/item/clothing/suit/storage/qm_coat
 	name = "guild merchant coat"
-	desc = "An ideal choice for a smuggler. This coat seems have good impact resistance, and is made from resistant and expensive materials."
+	desc = "A fabulous black coat, perfect for a steeled capitalist."
 	icon_state = "qm_coat"
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
@@ -90,6 +90,12 @@
 		rad = 0
 	)
 	siemens_coefficient = 0.8
+
+/obj/item/clothing/suit/storage/qm_coat/old
+	name = "old brown guild coat"
+	desc = "One of the merchant's old coats, passed down to the technicians after he was able to purchase a better selection."
+	icon_state = "qm_coat_old"
+	item_state = "qm_coat_old"
 
 //Botanist
 /obj/item/clothing/suit/apron

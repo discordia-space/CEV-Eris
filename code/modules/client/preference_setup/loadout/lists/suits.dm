@@ -133,3 +133,13 @@
 /datum/gear/suit/bomj
 	display_name = "bomj coat"
 	path = /obj/item/clothing/suit/storage/bomj
+
+/datum/gear/suit/oldguild
+	display_name = "old black guild coat"
+	path = /obj/item/clothing/suit/storage/cargo_jacket/old
+	allowed_roles = list(JOBS_CARGO)
+
+/datum/gear/suit/oldmerchant
+	display_name = "old brown guild coat"
+	path = /obj/item/clothing/suit/storage/qm_coat/old
+	allowed_roles = list(JOBS_CARGO)

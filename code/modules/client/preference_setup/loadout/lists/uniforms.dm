@@ -1,13 +1,9 @@
 // Uniform slot
 /datum/gear/uniform
-	display_name = "blazer, blue"
-	path = /obj/item/clothing/under/blazer
-	slot = slot_w_uniform
-	sort_category = "Uniforms and Casual Dress"
-
-/datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
+	slot = slot_w_uniform
+	sort_category = "Uniforms and Casual Dress"
 
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
@@ -25,6 +21,10 @@
 		"White"			=	/obj/item/clothing/under/color/white,
 		"Grey"			=	/obj/item/clothing/under/color/grey,
 		"Orange"		=	/obj/item/clothing/under/color/orange,
+		"Blue"			=	/obj/item/clothing/under/color/blue,
+		"Yellow"		= 	/obj/item/clothing/under/color/yellow,
+		"Red"			=	/obj/item/clothing/under/color/red,
+		"Janitor"		=	/obj/item/clothing/under/rank/janitor,
 		"Crewman"		= 	/obj/item/clothing/under/rank/crewman
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
@@ -33,6 +33,10 @@
 	display_name = "jumpsuit, colorable"
 	flags = GEAR_HAS_COLOR_SELECTION
 	path = /obj/item/clothing/under/color/white
+
+/datum/gear/uniform
+	display_name = "uniform, hydroponics"
+	path = /obj/item/clothing/under/rank/hydroponics
 
 /datum/gear/uniform/leisure
 	display_name = "leisure suits"
@@ -175,6 +179,7 @@
 		"ash" 			=	 /obj/item/clothing/under/grey,
 		"charcoal" 		=	 /obj/item/clothing/under/black,
 		"black formal" 	=	 /obj/item/clothing/under/tuxedo,
+		"tailcoat"		=	 /obj/item/clothing/under/blazer,
 		"tuxedo" 		=	 /obj/item/clothing/under/assistantformal
 	)
 	gear_tweaks += new /datum/gear_tweak/path(suits)
