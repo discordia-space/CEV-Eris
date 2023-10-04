@@ -1,0 +1,4 @@
+{
+    "$schema": "../schema/vault_prices.schema.json",
+    "vault": []
+}

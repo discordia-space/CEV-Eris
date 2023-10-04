@@ -1,0 +1,63 @@
+{
+	"$schema": "https://json-schema.org/draft-07/schema",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"vault": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"item_type": {
+						"type": "string",
+						"description": "Path to item"
+					},
+					"cost": {
+						"type": "integer",
+						"description": "Cost of item in iriski"
+					},
+					"icon": {
+						"type": "string",
+						"description": "relative path to icon file"
+					},
+					"icon_state": {
+						"type": "string",
+						"description": "state of icon"
+					},
+					"generate_subtypes": {
+						"type": "boolean",
+						"description": "If true, will generate subtypes of item_type and assign cost based on cost integer"
+					},
+					"exclude_subtypes": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"description": "If subtypes generator meets the item from this list, it will not generate icon for this"
+						}
+					},
+					"subtypes_share_parent_icon": {
+						"type": "boolean",
+						"description": "If true, subtypes generator will use parent item icons as item icon. If there is icon override, it will use the overriden icon of parent item"
+					},
+					"subtypes_share_cost": {
+						"type": "boolean",
+						"description": "If true, subtypes generator will use parent cost as item cost. If there is cost override, it will use the overriden cost of parent item"
+					},
+					"exclude_base": {
+						"type": "boolean",
+						"description": "If true, base item will not be generated"
+					}
+				},
+				"required": [
+					"item_type"
+				],
+				"additionalProperties": false
+			}
+		}
+	},
+	"required": [
+		"vault"
+	]
+}

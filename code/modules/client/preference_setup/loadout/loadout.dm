@@ -135,11 +135,7 @@ var/list/gear_datums = list()
 	. += "<a href='?src=\ref[src];toggle_hiding=1'>[hide_unavailable_gear ? "Show all" : "Hide unavailable"]</a>"
 
 	. += "<br><b>Iriski balance: [player_vault.iriska_balance] || "
-	. += "<b>Patreon status: [player_vault.patreon_tier][\
-		player_vault.patreon_tier != VAULT_PATRON_0 \
-		? " ([(1-player_vault.get_patron_modifier())*100]% discount)" \
-		: ""\
-	]</b>"
+	. += "<b>Patreon status: [player_vault.patreon_tier]</b>"
 	. += "</center></td></tr>"
 
 	. += "<tr><td colspan=3><center><b>"
@@ -189,14 +185,8 @@ var/list/gear_datums = list()
 			ticked = FALSE
 		if(!G.is_allowed_to_display(user))
 			continue
-		entry += "<tr style='vertical-align:top;'><td width=25%>"
-		var/true_price = G.get_price()
-		if(!G.price || player_vault.has_item(G))
-			entry += "<a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[G.display_name]'>[G.display_name]</a>"
-		else
-			entry += "<a style='white-space:normal;' class='gold' href='?src=\ref[src];buy_gear=[G.display_name]'>[G.display_name] ([true_price > 0 ? "Buy" : "Sell"])</a>"
-		entry += "</td>"
-		entry += "<td width = 10% style='vertical-align:top'>[true_price && !player_vault.has_item(G) ? "[true_price]" : "[G.cost]" ]</td>"
+		entry += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[G.display_name]'>[G.display_name]</a></td>"
+		entry += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		entry += "<td><font size=2>[G.get_description(get_gear_metadata(G,1))]</font>"
 		var/allowed = 1
 		if(allowed && G.allowed_roles)
@@ -275,23 +265,6 @@ var/list/gear_datums = list()
 			return TOPIC_NOACTION
 		set_tweak_metadata(gear, tweak, metadata)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
-	if(href_list["buy_gear"])
-		var/datum/gear/vault_item/G = gear_datums[href_list["buy_gear"]]
-		if(!istype(G))
-			return TOPIC_NOACTION
-		ASSERT(G.price)
-		var/adjusted_price = G.get_price()
-		if(adjusted_price > 0 && user.client.player_vault.has_item(G))
-			return
-		var/comment = "Donation store purchase: [G.display_name]"
-		var/transaction = SSdonations.create_transaction(user.client, -adjusted_price, VAULT_TRANSACTION_TYPE_PURCHASE, comment)
-		var/datum/player_vault/PV = user.client.player_vault
-		if((transaction || !config.donation_track) && PV.add_item(G, FALSE, transaction_id=transaction))
-			G.on_buy_action(PV)
-			return TOPIC_REFRESH
-		else if(transaction)
-			SSdonations.remove_transaction(transaction)
-		return TOPIC_NOACTION
 	if(href_list["next_slot"])
 		pref.gear_slot = pref.gear_slot+1
 		if(pref.gear_slot > config.loadout_slots)
@@ -342,8 +315,6 @@ var/list/gear_datums = list()
 	var/description        //Description of this gear. If left blank will default to the description of the pathed item.
 	var/path               //Path to item.
 	var/cost = 1           //Number of points used. Items in general cost 1 point, storage/armor/gloves/special use costs 2 points.
-	var/price              //Price of item, iriski
-	var/price_coeff = 1	   //Multiply it by price to get true tm price of item
 	var/slot               //Slot to equip to.
 	var/list/allowed_roles //Roles that can spawn with this item.
 	var/list/allowed_branches //Service branches that can spawn with it.
@@ -374,9 +345,6 @@ var/list/gear_datums = list()
 	var/datum/loadout_category/LC = loadout_categories[sort_category]
 	gear_datums.Remove(display_name)
 	LC.gear.Remove(display_name)
-
-/datum/gear/proc/get_price()
-	return abs(round(price * price_coeff, 1))
 
 /datum/gear/proc/is_allowed_to_equip(mob/user)
 	if(!is_allowed_to_display(user))

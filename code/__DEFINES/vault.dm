@@ -9,3 +9,10 @@
 
 #define VAULT_TRANSACTION_TYPE_PURCHASE "vault_buy"
 #define VAULT_TRANSACTION_TYPE_SELL "vault_sell"
+#define VAULT_TRANSACTION_TYPE_ROUND_END "vault_round_end"
+
+#define VAULT_REWARD_COST "cost"
+#define VAULT_REWARD_IMAGE "icon"
+#define VAULT_REWARD_NAME "name"
+#define VAULT_REWARD_DESC "desc"
+#define VAULT_REWARD_TYPE "item_type"

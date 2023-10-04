@@ -9,6 +9,8 @@
 	var/list/iriska_items = list()
 	// duplicates items of above, on delete from above take one from it
 	var/list/iriska_duplicates = list()
+	var/list/selected_rewards = list()
+	var/static/list/rewards = list()
 	var/static/list/patreon_modifier = list(
 		VAULT_PATRON_0 = 1,
 		VAULT_PATRON_1 = 1.25,

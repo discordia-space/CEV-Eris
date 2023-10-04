@@ -29,6 +29,8 @@
 	rarity_value = 5
 	spawn_frequency = 10
 
+	iriska_cost = 2
+
 	health = 600
 	maxHealth = 600
 

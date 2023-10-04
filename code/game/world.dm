@@ -211,6 +211,9 @@ var/world_topic_spam_protect_time = world.timeofday
 		to_chat(world, "<span class='boldannounce'>Rebooting World immediately due to host request.</span>")
 	else
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
+		for(var/ckey in SSpersistence.vault_accounts)
+			var/datum/player_vault/PV = SSpersistence.vault_accounts[ckey]
+			PV.save_items()
 		Master.Shutdown() //run SS shutdowns
 
 	for(var/client/C in clients)
