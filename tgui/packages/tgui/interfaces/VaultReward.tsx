@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Input, Section, Stack, Table } from '../components';
+import { Button, Input, Section, Stack, Table } from '../components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -144,7 +144,7 @@ export const VaultReward = (props: any, context: any) => {
                                     </Table.Cell>
                                     <Table.Cell textAlign="center">{item.cost}</Table.Cell>
                                 </Table.Row>
-                            )
+                            );
                         })}
                     </Table>
                 </Section>
@@ -188,7 +188,7 @@ export const VaultReward = (props: any, context: any) => {
                                     <Table.Cell textAlign="center" className="Reward--cost">{item.cost}</Table.Cell>
                                     <Table.Cell textAlign="center">{item.desc}</Table.Cell>
                                 </Table.Row>
-                            )
+                            );
                         })}
                     </Table>
                 </Section>
