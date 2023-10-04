@@ -34,9 +34,13 @@
 	flags = GEAR_HAS_COLOR_SELECTION
 	path = /obj/item/clothing/under/color/white
 
-/datum/gear/uniform
+/datum/gear/uniform/hydroponics
 	display_name = "uniform, hydroponics"
 	path = /obj/item/clothing/under/rank/hydroponics
+
+/datum/gear/uniform/virology
+	display_name = "uniform, virology"
+	path = /obj/item/clothing/under/rank/virologist
 
 /datum/gear/uniform/leisure
 	display_name = "leisure suits"
@@ -48,7 +52,8 @@
 		"Brown Jacket" 			=	 /obj/item/clothing/under/leisure,
 		"White Blazer" 			=	 /obj/item/clothing/under/leisure/white,
 		"Patterned Pullover" 	=	 /obj/item/clothing/under/leisure/pullover,
-		"Business Casual"		=	 /obj/item/clothing/under/leisure/joe
+		"Business Casual, blue"	=	 /obj/item/clothing/under/leisure/casual/blue,
+		"Business Casual, red"	=	 /obj/item/clothing/under/leisure/joe
 	)
 	gear_tweaks += new /datum/gear_tweak/path(leisure)
 
