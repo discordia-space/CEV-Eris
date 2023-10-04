@@ -62,7 +62,8 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 		var/path = data[VAULT_REWARD_TYPE]
 		if(!ispath(path))
 			continue
-		var/datum/gear/vault_item/VI = new(path, player_ckey)
+		var/load_type = data[VAULT_REWARD_LOADOUT_TYPE]
+		var/datum/gear/vault_item/VI = new load_type(path, player_ckey)
 		var/comment = "Vault store purchase: [data[VAULT_REWARD_NAME]]"
 		var/trans = SSdonations.create_transaction(directory[player_ckey], -data[VAULT_REWARD_COST], VAULT_TRANSACTION_TYPE_PURCHASE, comment)
 		SSdonations.give_item(player_ckey, json_encode(VI.get_save_info()), transaction_id=trans)
@@ -76,7 +77,7 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 			break
 	if(!my_mob)
 		return
-	var/points = round(suppress_function(my_mob.get_total_score()), 1)
+	var/points = round(suppress_function(my_mob.get_total_score()) * get_patron_modifier(), 1)
 	if(points <= 0)
 		return
 	iriska_balance += points
@@ -161,7 +162,7 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 
 // reward gen TODO: move to separate file
 
-/proc/extract_item_data_for_vault(item_type, icon, iriski_cost)
+/proc/extract_item_data_for_vault(item_type, icon, iriski_cost, loadout_type)
 	var/list/data
 	var/obj/item/I = item_type
 	var/item_icon
@@ -169,16 +170,17 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 		item_icon = icon2base64html(icon)
 	else
 		item_icon = icon2base64html(item_type)
-	if(!iriski_cost)
+	if(iriski_cost <= 0)
 		return
 	data = list(
 			VAULT_REWARD_COST = iriski_cost,
 			VAULT_REWARD_IMAGE = item_icon,
 			VAULT_REWARD_NAME = initial(I.name),
 			VAULT_REWARD_DESC = initial(I.desc),
-			VAULT_REWARD_TYPE = item_type
+			VAULT_REWARD_TYPE = item_type,
+			VAULT_REWARD_LOADOUT_TYPE = loadout_type,
 		)
-	return data
+	GLOB.vault_reward_list["[item_type]"] = data
 
 /hook/startup/proc/populate_vault_reward_list()
 	if(!fexists("config/vault_prices.json"))
@@ -194,7 +196,9 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 		var/icon = data?["icon"]
 		var/icon_state = data?["icon_state"]
 		var/exclude_base = data?["exclude_base"]
-		if(isnull(type))
+		var/loadout_type = text2path(data?["loadout_type"]) ? text2path(data?["loadout_type"]) : /datum/gear/vault_item
+		var/obj/item/I = type
+		if(isnull(type) || !initial(I.name))
 			log_debug("Vault: can't load some item for vault rewarding system. Item path: ([data?["item_type"]])")
 			continue
 		var/icon_override = FALSE
@@ -202,7 +206,6 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 			icon = file(icon) // God will guide us through the hell of runtime. Amen.
 			if(icon_state in icon_states(icon))
 				icon_override = TRUE
-		var/obj/item/I = type
 		if(initial(I.iriska_cost) == 0 && !iriski_cost)
 			continue
 		iriski_cost = iriski_cost ? iriski_cost : I.iriska_cost
@@ -210,7 +213,7 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 		if(icon_override)
 			item_icon = icon2base64html(icon(icon, icon_state))
 		if(!exclude_base)
-			GLOB.vault_reward_list["[type]"] = extract_item_data_for_vault(type, item_icon, iriski_cost)
+			extract_item_data_for_vault(type, item_icon, iriski_cost, loadout_type)
 		if(!subtypes_gen)
 			continue
 		if(!exclude_list)
@@ -222,13 +225,13 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 				if(ispath(path, exclude_path))
 					contme = TRUE
 					break
-			if(contme)
-				continue
 			var/obj/item/sub_I = path
+			if(contme || !initial(sub_I.name))
+				continue
 			var/sub_cost = share_cost ? iriski_cost : initial(sub_I.iriska_cost)
 			if(sub_cost == 0)
 				continue
 			var/sub_image_icon
 			if(share_icon)
 				sub_image_icon = item_icon
-			GLOB.vault_reward_list["[path]"] = extract_item_data_for_vault(path, sub_image_icon, sub_cost)
+			extract_item_data_for_vault(path, sub_image_icon, sub_cost, loadout_type)

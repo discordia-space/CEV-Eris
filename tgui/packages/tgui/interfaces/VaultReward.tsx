@@ -9,6 +9,7 @@ interface VaultItemData {
   icon: string;
   cost: number;
   item_type: string;
+  loadout_type: string;
 }
 
 interface InputData {

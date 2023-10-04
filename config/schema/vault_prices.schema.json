@@ -48,6 +48,10 @@
 					"exclude_base": {
 						"type": "boolean",
 						"description": "If true, base item will not be generated"
+					},
+					"loadout_type": {
+						"type": "string",
+						"description": "If set, item will be added to loadout of this type"
 					}
 				},
 				"required": [

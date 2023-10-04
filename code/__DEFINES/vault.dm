@@ -16,3 +16,4 @@
 #define VAULT_REWARD_NAME "name"
 #define VAULT_REWARD_DESC "desc"
 #define VAULT_REWARD_TYPE "item_type"
+#define VAULT_REWARD_LOADOUT_TYPE "loadout_type"
