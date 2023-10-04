@@ -181,7 +181,8 @@ GLOBAL_LIST_INIT(vault_reward_list, list(
 	return data
 
 /hook/startup/proc/populate_vault_reward_list()
-	ASSERT(fexists("config/vault_prices.json"))
+	if(!fexists("config/vault_prices.json"))
+		return
 	var/list/config_json = json_decode(file2text("config/vault_prices.json"))
 	for(var/list/data in config_json["vault"])
 		var/type = text2path(data?["item_type"])
