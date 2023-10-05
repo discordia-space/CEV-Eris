@@ -26,7 +26,7 @@
 
 /obj/item/clothing/under/rank/cargotech
 	name = "guild worker's jumpsuit"
-	desc = "A pair of jeans and turtleneck worn by the guild workers."
+	desc = "Pair of jeans and turtleneck worn by the guild workers."
 	icon_state = "cargotech"
 	item_state = "lb_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
