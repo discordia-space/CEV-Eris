@@ -76,7 +76,7 @@
 //Merchant
 /obj/item/clothing/suit/storage/qm_coat
 	name = "guild merchant coat"
-	desc = "A fabulous black coat, perfect for a steeled capitalist."
+	desc = "Fabulous black coat, perfect for a steeled capitalist."
 	icon_state = "qm_coat"
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
