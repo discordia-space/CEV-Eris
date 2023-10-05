@@ -88,7 +88,7 @@
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/hydroponics
-	desc = "A jumpsuit from the Bradhaanata Agroponics 'Farm Yourself' kit."
+	desc = "Jumpsuit from the Bradhaanata Agroponics 'Farm Yourself' kit."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
 	item_state = "g_suit"
