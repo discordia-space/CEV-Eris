@@ -57,7 +57,7 @@
 	)
 
 /obj/item/clothing/suit/storage/cargo_jacket/old
-	name = "old black guild coat"
+	name = "old black guild jacket"
 	desc = "An old but still stylish black coat, originally owned by the merchant. Passed down to the techs."
 	icon_state = "cargo_jacket_old"
 	item_state = "cargo_jacket_old"
