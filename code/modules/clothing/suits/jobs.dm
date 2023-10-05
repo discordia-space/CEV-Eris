@@ -41,7 +41,7 @@
 //Guild Technician
 /obj/item/clothing/suit/storage/cargo_jacket
 	name = "guild technician jacket"
-	desc = "An orange and grey jacket, a sort of hybrid between a hazard vest and a proper coat. Likely bought half-priced."
+	desc = "Orange and grey jacket, a hybrid of a hazard vest and a proper coat."
 	icon_state = "cargo_jacket"
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
