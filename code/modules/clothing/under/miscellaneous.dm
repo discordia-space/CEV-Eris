@@ -158,7 +158,7 @@
 
 /obj/item/clothing/under/blazer
 	name = "black tailcoat"
-	desc = "A bold but yet conservative outfit, red slacks and an almost victorian style tailcoat."
+	desc = "Bold, yet conservative outfit; red slacks and almost Victorian style tailcoat."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
