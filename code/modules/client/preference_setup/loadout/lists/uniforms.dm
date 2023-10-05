@@ -39,7 +39,7 @@
 	path = /obj/item/clothing/under/rank/hydroponics
 
 /datum/gear/uniform/virology
-	display_name = "uniform, virology"
+	display_name = "virologist uniform"
 	path = /obj/item/clothing/under/rank/virologist
 
 /datum/gear/uniform/leisure
