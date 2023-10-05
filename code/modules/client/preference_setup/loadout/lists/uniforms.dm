@@ -35,7 +35,7 @@
 	path = /obj/item/clothing/under/color/white
 
 /datum/gear/uniform/hydroponics
-	display_name = "uniform, hydroponics"
+	display_name = "hydroponist uniform"
 	path = /obj/item/clothing/under/rank/hydroponics
 
 /datum/gear/uniform/virology
