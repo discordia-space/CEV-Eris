@@ -58,7 +58,7 @@
 
 /obj/item/clothing/suit/storage/cargo_jacket/old
 	name = "old black guild jacket"
-	desc = "An old but still stylish black coat, originally owned by the merchant. Passed down to the techs."
+	desc = "Old, yet stylish black coat, originally issued to merchants, now used by technicians."
 	icon_state = "cargo_jacket_old"
 	item_state = "cargo_jacket_old"
 	blood_overlay_type = "coat"
