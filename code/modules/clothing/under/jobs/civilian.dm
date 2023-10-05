@@ -25,8 +25,8 @@
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/cargotech
-	name = "guild worker's jumpsuit"
-	desc = "Pair of jeans and turtleneck worn by the guild workers."
+	desc = "A pair of jeans and turtleneck worn by the guild workers."
+	name = "guild worker's uniform"
 	icon_state = "cargotech"
 	item_state = "lb_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -88,14 +88,14 @@
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/hydroponics
-	desc = "Jumpsuit from the Bradhaanata Agroponics 'Farm Yourself' kit."
+	desc = "A jumpsuit from the Bradhaanata Agroponics 'Farm Yourself' kit."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
 	item_state = "g_suit"
 	permeability_coefficient = 0.50
 
 /obj/item/clothing/under/rank/janitor
-	desc = "Ancient janitorial jumpsuit."
+	desc = "An ancient janitorial jumpsuit."
 	name = "janitor's jumpsuit"
 	icon_state = "janitor"
 	item_state = "janitor"

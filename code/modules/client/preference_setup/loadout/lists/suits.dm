@@ -134,12 +134,13 @@
 	display_name = "bomj coat"
 	path = /obj/item/clothing/suit/storage/bomj
 
-/datum/gear/suit/oldguild
-	display_name = "old black guild coat"
-	path = /obj/item/clothing/suit/storage/cargo_jacket/old
+/datum/gear/suit/guild/black
+	display_name = "black guild coat"
+	path = /obj/item/clothing/suit/storage/cargo_jacket/black
 	allowed_roles = list(JOBS_CARGO)
 
-/datum/gear/suit/oldmerchant
-	display_name = "old brown guild coat"
-	path = /obj/item/clothing/suit/storage/qm_coat/old
+/datum/gear/suit/guild/black/old
+	display_name = "old black guild coat"
+	path = /obj/item/clothing/suit/storage/cargo_jacket/black/old
 	allowed_roles = list(JOBS_CARGO)
+
