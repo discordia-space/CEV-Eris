@@ -93,7 +93,7 @@
 
 /obj/item/clothing/suit/storage/qm_coat/old
 	name = "old brown guild coat"
-	desc = "One of the merchant's old coats, passed down to the technicians after he was able to purchase a better selection."
+	desc = "One of the old merchant coat designs, passed down to technicians after it fell out of fashion."
 	icon_state = "qm_coat_old"
 	item_state = "qm_coat_old"
 
