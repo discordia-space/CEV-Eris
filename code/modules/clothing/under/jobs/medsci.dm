@@ -64,8 +64,8 @@
 	)
 
 /obj/item/clothing/under/rank/virologist
-	desc = "An old green shirt and khakis, originally worn by the Moebius Virology Corps, now it is discarded in maintenance after their disbandment."
 	name = "moebius virologist's uniform"
+	desc = "Old green shirt and khakis, originally worn by the Moebius Virology Division, now it is discarded in maintenance after their disbandment."
 	icon_state = "virology"
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
