@@ -269,7 +269,7 @@
 	"pull"               = list("type" = /obj/screen/pull,              "loc" = "13,1",      "minloc" = "12,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
 	"drop"               = list("type" = /obj/screen/drop,              "loc" = "15,1",      "minloc" = "14,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
 	"resist"             = list("type" = /obj/screen/resist,            "loc" = "13,1",      "minloc" = "12,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
-	"rest"               = list("type" = /obj/screen/rest,              "loc" = "11.8,1",    "minloc" = "10.8,2", "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"rest"               = list("type" = /obj/screen/rest,              "loc" = "15,1.8",    "minloc" = "14,2.8", "hideflag" = TOGGLE_BOTTOM_FLAG),
 	"move intent"        = list("type" = /obj/screen/mov_intent,        "loc" = "14,1",      "minloc" = "13,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
 //	"implant bionics"    = list("type" = /obj/screen/implant_bionics,   "loc" = "EAST-2,BOTTOM-1",    "minloc" = "12,1",         "hideflag" = TOGGLE_BOTTOM_FLAG),
 	"craft menu"         = list("type" = /obj/screen/craft_menu,        "loc" = "15,0",      "minloc" = "14,1",   "hideflag" = TOGGLE_BOTTOM_FLAG),
