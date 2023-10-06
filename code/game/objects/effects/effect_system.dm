@@ -275,7 +275,6 @@ steam.start() -- spawns the effect
 	opacity = FALSE
 	mouse_opacity = FALSE
 	icon_state = "nothing"
-	anchored = TRUE // Shouldn't be moved by conveyors and such
 	var/radius = 3
 	var/brightness = 2
 
