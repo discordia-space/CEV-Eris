@@ -1,0 +1,4 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - tweak: surgically removed cruciforms keep owner's name
