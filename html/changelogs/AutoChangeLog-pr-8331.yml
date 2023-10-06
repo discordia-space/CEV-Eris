@@ -1,0 +1,5 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - bugfix: Fixed accessories added to suits with pockets taking up space in said
+      pockets.
