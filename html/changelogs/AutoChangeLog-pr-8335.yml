@@ -1,0 +1,10 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - rscadd: Added "L" hotkey for toggling flashlights, standalone and mounted on a
+      gun.
+  - rscadd: Added a way to quickly replace power cell in a mounted flashlight. Have
+      to click on a gun with a proper power cell.
+  - tweak: Changed the way flashlight attaches to guns, could be easily added and
+      removed now.
+  - code_imp: Merged several gun-related proc redefinitions.
