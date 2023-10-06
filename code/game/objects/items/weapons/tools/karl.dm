@@ -19,7 +19,7 @@
 	sharp = TRUE
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE // Drills and picks are made for getting through hard materials
 	embed_mult = 1.2 // Digs deep
-	
+
 	// Spawn and value related
 	spawn_blacklisted = TRUE
 	rarity_value = 24
@@ -40,7 +40,6 @@
 	var/projectile			// Holder for bullettype
 	var/shot_sound 			// What sound should play when the gun fires
 	var/reqpower = 10		// Power needed to shoot
-	
 
 /obj/item/tool/karl/New()
 	. = ..()
@@ -120,7 +119,7 @@
 // Same values than /obj/item/proc/use_tool
 /obj/item/tool/karl/use_tool(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 	. = ..()  // That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
-	
+
 	log_and_message_admins("Pass use tool with target [target]")
 
 	// Recharge upon successfull use when switched off
@@ -166,7 +165,7 @@
 	var/turf/U = get_turf(target)
 	if(!istype(T) || !istype(U))
 		return
-	
+
 	// Launching projectile
 	var/obj/item/projectile/A = new projectile(loc)
 	playsound(loc, shot_sound, 75, 1)
