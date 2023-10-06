@@ -165,9 +165,9 @@
 		flashlight_attachment = I
 		I.forceMove(src)
 		playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You attach [I] to [src]."))
+		to_chat(user, SPAN_NOTICE("You attach \the [I] to \the [src]."))
 		verbs += /obj/item/gun/proc/remove_flashlight
-		verbs += /obj/item/gun/proc/toogle_flashlight
+		verbs += /obj/item/gun/proc/toggle_flashlight
 
 
 /obj/item/gun/get_item_cost(export)
@@ -1095,8 +1095,8 @@
 	. = ..()
 	user.remove_cursor()
 
-/obj/item/gun/proc/toogle_flashlight()
-	set name = "Toogle flashlight"
+/obj/item/gun/proc/toggle_flashlight()
+	set name = "Toggle flashlight"
 	set category = "Object"
 
 	if(flashlight_attachment && ishuman(usr))
@@ -1108,10 +1108,10 @@
 
 	if(flashlight_attachment && ishuman(usr))
 		verbs -= /obj/item/gun/proc/remove_flashlight
-		verbs -= /obj/item/gun/proc/toogle_flashlight
+		verbs -= /obj/item/gun/proc/toggle_flashlight
 		var/mob/living/carbon/human/user = usr
 		flashlight_attachment.forceMove(get_turf(user))
 		playsound(loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You dettach [flashlight_attachment] from [src]."))
+		to_chat(user, SPAN_NOTICE("You detach \the [flashlight_attachment] from \the [src]."))
 		flashlight_attachment = null
 

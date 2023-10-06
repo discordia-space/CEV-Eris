@@ -370,8 +370,8 @@
 		W.attack_self(src)
 
 
-/mob/verb/toogle_flashlight()
-	set name = "Toogle Flashlight"
+/mob/verb/toggle_flashlight()
+	set name = "Toggle Flashlight"
 	set category = "Object"
 
 	if(incapacitated())

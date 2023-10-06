@@ -683,7 +683,7 @@ macro "hotkeymode"
 		command = "Activate-Held-Object"
 	elem
 		name = "L"
-		command = "Toogle-Flashlight"
+		command = "Toggle-Flashlight"
 	elem
 		name = "NUMPAD1"
 		command = "body-r-leg"
