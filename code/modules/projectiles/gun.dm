@@ -152,7 +152,7 @@
 				qdel(src)
 
 	if(flashlight_attachment)
-		if(istype(I, flashlight_attachment.suitable_cell)) // TODO: Make sure no energy gun is prioritizing flashlight over it's own power cell
+		if(istype(I, flashlight_attachment.suitable_cell))
 			if(flashlight_attachment.cell) // Replace existing power cell
 				if(replace_item(flashlight_attachment.cell, I, user))
 					flashlight_attachment.cell = I
