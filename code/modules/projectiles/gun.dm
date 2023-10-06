@@ -227,6 +227,9 @@
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.remove_cursor()
+	if(flashlight_attachment)
+		flashlight_attachment.forceMove(get_turf(src))
+		flashlight_attachment = null
 	..()
 
 /obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
