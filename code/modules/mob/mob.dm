@@ -369,6 +369,27 @@
 	if (W)
 		W.attack_self(src)
 
+
+/mob/verb/toogle_flashlight()
+	set name = "Toogle Flashlight"
+	set category = "Object"
+
+	if(incapacitated())
+		return
+
+	var/obj/item/item = get_active_hand()
+	if(!item)
+		return
+
+	if(isgun(item))
+		var/obj/item/gun/gun = item
+		if(gun.flashlight_attachment)
+			item = gun.flashlight_attachment
+
+	if(istype(item, /obj/item/device/lighting/toggleable/flashlight))
+		var/obj/item/device/lighting/toggleable/flashlight/flashlight = item
+		flashlight.attack_self(src)
+
 /*
 /mob/verb/dump_source()
 
