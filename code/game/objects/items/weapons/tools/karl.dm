@@ -36,6 +36,7 @@
 	glow_color = COLOR_BLUE_LIGHT
 
 	// Gun-mode related
+	action_button_name = "Switch K.A.R.L Mode"
 	var/gunmode = FALSE  // TRUE when KARL is in gun mode
 	var/obj/item/gun/energy/plasma/installation = /obj/item/gun/energy/plasma	// The inbuilt gun. Store as path to initialize a new gun on creation.
 	var/projectile			// Holder for bullettype
@@ -178,3 +179,6 @@
 
 	// Shooting Code
 	A.launch(target, def_zone)
+
+/obj/item/tool/karl/ui_action_click(mob/user, actiontype)
+	toggle_karl_mode(user)
