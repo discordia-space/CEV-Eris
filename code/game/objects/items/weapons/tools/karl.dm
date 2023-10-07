@@ -94,7 +94,6 @@
 				var/pumping_time = wielded ? 1 SECOND : 2 SECONDS
 				if(do_after(user, pumping_time))
 					if(cell)  // Check the cell is still there in case big brain player chose to remove it during pumping
-						log_and_message_admins("Recharging KARL battery by pumping")
 						cell.give(use_power_cost * 1 SECOND) // Enough to use the tool during 1 second
 						to_chat(user, SPAN_NOTICE("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
 						// Continue pumping till user cancels the pumping
@@ -120,11 +119,8 @@
 /obj/item/tool/karl/use_tool(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 	. = ..()  // That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 
-	log_and_message_admins("Pass use tool with target [target]")
-
 	// Recharge upon successfull use when switched off
 	if(. && !switched_on && cell)
-		log_and_message_admins("Recharging KARL battery by using")
 		cell.give(use_power_cost * 1 SECOND) // Enough to use the tool during 1 second
 
 /obj/item/tool/karl/proc/toggle_mode_verb()
@@ -178,8 +174,6 @@
 	var/dmg = WEAPON_FORCE_DANGEROUS * clamp(1 - 0.75 * (env_pressure - 0.5 * ONE_ATMOSPHERE) / (0.5 * ONE_ATMOSPHERE), 0.25, 1)
 	// Burn because it's a plasma shot (installation gun)
 	A.damage_types[BURN] = dmg
-
-	log_and_message_admins("Local pressure: [env_pressure / ONE_ATMOSPHERE] atmosphere   Resulting damages: [dmg]")
 
 	// Shooting Code
 	A.launch(target, def_zone)
