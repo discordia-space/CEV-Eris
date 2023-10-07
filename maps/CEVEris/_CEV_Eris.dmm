@@ -52006,8 +52006,8 @@
 /obj/machinery/button/remote/blast_door{
 	id = "last_shelter";
 	name = "Last shelter lock control";
-	req_access = list(74);
-	pixel_x = -24
+	pixel_x = -24;
+	req_access = list(74)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -59940,6 +59940,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/device/scanner/mining,
+/obj/item/tool/karl,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,21"
 	},
@@ -60204,6 +60205,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/device/scanner/mining,
+/obj/item/tool/karl,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,20"
 	},
@@ -60467,6 +60469,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/device/scanner/mining,
+/obj/item/tool/karl,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "2,19"
 	},
@@ -100096,8 +100099,8 @@
 	dir = 4;
 	id = "maint_hatch_acolyte";
 	name = "Maintenance Hatch Control";
-	req_access = null;
-	pixel_x = -24
+	pixel_x = -24;
+	req_access = null
 	},
 /obj/structure/table/woodentable,
 /obj/structure/sign/faction/neotheology_cross/gold{
@@ -104739,10 +104742,10 @@
 "sfv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
+	dir = 2;
 	id = "maint_hatch_church_preacher";
 	layer = 3.3;
-	name = "Maintenance Hatch";
-	dir = 2
+	name = "Maintenance Hatch"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/window_lwall_spawn/smartspawn,
