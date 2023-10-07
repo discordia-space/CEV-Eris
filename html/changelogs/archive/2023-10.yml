@@ -1,0 +1,16 @@
+2023-10-07:
+  SirRichardFrancis:
+  - tweak: Made it possible to (un)equip spacesuits with drag and drop.
+  - tweak: Changed "lie" button location on LibertyStyle HUD.
+  - bugfix: Fixed accessories added to suits with pockets taking up space in said
+      pockets.
+  - rscadd: Added "L" hotkey for toggling flashlights, standalone and mounted on a
+      gun.
+  - rscadd: Added a way to quickly replace power cell in a mounted flashlight. Have
+      to click on a gun with a proper power cell.
+  - tweak: Changed the way flashlight attaches to guns, could be easily added and
+      removed now.
+  - code_imp: Merged several gun-related proc redefinitions.
+  - bugfix: Fixed flashlight beam being movable by conveyor belts
+  TheLeopold:
+  - tweak: surgically removed cruciforms keep owner's name
