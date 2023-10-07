@@ -138,6 +138,7 @@
 	gunmode = !gunmode
 	to_chat(user, SPAN_NOTICE("\The [src] switches to [gunmode ? "gun" : "tool"] mode."))
 	update_icon()
+	update_wear_icon()
 
 /obj/item/tool/karl/afterattack(atom/target, mob/user, proximity, params)
 
