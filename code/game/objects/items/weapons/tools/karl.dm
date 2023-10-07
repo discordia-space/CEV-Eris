@@ -112,7 +112,7 @@
 		to_chat(user, SPAN_NOTICE("A dangerous energy blade now covers the edges of the tool."))
 
 /obj/item/tool/karl/turn_off(mob/user)
-	to_chat(user, SPAN_NOTICE("The energy blade switfly retracts."))
+	to_chat(user, SPAN_NOTICE("The energy blade swiftly retracts."))
 	..()
 
 // Same values than /obj/item/proc/use_tool
