@@ -48,6 +48,7 @@
 #define ROLE_DEATHSQUAD "deathsquad"
 #define ROLE_ARTIST "artist"
 #define ROLE_MERCENARY "mercenary"
+#define ROLE_PIRATE "pirate"
 #define ROLE_CARRION "carrion"
 #define ROLE_MONKEY "monkey"
 #define ROLE_MALFUNCTION "malf"
