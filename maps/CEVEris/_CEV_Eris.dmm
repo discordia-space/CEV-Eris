@@ -52006,8 +52006,8 @@
 /obj/machinery/button/remote/blast_door{
 	id = "last_shelter";
 	name = "Last shelter lock control";
-	req_access = list(74);
-	pixel_x = -24
+	pixel_x = -24;
+	req_access = list(74)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -85951,6 +85951,10 @@
 "ebE" = (
 /turf/simulated/floor/reinforced,
 /area/eris/rnd/xenobiology)
+"ebF" = (
+/obj/effect/shuttle_landmark/pirate/deck5_engine,
+/turf/space,
+/area/space)
 "ebG" = (
 /obj/machinery/atmospherics/pipe/zpipe/down,
 /obj/structure/disposalpipe/down,
@@ -99491,6 +99495,10 @@
 "fFd" = (
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"fHj" = (
+/obj/effect/shuttle_landmark/pirate/deck3_cargo,
+/turf/space,
+/area/space)
 "fHF" = (
 /obj/item/reagent_containers/food/snacks/monkeycube/punpun,
 /turf/simulated/floor/carpet/sblucarpet,
@@ -100096,8 +100104,8 @@
 	dir = 4;
 	id = "maint_hatch_acolyte";
 	name = "Maintenance Hatch Control";
-	req_access = null;
-	pixel_x = -24
+	pixel_x = -24;
+	req_access = null
 	},
 /obj/structure/table/woodentable,
 /obj/structure/sign/faction/neotheology_cross/gold{
@@ -100280,6 +100288,10 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
+"hwd" = (
+/obj/effect/shuttle_landmark/pirate/deck2_bar,
+/turf/space,
+/area/space)
 "hwi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -101499,6 +101511,10 @@
 /obj/machinery/power/long_range_scanner/hull/installed,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
+"kaZ" = (
+/obj/effect/shuttle_landmark/pirate/deck2_medical,
+/turf/space,
+/area/space)
 "kcw" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -102592,6 +102608,10 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/churchbooth)
+"mDr" = (
+/obj/effect/shuttle_landmark/pirate/deck5_brig,
+/turf/space,
+/area/space)
 "mDD" = (
 /obj/structure/closet/secure_closet/reinforced/chaplain,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -103827,6 +103847,10 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/altar)
+"pHK" = (
+/obj/effect/shuttle_landmark/pirate/deck3_engine,
+/turf/space,
+/area/space)
 "pJc" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -104409,6 +104433,10 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/foyer)
+"rlm" = (
+/obj/effect/shuttle_landmark/pirate/deck5_dorms,
+/turf/space,
+/area/space)
 "rlT" = (
 /obj/machinery/door/blast/regular{
 	id = "scannerroom";
@@ -104732,10 +104760,10 @@
 "sfv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
+	dir = 2;
 	id = "maint_hatch_church_preacher";
 	layer = 3.3;
-	name = "Maintenance Hatch";
-	dir = 2
+	name = "Maintenance Hatch"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -104911,6 +104939,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
+"sxz" = (
+/obj/effect/shuttle_landmark/pirate/deck5_moebius,
+/turf/space,
+/area/space)
 "szi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -105574,6 +105606,10 @@
 /obj/machinery/autolathe/loaded,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
+"tVq" = (
+/obj/effect/shuttle_landmark/pirate/deck5_cargo,
+/turf/space,
+/area/space)
 "tWT" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white/golden,
@@ -117466,7 +117502,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ebF
 aaa
 aaa
 aaa
@@ -119610,6 +119646,7 @@ aaa
 aaa
 aaa
 aaa
+mDr
 aaa
 aaa
 aaa
@@ -119625,8 +119662,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+rlm
 aaa
 aaa
 aaa
@@ -134789,7 +134825,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+sxz
 aaa
 aaa
 aaa
@@ -135826,7 +135862,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+tVq
 aaa
 aaa
 aaa
@@ -198265,7 +198301,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+pHK
 aaa
 aaa
 aaa
@@ -217867,7 +217903,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+fHj
 aaa
 aaa
 aaa
@@ -239455,7 +239491,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+hwd
 aaa
 aaa
 aaa
@@ -240048,8 +240084,8 @@ aaa
 aaa
 aaa
 aaa
+kaZ
 aaa
-aaM
 aaa
 aaa
 aaa
@@ -240448,7 +240484,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aaM
 aaa
 aaa
 aaa

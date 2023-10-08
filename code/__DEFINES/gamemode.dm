@@ -66,6 +66,7 @@
 #define FACTION_EXCELSIOR "excelsior"
 #define FACTION_BORERS "borers"
 #define FACTION_SERBS	"serbians"
+#define FACTION_PIRATES	"pirates"
 #define FACTION_NEOTHEOLOGY	"neotheologists"
 
 #define ROLES_CONTRACT_COMPLETE list(ROLE_CONTRACTOR,ROLE_CARRION) // Blitz not included

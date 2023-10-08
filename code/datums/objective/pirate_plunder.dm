@@ -3,11 +3,10 @@
 #define PLUNDER_STATUS_IN_PROGRESS	1	//Mission has started, timer is ticking
 #define PLUNDER_STATUS_ABORTED		2	//Time limit expired, mission failed
 #define PLUNDER_STATUS_POSTGAME		3	//Mercs returned to their base. They get half an hour to roleplay and debrief#
-#define PLUNDER_STATUS_ENDED		4	//All mercs have been despawned
-#define PLUNDER_DURATION 30 MINUTES
+#define PLUNDER_STATUS_ENDED		4	//All pirates have been despawned
 
 /datum/objective/timed/pirate
-	explanation_text = "Return to your ship and withdraw to base within [PLUNDER_DURATION / (1 MINUTES)] minutes of being detected."
+	explanation_text = "Return to your ship and withdraw to base within 30 minutes of being detected."
 	var/mission_timer = 30 MINUTES
 	var/mission_status = PLUNDER_STATUS_SETUP
 	var/ended = FALSE
@@ -16,7 +15,7 @@
 	if (failed)
 		return FALSE
 
-	var/datum/shuttle/autodock/multi/antag/mercenary/MS = SSshuttle.get_shuttle("Mercenary")
+	var/datum/shuttle/autodock/multi/antag/pirate/MS = SSshuttle.get_shuttle("Pirate")
 
 	if (!MS)
 		//Shuttle was destroyed?
@@ -49,12 +48,12 @@
 
 	/*
 	The timer keeps ticking even after its ended because later i plan to extend this to let them hang
-	around the merc base for up to half an hour and then be despawned so the base can be reset
+	around the pirate base for up to half an hour and then be despawned so the base can be reset
 	*/
 
 
 
-//The mission ends when the mercs return to base or their time limit expires
+//The mission ends when the pirates return to base or their time limit expires
 /datum/objective/timed/pirate/proc/end_mission()
 	ended = TRUE
 	if (!check_completion())
@@ -71,10 +70,10 @@
 
 
 
-//This is called if the mercs' time limit expires while they're not at their base. Mission failure
+//This is called if the pirates' time limit expires while they're not at their base. Mission failure
 /datum/objective/timed/pirate/proc/abort_mission()
 
-	//First of all, every merc left on eris is executed by a little bomb in their skull
+	//First of all, every pirate left on eris is executed by a little bomb in their skull
 	for (var/datum/antagonist/A in owner_faction.members)
 		if (!A || !A.owner)
 			continue
@@ -96,8 +95,8 @@
 		O.failed = TRUE
 
 	/*
-	//Thirdly, the merc ship selfdestructs
-	var/list/atoms = get_area_contents(/area/shuttle/mercenary)
+	//Thirdly, the pirate ship selfdestructs
+	var/list/atoms = get_area_contents(/area/shuttle/pirate)
 	for (var/a in atoms)
 		qdel(a)
 	*/
