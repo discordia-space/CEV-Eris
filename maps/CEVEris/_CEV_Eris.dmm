@@ -48605,6 +48605,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/electronics/circuitboard/pulsar_power_bridge{
+	pixel_y = -2
+	},
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/tech)
 "cmb" = (
