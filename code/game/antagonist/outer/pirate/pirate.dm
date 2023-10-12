@@ -95,3 +95,55 @@
 /obj/structure/closet/crate/pirate
 	name = "loot crate"
 	desc = "A rectangular steel crate to store your pricy and ethically obtained loot."
+
+// LOOT CHECKER
+
+#define CHECKER_COOLDOWN 1 MINUTE
+
+/obj/item/device/loot_checker
+	name = "loot value checker"
+	desc = "Used to check the total value of plundered loot."
+	icon_state = "voice0"
+	item_state = "flashbang"
+	w_class = ITEM_SIZE_TINY
+	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1, MATERIAL_STEEL = 2)
+	flags = CONDUCT
+	anchored = TRUE
+
+	var/last_use = - CHECKER_COOLDOWN
+
+/obj/item/device/loot_checker/attack_hand(mob/user)
+	if(world.time > last_use + CHECKER_COOLDOWN)
+		var/cumulated_amount = check_loot_value()
+		if(cumulated_amount)
+			audible_message(SPAN_WARNING("[src] beeps: 'LOOT VALUE: [cumulated_amount] credits.'"))
+		else
+			audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Unable to compute loot value.'"))
+		last_use = world.time
+	else
+		to_chat(user, SPAN_NOTICE("The loot value checker has [round((last_use + CHECKER_COOLDOWN - world.time) / (1 SECOND))] seconds of cooldown remaining."))
+
+/obj/item/device/loot_checker/proc/check_loot_value()
+	var/cumulated_amount = 0
+
+	// Check cumulated loot value
+	for(var/obj/structure/closet/crate/pirate/P in get_area_contents(/area/shuttle/pirate))
+		var/turf/T = get_turf(P)
+		for(var/atom/movable/item in T.get_recursive_contents())
+			cumulated_amount += SStrade.get_price(item, TRUE)
+
+	return cumulated_amount
+
+/*
+// From trading subsystem
+/obj/item/device/loot_checker/proc/get_price(atom/movable/target, is_export = FALSE)
+	. = round(get_cost(target, is_export))
+
+//Returns cost of an existing object including contents
+/obj/item/device/loot_checker/proc/get_cost(atom/movable/target, is_export = FALSE)
+	. = 0
+	for(var/atom/movable/A in target.GetAllContents(includeSelf = TRUE))
+		. += A.get_item_cost(is_export)
+*/
+
+#undef CHECKER_COOLDOWN

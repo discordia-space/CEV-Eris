@@ -5,19 +5,16 @@
 	antag_plural = "pirates"
 	welcome_text = WELCOME_PIRATES
 
-	hud_indicator = "pirate"  // TODO PIRATE HUD
+	hud_indicator = "pirate"
 
-	possible_antags = list(ROLE_MERCENARY)
+	possible_antags = list(ROLE_PIRATE)
 
 	faction_invisible = FALSE
 
 	var/objectives_num
 	var/list/possible_objectives = list(
-	/datum/objective/harm = 15,
-	/datum/objective/steal = 55,
-	/datum/objective/assassinate = 35,
-	/datum/objective/abduct = 15)
-	var/objective_quantity = 6
+	/datum/objective/plunder = 15)
+	var/objective_quantity = 2
 
 	// How long the pirates get to do their mission
 
@@ -45,7 +42,8 @@
 // Special inventory proc for pirates. Includes the content of their loot crates.
 /datum/faction/pirate/get_inventory()
 	var/list/contents = ..()
-	for(var/obj/structure/closet/crate/pirate/P in /area/shuttle/pirate)
+	for(var/obj/structure/closet/crate/pirate/P in get_area_contents(/area/shuttle/pirate))
+		log_and_message_admins("Detecting a loot crate")
 		var/turf/T = get_turf(P)
 		contents |= T.get_recursive_contents()
 

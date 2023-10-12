@@ -109,6 +109,7 @@ var/const/COMM_FREQ = 1353
 var/const/AI_FREQ	= 1343
 var/const/DTH_FREQ	= 1341
 var/const/SYND_FREQ = 1213
+var/const/YARR_FREQ = 1220
 
 // department channels
 var/const/PUB_FREQ = 1459
@@ -134,6 +135,7 @@ var/list/radiochannels = list(
 	"Security" 		= SEC_FREQ,
 	"Special Ops" 	= DTH_FREQ,
 	"Mercenary" 	= SYND_FREQ,
+	"Pirate"        = YARR_FREQ,
 	"Supply" 		= SUP_FREQ,
 	"NT Voice"		= NT_FREQ,
 	"Service" 		= SRV_FREQ,

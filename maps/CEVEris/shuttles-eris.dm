@@ -333,8 +333,16 @@
 	cloaked = 0
 	destination_tags = list(
 		"nav_pirate_start",
-		"nav_pirate_test",
-		)
+		"nav_pirate_deck5_brig",
+		"nav_pirate_deck5_dorms",
+	 	"nav_pirate_deck5_moebius",
+		"nav_pirate_deck5_cargo",
+	 	"nav_pirate_deck5_engine",
+		"nav_pirate_deck3_cargo",
+	 	"nav_pirate_deck3_engine",
+		"nav_pirate_deck2_medical",
+ 		"nav_pirate_deck2_bar",
+	)
 	shuttle_area = /area/shuttle/pirate
 	default_docking_controller = "pirate_shuttle"
 	current_location = "nav_pirate_start"

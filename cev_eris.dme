@@ -394,6 +394,7 @@
 #include "code\datums\objective\nuclear.dm"
 #include "code\datums\objective\objective.dm"
 #include "code\datums\objective\pirate_plunder.dm"
+#include "code\datums\objective\plunder.dm"
 #include "code\datums\objective\protect.dm"
 #include "code\datums\objective\rev.dm"
 #include "code\datums\objective\silence.dm"

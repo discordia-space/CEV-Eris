@@ -60,6 +60,23 @@
 	},
 /turf/unsimulated/wall,
 /area/space)
+"aw" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "aD" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/centcom/evac)
@@ -2014,7 +2031,8 @@
 /obj/machinery/button/remote/blast_door{
 	id = "pirateshutters_right";
 	name = "remote shutter control";
-	pixel_x = -25
+	pixel_x = -25;
+	req_access = list(145)
 	},
 /turf/simulated/floor/wood,
 /area/centcom/pirate_base)
@@ -4705,6 +4723,16 @@
 /obj/structure/railing/holorailing,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/industrial)
+"sA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/device/loot_checker,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "sN" = (
 /obj/item/caution,
 /turf/unsimulated/floor{
@@ -4721,7 +4749,7 @@
 /obj/machinery/button/remote/blast_door{
 	id = "pirateshutters_front";
 	name = "remote shutter control";
-	req_access = list(150)
+	req_access = list(145)
 	},
 /obj/structure/table/reinforced,
 /turf/simulated/shuttle/floor{
@@ -4751,7 +4779,8 @@
 /obj/machinery/button/remote/blast_door{
 	id = "pirateshutters_right";
 	name = "remote shutter control";
-	pixel_x = 25
+	pixel_x = 25;
+	req_access = list(145)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -5026,6 +5055,12 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
+"vG" = (
+/obj/structure/closet/crate/pirate,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "vU" = (
 /obj/machinery/slotmachine,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -5811,6 +5846,16 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"DS" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Ec" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 4
@@ -6023,6 +6068,14 @@
 	},
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"Gl" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Go" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -6378,7 +6431,8 @@
 /obj/machinery/button/remote/blast_door{
 	id = "pirateshutters_left";
 	name = "remote shutter control";
-	pixel_x = -25
+	pixel_x = -25;
+	req_access = list(145)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -7161,6 +7215,14 @@
 /obj/structure/catwalk,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"Sd" = (
+/obj/structure/closet/wall_mounted/emcloset{
+	pixel_y = -31
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Sh" = (
 /obj/structure/table/holosteel_reinforced,
 /obj/effect/floor_decal/industrial/danger{
@@ -7621,12 +7683,6 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/pirate)
-"Xx" = (
-/obj/item/stool/padded,
-/obj/landmark/storyevent/pirate_spawn,
-/obj/landmark/storyevent/pirate_spawn,
-/turf/simulated/floor/wood,
-/area/centcom/pirate_base)
 "Xz" = (
 /obj/structure/bed/chair/custom/holochair/bar,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -32998,7 +33054,7 @@ Zo
 uG
 Ke
 sO
-sO
+Sd
 uG
 CK
 aa
@@ -33197,11 +33253,11 @@ aa
 eb
 Zo
 uG
+aw
 sO
 sO
 sO
-sO
-sO
+vG
 uG
 uG
 uG
@@ -33404,8 +33460,8 @@ sO
 sO
 sO
 sO
-sO
-sO
+DS
+vG
 jT
 sc
 ab
@@ -33607,7 +33663,7 @@ sO
 sO
 sO
 sO
-sO
+vG
 uG
 uG
 ab
@@ -33808,8 +33864,8 @@ sO
 sO
 sO
 sO
-sO
-sO
+Gl
+vG
 jT
 tv
 ab
@@ -34005,11 +34061,11 @@ aa
 ab
 zK
 uG
+sA
 sO
 sO
 sO
-sO
-sO
+vG
 uG
 uG
 uG
@@ -34210,7 +34266,7 @@ zK
 uG
 te
 sO
-sO
+Sd
 uG
 dO
 aa
@@ -35626,7 +35682,7 @@ HB
 HB
 HB
 Vu
-Xx
+Vu
 Vu
 HB
 zl

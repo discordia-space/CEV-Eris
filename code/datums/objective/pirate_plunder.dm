@@ -6,7 +6,7 @@
 #define PLUNDER_STATUS_ENDED		4	//All pirates have been despawned
 
 /datum/objective/timed/pirate
-	explanation_text = "Return to your ship and withdraw to base within 30 minutes of being detected."
+	explanation_text = "Return to your ship and withdraw to base within X minutes."
 	var/mission_timer = 30 MINUTES
 	var/mission_status = PLUNDER_STATUS_SETUP
 	var/ended = FALSE
@@ -31,11 +31,13 @@
 
 
 /datum/objective/timed/pirate/update_explanation()
-	explanation_text = "Return to your ship and withdraw to base within [time2text(mission_timer, "hh:mm:ss")]."
+	explanation_text = "Return to your ship and withdraw to base within [round(mission_timer / (1 MINUTE), 1)] minutes."
 
 /datum/objective/timed/pirate/get_panel_entry()
-	return "Withdraw to base within [time2text(mission_timer, "hh:mm:ss")]."
+	return "Withdraw to base within [round(mission_timer / (1 MINUTE), 1)] minutes. Time remaining: [time2text(mission_timer, "mm:ss")]."
 
+/datum/objective/timed/pirate/get_info()
+	return "Time remaining at arrival: [time2text(mission_timer, "mm:ss")]."
 
 /datum/objective/timed/pirate/proc/start_mission()
 	START_PROCESSING(SSobj, src)
