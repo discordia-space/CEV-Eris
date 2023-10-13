@@ -35,7 +35,7 @@
 
 // Special inventory proc for pirates. Includes the content of their loot crates.
 /datum/faction/pirate/get_inventory()
-	var/list/contents = ..()
+	var/list/contents = list()
 	for(var/obj/structure/closet/crate/pirate/P in get_area_contents(/area/shuttle/pirate))
 		var/turf/T = get_turf(P)
 		contents |= T.get_recursive_contents()
