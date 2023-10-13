@@ -6,6 +6,7 @@
 	..()
 	if(owner_faction)
 		target_amount *= LAZYLEN(owner_faction.members)
+		update_explanation()
 
 /datum/objective/plunder/check_completion()
 	if (failed)
