@@ -329,7 +329,7 @@
 /datum/shuttle/autodock/multi/antag/pirate
 	name = "Pirate"
 	warmup_time = 0
-	move_time = 10
+	move_time = 100
 	cloaked = 0
 	destination_tags = list(
 		"nav_pirate_start",
