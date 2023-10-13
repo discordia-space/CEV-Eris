@@ -1,5 +1,5 @@
 /datum/objective/plunder
-	target_amount = 10000 // Cumulated value of loot to plunder
+	target_amount = 15000 // Cumulated value of loot to plunder
 	unique = TRUE
 
 /datum/objective/plunder/New(datum/antagonist/new_owner, datum/mind/_target)
