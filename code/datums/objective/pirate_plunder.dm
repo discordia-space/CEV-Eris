@@ -7,7 +7,7 @@
 
 /datum/objective/timed/pirate
 	explanation_text = "Return to your ship and withdraw to base within X minutes."
-	var/mission_timer = 30 MINUTES
+	var/mission_timer = 45 MINUTES
 	var/mission_status = PLUNDER_STATUS_SETUP
 	var/ended = FALSE
 
@@ -97,7 +97,7 @@
 		O.failed = TRUE
 
 	/*
-	//Thirdly, the pirate ship selfdestructs
+	// Thirdly, the pirate ship selfdestructs
 	var/list/atoms = get_area_contents(/area/shuttle/pirate)
 	for (var/a in atoms)
 		qdel(a)
