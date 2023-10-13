@@ -1,6 +1,11 @@
 /datum/objective/plunder
-	target_amount = 30000 // Cumulated value of loot to plunder
+	target_amount = 10000 // Cumulated value of loot to plunder
 	unique = TRUE
+
+/datum/objective/plunder/New(datum/antagonist/new_owner, datum/mind/_target)
+	..()
+	if(owner_faction)
+		target_amount *= LAZYLEN(owner_faction.members)
 
 /datum/objective/plunder/check_completion()
 	if (failed)
@@ -23,7 +28,6 @@
 	for(var/atom/movable/item in contents)
 		var/test = SStrade.get_price(item, TRUE)
 		cumulated_amount += test
-		log_and_message_admins("[item] and [test] for total [cumulated_amount]")
 
 	return cumulated_amount
 
