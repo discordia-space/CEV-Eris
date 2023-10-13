@@ -157,8 +157,8 @@
 
 
 /obj/item/clothing/under/blazer
-	name = "blue blazer"
-	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
+	name = "black tailcoat"
+	desc = "A bold, yet conservative outfit; red slacks and almost Victorian style tailcoat."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
@@ -209,6 +209,12 @@ obj/item/clothing/under/leisure/pullover
 	desc = "A salmon colored casual suit for office workers."
 	icon_state = "joe"
 	item_state = "joe"
+
+/obj/item/clothing/under/leisure/casual/blue
+	name = "blue casual suit"
+	desc = "An qqua colored casual suit for office workers."
+	icon_state = "business_blue"
+	item_state = "business_blue"
 
 obj/item/clothing/under/neon
 	name = "green neon tracksuit"
