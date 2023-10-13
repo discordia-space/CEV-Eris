@@ -134,16 +134,4 @@
 
 	return cumulated_amount
 
-/*
-// From trading subsystem
-/obj/item/device/loot_checker/proc/get_price(atom/movable/target, is_export = FALSE)
-	. = round(get_cost(target, is_export))
-
-//Returns cost of an existing object including contents
-/obj/item/device/loot_checker/proc/get_cost(atom/movable/target, is_export = FALSE)
-	. = 0
-	for(var/atom/movable/A in target.GetAllContents(includeSelf = TRUE))
-		. += A.get_item_cost(is_export)
-*/
-
 #undef CHECKER_COOLDOWN
