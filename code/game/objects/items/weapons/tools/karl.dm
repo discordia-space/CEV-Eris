@@ -181,4 +181,8 @@
 	A.launch(target, def_zone)
 
 /obj/item/tool/karl/ui_action_click(mob/user, actiontype)
-	toggle_karl_mode(user)
+	switch(actiontype)
+		if("Tool information")
+			nano_ui_interact(user)
+		else
+			toggle_karl_mode(user)
