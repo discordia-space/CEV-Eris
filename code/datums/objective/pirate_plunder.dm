@@ -41,6 +41,7 @@
 
 /datum/objective/timed/pirate/proc/start_mission()
 	START_PROCESSING(SSobj, src)
+	mission_status = PLUNDER_STATUS_IN_PROGRESS
 
 //The faction datum processes to tick down the mission timer
 /datum/objective/timed/pirate/Process()
@@ -60,11 +61,17 @@
 	ended = TRUE
 	if (!check_completion())
 		abort_mission()
+		mission_status = PLUNDER_STATUS_ABORTED
 	else
-
 		for (var/datum/objective/O in owner_faction.objectives)
 			if (O.check_completion())
 				O.completed = TRUE
+		mission_status = PLUNDER_STATUS_POSTGAME
+
+	// Not going back to Eris once mission is over
+	var/datum/shuttle/autodock/multi/antag/pirate/MS = SSshuttle.get_shuttle("Pirate")
+	if(MS)
+		MS.lock_shuttle()
 
 	//This is one of the few times a world << call is actually intended functionality.
 	//This is not a debug message, it outputs the result of the mission, it should remain in

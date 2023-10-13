@@ -352,6 +352,8 @@
 	arrival_message = "Attention, unidentified vessel detected on long range sensors. \nVessel is approaching on an intercept course. \nHailing frequencies open."
 	departure_message = "Attention, unknown vessel has departed."
 
+	var/locked_shuttle = FALSE
+
 //This fires, and the mission timer starts ticking, as soon as they leave Eris on course to the pirate base
 /datum/shuttle/autodock/multi/antag/pirate/announce_departure()
 	.=..()
@@ -367,6 +369,32 @@
 	var/datum/objective/timed/pirate/MO = (locate(/datum/objective/timed/pirate) in F.objectives)
 	if (MO)
 		MO.start_mission()
+
+// Cannot go back to the base with an alive outsider
+/datum/shuttle/autodock/multi/antag/pirate/proc/check_back_to_base()
+	if(next_location == home_waypoint)
+		var/datum/faction/F = get_faction_by_id(FACTION_PIRATES)
+		for(var/mob/living/carbon/human/H in get_area_contents(/area/shuttle/pirate))
+			log_and_message_admins("[H] with [H.stat == DEAD] and [F.is_member(H)]")
+			if(!(H.stat == DEAD) && !F.is_member(H))
+				return TRUE
+	return FALSE
+
+// Once the mission is over you cannot go back to Eris
+/datum/shuttle/autodock/multi/antag/pirate/proc/lock_shuttle()
+	locked_shuttle = TRUE
+
+/datum/shuttle/autodock/multi/antag/pirate/can_launch()
+	if (locked_shuttle || check_back_to_base())
+		return FALSE
+	else
+		return ..()
+
+/datum/shuttle/autodock/multi/antag/pirate/can_force()
+	if(locked_shuttle || check_back_to_base())
+		return FALSE
+	else
+		return ..()
 
 // Navigation landmarks
 /obj/effect/shuttle_landmark/pirate
