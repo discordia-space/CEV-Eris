@@ -2604,6 +2604,7 @@
 	name = "Outer Airlock";
 	opacity = 0
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/shuttle/plating,
 /area/shuttle/pirate)
 "ke" = (
@@ -2937,6 +2938,7 @@
 	name = "Outer Airlock";
 	opacity = 0
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/shuttle/plating,
 /area/shuttle/pirate)
 "kP" = (
