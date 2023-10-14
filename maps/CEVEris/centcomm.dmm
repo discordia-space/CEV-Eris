@@ -4726,17 +4726,11 @@
 	},
 /obj/structure/closet,
 /obj/item/clothing/suit/space/void/riggedvoidsuit,
-/obj/item/clothing/head/space/void/riggedvoidsuit,
 /obj/item/clothing/suit/space/void/riggedvoidsuit,
-/obj/item/clothing/head/space/void/riggedvoidsuit,
 /obj/item/clothing/suit/space/void/riggedvoidsuit,
-/obj/item/clothing/head/space/void/riggedvoidsuit,
 /obj/item/clothing/suit/space/void/riggedvoidsuit,
-/obj/item/clothing/head/space/void/riggedvoidsuit,
 /obj/item/clothing/suit/space/void/riggedvoidsuit,
-/obj/item/clothing/head/space/void/riggedvoidsuit,
 /obj/item/clothing/suit/space/void/riggedvoidsuit,
-/obj/item/clothing/head/space/void/riggedvoidsuit,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -4787,9 +4781,10 @@
 /area/space)
 "te" = (
 /obj/machinery/button/remote/blast_door{
-	id = "pirateshutters_right";
+	id = "pirateshutters_left";
 	name = "remote shutter control";
-	pixel_x = 25;
+	pixel_x = -25;
+	pixel_y = 25;
 	req_access = list(145)
 	},
 /turf/simulated/shuttle/floor{
@@ -6422,9 +6417,10 @@
 /area/centcom/merc_base)
 "Ke" = (
 /obj/machinery/button/remote/blast_door{
-	id = "pirateshutters_left";
+	id = "pirateshutters_right";
 	name = "remote shutter control";
-	pixel_x = -25;
+	pixel_x = 25;
+	pixel_y = 24;
 	req_access = list(145)
 	},
 /turf/simulated/shuttle/floor{
@@ -33050,7 +33046,7 @@ eb
 aa
 Zo
 uG
-Ke
+sO
 sO
 Sd
 uG
@@ -33252,7 +33248,7 @@ eb
 Zo
 uG
 aw
-sO
+te
 sO
 sO
 vG
@@ -34060,7 +34056,7 @@ ab
 zK
 uG
 sA
-sO
+Ke
 sO
 sO
 vG
@@ -34262,7 +34258,7 @@ ab
 aa
 zK
 uG
-te
+sO
 sO
 Sd
 uG
