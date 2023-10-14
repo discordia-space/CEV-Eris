@@ -148,7 +148,7 @@ var/list/radiochannels = list(
 var/list/CENT_FREQS = list(DTH_FREQ)
 
 // Antag channels, i.e. Syndicate
-var/list/ANTAG_FREQS = list(SYND_FREQ)
+var/list/ANTAG_FREQS = list(SYND_FREQ, YARR_FREQ)
 
 //Department channels, arranged lexically
 var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, NT_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
