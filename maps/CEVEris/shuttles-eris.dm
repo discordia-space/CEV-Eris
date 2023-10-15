@@ -397,7 +397,6 @@
 
 // Navigation landmarks
 /obj/effect/shuttle_landmark/pirate
-	docking_controller = "pirate_shuttle"
 	icon_state = "shuttle-green"
 
 /obj/effect/shuttle_landmark/pirate/start
