@@ -130,8 +130,12 @@
 	// Check cumulated loot value
 	for(var/obj/structure/closet/crate/pirate/P in get_area_contents(/area/shuttle/pirate))
 		var/turf/T = get_turf(P)
-		for(var/atom/movable/item in T.get_recursive_contents())
-			cumulated_amount += SStrade.get_price(item, TRUE)
+		for(var/atom/movable/A in T.get_recursive_contents())
+			if(isitem(A))
+				var/obj/item/I = A
+				if(I.item_flags & PIRATE_BASE)  // Item spawned in pirate base are worthless for pirates
+					continue
+			cumulated_amount += SStrade.get_price(A, TRUE)
 
 	return cumulated_amount
 

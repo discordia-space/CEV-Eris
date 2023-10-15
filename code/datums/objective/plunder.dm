@@ -26,9 +26,12 @@
 	var/cumulated_amount = 0
 
 	// Check cumulated loot value
-	for(var/atom/movable/item in contents)
-		var/test = SStrade.get_price(item, TRUE)
-		cumulated_amount += test
+	for(var/atom/movable/A in contents)
+		if(isitem(A))
+			var/obj/item/I = A
+			if(I.item_flags & PIRATE_BASE)  // Item spawned in pirate base are worthless for pirates
+				continue
+		cumulated_amount += SStrade.get_price(A, TRUE)
 
 	return cumulated_amount
 

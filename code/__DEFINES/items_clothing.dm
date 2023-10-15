@@ -81,6 +81,7 @@
 #define DRAG_AND_DROP_UNEQUIP      0x80 // Allow you put intems in hands with drag and drop
 #define EQUIP_SOUNDS               0x100// Play sound when equipped/unequipped
 #define ABSTRACT			       0x200//For items that don't really exist. Can't be put on tables or interacted with.
+#define PIRATE_BASE                0x400//For items spawned in pirate base so that they are worthless if placed in the loot chests (otherwise pirates can loot their own gear)
 
 // Flags for pass_flags.
 #define PASSTABLE  0x1

@@ -17,6 +17,8 @@
 	var/objective_quantity = 2
 
 /datum/faction/pirate/create_objectives()
+	make_base_items_worthless()
+
 	objectives.Cut()
 	pick_objectives(src, possible_objectives, objective_quantity)
 
@@ -41,5 +43,10 @@
 		contents |= T.get_recursive_contents()
 
 	return contents
+
+// Make all stuff in pirate base worthless so that it cannot be used as loot in the loot crates
+/datum/faction/pirate/proc/make_base_items_worthless()
+	for(var/obj/item/I in get_area_contents(/area/centcom/pirate_base))
+		I.item_flags |= PIRATE_BASE
 
 #undef WELCOME_PIRATES
