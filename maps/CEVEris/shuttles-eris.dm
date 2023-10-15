@@ -375,7 +375,6 @@
 	if(next_location == home_waypoint)
 		var/datum/faction/F = get_faction_by_id(FACTION_PIRATES)
 		for(var/mob/living/carbon/human/H in get_area_contents(/area/shuttle/pirate))
-			log_and_message_admins("[H] with [H.stat == DEAD] and [F.is_member(H)]")
 			if(!(H.stat == DEAD) && !F.is_member(H))
 				return TRUE
 	return FALSE
