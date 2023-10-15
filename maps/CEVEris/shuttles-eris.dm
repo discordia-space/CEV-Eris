@@ -344,7 +344,7 @@
  		"nav_pirate_deck2_bar",
 	)
 	shuttle_area = /area/shuttle/pirate
-	default_docking_controller = "pirate_shuttle"
+	// default_docking_controller = "pirate_shuttle"  // No need for docking controller (no two-stages airlock)
 	current_location = "nav_pirate_start"
 	landmark_transition = "nav_pirate_transition"
 	announcer = "CEV Eris Sensor Array"
