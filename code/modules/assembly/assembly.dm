@@ -74,7 +74,7 @@
 
 
 /obj/item/device/assembly/attackby(obj/item/I, mob/user)
-	if(is_assembly(I))
+	if(isassembly(I))
 		var/obj/item/device/assembly/A = I
 		if((!A.secured) && (!secured))
 			attach_assembly(A, user)

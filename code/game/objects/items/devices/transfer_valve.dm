@@ -37,7 +37,7 @@
 		update_icon()
 		SSnano.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
-	else if(is_assembly(item))
+	else if(isassembly(item))
 		var/obj/item/device/assembly/A = item
 		if(A.secured)
 			to_chat(user, SPAN_NOTICE("The device is secured."))
