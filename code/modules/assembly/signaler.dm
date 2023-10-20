@@ -1,3 +1,6 @@
+#define SIGNALER_DEFAULT_CODE      30
+#define SIGNALER_DEFAULT_FREQUENCY 1457
+
 /obj/item/device/assembly/signaler
 	name = "remote signaling device"
 	desc = "Used to remotely activate devices."
@@ -33,70 +36,70 @@
 	signal()
 	return 1
 
+
 /obj/item/device/assembly/signaler/update_icon()
 	if(holder)
 		holder.update_icon()
 	return
 
+
 /obj/item/device/assembly/signaler/proc/set_code(new_code)
 	code = clamp(round(new_code), 1, 100)
+
 
 /obj/item/device/assembly/signaler/proc/set_freq(new_freq)
 	set_frequency(sanitize_frequency(round(new_freq), RADIO_LOW_FREQ, RADIO_HIGH_FREQ))
 
-/obj/item/device/assembly/signaler/interact(mob/user, flag1)
-	nano_ui_interact(user)
 
-/obj/item/device/assembly/signaler/nano_ui_data()
+/obj/item/device/assembly/signaler/ui_status(mob/user)
+	if(is_secured(user))
+		return ..()
+
+	return UI_CLOSE
+
+
+/obj/item/device/assembly/signaler/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Signaler", name)
+		ui.open()
+
+
+/obj/item/device/assembly/signaler/ui_data(mob/user)
 	var/list/data = list(
-		"freq" = frequency,
+		"maxFrequency" = RADIO_HIGH_FREQ,
+		"minFrequency" = RADIO_LOW_FREQ,
+		"frequency" = frequency,
 		"code" = code
 		)
 	return data
 
-/obj/item/device/assembly/signaler/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/nano_topic_state/state = GLOB.default_state)
-	var/list/data = nano_ui_data(user)
 
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "mpc_signaller.tmpl", name, 350, 200, state = state)
-		ui.set_initial_data(data)
-		ui.open()
+/obj/item/device/assembly/signaler/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
 
-/obj/item/device/assembly/signaler/Topic(href, href_list)
-	if(..())
-		return 1
-
-	if(href_list["signal"])
-		set_freq(text2num(href_list["freq"]))
-		set_code(text2num(href_list["code"]))
-
-		spawn(0)
+	switch(action)
+		if("signal")
 			signal()
-		return 1
-
-	if(href_list["change_code"])
-		set_code(code + text2num(href_list["change_code"]))
-		return 1
-
-	if(href_list["edit_code"])
-		var/input_code = input("Enter signal code (1-100):", "Signal parameters", code) as num|null
-		if(input_code && CanUseTopic(usr))
-			set_code(input_code)
-		return 1
-
-	if(href_list["change_freq"])
-		set_freq(frequency + text2num(href_list["change_freq"]))
-		return 1
-
-	if(href_list["edit_freq"])
-		var/input_freq = input("Enter signal frequency ([RADIO_LOW_FREQ]-[RADIO_HIGH_FREQ]):", "Signal parameters", frequency) as num|null
-		if(input_freq && CanUseTopic(usr))
-			if(input_freq < RADIO_LOW_FREQ) // A decimal input maybe?
-				input_freq *= 10
-
-			set_freq(input_freq)
-		return 1
+			. = TRUE
+		if("adjust")
+			if(params["freq"])
+				var/value = params["freq"]
+				set_freq(frequency + value)
+				. = TRUE
+			else if(params["code"])
+				var/value = params["code"]
+				set_code(code + value)
+				. = TRUE
+		if("reset")
+			if(params["freq"])
+				frequency = SIGNALER_DEFAULT_FREQUENCY
+				. = TRUE
+			else if(params["code"])
+				code = SIGNALER_DEFAULT_CODE
+				. = TRUE
 
 
 /obj/item/device/assembly/signaler/proc/signal()
@@ -169,3 +172,6 @@
 	SSradio.remove_object(src,frequency)
 	frequency = 0
 	. = ..()
+
+#undef SIGNALER_DEFAULT_FREQUENCY
+#undef SIGNALER_DEFAULT_CODE
