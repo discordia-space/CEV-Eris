@@ -20,7 +20,7 @@ export const Signaler = (props: any, context: any) => {
   );
 };
 
-const SignalerContent = (props: any, context: any) => {
+export const SignalerContent = (props: any, context: any) => {
   const { act } = useBackend<SignalerData>(context);
 
   return (
