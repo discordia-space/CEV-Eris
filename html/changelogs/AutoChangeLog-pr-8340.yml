@@ -1,0 +1,5 @@
+author: Hyperio
+delete-after: true
+changes:
+  - rscadd: 'Add new Pirates antags : pirate base, pirate shuttle, landmark locations,
+      pirate channel, pirate objectives, pirate hailer'
