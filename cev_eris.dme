@@ -1144,6 +1144,7 @@
 #include "code\game\objects\items\weapons\tools\crowbars.dm"
 #include "code\game\objects\items\weapons\tools\hammer.dm"
 #include "code\game\objects\items\weapons\tools\hemostats.dm"
+#include "code\game\objects\items\weapons\tools\karl.dm"
 #include "code\game\objects\items\weapons\tools\knives.dm"
 #include "code\game\objects\items\weapons\tools\misc.dm"
 #include "code\game\objects\items\weapons\tools\multitool.dm"
