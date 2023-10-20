@@ -1,7 +1,5 @@
 {
 	"prettier.prettierPath": "./tgui/.yarn/sdks/prettier/index.js",
-	"typescript.tsdk": "./tgui/.yarn/sdks/typescipt/lib",
-	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"[javascript]": {
 		"editor.rulers": [80],
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
