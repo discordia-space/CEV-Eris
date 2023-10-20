@@ -20,11 +20,12 @@ GLOBAL_DATUM_INIT(hands_state, /datum/ui_state/hands_state, new)
 	return UI_CLOSE
 
 /mob/living/hands_can_use_topic(src_object)
-	if(is_holding(src_object))
+	if(src_object in get_both_hands(src))
 		return UI_INTERACTIVE
 	return UI_CLOSE
 
 /mob/living/silicon/robot/hands_can_use_topic(src_object)
-	if(activated(src_object))
-		return UI_INTERACTIVE
+	for(var/obj/item/gripper/active_gripper in list(module_state_1, module_state_2, module_state_3))
+		if(active_gripper.contains(src_object))
+			return UI_INTERACTIVE
 	return UI_CLOSE
