@@ -74,7 +74,7 @@
 
 
 /obj/item/device/assembly/attackby(obj/item/I, mob/user)
-	if(is_assembly(I))
+	if(isassembly(I))
 		var/obj/item/device/assembly/A = I
 		if((!A.secured) && (!secured))
 			attach_assembly(A, user)
@@ -103,24 +103,34 @@
 
 /obj/item/device/assembly/attack_self(mob/user)
 	if(!user)
-		return 0
-	user.set_machine(src)
-	interact(user)
-	return 1
+		return FALSE
 
+	interact(user)
+	return TRUE
 
 /obj/item/device/assembly/interact(mob/user)
-	return //HTML MENU FOR WIRES GOES HERE
+	return ui_interact(user)
 
 /obj/item/device/assembly/proc/holder_movement()
 	return
-
-/obj/item/device/assembly/nano_host()
-    if(istype(loc, /obj/item/device/assembly_holder))
-        return loc.nano_host()
-    return ..()
 
 /obj/item/device/assembly/proc/is_attachable()
 	if(secured)
 		return FALSE
 	return TRUE
+
+/obj/item/device/assembly/proc/is_secured(mob/user)
+	if(!secured)
+		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
+		return FALSE
+
+	return TRUE
+
+/obj/item/device/assembly/ui_host(mob/user)
+	if(holder)
+		return holder
+
+	return ..()
+
+/obj/item/device/assembly/ui_state(mob/user)
+	return GLOB.hands_state
