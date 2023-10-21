@@ -1,5 +1,0 @@
-author: intercepti0n
-delete-after: true
-changes:
-  - refactor: converted signaler, timer, proximity sensor and transfer valve UIs to
-      TGUI.

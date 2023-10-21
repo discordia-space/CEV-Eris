@@ -44,3 +44,12 @@
       one everyone hated on)
   - bugfix: gives the black softcap it's PROPER sprite (it previously had the cargo
       softcap sprite)
+2023-10-21:
+  Hyperio:
+  - rscadd: 'Add new Pirates antags : pirate base, pirate shuttle, landmark locations,
+      pirate channel, pirate objectives, pirate hailer'
+  - bugfix: Prevent deep drill unwrenching during collapse
+  - rscadd: Add K.A.R.L mining tool
+  intercepti0n:
+  - refactor: converted signaler, timer, proximity sensor and transfer valve UIs to
+      TGUI.
