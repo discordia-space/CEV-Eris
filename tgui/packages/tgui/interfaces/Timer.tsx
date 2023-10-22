@@ -1,18 +1,16 @@
-import { BooleanLike } from 'common/react';
 import { useBackend } from '../backend';
-import { Button, Section } from '../components';
+import { Button, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
-type Data = {
+interface TimerData {
+  isTiming: boolean;
   minutes: number;
   seconds: number;
-  timing: BooleanLike;
-  loop: BooleanLike;
-};
+}
 
-export const Timer = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
-  const { timing, loop } = data;
+export const Timer = (props: any, context: any) => {
+  const { act, data } = useBackend<TimerData>(context);
+  const { isTiming } = data;
 
   return (
     <Window width={275} height={115}>
@@ -20,20 +18,12 @@ export const Timer = (props, context) => {
         <Section
           title="Timing Unit"
           buttons={
-            <>
-              <Button
-                icon={'sync'}
-                content={loop ? 'Repeating' : 'Repeat'}
-                selected={loop}
-                onClick={() => act('repeat')}
-              />
-              <Button
-                icon={'clock-o'}
-                content={timing ? 'Stop' : 'Start'}
-                selected={timing}
-                onClick={() => act('time')}
-              />
-            </>
+            <Button
+              icon={'clock-o'}
+              content={isTiming ? 'Stop' : 'Start'}
+              selected={isTiming}
+              onClick={() => act('time')}
+            />
           }>
           <TimerContent />
         </Section>
@@ -42,34 +32,35 @@ export const Timer = (props, context) => {
   );
 };
 
-/** Displays a few more buttons to control the timer. */
-const TimerContent = (props, context) => {
-  const { act, data } = useBackend<Data>(context);
-  const { minutes, seconds, timing } = data;
+const TimerContent = (props: any, context: any) => {
+  const { act, data } = useBackend<TimerData>(context);
+  const { minutes, seconds, isTiming } = data;
 
   return (
-    <>
-      <Button
-        icon="fast-backward"
-        disabled={timing}
-        onClick={() => act('input', { adjust: -30 })}
-      />
-      <Button
-        icon="backward"
-        disabled={timing}
-        onClick={() => act('input', { adjust: -1 })}
-      />
-      {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}{' '}
-      <Button
-        icon="forward"
-        disabled={timing}
-        onClick={() => act('input', { adjust: 1 })}
-      />
-      <Button
-        icon="fast-forward"
-        disabled={timing}
-        onClick={() => act('input', { adjust: 30 })}
-      />
-    </>
+    <Stack justify="space-around">
+      <Stack.Item>
+        <Button
+          icon="fast-backward"
+          disabled={isTiming}
+          onClick={() => act('adjust', { value: -30 })}
+        />
+        <Button
+          icon="backward"
+          disabled={isTiming}
+          onClick={() => act('adjust', { value: -1 })}
+        />
+        {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}{' '}
+        <Button
+          icon="forward"
+          disabled={isTiming}
+          onClick={() => act('adjust', { value: 1 })}
+        />
+        <Button
+          icon="fast-forward"
+          disabled={isTiming}
+          onClick={() => act('adjust', { value: 30 })}
+        />
+      </Stack.Item>
+    </Stack>
   );
 };

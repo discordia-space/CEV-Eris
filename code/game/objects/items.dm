@@ -269,6 +269,7 @@
 //	NOTE: This proc name was changed form pickup() as it makes more sense
 //	keep that in mind when porting items form other builds
 /obj/item/proc/pre_pickup(mob/user)
+	update_light()
 	return TRUE
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.

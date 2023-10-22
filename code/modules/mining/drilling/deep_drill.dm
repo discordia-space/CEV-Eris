@@ -190,6 +190,9 @@
 		if(cave_connected)
 			to_chat(user, SPAN_WARNING("You have to collapse the cave first!"))
 			return
+		else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
+			to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
+			return
 		else if (check_surroundings())
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 			return

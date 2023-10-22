@@ -52,6 +52,7 @@
 		),
 		"Mining Gear" = list(
 			/obj/machinery/mining/deep_drill,
+			/obj/item/tool/karl,
 			/obj/item/tool/pickaxe,
 			/obj/item/tool/pickaxe/excavation,
 			/obj/item/storage/bag/ore,

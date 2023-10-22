@@ -79,7 +79,7 @@
 	w_class = ITEM_SIZE_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
+	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION|DRAG_AND_DROP_UNEQUIP
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
 	armor = list(
@@ -99,7 +99,7 @@
 	bad_type = /obj/item/clothing/suit/space
 	style = STYLE_NEG_HIGH
 	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
-	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit
 	slowdown = HEAVY_SLOWDOWN * 0.5
 
 /obj/item/clothing/suit/space/equipped(mob/M)
