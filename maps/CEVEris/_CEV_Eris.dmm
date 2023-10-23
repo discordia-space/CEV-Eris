@@ -19900,16 +19900,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aWV" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/material/plastic{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
-/obj/item/stack/material/steel{
-	amount = 120
-	},
+/obj/machinery/smartfridge/disks,
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/warden)
 "aWW" = (
@@ -21192,6 +21183,15 @@
 /obj/item/computer_hardware/hard_drive/portable/design/misc,
 /obj/item/computer_hardware/hard_drive/portable/design/security,
 /obj/item/reagent_containers/glass/beaker,
+/obj/item/stack/material/steel{
+	amount = 120
+	},
+/obj/item/stack/material/steel{
+	amount = 120
+	},
+/obj/item/stack/material/plastic{
+	amount = 120
+	},
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/security/warden)
 "aZH" = (
@@ -27448,6 +27448,7 @@
 /area/eris/rnd/lab)
 "bnd" = (
 /obj/machinery/light,
+/obj/machinery/smartfridge/disks,
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/lab)
 "bne" = (
@@ -51967,9 +51968,12 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/oldtele)
 "cvg" = (
-/obj/structure/table/standard,
-/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
-/obj/item/device/scanner/price,
+/obj/item/computer_hardware/hard_drive/portable/design/medical,
+/obj/item/computer_hardware/hard_drive/portable/design/misc,
+/obj/item/computer_hardware/hard_drive/portable/design/devices,
+/obj/item/computer_hardware/hard_drive/portable/design/tools,
+/obj/item/computer_hardware/hard_drive/portable/design/conveyors,
+/obj/machinery/smartfridge/disks,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "cvi" = (
@@ -54091,12 +54095,9 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "cAt" = (
+/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
+/obj/item/device/scanner/price,
 /obj/structure/table/standard,
-/obj/item/computer_hardware/hard_drive/portable/design/medical,
-/obj/item/computer_hardware/hard_drive/portable/design/misc,
-/obj/item/computer_hardware/hard_drive/portable/design/devices,
-/obj/item/computer_hardware/hard_drive/portable/design/tools,
-/obj/item/computer_hardware/hard_drive/portable/design/conveyors,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "cAv" = (
@@ -58255,7 +58256,6 @@
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
 "cKI" = (
-/obj/structure/table/rack,
 /obj/item/computer_hardware/hard_drive/portable/design/misc,
 /obj/item/computer_hardware/hard_drive/portable/design/tools,
 /obj/item/computer_hardware/hard_drive/portable/design/devices,
@@ -58263,6 +58263,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/conveyors,
 /obj/item/computer_hardware/hard_drive/portable/design/circuits,
 /obj/item/computer_hardware/hard_drive/portable/design/adv_tools,
+/obj/machinery/smartfridge/disks,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "cKJ" = (
@@ -84436,7 +84437,7 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/research)
 "dXA" = (
-/obj/structure/table/standard,
+/obj/machinery/smartfridge/disks,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/primary)
 "dXB" = (
@@ -104283,7 +104284,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/storage)
 "qJx" = (
-/obj/structure/table/standard,
+/obj/machinery/smartfridge/disks,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/crew_quarters/kitchen_storage)
 "qKj" = (
@@ -105169,13 +105170,13 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "sPZ" = (
-/obj/structure/table/standard,
 /obj/item/computer_hardware/hard_drive/portable/design/nt_melee,
 /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/machinery/smartfridge/disks,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/bioprinter)
 "sRC" = (
@@ -169376,7 +169377,7 @@ aaB
 aSt
 aTa
 aSx
-aWV
+aTa
 aZG
 aUh
 aSG
@@ -169578,7 +169579,7 @@ aQC
 aaJ
 aTa
 aSy
-aTa
+aWV
 aTx
 aVa
 aSS
