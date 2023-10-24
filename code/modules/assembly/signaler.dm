@@ -169,3 +169,54 @@
 	SSradio.remove_object(src,frequency)
 	frequency = 0
 	. = ..()
+
+/obj/item/device/assembly/signaler/door_controller
+	name = "remote door signaling device"
+	desc = "Used to remotely activate doors. 2 Beeps for opened ,1 for closed ,0 for no answer."
+	icon_state = "signaller"
+	item_state = "signaler"
+	origin_tech = list(TECH_MAGNET = 1)
+	matter = list(MATERIAL_PLASTIC = 1)
+	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
+
+	secured = 1
+	code = 0
+	frequency = BLAST_DOOR_FREQ
+	delay = 1
+
+	var/last_message = 0
+
+/obj/item/device/assembly/signaler/door_controller/receive_signal(datum/signal/signal)
+	if(!signal)
+		return
+	if(signal.encryption != code)
+		return
+	if(!(src.wires & WIRE_RADIO_RECEIVE))
+		return
+	pulse(1)
+	/// prevent spam if theres multiple doors.
+	if(last_message > world.timeofday)
+		return
+	var/local_message = ""
+	switch(signal.data["message"])
+		if("DOOR_OPEN")
+			local_message = "\icon[src] beeps twice."
+		if("DOOR_CLOSED")
+			local_message = "\icon[src] beeps once."
+		else
+			local_message = "\icon[src] beeps omniously."
+	last_message = world.timeofday + 2 SECONDS
+
+	for(var/mob/O in hearers(1, src.loc))
+		O.show_message(local_message, 3, "*beep* *beep*", 2)
+
+/// data is expected to be a list
+/obj/item/device/assembly/signaler/door_controller/signal(list/data)
+	if(!radio_connection)
+		return
+
+	var/datum/signal/signal = new
+	signal.source = src
+	signal.encryption = code
+	signal.data["message"] = data
+	radio_connection.post_signal(src, signal)

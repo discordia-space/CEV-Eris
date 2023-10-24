@@ -27,6 +27,10 @@
 	var/icon_state_closed = null
 	var/icon_state_closing = null
 
+	var/screws_welded = TRUE
+	// used for deconstruction or reconstruction
+	var/assemby_step = 0
+
 	dir = 1
 	explosion_resistance = 25
 
@@ -36,6 +40,7 @@
 
 	var/_wifi_id
 	var/datum/wifi/receiver/button/door/wifi_receiver
+	var/obj/item/device/assembly/signaler/door_controller/door_control
 
 /obj/machinery/door/blast/Initialize()
 	. = ..()
@@ -74,6 +79,7 @@
 	flick(icon_state_opening, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
 	src.density = FALSE
+	SEND_SIGNAL(src, COMSIG_DOOR_OPENED, TRUE)
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(0)
@@ -89,6 +95,7 @@
 	flick(icon_state_closing, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
 	src.density = TRUE
+	SEND_SIGNAL(src, COMSIG_DOOR_CLOSED, TRUE)
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(1)
@@ -114,8 +121,53 @@
 			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 				force_toggle()
 			else
-				to_chat(usr, SPAN_NOTICE("[src]'s motors resist your effort."))
+				to_chat(user, SPAN_NOTICE("[src]'s motors resist your effort."))
 		return
+	if(QUALITY_WELDING in I.tool_qualities)
+		if(screws_welded)
+			to_chat(user,  SPAN_NOTICE("You start welding off the metal seals around [src]'s screws"))
+			user.show_message(SPAN_NOTICE("[user] starts welding off at the [src]"))
+			if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+				to_chat(user,  SPAN_NOTICE("You manage to weld off the metal seals, giving way to remove the screws"))
+				user.show_message(SPAN_NOTICE("[user] stops welding off at the [src]"))
+				screws_welded = FALSE
+		else
+			if(panel_open)
+				to_chat(user, SPAN_NOTICE("You have to close the panel first to weld the screws shut"))
+				return
+			to_chat(user, SPAN_NOTICE("You start sealing the screws to [src]'s circuit panel"))
+			user.show_message(SPAN_NOTICE("[user] starts sealing [src]'s screws"))
+			if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+				to_chat(user,  SPAN_NOTICE("You manage to seal [src]'s screws"))
+				user.show_message(SPAN_NOTICE("[user] finishes sealing [src]'s screws"))
+				screws_welded = TRUE
+
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities && !screws_welded)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+			panel_open = TRUE
+			to_chat(user, SPAN_NOTICE("You screw open [src]'s circuit panel"))
+
+	if(QUALITY_BOLT_TURNING in I.tool_qualities && panel_open)
+		if(assembly_step = 0)
+			to_chat(user, SPAN_NOTICE("You start weakening the [src]'s hydraulic sockets"))
+			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				assembly_step = -1
+		else if(assembly_step = -1)
+			to_chat(user,  SPAN_NOTICE("You start tightening the [src]'s hydraulic sockets"))
+			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				assembly_step = 0
+	if(QUALITY_CUTTING in I.tool_qualities)
+		if(assembly_step = -1)
+			to_chat(user, SPAN_NOTICE("You cut off [src]'s hydraulic sockets"))
+			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				assembly_step = -2
+		else if(assembly_step = -2)
+			to_chat(user,  SPAN_NOTICE("You start reconnecting [src]'s hydraulic sockets"))
+			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				assembly_step = -1
+
+
+
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		var/amt = CEILING((maxHealth - health)/150, 1)
 		if(!amt)

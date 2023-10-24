@@ -81,6 +81,7 @@ Radio:
 Devices:
 1451 - tracking implant
 1457 - RSD default
+1201 - Player-build blast doors and shutters.
 
 On the map:
 1311 for prison shuttle console (in fact, it is not used)
@@ -109,6 +110,8 @@ var/const/COMM_FREQ = 1353
 var/const/AI_FREQ	= 1343
 var/const/DTH_FREQ	= 1341
 var/const/SYND_FREQ = 1213
+// For player built blast doors.
+var/const/BLAST_DOOR_FREQ  = 1201
 
 // department channels
 var/const/PUB_FREQ = 1459

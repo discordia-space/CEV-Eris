@@ -445,6 +445,7 @@
 	icon_state = "door0"
 	//sleep(3)
 	src.density = FALSE
+	SEND_SIGNAL(src, COMSIG_DOOR_OPENED, forced)
 	update_nearby_tiles()
 	//sleep(7)
 	src.layer = open_layer
@@ -466,6 +467,7 @@
 	do_animate("closing")
 	//sleep(3)
 	src.density = TRUE
+	SEND_SIGNAL(src, COMSIG_DOOR_CLOSED, forced)
 	update_nearby_tiles()
 	//sleep(7)
 	src.layer = closed_layer
