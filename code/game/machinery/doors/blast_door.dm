@@ -29,7 +29,7 @@
 
 	var/screws_welded = TRUE
 	// used for deconstruction or reconstruction
-	var/assemby_step = 0
+	var/assembly_step = 0
 
 	dir = 1
 	explosion_resistance = 25
@@ -44,8 +44,14 @@
 
 /obj/machinery/door/blast/Initialize()
 	. = ..()
+	door_control = new(NULL)
+	door_control.code = _wifi_id
+	/*
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
+	else
+		door_control = new(NULL)
+	*/
 
 /obj/machinery/door/blast/Destroy()
 	qdel(wifi_receiver)
@@ -69,6 +75,7 @@
 		icon_state = icon_state_closed
 	else
 		icon_state = icon_state_open
+	if(panel_open)
 	return
 
 // Proc: force_open()
@@ -117,12 +124,36 @@
 /obj/machinery/door/blast/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
-			if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
-				force_toggle()
-			else
-				to_chat(user, SPAN_NOTICE("[src]'s motors resist your effort."))
-		return
+		if(user.a_intent == I_HURT)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
+				if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
+					force_toggle()
+				else
+					to_chat(user, SPAN_NOTICE("[src]'s motors resist your effort."))
+		else if(assembly_step == -2)
+			to_chat(user,  SPAN_NOTICE("You start prying off [src]'s metal plates"))
+			if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
+				to_chat(user,  SPAN_NOTICE("You pry off [src]'s metal plates"))
+				assembly_step == -3
+				update_icon()
+		else if(assembly_step == -3)
+			to_chat(user,  SPAN_NOTICE("You start prying back in [src]'s metal plates"))
+			if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
+				to_chat(user,  SPAN_NOTICE("You pry [src]'s metal plates back in"))
+				assembly_step == -2
+				update_icon()
+
+
+			return
+
+	if(QUALITY_PULSING in I.tool_qualities)
+		if(!panel_open)
+			to_chat(user, SPAN_NOTICE("You need to open [src]'s control panel to modify its radio-signalling"))
+		if(door_control)
+			spawn(0)
+				var/input = input(user, "Insert a code for this blastdoor between 1 and 100", "Blastdoor configuration", 1) as num
+				input = clamp(input, 0, 100)
+				door_control.code = input
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(screws_welded)
 			to_chat(user,  SPAN_NOTICE("You start welding off the metal seals around [src]'s screws"))
@@ -144,27 +175,42 @@
 
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities && !screws_welded)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			panel_open = TRUE
-			to_chat(user, SPAN_NOTICE("You screw open [src]'s circuit panel"))
+			panel_open = !panel_open
+			to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] [src]'s circuit panel"))
+			update_icon()
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities && panel_open)
-		if(assembly_step = 0)
+		if(assembly_step == 0)
 			to_chat(user, SPAN_NOTICE("You start weakening the [src]'s hydraulic sockets"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -1
-		else if(assembly_step = -1)
+				to_chat(user,  SPAN_NOTICE("You weaken the [src]'s hydraulic socket"))
+		else if(assembly_step == -1)
 			to_chat(user,  SPAN_NOTICE("You start tightening the [src]'s hydraulic sockets"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = 0
+				to_chat(user,  SPAN_NOTICE("You tighten the [src]'s hydraulic socket"))
+		else if(assembly_step == -3)
+			to_chat(user, SPAN_NOTICE("You start weakening the [src]'s locking bolts"))
+			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				assembly_step = -4
+				to_chat(user,  SPAN_NOTICE("You weaken the [src]'s locking bolts"))
+		else if(assembly_step == -4)
+			to_chat(user, SPAN_NOTICE("You start tightening [src]'s locking bolts"))
+			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				assembly_step = -3
+				to_chat(user,  SPAN_NOTICE("You tighten [src]'s locking bolts"))
 	if(QUALITY_CUTTING in I.tool_qualities)
-		if(assembly_step = -1)
+		if(assembly_step == -1)
 			to_chat(user, SPAN_NOTICE("You cut off [src]'s hydraulic sockets"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -2
-		else if(assembly_step = -2)
+				to_chat(user,  SPAN_NOTICE("You cut off [src]'s hydraulic socket"))
+		else if(assembly_step == -2)
 			to_chat(user,  SPAN_NOTICE("You start reconnecting [src]'s hydraulic sockets"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -1
+				to_chat(user,  SPAN_NOTICE("You reconnect [src]'s hydraulic socket"))
 
 
 

@@ -128,8 +128,20 @@
 /obj/machinery/button/remote/blast_door
 	name = "remote blast door-control"
 	desc = "It controls blast doors, remotely."
+	var/obj/item/device/assembly/signaler/door_controller/signal_sender
+
+/obj/machinery/button/remote/blast_door/Initialize()
+	. = ..()
+	signal_sender = new(NULL)
+	signal_sender.code = id
+
+/obj/machinery/button/remote/blast_door/Destroy()
+	QDEL_NULL(signal_sender)
+	. = ..()
+
 
 /obj/machinery/button/remote/blast_door/trigger()
+	/*
 	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
 		if(M.id == id)
 			if(M.density)
@@ -140,6 +152,7 @@
 				spawn(0)
 					M.close()
 					return
+	*/
 
 
 /obj/machinery/button/remote/blast_door/id_card

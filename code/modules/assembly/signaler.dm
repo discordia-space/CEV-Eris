@@ -199,13 +199,15 @@
 		return
 	var/local_message = ""
 	switch(signal.data["message"])
-		if("DOOR_OPEN")
+		if("DATA_DOOR_OPENED")
 			local_message = "\icon[src] beeps twice."
-		if("DOOR_CLOSED")
+		if("DATA_DOOR_CLOSED")
 			local_message = "\icon[src] beeps once."
+		if("CMD_DOOR_OPEN")
+		if("CMD_DOOR_CLOSE")
 		else
 			local_message = "\icon[src] beeps omniously."
-	last_message = world.timeofday + 2 SECONDS
+	last_message = world.timeofday + 1 SECONDS
 
 	for(var/mob/O in hearers(1, src.loc))
 		O.show_message(local_message, 3, "*beep* *beep*", 2)
