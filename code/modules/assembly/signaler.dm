@@ -185,6 +185,12 @@
 	delay = 1
 
 	var/last_message = 0
+	var/command = "CMD_DOOR_TOGGLE"
+
+/obj/item/device/assembly/signaler/door_controller/set_frequency(new_frequency)
+	SSradio.remove_object(src, BLAST_DOOR_FREQ)
+	frequency = BLAST_DOOR_FREQ
+	radio_connection = SSradio.add_object(src, BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
 
 /obj/item/device/assembly/signaler/door_controller/receive_signal(datum/signal/signal)
 	if(!signal)
@@ -205,12 +211,42 @@
 			local_message = "\icon[src] beeps once."
 		if("CMD_DOOR_OPEN")
 		if("CMD_DOOR_CLOSE")
+		if("CMD_DOOR_TOGGLE")
 		else
 			local_message = "\icon[src] beeps omniously."
 	last_message = world.timeofday + 1 SECONDS
 
 	for(var/mob/O in hearers(1, src.loc))
 		O.show_message(local_message, 3, "*beep* *beep*", 2)
+
+/obj/item/device/assembly/signaler/door_controller/AltClick(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	var/option = input(user, "Choose signalling mode", "[src] configuration", "CMD_DOOR_TOGGLE") as anything in list("Toggle", "Close", "Open")
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	switch(option)
+		if("Toggle")
+			command = "CMD_DOOR_TOGGLE"
+		if("Close")
+			command = "CMD_DOOR_CLOSE"
+		if("Open")
+			command = "CMD_DOOR_OPEN"
+	to_chat(user, SPAN_NOTICE("You change [src]'s signalling mode to [option]"))
+
+/obj/item/device/assembly/signaler/door_controller/attack_hand(mob/user)
+	if(!..())
+		return
+	signal()
+
 
 /// data is expected to be a list
 /obj/item/device/assembly/signaler/door_controller/signal(list/data)
@@ -220,5 +256,5 @@
 	var/datum/signal/signal = new
 	signal.source = src
 	signal.encryption = code
-	signal.data["message"] = data
-	radio_connection.post_signal(src, signal)
+	signal.data["message"] = command
+	radio_connection.post_signal(src, signal, RADIO_BLASTDOORS)

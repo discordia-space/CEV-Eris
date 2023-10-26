@@ -6,7 +6,7 @@
 // controlled they use buttons or other means of remote control. This is why they cannot be emagged
 // as they lack any ID scanning system, they just handle remote control signals. Subtypes have
 // different icons, which are defined by set of variables. Subtypes are on bottom of this file.
-
+#define OVERKEY_DOOR_CONSTRUCTION "construction_overlay"
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -26,10 +26,12 @@
 	var/icon_state_opening = null
 	var/icon_state_closed = null
 	var/icon_state_closing = null
+	var/icon_sufix = "pdoor"
 
 	var/screws_welded = TRUE
 	// used for deconstruction or reconstruction
 	var/assembly_step = 0
+	var/last_message = 0
 
 	dir = 1
 	explosion_resistance = 25
@@ -39,13 +41,16 @@
 	block_air_zones = 0
 
 	var/_wifi_id
-	var/datum/wifi/receiver/button/door/wifi_receiver
-	var/obj/item/device/assembly/signaler/door_controller/door_control
+	var/configurable = FALSE
+	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/door/blast/Initialize()
 	. = ..()
-	door_control = new(NULL)
-	door_control.code = _wifi_id
+	radio_connection = SSradio.add_object(src , BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
+	_wifi_id = id
+	if(_wifi_id)
+		configurable = FALSE
+	AddComponent(/datum/component/overlay_manager)
 	/*
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
@@ -54,9 +59,45 @@
 	*/
 
 /obj/machinery/door/blast/Destroy()
-	qdel(wifi_receiver)
-	wifi_receiver = null
+	SSradio.remove_object(src, BLAST_DOOR_FREQ)
+	radio_connection = null
 	return ..()
+
+/obj/machinery/door/blast/proc/broadcast_status()
+	var/datum/signal/data_packet = new()
+	data_packet.frequency = BLAST_DOOR_FREQ
+	data_packet.encryption = _wifi_id
+	data_packet.data = list()
+	data_packet.data["message"] = density ? "DATA_DOOR_CLOSED" : "DATA_DOOR_OPENED"
+	radio_connection.post_signal(src, data_packet, RADIO_BLASTDOORS)
+
+
+/obj/machinery/door/blast/receive_signal(datum/signal/signal, receive_method, receive_param)
+	if(!signal)
+		return
+	if(signal.encryption != _wifi_id)
+		return
+	/// prevent command spam
+	if(last_message > world.timeofday)
+		return
+	switch(signal.data["message"])
+		if("DATA_DOOR_OPENED")
+			return
+		if("DATA_DOOR_CLOSED")
+			return
+		if("CMD_DOOR_OPEN")
+			open()
+			broadcast_status()
+		if("CMD_DOOR_CLOSE")
+			close()
+			broadcast_status()
+		if("CMD_DOOR_TOGGLE")
+			if(density)
+				open()
+			else
+				close()
+			broadcast_status()
+	last_message = world.timeofday + 1 SECONDS
 
 // Proc: Bumped()
 // Parameters: 1 (AM - Atom that tried to walk through this object)
@@ -75,8 +116,20 @@
 		icon_state = icon_state_closed
 	else
 		icon_state = icon_state_open
-	if(panel_open)
-	return
+	var/datum/component/overlay_manager/overlay_manager = GetComponent(/datum/component/overlay_manager)
+	if(!overlay_manager)
+		return
+	if(screws_welded)
+		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[sufix]_unwelded"))
+	else if(panel_open)
+		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[sufix]_unscrewed"))
+	else
+		overlay_manager.removeOverlay(OVERKEY_DOOR_CONSTRUCTION)
+	if(assembly_step == -3)
+		icon_state = "[sufix]_unplated"
+
+#undef OVERKEY_DOOR_CONSTRUCTION
+
 
 // Proc: force_open()
 // Parameters: None
@@ -123,37 +176,43 @@
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
 /obj/machinery/door/blast/attackby(obj/item/I, mob/user)
 	src.add_fingerprint(user)
+	if(user.a_intent == I_HURT)
+		hit(user, I, FALSE)
+		return
 	if(QUALITY_PRYING in I.tool_qualities)
-		if(user.a_intent == I_HURT)
+		if(user.a_intent == I_DISARM)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
 				if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 					force_toggle()
 				else
 					to_chat(user, SPAN_NOTICE("[src]'s motors resist your effort."))
+			return
 		else if(assembly_step == -2)
 			to_chat(user,  SPAN_NOTICE("You start prying off [src]'s metal plates"))
 			if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
 				to_chat(user,  SPAN_NOTICE("You pry off [src]'s metal plates"))
 				assembly_step == -3
 				update_icon()
+			return
 		else if(assembly_step == -3)
 			to_chat(user,  SPAN_NOTICE("You start prying back in [src]'s metal plates"))
 			if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
 				to_chat(user,  SPAN_NOTICE("You pry [src]'s metal plates back in"))
 				assembly_step == -2
 				update_icon()
-
-
 			return
 
 	if(QUALITY_PULSING in I.tool_qualities)
 		if(!panel_open)
 			to_chat(user, SPAN_NOTICE("You need to open [src]'s control panel to modify its radio-signalling"))
-		if(door_control)
-			spawn(0)
-				var/input = input(user, "Insert a code for this blastdoor between 1 and 100", "Blastdoor configuration", 1) as num
-				input = clamp(input, 0, 100)
-				door_control.code = input
+		spawn(0)
+			var/input = input(user, "Insert a code for this blastdoor between 1 and 1000", "Blastdoor configuration", 1) as num
+			if(!Adjacent(user))
+				return
+			input = clamp(input, 0, 1000)
+			_wifi_id = input
+			return
+
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(screws_welded)
 			to_chat(user,  SPAN_NOTICE("You start welding off the metal seals around [src]'s screws"))
@@ -162,6 +221,8 @@
 				to_chat(user,  SPAN_NOTICE("You manage to weld off the metal seals, giving way to remove the screws"))
 				user.show_message(SPAN_NOTICE("[user] stops welding off at the [src]"))
 				screws_welded = FALSE
+				update_icon()
+			return
 		else
 			if(panel_open)
 				to_chat(user, SPAN_NOTICE("You have to close the panel first to weld the screws shut"))
@@ -172,45 +233,54 @@
 				to_chat(user,  SPAN_NOTICE("You manage to seal [src]'s screws"))
 				user.show_message(SPAN_NOTICE("[user] finishes sealing [src]'s screws"))
 				screws_welded = TRUE
+				update_icon()
+			return
 
-	if(QUALITY_SCREW_DRIVING in I.tool_qualities && !screws_welded)
+	if((QUALITY_SCREW_DRIVING in I.tool_qualities) && !screws_welded)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			panel_open = !panel_open
 			to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] [src]'s circuit panel"))
 			update_icon()
+			return
 
-	if(QUALITY_BOLT_TURNING in I.tool_qualities && panel_open)
+	if((QUALITY_BOLT_TURNING in I.tool_qualities) && panel_open)
 		if(assembly_step == 0)
 			to_chat(user, SPAN_NOTICE("You start weakening the [src]'s hydraulic sockets"))
-			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -1
 				to_chat(user,  SPAN_NOTICE("You weaken the [src]'s hydraulic socket"))
+			return
 		else if(assembly_step == -1)
 			to_chat(user,  SPAN_NOTICE("You start tightening the [src]'s hydraulic sockets"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = 0
 				to_chat(user,  SPAN_NOTICE("You tighten the [src]'s hydraulic socket"))
+			return
 		else if(assembly_step == -3)
 			to_chat(user, SPAN_NOTICE("You start weakening the [src]'s locking bolts"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -4
 				to_chat(user,  SPAN_NOTICE("You weaken the [src]'s locking bolts"))
+			return
 		else if(assembly_step == -4)
 			to_chat(user, SPAN_NOTICE("You start tightening [src]'s locking bolts"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -3
 				to_chat(user,  SPAN_NOTICE("You tighten [src]'s locking bolts"))
+			return
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(assembly_step == -1)
 			to_chat(user, SPAN_NOTICE("You cut off [src]'s hydraulic sockets"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -2
 				to_chat(user,  SPAN_NOTICE("You cut off [src]'s hydraulic socket"))
+			return
 		else if(assembly_step == -2)
 			to_chat(user,  SPAN_NOTICE("You start reconnecting [src]'s hydraulic sockets"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -1
 				to_chat(user,  SPAN_NOTICE("You reconnect [src]'s hydraulic socket"))
+			return
 
 
 
@@ -295,6 +365,7 @@
 	icon_state_opening = "shutterc0"
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
+	icon_sufix = "shutter"
 	icon_state = "shutter1"
 	layer = SHUTTER_LAYER
 	open_layer = SHUTTER_LAYER
