@@ -43,6 +43,7 @@
 	var/_wifi_id
 	var/configurable = FALSE
 	var/datum/radio_frequency/radio_connection
+	var/obj/item/electronics/airlock/electronics
 
 /obj/machinery/door/blast/Initialize()
 	. = ..()
@@ -50,6 +51,8 @@
 	_wifi_id = id
 	if(_wifi_id)
 		configurable = FALSE
+	if(!electonics)
+		electronics = new(src)
 	AddComponent(/datum/component/overlay_manager)
 	/*
 	if(_wifi_id)
@@ -120,13 +123,13 @@
 	if(!overlay_manager)
 		return
 	if(screws_welded)
-		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[sufix]_unwelded"))
+		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[icon_sufix]_unwelded"))
 	else if(panel_open)
-		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[sufix]_unscrewed"))
+		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[icon_sufix]_unscrewed"))
 	else
 		overlay_manager.removeOverlay(OVERKEY_DOOR_CONSTRUCTION)
 	if(assembly_step == -3)
-		icon_state = "[sufix]_unplated"
+		icon_state = "[icon_sufix]_unplated"
 
 #undef OVERKEY_DOOR_CONSTRUCTION
 
@@ -169,6 +172,11 @@
 		src.force_open()
 	else
 		src.force_close()
+
+/obj/machinery/door/blast/Created(mob/user)
+	. = ..()
+	assembly_step = -6
+	update_icon()
 
 // Proc: attackby()
 // Parameters: 2 (C - Item this object was clicked with, user - Mob which clicked this object)
@@ -223,7 +231,7 @@
 				screws_welded = FALSE
 				update_icon()
 			return
-		else
+		else if(assembly_step != -6)
 			if(panel_open)
 				to_chat(user, SPAN_NOTICE("You have to close the panel first to weld the screws shut"))
 				return
@@ -235,13 +243,37 @@
 				screws_welded = TRUE
 				update_icon()
 			return
-
-	if((QUALITY_SCREW_DRIVING in I.tool_qualities) && !screws_welded)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			panel_open = !panel_open
-			to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] [src]'s circuit panel"))
-			update_icon()
+		else
+			to_chat(user,  SPAN_NOTICE("You start welding off [src]'s framework"))
+			user.show_message(SPAN_NOTICE("[user] starts welding off at the [src]"))
+			if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
+				to_chat(user,  SPAN_NOTICE("You manage to completly dismantle the [src]"))
+				user.show_message(SPAN_NOTICE("[user] dismantles [src]"))
+				var/obj/item/stack/material/plasteel/mat = new(null)
+				mat.amount = 20
+				mat.forceMove(get_turf(user))
+				qdel(src)
 			return
+
+
+	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
+		if(assembly_step != -5 && !screws_welded)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				panel_open = !panel_open
+				to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] [src]'s circuit panel"))
+				update_icon()
+				return
+		else
+			to_chat(user, SPAN_NOTICE("You start removing [src]'s door control circuit"))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				to_chat(user, SPAN_NOTICE("You remove [src]'s door control circuit"))
+				electronics.forceMove(get_turf(user))
+				electronics = null
+				assembly_step = -6
+				return
+
+
+
 
 	if((QUALITY_BOLT_TURNING in I.tool_qualities) && panel_open)
 		if(assembly_step == 0)
@@ -281,8 +313,27 @@
 				assembly_step = -1
 				to_chat(user,  SPAN_NOTICE("You reconnect [src]'s hydraulic socket"))
 			return
+		else if(assembly_step == -4)
+			to_chat(user,  SPAN_NOTICE("You start removing [src]'s wiring"))
+			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				assembly_step = -5
+				to_chat(user,  SPAN_NOTICE("You remove [src]'s wiring"))
+				var/obj/item/stack/cable_coil/coil = new(null)
+				coil.amount = 3
+				coil.forceMove(get_turf(user))
+			return
+	if(istype(I,/obj/item/stack/cable_coil) && I:amount > 3 && assembly_step == -5)
+		to_chat(user, SPAN_NOTICE("You start wiring [src]"))
+		if(do_after(user, 3 SECONDS, src, TRUE, TRUE) && I:amount > 3)
+			to_chat(user,  SPAN_NOTICE("You wire [src]"))
+			I:amount -= 3
+			assembly_step = -4
 
-
+	if(istype(I, obj/item/electronics/airlock) && assembly_step == -6)
+		to_chat(user, SPAN_NOTICE("You insert the electronics into [src]"))
+		I.forcemove(src)
+		electronics = I
+		assembly_step = -5
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == "plasteel")
 		var/amt = CEILING((maxHealth - health)/150, 1)

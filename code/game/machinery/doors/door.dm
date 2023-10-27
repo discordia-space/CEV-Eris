@@ -101,13 +101,19 @@
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
-		return 0
-	return 1
+		return FALSE
+	var/overlayed_door = locate(/obj/machinery/door/blast/regular)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	overlayed_door = locate(/obj/machinery/door/blast/shutters)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/proc/can_close()
 	if(density || operating)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/Bumped(atom/AM)
 	if(operating) return

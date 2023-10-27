@@ -172,14 +172,15 @@
 
 /obj/item/device/assembly/signaler/door_controller
 	name = "remote door signaling device"
-	desc = "Used to remotely activate doors. 2 Beeps for opened ,1 for closed ,0 for no answer."
+	desc = "Used to remotely activate doors. 2 Beeps for opened ,1 for closed ,0 for no answer. Alt-Click to change Mode , Ctrl-Click to change code."
 	icon_state = "signaller"
 	item_state = "signaler"
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MATERIAL_PLASTIC = 1)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
+	spawn_blacklisted = TRUE
 
-	secured = 1
+	secured = TRUE
 	code = 0
 	frequency = BLAST_DOOR_FREQ
 	delay = 1
@@ -191,6 +192,10 @@
 	SSradio.remove_object(src, BLAST_DOOR_FREQ)
 	frequency = BLAST_DOOR_FREQ
 	radio_connection = SSradio.add_object(src, BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
+
+// No nanoUI for u
+/obj/item/device/assembly/signaler/door_controller/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_topic_state/state)
+	return FALSE
 
 /obj/item/device/assembly/signaler/door_controller/receive_signal(datum/signal/signal)
 	if(!signal)
@@ -226,7 +231,7 @@
 		return
 	if(!Adjacent(user,2))
 		return
-	var/option = input(user, "Choose signalling mode", "[src] configuration", "CMD_DOOR_TOGGLE") as anything in list("Toggle", "Close", "Open")
+	var/option = input(user, "Choose signalling mode", "[src] configuration", "Toggle") as anything in list("Toggle", "Close", "Open")
 	if(!istype(user))
 		return
 	if(user.stat)
@@ -241,6 +246,24 @@
 		if("Open")
 			command = "CMD_DOOR_OPEN"
 	to_chat(user, SPAN_NOTICE("You change [src]'s signalling mode to [option]"))
+
+/obj/item/device/assembly/signaler/door_controller/CtrlClick(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	var/option = input(user, "Choose signaller code", "[src] configuration", 1) as num
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	code = clamp(input, 0, 1000)
+	to_chat(user, SPAN_NOTICE("You change [src]'s code to [option]"))
+
 
 /obj/item/device/assembly/signaler/door_controller/attack_hand(mob/user)
 	if(!..())
