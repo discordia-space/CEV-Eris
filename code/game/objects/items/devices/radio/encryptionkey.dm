@@ -14,6 +14,7 @@
 	var/translate_hive = FALSE
 	var/syndie = FALSE
 	var/merc = FALSE
+	var/pirate = FALSE
 	var/list/channels = list()
 
 /obj/item/device/encryptionkey/attackby(obj/item/W, mob/user)
@@ -28,6 +29,11 @@
 	icon_state = "cypherkey"
 	channels = list("Mercenary" = 1)
 	merc = TRUE
+
+/obj/item/device/encryptionkey/pirates
+	icon_state = "cypherkey"
+	channels = list("Pirate" = 1)
+	pirate = TRUE
 
 /obj/item/device/encryptionkey/binary
 	icon_state = "cypherkey"

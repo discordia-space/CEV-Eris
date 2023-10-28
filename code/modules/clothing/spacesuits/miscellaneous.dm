@@ -98,5 +98,6 @@
 	..(over_object)
 
 /obj/item/clothing/suit/space/medicus/attackby(obj/item/W, mob/user)
+	if(!istype(W, /obj/item/clothing/accessory)) // Do not put accessories into pockets
+		pockets.attackby(W, user)
 	..()
-	pockets.attackby(W, user)

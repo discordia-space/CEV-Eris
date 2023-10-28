@@ -355,7 +355,7 @@
 					overlays += image('icons/obj/aibots.dmi', "na_scanner")
 
 			if(1)
-				if(is_proximity_sensor(W))
+				if(isproxsensor(W))
 					user.drop_item()
 					qdel(W)
 					to_chat(user, SPAN_NOTICE("You complete the Medibot! Beep boop."))

@@ -64,8 +64,8 @@
 	)
 
 /obj/item/clothing/under/rank/virologist
-	desc = "It's made of a special fiber that gives special protection against biohazards. It has a virologist rank stripe on it."
-	name = "moebius virologist's jumpsuit"
+	desc = "An old green shirt and khakis, originally worn by the Moebius Virology Division, now it is discarded in maintenance after their disbandment."
+	name = "moebius virologist's uniform"
 	icon_state = "virology"
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
