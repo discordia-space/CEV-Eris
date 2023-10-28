@@ -196,11 +196,15 @@
 					to_chat(user, SPAN_NOTICE("[src]'s motors resist your effort."))
 			return
 		else if(assembly_step == -2)
+			if(!density)
+				to_chat(user,SPAN_NOTICE("The [src] must be closed for the metal plates to be pried off"))
+				return
 			to_chat(user,  SPAN_NOTICE("You start prying off [src]'s metal plates"))
 			if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
 				to_chat(user,  SPAN_NOTICE("You pry off [src]'s metal plates"))
 				assembly_step = -3
 				update_icon()
+				stat |= BROKEN
 			return
 		else if(assembly_step == -3)
 			to_chat(user,  SPAN_NOTICE("You start prying back in [src]'s metal plates"))
@@ -208,6 +212,8 @@
 				to_chat(user,  SPAN_NOTICE("You pry [src]'s metal plates back in"))
 				assembly_step = -2
 				update_icon()
+				if(stat & BROKEN)
+					stat &= ~BROKEN
 			return
 
 	if(QUALITY_PULSING in I.tool_qualities)
@@ -215,7 +221,7 @@
 			to_chat(user, SPAN_NOTICE("You need to open [src]'s control panel to modify its radio-signalling"))
 		spawn(0)
 			var/input = input(user, "Insert a code for this blastdoor between 1 and 1000", "Blastdoor configuration", 1) as num
-			if(!Adjacent(user))
+			if(!Adjacent(user) || !panel_open)
 				return
 			input = clamp(input, 0, 1000)
 			_wifi_id = input
@@ -293,12 +299,14 @@
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -4
 				to_chat(user,  SPAN_NOTICE("You weaken the [src]'s locking bolts"))
+				anchored = FALSE
 			return
 		else if(assembly_step == -4)
 			to_chat(user, SPAN_NOTICE("You start tightening [src]'s locking bolts"))
 			if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				assembly_step = -3
 				to_chat(user,  SPAN_NOTICE("You tighten [src]'s locking bolts"))
+				anchored = TRUE
 			return
 	if(QUALITY_CUTTING in I.tool_qualities)
 		if(assembly_step == -1)
