@@ -51,7 +51,7 @@
 	_wifi_id = id
 	if(_wifi_id)
 		configurable = FALSE
-	if(!electonics)
+	if(!electronics)
 		electronics = new(src)
 	AddComponent(/datum/component/overlay_manager)
 	/*
@@ -199,14 +199,14 @@
 			to_chat(user,  SPAN_NOTICE("You start prying off [src]'s metal plates"))
 			if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
 				to_chat(user,  SPAN_NOTICE("You pry off [src]'s metal plates"))
-				assembly_step == -3
+				assembly_step = -3
 				update_icon()
 			return
 		else if(assembly_step == -3)
 			to_chat(user,  SPAN_NOTICE("You start prying back in [src]'s metal plates"))
 			if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
 				to_chat(user,  SPAN_NOTICE("You pry [src]'s metal plates back in"))
-				assembly_step == -2
+				assembly_step = -2
 				update_icon()
 			return
 
@@ -329,9 +329,9 @@
 			I:amount -= 3
 			assembly_step = -4
 
-	if(istype(I, obj/item/electronics/airlock) && assembly_step == -6)
+	if(istype(I, /obj/item/electronics/airlock) && assembly_step == -6)
 		to_chat(user, SPAN_NOTICE("You insert the electronics into [src]"))
-		I.forcemove(src)
+		I.forceMove(src)
 		electronics = I
 		assembly_step = -5
 
