@@ -189,6 +189,7 @@
 
 		for(var/datum/objective/O in objectives)
 			text += "<br><b>Objective [num]:</b> [O.explanation_text] "
+			text += "[O.get_info()] "
 			if(O.check_completion())
 				text += "<font color='green'><B>Success!</B></font>"
 			else

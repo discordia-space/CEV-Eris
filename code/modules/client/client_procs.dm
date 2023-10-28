@@ -641,6 +641,9 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 /client/proc/destroy_UI()
 	if(UI)
+		for(var/i in screen)
+			if(UI._elements.Find(i))
+				screen.Remove(i)
 		qdel(UI)
 		UI = null
 

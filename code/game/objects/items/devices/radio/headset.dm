@@ -76,6 +76,11 @@
 	ks1type = /obj/item/device/encryptionkey/mercenaries
 	spawn_blacklisted = TRUE
 
+/obj/item/device/radio/headset/pirates
+	origin_tech = list(TECH_COVERT = 2)
+	ks1type = /obj/item/device/encryptionkey/pirates
+	spawn_blacklisted = TRUE
+
 /obj/item/device/radio/headset/binary
 	origin_tech = list(TECH_COVERT = 3)
 	ks1type = /obj/item/device/encryptionkey/binary
@@ -272,6 +277,7 @@
 	src.translate_hive = FALSE
 	src.syndie = FALSE
 	src.merc = FALSE
+	src.pirate = FALSE
 
 	if(keyslot1)
 		for(var/ch_name in keyslot1.channels)
@@ -292,6 +298,9 @@
 		if(keyslot1.merc)
 			src.merc = TRUE
 
+		if(keyslot1.pirate)
+			src.pirate = TRUE
+
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
 			if(ch_name in src.channels)
@@ -310,6 +319,9 @@
 
 		if(keyslot2.merc)
 			src.merc = TRUE
+
+		if(keyslot2.pirate)
+			src.pirate = TRUE
 
 
 	for (var/ch_name in channels)

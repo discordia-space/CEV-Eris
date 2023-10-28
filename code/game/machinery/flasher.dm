@@ -90,11 +90,8 @@
 		else
 			if(isrobot(O))
 				var/mob/living/silicon/robot/robo = O
-				if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
-					continue
-				else
-					robo.flash(strength, FALSE, FALSE , FALSE)
-					continue
+				robo.flash(strength, FALSE, FALSE , FALSE)
+				continue
 			else
 				if (istype(O,/mob/living/silicon/ai))
 					return
