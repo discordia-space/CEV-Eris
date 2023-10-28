@@ -287,6 +287,7 @@
 	signal.source = src
 	signal.encryption = code
 	signal.data["message"] = command
+	radio_connection.post_signal(src, signal, RADIO_BLASTDOORS)
 
 #undef SIGNALER_DEFAULT_FREQUENCY
 #undef SIGNALER_DEFAULT_CODE
