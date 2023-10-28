@@ -137,6 +137,18 @@
 /obj/machinery/button/remote/blast_door/Initialize()
 	. = ..()
 	radio_conn = SSradio.add_object(src, BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
+	AddComponent(/datum/component/overlay_manager)
+
+/// Update status at initialization!
+/obj/machinery/button/remote/blast_door/LateInitialize()
+	. = ..()
+	var/datum/signal/signal = new
+	signal.source = src
+	signal.encryption = id
+	signal.data["message"] = "CMD_DOOR_STATE"
+	radio_conn.post_signal(src, signal, RADIO_BLASTDOORS)
+
+
 
 /obj/machinery/button/remote/blast_door/Destroy()
 	SSradio.remove_object(src, BLAST_DOOR_FREQ)
@@ -149,20 +161,50 @@
 		to_chat(user, "Linked doors status is currently [door_status]")
 
 /obj/machinery/button/remote/blast_door/trigger()
+	door_status = "UNKNOWN"
 	var/datum/signal/signal = new
 	signal.source = src
 	signal.encryption = id
 	signal.data["message"] = "CMD_DOOR_TOGGLE"
 	radio_conn.post_signal(src, signal, RADIO_BLASTDOORS)
 
+#define OVERKEY_DOOR_STATUS "door_status"
+
+/obj/machinery/button/remote/blast_door/update_icon()
+	. = ..()
+	var/datum/component/overlay_manager/overlay_manager = GetComponent(/datum/component/overlay_manager)
+	if(!overlay_manager)
+		return
+	var/mutable_appearance/appear = mutable_appearance(icon = src.icon, icon_state = "")
+	appear.dir = src.dir
+	if(stat & NOPOWER)
+		overlay_manager.removeOverlay(OVERKEY_DOOR_STATUS)
+		returnd
+	switch(door_status)
+		if("OPENED")
+			appear.icon_state = "doorctrl-open"
+		if("MIXED")
+			appear.icon_state = "doorctrl-mixed"
+		if("CLOSED")
+			appear.icon_state = "doorctrl-closed"
+		if("UNKNOWN")
+			appear.icon_state = "doorctrl-unknown"
+	overlay_manager.updateOverlay(OVERKEY_DOOR_STATUS, appear)
+
+#undef OVERKEY_DOOR_STATUS
+
+
 /obj/machinery/button/remote/blast_door/receive_signal(datum/signal/signal, receive_method, receive_param)
 	if(!signal)
 		return
 	if(signal.encryption != id)
 		return
+	if(stat & NOPOWER)
+		return
 	if(last_message < world.time)
 		closed = 0
 		open = 0
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 2 SECONDS)
 	switch(signal.data["message"])
 		if("DATA_DOOR_OPENED")
 			last_message = world.time + 1 SECOND
@@ -175,6 +217,8 @@
 		if("CMD_DOOR_CLOSE")
 			return
 		if("CMD_DOOR_TOGGLE")
+			return
+		if("CMD_DOOR_STATE")
 			return
 
 	if(open && closed)

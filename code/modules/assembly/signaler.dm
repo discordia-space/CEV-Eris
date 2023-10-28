@@ -222,8 +222,13 @@
 		if("DATA_DOOR_CLOSED")
 			local_message = "\icon[src] beeps once."
 		if("CMD_DOOR_OPEN")
+			return
 		if("CMD_DOOR_CLOSE")
+			return
 		if("CMD_DOOR_TOGGLE")
+			return
+		if("CMD_DOOR_STATE")
+			return
 		else
 			local_message = "\icon[src] beeps omniously."
 	last_message = world.timeofday + 1 SECONDS
@@ -272,7 +277,7 @@
 	to_chat(user, SPAN_NOTICE("You change [src]'s code to [option]"))
 
 
-/obj/item/device/assembly/signaler/door_controller/attack_hand(mob/user)
+/obj/item/device/assembly/signaler/door_controller/attack_self(mob/user)
 	if(!..())
 		return
 	signal()

@@ -85,6 +85,9 @@
 		return
 	if(signal.encryption != electronics.wifi_id)
 		return
+	// no receiving if no power!!!!
+	if(stat & NOPOWER)
+		return
 	/// prevent command spam
 	if(last_message > world.timeofday)
 		return
@@ -104,6 +107,8 @@
 				open()
 			else
 				close()
+			broadcast_status()
+		if("CMD_DOOR_STATE")
 			broadcast_status()
 	last_message = world.timeofday + 1 SECONDS
 
@@ -370,6 +375,8 @@
 						assembly_step = -3
 						to_chat(user,  SPAN_NOTICE("You tighten [src]'s locking bolts"))
 						anchored = TRUE
+						// so it updates.
+						power_change()
 					return
 		if(QUALITY_WIRE_CUTTING)
 			switch(assembly_step)
