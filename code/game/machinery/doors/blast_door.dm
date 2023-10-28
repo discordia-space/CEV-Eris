@@ -7,6 +7,7 @@
 // as they lack any ID scanning system, they just handle remote control signals. Subtypes have
 // different icons, which are defined by set of variables. Subtypes are on bottom of this file.
 #define OVERKEY_DOOR_CONSTRUCTION "construction_overlay"
+#define OVERKEY_DOOR_PLATES "plates_overlay"
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -19,6 +20,9 @@
 	open_on_break = FALSE
 	bullet_resistance = RESISTANCE_ARMOURED
 	resistance = RESISTANCE_ARMOURED
+	matter = list(
+		MATERIAL_PLASTEEL = 20
+	)
 
 	icon_state = null
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.
@@ -40,19 +44,21 @@
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
 	block_air_zones = 0
 
-	var/_wifi_id
-	var/configurable = FALSE
+	var/hydraulics_blown = 0
 	var/datum/radio_frequency/radio_connection
 	var/obj/item/electronics/airlock/electronics
+	// here for map compatibility
+	var/_wifi_id
 
 /obj/machinery/door/blast/Initialize()
 	. = ..()
 	radio_connection = SSradio.add_object(src , BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
-	_wifi_id = id
-	if(_wifi_id)
-		configurable = FALSE
 	if(!electronics)
 		electronics = new(src)
+		if(_wifi_id)
+			electronics.wifi_id = _wifi_id
+		else
+			electronics.wifi_id = id
 	AddComponent(/datum/component/overlay_manager)
 	/*
 	if(_wifi_id)
@@ -69,7 +75,7 @@
 /obj/machinery/door/blast/proc/broadcast_status()
 	var/datum/signal/data_packet = new()
 	data_packet.frequency = BLAST_DOOR_FREQ
-	data_packet.encryption = _wifi_id
+	data_packet.encryption = electronics.wifi_id
 	data_packet.data = list()
 	data_packet.data["message"] = density ? "DATA_DOOR_CLOSED" : "DATA_DOOR_OPENED"
 	radio_connection.post_signal(src, data_packet, RADIO_BLASTDOORS)
@@ -78,7 +84,7 @@
 /obj/machinery/door/blast/receive_signal(datum/signal/signal, receive_method, receive_param)
 	if(!signal)
 		return
-	if(signal.encryption != _wifi_id)
+	if(signal.encryption != electronics.wifi_id)
 		return
 	/// prevent command spam
 	if(last_message > world.timeofday)
@@ -122,10 +128,14 @@
 	var/datum/component/overlay_manager/overlay_manager = GetComponent(/datum/component/overlay_manager)
 	if(!overlay_manager)
 		return
-	if(screws_welded)
-		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[icon_sufix]_unwelded"))
-	else if(panel_open)
-		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, mutable_appearance(icon, "[icon_sufix]_unscrewed"))
+	if(!screws_welded)
+		var/mutable_appearance/overlay = mutable_appearance(icon, "[icon_sufix]_unwelded")
+		overlay.dir = src.dir
+		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, overlay)
+	if(panel_open)
+		var/mutable_appearance/overlay = mutable_appearance(icon, "[icon_sufix]_unscrewed")
+		overlay.dir = src.dir
+		overlay_manager.updateOverlay(OVERKEY_DOOR_CONSTRUCTION, overlay)
 	else
 		overlay_manager.removeOverlay(OVERKEY_DOOR_CONSTRUCTION)
 	if(assembly_step <= -3)
@@ -178,6 +188,8 @@
 	assembly_step = -6
 	panel_open = TRUE
 	screws_welded = FALSE
+	stat |= BROKEN
+	anchored = FALSE
 	update_icon()
 
 /obj/machinery/door/blast/examine(mob/user)
@@ -221,7 +233,7 @@
 	var/tool_type = I.get_tool_type(user, list(
 		QUALITY_PRYING,
 		!screws_welded  ? QUALITY_SCREW_DRIVING : null,
-		(screws_welded || assembly_step == -6) ? QUALITY_WELDING : null,
+		(!panel_open || assembly_step == -6) ? QUALITY_WELDING : null,
 		panel_open ? QUALITY_PULSING : null,
 		((assembly_step == 0 || assembly_step == -1 || assembly_step == -3 || assembly_step == -4) && panel_open) ? QUALITY_BOLT_TURNING : null,
 		((assembly_step == -1 || assembly_step == -2 || assembly_step == -4) && panel_open) ? QUALITY_WIRE_CUTTING : null
@@ -237,23 +249,20 @@
 				return
 			if(assembly_step == -2)
 				if(!density)
-					to_chat(user,SPAN_NOTICE("The [src] must be closed for the metal plates to be pried off"))
+					to_chat(user,SPAN_NOTICE("The [src] must be closed for the metal coverings to be pried off"))
 					return
-				to_chat(user,  SPAN_NOTICE("You start prying off [src]'s metal plates"))
+				to_chat(user,  SPAN_NOTICE("You start prying off [src]'s metal coverings"))
 				if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You pry off [src]'s metal plates"))
+					to_chat(user,  SPAN_NOTICE("You pry off [src]'s metal coverings"))
 					assembly_step = -3
 					update_icon()
-					stat |= BROKEN
 				return
 			if(assembly_step == -3)
-				to_chat(user,  SPAN_NOTICE("You start prying back in [src]'s metal plates"))
+				to_chat(user,  SPAN_NOTICE("You start prying back in [src]'s metal coverings"))
 				if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You pry [src]'s metal plates back in"))
+					to_chat(user,  SPAN_NOTICE("You pry [src]'s metal coverings back in"))
 					assembly_step = -2
 					update_icon()
-					if(stat & BROKEN)
-						stat &= ~BROKEN
 				return
 		if(QUALITY_PULSING)
 			// detach ourselves from this proc.
@@ -262,7 +271,7 @@
 				if(!Adjacent(user) || !panel_open)
 					return
 				input = clamp(input, 0, 1000)
-				_wifi_id = input
+				electronics.wifi_id = input
 				return
 		if(QUALITY_WELDING)
 			if(screws_welded)
@@ -280,9 +289,7 @@
 				if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
 					to_chat(user,  SPAN_NOTICE("You manage to completly dismantle the [src]"))
 					user.show_message(SPAN_NOTICE("[user] dismantles [src]"))
-					var/obj/item/stack/material/plasteel/mat = new(null)
-					mat.amount = 20
-					mat.forceMove(get_turf(user))
+					drop_materials(get_turf(user), user)
 					qdel(src)
 				return
 			else
@@ -298,7 +305,7 @@
 					update_icon()
 				return
 		if(QUALITY_SCREW_DRIVING)
-			if(assembly_step == -5)
+			if(assembly_step == -5 && panel_open)
 				spawn(0)
 					var/result = show_radial_menu(user, src, list("dc" = image(icon = electronics.icon, icon_state = electronics.icon_state), "sp" = image(icon = 'icons/mob/radial/tools.dmi', icon_state = "screw driving")), tooltips = TRUE, require_near = TRUE)
 					switch(result)
@@ -324,10 +331,26 @@
 		if(QUALITY_BOLT_TURNING)
 			switch(assembly_step)
 				if(0)
+					if(!(stat & NOPOWER) && user.a_intent != I_DISARM)
+						to_chat(user , SPAN_DANGER("The [src] must be powered off before the hydraulics can be weakened safely. Switch to disarm intent to do it anyway"))
+						return
 					to_chat(user, SPAN_NOTICE("You start weakening the [src]'s hydraulic sockets"))
-					if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					var/turning_time
+					if(!(stat & NOPOWER))
+						turning_time = WORKTIME_LONG
+						to_chat(user, SPAN_NOTICE("The pressure inside the hydraulics of [src] make the turning harder, this might be dangerous.."))
+					else
+						turning_time = WORKTIME_NORMAL
+					if(I.use_tool(user, src, turning_time, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -1
 						to_chat(user,  SPAN_NOTICE("You weaken the [src]'s hydraulic socket"))
+						// Uh Oh
+						if(!(stat & NOPOWER) && (hydraulics_blown < world.time))
+							explosion(get_turf(user), 150, 150, 0, TRUE)
+							hydraulics_blown = world.time + 5 MINUTES
+							// So we can all laugh
+							message_admins("[user] triggered a explosion by unsafely weakening blast door hydraulics, door id = [electronics.wifi_id]")
+							log_game("[user] triggered a explosion by unsafely weakening blast door hydraulics, door id = [electronics.wifi_id]")
 					return
 				if(-1)
 					to_chat(user,  SPAN_NOTICE("You start tightening the [src]'s hydraulic sockets"))
@@ -349,29 +372,32 @@
 						to_chat(user,  SPAN_NOTICE("You tighten [src]'s locking bolts"))
 						anchored = TRUE
 					return
-			if(QUALITY_WIRE_CUTTING)
-				switch(assembly_step)
-					if(-1)
-						to_chat(user, SPAN_NOTICE("You cut off [src]'s hydraulic sockets"))
-						if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-							assembly_step = -2
-							to_chat(user,  SPAN_NOTICE("You cut off [src]'s hydraulic socket"))
-						return
-					if(-2)
-						to_chat(user,  SPAN_NOTICE("You start reconnecting [src]'s hydraulic sockets"))
-						if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-							assembly_step = -1
-							to_chat(user,  SPAN_NOTICE("You reconnect [src]'s hydraulic socket"))
-						return
-					if(-4)
-						to_chat(user,  SPAN_NOTICE("You start removing [src]'s wiring"))
-						if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-							assembly_step = -5
-							to_chat(user,  SPAN_NOTICE("You remove [src]'s wiring"))
-							var/obj/item/stack/cable_coil/coil = new(null)
-							coil.amount = 3
-							coil.forceMove(get_turf(user))
-						return
+		if(QUALITY_WIRE_CUTTING)
+			switch(assembly_step)
+				if(-1)
+					to_chat(user, SPAN_NOTICE("You start cutting off [src]'s hydraulic sockets"))
+					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+						assembly_step = -2
+						to_chat(user,  SPAN_NOTICE("You cut off [src]'s hydraulic socket, rendering it unfunctional"))
+						stat |= BROKEN
+					return
+				if(-2)
+					to_chat(user,  SPAN_NOTICE("You start reconnecting [src]'s hydraulic sockets"))
+					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+						assembly_step = -1
+						to_chat(user,  SPAN_NOTICE("You reconnect [src]'s hydraulic socket, making the door work again"))
+						if(stat & BROKEN)
+							stat &= ~BROKEN
+					return
+				if(-4)
+					to_chat(user,  SPAN_NOTICE("You start removing [src]'s wiring"))
+					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+						assembly_step = -5
+						to_chat(user,  SPAN_NOTICE("You remove [src]'s wiring"))
+						var/obj/item/stack/cable_coil/coil = new(null)
+						coil.amount = 3
+						coil.forceMove(get_turf(user))
+					return
 
 	if(istype(I,/obj/item/stack/cable_coil) && assembly_step == -5)
 		var/obj/item/stack/cable_coil/cable = I
@@ -476,6 +502,9 @@
 	layer = SHUTTER_LAYER
 	open_layer = SHUTTER_LAYER
 	closed_layer = SHUTTER_LAYER
+	matter = list(
+		MATERIAL_PLASTEEL = 5
+	)
 
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))

@@ -200,6 +200,10 @@
 /obj/item/device/assembly/signaler/door_controller/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_topic_state/state)
 	return FALSE
 
+// No TGui for u
+/obj/item/device/assembly/signaler/door_controller/ui_interact(mob/user, datum/tgui/ui)
+	return FALSE
+
 /obj/item/device/assembly/signaler/door_controller/receive_signal(datum/signal/signal)
 	if(!signal)
 		return
