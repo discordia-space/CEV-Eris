@@ -158,7 +158,7 @@
 	name = "Initiate Bluespace Jump"
 	question = "Do you want to initiate a bluespace jump and restart the round?"
 	time = 120
-	minimum_win_percentage = 0.6
+	minimum_win_percentage = 0.55
 	cooldown = 20 MINUTES
 	next_vote = 90 MINUTES //Minimum round length before it can be called for the first time
 	choice_types = list()
@@ -166,12 +166,12 @@
 
 /*To prevent abuse and rule-by-salt, the evac vote weights each player's vote based on a few parameters
 	If you are alive and have been for a while, then you have the normal 1 vote
-	If you are dead, or just spawned, you get only 0.3 votes
-	If you are an antag or a head of staff, you get 2 votes
+	If you are dead, or just spawned, you get only 0.5 votes
+	If you are an antag or a head of staff, you get 1.5 votes
 */
-#define VOTE_WEIGHT_LOW	0.3
+#define VOTE_WEIGHT_LOW	0.5
 #define VOTE_WEIGHT_NORMAL	1
-#define VOTE_WEIGHT_HIGH	2
+#define VOTE_WEIGHT_HIGH	1.5
 #define MINIMUM_VOTE_LIFETIME	15 MINUTES
 /datum/poll/evac
 	choice_types = list(/datum/vote_choice/evac, /datum/vote_choice/noevac)
