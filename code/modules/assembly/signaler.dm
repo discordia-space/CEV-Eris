@@ -264,7 +264,7 @@
 		return
 	if(!Adjacent(user,2))
 		return
-	code = clamp(input, 0, 1000)
+	code = clamp(option, 0, 1000)
 	to_chat(user, SPAN_NOTICE("You change [src]'s code to [option]"))
 
 
