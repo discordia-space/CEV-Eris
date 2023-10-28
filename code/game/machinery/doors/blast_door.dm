@@ -7,7 +7,6 @@
 // as they lack any ID scanning system, they just handle remote control signals. Subtypes have
 // different icons, which are defined by set of variables. Subtypes are on bottom of this file.
 #define OVERKEY_DOOR_CONSTRUCTION "construction_overlay"
-#define OVERKEY_DOOR_PLATES "plates_overlay"
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -403,7 +402,7 @@
 		var/obj/item/stack/cable_coil/cable = I
 		if(cable.can_use(3))
 			to_chat(user, SPAN_NOTICE("You start wiring [src]"))
-			if(do_after(user, 3 SECONDS, src, TRUE, TRUE) && I:amount > 3)
+			if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
 				to_chat(user,  SPAN_NOTICE("You wire [src]"))
 				if(cable.use(3))
 					assembly_step = -4
