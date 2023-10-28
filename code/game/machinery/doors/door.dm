@@ -102,10 +102,10 @@
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
 		return FALSE
-	var/obj/machinery/door/blast/overlayed_door = locate(/obj/machinery/door/blast/regular)
+	var/obj/machinery/door/blast/overlayed_door = locate(/obj/machinery/door/blast/regular) in get_turf(src)
 	if(overlayed_door && overlayed_door.density)
 		return FALSE
-	overlayed_door = locate(/obj/machinery/door/blast/shutters)
+	overlayed_door = locate(/obj/machinery/door/blast/shutters) in get_turf(src)
 	if(overlayed_door && overlayed_door.density)
 		return FALSE
 	return TRUE
