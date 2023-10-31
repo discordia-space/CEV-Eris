@@ -9,6 +9,14 @@
 	spawn_tags = SPAWN_TAG_CLOSET_COFFIN
 	bad_type = /obj/structure/closet/coffin
 	var/mob/living/occupant = null
+	var/on_fire = 0
+
+/obj/structure/closet/coffin/pauper
+	name = "pauper's coffin"
+	desc = "A burial receptacle for the dearly departed. Perfect for the entire family."
+	icon_state = "coffin_wide"
+	matter = list(MATERIAL_WOOD = 30)
+	storage_capacity = 2 * MOB_HUGE //*slaps coffin* This bad boy fits two whole Iriskas
 
 /obj/structure/closet/coffin/close(mob/living/user)
 	..()
@@ -52,3 +60,77 @@
 	/obj/landmark/corpse/scientist, /obj/landmark/corpse/miner, /obj/landmark/corpse/miner/rig, /obj/landmark/corpse/bridgeofficer, /obj/landmark/corpse/commander, \
 	/obj/landmark/corpse/russian)
 	new A
+
+/obj/structure/closet/coffin/attack_hand(mob/user as mob)
+	src.add_fingerprint(user)
+	if(opened)
+		to_chat(user, SPAN_NOTICE("You can't fit the cover back on without hammering it into place!"))
+	if(!opened)
+		to_chat(user, SPAN_NOTICE("The cover is too heavy to lift without a prying tool!"))
+
+/obj/structure/closet/coffin/proc/pyre(atom/movable/object)
+	add_overlay("coffin_pyre")
+	on_fire = 1
+	anchored = 1
+	sleep(600) //One minute to burn
+	if(occupant)
+		lost_in_space()
+	new /obj/effect/decal/cleanable/ash(src.loc)
+	qdel(contents)
+	qdel(src)
+
+/obj/structure/closet/coffin/attackby(obj/item/I, mob/user)
+	if(!on_fire && isflamesource(I))
+		user.visible_message(SPAN_WARNING("[user] has lit the [src] on fire!"))
+		pyre()
+	if(on_fire)
+		to_chat(user, SPAN_NOTICE("The pyre is already lit. There's no turning back."))
+		return
+	
+	var/list/usable_qualities = list()
+	if(opened)
+		usable_qualities += QUALITY_SAWING
+		usable_qualities += QUALITY_PRYING
+		usable_qualities += QUALITY_HAMMERING
+	if(!opened)
+		usable_qualities += QUALITY_PRYING
+
+	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	switch(tool_type)
+		if(QUALITY_PRYING)
+			if(!opened)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					visible_message(
+							SPAN_NOTICE("\The [src] has been pried open by [user] with \the [I]."),
+							"You hear [tool_type]."
+					)
+					open()
+			else
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					visible_message(
+							SPAN_NOTICE("\The [src] has been pried apart by [user] with \the [I]."),
+							"You hear [tool_type]."
+					)
+					drop_materials(drop_location())
+					qdel(src)
+			return
+
+		if(QUALITY_SAWING)
+			if(opened)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					visible_message(
+							SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
+							"You hear [tool_type]."
+					)
+					drop_materials(drop_location())
+					qdel(src)
+				return
+		if(QUALITY_HAMMERING)
+			if(opened)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					visible_message(
+							SPAN_NOTICE("\The [src] has had it's cover secured by [user] with \the [I]."),
+							"You hear [tool_type]."
+					)
+					close()
+				return
