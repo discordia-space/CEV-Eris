@@ -179,7 +179,7 @@
 	appear.dir = src.dir
 	if(stat & NOPOWER)
 		overlay_manager.removeOverlay(OVERKEY_DOOR_STATUS)
-		returnd
+		return
 	switch(door_status)
 		if("OPENED")
 			appear.icon_state = "doorctrl-open"
