@@ -6,9 +6,34 @@
 
 /mob/living/exosuit/Move()
 	. = ..()
-	if(. && !istype(loc, /turf/space))
-		if(legs && legs.mech_step_sound)
-			playsound(src.loc,legs.mech_step_sound,40,1)
+	if(.)
+		if(!isinspace())
+			if(legs && legs.mech_step_sound)
+				playsound(src.loc,legs.mech_step_sound,40,1)
+		if(legs)
+			var/blocked = FALSE
+			var/turf/theDepths = GetBelow(src)
+			if(isinspace())
+				if(theDepths)
+					for(var/obj/thing in theDepths.contents)
+						if(thing.density)
+							blocked = TRUE
+							break
+				else
+					blocked = TRUE
+			else
+				blocked = TRUE
+			for(var/mob/living/victim in get_turf(src))
+				if(victim.lying || victim.resting || victim.mob_size <= MOB_MEDIUM)
+					if(blocked || victim.anchored)
+						victim.apply_damage(legs.stomp_damage, BRUTE, BP_CHEST, 1, 1.5, FALSE, FALSE, src.legs )
+						visible_message("The [src] stomps on [victim], crushing their chest!")
+						occupant_message("You can feel the [src] stomp something")
+					else
+						victim.forceMove(theDepths)
+						visible_message("The [src] pushes [victim] downwards")
+						occupant_message("You can feel the [src] step onto something")
+
 
 /mob/living/exosuit/update_plane()
 	. = ..()

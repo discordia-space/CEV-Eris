@@ -6,6 +6,7 @@
 	matter = list(MATERIAL_STEEL = 8)
 	var/move_delay = 5
 	var/turn_delay = 5
+	var/stomp_damage = 10
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	var/mech_turn_sound = 'sound/mechs/Mech_Rotation.ogg'
 	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
@@ -59,6 +60,7 @@
 	exosuit_desc_string = "reinforced lifter legs"
 	desc = "Wide and stable, but not particularly fast."
 	max_damage = 95
+	stomp_damage = 50
 	move_delay = 3 // Slow and chunky
 	turn_delay = 3
 	power_use = 10
@@ -71,6 +73,7 @@
 	move_delay = 1.5 // Very fast
 	turn_delay = 2 // Too fast to turn at drifting speed
 	max_damage = 45
+	stomp_damage = 30
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 
@@ -82,6 +85,7 @@
 	move_delay = 3
 	turn_delay = 2
 	max_damage = 125
+	stomp_damage = 60
 	power_use = 25
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 7, MATERIAL_DIAMOND = 2) // Expensive because durable.
 
@@ -93,5 +97,6 @@
 	move_delay = 5
 	turn_delay = 3
 	max_damage = 250
+	stomp_damage = 90
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)

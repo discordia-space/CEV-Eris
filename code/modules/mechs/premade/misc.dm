@@ -4,6 +4,7 @@
 	desc = "Specialized quadlegs designed to minimize time wasted reorienting the mech."
 	icon_state = "spiderlegs"
 	max_damage = 90
+	stomp_damage = 30
 	move_delay = 3
 	turn_delay = 1
 	power_use = 75
@@ -16,6 +17,7 @@
 	icon_state = "tracks"
 	max_damage = 180
 	move_delay = 1.5
+	stomp_damage = 75
 	turn_delay = 7
 	power_use = 150
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10)

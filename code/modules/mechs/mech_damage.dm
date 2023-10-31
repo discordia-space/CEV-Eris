@@ -1,7 +1,7 @@
 /mob/living/exosuit/apply_effect(effect = 0, effecttype = STUN, armor_value = 0, check_protection = TRUE)
 	if(!effect || (armor_value >= 100))
 		return 0
-	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
+	if(LAZYLEN(pilots) && (!hatch_closed || !prob(body.pilot_coverage)))
 		if(effect > 0 && effecttype == IRRADIATE)
 			effect = max((1 - (getarmor(null, ARMOR_RAD) / 100)) * effect / (armor_value + 1),0)
 		var/mob/living/pilot = pick(pilots)
@@ -33,7 +33,7 @@
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
 
-	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
+	if(LAZYLEN(pilots) && (!hatch_closed || prob(body.pilot_coverage)))
 		var/mob/living/pilot = pick(pilots)
 		return pilot.resolve_item_attack(I, user, def_zone)
 
@@ -73,6 +73,9 @@
 		else return body
 
 /mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
+	if(istext(def_zone))
+		def_zone = zoneToComponent(def_zone)
+
 	switch(damagetype)
 		if(BRUTE)
 			wounding_multiplier = wound_check(injury_type, wounding_multiplier, edge, sharp)
@@ -98,6 +101,8 @@
 
 	//Armor and damage
 	if(!P.nodamage)
+		if(def_zone == body && !hatch_closed && hit_dir = reverse_dir(dir) && get_mob())
+
 		hit_impact(P.get_structure_damage(), hit_dir)
 		for(var/damage_type in P.damage_types)
 			if(damage_type == HALLOSS)
@@ -140,3 +145,27 @@
 				for(var/thing in pilots)
 					var/mob/pilot = thing
 					pilot.emp_act(severity)
+
+/mob/living/exosuit/explosion_act(target_power, explosion_handler/handler)
+	var/damage = target_power - getarmor(body, ARMOR_BOMB)
+	var/split = round(damage/4)
+	var/blocked = 0
+	if(head)
+		adjustBruteLoss(split, head)
+		blocked++
+	if(body)
+		adjustBruteLoss(split, body)
+		blocked++
+	if(legs)
+		adjustBruteLoss(split, legs)
+		blocked++
+	if(arms)
+		adjustBruteLoss(split, arms)
+		blocked++
+	if(damage > 400)
+		occupant_message("You feel the shockwave of a external explosion pass through your body!")
+
+	return split*blocked
+
+
+

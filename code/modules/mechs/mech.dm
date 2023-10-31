@@ -29,7 +29,7 @@
 	// Access updating/container.
 	var/obj/item/card/id/access_card
 	var/list/saved_access = list()
-	var/sync_access = 1
+	var/sync_access = TRUE
 
 	// Mob currently piloting the exosuit.
 	var/list/pilots
