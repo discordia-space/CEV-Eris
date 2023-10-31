@@ -74,7 +74,7 @@
 	on_fire = 1
 	anchored = 1
 	sleep(600) //One minute to burn, for theatrics
-	new /obj/effect/decal/cleanable/ash(src.loc)
+	new /obj/effect/decal/cleanable/ash(loc)
 	if(occupant)
 		lost_in_space()
 
