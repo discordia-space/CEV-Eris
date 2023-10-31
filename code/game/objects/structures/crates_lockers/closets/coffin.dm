@@ -40,6 +40,7 @@
 		M.set_respawn_bonus("CORPSE_HANDLING", COFFIN_RESPAWN_BONUS)
 
 		qdel(occupant)
+		qdel(contents)
 		qdel(src)
 
 	return TRUE
@@ -72,20 +73,18 @@
 	add_overlay("coffin_pyre")
 	on_fire = 1
 	anchored = 1
-	sleep(600) //One minute to burn
+	sleep(600) //One minute to burn, for theatrics
+	new /obj/effect/decal/cleanable/ash(src.loc)
 	if(occupant)
 		lost_in_space()
-	new /obj/effect/decal/cleanable/ash(src.loc)
-	qdel(contents)
-	qdel(src)
 
 /obj/structure/closet/coffin/attackby(obj/item/I, mob/user)
-	if(!on_fire && isflamesource(I))
-		user.visible_message(SPAN_WARNING("[user] has lit the [src] on fire!"))
-		pyre()
 	if(on_fire)
 		to_chat(user, SPAN_NOTICE("The pyre is already lit. There's no turning back."))
 		return
+	if(!on_fire && isflamesource(I))
+		user.visible_message(SPAN_WARNING("[user] has lit the [src] on fire!"))
+		pyre()
 	
 	var/list/usable_qualities = list()
 	if(opened)
