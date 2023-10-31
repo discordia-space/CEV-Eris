@@ -62,11 +62,11 @@
 	/obj/landmark/corpse/russian)
 	new A
 
-/obj/structure/closet/coffin/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
+/obj/structure/closet/coffin/attack_hand(mob/user)
+	add_fingerprint(user)
 	if(opened)
 		to_chat(user, SPAN_NOTICE("You can't fit the cover back on without hammering it into place!"))
-	if(!opened)
+	else
 		to_chat(user, SPAN_NOTICE("The cover is too heavy to lift without a prying tool!"))
 
 /obj/structure/closet/coffin/proc/pyre(atom/movable/object)
