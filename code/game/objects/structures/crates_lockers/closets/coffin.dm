@@ -9,7 +9,7 @@
 	spawn_tags = SPAWN_TAG_CLOSET_COFFIN
 	bad_type = /obj/structure/closet/coffin
 	var/mob/living/occupant = null
-	var/on_fire = 0
+	var/on_fire = FALSE
 
 /obj/structure/closet/coffin/pauper
 	name = "pauper's coffin"
