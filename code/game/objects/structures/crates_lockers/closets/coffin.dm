@@ -12,6 +12,7 @@
 	store_misc = FALSE //It's a coffin, not a storage bin
 	var/mob/living/occupant = null
 	var/on_fire = FALSE
+	var/burning = null
 
 /obj/structure/closet/coffin/pauper
 	name = "pauper's coffin"
@@ -28,6 +29,13 @@
 			//We won't check if the mob is dead yet, maybe being spaced in a coffin is an execution method
 			occupant = L
 			break
+
+/obj/structure/closet/coffin/open()
+	..()
+	occupant = null
+	on_fire = FALSE
+	deltimer(burning)
+	visible_message(SPAN_NOTICE("Opening the coffin has disrupted the fire!"))
 
 //The coffin processes when there's a mob inside
 /obj/structure/closet/coffin/lost_in_space()
@@ -47,6 +55,8 @@
 	return TRUE
 
 /obj/structure/closet/coffin/proc/pyre()
+	if(opened)
+		close() //If someone wanted an open casket funeral, we still need the casket to close to determine occupant
 	new /obj/effect/decal/cleanable/ash(loc)
 	if(occupant && occupant.is_dead())
 		var/mob/N = key2mob(occupant.mind.key)
@@ -54,9 +64,8 @@
 		N << 'sound/effects/magic/blind.ogg'
 		N.set_respawn_bonus("CORPSE_HANDLING", COFFIN_RESPAWN_BONUS)
 
-		qdel(occupant)
-		qdel(contents)
-		qdel(src)
+	qdel(occupant)
+	qdel(src)
 
 	return
 
@@ -87,14 +96,11 @@
 /obj/structure/closet/coffin/proc/burn()
 	add_overlay("coffin_pyre")
 	on_fire = TRUE
-	addtimer(CALLBACK(src, PROC_REF(pyre), src), 120 SECONDS) //TODO: Add TIMER_STOPPABLE to being extinguished, which involves giving reagents touch effects to structures, which they currently don't affect
+	burning = addtimer(CALLBACK(src, PROC_REF(pyre), src), 120 SECONDS, TIMER_STOPPABLE) //TODO: Add TIMER_STOPPABLE to being extinguished, which involves giving reagents touch effects to structures, which they currently don't affect
 
 /obj/structure/closet/coffin/attackby(obj/item/I, mob/user)
-	if(on_fire)
-		to_chat(user, SPAN_NOTICE("The pyre is already lit. There's no turning back."))
-		return
 	if(!on_fire && isflamesource(I))
-		user.visible_message(SPAN_WARNING("[user] has lit the [src] on fire!"))
+		user.visible_message(SPAN_WARNING("[user] has lit the [src] on fire! In a couple minutes, it and its occupant will be ash!"))
 		burn()
 
 	var/list/usable_qualities = list()
