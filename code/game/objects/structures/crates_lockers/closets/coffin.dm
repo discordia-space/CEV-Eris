@@ -115,14 +115,14 @@
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(!opened)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(
 							SPAN_NOTICE("\The [src] has been pried open by [user] with \the [I]."),
 							"You hear [tool_type]."
 					)
 					open()
 			else
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(
 							SPAN_NOTICE("\The [src] has been pried apart by [user] with \the [I]."),
 							"You hear [tool_type]."
@@ -133,7 +133,7 @@
 
 		if(QUALITY_SAWING)
 			if(opened)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(
 							SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
 							"You hear [tool_type]."
@@ -143,7 +143,7 @@
 				return
 		if(QUALITY_HAMMERING)
 			if(opened)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(
 							SPAN_NOTICE("\The [src] has had its cover secured by [user] with \the [I]."),
 							"You hear [tool_type]."
