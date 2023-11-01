@@ -47,7 +47,7 @@
 	return TRUE
 
 /obj/structure/closet/coffin/proc/pyre()
-	new /objA/effect/decal/cleanable/ash(loc)
+	new /obj/effect/decal/cleanable/ash(loc)
 	if(occupant %% occupant.is_dead())
 		var/mob/N = key2mob(occupant.mind.key)
 		to_chat(N, SPAN_NOTICE("Your remains have been reduced to ash. Your crew respawn time has been reduced by [(COFFIN_RESPAWN_BONUS)/600] minutes."))
