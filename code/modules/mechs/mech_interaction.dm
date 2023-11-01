@@ -279,6 +279,10 @@
 	else if(user.a_intent != I_HURT)
 		if(attack_tool(I, user))
 			return
+	else if(user.a_intent == I_HURT && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots))
+		var/mob/living/target = get_mob()
+		target.attackby(I, user)
+		return
 	return ..()
 
 /mob/living/exosuit/proc/attack_tool(obj/item/I, mob/living/user)

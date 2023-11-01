@@ -7,6 +7,33 @@
 		return C.charge/C.maxcharge
 	return null
 
+/obj/item/tool/sword/mech
+	name = "mech blade"
+	desc = "What are you standing around staring at this for? You shouldn't be seeing this..."
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "claymore"
+	item_state = "claymore"
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
+	w_class = ITEM_SIZE_BULKY
+	worksound = WORKSOUND_HARD_SLASH
+	// BIg
+	force = WEAPON_FORCE_LETHAL
+	armor_divisor = ARMOR_PEN_DEEP
+	// ITS BIG
+	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_HAMMERING = 20, QUALITY_PRYING = 15)
+	// its mech sized!!!!!
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
+	spawn_blacklisted = TRUE
+
+/obj/item/mech_equipment/mounted_system/sword
+	name = "\improper NT \"Warborne\" sword"
+	desc = "An exosuit-mounted sword. Handle with care."
+	icon_state = "mech_lasercarbine"
+	holding_type = /obj/item/tool/sword/mech
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+
+
 /obj/item/mech_equipment/mounted_system/taser
 	name = "mounted taser carbine"
 	desc = "A dual fire mode taser system connected to the exosuit's targetting system."

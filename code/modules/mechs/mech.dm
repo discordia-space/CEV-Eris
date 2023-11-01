@@ -218,4 +218,4 @@
 
 /mob/living/exosuit/get_mob()
 	if(length(pilots))
-		return pilots[1]
+		return pick(pilots)

@@ -94,23 +94,28 @@
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
+	var/target = src
+	if(def_zone == body && !hatch_closed && hit_dir = reverse_dir[dir] && get_mob())
+		target = get_mob()
 	//Stun Beams
-	if(P.taser_effect)
+	if(P.taser_effect && target == src)
 		qdel(P)
 		return TRUE
 
+	var/target = src
 	//Armor and damage
 	if(!P.nodamage)
-		if(def_zone == body && !hatch_closed && hit_dir = reverse_dir(dir) && get_mob())
-
-		hit_impact(P.get_structure_damage(), hit_dir)
+		target.hit_impact(P.get_structure_damage(), hit_dir)
 		for(var/damage_type in P.damage_types)
-			if(damage_type == HALLOSS)
+			if(damage_type == HALLOSS && target == src)
 				continue // don't even bother
 			var/damage = P.damage_types[damage_type]
-			damage_through_armor(clamp(damage,0, damage), damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+			target.damage_through_armor(clamp(damage,0, damage), damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+		if(target != src)
+			visible_message("[get_mob()] gets hit by \the [P]!")
 
-	P.on_hit(src, def_zone)
+
+	P.on_hit(target, def_zone)
 	return TRUE
 
 

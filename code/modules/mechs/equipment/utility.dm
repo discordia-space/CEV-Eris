@@ -180,6 +180,32 @@
 		//set_light(0, 0)
 		set_light(0, 0)
 
+/obj/item/mech_equipment/thrusters
+	name = "exosuit thrusters"
+	desc = "An industrial-sized jetpack for mechs."
+	icon_state = "mech_jet"
+	item_state = "mech_jet"
+	restricted_hardpoints = list(HARDPOINT_HEAD)
+	mech_layer = MECH_INTERMEDIATE_LAYER
+
+	var/on = FALSE
+	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 4)
+
+/obj/item/mech_equipment/thrusters/attack_self(mob/user)
+	. = ..()
+	if(.)
+		on = !on
+		to_chat(user, "You switch \the [src] [on ? "on" : "off"].")
+		update_icon()
+		owner.update_icon()
+
+/obj/item/mech_equipment/thrusters/update_icon()
+	. = ..()
+	if(on)
+		icon_state = "[initial(icon_state)]_on"
+	else
+		icon_state = "[initial(icon_state)]_off"
+
 #define CATAPULT_SINGLE 1
 #define CATAPULT_AREA   2
 
