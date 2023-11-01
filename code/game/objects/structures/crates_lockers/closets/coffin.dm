@@ -145,7 +145,7 @@
 			if(opened)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					visible_message(
-							SPAN_NOTICE("\The [src] has had it's cover secured by [user] with \the [I]."),
+							SPAN_NOTICE("\The [src] has had its cover secured by [user] with \the [I]."),
 							"You hear [tool_type]."
 					)
 					close()
