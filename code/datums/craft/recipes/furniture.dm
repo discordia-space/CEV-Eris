@@ -87,7 +87,7 @@
 	name = "pauper's coffin"
 	result = /obj/structure/closet/coffin/pauper
 	steps = list(
-		list(CRAFT_MATERIAL, 30, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 30, MATERIAL_WOOD)
 	)
 
 /datum/craft_recipe/furniture/bed
