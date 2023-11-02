@@ -38,9 +38,9 @@
 	var/mob/living/L
 	if (gun && gun.is_held())
 		L = gun.loc
-	else if(istype(gun.loc, /obj/item/mech_equipment))
+	else if(ismech(gun.loc))
 		// location inception
-		var/mob/living/exosuit/mech = gun.loc.loc
+		var/mob/living/exosuit/mech = gun.loc
 		L = mech.get_mob()
 
 	var/enable = FALSE

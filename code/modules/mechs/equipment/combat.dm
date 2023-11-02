@@ -262,6 +262,8 @@
 	ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
+	// yes we do this before every fire
+	update_firemode()
 	..()
 	if(ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
 		qdel(ammo_magazine)

@@ -95,7 +95,7 @@
 
 /obj/item/mech_equipment/mounted_system/resolve_attackby(atom/A, mob/user, params)
 	// foward attackbys only when we are installed .
-	if(istype(loc, /mob/living/exosuit))
+	if(ismech(loc))
 		// force the firemode to update its user.
 		if(isgun(holding))
 			var/obj/item/gun/firegun = holding
