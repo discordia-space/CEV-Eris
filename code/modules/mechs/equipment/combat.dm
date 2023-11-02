@@ -17,7 +17,7 @@
 	w_class = ITEM_SIZE_BULKY
 	worksound = WORKSOUND_HARD_SLASH
 	// BIg
-	force = WEAPON_FORCE_LETHAL
+	force = WEAPON_FORCE_LETHAL * 2
 	armor_divisor = ARMOR_PEN_DEEP
 	// ITS BIG
 	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_HAMMERING = 20, QUALITY_PRYING = 15)
@@ -25,10 +25,43 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	spawn_blacklisted = TRUE
 
+/obj/item/mech_blade_assembly
+	name = "unfinished mech blade"
+	desc = "A mech-blade framework lacking a blade"
+	icon = MECH_EQUIPMENT_ICON
+	icon_state = "mech_blade_bladeless"
+	var/sharpeners = 0
+	var/material/blade_mat = null
+
+/obj/item/mech_blade_assembly/examine(user, distance)
+	. = ..()
+	if(.)
+		if(sharpeners)
+			to_chat(user, SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough"))
+		else
+			to_chat(user, SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade"))
+
+/obj/item/mech_blade_assembly/attackby(obj/item/I, mob/living/user, params)
+	if(!istype(I, /obj/item/stack/material))
+		return ..()
+	if(blade_mat)
+	var/obj/item/stack/material/mat = I
+	if(!mat.material.hardness)
+		to_chat(user, SPAN_NOTICE("This material can't be sharpened!"))
+		return
+	if(mat.can_use(5))
+		if(mat.use(5))
+			to_chat(user , SPAN_NOTICE("You insert 5 sheets of the [mat] into the [src] , creating a blade requiring [round((mat.material.hardness)/20)] sharpeners to not be dull"))
+			blade_mat = mat.material
+			sharpeners = round(blade_mat.hardness/20)
+
+
+
+
 /obj/item/mech_equipment/mounted_system/sword
 	name = "\improper NT \"Warborne\" sword"
 	desc = "An exosuit-mounted sword. Handle with care."
-	icon_state = "mech_lasercarbine"
+	icon_state = "mech_blade"
 	holding_type = /obj/item/tool/sword/mech
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
