@@ -41,7 +41,11 @@
 	else if(ismech(gun.loc))
 		// location inception
 		var/mob/living/exosuit/mech = gun.loc
-		L = mech.get_mob()
+		// so that we can actually switch it off
+		if(istype(mech.selected_system, /obj/item/mech_equipment/mounted_system))
+			var/obj/item/mech_equipment/mounted_system/mount = mech.selected_system
+			if(mount.holding == gun)
+				L = mech.get_mob()
 
 	var/enable = FALSE
 	//Force state is used for forcing it to be disabled in circumstances where it'd normally be valid

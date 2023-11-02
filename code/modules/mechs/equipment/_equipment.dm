@@ -74,6 +74,10 @@
 /obj/item/mech_equipment/mounted_system/attack_self(var/mob/user)
 	. = ..()
 	if(. && holding)
+		// force the firemode to update its user.
+		if(isgun(holding))
+			var/obj/item/gun/firegun = holding
+			firegun.update_firemode()
 		return holding.attack_self(user)
 
 /obj/item/mech_equipment/mounted_system/proc/forget_holding()
@@ -96,10 +100,6 @@
 /obj/item/mech_equipment/mounted_system/resolve_attackby(atom/A, mob/user, params)
 	// foward attackbys only when we are installed .
 	if(ismech(loc))
-		// force the firemode to update its user.
-		if(isgun(holding))
-			var/obj/item/gun/firegun = holding
-			firegun.update_firemode()
 		return holding.attackby(A, user, params)
 	else ..()
 

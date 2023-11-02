@@ -278,28 +278,3 @@
 		spawn(2)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
 
-/obj/item/mech_equipment/mounted_system/ballistic/s
-	name = "SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Horribly inaccurate, but packs quite a punch."
-	icon_state = "mech_pk"
-	holding_type = /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech
-	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
-	restricted_software = list(MECH_SOFTWARE_WEAPONS)
-	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3)
-	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
-	spawn_blacklisted = TRUE
-
-/obj/item/gun/projectile/automatic/lmg/pk/mounted
-	bad_type = /obj/item/gun/projectile/automatic/lmg/pk/mounted
-
-/obj/item/gun/projectile/automatic/lmg/pk/mounted/mech
-	name = 	"SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Slightly inaccurate, but packs quite a punch."
-	restrict_safety = TRUE
-	twohanded = FALSE
-	init_firemodes = list(
-		FULL_AUTO_400
-		)
-	spawn_tags = null
-	matter = list()
-	magazine_type = /obj/item/ammo_magazine/lrifle/pk/mech
