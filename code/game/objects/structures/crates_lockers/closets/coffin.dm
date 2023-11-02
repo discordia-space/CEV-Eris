@@ -33,9 +33,10 @@
 /obj/structure/closet/coffin/open()
 	..()
 	occupant = null
-	on_fire = FALSE
-	deltimer(burning)
-	visible_message(SPAN_NOTICE("Opening the coffin has disrupted the fire!"))
+	if(on_fire)
+		on_fire = FALSE
+		deltimer(burning)
+		visible_message(SPAN_NOTICE("Opening the coffin has disrupted the fire!"))
 
 //The coffin processes when there's a mob inside
 /obj/structure/closet/coffin/lost_in_space()
@@ -100,7 +101,11 @@
 
 /obj/structure/closet/coffin/attackby(obj/item/I, mob/user)
 	if(!on_fire && isflamesource(I))
-		user.visible_message(SPAN_WARNING("[user] has lit the [src] on fire! In a couple minutes, it and its occupant will be ash!"))
+		user.visible_message(
+				SPAN_WARNING("[user] has lit the [src] on fire! In a couple minutes, it and its occupant will be ash!"), \
+				SPAN_WARNING("You've started the pyre, committing a poor soul unto the afterlife."), \
+				SPAN_WARNING("You smell wood burning.")
+			)
 		burn()
 
 	var/list/usable_qualities = list()
@@ -116,16 +121,18 @@
 		if(QUALITY_PRYING)
 			if(!opened)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					visible_message(
-							SPAN_NOTICE("\The [src] has been pried open by [user] with \the [I]."),
-							"You hear [tool_type]."
+					user.visible_message(
+							SPAN_NOTICE("[user] pried open the [src] with \the [I]."), \
+							SPAN_NOTICE("You pried open the [src]."), \
+							SPAN_NOTICE("You hear nails being pried from wood.")
 					)
 					open()
 			else
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					visible_message(
-							SPAN_NOTICE("\The [src] has been pried apart by [user] with \the [I]."),
-							"You hear [tool_type]."
+					user.visible_message(
+							SPAN_NOTICE("[user] tore apart the [src] with \the [I]."), \
+							SPAN_NOTICE("You pried apart the planks of the [src]."), \
+							SPAN_NOTICE("You hear a something wooden being torn apart.")
 					)
 					drop_materials(drop_location())
 					qdel(src)
@@ -134,9 +141,10 @@
 		if(QUALITY_SAWING)
 			if(opened)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					visible_message(
-							SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [I]."),
-							"You hear [tool_type]."
+					user.visible_message(
+							SPAN_NOTICE("[user] carved the [src] apart with \the [I]."), \
+							SPAN_NOTICE("You carved off the planks of the [src]."), \
+							SPAN_NOTICE("You hear wood being sawn.")
 					)
 					drop_materials(drop_location())
 					qdel(src)
@@ -144,9 +152,10 @@
 		if(QUALITY_HAMMERING)
 			if(opened)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					visible_message(
-							SPAN_NOTICE("\The [src] has had its cover secured by [user] with \the [I]."),
-							"You hear [tool_type]."
+					user.visible_message(
+							SPAN_NOTICE("[user] diligently hammered the [src] cover in place with \the [I]."), \
+							SPAN_NOTICE("You hammered the [src] cover on."), \
+							SPAN_NOTICE("You hear nails being driven into wood.")
 					)
 					close()
 				return
