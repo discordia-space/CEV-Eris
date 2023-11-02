@@ -189,7 +189,17 @@
 	mech_layer = MECH_INTERMEDIATE_LAYER
 
 	var/on = FALSE
+	/// Needed for Z-travel methods
+	var/obj/item/tank/jetpack/infinite/jetpack_fluff
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 4)
+
+/obj/item/mech_equipment/thrusters/Initialize()
+	. = ..()
+	jetpack_fluff = new /obj/item/tank/jetpack/infinite(src)
+	// needs to be on for it to be used by any Vertical travel method (VTM)
+	jetpack_fluff.on = TRUE
+	// so it doesnt show when vertically traveling as INFINITE DEBUF JETPACK
+	jetpack_fluff.name = src.name
 
 /obj/item/mech_equipment/thrusters/attack_self(mob/user)
 	. = ..()

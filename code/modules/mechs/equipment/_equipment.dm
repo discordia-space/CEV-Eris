@@ -27,14 +27,14 @@
 
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
 		if(target in owner.contents)
-			return 0
+			return FALSE
 		var/obj/item/cell/C = owner.get_cell()
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
 			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/item/mech_equipment/Click()
 	. = ..()
@@ -45,10 +45,10 @@
 		var/obj/item/cell/C = owner.get_cell()
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
 			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/item/mech_equipment/proc/installed(var/mob/living/exosuit/_owner)
 	owner = _owner
@@ -93,6 +93,15 @@
 		SetName(holding.name)
 		desc = "[holding.desc] This one is suitable for installation on an exosuit."
 
+/obj/item/mech_equipment/mounted_system/resolve_attackby(atom/A, mob/user, params)
+	// foward attackbys only when we are installed .
+	if(istype(loc, /mob/living/exosuit))
+		// force the firemode to update its user.
+		if(isgun(holding))
+			var/obj/item/gun/firegun = holding
+			firegun.update_firemode()
+		return holding.attackby(A, user, params)
+	else ..()
 
 /obj/item/mech_equipment/mounted_system/Destroy()
 	if(holding)

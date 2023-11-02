@@ -102,20 +102,25 @@
 		qdel(P)
 		return TRUE
 	//Armor and damage
+	// Pass to pilot
+	if(target != src)
+		var/result = target.bullet_act(P, ran_zone())
+		var/turf/location = get_turf(src)
+		location.visible_message("[get_mob()] gets hit by \the [P]!")
+		if(result != PROJECTILE_CONTINUE)
+			return
+
 	if(!P.nodamage)
-		target.hit_impact(P.get_structure_damage(), hit_dir)
+		hit_impact(P.get_structure_damage(), hit_dir)
 		for(var/damage_type in P.damage_types)
 			if(damage_type == HALLOSS && target == src)
 				continue // don't even bother
 			var/damage = P.damage_types[damage_type]
-			target.damage_through_armor(clamp(damage,0, damage), damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
-		if(target != src)
-			visible_message("[get_mob()] gets hit by \the [P]!")
+			damage_through_armor(clamp(damage,0, damage), damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
 
 	P.on_hit(target, def_zone)
-	return TRUE
-
+	return PROJECTILE_STOP
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0

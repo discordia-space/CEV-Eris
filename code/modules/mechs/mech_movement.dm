@@ -34,6 +34,14 @@
 						visible_message("The [src] pushes [victim] downwards")
 						occupant_message("You can feel the [src] step onto something")
 
+/mob/living/exosuit/get_jetpack()
+	for(var/hardpoint_thing in hardpoints)
+		if(istype(hardpoints[hardpoint_thing], /obj/item/mech_equipment/thrusters))
+			var/obj/item/mech_equipment/thrusters/jetpack = hardpoints[hardpoint_thing]
+			if(jetpack.on)
+				return jetpack.jetpack_fluff
+	return null
+
 /mob/living/exosuit/allow_spacemove()
 	. = ..()
 	for(var/hardpoint_thing in hardpoints)

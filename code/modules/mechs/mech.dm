@@ -80,6 +80,8 @@
 	for(var/mob/i in pilots)
 		to_chat(i, msg)
 
+
+
 /*
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
@@ -194,6 +196,7 @@
 		to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
 
 	to_chat(user, "It menaces with reinforcements of [material].")
+	to_chat(user,  SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand . The hatch must be opened."))
 
 
 /mob/living/exosuit/return_air()

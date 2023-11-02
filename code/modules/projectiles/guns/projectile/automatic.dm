@@ -38,6 +38,10 @@
 	var/mob/living/L
 	if (gun && gun.is_held())
 		L = gun.loc
+	else if(istype(gun.loc, /obj/item/mech_equipment))
+		// location inception
+		var/mob/living/exosuit/mech = gun.loc.loc
+		L = mech.get_mob()
 
 	var/enable = FALSE
 	//Force state is used for forcing it to be disabled in circumstances where it'd normally be valid
@@ -48,8 +52,8 @@
 		//First of all, lets determine whether we're enabling or disabling the click handler
 
 
-		//We enable it if the gun is held in the user's active hand and the safety is off
-		if (L.get_active_hand() == gun)
+		//We enable it if the gun is held in the user's active hand and the safety is off or if they are doing this from inside a mech
+		if (L.get_active_hand() == gun || ismech(L.loc))
 			//Lets also make sure it can fire
 			var/can_fire = TRUE
 
