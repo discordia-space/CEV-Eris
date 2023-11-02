@@ -73,6 +73,8 @@
 		else return body
 
 /mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
+	if(istext(def_zone))
+		def_zone = zoneToComponent(def_zone)
 	switch(damagetype)
 		if(BRUTE)
 			wounding_multiplier = wound_check(injury_type, wounding_multiplier, edge, sharp)
@@ -84,6 +86,7 @@
 			return TRUE
 	updatehealth()
 	return FALSE
+
 
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, var/def_zone)
 	var/hit_dir = get_dir(P.starting, src)
@@ -140,3 +143,25 @@
 				for(var/thing in pilots)
 					var/mob/pilot = thing
 					pilot.emp_act(severity)
+
+/mob/living/exosuit/explosion_act(target_power, explosion_handler/handler)
+	var/damage = target_power - getarmor(body, ARMOR_BOMB)
+	var/split = round(damage/4)
+	var/blocked = 0
+	if(head)
+		adjustBruteLoss(split, head)
+		blocked++
+	if(body)
+		adjustBruteLoss(split, body)
+		blocked++
+	if(legs)
+		adjustBruteLoss(split, legs)
+		blocked++
+	if(arms)
+		adjustBruteLoss(split, arms)
+		blocked++
+	if(damage > 400)
+		occupant_message("You feel the shockwave of a external explosion pass through your body!")
+
+	return split*blocked
+
