@@ -353,7 +353,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
 	weight = 34
-	hardness = 50
+	hardness = 60
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = PLASTEEL_COLOUR
@@ -577,7 +577,7 @@ var/list/name_to_material
 	icon_colour = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	weight = 90
-	hardness = 120
+	hardness = 90
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
@@ -613,7 +613,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
-	hardness = 20
+	hardness = 40
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'

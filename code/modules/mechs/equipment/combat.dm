@@ -16,22 +16,25 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
 	w_class = ITEM_SIZE_BULKY
 	worksound = WORKSOUND_HARD_SLASH
-	// BIg
-	force = WEAPON_FORCE_LETHAL * 2
+	// Its Big
 	armor_divisor = ARMOR_PEN_DEEP
-	// ITS BIG
 	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_HAMMERING = 20, QUALITY_PRYING = 15)
 	// its mech sized!!!!!
-	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
+	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	spawn_blacklisted = TRUE
 
+#define OVERKEY_BLADE "blade_overlay"
 /obj/item/mech_blade_assembly
 	name = "unfinished mech blade"
 	desc = "A mech-blade framework lacking a blade"
-	icon = MECH_EQUIPMENT_ICON
-	icon_state = "mech_blade_bladeless"
+	icon_state = "mech_blade_assembly"
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
 	var/sharpeners = 0
 	var/material/blade_mat = null
+
+/obj/item/mech_blade_assembly/Initialize()
+	. = ..()
+	AddComponent(/datum/component/overlay_manager)
 
 /obj/item/mech_blade_assembly/examine(user, distance)
 	. = ..()
@@ -40,22 +43,78 @@
 			to_chat(user, SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough"))
 		else
 			to_chat(user, SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade"))
+		to_chat(user , SPAN_NOTICE("Use a wrench to make this mountable. This is not reversible"))
 
 /obj/item/mech_blade_assembly/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/tool_upgrade/productivity/whetstone))
+		if(sharpeners)
+			user.remove_from_mob(I, TRUE)
+			I.forceMove(src)
+			to_chat(user ,SPAN_NOTICE("You sharpen the blade on the [src]"))
+			sharpeners--
+		return
+	if(istool(I))
+		var/obj/item/tool/thing = I
+		if(thing.has_quality(QUALITY_BOLT_TURNING))
+			if(!blade_mat)
+				to_chat(user, SPAN_NOTICE("You can't tighten the blade-mechanism onto a blade of air!"))
+				return
+			to_chat(user, SPAN_NOTICE("You start tightening \the [src] onto the blade made of [blade_mat.display_name]"))
+			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, 0, STAT_MEC, 150))
+				if(QDELETED(src))
+					return
+				to_chat(user, SPAN_NOTICE("You tighten the blade on \the [src], creating a mech-mountable blade "))
+				var/obj/item/mech_equipment/mounted_system/sword/le_mech_comp = new /obj/item/mech_equipment/mounted_system/sword(get_turf(src))
+				var/obj/item/mech_equipment/mounted_system/sword/le_mech_sword = le_mech_comp.holding
+				// DULL BLADE gets DULL DAMAGE
+				le_mech_sword.force = max(0,(blade_mat.hardness - 35 * sharpeners)/2)
+				le_mech_sword.matter = list(blade_mat.name = 5)
+				qdel(src)
+				return
+
 	if(!istype(I, /obj/item/stack/material))
 		return ..()
 	if(blade_mat)
+		to_chat(user, SPAN_NOTICE("There is already a blade formed! You can remove it by using it in hand."))
+		return
 	var/obj/item/stack/material/mat = I
 	if(!mat.material.hardness)
 		to_chat(user, SPAN_NOTICE("This material can't be sharpened!"))
 		return
 	if(mat.can_use(5))
 		if(mat.use(5))
-			to_chat(user , SPAN_NOTICE("You insert 5 sheets of the [mat] into the [src] , creating a blade requiring [round((mat.material.hardness)/20)] sharpeners to not be dull"))
+			to_chat(user , SPAN_NOTICE("You insert 5 sheets of the [mat] into the [src] , creating a blade requiring [round((mat.material.hardness)/60)] sharpeners to not be dull"))
 			blade_mat = mat.material
-			sharpeners = round(blade_mat.hardness/20)
+			sharpeners = round(blade_mat.hardness/60)
+			matter[mat.material.name]+= 5
+			update_icon()
 
+/obj/item/mech_blade_assembly/attack_self(mob/user)
+	if(blade_mat)
+		to_chat(user, SPAN_NOTICE("You start removing the blade from \the [src]"))
+		if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
+			// No duping!!
+			if(!blade_mat)
+				to_chat(user, SPAN_NOTICE("There is no material left to remove from \the [src]"))
+				return
+			to_chat(user, SPAN_NOTICE("You remove 5 sheets of [blade_mat.display_name] from the [src]'s blade attachment point"))
+			matter[blade_mat.name]-= 5
+			var/obj/item/stack/material/mat_stack = new blade_mat.stack_type(get_turf(user))
+			mat_stack.amount = 5
+			blade_mat = null
+			update_icon()
 
+/obj/item/mech_blade_assembly/update_icon()
+	. = ..()
+	var/datum/component/overlay_manager/thing = GetComponent(/datum/component/overlay_manager)
+	if(thing)
+		thing.removeOverlay(OVERKEY_BLADE)
+		if(blade_mat)
+			var/mutable_appearance/overlay = mutable_appearance(src.icon, "[icon_state]_blade")
+			overlay.color = blade_mat.icon_colour
+			thing.addOverlay(OVERKEY_BLADE, overlay)
+
+#undef OVERKEY_BLADE
 
 
 /obj/item/mech_equipment/mounted_system/sword
@@ -63,7 +122,7 @@
 	desc = "An exosuit-mounted sword. Handle with care."
 	icon_state = "mech_blade"
 	holding_type = /obj/item/tool/sword/mech
-	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
 
@@ -191,7 +250,7 @@
 	restrict_safety = TRUE
 	twohanded = FALSE
 	init_firemodes = list(
-		list(mode_name="spit fire",  burst=5, burst_delay=0.8, one_hand_penalty=15, icon="burst")
+		FULL_AUTO_400
 		)
 	spawn_tags = null
 	matter = list()

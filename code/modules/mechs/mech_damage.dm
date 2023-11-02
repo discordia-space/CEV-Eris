@@ -94,15 +94,13 @@
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
-	var/target = src
-	if(def_zone == body && !hatch_closed && hit_dir = reverse_dir[dir] && get_mob())
+	var/mob/living/target = src
+	if(def_zone == body && !hatch_closed && hit_dir == reverse_dir[dir] && get_mob())
 		target = get_mob()
 	//Stun Beams
 	if(P.taser_effect && target == src)
 		qdel(P)
 		return TRUE
-
-	var/target = src
 	//Armor and damage
 	if(!P.nodamage)
 		target.hit_impact(P.get_structure_damage(), hit_dir)

@@ -46,6 +46,12 @@
 	//If we're inside a thing, that thing is the thing that moves
 	if (istype(loc, /obj))
 		mover = loc
+	// If were inside a mech
+	if(istype(loc, /mob/living/exosuit))
+		var/mob/living/exosuit/mech = loc
+		if(src in mech.pilots)
+			mover = loc
+			break
 
 
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
