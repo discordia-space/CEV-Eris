@@ -131,6 +131,9 @@
 			var/mob/ruser = src
 			if(!system_moved) //It's more useful to pass along clicker pilot when logic is fully mechside
 				ruser = user
+			if(isgun(temp_system))
+				var/obj/item/gun/weapon = temp_system
+				weapon.update_firemode()
 			temp_system.afterattack(A,ruser,adj,params)
 		if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
 			log_attack("[user] used [temp_system] targetting [A]")

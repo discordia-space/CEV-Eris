@@ -110,6 +110,12 @@
 
 	if(!owner || !owner.mob || owner.mob.resting)
 		return FALSE
+	if(ismech(owner.mob.loc))
+		var/mob/exosuit = owner.mob.loc
+		// If we are in a mech and we do not share any straight-foward angles in a 45 degree cone , then stop firing so mechs cant fire backwards
+		// Aka N-facing mech can do NE, NW, N ,  S facing mech can do S , SW,  SE , E facing mech can do SE, E, NE.
+		if(!(exosuit.dir & get_dir(reciever, target)))
+			return FALSE
 	if(target)
 		owner.mob.face_atom(target)
 
