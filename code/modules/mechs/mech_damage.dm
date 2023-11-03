@@ -32,10 +32,15 @@
 	if(!I.force)
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
-	// must be in front
-	if(LAZYLEN(pilots) && !(hatch_closed || prob(body.pilot_coverage) && get_dir(user, src) & reverse_dir[dir]))
+	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
+	var/roll = !prob(body.pilot_coverage)
+	if(LAZYLEN(pilots) && ((!hatch_closed && (get_dir(user,src) & reverse_dir[dir])) || roll))
 		var/mob/living/pilot = pick(pilots)
 		return pilot.resolve_item_attack(I, user, def_zone)
+	else if(LAZYLEN(pilots) && !roll)
+		var/turf/location = get_turf(src)
+		location.visible_message(SPAN_DANGER("\The [user] tries to attack the pilot inside of \the [src], but the chassis blocks it!"))
+		return def_zone
 
 	return def_zone //Careful with effects, mechs shouldn't be stunned
 
@@ -95,7 +100,7 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 	var/mob/living/target = src
-	if(def_zone == body && !(hatch_closed || prob(body.pilot_coverage) && hit_dir & reverse_dir[dir] && get_mob()))
+	if(def_zone == body && ((!hatch_closed && (hit_dir & reverse_dir[dir])) || !prob(body.pilot_coverage)) && get_mob())
 		target = get_mob()
 	//Stun Beams
 	if(P.taser_effect && target == src)
