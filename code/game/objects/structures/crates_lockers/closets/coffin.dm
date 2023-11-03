@@ -23,6 +23,8 @@
 
 /obj/structure/closet/coffin/close(mob/living/user)
 	..()
+	if(on_fire)
+		add_overlay("coffin_pyre") //Otherwise the flame visual goes away from the icon changing
 	for (var/mob/living/L in contents)
 		//When the coffin is closed we check for mobs in it.
 		if (L.mind && L.mind.key)
