@@ -448,10 +448,6 @@
 			return FALSE
 
 	if(ismob(A))
-		// for when somehow a mob inside a mech / closet gets bumped.
-		if(!isturf(A.loc))
-			bumped = FALSE
-			return FALSE
 		var/mob/M = A
 		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
@@ -535,7 +531,8 @@
 		pixel_y = location.pixel_y
 
 		if(!bumped && !QDELETED(original) && !isturf(original))
-			if(loc == get_turf(original))
+			// this used to be loc == get_turf(original) , but this would break incase the original was inside something and hit them without hitting the outside
+			if(loc == original.loc)
 				if(!(original in permutated))
 					if(Bump(original))
 						return
