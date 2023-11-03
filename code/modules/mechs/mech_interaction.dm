@@ -222,7 +222,7 @@
 	user.playsound_local(null, 'sound/mechs/nominal.ogg', 50)
 	LAZYDISTINCTADD(user.additional_vision_handlers, src)
 	update_pilots()
-	return 1
+	return TRUE
 
 /mob/living/exosuit/proc/sync_access()
 	access_card.access = saved_access.Copy()

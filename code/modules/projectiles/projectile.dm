@@ -431,6 +431,7 @@
 		loc = A.loc
 		return FALSE //go fuck yourself in another place pls
 
+
 	if((bumped && !forced) || (A in permutated))
 		return FALSE
 
@@ -446,8 +447,12 @@
 			trajectory.loc_z = loc.z
 			bumped = FALSE
 			return FALSE
-
 	if(ismob(A))
+		// Mobs inside containers shouldnt get bumped(such as mechs or closets)
+		if(!isturf(A.loc))
+			bumped = FALSE
+			return FALSE
+
 		var/mob/M = A
 		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
