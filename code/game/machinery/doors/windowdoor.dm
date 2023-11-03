@@ -78,7 +78,7 @@
 	var/mob/M = AM // we've returned by here if M is not a mob
 	if (src.operating)
 		return
-	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM))
+	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM) && can_open())
 		open()
 		addtimer(CALLBACK(src, PROC_REF(close)), 5 SECONDS)
 		/*
@@ -109,10 +109,10 @@
 /obj/machinery/door/window/open()
 	if (src.operating == TRUE) //doors can still open when emag-disabled
 		return FALSE
-	if(!src.operating) //in case of emag
-		src.operating = TRUE
 	if(!can_open())
 		return FALSE
+	if(!src.operating) //in case of emag
+		src.operating = TRUE
 	flick(text("[]opening", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]open", src.base_state)
