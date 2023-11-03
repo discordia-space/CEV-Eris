@@ -175,7 +175,7 @@
 
 /obj/item/device/assembly/signaler/door_controller
 	name = "remote door signaling device"
-	desc = "Used to remotely activate doors. 2 Beeps for opened ,1 for closed ,0 for no answer. Alt-Click to change Mode , Ctrl-Click to change code."
+	desc = "Used to remotely activate doors. 2 Beeps for opened, 1 for closed, 0 for no answer. Alt-Click to change Mode, Ctrl-Click to change code."
 	icon_state = "signaller"
 	item_state = "signaler"
 	origin_tech = list(TECH_MAGNET = 1)
