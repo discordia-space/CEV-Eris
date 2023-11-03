@@ -32,8 +32,8 @@
 	if(!I.force)
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
-
-	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
+	// must be in front
+	if(LAZYLEN(pilots) && !(hatch_closed || prob(body.pilot_coverage) && get_dir(user, src) & reverse_dir[dir]))
 		var/mob/living/pilot = pick(pilots)
 		return pilot.resolve_item_attack(I, user, def_zone)
 
@@ -94,23 +94,34 @@
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
+	var/mob/living/target = src
+	if(def_zone == body && !(hatch_closed || prob(body.pilot_coverage) && hit_dir & reverse_dir[dir] && get_mob()))
+		target = get_mob()
 	//Stun Beams
-	if(P.taser_effect)
+	if(P.taser_effect && target == src)
 		qdel(P)
 		return TRUE
-
 	//Armor and damage
+	// Pass to pilot
+	if(target != src)
+		var/result = target.bullet_act(P, ran_zone())
+		var/turf/location = get_turf(src)
+		location.visible_message("[get_mob()] gets hit by \the [P]!")
+		// if it gets stuck in the mob , dont go throug mech
+		if(result != PROJECTILE_CONTINUE)
+			return
+	// hit mech if there is no pilot or if it went throug  the pilot
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
 		for(var/damage_type in P.damage_types)
-			if(damage_type == HALLOSS)
+			if(damage_type == HALLOSS && target == src)
 				continue // don't even bother
 			var/damage = P.damage_types[damage_type]
 			damage_through_armor(clamp(damage,0, damage), damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
 
-	P.on_hit(src, def_zone)
-	return TRUE
 
+	P.on_hit(target, def_zone)
+	return PROJECTILE_STOP
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0
@@ -152,7 +163,13 @@
 		adjustBruteLoss(split, head)
 		blocked++
 	if(body)
-		adjustBruteLoss(split, body)
+		if(pilots && !(hatch_closed || prob(body.pilot_coverage)))
+			var/mob/living/pilot = get_mob()
+			// split damage between pilot n mech
+			pilot.explosion_act(round(split/2), handler)
+			adjustBruteLoss(round(split/2), body)
+		else
+			adjustBruteLoss(split, body)
 		blocked++
 	if(legs)
 		adjustBruteLoss(split, legs)
@@ -163,5 +180,5 @@
 	if(damage > 400)
 		occupant_message("You feel the shockwave of a external explosion pass through your body!")
 
-	return split*blocked
+	return round(split*blocked)
 
