@@ -257,7 +257,7 @@
 			command = "CMD_DOOR_CLOSE"
 		if("Open")
 			command = "CMD_DOOR_OPEN"
-	to_chat(user, SPAN_NOTICE("You change [src]'s signalling mode to [option]"))
+	to_chat(user, SPAN_NOTICE("You change the signalling mode of \the [src]to [option]."))
 
 /obj/item/device/assembly/signaler/door_controller/CtrlClick(mob/living/carbon/human/user)
 	if(!istype(user))
