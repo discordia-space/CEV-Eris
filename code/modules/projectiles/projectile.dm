@@ -448,6 +448,10 @@
 			return FALSE
 
 	if(ismob(A))
+		// for when somehow a mob inside a mech / closet gets bumped.
+		if(!isturf(A.loc))
+			bumped = FALSE
+			return FALSE
 		var/mob/M = A
 		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
