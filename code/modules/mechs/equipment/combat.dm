@@ -230,6 +230,14 @@
 /obj/item/mech_equipment/mounted_system/ballistic
 	bad_type = /obj/item/mech_equipment/mounted_system/ballistic
 
+/obj/item/mech_equipment/mounted_system/ballistic/on_select()
+	var/obj/item/gun/wep = holding
+	wep.update_firemode()
+
+/obj/item/mech_equipment/mounted_system/ballistic/on_unselect()
+	var/obj/item/gun/wep = holding
+	wep.update_firemode()
+
 /obj/item/mech_equipment/mounted_system/ballistic/pk
 	name = "SA \"VJP\""
 	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Horribly inaccurate, but packs quite a punch."
@@ -242,14 +250,14 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/mounted_system/ballistic/pk/on_select()
+	..()
 	var/obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/wep = holding
-	//wep.cocked = FALSE
-	wep.update_firemode()
+	wep.cocked = FALSE
 
 /obj/item/mech_equipment/mounted_system/ballistic/pk/on_unselect()
+	..()
 	var/obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/wep = holding
-	//wep.cocked = FALSE
-	wep.update_firemode()
+	wep.cocked = FALSE
 
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted
@@ -267,7 +275,7 @@
 	spawn_tags = null
 	matter = list()
 	magazine_type = /obj/item/ammo_magazine/lrifle/pk/mech
-	// Var used to cancel the first click for CH registration (so full auto works properly)
+	// Used for dramatic purpose.
 	var/cocked = FALSE
 
 
@@ -277,14 +285,14 @@
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
 	// Dramatic gun cocking!
-	/*
 	if(!cocked)
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
 		to_chat(user, SPAN_NOTICE("You chamber the [src], preparing it for full-automatic fire."))
+		// uh oh
+		visible_message(get_turf(src), SPAN_DANGER("The mech chambers the [src] , preparing it for full automatic fire!"))
 		cocked = TRUE
 		safety = FALSE
 		return
-	*/
 	..()
 	if(ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
 		qdel(ammo_magazine)
