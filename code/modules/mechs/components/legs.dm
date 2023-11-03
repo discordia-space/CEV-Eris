@@ -11,6 +11,7 @@
 	var/mech_turn_sound = 'sound/mechs/Mech_Rotation.ogg'
 	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
 	var/can_strafe = TRUE
+	var/can_climb = TRUE
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)
@@ -64,6 +65,8 @@
 	move_delay = 3 // Slow and chunky
 	turn_delay = 3
 	power_use = 10
+	// clunky
+	can_climb = FALSE
 
 /obj/item/mech_component/propulsion/light
 	name = "light legs"
@@ -76,6 +79,7 @@
 	stomp_damage = 30
 	power_use = 20
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	can_climb = TRUE
 
 /obj/item/mech_component/propulsion/combat
 	name = "combat legs"
@@ -88,6 +92,7 @@
 	stomp_damage = 60
 	power_use = 25
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 7, MATERIAL_DIAMOND = 2) // Expensive because durable.
+	can_climb = TRUE
 
 /obj/item/mech_component/propulsion/heavy
 	name = "heavy legs"
@@ -100,3 +105,4 @@
 	stomp_damage = 90
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)
+	can_climb = FALSE

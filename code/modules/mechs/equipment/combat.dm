@@ -241,6 +241,17 @@
 	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
 	spawn_blacklisted = TRUE
 
+/obj/item/mech_equipment/mounted_system/ballistic/pk/on_select()
+	var/obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/wep = holding
+	//wep.cocked = FALSE
+	wep.update_firemode()
+
+/obj/item/mech_equipment/mounted_system/ballistic/pk/on_unselect()
+	var/obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/wep = holding
+	//wep.cocked = FALSE
+	wep.update_firemode()
+
+
 /obj/item/gun/projectile/automatic/lmg/pk/mounted
 	bad_type = /obj/item/gun/projectile/automatic/lmg/pk/mounted
 
@@ -256,6 +267,8 @@
 	spawn_tags = null
 	matter = list()
 	magazine_type = /obj/item/ammo_magazine/lrifle/pk/mech
+	// Var used to cancel the first click for CH registration (so full auto works properly)
+	var/cocked = FALSE
 
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/Initialize()
@@ -263,18 +276,32 @@
 	ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
+	// Dramatic gun cocking!
+	/*
+	if(!cocked)
+		playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
+		to_chat(user, SPAN_NOTICE("You chamber the [src], preparing it for full-automatic fire."))
+		cocked = TRUE
+		safety = FALSE
+		return
+	*/
 	..()
 	if(ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
 		qdel(ammo_magazine)
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
-		var/mob/living/exosuit/E = loc
+		var/mob/living/exosuit/E = loc.loc
 		if(istype(E))
 			var/obj/item/cell/cell = E.get_cell()
 			if(istype(cell))
 				cell.use(500)
-		ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
-		spawn(1)
+		ammo_magazine = null
+		to_chat(user, SPAN_NOTICE("\The [src]'s magazine has run out. Reloading..."))
+		spawn(1 SECOND)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
-		spawn(2)
+		spawn(2 SECOND)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
+			to_chat(user, SPAN_NOTICE("\The [src]'s magazine has been reloaded."))
+			ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
+			// not being able to fire removes the CH
+			update_firemode()
 

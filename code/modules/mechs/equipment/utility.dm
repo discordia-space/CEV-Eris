@@ -183,8 +183,8 @@
 /obj/item/mech_equipment/thrusters
 	name = "exosuit thrusters"
 	desc = "An industrial-sized jetpack for mechs."
-	icon_state = "mech_jet_off"
-	item_state = "mech_jet_off"
+	icon_state = "mech_jet"
+	item_state = "mech_jet"
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	mech_layer = MECH_INTERMEDIATE_LAYER
 
@@ -200,6 +200,7 @@
 	jetpack_fluff.on = TRUE
 	// so it doesnt show when vertically traveling as INFINITE DEBUF JETPACK
 	jetpack_fluff.name = src.name
+	update_icon()
 
 /obj/item/mech_equipment/thrusters/attack_self(mob/user)
 	. = ..()

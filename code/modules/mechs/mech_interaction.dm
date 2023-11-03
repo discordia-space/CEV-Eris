@@ -91,7 +91,7 @@
 			selected_system.attack_self(user)
 			setClickCooldown(5)
 			return
-
+		/* Not needed anymore,  we got rid of non-exosuit system mounts - SPCR 2023
 		// Mounted non-exosuit systems have some hacky loc juggling
 		// to make sure that they work.
 		var/system_moved = FALSE
@@ -105,6 +105,7 @@
 				temp_system.forceMove(src)
 		else
 			temp_system = selected_system
+		*/
 
 		// Slip up and attack yourself maybe.
 		failed = FALSE
@@ -125,29 +126,34 @@
 
 		var/resolved
 		if(adj)
-			resolved = temp_system.resolve_attackby(A, src, params)
+			resolved = selected_system.resolve_attackby(A, src, params)
 
-		if(!resolved && A && temp_system)
-			var/mob/ruser = src
+		if(!resolved && A && selected_system)
+			//var/mob/ruser = src
+			/*
 			if(!system_moved) //It's more useful to pass along clicker pilot when logic is fully mechside
 				ruser = user
-			if(isgun(temp_system))
-				var/obj/item/gun/weapon = temp_system
-				weapon.update_firemode()
-			temp_system.afterattack(A,ruser,adj,params)
+			*/
+			selected_system.afterattack(A,user,adj,params)
+		/*
 		if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
 			log_attack("[user] used [temp_system] targetting [A]")
+		*/
 
 		// Mech equipment subtypes can add further click delays
-		var/extra_delay = 0
+		var/extra_delay = selected_system.equipment_delay
+		/*
 		if(ME != null)
 			ME = selected_system
 			extra_delay = ME.equipment_delay
+		*/
 		setClickCooldown(arms_action_delay() + extra_delay)
 
 		// If hacky loc juggling was performed, move the system back where it belongs
+		/*
 		if(system_moved)
 			temp_system.forceMove(selected_system)
+		*/
 		return
 
 	if(A == src)
@@ -166,8 +172,9 @@
 		// Set the new system.
 		selected_system = hardpoints[hardpoint_tag]
 		selected_hardpoint = hardpoint_tag
-		return 1 // The element calling this proc will set its own icon.
-	return 0
+		selected_system.on_select()
+		return TRUE // The element calling this proc will set its own icon.
+	return FALSE
 
 /mob/living/exosuit/proc/clear_selected_hardpoint()
 
@@ -178,7 +185,10 @@
 			if(istype(H))
 				H.icon_state = "hardpoint"
 				break
+		var/obj/item/mech_equipment/systm = selected_system
 		selected_system = null
+		// done after for the full-auto firemode to properly update.
+		systm.on_unselect()
 		selected_hardpoint = null
 
 /mob/living/exosuit/get_active_hand()
@@ -255,6 +265,7 @@
 		update_mech_hud_4(user)
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
+	clear_selected_hardpoint()
 	return 1
 
 /mob/living/exosuit/attackby(obj/item/I, mob/living/user)

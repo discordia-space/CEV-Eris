@@ -9,6 +9,7 @@
 	turn_delay = 1
 	power_use = 75
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10, MATERIAL_SILVER = 3)
+	can_climb = TRUE
 
 /obj/item/mech_component/propulsion/tracks
 	name = "tracks"
@@ -23,6 +24,7 @@
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10)
 	mech_step_sound = 'sound/mechs/tanktread.ogg'
 	can_strafe = FALSE
+	can_climb = FALSE
 
 /obj/item/mech_component/chassis/pod
 	name = "spherical exosuit chassis"

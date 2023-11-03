@@ -254,7 +254,11 @@
 					height = HEIGHT_HIGH // We are shooting from below, this protects resting players at the expense of windows
 					original = get_turf(original) // Aim at turfs instead of mobs, to ensure we don't hit players
 
-	firer = user
+	// Special case for mechs, in a ideal world this should always go for the top-most atom.
+	if(istype(launcher.loc, /obj/item/mech_equipment))
+		firer = launcher.loc.loc
+	else
+		firer = user
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 

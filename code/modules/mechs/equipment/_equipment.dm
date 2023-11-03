@@ -59,6 +59,12 @@
 	owner = null
 	canremove = TRUE
 
+/obj/item/mech_equipment/proc/on_select()
+	return TRUE
+
+/obj/item/mech_equipment/proc/on_unselect()
+	return TRUE
+
 /obj/item/mech_equipment/Destroy()
 	owner = null
 	. = ..()
@@ -74,11 +80,23 @@
 /obj/item/mech_equipment/mounted_system/attack_self(var/mob/user)
 	. = ..()
 	if(. && holding)
-		// force the firemode to update its user.
-		if(isgun(holding))
-			var/obj/item/gun/firegun = holding
-			firegun.update_firemode()
 		return holding.attack_self(user)
+
+// pass to holder
+/obj/item/mech_equipment/mounted_system/afterattack(atom/target, mob/living/user, inrange, params)
+	. = ..()
+	if(. && holding)
+		return holding.afterattack(target, user, inrange, params)
+
+/obj/item/mech_equipment/mounted_system/on_select()
+	if(isgun(holding))
+		var/obj/item/gun/firegun = holding
+		firegun.update_firemode()
+
+/obj/item/mech_equipment/mounted_system/on_unselect()
+	if(isgun(holding))
+		var/obj/item/gun/firegun = holding
+		firegun.update_firemode()
 
 /obj/item/mech_equipment/mounted_system/proc/forget_holding()
 	if(holding) //It'd be strange for this to be called with this var unset
