@@ -32,10 +32,15 @@
 	if(!I.force)
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
-
-	if(LAZYLEN(pilots) && (!hatch_closed || prob(body.pilot_coverage)))
+	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
+	var/roll = !prob(body.pilot_coverage)
+	if(LAZYLEN(pilots) && ((!hatch_closed && (get_dir(user,src) & reverse_dir[dir])) || roll))
 		var/mob/living/pilot = pick(pilots)
 		return pilot.resolve_item_attack(I, user, def_zone)
+	else if(LAZYLEN(pilots) && !roll)
+		var/turf/location = get_turf(src)
+		location.visible_message(SPAN_DANGER("\The [user] tries to attack the pilot inside of \the [src], but the chassis blocks it!"))
+		return def_zone
 
 	return def_zone //Careful with effects, mechs shouldn't be stunned
 
@@ -76,6 +81,8 @@
 	if(istext(def_zone))
 		def_zone = zoneToComponent(def_zone)
 
+	if(istext(def_zone))
+		def_zone = zoneToComponent(def_zone)
 	switch(damagetype)
 		if(BRUTE)
 			wounding_multiplier = wound_check(injury_type, wounding_multiplier, edge, sharp)
@@ -88,6 +95,7 @@
 	updatehealth()
 	return FALSE
 
+
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, var/def_zone)
 	var/hit_dir = get_dir(P.starting, src)
 	def_zone = zoneToComponent(def_zone)
@@ -95,7 +103,7 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 	var/mob/living/target = src
-	if(def_zone == body && !hatch_closed && hit_dir == reverse_dir[dir] && get_mob())
+	if(def_zone == body && ((!hatch_closed && (hit_dir & reverse_dir[dir])) || !prob(body.pilot_coverage)) && get_mob())
 		target = get_mob()
 	//Stun Beams
 	if(P.taser_effect && target == src)
@@ -107,9 +115,10 @@
 		var/result = target.bullet_act(P, ran_zone())
 		var/turf/location = get_turf(src)
 		location.visible_message("[get_mob()] gets hit by \the [P]!")
+		// if it gets stuck in the mob , dont go throug mech
 		if(result != PROJECTILE_CONTINUE)
 			return
-
+	// hit mech if there is no pilot or if it went throug  the pilot
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
 		for(var/damage_type in P.damage_types)
@@ -162,7 +171,13 @@
 		adjustBruteLoss(split, head)
 		blocked++
 	if(body)
-		adjustBruteLoss(split, body)
+		if(get_mob() && !(hatch_closed || prob(body.pilot_coverage)))
+			var/mob/living/pilot = get_mob()
+			// split damage between pilot n mech
+			pilot.explosion_act(round(split/2), handler)
+			adjustBruteLoss(round(split/2), body)
+		else
+			adjustBruteLoss(split, body)
 		blocked++
 	if(legs)
 		adjustBruteLoss(split, legs)
@@ -173,7 +188,5 @@
 	if(damage > 400)
 		occupant_message("You feel the shockwave of a external explosion pass through your body!")
 
-	return split*blocked
-
-
+	return round(split*blocked)
 
