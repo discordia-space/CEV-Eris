@@ -274,7 +274,7 @@
 	if(!Adjacent(user,2))
 		return
 	code = clamp(option, 0, 1000)
-	to_chat(user, SPAN_NOTICE("You change [src]'s code to [option]"))
+	to_chat(user, SPAN_NOTICE("You change the code of \the [src] to [option]."))
 
 
 /obj/item/device/assembly/signaler/door_controller/attack_self(mob/user)
