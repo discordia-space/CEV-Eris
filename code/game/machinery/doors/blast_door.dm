@@ -255,16 +255,16 @@
 				if(!density)
 					to_chat(user,SPAN_NOTICE("The [src] must be closed for the metal coverings to be pried off"))
 					return
-				to_chat(user,  SPAN_NOTICE("You start prying off [src]'s metal coverings"))
+				to_chat(user,  SPAN_NOTICE("You start prying off the metal coverings of \the [src]."))
 				if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You pry off [src]'s metal coverings"))
+					to_chat(user,  SPAN_NOTICE("You pry off the metal coverings of \the [src]."))
 					assembly_step = -3
 					update_icon()
 				return
 			if(assembly_step == -3)
-				to_chat(user,  SPAN_NOTICE("You start prying back in [src]'s metal coverings"))
+				to_chat(user,  SPAN_NOTICE("You start prying back in the metal coverings of \the [src]."))
 				if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You pry [src]'s metal coverings back in"))
+					to_chat(user,  SPAN_NOTICE("You pry the metal coverings of \the [src] back in."))
 					assembly_step = -2
 					update_icon()
 				return
@@ -279,32 +279,32 @@
 				return
 		if(QUALITY_WELDING)
 			if(screws_welded)
-				to_chat(user,  SPAN_NOTICE("You start welding off the metal seals around [src]'s screws"))
-				user.show_message(SPAN_NOTICE("[user] starts welding off at the [src]"))
+				to_chat(user,  SPAN_NOTICE("You start welding off the metal seals around the screws of \the [src]."))
+				user.show_message(SPAN_NOTICE("[user] starts welding off at \the [src]."))
 				if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You manage to weld off the metal seals, giving way to remove the screws"))
-					user.show_message(SPAN_NOTICE("[user] stops welding off at the [src]"))
+					to_chat(user,  SPAN_NOTICE("You manage to weld off the metal seals, giving way to remove the screws."))
+					user.show_message(SPAN_NOTICE("[user] stops welding off at \the [src]."))
 					screws_welded = FALSE
 					update_icon()
 				return
 			if(assembly_step == -6)
-				to_chat(user,  SPAN_NOTICE("You start welding off [src]'s framework"))
-				user.show_message(SPAN_NOTICE("[user] starts welding off at the [src]"))
+				to_chat(user,  SPAN_NOTICE("You start welding off the framework of \the [src]."))
+				user.show_message(SPAN_NOTICE("[user] starts welding off at \the [src]."))
 				if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You manage to completly dismantle the [src]"))
-					user.show_message(SPAN_NOTICE("[user] dismantles [src]"))
+					to_chat(user,  SPAN_NOTICE("You manage to completly dismantle \the [src]."))
+					user.show_message(SPAN_NOTICE("[user] dismantles \the [src]."))
 					drop_materials(get_turf(user), user)
 					qdel(src)
 				return
 			else
 				if(panel_open)
-					to_chat(user, SPAN_NOTICE("You have to close the panel first to weld the screws shut"))
+					to_chat(user, SPAN_NOTICE("You have to close the panel first to weld the screws shut."))
 					return
-				to_chat(user, SPAN_NOTICE("You start sealing the screws to [src]'s circuit panel"))
-				user.show_message(SPAN_NOTICE("[user] starts sealing [src]'s screws"))
+				to_chat(user, SPAN_NOTICE("You start sealing the screws to the circuit panel of \the [src]."))
+				user.show_message(SPAN_NOTICE("[user] starts sealing the screws of \the [src]."))
 				if(I.use_tool(user, src , WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_CHALLENGING, required_stat = STAT_MEC))
-					to_chat(user,  SPAN_NOTICE("You manage to seal [src]'s screws"))
-					user.show_message(SPAN_NOTICE("[user] finishes sealing [src]'s screws"))
+					to_chat(user,  SPAN_NOTICE("You manage to seal the screws of \the [src]."))
+					user.show_message(SPAN_NOTICE("[user] finishes sealing the screws of \the [src]."))
 					screws_welded = TRUE
 					update_icon()
 				return
