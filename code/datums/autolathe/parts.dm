@@ -15,7 +15,7 @@
 	build_path = /obj/item/device/assembly/signaler
 
 /datum/design/autolathe/part/door_signaler
-	name = "door signaller"
+	name = "door signaler"
 	build_path = /obj/item/device/assembly/signaler/door_controller
 
 /datum/design/autolathe/part/sensor_infra
