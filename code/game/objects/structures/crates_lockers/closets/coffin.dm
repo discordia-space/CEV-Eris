@@ -58,13 +58,12 @@
 /obj/structure/closet/coffin/proc/pyre()
 	if(opened)
 		close() //If someone wanted an open casket funeral, we still need the casket to close to determine occupant
-	new /obj/effect/decal/cleanable/ash(loc)
 	if(occupant && occupant.is_dead())
 		var/mob/N = key2mob(occupant.mind.key)
 		to_chat(N, SPAN_NOTICE("Your remains have been reduced to ash. Your crew respawn time has been reduced by [(COFFIN_RESPAWN_BONUS)/600] minutes."))
 		N << 'sound/effects/magic/blind.ogg'
 		N.set_respawn_bonus("CORPSE_HANDLING", COFFIN_RESPAWN_BONUS)
-
+	new /obj/effect/decal/cleanable/ash(loc)
 	qdel(occupant)
 	qdel(src)
 
@@ -97,7 +96,7 @@
 /obj/structure/closet/coffin/proc/burn()
 	add_overlay("coffin_pyre")
 	on_fire = TRUE
-	burning = addtimer(CALLBACK(src, PROC_REF(pyre), src), 120 SECONDS, TIMER_STOPPABLE) //TODO: Add TIMER_STOPPABLE to being extinguished, which involves giving reagents touch effects to structures, which they currently don't affect
+	burning = addtimer(CALLBACK(src, PROC_REF(pyre), src), 60 SECONDS, TIMER_STOPPABLE) //TODO: Add TIMER_STOPPABLE to being extinguished, which involves giving reagents touch effects to structures, which they currently don't affect
 
 /obj/structure/closet/coffin/attackby(obj/item/I, mob/user)
 	if(!on_fire && isflamesource(I))
