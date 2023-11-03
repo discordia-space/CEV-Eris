@@ -253,7 +253,7 @@
 				return
 			if(assembly_step == -2)
 				if(!density)
-					to_chat(user,SPAN_NOTICE("The [src] must be closed for the metal coverings to be pried off"))
+					to_chat(user,SPAN_NOTICE("The [src] must be closed for the metal coverings to be pried off."))
 					return
 				to_chat(user,  SPAN_NOTICE("You start prying off the metal coverings of \the [src]."))
 				if(I.use_tool(user,  src,  WORKTIME_NORMAL, QUALITY_PRYING , FAILCHANCE_VERY_EASY , required_stat = STAT_MEC))
