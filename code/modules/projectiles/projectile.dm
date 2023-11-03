@@ -536,7 +536,8 @@
 		pixel_y = location.pixel_y
 
 		if(!bumped && !QDELETED(original) && !isturf(original))
-			if(loc == get_turf(original))
+			// this used to be loc == get_turf(original) , but this would break incase the original was inside something and hit them without hitting the outside
+			if(loc == original.loc)
 				if(!(original in permutated))
 					if(Bump(original))
 						return
