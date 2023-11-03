@@ -163,7 +163,7 @@
 		adjustBruteLoss(split, head)
 		blocked++
 	if(body)
-		if(pilots && !(hatch_closed || prob(body.pilot_coverage)))
+		if(get_mob() && !(hatch_closed || prob(body.pilot_coverage)))
 			var/mob/living/pilot = get_mob()
 			// split damage between pilot n mech
 			pilot.explosion_act(round(split/2), handler)
