@@ -230,7 +230,7 @@
 		if("CMD_DOOR_STATE")
 			return
 		else
-			local_message = "\icon[src] beeps omniously."
+			local_message = "\icon[src] beeps ominously."
 	last_message = world.timeofday + 1 SECONDS
 
 	for(var/mob/O in hearers(1, src.loc))
