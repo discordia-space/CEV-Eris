@@ -314,9 +314,9 @@
 					var/result = show_radial_menu(user, src, list("dc" = image(icon = electronics.icon, icon_state = electronics.icon_state), "sp" = image(icon = 'icons/mob/radial/tools.dmi', icon_state = "screw driving")), tooltips = TRUE, require_near = TRUE)
 					switch(result)
 						if("dc")
-							to_chat(user, SPAN_NOTICE("You start removing [src]'s door control circuit"))
+							to_chat(user, SPAN_NOTICE("You start removing the door control circuit of \the [src]."))
 							if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-								to_chat(user, SPAN_NOTICE("You remove [src]'s door control circuit"))
+								to_chat(user, SPAN_NOTICE("You remove the door control circuit of \the [src]."))
 								electronics.forceMove(get_turf(user))
 								electronics = null
 								assembly_step = -6
@@ -324,30 +324,30 @@
 						if("sp")
 							if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 								panel_open = !panel_open
-								to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] [src]'s circuit panel"))
+								to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] the circuit panel of \the [src]."))
 								update_icon()
 			else
 				if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					panel_open = !panel_open
-					to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] [src]'s circuit panel"))
+					to_chat(user, SPAN_NOTICE("You screw [panel_open ? "open" : "shut"] the circuit panel of \the [src]."))
 					update_icon()
 				return
 		if(QUALITY_BOLT_TURNING)
 			switch(assembly_step)
 				if(0)
 					if(!(stat & NOPOWER) && user.a_intent != I_DISARM)
-						to_chat(user , SPAN_DANGER("The [src] must be powered off before the hydraulics can be weakened safely. Switch to disarm intent to do it anyway"))
+						to_chat(user , SPAN_DANGER("The [src] must be powered off before the hydraulics can be weakened safely. Switch to disarm intent to do it anyway."))
 						return
-					to_chat(user, SPAN_NOTICE("You start weakening the [src]'s hydraulic sockets"))
+					to_chat(user, SPAN_NOTICE("You start weakening the hydraulic sockets of \the [src]."))
 					var/turning_time
 					if(!(stat & NOPOWER))
 						turning_time = WORKTIME_LONG
-						to_chat(user, SPAN_NOTICE("The pressure inside the hydraulics of [src] make the turning harder, this might be dangerous.."))
+						to_chat(user, SPAN_NOTICE("The pressure inside the hydraulics of \the [src] makes the turning harder, this might be dangerous."))
 					else
 						turning_time = WORKTIME_NORMAL
 					if(I.use_tool(user, src, turning_time, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -1
-						to_chat(user,  SPAN_NOTICE("You weaken the [src]'s hydraulic socket"))
+						to_chat(user,  SPAN_NOTICE("You weaken the hydraulic sockets of \the [src]."))
 						// Uh Oh
 						if(!(stat & NOPOWER) && (hydraulics_blown < world.time))
 							explosion(get_turf(user), 150, 150, 0, TRUE)
@@ -357,23 +357,23 @@
 							log_game("[user] triggered a explosion by unsafely weakening blast door hydraulics, door id = [electronics.wifi_id]")
 					return
 				if(-1)
-					to_chat(user,  SPAN_NOTICE("You start tightening the [src]'s hydraulic sockets"))
+					to_chat(user,  SPAN_NOTICE("You start tightening the hydraulic sockets of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = 0
-						to_chat(user,  SPAN_NOTICE("You tighten the [src]'s hydraulic socket"))
+						to_chat(user,  SPAN_NOTICE("You tighten the hydraulic sockets of \the [src]."))
 					return
 				if(-3)
-					to_chat(user, SPAN_NOTICE("You start weakening the [src]'s locking bolts"))
+					to_chat(user, SPAN_NOTICE("You start weakening the locking bolts of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -4
-						to_chat(user,  SPAN_NOTICE("You weaken the [src]'s locking bolts"))
+						to_chat(user,  SPAN_NOTICE("You weaken the locking bolts of \the [src]."))
 						anchored = FALSE
 					return
 				if(-4)
-					to_chat(user, SPAN_NOTICE("You start tightening [src]'s locking bolts"))
+					to_chat(user, SPAN_NOTICE("You start tightening the locking bolts of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -3
-						to_chat(user,  SPAN_NOTICE("You tighten [src]'s locking bolts"))
+						to_chat(user,  SPAN_NOTICE("You tighten the locking bolts of \the [src]."))
 						anchored = TRUE
 						// so it updates.
 						power_change()
@@ -381,25 +381,25 @@
 		if(QUALITY_WIRE_CUTTING)
 			switch(assembly_step)
 				if(-1)
-					to_chat(user, SPAN_NOTICE("You start cutting off [src]'s hydraulic sockets"))
+					to_chat(user, SPAN_NOTICE("You start cutting off the hydraulic sockets of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -2
-						to_chat(user,  SPAN_NOTICE("You cut off [src]'s hydraulic socket, rendering it unfunctional"))
+						to_chat(user,  SPAN_NOTICE("You cut off the hydraulic sockets of \the [src], rendering it unfunctional."))
 						stat |= BROKEN
 					return
 				if(-2)
-					to_chat(user,  SPAN_NOTICE("You start reconnecting [src]'s hydraulic sockets"))
+					to_chat(user,  SPAN_NOTICE("You start reconnecting the hydraulic sockets of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -1
-						to_chat(user,  SPAN_NOTICE("You reconnect [src]'s hydraulic socket, making the door work again"))
+						to_chat(user,  SPAN_NOTICE("You reconnect the hydraulic sockets, making the door work again."))
 						if(stat & BROKEN)
 							stat &= ~BROKEN
 					return
 				if(-4)
-					to_chat(user,  SPAN_NOTICE("You start removing [src]'s wiring"))
+					to_chat(user,  SPAN_NOTICE("You start removing the wirings of \the [src]."))
 					if(I.use_tool(user, src,  WORKTIME_NORMAL, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						assembly_step = -5
-						to_chat(user,  SPAN_NOTICE("You remove [src]'s wiring"))
+						to_chat(user,  SPAN_NOTICE("You remove the wirings of \the [src]."))
 						var/obj/item/stack/cable_coil/coil = new(null)
 						coil.amount = 3
 						coil.forceMove(get_turf(user))
@@ -408,16 +408,16 @@
 	if(istype(I,/obj/item/stack/cable_coil) && assembly_step == -5)
 		var/obj/item/stack/cable_coil/cable = I
 		if(cable.can_use(3))
-			to_chat(user, SPAN_NOTICE("You start wiring [src]"))
+			to_chat(user, SPAN_NOTICE("You start wiring \the [src]."))
 			if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
-				to_chat(user,  SPAN_NOTICE("You wire [src]"))
+				to_chat(user,  SPAN_NOTICE("You wire \the [src]."))
 				if(cable.use(3))
 					assembly_step = -4
 				else
-					to_chat(user, SPAN_NOTICE("You fail to wire the [src]"))
+					to_chat(user, SPAN_NOTICE("You fail to wire \the [src]."))
 
 	if(istype(I, /obj/item/electronics/airlock) && assembly_step == -6)
-		to_chat(user, SPAN_NOTICE("You insert the electronics into [src]"))
+		to_chat(user, SPAN_NOTICE("You insert the electronics into \the [src]."))
 		user.drop_from_inventory(I, src)
 		electronics = I
 		assembly_step = -5
