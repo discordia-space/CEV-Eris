@@ -249,7 +249,7 @@
 					if(((stat & NOPOWER) || (stat & BROKEN)) && !( src.operating ))
 						force_toggle()
 					else
-						to_chat(user, SPAN_NOTICE("[src]'s motors resist your effort."))
+						to_chat(user, SPAN_NOTICE("The motors of \the [src] resist your effort."))
 				return
 			if(assembly_step == -2)
 				if(!density)
