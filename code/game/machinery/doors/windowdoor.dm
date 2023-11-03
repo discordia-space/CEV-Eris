@@ -113,6 +113,7 @@
 		return FALSE
 	if(!src.operating) //in case of emag
 		src.operating = TRUE
+
 	flick(text("[]opening", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]open", src.base_state)
