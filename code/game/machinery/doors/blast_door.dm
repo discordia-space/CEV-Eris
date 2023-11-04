@@ -81,7 +81,7 @@
 
 
 /obj/machinery/door/blast/receive_signal(datum/signal/signal, receive_method, receive_param)
-	if(!signal)
+	if(!signal || !electronics)
 		return
 	if(signal.encryption != electronics.wifi_id)
 		return
