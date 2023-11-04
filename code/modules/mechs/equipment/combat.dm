@@ -249,26 +249,28 @@
 		. = ..()
 
 /obj/item/mech_equipment/mounted_system/ballistic/attack_self(mob/user)
-	var/list/mag_removal = list()
-	for(var/obj/item/ammo_magazine/mag in ammunition_storage)
-		mag_removal["[mag] - [length(mag.stored_ammo)]"] = mag
-	mag_removal["All mags"] = null
-	var/obj/item/to_remove = null
+	. = ..()
+	if(.)
+		var/list/mag_removal = list()
+		for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+			mag_removal["[mag] - [length(mag.stored_ammo)]"] = mag
+		mag_removal["All mags"] = null
+		var/obj/item/to_remove = null
 
-	if(length(mag_removal) > 1)
-		var/choice = input(user, "Select magazine to remove from \the [src]", "Magazine removal", 0) as null|anything in mag_removal
-		if(choice == "All mags")
-			for(var/slot in 1 to ammunition_storage_limit)
-				var/obj/mag = unloadMagazine(slot)
-				if(mag)
-					mag.forceMove(get_turf(src))
-		else
-			to_remove = mag_removal[choice]
-	else if(length(mag_removal))
-		to_remove = mag_removal[1]
-	if(to_remove)
-		ammunition_storage[getMagazineSlot(to_remove)] = null
-		to_remove.forceMove(get_turf(user))
+		if(length(mag_removal) > 1)
+			var/choice = input(user, "Select magazine to remove from \the [src]", "Magazine removal", 0) as null|anything in mag_removal
+			if(choice == "All mags")
+				for(var/slot in 1 to ammunition_storage_limit)
+					var/obj/mag = unloadMagazine(slot)
+					if(mag)
+						mag.forceMove(get_turf(src))
+			else
+				to_remove = mag_removal[choice]
+		else if(length(mag_removal))
+			to_remove = mag_removal[mag_removal[1]]
+		if(to_remove)
+			ammunition_storage[getMagazineSlot(to_remove)] = null
+			to_remove.forceMove(get_turf(user))
 
 
 
@@ -403,7 +405,7 @@
 		safety = FALSE
 		return
 	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len && !reloading)
+	if((ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len && !reloading) || (!ammo_magazine && !reloading))
 		reloading = TRUE
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
 		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
