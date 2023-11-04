@@ -220,7 +220,10 @@
 	cell_type = /obj/item/cell/medium/mech
 
 /obj/item/gun/projectile/get_hardpoint_maptext()
-	return "[get_ammo()]/[ammo_magazine.max_ammo]"
+	if(ammo_magazine)
+		return "[get_ammo()]/[ammo_magazine.max_ammo]"
+	else
+		return "NO MAG"
 
 /obj/item/gun/projectile/get_hardpoint_status_value()
 	if(ammo_magazine)
@@ -229,6 +232,110 @@
 
 /obj/item/mech_equipment/mounted_system/ballistic
 	bad_type = /obj/item/mech_equipment/mounted_system/ballistic
+	var/list/obj/item/ammo_magazine/ammunition_storage
+	var/ammunition_storage_limit = 1
+
+/obj/item/mech_equipment/mounted_system/ballistic/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/ammo_magazine))
+		switch(loadMagazine(I,user))
+			if(-1)
+				to_chat(user, SPAN_NOTICE("\The [src] does not accept this type of magazine."))
+			if(0)
+				to_chat(user, SPAN_NOTICE("\The [src] has no slots left in its ammunition storage"))
+			if(1)
+				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [src]"))
+		return
+	else
+		. = ..()
+
+/obj/item/mech_equipment/mounted_system/ballistic/attack_self(mob/user)
+	var/list/mag_removal = list()
+	for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+		mag_removal["[mag] - [length(mag.stored_ammo)]"] = mag
+	mag_removal["All mags"] = null
+	var/obj/item/to_remove = null
+
+	if(length(mag_removal) > 1)
+		var/choice = input(user, "Select magazine to remove from \the [src]", "Magazine removal", 0) as null|anything in mag_removal
+		if(choice == "All mags")
+			for(var/slot in 1 to ammunition_storage_limit)
+				var/obj/mag = unloadMagazine(slot)
+				if(mag)
+					mag.forceMove(get_turf(src))
+		else
+			to_remove = mag_removal[choice]
+	else if(length(mag_removal))
+		to_remove = mag_removal[1]
+	if(to_remove)
+		ammunition_storage[getMagazineSlot(to_remove)] = null
+		to_remove.forceMove(get_turf(user))
+
+
+
+/obj/item/mech_equipment/mounted_system/ballistic/examine(user, distance)
+	. = ..()
+	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by using in hand."))
+
+
+/obj/item/mech_equipment/mounted_system/ballistic/Initialize()
+	. = ..()
+	ammunition_storage = new /list(ammunition_storage_limit)
+
+/obj/item/mech_equipment/mounted_system/ballistic/proc/getLoadedMagazine()
+	for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+		if(length(mag.stored_ammo))
+			ammunition_storage[getMagazineSlot(mag)] = null
+			return mag
+	return null
+
+/obj/item/mech_equipment/mounted_system/ballistic/proc/getMagazineSlot(obj/magazine)
+	for(var/i in 1 to ammunition_storage_limit)
+		if(ammunition_storage[i] == magazine)
+			return i
+	return 0
+
+/obj/item/mech_equipment/mounted_system/ballistic/proc/getEmptySlot()
+	for(var/i in 1 to ammunition_storage_limit)
+		if(ammunition_storage[i])
+			continue
+		return i
+	return 0
+/// -1 for wrong type , 0 for no slot , 1 for succes loading.
+/obj/item/mech_equipment/mounted_system/ballistic/proc/loadMagazine(obj/item/ammo_magazine/magazine, mob/living/user)
+	var/obj/item/gun/projectile/wep = holding
+	if(wep.caliber != magazine.caliber)
+		return -1
+	var/slot = getEmptySlot()
+	if(!slot)
+		return 0
+	user.remove_from_mob(magazine)
+	magazine.forceMove(src)
+	ammunition_storage[slot] = magazine
+	return 1
+
+/obj/item/mech_equipment/mounted_system/ballistic/proc/unloadMagazine(slot)
+	if(!ammunition_storage[slot])
+		return FALSE
+	var/obj/mag = ammunition_storage[slot]
+	ammunition_storage[slot] = null
+	return mag
+
+/obj/item/mech_equipment/mounted_system/ballistic/proc/reloadGun()
+	var/obj/item/gun/projectile/wep = holding
+	var/slot = getEmptySlot()
+	var/obj/ammo_mag = wep.ammo_magazine
+	if(ammo_mag)
+		ammo_mag.update_icon()
+		if(slot)
+			ammunition_storage[slot] = ammo_mag
+		else
+			ammo_mag.forceMove(get_turf(src))
+	// this returns null if we cant get a mag anyway
+	wep.ammo_magazine = getLoadedMagazine()
+	// Guns reset their firemode on reload
+	wep.update_firemode()
+	// wheter we succesfully reloaded or not
+	return wep.ammo_magazine ? TRUE : FALSE
 
 /obj/item/mech_equipment/mounted_system/ballistic/on_select()
 	var/obj/item/gun/wep = holding
@@ -248,6 +355,7 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
 	spawn_blacklisted = TRUE
+	ammunition_storage_limit = 6
 
 /obj/item/mech_equipment/mounted_system/ballistic/pk/on_select()
 	..()
@@ -277,6 +385,7 @@
 	magazine_type = /obj/item/ammo_magazine/lrifle/pk/mech
 	// Used for dramatic purpose.
 	var/cocked = FALSE
+	var/reloading = FALSE
 
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/Initialize()
@@ -286,7 +395,7 @@
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
 	// Dramatic gun cocking!
 	if(!cocked)
-		playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
+		playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 300, 1)
 		to_chat(user, SPAN_NOTICE("You chamber the [src], preparing it for full-automatic fire."))
 		// uh oh
 		visible_message(get_turf(src), SPAN_DANGER("The mech chambers the [src] , preparing it for full automatic fire!"))
@@ -294,22 +403,21 @@
 		safety = FALSE
 		return
 	..()
-	if(ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
-		qdel(ammo_magazine)
+	if(ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len && !reloading)
+		reloading = TRUE
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_open.ogg', 100, 1)
-		var/mob/living/exosuit/E = loc.loc
-		if(istype(E))
-			var/obj/item/cell/cell = E.get_cell()
-			if(istype(cell))
-				cell.use(500)
-		ammo_magazine = null
+		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
 		to_chat(user, SPAN_NOTICE("\The [src]'s magazine has run out. Reloading..."))
 		spawn(1 SECOND)
-			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 100, 1)
+			playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 150, 1)
 		spawn(2 SECOND)
 			playsound(src.loc, 'sound/weapons/guns/interact/lmg_close.ogg', 100, 1)
-			to_chat(user, SPAN_NOTICE("\The [src]'s magazine has been reloaded."))
-			ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
+			if(hold.reloadGun())
+				to_chat(user, SPAN_NOTICE("\The [src]'s magazine has been reloaded."))
+			else
+				to_chat(user, SPAN_DANGER("\The [src]'s failed to load!"))
+			reloading = FALSE
+			// recock your gun
+			cocked = FALSE
 			// not being able to fire removes the CH
-			update_firemode()
 

@@ -91,22 +91,6 @@
 			selected_system.attack_self(user)
 			setClickCooldown(5)
 			return
-		/* Not needed anymore,  we got rid of non-exosuit system mounts - SPCR 2023
-		// Mounted non-exosuit systems have some hacky loc juggling
-		// to make sure that they work.
-		var/system_moved = FALSE
-		var/obj/item/temp_system
-		var/obj/item/mech_equipment/ME
-		if(istype(selected_system, /obj/item/mech_equipment))
-			ME = selected_system
-			temp_system = ME.get_effective_obj()
-			if(temp_system in ME)
-				system_moved = TRUE
-				temp_system.forceMove(src)
-		else
-			temp_system = selected_system
-		*/
-
 		// Slip up and attack yourself maybe.
 		failed = FALSE
 		if(emp_damage > EMP_MOVE_DISRUPT && prob(10))
@@ -129,31 +113,12 @@
 			resolved = selected_system.resolve_attackby(A, src, params)
 
 		if(!resolved && A && selected_system)
-			//var/mob/ruser = src
-			/*
-			if(!system_moved) //It's more useful to pass along clicker pilot when logic is fully mechside
-				ruser = user
-			*/
 			selected_system.afterattack(A,user,adj,params)
-		/*
-		if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
-			log_attack("[user] used [temp_system] targetting [A]")
-		*/
 
 		// Mech equipment subtypes can add further click delays
 		var/extra_delay = selected_system.equipment_delay
-		/*
-		if(ME != null)
-			ME = selected_system
-			extra_delay = ME.equipment_delay
-		*/
 		setClickCooldown(arms_action_delay() + extra_delay)
 
-		// If hacky loc juggling was performed, move the system back where it belongs
-		/*
-		if(system_moved)
-			temp_system.forceMove(selected_system)
-		*/
 		return
 
 	if(A == src)
@@ -289,6 +254,28 @@
 			return
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
+
+	if(istype(I, /obj/item/ammo_magazine))
+		if(!maintenance_protocols)
+			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode to reload its guns!"))
+		var/list/obj/item/mech_equipment/mounted_system/ballistic/loadable_guns = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/ballistic))
+				// store name and location so its easy to choose
+				loadable_guns["[hardpoint] - [hardpoints[hardpoint]]"] = hardpoints[hardpoint]
+		var/obj/item/mech_equipment/mounted_system/ballistic/chosen = null
+		if(length(loadable_guns) > 1)
+			chosen = input("Select mech gun to reload.") as null|anything in loadable_guns
+			chosen = loadable_guns[chosen]
+		else
+			chosen = loadable_guns[loadable_guns[1]]
+		switch(chosen.loadMagazine(I,user))
+			if(-1)
+				to_chat(user, SPAN_NOTICE("\The [chosen] does not accept this type of magazine."))
+			if(0)
+				to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage"))
+			if(1)
+				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]"))
 
 	else if(user.a_intent != I_HURT)
 		if(attack_tool(I, user))
