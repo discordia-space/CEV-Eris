@@ -81,7 +81,7 @@
 
 
 /obj/machinery/door/blast/receive_signal(datum/signal/signal, receive_method, receive_param)
-	if(!signal)
+	if(!signal || !electronics)
 		return
 	if(signal.encryption != electronics.wifi_id)
 		return
@@ -271,8 +271,11 @@
 		if(QUALITY_PULSING)
 			// detach ourselves from this proc.
 			spawn(0)
+				if(!electronics)
+					to_chat(user, SPAN_NOTICE("There are no electronics inside of \the [src]."))
+					return
 				var/input = input(user, "Insert a code for this blastdoor between 1 and 1000", "Blastdoor configuration", 1) as num
-				if(!Adjacent(user) || !panel_open)
+				if(!Adjacent(user) || !panel_open || !electronics)
 					return
 				input = clamp(input, 0, 1000)
 				electronics.wifi_id = input
