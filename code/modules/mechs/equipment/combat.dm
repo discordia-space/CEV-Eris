@@ -230,10 +230,15 @@
 		return get_ammo()/ammo_magazine.max_ammo
 	return null
 
+#define LOADING_BOX 1
+#define LOADING_SINGLE 2
+#define LOADING_FLEXIBLE 3
 /obj/item/mech_equipment/mounted_system/ballistic
 	bad_type = /obj/item/mech_equipment/mounted_system/ballistic
 	var/list/obj/item/ammo_magazine/ammunition_storage
+	var/accepted_types = list()
 	var/ammunition_storage_limit = 1
+	var/loading_type = LOADING_BOX
 
 /obj/item/mech_equipment/mounted_system/ballistic/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
@@ -251,32 +256,33 @@
 /obj/item/mech_equipment/mounted_system/ballistic/attack_self(mob/user)
 	. = ..()
 	if(.)
-		var/list/mag_removal = list()
-		for(var/obj/item/ammo_magazine/mag in ammunition_storage)
-			mag_removal["[mag] - [length(mag.stored_ammo)]"] = mag
-		mag_removal["All mags"] = null
-		var/obj/item/to_remove = null
+		return
+	var/list/mag_removal = list()
+	for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+		mag_removal["[mag] - [length(mag.stored_ammo)]"] = mag
+	mag_removal["All mags"] = null
+	var/obj/item/to_remove = null
 
-		if(length(mag_removal) > 1)
-			var/choice = input(user, "Select magazine to remove from \the [src]", "Magazine removal", 0) as null|anything in mag_removal
-			if(choice == "All mags")
-				for(var/slot in 1 to ammunition_storage_limit)
-					var/obj/mag = unloadMagazine(slot)
-					if(mag)
-						mag.forceMove(get_turf(src))
-			else
-				to_remove = mag_removal[choice]
-		else if(length(mag_removal))
-			to_remove = mag_removal[mag_removal[1]]
-		if(to_remove)
-			ammunition_storage[getMagazineSlot(to_remove)] = null
-			to_remove.forceMove(get_turf(user))
+	if(length(mag_removal) > 1)
+		var/choice = input(user, "Select magazine to remove from \the [src]", "Magazine removal", 0) as null|anything in mag_removal
+		if(choice == "All mags")
+			for(var/slot in 1 to ammunition_storage_limit)
+				var/obj/mag = unloadMagazine(slot)
+				if(mag)
+					mag.forceMove(get_turf(src))
+		else
+			to_remove = mag_removal[choice]
+	else if(length(mag_removal))
+		to_remove = mag_removal[mag_removal[1]]
+	if(to_remove)
+		ammunition_storage[getMagazineSlot(to_remove)] = null
+		to_remove.forceMove(get_turf(user))
 
 
 
 /obj/item/mech_equipment/mounted_system/ballistic/examine(user, distance)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by using in hand."))
+	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking "))
 
 
 /obj/item/mech_equipment/mounted_system/ballistic/Initialize()
@@ -284,11 +290,48 @@
 	ammunition_storage = new /list(ammunition_storage_limit)
 
 /obj/item/mech_equipment/mounted_system/ballistic/proc/getLoadedMagazine()
-	for(var/obj/item/ammo_magazine/mag in ammunition_storage)
-		if(length(mag.stored_ammo))
-			ammunition_storage[getMagazineSlot(mag)] = null
-			return mag
+	switch(loading_type)
+		if(LOADING_FLEXIBLE)
+			for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+				if(length(mag.stored_ammo))
+					ammunition_storage[getMagazineSlot(mag)] = null
+					return mag
+			for(var/obj/item/ammo_casing/case in ammunition_storage)
+				if(case.BB)
+					ammunition_storage[getMagazineSlot(case)] = null
+					return case.BB
+		if(LOADING_BOX)
+			for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+				if(length(mag.stored_ammo))
+					ammunition_storage[getMagazineSlot(mag)] = null
+					return mag
+		if(LOADING_SINGLE)
+			for(var/obj/item/ammo_casing/case in ammunition_storage)
+				if(case.BB)
+					ammunition_storage[getMagazineSlot(case)] = null
+					return case.BB
 	return null
+
+/obj/item/mech_equipment/mounted_system/ballistic/proc/getPartialAmmunition()
+	switch(loading_Type)
+		if(LOADING_SINGLE)
+			for(var/obj/item/ammo_casing/case in ammunition_storage)
+				if(case.amount != case.max_amount)
+					return case
+			return null
+		if(LOADING_BOX)
+			for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+				if(length(mag.stored_ammo) != mag.max_ammo)
+					return mag
+			return null
+		if(LOADING_FLEXIBLE)
+			for(var/obj/item/ammo_magazine/mag in ammunition_storage)
+				if(length(mag.stored_ammo) != mag.max_ammo)
+					return mag
+			for(var/obj/item/ammo_casing/case in ammunition_storage)
+				if(case.amount != case.max_amount)
+					return case
+			return null
 
 /obj/item/mech_equipment/mounted_system/ballistic/proc/getMagazineSlot(obj/magazine)
 	for(var/i in 1 to ammunition_storage_limit)
@@ -298,22 +341,82 @@
 
 /obj/item/mech_equipment/mounted_system/ballistic/proc/getEmptySlot()
 	for(var/i in 1 to ammunition_storage_limit)
-		if(ammunition_storage[i])
+		if(ammunition_storage[i] != null)
 			continue
 		return i
 	return 0
+
 /// -1 for wrong type , 0 for no slot , 1 for succes loading.
-/obj/item/mech_equipment/mounted_system/ballistic/proc/loadMagazine(obj/item/ammo_magazine/magazine, mob/living/user)
+/obj/item/mech_equipment/mounted_system/ballistic/proc/loadMagazine(obj/item/loadable, mob/living/user)
 	var/obj/item/gun/projectile/wep = holding
-	if(wep.caliber != magazine.caliber)
-		return -1
-	var/slot = getEmptySlot()
-	if(!slot)
-		return 0
-	user.remove_from_mob(magazine)
-	magazine.forceMove(src)
-	ammunition_storage[slot] = magazine
-	return 1
+	var/chosen_loading_type = null
+	if(loading_type == LOADING_FLEXIBLE)
+		if(istype(loadable, /obj/item/ammo_magazine))
+			chosen_loading_type = LOADING_BOX
+		else if(istype(loadable, /obj/item/ammo_casing))
+			chosen_loading_type = LOADING_SINGLE
+	else if(loading_type == LOADING_BOX)
+		if(istype(loadable, /obj/item/ammo_magazine))
+			chosen_loading_type = LOADING_BOX
+	else if(loading_type == LOADING_SINGLE)
+		if(istype(loadable, /obj/item/ammo_casing))
+			chosen_loading_type = LOADING_SINGLE
+
+	switch(chosen_loading_type)
+		if(LOADING_BOX)
+			var/obj/item/ammo_magazine/magazine = loadable
+			if(wep.caliber != magazine.caliber)
+				return -1
+			var/valid = FALSE
+			// so we can also acccept HV variants , etc.
+			for(var/ammo_type in accepted_types)
+				if(magazine.type in typesof(ammo_type))
+					valid = TRUE
+			if(!valid)
+				return -1
+			var/slot = getEmptySlot()
+			if(!slot)
+				var/partial_loaded = FALSE
+				while(length(magazine.stored_ammo))
+					var/obj/item/ammo_magazine/partial_mag = getPartialAmmunition()
+					if(!partial_mag)
+						break
+					partial_loaded = TRUE
+					partial_mag.attackby(magazine, user)
+				return partial_loaded ? 2 : 0
+			user.remove_from_mob(magazine)
+			magazine.forceMove(src)
+			ammunition_storage[slot] = magazine
+			return 1
+		if(LOADING_SINGLE)
+			var/obj/item/ammo_casing/bullet = loadable
+			if(wep.caliber != bullet.caliber)
+				return -1
+			var/valid = FALSE
+			// so we can also acccept HV variants , etc.
+			for(var/ammo_type in accepted_types)
+				if(bullet.type in typesof(ammo_type))
+					valid = TRUE
+			if(!valid)
+				return -1
+			var/slot = getEmptySlot()
+			if(!slot)
+				var/partial_loaded = FALSE
+				while(!QDELETED(bullet) && bullet.amount)
+					var/obj/item/ammo_casing/partial_bullet = getPartialAmmunition()
+					if(!partial_bullet)
+						break
+					partial_loaded = TRUE
+					partial_bullet.attackby(bullet, user)
+				return partial_loaded ? 2 : 0
+			user.remove_from_mob(bullet)
+			bullet.forceMove(src)
+			ammunition_storage[slot] = bullet
+			return 1
+		else
+			return -1
+
+
 
 /obj/item/mech_equipment/mounted_system/ballistic/proc/unloadMagazine(slot)
 	if(!ammunition_storage[slot])
@@ -324,20 +427,87 @@
 
 /obj/item/mech_equipment/mounted_system/ballistic/proc/reloadGun()
 	var/obj/item/gun/projectile/wep = holding
-	var/slot = getEmptySlot()
-	var/obj/ammo_mag = wep.ammo_magazine
-	if(ammo_mag)
-		ammo_mag.update_icon()
-		if(slot)
-			ammunition_storage[slot] = ammo_mag
-		else
-			ammo_mag.forceMove(get_turf(src))
-	// this returns null if we cant get a mag anyway
-	wep.ammo_magazine = getLoadedMagazine()
-	// Guns reset their firemode on reload
-	wep.update_firemode()
-	// wheter we succesfully reloaded or not
-	return wep.ammo_magazine ? TRUE : FALSE
+
+
+	switch(loading_type)
+		if(LOADING_BOX)
+			var/slot = getEmptySlot()
+			var/obj/ammo_mag = wep.ammo_magazine
+			if(ammo_mag)
+				ammo_mag.update_icon()
+				if(slot)
+					ammunition_storage[slot] = ammo_mag
+				else
+					ammo_mag.forceMove(get_turf(src))
+			// this returns null if we cant get a mag anyway
+			wep.ammo_magazine = getLoadedMagazine()
+			// Guns reset their firemode on reload
+			wep.update_firemode()
+			// wheter we succesfully reloaded or not
+			return wep.ammo_magazine ? TRUE : FALSE
+		if(LOADING_SINGLE)
+			var/initial_shells = length(wep.loaded)
+			while(length(wep.loaded) < max_shells)
+				var/obj/item/ammo_casing/bullet = getLoadedMagazine()
+				if(!bullet)
+					break
+				while(bullet.amount > 1)
+					// so we dupe
+					var/obj/item/ammo_casing/bullet_dupe = new bullet.type(bullet)
+					bullet_dupe.forceMove(wep)
+					wep.loaded.Insert(1, bullet_dupe)
+				if(bullet.amount == 1 && length(wep.loaded) < max_shells)
+					bullet.forceMove(wep)
+					wep.loaded.Insert(1, bullet)
+				if(!isgun(bullet.loc))
+					var/empty_slot = getEmptySlot()
+					if(!empty_slot)
+						bullet.forceMove(get_turf(user))
+					else
+						ammunition_storage[empty_slot] = bullet
+			return length(wep.loaded) == max_shells ? 1 : (length(wep.loaded) > initial_shells ? 2 : 0 )
+		if(LOADING_FLEXIBLE)
+			var/obj/ammo = getLoadedMagazine()
+			if(istype(ammo, /obj/item/ammo_casing))
+				var/initial_shells = length(wep.loaded)
+				while(length(wep.loaded) < max_shells)
+					var/obj/item/ammo_casing/bullet = isgun(ammo.loc) ? ammo : getLoadedMagazine()
+					if(!bullet)
+						break
+					if(!istype(bullet))
+						break
+					while(bullet.amount > 1)
+						// so we dupe
+						var/obj/item/ammo_casing/bullet_dupe = new bullet.type(bullet)
+						bullet_dupe.forceMove(wep)
+						wep.loaded.Insert(1, bullet_dupe)
+					if(bullet.amount == 1 && length(wep.loaded) < max_shells)
+						bullet.forceMove(wep)
+						wep.loaded.Insert(1, bullet)
+					if(!isgun(bullet.loc))
+						var/empty_slot = getEmptySlot()
+						if(!empty_slot)
+							bullet.forceMove(get_turf(user))
+						else
+							ammunition_storage[empty_slot] = bullet
+				return length(wep.loaded) == max_shells ? 1 : (length(wep.loaded) > initial_shells ? 2 : 0 )
+			if(istype(ammo, /obj/item/ammo_magazine))
+				var/slot = getEmptySlot()
+				var/obj/ammo_mag = wep.ammo_magazine
+				if(ammo_mag)
+					ammo_mag.update_icon()
+					if(slot)
+						ammunition_storage[slot] = ammo_mag
+					else
+						ammo_mag.forceMove(get_turf(src))
+				// this returns null if we cant get a mag anyway
+				wep.ammo_magazine = ammo
+				// Guns reset their firemode on reload
+				wep.update_firemode()
+				// wheter we succesfully reloaded or not
+				return wep.ammo_magazine ? TRUE : FALSE
+
+
 
 /obj/item/mech_equipment/mounted_system/ballistic/on_select()
 	var/obj/item/gun/wep = holding
@@ -347,9 +517,54 @@
 	var/obj/item/gun/wep = holding
 	wep.update_firemode()
 
+/obj/item/mech_equipment/mounted_system/ballistic/smg
+	name = "ML \"C-35R\""
+	desc = "A upgraded version of the reverse engineered CR20, retrofitted for mech use. Fires in full auto 600 RPM and has modest accuracy, reloads slowly. Takes in packets of .35 or SMG magazines"
+	icon_state = "mech_ballistic2"
+	holding_type = /obj/item/gun/projectile/automatic/c20r/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
+	spawn_blacklisted = TRUE
+	ammunition_storage_limit = 3
+	accepted_types = list(
+		/obj/item/ammo_magazine/ammobox/pistol,
+		/obj/item/ammo_magazine/smg
+	)
+
+/obj/item/gun/projectile/automatic/c20r/mech
+	name = 	"ML \"C-35R\""
+	restrict_safety = TRUE
+	safety = FALSE
+	twohanded = FALSE
+	init_firemodes = list(
+		FULL_AUTO_600
+		)
+	spawn_blacklisted = TRUE
+	spawn_tags = null
+	init_recoil = list(0.3, 1, 0.3)
+	matter = list()
+	var/reloading = FALSE
+
+/obj/item/gun/projectile/automatic/c20r/mech/afterattack(atom/A, mob/living/user)
+	. = ..()
+	if(!ammo_magazine || (ammo_magazine && !length(ammo_magazine.stored_ammo)))
+		if(reloading)
+			return
+		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
+		to_chat(user, SPAN_NOTICE("\The [src] is now reloading!"))
+		reloading = TRUE
+		spawn(6 SECONDS)
+			if(hold.reloadGun())
+				to_chat(user, SPAN_NOTICE("\The [src]'s magazine has been reloaded."))
+			else
+				to_chat(user, SPAN_DANGER("\The [src]'s failed to load!"))
+			reloading = FALSE
+
 /obj/item/mech_equipment/mounted_system/ballistic/pk
 	name = "SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Horribly inaccurate, but packs quite a punch."
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in full auto 400 and has horrible accuracy. Takes in .30 ammunition boxes"
 	icon_state = "mech_pk"
 	holding_type = /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
@@ -357,7 +572,10 @@
 	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3)
 	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
 	spawn_blacklisted = TRUE
-	ammunition_storage_limit = 6
+	ammunition_storage_limit = 2
+	accepted_types = list(
+		/obj/item/ammo_magazine/ammobox/lrifle
+	)
 
 /obj/item/mech_equipment/mounted_system/ballistic/pk/on_select()
 	..()
@@ -383,16 +601,12 @@
 		FULL_AUTO_400
 		)
 	spawn_tags = null
+	spawn_blacklisted = TRUE
 	matter = list()
 	magazine_type = /obj/item/ammo_magazine/lrifle/pk/mech
 	// Used for dramatic purpose.
 	var/cocked = FALSE
 	var/reloading = FALSE
-
-
-/obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/Initialize()
-	. = ..()
-	ammo_magazine = new /obj/item/ammo_magazine/lrifle/pk/mech(src)
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech/afterattack(atom/A, mob/living/user)
 	// Dramatic gun cocking!
