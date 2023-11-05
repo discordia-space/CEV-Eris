@@ -232,7 +232,9 @@
 
 #define LOADING_BOX 1
 #define LOADING_SINGLE 2
+/// This will always assume the gun loads in single mode, removing bullets from magazines and then loading them in
 #define LOADING_FLEXIBLE 3
+
 /obj/item/mech_equipment/mounted_system/ballistic
 	bad_type = /obj/item/mech_equipment/mounted_system/ballistic
 	var/list/obj/item/ammo_magazine/ammunition_storage
@@ -313,10 +315,10 @@
 	return null
 
 /obj/item/mech_equipment/mounted_system/ballistic/proc/getPartialAmmunition()
-	switch(loading_Type)
+	switch(loading_type)
 		if(LOADING_SINGLE)
 			for(var/obj/item/ammo_casing/case in ammunition_storage)
-				if(case.amount != case.max_amount)
+				if(case.amount != case.maxamount)
 					return case
 			return null
 		if(LOADING_BOX)
@@ -329,7 +331,7 @@
 				if(length(mag.stored_ammo) != mag.max_ammo)
 					return mag
 			for(var/obj/item/ammo_casing/case in ammunition_storage)
-				if(case.amount != case.max_amount)
+				if(case.amount != case.maxamount)
 					return case
 			return null
 
@@ -427,8 +429,6 @@
 
 /obj/item/mech_equipment/mounted_system/ballistic/proc/reloadGun()
 	var/obj/item/gun/projectile/wep = holding
-
-
 	switch(loading_type)
 		if(LOADING_BOX)
 			var/slot = getEmptySlot()
@@ -447,7 +447,7 @@
 			return wep.ammo_magazine ? TRUE : FALSE
 		if(LOADING_SINGLE)
 			var/initial_shells = length(wep.loaded)
-			while(length(wep.loaded) < max_shells)
+			while(length(wep.loaded) < wep.max_shells)
 				var/obj/item/ammo_casing/bullet = getLoadedMagazine()
 				if(!bullet)
 					break
@@ -456,56 +456,47 @@
 					var/obj/item/ammo_casing/bullet_dupe = new bullet.type(bullet)
 					bullet_dupe.forceMove(wep)
 					wep.loaded.Insert(1, bullet_dupe)
-				if(bullet.amount == 1 && length(wep.loaded) < max_shells)
+				if(bullet.amount == 1 && length(wep.loaded) < wep.max_shells)
 					bullet.forceMove(wep)
 					wep.loaded.Insert(1, bullet)
 				if(!isgun(bullet.loc))
 					var/empty_slot = getEmptySlot()
 					if(!empty_slot)
-						bullet.forceMove(get_turf(user))
+						bullet.forceMove(get_turf(src))
 					else
 						ammunition_storage[empty_slot] = bullet
-			return length(wep.loaded) == max_shells ? 1 : (length(wep.loaded) > initial_shells ? 2 : 0 )
+			return length(wep.loaded) == wep.max_shells ? 1 : (length(wep.loaded) > initial_shells ? 2 : 0 )
 		if(LOADING_FLEXIBLE)
-			var/obj/ammo = getLoadedMagazine()
-			if(istype(ammo, /obj/item/ammo_casing))
-				var/initial_shells = length(wep.loaded)
-				while(length(wep.loaded) < max_shells)
-					var/obj/item/ammo_casing/bullet = isgun(ammo.loc) ? ammo : getLoadedMagazine()
-					if(!bullet)
-						break
-					if(!istype(bullet))
-						break
+			var/initial_shells = length(wep.loaded)
+			while(length(wep.loaded) < wep.max_shells)
+				var/obj/ammo = getLoadedMagazine()
+				if(istype(ammo, /obj/item/ammo_magazine))
+					var/obj/item/ammo_magazine/mag = ammo
+					while(length(mag.stored_ammo) && length(wep.loaded) < wep.max_shells)
+						var/obj/item/ammo_casing/bullet = mag.removeCasing()
+						if(!bullet)
+							break
+						bullet.forceMove(wep)
+						wep.loaded.Insert(1, bullet)
+				else
+					var/obj/item/ammo_casing/bullet = ammo
 					while(bullet.amount > 1)
 						// so we dupe
 						var/obj/item/ammo_casing/bullet_dupe = new bullet.type(bullet)
 						bullet_dupe.forceMove(wep)
 						wep.loaded.Insert(1, bullet_dupe)
-					if(bullet.amount == 1 && length(wep.loaded) < max_shells)
-						bullet.forceMove(wep)
-						wep.loaded.Insert(1, bullet)
-					if(!isgun(bullet.loc))
-						var/empty_slot = getEmptySlot()
-						if(!empty_slot)
-							bullet.forceMove(get_turf(user))
-						else
-							ammunition_storage[empty_slot] = bullet
-				return length(wep.loaded) == max_shells ? 1 : (length(wep.loaded) > initial_shells ? 2 : 0 )
-			if(istype(ammo, /obj/item/ammo_magazine))
-				var/slot = getEmptySlot()
-				var/obj/ammo_mag = wep.ammo_magazine
-				if(ammo_mag)
-					ammo_mag.update_icon()
-					if(slot)
-						ammunition_storage[slot] = ammo_mag
-					else
-						ammo_mag.forceMove(get_turf(src))
-				// this returns null if we cant get a mag anyway
-				wep.ammo_magazine = ammo
-				// Guns reset their firemode on reload
-				wep.update_firemode()
-				// wheter we succesfully reloaded or not
-				return wep.ammo_magazine ? TRUE : FALSE
+						if(bullet.amount == 1 && length(wep.loaded) < wep.max_shells)
+							bullet.forceMove(wep)
+							wep.loaded.Insert(1, bullet)
+						if(!isgun(bullet.loc))
+							var/empty_slot = getEmptySlot()
+							if(!empty_slot)
+								bullet.forceMove(get_turf(src))
+							else
+								ammunition_storage[empty_slot] = bullet
+
+			return length(wep.loaded) == wep.max_shells ? 1 : (length(wep.loaded) > initial_shells ? 2 : 0 )
+
 
 
 
@@ -546,6 +537,62 @@
 	init_recoil = list(0.3, 1, 0.3)
 	matter = list()
 	var/reloading = FALSE
+
+/obj/item/mech_equipment/mounted_system/ballistic/shotgun
+	// named after Srgt Robert Draper's nickname from The Expanse book series
+	name = "ML \"Bobby\""
+	desc = "A brutal mech-mounted shotgun with an automatic cocking mechanism. Fires in single-shot, cocks itself fast. Takes in shotgun ammo boxes or shell bunches"
+	icon_state = "mech_ballistic1"
+	holding_type = /obj/item/gun/projectile/shotgun/pump/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
+	spawn_blacklisted = TRUE
+	loading_type = LOADING_FLEXIBLE
+	ammunition_storage_limit = 4
+	accepted_types = list(
+		/obj/item/ammo_magazine/ammobox/shotgun,
+		/obj/item/ammo_casing/shotgun
+	)
+
+/obj/item/gun/projectile/shotgun/pump/mech
+	name = "ML \"Bobby\""
+	restrict_safety = TRUE
+	safety = FALSE
+	twohanded = FALSE
+	spawn_blacklisted = TRUE
+	spawn_tags = null
+	matter = list()
+	var/loading = FALSE
+
+/obj/item/gun/projectile/shotgun/pump/mech/pump(mob/M)
+	..()
+	playsound(get_turf(M), 'sound/weapons/shotgunpump.ogg', 120, 1)
+
+/obj/item/gun/projectile/shotgun/pump/mech/afterattack(atom/A, mob/living/user)
+	if(loading)
+		to_chat(user, SPAN_NOTICE("\The [src] is currently reloading!"))
+		return
+	..()
+	pump(user)
+	if(!chambered)
+		to_chat(user, SPAN_NOTICE("\The [src] has run out of shells! reloading..."))
+		loading = TRUE
+		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
+		spawn(8 SECONDS)
+			if(hold.reloadGun())
+				to_chat(user, SPAN_NOTICE("\The [src]'s chamber has been refilled with shells."))
+			else
+				to_chat(user, SPAN_DANGER("\The [src]'s failed to load!"))
+			loading = FALSE
+			pump(user)
+
+
+
+
+
+
 
 /obj/item/gun/projectile/automatic/c20r/mech/afterattack(atom/A, mob/living/user)
 	. = ..()
