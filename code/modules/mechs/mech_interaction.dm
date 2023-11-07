@@ -255,7 +255,7 @@
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
-	if(istype(I, /obj/item/ammo_magazine))
+	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode to reload its guns!"))
 		var/list/obj/item/mech_equipment/mounted_system/ballistic/loadable_guns = list()

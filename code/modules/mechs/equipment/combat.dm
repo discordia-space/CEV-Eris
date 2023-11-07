@@ -243,7 +243,7 @@
 	var/loading_type = LOADING_BOX
 
 /obj/item/mech_equipment/mounted_system/ballistic/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/ammo_magazine))
+	if(istype(I, /obj/item/ammo_magazine) || istype(I, /obj/item/ammo_casing))
 		switch(loadMagazine(I,user))
 			if(-1)
 				to_chat(user, SPAN_NOTICE("\The [src] does not accept this type of magazine."))
@@ -470,6 +470,8 @@
 			var/initial_shells = length(wep.loaded)
 			while(length(wep.loaded) < wep.max_shells)
 				var/obj/ammo = getLoadedMagazine()
+				if(!ammo)
+					break
 				if(istype(ammo, /obj/item/ammo_magazine))
 					var/obj/item/ammo_magazine/mag = ammo
 					while(length(mag.stored_ammo) && length(wep.loaded) < wep.max_shells)
@@ -478,6 +480,11 @@
 							break
 						bullet.forceMove(wep)
 						wep.loaded.Insert(1, bullet)
+					var/slot = getEmptySlot()
+					if(slot)
+						ammunition_storage[slot] = mag
+					else
+						mag.forceMove(get_turf(src))
 				else
 					var/obj/item/ammo_casing/bullet = ammo
 					while(bullet.amount > 1)
@@ -541,7 +548,7 @@
 /obj/item/mech_equipment/mounted_system/ballistic/shotgun
 	// named after Srgt Robert Draper's nickname from The Expanse book series
 	name = "ML \"Bobby\""
-	desc = "A brutal mech-mounted shotgun with an automatic cocking mechanism. Fires in single-shot, cocks itself fast. Takes in shotgun ammo boxes or shell bunches"
+	desc = "A brutal mech-mounted shotgun with an automatic cocking mechanism. Fires in single-shot, cocks itself fast. Takes in shotgun ammo boxes, packets or shell bunches"
 	icon_state = "mech_ballistic1"
 	holding_type = /obj/item/gun/projectile/shotgun/pump/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
@@ -553,6 +560,7 @@
 	ammunition_storage_limit = 4
 	accepted_types = list(
 		/obj/item/ammo_magazine/ammobox/shotgun,
+		/obj/item/ammo_magazine/ammobox/shotgun_small,
 		/obj/item/ammo_casing/shotgun
 	)
 
@@ -560,6 +568,7 @@
 	name = "ML \"Bobby\""
 	restrict_safety = TRUE
 	safety = FALSE
+	max_shells = 12
 	twohanded = FALSE
 	spawn_blacklisted = TRUE
 	spawn_tags = null
@@ -569,6 +578,9 @@
 /obj/item/gun/projectile/shotgun/pump/mech/pump(mob/M)
 	..()
 	playsound(get_turf(M), 'sound/weapons/shotgunpump.ogg', 120, 1)
+
+/obj/item/gun/projectile/shotgun/pump/mech/get_hardpoint_maptext()
+	return "[length(loaded) + chambered ? 1 : 0] / [max_shells]"
 
 /obj/item/gun/projectile/shotgun/pump/mech/afterattack(atom/A, mob/living/user)
 	if(loading)
@@ -587,12 +599,6 @@
 				to_chat(user, SPAN_DANGER("\The [src]'s failed to load!"))
 			loading = FALSE
 			pump(user)
-
-
-
-
-
-
 
 /obj/item/gun/projectile/automatic/c20r/mech/afterattack(atom/A, mob/living/user)
 	. = ..()
