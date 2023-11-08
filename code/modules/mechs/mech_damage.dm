@@ -18,8 +18,14 @@
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
 		penetration = L.armor_divisor
-
-	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration, def_zone=pick(arms, legs, body, head))
+	var/list/damages = list(BRUTE = damage)
+	if(user.dir & reverse_dir[dir])
+		var/obj/item/mech_equipment/shield_generator/gen = getShield()
+		if(gen)
+			damages = gen.absorbDamages(damages)
+	if(damages[BRUTE] == 0)
+		return
+	damage_through_armor(damages[BRUTE], BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration, def_zone=pick(arms, legs, body, head))
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
@@ -27,6 +33,12 @@
 	spawn(1) updatehealth()
 	return TRUE
 
+/mob/living/exosuit/proc/getShield()
+	for(var/hardpoint in hardpoints)
+		var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
+		if(istype(thing , /obj/item/mech_equipment/shield_generator))
+			return thing
+	return null
 
 /mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
 	if(!I.force)
@@ -34,12 +46,23 @@
 		return
 	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
 	var/roll = !prob(body.pilot_coverage)
+	var/list/damages = list(BRUTE = I.force)
+	var/obj/item/mech_equipment/shield_generator/gen = getShield()
+	if(gen)
+		damages = gen.absorbDamages(damages)
+// not enough made it in
+	if(damages[BRUTE] < round(I.force / 2))
+		visible_message("\The [src]'s shields block the blow!", 1, 2 ,5)
+		return
+
 	if(LAZYLEN(pilots) && ((!hatch_closed && (get_dir(user,src) & reverse_dir[dir])) || roll))
 		var/mob/living/pilot = pick(pilots)
+		var/turf/location = get_turf(src)
+		location.visible_message(SPAN_DANGER("\The [user] attacks the pilot inside of \the [src]"),1,5)
 		return pilot.resolve_item_attack(I, user, def_zone)
 	else if(LAZYLEN(pilots) && !roll)
 		var/turf/location = get_turf(src)
-		location.visible_message(SPAN_DANGER("\The [user] tries to attack the pilot inside of \the [src], but the chassis blocks it!"))
+		location.visible_message(SPAN_DANGER("\The [user] tries to attack the pilot inside of \the [src], but the chassis blocks it!"), 1, 5)
 		return def_zone
 
 	return def_zone //Careful with effects, mechs shouldn't be stunned
@@ -81,8 +104,6 @@
 	if(istext(def_zone))
 		def_zone = zoneToComponent(def_zone)
 
-	if(istext(def_zone))
-		def_zone = zoneToComponent(def_zone)
 	switch(damagetype)
 		if(BRUTE)
 			wounding_multiplier = wound_check(injury_type, wounding_multiplier, edge, sharp)
@@ -102,33 +123,30 @@
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
-	var/mob/living/target = src
-	if(def_zone == body && ((!hatch_closed && (hit_dir & reverse_dir[dir])) || !prob(body.pilot_coverage)) && get_mob())
-		target = get_mob()
-	//Stun Beams
-	if(P.taser_effect && target == src)
+	var/obj/item/mech_equipment/shield_generator/gen = getShield()
+	var/list/damages=  P.damage_types
+	if(hit_dir & reverse_dir[dir])
+		if(gen)
+			damages = gen.absorbDamages(damages)
+		if(def_zone == body)
+			if(!hatch_closed || !prob(body.pilot_coverage))
+				var/mob/living/pilot = get_mob()
+				if(pilot)
+					var/result = pilot.bullet_act(P, ran_zone())
+					var/turf/location = get_turf(src)
+					location.visible_message("[get_mob()] gets hit by \the [P]!")
+					if(result != PROJECTILE_CONTINUE)
+						return
+	if(P.taser_effect)
 		qdel(P)
 		return TRUE
-	//Armor and damage
-	// Pass to pilot
-	if(target != src)
-		var/result = target.bullet_act(P, ran_zone())
-		var/turf/location = get_turf(src)
-		location.visible_message("[get_mob()] gets hit by \the [P]!")
-		// if it gets stuck in the mob , dont go throug mech
-		if(result != PROJECTILE_CONTINUE)
-			return
-	// hit mech if there is no pilot or if it went throug  the pilot
-	if(!P.nodamage)
-		hit_impact(P.get_structure_damage(), hit_dir)
-		for(var/damage_type in P.damage_types)
-			if(damage_type == HALLOSS && target == src)
-				continue // don't even bother
-			var/damage = P.damage_types[damage_type]
-			damage_through_armor(clamp(damage,0, damage), damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp=is_sharp(P), edge=has_edge(P))
+	hit_impact(P.get_structure_damage(), hit_dir)
+	for(var/damage_type in damages)
+		if(damage_type == HALLOSS)
+			continue
+		damage_through_armor(damages[damage_type], damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
 
-
-	P.on_hit(target, def_zone)
+	P.on_hit(src, def_zone)
 	return PROJECTILE_STOP
 
 /mob/living/exosuit/getFireLoss()

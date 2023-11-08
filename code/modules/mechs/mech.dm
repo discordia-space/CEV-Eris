@@ -215,6 +215,15 @@
 	. = ..()
 	if(.)
 		update_pilots()
+		var/obj/item/mech_equipment/shield_generator/gen = getShield()
+		if(gen)
+			// needed for the FLICKS to play in the proper direction
+			gen.visual_bluff.dir = dir
+			if(dir == NORTH)
+				gen.visual_bluff.layer = MECH_UNDER_LAYER
+			else
+				gen.visual_bluff.layer = MECH_ABOVE_LAYER
+
 
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature

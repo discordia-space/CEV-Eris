@@ -126,6 +126,15 @@
 		QDEL_NULL(holding)
 	. = ..()
 
+/obj/item/mech_equipment/mounted_system/proc/get_hardpoint()
+	var/mob/living/exosuit/mech = loc
+	if(!istype(mech))
+		return null
+	for(var/hardpoint in mech.hardpoints)
+		if(mech.hardpoints[hardpoint] == src)
+			return hardpoint
+	return null
+
 
 /obj/item/mech_equipment/mounted_system/get_effective_obj()
 	return (holding ? holding : src)

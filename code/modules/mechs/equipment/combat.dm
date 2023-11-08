@@ -16,6 +16,7 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
 	w_class = ITEM_SIZE_BULKY
 	worksound = WORKSOUND_HARD_SLASH
+	wielded = TRUE
 	// Its Big
 	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_HAMMERING = 20, QUALITY_PRYING = 15)
@@ -69,6 +70,7 @@
 				// DULL BLADE gets DULL DAMAGE
 				le_mech_sword.force = max(0,(blade_mat.hardness - 35 * sharpeners)/2)
 				le_mech_sword.matter = list(blade_mat.name = 5)
+				le_mech_comp.material_color = blade_mat.icon_colour
 				qdel(src)
 				return
 
@@ -116,15 +118,53 @@
 
 #undef OVERKEY_BLADE
 
-
 /obj/item/mech_equipment/mounted_system/sword
 	name = "\improper NT \"Warborne\" sword"
 	desc = "An exosuit-mounted sword. Handle with care."
 	icon_state = "mech_blade"
 	holding_type = /obj/item/tool/sword/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+	var/material_color = null
+	var/obj/visual_bluff = null
 
+/obj/item/mech_equipment/mounted_system/sword/Initialize()
+	. = ..()
+	visual_bluff = new /obj(null)
+	visual_bluff.pixel_x = 8
+	visual_bluff.icon = icon
+	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_ID | VIS_INHERIT_LAYER
+	visual_bluff.color = material_color
+	// so it swings gloriously
+	var/obj/item/tool/sword/mech/holdin = holding
+	holdin.wielded = TRUE
+
+/obj/item/mech_equipment/mounted_system/sword/Destroy()
+	if(ismech(loc))
+		var/mob/living/exosuit/mech = loc
+		mech.vis_contents.Remove(visual_bluff)
+	QDEL_NULL(visual_bluff)
+	. = ..()
+
+/obj/item/mech_equipment/mounted_system/sword/installed(mob/living/exosuit/_owner)
+	. = ..()
+	_owner.vis_contents.Add(visual_bluff)
+	update_icon()
+
+/obj/item/mech_equipment/mounted_system/sword/uninstalled()
+	owner.vis_contents.Remove(visual_bluff)
+	update_icon()
+	..()
+
+/obj/item/mech_equipment/mounted_system/sword/update_icon()
+	. = ..()
+	visual_bluff.icon_state = "mech_blade_knife_[get_hardpoint()]"
+
+/obj/item/mech_equipment/mounted_system/sword/afterattack(atom/target, mob/living/user, inrange, params)
+	. = ..()
+	if(. && holding && inrange)
+		swing_attack(target, user, params)
 
 /obj/item/mech_equipment/mounted_system/taser
 	name = "mounted taser carbine"
@@ -570,6 +610,7 @@
 	safety = FALSE
 	max_shells = 12
 	twohanded = FALSE
+	wielded = TRUE
 	spawn_blacklisted = TRUE
 	spawn_tags = null
 	matter = list()
@@ -688,5 +729,87 @@
 			reloading = FALSE
 			// recock your gun
 			cocked = FALSE
-			// not being able to fire removes the CH
+			// not being able to fire removes the CH(done in reloadGun now)
+
+/obj/item/mech_equipment/shield_generator
+	name = "mounted shield generator"
+	desc = "A large, heavy box carrying a miniaturized shield generator."
+	icon_state = "mech_atmoshield"
+	restricted_hardpoints = list(HARDPOINT_BACK)
+	restricted_software = list(MECH_SOFTWARE_UTILITY)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 6, TECH_PLASMA = 5)
+	/// Defines the amount of power drained per hit thats blocked
+	var/damage_to_power_drain = 30
+	/// Are we toggled on ?
+	var/on = FALSE
+	/// last time we toggled ,. stores world.time
+	var/last_toggle = null
+	/// A object used to show the shield effects
+	var/obj/visual_bluff = null
+
+/obj/item/mech_equipment/shield_generator/Initialize()
+	. = ..()
+	icon_state = "mech_atmoshield_off"
+	visual_bluff = new /obj(null)
+	visual_bluff.icon = 'icons/mechs/shield.dmi'
+	visual_bluff.icon_state = "shield_null"
+	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
+	visual_bluff.layer = ABOVE_ALL_MOB_LAYER
+	// the mech default offset is -8 , this neeeds 8 for some reason.
+	visual_bluff.pixel_x = 8
+
+/obj/item/mech_equipment/shield_generator/Destroy()
+	. = ..()
+	var/mob/living/exosuit/mech = loc
+	if(ismech(mech))
+		mech.vis_contents.Remove(visual_bluff)
+	QDEL_NULL(visual_bluff)
+
+/obj/item/mech_equipment/shield_generator/attack_self(mob/user)
+	. = ..()
+	if(.)
+		on = !on
+		to_chat(user, "You toggle \the [src] [on ? "on" : "off"]")
+		last_toggle = world.time
+		update_icon()
+
+/obj/item/mech_equipment/shield_generator/update_icon()
+	. = ..()
+	icon_state = "[initial(icon_state)]_[on ? "on" : "off"]"
+	visual_bluff.icon_state = "[on ? "shield" : "shield_null"]"
+	var/mob/living/exosuit/mech = loc
+	if(!istype(mech))
+		return
+	if(!(visual_bluff in mech.vis_contents))
+		mech.vis_contents.Add(visual_bluff)
+	if(last_toggle > world.time - 1 SECOND)
+		if(on)
+			flick("shield_raise", visual_bluff)
+		else
+			flick("shield_drop", visual_bluff)
+
+/obj/item/mech_equipment/shield_generator/proc/absorbDamages(list/damages)
+	var/mob/living/exosuit/mech = loc
+	var/obj/item/cell/power = mech.get_cell()
+	if(!on)
+		return damages
+	if(!power || (power && power.charge <= damage_to_power_drain * 3))
+		last_toggle = world.time
+		on = FALSE
+		update_icon()
+		return damages
+	flick("shield_impact", visual_bluff)
+	for(var/damage in damages)
+		while(power.charge >= damage_to_power_drain && damages[damage] > 0)
+			damages[damage] -= 1
+			power.use(damage_to_power_drain)
+			// if it blows
+			if(QDELETED(power))
+				last_toggle = world.time
+				on = FALSE
+				update_icon()
+				return damages
+
+	return damages
+
 
