@@ -130,6 +130,17 @@
 		if(arms)
 			return A.attack_generic(src, arms.melee_damage, "attacked")
 
+/// Checks the mech for places to store the ore.
+/mob/living/exosuit/proc/getOreCarrier()
+	for(var/hardpoint in hardpoints)
+		if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/clamp))
+			var/obj/item/mech_equipment/clamp/holder = hardpoints[hardpoint]
+			var/ore_box = locate(/obj/structure/ore_box) in holder.carrying
+			if(ore_box)
+				return ore_box
+	return null
+
+
 
 /mob/living/exosuit/proc/set_hardpoint(var/hardpoint_tag)
 	clear_selected_hardpoint()

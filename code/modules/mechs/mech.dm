@@ -216,7 +216,8 @@
 	if(.)
 		update_pilots()
 		var/obj/item/mech_equipment/shield_generator/gen = getShield()
-		if(gen)
+		// runtimes for ballistic
+		if(gen && gen.visual_bluff)
 			// needed for the FLICKS to play in the proper direction
 			gen.visual_bluff.dir = dir
 			if(dir == NORTH)

@@ -149,10 +149,11 @@
 
 /obj/item/mech_equipment/mounted_system/sword/installed(mob/living/exosuit/_owner)
 	. = ..()
-	_owner.vis_contents.Add(visual_bluff)
 	update_icon()
+	_owner.vis_contents.Add(visual_bluff)
 
 /obj/item/mech_equipment/mounted_system/sword/uninstalled()
+
 	owner.vis_contents.Remove(visual_bluff)
 	update_icon()
 	..()
@@ -773,8 +774,10 @@
 		last_toggle = world.time
 		update_icon()
 
-/obj/item/mech_equipment/shield_generator/update_icon()
+/obj/item/mech_equipment/shield_generator/update_icon(skip)
 	. = ..()
+	if(skip)
+		return ..()
 	icon_state = "[initial(icon_state)]_[on ? "on" : "off"]"
 	visual_bluff.icon_state = "[on ? "shield" : "shield_null"]"
 	var/mob/living/exosuit/mech = loc
@@ -811,5 +814,46 @@
 				return damages
 
 	return damages
+
+/obj/item/mech_equipment/shield_generator/ballistic
+	name = "ballistic mech shield"
+	desc = "A large, bulky shield meant to protect hunkering mechs"
+	icon_state = "mech_shield"
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 3)
+
+/obj/item/mech_equipment/shield_generator/ballistic/Initialize()
+	. = ..()
+	icon_state = "mech_shield"
+	QDEL_NULL(visual_bluff)
+
+/obj/item/mech_equipment/shield_generator/ballistic/absorbDamages(list/damages)
+	if(!on)
+		return damages
+	for(var/damage in damages)
+		/// blocks 66% of damage
+		damages[damage] -= round(damages[damage]/1.5)
+	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 50, 1)
+	return damages
+	. = ..()
+
+/obj/item/mech_equipment/shield_generator/ballistic/update_icon()
+	..(skip = TRUE)
+
+/obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)
+	var/mob/living/exosuit/mech = loc
+	if(!istype(mech))
+		return
+	to_chat(user , SPAN_NOTICE("Deploying \the [src]..."))
+	if(do_after(user, 3 SECOND, src, FALSE))
+		on = !on
+		to_chat(user, "You [on ? "deploy" : "retract"] \the [src]")
+		mech.visible_message(SPAN_DANGER("\The [mech] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
+		if(on)
+			mech.canmove = FALSE
+		else
+			mech.canmove = TRUE
+
+
 
 

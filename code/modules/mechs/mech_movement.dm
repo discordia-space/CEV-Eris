@@ -7,9 +7,16 @@
 /mob/living/exosuit/Move()
 	. = ..()
 	if(.)
+		// Check for ore auto insertion
+		var/obj/structure/ore_box/box = getOreCarrier()
+		if(box)
+			for(var/obj/item/ore/i in get_turf(src))
+				i.Move(box)
+		// Check for walking sound
 		if(!isinspace())
 			if(legs && legs.mech_step_sound)
 				playsound(src.loc,legs.mech_step_sound,40,1)
+		// Check for stomping people
 		if(legs)
 			var/blocked = FALSE
 			var/turf/theDepths = GetBelow(src)

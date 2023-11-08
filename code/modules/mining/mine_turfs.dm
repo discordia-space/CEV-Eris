@@ -60,6 +60,13 @@
 		if(emitter_blasts_taken > 2) // 3 blasts per tile
 			mined_ore = 1
 			GetDrilled()
+	if(istype(Proj, /obj/item/projectile/beam/cutter))
+		var/obj/item/projectile/beam/cutter/cut = Proj
+		cut.on_hit(src)
+		if(cut.rocks_pierced < cut.pierce_max)
+			return PROJECTILE_CONTINUE
+		else
+			return PROJECTILE_STOP
 	else ..()
 
 /turf/simulated/mineral/Bumped(AM)
