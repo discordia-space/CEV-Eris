@@ -122,7 +122,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(SOUTHWEST)
 			R = get_step(C, NORTH)
 			L = get_step(C, EAST)
-	var/obj/effect/effect/melee/swing/S = new(user.loc)
+	var/obj/effect/effect/melee/swing/S = new(get_turf(user))
 	S.dir = _dir
 	user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
 	playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)

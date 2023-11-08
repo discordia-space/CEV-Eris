@@ -86,7 +86,7 @@
 /obj/item/mech_equipment/mounted_system/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(. && holding)
-		return holding.afterattack(target, user, inrange, params)
+		holding.afterattack(target, user, inrange, params)
 
 /obj/item/mech_equipment/mounted_system/on_select()
 	if(isgun(holding))

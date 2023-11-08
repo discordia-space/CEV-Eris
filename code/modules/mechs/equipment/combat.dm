@@ -164,7 +164,7 @@
 /obj/item/mech_equipment/mounted_system/sword/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(. && holding && inrange)
-		swing_attack(target, user, params)
+		holding.swing_attack(target, user, params)
 
 /obj/item/mech_equipment/mounted_system/taser
 	name = "mounted taser carbine"
