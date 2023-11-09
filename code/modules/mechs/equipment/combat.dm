@@ -297,9 +297,6 @@
 		. = ..()
 
 /obj/item/mech_equipment/mounted_system/ballistic/attack_self(mob/user)
-	. = ..()
-	if(.)
-		return
 	var/list/mag_removal = list()
 	for(var/obj/item/ammo_magazine/mag in ammunition_storage)
 		mag_removal["[mag] - [length(mag.stored_ammo)]"] = mag
@@ -732,6 +729,9 @@
 			cocked = FALSE
 			// not being able to fire removes the CH(done in reloadGun now)
 
+
+/// Yes this also drains power from blocking halloss
+///  Yes i justify it cause it stops by kinetic power and not by lethality / material hardness
 /obj/item/mech_equipment/shield_generator
 	name = "mounted shield generator"
 	desc = "A large, heavy box carrying a miniaturized shield generator."
@@ -773,6 +773,17 @@
 		to_chat(user, "You toggle \the [src] [on ? "on" : "off"]")
 		last_toggle = world.time
 		update_icon()
+
+/obj/item/mech_equipment/shield_generator/proc/updateVisualBluff(targetDir)
+	visual_bluff.dir = targetDir
+	if(visual_bluff.dir == NORTH)
+		visual_bluff.layer = MECH_UNDER_LAYER
+	else
+		visual_bluff.layer = MECH_ABOVE_LAYER
+
+// Used to tell how effective we are against damage,
+/obj/item/mech_equipment/shield_generator/proc/getEffectiveness()
+	return on
 
 /obj/item/mech_equipment/shield_generator/update_icon(skip)
 	. = ..()
@@ -825,7 +836,19 @@
 /obj/item/mech_equipment/shield_generator/ballistic/Initialize()
 	. = ..()
 	icon_state = "mech_shield"
-	QDEL_NULL(visual_bluff)
+	visual_bluff.icon = 'icons/mechs/bshield.dmi'
+	visual_bluff.pixel_x = 0
+
+/obj/item/mech_equipment/shield_generator/ballistic/installed(mob/living/exosuit/_owner)
+	. = ..()
+	// yes we force it here so update icon does it properly
+	forceMove(_owner)
+	update_icon()
+	updateVisualBluff(_owner.dir)
+
+// 66% efficient when deployed
+/obj/item/mech_equipment/shield_generator/ballistic/getEffectiveness()
+	return on ? 0.66 : 0
 
 /obj/item/mech_equipment/shield_generator/ballistic/absorbDamages(list/damages)
 	if(!on)
@@ -833,26 +856,99 @@
 	for(var/damage in damages)
 		/// blocks 66% of damage
 		damages[damage] -= round(damages[damage]/1.5)
-	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 50, 1)
+	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 50, 8)
 	return damages
-	. = ..()
+
+/obj/item/mech_equipment/shield_generator/updateVisualBluff(targetDir)
+	visual_bluff.dir = targetDir
+	switch(get_hardpoint())
+		if(HARDPOINT_RIGHT_HAND)
+			// i used a switch before and it doesnt work as intended for some fucking reason FOR EAST AND WEST >:( -SPCR
+			if(targetDir == NORTH)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			if(targetDir == EAST)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			if(targetDir == SOUTH)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			if(targetDir == WEST)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			return
+		if(HARDPOINT_LEFT_HAND)
+			if(targetDir == NORTH)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			if(targetDir == EAST)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			if(targetDir == SOUTH)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			if(targetDir == WEST)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			return
+
 
 /obj/item/mech_equipment/shield_generator/ballistic/update_icon()
+	/// Not needed since we already have handling for visual bluffs layering
+	/// and since we dont use a shield.
+
 	..(skip = TRUE)
+	var/mob/living/exosuit/mech = loc
+	if(!istype(mech))
+		return
+	if(!(visual_bluff in mech.vis_contents))
+		mech.vis_contents.Add(visual_bluff)
+	visual_bluff.icon_state = "mech_shield_[get_hardpoint()]"
 
 /obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)
 	var/mob/living/exosuit/mech = loc
 	if(!istype(mech))
 		return
-	to_chat(user , SPAN_NOTICE("Deploying \the [src]..."))
+	to_chat(user , SPAN_NOTICE("[on ? "Retracting" : "Deploying"] \the [src]..."))
 	if(do_after(user, 3 SECOND, src, FALSE))
 		on = !on
 		to_chat(user, "You [on ? "deploy" : "retract"] \the [src]")
 		mech.visible_message(SPAN_DANGER("\The [mech] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
-		if(on)
-			mech.canmove = FALSE
-		else
-			mech.canmove = TRUE
+		playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
+		/// movement blocking is handled in MoveBlock()
+
+/// Pass all attack attempts to afterattack if we're installed
+/obj/item/mech_equipment/shield_generator/ballistic/resolve_attackby(atom/A, mob/user, params)
+	if(ismech(loc))
+		return FALSE
+	else
+		return ..()
+
+/obj/item/mech_equipment/shield_generator/ballistic/afterattack(atom/target, mob/living/user, inrange, params)
+	. = ..()
+	if(inrange && ismech(loc))
+		var/list/mob/living/targets = list()
+		if(!isturf(target))
+			target = get_turf(target)
+		for(var/mob/living/knocked in target.contents)
+			targets.Add(knocked)
+		do_attack_animation(target, TRUE)
+
+		for(var/mob/living/knockable in targets)
+			if(ishuman(knockable))
+				var/mob/living/carbon/human/targ = knockable
+				if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
+					targ.visible_message(SPAN_DANGER("[targ] dodges the shield slam!"), "You dodge [loc]'s shield slam!", "You hear a woosh", 6)
+					targets.Remove(knockable)
+					continue
+				targ.visible_message(SPAN_DANGER("[targ] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+				targ.Weaken(1)
+				targ.throw_at(get_turf_away_from_target_complex(target,user,3), 5, 1, loc)
+				targ.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 1, src, FALSE, FALSE, 1)
+			else
+				knockable.visible_message(SPAN_DANGER("[knockable] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+				knockable.Weaken(1)
+				knockable.throw_at(get_turf_away_from_target_complex(target,user,3), 3, 1, loc)
+				knockable.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
+
+		if(length(targets))
+			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 1)
+
+
+
+
 
 
 

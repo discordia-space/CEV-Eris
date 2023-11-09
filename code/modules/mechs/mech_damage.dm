@@ -30,15 +30,19 @@
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
 	user.do_attack_animation(src)
-	spawn(1) updatehealth()
+	updatehealth()
 	return TRUE
 
+/// Returns the best shield for damage reduction
 /mob/living/exosuit/proc/getShield()
+	var/obj/item/mech_equipment/shield_generator/chosen = null
 	for(var/hardpoint in hardpoints)
 		var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
 		if(istype(thing , /obj/item/mech_equipment/shield_generator))
-			return thing
-	return null
+			var/obj/item/mech_equipment/shield_generator/gen = thing
+			if(!chosen || (chosen && (chosen.getEffectiveness() < gen.getEffectiveness())))
+				chosen = gen
+	return chosen
 
 /mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
 	if(!I.force)

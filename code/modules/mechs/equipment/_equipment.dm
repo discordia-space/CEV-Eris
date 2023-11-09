@@ -23,6 +23,15 @@
 /obj/item/mech_equipment/attack() //Generally it's not desired to be able to attack with items
 	return 0
 
+/obj/item/mech_equipment/proc/get_hardpoint()
+	var/mob/living/exosuit/mech = loc
+	if(!istype(mech))
+		return null
+	for(var/hardpoint in mech.hardpoints)
+		if(mech.hardpoints[hardpoint] == src)
+			return hardpoint
+	return null
+
 /obj/item/mech_equipment/afterattack(atom/target, mob/living/user, inrange, params)
 
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
@@ -38,7 +47,10 @@
 
 /obj/item/mech_equipment/Click()
 	. = ..()
-	if(usr && (!owner || !usr.incapacitated() && (usr == owner || usr.loc == owner))) attack_self(usr)
+	// Only pass clicks to attack_self if we are in the mech and capable
+	if(ismech(loc))
+		if((usr == owner || usr.loc == owner) && !usr.incapacitated )
+			return attack_self(usr)
 
 /obj/item/mech_equipment/attack_self(var/mob/user)
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
@@ -125,16 +137,6 @@
 	if(holding)
 		QDEL_NULL(holding)
 	. = ..()
-
-/obj/item/mech_equipment/mounted_system/proc/get_hardpoint()
-	var/mob/living/exosuit/mech = loc
-	if(!istype(mech))
-		return null
-	for(var/hardpoint in mech.hardpoints)
-		if(mech.hardpoints[hardpoint] == src)
-			return hardpoint
-	return null
-
 
 /obj/item/mech_equipment/mounted_system/get_effective_obj()
 	return (holding ? holding : src)

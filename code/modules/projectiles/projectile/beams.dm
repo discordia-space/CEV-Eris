@@ -38,7 +38,8 @@
 	armor_divisor = 1.2
 	pass_flags = PASSTABLE
 	penetrating = 5
-	var/rocks_pierced = 0
+	/// start with 1 extra since somehow 5 becomes 6
+	var/rocks_pierced = 1
 	var/pierce_max = 5
 
 	muzzle_type = /obj/effect/projectile/laser/plasmacutter/muzzle
@@ -52,6 +53,9 @@
 	.=..()
 
 /obj/item/projectile/beam/cutter/check_penetrate(atom/A)
+	. = ..()
+	if(.)
+		return .
 	if(istype(A, /turf/simulated/mineral) && rocks_pierced < pierce_max)
 		on_impact(A)
 		rocks_pierced++

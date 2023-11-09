@@ -88,6 +88,11 @@
 	var/mob/living/exosuit/exosuit = host
 	if(world.time < next_move)
 		return MOVEMENT_STOP
+	/// Added to handle with the case of ballistic shields (and probably other ones in the future.)
+	var/text = exosuit.moveBlocked()
+	if(length(text))
+		to_chat(mover, SPAN_NOTICE(text))
+		return MOVEMENT_STOP
 	if((!(mover in exosuit.pilots) && mover != exosuit) || exosuit.incapacitated() || mover.incapacitated())
 		return MOVEMENT_STOP
 	if(!exosuit.legs)
@@ -170,6 +175,16 @@
 /mob/living/exosuit/get_fall_damage(var/turf/from, var/turf/dest)
 	//Exosuits are big and heavy, but one z level can't damage them
 	. = (from && dest) ? ((from.z - dest.z > 1) ? (50 * from.z - dest.z) : 0) : min(15, maxHealth * 0.4)
+
+/mob/living/exosuit/proc/moveBlocked()
+	for(var/hardpoint in hardpoints)
+		var/obj/item/mech_equipment/shield_generator/ballistic/blocker = hardpoints[hardpoint]
+		if(!istype(blocker))
+			continue
+		if(blocker.on)
+			return "\The [blocker] is deployed! Immobilizing you. "
+	return ""
+
 
 /*
 /mob/living/exosuit/handle_fall_effect(var/turf/landing)

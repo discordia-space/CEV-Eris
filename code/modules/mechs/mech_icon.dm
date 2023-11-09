@@ -57,8 +57,7 @@
 				else if(head)
 					color = head.color
 					decal = head.decal
-
-				new_overlays += get_mech_image(decal, use_icon_state, 'icons/mechs/mech_weapon_overlays.dmi', color, hardpoint_object.mech_layer )
+				new_overlays += get_mech_image(decal, use_icon_state, MECH_WEAPON_OVERLAYS_ICON, color, hardpoint_object.mech_layer )
 
 	overlays = new_overlays
 
