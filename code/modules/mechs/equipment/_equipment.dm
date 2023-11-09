@@ -49,7 +49,7 @@
 	. = ..()
 	// Only pass clicks to attack_self if we are in the mech and capable
 	if(ismech(loc))
-		if((usr == owner || usr.loc == owner) && !usr.incapacitated )
+		if((usr == owner || usr.loc == owner) && !usr.incapacitated() )
 			return attack_self(usr)
 
 /obj/item/mech_equipment/attack_self(var/mob/user)
