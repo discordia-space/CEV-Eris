@@ -269,6 +269,7 @@
 	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode to reload its guns!"))
+			return
 		var/list/obj/item/mech_equipment/mounted_system/ballistic/loadable_guns = list()
 		for(var/hardpoint in hardpoints)
 			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/ballistic))
@@ -287,6 +288,8 @@
 				to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage"))
 			if(1)
 				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]"))
+			if(2)
+				to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]"))
 
 	else if(user.a_intent != I_HURT)
 		if(attack_tool(I, user))

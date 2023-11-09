@@ -62,7 +62,7 @@
 	else
 		return FALSE
 
-/obj/item/mech_equipment/proc/installed(var/mob/living/exosuit/_owner)
+/obj/item/mech_equipment/proc/installed(var/mob/living/exosuit/_owner, hardpoint)
 	owner = _owner
 	//generally attached. Nothing should be able to grab it
 	canremove = FALSE

@@ -84,6 +84,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /obj/item/proc/swing_attack(atom/A, mob/user, params)
 	var/holdinghand = user.get_inventory_slot(src)
+	if(params["mech"])
+		holdinghand = params["mech_hand"]
 	var/turf/R
 	var/turf/C
 	var/turf/L

@@ -126,8 +126,68 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+	spawn_blacklisted = TRUE
 	var/material_color = null
 	var/obj/visual_bluff = null
+
+/// Spawnable subtypes that are findable in maintenance
+/// Plasteel - balanced
+/// Osmium - plasteel+
+/// Cardboard - meme level with 0 damage
+/// Mettalic hydrogen - great
+
+/obj/item/mech_equipment/mounted_system/sword/plasteel
+	desc = "An exosuit-mounted sword, with a blade made of plasteel. Handle with care"
+	spawn_blacklisted = FALSE
+	rarity_value = 70
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+
+/obj/item/mech_equipment/mounted_system/sword/plasteel/Initialize()
+	var/material/mat_data = get_material_by_name(MATERIAL_PLASTEEL)
+	material_color = mat_data.icon_colour
+	. = ..()
+	holding.force = max(0,(mat_data.hardness/2))
+	holding.matter = list(MATERIAL_PLASTEEL = 5)
+
+
+/obj/item/mech_equipment/mounted_system/sword/osmium
+	desc = "An exosuit-mounted sword, with a blade made of osmium. Handle with care"
+	spawn_blacklisted = FALSE
+	rarity_value = 90
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+
+/obj/item/mech_equipment/mounted_system/sword/osmium/Initialize()
+	var/material/mat_data = get_material_by_name(MATERIAL_OSMIUM)
+	material_color = mat_data.icon_colour
+	. = ..()
+	holding.force = max(0,(mat_data.hardness/2))
+	holding.matter = list(MATERIAL_OSMIUM = 5)
+
+/obj/item/mech_equipment/mounted_system/sword/cardboard
+	desc = "An exosuit-mounted sword, with a blade made of ... cardboard?. Handle with recklessness"
+	spawn_blacklisted = FALSE
+	rarity_value = 50
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+
+/obj/item/mech_equipment/mounted_system/sword/cardboard/Initialize()
+	var/material/mat_data = get_material_by_name(MATERIAL_CARDBOARD)
+	material_color = mat_data.icon_colour
+	. = ..()
+	holding.force = max(0,(mat_data.hardness/2))
+	holding.matter = list(MATERIAL_CARDBOARD = 5)
+
+/obj/item/mech_equipment/mounted_system/sword/myhydrogen
+	desc = "An exosuit-mounted sword, with a blade made of metallic hydrogen, you can hear air itself being cut. Handle with care"
+	spawn_blacklisted = FALSE
+	rarity_value = 160
+	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
+
+/obj/item/mech_equipment/mounted_system/sword/myhydrogen/Initialize()
+	var/material/mat_data = get_material_by_name(MATERIAL_MHYDROGEN)
+	material_color = mat_data.icon_colour
+	. = ..()
+	holding.force = max(0,(mat_data.hardness/2))
+	holding.matter = list(MATERIAL_MHYDROGEN = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/Initialize()
 	. = ..()
@@ -147,9 +207,9 @@
 	QDEL_NULL(visual_bluff)
 	. = ..()
 
-/obj/item/mech_equipment/mounted_system/sword/installed(mob/living/exosuit/_owner)
+/obj/item/mech_equipment/mounted_system/sword/installed(mob/living/exosuit/_owner, hardpoint)
 	. = ..()
-	update_icon()
+	visual_bluff.icon_state = "mech_blade_knife_[hardpoint]"
 	_owner.vis_contents.Add(visual_bluff)
 
 /obj/item/mech_equipment/mounted_system/sword/uninstalled()
@@ -158,13 +218,15 @@
 	update_icon()
 	..()
 
-/obj/item/mech_equipment/mounted_system/sword/update_icon()
+/obj/item/mech_equipment/mounted_system/sword/update_icon(hardpoint)
 	. = ..()
 	visual_bluff.icon_state = "mech_blade_knife_[get_hardpoint()]"
 
 /obj/item/mech_equipment/mounted_system/sword/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(. && holding && inrange)
+		params["mech"] = TRUE
+		params["mech_hand"] = get_hardpoint() == HARDPOINT_LEFT_HAND ? slot_l_hand : slot_r_hand
 		holding.swing_attack(target, user, params)
 
 /obj/item/mech_equipment/mounted_system/taser
@@ -241,7 +303,9 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 5)
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 60
 
 /obj/item/gun/energy/plasmacutter
 	bad_type = /obj/item/gun/energy/plasmacutter
@@ -561,8 +625,10 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
-	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
-	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_STEEL = 10, MATERIAL_SILVER = 3) // more expensive
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 90
 	ammunition_storage_limit = 3
 	accepted_types = list(
 		/obj/item/ammo_magazine/ammobox/pistol,
@@ -591,9 +657,11 @@
 	holding_type = /obj/item/gun/projectile/shotgun/pump/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 75
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
-	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
-	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_STEEL = 25) // Gold and silver for it's ammo-regeneration electronics
 	loading_type = LOADING_FLEXIBLE
 	ammunition_storage_limit = 4
 	accepted_types = list(
@@ -662,8 +730,10 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3)
-	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_GOLD = 8, MATERIAL_SILVER = 5) // Gold and silver for it's ammo-regeneration electronics
-	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_STEEL = 10) // Gold and silver for it's ammo-regeneration electronics
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 110
 	ammunition_storage_limit = 2
 	accepted_types = list(
 		/obj/item/ammo_magazine/ammobox/lrifle
@@ -737,7 +807,6 @@
 	desc = "A large, heavy box carrying a miniaturized shield generator."
 	icon_state = "mech_atmoshield"
 	restricted_hardpoints = list(HARDPOINT_BACK)
-	restricted_software = list(MECH_SOFTWARE_UTILITY)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 6, TECH_PLASMA = 5)
 	/// Defines the amount of power drained per hit thats blocked
 	var/damage_to_power_drain = 30

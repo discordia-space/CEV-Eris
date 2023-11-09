@@ -186,6 +186,7 @@
 	icon_state = "mech_jet"
 	item_state = "mech_jet"
 	restricted_hardpoints = list(HARDPOINT_BACK)
+	matter = list(MATERIAL_PLATINUM = 4, MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 3)
 	mech_layer = MECH_INTERMEDIATE_LAYER
 
 	var/on = FALSE
