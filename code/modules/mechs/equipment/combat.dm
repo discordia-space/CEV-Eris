@@ -193,7 +193,7 @@
 	. = ..()
 	visual_bluff = new /obj(null)
 	visual_bluff.pixel_x = 8
-	visual_bluff.icon = icon
+	visual_bluff.icon = MECH_WEAPON_OVERLAYS_ICON
 	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_ID | VIS_INHERIT_LAYER
 	visual_bluff.color = material_color
 	// so it swings gloriously
@@ -225,6 +225,8 @@
 /obj/item/mech_equipment/mounted_system/sword/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(. && holding && inrange)
+		if(!params)
+			params = list()
 		params["mech"] = TRUE
 		params["mech_hand"] = get_hardpoint() == HARDPOINT_LEFT_HAND ? slot_l_hand : slot_r_hand
 		holding.swing_attack(target, user, params)
