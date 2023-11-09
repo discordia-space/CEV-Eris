@@ -619,7 +619,7 @@
 	playsound(get_turf(M), 'sound/weapons/shotgunpump.ogg', 120, 1)
 
 /obj/item/gun/projectile/shotgun/pump/mech/get_hardpoint_maptext()
-	return "[length(loaded) + chambered ? 1 : 0] / [max_shells]"
+	return "[length(loaded) + (chambered ? 1 : 0)] / [max_shells]"
 
 /obj/item/gun/projectile/shotgun/pump/mech/afterattack(atom/A, mob/living/user)
 	if(loading)
@@ -839,11 +839,9 @@
 	visual_bluff.icon = 'icons/mechs/bshield.dmi'
 	visual_bluff.pixel_x = 0
 
-/obj/item/mech_equipment/shield_generator/ballistic/installed(mob/living/exosuit/_owner)
+/obj/item/mech_equipment/shield_generator/ballistic/installed(mob/living/exosuit/_owner, hardpoint)
 	. = ..()
-	// yes we force it here so update icon does it properly
-	forceMove(_owner)
-	update_icon()
+	visual_bluff.icon_state = "mech_shield_[hardpoint]"
 	updateVisualBluff(_owner.dir)
 
 // 66% efficient when deployed
@@ -918,7 +916,8 @@
 
 /obj/item/mech_equipment/shield_generator/ballistic/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
-	if(inrange && ismech(loc))
+	// the target != loc is necesarry cause it would just body slam itself when installed(epic jumpscare) - SPCR 2023
+	if(inrange && ismech(loc) && target != loc)
 		var/list/mob/living/targets = list()
 		if(!isturf(target))
 			target = get_turf(target)
