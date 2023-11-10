@@ -528,6 +528,12 @@
 	opacity = 0
 	visible = 0
 
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(air_group) return !block_air_zones
+	if(istype(mover) && mover.checkpass(PASSGRILLE))
+		return !opacity
+	return !density
+
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))
 		if(ishuman(L)) //For humans
