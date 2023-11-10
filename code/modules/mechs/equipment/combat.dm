@@ -41,17 +41,17 @@
 	. = ..()
 	if(.)
 		if(sharpeners)
-			to_chat(user, SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough"))
+			to_chat(user, SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough."))
 		else
-			to_chat(user, SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade"))
-		to_chat(user , SPAN_NOTICE("Use a wrench to make this mountable. This is not reversible"))
+			to_chat(user, SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade."))
+		to_chat(user , SPAN_NOTICE("Use a wrench to make this mountable. This is not reversible."))
 
 /obj/item/mech_blade_assembly/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/tool_upgrade/productivity/whetstone))
 		if(sharpeners)
 			user.remove_from_mob(I, TRUE)
 			I.forceMove(src)
-			to_chat(user ,SPAN_NOTICE("You sharpen the blade on the [src]"))
+			to_chat(user ,SPAN_NOTICE("You sharpen the blade on \the [src]."))
 			sharpeners--
 		return
 	if(istool(I))
