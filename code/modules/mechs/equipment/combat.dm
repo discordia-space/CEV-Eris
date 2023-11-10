@@ -972,7 +972,7 @@
 	to_chat(user , SPAN_NOTICE("[on ? "Retracting" : "Deploying"] \the [src]..."))
 	if(do_after(user, 3 SECOND, src, FALSE))
 		on = !on
-		to_chat(user, "You [on ? "deploy" : "retract"] \the [src]")
+		to_chat(user, "You [on ? "deploy" : "retract"] \the [src].")
 		mech.visible_message(SPAN_DANGER("\The [mech] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
 		playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
 		/// movement blocking is handled in MoveBlock()
