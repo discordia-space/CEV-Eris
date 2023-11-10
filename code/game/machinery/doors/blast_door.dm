@@ -515,6 +515,19 @@
 		MATERIAL_PLASTEEL = 5
 	)
 
+/obj/machinery/door/blast/shutters/holey
+	icon_state_open = "lshutter0"
+	icon_state_opening = "lshutterc0"
+	icon_state_closed = "lshutter1"
+	icon_state_closing = "lshutterc1"
+	icon_sufix = "lshutter"
+	icon_state = "lshutter1"
+	matter = list(
+		MATERIAL_PLASTEEL = 4
+	)
+	opacity = 0
+	visible = 0
+
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))
 		if(ishuman(L)) //For humans
