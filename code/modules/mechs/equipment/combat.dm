@@ -354,9 +354,9 @@
 			if(-1)
 				to_chat(user, SPAN_NOTICE("\The [src] does not accept this type of magazine."))
 			if(0)
-				to_chat(user, SPAN_NOTICE("\The [src] has no slots left in its ammunition storage"))
+				to_chat(user, SPAN_NOTICE("\The [src] has no slots left in its ammunition storage."))
 			if(1)
-				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [src]"))
+				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [src]."))
 		return
 	else
 		. = ..()
