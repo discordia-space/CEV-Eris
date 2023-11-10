@@ -846,7 +846,7 @@
 
 /obj/item/mech_equipment/shield_generator/proc/updateVisualBluff(targetDir)
 	visual_bluff.dir = targetDir
-	if(visual_bluff.dir == NORTH)
+	if(targetDir == NORTH)
 		visual_bluff.layer = MECH_UNDER_LAYER
 	else
 		visual_bluff.layer = MECH_ABOVE_LAYER
@@ -927,7 +927,7 @@
 	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 50, 8)
 	return damages
 
-/obj/item/mech_equipment/shield_generator/updateVisualBluff(targetDir)
+/obj/item/mech_equipment/shield_generator/ballistic/updateVisualBluff(targetDir)
 	visual_bluff.dir = targetDir
 	switch(get_hardpoint())
 		if(HARDPOINT_RIGHT_HAND)
