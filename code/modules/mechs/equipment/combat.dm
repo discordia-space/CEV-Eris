@@ -60,11 +60,11 @@
 			if(!blade_mat)
 				to_chat(user, SPAN_NOTICE("You can't tighten the blade-mechanism onto a blade of air!"))
 				return
-			to_chat(user, SPAN_NOTICE("You start tightening \the [src] onto the blade made of [blade_mat.display_name]"))
+			to_chat(user, SPAN_NOTICE("You start tightening \the [src] onto the blade made of [blade_mat.display_name]."))
 			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, 0, STAT_MEC, 150))
 				if(QDELETED(src))
 					return
-				to_chat(user, SPAN_NOTICE("You tighten the blade on \the [src], creating a mech-mountable blade "))
+				to_chat(user, SPAN_NOTICE("You tighten the blade on \the [src], creating a mech-mountable blade."))
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_comp = new /obj/item/mech_equipment/mounted_system/sword(get_turf(src))
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_sword = le_mech_comp.holding
 				// DULL BLADE gets DULL DAMAGE
