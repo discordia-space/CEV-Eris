@@ -999,7 +999,7 @@
 			if(ishuman(knockable))
 				var/mob/living/carbon/human/targ = knockable
 				if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
-					targ.visible_message(SPAN_DANGER("[targ] dodges the shield slam!"), "You dodge [loc]'s shield slam!", "You hear a woosh", 6)
+					targ.visible_message(SPAN_DANGER("[targ] dodges the shield slam!"), "You dodge [loc]'s shield slam!", "You hear a woosh.", 6)
 					targets.Remove(knockable)
 					continue
 				targ.visible_message(SPAN_DANGER("[targ] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
