@@ -840,7 +840,7 @@
 	. = ..()
 	if(.)
 		on = !on
-		to_chat(user, "You toggle \the [src] [on ? "on" : "off"]")
+		to_chat(user, "You toggle \the [src] [on ? "on" : "off"].")
 		last_toggle = world.time
 		update_icon()
 
