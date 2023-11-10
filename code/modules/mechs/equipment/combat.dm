@@ -164,7 +164,7 @@
 	holding.matter = list(MATERIAL_OSMIUM = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/cardboard
-	desc = "An exosuit-mounted sword, with a blade made of ... cardboard?. Handle with recklessness"
+	desc = "An exosuit-mounted sword, with a blade made of ... cardboard? Handle with recklessness."
 	spawn_blacklisted = FALSE
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
@@ -177,7 +177,7 @@
 	holding.matter = list(MATERIAL_CARDBOARD = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/myhydrogen
-	desc = "An exosuit-mounted sword, with a blade made of metallic hydrogen, you can hear air itself being cut. Handle with care"
+	desc = "An exosuit-mounted sword, with a blade made of metallic hydrogen, you can hear air itself being cut. Handle with care."
 	spawn_blacklisted = FALSE
 	rarity_value = 160
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
