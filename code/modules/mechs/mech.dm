@@ -216,11 +216,9 @@
 	. = ..()
 	if(.)
 		update_pilots()
-		var/obj/item/mech_equipment/shield_generator/gen = getShield()
-		// runtimes for ballistic
-		if(gen && gen.visual_bluff)
-			gen.updateVisualBluff(dir)
-
+		for(var/obj/item/mech_equipment/shield_generator/gen in contents)
+			if(gen && gen.visual_bluff)
+				gen.updateVisualBluff(dir)
 
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature
