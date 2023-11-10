@@ -93,13 +93,13 @@
 
 /obj/item/mech_blade_assembly/attack_self(mob/user)
 	if(blade_mat)
-		to_chat(user, SPAN_NOTICE("You start removing the blade from \the [src]"))
+		to_chat(user, SPAN_NOTICE("You start removing the blade from \the [src]."))
 		if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
 			// No duping!!
 			if(!blade_mat)
-				to_chat(user, SPAN_NOTICE("There is no material left to remove from \the [src]"))
+				to_chat(user, SPAN_NOTICE("There is no material left to remove from \the [src]."))
 				return
-			to_chat(user, SPAN_NOTICE("You remove 5 sheets of [blade_mat.display_name] from the [src]'s blade attachment point"))
+			to_chat(user, SPAN_NOTICE("You remove 5 sheets of [blade_mat.display_name] from \the [src]'s blade attachment point."))
 			matter[blade_mat.name]-= 5
 			var/obj/item/stack/material/mat_stack = new blade_mat.stack_type(get_turf(user))
 			mat_stack.amount = 5
