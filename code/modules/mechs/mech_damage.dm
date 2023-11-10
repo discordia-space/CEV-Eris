@@ -62,7 +62,7 @@
 	if(LAZYLEN(pilots) && ((!hatch_closed && (get_dir(user,src) & reverse_dir[dir])) || roll))
 		var/mob/living/pilot = pick(pilots)
 		var/turf/location = get_turf(src)
-		location.visible_message(SPAN_DANGER("\The [user] attacks the pilot inside of \the [src]"),1,5)
+		location.visible_message(SPAN_DANGER("\The [user] attacks the pilot inside of \the [src]."),1,5)
 		return pilot.resolve_item_attack(I, user, def_zone)
 	else if(LAZYLEN(pilots) && !roll)
 		var/turf/location = get_turf(src)
