@@ -620,7 +620,7 @@
 
 /obj/item/mech_equipment/mounted_system/ballistic/smg
 	name = "ML \"C-35R\""
-	desc = "A upgraded version of the reverse engineered CR20, retrofitted for mech use. Fires in full auto 600 RPM and has modest accuracy, reloads slowly. Takes in packets of .35 or SMG magazines"
+	desc = "A upgraded version of the reverse engineered CR20, retrofitted for mech use. Fires in full auto 600 RPM and has modest accuracy, reloads slowly. Takes in packets of .35 or SMG magazines."
 	icon_state = "mech_ballistic2"
 	holding_type = /obj/item/gun/projectile/automatic/c20r/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
