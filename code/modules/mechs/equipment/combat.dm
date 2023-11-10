@@ -697,7 +697,7 @@
 	..()
 	pump(user)
 	if(!chambered)
-		to_chat(user, SPAN_NOTICE("\The [src] has run out of shells! reloading..."))
+		to_chat(user, SPAN_NOTICE("\The [src] has run out of shells! Reloading..."))
 		loading = TRUE
 		var/obj/item/mech_equipment/mounted_system/ballistic/hold = loc
 		spawn(8 SECONDS)
