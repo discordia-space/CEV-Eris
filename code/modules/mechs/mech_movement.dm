@@ -35,11 +35,11 @@
 					if(blocked || victim.anchored)
 						victim.apply_damage(legs.stomp_damage, BRUTE, BP_CHEST, 1, 1.5, FALSE, FALSE, src.legs )
 						visible_message("The [src] stomps on [victim], crushing their chest!")
-						occupant_message("You can feel the [src] stomp something")
+						occupant_message("You can feel \the [src] stomp something.")
 					else
 						victim.forceMove(theDepths)
-						visible_message("The [src] pushes [victim] downwards")
-						occupant_message("You can feel the [src] step onto something")
+						visible_message("The [src] pushes [victim] downwards.")
+						occupant_message("You can feel \the [src] step onto something.")
 
 /mob/living/exosuit/get_jetpack()
 	for(var/hardpoint_thing in hardpoints)
