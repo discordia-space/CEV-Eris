@@ -192,7 +192,6 @@
 /obj/item/mech_equipment/mounted_system/sword/Initialize()
 	. = ..()
 	visual_bluff = new /obj(null)
-	visual_bluff.pixel_x = 8
 	visual_bluff.icon = MECH_WEAPON_OVERLAYS_ICON
 	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_PLANE | VIS_INHERIT_ID | VIS_INHERIT_LAYER
 	visual_bluff.color = material_color
