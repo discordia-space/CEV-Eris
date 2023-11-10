@@ -65,7 +65,7 @@
 	if(istype(mover, /mob/living/exosuit))
 		var/mob/living/mech = mover
 		if(mech.current_vertical_travel_method)
-			to_chat(src, SPAN_NOTICE("You can't do this yet"))
+			to_chat(src, SPAN_NOTICE("You can't do this yet!"))
 	else if(src.current_vertical_travel_method)
 		to_chat(src, SPAN_NOTICE("You can't do this yet!"))
 		return
