@@ -180,6 +180,44 @@
 		//set_light(0, 0)
 		set_light(0, 0)
 
+/obj/item/mech_equipment/thrusters
+	name = "exosuit thrusters"
+	desc = "An industrial-sized jetpack for mechs."
+	icon_state = "mech_jet"
+	item_state = "mech_jet"
+	restricted_hardpoints = list(HARDPOINT_BACK)
+	matter = list(MATERIAL_PLATINUM = 4, MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 3)
+	mech_layer = MECH_INTERMEDIATE_LAYER
+
+	var/on = FALSE
+	/// Needed for Z-travel methods
+	var/obj/item/tank/jetpack/infinite/jetpack_fluff
+	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 4)
+
+/obj/item/mech_equipment/thrusters/Initialize()
+	. = ..()
+	jetpack_fluff = new /obj/item/tank/jetpack/infinite(src)
+	// needs to be on for it to be used by any Vertical travel method (VTM)
+	jetpack_fluff.on = TRUE
+	// so it doesnt show when vertically traveling as INFINITE DEBUF JETPACK
+	jetpack_fluff.name = src.name
+	update_icon()
+
+/obj/item/mech_equipment/thrusters/attack_self(mob/user)
+	. = ..()
+	if(.)
+		on = !on
+		to_chat(user, "You switch \the [src] [on ? "on" : "off"].")
+		update_icon()
+		owner.update_icon()
+
+/obj/item/mech_equipment/thrusters/update_icon()
+	. = ..()
+	if(on)
+		icon_state = "[initial(icon_state)]_on"
+	else
+		icon_state = "[initial(icon_state)]_off"
+
 #define CATAPULT_SINGLE 1
 #define CATAPULT_AREA   2
 

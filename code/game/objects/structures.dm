@@ -99,19 +99,24 @@
 	else
 		return ..()
 
-/obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
+/obj/structure/proc/can_climb(mob/living/user, post_climb_check=0)
 	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
-		return 0
+		return FALSE
 
-	if (!user.Adjacent(src))
+	if(ismech(user.loc))
+		var/mob/living/mech = user.loc
+		if(!mech.Adjacent(src))
+			to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
+			return FALSE
+	else if (!user.Adjacent(src))
 		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
-		return 0
+		return FALSE
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
