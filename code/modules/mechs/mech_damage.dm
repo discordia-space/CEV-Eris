@@ -208,7 +208,7 @@
 		adjustBruteLoss(split, arms)
 		blocked++
 	if(damage > 400)
-		occupant_message("You feel the shockwave of a external explosion pass through your body!")
+		occupant_message("You feel the shockwave of an external explosion pass through your body!")
 
 	return round(split*blocked)
 
