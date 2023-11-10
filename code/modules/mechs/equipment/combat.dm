@@ -27,7 +27,7 @@
 #define OVERKEY_BLADE "blade_overlay"
 /obj/item/mech_blade_assembly
 	name = "unfinished mech blade"
-	desc = "A mech-blade framework lacking a blade"
+	desc = "A mech-blade framework lacking a blade."
 	icon_state = "mech_blade_assembly"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
 	var/sharpeners = 0
