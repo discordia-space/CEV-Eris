@@ -488,7 +488,7 @@
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 		return
 	if(body && body.total_damage >= body.max_damage)
-		to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged.The hatch hinges are stuck!"))
+		to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
 		return
 
 	hatch_closed = !hatch_closed
