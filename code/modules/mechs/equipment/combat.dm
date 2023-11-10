@@ -898,7 +898,7 @@
 
 /obj/item/mech_equipment/shield_generator/ballistic
 	name = "ballistic mech shield"
-	desc = "A large, bulky shield meant to protect hunkering mechs"
+	desc = "A large, bulky shield meant to protect hunkering mechs."
 	icon_state = "mech_shield"
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 3)
