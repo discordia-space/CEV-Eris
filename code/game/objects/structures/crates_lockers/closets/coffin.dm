@@ -62,7 +62,7 @@
 		close() //If someone wanted an open casket funeral, we still need the casket to close to determine occupant
 	if(occupant && occupant.is_dead())
 		var/mob/N = key2mob(occupant.mind.key)
-		to_chat(N, SPAN_NOTICE("Your remains have been reduced to ash. Your crew respawn time has been reduced by [(COFFIN_RESPAWN_BONUS)/600] minutes."))
+		to_chat(N, SPAN_NOTICE("Your remains have been reduced to ash. Your crew respawn time has been reduced by [round(COFFIN_RESPAWN_BONUS/(1 MINUTE))] minutes."))
 		N << 'sound/effects/magic/blind.ogg'
 		N.set_respawn_bonus("CORPSE_HANDLING", COFFIN_RESPAWN_BONUS)
 	new /obj/effect/decal/cleanable/ash(loc)
