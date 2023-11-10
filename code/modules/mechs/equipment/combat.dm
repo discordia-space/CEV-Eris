@@ -85,7 +85,7 @@
 		return
 	if(mat.can_use(5))
 		if(mat.use(5))
-			to_chat(user , SPAN_NOTICE("You insert 5 sheets of the [mat] into the [src] , creating a blade requiring [round((mat.material.hardness)/60)] sharpeners to not be dull"))
+			to_chat(user , SPAN_NOTICE("You insert 5 sheets of \the [mat] into \the [src], creating a blade requiring [round((mat.material.hardness)/60)] sharpeners to not be dull."))
 			blade_mat = mat.material
 			sharpeners = round(blade_mat.hardness/60)
 			matter[mat.material.name]+= 5
