@@ -653,7 +653,7 @@
 /obj/item/mech_equipment/mounted_system/ballistic/shotgun
 	// named after Srgt Robert Draper's nickname from The Expanse book series
 	name = "ML \"Bobby\""
-	desc = "A brutal mech-mounted shotgun with an automatic cocking mechanism. Fires in single-shot, cocks itself fast. Takes in shotgun ammo boxes, packets or shell bunches"
+	desc = "A brutal mech-mounted shotgun with an automatic cocking mechanism. Fires in single-shot, cocks itself fast. Takes in shotgun ammo boxes, packets or shell bunches."
 	icon_state = "mech_ballistic1"
 	holding_type = /obj/item/gun/projectile/shotgun/pump/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
