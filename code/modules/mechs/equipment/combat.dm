@@ -151,7 +151,7 @@
 
 
 /obj/item/mech_equipment/mounted_system/sword/osmium
-	desc = "An exosuit-mounted sword, with a blade made of osmium. Handle with care"
+	desc = "An exosuit-mounted sword, with a blade made of osmium. Handle with care."
 	spawn_blacklisted = FALSE
 	rarity_value = 90
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
