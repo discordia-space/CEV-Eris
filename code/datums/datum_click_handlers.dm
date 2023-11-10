@@ -93,7 +93,7 @@
 	reciever.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object, location, control, params)
-	if(!isturf(owner.mob.loc)) // This stops from firing full auto weapons inside closets or in /obj/effect/dummy/chameleon chameleon projector
+	if(!isturf(owner.mob.loc) && !ismech(owner.mob.loc)) // This stops from firing full auto weapons inside closets, in /obj/effect/dummy/chameleon chameleon projector or in a mech
 		return FALSE
 	if(time_since_last_init > world.time)
 		return FALSE
@@ -110,6 +110,12 @@
 
 	if(!owner || !owner.mob || owner.mob.resting)
 		return FALSE
+	if(ismech(owner.mob.loc))
+		var/mob/exosuit = owner.mob.loc
+		// If we are in a mech and we do not share any straight-foward angles in a 45 degree cone , then stop firing so mechs cant fire backwards
+		// Aka N-facing mech can do NE, NW, N ,  S facing mech can do S , SW,  SE , E facing mech can do SE, E, NE.
+		if(!(exosuit.dir & get_dir(reciever, target)))
+			return FALSE
 	if(target)
 		owner.mob.face_atom(target)
 

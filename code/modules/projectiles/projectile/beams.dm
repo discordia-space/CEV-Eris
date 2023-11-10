@@ -29,12 +29,18 @@
 		return 1
 	return 0
 
+
+/// Only used by the mech plasmacutter ofr now
 /obj/item/projectile/beam/cutter
 	name = "cutting beam"
 	icon_state = "plasmablaster"
 	damage_types = list(BRUTE = 25)
 	armor_divisor = 1.2
 	pass_flags = PASSTABLE
+	penetrating = 5
+	/// start with 1 extra since somehow 5 becomes 6
+	var/rocks_pierced = 1
+	var/pierce_max = 5
 
 	muzzle_type = /obj/effect/projectile/laser/plasmacutter/muzzle
 	tracer_type = /obj/effect/projectile/laser/plasmacutter/tracer
@@ -45,6 +51,17 @@
 		var/turf/simulated/mineral/M = A
 		M.GetDrilled(5)
 	.=..()
+
+/obj/item/projectile/beam/cutter/check_penetrate(atom/A)
+	. = ..()
+	if(.)
+		return .
+	if(istype(A, /turf/simulated/mineral) && rocks_pierced < pierce_max)
+		on_impact(A)
+		rocks_pierced++
+		return TRUE
+	else
+		return FALSE
 
 /obj/item/projectile/beam/practice
 	name = "laser"

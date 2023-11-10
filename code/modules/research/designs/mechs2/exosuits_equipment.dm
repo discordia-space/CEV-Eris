@@ -43,6 +43,26 @@
 	name = "mounted rigged PK"
 	build_path = /obj/item/mech_equipment/mounted_system/ballistic/pk
 
+/datum/design/research/item/exosuit/weapon/smg
+	name = "mounted C25R SMG"
+	build_path = /obj/item/mech_equipment/mounted_system/ballistic/smg
+
+/datum/design/research/item/exosuit/weapon/shotgun
+	name = "mounted shotgun"
+	build_path = /obj/item/mech_equipment/mounted_system/ballistic/shotgun
+
+/datum/design/research/item/exosuit/shield_generator
+	name = "mounted energy shield generator"
+	build_path = /obj/item/mech_equipment/shield_generator
+
+/datum/design/research/item/exosuit/shield_generator/ballistic
+	name = "mounted ballistic shield"
+	build_path = /obj/item/mech_equipment/shield_generator/ballistic
+
+/datum/design/research/item/exosuit/weapon/mech_blade
+	name = "mounted blade framework"
+	build_path = /obj/item/mech_blade_assembly
+
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp
 	name = "hydraulic clamp"
@@ -63,6 +83,10 @@
 /datum/design/research/item/exosuit/gravity_catapult
 	name = "gravity catapult"
 	build_path = /obj/item/mech_equipment/catapult
+
+/datum/design/research/item/exosuit/ion_thruster
+	name = "mounted ion thrusters"
+	build_path = /obj/item/mech_equipment/thrusters
 
 //MEDICAL
 /datum/design/research/item/exosuit/sleeper

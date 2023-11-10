@@ -156,13 +156,13 @@
 //For the same reason lattices in space don't count - those are things you grip, presumably.
 /mob/proc/check_gravity()
 	if(istype(loc, /turf/space))
-		return 0
+		return FALSE
 
 	lastarea = get_area(src)
 	if(!lastarea || !lastarea.has_gravity)
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk

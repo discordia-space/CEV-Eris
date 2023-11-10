@@ -130,6 +130,16 @@
 /obj/item/mech_component/chassis/ready_to_install()
 	return (cell && armor_plate && computer && diagnostics)
 
+/obj/item/mech_component/chassis/update_health()
+	. = ..()
+	if(total_damage >= max_damage)
+		var/mob/living/exosuit/hold = loc
+		if(!istype(hold))
+			return
+		hold.hatch_locked = FALSE
+		hold.hatch_closed = FALSE
+		hold.update_icon()
+
 /obj/item/mech_component/chassis/prebuild()
 	computer = new /obj/item/robot_parts/robot_component/exosuit_control(src)
 	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)

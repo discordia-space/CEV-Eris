@@ -29,7 +29,7 @@
 	// Access updating/container.
 	var/obj/item/card/id/access_card
 	var/list/saved_access = list()
-	var/sync_access = 1
+	var/sync_access = TRUE
 
 	// Mob currently piloting the exosuit.
 	var/list/pilots
@@ -45,7 +45,7 @@
 	var/datum/effect/effect/system/spark_spread/sparks
 
 	// Equipment tracking vars.
-	var/obj/item/selected_system
+	var/obj/item/mech_equipment/selected_system
 	var/selected_hardpoint
 	var/list/hardpoints = list()
 	var/hardpoints_locked
@@ -79,6 +79,8 @@
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
 		to_chat(i, msg)
+
+
 
 /*
 /mob/living/exosuit/is_flooded()
@@ -194,6 +196,8 @@
 		to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
 
 	to_chat(user, "It menaces with reinforcements of [material].")
+	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
+	to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition"))
 
 
 /mob/living/exosuit/return_air()
@@ -212,10 +216,15 @@
 	. = ..()
 	if(.)
 		update_pilots()
+		var/obj/item/mech_equipment/shield_generator/gen = getShield()
+		// runtimes for ballistic
+		if(gen && gen.visual_bluff)
+			gen.updateVisualBluff(dir)
+
 
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature
 
 /mob/living/exosuit/get_mob()
 	if(length(pilots))
-		return pilots[1]
+		return pick(pilots)

@@ -173,5 +173,127 @@
 	frequency = 0
 	. = ..()
 
+/obj/item/device/assembly/signaler/door_controller
+	name = "remote door signaling device"
+	desc = "Used to remotely activate doors. 2 Beeps for opened, 1 for closed, 0 for no answer. Alt-Click to change Mode, Ctrl-Click to change code."
+	icon_state = "signaller"
+	item_state = "signaler"
+	origin_tech = list(TECH_MAGNET = 1)
+	matter = list(MATERIAL_PLASTIC = 1)
+	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
+	spawn_blacklisted = TRUE
+
+	secured = TRUE
+	code = 0
+	frequency = BLAST_DOOR_FREQ
+	delay = 1
+
+	var/last_message = 0
+	var/command = "CMD_DOOR_TOGGLE"
+
+/obj/item/device/assembly/signaler/door_controller/set_frequency(new_frequency)
+	SSradio.remove_object(src, BLAST_DOOR_FREQ)
+	frequency = BLAST_DOOR_FREQ
+	radio_connection = SSradio.add_object(src, BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
+
+// No nanoUI for u
+/obj/item/device/assembly/signaler/door_controller/nano_ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_topic_state/state)
+	return FALSE
+
+// No TGui for u
+/obj/item/device/assembly/signaler/door_controller/ui_interact(mob/user, datum/tgui/ui)
+	return FALSE
+
+/obj/item/device/assembly/signaler/door_controller/receive_signal(datum/signal/signal)
+	if(!signal)
+		return
+	if(signal.encryption != code)
+		return
+	if(!(src.wires & WIRE_RADIO_RECEIVE))
+		return
+	pulse(1)
+	/// prevent spam if theres multiple doors.
+	if(last_message > world.timeofday)
+		return
+	var/local_message = ""
+	switch(signal.data["message"])
+		if("DATA_DOOR_OPENED")
+			local_message = "\icon[src] beeps twice."
+		if("DATA_DOOR_CLOSED")
+			local_message = "\icon[src] beeps once."
+		if("CMD_DOOR_OPEN")
+			return
+		if("CMD_DOOR_CLOSE")
+			return
+		if("CMD_DOOR_TOGGLE")
+			return
+		if("CMD_DOOR_STATE")
+			return
+		else
+			local_message = "\icon[src] beeps ominously."
+	last_message = world.timeofday + 1 SECONDS
+
+	for(var/mob/O in hearers(1, src.loc))
+		O.show_message(local_message, 3, "*beep* *beep*", 2)
+
+/obj/item/device/assembly/signaler/door_controller/AltClick(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	var/option = input(user, "Choose signalling mode", "[src] configuration", "Toggle") as anything in list("Toggle", "Close", "Open")
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	switch(option)
+		if("Toggle")
+			command = "CMD_DOOR_TOGGLE"
+		if("Close")
+			command = "CMD_DOOR_CLOSE"
+		if("Open")
+			command = "CMD_DOOR_OPEN"
+	to_chat(user, SPAN_NOTICE("You change the signalling mode of \the [src]to [option]."))
+
+/obj/item/device/assembly/signaler/door_controller/CtrlClick(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	var/option = input(user, "Choose signaller code", "[src] configuration", 1) as num
+	if(!istype(user))
+		return
+	if(user.stat)
+		return
+	if(!Adjacent(user,2))
+		return
+	code = clamp(option, 0, 1000)
+	to_chat(user, SPAN_NOTICE("You change the code of \the [src] to [option]."))
+
+
+/obj/item/device/assembly/signaler/door_controller/attack_self(mob/user)
+	if(!..())
+		return
+	signal()
+
+
+/// data is expected to be a list
+/obj/item/device/assembly/signaler/door_controller/signal(list/data)
+	if(!radio_connection)
+		return
+
+	var/datum/signal/signal = new
+	signal.source = src
+	signal.encryption = code
+	signal.data["message"] = command
+	radio_connection.post_signal(src, signal, RADIO_BLASTDOORS)
+
 #undef SIGNALER_DEFAULT_FREQUENCY
 #undef SIGNALER_DEFAULT_CODE
+
