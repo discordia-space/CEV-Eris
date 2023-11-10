@@ -137,7 +137,7 @@
 /// Mettalic hydrogen - great
 
 /obj/item/mech_equipment/mounted_system/sword/plasteel
-	desc = "An exosuit-mounted sword, with a blade made of plasteel. Handle with care"
+	desc = "An exosuit-mounted sword, with a blade made of plasteel. Handle with care."
 	spawn_blacklisted = FALSE
 	rarity_value = 70
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
