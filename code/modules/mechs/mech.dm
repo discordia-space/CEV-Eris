@@ -196,7 +196,7 @@
 		to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
 
 	to_chat(user, "It menaces with reinforcements of [material].")
-	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand . The hatch must be opened."))
+	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
 	to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition"))
 
 
