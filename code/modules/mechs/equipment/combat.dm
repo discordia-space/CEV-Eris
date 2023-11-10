@@ -387,7 +387,7 @@
 
 /obj/item/mech_equipment/mounted_system/ballistic/examine(user, distance)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking "))
+	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking."))
 
 
 /obj/item/mech_equipment/mounted_system/ballistic/Initialize()
