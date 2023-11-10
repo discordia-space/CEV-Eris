@@ -777,7 +777,7 @@
 		playsound(src.loc, 'sound/weapons/guns/interact/lmg_cock.ogg', 300, 1)
 		to_chat(user, SPAN_NOTICE("You chamber the [src], preparing it for full-automatic fire."))
 		// uh oh
-		visible_message(get_turf(src), SPAN_DANGER("The mech chambers the [src] , preparing it for full automatic fire!"))
+		visible_message(get_turf(src), SPAN_DANGER("The mech chambers the [src], preparing it for full automatic fire!"))
 		cocked = TRUE
 		safety = FALSE
 		return
