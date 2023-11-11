@@ -911,8 +911,14 @@
 
 /obj/item/mech_equipment/shield_generator/ballistic/installed(mob/living/exosuit/_owner, hardpoint)
 	. = ..()
+	if(!(visual_bluff in _owner.vis_contents))
+		_owner.vis_contents.Add(visual_bluff)
 	visual_bluff.icon_state = "mech_shield_[hardpoint]"
 	updateVisualBluff(_owner.dir)
+
+/obj/item/mech_equipment/shield_generator/ballistic/uninstalled()
+	owner.vis_contents.Remove(visual_bluff)
+	. = ..()
 
 // 66% efficient when deployed
 /obj/item/mech_equipment/shield_generator/ballistic/getEffectiveness()
