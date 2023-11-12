@@ -190,9 +190,13 @@
 
 // .20 Rifle
 
-/datum/design/autolathe/ammo/srifle
+/datum/design/autolathe/ammo/srifle/
 	name = "long magazine (.20 Rifle)"
 	build_path = /obj/item/ammo_magazine/srifle
+
+/datum/design/autolathe/ammo/srifle/short
+	name = "short magazine (.20 Rifle)"
+	build_path = /obj/item/ammo_magazine/srifle/short
 
 /datum/design/autolathe/ammo/srifle/empty
 	name = "long empty magazine (.20 Rifle)"

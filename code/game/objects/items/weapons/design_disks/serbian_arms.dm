@@ -79,3 +79,14 @@
 		/datum/design/autolathe/gun/kovacs = 3, // "SA BR .30 \"Kovacs\""
 		/datum/design/autolathe/ammo/lrifle
 	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_ronin
+	disk_name = "Serbian Arms - .20 Ronin handgun"
+	icon_state = "serbian"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
+	rarity_value = 90
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/ronin = 3, // "SA HG .20 \"Ronin\""
+		/datum/design/autolathe/ammo/srifle/short
+	)
