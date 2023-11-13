@@ -60,7 +60,7 @@
 		var/overlayCount = 16
 		var/alpha_inc = 256 / overlayCount
 
-		for(var/i = 1; i <= overlayCount; i++)
+		for(var/i = 0; i <= overlayCount; i++)
 			var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 			img.blend_mode = BLEND_MULTIPLY
 			img.alpha = (i * alpha_inc) - 1

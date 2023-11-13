@@ -93,7 +93,7 @@
 	var/mob/M = user
 	if(!S.secured)										//Check if the assembly is secured
 		return
-	if(is_igniter(S.left_assembly) == is_igniter(S.right_assembly))		//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
+	if(isigniter(S.left_assembly) == isigniter(S.right_assembly))		//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
 		return
 
 	var/obj/item/device/onetankbomb/R = new /obj/item/device/onetankbomb(loc)

@@ -255,6 +255,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_stone"
 	icon_colour = "#007A00"
 	weight = 22
+	hardness = 80
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	door_icon_base = "stone"
 
@@ -268,6 +269,7 @@ var/list/name_to_material
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
+	weight = 50
 	stack_origin_tech = list(TECH_MATERIAL = 6)
 
 /material/gold
@@ -275,7 +277,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/gold
 	icon_colour = "#EDD12F"
 	weight = 24
-	hardness = 40
+	hardness = 25
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -289,7 +291,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/silver
 	icon_colour = "#D1E6E3"
 	weight = 22
-	hardness = 50
+	hardness = 45
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -302,6 +304,7 @@ var/list/name_to_material
 	icon_colour = "#FC2BC5"
 	shard_type = SHARD_SHARD
 	hardness = 30
+	weight = 30
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_PLASMA = 2)
 	door_icon_base = "stone"
 	sheet_singular_name = "crystal"
@@ -349,6 +352,8 @@ var/list/name_to_material
 	name = MATERIAL_STEEL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
+	weight = 34
+	hardness = 60
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = PLASTEEL_COLOUR
@@ -378,6 +383,8 @@ var/list/name_to_material
 	name = "titanium"
 	stack_type = null
 	icon_base = "metal"
+	weight = 20
+	hardness = 90
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
@@ -391,7 +398,7 @@ var/list/name_to_material
 	integrity = 100
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
-	hardness = 30
+	hardness = 15
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
@@ -508,7 +515,7 @@ var/list/name_to_material
 	integrity = 100
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
-	hardness = 40
+	hardness = 30
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(MATERIAL_STEEL = 2,MATERIAL_GLASS = 3)
@@ -526,6 +533,8 @@ var/list/name_to_material
 	integrity = 100
 	icon_colour = "#FC2BC5"
 	stack_origin_tech = list(TECH_MATERIAL = 4)
+	weight = 40
+	hardness = 50
 	created_window = /obj/structure/window/plasmabasic
 	created_window_full = /obj/structure/window/plasmabasic/full
 	wire_product = null
@@ -539,8 +548,8 @@ var/list/name_to_material
 	composite_material = list() //todo
 	created_window = /obj/structure/window/reinforced/plasma
 	created_window_full = /obj/structure/window/reinforced/plasma/full
-	hardness = 40
-	weight = 30
+	hardness = 60
+	weight = 50
 	//composite_material = list() //todo
 	rod_product = null
 
@@ -567,6 +576,8 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
+	weight = 90
+	hardness = 90
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
@@ -583,6 +594,8 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
+	weight = 10
+	hardness = 200
 	display_name = "metallic hydrogen"
 
 /material/platinum
@@ -590,6 +603,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
 	weight = 27
+	hardness = 50
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
@@ -599,6 +613,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
+	hardness = 40
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'

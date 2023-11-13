@@ -206,6 +206,9 @@
 	if(!owner.hatch_locked && !owner.hatch_closed)
 		to_chat(usr, SPAN_WARNING("You cannot lock the hatch while it is open."))
 		return
+	if(owner.body && owner.body.total_damage >= owner.body.max_damage)
+		to_chat(usr, SPAN_WARNING("\The body of [owner] is far too damaged to close its hatch!"))
+		return
 	owner.hatch_locked = ..()
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is [owner.hatch_locked ? "now" : "no longer" ] locked."))
 

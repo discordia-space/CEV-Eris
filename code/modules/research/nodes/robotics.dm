@@ -66,7 +66,7 @@
 
 /datum/technology/combat_exo_components
 	name = "Combat Exosuit Components"
-	desc = "Exosuit components designed for combat, with enhanced durability and thermal sensors."
+	desc = "Exosuit components and equipments designed for combat, with enhanced durability and thermal sensors."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.6
@@ -81,7 +81,9 @@
 		/datum/design/research/item/mechfab/exosuit/sensors/combat,
 		/datum/design/research/item/mechfab/exosuit/chassis/combat,
 		/datum/design/research/item/mechfab/exosuit/manipulators/combat,
-		/datum/design/research/item/mechfab/exosuit/propulsion/combat
+		/datum/design/research/item/mechfab/exosuit/propulsion/combat,
+		/datum/design/research/item/exosuit/shield_generator/ballistic,
+		/datum/design/research/item/exosuit/weapon/mech_blade
 		)
 
 /datum/technology/mech_combat_armor
@@ -120,7 +122,7 @@
 
 /datum/technology/heavy_exo_components
 	name = "Heavy Exosuit Components"
-	desc = "Exosuit components designed for pure durability, heavy and uncompromising. Their functionality leaves a lot to be desired, however."
+	desc = "Exosuit components and equipments designed for pure durability, heavy and uncompromising. Their functionality leaves a lot to be desired, however."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.6
@@ -135,7 +137,8 @@
 		/datum/design/research/item/mechfab/exosuit/sensors/heavy,
 		/datum/design/research/item/mechfab/exosuit/chassis/heavy,
 		/datum/design/research/item/mechfab/exosuit/manipulators/heavy,
-		/datum/design/research/item/mechfab/exosuit/propulsion/heavy
+		/datum/design/research/item/mechfab/exosuit/propulsion/heavy,
+		/datum/design/research/item/exosuit/shield_generator,
 	)
 
 /datum/technology/mech_propulsion_alt
@@ -227,7 +230,8 @@
 		/datum/design/research/item/exosuit/weapon/plasma,
 		/datum/design/research/item/mechfab/exosuit/drillbit/steel,
 		/datum/design/research/item/mechfab/exosuit/drillbit/plasteel,
-		/datum/design/research/item/mechfab/exosuit/drillbit/diamond
+		/datum/design/research/item/mechfab/exosuit/drillbit/diamond,
+		/datum/design/research/item/exosuit/ion_thruster
 	)
 
 /datum/technology/mech_teleporter_modules
@@ -284,12 +288,13 @@
 	unlocks_designs = list(
 			/datum/design/research/circuit/exosuit/weapons,
 			/datum/design/research/item/exosuit/taser,
-			/datum/design/research/item/exosuit/weapon/ion
+			/datum/design/research/item/exosuit/weapon/ion,
+			/datum/design/research/item/exosuit/weapon/shotgun
 		)
 
 /datum/technology/mech_heavy_weaponry_modules
 	name = "Advanced Weaponry"
-	desc = "Exosuit-mounted heaavy energy weapons."
+	desc = "Exosuit-mounted heaavy energy and ballistic weapons."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.7
@@ -302,7 +307,9 @@
 
 	unlocks_designs = list(
 			/datum/design/research/item/exosuit/weapon/laser,
-			/datum/design/research/item/exosuit/weapon/pk
+			/datum/design/research/item/exosuit/weapon/pk,
+			/datum/design/research/item/exosuit/weapon/smg
+
 		)
 
 //AI BRANCH_________________________________________________________________________________________________________________________________________________

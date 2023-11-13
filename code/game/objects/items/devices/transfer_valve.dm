@@ -35,9 +35,8 @@
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
 		update_icon()
-		SSnano.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
-	else if(is_assembly(item))
+	else if(isassembly(item))
 		var/obj/item/device/assembly/A = item
 		if(A.secured)
 			to_chat(user, SPAN_NOTICE("The device is secured."))
@@ -56,7 +55,6 @@
 		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		attacher = user
-		SSnano.update_uis(src) // update all UIs attached to src
 	return
 
 
@@ -66,53 +64,48 @@
 	return
 
 
-/obj/item/device/transfer_valve/attack_self(mob/user as mob)
-	nano_ui_interact(user)
+/obj/item/device/transfer_valve/attack_self(mob/user)
+	ui_interact(user)
 
-/obj/item/device/transfer_valve/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/transfer_valve/ui_state(mob/user)
+	return GLOB.hands_state
 
-	// this is the data which will be sent to the ui
-	var/data[0]
-	data["attachmentOne"] = tank_one ? tank_one.name : null
-	data["attachmentTwo"] = tank_two ? tank_two.name : null
-	data["valveAttachment"] = attached_device ? attached_device.name : null
-	data["valveOpen"] = valve_open ? 1 : 0
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "transfer_valve.tmpl", "Tank Transfer Valve", 460, 280)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
+/obj/item/device/transfer_valve/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TransferValve", name)
 		ui.open()
-		// auto update every Master Controller tick
-		//ui.set_auto_update(1)
 
-/obj/item/device/transfer_valve/Topic(href, href_list)
-	..()
-	if ( usr.stat || usr.restrained() )
-		return 0
-	if (src.loc != usr)
-		return 0
-	if(tank_one && href_list["tankone"])
-		remove_tank(tank_one)
-	else if(tank_two && href_list["tanktwo"])
-		remove_tank(tank_two)
-	else if(href_list["open"])
-		toggle_valve()
-	else if(attached_device)
-		if(href_list["rem_device"])
-			attached_device.loc = get_turf(src)
-			attached_device:holder = null
-			attached_device = null
-			update_icon()
-		if(href_list["device"])
-			attached_device.attack_self(usr)
-	src.add_fingerprint(usr)
-	return 1 // Returning 1 sends an update to attached UIs
+/obj/item/device/transfer_valve/ui_data(mob/user)
+	var/list/data = list(
+		"attachmentOne" = tank_one ? tank_one.name : null,
+		"attachmentTwo" = tank_two ? tank_two.name : null,
+		"attachment" = attached_device ? attached_device.name : null,
+		"isOpen" = valve_open
+	)
+	return data
+
+/obj/item/device/transfer_valve/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("toggle")
+			toggle_valve()
+			. = TRUE
+		if("device")
+			attached_device?.attack_self(usr)
+			. = TRUE
+		if("remove_device")
+			remove_device()
+			. = TRUE
+		if("tankone")
+			remove_tank(tank_one)
+			. = TRUE
+		if("tanktwo")
+			remove_tank(tank_two)
+			. = TRUE
 
 /obj/item/device/transfer_valve/process_activation(var/obj/item/device/D)
 	if(toggle)
@@ -138,6 +131,15 @@
 		underlays += J
 	if(attached_device)
 		overlays += "device"
+
+/obj/item/device/transfer_valve/proc/remove_device()
+	if(isnull(attached_device))
+		return
+
+	attached_device.forceMove(get_turf(src))
+	attached_device:holder = null // Very-very bad, somebody fix.
+	attached_device = null
+	update_icon()
 
 /obj/item/device/transfer_valve/proc/remove_tank(obj/item/tank/T)
 	if(tank_one == T)

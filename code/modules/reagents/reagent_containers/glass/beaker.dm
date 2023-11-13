@@ -204,7 +204,7 @@
 
 /obj/item/reagent_containers/glass/bucket/attackby(obj/D, mob/user)
 
-	if(is_proximity_sensor(D))
+	if(isproxsensor(D))
 		to_chat(user, "You add [D] to [src].")
 		qdel(D)
 		user.put_in_hands(new /obj/item/bucket_sensor)

@@ -188,6 +188,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/list/msg_security = list()
 	var/list/msg_deathsquad = list()
 	var/list/msg_syndicate = list()
+	var/list/msg_pirate = list()
 	var/list/msg_cargo = list()
 	var/list/msg_service = list()
 	var/list/msg_nt = list()
@@ -214,6 +215,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 		BR.msg_security = msg_security
 		BR.msg_deathsquad = msg_deathsquad
 		BR.msg_syndicate = msg_syndicate
+		BR.msg_pirate = msg_pirate
 		BR.msg_cargo = msg_cargo
 		BR.msg_service = msg_service
 		BR.msg_nt = msg_nt

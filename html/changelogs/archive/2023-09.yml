@@ -124,3 +124,10 @@
 2023-09-24:
   TheLeopold:
   - rscdel: Removed airlock floating in space
+2023-09-29:
+  ValoTheValo:
+  - bugfix: fixed walls looking damaged roundstart
+2023-09-30:
+  Hyperio:
+  - rscadd: Added a TGUI interface for the ore box
+  - rscadd: Caverns are now radshielded
