@@ -181,6 +181,10 @@
 						is_treated = TRUE
 					else
 						is_treated = S.use(charges_needed)
+			if(istype(I, /obj/item/stock_parts)) // replace with [else] once theres more items than obj/stock_parts/scanner in eyes.dm as treatment tool
+				var/obj/item/stock_parts/P
+				is_treated = TRUE
+				qdel(P)
 			if(is_treated)
 				if(free_use)
 					to_chat(user, SPAN_NOTICE("You have managed to waste less [I.name]."))

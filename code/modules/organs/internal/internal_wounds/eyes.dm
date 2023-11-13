@@ -164,7 +164,7 @@
 
 /datum/component/internal_wound/robotic/eyes_sharp/failure
 	name = "mechanical matrix failure"
-	treatments_item = list(/obj/item/stock_parts/scanning_module, /obj/item/stack/nanopaste = 2)
+	treatments_item = list(/obj/item/stock_parts/scanning_module = 1, /obj/item/stack/nanopaste = 2)
 
 // Edge
 /datum/component/internal_wound/robotic/eyes_edge
@@ -188,7 +188,7 @@
 
 // EMP/burn wounds
 
-/datum/component/internal_wound/robotic/eyes_burn
+/datum/component/internal_wound/robotic/eyes_emp_burn
 	treatments_item = list(/obj/item/stack/cable_coil = 5)
 	treatments_tool = list(QUALITY_WIRE_CUTTING = FAILCHANCE_HARD)
 	treatments_chem = list(CE_MECH_REPAIR = 0.95)	// repair nanite OD + all metals
@@ -207,7 +207,7 @@
 	name = "inversed movement axis"
 
 /datum/component/internal_wound/robotic/eyes_emp_burn/carbonized
-	name = "mangaled wiring"
+	name = "mangled wiring"
 
 /datum/component/internal_wound/robotic/eyes_overheat
 	treatments_item = list(/obj/item/stack/cable_coil = 10, /obj/item/stack/nanopaste = 2)
