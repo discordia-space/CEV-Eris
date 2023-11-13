@@ -17,7 +17,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(I.pre_equip(usr, target_slot))
 		return
 
-	if(s_active)
+	if((get_preference_value(/datum/client_preference/equip_open_inventory) == GLOB.PREF_YES) && s_active)
 		s_active.attackby(I, src)
 
 	if(!I.try_transfer(target_slot, usr))
