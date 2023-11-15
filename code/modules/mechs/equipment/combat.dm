@@ -200,7 +200,7 @@
 	var/obj/item/tool/sword/mech/holdin = holding
 	holdin.wielded = TRUE
 	// i want the desc from the blade itself >:(
-	setName(initial(name))
+	SetName(initial(name))
 	desc = initial(desc)
 
 /obj/item/mech_equipment/mounted_system/sword/Destroy()
