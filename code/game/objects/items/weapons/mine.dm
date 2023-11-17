@@ -202,7 +202,7 @@
 
 			if(excelsior)
 				if(ismech(AM))
-					/// if atleast one of the people inside if an excel.
+					/// if at least one of the people inside is an excel.
 					for(var/mob/living/carbon/human/agent in AM)
 						for(var/datum/antagonist/A in agent.mind.antagonist)
 							if(A.id == ROLE_EXCELSIOR_REV)
