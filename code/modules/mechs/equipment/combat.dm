@@ -21,7 +21,7 @@
 	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_HAMMERING = 20, QUALITY_PRYING = 15)
 	// its mech sized!!!!!
-	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	spawn_blacklisted = TRUE
 
 #define OVERKEY_BLADE "blade_overlay"
