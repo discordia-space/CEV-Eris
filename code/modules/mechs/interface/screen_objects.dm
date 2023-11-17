@@ -117,10 +117,6 @@
 
 /obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
 	if(..() && owner && holding)
-		if(!owner.hatch_closed)
-			to_chat(usr, SPAN_WARNING("Error: Hardpoint interface disabled while [owner.body.hatch_descriptor] is open."))
-			return
-
 		var/modifiers = params2list(params)
 		if(modifiers["ctrl"])
 			if(owner.hardpoints_locked) to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
