@@ -48,6 +48,8 @@ var/global/excelsior_last_draft = 0
 		/obj/item/stock_parts/manipulator = 100,
 		/obj/item/stock_parts/micro_laser = 100,
 		/obj/item/stock_parts/matter_bin = 100,
+		/obj/item/computer_hardware/processor_unit/adv = 250,
+		/obj/item/computer_hardware/hard_drive/advanced = 250,
 		/obj/item/stock_parts/capacitor/excelsior = 350,
 		/obj/item/stock_parts/scanning_module/excelsior = 350,
 		/obj/item/stock_parts/manipulator/excelsior = 350,
@@ -61,6 +63,8 @@ var/global/excelsior_last_draft = 0
 		/obj/item/electronics/circuitboard/excelsiorshieldwallgen = 150,
 		/obj/item/electronics/circuitboard/excelsior_boombox = 150,
 		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
+		/// its expensive so they need to do a few mandates before they manage to get it
+		/obj/item/electronics/circuitboard/excelsior_navigation_cracker = 10000,
 		/obj/item/electronics/circuitboard/diesel = 150
 		)
 
