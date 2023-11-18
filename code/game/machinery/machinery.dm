@@ -114,6 +114,7 @@
 	var/area/current_power_area // What area are we powering currently
 
 	var/hacked = FALSE // If this machine has had its access requirements hacked or not
+	var/shipside_only = FALSE // Does this mechanism need to be on the ship? Used for excel
 
 
 /obj/machinery/Initialize(mapload, d=0)
