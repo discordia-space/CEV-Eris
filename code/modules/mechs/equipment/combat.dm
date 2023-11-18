@@ -17,6 +17,7 @@
 	w_class = ITEM_SIZE_BULKY
 	worksound = WORKSOUND_HARD_SLASH
 	wielded = TRUE
+	canremove = FALSE
 	// Its Big
 	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 30, QUALITY_HAMMERING = 20, QUALITY_PRYING = 15)
@@ -198,6 +199,9 @@
 	// so it swings gloriously
 	var/obj/item/tool/sword/mech/holdin = holding
 	holdin.wielded = TRUE
+	// i want the desc from the blade itself >:(
+	SetName(initial(name))
+	desc = initial(desc)
 
 /obj/item/mech_equipment/mounted_system/sword/Destroy()
 	if(ismech(loc))
