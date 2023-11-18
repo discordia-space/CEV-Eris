@@ -129,13 +129,6 @@
 		var/obj/item/implant/excelsior/implant = new(user)
 		if (!implant.install(user, BP_HEAD))
 			qdel(implant)
-		var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-		var/datum/objective/timed/excelsior/excel_timer = (locate(/datum/objective/timed/excelsior) in F.objectives)
-		if(excel_timer)
-			if(!excel_timer.active)
-				excel_timer.start_excel_timer()
-			else
-				excel_timer.on_convert()
 		cover_locked = FALSE
 	else
 		update_icon()
