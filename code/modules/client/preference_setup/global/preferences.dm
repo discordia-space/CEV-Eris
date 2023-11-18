@@ -271,7 +271,7 @@ var/list/_client_preferences_by_type
 		tgui.update_static_data(preference_mob)
 
 /datum/client_preference/equip_open_inventory
-	description = "Quick-equip to open inventories"
+	description = "Quick-equip stores items into open inventories"
 	key = "EQUIP_OPEN_INVENTORY"
 	default_value = GLOB.PREF_YES
 
