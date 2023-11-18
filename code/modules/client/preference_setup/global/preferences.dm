@@ -273,7 +273,7 @@ var/list/_client_preferences_by_type
 /datum/client_preference/equip_open_inventory
 	description = "Quick-equip stores items into open inventories"
 	key = "EQUIP_OPEN_INVENTORY"
-	default_value = GLOB.PREF_YES
+	default_value = GLOB.PREF_NO
 
 /********************
 * General Staff Preferences *
