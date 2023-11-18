@@ -266,7 +266,7 @@
 
 /decl/security_level/default/code_jumping
 	name = "code bluespace jump"
-	ight_max_bright = 0.75
+	light_max_bright = 0.75
 	light_inner_range = 0.1
 	light_outer_range = 3
 	light_color_alarm = COLOR_LIGHTING_RED_MACHINERY

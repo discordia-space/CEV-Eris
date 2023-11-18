@@ -8,7 +8,7 @@
 	Our first phase is to retrieve the cache of manufacturing materials and circuit boards. Without a means of production our revolution is in peril.\n\n\
 	Our second phase is to establish a fortified position in secret. The People will send additional resources through the teleporter once it is established. This and our autolathe can be protected further with turrets and shield generators, in addition to loyal comrades.\n\n\
 	Our third phase is expansion. Complete mandates for power and to delay detection by automated ship systems, which is sped up by the presence of additional brute-force implanted recruits. Aquire implants, prosthetics or robotic parts and convert them into new implants. These can be injected into the oppressed to formally induct them to the Revolution. Use their labor to produce the weapons of their liberation.\n\n\
-	When the People are ready, break the chains of the oppressor and seize control of the ship"
+	When the People are ready, break the chains of the oppressor and seize control of the ship by building the redirector and installing it on the ship's primary control bridge."
 
 	hud_indicator = "excelsior"
 
