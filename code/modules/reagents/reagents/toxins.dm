@@ -137,13 +137,16 @@
 	var/mob/living/carbon/human/H = M
 	var/obj/item/organ/internal/vital/heart/S = H.random_organ_by_process(OP_HEART)
 	var/obj/item/organ/internal/vital/lungs/O = H.random_organ_by_process(OP_LUNGS)
-
+	if(prob(10))
+		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
+		M.AdjustSleeping(20)
 	if(istype(O)) //STAGE 1: CRUSH LUNGS
 		create_overdose_wound(O, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
-		M.adjustOxyLoss(2)
+		M.adjustOxyLoss(5)
 	if(istype(S) && (O.status & ORGAN_DEAD)) //STAGE 2: NO LUNGS? FUCK YOUR HEART
 		create_overdose_wound(S, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustHalLoss(20)
+		M.vomit()
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -548,7 +551,7 @@
 			else
 				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 				for(var/obj/item/W in H) //Check all items on the person
-					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now. 
+					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now.
 						W.dropped()
 				H.set_species(SPECIES_SLIME)
 
@@ -565,7 +568,7 @@
 	var/prosthetic = FALSE
 	var/mob/living/carbon/human/MH
 	if(istype(M, /mob/living/carbon/human)) //If it is human cast to human type for human procs
-		MH = M 
+		MH = M
 		prosthetic = MH.isSynthetic()
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
@@ -580,7 +583,7 @@
 			if(istype(W, /obj/item/implant) || istype(W, /obj/item/organ/external/robotic))  //Check if item is implant or prosthetic
 				if(istype(W, /obj/item/implant/core_implant/cruciform)) //If cruciform is present victim is gibbed instead of transformed
 					cruciformed = TRUE
-				W.dropped() //use the baseline dropped() 
+				W.dropped() //use the baseline dropped()
 				continue
 			W.layer = initial(W.layer)
 			W.loc = M.loc

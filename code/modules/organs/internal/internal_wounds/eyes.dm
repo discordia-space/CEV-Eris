@@ -71,8 +71,6 @@
 	hal_damage = IWOUND_MEDIUM_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
-/datum/component/internal_wound/organic/eyes_burn/scorch
-
 /datum/component/internal_wound/organic/eyes_burn/burnt
 	name = "burnt external fibrous layer"
 
@@ -205,7 +203,7 @@
 
 /datum/component/internal_wound/robotic/eyes_emp_burn/inverse
 	name = "inversed movement axis"
-
+	treatments_tool = list(QUALITY_SCREW_DRIVING = FAILCHANCE_HARD)
 /datum/component/internal_wound/robotic/eyes_emp_burn/carbonized
 	name = "mangled wiring"
 
@@ -222,6 +220,7 @@
 
 /datum/component/internal_wound/robotic/eyes_overheat/alt
 	name = "thermal blackout"
+	organ_efficiency_multiplier = -1
 
 // Tox - UNUSED
 /datum/component/internal_wound/robotic/eyes_build_up

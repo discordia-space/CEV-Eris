@@ -348,12 +348,10 @@
 /datum/reagent/medicine/alkysine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/list/big_brain = H.internal_organs - H.internal_organs + H.internal_organs_by_efficiency[BP_BRAIN]
-		for(var/obj/item/organ/I in big_brain)
-			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(25))
-				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))  //NOTE: this is bad and cheesy, other chems with enough blood clotting are capable of healing the brain (need unique internal_wounds for eyes/brain)
-	M.add_chemical_effect(CE_PAINKILLER, 10)
+		var/list/big_brain = H.internal_organs_by_efficiency[BP_BRAIN]
+			if(!BP_IS_ROBOTIC(I) && prob(75))
+				M.add_chemical_effect(CE_PAINKILLER, 10)
+				M.add_chemical_effect(CE_BRAINHEAL, 1)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -373,8 +371,8 @@
 		var/obj/item/organ/internal/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
 			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && prob(10))
-				SEND_SIGNAL_OLD(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+			if(LAZYLEN(current_wounds) && prob(75))
+				M.add_chemical_effect(CE_EYEHEAL, 1)
 
 /datum/reagent/medicine/imidazoline/overdose(mob/living/carbon/M, alien)
 	. = ..()

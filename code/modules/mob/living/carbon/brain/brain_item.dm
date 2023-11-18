@@ -38,7 +38,7 @@
 		brainmob = null
 	. = ..()
 
-/obj/item/organ/internal/vital/brain/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)
+/obj/item/organ/internal/vital/brain/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
 	if(!damage_type || status & ORGAN_DEAD)
 		return
 
@@ -53,32 +53,45 @@
 	var/list/possible_wounds = list()
 
 	// Determine possible wounds based on nature and damage type
-	var/is_robotic = BP_IS_ROBOTIC(src)
+	var/is_robotic = BP_IS_ROBOTIC(src) || BP_IS_ASSISTED(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 
 	switch(damage_type)
 		if(BRUTE)
 			if(!edge)
-				if(sharp)
+				if(sharp) // dont even fucking ask whats the difference between this and eyes get_possible_wounds. I dont know, I wont tell you. 
 					if(is_organic)
 						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_sharp))
 					if(is_robotic)
-						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sharp))
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_sharp))
 				else
 					if(is_organic)
 						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_blunt))
 					if(is_robotic)
-						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/blunt))
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_blunt))
 			else
 				if(is_organic)
 					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_edge))
 				if(is_robotic)
-					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/edge))
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_edge))
 		if(BURN)
 			if(is_organic)
 				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_burn))
 			if(is_robotic)
-				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/emp_burn))
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_emp_burn))
+		if(TOX)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/poisoning))
+			//if(is_robotic)
+			//	LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/poisoning))
+		if(CLONE)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/radiation))
+		if(PSY)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/sanity))
+			if(is_robotic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sanity))
 
 	return possible_wounds
 
