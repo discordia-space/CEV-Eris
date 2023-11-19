@@ -20,7 +20,7 @@
 /obj/machinery/excelsior_redirector/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(is_excelsior(user))
-		to_chat(user, SPAN_DANGER("Do not build any walls around this as it will interfere with the mechanism and cause it to instantly fail"))
+		to_chat(user, SPAN_DANGER("Do not build any walls around this as it will interfere with the mechanism and cause it to instantly fail."))
 
 /obj/machinery/excelsior_redirector/attackby(obj/item/I, mob/living/user)
 	if(istool(I))
