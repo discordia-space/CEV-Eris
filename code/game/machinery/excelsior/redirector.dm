@@ -121,7 +121,7 @@
 /obj/machinery/excelsior_redirector/proc/tryRuin(mob/living/carbon/human/user)
 	if(user.stat || user.incapacitated() || !user.Adjacent(src))
 		return
-	to_chat(user, SPAN_NOTICE("You start bending \the [src]'s antenna! Its quite tough..."))
+	to_chat(user, SPAN_WARNING("You start bending \the [src]'s antenna! It's quite tough..."))
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 	for (var/datum/antagonist/A in commies.members)
 		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("The [src]'s antenna is being bent by someone! Stop them."))
