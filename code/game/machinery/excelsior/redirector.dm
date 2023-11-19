@@ -40,7 +40,7 @@
 						to_chat(user, SPAN_DANGER("\The [src] needs to be kept away from walls in order to work properly!"))
 						return
 				if(!consol)
-					to_chat(user, SPAN_NOTICE("\The [src] must be installed near a helm navigation console"))
+					to_chat(user, SPAN_NOTICE("\The [src] must be installed near a helm navigation console."))
 					return
 			to_chat(user, SPAN_NOTICE("You [anchored ? "unanchor" : "anchor"] \the [src] to the floor."))
 			anchored = !anchored
