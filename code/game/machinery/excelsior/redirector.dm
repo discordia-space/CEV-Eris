@@ -116,7 +116,7 @@
 		addtimer(CALLBACK(src, PROC_REF(requestReboot)),3 MINUTES)
 		icon_state = "redirector_running"
 	else
-		to_chat(user, SPAN_DANGER("Your hands suddenly stop moving.. \the [src] wasn't rebooted."))
+		to_chat(user, SPAN_DANGER("Your hands suddenly stop moving. \the [src] wasn't rebooted."))
 
 /obj/machinery/excelsior_redirector/proc/tryRuin(mob/living/carbon/human/user)
 	if(user.stat || user.incapacitated() || !user.Adjacent(src))
