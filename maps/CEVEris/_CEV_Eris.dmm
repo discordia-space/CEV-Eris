@@ -73391,7 +73391,7 @@
 "dvG" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/coffee{
-	desc = "Old cup of coffee. Very cold. ";
+	desc = "Old cup of coffee. Very cold.";
 	name = "Old Robust Coffee"
 	},
 /obj/item/device/radio,
