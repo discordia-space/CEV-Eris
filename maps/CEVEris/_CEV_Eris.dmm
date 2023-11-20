@@ -1090,7 +1090,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_ihscommander";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -2634,7 +2634,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_ihsinter";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -2985,7 +2985,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_maintpost";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -9526,7 +9526,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
-	sortType = list("Merchant Office")
+	sortType = list("Merchant  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
@@ -19019,10 +19019,10 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_escapecor1";
 	layer = 3.3;
-	name = "Maintenance Hatch"
+	name = "Maintenance Hatch";
+	dir = 4
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
@@ -20340,7 +20340,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_rnd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -22620,7 +22620,7 @@
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/sortjunction/flipped{
 	dir = 1;
-	sortType = list("Dormitories","Security","FO Office")
+	sortType = list("Dormitories","Security","FO  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
@@ -23282,7 +23282,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/sortjunction/flipped{
-	sortType = list("Research","Medbay","Chemistry","MBO Office")
+	sortType = list("Research","Medbay","Chemistry","MBO  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
@@ -26191,7 +26191,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_morgue";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -27107,7 +27107,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_evidstor";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -27379,7 +27379,7 @@
 	},
 /obj/structure/disposalpipe/sortjunction/flipped{
 	dir = 8;
-	sortType = list("Preacher Office")
+	sortType = list("Preacher  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
@@ -27547,7 +27547,7 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/sortjunction/flipped{
-	sortType = list("MEO Office")
+	sortType = list("MEO  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
@@ -27756,7 +27756,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_atmos2";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -30522,7 +30522,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("mair_in_meter"="Mixed Air In","air_sensor"="Mixed Air Supply Tank","mair_out_meter"="Mixed Air Out","dloop_atm_meter"="Distribution Loop","wloop_atm_meter"="Waste Loop")
+	sensors = list("mair_in_meter"="Mixed  Air  In","air_sensor"="Mixed  Air  Supply  Tank","mair_out_meter"="Mixed  Air  Out","dloop_atm_meter"="Distribution  Loop","wloop_atm_meter"="Waste  Loop")
 	},
 /obj/machinery/camera/network/engineering{
 	dir = 1
@@ -31742,7 +31742,7 @@
 	dir = 8;
 	frequency = 1441;
 	name = "Tank Monitor";
-	sensors = list("n2_sensor"="Nitrogen","o2_sensor"="Oxygen","co2_sensor"="Carbon Dioxide","tox_sensor"="Toxins","n2o_sensor"="Nitrous Oxide","waste_sensor"="Gas Mix Tank")
+	sensors = list("n2_sensor"="Nitrogen","o2_sensor"="Oxygen","co2_sensor"="Carbon  Dioxide","tox_sensor"="Toxins","n2o_sensor"="Nitrous  Oxide","waste_sensor"="Gas  Mix  Tank")
 	},
 /obj/machinery/power/apc{
 	name = "South APC";
@@ -37387,7 +37387,7 @@
 /obj/spawner/traps/low_chance,
 /obj/structure/disposalpipe/sortjunction/flipped{
 	dir = 1;
-	sortType = list("Engineering","Exultant Office")
+	sortType = list("Engineering","Exultant  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
@@ -38550,7 +38550,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_telecomm";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -41748,7 +41748,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/sortjunction/flipped{
-	sortType = list("FO Office")
+	sortType = list("FO  Office")
 	},
 /turf/simulated/floor/tiled/steel/monofloor{
 	dir = 4
@@ -43282,7 +43282,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_rd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -45065,7 +45065,7 @@
 	},
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "psych_front";
 	name = "Psychology Shutters"
 	},
@@ -45089,7 +45089,7 @@
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "genetics_back";
 	name = "Research Desk Shutters"
 	},
@@ -45187,7 +45187,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_rndservers";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -47588,7 +47588,7 @@
 	input_tag = "toxins1_in";
 	name = "Mixing Chamber 1 Monitor";
 	output_tag = "toxins1_out";
-	sensors = list("toxins_mixing_1"="Mixing Chamber - 1")
+	sensors = list("toxins_mixing_1"="Mixing  Chamber  -  1")
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
@@ -47755,7 +47755,7 @@
 	dir = 8;
 	frequency = 1430;
 	name = "Mixing Chamber Monitor";
-	sensors = list("toxins_mixing_1"="Mixing Chamber - 1","toxins_mixing_2"="Mixing Chamber - 2")
+	sensors = list("toxins_mixing_1"="Mixing  Chamber  -  1","toxins_mixing_2"="Mixing  Chamber  -  2")
 	},
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/eris/rnd/mixing)
@@ -48017,7 +48017,7 @@
 	input_tag = "toxins2_in";
 	name = "Mixing Chamber 2 Monitor";
 	output_tag = "toxins2_out";
-	sensors = list("toxins_mixing_2"="Mixing Chamber - 2")
+	sensors = list("toxins_mixing_2"="Mixing  Chamber  -  2")
 	},
 /turf/simulated/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
@@ -50643,7 +50643,7 @@
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/sortjunction/flipped{
 	dir = 1;
-	sortType = list("Church","Preacher Office","Club")
+	sortType = list("Church","Preacher  Office","Club")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
@@ -53878,7 +53878,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_gravgen";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -56221,7 +56221,7 @@
 	},
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/sortjunction/flipped{
-	sortType = list("Tool Storage","Guild Desk","Merchant Office")
+	sortType = list("Tool  Storage","Guild  Desk","Merchant  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
@@ -59063,7 +59063,7 @@
 	dir = 1;
 	frequency = 1441;
 	name = "Tank Monitor";
-	sensors = list("n2_sensor"="Nitrogen","o2_sensor"="Oxygen","co2_sensor"="Carbon Dioxide","tox_sensor"="Toxins","n2o_sensor"="Nitrous Oxide","waste_sensor"="Gas Mix Tank")
+	sensors = list("n2_sensor"="Nitrogen","o2_sensor"="Oxygen","co2_sensor"="Carbon  Dioxide","tox_sensor"="Toxins","n2o_sensor"="Nitrous  Oxide","waste_sensor"="Gas  Mix  Tank")
 	},
 /turf/simulated/floor/tiled/steel/brown_platform,
 /area/eris/command/exultant)
@@ -72124,7 +72124,7 @@
 /area/eris/maintenance/section4deck2port)
 "dsC" = (
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_maintcryostor";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -75077,7 +75077,7 @@
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/sortjunction{
 	dir = 8;
-	sortType = list("MBO Office")
+	sortType = list("MBO  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
@@ -79149,7 +79149,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("mair_in_meter"="Mixed Air In","air_sensor"="Mixed Air Supply Tank","mair_out_meter"="Mixed Air Out","dloop_atm_meter"="Distribution Loop","wloop_atm_meter"="Engine Waste")
+	sensors = list("mair_in_meter"="Mixed  Air  In","air_sensor"="Mixed  Air  Supply  Tank","mair_out_meter"="Mixed  Air  Out","dloop_atm_meter"="Distribution  Loop","wloop_atm_meter"="Engine  Waste")
 	},
 /obj/machinery/light{
 	dir = 8
@@ -84649,7 +84649,8 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
-	id = "Backroom_hatch"
+	id = "Backroom_hatch";
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
@@ -89980,7 +89981,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/sortjunction/flipped{
 	dir = 1;
-	sortType = list("Exultant Office")
+	sortType = list("Exultant  Office")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck1central)
@@ -92737,7 +92738,7 @@
 	},
 /obj/structure/disposalpipe/sortjunction{
 	dir = 8;
-	sortType = list("Tool Storage")
+	sortType = list("Tool  Storage")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
@@ -101266,7 +101267,7 @@
 "jwB" = (
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
-	sortType = list("Guild Desk")
+	sortType = list("Guild  Desk")
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck3starboard)
@@ -103743,7 +103744,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "psych_front";
 	name = "Psychology Shutters"
 	},
@@ -104092,7 +104093,7 @@
 /area/eris/maintenance/sorter)
 "qmJ" = (
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_acolyte";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -106221,7 +106222,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "rnddesk";
 	name = "Research Desk Shutters"
 	},
