@@ -36,7 +36,7 @@
         active = FALSE
     else
         active = TRUE
-        if (world.time >= update_time + 20 SECONDS)
+        if (world.time >= update_time + 30 SECONDS)
             send_propaganda()
             update_time = world.time
 
