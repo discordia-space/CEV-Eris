@@ -306,8 +306,8 @@
 	if(alert("Should the voters see another voters votes?","Custom vote","Yes","No") == "No")
 		see_votes = FALSE
 
-	if(alert("Should the voters be able to see who initiated the vote? If you're the only admin and not stealthmining, it will be very obvious!","Custom vote","Yes","No") == "Yes")
-		starter_anonymous = TRUE
+	if(alert("Should the voters be able to see who initiated the vote? If you're the only admin and not stealthmining, it will be very obvious!","Custom vote","Yes","No") == "No")
+		starter_anonymous = FALSE
 
 	if(alert("Are you sure you want to continue?","Custom vote","Yes","No") == "No")
 		choices.Cut()
