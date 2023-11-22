@@ -157,6 +157,7 @@
 /datum/poll/evac
 	name = "Initiate Bluespace Jump"
 	question = "Do you want to initiate a bluespace jump and restart the round?"
+	starter_anonymous = TRUE	// For "some" reason people go mad over this particular vote.
 	time = 120
 	minimum_win_percentage = 0.6
 	cooldown = 20 MINUTES
@@ -304,6 +305,9 @@
 
 	if(alert("Should the voters see another voters votes?","Custom vote","Yes","No") == "No")
 		see_votes = FALSE
+
+	if(alert("Should the voters be able to see who initiated the vote? If you're the only admin and not stealthmining, it will be very obvious!","Custom vote","Yes","No") == "Yes")
+		starter_anonymous = TRUE
 
 	if(alert("Are you sure you want to continue?","Custom vote","Yes","No") == "No")
 		choices.Cut()

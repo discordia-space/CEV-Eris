@@ -10,6 +10,7 @@
 	var/multiple_votes = FALSE
 	var/can_revote = TRUE	//Can voters change their mind?
 	var/can_unvote = FALSE
+	var/starter_anonymous = FALSE   // Do we hide starters name? Admins will still see through this.
 
 	var/see_votes = TRUE	//Can voters see choices votes count?
 

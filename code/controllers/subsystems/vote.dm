@@ -55,8 +55,8 @@ SUBSYSTEM_DEF(vote)
 
 	vote_start_time = world.time
 
-	var/text = "[poll.name] vote started by [poll.initiator]."
-	log_vote(text)
+	var/text = "[poll.name] vote started by [(poll.starter_anonymous) ? "Iriska" : "[poll.initiator]"]."
+		log_vote(text)
 	to_chat(world, {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"})
 	sound_to(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = GLOB.vote_sound_channel))
 
@@ -87,7 +87,15 @@ SUBSYSTEM_DEF(vote)
 	if(active_vote)
 		data += "<h2>Vote: '[active_vote.question]'</h2>"
 		data += "Time Left: [active_vote.time - get_vote_time()] s<br>"
-		data += "Started by: <b>[active_vote.initiator]</b><hr>"
+
+		if(active_vote.starter_anonymous)
+			data += "Started by: <b>Iriska</b>"
+			if(admin)
+				data += " <i>Initiator: <b>[active_vote.initiator]</b></i>"
+			data += "<hr>"
+		else
+			data += "Started by: <b>[active_vote.initiator]</b><hr>"
+
 
 		if(active_vote.multiple_votes)
 			data += "You can vote multiple choices.<br>"
