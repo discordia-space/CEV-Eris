@@ -6,7 +6,6 @@
 	icon = MECH_HUD_ICON
 	icon_state = "base"
 	var/mob/living/exosuit/owner
-	var/height = 20
 
 /obj/screen/movable/exosuit/proc/on_handle_hud(var/mob/living/exosuit/E)
 	if(E) owner = E
@@ -260,8 +259,13 @@
 	if(owner.body && owner.body.total_damage >= owner.body.max_damage)
 		to_chat(usr, SPAN_WARNING("\The body of [owner] is far too damaged to close its hatch!"))
 		return
-	owner.hatch_locked = ..()
+	owner.hatch_locked = owner.toggle_hatch_lock()
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is [owner.hatch_locked ? "now" : "no longer" ] locked."))
+	update_icon()
+
+/obj/screen/movable/exosuit/toggle/hatch/update_icon()
+	toggled = owner.hatch_locked
+	. = ..()
 
 /obj/screen/movable/exosuit/toggle/hatch_open
 	name = "open or close hatch"
@@ -274,13 +278,14 @@
 	if(owner.hatch_locked && owner.hatch_closed)
 		to_chat(usr, SPAN_WARNING("You cannot open the hatch while it is locked."))
 		return
-	owner.hatch_closed = ..()
+	owner.hatch_closed = owner.toggle_hatch()
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
 	owner.update_icon()
 
 /obj/screen/movable/exosuit/toggle/hatch_open/update_icon()
+	toggled = owner.hatch_closed
 	. = ..()
-	if(owner.hatch_closed)
+	if(toggled)
 		maptext = MECH_UI_STYLE("OPEN")
 		maptext_x = 5
 	else
@@ -349,8 +354,9 @@
 	if(!owner.head.vision_flags)
 		to_chat(usr,  SPAN_WARNING("Alternative sensor configurations not found. Contact manufacturer for more details."))
 		return
-	owner.head.active_sensors = ..()
+	owner.head.active_sensors = owner.toggle_sensors()
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
+	update_icon()
 
 /obj/screen/movable/exosuit/toggle/camera/update_icon()
 	toggled = owner.head.active_sensors

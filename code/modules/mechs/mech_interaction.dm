@@ -474,6 +474,32 @@
 		if(ABORT_CHECK)
 			return
 
+/// Used by hatch lock UI button
+/mob/living/exosuit/proc/toggle_hatch_lock()
+	if(hatch_locked)
+		hatch_locked = FALSE
+	else
+		if(body && body.total_damage >= body.max_damage)
+			return FALSE
+		hatch_locked = TRUE
+	return hatch_locked
+
+/// Used by hatch toggle mech UI button
+/mob/living/exosuit/proc/toggle_hatch()
+	if(hatch_locked)
+		return hatch_closed
+	else
+		hatch_closed = !hatch_closed
+		return hatch_closed
+
+/// Used by camera toglge UI button
+/mob/living/exosuit/proc/toggle_sensors()
+	if(head)
+		if(get_cell().calc_power_draw(0,0,head.power_use))
+			head.active_sensors = TRUE
+			return TRUE
+	head.active_sensors = FALSE
+	return FALSE
 
 /mob/living/exosuit/attack_hand(mob/living/user)
 	// Drag the pilot out if possible.

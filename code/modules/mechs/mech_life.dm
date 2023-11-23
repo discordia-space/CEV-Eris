@@ -35,7 +35,7 @@
 		death()
 	. = ..() //Handles stuff like environment
 	lying = FALSE // Fuck off, carp.
-	handle_vision()
+	handle_vision(powered)
 
 /mob/living/exosuit/get_cell(force)
 	RETURN_TYPE(/obj/item/cell)
@@ -51,7 +51,8 @@
 		var/obj/item/mech_equipment/I = hardpoints[hardpoint]
 		if(!istype(I))
 			continue
-		total_draw += I.passive_power_use
+
+		total_draw += I.active ? I.active_power_use : I.passive_power_use
 
 	if(head && head.active_sensors)
 		total_draw += head.power_use
@@ -129,10 +130,10 @@
 	qdel(src)
 	return
 
-/mob/living/exosuit/handle_vision()
+/mob/living/exosuit/handle_vision(powered)
 	if(head)
-		sight = head.get_sight()
-		see_invisible = head.get_invisible()
+		sight = head.get_sight(powered)
+		see_invisible = head.get_invisible(powered)
 	if(body && (body.pilot_coverage < 100 || body.transparent_cabin) || !hatch_closed)
 		sight &= ~BLIND
 
