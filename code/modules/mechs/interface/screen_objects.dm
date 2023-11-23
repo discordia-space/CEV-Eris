@@ -6,6 +6,7 @@
 	icon = MECH_HUD_ICON
 	icon_state = "base"
 	var/mob/living/exosuit/owner
+	var/height = 20
 
 /obj/screen/movable/exosuit/proc/on_handle_hud(var/mob/living/exosuit/E)
 	if(E) owner = E
@@ -17,7 +18,7 @@
 	name = "radio"
 	//icon_state = "radio"
 	maptext = MECH_UI_STYLE("RADIO")
-	maptext.x = 5
+	maptext_x = 5
 	maptext_y = 12
 
 /obj/screen/movable/exosuit/radio/Click()
@@ -135,7 +136,7 @@
 		else if(owner.set_hardpoint(hardpoint_tag)) icon_state = "hardpoint_selected"
 
 
-/obj/screen/exosuit/toggle/power_control
+/obj/screen/movable/exosuit/toggle/power_control
 	name = "Power control"
 	icon_state = "small_important"
 	maptext = MECH_UI_STYLE("POWER")
@@ -143,11 +144,11 @@
 	maptext_y = 13
 	height = 12
 
-/obj/screen/exosuit/toggle/power_control/toggled()
+/obj/screen/movable/exosuit/toggle/power_control/toggled()
 	. = ..()
 	owner.toggle_power(usr)
 
-/obj/screen/exosuit/toggle/power_control/update_icon()
+/obj/screen/movable/exosuit/toggle/power_control/update_icon()
 	toggled = (owner.power == MECH_POWER_ON)
 	. = ..()
 
@@ -181,7 +182,7 @@
 	. = ..()
 	if(owner)
 		var/obj/item/cell/C = owner.get_cell()
-		if(C && istype(C)) maptext = MECH_UI_STYLE("[round(C.charge)]/[round(C.maxcharge))]"
+		if(C && istype(C)) maptext = MECH_UI_STYLE("[round(C.charge)]/[round(C.maxcharge)]")
 		else maptext = MECH_UI_STYLE("CHECK POWER")
 
 /obj/screen/movable/exosuit/rename/Click()
@@ -277,7 +278,7 @@
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
 	owner.update_icon()
 
-/obj/screen/exosuit/toggle/hatch_open/update_icon()
+/obj/screen/movable/exosuit/toggle/hatch_open/update_icon()
 	. = ..()
 	if(owner.hatch_closed)
 		maptext = MECH_UI_STYLE("OPEN")

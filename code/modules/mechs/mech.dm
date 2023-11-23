@@ -88,7 +88,7 @@
 	else if(power == MECH_POWER_ON) //Turning it off is instant
 		playsound(src, 'sound/mecha/mech-shutdown.ogg', 100, 0)
 		power = MECH_POWER_OFF
-	else if(get_cell())
+	else if(get_cell(TRUE))
 		//Start power up sequence
 		power = MECH_POWER_TRANSITION
 		playsound(src, 'sound/mecha/powerup.ogg', 50, 0)
@@ -98,7 +98,7 @@
 		else
 			to_chat(user, SPAN_WARNING("You abort the powerup sequence."))
 			power = MECH_POWER_OFF
-		hud_power_control?.queue_icon_update()
+		//hud_power_control?.queue_icon_update()
 	else
 		to_chat(user, SPAN_WARNING("Error: No power cell was detected."))
 
