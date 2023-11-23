@@ -134,6 +134,23 @@
 			owner.clear_selected_hardpoint()
 		else if(owner.set_hardpoint(hardpoint_tag)) icon_state = "hardpoint_selected"
 
+
+/obj/screen/exosuit/toggle/power_control
+	name = "Power control"
+	icon_state = "small_important"
+	maptext = MECH_UI_STYLE("POWER")
+	maptext_x = 3
+	maptext_y = 13
+	height = 12
+
+/obj/screen/exosuit/toggle/power_control/toggled()
+	. = ..()
+	owner.toggle_power(usr)
+
+/obj/screen/exosuit/toggle/power_control/update_icon()
+	toggled = (owner.power == MECH_POWER_ON)
+	. = ..()
+
 /obj/screen/movable/exosuit/eject
 	name = "eject"
 	//icon_state = "eject"
@@ -333,6 +350,10 @@
 		return
 	owner.head.active_sensors = ..()
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
+
+/obj/screen/movable/exosuit/toggle/camera/update_icon()
+	toggled = owner.head.active_sensors
+	. = ..()
 
 /obj/screen/movable/exosuit/needle
 	vis_flags = VIS_INHERIT_ID

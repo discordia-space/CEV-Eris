@@ -13,13 +13,22 @@
 		update_pilots()
 
 	if(radio)
-		radio.on = (head && head.radio && head.radio.is_functional())
+		radio.on = (head && head.radio && head.radio.is_functional() && get_cell())
+
+	var/powered = FALSE
+	if(get_cell())
+		powered = get_cell().drain_power(0, 0, calc_power_draw()) > 0
+
+	if(!powered)
+		//Shut down all systems
+		if(head)
+			head.active_sensors = FALSE
+		for(var/hardpoint in hardpoints)
+			var/obj/item/mech_equipment/M = hardpoints[hardpoint]
+			if(istype(M) && M.active && M.passive_power_use)
+				M.deactivate()
 
 	body.update_air(hatch_closed && use_air)
-
-	if((client || LAZYLEN(pilots)) && get_cell())
-		var/obj/item/cell/c = get_cell()
-		c.drain_power(0, 0, calc_power_draw())
 
 	updatehealth()
 	if(health <= 0 && stat != DEAD)
@@ -28,8 +37,12 @@
 	lying = FALSE // Fuck off, carp.
 	handle_vision()
 
-/mob/living/exosuit/get_cell()
-	return body?.get_cell()
+/mob/living/exosuit/get_cell(force)
+	RETURN_TYPE(/obj/item/cell)
+	if(power == MECH_POWER_ON || force) //For most intents we can assume that a powered off exosuit acts as if it lacked a cell
+		return body ? body.cell : null
+	return null
+
 
 /mob/living/exosuit/proc/calc_power_draw()
 	//Passive power stuff here. You can also recharge cells or hardpoints if those make sense

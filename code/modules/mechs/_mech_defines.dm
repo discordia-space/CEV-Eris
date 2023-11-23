@@ -51,3 +51,7 @@ GLOBAL_LIST_INIT(mech_damage_overlay_cache,		new)
 GLOBAL_LIST_INIT(mech_image_cache,				new)
 GLOBAL_LIST_INIT(mech_icon_cache,				new)
 GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECH_WEAPON_OVERLAYS_ICON))
+
+#define MECH_POWER_OFF 0
+#define MECH_POWER_TRANSITION 1
+#define MECH_POWER_ON 2

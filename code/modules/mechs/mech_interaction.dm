@@ -49,6 +49,10 @@
 	if(A.loc != src && !(get_dir(src, A) & dir))
 		return
 
+	if(!get_cell()?.checked_use(arms.power_use * CELLRATE))
+		to_chat(user, power == MECH_POWER_ON ? SPAN_WARNING("Error: Power levels insufficient.") :  SPAN_WARNING("\The [src] is powered off."))
+		return
+
 	if(!arms)
 		to_chat(user, SPAN_WARNING("\The [src] has no manipulators!"))
 		setClickCooldown(3)
@@ -452,6 +456,7 @@
 					return TRUE
 			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
 			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
+				power = MECH_POWER_OFF
 				body.cell = null
 				return
 

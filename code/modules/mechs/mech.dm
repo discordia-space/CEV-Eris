@@ -73,12 +73,34 @@
 	var/obj/screen/movable/exosuit/toggle/power_control/hud_power_control
 	var/obj/screen/movable/exosuit/toggle/camera/hud_camera
 
+	var/power = MECH_POWER_OFF
+
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
 
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
 		to_chat(i, msg)
+
+/mob/living/exosuit/proc/toggle_power(mob/living/user)
+	if(power == MECH_POWER_TRANSITION)
+		to_chat(user, SPAN_NOTICE("Power transition in progress. Please wait."))
+	else if(power == MECH_POWER_ON) //Turning it off is instant
+		playsound(src, 'sound/mecha/mech-shutdown.ogg', 100, 0)
+		power = MECH_POWER_OFF
+	else if(get_cell())
+		//Start power up sequence
+		power = MECH_POWER_TRANSITION
+		playsound(src, 'sound/mecha/powerup.ogg', 50, 0)
+		if(do_after(user, 1.5 SECONDS, src) && power == MECH_POWER_TRANSITION)
+			playsound(src, 'sound/mecha/nominal.ogg', 50, 0)
+			power = MECH_POWER_ON
+		else
+			to_chat(user, SPAN_WARNING("You abort the powerup sequence."))
+			power = MECH_POWER_OFF
+		hud_power_control?.queue_icon_update()
+	else
+		to_chat(user, SPAN_WARNING("Error: No power cell was detected."))
 
 
 
