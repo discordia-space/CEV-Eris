@@ -86,14 +86,14 @@
 	if(power == MECH_POWER_TRANSITION)
 		to_chat(user, SPAN_NOTICE("Power transition in progress. Please wait."))
 	else if(power == MECH_POWER_ON) //Turning it off is instant
-		playsound(src, 'sound/mecha/mech-shutdown.ogg', 100, 0)
+		playsound(src, 'sound/mechs/mech-shutdown.ogg', 100, 0)
 		power = MECH_POWER_OFF
 	else if(get_cell(TRUE))
 		//Start power up sequence
 		power = MECH_POWER_TRANSITION
-		playsound(src, 'sound/mecha/powerup.ogg', 50, 0)
+		playsound(src, 'sound/mechs/powerup.ogg', 50, 0)
 		if(do_after(user, 1.5 SECONDS, src) && power == MECH_POWER_TRANSITION)
-			playsound(src, 'sound/mecha/nominal.ogg', 50, 0)
+			playsound(src, 'sound/mechs/nominal.ogg', 50, 0)
 			power = MECH_POWER_ON
 		else
 			to_chat(user, SPAN_WARNING("You abort the powerup sequence."))

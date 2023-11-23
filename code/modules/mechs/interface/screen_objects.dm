@@ -141,7 +141,6 @@
 	maptext = MECH_UI_STYLE("POWER")
 	maptext_x = 3
 	maptext_y = 13
-	height = 12
 
 /obj/screen/movable/exosuit/toggle/power_control/toggled()
 	. = ..()
@@ -215,7 +214,6 @@
 	maptext = MECH_UI_STYLE("AIR")
 	maptext_x = 9
 	maptext_y = 13
-	height = 12
 
 /obj/screen/movable/exosuit/toggle/air/toggled()
 	owner.use_air = ..()
@@ -228,7 +226,6 @@
 	maptext = MECH_UI_STYLE("MAINT")
 	maptext_x = 5
 	maptext_y = 13
-	height = 12
 
 /obj/screen/movable/exosuit/toggle/maint/toggled()
 	owner.maintenance_protocols = ..()
@@ -281,6 +278,7 @@
 	owner.hatch_closed = owner.toggle_hatch()
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
 	owner.update_icon()
+	update_icon()
 
 /obj/screen/movable/exosuit/toggle/hatch_open/update_icon()
 	toggled = owner.hatch_closed
@@ -345,7 +343,6 @@
 	maptext = MECH_UI_STYLE("SENSOR")
 	maptext_x = 1
 	maptext_y = 13
-	height = 12
 
 /obj/screen/movable/exosuit/toggle/camera/toggled()
 	if(!owner.head)

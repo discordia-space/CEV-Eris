@@ -495,10 +495,14 @@
 /// Used by camera toglge UI button
 /mob/living/exosuit/proc/toggle_sensors()
 	if(head)
-		if(get_cell().calc_power_draw(0,0,head.power_use))
-			head.active_sensors = TRUE
-			return TRUE
-	head.active_sensors = FALSE
+		if(!head.active_sensors)
+			if(get_cell().drain_power(0,0,head.power_use))
+				head.active_sensors = TRUE
+				return TRUE
+			return FALSE
+		else
+			head.active_sensors = FALSE
+			return FALSE
 	return FALSE
 
 /mob/living/exosuit/attack_hand(mob/living/user)
