@@ -94,7 +94,7 @@
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 
 	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
+	if(istype(H) && can_climb(H) && (target == user || ismech(user.loc)))
 		do_climb(target)
 	else
 		return ..()
@@ -218,7 +218,8 @@
 		return 0
 	if(!Adjacent(user))
 		return 0
-	if (user.restrained() || user.buckled)
+
+	if (!ismech(user) && (user.restrained() || user.buckled))
 		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)

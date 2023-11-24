@@ -528,7 +528,8 @@
 		if(T && T.degradation)
 			failtypes["damage"] = 2.5
 
-	if(user)
+	// You can only fail with tools you are holding
+	if(user && T.loc == user)
 		failtypes["slip"] = 2
 		failtypes["swing"] = 1
 		if(ishuman(user))
