@@ -118,6 +118,10 @@
 	for(var/i in damage_types)
 		damage_types[i] *= i == HALLOSS ? 1 : newmult
 
+/obj/item/projectile/multiply_projectile_halloss(newmult)
+	for(var/i in damage_types)
+		damage_types[i] *= i == HALLOSS ? newmult : 1
+
 /obj/item/projectile/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
 
@@ -250,7 +254,11 @@
 					height = HEIGHT_HIGH // We are shooting from below, this protects resting players at the expense of windows
 					original = get_turf(original) // Aim at turfs instead of mobs, to ensure we don't hit players
 
-	firer = user
+	// Special case for mechs, in a ideal world this should always go for the top-most atom.
+	if(istype(launcher.loc, /obj/item/mech_equipment))
+		firer = launcher.loc.loc
+	else
+		firer = user
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 
@@ -427,6 +435,7 @@
 		loc = A.loc
 		return FALSE //go fuck yourself in another place pls
 
+
 	if((bumped && !forced) || (A in permutated))
 		return FALSE
 
@@ -442,8 +451,12 @@
 			trajectory.loc_z = loc.z
 			bumped = FALSE
 			return FALSE
-
 	if(ismob(A))
+		// Mobs inside containers shouldnt get bumped(such as mechs or closets)
+		if(!isturf(A.loc))
+			bumped = FALSE
+			return FALSE
+
 		var/mob/M = A
 		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
@@ -527,7 +540,8 @@
 		pixel_y = location.pixel_y
 
 		if(!bumped && !QDELETED(original) && !isturf(original))
-			if(loc == get_turf(original))
+			// this used to be loc == get_turf(original) , but this would break incase the original was inside something and hit them without hitting the outside
+			if(loc == original.loc)
 				if(!(original in permutated))
 					if(Bump(original))
 						return

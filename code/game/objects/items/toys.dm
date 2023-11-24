@@ -657,6 +657,9 @@
 /obj/item/toy/plushie/fumo/cirno
 	icon_state = "fumoplushie_cirno"
 
+/obj/item/toy/plushie/fumo/bocchi
+	icon_state = "fumoplushie_bocchi"
+
 //Toy cult sword
 /obj/item/toy/cultsword
 	name = "foam sword"

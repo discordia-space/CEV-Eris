@@ -1,12 +1,12 @@
 //Todo: make this thing work under new shield system
 /obj/machinery/shieldwallgen/excelsior
-
-	name = "Excelsior Shield Generator"
+	name = "excelsior shield generator"
 	desc = "A shield generator."
 	icon = 'icons/obj/machines/excelsior/field.dmi'
 	stun_chance = 3
 	shield_type = /obj/machinery/shieldwall/excelsior
 	circuit = /obj/item/electronics/circuitboard/excelsiorshieldwallgen
+	shipside_only = TRUE
 	req_access = list()
 
 /obj/machinery/shieldwallgen/excelsior/can_stun(var/mob/M)

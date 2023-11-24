@@ -17,6 +17,7 @@ var/global/excelsior_last_draft = 0
 	idle_power_usage = 40
 	active_power_usage = 15000
 	circuit = /obj/item/electronics/circuitboard/excelsior_teleporter
+	shipside_only = TRUE
 
 	var/max_energy = 100
 	var/energy_gain = 1
@@ -391,6 +392,7 @@ var/global/excelsior_last_draft = 0
 	conscript.stats.setStat(STAT_ROB, 30)
 	conscript.stats.setStat(STAT_MEC, 10)
 	conscript.stats.setStat(STAT_BIO, 10)
+	conscript.randomize_appearance()
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
 	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())

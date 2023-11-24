@@ -319,6 +319,8 @@
 		G.damage_multiplier += weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS]
 	if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 		G.damage_multiplier *= weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]
+	if(weapon_upgrades[GUN_UPGRADE_HALLOSS_MULT])
+		G.halloss_multiplier *= weapon_upgrades[GUN_UPGRADE_HALLOSS_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
 		G.penetration_multiplier += weapon_upgrades[GUN_UPGRADE_PEN_MULT]
 	if(weapon_upgrades[GUN_UPGRADE_PIERC_MULT])
@@ -380,9 +382,6 @@
 	if(weapon_upgrades[GUN_UPGRADE_BAYONET])
 		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		G.sharp = TRUE
-	if(weapon_upgrades[GUN_UPGRADE_FLASHLIGHT])
-		G.flashlight_attachment = TRUE
-		G.verbs += /obj/item/gun/proc/toggle_light
 	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
 		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
 	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])

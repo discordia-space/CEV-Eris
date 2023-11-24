@@ -381,7 +381,7 @@
 
 /obj/item/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
 	..()
-	if(is_proximity_sensor(W))
+	if(isproxsensor(W))
 		qdel(W)
 		var/obj/item/toolbox_tiles_sensor/B = new /obj/item/toolbox_tiles_sensor()
 		B.created_name = created_name

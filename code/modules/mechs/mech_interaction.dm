@@ -91,21 +91,6 @@
 			selected_system.attack_self(user)
 			setClickCooldown(5)
 			return
-
-		// Mounted non-exosuit systems have some hacky loc juggling
-		// to make sure that they work.
-		var/system_moved = FALSE
-		var/obj/item/temp_system
-		var/obj/item/mech_equipment/ME
-		if(istype(selected_system, /obj/item/mech_equipment))
-			ME = selected_system
-			temp_system = ME.get_effective_obj()
-			if(temp_system in ME)
-				system_moved = TRUE
-				temp_system.forceMove(src)
-		else
-			temp_system = selected_system
-
 		// Slip up and attack yourself maybe.
 		failed = FALSE
 		if(emp_damage > EMP_MOVE_DISRUPT && prob(10))
@@ -125,26 +110,15 @@
 
 		var/resolved
 		if(adj)
-			resolved = temp_system.resolve_attackby(A, src, params)
+			resolved = selected_system.resolve_attackby(A, src, params)
 
-		if(!resolved && A && temp_system)
-			var/mob/ruser = src
-			if(!system_moved) //It's more useful to pass along clicker pilot when logic is fully mechside
-				ruser = user
-			temp_system.afterattack(A,ruser,adj,params)
-		if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
-			log_attack("[user] used [temp_system] targetting [A]")
+		if(!resolved && A && selected_system)
+			selected_system.afterattack(A,user,adj,params)
 
 		// Mech equipment subtypes can add further click delays
-		var/extra_delay = 0
-		if(ME != null)
-			ME = selected_system
-			extra_delay = ME.equipment_delay
+		var/extra_delay = selected_system.equipment_delay
 		setClickCooldown(arms_action_delay() + extra_delay)
 
-		// If hacky loc juggling was performed, move the system back where it belongs
-		if(system_moved)
-			temp_system.forceMove(selected_system)
 		return
 
 	if(A == src)
@@ -156,6 +130,17 @@
 		if(arms)
 			return A.attack_generic(src, arms.melee_damage, "attacked")
 
+/// Checks the mech for places to store the ore.
+/mob/living/exosuit/proc/getOreCarrier()
+	for(var/hardpoint in hardpoints)
+		if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/clamp))
+			var/obj/item/mech_equipment/clamp/holder = hardpoints[hardpoint]
+			var/ore_box = locate(/obj/structure/ore_box) in holder.carrying
+			if(ore_box)
+				return ore_box
+	return null
+
+
 
 /mob/living/exosuit/proc/set_hardpoint(var/hardpoint_tag)
 	clear_selected_hardpoint()
@@ -163,8 +148,9 @@
 		// Set the new system.
 		selected_system = hardpoints[hardpoint_tag]
 		selected_hardpoint = hardpoint_tag
-		return 1 // The element calling this proc will set its own icon.
-	return 0
+		selected_system.on_select()
+		return TRUE // The element calling this proc will set its own icon.
+	return FALSE
 
 /mob/living/exosuit/proc/clear_selected_hardpoint()
 
@@ -175,7 +161,10 @@
 			if(istype(H))
 				H.icon_state = "hardpoint"
 				break
+		var/obj/item/mech_equipment/systm = selected_system
 		selected_system = null
+		// done after for the full-auto firemode to properly update.
+		systm.on_unselect()
 		selected_hardpoint = null
 
 /mob/living/exosuit/get_active_hand()
@@ -219,7 +208,7 @@
 	user.playsound_local(null, 'sound/mechs/nominal.ogg', 50)
 	LAZYDISTINCTADD(user.additional_vision_handlers, src)
 	update_pilots()
-	return 1
+	return TRUE
 
 /mob/living/exosuit/proc/sync_access()
 	access_card.access = saved_access.Copy()
@@ -252,6 +241,7 @@
 		update_mech_hud_4(user)
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
+	clear_selected_hardpoint()
 	return 1
 
 /mob/living/exosuit/attackby(obj/item/I, mob/living/user)
@@ -276,9 +266,39 @@
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
+	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
+		if(!maintenance_protocols)
+			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode to reload its guns!"))
+			return
+		var/list/obj/item/mech_equipment/mounted_system/ballistic/loadable_guns = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/ballistic))
+				// store name and location so its easy to choose
+				loadable_guns["[hardpoint] - [hardpoints[hardpoint]]"] = hardpoints[hardpoint]
+		var/obj/item/mech_equipment/mounted_system/ballistic/chosen = null
+		if(length(loadable_guns) > 1)
+			chosen = input("Select mech gun to reload.") as null|anything in loadable_guns
+			chosen = loadable_guns[chosen]
+		else
+			chosen = loadable_guns[loadable_guns[1]]
+		switch(chosen.loadMagazine(I,user))
+			if(-1)
+				to_chat(user, SPAN_NOTICE("\The [chosen] does not accept this type of magazine."))
+			if(0)
+				to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage."))
+			if(1)
+				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]."))
+			if(2)
+				to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
+
 	else if(user.a_intent != I_HURT)
 		if(attack_tool(I, user))
 			return
+	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
+	else if(user.a_intent == I_HURT && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
+		var/mob/living/target = get_mob()
+		target.attackby(I, user)
+		return
 	return ..()
 
 /mob/living/exosuit/proc/attack_tool(obj/item/I, mob/living/user)
@@ -467,6 +487,10 @@
 	if(hatch_locked)
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
 		return
+	if(body && body.total_damage >= body.max_damage)
+		to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
+		return
+
 	hatch_closed = !hatch_closed
 	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
 	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]

@@ -9,14 +9,10 @@
 
 	secured = FALSE
 
-	var/scanning = 0
-	var/timing = 0
-	var/time = 10
-
+	var/scanning = FALSE
 	var/range = 2
-
-/obj/item/device/assembly/prox_sensor/proc/toggle_scan()
-	sense()
+	var/timing = FALSE
+	var/time = 10
 
 
 /obj/item/device/assembly/prox_sensor/activate()
@@ -81,12 +77,6 @@
 		sense()
 
 
-/obj/item/device/assembly/prox_sensor/toggle_scan()
-	if(!secured)	return 0
-	scanning = !scanning
-	update_icon()
-
-
 /obj/item/device/assembly/prox_sensor/update_icon()
 	overlays.Cut()
 	attached_overlays = list()
@@ -108,56 +98,68 @@
 	sense()
 
 
-/obj/item/device/assembly/prox_sensor/interact(mob/user as mob)//TODO: Change this to the wires thingy
+/obj/item/device/assembly/prox_sensor/ui_status(mob/user)
+	if(is_secured(user))
+		return ..()
+
+	return UI_CLOSE
+
+
+/obj/item/device/assembly/prox_sensor/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ProximitySensor", name)
+		ui.open()
+
+
+/obj/item/device/assembly/prox_sensor/ui_data(mob/user)
+	var/list/data = list(
+		"isScanning" = scanning,
+		"isTiming" = timing,
+		"range" = range
+	)
+
+	data["minutes"] = round((time - data["seconds"]) / 60)
+	data["seconds"] = round(time % 60)
+
+	return data
+
+
+/obj/item/device/assembly/prox_sensor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("sense")
+			toggle_scan()
+			. = TRUE
+		if("time")
+			toggle_time()
+			. = TRUE
+		if("adjust")
+			if(params["range"])
+				var/value = text2num(params["range"])
+				range = clamp(range + value, 1, 5)
+				. = TRUE
+			else if(params["time"])
+				var/value = text2num(params["time"])
+				time = clamp(time + value, 0, 600)
+				. = TRUE
+
+
+/obj/item/device/assembly/prox_sensor/proc/toggle_scan()
 	if(!secured)
-		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
-		return
-	var/second = time % 60
-	var/minute = (time - second) / 60
-	var/dat = {"
-	<tt><b>Proximity Sensor</b><br>[minute]:[second]<br>
-	<a href='?src=\ref[src];tp=-30'>-</a>
-	<a href='?src=\ref[src];tp=-1'>-</a>
-	<a href='?src=\ref[src];tp=1'>+</a>
-	<a href='?src=\ref[src];tp=30'>+</a><br>
-	</tt><a href='?src=\ref[src];time=[!timing]'>[timing ? "Arming" : "Not Arming"]</a>
-	<br>Range: <a href='?src=\ref[src];range=-1'>-</a> [range] <a href='?src=\ref[src];range=1'>+</a>
-	<br><a href='?src=\ref[src];scanning=1'>[scanning ? "Armed" : "Unarmed"]</a> (Movement sensor active when armed!)
-	<br><br><a href='?src=\ref[src];refresh=1'>Refresh</a>
-	<br><br><a href='?src=\ref[src];close=1'>Close</a>
-	"}
-	user << browse(dat, "window=prox")
-	onclose(user, "prox")
+		return FALSE
+
+	scanning = !scanning
+	update_icon()
+	sense()
 
 
-/obj/item/device/assembly/prox_sensor/Topic(href, href_list)
-	if(..())
-		return TRUE
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=prox")
-		onclose(usr, "prox")
-		return
+/obj/item/device/assembly/prox_sensor/proc/toggle_time()
+	if(!secured)
+		return FALSE
 
-	if(href_list["scanning"])
-		toggle_scan()
-
-	if(href_list["time"])
-		timing = text2num(href_list["time"])
-		update_icon()
-
-	if(href_list["tp"])
-		var/tp = text2num(href_list["tp"])
-		time += tp
-		time = min(max(round(time), 0), 600)
-
-	if(href_list["range"])
-		var/r = text2num(href_list["range"])
-		range += r
-		range = min(max(range, 1), 5)
-
-	if(href_list["close"])
-		usr << browse(null, "window=prox")
-		return
-
-	if(usr)
-		attack_self(usr)
+	timing = !timing
+	update_icon()

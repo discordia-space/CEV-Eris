@@ -58,7 +58,7 @@
 		return
 	if(istype(W,/obj/item/device/assembly_holder) && stage != READY && path != 2)
 		var/obj/item/device/assembly_holder/det = W
-		if(istype(det.left_assembly,det.right_assembly.type) || (!is_igniter(det.left_assembly) && !is_igniter(det.right_assembly)))
+		if(istype(det.left_assembly,det.right_assembly.type) || (!isigniter(det.left_assembly) && !isigniter(det.right_assembly)))
 			to_chat(user, SPAN_WARNING("Assembly must contain one igniter."))
 			return
 		if(!det.secured)
@@ -70,10 +70,10 @@
 		user.remove_from_mob(det)
 		det.loc = src
 		detonator = det
-		if(is_timer(detonator.left_assembly))
+		if(istimer(detonator.left_assembly))
 			var/obj/item/device/assembly/timer/T = detonator.left_assembly
 			det_time = 10*T.time
-		if(is_timer(detonator.right_assembly))
+		if(istimer(detonator.right_assembly))
 			var/obj/item/device/assembly/timer/T = detonator.right_assembly
 			det_time = 10*T.time
 		icon_state = initial(icon_state) +"_ass"
@@ -128,11 +128,11 @@
 	if(active) return
 
 	if(detonator)
-		if(!is_igniter(detonator.left_assembly))
+		if(!isigniter(detonator.left_assembly))
 			detonator.left_assembly.activate()
 			active = TRUE
 			log_and_message_admins("primed via detonator \a [src]")
-		if(!is_igniter(detonator.right_assembly))
+		if(!isigniter(detonator.right_assembly))
 			detonator.right_assembly.activate()
 			active = TRUE
 			log_and_message_admins("primed via detonator \a [src]")
@@ -160,10 +160,10 @@
 		icon_state = initial(icon_state) +"_locked"
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 50, 1)
 		spawn(0) //Otherwise det_time is erroneously set to 0 after this
-			if(is_timer(detonator.left_assembly)) //Make sure description reflects that the timer has been reset
+			if(istimer(detonator.left_assembly)) //Make sure description reflects that the timer has been reset
 				var/obj/item/device/assembly/timer/T = detonator.left_assembly
 				det_time = 10*T.time
-			if(is_timer(detonator.right_assembly))
+			if(istimer(detonator.right_assembly))
 				var/obj/item/device/assembly/timer/T = detonator.right_assembly
 				det_time = 10*T.time
 		return

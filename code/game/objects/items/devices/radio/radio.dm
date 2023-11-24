@@ -51,6 +51,7 @@ var/global/list/default_medbay_channels = list(
 	var/subspace_transmission = 0
 	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
 	var/merc = FALSE  //Holder to see if it's a mercenary encrypted radio
+	var/pirate = FALSE  //Holder to see if it's a pirate encrypted radio
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -515,7 +516,7 @@ var/global/list/default_medbay_channels = list(
 			return -1
 
 	if(freq in ANTAG_FREQS)
-		if(!syndie && !merc)//Checks to see if it's allowed on that frequency, based on the encryption keys
+		if(!syndie && !merc && !pirate)//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
 
 	var/can_recieve = (freq == frequency)

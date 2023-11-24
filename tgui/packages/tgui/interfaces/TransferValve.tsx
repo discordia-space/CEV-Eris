@@ -1,42 +1,62 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section } from '../components';
+import { Box, Button, LabeledList, Section, Stack } from '../components';
 import { Window } from '../layouts';
 
-export const TransferValve = (props, context) => {
-  const { act, data } = useBackend(context);
-  const { tank_one, tank_two, attached_device, valve } = data;
+interface TransferValveData {
+  attachmentOne: string;
+  attachmentTwo: string;
+  attachment: string;
+  isOpen: boolean;
+}
+
+export const TransferValve = (props: any, context: any) => {
   return (
     <Window width={310} height={300}>
       <Window.Content>
+        <TransferValveContent />
+      </Window.Content>
+    </Window>
+  );
+};
+
+const TransferValveContent = (props: any, context: any) => {
+  const { act, data } = useBackend<TransferValveData>(context);
+  const { attachmentOne, attachmentTwo, attachment, isOpen } = data;
+
+  return (
+    <Stack fill vertical justify="space-between">
+      <Stack.Item>
         <Section>
           <LabeledList>
             <LabeledList.Item label="Valve Status">
               <Button
-                icon={valve ? 'unlock' : 'lock'}
-                content={valve ? 'Open' : 'Closed'}
-                disabled={!tank_one || !tank_two}
+                icon={isOpen ? 'unlock' : 'lock'}
+                content={isOpen ? 'Opened' : 'Closed'}
+                disabled={!attachmentOne || !attachmentTwo}
                 onClick={() => act('toggle')}
               />
             </LabeledList.Item>
           </LabeledList>
         </Section>
+      </Stack.Item>
+      <Stack.Item>
         <Section
           title="Valve Attachment"
           buttons={
             <Button
               content="Configure"
               icon={'cog'}
-              disabled={!attached_device}
+              disabled={!attachment}
               onClick={() => act('device')}
             />
           }>
           <LabeledList>
             <LabeledList.Item label="Attachment">
-              {attached_device ? (
+              {attachment ? (
                 <Button
                   icon={'eject'}
-                  content={attached_device}
-                  disabled={!attached_device}
+                  content={attachment}
+                  disabled={!attachment}
                   onClick={() => act('remove_device')}
                 />
               ) : (
@@ -45,14 +65,16 @@ export const TransferValve = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
+      </Stack.Item>
+      <Stack.Item>
         <Section title="Attachment One">
           <LabeledList>
             <LabeledList.Item label="Attachment">
-              {tank_one ? (
+              {attachmentOne ? (
                 <Button
                   icon={'eject'}
-                  content={tank_one}
-                  disabled={!tank_one}
+                  content={attachmentOne}
+                  disabled={!attachmentOne}
                   onClick={() => act('tankone')}
                 />
               ) : (
@@ -61,14 +83,16 @@ export const TransferValve = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
+      </Stack.Item>
+      <Stack.Item>
         <Section title="Attachment Two">
           <LabeledList>
             <LabeledList.Item label="Attachment">
-              {tank_two ? (
+              {attachmentTwo ? (
                 <Button
                   icon={'eject'}
-                  content={tank_two}
-                  disabled={!tank_two}
+                  content={attachmentTwo}
+                  disabled={!attachmentTwo}
                   onClick={() => act('tanktwo')}
                 />
               ) : (
@@ -77,7 +101,7 @@ export const TransferValve = (props, context) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-      </Window.Content>
-    </Window>
+      </Stack.Item>
+    </Stack>
   );
 };

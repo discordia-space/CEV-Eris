@@ -49,8 +49,13 @@
 	if(stat & (NOPOWER))
 		return
 	if (istype(W, /obj/item/tool/multitool))
+		var/selected_icon_state
 		playsound(user.loc, 'sound/items/multitool_pulse.ogg', 60, 1)
-		icon_state = input("Available Posters", "Holographic Poster") as null|anything in  postertypes + "random"
+		selected_icon_state = input("Available Posters", "Holographic Poster") as null|anything in  postertypes + "random"
+		if(!selected_icon_state)
+			return
+		else
+			icon_state = selected_icon_state
 		if(icon_state == "random")
 			stat &= ~BROKEN
 			icon_forced = FALSE
