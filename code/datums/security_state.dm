@@ -169,7 +169,7 @@
 * The default security state and levels setup
 */
 /decl/security_state/default
-	all_security_levels = list(/decl/security_level/default/code_green, /decl/security_level/default/code_blue, /decl/security_level/default/code_red, /decl/security_level/default/code_delta)
+	all_security_levels = list(/decl/security_level/default/code_green, /decl/security_level/default/code_blue, /decl/security_level/default/code_red, /decl/security_level/default/code_delta, /decl/security_level/default/code_jumping)
 
 /decl/security_level/default
 	icon = 'icons/misc/security_state.dmi'
@@ -263,3 +263,26 @@
 /decl/security_level/default/code_delta/switching_up_to()
 	security_announcement_delta.Announce("The self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.", "Attention! Delta security level reached!")
 	notify_station()
+
+/decl/security_level/default/code_jumping
+	name = "code bluespace jump"
+	light_max_bright = 0.75
+	light_inner_range = 0.1
+	light_outer_range = 3
+	light_color_alarm = COLOR_LIGHTING_RED_MACHINERY
+	light_color_status_display = COLOR_LIGHTING_BLUE_MACHINERY
+
+	overlay_alarm = "alarm_delta"
+	overlay_firealarm = "overlay_delta"
+
+	overlay_status_display = "status_display_delta"
+
+	var/static/datum/announcement/priority/security/security_announcement_jumping = new(do_log = FALSE, do_newscast = TRUE, new_sound = sound('sound/effects/siren.ogg'))
+
+/decl/security_level/default/code_jumping/switching_up_to()
+	security_announcement_jumping.Announce("Bluespace jump initiation detected from the Bridge, authorized by /%#~1@^&*~!#$%&!!@@NULL/. Adjusting ship bluespace-core heading for jump towards EXCELSIOR-CONTROLLED space. All crew are advised to buckle down and secure any mobile parts.", "Attention! Bluespace jump in 15 minutes!", use_text_to_speech = TRUE)
+	notify_station()
+
+/decl/security_level/default/code_jumping/switching_down_to()
+	. = ..()
+	security_announcement_jumping.Announce("Bluespace jump towards EXCELSIOR-CONTROLLED space has been cancelled. All crew may resume their work activities.", "Attention! Bluespace jump cancelled.", use_text_to_speech = TRUE)

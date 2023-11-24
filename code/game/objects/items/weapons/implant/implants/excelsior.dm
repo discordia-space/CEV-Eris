@@ -114,6 +114,14 @@
 		wearer.visible_message(SPAN_NOTICE("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
 		wearer.verbs.Remove(/datum/faction/excelsior/proc/communicate_verb)
 
+/// Remote execution from failure to defend
+/obj/item/implant/excelsior/proc/execute()
+	wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
+	wearer.adjustBrainLoss(200)
+	wearer.stat = DEAD
+	part.droplimb(FALSE, DROPLIMB_BLUNT)
+
+
 //The leader version of the implant is the one given to antags spawned by the storyteller.
 //It has no special gameplay properties and is not attainable in normal gameplay, it just exists to
 //prevent buggy behaviour.
