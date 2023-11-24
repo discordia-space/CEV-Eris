@@ -17,6 +17,7 @@ var/global/excelsior_last_draft = 0
 	idle_power_usage = 40
 	active_power_usage = 15000
 	circuit = /obj/item/electronics/circuitboard/excelsior_teleporter
+	shipside_only = TRUE
 
 	var/max_energy = 100
 	var/energy_gain = 1

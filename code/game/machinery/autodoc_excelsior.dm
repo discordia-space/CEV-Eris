@@ -16,6 +16,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
+	shipside_only = TRUE
 	var/cover_closed = FALSE
 	var/cover_locked = FALSE
 	var/cover_moving = FALSE
