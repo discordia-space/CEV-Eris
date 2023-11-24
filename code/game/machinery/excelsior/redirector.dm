@@ -1,6 +1,6 @@
 /obj/machinery/excelsior_redirector
 	name = "excelsior ship-navigation redirector"
-	desc = "A arcane mechanism used to hack the bluespace direction control of ships and inevitably lock their course towards excelsior-controlled space. Only works on navigation consoles made before 2502."
+	desc = "An arcane mechanism used to hack the bluespace direction control of ships and inevitably lock their course towards excelsior-controlled space. Only works on navigation consoles made before 2502."
 	description_antag = "The final objective of the revolution. Install this ontop of the main navigation console of the ship, located in the bridge and defend it while it does its job."
 	density = TRUE
 	anchored = FALSE
