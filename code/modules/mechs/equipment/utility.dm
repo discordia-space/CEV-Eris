@@ -465,3 +465,79 @@
 
 /obj/item/extinguisher/mech/get_hardpoint_status_value()
 	return reagents.total_volume/max_water
+
+/obj/item/mech_equipment/power_generator
+	name = "debug power generator"
+	desc = "If you see this tell coders to fix code.!"
+	icon_state = "mech_power"
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	restricted_software = list(MECH_SOFTWARE_UTILITY)
+	var/obj/item/cell/internal_cell
+	/// 50 power per mech life tick
+	var/generation_rate = 50
+
+/obj/item/mech_equipment/power_generator/Initialize()
+	. = ..()
+	internal_cell = new /obj/item/cell/small
+
+/obj/item/mech_equipment/power_generator/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/cell) && !internal_cell)
+	 	user.drop_from_inventory(I)
+		I.forceMove(src)
+		internal_cell = I
+		to_chat(user, SPAN_NOTICE("You replace [src]'s cell!"))
+		return
+
+/obj/item/mech_equipment/power_generator/proc/onMechTick()
+	var/ungiven_power = internal_cell?.give(generation_rate)
+	return ungiven_power
+
+/obj/item/mech_equipment/power_generator/fueled
+	name = "fueled debug power generator"
+	var/fuel_amount = 0
+	var/fuel_max = 1000
+	var/fuel_usage_per_tick = 5
+
+/obj/item/mech_equipment/power_generator/fueled/onMechTick()
+	if(fuel_amount > fuel_usage_per_tick)
+		. = ..()
+		if(. == generation_rate || . == null)
+			return
+		else
+			fuel_amount -= fuel_usage_per_tick
+
+/obj/item/mech_equipment/power_generator/fueled/plasma
+	name = "plasma powered mech-mountable power generator"
+	desc = "a plasma-fueled mech power generator , creates 1000 energy out of 1 sheet of plasma at a rate of 75"
+	generation_rate = 75
+	fuel_usage_per_tick = 1
+	// 10 sheets, enough for 10000 power
+	fuel_max = 133
+
+/obj/item/mech_equipment/power_generator/fueled/plasma/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/stack/material/plasma))
+		var/obj/item/stack/material/plasma/stck = I
+		var/amount_to_use = round((fuel_max - fuel_amount)/13)
+		amount_to_use = clamp(stck.amount, 0, amount_to_use)
+		if(amount_to_use && stck.use(amount_to_use))
+			fuel_amount += round(amount_to_use * 13)
+
+/obj/item/mech_equipment/power_generator/fueled/welding
+	name ="welding fuel powered mech-mountable power generator"
+	desc = "a mech mounted generator that runs off welding fuel , each unit generates 25 charge"
+	generation_rate = 25
+	fuel_usage_per_tick = 1
+	/// can generate 6250 power
+	fuel_max = 250
+
+/obj/item/mech_equipment/power_generator/fueled/welding/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/stack/material/plasma))
+		var/obj/item/stack/material/plasma/stck = I
+		var/amount_to_use = round((fuel_max - fuel_amount)/13)
+		amount_to_use = clamp(stck.amount, 0, amount_to_use)
+		if(amount_to_use && stck.use(amount_to_use))
+			fuel_amount += round(amount_to_use * 13)
+

@@ -1,6 +1,7 @@
 // Screen objects hereon out.
 
 #define MECH_UI_STYLE(X) "<span style=\"font-family: 'Small Fonts'; -dm-text-outline: 1 black; font-size: 5px;\">" + X + "</span>"
+
 /obj/screen/movable/exosuit
 	name = "hardpoint"
 	icon = MECH_HUD_ICON

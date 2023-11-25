@@ -77,3 +77,112 @@
 			user.visible_message("<span class='notice'>\The [user] removes \the [beaker] from \the [src].</span>", "<span class='notice'>You remove \the [beaker] from \the [src].</span>")
 		beaker = I
 		user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
+
+/obj/item/mech_equipment/auto_mender
+	name = "\improper exosuit auto-mender"
+	desc = "A mech-designed and equipped medical system for fast and automatic application of advanced trauma treatments to pacients. Makes use of medical gear found in trauma kits."
+	icon_state = "mech_mender"
+	restricted_hardpoints = list(HARDPOINT_BACK)
+	restricted_software = list(MECH_SOFTWARE_MEDICAL)
+	equipment_delay = 30 //don't spam it on people pls
+	active_power_use = 0 //Usage doesn't really require power. We don't want people stuck inside
+	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
+	passive_power_use = 1.5 KILOWATTS
+	var/mob/living/carbon/human/mending_target = null
+	var/mob/living/exosuit/mech = null
+	var/obj/item/organ/external/affecting = null
+	var/trauma_charges_stored = 0
+	var/trauma_storage_max = 10
+
+/obj/item/mech_equipment/auto_mender/afterattack(atom/target, mob/living/user, inrange, params)
+	. = ..()
+	if(. && ishuman(target))
+		if(mending_target == target)
+			mending_target = null
+			to_chat(user, SPAN_NOTICE("You cancel \the [src]'s mending on [target]."))
+			return
+		if(mending_target)
+			to_chat(user, SPAN_NOTICE("\The [src] is already mending someone,you can stop it by clicking the person again!"))
+			return
+		if(!target.Adjaecent(mech))
+			to_chat(user, SPAN_NOTICE("You need to be next to \the [target] to start mending them!"))
+		mending_target = target
+
+/obj/item/mech_equipment/auto_mender/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/stack/medical/advanced/bruise_pack))
+		var/obj/item/stack/medical/advanced/bruise_pack/pack = I
+		var/substract = clamp(I.amount, 0, trauma_storage_max - trauma_charges_stored)
+		if(substract && I.use(substract))
+			trauma_charges_stored += substract
+			to_chat(user, SPAN_NOTICE("You restock \the [src]'s internal medicine storage with \the [I]."))
+
+
+/obj/item/mech_equipment/auto_mender/installed(mob/living/exosuit/_owner, hardpoint)
+	. = ..()
+	mech = _owner
+
+/obj/item/mech_equipment/auto_mender/uninstalled()
+	. = ..()
+	mech = null
+
+/obj/item/mech_equipment/auto_mender/proc/mending_loop()
+	if(!mending_target || !mech)
+		return
+	if(!mech.Adjaecent(mending_target))
+		mending_target = null
+		affecting = null
+		return
+	var/obj/item/organ/external/checking
+	if(!affecting || (affecting && affecting.is_bandaged))
+		for(var/zone in BP_ALL_LIMBS)
+			checking = mending_target.organs_by_name[zone]
+			if(checking.is_bandaged())
+				continue
+			if(checking.damage > affecting.damage)
+				affecting = checking
+
+	for(var/datum/wound/W in affecting.wounds)
+		if(!mech.Adjaecent(mending_target))
+			mending_target = null
+			affecting = null
+			return
+		if(W.internal)
+			continue
+		if(W.bandaged)
+			continue
+		if(!trauma_charges_stored)
+			break
+		if(!do_mob(mech, mending_target, W.damage/5))
+			to_chat(mech.get_mob(), SPAN_NOTICE("You must stand still to bandage wounds."))
+			mending_target = null
+			affecting = null
+			break
+		if(W.internal)
+			continue
+		if(W.bandaged)
+			continue
+		if (W.current_stage <= W.max_bleeding_stage)
+			user.visible_message(
+				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
+				SPAN_NOTICE("You clean and seal \a [W.desc] on [mending_target]'s [affecting.name].")
+			)
+		else if (W.damage_type == BRUISE)
+			user.visible_message(
+				SPAN_NOTICE("\The [user] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				SPAN_NOTICE("You place a medical patch over \a [W.desc] on [mending_target]'s [affecting.name].")
+			)
+		else
+			user.visible_message(
+				SPAN_NOTICE("\The [user] smears some bioglue over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [mending_target]'s [affecting.name].")
+			)
+		W.bandage()
+		W.heal_damage(10)
+	// If it doesn't cancel or run out of kits just repeat for every external organ.
+	if(W.is_bandaged())
+		affecting = null
+		mending_loop()
+
+
+

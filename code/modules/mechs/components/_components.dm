@@ -17,6 +17,7 @@
 	var/max_damage = 60
 	var/damage_state = 1
 	var/list/has_hardpoints = list()
+	//var/material/reinforcement = null
 	var/decal
 	var/power_use = 0
 
@@ -35,12 +36,34 @@
 
 	if(.)
 		if(ready_to_install())
-			to_chat(usr, SPAN_NOTICE("It is ready for installation."))
+			to_chat(user, SPAN_NOTICE("It is ready for installation."))
 		else
 			show_missing_parts(usr)
+	/*
+	if(reinforcement)
+		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))
+	else
+		to_chat(user, SPAN_NOTICE("It can be reinforced with 5 sheets of a material for additional protection."))
+	*/
 
 	var/damage_string = src.get_damage_string()
 	to_chat(user, "The [src.name] [src.gender == PLURAL ? "are" : "is"] [damage_string].")
+
+/*
+
+/obj/item/mech_component/attackby(obj/item/I, mob/living/user)
+	. = ..()
+
+	if(!reinforcement && istype(I, /obj/item/stack/material))
+		var/obj/item/stack/material/mat = I
+		if(!mat.can_use(5))
+			to_chat(user, SPAN_NOTICE("You need 5 sheets of reinforcing material!"))
+			return
+		to_chat(user, SPAN_NOTICE("You start reinforcing \the src."))
+*/
+
+
+
 
 
 //These icons have multiple directions but before they're attached we only want south.
