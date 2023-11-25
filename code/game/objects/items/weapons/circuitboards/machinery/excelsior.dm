@@ -78,9 +78,9 @@
 	// Highly advanced and classified mechanism for the safe redirection to excelsior-controled space..
 	origin_tech = list(TECH_ENGINEERING = 12, TECH_COVERT = 6, TECH_COMBAT = 6, TECH_BLUESPACE = 10, TECH_DATA = 6, TECH_MAGNET = 4)
 	req_components = list(
-		/obj/item/stock_parts/manipulator/excelsior = 3,
-		/obj/item/stock_parts/micro_laser/excelsior = 6,
-		/obj/item/stock_parts/scanning_module/excelsior = 3,
+		/obj/item/stock_parts/manipulator/excelsior = 1,
+		/obj/item/stock_parts/micro_laser/excelsior = 2,
+		/obj/item/stock_parts/scanning_module/excelsior = 1,
 		/obj/item/computer_hardware/processor_unit/adv = 2,
 		/obj/item/computer_hardware/hard_drive/advanced = 1,
 		// bluespace bullshit

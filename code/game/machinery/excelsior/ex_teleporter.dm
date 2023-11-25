@@ -65,7 +65,7 @@ var/global/excelsior_last_draft = 0
 		/obj/item/electronics/circuitboard/excelsior_boombox = 150,
 		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
 		/// its expensive so they need to do a few mandates before they manage to get it
-		/obj/item/electronics/circuitboard/excelsior_navigation_cracker = 10000,
+		/obj/item/electronics/circuitboard/excelsior_navigation_cracker = 3000,
 		/obj/item/electronics/circuitboard/diesel = 150
 		)
 
