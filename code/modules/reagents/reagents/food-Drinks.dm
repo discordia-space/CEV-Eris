@@ -1185,7 +1185,6 @@
 	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/alcohol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_TOXIN, toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
 	M.add_chemical_effect(CE_PAINKILLER, max(35 - (strength / 2), 1))	//Vodka 32.5 painkiller, beer 15
 
 /datum/reagent/alcohol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
