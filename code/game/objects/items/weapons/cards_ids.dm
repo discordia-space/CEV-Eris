@@ -331,7 +331,7 @@ var/const/NO_EMAG_ACT = -50
 	icon_state = "id_blankwhite"
 
 /obj/item/card/id/randomassistant
-	var/csex
+
 
 /obj/item/card/id/randomassistant/examine(mob/user)
 	if("\[UNSET\]" != blood_type) // we have to call the parent only if the variables are loaded or else these variables will only appear after the first examine
@@ -346,7 +346,7 @@ var/const/NO_EMAG_ACT = -50
 	age = num2text(max(18, rand(1, 50)+rand(1,50)))
 	var/datum/job_flavor/flavortype = pick(subtypesof(/datum/job_flavor/assistant))
 	assignment = initial(flavortype.title)
-	csex = pick(MALE, FEMALE)
+	var/csex = pick(MALE, FEMALE)
 	sex = capitalize(csex)
 	var/theoretical_first_name = random_first_name(csex)
 	access = list(access_maint_tunnels)
