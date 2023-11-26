@@ -332,7 +332,6 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/card/id/randomassistant
 
-
 /obj/item/card/id/randomassistant/examine(mob/user)
 	if("\[UNSET\]" != blood_type) // we have to call the parent only if the variables are loaded or else these variables will only appear after the first examine
 		return ..()
