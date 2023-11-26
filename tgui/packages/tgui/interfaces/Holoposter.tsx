@@ -1,6 +1,6 @@
 import { capitalize } from '../../common/string';
 import { useBackend } from '../backend';
-import { Box, Button, Section, Stack } from '../components';
+import { Button, Section, Stack } from '../components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
