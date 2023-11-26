@@ -346,10 +346,10 @@ var/const/NO_EMAG_ACT = -50
 	age = num2text(max(18, rand(1, 50)+rand(1,50)))
 	var/datum/job_flavor/flavortype = pick(subtypesof(/datum/job_flavor/assistant))
 	assignment = initial(flavortype.title)
+	access = list(access_maint_tunnels)
 	var/csex = pick(MALE, FEMALE)
 	sex = capitalize(csex)
 	var/theoretical_first_name = random_first_name(csex)
-	access = list(access_maint_tunnels)
 	var/theoretical_last_name = random_last_name()
 	registered_name = addtext(theoretical_first_name, " ", theoretical_last_name) // is this faster than two concats? probably!
 	update_name()
