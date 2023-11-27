@@ -104,7 +104,7 @@
 		if(mending_target)
 			to_chat(user, SPAN_NOTICE("\The [src] is already mending someone,you can stop it by clicking the person again!"))
 			return
-		if(!target.Adjaecent(mech))
+		if(!target.Adjacent(mech))
 			to_chat(user, SPAN_NOTICE("You need to be next to \the [target] to start mending them!"))
 		mending_target = target
 
@@ -129,12 +129,12 @@
 /obj/item/mech_equipment/auto_mender/proc/mending_loop()
 	if(!mending_target || !mech)
 		return
-	if(!mech.Adjaecent(mending_target))
+	if(!mech.Adjacent(mending_target))
 		mending_target = null
 		affecting = null
 		return
 	var/obj/item/organ/external/checking
-	if(!affecting || (affecting && affecting.is_bandaged))
+	if(!affecting || (affecting && affecting.is_bandaged()))
 		for(var/zone in BP_ALL_LIMBS)
 			checking = mending_target.organs_by_name[zone]
 			if(checking.is_bandaged())
@@ -142,8 +142,11 @@
 			if(checking.damage > affecting.damage)
 				affecting = checking
 
+	if(!affecting)
+		return
+
 	for(var/datum/wound/W in affecting.wounds)
-		if(!mech.Adjaecent(mending_target))
+		if(!mech.Adjacent(mending_target))
 			mending_target = null
 			affecting = null
 			return
@@ -163,24 +166,24 @@
 		if(W.bandaged)
 			continue
 		if (W.current_stage <= W.max_bleeding_stage)
-			user.visible_message(
+			mech.visible_message(
 				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
 				SPAN_NOTICE("You clean and seal \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		else if (W.damage_type == BRUISE)
-			user.visible_message(
+			mech.visible_message(
 				SPAN_NOTICE("\The [user] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
 				SPAN_NOTICE("You place a medical patch over \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		else
-			user.visible_message(
+			mech.visible_message(
 				SPAN_NOTICE("\The [user] smears some bioglue over \a [W.desc] on [mending_target]'s [affecting.name]."),
 				SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		W.bandage()
 		W.heal_damage(10)
 	// If it doesn't cancel or run out of kits just repeat for every external organ.
-	if(W.is_bandaged())
+	if(affecting.is_bandaged())
 		affecting = null
 		mending_loop()
 

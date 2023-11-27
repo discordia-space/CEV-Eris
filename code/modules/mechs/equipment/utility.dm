@@ -483,7 +483,7 @@
 /obj/item/mech_equipment/power_generator/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(istype(I, /obj/item/cell) && !internal_cell)
-	 	user.drop_from_inventory(I)
+		user.drop_from_inventory(I)
 		I.forceMove(src)
 		internal_cell = I
 		to_chat(user, SPAN_NOTICE("You replace [src]'s cell!"))
@@ -540,4 +540,64 @@
 		amount_to_use = clamp(stck.amount, 0, amount_to_use)
 		if(amount_to_use && stck.use(amount_to_use))
 			fuel_amount += round(amount_to_use * 13)
+
+/obj/item/mech_equipment/towing_hook
+	name = "mounted towing hook"
+	desc = "A mech mounted towing hook, usually found in cars. Can hook to anything that isn't anchored down."
+	icon_state = "mech_clamp"
+	restricted_hardpoints = list(HARDPOINT_BACK)
+	restricted_software = list(MECH_SOFTWARE_UTILITY)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	var/atom/movable/currentlyTowing = null
+
+/obj/item/mech_equipment/towing_hook/installed(mob/living/exosuit/_owner, hardpoint)
+	. = ..()
+	RegisterSignal(_owner, COMSIG_MOVABLE_MOVED, PROC_REF(onMechMove))
+
+/obj/item/mech_equipment/towing_hook/uninstalled()
+	. = ..()
+	UnregisterSignal(_owner, COMSIG_MOVABLE_MOVED)
+
+/obj/item/mech_equipment/towing_hook/proc/onTowingMove(atom/movable/mover, oldLocation, newLocation)
+	SIGNAL_HANDLER
+	if(newLocation.Adjacent(src))
+		return
+	UnregisterSignal(mover, COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING)
+	currentlyTowing = null
+
+/obj/item/mech_equipment/towing_hook/proc/onMechMove(atom/movable/mover, oldLocation, newLocation)
+	SIGNAL_HANDLER
+	if(!currentlyTowing)
+		return
+	if(!oldLocation.Adjacent(currentlyTowing))
+		UnregisterSignal(currentlyTowing, COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING)
+		currentlyTowing = null
+		return
+	// If we move up a z-level we want to instantly pull it up with us as to prevent possible abuse.
+	if(oldLocation.z != newLocation.z)
+		currentlyTowing.forceMove(newLocation)
+	else
+		currentlyTowing.Move(oldLocation)
+
+/// We get supreme priority on pulling
+/obj/item/mech_equipment/towing_hook/proc/onTowingPullAttempt()
+	SIGNAL_HANDLER
+	return COMSIG_PULL_CANCEL
+
+/obj/item/mech_equipment/towing_hook/afterattack(atom/movable/target, mob/living/user, inrange, params)
+	. = ..()
+	if(!istype(target))
+		return
+	if(!currentlyTowing)
+		if(target.Adjacent(src.owner) && !target.anchored)
+			to_chat(user, SPAN_NOTICE("You hook \the [src] onto \the [target]!"))
+			currentlyTowing = target
+			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(onTowingMove))
+			RegisterSignal(target, COMSIG_ATTEMPT_PULLING, PROC_REF(onTowingPullAttempt))
+
+
+
+
+
+
 
