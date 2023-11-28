@@ -556,7 +556,7 @@
 
 /obj/item/mech_equipment/towing_hook/uninstalled()
 	. = ..()
-	UnregisterSignal(_owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 /obj/item/mech_equipment/towing_hook/proc/onTowingMove(atom/movable/mover, oldLocation, newLocation)
 	SIGNAL_HANDLER

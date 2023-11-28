@@ -112,8 +112,8 @@
 	. = ..()
 	if(istype(I, /obj/item/stack/medical/advanced/bruise_pack))
 		var/obj/item/stack/medical/advanced/bruise_pack/pack = I
-		var/substract = clamp(I.amount, 0, trauma_storage_max - trauma_charges_stored)
-		if(substract && I.use(substract))
+		var/substract = clamp(pack.amount, 0, trauma_storage_max - trauma_charges_stored)
+		if(substract && pack.use(substract))
 			trauma_charges_stored += substract
 			to_chat(user, SPAN_NOTICE("You restock \the [src]'s internal medicine storage with \the [I]."))
 
@@ -172,12 +172,12 @@
 			)
 		else if (W.damage_type == BRUISE)
 			mech.visible_message(
-				SPAN_NOTICE("\The [user] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				SPAN_NOTICE("\The [mech] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
 				SPAN_NOTICE("You place a medical patch over \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		else
 			mech.visible_message(
-				SPAN_NOTICE("\The [user] smears some bioglue over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				SPAN_NOTICE("\The [mech] smears some bioglue over \a [W.desc] on [mending_target]'s [affecting.name]."),
 				SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [mending_target]'s [affecting.name].")
 			)
 		W.bandage()
