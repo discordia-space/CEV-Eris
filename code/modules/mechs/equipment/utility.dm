@@ -558,14 +558,14 @@
 	. = ..()
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
-/obj/item/mech_equipment/towing_hook/proc/onTowingMove(atom/movable/mover, oldLocation, newLocation)
+/obj/item/mech_equipment/towing_hook/proc/onTowingMove(atom/movable/mover, atom/oldLocation, atom/newLocation)
 	SIGNAL_HANDLER
 	if(newLocation.Adjacent(src))
 		return
 	UnregisterSignal(mover, COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING)
 	currentlyTowing = null
 
-/obj/item/mech_equipment/towing_hook/proc/onMechMove(atom/movable/mover, oldLocation, newLocation)
+/obj/item/mech_equipment/towing_hook/proc/onMechMove(atom/movable/mover, atom/oldLocation, atom/newLocation)
 	SIGNAL_HANDLER
 	if(!currentlyTowing)
 		return
