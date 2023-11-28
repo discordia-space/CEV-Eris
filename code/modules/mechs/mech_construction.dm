@@ -128,9 +128,8 @@
 		user.visible_message(SPAN_NOTICE("\The [user] begins trying to remove \the [system] from \the [src]."))
 		if(!do_after(user, delay, src) || hardpoints[system_hardpoint] != system) return 0
 
-	hardpoints[system_hardpoint] = null
-
 	if(system_hardpoint == selected_hardpoint) clear_selected_hardpoint()
+	hardpoints[system_hardpoint] = null
 
 	var/obj/item/mech_equipment/ME = system
 	if(istype(ME)) ME.uninstalled()

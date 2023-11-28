@@ -507,44 +507,77 @@
 		else
 			fuel_amount -= fuel_usage_per_tick
 
+/obj/item/mech_equipment/power_generator/fueled/get_hardpoint_maptext()
+	return "[fuel_amount]/[fuel_max]"
+
 /obj/item/mech_equipment/power_generator/fueled/plasma
 	name = "plasma powered mech-mountable power generator"
-	desc = "a plasma-fueled mech power generator , creates 1000 energy out of 1 sheet of plasma at a rate of 75"
-	generation_rate = 75
-	fuel_usage_per_tick = 1
-	// 10 sheets, enough for 10000 power
-	fuel_max = 133
+	desc = "a plasma-fueled mech power generator, creates 5 KW out of 1 sheet of plasma at a rate of 0.25 KW."
+	generation_rate = 250
+	// each sheet is 5000 watts
+	fuel_usage_per_tick = 50
+	// 1 sheet = 1000 fuel
+	// 35000 max power out of a fully loaded generator
+	fuel_max = 7000
 
 /obj/item/mech_equipment/power_generator/fueled/plasma/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(istype(I, /obj/item/stack/material/plasma))
 		var/obj/item/stack/material/plasma/stck = I
-		var/amount_to_use = round((fuel_max - fuel_amount)/13)
+		var/amount_to_use = round((fuel_max - fuel_amount)/1000)
 		amount_to_use = clamp(stck.amount, 0, amount_to_use)
 		if(amount_to_use && stck.use(amount_to_use))
-			fuel_amount += round(amount_to_use * 13)
+			fuel_amount += amount_to_use * 1000
 
 /obj/item/mech_equipment/power_generator/fueled/welding
 	name ="welding fuel powered mech-mountable power generator"
-	desc = "a mech mounted generator that runs off welding fuel , each unit generates 25 charge"
-	generation_rate = 25
+	desc = "a mech mounted generator that runs off welding fuel, creates 1 KW out of 10 units of welding fuel, at a rate of 0.1 KW"
+	generation_rate = 100
 	fuel_usage_per_tick = 1
-	/// can generate 6250 power
-	fuel_max = 250
+	/// can generate 20000 power
+	fuel_max = 200
+	/// The "explosion" chamber , used for when the fuel is mixed with something else
+	var/datum/reagents/chamberReagent = null
+
+/obj/item/mech_equipment/power_generator/fueled/welding/Initialize()
+	. = ..()
+	// max volume
+	create_reagents(200)
+	chamberReagent = new(1, src)
 
 /obj/item/mech_equipment/power_generator/fueled/welding/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	if(istype(I, /obj/item/stack/material/plasma))
-		var/obj/item/stack/material/plasma/stck = I
-		var/amount_to_use = round((fuel_max - fuel_amount)/13)
-		amount_to_use = clamp(stck.amount, 0, amount_to_use)
-		if(amount_to_use && stck.use(amount_to_use))
-			fuel_amount += round(amount_to_use * 13)
+	if(is_drainable(I) && I.reagents.total_volume)
+		I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
+	else if(I.reagents && I.reagent_flags & REFILLABLE)
+		reagents.trans_to_holder(I.reagents, 10, 1 FALSE)
+
+/obj/item/mech_equipment/power_generator/fueled/welding/onMechTick()
+	chamberReagent.clear_reagents()
+	reagents.trans_to_holder(chamberReagent, 1, 1, FALSE)
+	if(chamberReagent.has_reagent("fuel"))
+		var/fuel = chamberReagent.get_reagent_amount("fuel")
+		// for the future just add any other reagent here with + * explosion_power_multiplier
+		var/explosives = chamberReagent.get_reagent_amount("plasma") * 3
+		if(explosives > 0.5)
+			// if its full plasma if just fucking blows instantly
+			health -= maxHealth * (explosives / 3)
+			if(health < 1)
+				owner.remove_system(src, null, TRUE)
+				qdel(src)
+				return
+		// min needed for combustion
+		if(fuel > 0.25)
+			var/amountReturned = internal_cell?.give(round(generation_rate * fuel))
+			// refund if none of it gets turned into power for qol reasons
+			if(amountReturned == generation_rate)
+				chamberReagent.trans_to_holder(reagents, 1, 1, FALSE)
+	fuel_amount = reagents.total_volume
 
 /obj/item/mech_equipment/towing_hook
 	name = "mounted towing hook"
 	desc = "A mech mounted towing hook, usually found in cars. Can hook to anything that isn't anchored down."
-	icon_state = "mech_clamp"
+	icon_state = "mech_tow"
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
@@ -587,6 +620,7 @@
 /obj/item/mech_equipment/towing_hook/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
 	if(!istype(target))
+		to_chat(user, SPAN_NOTICE("You cannot hook onto this!"))
 		return
 	if(!currentlyTowing)
 		if(target.Adjacent(src.owner) && !target.anchored)
@@ -594,6 +628,45 @@
 			currentlyTowing = target
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(onTowingMove))
 			RegisterSignal(target, COMSIG_ATTEMPT_PULLING, PROC_REF(onTowingPullAttempt))
+	else if(currentlyTowing == target)
+		to_chat(user, SPAN_NOTICE("You unhook \the [src] from \the [target]."))
+		UnregisterSignal(currentlyTowing,list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+		currentlyTowing = null
+	else
+		to_chat(user, SPAN_NOTICE("You are already towing \the [currentlyTowing]. Unhook from it first by attacking it again!"))
+
+/obj/item/mech_equipment/mounted_system/toolkit
+	name = "mounted toolkit"
+	desc = "A automatic suite of tools suited for installation on a mech."
+	icon_state = "mech_tools"
+	holding_type = /obj/item/tool/mech_kit
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_UTILITY)
+	origin_tech = list(TECH_ENGINEERING = 5, TECH_MAGNET = 2, TECH_MATERIAL = 2)
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 5)
+
+/obj/item/tool/mech_kit
+	name = "mech toolkit"
+	desc = "A robust selection of mech-sized tools."
+	icon_state = "engimplant="
+	force = WEAPON_FORCE_DANGEROUS
+	worksound = WORKSOUND_DRIVER_TOOL
+	flags = CONDUCT
+	tool_qualities = list(
+		QUALITY_SCREW_DRIVING = 70,
+		QUALITY_BOLT_TURNING = 70,
+		QUALITY_DRILLING = 10,
+		QUALITY_WELDING = 100,
+		QUALITY_CAUTERIZING = 5,
+		QUALITY_PRYING = 100,
+		QUALITY_DIGGING = 50,
+		QUALITY_PULSING = 50,
+		QUALITY_WIRE_CUTTING = 100,
+		QUALITY_HAMMERING = 75)
+	degradation = 0
+	workspeed = 1
+	max_upgrades = 1
+	spawn_blacklisted = TRUE
 
 
 

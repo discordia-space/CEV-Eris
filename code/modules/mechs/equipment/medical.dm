@@ -115,7 +115,7 @@
 		var/substract = clamp(pack.amount, 0, trauma_storage_max - trauma_charges_stored)
 		if(substract && pack.use(substract))
 			trauma_charges_stored += substract
-			to_chat(user, SPAN_NOTICE("You restock \the [src]'s internal medicine storage with \the [I]."))
+			to_chat(user, SPAN_NOTICE("You restock \the [src]'s internal medicine storage with \the [I], using [substract] charges."))
 
 
 /obj/item/mech_equipment/auto_mender/installed(mob/living/exosuit/_owner, hardpoint)

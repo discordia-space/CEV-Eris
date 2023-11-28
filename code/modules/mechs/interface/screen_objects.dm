@@ -127,7 +127,9 @@
 		var/modifiers = params2list(params)
 		if(modifiers["ctrl"])
 			if(owner.hardpoints_locked) to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
-			else if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
+			else if(owner.remove_system(hardpoint_tag))
+				icon_state = "hardpoint"
+				to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
 			else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
 		else if(modifiers["shift"] && holding) holding.attack_self(usr)
 		else if(owner.selected_hardpoint == hardpoint_tag)

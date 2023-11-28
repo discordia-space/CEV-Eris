@@ -285,21 +285,41 @@
 			chosen = loadable_guns[chosen]
 		else
 			chosen = loadable_guns[loadable_guns[1]]
-		switch(chosen.loadMagazine(I,user))
-			if(-1)
-				to_chat(user, SPAN_NOTICE("\The [chosen] does not accept this type of magazine."))
-			if(0)
-				to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage."))
-			if(1)
-				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]."))
-			if(2)
-				to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
+		if(chosen)
+			switch(chosen.loadMagazine(I,user))
+				if(-1)
+					to_chat(user, SPAN_NOTICE("\The [chosen] does not accept this type of magazine."))
+				if(0)
+					to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage."))
+				if(1)
+					to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]."))
+				if(2)
+					to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
 
-	else if(user.a_intent != I_HURT)
+	if(istype(I, /obj/item/stack/medical/advanced/bruise_pack))
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/auto_mender))
+				var/obj/item/mech_equipment/auto_mender/mend = hardpoints[hardpoint]
+				choices["[hardpoin] - [mend.trauma_charges_stored]/[mend.trauma_storage_max] charges"] = mend
+		var/obj/item/mech_equipment/auto_mender/choice = null
+		if(!length(choices))
+			return
+		if(length(choices) == 1)
+			choice = choices[choices[1]]
+		else
+			var/chosenMender = input("Select mech mender to refill") as null|anything in choices
+			if(chosenMender)
+				choice = choices[chosenMender]
+		if(choice)
+			choice.attackby(I, user)
+		return
+
+	else if(user.a_intent != I_HELP)
 		if(attack_tool(I, user))
 			return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
-	else if(user.a_intent == I_HURT && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
+	else if(user.a_intent != I_HELP && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
 		var/mob/living/target = get_mob()
 		target.attackby(I, user)
 		return
