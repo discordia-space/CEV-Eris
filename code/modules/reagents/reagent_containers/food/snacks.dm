@@ -668,6 +668,7 @@
 	center_of_mass = list("x"=16, "y"=13)
 	preloaded_reagents = list("egg" = 3)
 	price_tag = 5
+	description_info = "Can have a flashlight used on it to determine if there is a chick inside."
 
 /obj/item/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
@@ -698,6 +699,20 @@
 			return
 		to_chat(user, SPAN_NOTICE("You color \the [src] [clr]"))
 		icon_state = "egg-[clr]"
+	else if (istype(W, /obj/item/device/lighting))
+		var/obj/item/device/lighting/light = W
+		if(!light.on)
+			to_chat(usr, SPAN_WARNING("[W] needs to be turned on to reveal the egg's insides."))
+			return
+		switch(amount_grown)
+			if(0 to 10)
+				to_chat(usr, SPAN_NOTICE("[src] appears to be a normal egg."))
+			if(10 to 50)
+				to_chat(usr, SPAN_NOTICE("[src] contains a spidery red mass."))
+			if(50 to 90)
+				to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick."))
+			if(90 to 100)
+				to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick.\nYou hear a faint tapping emanating from [src]."))
 	else
 		..()
 

@@ -247,7 +247,7 @@ var/global/chicken_count = 0
 		var/obj/item/reagent_containers/food/snacks/egg/E = new(get_turf(src))
 		E.pixel_x = rand(-6,6)
 		E.pixel_y = rand(-6,6)
-		if(chicken_count < MAX_CHICKENS && prob(10))
+		if(chicken_count < MAX_CHICKENS)
 			START_PROCESSING(SSobj, E)
 
 
