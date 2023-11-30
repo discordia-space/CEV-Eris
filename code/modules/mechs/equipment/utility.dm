@@ -523,6 +523,16 @@
 			else
 				// extend it artificially.
 				sound_loop.end_time = world.time + 10 SECONDS
+				sound_loop.vol = mode * 25
+				sound_loop.extrarange = mode * 3
+
+/obj/item/mech_equipment/power_generator/fueled/installed(mob/living/exosuit/_owner, hardpoint)
+	. = ..()
+	_owner.tickers.Add(src)
+
+/obj/item/mech_equipment/power_generator/fueled/uninstalled()
+	. = ..()
+	owner.tickers.Remove(src)
 
 
 
@@ -562,7 +572,7 @@
 				mode = 0
 				fuel_usage_per_tick = initial(fuel_usage_per_tick)
 				generation_rate = initial(generation_rate)
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 0% Fuel usage, 0% power output"))
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to OFF. 0% Fuel usage, 0% power output"))
 				icon_state = "[initial(icon_state)]"
 				if(owner)
 					owner.update_icon()
@@ -648,6 +658,8 @@
 			else
 				// extend it artificially.
 				sound_loop.end_time = world.time + 10 SECONDS
+				sound_loop.vol = mode * 25
+				sound_loop.extrarange = mode * 3
 	fuel_amount = reagents.total_volume
 
 /obj/item/mech_equipment/towing_hook

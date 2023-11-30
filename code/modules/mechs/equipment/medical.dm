@@ -104,7 +104,7 @@
 	name = "\improper exosuit auto-mender"
 	desc = "A mech-designed and equipped medical system for fast and automatic application of advanced trauma treatments to pacients. Makes use of medical gear found in trauma kits."
 	icon_state = "mech_mender"
-	restricted_hardpoints = list(HARDPOINT_BACK)
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_MEDICAL)
 	equipment_delay = 30 //don't spam it on people pls
 	active_power_use = 0 //Usage doesn't really require power.
@@ -129,6 +129,7 @@
 		if(!target.Adjacent(mech))
 			to_chat(user, SPAN_NOTICE("You need to be next to \the [target] to start mending them!"))
 		mending_target = target
+		mending_loop()
 
 /obj/item/mech_equipment/auto_mender/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
