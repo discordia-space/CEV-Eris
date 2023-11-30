@@ -6,6 +6,8 @@
 
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 10)
+	can_gib = TRUE
+	gib_hits_needed = 10
 	var/melee_damage = WEAPON_FORCE_PAINFUL
 	var/action_delay = 15
 	var/obj/item/robot_parts/robot_component/actuator/motivator

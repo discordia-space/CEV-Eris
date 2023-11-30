@@ -225,7 +225,7 @@
 		// Final construction step
 		if(QUALITY_SCREW_DRIVING)
 			// Check for basic components.
-			if(!(arms && legs && head && body))
+			if(!(legs && body))
 				to_chat(user,  SPAN_WARNING("There are still parts missing from \the [src]."))
 				return
 

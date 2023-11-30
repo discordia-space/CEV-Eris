@@ -20,6 +20,11 @@
 	//var/material/reinforcement = null
 	var/decal
 	var/power_use = 0
+	/// how many hits do we have to get to gib once we hit max damage
+	var/gib_hits_needed = 7
+	var/gib_hits = 0
+	/// wheter or not this component can just blow up
+	var/can_gib = FALSE
 
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color
@@ -92,6 +97,26 @@
 			playsound(loc, 'sound/mechs/internaldmgalarm.ogg', 40, 1)
 		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 			playsound(loc, 'sound/mechs/critdestr.ogg', 50)
+
+	if(total_damage == max_damage)
+		gib_hits++
+		if(gib_hits > gib_hits_needed && can_gib)
+			var/mob/living/exosuit/owner = loc
+			if(!istype(owner))
+				return
+			forceMove(NULLSPACE)
+			switch(type)
+				if(/obj/item/mech_component/manipulators)
+					owner.arms = null
+				if(/obj/item/mech_component/sensors)
+					owner.head = null
+				if(/obj/item/mech_component/propulsion)
+					owner.legs = null
+				if(/obj/item/mech_component/chassis)
+					owner.body = null
+			for(var/hardpoint in has_hardpoints)
+				owner.remove_system(hardpoint, null, TRUE)
+			qdel(src)
 
 /obj/item/mech_component/proc/ready_to_install()
 	return TRUE

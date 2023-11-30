@@ -473,8 +473,8 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
 	var/obj/item/cell/internal_cell
-	/// 50 power per mech life tick
-	var/generation_rate = 50
+	/// 50 power per mech life tick , adjust for cell RATE
+	var/generation_rate = 50 * CELLRATE
 
 /obj/item/mech_equipment/power_generator/Initialize()
 	. = ..()
@@ -533,8 +533,6 @@
 /obj/item/mech_equipment/power_generator/fueled/uninstalled()
 	. = ..()
 	owner.tickers.Remove(src)
-
-
 
 /obj/item/mech_equipment/power_generator/fueled/attack_self(mob/user)
 	. = ..()
@@ -621,8 +619,10 @@
 /obj/item/mech_equipment/power_generator/fueled/welding/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(is_drainable(I) && I.reagents.total_volume)
+		to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal fuel storage."))
 		I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
 	else if(I.reagents && I.reagent_flags & REFILLABLE)
+		to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
 		reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
 
 /obj/item/mech_equipment/power_generator/fueled/welding/onMechTick()
@@ -645,7 +645,7 @@
 				return
 		// min needed for combustion
 		if(fuel > 0.25)
-			var/amountReturned = internal_cell?.give(round(generation_rate * fuel))
+			var/amountReturned = internal_cell?.give(generation_rate * fuel)
 			// refund if none of it gets turned into power for qol reasons
 			if(amountReturned == generation_rate)
 				chamberReagent.trans_to_holder(reagents, 1, 1, FALSE)

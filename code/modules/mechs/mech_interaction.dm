@@ -273,6 +273,7 @@
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
+	/// Gun reloading handling
 	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode to reload its guns!"))
@@ -299,6 +300,7 @@
 				if(2)
 					to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
 
+	/// Medical mender handling
 	if(istype(I, /obj/item/stack/medical/advanced/bruise_pack))
 		var/list/choices = list()
 		for(var/hardpoint in hardpoints)
@@ -317,6 +319,47 @@
 		if(choice)
 			choice.attackby(I, user)
 		return
+
+	/// Plasma generator handling
+	if(istype(I, /obj/item/stack/material/plasma))
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/power_generator/fueled/plasma))
+				var/obj/item/mech_equipment/power_generator/fueled/plasma/gen = hardpoints[hardpoint]
+				choices["[hardpoint] - [gen.fuel_amount]/[gen.fuel_max]"] = gen
+		var/obj/item/mech_equipment/power_generator/fueled/plasma/chosen = null
+		if(!length(choices))
+			return
+		if(length(choices)==1)
+			chosen = choices[choices[1]]
+		else
+			var/chosenGen = input("Select generator to refill") as null|anything in choices
+			if(chosenGen)
+				chosen = choices[chosenGen]
+		if(chosen)
+			chosen.attackby(I, user)
+		return
+
+	/// Welding generator handling
+	if(is_drainable(I))
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/power_generator/fueled/welding))
+				var/obj/item/mech_equipment/power_generator/fueled/welding/gen = hardpoints[hardpoint]
+				choices["[hardpoint] - [gen.fuel_amount]/[gen.fuel_max]"] = gen
+		var/obj/item/mech_equipment/power_generator/fueled/welding/chosen = null
+		if(!length(choices))
+			return
+		if(length(choices)==1)
+			chosen = choices[choices[1]]
+		else
+			var/chosenGen = input("Select generator to refill") as null|anything in choices
+			if(chosenGen)
+				chosen = choices[chosenGen]
+		if(chosen)
+			chosen.attackby(I, user)
+		return
+
 
 	else if(user.a_intent != I_HELP)
 		if(attack_tool(I, user))

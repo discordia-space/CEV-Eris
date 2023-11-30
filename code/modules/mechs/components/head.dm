@@ -6,6 +6,8 @@
 	has_hardpoints = list(HARDPOINT_HEAD)
 	power_use = 15
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 4)
+	can_gib = TRUE
+	gib_hits_needed = 5
 	var/vision_flags = NONE
 	var/see_invisible = 0
 	var/active_sensors = FALSE

@@ -25,7 +25,7 @@
 				mech_cell = gen.internal_cell
 			else if(mech_cell.charge < mech_cell.maxcharge)
 				var/diff = mech_cell.maxcharge - mech_cell.charge
-				mech_cell.give(gen.internal_cell.drain_power(0,0, diff))
+				mech_cell.give(gen.internal_cell.use(diff))
 
 	if(mech_cell)
 		powered = mech_cell.drain_power(0, 0, calc_power_draw()) > 0
@@ -39,14 +39,17 @@
 			if(istype(M) && M.active && M.passive_power_use)
 				M.deactivate()
 	// for chassis charging cells
-	else if(body && body.cell_charge_rate && mech_cell.charge > 1000)
+	var/chargeUsed = 0
+	if(powered && body && body.cell_charge_rate && mech_cell.charge > 1000)
 		for(var/obj/item/cell/to_charge in body.storage_compartment)
 			if(mech_cell.charge < 1000)
 				break
-			var/chargeNeeded = to_charge.maxcharge - to_charge.charge
+			if(chargeUsed > body.cell_charge_rate)
+				break
+			var/chargeNeeded = min(to_charge.maxcharge - to_charge.charge, body.cell_charge_rate)
 			if(!chargeNeeded)
 				continue
-			to_charge.give(mech_cell.drain_power(0,0, chargeNeeded))
+			chargeUsed += to_charge.give(mech_cell.drain_power(0,0, chargeNeeded))
 
 
 	body.update_air(hatch_closed && use_air)
@@ -155,6 +158,8 @@
 	if(head)
 		sight = head.get_sight(powered)
 		see_invisible = head.get_invisible(powered)
+	else if(hatch_closed)
+		sight &= BLIND
 	if(body && (body.pilot_coverage < 100 || body.transparent_cabin) || !hatch_closed)
 		sight &= ~BLIND
 

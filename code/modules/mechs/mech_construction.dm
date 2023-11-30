@@ -130,6 +130,8 @@
 
 	if(system_hardpoint == selected_hardpoint) clear_selected_hardpoint()
 	hardpoints[system_hardpoint] = null
+	// Remove this from screens. Would just be left on a player screen before , SPCR - 2023
+	system.screen_loc = null
 
 	var/obj/item/mech_equipment/ME = system
 	if(istype(ME)) ME.uninstalled()
