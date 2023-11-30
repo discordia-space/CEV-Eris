@@ -699,22 +699,33 @@
 			return
 		to_chat(user, SPAN_NOTICE("You color \the [src] [clr]"))
 		icon_state = "egg-[clr]"
-	else if (istype(W, /obj/item/device/lighting))
-		var/obj/item/device/lighting/light = W
-		if(!light.on)
-			to_chat(usr, SPAN_WARNING("[W] needs to be turned on to reveal the egg's insides."))
-			return
-		switch(amount_grown)
-			if(0 to 10)
-				to_chat(usr, SPAN_NOTICE("[src] appears to be a normal egg."))
-			if(10 to 50)
-				to_chat(usr, SPAN_NOTICE("[src] contains a spidery red mass."))
-			if(50 to 90)
-				to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick."))
-			if(90 to 100)
-				to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick.\nYou hear a faint tapping emanating from [src]."))
 	else
-		..()
+		var/valid = FALSE
+		if (istype(W, /obj/item/device/lighting))
+			var/obj/item/device/lighting/light = W
+			if(!light.on)
+				to_chat(usr, SPAN_WARNING("[W] needs to be turned on to reveal the egg's insides."))
+				return
+			valid = TRUE
+
+		else if (istype(W, /obj/item/flame))
+			var/obj/item/flame/fire = W
+			if(!fire.lit)
+				to_chat(usr, SPAN_WARNING("[W] needs to be aflame to reveal the egg's insides."))
+				return
+			valid = TRUE
+		if(valid)
+			switch(amount_grown)
+				if(0 to 10)
+					to_chat(usr, SPAN_NOTICE("[src] appears to be a normal egg."))
+				if(10 to 50)
+					to_chat(usr, SPAN_NOTICE("[src] contains a spidery red mass."))
+				if(50 to 90)
+					to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick."))
+				if(90 to 100)
+					to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick.\nYou hear a faint tapping emanating from [src]."))
+		else
+			..()
 
 /obj/item/reagent_containers/food/snacks/egg/blue
 	icon_state = "egg-blue"
