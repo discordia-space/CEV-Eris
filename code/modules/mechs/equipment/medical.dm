@@ -78,6 +78,28 @@
 		beaker = I
 		user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
 
+/obj/item/mech_equipment/sleeper/upgraded
+	name = "\improper MK2 mounted sleeper"
+	desc = "An exosuit-mounted sleeper designed to heal patients"
+
+/obj/item/mech_equipment/sleeper/upgraded/Initialize()
+	. = ..()
+	// delete old one
+	qdel(sleeper)
+	sleeper = new /obj/machinery/sleeper/mounted/upgraded(src)
+	sleeper.forceMove(src)
+
+/obj/machinery/sleeper/mounted/upgraded
+	name = "\improper MK2 mounted sleeper"
+	available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline",
+	"quickclot" = "Quick-Clot",
+	"stoxin" = "Soporific",
+	"tramadol" = "Tramadol",
+	"anti_toxin" = "Dylovene",
+	"dexalin" = "Dexalin",
+	"tricordrazine" = "Tricordrazine",
+	"polystem" = "PolyStem")
+
 /obj/item/mech_equipment/auto_mender
 	name = "\improper exosuit auto-mender"
 	desc = "A mech-designed and equipped medical system for fast and automatic application of advanced trauma treatments to pacients. Makes use of medical gear found in trauma kits."
@@ -85,14 +107,14 @@
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	restricted_software = list(MECH_SOFTWARE_MEDICAL)
 	equipment_delay = 30 //don't spam it on people pls
-	active_power_use = 0 //Usage doesn't really require power. We don't want people stuck inside
+	active_power_use = 0 //Usage doesn't really require power.
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
 	passive_power_use = 1.5 KILOWATTS
 	var/mob/living/carbon/human/mending_target = null
 	var/mob/living/exosuit/mech = null
 	var/obj/item/organ/external/affecting = null
 	var/trauma_charges_stored = 0
-	var/trauma_storage_max = 10
+	var/trauma_storage_max = 30
 
 /obj/item/mech_equipment/auto_mender/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()

@@ -9,6 +9,10 @@
 	var/melee_damage = WEAPON_FORCE_PAINFUL
 	var/action_delay = 15
 	var/obj/item/robot_parts/robot_component/actuator/motivator
+	tool_qualities = list(
+		QUALITY_HAMMERING = 30,
+		QUALITY_PRYING = 20
+	)
 	var/punch_sound = ('sound/mechs/mech_punch.ogg')
 
 /obj/item/mech_component/manipulators/Destroy()

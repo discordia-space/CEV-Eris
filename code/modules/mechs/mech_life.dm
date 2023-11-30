@@ -16,8 +16,19 @@
 		radio.on = (head && head.radio && head.radio.is_functional() && get_cell())
 
 	var/powered = FALSE
-	if(get_cell())
-		powered = get_cell().drain_power(0, 0, calc_power_draw()) > 0
+	var/obj/item/cell/mech_cell = get_cell(TRUE)
+	for(var/obj/item/mech_equipment/ticker in tickers)
+		if(istype(ticker, /obj/item/mech_equipment/power_generator))
+			var/obj/item/mech_equipment/power_generator/gen = ticker
+			gen.onMechTick()
+			if(!mech_cell && gen.internal_cell)
+				mech_cell = gen.internal_cell
+			else if(mech_cell.charge < mech_cell.maxcharge)
+				var/diff = mech_cell.maxcharge - mech_cell.charge
+				mech_cell.give(internal_cell.drain_power(0,0, diff))
+
+	if(mech_cell)
+		powered = mech_cell.drain_power(0, 0, calc_power_draw()) > 0
 
 	if(!powered)
 		//Shut down all systems
@@ -27,6 +38,16 @@
 			var/obj/item/mech_equipment/M = hardpoints[hardpoint]
 			if(istype(M) && M.active && M.passive_power_use)
 				M.deactivate()
+	// for chassis charging cells
+	else if(body && body.cell_charge_rate && mech_cell.charge > 1000)
+		for(var/obj/item/cell/to_charge in body.storage_compartment)
+			if(mech_cell.charge < 1000)
+				break
+			var/chargeNeeded = to_charge.maxcharge - to_charge.charge
+			if(!chargeNeeded)
+				continue
+			to_charge.give(mech_cell.drain_power(0,0, chargeNeeded))
+
 
 	body.update_air(hatch_closed && use_air)
 

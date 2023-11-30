@@ -40,6 +40,8 @@
 	var/min_pilot_size = MOB_SMALL
 	var/max_pilot_size = MOB_LARGE
 	var/climb_time = 25
+	/// does this mech chassis have support for charging all cells inside of its storage? if its 0 it doesnt
+	var/cell_charge_rate = 200
 
 /obj/item/mech_component/chassis/New()
 	..()

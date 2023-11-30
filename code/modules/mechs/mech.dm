@@ -50,6 +50,8 @@
 	var/list/hardpoints = list()
 	var/hardpoints_locked
 	var/maintenance_protocols
+	/// For equipment that has a process based on mech Life tick
+	var/list/obj/item/mech_equipment/tickers = list()
 
 	// Material
 	var/material/material = MATERIAL_STEEL

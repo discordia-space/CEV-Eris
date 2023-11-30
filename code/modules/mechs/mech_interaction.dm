@@ -132,7 +132,10 @@
 		setClickCooldown(arms_action_delay())
 		playsound(src.loc, arms.punch_sound, 45 + 25 * (arms.melee_damage / 50), -1)
 		if(arms)
-			return A.attack_generic(src, arms.melee_damage, "attacked")
+			if(user.a_intent == I_HURT)
+				return A.attack_generic(src, arms.melee_damage, "attacked")
+			else
+				return A.attackby(arms, user, params)
 
 /// Checks the mech for places to store the ore.
 /mob/living/exosuit/proc/getOreCarrier()
@@ -301,7 +304,7 @@
 		for(var/hardpoint in hardpoints)
 			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/auto_mender))
 				var/obj/item/mech_equipment/auto_mender/mend = hardpoints[hardpoint]
-				choices["[hardpoin] - [mend.trauma_charges_stored]/[mend.trauma_storage_max] charges"] = mend
+				choices["[hardpoint] - [mend.trauma_charges_stored]/[mend.trauma_storage_max] charges"] = mend
 		var/obj/item/mech_equipment/auto_mender/choice = null
 		if(!length(choices))
 			return

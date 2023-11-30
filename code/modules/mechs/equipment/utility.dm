@@ -493,26 +493,88 @@
 	var/ungiven_power = internal_cell?.give(generation_rate)
 	return ungiven_power
 
+/obj/item/mech_equipment/power_generator/installed(mob/living/exosuit/_owner, hardpoint)
+	. = ..()
+
+
 /obj/item/mech_equipment/power_generator/fueled
 	name = "fueled debug power generator"
 	var/fuel_amount = 0
 	var/fuel_max = 1000
 	var/fuel_usage_per_tick = 5
+	var/mode = 0
+	var/datum/repeating_sound/sound_loop = null
 
 /obj/item/mech_equipment/power_generator/fueled/onMechTick()
+	// for when we arențt on
+	if(!mode)
+		sound_loop?.stop()
+		return
 	if(fuel_amount > fuel_usage_per_tick)
 		. = ..()
 		if(. == generation_rate || . == null)
 			return
 		else
 			fuel_amount -= fuel_usage_per_tick
+			if(QDELETED(sound_loop))
+				sound_loop = new(_interval = 2 SECONDS, duration = 10 SECONDS, interval_variance = 0,
+				_source = owner, _soundin = 'sound/mechs/mech_generator.ogg' , _vol = 25 * mode, _vary = 0, _extrarange = mode * 3,
+				_falloff = 0, _is_global = FALSE, _use_pressure = TRUE)
+			else
+				// extend it artificially.
+				sound_loop.end_time = world.time + 10 SECONDS
+
+
+
+/obj/item/mech_equipment/power_generator/fueled/attack_self(mob/user)
+	. = ..()
+	if(. && owner)
+		switch(mode)
+			/// Eco mode , very slow generation but doubled power output ( 20% of power production at cost of 10% of fuel usage)
+			if(0)
+				mode = 1
+				fuel_usage_per_tick = initial(fuel_usage_per_tick) * 0.1
+				generation_Rate = initial(generation_rate) * 0.2
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 10% Fuel usage, 20% power output"))
+				icon_state = "[initial(icon_state)]_on"
+				if(owner)
+					owner.update_icon()
+			/// Default
+			if(1)
+				mode = 2
+				fuel_usage_per_tick = initial(fuel_usage_per_tick)
+				generation_rate = initial(generation_rate)
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to NORMAL. 100% Fuel usage, 100% power output"))
+				icon_state = "[initial(icon_state)]_on"
+				if(owner)
+					owner.update_icon()
+			/// Turbo mode, 2x fuel usage at 1.6x power output
+			if(2)
+				mode = 3
+				fuel_usage_per_tick = initial(fuel_usage_per_tick) * 2
+				generation_rate = initial(generation_rate) * 1.6
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to TURBO. 200% Fuel usage, 160% power output"))
+				icon_state = "[initial(icon_state)]_on"
+				if(owner)
+					owner.update_icon()
+			/// back to eco.
+			if(3)
+				mode = 0
+				fuel_usage_per_tick = initial(fuel_usage_per_tick)
+				generation_Rate = initial(generation_rate)
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 0% Fuel usage, 0% power output"))
+				icon_state = "[initial(icon_state)]"
+				if(owner)
+					owner.update_icon()
+
 
 /obj/item/mech_equipment/power_generator/fueled/get_hardpoint_maptext()
-	return "[fuel_amount]/[fuel_max]"
+	return "[fuel_amount]/[fuel_max] - [fuel_usage_per_tick]"
 
 /obj/item/mech_equipment/power_generator/fueled/plasma
 	name = "plasma powered mech-mountable power generator"
-	desc = "a plasma-fueled mech power generator, creates 5 KW out of 1 sheet of plasma at a rate of 0.25 KW."
+	desc = "a plasma-fueled mech power generator, creates 5 KW out of 1 sheet of plasma at a rate of 0.25 KW. Fully stocked it generates 35 KW in total."
+	icon_state = "mech_generator_plasma"
 	generation_rate = 250
 	// each sheet is 5000 watts
 	fuel_usage_per_tick = 50
@@ -531,7 +593,8 @@
 
 /obj/item/mech_equipment/power_generator/fueled/welding
 	name ="welding fuel powered mech-mountable power generator"
-	desc = "a mech mounted generator that runs off welding fuel, creates 1 KW out of 10 units of welding fuel, at a rate of 0.1 KW"
+	desc = "a mech mounted generator that runs off welding fuel, creates 1 KW out of 10 units of welding fuel, at a rate of 0.1 KW. Fully stocked it generates 20 KW in total."
+	icon_state = "mech_generator_welding"
 	generation_rate = 100
 	fuel_usage_per_tick = 1
 	/// can generate 20000 power
@@ -550,9 +613,13 @@
 	if(is_drainable(I) && I.reagents.total_volume)
 		I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
 	else if(I.reagents && I.reagent_flags & REFILLABLE)
-		reagents.trans_to_holder(I.reagents, 10, 1 FALSE)
+		reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
 
 /obj/item/mech_equipment/power_generator/fueled/welding/onMechTick()
+	// dont run if we aren't on
+	if(!mode)
+		sound_loop?.stop()
+		return
 	chamberReagent.clear_reagents()
 	reagents.trans_to_holder(chamberReagent, 1, 1, FALSE)
 	if(chamberReagent.has_reagent("fuel"))
@@ -572,6 +639,15 @@
 			// refund if none of it gets turned into power for qol reasons
 			if(amountReturned == generation_rate)
 				chamberReagent.trans_to_holder(reagents, 1, 1, FALSE)
+			if(fuel > fuel_usage_per_tick)
+				chamberReagent.trans_id_to(reagents, "fuel", chamberReagent.total_volume - fuel_usage_per_tick, TRUE)
+			if(QDELETED(sound_loop))
+				sound_loop = new(_interval = 2 SECONDS, duration = 10 SECONDS, interval_variance = 0,
+				_source = owner, _soundin = 'sound/mechs/mech_generator.ogg' , _vol = 25 * mode, _vary = 0, _extrarange = mode * 3,
+				_falloff = 0, _is_global = FALSE, _use_pressure = TRUE)
+			else
+				// extend it artificially.
+				sound_loop.end_time = world.time + 10 SECONDS
 	fuel_amount = reagents.total_volume
 
 /obj/item/mech_equipment/towing_hook
