@@ -534,7 +534,7 @@
 			if(0)
 				mode = 1
 				fuel_usage_per_tick = initial(fuel_usage_per_tick) * 0.1
-				generation_Rate = initial(generation_rate) * 0.2
+				generation_rate = initial(generation_rate) * 0.2
 				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 10% Fuel usage, 20% power output"))
 				icon_state = "[initial(icon_state)]_on"
 				if(owner)
@@ -561,7 +561,7 @@
 			if(3)
 				mode = 0
 				fuel_usage_per_tick = initial(fuel_usage_per_tick)
-				generation_Rate = initial(generation_rate)
+				generation_rate = initial(generation_rate)
 				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 0% Fuel usage, 0% power output"))
 				icon_state = "[initial(icon_state)]"
 				if(owner)

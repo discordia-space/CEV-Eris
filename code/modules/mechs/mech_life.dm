@@ -25,7 +25,7 @@
 				mech_cell = gen.internal_cell
 			else if(mech_cell.charge < mech_cell.maxcharge)
 				var/diff = mech_cell.maxcharge - mech_cell.charge
-				mech_cell.give(internal_cell.drain_power(0,0, diff))
+				mech_cell.give(gen.internal_cell.drain_power(0,0, diff))
 
 	if(mech_cell)
 		powered = mech_cell.drain_power(0, 0, calc_power_draw()) > 0
