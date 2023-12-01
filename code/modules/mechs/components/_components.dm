@@ -116,6 +116,7 @@
 					owner.body = null
 			for(var/hardpoint in has_hardpoints)
 				owner.remove_system(hardpoint, null, TRUE)
+			owner.update_icon()
 			qdel(src)
 
 /obj/item/mech_component/proc/ready_to_install()

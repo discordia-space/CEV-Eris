@@ -124,6 +124,9 @@
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, var/def_zone)
 	var/hit_dir = get_dir(P.starting, src)
 	def_zone = zoneToComponent(def_zone)
+	/// aiming for soemthing the mech doesnt have
+	if(!def_zone)
+		return PROJECTILE_FORCE_MISS
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()

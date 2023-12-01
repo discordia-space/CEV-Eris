@@ -137,7 +137,7 @@
 /obj/item/mech_equipment/mounted_system/resolve_attackby(atom/A, mob/user, params)
 	// foward attackbys only when we are installed .
 	if(ismech(loc))
-		return holding.attackby(A, user, params)
+		return A.attackby(holding, user, params)
 	else ..()
 
 /obj/item/mech_equipment/mounted_system/Destroy()

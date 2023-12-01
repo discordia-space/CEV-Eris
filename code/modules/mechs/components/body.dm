@@ -105,7 +105,7 @@
 	. = ..()
 	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 	storage_compartment = new(src)
-	cockpit = new(800)
+	cockpit = new(500)
 	if(loc)
 		cockpit.equalize(loc.return_air())
 
@@ -283,3 +283,11 @@
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
 	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)
+
+/obj/item/mech_component/chassis/forklift
+	name = "forklift chassis"
+	desc = "Has an integrated clamp for the industrial relocation of resources. Are you ready to lift?"
+	pilot_coverage = 30
+	max_damage = 100
+	mech_health = 200
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)

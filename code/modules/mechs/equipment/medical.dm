@@ -160,12 +160,14 @@
 	if(!affecting || (affecting && affecting.is_bandaged()))
 		for(var/zone in BP_ALL_LIMBS)
 			checking = mending_target.organs_by_name[zone]
-			if(checking.is_bandaged())
+			if(checking.is_bandaged() && checking.damage < 1)
 				continue
-			if(checking.damage > affecting.damage)
+			if(checking.damage > affecting?.damage)
 				affecting = checking
 
 	if(!affecting)
+		mending_target = null
+
 		return
 
 	for(var/datum/wound/W in affecting.wounds)
@@ -173,21 +175,19 @@
 			mending_target = null
 			affecting = null
 			return
-		if(W.internal)
-			continue
-		if(W.bandaged)
+		//if(W.internal || W.bandaged)
+		//	continue
+		if(W.damage < 1)
 			continue
 		if(!trauma_charges_stored)
 			break
-		if(!do_mob(mech, mending_target, W.damage/5))
+		if(!do_mob(mech.get_mob(), mending_target, W.damage/5))
 			to_chat(mech.get_mob(), SPAN_NOTICE("You must stand still to bandage wounds."))
 			mending_target = null
 			affecting = null
 			break
-		if(W.internal)
-			continue
-		if(W.bandaged)
-			continue
+		//if(W.internal || W.bandaged)
+		//	continue
 		if (W.current_stage <= W.max_bleeding_stage)
 			mech.visible_message(
 				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
@@ -206,7 +206,7 @@
 		W.bandage()
 		W.heal_damage(10)
 	// If it doesn't cancel or run out of kits just repeat for every external organ.
-	if(affecting.is_bandaged())
+	if(affecting.is_bandaged() && affecting.damage < 1)
 		affecting = null
 		mending_loop()
 

@@ -10,6 +10,8 @@
 	gib_hits_needed = 10
 	var/melee_damage = WEAPON_FORCE_PAINFUL
 	var/action_delay = 15
+	/// if they can force open powered doors
+	var/can_force_doors = TRUE
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	tool_qualities = list(
 		QUALITY_HAMMERING = 30,

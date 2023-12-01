@@ -135,6 +135,13 @@
 			if(user.a_intent == I_HURT)
 				return A.attack_generic(src, arms.melee_damage, "attacked")
 			else
+				if(istype(A, /obj/machinery/door/airlock))
+					var/obj/machinery/door/airlock/door = A
+					if(door.powered && !door.locked && arms.can_force_doors)
+						to_chat(user, SPAN_NOTICE("You start forcing \the [door] open!"))
+						playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
+						if(do_after(user, 3 SECONDS, A, FALSE))
+							door.open(TRUE)
 				return A.attackby(arms, user, params)
 
 /// Checks the mech for places to store the ore.

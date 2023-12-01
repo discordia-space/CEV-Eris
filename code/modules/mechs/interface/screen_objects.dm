@@ -51,6 +51,7 @@
 	if(holding) holding.screen_loc = screen_loc
 
 /obj/screen/movable/exosuit/hardpoint/proc/update_system_info()
+	maptext = null
 
 	// No point drawing it if we have no item to use or nobody to see it.
 	if(!holding || !owner)

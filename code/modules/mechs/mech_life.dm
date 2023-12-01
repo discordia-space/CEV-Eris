@@ -16,13 +16,13 @@
 		radio.on = (head && head.radio && head.radio.is_functional() && get_cell())
 
 	var/powered = FALSE
-	var/obj/item/cell/mech_cell = get_cell(TRUE)
+	var/obj/item/cell/mech_cell = get_cell()
 	for(var/obj/item/mech_equipment/ticker in tickers)
 		if(istype(ticker, /obj/item/mech_equipment/power_generator))
 			var/obj/item/mech_equipment/power_generator/gen = ticker
 			gen.onMechTick()
-			if(!mech_cell && gen.internal_cell)
-				mech_cell = gen.internal_cell
+			if(mech_cell == gen.internal_cell)
+				continue
 			else if(mech_cell.charge < mech_cell.maxcharge)
 				var/diff = mech_cell.maxcharge - mech_cell.charge
 				mech_cell.give(gen.internal_cell.use(diff))
@@ -63,8 +63,13 @@
 
 /mob/living/exosuit/get_cell(force)
 	RETURN_TYPE(/obj/item/cell)
+
 	if(power == MECH_POWER_ON || force) //For most intents we can assume that a powered off exosuit acts as if it lacked a cell
-		return body ? body.cell : null
+		. = body ? body.cell : null
+		if(!.)
+			for(var/obj/item/mech_equipment/power_generator/gen in tickers)
+				if(!. && gen.internal_cell)
+					. = gen.internal_cell
 	return null
 
 
