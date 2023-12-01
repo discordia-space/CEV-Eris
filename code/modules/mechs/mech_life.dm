@@ -68,6 +68,7 @@
 			for(var/obj/item/mech_equipment/power_generator/gen in tickers)
 				if(!. && gen.internal_cell)
 					. = gen.internal_cell
+		return .
 	return null
 
 
