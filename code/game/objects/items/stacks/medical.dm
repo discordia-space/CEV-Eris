@@ -15,7 +15,7 @@
 	var/heal_burn = 0
 	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
 	var/charge_sections = 5		// How many indicator blips are there?
-	var/charge_x_offset = 1		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
+	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
 
 /obj/item/stack/medical/attack(mob/living/M, mob/living/user)
 	var/types = M.get_classification()
