@@ -318,7 +318,7 @@
 
 	// Installing basic components.
 	if(istype(I, /obj/item/mech_component/manipulators))
-		if(istype(body), /obj/item/mech_component/forklift)
+		if(istype(body, /obj/item/mech_component/chassis/forklift))
 			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support manipulators!"))
 			return
 		if(arms)
@@ -339,7 +339,7 @@
 				return
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
-		if(istype(body), /obj/item/mech_component/forklift)
+		if(istype(body, /obj/item/mech_component/chassis/forklift))
 			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
 			return
 		if(head)
@@ -377,7 +377,7 @@
 	I.forceMove(src)
 	if(istype(MC, /obj/item/mech_component/chassis/forklift))
 		if(arms)
-			arms.forcemove(get_turf(src))
+			arms.forceMove(get_turf(src))
 			arms = null
 		if(head)
 			head.forceMove(get_turf(src))

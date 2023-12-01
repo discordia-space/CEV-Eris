@@ -813,6 +813,8 @@
 	icon_state = "mech_atmoshield"
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 6, TECH_PLASMA = 5)
+	// so it has update icon called everytime it moves
+	equipment_flags = EQUIPFLAG_UPDTMOVE
 	/// Defines the amount of power drained per hit thats blocked
 	var/damage_to_power_drain = 30
 	/// Are we toggled on ?
@@ -848,13 +850,6 @@
 		last_toggle = world.time
 		update_icon()
 
-/obj/item/mech_equipment/shield_generator/proc/updateVisualBluff(targetDir)
-	visual_bluff.dir = targetDir
-	if(targetDir == NORTH)
-		visual_bluff.layer = MECH_UNDER_LAYER
-	else
-		visual_bluff.layer = MECH_ABOVE_LAYER
-
 // Used to tell how effective we are against damage,
 /obj/item/mech_equipment/shield_generator/proc/getEffectiveness()
 	return on
@@ -870,6 +865,11 @@
 		return
 	if(!(visual_bluff in mech.vis_contents))
 		mech.vis_contents.Add(visual_bluff)
+	visual_bluff.dir = mech.dir
+	if(visual_bluff.dir == NORTH)
+		visual_bluff.layer = MECH_UNDER_LAYER
+	else
+		visual_bluff.layer = MECH_ABOVE_LAYER
 	if(last_toggle > world.time - 1 SECOND)
 		if(on)
 			flick("shield_raise", visual_bluff)
@@ -918,7 +918,7 @@
 	if(!(visual_bluff in _owner.vis_contents))
 		_owner.vis_contents.Add(visual_bluff)
 	visual_bluff.icon_state = "mech_shield_[hardpoint]"
-	updateVisualBluff(_owner.dir)
+	update_icon()
 
 /obj/item/mech_equipment/shield_generator/ballistic/uninstalled()
 	owner.vis_contents.Remove(visual_bluff)
@@ -937,32 +937,6 @@
 	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 50, 8)
 	return damages
 
-/obj/item/mech_equipment/shield_generator/ballistic/updateVisualBluff(targetDir)
-	visual_bluff.dir = targetDir
-	switch(get_hardpoint())
-		if(HARDPOINT_RIGHT_HAND)
-			// i used a switch before and it doesnt work as intended for some fucking reason FOR EAST AND WEST >:( -SPCR
-			if(targetDir == NORTH)
-				visual_bluff.layer = MECH_UNDER_LAYER
-			if(targetDir == EAST)
-				visual_bluff.layer = MECH_ABOVE_LAYER
-			if(targetDir == SOUTH)
-				visual_bluff.layer = MECH_ABOVE_LAYER
-			if(targetDir == WEST)
-				visual_bluff.layer = MECH_UNDER_LAYER
-			return
-		if(HARDPOINT_LEFT_HAND)
-			if(targetDir == NORTH)
-				visual_bluff.layer = MECH_UNDER_LAYER
-			if(targetDir == EAST)
-				visual_bluff.layer = MECH_UNDER_LAYER
-			if(targetDir == SOUTH)
-				visual_bluff.layer = MECH_ABOVE_LAYER
-			if(targetDir == WEST)
-				visual_bluff.layer = MECH_ABOVE_LAYER
-			return
-
-
 /obj/item/mech_equipment/shield_generator/ballistic/update_icon()
 	/// Not needed since we already have handling for visual bluffs layering
 	/// and since we dont use a shield.
@@ -973,6 +947,29 @@
 		return
 	if(!(visual_bluff in mech.vis_contents))
 		mech.vis_contents.Add(visual_bluff)
+		visual_bluff.dir = mech.dir
+	switch(get_hardpoint())
+		if(HARDPOINT_RIGHT_HAND)
+			// i used a switch before and it doesnt work as intended for some fucking reason FOR EAST AND WEST >:( -SPCR
+			if(visual_bluff.dir == NORTH)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			if(visual_bluff.dir == EAST)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			if(visual_bluff.dir == SOUTH)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			if(visual_bluff.dir == WEST)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			return
+		if(HARDPOINT_LEFT_HAND)
+			if(visual_bluff.dir == NORTH)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			if(visual_bluff.dir == EAST)
+				visual_bluff.layer = MECH_UNDER_LAYER
+			if(visual_bluff.dir == SOUTH)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			if(visual_bluff.dir == WEST)
+				visual_bluff.layer = MECH_ABOVE_LAYER
+			return
 	visual_bluff.icon_state = "mech_shield_[get_hardpoint()]"
 
 /obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)

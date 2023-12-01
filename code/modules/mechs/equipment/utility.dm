@@ -472,6 +472,7 @@
 	icon_state = "mech_power"
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
+	equipment_flags = EQUIPFLAG_PRETICK
 	var/obj/item/cell/internal_cell
 	/// 50 power per mech life tick , adjust for cell RATE
 	var/generation_rate = 50 * CELLRATE
@@ -489,8 +490,13 @@
 		to_chat(user, SPAN_NOTICE("You replace [src]'s cell!"))
 		return
 
-/obj/item/mech_equipment/power_generator/proc/onMechTick()
+/obj/item/mech_equipment/power_generator/pretick()
 	var/ungiven_power = internal_cell?.give(generation_rate)
+	if(owner && internal_cell)
+		var/obj/item/cell/batt = owner.get_cell(TRUE)
+		if(batt)
+			batt.give(internal_cell.use(batt.maxcharge - batt.charge))
+
 	return ungiven_power
 
 /obj/item/mech_equipment/power_generator/installed(mob/living/exosuit/_owner, hardpoint)
@@ -505,7 +511,7 @@
 	var/mode = 0
 	var/datum/repeating_sound/sound_loop = null
 
-/obj/item/mech_equipment/power_generator/fueled/onMechTick()
+/obj/item/mech_equipment/power_generator/fueled/pretick()
 	// for when we arențt on
 	if(!mode)
 		sound_loop?.stop()
@@ -625,7 +631,7 @@
 		to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
 		reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
 
-/obj/item/mech_equipment/power_generator/fueled/welding/onMechTick()
+/obj/item/mech_equipment/power_generator/fueled/welding/pretick()
 	// dont run if we aren't on
 	if(!mode)
 		sound_loop?.stop()
@@ -651,6 +657,10 @@
 				chamberReagent.trans_to_holder(reagents, 1, 1, FALSE)
 			if(fuel > fuel_usage_per_tick)
 				chamberReagent.trans_id_to(reagents, "fuel", chamberReagent.total_volume - fuel_usage_per_tick, TRUE)
+			if(internal_cell && owner)
+				var/obj/item/cell/batt = owner.get_cell(TRUE)
+				if(batt)
+					batt.give(internal_cell.use(batt.maxcharge - batt.charge))
 			if(QDELETED(sound_loop))
 				sound_loop = new(_interval = 2 SECONDS, duration = 10 SECONDS, interval_variance = 0,
 				_source = owner, _soundin = 'sound/mechs/mech_generator.ogg' , _vol = 25 * mode, _vary = 0, _extrarange = mode * 3,
@@ -756,10 +766,73 @@
 	max_upgrades = 1
 	spawn_blacklisted = TRUE
 
+/// Fancy way to move someone up a z-level if you think about it..
 /obj/item/mech_equipment/forklifting_system
 	name = "forklifting bars"
 	desc = "a set of forklifts bars. Can be used to elevate crates above by a level.. or impale someone at high enough speeds..."
 	icon_state = "forklift"
+	restricted_hardpoints = list(HARDPOINT_FRONT)
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	var/atom/movable/currentlyLifting = null
+	var/obj/structure/forklift_platform/platform = null
+	var/lifted = FALSE
+
+/obj/item/mech_equipment/forklifting_system/Initialize()
+	. = ..()
+	platform = new(NULLSPACE)
+	platform.master = src
+	platform.forceMove(src)
+
+/obj/structure/forklift_platform
+	layer = TURF_LAYER + 0.5
+	icon = MECH_EQUIPMENT_ICON
+	icon_state = "forklift_platform"
+	name = "forklift platform"
+	desc = "A fun way to reach new horizons. Mind the gap between.. small things fall through."
+	density = FALSE
+	anchored = TRUE
+	health = 200
+	var/obj/item/mech_equipment/forklifting_system/master = null
+
+/obj/structure/forklift_platform/Destroy()
+	if(master)
+		master.platform = null
+		master = null
+	. = ..()
+
+/// We can prevent the fall of humans and structures , but everything else will just fall down
+/obj/structure/forklift_platform/can_prevent_fall(above, atom/movable/mover)
+	if(!above)
+		if(ishuman(mover))
+			return TRUE
+		if(isstructure(mover))
+			return TRUE
+	return FALSE
+
+/obj/item/mech_equipment/forklifting_system/update_icon()
+	. = ..()
+	if(owner)
+		if(lifted)
+			icon_state = "forklift_lifted"
+		else
+			icon_state = "forklift"
+
+
+
+/obj/item/mech_equipment/forklifting_system/attack_self(mob/user)
+	. = ..()
+
+
+/obj/item/mech_equipment/forklifting_system/afterattack(atom/target, mob/living/user, inrange, params)
+	. = ..()
+	if(. && inrange)
+		if(currentlyLifting)
+			currentlyLifting.forceMove(get_turf(target))
+			to_chat(user, SPAN_NOTICE("You drop \the [currentlyLifting]."))
+		else if(ismovable(target))
+			to_chat(user, SPAN_NOTICE("You start lifting \the [target] onto the hooks."))
+			if(do_after(user, 2 SECONDS, target))
+				currentlyLifting = target
 
 
 

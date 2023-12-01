@@ -40,6 +40,25 @@
 						victim.forceMove(theDepths)
 						visible_message("The [src] pushes [victim] downwards.")
 						occupant_message("You can feel \the [src] step onto something.")
+		for(var/hardpoint in hardpoints)
+			if(!hardpoints[hardpoint])
+				continue
+			var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
+			if(!(thing.equipment_flags & EQUIPFLAG_UPDTMOVE))
+				continue
+			thing.update_icon()
+
+/mob/living/exosuit/set_dir()
+	. = ..()
+	if(.)
+		update_pilots()
+		for(var/hardpoint in hardpoints)
+			if(!hardpoints[hardpoint])
+				continue
+			var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
+			if(!(thing.equipment_flags & EQUIPFLAG_UPDTMOVE))
+				continue
+			thing.update_icon()
 
 /mob/living/exosuit/get_jetpack()
 	for(var/hardpoint_thing in hardpoints)

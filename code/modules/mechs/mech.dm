@@ -236,14 +236,6 @@
 /mob/living/exosuit/GetIdCard()
 	return access_card
 
-/mob/living/exosuit/set_dir()
-	. = ..()
-	if(.)
-		update_pilots()
-		for(var/obj/item/mech_equipment/shield_generator/gen in contents)
-			if(gen && gen.visual_bluff)
-				gen.updateVisualBluff(dir)
-
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature
 

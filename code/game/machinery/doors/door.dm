@@ -53,8 +53,8 @@
 	GLOB.all_doors -= src
 	..()
 
-/obj/machinery/door/can_prevent_fall()
-	return density
+/obj/machinery/door/can_prevent_fall(above)
+	return above ? density : null
 
 /obj/machinery/door/attack_generic(mob/user, var/damage)
 	if(damage >= resistance)

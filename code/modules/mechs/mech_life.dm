@@ -17,15 +17,13 @@
 
 	var/powered = FALSE
 	var/obj/item/cell/mech_cell = get_cell()
-	for(var/obj/item/mech_equipment/ticker in tickers)
-		if(istype(ticker, /obj/item/mech_equipment/power_generator))
-			var/obj/item/mech_equipment/power_generator/gen = ticker
-			gen.onMechTick()
-			if(mech_cell == gen.internal_cell)
-				continue
-			else if(mech_cell.charge < mech_cell.maxcharge)
-				var/diff = mech_cell.maxcharge - mech_cell.charge
-				mech_cell.give(gen.internal_cell.use(diff))
+	for(var/hardpoint in hardpoints)
+		if(QDELETED(hardpoints[hardpoint]))
+			continue
+		var/obj/item/mech_equipment/equip = hardpoints[hardpoint]
+		if(!(equip.equipment_flags & EQUIPFLAG_PRETICK))
+			continue
+		equip.pretick()
 
 	if(mech_cell)
 		powered = mech_cell.drain_power(0, 0, calc_power_draw()) > 0

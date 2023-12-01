@@ -24,8 +24,8 @@
 
 	atmos_canpass = CANPASS_PROC
 
-/obj/structure/window/can_prevent_fall()
-	return !is_fulltile()
+/obj/structure/window/can_prevent_fall(above)
+	return above ? !is_fulltile() : FALSE
 
 /obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()

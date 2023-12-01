@@ -137,8 +137,9 @@
 			else
 				if(istype(A, /obj/machinery/door/airlock))
 					var/obj/machinery/door/airlock/door = A
-					if(door.powered && !door.locked && arms.can_force_doors)
+					if(door.stat & NOPOWER && !door.locked && arms.can_force_doors)
 						to_chat(user, SPAN_NOTICE("You start forcing \the [door] open!"))
+						visible_message(SPAN_WARNING("\The [src] starts forcing \the [door] open!"))
 						playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
 						if(do_after(user, 3 SECONDS, A, FALSE))
 							door.open(TRUE)

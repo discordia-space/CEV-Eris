@@ -42,8 +42,8 @@
 	var/store_mobs = 1
 	var/old_chance = 0 //Chance to have rusted closet content in it, from 0 to 100. Keep in mind that chance increases in maints
 
-/obj/structure/closet/can_prevent_fall()
-	return TRUE
+/obj/structure/closet/can_prevent_fall(above)
+	return above ? TRUE : FALSE
 
 /obj/structure/closet/Initialize(mapload)
 	..()
