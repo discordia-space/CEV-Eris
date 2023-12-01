@@ -68,7 +68,7 @@
 /obj/item/mech_equipment/attack_self(var/mob/user)
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
 		var/obj/item/cell/C = owner.get_cell()
-		if(C && C.active_power_use == 0)
+		if(C && active_power_use == 0)
 			return TRUE
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
 			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))

@@ -97,7 +97,10 @@
 		return
 
 	//get the user's location
-	if(!istype(user.loc, /turf))	return	//can't do this stuff whilst inside objects and such
+	if(!istype(user.loc, /turf))
+		if(!(ismech(user.loc) && istype(I, /obj/item/mech_equipment)))
+			return
+
 
 	if(I)
 		radiate()

@@ -726,7 +726,7 @@
 		currentlyTowing = null
 		return
 	*/
-	if(oldLocatin == newLocation)
+	if(oldLocation == newLocation)
 		return
 	if(oldLocation.z != newLocation.z)
 		currentlyTowing.forceMove(newLocation)
@@ -841,23 +841,37 @@
 			icon_state = "forklift_lifted"
 		else
 			icon_state = "forklift"
-
+			if(currentlyLifting && !locate(currentlyLifting) in owner.vis_contents)
+				var/matrix/the_matrix = new()
+				the_matrix.Scale(0.6, 0.6)
+				currentlyLifting.transform = the_matrix
+				owner.vis_contents.Add(currentlyLifting)
 
 
 /obj/item/mech_equipment/forklifting_system/attack_self(mob/user)
 	. = ..()
 
 
-/obj/item/mech_equipment/forklifting_system/afterattack(atom/target, mob/living/user, inrange, params)
+/obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
-	if(. && inrange)
+	if(. && inrange && istype(target))
 		if(currentlyLifting)
 			currentlyLifting.forceMove(get_turf(target))
 			to_chat(user, SPAN_NOTICE("You drop \the [currentlyLifting]."))
+			var/mob/targ = target
+			if(ismob(targ) && targ.client)
+				targ.client.perspective = MOB_PERSPECTIVE
+				targ.client.eye = target
 		else if(ismovable(target))
 			to_chat(user, SPAN_NOTICE("You start lifting \the [target] onto the hooks."))
 			if(do_after(user, 2 SECONDS, target))
 				currentlyLifting = target
+				target.forceMove(src)
+				var/mob/targ = target
+				if(ismob(targ) && targ.client)
+					targ.client.perspective = EYE_PERSPECTIVE
+					targ.client.eye = src
+		update_icon()
 
 
 

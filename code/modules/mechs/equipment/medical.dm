@@ -165,6 +165,8 @@
 			if(affecting)
 				if(checking.damage > affecting.damage)
 					affecting = checking
+			else
+				affecting = checking
 
 	if(!affecting)
 		mending_target = null

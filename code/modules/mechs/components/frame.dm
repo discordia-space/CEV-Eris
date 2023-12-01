@@ -98,7 +98,7 @@
 	if(is_wired)
 		usable_qualities += QUALITY_WIRE_CUTTING
 
-	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && arms && legs && head && body)
+	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && head && body)
 		usable_qualities += QUALITY_SCREW_DRIVING
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
