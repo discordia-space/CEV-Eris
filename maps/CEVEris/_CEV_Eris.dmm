@@ -1090,7 +1090,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_ihscommander";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -2634,7 +2634,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_ihsinter";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -2985,7 +2985,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_maintpost";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -19019,10 +19019,10 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
 	id = "maint_hatch_escapecor1";
 	layer = 3.3;
-	name = "Maintenance Hatch"
+	name = "Maintenance Hatch";
+	dir = 4
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
@@ -20340,7 +20340,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_rnd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -26191,7 +26191,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_morgue";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -27107,7 +27107,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_evidstor";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -27756,7 +27756,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_atmos2";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -38550,7 +38550,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_telecomm";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -43282,7 +43282,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_rd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -45065,7 +45065,7 @@
 	},
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "psych_front";
 	name = "Psychology Shutters"
 	},
@@ -45089,7 +45089,7 @@
 	},
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "genetics_back";
 	name = "Research Desk Shutters"
 	},
@@ -45187,7 +45187,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_rndservers";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -53878,7 +53878,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_gravgen";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -72124,7 +72124,7 @@
 /area/eris/maintenance/section4deck2port)
 "dsC" = (
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_maintcryostor";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -73391,7 +73391,7 @@
 "dvG" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/coffee{
-	desc = "Old cup of coffee. Very cold.  ";
+	desc = "Old cup of coffee. Very cold.";
 	name = "Old Robust Coffee"
 	},
 /obj/item/device/radio,
@@ -80486,7 +80486,7 @@
 "dNe" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 1;
-	name = "Oxygen Suplly  (Chamber)"
+	name = "Oxygen Suplly (Chamber)"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/left)
@@ -80602,7 +80602,7 @@
 "dNt" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 1;
-	name = "Oxygen Suplly  (Chamber)"
+	name = "Oxygen Suplly (Chamber)"
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/right)
@@ -84649,7 +84649,8 @@
 /obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
-	id = "Backroom_hatch"
+	id = "Backroom_hatch";
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/eris/crew_quarters/kitchen)
@@ -103743,7 +103744,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "psych_front";
 	name = "Psychology Shutters"
 	},
@@ -104092,7 +104093,7 @@
 /area/eris/maintenance/sorter)
 "qmJ" = (
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_acolyte";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -106221,7 +106222,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "rnddesk";
 	name = "Research Desk Shutters"
 	},

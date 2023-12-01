@@ -31,7 +31,8 @@
 /area/crawler)
 "h" = (
 /obj/machinery/door/blast/shutters{
-	id = 2
+	id = 2;
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/crawler)
