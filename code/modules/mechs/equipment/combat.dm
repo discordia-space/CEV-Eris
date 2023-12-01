@@ -842,6 +842,14 @@
 		mech.vis_contents.Remove(visual_bluff)
 	QDEL_NULL(visual_bluff)
 
+/obj/item/mech_equipment/shield_generator/uninstalled()
+	owner.vis_contents.Remove(visual_bluff)
+	if(on)
+		on = FALSE
+		update_icon()
+	. = ..()
+
+
 /obj/item/mech_equipment/shield_generator/attack_self(mob/user)
 	. = ..()
 	if(.)
@@ -947,7 +955,7 @@
 		return
 	if(!(visual_bluff in mech.vis_contents))
 		mech.vis_contents.Add(visual_bluff)
-		visual_bluff.dir = mech.dir
+	visual_bluff.dir = mech.dir
 	switch(get_hardpoint())
 		if(HARDPOINT_RIGHT_HAND)
 			// i used a switch before and it doesnt work as intended for some fucking reason FOR EAST AND WEST >:( -SPCR

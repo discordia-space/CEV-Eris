@@ -162,8 +162,9 @@
 			checking = mending_target.organs_by_name[zone]
 			if(checking.is_bandaged() && checking.damage < 1)
 				continue
-			if(checking.damage > affecting?.damage)
-				affecting = checking
+			if(affecting)
+				if(checking.damage > affecting.damage)
+					affecting = checking
 
 	if(!affecting)
 		mending_target = null

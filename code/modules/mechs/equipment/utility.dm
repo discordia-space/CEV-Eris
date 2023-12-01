@@ -475,7 +475,7 @@
 	equipment_flags = EQUIPFLAG_PRETICK
 	var/obj/item/cell/internal_cell
 	/// 50 power per mech life tick , adjust for cell RATE
-	var/generation_rate = 50 * CELLRATE
+	var/generation_rate = 50
 
 /obj/item/mech_equipment/power_generator/Initialize()
 	. = ..()
@@ -494,7 +494,7 @@
 	var/ungiven_power = internal_cell?.give(generation_rate)
 	if(owner && internal_cell)
 		var/obj/item/cell/batt = owner.get_cell(TRUE)
-		if(batt)
+		if(batt && batt != internal_cell)
 			batt.give(internal_cell.use(batt.maxcharge - batt.charge))
 
 	return ungiven_power
@@ -518,7 +518,8 @@
 		return
 	if(fuel_amount > fuel_usage_per_tick)
 		. = ..()
-		if(. == generation_rate || . == null)
+		/// if we had a extremely minimal use
+		if(. > generation_rate - generation_rate * 0.01 || . == null)
 			return
 		else
 			fuel_amount -= fuel_usage_per_tick
@@ -652,14 +653,14 @@
 		// min needed for combustion
 		if(fuel > 0.25)
 			var/amountReturned = internal_cell?.give(generation_rate * fuel)
-			// refund if none of it gets turned into power for qol reasons
-			if(amountReturned == generation_rate)
+			// refund if none of it gets turned into power for qol reasons (its never exact returnal due to float errors)
+			if(amountReturned > generation_rate - generation_rate * 0.01)
 				chamberReagent.trans_to_holder(reagents, 1, 1, FALSE)
 			if(fuel > fuel_usage_per_tick)
 				chamberReagent.trans_id_to(reagents, "fuel", chamberReagent.total_volume - fuel_usage_per_tick, TRUE)
 			if(internal_cell && owner)
 				var/obj/item/cell/batt = owner.get_cell(TRUE)
-				if(batt)
+				if(batt && batt != internal_cell)
 					batt.give(internal_cell.use(batt.maxcharge - batt.charge))
 			if(QDELETED(sound_loop))
 				sound_loop = new(_interval = 2 SECONDS, duration = 10 SECONDS, interval_variance = 0,
@@ -686,14 +687,19 @@
 	RegisterSignal(_owner, COMSIG_MOVABLE_MOVED, PROC_REF(onMechMove))
 
 /obj/item/mech_equipment/towing_hook/uninstalled()
-	. = ..()
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	if(currentlyTowing)
+		UnregisterSignal(currentlyTowing, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+		currentlyTowing = null
+	. = ..()
 
+/// Yes you can hook onto other mechs that are hooked onto you, and yes it won't break anything , SPCR-2023
 /obj/item/mech_equipment/towing_hook/proc/onTowingMove(atom/movable/mover, atom/oldLocation, atom/newLocation)
 	SIGNAL_HANDLER
 	if(newLocation.Adjacent(src))
 		return
-	UnregisterSignal(mover, COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING)
+	UnregisterSignal(mover, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+	to_chat(owner.get_mob(), SPAN_NOTICE("You lose your hook ono \the [currentlyTowing]!"))
 	currentlyTowing = null
 
 /obj/item/mech_equipment/towing_hook/proc/onMechMove(atom/movable/mover, atom/oldLocation, atom/newLocation)
@@ -701,10 +707,27 @@
 	if(!currentlyTowing)
 		return
 	if(!oldLocation.Adjacent(currentlyTowing))
-		UnregisterSignal(currentlyTowing, COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING)
+		UnregisterSignal(currentlyTowing, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+		to_chat(owner.get_mob(), SPAN_NOTICE("You lose your hook ono \the [currentlyTowing]!"))
+		currentlyTowing = null
+		return
+	// Protection against move loops caused by 2 mechs towing eachother.
+	if(COMSIG_PULL_CANCEL == SEND_SIGNAL(src, COMSIG_ATTEMPT_PULLING))
+		UnregisterSignal(currentlyTowing, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+		to_chat(owner.get_mob(), SPAN_NOTICE("You lose your hook ono \the [currentlyTowing]!"))
 		currentlyTowing = null
 		return
 	// If we move up a z-level we want to instantly pull it up with us as to prevent possible abuse.
+	// Protection against move loops caused by 2 mechs towing eachother walking diagonally
+	// this gets triggered by z-moves too ,so inbuilt check for that
+	/*
+	if(lastMove > world.time - 0.1 SECONDS)
+		UnregisterSignal(currentlyTowing, list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+		currentlyTowing = null
+		return
+	*/
+	if(oldLocatin == newLocation)
+		return
 	if(oldLocation.z != newLocation.z)
 		currentlyTowing.forceMove(newLocation)
 	else
@@ -717,6 +740,8 @@
 
 /obj/item/mech_equipment/towing_hook/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
+	if(!owner || target == owner)
+		return
 	if(!istype(target))
 		to_chat(user, SPAN_NOTICE("You cannot hook onto this!"))
 		return

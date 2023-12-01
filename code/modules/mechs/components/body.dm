@@ -105,7 +105,7 @@
 	. = ..()
 	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 	storage_compartment = new(src)
-	cockpit = new(500)
+	cockpit = new(250)
 	if(loc)
 		cockpit.equalize(loc.return_air())
 

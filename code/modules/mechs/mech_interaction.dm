@@ -114,7 +114,7 @@
 
 		var/resolved
 		if(adj)
-			resolved = selected_system.resolve_attackby(A, src, params)
+			resolved = selected_system.resolve_attackby(A, user, params)
 
 		if(!resolved && A && selected_system)
 			selected_system.afterattack(A,user,adj,params)
