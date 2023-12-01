@@ -124,7 +124,7 @@
 	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
 
 /obj/item/stack/medical/bruise_pack/update_icon()
-	icon_state = "[initial(icon_state)][amount - 3]"
+	icon_state = "[initial(icon_state)][amount]"
 	..()
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
@@ -222,15 +222,15 @@
 	desc = "Used to treat those nasty burns."
 	gender = PLURAL
 	singular_name = "ointment"
-	icon_state = "ointment"
+	icon_state = "ointment5"
 	heal_burn = 4
 	origin_tech = list(TECH_BIO = 1)
 	preloaded_reagents = list("silicon" = 4, "carbon" = 8)
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
 
-/obj/item/stack/medical/ointment/update_icon()
-	icon_state = "[initial(icon_state)][amount - 3]"
+/obj/item/stack/medical/bruise_pack/update_icon()
+	icon_state = "[initial(icon_state)][amount]"
 	..()
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user)
