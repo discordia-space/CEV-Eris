@@ -318,6 +318,9 @@
 
 	// Installing basic components.
 	if(istype(I, /obj/item/mech_component/manipulators))
+		if(istype(body), /obj/item/mech_component/forklift)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support manipulators!"))
+			return
 		if(arms)
 			to_chat(user, SPAN_WARNING("\The [src] already has manipulators installed."))
 			return
@@ -336,6 +339,9 @@
 				return
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
+		if(istype(body), /obj/item/mech_component/forklift)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
+			return
 		if(head)
 			to_chat(user, SPAN_WARNING("\The [src] already has a sensor array installed."))
 			return
@@ -369,6 +375,13 @@
 		if(!user.unEquip(I))
 			return
 	I.forceMove(src)
+	if(istype(MC, /obj/item/mech_component/chassis/forklift))
+		if(arms)
+			arms.forcemove(get_turf(src))
+			arms = null
+		if(head)
+			head.forceMove(get_turf(src))
+			head = null
 	visible_message(SPAN_NOTICE("\The [user] installs \the [I] into \the [src]."))
 	playsound(user.loc, 'sound/machines/click.ogg', 50, 1)
 	return 1

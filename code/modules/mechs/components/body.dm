@@ -287,6 +287,9 @@
 /obj/item/mech_component/chassis/forklift
 	name = "forklift chassis"
 	desc = "Has an integrated clamp for the industrial relocation of resources. Are you ready to lift?"
+	icon_state = "seat-cockpit"
+	has_hardpoints = list(HARDPOINT_FRONT)
+	exosuit_desc_string = "a forklifting chassis"
 	pilot_coverage = 30
 	max_damage = 100
 	mech_health = 200

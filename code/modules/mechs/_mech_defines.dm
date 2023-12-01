@@ -7,6 +7,7 @@
 #define MECH_HUD_ICON						'icons/mechs/mech_hud.dmi'
 
 #define HARDPOINT_BACK						"back"
+#define HARDPOINT_FRONT						"front"
 #define HARDPOINT_LEFT_HAND					"left hand"
 #define HARDPOINT_RIGHT_HAND				"right hand"
 #define HARDPOINT_LEFT_SHOULDER				"left shoulder"

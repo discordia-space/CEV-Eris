@@ -736,7 +736,7 @@
 /obj/item/tool/mech_kit
 	name = "mech toolkit"
 	desc = "A robust selection of mech-sized tools."
-	icon_state = "engimplant="
+	icon_state = "engimplant"
 	force = WEAPON_FORCE_DANGEROUS
 	worksound = WORKSOUND_DRIVER_TOOL
 	flags = CONDUCT
@@ -755,6 +755,11 @@
 	workspeed = 1
 	max_upgrades = 1
 	spawn_blacklisted = TRUE
+
+/obj/item/mech_equipment/forklifting_system
+	name = "forklifting bars"
+	desc = "a set of forklifts bars. Can be used to elevate crates above by a level.. or impale someone at high enough speeds..."
+	icon_state = "forklift"
 
 
 

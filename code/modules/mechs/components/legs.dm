@@ -106,3 +106,16 @@
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)
 	can_climb = FALSE
+
+/obj/item/mech_component/propulsion/wheels
+	name = "wheels"
+	exosuit_desc_string = "wheels"
+	desc = "A pair of wheels for any mobile vehicle"
+	icon_state = "wheels"
+	move_delay = 2
+	turn_delay = 4
+	max_damage = 70
+	stomp_damage = 15
+	power_use = 10
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 16)
+	can_climb = FALSE
