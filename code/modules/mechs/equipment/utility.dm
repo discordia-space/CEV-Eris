@@ -897,7 +897,7 @@
 						currentlyLifting.layer = MECH_ABOVE_LAYER
 					if(lastDir == SOUTH)
 						currentlyLifting.pixel_x = 8
-						currentlyLifting.pixel_y = 6
+						currentlyLifting.pixel_y = 0
 						currentlyLifting.layer = MECH_ABOVE_LAYER
 					if(lastDir == WEST)
 						currentlyLifting.pixel_x = -15
@@ -914,7 +914,17 @@
 		return
 	if(platform)
 		if(!lifted)
+			/// We are checking the turf above first
 			var/turf/aboveSpace = GetAbove(get_turf(owner))
+			if(!aboveSpace)
+				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
+				return
+			if(!istype(aboveSpace, /turf/simulated/open) || locate(/obj/structure/catwalk) in aboveSpace)
+				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
+				return
+			/// Then the one infront + above
+			aboveSpace = get_step(owner, owner.dir)
+			aboveSpace = GetAbove(aboveSpace)
 			if(!aboveSpace)
 				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
@@ -924,8 +934,10 @@
 			to_chat(user, SPAN_NOTICE("You start elevating \the [src] platform."))
 			if(do_after(user, 2 SECONDS, owner, TRUE))
 				to_chat(user, SPAN_NOTICE("You elevate \the [src]'s platform"))
+				platform.dir = owner.dir
 				platform.forceMove(aboveSpace)
 				ejectLifting(aboveSpace)
+				lifted = TRUE
 		else
 			to_chat(user, SPAN_NOTICE("You start retracting the forklift!"))
 			var/turf/targ = get_turf(platform)
@@ -933,6 +945,7 @@
 				if(!platform)
 					return
 				to_chat(user, SPAN_NOTICE("You retract the forklift!"))
+				lifted = FALSE
 				var/atom/whoWeBringingBack
 				/// Pick up the first mob , else just get the last atom returned
 				for(var/atom/A in targ)
@@ -947,7 +960,7 @@
 /obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
 	if(.)
-		if(currentlyLifting && isturf(target))
+		if(currentlyLifting && isturf(target) && inrange)
 			for(var/atom/A in target)
 				if(A.density)
 					to_chat(user, SPAN_NOTICE("[A] is taking up space, preventing you from dropping \the [currentlyLifting] here!"))

@@ -197,11 +197,17 @@
 
 /mob/living/exosuit/proc/moveBlocked()
 	for(var/hardpoint in hardpoints)
-		var/obj/item/mech_equipment/shield_generator/ballistic/blocker = hardpoints[hardpoint]
-		if(!istype(blocker))
-			continue
-		if(blocker.on)
-			return "\The [blocker] is deployed! Immobilizing you. "
+		var/obj/item/mech_equipment/equip = hardpoints[hardpoint]
+		if(equip)
+			switch(equip.type)
+				if(/obj/item/mech_equipment/shield_generator/ballistic)
+					var/obj/item/mech_equipment/shield_generator/ballistic/blocker = equip
+					if(blocker.on)
+						return "\The [blocker] is deployed! Immobilizing you. "
+				if(/obj/item/mech_equipment/forklifting_system)
+					var/obj/item/mech_equipment/forklifting_system/fork = equip
+					if(fork.lifted)
+						return "\The [fork] is lifted, locking you in place!"
 	return ""
 
 

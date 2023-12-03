@@ -226,7 +226,7 @@
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		if(ispath(body) || !hatch_closed)
+		if(ispath(body) || !hatch_closed || body.pilot_coverage < 100)
 			var/turf/current_loc = get_turf(src)
 			return current_loc.return_air()
 		if(body.pilot_coverage >= 100 && hatch_closed)
