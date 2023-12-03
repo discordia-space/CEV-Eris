@@ -49,28 +49,23 @@
 	if(A.loc != src && !(get_dir(src, A) & dir))
 		return
 
-	if(!get_cell()?.checked_use(arms.power_use * CELLRATE))
-		to_chat(user, power == MECH_POWER_ON ? SPAN_WARNING("Error: Power levels insufficient.") :  SPAN_WARNING("\The [src] is powered off."))
-		return
-
-	if(!arms)
-		to_chat(user, SPAN_WARNING("\The [src] has no manipulators!"))
-		setClickCooldown(3)
-		return
-
-	if(!arms.motivator || !arms.motivator.is_functional())
-		to_chat(user, SPAN_WARNING("Your motivators are damaged! You can't use your manipulators!"))
-		setClickCooldown(15)
-		return
+	if(!selected_system)
+		if(arms)
+			if(!get_cell()?.checked_use(arms.power_use * CELLRATE))
+				to_chat(user, power == MECH_POWER_ON ? SPAN_WARNING("Error: Power levels insufficient.") :  SPAN_WARNING("\The [src] is powered off."))
+				return
+			if(!arms.motivator || !arms.motivator.is_functional())
+				to_chat(user, SPAN_WARNING("Your motivators are damaged! You can't use your manipulators!"))
+				setClickCooldown(15)
+				return
+		else
+			to_chat(user, SPAN_WARNING("\The [src] has no manipulators!"))
+			setClickCooldown(3)
+			return
 
 	var/obj/item/cell/cell = get_cell()
 	if(!cell)
 		to_chat(user, SPAN_WARNING("Error: Power cell missing."))
-		setClickCooldown(3)
-		return
-
-	if(!cell.checked_use(arms.power_use * CELLRATE))
-		to_chat(user, SPAN_WARNING("Error: Power levels insufficient."))
 		setClickCooldown(3)
 		return
 
@@ -128,22 +123,23 @@
 	if(A == src)
 		setClickCooldown(5)
 		return attack_self(user)
-	else if(adj)
+	else if(adj && arms)
 		setClickCooldown(arms_action_delay())
 		playsound(src.loc, arms.punch_sound, 45 + 25 * (arms.melee_damage / 50), -1)
-		if(arms)
-			if(user.a_intent == I_HURT)
-				return A.attack_generic(src, arms.melee_damage, "attacked")
-			else
-				if(istype(A, /obj/machinery/door/airlock))
-					var/obj/machinery/door/airlock/door = A
-					if(door.stat & NOPOWER && !door.locked && arms.can_force_doors)
-						to_chat(user, SPAN_NOTICE("You start forcing \the [door] open!"))
-						visible_message(SPAN_WARNING("\The [src] starts forcing \the [door] open!"))
-						playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
-						if(do_after(user, 3 SECONDS, A, FALSE))
-							door.open(TRUE)
-				return A.attackby(arms, user, params)
+		if(user.a_intent == I_HURT)
+			return A.attack_generic(src, arms.melee_damage, "attacked")
+		else if(user.a_intent == I_DISARM && arms.can_force_doors)
+			if(istype(A, /obj/machinery/door/airlock))
+				var/obj/machinery/door/airlock/door = A
+				if(door.stat & NOPOWER && !door.locked)
+					to_chat(user, SPAN_NOTICE("You start forcing \the [door] open!"))
+					visible_message(SPAN_WARNING("\The [src] starts forcing \the [door] open!"))
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
+					if(do_after(user, 3 SECONDS, A, FALSE))
+						door.open(TRUE)
+			return
+		else
+			return A.attackby(arms, user, params)
 
 /// Checks the mech for places to store the ore.
 /mob/living/exosuit/proc/getOreCarrier()

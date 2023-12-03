@@ -294,3 +294,15 @@
 	max_damage = 100
 	mech_health = 200
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+
+
+/obj/item/mech_component/chassis/forklift/Initialize()
+	pilot_positions = list(
+		list(
+			"[NORTH]" = list("x" = 9,  "y" = 5),
+			"[SOUTH]" = list("x" = 9,  "y" = 5),
+			"[EAST]"  = list("x" = 6,  "y" = 5),
+			"[WEST]"  = list("x" = 8,  "y" = 5)
+		)
+	)
+	. = ..()

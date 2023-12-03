@@ -360,7 +360,9 @@
 	update_icon()
 
 /obj/screen/movable/exosuit/toggle/camera/update_icon()
-	toggled = owner.head.active_sensors
+	if(owner.head)
+		toggled = owner.head.active_sensors
+	else toggled = FALSE
 	. = ..()
 
 /obj/screen/movable/exosuit/needle

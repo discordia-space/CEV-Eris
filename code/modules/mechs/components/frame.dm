@@ -98,7 +98,7 @@
 	if(is_wired)
 		usable_qualities += QUALITY_WIRE_CUTTING
 
-	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && head && body)
+	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && legs && body)
 		usable_qualities += QUALITY_SCREW_DRIVING
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
@@ -251,7 +251,7 @@
 			if(!I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_ZERO))
 				return
 
-			if(is_reinforced < FRAME_REINFORCED_WELDED || is_wired < FRAME_WIRED_ADJUSTED || !(arms && legs && head && body))
+			if(is_reinforced < FRAME_REINFORCED_WELDED || is_wired < FRAME_WIRED_ADJUSTED || !(legs && body))
 				return
 
 			// We're all done. Finalize the exosuit and pass the frame to the new system.

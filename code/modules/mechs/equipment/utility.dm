@@ -794,12 +794,15 @@
 /// Fancy way to move someone up a z-level if you think about it..
 /obj/item/mech_equipment/forklifting_system
 	name = "forklifting bars"
-	desc = "a set of forklifts bars. Can be used to elevate crates above by a level.. or impale someone at high enough speeds..."
+	desc = "a set of forklifts bars. Can be used to elevate crates above by a level.. or people!"
 	icon_state = "forklift"
 	restricted_hardpoints = list(HARDPOINT_FRONT)
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	equipment_flags = EQUIPFLAG_UPDTMOVE
 	var/atom/movable/currentlyLifting = null
 	var/obj/structure/forklift_platform/platform = null
+	var/lastZ = null
+	var/lastDir = null
 	var/lifted = FALSE
 
 /obj/item/mech_equipment/forklifting_system/Initialize()
@@ -807,6 +810,35 @@
 	platform = new(NULLSPACE)
 	platform.master = src
 	platform.forceMove(src)
+
+/obj/item/mech_equipment/forklifting_system/proc/ejectLifting(atom/target)
+	currentlyLifting.forceMove(target)
+	currentlyLifting.transform = null
+	currentlyLifting.pixel_x = initial(currentlyLifting.pixel_x)
+	currentlyLifting.pixel_y = initial(currentlyLifting.pixel_y)
+	currentlyLifting.mouse_opacity = initial(currentlyLifting.mouse_opacity)
+	owner.vis_contents.Remove(currentlyLifting)
+	var/mob/targ = currentlyLifting
+	targ.update_icon()
+	if(ismob(targ) && targ.client)
+		targ.client.perspective = MOB_PERSPECTIVE
+		targ.client.eye = src
+	currentlyLifting = null
+
+/obj/item/mech_equipment/forklifting_system/proc/startLifting(atom/movable/target)
+	currentlyLifting = target
+	// No clicking this whilst lifted
+	currentlyLifting.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	currentlyLifting.forceMove(src)
+	var/mob/targ = currentlyLifting
+	if(ismob(targ) && targ.client)
+		targ.client.perspective = EYE_PERSPECTIVE
+		targ.client.eye = src
+
+/obj/item/mech_equipment/forklifting_system/uninstalled()
+	. = ..()
+	ejectLifting(get_turf(owner))
+
 
 /obj/structure/forklift_platform
 	layer = TURF_LAYER + 0.5
@@ -834,44 +866,107 @@
 			return TRUE
 	return FALSE
 
+
 /obj/item/mech_equipment/forklifting_system/update_icon()
 	. = ..()
 	if(owner)
+		if(!platform)
+			icon_state = "forklift_platformless"
+			return
 		if(lifted)
 			icon_state = "forklift_lifted"
 		else
 			icon_state = "forklift"
-			if(currentlyLifting && !locate(currentlyLifting) in owner.vis_contents)
-				var/matrix/the_matrix = new()
-				the_matrix.Scale(0.6, 0.6)
-				currentlyLifting.transform = the_matrix
-				owner.vis_contents.Add(currentlyLifting)
-
+			if(currentlyLifting)
+				if(!locate(currentlyLifting) in owner.vis_contents)
+					var/matrix/the_matrix = new()
+					the_matrix.Scale(0.9, 0.9)
+					currentlyLifting.transform = the_matrix
+					owner.vis_contents.Add(currentlyLifting)
+				if(owner.dir != lastDir)
+					lastDir = owner.dir
+					currentlyLifting.dir = owner.dir
+					if(lastDir == NORTH)
+						currentlyLifting.pixel_x = 8
+						currentlyLifting.pixel_y = 10
+						currentlyLifting.layer = MECH_UNDER_LAYER
+					if(lastDir == EAST)
+						currentlyLifting.pixel_x = 33
+						currentlyLifting.pixel_y = 8
+						currentlyLifting.layer = MECH_ABOVE_LAYER
+					if(lastDir == SOUTH)
+						currentlyLifting.pixel_x = 8
+						currentlyLifting.pixel_y = 6
+						currentlyLifting.layer = MECH_ABOVE_LAYER
+					if(lastDir == WEST)
+						currentlyLifting.pixel_x = -15
+						currentlyLifting.pixel_y = 8
+						currentlyLifting.layer = MECH_ABOVE_LAYER
+				if(owner.z != lastZ)
+					lastZ = owner.z
+					currentlyLifting.z = owner.z
+					currentlyLifting.update_plane()
 
 /obj/item/mech_equipment/forklifting_system/attack_self(mob/user)
 	. = ..()
-
+	if(!owner)
+		return
+	if(platform)
+		if(!lifted)
+			var/turf/aboveSpace = GetAbove(get_turf(owner))
+			if(!aboveSpace)
+				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
+				return
+			if(!istype(aboveSpace, /turf/simulated/open) || locate(/obj/structure/catwalk) in aboveSpace)
+				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
+				return
+			to_chat(user, SPAN_NOTICE("You start elevating \the [src] platform."))
+			if(do_after(user, 2 SECONDS, owner, TRUE))
+				to_chat(user, SPAN_NOTICE("You elevate \the [src]'s platform"))
+				platform.forcemove(aboveSpace)
+				ejectLifting(aboveSpace)
+		else
+			to_chat(user, SPAN_NOTICE("You start retracting the forklift!"))
+			var/turf/targ = get_turf(platform)
+			if(do_after(user, 2 SECONDS, owner, TRUE))
+				if(!platform)
+					return
+				to_chat(user, SPAN_NOTICE("You retract the forklift!"))
+				var/atom/whoWeBringingBack
+				/// Pick up the first mob , else just get the last atom returned
+				for(var/atom/A in targ)
+					if(A == platform)
+						continue
+					if(ismob(A))
+						whoWeBringingBack = A
+						break
+					whoWeBringingBack = A
+				startLifting(whoWeBringingBack)
 
 /obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
-	if(. && inrange && istype(target))
+	if(.)
+		if(currentlyLifting && isturf(target))
+			for(var/atom/A in target)
+				if(A.density)
+					to_chat(user, SPAN_NOTICE("[A] is taking up space, preventing you from dropping \the [currentlyLifting] here!"))
+					return
+			ejectLifting(target)
+			return
 		if(currentlyLifting)
-			currentlyLifting.forceMove(get_turf(target))
-			to_chat(user, SPAN_NOTICE("You drop \the [currentlyLifting]."))
-			var/mob/targ = target
-			if(ismob(targ) && targ.client)
-				targ.client.perspective = MOB_PERSPECTIVE
-				targ.client.eye = target
-		else if(ismovable(target))
+			to_chat(user, SPAN_NOTICE("You are already lifting something!"))
+			return
+		if(!platform)
+			to_chat(user, SPAN_NOTICE("There is no forklift platform to lift on! You should get it replaced"))
+			return
+		if(lifted)
+			to_chat(user, SPAN_NOTICE("You can't lift someone whilst the forklift is lifted!"))
+			return
+		if(inrange && istype(target) )
 			to_chat(user, SPAN_NOTICE("You start lifting \the [target] onto the hooks."))
 			if(do_after(user, 2 SECONDS, target))
-				currentlyLifting = target
-				target.forceMove(src)
-				var/mob/targ = target
-				if(ismob(targ) && targ.client)
-					targ.client.perspective = EYE_PERSPECTIVE
-					targ.client.eye = src
-		update_icon()
+				startLifting(target)
+			update_icon()
 
 
 

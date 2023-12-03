@@ -18,9 +18,9 @@
 	var/powered = FALSE
 	var/obj/item/cell/mech_cell = get_cell()
 	for(var/hardpoint in hardpoints)
-		if(QDELETED(hardpoints[hardpoint]))
-			continue
 		var/obj/item/mech_equipment/equip = hardpoints[hardpoint]
+		if(QDELETED(equip))
+			continue
 		if(!(equip.equipment_flags & EQUIPFLAG_PRETICK))
 			continue
 		equip.pretick()
