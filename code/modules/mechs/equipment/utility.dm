@@ -834,6 +834,7 @@
 	if(ismob(targ) && targ.client)
 		targ.client.perspective = EYE_PERSPECTIVE
 		targ.client.eye = src
+		to_chat(targ, SPAN_DANGER("You can resist out of the forklift to instantly get out!"))
 
 /obj/item/mech_equipment/forklifting_system/uninstalled()
 	. = ..()
@@ -881,9 +882,6 @@
 			icon_state = "forklift"
 			if(currentlyLifting)
 				if(!locate(currentlyLifting) in owner.vis_contents)
-					var/matrix/the_matrix = new()
-					the_matrix.Scale(0.9, 0.9)
-					currentlyLifting.transform = the_matrix
 					owner.vis_contents.Add(currentlyLifting)
 				if(owner.dir != lastDir)
 					lastDir = owner.dir
@@ -961,6 +959,8 @@
 					whoWeBringingBack = A
 				if(whoWeBringingBack)
 					startLifting(whoWeBringingBack)
+	else
+		to_chat(user, SPAN_NOTICE("You can't lift without a platform!"))
 
 /obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
