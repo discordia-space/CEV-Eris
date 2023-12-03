@@ -854,6 +854,7 @@
 /obj/structure/forklift_platform/Destroy()
 	if(master)
 		master.platform = null
+		master.update_icon()
 		master = null
 	. = ..()
 
@@ -923,7 +924,7 @@
 			to_chat(user, SPAN_NOTICE("You start elevating \the [src] platform."))
 			if(do_after(user, 2 SECONDS, owner, TRUE))
 				to_chat(user, SPAN_NOTICE("You elevate \the [src]'s platform"))
-				platform.forcemove(aboveSpace)
+				platform.forceMove(aboveSpace)
 				ejectLifting(aboveSpace)
 		else
 			to_chat(user, SPAN_NOTICE("You start retracting the forklift!"))
