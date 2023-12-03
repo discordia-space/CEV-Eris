@@ -221,7 +221,14 @@
 
 	to_chat(user, "It menaces with reinforcements of [material].")
 	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
-	to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition"))
+	to_chat(user, SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button"))
+	to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character"))
+	if(body && body.cell_charge_rate)
+		to_chat(user, SPAN_NOTICE("This mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate]"))
+	if(locate(/obj/item/mech_equipment/mounted_system/ballistic in contents))
+		to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition"))
+	if(locate(/obj/item/mech_equipment/auto_mender))
+		to_chat(user, SPAN_NOTICE("You can refill its auto mender by attacking the mech with trauma kits"))
 
 
 /mob/living/exosuit/return_air()
