@@ -855,6 +855,7 @@
 	if(master)
 		master.platform = null
 		master.update_icon()
+		master.owner.update_icon()
 		master = null
 	. = ..()
 
@@ -936,6 +937,7 @@
 				to_chat(user, SPAN_NOTICE("You elevate \the [src]'s platform"))
 				platform.dir = owner.dir
 				platform.forceMove(aboveSpace)
+				owner.update_icon()
 				ejectLifting(aboveSpace)
 				lifted = TRUE
 		else
@@ -946,6 +948,8 @@
 					return
 				to_chat(user, SPAN_NOTICE("You retract the forklift!"))
 				lifted = FALSE
+				platform.forceMove(src)
+				owner.update_icon()
 				var/atom/whoWeBringingBack
 				/// Pick up the first mob , else just get the last atom returned
 				for(var/atom/A in targ)
@@ -955,7 +959,8 @@
 						whoWeBringingBack = A
 						break
 					whoWeBringingBack = A
-				startLifting(whoWeBringingBack)
+				if(whoWeBringingBack)
+					startLifting(whoWeBringingBack)
 
 /obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
