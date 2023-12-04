@@ -805,7 +805,7 @@
 /// Fancy way to move someone up a z-level if you think about it..
 /obj/item/mech_equipment/forklifting_system
 	name = "forklifting bars"
-	desc = "a set of forklifts bars. Can be used to elevate crates above by a level.. or people!"
+	desc = "a set of forklifts bars. Can be used to elevate crates above by a level.. or people! You can forklift a z-level up by attacking this with itself."
 	icon_state = "forklift"
 	restricted_hardpoints = list(HARDPOINT_FRONT)
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)

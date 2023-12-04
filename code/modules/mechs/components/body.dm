@@ -286,7 +286,7 @@
 
 /obj/item/mech_component/chassis/forklift
 	name = "forklift chassis"
-	desc = "Has an integrated clamp for the industrial relocation of resources. Are you ready to lift?"
+	desc = "Has an integrated forklift clamp for the industrial relocation of resources. Are you ready to lift?"
 	icon_state = "seat-cockpit"
 	has_hardpoints = list(HARDPOINT_FRONT)
 	exosuit_desc_string = "a forklifting chassis"
@@ -303,6 +303,12 @@
 			"[SOUTH]" = list("x" = 9,  "y" = 5),
 			"[EAST]"  = list("x" = 6,  "y" = 5),
 			"[WEST]"  = list("x" = 8,  "y" = 5)
+		),
+		list(
+			"[NORTH]" = list("x" = 9,  "y" = 3),
+			"[SOUTH]" = list("x" = 9,  "y" = 8),
+			"[EAST]"  = list("x" = 9,  "y" = 5),
+			"[WEST]"  = list("x" = 6,  "y" = 5)
 		)
 	)
 	. = ..()

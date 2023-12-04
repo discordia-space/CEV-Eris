@@ -222,7 +222,8 @@
 	to_chat(user, "It menaces with reinforcements of [material].")
 	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
 	to_chat(user, SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button."))
-	to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character."))
+	if(body.storage_compartment)
+		to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character."))
 	if(body && body.cell_charge_rate)
 		to_chat(user, SPAN_NOTICE("This mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate]."))
 	if(arms && arms.can_force_doors)
@@ -235,6 +236,8 @@
 		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's forklifting system by using grab intent."))
 	if(locate(/obj/item/mech_equipment/towing_hook) in contents)
 		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's towing system by using grab intent."))
+	if(locate(/obj/item/mech_equipment/power_generator/fueled) in contents)
+		to_chat(user, SPAN_NOTICE("You can refill the mounted power generators by attacking \the [src] with the fuel they use."))
 
 
 /mob/living/exosuit/return_air()
