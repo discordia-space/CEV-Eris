@@ -350,6 +350,10 @@
 		//Empty gripper attacks will call attack_AI
 		return FALSE
 
+	/// So mechs dont open these when attacking.
+	if(istype(I, /obj/item/mech_equipment/forklifting_system))
+		return FALSE
+
 	var/list/usable_qualities = list(QUALITY_WELDING)
 	if(opened)
 		usable_qualities += QUALITY_SAWING

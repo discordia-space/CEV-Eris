@@ -346,7 +346,7 @@
 
 	/// Welding generator handling
 	/// Double negation to turn into 0/1 format since if its more than 1 it doesn't count as true.
-	if(!!is_drainable(I))
+	if(I.is_drainable())
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its internal generator!"))
 			return

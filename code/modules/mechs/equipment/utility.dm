@@ -506,7 +506,7 @@
 /obj/item/mech_equipment/power_generator/fueled
 	name = "fueled debug power generator"
 	// YES WE NEED VISCONTENTS FOR THE ANIMATIONS
-	equipment_flags = EQUIPFLAG_UPDTMOVE
+	equipment_flags = EQUIPFLAG_UPDTMOVE | EQUIPFLAG_PRETICK
 	var/fuel_amount = 0
 	var/fuel_max = 1000
 	var/fuel_usage_per_tick = 5
@@ -517,6 +517,7 @@
 /obj/item/mech_equipment/power_generator/fueled/Initialize()
 	. = ..()
 	visual_bluff = new(src)
+	visual_bluff.forceMove(src)
 	visual_bluff.icon = MECH_WEAPON_OVERLAYS_ICON
 	visual_bluff.layer = MECH_ABOVE_LAYER
 
@@ -545,17 +546,18 @@
 /obj/item/mech_equipment/power_generator/fueled/installed(mob/living/exosuit/_owner, hardpoint)
 	. = ..()
 	_owner.tickers.Add(src)
+	_owner.vis_contents.Add(visual_bluff)
 
 /obj/item/mech_equipment/power_generator/fueled/uninstalled()
 	. = ..()
 	owner.tickers.Remove(src)
+	owner.vis_contents.Remove(visual_bluff)
 
-/obj/item/mech_equipment/power_generator/update_icon()
+/obj/item/mech_equipment/power_generator/fueled/update_icon()
 	..()
 	icon_state = "[initial(icon_state)]"
-	visual_bluff.icon_state = "[initial(icon_state)]_[on ? "on" : ""]_[get_hardpoint()]"
-	if(owner)
-		owner.update_icon()
+	visual_bluff.icon_state = "[initial(icon_state)]_[mode ? "on" : ""]_[get_hardpoint()]"
+	visual_bluff.dir = owner.dir
 
 /obj/item/mech_equipment/power_generator/fueled/attack_self(mob/user)
 	. = ..()
@@ -617,6 +619,7 @@
 	icon_state = "mech_generator_welding"
 	generation_rate = 100
 	fuel_usage_per_tick = 1
+	reagent_flags = DRAINABLE | REFILLABLE
 	/// can generate 20000 power
 	fuel_max = 200
 	/// The "explosion" chamber , used for when the fuel is mixed with something else
@@ -628,15 +631,17 @@
 	create_reagents(200)
 	chamberReagent = new(1, src)
 
+/* Not needed , reagents subsystem handles this for us in afterattacks on reagent_containers
 /obj/item/mech_equipment/power_generator/fueled/welding/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	// double negation to turn this into 0 or 1 format. Since if its more than 1 it doesn't count as true..
-	if(!!is_drainable(I))
+	if(!I.is_drainable())
 		to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal fuel storage."))
 		I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
 	else if(I.reagents && I.reagent_flags & REFILLABLE)
 		to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
 		reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
+*/
 
 /obj/item/mech_equipment/power_generator/fueled/welding/pretick()
 	// dont run if we aren't on
@@ -658,9 +663,9 @@
 				return
 		// min needed for combustion
 		if(fuel > 0.25)
-			var/amountReturned = internal_cell?.give(generation_rate * fuel)
+			var/amountUsed = internal_cell?.give(generation_rate * fuel)
 			// refund if none of it gets turned into power for qol reasons (its never exact returnal due to float errors)
-			if(amountReturned > generation_rate - generation_rate * 0.01)
+			if(amountUsed < generation_rate - generation_rate * 0.01)
 				chamberReagent.trans_to_holder(reagents, 1, 1, FALSE)
 			if(fuel > fuel_usage_per_tick)
 				chamberReagent.trans_id_to(reagents, "fuel", chamberReagent.total_volume - fuel_usage_per_tick, TRUE)
@@ -827,6 +832,7 @@
 	var/mob/targ = currentlyLifting
 	targ.update_icon()
 	targ.update_plane()
+	targ.layer = initial(targ.layer)
 	if(ismob(targ) && targ.client)
 		targ.client.perspective = MOB_PERSPECTIVE
 		targ.client.eye = src
@@ -847,7 +853,8 @@
 
 /obj/item/mech_equipment/forklifting_system/uninstalled()
 	. = ..()
-	ejectLifting(get_turf(owner))
+	if(currentlyLifting)
+		ejectLifting(get_turf(owner))
 
 
 /obj/structure/forklift_platform
@@ -945,7 +952,8 @@
 				platform.dir = owner.dir
 				platform.forceMove(aboveSpace)
 				owner.update_icon()
-				ejectLifting(aboveSpace)
+				if(currentlyLifting)
+					ejectLifting(aboveSpace)
 				lifted = TRUE
 		else
 			to_chat(user, SPAN_NOTICE("You start retracting the forklift!"))
