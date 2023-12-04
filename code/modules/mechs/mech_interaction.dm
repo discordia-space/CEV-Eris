@@ -131,7 +131,7 @@
 		else if(user.a_intent == I_DISARM && arms.can_force_doors)
 			if(istype(A, /obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/door = A
-				if(door.stat & NOPOWER && !door.locked)
+				if(!door.locked)
 					to_chat(user, SPAN_NOTICE("You start forcing \the [door] open!"))
 					visible_message(SPAN_WARNING("\The [src] starts forcing \the [door] open!"))
 					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
@@ -277,22 +277,6 @@
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
-	if(user.a_intent == I_GRAB)
-		for(var/obj/item/mech_equipment/towing_hook/towing in contents)
-			if(towing.currentlyTowing)
-				to_chat(user, SPAN_NOTICE("You start removing \the [towing.currentlyTowing] from \the [src]'s towing hook."))
-				if(do_after(user, 3 SECONDS, src, TRUE))
-					to_chat(user, SPAN_NOTICE("You remove \the [towing.currentlyTowing] from \the [src]'s towing hook."))
-					towing.UnregisterSignal(towing.currentlyTowing,list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
-					towing.currentlyTowing = null
-		for(var/obj/item/mech_equipment/forklifting_system/fork in contents)
-			if(fork.currentlyLifting)
-				to_chat(user, SPAN_NOTICE("You start removing \the [fork.currentlyLifting] from \the [src]'s forklift."))
-				if(do_after(user, 3 SECONDS ,src , TRUE))
-					to_chat(user, SPAN_NOTICE("You remove \the [fork.currentlyLifting] from \the [src]'s forklift!"))
-					fork.ejectLifting(get_turf(user))
-
-
 	/// Gun reloading handling
 	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
 		if(!maintenance_protocols)
@@ -361,7 +345,8 @@
 		return
 
 	/// Welding generator handling
-	if(is_drainable(I))
+	/// Double negation to turn into 0/1 format since if its more than 1 it doesn't count as true.
+	if(!!is_drainable(I))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its internal generator!"))
 			return
@@ -596,6 +581,23 @@
 
 /mob/living/exosuit/attack_hand(mob/living/user)
 	// Drag the pilot out if possible.
+	if(user.a_intent == I_GRAB)
+		for(var/obj/item/mech_equipment/towing_hook/towing in contents)
+			if(towing.currentlyTowing)
+				to_chat(user, SPAN_NOTICE("You start removing \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+				if(do_after(user, 3 SECONDS, src, TRUE))
+					to_chat(user, SPAN_NOTICE("You remove \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+					towing.UnregisterSignal(towing.currentlyTowing,list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+					towing.currentlyTowing = null
+					return
+		for(var/obj/item/mech_equipment/forklifting_system/fork in contents)
+			if(fork.currentlyLifting)
+				to_chat(user, SPAN_NOTICE("You start removing \the [fork.currentlyLifting] from \the [src]'s forklift."))
+				if(do_after(user, 3 SECONDS ,src , TRUE))
+					to_chat(user, SPAN_NOTICE("You remove \the [fork.currentlyLifting] from \the [src]'s forklift!"))
+					fork.ejectLifting(get_turf(user))
+					return
+
 	if(user.a_intent == I_HURT)
 		if(!LAZYLEN(pilots))
 			to_chat(user, SPAN_WARNING("There is nobody inside \the [src]."))

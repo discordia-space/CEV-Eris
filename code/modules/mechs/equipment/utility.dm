@@ -505,11 +505,20 @@
 
 /obj/item/mech_equipment/power_generator/fueled
 	name = "fueled debug power generator"
+	// YES WE NEED VISCONTENTS FOR THE ANIMATIONS
+	equipment_flags = EQUIPFLAG_UPDTMOVE
 	var/fuel_amount = 0
 	var/fuel_max = 1000
 	var/fuel_usage_per_tick = 5
 	var/mode = 0
 	var/datum/repeating_sound/sound_loop = null
+	var/obj/visual_bluff = null
+
+/obj/item/mech_equipment/power_generator/fueled/Initialize()
+	. = ..()
+	visual_bluff = new(src)
+	visual_bluff.icon = MECH_WEAPON_OVERLAYS_ICON
+	visual_bluff.layer = MECH_ABOVE_LAYER
 
 /obj/item/mech_equipment/power_generator/fueled/pretick()
 	// for when we arențt on
@@ -541,6 +550,13 @@
 	. = ..()
 	owner.tickers.Remove(src)
 
+/obj/item/mech_equipment/power_generator/update_icon()
+	..()
+	icon_state = "[initial(icon_state)]"
+	visual_bluff.icon_state = "[initial(icon_state)]_[on ? "on" : ""]_[get_hardpoint()]"
+	if(owner)
+		owner.update_icon()
+
 /obj/item/mech_equipment/power_generator/fueled/attack_self(mob/user)
 	. = ..()
 	if(. && owner)
@@ -550,37 +566,26 @@
 				mode = 1
 				fuel_usage_per_tick = initial(fuel_usage_per_tick) * 0.1
 				generation_rate = initial(generation_rate) * 0.2
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 10% Fuel usage, 20% power output"))
-				icon_state = "[initial(icon_state)]_on"
-				if(owner)
-					owner.update_icon()
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to ECO. 10% Fuel usage, 20% power output."))
 			/// Default
 			if(1)
 				mode = 2
 				fuel_usage_per_tick = initial(fuel_usage_per_tick)
 				generation_rate = initial(generation_rate)
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to NORMAL. 100% Fuel usage, 100% power output"))
-				icon_state = "[initial(icon_state)]_on"
-				if(owner)
-					owner.update_icon()
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to NORMAL. 100% Fuel usage, 100% power output."))
 			/// Turbo mode, 2x fuel usage at 1.6x power output
 			if(2)
 				mode = 3
 				fuel_usage_per_tick = initial(fuel_usage_per_tick) * 2
 				generation_rate = initial(generation_rate) * 1.6
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to TURBO. 200% Fuel usage, 160% power output"))
-				icon_state = "[initial(icon_state)]_on"
-				if(owner)
-					owner.update_icon()
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to TURBO. 200% Fuel usage, 160% power output."))
 			/// back to eco.
 			if(3)
 				mode = 0
 				fuel_usage_per_tick = initial(fuel_usage_per_tick)
 				generation_rate = initial(generation_rate)
-				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to OFF. 0% Fuel usage, 0% power output"))
-				icon_state = "[initial(icon_state)]"
-				if(owner)
-					owner.update_icon()
+				to_chat(user, SPAN_NOTICE("You switch \the [src]'s power production mode to OFF. 0% Fuel usage, 0% power output."))
+		update_icon()
 
 
 /obj/item/mech_equipment/power_generator/fueled/get_hardpoint_maptext()
@@ -625,7 +630,8 @@
 
 /obj/item/mech_equipment/power_generator/fueled/welding/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	if(is_drainable(I) && I.reagents.total_volume)
+	// double negation to turn this into 0 or 1 format. Since if its more than 1 it doesn't count as true..
+	if(!!is_drainable(I))
 		to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal fuel storage."))
 		I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
 	else if(I.reagents && I.reagent_flags & REFILLABLE)
@@ -820,10 +826,12 @@
 	owner.vis_contents.Remove(currentlyLifting)
 	var/mob/targ = currentlyLifting
 	targ.update_icon()
+	targ.update_plane()
 	if(ismob(targ) && targ.client)
 		targ.client.perspective = MOB_PERSPECTIVE
 		targ.client.eye = src
 	currentlyLifting = null
+	update_icon()
 
 /obj/item/mech_equipment/forklifting_system/proc/startLifting(atom/movable/target)
 	currentlyLifting = target
@@ -835,6 +843,7 @@
 		targ.client.perspective = EYE_PERSPECTIVE
 		targ.client.eye = src
 		to_chat(targ, SPAN_DANGER("You can resist out of the forklift to instantly get out!"))
+	update_icon()
 
 /obj/item/mech_equipment/forklifting_system/uninstalled()
 	. = ..()
@@ -950,8 +959,10 @@
 				owner.update_icon()
 				var/atom/whoWeBringingBack
 				/// Pick up the first mob , else just get the last atom returned
-				for(var/atom/A in targ)
+				for(var/atom/movable/A in targ)
 					if(A == platform)
+						continue
+					if(A.anchored)
 						continue
 					if(ismob(A))
 						whoWeBringingBack = A
@@ -961,6 +972,10 @@
 					startLifting(whoWeBringingBack)
 	else
 		to_chat(user, SPAN_NOTICE("You can't lift without a platform!"))
+
+/obj/item/mech_equipment/forklifting_system/resolve_attackby(atom/A, mob/user, params)
+	. = ..()
+
 
 /obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
@@ -981,7 +996,10 @@
 		if(lifted)
 			to_chat(user, SPAN_NOTICE("You can't lift someone whilst the forklift is lifted!"))
 			return
-		if(inrange && istype(target) )
+		if(inrange && istype(target))
+			if(target.anchored)
+				to_chat(user, SPAN_NOTICE("\The [target] is anchored!"))
+				return
 			to_chat(user, SPAN_NOTICE("You start lifting \the [target] onto the hooks."))
 			if(do_after(user, 2 SECONDS, target))
 				startLifting(target)

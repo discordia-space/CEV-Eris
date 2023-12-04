@@ -98,7 +98,7 @@
 
 	//get the user's location
 	if(!istype(user.loc, /turf))
-		if(!(ismech(user.loc) && istype(I, /obj/item/mech_equipment)))
+		if(!(ismech(user.loc) && istype(I, /obj/item/tool/mech_kit)))
 			return
 
 
