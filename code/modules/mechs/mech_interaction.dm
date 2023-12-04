@@ -277,6 +277,22 @@
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
+	if(user.a_intent == I_GRAB)
+		for(var/obj/item/mech_equipment/towing_hook/towing in contents)
+			if(towing.currentlyTowing)
+				to_chat(user, SPAN_NOTICE("You start removing \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+				if(do_after(user, 3 SECONDS, src, TRUE))
+					to_chat(user, SPAN_NOTICE("You remove \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+					towing.UnregisterSignal(towing.currentlyTowing,list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+					towing.currentlyTowing = null
+		for(var/obj/item/mech_equipment/forklifting_system/fork in contents)
+			if(fork.currentlyLifting)
+				to_chat(user, SPAN_NOTICE("You start removing \the [fork.currentlyLifting] from \the [src]'s forklift."))
+				if(do_after(user, 3 SECONDS ,src , TRUE))
+					to_chat(user, SPAN_NOTICE("You remove \the [fork.currentlyLifting] from \the [src]'s forklift!"))
+					fork.ejectLifting(get_turf(user))
+
+
 	/// Gun reloading handling
 	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
 		if(!maintenance_protocols)
@@ -346,6 +362,9 @@
 
 	/// Welding generator handling
 	if(is_drainable(I))
+		if(!maintenance_protocols)
+			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its internal generator!"))
+			return
 		var/list/choices = list()
 		for(var/hardpoint in hardpoints)
 			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/power_generator/fueled/welding))

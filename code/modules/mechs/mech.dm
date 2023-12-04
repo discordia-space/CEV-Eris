@@ -225,10 +225,14 @@
 	to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character"))
 	if(body && body.cell_charge_rate)
 		to_chat(user, SPAN_NOTICE("This mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate]"))
-	if(locate(/obj/item/mech_equipment/mounted_system/ballistic in contents))
+	if(locate(/obj/item/mech_equipment/mounted_system/ballistic) in contents)
 		to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition"))
-	if(locate(/obj/item/mech_equipment/auto_mender))
+	if(locate(/obj/item/mech_equipment/auto_mender) in contents)
 		to_chat(user, SPAN_NOTICE("You can refill its auto mender by attacking the mech with trauma kits"))
+	if(locate(/obj/item/mech_equipment/forklifting_system) in contents)
+		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's forklifting system by using grab intent"))
+	if(locate(/obj/item/mech_equipment/towing_hook) in contents)
+		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's towing system by using grab intent"))
 
 
 /mob/living/exosuit/return_air()
