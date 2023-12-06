@@ -333,6 +333,9 @@
 		if(legs)
 			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
 			return
+		if(istype(body, /obj/item/mech_component/chassis/forklift) && !istype(I, /obj/item/mech_component/propulsion/wheels))
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support this type of propulsation, only wheels!"))
+			return
 		if(install_component(I, user))
 			if(legs)
 				user.unEquip(I, loc)
@@ -382,6 +385,9 @@
 		if(head)
 			head.forceMove(get_turf(src))
 			head = null
+		if(legs && !istype(legs, /obj/item/mech_component/propulsion/wheels))
+			legs.forceMove(get_turf(src))
+			legs = null
 	visible_message(SPAN_NOTICE("\The [user] installs \the [I] into \the [src]."))
 	playsound(user.loc, 'sound/machines/click.ogg', 50, 1)
 	return 1
