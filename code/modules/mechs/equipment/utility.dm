@@ -631,17 +631,24 @@
 	create_reagents(200)
 	chamberReagent = new(1, src)
 
-/* Not needed , reagents subsystem handles this for us in afterattacks on reagent_containers
+
 /obj/item/mech_equipment/power_generator/fueled/welding/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	// double negation to turn this into 0 or 1 format. Since if its more than 1 it doesn't count as true..
-	if(!I.is_drainable())
-		to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal fuel storage."))
-		I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
-	else if(I.reagents && I.reagent_flags & REFILLABLE)
-		to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
-		reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
-*/
+	/// Only needed when we attack from outside
+	if(owner)
+		if(I.is_drainable() && I.reagents.total_volume)
+			to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal fuel storage."))
+			I.reagents.trans_to_holder(reagents, 10, 1, FALSE)
+		else if(I.reagents && I.reagent_flags & REFILLABLE && user.a_intent == I_GRAB)
+			to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
+			reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
+		else
+			to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
+	else if(I.is_refillable() && reagents.total_volume && user.a_intent == I_GRAB)
+		return FALSE
+	else
+		to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
+
 
 /obj/item/mech_equipment/power_generator/fueled/welding/pretick()
 	// dont run if we aren't on
@@ -822,6 +829,14 @@
 	platform.master = src
 	platform.forceMove(src)
 
+/obj/item/mech_equipment/forklifting_system/Destroy()
+	if(currentlyLifting)
+		ejectLifting(get_turf(src))
+	if(platform)
+		QDEL_NULL(platform)
+	. = ..()
+
+
 /obj/item/mech_equipment/forklifting_system/proc/ejectLifting(atom/target)
 	currentlyLifting.forceMove(target)
 	currentlyLifting.transform = null
@@ -981,10 +996,6 @@
 	else
 		to_chat(user, SPAN_NOTICE("You can't lift without a platform!"))
 
-/obj/item/mech_equipment/forklifting_system/resolve_attackby(atom/A, mob/user, params)
-	. = ..()
-
-
 /obj/item/mech_equipment/forklifting_system/afterattack(atom/movable/target, mob/living/user, inrange, params)
 	. = ..()
 	if(.)
@@ -1008,6 +1019,11 @@
 			if(target.anchored)
 				to_chat(user, SPAN_NOTICE("\The [target] is anchored!"))
 				return
+			if(ismob(target))
+				var/mob/trg = target
+				if(target.mob_size >= MOB_HUGE)
+					to_chat(user, SPAN_NOTICE("\The [target] is far too big to fit on the forklift clamps!"))
+					return
 			to_chat(user, SPAN_NOTICE("You start lifting \the [target] onto the hooks."))
 			if(do_after(user, 2 SECONDS, target))
 				startLifting(target)

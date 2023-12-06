@@ -162,6 +162,9 @@
 	if(head && head.radio)
 		radio = new(src)
 
+	if(body)
+		opacity = body.opaque_chassis
+
 	if(LAZYLEN(component_descriptions))
 		desc = "[desc] It has been built with [english_list(component_descriptions)]."
 
@@ -238,6 +241,8 @@
 		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's towing system by using grab intent."))
 	if(locate(/obj/item/mech_equipment/power_generator/fueled) in contents)
 		to_chat(user, SPAN_NOTICE("You can refill the mounted power generators by attacking \the [src] with the fuel they use."))
+	if(locate(/obj/item/mech_equipment/power_generator/fueled/welding) in contents)
+		to_chat(user, SPAN_NOTICE("You can drain from the mounted fuel welding fuel generator by attacking with a beaker on GRAB intent"))
 
 
 /mob/living/exosuit/return_air()

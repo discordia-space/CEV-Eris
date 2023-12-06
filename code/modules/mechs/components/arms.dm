@@ -58,6 +58,7 @@
 	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
 	exosuit_desc_string = "industrial lifter arms"
 	icon_state = "loader_arms"
+	can_force_doors = FALSE
 	max_damage = 90
 	power_use = 30
 
@@ -67,6 +68,7 @@
 	desc = "As flexible as they are fragile, these manipulators can follow a pilot's movements in close to real time."
 	icon_state = "light_arms"
 	action_delay = 5
+	can_force_doors = FALSE
 	max_damage = 45
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)

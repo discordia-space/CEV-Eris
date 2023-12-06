@@ -42,6 +42,8 @@
 	var/climb_time = 25
 	/// does this mech chassis have support for charging all cells inside of its storage? if its 0 it doesnt
 	var/cell_charge_rate = 200
+	/// Wheter chassis blocks sight from a outside POV (aka can see behind mech or not ?)
+	var/opaque_chassis = TRUE
 
 /obj/item/mech_component/chassis/New()
 	..()
@@ -293,6 +295,7 @@
 	pilot_coverage = 30
 	max_damage = 100
 	mech_health = 200
+	opaque_chassis = FALSE
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
 
 
@@ -305,10 +308,10 @@
 			"[WEST]"  = list("x" = 8,  "y" = 5)
 		),
 		list(
-			"[NORTH]" = list("x" = 9,  "y" = 3),
-			"[SOUTH]" = list("x" = 9,  "y" = 8),
-			"[EAST]"  = list("x" = 9,  "y" = 5),
-			"[WEST]"  = list("x" = 6,  "y" = 5)
+			"[NORTH]" = list("x" = 9,  "y" = 5),
+			"[SOUTH]" = list("x" = 9,  "y" = 10),
+			"[EAST]"  = list("x" = 0,  "y" = 5),
+			"[WEST]"  = list("x" = 16,  "y" = 5)
 		)
 	)
 	. = ..()
