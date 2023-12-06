@@ -1020,8 +1020,8 @@
 				to_chat(user, SPAN_NOTICE("\The [target] is anchored!"))
 				return
 			if(ismob(target))
-				var/mob/trg = target
-				if(target.mob_size >= MOB_HUGE)
+				var/mob/living/trg = target
+				if(trg.mob_size >= MOB_HUGE)
 					to_chat(user, SPAN_NOTICE("\The [target] is far too big to fit on the forklift clamps!"))
 					return
 			to_chat(user, SPAN_NOTICE("You start lifting \the [target] onto the hooks."))
