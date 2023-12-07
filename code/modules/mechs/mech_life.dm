@@ -47,7 +47,7 @@
 			var/chargeNeeded = min(to_charge.maxcharge - to_charge.charge, body.cell_charge_rate)
 			if(!chargeNeeded)
 				continue
-			chargeUsed += to_charge.give(mech_cell.drain_power(0,0, chargeNeeded))
+			chargeUsed += to_charge.give(mech_cell.drain_power(0,0, chargeNeeded / CELLRATE))
 
 
 	body.update_air(hatch_closed && use_air)

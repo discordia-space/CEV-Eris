@@ -384,8 +384,10 @@
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
 			return TRUE
-
-		var/obj/item/cell/cell = get_cell()
+		if(!body)
+			to_chat(user, SPAN_NOTICE("\The [src] has no slot for a battery to be installed unto!"))
+			return
+		var/obj/item/cell/cell = body.cell
 		if(cell)
 			to_chat(user, SPAN_WARNING("\The [src] already has [cell] installed!"))
 			return TRUE
@@ -523,7 +525,10 @@
 
 
 		if(QUALITY_PRYING)
-			var/obj/item/cell/cell = get_cell()
+			if(!body)
+				to_chat(user,  SPAN_NOTICE("\The [src] has no body to pry out a cell from!"))
+				return
+			var/obj/item/cell/cell = body.cell
 			if(cell)
 				if(!maintenance_protocols)
 					to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))

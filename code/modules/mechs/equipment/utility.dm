@@ -499,10 +499,6 @@
 
 	return ungiven_power
 
-/obj/item/mech_equipment/power_generator/installed(mob/living/exosuit/_owner, hardpoint)
-	. = ..()
-
-
 /obj/item/mech_equipment/power_generator/fueled
 	name = "fueled debug power generator"
 	// YES WE NEED VISCONTENTS FOR THE ANIMATIONS
