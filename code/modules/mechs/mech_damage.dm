@@ -96,7 +96,12 @@
 
 /mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
-		MC = pick(list(arms, legs, body, head))
+		var/list/picklist = list()
+		if(arms) picklist.Add(arms)
+		if(legs) picklist.Add(legs)
+		if(head) picklist.Add(head)
+		if(body) picklist.Add(body)
+		MC = pick(picklist)
 	if(amount < 1)
 		return FALSE
 	MC.take_brute_damage(amount)
