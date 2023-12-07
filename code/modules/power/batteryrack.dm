@@ -1,18 +1,64 @@
+#define OVERKEY_PSU_CAPACITORS "CapacitorOverlays"
+#define OVERKEY_PSU_INPUT "InputOverlays"
+#define OVERKEY_PSU_OUTPUT "OutputOverlays"
 //The one that works safely.
 /obj/machinery/power/smes/batteryrack
 	name = "power cell rack PSU"
 	desc = "A rack of power cells working as a PSU."
+	icon_state = "mpsu_closed"
 	charge = 0 //you dont really want to make a potato PSU which already is overloaded
 	output_attempt = 0
 	input_level = 0
 	output_level = 0
 	input_level_max = 0
 	output_level_max = 0
-	icon_state = "gsmes"
+	icon_state = "mpsu_closed"
 	circuit = /obj/item/electronics/circuitboard/batteryrack
 	var/cells_amount = 0
 	var/capacitors_amount = 0
 	var/global/list/br_cache = null
+
+/obj/machinery/power/smes/batteryrack/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(open_hatch)
+		to_chat(user, SPAN_NOTICE("It currently hosts [cells_amount] cells"))
+		if(distance <= 1)
+			for(var/obj/item/cell/battery in component_parts)
+				to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src]];remove_cell_in_hand=\ref[battery];user=\ref[user]'>\icon[battery] [battery.name] REMOVE <a>"))
+	else
+		to_chat(user, SPAN_NOTICE("The hatch needs to be opened with a screwdiver to interact with the cells inside!"))
+	to_chat(user, SPAN_NOTICE("It currently has [capacitors_amount] capacitor's installed"))
+	to_chat(user, SPAN_NOTICE("It has a LCD screen. Left side is for charging and right side for discharging. Green means operating, Yellow means not discharging/charging or no network."))
+
+/obj/machinery/power/smes/batteryrack/Topic(href, href_list)
+	/// For any UI related fuckery to NanoUI/Tgui
+	. = ..()
+	if(QDELETED(src))
+		return
+	if(open_hatch)
+		if(href_list["remove_cell_in_hand"])
+			var/mob/living/target = locate(href_list["user"])
+			var/obj/item/cell/battery = locate(href_list["remove_cell_in_hand"])
+			if(!target || !battery)
+				return
+			// No funny HREF switching to grab anything in the world... or anything inside the machine.
+			if((!locate(battery) in component_parts) || !istype(battery))
+				return
+			if(target.incapacitated(INCAPACITATION_DEFAULT))
+				return
+			if(!Adjacent(target))
+				to_chat(target, SPAN_NOTICE("You are too far away from \the [src]"))
+			to_chat(user, SPAN_NOTICE("You remove \the [battery] from [src]"))
+			component_parts.Remove(battery)
+			battery.forceMove(get_turf(user))
+			user.put_in_active_hand(battery)
+
+/obj/machinery/power/smes/batteryrack/Initialize(mapload, d)
+	. = ..()
+	var/datum/component/overlay_manager/overlay_manager = AddComponent(/datum/component/overlay_manager)
+	overlay_manager.addOverlay(OVERKEY_PSU_CAPACITORS, mutable_appearance(icon, "caps_0"))
+	overlay_manager.addOverlay(OVERKEY_PSU_INPUT, mutable_appearance(icon, "mpsu_tryinginput"))
+	overlay_manager.addOverlay(OVERKEY_PSU_OUTPUT, mutable_appearance(icon, "mpsu_tryingdischarge"))
 
 
 /obj/machinery/power/smes/batteryrack/RefreshParts()
@@ -33,7 +79,25 @@
 
 
 /obj/machinery/power/smes/batteryrack/update_icon()
+	if(!open_hatch)
+		icon_state = "mpsu_closed"
+	else
+		switch(cells.amount)
+			if(0)
+				icon_state = "mpsu_0"
+			if(1)
+				icon_state = "mpsu_1"
+			if(2 to 3)
+				icon_state = "mpsu_3"
+			if(4 to 5)
+				icon_state = "mpsu_5"
+	var/datum/component/overlay_manager/overlay_manager = GetComponent(/datum/component/overlay_manager)
+	overlay_manager.updateOverlay(OVERKEY_PSU_CAPACITORS, mutable_appearance(icon, "caps_[capacitors_amount]"))
+	overlay_manager.updateOverlay(OVERKEY_PSU_INPUT, mutable_appearance(icon, inputting == 2 ? "mpsu_input" : "mpsu_tryinginput"))
+	overlay_manager.updateOverlay(OVERKEY_PSU_OUTPUT, mutable_appearance(icon, outputting == 2 ? "mpsu_discharging" : "mpsu_tryingdischarge"))
 	return
+
+#undef OVERKEY_PSU_CAPACITORS
 
 
 /obj/machinery/power/smes/batteryrack/chargedisplay()
@@ -51,7 +115,7 @@
 					M.state = 2
 					M.icon_state = "box_1"
 					for(var/obj/I in component_parts)
-						I.loc = src.loc
+						I.forceMove(get_turf(src))
 					qdel(src)
 					return 1
 				else
@@ -63,7 +127,7 @@
 				if (!output_attempt && !input_attempt)
 					user.drop_item()
 					component_parts += W
-					W.loc = src
+					W.forceMove(src)
 					RefreshParts()
 					to_chat(user, SPAN_NOTICE("You upgrade the [src] with [W.name]."))
 				else
@@ -76,11 +140,14 @@
 			return 1
 	return
 
+/obj/machinery/power/smes/batteryrack/attack_hand()
+
 
 //The shitty one that will blow up.
 /obj/machinery/power/smes/batteryrack/makeshift
 	name = "makeshift PSU"
 	desc = "A rack of batteries connected by a mess of wires posing as a PSU."
+	icon_state = "gsmes"
 	circuit = /obj/item/electronics/circuitboard/apc
 	var/overcharge_percent = 0
 
