@@ -112,10 +112,11 @@
 	exosuit_desc_string = "wheels"
 	desc = "A pair of wheels for any mobile vehicle"
 	icon_state = "wheels"
-	move_delay = 2
+	move_delay = 1.5
 	turn_delay = 4
-	max_damage = 30
+	max_damage = 60
 	stomp_damage = 15
 	power_use = 10
+	can_strafe = FALSE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 16)
 	can_climb = FALSE
