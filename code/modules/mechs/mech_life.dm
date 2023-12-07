@@ -119,14 +119,18 @@
 	var/obj/wreck = new wreckage_path(drop_location(), src, gibbed)
 	wreck.name = "wreckage of \the [name]"
 	if(!gibbed)
-		if(arms.loc != src)
-			arms = null
-		if(legs.loc != src)
-			legs = null
-		if(head.loc != src)
-			head = null
-		if(body.loc != src)
-			body = null
+		if(arms)
+			if(arms.loc != src)
+				arms = null
+		if(legs)
+			if(legs.loc != src)
+				legs = null
+		if(head)
+			if(head.loc != src)
+				head = null
+		if(body)
+			if(body.loc != src)
+				body = null
 
 	// Handle the rest of things.
 	..(gibbed, (gibbed ? "explodes!" : "grinds to a halt before collapsing!"))
