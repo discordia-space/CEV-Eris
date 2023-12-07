@@ -85,7 +85,7 @@
 	spawn_frequency = 80
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_MECH_QUIPMENT
-	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 3, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 3, MATERIAL_PLATINUM = 1)
 
 /obj/item/mech_equipment/sleeper/upgraded/Initialize()
 	. = ..()
@@ -111,7 +111,7 @@
 	icon_state = "mech_mender"
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_MEDICAL)
-	equipment_delay = 30 //don't spam it on people pls
+	equipment_delay = 10 //don't spam it on people pls
 	active_power_use = 0 //Usage doesn't really require power.
 	origin_tech = list(TECH_DATA = 3, TECH_BIO = 5, TECH_ENGINEERING = 3)
 	spawn_frequency = 80
