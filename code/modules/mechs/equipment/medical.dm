@@ -117,7 +117,7 @@
 	spawn_frequency = 80
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_MECH_QUIPMENT
-	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 8, MATERIAL_GLASS = 5)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 8, MATERIAL_GLASS = 5)
 	passive_power_use = 1.5 KILOWATTS
 	var/mob/living/carbon/human/mending_target = null
 	var/mob/living/exosuit/mech = null
