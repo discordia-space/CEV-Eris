@@ -556,7 +556,8 @@
 	..()
 	icon_state = "[initial(icon_state)]"
 	visual_bluff.icon_state = "[initial(icon_state)]_[mode ? "on" : ""]_[get_hardpoint()]"
-	visual_bluff.dir = owner.dir
+	if(owner)
+		visual_bluff.dir = owner.dir
 
 /obj/item/mech_equipment/power_generator/fueled/attack_self(mob/user)
 	. = ..()
