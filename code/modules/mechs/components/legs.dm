@@ -114,7 +114,7 @@
 	icon_state = "wheels"
 	move_delay = 2
 	turn_delay = 4
-	max_damage = 70
+	max_damage = 30
 	stomp_damage = 15
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 16)

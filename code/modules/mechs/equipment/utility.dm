@@ -473,6 +473,7 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
 	equipment_flags = EQUIPFLAG_PRETICK
+	spawn_blacklisted = TRUE
 	var/obj/item/cell/internal_cell
 	/// 50 power per mech life tick , adjust for cell RATE
 	var/generation_rate = 50
@@ -480,6 +481,7 @@
 /obj/item/mech_equipment/power_generator/Initialize()
 	. = ..()
 	internal_cell = new /obj/item/cell/small
+	internal_cell.materials = list()
 
 /obj/item/mech_equipment/power_generator/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -509,6 +511,7 @@
 	var/mode = 0
 	var/datum/repeating_sound/sound_loop = null
 	var/obj/visual_bluff = null
+	spawn_blacklisted = TRUE
 
 /obj/item/mech_equipment/power_generator/fueled/Initialize()
 	. = ..()
@@ -593,6 +596,11 @@
 	name = "plasma powered mech-mountable power generator"
 	desc = "a plasma-fueled mech power generator, creates 5 KW out of 1 sheet of plasma at a rate of 0.25 KW. Fully stocked it generates 35 KW in total."
 	icon_state = "mech_generator_plasma"
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	materials = list(MATERIAL_PLASTEEL = 15, MATERIAL_GLASS = 6, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2, MATERIAL_GOLD = 3, MATERIAL_STEEL = 4)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 5, TECH_POWER = 3)
 	generation_rate = 250
 	// each sheet is 5000 watts
 	fuel_usage_per_tick = 50
@@ -613,6 +621,11 @@
 	name ="welding fuel powered mech-mountable power generator"
 	desc = "a mech mounted generator that runs off welding fuel, creates 1 KW out of 10 units of welding fuel, at a rate of 0.1 KW. Fully stocked it generates 20 KW in total."
 	icon_state = "mech_generator_welding"
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_GLASS = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2, MATERIAL_STEEL = 4)
+	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 3, TECH_POWER = 2)
 	generation_rate = 100
 	fuel_usage_per_tick = 1
 	reagent_flags = DRAINABLE | REFILLABLE
@@ -693,7 +706,11 @@
 	icon_state = "mech_tow"
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
-	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 4)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10)
 	var/atom/movable/currentlyTowing = null
 
 /obj/item/mech_equipment/towing_hook/installed(mob/living/exosuit/_owner, hardpoint)
@@ -781,6 +798,9 @@
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
 	origin_tech = list(TECH_ENGINEERING = 5, TECH_MAGNET = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 5)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
 
 /obj/item/tool/mech_kit
 	name = "mech toolkit"
@@ -812,6 +832,10 @@
 	icon_state = "forklift"
 	restricted_hardpoints = list(HARDPOINT_FRONT)
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	materials = list(MATERIAL_PLASTEEL = 15, MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10)
 	equipment_flags = EQUIPFLAG_UPDTMOVE
 	var/atom/movable/currentlyLifting = null
 	var/obj/structure/forklift_platform/platform = null

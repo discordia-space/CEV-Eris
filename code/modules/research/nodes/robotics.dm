@@ -60,7 +60,9 @@
 		/datum/design/research/item/mechfab/exosuit/sensors/light,
 		/datum/design/research/item/mechfab/exosuit/chassis/light,
 		/datum/design/research/item/mechfab/exosuit/manipulators/light,
-		/datum/design/research/item/mechfab/exosuit/propulsion/light
+		/datum/design/research/item/mechfab/exosuit/propulsion/light,
+		/datum/design/research/item/mechfab/exosuit/propulsion/wheels,
+		/datum/design/research/item/mechfab/exosuit/chassis/forklift
 	)
 
 
@@ -205,7 +207,9 @@
 
 	unlocks_designs = list(
 		/datum/design/research/circuit/exosuit/medical,
-		/datum/design/research/item/exosuit/sleeper
+		/datum/design/research/item/exosuit/sleeper,
+		/datum/design/research/item/exosuit/sleeper/upgraded,
+		/datum/design/research/item/exosuit/automender
 	)
 
 /datum/technology/mech_utility_modules
@@ -231,7 +235,13 @@
 		/datum/design/research/item/mechfab/exosuit/drillbit/steel,
 		/datum/design/research/item/mechfab/exosuit/drillbit/plasteel,
 		/datum/design/research/item/mechfab/exosuit/drillbit/diamond,
-		/datum/design/research/item/exosuit/ion_thruster
+		/datum/design/research/item/exosuit/ion_thruster,
+		/datum/design/research/item/exosuit/forklift,
+		/datum/design/research/item/exosuit/fuel_generator,
+		/datum/design/research/item/exosuit/plasma_generator,
+		/datum/design/research/item/exosuit/towing_hook,
+		/datum/design/research/item/exosuit/rcd,
+		/datum/design/research/item/exosuit/toolkit
 	)
 
 /datum/technology/mech_teleporter_modules

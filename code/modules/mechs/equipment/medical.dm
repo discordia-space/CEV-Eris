@@ -91,6 +91,11 @@
 
 /obj/machinery/sleeper/mounted/upgraded
 	name = "\improper MK2 mounted sleeper"
+	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 3, TECH_BIO = 5)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 3, MATERIAL_PLATINUM = 1)
 	available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline",
 	"quickclot" = "Quick-Clot",
 	"stoxin" = "Soporific",
@@ -108,7 +113,11 @@
 	restricted_software = list(MECH_SOFTWARE_MEDICAL)
 	equipment_delay = 30 //don't spam it on people pls
 	active_power_use = 0 //Usage doesn't really require power.
-	origin_tech = list(TECH_DATA = 2, TECH_BIO = 3)
+	origin_tech = list(TECH_DATA = 3, TECH_BIO = 5, TECH_ENGINEERING = 3)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 8, MATERIAL_GLASS = 5)
 	passive_power_use = 1.5 KILOWATTS
 	var/mob/living/carbon/human/mending_target = null
 	var/mob/living/exosuit/mech = null
