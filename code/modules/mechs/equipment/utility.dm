@@ -908,7 +908,8 @@
 	if(master)
 		master.platform = null
 		master.update_icon()
-		master.owner.update_icon()
+		if(master.owner)
+			master.owner.update_icon()
 		master = null
 	. = ..()
 
