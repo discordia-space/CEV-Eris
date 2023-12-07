@@ -33,28 +33,6 @@
 
 
 /obj/machinery/power/smes/batteryrack/update_icon()
-	overlays.Cut()
-	if(stat & BROKEN)	return
-
-	if(!br_cache)
-		br_cache = list()
-		br_cache.len = 7
-		br_cache[1] = image('icons/obj/power.dmi', "gsmes_outputting")
-		br_cache[2] = image('icons/obj/power.dmi', "gsmes_charging")
-		br_cache[3] = image('icons/obj/power.dmi', "gsmes_overcharge")
-		br_cache[4] = image('icons/obj/power.dmi', "gsmes_og1")
-		br_cache[5] = image('icons/obj/power.dmi', "gsmes_og2")
-		br_cache[6] = image('icons/obj/power.dmi', "gsmes_og3")
-		br_cache[7] = image('icons/obj/power.dmi', "gsmes_og4")
-
-	if (output_attempt)
-		overlays += br_cache[1]
-	if(inputting)
-		overlays += br_cache[2]
-
-	var/clevel = chargedisplay()
-	if(clevel>0)
-		overlays += br_cache[3+clevel]
 	return
 
 
@@ -110,6 +88,17 @@
 /obj/machinery/power/smes/batteryrack/makeshift/update_icon()
 	overlays.Cut()
 	if(stat & BROKEN)	return
+
+	if(!br_cache)
+		br_cache = list()
+		br_cache.len = 7
+		br_cache[1] = image('icons/obj/power.dmi', "gsmes_outputting")
+		br_cache[2] = image('icons/obj/power.dmi', "gsmes_charging")
+		br_cache[3] = image('icons/obj/power.dmi', "gsmes_overcharge")
+		br_cache[4] = image('icons/obj/power.dmi', "gsmes_og1")
+		br_cache[5] = image('icons/obj/power.dmi', "gsmes_og2")
+		br_cache[6] = image('icons/obj/power.dmi', "gsmes_og3")
+		br_cache[7] = image('icons/obj/power.dmi', "gsmes_og4")
 
 	if (output_attempt)
 		overlays += br_cache[1]
