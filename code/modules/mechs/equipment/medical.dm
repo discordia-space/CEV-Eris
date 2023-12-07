@@ -81,6 +81,11 @@
 /obj/item/mech_equipment/sleeper/upgraded
 	name = "\improper MK2 mounted sleeper"
 	desc = "An exosuit-mounted sleeper designed to heal patients"
+	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 3, TECH_BIO = 5)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 3, MATERIAL_PLATINUM = 1)
 
 /obj/item/mech_equipment/sleeper/upgraded/Initialize()
 	. = ..()
@@ -91,11 +96,6 @@
 
 /obj/machinery/sleeper/mounted/upgraded
 	name = "\improper MK2 mounted sleeper"
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 3, TECH_BIO = 5)
-	spawn_frequency = 80
-	spawn_blacklisted = FALSE
-	spawn_tags = SPAWN_MECH_QUIPMENT
-	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 3, MATERIAL_PLATINUM = 1)
 	available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline",
 	"quickclot" = "Quick-Clot",
 	"stoxin" = "Soporific",

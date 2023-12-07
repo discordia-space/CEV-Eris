@@ -481,7 +481,7 @@
 /obj/item/mech_equipment/power_generator/Initialize()
 	. = ..()
 	internal_cell = new /obj/item/cell/small
-	internal_cell.materials = list()
+	internal_cell.matter = list()
 
 /obj/item/mech_equipment/power_generator/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -599,7 +599,7 @@
 	spawn_frequency = 80
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_MECH_QUIPMENT
-	materials = list(MATERIAL_PLASTEEL = 15, MATERIAL_GLASS = 6, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2, MATERIAL_GOLD = 3, MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_GLASS = 6, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2, MATERIAL_GOLD = 3, MATERIAL_STEEL = 4)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 5, TECH_POWER = 3)
 	generation_rate = 250
 	// each sheet is 5000 watts
@@ -624,7 +624,7 @@
 	spawn_frequency = 80
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_MECH_QUIPMENT
-	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_GLASS = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2, MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_GLASS = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2, MATERIAL_STEEL = 4)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 3, TECH_POWER = 2)
 	generation_rate = 100
 	fuel_usage_per_tick = 1
@@ -710,7 +710,7 @@
 	spawn_frequency = 80
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_MECH_QUIPMENT
-	materials = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10)
 	var/atom/movable/currentlyTowing = null
 
 /obj/item/mech_equipment/towing_hook/installed(mob/living/exosuit/_owner, hardpoint)
@@ -835,7 +835,7 @@
 	spawn_frequency = 80
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_MECH_QUIPMENT
-	materials = list(MATERIAL_PLASTEEL = 15, MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10)
 	equipment_flags = EQUIPFLAG_UPDTMOVE
 	var/atom/movable/currentlyLifting = null
 	var/obj/structure/forklift_platform/platform = null
