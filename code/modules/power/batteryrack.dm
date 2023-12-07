@@ -23,12 +23,31 @@
 	if(open_hatch)
 		to_chat(user, SPAN_NOTICE("It currently hosts [cells_amount] cells"))
 		if(distance <= 1)
+			to_chat(user, SPAN_NOTICE("Click any cell below to remove them from \the [src]"))
 			for(var/obj/item/cell/battery in component_parts)
-				to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src]];remove_cell_in_hand=\ref[battery];user=\ref[user]'>\icon[battery] [battery.name] REMOVE <a>"))
+				to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src];remove_cell_in_hand=\ref[battery];user=\ref[user]'>\icon[battery] [battery.name]</a>"))
 	else
 		to_chat(user, SPAN_NOTICE("The hatch needs to be opened with a screwdiver to interact with the cells inside!"))
 	to_chat(user, SPAN_NOTICE("It currently has [capacitors_amount] capacitor's installed"))
 	to_chat(user, SPAN_NOTICE("It has a LCD screen. Left side is for charging and right side for discharging. Green means operating, Yellow means not discharging/charging or no network."))
+	to_chat(user, SPAN_NOTICE("Can toggle input and output off with CtrlClick and Altclick. It is currently set to discharge a max of [output_level], and recharge by a max of [input_level]"))
+
+/obj/machinery/power/smes/batteryrack/attack_hand(mob/living/user)
+	. = ..()
+	if(!istype(user))
+		return
+	if(open_hatch && !user.incapacitated(INCAPACITATION_DEFAULT))
+		var/list/inputs = list()
+		for(var/obj/item/cell/large/battery in component_parts)
+			inputs.Add(battery)
+		var/obj/item/input = input(user, "Choose cell to remove", "Cell removal UI", null) as anything in inputs
+		if(input)
+			if(!Adjacent(user))
+				return
+			if(!component_parts.Find(input))
+				return
+			input.forceMove(get_turf(user))
+			user.put_in_active_hand(input)
 
 /obj/machinery/power/smes/batteryrack/Topic(href, href_list)
 	/// For any UI related fuckery to NanoUI/Tgui
@@ -42,16 +61,18 @@
 			if(!target || !battery)
 				return
 			// No funny HREF switching to grab anything in the world... or anything inside the machine.
-			if((!locate(battery) in component_parts) || !istype(battery))
+			// Don't use locate here , it searches by Type instead of reference
+			if(!component_parts.Find(battery) || !istype(battery))
 				return
 			if(target.incapacitated(INCAPACITATION_DEFAULT))
 				return
 			if(!Adjacent(target))
 				to_chat(target, SPAN_NOTICE("You are too far away from \the [src]"))
-			to_chat(user, SPAN_NOTICE("You remove \the [battery] from [src]"))
+				return
+			to_chat(target, SPAN_NOTICE("You remove \the [battery] from [src]"))
 			component_parts.Remove(battery)
-			battery.forceMove(get_turf(user))
-			user.put_in_active_hand(battery)
+			battery.forceMove(get_turf(target))
+			target.put_in_active_hand(battery)
 
 /obj/machinery/power/smes/batteryrack/Initialize(mapload, d)
 	. = ..()
@@ -70,6 +91,8 @@
 		capacitors_amount++
 	input_level_max = 50000 + max_level * 20000
 	output_level_max = 50000 + max_level * 20000
+	output_level = output_level_max
+	input_level = input_level_max
 
 	var/C = 0
 	for(var/obj/item/cell/large/PC in component_parts)
@@ -82,7 +105,7 @@
 	if(!open_hatch)
 		icon_state = "mpsu_closed"
 	else
-		switch(cells.amount)
+		switch(cells_amount)
 			if(0)
 				icon_state = "mpsu_0"
 			if(1)
@@ -106,9 +129,11 @@
 
 /obj/machinery/power/smes/batteryrack/attackby(var/obj/item/W as obj, var/mob/user as mob) //these can only be moved by being reconstructed, solves having to remake the powernet.
 	..() //SMES attackby for now handles screwdriver, cable coils and wirecutters, no need to repeat that here
+	// we need to update icon incase we get opened in the parent call
+	update_icon()
 	if(open_hatch)
 		if(istype(W, /obj/item/tool/crowbar))
-			if (charge < (capacity / 100))
+			if (charge < (capacity / 100) || capacity == 0)
 				if (!output_attempt && !input_attempt)
 					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
 					var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
@@ -123,13 +148,14 @@
 			else
 				to_chat(user, SPAN_WARNING("Better let [src] discharge before dismantling it."))
 		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell/large) && (cells_amount < 5)))
-			if (charge < (capacity / 100))
+			if (charge < (capacity / 100) || capacity == 0)
 				if (!output_attempt && !input_attempt)
 					user.drop_item()
 					component_parts += W
 					W.forceMove(src)
 					RefreshParts()
 					to_chat(user, SPAN_NOTICE("You upgrade the [src] with [W.name]."))
+					update_icon()
 				else
 					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
 			else
