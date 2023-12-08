@@ -978,14 +978,15 @@
 			if(visual_bluff.dir == WEST)
 				visual_bluff.layer = MECH_ABOVE_LAYER
 			return
-	visual_bluff.icon_state = "mech_shield_[get_hardpoint()]"
+	visual_bluff.icon_state = "mech_shield_[on ? "on_" : ""][get_hardpoint()]"
 
 /obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)
 	var/mob/living/exosuit/mech = loc
 	if(!istype(mech))
 		return
 	to_chat(user , SPAN_NOTICE("[on ? "Retracting" : "Deploying"] \the [src]..."))
-	if(do_after(user, 3 SECOND, src, FALSE))
+	var/time = on ? 0.5 SECONDS : 3 SECONDS
+	if(do_after(user, time, src, FALSE))
 		on = !on
 		to_chat(user, "You [on ? "deploy" : "retract"] \the [src].")
 		mech.visible_message(SPAN_DANGER("\The [mech] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
