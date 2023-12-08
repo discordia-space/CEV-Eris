@@ -67,9 +67,9 @@
 			if(target.incapacitated(INCAPACITATION_DEFAULT))
 				return
 			if(!Adjacent(target))
-				to_chat(target, SPAN_NOTICE("You are too far away from \the [src]"))
+				to_chat(target, SPAN_NOTICE("You are too far away from \the [src]."))
 				return
-			to_chat(target, SPAN_NOTICE("You remove \the [battery] from [src]"))
+			to_chat(target, SPAN_NOTICE("You remove \the [battery] from \the [src]."))
 			component_parts.Remove(battery)
 			battery.forceMove(get_turf(target))
 			target.put_in_active_hand(battery)
