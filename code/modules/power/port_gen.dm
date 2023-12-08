@@ -90,6 +90,7 @@
 /obj/machinery/power/port_gen/pacman
 	name = "\improper P.A.C.M.A.N.-type Portable Generator"
 	desc = "A power generator that runs on solid plasma sheets. Rated for 80 kW max safe output."
+	icon_state = "portgen_p0"
 
 	var/sheet_name = "Plasma Sheets"
 	var/sheet_path = /obj/item/stack/material/plasma
@@ -415,9 +416,9 @@
 
 /obj/machinery/power/port_gen/pacman/update_icon()
 	if(active)
-		icon_state = "portgen1"
+		icon_state = "portgen_p1"
 	else
-		icon_state = "portgen0"
+		icon_state = "portgen_p0"
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
 	if(..())
@@ -450,6 +451,12 @@
 	sheet_name = "Uranium Sheets"
 	time_per_fuel_unit = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
 	circuit = /obj/item/electronics/circuitboard/pacman/super
+
+/obj/machinery/power/port_gen/pacman/super/update_icon()
+	if(active)
+		icon_state = "portgen_u1"
+	else
+		icon_state = "portgen_u0"
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
