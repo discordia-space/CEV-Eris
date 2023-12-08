@@ -50,7 +50,7 @@
 
 /obj/machinery/atmospherics/pipe/zpipe/handle_z_crawl(var/mob/living/L, var/direction)
 	if (!can_z_crawl(L, direction))
-		to_chat(L, span("notice", "You can't climb that way!."))
+		to_chat(L, span("notice", "You can't climb that way!"))
 		return
 	to_chat(L, span("notice", "You start climbing [travel_direction_name] the pipe. This will take a while..."))
 	playsound(loc, 'sound/machines/ventcrawl.ogg', 100, 1, 3)

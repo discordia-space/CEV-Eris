@@ -795,6 +795,9 @@ default behaviour is:
 	if (!AM || !usr || src==AM || !isturf(src.loc))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
+	if(isobj(AM)) // even if we fail all the checks assume they touched the thing
+		AM.add_fingerprint(usr)
+
 	if (AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return

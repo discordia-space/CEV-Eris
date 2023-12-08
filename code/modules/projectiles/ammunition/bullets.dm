@@ -455,6 +455,19 @@
 	icon_state = "baton-round"
 	spent_icon = "grenadeshell"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 2)
+	w_class = ITEM_SIZE_SMALL
+	caliber = CAL_GRENADE
+	is_caseless = TRUE
+	maxamount = 1
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 15
+
+/obj/item/ammo_casing/grenade/teargas
+	name = "FS TGR \"Murphy\""
+	desc = "A riot-grade Frozen Star tear gas round, for use against unruly crowds."
+	icon_state = "teargas"
+	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/teargas
 	w_class = ITEM_SIZE_SMALL
 	caliber = CAL_GRENADE
 	is_caseless = TRUE
@@ -466,6 +479,7 @@
 	name = "NT SR \"Dard\""
 	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of details makes it ubiquitous."
 	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting/weak
+	matter = list(MATERIAL_STEEL = 5)
 	rarity_value = 10
 
 /obj/item/ammo_casing/grenade/blast
@@ -491,12 +505,20 @@
 	projectile_type = /obj/item/projectile/bullet/grenade/emp // gonna keep this from being maint-lootable for now
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_IRON = 2, MATERIAL_URANIUM = 2)
 
+/obj/item/ammo_casing/grenade/emp/low_yield
+	name = "FS EMPR \"Short Circuit\""
+	desc = "An EMP grenade shell configured with a lower radius for use on ships and stations, designed to be fired from grenade launchers. The abbreviation \"FS\" marks its producer,"
+	icon_state = "emp_low"
+	projectile_type = /obj/item/projectile/bullet/grenade/emp/low_yield // gonna keep this from being maint-lootable for now
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_IRON = 2, MATERIAL_URANIUM = 2)
+
 /obj/item/ammo_casing/grenade/heatwave
 	name = "NT HG \"Purifico\""
 	desc = "A military-grade offensive heatwave grenade shell, designed to be fired from grenade launchers. \
 			There\'s an inscription along the sides. \'For those who disbelieve, for them are cut out garments of fire, boiling water shall be poured over their heads.\'"
-	icon_state = "blast"
+	icon_state = "incendiary"
 	projectile_type = /obj/item/projectile/bullet/grenade/heatwave
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_BIOMATTER = 20, MATERIAL_PLASMA = 1)
 	rarity_value = 40 // Neotheology
 
 //// Other ////
@@ -575,7 +597,7 @@
 	matter_reagents = list("phosphorus" = 3)
 	rarity_value = 8
 
-/obj/item/ammo_casing/crossbow/bolt 
+/obj/item/ammo_casing/crossbow/bolt
 	name = "steel bolt"
 	desc = "A steel rod worked into the shape of a crossbow bolt."
 	icon_state = "CrossbowBolt"

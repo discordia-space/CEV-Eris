@@ -17,6 +17,7 @@ var/global/excelsior_last_draft = 0
 	idle_power_usage = 40
 	active_power_usage = 15000
 	circuit = /obj/item/electronics/circuitboard/excelsior_teleporter
+	shipside_only = TRUE
 
 	var/max_energy = 100
 	var/energy_gain = 1
@@ -48,6 +49,8 @@ var/global/excelsior_last_draft = 0
 		/obj/item/stock_parts/manipulator = 100,
 		/obj/item/stock_parts/micro_laser = 100,
 		/obj/item/stock_parts/matter_bin = 100,
+		/obj/item/computer_hardware/processor_unit/adv = 250,
+		/obj/item/computer_hardware/hard_drive/advanced = 250,
 		/obj/item/stock_parts/capacitor/excelsior = 350,
 		/obj/item/stock_parts/scanning_module/excelsior = 350,
 		/obj/item/stock_parts/manipulator/excelsior = 350,
@@ -61,8 +64,18 @@ var/global/excelsior_last_draft = 0
 		/obj/item/electronics/circuitboard/excelsiorshieldwallgen = 150,
 		/obj/item/electronics/circuitboard/excelsior_boombox = 150,
 		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
+		/// its expensive so they need to do a few mandates before they manage to get it
+		/obj/item/electronics/circuitboard/excelsior_navigation_cracker = 3000,
 		/obj/item/electronics/circuitboard/diesel = 150
 		)
+
+	var/list/IKEA_list = list(
+		/obj/item/machinery_crate/excelsior/shield = 500,
+		/obj/item/machinery_crate/excelsior/autolathe = 300,
+		/obj/item/machinery_crate/excelsior/boombox = 400,
+		/obj/item/machinery_crate/excelsior/diesel_generator = 300,
+		/obj/item/machinery_crate/excelsior/turret = 400
+	)
 	var/entropy_value = 8
 
 /obj/machinery/complant_teleporter/Initialize()
@@ -196,6 +209,17 @@ var/global/excelsior_last_draft = 0
 
 	data["list_of_parts"] = order_list_p
 
+	var/list/order_list_i = list()
+	for(var/obj/item/machinery_crate/I as anything in IKEA_list)
+		order_list_i += list(list(
+			"name_i" = initial(I.name),
+			"price_i" = IKEA_list[I],
+			"commands_i" = list("order_i" = I)
+			)
+		)
+
+	data["list_of_IKEA"] = order_list_i
+
 	return data
 
 
@@ -218,6 +242,12 @@ var/global/excelsior_last_draft = 0
 		var/ordered_item = text2path(href_list["order_p"])
 		if (parts_list.Find(ordered_item))
 			var/order_energy_cost = parts_list[ordered_item]
+			send_order(ordered_item, order_energy_cost, 1)
+
+	if(href_list["order_i"])
+		var/ordered_item = text2path(href_list["order_i"])
+		if (IKEA_list.Find(ordered_item))
+			var/order_energy_cost = IKEA_list[ordered_item]
 			send_order(ordered_item, order_energy_cost, 1)
 
 	if(href_list["open_menu"])
@@ -366,6 +396,7 @@ var/global/excelsior_last_draft = 0
 	conscript.stats.setStat(STAT_ROB, 30)
 	conscript.stats.setStat(STAT_MEC, 10)
 	conscript.stats.setStat(STAT_BIO, 10)
+	conscript.randomize_appearance()
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
 	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())

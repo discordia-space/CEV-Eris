@@ -64,7 +64,7 @@
 
 	if(istype(source, /turf/simulated))
 		var/turf/simulated/source_simulated = source
-		lines += "Seismic activity: [source_simulated.seismic_activity]"
+		lines += "Seismic activity (from 1 up to 6): [source_simulated.seismic_activity]"
 	else
 		lines += "Seismic activity: 1"
 

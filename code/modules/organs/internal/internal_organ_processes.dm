@@ -60,7 +60,7 @@
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_KIDNEY_TOX_RATIO + chem_toxicity
 
 	// Existing damage is subtracted to prevent weaker toxins from maxing out tox wounds on the organ
-	var/toxin_damage = kidney ? (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100) - kidney.damage : 0
+	var/toxin_damage = kidney ? (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (kidneys_efficiency / 100) - kidney.damage * 2 : 0
 
 	// Organ functions
 	// Blood regeneration if there is some space
@@ -81,7 +81,7 @@
 	var/toxin_strength = chem_effects[CE_TOXIN] * IORGAN_LIVER_TOX_RATIO + chem_effects[CE_ALCOHOL_TOXIC]
 
 	// Existing damage is subtracted to prevent weaker toxins from maxing out tox wounds on the organ
-	var/toxin_damage = liver ? (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (liver_efficiency / 100) - liver.damage : 0
+	var/toxin_damage = liver ? (toxin_strength / (stats.getPerk(PERK_BLOOD_OF_LEAD) ? 2 : 1)) - (liver_efficiency / 100) - liver.damage * 2 : 0
 
 	// Bad stuff
 	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
@@ -109,7 +109,7 @@
 
 /mob/living/carbon/human/proc/handle_pulse()
 	var/roboheartcheck = TRUE //Check if all hearts are robotic
-	for(var/obj/item/organ/internal/heart in organ_list_by_process(OP_HEART))
+	for(var/obj/item/organ/internal/vital/heart in organ_list_by_process(OP_HEART))
 		if(!BP_IS_ROBOTIC(heart))
 			roboheartcheck = FALSE
 			break
@@ -149,7 +149,7 @@
 	if(blood_volume < total_blood_req)
 		status_flags |= BLEEDOUT
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy"))
+			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy."))
 	else
 		status_flags &= ~BLEEDOUT
 
@@ -157,21 +157,21 @@
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(20)
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < blood_bad)
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(2)
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < blood_okay)
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(1.5)
 		if(prob(15))
 			Weaken(rand(1,3))
-			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < blood_safe)
 		if(prob(1))
-			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]."))
 		if(getOxyLoss() < 10)
 			adjustOxyLoss(1)
 
@@ -192,7 +192,7 @@
 	if(internal_oxygen < total_oxygen_req)
 		if(prob(1))
 			Weaken(1.5 SECONDS)
-			visible_message(SPAN_WARNING("[src] falls to the ground and starts hyperventilating!."), SPAN_DANGER("AIR! I NEED MORE AIR!"))
+			visible_message(SPAN_WARNING("[src] falls to the ground and starts hyperventilating!"), SPAN_DANGER("AIR! I NEED MORE AIR!"))
 			var/i
 			for(i = 1; i <= 5; i++)	//gasps 5 times
 				spawn(i)
@@ -208,7 +208,7 @@
 
 		if(prob(15))
 			var/heavy_spot = pick("chest", "skin", "brain")
-			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body"))
+			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body."))
 
 	if(lung_efficiency < BROKEN_2_EFFICIENCY)
 		adjustOxyLoss(1)

@@ -1118,6 +1118,34 @@ var/global/list/robot_modules = list(
 	..()
 	return
 
+/obj/item/robot_module/blitzshell
+	name = "blitzshell module"
+	no_slip = TRUE // Inherited from drone
+	health = 60 //Able to take 2 bullets
+	speed_factor = 1.2
+	hide_on_manifest = TRUE
+	stat_modifiers = list(
+		STAT_BIO = 15,
+		STAT_COG = 30,
+		STAT_ROB = 25,
+		STAT_TGH = 15,
+		STAT_MEC = 25,
+		STAT_VIG = 50
+	)
+
+/obj/item/robot_module/blitzshell/New()
+	//modules += new /obj/item/gun/energy/laser/mounted/blitz(src) //Deemed too strong for initial loadout
+	modules += new /obj/item/gun/energy/plasma/mounted/blitz(src)
+	modules += new /obj/item/tool/knife/tacknife(src) //For claiming heads for assassination missions
+	//Objective stuff
+	modules += new /obj/item/storage/bsdm/permanent(src) //for sending off item contracts
+	modules += new /obj/item/gripper/antag(src) //For picking up item contracts
+	modules += new /obj/item/reagent_containers/syringe/blitzshell(src) //Blood extraction
+	modules += new /obj/item/device/drone_uplink(src)
+	//Misc equipment
+	modules += new /obj/item/card/id/syndicate(src) //This is our access. Scan cards to get better access
+	modules += new /obj/item/device/nanite_container(src) //For self repair. Get more charges via the contract system
+	..()
 
 //A borg intended to serve as an antag in itself, though generally reserved for adminspawning
 //Sort of like a robot ninja

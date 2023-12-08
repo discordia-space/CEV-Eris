@@ -51,7 +51,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/double_tact(mob/user, atom/atom_target, adjacent)
 	if(atom_target.loc == user)//putting stuff in your backpack, or something else on your person?
 		return TRUE //regular bags won't even be able to hold items this big, but who knows
-	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal w_class. You can't raise something that does not exist.
+	if((w_class >= ITEM_SIZE_HUGE || (w_class == ITEM_SIZE_BULKY && !wielded)) && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal w_class. You can't raise something that does not exist.
 		if(!adjacent || istype(atom_target, /turf) || istype(atom_target, /mob) || user.a_intent == I_HURT)//guns have the point blank privilege
 			if(!ready)
 				user.visible_message(SPAN_DANGER("[user] raises [src]!"))
@@ -84,6 +84,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /obj/item/proc/swing_attack(atom/A, mob/user, params)
 	var/holdinghand = user.get_inventory_slot(src)
+	if(params && islist(params) && params["mech"])
+		holdinghand = params["mech_hand"]
 	var/turf/R
 	var/turf/C
 	var/turf/L
@@ -122,7 +124,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(SOUTHWEST)
 			R = get_step(C, NORTH)
 			L = get_step(C, EAST)
-	var/obj/effect/effect/melee/swing/S = new(user.loc)
+	var/obj/effect/effect/melee/swing/S = new(get_turf(user))
 	S.dir = _dir
 	user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
 	playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
@@ -235,7 +237,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			return (modifier - swing_degradation) // We hit a static object, prevents hitting anything underneath
 	var/successful_hit = FALSE
 	for(var/obj/S in targetarea)
-		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
+		if ((S.density || istype(S, /obj/effect/plant)) && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
 			if(attack_with_multiplier(user, S, modifier))
 				successful_hit = TRUE // Livings or targeted mobs can still be hit
 	if(successful_hit)

@@ -92,7 +92,7 @@ I said no!
 /datum/recipe/brainburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/organ/internal/brain
+		/obj/item/organ/internal/vital/brain
 	)
 	result = /obj/item/reagent_containers/food/snacks/brainburger
 
@@ -1065,5 +1065,5 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/sliceable/applecake
 
 /datum/recipe/cake/brain
-	items = list(/obj/item/organ/internal/brain)
+	items = list(/obj/item/organ/internal/vital/brain)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/braincake

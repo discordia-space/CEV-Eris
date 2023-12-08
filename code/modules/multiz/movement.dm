@@ -46,6 +46,12 @@
 	//If we're inside a thing, that thing is the thing that moves
 	if (istype(loc, /obj))
 		mover = loc
+	// If were inside a mech
+	if(istype(loc, /mob/living/exosuit))
+		var/mob/living/exosuit/mech = loc
+		if(src in mech.pilots)
+			mover = loc
+
 
 
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
@@ -56,13 +62,22 @@
 
 	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
 	//Since it can pass through obstacles, we'll do this before checking whether anything is blocking us
-	if(src.current_vertical_travel_method)
+	if(istype(mover, /mob/living/exosuit))
+		var/mob/living/mech = mover
+		if(mech.current_vertical_travel_method)
+			to_chat(src, SPAN_NOTICE("You can't do this yet!"))
+	else if(src.current_vertical_travel_method)
 		to_chat(src, SPAN_NOTICE("You can't do this yet!"))
 		return
 
 	var/datum/vertical_travel_method/VTM = new Z_MOVE_PHASE(src)
 	if(VTM.can_perform(direction))
-		src.current_vertical_travel_method = VTM
+		// special case for mechs
+		if(istype(mover, /mob/living/exosuit))
+			var/mob/living/mech = mover
+			mech.current_vertical_travel_method = VTM
+		else
+			src.current_vertical_travel_method = VTM
 		VTM.attempt(direction)
 		return
 
@@ -97,7 +112,12 @@
 	for (var/a in possible_methods)
 		VTM = new a(src)
 		if(VTM.can_perform(direction))
-			src.current_vertical_travel_method = VTM
+			// special case for mechs
+			if(istype(mover, /mob/living/exosuit))
+				var/mob/living/mech = mover
+				mech.current_vertical_travel_method = VTM
+			else
+				src.current_vertical_travel_method = VTM
 			VTM.attempt(direction)
 			return TRUE
 
@@ -279,9 +299,15 @@
 /mob/living/silicon/robot/can_fall(turf/below, turf/simulated/open/dest = src.loc)
 	if (CanAvoidGravity())
 		return FALSE
-
+	if(HasTrait(CYBORG_TRAIT_PARKOUR))
+		var/tile_view = view(src, 1)
+		for(var/obj/structure/low_wall/LW in tile_view)
+			return FALSE
+		for(var/obj/structure/railing/R in get_turf(src))
+			return FALSE
+		for(var/turf/simulated/wall/W in tile_view)
+			return FALSE
 	return ..()
-
 
 // Ladders and stairs pulling movement
 /obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)

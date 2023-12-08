@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(chunks)
 	var/list/returnValue = list()
 	if(container.z == 0)
 		return returnValue
-	var/coordinates = list(container.x - range, container.y - range, container.x + range,  container.y + range)
+	var/coordinates = list(container.x - range - CHUNK_SIZE, container.y - range - CHUNK_SIZE, container.x + range + CHUNK_SIZE,  container.y + range + CHUNK_SIZE)
 	if(coordinates[1] == 0)
 		coordinates[1] = 1
 	if(coordinates[2] == 0)
@@ -88,7 +88,9 @@ SUBSYSTEM_DEF(chunks)
 	var/list/returnValue = list()
 	if(container.z == 0)
 		return returnValue
-	var/coordinates = list(container.x - range, container.y - range, container.x + range,  container.y + range)
+	// IF THE RANGE IS SMALLER THAN CHUNK_SIZE , theres a risk of not  checking all relevant chunks (If anyone can figure the true underlying cause to this,  then feel free to remove this)
+	// as it'd basically just improve performance (not like its not improved enough already tho)
+	var/coordinates = list(container.x - range - CHUNK_SIZE, container.y - range - CHUNK_SIZE, container.x + range + CHUNK_SIZE,  container.y + range + CHUNK_SIZE)
 	if(coordinates[1] == 0)
 		coordinates[1] = 1
 	if(coordinates[2] == 0)
@@ -114,10 +116,6 @@ SUBSYSTEM_DEF(chunks)
 					returnValue += hearerToCheck
 	return returnValue
 
-/mob/proc/wnm()
-	var/list/returns = getMobsInRangeChunked(src, 8, FALSE)
-	for(var/atom/thing in returns)
-		message_admins(thing.name)
 /// Mob tracking and handling
 /mob/proc/chunkOnMove(atom/source, atom/oldLocation, atom/newLocation)
 	SIGNAL_HANDLER
@@ -167,6 +165,33 @@ SUBSYSTEM_DEF(chunks)
 /obj/proc/chunkHearerOnMove(atom/source, atom/oldLocation , atom/newLocation)
 	SIGNAL_HANDLER
 	var/datum/chunk/chunk_reference
+	if(oldLocation?.z && newLocation?.z)
+		if(CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y) && oldLocation.z == newLocation.z)
+			return
+		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
+		chunk_reference.hearers -= src
+		//if(ishuman(src))
+		//	message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
+			return
+		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
+		chunk_reference.hearers += src
+		//if(ishuman(src))
+		//	message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+	else if(newLocation?.z)
+		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
+			return
+		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
+		chunk_reference.hearers += src
+		//if(ishuman(src))
+		//	message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+	else if(oldLocation?.z)
+		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
+		chunk_reference.hearers -= src
+		//if(ishuman(src))
+		//	message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+	/*
+	var/datum/chunk/chunk_reference
 	if(oldLocation && oldLocation.z != 0)
 		if(newLocation)
 			if(CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y))
@@ -183,6 +208,7 @@ SUBSYSTEM_DEF(chunks)
 		chunk_reference.hearers += src
 		//if(ishuman(src))
 		//	message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+	*/
 
 /obj/proc/chunkHearerOnContainerization(atom/source, atom/newContainer, atom/oldContainer)
 	SIGNAL_HANDLER

@@ -75,6 +75,7 @@
 	license = 16
 	designs = list(
 		/datum/design/bioprinter/leather/holster/sheath = 0,
+		/datum/design/autolathe/nt/staff/nt_staff,
 		/datum/design/autolathe/nt/sword/nt_longsword,
 		/datum/design/autolathe/nt/shield/nt_shield,
 		/datum/design/autolathe/clothing/NTvoid = 2,
@@ -87,7 +88,9 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/firstaid/nt,
-		/datum/design/autolathe/cruciform_upgrade/natures_blessing
+		/datum/design/autolathe/cruciform_upgrade/natures_blessing,
+		/datum/design/bioprinter/nt/spacehelmet/medicus,
+		/datum/design/bioprinter/nt/spacesuit/medicus
 	)
 
 // Plasma assault rifle

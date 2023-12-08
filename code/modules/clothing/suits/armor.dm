@@ -76,6 +76,11 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	price_tag = 350
 
+/obj/item/clothing/suit/armor/vest/warden/ironhammer
+	name = "Warden's overcoat"
+	desc = "An IH warden's overcoat with a vest over it, most often used in Hansa prisons."
+	icon_state = "warden_jacket_IH"
+
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
 	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
@@ -132,7 +137,7 @@
 		rad = 0
 	)
 	price_tag = 600
-	slowdown = MEDIUM_SLOWDOWN
+	slowdown = LIGHT_SLOWDOWN
 	valid_accessory_slots = list("armband","decor")
 	restricted_accessory_slots = list("armband")
 

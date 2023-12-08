@@ -33,6 +33,18 @@
 	display_name = "beret, old security"
 	path = /obj/item/clothing/head/beret/oldsec
 
+/datum/gear/head/beret/syndicate
+	display_name = "berets, Syndicate"
+	path = /obj/item/clothing/head/beret/syndicate
+
+/datum/gear/head/beret/syndicate/New()
+	..()
+	var/syndicate = list(
+		"black" 		=	 /obj/item/clothing/head/beret/syndicate,
+		"brown"			=	 /obj/item/clothing/head/beret/syndicate/brown
+	)
+	gear_tweaks += new /datum/gear_tweak/path(syndicate)
+
 /datum/gear/head/beret/bsec
 	display_name = "beret, Operative"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
@@ -71,6 +83,10 @@
 	path = /obj/item/clothing/head/soft/sec
 	allowed_roles = list(ASSISTANT_TITLE)
 
+/datum/gear/head/cap/synd
+	display_name = "cap, old syndicate"
+	path = /obj/item/clothing/head/soft/synd
+
 /datum/gear/head/cap/rainbow
 	display_name = "cap, rainbow"
 	path = /obj/item/clothing/head/soft/rainbow
@@ -84,13 +100,12 @@
 	var/cap = list(
 		"White"			=	/obj/item/clothing/head/soft/mime,
 		"Grey"			=	/obj/item/clothing/head/soft/grey,
-		"Brown-Flat"	=	/obj/item/clothing/head/flatcap,
+		"Black"			=	/obj/item/clothing/head/soft/black,
 		"Red"			=	/obj/item/clothing/head/soft/red,
 		"Orange"		=	/obj/item/clothing/head/soft/orange,
 		"Yellow"		=	/obj/item/clothing/head/soft/yellow,
 		"Green"			=	/obj/item/clothing/head/soft/green,
 		"Blue"			=	/obj/item/clothing/head/soft/blue,
-		"Blue Station"	=	/obj/item/clothing/head/mailman,
 		"Purple"		=	/obj/item/clothing/head/soft/purple,
 	)
 	gear_tweaks += new /datum/gear_tweak/path(cap)

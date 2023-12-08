@@ -226,6 +226,101 @@
 		I.alpha = 200
 
 
+/datum/hud/human/liberty
+	name = "LibertyStyle"
+	icon = 'icons/mob/screen/LibertyStyle.dmi'
+	//Xbags, Ybags for space_orient_objs
+	//Others for slot_orient_objs
+	MinStyleFlag = TRUE
+	StorageData = list(
+		"Xspace" = 4.5*32, //in pixels
+		"Yspace" = 1.5*32, //in pixels
+		"ColCount" = 7,
+	)
+
+
+	HUDoverlays = list(
+		"flash"      = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"pain"       = list("type" = /obj/screen/full_1_tile_overlay, "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+		"drugeffect" = list("type" = /obj/screen/drugoverlay,         "loc" = "WEST,SOUTH-1 to EAST+1,NORTH", "minloc" = "WEST,SOUTH to EAST,NORTH", "icon_state" = "blank"),
+
+		"damageoverlay"  = list("type" = /obj/screen/damageoverlay,   "loc" = "1,1:-32", "icon" =  'icons/mob/screen1_full.dmi'),
+		"glassesoverlay" = list("type" = /obj/screen/glasses_overlay, "loc" = "1,1:-32", "icon_state" = "blank"),
+	)
+
+	HUDneed = list(
+//status
+	"nutrition"                  =   list("type" = /obj/screen/nutrition,         "loc" = "5,1",   "minloc" = "4,2",             "hideflag" = TOGGLE_INVENTORY_FLAG),
+	"neural system accumulation" =   list("type" = /obj/screen/nsa,               "loc" = "5,1",   "minloc" = "4,2"),
+
+	"health"             = list("type" = /obj/screen/health,            "loc" = "5,0",       "minloc" = "4,1"),
+	"body temperature"   = list("type" = /obj/screen/bodytemp,          "loc" = "5,0",       "minloc" = "4,1"),
+	"sanity"             = list("type" = /obj/screen/sanity_alt,        "loc" = "12,0",      "minloc" = "11,1"),
+	"oxygen"             = list("type" = /obj/screen/oxygen,            "loc" = "13.47,1.8", "minloc" = "12.47,2.8"),
+	"fire"               = list("type" = /obj/screen/fire,              "loc" = "13.45,1.8", "minloc" = "12.45,2.8"),
+	"pressure"           = list("type" = /obj/screen/pressure,          "loc" = "14.37,1.8", "minloc" = "13.37,2.8"),
+	"toxin"              = list("type" = /obj/screen/toxin,             "loc" = "14.4,1.8",  "minloc" = "13.4,2.8"),
+	"internal"           = list("type" = /obj/screen/internal,          "loc" = "15,0",      "minloc" = "14,1"),
+//corner buttons
+//	"jump"               = list("type" = /obj/screen/jump,              "loc" = "EAST+1,BOTTOM+1:-6", "minloc" = "RIGHT,3:-6",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"look up"            = list("type" = /obj/screen/look_up,           "loc" = "14,1",      "minloc" = "13,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"look down"          = list("type" = /obj/screen/look_down,         "loc" = "14,1",      "minloc" = "13,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"throw"              = list("type" = /obj/screen/HUDthrow,          "loc" = "15,1",      "minloc" = "14,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"pull"               = list("type" = /obj/screen/pull,              "loc" = "13,1",      "minloc" = "12,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"drop"               = list("type" = /obj/screen/drop,              "loc" = "15,1",      "minloc" = "14,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"resist"             = list("type" = /obj/screen/resist,            "loc" = "13,1",      "minloc" = "12,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"rest"               = list("type" = /obj/screen/rest,              "loc" = "15,1.8",    "minloc" = "14,2.8", "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"move intent"        = list("type" = /obj/screen/mov_intent,        "loc" = "14,1",      "minloc" = "13,2",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+//	"implant bionics"    = list("type" = /obj/screen/implant_bionics,   "loc" = "EAST-2,BOTTOM-1",    "minloc" = "12,1",         "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"craft menu"         = list("type" = /obj/screen/craft_menu,        "loc" = "15,0",      "minloc" = "14,1",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"language menu"      = list("type" = /obj/screen/language,          "loc" = "15,0",      "minloc" = "14,1",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"examine"            = list("type" = /obj/screen/examine_area,      "loc" = "15,0",      "minloc" = "14,1",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"intent"             = list("type" = /obj/screen/intent,            "loc" = "13,0",      "minloc" = "12,1",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"damage zone"        = list("type" = /obj/screen/zone_sel,          "loc" = "14,0",      "minloc" = "13,1",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+//hand buttons
+	"equip"              = list("type" = /obj/screen/equip,             "loc" = "8,1",       "minloc" = "7,2",    "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"wield"              = list("type" = /obj/screen/wield_alt,         "loc" = "8,1",       "minloc" = "7,2",    "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"swap hand"          = list("type" = /obj/screen/swap_alt,          "loc" = "8.5,0.5",   "minloc" = "7.5,1.5",    "hideflag" = TOGGLE_BOTTOM_FLAG),
+	"right arm bionics"  = list("type" = /obj/screen/bionics/r_arm,     "loc" = "7:19,1",    "minloc" = "6:20,2"),
+	"left arm bionics"   = list("type" = /obj/screen/bionics/l_arm,     "loc" = "10,1",      "minloc" = "9:-1,2"),
+
+	"toggle inventory"   = list("type" = /obj/screen/toggle_invetory,   "loc" = "2,0",       "minloc" = "1,1",          "hideflag" = TOGGLE_BOTTOM_FLAG)
+
+	)
+
+	slot_data = list (
+		"Uniform"      =   list("loc" = "2,1",  "minloc"  = "1,2",   "state" = "center",     "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Suit"         =   list("loc" = "3,1",  "minloc"  = "2,2",   "state" = "equip",      "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Mask"         =   list("loc" = "3,2",  "minloc"  = "2,3",   "state" = "mask",       "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Gloves"       =   list("loc" = "4,2",  "minloc"  = "3,3",   "state" = "gloves",     "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Glasses"      =   list("loc" = "2,2",  "minloc"  = "1,3",   "state" = "glasses",    "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Left Ear"     =   list("loc" = "2,3",  "minloc"  = "1,4",   "state" = "ears_left",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Right Ear"    =   list("loc" = "4,3",  "minloc"  = "3,4",   "state" = "ears_right", "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Hat"          =   list("loc" = "3,3",  "minloc"  = "2,4",   "state" = "hair",       "hideflag" = TOGGLE_INVENTORY_FLAG),
+		"Shoes"        =   list("loc" = "3,0",  "minloc"  = "2,1",   "state" = "shoes",      "hideflag" = TOGGLE_BOTTOM_FLAG),
+		"Suit Storage" =   list("loc" = "4,1",  "minloc"  = "3,2",   "state" = "suit-belt",  "hideflag" = TOGGLE_BOTTOM_FLAG),
+		"Back"         =   list("loc" = "7,0",  "minloc"  = "6,1",   "state" = "back",       "hideflag" = TOGGLE_BOTTOM_FLAG),
+		"ID"           =   list("loc" = "6,0",  "minloc"  = "5,1",   "state" = "id",         "hideflag" = TOGGLE_BOTTOM_FLAG),
+		"Left Pocket"  =   list("loc" = "10,0", "minloc"  = "9,1",   "state" = "pocket_l",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+		"Right Pocket" =   list("loc" = "11,0", "minloc"  = "10,1",  "state" = "pocket_r",   "hideflag" = TOGGLE_BOTTOM_FLAG),
+		"Belt"         =   list("loc" = "4,0",  "minloc"  = "3,1",   "state" = "belt",       "hideflag" = TOGGLE_BOTTOM_FLAG),
+		"Left Hand"    =   list("loc" = "9,0",  "minloc"  = "8,1",   "state" = "hand-l",     "hideflag" = TOGGLE_BOTTOM_FLAG,    "type" = /obj/screen/inventory/hand),
+		"Right Hand"   =   list("loc" = "8,0",  "minloc"  = "7,1",   "state" = "hand-r",     "hideflag" = TOGGLE_BOTTOM_FLAG,    "type" = /obj/screen/inventory/hand)
+		)
+
+	HUDfrippery = list(
+		list("loc" = "1,0", "icon_state" = "steelweaver_frame4",  "hideflag" = TOGGLE_BOTTOM_FLAG),
+		list("loc" = "1,1", "icon_state" = "steelweaver_frame3",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "1,2", "icon_state" = "steelweaver_frame2",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		list("loc" = "1,3", "icon_state" = "steelweaver_frame1",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+		)
+
+
+/datum/hud/human/liberty/New(mob/mymob)
+	if(mymob)
+		updatePlaneMasters(mymob)
+
+
 /datum/hud/cyborg
 	name = "BorgStyle"
 	icon = 'icons/mob/screen1_robot.dmi'

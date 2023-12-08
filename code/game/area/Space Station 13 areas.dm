@@ -247,6 +247,10 @@ area/space/atmosalert()
 	name = "\improper Mercenary Ship"
 	flags = AREA_FLAG_RAD_SHIELDED
 
+/area/shuttle/pirate
+	name = "\improper Pirate Ship"
+	flags = AREA_FLAG_RAD_SHIELDED
+
 /area/shuttle/syndicate_elite/mothership
 	icon_state = "shuttlered"
 
@@ -358,6 +362,13 @@ area/space/atmosalert()
 	dynamic_lighting = 0
 	vessel = "syndicate mothership"
 
+/area/centcom/pirate_base
+	name = "\improper Pirate Base"
+	icon_state = "syndie-ship"
+	requires_power = 0
+	dynamic_lighting = 0
+	vessel = "pirate mothership"
+
 /area/centcom/raider_base
 	name = "\improper Raider Base"
 	icon_state = "syndie-control"
@@ -412,6 +423,7 @@ area/space/atmosalert()
 	icon_state = "cave"
 	requires_power = 0
 	sound_env = ASTEROID
+	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/asteroid/artifactroom
 	name = "\improper Moon - Artifact"

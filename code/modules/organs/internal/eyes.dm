@@ -9,8 +9,8 @@
 	max_blood_storage = 10
 	oxygen_req = 1
 	nutriment_req = 1
-	min_bruised_damage = 4
-	min_broken_damage = 7
+	min_bruised_damage = IORGAN_STANDARD_BRUISE + 1
+	min_broken_damage = IORGAN_STANDARD_BREAK + 1
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
 	var/cache_key = BP_EYES

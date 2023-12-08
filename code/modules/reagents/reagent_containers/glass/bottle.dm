@@ -12,6 +12,7 @@
 	filling_states = "20;40;60;80;100"
 	label_icon_state = "label_bottle"
 	lid_icon_state = "lid_bottle"
+	var/force_label = FALSE // if we force a label appear on the sprite, needed for chemmaster bottles
 
 /obj/item/reagent_containers/glass/bottle/update_icon()
 	cut_overlays()
@@ -26,10 +27,16 @@
 		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
-	if(label_text)
+	if(label_text || force_label || (preloaded_reagents && display_label))
 		var/label_icon = label_icon_state ? label_icon_state : "label_[icon_state]"
 		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
 		add_overlay(label)
+
+/obj/item/reagent_containers/glass/bottle/New()
+	..()
+	if(preloaded_reagents)
+		if(!has_lid())
+			toggle_lid()
 
 /obj/item/reagent_containers/glass/bottle/trade
 	spawn_blacklisted = TRUE
@@ -42,88 +49,73 @@
 	..()
 
 /obj/item/reagent_containers/glass/bottle/inaprovaline
-	name = "inaprovaline bottle"
+	name = "Inaprovaline bottle"
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
-	icon_state = "bottle"
 	preloaded_reagents = list("inaprovaline" = 60)
 
 /obj/item/reagent_containers/glass/bottle/toxin
-	name = "toxin bottle"
+	name = "Toxin bottle"
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."
-	icon_state = "bottle"
 	preloaded_reagents = list("toxin" = 60)
 
 /obj/item/reagent_containers/glass/bottle/cyanide
-	name = "cyanide bottle"
+	name = "Cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
-	icon_state = "bottle"
 	preloaded_reagents = list("cyanide" = 30)
 
 /obj/item/reagent_containers/glass/bottle/stoxin
-	name = "soporific bottle"
+	name = "Soporific bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
-	icon_state = "bottle"
 	preloaded_reagents = list("stoxin" = 60)
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
-	name = "chloral hydrate bottle"
+	name = "Chloral Hydrate bottle"
 	desc = "A small bottle of chloral hydrate. Mickey's Favorite!"
-	icon_state = "bottle"
 	preloaded_reagents = list("chloralhydrate" = 30)
 
 /obj/item/reagent_containers/glass/bottle/antitoxin
-	name = "dylovene bottle"
+	name = "Dylovene bottle"
 	desc = "A small bottle of dylovene. Counters poisons, and repairs damage. A wonder drug."
-	icon_state = "bottle"
 	preloaded_reagents = list("anti_toxin" = 60)
 
 /obj/item/reagent_containers/glass/bottle/mutagen
-	name = "unstable mutagen bottle"
+	name = "Unstable mutagen bottle"
 	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
-	icon_state = "bottle"
 	preloaded_reagents = list("mutagen" = 60)
 
 /obj/item/reagent_containers/glass/bottle/ammonia
-	name = "ammonia bottle"
-	desc = "A small bottle."
-	icon_state = "bottle"
+	name = "Ammonia bottle"
+	desc = "A small bottle. Contains liquid ammonia - a potent nutriment for plants, but not for humans."
 	preloaded_reagents = list("ammonia" = 60)
 
 /obj/item/reagent_containers/glass/bottle/diethylamine
-	name = "diethylamine bottle"
-	desc = "A small bottle."
-	icon_state = "bottle"
+	name = "Diethylamine bottle"
+	desc = "A small bottle. Contains diethylamine - plants love this!"
 	preloaded_reagents = list("diethylamine" = 60)
 
 /obj/item/reagent_containers/glass/bottle/pacid
-	name = "polytrinic acid bottle"
+	name = "Polytrinic acid bottle"
 	desc = "A small bottle. Contains a small amount of polytrinic acid."
-	icon_state = "bottle"
 	preloaded_reagents = list("pacid" = 60)
 
 /obj/item/reagent_containers/glass/bottle/capsaicin
-	name = "capsaicin bottle"
+	name = "Capsaicin Oil bottle"
 	desc = "A small bottle. Contains hot sauce."
-	icon_state = "bottle"
 	preloaded_reagents = list("capsaicin" = 60)
 
 /obj/item/reagent_containers/glass/bottle/frostoil
-	name = "frost oil bottle"
+	name = "Frost Oil bottle"
 	desc = "A small bottle. Contains cold sauce."
-	icon_state = "bottle"
 	preloaded_reagents = list("frostoil" = 60)
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
-	name = "adminordrazine bottle"
+	name = "Adminordrazine bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
-	icon = 'icons/obj/drinks.dmi'
-	icon_state = "holyflask"
 	preloaded_reagents = list("adminordrazine" = 60)
 
 /obj/item/reagent_containers/glass/bottle/resuscitator
-	name = "resuscitator bottle"
+	name = "Resuscitator bottle"
 	desc = "A small bottle. Contains your last hope to survive."
-	icon_state = "bottle"
 	spawn_blacklisted = TRUE
 	preloaded_reagents = list("resuscitator" = 60)
 

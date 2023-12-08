@@ -70,14 +70,6 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/I, mob/user)
-	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
-		var/obj/item/gun/G = I
-		if(anchored == TRUE) //Just makes sure we're not bracing on movable cover
-			G.gun_brace(user, src)
-			return
-		else
-			to_chat(user, SPAN_NOTICE("You can't brace your weapon - the [src] is not anchored down."))
-		return
 
 	//Attempting to damage girders
 	//This supercedes all construction, deconstruction and similar actions. So change your intent out of harm if you don't want to smack it

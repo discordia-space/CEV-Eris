@@ -1,4 +1,4 @@
-<!-- 
+<!--
 Title: Autolathe
 Used In File(s): \code\game\machinery\autolathe.dm
  -->
@@ -33,10 +33,10 @@ Used In File(s): \code\game\machinery\autolathe.dm
 	<div class="block">
 		<div class="item">
 			<div class="itemContentWide">
-			Disk: 
+			Disk:
 			{{if data.disk}}
 				<b>{{:data.disk.name ? data.disk.name : 'data disk'}}</b>
-	
+
 				{{if data.disk.license > 0}}
 					<div class="unimportant">{{:data.disk.license}} license points left</div>
 				{{else data.disk.license == 0}}
@@ -60,6 +60,14 @@ Used In File(s): \code\game\machinery\autolathe.dm
 		{{:helper.link(value.name, value.icon, {'action' : value.action})}}
 		</div>
 	{{/for}}
+	</div>
+</div>
+{{/if}}
+
+{{if data.uses_stat}}
+<div class="fixedWidest" style="width:100%; display: table-row">
+	<div class="block" style="padding: 0px 4px 2px 4px">
+	<b>With your skills and the current components, you may print "{{:data.max_quality < 0 ? data.max_quality : '+' + data.max_quality}}" quality parts.</b>
 	</div>
 </div>
 {{/if}}

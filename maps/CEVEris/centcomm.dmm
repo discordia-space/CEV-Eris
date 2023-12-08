@@ -60,6 +60,23 @@
 	},
 /turf/unsimulated/wall,
 /area/space)
+"aw" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "aD" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/centcom/evac)
@@ -573,6 +590,12 @@
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"dI" = (
+/obj/structure/mirror/antag{
+	pixel_x = 28
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "dK" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
@@ -596,6 +619,12 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/centcom/evac)
+"dO" = (
+/turf/simulated/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
 "dP" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/reagent_containers/food/drinks/shaker,
@@ -734,6 +763,10 @@
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"es" = (
+/obj/effect/shuttle_landmark/pirate/internim,
+/turf/space/transit/north/shuttlespace_ns6,
+/area/space)
 "et" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -744,6 +777,17 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"ev" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns14,
+/area/space)
 "ez" = (
 /obj/structure/railing/holorailing/grey,
 /obj/structure/railing/holorailing/grey{
@@ -1917,6 +1961,7 @@
 /obj/structure/sign/faction/serbian{
 	pixel_y = 32
 	},
+/obj/item/storage/deferred/crate/shotgun,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1950,6 +1995,7 @@
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
+/obj/structure/table/rack,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -1974,6 +2020,15 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"hX" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_right";
+	name = "remote shutter control";
+	pixel_x = -25;
+	req_access = list(145)
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "hZ" = (
 /turf/simulated/floor/carpet/bcarpet,
 /area/centcom/evac)
@@ -1996,6 +2051,17 @@
 	icon_state = "floor3"
 	},
 /area/skipjack_station/start)
+"if" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_right";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "ik" = (
 /obj/effect/shuttle_landmark/escape_pod/out/pod1,
 /turf/space,
@@ -2460,6 +2526,13 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"jT" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/pirate)
 "jU" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -2510,6 +2583,23 @@
 /obj/structure/lattice,
 /turf/simulated/mineral,
 /area/space)
+"kb" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1331;
+	id_tag = "pirate_shuttle_outer";
+	name = "Ship External Access";
+	req_access = list(145)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_left";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/obj/machinery/shield_diffuser,
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "ke" = (
 /obj/item/device/radio/electropack,
 /turf/simulated/shuttle/floor{
@@ -2773,6 +2863,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"kH" = (
+/obj/machinery/recharger,
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "kI" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -2820,6 +2917,23 @@
 	},
 /turf/space,
 /area/space)
+"kN" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1331;
+	id_tag = "pirate_shuttle_outer";
+	name = "Ship External Access";
+	req_access = list(145)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_right";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/obj/machinery/shield_diffuser,
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "kP" = (
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
 	pixel_x = 3;
@@ -2841,6 +2955,14 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"kS" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/meds,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "kT" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -3954,6 +4076,10 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"oF" = (
+/obj/machinery/cryopod,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "oH" = (
 /obj/effect/shuttle_landmark/eris/transit/hulk,
 /turf/space,
@@ -4519,6 +4645,9 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"rv" = (
+/turf/simulated/floor/carpet,
+/area/centcom/pirate_base)
 "rz" = (
 /obj/machinery/light{
 	dir = 1
@@ -4581,10 +4710,31 @@
 	},
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source/industrial)
+"sc" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/area/shuttle/pirate)
 "sr" = (
 /obj/structure/railing/holorailing,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/industrial)
+"sA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "sN" = (
 /obj/item/caution,
 /turf/unsimulated/floor{
@@ -4592,6 +4742,24 @@
 	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
+"sO" = (
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"sT" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_front";
+	name = "remote shutter control";
+	pixel_x = 25;
+	req_access = list(145)
+	},
+/obj/structure/table/reinforced,
+/obj/item/device/loot_checker,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "sW" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
@@ -4611,6 +4779,18 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/space)
+"te" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_left";
+	name = "remote shutter control";
+	pixel_x = -25;
+	pixel_y = 25;
+	req_access = list(145)
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "tg" = (
 /obj/structure/table/holosteel_reinforced,
 /obj/effect/floor_decal/industrial/danger{
@@ -4624,6 +4804,23 @@
 /obj/structure/catwalk/holo,
 /turf/simulated/floor/holofloor/plating/under,
 /area/holodeck/source/industrial)
+"tp" = (
+/obj/structure/table/woodentable,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen{
+	pixel_y = 4
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"tv" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/area/shuttle/pirate)
 "ty" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/meds,
@@ -4730,6 +4927,11 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"uq" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/turf/simulated/floor/carpet,
+/area/centcom/pirate_base)
 "uu" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/shoes/sandal,
@@ -4760,6 +4962,11 @@
 "uE" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial_arena)
+"uG" = (
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/shuttle/pirate)
 "uH" = (
 /obj/structure/catwalk/holo,
 /obj/machinery/floor_light/prebuilt,
@@ -4853,6 +5060,12 @@
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
+"vG" = (
+/obj/structure/closet/crate/pirate,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "vU" = (
 /obj/machinery/slotmachine,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -4935,6 +5148,21 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"wo" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns13,
+/area/space)
+"wp" = (
+/obj/structure/reagent_dispensers/rumkeg,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "wq" = (
 /obj/item/stool/holostool,
 /obj/effect/floor_decal/industrial/danger{
@@ -4953,6 +5181,13 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"wx" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/accarmors,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "wO" = (
 /obj/effect/floor_decal/industrial/danger,
 /obj/effect/floor_decal/industrial/danger{
@@ -5017,6 +5252,11 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source/industrial)
+"xr" = (
+/obj/item/ammo_magazine/ammobox/lrifle,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "xs" = (
 /obj/structure/table/rack,
 /obj/item/gun/energy/ionrifle,
@@ -5118,6 +5358,22 @@
 /obj/structure/grille,
 /turf/space,
 /area/space)
+"yy" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -3;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "yD" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 4
@@ -5181,6 +5437,16 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"yU" = (
+/obj/structure/table/rack,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "yX" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
@@ -5191,6 +5457,14 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial)
+"zl" = (
+/obj/machinery/vending/cigarette{
+	name = "hacked cigarette machine";
+	prices = list();
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "zs" = (
 /obj/structure/urinal{
 	pixel_y = 32
@@ -5233,6 +5507,12 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
+"zK" = (
+/turf/simulated/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
 "zM" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 8
@@ -5303,6 +5583,11 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source/texas)
+"Av" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/deferred/rations,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "Ay" = (
 /obj/structure/table/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5331,6 +5616,17 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Bc" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns12,
+/area/space)
 "Bd" = (
 /obj/item/storage/deferred/crate/alcohol,
 /obj/structure/table/reinforced,
@@ -5406,6 +5702,22 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"BQ" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/ak,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"BR" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_left";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "BX" = (
 /obj/structure/bed/chair/custom/holochair,
 /obj/effect/floor_decal/industrial/danger{
@@ -5475,6 +5787,11 @@
 	},
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/holodeck/source/spacebar)
+"CK" = (
+/turf/simulated/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
 "Dg" = (
 /obj/structure/table/standard,
 /obj/item/storage/deferred/surgery,
@@ -5486,6 +5803,13 @@
 /obj/effect/floor_decal/industrial/danger/full,
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source/industrial)
+"Du" = (
+/obj/structure/table/rack,
+/obj/item/tool/hammer/sledgehammer,
+/obj/item/tool/hammer/sledgehammer,
+/obj/item/tool/hammer/sledgehammer,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "Dy" = (
 /obj/effect/floor_decal/industrial/danger,
 /obj/effect/floor_decal/industrial/danger/corner{
@@ -5496,6 +5820,12 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial_arena)
+"DD" = (
+/obj/structure/table/rack,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "DE" = (
 /obj/item/stool/holostool,
 /obj/effect/floor_decal/industrial/danger{
@@ -5516,6 +5846,16 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"DS" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Ec" = (
 /obj/structure/bed/chair/custom/holochair{
 	dir = 4
@@ -5532,6 +5872,27 @@
 	},
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source/industrial)
+"Ej" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns11,
+/area/space)
+"Em" = (
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "Er" = (
 /obj/structure/window/reinforced/crescent{
 	dir = 1
@@ -5705,6 +6066,14 @@
 	},
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"Gl" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Go" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
@@ -5718,6 +6087,17 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/space)
+"Gt" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_front";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "Gw" = (
 /turf/simulated/floor/holofloor/tiled/bar_dance,
 /area/holodeck/source/spacebar)
@@ -5777,6 +6157,11 @@
 	name = "plating"
 	},
 /area/centcom/merc_base)
+"Hp" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/monkeykabob,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "Hs" = (
 /obj/structure/table/woodentable,
 /obj/item/dice/d20,
@@ -5788,6 +6173,9 @@
 "Hu" = (
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/holodeck/source/spacebar)
+"HB" = (
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "HD" = (
 /obj/item/deck/cards,
 /obj/structure/table/steel,
@@ -5802,6 +6190,11 @@
 /obj/structure/railing/holorailing/grey,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"HH" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/surgery,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "HJ" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack/oxygen,
@@ -5848,6 +6241,11 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"HY" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/demolition,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "Ii" = (
 /obj/item/stool/holostool,
 /obj/effect/floor_decal/industrial/danger{
@@ -5859,9 +6257,19 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial)
+"Ik" = (
+/obj/machinery/computer/shuttle_control/multi/pirate,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Ir" = (
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/texas)
+"II" = (
+/obj/structure/cryofeed,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "IK" = (
 /obj/structure/railing/holorailing{
 	dir = 4
@@ -5871,6 +6279,11 @@
 	},
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/industrial_arena)
+"IL" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/sidearm,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "IN" = (
 /obj/structure/railing/holorailing/grey,
 /turf/simulated/open/holonofloor,
@@ -5941,6 +6354,12 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial_arena)
+"JH" = (
+/obj/structure/table/rack,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "JJ" = (
 /obj/item/tool/knife{
 	pixel_x = -6
@@ -6002,6 +6421,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Ke" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_right";
+	name = "remote shutter control";
+	pixel_x = 25;
+	pixel_y = 24;
+	req_access = list(145)
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Kn" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility/full,
@@ -6065,6 +6496,29 @@
 	},
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/industrial_arena)
+"KL" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"KM" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns3,
+/area/space)
 "KX" = (
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source/off)
@@ -6105,6 +6559,17 @@
 /obj/item/tool/crowbar,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"Lx" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns8,
+/area/space)
 "Ly" = (
 /obj/structure/bed/chair/custom/holochair,
 /turf/simulated/floor/holofloor/carpet,
@@ -6208,6 +6673,17 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"MM" = (
+/obj/structure/table/rack,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "MO" = (
 /obj/structure/table/woodentable,
 /obj/item/dice,
@@ -6332,6 +6808,25 @@
 /obj/structure/table/holo_woodentable,
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source/texas)
+"NW" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns8,
+/area/space)
 "Od" = (
 /obj/structure/table/woodentable,
 /obj/item/spacecash/bundle/c1,
@@ -6368,6 +6863,18 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/space)
+"Om" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/effect/shuttle_landmark/pirate/start,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_front";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "Or" = (
 /obj/machinery/light,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -6480,6 +6987,13 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial_arena)
+"Pi" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Barracks";
+	req_access = list(145)
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "Pk" = (
 /obj/structure/table/holosteel_reinforced,
 /turf/simulated/floor/holofloor/reinforced,
@@ -6520,6 +7034,16 @@
 /obj/machinery/slotmachine,
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/holodeck/source/spacebar)
+"Qo" = (
+/obj/structure/table/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "Qp" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
@@ -6542,6 +7066,13 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/space)
+"Qz" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/cybernetics,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
 "QG" = (
 /obj/effect/floor_decal/industrial/danger/corner{
 	dir = 8
@@ -6555,6 +7086,22 @@
 	},
 /turf/unsimulated/wall,
 /area/space)
+"QN" = (
+/obj/structure/cyberplant,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"QO" = (
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "QQ" = (
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/industrial)
@@ -6589,6 +7136,17 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"Re" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns2,
+/area/space)
 "Rh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/table/holo_woodentable,
@@ -6603,6 +7161,9 @@
 /obj/structure/table/steel,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"Rn" = (
+/turf/unsimulated/wall,
+/area/centcom/pirate_base)
 "RA" = (
 /obj/structure/table/standard,
 /obj/item/storage/toolbox/syndicate{
@@ -6642,10 +7203,27 @@
 	},
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"RU" = (
+/obj/machinery/door/airlock/external{
+	req_access = list(145)
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/pirate_base)
 "Sc" = (
 /obj/structure/catwalk,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"Sd" = (
+/obj/structure/closet/wall_mounted/emcloset{
+	pixel_y = -31
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Sh" = (
 /obj/structure/table/holosteel_reinforced,
 /obj/effect/floor_decal/industrial/danger{
@@ -6657,6 +7235,17 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source/industrial_arena)
+"Si" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns9,
+/area/space)
 "Sk" = (
 /obj/structure/table/standard,
 /obj/item/paper_bin{
@@ -6673,6 +7262,17 @@
 	icon_state = "lino"
 	},
 /area/centcom/merc_base)
+"Ss" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 7
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "Sz" = (
 /obj/structure/bed/chair/custom/holochair,
 /obj/effect/floor_decal/industrial/danger{
@@ -6735,6 +7335,18 @@
 	},
 /turf/simulated/floor/holofloor/reinforced,
 /area/space)
+"Td" = (
+/obj/structure/table/rack,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "Te" = (
 /obj/item/stool/holostool,
 /turf/simulated/floor/holofloor/wood,
@@ -6911,6 +7523,15 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
 /area/space)
+"Vs" = (
+/obj/structure/closet/secure_closet/pirate,
+/turf/simulated/floor/carpet,
+/area/centcom/pirate_base)
+"Vu" = (
+/obj/item/stool/padded,
+/obj/landmark/storyevent/pirate_spawn,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "Vx" = (
 /obj/structure/railing/holorailing/grey{
 	dir = 8
@@ -7000,6 +7621,16 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source/industrial_arena)
+"Wt" = (
+/obj/item/stack/material/steel{
+	amount = 120
+	},
+/obj/item/stack/material/steel{
+	amount = 120
+	},
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "Ww" = (
 /obj/structure/railing/holorailing/grey{
 	dir = 4
@@ -7007,6 +7638,14 @@
 /obj/structure/railing/holorailing/grey,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
+"WK" = (
+/obj/structure/table/woodentable,
+/obj/item/device/lighting/toggleable/lamp{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "WS" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bag/money,
@@ -7033,6 +7672,14 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial_arena)
+"Xu" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Xz" = (
 /obj/structure/bed/chair/custom/holochair/bar,
 /turf/simulated/floor/holofloor/tiled/bar_light,
@@ -7142,6 +7789,17 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
+"YJ" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns10,
+/area/space)
 "YN" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/industrial/danger{
@@ -7170,6 +7828,17 @@
 /obj/item/reagent_containers/food/drinks/shaker,
 /turf/simulated/floor/holofloor/tiled/bar_light,
 /area/holodeck/source/spacebar)
+"Ze" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns5,
+/area/space)
 "Zl" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/sidearm,
@@ -7180,6 +7849,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Zo" = (
+/turf/simulated/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
 "Zr" = (
 /obj/machinery/button/remote/blast_door{
 	id = "syndieshutters_workshop";
@@ -7201,6 +7876,17 @@
 	dir = 4
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Zv" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns4,
 /area/space)
 "ZR" = (
 /obj/structure/bed/chair/custom/holochair{
@@ -10119,31 +10805,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
 aa
 aa
 aa
@@ -10321,31 +11007,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eN
+eQ
+eP
+eL
+eR
+eO
+eW
+eT
+eJ
+eY
 aa
 aa
 aa
@@ -10523,31 +11209,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eM
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+ff
+eJ
+eY
 aa
 aa
 aa
@@ -10725,31 +11411,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eN
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+eJ
+eY
 aa
 aa
 aa
@@ -10927,31 +11613,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eO
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+eJ
+eY
 aa
 aa
 aa
@@ -11129,31 +11815,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eK
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fe
+eJ
+eY
 aa
 aa
 aa
@@ -11331,31 +12017,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eL
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fj
+eJ
+eY
 aa
 aa
 aa
@@ -11533,31 +12219,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eM
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+ff
+eJ
+eY
 aa
 aa
 aa
@@ -11735,31 +12421,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eN
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+ev
+wo
+Bc
+Ej
+YJ
+Si
+NW
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+eJ
+eY
 aa
 aa
 aa
@@ -11937,31 +12623,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eO
+fn
+fk
+fh
+fj
+fm
+fc
+fv
+fs
+fa
+fd
+fg
+ff
+fb
+KM
+Re
+fn
+fk
+fh
+fj
+fm
+fc
+eJ
+eY
 aa
 aa
 aa
@@ -12139,31 +12825,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eP
+fb
+fe
+fe
+fn
+fk
+fx
+gz
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+Ze
+Zv
+KM
+Re
+fn
+fk
+fh
+eJ
+eY
 aa
 aa
 aa
@@ -12341,31 +13027,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eQ
+ff
+fb
+fi
+fe
+fn
+gp
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+KM
+fe
+fn
+fk
+eJ
+eY
 aa
 aa
 aa
@@ -12543,31 +13229,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+fj
+fm
+fc
+fl
+fo
+hi
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+Ej
+fl
+fo
+fa
+eJ
+eY
 aa
 aa
 aa
@@ -12745,31 +13431,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eR
+fd
+ff
+fl
+fo
+fa
+fr
+es
+ff
+fb
+fi
+fe
+fn
+ff
+fb
+fi
+fe
+fn
+hb
+fh
+fj
+fm
+eJ
+eY
 aa
 aa
 aa
@@ -12947,31 +13633,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eS
+ff
+fh
+fn
+fk
+fh
+gz
+fm
+fc
+fl
+fo
+fa
+fd
+fk
+fh
+fj
+fm
+fc
+YJ
+fo
+fa
+fd
+eJ
+eY
 aa
 aa
 aa
@@ -13149,31 +13835,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eT
+fh
+fo
+fa
+fd
+fg
+gy
+fb
+fi
+fe
+fn
+fk
+fh
+fe
+fn
+fk
+fh
+fj
+Bc
+fc
+fl
+fo
+eJ
+eY
 aa
 aa
 aa
@@ -13351,31 +14037,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eQ
+ff
+fd
+ff
+fe
+fn
+gp
+fx
+fj
+fm
+fc
+fl
+fo
+fm
+fc
+YJ
+Si
+Lx
+ha
+fg
+ff
+fb
+eJ
+eY
 aa
 aa
 aa
@@ -13553,31 +14239,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+fh
+fn
+fh
+fc
+fl
+fo
+hi
+fr
+fg
+ff
+fb
+fi
+fh
+wo
+Bc
+fc
+fl
+fo
+fa
+fd
+fg
+eJ
+eY
 aa
 aa
 aa
@@ -13755,31 +14441,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eR
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+ev
+wo
+Bc
+Ej
+YJ
+KM
+Re
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+eJ
+eY
 aa
 aa
 aa
@@ -13957,31 +14643,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eS
+ff
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+eJ
+eY
 aa
 aa
 aa
@@ -14159,31 +14845,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eT
+fh
+fn
+fe
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+eJ
+eY
 aa
 aa
 aa
@@ -14361,31 +15047,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eM
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+ff
+eJ
+eY
 aa
 aa
 aa
@@ -14563,31 +15249,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eN
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+eJ
+eY
 aa
 aa
 aa
@@ -14765,31 +15451,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eO
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+eJ
+eY
 aa
 aa
 aa
@@ -14967,31 +15653,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eN
+eQ
+eP
+eL
+eR
+eO
+eW
+eT
+eJ
+eY
 aa
 aa
 aa
@@ -15169,31 +15855,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
 aa
 aa
 aa
@@ -31955,19 +32641,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gi
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+ab
 aa
 aa
 aa
@@ -32157,19 +32843,19 @@ aa
 aa
 aa
 aa
+eb
+aa
+aa
+Zo
+uG
+kb
+BR
+CK
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -32359,19 +33045,19 @@ aa
 aa
 aa
 aa
+eb
+aa
+Zo
+uG
+sO
+sO
+Sd
+uG
+CK
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -32561,19 +33247,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Zo
+uG
+aw
+te
+sO
+sO
+vG
+uG
+uG
+uG
+CK
+ab
 aa
 aa
 aa
@@ -32763,19 +33449,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Gt
+kH
+sO
+sO
+sO
+sO
+sO
+DS
+vG
+jT
+sc
+ab
 aa
 aa
 aa
@@ -32965,19 +33651,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Om
+Ik
+Xu
+sO
+sO
+sO
+sO
+sO
+vG
+uG
+uG
+ab
 aa
 aa
 aa
@@ -33167,19 +33853,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Gt
+sT
+sO
+sO
+sO
+sO
+sO
+Gl
+vG
+jT
+tv
+ab
 aa
 aa
 aa
@@ -33369,19 +34055,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+zK
+uG
+sA
+Ke
+sO
+sO
+vG
+uG
+uG
+uG
+dO
+ab
 aa
 aa
 aa
@@ -33571,19 +34257,19 @@ aa
 aa
 aa
 aa
+ab
+aa
+zK
+uG
+sO
+sO
+Sd
+uG
+dO
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -33773,19 +34459,19 @@ aa
 aa
 aa
 aa
+ab
+aa
+aa
+zK
+uG
+kN
+if
+dO
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -33975,19 +34661,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+Rn
+Rn
+Rn
+Rn
+RU
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa
@@ -34177,19 +34863,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HH
+kS
+kS
+hX
+HB
+HB
+HB
+HB
+HB
+HB
+wp
+Rn
 aa
 aa
 aa
@@ -34379,19 +35065,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+HB
+Vu
+Vu
+Vu
+HB
+Ss
+Rn
 aa
 aa
 aa
@@ -34581,19 +35267,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+QO
+Qo
+DD
+HB
+HB
+Vu
+Av
+WK
+Hp
+HB
+KL
+Rn
 aa
 aa
 aa
@@ -34783,19 +35469,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+Vu
+Av
+tp
+Hp
+HB
+yy
+Rn
 aa
 aa
 aa
@@ -34985,19 +35671,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HY
+IL
+Du
+HB
+HB
+HB
+Vu
+Vu
+Vu
+HB
+zl
+Rn
 aa
 aa
 aa
@@ -35187,19 +35873,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+HB
+dI
+HB
+dI
+HB
+QN
+Rn
 aa
 aa
 aa
@@ -35389,19 +36075,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+xr
+xr
+BQ
+HB
+HB
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa
@@ -35591,19 +36277,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+uq
+Vs
+uq
+Vs
+uq
+Vs
+Rn
 aa
 aa
 aa
@@ -35639,7 +36325,7 @@ iX
 iX
 iX
 iX
-iX
+wx
 gZ
 gZ
 gZ
@@ -35793,19 +36479,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+Wt
+Td
+Em
+HB
+HB
+rv
+rv
+rv
+rv
+rv
+rv
+Rn
 aa
 aa
 aa
@@ -35841,7 +36527,7 @@ iX
 iX
 iX
 iX
-iX
+Qz
 gZ
 hl
 hl
@@ -35995,19 +36681,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+rv
+rv
+rv
+rv
+rv
+rv
+Rn
 aa
 aa
 aa
@@ -36197,19 +36883,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+MM
+JH
+yU
+HB
+HB
+uq
+Vs
+uq
+Vs
+uq
+Vs
+Rn
 aa
 aa
 aa
@@ -36399,19 +37085,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+Rn
+Rn
+Rn
+Rn
+Pi
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa
@@ -36602,15 +37288,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+HB
+HB
+Rn
 aa
 aa
 aa
@@ -36804,15 +37490,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+oF
+oF
+oF
+HB
+oF
+oF
+oF
+Rn
 aa
 aa
 aa
@@ -37006,15 +37692,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+II
+II
+II
+QN
+II
+II
+II
+Rn
 aa
 aa
 aa
@@ -37208,15 +37894,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa

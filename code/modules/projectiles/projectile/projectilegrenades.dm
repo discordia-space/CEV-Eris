@@ -80,3 +80,21 @@
 
 /obj/item/projectile/bullet/grenade/emp/grenade_effect(target)
 	empulse(target, heavy_emp_range, light_emp_range)
+
+/obj/item/projectile/bullet/grenade/emp/low_yield
+	heavy_emp_range = 4
+	light_emp_range = 1
+
+//handgrenade shell: Drops a grenade that insta detonates for effects like gas
+/obj/item/projectile/bullet/grenade/handgrenade
+	icon_state = "grenade"
+	name = "cs grenade"
+	var/obj/item/grenade/hand_gren = /obj/item/grenade/chem_grenade/teargas
+
+/obj/item/projectile/bullet/grenade/handgrenade/grenade_effect(target)
+	var/obj/item/grenade/G = new hand_gren(src)
+	G.prime()
+
+/obj/item/projectile/bullet/grenade/handgrenade/teargas    // Because why not
+	name = "cs shell"
+

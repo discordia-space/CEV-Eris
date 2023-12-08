@@ -1,0 +1,161 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/spawner/material/resources,
+/obj/spawner/material/resources,
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"b" = (
+/turf/simulated/wall/silver,
+/area/asteroid/cave)
+"c" = (
+/obj/structure/inflatable/door,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"d" = (
+/obj/structure/closet/crate/freezer,
+/obj/spawner/junkfood,
+/obj/spawner/junkfood,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"f" = (
+/obj/structure/closet,
+/obj/item/stack/material/steel{
+	amount = 10
+	},
+/obj/item/stack/material/wood{
+	amount = 50
+	},
+/obj/item/stack/tile/carpet/turcarpet{
+	amount = 50
+	},
+/obj/item/stack/material/glass/reinforced{
+	amount = 10
+	},
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"h" = (
+/obj/structure/bed,
+/obj/item/bedsheet/rainbow,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/carpet,
+/area/asteroid/cave)
+"i" = (
+/obj/spawner/junk,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"m" = (
+/obj/structure/table/marble,
+/obj/item/board,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"n" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"p" = (
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"r" = (
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/carpet,
+/area/asteroid/cave)
+"t" = (
+/mob/living/bot/medbot,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"C" = (
+/obj/structure/table/rack,
+/obj/spawner/voidsuit,
+/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"G" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"I" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"K" = (
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet,
+/area/asteroid/cave)
+"U" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"Z" = (
+/obj/structure/bed/chair/comfy/brown{
+	dir = 4
+	},
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+
+(1,1,1) = {"
+b
+b
+b
+b
+U
+b
+b
+"}
+(2,1,1) = {"
+b
+i
+p
+c
+p
+f
+b
+"}
+(3,1,1) = {"
+c
+p
+G
+b
+I
+d
+U
+"}
+(4,1,1) = {"
+b
+b
+b
+b
+G
+Z
+U
+"}
+(5,1,1) = {"
+n
+b
+r
+K
+t
+m
+U
+"}
+(6,1,1) = {"
+n
+b
+h
+K
+I
+C
+b
+"}
+(7,1,1) = {"
+a
+b
+b
+b
+U
+b
+b
+"}

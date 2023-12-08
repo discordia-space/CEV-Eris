@@ -240,6 +240,7 @@
 			spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/organ_module //just to make sure that blade doesnt delet itself
+	no_double_tact = TRUE //Retains BULKY defensive capabilities like parrying while blocking while being fast as other armblades
 	cleanup = FALSE
 	init_procees = FALSE
 

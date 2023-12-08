@@ -93,7 +93,7 @@
 				playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			else return FALSE
 
-	system.installed(src)
+	system.installed(src, system_hardpoint)
 	GLOB.destroyed_event.register(system, src, PROC_REF(forget_module))
 
 

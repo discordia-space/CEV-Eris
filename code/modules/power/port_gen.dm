@@ -80,7 +80,7 @@
 			stat &= ~EMPED
 
 /obj/machinery/power/port_gen/proc/explode()
-	explosion(get_turf(src), power_gen/100, power_gen/1000)
+	explosion(get_turf(src), min(power_gen/100, 400), power_gen/500)
 	qdel(src)
 
 #define TEMPERATURE_DIVISOR 40
@@ -90,6 +90,7 @@
 /obj/machinery/power/port_gen/pacman
 	name = "\improper P.A.C.M.A.N.-type Portable Generator"
 	desc = "A power generator that runs on solid plasma sheets. Rated for 80 kW max safe output."
+	icon_state = "portgen_p0"
 
 	var/sheet_name = "Plasma Sheets"
 	var/sheet_path = /obj/item/stack/material/plasma
@@ -415,9 +416,9 @@
 
 /obj/machinery/power/port_gen/pacman/update_icon()
 	if(active)
-		icon_state = "portgen1"
+		icon_state = "portgen_p1"
 	else
-		icon_state = "portgen0"
+		icon_state = "portgen_p0"
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
 	if(..())
@@ -451,6 +452,12 @@
 	time_per_fuel_unit = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
 	circuit = /obj/item/electronics/circuitboard/pacman/super
 
+/obj/machinery/power/port_gen/pacman/super/update_icon()
+	if(active)
+		icon_state = "portgen_u1"
+	else
+		icon_state = "portgen_u0"
+
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
 	if (prob(2*power_output))
@@ -466,7 +473,7 @@
 		//I dunno, maybe physics works different when you live in 2D -- SM radiation also works like this, apparently
 		L.apply_effect(max(20, round(rads/get_dist(L,src))), IRRADIATE)
 
-	explosion(get_turf(src), 100 * sheets, 100, EFLAG_EXPONENTIALFALLOFF)
+	explosion(get_turf(src), min(sheets * 10, 700), 100, EFLAG_EXPONENTIALFALLOFF)
 	qdel(src)
 
 /obj/machinery/power/port_gen/pacman/mrs
@@ -488,5 +495,5 @@
 
 /obj/machinery/power/port_gen/pacman/mrs/explode()
 	//no special effects, but the explosion is pretty big (same as a supermatter shard).
-	explosion(get_turf(src), sheets * 250, 100, EFLAG_ADDITIVEFALLOFF)
+	explosion(get_turf(src), min(sheets * 50, 900), 100, EFLAG_ADDITIVEFALLOFF)
 	qdel(src)

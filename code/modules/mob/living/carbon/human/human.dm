@@ -690,78 +690,6 @@ var/list/rank_prefix = list(\
 		spawn(350)	//wait 35 seconds before next volley
 			lastpuke = 0
 
-/mob/living/carbon/human/proc/morph()
-	set name = "Morph"
-	set category = "Abilities"
-
-	if(stat)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	// Can use ability multiple times in a row if necessary, but there is a price
-	vessel.remove_reagent("blood", 50)
-
-	var/new_facial = input("Please select facial hair color.", "Character Generation",facial_color) as color
-	if(new_facial)
-		facial_color = new_facial
-
-	var/new_hair = input("Please select hair color.", "Character Generation",hair_color) as color
-	if(new_hair)
-		hair_color = new_hair
-
-	var/new_eyes = input("Please select eye color.", "Character Generation",eyes_color) as color
-	if(new_eyes)
-		eyes_color = new_eyes
-		update_eyes()
-
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
-
-	if(!new_tone)
-		new_tone = 35
-	s_tone = max(min(round(text2num(new_tone)), 220), 1)
-	s_tone =  -s_tone + 35
-
-	// hair
-	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
-	var/list/hairs = list()
-
-	// loop through potential hairs
-	for(var/x in all_hairs)
-		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
-		hairs.Add(H.name) // add hair name to hairs
-		qdel(H) // delete the hair after it's all done
-
-	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
-
-	// if new style selected (not cancel)
-	if(new_style)
-		h_style = new_style
-
-	// facial hair
-	var/list/all_fhairs = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
-	var/list/fhairs = list()
-
-	for(var/x in all_fhairs)
-		var/datum/sprite_accessory/facial_hair/H = new x
-		fhairs.Add(H.name)
-		qdel(H)
-
-	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
-
-	if(new_style)
-		f_style = new_style
-
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
-	if(new_gender)
-		if(new_gender == "Male")
-			gender = MALE
-		else
-			gender = FEMALE
-	regenerate_icons()
-
-	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
-
 
 /mob/living/carbon/human/proc/check_ability_cooldown(cooldown)
 	var/time_passed = world.time - ability_last
@@ -770,205 +698,6 @@ var/list/rank_prefix = list(\
 		return TRUE
 	else
 		to_chat(src, SPAN_NOTICE("You can't use that yet! [cooldown / 10] seconds should pass after last ability activation. Only [time_passed / 10] seconds have passed."))
-
-
-/mob/living/carbon/human/proc/phaze_trough()
-	set name = "Phaze"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	// TODO: Here and in other psionic abilities - add checks for NT obelisks,
-	// reality cores and whatever else could prevent use of said abilities -- KIROV
-
-	var/original_x = pixel_x
-	var/original_y = pixel_y
-
-	var/atom/bingo
-	var/turf/T = get_step(loc, dir)
-	if(T.density)
-		bingo = T
-	else
-		for(var/atom/i in T)
-			if(i.density)
-				bingo = i
-				break
-
-	if(bingo)
-		to_chat(src, SPAN_NOTICE("You begin to phaze trough \the [bingo]"))
-		var/target_y = 0
-		var/target_x = 0
-		switch(dir)
-			if(NORTH)
-				target_y = 32
-			if(SOUTH)
-				target_y = -32
-			if(WEST)
-				target_x = -32
-			if(EAST)
-				target_x = 32
-		animate(src, pixel_x = target_x, pixel_y = target_y, time = 15 SECONDS, easing = LINEAR_EASING, flags = ANIMATION_END_NOW)
-		if(do_after(src, 15 SECONDS, bingo))
-			forceMove(get_turf(bingo))
-
-		animate(src)
-		pixel_x = original_x
-		pixel_y = original_y
-
-
-/mob/living/carbon/human/proc/forcespeak()
-	set name = "Force Speak"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	var/list/mobs_in_view = list()
-	for(var/i in mobs_in_view(7, src))
-		var/mob/living/carbon/human/H = i
-		if(istype(H) && !H.stat)
-			mobs_in_view += H
-
-	if(!mobs_in_view.len)
-		to_chat(src, SPAN_NOTICE("There is no valid targets around."))
-		return
-
-	var/mob/living/carbon/human/H = input("", "Who do you want to speak as?") as null|mob in mobs_in_view
-	if(H && istype(H))
-		var/message = input("", "Say") as text|null
-		if(message)
-			log_admin("[key_name(usr)] forced [key_name(H)] to say: [message]")
-			H.say(message)
-			if(prob(70))
-				to_chat(H, SPAN_WARNING("You see [src]\'s image in your head, commanding you to speak."))
-
-
-/mob/living/carbon/human/proc/remotesay()
-	set name = "Project mind"
-	set category = "Abilities"
-
-	if(stat)
-		reset_view(0)
-		remoteview_target = null
-		return
-
-	var/list/mobs = list()
-	for(var/mob/living/carbon/C in SSmobs.mob_list | SShumans.mob_list)
-		mobs += C
-
-	var/mob/target = input("Who do you want to project your mind to ?") as null|anything in mobs
-	if(isnull(target))
-		return
-
-	var/say = sanitize(input("What do you wish to say"))
-	if(get_active_mutation(target, MUTATION_REMOTESAY))
-		target.show_message("\blue You hear [real_name]'s voice: [say]")
-	else
-		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
-	show_message("\blue You project your mind into [target.real_name]: [say]")
-	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
-	for(var/mob/observer/ghost/G in world)
-		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
-
-/mob/living/carbon/human/proc/remoteobserve()
-	set name = "Remote View"
-	set category = "Abilities"
-
-	if(stat)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	if(client.eye != client.mob)
-		remoteview_target = null
-		reset_view(0)
-		return
-
-	if(!check_ability_cooldown(1 MINUTE))
-		return
-
-	var/list/mobs = list()
-
-	for(var/mob/living/carbon/H in SSmobs.mob_list | SShumans.mob_list)
-		if(H.ckey && H.stat == CONSCIOUS)
-			mobs += H
-
-	mobs -= src
-	var/mob/target = input("", "Who do you want to project your mind to?") as mob in mobs
-
-	if(target)
-		remoteview_target = target
-		reset_view(target)
-		to_chat(target, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
-	else
-		remoteview_target = null
-		reset_view(0)
-
-
-/mob/living/carbon/human/proc/roach_pheromones()
-	set name = "Release roach pheromones"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	if(check_ability_cooldown(2 MINUTES))
-		for(var/M in mobs_in_view(7, src) - src)
-			if(isroach(M))
-				var/mob/living/carbon/superior_animal/roach/R = M
-				R.target_mob = null
-				R.set_faction(faction)
-				addtimer(CALLBACK(R, PROC_REF(set_faction)), 1 MINUTE)
-
-			else if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(!H.get_breath_from_internal() && !(H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-					to_chat(H, "You feel disgusting smell coming from [src]")
-					H.sanity.changeLevel(-20)
-
-
-/mob/living/carbon/human/proc/spider_pheromones()
-	set name = "Release spider pheromones"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	if(check_ability_cooldown(2 MINUTES))
-		for(var/M in mobs_in_view(7, src) - src)
-			if(istype(M, /mob/living/carbon/superior_animal/giant_spider))
-				var/mob/living/carbon/superior_animal/giant_spider/S = M
-				S.target_mob = null
-				S.set_faction(faction)
-				addtimer(CALLBACK(S, PROC_REF(set_faction)), 1 MINUTE)
-
-			else if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(!H.get_breath_from_internal() && !(H.wear_mask?.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-					to_chat(H, "You feel disgusting smell coming from [src]")
-					H.sanity.changeLevel(-20)
-
-
-/mob/living/carbon/human/proc/inner_fuhrer()
-	set name = "Screech"
-	set category = "Abilities"
-
-	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
-		return
-
-	if(check_ability_cooldown(2 MINUTES))
-		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-		spawn(2)
-			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-		visible_message(SPAN_DANGER("[src] emits a frightening screech as you feel the ground tramble!"))
-		for(var/obj/structure/burrow/B in find_nearby_burrows(src))
-			B.distress(TRUE)
 
 
 /mob/living/carbon/human/proc/get_visible_gender()
@@ -982,7 +711,7 @@ var/list/rank_prefix = list(\
 		fixblood()
 
 	if(!client || !key) //Don't boot out anyone already in the mob.
-		for(var/obj/item/organ/internal/brain/H in world)
+		for(var/obj/item/organ/internal/vital/brain/H in world)
 			if(H.brainmob)
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
@@ -1079,37 +808,7 @@ var/list/rank_prefix = list(\
 	set desc		= "Browse your character sanity."
 	set category	= "IC"
 	set src			= usr
-	nano_ui_interact(src)
-
-/mob/living/carbon/human/nano_ui_data()
-	var/list/data = list()
-
-	data["style"] = get_total_style()
-	data["min_style"] = MIN_HUMAN_STYLE
-	data["max_style"] = MAX_HUMAN_STYLE
-	data["sanity"] = sanity.level
-	data["sanity_max_level"] = sanity.max_level
-	data["insight"] = sanity.insight
-	data["desires"] = sanity.desires
-	data["rest"] = sanity.resting
-	data["insight_rest"] = sanity.insight_rest
-
-	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
-	if(C)
-		data["cruciform"] = TRUE
-		data["righteous_life"] = C.righteous_life
-
-	return data
-
-/mob/living/carbon/human/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
-	var/list/data = nano_ui_data()
-
-	ui = SSnano.try_update_ui(user, user, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "sanity.tmpl", name, 650, 550, state = state)
-		ui.auto_update_layout = 1
-		ui.set_initial_data(data)
-		ui.open()
+	sanity?.ui_interact(src)
 
 /mob/living/carbon/human/verb/check_pulse()
 	set category = "Object"
@@ -1649,8 +1348,8 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	var/obj/item/organ/internal/heart_organ = random_organ_by_process(OP_HEART)
-	var/obj/item/organ/internal/brain_organ = random_organ_by_process(BP_BRAIN)
+	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 
 	if(!is_asystole() && !(heart_organ && brain_organ) || (heart_organ.is_broken() || brain_organ.is_broken()))
 		return 0

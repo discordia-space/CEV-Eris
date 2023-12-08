@@ -559,6 +559,10 @@
 	id = access_mercenary
 	access_type = ACCESS_TYPE_SYNDICATE
 
+/var/const/access_pirate = 145 //Pirate ship and base
+/datum/access/pirate
+	id = access_pirate
+	access_type = ACCESS_TYPE_SYNDICATE
 
 /var/const/access_syndicate = 140//General Syndicate Access
 /datum/access/syndicate

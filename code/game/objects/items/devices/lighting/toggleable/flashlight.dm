@@ -332,17 +332,6 @@
 	light_spot_power = 2.5
 	tick_cost = 0.2
 
-/obj/item/device/lighting/toggleable/flashlight/seclite/New()
-	..()
-	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
-	I.weapon_upgrades = list(
-		GUN_UPGRADE_FLASHLIGHT = TRUE,
-		)
-	I.gun_loc_tag = GUN_UNDERBARREL
-	I.breakable = FALSE
-	I.removal_time = WORKTIME_NEAR_INSTANT
-	I.removal_difficulty = FAILCHANCE_VERY_EASY
-
 /obj/item/device/lighting/toggleable/flashlight/seclite/update_icon()
 	. = ..()
 
