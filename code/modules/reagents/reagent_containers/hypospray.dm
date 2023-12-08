@@ -112,7 +112,7 @@
 		filling_overlay.color = reagents.get_color()
 		add_overlay(filling_overlay)
 	else
-		if(reagents && reagents.total_volume > 0)
+		if(reagents && reagents.total_volume <= 0)
 			filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector0")
 			filling_overlay.color = reagents.get_color()
 			add_overlay(filling_overlay)
