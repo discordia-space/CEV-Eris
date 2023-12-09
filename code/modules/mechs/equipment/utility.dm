@@ -468,7 +468,7 @@
 
 /obj/item/mech_equipment/power_generator
 	name = "debug power generator"
-	desc = "If you see this tell coders to fix code.!"
+	desc = "If you see this tell coders to fix code!"
 	icon_state = "mech_power"
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
