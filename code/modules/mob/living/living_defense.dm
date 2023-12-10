@@ -112,9 +112,11 @@
 		if(INFINITY to 90)
 			armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"),
 							SPAN_NOTICE("Your armor absorbed the impact!"))
+			playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
 		if(90 to 74)
 			armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
 							SPAN_NOTICE("Your armor reduced the impact greatly!"))
+			playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 5)
 		if(74 to 49)
 			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
 							SPAN_NOTICE("Your armor protects you from the impact!"))

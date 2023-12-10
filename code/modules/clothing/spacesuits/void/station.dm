@@ -11,9 +11,9 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
+		melee = 12,
+		bullet = 10,
+		energy = 10,
 		bomb = 60,
 		bio = 100,
 		rad = 100
@@ -26,9 +26,9 @@
 	icon_state = "technosuit_old"
 	item_state = "technosuit_old"
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
+		melee = 12,
+		bullet = 10,
+		energy = 10,
 		bomb = 60,
 		bio = 100,
 		rad = 100

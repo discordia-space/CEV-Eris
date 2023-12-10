@@ -6,9 +6,9 @@
 	desc = "Use in case of bomb. The shielded visor makes aiming harder."
 	icon_state = "bombsuit"
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 70,
+		bullet = 50,
+		energy = 50,
 		bomb = 1000,
 		bio = 100,
 		rad = 90
@@ -26,9 +26,9 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 70,
+		bullet = 50,
+		energy = 50,
 		bomb = 1000,
 		bio = 100,
 		rad = 90

@@ -129,9 +129,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 10,
-		bullet = 14,
-		energy = 14,
+		melee = 13,
+		bullet = 23,
+		energy = 13,
 		bomb = 35,
 		bio = 0,
 		rad = 0
@@ -164,8 +164,8 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 7,
-		bullet = 12,
+		melee = 10,
+		bullet = 18,
 		energy = 7,
 		bomb = 30,
 		bio = 0,
@@ -197,7 +197,7 @@
 	slowdown = 0.15
 	armor = list(
 		melee = 14,
-		bullet = 23,
+		bullet = 30,
 		energy = 7,
 		bomb = 20,
 		bio = 0,
@@ -240,7 +240,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		melee = 13,
-		bullet = 14,
+		bullet = 20,
 		energy = 10,
 		bomb = 20,
 		bio = 0,
@@ -290,7 +290,7 @@
 	armor = list(
 		melee = 5,
 		bullet = 4,
-		energy = 16,
+		energy = 23,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -334,8 +334,8 @@
 	item_state = "germancoat"
 	armor = list(
 		melee = 7,
-		bullet = 7,
-		energy = 12,
+		bullet = 10,
+		energy = 13,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -383,7 +383,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
 		melee = 23, //massive slowdown justifies
-		bullet = 20,
+		bullet = 28,
 		energy = 10,
 		bomb = 75,
 		bio = 0,
@@ -419,8 +419,8 @@
 	flags_inv = NONE
 	armor = list(
 		melee = 34,
-		bullet = 10,
-		energy = 10,
+		bullet = 17,
+		energy = 17,
 		bomb = 50,
 		bio = 0,
 		rad = 0
@@ -435,13 +435,14 @@
 	flags_inv = HIDEJUMPSUIT
 	armor = list(
 		melee = 16,
-		bullet = 17, //comparable to RIG
-		energy = 17,
+		bullet = 24,
+		energy = 24,
 		bomb = 50,
 		bio = 0,
 		rad = 0
 	)
 	price_tag = 800
+	slowdown = 0.3
 
 /*
  * Storage Types
@@ -493,8 +494,8 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 16,
-		bullet = 23,
+		melee = 25,
+		bullet = 28,
 		energy = 23,
 		bomb = 75,
 		bio = 0,

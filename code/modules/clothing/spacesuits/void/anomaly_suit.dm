@@ -26,7 +26,7 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(
 		melee = 7,
-		bullet = 7,
+		bullet = 10,
 		energy = 10,
 		bomb = 50,
 		bio = 100,

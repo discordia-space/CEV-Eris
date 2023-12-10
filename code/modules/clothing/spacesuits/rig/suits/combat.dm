@@ -8,9 +8,9 @@
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
+		melee = 45,
+		bullet = 35,
+		energy = 25,
 		bomb = 200,
 		bio = 100,
 		rad = 50
@@ -19,12 +19,12 @@
 
 	drain = 4
 	offline_vision_restriction = 1
-	rarity_value = 20
+	rarity_value = 120
 	price_tag = 500
 	helm_type = /obj/item/clothing/head/space/rig/combat
 
 /obj/item/rig/combat/equipped
-	rarity_value = 40
+	rarity_value = 200
 	initial_modules = list(
 		/obj/item/rig_module/mounted,
 		/obj/item/rig_module/vision/thermal,
@@ -43,6 +43,14 @@
 /obj/item/rig/combat/ironhammer
 	name = "ironhammer hardsuit control module"
 	desc = "Standard operative suit issued to Ironhammer mercenaries. Provides balanced overall protection against various threats and widely used on planets surface, space stations or in open space."
+	armor = list(
+		melee = 30,
+		bullet = 35,
+		energy = 20,
+		bomb = 200,
+		bio = 100,
+		rad = 50
+	)
 	icon_state = "ihs_rig"
 	helm_type = /obj/item/clothing/head/space/rig/combat/ironhammer
 	suit_type = "ironhammer hardsuit"
@@ -67,9 +75,9 @@
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
 	armor = list(
-		melee = 12,
-		bullet = 9,
-		energy = 9,
+		melee = 23,
+		bullet = 15,
+		energy = 15,
 		bomb = 150,
 		bio = 100,
 		rad = 100

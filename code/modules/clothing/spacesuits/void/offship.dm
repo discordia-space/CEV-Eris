@@ -5,9 +5,9 @@
 	icon_state = "onestar_void"
 	item_state = "onestar_void"
 	armor = list(
-		melee = 14,
-		bullet = 12,
-		energy = 14,
+		melee = 40,
+		bullet = 40,
+		energy = 35,
 		bomb = 125,
 		bio = 100,
 		rad = 100
@@ -23,9 +23,9 @@
 	item_state = "onestar_void"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 14,
-		bullet = 12,
-		energy = 14,
+		melee = 40,
+		bullet = 40,
+		energy = 35,
 		bomb = 125,
 		bio = 100,
 		rad = 100

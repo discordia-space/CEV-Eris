@@ -4,9 +4,9 @@
 	icon_state = "scaf"
 	item_state = "scaf"
 	armor = list(
-		melee = 15,
-		bullet = 16,
-		energy = 14,
+		melee = 45,
+		bullet = 40,
+		energy = 10,
 		bomb = 150,
 		bio = 100,
 		rad = 30
@@ -24,8 +24,8 @@
 	item_state = "scaf"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 15,
-		bullet = 16,
+		melee = 45,
+		bullet = 40,
 		energy = 14,
 		bomb = 150,
 		bio = 100,
@@ -49,9 +49,9 @@
 	icon_state = "syndiehelm"
 	item_state = "syndiehelm"
 	armor = list(
-		melee = 13,
-		bullet = 13,
-		energy = 13,
+		melee = 27,
+		bullet = 30,
+		energy = 15,
 		bomb = 75,
 		bio = 100,
 		rad = 75
@@ -75,8 +75,8 @@
 	desc = "An advanced suit that protects against injuries during special operations. Surprisingly flexible. This version is additionally reinforced against melee attacks."
 	item_state = "syndie_voidsuit"
 	armor = list(
-		melee = 13,
-		bullet = 13,
+		melee = 27,
+		bullet = 30,
 		energy = 13,
 		bomb = 75,
 		bio = 100,

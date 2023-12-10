@@ -9,9 +9,9 @@
 	icon_state = "merc_rig"
 	suit_type = "crimson hardsuit"
 	armor = list(
-		melee = 8,
-		bullet = 10,
-		energy = 5,
+		melee = 45,
+		bullet = 40,
+		energy = 35,
 		bomb = 200,
 		bio = 100,
 		rad = 50
@@ -23,6 +23,7 @@
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/merc
+	rarity_value = 300
 
 
 	initial_modules = list(
