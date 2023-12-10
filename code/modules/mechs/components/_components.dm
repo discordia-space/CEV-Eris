@@ -17,8 +17,14 @@
 	var/max_damage = 60
 	var/damage_state = 1
 	var/list/has_hardpoints = list()
+	//var/material/reinforcement = null
 	var/decal
 	var/power_use = 0
+	/// how many hits do we have to get to gib once we hit max damage
+	var/gib_hits_needed = 7
+	var/gib_hits = 0
+	/// wheter or not this component can just blow up
+	var/can_gib = FALSE
 
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color
@@ -35,12 +41,34 @@
 
 	if(.)
 		if(ready_to_install())
-			to_chat(usr, SPAN_NOTICE("It is ready for installation."))
+			to_chat(user, SPAN_NOTICE("It is ready for installation."))
 		else
 			show_missing_parts(usr)
+	/*
+	if(reinforcement)
+		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))
+	else
+		to_chat(user, SPAN_NOTICE("It can be reinforced with 5 sheets of a material for additional protection."))
+	*/
 
 	var/damage_string = src.get_damage_string()
 	to_chat(user, "The [src.name] [src.gender == PLURAL ? "are" : "is"] [damage_string].")
+
+/*
+
+/obj/item/mech_component/attackby(obj/item/I, mob/living/user)
+	. = ..()
+
+	if(!reinforcement && istype(I, /obj/item/stack/material))
+		var/obj/item/stack/material/mat = I
+		if(!mat.can_use(5))
+			to_chat(user, SPAN_NOTICE("You need 5 sheets of reinforcing material!"))
+			return
+		to_chat(user, SPAN_NOTICE("You start reinforcing \the src."))
+*/
+
+
+
 
 
 //These icons have multiple directions but before they're attached we only want south.
@@ -70,6 +98,26 @@
 		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 			playsound(loc, 'sound/mechs/critdestr.ogg', 50)
 
+	if(total_damage == max_damage)
+		if(gib_hits > gib_hits_needed && can_gib)
+			var/mob/living/exosuit/owner = loc
+			if(!istype(owner))
+				return
+			forceMove(NULLSPACE)
+			switch(type)
+				if(/obj/item/mech_component/manipulators)
+					owner.arms = null
+				if(/obj/item/mech_component/sensors)
+					owner.head = null
+				if(/obj/item/mech_component/propulsion)
+					owner.legs = null
+				if(/obj/item/mech_component/chassis)
+					owner.body = null
+			for(var/hardpoint in has_hardpoints)
+				owner.remove_system(hardpoint, null, TRUE)
+			owner.update_icon()
+			qdel(src)
+
 /obj/item/mech_component/proc/ready_to_install()
 	return TRUE
 
@@ -89,6 +137,7 @@
 	update_health()
 	if(total_damage >= max_damage)
 		take_component_damage(amt,0)
+		gib_hits += (total_damage / 10)
 		return
 
 /obj/item/mech_component/proc/take_burn_damage(amt)
@@ -96,6 +145,7 @@
 	update_health()
 	if(total_damage >= max_damage)
 		take_component_damage(0,amt)
+		gib_hits += (total_damage / 10)
 		return
 
 /obj/item/mech_component/proc/take_component_damage(brute, burn)

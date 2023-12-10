@@ -91,5 +91,5 @@
 	return
 
 
-/obj/structure/catwalk/can_prevent_fall()
-	return FALSE
+/obj/structure/catwalk/can_prevent_fall(above)
+	return above ? FALSE : TRUE

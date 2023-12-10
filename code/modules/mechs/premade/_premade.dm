@@ -26,10 +26,14 @@
 
 
 /mob/living/exosuit/premade/Initialize()
-	arms = new arms(src)
-	body = new body(src)
-	head = new head(src)
-	legs = new legs(src)
+	if(arms)
+		arms = new arms(src)
+	if(body)
+		body = new body(src)
+	if(head)
+		head = new head(src)
+	if(legs)
+		legs = new legs(src)
 
 	for(var/obj/item/mech_component/C in list(arms, legs, head, body))
 		if(decal)
