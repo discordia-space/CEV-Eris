@@ -5,9 +5,10 @@
 	item_state = "shovel"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFUL
-	throwforce = WEAPON_FORCE_WEAK
+	force = 17
+	throwforce = 19
 	w_class = ITEM_SIZE_NORMAL
+	armor_divisor = 1.6
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 5)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
@@ -32,8 +33,9 @@
 	desc = "A small tool ofter used for simple gardening task such as digging soil and moving dirt."
 	icon_state = "spade"
 	item_state = "spade"
-	force = WEAPON_FORCE_NORMAL
-	throwforce = WEAPON_FORCE_HARMLESS
+	force = 10
+	throwforce = 10
+	armor_divisor = 1.2
 	w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_SHOVELING = 20, QUALITY_DIGGING = 20, QUALITY_EXCAVATION = 10,QUALITY_HAMMERING = 10)
@@ -45,8 +47,9 @@
 	desc = "A powered shovel for all your dumpster diving needs."
 	icon_state = "powershovel"
 	item_state = "shovel"
-	force = WEAPON_FORCE_PAINFUL
-	throwforce = WEAPON_FORCE_WEAK
+	force = 13
+	throwforce = 5
+	armor_divisor = 1.1
 	w_class = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_PLASTEEL = 6,  MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_SHOVELING = 60, QUALITY_DIGGING = 40, QUALITY_EXCAVATION = 20, QUALITY_HAMMERING = 15)

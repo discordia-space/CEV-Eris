@@ -7,7 +7,8 @@
 	icon_state = "broken_bottle"
 	matter = list(MATERIAL_GLASS = 2)
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_PAINFUL
+	force = 15
+	armor_divisor = 0.7
 	throwforce = WEAPON_FORCE_WEAK
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
@@ -42,12 +43,11 @@
 	icon_state = "hatchet"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_PAINFUL
-	throwforce = WEAPON_FORCE_PAINFUL
+	force = 18
+	throwforce = 16
 	w_class = ITEM_SIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
-	armor_divisor = ARMOR_PEN_SHALLOW
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -62,9 +62,8 @@
 	wielded_icon = "makeshift_axe_wielded"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_DANGEROUS
-	throwforce = WEAPON_FORCE_NORMAL
-	armor_divisor = ARMOR_PEN_MODERATE
+	force = 24
+	throwforce = 18
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BACK
 	sharp = TRUE
@@ -87,12 +86,12 @@
 	wielded_icon = "fireaxe1"
 	sharp = TRUE
 	edge = TRUE
-	armor_divisor = ARMOR_PEN_DEEP
+	armor_divisor = 1.3
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_NORMAL
-	force_wielded_multiplier = 3.4
+	force = 20
+	force_wielded_multiplier = 2
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
@@ -130,8 +129,8 @@
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_PAINFUL
-	throwforce = WEAPON_FORCE_PAINFUL
+	force = 17
+	throwforce = 13
 	w_class = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
@@ -153,10 +152,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_ROBUST
-	armor_divisor = ARMOR_PEN_DEEP
-
-	throwforce = WEAPON_FORCE_NORMAL
+	force = 28
+	throwforce = 20
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/sharphit.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 10)
@@ -172,8 +169,7 @@
 	item_state = "saber"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_BRUTAL
-	armor_divisor = ARMOR_PEN_MODERATE
+	force = 33
 	spawn_blacklisted = TRUE
 	price_tag = 10000
 
@@ -182,7 +178,7 @@
 	desc = "Hack and slash!"
 	icon_state = "msword"
 	item_state = "msword"
-	armor_divisor = ARMOR_PEN_MODERATE
+	force = 24
 	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
 	degradation = 1.5 //not quite as sturdy as a normal weapon
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
@@ -195,8 +191,7 @@
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
-	force = WEAPON_FORCE_DANGEROUS * 1.5
-	armor_divisor = ARMOR_PEN_MODERATE
+	force = 29
 	rarity_value = 35
 
 /obj/item/tool/sword/katana/nano
@@ -214,7 +209,7 @@
 
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
-	switched_on_force = WEAPON_FORCE_BRUTAL
+	switched_on_force = 29
 	rarity_value = 60
 	spawn_blacklisted = TRUE
 
@@ -247,8 +242,8 @@
 	item_state = "chain"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_DANGEROUS
-	throwforce = WEAPON_FORCE_DANGEROUS
+	force = 20
+	throwforce = 23
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")

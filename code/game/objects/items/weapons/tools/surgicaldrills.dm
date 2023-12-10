@@ -6,8 +6,8 @@
 	worksound = WORKSOUND_DRIVER_TOOL
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2)
 	flags = CONDUCT
-	force = WEAPON_FORCE_DANGEROUS
-	armor_divisor = ARMOR_PEN_MODERATE
+	force = 17
+	armor_divisor = 2
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")

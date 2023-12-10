@@ -3,8 +3,9 @@
 	desc = "The most basic of mining tools, for short excavations and small mineral extractions."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_DANGEROUS
-	armor_divisor = ARMOR_PEN_HALF // It's a pickaxe. It's destined to poke holes in things, even armor.
+	/// comparable to the fireaxe
+	force = 27
+	armor_divisor = 1.2
 	throwforce = WEAPON_FORCE_NORMAL
 	icon_state = "pickaxe"
 	item_state = "pickaxe"
@@ -52,7 +53,8 @@
 	item_state = "pickaxe"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2, MATERIAL_DIAMOND = 2)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 3)
-	switched_on_force = WEAPON_FORCE_ROBUST
+	switched_on_force = 34
+	armor_divisor = 1.4
 	tool_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)
 	switched_on_qualities = list(QUALITY_DIGGING = 50, QUALITY_PRYING = 20)
@@ -74,6 +76,8 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 50)
+	switched_on_force = 21
+	armor_divisor = 1.2
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	degradation = 0.7
 	use_power_cost = 0.4
@@ -90,6 +94,8 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 55)
+	switched_on_force = 34
+	armor_divisor = 1.4
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2, TECH_ENGINEERING = 3)
 	degradation = 0.6
 	workspeed = 1.8
@@ -107,6 +113,7 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 55, QUALITY_DRILLING = 10)
+	switched_on_force = 23
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	degradation = 0.7
@@ -122,6 +129,7 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 60, QUALITY_DRILLING = 10)
+	switched_on_force = 33
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLATINUM = 2)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	degradation = 0.6
@@ -143,6 +151,7 @@
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 20)
 	switched_on_qualities = list(QUALITY_DIGGING = 60, QUALITY_DRILLING = 20)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
+	switched_on_force = 26
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	max_upgrades = 4
 	degradation = 0.1

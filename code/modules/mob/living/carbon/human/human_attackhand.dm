@@ -112,7 +112,7 @@
 						var/obj/item/grab/G = new /obj/item/grab(M, src)
 						if(!G)	//the grab will delete itself in New if affecting is anchored
 							return
-						G.state = GRAB_AGGRESSIVE
+						G.state = GRAB_PASSIVE
 						G.counter_timer = 0
 						M.put_in_active_hand(G)
 						G.synch()

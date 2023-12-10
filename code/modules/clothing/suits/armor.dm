@@ -129,9 +129,9 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 7,
-		bullet = 10,
-		energy = 10,
+		melee = 10,
+		bullet = 14,
+		energy = 14,
 		bomb = 35,
 		bio = 0,
 		rad = 0
@@ -165,7 +165,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		melee = 7,
-		bullet = 13,
+		bullet = 12,
 		energy = 7,
 		bomb = 30,
 		bio = 0,
@@ -196,8 +196,8 @@
 	blood_overlay_type = "armor"
 	slowdown = 0.15
 	armor = list(
-		melee = 6,
-		bullet = 15,
+		melee = 14,
+		bullet = 23,
 		energy = 7,
 		bomb = 20,
 		bio = 0,
@@ -239,8 +239,8 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 10,
-		bullet = 13,
+		melee = 13,
+		bullet = 14,
 		energy = 10,
 		bomb = 20,
 		bio = 0,
@@ -289,7 +289,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		melee = 5,
-		bullet = 7,
+		bullet = 4,
 		energy = 16,
 		bomb = 20,
 		bio = 0,
@@ -300,7 +300,9 @@
 	matter = list(
 		MATERIAL_STEEL = 6, // slightly less steel cost to make room for reflective glass
 		MATERIAL_PLASTEEL = 1,
-		MATERIAL_GLASS = 15 // reflective material, lots of it
+		MATERIAL_GLASS = 15, // reflective material, lots of it
+		MATERIAL_SILVER = 2,
+		MATERIAL_GOLD = 2
 	)
 	slowdown = LIGHT_SLOWDOWN
 	//spawn_blacklisted = TRUE//antag_item_targets-crafteable?
@@ -333,7 +335,7 @@
 	armor = list(
 		melee = 7,
 		bullet = 7,
-		energy = 10,
+		energy = 12,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -380,8 +382,8 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = 16, //massive slowdown justifies
-		bullet = 13,
+		melee = 23, //massive slowdown justifies
+		bullet = 20,
 		energy = 10,
 		bomb = 75,
 		bio = 0,
@@ -416,9 +418,9 @@
 	item_state = "swat_suit"
 	flags_inv = NONE
 	armor = list(
-		melee = 20,
-		bullet = 7,
-		energy = 6,
+		melee = 34,
+		bullet = 10,
+		energy = 10,
 		bomb = 50,
 		bio = 0,
 		rad = 0
@@ -433,8 +435,8 @@
 	flags_inv = HIDEJUMPSUIT
 	armor = list(
 		melee = 16,
-		bullet = 13, //comparable to RIG
-		energy = 10,
+		bullet = 17, //comparable to RIG
+		energy = 17,
 		bomb = 50,
 		bio = 0,
 		rad = 0
@@ -491,9 +493,9 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 12,
-		bullet = 12,
-		energy = 12,
+		melee = 16,
+		bullet = 23,
+		energy = 23,
 		bomb = 75,
 		bio = 0,
 		rad = 0
@@ -514,9 +516,9 @@
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 7,
+		melee = 15,
 		bullet = 7,
-		energy = 2,
+		energy = 7,
 		bomb = 50,
 		bio = 0,
 		rad = 80
@@ -538,7 +540,7 @@
 	item_state = "armor_engineering_old"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 9,
+		melee = 25,
 		bullet = 9,
 		energy = 9,
 		bomb = 75,
@@ -612,9 +614,9 @@
 	item_state = "crusader_suit"
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
-		melee = 13,
-		bullet = 13,
-		energy = 13,
+		melee = 10,
+		bullet = 18,
+		energy = 18,
 		bomb = 75,
 		bio = 0,
 		rad = 0
@@ -639,9 +641,9 @@
 		MATERIAL_SILVER = 2
 		)
 	armor = list(
-		melee = 7,
-		bullet = 10,
-		energy = 10,
+		melee = 12,
+		bullet = 7,
+		energy = 7,
 		bomb = 20,
 		bio = 100,
 		rad = 50

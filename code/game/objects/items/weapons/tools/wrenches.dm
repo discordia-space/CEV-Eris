@@ -32,7 +32,8 @@
 	w_class = ITEM_SIZE_NORMAL
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40,QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1)
-	force = WEAPON_FORCE_PAINFUL * 1.2
+	force = 18
+	armor_divisor = 1.2
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	throwforce = WEAPON_FORCE_PAINFUL
 	degradation = 0.7

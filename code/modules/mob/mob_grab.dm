@@ -1,5 +1,5 @@
-#define UPGRADE_WARMUP	50
-#define UPGRADE_KILL_TIMER	100
+#define UPGRADE_WARMUP	5 SECONDS
+#define UPGRADE_KILL_TIMER	10 SECONDS
 
 ///Process_Grab()
 ///Called by client/Move()
@@ -110,22 +110,22 @@
 		assailant.stop_pulling()
 
 	if(state <= GRAB_AGGRESSIVE)
-		allow_upgrade = 1
+		allow_upgrade = TRUE
 		//disallow upgrading if we're grabbing more than one person
 		if((assailant.l_hand && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/grab)))
 			var/obj/item/grab/G = assailant.l_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 		if((assailant.r_hand && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/grab)))
 			var/obj/item/grab/G = assailant.r_hand
 			if(G.affecting != affecting)
-				allow_upgrade = 0
+				allow_upgrade = FALSE
 
 		//disallow upgrading past aggressive if we're being grabbed aggressively
 		for(var/obj/item/grab/G in affecting.grabbed_by)
 			if(G == src) continue
 			if(G.state >= GRAB_AGGRESSIVE)
-				allow_upgrade = 0
+				allow_upgrade = TRUE
 
 		if(allow_upgrade)
 			if(state < GRAB_AGGRESSIVE)
@@ -268,8 +268,8 @@
 		return
 
 	// Adjust the grab warmup using assailant's ROB stat
-	var/assailant_stat = assailant?.stats.getStat(STAT_ROB)
-	var/affecting_stat = affecting?.stats.getStat(STAT_ROB)
+	var/assailant_stat = assailant?.stats.getStat(STAT_ROB) + 0.0001 /// avoid powers of 0
+	var/affecting_stat = affecting?.stats.getStat(STAT_ROB) + 0.0001
 	var/warmup_increase
 	if(assailant_stat > 0)
 		// Positive ROB decreases warmup, but not linearly
@@ -281,8 +281,8 @@
 		warmup_increase += affecting_stat ** 0.8
 	else
 		warmup_increase -= abs(affecting_stat) ** 0.6
-
-	var/total_warmup = max(0, UPGRADE_WARMUP + round(warmup_increase))
+	// No lower than 2 seconds
+	var/total_warmup = max(2 SECOND, UPGRADE_WARMUP + round(warmup_increase))
 
 	if(state < GRAB_AGGRESSIVE)
 		if(!allow_upgrade)
@@ -310,7 +310,7 @@
 		assailant.visible_message(SPAN_WARNING("[assailant] starts grabbing [affecting] by the neck!"))
 		state = GRAB_PRENECK
 		hud.icon_state = "reinforce"
-		if(upgrade_grab(total_warmup, "kill", GRAB_NECK))
+		if(upgrade_grab(total_warmup*2, "kill", GRAB_NECK))
 			assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] by the neck!"))
 			icon_state = "grabbed+1"
 			assailant.set_dir(get_dir(assailant, affecting))
