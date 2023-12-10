@@ -14,7 +14,7 @@
 	max_shells = 5
 	price_tag = 20000
 	damage_multiplier = 1.3
-	penetration_multiplier = 9
+	penetration_multiplier = 20
 	pierce_multiplier = 10
 	zoom_factors = list(0.4) // it has a giant scope
 	init_recoil = HANDGUN_RECOIL(1.8) // maybe it was a bit too low

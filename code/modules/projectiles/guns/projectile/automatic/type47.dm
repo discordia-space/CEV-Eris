@@ -19,7 +19,6 @@
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	penetration_multiplier = 0.2
 	damage_multiplier = 1.2
 	spawn_tags = SPAWN_TAG_GUN_OS
 	spawn_blacklisted = TRUE

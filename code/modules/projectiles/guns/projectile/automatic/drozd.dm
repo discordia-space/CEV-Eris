@@ -16,7 +16,6 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	price_tag = 2200
 	damage_multiplier = 0.9
-	penetration_multiplier = 0.5
 	init_recoil = SMG_RECOIL(0.7)
 
 	twohanded = FALSE

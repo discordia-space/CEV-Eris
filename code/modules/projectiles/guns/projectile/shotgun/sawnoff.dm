@@ -12,7 +12,6 @@
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
 	damage_multiplier = 1 // better to work on recoil and AP than damage (compare to a pistol)
-	penetration_multiplier = -0.1 // other "short" guns often nerf AP to reprent lower velocity
 	init_recoil = SMG_RECOIL(3) // with slugs it is 24 recoil (45 is max), and less recoil negation wielded
 	twohanded = FALSE
 	saw_off = FALSE

@@ -23,8 +23,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	init_recoil = HMG_RECOIL(0.5)
-	damage_multiplier = 1.4
-	penetration_multiplier = -0.2
+	damage_multiplier = 1.2
 	burst_delay = 0.8
 	init_firemodes = list(
 		list(mode_name = "full auto",  mode_desc="800 rounds per minute", mode_type = /datum/firemode/automatic, fire_delay=2.4, icon="auto"),

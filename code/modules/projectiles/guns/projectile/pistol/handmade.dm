@@ -14,7 +14,6 @@
 	gun_parts = list(/obj/item/part/gun/frame/handmade_pistol = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/pistol/steel = 1, /obj/item/part/gun/modular/barrel/pistol/steel = 1)
 	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.35
-	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(2)
 	spawn_frequency = 0
 	spawn_blacklisted = FALSE

@@ -20,7 +20,6 @@
 	reload_sound = 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.3
-	penetration_multiplier = 0
 	init_recoil = LMG_RECOIL(1)
 	rarity_value = 65
 	gun_parts = list(/obj/item/part/gun/frame/dallas = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)

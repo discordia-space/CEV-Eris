@@ -15,7 +15,6 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.2
-	penetration_multiplier = 0.4
 	proj_step_multiplier = 0.6
 	init_recoil = HANDGUN_RECOIL(0.8)
 	spawn_tags = SPAWN_TAG_GUN_OS

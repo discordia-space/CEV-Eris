@@ -19,7 +19,6 @@
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	damage_multiplier = 1.3
-	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.7)
 	gun_tags = list(GUN_SILENCABLE)
 

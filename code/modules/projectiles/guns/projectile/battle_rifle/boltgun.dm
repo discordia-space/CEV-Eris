@@ -13,7 +13,6 @@
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
-	penetration_multiplier = 0.3
 	init_recoil = RIFLE_RECOIL(1.5)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
@@ -148,7 +147,6 @@
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.8
-	penetration_multiplier = 1
 	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
@@ -201,7 +199,6 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.5
-	penetration_multiplier = -0.3
 	init_recoil = RIFLE_RECOIL(2)
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
@@ -237,7 +234,6 @@
 	force = WEAPON_FORCE_WEAK // no bayonet
 	armor_divisor = 1
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	penetration_multiplier = 0 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2
 	init_recoil = CARBINE_RECOIL(3)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
@@ -262,7 +258,6 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_hand"
 	item_suffix  = "_hand"
-	penetration_multiplier = -0.2 // child of mosin obrez, not of riose
 	init_recoil = CARBINE_RECOIL(4.5)
 	wielded_item_state = "_doble_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)

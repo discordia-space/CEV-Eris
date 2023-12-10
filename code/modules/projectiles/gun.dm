@@ -35,7 +35,7 @@
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/halloss_multiplier = 1 //Multiplies agony damage of projectiles fired from this gun
-	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
+	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun // To be removed - SPCR 2023
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
 	var/burst = 1

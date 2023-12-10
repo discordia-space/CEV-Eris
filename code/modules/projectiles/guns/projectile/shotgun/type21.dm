@@ -20,8 +20,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
-	damage_multiplier = 1.0
-	penetration_multiplier = 0.5
+	damage_multiplier = 1.4
 	init_recoil = CARBINE_RECOIL(1.0)
 
 	init_firemodes = list(

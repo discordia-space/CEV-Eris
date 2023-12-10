@@ -10,8 +10,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	init_recoil = RIFLE_RECOIL(2.3)
-	damage_multiplier = 0.8
-	penetration_multiplier = 0.5
+	damage_multiplier = 1.2
 	saw_off = FALSE
 
 	price_tag = 1800

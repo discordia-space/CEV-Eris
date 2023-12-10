@@ -21,7 +21,6 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 1.4
-	penetration_multiplier = 0
 	init_recoil = RIFLE_RECOIL(1.3)
 	zoom_factors = list(0.6)
 	fire_delay = 6.5

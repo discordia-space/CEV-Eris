@@ -22,7 +22,6 @@
 	serial_type = "FS"
 
 	damage_multiplier = 0.9
-	penetration_multiplier = -0.2
 	init_recoil = SMG_RECOIL(0.4)
 
 	init_firemodes = list(

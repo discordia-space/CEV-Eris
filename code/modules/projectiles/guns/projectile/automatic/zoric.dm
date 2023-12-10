@@ -17,7 +17,6 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
 	damage_multiplier = 1
-	penetration_multiplier = -0.1
 	init_recoil = SMG_RECOIL(0.9)
 	twohanded = FALSE
 
@@ -40,7 +39,7 @@
 		wielded_item_state = "_doble" + "_mag"
 	else
 		wielded_item_state = "_doble"
-		
+
 
 	set_item_state(itemstring)
 

@@ -16,7 +16,6 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	can_dual = TRUE
 	damage_multiplier = 1.3
-	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.8)
 
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'

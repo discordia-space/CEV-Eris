@@ -17,8 +17,7 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 8)
 	price_tag = 1400
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
-	damage_multiplier = 0.7	 //made with rubber rounds in mind. For lethality refer to Wintermute. Still quite lethal if you manage to land most shots.
-	penetration_multiplier = 0
+	damage_multiplier = 0.8	 //made with rubber rounds in mind. For lethality refer to Wintermute. Still quite lethal if you manage to land most shots.
 	init_recoil = SMG_RECOIL(0.55)
 	gun_tags = list(GUN_SILENCABLE)
 

@@ -18,8 +18,7 @@
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	rarity_value = 16
-	damage_multiplier = 1
-	penetration_multiplier = 0
+	damage_multiplier = 0.9
 	init_recoil = HANDGUN_RECOIL(0.75)
 
 	gun_tags = list(GUN_SILENCABLE)
@@ -70,7 +69,6 @@
 	icon = 'icons/obj/guns/projectile/makarov.dmi'
 	icon_state = "makarov"
 	damage_multiplier = 1.5
-	penetration_multiplier = -0.4
 	init_recoil = HANDGUN_RECOIL(0.75)
 	price_tag = 1400
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2, TECH_COVERT = 3)

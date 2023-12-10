@@ -14,8 +14,7 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_PAINFUL
-	damage_multiplier = 1.2
-	penetration_multiplier = 0.2
+	damage_multiplier = 0.7
 	init_recoil = CARBINE_RECOIL(3.5)
 	price_tag = 250 //cheap as they get
 	spawn_blacklisted = FALSE
