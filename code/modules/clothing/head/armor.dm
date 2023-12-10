@@ -26,7 +26,7 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	armor = list(
-		melee = 7,
+		melee = 10,
 		bullet = 10,
 		energy = 10,
 		bomb = 50,
@@ -54,9 +54,9 @@
 	icon_state = "merchelm"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
-		melee = 12,
-		bullet = 12,
-		energy = 12,
+		melee = 24,
+		bullet = 35,
+		energy = 20,
 		bomb = 75,
 		bio = 0,
 		rad = 0
@@ -88,9 +88,9 @@
 	light_overlay = "technohelmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 3,
+		melee = 10,
+		bullet = 10,
+		energy = 10,
 		bomb = 100,
 		bio = 0,
 		rad = 80
@@ -114,9 +114,9 @@
 	action_button_name = "Toggle Headlamp"
 	brightness_on = 4
 	armor = list(
-		melee = 9,
-		bullet = 9,
-		energy = 9,
+		melee = 15,
+		bullet = 15,
+		energy = 15,
 		bomb = 100,
 		bio = 0,
 		rad = 0
@@ -144,8 +144,8 @@
 	icon_state = "scav_helmet"
 	armor = list(
 		melee = 10,
-		bullet = 9,
-		energy = 7,
+		bullet = 10,
+		energy = 10,
 		bomb = 35,
 		bio = 0,
 		rad = 0
@@ -166,8 +166,8 @@
 	icon_state = "bulletproof"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
-		melee = 7,
-		bullet = 15,
+		melee = 14,
+		bullet = 30,
 		energy = 7,
 		bomb = 30,
 		bio = 0,
@@ -278,7 +278,7 @@
 	armor = list(
 		melee = 7,
 		bullet = 7,
-		energy = 16,
+		energy = 23,
 		bomb = 20,
 		bio = 0,
 		rad = 0
@@ -314,8 +314,8 @@
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(melee = 7, bullet = 5, energy = 5, bomb = 35, bio = 0, rad = 0)
-	armor_down = list(melee = 10, bullet = 8, energy = 7, bomb = 50, bio = 0, rad = 0)
+	armor_up = list(melee = 15, bullet = 10, energy = 10, bomb = 35, bio = 0, rad = 0)
+	armor_down = list(melee = 35, bullet = 15, energy = 15, bomb = 50, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -387,9 +387,9 @@
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = 16,
-		bullet = 13,
-		energy = 10,
+		melee = 15,
+		bullet = 20,
+		energy = 20,
 		bomb = 75,
 		bio = 0,
 		rad = 0
@@ -462,8 +462,8 @@
 	icon_state = "steelpot"
 	armor = list(
 		melee = 10,
-		bullet = 10,
-		energy = 7,
+		bullet = 15,
+		energy = 12,
 		bomb = 50,
 		bio = 0,
 		rad = 0
@@ -477,7 +477,7 @@
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
 	armor_up = list(melee = 5, bullet = 5, energy = 2, bomb = 30, bio = 0, rad = 0)
-	armor_down = list(melee = 10, bullet = 13, energy = 7, bomb = 50, bio = 0, rad = 0)
+	armor_down = list(melee = 13, bullet = 13, energy = 7, bomb = 50, bio = 0, rad = 0)
 	siemens_coefficient = 1
 	up = TRUE
 
@@ -542,9 +542,9 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
 	armor = list(
-		melee = 13,
-		bullet = 13,
-		energy = 13,
+		melee = 10,
+		bullet = 20,
+		energy = 5,
 		bomb = 75,
 		bio = 0,
 		rad = 0

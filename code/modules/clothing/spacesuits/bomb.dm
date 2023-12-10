@@ -38,7 +38,7 @@
 	siemens_coefficient = 0
 	equip_delay = 10 SECONDS
 	price_tag = 300
-	slowdown = HEAVY_SLOWDOWN
+	slowdown = 4
 
 /obj/item/clothing/head/space/bomb/security
 	icon_state = "bombsuitsec"

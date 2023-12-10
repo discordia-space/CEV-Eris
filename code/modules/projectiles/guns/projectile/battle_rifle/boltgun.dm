@@ -144,9 +144,8 @@
 	icon_state = "arisaka_ih_scope"
 	item_suffix  = "_ih_scope"
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
-	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
-	damage_multiplier = 1.8
+	damage_multiplier = 1.6
 	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6

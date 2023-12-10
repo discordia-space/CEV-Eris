@@ -68,7 +68,7 @@
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
 			if(!(dmg_type == HALLOSS)) // Determine pain from impact
-				adjustHalLoss(used_armor * (wounding_multiplier ? wounding_multiplier : 1) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
+				adjustHalLoss(used_armor / 10 * (wounding_multiplier ? wounding_multiplier : 1) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
@@ -108,21 +108,18 @@
 	//Feedback
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
 	//Goon/tg chat should take care of spam issue on this one
-	switch(effective_armor)
-		if(INFINITY to 90)
-			armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"),
-							SPAN_NOTICE("Your armor absorbed the impact!"))
-			playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
-		if(90 to 74)
-			armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
-							SPAN_NOTICE("Your armor reduced the impact greatly!"))
-			playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 5)
-		if(74 to 49)
-			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
-							SPAN_NOTICE("Your armor protects you from the impact!"))
-		if(49 to 24)
-			armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."),
-							SPAN_NOTICE("Your armor reduced the impact a little."))
+
+	/// There used to be a switch statement for it but it did not work properly for some reason , SPCR-2023
+	if(effective_armor > 90)
+		armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"), SPAN_NOTICE("Your armor absorbed the impact!"))
+		playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
+	else if(effective_armor > 74)
+		armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"), SPAN_NOTICE("Your armor absorbed the impact!"))
+		playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
+	else if(effective_armor > 49)
+		armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"), SPAN_NOTICE("Your armor protects you from the impact!"))
+	else if(effective_armor > 24)
+		armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."), SPAN_NOTICE("Your armor reduced the impact a little."))
 
 	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
 	if(ablative_armor)
