@@ -91,7 +91,9 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	force = 20
-	force_wielded_multiplier = 2
+	force_wielded_multiplier = 2.3
+	attack_delay = 1
+	w_attack_delay = 3
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
@@ -153,6 +155,7 @@
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
 	force = 28
+	force_wielded_multiplier = 1.2
 	throwforce = 20
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/sharphit.ogg'
@@ -170,6 +173,7 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
 	slot_flags = SLOT_BELT
 	force = 33
+	force_wielded_multiplier = 1.2
 	spawn_blacklisted = TRUE
 	price_tag = 10000
 
@@ -178,7 +182,11 @@
 	desc = "Hack and slash!"
 	icon_state = "msword"
 	item_state = "msword"
-	force = 24
+	force = 25
+	force_wielded_multiplier = 1.5
+	attack_delay = 4
+	/// heavy hitter but slow attack
+	w_attack_delay = 6
 	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
 	degradation = 1.5 //not quite as sturdy as a normal weapon
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
@@ -192,6 +200,7 @@
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	force = 29
+	force_wielded_multiplier = 1.2
 	rarity_value = 35
 
 /obj/item/tool/sword/katana/nano
@@ -243,6 +252,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	force = 20
+	force_wielded_multiplier = 1
 	throwforce = 23
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)

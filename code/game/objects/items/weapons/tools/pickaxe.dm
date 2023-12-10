@@ -4,7 +4,9 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	/// comparable to the fireaxe
-	force = 27
+	force = 16
+	force_wielded_multiplier = 3
+	w_attack_delay = 13
 	armor_divisor = 1.2
 	throwforce = WEAPON_FORCE_NORMAL
 	icon_state = "pickaxe"
@@ -54,6 +56,8 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2, MATERIAL_DIAMOND = 2)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 3)
 	switched_on_force = 34
+	force_wielded_multiplier = 2.3
+	w_attack_delay = 13
 	armor_divisor = 1.4
 	tool_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)

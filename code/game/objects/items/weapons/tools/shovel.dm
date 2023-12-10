@@ -5,10 +5,13 @@
 	item_state = "shovel"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 17
+	force = 24
+	force_wielded_multiplier = 1.3
+	attack_delay = 4
+	/// chunky like junk blade
+	w_attack_delay = 6
 	throwforce = 19
 	w_class = ITEM_SIZE_NORMAL
-	armor_divisor = 1.6
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 5)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")

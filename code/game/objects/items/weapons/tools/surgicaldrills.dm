@@ -7,6 +7,8 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 2)
 	flags = CONDUCT
 	force = 17
+	force_wielded_multiplier = 1.5
+	w_attack_delay = 1
 	armor_divisor = 2
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)

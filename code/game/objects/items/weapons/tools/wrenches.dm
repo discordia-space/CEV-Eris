@@ -3,7 +3,10 @@
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon_state = "wrench"
 	flags = CONDUCT
-	force = WEAPON_FORCE_NORMAL
+	force = 15
+	force_wielded_multiplier = 2
+	attack_delay = 2
+	w_attack_delay = 6
 	worksound = WORKSOUND_WRENCHING
 	throwforce = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
@@ -32,7 +35,10 @@
 	w_class = ITEM_SIZE_NORMAL
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40,QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1)
-	force = 18
+	force = 20
+	force_wielded_multiplier = 3
+	/// big hit , big delay
+	w_attack_delay = 10
 	armor_divisor = 1.2
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	throwforce = WEAPON_FORCE_PAINFUL
