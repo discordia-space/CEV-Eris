@@ -336,7 +336,7 @@
 
 /obj/machinery/door/proc/hit(var/mob/user, var/obj/item/I, var/thrown = FALSE)
 	var/obj/item/W = I
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
+	user.setClickCooldown((DEFAULT_ATTACK_COOLDOWN + I.wielded ? I.w_attack_delay : I.attack_delay )*1.5 )
 	var/calc_damage
 	if (thrown)
 		calc_damage= W.throwforce*W.structure_damage_factor
