@@ -15,14 +15,16 @@ There are important things regarding this file:
 //Low-caliber pistols and SMGs .35
 /obj/item/projectile/bullet/pistol
 	name = ".35 caliber bullet"
-	damage_types = list(BRUTE = 26)
+	/// 24 with wound mult
+	damage_types = list(BRUTE = 12)
 	armor_divisor = 1
+	wounding_mult = 2
 	can_ricochet = TRUE
 	penetrating = 2
 	recoil = 3
 
 /obj/item/projectile/bullet/pistol/hv
-	armor_divisor = 1.5
+	armor_divisor = 1.3
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/pistol/practice
@@ -35,7 +37,7 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pistol/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 12, HALLOSS = 14)
+	damage_types = list(BRUTE = 2, HALLOSS = 10)
 	embed = FALSE
 	sharp = FALSE
 	wounding_mult = WOUNDING_SMALL
@@ -50,12 +52,11 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 24)
-	armor_divisor = 1.5
+	damage_types = list(BRUTE = 34)
+	armor_divisor = 1
 	penetrating = 2
 	can_ricochet = TRUE
-	recoil = 3
-	wounding_mult = WOUNDING_INTERMEDIATE
+	recoil = 3.6
 
 /obj/item/projectile/bullet/srifle/nomuzzle
 	muzzle_type = null
@@ -68,7 +69,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/srifle/hv
-	armor_divisor = 2
+	armor_divisor = 1.4
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/srifle/rubber
@@ -77,22 +78,21 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 9, HALLOSS = 9)
 	embed = FALSE
 	sharp = FALSE
-	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/srifle/scrap
-	armor_divisor = 1.2
+	armor_divisor = 0.7
 	recoil = 5
 
 // .25 caseless rifle
 
 /obj/item/projectile/bullet/clrifle
 	name = ".25 caliber bullet"
-	damage_types = list(BRUTE = 21)
-	armor_divisor = 1.5
+	damage_types = list(BRUTE = 27)
+	armor_divisor = 1
 	penetrating = 2
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
-	recoil = 3.5
-	step_delay = 0.9 //intermediate between .20 and .30, but easy to use
+	recoil = 2.8
+	step_delay = 0.9
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
@@ -102,33 +102,30 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/clrifle/hv
-	armor_divisor = 2
+	armor_divisor = 1.4
 	step_delay = 0.7
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/clrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 11, HALLOSS = 10)
+	damage_types = list(BRUTE = 5, HALLOSS = 10)
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = TRUE
-	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/clrifle/scrap
-	armor_divisor = 1.2
+	armor_divisor = 0.8
 	recoil = 4.5
 
-// .30 rifle
+// .30 rifle , heavy hitting and heavy recoil
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 18)
-	armor_divisor = 1.5
+	damage_types = list(BRUTE = 45)
 	penetrating = 2
 	can_ricochet = TRUE
-	recoil = 4.5
-	wounding_mult = WOUNDING_WIDE
+	recoil = 5
 
 /obj/item/projectile/bullet/lrifle/practice
 	name = "practice bullet"
@@ -138,30 +135,29 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/lrifle/hv
-	armor_divisor = 2
+	armor_divisor = 1.3
 	step_delay = 0.75
 
 /obj/item/projectile/bullet/lrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 8, HALLOSS = 8)
+	damage_types = list(BRUTE = 8, HALLOSS = 19)
 	embed = FALSE
 	sharp = FALSE
-	wounding_mult = WOUNDING_NORMAL
 
 /obj/item/projectile/bullet/lrifle/scrap
-	armor_divisor = 1.2
-	recoil = 5.5
+	armor_divisor = 0.7
+	recoil = 7
 
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	name = " .40 caliber bullet"
-	damage_types = list(BRUTE = 21)
+	damage_types = list(BRUTE = 50)
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
-	recoil = 6
-	wounding_mult = WOUNDING_WIDE
+	recoil = 8
+	step_delay =  1.1
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
@@ -171,47 +167,45 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/magnum/hv
-	armor_divisor = 1.5
-	step_delay = 0.75
+	armor_divisor = 1.3
+	step_delay = 0.9
 
 /obj/item/projectile/bullet/magnum/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 10, HALLOSS = 11)
+	damage_types = list(BRUTE = 10, HALLOSS = 25)
 	embed = FALSE
 	sharp = FALSE
-	wounding_mult = WOUNDING_NORMAL
 
 /obj/item/projectile/bullet/magnum/scrap
 	armor_divisor = 0.8
-	recoil = 7
+	recoil = 9
 
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 18)
-	armor_divisor = 3
+	damage_types = list(BRUTE = 55)
+	armor_divisor = 1.3
 	penetrating = 2
 	step_delay = 0.8
 	recoil = 15 // Good luck shooting these from a revolver
-	wounding_mult = WOUNDING_EXTREME
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 16)
-	armor_divisor = 2
+	damage_types = list(BRUTE = 43)
+	armor_divisor = 1.5
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 16)
+	damage_types = list(BRUTE = 45)
 	armor_divisor = 5
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 16, HALLOSS = 20)
-	armor_divisor = 2
+	damage_types = list(BRUTE = 40, HALLOSS = 20)
+	armor_divisor = 1
 	penetrating = -5
 	nocap_structures = TRUE
 	kill_count = 30
@@ -234,19 +228,18 @@ There are important things regarding this file:
 
 
 /obj/item/projectile/bullet/antim/scrap
-	armor_divisor = 2
+	armor_divisor = 1
 	recoil = 20
 
 //Shotguns .50
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 25)
+	damage_types = list(BRUTE = 55)
 	armor_divisor = 1
 	knockback = 1
 	step_delay = 1
-	recoil = 8
-	wounding_mult = WOUNDING_EXTREME
+	recoil = 9
 
 /obj/item/projectile/bullet/shotgun/scrap
 	armor_divisor = 0.8
@@ -256,13 +249,12 @@ There are important things regarding this file:
 	name = "beanbag"
 	icon_state = "buckshot"
 	check_armour = ARMOR_BULLET //neverforget
-	damage_types = list(BRUTE = 10, HALLOSS = 20)
+	damage_types = list(BRUTE = 10, HALLOSS = 45)
 	embed = FALSE
-	sharp = FALSE
-	wounding_mult = WOUNDING_WIDE
+	sharp = TRUE
 
 /obj/item/projectile/bullet/shotgun/beanbag/scrap
-	damage_types = list(BRUTE = 9, HALLOSS = 20)
+	damage_types = list(BRUTE = 5, HALLOSS = 35)
 	recoil = 10
 
 /obj/item/projectile/bullet/shotgun/practice
@@ -289,9 +281,9 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 21)
+	damage_types = list(BRUTE = 8)
 	armor_divisor = 1
-	pellets = 6
+	pellets = 9
 	range_step = 1
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
@@ -322,12 +314,12 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/bolt
 	icon_state = "SpearFlight"
 	name = "bolt"
-	damage_types = list(BRUTE = 27)
-	armor_divisor = 2
+	damage_types = list(BRUTE = 55)
+	armor_divisor = 1
 	embed = FALSE
 	can_ricochet = TRUE
-	recoil = 3
-	wounding_mult = WOUNDING_EXTREME
+	/// extreme recoil from firing flash forged bolts
+	recoil = 25
 
 /obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)
     if(istype(target))
