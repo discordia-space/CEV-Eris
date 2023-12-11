@@ -125,6 +125,30 @@ var/list/name_to_material
 	var/hardness = 60            // Prob of wall destruction by hulk, used for edge damage in weapons.
 	var/weight = 20              // Determines blunt damage/throwforce for weapons.
 
+	/// Armor values . These get used for when various objects are crafted out of them (with multipliers of course) . Assume this to be the value of a 2cm thick sheet plate.
+	var/armor = list(
+		BRUTE = 0,
+		BURN = 0,
+		TOX = 0,
+		OXY = 0,
+		CLONE = 0,
+		HALLOSS = 0,
+		BLAST = 0,
+		PSY = 0
+	)
+
+	/// Damage multipliers for this material against damage sources.
+	var/armorDegradation = list(
+		BRUTE = 0,
+		BURN = 0,
+		TOX = 0,
+		OXY = 0,
+		CLONE = 0,
+		HALLOSS = 0,
+		BLAST = 0,
+		PSY = 0
+	)
+
 	// Noise when someone is faceplanted onto a table made of this material.
 	var/tableslam_noise = 'sound/weapons/tablehit1.ogg'
 	// Noise made when a simple door made of this material opens or closes.
