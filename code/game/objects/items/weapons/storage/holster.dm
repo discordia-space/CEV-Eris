@@ -288,7 +288,7 @@
 
 /obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
 	add_fingerprint(user)
-	if(loc == has_suit)
+	if(loc == attachedTo)
 		if(holster.contents.len)
 			var/obj/item/I = holster.contents[holster.contents.len]
 			if(istype(I))

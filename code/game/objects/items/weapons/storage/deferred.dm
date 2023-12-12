@@ -74,12 +74,10 @@
 	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/storage/pouch/holster = 1)
 	//One guaranteed holster and plenty of randoms
 
-/* EDITTAG
 /obj/item/storage/deferred/accarmors
 	name = "uniform accessory armor kit"
 	desc = "A box full of various armor plates and holsters designed to attach to uniforms for a bit extra cushion between user and death."
 	initial_contents = list(/obj/item/clothing/accessory/armor = 2, /obj/item/clothing/accessory/armor/bullet = 2, /obj/item/clothing/accessory/armor/platecarrier = 1, /obj/item/clothing/accessory/armor/riot = 1, /obj/item/clothing/accessory/armor/laser = 1, /obj/item/clothing/accessory/holster = 6)
-*/
 
 /obj/item/storage/deferred/comms
 	name = "communications kit"
