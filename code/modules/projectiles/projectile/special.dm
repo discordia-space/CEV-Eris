@@ -201,7 +201,7 @@
 	name = "blob of fuel"
 	icon_state = "fireball"
 	damage_types = list(BURN = 20)
-	check_armour = ARMOR_MELEE
+	check_armour = ARMOR_BLUNT
 	var/life = 3
 
 

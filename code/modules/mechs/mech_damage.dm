@@ -25,7 +25,7 @@
 			damages = gen.absorbDamages(damages)
 	if(damages[BRUTE] == 0)
 		return
-	damage_through_armor(damages[BRUTE], BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration, def_zone=pick(arms, legs, body, head))
+	damage_through_armor(damages[BRUTE], BRUTE, attack_flag=ARMOR_BLUNT, armor_divisor=penetration, def_zone=pick(arms, legs, body, head))
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))

@@ -191,7 +191,7 @@
 		qdel(src)
 		var/mob/living/T = M
 		T.Weaken(10)
-		T.damage_through_armor(20, HALLOSS, BP_CHEST, ARMOR_MELEE)
+		T.damage_through_armor(20, HALLOSS, BP_CHEST, ARMOR_BLUNT)
 		return
 	..()
 

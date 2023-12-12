@@ -10,32 +10,35 @@
 	var/armorHealth = 1500
 	/// Defines the max health this armor may have. Fetched from material and multiplied
 	var/maxArmorHealth = 1500
-	/// Armor values , will be fetched from material on initialize and multiplied
+	/// Armor values , will be fetched from material on initialize and multiplied(if it is defined)
 	armor = list(
-		BRUTE = 1,
-		BURN = 1,
-		TOX = 1,
-		OXY = 1,
-		CLONE = 1,
-		HALLOSS = 0,
-		BLAST = 1,
-		PSY = 1
+		ARMOR_BLUNT = 0,
+		ARMOR_SLASH = 0,
+		ARMOR_POINTY = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_ELECTRIC = 0,
+		ARMOR_BIO = 0,
+		ARMOR_CHEM = 0,
+		ARMOR_RAD = 0
 	)
-	/// Defines damage degradation from various damage sources to the armor's health , multiplied agaisnt the projectile's damage. Fetched from material
-	var/list/armorDegradation = list(
-		BRUTE = 1,
-		BURN = 1,
-		TOX = 1,
-		OXY = 1,
-		CLONE = 1,
-		HALLOSS = 0,
-		BLAST = 1,
-		PSY = 1
+	/// Defines damage degradation from various damage sources to the armor's health , multiplied agaisnt the projectile's damage. Global because having
+	/// Multiple of this would be so bad on memory. Make custom subtypes for snowflake armor Degradations - SPCR 2023
+	var/global/list/armorDegradation = list(
+		ARMOR_BLUNT = 1,
+		ARMOR_SLASH = 1,
+		ARMOR_POINTY = 1,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_ELECTRIC = 1,
+		ARMOR_BIO = 1,
+		ARMOR_CHEM = 1,
+		ARMOR_RAD = 1
 	)
 	/// A bit-set variable for various armor flags
 	var/armorFlags = null
 	/// A list of sounds used for when blocking hits OR various actions against is
-	var/list/armorSounds = list(
+	var/global/list/armorSounds = list(
 		CS_PROJBLOCK = null,
 		CS_PROJPARTIALBLOCK = null,
 		CS_PROJPENETRATE = null,
@@ -49,7 +52,10 @@
 	var/materialArmorMut = 1
 
 /obj/item/clothing_component/Initialize()
-	. = ..()
+	/// Don't set material if you don't want to do anything with material value grabs
+	if(!material)
+		return ..()
+	/// Set armors before they're converted to the armor datum
 	material = get_material_by_name(material)
 	for(var/armorType in material.armor)
 		if(!(armorFlags & CF_ARMOR_CUSTOM_VALS))
@@ -60,19 +66,23 @@
 		armorHealth = maxArmorHealth = round(material.integrity * CLOTH_NORMAL_MTI_MUT)
 	if(!(armorFlags & CF_ARMOR_CUSTOM_WEIGHT))
 		weight = round(material.weight * CLOTH_NORMAL_MTW_MUT)
+	/// CALL PARENT TO INIT ARMOR DATUM
+	. = ..()
 
 /// Gets given the armorType to return a value for. Override this for your special plates
 /// Call this for the standard rounding i guess(after you set the armor[armorType])
-/obj/item/clothing_component/proc/customDregadation(armorType)
-	return round(armor[armorType], 0.1)
+/// Sends the armorType for your special handling SPCR - 2023
+/obj/item/clothing_component/proc/customDregadation(armorType, armorValue)
+	return round(armorValue, 0.1)
 
 /obj/item/clothing_component/proc/updateArmor()
-	for(var/armorType in armor)
+	var/list/tempArmor = list()
+	for(var/armorType in ALL_ARMOR)
 		switch(armorFlags)
 			if(CF_ARMOR_DEG_LINEAR)
-				armor[armorType] = round((maxArmorHealth / (armorHealth + 0.1)) * material.armor[armorType] * CLOTH_NORMAL_MTA_MUT, 0.1)
+				tempArmor[armorType] = round((maxArmorHealth / (armorHealth + 0.1)) * material.armor[armorType] * CLOTH_NORMAL_MTA_MUT, 0.1)
 			if(CF_ARMOR_DEG_EXPONENTIAL)
-				armor[armorType] = round((maxArmorHealth/(clamp((maxArmorHealth - armorHealth + 0.1)**2, 0, maxArmorHealth))) * material.armor[armorType] * CLOTH_NORMAL_MTA_MUT, 0.1)
+				tempArmor[armorType] = round((maxArmorHealth/(clamp((maxArmorHealth - armorHealth + 0.1)**2, 0, maxArmorHealth))) * material.armor[armorType] * CLOTH_NORMAL_MTA_MUT, 0.1)
 			if(CF_ARMOR_DEG_CUSTOM)
-				armor[armorType] = customDregadation(armorType)
+				tempArmor[armorType] = customDregadation(armorType, material.armor[armorType])
 

@@ -729,12 +729,12 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_BLUNT)
+	H.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_BLUNT)
+	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_BLUNT)
+	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_BLUNT)
+	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_BLUNT)
+	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_BLUNT)
 
 	blood_splatter(src,H,1)
 	bloodiness += 4

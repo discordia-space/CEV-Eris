@@ -19,13 +19,14 @@
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
-
+	/* Removed , dumb RNG mechanic (SPCR 2023) , Removed by use of new armor types (BLUNT, SLASH , POINTY)
 	if(prob(getarmor(hit_zone, ARMOR_MELEE))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = 0
 		weapon_edge = 0
+	*/
 
 	hit_impact(effective_force, get_step(user, src), hit_zone)
-	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, armor_divisor = I.armor_divisor, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
+	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_BLUNT, armor_divisor = I.armor_divisor, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
 
 /*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
 continuing. Being gibbed or dusted has a 1.5 second delay, during which it sets the transforming var to

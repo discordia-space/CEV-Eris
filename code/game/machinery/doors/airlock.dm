@@ -1175,12 +1175,12 @@ There are 9 wires.
 /mob/living/airlock_crush(var/crush_damage)
 	. = ..()
 
-	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	damage_through_armor(0.7 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_BLUNT)
+	damage_through_armor(0.7 * crush_damage, BRUTE, BP_CHEST, ARMOR_BLUNT)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_LEG, ARMOR_BLUNT)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_LEG, ARMOR_BLUNT)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_ARM, ARMOR_BLUNT)
+	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_ARM, ARMOR_BLUNT)
 
 	SetWeakened(5)
 	var/turf/T = get_turf(src)

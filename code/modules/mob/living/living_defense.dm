@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE)
+/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_BLUNT, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE)
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
@@ -38,7 +38,7 @@
 
 	// Determine DR and ADR, armour divisor reduces it
 	var/armor = getarmor(def_zone, attack_flag) / armor_divisor
-	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
+	if(!(attack_flag in list(ARMOR_BLUNT, ARMOR_SLASH,, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
 		armor /= 5
 	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armor_divisor
 
@@ -126,7 +126,7 @@
 		damageablative(def_zone, (ablative_armor - remaining_ablative) * armor_divisor)
 
 	//If we have a grab in our hands and get hit with melee damage type, there is a chance we lower our grab's state
-	if(attack_flag == ARMOR_MELEE && ishuman(src) && isitem(used_weapon))
+	if(locate(attack_flag) in ARMORS_MELEE && ishuman(src) && isitem(used_weapon))
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = used_weapon
 		var/toughness_val = H.stats.getStat(STAT_TGH)
@@ -267,7 +267,7 @@
 //		effective_force *= 2
 
 	//Apply weapon damage
-	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
+	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_BLUNT, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
 		return TRUE
 	else
 		return FALSE
@@ -293,7 +293,7 @@
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 
-		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, O.armor_divisor, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
+		damage_through_armor(throw_damage, dtype, null, ARMOR_BLUNT, O.armor_divisor, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
 		O.throwing = 0		//it hit, so stop moving
 

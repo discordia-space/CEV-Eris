@@ -502,13 +502,13 @@ var/global/list/items_blood_overlay_by_type = list()
 						//low damage for walls, medium for windows, fall over for railings
 						if(istype(get_step(grabbed, whip_dir), /turf/simulated/wall))
 							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
-							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
+							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_BLUNT)
 							break
 
 						for(var/obj/structure/S in get_step(grabbed, whip_dir))
 							if(istype(S, /obj/structure/window))
 								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
-								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
+								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_BLUNT)
 
 								moves = 3
 								break

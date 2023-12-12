@@ -142,7 +142,7 @@
 	target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 	//deal damage AFTER the kick
 	var/damage = max(1, min(30, (attacker.stats.getStat(STAT_ROB) / 3)))
-	target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE)
+	target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_BLUNT)
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")
@@ -162,7 +162,7 @@
 		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
 		target.SpinAnimation(5,1)
 		var/damage = min(80, attacker.stats.getStat(STAT_ROB) + 15) //WE ARE GONNA KILL YOU
-		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
+		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_BLUNT) //crunch
 		attacker.Weaken(2)
 		target.Stun(6)
 		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
@@ -179,7 +179,7 @@
 	//no check for grab levels
 	visible_message(SPAN_DANGER("[attacker] thrusts \his fist in [target]'s guts!"))
 	var/damage = max(1, (10 - target.stats.getStat(STAT_TGH) / 4))//40+ TGH = 1 dmg
-	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE, wounding_multiplier = 2)
+	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_BLUNT, wounding_multiplier = 2)
 	//vomiting goes on cd for 35 secs, which means it's impossible to spam this
 	target.vomit(TRUE)
 	//admin messaging
@@ -199,12 +199,12 @@
 
 	var/damage = 20
 	var/obj/item/clothing/hat = attacker.head
-	var/victim_armor = target.getarmor(BP_HEAD, ARMOR_MELEE)
+	var/victim_armor = target.getarmor(BP_HEAD, ARMOR_BLUNT)
 	if(istype(hat))
 		damage += hat.force * 3
 
-	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
+	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_BLUNT)
+	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_BLUNT)
 	target.make_dizzy(15)
 
 	if(!victim_armor && target.headcheck(BP_HEAD) && prob(damage))
@@ -267,7 +267,7 @@
 	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
 		target.forceMove(get_step(target, fireman_dir))
 
-	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_MELEE)
+	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_BLUNT)
 
 	target.Weaken(1)
 	playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)

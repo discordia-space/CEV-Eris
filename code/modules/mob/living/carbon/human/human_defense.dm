@@ -102,10 +102,12 @@ meteor_act
 
 	armorval = armorval/max(total, 1)
 
+	/* Removed! Im adding a weight system for this kind of shit , SPCR - 2023
 	if(armorval > 75) // Reducing the risks from powergaming
 		switch (type)
 			if(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY)
 				armorval = (75+(armorval-75)/2)
+	*/
 
 	return armorval
 
@@ -113,7 +115,7 @@ meteor_act
 
 	var/obj/item/rig/R = get_equipped_item(slot_back)
 	if(istype(R))
-		if(R.ablative_armor && (type in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY, ARMOR_BOMB)))
+		if(R.ablative_armor && (type in list(ARMOR_BLUNT, ARMOR_SLASH, ARMOR_POINTY, ARMOR_BULLET, ARMOR_ENERGY, ARMOR_BOMB)))
 			return R.ablative_armor
 	return FALSE
 
@@ -160,10 +162,12 @@ meteor_act
 	if(shield)
 		protection += shield.armor[type]
 
+	/* Removed , we got weight mechanics , SPCR - 2023
 	if (protection > 75) // reducing the risks from powergaming
 		switch (type)
 			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
 			else return protection
+	*/
 
 	return protection
 
@@ -446,7 +450,7 @@ meteor_act
 
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
 
-		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
+		damage_through_armor(throw_damage, dtype, null, ARMOR_BLUNT, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower

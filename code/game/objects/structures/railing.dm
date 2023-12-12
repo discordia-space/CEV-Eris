@@ -237,7 +237,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
+			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_BLUNT)
 			take_damage(8)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"

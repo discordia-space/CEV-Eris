@@ -147,14 +147,14 @@
 		return //won't always break on the first hit
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
-	var/weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, ARMOR_MELEE) + 10)
+	var/weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, ARMOR_BLUNT) + 10)
 
 	var/mob/living/carbon/human/H = target
 	if(istype(H) && H.headcheck(hit_zone))
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
 		user.visible_message(SPAN_DANGER("[user] smashes [src] into [H]'s [affecting.name]!"))
 		if(weaken_duration)
-			target.apply_effect(min(weaken_duration, 5), WEAKEN, armor_value = target.getarmor(hit_zone, ARMOR_MELEE)) // Never weaken more than a flash!
+			target.apply_effect(min(weaken_duration, 5), WEAKEN, armor_value = target.getarmor(hit_zone, ARMOR_BLUNT)) // Never weaken more than a flash!
 	else
 		user.visible_message(SPAN_DANGER("\The [user] smashes [src] into [target]!"))
 

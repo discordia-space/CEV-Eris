@@ -44,10 +44,10 @@
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
 
-			damage_through_armor(damage, HALLOSS, affecting, ARMOR_MELEE)
+			damage_through_armor(damage, HALLOSS, affecting, ARMOR_BLUNT)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")
-				apply_effect(4, WEAKEN, getarmor(affecting, ARMOR_MELEE))
+				apply_effect(4, WEAKEN, getarmor(affecting, ARMOR_BLUNT))
 
 			return
 
@@ -231,10 +231,10 @@
 						visible_message(SPAN_DANGER("The attack has been completely negated!"))
 						return
 			// Apply additional unarmed effects.
-			attack.apply_effects(H, src, getarmor(affecting, ARMOR_MELEE), stat_damage, hit_zone)
+			attack.apply_effects(H, src, getarmor(affecting, ARMOR_BLUNT), stat_damage, hit_zone)
 
 			// Finally, apply damage to target
-			damage_through_armor(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, ARMOR_MELEE, sharp = attack.sharp, edge = attack.edge)
+			damage_through_armor(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, ARMOR_BLUNT, sharp = attack.sharp, edge = attack.edge)
 			hit_impact(real_damage, get_step(H, src))
 
 		if(I_DISARM)
@@ -311,7 +311,7 @@
 		penetration = L.armor_divisor
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, penetration, sharp=is_sharp, edge=is_edge, wounding_multiplier = wounding)
+	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_BLUNT, penetration, sharp=is_sharp, edge=is_edge, wounding_multiplier = wounding)
 	if(dam > 0)
 		affecting.add_autopsy_data("[attack_message] by \a [user]", dam)
 	updatehealth()
@@ -343,7 +343,7 @@
 	organ.nerve_strike_add(1)
 	src.visible_message(SPAN_DANGER("[src]'s [organ.joint] [pick("jitters","convulses","stirs","shakes")] and dangles about!"), (SPAN_DANGER("As [user]'s hit connects with your [organ.joint], you feel it painfully tingle before going numb!")))
 	playsound(user, 'sound/weapons/throwtap.ogg', 50, 1)
-	src.damage_through_armor(rand(5,10), HALLOSS, target_zone, ARMOR_MELEE, wounding_multiplier = 2)
+	src.damage_through_armor(rand(5,10), HALLOSS, target_zone, ARMOR_BLUNT, wounding_multiplier = 2)
 
 	//kill the grab
 	user.drop_from_inventory(G)

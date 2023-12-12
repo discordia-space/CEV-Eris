@@ -196,11 +196,11 @@ obj/item/check_airflow_movable(n)
 		airflow_time = 0
 		. = ..()
 
-atom/movable/proc/airflow_hit(atom/A)
+/atom/movable/proc/airflow_hit(atom/A)
 	airflow_speed = 0
 	airflow_dest = null
 
-mob/airflow_hit(atom/A)
+/mob/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
 		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
@@ -208,17 +208,17 @@ mob/airflow_hit(atom/A)
 	Weaken(weak_amt)
 	. = ..()
 
-obj/airflow_hit(atom/A)
+/obj/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
 		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
 	. = ..()
 
-obj/item/airflow_hit(atom/A)
+/obj/item/airflow_hit(atom/A)
 	airflow_speed = 0
 	airflow_dest = null
 
-mob/living/carbon/human/airflow_hit(atom/A)
+/mob/living/carbon/human/airflow_hit(atom/A)
 //	for(var/mob/M in hearers(src))
 //		M.show_message(SPAN_DANGER("[src] slams into [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "punch", 25, 1, -1)
@@ -227,11 +227,11 @@ mob/living/carbon/human/airflow_hit(atom/A)
 		bloody_body(src)
 	var/b_loss = airflow_speed * vsc.airflow_damage
 
-	damage_through_armor(b_loss/3, BRUTE, BP_HEAD, ARMOR_MELEE, 1, "Airflow")
+	damage_through_armor(b_loss/3, BRUTE, BP_HEAD, ARMOR_BLUNT, 1, "Airflow")
 
-	damage_through_armor(b_loss/3, BRUTE, BP_CHEST, ARMOR_MELEE, 1, "Airflow")
+	damage_through_armor(b_loss/3, BRUTE, BP_CHEST, ARMOR_BLUNT, 1, "Airflow")
 
-	damage_through_armor(b_loss/3, BRUTE, BP_GROIN, ARMOR_MELEE, 1, "Airflow")
+	damage_through_armor(b_loss/3, BRUTE, BP_GROIN, ARMOR_BLUNT, 1, "Airflow")
 
 	if(airflow_speed > 10)
 		Paralyse(round(airflow_speed * vsc.airflow_stun))
@@ -240,7 +240,7 @@ mob/living/carbon/human/airflow_hit(atom/A)
 		Stun(round(airflow_speed * vsc.airflow_stun/2))
 	. = ..()
 
-zone/proc/movables()
+/zone/proc/movables()
 	. = list()
 	for(var/turf/T in contents)
 		for(var/atom/movable/A in T)
