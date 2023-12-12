@@ -12,8 +12,11 @@
 	var/gunshot_residue								// Used by forensics.
 	var/initial_name = "clothing"					// For coloring
 
+	/// list of all accesories attached
 	var/list/accessories = list()
+	///  list of all slots available to accesories. List can be found in _clothing_defines
 	var/list/valid_accessory_slots
+	/// List of all accessories where only ONE object can occupy
 	var/list/restricted_accessory_slots
 	var/equip_delay = 0 //If set to a nonzero value, the item will require that much time to wear and remove
 
@@ -585,8 +588,8 @@ BLIND     // can't see anything
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_LOW
-	valid_accessory_slots = list("armor","armband","decor")
-	restricted_accessory_slots = list("armor","armband")
+	valid_accessory_slots = list(ACS_GARMOR, ACS_ARMBAND, ACS_DECOR)
+	restricted_accessory_slots = list(ACS_GARMOR,ACS_ARMBAND)
 	maxHealth = 300
 	health = 300
 
@@ -622,8 +625,8 @@ BLIND     // can't see anything
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 
-	valid_accessory_slots = list("armor","utility","armband","decor")
-	restricted_accessory_slots = list("armor","utility", "armband")
+	valid_accessory_slots = list(ACS_GARMOR,ACS_UTILITY,ACS_ARMBAND,ACS_DECOR)
+	restricted_accessory_slots = list(ACS_GARMOR,ACS_UTILITY, ACS_ARMBAND)
 
 
 /obj/item/clothing/under/attack_hand(mob/user)

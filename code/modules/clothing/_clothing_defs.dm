@@ -30,3 +30,14 @@
 /// Multiplier for material weight to clothing weight. a little bit less since the human body is curvier than a cube
 #define CLOTH_NORMAL_MTW_MUT 0.6
 
+/// Defines for accesories
+
+/// Glueable armor.
+#define ACS_GARMOR "armor"
+/// Armband , custom type so there can only be one
+#define ACS_ARMBAND "armband"
+/// For anything that can be used as decor and that generally doesn't stack.
+#define ACS_DECOR "decor"
+/// For utility related stuff , holster, etc.
+#define ACS_UTILITY "utility"
+

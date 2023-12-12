@@ -14,8 +14,8 @@
 	bad_type = /obj/item/clothing/suit/armor
 	spawn_tags = SPAWN_TAG_CLOTHING_ARMOR
 	slowdown = 0
-	valid_accessory_slots = list("armband","decor")
-	restricted_accessory_slots = list("armband")
+	valid_accessory_slots = list(ACS_ARMBAND,ACS_DECOR)
+	restricted_accessory_slots = list(ACS_ARMBAND)
 	maxHealth = 500
 	health = 500
 
@@ -138,8 +138,8 @@
 	)
 	price_tag = 600
 	slowdown = LIGHT_SLOWDOWN
-	valid_accessory_slots = list("armband","decor")
-	restricted_accessory_slots = list("armband")
+	valid_accessory_slots = list(ACS_ARMBAND,ACS_DECOR)
+	restricted_accessory_slots = list(ACS_ARMBAND)
 
 /obj/item/clothing/suit/storage/greatcoat/ironhammer
 	icon_state = "greatcoat_ironhammer"
@@ -478,8 +478,8 @@
 		MATERIAL_PLASTEEL = 1,
 		MATERIAL_PLASTIC = 3, //for webbing
 	)
-	valid_accessory_slots = list("armband","decor")
-	restricted_accessory_slots = list("armband")
+	valid_accessory_slots = list(ACS_ARMBAND,ACS_DECOR)
+	restricted_accessory_slots = list(ACS_ARMBAND)
 
 /obj/item/clothing/suit/storage/vest/ironhammer
 	name = "webbed operator armor"
