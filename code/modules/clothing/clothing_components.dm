@@ -1,10 +1,10 @@
-/obj/item/clothing_component
-	name = "Buggy clothing component"
+/obj/item/armor_plate
+	name = "Buggy armor plate"
 	desc = "You shouldn't see this subtype... annoy SPCR to fix his code."
 	spawn_blacklisted = TRUE
-	/// Defines the weight of this component. More causes people to get slowdown
-	var/weight = 0
-	/// Defines the volume of this component. Makes a component take a lot more volume that other could use
+	/// Weight , set to 0 since we will set it ourselves
+	weight = 0
+	/// Defines the volume of this component. Makes a component take a lot more volume that other could use. Only used for component stuff
 	var/volume = 0
 	/// Defines the armor of this health. Fetched from material and multiplied
 	var/armorHealth = 1500
@@ -51,7 +51,7 @@
 	/// A multiplier on the material armor values
 	var/materialArmorMut = 1
 
-/obj/item/clothing_component/Initialize()
+/obj/item/armor_plate/Initialize()
 	/// Don't set material if you don't want to do anything with material value grabs
 	if(!material)
 		return ..()
@@ -72,10 +72,10 @@
 /// Gets given the armorType to return a value for. Override this for your special plates
 /// Call this for the standard rounding i guess(after you set the armor[armorType])
 /// Sends the armorType for your special handling SPCR - 2023
-/obj/item/clothing_component/proc/customDregadation(armorType, armorValue)
+/obj/item/armor_plate/proc/customDregadation(armorType, armorValue)
 	return round(armorValue, 0.1)
 
-/obj/item/clothing_component/proc/updateArmor()
+/obj/item/armor_plate/proc/updateArmor()
 	var/list/tempArmor = list()
 	for(var/armorType in ALL_ARMOR)
 		switch(armorFlags)

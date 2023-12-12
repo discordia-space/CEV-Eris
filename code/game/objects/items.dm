@@ -10,6 +10,8 @@
 	spawn_frequency = 10
 	bad_type = /obj/item
 
+	var/weight = 1
+
 	pass_flags = PASSTABLE
 	var/image/blood_overlay //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6

@@ -155,7 +155,6 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	can_hold = list(/obj/item/tool/sword/improvised)
 
-//Accessory holsters
 /obj/item/clothing/accessory/holster
 	name = "concealed carry holster"
 	desc = "An inconspicious holster that can be attached to your uniform, right under your armpit. Can fit a handgun... And maybe something else, too."

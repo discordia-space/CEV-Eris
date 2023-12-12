@@ -220,6 +220,8 @@
 	name = "Clothing information"
 	icon_state = "info"
 
+/// Code related to modular clothing
+
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects

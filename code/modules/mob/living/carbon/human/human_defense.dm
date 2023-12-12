@@ -149,13 +149,13 @@ meteor_act
 	var/protection = 0
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
 	if(def_zone.armor)
-		protection = 100 - (100 - def_zone.armor.getRating(type)) * (100 - protection) * 0.01 // Converts armor into multiplication form, stacks them, then converts them back
+		protection = def_zone.armor.getRating(type)
 
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(istype(C) && C.body_parts_covered & def_zone.body_part && C.armor)
-				protection = 100 - (100 - C.armor.vars[type]) * (100 - protection) * 0.01 // Same as above
+				protection += C.armor.getRating[type]
 
 	var/obj/item/shield/shield = has_shield()
 
