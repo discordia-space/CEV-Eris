@@ -25,8 +25,13 @@
 	var/deck_type
 
 /obj/item/storage/card_holder/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	if(deck_type)
-		new deck_type(src)
+		spawnedAtoms.Add(new  deck_type(NULL))
+
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/deck/cards
 	name = "deck of cards"

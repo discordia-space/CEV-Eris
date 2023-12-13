@@ -336,8 +336,12 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /obj/item/storage/belt/utility/full/bst/populate_contents()
 	..()
-	new /obj/item/tool/multitool(src)
-	new /obj/item/device/t_scanner(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new  /obj/item/tool/multitool(NULL))
+	spawnedAtoms.Add(new  /obj/item/device/t_scanner(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)
 
 /mob/living/carbon/human/bst/restrained()
 	return !(status_flags & GODMODE)

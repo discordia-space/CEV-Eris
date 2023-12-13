@@ -111,7 +111,7 @@ see multiz/movement.dm for some info.
 	if( config.z_level_shooting && istype(mover,/obj/item/projectile) )
 		var/obj/item/projectile/P = mover
 		if(isnull(P.height) && ( istype(P.original, /turf/simulated/open) || (istype(mover, /mob/shadow)) ) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
-			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forcemove()
+			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forceMove()
 			P.trajectory.loc_z = below.z
 			P.bumped = FALSE
 			P.height = HEIGHT_LOW // We are shooting from above, this protects windows from damage

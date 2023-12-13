@@ -25,7 +25,7 @@
 	spawnedAtoms.Add(new /obj/item/storage/pouch/holster(NULL)) // Perhaps this may encourage actually buying pistols.
 	spawnedAtoms.Add(new /obj/item/storage/pouch/ammo(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/syndicate/suit
@@ -39,7 +39,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/suit/space/void/merc(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/gas/syndicate(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/syndicate/nuclear
@@ -69,5 +69,5 @@
 	var/obj/item/device/radio/uplink/U = new(NULL)
 	spawnedAtoms.Add(U)
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	U.hidden_uplink.uses = 40

@@ -25,7 +25,7 @@
 	spawnedAtoms.Add(new  /obj/item/reagent_containers/spray/plantbgone(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/gloves/botanic_leather(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/personal/hydroponics/public
 	name = "gardener's locker"

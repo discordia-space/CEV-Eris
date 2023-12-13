@@ -46,7 +46,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/head/armor/helmet/thunderdome(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/head/armor/helmet/thunderdome(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/thunderdome/tdgreen
 	name = "green-team Thunderdome closet"
@@ -74,7 +74,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/head/armor/helmet/thunderdome(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/head/armor/helmet/thunderdome(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/oldstyle
 	name = "old closet"

@@ -23,7 +23,7 @@
 	spawnedAtoms.Add(new  /obj/item/melee/telebaton(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/holster(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/reinforced/hop
 	name = "First Officer's locker"
@@ -49,7 +49,7 @@
 	spawnedAtoms.Add(new  /obj/item/device/flash(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/holster(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/reinforced/hos
 	name = "Ironhammer Commander locker"
@@ -88,7 +88,7 @@
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/holster/baton(NULL))
 	spawnedAtoms.Add(new  /obj/item/flame/lighter/zippo/syndicate(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"
@@ -126,7 +126,7 @@
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/holster/baton(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/suit/armor/vest/ironhammer(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/personal/security
 	name = "Ironhammer Operative locker"
@@ -158,7 +158,7 @@
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/holster/baton(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/ration_pack/ihr(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/medspec
 	name = "Ironhammer Medical Specialist locker"
@@ -184,7 +184,7 @@
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/holster(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/briefcase/crimekit(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/detective
 	name = "Ironhammer Inspector locker"
@@ -225,7 +225,7 @@
 	spawnedAtoms.Add(new  /obj/item/storage/briefcase/crimekit(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/box/syndie_kit/spy(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
@@ -238,7 +238,7 @@
 	spawnedAtoms.Add(new  /obj/item/reagent_containers/syringe/ld50_syringe/chlorine(NULL))
 	spawnedAtoms.Add(new  /obj/item/reagent_containers/syringe/ld50_syringe/chlorine(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"
@@ -253,7 +253,7 @@
 	spawnedAtoms.Add(new  /obj/item/clothing/under/color/orange(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/shoes/color/orange(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
@@ -272,4 +272,4 @@
 	spawnedAtoms.Add(new  /obj/item/clothing/head/powdered_wig(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/briefcase(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

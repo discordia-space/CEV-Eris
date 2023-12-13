@@ -53,7 +53,7 @@
 			spawnedAtoms.Add(new /obj/item/clothing/head/space/emergency(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/emcloset/legacy/populate_contents()
 	var/list/spawnedAtoms = list()
@@ -61,7 +61,7 @@
 	spawnedAtoms.Add(new /obj/item/tank/oxygen(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/gas(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /*
  * Fire Closet
@@ -87,7 +87,7 @@
 	spawnedAtoms.Add(new /obj/item/device/lighting/toggleable/flashlight(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /*
  * Tool Closet
@@ -144,7 +144,7 @@
 	spawnedAtoms.Add(new /obj/spawner/tool_upgrade(NULL))
 	spawnedAtoms.Add(new /obj/spawner/tool_upgrade(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	//Every tool closet contains a couple guaranteed toolmods
 
 /*
@@ -165,7 +165,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
 
 	or(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /*
  * Bombsuit closet
@@ -187,7 +187,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/head/space/bomb(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/bombcloset/security
 	rarity_value = 50
@@ -200,7 +200,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/brown(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/head/space/bomb(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 /obj/structure/closet/self_pacification
 	name = "\improper Anti-Depressive Self-Pacification Treatment Utility closet"
 	desc = "The last things you will ever need!"
@@ -220,4 +220,4 @@
 	spawnedAtoms.Add(new /obj/item/pen(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

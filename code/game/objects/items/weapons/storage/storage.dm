@@ -555,7 +555,7 @@
 		for(var/i in 1 to prespawned_content_amount)
 			spawnedAtoms.Add(new prespawned_content_type(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/emp_act(severity)
 	if(!isliving(loc))

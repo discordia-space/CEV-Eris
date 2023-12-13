@@ -12,7 +12,7 @@
 		spawnedAtoms.Add(new prespawned_content_type(NULL))
 	spawnedAtoms.Add(new /obj/item/dice(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /*
  * Donut Box
@@ -34,7 +34,7 @@
 		spawnedAtoms.Add(new prespawned_content_type(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	update_icon()
 
 /obj/item/storage/box/donut/update_icon()
@@ -83,7 +83,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/candy/mre(NULL))
 	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/ration_pack/ihr
 	icon = 'icons/obj/food.dmi'
@@ -117,7 +117,7 @@
 	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULL))
 	spawnedAtoms.Add(new /obj/item/storage/fancy/crayons(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/box/clown
 	name = "clown costume box"
@@ -134,5 +134,5 @@
 	spawnedAtoms.Add(new /obj/item/stamp/clown(NULL))
 	spawnedAtoms.Add(new /obj/item/bananapeel(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 

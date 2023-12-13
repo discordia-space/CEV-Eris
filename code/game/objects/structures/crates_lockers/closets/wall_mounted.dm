@@ -13,11 +13,15 @@
 	icon_state = "emerg"
 
 /obj/structure/closet/wall_mounted/emcloset/populate_contents()
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tool/crowbar(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/structure/closet/wall_mounted/emcloset/escape_pods
 	icon_state = "emerg-escape"
@@ -29,14 +33,18 @@
 	icon_state = "hydrant"
 
 /obj/structure/closet/wall_mounted/firecloset/populate_contents()
-	new /obj/item/inflatable/door(src)
-	new /obj/item/inflatable/door(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/clothing/gloves/thick(src)
-	new /obj/item/clothing/suit/fire(src)
-	new /obj/item/tank/oxygen/red(src)
-	new /obj/item/extinguisher(src)
-	new /obj/item/extinguisher(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/inflatable/door(NULL))
+	spawnedAtoms.Add(new /obj/item/inflatable/door(NULL))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/ointment(NULL))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/ointment(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/hardhat/red(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/gas(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/gloves/thick(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/fire(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/oxygen/red(NULL))
+	spawnedAtoms.Add(new /obj/item/extinguisher(NULL))
+	spawnedAtoms.Add(new /obj/item/extinguisher(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)

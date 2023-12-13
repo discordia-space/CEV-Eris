@@ -73,25 +73,32 @@
 	rarity_value = 50
 
 /obj/item/storage/belt/utility/full/populate_contents()
-	new /obj/item/tool/screwdriver(src)
-	new /obj/item/tool/wrench(src)
-	new /obj/item/tool/weldingtool(src)
-	new /obj/item/tool/crowbar(src)
-	new /obj/item/tool/wirecutters(src)
-	new /obj/item/stack/cable_coil/random(src)
+	var/list/spawnedAtoms = list()
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/wrench(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULL))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)
 
-/obj/item/storage/belt/utility/technomancer 
+
+/obj/item/storage/belt/utility/technomancer
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/utility/technomancer/populate_contents()
-	new /obj/item/tool/screwdriver/electric(src)
-	new /obj/item/tool/wrench/big_wrench(src)
-	new /obj/item/tool/weldingtool/advanced(src)
-	new /obj/item/tool/crowbar/pneumatic(src)
-	new /obj/item/tool/wirecutters/armature(src)
-	new /obj/item/tool/shovel/power(src)
-	new /obj/item/stack/cable_coil/random(src)
-	
+	var/list/spawnedAtoms = list()
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver/electric(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/wrench/big_wrench(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool/advanced(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar/pneumatic(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/wirecutters/armature(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/shovel/power(NULL))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)
+
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"
 	desc = "Waist-held holy items."
@@ -240,4 +247,4 @@
 
 /obj/item/storage/belt/holding/New()
 	..()
-	bluespace_entropy(4, get_turf(src))
+	bluespace_entropy(4, get_turf(NULL))

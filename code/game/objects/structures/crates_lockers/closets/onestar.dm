@@ -30,7 +30,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 // Tier 2
 /obj/structure/closet/onestar/tier2
@@ -56,7 +56,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 // Tier 3
 /obj/structure/closet/onestar/tier3
@@ -84,7 +84,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/tool/advanced/onestar/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 ////// Closets
@@ -134,7 +134,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -153,7 +153,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -172,7 +172,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -192,7 +192,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -211,7 +211,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -230,7 +230,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -250,7 +250,7 @@
 	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
 	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -269,7 +269,7 @@
 	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
 	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -288,7 +288,7 @@
 	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
 	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	..()
 
 // Empty

@@ -549,4 +549,4 @@
 	if(prob(5))
 		spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random/rare(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

@@ -27,7 +27,7 @@
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/engineering_material(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/head/armor/helmet/technomancer_old(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
@@ -50,7 +50,7 @@
 	spawnedAtoms.Add(new  /obj/item/tool/multitool(NULL))
 	spawnedAtoms.Add(new  /obj/item/tool/multitool(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
@@ -74,7 +74,7 @@
 	spawnedAtoms.Add(new  /obj/item/tool_upgrade/augment/fuel_tank(NULL))
 	spawnedAtoms.Add(new  /obj/item/tool_upgrade/augment/fuel_tank(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/personal/engineering_personal
 	name = "technomancer's locker"
@@ -106,4 +106,4 @@
 	spawnedAtoms.Add(new  /obj/item/clothing/suit/storage/vest/technomancer_old(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/pouch/engineering_tools (NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

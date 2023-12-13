@@ -64,7 +64,7 @@
 		spawnedAtoms.Add(new item_obj(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 //MRE food
 /obj/item/storage/fancy/mre_cracker
@@ -84,7 +84,7 @@
 		spawnedAtoms.Add(new item_obj(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /*
  * Candle Box
@@ -110,7 +110,7 @@
 		spawnedAtoms.Add(new item_obj(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /*
  * Crayon Box
@@ -136,7 +136,7 @@
 	spawnedAtoms.Add(new /obj/item/pen/crayon/blue(NULL))
 	spawnedAtoms.Add(new /obj/item/pen/crayon/purple(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	update_icon()
 
 /obj/item/storage/fancy/crayons/update_icon()
@@ -201,7 +201,7 @@
 	for(var/i in 1 to storage_slots)
 		spawnedAtoms.Add(new item_obj(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
 /obj/item/storage/fancy/cigarettes/update_icon()
@@ -287,7 +287,7 @@
 		spawnedAtoms.Add(new item_obj(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	update_icon()
 
 /obj/item/storage/fancy/cigcartons/dromedaryco
@@ -398,7 +398,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 		spawnedAtoms.Add(new item_obj(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	create_reagents(15 * storage_slots)
 	update_icon()
 
@@ -434,7 +434,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 		spawnedAtoms.Add(newitem_obj(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/lockbox/vials
 	name = "secure vial storage box"

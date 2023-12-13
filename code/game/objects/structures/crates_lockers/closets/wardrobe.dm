@@ -23,7 +23,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/brown(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/brown(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/color/black
 	name = "black wardrobe"
@@ -45,7 +45,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/mask/bandana(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/bandana/skull(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/wardrobe/color/green
@@ -65,7 +65,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/mask/bandana/green(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/bandana/green(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/color/orange
 	name = "prison wardrobe"
@@ -82,7 +82,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/orange(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/orange(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/color/yellow
 	name = "yellow wardrobe"
@@ -101,7 +101,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/mask/bandana/orange(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/bandana/orange(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/wardrobe/color/white
@@ -119,7 +119,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/white(NULL))
 	spawnedAtoms.Add(new /obj/item/storage/backpack/sport/white(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/color/grey
 	name = "grey wardrobe"
@@ -139,7 +139,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/head/soft/grey(NULL))
 	spawnedAtoms.Add(new /obj/item/storage/backpack/sport(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/color/mixed
 	name = "mixed wardrobe"
@@ -173,7 +173,7 @@
 	spawnedAtoms.Add(new /obj/item/storage/backpack/sport/orange(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/pjs
 	name = "pajama wardrobe"
@@ -193,7 +193,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/shoes/slippers(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/tactical
 	name = "tactical equipment"
@@ -211,7 +211,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/gloves/thick(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/sec
 	name = "security wardrobe"
@@ -235,7 +235,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/gloves/security/ironhammer(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/science_white
 	name = "science wardrobe"
@@ -261,7 +261,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/glasses/regular/goggles/clear(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/glasses/regular/goggles/clear(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/robotics_black
 	name = "robotics wardrobe"
@@ -279,7 +279,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/gloves/thick(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/gloves/thick(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/chemistry_white
 	name = "chemistry wardrobe"
@@ -297,7 +297,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/glasses/regular/goggles/clear(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/glasses/regular/goggles/clear(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/virology_white
 	name = "virology wardrobe"
@@ -315,7 +315,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/mask/surgical(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/surgical(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/medic_white
 	name = "medical wardrobe"
@@ -336,7 +336,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/mask/surgical(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/surgical(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/chaplain_black
 	name = "chapel wardrobe"
@@ -357,7 +357,7 @@
 	spawnedAtoms.Add(new /obj/item/storage/fancy/candle_box(NULL))
 	spawnedAtoms.Add(new /obj/item/deck/tarot(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/engineering_yellow
 	name = "engineering wardrobe"
@@ -379,4 +379,4 @@
 	spawnedAtoms.Add(new /obj/item/clothing/head/beret/engineering(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/head/beret/engineering(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

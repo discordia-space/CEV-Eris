@@ -13,9 +13,13 @@
 	spawn_tags = SPAWN_TAG_BOX//CUIDADO
 
 /obj/item/storage/briefcase/crimekit/populate_contents()
-	new /obj/item/storage/box/swabs(src)
-	new /obj/item/storage/box/fingerprints(src)
-	new /obj/item/reagent_containers/spray/luminol(src)
-	new /obj/item/device/uv_light(src)
-	new /obj/item/forensics/sample_kit(src)
-	new /obj/item/forensics/sample_kit/powder(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new  /obj/item/storage/box/swabs(NULL))
+	spawnedAtoms.Add(new  /obj/item/storage/box/fingerprints(NULL))
+	spawnedAtoms.Add(new  /obj/item/reagent_containers/spray/luminol(NULL))
+	spawnedAtoms.Add(new  /obj/item/device/uv_light(NULL))
+	spawnedAtoms.Add(new  /obj/item/forensics/sample_kit(NULL))
+	spawnedAtoms.Add(new  /obj/item/forensics/sample_kit/powder(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)

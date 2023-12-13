@@ -88,7 +88,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/crate/trashcart
 	name = "trash cart"
@@ -124,8 +124,12 @@
 	icon_state = "crate"
 
 /obj/structure/closet/crate/rcd/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	spawnedAtoms.Add(new /obj/item/stack/material/compressed(NULL,30))
 	spawnedAtoms.Add(new /obj/item/rcd(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
@@ -158,7 +162,7 @@
 	spawnedAtoms.Add(new /obj/item/electronics/tracker(NULL))
 	spawnedAtoms.Add(new /obj/item/paper/solar(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer"
@@ -178,7 +182,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/liquidfood(NULL))
 	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/liquidfood(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/crate/bin
 	name = "large bin"
@@ -203,7 +207,7 @@
 	spawnedAtoms.Add(new /obj/item/clothing/suit/radiation(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/crate/secure/weapon
 	name = "weapons crate"

@@ -7,7 +7,7 @@
 		spawnedAtoms.Add(new  /obj/item/storage/backpack/satchel(NULL))
 	spawnedAtoms.Add(new  /obj/item/device/radio/headset(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/secure_closet/personal/patient
@@ -19,7 +19,7 @@
 	spawnedAtoms.Add(new  /obj/item/clothing/under/color/white(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/shoes/color/white(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/personal/cabinet
 	icon_state = "cabinet"
@@ -31,7 +31,7 @@
 	spawnedAtoms.Add(new  /obj/item/storage/backpack/satchel/leather/withwallet(NULL))
 	spawnedAtoms.Add(new  /obj/item/device/radio/headset(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 // Used for ID locking trade orders
 /obj/structure/closet/secure_closet/personal/trade

@@ -33,7 +33,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/gun_adjacent_loot/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/gun_adjacent_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/random/tech
@@ -58,7 +58,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/random/spareparts
@@ -90,7 +90,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 
@@ -128,7 +128,7 @@
 	spawnedAtoms.Add(new /obj/spawner/medical/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/medical/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 
@@ -157,7 +157,7 @@
 	spawnedAtoms.Add(new /obj/spawner/medical/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/medical/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 
@@ -184,7 +184,7 @@
 	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot(NULL))
 	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 
@@ -211,7 +211,7 @@
 	spawnedAtoms.Add(new /obj/spawner/rations(NULL))
 	spawnedAtoms.Add(new /obj/spawner/mob/roaches/cluster(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 // Used for scrap beacon
 /obj/structure/closet/random/hostilemobs/beacon
@@ -231,4 +231,4 @@
 	spawnedAtoms.Add(new /obj/spawner/rations(NULL))
 	spawnedAtoms.Add(new /obj/spawner/mob/roaches/cluster/beacon(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

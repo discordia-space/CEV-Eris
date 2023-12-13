@@ -190,7 +190,7 @@
 	spawnedAtoms.Add(new /obj/item/paper(NULL))
 	spawnedAtoms.Add(new /obj/item/pen(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/secure/safe/attack_hand(mob/user)
 	return attack_self(user)

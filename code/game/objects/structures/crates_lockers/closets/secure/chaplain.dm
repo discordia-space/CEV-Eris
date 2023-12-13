@@ -34,7 +34,7 @@
 	spawnedAtoms.Add(new  /obj/item/tool/knife/dagger/nt(NULL))
 	spawnedAtoms.Add(new  /obj/item/storage/box/ids(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/secure_closet/acolyte
@@ -68,7 +68,7 @@
 	spawnedAtoms.Add(new  /obj/item/tool/knife/dagger/nt(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/shoes/reinforced(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/secure_closet/custodial
@@ -114,7 +114,7 @@
 	spawnedAtoms.Add(new  /obj/item/holyvacuum(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/shoes/jackboots/neotheology(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/structure/closet/secure_closet/agrolyte
@@ -149,4 +149,4 @@
 	spawnedAtoms.Add(new  /obj/item/clothing/gloves/botanic_leather(NULL))
 	spawnedAtoms.Add(new  /obj/item/clothing/shoes/reinforced(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

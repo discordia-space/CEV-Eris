@@ -63,7 +63,7 @@
 	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
 	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/box/survival/extended/populate_contents()
 	var/list/spawnedAtoms = list()
@@ -73,7 +73,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULL))
 	spawnedAtoms.Add(new /obj/item/device/lighting/glowstick/yellow(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -360,7 +360,7 @@
 	spawnedAtoms.Add(new /obj/item/implantpad(NULL))
 	spawnedAtoms.Add(new /obj/item/device/gps/locator(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/box/chemimp
 	name = "boxed chemical implant kit"
@@ -379,7 +379,7 @@
 	spawnedAtoms.Add(new /obj/item/implanter(NULL))
 	spawnedAtoms.Add(new /obj/item/implantpad(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
@@ -411,7 +411,7 @@
 	for(var/i in 1 to prespawned_content_amount)
 		spawnedAtoms.Add(new prespawned_content_type(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
@@ -512,7 +512,7 @@
 		spawnedAtoms.Add(new prespawned_content_type(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/matches/attackby(obj/item/flame/match/W, mob/user)
@@ -549,7 +549,7 @@
 		spawnedAtoms.Add(new prespawned_content_type(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/lights/tubes
@@ -566,7 +566,7 @@
 		spawnedAtoms.Add(new prespawned_content_type(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/lights/mixed
@@ -586,7 +586,7 @@
 		spawnedAtoms.Add(new /obj/item/light/bulb(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/data_disk
@@ -631,7 +631,7 @@
 		spawnedAtoms.Add(new path(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/box/njoy
 	name = "red Njoy packet"

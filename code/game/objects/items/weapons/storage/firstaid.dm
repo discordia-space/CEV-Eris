@@ -39,7 +39,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULL))
 	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/regular
@@ -58,7 +58,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULL))
 	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/toxin
@@ -85,7 +85,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULL))
 	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/o2
@@ -106,7 +106,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/syringe/inaprovaline(NULL))
 	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/adv
@@ -129,7 +129,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/syringe/inaprovaline(NULL))
 	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/firstaid/combat
 	name = "combat medical kit"
@@ -152,7 +152,7 @@
 	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/tramadol(NULL))
 	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/spaceacillin(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/firstaid/surgery
 	name = "surgery kit"
@@ -187,7 +187,7 @@
 	spawnedAtoms.Add(new /obj/item/tool/tape_roll/fiber/medical(NULL))
 	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/bruise_pack(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/firstaid/surgery/contractor
@@ -209,7 +209,7 @@
 	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/oxycodone(NULL))
 	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/prosurgeon(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/firstaid/nt
@@ -234,7 +234,7 @@
 	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/carbon(NULL))
 	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/carbon(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/firstaid/nt/update_icon()
 	if(!contents.len)
@@ -385,7 +385,7 @@
 	spawnedAtoms.Add(new /obj/spawner/junkfood/low_chance(NULL))
 	spawnedAtoms.Add(new /obj/spawner/booze/low_chance(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/freezer/medical
 	name = "organ freezer"

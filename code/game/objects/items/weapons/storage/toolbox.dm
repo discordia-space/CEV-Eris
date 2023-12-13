@@ -44,7 +44,7 @@
 		spawnedAtoms.Add(new /obj/item/tool/tape_roll(NULL))
 	spawnedAtoms.Add(new /obj/item/device/radio(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/toolbox/mechanical
 	name = "mechanical toolbox"
@@ -64,7 +64,7 @@
 		spawnedAtoms.Add(new /obj/item/tool/wirecutters/pliers(NULL))
 	spawnedAtoms.Add(new /obj/item/device/scanner/gas(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/toolbox/electrical
 	name = "electrical toolbox"
@@ -98,7 +98,7 @@
 		spawnedAtoms.Add(new /obj/item/tool/tape_roll(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/item/storage/toolbox/syndicate
 	name = "suspicious looking toolbox"
@@ -130,5 +130,5 @@
 	spawnedAtoms.Add(new /obj/item/cell/medium/super(NULL))
 	spawnedAtoms.Add(new /obj/item/cell/small/super(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 

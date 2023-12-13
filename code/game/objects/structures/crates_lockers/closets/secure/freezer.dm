@@ -16,7 +16,7 @@
 		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	icon_state = "freezer"
@@ -33,7 +33,7 @@
 		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"
@@ -50,7 +50,7 @@
 		spawnedAtoms.Add(new  /obj/item/storage/fancy/egg_box(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"
@@ -68,4 +68,4 @@
 		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c200(NULL))
 
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

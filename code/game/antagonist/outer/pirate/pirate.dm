@@ -93,7 +93,7 @@
 	spawnedAtoms.Add(new /obj/item/storage/backpack/satchel(NULL))
 	spawnedAtoms.Add(new /obj/item/melee/energy/sword/pirate(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 // PIRATE LOOT CRATE
 

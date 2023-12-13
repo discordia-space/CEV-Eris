@@ -13,4 +13,4 @@
 	spawnedAtoms.Add(new /obj/item/cell/large(NULL))
 	spawnedAtoms.Add(new /obj/item/tool/multitool(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)

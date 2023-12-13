@@ -133,7 +133,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/trg = src
 		if(trg.client)
-			message_admins("Human client moved with forcemove")
+			message_admins("Human client moved with forceMove")
 	if(origin)
 		origin.Exited(src, destination)
 		origin.recalculateWeights(-weight)

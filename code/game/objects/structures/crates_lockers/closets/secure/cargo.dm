@@ -17,7 +17,7 @@
 	spawnedAtoms.Add(new  /obj/item/clothing/head/soft(NULL))
 	spawnedAtoms.Add(new  /obj/item/device/scanner/price(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/reinforced/quartermaster
 	name = "guild merchant's locker"
@@ -43,7 +43,7 @@
 	spawnedAtoms.Add(new  /obj/item/ammo_casing/shotgun/beanbag(NULL))
 	spawnedAtoms.Add(new  /obj/item/device/scanner/price(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/personal/artist
 	name = "club artist's locker"
@@ -65,7 +65,7 @@
 	spawnedAtoms.Add(new /obj/item/device/radio/headset/headset_service(NULL))
 	spawnedAtoms.Add(new /obj/item/electronics/circuitboard/artist_bench(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
 /obj/structure/closet/wardrobe/color/pink/artist
 
@@ -97,5 +97,5 @@
 	spawnedAtoms.Add(new /obj/item/clothing/mask/gas/joker_19(NULL))
 	spawnedAtoms.Add(new /obj/item/clothing/under/joker(NULL))
 	for(var/atom/a in spawnedAtoms)
-		a.forcemove(src)
+		a.forceMove(src)
 
