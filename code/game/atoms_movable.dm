@@ -130,10 +130,6 @@
 	var/atom/origin = loc
 	loc = destination
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/trg = src
-		if(trg.client)
-			message_admins("Human client moved with forceMove")
 	if(origin)
 		origin.Exited(src, destination)
 		origin.recalculateWeights(-weight)
@@ -343,10 +339,6 @@
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
-	if(ishuman(src))
-		var/mob/living/carbon/human/trg = src
-		if(trg.client)
-			message_admins("Human client moved with normal move")
 
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
 	// Is this a diagonal movement?

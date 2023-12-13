@@ -95,7 +95,13 @@
 			to_world_log("Spawner \"[type]\" ([x],[y],[z]) try spawn without free space around!")
 			break
 		var/atom/T = pick(points_for_spawn)
-		var/atom/A = new build_path(T)
+		var/atom/A
+		if(ismovable(build_path))
+			var/atom/movable/thing = new build_path(NULLSPACE)
+			thing.forceMove(T)
+			A = thing
+		else
+			A = new build_path(T)
 		if(ismachinery(A) || isstructure(A))
 			A.set_dir(src.dir)
 		spawns.Add(A)
@@ -107,7 +113,13 @@
 				var/atom/movable/AM2 = thing
 				if(!prob(initial(AM2.prob_aditional_object)))
 					continue
-				var/atom/AO = new thing (T)
+				var/atom/AO
+				if(ismovable(thing))
+					var/atom/movable/spaw = new thing(NULLSPACE)
+					spaw.forceMove(T)
+					AO = spaw
+				else
+					AO = new thing(T)
 				spawns.Add(AO)
 				if(ismovable(AO))
 					var/atom/movable/AMAO = AO

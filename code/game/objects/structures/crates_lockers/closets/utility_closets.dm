@@ -141,8 +141,8 @@
 		spawnedAtoms.Add(new /obj/item/storage/pouch/engineering_material(NULLSPACE))
 	if(prob(40))
 		spawnedAtoms.Add(new /obj/item/clothing/head/hardhat(NULLSPACE))
-	spawnedAtoms.Add(new /obj/spawner/tool_upgrade(NULLSPACE))
-	spawnedAtoms.Add(new /obj/spawner/tool_upgrade(NULLSPACE))
+	new /obj/spawner/tool_upgrade(src)
+	new /obj/spawner/tool_upgrade(src)
 	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 	//Every tool closet contains a couple guaranteed toolmods

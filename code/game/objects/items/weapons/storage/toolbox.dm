@@ -116,11 +116,12 @@
 
 	spawnedAtoms.Add(new /obj/item/clothing/gloves/insulated(NULLSPACE))
 
-	cell_tool = spawnedAtoms.Add(new /obj/item/tool/screwdriver/combi_driver(NULLSPACE))
+	cell_tool = new /obj/item/tool/screwdriver/combi_driver(NULLSPACE)
+	spawnedAtoms.Add(cell_tool)
 	qdel(cell_tool.cell)
 	cell_tool.cell = new /obj/item/cell/small/super(cell_tool)
-
-	cell_tool = spawnedAtoms.Add(new /obj/item/tool/crowbar/pneumatic(NULLSPACE))
+	cell_tool = new /obj/item/tool/crowbar/pneumatic(NULLSPACE)
+	spawnedAtoms.Add(cell_tool)
 	qdel(cell_tool.cell)
 	cell_tool.cell = new /obj/item/cell/medium/super(cell_tool)
 
