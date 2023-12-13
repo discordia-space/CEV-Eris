@@ -84,10 +84,34 @@
 	weight += weightValue
 	var/atom/location = loc
 	/// apply this to turfs too for funny sheninigans
-	while(!isarea(location))
+	while(!isarea(location) && location)
 		/// avoid a extra operation. just add the difference
 		location.weight += (weight - oldWeight)
 		location = location.loc
+
+/// Recursive proc , will go down to all things it has and force them to update and then force updates to anything that contains it
+/atom/proc/updateWeights(callRecalc = TRUE)
+	var/change = initial(weight)
+	for(var/obj/item/thing in contents)
+		thing.updateWeights(FALSE)
+		change += thing.weight
+	if(callRecalc && change != weight)
+		recalculateWeights(change - weight)
+
+/atom/proc/updateWeightsDebug()
+	message_admins("weight before update - [weight]")
+	typeWeights()
+	message_admins("updating")
+	updateWeights(TRUE)
+	message_admins("weight after update [weight]" )
+
+/atom/proc/typeWeights(spaces)
+	var/buffer = ""
+	for(var/i = 0, i < spaces, i++)
+		addtext(buffer," ")
+	message_admins("[buffer]Mass of [src] - [weight]")
+	for(var/atom/thing in contents)
+		thing.typeWeights(++spaces)
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
@@ -106,18 +130,13 @@
 	var/atom/origin = loc
 	loc = destination
 
+	if(ishuman(src))
+		var/mob/living/carbon/human/trg = src
+		if(trg.client)
+			message_admins("Human client moved with forcemove")
 	if(origin)
 		origin.Exited(src, destination)
-		// #TAG_RECALCWEIGHT , called on origin
-		var/oldWeight = origin.weight
-		origin.weight -= weight
-		var/atom/location = origin
-		/// apply this to turfs too for funny sheninigans
-		while(!isarea(location))
-			/// avoid a extra operation. just add the difference
-			location.weight += (origin.weight - oldWeight)
-			location = location.loc
-		//
+		origin.recalculateWeights(-weight)
 		if(is_origin_turf)
 			for(var/atom/movable/AM in origin)
 				AM.Uncrossed(src)
@@ -126,16 +145,7 @@
 
 	if(destination)
 		destination.Entered(src, origin, special_event)
-		// #TAG_RECALCWEIGHT , called on destination
-		var/oldWeight = destination.weight
-		destination.weight -= weight
-		var/atom/location = destination
-		/// apply this to turfs too for funny sheninigans
-		while(!isarea(location))
-			/// avoid a extra operation. just add the difference
-			location.weight += (destination.weight - oldWeight)
-			location = location.loc
-		//
+		destination.recalculateWeights(weight)
 		if(is_destination_turf) // If we're entering a turf, cross all movable atoms
 			for(var/atom/movable/AM in loc)
 				if(AM != src)
@@ -333,6 +343,10 @@
 /atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
+	if(ishuman(src))
+		var/mob/living/carbon/human/trg = src
+		if(trg.client)
+			message_admins("Human client moved with normal move")
 
 	// To prevent issues, diagonal movements are broken up into two cardinal movements.
 	// Is this a diagonal movement?
@@ -376,27 +390,9 @@
 		. = ..()
 
 		if(oldloc)
-			// #TAG_RECALCWEIGHT , called on oldloc
-			var/oldWeight = oldloc.weight
-			oldloc.weight -= weight
-			var/atom/location = oldloc
-			/// apply this to turfs too for funny sheninigans
-			while(!isarea(location))
-				/// avoid a extra operation. just add the difference
-				location.weight += (oldloc.weight - oldWeight)
-				location = location.loc
-			//
+			oldloc.recalculateWeights(-weight)
 		if(loc)
-			// #TAG_RECALCWEIGHT , called on loc
-			var/oldWeight = loc.weight
-			loc.weight += weight
-			var/atom/location = loc
-			/// apply this to turfs too for funny sheninigans
-			while(!isarea(location))
-				/// avoid a extra operation. just add the difference
-				location.weight += (loc.weight - oldWeight)
-				location = location.loc
-			//
+			loc.recalculateWeights(weight)
 
 		if(Dir != olddir)
 			dir = olddir

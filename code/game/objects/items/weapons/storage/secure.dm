@@ -79,7 +79,7 @@
 
 
 /obj/item/storage/secure/attack_self(mob/user as mob)
-	user.set_machine(src)
+	user.set_machine(NULL))
 	var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
 	var/message = "Code"
 	if ((src.l_set == 0) && (!src.emagged) && (!src.l_setshort))
@@ -185,8 +185,12 @@
 	cant_hold = list(/obj/item/storage/secure/briefcase)
 
 /obj/item/storage/secure/safe/populate_contents()
-	new /obj/item/paper(src)
-	new /obj/item/pen(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/paper(NULL))
+	spawnedAtoms.Add(new /obj/item/pen(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/item/storage/secure/safe/attack_hand(mob/user)
 	return attack_self(user)

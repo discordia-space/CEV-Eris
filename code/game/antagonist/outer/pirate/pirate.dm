@@ -83,13 +83,17 @@
 	icon_lock = "cabinet"
 
 /obj/structure/closet/secure_closet/pirate/populate_contents()
-	new /obj/item/clothing/under/pirate(src)
-	new /obj/item/device/radio/headset/pirates(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/head/bandana(src)
-	new /obj/item/clothing/suit/armor/bulletproof(src)
-	new /obj/item/storage/backpack/satchel(src)
-	new /obj/item/melee/energy/sword/pirate(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/under/pirate(NULL))
+	spawnedAtoms.Add(new /obj/item/device/radio/headset/pirates(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/jackboots(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/bandana(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/armor/bulletproof(NULL))
+	spawnedAtoms.Add(new /obj/item/storage/backpack/satchel(NULL))
+	spawnedAtoms.Add(new /obj/item/melee/energy/sword/pirate(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 // PIRATE LOOT CRATE
 

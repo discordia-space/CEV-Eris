@@ -6,9 +6,13 @@
 	prespawned_content_amount = 1
 
 /obj/item/storage/box/dice/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/dice(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULL))
+	spawnedAtoms.Add(new /obj/item/dice(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /*
  * Donut Box
@@ -24,8 +28,13 @@
 	prespawned_content_type = /obj/item/reagent_containers/food/snacks/donut/normal
 
 /obj/item/storage/box/donut/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULL))
+
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	update_icon()
 
 /obj/item/storage/box/donut/update_icon()
@@ -65,12 +74,16 @@
 	..()
 
 /obj/item/storage/ration_pack/populate_contents()
-	new /obj/item/reagent_containers/food/snacks/mre(src)
-	new /obj/item/reagent_containers/food/snacks/mre/can(src)
-	new /obj/item/reagent_containers/food/snacks/mre_paste(src)
-	new /obj/item/storage/fancy/mre_cracker(src)
-	new /obj/item/reagent_containers/food/snacks/candy/mre(src)
-	new /obj/item/material/kitchen/utensil/spoon/mre(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre/can(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre_paste(NULL))
+	spawnedAtoms.Add(new /obj/item/storage/fancy/mre_cracker(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/candy/mre(NULL))
+	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/item/storage/ration_pack/ihr
 	icon = 'icons/obj/food.dmi'
@@ -96,11 +109,15 @@
 	..()
 
 /obj/item/storage/ration_pack/ihr/populate_contents()
-	new /obj/item/reagent_containers/food/snacks/mre/can(src)
-	new /obj/item/reagent_containers/food/snacks/mre_paste(src)
-	new /obj/item/reagent_containers/food/snacks/candy/mre(src)
-	new /obj/item/material/kitchen/utensil/spoon/mre(src)
-	new /obj/item/storage/fancy/crayons(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre/can(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre_paste(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/candy/mre(NULL))
+	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULL))
+	spawnedAtoms.Add(new /obj/item/storage/fancy/crayons(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/item/storage/box/clown
 	name = "clown costume box"
@@ -108,10 +125,14 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/clown/populate_contents()
-	new /obj/item/bikehorn(src)
-	new /obj/item/clothing/mask/gas/clown_hat(src)
-	new /obj/item/clothing/shoes/clown_shoes(src)
-	new /obj/item/clothing/under/rank/clown(src)
-	new /obj/item/stamp/clown(src)
-	new /obj/item/bananapeel(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/bikehorn(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/gas/clown_hat(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/clown_shoes(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/under/rank/clown(NULL))
+	spawnedAtoms.Add(new /obj/item/stamp/clown(NULL))
+	spawnedAtoms.Add(new /obj/item/bananapeel(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 

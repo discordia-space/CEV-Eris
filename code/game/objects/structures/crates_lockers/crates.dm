@@ -69,22 +69,26 @@
 	icon_state = "o2crate"
 
 /obj/structure/closet/crate/internals/populate_contents()
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/structure/closet/crate/trashcart
 	name = "trash cart"
@@ -120,37 +124,41 @@
 	icon_state = "crate"
 
 /obj/structure/closet/crate/rcd/populate_contents()
-	new /obj/item/stack/material/compressed(src,30)
-	new /obj/item/rcd(src)
+	spawnedAtoms.Add(new /obj/item/stack/material/compressed(NULL,30))
+	spawnedAtoms.Add(new /obj/item/rcd(NULL))
 
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
 
 /obj/structure/closet/crate/solar/populate_contents()
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/solar_assembly(src)
-	new /obj/item/electronics/circuitboard/solar_control(src)
-	new /obj/item/electronics/tracker(src)
-	new /obj/item/paper/solar(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/solar_assembly(NULL))
+	spawnedAtoms.Add(new /obj/item/electronics/circuitboard/solar_control(NULL))
+	spawnedAtoms.Add(new /obj/item/electronics/tracker(NULL))
+	spawnedAtoms.Add(new /obj/item/paper/solar(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer"
@@ -163,10 +171,14 @@
 
 
 /obj/structure/closet/crate/freezer/rations/populate_contents()
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/liquidfood(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/liquidfood(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/liquidfood(NULL))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/liquidfood(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/structure/closet/crate/bin
 	name = "large bin"
@@ -180,14 +192,18 @@
 	icon_state = "radiation"
 
 /obj/structure/closet/crate/radiation/populate_contents()
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/suit/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/structure/closet/crate/secure/weapon
 	name = "weapons crate"

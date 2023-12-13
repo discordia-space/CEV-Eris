@@ -20,39 +20,48 @@
 	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
 
 /obj/structure/closet/emcloset/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	switch(pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
 		if ("small")
-			new /obj/item/tank/emergency_oxygen(src)
-			new /obj/item/tank/emergency_oxygen(src)
-			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/space/emergency(src)
+			spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+			spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/suit/space/emergency(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/head/space/emergency(NULL))
 		if ("aid")
-			new /obj/item/tank/emergency_oxygen(src)
-			new /obj/item/storage/toolbox/emergency(src)
-			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/storage/firstaid/o2(src)
-			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/space/emergency(src)
+			spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULL))
+			spawnedAtoms.Add(new /obj/item/storage/toolbox/emergency(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+			spawnedAtoms.Add(new /obj/item/storage/firstaid/o2(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/suit/space/emergency(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/head/space/emergency(NULL))
 		if ("tank")
-			new /obj/item/tank/emergency_oxygen/engi(src)
-			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/tank/emergency_oxygen/engi(src)
-			new /obj/item/clothing/mask/breath(src)
+			spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen/engi(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+			spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen/engi(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
 		if ("both")
-			new /obj/item/storage/toolbox/emergency(src)
-			new /obj/item/tank/emergency_oxygen/engi(src)
-			new /obj/item/clothing/mask/breath(src)
-			new /obj/item/storage/firstaid/o2(src)
-			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/suit/space/emergency(src)
-			new /obj/item/clothing/head/space/emergency(src)
-			new /obj/item/clothing/head/space/emergency(src)
+			spawnedAtoms.Add(new /obj/item/storage/toolbox/emergency(NULL))
+			spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen/engi(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+			spawnedAtoms.Add(new /obj/item/storage/firstaid/o2(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/suit/space/emergency(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/suit/space/emergency(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/head/space/emergency(NULL))
+			spawnedAtoms.Add(new /obj/item/clothing/head/space/emergency(NULL))
+
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/structure/closet/emcloset/legacy/populate_contents()
-	new /obj/item/tank/oxygen(src)
-	new /obj/item/clothing/mask/gas(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/tank/oxygen(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/gas(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /*
  * Fire Closet
@@ -66,14 +75,19 @@
 
 
 /obj/structure/closet/firecloset/populate_contents()
-	new /obj/item/clothing/gloves/thick(src)
-	new /obj/item/clothing/suit/fire(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/tank/oxygen/red(src)
-	new /obj/item/extinguisher(src)
-	new /obj/item/extinguisher(src)
-	new /obj/item/device/lighting/toggleable/flashlight(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/gloves/thick(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/fire(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/hardhat/red(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/gas(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/oxygen/red(NULL))
+	spawnedAtoms.Add(new /obj/item/extinguisher(NULL))
+	spawnedAtoms.Add(new /obj/item/extinguisher(NULL))
+	spawnedAtoms.Add(new /obj/item/device/lighting/toggleable/flashlight(NULL))
+
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /*
  * Tool Closet
@@ -87,46 +101,50 @@
 	spawn_tags = SPAWN_TAG_CLOSET_TECHNICAL
 
 /obj/structure/closet/toolcloset/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	if(prob(40))
-		new /obj/item/clothing/suit/storage/hazardvest(src)
+		spawnedAtoms.Add(new /obj/item/clothing/suit/storage/hazardvest(NULL))
 	if(prob(70))
-		new /obj/item/device/lighting/toggleable/flashlight(src)
+		spawnedAtoms.Add(new /obj/item/device/lighting/toggleable/flashlight(NULL))
 	if(prob(70))
-		new /obj/item/tool/screwdriver(src)
+		spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULL))
 	if(prob(70))
-		new /obj/item/tool/wrench(src)
+		spawnedAtoms.Add(new /obj/item/tool/wrench(NULL))
 	if(prob(70))
-		new /obj/item/tool/weldingtool(src)
+		spawnedAtoms.Add(new /obj/item/tool/weldingtool(NULL))
 	if(prob(70))
-		new /obj/item/tool/crowbar(src)
+		spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
 	if(prob(50))
-		new /obj/item/tool/wirecutters(src)
+		spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULL))
 	if(prob(50))
-		new /obj/item/tool/wirecutters/pliers(src)
+		spawnedAtoms.Add(new /obj/item/tool/wirecutters/pliers(NULL))
 	if(prob(70))
-		new /obj/item/device/t_scanner(src)
+		spawnedAtoms.Add(new /obj/item/device/t_scanner(NULL))
 	if(prob(20))
-		new /obj/item/storage/belt/utility(src)
+		spawnedAtoms.Add(new /obj/item/storage/belt/utility(NULL))
 	if(prob(30))
-		new /obj/item/stack/cable_coil/random(src)
+		spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULL))
 	if(prob(30))
-		new /obj/item/stack/cable_coil/random(src)
+		spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULL))
 	if(prob(30))
-		new /obj/item/stack/cable_coil/random(src)
+		spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULL))
 	if(prob(20))
-		new /obj/item/tool/multitool(src)
+		spawnedAtoms.Add(new /obj/item/tool/multitool(NULL))
 	if(prob(5))
-		new /obj/item/clothing/gloves/insulated(src)
+		spawnedAtoms.Add(new /obj/item/clothing/gloves/insulated(NULL))
 	if(prob(5))
-		new /obj/item/storage/pouch/engineering_tools(src)
+		spawnedAtoms.Add(new /obj/item/storage/pouch/engineering_tools(NULL))
 	if(prob(1))
-		new /obj/item/storage/pouch/engineering_supply(src)
+		spawnedAtoms.Add(new /obj/item/storage/pouch/engineering_supply(NULL))
 	if(prob(1))
-		new /obj/item/storage/pouch/engineering_material(src)
+		spawnedAtoms.Add(new /obj/item/storage/pouch/engineering_material(NULL))
 	if(prob(40))
-		new /obj/item/clothing/head/hardhat(src)
-	new /obj/spawner/tool_upgrade(src)
-	new /obj/spawner/tool_upgrade(src)
+		spawnedAtoms.Add(new /obj/item/clothing/head/hardhat(NULL))
+	spawnedAtoms.Add(new /obj/spawner/tool_upgrade(NULL))
+	spawnedAtoms.Add(new /obj/spawner/tool_upgrade(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	//Every tool closet contains a couple guaranteed toolmods
 
 /*
@@ -139,10 +157,15 @@
 	icon_door = "eng_rad"
 
 /obj/structure/closet/radiation/populate_contents()
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/suit/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/radiation(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/radiation(NULL))
+
+	or(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /*
  * Bombsuit closet
@@ -156,20 +179,28 @@
 
 
 /obj/structure/closet/bombcloset/populate_contents()
-	new /obj/item/clothing/suit/space/bomb(src)
-	new /obj/item/clothing/under/color/black(src)
-	new /obj/item/clothing/shoes/color/black(src)
-	new /obj/item/clothing/head/space/bomb(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/suit/space/bomb(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/under/color/black(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/black(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/space/bomb(NULL))
+
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/structure/closet/bombcloset/security
 	rarity_value = 50
 
 /obj/structure/closet/bombcloset/security/populate_contents()
-	new /obj/item/clothing/suit/space/bomb(src)
-	new /obj/item/clothing/under/rank/security(src)
-	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/head/space/bomb(src)
+	var/list/spawnedAtoms = list()
 
+	spawnedAtoms.Add(new /obj/item/clothing/suit/space/bomb(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/under/rank/security(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/color/brown(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/head/space/bomb(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 /obj/structure/closet/self_pacification
 	name = "\improper Anti-Depressive Self-Pacification Treatment Utility closet"
 	desc = "The last things you will ever need!"
@@ -178,10 +209,15 @@
 	anchored = TRUE
 
 /obj/structure/closet/self_pacification/populate_contents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/emergency_oxygen/nitrogen(src)
-	new /obj/item/tank/emergency_oxygen/nitrogen(src)
-	new /obj/item/paper/self_pacification(src)
-	new /obj/item/paper(src)
-	new /obj/item/pen(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen/nitrogen(NULL))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen/nitrogen(NULL))
+	spawnedAtoms.Add(new /obj/item/paper/self_pacification(NULL))
+	spawnedAtoms.Add(new /obj/item/paper(NULL))
+	spawnedAtoms.Add(new /obj/item/pen(NULL))
+
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)

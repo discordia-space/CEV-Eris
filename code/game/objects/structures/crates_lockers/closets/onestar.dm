@@ -13,20 +13,24 @@
 	icon_state = "lootcloset"
 
 /obj/structure/closet/onestar/tier1/populate_contents()
-	new /obj/spawner/contraband/low_chance(src)
-	new /obj/spawner/contraband/low_chance(src)
-	new /obj/spawner/pack/rare/low_chance(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/junk(src)
-	new /obj/spawner/lowkeyrandom(src)
-	new /obj/spawner/lowkeyrandom(src)
-	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/spawner/pack/tech_loot/low_chance(src)
-	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/contraband/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/contraband/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/junk(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 // Tier 2
 /obj/structure/closet/onestar/tier2
@@ -35,20 +39,24 @@
 	icon_state = "lootcloset1"
 
 /obj/structure/closet/onestar/tier2/populate_contents()
-	new /obj/spawner/contraband/low_chance(src)
-	new /obj/spawner/contraband/low_chance(src)
-	new /obj/spawner/pack/rare/low_chance(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/tool/advanced/onestar/low_chance(src)
-	new /obj/spawner/lowkeyrandom(src)
-	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/spawner/pack/tech_loot/low_chance(src)
-	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/contraband/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/contraband/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/tool/advanced/onestar/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 // Tier 3
 /obj/structure/closet/onestar/tier3
@@ -57,22 +65,26 @@
 	icon_state = "lootcloset2"
 
 /obj/structure/closet/onestar/tier3/populate_contents()
-	new /obj/spawner/contraband/low_chance(src)
-	new /obj/spawner/contraband/low_chance(src)
-	new /obj/spawner/pack/rare/low_chance(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/junk(src)
-	new /obj/spawner/pack/tech_loot/onestar(src)
-	new /obj/spawner/tool/advanced/onestar(src)
-	new /obj/spawner/lowkeyrandom(src)
-	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/spawner/lowkeyrandom/low_chance(src)
-	new /obj/spawner/pack/tech_loot/low_chance(src)
-	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/tool/advanced/onestar/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/contraband/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/contraband/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/junk(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/tool/advanced/onestar(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/cloth/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/gun_loot/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/tool/advanced/onestar/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 
 ////// Closets
@@ -117,8 +129,12 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/special/populate_contents()
-	new /obj/spawner/pack/rare/low_chance(src)
-	new /obj/spawner/pack/rare/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -132,8 +148,12 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/special/populate_contents()
-	new /obj/spawner/pack/rare/low_chance(src)
-	new /obj/spawner/pack/rare/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -147,8 +167,12 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/special/populate_contents()
-	new /obj/spawner/pack/rare/low_chance(src)
-	new /obj/spawner/pack/rare/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/rare/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -163,8 +187,12 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/mineral/populate_contents()
-	new /obj/spawner/pack/tech_loot/low_chance(src)
-	new /obj/spawner/pack/tech_loot/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -178,8 +206,12 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/mineral/populate_contents()
-	new /obj/spawner/pack/tech_loot/low_chance(src)
-	new /obj/spawner/pack/tech_loot/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -193,8 +225,12 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/mineral/populate_contents()
-	new /obj/spawner/pack/tech_loot/low_chance(src)
-	new /obj/spawner/pack/tech_loot/low_chance(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	spawnedAtoms.Add(new /obj/spawner/pack/tech_loot/low_chance(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -209,8 +245,12 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/medical/populate_contents()
-	new /obj/spawner/lowkeyrandom(src)
-	new /obj/spawner/lowkeyrandom(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -224,8 +264,12 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/medical/populate_contents()
-	new /obj/spawner/lowkeyrandom(src)
-	new /obj/spawner/lowkeyrandom(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty
@@ -239,8 +283,12 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/medical/populate_contents()
-	new /obj/spawner/lowkeyrandom(src)
-	new /obj/spawner/lowkeyrandom(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	spawnedAtoms.Add(new /obj/spawner/lowkeyrandom(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 	..()
 
 // Empty

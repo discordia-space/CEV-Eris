@@ -550,9 +550,12 @@
 
 // Override in subtypes
 /obj/item/storage/proc/populate_contents()
+	var/list/spawnedAtoms = list()
 	if(prespawned_content_type && prespawned_content_amount)
 		for(var/i in 1 to prespawned_content_amount)
-			new prespawned_content_type(src)
+			spawnedAtoms.Add(new prespawned_content_type(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/item/storage/emp_act(severity)
 	if(!isliving(loc))

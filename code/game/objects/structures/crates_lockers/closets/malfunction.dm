@@ -4,9 +4,13 @@
 	rarity_value = 50
 
 /obj/structure/closet/malf/suits/populate_contents()
-	new /obj/item/tank/jetpack/void(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/suit/space/void(src)
-	new /obj/item/tool/crowbar(src)
-	new /obj/item/cell/large(src)
-	new /obj/item/tool/multitool(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/tank/jetpack/void(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/space/void(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
+	spawnedAtoms.Add(new /obj/item/cell/large(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/multitool(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)

@@ -5,23 +5,27 @@
 	icon_state = "hydro"
 
 /obj/structure/closet/secure_closet/personal/hydroponics/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	if(prob(25))
-		new /obj/item/storage/backpack/botanist(src)
+		spawnedAtoms.Add(new  /obj/item/storage/backpack/botanist(NULL))
 	else if(prob(25))
-		new /obj/item/storage/backpack/sport/botanist(src)
+		spawnedAtoms.Add(new  /obj/item/storage/backpack/sport/botanist(NULL))
 	else
-		new /obj/item/storage/backpack/satchel/botanist(src)
-	new /obj/item/clothing/suit/apron(src)
-	new /obj/item/storage/bag/produce(src)
-	new /obj/item/clothing/under/rank/hydroponics(src)
-	new /obj/item/device/scanner/plant(src)
-	new /obj/item/device/radio/headset/headset_service(src)
-	new /obj/item/clothing/mask/bandana/botany(src)
-	new /obj/item/tool/minihoe(src)
-	new /obj/item/tool/hatchet(src)
-	new /obj/item/tool/wirecutters(src)
-	new /obj/item/reagent_containers/spray/plantbgone(src)
-	new /obj/item/clothing/gloves/botanic_leather(src)
+		spawnedAtoms.Add(new  /obj/item/storage/backpack/satchel/botanist(NULL))
+	spawnedAtoms.Add(new  /obj/item/clothing/suit/apron(NULL))
+	spawnedAtoms.Add(new  /obj/item/storage/bag/produce(NULL))
+	spawnedAtoms.Add(new  /obj/item/clothing/under/rank/hydroponics(NULL))
+	spawnedAtoms.Add(new  /obj/item/device/scanner/plant(NULL))
+	spawnedAtoms.Add(new  /obj/item/device/radio/headset/headset_service(NULL))
+	spawnedAtoms.Add(new  /obj/item/clothing/mask/bandana/botany(NULL))
+	spawnedAtoms.Add(new  /obj/item/tool/minihoe(NULL))
+	spawnedAtoms.Add(new  /obj/item/tool/hatchet(NULL))
+	spawnedAtoms.Add(new  /obj/item/tool/wirecutters(NULL))
+	spawnedAtoms.Add(new  /obj/item/reagent_containers/spray/plantbgone(NULL))
+	spawnedAtoms.Add(new  /obj/item/clothing/gloves/botanic_leather(NULL))
+	for(var/atom/a in spawnedAtoms)
+		a.forcemove(src)
 
 /obj/structure/closet/secure_closet/personal/hydroponics/public
 	name = "gardener's locker"
