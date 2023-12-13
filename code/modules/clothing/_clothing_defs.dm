@@ -30,6 +30,9 @@
 /// Multiplier for material weight to clothing weight. a little bit less since the human body is curvier than a cube
 #define CLOTH_NORMAL_MTW_MUT 0.6
 
+/// Clothing flags
+#define CLOTH_MODULAR "modular" /// For modular armor only , anything that doesn't have this is not modifiable.
+
 /// Defines for accesories
 
 /// Glueable armor.

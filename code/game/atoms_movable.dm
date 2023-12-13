@@ -77,6 +77,17 @@
 		checking = checking.loc
 	return checking
 
+/// This proc is pasted directly into critical areas that get called very frequently to save on proc calling time
+/// Search all instances where this proc is used by searching the following text #TAG_RECALCWEIGHT
+/atom/proc/recalculateWeights(weightValue)
+	var/oldWeight = weight
+	weight += weightValue
+	var/atom/location = loc
+	/// apply this to turfs too for funny sheninigans
+	while(!isarea(location))
+		/// avoid a extra operation. just add the difference
+		location.weight += (weight - oldWeight)
+		location = location.loc
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
@@ -97,6 +108,16 @@
 
 	if(origin)
 		origin.Exited(src, destination)
+		// #TAG_RECALCWEIGHT , called on origin
+		var/oldWeight = origin.weight
+		origin.weight -= weight
+		var/atom/location = origin
+		/// apply this to turfs too for funny sheninigans
+		while(!isarea(location))
+			/// avoid a extra operation. just add the difference
+			location.weight += (origin.weight - oldWeight)
+			location = location.loc
+		//
 		if(is_origin_turf)
 			for(var/atom/movable/AM in origin)
 				AM.Uncrossed(src)
@@ -105,6 +126,16 @@
 
 	if(destination)
 		destination.Entered(src, origin, special_event)
+		// #TAG_RECALCWEIGHT , called on destination
+		var/oldWeight = destination.weight
+		destination.weight -= weight
+		var/atom/location = destination
+		/// apply this to turfs too for funny sheninigans
+		while(!isarea(location))
+			/// avoid a extra operation. just add the difference
+			location.weight += (destination.weight - oldWeight)
+			location = location.loc
+		//
 		if(is_destination_turf) // If we're entering a turf, cross all movable atoms
 			for(var/atom/movable/AM in loc)
 				if(AM != src)
@@ -119,8 +150,6 @@
 			update_plane()
 		else if(!is_origin_turf)
 			update_plane()
-			//for(var/atom/movable/thing in contents)
-			//	SEND_SIGNAL(thing, COMSIG_MOVABLE_Z_CHANGED,get_z(origin),get_z(destination))
 	else if(destination)
 		update_plane()
 
@@ -345,6 +374,29 @@
 		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
 
 		. = ..()
+
+		if(oldloc)
+			// #TAG_RECALCWEIGHT , called on oldloc
+			var/oldWeight = oldloc.weight
+			oldloc.weight -= weight
+			var/atom/location = oldloc
+			/// apply this to turfs too for funny sheninigans
+			while(!isarea(location))
+				/// avoid a extra operation. just add the difference
+				location.weight += (oldloc.weight - oldWeight)
+				location = location.loc
+			//
+		if(loc)
+			// #TAG_RECALCWEIGHT , called on loc
+			var/oldWeight = loc.weight
+			loc.weight += weight
+			var/atom/location = loc
+			/// apply this to turfs too for funny sheninigans
+			while(!isarea(location))
+				/// avoid a extra operation. just add the difference
+				location.weight += (loc.weight - oldWeight)
+				location = location.loc
+			//
 
 		if(Dir != olddir)
 			dir = olddir
