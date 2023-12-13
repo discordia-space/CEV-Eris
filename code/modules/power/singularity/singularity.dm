@@ -14,7 +14,7 @@
 	var/current_size = 1
 	var/allowed_size = 1
 	var/contained = 1 //Are we going to move around?
-	var/energy = 100 //How strong are we?
+	var/ARMOR_ENERGY = 100 //How strong are we?
 	var/dissipate = 1 //Do we lose energy over time?
 	var/dissipate_delay = 10
 	var/dissipate_track = 0
@@ -32,7 +32,7 @@
 /obj/singularity/New(loc, var/starting_energy = 50, var/temp = 0)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
-	energy = starting_energy
+	ARMOR_ENERGY = starting_energy
 
 	if (temp)
 		spawn (temp)

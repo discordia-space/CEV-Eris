@@ -6,12 +6,12 @@
 
 	heat_protection = HEAD
 	armor = list(
-		melee = 7,
-		bullet = 5,
-		energy = 3,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -24,12 +24,12 @@
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	armor = list(
-		melee = 7,
-		bullet = 5,
-		energy = 3,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE

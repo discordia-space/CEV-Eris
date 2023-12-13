@@ -498,7 +498,7 @@
 			ammunition_storage[slot] = magazine
 			return 1
 		if(LOADING_SINGLE)
-			var/obj/item/ammo_casing/bullet = loadable
+			var/obj/item/ammo_casing/ARMOR_BULLET = loadable
 			if(wep.caliber != bullet.caliber)
 				return -1
 			var/valid = FALSE
@@ -555,7 +555,7 @@
 		if(LOADING_SINGLE)
 			var/initial_shells = length(wep.loaded)
 			while(length(wep.loaded) < wep.max_shells)
-				var/obj/item/ammo_casing/bullet = getLoadedMagazine()
+				var/obj/item/ammo_casing/ARMOR_BULLET = getLoadedMagazine()
 				if(!bullet)
 					break
 				while(bullet.amount > 1)
@@ -582,7 +582,7 @@
 				if(istype(ammo, /obj/item/ammo_magazine))
 					var/obj/item/ammo_magazine/mag = ammo
 					while(length(mag.stored_ammo) && length(wep.loaded) < wep.max_shells)
-						var/obj/item/ammo_casing/bullet = mag.removeCasing()
+						var/obj/item/ammo_casing/ARMOR_BULLET = mag.removeCasing()
 						if(!bullet)
 							break
 						bullet.forceMove(wep)
@@ -593,7 +593,7 @@
 					else
 						mag.forceMove(get_turf(src))
 				else
-					var/obj/item/ammo_casing/bullet = ammo
+					var/obj/item/ammo_casing/ARMOR_BULLET = ammo
 					while(bullet.amount > 1)
 						// so we dupe
 						var/obj/item/ammo_casing/bullet_dupe = new bullet.type(bullet)

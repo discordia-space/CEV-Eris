@@ -16,12 +16,12 @@
 	item_state = "jackboots"
 	force = WEAPON_FORCE_HARMLESS
 	armor = list(
-		melee = 3,
-		bullet = 0,
-		energy = 2,
-		bomb = 0,
-		bio = 25,
-		rad = 0
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =25,
+		ARMOR_RAD =0
 	)
 	siemens_coefficient = 0.6
 	can_hold_knife = TRUE
@@ -52,12 +52,12 @@
 	icon_state = "reinforced"
 	item_state = "reinforced"
 	armor = list(
-		melee = 3,
-		bullet = 0,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	siemens_coefficient = 0.5
 
@@ -78,12 +78,12 @@
 	item_state = "workboots"
 	siemens_coefficient = 0
 	armor = list(
-		melee = 2,
-		bullet = 0,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	can_hold_knife = TRUE
 	style = STYLE_NEG_HIGH

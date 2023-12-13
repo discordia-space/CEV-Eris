@@ -590,12 +590,12 @@
 
 
 	armor = list(
-		melee = 3,
-		bullet = 3,
-		energy = 3,
-		bomb = 50,
-		bio = 75,
-		rad = 10
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =75,
+		ARMOR_RAD =10
 	)
 	price_tag = 1997
 

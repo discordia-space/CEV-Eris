@@ -24,12 +24,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = 5,
-		energy = 0,
-		bomb = 0,
-		bio = 50,
-		rad = 100
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =50,
+		ARMOR_RAD =100
 	)
 
 /mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)

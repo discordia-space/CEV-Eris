@@ -8,12 +8,12 @@
 	light_overlay = "helmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 10,
-		bullet = 7,
-		energy = 7,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	spawn_blacklisted = TRUE
 
@@ -25,12 +25,12 @@
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 25, MATERIAL_BIOMATTER = 40)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
-		melee = 10,
-		bullet = 7,
-		energy = 7,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	//helmet = /obj/item/clothing/head/space/void/acolyte
 	spawn_blacklisted = TRUE
@@ -45,12 +45,12 @@
 	light_overlay = "helmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 10,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =10,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	spawn_blacklisted = TRUE
 
@@ -63,12 +63,12 @@
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 10,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =10,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	spawn_blacklisted = TRUE
 
@@ -82,12 +82,12 @@
 	light_overlay = "helmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 7,
-		bullet = 5,
-		energy = 5,
-		bomb = 10,
-		bio = 200,
-		rad = 90
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =10,
+		ARMOR_BIO =200,
+		ARMOR_RAD =90
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
@@ -100,12 +100,12 @@
 	matter = list(MATERIAL_PLASTIC = 40, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
-		melee = 7,
-		bullet = 5,
-		energy = 5,
-		bomb = 20,
-		bio = 200,
-		rad = 90
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =20,
+		ARMOR_BIO =200,
+		ARMOR_RAD =90
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE

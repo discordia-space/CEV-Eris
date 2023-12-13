@@ -379,7 +379,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 				var/obj/singularity/S = new /obj/singularity(get_turf(G), 50)
 				spawn(0)
 					qdel(G)
-				S.energy = 1750
+				S.ARMOR_ENERGY = 1750
 				S.current_size = 7
 				S.icon = 'icons/effects/224x224.dmi'
 				S.icon_state = "singularity_s7"

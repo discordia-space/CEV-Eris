@@ -284,13 +284,13 @@
 				blunt = rand(0, armor.getRating(ARMOR_BLUNT)),
 				slash = rand(0, armor.getRating(ARMOR_SLASH)),
 				pointy = rand(0, armor.getRating(ARMOR_POINTY)),
-				bullet =  rand(0, armor.getRating(ARMOR_BULLET)),
-				energy = rand(0, armor.getRating(ARMOR_ENERGY)),
+				ARMOR_BULLET =  rand(0, armor.getRating(ARMOR_BULLET)),
+				ARMOR_ENERGY = rand(0, armor.getRating(ARMOR_ENERGY)),
 				electric = rand(0,  armor.getRating(ARMOR_ELECTRIC)),
-				bomb = rand(0, armor.getRating(ARMOR_BOMB)),
-				bio = rand(0, armor.getRating(ARMOR_BIO)),
+				ARMOR_BOMB =rand(0, armor.getRating(ARMOR_BOMB)),
+				ARMOR_BIO =rand(0, armor.getRating(ARMOR_BIO)),
 				chem = rand(0, armor.getRating(ARMOR_CHEM)),
-				rad = rand(0, armor.getRating(ARMOR_RAD))
+				ARMOR_RAD =rand(0, armor.getRating(ARMOR_RAD))
 				)
 		if(prob(40))
 			heat_protection = rand(0, round(heat_protection * 0.5))

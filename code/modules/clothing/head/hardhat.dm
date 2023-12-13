@@ -6,12 +6,12 @@
 	brightness_on = 4 //luminosity when on
 	light_overlay = "hardhat_light"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 50,
-		bio = 10,
-		rad = 25
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =10,
+		ARMOR_RAD =25
 	)
 	siemens_coefficient = 0.8
 	w_class = ITEM_SIZE_NORMAL

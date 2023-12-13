@@ -9,7 +9,7 @@
 /datum/matter_synth/New(var/store = 0)
 	if(store)
 		max_energy = store
-	energy = max_energy_multiplied
+	ARMOR_ENERGY = max_energy_multiplied
 	set_multiplier(1)
 	return
 
@@ -23,7 +23,7 @@
 	return 0
 
 /datum/matter_synth/proc/add_charge(var/amount)
-	energy = min(energy + amount, max_energy_multiplied)
+	ARMOR_ENERGY = min(energy + amount, max_energy_multiplied)
 
 /datum/matter_synth/proc/emp_act(var/severity)
 	use_charge(max_energy_multiplied * 0.1 / severity)
@@ -31,7 +31,7 @@
 /datum/matter_synth/proc/set_multiplier(var/new_multiplier)
 	multiplier = new_multiplier
 	max_energy_multiplied = max_energy * multiplier
-	energy = min(max_energy_multiplied, energy)
+	ARMOR_ENERGY = min(max_energy_multiplied, energy)
 
 /datum/matter_synth/medicine
 	name = "Medicine Synthesizer"

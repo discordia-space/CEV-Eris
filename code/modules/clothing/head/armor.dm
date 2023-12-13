@@ -26,7 +26,7 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	armor = list(
-		melee = 10,
+		ARMOR_BLUNT = 10,
 		bullet = 10,
 		energy = 10,
 		bomb = 50,
@@ -54,7 +54,7 @@
 	icon_state = "merchelm"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
-		melee = 24,
+		ARMOR_BLUNT = 24,
 		bullet = 35,
 		energy = 20,
 		bomb = 75,
@@ -88,7 +88,7 @@
 	light_overlay = "technohelmet_light"
 	brightness_on = 4
 	armor = list(
-		melee = 10,
+		ARMOR_BLUNT = 10,
 		bullet = 10,
 		energy = 10,
 		bomb = 100,
@@ -114,7 +114,7 @@
 	action_button_name = "Toggle Headlamp"
 	brightness_on = 4
 	armor = list(
-		melee = 15,
+		ARMOR_BLUNT = 15,
 		bullet = 15,
 		energy = 15,
 		bomb = 100,
@@ -129,7 +129,7 @@
 	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
 	icon_state = "helmet_handmade"
 	armor = list(
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 7,
 		energy = 7,
 		bomb = 35,
@@ -143,7 +143,7 @@
 	desc = "A sturdy, handcrafted helmet. It's well balanced and sits low on your head, with padding on the inside."
 	icon_state = "scav_helmet"
 	armor = list(
-		melee = 10,
+		ARMOR_BLUNT = 10,
 		bullet = 10,
 		energy = 10,
 		bomb = 35,
@@ -166,7 +166,7 @@
 	icon_state = "bulletproof"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
-		melee = 14,
+		ARMOR_BLUNT = 14,
 		bullet = 30,
 		energy = 7,
 		bomb = 30,
@@ -276,7 +276,7 @@
 	body_parts_covered = HEAD | EARS | EYES
 	flags_inv = HIDEEARS | HIDEEYES
 	armor = list(
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 7,
 		energy = 23,
 		bomb = 20,
@@ -295,8 +295,8 @@
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
 	//We cant just use the armor var to store the original since initial(armor) will return a null pointer
-	var/list/armor_up = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	var/list/armor_down = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor_up = list(ARMOR_BLUNT = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor_down = list(ARMOR_BLUNT = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 	var/tint_down = TINT_LOW
 	flags_inv = HIDEEARS
@@ -314,8 +314,8 @@
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(melee = 15, bullet = 10, energy = 10, bomb = 35, bio = 0, rad = 0)
-	armor_down = list(melee = 35, bullet = 15, energy = 15, bomb = 50, bio = 0, rad = 0)
+	armor_up = list(ARMOR_BLUNT = 15, bullet = 10, energy = 10, bomb = 35, bio = 0, rad = 0)
+	armor_down = list(ARMOR_BLUNT = 35, bullet = 15, energy = 15, bomb = 50, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -387,7 +387,7 @@
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		melee = 15,
+		ARMOR_BLUNT = 15,
 		bullet = 20,
 		energy = 20,
 		bomb = 75,
@@ -461,7 +461,7 @@
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "steelpot"
 	armor = list(
-		melee = 10,
+		ARMOR_BLUNT = 10,
 		bullet = 15,
 		energy = 12,
 		bomb = 50,
@@ -476,8 +476,8 @@
 	name = "altyn helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	armor_up = list(melee = 5, bullet = 5, energy = 2, bomb = 30, bio = 0, rad = 0)
-	armor_down = list(melee = 13, bullet = 13, energy = 7, bomb = 50, bio = 0, rad = 0)
+	armor_up = list(ARMOR_BLUNT = 5, bullet = 5, energy = 2, bomb = 30, bio = 0, rad = 0)
+	armor_down = list(ARMOR_BLUNT = 13, bullet = 13, energy = 7, bomb = 50, bio = 0, rad = 0)
 	siemens_coefficient = 1
 	up = TRUE
 
@@ -492,7 +492,7 @@
 	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
 	armor_down = list(
-		melee = 14,
+		ARMOR_BLUNT = 14,
 		bullet = 15,
 		energy = 7,
 		bomb = 50,
@@ -512,7 +512,7 @@
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
 	siemens_coefficient = 0.9	//More conductive than most helmets
 	armor = list(
-		melee = 1,
+		ARMOR_BLUNT = 1,
 		bullet = 4,
 		energy = 2,
 		bomb = 0,
@@ -525,7 +525,7 @@
 	name = "\improper Type-34 Semi-Enclosed Headwear"
 	desc = "Armored helmet used by certain law enforcement agencies. It's hard to believe there's a human somewhere behind that."
 	armor = list(
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 10,
 		energy = 10,
 		bomb = 30,
@@ -542,7 +542,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
 	armor = list(
-		melee = 10,
+		ARMOR_BLUNT = 10,
 		bullet = 20,
 		energy = 5,
 		bomb = 75,
@@ -561,7 +561,7 @@
 	flags_inv = HIDEEARS|BLOCKHEADHAIR
 	siemens_coefficient = 1
 	armor = list(
-		melee = 4,
+		ARMOR_BLUNT = 4,
 		bullet = 3,
 		energy = 0,
 		bomb = 0,
@@ -595,7 +595,7 @@
 		MATERIAL_PLATINUM = 2
 		)
 	armor_up = list(
-		melee = 5,
+		ARMOR_BLUNT = 5,
 		bullet = 5,
 		energy = 5,
 		bomb = 20,
@@ -603,7 +603,7 @@
 		rad = 50
 		)
 	armor_down = list(
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 10,
 		energy = 10,
 		bomb = 50,

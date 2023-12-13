@@ -4,12 +4,12 @@
 	icon_state = "boxing"
 	item_state = "boxing"
 	armor = list(
-		melee = 6,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 6,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/gloves/boxing/attackby(obj/item/W, mob/user)

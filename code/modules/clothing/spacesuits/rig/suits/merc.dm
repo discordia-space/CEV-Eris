@@ -9,12 +9,12 @@
 	icon_state = "merc_rig"
 	suit_type = "crimson hardsuit"
 	armor = list(
-		melee = 45,
-		bullet = 40,
-		energy = 35,
-		bomb = 200,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 45,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 35,
+		ARMOR_BOMB =200,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	ablative_max = 12
 	ablation = ABLATION_DURABLE

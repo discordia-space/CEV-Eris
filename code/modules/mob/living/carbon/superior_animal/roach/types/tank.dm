@@ -21,12 +21,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 15,
-		bullet = 25,
-		energy = 10,
-		bomb = 20,
-		bio = 25,
-		rad = 50
+		ARMOR_BLUNT = 15,
+		ARMOR_BULLET = 25,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =20,
+		ARMOR_BIO =25,
+		ARMOR_RAD =50
 	)
 
 // Panzers won't slip over on water or soap.

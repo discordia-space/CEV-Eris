@@ -30,12 +30,12 @@
 
 	// These values are passed on to all component pieces.
 	armor = list(
-		melee = 9,
-		bullet = 7,
-		energy = 7,
-		bomb = 100,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 9,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =100,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -335,9 +335,9 @@
 
 					//sealed pieces become airtight, protecting against diseases
 					if (seal_target)
-						piece.armor.bio = 100
+						piece.armor.ARMOR_BIO =100
 					else
-						piece.armor.bio = armor.bio
+						piece.armor.ARMOR_BIO =armor.bio
 
 				else
 					failed_to_seal = 1

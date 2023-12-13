@@ -7,7 +7,7 @@
 	anchored = FALSE
 	density = TRUE
 	use_power = NO_POWER_USE
-	var/energy = 0
+	var/ARMOR_ENERGY = 0
 
 /obj/machinery/the_singularitygen/Process()
 	var/turf/T = get_turf(src)

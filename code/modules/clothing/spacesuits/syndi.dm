@@ -6,12 +6,12 @@
 	desc = "A clasic crimson helmet sporting clean lines and durable plating."
 	light_overlay = "helmet_light_syndi_soft"
 	armor = list(
-		melee = 12,
-		bullet = 15,
-		energy = 15,
-		bomb = 150,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 15,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =150,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	siemens_coefficient = 0.4
 	spawn_blacklisted = TRUE
@@ -23,12 +23,12 @@
 	desc = "A clasic crimson spacesuit sporting clean lines and durable plating."
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 12,
-		bullet = 15,
-		energy = 15,
-		bomb = 150,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 15,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =150,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	siemens_coefficient = 0.4
 	can_breach = FALSE

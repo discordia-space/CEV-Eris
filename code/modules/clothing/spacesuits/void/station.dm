@@ -11,12 +11,12 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 12,
-		bullet = 10,
-		energy = 10,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -26,12 +26,12 @@
 	icon_state = "technosuit_old"
 	item_state = "technosuit_old"
 	armor = list(
-		melee = 12,
-		bullet = 10,
-		energy = 10,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	extra_allowed = list(
@@ -61,12 +61,12 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -100,12 +100,12 @@
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	extra_allowed = list(
@@ -134,12 +134,12 @@
 		slot_r_hand_str = "mining_helm",
 		)
 	armor = list(
-		melee = 13,
-		bullet = 10,
-		energy = 7,
-		bomb = 50,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	light_overlay = "helmet_light_dual"
 
@@ -149,12 +149,12 @@
 	item_state = "miner_suit"
 	icon_state = "miner_suit"
 	armor = list(
-		melee = 13,
-		bullet = 10,
-		energy = 7,
-		bomb = 50,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
 	spawn_blacklisted = TRUE
@@ -170,12 +170,12 @@
 		slot_r_hand_str = "medical_helm",
 		)
 	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 10,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 
 /obj/item/clothing/suit/space/void/medical
@@ -190,12 +190,12 @@
 		/obj/item/roller
 	)
 	armor = list(
-		melee = 5,
-		bullet = 2,
-		energy = 8,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 8,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
 	slowdown = LIGHT_SLOWDOWN
@@ -217,12 +217,12 @@
 		)
 
 	armor = list(
-		melee = 8,
-		bullet = 13,
-		energy = 10,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 13,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
@@ -233,12 +233,12 @@
 	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection."
 	item_state = "ihvoidsuit"
 	armor = list(
-		melee = 8,
-		bullet = 13,
-		energy = 10,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 13,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/security
@@ -261,12 +261,12 @@
 		slot_r_hand_str = "atmos_helm",
 		)
 	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 2,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	light_overlay = "helmet_light_dual"
@@ -277,12 +277,12 @@
 	name = "atmos voidsuit"
 	item_state = "atmos_voidsuit"
 	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 2,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	helmet = /obj/item/clothing/head/space/void/atmos
@@ -304,12 +304,12 @@
 	)
 	price_tag = 200
 	armor = list(
-		melee = 10,
-		bullet = 13,
-		energy = 15,
-		bomb = 50,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 13,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.4
 	light_overlay = "helmet_light_dual"
@@ -354,12 +354,12 @@
 	MATERIAL_PLATINUM = 5
 	)
 	armor = list(
-		melee = 10,
-		bullet = 13,
-		energy = 15,
-		bomb = 50, //platinum price justifies bloated stats
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 13,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =50, //platinum price justifies bloated stats
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4)
 	price_tag = 1200
@@ -395,12 +395,12 @@
 	slowdown = 2
 
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 25,
-		bio = 100,
-		rad = 5
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =5
 	)
 	light_overlay = "helmet_light_dual"
 	siemens_coefficient = 0.8
@@ -412,12 +412,12 @@
 	item_state = "makeshift_void"
 	siemens_coefficient = 0.4
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 25,
-		bio = 100,
-		rad = 5
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =5
 	)
 	siemens_coefficient = 0.8
 	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
@@ -465,12 +465,12 @@
 	action_button_name = "Toggle Helmet Light"
 	flags_inv = BLOCKHAIR
 	armor = list(
-		melee = 13,
-		bullet = 11,
-		energy = 12,
-		bomb = 50,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 11,
+		ARMOR_ENERGY = 12,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list(SPECIES_HUMAN)
@@ -485,12 +485,12 @@
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-	    melee = 12,
-		bullet = 11,
-		energy = 12,
-		bomb = 50,
-		bio = 100,
-		rad = 50
+	    ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 11,
+		ARMOR_ENERGY = 12,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	siemens_coefficient = 0.35
 	breach_threshold = 10

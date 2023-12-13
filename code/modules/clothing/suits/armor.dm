@@ -29,7 +29,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 10,
 		energy = 10,
 		bomb = 25,
@@ -96,7 +96,7 @@
 	desc = "An armored vest of dubious quality. Provides decent protection against physical damage, for a piece of crap."
 	icon_state = "armor_handmade"
 	armor = list(
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 7,
 		energy = 7,
 		bomb = 20,
@@ -129,7 +129,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 13,
+		ARMOR_BLUNT = 13,
 		bullet = 23,
 		energy = 13,
 		bomb = 35,
@@ -164,7 +164,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 10,
+		ARMOR_BLUNT = 10,
 		bullet = 18,
 		energy = 7,
 		bomb = 30,
@@ -196,7 +196,7 @@
 	blood_overlay_type = "armor"
 	slowdown = 0.15
 	armor = list(
-		melee = 14,
+		ARMOR_BLUNT = 14,
 		bullet = 30,
 		energy = 7,
 		bomb = 20,
@@ -239,7 +239,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 13,
+		ARMOR_BLUNT = 13,
 		bullet = 20,
 		energy = 10,
 		bomb = 20,
@@ -288,7 +288,7 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 5,
+		ARMOR_BLUNT = 5,
 		bullet = 4,
 		energy = 23,
 		bomb = 20,
@@ -333,7 +333,7 @@
 	icon_state = "germancoat"
 	item_state = "germancoat"
 	armor = list(
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 10,
 		energy = 13,
 		bomb = 20,
@@ -352,7 +352,7 @@
 	spawn_blacklisted = TRUE
 	price_tag = 2000
 	armor = list(
-		melee = 3,
+		ARMOR_BLUNT = 3,
 		bullet = 12,
 		energy = 12,
 		bomb = 30,
@@ -382,7 +382,7 @@
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = 23, //massive slowdown justifies
+		ARMOR_BLUNT = 23, //massive slowdown justifies
 		bullet = 28,
 		energy = 10,
 		bomb = 75,
@@ -418,7 +418,7 @@
 	item_state = "swat_suit"
 	flags_inv = NONE
 	armor = list(
-		melee = 34,
+		ARMOR_BLUNT = 34,
 		bullet = 17,
 		energy = 17,
 		bomb = 50,
@@ -434,7 +434,7 @@
 	item_state = "swat_suit"
 	flags_inv = HIDEJUMPSUIT
 	armor = list(
-		melee = 16,
+		ARMOR_BLUNT = 16,
 		bullet = 24,
 		energy = 24,
 		bomb = 50,
@@ -453,7 +453,7 @@
 	icon_state = "webvest"
 	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
 	armor = list( //Same stats as the standard vest only difference is that this one has storage
-		melee = 7,
+		ARMOR_BLUNT = 7,
 		bullet = 10,
 		energy = 10,
 		bomb = 25,
@@ -494,7 +494,7 @@
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
-		melee = 25,
+		ARMOR_BLUNT = 25,
 		bullet = 28,
 		energy = 23,
 		bomb = 75,
@@ -517,7 +517,7 @@
 	item_state = "armor_engineering"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 15,
+		ARMOR_BLUNT = 15,
 		bullet = 7,
 		energy = 7,
 		bomb = 50,
@@ -541,7 +541,7 @@
 	item_state = "armor_engineering_old"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 25,
+		ARMOR_BLUNT = 25,
 		bullet = 9,
 		energy = 9,
 		bomb = 75,
@@ -566,7 +566,7 @@
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
 	armor = list(
-		melee = 5,
+		ARMOR_BLUNT = 5,
 		bullet = 5,
 		energy = 5,
 		bomb = 0,
@@ -615,7 +615,7 @@
 	item_state = "crusader_suit"
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
-		melee = 10,
+		ARMOR_BLUNT = 10,
 		bullet = 18,
 		energy = 18,
 		bomb = 75,
@@ -642,7 +642,7 @@
 		MATERIAL_SILVER = 2
 		)
 	armor = list(
-		melee = 12,
+		ARMOR_BLUNT = 12,
 		bullet = 7,
 		energy = 7,
 		bomb = 20,

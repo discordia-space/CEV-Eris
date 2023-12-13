@@ -5,12 +5,12 @@
 	icon_state = "onestar_void"
 	item_state = "onestar_void"
 	armor = list(
-		melee = 40,
-		bullet = 40,
-		energy = 35,
-		bomb = 125,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 40,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 35,
+		ARMOR_BOMB =125,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	siemens_coefficient = 0.35
 	light_overlay = "helmet_light_dual"
@@ -23,12 +23,12 @@
 	item_state = "onestar_void"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 40,
-		bullet = 40,
-		energy = 35,
-		bomb = 125,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 40,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 35,
+		ARMOR_BOMB =125,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	siemens_coefficient = 0.35
 	breach_threshold = 10

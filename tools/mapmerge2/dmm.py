@@ -36,7 +36,7 @@ class DMM:
 
     def to_bytes(self, *, tgm = True):
         self._presave_checks()
-        bio = io.BytesIO()
+        ARMOR_BIO =io.BytesIO()
         with io.TextIOWrapper(bio, newline='\n', encoding=ENCODING) as f:
             (save_tgm if tgm else save_dmm)(self, f)
             f.flush()

@@ -44,12 +44,12 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 75,
-		rad = 0
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =75,
+		ARMOR_RAD =0
 	)
 	price_tag = 10
 	style_coverage = COVERS_MOUTH
@@ -66,12 +66,12 @@
 	w_class = ITEM_SIZE_SMALL
 	body_parts_covered = FACE
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	price_tag = 150
 	style_coverage = COVERS_WHOLE_FACE
@@ -97,12 +97,12 @@
 	spawn_blacklisted = TRUE
 	body_parts_covered = HEAD|FACE
 	armor = list(
-		melee = 15,
-		bullet = 16,
-		energy = 15,
-		bomb = 75,
-		bio = 100,
-		rad = 30
+		ARMOR_BLUNT = 15,
+		ARMOR_BULLET = 16,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =30
 	)
 
 /obj/item/clothing/mask/thief/adminspawn/wolf

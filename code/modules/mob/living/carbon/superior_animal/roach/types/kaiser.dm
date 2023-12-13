@@ -48,12 +48,12 @@ Has ability of every roach.
 
 	// Armor related variables
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 15,
-		bomb = 0,
-		bio = 25,
-		rad = 50
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =25,
+		ARMOR_RAD =50
 	)
 
 /mob/living/carbon/superior_animal/roach/kaiser/New()

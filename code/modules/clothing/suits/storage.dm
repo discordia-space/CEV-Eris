@@ -79,12 +79,12 @@
 	icon_state = "mchestrig"
 	item_state = "mchestrig"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 5,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =5,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	spawn_blacklisted = TRUE
 

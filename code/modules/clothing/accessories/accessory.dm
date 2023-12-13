@@ -202,12 +202,12 @@
 	w_class = ITEM_SIZE_NORMAL
 	isRemovable = FALSE
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	matter = list(
 		MATERIAL_STEEL = 8,
@@ -227,12 +227,12 @@
 	desc = "Plates from a bulletproof vest, now usable to reinforce clothes."
 	icon_state = "armor_bullet"
 	armor = list(
-		melee = 5,
-		bullet = 11,
-		energy = 5,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 11,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
@@ -245,12 +245,12 @@
 	desc = "Plates from a platecarrier, now usable to reinforce clothes."
 	icon_state = "armor_platecarrier"
 	armor = list(
-		melee = 5,
-		bullet = 10,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
@@ -262,12 +262,12 @@
 	desc = "Plates from riot armor, now usable to reinforce clothes."
 	icon_state = "armor_riot"
 	armor = list(
-		melee = 13,
-		bullet = 6,
-		energy = 6,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 6,
+		ARMOR_ENERGY = 6,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	slowdown = MEDIUM_SLOWDOWN
 
@@ -276,12 +276,12 @@
 	desc = "Sheets from ablative armor, now usable to reinforce clothes. The shape somehow feels off."
 	icon_state = "armor_ablative"
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 10,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 //Ponchos, Capes and Cloaks//

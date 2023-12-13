@@ -252,12 +252,12 @@
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 10,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =10,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -346,12 +346,12 @@
 	icon_state = "cyberpunksleek"
 	item_state = "brown_jacket"
 	armor = list(
-		melee = 1,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -381,12 +381,12 @@
 	icon_state = "cyberpunksleek_long"
 	item_state = "cyberpunksleek_long"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
@@ -416,12 +416,12 @@
 	icon_state = "bladerunner_coat"
 	item_state = "bladerunner_coat"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
@@ -431,12 +431,12 @@
 	icon_state = "dante"
 	item_state = "dante"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -464,12 +464,12 @@
 	icon_state = "bomj"
 	item_state = "bomj"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -482,12 +482,12 @@
 	icon_state = "punkvest"
 	item_state = "punkvest"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO
 
@@ -499,12 +499,12 @@
 	icon_open = "windbreaker_open"
 	icon_closed = "windbreaker"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 0,
-		bomb = 0,
-		bio = 30,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =30,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
 
@@ -514,12 +514,12 @@
 	icon_state = "cyberpunk"
 	item_state = "cyberpunk"
 	armor = list(
-		melee = 2,
-		bullet = 5,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/suit/storage/scavengerarmor
@@ -528,12 +528,12 @@
 	icon_state = "scav_armor"
 	item_state = "scav_armor"
 	armor = list(
-		melee = 13,
-		bullet = 12,
-		energy = 6,
-		bomb = 15,
-		bio = 50,
-		rad = 0
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 12,
+		ARMOR_ENERGY = 6,
+		ARMOR_BOMB =15,
+		ARMOR_BIO =50,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	siemens_coefficient = 0.7
@@ -554,12 +554,12 @@
 	icon_state = "triadkillers"
 	item_state = "triadkillers"
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 15,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =15,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	price_tag = 1000
@@ -578,12 +578,12 @@
 	icon_state = "akira"
 	item_state = "akira"
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
 	style = STYLE_HIGH

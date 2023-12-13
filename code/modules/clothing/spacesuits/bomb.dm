@@ -6,12 +6,12 @@
 	desc = "Use in case of bomb. The shielded visor makes aiming harder."
 	icon_state = "bombsuit"
 	armor = list(
-		melee = 70,
-		bullet = 50,
-		energy = 50,
-		bomb = 1000,
-		bio = 100,
-		rad = 90
+		ARMOR_BLUNT = 70,
+		ARMOR_BULLET = 50,
+		ARMOR_ENERGY = 50,
+		ARMOR_BOMB =1000,
+		ARMOR_BIO =100,
+		ARMOR_RAD =90
 	)
 	siemens_coefficient = 0
 	tint = TINT_LOW
@@ -26,12 +26,12 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	armor = list(
-		melee = 70,
-		bullet = 50,
-		energy = 50,
-		bomb = 1000,
-		bio = 100,
-		rad = 90
+		ARMOR_BLUNT = 70,
+		ARMOR_BULLET = 50,
+		ARMOR_ENERGY = 50,
+		ARMOR_BOMB =1000,
+		ARMOR_BIO =100,
+		ARMOR_RAD =90
 	)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE

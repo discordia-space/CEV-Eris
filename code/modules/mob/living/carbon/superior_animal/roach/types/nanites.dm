@@ -30,12 +30,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 10,
-		bomb = 10,
-		bio = 25,
-		rad = 100
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =10,
+		ARMOR_BIO =25,
+		ARMOR_RAD =100
 	)
 
 /mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)

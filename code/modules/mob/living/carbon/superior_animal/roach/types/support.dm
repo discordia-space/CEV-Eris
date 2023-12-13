@@ -14,12 +14,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 75,
-		rad = 50
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =75,
+		ARMOR_RAD =50
 	)
 
 /mob/living/carbon/superior_animal/roach/support/New()

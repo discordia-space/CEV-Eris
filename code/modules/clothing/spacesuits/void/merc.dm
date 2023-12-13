@@ -4,12 +4,12 @@
 	icon_state = "scaf"
 	item_state = "scaf"
 	armor = list(
-		melee = 45,
-		bullet = 40,
-		energy = 10,
-		bomb = 150,
-		bio = 100,
-		rad = 30
+		ARMOR_BLUNT = 45,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =150,
+		ARMOR_BIO =100,
+		ARMOR_RAD =30
 	)
 	siemens_coefficient = 0.35
 	max_heat_protection_temperature = 15000 //Halfway between Space Suit 5000 and Firesuit 30000
@@ -24,12 +24,12 @@
 	item_state = "scaf"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 45,
-		bullet = 40,
-		energy = 14,
-		bomb = 150,
-		bio = 100,
-		rad = 30
+		ARMOR_BLUNT = 45,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 14,
+		ARMOR_BOMB =150,
+		ARMOR_BIO =100,
+		ARMOR_RAD =30
 	)
 	siemens_coefficient = 0.35
 	max_heat_protection_temperature = 15000 //Halfway between Space Suit 5000 and Firesuit 30000
@@ -49,12 +49,12 @@
 	icon_state = "syndiehelm"
 	item_state = "syndiehelm"
 	armor = list(
-		melee = 27,
-		bullet = 30,
-		energy = 15,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 27,
+		ARMOR_BULLET = 30,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list(SPECIES_HUMAN)
@@ -75,12 +75,12 @@
 	desc = "An advanced suit that protects against injuries during special operations. Surprisingly flexible. This version is additionally reinforced against melee attacks."
 	item_state = "syndie_voidsuit"
 	armor = list(
-		melee = 27,
-		bullet = 30,
-		energy = 13,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 27,
+		ARMOR_BULLET = 30,
+		ARMOR_ENERGY = 13,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.35
 	breach_threshold = 8

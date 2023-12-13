@@ -43,7 +43,7 @@
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN + 0.4
 	force = NONE
-	//	armor = list(melee = 100, bullet = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
+	//	armor = list(ARMOR_BLUNT = 100, ARMOR_BULLET = 100, ARMOR_ENERGY = 100, ARMOR_BOMB =100, ARMOR_BIO =100, ARMOR_RAD =100)
 	species_restricted = null
 	var/footstep = 1	//used for squeeks whilst walking
 

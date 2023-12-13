@@ -81,7 +81,7 @@
 	emote_see = list("paws the ground","shakes its mane","stomps")
 	emote_hear = list("snuffles")
 	natural_armor = list(
-		melee = ARMOR_MELEE_KNIVES
+		ARMOR_BLUNT = ARMOR_MELEE_KNIVES
 		)
 
 /mob/living/simple_animal/hostile/retaliate/beast/samak/alt
@@ -182,7 +182,7 @@
 	speak_chance = 1
 	emote_see = list("skitters","oozes liquid from its mouth", "scratches at the ground", "clicks its claws")
 	natural_armor = list(
-		melee = ARMOR_MELEE_RESISTANT
+		ARMOR_BLUNT = ARMOR_MELEE_RESISTANT
 		)
 
 /mob/living/simple_animal/hostile/retaliate/beast/charbaby
