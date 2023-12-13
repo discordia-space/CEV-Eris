@@ -60,6 +60,9 @@
 	update_plane()
 	init_light()
 
+	if(loc)
+		loc.recalculateWeights(weight)
+
 	if(datum_flags & DF_USE_TAG)
 		GenerateTag()
 
@@ -157,6 +160,9 @@
 
 	SEND_SIGNAL(src, COMSIG_NULL_TARGET)
 	SEND_SIGNAL(src, COMSIG_NULL_SECONDARY_TARGET)
+
+	if(loc)
+		loc.recalculateWeights(-weight)
 
 	update_openspace()
 	return ..()

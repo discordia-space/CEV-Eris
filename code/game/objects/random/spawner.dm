@@ -8,6 +8,7 @@
 	price_tag = 1
 	spawn_tags = SPAWN_SPAWNER
 	bad_type = /obj/spawner
+	weight = 0
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/min_amount = 1
 	var/max_amount = 1
