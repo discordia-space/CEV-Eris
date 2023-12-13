@@ -8,7 +8,7 @@
 	anchored = TRUE
 	density = TRUE
 	var/movement_range = 10
-	var/ARMOR_ENERGY = 10		//energy in eV
+	var/energy = 10		//energy in eV
 	var/mega_energy = 0	//energy in MeV
 	var/frequency = 1
 	var/ionizing = 0
@@ -20,11 +20,11 @@
 
 /obj/effect/accelerated_particle/weak
 	movement_range = 8
-	ARMOR_ENERGY = 5
+	energy = 5
 
 /obj/effect/accelerated_particle/strong
 	movement_range = 15
-	ARMOR_ENERGY = 15
+	energy = 15
 
 
 /obj/effect/accelerated_particle/New(loc, dir = 2)

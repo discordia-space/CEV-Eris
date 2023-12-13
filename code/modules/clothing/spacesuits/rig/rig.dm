@@ -335,9 +335,9 @@
 
 					//sealed pieces become airtight, protecting against diseases
 					if (seal_target)
-						piece.armor.ARMOR_BIO =100
+						piece.armor.bio = 100
 					else
-						piece.armor.ARMOR_BIO =armor.bio
+						piece.armor.bio = armor.bio
 
 				else
 					failed_to_seal = 1
