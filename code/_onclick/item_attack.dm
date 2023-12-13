@@ -26,7 +26,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 // Called at the start of resolve_attackby(), before the actual attack.
 // Return a nonzero value to abort the attack
-/obj/item/proc/pre_attack(atom/a, mob/user, var/params)
+/obj/item/proc/pre_attack(atom/movable/a, mob/user, var/params)
 	return
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.

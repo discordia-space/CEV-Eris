@@ -31,19 +31,19 @@
 /obj/item/storage/toolbox/emergency/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
-	spawnedAtoms.Add(new /obj/item/extinguisher/mini(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/extinguisher/mini(NULLSPACE))
 	if(prob(40))
-		spawnedAtoms.Add(new /obj/item/device/lighting/toggleable/flashlight(NULL))
+		spawnedAtoms.Add(new /obj/item/device/lighting/toggleable/flashlight(NULLSPACE))
 	else if(prob(30))
-		spawnedAtoms.Add(new /obj/item/gun/projectile/flare_gun(NULL))
-		spawnedAtoms.Add(new /obj/item/ammo_casing/flare(NULL))
+		spawnedAtoms.Add(new /obj/item/gun/projectile/flare_gun(NULLSPACE))
+		spawnedAtoms.Add(new /obj/item/ammo_casing/flare(NULLSPACE))
 	else
-		spawnedAtoms.Add(new /obj/item/device/lighting/glowstick/flare(NULL))
+		spawnedAtoms.Add(new /obj/item/device/lighting/glowstick/flare(NULLSPACE))
 	if (prob(40))
-		spawnedAtoms.Add(new /obj/item/tool/tape_roll(NULL))
-	spawnedAtoms.Add(new /obj/item/device/radio(NULL))
-	for(var/atom/a in spawnedAtoms)
+		spawnedAtoms.Add(new /obj/item/tool/tape_roll(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/radio(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/toolbox/mechanical
@@ -54,16 +54,16 @@
 /obj/item/storage/toolbox/mechanical/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/wrench(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/weldingtool(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wrench(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULLSPACE))
 	if(prob(50))
-		spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULL))
+		spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULLSPACE))
 	else
-		spawnedAtoms.Add(new /obj/item/tool/wirecutters/pliers(NULL))
-	spawnedAtoms.Add(new /obj/item/device/scanner/gas(NULL))
-	for(var/atom/a in spawnedAtoms)
+		spawnedAtoms.Add(new /obj/item/tool/wirecutters/pliers(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/scanner/gas(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/toolbox/electrical
@@ -77,27 +77,27 @@
 	var/list/spawnedAtoms = list()
 
 
-	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULL))
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULLSPACE))
 	if(prob(50))
-		spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULL))
+		spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULLSPACE))
 	else
-		spawnedAtoms.Add(new /obj/item/tool/wirecutters/pliers(NULL))
-	spawnedAtoms.Add(new /obj/item/device/t_scanner(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
-	spawnedAtoms.Add(new /obj/item/stack/cable_coil(src,30,color)
-	spawnedAtoms.Add(new /obj/item/stack/cable_coil(src,30,color)
+		spawnedAtoms.Add(new /obj/item/tool/wirecutters/pliers(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/t_scanner(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil(NULLSPACE,30,color))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil(NULLSPACE,30,color))
 
 	if(prob(5))
-		spawnedAtoms.Add(new /obj/item/clothing/gloves/insulated(NULL))
+		spawnedAtoms.Add(new /obj/item/clothing/gloves/insulated(NULLSPACE))
 	else if(prob(10))
-		spawnedAtoms.Add(new /obj/item/tool/multitool(NULL))
+		spawnedAtoms.Add(new /obj/item/tool/multitool(NULLSPACE))
 	else
-		spawnedAtoms.Add(new /obj/item/stack/cable_coil(src,30,color)
+		spawnedAtoms.Add(new /obj/item/stack/cable_coil(NULLSPACE,30,color))
 
 	if(prob(60))
-		spawnedAtoms.Add(new /obj/item/tool/tape_roll(NULL))
+		spawnedAtoms.Add(new /obj/item/tool/tape_roll(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/toolbox/syndicate
@@ -114,21 +114,21 @@
 
 	var/obj/item/tool/cell_tool
 
-	spawnedAtoms.Add(new /obj/item/clothing/gloves/insulated(NULL))
+	spawnedAtoms.Add(new /obj/item/clothing/gloves/insulated(NULLSPACE))
 
-	cell_tool = spawnedAtoms.Add(new /obj/item/tool/screwdriver/combi_driver(NULL))
+	cell_tool = spawnedAtoms.Add(new /obj/item/tool/screwdriver/combi_driver(NULLSPACE))
 	qdel(cell_tool.cell)
 	cell_tool.cell = new /obj/item/cell/small/super(cell_tool)
 
-	cell_tool = spawnedAtoms.Add(new /obj/item/tool/crowbar/pneumatic(NULL))
+	cell_tool = spawnedAtoms.Add(new /obj/item/tool/crowbar/pneumatic(NULLSPACE))
 	qdel(cell_tool.cell)
 	cell_tool.cell = new /obj/item/cell/medium/super(cell_tool)
 
-	spawnedAtoms.Add(new /obj/item/tool/weldingtool/advanced(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/wirecutters/armature(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/multitool(NULL))
-	spawnedAtoms.Add(new /obj/item/cell/medium/super(NULL))
-	spawnedAtoms.Add(new /obj/item/cell/small/super(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool/advanced(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wirecutters/armature(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/multitool(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/cell/medium/super(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/cell/small/super(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 

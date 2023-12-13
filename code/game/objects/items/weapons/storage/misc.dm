@@ -9,9 +9,9 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to prespawned_content_amount)
-		spawnedAtoms.Add(new prespawned_content_type(NULL))
-	spawnedAtoms.Add(new /obj/item/dice(NULL))
-	for(var/atom/a in spawnedAtoms)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/dice(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /*
@@ -31,9 +31,9 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to prespawned_content_amount)
-		spawnedAtoms.Add(new prespawned_content_type(NULL))
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 	update_icon()
 
@@ -76,13 +76,13 @@
 /obj/item/storage/ration_pack/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre(NULL))
-	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre/can(NULL))
-	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre_paste(NULL))
-	spawnedAtoms.Add(new /obj/item/storage/fancy/mre_cracker(NULL))
-	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/candy/mre(NULL))
-	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre/can(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre_paste(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/fancy/mre_cracker(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/candy/mre(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/ration_pack/ihr
@@ -111,12 +111,12 @@
 /obj/item/storage/ration_pack/ihr/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre/can(NULL))
-	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre_paste(NULL))
-	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/candy/mre(NULL))
-	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULL))
-	spawnedAtoms.Add(new /obj/item/storage/fancy/crayons(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre/can(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/mre_paste(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/food/snacks/candy/mre(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/material/kitchen/utensil/spoon/mre(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/fancy/crayons(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/box/clown
@@ -127,12 +127,12 @@
 /obj/item/storage/box/clown/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new /obj/item/bikehorn(NULL))
-	spawnedAtoms.Add(new /obj/item/clothing/mask/gas/clown_hat(NULL))
-	spawnedAtoms.Add(new /obj/item/clothing/shoes/clown_shoes(NULL))
-	spawnedAtoms.Add(new /obj/item/clothing/under/rank/clown(NULL))
-	spawnedAtoms.Add(new /obj/item/stamp/clown(NULL))
-	spawnedAtoms.Add(new /obj/item/bananapeel(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/bikehorn(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/gas/clown_hat(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/clown_shoes(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/under/rank/clown(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stamp/clown(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/bananapeel(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 

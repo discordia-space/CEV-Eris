@@ -61,9 +61,9 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to storage_slots)
-		spawnedAtoms.Add(new item_obj(NULL))
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 //MRE food
@@ -81,9 +81,9 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to storage_slots)
-		spawnedAtoms.Add(new item_obj(NULL))
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /*
@@ -107,9 +107,9 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to storage_slots)
-		spawnedAtoms.Add(new item_obj(NULL))
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /*
@@ -129,13 +129,13 @@
 
 /obj/item/storage/fancy/crayons/populate_contents()
 	var/list/spawnedAtoms = list()
-	spawnedAtoms.Add(new /obj/item/pen/crayon/red(NULL))
-	spawnedAtoms.Add(new /obj/item/pen/crayon/orange(NULL))
-	spawnedAtoms.Add(new /obj/item/pen/crayon/yellow(NULL))
-	spawnedAtoms.Add(new /obj/item/pen/crayon/green(NULL))
-	spawnedAtoms.Add(new /obj/item/pen/crayon/blue(NULL))
-	spawnedAtoms.Add(new /obj/item/pen/crayon/purple(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/pen/crayon/red(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/orange(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/yellow(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/green(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/blue(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/purple(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 	update_icon()
 
@@ -199,8 +199,8 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to storage_slots)
-		spawnedAtoms.Add(new item_obj(NULL))
-	for(var/atom/a in spawnedAtoms)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
@@ -284,9 +284,9 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to storage_slots)
-		spawnedAtoms.Add(new item_obj(NULL))
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 	update_icon()
 
@@ -395,9 +395,9 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to storage_slots)
-		spawnedAtoms.Add(new item_obj(NULL))
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 	create_reagents(15 * storage_slots)
 	update_icon()
@@ -431,9 +431,9 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to storage_slots)
-		spawnedAtoms.Add(newitem_obj(NULL))
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/lockbox/vials

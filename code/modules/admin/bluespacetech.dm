@@ -338,9 +338,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	..()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new  /obj/item/tool/multitool(NULL))
-	spawnedAtoms.Add(new  /obj/item/device/t_scanner(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new  /obj/item/tool/multitool(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/device/t_scanner(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /mob/living/carbon/human/bst/restrained()

@@ -10,12 +10,12 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to 6)
-		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/condiment/flour(NULL))
-	spawnedAtoms.Add(new  /obj/item/reagent_containers/food/condiment/sugar(NULL))
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/condiment/flour(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/reagent_containers/food/condiment/sugar(NULLSPACE))
 	for(var/i in 1 to 3)
-		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULL))
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
@@ -30,9 +30,9 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to 3)
-		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULL))
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge
@@ -43,13 +43,13 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to 5)
-		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/drinks/milk(NULL))
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/drinks/milk(NULLSPACE))
 	for(var/i in 1 to 3)
-		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/drinks/soymilk(NULL))
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/drinks/soymilk(NULLSPACE))
 	for(var/i in 1 to 2)
-		spawnedAtoms.Add(new  /obj/item/storage/fancy/egg_box(NULL))
+		spawnedAtoms.Add(new  /obj/item/storage/fancy/egg_box(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/money
@@ -61,11 +61,11 @@
 	var/list/spawnedAtoms = list()
 
 	for(var/i in 1 to 3)
-		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c1000(NULL))
+		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c1000(NULLSPACE))
 	for(var/i in 1 to 3)
-		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c500(NULL))
+		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c500(NULLSPACE))
 	for(var/i in 1 to 6)
-		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c200(NULL))
+		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c200(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)

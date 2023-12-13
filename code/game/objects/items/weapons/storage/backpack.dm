@@ -331,7 +331,7 @@
 	rarity_value = 4.16
 
 /obj/item/storage/backpack/satchel/leather/withwallet/populate_contents()
-	var/atom/wallet = new /obj/item/storage/wallet/random(NULL)
+	var/atom/movable/wallet = new /obj/item/storage/wallet/random(NULLSPACE)
 	wallet.forceMove(src)
 
 //Faction-specific satchels

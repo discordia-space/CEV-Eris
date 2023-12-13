@@ -2,11 +2,11 @@
 	var/list/spawnedAtoms = list()
 
 	if(prob(50))
-		spawnedAtoms.Add(new  /obj/item/storage/backpack(NULL))
+		spawnedAtoms.Add(new  /obj/item/storage/backpack(NULLSPACE))
 	else
-		spawnedAtoms.Add(new  /obj/item/storage/backpack/satchel(NULL))
-	spawnedAtoms.Add(new  /obj/item/device/radio/headset(NULL))
-	for(var/atom/a in spawnedAtoms)
+		spawnedAtoms.Add(new  /obj/item/storage/backpack/satchel(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/device/radio/headset(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 
@@ -16,9 +16,9 @@
 /obj/structure/closet/secure_closet/personal/patient/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new  /obj/item/clothing/under/color/white(NULL))
-	spawnedAtoms.Add(new  /obj/item/clothing/shoes/color/white(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new  /obj/item/clothing/under/color/white(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/clothing/shoes/color/white(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/personal/cabinet
@@ -28,9 +28,9 @@
 /obj/structure/closet/secure_closet/personal/cabinet/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new  /obj/item/storage/backpack/satchel/leather/withwallet(NULL))
-	spawnedAtoms.Add(new  /obj/item/device/radio/headset(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new  /obj/item/storage/backpack/satchel/leather/withwallet(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/device/radio/headset(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 // Used for ID locking trade orders

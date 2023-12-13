@@ -539,14 +539,14 @@
 /obj/item/storage/freezer/medical/contains_teratomas/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random(NULL))
+	spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random(NULLSPACE))
 	for(var/count in 1 to 3)	// 79.6% to have at least one extra teratoma
 		if(prob(40))
-			spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random(NULL))
+			spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random(NULLSPACE))
 	for(var/count in 1 to 3)	// 27.1% to have at least one uncommon teratoma
 		if(prob(10))
-			spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random/uncommon(NULL))
+			spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random/uncommon(NULLSPACE))
 	if(prob(5))
-		spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random/rare(NULL))
-	for(var/atom/a in spawnedAtoms)
+		spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random/rare(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)

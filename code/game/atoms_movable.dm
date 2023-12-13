@@ -108,7 +108,7 @@
 /atom/proc/typeWeights(spaces)
 	var/buffer = ""
 	for(var/i = 0, i < spaces, i++)
-		addtext(buffer," ")
+		buffer = addtext(buffer," ")
 	message_admins("[buffer]Mass of [src] - [weight]")
 	for(var/atom/thing in contents)
 		thing.typeWeights(++spaces)

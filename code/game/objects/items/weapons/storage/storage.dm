@@ -553,8 +553,8 @@
 	var/list/spawnedAtoms = list()
 	if(prespawned_content_type && prespawned_content_amount)
 		for(var/i in 1 to prespawned_content_amount)
-			spawnedAtoms.Add(new prespawned_content_type(NULL))
-	for(var/atom/a in spawnedAtoms)
+			spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/emp_act(severity)

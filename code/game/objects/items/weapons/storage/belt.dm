@@ -74,13 +74,13 @@
 
 /obj/item/storage/belt/utility/full/populate_contents()
 	var/list/spawnedAtoms = list()
-	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/wrench(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/weldingtool(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULL))
-	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wrench(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 
@@ -89,14 +89,14 @@
 
 /obj/item/storage/belt/utility/technomancer/populate_contents()
 	var/list/spawnedAtoms = list()
-	spawnedAtoms.Add(new /obj/item/tool/screwdriver/electric(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/wrench/big_wrench(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/weldingtool/advanced(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/crowbar/pneumatic(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/wirecutters/armature(NULL))
-	spawnedAtoms.Add(new /obj/item/tool/shovel/power(NULL))
-	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver/electric(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wrench/big_wrench(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool/advanced(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar/pneumatic(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wirecutters/armature(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/shovel/power(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/storage/belt/utility/neotheology
@@ -247,4 +247,4 @@
 
 /obj/item/storage/belt/holding/New()
 	..()
-	bluespace_entropy(4, get_turf(NULL))
+	bluespace_entropy(4, get_turf(NULLSPACE))

@@ -85,14 +85,14 @@
 /obj/structure/closet/secure_closet/pirate/populate_contents()
 	var/list/spawnedAtoms = list()
 
-	spawnedAtoms.Add(new /obj/item/clothing/under/pirate(NULL))
-	spawnedAtoms.Add(new /obj/item/device/radio/headset/pirates(NULL))
-	spawnedAtoms.Add(new /obj/item/clothing/shoes/jackboots(NULL))
-	spawnedAtoms.Add(new /obj/item/clothing/head/bandana(NULL))
-	spawnedAtoms.Add(new /obj/item/clothing/suit/armor/bulletproof(NULL))
-	spawnedAtoms.Add(new /obj/item/storage/backpack/satchel(NULL))
-	spawnedAtoms.Add(new /obj/item/melee/energy/sword/pirate(NULL))
-	for(var/atom/a in spawnedAtoms)
+	spawnedAtoms.Add(new /obj/item/clothing/under/pirate(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/radio/headset/pirates(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/jackboots(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/head/bandana(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/armor/bulletproof(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/backpack/satchel(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/melee/energy/sword/pirate(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 // PIRATE LOOT CRATE

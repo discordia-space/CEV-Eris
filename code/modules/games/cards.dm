@@ -28,9 +28,9 @@
 	var/list/spawnedAtoms = list()
 
 	if(deck_type)
-		spawnedAtoms.Add(new  deck_type(NULL))
+		spawnedAtoms.Add(new  deck_type(NULLSPACE))
 
-	for(var/atom/a in spawnedAtoms)
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/deck/cards

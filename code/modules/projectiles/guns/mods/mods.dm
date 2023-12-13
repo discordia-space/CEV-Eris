@@ -249,13 +249,13 @@
 	for(var/i in subtypesof(/obj/item/gun_upgrade))
 		var/obj/test = i
 		if(initial(test.icon_state))
-			spawnedAtoms.Add(new i(NULL))
-	spawnedAtoms.Add(new  /obj/item/bikehorn(NULL))
-	spawnedAtoms.Add(new  /obj/item/tool_upgrade/productivity/ergonomic_grip(NULL))
-	spawnedAtoms.Add(new  /obj/item/tool_upgrade/refinement/laserguide(NULL))
-	spawnedAtoms.Add(new  /obj/item/tool_upgrade/augment/ai_tool(NULL))
-	spawnedAtoms.Add(new  /obj/item/tool_upgrade/refinement/gravenhancer(NULL))
-	for(var/atom/a in spawnedAtoms)
+			spawnedAtoms.Add(new i(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/bikehorn(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/productivity/ergonomic_grip(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/refinement/laserguide(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/augment/ai_tool(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/refinement/gravenhancer(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
 		a.forceMove(src)
 
 /obj/item/gun_upgrade/trigger/boom
