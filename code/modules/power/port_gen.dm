@@ -310,7 +310,7 @@
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 						for(var/obj/item/CP in component_parts)
-							CP.loc = src.loc
+							CP.forceMove(src.loc)
 						while ( sheets > 0 )
 							DropFuel()
 						new_frame.state = 2

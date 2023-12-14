@@ -320,13 +320,13 @@
 
 /obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = (get_turf(loc))
+		wrapped.forceMove((get_turf(loc)))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in contents)
-		AM.loc = T
+		AM.forceMove(T)
 	. = ..()
 
 /obj/item/device/destTagger

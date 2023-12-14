@@ -231,7 +231,7 @@
 			to_chat(user, "The drill already has a cell installed.")
 		else
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			cell = I
 			component_parts += I
 			to_chat(user, "You install \the [I].")
@@ -243,7 +243,7 @@
 
 	if (panel_open && cell)
 		to_chat(user, "You take out \the [cell].")
-		cell.loc = get_turf(user)
+		cell.forceMove(get_turf(user))
 		component_parts -= cell
 		cell = null
 		return
@@ -264,7 +264,7 @@
 		else if(world.time - last_use < DRILL_COOLDOWN)
 			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
 		else if(use_cell_power())
-			
+
 			if(!cave_connected)
 				if(cave_gen.is_generating())
 					to_chat(user, SPAN_WARNING("A cave system is already being dug."))
@@ -440,7 +440,7 @@
 	var/obj/structure/ore_box/B = locate() in orange(1)
 	if(B)
 		for(var/obj/item/ore/O in contents)
-			O.loc = B
+			O.forceMove(B)
 		to_chat(usr, SPAN_NOTICE("You unload the drill's storage cache into the ore box."))
 	else
 		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))

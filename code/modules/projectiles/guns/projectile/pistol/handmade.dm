@@ -78,6 +78,6 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/batrifle_magout.ogg', 65, 1)
 	if(loaded.len)
 		var/obj/item/ammo_casing/our_bullet = loaded[1]
-		our_bullet.loc = get_turf(src)
+		our_bullet.forceMove(get_turf(src))
 		loaded -= our_bullet
 		chambered = null

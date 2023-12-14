@@ -43,7 +43,7 @@
 	if(is_type_in_list(I, can_hold))
 		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		flick("[initial(icon_state)]-open",src)
 		updateUsrDialog()
 	else if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING), src))
@@ -76,7 +76,7 @@
 	if(contents.len)
 		if(prob(40 + contents.len * 5))
 			var/obj/item/I = pick(contents)
-			I.loc = loc
+			I.forceMove(loc)
 			if(prob(25))
 				step_rand(I)
 			to_chat(user, SPAN_NOTICE("You pull \a [I] out of [src] at random."))

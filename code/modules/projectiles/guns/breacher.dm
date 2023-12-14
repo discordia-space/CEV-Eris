@@ -45,7 +45,7 @@
 		if(!magazine)
 			user.drop_item()
 			magazine = W
-			magazine.loc = src
+			magazine.forceMove(src)
 			update_icon()
 			return
 	return
@@ -53,7 +53,7 @@
 
 /obj/item/hatton/attack_self(mob/living/user as mob)
 	if(magazine)
-		magazine.loc = get_turf(src.loc)
+		magazine.forceMove(get_turf(src.loc))
 		user.put_in_hands(magazine)
 		magazine.update_icon()
 		magazine = null
@@ -229,7 +229,7 @@
 		if(!magazine)
 			user.drop_item()
 			magazine = W
-			magazine.loc = src
+			magazine.forceMove(src)
 			update_icon()
 			return
 	return

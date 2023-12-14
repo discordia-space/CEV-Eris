@@ -213,7 +213,7 @@
 		if(!S.amount)
 			qdel(S)
 		else
-			S.loc = src
+			S.forceMove(src)
 
 	refresh_all()
 	update_icon()

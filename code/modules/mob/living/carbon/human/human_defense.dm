@@ -35,7 +35,7 @@ meteor_act
 			var/obj/item/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
-			SP.loc = organ
+			SP.forceMove(organ)
 			organ.embed(SP)
 
 
@@ -241,7 +241,7 @@ meteor_act
 	else
 		stop_blocking()
 		drop_from_inventory(G)
-		G.loc = null
+		G.forcemove(NULLSPACE)
 		qdel(G)
 		return //block is turned off, grab is GONE
 
@@ -496,7 +496,7 @@ meteor_act
 				var/turf/T = near_wall(dir,2)
 
 				if(T)
-					src.loc = T
+					forceMove(T)
 					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
 					src.anchored = TRUE
 					src.pinned += O

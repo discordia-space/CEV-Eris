@@ -111,7 +111,7 @@
 			return
 		var/obj/item/reagent_containers/glass/beaker/B = I
 		user.drop_item()
-		B.loc = src
+		B.forceMove(src)
 		beakers += B
 		to_chat(user, SPAN_NOTICE("You slot [B] into [src]."))
 		src.updateUsrDialog()
@@ -187,7 +187,7 @@
 				to_chat(usr, "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
-				B.loc = get_turf(src)
+				B.forceMove(get_turf(src))
 	else if (href_list["eject_cart"])
 		unload_ammo(usr)
 	src.updateUsrDialog()

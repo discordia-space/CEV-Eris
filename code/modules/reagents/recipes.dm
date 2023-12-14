@@ -813,7 +813,7 @@
 /datum/chemical_reaction/slime/spawn/on_reaction(var/datum/reagents/holder)
 	holder.my_atom.visible_message(SPAN_WARNING("Infused with plasma, the core begins to quiver and grow, and soon a new baby slime emerges from it!"))
 	var/mob/living/carbon/slime/S = new /mob/living/carbon/slime
-	S.loc = get_turf(holder.my_atom)
+	S.forceMove(get_turf(holder.my_atom))
 	..()
 
 /datum/chemical_reaction/slime/monkey
@@ -825,7 +825,7 @@
 /datum/chemical_reaction/slime/monkey/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1, i <= 3, i++)
 		var /obj/item/reagent_containers/food/snacks/monkeycube/M = new /obj/item/reagent_containers/food/snacks/monkeycube
-		M.loc = get_turf(holder.my_atom)
+		M.forceMove(get_turf(holder.my_atom))
 	..()
 
 //Green
@@ -845,10 +845,10 @@
 /datum/chemical_reaction/slime/metal/on_reaction(var/datum/reagents/holder)
 	var/obj/item/stack/material/steel/M = new /obj/item/stack/material/steel
 	M.amount = 15
-	M.loc = get_turf(holder.my_atom)
+	M.forceMove(get_turf(holder.my_atom))
 	var/obj/item/stack/material/plasteel/P = new /obj/item/stack/material/plasteel
 	P.amount = 5
-	P.loc = get_turf(holder.my_atom)
+	P.forceMove(get_turf(holder.my_atom))
 	..()
 
 //Gold - removed
@@ -883,7 +883,7 @@
 		var/chosen = pick(borks)
 		var/obj/B = new chosen
 		if(B)
-			B.loc = get_turf(holder.my_atom)
+			B.forceMove(get_turf(holder.my_atom))
 			if(prob(50))
 				for(var/j = 1, j <= rand(1, 3), j++)
 					step(B, pick(NORTH, SOUTH, EAST, WEST))
@@ -960,7 +960,7 @@
 
 /datum/chemical_reaction/slime/cell/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/obj/item/cell/large/slime/P = new /obj/item/cell/large/slime
-	P.loc = get_turf(holder.my_atom)
+	P.forceMove(get_turf(holder.my_atom))
 
 /datum/chemical_reaction/slime/glow
 	result = null
@@ -972,7 +972,7 @@
 /datum/chemical_reaction/slime/glow/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 	var/obj/item/device/slimelight/F = new /obj/item/device/slimelight
-	F.loc = get_turf(holder.my_atom)
+	F.forceMove(get_turf(holder.my_atom))
 
 //Purple
 /datum/chemical_reaction/slime/psteroid
@@ -984,7 +984,7 @@
 /datum/chemical_reaction/slime/psteroid/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 	var/obj/item/slimesteroid/P = new /obj/item/slimesteroid
-	P.loc = get_turf(holder.my_atom)
+	P.forceMove(get_turf(holder.my_atom))
 
 /datum/chemical_reaction/slime/jam
 	result = "slimejelly"
@@ -1003,7 +1003,7 @@
 	..()
 	var/obj/item/stack/material/plasma/P = new /obj/item/stack/material/plasma
 	P.amount = 10
-	P.loc = get_turf(holder.my_atom)
+	P.forceMove(get_turf(holder.my_atom))
 
 //Red
 /datum/chemical_reaction/slime/glycerol
@@ -1034,7 +1034,7 @@
 /datum/chemical_reaction/slime/ppotion/on_reaction(var/datum/reagents/holder)
 	..()
 	var/obj/item/slimepotion/P = new /obj/item/slimepotion
-	P.loc = get_turf(holder.my_atom)
+	P.forceMove(get_turf(holder.my_atom))
 
 //Black
 /datum/chemical_reaction/slime/mutate2
@@ -1068,7 +1068,7 @@
 /datum/chemical_reaction/slime/potion2/on_reaction(var/datum/reagents/holder)
 	..()
 	var/obj/item/slimepotion2/P = new /obj/item/slimepotion2
-	P.loc = get_turf(holder.my_atom)
+	P.forceMove(get_turf(holder.my_atom))
 
 //Adamantine
 /datum/chemical_reaction/slime/golem
@@ -1080,7 +1080,7 @@
 /datum/chemical_reaction/slime/golem/on_reaction(var/datum/reagents/holder)
 	..()
 	var/obj/effect/golemrune/Z = new /obj/effect/golemrune
-	Z.loc = get_turf(holder.my_atom)
+	Z.forceMove(get_turf(holder.my_atom))
 	Z.announce_to_ghosts()
 
 /* Food */

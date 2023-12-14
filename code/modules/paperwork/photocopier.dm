@@ -62,7 +62,7 @@
 		updateUsrDialog()
 	else if(href_list["remove"])
 		if(copyitem)
-			copyitem.loc = usr.loc
+			copyitem.forceMove(usr.loc)
 			usr.put_in_hands(copyitem)
 			to_chat(usr, SPAN_NOTICE("You take \the [copyitem] out of \the [src]."))
 			copyitem = null
@@ -105,7 +105,7 @@
 		if(!copyitem)
 			user.drop_item()
 			copyitem = I
-			I.loc = src
+			I.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
 			flick(insert_anim, src)
 			updateUsrDialog()
@@ -174,7 +174,7 @@
 
 /obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy)
 	var/obj/item/photo/p = photocopy.copy()
-	p.loc = src.loc
+	p.forceMove(src.loc)
 
 	var/icon/I = icon(photocopy.icon, photocopy.icon_state)
 	if(toner > 10)	//plenty of toner, go straight greyscale
@@ -206,10 +206,10 @@
 			W = copy(W)
 		else if(istype(W, /obj/item/photo))
 			W = photocopy(W)
-		W.loc = p
+		W.forceMove(p)
 		p.pages += W
 
-	p.loc = src.loc
+	p.forceMove(src.loc)
 	p.update_icon()
 	p.icon_state = "paper_words"
 	p.name = bundle.name

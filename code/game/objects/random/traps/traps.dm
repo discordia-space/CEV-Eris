@@ -67,4 +67,4 @@
 	max_amount = min(biome.max_traps_amount, max(3, biome.max_traps_amount / count))
 	if(use_biome_range)
 		spread_range = biome.range
-		loc = biome.loc
+		forceMove(biome.loc)

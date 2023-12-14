@@ -23,3 +23,8 @@
 	. = ..(new_loc, SPECIES_SKELETON)
 	death(FALSE)
 	GLOB.human_mob_list -= src
+
+/mob/living/carbon/human/skeleton/Process(delta_time)
+	if(!client)
+		return PROCESS_KILL
+	. = ..()

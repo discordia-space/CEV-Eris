@@ -483,7 +483,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		return
 
 	// remove the cut cable from its turf and powernet, so that it doesn't get count in propagate_network worklist
-	loc = null
+	forceMove(NULLSPACE)
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
 	var/datum/powernet/newPN = new()// creates a new powernet...

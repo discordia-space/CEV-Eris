@@ -52,7 +52,7 @@
 		icon_state = "spike_[H.species.name]"
 	else
 		return FALSE
-	victim.loc = src
+	victim.forceMove(src)
 	victim_name = victim.name
 	occupant = victim
 	occupied = TRUE
@@ -65,7 +65,7 @@
 	to_chat(user, "You start to remove [victim_name] from \the [src].")
 	if(!do_after(user, 40))
 		return 0
-	occupant.loc = get_turf(src)
+	occupant.forceMove(get_turf(src))
 	occupied = FALSE
 	meat = 0
 	meat_type = initial(meat_type)

@@ -235,7 +235,7 @@
 		qdel(src)
 		return FALSE
 
-	loc = get_turf(user)
+	forceMove(get_turf(user))
 
 	var/recoil = 0
 	if(isliving(user))
@@ -246,13 +246,13 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.can_multiz_pb && (!isturf(target)))
-				loc = get_turf(H.client.eye)
+				forceMove(get_turf(H.client.eye))
 				if(!(loc.Adjacent(target)))
-					loc = get_turf(H)
+					forceMove(get_turf(H))
 			if(config.z_level_shooting && H.client.eye == H.shadow && !height) // Player is watching a higher zlevel
 				var/newTurf = get_turf(H.shadow)
 				if(!(locate(/obj/structure/catwalk) in newTurf)) // Can't shoot through catwalks
-					loc = newTurf
+					forceMove(newTurf)
 					height = HEIGHT_HIGH // We are shooting from below, this protects resting players at the expense of windows
 					original = get_turf(original) // Aim at turfs instead of mobs, to ensure we don't hit players
 
@@ -434,7 +434,7 @@
 	if(A == src)
 		return FALSE
 	if(A == firer)
-		loc = A.loc
+		forceMove(A.loc)
 		return FALSE //go fuck yourself in another place pls
 
 
@@ -492,7 +492,7 @@
 			qdel(src)
 			return TRUE
 
-		loc = tempLoc
+		forceMove(tempLoc)
 		if (A)
 			permutated.Add(A)
 		bumped = FALSE //reset bumped variable!
@@ -684,7 +684,7 @@
 
 /obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area, forced)
 	if(A == firer)
-		loc = A.loc
+		forceMove(A.loc)
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
 		return

@@ -312,7 +312,7 @@
 			removable_objects |= I
 	if(removable_objects.len)
 		var/obj/item/I = pick(removable_objects)
-		I.loc = get_turf(user) //just in case something was embedded that is not an item
+		I.forceMove(get_turf(user)) //just in case something was embedded that is not an item
 		if(istype(I))
 			user.put_in_hands(I)
 		user.visible_message(SPAN_DANGER("\The [user] rips \the [I] out of \the [src]!"))
@@ -425,7 +425,7 @@ This function completely restores a damaged organ to perfect condition.
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
 		if(!istype(implanted_object,/obj/item/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
-			implanted_object.loc = get_turf(src)
+			implanted_object.forceMove(get_turf(src))
 			implants -= implanted_object
 
 	SSnano.update_uis(src)
@@ -800,7 +800,7 @@ This function completely restores a damaged organ to perfect condition.
 	W.on_embed(owner)
 	if(!((W.flags & NOBLOODY)||(W.item_flags & NOBLOODY)))
 		W.add_blood(owner)
-	W.loc = owner
+	W.forceMove(owner)
 
 /obj/item/organ/external/proc/disfigure(var/type = "brute")
 	if(disfigured)

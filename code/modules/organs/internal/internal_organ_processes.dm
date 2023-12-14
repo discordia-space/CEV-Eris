@@ -224,7 +224,7 @@
 
 	if(stomach_efficiency <= 1)
 		for(var/mob/living/M in stomach_contents)
-			M.loc = loc
+			M.forceMove(loc)
 			stomach_contents.Remove(M)
 			continue
 		ingested.trans_to_turf(get_turf(src))

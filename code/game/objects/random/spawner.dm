@@ -150,7 +150,7 @@
 	max_amount = biome.max_loot_amount
 	if(use_biome_range)
 		spread_range = biome.range
-		loc = biome.loc
+		forceMove(biome.loc)
 
 // this function should return a specific item to spawn
 /obj/spawner/proc/item_to_spawn()

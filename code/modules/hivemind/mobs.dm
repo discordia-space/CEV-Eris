@@ -807,7 +807,7 @@
 		else
 			flick("mechiver-opening_wires", src)
 	passenger = target
-	target.loc = src
+	target.forceMove(src)
 	target.canmove = FALSE
 	to_chat(target, SPAN_DANGER("Wires snare your limbs and pull you inside the maneater! You feel yourself bound with a thousand steel tendrils!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
@@ -838,7 +838,7 @@
 		if(passenger) //if passenger still here, then just release him
 			to_chat(passenger, SPAN_DANGER("[src] releases you from its snares!"))
 			passenger.canmove = TRUE
-			passenger.loc = get_turf(src)
+			passenger.forceMove(get_turf(src))
 			passenger = null
 			special_ability_cooldown = world.time + ability_cooldown
 		playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
@@ -1078,7 +1078,7 @@
 	playsound(place, 'sound/effects/phasein.ogg', 60, 1)
 	animate(filters[1], size = 0, time = 5)
 	icon_state = "phaser-[rand(1,4)]"
-	src.loc = place
+	src.forceMove(place)
 	for(var/mob/living/L in loc)
 		if(L != src)
 			visible_message("<b>[src]</b> land on <b>[L]</b>!")
@@ -1106,7 +1106,7 @@
 			spawn(1) //ugh, i know, i know, it's bad. Animation
 				reflection.forceMove(new_position)
 		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), reflection), 60 SECONDS)
-	loc = get_step(spawn_point, possible_directions[1]) //there must left last direction
+	forceMove(get_step(spawn_point, possible_directions[1])) //there must left last direction
 	special_ability_cooldown = world.time + ability_cooldown
 	playsound(spawn_point, 'sound/effects/cascade.ogg', 100, 1)
 

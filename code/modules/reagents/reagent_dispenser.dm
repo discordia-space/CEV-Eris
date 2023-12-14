@@ -31,7 +31,7 @@
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	else if(W.is_refillable())
 		return FALSE //so we can refill them via their afterattack.
@@ -147,7 +147,7 @@
 		usr.visible_message(SPAN_NOTICE("\The [usr] begins to detach [rig] from \the [src]."), SPAN_NOTICE("You begin to detach [rig] from \the [src]."))
 		if(do_after(usr, 20, src))
 			usr.visible_message(SPAN_NOTICE("\The [usr] detaches \the [rig] from \the [src]."), SPAN_NOTICE("You detach [rig] from \the [src]"))
-			rig.loc = get_turf(usr)
+			rig.forceMove(get_turf(usr))
 			rig = null
 			overlays = new/list()
 
@@ -177,7 +177,7 @@
 
 			rig = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 
 			var/icon/test = getFlatIcon(I)
 			test.Shift(NORTH,1)

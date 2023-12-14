@@ -30,4 +30,4 @@
 	latejoin = TRUE
 	if(use_biome_range)
 		spread_range = biome.range
-		loc = biome.loc
+		forceMove(biome.loc)

@@ -24,13 +24,13 @@
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
-			I.loc = src
+			I.forceMove(src)
 	update_icon()
 
 /obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
-		O.loc = src
+		O.forceMove(src)
 		update_icon()
 	else if(istype(O, /obj/item/pen))
 		var/newname = sanitizeSafe(input("What would you like to title this bookshelf?"), MAX_NAME_LEN)
@@ -49,7 +49,7 @@
 			to_chat(user, SPAN_NOTICE("You dismantle \the [src]."))
 			drop_materials(drop_location())
 			for(var/obj/item/book/b in contents)
-				b.loc = (get_turf(src))
+				b.forceMove(get_turf(src))
 			qdel(src)
 
 	else
@@ -63,7 +63,7 @@
 		playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 		drop_materials(drop_location())
 		for(var/obj/item/book/b in contents)
-			b.loc = (get_turf(src))
+			b.forceMove(get_turf(src))
 		qdel(src)
 	else
 		attack_hand(M)
@@ -78,7 +78,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hands(choice)
 			else
-				choice.loc = get_turf(src)
+				choice.forceMove(get_turf(src))
 			update_icon()
 
 /obj/structure/bookcase/take_damage(damage)
@@ -86,7 +86,7 @@
 	if(QDELETED(src))
 		return .
 	for(var/obj/item/book/b in contents)
-		b.loc = (get_turf(src))
+		b.forceMove(get_turf(src))
 
 /obj/structure/bookcase/update_icon()
 	if(contents.len < 5)
@@ -159,7 +159,7 @@
 	if(carved)
 		if(store)
 			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
-			store.loc = get_turf(src.loc)
+			store.forceMove(get_turf(src.loc))
 			store = null
 			return
 		else
@@ -177,7 +177,7 @@
 		if(!store)
 			if(I.w_class < ITEM_SIZE_NORMAL)
 				user.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				store = I
 				to_chat(user, SPAN_NOTICE("You put [I] in [title]."))
 				return

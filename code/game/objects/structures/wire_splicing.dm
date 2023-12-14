@@ -64,8 +64,7 @@
 		if (!candidates.len)
 			return INITIALIZE_HINT_QDEL
 
-
-		loc = pick(candidates)
+		forceMove(pick(candidates))
 	messiness = rand (1,10)
 	icon_state = "wire_splicing[messiness]"
 

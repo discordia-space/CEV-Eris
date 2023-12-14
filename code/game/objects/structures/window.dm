@@ -496,10 +496,10 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	density = FALSE
 	update_nearby_tiles()
 	var/turf/location = loc
-	loc = null
+	forceMove(NULLSPACE)
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
-	loc = location
+	forceMove(location)
 	. = ..()
 
 /obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)

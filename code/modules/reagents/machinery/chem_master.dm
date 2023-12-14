@@ -138,7 +138,7 @@
 			return
 		else if (href_list["eject"])
 			if(beaker)
-				beaker:loc = src.loc
+				beaker:forceMove(src.loc)
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"

@@ -165,7 +165,7 @@
 	if(assimilated_machinery["path"])
 		new_machine.assimilated_machinery = assimilated_machinery
 	if(saved_circuit)
-		saved_circuit.loc = new_machine
+		saved_circuit.forceMove(new_machine)
 		new_machine.saved_circuit = saved_circuit
 	qdel(src)
 
@@ -523,7 +523,7 @@
 	if(!GLOB.hive_data_bool["maximum_existing_mobs"] || GLOB.hive_data_float["maximum_existing_mobs"] > total_mobs)
 		var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
 		var/mob/living/simple_animal/hostile/hivemind/spawned_mob = CATCH.get_item(mob_to_spawn)
-		spawned_mob.loc = loc
+		spawned_mob.forceMove(loc)
 		spawned_creatures.Add(spawned_mob)
 		spawned_mob.master = src
 		flick("[icon_state]-anim", src)

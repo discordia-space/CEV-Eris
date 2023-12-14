@@ -92,7 +92,7 @@
 
 	for (var/obj/item/ore/O in contents)
 		contents -= O
-		O.loc = src.loc
+		O.forceMove(loc)
 		O.layer = initial(O.layer)
 		O.set_plane(initial(O.plane))
 
@@ -105,7 +105,7 @@
 	if(QDELETED(src))
 		return 0
 	for (var/obj/item/ore/O in contents)
-		O.loc = src.loc
+		O.forceMove(loc)
 		O.take_damage(damage)
 	return 0
 

@@ -130,7 +130,7 @@
 /obj/machinery/chemical_dispenser/proc/detach()
 	if(beaker)
 		var/obj/item/reagent_containers/B = beaker
-		B.loc = loc
+		B.forceMove(loc)
 		beaker = null
 		update_icon()
 

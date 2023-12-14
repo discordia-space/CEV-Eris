@@ -18,6 +18,7 @@
 	item_state = "nothing"
 	w_class = ITEM_SIZE_COLOSSAL
 	spawn_tags = null
+	weight = 0
 	var/obj/screen/grab/hud
 	var/mob/living/affecting
 	var/mob/living/carbon/human/assailant
@@ -49,7 +50,7 @@
 
 /obj/item/grab/New(mob/user, mob/victim)
 	..()
-	loc = user
+	forceMove(user)
 	assailant = user
 	affecting = victim
 
@@ -216,12 +217,12 @@
 			shift = -10
 			adir = assailant.dir
 			affecting.set_dir(assailant.dir)
-			affecting.loc = assailant.loc
+			affecting.forceMove(assailant.loc)
 		if(GRAB_KILL)
 			shift = 0
 			adir = 1
 			affecting.set_dir(SOUTH) //face up
-			affecting.loc = assailant.loc
+			affecting.forceMove(assailant.loc)
 
 	switch(adir)
 		if(NORTH)
@@ -454,7 +455,7 @@
 		fireman_throw(affecting, assailant)
 
 /obj/item/grab/dropped()
-	loc = null
+	forceMove(NULLSPACE)
 	if(!destroying)
 		qdel(src)
 

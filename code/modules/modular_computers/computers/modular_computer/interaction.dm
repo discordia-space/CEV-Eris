@@ -216,7 +216,7 @@
 
 	if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	var/obj/item/tool/tool = W
 	if(tool)

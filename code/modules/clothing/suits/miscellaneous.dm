@@ -308,7 +308,7 @@
 		logo.icon_state = logo_type
 		accessories += logo
 		logo.attachedTo = src
-		loc = src
+		forceMove(src)
 		switch(logo_type) // All of the following names associated with some group of people, thus capitalized
 			if("punk_over_valentinos")
 				name = "Valentinos jacket"

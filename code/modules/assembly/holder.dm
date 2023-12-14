@@ -37,8 +37,8 @@
 	user.remove_from_mob(D2)
 	D.holder = src
 	D2.holder = src
-	D.loc = src
-	D2.loc = src
+	D.forceMove(src)
+	D2.forceMove(src)
 	left_assembly = D
 	right_assembly = D2
 	name = "[D.name]-[D2.name] assembly"
@@ -143,10 +143,10 @@
 		if(!T)	return 0
 		if(left_assembly)
 			left_assembly:holder = null
-			left_assembly.loc = T
+			left_assembly.forceMove(T)
 		if(right_assembly)
 			right_assembly:holder = null
-			right_assembly.loc = T
+			right_assembly.forceMove(T)
 		spawn(0)
 			qdel(src)
 	return

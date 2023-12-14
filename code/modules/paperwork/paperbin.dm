@@ -90,7 +90,7 @@ obj/item/paper_bin/MouseDrop(over_object)
 		return
 
 	user.drop_item()
-	i.loc = src
+	i.forceMove(src)
 	to_chat(user, SPAN_NOTICE("You put [i] in [src]."))
 	papers.Add(i)
 	update_icon()

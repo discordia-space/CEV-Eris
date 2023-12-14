@@ -59,7 +59,7 @@
 			V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
 
 		brainmob = B.brainmob
-		brainmob.loc = src
+		brainmob.forceMove(src)
 		brainmob.container = src
 		brainmob.stat = 0
 		GLOB.dead_mob_list -= brainmob//Update dem lists
@@ -67,7 +67,7 @@
 
 		user.drop_item()
 		brainobj = O
-		brainobj.loc = src
+		brainobj.forceMove(src)
 
 		name = "Man-Machine Interface: [brainmob.real_name]"
 		icon_state = "mmi_full"
@@ -100,13 +100,13 @@
 		to_chat(user, "\blue You upend the MMI, spilling the brain onto the floor.")
 		var/obj/item/organ/internal/vital/brain/brain
 		if (brainobj)	//Pull brain organ out of MMI.
-			brainobj.loc = user.loc
+			brainobj.forceMove(user.loc)
 			brain = brainobj
 			brainobj = null
 		else	//Or make a new one if empty.
 			brain = new(user.loc)
 		brainmob.container = null//Reset brainmob mmi var.
-		brainmob.loc = brain//Throw mob into brain.
+		brainmob.forceMove(brain)//Throw mob into brain.
 		GLOB.living_mob_list -= brainmob//Get outta here
 		brain.brainmob = brainmob//Set the brain to use the brainmob
 		brainmob = null//Set mmi brainmob var to null

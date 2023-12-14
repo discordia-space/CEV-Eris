@@ -149,7 +149,7 @@
 	msg_admin_attack("[key_name(attacker)] has dropkicked [key_name(target)]")
 	//kill the grab
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 
 /obj/item/grab/proc/suplex(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
@@ -172,7 +172,7 @@
 		msg_admin_attack("[key_name(attacker)] has suplexed [key_name(target)]")
 		//kill the grab
 		attacker.drop_from_inventory(src)
-		loc = null
+		forceMove(NULLSPACE)
 		qdel(src)
 
 /obj/item/grab/proc/gut_punch(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
@@ -187,7 +187,7 @@
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Gutpunched by [attacker.name] ([attacker.ckey])</font>")
 	//kill the grab
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 
 /obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
@@ -217,7 +217,7 @@
 	msg_admin_attack("[key_name(attacker)] has headbutted [key_name(target)]")
 
 	attacker.drop_from_inventory(src)
-	src.loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 	return
 
@@ -258,9 +258,9 @@
 		fireman_dir = turn(attacker.dir, 180)
 	var/damage = max(1, min(20, (attacker.stats.getStat(STAT_ROB) / 3)))
 
-	target.loc = attacker.loc
+	target.forceMove(attacker.loc)
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 	target.update_lying_buckled_and_verb_status()
 
@@ -293,7 +293,7 @@
 		to_chat(attacker, SPAN_WARNING("There is not enough space around you to do this."))
 		return
 	//finally, we SWING
-	target.loc = attacker.loc
+	target.forceMove(attacker.loc)
 	visible_message(SPAN_DANGER("[attacker] pivots, spinning [target] around!"))
 	attacker.next_move = world.time + 30 //3 seconds
 	var/spin = 2
@@ -322,5 +322,5 @@
 	msg_admin_attack("[key_name(attacker)] has swung [key_name(target)]")
 	//kill the grab
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)

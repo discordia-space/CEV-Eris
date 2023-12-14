@@ -34,7 +34,7 @@
 	if(!istype(S))
 		return
 	attachedTo = S
-	loc = attachedTo
+	forceMove(attachedTo)
 	attachedTo.overlays += get_inv_overlay()
 
 	to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [attachedTo]."))

@@ -51,7 +51,7 @@ var/global/list/ashtray_cache = list()
 			to_chat(user, "\The [src] is full.")
 			return
 		user.remove_from_mob(W)
-		W.loc = src
+		W.forceMove(src)
 
 		if (istype(W,/obj/item/clothing/mask/smokable/cigarette))
 			var/obj/item/clothing/mask/smokable/cigarette/cig = W
@@ -83,7 +83,7 @@ var/global/list/ashtray_cache = list()
 		if (contents.len)
 			src.visible_message(SPAN_DANGER("\The [src] slams into [hit_atom], spilling its contents!"))
 		for (var/obj/item/clothing/mask/smokable/cigarette/O in contents)
-			O.loc = src.loc
+			O.forceMove(loc)
 		if (health < 1)
 			shatter()
 			return

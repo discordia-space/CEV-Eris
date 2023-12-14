@@ -170,7 +170,7 @@
 					return
 				user.remove_from_mob(AM)
 				. = 1
-				AM.loc = src
+				AM.forceMove(src)
 				ammo_magazine = AM
 
 				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)

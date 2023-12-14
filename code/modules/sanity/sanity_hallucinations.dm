@@ -20,7 +20,7 @@
 		for(var/i = 1 to number)
 			var/image/thing = generate_mirage()
 			things += thing
-			thing.loc = pick(possible_points)
+			thing.forceMove(pick(possible_points))
 		holder.client.images += things
 
 /datum/hallucination/sanity_mirage/end()

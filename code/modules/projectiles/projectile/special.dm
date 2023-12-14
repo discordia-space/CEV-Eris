@@ -126,7 +126,7 @@
 
 /obj/item/projectile/meteor/Bump(atom/A as mob|obj|turf|area, forced)
 	if(A == firer)
-		loc = A.loc
+		forceMove(A.loc)
 		return
 
 

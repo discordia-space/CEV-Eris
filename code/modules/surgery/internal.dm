@@ -222,7 +222,7 @@
 		// Remove existing limb (usually a limb stump)
 		if(existing_limb)
 			// Prevent the new limb from being deleted along with the old one
-			limb.loc = null
+			limb.forceMove(null)
 
 			// Remove and delete the old limb
 			existing_limb.removed(null, FALSE)

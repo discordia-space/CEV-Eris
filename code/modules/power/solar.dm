@@ -51,7 +51,7 @@
 		S = new /obj/item/solar_assembly(src)
 		S.glass_type = /obj/item/stack/material/glass
 		S.anchored = TRUE
-	S.loc = src
+	S.forceMove(src)
 	if(S.glass_type == /obj/item/stack/material/glass/reinforced) //if the panel is in reinforced glass
 		health *= 2 								 //this need to be placed here, because panels already on the map don't have an assembly linked to
 	update_icon()
@@ -63,7 +63,7 @@
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
-				S.loc = src.loc
+				S.forceMove(src.loc)
 				S.give_glass()
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, TRUE)
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
@@ -137,7 +137,7 @@
 	update_icon()
 	return
 /obj/machinery/power/solar/take_damage(amount)
-	var/turf/tloc = get_turf(src)
+	var/turf/tforceMove(get_turf(src))
 	. = ..()
 	if(QDELETED(src))
 		new /obj/item/material/shard(tloc)
@@ -412,7 +412,7 @@
 				new /obj/item/material/shard( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
-					C.loc = src.loc
+					C.forceMove(src.loc)
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "3"
@@ -423,7 +423,7 @@
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)
-					C.loc = src.loc
+					C.forceMove(src.loc)
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "4"

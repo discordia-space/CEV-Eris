@@ -92,7 +92,7 @@
 		usr.prepare_for_slotmove(W)
 		usr.update_icons() //update our overlays
 
-	W.loc = src
+	W.forceMove(src)
 	W.on_enter_storage(src)
 	var/volume_taken = W.get_storage_cost() ** 2
 	solids[W] = volume_taken
@@ -186,9 +186,9 @@
 		return
 
 	if (new_location)
-		W.loc = new_location
+		W.forceMove(new_location)
 	else
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	untaken_capacity = min(untaken_capacity + W.get_storage_cost() ** 2, )
 	solids.Remove(W)

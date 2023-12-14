@@ -347,7 +347,7 @@
 
 	//kill the grab
 	user.drop_from_inventory(G)
-	G.loc = null
+	G.forceMove(NULLSPACE)
 	qdel(G)
 
 	//admin messaging

@@ -396,9 +396,9 @@
 		F.update_icon(1)
 
 	if (new_location)
-		W.loc = new_location
+		W.forceMove(new_location)
 	else
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	refresh_all()
 
@@ -438,7 +438,7 @@
 				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
 				return
 			else //todo: proper drop handling
-				W.loc = user.loc
+				W.forceMove(user.loc)
 				if (user.client)
 					user.client.screen -= W
 				W.dropped(user)

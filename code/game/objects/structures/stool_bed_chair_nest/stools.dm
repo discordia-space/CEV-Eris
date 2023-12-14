@@ -122,14 +122,14 @@ var/global/list/stool_cache = list() //haha stool
 		C.use(1)
 		if(!istype(src.loc, /turf))
 			user.drop_from_inventory(src)
-			src.loc = get_turf(src)
+			forceMove(get_turf(src))
 		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
 
 	else if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	else
 		..()

@@ -175,7 +175,7 @@
 	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
 		T = get_step(T, f_dir)
 		var/obj/machinery/shieldwall/CF = new shield_type(src, G) //(ref to this gen, ref to connected gen)
-		CF.loc = T
+		CF.forceMove(T)
 		CF.set_dir(f_dir)
 
 

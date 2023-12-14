@@ -29,7 +29,7 @@
 	if(istype(swab) && swab.is_used())
 		user.unEquip(W)
 		src.bloodsamp = swab
-		swab.loc = src
+		swab.forceMove(src)
 		to_chat(user, SPAN_NOTICE("You insert \the [W] into \the [src]."))
 	else
 		to_chat(user, SPAN_WARNING("\The [src] only accepts used swabs."))

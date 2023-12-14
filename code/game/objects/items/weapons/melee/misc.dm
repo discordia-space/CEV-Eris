@@ -37,7 +37,7 @@
 		user.put_in_active_hand(mop)
 	else
 		user.put_in_inactive_hand(mop)
-	toolbox.loc = user.loc
+	toolbox.forceMove(user.loc)
 
 
 /obj/item/melee/toolbox_maul/attackby(obj/item/C, mob/living/user)

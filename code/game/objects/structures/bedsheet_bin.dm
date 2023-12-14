@@ -236,14 +236,14 @@ LINEN BINS
 /obj/structure/bedsheetbin/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/bedsheet))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		sheets.Add(I)
 		amount++
 		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 	else if(amount && !hidden && I.w_class < ITEM_SIZE_BULKY)
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		hidden = I
 		to_chat(user, SPAN_NOTICE("You hide [I] among the sheets."))
 
@@ -258,13 +258,13 @@ LINEN BINS
 
 		else
 			B = new /obj/item/bedsheet(loc, TRUE)
-		B.loc = user.loc
+		B.forceMove(user.loc)
 
 		user.put_in_hands(B)
 		to_chat(user, SPAN_NOTICE("You take [B] out of [src]."))
 
 		if(hidden)
-			hidden.loc = user.loc
+			hidden.forceMove(user.loc)
 			to_chat(user, SPAN_NOTICE("[hidden] falls out of [B]!"))
 			hidden = null
 
@@ -283,12 +283,12 @@ LINEN BINS
 		else
 			B = new /obj/item/bedsheet(loc, TRUE)
 
-		B.loc = loc
+		B.forceMove(loc)
 		to_chat(user, SPAN_NOTICE("You telekinetically remove [B] from [src]."))
 		update_icon()
 
 		if(hidden)
-			hidden.loc = loc
+			hidden.forceMove(loc)
 			hidden = null
 
 

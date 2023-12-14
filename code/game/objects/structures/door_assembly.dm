@@ -71,7 +71,7 @@
 					to_chat(user, SPAN_NOTICE("You removed the airlock electronics!"))
 					src.state = 1
 					src.name = "Wired Airlock Assembly"
-					electronics.loc = src.loc
+					electronics.forceMove(loc)
 					electronics = null
 			update_state()
 			return
@@ -122,7 +122,7 @@
 		if(do_after(user, 40,src))
 			if(!src) return
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You installed the airlock electronics!"))
 			src.state = 2
 			src.name = "Near finished Airlock Assembly"

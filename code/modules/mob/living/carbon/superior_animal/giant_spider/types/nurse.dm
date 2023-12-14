@@ -32,7 +32,7 @@
 			if(O && !BP_IS_ROBOTIC(O))
 				src.visible_message(SPAN_DANGER("[src] injects something into the [O] of [H]!"))
 				var/obj/effect/spider/eggcluster/minor/S = new()
-				S.loc = O
+				S.forceMove(O)
 				O.implants += S
 
 

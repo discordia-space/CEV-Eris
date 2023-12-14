@@ -19,6 +19,6 @@
 
 /obj/item/gun/matter/launcher/process_projectile(obj/item/projectile, mob/user, atom/target)
 	update_release_force(projectile)
-	projectile.loc = get_turf(user)
+	projectile.forceMove(get_turf(user))
 	projectile.throw_at(target, throw_distance, release_force, user)
 	return 1

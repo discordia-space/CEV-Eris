@@ -372,7 +372,7 @@
 			var/obj/item/contraband/poster/P = O
 			P.roll_and_drop(src)
 		else
-			O.loc = src
+			O.forceMove(src)
 
 	clear_plants()
 	clear_bulletholes()
