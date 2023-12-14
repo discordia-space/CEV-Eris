@@ -832,8 +832,6 @@
 	visual_bluff.icon_state = "shield_null"
 	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 	visual_bluff.layer = ABOVE_ALL_MOB_LAYER
-	// the mech default offset is -8 , this neeeds 8 for some reason.
-	visual_bluff.pixel_x = 8
 
 /obj/item/mech_equipment/shield_generator/Destroy()
 	. = ..()
