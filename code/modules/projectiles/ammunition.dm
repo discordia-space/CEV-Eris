@@ -9,6 +9,8 @@
 	w_class = ITEM_SIZE_TINY
 
 	price_tag = 0.2
+	/// very light weight ,3 grams
+	weight = 3
 
 	var/leaves_residue = 1
 	var/is_caseless = FALSE
