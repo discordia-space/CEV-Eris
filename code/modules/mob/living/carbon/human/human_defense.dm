@@ -241,7 +241,7 @@ meteor_act
 	else
 		stop_blocking()
 		drop_from_inventory(G)
-		G.forcemove(NULLSPACE)
+		G.forceMove(NULLSPACE)
 		qdel(G)
 		return //block is turned off, grab is GONE
 

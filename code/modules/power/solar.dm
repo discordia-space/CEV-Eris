@@ -137,7 +137,7 @@
 	update_icon()
 	return
 /obj/machinery/power/solar/take_damage(amount)
-	var/turf/tforceMove(get_turf(src))
+	var/turf/tloc = get_turf(src)
 	. = ..()
 	if(QDELETED(src))
 		new /obj/item/material/shard(tloc)

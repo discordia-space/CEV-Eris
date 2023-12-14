@@ -117,7 +117,7 @@
 	// TODO - This part!!
 	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)) && buildstage == 2 && !wiresexposed)
 		if(user.client)
-			holomap_datum.station_map.forceMove(global_hud.holomap)  // Put the image on the holomap hud
+			holomap_datum.station_map.loc =global_hud.holomap  // Put the image on the holomap hud
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
 			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
 			flick("station_map_activate", src)

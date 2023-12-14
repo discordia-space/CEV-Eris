@@ -201,7 +201,7 @@
 		camera.status = 0
 
 	if (held_item) // if the spiderbot is holding an item
-		held_item.forceMove(src.loc
+		held_item.forceMove(src.loc)
 		held_item = null
 
 	gibs(loc, null, null, /obj/effect/gibspawner/robot) //TODO: use gib() or refactor spiderbots into synthetics.
@@ -261,8 +261,8 @@
 	if(selection)
 		for(var/obj/item/I in view(1, src))
 			if(selection == I)
-				held_item = selection)
-				selection.forceMove(src
+				held_item = selection
+				selection.forceMove(src)
 				visible_message(SPAN_NOTICE("\The [src] scoops up \the [held_item]."), \
 					SPAN_NOTICE("You grab \the [held_item]."), \
 					"You hear a skittering noise and a clink.")
