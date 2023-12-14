@@ -9,6 +9,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 
 /HUD_element
 	parent_type = /atom/movable
+	weight = 0
 
 	layer = HUD_LAYER
 	plane = HUD_PLANE

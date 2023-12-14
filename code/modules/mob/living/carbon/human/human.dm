@@ -939,6 +939,7 @@ var/list/rank_prefix = list(\
 
 	if(from_preference)
 		for(var/obj/item/organ/organ in (organs|internal_organs))
+			organ.forceMove(NULLSPACE)
 			qdel(organ)
 
 		if(organs.len)

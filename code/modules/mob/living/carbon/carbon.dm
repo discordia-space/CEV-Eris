@@ -25,6 +25,7 @@
 	touching.clear_reagents()
 	metabolism_effects.clear_effects()
 	nutrition = 400
+	halloss = 0
 	shock_stage = 0
 	..()
 
