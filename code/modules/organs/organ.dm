@@ -4,7 +4,7 @@
 	matter = list(MATERIAL_BIOMATTER = 20)
 	bad_type = /obj/item/organ
 	spawn_tags = SPAWN_TAG_ORGAN
-	weight = 0
+	weight = 10
 
 	price_tag = 200
 

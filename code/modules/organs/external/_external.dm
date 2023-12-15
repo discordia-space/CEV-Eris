@@ -233,7 +233,6 @@
 		else
 			var/mecha_bone = text2path("[default_bone_type]/robotic")
 			bone = new mecha_bone
-
 		bone?.replaced(src)
 
 /obj/item/organ/external/proc/make_nerves()

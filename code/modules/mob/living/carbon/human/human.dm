@@ -881,6 +881,7 @@ var/list/rank_prefix = list(\
 			internal_organs_by_efficiency[process] = list()
 
 	rebuild_organs()
+
 	src.sync_organ_dna()
 	species.handle_post_spawn(src)
 
@@ -939,7 +940,6 @@ var/list/rank_prefix = list(\
 
 	if(from_preference)
 		for(var/obj/item/organ/organ in (organs|internal_organs))
-			organ.forceMove(NULLSPACE)
 			qdel(organ)
 
 		if(organs.len)

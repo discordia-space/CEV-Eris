@@ -1,4 +1,5 @@
 //ITEM INVENTORY WEIGHT, FOR w_class
+// Repurposed for volume.
 
 /// Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
 #define ITEM_SIZE_TINY           1

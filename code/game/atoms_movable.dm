@@ -105,13 +105,13 @@
 	updateWeights(TRUE)
 	message_admins("weight after update [weight]" )
 
-/atom/proc/typeWeights(spaces)
-	var/buffer = ""
+/atom/proc/typeWeights(spaces = 0)
+	var/buffer = "-"
 	for(var/i = 0, i < spaces, i++)
-		buffer = addtext(buffer," ")
-	message_admins("[buffer]Mass of [src] - [weight]")
+		buffer = buffer + "-"
+	message_admins("[buffer] Mass of [src] - [weight]")
 	for(var/atom/thing in contents)
-		thing.typeWeights(++spaces)
+		thing.typeWeights(spaces + 1)
 
 /atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
 	if(loc == destination)
