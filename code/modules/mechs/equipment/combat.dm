@@ -954,6 +954,7 @@
 	if(!(visual_bluff in mech.vis_contents))
 		mech.vis_contents.Add(visual_bluff)
 	visual_bluff.dir = mech.dir
+	visual_bluff.icon_state = "mech_shield_[on ? "on_" : ""][get_hardpoint()]"
 	switch(get_hardpoint())
 		if(HARDPOINT_RIGHT_HAND)
 			// i used a switch before and it doesnt work as intended for some fucking reason FOR EAST AND WEST >:( -SPCR
@@ -976,7 +977,6 @@
 			if(visual_bluff.dir == WEST)
 				visual_bluff.layer = MECH_ABOVE_LAYER
 			return
-	visual_bluff.icon_state = "mech_shield_[on ? "on_" : ""][get_hardpoint()]"
 
 /obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)
 	var/mob/living/exosuit/mech = loc
