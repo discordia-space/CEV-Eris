@@ -86,6 +86,9 @@
 /datum/design/research/item/mechfab/exosuit/chassis/pod
 	build_path = /obj/item/mech_component/chassis/pod
 
+/datum/design/research/item/mechfab/exosuit/chassis/forklift
+	build_path = /obj/item/mech_component/chassis/forklift
+
 //Manipulators
 /datum/design/research/item/mechfab/exosuit/manipulators
 	category = "Exosuit Manipulators"
@@ -124,3 +127,6 @@
 
 /datum/design/research/item/mechfab/exosuit/propulsion/tracks
 	build_path = /obj/item/mech_component/propulsion/tracks
+
+/datum/design/research/item/mechfab/exosuit/propulsion/wheels
+	build_path = /obj/item/mech_component/propulsion/wheels

@@ -242,6 +242,10 @@
 	icon_state = "ramptop"
 	layer = 2.4
 
+/obj/structure/multiz/stairs/can_prevent_fall(above)
+	return above ? FALSE : TRUE
+
+
 /obj/structure/multiz/stairs/enter
 	icon_state = "ramptop"
 

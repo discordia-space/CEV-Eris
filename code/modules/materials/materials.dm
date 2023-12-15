@@ -113,6 +113,15 @@ var/list/name_to_material
 	var/explosion_resistance = 5 // Only used by walls currently.
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
+	/// Armor values for this material whenever its applied on something.
+	var/datum/armor/armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 1,
+		bio = 1,
+		rad = 1
+	)
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
@@ -258,6 +267,16 @@ var/list/name_to_material
 	hardness = 80
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	door_icon_base = "stone"
+	// it is a metal and it does conduct , but it does very poorly
+	conductive = FALSE
+	armor = list(
+		melee = 6,
+		bullet = 6,
+		energy = 10,
+		bomb = 25,
+		bio = 25,
+		rad = 0
+	)
 
 /material/diamond
 	name = MATERIAL_DIAMOND
@@ -271,6 +290,14 @@ var/list/name_to_material
 	hardness = 100
 	weight = 50
 	stack_origin_tech = list(TECH_MATERIAL = 6)
+	armor = list(
+		melee = 15,
+		bullet = 15,
+		energy = 0,
+		bomb = 80,
+		bio = 0,
+		rad = 0
+	)
 
 /material/gold
 	name = MATERIAL_GOLD
@@ -281,10 +308,28 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	conductive = TRUE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 1,
+		bio = 45,
+		rad = 1
+	)
 
 /material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
 	icon_colour = "#EDD12F"
+	conductive = TRUE
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 3,
+		bomb = 10,
+		bio = 30,
+		rad = 0
+	)
 
 /material/silver
 	name = MATERIAL_SILVER
@@ -295,6 +340,15 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	conductive = TRUE
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 2,
+		bomb = 10,
+		bio = 80,
+		rad = 0
+	)
 
 /material/plasma
 	name = MATERIAL_PLASMA
@@ -309,6 +363,15 @@ var/list/name_to_material
 	door_icon_base = "stone"
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
+	conductive = TRUE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 6,
+		bomb = 1,
+		bio = 80,
+		rad = 45
+	)
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
@@ -339,6 +402,15 @@ var/list/name_to_material
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
+	conductive = FALSE
+	armor = list(
+		melee = 2,
+		bullet = 0,
+		energy = 1,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
 
 /material/stone/marble
 	name = MATERIAL_MARBLE
@@ -358,12 +430,30 @@ var/list/name_to_material
 	icon_reinf = "reinf_over"
 	icon_colour = PLASTEEL_COLOUR
 	hitsound = 'sound/weapons/genhit.ogg'
+	conductive = TRUE
+	armor = list(
+		melee = 5,
+		bullet = 5,
+		energy = 5,
+		bomb = 35,
+		bio = 0,
+		rad = 0
+	)
 
 /material/steel/holographic
 	name = "holo" + MATERIAL_STEEL
 	display_name = MATERIAL_STEEL
 	stack_type = null
 	shard_type = SHARD_NONE
+	// wish.com steel
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /material/plasteel
 	name = MATERIAL_PLASTEEL
@@ -377,7 +467,16 @@ var/list/name_to_material
 	hardness = 80
 	weight = 23
 	stack_origin_tech = list(TECH_MATERIAL = 2)
+	conductive = TRUE
 	hitsound = 'sound/weapons/genhit.ogg'
+	armor = list(
+		melee = 8,
+		bullet = 8,
+		energy = 4,
+		bomb = 75,
+		bio = 35,
+		rad = 25
+	)
 
 /material/plasteel/titanium
 	name = "titanium"
@@ -388,6 +487,15 @@ var/list/name_to_material
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
+	conductive = TRUE
+	armor = list(
+		melee = 16,
+		bullet = 10,
+		energy = 6,
+		bomb = 125,
+		bio = 35,
+		rad = 0
+	)
 
 /material/glass
 	name = MATERIAL_GLASS
@@ -406,7 +514,16 @@ var/list/name_to_material
 	created_window = /obj/structure/window/basic
 	created_window_full = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
+	conductive = FALSE
 	hitsound = 'sound/effects/Glasshit.ogg'
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 
@@ -522,8 +639,17 @@ var/list/name_to_material
 	window_options = list("One Direction" = 1, "Full Window" = 6, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
 	created_window_full = /obj/structure/window/reinforced/full
+	conductive = FALSE
 	wire_product = null
 	rod_product = null
+	armor = list(
+		melee = 4,
+		bullet = 4,
+		energy = 0,
+		bomb = 35,
+		bio = 0,
+		rad = 0
+	)
 
 /material/glass/plasma
 	name = MATERIAL_PLASMAGLASS
@@ -539,6 +665,15 @@ var/list/name_to_material
 	created_window_full = /obj/structure/window/plasmabasic/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plasmarglass
+	conductive = FALSE
+	armor = list(
+		melee = 6,
+		bullet = 6,
+		energy = 0,
+		bomb = 45,
+		bio = 0,
+		rad = 0
+	)
 
 /material/glass/plasma/reinforced
 	name = MATERIAL_RPLASMAGLASS
@@ -550,8 +685,17 @@ var/list/name_to_material
 	created_window_full = /obj/structure/window/reinforced/plasma/full
 	hardness = 60
 	weight = 50
+	conductive = FALSE
 	//composite_material = list() //todo
 	rod_product = null
+	armor = list(
+		melee = 8,
+		bullet = 8,
+		energy = 0,
+		bomb = 50,
+		bio = 0,
+		rad = 0
+	)
 
 /material/plastic
 	name = MATERIAL_PLASTIC
@@ -563,13 +707,31 @@ var/list/name_to_material
 	hardness = 10
 	weight = 12
 	melting_point = T0C+371 //assuming heat resistant plastic
+	conductive = FALSE
 	stack_origin_tech = list(TECH_MATERIAL = 3)
+	armor = list(
+		melee = 3,
+		bullet = 3,
+		energy = 3,
+		bomb = 20,
+		bio = 5,
+		rad = 0
+	)
 
 /material/plastic/holographic
 	name = "holoplastic"
 	display_name = "plastic"
 	stack_type = null
 	shard_type = SHARD_NONE
+	conductive = FALSE
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /material/osmium
 	name = MATERIAL_OSMIUM
@@ -580,6 +742,15 @@ var/list/name_to_material
 	hardness = 90
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	conductive = TRUE
+	armor = list(
+		melee = 20,
+		bullet = 14,
+		energy = 7,
+		bomb = 200,
+		bio = 0,
+		rad = 25
+	)
 
 /material/tritium
 	name = MATERIAL_TRITIUM
@@ -588,6 +759,15 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	conductive = FALSE
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 10,
+		bomb = 0,
+		bio = 100,
+		rad = 50
+	)
 
 /material/mhydrogen
 	name = MATERIAL_MHYDROGEN
@@ -596,7 +776,16 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 	weight = 10
 	hardness = 200
+	conductive = TRUE
 	display_name = "metallic hydrogen"
+	armor = list(
+		melee = 35,
+		bullet = 18,
+		energy = 8,
+		bomb = 350,
+		bio = 0,
+		rad = 35
+	)
 
 /material/platinum
 	name = MATERIAL_PLATINUM
@@ -607,6 +796,14 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	armor = list(
+		melee = 3,
+		bullet = 3,
+		energy = 15,
+		bomb = 25,
+		bio = 55,
+		rad = 25
+	)
 
 /material/iron
 	name = MATERIAL_IRON
@@ -617,6 +814,15 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	hitsound = 'sound/weapons/smash.ogg'
+	conductive = TRUE
+	armor = list(
+		melee = 3,
+		bullet = 3,
+		energy = 3,
+		bomb = 35,
+		bio = 0,
+		rad = 0
+	)
 
 // Adminspawn only, do not let anyone get this.
 /material/voxalloy
@@ -629,6 +835,14 @@ var/list/name_to_material
 	explosion_resistance = 200 // Hull plating.
 	hardness = 500
 	weight = 500
+	armor = list(
+		melee = 50,
+		bullet = 35,
+		energy = 25,
+		bomb = 500,
+		bio = 0,
+		rad = 85
+	)
 
 /material/wood
 	name = MATERIAL_WOOD
@@ -650,12 +864,30 @@ var/list/name_to_material
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
 	hitsound = 'sound/effects/woodhit.ogg'
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 5,
+		bomb = 10,
+		bio = 0,
+		rad = 0
+	)
 
 /material/wood/holographic
 	name = "holowood"
 	display_name = "wood"
 	stack_type = null
 	shard_type = SHARD_NONE
+	conductive = FALSE
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cardboard
 	name = MATERIAL_CARDBOARD
@@ -672,6 +904,15 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 1)
 	door_icon_base = "wood"
 	destruction_desc = "crumples"
+	conductive = FALSE
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth //todo
 	name = MATERIAL_CLOTH
@@ -680,6 +921,16 @@ var/list/name_to_material
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
+
 
 /material/biomatter
 	name = MATERIAL_BIOMATTER
@@ -688,6 +939,14 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 2,
+		bomb = 15,
+		bio = 100,
+		rad = 0
+	)
 
 /material/compressed
 	name = MATERIAL_COMPRESSED
@@ -695,6 +954,15 @@ var/list/name_to_material
 	icon_colour = "#00E1FF"
 	sheet_singular_name = "cartrigde"
 	sheet_plural_name = "cartridges"
+	conductive = TRUE
+	armor = list(
+		melee = 18,
+		bullet = 10,
+		energy = 10,
+		bomb = 150,
+		bio = 0,
+		rad = 100
+	)
 
 //TODO PLACEHOLDERS:
 /material/leather
@@ -704,6 +972,14 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
+	armor = list(
+		melee = 4,
+		bullet = 2,
+		energy = 2,
+		bomb = 10,
+		bio = 10,
+		rad = 0
+	)
 
 /material/carpet
 	name = "carpet"
@@ -715,6 +991,15 @@ var/list/name_to_material
 	melting_point = T0C+300
 	sheet_singular_name = "tile"
 	sheet_plural_name = "tiles"
+	conductive = FALSE
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cotton
 	name = "cotton"
@@ -723,6 +1008,15 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth_teal
 	name = "teal"
@@ -732,6 +1026,15 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth_black
 	name = "black"
@@ -741,6 +1044,15 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth_green
 	name = "green"
@@ -750,6 +1062,15 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth_puple
 	name = "purple"
@@ -759,6 +1080,15 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth_blue
 	name = "blue"
@@ -768,6 +1098,15 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth_beige
 	name = "beige"
@@ -777,6 +1116,15 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
 
 /material/cloth_lime
 	name = "lime"
@@ -786,3 +1134,12 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+	conductive = FALSE
+	armor = list(
+		melee = 1,
+		bullet = 1,
+		energy = 1,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)

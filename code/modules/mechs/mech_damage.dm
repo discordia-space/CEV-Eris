@@ -83,7 +83,12 @@
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
-		MC = pick(list(arms, legs, body, head))
+		var/list/picklist = list()
+		if(arms) picklist.Add(arms)
+		if(legs) picklist.Add(legs)
+		if(head) picklist.Add(head)
+		if(body) picklist.Add(body)
+		MC = pick(picklist)
 	if(amount < 1)
 		return FALSE
 	MC.take_burn_damage(amount)
@@ -91,7 +96,12 @@
 
 /mob/living/exosuit/adjustBruteLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
-		MC = pick(list(arms, legs, body, head))
+		var/list/picklist = list()
+		if(arms) picklist.Add(arms)
+		if(legs) picklist.Add(legs)
+		if(head) picklist.Add(head)
+		if(body) picklist.Add(body)
+		MC = pick(picklist)
 	if(amount < 1)
 		return FALSE
 	MC.take_brute_damage(amount)
@@ -124,6 +134,9 @@
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, var/def_zone)
 	var/hit_dir = get_dir(P.starting, src)
 	def_zone = zoneToComponent(def_zone)
+	/// aiming for soemthing the mech doesnt have
+	if(!def_zone)
+		return PROJECTILE_FORCE_MISS
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
