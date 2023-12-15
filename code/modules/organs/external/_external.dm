@@ -16,6 +16,7 @@
 	organ_tag = "limb"
 	bad_type = /obj/item/organ/external
 	spawn_tags = SPAWN_TAG_ORGAN_EXTERNAL
+	weight = 253
 	var/tally = 0
 
 	// Strings
