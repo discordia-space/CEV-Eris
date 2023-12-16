@@ -344,7 +344,7 @@
 	else
 		attack_hand(M)
 
-/obj/structure/railing/do_climb(var/mob/living/user)
+/obj/structure/railing/do_climb(mob/living/user)
 	if(!can_climb(user))
 		return
 
@@ -367,11 +367,11 @@
 		return
 
 	if(get_turf(user) == get_turf(src))
-		usr.forceMove(get_step(src, src.dir))
+		user.forceMove(get_step(src, src.dir))
 	else
-		usr.forceMove(get_turf(src))
+		user.forceMove(get_turf(src))
 
-	usr.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
+	user.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
 	if(!anchored)	take_damage(maxHealth) // Fatboy
 	climbers -= user
 
