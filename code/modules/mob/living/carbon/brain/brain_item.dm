@@ -103,7 +103,7 @@
 
 	..()
 
-/obj/item/organ/internal/vital/brain/replaced_mob(mob/living/carbon/target)
+/obj/item/organ/internal/vital/brain/mob_update(mob/living/carbon/target)
 	..()
 	if(owner.key && !(owner.status_flags & REBUILDING_ORGANS))
 		owner.ghostize()

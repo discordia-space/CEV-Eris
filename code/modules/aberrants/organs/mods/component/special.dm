@@ -60,7 +60,7 @@
 			if(istype(holder, /obj/item/organ/internal))
 				var/obj/item/organ/internal/I = holder
 				H.drop_item()
-				I.replaced(active_hand)
+				I.insert(active_hand)
 				H.apply_damage(10, HALLOSS, active_hand)
 				H.apply_damage(10, BRUTE, active_hand)
 				to_chat(owner, SPAN_WARNING("\The [holder] forces its way into your [active_hand.name]!"))

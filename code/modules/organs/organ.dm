@@ -4,7 +4,7 @@
 	matter = list(MATERIAL_BIOMATTER = 20)
 	bad_type = /obj/item/organ
 	spawn_tags = SPAWN_TAG_ORGAN
-	weight = 23
+	weight = 7
 
 	price_tag = 200
 
@@ -68,9 +68,9 @@
 		blood_DNA[holder.dna_trace] = holder.b_type
 
 		if(parent_organ_base)
-			replaced(holder.get_organ(parent_organ_base))
+			insert(holder.get_organ(parent_organ_base))
 		else
-			replaced_mob(holder)
+			mob_update(holder)
 
 // Surgery hooks
 /obj/item/organ/attack_self(mob/living/user)
@@ -271,16 +271,15 @@
 	START_PROCESSING(SSobj, src)
 
 
-/obj/item/organ/proc/replaced(obj/item/organ/external/affected)
+/obj/item/organ/proc/insert(obj/item/organ/external/affected)
 	parent = affected
 	forceMove(parent)
 	if(parent.owner)
-		replaced_mob(parent.owner)
+		mob_update(parent.owner)
 
 
-/obj/item/organ/proc/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/proc/mob_update(mob/living/carbon/human/target)
 	owner = target
-	forceMove(owner)
 	STOP_PROCESSING(SSobj, src)
 	if(BP_IS_ROBOTIC(src))
 		SEND_SIGNAL_OLD(owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)

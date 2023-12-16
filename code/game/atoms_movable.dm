@@ -1,6 +1,5 @@
 
-
-
+GLOBAL_VAR_INIT(Debug,0)
 /atom/movable
 	layer = OBJ_LAYER
 	var/last_move
@@ -79,7 +78,7 @@
 
 /// This proc is pasted directly into critical areas that get called very frequently to save on proc calling time
 /// Search all instances where this proc is used by searching the following text #TAG_RECALCWEIGHT
-/atom/proc/recalculateWeights(weightValue)
+/atom/proc/recalculateWeights(weightValue, caller)
 	var/oldWeight = weight
 	weight += weightValue
 	var/atom/location = loc
@@ -128,11 +127,12 @@
 	var/is_new_area = (is_origin_turf ^ is_destination_turf) || (is_origin_turf && is_destination_turf && loc.loc != destination.loc)
 
 	var/atom/origin = loc
+
 	loc = destination
 
 	if(origin)
 		origin.Exited(src, destination)
-		origin.recalculateWeights(-weight)
+		origin.recalculateWeights(-weight, src)
 		if(is_origin_turf)
 			for(var/atom/movable/AM in origin)
 				AM.Uncrossed(src)
@@ -141,7 +141,7 @@
 
 	if(destination)
 		destination.Entered(src, origin, special_event)
-		destination.recalculateWeights(weight)
+		destination.recalculateWeights(weight, src)
 		if(is_destination_turf) // If we're entering a turf, cross all movable atoms
 			for(var/atom/movable/AM in loc)
 				if(AM != src)

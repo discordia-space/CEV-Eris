@@ -608,5 +608,5 @@
 		var/obj/item/organ/external/chest = user.get_organ(BP_CHEST)
 		if(chest)
 			var/obj/item/organ/internal/carrion/core/C = new /obj/item/organ/internal/carrion/core
-			C.replaced(chest)
+			C.insert(chest)
 		user.faction = "spiders"

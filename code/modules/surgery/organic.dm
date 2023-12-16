@@ -142,7 +142,7 @@
 	)
 
 	organ.status &= ~ORGAN_CUT_AWAY
-	organ.replaced(organ.get_limb())
+	organ.insert(organ.get_limb())
 
 /datum/surgery_step/attach_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(

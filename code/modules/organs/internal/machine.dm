@@ -86,7 +86,7 @@
 				cell = W
 				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
 
-/obj/item/organ/internal/cell/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/internal/cell/mob_update(mob/living/carbon/human/target)
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner.stat == DEAD)

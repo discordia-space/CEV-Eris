@@ -16,7 +16,7 @@
 	organ_tag = "limb"
 	bad_type = /obj/item/organ/external
 	spawn_tags = SPAWN_TAG_ORGAN_EXTERNAL
-	weight = 253
+	weight = 51
 	var/tally = 0
 
 	// Strings
@@ -147,7 +147,7 @@
 	if(desc.drop_on_remove)
 		src.drop_on_remove = desc.drop_on_remove.Copy()
 
-/obj/item/organ/external/replaced(obj/item/organ/external/affected)
+/obj/item/organ/external/insert(obj/item/organ/external/affected)
 	..()
 	parent.children |= src
 
@@ -157,12 +157,12 @@
 		qdel(W)
 	parent.update_damages()
 
-/obj/item/organ/external/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/external/mob_update(mob/living/carbon/human/target)
 	..()
 	owner.organs_by_name[organ_tag] = src
 	owner.organs |= src
 	for(var/obj/item/organ/O in children + internal_organs)
-		O.replaced_mob(owner)
+		O.mob_update(owner)
 
 	if(module)
 		module.organ_installed(src, owner)
@@ -234,7 +234,7 @@
 		else
 			var/mecha_bone = text2path("[default_bone_type]/robotic")
 			bone = new mecha_bone
-		bone?.replaced(src)
+		bone?.insert(src)
 
 /obj/item/organ/external/proc/make_nerves()
 	var/obj/item/organ/internal/nerve/nerve
@@ -243,7 +243,7 @@
 	else
 		nerve = new /obj/item/organ/internal/nerve/robotic
 
-	nerve?.replaced(src)
+	nerve?.insert(src)
 
 /obj/item/organ/external/proc/make_muscles()
 	var/obj/item/organ/internal/muscle/muscle
@@ -252,14 +252,14 @@
 	else
 		muscle = new /obj/item/organ/internal/muscle/robotic
 
-	muscle?.replaced(src)
+	muscle?.insert(src)
 
 /obj/item/organ/external/proc/make_blood_vessels()
 	var/obj/item/organ/internal/blood_vessel/blood_vessel
 	if(nature < MODIFICATION_SILICON)	//No robotic blood vesseles
 		blood_vessel = new /obj/item/organ/internal/blood_vessel
 
-	blood_vessel?.replaced(src)
+	blood_vessel?.insert(src)
 
 /obj/item/organ/external/proc/update_limb_efficiency()
 	limb_efficiency = 0

@@ -206,7 +206,7 @@
 	// Internal organs
 	else if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/organ = I
-		organ.replaced(src)
+		organ.insert(src)
 
 	// Limbs
 	else if(istype(I, /obj/item/organ/external))
@@ -228,7 +228,7 @@
 			existing_limb.removed(null, FALSE)
 			qdel(existing_limb)
 
-		limb.replaced(target_limb)
+		limb.insert(target_limb)
 
 		saved_owner.update_body()
 		saved_owner.updatehealth()

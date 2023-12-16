@@ -1019,7 +1019,7 @@ var/list/rank_prefix = list(\
 				C.security_clearance = mind.assigned_job.security_clearance
 
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
-		C.replaced(get_organ(C.parent_organ_base))
+		C.insert(get_organ(C.parent_organ_base))
 
 	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)

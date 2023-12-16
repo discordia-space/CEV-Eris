@@ -6,7 +6,7 @@
 	max_damage = IORGAN_STANDARD_HEALTH
 	min_bruised_damage = IORGAN_STANDARD_BRUISE
 	min_broken_damage = IORGAN_STANDARD_BREAK
-	weight = 69
+	weight = 13
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()
@@ -71,7 +71,7 @@
 		owner.mutation_index--
 	..()
 
-/obj/item/organ/internal/replaced(obj/item/organ/external/affected)
+/obj/item/organ/internal/insert(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
 	parent.internal_organs[src] = specific_organ_size // Larger organs have greater pick weight for organ damage
@@ -80,7 +80,7 @@
 	RegisterSignal(parent, COMSIG_IORGAN_APPLY, PROC_REF(apply_modifiers), TRUE)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
-/obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/internal/mob_update(mob/living/carbon/human/target)
 	..()
 	owner.internal_organs |= src
 	for(var/process in organ_efficiency)
