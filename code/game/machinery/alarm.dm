@@ -825,7 +825,7 @@
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
 					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
-					circuit.loc = user.loc
+					circuit.forceMove(user.loc)
 					buildstage = 0
 					update_icon()
 					return
@@ -1040,7 +1040,7 @@ FIRE ALARM
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
 					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
-					circuit.loc = user.loc
+					circuit.forceMove(user.loc)
 					buildstage = 0
 					update_icon()
 					return
@@ -1187,7 +1187,7 @@ FIRE ALARM
 	..()
 
 	if(loc)
-		src.loc = loc
+		forceMove(loc)
 
 	if(dir)
 		src.set_dir(dir)

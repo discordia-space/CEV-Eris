@@ -4,6 +4,8 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
+	/// everyone is 65 KGs
+	weight = 65000
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -937,7 +939,6 @@ var/list/rank_prefix = list(\
 		checkprefcruciform = TRUE
 		qdel(CI)
 
-
 	if(from_preference)
 		for(var/obj/item/organ/organ in (organs|internal_organs))
 			qdel(organ)
@@ -957,8 +958,8 @@ var/list/rank_prefix = list(\
 			return
 
 		var/datum/body_modification/BM
-
 		for(var/tag in species.has_limbs)
+
 			BM = Pref.get_modification(tag)
 			var/datum/organ_description/OD = species.has_limbs[tag]
 //			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ_base)

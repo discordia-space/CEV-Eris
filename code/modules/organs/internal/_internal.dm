@@ -6,7 +6,6 @@
 	max_damage = IORGAN_STANDARD_HEALTH
 	min_bruised_damage = IORGAN_STANDARD_BRUISE
 	min_broken_damage = IORGAN_STANDARD_BREAK
-	weight = 13
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()

@@ -59,7 +59,7 @@
 
 	var/list/stat_rig_module/stat_modules = new()
 
-	
+
 
 /obj/item/rig_module/get_cell()
 	holder = get_rig()
@@ -279,6 +279,7 @@
 
 /stat_rig_module
 	parent_type = /atom/movable
+	weight = 0
 	var/module_mode = ""
 	var/obj/item/rig_module/module
 

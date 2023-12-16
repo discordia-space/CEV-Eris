@@ -71,7 +71,7 @@
 	user.set_machine(src)
 	var/loc = src.loc
 	if (istype(loc, /turf))
-		loc = loc:loc
+		forceMove(loc:loc)
 	if (!istype(loc, /area))
 		to_chat(user, text("Turret badly positioned - loc.loc is [].", loc))
 		return

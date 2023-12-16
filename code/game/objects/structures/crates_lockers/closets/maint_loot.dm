@@ -14,7 +14,6 @@
 	rarity_value = 10
 
 /obj/structure/closet/random/miscellaneous/populate_contents()
-	var/list/spawnedAtoms = list()
 
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/contraband/low_chance(src)
@@ -32,8 +31,6 @@
 	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
 	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
 	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
-	for(var/atom/movable/a in spawnedAtoms)
-		a.forceMove(src)
 
 
 /obj/structure/closet/random/tech

@@ -52,7 +52,7 @@
 	if(do_after(user, 2 SECONDS, target) && in_range(user, target))
 		user.drop_item()
 		src.target = target
-		loc = null
+		forceMove(NULLSPACE)
 
 		if (ismob(target))
 			add_logs(user, target, "planted [name] on")

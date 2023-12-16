@@ -108,7 +108,7 @@
 
 	sleep(20)
 	if(state in list(WASHSTATE_EMPTYOPENDOOR, WASHSTATE_FULLOPENDOOR) )
-		usr.loc = src.loc
+		usr.forceMove(src.loc)
 
 
 /obj/machinery/washing_machine/update_icon()
@@ -121,7 +121,7 @@
 			if(!crayon)
 				user.drop_item()
 				crayon = W
-				crayon.loc = src
+				crayon.forceMove(src)
 			else
 				..()
 		else
@@ -148,12 +148,12 @@
 		if(WASHSTATE_EMPTYCLOSEDDOOR)
 			state = WASHSTATE_EMPTYOPENDOOR
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.forceMove(src.loc)
 		if(WASHSTATE_FULLOPENDOOR)
 			state = WASHSTATE_FULLCLOSEDDOOR
 		if(WASHSTATE_FULLCLOSEDDOOR)
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.forceMove(src.loc)
 			crayon = null
 			state = WASHSTATE_EMPTYOPENDOOR
 		if(WASHSTATE_RUNNING)

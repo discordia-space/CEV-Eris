@@ -4,7 +4,11 @@
 	matter = list(MATERIAL_BIOMATTER = 20)
 	bad_type = /obj/item/organ
 	spawn_tags = SPAWN_TAG_ORGAN
-	weight = 7
+	/// Are you ready to do what it takes to find out why their weight gets duplicated ? Are you ready to sacrifice
+	/// possibly weeks of your life in the endless pursuit of fixing the issue that has crushed many others ?
+	/// Are you ready to try understand a framework for organs rewritten and regurgitated by 4 different people with 4 different mechanism?
+	/// After 4 days of trying to debug why weights on these bugged i just gave up.Fixing this shit ain't worth anyone's time hot god damn. - SPCR 2023
+	weight = 0
 
 	price_tag = 200
 
@@ -41,6 +45,7 @@
 	var/death_time						// limits organ self recovery
 
 /obj/item/organ/Destroy()
+
 	if(parent || owner)
 		removed()
 
@@ -267,6 +272,8 @@
 
 	if(parent)
 		forceMove(parent)
+	else
+		forceMove(NULLSPACE)
 
 	START_PROCESSING(SSobj, src)
 
@@ -280,6 +287,7 @@
 
 /obj/item/organ/proc/mob_update(mob/living/carbon/human/target)
 	owner = target
+	forceMove(owner)
 	STOP_PROCESSING(SSobj, src)
 	if(BP_IS_ROBOTIC(src))
 		SEND_SIGNAL_OLD(owner, COMSIG_HUMAN_ROBOTIC_MODIFICATION)

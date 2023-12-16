@@ -42,14 +42,23 @@ GLOBAL_VAR_INIT(Debug,0)
 
 
 /atom/movable/Destroy()
-	. = ..()
+	var/turf/T = loc
+	if(opacity && istype(T))
+		set_opacity(FALSE)
+	if(LAZYLEN(movement_handlers) && !ispath(movement_handlers[1]))
+		QDEL_LIST(movement_handlers)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
+	forceMove(null)
+
+	. = ..()
+	//for(var/atom/movable/AM in contents)
+	//	qdel(AM)
 
 	if(loc)
 		loc.handle_atom_del(src)
 
-	forceMove(null)
+	//forceMove(null)
 	if (pulledby)
 		if (pulledby.pulling == src)
 			pulledby.pulling = null
@@ -79,19 +88,25 @@ GLOBAL_VAR_INIT(Debug,0)
 /// This proc is pasted directly into critical areas that get called very frequently to save on proc calling time
 /// Search all instances where this proc is used by searching the following text #TAG_RECALCWEIGHT
 /atom/proc/recalculateWeights(weightValue, caller)
+	var/global/callcount = 0
+	var/itercount = 0
+	++callcount
 	var/oldWeight = weight
 	weight += weightValue
 	var/atom/location = loc
 	/// apply this to turfs too for funny sheninigans
 	while(!isarea(location) && location)
-		/// avoid a extra operation. just add the difference
+	/// avoid a extra operation. just add the difference
+		++itercount
 		location.weight += (weight - oldWeight)
+		//if(ishuman(caller) || ishuman(src) || ishuman(location) || istype(caller, /obj/item/organ) || istype(src, /obj/item/organ))
+		//	message_admins("Added [weight - oldWeight] to [location],LocWeight=[location.weight]|ItemWeight=[weight]|ItemOldWeight=[oldWeight]| to [src] from [caller](\ref[caller]) (call: [callcount] # [itercount])")
 		location = location.loc
 
 /// Recursive proc , will go down to all things it has and force them to update and then force updates to anything that contains it
 /atom/proc/updateWeights(callRecalc = TRUE)
 	var/change = initial(weight)
-	for(var/obj/item/thing in contents)
+	for(var/atom/thing in contents)
 		thing.updateWeights(FALSE)
 		change += thing.weight
 	if(callRecalc && change != weight)
@@ -382,9 +397,9 @@ GLOBAL_VAR_INIT(Debug,0)
 		. = ..()
 
 		if(oldloc)
-			oldloc.recalculateWeights(-weight)
+			oldloc.recalculateWeights(-weight,src)
 		if(loc)
-			loc.recalculateWeights(weight)
+			loc.recalculateWeights(weight,src)
 
 		if(Dir != olddir)
 			dir = olddir

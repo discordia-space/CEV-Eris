@@ -427,14 +427,14 @@
 		return
 	else if(istype(I, /obj/item/coin) && premium.len > 0)
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		coin = I
 		categories |= CAT_COIN
 		to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
 		return
 	else if(istype(I, /obj/item/device/spy_bug))
 		user.drop_item()
-		I.loc = get_turf(src)
+		I.forceMove(get_turf(src))
 
 	for(var/datum/data/vending_product/R in product_records)
 		if(I.type == R.product_path && I.name == R.product_name)

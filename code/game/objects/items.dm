@@ -126,7 +126,6 @@
 		var/mob/m = loc
 		m.u_equip(src)
 		remove_hud_actions(m)
-		loc = null
 
 	QDEL_NULL(hidden_uplink)
 	blood_overlay = null
@@ -169,9 +168,8 @@
 
 	var/turf/T = loc
 
-	loc = null
-
-	loc = T
+	forceMove(NULLSPACE)
+	forceMove(T)
 
 /obj/item/examine(user, distance = -1)
 	var/message

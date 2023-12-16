@@ -62,7 +62,7 @@
 
 	if(isatom(loc) && loc)
 		var/atom/a = loc
-		a.recalculateWeights(weight)
+		a.recalculateWeights(weight, src)
 
 	if(datum_flags & DF_USE_TAG)
 		GenerateTag()
@@ -156,6 +156,20 @@
  * * clears the light object
  */
 /atom/Destroy()
+	if(light)
+		light.destroy()
+		light = null
+	if(statverbs)
+		statverbs.Cut()
+	if(buckled_mob && buckled_mob.buckled == src)
+		. = buckled_mob
+		buckled_mob.buckled = null
+		buckled_mob.anchored = initial(buckled_mob.anchored)
+		buckled_mob.update_lying_buckled_and_verb_status()
+		buckled_mob.update_floating()
+		buckled_mob = null
+
+		post_buckle_mob(.)
 	if(reagents)
 		QDEL_NULL(reagents)
 
@@ -164,7 +178,7 @@
 
 	if(isatom(loc) && loc)
 		var/atom/a = loc
-		a.recalculateWeights(-weight)
+		a.recalculateWeights(-weight, src)
 
 	update_openspace()
 	return ..()
@@ -364,6 +378,7 @@ its easier to just keep the beam vertical.
 	else
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
 
+	to_chat(user, "It weights [weight] grams")
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(desc)

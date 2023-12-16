@@ -16,7 +16,6 @@
 	organ_tag = "limb"
 	bad_type = /obj/item/organ/external
 	spawn_tags = SPAWN_TAG_ORGAN_EXTERNAL
-	weight = 51
 	var/tally = 0
 
 	// Strings
@@ -214,9 +213,11 @@
 	..()
 	SSnano.update_uis(src)
 
+//// THE ISSUE!!!!
 /obj/item/organ/external/proc/make_base_internal_organs()
 	if(is_stump(src))
 		return
+	/// these 4 god damn things cause issues with weight !!!!
 	if(generation_flags & ORGAN_HAS_BONES)
 		make_bones()
 	if(generation_flags & ORGAN_HAS_NERVES)
