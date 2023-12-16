@@ -161,7 +161,7 @@
 			return
 
 		// Removing reinforcements or components
-		if(QUALITY_PRYING)
+		if(QUALITY_PRYING && !istype(I,/obj/item/mech_component/manipulators))
 			// Removing reinforcements
 			if(is_reinforced == FRAME_REINFORCED)
 				user.visible_message(SPAN_NOTICE("\The [user] starts prying the reinforcements off \the [src]."))
