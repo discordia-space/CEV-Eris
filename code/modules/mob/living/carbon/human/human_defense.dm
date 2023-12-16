@@ -79,6 +79,47 @@ meteor_act
 
 	..(stun_amount, agony_amount, def_zone)
 
+/mob/living/carbon/human/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	var/list/blockers = list()
+	if(defZone)
+		var/obj/item/organ/external/affected = null
+		if(isorgan(defZone))
+			affected = defZone
+		else
+			affected = get_organ(defZone)
+		if(affected)
+			blockers |= affected.getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	else
+		blockers.Add(src)
+	return blockers
+
+/obj/item/organ/external/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	var/list/blockers = list()
+	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
+	if(defZone.armor)
+		blockers |= defZone
+
+	for(var/gear in protective_gear)
+		if(gear && istype(gear ,/obj/item/clothing))
+			var/obj/item/clothing/C = gear
+			if(istype(C) && C.armor)
+				blockers |= C.getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+
+	var/obj/item/shield/shield = has_shield()
+
+	if(shield)
+		blockers |= shield
+
+	/* Removed , we got weight mechanics , SPCR - 2023
+	if (protection > 75) // reducing the risks from powergaming
+		switch (type)
+			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
+			else return protection
+	*/
+
+	return blockers
+
+/*
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
 	var/armorval = 0
 	var/total = 0
@@ -128,6 +169,7 @@ meteor_act
 			R.ablative_armor = max(R.ablative_armor - damage_taken / R.ablation, 0)
 			return TRUE
 	return FALSE
+*/
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(obj/item/organ/external/def_zone)
@@ -154,8 +196,8 @@ meteor_act
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
-			if(istype(C) && C.body_parts_covered & def_zone.body_part && C.armor)
-				protection += C.armor.getRating(type)
+			if(istype(C) && C.armor)
+				protection += C.getArmor(type, def_zone)
 
 	var/obj/item/shield/shield = has_shield()
 

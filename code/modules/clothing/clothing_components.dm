@@ -1,4 +1,20 @@
-/obj/item/armor_plate
+/*
+#define HEAD        0x1
+#define FACE        0x2
+#define EYES        0x4
+#define EARS        0x8
+#define UPPER_TORSO 0x10
+#define LOWER_TORSO 0x20
+#define LEG_LEFT    0x40
+#define LEG_RIGHT   0x80
+#define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
+#define ARM_LEFT    0x400
+#define ARM_RIGHT   0x800
+#define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
+#define FULL_BODY   0xFFFF
+ CLOTH COVERING DEFINES FOR CONVENIENCE */
+
+/obj/item/armor_component
 	name = "Buggy armor plate"
 	desc = "You shouldn't see this subtype... annoy SPCR to fix his code."
 	spawn_blacklisted = TRUE
@@ -10,6 +26,7 @@
 	var/armorHealth = 1500
 	/// Defines the max health this armor may have. Fetched from material and multiplied
 	var/maxArmorHealth = 1500
+	var/covering = UPPER_TORSO | LOWER_TORSO
 	/// Armor values , will be fetched from material on initialize and multiplied(if it is defined)
 	armor = list(
 		ARMOR_BLUNT = 0,
@@ -46,12 +63,13 @@
 		CS_MELLEPARTIALBLOCK = null,
 		CS_MELLEPENETRATE = null
 	)
-	/// The material used here , we fetch armor values from it. Initially the material name for init purposes
+	/// The material used here , we fetch armor values from it. Initially the material name for init purposes or null for none
+	/// We fetch armor degradation from it unless we have the custom degr flag, same with armors
 	var/material/material = null
 	/// A multiplier on the material armor values
 	var/materialArmorMut = 1
 
-/obj/item/armor_plate/Initialize()
+/obj/item/armor_component/Initialize()
 	/// Don't set material if you don't want to do anything with material value grabs
 	if(!material)
 		return ..()
@@ -72,10 +90,10 @@
 /// Gets given the armorType to return a value for. Override this for your special plates
 /// Call this for the standard rounding i guess(after you set the armor[armorType])
 /// Sends the armorType for your special handling SPCR - 2023
-/obj/item/armor_plate/proc/customDregadation(armorType, armorValue)
+/obj/item/armor_component/proc/customDregadation(armorType, armorValue)
 	return round(armorValue, 0.1)
 
-/obj/item/armor_plate/proc/updateArmor()
+/obj/item/armor_component/proc/updateArmor()
 	var/list/tempArmor = list()
 	for(var/armorType in ALL_ARMOR)
 		switch(armorFlags)
@@ -85,4 +103,52 @@
 				tempArmor[armorType] = round((maxArmorHealth/(clamp((maxArmorHealth - armorHealth + 0.1)**2, 0, maxArmorHealth))) * material.armor[armorType] * CLOTH_NORMAL_MTA_MUT, 0.1)
 			if(CF_ARMOR_DEG_CUSTOM)
 				tempArmor[armorType] = customDregadation(armorType, material.armor[armorType])
+
+	armor = getArmor(
+		ARMOR_BLUNT = tempArmor[ARMOR_BLUNT],
+		ARMOR_SLASH = tempArmor[ARMOR_SLASH],
+		ARMOR_POINTY = tempArmor[ARMOR_POINTY],
+		ARMOR_BULLET = tempArmor[ARMOR_BULLET],
+		ARMOR_ENERGY = tempArmor[ARMOR_ENERGY],
+		ARMOR_ELECTRIC = tempArmor[ARMOR_ELECTRIC],
+		ARMOR_BIO = tempArmor[ARMOR_BIO],
+		ARMOR_CHEM = tempArmor[ARMOR_CHEM],
+		ARMOR_RAD = tempArmor[ARMOR_RAD]
+	)
+
+/// Def zone is checked in clothing before
+/obj/item/armor_component/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	for(var/armorType in armorToDam)
+		if(armorHealth <= 0)
+			break
+		for(var/list/damageElement in armorToDam[armorType])
+			var/blocked = clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
+			damageElement[2] -= blocked
+			armorHealth -= blocked * armorDegradation[armorType]
+	updateArmor()
+	return armorToDam
+
+
+/obj/item/armor_component/plate
+	name = "Armor plate"
+	desc = "A very basic armor plate"
+	covering = UPPER_TORSO | LOWER_TORSO
+	armor_flags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	/// A basic armor will have a volume storage of 3
+	volume = 1
+
+/obj/item/armor_component/armguards
+	name = "Arm guards"
+	desc = "A set of basic arm guards"
+	covering = ARMS
+	armor_flags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	/// A basic armor will have a volume storage of 2
+	volume = 1
+
+/obj/item/armor_component/legguards
+	name = "Leg guards"
+	desc = "A set of basic leg guards"
+	covering = LEGS
+	armor_flags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	volume = 1
 

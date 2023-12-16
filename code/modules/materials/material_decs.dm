@@ -270,6 +270,7 @@
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	weight = 50
 	hardness = 50
+	composite_material = list(MATERIAL_GLASS = 3, MATERIAL_PLASMA = 3)
 	created_window = /obj/structure/window/plasmabasic
 	created_window_full = /obj/structure/window/plasmabasic/full
 	wire_product = null
@@ -282,12 +283,11 @@
 	integrity = 1000
 	weight = 265
 	stack_origin_tech = list(TECH_MATERIAL = 5)
-	composite_material = list() //todo
+	composite_material = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 3, MATERIAL_PLASMA = 3) //todo
 	created_window = /obj/structure/window/reinforced/plasma
 	created_window_full = /obj/structure/window/reinforced/plasma/full
 	hardness = 60
 	weight = 50
-	//composite_material = list() //todo
 	rod_product = null
 
 /material/plastic
@@ -528,3 +528,50 @@
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+232
 	melting_point = T0C+300
+
+/material/cloth/kevlar
+	name = MATERIAL_KEVLAR
+	display_name = "kevlar"
+	use_name = "kevlar cloth"
+	flags = MATERIAL_PADDING
+	ignition_point = T0C + 400
+	melting_point = T0C + 544
+	composite_material = list(MATERIAL_CLOTH = 6)
+
+/material/cloth/kevlar/upgraded
+	name = MATERIAL_KEVLARSTEEL
+	display_name = "steelweave kevlar"
+	use_name = "steelweave kevlar"
+	composite_material = list(MATERIAL_CLOTH = 3, MATERIAL_STEEL = 3)
+/material/steel/neosteel
+	name = MATERIAL_NEOSTEEL
+	display_name = "neosteel"
+	use_name = "neosteel"
+	composite_material = list(MATERIAL_STEEL = 3, MATERIAL_OSMIUM = 1)
+
+/material/titanium/titanplasteelalloy
+	name = MATERIAL_TPALLOY
+	display_name = "plastitan"
+	use_name = "plastitan"
+	composite_material = list(MATERIAL_TITANIUM = 2, MATERIAL_PLASTEEL = 1)
+
+/material/titanium/titangoldalloy
+	name = MATERIAL_TGALLOY
+	display_name = "golditanium"
+	use_name = "golditanium"
+	composite_material = list(MATERIAL_GOLD = 3, MATERIAL_TITANIUM = 1)
+
+/material/lowreflective
+	name = MATERIAL_LOWREFLECTIVE
+	display_name = "silver mirror"
+	use_name = "silver mirror"
+	composite_material = list(MATERIAL_GLASS = 3, MATERIAL_SILVER = 3)
+
+/material/highreflective
+	name = MATERIAL_HIGHREFLECTIVE
+	display_name = "dielectric alloy"
+	use_name = "dielectric alloy"
+
+
+
+

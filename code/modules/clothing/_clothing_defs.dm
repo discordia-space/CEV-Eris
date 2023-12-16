@@ -30,17 +30,21 @@
 /// Multiplier for material weight to clothing weight. a little bit less since the human body is curvier than a cube
 #define CLOTH_NORMAL_MTW_MUT 0.6
 
+/// Indexes for volumes on each bodypart and armor plates
+#define CLOTH_ARMOR_TORSO 1
+#define CLOTH_ARMOR_ARMG 2
+#define CLOTH_ARMOR_LEGG 3
+
 /// Clothing flags
 #define CLOTH_MODULAR "modular" /// For modular armor only , anything that doesn't have this is not modifiable.
 
 /// Defines for accesories
 
 /// Glueable armor.
-#define ACS_GARMOR "armor"
+#define ACS_GARMOR "garmor"
 /// Armband , custom type so there can only be one
 #define ACS_ARMBAND "armband"
 /// For anything that can be used as decor and that generally doesn't stack.
 #define ACS_DECOR "decor"
 /// For utility related stuff , holster, etc.
 #define ACS_UTILITY "utility"
-

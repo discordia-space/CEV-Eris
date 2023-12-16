@@ -16,37 +16,129 @@
 		visible_message(msg1, msg2)
 	else
 		show_message(msg1, 1)
+/*
+ArmorToDam has the following format
+	list[armorType]= list(
+		list(damType, damValue),
+		list(damType2, damValue2),
+		...
+		)
+armorType defines the armorType that will block all the damTypes that it has associated with it.
+*/
 
-/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_BLUNT, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE)
-	if(damage) // If damage is defined, we add it to the list
-		if(!dmg_types[damagetype])
-			dmg_types += damagetype
-		dmg_types[damagetype] += damage
+#define DAMTYPE 1
+#define DAMVALUE 2
 
+/mob/living/proc/damage_through_armor(list/armorToDam, defZone, armorDiv = 1, usedWeapon, woundMult = 1, return_continuation = FALSE)
 	if(armor_divisor <= 0)
 		armor_divisor = 1
 		log_debug("[used_weapon] applied damage to [name] with a nonpositive armor divisor")
 
-	var/total_dmg = 0
-	var/dealt_damage = 0
+	var/totalDmg = 0
+	var/dealtDamage = 0
 
-	for(var/dmg_type in dmg_types)
-		total_dmg += dmg_types[dmg_type]
+	for(var/armorType in armorToDam)
+		for(var/list/damageElement in armorToDam[armorType])
+			totalDmg += damageElement[DAMVALUE]
 
-	if(!total_dmg)
+	var/list/atdCopy = armorToDam.Copy()
+
+	if(totalDmg <= 0)
 		return FALSE
 
+	var/list/atom/damageBlockers = list()
+	/// Retrieve all relevanta damage blockers , its why we give them the dmgtypes list
+	damageBlockers = getDamageBlockers(armorToDam)
+	/// We are going to order the list to be traversed from right to left , right representing the outermost layers and left the innermost
+	/// List for insertion-sort. Upper objects are going to be last , lower ones are going to be first when blocking
+	var/list/blockersTemp = list(
+		/atom = list(),
+		/obj/item/organ/internal = list(), /// For when i rework applyDamage
+		/obj/item/organ/external = list(),
+		/mob = list(),
+		/obj/item/clothing = list(),
+		/obj/item/armor_component = list()
+	)
+
+	var/list/atom/newBlockers = list()
+	for(var/atom/blocker in damageBlockers)
+		/// reverse order
+		for(var/i = length(blockersTemp) to 1)
+			var/path = blockersTemp[i]
+			if(istype(blocker, path))
+				blockersTemp[path] += blocker
+				break
+
+	// from 1 to len now
+	for(var/i = 1 to length(blockersTemp))
+		var/path = blockersTemp[i]
+		for(var/thing in blockersTemp[path])
+			newBlockers.Add(thing)
+
+	damageBlockers = newBlockers
+
+	/// from right(outermost) to left(innermost)
+	for(var/i = length(damageBlockers) to 1)
+		var/atom/blocker = damageBlockers[i]
+		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
+
+	for(var/armorType in armorToDam)
+		for(var/i=1 to length(armorToDam[armorType]))
+			var/list/damageElement = armorToDam[armorType][i]
+			var/blocked = atdCopy[armorType][i][DAMVALUE] - damageElement[DAMVALUE]
+			if(damageElement[DAMTYPE] = HALLOSS)
+				adjustHalLoss(damageElement[DAMVALUE])
+			else
+				// Just a little bit of agony
+				adjustHalLoss(damageElement[DAMVALUE]/5)
+			apply_damage(damageElement[DAMVALUE], damageElement[DAMTYPE], defZone, armorDiv, woundMult, armorType == ARMOR_SLASH, armorType == ARMOR_SLASH, usedWeapon)
+			dealtDamage += damageElement[DAMVALUE]
+
+	var/effective_armor = (1 - dealtDamage / totalDmg) * 100
+
+	if(effective_armor > 90)
+		armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"), SPAN_NOTICE("Your armor absorbed the impact!"))
+		playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
+	else if(effective_armor > 74)
+		armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"), SPAN_NOTICE("Your armor absorbed the impact!"))
+		playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
+	else if(effective_armor > 49)
+		armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"), SPAN_NOTICE("Your armor protects you from the impact!"))
+	else if(effective_armor > 24)
+		armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."), SPAN_NOTICE("Your armor reduced the impact a little."))
+
+	if(return_continuation)
+		var/obj/item/projectile/P = used_weapon
+		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
+			return PROJECTILE_STOP
+		var/list/damageTypes = list()
+		/// Build list in format for bullets..
+		for(var/armorType in armorToDam)
+			for(var/list/damageElement in armorToDam)
+				damageTypes[damageElement[DAMTYPE]] += damageElement[DAMVALUE]
+		P.damage_types = damageTypes
+		if(P.is_sharp())
+			var/remaining_dmg = 0
+			for(var/dmg_type in damageTypes)
+				remaining_dmg += damageTypes[dmg_type]
+			return ((totalDmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
+		else return PROJECTILE_STOP
+
+	return dealt_damage
+
+
+	/*
 	// Determine DR and ADR, armour divisor reduces it
 	var/armor = getarmor(def_zone, attack_flag) / armor_divisor
-	if(!(attack_flag in list(ARMOR_BLUNT, ARMOR_SLASH,, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
+	if(!(attack_flag in list(ARMOR_BLUNT, ARMOR_SLASH,ARMOR_POINTY, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
 		armor /= 5
 	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armor_divisor
 
 	var/remaining_armor = armor
 	var/remaining_ablative = ablative_armor
 
-	for(var/dmg_type in dmg_types)
-		var/dmg = dmg_types[dmg_type]
+	for(var/dmg_type in damTypes)
+		var/dmg = damTypes[dmg_type]
 		if(dmg)
 			var/used_armor = 0 // Used for agony calculation, as well as reduction in armour before follow-up attacks
 
@@ -70,7 +162,7 @@
 			if(!(dmg_type == HALLOSS)) // Determine pain from impact
 				adjustHalLoss(used_armor / 10 * (wounding_multiplier ? wounding_multiplier : 1) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
-			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
+			damTypes[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
 
@@ -78,7 +170,7 @@
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
-					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
+					if ( (sharp || edge) && prob ( (1 - dmg / damTypes[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
 						if(wounding_multiplier)
 							wounding_multiplier = step_wounding_double(wounding_multiplier) // Implied piercing damage, degrade by two steps (prevents damage duping from <1 multiplier)
 						else
@@ -141,15 +233,16 @@
 		var/obj/item/projectile/P = used_weapon
 		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
 			return PROJECTILE_STOP
-		P.damage_types = dmg_types
+		P.damage_types = damTypes
 		if(sharp)
 			var/remaining_dmg = 0
-			for(var/dmg_type in dmg_types)
-				remaining_dmg += dmg_types[dmg_type]
+			for(var/dmg_type in damTypes)
+				remaining_dmg += damTypes[dmg_type]
 			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
 		else return PROJECTILE_STOP
 
 	return dealt_damage
+	*/
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
@@ -207,7 +300,7 @@
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
-		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, dmg_types = P.damage_types, return_continuation = TRUE)
+		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, damTypes = P.damage_types, return_continuation = TRUE)
 
 	return PROJECTILE_CONTINUE
 

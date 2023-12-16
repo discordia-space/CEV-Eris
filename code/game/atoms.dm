@@ -45,6 +45,19 @@
 /atom/proc/update_icon()
 	return
 
+/atom/proc/getWeight()
+	return initial(weight)
+
+/atom/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, def_zone)
+	return src
+
+/// This one works by list reference , so no need to return , but just incase...
+/atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, def_zone)
+	for(var/armorType in armorToDam)
+		for(var/list/damageElement in armorToDam[armorType])
+			damageElement[2] -= clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
+	return armorToDam
+
 /**
  * Called when an atom is created in byond (built in engine proc)
  *
@@ -59,6 +72,8 @@
 	init_plane()
 	update_plane()
 	init_light()
+
+	weight = getWeight()
 
 	if(isatom(loc) && loc)
 		var/atom/a = loc

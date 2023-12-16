@@ -23,6 +23,18 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
+	/// For the new custom armor system. Determines how many plates and side guards we can install
+	var/global/list/maxArmorVolume = list(
+		CLOTH_ARMOR_TORSO = 0,
+		CLOTH_ARMOR_LEGG = 0,
+		CLOTH_ARMOR_ARMG = 0
+	)
+
+	/// A list of all the armorComps, order is important since we iterate inversely.
+	var/list/obj/item/armor_component/armorComps = list()
+
+
+
 	style = STYLE_NONE
 	var/style_coverage = NONE
 
@@ -35,6 +47,18 @@
 
 
 	price_tag = 30
+
+/obj/item/clothing/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	var/list/blockers = list()
+	/// From the clothing itself
+	if(defZone.body_part & body_parts_covered)
+		blockers.Add(src)
+	/// From all the internal clothing components
+	for(var/obj/item/armor_component/armComp in armorComps)
+		if(armComp.covering & def_zone.body_part)
+			blockers.Add(armComp)
+
+	return blockers
 
 /obj/item/clothing/attack_self(mob/user)
 	if(brightness_on)

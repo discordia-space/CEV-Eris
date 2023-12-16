@@ -14,11 +14,13 @@
 	var/corporation
 	var/heat = 0
 
-/obj/New(loc)
+/// Used for calculating weight, return value will set the atom's weight
+/obj/getWeight()
+	var/w = initial(weight)
 	for(var/material in matter)
 		var/material/mat = get_material_by_name(material)
-		weight += mat.weight * matter[material]
-	..(loc)
+		w += mat.weight * matter[material]
+	return w
 
 /obj/proc/is_hot()
 	return heat
