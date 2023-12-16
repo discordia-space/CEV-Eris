@@ -1026,6 +1026,8 @@ var/list/rank_prefix = list(\
 	species.organs_spawned(src)
 
 	update_body()
+	/// Because organ rebuilding breaks our shit
+	updateWeights()
 
 /mob/living/carbon/human/proc/post_prefinit()
 	var/obj/item/implant/core_implant/C = locate() in src

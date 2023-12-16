@@ -30,6 +30,7 @@
 	var/light_applied
 	var/brightness_on
 	var/on = FALSE
+	matter = list(MATERIAL_CLOTH = 5)
 
 
 
@@ -322,6 +323,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_EYES
 	bad_type = /obj/item/clothing/glasses
 	style = STYLE_LOW
+	matter = list(MATERIAL_GLASS = 1, MATERIAL_PLASTIC = 1)
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
@@ -343,6 +345,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 	style = STYLE_LOW
+	matter = list(MATERIAL_CLOTH = 3)
 	var/wired = 0
 	var/clipped = 0
 
@@ -380,6 +383,7 @@ BLIND     // can't see anything
 	bad_type = /obj/item/clothing/head
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
 	style = STYLE_HIGH
+	matter = list(MATERIAL_CLOTH = 3)
 
 /obj/item/clothing/head/attack_ai(mob/user)
 	if(!mob_wear_hat(user))
@@ -424,6 +428,7 @@ BLIND     // can't see anything
 	var/voicechange = FALSE
 	var/list/say_messages
 	var/list/say_verbs
+	matter = list(MATERIAL_CLOTH = 4)
 
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
@@ -446,6 +451,7 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	style = STYLE_LOW
 	force = 2
+	matter = list(MATERIAL_CLOTH = 2, MATERIAL_LEATHER = 2)
 
 	var/can_hold_knife = 0
 	var/obj/item/holding
@@ -592,6 +598,7 @@ BLIND     // can't see anything
 	restricted_accessory_slots = list(ACS_GARMOR,ACS_ARMBAND)
 	maxHealth = 300
 	health = 300
+	matter = list(MATERIAL_CLOTH = 5)
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
@@ -627,6 +634,7 @@ BLIND     // can't see anything
 
 	valid_accessory_slots = list(ACS_GARMOR,ACS_UTILITY,ACS_ARMBAND,ACS_DECOR)
 	restricted_accessory_slots = list(ACS_GARMOR,ACS_UTILITY, ACS_ARMBAND)
+	matter = list(MATERIAL_CLOTH = 3)
 
 
 /obj/item/clothing/under/attack_hand(mob/user)

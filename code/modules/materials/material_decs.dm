@@ -416,7 +416,7 @@
 	name = MATERIAL_CLOTH
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	door_icon_base = "wood"
-	weight = 10
+	weight = 30
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING
@@ -466,7 +466,7 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 
-/material/cloth_teal
+/material/cloth/teal
 	name = "teal"
 	display_name ="teal"
 	use_name = "teal cloth"
@@ -475,7 +475,7 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 
-/material/cloth_black
+/material/cloth/black
 	name = "black"
 	display_name = "black"
 	use_name = "black cloth"
@@ -484,7 +484,7 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 
-/material/cloth_green
+/material/cloth/green
 	name = "green"
 	display_name = "green"
 	use_name = "green cloth"
@@ -493,7 +493,7 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 
-/material/cloth_puple
+/material/cloth/puple
 	name = "purple"
 	display_name = "purple"
 	use_name = "purple cloth"
@@ -502,7 +502,7 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 
-/material/cloth_blue
+/material/cloth/blue
 	name = "blue"
 	display_name = "blue"
 	use_name = "blue cloth"
@@ -511,7 +511,7 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 
-/material/cloth_beige
+/material/cloth/beige
 	name = "beige"
 	display_name = "beige"
 	use_name = "beige cloth"
@@ -520,7 +520,7 @@
 	ignition_point = T0C+232
 	melting_point = T0C+300
 
-/material/cloth_lime
+/material/cloth/lime
 	name = "lime"
 	display_name = "lime"
 	use_name = "lime cloth"

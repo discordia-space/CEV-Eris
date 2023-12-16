@@ -17,7 +17,7 @@
 /obj/New(loc)
 	for(var/material in matter)
 		var/material/mat = get_material_by_name(material)
-		weight += mat.weight
+		weight += mat.weight * matter[material]
 	..(loc)
 
 /obj/proc/is_hot()

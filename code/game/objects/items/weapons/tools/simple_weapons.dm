@@ -97,6 +97,7 @@
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 5)
 	embed_mult = 1.2 //Axes cut deep, and their hooked shape catches on things
 	rarity_value = 48
 

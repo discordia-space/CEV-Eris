@@ -94,6 +94,7 @@ proc/explosion_rec(turf/epicenter, power)
 
 /turf/simulated/wall
 	explosion_resistance = 10
+	weight = 5000
 
 
 

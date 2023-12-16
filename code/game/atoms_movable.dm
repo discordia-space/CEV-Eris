@@ -88,16 +88,12 @@ GLOBAL_VAR_INIT(Debug,0)
 /// This proc is pasted directly into critical areas that get called very frequently to save on proc calling time
 /// Search all instances where this proc is used by searching the following text #TAG_RECALCWEIGHT
 /atom/proc/recalculateWeights(weightValue, caller)
-	var/global/callcount = 0
-	var/itercount = 0
-	++callcount
 	var/oldWeight = weight
 	weight += weightValue
 	var/atom/location = loc
 	/// apply this to turfs too for funny sheninigans
 	while(!isarea(location) && location)
 	/// avoid a extra operation. just add the difference
-		++itercount
 		location.weight += (weight - oldWeight)
 		//if(ishuman(caller) || ishuman(src) || ishuman(location) || istype(caller, /obj/item/organ) || istype(src, /obj/item/organ))
 		//	message_admins("Added [weight - oldWeight] to [location],LocWeight=[location.weight]|ItemWeight=[weight]|ItemOldWeight=[oldWeight]| to [src] from [caller](\ref[caller]) (call: [callcount] # [itercount])")
