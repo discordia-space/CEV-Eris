@@ -92,7 +92,7 @@
 	if(is_reinforced == FRAME_REINFORCED_SECURE || is_reinforced == FRAME_REINFORCED_WELDED)
 		usable_qualities += QUALITY_WELDING
 
-	if(is_reinforced == FRAME_REINFORCED || arms || legs || head || body)
+	if((is_reinforced == FRAME_REINFORCED && !istype(I, /obj/item/mech_equipment/manipulators)) || arms || legs || head || body)
 		usable_qualities += QUALITY_PRYING
 
 	if(is_wired)
@@ -161,7 +161,7 @@
 			return
 
 		// Removing reinforcements or components
-		if(QUALITY_PRYING && !istype(I,/obj/item/mech_component/manipulators))
+		if(QUALITY_PRYING)
 			// Removing reinforcements
 			if(is_reinforced == FRAME_REINFORCED)
 				user.visible_message(SPAN_NOTICE("\The [user] starts prying the reinforcements off \the [src]."))
