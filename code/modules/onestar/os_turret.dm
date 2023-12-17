@@ -255,6 +255,7 @@
 		return
 	set_dir(get_dir(src, target))
 	var/obj/item/projectile/P = new projectile(loc)
+	P.PrepareForLaunch()
 	P.launch(target, def_zone)
 	playsound(src, shot_sound, 60, 1)
 

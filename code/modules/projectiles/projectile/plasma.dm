@@ -136,7 +136,7 @@
 	armor_divisor = 2
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			DELEM(BURN ,28)
+			DELEM(BURN ,27)
 		)
 	)
 	recoil = 18

@@ -102,6 +102,7 @@
 /obj/item/projectile/bullet/rocket/heat/detonate(atom/target)
 	var/turf/T = get_turf_away_from_target_complex(get_turf(src), starting, 3)
 	var/obj/item/projectile/forcebolt/jet/P = new(get_turf(src))
+	P.PrepareForLaunch()
 	P.launch(T, def_zone)
 	if(target)
 		P.Bump(target, TRUE)

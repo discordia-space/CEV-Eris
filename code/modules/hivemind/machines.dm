@@ -468,6 +468,7 @@
 
 /obj/machinery/hivemind_machine/turret/use_ability(atom/target)
 	var/obj/item/projectile/proj = new proj_type(loc)
+	proj.PrepareForLaunch()
 	proj.launch(target)
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 

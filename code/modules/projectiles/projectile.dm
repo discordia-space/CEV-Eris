@@ -106,29 +106,54 @@
 	LAZYCLEARLIST(permutated)
 	return ..()
 
+/// This MUST be called before any modifications are done to the damage list.
+/obj/item/projectile/proc/PrepareForLaunch()
+	damage = damage_types.Copy()
+
 /obj/item/projectile/is_hot()
-	if (damage_types[BURN])
-		return damage_types[BURN] * heat
+	return getAllDamnType(BURN) * heat
 
 /obj/item/projectile/proc/get_total_damage()
 	var/val = 0
-	for(var/i in damage_types)
-		val += damage_types[i]
+	var/damageList = damage
+	if(!length(damage) || !damage)
+		damageList = damage_types
+	for(var/armorType in damageList)
+		for(var/list/damageElement in damageList[armorType])
+			val += damageElement[2]
+
 	return val
 
 /obj/item/projectile/proc/is_halloss()
-	for(var/i in damage_types)
-		if(i != HALLOSS)
-			return FALSE
+	var/damageList = damage
+	if(!length(damage) || !damage)
+		damageList = damage_types
+	for(var/armorType in damageList)
+		for(var/list/damageElement in damageList[armorType])
+			if(damageElement[1] != HALLOSS)
+				return FALSE
 	return TRUE
 
-/obj/item/projectile/multiply_projectile_damage(newmult)
-	for(var/i in damage_types)
-		damage_types[i] *= i == HALLOSS ? 1 : newmult
+/obj/item/projectile/proc/getAllDamType(type)
+	var/damageList = damage
+	var/totalDamage = 0
+	if(!length(damage) || !damage)
+		damageList = damage_types
+	for(var/armorType in damageList)
+		for(var/list/damageElement in damageList[armorType])
+			if(damageElement[1] == type)
+				totalDamage += damageElement[2]
+	return totalDamage
 
-/obj/item/projectile/multiply_projectile_halloss(newmult)
-	for(var/i in damage_types)
-		damage_types[i] *= i == HALLOSS ? newmult : 1
+/obj/item/projectile/multiply_projectile_damage(newMult)
+	for(var/armorType in damage)
+		for(var/list/damageElement in damage[armorType])
+			damageElement[2] *= damageElement[1] == HALLOSS ? 1 : newMult
+
+/obj/item/projectile/multiply_projectile_halloss(newMult)
+	for(var/armorType in damage)
+		for(var/list/damageElement in damage[armorType])
+			damageElement[2] *= damageElement[1] == HALLOSS ? newMult : 1
 
 /obj/item/projectile/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
@@ -147,13 +172,24 @@
 	projectile_accuracy = initial(projectile_accuracy) * newmult
 
 // bullet/pellets redefines this
-/obj/item/projectile/proc/adjust_damages(var/list/newdamages)
+/obj/item/projectile/proc/adjust_damages(list/newdamages)
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)
 		if(damage_type == IRRADIATE)
 			irradiate += newdamages[IRRADIATE]
 			continue
+		for(var/armorType in damage)
+			var/damageApplied = FALSE
+			for(var/list/damageElement in damage[armorType])
+				if(damageElement[1] == damage_type)
+					damageElement[2] += newdamages[damage_type]
+					damageApplied = TRUE
+					break
+			if(!damageApplied)
+				var/list/elements = damage[armorType]
+				elements.Add(DELEM(damage_type, newdamages[damage_type]))
+			break
 		damage_types[damage_type] += newdamages[damage_type]
 
 /obj/item/projectile/proc/adjust_ricochet(noricochet)
@@ -182,15 +218,15 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(!embed || damage_types[BRUTE] <= 0)
+	if(!embed || getAllDamType(BRUTE) <= 0)
 		return FALSE
 	return TRUE
 
 /obj/item/projectile/proc/get_structure_damage(var/injury_type)
 	if(!injury_type) // Assume homogenous
-		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp) * 2
+		return (getAllDamType(BRUTE) + getAllDamType(BURN)) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp) * 2
 	else
-		return (damage_types[BRUTE] + damage_types[BURN]) * wound_check(injury_type, wounding_mult, edge, sharp) * 2
+		return (getAllDamType(BRUTE) + getAllDamType(BURN)) * wound_check(injury_type, wounding_mult, edge, sharp) * 2
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(atom/A)
@@ -656,30 +692,29 @@
 			P.pixel_y = location.pixel_y
 			P.activate(P.lifetime)
 
-/obj/item/projectile/proc/block_damage(var/amount, atom/A)
+/obj/item/projectile/proc/block_damage(amount, atom/A)
 	amount /= armor_divisor
-	var/dmg_total = 0
-	var/dmg_remaining = 0
-	for(var/dmg_type in damage_types)
-		var/dmg = damage_types[dmg_type]
-		if(!(dmg_type == HALLOSS))
-			dmg_total += dmg
-		if(dmg > 0 && amount > 0)
-			var/dmg_armor_difference = dmg - amount
-			var/is_difference_positive = dmg_armor_difference > 0
-			amount = is_difference_positive ? 0 : -dmg_armor_difference
-			dmg = is_difference_positive ? dmg_armor_difference : 0
-			if(!(dmg_type == HALLOSS))
-				dmg_remaining += dmg
-		if(dmg > 0)
-			damage_types[dmg_type] = dmg
-		else
-			damage_types -= dmg_type
-	if(!damage_types.len)
+	var/damageLeft = 0
+	var/damageTotal = 0
+	for(var/armorType in damage)
+		for(var/list/damageElement in damage[armorType])
+			damageTotal += damageElement[2]
+			damageElement[2] = max(0, damageElement[2] - amount)
+			if(damageElement[2] == 0)
+				damage[armorType] -= damageElement
+			else
+				damageLeft += damageElement[2]
+
+	var/elementsLeft = 0
+	for(var/armorType in damage)
+		for(var/list/damageElement in damage[armorType])
+			elementsLeft++
+
+	if(!elementsLeft)
 		on_impact(A)
 		qdel(src)
 
-	return dmg_total > 0 ? (dmg_remaining / dmg_total) : 0
+	return damageTotal > 0 ? (damageLeft / damageTotal) :0
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.

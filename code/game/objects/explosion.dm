@@ -159,9 +159,10 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 	for(var/turf/T in target_turfs)
 		//sleep(0)
 		var/obj/item/projectile/bullet/pellet/fragment/P = new f_type(epicenter)
+		P.PrepareForLaunch()
 
 		if (!isnull(f_damage))
-			P.damage_types[BRUTE] = f_damage
+			P.adjust_damages(list(BRUTE = f_damage))
 		P.pellets = fragments_per_projectile
 		P.range_step = f_step
 
@@ -184,6 +185,7 @@ proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, pr
 		proj_amount--
 		var/obj/item/projectile/pew_thingie = new projectile_type(epicenter)
 		pew_thingie.firer = epicenter
+		pew_thingie.PrepareForLaunch()
 		pew_thingie.launch(pick(hittable_turfs))
 
 //Generic proc for spread of any projectile type.
@@ -195,12 +197,12 @@ proc/projectile_explosion(turf/epicenter, range, p_type, p_amount = 10, list/p_d
         return
 
     var/list/target_turfs = getcircle(epicenter, range)
-    while(p_amount)
+    while(p_amount >= 0)
         sleep(0)
         var/obj/item/projectile/P = new p_type(epicenter)
-
+		P.PrepareForLaunch()
         if(length(p_damage))
-            P.damage_types = p_damage
+			P.adjust_damages(p_damage)
 
         P.shot_from = epicenter
 

@@ -135,6 +135,7 @@
 		if(can_stun(M) && prob(stun_chance))
 			var/obj/item/projectile/beam/stun/P = new(src.loc)
 			P.shot_from = src
+			P.PrepareForLaunch()
 			P.launch(M)
 
 /obj/machinery/shieldwallgen/proc/can_stun(var/mob/M)

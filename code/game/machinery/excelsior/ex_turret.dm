@@ -175,6 +175,7 @@
 	use_power(reqpower)
 	var/def_zone = get_exposed_defense_zone(target)
 	var/angle_offset = pick(5, 10, 20, 0, -5, -10, -20)
+	A.PrepareForLaunch()
 	A.launch(target, def_zone, 0, 0, angle_offset)
 
 

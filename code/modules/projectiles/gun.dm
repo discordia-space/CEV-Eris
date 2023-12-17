@@ -319,7 +319,8 @@
 		return FALSE
 */
 	if(rigged)
-		var/obj/P = consume_next_projectile()
+		var/obj/projectile/P = consume_next_projectile()
+		P.PrepareForLaunch()
 		if(P)
 			if(process_projectile(P, user, user, BP_HEAD))
 				handle_post_fire(user, user)
@@ -425,6 +426,8 @@
 		if(!projectile)
 			handle_click_empty(user)
 			break
+
+		projectile.PrepareForLaunch()
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 

@@ -175,7 +175,8 @@
 	// Full damage if pressure < 0.5 atmosphere, one-fourth of damage in > 1 atmosphere, linear between those values
 	var/dmg = WEAPON_FORCE_DANGEROUS * clamp(1 - 0.75 * (env_pressure - 0.5 * ONE_ATMOSPHERE) / (0.5 * ONE_ATMOSPHERE), 0.25, 1)
 	// Burn because it's a plasma shot (installation gun)
-	A.damage_types[BURN] = dmg
+	A.PrepareForLaunch()
+	A.adjust_damages(list(BURN = dmg))
 
 	// Shooting Code
 	A.launch(target, def_zone)

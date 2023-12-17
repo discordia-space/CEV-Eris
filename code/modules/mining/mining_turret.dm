@@ -131,6 +131,7 @@
 	//If the target is grabbing someone then the turret smartly aims for extremities
 	var/def_zone = get_exposed_defense_zone(target)
 	//Shooting Code:
+	A.PrepareForLaunch()
 	A.launch(target, def_zone)
 
 #undef TURRET_PRIORITY_TARGET

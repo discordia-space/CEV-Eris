@@ -881,6 +881,7 @@
 		'sound/weapons/guns/fire/shotgunp_fire.ogg','sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/lmg_fire.ogg',\
 		'sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/batrifle_fire.ogg'),\
 		60, 1)
+	P.PrepareForLaunch()
 	P.launch(target)
 	visible_message(SPAN_WARNING("\The [src] launches \a [P] at \the [target]!"))
 	return 1

@@ -78,6 +78,7 @@
 	P.firer = src
 	if(target)
 		P.original = target
+	P.PrepareForLaunch()
 	P.launch( get_step(marker, pick(SOUTH, NORTH, WEST, EAST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)) )
 
 
