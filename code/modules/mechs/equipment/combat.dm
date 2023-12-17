@@ -887,16 +887,17 @@
 		update_icon()
 		return damages
 	flick("shield_impact", visual_bluff)
-	for(var/damage in damages)
-		while(power.charge >= damage_to_power_drain && damages[damage] > 0)
-			damages[damage] -= 1
-			power.use(damage_to_power_drain)
-			// if it blows
-			if(QDELETED(power))
-				last_toggle = world.time
-				on = FALSE
-				update_icon()
-				return damages
+	for(var/armorType in damages)
+		for(var/list/damageElement in damages[armorType])
+			while(power.charge >= damage_to_power_drain && damageElement[2] > 0)
+				damageElement[2] -= 1
+				power.use(damage_to_power_drain)
+				// if it blows
+				if(QDELETED(power))
+					last_toggle = world.time
+					on = FALSE
+					update_icon()
+					return damages
 
 	return damages
 

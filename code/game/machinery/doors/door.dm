@@ -183,15 +183,15 @@
 	..()
 
 	var/damage = Proj.get_structure_damage()
-	if(Proj.damage_types[BRUTE])
+	if(Proj.getAllDamType(BRUTE))
 		damage -= bullet_resistance
 
 	// Emitter Blasts - these will eventually completely destroy the door, given enough time.
-	if (damage > 90)
+	if (damage > 60)
 		destroy_hits--
 		if (destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
-			if(Proj.damage_types[BRUTE] > Proj.damage_types[BURN])
+			if(Proj.getAllDamType(BRUTE) > Proj.getAllDamType(BURN))
 				new /obj/item/stack/material/steel(src.loc, 2)
 				new /obj/item/stack/rods(loc, 3)
 			else

@@ -44,11 +44,7 @@
 // "Burn" damage is equally strong against internal components and exterior casing
 // "Brute" damage mostly damages the casing.
 /obj/item/modular_computer/bullet_act(var/obj/item/projectile/P)
-	for(var/i in P.damage_types)
-		if(i == BRUTE)
-			take_damage(P.damage_types[i], P.damage_types[i] / 2)
-		// TODO: enable after baymed
-		/*if(PAIN)
-			take_damage(Proj.damage, Proj.damage / 3, 0)*/
-		if(i == BURN)
-			take_damage(P.damage_types[i], P.damage_types[i] / 1.5)
+	var/dam = P.getAllDamType(BRUTE)
+	take_damage(dam, dam/2)
+	dam = P.getAllDamType(BURN)
+	take_damage(dam, dam/2)

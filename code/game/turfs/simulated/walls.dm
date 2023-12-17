@@ -233,8 +233,12 @@
 		if(prob(ricochetchance))
 			// projectile loses up to 50% of its health when it ricochets, depending on situation
 			var/healthdiff = round(proj_health / 2 + proj_health * ricochetchance / 200) // projectile loses up to 50% of its health when it ricochets, depending on situation
-			Proj.damage_types[BRUTE] = round(Proj.damage_types[BRUTE] / 2 + Proj.damage_types[BRUTE] * ricochetchance / 200)
-			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
+			var/list/damageAdjustment= list()
+			var/dam = Proj.getAllDamType(BRUTE)
+			damageAdjustment[BRUTE] = round(dam/2 + dam*ricochetchance/200)
+			dam = Proj.getAllDamType(BURN)
+			damageAdjustment[BURN] = round(dam/2 + dam*ricochetchance/200)
+			Proj.adjust_damages(damageAdjustment)
 			Proj.def_zone = ran_zone()
 			projectile_reflection(Proj)		// Reflect before health, runtimes occur in some cases if health happens first.
 			visible_message("<span class='danger'>\The [Proj] ricochets off the surface of wall!</span>")

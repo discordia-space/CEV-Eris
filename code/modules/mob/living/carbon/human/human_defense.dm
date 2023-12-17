@@ -30,8 +30,7 @@ meteor_act
 	var/check_absorb = .
 	//Shrapnel
 	if(P.can_embed() && (check_absorb == PROJECTILE_STOP))
-		var/armor = getarmor_organ(organ, ARMOR_BULLET)
-		if(prob(20 + max(P.damage_types[BRUTE] - armor, -10)))
+		if(prob(20 + max(P.getAllDamType(BRUTE) - armor, -10)))
 			var/obj/item/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."

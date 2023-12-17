@@ -29,7 +29,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 #define DAMTYPE 1
 #define DAMVALUE 2
 
-/mob/living/proc/damage_through_armor(list/armorToDam, defZone, armorDiv = 1, usedWeapon, woundMult = 1, return_continuation = FALSE)
+/mob/living/proc/damage_through_armor(list/armorToDam, defZone, usedWeapon, armorDiv = 1, woundMult = 1, return_continuation = FALSE)
 	if(armor_divisor <= 0)
 		armor_divisor = 1
 		log_debug("[usedWeapon] applied damage to [name] with a nonpositive armor divisor")
@@ -48,16 +48,17 @@ armorType defines the armorType that will block all the damTypes that it has ass
 
 	var/list/atom/damageBlockers = list()
 	/// Retrieve all relevanta damage blockers , its why we give them the dmgtypes list
-	damageBlockers = getDamageBlockers(armorToDam)
+	damageBlockers = getDamageBlockers(armorToDam, armorDiv, woundMult, defZone)
 	/// We are going to order the list to be traversed from right to left , right representing the outermost layers and left the innermost
 	/// List for insertion-sort. Upper objects are going to be last , lower ones are going to be first when blocking
 	var/list/blockersTemp = list(
-		/atom = list(),
+		/atom = list(), /// Fallbacks
 		/obj/item/organ/internal = list(), /// For when i rework applyDamage
 		/obj/item/organ/external = list(),
 		/mob = list(),
 		/obj/item/clothing = list(),
-		/obj/item/armor_component = list()
+		/obj/item/armor_component = list(),
+		/obj/item/robot_parts/robot_component/armour = list()
 	)
 
 	var/list/atom/newBlockers = list()
@@ -87,7 +88,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 			var/list/damageElement = armorToDam[armorType][i]
 			var/blocked = atdCopy[armorType][i][DAMVALUE] - damageElement[DAMVALUE]
 			if(damageElement[DAMTYPE] == HALLOSS)
-				adjustHalLoss(damageElement[DAMVALUE])
+				adjustHalLoss(damageElement[DAMVALUE] + blocked/4)
 			else
 				// Just a little bit of agony
 				adjustHalLoss(blocked/5)
@@ -166,7 +167,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 			signaler.signal()
 
-	var/agony = P.damage_types[HALLOSS] ? P.damage_types[HALLOSS] : 0
+	var/agony = P.getAllDamType(HALLOSS)
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, agony, def_zone_hit, P)
@@ -182,7 +183,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
-		return damage_through_armor(def_zone = def_zone_hit, attack_flag = P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P), wounding_multiplier = P.wounding_mult, damTypes = P.damage_types, return_continuation = TRUE)
+		return damage_through_armor(P.damage, def_zone_hit, P, P.armor_divisor, P.wounding_mult,TRUE )
 
 	return PROJECTILE_CONTINUE
 

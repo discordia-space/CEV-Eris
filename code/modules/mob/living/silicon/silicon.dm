@@ -119,11 +119,13 @@
 	if (Proj.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 
+	var/dam = Proj.getAllDamType(BRUTE)
 	if(!Proj.nodamage)
-		if(Proj.damage_types[BRUTE])
-			adjustBruteLoss(Proj.damage_types[BRUTE])
-		if(Proj.damage_types[BURN])
-			adjustFireLoss(Proj.damage_types[BURN])
+		if(dam)
+			adjustBruteLoss(dam)
+		dam = Proj.getAllDamType(BURN)
+		if(dam)
+			adjustFireLoss(dam)
 
 	Proj.on_hit(src)
 	updatehealth()

@@ -248,12 +248,16 @@ Like for example singulo act and whatever.
 
 // Projectiles
 /obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
-	if(proj.damage_types[BURN])
-		take_damage(proj.damage_types[BURN], SHIELD_DAMTYPE_HEAT, proj)
-	if(proj.damage_types[BRUTE])
-		take_damage(proj.damage_types[BRUTE], SHIELD_DAMTYPE_PHYSICAL, proj)
-	else
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_EM, proj)
+	var/totalDam = 0
+	var/dam = Proj.getAllDamType(BURN)
+	take_damage(dam, SHIELD_DAMTYPE_HEAT, proj)
+	totalDam += dam
+	dam = Proj.getAllDamnType(BRUTE)
+	take_damage(dam, SHIELD_DAMTYPE_PHYSICAL, proj)
+	totalDam += dam
+	dam = Proj.get_total_damage() - totalDam
+	if(dam > 0)
+		take_damage(dam, SHIELD_DAMTYPE_EM, proj)
 
 
 // Attacks with hand tools. Blocked by Hyperkinetic flag.

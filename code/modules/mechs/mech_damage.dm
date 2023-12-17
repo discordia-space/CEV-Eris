@@ -128,7 +128,7 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
-	var/list/damages=  P.damage_types
+	var/list/damages = P.damage
 	if(hit_dir & reverse_dir[dir])
 		if(gen)
 			damages = gen.absorbDamages(damages)
@@ -145,13 +145,15 @@
 		qdel(P)
 		return TRUE
 	hit_impact(P.get_structure_damage(), hit_dir)
-	for(var/damage_type in damages)
-		if(damage_type == HALLOSS)
-			continue
-		damage_through_armor(damages[damage_type], damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
-
+	damage_through_armor(damages, def_zone, P,P.armor_divisor, P.wounding_mult, FALSE)
 	P.on_hit(src, def_zone)
 	return PROJECTILE_STOP
+
+/mob/living/exosuit/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	var/list/blockers = list(src)
+	if(body && body.armor)
+		blockers |= body.armor_plate
+	return blockers
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0

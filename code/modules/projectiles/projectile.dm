@@ -8,6 +8,8 @@
 #define ADD "add"
 #define SET "set"
 */
+
+GLOBAL_LIST(projectileDamageConstants)
 /obj/item/projectile
 	name = "projectile"
 	icon = 'icons/obj/projectiles.dmi'
@@ -45,7 +47,7 @@
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
 	var/ricochet_ability = 1 // multiplier for how much it can ricochet, modified by the bullet blender weapon mod
 
-	var/static/list/damage_types = list(
+	var/list/damage_types = list(
 		ARMOR_BULLET = list(
 			DELEM(BRUTE, 10)
 		)
@@ -98,6 +100,18 @@
 	var/datum/vector_loc/location		// current location of the projectile in pixel space
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
+
+/// This is done to save a lot of memory from duplicated damage lists.
+/// The list is also copied whenever PrepareForLaunch is called and modified as needs to be
+/obj/item/projectile/Initialize()
+	if(!GLOB.projectileDamageConstants[type])
+		GLOB.projectileDamageConstants = damage_types
+	else
+		/// delete the list. Don't need QDEL for this
+		del(damage_types)
+		damage_types = GLOB.projectileDamageConstants[type]
+	. = ..()
+
 
 /obj/item/projectile/Destroy()
 	firer = null
@@ -179,18 +193,34 @@
 		if(damage_type == IRRADIATE)
 			irradiate += newdamages[IRRADIATE]
 			continue
-		for(var/armorType in damage)
-			var/damageApplied = FALSE
-			for(var/list/damageElement in damage[armorType])
-				if(damageElement[1] == damage_type)
-					damageElement[2] += newdamages[damage_type]
-					damageApplied = TRUE
+		var/isNeg = newdamages[damage_type] < 0
+		if(!isNeg)
+			for(var/armorType in damage)
+				var/damageApplied = FALSE
+				for(var/list/damageElement in damage[armorType])
+					if(damageElement[1] == damage_type)
+						damageElement[2] += damageElement[2] + newdamages[damage_type]
+						damageApplied = TRUE
+						break
+				if(!damageApplied)
+					var/list/elements = damage[armorType]
+					elements.Add(DELEM(damage_type, newdamages[damage_type]))
+				break
+			damage_types[damage_type] += newdamages[damage_type]
+		else
+			var/damToRemove = abs(newdamages[damage_type])
+			for(var/armorType in damage)
+				for(var/list/damageElement in damage)
+					if(damageElement[1] == damage_type)
+						var/removed = min(damageElement[2], damToRemove)
+						damageElement[2] -= removed
+						damToRemove -= removed
+						if(damageElement[2] == 0)
+							damage[armorType] -= damageElement
+						if(damToRemove <= 0)
+							break
+				if(damToRemove <= 0)
 					break
-			if(!damageApplied)
-				var/list/elements = damage[armorType]
-				elements.Add(DELEM(damage_type, newdamages[damage_type]))
-			break
-		damage_types[damage_type] += newdamages[damage_type]
 
 /obj/item/projectile/proc/adjust_ricochet(noricochet)
 	if(noricochet)
