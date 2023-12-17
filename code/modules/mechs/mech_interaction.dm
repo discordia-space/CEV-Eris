@@ -49,24 +49,23 @@
 	if(A.loc != src && !(get_dir(src, A) & dir))
 		return
 
-	if(!arms)
-		to_chat(user, SPAN_WARNING("\The [src] has no manipulators!"))
-		setClickCooldown(3)
-		return
-
-	if(!arms.motivator || !arms.motivator.is_functional())
-		to_chat(user, SPAN_WARNING("Your motivators are damaged! You can't use your manipulators!"))
-		setClickCooldown(15)
-		return
+	if(!selected_system)
+		if(arms)
+			if(!get_cell()?.checked_use(arms.power_use * CELLRATE))
+				to_chat(user, power == MECH_POWER_ON ? SPAN_WARNING("Error: Power levels insufficient.") :  SPAN_WARNING("\The [src] is powered off."))
+				return
+			if(!arms.motivator || !arms.motivator.is_functional())
+				to_chat(user, SPAN_WARNING("Your motivators are damaged! You can't use your manipulators!"))
+				setClickCooldown(15)
+				return
+		else
+			to_chat(user, SPAN_WARNING("\The [src] has no manipulators!"))
+			setClickCooldown(3)
+			return
 
 	var/obj/item/cell/cell = get_cell()
 	if(!cell)
 		to_chat(user, SPAN_WARNING("Error: Power cell missing."))
-		setClickCooldown(3)
-		return
-
-	if(!cell.checked_use(arms.power_use * CELLRATE))
-		to_chat(user, SPAN_WARNING("Error: Power levels insufficient."))
 		setClickCooldown(3)
 		return
 
@@ -110,7 +109,7 @@
 
 		var/resolved
 		if(adj)
-			resolved = selected_system.resolve_attackby(A, src, params)
+			resolved = selected_system.resolve_attackby(A, user, params)
 
 		if(!resolved && A && selected_system)
 			selected_system.afterattack(A,user,adj,params)
@@ -124,11 +123,23 @@
 	if(A == src)
 		setClickCooldown(5)
 		return attack_self(user)
-	else if(adj)
+	else if(adj && arms)
 		setClickCooldown(arms_action_delay())
 		playsound(src.loc, arms.punch_sound, 45 + 25 * (arms.melee_damage / 50), -1)
-		if(arms)
+		if(user.a_intent == I_HURT)
 			return A.attack_generic(src, arms.melee_damage, "attacked")
+		else if(user.a_intent == I_DISARM && arms.can_force_doors)
+			if(istype(A, /obj/machinery/door/airlock))
+				var/obj/machinery/door/airlock/door = A
+				if(!door.locked)
+					to_chat(user, SPAN_NOTICE("You start forcing \the [door] open!"))
+					visible_message(SPAN_WARNING("\The [src] starts forcing \the [door] open!"))
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, 5,5)
+					if(do_after(user, 3 SECONDS, A, FALSE))
+						door.open(TRUE)
+			return
+		else
+			return A.attackby(arms, user, params)
 
 /// Checks the mech for places to store the ore.
 /mob/living/exosuit/proc/getOreCarrier()
@@ -266,6 +277,7 @@
 		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
 		return
 
+	/// Gun reloading handling
 	if(istype(I, /obj/item/ammo_magazine)||  istype(I, /obj/item/ammo_casing))
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode to reload its guns!"))
@@ -281,21 +293,87 @@
 			chosen = loadable_guns[chosen]
 		else
 			chosen = loadable_guns[loadable_guns[1]]
-		switch(chosen.loadMagazine(I,user))
-			if(-1)
-				to_chat(user, SPAN_NOTICE("\The [chosen] does not accept this type of magazine."))
-			if(0)
-				to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage."))
-			if(1)
-				to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]."))
-			if(2)
-				to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
+		if(chosen)
+			switch(chosen.loadMagazine(I,user))
+				if(-1)
+					to_chat(user, SPAN_NOTICE("\The [chosen] does not accept this type of magazine."))
+				if(0)
+					to_chat(user, SPAN_NOTICE("\The [chosen] has no slots left in its ammunition storage."))
+				if(1)
+					to_chat(user, SPAN_NOTICE("You load \the [I] into \the [chosen]."))
+				if(2)
+					to_chat(user, SPAN_NOTICE("You partially reload one of the existing ammo magazines inside of \the [chosen]."))
 
-	else if(user.a_intent != I_HURT)
+	/// Medical mender handling
+	if(istype(I, /obj/item/stack/medical/advanced/bruise_pack))
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/auto_mender))
+				var/obj/item/mech_equipment/auto_mender/mend = hardpoints[hardpoint]
+				choices["[hardpoint] - [mend.trauma_charges_stored]/[mend.trauma_storage_max] charges"] = mend
+		var/obj/item/mech_equipment/auto_mender/choice = null
+		if(!length(choices))
+			return
+		if(length(choices) == 1)
+			choice = choices[choices[1]]
+		else
+			var/chosenMender = input("Select mech mender to refill") as null|anything in choices
+			if(chosenMender)
+				choice = choices[chosenMender]
+		if(choice)
+			choice.attackby(I, user)
+		return
+
+	/// Plasma generator handling
+	if(istype(I, /obj/item/stack/material/plasma))
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/power_generator/fueled/plasma))
+				var/obj/item/mech_equipment/power_generator/fueled/plasma/gen = hardpoints[hardpoint]
+				choices["[hardpoint] - [gen.fuel_amount]/[gen.fuel_max]"] = gen
+		var/obj/item/mech_equipment/power_generator/fueled/plasma/chosen = null
+		if(!length(choices))
+			return
+		if(length(choices)==1)
+			chosen = choices[choices[1]]
+		else
+			var/chosenGen = input("Select generator to refill") as null|anything in choices
+			if(chosenGen)
+				chosen = choices[chosenGen]
+		if(chosen)
+			chosen.attackby(I, user)
+		return
+
+	/// Welding generator handling
+	/// Double negation to turn into 0/1 format since if its more than 1 it doesn't count as true.
+	if(I.is_drainable())
+		if(!maintenance_protocols)
+			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its internal generator!"))
+			return
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/power_generator/fueled/welding))
+				var/obj/item/mech_equipment/power_generator/fueled/welding/gen = hardpoints[hardpoint]
+				choices["[hardpoint] - [gen.fuel_amount]/[gen.fuel_max]"] = gen
+		var/obj/item/mech_equipment/power_generator/fueled/welding/chosen = null
+		if(!length(choices))
+			return
+		if(length(choices)==1)
+			chosen = choices[choices[1]]
+		else
+			var/chosenGen = input("Select generator to refill") as null|anything in choices
+			if(chosenGen)
+				chosen = choices[chosenGen]
+		if(chosen)
+			chosen.attackby(I, user)
+		return
+
+
+	else if(user.a_intent != I_HELP)
 		if(attack_tool(I, user))
 			return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
-	else if(user.a_intent == I_HURT && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
+	else if(user.a_intent != I_HELP && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
 		var/mob/living/target = get_mob()
 		target.attackby(I, user)
 		return
@@ -306,8 +384,10 @@
 		if(!maintenance_protocols)
 			to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
 			return TRUE
-
-		var/obj/item/cell/cell = get_cell()
+		if(!body)
+			to_chat(user, SPAN_NOTICE("\The [src] has no slot for a battery to be installed unto!"))
+			return
+		var/obj/item/cell/cell = body.cell
 		if(cell)
 			to_chat(user, SPAN_WARNING("\The [src] already has [cell] installed!"))
 			return TRUE
@@ -445,13 +525,17 @@
 
 
 		if(QUALITY_PRYING)
-			var/obj/item/cell/cell = get_cell()
+			if(!body)
+				to_chat(user,  SPAN_NOTICE("\The [src] has no body to pry out a cell from!"))
+				return
+			var/obj/item/cell/cell = body.cell
 			if(cell)
 				if(!maintenance_protocols)
 					to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
 					return TRUE
 			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
 			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
+				power = MECH_POWER_OFF
 				body.cell = null
 				return
 
@@ -469,9 +553,56 @@
 		if(ABORT_CHECK)
 			return
 
+/// Used by hatch lock UI button
+/mob/living/exosuit/proc/toggle_hatch_lock()
+	if(hatch_locked)
+		hatch_locked = FALSE
+	else
+		if(body && body.total_damage >= body.max_damage)
+			return FALSE
+		hatch_locked = TRUE
+	return hatch_locked
+
+/// Used by hatch toggle mech UI button
+/mob/living/exosuit/proc/toggle_hatch()
+	if(hatch_locked)
+		return hatch_closed
+	else
+		hatch_closed = !hatch_closed
+		return hatch_closed
+
+/// Used by camera toglge UI button
+/mob/living/exosuit/proc/toggle_sensors()
+	if(head)
+		if(!head.active_sensors)
+			if(get_cell().drain_power(0,0,head.power_use))
+				head.active_sensors = TRUE
+				return TRUE
+			return FALSE
+		else
+			head.active_sensors = FALSE
+			return FALSE
+	return FALSE
 
 /mob/living/exosuit/attack_hand(mob/living/user)
 	// Drag the pilot out if possible.
+	if(user.a_intent == I_GRAB)
+		for(var/obj/item/mech_equipment/towing_hook/towing in contents)
+			if(towing.currentlyTowing)
+				to_chat(user, SPAN_NOTICE("You start removing \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+				if(do_after(user, 3 SECONDS, src, TRUE))
+					to_chat(user, SPAN_NOTICE("You remove \the [towing.currentlyTowing] from \the [src]'s towing hook."))
+					towing.UnregisterSignal(towing.currentlyTowing,list(COMSIG_MOVABLE_MOVED,COMSIG_ATTEMPT_PULLING))
+					towing.currentlyTowing = null
+					return
+		for(var/obj/item/mech_equipment/forklifting_system/fork in contents)
+			if(fork.currentlyLifting)
+				to_chat(user, SPAN_NOTICE("You start removing \the [fork.currentlyLifting] from \the [src]'s forklift."))
+				if(do_after(user, 3 SECONDS ,src , TRUE))
+					to_chat(user, SPAN_NOTICE("You remove \the [fork.currentlyLifting] from \the [src]'s forklift!"))
+					fork.ejectLifting(get_turf(user))
+					return
+
 	if(user.a_intent == I_HURT)
 		if(!LAZYLEN(pilots))
 			to_chat(user, SPAN_WARNING("There is nobody inside \the [src]."))

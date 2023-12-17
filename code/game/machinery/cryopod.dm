@@ -495,8 +495,18 @@
 
 	return
 
-/obj/machinery/cryopod/relaymove(var/mob/user)
-	eject()
+/obj/machinery/cryopod/relaymove(mob/user)
+	/// Why isn't it just eject ? because it somehow breaks SSchunks. ForceMoving out of these does not get registered properly
+	/// The mob does NOT have a LOC when it gets done by eject() , but this way it does for its forceMove() when we call go_out() from here
+	/// I dont know why it is this way , blame Byond ? - SPCR 2023
+	/// I figured it out... its because it used to remove the mob to eject from its contents before actually ejecting them , causing their loc to be null..
+	if(occupant)
+		var/list/items_to_give = contents
+		items_to_give -= announce
+		for(var/obj/item/W in items_to_give)
+			W.forceMove(get_turf(src))
+			occupant.equip_to_appropriate_slot(W) // Items are now ejected. Tries to put them items on the occupant so they don't leave them behind
+		go_out()
 
 
 /obj/machinery/cryopod/proc/go_out()

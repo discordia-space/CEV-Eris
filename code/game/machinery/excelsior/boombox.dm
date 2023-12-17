@@ -11,6 +11,7 @@
 	circuit = /obj/item/electronics/circuitboard/excelsior_boombox
 	var/active = FALSE
 	var/update_time = 0 // Made so callbacks can't be spamed
+	shipside_only = TRUE
 
 /obj/machinery/excelsior_boombox/attack_hand(mob/user)
     ..()
@@ -35,7 +36,7 @@
         active = FALSE
     else
         active = TRUE
-        if (world.time >= update_time + 20 SECONDS)
+        if (world.time >= update_time + 30 SECONDS)
             send_propaganda()
             update_time = world.time
 
@@ -44,9 +45,9 @@
         for (var/mob/living/carbon/M in range(10, src))
             if (is_excelsior(M))
                 to_chat(M, SPAN_NOTICE("You hear a motivating tune, you feel ready for a fight!"))
-                M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, 20 SECONDS, "ex_boombox")
-                M.stats.addTempStat(STAT_VIG, STAT_LEVEL_BASIC, 20 SECONDS, "ex_boombox")
+                M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, 30 SECONDS, "ex_boombox")
+                M.stats.addTempStat(STAT_VIG, STAT_LEVEL_BASIC, 30 SECONDS, "ex_boombox")
             else
-                to_chat(M, SPAN_WARNING("You hear some stupid propaganda, you dont belive it but... what if they are right?"))
-                M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, 20 SECONDS, "ex_boombox_m")
-        addtimer(CALLBACK(src, PROC_REF(send_propaganda)), 20 SECONDS)
+                to_chat(M, SPAN_WARNING("You hear some stupid distracting communistic propaganda."))
+                M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, 30 SECONDS, "ex_boombox_m")
+        addtimer(CALLBACK(src, PROC_REF(send_propaganda)), 30 SECONDS)

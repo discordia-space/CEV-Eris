@@ -18,6 +18,7 @@
 	var/burst_lenght = 8
 	health = 300
 	shot_delay = 0
+	shipside_only = TRUE
 
 /obj/machinery/porta_turret/excelsior/proc/has_power_source_nearby()
 	for (var/a in excelsior_teleporters)

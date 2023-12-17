@@ -55,7 +55,11 @@
 /mob/living/exosuit/proc/update_mech_hud_4(var/mob/living/M)
 	if(M.client && M != src && HUDneed.len)
 		if(M in pilots)
-			for(var/i in HUDneed) if(HUDneed[i]) M.client.screen |= HUDneed[i]
+			for(var/i in HUDneed)
+				if(HUDneed[i])
+					M.client.screen |= HUDneed[i]
+					var/obj/screen/movable/exosuit/thing = HUDneed[i]
+					thing.update_icon()
 			M.reset_view(src)
 		else
 			for(var/i in HUDneed) if(HUDneed[i]) M.client.screen -= HUDneed[i]

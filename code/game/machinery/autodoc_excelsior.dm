@@ -16,6 +16,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
 	active_power_usage = 10000
+	shipside_only = TRUE
 	var/cover_closed = FALSE
 	var/cover_locked = FALSE
 	var/cover_moving = FALSE
@@ -129,13 +130,6 @@
 		var/obj/item/implant/excelsior/implant = new(user)
 		if (!implant.install(user, BP_HEAD))
 			qdel(implant)
-		var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-		var/datum/objective/timed/excelsior/excel_timer = (locate(/datum/objective/timed/excelsior) in F.objectives)
-		if(excel_timer)
-			if(!excel_timer.active)
-				excel_timer.start_excel_timer()
-			else
-				excel_timer.on_convert()
 		cover_locked = FALSE
 	else
 		update_icon()

@@ -7,6 +7,7 @@
 	circuit = /obj/item/electronics/circuitboard/diesel
 	max_fuel_volume = 300
 	power_gen = 16000 // produces 20% less watts output per power level setting.
+	shipside_only = TRUE // even if it's just a "diesel" generator, it's still excelsior...
 	time_per_fuel_unit = 12
 
 	reagent_flags = OPENCONTAINER
