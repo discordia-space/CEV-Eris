@@ -319,7 +319,7 @@
 		return FALSE
 */
 	if(rigged)
-		var/obj/projectile/P = consume_next_projectile()
+		var/obj/item/projectile/P = consume_next_projectile()
 		P.PrepareForLaunch()
 		if(P)
 			if(process_projectile(P, user, user, BP_HEAD))
@@ -422,7 +422,7 @@
 	for(var/i in 1 to burst)
 		if(user.resting)
 			break
-		var/obj/projectile = consume_next_projectile(user)
+		var/obj/item/projectile/projectile = consume_next_projectile(user)
 		if(!projectile)
 			handle_click_empty(user)
 			break

@@ -247,15 +247,15 @@ Like for example singulo act and whatever.
 
 
 // Projectiles
-/obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
+/obj/effect/shield/bullet_act(obj/item/projectile/proj)
 	var/totalDam = 0
-	var/dam = Proj.getAllDamType(BURN)
+	var/dam = proj.getAllDamType(BURN)
 	take_damage(dam, SHIELD_DAMTYPE_HEAT, proj)
 	totalDam += dam
-	dam = Proj.getAllDamnType(BRUTE)
+	dam = proj.getAllDamType(BRUTE)
 	take_damage(dam, SHIELD_DAMTYPE_PHYSICAL, proj)
 	totalDam += dam
-	dam = Proj.get_total_damage() - totalDam
+	dam = proj.get_total_damage() - totalDam
 	if(dam > 0)
 		take_damage(dam, SHIELD_DAMTYPE_EM, proj)
 

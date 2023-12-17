@@ -190,21 +190,20 @@ proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, pr
 
 //Generic proc for spread of any projectile type.
 proc/projectile_explosion(turf/epicenter, range, p_type, p_amount = 10, list/p_damage = list())
-    if(!istype(epicenter))
-        epicenter = get_turf(epicenter)
+	if(!istype(epicenter))
+		epicenter = get_turf(epicenter)
 
-    if(!epicenter || !p_type)
-        return
+	if(!epicenter || !p_type)
+		return
 
-    var/list/target_turfs = getcircle(epicenter, range)
-    while(p_amount >= 0)
-        sleep(0)
-        var/obj/item/projectile/P = new p_type(epicenter)
+	var/list/target_turfs = getcircle(epicenter, range)
+	while(p_amount >= 0)
+		sleep(0)
+		var/obj/item/projectile/P = new p_type(epicenter)
 		P.PrepareForLaunch()
-        if(length(p_damage))
+		if(length(p_damage))
 			P.adjust_damages(p_damage)
 
-        P.shot_from = epicenter
-
-        P.launch(pick(target_turfs))
-        p_amount--
+		P.shot_from = epicenter
+		P.launch(pick(target_turfs))
+		p_amount--

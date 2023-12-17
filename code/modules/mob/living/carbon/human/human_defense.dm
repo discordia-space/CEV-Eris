@@ -30,7 +30,7 @@ meteor_act
 	var/check_absorb = .
 	//Shrapnel
 	if(P.can_embed() && (check_absorb == PROJECTILE_STOP))
-		if(prob(20 + max(P.getAllDamType(BRUTE) - armor, -10)))
+		if(prob(P.getAllDamType(BRUTE)))
 			var/obj/item/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
@@ -87,15 +87,13 @@ meteor_act
 		else
 			affected = get_organ(defZone)
 		if(affected)
-			blockers |= affected.getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+			blockers |= affected.getDamageBlockers(armorToDam, armorDiv, woundMult, defZone)
 	else
 		blockers.Add(src)
 	return blockers
 
 /obj/item/organ/external/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
-	var/list/blockers = list()
-	if(defZone.armor)
-		blockers |= defZone
+	var/list/blockers = list(src)
 
 	var/mob/living/carbon/human/humie = owner
 	if(!humie || !istype(humie))
@@ -107,7 +105,7 @@ meteor_act
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(istype(C) && C.armor)
-				blockers |= C.getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+				blockers |= C.getDamageBlockers(armorToDam, armorDiv, woundMult, defZone)
 
 	var/obj/item/shield/shield = humie.has_shield()
 
@@ -123,7 +121,7 @@ meteor_act
 
 	return blockers
 
-/*
+
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)
 	var/armorval = 0
 	var/total = 0
@@ -155,6 +153,7 @@ meteor_act
 	*/
 
 	return armorval
+/*
 
 /mob/living/carbon/human/getarmorablative(var/def_zone, var/type)
 
@@ -175,6 +174,7 @@ meteor_act
 	return FALSE
 */
 
+
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(obj/item/organ/external/def_zone)
 	if (!def_zone)
@@ -190,7 +190,6 @@ meteor_act
 	return siemens_coefficient
 
 //this proc returns the armour value for a particular external organ.
-/*
 /mob/living/carbon/human/proc/getarmor_organ(var/obj/item/organ/external/def_zone, var/type)
 	if(!type || !def_zone) return 0
 	var/protection = 0
@@ -217,7 +216,6 @@ meteor_act
 	*/
 
 	return protection
-*/
 
 /mob/living/carbon/human/proc/check_head_coverage()
 

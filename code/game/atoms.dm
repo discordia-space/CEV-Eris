@@ -56,6 +56,7 @@
 /atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
 	return armorToDam
 
+
 /**
  * Called when an atom is created in byond (built in engine proc)
  *

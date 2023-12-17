@@ -60,6 +60,16 @@
 
 	return blockers
 
+/obj/item/clothing/proc/getArmor(type, defZone)
+	var/returnArmor = 0
+	if(LIMB2CLOTH[defZone] & body_parts_covered)
+		returnArmor += armor.getRating(type)
+	/// From all the internal clothing components
+	for(var/obj/item/armor_component/armComp in armorComps)
+		if(armComp.covering & LIMB2CLOTH[defZone])
+			returnArmor += armor.getRating(type)
+	return returnArmor
+
 /obj/item/clothing/attack_self(mob/user)
 	if(brightness_on)
 		if(!isturf(user.loc))

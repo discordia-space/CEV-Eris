@@ -112,11 +112,9 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		var/obj/item/projectile/P = usedWeapon
 		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
 			return PROJECTILE_STOP
-		P.damage_types = armorToDam
+		P.damage = armorToDam
 		if(is_sharp(P))
-			var/remaining_dmg = 0
-			for(var/dmg_type in damageTypes)
-				remaining_dmg += damageTypes[dmg_type]
+			var/remaining_dmg = P.get_total_damage()
 			return ((totalDmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
 		else
 			return PROJECTILE_STOP

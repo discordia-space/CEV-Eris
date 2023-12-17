@@ -125,7 +125,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	damage = damage_types.Copy()
 
 /obj/item/projectile/is_hot()
-	return getAllDamnType(BURN) * heat
+	return getAllDamType(BURN) * heat
 
 /obj/item/projectile/proc/get_total_damage()
 	var/val = 0

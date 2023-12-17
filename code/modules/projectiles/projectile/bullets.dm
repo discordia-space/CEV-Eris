@@ -67,7 +67,7 @@
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		blocked_damage = 20
 
-	var/percentile_blocked = (blocked_damage, A)
+	var/percentile_blocked = (blocked_damage/A)
 	if(percentile_blocked > 0.5)
 		percentile_blocked = CLAMP(percentile_blocked, 50, 90) / 100 // calculate leftover velocity, capped between 50% and 90%
 
