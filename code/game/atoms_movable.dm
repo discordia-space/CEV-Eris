@@ -79,9 +79,12 @@ GLOBAL_VAR_INIT(Debug,0)
 	return
 
 // Gets the top-atom that contains us, doesn't care about how deeply nested a item is
-/atom/proc/getContainingAtom()
+// If stopType is defined , it will stop at the first object that is the type of stopType
+/atom/proc/getContainingAtom(stopType = null)
 	var/atom/checking = src
 	while(!isturf(checking.loc) && !isnull(checking.loc) && !isarea(checking.loc))
+		if(stopType && istype(checking, stopType))
+			return checking
 		checking = checking.loc
 	return checking
 

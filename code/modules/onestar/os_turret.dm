@@ -303,7 +303,11 @@
 
 /obj/item/projectile/bullet/gauss
 	name = "ferrous slug"
-	damage_types = list(BRUTE = 15)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			list(BRUTE, 15)
+		)
+	)
 	armor_divisor = 3
 	penetrating = 2
 	recoil = 30
@@ -314,7 +318,11 @@
 /obj/item/projectile/beam/pulsed_laser
 	name = "pulsed beam"
 	icon_state = "beam_blue"
-	damage_types = list(BURN = 20)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			list(BURN, 20)
+		)
+	)
 	armor_divisor = 2
 	stutter = 3
 	recoil = 10

@@ -48,14 +48,14 @@
 
 	price_tag = 30
 
-/obj/item/clothing/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+/obj/item/clothing/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
 	var/list/blockers = list()
 	/// From the clothing itself
-	if(defZone.body_part & body_parts_covered)
+	if(LIMB2CLOTH[defZone] & body_parts_covered)
 		blockers.Add(src)
 	/// From all the internal clothing components
 	for(var/obj/item/armor_component/armComp in armorComps)
-		if(armComp.covering & def_zone.body_part)
+		if(armComp.covering & LIMB2CLOTH[defZone])
 			blockers.Add(armComp)
 
 	return blockers

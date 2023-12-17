@@ -106,6 +106,12 @@
 
 	var/chameleon_type
 
+/obj/item/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	for(var/armorType in armorToDam)
+		for(var/list/damageElement in armorToDam[armorType])
+			damageElement[2] -= clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
+	return armorToDam
+
 
 /obj/item/Initialize()
 	if(islist(armor))

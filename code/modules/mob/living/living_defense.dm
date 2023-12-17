@@ -32,7 +32,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 /mob/living/proc/damage_through_armor(list/armorToDam, defZone, armorDiv = 1, usedWeapon, woundMult = 1, return_continuation = FALSE)
 	if(armor_divisor <= 0)
 		armor_divisor = 1
-		log_debug("[used_weapon] applied damage to [name] with a nonpositive armor divisor")
+		log_debug("[usedWeapon] applied damage to [name] with a nonpositive armor divisor")
 
 	var/totalDmg = 0
 	var/dealtDamage = 0
@@ -86,11 +86,11 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		for(var/i=1 to length(armorToDam[armorType]))
 			var/list/damageElement = armorToDam[armorType][i]
 			var/blocked = atdCopy[armorType][i][DAMVALUE] - damageElement[DAMVALUE]
-			if(damageElement[DAMTYPE] = HALLOSS)
+			if(damageElement[DAMTYPE] == HALLOSS)
 				adjustHalLoss(damageElement[DAMVALUE])
 			else
 				// Just a little bit of agony
-				adjustHalLoss(damageElement[DAMVALUE]/5)
+				adjustHalLoss(blocked/5)
 			apply_damage(damageElement[DAMVALUE], damageElement[DAMTYPE], defZone, armorDiv, woundMult, armorType == ARMOR_SLASH, armorType == ARMOR_SLASH, usedWeapon)
 			dealtDamage += damageElement[DAMVALUE]
 
@@ -108,141 +108,23 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."), SPAN_NOTICE("Your armor reduced the impact a little."))
 
 	if(return_continuation)
-		var/obj/item/projectile/P = used_weapon
+		var/obj/item/projectile/P = usedWeapon
 		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
 			return PROJECTILE_STOP
-		var/list/damageTypes = list()
-		/// Build list in format for bullets..
-		for(var/armorType in armorToDam)
-			for(var/list/damageElement in armorToDam)
-				damageTypes[damageElement[DAMTYPE]] += damageElement[DAMVALUE]
-		P.damage_types = damageTypes
-		if(P.is_sharp())
+		P.damage_types = armorToDam
+		if(is_sharp(P))
 			var/remaining_dmg = 0
 			for(var/dmg_type in damageTypes)
 				remaining_dmg += damageTypes[dmg_type]
 			return ((totalDmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
-		else return PROJECTILE_STOP
-
-	return dealt_damage
-
-
-	/*
-	// Determine DR and ADR, armour divisor reduces it
-	var/armor = getarmor(def_zone, attack_flag) / armor_divisor
-	if(!(attack_flag in list(ARMOR_BLUNT, ARMOR_SLASH,ARMOR_POINTY, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
-		armor /= 5
-	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armor_divisor
-
-	var/remaining_armor = armor
-	var/remaining_ablative = ablative_armor
-
-	for(var/dmg_type in damTypes)
-		var/dmg = damTypes[dmg_type]
-		if(dmg)
-			var/used_armor = 0 // Used for agony calculation, as well as reduction in armour before follow-up attacks
-
-			if(dmg_type in list(BRUTE, BURN, TOX, BLAST)) // Some damage types do not help penetrate armor
-				if(remaining_armor)
-					var/dmg_armor_difference = dmg - remaining_armor
-					var/is_difference_positive = dmg_armor_difference > 0
-					used_armor += is_difference_positive ? dmg - dmg_armor_difference : dmg
-					remaining_armor = is_difference_positive ? 0 : -dmg_armor_difference
-					dmg = is_difference_positive ? dmg_armor_difference : 0
-				if(remaining_ablative && dmg)
-					var/ablative_difference
-					ablative_difference = dmg - remaining_ablative
-					var/is_difference_positive = ablative_difference > 0
-					used_armor += is_difference_positive ? dmg - ablative_difference : dmg
-					remaining_ablative = is_difference_positive ? 0 : -ablative_difference
-					dmg = is_difference_positive ? ablative_difference : 0
-			else
-				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
-
-			if(!(dmg_type == HALLOSS)) // Determine pain from impact
-				adjustHalLoss(used_armor / 10 * (wounding_multiplier ? wounding_multiplier : 1) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
-
-			damTypes[dmg_type] = dmg // Finally, we adjust the damage passing through
-			if(dmg)
-				dealt_damage += dmg
-
-				if(dmg_type == HALLOSS)
-					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
-				if(dmg_type == BRUTE)
-
-					if ( (sharp || edge) && prob ( (1 - dmg / damTypes[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
-						if(wounding_multiplier)
-							wounding_multiplier = step_wounding_double(wounding_multiplier) // Implied piercing damage, degrade by two steps (prevents damage duping from <1 multiplier)
-						else
-							wounding_multiplier = 1 // Crushing multiplier forced
-						sharp = FALSE
-						edge = FALSE
-						armor_message(SPAN_NOTICE("[src] armor deflected the strike!"), // No cut (strike), only bash
-										SPAN_NOTICE("Your armor deflects the strike!"))
-
-					if(ishuman(src) && isitem(used_weapon))
-						var/mob/living/carbon/human/H = src
-						var/obj/item/I = used_weapon
-						if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
-							apply_damage(dmg / 2, BURN, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
-
-				apply_damage(dmg, dmg_type, def_zone, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
-				if(ishuman(src) && def_zone && dmg >= 20)
-					var/mob/living/carbon/human/H = src
-					var/obj/item/organ/external/o = H.get_organ(def_zone)
-					if (o && o.status & ORGAN_SPLINTED)
-						visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
-								SPAN_WARNING("Your splints break off after being hit!"))
-						o.status &= ~ORGAN_SPLINTED
-	var/effective_armor = (1 - dealt_damage / total_dmg) * 100
-
-
-	//Feedback
-	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
-	//Goon/tg chat should take care of spam issue on this one
-
-	/// There used to be a switch statement for it but it did not work properly for some reason , SPCR-2023
-	if(effective_armor > 90)
-		armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"), SPAN_NOTICE("Your armor absorbed the impact!"))
-		playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
-	else if(effective_armor > 74)
-		armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"), SPAN_NOTICE("Your armor absorbed the impact!"))
-		playsound(loc, 'sound/weapons/shield/shieldblock.ogg', 75, 7)
-	else if(effective_armor > 49)
-		armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"), SPAN_NOTICE("Your armor protects you from the impact!"))
-	else if(effective_armor > 24)
-		armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."), SPAN_NOTICE("Your armor reduced the impact a little."))
-
-	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
-	if(ablative_armor)
-		damageablative(def_zone, (ablative_armor - remaining_ablative) * armor_divisor)
-
-	//If we have a grab in our hands and get hit with melee damage type, there is a chance we lower our grab's state
-	if(locate(attack_flag) in ARMORS_MELEE && ishuman(src) && isitem(used_weapon))
-		var/mob/living/carbon/human/H = src
-		var/obj/item/I = used_weapon
-		var/toughness_val = H.stats.getStat(STAT_TGH)
-
-		if(dealt_damage > 10 && prob((dealt_damage - toughness_val * (sharp && edge ? 1 : 0.5) * (I.w_class < ITEM_SIZE_BULKY ? 1 : 0.5))))
-			for(var/obj/item/grab/G in get_both_hands(H))
-				visible_message(SPAN_NOTICE("[H]'s grab has been weakened!"), SPAN_WARNING("Your grab has been weakened!"))
-				G.state--
-
-	// Returns if a projectile should continue travelling
-	if(return_continuation)
-		var/obj/item/projectile/P = used_weapon
-		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
+		else
 			return PROJECTILE_STOP
-		P.damage_types = damTypes
-		if(sharp)
-			var/remaining_dmg = 0
-			for(var/dmg_type in damTypes)
-				remaining_dmg += damTypes[dmg_type]
-			return ((total_dmg / 2 < remaining_dmg && remaining_dmg > mob_size) ? PROJECTILE_CONTINUE : PROJECTILE_STOP)
-		else return PROJECTILE_STOP
 
-	return dealt_damage
-	*/
+	return dealtDamage
+
+#undef DAMVALUE
+#undef DAMTYPE
+
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)

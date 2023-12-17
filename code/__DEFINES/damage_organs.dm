@@ -121,6 +121,36 @@
 #define BP_ALL_LIMBS list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 #define BP_BY_DEPTH list(BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_CHEST)
 
+/* CLOTHING DEFINES. I've put them here for convenience . SPCR - 2023
+#define HEAD        0x1
+#define FACE        0x2
+#define EYES        0x4
+#define EARS        0x8
+#define UPPER_TORSO 0x10
+#define LOWER_TORSO 0x20
+#define LEG_LEFT    0x40
+#define LEG_RIGHT   0x80
+#define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
+#define ARM_LEFT    0x400
+#define ARM_RIGHT   0x800
+#define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
+#define FULL_BODY   0xFFFF
+*/
+
+
+#define LIMB2CLOTH list(\
+	BP_CHEST = UPPER_TORSO, \
+	BP_GROIN = LOWER_TORSO,\
+	BP_HEAD = HEAD,\
+	BP_L_LEG = LEG_LEFT,\
+	BP_R_LEG = LEG_RIGHT,\
+	BP_L_ARM = ARM_LEFT,\
+	BP_R_ARM = ARM_RIGHT,\
+	BP_LEGS = LEGS,\
+	BP_ARMS = ARMS,\
+	BY_ALL_LIMBS = FULL_BODY\
+)
+
 // Organs helpers.
 #define BP_IS_ORGANIC(org)  (org.nature == MODIFICATION_ORGANIC)
 #define BP_IS_ROBOTIC(org) (org.nature == MODIFICATION_SILICON || org.nature == MODIFICATION_LIFELIKE)

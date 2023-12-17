@@ -133,7 +133,7 @@
 	name = "Armor plate"
 	desc = "A very basic armor plate"
 	covering = UPPER_TORSO | LOWER_TORSO
-	armor_flags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
 	/// A basic armor will have a volume storage of 3
 	volume = 1
 
@@ -141,7 +141,7 @@
 	name = "Arm guards"
 	desc = "A set of basic arm guards"
 	covering = ARMS
-	armor_flags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
 	/// A basic armor will have a volume storage of 2
 	volume = 1
 
@@ -149,6 +149,7 @@
 	name = "Leg guards"
 	desc = "A set of basic leg guards"
 	covering = LEGS
-	armor_flags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
 	volume = 1
+
 

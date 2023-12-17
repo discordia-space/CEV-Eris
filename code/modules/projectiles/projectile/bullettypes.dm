@@ -16,7 +16,11 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pistol
 	name = ".35 caliber bullet"
 	/// 24 with wound mult
-	damage_types = list(BRUTE = 12)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,12)
+		)
+	)
 	armor_divisor = 1
 	wounding_mult = 2
 	can_ricochet = TRUE
@@ -29,7 +33,12 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/pistol/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 4, HALLOSS = 2)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,4),
+			DELEM(HALLOSS,2)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -37,10 +46,14 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pistol/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 2, HALLOSS = 10)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,2),
+			DELEM(HALLOSS,10)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
-	wounding_mult = WOUNDING_SMALL
 
 /obj/item/projectile/bullet/pistol/scrap
 	armor_divisor = 0.8
@@ -52,7 +65,11 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle
 	name = ".20 caliber bullet"
-	damage_types = list(BRUTE = 34)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 34)
+		)
+	)
 	armor_divisor = 1
 	penetrating = 2
 	can_ricochet = TRUE
@@ -63,7 +80,12 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/srifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 4, HALLOSS = 1)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 7),
+			DELEM(HALLOSS, 3)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -75,7 +97,12 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/srifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 9, HALLOSS = 9)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 5),
+			DELEM(HALLOSS, 10)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 
@@ -87,7 +114,11 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle
 	name = ".25 caliber bullet"
-	damage_types = list(BRUTE = 27)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 27)
+		)
+	)
 	armor_divisor = 1
 	penetrating = 2
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
@@ -96,7 +127,12 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 3, HALLOSS = 2)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 6),
+			DELEM(HALLOSS, 3)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -109,7 +145,12 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/clrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 5, HALLOSS = 10)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 7),
+			DELEM(HALLOSS,10)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = TRUE
@@ -122,14 +163,23 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/lrifle
 	name = ".30 caliber bullet"
-	damage_types = list(BRUTE = 45)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE , 45)
+		)
+	)
 	penetrating = 2
 	can_ricochet = TRUE
 	recoil = 5
 
 /obj/item/projectile/bullet/lrifle/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 3, HALLOSS = 3)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,10),
+			DELEM(HALLOSS,4)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -141,7 +191,12 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/lrifle/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 8, HALLOSS = 19)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE , 14),
+			DELEM(HALLOSS, 16)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 
@@ -152,7 +207,11 @@ There are important things regarding this file:
 //Revolvers and high-caliber pistols .40
 /obj/item/projectile/bullet/magnum
 	name = " .40 caliber bullet"
-	damage_types = list(BRUTE = 50)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 50)
+		)
+	)
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
@@ -161,7 +220,12 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
-	damage_types = list(BRUTE = 5, HALLOSS = 4)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 16),
+			DELEM(HALLOSS, 8)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
@@ -173,7 +237,12 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/magnum/rubber
 	icon_state = "rubber"
 	name = "rubber bullet"
-	damage_types = list(BRUTE = 10, HALLOSS = 25)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 16),
+			DELEM(HALLOSS, 8)
+		)
+	)
 	embed = FALSE
 	sharp = FALSE
 
@@ -184,14 +253,22 @@ There are important things regarding this file:
 //Sniper rifles .60
 /obj/item/projectile/bullet/antim
 	name = ".60 caliber bullet"
-	damage_types = list(BRUTE = 55)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,55)
+		)
+	)
 	armor_divisor = 1.3
 	penetrating = 2
 	step_delay = 0.8
 	recoil = 15 // Good luck shooting these from a revolver
 
 /obj/item/projectile/bullet/antim/emp
-	damage_types = list(BRUTE = 43)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,43)
+		)
+	)
 	armor_divisor = 1.5
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
@@ -199,12 +276,21 @@ There are important things regarding this file:
 	empulse(target, 0, 0)
 
 /obj/item/projectile/bullet/antim/uranium
-	damage_types = list(BRUTE = 45)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,45)
+		)
+	)
 	armor_divisor = 5
 	irradiate = 200
 
 /obj/item/projectile/bullet/antim/breach
-	damage_types = list(BRUTE = 40, HALLOSS = 20)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,55),
+			DELEM(HALLOSS, 20)
+		)
+	)
 	armor_divisor = 1
 	penetrating = -5
 	nocap_structures = TRUE
@@ -235,7 +321,11 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/shotgun
 	name = "slug"
 	icon_state = "slug"
-	damage_types = list(BRUTE = 55)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,55)
+		)
+	)
 	armor_divisor = 1
 	knockback = 1
 	step_delay = 1
@@ -249,22 +339,45 @@ There are important things regarding this file:
 	name = "beanbag"
 	icon_state = "buckshot"
 	check_armour = ARMOR_BULLET //neverforget
-	damage_types = list(BRUTE = 10, HALLOSS = 45)
+	// We split the HALLOSS into 2 damage elements cause i don't want it to pen any armor above 25..
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,10),
+			DELEM(HALLOSS, 25),
+			DELEM(HALLOSS, 20)
+		)
+	)
 	embed = FALSE
 	sharp = TRUE
 
 /obj/item/projectile/bullet/shotgun/beanbag/scrap
-	damage_types = list(BRUTE = 5, HALLOSS = 35)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,5),
+			DELEM(HALLOSS, 25),
+			DELEM(HALLOSS, 10)
+		)
+	)
 	recoil = 10
 
 /obj/item/projectile/bullet/shotgun/practice
 	name = "practice slug"
-	damage_types = list(BRUTE = 4, HALLOSS = 6)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,20),
+			DELEM(HALLOSS, 14)
+		)
+	)
 	embed = FALSE
 	knockback = 0
 
 /obj/item/projectile/bullet/shotgun/incendiary
-	damage_types = list(BRUTE = 38)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,30),
+			DELEM(BURN, 15)
+		)
+	)
 	knockback = 0
 
 	var/fire_stacks = 4
@@ -281,7 +394,11 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
-	damage_types = list(BRUTE = 8)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,8)
+		)
+	)
 	armor_divisor = 1
 	pellets = 9
 	range_step = 1
@@ -300,12 +417,20 @@ There are important things regarding this file:
 //Miscellaneous
 /obj/item/projectile/bullet/blank
 	invisibility = 101
-	damage_types = list(BRUTE = 1)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,1)
+		)
+	)
 	embed = FALSE
 
 /obj/item/projectile/bullet/cap
 	name = "cap"
-	damage_types = list(HALLOSS = 0)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(HALLOSS,1)
+		)
+	)
 	nodamage = TRUE
 	embed = FALSE
 	sharp = FALSE
@@ -314,7 +439,11 @@ There are important things regarding this file:
 /obj/item/projectile/bullet/bolt
 	icon_state = "SpearFlight"
 	name = "bolt"
-	damage_types = list(BRUTE = 55)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,55)
+		)
+	)
 	armor_divisor = 1
 	embed = FALSE
 	can_ricochet = TRUE

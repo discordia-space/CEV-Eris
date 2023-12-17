@@ -48,14 +48,12 @@
 /atom/proc/getWeight()
 	return initial(weight)
 
-/atom/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, def_zone)
-	return src
+/atom/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	RETURN_TYPE(/list)
+	return list(src)
 
 /// This one works by list reference , so no need to return , but just incase...
-/atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, def_zone)
-	for(var/armorType in armorToDam)
-		for(var/list/damageElement in armorToDam[armorType])
-			damageElement[2] -= clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
+/atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
 	return armorToDam
 
 /**

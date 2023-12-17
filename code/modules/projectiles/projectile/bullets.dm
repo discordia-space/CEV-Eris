@@ -1,9 +1,12 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage_types = list(BRUTE = 40)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			list(BRUTE, 40)
+		)
+	)
 	nodamage = 0
-	check_armour = ARMOR_BULLET
 	embed = TRUE
 	sharp = TRUE // Also used for checking whether this penetrates
 	hitsound_wall = "ric_sound"
@@ -81,7 +84,11 @@
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage_types = list(BRUTE = 15)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 15)
+		)
+	)
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.

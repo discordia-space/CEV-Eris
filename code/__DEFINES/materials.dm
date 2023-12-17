@@ -35,7 +35,7 @@
 #define MATERIAL_TPALLOY "titanplasteelalloy"
 #define MATERIAL_LOWREFLECTIVE "lowreflective"
 #define MATERIAL_HIGHREFLECTIVE "highreflective"
-#define MATERIAL_GTALLOY "titangoldalloy"
+#define MATERIAL_TGALLOY "titangoldalloy"
 
 #define MATERIAL_LIST list(\
 	MATERIAL_STEEL,\

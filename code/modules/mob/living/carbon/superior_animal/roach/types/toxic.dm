@@ -47,9 +47,12 @@
 	name = "Glowing bile"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
-	damage_types = list(TOX = 15)
+	damage_types = list(
+		ARMOR_BIO = list(
+			list(TOXIN, 15)
+		)
+	)
 	irradiate = 5
-	check_armour = ARMOR_BIO
 	step_delay = 2
 
 /obj/item/projectile/roach_spit/on_hit(atom/target)

@@ -95,9 +95,14 @@ meteor_act
 
 /obj/item/organ/external/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
 	var/list/blockers = list()
-	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
 	if(defZone.armor)
 		blockers |= defZone
+
+	var/mob/living/carbon/human/humie = owner
+	if(!humie || !istype(humie))
+		return blockers
+
+	var/list/protective_gear = list(humie.head, humie.wear_mask, humie.wear_suit, humie.w_uniform, humie.gloves, humie.shoes)
 
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
@@ -105,7 +110,7 @@ meteor_act
 			if(istype(C) && C.armor)
 				blockers |= C.getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
 
-	var/obj/item/shield/shield = has_shield()
+	var/obj/item/shield/shield = humie.has_shield()
 
 	if(shield)
 		blockers |= shield
@@ -186,6 +191,7 @@ meteor_act
 	return siemens_coefficient
 
 //this proc returns the armour value for a particular external organ.
+/*
 /mob/living/carbon/human/proc/getarmor_organ(var/obj/item/organ/external/def_zone, var/type)
 	if(!type || !def_zone) return 0
 	var/protection = 0
@@ -212,6 +218,7 @@ meteor_act
 	*/
 
 	return protection
+*/
 
 /mob/living/carbon/human/proc/check_head_coverage()
 

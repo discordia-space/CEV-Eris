@@ -6,13 +6,20 @@
 	name = "electrolyzed goo"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
-	damage_types = list(BURN = 15)
-	check_armour = ARMOR_ENERGY
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			list(BURN, 15)
+		)
+	)
 	step_delay = 2
 
 /obj/item/projectile/goo/weak
 	name = "weakened electrolyzed goo"
-	damage_types = list(BURN = 5)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			list(BURN, 5)
+		)
+	)
 
 
 /obj/item/projectile/goo/on_hit(atom/target)
