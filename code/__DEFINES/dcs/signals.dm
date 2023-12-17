@@ -67,6 +67,9 @@
 #define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from atom/movable/Move and forceMove): (oldz, newz)
 #define COMSIG_MOVABLE_PREMOVE "moveable_boutta_move"
 
+#define COMSIG_ATTEMPT_PULLING "attempt_pulling"
+	#define COMSIG_PULL_CANCEL (1<<0)
+
 // /mob signals
 #define COMSIG_MOB_LIFE  "mob_life"							 //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()

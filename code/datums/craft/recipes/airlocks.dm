@@ -90,6 +90,13 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL)
 	)
 
+/datum/craft_recipe/airlock/assembly/shutter/holey
+	name = "holey shutter assembly"
+	result = /obj/machinery/door/blast/shutters/holey
+	steps = list(
+		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL)
+	)
+
 /datum/craft_recipe/airlock/shutter/emergency_shutter
 	name = "emergency shutter"
 	result = /obj/structure/firedoor_assembly
