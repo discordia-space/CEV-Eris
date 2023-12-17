@@ -137,7 +137,7 @@
 	var/mob/living/carbon/human/H = M
 	var/obj/item/organ/internal/vital/heart/S = H.random_organ_by_process(OP_HEART)
 	var/obj/item/organ/internal/vital/lungs/O = H.random_organ_by_process(OP_LUNGS)
-	if(prob(10))
+	if(prob(20))
 		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
 		M.AdjustSleeping(20)
 	if(istype(O)) //STAGE 1: CRUSH LUNGS

@@ -207,11 +207,11 @@
 				return TRUE
 
 /datum/reagent/nanites/trauma_control_system/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_BLOODCLOT, 1)
-	M.add_chemical_effect(CE_ONCOCIDAL, 1)
-	M.add_chemical_effect(CE_BLOODCLOT, 1)
-	M.add_chemical_effect(CE_ANTITOX, 2)
-	M.add_chemical_effect(CE_STABLE, 1)
+	if(..())
+		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_BLOODCLOT, 1)
+		M.add_chemical_effect(CE_ANTITOX, 2)
+		M.add_chemical_effect(CE_STABLE, 1)
 
 /datum/reagent/nanites/purgers
 	name = "Purgers"

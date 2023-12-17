@@ -53,7 +53,7 @@
 	var/list/possible_wounds = list()
 
 	// Determine possible wounds based on nature and damage type
-	var/is_robotic = BP_IS_ROBOTIC(src) || BP_IS_ASSISTED(src)
+	var/is_robotic = BP_IS_ROBOTIC(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
 
 	switch(damage_type)

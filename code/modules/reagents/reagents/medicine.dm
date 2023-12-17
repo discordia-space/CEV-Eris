@@ -348,10 +348,10 @@
 /datum/reagent/medicine/alkysine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/list/big_brain = H.internal_organs_by_efficiency[BP_BRAIN]
-			if(!BP_IS_ROBOTIC(I) && prob(75))
-				M.add_chemical_effect(CE_PAINKILLER, 10)
-				M.add_chemical_effect(CE_BRAINHEAL, 1)
+		var/obj/item/organ/internal/vital/brain/B = H.internal_organs_by_efficiency[BP_BRAIN]
+		if(!BP_IS_ROBOTIC(B) && prob(75))
+			M.add_chemical_effect(CE_PAINKILLER, 10)
+			M.add_chemical_effect(CE_BRAINHEAL, 1)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"

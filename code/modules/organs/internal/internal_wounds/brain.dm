@@ -31,7 +31,7 @@
 /datum/component/internal_wound/organic/brain_sharp/punctured
 	name = "punctured brain tissue"
 
-/datum/component/internal_wound/organic/brain_sharp/lobe // stage 1
+/datum/component/internal_wound/organic/brain_sharp/lobe
 	name = "gored brain lobe"
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_HARD)
 
@@ -39,9 +39,9 @@
 	name = "penetrating brain injury"
 	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 4)
 	treatments_tool = list(QUALITY_LASER_CUTTING = FAILCHANCE_HARD)
-	scar = /datum/component/internal_wound/organic/penetrating2 // stage 2
+	scar = list(/datum/component/internal_wound/organic/penetrating2) // stage 2
 
-/datum/component/internal_wound/organic/penetrating2 // stage 2
+/datum/component/internal_wound/organic/penetrating2	 // stage 2
 	name = "accessible penetrating brain injury"
 	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_HARD)
@@ -69,12 +69,16 @@
 
 /datum/component/internal_wound/organic/brain_edge/laceration
 	name = "brain laceration"
+
 /datum/component/internal_wound/organic/brain_edge/slice
 	name = "sliced brain tissue"
-/datum/component/internal_wound/organic/brain_edge/rip1
+
+/datum/component/internal_wound/organic/brain_edge/rip
 	name = "ripped brain fibers"
 	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 4)
 	treatments_tool = list(QUALITY_CLAMPING = FAILCHANCE_HARD)
+	scar = list(/datum/component/internal_wound/organic/rip2)
+
 /datum/component/internal_wound/organic/rip2
 	name = "tighted ripped brain fibers"
 	treatments_item = list(/obj/item/stack/medical/advanced/bruise_pack = 2)
@@ -165,11 +169,13 @@
 	treatments_tool = list(QUALITY_WELDING = FAILCHANCE_HARD)
 
 /datum/component/internal_wound/robotic/brain_sharp/nand1
+	..()
 	name = "broken NAND circuit loop"
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_HARD)
 	scar = /datum/component/internal_wound/robotic/nand2
 
 /datum/component/internal_wound/robotic/nand2
+	..()
 	name = "broken NAND circuit loop"
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_HARD)
 
