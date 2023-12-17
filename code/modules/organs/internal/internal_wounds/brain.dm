@@ -169,13 +169,11 @@
 	treatments_tool = list(QUALITY_WELDING = FAILCHANCE_HARD)
 
 /datum/component/internal_wound/robotic/brain_sharp/nand1
-	..()
 	name = "broken NAND circuit loop"
 	treatments_tool = list(QUALITY_CAUTERIZING = FAILCHANCE_HARD)
 	scar = /datum/component/internal_wound/robotic/nand2
 
 /datum/component/internal_wound/robotic/nand2
-	..()
 	name = "broken NAND circuit loop"
 	treatments_tool = list(QUALITY_PULSING = FAILCHANCE_HARD)
 
