@@ -305,7 +305,7 @@
 	name = "ferrous slug"
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			list(BRUTE, 15)
+			DELEM(BRUTE, 15)
 		)
 	)
 	armor_divisor = 3
@@ -320,7 +320,7 @@
 	icon_state = "beam_blue"
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			list(BURN, 20)
+			DELEM(BURN, 20)
 		)
 	)
 	armor_divisor = 2

@@ -49,7 +49,7 @@
 	icon_state = "goo_proj"
 	damage_types = list(
 		ARMOR_BIO = list(
-			list(TOXIN, 15)
+			DELEM(TOXIN, 15)
 		)
 	)
 	irradiate = 5

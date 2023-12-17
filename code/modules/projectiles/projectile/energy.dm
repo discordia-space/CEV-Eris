@@ -1,8 +1,11 @@
 /obj/item/projectile/energy
 	name = "energy"
 	icon_state = "spark"
-	damage_types = list(BURN = 0)
-	check_armour = ARMOR_ENERGY
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN,5)
+		)
+	)
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 
@@ -13,7 +16,12 @@
 /obj/item/projectile/energy/flash
 	name = "chemical shell"
 	icon_state = "bullet"
-	damage_types = list(BURN = 5, HALLOSS = 10)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE,5),
+			DELEM(HALLOSS, 10)
+		)
+	)
 	kill_count = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	var/flash_range = 0
 	var/brightness = 7
@@ -38,7 +46,11 @@
 
 //blinds people like the flash round, but can also be used for temporary illumination
 /obj/item/projectile/energy/flash/flare
-	damage_types = list(BURN = 10)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BURN,10)
+		)
+	)
 	flash_range = 1
 	brightness = 9 //similar to a flare
 	light_duration = 200
@@ -50,33 +62,57 @@
 	mob_hit_sound = list('sound/weapons/tase.ogg')
 	nodamage = 1
 	taser_effect = 1
-	damage_types = list(HALLOSS = 40)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(HALLOSS, 20),
+			DELEM(HALLOSS, 20)
+		)
+	)
 	//Damage will be handled on the MOB side, to prevent window shattering.
 	recoil = 2
 
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"
-	damage_types = list(BURN = 5, HALLOSS = 80)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(HALLOSS, 40),
+			DELEM(HALLOSS, 40),
+			DELEM(BURN, 5)
+		)
+	)
 	taser_effect = 1
 	recoil = 5
 
 /obj/item/projectile/energy/declone
 	name = "demolecularisor"
 	icon_state = "declone"
-	damage_types = list(CLONE = 12)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(CLONE,12)
+		)
+	)
 	irradiate = 10
 
 
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"
-	damage_types = list(TOX = 20)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(TOX,20)
+		)
+	)
 	recoil = 2
 
 /obj/item/projectile/energy/bolt
 	name = "bolt"
 	icon_state = "cbbolt"
-	damage_types = list(TOX = 20, HALLOSS = 30)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(TOX,20),
+			DELEM(HALLOSS, 30)
+		)
+	)
 	nodamage = 0
 	stutter = 10
 	recoil = 3
@@ -84,16 +120,29 @@
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
-	damage_types = list(BURN = 25)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(TOX,40),
+			DELEM(HALLOSS,50)
+		)
+	)
 	recoil = 5
 
 /obj/item/projectile/energy/neurotoxin
 	name = "neuro"
 	icon_state = "neurotoxin"
-	damage_types = list(TOX = 5)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(TOX,20)
+		)
+	)
 	weaken = 5
 
 /obj/item/projectile/energy/plasma // What?
 	name = "plasma bolt"
 	icon_state = "energy"
-	damage_types = list(TOX = 25)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(TOX,30)
+		)
+	)

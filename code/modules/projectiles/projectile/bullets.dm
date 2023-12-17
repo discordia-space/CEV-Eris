@@ -3,7 +3,7 @@
 	icon_state = "bullet"
 	damage_types = list(
 		ARMOR_BULLET = list(
-			list(BRUTE, 40)
+			DELEM(BRUTE, 40)
 		)
 	)
 	nodamage = 0

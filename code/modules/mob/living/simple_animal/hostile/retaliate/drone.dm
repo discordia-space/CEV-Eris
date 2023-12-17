@@ -275,13 +275,13 @@
 /obj/item/projectile/beam/drone
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			list(BURN, 15)
+			DELEM(BURN, 15)
 		)
 	)
 
 /obj/item/projectile/beam/pulse/drone
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			list(BURN, 10)
+			DELEM(BURN, 10)
 		)
 	)

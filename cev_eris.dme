@@ -2523,6 +2523,7 @@
 #include "code\modules\projectiles\guns\projectile\shotgun\regulator.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun\sawnoff.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun\type21.dm"
+#include "code\modules\projectiles\projectile\_projectile_defs.dm"
 #include "code\modules\projectiles\projectile\animate.dm"
 #include "code\modules\projectiles\projectile\beams.dm"
 #include "code\modules\projectiles\projectile\bullets.dm"

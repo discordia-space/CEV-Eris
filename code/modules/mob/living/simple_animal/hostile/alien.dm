@@ -82,7 +82,7 @@
 	damage_types = list(
 		ARMOR_BULLET = list(
 			DLEM(BRUTE, 20)
-		)
+		),
 		ARMOR_CHEM = list(
 			DELEM(BRUTE, 10)
 		)

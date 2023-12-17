@@ -8,7 +8,7 @@
 	icon_state = "goo_proj"
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			list(BURN, 15)
+			DELEM(BURN, 15)
 		)
 	)
 	step_delay = 2
@@ -17,7 +17,7 @@
 	name = "weakened electrolyzed goo"
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			list(BURN, 5)
+			DELEM(BURN, 5)
 		)
 	)
 
