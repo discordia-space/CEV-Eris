@@ -9,6 +9,8 @@
 #define BLAST	  "blast"
 #define PSY       "psy"
 
+#define ALL_DAMAGE list(BRUTE,BURN,TOX,OXY,CLONE,HALLOSS,BLAST,PSY)
+
 #define CUT       "cut"
 #define BRUISE    "bruise"
 #define PIERCE    "pierce"

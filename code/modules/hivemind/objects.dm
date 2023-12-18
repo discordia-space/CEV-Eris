@@ -8,7 +8,8 @@
 	icon_state = "goo_proj"
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			DELEM(BURN, 15)
+			DELEM(BURN, 15),
+			DELEM(TOX, 15)
 		)
 	)
 	step_delay = 2
@@ -17,16 +18,14 @@
 	name = "weakened electrolyzed goo"
 	damage_types = list(
 		ARMOR_ENERGY = list(
-			DELEM(BURN, 5)
+			DELEM(BURN, 5),
+			DELEM(TOX, 10)
 		)
 	)
 
 
 /obj/item/projectile/goo/on_hit(atom/target)
 	. = ..()
-	if( isliving(target) && !issilicon(target) )
-		var/mob/living/L = target
-		L.damage_through_armor(10, TOX, attack_flag = ARMOR_ENERGY)
 	if(!(locate(/obj/effect/decal/cleanable/spiderling_remains) in target.loc))
 		var/obj/effect/decal/cleanable/spiderling_remains/goo = new /obj/effect/decal/cleanable/spiderling_remains(target.loc)
 		goo.name = "electrolyzed goo"

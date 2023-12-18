@@ -220,20 +220,14 @@ armorType defines the armorType that will block all the damTypes that it has ass
 	return target_zone
 
 //Called when the mob is hit with an item in combat.
-/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, list/damages, var/hit_zone)
 	visible_message(SPAN_DANGER("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
-
-	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
-
-	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
-		var/turf/simulated/location = get_turf(src)
-		if(istype(location)) location.add_blood_floor(src)
-
+	standard_weapon_hit_effects(I, user, damages, hit_zone)
 	return
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
-/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	if(!effective_force)
+/mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, list/damages, var/hit_zone)
+	if(dhTotalDamage(damages) <= 0)
 		return FALSE
 
 	//Hulk modifier
@@ -241,7 +235,8 @@ armorType defines the armorType that will block all the damTypes that it has ass
 //		effective_force *= 2
 
 	//Apply weapon damage
-	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_BLUNT, I.armor_divisor, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))
+	// We create a copy of its melleDamages
+	if (damage_through_armor(damages, hit_zone, I, I.armor_divisor, I.wounding_multiplier))
 		return TRUE
 	else
 		return FALSE
@@ -267,7 +262,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 
-		damage_through_armor(throw_damage, dtype, null, ARMOR_BLUNT, O.armor_divisor, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
+		damage_through_armor(list(ARMOR_BLUNT = list(DELEM(dtype, throw_damage))), BP_CHEST, AM, O.armor_divisor, O.wounding_mult)
 
 		O.throwing = 0		//it hit, so stop moving
 

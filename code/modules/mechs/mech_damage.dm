@@ -18,14 +18,16 @@
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
 		penetration = L.armor_divisor
-	var/list/damages = list(BRUTE = damage)
+	var/list/damages = list(ARMOR_BLUNT = list(
+		DELEM(BRUTE, damage)
+	))
 	if(user.dir & reverse_dir[dir])
 		var/obj/item/mech_equipment/shield_generator/gen = getShield()
 		if(gen)
 			damages = gen.absorbDamages(damages)
-	if(damages[BRUTE] == 0)
+	if(damages[ARMOR_BLUNT][1][2] == 0)
 		return
-	damage_through_armor(damages[BRUTE], BRUTE, attack_flag=ARMOR_BLUNT, armor_divisor=penetration, def_zone=pick(arms, legs, body, head))
+	damage_through_armor(damages, pick(arms,legs,body,head), user, 1, 1, FALSE)
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))

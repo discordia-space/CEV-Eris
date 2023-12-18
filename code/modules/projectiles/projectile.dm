@@ -125,49 +125,32 @@ GLOBAL_LIST(projectileDamageConstants)
 	damage = damage_types.Copy()
 
 /obj/item/projectile/is_hot()
-	return getAllDamType(BURN) * heat
+	return dhTotalDamageDamageType(damages ? damages : damage_types, BURN) * heat
 
 /obj/item/projectile/proc/get_total_damage()
-	var/val = 0
 	var/damageList = damage
 	if(!length(damage) || !damage)
 		damageList = damage_types
-	for(var/armorType in damageList)
-		for(var/list/damageElement in damageList[armorType])
-			val += damageElement[2]
-
-	return val
+	return dhTotalDamage(damageList)
 
 /obj/item/projectile/proc/is_halloss()
 	var/damageList = damage
 	if(!length(damage) || !damage)
 		damageList = damage_types
-	for(var/armorType in damageList)
-		for(var/list/damageElement in damageList[armorType])
-			if(damageElement[1] != HALLOSS)
-				return FALSE
-	return TRUE
+	return dhHasDamageType(damageList, HALLOSS)
 
 /obj/item/projectile/proc/getAllDamType(type)
 	var/damageList = damage
 	var/totalDamage = 0
 	if(!length(damage) || !damage)
 		damageList = damage_types
-	for(var/armorType in damageList)
-		for(var/list/damageElement in damageList[armorType])
-			if(damageElement[1] == type)
-				totalDamage += damageElement[2]
-	return totalDamage
+	return dhTotalDamageDamageType(damageList, type)
 
 /obj/item/projectile/multiply_projectile_damage(newMult)
-	for(var/armorType in damage)
-		for(var/list/damageElement in damage[armorType])
-			damageElement[2] *= damageElement[1] == HALLOSS ? 1 : newMult
+	dhApplyStrictMultiplier(damages, ALL_ARMOR, ALL_DAMAGE - HALLOSS, newMult)
 
 /obj/item/projectile/multiply_projectile_halloss(newMult)
-	for(var/armorType in damage)
-		for(var/list/damageElement in damage[armorType])
-			damageElement[2] *= damageElement[1] == HALLOSS ? newMult : 1
+	dhApplyStrictMultiplier(damages, ALL_ARMOR, HALLOSS, newMult)
 
 /obj/item/projectile/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult

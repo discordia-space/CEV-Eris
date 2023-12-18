@@ -179,7 +179,7 @@
 	//no check for grab levels
 	visible_message(SPAN_DANGER("[attacker] thrusts \his fist in [target]'s guts!"))
 	var/damage = max(1, (10 - target.stats.getStat(STAT_TGH) / 4))//40+ TGH = 1 dmg
-	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_BLUNT, wounding_multiplier = 2)
+	target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, damage))), BP_GROIN, src, 1, 2)
 	//vomiting goes on cd for 35 secs, which means it's impossible to spam this
 	target.vomit(TRUE)
 	//admin messaging
@@ -314,7 +314,8 @@
 		sleep(1)
 
 	target.throw_at(get_edge_target_turf(target, dir), 7, 2)//this is very fast, and very painful for any obstacle involved
-	target.damage_through_armor(damage, HALLOSS, armor_divisor = 2)
+
+	target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(HALLOSS, damage))), BP_CHEST, null, attacker, 2)
 
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Swung [target.name] ([target.ckey])</font>")

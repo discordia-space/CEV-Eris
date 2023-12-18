@@ -258,6 +258,7 @@ meteor_act
 	var/stat_affect = 0.3 //lowered to 0.2 if we are blocking with an item
 	var/item_size_affect = 0 //the bigger the thing you hold is, the more damage you can block
 	var/toughness = max(1, stats.getStat(STAT_TGH))
+	var/initDam = damage
 	//passive blocking with shields is handled differently(code is above this proc)
 	if(get_active_hand())//are we blocking with an item?
 		var/obj/item/I = get_active_hand()
@@ -265,7 +266,8 @@ meteor_act
 			item_size_affect = I.w_class * 5
 			stat_affect = 0.2
 	damage -= (toughness * stat_affect + item_size_affect)
-	return max(0, damage)
+
+	return abs(damage/initDam) < 0.1 ? 0 : abs(damage/initDam)
 
 /mob/living/carbon/human/proc/grab_redirect_attack(var/mob/living/carbon/human/attacker, var/obj/item/grab/G, var/obj/item/I)
 	var/mob/living/carbon/human/grabbed = G.affecting
@@ -306,7 +308,7 @@ meteor_act
 
 	return hit_zone
 
-/mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/human/hit_with_weapon(obj/item/I, mob/living/user, list/damages, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return FALSE//should be prevented by attacked_with_item() but for sanity.
@@ -318,11 +320,11 @@ meteor_act
 
 	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
-	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
+	standard_weapon_hit_effects(I, user, damages, hit_zone)
 
 	return TRUE
 
-/mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/human/standard_weapon_hit_effects(obj/item/I, mob/living/user, list/damages, var/hit_zone)
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if(!affecting)
 		return FALSE
@@ -337,20 +339,19 @@ meteor_act
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [user.name] ([user.ckey])</font>")
 			user.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [src.name] ([src.ckey])</font>")
 			visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
-			effective_force = handle_blocking(effective_force)
-			if(effective_force == 0)
+			dhApplyMultiplier(damages,handle_blocking(effective_force))
+			if(dhTotalDamage(damages) <= 1)
 				visible_message(SPAN_DANGER("The attack has been completely negated!"))
 				return FALSE
 
 	//If not blocked, handle broad strike attacks
-	if(((I.sharp && I.edge && user.a_intent == I_DISARM) || I.forced_broad_strike) && (!istype(I, /obj/item/tool/sword/nt/spear) || !istype(I, /obj/item/tele_spear) || !istype(I, /obj/item/tool/spear)))
+	if(((is_sharp(I) && has_edge(I) && user.a_intent == I_DISARM) || I.forced_broad_strike) && (!istype(I, /obj/item/tool/sword/nt/spear) || !istype(I, /obj/item/tele_spear) || !istype(I, /obj/item/tool/spear)))
 		var/list/L[] = BP_ALL_LIMBS
-		effective_force /= 3
 		L.Remove(hit_zone)
 		for(var/i in 1 to 2)
 			var/temp_zone = pick(L)
 			L.Remove(temp_zone)
-			..(I, user, effective_force, temp_zone)
+			..(I, user, dhApplyMultiplier(damages.Copy(), 0.3), temp_zone)
 
 	//Push attacks
 	if(hit_zone == BP_GROIN && I.push_attack && user.a_intent == I_DISARM)
@@ -358,7 +359,7 @@ meteor_act
 		visible_message(SPAN_WARNING("[src] is pushed away by the attack!"))
 	else if(!..())
 		return FALSE
-	if(effective_force > 10 || effective_force >= 5 && prob(33))
+	if(dhTotalDamage(damages) > 10 || dhTotalDamage(damages) >= 5 && prob(33))
 		forcesay(hit_appends)	//forcesay checks stat already
 
 		//Apply screenshake

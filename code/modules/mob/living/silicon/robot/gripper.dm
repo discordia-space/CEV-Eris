@@ -31,6 +31,7 @@
 	var/obj/item/wrapped // Item currently being held.
 
 	var/force_holder //
+	var/holderDamages = list()
 	var/justdropped = 0//When set to 1, the gripper has just dropped its item, and should not attempt to trigger anything
 
 /obj/item/gripper/examine(var/mob/user)

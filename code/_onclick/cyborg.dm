@@ -122,8 +122,8 @@
 	if (!grippersafety(G))return
 
 
-	G.force_holder = W.force
-	W.force = 0
+	G.force_holder = W.melleDamages
+	W.melleDamages = null
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc in contents)
 	if(A == loc || (A in loc) || (A in contents))
 		// No adjacency checks
@@ -133,10 +133,10 @@
 		if(!resolved && A && W)
 			W.afterattack(A,src,1,params)
 		if (!grippersafety(G))return
-		W.force = G.force_holder
+		W.melleDamages = G.force_holder
 		return
 	if(!isturf(loc))
-		W.force = G.force_holder
+		W.melleDamages = G.force_holder
 		return
 
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc && isturf(A.loc.loc))
@@ -147,10 +147,10 @@
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params)
 			if (!grippersafety(G))return
-			W.force = G.force_holder
+			W.melleDamages = G.force_holder
 			return
 		//No non-adjacent clicks. Can't fire guns
-	W.force = G.force_holder
+	W.melleDamages = G.force_holder
 	return
 
 

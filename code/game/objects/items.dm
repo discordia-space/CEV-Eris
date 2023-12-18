@@ -93,7 +93,12 @@
 	var/list/hud_actions
 
 	//Damage vars
-	var/force = 0	//How much damage the weapon deals
+	/// The damages to enact when hitting with this object.
+	var/list/melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE , 1)
+		)
+	)
 	var/embed_mult = 1 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs

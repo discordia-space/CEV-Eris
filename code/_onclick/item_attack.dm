@@ -211,6 +211,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/attack_with_multiplier(mob/living/user, var/atom/target, var/modifier = 1)
 	if(!wielded && modifier > 0)
 		return FALSE
+	var/list/damages = melleDamages.Copy()
+	dhApplyMultiplier(modifier)
 	var/original_force = force
 	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
 	force *= modifier
@@ -320,13 +322,13 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		target.IgniteMob()
 
-	var/power = force
+	var/damMult = 1
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		power *= H.damage_multiplier
+		damMult *= H.damage_multiplier
 		if(H.holding_back)
-			power /= 2
-//	if(HULK in user.mutations)
-//		power *= 2
-	target.hit_with_weapon(src, user, power, hit_zone)
+			damMult /= 2
+	var/list/damages = melleDamages.Copy()
+	dhApplyMultiplier(damages, damMult)
+	target.hit_with_weapon(src, user, damages, hit_zone)
 	return

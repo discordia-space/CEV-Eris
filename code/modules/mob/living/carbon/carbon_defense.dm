@@ -7,9 +7,8 @@
 		hit_zone = "chest"
 	return ..(I, user, hit_zone)
 
-/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-
-	if(!effective_force)
+/mob/living/carbon/standard_weapon_hit_effects(obj/item/I, mob/living/user, list/damages, var/hit_zone)
+	if(dhTotalDamage(damages) <= 0)
 		return 0
 
 	//Hulk modifier
@@ -17,16 +16,16 @@
 //		effective_force *= 2
 
 	//Apply weapon damage
-	var/weapon_sharp = is_sharp(I)
-	var/weapon_edge = has_edge(I)
+	//var/weapon_sharp = is_sharp(I)
+	//var/weapon_edge = has_edge(I)
 	/* Removed , dumb RNG mechanic (SPCR 2023) , Removed by use of new armor types (BLUNT, SLASH , POINTY)
 	if(prob(getarmor(hit_zone, ARMOR_MELEE))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = 0
 		weapon_edge = 0
 	*/
 
-	hit_impact(effective_force, get_step(user, src), hit_zone)
-	damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_BLUNT, armor_divisor = I.armor_divisor, used_weapon = I, sharp = weapon_sharp, edge = weapon_edge)
+	hit_impact(dhTotalDamage(damages), get_step(user, src), hit_zone)
+	damage_through_armor(damages, hit_zone, I, I.armor_divisor, 1, FALSE)
 
 /*Its entirely possible that we were gibbed or dusted by the above. Check if we still exist before
 continuing. Being gibbed or dusted has a 1.5 second delay, during which it sets the transforming var to
@@ -35,16 +34,16 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		return TRUE
 
 	//Melee weapon embedded object code.
-	if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
-		var/damage = effective_force
+	var/brute = dhTotalDamageDamageType(damages, BRUTE)
+	if (I && brute && !I.anchored && !is_robot_module(I))
 
 		//blunt objects should really not be embedding in things unless a huge amount of force is involved
 
-		var/embed_threshold = weapon_sharp? 5*I.w_class : 15*I.w_class
+		var/embed_threshold = weapon_sharp ? 5*I.w_class : 15*I.w_class
 
 		//The user's robustness stat adds to the threshold, allowing you to use more powerful weapons without embedding risk
 		embed_threshold += user.stats.getStat(STAT_ROB)
-		var/embed_chance = (damage*I.embed_mult - embed_threshold)/2
+		var/embed_chance = (brute*I.embed_mult - embed_threshold)/2
 		if(embed_chance > 0 && prob(embed_chance))
 			src.embed(I, hit_zone)
 

@@ -205,8 +205,8 @@ see multiz/movement.dm for some info.
 
 				while(fall_damage > 0)
 					fall_damage -= tmp_damage = rand(0, fall_damage)
-					M.damage_through_armor(tmp_damage, BRUTE, organ, used_weapon = mover)
 					organ = pickweight(list(BP_HEAD = 0.3, BP_CHEST = 0.8, BP_R_ARM = 0.6, BP_L_ARM = 0.6))
+					M.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, fall_damage))), organ, mover)
 
 
 // override to make sure nothing is hidden
