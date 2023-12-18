@@ -211,24 +211,14 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/attack_with_multiplier(mob/living/user, var/atom/target, var/modifier = 1)
 	if(!wielded && modifier > 0)
 		return FALSE
-	var/list/damages = melleDamages.Copy()
-	dhApplyMultiplier(modifier)
-	var/original_force = force
-	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
-	force *= modifier
-	target.attackby(src, user)
-	force = wielded ? original_force : round(original_unwielded_force, 1)
+	attack(target, user, user.targeted_organ, modifier)
 	return TRUE
 
 //Same as above but for mobs
 /obj/item/proc/attack_with_multiplier_mob(mob/living/user, var/mob/living/target, var/modifier = 1)
 	if(!wielded && modifier > 0)
 		return FALSE
-	var/original_force = force
-	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
-	force *= modifier
-	attack(target, user, user.targeted_organ)
-	force = wielded ? original_force : round(original_unwielded_force, 1)
+	attack(target, user, user.targeted_organ, modifier)
 	return TRUE
 
 //Area of effect attacks (swinging), return remaining damage
@@ -288,7 +278,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
-/obj/item/proc/attack(mob/living/M, mob/living/user, target_zone)
+/obj/item/proc/attack(mob/living/M, mob/living/user, target_zone, damageMultiplier)
 	if(!force || (flags & NOBLUDGEON))
 		return FALSE
 
@@ -310,19 +300,19 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)
-		apply_hit_effect(M, user, hit_zone)
+		apply_hit_effect(M, user, hit_zone, damageMultiplier)
 
 	return TRUE
 
 //Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
-/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, hit_zone, damageMultiplier)
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		target.IgniteMob()
 
-	var/damMult = 1
+	var/damMult = 1 + damageMultiplier + 0.0001 + wielded ? wieldedMultiplier : 0
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		damMult *= H.damage_multiplier

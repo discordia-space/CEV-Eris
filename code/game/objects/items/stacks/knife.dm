@@ -19,7 +19,11 @@
 	amount = 1
 	max_amount = 3
 	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 20)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_SHALLOW
 	throw_speed = 3
@@ -76,7 +80,11 @@
 	amount = 3
 	max_amount = 3
 	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 15)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	armor_divisor = ARMOR_PEN_SHALLOW
 	slot_flags = SLOT_BELT

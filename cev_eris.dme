@@ -89,6 +89,7 @@
 #include "code\__DEFINES\spawner\_spawner.dm"
 #include "code\__DEFINES\spawner\excelsior.dm"
 #include "code\__DEFINES\spawner\frozen_star.dm"
+#include "code\__HELPERS\_damage_handlers.dm"
 #include "code\__HELPERS\_global_objects.dm"
 #include "code\__HELPERS\_lists.dm"
 #include "code\__HELPERS\_logging.dm"

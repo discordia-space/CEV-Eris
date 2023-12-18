@@ -4,7 +4,11 @@
 	icon_state = "binoculars"
 
 	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_range = 15

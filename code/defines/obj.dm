@@ -87,7 +87,11 @@
 	density = FALSE
 	anchored = FALSE
 	w_class = ITEM_SIZE_BULKY
-	force = 0
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 0)
+		)
+	)
 	throwforce = 0
 	throw_speed = 1
 	throw_range = 20

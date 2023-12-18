@@ -20,7 +20,6 @@
 	throwforce = NONE
 	throw_speed = 4
 	throw_range = 20
-	force = NONE
 
 	//spawn_values
 	bad_type = /obj/item/toy
@@ -274,7 +273,11 @@
 	item_state = "katana"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_BACK
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 0)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")

@@ -234,8 +234,6 @@ armorType defines the armorType that will block all the damTypes that it has ass
 //	if(HULK in user.mutations)
 //		effective_force *= 2
 
-	//Apply weapon damage
-	// We create a copy of its melleDamages
 	if (damage_through_armor(damages, hit_zone, I, I.armor_divisor, I.wounding_multiplier))
 		return TRUE
 	else

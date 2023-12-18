@@ -14,7 +14,11 @@
 	icon = 'icons/obj/stack/tile.dmi'
 	desc = "This should not exist."
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_HARMLESS
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 7

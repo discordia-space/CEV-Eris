@@ -1,3 +1,4 @@
+GLOBAL_LIST(melleDamagesCache)
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
@@ -99,6 +100,7 @@
 			DELEM(BRUTE , 1)
 		)
 	)
+	var/wieldedMultiplier = 1.3
 	var/embed_mult = 1 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
@@ -125,6 +127,11 @@
 		armor = getArmor()
 	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+	if(!GLOB.melleDamagesCache[type])
+		GLOB.melleDamagesCache[type] = melleDamages
+	else
+		del(melleDamages)
+		melleDamages = GLOB.melleDamagesCache[type]
 	if(chameleon_type)
 		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
