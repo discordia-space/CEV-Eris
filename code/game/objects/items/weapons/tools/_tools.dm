@@ -10,7 +10,11 @@
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
 

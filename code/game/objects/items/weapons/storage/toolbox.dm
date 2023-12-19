@@ -5,7 +5,13 @@
 	icon_state = "red"
 	item_state = "toolbox_red"
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,12)
+		)
+	)
+	wieldMultiplier = 2
+	w_attack_delay = 8
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
@@ -105,7 +111,13 @@
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
 	origin_tech = list(TECH_COMBAT = 1, TECH_COVERT = 1)
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,13)
+		)
+	)
+	wieldMultiplier = 2
+	w_attack_delay = 7
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/toolbox/syndicate/populate_contents()

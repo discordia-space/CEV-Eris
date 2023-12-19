@@ -147,7 +147,13 @@
 	icon_state = "secure"
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+	wieldMultiplier = 5
+	w_attack_delay = 18
 	throw_speed = 1
 	throw_range = 4
 	w_class = ITEM_SIZE_BULKY
@@ -176,7 +182,6 @@
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
-	force = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_GARGANTUAN
 	max_w_class = ITEM_SIZE_HUGE
 	max_storage_space = DEFAULT_GARGANTUAN_STORAGE

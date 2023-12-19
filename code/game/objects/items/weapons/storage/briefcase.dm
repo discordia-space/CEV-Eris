@@ -4,7 +4,14 @@
 	icon_state = "briefcase"
 	item_state = "briefcase"
 	flags = CONDUCT
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+	/// Big whacker
+	wieldedMultiplier = 4
+	w_attack_delay = 16
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4

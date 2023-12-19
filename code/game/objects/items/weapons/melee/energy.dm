@@ -211,9 +211,11 @@
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "blade"
-	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
-	armor_divisor = ARMOR_PEN_MAX
-	damtype = BURN
+	melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN,30),
+			DELEM(BRUTE,30)
+		))
 	sharp = TRUE
 	edge = TRUE
 	anchored = TRUE    // Never spawned outside of inventory, should be fine.
@@ -274,7 +276,11 @@
 	if(stunmode)
 		desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 		icon_state = "blade"
-		force = WEAPON_FORCE_ROBUST
+		melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BRUTE,30),
+			DELEM(BURN,30)
+		))
 		sharp = FALSE
 		edge = TRUE
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -282,7 +288,11 @@
 	else
 		desc = "A concentrated beam of energy in the shape of a blade. Very stylish... for a stun baton."
 		icon_state = "blade_stun"
-		force = WEAPON_FORCE_PAINFUL
+		melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(HALLOSS, 40),
+			DELEM(BURN,10)
+		))
 		sharp = FALSE
 		edge = FALSE
 		attack_verb = list("beaten", "battered", "struck")

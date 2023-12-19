@@ -17,7 +17,13 @@ var/list/global/tank_gauge_cache = list()
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_NORMAL
 
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+	wieldMultiplier = 5
+	w_attack_delay = 14
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4

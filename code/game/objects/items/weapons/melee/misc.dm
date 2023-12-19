@@ -4,7 +4,11 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hm_hammer"
 	item_state = "hm_hammer"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,15)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 3)
@@ -19,7 +23,11 @@
 			src.desc = "Wired mop. You need toolbox to finish this."
 			icon_state = "hm_hammer_unfinished"
 			item_state = ""
-			force = WEAPON_FORCE_WEAK
+			melleDamages = list(
+				ARMOR_BLUNT = list(
+					DELEM(BRUTE,5)
+				)
+			)
 			throwforce = WEAPON_FORCE_WEAK
 			origin_tech = list(TECH_COMBAT = 1)
 
@@ -62,7 +70,11 @@
 		if(istype(C, /obj/item/storage/toolbox))
 			src.name = initial(src.name)
 			src.desc = initial(src.desc)
-			src.force = initial(src.force)
+			melleDamages list(
+				ARMOR_BLUNT = list(
+					DELEM(BRUTE,15)
+				)
+			)
 			throwforce = initial(throwforce)
 			origin_tech = initial(origin_tech)
 			icon_state = initial(icon_state)

@@ -14,7 +14,6 @@
 	name = "oxygen tank"
 	desc = "A tank of oxygen."
 	icon_state = "oxygen"
-	force = WEAPON_FORCE_PAINFUL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
 	default_gas = "oxygen"
@@ -58,7 +57,6 @@
 	name = "air tank"
 	desc = "Mixed anyone?"
 	icon_state = "air"
-	force = WEAPON_FORCE_PAINFUL
 	default_pressure = 6*ONE_ATMOSPHERE
 	slot_flags = SLOT_BACK
 
@@ -82,7 +80,6 @@
 	name = "plasma tank"
 	desc = "Contains dangerous plasma. Do not inhale. Warning: extremely flammable."
 	icon_state = "plasma"
-	force = WEAPON_FORCE_NORMAL
 	gauge_icon = null
 	flags = CONDUCT
 	slot_flags = null	//they have no straps!
@@ -103,7 +100,6 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_NORMAL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 3*ONE_ATMOSPHERE
 	default_gas = "oxygen"
@@ -147,7 +143,6 @@
 /obj/item/tank/nitrogen
 	name = "nitrogen tank"
 	desc = "Many a death for mistaking it for a fire extinguisher."
-	force = WEAPON_FORCE_PAINFUL
 	icon_state = "nitrogen"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 9*ONE_ATMOSPHERE
