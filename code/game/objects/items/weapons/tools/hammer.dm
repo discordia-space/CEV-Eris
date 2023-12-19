@@ -171,8 +171,7 @@
 	icon_state = "chargehammer"
 	item_state = "chargehammer"
 	w_class = ITEM_SIZE_HUGE
-	switched_on_force = WEAPON_FORCE_BRUTAL
-	armor_divisor = ARMOR_PEN_EXTREME
+	switchedOn = list(ARMOR_BLUNT = list(DELEM(BRUTE,30)))
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	switched_on_qualities = list(QUALITY_HAMMERING = 60)
 	switched_off_qualities = list(QUALITY_HAMMERING = 35)

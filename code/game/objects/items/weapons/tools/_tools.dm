@@ -10,11 +10,7 @@
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
 	slot_flags = SLOT_BELT
-	melleDamages = list(
-		ARMOR_BLUNT = list(
-			DELEM(BRUTE,5)
-		)
-	)
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
 
@@ -68,7 +64,7 @@
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities	//This var will REPLACE tool_qualities when tool will be toggled on.
-	var/switched_on_force
+	var/list/switchedOn = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	var/switched_on_hitsound
 	var/switched_off_qualities	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
@@ -697,10 +693,8 @@
 	tool_qualities = switched_on_qualities
 	if(switched_on_hitsound)
 		hitsound = switched_on_hitsound
-	if(!isnull(switched_on_force))
-		force = switched_on_force
-		if(wielded)
-			force *= 1.3
+	if(!isnull(switchedOn))
+		melleDamages = switchedOn.Copy()
 	if(glow_color)
 		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
@@ -715,7 +709,7 @@
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
 	hitsound = initial(hitsound)
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type].Copy()
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
@@ -823,10 +817,10 @@
 
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type].Copy()
 	force_upgrade_mults = initial(force_upgrade_mults)
 	force_upgrade_mods = initial(force_upgrade_mods)
-	switched_on_force = initial(switched_on_force)
+	switchedOn = GLOB.melleDamagesCacheCache["[type]-s"].Copy()
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)

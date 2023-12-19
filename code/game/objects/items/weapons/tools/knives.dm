@@ -216,7 +216,7 @@
 	edge = FALSE
 	sharp = FALSE
 	force = WEAPON_FORCE_WEAK
-	switched_on_force = WEAPON_FORCE_PAINFUL
+	switchedOn = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	w_class = ITEM_SIZE_TINY
@@ -237,8 +237,8 @@
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	w_class = switched_on_w_class
-	if (!isnull(switched_on_force))
-		force = switched_on_force
+	if (!isnull(switchedOn))
+		melleDamages = switchedOn.Copy()
 	update_icon()
 	update_wear_icon()
 
@@ -251,7 +251,7 @@
 	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type].Copy()
 	w_class = initial(w_class)
 	update_icon()
 	update_wear_icon()
@@ -266,7 +266,6 @@
 	edge = FALSE
 	sharp = FALSE
 	force = WEAPON_FORCE_WEAK
-	switched_on_force = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_TINY
 	var/switched_on_w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6, MATERIAL_GOLD= 0.5)

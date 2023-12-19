@@ -70,7 +70,7 @@
 		if(istype(C, /obj/item/storage/toolbox))
 			src.name = initial(src.name)
 			src.desc = initial(src.desc)
-			melleDamages list(
+			melleDamages = list(
 				ARMOR_BLUNT = list(
 					DELEM(BRUTE,15)
 				)

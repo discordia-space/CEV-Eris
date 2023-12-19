@@ -75,7 +75,7 @@
 	. = 0
 	for(var/armorType in damages)
 		for(var/list/damageElement in damages[armorType])
-			 . += damageElement[2]
+			. += damageElement[2]
 	return .
 
 /proc/dhTotalDamageDamageType(list/damages, damageType)
