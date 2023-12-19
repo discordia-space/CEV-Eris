@@ -3,6 +3,14 @@
 	name = "Asters \"Robustcell 1000L\""
 	desc = "Asters Guild branded rechargeable L-standardized power cell. This one is the cheapest you can find."
 	icon_state = "b_st"
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,10)
+		)
+	)
+	//// smash
+	wieldedMultiplier = 2
+	w_attack_delay = 8
 	maxcharge = CELL_LARGE_BASE_CHARGE//1000
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 	price_tag = 200
@@ -122,7 +130,11 @@
 	desc = "Asters Guild branded rechargeable M-standardized power cell. This one is the cheapest you can find."
 	icon_state = "m_st"
 	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_HARMLESS
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,7)
+		)
+	)
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = CELL_MEDIUM_BASE_CHARGE//600
@@ -221,7 +233,11 @@
 	desc = "Asters Guild branded rechargeable S-standardized power cell. This one is the cheapest you can find."
 	icon_state = "s_st"
 	w_class = ITEM_SIZE_TINY
-	force = WEAPON_FORCE_HARMLESS
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
 	throw_speed = 5
 	throw_range = 7
 	maxcharge = CELL_SMALL_BASE_CHARGE//100
@@ -332,7 +348,6 @@
 	desc = "just steel for this one!"
 	icon_state = "s_st"
 	w_class = ITEM_SIZE_TINY
-	force = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 7
 	origin_tech = list(TECH_POWER = 1)

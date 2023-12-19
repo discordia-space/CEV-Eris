@@ -11,7 +11,14 @@
 	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 2
 	throw_range = 10
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 12),
+			DELEM(BRUTE, 6)
+		)
+	)
+	wieldedMultiplier = 2
+	w_attack_delay = 3
 	matter = list(MATERIAL_STEEL = 3)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	rarity_value = 10
@@ -34,7 +41,11 @@
 	hitsound = null	//it is much lighter, after all.
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 10)
+		)
+	)
 	max_water = 150
 	spray_particles = 3
 	sprite_name = "miniFE"

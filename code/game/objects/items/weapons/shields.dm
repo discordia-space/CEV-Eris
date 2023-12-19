@@ -140,7 +140,11 @@
 	item_state = "tactical"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_BACK
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 2
 	throw_range = 6
@@ -196,7 +200,11 @@
 	item_state = "riot"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,7)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
@@ -300,7 +308,11 @@
 	item_state = "dozershield"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,7)
+		)
+	)
 	throwforce = WEAPON_FORCE_DANGEROUS
 	throw_speed = 1
 	throw_range = 4
@@ -327,7 +339,11 @@
 	item_state = "hardshield"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,15)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
@@ -460,7 +476,11 @@
 	icon_state = "eshield0" // eshield1 for expanded
 	item_state = "eshield0"
 	flags = CONDUCT
-	force = 3
+	melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN,10)
+		)
+	)
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 4
@@ -490,14 +510,20 @@
 	active = !active
 */
 	if(active)
-		force = WEAPON_FORCE_PAINFUL
+		melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN,10)
+		))
 		update_icon()
 		w_class = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] is now active."))
 
 	else
-		force = 3
+		melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		))
 		update_icon()
 		w_class = ITEM_SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)

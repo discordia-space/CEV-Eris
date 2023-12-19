@@ -8,7 +8,6 @@
 	item_state = "grenade"
 	desc = "A hand made chemical grenade."
 	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_HARMLESS
 	det_time = null
 	unacidable = 1
 	matter = list(MATERIAL_STEEL = 3)

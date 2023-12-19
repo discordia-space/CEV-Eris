@@ -12,15 +12,20 @@
 	price_tag = 20000
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
-	force = WEAPON_FORCE_BRUTAL
-	var/crusade_force = WEAPON_FORCE_NORMAL * 0.8
+	melleDamages = list(
+		ARMOR_SHARP = list(
+			DELEM(BRUTE,40),
+			DELEM(BRUTE,10)
+		)
+	)
+	var/crusadeMult = 1.4
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
 /obj/item/tool/sword/nt_sword/crusade_activated()
 	. = ..()
 	if(!.) return
-	force += crusade_force
+	dhApplyMultiplier(melleDamages, crusadeMult)
 
 /obj/item/tool/sword/nt_sword/New()
 	..()

@@ -6,7 +6,14 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "tray"
 	desc = "A metal tray to lay food on."
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,6)
+		)
+	)
+	/// WHACK
+	wieldedMultiplier = 3
+	w_attack_delay = 10
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 5

@@ -8,7 +8,11 @@
 	slot_flags = SLOT_BELT
 	description_info = "Highly effective against uninsulated people. High change to disarm when aimed at arms."
 	description_antag = "Can be saboutaged by inserting plasma into its battery cell. Upon being turned on it will blow"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,8),
+		)
+	)
 	sharp = FALSE
 	edge = FALSE
 	throwforce = WEAPON_FORCE_PAINFUL
@@ -16,8 +20,6 @@
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	price_tag = 500
-	var/stunforce = 0
-	var/agonyforce = 40
 	var/status = FALSE		//whether the thing is on or not
 	var/hitcost = 100
 	var/obj/item/cell/cell
@@ -42,6 +44,19 @@
 /obj/item/melee/baton/proc/set_status(s)
 	status = s
 	tool_qualities = status ? list(QUALITY_PULSING = 1) : null
+	if(status)
+		melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(HALLOSS,30),
+			DELEM(HALLOSS,10),
+			DELEM(BURN,10)
+		))
+	else
+		melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,8)
+		)
+	)
 	update_icon()
 
 /obj/item/melee/baton/handle_atom_del(atom/A)
@@ -104,8 +119,7 @@
 	if(isrobot(target))
 		return ..()
 
-	var/agony = agonyforce
-	var/stun = stunforce
+
 	var/obj/item/organ/external/affecting
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
@@ -115,14 +129,6 @@
 		. = ..()
 		if (!.)	//item/attack() does it's own messaging and logs
 			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
-
-		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
-		stun *= 0.5
-		if(status)		//Checks to see if the stunbaton is on.
-			agony *= 0.5	//whacking someone causes a much poorer contact than prodding them.
-		else
-			agony = 0	//Shouldn't really stun if it's off, should it?
-		//we can't really extract the actual hit zone from ..(), unfortunately. Just act like they attacked the area they intended to.
 	else if(!status)
 		if(affecting)
 			target.visible_message(SPAN_WARNING("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
@@ -137,7 +143,6 @@
 
 	//stun effects
 	if(status && deductcharge(hitcost))
-		target.stun_effect_act(stun, agony, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
 
 		if(ishuman(target))
@@ -180,10 +185,7 @@
 	desc = "An improvised stun baton."
 	icon_state = "stunprod"
 	item_state = "prod"
-	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	stunforce = 0
-	agonyforce = 40	//same force as a stunbaton, but uses way more charge.
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
@@ -196,10 +198,7 @@
 	icon_state = "sovietbaton"
 	item_state = "soviet"
 	light_color = COLOR_LIGHTING_CYAN_BRIGHT
-	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
-	stunforce = 0
-	agonyforce = 40
 	hitcost = 100
 	attack_verb = list("battered")
 	slot_flags = SLOT_BELT

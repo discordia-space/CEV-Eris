@@ -5,9 +5,14 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_SHARP = list(
+			DELEM(BRUTE, 25)
+		)
+	)
+	wieldedMultiplier = 1.5
+	w_attack_delay = 4
 	throwforce = WEAPON_FORCE_WEAK
-	armor_divisor = ARMOR_PEN_DEEP
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
@@ -27,10 +32,14 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
-	force = 25
-	force_wielded_multiplier = 1.04
+	melleDamages = list(
+		ARMOR_SHARP = list(
+			DELEM(BRUTE, 15)
+		)
+	)
+	w_attack_delay = 0
+	wieldedMultiplier = 1.3
 	throwforce = WEAPON_FORCE_WEAK
-	armor_divisor = ARMOR_PEN_DEEP
 	aspects = list(SANCTIFIED)
 	price_tag = 300
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
@@ -42,8 +51,14 @@
 	desc = "This saintly-looking longsword is the first choice of experienced crusaders."
 	icon_state = "nt_longsword"
 	item_state = "nt_longsword"
-	force = 30
-	armor_divisor = ARMOR_PEN_HALF
+	melleDamages = list(
+		ARMOR_SHARP = list(
+			DELEM(BRUTE, 30)
+		)
+	)
+	wieldedMultiplier = 1.7
+	w_attack_delay = 7
+	attack_delay = 2
 	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
@@ -55,8 +70,11 @@
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_dagger"
 	item_state = "nt_dagger"
-	force = WEAPON_FORCE_PAINFUL
-	armor_divisor = ARMOR_PEN_EXTREME
+	melleDamages = list(
+		ARMOR_SHARP = list(
+			DELEM(BRUTE, 12)
+		)
+	)
 	aspects = list(SANCTIFIED)
 	price_tag = 120
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 1)
@@ -76,9 +94,15 @@
 	icon_state = "nt_halberd"
 	item_state = "nt_halberd"
 	wielded_icon = "nt_halberd_wielded"
-	force = WEAPON_FORCE_BRUTAL
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 20)
+		)
+	)
+	wieldedMultiplier = 2.3
+	w_attack_delay = 10
+	attack_delay = 3
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
-	armor_divisor = ARMOR_PEN_MASSIVE
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -92,14 +116,19 @@
 	desc = "A saintly-looking whip that can be extended for more pain."
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
-	force = WEAPON_FORCE_ROBUST
-	var/force_extended = WEAPON_FORCE_PAINFUL
-	armor_divisor = ARMOR_PEN_EXTREME
-	var/armor_divisor_extended = ARMOR_PEN_MASSIVE
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 10),
+			DELEM(HALLOSS, 10)
+		)
+	)
+	var/list/damagesExtended = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 20),
+			DELEM(HALLOSS, 20)
+		)
+	)
 	var/extended = FALSE
-	var/agony = 20
-	var/agony_extended = 45
-	var/stun = 0
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 1000
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
@@ -115,9 +144,7 @@
 
 /obj/item/tool/sword/nt/scourge/proc/extend()
 	extended = TRUE
-	force += (force_extended - initial(force))
-	armor_divisor += (armor_divisor_extended - initial(armor_divisor))
-	agony += (agony_extended - initial(agony))
+	melleDamages = damagesExtended
 	slot_flags = null
 	w_class = ITEM_SIZE_BULKY
 	update_icon()
@@ -125,9 +152,7 @@
 /obj/item/tool/sword/nt/scourge/proc/unextend()
 	extended = FALSE
 	w_class = initial(w_class)
-	agony = initial(agony)
-	slot_flags = initial(slot_flags)
-	armor_divisor += (initial(armor_divisor) - armor_divisor_extended)
+	melleDamages = initial(melleDamages)
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
 
@@ -142,7 +167,7 @@
 	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/O = target
-		target.stun_effect_act(stun, agony, hit_zone, src)
+		//target.stun_effect_act(stun, agony, hit_zone, src) The stun is too much but the lines are goofy , SPCR 2023
 		O.say(pick("OH", "LORD", "MERCY", "SPARE", "ME", "HAVE", "PLEASE"))
 
 /obj/item/tool/sword/nt/spear
@@ -151,10 +176,20 @@
 	icon_state = "nt_spear"
 	item_state = "nt_spear"
 	wielded_icon = "nt_spear_wielded"
-	force = 26
-	force_wielded_multiplier = 1.08
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 20)
+		)
+	)
+	wieldedMultiplier = 1.4
+	w_attack_delay = 2
+	attack_delay = 1
 	var/tipbroken = FALSE
-	var/force_broken = WEAPON_FORCE_NORMAL
+	var/list/damagesBroken = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 5)
+		)
+	)
 	var/throwforce_broken = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
@@ -182,7 +217,7 @@
 	..()
 	if(ismob(hit_atom) || isobj(hit_atom))
 		tipbroken = TRUE
-		force = force_broken
+		melleDamages = damagesBroken
 		throwforce = throwforce_broken
 		visible_message(SPAN_DANGER("The spear-tip of the [src] bends into a useless shape!"))
 
@@ -198,7 +233,7 @@
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_HAMMERING, FAILCHANCE_EASY, STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You repair the damaged spear-tip."))
 			tipbroken = FALSE
-			force = initial(force)
+			melleDamages = initial(melleDamages)
 			throwforce = initial(throwforce)
 
 /obj/item/shield/riot/nt
@@ -328,7 +363,11 @@
 	desc = "A saintly-looking sword forged to do God\'s distant work."
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 15)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_DEEP
 	spawn_blacklisted = TRUE
@@ -352,13 +391,18 @@
 	singular_name = "NT Verutum"
 	plural_name = "NT Veruta"
 	wielded_icon = "nt_verutum_wielded"
-	force = 20
-	force_wielded_multiplier = 1.08
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 20)
+		)
+	)
+	wieldedMultiplier = 1
+	/// faster attacking with it wielded,  stabby stab.
+	w_attack_delay = -0.1
 
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL
-	armor_divisor = ARMOR_PEN_DEEP
 	throw_speed = 3
 	price_tag = 150
 	allow_spin = FALSE
@@ -378,7 +422,11 @@
 	icon_state = "nt_crosier"
 	item_state = "nt_crosier"
 	wielded_icon = null //Asked spriter to create, is also missing belt, back equipped sprites.
-	force = WEAPON_FORCE_ROBUST //Stronger than makeshift spear, but just as equal pitiful armor pen. Bap.
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 25)
+		)
+	)
 	matter = list(MATERIAL_BIOMATTER = 30, MATERIAL_STEEL = 15, MATERIAL_GOLD = 10)
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE

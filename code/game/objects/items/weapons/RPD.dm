@@ -8,7 +8,13 @@
 	density = FALSE
 	anchored = FALSE
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+	wieldedMultiplier = 4
+	w_attack_delay = 10
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 5

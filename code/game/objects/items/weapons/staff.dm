@@ -3,7 +3,11 @@
 	desc = "Apparently a staff used by the wizard."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "staff"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,9)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 5
@@ -29,7 +33,11 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "stick"
 	item_state = "stick"
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,7)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 5

@@ -6,7 +6,11 @@
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 6)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 10

@@ -2,14 +2,23 @@
 	icon = 'icons/obj/weapons.dmi'
 	sharp = FALSE
 	edge = FALSE
-	armor_divisor = ARMOR_PEN_MASSIVE
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	heat = 3800
 	embed_mult = 0 //No physical matter to catch onto things
 	bad_type = /obj/item/melee/energy
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,2)
+		)
+	)
+	var/list/activeDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BRUTE, 30),
+			DELEM(BURN, 25)
+		)
+	)
 	var/active = 0
-	var/active_force
 	var/active_throwforce
 	var/active_w_class
 
@@ -22,9 +31,8 @@
 	if(active)
 		return
 	active = 1
-	force = active_force
+	melleDamages = activeDamages.Copy()
 	throwforce = active_throwforce
-	damtype = BURN
 	sharp = TRUE
 	edge = TRUE
 	w_class = active_w_class
@@ -37,9 +45,8 @@
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 	active = 0
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type].Copy()
 	throwforce = initial(throwforce)
-	damtype = initial(damtype)
 	sharp = initial(sharp)
 	edge = initial(edge)
 	w_class = initial(w_class)
@@ -66,7 +73,14 @@
 	active_force = WEAPON_FORCE_GODLIKE
 	active_throwforce = 50
 	active_w_class = ITEM_SIZE_HUGE
-	force = 20
+	melleDamages = list(
+		ARMOR_SHARP = list(
+			DELEM(BRUTE,20)
+		),
+		ARMOR_POINTY = list(
+			DELEM(BRUTE,10)
+		)
+	)
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
@@ -99,7 +113,12 @@
 	active_throwforce = WEAPON_FORCE_LETHAL
 	no_double_tact = TRUE
 	active_w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_HARMLESS
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
@@ -174,7 +193,12 @@
 	name = "laser sabre"
 	desc = "You feel the radiant glow below your skin."
 	origin_tech = list(TECH_MAGNET = 5, TECH_POWER = 6, TECH_COMBAT = 3)
-	active_force = WEAPON_FORCE_ROBUST
+	activeDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BRUTE,20),
+			DELEM(BURN,20)
+		)
+	)
 	active_throwforce = WEAPON_FORCE_ROBUST
 
 /*

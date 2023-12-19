@@ -3,7 +3,11 @@
 	name = "\"Tersus\" vacuum cleaner"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "vacuum"
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 3
@@ -88,7 +92,6 @@
 	name = "compressed filth"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "filth-biomatter"
-	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 6

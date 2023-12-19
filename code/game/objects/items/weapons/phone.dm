@@ -4,7 +4,6 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "red_phone"
 	flags = CONDUCT
-	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 4
