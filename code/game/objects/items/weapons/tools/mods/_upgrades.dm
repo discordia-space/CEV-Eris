@@ -310,9 +310,9 @@
 				prefix = "large-cell"
 			if(/obj/item/cell/small)
 				T.suitable_cell = /obj/item/cell/medium
-	T.melleDamages = dhApplyMultiplier(GLOB.melleDamagesCache[T.type].Copy(), T.force_upgrade_mults)
+	T.melleDamages = dhApplyMultiplier(GLOB.melleDamagesCache[T.type]:Copy(), T.force_upgrade_mults)
 	dhAddDamage(T.melleDamages, ARMOR_BLUNT, BRUTE, T.force_upgrade_mods)
-	T.switchedOn = dhApplyMultiplier(GLOB.melleDamagesCache["[T.type]-t"].Copy(), T.force_upgrade_mults)
+	T.switchedOn = dhApplyMultiplier(GLOB.melleDamagesCache["[T.type]-t"]:Copy(), T.force_upgrade_mults)
 	dhAddDamage(T.switchedOn, ARMOR_BLUNT, BRUTE, T.force_upgrade_mods)
 	T.prefixes |= prefix
 

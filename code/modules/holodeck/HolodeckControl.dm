@@ -147,7 +147,7 @@
 	else
 		item_power_usage = initial(item_power_usage)
 		for(var/obj/item/holo/esword/H in linkedholodeck)
-			H.melleDamages = GLOB.melleDamagesCache[H.type].Copy()
+			H.melleDamages = GLOB.melleDamagesCache[H.type]:Copy()
 
 	for(var/mob/living/simple_animal/hostile/carp/holodeck/C in holographic_mobs)
 		C.set_safety(!safety_disabled)

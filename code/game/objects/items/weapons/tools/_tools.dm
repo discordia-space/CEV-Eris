@@ -716,7 +716,7 @@
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
 	hitsound = initial(hitsound)
-	melleDamages = GLOB.melleDamagesCache[type].Copy()
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
@@ -824,10 +824,10 @@
 
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
-	melleDamages = GLOB.melleDamagesCache[type].Copy()
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	force_upgrade_mults = initial(force_upgrade_mults)
 	force_upgrade_mods = initial(force_upgrade_mods)
-	switchedOn = GLOB.melleDamagesCache["[type]-t"].Copy()
+	switchedOn = GLOB.melleDamagesCache["[type]-t"]:Copy()
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)

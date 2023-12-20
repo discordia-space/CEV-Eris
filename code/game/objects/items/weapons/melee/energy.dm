@@ -45,7 +45,7 @@
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 	active = 0
-	melleDamages = GLOB.melleDamagesCache[type].Copy()
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	throwforce = initial(throwforce)
 	sharp = initial(sharp)
 	edge = initial(edge)

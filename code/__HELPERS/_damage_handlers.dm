@@ -15,7 +15,7 @@
 /proc/dhAddDamage(list/damages, armorType, damageType, damageValue)
 	if(!length(damages[armorType]))
 		damages[armorType] = list()
-	damages[armorType].Add(DELEM(damageType, damageValue))
+	damages[armorType]:Add(DELEM(damageType, damageValue))
 	return TRUE
 
 /proc/dhAdjOrAddDamage(list/damages, armorType, damageType, damageValue)

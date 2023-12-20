@@ -230,7 +230,7 @@
 	tool_qualities = switched_on_qualities
 	volumeClass = switched_on_volumeClass
 	if (!isnull(switchedOn))
-		melleDamages = GLOB.melleDamagesCache["[type]-t"].Copy()
+		melleDamages = GLOB.melleDamagesCache["[type]-t"]:Copy()
 		refresh_upgrades()
 	update_icon()
 	update_wear_icon()
@@ -244,7 +244,7 @@
 	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
-	melleDamages = GLOB.melleDamagesCache[type].Copy()
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	refresh_upgrades()
 	volumeClass = initial(volumeClass)
 	update_icon()

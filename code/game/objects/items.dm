@@ -134,7 +134,7 @@ GLOBAL_LIST(melleDamagesCache)
 		GLOB.melleDamagesCache[type] = melleDamages
 	else
 		if(maxUpgrades || objectFlags & OF_UNIQUEMELLEHANDLER)
-			melleDamages = GLOB.melleDamagesCache[type].Copy()
+			melleDamages = GLOB.melleDamagesCache[type]:Copy()
 		else
 			del(melleDamages)
 			melleDamages = GLOB.melleDamagesCache[type]
