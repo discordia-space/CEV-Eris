@@ -4,7 +4,6 @@
 			The design was made to be able to fit long magazine alongside the standard ones."
 	icon = 'icons/obj/guns/projectile/modular/wintermute.dmi'
 	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE // So far not modular

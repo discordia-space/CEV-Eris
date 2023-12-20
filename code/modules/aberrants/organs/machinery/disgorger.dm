@@ -426,7 +426,6 @@
 	matter = list(MATERIAL_BIOMATTER = 60)
 	hitsound = 'sound/effects/squelch1.ogg'
 	attack_verb = list("slapped")
-	force = WEAPON_FORCE_HARMLESS
 	structure_damage_factor = 0
 	var/squelch_cooldown = 0.5 SECONDS
 	var/last_used

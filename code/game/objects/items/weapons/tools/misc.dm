@@ -37,7 +37,7 @@
 	desc = "An all-in-one medical tool implant based on the legendary One Star model. While convenient, it is less efficient than more advanced surgical tools, such as laser scalpels, and requires a power cell."
 	icon_state = "medimplant"
 	matter = null
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,15)))
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_DRIVER_TOOL
@@ -57,8 +57,7 @@
 	desc = "A jury-rigged implant, holding cobbled-together tools. For those who are more interested in tool carrying than scared of tetanus."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "multitool_improvised"
-	force = WEAPON_FORCE_PAINFUL
-	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,12)))
 	worksound = WORKSOUND_DRIVER_TOOL
 	flags = CONDUCT
 	switched_on_qualities = list(
@@ -100,7 +99,7 @@
 	name = "Engineering Omnitool"
 	desc = "An all-in-one engineering tool implant. Convenient to use and more effective than the basics, but much less efficient than customized or more specialized tools."
 	icon_state = "engimplant"
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,12)))
 	worksound = WORKSOUND_DRIVER_TOOL
 	flags = CONDUCT
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 35, QUALITY_BOLT_TURNING = 35, QUALITY_DRILLING = 15, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_PRYING = 25, QUALITY_DIGGING = 20, QUALITY_PULSING = 30, QUALITY_WIRE_CUTTING = 30, QUALITY_HAMMERING = 25)

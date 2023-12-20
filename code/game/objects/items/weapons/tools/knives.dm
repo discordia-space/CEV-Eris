@@ -11,7 +11,7 @@
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
 	w_class = ITEM_SIZE_SMALL //2
-	force = WEAPON_FORCE_NORMAL //10
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_SHALLOW
 	max_upgrades = 2
@@ -45,7 +45,7 @@
 	icon_state = "tacknife"
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 1)
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 15)
 	rarity_value = 20
 
@@ -55,7 +55,7 @@
 	icon_state = "hook_knife"
 	item_state = "hook_knife"
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2)
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,10)))
 	armor_divisor = ARMOR_PEN_HALF //Should be countered be embedding
 	embed_mult = 1.5 //This is designed for embedding
 	rarity_value = 5
@@ -65,16 +65,14 @@
 	desc = "The unearthly energies that once powered this blade are now dormant."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
-	force = WEAPON_FORCE_PAINFUL
 	rarity_value = 20
 
 /obj/item/tool/knife/butch
 	name = "butcher's cleaver"
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes roaches and roach-by-products."
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
 	throwforce = WEAPON_FORCE_NORMAL
-	armor_divisor = ARMOR_PEN_MODERATE
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 15)
@@ -87,7 +85,6 @@
 	icon_state = "neot-knife"
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
-	force = WEAPON_FORCE_PAINFUL
 	embed_mult = 6
 	max_upgrades = 3
 	spawn_blacklisted = TRUE
@@ -106,8 +103,6 @@
 	icon_state = "tacknife_guard"
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
-	force = WEAPON_FORCE_PAINFUL
-	armor_divisor = ARMOR_PEN_MODERATE
 	embed_mult = 0.6
 	max_upgrades = 3
 
@@ -118,8 +113,7 @@
 	icon_state = "dagger"
 	item_state = "dagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
-	force = WEAPON_FORCE_NORMAL * 1.3
-	armor_divisor = ARMOR_PEN_MASSIVE
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,25)))
 	rarity_value = 15
 
 /obj/item/tool/knife/dagger/ceremonial
@@ -128,7 +122,6 @@
 	icon_state = "fancydagger"
 	item_state = "fancydagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
-	armor_divisor = ARMOR_PEN_MASSIVE
 	embed_mult = 0.6
 	max_upgrades = 4
 	spawn_blacklisted = TRUE
@@ -139,7 +132,6 @@
 	icon_state = "bluespace_dagger"
 	item_state = "bluespace_dagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20)
-	force = WEAPON_FORCE_NORMAL+1
 	embed_mult = 50 //You WANT it to embed
 	suitable_cell = /obj/item/cell/small
 	toggleable = TRUE
@@ -215,7 +207,7 @@
 	flags = CONDUCT
 	edge = FALSE
 	sharp = FALSE
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	switchedOn = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
@@ -238,7 +230,7 @@
 	tool_qualities = switched_on_qualities
 	w_class = switched_on_w_class
 	if (!isnull(switchedOn))
-		melleDamages = switchedOn.Copy()
+		melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
 	update_icon()
 	update_wear_icon()
 
@@ -251,7 +243,7 @@
 	to_chat(user, SPAN_NOTICE("You flip [src] back into the handle gracefully."))
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
-	melleDamages = GLOB.melleDamagesCache[type].Copy()
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	w_class = initial(w_class)
 	update_icon()
 	update_wear_icon()
@@ -265,7 +257,6 @@
 	flags = CONDUCT
 	edge = FALSE
 	sharp = FALSE
-	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_TINY
 	var/switched_on_w_class = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6, MATERIAL_GOLD= 0.5)
@@ -285,8 +276,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
-	if (!isnull(switched_on_force))
-		force = switched_on_force
+	melleDamages = switchedOn.Copy()
 	w_class = switched_on_w_class
 	update_icon()
 	update_wear_icon()
@@ -300,7 +290,7 @@
 	to_chat(user, SPAN_NOTICE("You press the button and [src] swiftly retracts."))
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
-	force = initial(force)
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	w_class = initial(w_class)
 	update_icon()
 	update_wear_icon()
@@ -316,7 +306,7 @@
 	matter = list(MATERIAL_GLASS = 1)
 	sharp = TRUE
 	edge = TRUE
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,18)))
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 5)
@@ -338,7 +328,9 @@
 	push_attack = TRUE
 	worksound = WORKSOUND_HARD_SLASH
 	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,18)))
+	w_attack_delay = 8
+	attack_delay = 4
 	throwforce = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_MODERATE
 	throw_speed = 3
@@ -359,9 +351,8 @@
 	icon_state = "spear_steel"
 	item_state = "spear_steel"
 	wielded_icon = "spear_steel_wielded"
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,24)))
 	throwforce = WEAPON_FORCE_ROBUST
-	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3)
 	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
@@ -374,9 +365,8 @@
 	icon_state = "spear_plasteel"
 	item_state = "spear_plasteel"
 	wielded_icon = "spear_plasteel_wielded"
-	force = WEAPON_FORCE_ROBUST
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,30)))
 	throwforce = WEAPON_FORCE_BRUTAL
-	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 15,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 10)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 2)
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
@@ -387,9 +377,7 @@
 	icon_state = "spear_uranium"
 	item_state = "spear_uranium"
 	wielded_icon = "spear_uranium_wielded"
-	force = WEAPON_FORCE_DANGEROUS
 	throwforce = WEAPON_FORCE_DANGEROUS
-	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_URANIUM = 1)
 
@@ -404,7 +392,7 @@
 	icon_state = "makeshift_halberd"
 	item_state = "makeshift_halberd"
 	wielded_icon = "makeshift_halberd_wielded"
-	force = WEAPON_FORCE_ROBUST
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,25)))
 	throwforce = WEAPON_FORCE_NORMAL
 	armor_divisor = ARMOR_PEN_SHALLOW
 	tool_qualities = list(QUALITY_CUTTING = 10)

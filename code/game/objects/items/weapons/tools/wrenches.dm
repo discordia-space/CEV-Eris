@@ -3,7 +3,7 @@
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon_state = "wrench"
 	flags = CONDUCT
-	force = 15
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,12)))
 	force_wielded_multiplier = 2
 	attack_delay = 2
 	w_attack_delay = 6
@@ -21,7 +21,6 @@
 	desc = "A flat bit of metal with some usefully shaped holes cut into it. Would perform better than a regular wrench with some tool mods investment."
 	icon_state = "impro_wrench"
 	degradation = 4
-	force = WEAPON_FORCE_HARMLESS
 	tool_qualities = list(QUALITY_BOLT_TURNING = 20, QUALITY_HAMMERING = 5)
 	matter = list(MATERIAL_STEEL = 1)
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
@@ -35,10 +34,10 @@
 	w_class = ITEM_SIZE_NORMAL
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40,QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1)
-	force = 20
-	force_wielded_multiplier = 3
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
+	force_wielded_multiplier = 4
 	/// big hit , big delay
-	w_attack_delay = 10
+	w_attack_delay = 23
 	armor_divisor = 1.2
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	throwforce = WEAPON_FORCE_PAINFUL

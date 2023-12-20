@@ -3,7 +3,7 @@
 	desc = "Cuts wires and other objects with it."
 	icon_state = "cutters"
 	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,12)))
 	worksound = WORKSOUND_WIRECUTTING
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
@@ -20,7 +20,6 @@
 	desc = "An improvised monstrosity made of bent rods which can sometimes be used to snip things. Could serve you well if you stuff it with enough tool mods."
 	icon_state = "impro_cutter"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_NORMAL
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 20, QUALITY_RETRACTING = 10, QUALITY_BONE_SETTING = 10)
 	degradation = 1.5
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
@@ -32,7 +31,9 @@
 	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but does its main job better."
 	icon_state = "arm-cutter"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
+	wieldedMultiplier = 4
+	w_attack_delay = 30
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 	degradation = 0.7

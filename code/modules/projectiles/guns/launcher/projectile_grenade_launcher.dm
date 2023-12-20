@@ -5,7 +5,6 @@
 	icon_state = "riotgun"
 	item_state = "riotgun"
 	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_GRENADE
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS
@@ -59,7 +58,6 @@
 	desc = "Not much more than a tube and a firing mechanism, this grenade launcher is designed to be fitted to a rifle."
 	w_class = ITEM_SIZE_NORMAL
 	matter = null
-	force = 5
 	max_shells = 0
 	safety = FALSE
 	twohanded = FALSE
@@ -98,7 +96,6 @@
 	icon = 'icons/obj/guns/launcher/makeshift.dmi'
 	icon_state = "makeshift"
 	item_state = "makeshift"
-	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 500
 	max_shells = 0

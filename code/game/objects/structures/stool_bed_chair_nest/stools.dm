@@ -6,7 +6,7 @@ var/global/list/stool_cache = list() //haha stool
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "stool_preview" //set for the map
-	force = 10
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,15)))
 	throwforce = 10
 	w_class = ITEM_SIZE_HUGE
 	var/base_icon = "stool_base"
@@ -27,6 +27,7 @@ var/global/list/stool_cache = list() //haha stool
 		qdel(src)
 		return
 	force = round(material.get_blunt_damage()*0.4)
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,material.get_blunt_damage()*0.5)))
 	update_icon()
 
 /obj/item/stool/padded/New(var/newloc, var/new_material)

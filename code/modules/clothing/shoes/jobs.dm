@@ -14,14 +14,13 @@
 	desc = "Standard-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	force = WEAPON_FORCE_HARMLESS
 	armor = list(
 		ARMOR_BLUNT = 3,
 		ARMOR_BULLET = 0,
 		ARMOR_ENERGY = 2,
-		ARMOR_BOMB =0,
-		ARMOR_BIO =25,
-		ARMOR_RAD =0
+		ARMOR_BOMB = 0,
+		ARMOR_BIO = 25,
+		ARMOR_RAD = 0
 	)
 	siemens_coefficient = 0.6
 	can_hold_knife = TRUE
@@ -40,7 +39,6 @@
 	desc = "Specially altered jackboots for NeoTheology custodians to prevent them from slipping."
 	icon_state = "jackboots"
 	item_state = "jackboots"
-	force = WEAPON_FORCE_HARMLESS
 	siemens_coefficient = 0.3
 	item_flags = NOSLIP
 	can_hold_knife = TRUE

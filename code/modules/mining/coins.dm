@@ -5,7 +5,6 @@
 	name = COIN_STANDARD
 	icon_state = "coin"
 	flags = CONDUCT
-	force = 0
 	throwforce = 0
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS

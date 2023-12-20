@@ -106,14 +106,10 @@
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
 	src.onfire = !( src.onfire )
 	if (src.onfire)
-		src.force = 3
-		src.damtype = "fire"
 		src.icon_state = "cake1"
 		src.item_state = "cake1"
 		START_PROCESSING(SSobj, src)
 	else
-		src.force = null
-		src.damtype = "brute"
 		src.icon_state = "cake0"
 		src.item_state = "cake0"
 	return

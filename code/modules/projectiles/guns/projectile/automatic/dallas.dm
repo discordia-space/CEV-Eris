@@ -6,7 +6,6 @@
 	icon_state = "dallas"
 	item_state = "dallas"
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	caliber = CAL_CLRIFLE
 	load_method = MAGAZINE

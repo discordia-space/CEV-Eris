@@ -484,7 +484,6 @@ BLIND     // can't see anything
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	style = STYLE_LOW
-	force = 2
 	matter = list(MATERIAL_CLOTH = 2, MATERIAL_LEATHER = 2)
 
 	var/can_hold_knife = 0

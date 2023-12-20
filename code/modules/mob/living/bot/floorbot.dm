@@ -372,7 +372,6 @@
 	name = "tiles and toolbox"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "toolbox_tiles"
-	force = 3
 	throwforce = 10
 	throw_speed = 2
 	throw_range = 5
@@ -403,7 +402,6 @@
 	name = "tiles, toolbox and sensor arrangement"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "toolbox_tiles_sensor"
-	force = 3
 	throwforce = 10
 	throw_speed = 2
 	throw_range = 5

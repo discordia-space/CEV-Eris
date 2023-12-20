@@ -6,7 +6,6 @@
 	icon_state = "avasarala"
 	item_state = "avasarala"
 
-	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL

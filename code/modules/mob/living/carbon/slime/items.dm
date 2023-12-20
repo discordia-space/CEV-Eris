@@ -4,7 +4,6 @@
 	description_antag = "These always have 30u of slime jelly , a deadly toxin"
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "grey slime extract"
-	force = 1
 	w_class = ITEM_SIZE_TINY
 	throwforce = 0
 	throw_speed = 3

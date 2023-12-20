@@ -310,8 +310,10 @@
 				prefix = "large-cell"
 			if(/obj/item/cell/small)
 				T.suitable_cell = /obj/item/cell/medium
-	T.force = initial(T.force) * T.force_upgrade_mults + T.force_upgrade_mods
-	T.switched_on_force = initial(T.switched_on_force) * T.force_upgrade_mults + T.force_upgrade_mods
+	T.melleDamages = dhApplyMultiplier(GLOB.melleDamagesCache[T.type].Copy(), T.force_upgrade_mults)
+	dhAddDamage(T.melleDamages, ARMOR_BLUNT, BRUTE, T.force_upgrade_mods)
+	T.switchedOn = dhApplyMultiplier(GLOB.melleDamagesCache["[T.type]-t"].Copy(), T.force_upgrade_mults)
+	dhAddDamage(T.switchedOn, ARMOR_BLUNT, BRUTE, T.force_upgrade_mods)
 	T.prefixes |= prefix
 
 /datum/component/item_upgrade/proc/apply_values_gun(var/obj/item/gun/G)
@@ -751,7 +753,6 @@
 	name = "tool upgrade"
 	icon = 'icons/obj/tool_upgrades.dmi'
 	icon_state = "placeholder"	// Needed for UI
-	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE
 	price_tag = 200

@@ -439,7 +439,7 @@
 	desc = "An all-in-one medical omnitool."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "medmulti"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,26)))
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_DRIVER_TOOL
@@ -451,7 +451,7 @@
 	desc = "An all-in-one engineering omnitool."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "engimplant"
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,35)))
 	worksound = WORKSOUND_DRIVER_TOOL
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 35, QUALITY_BOLT_TURNING = 35, QUALITY_DRILLING = 15, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_PRYING = 25, QUALITY_DIGGING = 20, QUALITY_PULSING = 30, QUALITY_WIRE_CUTTING = 30)
 	spawn_tags = null

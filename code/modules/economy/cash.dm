@@ -5,7 +5,6 @@
 	desc = "It's worth something. Probably."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
-	force = 1
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEM_SIZE_SMALL

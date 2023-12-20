@@ -14,7 +14,7 @@
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
 
 	// Damage related
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,35)))
 	armor_divisor = ARMOR_PEN_HALF // It's a pickaxe. It's destined to poke holes in things, even armor.
 	throwforce = WEAPON_FORCE_NORMAL
 	sharp = TRUE

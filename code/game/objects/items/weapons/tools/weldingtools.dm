@@ -4,8 +4,7 @@
 	item_state = "welder"
 	rarity_value = 6
 	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
-	switched_on_force = WEAPON_FORCE_PAINFUL
+	switchedOn = list(ARMOR_ENERGY = list(DELEM(BURN,20)))
 	throwforce = WEAPON_FORCE_WEAK
 	worksound = WORKSOUND_WELDING
 	matter = list(MATERIAL_STEEL = 5)
@@ -29,19 +28,16 @@
 	.=..()
 	if(.)
 		playsound(loc, 'sound/items/welderactivate.ogg', 50, 1)
-		damtype = BURN
 		START_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/turn_off(mob/user)
 	item_state = initial(item_state)
 	playsound(loc, 'sound/items/welderdeactivate.ogg', 50, 1)
 	..()
-	damtype = initial(damtype)
 
 
 /obj/item/tool/weldingtool/is_hot()
-	if (damtype == BURN)
-		return heat
+	return switched_on ? heat : 0
 
 
 /obj/item/tool/weldingtool/improvised
@@ -49,7 +45,6 @@
 	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool mods."
 	icon_state = "ghettowelder"
 	item_state = "ghettowelder"
-	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
@@ -70,7 +65,6 @@
 	glow_color = COLOR_BLUE_LIGHT
 	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
-	switched_on_force = WEAPON_FORCE_PAINFUL * 1.15 //Slightly more powerful, not much more so
 	heat = 3773
 	degradation = 0.7
 	max_upgrades = 4

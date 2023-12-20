@@ -10,7 +10,6 @@
 	icon_state = "frame"
 	item_state = "" // I do not believe this affects anything
 	w_class = ITEM_SIZE_BULKY // Stock increases it by 1
-	force = WEAPON_FORCE_PAINFUL
 	caliber = null // Determined by barrel
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK

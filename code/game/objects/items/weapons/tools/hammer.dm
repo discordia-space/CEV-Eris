@@ -3,7 +3,7 @@
 	desc = "Used for applying blunt force to a surface."
 	icon_state = "hammer"
 	item_state = "hammer"
-	force = 19
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,17)))
 	w_class = ITEM_SIZE_SMALL
 	worksound = WORKSOUND_HAMMER
 	flags = CONDUCT
@@ -29,7 +29,8 @@
 	icon_state = "powered_hammer"
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	force = 33
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,45)))
+	w_attack_delay = 7
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 1)
@@ -46,7 +47,8 @@
 	item_state = "sledgehammer"
 	wielded_icon = "sledgehammer_wielded"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	force = 27
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,30)))
+	w_attack_delay = 4
 	force_wielded_multiplier = 1.4
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -62,7 +64,9 @@
 	item_state = "sledgehammer_advanced"
 	wielded_icon = "sledgehammer_advanced_wielded"
 	structure_damage_factor = STRUCTURE_DAMAGE_POWERFUL
-	force = 30
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,35)))
+	wieldedMultiplier = 1.4
+	w_attack_delay = 8
 	tool_qualities = list(QUALITY_HAMMERING = 40)
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
 	max_upgrades = 3
@@ -75,7 +79,8 @@
 	item_state = "homewrecker"
 	wielded_icon = "homewrecker1"
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
-	force = 27
+	wieldedMultiplier = 2
+	w_attack_delay = 10
 	slot_flags = SLOT_BELT|SLOT_BACK
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)
@@ -90,7 +95,6 @@
 	icon_state = "iron_hammer"
 	item_state = "iron_hammer"
 	wielded_icon = "iron_hammer_wielded"
-	force = 27
 	structure_damage_factor = STRUCTURE_DAMAGE_POWERFUL
 	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
@@ -103,7 +107,7 @@
 	item_state = "onehammer"
 	wielded_icon = "onehammer_on"
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
-	force = 35
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,40)))
 	force_wielded_multiplier = 1.5
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -125,7 +129,7 @@
 	icon_state = "mace"
 	item_state = "mace"
 	w_class = ITEM_SIZE_NORMAL
-	force = 25
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,25)), ARMOR_POINTY = list(DELEM(BRUTE,15)))
 	tool_qualities = list(QUALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
 	rarity_value = 15
@@ -136,7 +140,7 @@
 	desc = "Some metal attached to the end of a stick, for applying blunt force trauma to a roach."
 	icon_state = "ghetto_mace"
 	item_state = "ghetto_mace"
-	force = 18
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	degradation = 3 //This one breaks fast
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
@@ -150,7 +154,10 @@
 	icon_state = "woodbat0"
 	wielded_icon = "woodbat1"
 	item_state = "woodbat0"
-	force = 23
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,25)))
+	// big swing
+	w_attack_delay = 16
+	wieldedMultiplier = 2
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -243,6 +250,5 @@
 	rarity_value = 70
 	max_upgrades = 3
 	armor_divisor = ARMOR_PEN_GRAZING //blunt force trauma strong
-	force = WEAPON_FORCE_PAINFUL
 	force_wielded_multiplier = 1.3
 	w_class = ITEM_SIZE_HUGE

@@ -4,7 +4,7 @@
 	icon_state = "crowbar"
 	item_state = "crowbar"
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,17)))
 	worksound = WORKSOUND_EASY_CROWBAR
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 1)

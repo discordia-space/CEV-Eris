@@ -10,7 +10,9 @@
 	icon_state = "b_st"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 5)))
+	wieldedMultiplier = 3
+	w_attack_delay = 17
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5

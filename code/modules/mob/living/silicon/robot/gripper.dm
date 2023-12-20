@@ -30,7 +30,7 @@
 
 	var/obj/item/wrapped // Item currently being held.
 
-	var/force_holder //
+	var/list/force_holder //
 	var/holderDamages = list()
 	var/justdropped = 0//When set to 1, the gripper has just dropped its item, and should not attempt to trigger anything
 
@@ -49,7 +49,7 @@
 	//The object left the gripper but it still exists. Maybe placed on a table
 	if (G.wrapped.loc != G)
 		//Reset the force and then remove our reference to it
-		G.wrapped.force = G.force_holder
+		G.wrapped.melleDamages = G.force_holder
 		G.wrapped = null
 		G.force_holder = null
 		G.update_icon()
@@ -123,8 +123,8 @@
 
 /obj/item/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
-		force_holder = wrapped.force
-		wrapped.force = 0
+		force_holder = wrapped.melleDamages
+		wrapped.melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,0)))
 		wrapped.attack(M,user)
 		if(QDELETED(wrapped))
 			wrapped = null

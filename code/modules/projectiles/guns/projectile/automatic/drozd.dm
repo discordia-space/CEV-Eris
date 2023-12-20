@@ -7,7 +7,6 @@
 	icon_state = "drozd"
 	item_state = "drozd"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE

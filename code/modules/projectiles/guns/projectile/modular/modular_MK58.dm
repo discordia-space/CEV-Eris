@@ -4,7 +4,6 @@
 	icon = 'icons/obj/guns/projectile/modular/mk58.dmi'
 	icon_state = "frame" // frame_gray, frame_black, frame_tan
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE // So far not modular

@@ -33,7 +33,7 @@
 	icon = 'icons/obj/guns/energy/constantine.dmi'
 	icon_state = "constantine"
 	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 13)))
 	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_PLASTIC = 20, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 9)
 	projectile_type = /obj/item/projectile/energy/bolt/large
 	price_tag = 4000

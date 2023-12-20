@@ -654,7 +654,6 @@
 
 /obj/item/light
 	icon = 'icons/obj/lighting.dmi'
-	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_TINY
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
@@ -770,7 +769,7 @@
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
 		status = LIGHT_BROKEN
-		force = WEAPON_FORCE_WEAK
+		melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,10)))
 		sharp = TRUE
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		update()

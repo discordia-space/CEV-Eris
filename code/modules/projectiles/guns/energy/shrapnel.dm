@@ -7,7 +7,6 @@
 	item_state = "eshotgun"
 	charge_meter = TRUE
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ENGINEERING = 4)

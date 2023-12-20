@@ -11,7 +11,6 @@
 	description_antag = "Can be used to brute-force any locker. It however takes time"
 	icon_state = "multitool"
 	flags = CONDUCT
-	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	worksound = WORKSOUND_PULSING

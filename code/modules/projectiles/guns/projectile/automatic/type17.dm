@@ -5,7 +5,6 @@
 	icon_state = "type_17"
 	item_state = "type_17"
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK

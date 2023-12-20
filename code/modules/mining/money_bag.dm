@@ -5,7 +5,6 @@
 	name = "Money bag"
 	icon_state = "moneybag"
 	flags = CONDUCT
-	force = 10
 	throwforce = 2
 	w_class = ITEM_SIZE_BULKY
 

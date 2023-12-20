@@ -7,8 +7,8 @@
 	icon_state = "broken_bottle"
 	matter = list(MATERIAL_GLASS = 2)
 	worksound = WORKSOUND_HARD_SLASH
-	force = 15
-	armor_divisor = 0.7
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE=10)))
+	attack_delay = -2
 	throwforce = WEAPON_FORCE_WEAK
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
@@ -25,7 +25,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hm_spikeclub"
 	item_state = "hm_spikeclub"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,19)))
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
@@ -43,7 +43,7 @@
 	icon_state = "hatchet"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	force = 18
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,23)))
 	throwforce = 16
 	w_class = ITEM_SIZE_SMALL
 	sharp = TRUE
@@ -62,7 +62,9 @@
 	wielded_icon = "makeshift_axe_wielded"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	force = 24
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
+	wieldedMultiplier = 3
+	w_attack_delay = 20
 	throwforce = 18
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BACK
@@ -90,10 +92,10 @@
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = 20
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	force_wielded_multiplier = 2.3
-	attack_delay = 1
-	w_attack_delay = 3
+	attack_delay = 4
+	w_attack_delay = 9
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
@@ -116,7 +118,6 @@
 	icon_state = "hoe"
 	item_state = "hoe"
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
-	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
 	max_upgrades = 2
 	tool_qualities = list(QUALITY_SHOVELING = 10)
@@ -132,7 +133,7 @@
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
-	force = 17
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,12)))
 	throwforce = 13
 	w_class = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
@@ -155,8 +156,9 @@
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
-	force = 28
-	force_wielded_multiplier = 1.2
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
+	force_wielded_multiplier = 1.3
+	w_attack_delay = 3
 	throwforce = 20
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/sharphit.ogg'
@@ -173,7 +175,7 @@
 	item_state = "saber"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
 	slot_flags = SLOT_BELT
-	force = 33
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,35)))
 	force_wielded_multiplier = 1.2
 	spawn_blacklisted = TRUE
 	price_tag = 10000
@@ -183,8 +185,8 @@
 	desc = "Hack and slash!"
 	icon_state = "msword"
 	item_state = "msword"
-	force = 25
-	force_wielded_multiplier = 1.5
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
+	wieldedMultiplier = 1.5
 	attack_delay = 4
 	/// heavy hitter but slow attack
 	w_attack_delay = 6
@@ -200,9 +202,9 @@
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
-	force = 29
+	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
 	force_wielded_multiplier = 1.2
-	rarity_value = 35
+	rarity_value = 120
 
 /obj/item/tool/sword/katana/nano
 	name = "\improper Moebius \"Muramasa\" katana"
@@ -213,14 +215,14 @@
 	max_upgrades = 1
 
 	suitable_cell = /obj/item/cell/small
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 
 	use_power_cost = 0.4
 	passive_power_cost = 0.4
 
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
-	switched_on_force = 29
-	rarity_value = 60
+	switchedOn = list(ARMOR_SHARP = list(DELEM(BURN,25)))
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/sword/katana/nano/turn_on(mob/user)
@@ -252,8 +254,8 @@
 	item_state = "chain"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 20
-	force_wielded_multiplier = 1
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5), DELEM(HALLOSS,10)))
+	wieldedMultiplier = 2
 	throwforce = 23
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)

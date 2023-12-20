@@ -8,7 +8,6 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = WEAPON_FORCE_WEAK
-	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_TINY
 	var/obj/item/reagent_containers/syringe/syringe
 
@@ -70,7 +69,6 @@
 	icon_state = "syringegun"
 	item_state = "syringegun"
 	w_class = ITEM_SIZE_NORMAL
-	force = 7
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
 	gun_parts = list(/obj/item/stack/material/plastic = 5)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER

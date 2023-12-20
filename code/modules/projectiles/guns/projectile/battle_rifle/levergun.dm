@@ -5,7 +5,6 @@
 	icon = 'icons/obj/guns/projectile/winchester.dmi'
 	icon_state = "lever_winchester"
 	item_suffix  = "_winchester"
-	force = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_MAGNUM
 	damage_multiplier = 1.6
@@ -56,7 +55,6 @@
 	When you need someone to have a closed casket funeral!"
 	icon_state = "lever_shotgun"
 	item_suffix  = "_shotgun"
-	force = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SHOTGUN
 	damage_multiplier = 1.1

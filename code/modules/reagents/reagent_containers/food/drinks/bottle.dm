@@ -7,7 +7,6 @@
 	volume = 100
 	description_info = "Thrown bottles don't break when you throw them while being on help intent."
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
 	rarity_value = 14
 	bad_type = /obj/item/reagent_containers/food/drinks/bottle

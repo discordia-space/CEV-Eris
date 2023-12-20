@@ -7,7 +7,6 @@
 	icon_state = "launcher" //placeholder, needs new sprites
 	item_state = "launcher" //placeholder, needs new sprites
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_ROCKET

@@ -303,7 +303,6 @@
 /obj/item/holo/esword
 	desc = "May the force be within you. Sorta."
 	icon_state = "sword0"
-	force = 3
 	throw_speed = 1
 	throw_range = 5
 	throwforce = 0
@@ -337,13 +336,11 @@
 /obj/item/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
 	if (active)
-		force = 30
 		icon_state = "sword[item_color]"
 		w_class = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("[src] is now active."))
 	else
-		force = 3
 		icon_state = "sword0"
 		w_class = ITEM_SIZE_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)

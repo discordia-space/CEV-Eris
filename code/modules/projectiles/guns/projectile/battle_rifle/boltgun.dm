@@ -6,8 +6,7 @@
 	icon_state = "boltgun"
 	item_state = "boltgun"
 	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_ROBUST
-	armor_divisor = ARMOR_PEN_DEEP
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE, 25)))
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
@@ -126,7 +125,6 @@
 	icon = 'icons/obj/guns/projectile/novakovic.dmi'
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
-	force = 23
 	init_recoil = RIFLE_RECOIL(1.7)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
@@ -143,7 +141,6 @@
 	icon = 'icons/obj/guns/projectile/arisaka.dmi'
 	icon_state = "arisaka_ih_scope"
 	item_suffix  = "_ih_scope"
-	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
 	init_recoil = RIFLE_RECOIL(1.8)
@@ -230,7 +227,7 @@
 	icon_state = "obrez"
 	item_state = "obrez"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_WEAK // no bayonet
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 10)))
 	armor_divisor = 1
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	proj_step_multiplier = 1.2

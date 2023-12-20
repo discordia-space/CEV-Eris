@@ -5,8 +5,8 @@
 	item_state = "shovel"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 24
-	force_wielded_multiplier = 1.3
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
+	wieldedMultiplier = 1.5
 	attack_delay = 4
 	/// chunky like junk blade
 	w_attack_delay = 6
@@ -36,7 +36,7 @@
 	desc = "A small tool ofter used for simple gardening task such as digging soil and moving dirt."
 	icon_state = "spade"
 	item_state = "spade"
-	force = 10
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,10)))
 	throwforce = 10
 	armor_divisor = 1.2
 	w_class = ITEM_SIZE_SMALL
@@ -50,7 +50,9 @@
 	desc = "A powered shovel for all your dumpster diving needs."
 	icon_state = "powershovel"
 	item_state = "shovel"
-	force = 13
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,12)))
+	wieldedMultiplier = 4
+	w_attack_delay = 20
 	throwforce = 5
 	armor_divisor = 1.1
 	w_class = ITEM_SIZE_NORMAL
