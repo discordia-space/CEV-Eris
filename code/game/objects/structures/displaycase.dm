@@ -46,7 +46,7 @@
 
 /obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	take_damage(W.force)
+	take_damage(dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN)))
 	..()
 	return
 

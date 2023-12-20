@@ -10,7 +10,7 @@
 			DELEM(BRUTE,12)
 		)
 	)
-	wieldMultiplier = 2
+	wieldedMultiplier = 2
 	WieldedattackDelay = 8
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	throwforce = WEAPON_FORCE_NORMAL
@@ -116,7 +116,7 @@
 			DELEM(BRUTE,13)
 		)
 	)
-	wieldMultiplier = 2
+	wieldedMultiplier = 2
 	WieldedattackDelay = 7
 	spawn_blacklisted = TRUE
 

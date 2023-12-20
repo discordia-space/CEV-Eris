@@ -13,7 +13,7 @@
 
 	if(!damage || !istype(user))
 		return
-
+	
 	var/penetration = 0
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
@@ -27,7 +27,7 @@
 			damages = gen.absorbDamages(damages)
 	if(damages[ARMOR_BLUNT][1][2] == 0)
 		return
-	damage_through_armor(damages, pick(arms,legs,body,head), user, 1, 1, FALSE)
+	damage_through_armor(damages, pick(arms,legs,body,head), user, penetration, 1, FALSE)
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
@@ -47,17 +47,17 @@
 	return chosen
 
 /mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
-	if(!I.force)
+	if(dhTotalDamage(I.melleDamages) < 5)
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
 	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
 	var/roll = !prob(body.pilot_coverage)
-	var/list/damages = list(BRUTE = I.force)
+	var/list/damages = I.melleDamages.Copy()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	if(gen)
 		damages = gen.absorbDamages(damages)
 // not enough made it in
-	if(damages[BRUTE] < round(I.force / 2))
+	if(dhTotalDamage(damages) < round(dhTotalDamage(GLOB.melleDamagesCache[I.type]) / 2))
 		visible_message("\The [src]'s shields block the blow!", 1, 2 ,5)
 		return
 

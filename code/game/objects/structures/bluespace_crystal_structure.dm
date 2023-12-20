@@ -60,7 +60,7 @@
 				qdel(I)
 				qdel(src)
 			if(I.hitsound)
-				var/calc_damage = I.force * I.structure_damage_factor
+				var/calc_damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) * I.structure_damage_factor
 				var/volume = calc_damage * 3.5
 				playsound(src, I.hitsound, volume, 1, -1)
 			user.drop_item()

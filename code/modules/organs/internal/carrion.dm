@@ -578,7 +578,7 @@
 
 /obj/structure/spider_nest/attackby(obj/item/I, mob/living/user)
 	..()
-	if(I.force >= WEAPON_FORCE_PAINFUL)
+	if(dhTotalDamage(I.melleDamages) >= WEAPON_FORCE_PAINFUL)
 		playsound(loc, 'sound/voice/shriek1.ogg', 85, 1, 8, 8)
 		spawn_spider()
 		attack_animation(user)

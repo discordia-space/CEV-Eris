@@ -49,7 +49,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,30)))
 	WieldedattackDelay = 4
-	force_wielded_multiplier = 1.4
+	wieldedMultiplier = 1.4
 	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 2)
@@ -108,7 +108,7 @@
 	wielded_icon = "onehammer_on"
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,40)))
-	force_wielded_multiplier = 1.5
+	wieldedMultiplier = 1.5
 	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLATINUM = 5, MATERIAL_DIAMOND = 5)
@@ -250,5 +250,5 @@
 	rarity_value = 70
 	maxUpgrades = 3
 	armor_divisor = ARMOR_PEN_GRAZING //blunt force trauma strong
-	force_wielded_multiplier = 1.3
+	wieldedMultiplier = 1.3
 	volumeClass = ITEM_SIZE_HUGE

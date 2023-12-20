@@ -449,9 +449,10 @@
 			return
 	//Hitting the wall with stuff
 	if(!istype(I,/obj/item/rcd) && !istype(I, /obj/item/reagent_containers))
-		if(!I.force)
+		var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+		if(!damage)
 			return attack_hand(user)
-		var/attackforce = I.force*I.structure_damage_factor
+		var/attackforce = damage*I.structure_damage_factor
 		var/dam_threshhold = 150 //Integrity of Steel
 		var/dam_prob = min(100,60*1.4) //60 is hardness of steel
 		if(ishuman(user))

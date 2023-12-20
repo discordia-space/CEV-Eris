@@ -22,7 +22,7 @@ var/list/global/tank_gauge_cache = list()
 			DELEM(BRUTE,5)
 		)
 	)
-	wieldMultiplier = 5
+	wieldedMultiplier = 5
 	WieldedattackDelay = 14
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1

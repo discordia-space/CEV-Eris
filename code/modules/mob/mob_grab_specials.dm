@@ -201,7 +201,7 @@
 	var/obj/item/clothing/hat = attacker.head
 	var/victim_armor = target.getarmor(BP_HEAD, ARMOR_BLUNT)
 	if(istype(hat))
-		damage += hat.force * 3
+		damage += dhTotalDamageStrict(hat.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)) * 3
 
 	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_BLUNT)
 	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_BLUNT)

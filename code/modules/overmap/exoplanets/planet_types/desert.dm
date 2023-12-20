@@ -153,7 +153,7 @@
 	update_icon()
 
 /obj/structure/quicksand/attackby(obj/item/W, mob/user)
-	if(!exposed && W.force)
+	if(!exposed && dhTotalDamage(W.melleDamages))
 		expose()
 	else
 		..()

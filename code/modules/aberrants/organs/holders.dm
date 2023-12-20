@@ -99,7 +99,7 @@
 /obj/item/organ/internal/scaffold/refresh_upgrades()
 	name = initial(name)
 	color = initial(color)
-	maxUpgrades = max_upgrades ? initial(max_upgrades) : 0		// If no max upgrades, it must be a ruined teratoma. So, leave it at 0.
+	maxUpgrades = maxUpgrades ? initial(maxUpgrades) : 0		// If no max upgrades, it must be a ruined teratoma. So, leave it at 0.
 	prefixes = list()
 	min_bruised_damage = initial(min_bruised_damage)
 	min_broken_damage = initial(min_broken_damage)

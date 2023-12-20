@@ -227,9 +227,9 @@
 		return
 
 	else if(!istype(I,/obj/item/rcd) && !istype(I, /obj/item/reagent_containers))
-		if(!I.force)
+		var/attackforce = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))*I.structure_damage_factor
+		if(attackforce < 5)
 			return attack_hand(user)
-		var/attackforce = I.force*I.structure_damage_factor
 		var/dam_threshhold = material.integrity
 		if(reinf_material)
 			dam_threshhold = CEILING(max(dam_threshhold,reinf_material.integrity) * 0.5, 1)

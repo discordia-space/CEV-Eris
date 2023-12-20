@@ -418,9 +418,9 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(I.damtype == BRUTE || I.damtype == BURN)
+		if(dhHasDamageType(I.melleDamages, BRUTE) || dhHasDamageType(I.melleDamages,BURN))
 			user.do_attack_animation(src)
-			hit(I.force*I.structure_damage_factor)
+			hit(dhTotalDamage(I.melleDamages)*I.structure_damage_factor)
 			if(health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))

@@ -146,7 +146,7 @@
 		return //won't always break on the first hit
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
-	var/weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, ARMOR_BLUNT) + 10)
+	var/weaken_duration = smash_duration + min(0, dhTotalDamage(melleDamages) - target.getarmor(hit_zone, ARMOR_BLUNT) + 10)
 
 	var/mob/living/carbon/human/H = target
 	if(istype(H) && H.headcheck(hit_zone))

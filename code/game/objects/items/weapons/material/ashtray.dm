@@ -71,7 +71,7 @@ var/global/list/ashtray_cache = list()
 		add_fingerprint(user)
 		update_icon()
 	else
-		health = max(0,health - W.force)
+		health = max(0,health - dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)))
 		to_chat(user, "You hit [src] with [W].")
 		if (health < 1)
 			shatter()

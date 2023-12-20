@@ -4,7 +4,7 @@
 	icon_state = "wrench"
 	flags = CONDUCT
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,12)))
-	force_wielded_multiplier = 2
+	wieldedMultiplier = 2
 	attackDelay = 2
 	WieldedattackDelay = 6
 	worksound = WORKSOUND_WRENCHING
@@ -35,7 +35,7 @@
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40,QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1)
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
-	force_wielded_multiplier = 4
+	wieldedMultiplier = 4
 	/// big hit , big delay
 	WieldedattackDelay = 23
 	armor_divisor = 1.2

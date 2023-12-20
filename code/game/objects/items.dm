@@ -133,7 +133,7 @@ GLOBAL_LIST(melleDamagesCache)
 	if(!GLOB.melleDamagesCache[type])
 		GLOB.melleDamagesCache[type] = melleDamages
 	else
-		if(max_upgrades || objectFlags & OF_UNIQUEMELLEHANDLER)
+		if(maxUpgrades || objectFlags & OF_UNIQUEMELLEHANDLER)
 			melleDamages = GLOB.melleDamagesCache[type].Copy()
 		else
 			del(melleDamages)

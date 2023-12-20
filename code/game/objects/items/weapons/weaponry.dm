@@ -121,6 +121,6 @@
 	return
 
 /obj/effect/energy_net/attackby(obj/item/W as obj, mob/user as mob)
-	health -= W.force
+	health -= dhTotalDamage(W.melleDamages)
 	healthcheck()
 	..()

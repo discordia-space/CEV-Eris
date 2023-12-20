@@ -369,8 +369,9 @@
 				return
 			return
 		else
-			if(W.sharp && W.force >= 10)
-				health -= rand(W.force/2, W.force) //hm, maybe make damage based on player's robust stat?
+			var/damage = dhTotalDamage(W.melleDamages)
+			if(W.sharp && damage >= 10)
+				health -= rand(damage/2, damage) //hm, maybe make damage based on player's robust stat?
 				user.visible_message(SPAN_DANGER("[user] slices [src]."), SPAN_DANGER("You slice [src]."))
 			else
 				to_chat(user, SPAN_DANGER("You try to slice [src], but it's useless!"))

@@ -47,8 +47,9 @@
 			user.last_special = world.time + 50
 			src.visible_message(SPAN_DANGER("You hear something rumbling inside [src]'s stomach..."))
 			var/obj/item/I = user.get_active_hand()
-			if(I && I.force)
-				var/d = rand(round(I.force / 4), I.force)
+			var/damage = dhTotalDamage(I.melleDamages)
+			if(I && damage)
+				var/d = rand(round(damage / 4), damage)
 				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/organ = H.get_organ(BP_CHEST)

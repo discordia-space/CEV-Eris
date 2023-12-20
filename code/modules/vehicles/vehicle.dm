@@ -130,11 +130,7 @@
 		insert_cell(I, user)
 	else if(hasvar(I,"force") && hasvar(I,"damtype"))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		switch(I.damtype)
-			if("fire")
-				health -= I.force * fire_dam_coeff
-			if("brute")
-				health -= I.force * brute_dam_coeff
+		health -= dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) * (fire_dam_coeff+brute_dam_coeff)/2
 		..()
 		healthcheck()
 	else

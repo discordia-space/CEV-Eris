@@ -7,7 +7,7 @@
 	icon_state = "broken_bottle"
 	matter = list(MATERIAL_GLASS = 2)
 	worksound = WORKSOUND_HARD_SLASH
-	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE=10)))
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,10)))
 	attackDelay = -2
 	throwforce = WEAPON_FORCE_WEAK
 	item_state = "beer"
@@ -93,7 +93,7 @@
 	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
-	force_wielded_multiplier = 2.3
+	wieldedMultiplier = 2.3
 	attackDelay = 4
 	WieldedattackDelay = 9
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -157,7 +157,7 @@
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
-	force_wielded_multiplier = 1.3
+	wieldedMultiplier = 1.3
 	WieldedattackDelay = 3
 	throwforce = 20
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -176,7 +176,7 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
 	slot_flags = SLOT_BELT
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,35)))
-	force_wielded_multiplier = 1.2
+	wieldedMultiplier = 1.2
 	spawn_blacklisted = TRUE
 	price_tag = 10000
 
@@ -203,7 +203,7 @@
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
-	force_wielded_multiplier = 1.2
+	wieldedMultiplier = 1.2
 	rarity_value = 120
 
 /obj/item/tool/sword/katana/nano

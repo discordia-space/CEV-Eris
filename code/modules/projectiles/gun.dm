@@ -913,8 +913,8 @@
 	data["burst"] = burst //How many shots are fired per click
 	data["burst_delay"] = burst_delay * 5 //time between shot in burst mode, in ms
 
-	data["force"] = force
-	data["force_max"] = initial(force)*10
+	data["force"] = dhTotalDamage(melleDamages)
+	data["force_max"] = dhTotalDamage(GLOB.melleDamagesCache[type])*10
 	data["armor_divisor"] = armor_divisor
 	data["muzzle_flash"] = muzzle_flash
 

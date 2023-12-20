@@ -151,8 +151,8 @@
 				"You hear a thunk.")
 		return
 
-	if(I.force >= 20)
-		stability -= I.force/2
+	if(dhTotalDamage(I.melleDamages) >= 20)
+		stability -= dhTotalDamage(I.melleDamages)/2
 		check_stability()
 	..()
 	return

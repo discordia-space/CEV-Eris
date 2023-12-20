@@ -19,7 +19,7 @@
 /obj/structure/scrap_cube/attackby(obj/item/W, mob/user)
 	user.do_attack_animation(src)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(istype(W,/obj/item) && W.force >= 8)
+	if(istype(W,/obj/item) && dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) >= 8)
 		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], restoring its original form."))
 		make_pile()
 	else

@@ -96,7 +96,7 @@
 	if(toggleable)
 		if(!GLOB.melleDamagesCache["[type]-t"])
 			GLOB.melleDamagesCache["[type]-t"] = toggleable ? switchedOn.Copy() : switchedOn
-		if(!(max_upgrades || objectFlags & OF_UNIQUEMELLEHANDLER))
+		if(!(maxUpgrades || objectFlags & OF_UNIQUEMELLEHANDLER))
 			switchedOn = GLOB.melleDamagesCache["[type]-t"]
 
 	if(maxHealth)
@@ -237,7 +237,7 @@
 
 	data["extra_volume"] = extra_bulk
 
-	data["upgrades_max"] = max_upgrades
+	data["upgrades_max"] = maxUpgrades
 
 	data["edge"] = edge
 	data["sharp"] = sharp
@@ -831,7 +831,7 @@
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)
-	maxUpgrades = initial(max_upgrades)
+	maxUpgrades = initial(maxUpgrades)
 	color = initial(color)
 	sharp = initial(sharp)
 	prefixes = list()

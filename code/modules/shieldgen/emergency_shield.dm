@@ -44,8 +44,8 @@
 	if(!istype(W)) return
 
 	//Calculate damage
-	var/aforce = W.force
-	if(W.damtype == BRUTE || W.damtype == BURN)
+	var/aforce = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+	if(aforce)
 		src.shieldHealth -= aforce
 
 	//Play a fitting sound

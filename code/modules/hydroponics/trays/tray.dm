@@ -557,11 +557,11 @@
 		qdel(I)
 		check_health()
 
-	else if(I.force && seed)
+	else if(dhTotalDamage(I.melleDamages) && seed)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.visible_message(SPAN_DANGER("\The [seed.display_name] has been attacked by [user] with \the [I]!"))
 		if(!dead)
-			health -= I.force
+			health -= dhTotalDamage(I.melleDamages)
 			check_health()
 	return
 

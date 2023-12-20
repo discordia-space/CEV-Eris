@@ -92,7 +92,7 @@ COMSIG_ABERRANT_SECONDARY
 	return FALSE
 
 /datum/component/modification/proc/check_item(obj/item/I, mob/living/user)
-	if(I.item_upgrades.len >= I.max_upgrades)
+	if(I.item_upgrades.len >= I.maxUpgrades)
 		if(user)
 			to_chat(user, SPAN_WARNING("\The [I] can not fit anymore modifications!"))
 		return FALSE

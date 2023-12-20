@@ -25,7 +25,7 @@
 	if (usr.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
-			var/calc_damage = (I.force*I.structure_damage_factor) - flooring.resistance
+			var/calc_damage = (dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))*I.structure_damage_factor) - flooring.resistance
 			var/volume = (calc_damage)*3.5
 			volume = min(volume, 15)
 			if (flooring.hit_sound)
@@ -35,7 +35,7 @@
 
 			if (calc_damage > 0)
 				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
-				take_damage(I.force*I.structure_damage_factor, I.damtype)
+				take_damage(calc_damage, BRUTE)
 			else
 				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) 

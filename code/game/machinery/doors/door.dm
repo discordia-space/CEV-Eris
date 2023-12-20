@@ -341,7 +341,7 @@
 	if (thrown)
 		calc_damage= W.throwforce*W.structure_damage_factor
 	else
-		calc_damage= W.force*W.structure_damage_factor
+		calc_damage= dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))*W.structure_damage_factor
 		if (user)user.do_attack_animation(src)
 
 	calc_damage -= resistance
@@ -352,7 +352,7 @@
 	else
 		if (user)user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
-		take_damage(W.force)
+		take_damage(calc_damage)
 
 /obj/machinery/door/take_damage(damage)
 	if (!isnum(damage))
@@ -363,7 +363,7 @@
 	. *= density
 	health -= damage
 	var/smoke_amount
-	if(health < 0)
+	if(health < -(maxHealth/1.3))
 		qdel(src)
 		return
 	else if(health < maxHealth / 5 && initialhealth > maxHealth / 5)

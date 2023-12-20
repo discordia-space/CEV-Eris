@@ -146,7 +146,7 @@ var/list/despised = list()
 
 /mob/living/simple_animal/iriska/attackby(var/obj/item/O, var/mob/user)
 	. = ..()
-	if(O.force)
+	if(dhTotalDamage(O))
 		despise(user)
 
 /mob/living/simple_animal/iriska/attack_hand(mob/living/carbon/human/M as mob)

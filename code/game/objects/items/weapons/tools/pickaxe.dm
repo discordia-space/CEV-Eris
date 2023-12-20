@@ -5,7 +5,7 @@
 	slot_flags = SLOT_BELT
 	/// comparable to the fireaxe
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,15)))
-	force_wielded_multiplier = 3
+	wieldedMultiplier = 3
 	WieldedattackDelay = 18
 	throwforce = WEAPON_FORCE_NORMAL
 	icon_state = "pickaxe"
@@ -55,7 +55,7 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2, MATERIAL_DIAMOND = 2)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 3)
 	switchedOn = list(ARMOR_POINTY = list(BRUTE,34))
-	force_wielded_multiplier = 2.3
+	wieldedMultiplier = 2.3
 	WieldedattackDelay = 13
 	armor_divisor = 1.4
 	tool_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)

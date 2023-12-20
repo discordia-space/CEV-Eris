@@ -264,15 +264,14 @@ Like for example singulo act and whatever.
 /obj/effect/shield/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
-
+	var/brute = dhTotalDamageDamageType(I.melleDamages, BRUTE)
+	var/burn = dhTotalDamageDamageType(I.melleDamages, BURN)
+	var/rest = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, ALL_DAMAGE - BRUTE - BURN)
 	if(gen.check_flag(MODEFLAG_HYPERKINETIC))
 		user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [I]!</span>")
-		if(I.damtype == BURN)
-			take_damage(I.force, SHIELD_DAMTYPE_HEAT, user)
-		else if (I.damtype == BRUTE)
-			take_damage(I.force, SHIELD_DAMTYPE_PHYSICAL, user)
-		else
-			take_damage(I.force, SHIELD_DAMTYPE_EM, user)
+		take_damage(brute, SHIELD_DAMTYPE_PHYSICAL, user)
+		take_damage(burn, SHIELD_DAMTYPE_HEAT, user)
+		take_damage(rest, SHIELD_DAMTYPE_EM, user)
 	else
 		user.visible_message("<span class='danger'>\The [user] tries to attack \the [src] with \the [I], but it passes through!</span>")
 

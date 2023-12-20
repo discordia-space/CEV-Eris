@@ -298,7 +298,7 @@ meteor_act
 		return null
 
 	var/hit_zone = check_zone(target_zone)
-	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
+	if(check_shields(dhTotalDamage(I.melleDamages), I, user, target_zone, "the [I.name]"))
 		return null
 
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
@@ -339,7 +339,7 @@ meteor_act
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [user.name] ([user.ckey])</font>")
 			user.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [src.name] ([src.ckey])</font>")
 			visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
-			dhApplyMultiplier(damages,handle_blocking(effective_force))
+			dhApplyMultiplier(damages,handle_blocking(dhTotalDamage(damages)))
 			if(dhTotalDamage(damages) <= 1)
 				visible_message(SPAN_DANGER("The attack has been completely negated!"))
 				return FALSE
@@ -446,7 +446,7 @@ meteor_act
 	if(!organ || (organ.nerve_struck == 2) || (organ.nerve_struck == -1))
 		return FALSE
 	//There was blocked var, removed now. For the sake of game balance, it was just replaced by 2
-	if(prob(W.force / 2))
+	if(prob(dhTotalDamage(W.melleDamages) / 2))
 		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
 		organ.nerve_strike_add(1)
 		return TRUE
@@ -465,7 +465,6 @@ meteor_act
 					throw_mode_off()
 					return
 
-		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
 		var/zone
 		if (isliving(O.thrower))
@@ -497,7 +496,7 @@ meteor_act
 
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].")
 
-		damage_through_armor(throw_damage, dtype, null, ARMOR_BLUNT, null, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
+		damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,throw_damage))), BP_CHEST, AM, 1, 1, FALSE)
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
@@ -511,7 +510,7 @@ meteor_act
 		//thrown weapon embedded object code.
 		if(istype(O,/obj/item))
 			var/obj/item/I = O
-			if (I && I.damtype == BRUTE && !I.anchored && !is_robot_module(I))
+			if (I && dhHasDamageType(I.melleDamages, BRUTE) && !I.anchored && !is_robot_module(I))
 				var/damage = throw_damage
 				var/sharp = is_sharp(I)
 

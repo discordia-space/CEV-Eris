@@ -152,7 +152,7 @@
 			DELEM(BRUTE,5)
 		)
 	)
-	wieldMultiplier = 5
+	wieldedMultiplier = 5
 	WieldedattackDelay = 18
 	throw_speed = 1
 	throw_range = 4

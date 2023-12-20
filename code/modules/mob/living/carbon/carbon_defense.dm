@@ -39,7 +39,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 		//blunt objects should really not be embedding in things unless a huge amount of force is involved
 
-		var/embed_threshold = weapon_sharp ? 5*I.volumeClass : 15*I.volumeClass
+		var/embed_threshold = is_sharp(I) ? 5*I.volumeClass : 15*I.volumeClass
 
 		//The user's robustness stat adds to the threshold, allowing you to use more powerful weapons without embedding risk
 		embed_threshold += user.stats.getStat(STAT_ROB)
@@ -61,7 +61,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 // Knifing
 /mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/grab/G, mob/user)
 
-	if(!W.edge || !W.force || W.damtype != BRUTE)
+	if(!W.edge || !dhTotalDamage(W.melleDamages) || !dhHasDamageType(W,BRUTE))
 		return 0 //unsuitable weapon
 
 	user.visible_message(SPAN_DANGER("\The [user] begins to slit [src]'s throat with \the [W]!"))
@@ -71,7 +71,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
 			return 0
 
-		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
+		damage_through_armor(W.melleDamages.Copy(), BP_HEAD, W, 2, 2, FALSE)
 
 		user.visible_message(SPAN_DANGER("\The [user] cuts [src]'s neck with \the [W]!"), SPAN_DANGER("You cut [src]'s neck with \the [W]!"))
 
@@ -81,9 +81,9 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 		G.last_action = world.time
 		flick(G.hud.icon_state, G.hud)
 
-		user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
-		src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
-		msg_admin_attack("[key_name(user)] knifed [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])" )
+		user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
+		src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
+		msg_admin_attack("[key_name(user)] knifed [key_name(src)] with [W.name] (INTENT: [uppertext(user.a_intent)])" )
 		return 1
 
 	else

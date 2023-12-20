@@ -275,7 +275,7 @@ update_flag
 
 	else
 		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
-		src.health -= I.force
+		src.health -= dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
 		src.add_fingerprint(user)
 		healthcheck()
 

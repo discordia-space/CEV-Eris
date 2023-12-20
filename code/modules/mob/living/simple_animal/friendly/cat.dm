@@ -113,7 +113,7 @@
 
 /mob/living/simple_animal/cat/attackby(var/obj/item/O, var/mob/user)
 	. = ..()
-	if(O.force)
+	if(dhTotalDamage(O))
 		set_flee_target(user? user : src.loc)
 
 /mob/living/simple_animal/cat/attack_hand(mob/living/carbon/human/M as mob)

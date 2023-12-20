@@ -696,7 +696,7 @@
 	else
 		if (((stat & BROKEN) || hacker) \
 				&& !opened \
-				&& I.force >= 5 \
+				&& dhTotalDamage(I.melleDamages) >= 5 \
 				&& I.volumeClass >= ITEM_SIZE_NORMAL \
 				&& prob(20) )
 			opened = 2

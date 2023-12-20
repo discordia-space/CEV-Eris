@@ -94,7 +94,7 @@
 		to_chat(user, SPAN_WARNING("\The [parent] can not be attached to a tool."))
 		return FALSE
 
-	if(T.item_upgrades.len >= T.max_upgrades)
+	if(T.item_upgrades.len >= T.maxUpgrades)
 		if(user)
 			to_chat(user, SPAN_WARNING("This tool can't fit anymore modifications!"))
 		return FALSE
@@ -157,7 +157,7 @@
 			to_chat(user, SPAN_WARNING("\The [parent] can not be applied to guns!"))
 		return FALSE //Can't be applied to a weapon
 
-	if(G.item_upgrades.len >= G.max_upgrades)
+	if(G.item_upgrades.len >= G.maxUpgrades)
 		if(user)
 			to_chat(user, SPAN_WARNING("This weapon can't fit anymore modifications!"))
 		return FALSE
@@ -296,7 +296,7 @@
 	if(tool_upgrades[UPGRADE_MAXFUEL])
 		T.max_fuel += tool_upgrades[UPGRADE_MAXFUEL]
 	if(tool_upgrades[UPGRADE_MAXUPGRADES])
-		T.max_upgrades += tool_upgrades[UPGRADE_MAXUPGRADES]
+		T.maxUpgrades += tool_upgrades[UPGRADE_MAXUPGRADES]
 	if(tool_upgrades[UPGRADE_SHARP])
 		T.sharp = tool_upgrades[UPGRADE_SHARP]
 	if(tool_upgrades[UPGRADE_COLOR])
@@ -385,7 +385,7 @@
 		G.attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 		G.sharp = TRUE
 	if(weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
-		G.force += weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE]
+		dhAddDamage(G.melleDamages, ARMOR_POINTY, BRUTE, weapon_upgrades[GUN_UPGRADE_MELEEDAMAGE])
 	if(weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION])
 		G.armor_divisor += weapon_upgrades[GUN_UPGRADE_MELEEPENETRATION]
 	if(weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY])

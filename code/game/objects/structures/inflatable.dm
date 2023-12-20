@@ -88,8 +88,9 @@
 	if (can_puncture(W))
 		visible_message(SPAN_DANGER("[user] pierces [src] with [W]!"))
 		deflate(TRUE)
-	if(W.damtype == BRUTE || W.damtype == BURN)
-		take_damage(W.force)
+	var/damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+	if(damage)
+		take_damage(damage)
 		..()
 	return
 

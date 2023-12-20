@@ -269,10 +269,11 @@
 		attack_hand(M)
 
 /obj/machinery/hivemind_machine/attackby(obj/item/I, mob/user)
-	if(!(I.flags & NOBLUDGEON) && I.force)
+	var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+	if(!(I.flags & NOBLUDGEON) && damage)
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		var/clear_damage = I.force - resistance
+		var/clear_damage = damage - resistance
 
 		if(clear_damage)
 			. = ..()

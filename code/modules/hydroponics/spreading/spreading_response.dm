@@ -127,8 +127,8 @@
 
 
 		..()
-		if(W.force && ! (W.flags & NOBLUDGEON))
-			var/damage = W.force
+		var/damage = dhTotalDamage(W.melleDamages)
+		if(damage && ! (W.flags & NOBLUDGEON))
 			//Swords and axes are good here
 			if (W.edge)
 				damage *= 1.5

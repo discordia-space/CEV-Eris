@@ -125,7 +125,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	damage = damage_types.Copy()
 
 /obj/item/projectile/is_hot()
-	return dhTotalDamageDamageType(damages ? damages : damage_types, BURN) * heat
+	return dhTotalDamageDamageType(damage ? damage : damage_types, BURN) * heat
 
 /obj/item/projectile/proc/get_total_damage()
 	var/damageList = damage
@@ -141,16 +141,15 @@ GLOBAL_LIST(projectileDamageConstants)
 
 /obj/item/projectile/proc/getAllDamType(type)
 	var/damageList = damage
-	var/totalDamage = 0
 	if(!length(damage) || !damage)
 		damageList = damage_types
 	return dhTotalDamageDamageType(damageList, type)
 
 /obj/item/projectile/multiply_projectile_damage(newMult)
-	dhApplyStrictMultiplier(damages, ALL_ARMOR, ALL_DAMAGE - HALLOSS, newMult)
+	dhApplyStrictMultiplier(damage, ALL_ARMOR, ALL_DAMAGE - HALLOSS, newMult)
 
 /obj/item/projectile/multiply_projectile_halloss(newMult)
-	dhApplyStrictMultiplier(damages, ALL_ARMOR, HALLOSS, newMult)
+	dhApplyStrictMultiplier(damage, ALL_ARMOR, HALLOSS, newMult)
 
 /obj/item/projectile/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult

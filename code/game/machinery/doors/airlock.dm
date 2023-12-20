@@ -1383,7 +1383,7 @@ There are 9 wires.
 /obj/machinery/door/airlock/hit(var/mob/user, var/obj/item/I)
 	var/obj/item/W = I
 	user.setClickCooldown((DEFAULT_ATTACK_COOLDOWN + I.wielded ? I.WieldedattackDelay : I.attackDelay )*1.5 )
-	var/calc_damage = W.force*W.structure_damage_factor
+	var/calc_damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))*W.structure_damage_factor
 	var/quiet = FALSE
 	if (istool(I))
 		var/obj/item/tool/T = I
@@ -1399,7 +1399,7 @@ There are 9 wires.
 	else
 		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
-		take_damage(W.force)
+		take_damage(calc_damage)
 
 
 /obj/machinery/door/airlock/take_damage(var/damage)

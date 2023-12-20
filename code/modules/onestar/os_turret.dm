@@ -168,12 +168,12 @@
 
 	// If the turret is friendly, you can unanchor it. If not, you bash it.
 	if(should_target_players)
-		if(!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
+		if(!(I.flags & NOBLUDGEON) && dhTotalDamage(I.melleDamages) && !(stat & BROKEN))
 			// If the turret was attacked with the intention of harming it:
 			user.do_attack_animation(src)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-			if(take_damage(I.force * I.structure_damage_factor))
+			if(take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) * I.structure_damage_factor))
 				playsound(src, 'sound/weapons/smash.ogg', 70, 1)
 			else
 				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)

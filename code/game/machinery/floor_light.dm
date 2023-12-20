@@ -63,7 +63,7 @@ var/list/floor_light_cache = list()
 		if(ABORT_CHECK)
 			return
 
-	if(I.force && user.a_intent == "hurt")
+	if(dhTotalDamage(I.melleDamages) && user.a_intent == "hurt")
 		attack_hand(user)
 	return
 

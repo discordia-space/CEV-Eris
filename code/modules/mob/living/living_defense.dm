@@ -234,7 +234,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 //	if(HULK in user.mutations)
 //		effective_force *= 2
 
-	if (damage_through_armor(damages, hit_zone, I, I.armor_divisor, I.wounding_multiplier))
+	if (damage_through_armor(damages, hit_zone, I, I.armor_divisor, 1, FALSE))
 		return TRUE
 	else
 		return FALSE
@@ -243,7 +243,6 @@ armorType defines the armorType that will block all the damTypes that it has ass
 /mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
 	if(istype(AM,/obj))
 		var/obj/O = AM
-		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
 		var/miss_chance = 15
 		if (O.throw_source)
@@ -260,7 +259,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
 
-		damage_through_armor(list(ARMOR_BLUNT = list(DELEM(dtype, throw_damage))), BP_CHEST, AM, O.armor_divisor, O.wounding_mult)
+		damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, throw_damage))), BP_CHEST, AM, O.armor_divisor, 1, FALSE)
 
 		O.throwing = 0		//it hit, so stop moving
 

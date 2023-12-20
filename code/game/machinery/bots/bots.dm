@@ -70,17 +70,10 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
 	else
-		if(hasvar(W,"force") && hasvar(W,"damtype"))
-			switch(W.damtype)
-				if("fire")
-					src.health -= W.force * fire_dam_coeff
-				if("brute")
-					src.health -= W.force * brute_dam_coeff
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			..()
-			healthcheck()
-		else
-			..()
+		health -= dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		..()
+		healthcheck()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj.get_structure_damage())

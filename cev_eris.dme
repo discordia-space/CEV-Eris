@@ -53,6 +53,7 @@
 #include "code\__DEFINES\movement.dm"
 #include "code\__DEFINES\mutations.dm"
 #include "code\__DEFINES\nanoui.dm"
+#include "code\__DEFINES\object.dm"
 #include "code\__DEFINES\overmap.dm"
 #include "code\__DEFINES\perf_test.dm"
 #include "code\__DEFINES\perks.dm"

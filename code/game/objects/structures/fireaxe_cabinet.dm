@@ -99,9 +99,9 @@
 				update_icon()
 			return
 
-	if(O.force)
+	if(dhTotalDamage(O.melleDamages))
 		user.setClickCooldown(10)
-		attack_generic(user, O.force, "bashes")
+		attack_generic(user, dhTotalDamage(O.melleDamages), "bashes")
 		return
 
 	return ..()

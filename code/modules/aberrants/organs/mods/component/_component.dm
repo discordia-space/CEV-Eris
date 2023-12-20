@@ -150,7 +150,7 @@
 	if(oxygen_req_mod)
 		holder.oxygen_req += round(oxygen_req_mod, 0.01)
 	if(max_upgrade_mod)
-		holder.max_upgrades += max_upgrade_mod
+		holder.maxUpgrades += max_upgrade_mod
 	if(min_bruised_damage_mod)
 		holder.min_bruised_damage += min_bruised_damage_mod
 	if(min_broken_damage_mod)

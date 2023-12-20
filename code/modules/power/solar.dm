@@ -71,7 +71,7 @@
 		return
 	else if (I)
 		src.add_fingerprint(user)
-		src.health -= I.force
+		src.health -= dhTotalDamage(I.melleDamages)
 		src.healthcheck()
 	..()
 

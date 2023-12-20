@@ -267,14 +267,15 @@
 			to_chat(user, SPAN_NOTICE("Camera bugged."))
 			src.bugged = 1
 
-	else if(I.damtype == BRUTE || I.damtype == BURN) //bashing cameras
+	else if(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))) //bashing cameras
+		var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if (I.force >= src.toughness)
+		if (damage >= src.toughness)
 			user.do_attack_animation(src)
 			visible_message(SPAN_WARNING("<b>[src] has been [pick(I.attack_verb)] with [I] by [user]!</b>"))
 			if (I.hitsound)
 				playsound(loc, I.hitsound, 50, 1, -1)
-		take_damage(I.force)
+		take_damage(damage)
 
 	else
 		..()

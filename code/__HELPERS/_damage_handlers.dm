@@ -7,7 +7,7 @@
 
 /proc/dhApplyStrictMultiplier(list/damages, list/acceptableArmors, list/acceptableTypes, multiplier)
 	for(var/armorType in acceptableArmors)
-		if(lenght(damages[armorType]))
+		if(length(damages[armorType]))
 			for(var/list/damageElement in damages[armorType])
 				if(locate(damageElement[1]) in acceptableTypes)
 					damageElement[2] *= multiplier

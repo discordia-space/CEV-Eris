@@ -17,7 +17,7 @@
 
 #define UPGRADE_MAXFUEL "max_fuel"
 
-#define UPGRADE_MAXUPGRADES "max_upgrades"
+#define UPGRADE_MAXUPGRADES "maxUpgrades"
 
 #define UPGRADE_SANCTIFY "sanctify"
 

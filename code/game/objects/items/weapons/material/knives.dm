@@ -16,15 +16,14 @@
 		edge = TRUE
 		sharp = TRUE
 		..() //Updates force.
-		throwforce = max(3,force-3)
+		throwforce = max(3,dhTotalDamage(melleDamages)-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		volumeClass = ITEM_SIZE_NORMAL
 		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
-		melleDamages = list(
-		ARMOR_BLUNT = list(
+		melleDamages = list(ARMOR_BLUNT = list(
 			DELEM(BRUTE,3)
 		))
 		edge = FALSE

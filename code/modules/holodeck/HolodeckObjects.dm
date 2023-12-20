@@ -173,9 +173,6 @@
 /obj/structure/catwalk/holo/attackby(obj/item/I, mob/user)
 	return
 
-/obj/item/stool/holostool
-	damtype = HALLOSS
-
 /obj/item/stool/holostool/attackby(obj/item/W as obj, mob/user as mob)
 	if(istool(W) || istype(W,/obj/item/stack))
 		return
@@ -234,8 +231,9 @@
 	else if(istype(W, /obj/item/tool/wrench) && !anchored && (!state || !reinf))
 		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't dismantle it!")))
 	else
-		if(W.damtype == BRUTE || W.damtype == BURN)
-			hit(W.force)
+		var/damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+		if(damage)
+			hit(damage)
 			if(health <= 7)
 				anchored = FALSE
 				update_nearby_icons()
@@ -264,10 +262,10 @@
 		return
 
 	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
-		var/aforce = I.force
+		var/aforce = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		visible_message("\red <B>[src] was hit by [I].</B>")
-		if(I.damtype == BRUTE || I.damtype == BURN)
+		if(aforce)
 			take_damage(aforce)
 		return
 
@@ -296,7 +294,9 @@
 // Holo type items
 
 /obj/item/holo
-	damtype = HALLOSS
+	melleDamages = list(ARMOR_BLUNT = list(
+		DELEM(HALLOSS,1)
+	))
 	no_attack_log = 1
 	bad_type = /obj/item/holo
 

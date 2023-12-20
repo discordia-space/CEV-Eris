@@ -70,7 +70,7 @@
 	name = "energy axe"
 	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
 	icon_state = "axe0"
-	active_force = WEAPON_FORCE_GODLIKE
+	activeDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,40)), ARMOR_POINTY=list(DELEM(BRUTE,20)))
 	active_throwforce = 50
 	active_volumeClass = ITEM_SIZE_HUGE
 	melleDamages = list(
@@ -109,7 +109,7 @@
 	name = "energy sword"
 	desc = "May the Force be with you."
 	icon_state = "sword0"
-	active_force = WEAPON_FORCE_LETHAL // Go forth and slay, padawan
+	activeDamages = list(ARMOR_ENERGY = list(DELEM(BURN,30), DELEM(BRUTE,15))) // Go forth and slay, padawan
 	active_throwforce = WEAPON_FORCE_LETHAL
 	no_double_tact = TRUE
 	active_volumeClass = ITEM_SIZE_BULKY

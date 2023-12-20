@@ -330,7 +330,7 @@
 			to_chat(user, SPAN_NOTICE("In its current state, [src] is not valid to reinforce."))
 			return
 	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-	take_damage(I.force)
+	take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)))
 
 	return ..()
 
