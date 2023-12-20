@@ -232,9 +232,9 @@
 						return
 			// Apply additional unarmed effects.
 			attack.apply_effects(H, src, getarmor(affecting, ARMOR_BLUNT), stat_damage, hit_zone)
-
+			var/damage = list(ARMOR_BLUNT = list(DELEM(attack.deal_halloss ? HALLOSS : BRUTE, real_damage)))
 			// Finally, apply damage to target
-			damage_through_armor(real_damage, (attack.deal_halloss ? HALLOSS : BRUTE), affecting, ARMOR_BLUNT, sharp = attack.sharp, edge = attack.edge)
+			damage_through_armor(damage, affecting, src, 1, 1, FALSE)
 			hit_impact(real_damage, get_step(H, src))
 
 		if(I_DISARM)
@@ -311,7 +311,7 @@
 		penetration = L.armor_divisor
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_BLUNT, penetration, sharp=is_sharp, edge=is_edge, wounding_multiplier = wounding)
+	var/dam = damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), affecting, src, 1, 1, FALSE)
 	if(dam > 0)
 		affecting.add_autopsy_data("[attack_message] by \a [user]", dam)
 	updatehealth()
@@ -343,7 +343,7 @@
 	organ.nerve_strike_add(1)
 	src.visible_message(SPAN_DANGER("[src]'s [organ.joint] [pick("jitters","convulses","stirs","shakes")] and dangles about!"), (SPAN_DANGER("As [user]'s hit connects with your [organ.joint], you feel it painfully tingle before going numb!")))
 	playsound(user, 'sound/weapons/throwtap.ogg', 50, 1)
-	src.damage_through_armor(rand(5,10), HALLOSS, target_zone, ARMOR_BLUNT, wounding_multiplier = 2)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(HALLOSS,rand(10,15)))), target_zone, src, 1, 1, FALSE)
 
 	//kill the grab
 	user.drop_from_inventory(G)

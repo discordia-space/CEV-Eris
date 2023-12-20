@@ -327,11 +327,11 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 			M.adjustHalLoss(5)
 			M.Weaken(2)
 			// 40 in worst case, 10 with 15 melee armor
-			M.damage_through_armor(40 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_BLUNT, sharp = FALSE, armor_divisor = 0.5)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,40 * (1 - victimToughness/toughnessDivisor) * healthRatio))), body_part, src, 1, 1, FALSE)
 		else
 			M.adjustHalLoss(3)
 			// 20 in worst  case , 5 with 15 melee armor
-			M.damage_through_armor(20 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_BLUNT, sharp = FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20 * (1 - victimToughness/toughnessDivisor) * healthRatio))), body_part, src, 1, 1, FALSE)
 	else
 		M.damage_through_armor(5, BRUTE, body_part, ARMOR_BLUNT) // just a scratch
 		tforce *= 2
