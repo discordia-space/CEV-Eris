@@ -16,7 +16,7 @@
 	sharp = FALSE
 	edge = FALSE
 	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten")
 	price_tag = 500

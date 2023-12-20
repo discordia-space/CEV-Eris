@@ -5,7 +5,7 @@
 	icon = 'icons/obj/guns/projectile/vintorez.dmi'
 	icon_state = "vintorez"
 	item_state = "vintorez"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_COVERT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK

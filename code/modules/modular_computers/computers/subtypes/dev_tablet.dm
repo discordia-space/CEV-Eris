@@ -8,7 +8,7 @@
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_TABLET
 	max_hardware_size = 1
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	screen_light_strength = 2.1
 	screen_light_range = 2.1
 	price_tag = 100

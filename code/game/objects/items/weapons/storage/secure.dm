@@ -12,8 +12,8 @@
 // -----------------------------
 /obj/item/storage/secure
 	name = "secstorage"
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	bad_type = /obj/item/storage/secure
 	var/icon_locking = "secureb"
@@ -156,7 +156,7 @@
 	WieldedattackDelay = 18
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
 	if ((src.loc == user) && (src.locked == 1))
@@ -182,8 +182,8 @@
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
-	w_class = ITEM_SIZE_GARGANTUAN
-	max_w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_GARGANTUAN
+	max_volumeClass = ITEM_SIZE_HUGE
 	max_storage_space = DEFAULT_GARGANTUAN_STORAGE
 	anchored = TRUE
 	density = FALSE

@@ -6,7 +6,7 @@
 	icon_state = "clarissa"
 	item_state = "clarissa"
 
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	silenced = FALSE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)

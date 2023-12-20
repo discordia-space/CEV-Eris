@@ -4,7 +4,7 @@
 	item_state = null
 	name = "embedded SMG"
 	desc = "A makeshift SMG deployed from your arm. The favourite hidden weapon of many brutish types. Takes all kinds of .35 auto magazines"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = 1
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)

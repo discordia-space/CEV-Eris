@@ -1,5 +1,5 @@
 /obj/item/underwear
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	var/required_slot_flags
 	var/required_free_body_parts
 	matter = list(MATERIAL_CLOTH = 3)

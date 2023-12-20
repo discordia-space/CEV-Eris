@@ -16,7 +16,7 @@
 	layer = 21
 	abstract = 1
 	item_state = "nothing"
-	w_class = ITEM_SIZE_COLOSSAL
+	volumeClass = ITEM_SIZE_COLOSSAL
 	spawn_tags = null
 	weight = 0
 	var/obj/screen/grab/hud

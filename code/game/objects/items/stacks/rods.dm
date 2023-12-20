@@ -6,7 +6,7 @@
 	icon_state = "rods"
 	novariants = FALSE
 	flags = CONDUCT
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE, 7)

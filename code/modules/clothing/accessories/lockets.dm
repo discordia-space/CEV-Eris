@@ -4,7 +4,7 @@
 	icon_state = "locket"
 	item_state = "locket"
 	slot_flags = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	slot_flags = SLOT_MASK | SLOT_ACCESSORY_BUFFER
 	var/base_icon
 	var/open

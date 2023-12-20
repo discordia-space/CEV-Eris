@@ -12,7 +12,8 @@
 	slot_flags = SLOT_BELT
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
+	maxUpgrades = 3
 
 	//spawn values
 	bad_type = /obj/item/tool
@@ -238,7 +239,7 @@
 	data["forced_broad_strike"] = forced_broad_strike
 	data["screen_shake"] = screen_shake
 	data["push_attack"] = push_attack
-	data["w_class"] = w_class
+	data["volumeClass"] = volumeClass
 
 	// it could be done with catalog using one line but whatever
 	if(item_upgrades.len)
@@ -824,7 +825,7 @@
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)
-	max_upgrades = initial(max_upgrades)
+	maxUpgrades = initial(max_upgrades)
 	color = initial(color)
 	sharp = initial(sharp)
 	prefixes = list()

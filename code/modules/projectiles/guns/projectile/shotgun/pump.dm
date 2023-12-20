@@ -5,7 +5,7 @@
 	icon_state = "shotgun"
 	item_state = "shotgun"
 	max_shells = 4
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
@@ -66,7 +66,7 @@
 	icon_state = "obrez"
 	item_state = "obrez"
 	max_shells = 3
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 5)
 	proj_step_multiplier = 1.1 // becomes 1.2 with slugs, following bolt action sawn off behaviour

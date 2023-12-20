@@ -5,7 +5,7 @@
 	var/desc = "regular old playing card."
 
 /obj/item/deck
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon = 'icons/obj/playing_cards.dmi'
 	var/list/cards = list()
 
@@ -14,7 +14,7 @@
 	desc = "A small leather case to show how classy you are compared to everyone else."
 	icon_state = "card_holder"
 	icon = 'icons/obj/playing_cards.dmi'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_hold = list(/obj/item/deck)
 	allow_quick_gather = TRUE
 	use_to_pickup = TRUE
@@ -194,7 +194,7 @@
 
 	icon_state = "card_pack"
 	icon = 'icons/obj/playing_cards.dmi'
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	var/list/cards = list()
 
 
@@ -215,7 +215,7 @@
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "empty"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 	var/concealed = 0
 	var/list/cards = list()

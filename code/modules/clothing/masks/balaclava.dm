@@ -9,7 +9,7 @@
 	action_button_name = "Adjust Balaclava"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = FACE|HEAD
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	style_coverage = COVERS_WHOLE_FACE
 	var/open = 0 //0 = full, 1 = head only, 2 = face only
 

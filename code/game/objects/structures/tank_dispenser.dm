@@ -5,7 +5,7 @@
 	icon_state = "dispenser"
 	density = TRUE
 	anchored = TRUE
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	layer = BELOW_OBJ_LAYER
 	spawn_tags = SPAWN_TAG_STRUCTURE_COMMON
 	rarity_value = 50

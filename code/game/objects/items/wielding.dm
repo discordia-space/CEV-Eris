@@ -125,7 +125,7 @@
 	name = "offhand"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "offhand"
-	w_class = ITEM_SIZE_COLOSSAL
+	volumeClass = ITEM_SIZE_COLOSSAL
 	item_flags = ABSTRACT
 
 /obj/item/twohanded/offhand/unwield()

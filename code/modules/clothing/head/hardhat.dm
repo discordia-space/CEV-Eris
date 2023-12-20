@@ -14,7 +14,7 @@
 		ARMOR_RAD =25
 	)
 	siemens_coefficient = 0.8
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	price_tag = 30
 	style = STYLE_NEG_LOW
 	style_coverage = COVERS_HAIR

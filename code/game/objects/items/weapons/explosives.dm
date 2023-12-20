@@ -6,7 +6,7 @@
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
 	flags = NOBLUDGEON
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 2)
 	var/datum/wires/explosive/c4/wires
 	var/timer = 10

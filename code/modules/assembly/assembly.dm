@@ -4,7 +4,7 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = ""
 	flags = CONDUCT
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 1)
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3

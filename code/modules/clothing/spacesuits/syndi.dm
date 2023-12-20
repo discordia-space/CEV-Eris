@@ -21,7 +21,7 @@
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A clasic crimson spacesuit sporting clean lines and durable plating."
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	armor = list(
 		ARMOR_BLUNT = 12,
 		ARMOR_BULLET = 15,

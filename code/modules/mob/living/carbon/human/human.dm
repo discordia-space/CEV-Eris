@@ -624,8 +624,8 @@ var/list/rank_prefix = list(\
 	if(!parent)
 		return 0
 
-	if(parent.w_class > affecting.w_class + 1)
-		return prob(100 / 2**(parent.w_class - affecting.w_class - 1))
+	if(parent.volumeClass > affecting.volumeClass + 1)
+		return prob(100 / 2**(parent.volumeClass - affecting.volumeClass - 1))
 
 	return 1
 

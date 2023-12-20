@@ -87,7 +87,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"

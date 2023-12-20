@@ -121,7 +121,7 @@
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/crayons.dmi'
 	icon_state = "crayonbox"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon_type = "crayon"
 	can_hold = list(
 		/obj/item/pen/crayon
@@ -165,7 +165,7 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
@@ -266,7 +266,7 @@
 	icon_state = "cigpacketcarton"
 	item_state = "cigpacketcarton"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	throwforce = WEAPON_FORCE_HARMLESS
 	storage_slots = 10
 	item_obj = /obj/item/storage/fancy/cigarettes
@@ -317,7 +317,7 @@
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
@@ -367,11 +367,11 @@
 	if(!is_worn())
 		if(!open)
 			to_chat(user, SPAN_NOTICE("You open \the [src]."))
-			w_class = ITEM_SIZE_SMALL
+			volumeClass = ITEM_SIZE_SMALL
 			open = TRUE
 		else
 			to_chat(user, SPAN_NOTICE("You close \the [src]."))
-			w_class = ITEM_SIZE_TINY
+			volumeClass = ITEM_SIZE_TINY
 			open = FALSE
 		playsound(loc, 'sound/machines/click.ogg', 100, 1)
 		update_icon()
@@ -442,9 +442,9 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	icon = 'icons/obj/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
-	max_w_class = ITEM_SIZE_SMALL
+	max_volumeClass = ITEM_SIZE_SMALL
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
-	max_storage_space = 12 //The sum of the w_classes of all the items in this storage item.
+	max_storage_space = 12 //The sum of the volumeClasses of all the items in this storage item.
 	storage_slots = 6
 	req_access = list(access_virology)
 

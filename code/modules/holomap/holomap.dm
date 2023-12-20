@@ -308,4 +308,4 @@
 	name = T_BOARD("Holomap")
 	desc = "Looks like a circuit. Probably is."
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL

@@ -5,7 +5,7 @@
 	desc = "Holds item of clothing you shouldn't be showing off in the hallways."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "cabinet_closed"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	density = TRUE
 
 	var/static/list/amount_of_underwear_by_id_card

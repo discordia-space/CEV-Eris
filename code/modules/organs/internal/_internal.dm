@@ -13,7 +13,7 @@
 	var/list/initial_organ_efficiency = list()
 	var/scanner_hidden = FALSE	//Does this organ show up on the body scanner
 	var/unique_tag	//If an organ is unique and doesn't scale off of organ processes
-	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by w_class for balance reasons
+	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by volumeClass for balance reasons
 	var/max_blood_storage = 0	//How much blood an organ stores. Base is 5 * blood_req, so the organ can survive without blood for 5 ticks beofre taking damage (+ blood supply of blood vessels)
 	var/current_blood = 100	//How much blood is currently in the organ
 	var/blood_req = 0	//How much blood an organ takes to funcion
@@ -382,7 +382,7 @@
 /obj/item/organ/internal/proc/refresh_organ_stats()
 	name = initial(name)
 	color = initial(color)
-	max_upgrades = initial(max_upgrades)
+	maxUpgrades = initial(max_upgrades)
 	prefixes = list()
 	min_bruised_damage = initial(min_bruised_damage)
 	min_broken_damage = initial(min_broken_damage)

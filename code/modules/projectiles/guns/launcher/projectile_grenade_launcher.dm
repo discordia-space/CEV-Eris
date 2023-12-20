@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/launcher/riotgun.dmi'
 	icon_state = "riotgun"
 	item_state = "riotgun"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_GRENADE
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS
@@ -56,7 +56,7 @@
 /obj/item/gun/projectile/shotgun/pump/grenade/underslung
 	name = "underslung grenade launcher"
 	desc = "Not much more than a tube and a firing mechanism, this grenade launcher is designed to be fitted to a rifle."
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = null
 	max_shells = 0
 	safety = FALSE
@@ -68,7 +68,7 @@
 	icon = 'icons/obj/guns/launcher/grenadelauncher.dmi'
 	icon_state = "Grenadelauncher_PMC"
 	item_state = "pneumatic"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	init_recoil = RIFLE_RECOIL(2)
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_PLASTIC = 10)

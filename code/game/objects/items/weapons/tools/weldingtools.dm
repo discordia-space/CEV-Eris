@@ -48,7 +48,7 @@
 	max_fuel = 15
 	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 4
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -67,7 +67,7 @@
 	max_fuel = 40
 	heat = 3773
 	degradation = 0.7
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
@@ -84,7 +84,7 @@
 	max_fuel = 20
 	degradation = 0.6
 	heat = 2750
-	max_upgrades = 2
+	maxUpgrades = 2
 	workspeed = 1.7
 	spawn_blacklisted = TRUE
 	rarity_value = 10
@@ -101,7 +101,7 @@
 	switched_on_qualities = list(QUALITY_WELDING = 50)
 	use_fuel_cost = 0.2
 	max_fuel = 60
-	max_upgrades = 4
+	maxUpgrades = 4
 	degradation = 0.4
 //	fuel_type = "blood"
 	spawn_blacklisted = TRUE

@@ -8,7 +8,7 @@
 	icon_state = "molly"
 	item_state = "molly"
 
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER

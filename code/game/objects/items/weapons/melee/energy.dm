@@ -20,7 +20,7 @@
 	)
 	var/active = 0
 	var/active_throwforce
-	var/active_w_class
+	var/active_volumeClass
 
 /obj/item/melee/energy/is_hot()
 	if (active)
@@ -35,7 +35,7 @@
 	throwforce = active_throwforce
 	sharp = TRUE
 	edge = TRUE
-	w_class = active_w_class
+	volumeClass = active_volumeClass
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 	update_wear_icon()
 
@@ -49,7 +49,7 @@
 	throwforce = initial(throwforce)
 	sharp = initial(sharp)
 	edge = initial(edge)
-	w_class = initial(w_class)
+	volumeClass = initial(volumeClass)
 	update_wear_icon()
 
 /obj/item/melee/energy/attack_self(mob/living/user as mob)
@@ -72,7 +72,7 @@
 	icon_state = "axe0"
 	active_force = WEAPON_FORCE_GODLIKE
 	active_throwforce = 50
-	active_w_class = ITEM_SIZE_HUGE
+	active_volumeClass = ITEM_SIZE_HUGE
 	melleDamages = list(
 		ARMOR_SHARP = list(
 			DELEM(BRUTE,20)
@@ -84,7 +84,7 @@
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	flags = CONDUCT | NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -112,7 +112,7 @@
 	active_force = WEAPON_FORCE_LETHAL // Go forth and slay, padawan
 	active_throwforce = WEAPON_FORCE_LETHAL
 	no_double_tact = TRUE
-	active_w_class = ITEM_SIZE_BULKY
+	active_volumeClass = ITEM_SIZE_BULKY
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,5)
@@ -122,7 +122,7 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
 	sharp = TRUE
@@ -222,7 +222,7 @@
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator

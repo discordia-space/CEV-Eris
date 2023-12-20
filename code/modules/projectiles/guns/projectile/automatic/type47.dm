@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/os/type_47.dmi'
 	icon_state = "type_47"
 	item_state = "type_47"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH

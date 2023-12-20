@@ -5,7 +5,7 @@
 	var/icon_base = "l6"
 	icon_state = "l6closed-empty"
 	item_state = "l6closedmag"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = 0
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)

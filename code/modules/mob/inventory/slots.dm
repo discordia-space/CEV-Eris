@@ -15,7 +15,7 @@
 	//req one of it
 	var/req_slot_flags
 	var/req_type
-	var/max_w_class
+	var/max_volumeClass
 
 /datum/inventory_slot/proc/update_icon(mob/living/owner, redraw)
 	if(update_proc)
@@ -48,7 +48,7 @@
 		return TRUE
 	else if(req_slot_flags && (req_slot_flags & I.slot_flags))
 		return TRUE
-	else if(max_w_class && (I.w_class <= max_w_class))
+	else if(max_volumeClass && (I.volumeClass <= max_volumeClass))
 		return TRUE
 
 	if(!disable_warning)
@@ -148,7 +148,7 @@
 	name = "Right ear"
 	id = slot_r_ear
 	req_slot_flags = SLOT_EARS
-	max_w_class = ITEM_SIZE_TINY
+	max_volumeClass = ITEM_SIZE_TINY
 
 
 /datum/inventory_slot/glasses
@@ -196,7 +196,7 @@
 /datum/inventory_slot/store
 	req_item_in_slot = slot_w_uniform
 	req_slot_flags = SLOT_POCKET
-	max_w_class = ITEM_SIZE_SMALL
+	max_volumeClass = ITEM_SIZE_SMALL
 	update_proc = /mob/proc/update_inv_pockets
 
 /datum/inventory_slot/store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)

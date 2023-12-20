@@ -255,7 +255,7 @@
 	name = "assault rifle box"
 	desc = "Assault rifle kit"
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/sts35/populate_contents()
 	var/list/spawnedAtoms = list()
@@ -269,7 +269,7 @@
 	name = "lever-action rifle box"
 	desc = "A suspicious looking box containing a lever-action rifle and some spare ammo to it."
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/winchester/populate_contents()
 	var/list/spawnedAtoms = list()
@@ -283,7 +283,7 @@
 	name = "lever shotgun box"
 	desc = "lever-action shotgun kit"
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/lshotgun/populate_contents()
 	var/list/spawnedAtoms = list()
@@ -297,7 +297,7 @@
 	name = "pug box"
 	desc = "Pug kit with one M12 buckshot mag"
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/pug/populate_contents()
 	var/list/spawnedAtoms = list()
@@ -425,7 +425,7 @@
 	name = "Pickle box"
 	desc = "Pickle."
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	prespawned_content_type = /obj/item/reagent_containers/food/snacks/pickle
 
 /obj/item/storage/box/syndie_kit/gentleman_kit

@@ -177,7 +177,7 @@
 /mob/proc/get_equipped_items()
 	return list()
 
-/mob/proc/get_max_w_class()
+/mob/proc/get_max_volumeClass()
 	return 0 //zero
 
 /mob/proc/get_total_style()

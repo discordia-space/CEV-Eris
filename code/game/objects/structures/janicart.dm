@@ -3,7 +3,7 @@
 	desc = "The ultimate in janitorial carts! Has space for water, mops, signs, trash bags, and more!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	anchored = FALSE
 	density = TRUE
 	reagent_flags = OPENCONTAINER
@@ -408,4 +408,4 @@
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "keys"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY

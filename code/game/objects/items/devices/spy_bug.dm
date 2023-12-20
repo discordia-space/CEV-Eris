@@ -7,7 +7,7 @@
 	layer = TURF_LAYER+0.2
 
 	flags = CONDUCT
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_range = 15
@@ -58,7 +58,7 @@
 	icon_state = "pda"
 	item_state = "electronic"
 
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_COVERT = 3)
 

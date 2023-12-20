@@ -6,7 +6,7 @@
 	icon = 'icons/obj/guns/energy/lasersmg.dmi'
 	icon_state = "lasersmg"
 	item_state = "lasersmg"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	fire_sound = 'sound/weapons/Laser.ogg'
 	suitable_cell = /obj/item/cell/medium
 	can_dual = TRUE

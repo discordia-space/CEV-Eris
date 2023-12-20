@@ -28,7 +28,7 @@
 	desc = "A suit that protects against biological contamination."
 	icon_state = "bio"
 	item_state = "bio_suit"
-	w_class = ITEM_SIZE_BULKY//bulky item3
+	volumeClass = ITEM_SIZE_BULKY//bulky item3
 	spawn_blacklisted = FALSE
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_HAZMATSUIT

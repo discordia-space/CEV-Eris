@@ -14,7 +14,7 @@
 	icon_state = "claymore"
 	item_state = "claymore"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	worksound = WORKSOUND_HARD_SLASH
 	wielded = TRUE
 	canremove = FALSE

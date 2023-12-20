@@ -19,10 +19,10 @@
 	name = "wiremanglers"
 	desc = "An improvised monstrosity made of bent rods which can sometimes be used to snip things. Could serve you well if you stuff it with enough tool mods."
 	icon_state = "impro_cutter"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 20, QUALITY_RETRACTING = 10, QUALITY_BONE_SETTING = 10)
 	degradation = 1.5
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 6
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -30,14 +30,14 @@
 	name = "armature cutter"
 	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but does its main job better."
 	icon_state = "arm-cutter"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	wieldedMultiplier = 4
 	WieldedattackDelay = 30
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 	degradation = 0.7
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 

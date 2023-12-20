@@ -1,5 +1,5 @@
 /obj/item/organ/internal/scaffold/aberrant/dependent
-	max_upgrades = 4
+	maxUpgrades = 4
 	price_tag = 400		// High value due to 4 slots + long cooldown
 	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN_RARE		// Rare because 4 upgrade slots
 	spawn_blacklisted = TRUE	// More of a novel thing to find in the deep maint vendors
@@ -129,7 +129,7 @@
 	output_pool = list(OP_KIDNEYS)
 	special_info = list(STAT_COG, 10)
 
-	
+
 /obj/item/organ/internal/scaffold/aberrant/dependent/exmercenary
 	desc = "A masterfully engineered organ for the really big guns."
 	specific_input_type_pool = list(

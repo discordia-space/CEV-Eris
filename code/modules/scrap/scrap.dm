@@ -160,7 +160,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				S.reagents.add_reagent("toxin", rand(2, 15))
 
 	loot = new(src)
-	loot.max_w_class = ITEM_SIZE_HUGE
+	loot.max_volumeClass = ITEM_SIZE_HUGE
 	shuffle_loot()
 
 /obj/structure/scrap_spawner/Destroy()

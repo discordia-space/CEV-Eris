@@ -5,7 +5,7 @@
 	description_info = "Can be emptied by connecting onto a port and pumping the gasses out"
 	icon_state = "pscrubber:0"
 	density = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 	var/on = FALSE
 	var/volume_rate = 800

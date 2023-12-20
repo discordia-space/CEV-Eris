@@ -18,7 +18,7 @@
 	if(current_size >= STAGE_THREE)
 		var/list/handlist = list(l_hand, r_hand)
 		for(var/obj/item/hand in handlist)
-			if(prob(current_size*5) && hand.w_class >= ((11-current_size)/2) && u_equip(hand))
+			if(prob(current_size*5) && hand.volumeClass >= ((11-current_size)/2) && u_equip(hand))
 				step_towards(hand, src)
 				to_chat(src, "<span class = 'warning'>The [S] yanks \the [hand] from your grip!</span>")
 	apply_effect(current_size * 3, IRRADIATE)

@@ -74,7 +74,7 @@
 	var/encased				// Needs to be opened with a saw to access certain organs.
 
 	var/cavity_name = "cavity"				// Name of body part's cavity, displayed during cavity implant surgery
-	var/max_volume = ITEM_SIZE_SMALL	// Max w_class of cavity implanted items
+	var/max_volume = ITEM_SIZE_SMALL	// Max volumeClass of cavity implanted items
 
 	// Surgery vars.
 	var/open = 0
@@ -134,7 +134,7 @@
 	src.vital = desc.vital
 	src.cannot_amputate = desc.cannot_amputate
 
-	src.w_class = desc.w_class
+	src.volumeClass = desc.volumeClass
 	src.max_volume = desc.max_volume
 
 	src.amputation_point = desc.amputation_point
@@ -190,7 +190,7 @@
 			var/obj/item/implant/Imp = I
 			Imp.uninstall()
 			continue
-		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
+		if(istype(I) && I.volumeClass < ITEM_SIZE_NORMAL)
 			implant.forceMove(get_turf(owner))
 		else
 			implant.forceMove(src)

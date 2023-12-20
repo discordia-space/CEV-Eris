@@ -5,7 +5,7 @@
 	icon_state = "standart"
 
 	anchored = FALSE
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slowdown_hold = 0.5
 	throw_range = 2
 	matter = list(MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)

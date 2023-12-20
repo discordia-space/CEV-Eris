@@ -99,7 +99,7 @@
 	gauge_cap = 4
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 3*ONE_ATMOSPHERE
 	default_gas = "oxygen"

@@ -6,7 +6,7 @@
 	icon = 'icons/obj/karl_mining.dmi'
 	icon_state = "karl_axe"
 	item_state = "karl_axe"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	price_tag = 2500
 	matter = list(MATERIAL_STEEL = 6)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)

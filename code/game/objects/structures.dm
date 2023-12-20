@@ -1,6 +1,6 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
-	w_class = ITEM_SIZE_GARGANTUAN
+	volumeClass = ITEM_SIZE_GARGANTUAN
 	spawn_frequency = 10
 	rarity_value = 10
 	//spawn_tags = SPAWN_TAG_STRUCTURE
@@ -33,15 +33,15 @@
 
 /**
  * An overridable proc used by SSfalling to determine whether if the object deals
- * mimimal dmg or their w_class * 10
+ * mimimal dmg or their volumeClass * 10
  *
- * @return	ITEM_SIZE_TINY * 10 	if w_class is not defined in subtypes structures
- *			w_class * 10 			if w_class is set
+ * @return	ITEM_SIZE_TINY * 10 	if volumeClass is not defined in subtypes structures
+ *			volumeClass * 10 			if volumeClass is set
  *
  * Values are found in code/__defines/inventory_sizes.dm
  */
 /obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = w_class * 10 * get_health_ratio()
+	var/damage = volumeClass * 10 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)

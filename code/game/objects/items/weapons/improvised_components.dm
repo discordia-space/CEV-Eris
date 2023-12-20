@@ -33,7 +33,7 @@
 	wieldedMultiplier = 1.5
 	WieldedattackDelay = 2
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1

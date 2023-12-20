@@ -6,7 +6,7 @@
 	item_state = "pistol"
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	gun_tags = list(GUN_SILENCABLE)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	fire_delay = 0.6
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)

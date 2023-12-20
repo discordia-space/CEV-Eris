@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(gps_by_type)
 	desc = "Helping lost spacemen find their way through the planets since 2016."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "gps-c"
-	w_class = 2
+	volumeClass = 2
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_GLASS = 5)

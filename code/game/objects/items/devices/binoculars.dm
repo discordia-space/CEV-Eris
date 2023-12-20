@@ -9,7 +9,7 @@
 			DELEM(BRUTE, 7)
 		)
 	)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_range = 15
 	throw_speed = 3

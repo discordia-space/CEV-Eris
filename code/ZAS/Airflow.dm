@@ -49,7 +49,7 @@ mob/living/silicon/check_airflow_movable()
 
 obj/item/check_airflow_movable(n)
 	. = ..()
-	switch(w_class)
+	switch(volumeClass)
 		if(2)
 			if(n < vsc.airflow_lightest_pressure) return 0
 		if(3)
@@ -204,7 +204,7 @@ obj/item/check_airflow_movable(n)
 	for(var/mob/M in hearers(src))
 		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
-	var/weak_amt = istype(A,/obj/item) ? A:w_class : rand(ITEM_SIZE_TINY,ITEM_SIZE_HUGE) //Heheheh
+	var/weak_amt = istype(A,/obj/item) ? A:volumeClass : rand(ITEM_SIZE_TINY,ITEM_SIZE_HUGE) //Heheheh
 	Weaken(weak_amt)
 	. = ..()
 

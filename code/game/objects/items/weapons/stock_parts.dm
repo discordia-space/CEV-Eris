@@ -3,7 +3,7 @@
 	desc = "What?"
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	rarity_value = 10
 	bad_type = /obj/item/stock_parts
 	spawn_tags = SPAWN_TAG_STOCK_PARTS

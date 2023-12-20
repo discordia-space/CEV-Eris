@@ -5,7 +5,7 @@
 	flags = NOBLUDGEON
 	slot_flags = SLOT_BELT
 	throwforce = 4
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 10
 	spawn_tags = SPAWN_TAG_ITEM_BOTANICAL
@@ -92,7 +92,7 @@
 	desc = "A small glass bottle. Can hold up to 60 units."
 	icon_state = "bottle16"
 	possible_transfer_amounts = null
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	amount_per_transfer_from_this = 2
 	volume = 60
 

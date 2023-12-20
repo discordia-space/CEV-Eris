@@ -17,7 +17,7 @@
 	var/saved_message
 	var/saved_appearance
 	var/saved_item_state
-	var/saved_w_class
+	var/saved_volumeClass
 	var/spider_appearance
 	var/saved_gender
 
@@ -66,7 +66,7 @@
 	if(isobj(target))
 		var/obj/O = target
 		saved_item_state = O.item_state
-		saved_w_class = O.w_class
+		saved_volumeClass = O.volumeClass
 	if(ismob(target))
 		saved_message = target.examine(user)
 	return
@@ -126,7 +126,7 @@
 	saved_message = initial(saved_message)
 	saved_appearance = initial(appearance)
 	saved_item_state = initial(item_state)
-	saved_w_class = initial(saved_w_class)
+	saved_volumeClass = initial(saved_volumeClass)
 	saved_gender = initial(saved_gender)
 	saved_layer = initial(saved_layer)
 	saved_original_plane = initial(saved_original_plane)
@@ -148,7 +148,7 @@
 		var/message
 		var/size
 		if(istype(saved_item, /obj/item))
-			switch(saved_w_class)
+			switch(saved_volumeClass)
 				if(ITEM_SIZE_TINY)
 					size = "tiny"
 				if(ITEM_SIZE_SMALL)

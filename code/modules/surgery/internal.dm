@@ -70,7 +70,7 @@
 		if(istype(item, /obj/item/implant) || istype(item, /obj/item/organ_module))
 			continue
 
-		. += item.w_class
+		. += item.volumeClass
 
 	for(var/organ_inside in internal_organs)
 		var/obj/item/organ/internal/internal = organ_inside
@@ -172,7 +172,7 @@
 
 // Cavity implants
 
-	if(total_volume + I.w_class > max_volume)
+	if(total_volume + I.volumeClass > max_volume)
 		to_chat(user, SPAN_WARNING("There isn't enough space in [get_surgery_name()]!"))
 		return FALSE
 

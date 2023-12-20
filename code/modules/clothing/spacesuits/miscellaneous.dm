@@ -61,7 +61,7 @@
 		/obj/item/roller
 	)
 	var/obj/item/storage/internal/pockets
-	var/max_w_class = ITEM_SIZE_NORMAL
+	var/max_volumeClass = ITEM_SIZE_NORMAL
 	var/list/can_hold = list(
 		/obj/item/device/scanner/health,
 		/obj/item/clothing/gloves/latex,
@@ -80,7 +80,7 @@
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/space/medicus/Destroy()

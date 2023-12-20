@@ -1,6 +1,6 @@
 /obj/item/storage/mech
-	w_class = ITEM_SIZE_BULKY
-	max_w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_sound = 'sound/effects/storage/toolbox.ogg'
 	anchored = 1

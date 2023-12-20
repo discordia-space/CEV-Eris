@@ -289,7 +289,7 @@
 				return
 			if(istool(AM))
 				var/obj/item/tool/T = AM
-				if(T.w_class >= ITEM_SIZE_NORMAL)
+				if(T.volumeClass >= ITEM_SIZE_NORMAL)
 					operating = TRUE
 					density = TRUE
 					do_animate("closing")
@@ -368,7 +368,7 @@
 		to_chat(usr, SPAN_WARNING("You can't do this."))
 		return
 	var/obj/item/tool/T = usr.get_active_hand()
-	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL)
+	if(istype(T) && T.volumeClass >= ITEM_SIZE_NORMAL)
 		if(!density)
 			usr.drop_item()
 			force_wedge_item(T)

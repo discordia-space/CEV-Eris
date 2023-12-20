@@ -6,7 +6,7 @@
 	item_state = "type_62"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2)
 	caliber = CAL_MAGNUM
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/magnum

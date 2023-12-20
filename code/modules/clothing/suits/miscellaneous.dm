@@ -63,7 +63,7 @@
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/tank,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
@@ -544,7 +544,7 @@
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 3
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 6
 
 
@@ -569,7 +569,7 @@
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/akira

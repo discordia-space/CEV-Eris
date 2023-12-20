@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/carabine.dmi'
 	icon_state = "z8"
 	item_state = "z8"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10)

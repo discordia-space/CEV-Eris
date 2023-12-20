@@ -13,7 +13,7 @@
 	singular_name = "broken tile"
 	icon = 'icons/obj/stack/tile.dmi'
 	desc = "This should not exist."
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	melleDamages = list(
 		ARMOR_SLASH = list(
 			DELEM(BRUTE, 7)

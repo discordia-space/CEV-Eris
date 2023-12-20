@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/paco.dmi'
 	icon_state = "paco"
 	item_state = "paco"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER

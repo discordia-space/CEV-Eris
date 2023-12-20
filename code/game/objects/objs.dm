@@ -2,7 +2,7 @@
 	//Used to store information about the contents of the object.
 	var/list/matter
 	var/list/matter_reagents
-	var/w_class // Size of the object.
+	var/volumeClass // Size of the object.
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
@@ -25,7 +25,7 @@
 	return heat
 
 /obj/get_fall_damage()
-	return w_class * 2
+	return volumeClass * 2
 
 /obj/Destroy()
 	if(!ismachinery(src))

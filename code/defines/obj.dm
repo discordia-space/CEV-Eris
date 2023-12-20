@@ -86,7 +86,7 @@
 	item_state = "beachball"
 	density = FALSE
 	anchored = FALSE
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE, 0)

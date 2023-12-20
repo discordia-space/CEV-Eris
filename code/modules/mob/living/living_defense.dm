@@ -277,7 +277,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		var/mass = 1.5
 		if(istype(O, /obj/item))
 			var/obj/item/I = O
-			mass = I.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
+			mass = I.volumeClass/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)

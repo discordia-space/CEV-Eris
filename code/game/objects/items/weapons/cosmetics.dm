@@ -4,7 +4,7 @@
 	desc = "A generic brand of lipstick. You can wipe off lipstick with paper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lipstick"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	matter = list(MATERIAL_BIOMATTER = 2)
 	spawn_tags = SPAWN_TAG_ITEM
@@ -77,7 +77,7 @@
 /obj/item/haircomb //sparklysheep's comb
 	name = "purple comb"
 	desc = "A pristine purple comb made from flexible plastic."
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	icon = 'icons/obj/items.dmi'
 	icon_state = "purplecomb"

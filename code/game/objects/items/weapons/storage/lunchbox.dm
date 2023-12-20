@@ -8,8 +8,8 @@
 	desc = "With love."
 	icon_state = "lunchbox_heart"
 	item_state = "lunchbox_heart"
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	attack_verb = "lunched"
 	price_tag = 25

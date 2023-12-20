@@ -7,7 +7,7 @@
 	icon_state = "chemg"
 	item_state = "grenade"
 	desc = "A hand made chemical grenade."
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	det_time = null
 	unacidable = 1
 	matter = list(MATERIAL_STEEL = 3)

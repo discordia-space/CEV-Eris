@@ -10,7 +10,7 @@
 	icon = 'icons/obj/hacktool.dmi'
 	icon_state = "hacktool-g"
 	flags = CONDUCT
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_range = 15
 	throw_speed = 3

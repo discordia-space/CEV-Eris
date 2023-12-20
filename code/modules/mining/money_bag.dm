@@ -6,7 +6,7 @@
 	icon_state = "moneybag"
 	flags = CONDUCT
 	throwforce = 2
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/moneybag/attack_hand(user as mob)
 	if (!is_held())

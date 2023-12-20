@@ -254,7 +254,7 @@
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_hold = list(/obj/item/reagent_containers/pill,
 		/obj/item/dice,
 		/obj/item/paper)
@@ -365,7 +365,7 @@
 	desc = "This nifty shock-resistant device will keep your 'groceries' nice and non-spoiled."
 	icon_state = "freezer"
 	item_state = "medicalpack"
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
 	can_hold = list(/obj/item/organ, /obj/item/modification/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
 	max_storage_space = DEFAULT_NORMAL_STORAGE

@@ -35,7 +35,7 @@ semi accepts weird caliber - +1 points
 	desc = "Spare part of gun."
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 5)
 	var/generic = TRUE
 
@@ -64,7 +64,7 @@ semi accepts weird caliber - +1 points
 	desc = "Spare part of gun."
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 5)
 	generic = TRUE
 	var/part_overlay

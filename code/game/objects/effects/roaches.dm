@@ -5,7 +5,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "roach_egg"
 	preloaded_reagents = list("egg" = 9, "blattedin" = 3)
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	health = 5
 	var/amount_grown = 0
 

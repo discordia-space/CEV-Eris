@@ -4,7 +4,7 @@
 	slot_flags = SLOT_BACK
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "welderpack"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	var/max_fuel = 350
 
 
@@ -13,7 +13,7 @@
 	desc = "You may need it for draging around additional fuel."
 	slot_flags = null
 	icon_state = "canister"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	max_fuel = 100
 	rarity_value = 25
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY

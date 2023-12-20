@@ -23,7 +23,7 @@
 	degradation = 4
 	tool_qualities = list(QUALITY_BOLT_TURNING = 20, QUALITY_HAMMERING = 5)
 	matter = list(MATERIAL_STEEL = 1)
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 3
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -31,7 +31,7 @@
 	name = "big wrench"
 	desc = "If everything else failed - bring a bigger wrench."
 	icon_state = "big-wrench"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	tool_qualities = list(QUALITY_BOLT_TURNING = 40,QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1)
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
@@ -42,6 +42,6 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	throwforce = WEAPON_FORCE_PAINFUL
 	degradation = 0.7
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED

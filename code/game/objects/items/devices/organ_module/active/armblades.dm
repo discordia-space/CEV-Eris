@@ -13,7 +13,7 @@
 		)
 	)
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("stabbed", "chopped", "cut")
 	armor_divisor = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 20)
@@ -78,7 +78,7 @@
 		)
 	)
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("shanked", "slashed", "gored")
 	armor_divisor = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 20)

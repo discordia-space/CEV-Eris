@@ -87,7 +87,7 @@
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	w_class = ITEM_SIZE_GARGANTUAN
+	volumeClass = ITEM_SIZE_GARGANTUAN
 
 	price_tag = 100
 

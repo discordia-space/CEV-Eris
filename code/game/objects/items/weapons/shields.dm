@@ -148,7 +148,7 @@
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 2
 	throw_range = 6
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 12)
 	price_tag = 500
@@ -208,7 +208,7 @@
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 10, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 15)
 	price_tag = 500
@@ -316,7 +316,7 @@
 	throwforce = WEAPON_FORCE_DANGEROUS
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list()
 	matter = list(MATERIAL_GLASS = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10)
 	price_tag = 200
@@ -347,7 +347,7 @@
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list()
 	matter = list()
 	price_tag = 0
@@ -484,7 +484,7 @@
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_COVERT = 4)
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
@@ -515,7 +515,7 @@
 			DELEM(BURN,10)
 		))
 		update_icon()
-		w_class = ITEM_SIZE_BULKY
+		volumeClass = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] is now active."))
 
@@ -525,7 +525,7 @@
 			DELEM(BRUTE,5)
 		))
 		update_icon()
-		w_class = ITEM_SIZE_TINY
+		volumeClass = ITEM_SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] can now be concealed."))
 

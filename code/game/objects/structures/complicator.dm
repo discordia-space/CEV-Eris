@@ -4,7 +4,7 @@
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "complicator"
 	item_state = "complicator"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	price_tag = 20000
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE

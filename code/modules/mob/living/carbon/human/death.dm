@@ -19,7 +19,7 @@
 			continue
 		else
 			drop_from_inventory(D)
-			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,max_range), round(30/D.w_class))
+			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,max_range), round(30/D.volumeClass))
 
 	..(species.gibbed_anim)
 	gibs(loc, src, null, species.flesh_color, species.blood_color)

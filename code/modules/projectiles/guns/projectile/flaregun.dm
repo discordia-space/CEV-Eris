@@ -8,7 +8,7 @@
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	bulletinsert_sound = 'sound/weapons/guns/interact/bullet_insert.ogg'
 	fire_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS

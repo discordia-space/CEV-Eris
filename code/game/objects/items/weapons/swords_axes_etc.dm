@@ -10,6 +10,7 @@
 /obj/item/melee
 	bad_type = /obj/item/melee
 	spawn_tags = SPAWN_TAG_WEAPON
+	maxUpgrades = 3
 
 /obj/item/melee/classic_baton
 	name = "police baton"
@@ -47,7 +48,7 @@
 	icon_state = "telebaton_0"
 	item_state = "telebaton_0"
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,5)
@@ -68,7 +69,7 @@
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
 		update_wear_icon()
-		w_class = ITEM_SIZE_NORMAL
+		volumeClass = ITEM_SIZE_NORMAL
 		melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,25),
@@ -84,7 +85,7 @@
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
 		update_wear_icon()
-		w_class = ITEM_SIZE_SMALL
+		volumeClass = ITEM_SIZE_SMALL
 		melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,5)

@@ -7,7 +7,7 @@
 	icon = 'icons/obj/guns/projectile/zoric.dmi'
 	icon_state = "zoric"
 	item_state = "zoric"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
 	caliber = CAL_MAGNUM

@@ -6,7 +6,7 @@
 	item_state = "syringe_0"
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_STEEL = 1)
 	var/obj/item/implant/implant
 	spawn_tags = SPAWN_TAG_JUNK
@@ -74,7 +74,7 @@
 	name = "cybernetic installer"
 	desc = "A medical applicator of cybernetics."
 	icon_state = "installer_empty"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 3)
 	var/obj/item/organ_module/mod
 	var/mod_overlay = null

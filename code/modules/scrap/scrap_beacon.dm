@@ -3,7 +3,7 @@
 	desc = "This machine generates directional gravity rays which catch trash orbiting around."
 	icon = 'icons/obj/structures/scrap/scrap_beacon.dmi'
 	icon_state = "beacon0"
-	w_class = ITEM_SIZE_TITANIC
+	volumeClass = ITEM_SIZE_TITANIC
 	anchored = TRUE
 	density = TRUE
 	layer = MOB_LAYER + 1

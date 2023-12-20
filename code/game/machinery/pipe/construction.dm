@@ -13,7 +13,7 @@
 	icon = 'icons/obj/pipe-item.dmi'
 	icon_state = "simple"
 	item_state = "buildpipe"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	level = ABOVE_PLATING_LEVEL
 
 /obj/item/pipe/can_fall()
@@ -1118,7 +1118,7 @@
 	icon = 'icons/obj/pipe-item.dmi'
 	icon_state = "meter"
 	item_state = "buildpipe"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()

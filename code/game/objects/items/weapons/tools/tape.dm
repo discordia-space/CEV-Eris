@@ -5,7 +5,7 @@
 	description_info = "Can be used for crafting or to repair tools"
 	description_antag = "Can be used to make makeshift mouthwraps and to tape cameras silently"
 	icon_state = "taperoll"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	tool_qualities = list(QUALITY_ADHESIVE = 30, QUALITY_SEALING = 30)
 	matter = list(MATERIAL_PLASTIC = 3)
 	worksound = WORKSOUND_TAPE
@@ -13,7 +13,7 @@
 	max_stock = 100
 	degradation = 0 //its consumable anyway
 	flags = NOBLUDGEON //Its not a weapon
-	max_upgrades = 0 //These are consumable, so no wasting upgrades on them
+	maxUpgrades = 0 //These are consumable, so no wasting upgrades on them
 	rarity_value = 4
 
 /obj/item/tool/tape_roll/web
@@ -120,7 +120,7 @@
 	if (!istype(target) || target.anchored)
 		return
 
-	if (target.w_class > ITEM_SIZE_SMALL)
+	if (target.volumeClass > ITEM_SIZE_SMALL)
 		to_chat(user, SPAN_WARNING("The [target] is too big to stick with tape!"))
 		return
 	if (istype(target.loc, /obj))
@@ -138,7 +138,7 @@
 	desc = "A piece of sticky tape."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	layer = BELOW_MOB_LAYER
 	anchored = TRUE //it's sticky, no you cant move it
 	spawn_frequency = 0

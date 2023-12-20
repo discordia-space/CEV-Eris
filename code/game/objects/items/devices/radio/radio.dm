@@ -34,7 +34,7 @@ var/global/list/default_medbay_channels = list(
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
@@ -790,7 +790,7 @@ var/global/list/default_medbay_channels = list(
 		/obj/item/cell/medium/hyper = 1,
 		/obj/item/bluespace_crystal = 1
 	)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/device/radio/random_radio/New()
 	..()

@@ -6,7 +6,7 @@
 	icon = 'icons/obj/guns/projectile/drozd.dmi'
 	icon_state = "drozd"
 	item_state = "drozd"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE

@@ -263,7 +263,7 @@ meteor_act
 	if(get_active_hand())//are we blocking with an item?
 		var/obj/item/I = get_active_hand()
 		if(istype(I))
-			item_size_affect = I.w_class * 5
+			item_size_affect = I.volumeClass * 5
 			stat_affect = 0.2
 	damage -= (toughness * stat_affect + item_size_affect)
 
@@ -517,7 +517,7 @@ meteor_act
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
 
-				var/embed_threshold = sharp? 3*I.w_class : 9*I.w_class
+				var/embed_threshold = sharp? 3*I.volumeClass : 9*I.volumeClass
 
 
 				var/embed_chance = (damage - embed_threshold)*I.embed_mult
@@ -528,7 +528,7 @@ meteor_act
 		var/mass = 1.5
 		if(istype(O, /obj/item))
 			var/obj/item/I = O
-			mass = I.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
+			mass = I.volumeClass/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)

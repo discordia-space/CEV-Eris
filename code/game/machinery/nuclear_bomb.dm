@@ -394,7 +394,7 @@ if(!N.lighthack)
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "nuclear"
 	item_state = "card-id"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

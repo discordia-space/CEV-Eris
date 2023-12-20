@@ -10,11 +10,11 @@
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
-	w_class = ITEM_SIZE_SMALL //2
+	volumeClass = ITEM_SIZE_SMALL //2
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_SHALLOW
-	max_upgrades = 2
+	maxUpgrades = 2
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -86,7 +86,7 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
 	embed_mult = 6
-	max_upgrades = 3
+	maxUpgrades = 3
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/knife/neotritual/equipped(mob/living/H)
@@ -104,7 +104,7 @@
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2)
 	embed_mult = 0.6
-	max_upgrades = 3
+	maxUpgrades = 3
 
 /obj/item/tool/knife/dagger
 	name = "dagger"
@@ -123,7 +123,7 @@
 	item_state = "fancydagger"
 	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1, MATERIAL_SILVER = 1)
 	embed_mult = 0.6
-	max_upgrades = 4
+	maxUpgrades = 4
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/knife/dagger/bluespace
@@ -211,8 +211,8 @@
 	switchedOn = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
-	w_class = ITEM_SIZE_TINY
-	var/switched_on_w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_TINY
+	var/switched_on_volumeClass = ITEM_SIZE_SMALL
 	tool_qualities = list()
 	toggleable = TRUE
 	rarity_value = 25
@@ -228,7 +228,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
-	w_class = switched_on_w_class
+	volumeClass = switched_on_volumeClass
 	if (!isnull(switchedOn))
 		melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
 	update_icon()
@@ -244,7 +244,7 @@
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
-	w_class = initial(w_class)
+	volumeClass = initial(volumeClass)
 	update_icon()
 	update_wear_icon()
 
@@ -257,8 +257,8 @@
 	flags = CONDUCT
 	edge = FALSE
 	sharp = FALSE
-	w_class = ITEM_SIZE_TINY
-	var/switched_on_w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_TINY
+	var/switched_on_volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6, MATERIAL_GOLD= 0.5)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	tool_qualities = list()
@@ -277,7 +277,7 @@
 	switched_on = TRUE
 	tool_qualities = switched_on_qualities
 	melleDamages = switchedOn.Copy()
-	w_class = switched_on_w_class
+	volumeClass = switched_on_volumeClass
 	update_icon()
 	update_wear_icon()
 
@@ -291,7 +291,7 @@
 	switched_on = FALSE
 	tool_qualities = switched_off_qualities
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
-	w_class = initial(w_class)
+	volumeClass = initial(volumeClass)
 	update_icon()
 	update_wear_icon()
 
@@ -307,11 +307,11 @@
 	sharp = TRUE
 	edge = TRUE
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,18)))
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	tool_qualities = list(QUALITY_CUTTING = 15, QUALITY_WIRE_CUTTING = 5, QUALITY_DRILLING = 5)
 	degradation = 4 //Gets worse with use
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
 /obj/item/tool/spear
@@ -327,14 +327,14 @@
 	extended_reach = TRUE
 	push_attack = TRUE
 	worksound = WORKSOUND_HARD_SLASH
-	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
+	volumeClass = ITEM_SIZE_BULKY //4 , it's a spear mate
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,18)))
 	WieldedattackDelay = 8
 	attackDelay = 4
 	throwforce = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_MODERATE
 	throw_speed = 3
-	max_upgrades = 5
+	maxUpgrades = 5
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	attack_verb = list("slashed", "stabbed") //there's not much you can do with a spear aside from stabbing and slashing with it

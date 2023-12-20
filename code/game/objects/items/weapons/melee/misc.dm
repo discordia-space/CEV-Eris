@@ -10,7 +10,7 @@
 		)
 	)
 	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY

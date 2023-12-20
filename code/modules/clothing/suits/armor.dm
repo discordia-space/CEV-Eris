@@ -371,7 +371,7 @@
 	desc = "A heavily armored suit that protects against moderate damage."
 	icon_state = "heavy"
 	item_state = "swat_suit"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.9
 	siemens_coefficient = 0.5

@@ -615,9 +615,9 @@ proc/is_blind(A)
 
 /mob/proc/weight_coeff()
 	. = 0
-	var/max_w_class = get_max_w_class()
-	if(max_w_class > ITEM_SIZE_TINY)
-		return max_w_class/(ITEM_SIZE_TITANIC)
+	var/max_volumeClass = get_max_volumeClass()
+	if(max_volumeClass > ITEM_SIZE_TINY)
+		return max_volumeClass/(ITEM_SIZE_TITANIC)
 
 /mob/proc/get_accumulated_vision_handlers()
 	var/result[2]

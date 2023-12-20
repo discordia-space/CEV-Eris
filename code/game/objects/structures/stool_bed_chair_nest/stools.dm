@@ -8,7 +8,7 @@ var/global/list/stool_cache = list() //haha stool
 	icon_state = "stool_preview" //set for the map
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,15)))
 	throwforce = 10
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	var/base_icon = "stool_base"
 	var/material/material
 	var/material/padding_material

@@ -168,10 +168,10 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 				melee_damage_upper *= 2
 		else if(istype(O, /obj/item))
 			var/obj/item/I = O
-			health = 15 * I.w_class
+			health = 15 * I.volumeClass
 			melee_damage_lower = 2 + I.force
 			melee_damage_upper = 2 + I.force
-			move_to_delay = 2 * I.w_class
+			move_to_delay = 2 * I.volumeClass
 
 		maxHealth = health
 		if(creator)

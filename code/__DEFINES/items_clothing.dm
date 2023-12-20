@@ -53,8 +53,8 @@
 #define SLOT_ID                0x100
 #define SLOT_BELT              0x200
 #define SLOT_BACK              0x400
-#define SLOT_POCKET            0x800  // This is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET        0x1000  // This is to  deny items with a w_class of 2 or 1 from fitting in pockets.
+#define SLOT_POCKET            0x800  // This is to allow items with a volumeClass of 3 or 4 to fit in pockets.
+#define SLOT_DENYPOCKET        0x1000  // This is to  deny items with a volumeClass of 2 or 1 from fitting in pockets.
 #define SLOT_TWOEARS           0x2000
 #define SLOT_ACCESSORY_BUFFER  0x4000
 #define SLOT_HOLSTER	       0x8000 //16th bit - higher than this will overflow
@@ -187,7 +187,7 @@
 #define FIRE_MAX_FIRESUIT_STACKS  20 // If the number of stacks goes above this firesuits won't protect you anymore. If not, you can walk around while on fire like a badass.
 
 #define THROWFORCE_SPEED_DIVISOR    5  // The throwing speed value at which the throwforce multiplier is exactly 1.
-#define THROWNOBJ_KNOCKBACK_SPEED   15 // The minumum speed of a w_class 2 thrown object that will cause living mobs it hits to be knocked back. Heavier objects can cause knockback at lower speeds.
+#define THROWNOBJ_KNOCKBACK_SPEED   15 // The minumum speed of a volumeClass 2 thrown object that will cause living mobs it hits to be knocked back. Heavier objects can cause knockback at lower speeds.
 #define THROWNOBJ_KNOCKBACK_DIVISOR 2  // Affects how much speed the mob is knocked back with.
 
 // Suit sensor levels

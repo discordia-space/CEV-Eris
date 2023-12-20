@@ -240,7 +240,7 @@
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 60
 	ammo_states = list(60)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_blacklisted = TRUE // Not in use yet
 
 /obj/item/ammo_magazine/srifle/drum/empty
@@ -316,7 +316,7 @@
 	matter = list(MATERIAL_STEEL = 16)
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 80
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	ammo_states = list(15, 30, 50, 79, 80)
 ////////// .25 PISTOL //////////
 
@@ -383,7 +383,7 @@
 	matter = list(MATERIAL_STEEL = 16)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	ammo_states = list(15, 30, 50, 79, 80)
 
 ///////// .30 DRUM ///////////
@@ -399,7 +399,7 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 45
 	ammo_states = list(45)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	rarity_value = 20
 
 /obj/item/ammo_magazine/lrifle/drum/empty
@@ -440,7 +440,7 @@
 	matter = list(MATERIAL_STEEL = 20)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	ammo_states = list(96)
 
 /obj/item/ammo_magazine/maxim/rubber
@@ -458,7 +458,7 @@
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	rarity_value = 6.66
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slpistol/update_icon()
 	cut_overlays()
@@ -498,7 +498,7 @@
 	max_ammo = 6
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slmagnum/update_icon()
 	cut_overlays()
@@ -539,7 +539,7 @@
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 5
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	ammo_states = list(1, 2, 3, 4, 5)
 
 /obj/item/ammo_magazine/sllrifle/empty
@@ -561,7 +561,7 @@
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 6
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slsrifle/update_icon()
 	cut_overlays()
@@ -597,7 +597,7 @@
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 8
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slsrifle_rev/update_icon()
 	cut_overlays()
@@ -631,7 +631,7 @@
 	matter = list(MATERIAL_STEEL = 3)
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 5
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/ammo_magazine/slclrifle/update_icon()
 	cut_overlays()
@@ -698,7 +698,7 @@
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 18)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	max_ammo = 16
 	ammo_names = list(
 		"hv" = "slug",
@@ -738,7 +738,7 @@
 	icon_state = "m12_short"
 	mag_well = MAG_WELL_RIFLE
 	matter = list(MATERIAL_STEEL = 6)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	max_ammo = 8
 
 /obj/item/ammo_magazine/m12/short/update_icon()

@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	reagent_flags = AMOUNT_VISIBLE
 	throwforce = WEAPON_FORCE_DANGEROUS
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	throw_speed = 2
 	throw_range = 10
 	melleDamages = list(
@@ -40,7 +40,7 @@
 	item_state = "miniFE"
 	hitsound = null	//it is much lighter, after all.
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE, 10)

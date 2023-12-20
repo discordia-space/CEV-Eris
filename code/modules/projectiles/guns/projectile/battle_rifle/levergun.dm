@@ -38,7 +38,7 @@
 	name = "sawn-off FS BR .40 \"Svengali\""
 	icon = 'icons/obj/guns/projectile/winchester_sawn.dmi'
 	icon_state = "lever_winchester_sawn"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1
 	damage_multiplier = 1.4
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
@@ -77,7 +77,7 @@
 /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	name = "sawn-off FS BR \"Sogekihei\""
 	icon_state = "lever_shotgun_sawn"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1.1 // 1.2 with slugs
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 1.1

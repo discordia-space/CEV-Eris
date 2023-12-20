@@ -7,7 +7,7 @@
 	icon = 'icons/obj/guns/projectile/mandella.dmi'
 	icon_state = "mandella"
 	item_state = "mandella"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	silenced = TRUE
 	fire_sound = 'sound/weapons/Gunshot_silenced.wav'

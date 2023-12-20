@@ -3,7 +3,7 @@
 	desc = "A device that can record audio to data crystals, and play them. It automatically translates the content in playback."
 	icon_state = "taperecorder_idle"
 	item_state = "analyzer"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	flags = CONDUCT

@@ -6,7 +6,7 @@
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,10)))
 	sharp = TRUE
 	edge = TRUE
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	worksound = WORKSOUND_HARD_SLASH
 	slot_flags = SLOT_EARS
 	throw_speed = WEAPON_FORCE_WEAK
@@ -24,7 +24,7 @@
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 1)
 	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 10)
 	degradation = 0.12
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 20
 
 /obj/item/tool/scalpel/laser
@@ -38,7 +38,7 @@
 	degradation = 0.11
 	use_power_cost = 0.12
 	suitable_cell = /obj/item/cell/small
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 30
 
 // Laser cutting overrides normal cutting

@@ -71,7 +71,7 @@
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
 	slot_flags = SLOT_ACCESSORY_BUFFER
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/clothing/accessory
 
 
@@ -199,7 +199,7 @@
 	desc = "Plates from an armored vest, now usable to reinforce clothes."
 	slot = "armor"
 	icon_state = "armor"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	isRemovable = FALSE
 	armor = list(
 		ARMOR_BLUNT = 7,

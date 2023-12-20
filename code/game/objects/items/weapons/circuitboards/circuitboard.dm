@@ -20,7 +20,7 @@
 	matter_reagents = list("silicon" = 10)
 	density = FALSE
 	anchored = FALSE
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3

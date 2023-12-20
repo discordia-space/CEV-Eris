@@ -310,7 +310,7 @@
 	light_spot_radius = 2
 	light_spot_power = 2
 	light_spot_range = 1
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/device/lighting/toggleable/flashlight/heavy
 	name = "heavy duty flashlight"

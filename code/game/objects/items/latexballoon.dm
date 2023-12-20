@@ -4,7 +4,7 @@
 	icon_state = "latexballon"
 	item_state = "lgloves"
 	throwforce = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 1
 	throw_range = 15
 	var/state

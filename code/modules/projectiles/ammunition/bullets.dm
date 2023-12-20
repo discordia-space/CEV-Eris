@@ -456,7 +456,7 @@
 	spent_icon = "grenadeshell"
 	projectile_type = /obj/item/projectile/bullet/grenade/frag/sting
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 2)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	caliber = CAL_GRENADE
 	is_caseless = TRUE
 	maxamount = 1
@@ -468,7 +468,7 @@
 	desc = "A riot-grade Frozen Star tear gas round, for use against unruly crowds."
 	icon_state = "teargas"
 	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/teargas
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	caliber = CAL_GRENADE
 	is_caseless = TRUE
 	maxamount = 1
@@ -534,7 +534,7 @@
 	maxamount = 1
 	reload_delay = 15
 	is_caseless = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/item/ammo_casing/rocket/scrap
 	name = "scrap rocket"

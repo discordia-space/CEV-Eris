@@ -84,7 +84,7 @@
 			if(edge)
 				if(istype(used_weapon,/obj/item))
 					var/obj/item/W = used_weapon
-					if(W.w_class >= w_class)
+					if(W.volumeClass >= volumeClass)
 						edge_eligible = 1
 				else
 					edge_eligible = 1

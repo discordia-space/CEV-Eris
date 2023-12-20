@@ -202,7 +202,7 @@
 	desc = "A folded wheelchair that can be carried around."
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "wheelchair_folded"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	var/obj/structure/bed/chair/wheelchair/unfolded
 
 /obj/item/wheelchair/attack_self(mob/user)

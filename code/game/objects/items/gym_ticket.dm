@@ -4,7 +4,7 @@
 	description_info = "Gym structures can use rest points to permanently increase your stats. Otherwise, they only temporary increase them."
 	icon = 'icons/obj/gym_ticket.dmi'
 	icon_state = "gym_ticket"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	rarity_value = 40
 	spawn_tags = SPAWN_TAG_RARE_ITEM

@@ -129,7 +129,7 @@
 	twohanded = FALSE
 	suitable_cell = /obj/item/cell/small
 	can_dual = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(

@@ -1,6 +1,6 @@
 /obj/item/gun/matter/launcher
 	bad_type = /obj/item/gun/matter/launcher
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	muzzle_flash = 0
 
 	var/release_force = 1

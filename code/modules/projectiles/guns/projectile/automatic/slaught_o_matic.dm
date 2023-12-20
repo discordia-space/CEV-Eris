@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/slaught_o_matic.dmi'
 	icon_state = "slaught"
 	item_state = "slaught"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = 1
 	caliber = CAL_PISTOL
 	max_shells = 0

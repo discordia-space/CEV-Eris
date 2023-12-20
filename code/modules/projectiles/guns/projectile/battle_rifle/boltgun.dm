@@ -5,7 +5,7 @@
 	icon = 'icons/obj/guns/projectile/boltgun.dmi'
 	icon_state = "boltgun"
 	item_state = "boltgun"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE, 25)))
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -192,7 +192,7 @@
 	item_suffix = "_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 	wielded_item_state = "_doble_hand"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.5
 	init_recoil = RIFLE_RECOIL(2)
@@ -226,7 +226,7 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez"
 	item_state = "obrez"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 10)))
 	armor_divisor = 1
 	slot_flags = SLOT_BELT|SLOT_HOLSTER

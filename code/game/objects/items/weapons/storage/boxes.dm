@@ -9,7 +9,7 @@
 	icon = 'icons/obj/storage/boxes.dmi'
 	icon_state = "box"
 	item_state = "box"
-	max_w_class = ITEM_SIZE_SMALL
+	max_volumeClass = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE + 1
 	contained_sprite = TRUE
 	health = 20
@@ -498,7 +498,7 @@
 	icon_state = "matchbox"
 	item_state = "zippo"
 	illustration = null
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_BELT
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_BOX_TAG_JUNK

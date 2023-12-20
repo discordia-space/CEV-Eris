@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/sol.dmi'
 	icon_state = "sol"
 	item_state = "sol"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH

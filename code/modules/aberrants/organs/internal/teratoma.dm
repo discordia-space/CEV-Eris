@@ -9,7 +9,7 @@
 	ruined_color = "#696969"
 	icon_state = "teratoma"
 
-	max_upgrades = 1
+	maxUpgrades = 1
 	use_generated_name = FALSE
 	use_generated_color = FALSE
 	req_num_inputs = null
@@ -120,7 +120,7 @@
 /obj/item/organ/internal/scaffold/aberrant/teratoma/ruin()
 	..()
 	use_generated_name = FALSE
-	max_upgrades = 0
+	maxUpgrades = 0
 	price_tag = 25
 	matter = list(MATERIAL_BIOMATTER = 5)
 	STOP_PROCESSING(SSobj, src)

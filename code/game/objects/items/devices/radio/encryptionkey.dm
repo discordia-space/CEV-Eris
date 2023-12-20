@@ -5,7 +5,7 @@
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "cypherkey"
 	item_state = ""
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	spawn_blacklisted = TRUE
 	description_antag = "This is a special key with acces to restricted channels"

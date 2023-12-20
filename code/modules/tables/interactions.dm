@@ -96,7 +96,7 @@
 
 		else if (A.CanMouseDrop(loc, user))
 			//Mice can push around pens and paper, but not heavy tools
-			if (O.w_class <= user.can_pull_size)
+			if (O.volumeClass <= user.can_pull_size)
 				O.forceMove(loc)
 				set_pixel_click_offset(O, params, animate = TRUE)
 				return

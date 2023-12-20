@@ -15,7 +15,7 @@ RSF
 	var/max_stored_matter = 30
 	var/stored_matter = 30
 	var/mode = 1
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/item/rsf/examine(mob/user)
 	if(..(user, 0))

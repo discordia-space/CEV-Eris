@@ -2,7 +2,7 @@ GLOBAL_LIST(melleDamagesCache)
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 
 	/// FLAGS FOR OBJECT BEHAVIOUR
@@ -110,7 +110,7 @@ GLOBAL_LIST(melleDamagesCache)
 	var/style = STYLE_NONE // how much using this item increases your style
 
 	var/list/item_upgrades = list()
-	var/max_upgrades = 3
+	var/maxUpgrades = 0
 
 	var/can_use_lying = 0
 
@@ -133,8 +133,11 @@ GLOBAL_LIST(melleDamagesCache)
 	if(!GLOB.melleDamagesCache[type])
 		GLOB.melleDamagesCache[type] = melleDamages
 	else
-		del(melleDamages)
-		melleDamages = GLOB.melleDamagesCache[type]
+		if(max_upgrades || objectFlags & OF_UNIQUEMELLEHANDLER)
+			melleDamages = GLOB.melleDamagesCache[type].Copy()
+		else
+			del(melleDamages)
+			melleDamages = GLOB.melleDamagesCache[type]
 	if(chameleon_type)
 		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
@@ -159,7 +162,7 @@ GLOBAL_LIST(melleDamagesCache)
 	return ..()
 
 /obj/item/get_fall_damage()
-	return w_class * 2
+	return volumeClass * 2
 
 /obj/item/proc/take_damage(amount)
 	health -= amount
@@ -195,7 +198,7 @@ GLOBAL_LIST(melleDamagesCache)
 /obj/item/examine(user, distance = -1)
 	var/message
 	var/size
-	switch(w_class)
+	switch(volumeClass)
 		if(ITEM_SIZE_TINY)
 			size = "tiny"
 		if(ITEM_SIZE_SMALL)

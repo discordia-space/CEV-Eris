@@ -6,7 +6,7 @@
 			if you could manage recoil, of course. Compatible only with special M12 8-round drum magazines."
 	icon = 'icons/obj/guns/projectile/bojevic.dmi'
 	icon_state = "bojevic"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE

@@ -7,7 +7,7 @@
 	icon_state = "spacecash1"
 	throw_speed = 1
 	throw_range = 2
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/spacecash
 	var/worth = 0
 

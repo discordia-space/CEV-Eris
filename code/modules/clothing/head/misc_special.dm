@@ -33,7 +33,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	action_button_name = "Flip Welding Mask"
 	siemens_coefficient = 0.9
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_MODERATE
 	style = STYLE_NEG_LOW
@@ -157,7 +157,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	brightness_on = 2
 	light_overlay = "helmet_light"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	style_coverage = COVERS_WHOLE_HEAD
 
 

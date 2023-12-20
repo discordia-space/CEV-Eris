@@ -17,7 +17,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	volume = 15
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	sharp = TRUE
 	unacidable = 1 //glass
@@ -335,7 +335,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(5,10)
 	volume = 30
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	sharp = TRUE
 	unacidable = 1 //glass

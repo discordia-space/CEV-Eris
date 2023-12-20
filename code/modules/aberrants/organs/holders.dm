@@ -99,7 +99,7 @@
 /obj/item/organ/internal/scaffold/refresh_upgrades()
 	name = initial(name)
 	color = initial(color)
-	max_upgrades = max_upgrades ? initial(max_upgrades) : 0		// If no max upgrades, it must be a ruined teratoma. So, leave it at 0.
+	maxUpgrades = max_upgrades ? initial(max_upgrades) : 0		// If no max upgrades, it must be a ruined teratoma. So, leave it at 0.
 	prefixes = list()
 	min_bruised_damage = initial(min_bruised_damage)
 	min_broken_damage = initial(min_broken_damage)
@@ -142,7 +142,7 @@
 	if(use_generated_name)
 		name = generate_name_from_eff()
 	else
-		name = ruined ? ruined_name : name		
+		name = ruined ? ruined_name : name
 
 	for(var/prefix in prefixes)
 		name = "[prefix] [name]"
@@ -237,7 +237,7 @@
 	ruined_description_info = "A functionless organ with four slots for organ mods or organoids. Generally, you'll want to save the fourth upgrade slot for a membrane."
 	rarity_value = 80
 	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN_RARE
-	max_upgrades = 4
+	maxUpgrades = 4
 
 /obj/item/organ/internal/scaffold/aberrant
 	name = "aberrant organ"
@@ -280,7 +280,7 @@
 	var/list/additional_input_info = list()
 	var/list/output_types = list()
 	var/list/additional_output_info = list()
-	
+
 	if(req_num_inputs)
 		var/list/inputs_sans_blacklist = list()
 		var/list/input_pool = list()

@@ -6,7 +6,7 @@
 	gauge_cap = 4
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,5)

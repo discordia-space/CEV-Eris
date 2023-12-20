@@ -6,7 +6,7 @@
 	icon = 'icons/obj/guns/projectile/kovacs.dmi'
 	icon_state = "kovacs"
 	item_state = "kovacs"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK

@@ -127,10 +127,10 @@
 		return
 
 	else if(chameleon_type)
-		matter = list(MATERIAL_PLASTIC = 2 * w_class)
+		matter = list(MATERIAL_PLASTIC = 2 * volumeClass)
 		origin_tech = list(TECH_COVERT = 3)
 	else
-		matter = list(MATERIAL_BIOMATTER = 5 * w_class)
+		matter = list(MATERIAL_BIOMATTER = 5 * volumeClass)
 
 
 /obj/item/clothing/Destroy()
@@ -265,7 +265,7 @@
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
 	bad_type = /obj/item/clothing/ears
@@ -306,7 +306,7 @@
 
 /obj/item/clothing/ears/offear
 	name = "Other ear"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
@@ -319,7 +319,7 @@
 	desc = O.desc
 	icon = O.icon
 	icon_state = O.icon_state
-	w_class = O.w_class
+	volumeClass = O.volumeClass
 	set_dir(O.dir)
 	master_item = O
 
@@ -352,7 +352,7 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/inventory/eyes/icon.dmi'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
 	bad_type = /obj/item/clothing/glasses
@@ -369,7 +369,7 @@ BLIND     // can't see anything
 /obj/item/clothing/gloves
 	name = "gloves"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon = 'icons/inventory/hands/icon.dmi'
 	siemens_coefficient = 0.75
 	bad_type = /obj/item/clothing/gloves
@@ -413,7 +413,7 @@ BLIND     // can't see anything
 		)
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/clothing/head
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
 	style = STYLE_HIGH
@@ -621,7 +621,7 @@ BLIND     // can't see anything
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	equip_delay = 2 SECONDS
 	bad_type = /obj/item/clothing/suit
 	var/fire_resist = T0C+100
@@ -649,7 +649,7 @@ BLIND     // can't see anything
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_CLOTHING_UNDER
 	style = STYLE_LOW
 	bad_type = /obj/item/clothing/under

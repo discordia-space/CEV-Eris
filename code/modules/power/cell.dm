@@ -16,7 +16,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	//Spawn_values
 	bad_type = /obj/item/cell
 	rarity_value = 2

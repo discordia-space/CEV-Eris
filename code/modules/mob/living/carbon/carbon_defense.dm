@@ -39,7 +39,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 		//blunt objects should really not be embedding in things unless a huge amount of force is involved
 
-		var/embed_threshold = weapon_sharp ? 5*I.w_class : 15*I.w_class
+		var/embed_threshold = weapon_sharp ? 5*I.volumeClass : 15*I.volumeClass
 
 		//The user's robustness stat adds to the threshold, allowing you to use more powerful weapons without embedding risk
 		embed_threshold += user.stats.getStat(STAT_ROB)

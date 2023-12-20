@@ -129,7 +129,7 @@
 	name = "Asters \"Robustcell 600M\""
 	desc = "Asters Guild branded rechargeable M-standardized power cell. This one is the cheapest you can find."
 	icon_state = "m_st"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,7)
@@ -232,7 +232,7 @@
 	name = "Asters \"Robustcell 100S\""
 	desc = "Asters Guild branded rechargeable S-standardized power cell. This one is the cheapest you can find."
 	icon_state = "s_st"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,5)
@@ -347,7 +347,7 @@
 	name = "a disposable cell"
 	desc = "just steel for this one!"
 	icon_state = "s_st"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throw_speed = 5
 	throw_range = 7
 	origin_tech = list(TECH_POWER = 1)

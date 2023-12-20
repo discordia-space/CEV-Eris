@@ -6,7 +6,7 @@
 	icon = 'icons/obj/guns/projectile/straylight.dmi'
 	icon_state = "straylight"
 	item_state = "straylight"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT

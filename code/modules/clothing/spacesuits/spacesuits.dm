@@ -27,7 +27,7 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	species_restricted = list("exclude")
 	flash_protection = FLASH_PROTECTION_MAJOR // kept because seeing the sun in space without flash prot is... ouch.
 	price_tag = 100
@@ -76,7 +76,7 @@
 	desc = "A cheap and bulky suit that protects against low pressure environments."
 	icon_state = "space"
 	item_state = "s_suit"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION|DRAG_AND_DROP_UNEQUIP

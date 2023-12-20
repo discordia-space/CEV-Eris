@@ -10,7 +10,7 @@
 	icon = 'icons/obj/oddities.dmi'
 	icon_state = "gift3"
 	item_state = "electronic"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	//spawn_values
 	spawn_blacklisted = TRUE
@@ -493,7 +493,7 @@
 	name = "makeshift datapad"
 	desc = "A makeshift datapad covered in growths. Whatever data was stored here is now gone, part of it transferred to an unknown source, the rest simply wiped."
 	icon_state = "hivemind_core"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	random_stats = FALSE
 	oddity_stats = list(
 		STAT_COG = 8,
@@ -570,7 +570,7 @@
 	matter = list(MATERIAL_GOLD = 0.5)
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/golden_leaf/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)

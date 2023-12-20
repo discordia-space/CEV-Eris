@@ -2,7 +2,7 @@
 	name = "bluespace snare hub"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "tele0"
-	w_class = ITEM_SIZE_GARGANTUAN
+	volumeClass = ITEM_SIZE_GARGANTUAN
 	density = FALSE
 	anchored = TRUE
 	interact_offline = 1

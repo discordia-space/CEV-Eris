@@ -55,7 +55,7 @@
 
 /obj/item/computer_hardware/Initialize()
 	. = ..()
-	w_class = hardware_size
+	volumeClass = hardware_size
 	if(istype(loc, /obj/item/modular_computer))
 		holder2 = loc
 

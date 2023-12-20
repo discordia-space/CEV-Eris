@@ -12,7 +12,7 @@
 	throw_speed = 1
 	throw_range = 5
 	price_tag = 20000
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_BIO = 9, TECH_MAGNET = 9, TECH_BLUESPACE = 4)
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE

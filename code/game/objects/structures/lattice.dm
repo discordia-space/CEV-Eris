@@ -6,7 +6,7 @@
 	density = FALSE
 	plane = FLOOR_PLANE
 	anchored = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	layer = LATTICE_LAYER //under pipes
 	//	flags = CONDUCT
 

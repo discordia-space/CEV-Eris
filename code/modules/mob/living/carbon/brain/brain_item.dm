@@ -6,7 +6,7 @@
 	unique_tag = BP_BRAIN
 	vital = 1
 	icon_state = "brain2"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	specific_organ_size = 2
 	throwforce = 1
 	throw_speed = 3

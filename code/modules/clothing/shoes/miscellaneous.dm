@@ -82,7 +82,7 @@
 	icon_state = "slippers"
 	item_state = "slippers"
 	species_restricted = null
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/slippers_worn
@@ -90,7 +90,7 @@
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
 	item_state = "slippers_worn"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 /obj/item/clothing/shoes/swimmingfins
 	desc = "Help you swim good."

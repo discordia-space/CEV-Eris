@@ -6,7 +6,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 	price_tag = 0.2
 	/// very light weight ,3 grams
@@ -208,7 +208,7 @@
 	item_state = "syringe_kit"
 	matter = list(MATERIAL_STEEL = 2)
 	throwforce = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
 

@@ -422,7 +422,7 @@
 						Other types of epithelium are derived from the endoderm."
 	icon = 'icons/obj/machines/disgorger.dmi'
 	icon_state = "carne_cansada"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_BIOMATTER = 60)
 	hitsound = 'sound/effects/squelch1.ogg'
 	attack_verb = list("slapped")

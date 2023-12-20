@@ -86,7 +86,7 @@
 	desc = "A small, portable jammer. wil render any AI unuseable in a 8 tile radius"
 	icon = 'icons/obj/jamming.dmi'
 	icon_state = "jammer_portable2"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	suitable_cell = /obj/item/cell/small
 	spawn_blacklisted = TRUE
 	var/power_usage = 0.3

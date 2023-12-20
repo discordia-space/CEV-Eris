@@ -910,7 +910,7 @@ Just a object used in constructing air alarms
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "Looks like a circuit. Probably is."
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 
 /*
@@ -1214,7 +1214,7 @@ Just a object used in constructing fire alarms
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "A circuit. It has a label on it, it says \"Can handle heat levels up to 40 degrees celsius!\""
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 
 /obj/machinery/partyalarm

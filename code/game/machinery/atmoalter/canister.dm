@@ -6,7 +6,7 @@
 	health = 100
 	maxHealth = 100
 	flags = CONDUCT
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 	var/valve_open = 0
 	var/release_pressure = ONE_ATMOSPHERE

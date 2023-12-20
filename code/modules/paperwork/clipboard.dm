@@ -4,7 +4,7 @@
 	icon_state = "clipboard"
 	item_state = "clipboard"
 	throwforce = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	throw_speed = 3
 	throw_range = 10

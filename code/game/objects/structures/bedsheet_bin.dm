@@ -14,7 +14,7 @@ LINEN BINS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 2
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	var/rolled = FALSE
 	var/folded = FALSE
 	var/inuse = FALSE
@@ -80,11 +80,11 @@ LINEN BINS
 			)
 		if(!folded)
 			folded = TRUE
-			w_class = ITEM_SIZE_SMALL
+			volumeClass = ITEM_SIZE_SMALL
 		else
 
 			folded = FALSE
-			w_class =ITEM_SIZE_NORMAL
+			volumeClass =ITEM_SIZE_NORMAL
 		inuse = FALSE
 		update_icon()
 		return TRUE
@@ -241,7 +241,7 @@ LINEN BINS
 		amount++
 		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
-	else if(amount && !hidden && I.w_class < ITEM_SIZE_BULKY)
+	else if(amount && !hidden && I.volumeClass < ITEM_SIZE_BULKY)
 		user.drop_item()
 		I.forceMove(src)
 		hidden = I

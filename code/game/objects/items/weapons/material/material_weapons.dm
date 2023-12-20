@@ -7,7 +7,7 @@
 	gender = NEUTER
 	throw_speed = 3
 	throw_range = 7
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	sharp = FALSE
 	edge = FALSE
 	bad_type = /obj/item/material

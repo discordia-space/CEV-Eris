@@ -16,7 +16,7 @@ obj/structure/windoor_assembly
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 	var/obj/item/electronics/airlock/electronics = null
 

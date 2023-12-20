@@ -608,8 +608,8 @@
 		if (stat & MAINT)
 			to_chat(user, SPAN_WARNING("There is no connector for your power cell."))
 			return
-		if(I.w_class != ITEM_SIZE_NORMAL)
-			to_chat(user, "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here.")
+		if(I.volumeClass != ITEM_SIZE_NORMAL)
+			to_chat(user, "\The [I] is too [I.volumeClass < ITEM_SIZE_NORMAL? "small" : "large"] to fit here.")
 			return
 
 		user.drop_item()
@@ -697,7 +697,7 @@
 		if (((stat & BROKEN) || hacker) \
 				&& !opened \
 				&& I.force >= 5 \
-				&& I.w_class >= ITEM_SIZE_NORMAL \
+				&& I.volumeClass >= ITEM_SIZE_NORMAL \
 				&& prob(20) )
 			opened = 2
 			user.visible_message(SPAN_DANGER("The APC cover was knocked down with the [I.name] by [user.name]!"), \

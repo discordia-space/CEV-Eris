@@ -2,7 +2,7 @@
 /obj/item/stack/material
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,15)))
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	icon = 'icons/obj/stack/material.dmi'
 	throw_speed = 3
 	throw_range = 3

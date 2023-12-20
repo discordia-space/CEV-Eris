@@ -186,7 +186,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "sp_base"
 	item_state = "electropack"
-	w_class = ITEM_SIZE_BULKY // Pretty big!
+	volumeClass = ITEM_SIZE_BULKY // Pretty big!
 	anchored = FALSE
 	price_tag = 100
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 5, MATERIAL_SILVER = 1)

@@ -4,7 +4,7 @@
 	icon = 'icons/inventory/belt/icon.dmi'
 	icon_state = "utility"
 	storage_slots = 7
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
@@ -239,7 +239,7 @@
 	icon_state = "holdingbelt"
 	item_state = "holdingbelt"
 	storage_slots = 14
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 3)
 	origin_tech = list(TECH_BLUESPACE = 4)

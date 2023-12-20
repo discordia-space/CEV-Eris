@@ -110,7 +110,7 @@
 	desc = "Used to check the total value of plundered loot."
 	icon_state = "voice0"
 	item_state = "flashbang"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1, MATERIAL_STEEL = 2)
 	flags = CONDUCT
 	anchored = TRUE

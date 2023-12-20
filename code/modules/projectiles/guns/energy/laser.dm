@@ -7,7 +7,7 @@
 	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 5)
 	zoom_factors = list(0.5)
@@ -60,7 +60,7 @@
 	desc = "A One Star cheaply produced laser gun. In the distant past - this was the main weapon of low-rank police forces, billions of copies of this gun were made. They are ubiquitous."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 15, MATERIAL_GLASS = 5)
 	projectile_type = /obj/item/projectile/beam
@@ -108,7 +108,7 @@
 	desc = "This weapon is old, yet still robust and reliable. It's marked with old Nanotrasen brand, a distant reminder of what this corporation was, before the Church took control of everything."
 	fire_sound = 'sound/weapons/Laser.ogg'
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	projectile_type = /obj/item/projectile/beam/midlaser
 	zoom_factors = list()
@@ -135,7 +135,7 @@
 	item_charge_meter = TRUE
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser
 	charge_cost = 100
@@ -243,7 +243,7 @@
 	item_charge_meter = FALSE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3, TECH_COVERT = 5)
 	projectile_type = /obj/item/projectile/beam/psychic/heavylaser
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT|SLOT_BACK
 	contractor = TRUE
 	serial_type = "ML"
@@ -300,7 +300,7 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 15, MATERIAL_SILVER = 5)
 	item_charge_meter = TRUE
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	zoom_factors = list()
 	charge_cost = 100 //worst lightfall
 	fire_delay = 10 //ditto
@@ -321,7 +321,7 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 7)
 	item_charge_meter = TRUE
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
 	damage_multiplier = 0.5
 	charge_cost = 125

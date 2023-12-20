@@ -11,7 +11,7 @@
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 3
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	attack_verb = list("bashed", "bludgeoned", "whacked")
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 5)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
@@ -95,7 +95,7 @@
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 6
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("bashed", "bludgeoned", "whacked")
 	matter = list(MATERIAL_BIOMATTER=0)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY

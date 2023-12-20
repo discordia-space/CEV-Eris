@@ -55,14 +55,14 @@
 				//if we found biomatter, let's start processing
 				//it will slowly disappear. Time based at size of object and we manipulate with its alpha (we also check for it)
 				if((MATERIAL_BIOMATTER in target.matter) && !target.unacidable)
-					target.alpha -= round(100 / target.w_class)
+					target.alpha -= round(100 / target.volumeClass)
 					var/icon/I = new(target.icon, icon_state = target.icon_state)
 					//we turn this things to degenerate sprite a bit
 					I.Turn(rand(-10, 10))
 					target.icon = I
 					if(target.alpha <= 50)
 						MS_bioreactor.biotank_platform.take_amount(target.matter[MATERIAL_BIOMATTER])
-						MS_bioreactor.biotank_platform.pipes_wearout(target.w_class)
+						MS_bioreactor.biotank_platform.pipes_wearout(target.volumeClass)
 						target.matter -= MATERIAL_BIOMATTER
 						//if we have other matter, let's spit it out
 						for(var/material in target.matter)

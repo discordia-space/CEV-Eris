@@ -142,7 +142,7 @@
 	if(istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
 		var/obj/item/O = A
 		//Mice can push around pens and paper, but not heavy tools
-		if(O.w_class <= user.can_pull_size)
+		if(O.volumeClass <= user.can_pull_size)
 			O.forceMove(loc)
 			set_pixel_click_offset(O, params, animate=TRUE)
 			return

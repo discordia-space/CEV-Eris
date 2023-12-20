@@ -59,7 +59,7 @@
 	wieldedMultiplier = 1.7
 	WieldedattackDelay = 7
 	attackDelay = 2
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
 
@@ -103,8 +103,8 @@
 	WieldedattackDelay = 10
 	attackDelay = 3
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
-	max_upgrades = 1
-	w_class = ITEM_SIZE_HUGE
+	maxUpgrades = 1
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	extended_reach = TRUE
 	forced_broad_strike = TRUE
@@ -129,7 +129,7 @@
 		)
 	)
 	var/extended = FALSE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	price_tag = 1000
 	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
 
@@ -146,12 +146,12 @@
 	extended = TRUE
 	melleDamages = damagesExtended
 	slot_flags = null
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	update_icon()
 
 /obj/item/tool/sword/nt/scourge/proc/unextend()
 	extended = FALSE
-	w_class = initial(w_class)
+	volumeClass = initial(volumeClass)
 	melleDamages = initial(melleDamages)
 	refresh_upgrades() //it's also sets all to default
 	update_icon()
@@ -191,7 +191,7 @@
 		)
 	)
 	var/throwforce_broken = WEAPON_FORCE_HARMLESS
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL * 1.5
 	armor_divisor = ARMOR_PEN_MASSIVE
@@ -252,7 +252,7 @@
 	shield_integrity = 200
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
-	var/max_w_class = ITEM_SIZE_HUGE
+	var/max_volumeClass = ITEM_SIZE_HUGE
 	var/list/can_hold = list(
 		/obj/item/tool/sword/nt/shortsword,
 		/obj/item/tool/sword/nt/spear,
@@ -266,7 +266,7 @@
 	container = new /obj/item/storage/internal(src)
 	container.storage_slots = storage_slots
 	container.can_hold = can_hold
-	container.max_w_class = max_w_class
+	container.max_volumeClass = max_volumeClass
 	container.master_item = src
 	..()
 
@@ -313,7 +313,7 @@
 	shield_integrity = 180
 	var/obj/item/storage/internal/container
 	var/storage_slots = 1
-	var/max_w_class = ITEM_SIZE_HUGE
+	var/max_volumeClass = ITEM_SIZE_HUGE
 	var/list/can_hold = list(
 		/obj/item/tool/sword/nt/shortsword,
 		/obj/item/tool/knife/dagger/nt,
@@ -327,7 +327,7 @@
 	container = new /obj/item/storage/internal(src)
 	container.storage_slots = storage_slots
 	container.can_hold = can_hold
-	container.max_w_class = max_w_class
+	container.max_volumeClass = max_volumeClass
 	container.master_item = src
 	..()
 
@@ -400,7 +400,7 @@
 	/// faster attacking with it wielded,  stabby stab.
 	WieldedattackDelay = -0.1
 
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT
 	throwforce = WEAPON_FORCE_LETHAL
 	throw_speed = 3

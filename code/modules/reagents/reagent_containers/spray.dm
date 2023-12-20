@@ -8,7 +8,7 @@
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 3
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 10
 	amount_per_transfer_from_this = 10
@@ -154,7 +154,7 @@
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	throwforce = 3
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 4)
 	possible_transfer_amounts = null
 	volume = 600

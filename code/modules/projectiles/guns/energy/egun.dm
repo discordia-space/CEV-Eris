@@ -45,7 +45,7 @@
 	icon_state = "PDW"
 	item_state = "gun"
 	charge_meter = FALSE
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)

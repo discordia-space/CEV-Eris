@@ -158,9 +158,9 @@
 
 			if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
 				var/add = 0
-				if(I.w_class == ITEM_SIZE_TINY)
+				if(I.volumeClass == ITEM_SIZE_TINY)
 					add = 1
-				else if(I.w_class == ITEM_SIZE_SMALL)
+				else if(I.volumeClass == ITEM_SIZE_SMALL)
 					add = 3
 				else
 					add = 5
@@ -324,7 +324,7 @@
 	desc = "Small device which allows rapid deployment and removal of inflatables."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "inf_deployer"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 15
 	// By default stores up to 10 walls and 5 doors. May be changed.

@@ -6,7 +6,7 @@
 	interface_desc = "A compartment within the suit allowing a few items to be stored."
 
 	var/obj/item/storage/internal/container
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 	//The default iconstate is actually really perfect for this, it looks like a reinforced box
 	//Duplicate specify it here incase it gets changed in the parent in future
@@ -16,7 +16,7 @@
 	//These vars will be passed onto the storage
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list(/obj/item/rig) //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/max_w_class = ITEM_SIZE_BULKY //Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_volumeClass = ITEM_SIZE_BULKY //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = DEFAULT_HUGE_STORAGE * 0.7 //This is a entire satchel of storage 
 	var/storage_slots = null //The number of storage slots in this container.
 
@@ -25,7 +25,7 @@
 	container = new /obj/item/storage/internal(src)
 	container.can_hold = can_hold
 	container.cant_hold = cant_hold
-	container.max_w_class = max_w_class
+	container.max_volumeClass = max_volumeClass
 	container.max_storage_space = max_storage_space
 	container.storage_slots = storage_slots
 	container.master_item = src //If its installed immediately after creation this will get set to the rig in install proc

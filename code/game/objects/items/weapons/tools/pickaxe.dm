@@ -10,7 +10,7 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	icon_state = "pickaxe"
 	item_state = "pickaxe"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 6)
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_PRYING = 20) //So it still shares its switch off quality despite not yet being used.
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_PRYING = 20)
@@ -102,7 +102,7 @@
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2, TECH_ENGINEERING = 3)
 	degradation = 0.6
 	workspeed = 1.8
-	max_upgrades = 2
+	maxUpgrades = 2
 	use_power_cost = 0.6
 	spawn_blacklisted = TRUE
 	rarity_value = 10
@@ -137,7 +137,7 @@
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	degradation = 0.6
 	workspeed = 1.9
-	max_upgrades = 2
+	maxUpgrades = 2
 	use_fuel_cost = 0.10
 	max_fuel = 90
 	spawn_blacklisted = TRUE
@@ -158,7 +158,7 @@
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
 	switchedOn = list(ARMOR_POINTY = list(DELEM(BRUTE,20)))
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
-	max_upgrades = 4
+	maxUpgrades = 4
 	degradation = 0.1
 	use_fuel_cost = 0.07
 	max_fuel = 120
@@ -180,6 +180,6 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 30, QUALITY_PRYING = 15)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 30, QUALITY_PRYING = 15)
 	switched_on_qualities = list(QUALITY_DIGGING = 15, QUALITY_PRYING = 15)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 3)
 	rarity_value = 48

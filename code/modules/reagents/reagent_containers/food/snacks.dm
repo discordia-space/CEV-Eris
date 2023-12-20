@@ -8,7 +8,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = null
 	center_of_mass = list("x"=16, "y"=16)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_COOKED_FOOD
 	bad_type = /obj/item/reagent_containers/food/snacks
 
@@ -273,7 +273,7 @@
 		if (hide_item)
 			if(!user.canUnEquip(W))
 				return
-			if (W.w_class >= src.w_class || is_robot_module(W))
+			if (W.volumeClass >= src.volumeClass || is_robot_module(W))
 				return
 
 			to_chat(user, SPAN_WARNING("You slip \the [W] inside \the [src]."))
@@ -289,7 +289,7 @@
 				return
 
 			var/slices_lost = 0
-			if (W.w_class > ITEM_SIZE_NORMAL)
+			if (W.volumeClass > ITEM_SIZE_NORMAL)
 				user.visible_message(SPAN_NOTICE("\The [user] crudely slices \the [src] with [W]."), SPAN_NOTICE("You crudely slice \the [src] with your [W]."))
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
@@ -1158,7 +1158,7 @@
 	desc = "A cockroach egg that has been boiled in salted water. It no longer pulses with an inner life."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "roach_egg"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	bitesize = 4
 	nutriment_amt = 8
 	preloaded_reagents = list("protein" = 14)
@@ -2566,7 +2566,7 @@
 // sliceable is just an organization type path, it doesn't have any additional code or variables tied to it.
 
 /obj/item/reagent_containers/food/snacks/sliceable
-	w_class = ITEM_SIZE_NORMAL //Whole pizzas and cakes shouldn't fit in a pocket, you can slice them if you want to do that.
+	volumeClass = ITEM_SIZE_NORMAL //Whole pizzas and cakes shouldn't fit in a pocket, you can slice them if you want to do that.
 
 /obj/item/reagent_containers/food/snacks/sliceable/get_item_cost(export)
 	. = ..() + SStrade.get_import_cost(slice_path) * slices_num

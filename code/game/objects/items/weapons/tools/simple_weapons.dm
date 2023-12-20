@@ -14,7 +14,7 @@
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = TRUE
 	edge = FALSE
-	max_upgrades = 1 //it's not even a tool
+	maxUpgrades = 1 //it's not even a tool
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 	spawn_tags = SPAWN_TAG_JUNKTOOL
@@ -27,12 +27,12 @@
 	item_state = "hm_spikeclub"
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,19)))
 	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")
 	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
-	max_upgrades = 5
+	maxUpgrades = 5
 	tool_qualities = list(QUALITY_HAMMERING = 10)
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -45,7 +45,7 @@
 	worksound = WORKSOUND_HARD_SLASH
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,23)))
 	throwforce = 16
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
@@ -66,7 +66,7 @@
 	wieldedMultiplier = 3
 	WieldedattackDelay = 20
 	throwforce = 18
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BACK
 	sharp = TRUE
 	edge = TRUE
@@ -76,7 +76,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	embed_mult = 1.1
 	degradation = 1.5 //not quite as sturdy as a normal weapon
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 60
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -90,7 +90,7 @@
 	edge = TRUE
 	armor_divisor = 1.3
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	force_wielded_multiplier = 2.3
@@ -119,9 +119,9 @@
 	item_state = "hoe"
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	throwforce = WEAPON_FORCE_WEAK
-	max_upgrades = 2
+	maxUpgrades = 2
 	tool_qualities = list(QUALITY_SHOVELING = 10)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
 /obj/item/tool/scythe
@@ -135,7 +135,7 @@
 	worksound = WORKSOUND_HARD_SLASH
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,12)))
 	throwforce = 13
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -153,7 +153,7 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
 	sharp = TRUE
 	edge = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
@@ -192,7 +192,7 @@
 	WieldedattackDelay = 6
 	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
 	degradation = 1.5 //not quite as sturdy as a normal weapon
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 60
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -212,7 +212,7 @@
 	icon_state = "eutactic_katana"
 	item_state = "eutactic_katana"
 	toggleable = TRUE
-	max_upgrades = 1
+	maxUpgrades = 1
 
 	suitable_cell = /obj/item/cell/small
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
@@ -257,9 +257,9 @@
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5), DELEM(HALLOSS,10)))
 	wieldedMultiplier = 2
 	throwforce = 23
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
-	max_upgrades = 2
+	maxUpgrades = 2
 	tool_qualities = list(QUALITY_HAMMERING = 5)
 	spawn_blacklisted = TRUE

@@ -21,7 +21,7 @@
 	description_info = "A highly capable modular RIG system. Can hold modules which provide additional functionality. Also has a chance to completely deflect ballistic projectiles depending on the bullet protection."
 	req_one_access = list()
 	req_access = list()
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_RIG
 	rarity_value = 10

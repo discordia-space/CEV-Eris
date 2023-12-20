@@ -429,7 +429,7 @@
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 3	//three slots
-	pockets.max_w_class = ITEM_SIZE_SMALL		//fit only pocket sized items
+	pockets.max_volumeClass = ITEM_SIZE_SMALL		//fit only pocket sized items
 	pockets.max_storage_space = 4
 
 /obj/item/clothing/suit/space/void/riggedvoidsuit/Destroy()

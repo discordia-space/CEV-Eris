@@ -72,7 +72,7 @@
 	icon_state = "soviet_skaf"
 	item_state = "soviet_skaf"
 	slowdown = 0.2
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	armor = list(
 		ARMOR_BLUNT = 23,
 		ARMOR_BULLET = 20,

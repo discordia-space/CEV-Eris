@@ -8,7 +8,7 @@
 	icon_state = "c20r"
 	item_state = "c20r"
 	var/itemstring = ""
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_BACK

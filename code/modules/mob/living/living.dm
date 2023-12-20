@@ -832,7 +832,7 @@ default behaviour is:
 
 	else if(isobj(AM))
 		var/obj/I = AM
-		if(!can_pull_size || can_pull_size < I.w_class)
+		if(!can_pull_size || can_pull_size < I.volumeClass)
 			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 

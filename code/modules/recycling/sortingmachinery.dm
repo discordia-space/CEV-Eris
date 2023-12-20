@@ -223,7 +223,7 @@
 	name = "package wrapper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 50
 	price_tag = 20
@@ -256,8 +256,8 @@
 					user.client.screen -= O
 			P.wrapped = O
 			O.forceMove(P)
-			P.w_class = O.w_class
-			var/i = round(O.w_class)
+			P.volumeClass = O.volumeClass
+			var/i = round(O.volumeClass)
 			if(i in list(1,2,3,4,5))
 				P.icon_state = "deliverycrate[i]"
 				switch(i)
@@ -337,7 +337,7 @@
 	rarity_value = 50
 	var/currTag = 0
 
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT

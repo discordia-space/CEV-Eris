@@ -2,7 +2,7 @@
 	name = "Asters \"Munchkin 5000\""
 	desc = "A fuel powered monster of a tool. Its welding attachment is capable of welding things without an eye-damaging flash, so no eye protection is required."
 	icon_state = "omnitool"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	worksound = WORKSOUND_DRIVER_TOOL
 	switched_on_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10)
 	price_tag = 1000
@@ -12,7 +12,7 @@
 	toggleable = TRUE
 	create_hot_spot = TRUE
 	glow_color = COLOR_ORANGE
-	max_upgrades = 2
+	maxUpgrades = 2
 	rarity_value = 96
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
@@ -25,7 +25,7 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4)
 	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 25)
 
-	max_upgrades = 2
+	maxUpgrades = 2
 	workspeed = 1.2
 	spawn_blacklisted = TRUE
 	rarity_value = 10
@@ -49,7 +49,7 @@
 	use_power_cost = 1.2
 	suitable_cell = /obj/item/cell/medium
 
-	max_upgrades = 1
+	maxUpgrades = 1
 	spawn_tags = null
 
 /obj/item/tool/multitool_improvised
@@ -80,7 +80,7 @@
 	degradation = 1.5
 	workspeed = 0.8
 
-	max_upgrades = 3
+	maxUpgrades = 3
 
 	sparks_on_use = TRUE
 	eye_hazard = FALSE
@@ -109,7 +109,7 @@
 	use_power_cost = 0.8
 	suitable_cell = /obj/item/cell/medium
 
-	max_upgrades = 1
+	maxUpgrades = 1
 	spawn_tags = null
 
 	var/buffer_name

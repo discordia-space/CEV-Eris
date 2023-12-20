@@ -6,7 +6,7 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	worksound = WORKSOUND_SIMPLE_SAW
 	flags = CONDUCT
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -23,7 +23,7 @@
 	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,23)))
 	tool_qualities = list(QUALITY_SAWING = 15, QUALITY_CUTTING = 10, QUALITY_WIRE_CUTTING = 10)
 	degradation = 1
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 	rarity_value = 3
 
@@ -50,7 +50,7 @@
 	tool_qualities = list(QUALITY_SAWING = 50, QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 40)
 	degradation = 0.7
 	use_power_cost = 0.22
-	max_upgrades = 4
+	maxUpgrades = 4
 	spawn_blacklisted = TRUE
 	rarity_value = 20
 
@@ -65,8 +65,8 @@
 	WieldedattackDelay = 10
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20) //not the best choice to cut wires
-	w_class = ITEM_SIZE_BULKY
-	max_upgrades = 4
+	volumeClass = ITEM_SIZE_BULKY
+	maxUpgrades = 4
 	use_fuel_cost = 0.1
 	max_fuel = 80
 	rarity_value = 96
@@ -80,8 +80,8 @@
 	worksound = WORKSOUND_CHAINSAW
 	matter = list(MATERIAL_SILVER = 2, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20)
-	w_class = ITEM_SIZE_BULKY
-	max_upgrades = 4
+	volumeClass = ITEM_SIZE_BULKY
+	maxUpgrades = 4
 	degradation = 0.7
 	use_power_cost = 1
 	suitable_cell = /obj/item/cell/medium

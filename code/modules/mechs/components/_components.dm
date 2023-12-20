@@ -1,6 +1,6 @@
 /obj/item/mech_component
 	icon = MECH_PARTS_HELD_ICON
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	gender = PLURAL
 	color = COLOR_GUNMETAL
 	matter = list(MATERIAL_STEEL = 10)

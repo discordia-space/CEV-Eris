@@ -265,7 +265,7 @@ COMSIG_ABERRANT_SECONDARY
 /obj/item/modification
 	name = "modification"
 	//icon = 'icons/obj/mod_cores.dmi'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	//spawn_tags = SPAWN_TAG_MODIFICATION
 	price_tag = 0
 	rarity_value = 50

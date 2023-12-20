@@ -5,7 +5,7 @@
 	icon = 'icons/obj/guns/projectile/dallas.dmi'
 	icon_state = "dallas"
 	item_state = "dallas"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	caliber = CAL_CLRIFLE
 	load_method = MAGAZINE

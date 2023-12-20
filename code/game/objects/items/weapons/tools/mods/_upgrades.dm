@@ -753,7 +753,7 @@
 	name = "tool upgrade"
 	icon = 'icons/obj/tool_upgrades.dmi'
 	icon_state = "placeholder"	// Needed for UI
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE
 	price_tag = 200
 	rarity_value = 15

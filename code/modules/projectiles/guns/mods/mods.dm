@@ -1,6 +1,6 @@
 /obj/item/gun_upgrade
 	icon = 'icons/obj/guns/mods.dmi'
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	price_tag = 100
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_GUN_UPGRADE

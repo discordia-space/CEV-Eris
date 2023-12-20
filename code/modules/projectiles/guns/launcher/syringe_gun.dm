@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	var/obj/item/reagent_containers/syringe/syringe
 
 
@@ -68,7 +68,7 @@
 	description_info = "Won't penetrate thick materials"
 	icon_state = "syringegun"
 	item_state = "syringegun"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
 	gun_parts = list(/obj/item/stack/material/plastic = 5)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
