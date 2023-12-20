@@ -93,6 +93,11 @@
 
 	if(use_stock_cost)
 		stock = max_stock
+	if(toggleable)
+		if(!GLOB.melleDamagesCache["[type]-t"])
+			GLOB.melleDamagesCache["[type]-t"] = toggleable ? switchedOn.Copy() : switchedOn
+		if(!(max_upgrades || objectFlags & OF_UNIQUEMELLEHANDLER))
+			switchedOn = GLOB.melleDamagesCache["[type]-t"]
 
 	if(maxHealth)
 		health = maxHealth
@@ -116,6 +121,7 @@
 
 //For killing processes like hot spots
 /obj/item/tool/Destroy()
+	switchedOn = null
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -224,8 +230,8 @@
 	data["health_max"] = maxHealth
 	data["health_threshold"] = health_threshold
 
-	data["force"] = force
-	data["force_max"] = initial(force) * 10
+	data["force"] = dhTotalDamage(melleDamages)
+	data["force_max"] = dhTotalDamage(melleDamages)*10
 
 	data["armor_divisor"] = armor_divisor
 
@@ -821,7 +827,7 @@
 	melleDamages = GLOB.melleDamagesCache[type].Copy()
 	force_upgrade_mults = initial(force_upgrade_mults)
 	force_upgrade_mods = initial(force_upgrade_mods)
-	switchedOn = GLOB.melleDamagesCacheCache["[type]-s"].Copy()
+	switchedOn = GLOB.melleDamagesCache["[type]-t"].Copy()
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)
