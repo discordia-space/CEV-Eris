@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,20)))
 	wieldedMultiplier = 1.3
-	w_attack_delay = 1
+	WieldedattackDelay = 1
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")

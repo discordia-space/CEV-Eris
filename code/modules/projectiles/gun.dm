@@ -21,7 +21,7 @@
 	throw_range = 5
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 12)))
 	wieldedMultiplier = 2
-	w_attack_delay = 8
+	WieldedattackDelay = 8
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"

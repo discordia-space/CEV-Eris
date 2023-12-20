@@ -26,9 +26,9 @@ GLOBAL_LIST(melleDamagesCache)
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
 	/// Extra delay for attacking when one handed
-	var/attack_delay = 0
+	var/attackDelay = 0
 	/// Extra delay for attacking when wielded ,one-handed delay doesn't get added
-	var/w_attack_delay = 0
+	var/WieldedattackDelay = 0
 
 	//The cool stuff for melee
 	var/screen_shake = FALSE 		//If a weapon can shake the victim's camera on hit.

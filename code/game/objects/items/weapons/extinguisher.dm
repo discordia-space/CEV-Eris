@@ -18,7 +18,7 @@
 		)
 	)
 	wieldedMultiplier = 2
-	w_attack_delay = 3
+	WieldedattackDelay = 3
 	matter = list(MATERIAL_STEEL = 3)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	rarity_value = 10

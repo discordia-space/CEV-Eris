@@ -153,7 +153,7 @@
 		)
 	)
 	wieldMultiplier = 5
-	w_attack_delay = 18
+	WieldedattackDelay = 18
 	throw_speed = 1
 	throw_range = 4
 	w_class = ITEM_SIZE_BULKY

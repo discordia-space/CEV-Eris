@@ -10,7 +10,7 @@
 	)
 	//// smash
 	wieldedMultiplier = 2
-	w_attack_delay = 8
+	WieldedattackDelay = 8
 	maxcharge = CELL_LARGE_BASE_CHARGE//1000
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 3)
 	price_tag = 200

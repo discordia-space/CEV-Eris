@@ -11,7 +11,7 @@
 	)
 	/// Big whacker
 	wieldedMultiplier = 4
-	w_attack_delay = 16
+	WieldedattackDelay = 16
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4

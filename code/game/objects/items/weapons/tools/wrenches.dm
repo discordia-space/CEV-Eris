@@ -5,8 +5,8 @@
 	flags = CONDUCT
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,12)))
 	force_wielded_multiplier = 2
-	attack_delay = 2
-	w_attack_delay = 6
+	attackDelay = 2
+	WieldedattackDelay = 6
 	worksound = WORKSOUND_WRENCHING
 	throwforce = WEAPON_FORCE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
@@ -37,7 +37,7 @@
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	force_wielded_multiplier = 4
 	/// big hit , big delay
-	w_attack_delay = 23
+	WieldedattackDelay = 23
 	armor_divisor = 1.2
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	throwforce = WEAPON_FORCE_PAINFUL

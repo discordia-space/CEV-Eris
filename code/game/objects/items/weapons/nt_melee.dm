@@ -11,7 +11,7 @@
 		)
 	)
 	wieldedMultiplier = 1.5
-	w_attack_delay = 4
+	WieldedattackDelay = 4
 	throwforce = WEAPON_FORCE_WEAK
 	aspects = list(SANCTIFIED)
 	price_tag = 300
@@ -37,7 +37,7 @@
 			DELEM(BRUTE, 15)
 		)
 	)
-	w_attack_delay = 0
+	WieldedattackDelay = 0
 	wieldedMultiplier = 1.3
 	throwforce = WEAPON_FORCE_WEAK
 	aspects = list(SANCTIFIED)
@@ -57,8 +57,8 @@
 		)
 	)
 	wieldedMultiplier = 1.7
-	w_attack_delay = 7
-	attack_delay = 2
+	WieldedattackDelay = 7
+	attackDelay = 2
 	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
 	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
@@ -100,8 +100,8 @@
 		)
 	)
 	wieldedMultiplier = 2.3
-	w_attack_delay = 10
-	attack_delay = 3
+	WieldedattackDelay = 10
+	attackDelay = 3
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
 	max_upgrades = 1
 	w_class = ITEM_SIZE_HUGE
@@ -182,8 +182,8 @@
 		)
 	)
 	wieldedMultiplier = 1.4
-	w_attack_delay = 2
-	attack_delay = 1
+	WieldedattackDelay = 2
+	attackDelay = 1
 	var/tipbroken = FALSE
 	var/list/damagesBroken = list(
 		ARMOR_POINTY = list(
@@ -398,7 +398,7 @@
 	)
 	wieldedMultiplier = 1
 	/// faster attacking with it wielded,  stabby stab.
-	w_attack_delay = -0.1
+	WieldedattackDelay = -0.1
 
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK | SLOT_BELT

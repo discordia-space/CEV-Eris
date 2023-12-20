@@ -33,7 +33,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	wieldedMultiplier = 4
-	w_attack_delay = 30
+	WieldedattackDelay = 30
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 	degradation = 0.7

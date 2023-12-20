@@ -8,7 +8,7 @@
 	matter = list(MATERIAL_GLASS = 2)
 	worksound = WORKSOUND_HARD_SLASH
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE=10)))
-	attack_delay = -2
+	attackDelay = -2
 	throwforce = WEAPON_FORCE_WEAK
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
@@ -64,7 +64,7 @@
 	worksound = WORKSOUND_HARD_SLASH
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
 	wieldedMultiplier = 3
-	w_attack_delay = 20
+	WieldedattackDelay = 20
 	throwforce = 18
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BACK
@@ -94,8 +94,8 @@
 	slot_flags = SLOT_BACK
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	force_wielded_multiplier = 2.3
-	attack_delay = 4
-	w_attack_delay = 9
+	attackDelay = 4
+	WieldedattackDelay = 9
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
@@ -158,7 +158,7 @@
 	worksound = WORKSOUND_HARD_SLASH
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
 	force_wielded_multiplier = 1.3
-	w_attack_delay = 3
+	WieldedattackDelay = 3
 	throwforce = 20
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/sharphit.ogg'
@@ -187,9 +187,9 @@
 	item_state = "msword"
 	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
 	wieldedMultiplier = 1.5
-	attack_delay = 4
+	attackDelay = 4
 	/// heavy hitter but slow attack
-	w_attack_delay = 6
+	WieldedattackDelay = 6
 	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
 	degradation = 1.5 //not quite as sturdy as a normal weapon
 	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game

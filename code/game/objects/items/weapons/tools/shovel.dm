@@ -7,9 +7,9 @@
 	slot_flags = SLOT_BELT
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
 	wieldedMultiplier = 1.5
-	attack_delay = 4
+	attackDelay = 4
 	/// chunky like junk blade
-	w_attack_delay = 6
+	WieldedattackDelay = 6
 	throwforce = 19
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
@@ -52,7 +52,7 @@
 	item_state = "shovel"
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,12)))
 	wieldedMultiplier = 4
-	w_attack_delay = 20
+	WieldedattackDelay = 20
 	throwforce = 5
 	armor_divisor = 1.1
 	w_class = ITEM_SIZE_NORMAL

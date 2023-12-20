@@ -295,7 +295,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])" )
 	/////////////////////////
 
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + wielded ? w_attack_delay : attack_delay)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + wielded ? WieldedattackDelay : attackDelay)
 	user.do_attack_animation(M)
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)

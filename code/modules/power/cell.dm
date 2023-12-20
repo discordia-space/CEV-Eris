@@ -12,7 +12,7 @@
 	origin_tech = list(TECH_POWER = 1)
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 5)))
 	wieldedMultiplier = 3
-	w_attack_delay = 17
+	WieldedattackDelay = 17
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5

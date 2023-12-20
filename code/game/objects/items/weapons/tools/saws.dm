@@ -62,7 +62,7 @@
 	worksound = WORKSOUND_CHAINSAW
 	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,30)))
 	wieldedMultiplier = 2
-	w_attack_delay = 10
+	WieldedattackDelay = 10
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
 	tool_qualities = list(QUALITY_SAWING = 60, QUALITY_CUTTING = 50, QUALITY_WIRE_CUTTING = 20) //not the best choice to cut wires
 	w_class = ITEM_SIZE_BULKY

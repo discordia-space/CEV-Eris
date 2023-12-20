@@ -30,7 +30,7 @@
 	item_state = "powered_hammer"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,45)))
-	w_attack_delay = 7
+	WieldedattackDelay = 7
 	w_class = ITEM_SIZE_HUGE
 	tool_qualities = list(QUALITY_HAMMERING = 30)
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 1)
@@ -48,7 +48,7 @@
 	wielded_icon = "sledgehammer_wielded"
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,30)))
-	w_attack_delay = 4
+	WieldedattackDelay = 4
 	force_wielded_multiplier = 1.4
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -66,7 +66,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_POWERFUL
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,35)))
 	wieldedMultiplier = 1.4
-	w_attack_delay = 8
+	WieldedattackDelay = 8
 	tool_qualities = list(QUALITY_HAMMERING = 40)
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 3)
 	max_upgrades = 3
@@ -80,7 +80,7 @@
 	wielded_icon = "homewrecker1"
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	wieldedMultiplier = 2
-	w_attack_delay = 10
+	WieldedattackDelay = 10
 	slot_flags = SLOT_BELT|SLOT_BACK
 	tool_qualities = list(QUALITY_HAMMERING = 15)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)
@@ -156,7 +156,7 @@
 	item_state = "woodbat0"
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,25)))
 	// big swing
-	w_attack_delay = 16
+	WieldedattackDelay = 16
 	wieldedMultiplier = 2
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'

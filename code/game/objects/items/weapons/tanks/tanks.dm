@@ -23,7 +23,7 @@ var/list/global/tank_gauge_cache = list()
 		)
 	)
 	wieldMultiplier = 5
-	w_attack_delay = 14
+	WieldedattackDelay = 14
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4

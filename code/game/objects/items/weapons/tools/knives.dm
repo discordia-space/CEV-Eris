@@ -329,8 +329,8 @@
 	worksound = WORKSOUND_HARD_SLASH
 	w_class = ITEM_SIZE_BULKY //4 , it's a spear mate
 	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,18)))
-	w_attack_delay = 8
-	attack_delay = 4
+	WieldedattackDelay = 8
+	attackDelay = 4
 	throwforce = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_MODERATE
 	throw_speed = 3

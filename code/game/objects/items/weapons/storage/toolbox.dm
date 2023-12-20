@@ -11,7 +11,7 @@
 		)
 	)
 	wieldMultiplier = 2
-	w_attack_delay = 8
+	WieldedattackDelay = 8
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
@@ -117,7 +117,7 @@
 		)
 	)
 	wieldMultiplier = 2
-	w_attack_delay = 7
+	WieldedattackDelay = 7
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/toolbox/syndicate/populate_contents()
