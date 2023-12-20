@@ -371,12 +371,10 @@
 /obj/item/oddity/broken_necklace/examine(user, distance)
 	. = ..()
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			to_chat(user, SPAN_NOTICE("This feels cold to the touch."))
-
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold * 0.7)
+		to_chat(user, SPAN_NOTICE("This feels cold to the touch."))
+	else if(my_area.bluespace_entropy > 0)
+		to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
 
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
 		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))

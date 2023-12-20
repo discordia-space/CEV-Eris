@@ -311,7 +311,7 @@
 		penetration = L.armor_divisor
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/dam = damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), affecting, src, 1, 1, FALSE)
+	var/dam = damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), affecting, src, penetration, 1, FALSE)
 	if(dam > 0)
 		affecting.add_autopsy_data("[attack_message] by \a [user]", dam)
 	updatehealth()
