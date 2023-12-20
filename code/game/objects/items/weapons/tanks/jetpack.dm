@@ -6,7 +6,11 @@
 	icon_state = "jetpack"
 	gauge_icon = null
 	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,10)
+		)
+	)
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
 	bad_type = /obj/item/tank/jetpack

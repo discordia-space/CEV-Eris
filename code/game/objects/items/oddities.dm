@@ -234,7 +234,6 @@
 	item_state = "knife"
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
-	force = WEAPON_FORCE_DANGEROUS
 	melleDamages = list(
 		ARMOR_SLASH = list(
 			DELEM(BRUTE, 13)

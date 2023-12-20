@@ -5,7 +5,11 @@
 	icon_state = "cane"
 	item_state = "stick"
 	flags = CONDUCT
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	worksound = WORKSOUND_EASY_CROWBAR
 	w_class = ITEM_SIZE_NORMAL

@@ -5,7 +5,6 @@
 	icon_state = "type_21"
 	item_state = "type_21"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	caliber = CAL_SHOTGUN

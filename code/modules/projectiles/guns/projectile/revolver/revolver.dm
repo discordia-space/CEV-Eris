@@ -5,7 +5,6 @@
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = CAL_MAGNUM
-	force = WEAPON_FORCE_NORMAL
 	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS

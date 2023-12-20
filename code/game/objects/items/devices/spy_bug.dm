@@ -7,7 +7,6 @@
 	layer = TURF_LAYER+0.2
 
 	flags = CONDUCT
-	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	throwforce = WEAPON_FORCE_HARMLESS

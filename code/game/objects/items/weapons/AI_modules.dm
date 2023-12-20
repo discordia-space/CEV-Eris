@@ -13,7 +13,6 @@ AI MODULES
 	item_state = "electronic"
 	desc = "An AI Module for transmitting encrypted instructions to the AI."
 	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3

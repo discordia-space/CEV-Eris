@@ -3,7 +3,6 @@
 	name = "wet floor sign"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "caution"
-	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5

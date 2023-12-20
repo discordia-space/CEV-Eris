@@ -7,7 +7,6 @@
 	icon = 'icons/obj/guns/projectile/bojevic.dmi'
 	icon_state = "bojevic"
 	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE

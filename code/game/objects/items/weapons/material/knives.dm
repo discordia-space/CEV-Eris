@@ -23,7 +23,10 @@
 		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
-		force = WEAPON_FORCE_WEAK
+		melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,3)
+		))
 		edge = FALSE
 		sharp = FALSE
 		hitsound = initial(hitsound)

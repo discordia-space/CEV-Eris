@@ -4,6 +4,9 @@ GLOBAL_LIST(melleDamagesCache)
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
 
+
+	/// FLAGS FOR OBJECT BEHAVIOUR
+	var/objectFlags = 0
 	//spawn_values
 	price_tag = 0
 	//spawn_tags = SPAWN_TAG_ITEM
