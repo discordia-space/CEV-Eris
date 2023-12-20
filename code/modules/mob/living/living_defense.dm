@@ -79,9 +79,16 @@ armorType defines the armorType that will block all the damTypes that it has ass
 	damageBlockers = newBlockers
 
 	/// from right(outermost) to left(innermost)
+	var/j = length(damageBlockers)
+	while(j > 1)
+		var/atom/blocker = damageBlockers[j--]
+		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
+
+	/*
 	for(var/i = length(damageBlockers) to 1)
 		var/atom/blocker = damageBlockers[i]
 		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
+	*/
 
 	for(var/armorType in armorToDam)
 		for(var/i=1 to length(armorToDam[armorType]))

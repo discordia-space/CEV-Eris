@@ -104,13 +104,15 @@ GLOBAL_LIST(projectileDamageConstants)
 /// This is done to save a lot of memory from duplicated damage lists.
 /// The list is also copied whenever PrepareForLaunch is called and modified as needs to be
 /obj/item/projectile/Initialize()
+	. = ..()
+	if(!GLOB.projectileDamageConstants)
+		GLOB.projectileDamageConstants = list()
 	if(!GLOB.projectileDamageConstants[type])
 		GLOB.projectileDamageConstants = damage_types
 	else
 		/// delete the list. Don't need QDEL for this
 		del(damage_types)
 		damage_types = GLOB.projectileDamageConstants[type]
-	. = ..()
 
 
 /obj/item/projectile/Destroy()

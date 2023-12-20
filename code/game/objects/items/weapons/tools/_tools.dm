@@ -6,6 +6,8 @@
 // (if you dig hole in 10 seconds then 50 ADDITIONAL_TIME_LOWHEALTH will add 0 on full health, 2.5sec on 50% health and 5sec ~0% health)
 #define ADDITIONAL_TIME_LOWHEALTH 60
 
+GLOBAL_LIST(melleExtrasCache)
+
 /obj/item/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
@@ -94,10 +96,12 @@
 	if(use_stock_cost)
 		stock = max_stock
 	if(toggleable)
-		if(!GLOB.melleDamagesCache["[type]-t"])
-			GLOB.melleDamagesCache["[type]-t"] = toggleable ? switchedOn.Copy() : switchedOn
+		if(!GLOB.melleExtrasCache)
+			GLOB.melleExtrasCache = list()
+		if(!GLOB.melleExtrasCache["[type]-t"])
+			GLOB.melleExtrasCache["[type]-t"] = toggleable ? switchedOn.Copy() : switchedOn
 		if(!(maxUpgrades || objectFlags & OF_UNIQUEMELLEHANDLER))
-			switchedOn = GLOB.melleDamagesCache["[type]-t"]
+			switchedOn = GLOB.melleExtrasCache["[type]-t"]
 
 	if(maxHealth)
 		health = maxHealth
@@ -827,7 +831,7 @@
 	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	force_upgrade_mults = initial(force_upgrade_mults)
 	force_upgrade_mods = initial(force_upgrade_mods)
-	switchedOn = GLOB.melleDamagesCache["[type]-t"]:Copy()
+	switchedOn = GLOB.melleExtrasCache["[type]-t"]:Copy()
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)

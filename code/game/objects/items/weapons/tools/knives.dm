@@ -38,6 +38,7 @@
 	I.gun_loc_tag = GUN_UNDERBARREL
 	I.req_gun_tags = list(SLOT_BAYONET)
 
+
 /obj/item/tool/knife/boot
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
@@ -230,7 +231,7 @@
 	tool_qualities = switched_on_qualities
 	volumeClass = switched_on_volumeClass
 	if (!isnull(switchedOn))
-		melleDamages = GLOB.melleDamagesCache["[type]-t"]:Copy()
+		melleDamages = GLOB.melleExtrasCache["[type]-t"]:Copy()
 		refresh_upgrades()
 	update_icon()
 	update_wear_icon()

@@ -25,9 +25,9 @@
 
 	/// For the new custom armor system. Determines how many plates and side guards we can install
 	var/global/list/maxArmorVolume = list(
-		CLOTH_ARMOR_TORSO = 0,
-		CLOTH_ARMOR_LEGG = 0,
-		CLOTH_ARMOR_ARMG = 0
+		0, // CLOTH_ARMOR_TORSO
+		0, // CLOTH_ARMOR_LEGG
+		0 // CLOTH_ARMOR_ARMG
 	)
 
 	/// A list of all the armorComps, order is important since we iterate inversely.

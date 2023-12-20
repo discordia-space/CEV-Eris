@@ -130,6 +130,8 @@ GLOBAL_LIST(melleDamagesCache)
 		armor = getArmor()
 	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+	if(!GLOB.melleDamagesCache)
+		GLOB.melleDamagesCache = list()
 	if(!GLOB.melleDamagesCache[type])
 		GLOB.melleDamagesCache[type] = melleDamages
 	else

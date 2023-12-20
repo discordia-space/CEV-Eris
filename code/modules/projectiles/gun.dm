@@ -109,6 +109,9 @@
 
 	var/obj/item/device/lighting/toggleable/flashlight/flashlight_attachment
 
+/obj/item/gun/New(loc, ...)
+	. = ..()
+
 
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
@@ -178,6 +181,7 @@
 	. = ..()
 
 /obj/item/gun/Initialize()
+	. = ..()
 	if(!recoil && islist(init_recoil))
 		recoil = getRecoil(arglist(init_recoil))
 	else if(!islist(init_recoil))
@@ -185,7 +189,6 @@
 	else if(!istype(recoil, /datum/recoil))
 		error("Invalid type [recoil.type] found in .recoil during /obj Initialize()")
 	initial_zoom_factors = zoom_factors.Copy()
-	. = ..()
 	initialize_firemodes()
 	initialize_firemode_actions()
 	initialize_scope()
