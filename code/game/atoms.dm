@@ -58,7 +58,6 @@
 
 
 
-
 /// This one works by list reference , so no need to return , but just incase...
 /atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
 	return armorToDam
