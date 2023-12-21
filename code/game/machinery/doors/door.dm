@@ -212,7 +212,7 @@
 	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
 	if(prob(30))
 		M.Weaken(1)
-	M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,RAND(5,8)))), body_part, src, 1, 1, FALSE)
+	M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,rand(5,8)))), body_part, src, 1, 1, FALSE)
 	take_damage(M.mob_size)
 
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)

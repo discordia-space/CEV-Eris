@@ -105,11 +105,12 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	return QDEL_HINT_QUEUE
 
 /HUD_element/Click(location,control,params)
-	if (_clickProc)
+	var/procedure = getClickProc()
+	if (procedure)
 		if(_holder)
-			call(_holder, _clickProc)(arglist(_procArguments))
+			call(_holder, procedure)(arglist(_procArguments))
 		else
-			call(_clickProc)(src, usr, location, control, params)
+			call(procedure)(src, usr, location, control, params)
 
 
 	if (_passClickToParent)

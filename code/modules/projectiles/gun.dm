@@ -1020,7 +1020,10 @@
 	darkness_view = initial(darkness_view)
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
-	melleDamages = GLOB.melleDamagesCache[type]:Copy()
+	if(GLOB.melleDamagesCache && GLOB.melleDamagesCache[type])
+		melleDamages = GLOB.melleDamagesCache[type]:Copy()
+	else
+		melleDamages = list(ARMOR_BLUNT=list(DELEM(BRUTE,10)))
 	armor_divisor = initial(armor_divisor)
 	sharp = initial(sharp)
 	braceable = initial(braceable)
