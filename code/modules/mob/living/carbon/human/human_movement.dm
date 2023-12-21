@@ -4,8 +4,9 @@
 	if(species.slowdown)
 		tally += species.slowdown
 
-	/// The more you carry extra , the faster you are... Also the less you weight
-	tally += max(0,weight/initial(weight) - 1)
+	/// The more you carry extra , the slower you are...or faster if you're lighter..
+	// 10 KG of no slowdown capacity added ontop
+	tally += max(0,(weight/initial(weight)+10000) - 1)
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
 	/// No slowdown for mech pilots , mech already handles movement.
