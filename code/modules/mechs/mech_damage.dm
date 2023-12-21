@@ -13,7 +13,7 @@
 
 	if(!damage || !istype(user))
 		return
-	
+
 	var/penetration = 0
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
@@ -156,6 +156,16 @@
 	if(body && body.armor)
 		blockers |= body.armor_plate
 	return blockers
+
+/mob/living/exosuit/getDamageBlockerRatings(list/relevantTypes)
+	var/list/returnList = ..()
+	if(!body)
+		return returnList
+	if(!body.armor)
+		return returnList
+	for(var/armorType in relevantTypes)
+		returnList[armorType] += body.armor.getRating(armorType)
+	return returnList
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0

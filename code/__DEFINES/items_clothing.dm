@@ -138,6 +138,8 @@
 #define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
 #define FULL_BODY   0xFFFF
 
+#define ALL_CLOTH_BP (list(HEAD,FACE,EYES,EARS,UPPER_TORSO,LOWER_TORSO,LEG_LEFT,LEG_RIGHT,ARM_LEFT, ARM_RIGHT))
+
 // Bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
 // Used with human/proc/get_heat_protection() and human/proc/get_cold_protection().
 // The values here should add up to 1, e.g., the head has 30% protection.

@@ -60,6 +60,17 @@
 
 	return blockers
 
+/obj/item/clothing/getDamageBlockerRatings(list/relevantTypes)
+	/// Get the return list from parent.
+	var/list/returnList = ..()
+	var/coveredBps = getCoveredBPCount(body_parts_covered)
+	for(var/armorType in relevantTypes)
+		for(var/obj/item/armor_component/armComp in armorComps)
+			returnList[armorType] += armComp.armor.getRating(armorType)
+		/// divide to get the average
+		returnList[armorType] /= coveredBps
+	return returnList
+
 /obj/item/clothing/proc/getArmorRating(type, defZone)
 	var/returnArmor = 0
 	if(LIMB2CLOTH[defZone] & body_parts_covered && armor)
@@ -69,6 +80,14 @@
 		if(armComp.covering & LIMB2CLOTH[defZone])
 			returnArmor += armComp.armor.getRating(type)
 	return returnArmor
+
+/proc/getCoveredBPCount(BodypartsVar)
+	var/count = 0
+	for(var/bodypart in ALL_CLOTH_BPS)
+		if(BodypartsVar & bodypart)
+			count++
+	return count
+
 
 /obj/item/clothing/attack_self(mob/user)
 	if(brightness_on)

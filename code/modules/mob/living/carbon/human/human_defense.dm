@@ -112,14 +112,25 @@ meteor_act
 	if(shield)
 		blockers |= shield
 
-	/* Removed , we got weight mechanics , SPCR - 2023
-	if (protection > 75) // reducing the risks from powergaming
-		switch (type)
-			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
-			else return protection
-	*/
-
 	return blockers
+
+/mob/living/carbon/human/getDamageBlockerRatings(list/relevantTypes)
+	var/list/returnlist = ..()
+
+	for(var/obj/item/clothing/covering in list(head,wear_mask,wear_suit,w_uniform,gloves,shoes))
+		if(QDELETED(covering))
+			continue
+		var/list/clothArmor = covering.getDamageBlockerRatings(relevantTypes)
+		for(var/armorType in relevantTypes)
+			returnList[armorType] += clothArmor[armorType]
+
+	for(var/armorType in relevantTypes)
+		for(var/obj/item/organ/external/limb in organs)
+			returnList[armorType] += limb.armor.getRating(armorType)
+		// limb count division
+		returnList[armorType] /= 7
+
+	return returnList
 
 
 /mob/living/carbon/human/getarmor(var/def_zone, var/type)

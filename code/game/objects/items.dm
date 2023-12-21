@@ -122,6 +122,12 @@ GLOBAL_LIST(melleDamagesCache)
 			damageElement[2] -= clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
 	return armorToDam
 
+/obj/item/getDamageBlockerRatings(list/relevantTypes)
+	var/list/returnList = list()
+	for(var/armorType in relevantTypes)
+		returnlist[armorType] = armor.getRating(armorType)
+	return returnList
+
 
 /obj/item/Initialize()
 	if(islist(armor))

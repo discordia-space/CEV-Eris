@@ -27,11 +27,11 @@
 	icon_state = "helmet"
 	armor = list(
 		ARMOR_BLUNT = 10,
-		bullet = 10,
-		energy = 10,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =50,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	matter = list(
 		MATERIAL_STEEL = 5,
@@ -55,11 +55,11 @@
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
 		ARMOR_BLUNT = 24,
-		bullet = 35,
-		energy = 20,
-		bomb = 75,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 35,
+		ARMOR_ENERGY =20,
+		ARMOR_BOMB =75,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	flash_protection = FLASH_PROTECTION_MODERATE
 	price_tag = 500
@@ -89,11 +89,11 @@
 	brightness_on = 4
 	armor = list(
 		ARMOR_BLUNT = 10,
-		bullet = 10,
-		energy = 10,
-		bomb = 100,
-		bio = 0,
-		rad = 80
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =100,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 80
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
@@ -115,11 +115,11 @@
 	brightness_on = 4
 	armor = list(
 		ARMOR_BLUNT = 15,
-		bullet = 15,
-		energy = 15,
-		bomb = 100,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 15,
+		ARMOR_ENERGY =15,
+		ARMOR_BOMB =100,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
@@ -130,11 +130,11 @@
 	icon_state = "helmet_handmade"
 	armor = list(
 		ARMOR_BLUNT = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 35,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =35,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 75
 
@@ -144,11 +144,11 @@
 	icon_state = "scav_helmet"
 	armor = list(
 		ARMOR_BLUNT = 10,
-		bullet = 10,
-		energy = 10,
-		bomb = 35,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =35,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 200
 
@@ -167,11 +167,11 @@
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
 		ARMOR_BLUNT = 14,
-		bullet = 30,
-		energy = 7,
-		bomb = 30,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 30,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =30,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 400
 	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
@@ -277,11 +277,11 @@
 	flags_inv = HIDEEARS | HIDEEYES
 	armor = list(
 		ARMOR_BLUNT = 7,
-		bullet = 7,
-		energy = 23,
-		bomb = 20,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY =23,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	siemens_coefficient = 0
 	price_tag = 325
@@ -295,8 +295,8 @@
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
 	//We cant just use the armor var to store the original since initial(armor) will return a null pointer
-	var/list/armor_up = list(ARMOR_BLUNT = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	var/list/armor_down = list(ARMOR_BLUNT = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	var/list/armor_up = list(ARMOR_BLUNT = 0, ARMOR_BULLET = 0, ARMOR_ENERGY =0, ARMOR_BOMB =0, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	var/list/armor_down = list(ARMOR_BLUNT = 0, ARMOR_BULLET = 0, ARMOR_ENERGY =0, ARMOR_BOMB =0, ARMOR_BIO = 0, ARMOR_RAD = 0)
 
 	var/tint_down = TINT_LOW
 	flags_inv = HIDEEARS
@@ -314,8 +314,8 @@
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(ARMOR_BLUNT = 15, bullet = 10, energy = 10, bomb = 35, bio = 0, rad = 0)
-	armor_down = list(ARMOR_BLUNT = 35, bullet = 15, energy = 15, bomb = 50, bio = 0, rad = 0)
+	armor_up = list(ARMOR_BLUNT = 15, ARMOR_BULLET =  10, ARMOR_ENERGY =10, ARMOR_BOMB =35, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	armor_down = list(ARMOR_BLUNT = 35, ARMOR_BULLET = 15, ARMOR_ENERGY =15, ARMOR_BOMB =50, ARMOR_BIO = 0, ARMOR_RAD = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -388,11 +388,11 @@
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
 		ARMOR_BLUNT = 15,
-		bullet = 20,
-		energy = 20,
-		bomb = 75,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 20,
+		ARMOR_ENERGY =20,
+		ARMOR_BOMB =75,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
@@ -462,11 +462,11 @@
 	icon_state = "steelpot"
 	armor = list(
 		ARMOR_BLUNT = 10,
-		bullet = 15,
-		energy = 12,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 15,
+		ARMOR_ENERGY =12,
+		ARMOR_BOMB =50,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	) // slightly buffed IHS helmet minus energy resistance
 	flags_inv = BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
@@ -476,8 +476,8 @@
 	name = "altyn helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	armor_up = list(ARMOR_BLUNT = 5, bullet = 5, energy = 2, bomb = 30, bio = 0, rad = 0)
-	armor_down = list(ARMOR_BLUNT = 13, bullet = 13, energy = 7, bomb = 50, bio = 0, rad = 0)
+	armor_up = list(ARMOR_BLUNT = 5, ARMOR_BULLET = 5, ARMOR_ENERGY =2, ARMOR_BOMB =30, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	armor_down = list(ARMOR_BLUNT = 13, ARMOR_BULLET = 13, ARMOR_ENERGY =7, ARMOR_BOMB =50, ARMOR_BIO = 0, ARMOR_RAD = 0)
 	siemens_coefficient = 1
 	up = TRUE
 
@@ -493,11 +493,11 @@
 	icon_state = "maska"
 	armor_down = list(
 		ARMOR_BLUNT = 14,
-		bullet = 15,
-		energy = 7,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 15,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	) // superior ballistic protection, mediocre laser protection.
 
 /obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
@@ -513,11 +513,11 @@
 	siemens_coefficient = 0.9	//More conductive than most helmets
 	armor = list(
 		ARMOR_BLUNT = 1,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY =2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	style_coverage = COVERS_FACE|COVERS_HAIR
 
@@ -526,11 +526,11 @@
 	desc = "Armored helmet used by certain law enforcement agencies. It's hard to believe there's a human somewhere behind that."
 	armor = list(
 		ARMOR_BLUNT = 7,
-		bullet = 10,
-		energy = 10,
-		bomb = 30,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =30,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 
 /obj/item/clothing/head/armor/helmet/crusader
@@ -543,11 +543,11 @@
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
 	armor = list(
 		ARMOR_BLUNT = 10,
-		bullet = 20,
-		energy = 5,
-		bomb = 75,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 20,
+		ARMOR_ENERGY =5,
+		ARMOR_BOMB =75,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
@@ -562,11 +562,11 @@
 	siemens_coefficient = 1
 	armor = list(
 		ARMOR_BLUNT = 4,
-		bullet = 3,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY =0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 
 /obj/item/clothing/head/armor/helmet/tanker/green
@@ -596,19 +596,19 @@
 		)
 	armor_up = list(
 		ARMOR_BLUNT = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 20,
-		bio = 100,
-		rad = 50
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY =5,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 100,
+		ARMOR_RAD = 50
 		)
 	armor_down = list(
 		ARMOR_BLUNT = 7,
-		bullet = 10,
-		energy = 10,
-		bomb = 50,
-		bio = 100,
-		rad = 50)
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =50,
+		ARMOR_BIO = 100,
+		ARMOR_RAD = 50)
 	up = TRUE
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH

@@ -1,7 +1,7 @@
 
 #define ARMORID "armor-[blunt]-[slash]-[pointy]-[bullet]-[energy]-[electric]-[bomb]-[bio]-[chem]-[rad]"
 
-/proc/getArmor(blunt = 0, slash = 0, pointy = 0, bullet = 0, energy = 0, electric = 0, bomb = 0, bio = 0, chem = 0, rad = 0)
+/proc/getArmor(blunt = 0, slash = 0, pointy = 0, bullet = 0, energy =0, electric = 0, bomb =0, bio = 0, chem = 0, rad = 0)
 	. = locate(ARMORID)
 	if(!.)
 		. = new /datum/armor(blunt, slash, pointy, bullet, energy, electric, bomb, bio, chem, rad)
@@ -18,20 +18,20 @@
 	var/bio
 	var/rad
 
-/datum/armor/New(blunt = 0, slash = 0, pointy = 0, bullet = 0, energy = 0, electric = 0, bomb = 0, bio = 0, chem = 0, rad = 0)
+/datum/armor/New(blunt = 0, slash = 0, pointy = 0, bullet = 0, energy =0, electric = 0, bomb =0, bio = 0, chem = 0, rad = 0)
 	src.blunt = blunt
 	src.slash = slash
 	src.pointy = pointy
 	src.bullet = bullet
-	src.energy = energy
+	src.energy =energy
 	src.electric = electric
-	src.bomb = bomb
+	src.bomb =bomb
 	src.chem = chem
 	src.bio = bio
 	src.rad = rad
 	tag = ARMORID
 
-/datum/armor/proc/modifyRating(blunt = 0,slash = 0, pointy = 0, bullet = 0, energy = 0, electric = 0, bomb = 0, bio = 0, chem = 0, rad = 0)
+/datum/armor/proc/modifyRating(blunt = 0,slash = 0, pointy = 0, bullet = 0, energy = 0, electric = 0, bomb =0, bio = 0, chem = 0, rad = 0)
 	return getArmor(src.blunt+blunt,src.slash + slash, src.pointy + pointy, src.bullet+bullet, src.energy+energy, src.electric+electric, src.bomb+bomb, src.bio+bio, src.chem+chem,src.rad+rad)
 
 /datum/armor/proc/modifyAllRatings(modifier = 0)

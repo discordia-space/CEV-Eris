@@ -53,8 +53,10 @@
 	RETURN_TYPE(/list)
 	return list(src)
 
-/// Will return a list of all objects and their combined armor rating, Won't call blockDamages
-/atom/proc/getDamageBlockerRatings(list/armorToDam, armorDiv, woundMult, defZone)
+/// Will return a list in the format of armor with armor averages of all relevant blockers on said atom
+/atom/proc/getDamageBlockerRatings(list/relevantTypes)
+	RETURN_TYPE(/list)
+	return list()
 
 
 

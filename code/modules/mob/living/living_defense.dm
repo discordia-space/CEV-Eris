@@ -46,55 +46,47 @@ armorType defines the armorType that will block all the damTypes that it has ass
 	if(totalDmg <= 0)
 		return FALSE
 
-	var/list/atom/damageBlockers = list()
-	/// Retrieve all relevanta damage blockers , its why we give them the dmgtypes list
-	damageBlockers = getDamageBlockers(armorToDam, armorDiv, woundMult, defZone)
-	for(var/atom in damageBlockers)
-		message_admins("Blocker : [atom]")
-	/// We are going to order the list to be traversed from right to left , right representing the outermost layers and left the innermost
-	/// List for insertion-sort. Upper objects are going to be last , lower ones are going to be first when blocking
-	var/list/blockersTemp = list(
-		/atom, /// Fallbacks
-		/obj/item/organ/internal, /// For when i rework applyDamage
-		/mob,
-		/obj/item,
-		/obj/item/organ/external,
-		/obj/item/clothing,
-		/obj/item/armor_component,
-		/obj/item/robot_parts/robot_component/armour,
-	)
+	/// If we have a def zone.
+	if(defZone)
+		var/list/atom/damageBlockers = list()
+		/// Retrieve all relevanta damage blockers , its why we give them the dmgtypes list
+		damageBlockers = getDamageBlockers(armorToDam, armorDiv, woundMult, defZone)
 
-	var/list/atom/newBlockers = list()
-	for(var/i = length(blockersTemp); i > 1; i--)
-		var/path = blockersTemp[i]
-		for(var/atom/blocker in damageBlockers)
-			if(istype(blocker, path))
-				newBlockers |= blocker
+		for(var/atom in damageBlockers)
+			message_admins("Blocker : [atom]")
+		/// We are going to order the list to be traversed from right to left , right representing the outermost layers and left the innermost
+		/// List for insertion-sort. Upper objects are going to be last , lower ones are going to be first when blocking
+		var/list/blockersTemp = list(
+			/atom, /// Fallbacks
+			/obj/item/organ/internal, /// For when i rework applyDamage
+			/mob,
+			/obj/item,
+			/obj/item/organ/external,
+			/obj/item/clothing,
+			/obj/item/armor_component,
+			/obj/item/robot_parts/robot_component/armour,
+		)
 
-	for(var/atom/blocker in newBlockers)
-		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
-		message_admins("Using blocker, blocker:[blocker]")
+		var/list/atom/newBlockers = list()
+		for(var/i = length(blockersTemp); i > 1; i--)
+			var/path = blockersTemp[i]
+			for(var/atom/blocker in damageBlockers)
+				if(istype(blocker, path))
+					newBlockers |= blocker
 
-	/*
-	// from 1 to len now
-	for(var/i = 1 to length(blockersTemp))
-		var/path = blockersTemp[i]
-		for(var/atom/thing in blockersTemp[path])
-			newBlockers.Add(thing)
+		for(var/atom/blocker in newBlockers)
+			blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
+			message_admins("Using blocker, blocker:[blocker]")
+	/// handling for averaging out all armor values
+	else
+		var/list/relevantTypes = list()
+		for(var/armorType in armorToDam)
+			relevantTypes.Add(armorType)
+		var/list/receivedArmor = getDamageBlockerRatings(relevantTypes)
+		for(var/armorType in armorToDam)
+			for(var/list/damageElement in armorToDam[armorType])
+				damageElement[DAMVALUE] = max(damageElement[DAMVALUE] - receivedArmor[armorType], 0)
 
-	message_admins("L=[length(damageBlockers)]")
-	//damageBlockers = newBlockers
-
-	/// from right(outermost) to left(innermost)
-	var/j = length(damageBlockers)
-	message_admins(j)
-	while(j > 1)
-		var/atom/blocker = damageBlockers[j--]
-		if(client)
-			message_admins("Using blocker count [j], blocker:[blocker]")
-		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
-
-	*/
 	for(var/armorType in armorToDam)
 		for(var/i=1 to length(armorToDam[armorType]))
 			var/list/damageElement = armorToDam[armorType][i]
@@ -106,6 +98,8 @@ armorType defines the armorType that will block all the damTypes that it has ass
 				adjustHalLoss(blocked/5)
 			apply_damage(damageElement[DAMVALUE], damageElement[DAMTYPE], defZone, armorDiv, woundMult, armorType == ARMOR_SLASH, armorType == ARMOR_SLASH, usedWeapon)
 			dealtDamage += damageElement[DAMVALUE]
+
+
 
 	var/effective_armor = (1 - dealtDamage / totalDmg) * 100
 

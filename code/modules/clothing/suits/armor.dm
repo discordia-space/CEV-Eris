@@ -30,11 +30,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 7,
-		bullet = 10,
-		energy = 10,
-		bomb = 25,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 10,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =25,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	matter = list(
 		MATERIAL_STEEL = 8,
@@ -97,11 +97,11 @@
 	icon_state = "armor_handmade"
 	armor = list(
 		ARMOR_BLUNT = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 20,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 7,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 100
 
@@ -130,11 +130,11 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
 		ARMOR_BLUNT = 13,
-		bullet = 23,
-		energy = 13,
-		bomb = 35,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 23,
+		ARMOR_ENERGY =13,
+		ARMOR_BOMB =35,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 600
 	slowdown = LIGHT_SLOWDOWN
@@ -165,11 +165,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 10,
-		bullet = 18,
-		energy = 7,
-		bomb = 30,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 18,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =30,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 
 /obj/item/clothing/suit/armor/flak/green
@@ -197,11 +197,11 @@
 	slowdown = 0.15
 	armor = list(
 		ARMOR_BLUNT = 14,
-		bullet = 30,
-		energy = 7,
-		bomb = 20,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 30,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 500
 	matter = list(
@@ -240,11 +240,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 13,
-		bullet = 20,
-		energy = 10,
-		bomb = 20,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 20,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 400
 	matter = list(
@@ -289,11 +289,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 5,
-		bullet = 4,
-		energy = 23,
-		bomb = 20,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 4,
+		ARMOR_ENERGY =23,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	siemens_coefficient = 0
 	price_tag = 650
@@ -334,11 +334,11 @@
 	item_state = "germancoat"
 	armor = list(
 		ARMOR_BLUNT = 7,
-		bullet = 10,
-		energy = 13,
-		bomb = 20,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 10,
+		ARMOR_ENERGY =13,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 
 /obj/item/clothing/suit/storage/greatcoat/onestar
@@ -353,11 +353,11 @@
 	price_tag = 2000
 	armor = list(
 		ARMOR_BLUNT = 3,
-		bullet = 12,
-		energy = 12,
-		bomb = 30,
-		bio = 5,
-		rad = 5
+		ARMOR_BULLET 12,
+		ARMOR_ENERGY =12,
+		ARMOR_BOMB =30,
+		ARMOR_BIO = 5,
+		ARMOR_RAD = 5
 	)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -383,11 +383,11 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
 		ARMOR_BLUNT = 23, //massive slowdown justifies
-		bullet = 28,
-		energy = 10,
-		bomb = 75,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 28,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =75,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	equip_delay = 2 SECONDS
 	price_tag = 500
@@ -419,11 +419,11 @@
 	flags_inv = NONE
 	armor = list(
 		ARMOR_BLUNT = 34,
-		bullet = 17,
-		energy = 17,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 17,
+		ARMOR_ENERGY =17,
+		ARMOR_BOMB =50,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	slowdown = LIGHT_SLOWDOWN // Very uncomfortable, but not that particularly heavy
 
@@ -435,11 +435,11 @@
 	flags_inv = HIDEJUMPSUIT
 	armor = list(
 		ARMOR_BLUNT = 16,
-		bullet = 24,
-		energy = 24,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 24,
+		ARMOR_ENERGY =24,
+		ARMOR_BOMB =50,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	price_tag = 800
 	slowdown = 0.3
@@ -454,11 +454,11 @@
 	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
 	armor = list( //Same stats as the standard vest only difference is that this one has storage
 		ARMOR_BLUNT = 7,
-		bullet = 10,
-		energy = 10,
-		bomb = 25,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 10,
+		ARMOR_ENERGY =10,
+		ARMOR_BOMB =25,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -495,11 +495,11 @@
 	item_state = "mercwebvest"
 	armor = list(
 		ARMOR_BLUNT = 25,
-		bullet = 28,
-		energy = 23,
-		bomb = 75,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 28,
+		ARMOR_ENERGY =23,
+		ARMOR_BOMB =75,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 
 /obj/item/clothing/suit/storage/vest/merc/full
@@ -518,11 +518,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 15,
-		bullet = 7,
-		energy = 7,
-		bomb = 50,
-		bio = 0,
-		rad = 80
+		ARMOR_BULLET 7,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 80
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	item_flags = DRAG_AND_DROP_UNEQUIP
@@ -542,11 +542,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 25,
-		bullet = 9,
-		energy = 9,
-		bomb = 75,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 9,
+		ARMOR_ENERGY =9,
+		ARMOR_BOMB =75,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	item_flags = DRAG_AND_DROP_UNEQUIP
@@ -567,11 +567,11 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 5,
+		ARMOR_ENERGY =5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	var/active = FALSE
 	var/entropy_value = 2
@@ -616,11 +616,11 @@
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		ARMOR_BLUNT = 10,
-		bullet = 18,
-		energy = 18,
-		bomb = 75,
-		bio = 0,
-		rad = 0
+		ARMOR_BULLET 18,
+		ARMOR_ENERGY =18,
+		ARMOR_BOMB =75,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
@@ -643,11 +643,11 @@
 		)
 	armor = list(
 		ARMOR_BLUNT = 12,
-		bullet = 7,
-		energy = 7,
-		bomb = 20,
-		bio = 100,
-		rad = 50
+		ARMOR_BULLET 7,
+		ARMOR_ENERGY =7,
+		ARMOR_BOMB =20,
+		ARMOR_BIO = 100,
+		ARMOR_RAD = 50
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
