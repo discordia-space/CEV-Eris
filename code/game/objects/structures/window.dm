@@ -333,7 +333,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 			// 20 in worst  case , 5 with 15 melee armor
 			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20 * (1 - victimToughness/toughnessDivisor) * healthRatio))), body_part, src, 1, 1, FALSE)
 	else
-		M.damage_through_armor(5, BRUTE, body_part, ARMOR_BLUNT) // just a scratch
+		M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,5))), body_part, src, 1, 1, FALSE)
 		tforce *= 2
 
 	if(reinf) tforce *= 0.25

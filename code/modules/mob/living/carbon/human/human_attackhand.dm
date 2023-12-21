@@ -43,8 +43,7 @@
 			playsound(loc, "punch", 25, 1, -1)
 
 			visible_message("\red <B>[H] has punched [src]!</B>")
-
-			damage_through_armor(damage, HALLOSS, affecting, ARMOR_BLUNT)
+			damage_through_armor(list(ARMOR_BLUNT=list(DELEM(HALLOSS,damage))), affecting, src, 1, 1, FALSE)
 			if(damage >= 9)
 				visible_message("\red <B>[H] has weakened [src]!</B>")
 				apply_effect(4, WEAKEN, getarmor(affecting, ARMOR_BLUNT))
@@ -234,7 +233,7 @@
 			attack.apply_effects(H, src, getarmor(affecting, ARMOR_BLUNT), stat_damage, hit_zone)
 			var/damage = list(ARMOR_BLUNT = list(DELEM(attack.deal_halloss ? HALLOSS : BRUTE, real_damage)))
 			// Finally, apply damage to target
-			damage_through_armor(damage, affecting, src, 1, 1, FALSE)
+			damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), affecting, src, 1, 1, FALSE)
 			hit_impact(real_damage, get_step(H, src))
 
 		if(I_DISARM)

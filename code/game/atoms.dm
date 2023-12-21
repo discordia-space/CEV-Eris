@@ -48,9 +48,15 @@
 /atom/proc/getWeight()
 	return initial(weight)
 
+/// Will return any object that should call blockDamages and mofify the damage list
 /atom/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
 	RETURN_TYPE(/list)
 	return list(src)
+
+/// Will return a list of all objects and their combined armor rating, Won't call blockDamages
+/atom/proc/getDamageBlockerRatings(list/armorToDam, armorDiv, woundMult, defZone)
+
+
 
 /// This one works by list reference , so no need to return , but just incase...
 /atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)

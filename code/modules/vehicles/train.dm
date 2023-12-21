@@ -53,12 +53,12 @@
 			M.apply_damages(22 / move_delay)	// and do damage according to how fast the train is going
 
 			var/damage = rand(5,15)
-			M.damage_through_armor( 2  * damage / move_delay, BRUTE, BP_HEAD, ARMOR_BLUNT)
-			M.damage_through_armor( 2  * damage / move_delay, BRUTE, BP_CHEST, ARMOR_BLUNT)
-			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_L_LEG, ARMOR_BLUNT)
-			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_R_LEG, ARMOR_BLUNT)
-			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_L_ARM, ARMOR_BLUNT)
-			M.damage_through_armor(0.5 * damage / move_delay, BRUTE, BP_R_ARM, ARMOR_BLUNT)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 2))), BP_HEAD, src, 1, 1, FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 2))), BP_CHEST, src, 1, 1, FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_L_ARM, src, 1, 1, FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_R_ARM, src, 1, 1, FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_L_LEG, src, 1, 1, FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_R_LEG, src, 1, 1, FALSE)
 
 			if(ishuman(load))
 				var/mob/living/D = load

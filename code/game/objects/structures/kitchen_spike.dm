@@ -32,7 +32,7 @@
 	if(do_after(user, 80))
 		if(spike(target))
 			visible_message(SPAN_DANGER("[user] has forced [target] onto \the [src], killing them instantly!"))
-			target.damage_through_armor(201, BRUTE, BP_CHEST)
+			target.damage_through_armor(list(ARMOR_POINTY=list(DELEM(BRUTE, 200))), BP_CHEST, src, 1, 1, FALSE)
 			for(var/obj/item/thing in target)
 				if(thing.is_equipped())
 					target.drop_from_inventory(thing)

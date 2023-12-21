@@ -146,13 +146,12 @@
 		H.apply_damage(rand(1,5), BRUTE, pick(parts), used_weapon = "Crashed by a train")
 
 	var/damage = rand(1,3)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_BLUNT)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_BLUNT)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_BLUNT)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_BLUNT)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_BLUNT)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_BLUNT)
-
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 2))), BP_HEAD, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 2))), BP_CHEST, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_L_ARM, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_R_ARM, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_L_LEG, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_R_LEG, src, 1, 1, FALSE)
 
 /obj/vehicle/train/cargo/trolley/RunOver(var/mob/living/carbon/human/H)
 	..()

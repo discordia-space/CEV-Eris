@@ -142,7 +142,7 @@
 	target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 	//deal damage AFTER the kick
 	var/damage = max(1, min(30, (attacker.stats.getStat(STAT_ROB) / 3)))
-	target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_BLUNT)
+	target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), BP_CHEST, src, 1, 1, FALSE)
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")
@@ -162,7 +162,7 @@
 		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
 		target.SpinAnimation(5,1)
 		var/damage = min(80, attacker.stats.getStat(STAT_ROB) + 15) //WE ARE GONNA KILL YOU
-		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_BLUNT) //crunch
+		target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), BP_CHEST, src, 1, 1, FALSE)
 		attacker.Weaken(2)
 		target.Stun(6)
 		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
@@ -203,8 +203,8 @@
 	if(istype(hat))
 		damage += dhTotalDamageStrict(hat.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)) * 3
 
-	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_BLUNT)
-	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_BLUNT)
+	target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), BP_HEAD, src, 1, 1, FALSE)
+	attacker.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,10))), BP_HEAD, src, 1, 1, FALSE)
 	target.make_dizzy(15)
 
 	if(!victim_armor && target.headcheck(BP_HEAD) && prob(damage))
@@ -267,7 +267,7 @@
 	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
 		target.forceMove(get_step(target, fireman_dir))
 
-	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_BLUNT)
+	target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(HALLOSS,damage))), BP_CHEST, src, 1, 1, FALSE)
 
 	target.Weaken(1)
 	playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)

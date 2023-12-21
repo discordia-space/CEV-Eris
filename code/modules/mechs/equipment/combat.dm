@@ -1016,12 +1016,12 @@
 				targ.visible_message(SPAN_DANGER("[targ] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 				targ.Weaken(1)
 				targ.throw_at(get_turf_away_from_target_complex(target,user,3), 5, 1, loc)
-				targ.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_BLUNT, 1, src, FALSE, FALSE, 1)
+				targ.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20))), BP_CHEST, src, 1, 1, FALSE)
 			else
 				knockable.visible_message(SPAN_DANGER("[knockable] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 				knockable.Weaken(1)
 				knockable.throw_at(get_turf_away_from_target_complex(target,user,3), 3, 1, loc)
-				knockable.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_BLUNT, 2, src, FALSE, FALSE, 1)
+				knockable.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20))), BP_CHEST, src, 1, 1, FALSE)
 
 		if(length(targets))
 			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 1)

@@ -73,7 +73,7 @@
 		if(victim.stat == CONSCIOUS && victim.faction != HIVE_FACTION)
 			victim.Weaken(5)
 			step_away(victim, master)
-			victim.damage_through_armor(10, BURN, BP_HEAD, ARMOR_ENERGY)
+			victim.damage_through_armor(list(ARMOR_ENERGY=list(DELEM(BURN,10))), BP_HEAD, src, 1, 1, FALSE)
 
 	set_cooldown()
 

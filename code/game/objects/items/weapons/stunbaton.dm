@@ -13,6 +13,12 @@
 			DELEM(BRUTE,8),
 		)
 	)
+	var/list/toggledDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(HALLOSS,40),
+			DELEM(BURN, 10)
+		)
+	)
 	sharp = FALSE
 	edge = FALSE
 	throwforce = WEAPON_FORCE_PAINFUL
@@ -30,6 +36,14 @@
 
 /obj/item/melee/baton/Initialize()
 	. = ..()
+	if(!GLOB.melleExtrasCache)
+		GLOB.melleExtrasCache = list()
+	if(!GLOB.melleExtrasCache["[type]-t"])
+		GLOB.melleExtrasCache["[type]-t"] = toggledDamages
+	if(objectFlags & OF_UNIQUEMELLEHANDLER || max_upgrades)
+		toggledDamages = GLOB.melleExtrasCache["[type]-t"]:Copy()
+	else
+		toggledDamages = GLOB.melleExtrasCache["[type]-t"]
 	if(!cell && suitable_cell && starting_cell)
 		cell = new starting_cell(src)
 	update_icon()
@@ -45,18 +59,10 @@
 	status = s
 	tool_qualities = status ? list(QUALITY_PULSING = 1) : null
 	if(status)
-		melleDamages = list(
-		ARMOR_ENERGY = list(
-			DELEM(HALLOSS,30),
-			DELEM(HALLOSS,10),
-			DELEM(BURN,10)
-		))
+		melleDamages = GLOB.melleDamagesCache[type]
 	else
-		melleDamages = list(
-		ARMOR_BLUNT = list(
-			DELEM(BRUTE,8)
-		)
-	)
+		melleDamages = GLOB.melleExtrasCache["[type]-t"]
+	refresh_upgrades()
 	update_icon()
 
 /obj/item/melee/baton/handle_atom_del(atom/A)

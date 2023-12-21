@@ -80,7 +80,7 @@
 					to_chat(H, SPAN_DANGER("You are get hurt by holy light!"))
 				else
 					burn_damage_done = martyr.burn_damage / get_dist(src, L)
-					L.damage_through_armor(burn_damage_done, BURN)
+					L.damage_through_armor(list(ARMOR_ENERGY=list(DELEM(BURN,burn_damage_done))), null, C, 1, 1, FALSE)
 
 			qdel(martyr)
 			C.upgrade = null

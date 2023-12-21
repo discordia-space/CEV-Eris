@@ -188,7 +188,7 @@
 		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_BLUNT))
 		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_BLUNT))
 		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_BLUNT))
-		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_BLUNT)
+		occupant.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
 
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
 
@@ -200,7 +200,7 @@
 			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_BLUNT))
 			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_BLUNT))
 			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_BLUNT))
-			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_BLUNT)
+			victim.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
 
 		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
 

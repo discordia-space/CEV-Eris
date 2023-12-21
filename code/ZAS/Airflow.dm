@@ -227,11 +227,9 @@ obj/item/check_airflow_movable(n)
 		bloody_body(src)
 	var/b_loss = airflow_speed * vsc.airflow_damage
 
-	damage_through_armor(b_loss/3, BRUTE, BP_HEAD, ARMOR_BLUNT, 1, "Airflow")
-
-	damage_through_armor(b_loss/3, BRUTE, BP_CHEST, ARMOR_BLUNT, 1, "Airflow")
-
-	damage_through_armor(b_loss/3, BRUTE, BP_GROIN, ARMOR_BLUNT, 1, "Airflow")
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,b_loss/3))), BP_HEAD, "Airflow", 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,b_loss/3))), BP_CHEST, "Airflow", 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,b_loss/3))), BP_GROIN, "Airflow", 1, 1, FALSE)
 
 	if(airflow_speed > 10)
 		Paralyse(round(airflow_speed * vsc.airflow_stun))
