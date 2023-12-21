@@ -30,7 +30,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 7,
-		ARMOR_BULLET 10,
+		ARMOR_BULLET = 10,
 		ARMOR_ENERGY =10,
 		ARMOR_BOMB =25,
 		ARMOR_BIO = 0,
@@ -97,7 +97,7 @@
 	icon_state = "armor_handmade"
 	armor = list(
 		ARMOR_BLUNT = 7,
-		ARMOR_BULLET 7,
+		ARMOR_BULLET = 7,
 		ARMOR_ENERGY =7,
 		ARMOR_BOMB =20,
 		ARMOR_BIO = 0,
@@ -130,7 +130,7 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
 		ARMOR_BLUNT = 13,
-		ARMOR_BULLET 23,
+		ARMOR_BULLET = 23,
 		ARMOR_ENERGY =13,
 		ARMOR_BOMB =35,
 		ARMOR_BIO = 0,
@@ -165,7 +165,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 10,
-		ARMOR_BULLET 18,
+		ARMOR_BULLET = 18,
 		ARMOR_ENERGY =7,
 		ARMOR_BOMB =30,
 		ARMOR_BIO = 0,
@@ -197,7 +197,7 @@
 	slowdown = 0.15
 	armor = list(
 		ARMOR_BLUNT = 14,
-		ARMOR_BULLET 30,
+		ARMOR_BULLET = 30,
 		ARMOR_ENERGY =7,
 		ARMOR_BOMB =20,
 		ARMOR_BIO = 0,
@@ -240,7 +240,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 13,
-		ARMOR_BULLET 20,
+		ARMOR_BULLET = 20,
 		ARMOR_ENERGY =10,
 		ARMOR_BOMB =20,
 		ARMOR_BIO = 0,
@@ -289,7 +289,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 5,
-		ARMOR_BULLET 4,
+		ARMOR_BULLET = 4,
 		ARMOR_ENERGY =23,
 		ARMOR_BOMB =20,
 		ARMOR_BIO = 0,
@@ -334,7 +334,7 @@
 	item_state = "germancoat"
 	armor = list(
 		ARMOR_BLUNT = 7,
-		ARMOR_BULLET 10,
+		ARMOR_BULLET = 10,
 		ARMOR_ENERGY =13,
 		ARMOR_BOMB =20,
 		ARMOR_BIO = 0,
@@ -353,7 +353,7 @@
 	price_tag = 2000
 	armor = list(
 		ARMOR_BLUNT = 3,
-		ARMOR_BULLET 12,
+		ARMOR_BULLET = 12,
 		ARMOR_ENERGY =12,
 		ARMOR_BOMB =30,
 		ARMOR_BIO = 5,
@@ -383,7 +383,7 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
 		ARMOR_BLUNT = 23, //massive slowdown justifies
-		ARMOR_BULLET 28,
+		ARMOR_BULLET = 28,
 		ARMOR_ENERGY =10,
 		ARMOR_BOMB =75,
 		ARMOR_BIO = 0,
@@ -419,7 +419,7 @@
 	flags_inv = NONE
 	armor = list(
 		ARMOR_BLUNT = 34,
-		ARMOR_BULLET 17,
+		ARMOR_BULLET = 17,
 		ARMOR_ENERGY =17,
 		ARMOR_BOMB =50,
 		ARMOR_BIO = 0,
@@ -435,7 +435,7 @@
 	flags_inv = HIDEJUMPSUIT
 	armor = list(
 		ARMOR_BLUNT = 16,
-		ARMOR_BULLET 24,
+		ARMOR_BULLET = 24,
 		ARMOR_ENERGY =24,
 		ARMOR_BOMB =50,
 		ARMOR_BIO = 0,
@@ -454,7 +454,7 @@
 	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
 	armor = list( //Same stats as the standard vest only difference is that this one has storage
 		ARMOR_BLUNT = 7,
-		ARMOR_BULLET 10,
+		ARMOR_BULLET = 10,
 		ARMOR_ENERGY =10,
 		ARMOR_BOMB =25,
 		ARMOR_BIO = 0,
@@ -495,7 +495,7 @@
 	item_state = "mercwebvest"
 	armor = list(
 		ARMOR_BLUNT = 25,
-		ARMOR_BULLET 28,
+		ARMOR_BULLET = 28,
 		ARMOR_ENERGY =23,
 		ARMOR_BOMB =75,
 		ARMOR_BIO = 0,
@@ -518,7 +518,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 15,
-		ARMOR_BULLET 7,
+		ARMOR_BULLET = 7,
 		ARMOR_ENERGY =7,
 		ARMOR_BOMB =50,
 		ARMOR_BIO = 0,
@@ -542,7 +542,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 25,
-		ARMOR_BULLET 9,
+		ARMOR_BULLET = 9,
 		ARMOR_ENERGY =9,
 		ARMOR_BOMB =75,
 		ARMOR_BIO = 0,
@@ -567,7 +567,7 @@
 	blood_overlay_type = "armor"
 	armor = list(
 		ARMOR_BLUNT = 5,
-		ARMOR_BULLET 5,
+		ARMOR_BULLET = 5,
 		ARMOR_ENERGY =5,
 		ARMOR_BOMB =0,
 		ARMOR_BIO = 0,
@@ -616,7 +616,7 @@
 	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
 	armor = list(
 		ARMOR_BLUNT = 10,
-		ARMOR_BULLET 18,
+		ARMOR_BULLET = 18,
 		ARMOR_ENERGY =18,
 		ARMOR_BOMB =75,
 		ARMOR_BIO = 0,
@@ -643,7 +643,7 @@
 		)
 	armor = list(
 		ARMOR_BLUNT = 12,
-		ARMOR_BULLET 7,
+		ARMOR_BULLET =7,
 		ARMOR_ENERGY =7,
 		ARMOR_BOMB =20,
 		ARMOR_BIO = 100,

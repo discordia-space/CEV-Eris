@@ -125,7 +125,7 @@ GLOBAL_LIST(melleDamagesCache)
 /obj/item/getDamageBlockerRatings(list/relevantTypes)
 	var/list/returnList = list()
 	for(var/armorType in relevantTypes)
-		returnlist[armorType] = armor.getRating(armorType)
+		returnList[armorType] = armor.getRating(armorType)
 	return returnList
 
 

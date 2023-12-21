@@ -115,7 +115,7 @@ meteor_act
 	return blockers
 
 /mob/living/carbon/human/getDamageBlockerRatings(list/relevantTypes)
-	var/list/returnlist = ..()
+	var/list/returnList = ..()
 
 	for(var/obj/item/clothing/covering in list(head,wear_mask,wear_suit,w_uniform,gloves,shoes))
 		if(QDELETED(covering))

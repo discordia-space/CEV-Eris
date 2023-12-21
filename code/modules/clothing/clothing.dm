@@ -83,7 +83,7 @@
 
 /proc/getCoveredBPCount(BodypartsVar)
 	var/count = 0
-	for(var/bodypart in ALL_CLOTH_BPS)
+	for(var/bodypart in ALL_CLOTH_BP)
 		if(BodypartsVar & bodypart)
 			count++
 	return count
