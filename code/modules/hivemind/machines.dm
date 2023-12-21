@@ -157,7 +157,7 @@
 	rebuild_anim.anchored = TRUE
 	rebuild_anim.density = FALSE
 	addtimer(CALLBACK(src, PROC_REF(finish_rebuild), new_machine_path), time_in_seconds SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
 
 
 /obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)

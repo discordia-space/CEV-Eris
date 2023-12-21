@@ -201,7 +201,7 @@ meteor_act
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(istype(C) && C.armor)
-				protection += C.getArmor(type, def_zone)
+				protection += C.getArmorRating(type, def_zone)
 
 	var/obj/item/shield/shield = has_shield()
 

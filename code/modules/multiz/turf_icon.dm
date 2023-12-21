@@ -22,9 +22,11 @@
 			return //turf below will update this one
 
 	var/turf/below = GetBelow(src)
+	/*
 	if (!below || istype(below, /turf/space))
 		ChangeTurf(/turf/space)
 		return
+	*/
 
 	vis_contents.Cut()
 	if (below)
@@ -47,10 +49,14 @@
 			return //turf below will update this one
 
 	overlays.Cut()
+
 	var/turf/below = GetBelow(src)
+	/*
 	if (istype(below, /turf/simulated/open))
 		ChangeTurf(/turf/simulated/open)
 		return
+	*/
+
 
 	vis_contents.Cut()
 	if (below)

@@ -91,8 +91,8 @@
 
 		messageturfs += turf
 
-	
-	
+
+
 	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
 		if(!M.client)
 			continue

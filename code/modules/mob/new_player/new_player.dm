@@ -252,15 +252,15 @@
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)	
+	if(!job)
 		return FALSE
-	if(!job.is_position_available())	
+	if(!job.is_position_available())
 		return FALSE
-	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title])	
+	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title])
 		return FALSE
 	if(!SSjob.ckey_to_job_to_can_play[client.ckey][job.title])
 		return FALSE
-	if(jobban_isbanned(src,rank))	
+	if(jobban_isbanned(src,rank))
 		return FALSE
 	return TRUE
 
@@ -405,7 +405,7 @@
 
 	sound_to(src, sound(null, repeat = 0, wait = 0, volume = 85, channel = GLOB.lobby_sound_channel))
 
-	new_character.name = real_name
+	new_character.name = client.prefs.real_name
 	new_character.b_type = client.prefs.b_type
 	new_character.sync_organ_dna()
 	if(client.prefs.disabilities)

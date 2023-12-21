@@ -107,8 +107,9 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 /HUD_element/Click(location,control,params)
 	var/procedure = getClickProc()
 	if (procedure)
+		message_admins("Calling [procedure], holder is [_holder]")
 		if(_holder)
-			call(_holder, procedure)(arglist(_procArguments))
+			call(_holder, procedure)(src, usr, location, control, params)
 		else
 			call(procedure)(src, usr, location, control, params)
 

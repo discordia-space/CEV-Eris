@@ -49,46 +49,47 @@ armorType defines the armorType that will block all the damTypes that it has ass
 	var/list/atom/damageBlockers = list()
 	/// Retrieve all relevanta damage blockers , its why we give them the dmgtypes list
 	damageBlockers = getDamageBlockers(armorToDam, armorDiv, woundMult, defZone)
+	for(var/atom in damageBlockers)
+		message_admins("Blocker : [atom]")
 	/// We are going to order the list to be traversed from right to left , right representing the outermost layers and left the innermost
 	/// List for insertion-sort. Upper objects are going to be last , lower ones are going to be first when blocking
 	var/list/blockersTemp = list(
 		/atom = list(), /// Fallbacks
 		/obj/item/organ/internal = list(), /// For when i rework applyDamage
-		/obj/item/organ/external = list(),
 		/mob = list(),
+		/obj/item/organ/external = list(),
+		/obj/item = list(),
 		/obj/item/clothing = list(),
 		/obj/item/armor_component = list(),
 		/obj/item/robot_parts/robot_component/armour = list()
 	)
 
 	var/list/atom/newBlockers = list()
-	for(var/atom/blocker in damageBlockers)
-		/// reverse order
-		for(var/i = length(blockersTemp) to 1)
-			var/path = blockersTemp[i]
+	for(var/i = length(blockersTemp) to 1)
+		var/path = blockersTemp[i]
+		for(var/atom/blocker in damageBlockers)
 			if(istype(blocker, path))
-				blockersTemp[path] += blocker
-				break
+				blockersTemp[path].Add(blocker)
+				damageBlockers.Remove(blocker)
 
 	// from 1 to len now
 	for(var/i = 1 to length(blockersTemp))
 		var/path = blockersTemp[i]
-		for(var/thing in blockersTemp[path])
+		for(var/atom/thing in blockersTemp[path])
 			newBlockers.Add(thing)
 
+	message_admins("L=[length(damageBlockers)]")
 	damageBlockers = newBlockers
 
 	/// from right(outermost) to left(innermost)
 	var/j = length(damageBlockers)
+	message_admins(j)
 	while(j > 1)
 		var/atom/blocker = damageBlockers[j--]
+		if(client)
+			message_admins("Using blocker count [j], blocker:[blocker]")
 		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
 
-	/*
-	for(var/i = length(damageBlockers) to 1)
-		var/atom/blocker = damageBlockers[i]
-		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
-	*/
 
 	for(var/armorType in armorToDam)
 		for(var/i=1 to length(armorToDam[armorType]))

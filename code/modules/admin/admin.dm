@@ -881,41 +881,6 @@ ADMIN_VERB_ADD(/datum/admins/proc/spawn_atom, R_DEBUG, FALSE)
 
 	M.mind.edit_memory()
 
-/*
-ADMIN_VERB_ADD(/datum/admins/proc/show_game_mode, R_ADMIN, FALSE)
-//Configuration window for the current game mode.
-/datum/admins/proc/show_game_mode()
-	set category = "Admin"
-	set desc = "Show the current round storyteller."
-	set name = "Show Storyteller"
-
-	if(!get_storyteller())
-		alert("Not before roundstart!", "Alert")
-		return
-
-	var/out = "<font size=3><b>Current storyteller: [get_storyteller().name] (<a href='?src=\ref[get_storyteller()];debug_antag=self'>[get_storyteller().config_tag]</a>)</b></font><br/>"
-	out += "<hr>"
-
-	if(SSticker.mode.antag_tags && SSticker.mode.antag_tags.len)
-		out += "<b>Core antag templates:</b></br>"
-		for(var/antag_tag in SSticker.mode.antag_tags)
-			out += "<a href='?src=\ref[SSticker.mode];debug_antag=[antag_tag]'>[antag_tag]</a>.</br>"
-
-	out += "<b>All antag ids:</b>"
-	if(SSticker.mode.antag_templates && SSticker.mode.antag_templates.len).
-		for(var/datum/antagonist/antag in SSticker.mode.antag_templates)
-			antag.update_current_antag_max()
-			out += " <a href='?src=\ref[SSticker.mode];debug_antag=[antag.id]'>[antag.id]</a>"
-			out += " ([antag.get_antag_count()]/[antag.cur_max]) "
-			out += " <a href='?src=\ref[SSticker.mode];remove_antag_type=[antag.id]'>\[-\]</a><br/>"
-	else
-		out += " None."
-	out += " <a href='?src=\ref[SSticker.mode];add_antag_type=1'>\[+\]</a><br/>"
-
-	usr << browse(out, "window=edit_mode[src]")
-*/
-
-
 /datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"

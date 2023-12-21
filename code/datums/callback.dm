@@ -161,6 +161,7 @@
 	// if(datum_flags & DF_VAR_EDITED)
 	// 	return WrapAdminProcCall(object, delegate, calling_arguments)
 	if (object == GLOBAL_PROC)
+		message_admins("Attemping to call global proc [delegate]")
 		return call(delegate)(arglist(calling_arguments))
 	return call(object, delegate)(arglist(calling_arguments))
 
