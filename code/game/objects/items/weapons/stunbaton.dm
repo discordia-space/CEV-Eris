@@ -40,7 +40,7 @@
 		GLOB.melleExtrasCache = list()
 	if(!GLOB.melleExtrasCache["[type]-t"])
 		GLOB.melleExtrasCache["[type]-t"] = toggledDamages
-	if(objectFlags & OF_UNIQUEMELLEHANDLER || max_upgrades)
+	if(objectFlags & OF_UNIQUEMELLEHANDLER || maxUpgrades)
 		toggledDamages = GLOB.melleExtrasCache["[type]-t"]:Copy()
 	else
 		toggledDamages = GLOB.melleExtrasCache["[type]-t"]

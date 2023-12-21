@@ -54,8 +54,8 @@ var/list/tts_seeds = list()
 		tts_seeds += seed_name
 		tts_seeds[seed_name] = list("value" = seed_value, "category" = seed_category, "gender" = seed_gender_restriction)
 
-		call(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
-		call(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
+		call_ext(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
+		call_ext(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
 
 
 /proc/get_tts(message, seed = TTS_SEED_DEFAULT_MALE)
