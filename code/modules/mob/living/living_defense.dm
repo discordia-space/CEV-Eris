@@ -54,24 +54,28 @@ armorType defines the armorType that will block all the damTypes that it has ass
 	/// We are going to order the list to be traversed from right to left , right representing the outermost layers and left the innermost
 	/// List for insertion-sort. Upper objects are going to be last , lower ones are going to be first when blocking
 	var/list/blockersTemp = list(
-		/atom = list(), /// Fallbacks
-		/obj/item/organ/internal = list(), /// For when i rework applyDamage
-		/mob = list(),
-		/obj/item/organ/external = list(),
-		/obj/item = list(),
-		/obj/item/clothing = list(),
-		/obj/item/armor_component = list(),
-		/obj/item/robot_parts/robot_component/armour = list()
+		/atom, /// Fallbacks
+		/obj/item/organ/internal, /// For when i rework applyDamage
+		/mob,
+		/obj/item,
+		/obj/item/organ/external,
+		/obj/item/clothing,
+		/obj/item/armor_component,
+		/obj/item/robot_parts/robot_component/armour,
 	)
 
 	var/list/atom/newBlockers = list()
-	for(var/i = length(blockersTemp) to 1)
+	for(var/i = length(blockersTemp); i > 1; i--)
 		var/path = blockersTemp[i]
 		for(var/atom/blocker in damageBlockers)
 			if(istype(blocker, path))
-				blockersTemp[path].Add(blocker)
-				damageBlockers.Remove(blocker)
+				newBlockers |= blocker
 
+	for(var/atom/blocker in newBlockers)
+		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
+		message_admins("Using blocker, blocker:[blocker]")
+
+	/*
 	// from 1 to len now
 	for(var/i = 1 to length(blockersTemp))
 		var/path = blockersTemp[i]
@@ -79,7 +83,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 			newBlockers.Add(thing)
 
 	message_admins("L=[length(damageBlockers)]")
-	damageBlockers = newBlockers
+	//damageBlockers = newBlockers
 
 	/// from right(outermost) to left(innermost)
 	var/j = length(damageBlockers)
@@ -90,7 +94,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 			message_admins("Using blocker count [j], blocker:[blocker]")
 		blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
 
-
+	*/
 	for(var/armorType in armorToDam)
 		for(var/i=1 to length(armorToDam[armorType]))
 			var/list/damageElement = armorToDam[armorType][i]

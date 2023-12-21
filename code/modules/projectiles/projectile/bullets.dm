@@ -43,7 +43,7 @@
 	if(istype(A, /mob/living/exosuit))
 		return 1 //exosuits have their own penetration handling
 
-	var/blocked_damage = 0
+	var/blocked_damage = 0.0001
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
 		blocked_damage = round(W.material.integrity / 8)
