@@ -14,6 +14,7 @@
 #define FULL_BODY   0xFFFF
  CLOTH COVERING DEFINES FOR CONVENIENCE */
 
+GLOBAL_LIST(armorDegrdCache)
 /obj/item/armor_component
 	name = "Buggy armor plate"
 	desc = "You shouldn't see this subtype... annoy SPCR to fix his code."
@@ -40,8 +41,8 @@
 		ARMOR_RAD = 0
 	)
 	/// Defines damage degradation from various damage sources to the armor's health , multiplied agaisnt the projectile's damage. Global because having
-	/// Multiple of this would be so bad on memory. Make custom subtypes for snowflake armor Degradations - SPCR 2023
-	var/global/list/armorDegradation = list(
+	/// Multiple of this would be so bad on memory.
+	var/list/armorDegradation = list(
 		ARMOR_BLUNT = 1,
 		ARMOR_SLASH = 1,
 		ARMOR_POINTY = 1,
@@ -73,6 +74,13 @@
 	/// Don't set material if you don't want to do anything with material value grabs
 	if(!material)
 		return ..()
+	if(!GLOB.armorDegrdCache)
+		GLOB.armorDegrdCache = list()
+	if(!GLOB.armorDegrdCache[type])
+		GLOB.armorDegrdCache = armorDegradation
+	else
+		del(armorDegradation)
+		armorDegradation = GLOB.armorDegrdCache
 	/// Set armors before they're converted to the armor datum
 	material = get_material_by_name(material)
 	for(var/armorType in material.armor)
@@ -133,7 +141,7 @@
 	name = "Armor plate"
 	desc = "A very basic armor plate"
 	covering = UPPER_TORSO | LOWER_TORSO
-	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT | CF_ARMOR_DEG_LINEAR
 	/// A basic armor will have a volume storage of 3
 	volume = 1
 
@@ -141,15 +149,15 @@
 	name = "Arm guards"
 	desc = "A set of basic arm guards"
 	covering = ARMS
-	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
-	/// A basic armor will have a volume storage of 2
+	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT | CF_ARMOR_DEG_LINEAR
+	/// A basic armor will have a volume storage of 2 for these
 	volume = 1
 
 /obj/item/armor_component/legguards
 	name = "Leg guards"
 	desc = "A set of basic leg guards"
 	covering = LEGS
-	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT
+	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT | CF_ARMOR_DEG_LINEAR
 	volume = 1
 
 
