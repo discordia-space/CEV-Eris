@@ -92,7 +92,7 @@
 	if(is_reinforced == FRAME_REINFORCED_SECURE || is_reinforced == FRAME_REINFORCED_WELDED)
 		usable_qualities += QUALITY_WELDING
 
-	if(is_reinforced == FRAME_REINFORCED || arms || legs || head || body)
+	if((is_reinforced == FRAME_REINFORCED && !istype(I,/obj/item/mech_component/manipulators)) || arms || legs || head || body)
 		usable_qualities += QUALITY_PRYING
 
 	if(is_wired)

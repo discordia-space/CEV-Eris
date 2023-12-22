@@ -136,6 +136,10 @@
 	. = ..()
 	if(throw_through(I,user))
 		return
+	else if(istype(I, /obj/item/mech_equipment) || istype(I, /obj/item/mech_component))
+		var/mob/living/exosuit = I.getContainingAtom()
+		if(exosuit)
+			attack_hand(exosuit)
 	else
 		attack_hand(user)
 
