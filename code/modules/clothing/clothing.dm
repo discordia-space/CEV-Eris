@@ -258,6 +258,10 @@
 /obj/item/clothing/equipped(mob/user, slot)
 	. = ..()
 	user.update_icon = TRUE
+	if(ishuman(user))
+		var/mob/living/carbon/human/target = user
+		target.icon_update = TRUE
+	user.update_icons()
 
 // To catch MouseDrop on clothing
 /obj/item/clothing/MouseDrop(over_object)

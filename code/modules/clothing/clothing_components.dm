@@ -15,6 +15,7 @@
  CLOTH COVERING DEFINES FOR CONVENIENCE */
 
 GLOBAL_LIST(armorDegrdCache)
+GLOBAL_LIST(armorInitialCache)
 /obj/item/armor_component
 	name = "Buggy armor plate"
 	desc = "You shouldn't see this subtype... annoy SPCR to fix his code."
@@ -72,9 +73,6 @@ GLOBAL_LIST(armorDegrdCache)
 	var/materialArmorMut = 1
 
 /obj/item/armor_component/Initialize()
-	/// Don't set material if you don't want to do anything with material value grabs
-	if(!material)
-		return ..()
 	if(!GLOB.armorDegrdCache)
 		GLOB.armorDegrdCache = list()
 	if(!GLOB.armorDegrdCache[type])
@@ -83,6 +81,13 @@ GLOBAL_LIST(armorDegrdCache)
 		del(armorDegradation)
 		armorDegradation = GLOB.armorDegrdCache
 	/// Set armors before they're converted to the armor datum
+	if(!material)
+		. = ..()
+		if(!GLOB.armorInitialCache)
+			GLOB.armorInitialCache = list()
+		if(!GLOB.armorInitialCache[type])
+			GLOB.armorInitialCache[type] = armor.getList()
+		return
 	material = get_material_by_name(material)
 	for(var/armorType in material.armor)
 		if(!(armorFlags & CF_ARMOR_CUSTOM_VALS))
@@ -105,13 +110,14 @@ GLOBAL_LIST(armorDegrdCache)
 /obj/item/armor_component/proc/updateArmor()
 	var/list/tempArmor = list()
 	for(var/armorType in ALL_ARMOR)
+		var/armorInitial = armorFlags & CF_ARMOR_CUSTOM_VALS ? GLOB.armorInitialCache[type][armorType] : material.armor[armorType]
 		switch(armorFlags)
 			if(CF_ARMOR_DEG_LINEAR)
-				tempArmor[armorType] = round((maxArmorHealth / (armorHealth + 0.1)) * material.armor[armorType] * CLOTH_NORMAL_MTA_MUT, 0.1)
+				tempArmor[armorType] = round((maxArmorHealth / (armorHealth + 0.1)) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
 			if(CF_ARMOR_DEG_EXPONENTIAL)
-				tempArmor[armorType] = round((maxArmorHealth/(clamp((maxArmorHealth - armorHealth + 0.1)**2, 0, maxArmorHealth))) * material.armor[armorType] * CLOTH_NORMAL_MTA_MUT, 0.1)
+				tempArmor[armorType] = round((maxArmorHealth/(clamp((maxArmorHealth - armorHealth + 0.1)**2, 0, maxArmorHealth))) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
 			if(CF_ARMOR_DEG_CUSTOM)
-				tempArmor[armorType] = customDregadation(armorType, material.armor[armorType])
+				tempArmor[armorType] = customDregadation(armorType, armorInitial)
 
 	armor = getArmor(
 		ARMOR_BLUNT = tempArmor[ARMOR_BLUNT],
