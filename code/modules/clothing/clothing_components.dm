@@ -109,15 +109,20 @@ GLOBAL_LIST(armorInitialCache)
 
 /obj/item/armor_component/proc/updateArmor()
 	var/list/tempArmor = list()
+	var/list/armorReference = null
+	if(armorFlags & CF_ARMOR_CUSTOM_VALS)
+		armorReference = GLOB.armorInitialCache[type]
+	else
+		armorReference = material.armor
 	for(var/armorType in ALL_ARMOR)
-		var/armorInitial = armorFlags & CF_ARMOR_CUSTOM_VALS ? GLOB.armorInitialCache[type][armorType] : material.armor[armorType]
-		switch(armorFlags)
-			if(CF_ARMOR_DEG_LINEAR)
-				tempArmor[armorType] = round((maxArmorHealth / (armorHealth + 0.1)) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
-			if(CF_ARMOR_DEG_EXPONENTIAL)
-				tempArmor[armorType] = round((maxArmorHealth/(clamp((maxArmorHealth - armorHealth + 0.1)**2, 0, maxArmorHealth))) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
-			if(CF_ARMOR_DEG_CUSTOM)
-				tempArmor[armorType] = customDregadation(armorType, armorInitial)
+		var/armorInitial = armorReference[armorType]
+		if(armorFlags & CF_ARMOR_DEG_LINEAR)
+			tempArmor[armorType] = round(((armorHealth + 0.0001)/ maxArmorHealth) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
+		else if(armorFlags & CF_ARMOR_DEG_EXPONENTIAL)
+			tempArmor[armorType] = round(min(1 - ((maxArmorHealth - armorHealth)**2/100), 0.1) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
+		else
+			tempArmor[armorType] = customDregadation(armorType, armorInitial)
+
 
 	armor = getArmor(
 		ARMOR_BLUNT = tempArmor[ARMOR_BLUNT],

@@ -2,14 +2,14 @@
 	name = "steel armor plate"
 	desc = "when weight isn't an issue."
 	icon_state = "steel"
-	weight = 3000
+	weight = 4000
 	maxArmorHealth = 2000
 	armorHealth = 2000
 	armor = list(
 		ARMOR_BLUNT = 12,
 		ARMOR_SLASH = 12,
-		ARMOR_POINTY = 3,
-		ARMOR_BULLET = 15,
+		ARMOR_POINTY = 7,
+		ARMOR_BULLET = 12,
 		ARMOR_ENERGY = 5,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
@@ -33,14 +33,14 @@
 	name = "plasteel armor plate"
 	desc = "i like my steel with a little bit of plasma"
 	icon_state = "plasteel"
-	weight = 4500
+	weight = 5500
 	maxArmorHealth = 2000
 	armorHealth = 2000
 	armor = list(
 		ARMOR_BLUNT = 16,
 		ARMOR_SLASH = 16,
-		ARMOR_POINTY = 8,
-		ARMOR_BULLET = 20,
+		ARMOR_POINTY = 10,
+		ARMOR_BULLET = 16,
 		ARMOR_ENERGY = 10,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
@@ -72,7 +72,7 @@
 		ARMOR_SLASH = 5,
 		ARMOR_POINTY = 5,
 		ARMOR_BULLET = 5,
-		ARMOR_ENERGY = 30,
+		ARMOR_ENERGY = 20,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
 		ARMOR_CHEM = 0,
@@ -81,8 +81,8 @@
 	armorDegradation = list(
 		ARMOR_BLUNT = 1,
 		ARMOR_SLASH = 0.2,
-		ARMOR_POINTY = 1,
-		ARMOR_BULLET = 1,
+		ARMOR_POINTY = 2,
+		ARMOR_BULLET = 2,
 		ARMOR_ENERGY = 0.3,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
@@ -102,8 +102,8 @@
 	armor = list(
 		ARMOR_BLUNT = 10,
 		ARMOR_SLASH = 20,
-		ARMOR_POINTY = 50,
-		ARMOR_BULLET = 50,
+		ARMOR_POINTY = 20,
+		ARMOR_BULLET = 30,
 		ARMOR_ENERGY = 5,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
@@ -224,10 +224,10 @@
 	maxArmorHealth = 2000
 	armorHealth = 2000
 	armor = list(
-		ARMOR_BLUNT = 8,
-		ARMOR_SLASH = 8,
-		ARMOR_POINTY = 6,
-		ARMOR_BULLET = 6,
+		ARMOR_BLUNT = 5,
+		ARMOR_SLASH = 5,
+		ARMOR_POINTY = 3,
+		ARMOR_BULLET = 3,
 		ARMOR_ENERGY = 0,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 50,
@@ -258,7 +258,7 @@
 		ARMOR_BLUNT = 15,
 		ARMOR_SLASH = 15,
 		ARMOR_POINTY = 5,
-		ARMOR_BULLET = 25,
+		ARMOR_BULLET = 10,
 		ARMOR_ENERGY = 10,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
@@ -282,14 +282,14 @@
 	name = "kevlar armor plate"
 	desc = "a very tight bundle of cloth fibers"
 	icon_state = "kevlar"
-	weight = 1500
+	weight = 2500
 	maxArmorHealth = 800
 	armorHealth = 800
 	armor = list(
 		ARMOR_BLUNT = 4,
-		ARMOR_SLASH = 25,
+		ARMOR_SLASH = 8,
 		ARMOR_POINTY = 4,
-		ARMOR_BULLET = 30,
+		ARMOR_BULLET = 15,
 		ARMOR_ENERGY = 0,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
@@ -352,7 +352,7 @@
 		ARMOR_SLASH = 15,
 		ARMOR_POINTY = 8,
 		ARMOR_BULLET = 10,
-		ARMOR_ENERGY = 15,
+		ARMOR_ENERGY = 10,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
 		ARMOR_CHEM = 0,
@@ -401,3 +401,70 @@
 		ARMOR_RAD = 0
 	)
 	matter = list(MATERIAL_BIOMATTER = 70)
+
+/obj/item/armor_component/plate/cloth
+	name = "clothing-grade cloth"
+	desc = "The less dense cousin of kevlar"
+	icon_state = "cloth"
+	volume = 0.5
+	weight = 500
+	maxArmorHealth = 500
+	armorHealth = 500
+	armor = list(
+		ARMOR_BLUNT = 2,
+		ARMOR_SLASH = 2,
+		ARMOR_POINTY = 2,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_ELECTRIC = 0,
+		ARMOR_BIO = 0,
+		ARMOR_CHEM = 0,
+		ARMOR_RAD = 0
+	)
+	armorDegradation = list(
+		ARMOR_BLUNT = 0.3,
+		ARMOR_SLASH = 2,
+		ARMOR_POINTY = 0.3,
+		ARMOR_BULLET = 0.5,
+		ARMOR_ENERGY = 0,
+		ARMOR_ELECTRIC = 0,
+		ARMOR_BIO = 0,
+		ARMOR_CHEM = 0,
+		ARMOR_RAD = 0
+	)
+	matter = list(MATERIAL_CLOTH = 5)
+
+/obj/item/armor_component/plate/
+	name = "tanned leather"
+	desc = "perfect for belts and thick jackets"
+	icon_state = "cloth"
+	volume = 0.7
+	weight = 500
+	maxArmorHealth = 500
+	armorHealth = 500
+	armor = list(
+		ARMOR_BLUNT = 5,
+		ARMOR_SLASH = 5,
+		ARMOR_POINTY = 3,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 3,
+		ARMOR_ELECTRIC = 0,
+		ARMOR_BIO = 0,
+		ARMOR_CHEM = 0,
+		ARMOR_RAD = 0
+	)
+	armorDegradation = list(
+		ARMOR_BLUNT = 0.3,
+		ARMOR_SLASH = 2,
+		ARMOR_POINTY = 0.3,
+		ARMOR_BULLET = 0.5,
+		ARMOR_ENERGY = 0,
+		ARMOR_ELECTRIC = 0,
+		ARMOR_BIO = 0,
+		ARMOR_CHEM = 0,
+		ARMOR_RAD = 0
+	)
+	matter = list(MATERIAL_LEATHER = 5)
+
+
+

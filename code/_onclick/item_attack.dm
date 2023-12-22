@@ -320,6 +320,13 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(H.holding_back)
 			damMult /= 2
 	var/list/damages = melleDamages.Copy()
+	for(var/armorType in damages)
+		for(var/list/damageElement in damages[armorType])
+			message_admins("Found DELEM([damageElement[1]],[damageElement[2]]) with ref : \ref[damageElement] in \ref[damages], damagesCopy, [armorType]")
+
+	for(var/armorType in melleDamages)
+		for(var/list/damageElement in melleDamages[armorType])
+			message_admins("Found DELEM([damageElement[1]],[damageElement[2]]) with ref : \ref[damageElement] in \ref[melleDamages],melleDamages, [armorType]")
 	dhApplyMultiplier(damages, damMult)
 	target.hit_with_weapon(src, user, damages, hit_zone)
 	return

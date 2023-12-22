@@ -9,7 +9,7 @@
 #define BLAST	  "blast"
 #define PSY       "psy"
 
-#define ALL_DAMAGE list(BRUTE,BURN,TOX,OXY,CLONE,HALLOSS,BLAST,PSY)
+#define ALL_DAMAGE (list(BRUTE,BURN,TOX,OXY,CLONE,HALLOSS,BLAST,PSY))
 
 #define CUT       "cut"
 #define BRUISE    "bruise"
@@ -31,8 +31,8 @@
 /// Removed in favor of more relevant subcategories - SPCR 2023
 //#define ARMOR_MELEE			"melee"
 /// all armors
-#define ALL_ARMOR list(ARMOR_BLUNT,ARMOR_SLASH,ARMOR_POINTY,ARMOR_BULLET,ARMOR_ENERGY,ARMOR_ELECTRIC,ARMOR_BOMB,ARMOR_BIO,ARMOR_CHEM,ARMOR_RAD)
-#define ARMORS_MELEE list(ARMOR_BLUNT, ARMOR_SLASH, ARMOR_POINTY)
+#define ALL_ARMOR (list(ARMOR_BLUNT,ARMOR_SLASH,ARMOR_POINTY,ARMOR_BULLET,ARMOR_ENERGY,ARMOR_ELECTRIC,ARMOR_BOMB,ARMOR_BIO,ARMOR_CHEM,ARMOR_RAD))
+#define ARMORS_MELEE (list(ARMOR_BLUNT, ARMOR_SLASH, ARMOR_POINTY))
 /// For any attacks that are blunt(hammers, unflipped shovels, etc)
 #define ARMOR_BLUNT			"blunt"
  /// For any slash attacks (katana, swords , knifes , etc)

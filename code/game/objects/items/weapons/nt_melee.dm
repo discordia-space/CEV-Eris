@@ -6,7 +6,7 @@
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
 	melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE, 25)
 		)
 	)
@@ -33,7 +33,7 @@
 	icon_state = "nt_shortsword"
 	item_state = "nt_shortsword"
 	melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE, 15)
 		)
 	)
@@ -52,7 +52,7 @@
 	icon_state = "nt_longsword"
 	item_state = "nt_longsword"
 	melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE, 30)
 		)
 	)
@@ -71,7 +71,7 @@
 	icon_state = "nt_dagger"
 	item_state = "nt_dagger"
 	melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE, 12)
 		)
 	)

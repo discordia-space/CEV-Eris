@@ -43,7 +43,7 @@
 	icon_state = "hatchet"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,23)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,23)))
 	throwforce = 16
 	volumeClass = ITEM_SIZE_SMALL
 	sharp = TRUE
@@ -62,7 +62,7 @@
 	wielded_icon = "makeshift_axe_wielded"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,15)))
 	wieldedMultiplier = 3
 	WieldedattackDelay = 20
 	throwforce = 18
@@ -133,7 +133,7 @@
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,12)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,12)))
 	throwforce = 13
 	volumeClass = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
@@ -156,7 +156,7 @@
 	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,30)))
 	wieldedMultiplier = 1.3
 	WieldedattackDelay = 3
 	throwforce = 20
@@ -175,7 +175,7 @@
 	item_state = "saber"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
 	slot_flags = SLOT_BELT
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,35)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,35)))
 	wieldedMultiplier = 1.2
 	spawn_blacklisted = TRUE
 	price_tag = 10000
@@ -185,7 +185,7 @@
 	desc = "Hack and slash!"
 	icon_state = "msword"
 	item_state = "msword"
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,25)))
 	wieldedMultiplier = 1.5
 	attackDelay = 4
 	/// heavy hitter but slow attack
@@ -202,7 +202,7 @@
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,30)))
 	wieldedMultiplier = 1.2
 	rarity_value = 120
 
@@ -222,7 +222,7 @@
 
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
-	switchedOn = list(ARMOR_SHARP = list(DELEM(BURN,25)))
+	switchedOn = list(ARMOR_SLASH = list(DELEM(BURN,25)))
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/sword/katana/nano/turn_on(mob/user)

@@ -142,7 +142,7 @@
 	desc = "Could work as a pretty decent throwing weapon."
 	icon_state = "tile"
 	melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE, 7)
 		)
 	)

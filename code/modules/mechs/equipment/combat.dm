@@ -69,7 +69,7 @@
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_comp = new /obj/item/mech_equipment/mounted_system/sword(get_turf(src))
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_sword = le_mech_comp.holding
 				// DULL BLADE gets DULL DAMAGE
-				le_mech_sword.melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,max(0,(blade_mat.hardness - 35 * sharpeners)/2))))
+				le_mech_sword.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(blade_mat.hardness - 35 * sharpeners)/2))))
 				le_mech_sword.matter = list(blade_mat.name = 5)
 				le_mech_comp.material_color = blade_mat.icon_colour
 				qdel(src)
@@ -147,7 +147,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_PLASTEEL)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_PLASTEEL = 5)
 
 
@@ -161,7 +161,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_OSMIUM)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_OSMIUM = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/cardboard
@@ -174,7 +174,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_CARDBOARD)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_CARDBOARD = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/myhydrogen
@@ -187,7 +187,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_MHYDROGEN)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_MHYDROGEN = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/Initialize()

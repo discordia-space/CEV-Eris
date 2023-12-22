@@ -13,7 +13,7 @@
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE,40),
 			DELEM(BRUTE,10)
 		)

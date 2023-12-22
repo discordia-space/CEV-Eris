@@ -439,7 +439,7 @@
 	desc = "An all-in-one medical omnitool."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "medmulti"
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,26)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,26)))
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_DRIVER_TOOL

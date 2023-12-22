@@ -1576,6 +1576,8 @@
 #include "code\modules\clothing\accessories\lockets.dm"
 #include "code\modules\clothing\accessories\logo.dm"
 #include "code\modules\clothing\armorplates\chestplates.dm"
+#include "code\modules\clothing\armorplates\headplates.dm"
+#include "code\modules\clothing\armorplates\sideguards.dm"
 #include "code\modules\clothing\glasses\glasses.dm"
 #include "code\modules\clothing\glasses\hud.dm"
 #include "code\modules\clothing\glasses\meson.dm"

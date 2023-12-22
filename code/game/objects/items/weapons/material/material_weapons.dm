@@ -43,7 +43,7 @@
 /obj/item/material/proc/update_force()
 	if(edge || sharp)
 		melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE,min(16,material.get_edge_damage() * force_divisor))
 		))
 	else

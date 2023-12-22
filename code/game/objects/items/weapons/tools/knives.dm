@@ -11,7 +11,7 @@
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
 	volumeClass = ITEM_SIZE_SMALL //2
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,25)))
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_SHALLOW
 	maxUpgrades = 2
@@ -46,7 +46,7 @@
 	icon_state = "tacknife"
 	item_state = "knife"
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 1)
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,25)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,25)))
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 15)
 	rarity_value = 20
 
@@ -72,7 +72,7 @@
 	name = "butcher's cleaver"
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes roaches and roach-by-products."
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,30)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,30)))
 	throwforce = WEAPON_FORCE_NORMAL
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTIC = 1)
@@ -209,7 +209,7 @@
 	edge = FALSE
 	sharp = FALSE
 	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
-	switchedOn = list(ARMOR_SHARP = list(DELEM(BRUTE,15)))
+	switchedOn = list(ARMOR_SLASH = list(DELEM(BRUTE,15)))
 	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_STEEL = 6)
 	switched_on_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
 	volumeClass = ITEM_SIZE_TINY

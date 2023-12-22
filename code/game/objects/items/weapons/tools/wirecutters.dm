@@ -3,7 +3,7 @@
 	desc = "Cuts wires and other objects with it."
 	icon_state = "cutters"
 	flags = CONDUCT
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,12)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,12)))
 	worksound = WORKSOUND_WIRECUTTING
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)

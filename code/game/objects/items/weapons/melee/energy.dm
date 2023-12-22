@@ -70,11 +70,11 @@
 	name = "energy axe"
 	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
 	icon_state = "axe0"
-	activeDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,40)), ARMOR_POINTY=list(DELEM(BRUTE,20)))
+	activeDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,40)), ARMOR_POINTY=list(DELEM(BRUTE,20)))
 	active_throwforce = 50
 	active_volumeClass = ITEM_SIZE_HUGE
 	melleDamages = list(
-		ARMOR_SHARP = list(
+		ARMOR_SLASH = list(
 			DELEM(BRUTE,20)
 		),
 		ARMOR_POINTY = list(

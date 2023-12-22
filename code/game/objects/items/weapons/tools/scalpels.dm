@@ -3,7 +3,7 @@
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel_t3"
 	flags = CONDUCT
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,10)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,10)))
 	sharp = TRUE
 	edge = TRUE
 	volumeClass = ITEM_SIZE_TINY
@@ -31,7 +31,7 @@
 	name = "laser scalpel"
 	desc = "A scalpel which uses a directed laser to slice instead of a blade, for more precise surgery while also cauterizing as it cuts."
 	icon_state = "scalpel_t5"
-	melleDamages = list(ARMOR_SHARP = list(DELEM(BURN,16)))
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BURN,16)))
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40, QUALITY_CAUTERIZING = 20)
 	degradation = 0.11

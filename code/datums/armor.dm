@@ -1,7 +1,7 @@
 
 #define ARMORID "armor-[blunt]-[slash]-[pointy]-[bullet]-[energy]-[electric]-[bomb]-[bio]-[chem]-[rad]"
 
-/proc/getArmor(blunt = 0, slash = 0, pointy = 0, bullet = 0, energy =0, electric = 0, bomb =0, bio = 0, chem = 0, rad = 0)
+/proc/getArmor(blunt = 0, slash = 0, pointy = 0, bullet = 0, energy = 0, electric = 0, bomb = 0, bio = 0, chem = 0, rad = 0)
 	. = locate(ARMORID)
 	if(!.)
 		. = new /datum/armor(blunt, slash, pointy, bullet, energy, electric, bomb, bio, chem, rad)

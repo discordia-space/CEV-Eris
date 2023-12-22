@@ -769,7 +769,7 @@
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
 		status = LIGHT_BROKEN
-		melleDamages = list(ARMOR_SHARP = list(DELEM(BRUTE,10)))
+		melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,10)))
 		sharp = TRUE
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		update()

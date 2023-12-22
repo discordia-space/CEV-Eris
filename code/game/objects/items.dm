@@ -225,6 +225,7 @@ GLOBAL_LIST(melleDamagesCache)
 		if(ITEM_SIZE_TITANIC)
 			size = "titanic"
 	message += "\nIt is a [size] item."
+	message += SPAN_NOTICE("\nIt weights [weight > 999 ? "[round(weight/1000, 0.1)] KG" : "[weight] GRAMS"]")
 
 	for(var/Q in tool_qualities)
 		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"

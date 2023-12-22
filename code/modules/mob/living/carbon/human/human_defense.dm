@@ -329,7 +329,7 @@ meteor_act
 		var/mob/living/carbon/human/H = user
 		H.stop_blocking()
 
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
+	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with \the [I.name] by [user]!</span>")
 
 	standard_weapon_hit_effects(I, user, damages, hit_zone)
 

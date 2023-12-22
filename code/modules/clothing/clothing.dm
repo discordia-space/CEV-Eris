@@ -159,11 +159,13 @@
 				message_admins("CLOTHING : [src] | [src.type] had a initialized armor plate in its initList")
 				continue
 			var/obj/item/armor_component/reference = new path(src)
+			if(istype(src , /obj/item/clothing/head))
+				reference.covering = HEAD
 			if(istype(reference, /obj/item/armor_component/plate))
 				torsoVol += reference.volume
 			if(istype(reference, /obj/item/armor_component/sideguards))
 				sideGuardVol += reference.volume
-			newComps.Add(new path(src))
+			newComps.Add(reference)
 		if(!maxArmorVolume[CLOTH_ARMOR_TORSO])
 			maxArmorVolume[CLOTH_ARMOR_TORSO] = torsoVol
 		if(!maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
@@ -193,6 +195,8 @@
 		to_chat(user, SPAN_NOTICE("You remove \the [component] from \the [src]."))
 		armorComps.Remove(component)
 		component.forceMove(get_turf(user))
+		if(istype(src, /obj/item/clothing/head))
+			component.covering = initial(component.covering)
 		user.put_in_active_hand(component)
 
 /obj/item/clothing/attackby(obj/item/I, mob/user)
@@ -215,6 +219,8 @@
 		user.drop_from_inventory(I)
 		I.forceMove(src)
 		armorComps |= I
+		if(istype(src, /obj/item/clothing/head))
+			Comp.covering = HEAD
 
 
 /obj/item/clothing/Destroy()
