@@ -18,6 +18,7 @@ GLOBAL_LIST(armorDegrdCache)
 /obj/item/armor_component
 	name = "Buggy armor plate"
 	desc = "You shouldn't see this subtype... annoy SPCR to fix his code."
+	icon = 'icons/obj/armor/armorSprites.dmi'
 	spawn_blacklisted = TRUE
 	/// Weight , set to 0 since we will set it ourselves
 	weight = 0
