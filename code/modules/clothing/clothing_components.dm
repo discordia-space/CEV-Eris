@@ -101,6 +101,12 @@ GLOBAL_LIST(armorInitialCache)
 	/// CALL PARENT TO INIT ARMOR DATUM
 	. = ..()
 
+/obj/item/armor_component/examine(user, distance)
+	. = ..()
+	to_chat(user, SPAN_NOTICE("Its current integrity is [armorHealth] / [maxArmorHealth]"))
+	for(var/armorType in armor)
+		to_chat(user, SPAN_NOTICE("It has a rating of [armor.getRating(armorType)] against [armorType]"))
+
 /// Gets given the armorType to return a value for. Override this for your special plates
 /// Call this for the standard rounding i guess(after you set the armor[armorType])
 /// Sends the armorType for your special handling SPCR - 2023

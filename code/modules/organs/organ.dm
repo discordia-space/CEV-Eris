@@ -272,8 +272,6 @@
 
 	if(parent)
 		forceMove(parent)
-	else
-		forceMove(NULLSPACE)
 
 	START_PROCESSING(SSobj, src)
 

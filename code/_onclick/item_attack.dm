@@ -205,7 +205,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
 	else
-		return I.attack(src, user, user.targeted_organ)
+		return I.attack(src, user, user.targeted_organ, 1)
 
 //Used by Area of effect attacks, if it returns FALSE, it failed
 /obj/item/proc/attack_with_multiplier(mob/living/user, var/atom/target, var/modifier = 1)
@@ -285,19 +285,18 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(!user)
 		return FALSE
 
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + (wielded ? WieldedattackDelay : attackDelay))
+	user.do_attack_animation(M)
+
 	/////////////////////////
 	user.lastattacked = M
 	if(isliving(M))
 		M.lastattacker = user
 
-	if(!no_attack_log)
+	if(!no_attack_log && istype(M))
 		user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
 		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
 		msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)])" )
-	/////////////////////////
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + wielded ? WieldedattackDelay : attackDelay)
-	user.do_attack_animation(M)
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)
@@ -327,6 +326,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	for(var/armorType in melleDamages)
 		for(var/list/damageElement in melleDamages[armorType])
 			message_admins("Found DELEM([damageElement[1]],[damageElement[2]]) with ref : \ref[damageElement] in \ref[melleDamages],melleDamages, [armorType]")
-	dhApplyMultiplier(damages, damMult)
-	target.hit_with_weapon(src, user, damages, hit_zone)
+
+	var/list/deepCopy = deepCopyList(melleDamages)
+	dhApplyMultiplier(deepCopy, damMult)
+	target.hit_with_weapon(src, user, deepCopy, hit_zone)
 	return

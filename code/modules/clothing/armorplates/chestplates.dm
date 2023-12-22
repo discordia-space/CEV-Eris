@@ -283,8 +283,8 @@
 	desc = "a very tight bundle of cloth fibers"
 	icon_state = "kevlar"
 	weight = 2500
-	maxArmorHealth = 800
-	armorHealth = 800
+	maxArmorHealth = 1600
+	armorHealth = 1600
 	armor = list(
 		ARMOR_BLUNT = 4,
 		ARMOR_SLASH = 8,

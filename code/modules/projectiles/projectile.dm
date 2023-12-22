@@ -124,7 +124,7 @@ GLOBAL_LIST(projectileDamageConstants)
 
 /// This MUST be called before any modifications are done to the damage list.
 /obj/item/projectile/proc/PrepareForLaunch()
-	damage = damage_types.Copy()
+	damage = deepCopyList(damage_types)
 
 /obj/item/projectile/is_hot()
 	return dhTotalDamageDamageType(damage ? damage : damage_types, BURN) * heat

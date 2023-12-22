@@ -1013,7 +1013,7 @@ GLOBAL_LIST(melleExtrasCache)
 				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 
 
-/obj/item/tool/attack(mob/living/M, mob/living/user, target_zone)
+/obj/item/tool/attack(mob/living/M, mob/living/user, target_zone, damageMultiplier)
 	if(isBroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
@@ -1048,7 +1048,7 @@ GLOBAL_LIST(melleExtrasCache)
 				to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 				return 1
 
-	return ..()
+	return ..(M, user, target_zone, damageMultiplier)
 
 /obj/item/tool/update_icon()
 	cut_overlays()
