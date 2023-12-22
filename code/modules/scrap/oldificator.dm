@@ -417,3 +417,6 @@
 	if(!low_quality_oldification)
 		if(prob(10)) // reducing the materials otherwise is infeasible due to BYOND's incapability of restoring
 			expend() // the initial value of a list typed var
+
+/obj/item/projectile/make_old(low_quality_oldification)
+	return // why would the bullet being old change anything?
