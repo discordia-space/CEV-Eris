@@ -32,8 +32,7 @@
 
 /// Indexes for volumes on each bodypart and armor plates
 #define CLOTH_ARMOR_TORSO 1
-#define CLOTH_ARMOR_ARMG 2
-#define CLOTH_ARMOR_LEGG 3
+#define CLOTH_ARMOR_SIDEGUARDS 2
 
 /// Clothing flags
 #define CLOTH_MODULAR "modular" /// For modular armor only , anything that doesn't have this is not modifiable.

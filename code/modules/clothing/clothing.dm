@@ -24,13 +24,13 @@
 	var/retract_while_active = TRUE
 
 	/// For the new custom armor system. Determines how many plates and side guards we can install
-	var/global/list/maxArmorVolume = list(
+	var/list/maxArmorVolume = list(
 		0, // CLOTH_ARMOR_TORSO
-		0, // CLOTH_ARMOR_LEGG
-		0 // CLOTH_ARMOR_ARMG
+		0, // CLOTH_ARMOR_SIDEGUARDS
 	)
 
 	/// A list of all the armorComps, order is important since we iterate inversely.
+	/// if it has typepaths at round-start, it will initialize them
 	var/list/obj/item/armor_component/armorComps = list()
 
 
@@ -142,14 +142,79 @@
 		hud_actions = list()
 	hud_actions += action
 
-	if(matter)
-		return
 
-	else if(chameleon_type)
-		matter = list(MATERIAL_PLASTIC = 2 * volumeClass)
-		origin_tech = list(TECH_COVERT = 3)
-	else
-		matter = list(MATERIAL_BIOMATTER = 5 * volumeClass)
+	if(!matter)
+		if(chameleon_type)
+			matter = list(MATERIAL_PLASTIC = 2 * volumeClass)
+			origin_tech = list(TECH_COVERT = 3)
+		else
+			matter = list(MATERIAL_BIOMATTER = 5 * volumeClass)
+
+	if(length(armorComps))
+		var/list/newComps = list()
+		var/sideGuardVol = 0
+		var/torsoVol = 0
+		for(var/path in armorComps)
+			if(!ispath(path))
+				message_admins("CLOTHING : [src] | [src.type] had a initialized armor plate in its initList")
+				continue
+			var/obj/item/armor_component/reference = new path(src)
+			if(istype(reference, /obj/item/armor_component/plate))
+				torsoVol += reference.volume
+			if(istype(reference, /obj/item/armor_component/sideguards))
+				sideGuardVol += reference.volume
+			newComps.Add(new path(src))
+		if(!maxArmorVolume[CLOTH_ARMOR_TORSO])
+			maxArmorVolume[CLOTH_ARMOR_TORSO] = torsoVol
+		if(!maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+			maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS] = sideGuardVol
+		armorComps = newComps
+
+/obj/item/clothing/examine(mob/user, distance)
+	. = ..()
+	if(distance <= 1 && length(armorComps))
+		to_chat(user, SPAN_NOTICE("Click any plate below to remove them from \the [src]:"))
+		for(var/obj/item/armor_component/comp in armorComps)
+			to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src];removePlate=\ref[comp];user=\ref[user]'>\icon[comp] [comp.name]</a>"))
+
+/obj/item/clothing/Topic(href, href_list, datum/nano_topic_state/state)
+	. = ..()
+	if(QDELETED(src))
+		return
+	if(href_list["removePlate"])
+		var/mob/living/user = locate(href_list["user"])
+		var/obj/item/armor_component/component = locate(href_list["removePlate"])
+		if(!istype(user) || !istype(component))
+			return
+		if(user.incapacitated() || !user.Adjacent(src))
+			return
+		if(!armorComps.Find(component))
+			return
+		to_chat(user, SPAN_NOTICE("You remove \the [component] from \the [src]."))
+		armorComps.Remove(component)
+		component.forceMove(get_turf(user))
+		user.put_in_active_hand(component)
+
+/obj/item/clothing/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(istype(I, /obj/item/armor_component))
+		var/obj/item/armor_component/Comp = I
+		var/currentVolume = 0
+		if(istype(Comp, /obj/item/armor_component/plate))
+			for(var/obj/item/armor_component/plate/plateComp in armorComps)
+				currentVolume += plateComp.volume
+			if(currentVolume + Comp.volume > maxArmorVolume[CLOTH_ARMOR_TORSO])
+				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [I]"))
+				return
+		if(istype(Comp, /obj/item/armor_component/sideguards))
+			for(var/obj/item/armor_component/sideguards/sideguardsComp in armorComps)
+				currentVolume += sideguardsComp.volume
+			if(currentVolume + Comp.volume > maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [I]"))
+				return
+		user.drop_from_inventory(I)
+		I.forceMove(src)
+		armorComps |= I
 
 
 /obj/item/clothing/Destroy()
@@ -189,6 +254,10 @@
 			)
 			if(!do_after(user,equip_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
+
+/obj/item/clothing/equipped(mob/user, slot)
+	. = ..()
+	user.update_icon = TRUE
 
 // To catch MouseDrop on clothing
 /obj/item/clothing/MouseDrop(over_object)
@@ -231,6 +300,11 @@
 /obj/item/clothing/nano_ui_data()
 	var/list/data = list()
 	var/list/armorlist = armor.getList()
+	for(var/obj/item/armor_component/comp in armorComps)
+		var/list/compArmor = comp.armor.getList()
+		for(var/armorType in compArmor)
+			armorlist[armorType] += compArmor[armorType]
+
 	if(armorlist.len)
 		var/list/armor_vals = list()
 		for(var/i in armorlist)

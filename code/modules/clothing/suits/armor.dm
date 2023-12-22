@@ -231,6 +231,19 @@
 		MATERIAL_STEEL = 15, // fullbody suit, so it costs a lot of steel compared to the non-ih one
 		MATERIAL_PLASTEEL = 3,
 	)
+	armor = list(
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB = 20,
+		ARMOR_BIO = 0,
+		ARMOR_RAD = 0
+	)
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar
+	)
 
 /obj/item/clothing/suit/armor/platecarrier
 	name = "black platecarrier vest"

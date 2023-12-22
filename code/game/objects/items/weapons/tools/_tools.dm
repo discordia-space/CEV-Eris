@@ -234,7 +234,7 @@ GLOBAL_LIST(melleExtrasCache)
 	data["health_max"] = maxHealth
 	data["health_threshold"] = health_threshold
 
-	data["force"] = dhTotalDamage(melleDamages)
+	data["force"] = dhTotalDamage(melleDamages) * (wielded ? wieldedMultiplier : 1 )
 	data["force_max"] = dhTotalDamage(melleDamages)*10
 
 	data["armor_divisor"] = armor_divisor

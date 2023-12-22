@@ -96,6 +96,9 @@ armorType defines the armorType that will block all the damTypes that it has ass
 			else
 				// Just a little bit of agony
 				adjustHalLoss(blocked/5)
+			// too small to be relevant
+			if(blocked > damageElement[DAMVALUE] - 1)
+				continue
 			apply_damage(damageElement[DAMVALUE], damageElement[DAMTYPE], defZone, armorDiv, woundMult, armorType == ARMOR_SLASH, armorType == ARMOR_SLASH, usedWeapon)
 			dealtDamage += damageElement[DAMVALUE]
 

@@ -146,6 +146,14 @@ GLOBAL_LIST(armorDegrdCache)
 	/// A basic armor will have a volume storage of 3
 	volume = 1
 
+/obj/item/armor_component/sideguards
+	name = "Leg & Arm guards"
+	desc = "A basic set of rounded armor components for covering knees and ankles."
+	covering = ARMS | LEGS
+	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT | CF_ARMOR_DEG_LINEAR
+	volume = 1
+
+/*
 /obj/item/armor_component/armguards
 	name = "Arm guards"
 	desc = "A set of basic arm guards"
@@ -160,5 +168,6 @@ GLOBAL_LIST(armorDegrdCache)
 	covering = LEGS
 	armorFlags = CF_ARMOR_CUSTOM_VALS | CF_ARMOR_CUSTOM_DEGR | CF_ARMOR_CUSTOM_INTEGRITY | CF_ARMOR_CUSTOM_WEIGHT | CF_ARMOR_DEG_LINEAR
 	volume = 1
+*/
 
 
