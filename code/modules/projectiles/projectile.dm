@@ -673,6 +673,17 @@
 
 	return dmg_total > 0 ? (dmg_remaining / dmg_total) : 0
 
+/obj/item/projectile/get_matter()
+	. = matter?.Copy()
+	if(isnull(.)) // empty bullets have no need for matter handling
+		return
+	if(istype(loc, /obj/item/ammo_casing)) // if this is part of a stack
+		var/obj/item/ammo_casing/case = loc
+		if(case.amount > 1) // if there is only one, there is no need to multiply
+			for(var/mattertype in .)
+				.[mattertype] *= case.amount
+
+
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
 	invisibility = 101 //Nope!  Can't see me!

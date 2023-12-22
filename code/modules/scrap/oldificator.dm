@@ -412,3 +412,8 @@
 			if(SEND_SIGNAL_OLD(trash_mod, COMSIG_IATTACK, src, null))
 				break
 			QDEL_NULL(trash_mod)
+
+/obj/item/ammo_casing/make_old(low_quality_oldification)
+	if(!low_quality_oldification)
+		if(prob(10)) // reducing the materials otherwise is infeasible due to BYOND's incapability of restoring
+			expend() // the initial value of a list typed var

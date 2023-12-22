@@ -552,8 +552,14 @@
 		return FALSE
 
 	if(!length(eating.get_matter()))
-		to_chat(user, SPAN_WARNING("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
-		return FALSE
+		var/matterless = TRUE
+		for(var/obj/O in eating.GetAllContents()) // can now recycle empty shells to get at the contents
+			if(length(O.get_matter()))
+				matterless = FALSE
+				break
+		if(matterless)
+			to_chat(user, SPAN_WARNING("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
+			return FALSE
 
 	if(istype(eating, /obj/item/computer_hardware/hard_drive/portable))
 		var/obj/item/computer_hardware/hard_drive/portable/DISK = eating
