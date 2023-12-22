@@ -1,6 +1,7 @@
 /obj/item/armor_component/plate/steel
 	name = "steel armor plate"
 	desc = "when weight isn't an issue."
+	icon_state = "steel"
 	weight = 1800
 	maxArmorHealth = 2000
 	armorHealth = 2000
