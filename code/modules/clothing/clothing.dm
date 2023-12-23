@@ -175,13 +175,13 @@
 		user.drop_from_inventory(component)
 	component.forceMove(src)
 	armorComps |= component
-	if(istype(component, /obj/item/clothing/head))
+	if(istype(src, /obj/item/clothing/head))
 		component.covering = HEAD
-	if(istype(component, /obj/item/clothing/gloves))
+	if(istype(src, /obj/item/clothing/gloves))
 		component.covering = ARMS
-	if(istype(component, /obj/item/clothing/shoes))
+	if(istype(src, /obj/item/clothing/shoes))
 		component.covering = LEGS
-	if(istype(component, /obj/item/clothing/suit) || istype(component, /obj/item/clothing/under))
+	if(istype(src, /obj/item/clothing/suit) || istype(component, /obj/item/clothing/under))
 		component.covering = UPPER_TORSO | LOWER_TORSO
 
 /obj/item/clothing/proc/removeArmor(obj/item/armor_component/component, mob/living/user, force = FALSE, atom/location)
