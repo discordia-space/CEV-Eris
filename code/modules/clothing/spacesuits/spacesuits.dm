@@ -20,6 +20,8 @@
 		ARMOR_BIO =100,
 		ARMOR_RAD =50
 	)
+	/// No modding these
+	clothingFlags = CLOTH_NO_MOD
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	cold_protection = HEAD

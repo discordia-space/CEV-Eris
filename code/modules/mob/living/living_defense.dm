@@ -53,7 +53,6 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		damageBlockers = getDamageBlockers(armorToDam, armorDiv, woundMult, defZone)
 
 		for(var/atom in damageBlockers)
-			message_admins("Blocker : [atom]")
 		/// We are going to order the list to be traversed from right to left , right representing the outermost layers and left the innermost
 		/// List for insertion-sort. Upper objects are going to be last , lower ones are going to be first when blocking
 		var/list/blockersTemp = list(
@@ -91,6 +90,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		for(var/i=1 to length(armorToDam[armorType]))
 			var/list/damageElement = armorToDam[armorType][i]
 			var/blocked = atdCopy[armorType][i][DAMVALUE] - damageElement[DAMVALUE]
+			message_admins("BLOCKED=[blocked]")
 			if(damageElement[DAMTYPE] == HALLOSS)
 				adjustHalLoss(damageElement[DAMVALUE] + blocked/4)
 			else

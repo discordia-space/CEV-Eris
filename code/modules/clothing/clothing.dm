@@ -225,7 +225,7 @@
 				message_admins("[src] | [src.type] had an armor part which is not of the current subtype , [armorPart.type]")
 				continue
 			var/increaseVolume = FALSE
-			if(maxArmorVolume[CLOTH_ARMOR_TORSO] || maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+			if(!maxArmorVolume[CLOTH_ARMOR_TORSO] && !maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
 				increaseVolume = TRUE
 			insertArmor(armorPart,null, increaseVolume, TRUE)
 
