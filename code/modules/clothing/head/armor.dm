@@ -17,7 +17,6 @@
 	bad_type = /obj/item/clothing/head/armor
 	style = STYLE_NEG_HIGH
 	style_coverage = COVERS_HAIR
-
 /*
  * Helmets
  */
@@ -26,16 +25,19 @@
 	desc = "Standard Security gear. Protects the head from impacts."
 	icon_state = "helmet"
 	armor = list(
-		ARMOR_BLUNT = 10,
-		ARMOR_BULLET = 10,
-		ARMOR_ENERGY =10,
-		ARMOR_BOMB =50,
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB = 50,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
 	matter = list(
 		MATERIAL_STEEL = 5,
 		MATERIAL_PLASTEEL = 1 //a lil bit of plasteel since it's better than handmade shit
+	)
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
 	)
 
 /obj/item/clothing/head/armor/helmet/visor
@@ -54,16 +56,22 @@
 	icon_state = "merchelm"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
-		ARMOR_BLUNT = 24,
-		ARMOR_BULLET = 35,
-		ARMOR_ENERGY =20,
-		ARMOR_BOMB =75,
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB = 75,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
 	flash_protection = FLASH_PROTECTION_MODERATE
 	price_tag = 500
 	style_coverage = COVERS_WHOLE_HEAD
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/nt17
+	)
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
@@ -71,6 +79,9 @@
 	icon_state = "dermal"
 	body_parts_covered = HEAD
 	flags_inv = NONE
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
@@ -88,10 +99,10 @@
 	light_overlay = "technohelmet_light"
 	brightness_on = 4
 	armor = list(
-		ARMOR_BLUNT = 10,
-		ARMOR_BULLET = 10,
-		ARMOR_ENERGY =10,
-		ARMOR_BOMB =100,
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB = 100,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 80
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
@@ -99,6 +110,10 @@
 	price_tag = 500
 	style_coverage = COVERS_WHOLE_HEAD
 	style = STYLE_NONE
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/head/armor/helmet/technomancer/New()
 	. = ..()
@@ -114,25 +129,29 @@
 	action_button_name = "Toggle Headlamp"
 	brightness_on = 4
 	armor = list(
-		ARMOR_BLUNT = 15,
-		ARMOR_BULLET = 15,
-		ARMOR_ENERGY =15,
-		ARMOR_BOMB =100,
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB = 100,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	armorComps = list(
+		/obj/item/armor_component/plate/plasteel,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"
 	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
 	icon_state = "helmet_handmade"
 	armor = list(
-		ARMOR_BLUNT = 7,
-		ARMOR_BULLET = 7,
-		ARMOR_ENERGY =7,
-		ARMOR_BOMB =35,
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB = 35,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
@@ -143,14 +162,19 @@
 	desc = "A sturdy, handcrafted helmet. It's well balanced and sits low on your head, with padding on the inside."
 	icon_state = "scav_helmet"
 	armor = list(
-		ARMOR_BLUNT = 10,
-		ARMOR_BULLET = 10,
-		ARMOR_ENERGY =10,
-		ARMOR_BOMB =35,
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB = 35,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
 	price_tag = 200
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/head/armor/helmet/thunderdome
 	name = "\improper Thunderdome helmet"
@@ -166,10 +190,10 @@
 	icon_state = "bulletproof"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
-		ARMOR_BLUNT = 14,
-		ARMOR_BULLET = 30,
-		ARMOR_ENERGY =7,
-		ARMOR_BOMB =30,
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB = 30,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
@@ -182,6 +206,12 @@
 		MATERIAL_GLASS = 3 //For the visor parts
 	)
 	style_coverage = COVERS_WHOLE_HEAD
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/ceramic
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -195,6 +225,10 @@
 	var/last_toggle = 0
 	var/toggle_delay = 2 SECONDS
 	price_tag = 600
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar
+	)
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/New()
 	..()
@@ -276,10 +310,10 @@
 	body_parts_covered = HEAD | EARS | EYES
 	flags_inv = HIDEEARS | HIDEEYES
 	armor = list(
-		ARMOR_BLUNT = 7,
-		ARMOR_BULLET = 7,
-		ARMOR_ENERGY =23,
-		ARMOR_BOMB =20,
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 4,
+		ARMOR_BOMB = 20,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
@@ -291,6 +325,10 @@
 		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
 	)
 	style_coverage = COVERS_WHOLE_HEAD
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/ablative
+	)
 
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
@@ -310,12 +348,22 @@
 	bad_type = /obj/item/clothing/head/armor/faceshield
 	style_coverage = COVERS_HAIR|COVERS_EARS
 
+/obj/item/clothing/head/armor/faceshield/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	if(up)
+		for(var/armorType in armorToDam)
+			for(var/list/damageElement in armorToDam[armorType])
+				damageElement[2] = max(damageElement[2] - armor.getRating(armorType)/armorDiv, 0)
+		return armorToDam
+	else
+		return ..()
+
+
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(ARMOR_BLUNT = 15, ARMOR_BULLET =  10, ARMOR_ENERGY =10, ARMOR_BOMB =35, ARMOR_BIO = 0, ARMOR_RAD = 0)
-	armor_down = list(ARMOR_BLUNT = 35, ARMOR_BULLET = 15, ARMOR_ENERGY =15, ARMOR_BOMB =50, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	armor_up = list(ARMOR_BLUNT = 2, ARMOR_BULLET =  2, ARMOR_ENERGY = 2, ARMOR_BOMB = 35, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	armor_down = list(ARMOR_BLUNT = 3, ARMOR_BULLET = 3, ARMOR_ENERGY = 3, ARMOR_BOMB = 50, ARMOR_BIO = 0, ARMOR_RAD = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -324,6 +372,12 @@
 		MATERIAL_GLASS = 6,
 	)
 	flash_protection_down = FLASH_PROTECTION_MODERATE // used against flash mobs
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/head/armor/faceshield/Initialize()
 	. = ..()
@@ -387,10 +441,10 @@
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
-		ARMOR_BLUNT = 15,
-		ARMOR_BULLET = 20,
-		ARMOR_ENERGY =20,
-		ARMOR_BOMB =75,
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB = 75,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
@@ -401,6 +455,11 @@
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
 	style_coverage = COVERS_WHOLE_HEAD
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/ceramic
+	)
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
@@ -461,25 +520,31 @@
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "steelpot"
 	armor = list(
-		ARMOR_BLUNT = 10,
-		ARMOR_BULLET = 15,
-		ARMOR_ENERGY =12,
-		ARMOR_BOMB =50,
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB = 50,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	) // slightly buffed IHS helmet minus energy resistance
 	flags_inv = BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
 	siemens_coefficient = 1
+	armorComps = list(
+		/obj/item/armor_component/plate/plasteel
+	)
 
 /obj/item/clothing/head/armor/faceshield/altyn
 	name = "altyn helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "altyn"
-	armor_up = list(ARMOR_BLUNT = 5, ARMOR_BULLET = 5, ARMOR_ENERGY =2, ARMOR_BOMB =30, ARMOR_BIO = 0, ARMOR_RAD = 0)
-	armor_down = list(ARMOR_BLUNT = 13, ARMOR_BULLET = 13, ARMOR_ENERGY =7, ARMOR_BOMB =50, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	armor_up = list(ARMOR_BLUNT = 3, ARMOR_BULLET = 3, ARMOR_ENERGY = 3, ARMOR_BOMB = 30, ARMOR_BIO = 0, ARMOR_RAD = 0)
+	armor_down = list(ARMOR_BLUNT = 4, ARMOR_BULLET = 4, ARMOR_ENERGY = 4, ARMOR_BOMB = 50, ARMOR_BIO = 0, ARMOR_RAD = 0)
 	siemens_coefficient = 1
 	up = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/plasteel
+	)
 
 /obj/item/clothing/head/armor/faceshield/altyn/brown
 	icon_state = "altyn_brown"
@@ -492,13 +557,17 @@
 	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
 	icon_state = "maska"
 	armor_down = list(
-		ARMOR_BLUNT = 14,
-		ARMOR_BULLET = 15,
-		ARMOR_ENERGY =7,
-		ARMOR_BOMB =50,
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB = 50,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	) // superior ballistic protection, mediocre laser protection.
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
 	name = "striped maska helmet"
@@ -542,16 +611,22 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
 	armor = list(
-		ARMOR_BLUNT = 10,
-		ARMOR_BULLET = 20,
-		ARMOR_ENERGY =5,
-		ARMOR_BOMB =75,
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB = 75,
 		ARMOR_BIO = 0,
 		ARMOR_RAD = 0
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
 	style_coverage = COVERS_WHOLE_HEAD
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17
+	)
 
 /obj/item/clothing/head/armor/helmet/tanker
 	name = "black tanker helmet"
@@ -595,18 +670,18 @@
 		MATERIAL_PLATINUM = 2
 		)
 	armor_up = list(
-		ARMOR_BLUNT = 5,
-		ARMOR_BULLET = 5,
-		ARMOR_ENERGY =5,
-		ARMOR_BOMB =20,
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB = 20,
 		ARMOR_BIO = 100,
 		ARMOR_RAD = 50
 		)
 	armor_down = list(
-		ARMOR_BLUNT = 7,
-		ARMOR_BULLET = 10,
-		ARMOR_ENERGY =10,
-		ARMOR_BOMB =50,
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB = 50,
 		ARMOR_BIO = 100,
 		ARMOR_RAD = 50)
 	up = TRUE
@@ -618,6 +693,9 @@
 	var/scan_interval = 15 SECONDS
 	var/repeat_report_after = 60 SECONDS
 	var/list/crewmembers_recently_reported = list()
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17
+	)
 
 
 /obj/item/clothing/head/armor/faceshield/paramedic/equipped(mob/M)

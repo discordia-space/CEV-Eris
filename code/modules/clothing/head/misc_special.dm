@@ -39,6 +39,9 @@
 	style = STYLE_NEG_LOW
 	style_coverage = COVERS_WHOLE_FACE
 	var/base_state
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/head/welding/attack_self()
 	if(!base_state)
@@ -124,6 +127,11 @@
 	icon_state = "ushanka_down"
 	flags_inv = HIDEEARS
 	style_coverage = COVERS_HAIR
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user)
 	if(src.icon_state == "ushanka_down")

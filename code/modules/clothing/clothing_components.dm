@@ -104,7 +104,7 @@ GLOBAL_LIST(armorInitialCache)
 /obj/item/armor_component/examine(user, distance)
 	. = ..()
 	to_chat(user, SPAN_NOTICE("Its current integrity is [armorHealth] / [maxArmorHealth]"))
-	for(var/armorType in armor)
+	for(var/armorType in armor.getList())
 		to_chat(user, SPAN_NOTICE("It has a rating of [armor.getRating(armorType)] against [armorType]"))
 
 /// Gets given the armorType to return a value for. Override this for your special plates

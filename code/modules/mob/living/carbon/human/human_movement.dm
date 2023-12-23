@@ -10,7 +10,7 @@
 
 	/// The more you carry extra , the slower you are...
 	// 7.5 KG of no slowdown capacity added ontop , then it grows exponentially
-	tally += max(0.0001,weight/(initial(weight)+7500)-1)
+	tally += max(0.0001,weight/(initial(weight)+20000)-1)*3
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
 	/// No slowdown for mech pilots , mech already handles movement.

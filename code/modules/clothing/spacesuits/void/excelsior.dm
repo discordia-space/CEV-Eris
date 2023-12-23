@@ -26,6 +26,13 @@
 	light_overlay = "helmet_light_green"
 	var/obj/item/clothing/glasses/hud/excelsior/hud
 	price_tag = 300
+	armorComps = list(
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/plastic
+
+	)
 
 /obj/item/clothing/head/space/void/excelsior/New()
 	..()
@@ -92,3 +99,12 @@
 	helmet = /obj/item/clothing/head/space/void/excelsior
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
+	armorComps = list(
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/sideguards/excelalloy,
+		/obj/item/armor_component/sideguards/excelalloy,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)

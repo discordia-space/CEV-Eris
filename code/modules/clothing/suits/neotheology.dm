@@ -11,11 +11,14 @@
 		ARMOR_BLUNT = 10,
 		ARMOR_BULLET = 7,
 		ARMOR_ENERGY = 7,
-		ARMOR_BOMB =25,
-		ARMOR_BIO =100,
-		ARMOR_RAD =75
+		ARMOR_BOMB = 25,
+		ARMOR_BIO = 100,
+		ARMOR_RAD = 75
 	)
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17
+	)
 
 /obj/item/clothing/suit/armor/acolyte
 	name = "Acolyte armor"
@@ -34,6 +37,10 @@
 	)
 	//helmet = /obj/item/clothing/head/space/void/acolyte
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/head/armor/agrolyte
 	name = "Agrolyte hood"
@@ -71,6 +78,9 @@
 		ARMOR_RAD =75
 	)
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/head/armor/custodian
 	name = "Custodian helmet"
@@ -91,6 +101,9 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/armor/custodian
 	name = "Custodian armor"
@@ -106,6 +119,9 @@
 		ARMOR_BOMB =20,
 		ARMOR_BIO =200,
 		ARMOR_RAD =90
+	)
+	armorComps = list(
+		/obj/item/armor_component/plate/plastic
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE

@@ -35,7 +35,8 @@
 #define CLOTH_ARMOR_SIDEGUARDS 2
 
 /// Clothing flags
-#define CLOTH_MODULAR "modular" /// For modular armor only , anything that doesn't have this is not modifiable.
+/// A cloth whose armor plates can't be modified.
+#define CLOTH_NO_MOD 1<<1
 
 /// Defines for accesories
 

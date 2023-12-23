@@ -143,6 +143,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	spawn_blacklisted = TRUE
+	rarity_value = 150
 	armor = list(
 		ARMOR_BLUNT = 5,
 		ARMOR_BULLET = 5,
@@ -153,6 +154,12 @@
 	)
 	price_tag = 5000
 	style = STYLE_HIGH
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
+
 
 //NeoTheology
 /obj/item/clothing/suit/storage/neotheology_jacket
@@ -280,6 +287,11 @@
 	siemens_coefficient = 0.8
 	price_tag = 250
 	style = STYLE_HIGH
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/detective/brown
 	name = "inspector's brown armored trenchcoat"

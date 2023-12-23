@@ -221,10 +221,11 @@
 	desc = "preety unreactive to damage in general"
 	icon_state = "plastic"
 	weight = 1000
+	volume = 0.5
 	maxArmorHealth = 2000
 	armorHealth = 2000
 	armor = list(
-		ARMOR_BLUNT = 5,
+		ARMOR_BLUNT = 8,
 		ARMOR_SLASH = 5,
 		ARMOR_POINTY = 3,
 		ARMOR_BULLET = 3,
@@ -252,8 +253,8 @@
 	desc = "a communist mix of plastic , steel and hard labour. Manufactured using excelsior secrets."
 	icon_state = "excelalloy"
 	weight = 1600
-	maxArmorHealth = 2000
-	armorHealth = 2000
+	maxArmorHealth = 1500
+	armorHealth = 1500
 	armor = list(
 		ARMOR_BLUNT = 15,
 		ARMOR_SLASH = 15,
@@ -269,8 +270,8 @@
 		ARMOR_BLUNT = 1,
 		ARMOR_SLASH = 0.4,
 		ARMOR_POINTY = 2,
-		ARMOR_BULLET = 1.4,
-		ARMOR_ENERGY = 0,
+		ARMOR_BULLET = 0.7,
+		ARMOR_ENERGY = 0.5,
 		ARMOR_ELECTRIC = 0,
 		ARMOR_BIO = 0,
 		ARMOR_CHEM = 0,
@@ -340,7 +341,7 @@
 	)
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 3)
 
-/obj/item/armor_component/plate/neojute
+/obj/item/armor_component/plate/nt17
 	name = "nt-17 armor plate"
 	desc = "Shiny"
 	icon_state = "neojute"
@@ -406,7 +407,7 @@
 	name = "clothing-grade cloth"
 	desc = "The less dense cousin of kevlar"
 	icon_state = "cloth"
-	volume = 0.5
+	volume = 0.3
 	weight = 500
 	maxArmorHealth = 500
 	armorHealth = 500
@@ -422,8 +423,8 @@
 		ARMOR_RAD = 0
 	)
 	armorDegradation = list(
-		ARMOR_BLUNT = 0.3,
-		ARMOR_SLASH = 2,
+		ARMOR_BLUNT = 0.5,
+		ARMOR_SLASH = 3,
 		ARMOR_POINTY = 0.3,
 		ARMOR_BULLET = 0.5,
 		ARMOR_ENERGY = 0,
@@ -434,12 +435,12 @@
 	)
 	matter = list(MATERIAL_CLOTH = 5)
 
-/obj/item/armor_component/plate/
+/obj/item/armor_component/plate/leather
 	name = "tanned leather"
 	desc = "perfect for belts and thick jackets"
-	icon_state = "cloth"
-	volume = 0.7
-	weight = 500
+	icon_state = "leather"
+	volume = 0.5
+	weight = 800
 	maxArmorHealth = 500
 	armorHealth = 500
 	armor = list(
@@ -455,7 +456,7 @@
 	)
 	armorDegradation = list(
 		ARMOR_BLUNT = 0.3,
-		ARMOR_SLASH = 2,
+		ARMOR_SLASH = 3,
 		ARMOR_POINTY = 0.3,
 		ARMOR_BULLET = 0.5,
 		ARMOR_ENERGY = 0,

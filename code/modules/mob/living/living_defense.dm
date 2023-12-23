@@ -95,7 +95,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 				adjustHalLoss(damageElement[DAMVALUE] + blocked/4)
 			else
 				// Just a little bit of agony
-				adjustHalLoss(blocked/5)
+				adjustHalLoss(blocked/3)
 			// too small to be relevant
 			if(blocked > damageElement[DAMVALUE] - 1)
 				continue

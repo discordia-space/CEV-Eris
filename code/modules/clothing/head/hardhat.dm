@@ -18,6 +18,11 @@
 	price_tag = 30
 	style = STYLE_NEG_LOW
 	style_coverage = COVERS_HAIR
+	armorComps = list(
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/head/hardhat/visor
 	name = "visored hard hat"

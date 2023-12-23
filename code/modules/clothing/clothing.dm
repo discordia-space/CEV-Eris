@@ -31,8 +31,12 @@
 
 	/// A list of all the armorComps, order is important since we iterate inversely.
 	/// if it has typepaths at round-start, it will initialize them
-	var/list/obj/item/armor_component/armorComps = list()
+	var/list/obj/item/armor_component/armorComps = list(
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth
+	)
 
+	var/clothingFlags = null
 
 
 	style = STYLE_NONE
@@ -132,6 +136,68 @@
 	if(H)
 		H.update_inv_head()
 
+/obj/item/clothing/proc/insertArmor(obj/item/armor_component/component, mob/living/user, increaseVolume = FALSE, force = FALSE)
+	var/currentVolume = 0
+	if(clothingFlags & CLOTH_NO_MOD && !force)
+		if(user)
+			to_chat(user, SPAN_NOTICE("\The [src]'s armor components cannot be modified!"))
+		return
+
+	if(istype(component, /obj/item/armor_component/plate))
+		for(var/obj/item/armor_component/plate/plateComp in armorComps)
+			currentVolume += plateComp.volume
+		if(!force)
+			if(currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_TORSO])
+				if(!user)
+					return
+				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [component]"))
+				return
+		else if((currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_TORSO]) && increaseVolume)
+			maxArmorVolume[CLOTH_ARMOR_TORSO] += component.volume
+
+	if(istype(component, /obj/item/armor_component/sideguards))
+		if(!istype(src, /obj/item/clothing/suit) || !istype(src, /obj/item/clothing/under))
+			if(!user)
+				return
+			to_chat(user, SPAN_NOTICE("\The [component] cannot be installed on anything other than a suit or a jumpsuit"))
+			return
+		for(var/obj/item/armor_component/sideguards/sideguardsComp in armorComps)
+			currentVolume += sideguardsComp.volume
+		if(!force)
+			if(currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+				if(!user)
+					return
+				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [component]"))
+				return
+		else if((currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS]) && increaseVolume)
+			maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS] += component.volume
+	if(user)
+		user.drop_from_inventory(component)
+	component.forceMove(src)
+	armorComps |= component
+	if(istype(component, /obj/item/clothing/head))
+		component.covering = HEAD
+	if(istype(component, /obj/item/clothing/gloves))
+		component.covering = ARMS
+	if(istype(component, /obj/item/clothing/shoes))
+		component.covering = LEGS
+	if(istype(component, /obj/item/clothing/suit) || istype(component, /obj/item/clothing/under))
+		component.covering = UPPER_TORSO | LOWER_TORSO
+
+/obj/item/clothing/proc/removeArmor(obj/item/armor_component/component, mob/living/user, force = FALSE, atom/location)
+	if(clothingFlags & CLOTH_NO_MOD && !force)
+		if(user)
+			to_chat(user, SPAN_NOTICE("\The [src]'s armor components cannot be modified!"))
+		return
+	armorComps.Remove(component)
+	component.forceMove(NULLSPACE)
+	if(istype(src, /obj/item/clothing/head))
+		component.covering = initial(component.covering)
+	if(user)
+		to_chat(user, SPAN_NOTICE("You remove \the [component] from \the [src]."))
+		user.put_in_active_hand(component)
+	else if(location)
+		component.forceMove(location)
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
@@ -151,33 +217,24 @@
 			matter = list(MATERIAL_BIOMATTER = 5 * volumeClass)
 
 	if(length(armorComps))
-		var/list/newComps = list()
-		var/sideGuardVol = 0
-		var/torsoVol = 0
-		for(var/path in armorComps)
-			if(!ispath(path))
-				message_admins("CLOTHING : [src] | [src.type] had a initialized armor plate in its initList")
+		var/list/newComps = armorComps
+		armorComps = list()
+		for(var/path in newComps)
+			var/obj/item/armor_component/armorPart = new path(NULLSPACE)
+			if(!istype(armorPart))
+				message_admins("[src] | [src.type] had an armor part which is not of the current subtype , [armorPart.type]")
 				continue
-			var/obj/item/armor_component/reference = new path(src)
-			if(istype(src , /obj/item/clothing/head))
-				reference.covering = HEAD
-			if(istype(reference, /obj/item/armor_component/plate))
-				torsoVol += reference.volume
-			if(istype(reference, /obj/item/armor_component/sideguards))
-				sideGuardVol += reference.volume
-			newComps.Add(reference)
-		if(!maxArmorVolume[CLOTH_ARMOR_TORSO])
-			maxArmorVolume[CLOTH_ARMOR_TORSO] = torsoVol
-		if(!maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
-			maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS] = sideGuardVol
-		armorComps = newComps
+			var/increaseVolume = FALSE
+			if(maxArmorVolume[CLOTH_ARMOR_TORSO] || maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+				increaseVolume = TRUE
+			insertArmor(armorPart,null, increaseVolume, TRUE)
 
 /obj/item/clothing/examine(mob/user, distance)
 	. = ..()
 	if(distance <= 1 && length(armorComps))
 		to_chat(user, SPAN_NOTICE("Click any plate below to remove them from \the [src]:"))
 		for(var/obj/item/armor_component/comp in armorComps)
-			to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src];removePlate=\ref[comp];user=\ref[user]'>\icon[comp] [comp.name]</a>"))
+			to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src];removePlate=\ref[comp];user=\ref[user]'>\icon[comp] [comp.name] [comp.armorHealth]/[comp.maxArmorHealth]</a>"))
 
 /obj/item/clothing/Topic(href, href_list, datum/nano_topic_state/state)
 	. = ..()
@@ -192,35 +249,12 @@
 			return
 		if(!armorComps.Find(component))
 			return
-		to_chat(user, SPAN_NOTICE("You remove \the [component] from \the [src]."))
-		armorComps.Remove(component)
-		component.forceMove(get_turf(user))
-		if(istype(src, /obj/item/clothing/head))
-			component.covering = initial(component.covering)
-		user.put_in_active_hand(component)
+		removeArmor(component, user, FALSE, FALSE , null)
 
 /obj/item/clothing/attackby(obj/item/I, mob/user)
 	. = ..()
 	if(istype(I, /obj/item/armor_component))
-		var/obj/item/armor_component/Comp = I
-		var/currentVolume = 0
-		if(istype(Comp, /obj/item/armor_component/plate))
-			for(var/obj/item/armor_component/plate/plateComp in armorComps)
-				currentVolume += plateComp.volume
-			if(currentVolume + Comp.volume > maxArmorVolume[CLOTH_ARMOR_TORSO])
-				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [I]"))
-				return
-		if(istype(Comp, /obj/item/armor_component/sideguards))
-			for(var/obj/item/armor_component/sideguards/sideguardsComp in armorComps)
-				currentVolume += sideguardsComp.volume
-			if(currentVolume + Comp.volume > maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
-				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [I]"))
-				return
-		user.drop_from_inventory(I)
-		I.forceMove(src)
-		armorComps |= I
-		if(istype(src, /obj/item/clothing/head))
-			Comp.covering = HEAD
+		insertArmor(I, user, FALSE, FALSE)
 
 
 /obj/item/clothing/Destroy()
@@ -263,6 +297,7 @@
 
 /obj/item/clothing/equipped(mob/user, slot)
 	. = ..()
+	update_icon()
 	user.update_icon = TRUE
 	if(ishuman(user))
 		var/mob/living/carbon/human/target = user
@@ -483,6 +518,10 @@ BLIND     // can't see anything
 	attack_verb = list("challenged")
 	style = STYLE_LOW
 	matter = list(MATERIAL_CLOTH = 3)
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 	var/wired = 0
 	var/clipped = 0
 

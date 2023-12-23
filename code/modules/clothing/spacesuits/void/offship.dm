@@ -15,6 +15,11 @@
 	siemens_coefficient = 0.35
 	light_overlay = "helmet_light_dual"
 	bad_type = /obj/item/clothing/head/space/void/onestar
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17
+	)
 
 /obj/item/clothing/suit/space/void/onestar
 	name = "One Star Voidsuit"
@@ -37,3 +42,11 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/sideguards/excelalloy,
+		/obj/item/armor_component/sideguards/excelalloy
+
+	)

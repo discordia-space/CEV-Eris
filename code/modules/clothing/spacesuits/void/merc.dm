@@ -16,6 +16,14 @@
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green"
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/plasteel,
+		/obj/item/armor_component/plate/ceramic,
+		/obj/item/armor_component/plate/ceramic
+	)
 
 /obj/item/clothing/suit/space/void/SCAF
 	name = "SCAF suit"
@@ -40,6 +48,17 @@
 	helmet = /obj/item/clothing/head/space/void/SCAF
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN * 1.5
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/plasteel,
+		/obj/item/armor_component/plate/ceramic,
+		/obj/item/armor_component/plate/ceramic,
+		/obj/item/armor_component/sideguards/plasteel,
+		/obj/item/armor_component/sideguards/plasteel,
+		/obj/item/armor_component/sideguards/ceramic
+	)
 
 
 //Voidsuit for contractors
@@ -60,6 +79,12 @@
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/ceramic
+	)
 
 /obj/item/clothing/head/space/void/merc/update_icon()
 	..()
@@ -87,6 +112,14 @@
 	resilience = 0.08
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/sideguards/steel,
+		/obj/item/armor_component/sideguards/steel,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/ceramic
+	)
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE
