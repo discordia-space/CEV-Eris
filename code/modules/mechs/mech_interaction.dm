@@ -617,6 +617,7 @@
 	// Otherwise toggle the hatch.
 	if(hatch_locked)
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+		playsound(src,'sound/mechs/doorlocked.ogg', 50, 1)
 		return
 	if(body && body.total_damage >= body.max_damage)
 		to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
