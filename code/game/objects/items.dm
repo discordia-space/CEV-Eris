@@ -204,7 +204,7 @@ GLOBAL_LIST(melleDamagesCache)
 	forceMove(NULLSPACE)
 	forceMove(T)
 
-/obj/item/examine(user, distance = -1)
+/obj/item/examine(user, distance = -1, afterDesc = "")
 	var/message
 	var/size
 	switch(volumeClass)
@@ -232,9 +232,16 @@ GLOBAL_LIST(melleDamagesCache)
 		message += "\nWhen wielded, the damages will be increased by a factor of [wieldedMultiplier]"
 
 	for(var/Q in tool_qualities)
-		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+		message += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
-	. = ..(user, distance, "", message)
+	var/list/listReference = list()
+	SEND_SIGNAL(src, COMSIG_EXTRA_EXAMINE, listReference)
+	if(length(listReference))
+		message += "\n"
+	for(var/text in listReference)
+		message += "[text] \n"
+
+	. = ..(user, distance, "", message, afterDesc)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

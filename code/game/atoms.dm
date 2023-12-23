@@ -382,9 +382,10 @@ its easier to just keep the beam vertical.
 
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "" , afterDesc = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/full_name = "\a [src][infix]."
+	var/examineText = ""
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
 			full_name = "some "
@@ -395,15 +396,32 @@ its easier to just keep the beam vertical.
 		else
 			full_name += "oil-stained [name][infix]."
 
+	/*
+	margin: 1px;
+	border: 5px solid #0a3352;
+	padding: 5px;
+	background-color:#1d527a;
+	width: auto; /// THESE 2 are needed because IE11 has no max-content width - SPCR 2023
+	white-space: nowrap;
+	*/
+
+
+	examineText += "<div style='["background-color:#1d527a;margin:1px;border:5px solid #0a3352;padding:5px;width:auto;"]'>"
+	examineText += "\icon[src] This is [full_name] [desc] \n"
+	examineText += "[suffix]"
+	if(afterDesc)
+		examineText += "\n [afterDesc]"
+	examineText += "</div>"
+
 	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
+		to_chat(user, examineText)
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", examineText)
 
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(desc)
-		to_chat(user,"<div bgcolor='#51bbf8'>[desc]</div>")
+		//to_chat(user,"<div style='["background-color:#1d527a"]';>[desc]</div>")
 		var/pref = user.get_preference_value("SWITCHEXAMINE")
 		if(pref == GLOB.PREF_YES)
 			user.client.statpanel = "Examine"
