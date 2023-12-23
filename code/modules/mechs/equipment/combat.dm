@@ -853,6 +853,7 @@
 	if(.)
 		on = !on
 		to_chat(user, "You toggle \the [src] [on ? "on" : "off"].")
+		playsound(get_turf(src), 'sound/weapons/flash.ogg', 50, 8)
 		last_toggle = world.time
 		update_icon()
 
@@ -901,6 +902,7 @@
 			if(QDELETED(power))
 				last_toggle = world.time
 				on = FALSE
+				playsound(get_turf(src),'sound/mechs/internaldmgalarm.ogg', 50, 8)
 				update_icon()
 				return damages
 

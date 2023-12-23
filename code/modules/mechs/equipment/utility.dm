@@ -152,7 +152,7 @@
 	desc = "An exosuit-mounted light."
 	icon_state = "mech_floodlight"
 	item_state = "mech_floodlight"
-	restricted_hardpoints = list(HARDPOINT_HEAD)
+	restricted_hardpoints = list(HARDPOINT_HEAD, HARDPOINT_RIGHT_SHOULDER, HARDPOINT_LEFT_SHOULDER)
 	mech_layer = MECH_INTERMEDIATE_LAYER
 
 	var/on = FALSE

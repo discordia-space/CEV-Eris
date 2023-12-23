@@ -290,7 +290,7 @@
 	name = "forklift chassis"
 	desc = "Has an integrated forklift clamp for the industrial relocation of resources. Are you ready to lift?"
 	icon_state = "seat-cockpit"
-	has_hardpoints = list(HARDPOINT_FRONT)
+	has_hardpoints = list(HARDPOINT_FRONT, HARDPOINT_RIGHT_SHOULDER)
 	exosuit_desc_string = "a forklifting chassis"
 	pilot_coverage = 30
 	max_damage = 100
