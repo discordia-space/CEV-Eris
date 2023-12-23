@@ -30,7 +30,7 @@
 /obj/item/stock_parts/capacitor
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
-	icon_state = "capacitor"
+	icon_state = "capacitor_t1"
 	origin_tech = list(TECH_POWER = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 	rarity_value = 15
@@ -38,28 +38,28 @@
 /obj/item/stock_parts/scanning_module
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
-	icon_state = "scan_module"
+	icon_state = "scanner_t1"
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
 
 /obj/item/stock_parts/manipulator
 	name = "micro-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
-	icon_state = "micro_mani"
+	icon_state = "mani_t1"
 	origin_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
 
 /obj/item/stock_parts/micro_laser
 	name = "micro-laser"
 	desc = "A tiny laser used in certain devices."
-	icon_state = "micro_laser"
+	icon_state = "laser_t1"
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 /obj/item/stock_parts/matter_bin
 	name = "matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
-	icon_state = "matter_bin"
+	icon_state = "bin_t1"
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	rarity_value = 9
@@ -69,7 +69,7 @@
 /obj/item/stock_parts/capacitor/adv
 	name = "advanced capacitor"
 	desc = "An advanced capacitor used in the construction of a variety of devices."
-	icon_state = "adv_capacitor"
+	icon_state = "capacitor_t2"
 	origin_tech = list(TECH_POWER = 3)
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
@@ -78,7 +78,7 @@
 /obj/item/stock_parts/scanning_module/adv
 	name = "advanced scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
-	icon_state = "adv_scan_module"
+	icon_state = "scanner_t2"
 	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
@@ -87,7 +87,7 @@
 /obj/item/stock_parts/manipulator/nano
 	name = "nano-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
-	icon_state = "nano_mani"
+	icon_state = "mani_t2"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2)
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
@@ -96,7 +96,7 @@
 /obj/item/stock_parts/micro_laser/high
 	name = "high-power micro-laser"
 	desc = "A tiny laser used in certain devices."
-	icon_state = "high_micro_laser"
+	icon_state = "laser_t2"
 	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
@@ -105,7 +105,7 @@
 /obj/item/stock_parts/matter_bin/adv
 	name = "advanced matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
-	icon_state = "advanced_matter_bin"
+	icon_state = "bin_t2"
 	origin_tech = list(TECH_MATERIAL = 3)
 	rating = 2
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
@@ -116,7 +116,7 @@
 /obj/item/stock_parts/capacitor/super
 	name = "super capacitor"
 	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
-	icon_state = "super_capacitor"
+	icon_state = "capacitor_t3"
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 3
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
@@ -124,7 +124,7 @@
 /obj/item/stock_parts/scanning_module/phasic
 	name = "phasic scanning module"
 	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
-	icon_state = "super_scan_module"
+	icon_state = "scanner_t3"
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
@@ -132,14 +132,14 @@
 /obj/item/stock_parts/manipulator/pico
 	name = "pico-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
-	icon_state = "pico_mani"
+	icon_state = "mani_t3"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 3
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
 
 /obj/item/stock_parts/micro_laser/ultra
 	name = "ultra-high-power micro-laser"
-	icon_state = "ultra_high_micro_laser"
+	icon_state = "laser_t3"
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
@@ -148,7 +148,7 @@
 /obj/item/stock_parts/matter_bin/super
 	name = "super matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
-	icon_state = "super_matter_bin"
+	icon_state = "bin_t3"
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 3
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
@@ -158,7 +158,7 @@
 /obj/item/stock_parts/capacitor/excelsior
 	name = "excelsior capacitor"
 	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
-	icon_state = "excel_capacitor"
+	icon_state = "capacitor_excel"
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 4
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
@@ -167,7 +167,7 @@
 /obj/item/stock_parts/scanning_module/excelsior
 	name = "excelsior scanning module"
 	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
-	icon_state = "excel_scan_module"
+	icon_state = "scanner_excel"
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 4
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
@@ -176,7 +176,7 @@
 /obj/item/stock_parts/manipulator/excelsior
 	name = "excelsior manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
-	icon_state = "excel_mani"
+	icon_state = "mani_excel"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 4
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
@@ -184,7 +184,7 @@
 
 /obj/item/stock_parts/micro_laser/excelsior
 	name = "excelsior micro-laser"
-	icon_state = "excel_laser"
+	icon_state = "laser_excel"
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 4
@@ -194,7 +194,7 @@
 /obj/item/stock_parts/matter_bin/excelsior
 	name = "excelsior matter bin"
 	desc = "A container for holding compressed matter awaiting re-construction."
-	icon_state = "excel_matter"
+	icon_state = "bin_excel"
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 4
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
@@ -305,7 +305,7 @@
 /obj/item/stock_parts/capacitor/debug
 	name = "bluespace capacitor"
 	desc = "An ultra-advanced battery able to store immense amounts of energy in a localized bluespace pocket. Used in construction of certain devices."
-	icon_state = "debug_capacitor"
+	icon_state = "capacitor_debug"
 	origin_tech = list(TECH_POWER = 6, TECH_MATERIAL = 6)
 	rating = 100 // rating doesn't really matter past a certain point - this makes autolathes print stuff at 1/5th the normal cost (item that costs 5 steel now costs 1 steel)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 3, MATERIAL_PLASMA = 1)
@@ -314,7 +314,7 @@
 /obj/item/stock_parts/scanning_module/debug
 	name = "bluespace scanning module"
 	desc = "An ultra-advanced electronic that can rapidly scan objects, as well as their mirror images in bluespace in order to easily understand every detail. Used in construction of certain devices."
-	icon_state = "debug_scan_module"
+	icon_state = "scanner_debug"
 	origin_tech = list(TECH_MAGNET = 6)
 	rating = 100
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1, MATERIAL_PLASMA = 1)
@@ -323,7 +323,7 @@
 /obj/item/stock_parts/manipulator/debug
 	name = "bluespace yocto-manipulator"
 	desc = "An ultra-advanced device that can manipulate an objects molecular structure. Used in construction of certain devices."
-	icon_state = "debug_mani"
+	icon_state = "mani_debug"
 	origin_tech = list(TECH_MATERIAL = 6, TECH_DATA = 3)
 	rating = 100
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 1)
@@ -331,7 +331,7 @@
 
 /obj/item/stock_parts/micro_laser/debug
 	name = "bluespace yocto-laser"
-	icon_state = "debug_micro_laser"
+	icon_state = "laser_debug"
 	desc = "An ultra-advanced device that emits a laser that can emit any kind of laser on the spectrum, and several lasers off the spectrum. Used in construction of certain devices."
 	origin_tech = list(TECH_MAGNET = 6)
 	rating = 100
@@ -341,7 +341,7 @@
 /obj/item/stock_parts/matter_bin/debug
 	name = "bluespace matter bin"
 	desc = "An ultra-advanced container that opens into a localized pocket dimension meant for holding compressed matter. Used in construction of certain devices."
-	icon_state = "debug_matter_bin"
+	icon_state = "bin_debug"
 	origin_tech = list(TECH_MATERIAL = 6)
 	rating = 100
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_PLASMA = 1)

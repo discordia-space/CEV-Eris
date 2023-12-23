@@ -53,8 +53,8 @@
 	GLOB.all_doors -= src
 	..()
 
-/obj/machinery/door/can_prevent_fall()
-	return density
+/obj/machinery/door/can_prevent_fall(above)
+	return above ? density : null
 
 /obj/machinery/door/attack_generic(mob/user, var/damage)
 	if(damage >= resistance)
@@ -101,13 +101,19 @@
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
-		return 0
-	return 1
+		return FALSE
+	var/obj/machinery/door/blast/overlayed_door = locate(/obj/machinery/door/blast/regular) in get_turf(src)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	overlayed_door = locate(/obj/machinery/door/blast/shutters) in get_turf(src)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/proc/can_close()
 	if(density || operating)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/Bumped(atom/AM)
 	if(operating) return
@@ -445,6 +451,7 @@
 	icon_state = "door0"
 	//sleep(3)
 	src.density = FALSE
+	SEND_SIGNAL(src, COMSIG_DOOR_OPENED, forced)
 	update_nearby_tiles()
 	//sleep(7)
 	src.layer = open_layer
@@ -466,6 +473,7 @@
 	do_animate("closing")
 	//sleep(3)
 	src.density = TRUE
+	SEND_SIGNAL(src, COMSIG_DOOR_CLOSED, forced)
 	update_nearby_tiles()
 	//sleep(7)
 	src.layer = closed_layer

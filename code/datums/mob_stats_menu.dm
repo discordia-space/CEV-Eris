@@ -9,7 +9,7 @@
 
 /datum/stat_holder/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/simple/perks)
+		get_asset_datum(/datum/asset/spritesheet/perks)
 	)
 
 /datum/stat_holder/ui_static_data(mob/user)

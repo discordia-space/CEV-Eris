@@ -90,14 +90,14 @@ see multiz/movement.dm for some info.
 		if(!below)
 			return
 
-	if(catwalk != (locate(/obj/structure/catwalk) in src))
-		return
+	/// If anything on our turf stops falls downwards
+	for(var/atom/A in contents)
+		if(A.can_prevent_fall(FALSE, null))
+			return
 
-	if(locate(/obj/structure/multiz/stairs) in src)
-		return
-
+	/// If anything below stops falls from above
 	for(var/atom/A in below)
-		if(A.can_prevent_fall())
+		if(A.can_prevent_fall(TRUE,null))
 			return
 
 	return TRUE
@@ -116,6 +116,10 @@ see multiz/movement.dm for some info.
 			P.bumped = FALSE
 			P.height = HEIGHT_LOW // We are shooting from above, this protects windows from damage
 			return // We are done here
+
+	for(var/atom/A in contents)
+		if(A.can_prevent_fall(FALSE, mover))
+			return
 
 	if(!mover.can_fall())
 		return

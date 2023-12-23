@@ -6,9 +6,76 @@
 
 /mob/living/exosuit/Move()
 	. = ..()
-	if(. && !istype(loc, /turf/space))
-		if(legs && legs.mech_step_sound)
-			playsound(src.loc,legs.mech_step_sound,40,1)
+	if(.)
+		// Check for ore auto insertion
+		var/obj/structure/ore_box/box = getOreCarrier()
+		if(box)
+			for(var/obj/item/ore/i in get_turf(src))
+				i.Move(box)
+		// Check for walking sound
+		if(!isinspace())
+			if(legs && legs.mech_step_sound)
+				playsound(src.loc,legs.mech_step_sound,40,1)
+		// Check for stomping people
+		if(legs)
+			var/blocked = FALSE
+			var/turf/theDepths = GetBelow(src)
+			if(isinspace())
+				if(theDepths)
+					for(var/obj/thing in theDepths.contents)
+						if(thing.density)
+							blocked = TRUE
+							break
+				else
+					blocked = TRUE
+			else
+				blocked = TRUE
+			for(var/mob/living/victim in get_turf(src))
+				if(victim.lying || victim.resting || victim.mob_size <= MOB_MEDIUM)
+					if(blocked || victim.anchored)
+						victim.apply_damage(legs.stomp_damage, BRUTE, BP_CHEST, 1, 1.5, FALSE, FALSE, src.legs )
+						visible_message("The [src] stomps on [victim], crushing their chest!")
+						occupant_message("You can feel \the [src] stomp something.")
+					else
+						victim.forceMove(theDepths)
+						visible_message("The [src] pushes [victim] downwards.")
+						occupant_message("You can feel \the [src] step onto something.")
+		for(var/hardpoint in hardpoints)
+			if(!hardpoints[hardpoint])
+				continue
+			var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
+			if(!(thing.equipment_flags & EQUIPFLAG_UPDTMOVE))
+				continue
+			thing.update_icon()
+
+/mob/living/exosuit/set_dir()
+	. = ..()
+	if(.)
+		update_pilots()
+		for(var/hardpoint in hardpoints)
+			if(!hardpoints[hardpoint])
+				continue
+			var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
+			if(!(thing.equipment_flags & EQUIPFLAG_UPDTMOVE))
+				continue
+			thing.update_icon()
+
+/mob/living/exosuit/get_jetpack()
+	for(var/hardpoint_thing in hardpoints)
+		if(istype(hardpoints[hardpoint_thing], /obj/item/mech_equipment/thrusters))
+			var/obj/item/mech_equipment/thrusters/jetpack = hardpoints[hardpoint_thing]
+			if(jetpack.on)
+				return jetpack.jetpack_fluff
+	return null
+
+/mob/living/exosuit/allow_spacemove()
+	. = ..()
+	for(var/hardpoint_thing in hardpoints)
+		if(istype(hardpoints[hardpoint_thing], /obj/item/mech_equipment/thrusters))
+			var/obj/item/mech_equipment/thrusters/jetpack = hardpoints[hardpoint_thing]
+			if(jetpack.on)
+				return TRUE
+	return .
 
 /mob/living/exosuit/update_plane()
 	. = ..()
@@ -39,6 +106,11 @@
 /datum/movement_handler/mob/exosuit/MayMove(var/mob/mover, var/is_external)
 	var/mob/living/exosuit/exosuit = host
 	if(world.time < next_move)
+		return MOVEMENT_STOP
+	/// Added to handle with the case of ballistic shields (and probably other ones in the future.)
+	var/text = exosuit.moveBlocked()
+	if(length(text))
+		to_chat(mover, SPAN_NOTICE(text))
 		return MOVEMENT_STOP
 	if((!(mover in exosuit.pilots) && mover != exosuit) || exosuit.incapacitated() || mover.incapacitated())
 		return MOVEMENT_STOP
@@ -122,6 +194,22 @@
 /mob/living/exosuit/get_fall_damage(var/turf/from, var/turf/dest)
 	//Exosuits are big and heavy, but one z level can't damage them
 	. = (from && dest) ? ((from.z - dest.z > 1) ? (50 * from.z - dest.z) : 0) : min(15, maxHealth * 0.4)
+
+/mob/living/exosuit/proc/moveBlocked()
+	for(var/hardpoint in hardpoints)
+		var/obj/item/mech_equipment/equip = hardpoints[hardpoint]
+		if(equip)
+			switch(equip.type)
+				if(/obj/item/mech_equipment/shield_generator/ballistic)
+					var/obj/item/mech_equipment/shield_generator/ballistic/blocker = equip
+					if(blocker.on)
+						return "\The [blocker] is deployed! Immobilizing you. "
+				if(/obj/item/mech_equipment/forklifting_system)
+					var/obj/item/mech_equipment/forklifting_system/fork = equip
+					if(fork.lifted)
+						return "\The [fork] is lifted, locking you in place!"
+	return ""
+
 
 /*
 /mob/living/exosuit/handle_fall_effect(var/turf/landing)

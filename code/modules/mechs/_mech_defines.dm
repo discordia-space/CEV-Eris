@@ -7,6 +7,7 @@
 #define MECH_HUD_ICON						'icons/mechs/mech_hud.dmi'
 
 #define HARDPOINT_BACK						"back"
+#define HARDPOINT_FRONT						"front"
 #define HARDPOINT_LEFT_HAND					"left hand"
 #define HARDPOINT_RIGHT_HAND				"right hand"
 #define HARDPOINT_LEFT_SHOULDER				"left shoulder"
@@ -51,3 +52,12 @@ GLOBAL_LIST_INIT(mech_damage_overlay_cache,		new)
 GLOBAL_LIST_INIT(mech_image_cache,				new)
 GLOBAL_LIST_INIT(mech_icon_cache,				new)
 GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECH_WEAPON_OVERLAYS_ICON))
+
+#define MECH_POWER_OFF 0
+#define MECH_POWER_TRANSITION 1
+#define MECH_POWER_ON 2
+
+/// It will make update_icon be called on the equipment after every move
+#define EQUIPFLAG_UPDTMOVE 1
+/// It will have pretick() called on it before the mech checks wheter or not is powered
+#define EQUIPFLAG_PRETICK 2

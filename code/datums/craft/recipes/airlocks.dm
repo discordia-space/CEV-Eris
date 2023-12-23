@@ -76,6 +76,26 @@
 		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL)
 	)
 
+/datum/craft_recipe/airlock/assembly/blast_door
+	name = "blast door assembly"
+	result = /obj/machinery/door/blast/regular
+	steps = list(
+		list(CRAFT_MATERIAL, 20, MATERIAL_PLASTEEL)
+	)
+
+/datum/craft_recipe/airlock/assembly/shutter
+	name = "shutter assembly"
+	result = /obj/machinery/door/blast/shutters
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL)
+	)
+
+/datum/craft_recipe/airlock/assembly/shutter/holey
+	name = "holey shutter assembly"
+	result = /obj/machinery/door/blast/shutters/holey
+	steps = list(
+		list(CRAFT_MATERIAL, 4, MATERIAL_PLASTEEL)
+	)
 
 /datum/craft_recipe/airlock/shutter/emergency_shutter
 	name = "emergency shutter"
