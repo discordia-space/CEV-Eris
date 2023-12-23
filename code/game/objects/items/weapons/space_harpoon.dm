@@ -123,8 +123,7 @@
 	icon_state = "harpoon-[mode]"
 
 /obj/item/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
-	..(user, dist)
-	to_chat(user, SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"]."))
+	..(user, dist, afterDesc = SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"]."))
 
 /obj/item/bluespace_harpoon/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

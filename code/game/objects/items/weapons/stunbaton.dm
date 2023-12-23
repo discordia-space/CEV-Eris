@@ -91,13 +91,12 @@
 		set_light(0)
 
 /obj/item/melee/baton/examine(mob/user)
-	if(!..(user, 1))
-		return
-
+	var/description  = ""
 	if(cell)
-		to_chat(user, SPAN_NOTICE("The baton is [round(cell.percent())]% charged."))
+		description += SPAN_NOTICE("The baton is [round(cell.percent())]% charged.")
 	else
-		to_chat(user, SPAN_WARNING("The baton does not have a power source installed."))
+		description += SPAN_WARNING("The baton does not have a power source installed.")
+	..(user, afterDesc = description)
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))

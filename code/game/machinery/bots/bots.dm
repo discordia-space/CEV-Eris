@@ -46,13 +46,14 @@
 		return 1
 
 /obj/machinery/bot/examine(mob/user)
-	..(user)
+	var/description = ""
 	if (src.health < maxHealth)
 		if (src.health > maxHealth/3)
-			to_chat(user, SPAN_WARNING("[src]'s parts look loose."))
+			description += SPAN_WARNING("[src]'s parts look loose."))
 		else
-			to_chat(user, SPAN_DANGER("[src]'s parts look very loose!"))
-	return
+			description += SPAN_DANGER("[src]'s parts look very loose!"))
+	..(user, afterDesc = description)
+
 
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/screwdriver))

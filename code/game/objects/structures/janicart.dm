@@ -30,12 +30,13 @@
 	return ..()
 
 /obj/structure/janitorialcart/examine(mob/user)
-	if(..(user, 1))
-		if (mybucket)
-			var/contains = mybucket.reagents.total_volume
-			to_chat(user, "\icon[src] The bucket contains [contains] unit\s of liquid!")
-		else
-			to_chat(user, "\icon[src] There is no bucket mounted on it!")
+	var/description = ""
+	if (mybucket)
+		var/contains = mybucket.reagents.total_volume
+		description += "\icon[src] The bucket contains [contains] unit\s of liquid!"
+	else
+		description += "\icon[src] There is no bucket mounted on it!"
+	..(user, afterDesc = description)
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)
@@ -312,11 +313,7 @@
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(mybag)
-		to_chat(user, "\A [mybag] is hanging on the [callme].")
+	..(user, afterDesc = mybag ? "\A [mybag] is hanging on the [callme]." : "")
 
 
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)

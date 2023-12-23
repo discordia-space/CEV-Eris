@@ -74,8 +74,10 @@
 			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
 
 /obj/item/clothing/head/space/examine(var/mob/user)
-	if(..(user, 1) && camera_networks && camera_networks.len)
-		to_chat(user, "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active.")
+	var/description = ""
+	if(camera_networks && camera_networks.len)
+		description += "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active. \n"
+	..(user, afterDesc = description)
 
 /obj/item/clothing/suit/space
 	name = "space suit"

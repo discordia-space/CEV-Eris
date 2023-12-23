@@ -627,9 +627,7 @@ There are 9 wires.
 	return ..()
 
 /obj/machinery/door/airlock/examine(mob/user)
-	..()
-	if(wedged_item)
-		to_chat(user, "You can see \icon[wedged_item] [wedged_item] wedged into it.")
+	..(afterDesc = wedged_item ?  "You can see \icon[wedged_item] [wedged_item] wedged into it." : "")
 
 /obj/machinery/door/airlock/proc/generate_wedge_overlay()
 	var/cache_string = "[wedged_item.icon]||[wedged_item.icon_state]||[wedged_item.overlays.len]||[wedged_item.underlays.len]"

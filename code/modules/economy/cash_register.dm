@@ -34,12 +34,13 @@
 
 
 /obj/machinery/cash_register/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(cash_open)
 		if(cash_stored)
-			to_chat(user, "It holds [cash_stored] Credit\s of money.")
+			description += "It holds [cash_stored] Credit\s of money."
 		else
-			to_chat(user, "It's completely empty.")
+			description += "It's completely empty."
+	..(user, afterDesc = description)
 
 
 /obj/machinery/cash_register/attack_hand(mob/user as mob)

@@ -94,8 +94,7 @@
 			attack_self(usr)
 
 /obj/item/device/gps/examine(var/mob/user)
-	..()
-	to_chat(user, "<span class='notice'>\The [src]'s screen shows: <i>[gps.get_coordinates_text(default="ERROR")]</i>.</span>")
+	..(afterDesc = "<span class='notice'>\The [src]'s screen shows: <i>[gps.get_coordinates_text(default="ERROR")]</i>.</span>")
 
 
 /obj/item/device/gps/science

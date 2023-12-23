@@ -51,13 +51,13 @@
 		usr.update_action_buttons()
 
 /obj/item/clothing/gloves/stungloves/examine(mob/user)
-	if(!..(user, 1))
-		return
+	var/description = ""
 
 	if(cell)
-		to_chat(user, SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged."))
+		description += SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged. \n")
 	else
-		to_chat(user, SPAN_WARNING("Power Glove does not have a power source installed."))
+		description += SPAN_WARNING("Power Glove does not have a power source installed. \n")
+	..(user, afterDesc = description)
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))

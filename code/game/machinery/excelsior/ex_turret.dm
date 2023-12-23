@@ -13,7 +13,7 @@
 	installation = null
 	var/obj/item/ammo_magazine/ammo_box = /obj/item/ammo_magazine/ammobox/lrifle
 	var/ammo = 0 // number of bullets left.
-	var/ammo_max = 96
+	var/ammo_max = 192
 	var/working_range = 30 // how far this turret operates from excelsior teleporter
 	var/burst_lenght = 8
 	health = 300
@@ -27,11 +27,11 @@
 	return FALSE
 
 /obj/machinery/porta_turret/excelsior/examine(mob/user)
-	if(!..(user, 2))
-		return
-	to_chat(user, "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!")
+	var/description = ""
+	description += "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left! \n"
 	if(!has_power_source_nearby())
-		to_chat(user, "Seems to be powered down. No excelsior teleporter found nearby.")
+		description += "Seems to be powered down. No excelsior teleporter found nearby."
+	..(afterDesc = description)
 
 /obj/machinery/porta_turret/excelsior/Initialize()
 	. = ..()

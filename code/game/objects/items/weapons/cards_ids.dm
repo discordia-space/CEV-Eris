@@ -122,15 +122,15 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/card/id/examine(mob/user)
 	set src in oview(1)
-	if(in_range(usr, src))
-		show(usr)
-		to_chat(usr, desc)
-		to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
-		to_chat(usr, "The blood type on the card is [blood_type].")
-		to_chat(usr, "The DNA hash on the card is [dna_hash].")
-		to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
+	if(in_range(user, src))
+		show(user)
+		to_chat(user, desc)
+		to_chat(user, "\icon[src] [name]: The current assignment on the card is [assignment].")
+		to_chat(user, "The blood type on the card is [blood_type].")
+		to_chat(user, "The DNA hash on the card is [dna_hash].")
+		to_chat(user, "The fingerprint hash on the card is [fingerprint_hash].")
 	else
-		to_chat(usr, SPAN_WARNING("It is too far away."))
+		to_chat(user, SPAN_WARNING("It is too far away."))
 
 /obj/item/card/id/proc/prevent_tracking()
 	return 0

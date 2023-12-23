@@ -855,48 +855,49 @@ GLOBAL_LIST(melleExtrasCache)
 
 
 /obj/item/tool/examine(mob/user)
-	if(!..(user,2))
-		return
+	var/description = ""
 
 	if(use_power_cost)
 		if(!cell)
-			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
+			description += SPAN_WARNING("There is no cell inside to power the tool \n")
 		else
-			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
+			description += "The charge meter reads [round(cell.percent())]%. \n"
 
 	if(use_fuel_cost)
-		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+		description += text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
 
 	if(use_stock_cost)
-		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
+		description += SPAN_NOTICE("it has [stock] / [max_stock] units remaining. \n")
 
 	//Display a bunch of stats but only if they're nondefault values
 	if(precision != 0)
-		to_chat(user, "Precision: [SPAN_NOTICE("[precision]")]")
+		description += "Precision: [SPAN_NOTICE("[precision]")] \n"
 
 	if(workspeed != 1)
-		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
+		description += "Work Speed: [SPAN_NOTICE("[workspeed*100]%")] \n"
 
 	if(item_upgrades.len)
-		to_chat(user, "It has the following upgrades installed:")
+		description += "It has the following upgrades installed: \n"
 		for(var/obj/item/TU in item_upgrades)
-			to_chat(user, SPAN_NOTICE(TU.name))
+			description += "[SPAN_NOTICE(TU.name)] \n]
 
 	if(health)
 		if(health > maxHealth * 0.95)
 			return
 		else if(health > maxHealth * 0.80)
-			to_chat(user, "It has a few light scratches.")
+			description += "It has a few light scratches."
 		else if(health > maxHealth * 0.40)
-			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
+			description += SPAN_NOTICE("It shows minor signs of stress and wear.")
 		else if(health > maxHealth * 0.20)
-			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
+			description += SPAN_WARNING("It looks a bit cracked and worn.")
 		else if(health > maxHealth * 0.10)
-			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
+			description += SPAN_WARNING("Whatever use this tool once had is fading fast.")
 		else if(health > maxHealth * 0.05)
-			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
+			description += SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well.")
 		else
-			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
+			description += SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash.")
+
+	..(user, afterDesc = description)
 
 //Recharge the fuel at fueltank, also explode if switched on
 /obj/item/tool/afterattack(obj/O, mob/user, proximity)

@@ -18,8 +18,7 @@ RSF
 	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/item/rsf/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "It currently holds [stored_matter]/30 Compressed Matter.")
+	..(user, afterDesc = "It currently holds [stored_matter]/30 Compressed Matter.")
 
 /obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/stack/material/M = W

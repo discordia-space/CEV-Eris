@@ -386,14 +386,14 @@
 
 
 /obj/machinery/door/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(src.health < src.maxHealth / 4)
-		to_chat(user, "\The [src] looks like it's about to break!")
+		description += "\The [src] looks like it's about to break!"
 	else if(src.health < src.maxHealth / 2)
-		to_chat(user, "\The [src] looks seriously damaged!")
+		description += "\The [src] looks seriously damaged!"
 	else if(src.health < src.maxHealth * 3/4)
-		to_chat(user, "\The [src] shows signs of damage!")
-
+		description += "\The [src] shows signs of damage!"
+	. = ..(afterDesc = description)
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN

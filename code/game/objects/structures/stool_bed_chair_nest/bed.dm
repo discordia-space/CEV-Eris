@@ -287,8 +287,7 @@
 	held.Add(new /obj/item/roller(src))
 
 /obj/item/roller_holder/examine(var/mob/user)
-	.=..()
-	to_chat(user, SPAN_NOTICE("It contains [held.len] stored beds"))
+	..(user, afterDesc = SPAN_NOTICE("It contains [held.len] stored beds"))
 
 /obj/item/roller_holder/attack_self(mob/user as mob)
 

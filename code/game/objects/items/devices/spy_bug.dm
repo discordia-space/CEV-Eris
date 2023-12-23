@@ -32,10 +32,7 @@
 	add_hearing()
 
 /obj/item/device/spy_bug/examine(mob/user)
-	. = ..(user, 0)
-	if(.)
-		to_chat(user, "A tiny camera, microphone, and transmission device in a happy union.")
-		to_chat(user, "Needs to be both configured and brought in contact with monitor device to be fully functional.")
+	..(user, afterDesc = "A tiny camera, microphone, and transmission device in a happy union. \n Needs to be both configured and brought in contact with monitor device to be fully functional. ")
 
 /obj/item/device/spy_bug/attack_self(mob/user)
 	radio.attack_self(user)

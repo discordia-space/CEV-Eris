@@ -36,9 +36,7 @@
 		return
 
 /obj/item/weldpack/examine(mob/user)
-	..(user)
-	to_chat(user, text("\icon[] [] units of fuel left!", src, src.reagents.total_volume))
-	return
+	..(user, afterDesc ="\icon[src] [reagents.total_volume] units of fuel left!")
 
 /obj/item/weldpack/proc/explode()
 	explosion(get_turf(src), reagents.total_volume/2, 50)

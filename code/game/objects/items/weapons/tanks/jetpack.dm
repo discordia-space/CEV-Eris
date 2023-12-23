@@ -88,11 +88,13 @@
 	return ..()
 
 /obj/item/tank/jetpack/examine(mob/user)
-	. = ..()
-	to_chat(user, "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa")
+	var/description = ""
+	description += "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa \n"
 	if(air_contents.total_moles < 5)
-		to_chat(user, SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!"))
+		description += SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!")
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
+	..(user, afterDesc = description)
+
 
 /*****************************
 	Mode Setting

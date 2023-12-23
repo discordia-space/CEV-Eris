@@ -61,7 +61,6 @@ var/global/obj/machinery/power/eotp/eotp
 	eotp = null
 
 /obj/machinery/power/eotp/examine(user)
-	..()
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -70,7 +69,7 @@ var/global/obj/machinery/power/eotp/eotp
 			var/comment = "Power level: [power]/[max_power]."
 			comment += "\nObservation level: [observation]/[max_observation]."
 			comment += "\nArmement level: [armaments_points]/[max_armaments_points]"
-			to_chat(user, SPAN_NOTICE(comment))
+	..(user, afterDesc = SPAN_NOTICE(comment))
 
 /obj/machinery/power/eotp/Process()
 	..()

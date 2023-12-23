@@ -29,13 +29,12 @@
 	return TRUE
 
 /obj/item/grenade/examine(mob/user)
-	if(..(user, 0))
-		if(det_time > 1)
-			to_chat(user, "The timer is set to [det_time/10] seconds.")
-			return
-		if(det_time == null)
-			return
-		to_chat(user, "\The [src] is set for instant detonation.")
+	var/description = ""
+	if(det_time > 1)
+		description += "The timer is set to [det_time/10] seconds ."
+	else
+		description += "\The [src] is set for instant detonation."
+	..(user, afterDesc = description)
 
 
 /obj/item/grenade/attack_self(mob/user as mob)

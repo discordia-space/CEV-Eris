@@ -235,10 +235,11 @@ var/global/list/breach_burn_descriptors = list(
 
 	..()
 
-/obj/item/clothing/suit/space/examine(mob/user)
-	..(user)
+/obj/item/clothing/suit/space/examine(mob/user, afterDesc)
+	var/description = afterDesc
 	if(can_breach && breaches && breaches.len)
 		for(var/datum/breach/B in breaches)
-			to_chat(user, "\red <B>It has \a [B.descriptor].</B>")
+			description += "\red <B>It has \a [B.descriptor].</B> \n"
+	..(user, afterDesc = description)
 
 

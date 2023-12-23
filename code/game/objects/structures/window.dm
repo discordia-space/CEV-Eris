@@ -36,27 +36,30 @@
 	return damage
 
 /obj/structure/window/examine(mob/user)
-	. = ..(user)
+	var/description = ""
 
 	if(health == maxHealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+		description += SPAN_NOTICE("It looks fully intact.")
 	else
 		var/perc = health / maxHealth
 		if(perc > 0.75)
-			to_chat(user, SPAN_NOTICE("It has a few cracks."))
+			description += SPAN_NOTICE("It has a few cracks.")
 		else if(perc > 0.5)
-			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
+			description += SPAN_WARNING("It looks slightly damaged.")
 		else if(perc > 0.25)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			description += SPAN_WARNING("It looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
+			description += SPAN_DANGER("It looks heavily damaged.")
 	if(silicate)
+		description += "\n"
 		if (silicate < 30)
-			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
+			description += SPAN_NOTICE("It has a thin layer of silicate.")
 		else if (silicate < 70)
-			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
+			description += SPAN_NOTICE("It is covered in silicate.")
 		else
-			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
+			description += SPAN_NOTICE("There is a thick layer of silicate covering it.")
+
+	..(user, afterDesc = description)
 
 
 //Subtracts resistance from damage then applies it

@@ -31,8 +31,7 @@
 	update_icon()
 
 /obj/item/holyvacuum/examine(mob/user)
-	..()
-	to_chat(user, "\The [src]'s tank contains [amount] units of compressed filth.")
+	..(user, afterDesc = "\The [src]'s tank contains [amount] units of compressed filth.")
 
 /obj/item/holyvacuum/update_icon()
 	.=..()

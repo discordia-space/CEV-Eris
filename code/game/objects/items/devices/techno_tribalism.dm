@@ -228,8 +228,10 @@
 		radio_broadcasting = FALSE
 
 /obj/item/device/techno_tribalism/examine(user)
-	..()
-	to_chat(user, SPAN_NOTICE("The [src] is fed by [items_count]/[max_count]."))
-	to_chat(user, SPAN_NOTICE("The remaining delay is [world.time > last_produce + cooldown ? "0" : round(abs(world.time - (last_produce + cooldown)) / 600)] Minutes"))
-	to_chat(user, SPAN_NOTICE("Its internal radio is currently [internal_radio.broadcasting ? "working normally" : "not functioning"]"))
-	to_chat(user, SPAN_NOTICE("The current limit for all combat-oriented skill points on oddities is [combat_cap]."))
+	var/description = ""
+	description += SPAN_NOTICE("The [src] is fed by [items_count]/[max_count]. \n")
+	description += SPAN_NOTICE("The remaining delay is [world.time > last_produce + cooldown ? "0" : round(abs(world.time - (last_produce + cooldown)) / 600)] Minutes \n")
+	description += SPAN_NOTICE("Its internal radio is currently [internal_radio.broadcasting ? "working normally" : "not functioning"] \n")
+	description += SPAN_NOTICE("The current limit for all combat-oriented skill points on oddities is [combat_cap].\n")
+	..(user, afterDesc = description)
+

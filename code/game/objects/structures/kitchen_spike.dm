@@ -118,7 +118,5 @@
 		return ..()
 
 /obj/structure/kitchenspike/examine(mob/user, distance, infix, suffix)
-	if(distance < 4)
-		to_chat(user, SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]"))
-	..()
+	..(user, afterDesc = victim_name ? SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]" : ""))
 

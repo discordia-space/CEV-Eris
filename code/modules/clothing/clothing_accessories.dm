@@ -49,12 +49,6 @@
 		return
 	return ..()
 
-/obj/item/clothing/examine(var/mob/user)
-	. = ..(user)
-	if(accessories.len)
-		for(var/obj/item/clothing/accessory/A in accessories)
-			to_chat(user, "\A [A] is attached to it.")
-
 /obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
 	if(!(A in accessories))
 		return

@@ -9,8 +9,7 @@
 	var/uses = 1        // Uses before the kit deletes itself.
 
 /obj/item/device/kit/examine()
-	. = ..()
-	to_chat(usr, "It has [uses] use\s left.")
+	. = ..(afterDesc = "It has [uses] use\s left.")
 
 /obj/item/device/kit/proc/use(var/amt, var/mob/user)
 	uses -= amt
@@ -76,8 +75,7 @@
 	var/removable
 
 /obj/item/device/kit/paint/examine()
-	. = ..()
-	to_chat(usr, "This kit will add a '[new_name]' decal to a exosuit'.")
+	. = ..(afterDesc = "This kit will add a '[new_name]' decal to a exosuit'.")
 
 // exosuit kits.
 /obj/item/device/kit/paint/powerloader

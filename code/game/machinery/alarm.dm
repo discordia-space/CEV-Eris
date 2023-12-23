@@ -877,11 +877,13 @@
 		update_icon()
 
 /obj/machinery/alarm/examine(mob/user)
-	..(user)
+	var/description = ""
 	if (buildstage < 2)
-		to_chat(user, "It is not wired.")
+		description += SPAN_WARNING("It is not wired. \n")
 	if (buildstage < 1)
-		to_chat(user, "The circuit is missing.")
+		description += SPAN_WARNING("The circuit is missing. ")
+	..(user, afterDesc = description)
+
 
 /obj/machinery/alarm/proc/toggle_lock(mob/user)
 	if(stat & (NOPOWER|BROKEN))

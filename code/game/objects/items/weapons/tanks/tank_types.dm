@@ -20,9 +20,7 @@
 	slot_flags = SLOT_BACK
 
 /obj/item/tank/oxygen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 10)
-		to_chat(user, text(SPAN_WARNING("The meter on \the [src] indicates you are almost out of oxygen!")))
-
+	..(user, afterDesc = air_contents.gas["oxygen"] < 10 ? "The meter on \the [src] indicates you are almost out of oxygen!" : "")
 
 /obj/item/tank/oxygen/red
 	desc = "A tank of oxygen, this one is red."
@@ -61,9 +59,7 @@
 	slot_flags = SLOT_BACK
 
 /obj/item/tank/air/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 1 && loc==user)
-		to_chat(user, SPAN_DANGER("The meter on the [src.name] indicates you are almost out of air!"))
-		user << sound('sound/effects/alert.ogg')
+	..(user, afterDesc = air_contents.gas["oxygen"] < 1 ? "The meter on \the [src] indicates you are almost out of oxygen!" : "")
 
 /obj/item/tank/air/spawn_gas()
 	air_contents.adjust_multi(
@@ -107,9 +103,12 @@
 	rarity_value = 10
 
 /obj/item/tank/emergency_oxygen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 0.2 && loc==user)
-		to_chat(user, text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of air!")))
+	var/description = ""
+	if(air_contents.gas["oxygen"] < 0.2 && loc == user)
+		description += text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of air!"))
 		user << sound('sound/effects/alert.ogg')
+	..(user, afterDesc = description)
+
 
 /obj/item/tank/emergency_oxygen/engi
 	name = "extended-capacity emergency oxygen tank"
@@ -133,10 +132,11 @@
 	rarity_value = 15
 
 /obj/item/tank/emergency_oxygen/nitrogen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["nitrogen"] < 0.2 && loc==user)
-		to_chat(user, text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of nitrogen!")))
+	var/description = ""
+	if(air_contents.gas["nitrogen"] < 0.2 && loc == user)
+		description += text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of nitrogen!"))
 		user << sound('sound/effects/alert.ogg')
-
+	..(user, afterDesc = description)
 /*
  * Nitrogen
  */
@@ -150,6 +150,4 @@
 	rarity_value = 30
 
 /obj/item/tank/nitrogen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["nitrogen"] < 10)
-		to_chat(user, text(SPAN_DANGER("The meter on \the [src] indicates you are almost out of nitrogen!")))
-		//playsound(user, 'sound/effects/alert.ogg', 50, 1)
+	..(user, afterDesc = air_contents.gas["nitrogen"] < 1 ? "The meter on \the [src] indicates you are almost out of nitrogen!" : "")

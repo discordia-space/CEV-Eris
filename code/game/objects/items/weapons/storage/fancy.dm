@@ -29,17 +29,15 @@
 	return
 
 /obj/item/storage/fancy/examine(mob/user)
-	if(!..(user, 1))
-		return
-
+	var/description = ""
 	if(contents.len <= 0)
-		to_chat(user, "There are no [src.icon_type]s left in the box.")
+		description += "There are no [src.icon_type]s left in the box."
 	else if(contents.len == 1)
-		to_chat(user, "There is one [src.icon_type] left in the box.")
+		description += "There is one [src.icon_type] left in the box."
 	else
-		to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
+		description += "There are [src.contents.len] [src.icon_type]s in the box."
 
-	return
+	..(user, afterDesc = description)
 
 /*
  * Egg Box

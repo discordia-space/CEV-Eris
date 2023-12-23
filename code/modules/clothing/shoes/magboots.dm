@@ -37,11 +37,12 @@
 	user.update_floating()
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
-	..(user)
+	var/description = ""
 	var/state = "disabled"
 	if(item_flags & NOSLIP)
 		state = "enabled"
-	to_chat(user, "Its mag-pulse traction system appears to be [state].")
+	description += "Its mag-pulse traction system appears to be [state]. \n"
+	..(user, afterDesc = description)
 
 
 /*

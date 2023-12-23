@@ -21,11 +21,10 @@
 	. = ..()
 
 /obj/item/music_tape/examine(mob/user)
-	..()
 	var/msg = "This tape contains such tracks as:"
 	for(var/datum/track/T in tracklist)
 		msg += "\n[T.title]"
-	to_chat(user, msg)
+	..(user, afterDesc = msg)
 
 /obj/item/music_tape/cursed_songs_that_nobody_likes
 	songlist = "cringe"

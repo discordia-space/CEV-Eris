@@ -176,8 +176,7 @@
 
 
 /obj/item/wrapping_paper/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, text("There is about [] square units of paper left!", src.amount))
+	..(user, afterDesc = "There is about [amount] square units of paper left!")
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
 	if (!ishuman(target))

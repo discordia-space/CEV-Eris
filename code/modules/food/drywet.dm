@@ -19,20 +19,21 @@
 	desc += " Can hold up to [volume] units."
 
 /obj/item/reagent_containers/drywet/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(solids)
 		var/list/toinsert = list()
 		for(var/obj/item/solid in solids)
 			toinsert.Add(solid.name)
 		if(toinsert.len > 0)
 			var/count = 1
-			to_chat(user, "It holds a ", TRUE, FALSE)
+			description += "It holds a "
 			for(var/entry in toinsert)
 				if(toinsert.len == 1)
-					to_chat(user, "[toinsert[1]].")
+					description += "[toinsert[1]]."
 				else
-					to_chat(user, "[toinsert.len > count ? "\ [toinsert[count]], ":"and a [toinsert[toinsert.len]]."]", TRUE, FALSE)
+					description += "[toinsert.len > count ? "\ [toinsert[count]], ":"and a [toinsert[toinsert.len]]."]"
 					count +=1
+	..(user, afterDesc = description)
 
 //copied from glass
 /obj/item/reagent_containers/drywet/pre_attack(atom/A, mob/user, params)

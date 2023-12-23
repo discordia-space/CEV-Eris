@@ -369,18 +369,20 @@
 	GLOB.bluespace_entropy -= rand(30, 50)
 
 /obj/item/oddity/broken_necklace/examine(user, distance)
-	. = ..()
+	var/description = ""
 	var/area/my_area = get_area(src)
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold * 0.7)
-		to_chat(user, SPAN_NOTICE("This feels cold to the touch."))
+		description += SPAN_NOTICE("This feels cold to the touch. \n")
 	else if(my_area.bluespace_entropy > 0)
-		to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
+		description += SPAN_NOTICE("This feels warm to the touch. \n")
 
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
+		description += SPAN_NOTICE("Has it always shone so brightly? \n")
 
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		to_chat(user, SPAN_NOTICE("You can see an inscription in some language unknown to you."))
+		description += SPAN_NOTICE("You can see an inscription in some language unknown to you. \n")
+	. = ..(afterDesc = description)
+
 
 /obj/item/oddity/broken_necklace/Destroy()
 	var/turf/T = get_turf(src)

@@ -253,11 +253,12 @@
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
 
 /obj/item/hand/examine(mob/user)
-	..(user)
+	var/description = ""
 	if((!concealed || src.loc == user) && cards.len)
-		to_chat(user, "It contains: ")
+		description += "It contains:\n "
 		for(var/datum/playingcard/P in cards)
-			to_chat(user, "The [P.name].")
+			description += "The [P.name].\n"
+	..(user, afterDesc = description)
 
 /obj/item/hand/update_icon(var/direction = 0)
 

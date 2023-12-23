@@ -60,8 +60,7 @@
 		layer = ABOVE_LIGHTING_LAYER
 
 /obj/machinery/light_switch/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A light switch. It is [on? "on" : "off"].")
+	..(user, 1, afterDesc = get_dist(user,src) <= 2 ? "A light switch. It is [on? "on" : "off"]." : "")
 
 /obj/machinery/light_switch/proc/dramatic_turning()
 	if(slow_turning_on) // Sanity check. So nothing can force this thing to run twice simultaneously.

@@ -420,6 +420,4 @@
 		underlays += GLOB.wedge_icon_cache[cache_string]
 
 /obj/machinery/door/holy/examine(mob/user)
-	..()
-	if(wedged_item)
-		to_chat(user, "You can see \icon[wedged_item] [wedged_item] wedged into it.")
+	..(afterDesc = wedged_item ? "You can see \icon[wedged_item] [wedged_item] wedged into it." : "")

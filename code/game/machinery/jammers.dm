@@ -26,10 +26,7 @@
 	cell = new /obj/item/cell/large(src)
 
 /obj/machinery/jammer/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	if(distance < 2)
-		if(cell)
-			to_chat(user, SPAN_NOTICE("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left."))
+	. = ..(afterDesc = "[(distance < 2 && cell) ? "The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left." : ""]")
 
 /obj/machinery/jammer/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/cell/large) && !cell)
@@ -92,9 +89,7 @@
 	var/power_usage = 0.3
 
 /obj/item/device/jammer/examine(mob/user)
-	. = ..()
-	if(cell && get_dist(user, src) < 2)
-		to_chat(user, SPAN_NOTICE("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left."))
+	. = ..(afterDesc = (cell && get_dist(user, src) <= 2) ? "The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left." : "")
 
 /obj/item/device/jammer/Initialize(mapload)
 	. = ..()

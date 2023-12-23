@@ -230,12 +230,16 @@
 				continue
 			insertArmor(armorPart,null, increaseVolume, TRUE)
 
-/obj/item/clothing/examine(mob/user, distance)
-	. = ..()
+/obj/item/clothing/examine(mob/user, distance, afterDesc)
+	var/description = afterDesc
+	if(accessories.len)
+		for(var/obj/item/clothing/accessory/A in accessories)
+			description += "\A [A] is attached to it. \n"
 	if(distance <= 1 && length(armorComps))
-		to_chat(user, SPAN_NOTICE("Click any plate below to remove them from \the [src]:"))
+		description += SPAN_NOTICE("Click any plate below to remove them from \the [src]: \n")
 		for(var/obj/item/armor_component/comp in armorComps)
-			to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src];removePlate=\ref[comp];user=\ref[user]'>\icon[comp] [comp.name] [comp.armorHealth]/[comp.maxArmorHealth]</a>"))
+			description += SPAN_NOTICE("<a href='?src=\ref[src];removePlate=\ref[comp];user=\ref[user]'>\icon[comp] [comp.name] [comp.armorHealth]/[comp.maxArmorHealth]</a> \n")
+	..(user, afterDesc = description)
 
 /obj/item/clothing/Topic(href, href_list, datum/nano_topic_state/state)
 	. = ..()
@@ -825,16 +829,17 @@ BLIND     // can't see anything
 	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
 
 /obj/item/clothing/under/examine(mob/user)
-	..(user)
+	var/description = ""
 	switch(src.sensor_mode)
 		if(0)
-			to_chat(user, "Its sensors appear to be disabled.")
+			description += "Its sensors appear to be disabled."
 		if(1)
-			to_chat(user, "Its binary life sensors appear to be enabled.")
+			description += "Its binary life sensors appear to be enabled."
 		if(2)
-			to_chat(user, "Its vital tracker appears to be enabled.")
+			description += "Its vital tracker appears to be enabled."
 		if(3)
-			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
+			description += "Its vital tracker and tracking beacon appear to be enabled."
+	..(user, afterDesc = description)
 
 /obj/item/clothing/under/proc/set_sensors(mob/M)
 	if(has_sensor >= 2)

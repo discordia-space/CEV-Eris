@@ -193,20 +193,21 @@
 
 
 /obj/structure/window/reinforced/bioreactor/examine(mob/user)
-	..()
+	var/description = ""
 	switch(contamination_level)
 		if(1)
-			to_chat(user, SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean."))
+			description += SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean.")
 		if(2)
-			to_chat(user, SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up."))
+			description += SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up.")
 		if(3)
-			to_chat(user, SPAN_WARNING("This [src] has clear signs and stains of biomatter."))
+			description += SPAN_WARNING("This [src] has clear signs and stains of biomatter.")
 		if(4)
-			to_chat(user, SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell."))
+			description += SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell.")
 		if(5)
-			to_chat(user, SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src]."))
+			description += SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src].")
 		else
-			to_chat(user, SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?"))
+			description += SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?")
+	..(user, afterDesc = description)
 
 
 /obj/structure/window/reinforced/bioreactor/update_icon()

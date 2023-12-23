@@ -223,9 +223,7 @@
 
 
 /obj/item/tool/sword/nt/spear/examine(mob/user)
-	..()
-	if (tipbroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a hammer."))
+	..(user, afterDesc = tipbroken ? SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a hammer.") : "")
 
 /obj/item/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
 	..()

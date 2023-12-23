@@ -58,9 +58,10 @@ var/global/list/plant_seed_sprites = list()
 		src.desc = "It's labelled as coming from [seed.display_name]."
 
 /obj/item/seeds/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(seed && !seed.roundstart)
-		to_chat(user, "It's tagged as variety #[seed.uid].")
+		description += "It's tagged as variety #[seed.uid]."
+	..(user, afterDesc = description)
 
 /obj/item/seeds/cutting
 	name = "cuttings"

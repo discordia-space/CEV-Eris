@@ -94,12 +94,14 @@
 
 
 /obj/item/device/assembly/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(in_range(src, user) || loc == user)
 		if(secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			description += SPAN_NOTICE("\The [src] is ready!")
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			description += SPAN_NOTICE("\The [src] can be attached!")
+
+	..(user, afterDesc = description)
 
 /obj/item/device/assembly/attack_self(mob/user)
 	if(!user)

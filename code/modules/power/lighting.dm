@@ -385,13 +385,6 @@
 
 /obj/machinery/light/attackby(obj/item/I, mob/user)
 
-	//Light replacer code
-	if(istype(I, /obj/item/device/lightreplacer))
-		var/obj/item/device/lightreplacer/LR = I
-		if(isliving(user))
-			var/mob/living/U = user
-			LR.ReplaceLight(src, U)
-			return
 
 	// attempt to insert light
 	if(istype(I, /obj/item/light))

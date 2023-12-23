@@ -36,10 +36,8 @@
 /obj/item/rcd/proc/can_use(var/mob/user,var/turf/T)
 	return (user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
 
-/obj/item/rcd/examine()
-	..()
-	if(src.type == /obj/item/rcd && loc == usr)
-		to_chat(usr, "It currently holds [stored_matter]/30 matter-units.")
+/obj/item/rcd/examine(user)
+	..(user, afterDesc = "It currently holds [stored_matter]/30 matter-units.")
 
 /obj/item/rcd/New()
 	..()

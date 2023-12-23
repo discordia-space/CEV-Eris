@@ -407,7 +407,7 @@ its easier to just keep the beam vertical.
 
 
 	examineText += "<div style='["background-color:#1d527a;margin:1px;border:5px solid #0a3352;padding:5px;width:auto;"]'>"
-	examineText += "\icon[src] This is [full_name] [desc] \n"
+	examineText += "\icon[src] This is [full_name] \n [desc]"
 	examineText += "[suffix]"
 	if(afterDesc)
 		examineText += "\n [afterDesc]"

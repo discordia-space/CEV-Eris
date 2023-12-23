@@ -62,12 +62,14 @@
 
 
 /obj/item/device/assembly_holder/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(in_range(src, user) || src.loc == user)
 		if(src.secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			description += SPAN_NOTICE("\The [src] is ready!")
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			description += SPAN_NOTICE("\The [src] can be attached!")
+
+	..(user, afterDesc = description)
 
 
 /obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)

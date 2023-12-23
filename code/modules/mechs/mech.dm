@@ -175,7 +175,7 @@
 	return TRUE
 
 /mob/living/exosuit/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
 		to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
 	if(body && LAZYLEN(body.pilot_positions))

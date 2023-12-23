@@ -356,10 +356,12 @@ Very rarely it might escape
 	..()
 
 /obj/item/beartrap/examine(mob/user)
-	..()
+	var/description = ""
 	if(deployed && isliving(user) && !("\ref[user]" in aware_mobs))
-		to_chat(user, SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully."))
+		description += SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully.")
 		aware_mobs |= "\ref[user]"
+
+	..(user, afterDesc = description)
 
 
 /obj/item/beartrap/update_icon()

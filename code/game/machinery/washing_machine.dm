@@ -76,10 +76,7 @@
 			update_icon()
 
 /obj/machinery/washing_machine/examine(mob/user)
-	..()
-	if(tick > 0 && (state ==WASHSTATE_RUNNING))
-		to_chat(user, SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle."))
-
+	..(afterDesc = (tick > 0 && (state == WASHSTATE_RUNNING)) ? "It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle." : "")
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"

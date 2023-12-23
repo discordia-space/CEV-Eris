@@ -56,13 +56,14 @@
 		tank = new tank(src)
 
 /obj/item/clothing/suit/space/void/examine(user)
-	..(user)
+	var/description = ""
 	var/list/part_list = new
 	for(var/obj/item/I in list(helmet,boots,tank))
 		part_list += "\a [I]"
-	to_chat(user, "\The [src] has [english_list(part_list)] installed.")
+	description += "\The [src] has [english_list(part_list)] installed. \n"
 	if(tank && in_range(src,user))
-		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
+		description += SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]. \n")
+	..(user, afterDesc = description)
 
 /obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
 	if(..())

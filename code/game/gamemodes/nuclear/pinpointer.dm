@@ -102,12 +102,14 @@
 	spawn(5) .()
 
 /obj/item/pinpointer/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(slot)
-		to_chat(user, "Nuclear disk is loaded inside [src].")
+		description = "Nuclear disk is loaded inside [src] \n"
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
-			to_chat(user, SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"))
+			description += SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft] \n")
+	..(user, afterDesc = description)
+
 
 /obj/item/pinpointer/Destroy()
 	active = FALSE
