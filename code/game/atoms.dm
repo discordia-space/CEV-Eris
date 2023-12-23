@@ -713,7 +713,7 @@ its easier to just keep the beam vertical.
 /atom/movable/proc/fall_impact(turf/from, turf/dest)
 
 //If atom stands under open space, it can prevent fall, or not
-/atom/proc/can_prevent_fall()
+/atom/proc/can_prevent_fall(above, atom/movable/thing)
 	return FALSE
 
 // Show a message to all mobs and objects in sight of this atom

@@ -18,6 +18,17 @@
 	var/active_power_use = 1 KILOWATTS // How much does it consume to perform and accomplish usage
 	var/passive_power_use = 0          // For gear that for some reason takes up power even if it's supposedly doing nothing (mech will idly consume power)
 	var/mech_layer = MECH_COCKPIT_LAYER //For the part where it's rendered as mech gear
+	var/active = FALSE
+	var/equipment_flags = 0
+
+/obj/item/mech_equipment/proc/activate()
+	active = TRUE
+
+/obj/item/mech_equipment/proc/deactivate()
+	active = FALSE
+
+/obj/item/mech_equipment/proc/pretick()
+	return FALSE
 
 /obj/item/mech_equipment/attack() //Generally it's not desired to be able to attack with items
 	return 0
@@ -37,6 +48,8 @@
 		if(target in owner.contents)
 			return FALSE
 		var/obj/item/cell/C = owner.get_cell()
+		if(!C && active_power_use == 0)
+			return TRUE
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
 			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return FALSE
@@ -54,6 +67,8 @@
 /obj/item/mech_equipment/attack_self(var/mob/user)
 	if (owner && loc == owner && ((user in owner.pilots) || user == owner))
 		var/obj/item/cell/C = owner.get_cell()
+		if(C && active_power_use == 0)
+			return TRUE
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
 			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return FALSE
@@ -129,7 +144,7 @@
 /obj/item/mech_equipment/mounted_system/resolve_attackby(atom/A, mob/user, params)
 	// foward attackbys only when we are installed .
 	if(ismech(loc))
-		return holding.attackby(A, user, params)
+		return A.attackby(holding, user, params)
 	else ..()
 
 /obj/item/mech_equipment/mounted_system/Destroy()

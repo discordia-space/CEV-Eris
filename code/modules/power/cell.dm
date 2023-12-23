@@ -137,7 +137,6 @@
 		explode()
 		return FALSE
 
-	if(maxcharge < amount)	return FALSE
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
 	update_icon()

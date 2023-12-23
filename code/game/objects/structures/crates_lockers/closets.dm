@@ -42,8 +42,8 @@
 	var/store_mobs = 1
 	var/old_chance = 0 //Chance to have rusted closet content in it, from 0 to 100. Keep in mind that chance increases in maints
 
-/obj/structure/closet/can_prevent_fall()
-	return TRUE
+/obj/structure/closet/can_prevent_fall(above)
+	return above ? TRUE : FALSE
 
 /obj/structure/closet/Initialize(mapload)
 	..()
@@ -351,6 +351,10 @@
 
 	if(istype(I, /obj/item/gripper))
 		//Empty gripper attacks will call attack_AI
+		return FALSE
+
+	/// So mechs dont open these when attacking.
+	if(istype(I, /obj/item/mech_equipment/forklifting_system))
 		return FALSE
 
 	var/list/usable_qualities = list(QUALITY_WELDING)

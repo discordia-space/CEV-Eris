@@ -81,5 +81,5 @@
 		return
 
 
-/obj/structure/lattice/can_prevent_fall()
-	return TRUE
+/obj/structure/lattice/can_prevent_fall(above)
+	return above ? FALSE : TRUE

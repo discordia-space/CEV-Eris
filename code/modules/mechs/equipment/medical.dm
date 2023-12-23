@@ -133,7 +133,7 @@
 			to_chat(user, SPAN_NOTICE("You cancel \the [src]'s mending on [target]."))
 			return
 		if(mending_target)
-			to_chat(user, SPAN_NOTICE("You stop \the [src] from mending [mending_target]"))
+			to_chat(user, SPAN_NOTICE("You stop \the [src] from mending [mending_target]."))
 			mending_target = null
 		if(!target.Adjacent(mech))
 			to_chat(user, SPAN_NOTICE("You need to be next to \the [target] to start mending them!"))
