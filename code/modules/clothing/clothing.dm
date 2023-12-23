@@ -195,6 +195,7 @@
 		component.covering = initial(component.covering)
 	if(user)
 		to_chat(user, SPAN_NOTICE("You remove \the [component] from \the [src]."))
+		component.forceMove(get_turf(user))
 		user.put_in_active_hand(component)
 	else if(location)
 		component.forceMove(location)
@@ -219,14 +220,14 @@
 	if(length(armorComps))
 		var/list/newComps = armorComps
 		armorComps = list()
+		var/increaseVolume = FALSE
+		if(!maxArmorVolume[CLOTH_ARMOR_TORSO] && !maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+			increaseVolume = TRUE
 		for(var/path in newComps)
 			var/obj/item/armor_component/armorPart = new path(NULLSPACE)
 			if(!istype(armorPart))
 				message_admins("[src] | [src.type] had an armor part which is not of the current subtype , [armorPart.type]")
 				continue
-			var/increaseVolume = FALSE
-			if(!maxArmorVolume[CLOTH_ARMOR_TORSO] && !maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
-				increaseVolume = TRUE
 			insertArmor(armorPart,null, increaseVolume, TRUE)
 
 /obj/item/clothing/examine(mob/user, distance)

@@ -41,7 +41,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		for(var/list/damageElement in armorToDam[armorType])
 			totalDmg += damageElement[DAMVALUE]
 
-	var/list/atdCopy = armorToDam.Copy()
+	var/list/atdCopy = deepCopyList(armorToDam)
 
 	if(totalDmg <= 0)
 		return FALSE

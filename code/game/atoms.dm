@@ -403,7 +403,7 @@ its easier to just keep the beam vertical.
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(desc)
-		to_chat(user, desc)
+		to_chat(user,"<div bgcolor='#51bbf8'>[desc]</div>")
 		var/pref = user.get_preference_value("SWITCHEXAMINE")
 		if(pref == GLOB.PREF_YES)
 			user.client.statpanel = "Examine"

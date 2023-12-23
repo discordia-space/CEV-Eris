@@ -344,7 +344,7 @@
 /obj/item/armor_component/plate/nt17
 	name = "nt-17 armor plate"
 	desc = "Shiny"
-	icon_state = "neojute"
+	icon_state = "nt-17"
 	weight = 1300
 	maxArmorHealth = 1500
 	armorHealth = 1500
