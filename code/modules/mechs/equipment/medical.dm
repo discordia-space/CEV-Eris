@@ -194,8 +194,8 @@
 			mending_target = null
 			affecting = null
 			return
-		if(W.internal || W.bandaged)
-			continue
+//		if(W.internal || W.bandaged)
+//			continue
 		if(W.damage < 1)
 			continue
 		if(!trauma_charges_stored)
@@ -207,8 +207,8 @@
 			mending_target = null
 			affecting = null
 			break
-		if(W.internal || W.bandaged)
-			continue
+//		if(W.internal || W.bandaged)
+//			continue
 		if (W.current_stage <= W.max_bleeding_stage)
 			mech.visible_message(
 				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
