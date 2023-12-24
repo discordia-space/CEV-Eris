@@ -1,5 +1,5 @@
 #  AEV-Oxyd
-[![discord](https://discord.gg/SGsRQvWsyk)
+[![discord](https://discord.gg/SGsRQvWsyk)]
 
 A fork based off CEV-Eris with significant modifications to the core combat mechanics
 
