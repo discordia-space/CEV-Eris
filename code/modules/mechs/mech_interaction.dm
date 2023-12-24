@@ -624,6 +624,7 @@
 		return
 
 	hatch_closed = !hatch_closed
+	playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
 	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
 	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
 	if(H && istype(H)) H.update_icon()

@@ -222,7 +222,7 @@
 /obj/screen/movable/exosuit/toggle/air/toggled()
 	owner.use_air = ..()
 	to_chat(usr, SPAN_NOTICE("Auxiliary atmospheric system [owner.use_air ? "enabled" : "disabled"]."))
-	playsound(src, 'sound/effects/internals.ogg', 90, 1)
+	playsound(src, 'sound/machines/airlock.ogg', 90, 1)
 
 /obj/screen/movable/exosuit/toggle/maint
 	name = "toggle maintenance protocol"
