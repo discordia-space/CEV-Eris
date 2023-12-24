@@ -152,22 +152,25 @@
 
 	if(config.z_level_shooting && Proj.height)
 		if(Proj.height == HEIGHT_LOW)// Bullet is too low
-			return TRUE
+			return PROJECTILE_STOP
 		else if(Proj.height == HEIGHT_HIGH) // Guaranteed hit
 			var/proj_damage = Proj.get_structure_damage()
 			if(proj_damage)
 				hit(proj_damage)
 			..()
-			return TRUE
+			return PROJECTILE_STOP
 
+	. = PROJECTILE_CONTINUE
 	var/targetzone = check_zone(Proj.def_zone)
 	if(targetzone in list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM))
 		var/proj_damage = Proj.get_structure_damage()
 		if(proj_damage)
 			hit(proj_damage)
 		..()
+		if(!QDELETED(src))
+			return PROJECTILE_STOP
 
-	return TRUE
+	return PROJECTILE_STOP
 
 
 //TODO: Make full windows a separate type of window.

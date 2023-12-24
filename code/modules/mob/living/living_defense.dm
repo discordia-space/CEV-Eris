@@ -75,7 +75,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 
 		for(var/atom/blocker in newBlockers)
 			blocker.blockDamages(armorToDam, armorDiv, woundMult, defZone)
-			message_admins("Using blocker, blocker:[blocker]")
+			//message_admins("Using blocker, blocker:[blocker]")
 	/// handling for averaging out all armor values
 	else
 		var/list/relevantTypes = list()
