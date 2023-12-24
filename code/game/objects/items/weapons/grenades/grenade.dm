@@ -28,8 +28,8 @@
 */
 	return TRUE
 
-/obj/item/grenade/examine(mob/user)
-	var/description = ""
+/obj/item/grenade/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(det_time > 1)
 		description += "The timer is set to [det_time/10] seconds ."
 	else

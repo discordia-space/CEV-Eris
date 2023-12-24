@@ -47,7 +47,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/electronics/circuitboard/examine(user, distance)
+/obj/item/electronics/circuitboard/examine(user, distance,afterDesc)
 	// gets the required components and displays it in a list to the user when examined.
 	var/list/listed_components = list()
 	if(length(req_components))
@@ -56,7 +56,7 @@
 			if(!ispath(placeholder))
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
-	..(user, distance, afterDesc = SPAN_NOTICE("Required components: [english_list(listed_components)]."))
+	..(user, distance, afterDesc = "[afterDesc] \n SPAN_NOTICE("Required components: [english_list(listed_components)]."]")
 
 /obj/item/electronics/circuitboard/get_item_cost(export)
 	. = ..()

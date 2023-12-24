@@ -48,8 +48,8 @@
 		return
 	. = ..()
 
-/obj/item/device/examine(mob/user)
-	var/description = ""
+/obj/item/device/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(suitable_cell)
 		if(cell)
 			description += SPAN_NOTICE("\The [src]'s cell reads \"[round(cell.percent(),0.1)]%")

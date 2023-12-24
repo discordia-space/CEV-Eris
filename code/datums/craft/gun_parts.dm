@@ -274,7 +274,7 @@ semi accepts weird caliber - +1 points
 	else
 		description += SPAN_NOTICE("\the [src] does not have a mechanism installed. \n")
 	if(InstalledBarrel)
-		description += SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed \n.")
+		description += SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed. \n")
 	else
 		description += SPAN_NOTICE("\the [src] does not have a barrel installed. \n")
 	if(in_range(user, src) || isghost(user))

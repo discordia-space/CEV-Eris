@@ -72,8 +72,10 @@
 
 	return ..()
 
-/obj/item/stack/examine(mob/user)
-	..(user, afterDesc = !uses_charge ? "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack." : "There is enough charge for [get_amount()].")
+/obj/item/stack/examine(mob/user,afterDesc)
+	description = "[afterDesc] \n"
+	description +=  !uses_charge ? "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack." : "There is enough charge for [get_amount()]."
+	..(user, afterDesc = description)
 
 /obj/item/stack/attack_self(mob/user as mob)
 	list_recipes(user)

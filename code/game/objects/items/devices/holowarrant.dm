@@ -17,7 +17,7 @@
 /obj/item/device/holowarrant/examine(mob/user, distance)
 	var/description = ""
 	if(active)
-		description += "A holographic warrant for '[active.fields["namewarrant"]]' \n."
+		description += "A holographic warrant for '[active.fields["namewarrant"]]'. \n"
 	if(distance <= 1)
 		show_content(user)
 	else

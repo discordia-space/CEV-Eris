@@ -35,8 +35,8 @@
 
 	return damage
 
-/obj/structure/window/examine(mob/user)
-	var/description = ""
+/obj/structure/window/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 
 	if(health == maxHealth)
 		description += SPAN_NOTICE("It looks fully intact.")

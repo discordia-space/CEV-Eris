@@ -78,8 +78,8 @@
 	spray_size = next_list_item(spray_size, spray_sizes)
 	to_chat(user, SPAN_NOTICE("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
-/obj/item/reagent_containers/spray/examine(mob/user)
-	..(user, afterDesc = "[round(reagents.total_volume)] units left.")
+/obj/item/reagent_containers/spray/examine(mob/user, afterDesc)
+	..(user, afterDesc = "[afterDesc] \n [round(reagents.total_volume)] units left.")
 
 /obj/item/reagent_containers/spray/verb/empty()
 

@@ -75,9 +75,9 @@ var/list/global/tank_gauge_cache = list()
 	if(default_gas)
 		air_contents.adjust_gas(default_gas, default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
-/obj/item/tank/examine(mob/user)
+/obj/item/tank/examine(mob/user,afterDesc)
 	var/celsius_temperature = air_contents.temperature - T0C
-	var/descriptive
+	var/descriptive = "[afterDesc] \n"
 	switch(celsius_temperature)
 		if(300 to INFINITY)
 			descriptive = "furiously hot"

@@ -96,8 +96,8 @@
 /obj/item/gun/energy/proc/get_external_cell()
 	return loc.get_cell()
 
-/obj/item/gun/energy/examine(mob/user)
-	var/description = ""
+/obj/item/gun/energy/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(!cell)
 		description += SPAN_NOTICE("Has no battery cell inserted.\n")
 		return

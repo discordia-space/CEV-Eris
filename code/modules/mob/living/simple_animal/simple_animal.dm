@@ -155,8 +155,8 @@
 	if (health <= 0 && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/examine(mob/user)
-	var/description = ""
+/mob/living/simple_animal/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(hunger_enabled)
 		if (!nutrition)
 			description += SPAN_DANGER("It looks starving! \n")

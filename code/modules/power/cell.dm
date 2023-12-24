@@ -146,7 +146,7 @@
 /obj/item/cell/examine(mob/user)
 	var/description = ""
 	description += "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\n"
-	description += "The charge meter reads [round(percent() )]% \n."
+	description += "The charge meter reads [round(percent() )]%. \n"
 
 	if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
 		description += SPAN_WARNING("This cell is ready to short circuit!")

@@ -53,8 +53,8 @@
 	if(!active)
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/port_gen/examine(mob/user)
-	var/description = ""
+/obj/machinery/power/port_gen/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(active)
 		description += SPAN_NOTICE("The generator is on.")
 	else

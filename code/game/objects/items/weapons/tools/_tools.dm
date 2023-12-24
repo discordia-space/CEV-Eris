@@ -854,8 +854,8 @@ GLOBAL_LIST(melleExtrasCache)
 	SSnano.update_uis(src)
 
 
-/obj/item/tool/examine(mob/user)
-	var/description = ""
+/obj/item/tool/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 
 	if(use_power_cost)
 		if(!cell)
