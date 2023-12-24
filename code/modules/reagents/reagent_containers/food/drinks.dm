@@ -35,7 +35,7 @@
 	update_icon()
 
 /obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+	if(dhTotalDamage(melleDamages) && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
 	if(standard_feed_mob(user, M))
@@ -123,8 +123,7 @@
 	name = "golden cup"
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	throwforce = 10
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = null

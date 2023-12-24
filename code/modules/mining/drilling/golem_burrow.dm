@@ -32,7 +32,7 @@
 	if (user.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
-			var/damage = I.force * I.structure_damage_factor
+			var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) * I.structure_damage_factor
 			var/volume =  min(damage * 3.5, 15)
 			if (I.hitsound)
 				playsound(src, I.hitsound, volume, 1, -1)

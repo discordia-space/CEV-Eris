@@ -133,6 +133,7 @@
 	P.firer = src
 	if(target)
 		P.original = target
+	P.PrepareForLaunch()
 	P.launch(get_step(marker, dir))
 
 /mob/living/simple_animal/hostile/megafauna/proc/random_shots()

@@ -52,7 +52,7 @@
 /mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)
 		return
-	if(!T || !src || src.stat) 
+	if(!T || !src || src.stat)
 		return
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		to_chat(src, "You cannot lunge in your current state.")
@@ -162,7 +162,7 @@
 		for(var/mob/M in src)
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
-				M.loc = loc
+				M.forceMove(loc)
 		src.visible_message("\red <B>[src] hurls out the contents of their stomach!</B>")
 	return
 

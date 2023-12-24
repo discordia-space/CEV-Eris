@@ -142,7 +142,7 @@
 	if(istype(A, /obj/item) && istype(A.loc, /turf) && (A.Adjacent(src) || user.Adjacent(src)))
 		var/obj/item/O = A
 		//Mice can push around pens and paper, but not heavy tools
-		if(O.w_class <= user.can_pull_size)
+		if(O.volumeClass <= user.can_pull_size)
 			O.forceMove(loc)
 			set_pixel_click_offset(O, params, animate=TRUE)
 			return
@@ -449,9 +449,10 @@
 			return
 	//Hitting the wall with stuff
 	if(!istype(I,/obj/item/rcd) && !istype(I, /obj/item/reagent_containers))
-		if(!I.force)
+		var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+		if(!damage)
 			return attack_hand(user)
-		var/attackforce = I.force*I.structure_damage_factor
+		var/attackforce = damage*I.structure_damage_factor
 		var/dam_threshhold = 150 //Integrity of Steel
 		var/dam_prob = min(100,60*1.4) //60 is hardness of steel
 		if(ishuman(user))
@@ -523,7 +524,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE,12))),BP_HEAD, user,1, 1, FALSE )
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
 

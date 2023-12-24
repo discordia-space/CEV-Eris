@@ -12,27 +12,28 @@
 	matter = list(MATERIAL_STEEL = 2)
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,180)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/item/reagent_containers/drywet/Initialize()
 	. = ..()
 	desc += " Can hold up to [volume] units."
 
 /obj/item/reagent_containers/drywet/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(solids)
 		var/list/toinsert = list()
 		for(var/obj/item/solid in solids)
 			toinsert.Add(solid.name)
 		if(toinsert.len > 0)
 			var/count = 1
-			to_chat(user, "It holds a ", TRUE, FALSE)
+			description += "It holds a "
 			for(var/entry in toinsert)
 				if(toinsert.len == 1)
-					to_chat(user, "[toinsert[1]].")
+					description += "[toinsert[1]]."
 				else
-					to_chat(user, "[toinsert.len > count ? "\ [toinsert[count]], ":"and a [toinsert[toinsert.len]]."]", TRUE, FALSE)
+					description += "[toinsert.len > count ? "\ [toinsert[count]], ":"and a [toinsert[toinsert.len]]."]"
 					count +=1
+	..(user, afterDesc = description)
 
 //copied from glass
 /obj/item/reagent_containers/drywet/pre_attack(atom/A, mob/user, params)
@@ -69,7 +70,7 @@
 		return 1
 
 /obj/item/reagent_containers/drywet/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+	if(dhTotalDamage(melleDamages) && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
 	if(standard_feed_mob(user, M))
@@ -92,7 +93,7 @@
 		usr.prepare_for_slotmove(W)
 		usr.update_icons() //update our overlays
 
-	W.loc = src
+	W.forceMove(src)
 	W.on_enter_storage(src)
 	var/volume_taken = W.get_storage_cost() ** 2
 	solids[W] = volume_taken
@@ -110,7 +111,7 @@
 					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
-				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
+				else if (W && W.volumeClass >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 
 
@@ -148,7 +149,7 @@
 		return FALSE
 
 
-	if (largestdimension != null && W.w_class > largestdimension)
+	if (largestdimension != null && W.volumeClass > largestdimension)
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[W] is too large for this [src]."))
 		return FALSE
@@ -158,7 +159,7 @@
 			to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
 		return FALSE
 
-	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)||istype(W, /obj/item/reagent_containers/drywet)))
+	if(W.volumeClass >= src.volumeClass && (istype(W, /obj/item/storage)||istype(W, /obj/item/reagent_containers/drywet)))
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
 		return FALSE //To prevent the stacking of same sized storage items.
@@ -186,9 +187,9 @@
 		return
 
 	if (new_location)
-		W.loc = new_location
+		W.forceMove(new_location)
 	else
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	untaken_capacity = min(untaken_capacity + W.get_storage_cost() ** 2, )
 	solids.Remove(W)

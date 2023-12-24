@@ -15,11 +15,13 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 6)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 12)))
+	wieldedMultiplier = 2
+	WieldedattackDelay = 8
 	origin_tech = list(TECH_COMBAT = 1)
 	attack_verb = list("struck", "hit", "bashed")
 	zoomdevicename = "scope"
@@ -35,7 +37,7 @@
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/halloss_multiplier = 1 //Multiplies agony damage of projectiles fired from this gun
-	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
+	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun // To be removed - SPCR 2023
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
 	var/burst = 1
@@ -107,6 +109,9 @@
 
 	var/obj/item/device/lighting/toggleable/flashlight/flashlight_attachment
 
+/obj/item/gun/New(loc, ...)
+	. = ..()
+
 
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
@@ -176,6 +181,7 @@
 	. = ..()
 
 /obj/item/gun/Initialize()
+	. = ..()
 	if(!recoil && islist(init_recoil))
 		recoil = getRecoil(arglist(init_recoil))
 	else if(!islist(init_recoil))
@@ -183,7 +189,6 @@
 	else if(!istype(recoil, /datum/recoil))
 		error("Invalid type [recoil.type] found in .recoil during /obj Initialize()")
 	initial_zoom_factors = zoom_factors.Copy()
-	. = ..()
 	initialize_firemodes()
 	initialize_firemode_actions()
 	initialize_scope()
@@ -319,7 +324,8 @@
 		return FALSE
 */
 	if(rigged)
-		var/obj/P = consume_next_projectile()
+		var/obj/item/projectile/P = consume_next_projectile()
+		P.PrepareForLaunch()
 		if(P)
 			if(process_projectile(P, user, user, BP_HEAD))
 				handle_post_fire(user, user)
@@ -421,10 +427,12 @@
 	for(var/i in 1 to burst)
 		if(user.resting)
 			break
-		var/obj/projectile = consume_next_projectile(user)
+		var/obj/item/projectile/projectile = consume_next_projectile(user)
 		if(!projectile)
 			handle_click_empty(user)
 			break
+
+		projectile.PrepareForLaunch()
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
@@ -707,27 +715,28 @@
 	toggle_scope(user, TRUE)
 
 
-/obj/item/gun/examine(mob/user)
-	..()
+/obj/item/gun/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(LAZYLEN(firemodes) > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
+		description += SPAN_NOTICE("The fire selector is set to [current_mode.name].\n")
 
 	if(safety)
-		to_chat(user, SPAN_NOTICE("The safety is on."))
+		description += SPAN_NOTICE("The safety is on.\n")
 	else
-		to_chat(user, SPAN_NOTICE("The safety is off."))
+		description += SPAN_NOTICE("The safety is off.\n")
 
 	if(recoil.getRating(RECOIL_TWOHAND) > 0.4)
-		to_chat(user, SPAN_WARNING("This gun needs to be braced against something to be used effectively."))
+		description += SPAN_WARNING("This gun needs to be braced against something to be used effectively.\n")
 	else if(recoil.getRating(RECOIL_ONEHAND) > 0.6)
-		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
+		description += SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively.\n")
 
 	if(in_range(user, src) || isghost(user))
 		if(serial_type)
-			to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
+			description += SPAN_WARNING("There is a serial number on this gun, it reads [serial_type].\n")
 		else if(isnull(serial_type))
-			to_chat(user, SPAN_DANGER("The serial is scribbled away."))
+			description += SPAN_DANGER("The serial is scribbled away.\n")
+	..(user, afterDesc = description)
 
 
 /obj/item/gun/proc/initialize_firemodes()
@@ -908,8 +917,8 @@
 	data["burst"] = burst //How many shots are fired per click
 	data["burst_delay"] = burst_delay * 5 //time between shot in burst mode, in ms
 
-	data["force"] = force
-	data["force_max"] = initial(force)*10
+	data["force"] = dhTotalDamage(melleDamages) * (wielded ? wieldedMultiplier : 1 )
+	data["force_max"] = dhTotalDamage(GLOB.melleDamagesCache[type])*10
 	data["armor_divisor"] = armor_divisor
 	data["muzzle_flash"] = muzzle_flash
 
@@ -1012,7 +1021,10 @@
 	darkness_view = initial(darkness_view)
 	vision_flags = initial(vision_flags)
 	see_invisible_gun = initial(see_invisible_gun)
-	force = initial(force)
+	if(GLOB.melleDamagesCache && GLOB.melleDamagesCache[type])
+		melleDamages = GLOB.melleDamagesCache[type]:Copy()
+	else
+		melleDamages = list(ARMOR_BLUNT=list(DELEM(BRUTE,10)))
 	armor_divisor = initial(armor_divisor)
 	sharp = initial(sharp)
 	braceable = initial(braceable)

@@ -578,7 +578,7 @@
 
 /obj/structure/spider_nest/attackby(obj/item/I, mob/living/user)
 	..()
-	if(I.force >= WEAPON_FORCE_PAINFUL)
+	if(dhTotalDamage(I.melleDamages) >= WEAPON_FORCE_PAINFUL)
 		playsound(loc, 'sound/voice/shriek1.ogg', 85, 1, 8, 8)
 		spawn_spider()
 		attack_animation(user)
@@ -608,5 +608,5 @@
 		var/obj/item/organ/external/chest = user.get_organ(BP_CHEST)
 		if(chest)
 			var/obj/item/organ/internal/carrion/core/C = new /obj/item/organ/internal/carrion/core
-			C.replaced(chest)
+			C.insert(chest)
 		user.faction = "spiders"

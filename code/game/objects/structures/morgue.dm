@@ -178,7 +178,7 @@
 			else
 				return
 		else
-			//Objects don't have w_class atm
+			//Objects don't have volumeClass atm
 			//Any unanchored object which isn't an item, is probably a bulky thing like a machine or canister
 			newcap = 30 //So lets just give it a fairly big number and be done with it
 

@@ -64,7 +64,7 @@ var/const/tk_maxrange = 15
 	icon_state = "2"
 	flags = NOBLUDGEON
 	//item_state = null
-	w_class = ITEM_SIZE_COLOSSAL
+	volumeClass = ITEM_SIZE_COLOSSAL
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	spawn_tags = null
@@ -135,7 +135,7 @@ var/const/tk_maxrange = 15
 		last_throw = world.time
 	return
 
-/obj/item/tk_grab/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/tk_grab/attack(mob/living/M, mob/living/user, def_zone, damageMultiplier)
 	return
 
 

@@ -1,6 +1,6 @@
 /obj/item/inflatable
 	name = "inflatable"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon = 'icons/obj/inflatable.dmi'
 	price_tag = 40
 	health = 20
@@ -88,8 +88,9 @@
 	if (can_puncture(W))
 		visible_message(SPAN_DANGER("[user] pierces [src] with [W]!"))
 		deflate(TRUE)
-	if(W.damtype == BRUTE || W.damtype == BURN)
-		take_damage(W.force)
+	var/damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+	if(damage)
+		take_damage(damage)
 		..()
 	return
 
@@ -248,7 +249,7 @@
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
 	item_state = "syringe_kit"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	max_storage_space = 28
 	can_hold = list(/obj/item/inflatable)
 	var/init_inflatable_count = 4

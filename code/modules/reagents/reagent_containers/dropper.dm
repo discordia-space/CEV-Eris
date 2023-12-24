@@ -8,7 +8,7 @@
 	icon_state = "dropper"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(1,2,3,4,5)
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	matter = list(MATERIAL_GLASS = 1, MATERIAL_PLASTIC = 1)
 	volume = 5

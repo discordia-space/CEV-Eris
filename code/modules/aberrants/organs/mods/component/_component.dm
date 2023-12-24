@@ -6,7 +6,7 @@
 	install_sound = 'sound/effects/squelch1.ogg'
 
 	mod_time = WORKTIME_FAST
-	mod_tool_quality = QUALITY_LASER_CUTTING			
+	mod_tool_quality = QUALITY_LASER_CUTTING
 	mod_difficulty = FAILCHANCE_HARD - 5
 	mod_stat = STAT_BIO
 	mod_sound = 'sound/effects/squelch1.ogg'
@@ -17,7 +17,7 @@
 	removal_stat = STAT_BIO
 
 	adjustable = FALSE
-	destroy_on_removal = FALSE 
+	destroy_on_removal = FALSE
 	removable = TRUE
 	breakable = FALSE
 
@@ -75,7 +75,7 @@
 
 /datum/component/modification/organ/apply_values(obj/item/organ/internal/holder)
 	ASSERT(holder)
-	
+
 	var/using_generated_name = FALSE
 	var/using_generated_color = FALSE
 
@@ -150,7 +150,7 @@
 	if(oxygen_req_mod)
 		holder.oxygen_req += round(oxygen_req_mod, 0.01)
 	if(max_upgrade_mod)
-		holder.max_upgrades += max_upgrade_mod
+		holder.maxUpgrades += max_upgrade_mod
 	if(min_bruised_damage_mod)
 		holder.min_bruised_damage += min_bruised_damage_mod
 	if(min_broken_damage_mod)
@@ -166,14 +166,14 @@
 	if(istype(O, /obj/item/organ/internal/scaffold))
 		var/obj/item/organ/internal/scaffold/S = O
 		S.try_ruin()
-	
+
 	// If the organ has no owner or is still modded, do nothing
 	if(!O.owner || LAZYLEN(O.item_upgrades))
 		return
 
 	O.owner.mutation_index--
 
-/datum/component/modification/organ/on_examine(mob/user)
+/datum/component/modification/organ/on_examine(mob/user, list/reference)
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
@@ -193,27 +193,27 @@
 			details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
 
 	if(examine_msg)
-		to_chat(user, SPAN_WARNING(examine_msg))
+		reference.Add(SPAN_WARNING(examine_msg))
 
 	if(adjustable)
-		to_chat(user, SPAN_WARNING("Can be adjusted with a laser cutting tool."))
+		reference.Add(SPAN_WARNING("Can be adjusted with a laser cutting tool."))
 
 	if(using_sci_goggles || details_unlocked)
 		var/info = "Organoid size: [specific_organ_size_mod ? specific_organ_size_mod : "0"]"
 		info += "\nRequirements: <span style='color:red'>[blood_req_mod ? blood_req_mod : "0"]\
 								</span>/<span style='color:blue'>[oxygen_req_mod ? oxygen_req_mod : "0"]\
 								</span>/<span style='color:orange'>[nutriment_req_mod ? nutriment_req_mod : "0"]</span>"
-		
+
 		var/organs
 		for(var/organ in organ_efficiency_mod)
 			organs += organ + " ([organ_efficiency_mod[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 		info += "\nOrgan tissues present: <span style='color:pink'>[organs ? organs : "none"]</span>"
-		
-		to_chat(user, SPAN_NOTICE(info))
+
+		reference.Add(SPAN_NOTICE(info))
 
 		var/function_info = get_function_info()
 		if(function_info)
-			to_chat(user, SPAN_NOTICE(function_info))
+			reference.Add(SPAN_NOTICE(function_info))
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))
+		reference.Add(SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))

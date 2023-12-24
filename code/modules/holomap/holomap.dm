@@ -32,7 +32,7 @@
 	flags |= ON_BORDER // Why? It doesn't help if its not density
 
 	if(loc)
-		src.loc = loc
+		src.forceMove(loc)
 
 	if(building)
 		if(ndir)
@@ -117,7 +117,7 @@
 	// TODO - This part!!
 	if(isliving(user) && anchored && !(stat & (NOPOWER|BROKEN)) && buildstage == 2 && !wiresexposed)
 		if(user.client)
-			holomap_datum.station_map.loc = global_hud.holomap  // Put the image on the holomap hud
+			holomap_datum.station_map.loc =global_hud.holomap  // Put the image on the holomap hud
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
 			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
 			flick("station_map_activate", src)
@@ -308,4 +308,4 @@
 	name = T_BOARD("Holomap")
 	desc = "Looks like a circuit. Probably is."
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL

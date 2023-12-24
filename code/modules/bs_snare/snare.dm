@@ -3,7 +3,7 @@
 	desc = "A bluespace snare. Looking at the edges of this thing, you see a faint blue ripple and spatial distortion."
 	icon = 'icons/obj/rig_modules.dmi'
 	icon_state = "teleporter"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_BLUESPACE = 6)
 	//var/locking_access = access_rd
 	var/silk_id = "" //using by snare controller to teleport user to controller's mark
@@ -29,8 +29,7 @@
 		else
 			to_chat(user, SPAN_WARNING("ERROR: Incorrect access."))*/
 
-/obj/item/clothing/accessory/bs_silk/examine()
-	..()
+/obj/item/clothing/accessory/bs_silk/examine(user)
 	var/s_id = silk_id != "" ? silk_id : "NOT SETTED"
-	to_chat(usr, "<br>On small display you can notice label that mean: \"DEVICE ID: <b>[s_id]</b>\".")
-	//to_chat(usr, "<br>It[removable ? " can be removed" : "'s locked by access: " + locking_access].")
+	var/description = "<br>On small display you can notice label that mean: \"DEVICE ID: <b>[s_id]</b>\"."
+	..(user, afterDesc = description)

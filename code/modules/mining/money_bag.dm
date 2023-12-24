@@ -5,9 +5,8 @@
 	name = "Money bag"
 	icon_state = "moneybag"
 	flags = CONDUCT
-	force = 10
 	throwforce = 2
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/moneybag/attack_hand(user as mob)
 	if (!is_held())
@@ -83,7 +82,7 @@
 				COIN = locate(/obj/item/coin/uranium,src.contents)
 		if(!COIN)
 			return
-		COIN.loc = src.loc
+		COIN.forceMove(src.loc)
 	return
 
 

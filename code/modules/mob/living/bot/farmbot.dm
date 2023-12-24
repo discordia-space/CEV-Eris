@@ -274,7 +274,7 @@
 	new /obj/item/device/scanner/plant(Tsec)
 
 	if(tank)
-		tank.loc = Tsec
+		tank.forceMove(Tsec)
 
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
@@ -315,7 +315,7 @@
 	icon_state = "water_arm"
 	var/build_step = 0
 	var/created_name = "Farmbot"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/item/farmbot_arm_assembly/Initialize()
 	. = ..()
@@ -333,7 +333,7 @@
 
 	to_chat(user, "You add the robot arm to [src].")
 	playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
-	loc = A //Place the water tank into the assembly, it will be needed for the finished bot
+	forceMove(A)  //Place the water tank into the assembly, it will be needed for the finished bot
 	user.drop_from_inventory(S)
 	qdel(S)
 
@@ -369,7 +369,7 @@
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 		var/mob/living/bot/farmbot/S = new /mob/living/bot/farmbot(get_turf(src))
 		for(var/obj/structure/reagent_dispensers/watertank/wTank in contents)
-			wTank.loc = S
+			wTank.forceMove(S)
 			S.tank = wTank
 		S.name = created_name
 		user.remove_from_mob(W)

@@ -41,14 +41,16 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/list/listening_levels = list() // 0 = auto set in Initialize() - this is the z level that the machine is listening to.
 
 /obj/machinery/telecomms/examine(mob/user)
-	..()
+	var/description = ""
 	switch(integrity)
 		if(0 to 20)
-			to_chat(user, SPAN_WARNING("There is little life left in it."))
+			description += SPAN_WARNING("There is little life left in it.")
 		if(21 to 49)
-			to_chat(user, SPAN_WARNING("It is glitching incoherently."))
+			description += SPAN_WARNING("It is glitching incoherently.")
 		if(50 to 80)
-			to_chat(user, SPAN_WARNING("It is sparking and humming."))
+			description += SPAN_WARNING("It is sparking and humming.")
+	..(user, afterDesc = description)
+
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -145,7 +147,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		else
 			for(var/obj/machinery/telecomms/T in telecomms_list)
 				add_link(T)
-		
+
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/Destroy()

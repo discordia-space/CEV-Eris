@@ -15,7 +15,7 @@
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
 	item_state = "electropack"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	price_tag = 10
 
 
@@ -29,7 +29,7 @@ var/global/photo_count = 0
 	icon = 'icons/obj/items.dmi'
 	icon_state = "photo"
 	item_state = "paper"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	var/id
 	var/icon/img	//Big photo image
 	var/scribble	//Scribble on the back.
@@ -60,7 +60,7 @@ var/global/photo_count = 0
 /obj/item/photo/examine(mob/user)
 	if(in_range(user, src))
 		show(user)
-		to_chat(user, desc)
+		..(user)
 	else
 		to_chat(user, SPAN_NOTICE("It is too far away."))
 
@@ -108,7 +108,7 @@ var/global/photo_count = 0
 	desc = "A polaroid camera. 10 photos left."
 	icon_state = "camera"
 	item_state = "electropack"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 2)

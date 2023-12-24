@@ -5,15 +5,13 @@
 	icon = 'icons/obj/guns/projectile/boltgun.dmi'
 	icon_state = "boltgun"
 	item_state = "boltgun"
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_ROBUST
-	armor_divisor = ARMOR_PEN_DEEP
+	volumeClass = ITEM_SIZE_HUGE
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE, 25)))
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_LRIFLE
 	fire_delay = 8
 	damage_multiplier = 1.4
-	penetration_multiplier = 0.3
 	init_recoil = RIFLE_RECOIL(1.5)
 	init_offset = 4 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
@@ -127,7 +125,6 @@
 	icon = 'icons/obj/guns/projectile/novakovic.dmi'
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
-	force = 23
 	init_recoil = RIFLE_RECOIL(1.7)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
@@ -135,6 +132,7 @@
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
 	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Kadmin\""
@@ -144,11 +142,8 @@
 	icon = 'icons/obj/guns/projectile/arisaka.dmi'
 	icon_state = "arisaka_ih_scope"
 	item_suffix  = "_ih_scope"
-	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
-	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
-	damage_multiplier = 1.8
-	penetration_multiplier = 1
+	damage_multiplier = 1.6
 	init_recoil = RIFLE_RECOIL(1.8)
 	init_offset = 0 //no bayonet
 	max_shells = 6
@@ -173,6 +168,7 @@
 	icon = 'icons/obj/guns/projectile/arisaka_civ.dmi'
 	icon_state = "arisaka_civilian"
 	item_suffix  = "_civilian"
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 	init_recoil = RIFLE_RECOIL(2)
 	zoom_factors = list(0.5) //like the xbow
 	wielded_item_state = "_doble_arisaka"
@@ -198,10 +194,9 @@
 	item_suffix = "_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 	wielded_item_state = "_doble_hand"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	damage_multiplier = 1.5
-	penetration_multiplier = -0.3
 	init_recoil = RIFLE_RECOIL(2)
 	max_shells = 5
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
@@ -233,11 +228,10 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez"
 	item_state = "obrez"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_WEAK // no bayonet
+	volumeClass = ITEM_SIZE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 10)))
 	armor_divisor = 1
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	penetration_multiplier = 0 // short barrel means maximum velocity isn't reached
 	proj_step_multiplier = 1.2
 	init_recoil = CARBINE_RECOIL(3)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
@@ -262,7 +256,6 @@
 	icon = 'icons/obj/guns/projectile/obrez_bolt.dmi'
 	icon_state = "obrez_hand"
 	item_suffix  = "_hand"
-	penetration_multiplier = -0.2 // child of mosin obrez, not of riose
 	init_recoil = CARBINE_RECOIL(4.5)
 	wielded_item_state = "_doble_hand"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)

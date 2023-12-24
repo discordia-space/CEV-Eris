@@ -24,13 +24,13 @@
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
-			I.loc = src
+			I.forceMove(src)
 	update_icon()
 
 /obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
-		O.loc = src
+		O.forceMove(src)
 		update_icon()
 	else if(istype(O, /obj/item/pen))
 		var/newname = sanitizeSafe(input("What would you like to title this bookshelf?"), MAX_NAME_LEN)
@@ -49,7 +49,7 @@
 			to_chat(user, SPAN_NOTICE("You dismantle \the [src]."))
 			drop_materials(drop_location())
 			for(var/obj/item/book/b in contents)
-				b.loc = (get_turf(src))
+				b.forceMove(get_turf(src))
 			qdel(src)
 
 	else
@@ -63,7 +63,7 @@
 		playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 		drop_materials(drop_location())
 		for(var/obj/item/book/b in contents)
-			b.loc = (get_turf(src))
+			b.forceMove(get_turf(src))
 		qdel(src)
 	else
 		attack_hand(M)
@@ -78,7 +78,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hands(choice)
 			else
-				choice.loc = get_turf(src)
+				choice.forceMove(get_turf(src))
 			update_icon()
 
 /obj/structure/bookcase/take_damage(damage)
@@ -86,7 +86,7 @@
 	if(QDELETED(src))
 		return .
 	for(var/obj/item/book/b in contents)
-		b.loc = (get_turf(src))
+		b.forceMove(get_turf(src))
 
 /obj/structure/bookcase/update_icon()
 	if(contents.len < 5)
@@ -139,7 +139,7 @@
 	icon_state ="book"
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
+	volumeClass = ITEM_SIZE_NORMAL		 //upped to three because books are, y'know, pretty big. (and you could hide them inside eachother recursively forever)
 	attack_verb = list("bashed", "whacked", "educated")
 	var/dat			 // Actual page content
 	var/due_date = 0 // Game time in 1/10th seconds
@@ -159,7 +159,7 @@
 	if(carved)
 		if(store)
 			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
-			store.loc = get_turf(src.loc)
+			store.forceMove(get_turf(src.loc))
 			store = null
 			return
 		else
@@ -175,9 +175,9 @@
 /obj/item/book/attackby(obj/item/I, mob/user)
 	if(carved)
 		if(!store)
-			if(I.w_class < ITEM_SIZE_NORMAL)
+			if(I.volumeClass < ITEM_SIZE_NORMAL)
 				user.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				store = I
 				to_chat(user, SPAN_NOTICE("You put [I] in [title]."))
 				return
@@ -273,7 +273,7 @@
 	icon_state ="scanner"
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	var/obj/machinery/librarycomp/computer // Associated computer - Modes 1 to 3 use this
 	var/obj/item/book/book	 //  Currently scanned book
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory

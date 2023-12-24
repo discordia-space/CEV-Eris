@@ -16,9 +16,7 @@
 	name = initial(name)
 
 /obj/item/robot_parts/robot_component/exosuit_control/examine(mob/user)
-	. = ..()
-	if(.)
-		to_chat(user, SPAN_NOTICE("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software]."))
+	..(user, afterDesc = SPAN_NOTICE("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software]."))
 
 /obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/electronics/circuitboard/exosystem))

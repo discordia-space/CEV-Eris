@@ -8,7 +8,7 @@
 	item_state = "implantcase"
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	var/obj/item/implant/implant = null
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 3)
 

@@ -12,7 +12,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	reagent_flags = OPENCONTAINER
 	unacidable = 1 //glass doesn't dissolve in acid
 	matter = list(MATERIAL_GLASS = 1)
@@ -72,11 +72,11 @@
 /obj/item/reagent_containers/glass/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/reagent_containers/glass/examine(mob/user)
-	if(!..(user, 2))
-		return
+/obj/item/reagent_containers/glass/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(has_lid())
-		to_chat(user, SPAN_NOTICE("Airtight lid seals it completely."))
+		description += SPAN_NOTICE("Airtight lid seals it completely.")
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/glass/attack_self(mob/user)
 	..()
@@ -104,7 +104,7 @@
 	return ..()
 
 /obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+	if(dhTotalDamage(melleDamages) && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
 	if(standard_feed_mob(user, M))

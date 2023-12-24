@@ -8,8 +8,8 @@
 	storage_slots = 1
 	description_info = "Holsters like these can be quickly used with the \'H\' hotkey.\
 	The hotkey prioritizes holsters that are put in back, suit slot or belt slot above the ones in your pockets."
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_HOLSTER
 
 	var/sound_in = 'sound/effects/holsterin.ogg'
@@ -73,7 +73,7 @@
 	rarity_value = 50
 
 	storage_slots = 1
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 
 	can_hold = list(
 		/obj/item/melee,
@@ -98,7 +98,7 @@
 	sound_in = 'sound/effects/holsterin.ogg'
 	sound_out = 'sound/effects/holsterout.ogg'
 
-	max_w_class = ITEM_SIZE_HUGE
+	max_volumeClass = ITEM_SIZE_HUGE
 
 	storage_slots = 2
 
@@ -155,7 +155,6 @@
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
 	can_hold = list(/obj/item/tool/sword/improvised)
 
-//Accessory holsters
 /obj/item/clothing/accessory/holster
 	name = "concealed carry holster"
 	desc = "An inconspicious holster that can be attached to your uniform, right under your armpit. Can fit a handgun... And maybe something else, too."
@@ -163,7 +162,7 @@
 	slot = "utility"
 	matter = list(MATERIAL_BIOMATTER = 5)
 	price_tag = 160
-	var/max_w_class = ITEM_SIZE_NORMAL
+	var/max_volumeClass = ITEM_SIZE_NORMAL
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_HOLSTER
 	var/storage_slots = 1
@@ -237,7 +236,7 @@
 	icon_state = "sheath"
 	overlay_state = "sword"
 	slot = "utility"
-	max_w_class = ITEM_SIZE_HUGE
+	max_volumeClass = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/tool/sword)
 	cant_hold = list(
 		/obj/item/tool/knife/dagger/nt,
@@ -263,7 +262,7 @@
 	desc = "A crudely constructed metal ring that hangs off your waist, useful for holding hammers, baseball bats and hatchets."
 	icon_state = "ring_sheath"
 	overlay_state = "ring_sheath"
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	can_hold = list(
 		/obj/item/tool/hammer,
 		/obj/item/tool/hatchet,
@@ -289,7 +288,7 @@
 
 /obj/item/clothing/accessory/holster/attack_hand(mob/user as mob)
 	add_fingerprint(user)
-	if(loc == has_suit)
+	if(loc == attachedTo)
 		if(holster.contents.len)
 			var/obj/item/I = holster.contents[holster.contents.len]
 			if(istype(I))
@@ -305,7 +304,7 @@
 	holster.storage_slots = storage_slots
 	holster.can_hold = can_hold
 	holster.cant_hold = cant_hold
-	holster.max_w_class = max_w_class
+	holster.max_volumeClass = max_volumeClass
 	holster.master_item = src
 
 /obj/item/clothing/accessory/holster/Destroy()

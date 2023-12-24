@@ -7,7 +7,7 @@
 	matter = list(MATERIAL_PLASTEEL = 0.1, MATERIAL_STEEL = 1)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
-	w_class = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
+	volumeClass = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
 	price_tag = 80
 	spawn_tags = SPAWN_TAG_MEDICINE
 	rarity_value = 40

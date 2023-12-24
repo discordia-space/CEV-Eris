@@ -22,12 +22,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = GOLEM_ARMOR_LOW,
-		energy = GOLEM_ARMOR_HIGH,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = GOLEM_ARMOR_LOW,
+		ARMOR_ENERGY = GOLEM_ARMOR_HIGH,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 	// Loot related variables
@@ -68,7 +68,7 @@
 		. = ..()
 
 // Called when the mob is hit with an item in combat.
-/mob/living/carbon/superior_animal/golem/plasma/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/superior_animal/golem/plasma/hit_with_weapon(obj/item/I, mob/living/user, list/damages ,var/hit_zone)
 	if(det_status == DET_BLOWING)
 		det_status = DET_DEFUSED
 		icon_state = "golem_plasma"

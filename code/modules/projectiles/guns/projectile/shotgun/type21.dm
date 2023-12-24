@@ -4,8 +4,7 @@
 	icon = 'icons/obj/guns/projectile/os/type_21.dmi'
 	icon_state = "type_21"
 	item_state = "type_21"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 3)
 	caliber = CAL_SHOTGUN
@@ -20,8 +19,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
-	damage_multiplier = 1.0
-	penetration_multiplier = 0.5
+	damage_multiplier = 1.4
 	init_recoil = CARBINE_RECOIL(1.0)
 
 	init_firemodes = list(

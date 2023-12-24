@@ -9,7 +9,7 @@
 	desc = "Standard superconductive magnetic coil with average capacity and I/O rating."
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "smes_coil"			// Just a few icons patched together. If someone wants to make a better icon, feel free to do so!
-	w_class = ITEM_SIZE_BULKY 						// It's LARGE (backpack size)
+	volumeClass = ITEM_SIZE_BULKY 						// It's LARGE (backpack size)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_SILVER = 4)
 	origin_tech = list(TECH_MAGNET = 2, TECH_POWER = 3, TECH_MATERIAL = 2)
 	var/ChargeCapacity = 10000000
@@ -334,7 +334,7 @@
 				M.state = 2
 				M.icon_state = "box_1"
 				for(var/obj/I in component_parts)
-					I.loc = src.loc
+					I.forceMove(src.loc)
 					component_parts -= I
 				qdel(src)
 				return
@@ -350,7 +350,7 @@
 				to_chat(usr, SPAN_NOTICE("You install the coil into the SMES unit."))
 				user.drop_item()
 				component_parts += W
-				W.loc = src
+				W.forceMove(src)
 				RefreshParts()
 			else
 				to_chat(usr, SPAN_WARNING("You can't insert more coils to this SMES unit!"))

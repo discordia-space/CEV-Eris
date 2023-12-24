@@ -177,7 +177,7 @@
 	if (user.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
-			var/damage = I.force * I.structure_damage_factor
+			var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)) * I.structure_damage_factor
 			var/volume =  min(damage * 3.5, 15)
 			if (I.hitsound)
 				playsound(src, I.hitsound, volume, 1, -1)
@@ -231,7 +231,7 @@
 			to_chat(user, "The drill already has a cell installed.")
 		else
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			cell = I
 			component_parts += I
 			to_chat(user, "You install \the [I].")
@@ -243,7 +243,7 @@
 
 	if (panel_open && cell)
 		to_chat(user, "You take out \the [cell].")
-		cell.loc = get_turf(user)
+		cell.forceMove(get_turf(user))
 		component_parts -= cell
 		cell = null
 		return
@@ -264,7 +264,7 @@
 		else if(world.time - last_use < DRILL_COOLDOWN)
 			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
 		else if(use_cell_power())
-			
+
 			if(!cave_connected)
 				if(cave_gen.is_generating())
 					to_chat(user, SPAN_WARNING("A cave system is already being dug."))
@@ -408,25 +408,26 @@
 			stored_ore[O.name] = 1
 
 /obj/machinery/mining/deep_drill/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(health <= 0)
-		to_chat(user, "\The [src] is wrecked.")
+		description += "\The [src] is wrecked. \n"
 	else if(health < maxHealth * 0.33)
-		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
+		description += "<span class='danger'>\The [src] looks like it's about to break!</span> \n"
 	else if(health < maxHealth * 0.66)
-		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
+		description += "<span class='danger'>\The [src] looks seriously damaged!</span> \n"
 	else if(health < maxHealth)
-		to_chat(user, "\The [src] shows signs of damage!")
+		description += "\The [src] shows signs of damage! \n"
 	else
-		to_chat(user, "\The [src] is in pristine condition.")
+		description += "\The [src] is in pristine condition. \n"
 
 	if(world.time > last_update + 1 SECONDS)
 		update_ore_count()
 		last_update = world.time
 
-	to_chat(user, "It holds:")
+	description += "It holds: \n"
 	for(var/obj/item/ore/O in contents)
-		to_chat(user, "- [stored_ore[O]] [O]")
+		description += "- [stored_ore[O]] [O] \n"
+	..(user, afterDesc = description)
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"
@@ -440,7 +441,7 @@
 	var/obj/structure/ore_box/B = locate() in orange(1)
 	if(B)
 		for(var/obj/item/ore/O in contents)
-			O.loc = B
+			O.forceMove(B)
 		to_chat(usr, SPAN_NOTICE("You unload the drill's storage cache into the ore box."))
 	else
 		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))

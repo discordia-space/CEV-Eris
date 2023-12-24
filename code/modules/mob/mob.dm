@@ -249,7 +249,9 @@
  *
  * mob verbs are faster than object verbs. See
  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
- * for why this isn't atom/verb/examine()
+ * for why this isn't atom/verb/examine() (2014)
+ * Think this was fixed with Context-Menu general fixes about 1 year ago , SPCR - 2023
+ *
  */
 /mob/verb/examinate(atom/examinify as mob|obj|turf in view())
 	set name = "Examine"
@@ -645,7 +647,7 @@
 
 	else if(isobj(AM))
 		var/obj/I = AM
-		if(!can_pull_size || can_pull_size < I.w_class)
+		if(!can_pull_size || can_pull_size < I.volumeClass)
 			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
@@ -1039,7 +1041,7 @@ mob/proc/yank_out_object()
 		affected.embedded -= selection
 		selection.on_embed_removal(src)
 		H.shock_stage+=20
-		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
+		affected.take_damage((selection.volumeClass * 3), 0, 0, 1, "Embedded object extraction")
 
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U

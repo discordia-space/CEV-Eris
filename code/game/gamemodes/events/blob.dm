@@ -460,37 +460,35 @@
 	if(!Proj)
 		return
 
+	var/bruteDam = Proj.getAllDamType(BRUTE)
+	var/burnDam = Proj.getAllDamType(BURN)
 	var/absorbed_damage //The amount of damage that will be subtracted from the projectile
 	var/taken_damage //The amount of damage the blob will recieve
-	for(var/i in Proj.damage_types)
-		if(i == BRUTE)
-			absorbed_damage = min(health * brute_resist, Proj.damage_types[i])
-			taken_damage = (Proj.damage_types[i] / brute_resist)
-			Proj.damage_types[i] -= absorbed_damage
-		if(i == BURN)
-			absorbed_damage = min(health * fire_resist, Proj.damage_types[i])
-			taken_damage= (Proj.damage_types[i]  / fire_resist)
-			Proj.damage_types[i] -= absorbed_damage
+	absorbed_damage = min(health * brute_resist, bruteDam)
+	taken_damage = bruteDam/brute_resist
+	Proj.adjust_damages(list(BRUTE = -absorbed_damage))
+	take_damage(taken_damage)
+	if(health < 0)
+		return Proj.get_total_damage() <= 0 ? PROJECTILE_STOP : PROJECTILE_CONTINUE
+	absorbed_damage = min(health * fire_resist, burnDam)
+	taken_damage = burnDam/fire_resist
+	Proj.adjust_damages(list(BURN = -absorbed_damage))
 	take_damage(taken_damage)
 	if (Proj.get_total_damage() <= 0)
-		return 0
+		return PROJECTILE_STOP
 	else
 		return PROJECTILE_CONTINUE
 
 /obj/effect/blob/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(W.force && !(W.flags & NOBLUDGEON))
-		user.do_attack_animation(src, TRUE)
-		var/damage = 0
-		switch(W.damtype)
-			if("fire")
-				damage = (W.force / fire_resist)
-				if(istype(W, /obj/item/tool/weldingtool))
-					playsound(loc, 'sound/items/Welder.ogg', 100, 1)
-			if("brute")
-				damage = (W.force / brute_resist)
+	var/brute = dhTotalDamageDamageType(W.melleDamages, BRUTE)
+	var/burn = dhTotalDamageDamageType(W.melleDamages, BURN)
 
-		take_damage(damage)
+	if((burn + brute)&& !(W.flags & NOBLUDGEON))
+		user.do_attack_animation(src, TRUE)
+		if(istype(W, /obj/item/tool/weldingtool))
+			playsound(loc, 'sound/items/Welder.ogg', 100, 1)
+		take_damage(burn / fire_resist + brute / brute_resist)
 		return 1
 	return ..()
 

@@ -5,7 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(mobs)
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 2 SECONDS
 
-	process_proc = /mob/proc/Life
+	process_proc = "Life"
 
 	var/list/mob_list
 	var/list/mob_living_by_zlevel[][]

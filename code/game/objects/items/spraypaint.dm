@@ -6,7 +6,7 @@
 	matter = list(MATERIAL_PLASTIC = 4, MATERIAL_STEEL = 5)
 	price_tag = 40
 	var/uses = 30
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 
 /obj/item/spraypaint/afterattack(atom/target, mob/user as mob, proximity)

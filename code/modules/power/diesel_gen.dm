@@ -48,11 +48,12 @@
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
-	..(user)
-	user << "\The [src] appears to be producing [power_gen*power_output] W."
-	user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	if(IsBroken()) user << SPAN_WARNING("\The [src] seems to have broken down.")
-	if(overheating) user << SPAN_DANGER("\The [src] is overheating!")
+	var/description = ""
+	description += "\The [src] appears to be producing [power_gen*power_output] W.\n"
+	description += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.\n"
+	if(IsBroken()) description += SPAN_WARNING("\The [src] seems to have broken down.\n")
+	if(overheating) descriptio += SPAN_DANGER("\The [src] is overheating!")
+	..(user, afterDesc = description)
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet
@@ -193,7 +194,7 @@
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_PRD))
 						var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 						for(var/obj/item/CP in component_parts)
-							CP.loc = src.loc
+							CP.forceMove(src.loc)
 						while ( sheets > 0 )
 							DropFuel()
 						new_frame.state = 2

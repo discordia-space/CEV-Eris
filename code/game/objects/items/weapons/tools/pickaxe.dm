@@ -3,12 +3,14 @@
 	desc = "The most basic of mining tools, for short excavations and small mineral extractions."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_DANGEROUS
-	armor_divisor = ARMOR_PEN_HALF // It's a pickaxe. It's destined to poke holes in things, even armor.
+	/// comparable to the fireaxe
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,15)))
+	wieldedMultiplier = 3
+	WieldedattackDelay = 18
 	throwforce = WEAPON_FORCE_NORMAL
 	icon_state = "pickaxe"
 	item_state = "pickaxe"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 6)
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_PRYING = 20) //So it still shares its switch off quality despite not yet being used.
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_PRYING = 20)
@@ -52,7 +54,10 @@
 	item_state = "pickaxe"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2, MATERIAL_DIAMOND = 2)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 3)
-	switched_on_force = WEAPON_FORCE_ROBUST
+	switchedOn = list(ARMOR_POINTY = list(BRUTE,34))
+	wieldedMultiplier = 2.3
+	WieldedattackDelay = 13
+	armor_divisor = 1.4
 	tool_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 15, QUALITY_PRYING = 25)
 	switched_on_qualities = list(QUALITY_DIGGING = 50, QUALITY_PRYING = 20)
@@ -74,6 +79,8 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 50)
+	switchedOn = list(ARMOR_POINTY = list(BRUTE,14))
+	armor_divisor = 1.2
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	degradation = 0.7
 	use_power_cost = 0.4
@@ -90,10 +97,12 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 55)
+	switchedOn = list(ARMOR_POINTY = list(BRUTE,16))
+	armor_divisor = 1.4
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 2, TECH_ENGINEERING = 3)
 	degradation = 0.6
 	workspeed = 1.8
-	max_upgrades = 2
+	maxUpgrades = 2
 	use_power_cost = 0.6
 	spawn_blacklisted = TRUE
 	rarity_value = 10
@@ -107,6 +116,7 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 55, QUALITY_DRILLING = 10)
+	switchedOn = list(ARMOR_POINTY = list(BRUTE,12))
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 2)
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	degradation = 0.7
@@ -122,11 +132,12 @@
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 10)
 	switched_on_qualities = list(QUALITY_DIGGING = 60, QUALITY_DRILLING = 10)
+	switchedOn = list(ARMOR_POINTY = list(BRUTE,20))
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLATINUM = 2)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	degradation = 0.6
 	workspeed = 1.9
-	max_upgrades = 2
+	maxUpgrades = 2
 	use_fuel_cost = 0.10
 	max_fuel = 90
 	spawn_blacklisted = TRUE
@@ -138,13 +149,16 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
-	force = WEAPON_FORCE_DANGEROUS * 1.15
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,25)))
+	attackDelay = 8
+	WieldedattackDelay = 18
 	tool_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 20)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 10, QUALITY_DRILLING = 20)
 	switched_on_qualities = list(QUALITY_DIGGING = 60, QUALITY_DRILLING = 20)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_DIAMOND = 1)
+	switchedOn = list(ARMOR_POINTY = list(DELEM(BRUTE,20)))
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
-	max_upgrades = 4
+	maxUpgrades = 4
 	degradation = 0.1
 	use_fuel_cost = 0.07
 	max_fuel = 120
@@ -162,10 +176,10 @@
 	desc = "A smaller, more precise version of the pickaxe, used for archeology excavation."
 	icon_state = "pick_hand"
 	item_state = "syringe_0"
-	force = WEAPON_FORCE_PAINFUL //It's smaller
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,12)))
 	tool_qualities = list(QUALITY_EXCAVATION = 30, QUALITY_PRYING = 15)
 	switched_off_qualities = list(QUALITY_EXCAVATION = 30, QUALITY_PRYING = 15)
 	switched_on_qualities = list(QUALITY_DIGGING = 15, QUALITY_PRYING = 15)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 3)
 	rarity_value = 48

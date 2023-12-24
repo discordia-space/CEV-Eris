@@ -142,14 +142,14 @@
 	target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 	//deal damage AFTER the kick
 	var/damage = max(1, min(30, (attacker.stats.getStat(STAT_ROB) / 3)))
-	target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE)
+	target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), BP_CHEST, src, 1, 1, FALSE)
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")
 	msg_admin_attack("[key_name(attacker)] has dropkicked [key_name(target)]")
 	//kill the grab
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 
 /obj/item/grab/proc/suplex(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
@@ -162,7 +162,7 @@
 		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
 		target.SpinAnimation(5,1)
 		var/damage = min(80, attacker.stats.getStat(STAT_ROB) + 15) //WE ARE GONNA KILL YOU
-		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
+		target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), BP_CHEST, src, 1, 1, FALSE)
 		attacker.Weaken(2)
 		target.Stun(6)
 		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
@@ -172,14 +172,14 @@
 		msg_admin_attack("[key_name(attacker)] has suplexed [key_name(target)]")
 		//kill the grab
 		attacker.drop_from_inventory(src)
-		loc = null
+		forceMove(NULLSPACE)
 		qdel(src)
 
 /obj/item/grab/proc/gut_punch(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	//no check for grab levels
 	visible_message(SPAN_DANGER("[attacker] thrusts \his fist in [target]'s guts!"))
 	var/damage = max(1, (10 - target.stats.getStat(STAT_TGH) / 4))//40+ TGH = 1 dmg
-	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE, wounding_multiplier = 2)
+	target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, damage))), BP_GROIN, src, 1, 2)
 	//vomiting goes on cd for 35 secs, which means it's impossible to spam this
 	target.vomit(TRUE)
 	//admin messaging
@@ -187,7 +187,7 @@
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Gutpunched by [attacker.name] ([attacker.ckey])</font>")
 	//kill the grab
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 
 /obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
@@ -199,12 +199,12 @@
 
 	var/damage = 20
 	var/obj/item/clothing/hat = attacker.head
-	var/victim_armor = target.getarmor(BP_HEAD, ARMOR_MELEE)
+	var/victim_armor = target.getarmor(BP_HEAD, ARMOR_BLUNT)
 	if(istype(hat))
-		damage += hat.force * 3
+		damage += dhTotalDamageStrict(hat.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)) * 3
 
-	target.damage_through_armor(damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	attacker.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
+	target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), BP_HEAD, src, 1, 1, FALSE)
+	attacker.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,10))), BP_HEAD, src, 1, 1, FALSE)
 	target.make_dizzy(15)
 
 	if(!victim_armor && target.headcheck(BP_HEAD) && prob(damage))
@@ -217,7 +217,7 @@
 	msg_admin_attack("[key_name(attacker)] has headbutted [key_name(target)]")
 
 	attacker.drop_from_inventory(src)
-	src.loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 	return
 
@@ -258,16 +258,16 @@
 		fireman_dir = turn(attacker.dir, 180)
 	var/damage = max(1, min(20, (attacker.stats.getStat(STAT_ROB) / 3)))
 
-	target.loc = attacker.loc
+	target.forceMove(attacker.loc)
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)
 	target.update_lying_buckled_and_verb_status()
 
 	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
 		target.forceMove(get_step(target, fireman_dir))
 
-	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_MELEE)
+	target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(HALLOSS,damage))), BP_CHEST, src, 1, 1, FALSE)
 
 	target.Weaken(1)
 	playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
@@ -293,7 +293,7 @@
 		to_chat(attacker, SPAN_WARNING("There is not enough space around you to do this."))
 		return
 	//finally, we SWING
-	target.loc = attacker.loc
+	target.forceMove(attacker.loc)
 	visible_message(SPAN_DANGER("[attacker] pivots, spinning [target] around!"))
 	attacker.next_move = world.time + 30 //3 seconds
 	var/spin = 2
@@ -314,7 +314,8 @@
 		sleep(1)
 
 	target.throw_at(get_edge_target_turf(target, dir), 7, 2)//this is very fast, and very painful for any obstacle involved
-	target.damage_through_armor(damage, HALLOSS, armor_divisor = 2)
+
+	target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(HALLOSS, damage))), BP_CHEST, null, attacker, 2)
 
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Swung [target.name] ([target.ckey])</font>")
@@ -322,5 +323,5 @@
 	msg_admin_attack("[key_name(attacker)] has swung [key_name(target)]")
 	//kill the grab
 	attacker.drop_from_inventory(src)
-	loc = null
+	forceMove(NULLSPACE)
 	qdel(src)

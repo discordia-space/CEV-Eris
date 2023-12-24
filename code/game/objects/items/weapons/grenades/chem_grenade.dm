@@ -7,8 +7,7 @@
 	icon_state = "chemg"
 	item_state = "grenade"
 	desc = "A hand made chemical grenade."
-	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_HARMLESS
+	volumeClass = ITEM_SIZE_SMALL
 	det_time = null
 	unacidable = 1
 	matter = list(MATERIAL_STEEL = 3)
@@ -120,9 +119,7 @@
 				to_chat(user, SPAN_WARNING("\The [W] is empty."))
 
 /obj/item/grenade/chem_grenade/examine(mob/user)
-	..(user)
-	if(detonator)
-		to_chat(user, "With attached [detonator.name]")
+	..(user, afterDesc = detonator ? "With attached [detonator.name]" : "")
 
 /obj/item/grenade/chem_grenade/activate(mob/user as mob)
 	if(active) return

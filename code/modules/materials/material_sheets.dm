@@ -1,8 +1,8 @@
 // Stacked resources. They use a material datum for a lot of inherited values.
 /obj/item/stack/material
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,15)))
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	icon = 'icons/obj/stack/material.dmi'
 	throw_speed = 3
 	throw_range = 3
@@ -13,8 +13,7 @@
 	var/material/material
 	var/apply_colour //temp pending icon rewrite
 
-/obj/item/stack/material/Initialize()
-	. = ..()
+/obj/item/stack/material/New(loc)
 	pixel_x = rand(0,10)-5
 	pixel_y = rand(0,10)-5
 
@@ -22,7 +21,7 @@
 		default_type = MATERIAL_STEEL
 	material = get_material_by_name("[default_type]")
 	if(!material)
-		return INITIALIZE_HINT_QDEL
+		return ..()
 
 	stacktype = material.stack_type
 	if(islist(material.stack_origin_tech))
@@ -36,6 +35,7 @@
 
 	matter = material.get_matter()
 	update_strings()
+	..()
 
 /obj/item/stack/material/attack_self(mob/living/user)
 	user.craft_menu()

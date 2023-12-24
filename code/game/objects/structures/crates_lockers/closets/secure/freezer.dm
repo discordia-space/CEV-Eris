@@ -7,11 +7,16 @@
 	req_access = list(access_kitchen)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to 6)
-		new /obj/item/reagent_containers/food/condiment/flour(src)
-	new /obj/item/reagent_containers/food/condiment/sugar(src)
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/condiment/flour(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/reagent_containers/food/condiment/sugar(NULLSPACE))
 	for(var/i in 1 to 3)
-		new /obj/item/reagent_containers/food/snacks/meat/monkey(src)
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	icon_state = "freezer"
@@ -22,20 +27,30 @@
 	icon_state = "freezer"
 
 /obj/structure/closet/secure_closet/freezer/meat/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to 3)
-		new /obj/item/reagent_containers/food/snacks/meat/monkey(src)
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/snacks/meat/monkey(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"
 	icon_state = "freezer"
 
 /obj/structure/closet/secure_closet/freezer/fridge/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to 5)
-		new /obj/item/reagent_containers/food/drinks/milk(src)
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/drinks/milk(NULLSPACE))
 	for(var/i in 1 to 3)
-		new /obj/item/reagent_containers/food/drinks/soymilk(src)
+		spawnedAtoms.Add(new  /obj/item/reagent_containers/food/drinks/soymilk(NULLSPACE))
 	for(var/i in 1 to 2)
-		new /obj/item/storage/fancy/egg_box(src)
+		spawnedAtoms.Add(new  /obj/item/storage/fancy/egg_box(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/structure/closet/secure_closet/freezer/money
 	name = "freezer"
@@ -43,9 +58,14 @@
 	req_access = list(access_heads_vault)
 
 /obj/structure/closet/secure_closet/freezer/money/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to 3)
-		new /obj/item/spacecash/bundle/c1000(src)
+		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c1000(NULLSPACE))
 	for(var/i in 1 to 3)
-		new /obj/item/spacecash/bundle/c500(src)
+		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c500(NULLSPACE))
 	for(var/i in 1 to 6)
-		new /obj/item/spacecash/bundle/c200(src)
+		spawnedAtoms.Add(new  /obj/item/spacecash/bundle/c200(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)

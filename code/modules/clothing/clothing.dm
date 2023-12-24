@@ -12,13 +12,32 @@
 	var/gunshot_residue								// Used by forensics.
 	var/initial_name = "clothing"					// For coloring
 
+	/// list of all accesories attached
 	var/list/accessories = list()
+	///  list of all slots available to accesories. List can be found in _clothing_defines
 	var/list/valid_accessory_slots
+	/// List of all accessories where only ONE object can occupy
 	var/list/restricted_accessory_slots
 	var/equip_delay = 0 //If set to a nonzero value, the item will require that much time to wear and remove
 
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
+
+	/// For the new custom armor system. Determines how many plates and side guards we can install
+	var/list/maxArmorVolume = list(
+		0, // CLOTH_ARMOR_TORSO
+		0, // CLOTH_ARMOR_SIDEGUARDS
+	)
+
+	/// A list of all the armorComps, order is important since we iterate inversely.
+	/// if it has typepaths at round-start, it will initialize them
+	var/list/obj/item/armor_component/armorComps = list(
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth
+	)
+
+	var/clothingFlags = null
+
 
 	style = STYLE_NONE
 	var/style_coverage = NONE
@@ -27,10 +46,52 @@
 	var/light_applied
 	var/brightness_on
 	var/on = FALSE
+	matter = list(MATERIAL_CLOTH = 5)
 
 
 
 	price_tag = 30
+
+/obj/item/clothing/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	var/list/blockers = list()
+	/// From the clothing itself
+	if(LIMB2CLOTH[defZone] & body_parts_covered)
+		blockers.Add(src)
+	/// From all the internal clothing components
+	for(var/obj/item/armor_component/armComp in armorComps)
+		if(armComp.covering & LIMB2CLOTH[defZone])
+			blockers.Add(armComp)
+
+	return blockers
+
+/obj/item/clothing/getDamageBlockerRatings(list/relevantTypes)
+	/// Get the return list from parent.
+	var/list/returnList = ..()
+	var/coveredBps = getCoveredBPCount(body_parts_covered)
+	for(var/armorType in relevantTypes)
+		for(var/obj/item/armor_component/armComp in armorComps)
+			returnList[armorType] += armComp.armor.getRating(armorType)
+		/// divide to get the average
+		returnList[armorType] /= coveredBps
+	return returnList
+
+/obj/item/clothing/proc/getArmorRating(type, defZone)
+	var/returnArmor = 0
+	if(LIMB2CLOTH[defZone] & body_parts_covered && armor)
+		returnArmor += armor.getRating(type)
+	/// From all the internal clothing components
+	for(var/obj/item/armor_component/armComp in armorComps)
+		if(armComp.covering & LIMB2CLOTH[defZone])
+			returnArmor += armComp.armor.getRating(type)
+	return returnArmor
+
+/proc/getCoveredBPCount(BodypartsVar)
+	var/count = 0
+	for(var/bodypart in ALL_CLOTH_BP)
+		if(BodypartsVar & bodypart)
+			count++
+	return count
+
 
 /obj/item/clothing/attack_self(mob/user)
 	if(brightness_on)
@@ -75,6 +136,70 @@
 	if(H)
 		H.update_inv_head()
 
+/obj/item/clothing/proc/insertArmor(obj/item/armor_component/component, mob/living/user, increaseVolume = FALSE, force = FALSE)
+	var/currentVolume = 0
+	if(clothingFlags & CLOTH_NO_MOD && !force)
+		if(user)
+			to_chat(user, SPAN_NOTICE("\The [src]'s armor components cannot be modified!"))
+		return
+
+	if(istype(component, /obj/item/armor_component/plate))
+		for(var/obj/item/armor_component/plate/plateComp in armorComps)
+			currentVolume += plateComp.volume
+		if(!force)
+			if(currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_TORSO])
+				if(!user)
+					return
+				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [component]"))
+				return
+		else if((currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_TORSO]) && increaseVolume)
+			maxArmorVolume[CLOTH_ARMOR_TORSO] += component.volume
+
+	if(istype(component, /obj/item/armor_component/sideguards))
+		if(!(istype(src, /obj/item/clothing/suit) || istype(src, /obj/item/clothing/under)))
+			if(!user)
+				return
+			to_chat(user, SPAN_NOTICE("\The [component] cannot be installed on anything other than a suit or a jumpsuit"))
+			return
+		for(var/obj/item/armor_component/sideguards/sideguardsComp in armorComps)
+			currentVolume += sideguardsComp.volume
+		if(!force)
+			if(currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+				if(!user)
+					return
+				to_chat(user, SPAN_NOTICE("The framework on \the [src] cannot support the volume of \the [component]"))
+				return
+		else if((currentVolume + component.volume > maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS]) && increaseVolume)
+			maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS] += component.volume
+	if(user)
+		user.drop_from_inventory(component)
+	component.forceMove(src)
+	armorComps |= component
+	if(istype(src, /obj/item/clothing/head))
+		component.covering = HEAD
+	if(istype(src, /obj/item/clothing/gloves))
+		component.covering = ARMS
+	if(istype(src, /obj/item/clothing/shoes))
+		component.covering = LEGS
+	if(istype(component, /obj/item/armor_component/sideguards))
+		if(istype(src, /obj/item/clothing/suit) || istype(src, /obj/item/clothing/under))
+			component.covering = UPPER_TORSO | LOWER_TORSO
+
+/obj/item/clothing/proc/removeArmor(obj/item/armor_component/component, mob/living/user, force = FALSE, atom/location)
+	if(clothingFlags & CLOTH_NO_MOD && !force)
+		if(user)
+			to_chat(user, SPAN_NOTICE("\The [src]'s armor components cannot be modified!"))
+		return
+	armorComps.Remove(component)
+	component.forceMove(NULLSPACE)
+	if(istype(src, /obj/item/clothing/head))
+		component.covering = initial(component.covering)
+	if(user)
+		to_chat(user, SPAN_NOTICE("You remove \the [component] from \the [src]."))
+		component.forceMove(get_turf(user))
+		user.put_in_active_hand(component)
+	else if(location)
+		component.forceMove(location)
 
 /obj/item/clothing/Initialize(mapload, ...)
 	. = ..()
@@ -85,14 +210,57 @@
 		hud_actions = list()
 	hud_actions += action
 
-	if(matter)
-		return
 
-	else if(chameleon_type)
-		matter = list(MATERIAL_PLASTIC = 2 * w_class)
-		origin_tech = list(TECH_COVERT = 3)
-	else
-		matter = list(MATERIAL_BIOMATTER = 5 * w_class)
+	if(!matter)
+		if(chameleon_type)
+			matter = list(MATERIAL_PLASTIC = 2 * volumeClass)
+			origin_tech = list(TECH_COVERT = 3)
+		else
+			matter = list(MATERIAL_BIOMATTER = 5 * volumeClass)
+
+	if(length(armorComps))
+		var/list/newComps = armorComps
+		armorComps = list()
+		var/increaseVolume = FALSE
+		if(!maxArmorVolume[CLOTH_ARMOR_TORSO] && !maxArmorVolume[CLOTH_ARMOR_SIDEGUARDS])
+			increaseVolume = TRUE
+		for(var/path in newComps)
+			var/obj/item/armor_component/armorPart = new path(NULLSPACE)
+			if(!istype(armorPart))
+				message_admins("[src] | [src.type] had an armor part which is not of the current subtype , [armorPart.type]")
+				continue
+			insertArmor(armorPart,null, increaseVolume, TRUE)
+
+/obj/item/clothing/examine(mob/user, distance, afterDesc)
+	var/description = afterDesc
+	if(accessories.len)
+		for(var/obj/item/clothing/accessory/A in accessories)
+			description += "\A [A] is attached to it. \n"
+	if(distance <= 1 && length(armorComps))
+		description += SPAN_NOTICE("Click any plate below to remove them from \the [src]: \n")
+		for(var/obj/item/armor_component/comp in armorComps)
+			description += SPAN_NOTICE("<a href='?src=\ref[src];removePlate=\ref[comp];user=\ref[user]'>\icon[comp] [comp.name] [comp.armorHealth]/[comp.maxArmorHealth]</a> \n")
+	..(user, afterDesc = description)
+
+/obj/item/clothing/Topic(href, href_list, datum/nano_topic_state/state)
+	. = ..()
+	if(QDELETED(src))
+		return
+	if(href_list["removePlate"])
+		var/mob/living/user = locate(href_list["user"])
+		var/obj/item/armor_component/component = locate(href_list["removePlate"])
+		if(!istype(user) || !istype(component))
+			return
+		if(user.incapacitated() || !user.Adjacent(src))
+			return
+		if(!armorComps.Find(component))
+			return
+		removeArmor(component, user, FALSE, FALSE , null)
+
+/obj/item/clothing/attackby(obj/item/I, mob/user)
+	. = ..()
+	if(istype(I, /obj/item/armor_component))
+		insertArmor(I, user, FALSE, FALSE)
 
 
 /obj/item/clothing/Destroy()
@@ -174,6 +342,11 @@
 /obj/item/clothing/nano_ui_data()
 	var/list/data = list()
 	var/list/armorlist = armor.getList()
+	for(var/obj/item/armor_component/comp in armorComps)
+		var/list/compArmor = comp.armor.getList()
+		for(var/armorType in compArmor)
+			armorlist[armorType] += compArmor[armorType]
+
 	if(armorlist.len)
 		var/list/armor_vals = list()
 		for(var/i in armorlist)
@@ -220,12 +393,14 @@
 	name = "Clothing information"
 	icon_state = "info"
 
+/// Code related to modular clothing
+
 
 ///////////////////////////////////////////////////////////////////////
 // Ears: headsets, earmuffs and tiny objects
 /obj/item/clothing/ears
 	name = "ears"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throwforce = 2
 	slot_flags = SLOT_EARS
 	bad_type = /obj/item/clothing/ears
@@ -266,7 +441,7 @@
 
 /obj/item/clothing/ears/offear
 	name = "Other ear"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "blocked"
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
@@ -279,7 +454,7 @@
 	desc = O.desc
 	icon = O.icon
 	icon_state = O.icon_state
-	w_class = O.w_class
+	volumeClass = O.volumeClass
 	set_dir(O.dir)
 	master_item = O
 
@@ -312,11 +487,12 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses
 	name = "glasses"
 	icon = 'icons/inventory/eyes/icon.dmi'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
 	bad_type = /obj/item/clothing/glasses
 	style = STYLE_LOW
+	matter = list(MATERIAL_GLASS = 1, MATERIAL_PLASTIC = 1)
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
@@ -328,16 +504,21 @@ BLIND     // can't see anything
 /obj/item/clothing/gloves
 	name = "gloves"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon = 'icons/inventory/hands/icon.dmi'
 	siemens_coefficient = 0.75
 	bad_type = /obj/item/clothing/gloves
 	spawn_tags = SPAWN_TAG_GLOVES
 	body_parts_covered = ARMS
-	armor = list(melee = 2, bullet = 0, energy = 3, bomb = 0, bio = 0, rad = 0)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 0, ARMOR_ENERGY = 3, ARMOR_BOMB =0, ARMOR_BIO =0, ARMOR_RAD =0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 	style = STYLE_LOW
+	matter = list(MATERIAL_CLOTH = 3)
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 	var/wired = 0
 	var/clipped = 0
 
@@ -371,10 +552,11 @@ BLIND     // can't see anything
 		)
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/clothing/head
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD
 	style = STYLE_HIGH
+	matter = list(MATERIAL_CLOTH = 3)
 
 /obj/item/clothing/head/attack_ai(mob/user)
 	if(!mob_wear_hat(user))
@@ -419,6 +601,7 @@ BLIND     // can't see anything
 	var/voicechange = FALSE
 	var/list/say_messages
 	var/list/say_verbs
+	matter = list(MATERIAL_CLOTH = 4)
 
 /obj/item/clothing/mask/proc/filter_air(datum/gas_mixture/air)
 	return
@@ -436,11 +619,11 @@ BLIND     // can't see anything
 	spawn_tags = SPAWN_TAG_SHOES
 	bad_type = /obj/item/clothing/shoes
 
-	armor = list(melee = 2, bullet = 0, energy = 2, bomb = 0, bio = 0, rad = 0)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 0, ARMOR_ENERGY = 2, ARMOR_BOMB =0, ARMOR_BIO =0, ARMOR_RAD =0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	style = STYLE_LOW
-	force = 2
+	matter = list(MATERIAL_CLOTH = 2, MATERIAL_LEATHER = 2)
 
 	var/can_hold_knife = 0
 	var/obj/item/holding
@@ -577,16 +760,17 @@ BLIND     // can't see anything
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	equip_delay = 2 SECONDS
 	bad_type = /obj/item/clothing/suit
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
 	style = STYLE_LOW
-	valid_accessory_slots = list("armor","armband","decor")
-	restricted_accessory_slots = list("armor","armband")
+	valid_accessory_slots = list(ACS_GARMOR, ACS_ARMBAND, ACS_DECOR)
+	restricted_accessory_slots = list(ACS_GARMOR,ACS_ARMBAND)
 	maxHealth = 300
 	health = 300
+	matter = list(MATERIAL_CLOTH = 5)
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
@@ -604,7 +788,7 @@ BLIND     // can't see anything
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_CLOTHING_UNDER
 	style = STYLE_LOW
 	bad_type = /obj/item/clothing/under
@@ -620,8 +804,9 @@ BLIND     // can't see anything
 
 	//convenience var for defining the icon state for the overlay used when the clothing is worn.
 
-	valid_accessory_slots = list("armor","utility","armband","decor")
-	restricted_accessory_slots = list("armor","utility", "armband")
+	valid_accessory_slots = list(ACS_GARMOR,ACS_UTILITY,ACS_ARMBAND,ACS_DECOR)
+	restricted_accessory_slots = list(ACS_GARMOR,ACS_UTILITY, ACS_ARMBAND)
+	matter = list(MATERIAL_CLOTH = 3)
 
 
 /obj/item/clothing/under/attack_hand(mob/user)
@@ -636,16 +821,17 @@ BLIND     // can't see anything
 	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
 
 /obj/item/clothing/under/examine(mob/user)
-	..(user)
+	var/description = ""
 	switch(src.sensor_mode)
 		if(0)
-			to_chat(user, "Its sensors appear to be disabled.")
+			description += "Its sensors appear to be disabled."
 		if(1)
-			to_chat(user, "Its binary life sensors appear to be enabled.")
+			description += "Its binary life sensors appear to be enabled."
 		if(2)
-			to_chat(user, "Its vital tracker appears to be enabled.")
+			description += "Its vital tracker appears to be enabled."
 		if(3)
-			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
+			description += "Its vital tracker and tracking beacon appear to be enabled."
+	..(user, afterDesc = description)
 
 /obj/item/clothing/under/proc/set_sensors(mob/M)
 	if(has_sensor >= 2)

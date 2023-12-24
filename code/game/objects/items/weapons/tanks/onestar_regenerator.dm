@@ -6,8 +6,12 @@
 	gauge_cap = 4
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_NORMAL
+	volumeClass = ITEM_SIZE_SMALL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	price_tag = 950
 	volume = 2

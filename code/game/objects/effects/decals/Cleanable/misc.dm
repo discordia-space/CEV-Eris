@@ -106,7 +106,7 @@
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	set_light(1.5 ,1, "#00FF7F")
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), src), 120 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 120 SECONDS)
 
 /obj/effect/decal/cleanable/greenglow/Process()
 	. = ..()

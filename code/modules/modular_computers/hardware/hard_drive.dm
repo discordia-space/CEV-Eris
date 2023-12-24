@@ -98,8 +98,7 @@
 	return ..()
 
 /obj/item/computer_hardware/hard_drive/examine(mob/user)
-	. = ..()
-	to_chat(user, SPAN_NOTICE("It can store up to [max_capacity] GQ."))
+	. = ..(user, afterDesc = SPAN_NOTICE("It can store up to [max_capacity] GQ."))
 
 /obj/item/computer_hardware/hard_drive/diagnostics(mob/user)
 	..()

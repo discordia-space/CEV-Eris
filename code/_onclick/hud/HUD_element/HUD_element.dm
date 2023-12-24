@@ -9,6 +9,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 
 /HUD_element
 	parent_type = /atom/movable
+	weight = 0
 
 	layer = HUD_LAYER
 	plane = HUD_PLANE
@@ -104,11 +105,12 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 	return QDEL_HINT_QUEUE
 
 /HUD_element/Click(location,control,params)
-	if (_clickProc)
+	var/procedure = getClickProc()
+	if (procedure)
 		if(_holder)
-			call(_holder, _clickProc)(arglist(_procArguments))
+			call(_holder, procedure)(src, usr, location, control, params)
 		else
-			call(_clickProc)(src, usr, location, control, params)
+			call(procedure)(src, usr, location, control, params)
 
 
 	if (_passClickToParent)

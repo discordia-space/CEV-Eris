@@ -4,7 +4,7 @@
 	desc = "Offical One Star Yuan coins, used across the ancient empire. Only compatible with One Star vendors."
 	icon = 'icons/obj/os_cash.dmi'
 	icon_state = "oscash"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	singular_name = "coin"
 	amount = 1
 	max_amount = 1000

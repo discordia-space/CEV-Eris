@@ -6,7 +6,7 @@
  * Utensils
  */
 /obj/item/material/kitchen/utensil
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	thrown_force_divisor = 1
 	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")

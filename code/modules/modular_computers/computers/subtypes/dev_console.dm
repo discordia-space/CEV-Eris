@@ -7,7 +7,7 @@
 	hardware_flag = PROGRAM_CONSOLE
 	anchored = TRUE
 	density = TRUE
-	w_class = ITEM_SIZE_GARGANTUAN
+	volumeClass = ITEM_SIZE_GARGANTUAN
 	base_idle_power_usage = 100
 	base_active_power_usage = 500
 	max_hardware_size = 3

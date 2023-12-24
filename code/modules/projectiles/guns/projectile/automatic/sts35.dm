@@ -6,8 +6,7 @@
 	icon = 'icons/obj/guns/projectile/sts.dmi'
 	icon_state = "sts"
 	item_state = "sts"
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
@@ -21,7 +20,6 @@
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
 	damage_multiplier = 1.1
-	penetration_multiplier = 0
 	init_recoil = RIFLE_RECOIL(0.9)
 
 	gun_tags = list(GUN_SILENCABLE)

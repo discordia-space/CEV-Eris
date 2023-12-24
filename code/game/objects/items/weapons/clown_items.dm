@@ -26,7 +26,7 @@
 	description_antag = "Can throw it to delay IH if trying to escape, or to get rid of evidence"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "soap"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -128,7 +128,7 @@
 	icon_state = "bike_horn"
 	item_state = "bike_horn"
 	throwforce = WEAPON_FORCE_HARMLESS
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 3
 	throw_range = 15
 	matter = list(MATERIAL_PLASTIC = 5)

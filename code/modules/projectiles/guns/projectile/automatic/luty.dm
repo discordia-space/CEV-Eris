@@ -10,7 +10,7 @@
 
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -24,8 +24,7 @@
 		)
 
 	can_dual = 1
-	damage_multiplier = 0.8
-	penetration_multiplier = 0
+	damage_multiplier = 0.7
 	init_recoil = SMG_RECOIL(0.6)
 	spawn_blacklisted = TRUE
 	wield_delay = 0 // No delay for this , its litteraly a junk gun

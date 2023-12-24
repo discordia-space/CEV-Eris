@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(processing)
 	var/list/currentrun = list()
 
 	/// Eris-specific process debugger
-	var/process_proc = /datum/proc/Process
+	var/process_proc = "Process"
 	var/debug_last_thing
 	var/debug_original_process_proc // initial() does not work with procs
 

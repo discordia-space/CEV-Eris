@@ -4,7 +4,6 @@
 	desc = "You have got a bone to pick with this"
 	organ_efficiency = list(OP_BONE = 100)
 	price_tag = 100
-	force = WEAPON_FORCE_NORMAL
 	max_damage = IORGAN_SKELETAL_HEALTH
 	min_bruised_damage = IORGAN_SKELETAL_BRUISE
 	min_broken_damage = IORGAN_SKELETAL_BREAK
@@ -84,13 +83,13 @@
 	name = "right femur"
 	icon_state = "right_leg"
 	parent_organ_base = BP_R_LEG
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 19)))
 
 /obj/item/organ/internal/bone/l_leg
 	name = "left femur"
 	icon_state = "left_leg"
 	parent_organ_base = BP_L_LEG
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 19)))
 
 //Robotic limb variants
 /obj/item/organ/internal/bone/chest/robotic

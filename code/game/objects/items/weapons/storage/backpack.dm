@@ -9,9 +9,9 @@
 	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "backpack"
 	contained_sprite = TRUE
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE
 	spawn_tags = SPAWN_TAG_BACKPACK
 	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTIC = 2)
@@ -81,7 +81,7 @@
 	desc = "A backpack that opens into a localized pocket of bluespace."
 	origin_tech = list(TECH_BLUESPACE = 4)
 	icon_state = "holdingpack"
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 2
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 
@@ -331,7 +331,8 @@
 	rarity_value = 4.16
 
 /obj/item/storage/backpack/satchel/leather/withwallet/populate_contents()
-	new /obj/item/storage/wallet/random(src)
+	var/atom/movable/wallet = new /obj/item/storage/wallet/random(NULLSPACE)
+	wallet.forceMove(src)
 
 //Faction-specific satchels
 /obj/item/storage/backpack/satchel/ironhammer

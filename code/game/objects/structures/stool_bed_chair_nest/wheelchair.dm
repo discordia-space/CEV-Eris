@@ -150,10 +150,10 @@
 		var/def_zone = ran_zone()
 
 		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_MELEE))
-		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_MELEE))
-		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
-		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_BLUNT))
+		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_BLUNT))
+		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_BLUNT))
+		occupant.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
 
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
 
@@ -162,10 +162,10 @@
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 
-			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_BLUNT))
+			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_BLUNT))
+			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_BLUNT))
+			victim.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
 
 		if(pulling)
 			occupant.visible_message(SPAN_DANGER("[pulling] has thrusted \the [name] into \the [A], throwing \the [occupant] out of it!"))
@@ -202,7 +202,7 @@
 	desc = "A folded wheelchair that can be carried around."
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "wheelchair_folded"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	var/obj/structure/bed/chair/wheelchair/unfolded
 
 /obj/item/wheelchair/attack_self(mob/user)

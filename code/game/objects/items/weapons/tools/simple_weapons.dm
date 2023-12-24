@@ -7,13 +7,14 @@
 	icon_state = "broken_bottle"
 	matter = list(MATERIAL_GLASS = 2)
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,10)))
+	attackDelay = -2
 	throwforce = WEAPON_FORCE_WEAK
 	item_state = "beer"
 	attack_verb = list("stabbed", "slashed", "attacked")
 	sharp = TRUE
 	edge = FALSE
-	max_upgrades = 1 //it's not even a tool
+	maxUpgrades = 1 //it's not even a tool
 	tool_qualities = list(QUALITY_CUTTING = 10)
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 	spawn_tags = SPAWN_TAG_JUNKTOOL
@@ -24,14 +25,14 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hm_spikeclub"
 	item_state = "hm_spikeclub"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_POINTY = list(DELEM(BRUTE,19)))
 	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2)
 	attack_verb = list("beaten", "slammed", "smacked", "struck", "battered")
 	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
-	max_upgrades = 5
+	maxUpgrades = 5
 	tool_qualities = list(QUALITY_HAMMERING = 10)
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -42,12 +43,11 @@
 	icon_state = "hatchet"
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_PAINFUL
-	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_SMALL
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,23)))
+	throwforce = 16
+	volumeClass = ITEM_SIZE_SMALL
 	sharp = TRUE
 	edge = TRUE
-	armor_divisor = ARMOR_PEN_SHALLOW
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -62,10 +62,11 @@
 	wielded_icon = "makeshift_axe_wielded"
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3)
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_DANGEROUS
-	throwforce = WEAPON_FORCE_NORMAL
-	armor_divisor = ARMOR_PEN_MODERATE
-	w_class = ITEM_SIZE_NORMAL
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,15)))
+	wieldedMultiplier = 3
+	WieldedattackDelay = 20
+	throwforce = 18
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BACK
 	sharp = TRUE
 	edge = TRUE
@@ -75,7 +76,7 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	embed_mult = 1.1
 	degradation = 1.5 //not quite as sturdy as a normal weapon
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 60
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -87,15 +88,18 @@
 	wielded_icon = "fireaxe1"
 	sharp = TRUE
 	edge = TRUE
-	armor_divisor = ARMOR_PEN_DEEP
+	armor_divisor = 1.3
 	tool_qualities = list(QUALITY_CUTTING = 10, QUALITY_PRYING = 20)
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_NORMAL
-	force_wielded_multiplier = 3.4
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
+	wieldedMultiplier = 2.3
+	attackDelay = 4
+	WieldedattackDelay = 9
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 5)
 	embed_mult = 1.2 //Axes cut deep, and their hooked shape catches on things
 	rarity_value = 48
 
@@ -114,11 +118,10 @@
 	icon_state = "hoe"
 	item_state = "hoe"
 	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
-	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
-	max_upgrades = 2
+	maxUpgrades = 2
 	tool_qualities = list(QUALITY_SHOVELING = 10)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
 /obj/item/tool/scythe
@@ -130,9 +133,9 @@
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_PAINFUL
-	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_BULKY
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,12)))
+	throwforce = 13
+	volumeClass = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -150,13 +153,13 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
 	sharp = TRUE
 	edge = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_BACK
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_ROBUST
-	armor_divisor = ARMOR_PEN_DEEP
-
-	throwforce = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,30)))
+	wieldedMultiplier = 1.3
+	WieldedattackDelay = 3
+	throwforce = 20
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/sharphit.ogg'
 	tool_qualities = list(QUALITY_CUTTING = 10)
@@ -172,8 +175,8 @@
 	item_state = "saber"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_WOOD = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 1)
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_BRUTAL
-	armor_divisor = ARMOR_PEN_MODERATE
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,35)))
+	wieldedMultiplier = 1.2
 	spawn_blacklisted = TRUE
 	price_tag = 10000
 
@@ -182,10 +185,14 @@
 	desc = "Hack and slash!"
 	icon_state = "msword"
 	item_state = "msword"
-	armor_divisor = ARMOR_PEN_MODERATE
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,25)))
+	wieldedMultiplier = 1.5
+	attackDelay = 4
+	/// heavy hitter but slow attack
+	WieldedattackDelay = 6
 	tool_qualities = list(QUALITY_CUTTING = 15) // a little better than the regular swords.
 	degradation = 1.5 //not quite as sturdy as a normal weapon
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 60
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -195,9 +202,9 @@
 	icon_state = "katana"
 	item_state = "katana"
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 5, MATERIAL_DIAMOND = 1) //sharpened using diamond dust or whatever
-	force = WEAPON_FORCE_DANGEROUS * 1.5
-	armor_divisor = ARMOR_PEN_MODERATE
-	rarity_value = 35
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,30)))
+	wieldedMultiplier = 1.2
+	rarity_value = 120
 
 /obj/item/tool/sword/katana/nano
 	name = "\improper Moebius \"Muramasa\" katana"
@@ -205,17 +212,17 @@
 	icon_state = "eutactic_katana"
 	item_state = "eutactic_katana"
 	toggleable = TRUE
-	max_upgrades = 1
+	maxUpgrades = 1
 
 	suitable_cell = /obj/item/cell/small
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 
 	use_power_cost = 0.4
 	passive_power_cost = 0.4
 
 	switched_on_qualities = list(QUALITY_CUTTING = 25)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 6)
-	switched_on_force = WEAPON_FORCE_BRUTAL
-	rarity_value = 60
+	switchedOn = list(ARMOR_SLASH = list(DELEM(BURN,25)))
 	spawn_blacklisted = TRUE
 
 /obj/item/tool/sword/katana/nano/turn_on(mob/user)
@@ -247,11 +254,12 @@
 	item_state = "chain"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_DANGEROUS
-	throwforce = WEAPON_FORCE_DANGEROUS
-	w_class = ITEM_SIZE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5), DELEM(HALLOSS,10)))
+	wieldedMultiplier = 2
+	throwforce = 23
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
-	max_upgrades = 2
+	maxUpgrades = 2
 	tool_qualities = list(QUALITY_HAMMERING = 5)
 	spawn_blacklisted = TRUE

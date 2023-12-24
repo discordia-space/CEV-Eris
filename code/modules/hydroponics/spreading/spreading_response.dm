@@ -127,8 +127,8 @@
 
 
 		..()
-		if(W.force && ! (W.flags & NOBLUDGEON))
-			var/damage = W.force
+		var/damage = dhTotalDamage(W.melleDamages)
+		if(damage && ! (W.flags & NOBLUDGEON))
 			//Swords and axes are good here
 			if (W.edge)
 				damage *= 1.5
@@ -212,7 +212,7 @@
 				can_grab = 0
 		if(can_grab)
 			src.visible_message(SPAN_DANGER("Tendrils lash out from \the [src] and drag \the [victim] in!"))
-			victim.loc = src.loc
+			victim.forceMove(src.loc)
 
 	//entangling people
 	if(victim.loc == src.loc)

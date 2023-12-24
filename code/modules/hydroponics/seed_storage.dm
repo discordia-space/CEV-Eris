@@ -264,7 +264,7 @@
 					if (N.amount <= 0 || N.seeds.len <= 0)
 						piles -= N
 						qdel(N)
-					O.loc = src.loc
+					O.forceMove(src.loc)
 				else
 					piles -= N
 					qdel(N)
@@ -305,7 +305,7 @@
 		var/obj/item/storage/S = O.loc
 		S.remove_from_storage(O, src)
 
-	O.loc = src
+	O.forceMove(src)
 	var/newID = 0
 
 	for (var/datum/seed_pile/N in piles)

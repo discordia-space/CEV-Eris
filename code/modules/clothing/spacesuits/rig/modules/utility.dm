@@ -194,7 +194,7 @@
 			rebuild_charges()
 			user.visible_message("[user] removes \the [sel_ref.name] from \the [src]")
 			if(!user.put_in_active_hand(sel_ref))
-				sel_ref.loc = get_turf(src)
+				sel_ref.forceMove(get_turf(src))
 	if(W.get_tool_quality(QUALITY_BOLT_TURNING))
 		var/amount = input(user, "Choose reagent injection amount", null) in list(0, initial(injection_amount), max_injection_amount * 0.5, max_injection_amount)
 		if(amount != null)

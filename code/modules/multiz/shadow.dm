@@ -13,6 +13,7 @@
 	original_plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 	vis_flags = VIS_HIDE // Prevents mob shadows from stacking on open spaces when the mob is more than 1 z-level below
+	weight = 0
 	var/mob/owner = null
 
 /mob/shadow/can_fall()

@@ -83,13 +83,17 @@
 	icon_lock = "cabinet"
 
 /obj/structure/closet/secure_closet/pirate/populate_contents()
-	new /obj/item/clothing/under/pirate(src)
-	new /obj/item/device/radio/headset/pirates(src)
-	new /obj/item/clothing/shoes/jackboots(src)
-	new /obj/item/clothing/head/bandana(src)
-	new /obj/item/clothing/suit/armor/bulletproof(src)
-	new /obj/item/storage/backpack/satchel(src)
-	new /obj/item/melee/energy/sword/pirate(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/under/pirate(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/radio/headset/pirates(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/jackboots(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/head/bandana(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/armor/bulletproof(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/backpack/satchel(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/melee/energy/sword/pirate(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 // PIRATE LOOT CRATE
 
@@ -106,7 +110,7 @@
 	desc = "Used to check the total value of plundered loot."
 	icon_state = "voice0"
 	item_state = "flashbang"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1, MATERIAL_STEEL = 2)
 	flags = CONDUCT
 	anchored = TRUE

@@ -173,9 +173,6 @@
 /obj/structure/catwalk/holo/attackby(obj/item/I, mob/user)
 	return
 
-/obj/item/stool/holostool
-	damtype = HALLOSS
-
 /obj/item/stool/holostool/attackby(obj/item/W as obj, mob/user as mob)
 	if(istool(W) || istype(W,/obj/item/stack))
 		return
@@ -191,7 +188,7 @@
 		qdel(src)
 		var/mob/living/T = M
 		T.Weaken(10)
-		T.damage_through_armor(20, HALLOSS, BP_CHEST, ARMOR_MELEE)
+		T.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(HALLOSS,20))), BP_CHEST, src, 1, 1, FALSE)
 		return
 	..()
 
@@ -234,8 +231,9 @@
 	else if(istype(W, /obj/item/tool/wrench) && !anchored && (!state || !reinf))
 		to_chat(user, (SPAN_NOTICE("It's a holowindow, you can't dismantle it!")))
 	else
-		if(W.damtype == BRUTE || W.damtype == BURN)
-			hit(W.force)
+		var/damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+		if(damage)
+			hit(damage)
 			if(health <= 7)
 				anchored = FALSE
 				update_nearby_icons()
@@ -264,10 +262,10 @@
 		return
 
 	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
-		var/aforce = I.force
+		var/aforce = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		visible_message("\red <B>[src] was hit by [I].</B>")
-		if(I.damtype == BRUTE || I.damtype == BURN)
+		if(aforce)
 			take_damage(aforce)
 		return
 
@@ -296,18 +294,19 @@
 // Holo type items
 
 /obj/item/holo
-	damtype = HALLOSS
+	melleDamages = list(ARMOR_BLUNT = list(
+		DELEM(HALLOSS,1)
+	))
 	no_attack_log = 1
 	bad_type = /obj/item/holo
 
 /obj/item/holo/esword
 	desc = "May the force be within you. Sorta."
 	icon_state = "sword0"
-	force = 3
 	throw_speed = 1
 	throw_range = 5
 	throwforce = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = NOBLOODY
 	var/active = 0
 	var/item_color
@@ -337,15 +336,13 @@
 /obj/item/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
 	if (active)
-		force = 30
 		icon_state = "sword[item_color]"
-		w_class = ITEM_SIZE_BULKY
+		volumeClass = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("[src] is now active."))
 	else
-		force = 3
 		icon_state = "sword0"
-		w_class = ITEM_SIZE_SMALL
+		volumeClass = ITEM_SIZE_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("[src] can now be concealed."))
 
@@ -361,7 +358,7 @@
 	name = "basketball"
 	item_state = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
-	w_class = ITEM_SIZE_BULKY //Stops people from hiding it in their bags/pockets
+	volumeClass = ITEM_SIZE_BULKY //Stops people from hiding it in their bags/pockets
 
 /obj/structure/holohoop
 	name = "basketball hoop"

@@ -87,7 +87,7 @@
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	w_class = ITEM_SIZE_GARGANTUAN
+	volumeClass = ITEM_SIZE_GARGANTUAN
 
 	price_tag = 100
 
@@ -115,6 +115,7 @@
 
 	var/hacked = FALSE // If this machine has had its access requirements hacked or not
 	var/shipside_only = FALSE // Does this mechanism need to be on the ship? Used for excel
+	matter = list(MATERIAL_STEEL = 8)
 
 
 /obj/machinery/Initialize(mapload, d=0)
@@ -240,6 +241,8 @@
 		else
 			for(var/j = 1 to circuit.req_components[item])
 				component_parts += new item
+	for(var/atom/movable/thing in component_parts)
+		thing.forceMove(src)
 
 	RefreshParts()
 

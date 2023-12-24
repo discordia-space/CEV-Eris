@@ -29,13 +29,17 @@
 
 /obj/item/storage/firstaid/fire/populate_contents()
 	icon_state = pick("ointment","firefirstaid")
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/reagent_containers/pill/kelotane(src)
-	new /obj/item/reagent_containers/pill/kelotane(src)
-	new /obj/item/reagent_containers/pill/kelotane(src) //Replaced ointment with these since they actually work --Errorage
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
-	new /obj/item/device/scanner/health(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/kelotane(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/kelotane(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/kelotane(NULLSPACE)) //Replaced ointment with these since they actually work --Errorage
+	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/regular
@@ -45,12 +49,16 @@
 	prespawned_content_type = /obj/item/stack/medical/bruise_pack
 
 /obj/item/storage/firstaid/regular/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/stack/medical/ointment(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
-	new /obj/item/device/scanner/health(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/ointment(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/ointment(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/toxin
@@ -64,16 +72,20 @@
 
 /obj/item/storage/firstaid/toxin/populate_contents()
 	icon_state = pick("antitoxin","antitoxfirstaid2","antitoxfirstaid3")
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/reagent_containers/pill/antitox(src)
-	new /obj/item/reagent_containers/pill/antitox(src)
-	new /obj/item/reagent_containers/pill/antitox(src)
-	new /obj/item/reagent_containers/pill/carbon(src)
-	new /obj/item/reagent_containers/pill/carbon(src)
-	new /obj/item/reagent_containers/pill/carbon(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
-	new /obj/item/device/scanner/health(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/antitox(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/antitox(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/antitox(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/carbon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/carbon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/carbon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/o2
@@ -86,11 +98,15 @@
 	prespawned_content_type = /obj/item/reagent_containers/pill/dexalin
 
 /obj/item/storage/firstaid/o2/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
-	new /obj/item/reagent_containers/syringe/inaprovaline(src)
-	new /obj/item/device/scanner/health(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/syringe/inaprovaline(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 /obj/item/storage/firstaid/adv
@@ -103,13 +119,17 @@
 	prespawned_content_type = /obj/item/stack/medical/advanced/bruise_pack
 
 /obj/item/storage/firstaid/adv/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/reagent_containers/syringe/inaprovaline(src)
-	new /obj/item/device/scanner/health(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/ointment(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/ointment(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/splint(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/syringe/inaprovaline(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/firstaid/combat
 	name = "combat medical kit"
@@ -121,14 +141,18 @@
 	prespawned_content_type = /obj/item/stack/medical/splint
 
 /obj/item/storage/firstaid/combat/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/storage/pill_bottle/meralyne(src)
-	new /obj/item/storage/pill_bottle/dermaline(src)
-	new /obj/item/storage/pill_bottle/dexalin_plus(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/meralyne(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/dermaline(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/dexalin_plus(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/dylovene(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/tramadol(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/spaceacillin(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/firstaid/surgery
 	name = "surgery kit"
@@ -151,33 +175,41 @@
 		)
 
 /obj/item/storage/firstaid/surgery/populate_contents()
-	new /obj/item/tool/bonesetter(src)
-	new /obj/item/tool/cautery(src)
-	new /obj/item/tool/saw/circular(src)
-	new /obj/item/tool/hemostat(src)
-	new /obj/item/tool/retractor(src)
-	new /obj/item/tool/scalpel(src)
-	new /obj/item/tool/surgicaldrill(src)
-	new /obj/item/tool/tape_roll/fiber/medical(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/tool/bonesetter(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/cautery(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/saw/circular(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/hemostat(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/retractor(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/scalpel(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/surgicaldrill(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/tape_roll/fiber/medical(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/bruise_pack(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/firstaid/surgery/contractor
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/firstaid/surgery/contractor/populate_contents()
-	new /obj/item/tool/bonesetter(src)
-	new /obj/item/tool/cautery(src)
-	new /obj/item/tool/saw/circular/advanced(src)
-	new /obj/item/tool/hemostat(src)
-	new /obj/item/tool/retractor(src)
-	new /obj/item/tool/scalpel/advanced(src)
-	new /obj/item/tool/surgicaldrill(src)
-	new /obj/item/tool/tape_roll/fiber/medical(src)
-	new /obj/item/device/scanner/health(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/storage/pill_bottle/oxycodone(src)
-	new /obj/item/storage/pill_bottle/prosurgeon(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/tool/bonesetter(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/cautery(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/saw/circular/advanced(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/hemostat(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/retractor(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/scalpel/advanced(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/surgicaldrill(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/tape_roll/fiber/medical(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/scanner/health(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/bruise_pack(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/oxycodone(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pill_bottle/prosurgeon(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/firstaid/nt
@@ -191,14 +223,18 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/firstaid/nt/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/stack/medical/advanced/ointment/nt(src)
-	new /obj/item/stack/medical/advanced/ointment/nt(src)
-	new /obj/item/reagent_containers/syringe/large/antitoxin(src)
-	new /obj/item/reagent_containers/syringe/large/dexalin_plus(src)
-	new /obj/item/reagent_containers/pill/carbon(src)
-	new /obj/item/reagent_containers/pill/carbon(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/ointment/nt(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/medical/advanced/ointment/nt(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/syringe/large/antitoxin(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/syringe/large/dexalin_plus(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/carbon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/pill/carbon(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/firstaid/nt/update_icon()
 	if(!contents.len)
@@ -218,7 +254,7 @@
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_hold = list(/obj/item/reagent_containers/pill,
 		/obj/item/dice,
 		/obj/item/paper)
@@ -329,13 +365,15 @@
 	desc = "This nifty shock-resistant device will keep your 'groceries' nice and non-spoiled."
 	icon_state = "freezer"
 	item_state = "medicalpack"
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
 	can_hold = list(/obj/item/organ, /obj/item/modification/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_to_pickup = TRUE
 
 /obj/item/storage/freezer/contains_food/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pizza/low_chance(src)
 	new /obj/spawner/soda(src)
 	new /obj/spawner/soda/low_chance(src)
@@ -346,6 +384,8 @@
 	new /obj/spawner/junkfood/low_chance(src)
 	new /obj/spawner/junkfood/low_chance(src)
 	new /obj/spawner/booze/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/freezer/medical
 	name = "organ freezer"

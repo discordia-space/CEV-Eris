@@ -3,7 +3,7 @@
 	icon = 'icons/obj/tank.dmi'
 	item_state = "assembly"
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	throw_speed = 2
 	throw_range = 4
 	flags = CONDUCT | PROXMOVE
@@ -35,11 +35,11 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 				to_chat(user, SPAN_NOTICE("You disassemble [src]."))
 
-				bombassembly.loc = user.loc
+				bombassembly.forceMove(user.loc)
 				bombassembly.master = null
 				bombassembly = null
 
-				bombtank.loc = user.loc
+				bombtank.forceMove(user.loc)
 				bombtank.master = null
 				bombtank = null
 
@@ -104,11 +104,11 @@
 
 	R.bombassembly = S	//Tell the bomb about its assembly part
 	S.master = R		//Tell the assembly about its new owner
-	S.loc = R			//Move the assembly out of the fucking way
+	S.forceMove(R)		//Move the assembly out of the fucking way
 
 	R.bombtank = src	//Same for tank
 	master = R
-	loc = R
+	forceMove(R)
 	R.update_icon()
 	return
 
@@ -116,7 +116,7 @@
 	var/fuel_moles = air_contents.gas["plasma"] + air_contents.gas["oxygen"] / 6
 
 	var/turf/ground_zero = get_turf(loc)
-	loc = null
+	forceMove(NULLSPACE)
 
 	if(air_contents.temperature > (T0C + 400))
 		explosion(ground_zero, fuel_moles * 75, fuel_moles * 15)

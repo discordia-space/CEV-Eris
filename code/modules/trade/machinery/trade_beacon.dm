@@ -74,6 +74,6 @@
 	if(ispath(drop_type, /obj/structure/closet))
 		var/mob/living/carbon/human/dude = locate(/mob/living/carbon/human) in pickfloor
 		if(dude)
-			dude.damage_through_armor(30)
+			dude.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,45))), BP_CHEST, src, 1, 1, FALSE)
 
 	return new drop_type(pickfloor)

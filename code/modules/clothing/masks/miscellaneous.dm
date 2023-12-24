@@ -8,7 +8,7 @@
 	item_state = "muzzle"
 	body_parts_covered = FACE
 	style_coverage = COVERS_MOUTH
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	voicechange = 1
 	style_coverage = COVERS_MOUTH
@@ -20,7 +20,7 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/clothing/mask/muzzle/New()
     ..()
@@ -38,18 +38,18 @@
 	desc = "A sterile mask designed to help prevent the spread of diseases."
 	icon_state = "sterile"
 	item_state = "sterile"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 75,
-		rad = 0
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =75,
+		ARMOR_RAD =0
 	)
 	price_tag = 10
 	style_coverage = COVERS_MOUTH
@@ -63,15 +63,15 @@
 	desc = "A white mask with some strange drawings. Designed to hide the wearer's face"
 	icon_state = "dallas"
 	flags_inv = HIDEFACE
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	body_parts_covered = FACE
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	price_tag = 150
 	style_coverage = COVERS_WHOLE_FACE
@@ -97,12 +97,12 @@
 	spawn_blacklisted = TRUE
 	body_parts_covered = HEAD|FACE
 	armor = list(
-		melee = 15,
-		bullet = 16,
-		energy = 15,
-		bomb = 75,
-		bio = 100,
-		rad = 30
+		ARMOR_BLUNT = 15,
+		ARMOR_BULLET = 16,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =30
 	)
 
 /obj/item/clothing/mask/thief/adminspawn/wolf
@@ -141,7 +141,7 @@
 	item_state = "blue_scarf"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	gas_transfer_coefficient = 0.90
 	price_tag = 50
 	style = STYLE_LOW
@@ -222,7 +222,7 @@
 	icon_state = "pig"
 	item_state = "pig"
 	flags_inv = HIDEFACE|BLOCKHAIR
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
 	style_coverage = COVERS_WHOLE_HEAD
@@ -239,7 +239,7 @@
 	item_state = "horsehead"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
 	style_coverage = COVERS_WHOLE_HEAD
 	muffle_voice = TRUE
@@ -297,7 +297,7 @@
 	icon_state = "bandblack"
 	item_state = "bandblack"
 	item_flags = FLEXIBLEMATERIAL
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	price_tag = 20
 	style = STYLE_LOW
 	muffle_voice = TRUE

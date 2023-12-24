@@ -46,13 +46,14 @@
 		return 1
 
 /obj/machinery/bot/examine(mob/user)
-	..(user)
+	var/description = ""
 	if (src.health < maxHealth)
 		if (src.health > maxHealth/3)
-			to_chat(user, SPAN_WARNING("[src]'s parts look loose."))
+			description += SPAN_WARNING("[src]'s parts look loose.")
 		else
-			to_chat(user, SPAN_DANGER("[src]'s parts look very loose!"))
-	return
+			description += SPAN_DANGER("[src]'s parts look very loose!")
+	..(user, afterDesc = description)
+
 
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/screwdriver))
@@ -70,17 +71,10 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
 	else
-		if(hasvar(W,"force") && hasvar(W,"damtype"))
-			switch(W.damtype)
-				if("fire")
-					src.health -= W.force * fire_dam_coeff
-				if("brute")
-					src.health -= W.force * brute_dam_coeff
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			..()
-			healthcheck()
-		else
-			..()
+		health -= dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		..()
+		healthcheck()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj.get_structure_damage())

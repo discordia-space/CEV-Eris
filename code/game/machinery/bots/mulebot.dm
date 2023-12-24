@@ -128,7 +128,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need a repair!"))
 	else if(load && ismob(load))  // chance to knock off rider
-		if(prob(1+I.force * 2))
+		if(prob(1+dhTotalDamage(I.melleDamages) * 2))
 			unload(0)
 			user.visible_message(SPAN_WARNING("[user] knocks [load] off [src] with \the [I]!"), SPAN_WARNING("You knock [load] off [src] with \the [I]!"))
 		else
@@ -729,12 +729,13 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*2))), BP_HEAD, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*2))), BP_CHEST, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_L_LEG, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_R_LEG, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_L_ARM, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_R_ARM, src, 1, 1, FALSE)
+
 
 	blood_splatter(src,H,1)
 	bloodiness += 4

@@ -63,8 +63,7 @@
 	..()
 
 /obj/item/device/lightreplacer/examine(mob/user)
-	if(..(user, 2))
-		to_chat(user, "It has [uses] lights remaining.")
+	..(user, afterDesc = "It has [uses] lights remaining.")
 
 /obj/item/device/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_GLASS)
@@ -91,6 +90,13 @@
 		else
 			to_chat(user, "You need a working light.")
 			return
+
+/obj/item/device/lightreplacer/afterattack(atom/A, mob/user, proximity, params)
+	. = ..()
+	if(isturf(A) || isturf(A.loc))
+		if(proximity)
+			for(var/obj/machinery/light/thing in get_turf(A))
+				ReplaceLight(thing,user)
 
 /obj/item/device/lightreplacer/attack_self(mob/user)
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.

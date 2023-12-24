@@ -303,16 +303,17 @@
 	return
 
 /mob/living/carbon/slime/attackby(obj/item/W, mob/user)
-	if(W.force > 0)
+	var/damage = dhTotalDamage(W.melleDamages)
+	if(damage > 0)
 		attacked += 10
 		if(prob(25))
 			to_chat(user, SPAN_DANGER("[W] passes right through [src]!"))
 			return
 		if(Discipline && prob(50)) // wow, buddy, why am I getting attacked??
 			Discipline = 0
-	if(W.force >= 3)
+	if(damage >= 3)
 		if(is_adult)
-			if(prob(5 + round(W.force/2)))
+			if(prob(5 + round(damage/2)))
 				if(Victim || Target)
 					if(prob(80) && !client)
 						Discipline++
@@ -329,14 +330,14 @@
 						if(user)
 							canmove = 0
 							step_away(src, user)
-							if(prob(25 + W.force))
+							if(prob(25 + damage))
 								sleep(2)
 								if(user)
 									step_away(src, user)
 								canmove = 1
 
 		else
-			if(prob(10 + W.force*2))
+			if(prob(10 + damage*2))
 				if(Victim || Target)
 					if(prob(80) && !client)
 						Discipline++
@@ -354,7 +355,7 @@
 						if(user)
 							canmove = 0
 							step_away(src, user)
-							if(prob(25 + W.force*4))
+							if(prob(25 + damage*4))
 								sleep(2)
 								if(user)
 									step_away(src, user)

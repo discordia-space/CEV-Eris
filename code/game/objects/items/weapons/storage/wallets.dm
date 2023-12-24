@@ -3,7 +3,7 @@
 	desc = "It can hold a few small and personal things."
 	storage_slots = 7
 	icon_state = "wallet"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_hold = list(
 		/obj/item/spacecash,
 		/obj/item/card,

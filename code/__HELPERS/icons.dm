@@ -1068,6 +1068,10 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 /proc/path2icon(path, dir = SOUTH, frame = 1, moving)
 	var/atom/A = path
+	/// This is a special case since they get updated in New()
+	if(initial(A.atomFlags) & AF_ICONGRABNEEDSINSTANTATION)
+		var/atom/actualObj = new A(NULLSPACE)
+		return icon(actualObj.icon, actualObj.icon_state, dir, frame, moving)
 	return icon(initial(A.icon), initial(A.icon_state), dir, frame, moving)
 
 /**
@@ -1160,7 +1164,7 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 	if(ispath(thing))
 		var/atom/A = thing
-		var/key = "[initial(A.icon)]:[initial(A.icon_state)]"
+		var/key = "[initial(A.icon)]:[initial(A.icon_state)]:[(initial(A.atomFlags) & AF_ICONGRABNEEDSINSTANTATION) ? A.type : ""]"
 		var/cached = bicon_cache[key]
 
 		if(!cached)

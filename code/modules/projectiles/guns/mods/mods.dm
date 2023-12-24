@@ -1,6 +1,6 @@
 /obj/item/gun_upgrade
 	icon = 'icons/obj/guns/mods.dmi'
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	price_tag = 100
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_GUN_UPGRADE
@@ -244,15 +244,19 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/gun_upgrades/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in subtypesof(/obj/item/gun_upgrade))
 		var/obj/test = i
 		if(initial(test.icon_state))
-			new i(src)
-	new /obj/item/bikehorn(src)
-	new /obj/item/tool_upgrade/productivity/ergonomic_grip(src)
-	new /obj/item/tool_upgrade/refinement/laserguide(src)
-	new /obj/item/tool_upgrade/augment/ai_tool(src)
-	new /obj/item/tool_upgrade/refinement/gravenhancer(src)
+			spawnedAtoms.Add(new i(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/bikehorn(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/productivity/ergonomic_grip(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/refinement/laserguide(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/augment/ai_tool(NULLSPACE))
+	spawnedAtoms.Add(new  /obj/item/tool_upgrade/refinement/gravenhancer(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/gun_upgrade/trigger/boom
 	name = "Syndicate \"Self Destruct\" trigger"

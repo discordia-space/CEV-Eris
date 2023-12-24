@@ -9,6 +9,8 @@
 #define BLAST	  "blast"
 #define PSY       "psy"
 
+#define ALL_DAMAGE (list(BRUTE,BURN,TOX,OXY,CLONE,HALLOSS,BLAST,PSY))
+
 #define CUT       "cut"
 #define BRUISE    "bruise"
 #define PIERCE    "pierce"
@@ -25,13 +27,31 @@
 #define FIRE_DAMAGE_MODIFIER 0.0215 // Higher values result in more external fire damage to the skin. (default 0.0215)
 #define AIR_DAMAGE_MODIFIER 2.025  // More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
-//Armor defines
-
-#define ARMOR_MELEE			"melee"
+//Armor defines . All of these have to match up to the var names in armor.dm variables
+/// Removed in favor of more relevant subcategories - SPCR 2023
+//#define ARMOR_MELEE			"melee"
+/// all armors
+#define ALL_ARMOR (list(ARMOR_BLUNT,ARMOR_SLASH,ARMOR_POINTY,ARMOR_BULLET,ARMOR_ENERGY,ARMOR_ELECTRIC,ARMOR_BOMB,ARMOR_BIO,ARMOR_CHEM,ARMOR_RAD))
+#define ARMORS_MELEE (list(ARMOR_BLUNT, ARMOR_SLASH, ARMOR_POINTY))
+/// For any attacks that are blunt(hammers, unflipped shovels, etc)
+#define ARMOR_BLUNT			"blunt"
+ /// For any slash attacks (katana, swords , knifes , etc)
+#define ARMOR_SLASH			"slash"
+/// For any pointy melle (pickaxe, jackhammer,flipped fireaxe)
+#define ARMOR_POINTY		"pointy"
+/// Bullets
 #define ARMOR_BULLET		"bullet"
+/// Lasers and tasers
 #define ARMOR_ENERGY		"energy"
+/// Electricity, 1 KOhm = 1 Electricity
+#define ARMOR_ELECTRIC	"electric"
 #define ARMOR_BOMB			"bomb"
+/// Protection against enviromental hazards (spider bites, roach gas, chemical gasses)
 #define ARMOR_BIO			"bio"
+/// Resistance against acid and other chemicals that may directly damage the target or armor (corrosive chemicals that a bio suit would probably get eaten by)
+#define ARMOR_CHEM			"chem"
+/// Protection against sudden temperature changes (blasted by a flamethrower, or something else, will get added whenever i rework fires and atmos)
+// #define ARMOR_TEMP "insul"
 #define ARMOR_RAD			"rad"
 
 //Blood levels. These are percentages based on the species blood_volume
@@ -102,6 +122,36 @@
 #define BP_ARMS list(BP_R_ARM, BP_L_ARM)
 #define BP_ALL_LIMBS list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 #define BP_BY_DEPTH list(BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_CHEST)
+
+/* CLOTHING DEFINES. I've put them here for convenience . SPCR - 2023
+#define HEAD        0x1
+#define FACE        0x2
+#define EYES        0x4
+#define EARS        0x8
+#define UPPER_TORSO 0x10
+#define LOWER_TORSO 0x20
+#define LEG_LEFT    0x40
+#define LEG_RIGHT   0x80
+#define LEGS        0xC0    //  LEG_LEFT | LEG_RIGHT
+#define ARM_LEFT    0x400
+#define ARM_RIGHT   0x800
+#define ARMS        0xC00   //  ARM_LEFT | ARM_RIGHT
+#define FULL_BODY   0xFFFF
+*/
+
+
+#define LIMB2CLOTH list(\
+	BP_CHEST = UPPER_TORSO, \
+	BP_GROIN = LOWER_TORSO,\
+	BP_HEAD = HEAD,\
+	BP_L_LEG = LEG_LEFT,\
+	BP_R_LEG = LEG_RIGHT,\
+	BP_L_ARM = ARM_LEFT,\
+	BP_R_ARM = ARM_RIGHT,\
+	BP_LEGS = LEGS,\
+	BP_ARMS = ARMS,\
+	BY_ALL_LIMBS = FULL_BODY\
+)
 
 // Organs helpers.
 #define BP_IS_ORGANIC(org)  (org.nature == MODIFICATION_ORGANIC)

@@ -6,8 +6,7 @@
 	desc = "Costs a lot of money, this is ancient relic with no practical purpose. Feels like it's looking at you, with menacingly gaze. Fragile."
 	description_fluff = "Its said that one must be a fool to break such a valuable vase. As it contains the soul of a Neko itself."
 	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 15

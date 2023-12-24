@@ -3,7 +3,7 @@
 /obj/item/organ/external/robotic/asters
 	name = "Asters \"Movement Lock\""
 	desc = "Generic gray prosthesis for everyday use."
-	armor = list(melee = 2, bullet = 2, energy = 2, bomb = 10, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 2, ARMOR_ENERGY = 2, ARMOR_BOMB =10, ARMOR_BIO =100, ARMOR_RAD =100)
 	force_icon = 'icons/mob/human_races/cyberlimbs/asters.dmi'
 	model = "asters"
 	price_tag = 300
@@ -12,7 +12,7 @@
 /obj/item/organ/external/robotic/serbian
 	name = "\"Serbian Arms\""
 	desc = "Battle hardened green and brown prosthesis, rebranded several times."
-	armor = list(melee = 2, bullet = 2, energy = 2, bomb = 10, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 2, ARMOR_ENERGY = 2, ARMOR_BOMB =10, ARMOR_BIO =100, ARMOR_RAD =100)
 	force_icon = 'icons/mob/human_races/cyberlimbs/serbian.dmi'
 	model = "serbian"
 	price_tag = 600
@@ -22,7 +22,7 @@
 /obj/item/organ/external/robotic/frozen_star
 	name = "\"Frozen Star\""
 	desc = "Tactical \"Frozen Star\" blue and gray prosthesis for dangerous environment."
-	armor = list(melee = 2, bullet = 2, energy = 2, bomb = 10, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 2, ARMOR_ENERGY = 2, ARMOR_BOMB =10, ARMOR_BIO =100, ARMOR_RAD =100)
 	force_icon = 'icons/mob/human_races/cyberlimbs/frozen_star.dmi'
 	model = "frozen_star"
 	price_tag = 450
@@ -43,7 +43,7 @@
 /obj/item/organ/external/robotic/technomancer
 	name = "Technomancer \"Homebrew\""
 	desc = "Technomancer \"branded\" \"functional\" prosthesis."
-	armor = list(melee = 2, bullet = 2, energy = 2, bomb = 10, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 2, ARMOR_ENERGY = 2, ARMOR_BOMB =10, ARMOR_BIO =100, ARMOR_RAD =100)
 	force_icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 	model = "technomancer"
 	price_tag = 700
@@ -73,7 +73,7 @@
 /obj/item/organ/external/robotic/moebius
 	name = "\"Moebius\""
 	desc = "Streamlined, sleek, and sterile."
-	armor = list(melee = 2, bullet = 2, energy = 2, bomb = 10, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 2, ARMOR_ENERGY = 2, ARMOR_BOMB =10, ARMOR_BIO =100, ARMOR_RAD =100)
 	force_icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
 	model = "moebius"
 	price_tag = 250
@@ -103,7 +103,7 @@
 /obj/item/organ/external/robotic/moebius/reinforced
 	name = "\"Moebius\" R++"
 	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
-	armor = list(melee = 3, bullet = 3, energy = 3, bomb = 20, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 3, ARMOR_BULLET = 3, ARMOR_ENERGY = 3, ARMOR_BOMB =20, ARMOR_BIO =100, ARMOR_RAD =100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
 	max_damage = 60
 	min_broken_damage = 40
@@ -136,7 +136,7 @@
 	desc = "Plasma reinforced black prosthesis designed for heavy combat."
 	force_icon = 'icons/mob/human_races/cyberlimbs/excelsior.dmi'
 	model = "excelsior"
-	armor = list(melee = 5, bullet = 5, energy = 5, bomb = 35, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 5, ARMOR_BULLET = 5, ARMOR_ENERGY = 5, ARMOR_BOMB =35, ARMOR_BIO =100, ARMOR_RAD =100)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 0.5) //Plasma needed as a material that excelsiors can't teleport in
 	max_damage = 65
 	min_broken_damage = 45
@@ -170,7 +170,7 @@
 	desc = "Advanced, extremely resilient and mobile prosthetic. Inscribed with \"Made in\" followed by gibberish, must have been lost to time."
 	force_icon = 'icons/mob/human_races/cyberlimbs/one_star.dmi'
 	model = "one_star"
-	armor = list(melee = 10, bullet = 10, energy = 10, bomb = 50, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 10, ARMOR_BULLET = 10, ARMOR_ENERGY = 10, ARMOR_BOMB =50, ARMOR_BIO =100, ARMOR_RAD =100)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
 	max_damage = 70
 	min_broken_damage = 45
@@ -197,7 +197,7 @@
 	name = "Makeshift"
 	desc = "Rust, rods, and bolts. A barely functional prosthetic made of whatever could be scavenged from maintenance."
 	force_icon = 'icons/mob/human_races/cyberlimbs/ghetto.dmi'
-	armor = list(melee = 2, bullet = 2, energy = 2, bomb = -5, bio = 100, rad = 100)
+	armor = list(ARMOR_BLUNT = 2, ARMOR_BULLET = 2, ARMOR_ENERGY = 2, ARMOR_BOMB =-5, ARMOR_BIO =100, ARMOR_RAD =100)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
 	min_broken_damage = 30
 	min_malfunction_damage = 15

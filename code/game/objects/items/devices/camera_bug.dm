@@ -2,7 +2,7 @@
 	name = "camera bug"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20

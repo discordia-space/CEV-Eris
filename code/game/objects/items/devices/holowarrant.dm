@@ -4,7 +4,7 @@
 	icon_state = "holowarrant"
 	item_state = "holowarrant"
 	throwforce = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
 	slot_flags = SLOT_BELT
@@ -15,13 +15,15 @@
 
 //look at it
 /obj/item/device/holowarrant/examine(mob/user, distance)
-	. = ..()
+	var/description = ""
 	if(active)
-		to_chat(user, "A holographic warrant for '[active.fields["namewarrant"]]'.")
+		description += "A holographic warrant for '[active.fields["namewarrant"]]'. \n"
 	if(distance <= 1)
 		show_content(user)
 	else
-		to_chat(user, "<span class='notice'>You have to be closer if you want to read it.</span>")
+		description += "<span class='notice'>You have to be closer if you want to read it.</span>"
+	. = ..(user, afterDesc = description)
+
 
 // an active warrant with access authorized grants access
 /obj/item/device/holowarrant/GetAccess()

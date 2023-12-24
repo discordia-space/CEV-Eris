@@ -63,7 +63,7 @@
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/tank,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
@@ -201,6 +201,11 @@
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/suit/storage/toggle/bomber/furred
 	name = "furred bomber jacket"
@@ -209,6 +214,11 @@
 	item_state = "fur_bomber"
 	icon_open = "fur_bomber_open"
 	icon_closed = "fur_bomber"
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/suit/storage/toggle/service
 	name = "Ironhammer service jacket"
@@ -236,6 +246,10 @@
 	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|ARMS
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/khaki
 	name = "tactful jacket"
@@ -245,6 +259,11 @@
 	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/suit/storage/leather_jacket
 	name = "leather jacket"
@@ -252,17 +271,21 @@
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 10,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =10,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
 	name = "sleek leather jacket"
@@ -307,9 +330,9 @@
 		var/obj/item/clothing/accessory/logo/logo = new
 		logo.icon_state = logo_type
 		accessories += logo
-		logo.has_suit = src
-		loc = src
-		switch(logo_type) // All of the following names associated with some group of people, thus capitalized 
+		logo.attachedTo = src
+		forceMove(src)
+		switch(logo_type) // All of the following names associated with some group of people, thus capitalized
 			if("punk_over_valentinos")
 				name = "Valentinos jacket"
 			if("punk_over_samurai")
@@ -346,14 +369,18 @@
 	icon_state = "cyberpunksleek"
 	item_state = "brown_jacket"
 	armor = list(
-		melee = 1,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 
 /obj/item/clothing/suit/storage/cyberpunksleek/green
@@ -381,14 +408,19 @@
 	icon_state = "cyberpunksleek_long"
 	item_state = "cyberpunksleek_long"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 
 /obj/item/clothing/suit/storage/cyberpunksleek_long/green
@@ -416,14 +448,18 @@
 	icon_state = "bladerunner_coat"
 	item_state = "bladerunner_coat"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/dante//makes even the devil cry
 	name = "exterminator coat"
@@ -431,16 +467,20 @@
 	icon_state = "dante"
 	item_state = "dante"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	style = STYLE_HIGH
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/drive_jacket
 	name = "white jacket"
@@ -449,6 +489,10 @@
 	item_state = "drive_jacket"
 	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/violet_jacket
 	name = "violet jacket"
@@ -457,6 +501,10 @@
 	item_state = "violet_jacket"
 	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/bomj
 	name = "bomj coat"
@@ -464,17 +512,22 @@
 	icon_state = "bomj"
 	item_state = "bomj"
 	armor = list(
-		melee = 2,
-		bullet = 4,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/suit/punkvest
 	name = "punk vest"
@@ -482,12 +535,12 @@
 	icon_state = "punkvest"
 	item_state = "punkvest"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO
 
@@ -499,14 +552,18 @@
 	icon_open = "windbreaker_open"
 	icon_closed = "windbreaker"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 0,
-		bomb = 0,
-		bio = 30,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =30,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/suit/punkvest/cyber
 	name = "cyberpunk vest"
@@ -514,12 +571,19 @@
 	icon_state = "cyberpunk"
 	item_state = "cyberpunk"
 	armor = list(
-		melee = 2,
-		bullet = 5,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
+	)
+	rarity_value = 80
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/neojute
+
 	)
 
 /obj/item/clothing/suit/storage/scavengerarmor
@@ -528,23 +592,26 @@
 	icon_state = "scav_armor"
 	item_state = "scav_armor"
 	armor = list(
-		melee = 13,
-		bullet = 12,
-		energy = 6,
-		bomb = 15,
-		bio = 50,
-		rad = 0
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 12,
+		ARMOR_ENERGY = 6,
+		ARMOR_BOMB =15,
+		ARMOR_BIO =50,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	siemens_coefficient = 0.7
 	spawn_blacklisted = TRUE
 	style = STYLE_NEG_LOW
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/suit/storage/scavengerarmor/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 3
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 6
 
 
@@ -554,22 +621,28 @@
 	icon_state = "triadkillers"
 	item_state = "triadkillers"
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 15,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =15,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	price_tag = 1000
+	rarity_value = 80
 	style = STYLE_HIGH
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/neojute
+	)
 
 /obj/item/clothing/suit/storage/triad/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/akira
@@ -578,16 +651,20 @@
 	icon_state = "akira"
 	item_state = "akira"
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
 	style = STYLE_HIGH
 	price_tag = 400
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/boxer_jacket
 	name = "boxer jacket"//Mother Russia Bleeds reference
@@ -597,6 +674,9 @@
 	siemens_coefficient = 0.7
 	style = STYLE_LOW
 	body_parts_covered = UPPER_TORSO|ARMS
+	armorComps = list(
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/puffyblue
 	name = "blue puffy coat"
@@ -605,6 +685,11 @@
 	item_state = "puffycoatblue"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/suit/storage/puffypurple
 	name = "purple puffy coat"
@@ -613,6 +698,11 @@
 	item_state = "puffycoatpurple"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth
+	)
 
 /obj/item/clothing/suit/storage/puffyred
 	name = "crimson puffy coat"
@@ -621,3 +711,8 @@
 	item_state = "puffycoatred"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	siemens_coefficient = 0.7
+	armorComps = list(
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth,
+		/obj/item/armor_component/plate/cloth
+	)

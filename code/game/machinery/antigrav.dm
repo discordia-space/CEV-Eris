@@ -38,9 +38,7 @@
 	update_icon()
 
 /obj/machinery/antigrav/examine(var/mob/user)
-	.=..()
-	if (on)
-		to_chat(user, SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power"))
+	.=..(user, afterDesc = "[on ? SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power") : ""]")
 
 /obj/machinery/antigrav/proc/stop()
 	if(area)

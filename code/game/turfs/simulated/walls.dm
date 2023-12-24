@@ -233,8 +233,12 @@
 		if(prob(ricochetchance))
 			// projectile loses up to 50% of its health when it ricochets, depending on situation
 			var/healthdiff = round(proj_health / 2 + proj_health * ricochetchance / 200) // projectile loses up to 50% of its health when it ricochets, depending on situation
-			Proj.damage_types[BRUTE] = round(Proj.damage_types[BRUTE] / 2 + Proj.damage_types[BRUTE] * ricochetchance / 200)
-			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
+			var/list/damageAdjustment= list()
+			var/dam = Proj.getAllDamType(BRUTE)
+			damageAdjustment[BRUTE] = round(dam/2 + dam*ricochetchance/200)
+			dam = Proj.getAllDamType(BURN)
+			damageAdjustment[BURN] = round(dam/2 + dam*ricochetchance/200)
+			Proj.adjust_damages(damageAdjustment)
 			Proj.def_zone = ran_zone()
 			projectile_reflection(Proj)		// Reflect before health, runtimes occur in some cases if health happens first.
 			visible_message("<span class='danger'>\The [Proj] ricochets off the surface of wall!</span>")
@@ -291,21 +295,22 @@
 
 //Appearance
 /turf/simulated/wall/examine(mob/user)
-	. = ..(user)
-
+	var/description = ""
 	if(health == maxHealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+		description += SPAN_NOTICE("It looks fully intact.")
 	else
 		var/hratio = health / maxHealth
 		if(hratio <= 0.3)
-			to_chat(user, SPAN_WARNING("It looks heavily damaged."))
+			description += SPAN_WARNING("It looks heavily damaged.")
 		else if(hratio <= 0.6)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			description += SPAN_WARNING("It looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks lightly damaged."))
+			description += SPAN_DANGER("It looks lightly damaged.")
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		to_chat(user, SPAN_WARNING("There is fungus growing on [src]."))
+		description += SPAN_WARNING("\n There is fungus growing on [src].")
+
+	..(user, afterDesc = description)
 
 //health
 
@@ -372,7 +377,7 @@
 			var/obj/item/contraband/poster/P = O
 			P.roll_and_drop(src)
 		else
-			O.loc = src
+			O.forceMove(src)
 
 	clear_plants()
 	clear_bulletholes()

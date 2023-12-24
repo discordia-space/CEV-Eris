@@ -51,12 +51,13 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	update_icon(TRUE)
 
 /obj/structure/scrap_spawner/examine(mob/user)
-	.=..()
+	var/description = ""
 	if(isliving(user))
 		try_make_loot() //Make the loot when examined so the big item check below will work
-	to_chat(user, SPAN_NOTICE("You could sift through it with a shoveling tool to uncover more contents"))
+	description += SPAN_NOTICE("You could sift through it with a shoveling tool to uncover more contents \n")
 	if(big_item && big_item.loc == src)
-		to_chat(user, SPAN_DANGER("You can make out the corners of something large buried in here. Keep digging and removing things to uncover it"))
+		description += SPAN_DANGER("You can make out the corners of something large buried in here. Keep digging and removing things to uncover it")
+	..(user, afterDesc = description)
 
 /obj/effect/scrapshot
 	name = "This thing shoots scrap everywhere with a delay"
@@ -160,7 +161,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 				S.reagents.add_reagent("toxin", rand(2, 15))
 
 	loot = new(src)
-	loot.max_w_class = ITEM_SIZE_HUGE
+	loot.max_volumeClass = ITEM_SIZE_HUGE
 	shuffle_loot()
 
 /obj/structure/scrap_spawner/Destroy()

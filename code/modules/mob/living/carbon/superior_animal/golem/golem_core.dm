@@ -7,7 +7,7 @@
 	gender = PLURAL
 	icon = 'icons/mob/golems.dmi'
 	icon_state = "golem_core"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20

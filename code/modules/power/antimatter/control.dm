@@ -105,14 +105,6 @@
 	check_stability()
 	return target_power
 
-
-
-/obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.check_armour != ARMOR_BULLET)
-		stability -= Proj.force
-	return 0
-
-
 /obj/machinery/power/am_control_unit/power_change()
 	..()
 	if(stat & NOPOWER && active)
@@ -152,15 +144,15 @@
 			return
 		fueljar = I
 		user.remove_from_mob(I)
-		I.loc = src
+		I.forceMove(src)
 		user.update_icons()
 		user.visible_message("[user.name] loads an [I.name] into the [src.name].", \
 				"You load an [I.name].", \
 				"You hear a thunk.")
 		return
 
-	if(I.force >= 20)
-		stability -= I.force/2
+	if(dhTotalDamage(I.melleDamages) >= 20)
+		stability -= dhTotalDamage(I.melleDamages)/2
 		check_stability()
 	..()
 	return
@@ -298,7 +290,7 @@
 
 	if(href_list["ejectjar"])
 		if(fueljar)
-			fueljar.loc = src.loc
+			fueljar.forceMove(src.loc)
 			fueljar = null
 			//fueljar.control_unit = null currently it does not care where it is
 			//update_icon() when we have the icon for it

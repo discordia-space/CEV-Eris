@@ -41,7 +41,7 @@
 		trash_item.icon = wrapped.icon
 		trash_item.matter = wrapped.matter.Copy()
 		trash_item.name = "broken [wrapped.name]"
-		trash_item.w_class = wrapped.w_class
+		trash_item.volumeClass = wrapped.volumeClass
 		if(istype(wrapped, /obj/item/robot_parts/robot_component))
 			var/obj/item/robot_parts/robot_component/comp = wrapped
 			trash_item.icon_state = comp.icon_state_broken // Module-specific broken icons! Yay!

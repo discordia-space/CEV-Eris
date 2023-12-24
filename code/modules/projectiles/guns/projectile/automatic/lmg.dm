@@ -5,8 +5,7 @@
 	var/icon_base = "l6"
 	icon_state = "l6closed-empty"
 	item_state = "l6closedmag"
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = 0
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
@@ -23,7 +22,6 @@
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	init_recoil = LMG_RECOIL(1)
 	damage_multiplier = 1.3
-	penetration_multiplier = -0.1
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	rarity_value = 80
@@ -124,7 +122,6 @@
 	item_state = "tkclosedmag"
 	init_recoil = LMG_RECOIL(1)
 	damage_multiplier = 1.2
-	penetration_multiplier = -0.1
 
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)

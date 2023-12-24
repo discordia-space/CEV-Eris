@@ -5,7 +5,6 @@
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = CAL_MAGNUM
-	force = WEAPON_FORCE_NORMAL
 	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
@@ -19,8 +18,7 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 2000 //avasarala of revolver world
 	fire_delay = 3 //all revolvers can fire faster, but have huge recoil
-	damage_multiplier = 1.6
-	penetration_multiplier = -0.3 // Insanely powerful handcannon, but worthless against heavy armor
+	damage_multiplier = 1.3
 	init_recoil = HANDGUN_RECOIL(1.2)
 	var/drawChargeMeter = TRUE
 	var/chamber_offset = 0 //how many empty chambers in the cylinder until you hit a round

@@ -72,7 +72,7 @@
 			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1)
 	if(response == "Eject")
 		if(loaded_item)
-			loaded_item.loc = get_turf(src)
+			loaded_item.forceMove(get_turf(src))
 			desc = initial(desc)
 			icon_state = initial(icon_state)
 			loaded_item = null
@@ -92,7 +92,7 @@
 			to_chat(user, "Your [src] already has something inside.  Analyze or eject it first.")
 			return
 		var/obj/item/I = target
-		I.loc = src
+		I.forceMove(src)
 		loaded_item = I
 		for(var/mob/M in viewers())
 			M.show_message(text(SPAN_NOTICE("[user] adds the [I] to the [src].")), 1)
@@ -158,9 +158,9 @@
 
 			if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
 				var/add = 0
-				if(I.w_class == ITEM_SIZE_TINY)
+				if(I.volumeClass == ITEM_SIZE_TINY)
 					add = 1
-				else if(I.w_class == ITEM_SIZE_SMALL)
+				else if(I.volumeClass == ITEM_SIZE_SMALL)
 					add = 3
 				else
 					add = 5
@@ -200,7 +200,7 @@
 		var droppedSomething = 0
 
 		for(var/obj/item/I in carrying)
-			I.loc = dropspot
+			I.forceMove(dropspot)
 			carrying.Remove(I)
 			droppedSomething = 1
 			if(!foundtable && isturf(dropspot))
@@ -324,7 +324,7 @@
 	desc = "Small device which allows rapid deployment and removal of inflatables."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "inf_deployer"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 15
 	// By default stores up to 10 walls and 5 doors. May be changed.
@@ -335,10 +335,10 @@
 	var/mode = 0 // 0 - Walls   1 - Doors
 
 /obj/item/inflatable_dispenser/examine(mob/user)
-	if(!..(user))
-		return
-	to_chat(user, "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored.")
-	to_chat(user, "It is set to deploy [mode ? "doors" : "walls"]")
+	var/description = ""
+	description += "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored. \n"
+	description += "It is set to deploy [mode ? "doors" : "walls"]"
+	..(user, afterDesc = description)
 
 /obj/item/inflatable_dispenser/attack_self()
 	mode = !mode
@@ -439,7 +439,7 @@
 	desc = "An all-in-one medical omnitool."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "medmulti"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,26)))
 	sharp = TRUE
 	edge = TRUE
 	worksound = WORKSOUND_DRIVER_TOOL
@@ -451,7 +451,7 @@
 	desc = "An all-in-one engineering omnitool."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "engimplant"
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,35)))
 	worksound = WORKSOUND_DRIVER_TOOL
 	tool_qualities = list(QUALITY_SCREW_DRIVING = 35, QUALITY_BOLT_TURNING = 35, QUALITY_DRILLING = 15, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_PRYING = 25, QUALITY_DIGGING = 20, QUALITY_PULSING = 30, QUALITY_WIRE_CUTTING = 30)
 	spawn_tags = null

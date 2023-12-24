@@ -202,47 +202,48 @@
 	return TRUE
 
 /mob/living/exosuit/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
-		to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
+		description += "It is being piloted by [english_list(pilots, nothing_text = "nobody")].\n"
 	if(body && LAZYLEN(body.pilot_positions))
-		to_chat(user, "It can seat [body.pilot_positions.len] pilot\s total.")
+		description += "It can seat [body.pilot_positions.len] pilot\s total.\n"
 	if(hardpoints.len)
-		to_chat(user, "It has the following hardpoints:")
+		description += "It has the following hardpoints:\n"
 		for(var/hardpoint in hardpoints)
 			var/obj/item/I = hardpoints[hardpoint]
-			to_chat(user, "- [hardpoint]: [istype(I) ? "[I]" : "nothing"].")
+			description += "- [hardpoint]: [istype(I) ? "[I]" : "nothing"].\n"
 	else
-		to_chat(user, "It has no visible hardpoints.")
+		description += "It has no visible hardpoints.\n"
 
 	for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
 		if(!thing)
 			continue
 
 		var/damage_string = thing.get_damage_string()
-		to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
+		description += "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].\n"
 
-	to_chat(user, "It menaces with reinforcements of [material].")
-	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
-	to_chat(user, SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button."))
+	description += "It menaces with reinforcements of [material].\n"
+	description += SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened.\n")
+	description += SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button.\n")
 	if(body.storage_compartment)
-		to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character."))
+		description += SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character.\n")
 	if(body && body.cell_charge_rate)
-		to_chat(user, SPAN_NOTICE("This mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate]."))
+		description += SPAN_NOTICE("This mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate].\n")
 	if(arms && arms.can_force_doors)
-		to_chat(user, SPAN_NOTICE("The arms on this mech can force open any unbolted door."))
+		description += SPAN_NOTICE("The arms on this mech can force open any unbolted door.\n")
 	if(locate(/obj/item/mech_equipment/mounted_system/ballistic) in contents)
-		to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition."))
+		description += SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition.\n")
 	if(locate(/obj/item/mech_equipment/auto_mender) in contents)
-		to_chat(user, SPAN_NOTICE("You can refill its auto mender by attacking the mech with trauma kits."))
+		description += SPAN_NOTICE("You can refill its auto mender by attacking the mech with trauma kits.\n")
 	if(locate(/obj/item/mech_equipment/forklifting_system) in contents)
-		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's forklifting system by using grab intent."))
+		description += SPAN_NOTICE("You can remove objects from this mech's forklifting system by using grab intent.\n")
 	if(locate(/obj/item/mech_equipment/towing_hook) in contents)
-		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's towing system by using grab intent."))
+		description += SPAN_NOTICE("You can remove objects from this mech's towing system by using grab intent.\n")
 	if(locate(/obj/item/mech_equipment/power_generator/fueled) in contents)
-		to_chat(user, SPAN_NOTICE("You can refill the mounted power generators by attacking \the [src] with the fuel they use."))
+		description += SPAN_NOTICE("You can refill the mounted power generators by attacking \the [src] with the fuel they use.\n")
 	if(locate(/obj/item/mech_equipment/power_generator/fueled/welding) in contents)
-		to_chat(user, SPAN_NOTICE("You can drain from the mounted fuel welding fuel generator by attacking with a beaker on GRAB intent"))
+		description += SPAN_NOTICE("You can drain from the mounted fuel welding fuel generator by attacking with a beaker on GRAB intent\n")
+	..(user, afterDesc = description)
 
 
 /mob/living/exosuit/return_air()

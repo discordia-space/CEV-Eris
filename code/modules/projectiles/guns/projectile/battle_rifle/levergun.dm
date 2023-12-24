@@ -5,11 +5,9 @@
 	icon = 'icons/obj/guns/projectile/winchester.dmi'
 	icon_state = "lever_winchester"
 	item_suffix  = "_winchester"
-	force = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_MAGNUM
 	damage_multiplier = 1.6
-	penetration_multiplier = 0
 	proj_step_multiplier = 0.8
 	init_recoil = RIFLE_RECOIL(2)
 	init_offset = 0
@@ -40,10 +38,9 @@
 	name = "sawn-off FS BR .40 \"Svengali\""
 	icon = 'icons/obj/guns/projectile/winchester_sawn.dmi'
 	icon_state = "lever_winchester_sawn"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1
-	damage_multiplier = 1.6
-	penetration_multiplier = -0.2 // all sawn off variants have less pen and more recoil, but no change in damage
+	damage_multiplier = 1.4
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	init_recoil = CARBINE_RECOIL(4)
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASTEEL = 10)
@@ -58,11 +55,9 @@
 	When you need someone to have a closed casket funeral!"
 	icon_state = "lever_shotgun"
 	item_suffix  = "_shotgun"
-	force = WEAPON_FORCE_DANGEROUS
 	armor_divisor = ARMOR_PEN_GRAZING
 	caliber = CAL_SHOTGUN
 	damage_multiplier = 1.1
-	penetration_multiplier = 0.2
 	max_shells = 7
 	init_recoil = RIFLE_RECOIL(2.3)
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10, MATERIAL_PLASTEEL = 20)
@@ -82,11 +77,10 @@
 /obj/item/gun/projectile/boltgun/levergun/shotgun/sawn
 	name = "sawn-off FS BR \"Sogekihei\""
 	icon_state = "lever_shotgun_sawn"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	proj_step_multiplier = 1.1 // 1.2 with slugs
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	damage_multiplier = 1.1
-	penetration_multiplier = 0
 	init_recoil = CARBINE_RECOIL(4)
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 10)
 	item_suffix  = "_shotgun_sawn"

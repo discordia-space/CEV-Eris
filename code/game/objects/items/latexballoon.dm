@@ -3,9 +3,8 @@
 	desc = "A latex glove, now filled with air as an oddly-shaped balloon."
 	icon_state = "latexballon"
 	item_state = "lgloves"
-	force = 0
 	throwforce = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 1
 	throw_range = 15
 	var/state

@@ -122,7 +122,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 //	var/job = null//Living
 
-	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum w_class the mob can pull.
+	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum volumeClass the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER       // Whether or not the mob can pull other mobs.
 
 	var/b_type // GLOB.blood_types // list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")

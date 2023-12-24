@@ -4,7 +4,7 @@
 /obj/item/storage
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_STORAGE
 	bad_type = /obj/item/storage
@@ -12,7 +12,7 @@
 	var/list/can_hold_extra = list() //List of objects which this item can additionally store not defined by the parent.
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
-	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
+	var/max_volumeClass = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
 	var/storage_slots //The number of storage slots in this container.
 	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
@@ -71,7 +71,7 @@
 		S.close(clientMob)
 
 /obj/item/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
-	itemBackground.setClickProc(PROC_REF(itemBackgroundClick))
+	itemBackground.setClickProc(PROC_REF(itemBackgroundClick), src)
 	itemBackground.setData("item", item)
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
@@ -101,7 +101,7 @@
 	closeButton.setName("HUD Storage Close Button")
 	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 	closeButton.setHideParentOnClick(TRUE)
-	closeButton.setClickProc(PROC_REF(closeButtonClick))
+	closeButton.setClickProc(PROC_REF(closeButtonClick), src)
 	closeButton.setData("item", src)
 
 	//storage space based items
@@ -115,7 +115,7 @@
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
-		storageBackground.setClickProc(PROC_REF(storageBackgroundClick))
+		storageBackground.setClickProc(PROC_REF(storageBackgroundClick), src)
 		storageBackground.setData("item", src)
 
 		var/paddingSides = 2 //in pixels
@@ -199,7 +199,7 @@
 
 				currentItemNumber++
 			else //empty slots
-				itemBackground.setClickProc(PROC_REF(storageBackgroundClick))
+				itemBackground.setClickProc(PROC_REF(storageBackgroundClick), src)
 				itemBackground.setData("item", src)
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
@@ -330,7 +330,7 @@
 			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
 		return FALSE
 
-	if (max_w_class != null && W.w_class > max_w_class)
+	if (max_volumeClass != null && W.volumeClass > max_volumeClass)
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
 		return FALSE
@@ -339,14 +339,14 @@
 	if(storage_slots == null)
 		var/total_storage_space = W.get_storage_cost()
 		for(var/obj/item/I in contents)
-			total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
+			total_storage_space += I.get_storage_cost() //Adds up the combined volumeClasses which will be in the storage item if the item is added to it.
 
 		if(total_storage_space > max_storage_space)
 			if(!stop_messages)
 				to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
 			return FALSE
 
-	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
+	if(W.volumeClass >= src.volumeClass && (istype(W, /obj/item/storage)))
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
 		return FALSE //To prevent the stacking of same sized storage items.
@@ -378,7 +378,7 @@
 					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
-				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
+				else if (W && W.volumeClass >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
 					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
 
 	refresh_all()
@@ -396,9 +396,9 @@
 		F.update_icon(1)
 
 	if (new_location)
-		W.loc = new_location
+		W.forceMove(new_location)
 	else
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	refresh_all()
 
@@ -438,7 +438,7 @@
 				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
 				return
 			else //todo: proper drop handling
-				W.loc = user.loc
+				W.forceMove(user.loc)
 				if (user.client)
 					user.client.screen -= W
 				W.dropped(user)
@@ -537,7 +537,7 @@
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
 	if(isnull(max_storage_space) && !isnull(storage_slots))
-		max_storage_space = storage_slots*BASE_STORAGE_COST(max_w_class)
+		max_storage_space = storage_slots*BASE_STORAGE_COST(max_volumeClass)
 
 	// Deferred storage doesn't populate_contents() from Initialize, it does so when accessed by player
 	if(!istype(src, /obj/item/storage/deferred))
@@ -550,9 +550,12 @@
 
 // Override in subtypes
 /obj/item/storage/proc/populate_contents()
+	var/list/spawnedAtoms = list()
 	if(prespawned_content_type && prespawned_content_amount)
 		for(var/i in 1 to prespawned_content_amount)
-			new prespawned_content_type(src)
+			spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/emp_act(severity)
 	if(!isliving(loc))
@@ -570,25 +573,25 @@
 	storage_slots = contents.len
 
 	can_hold.Cut()
-	max_w_class = 0
+	max_volumeClass = 0
 	max_storage_space = 0
 	for(var/obj/item/I in src)
 		can_hold[I.type]++
-		max_w_class = max(I.w_class, max_w_class)
+		max_volumeClass = max(I.volumeClass, max_volumeClass)
 		max_storage_space += I.get_storage_cost()
 
 //Variant of the above that makes sure nothing is lost
 /obj/item/storage/proc/expand_to_fit()
 	//Cache the old values
 	var/ospace = max_storage_space
-	var/omax = max_w_class
+	var/omax = max_volumeClass
 	var/olimitedhold = can_hold.len
 
 	//Make fit
 	make_exact_fit()
 
 	//Then restore any values that are smaller than the original
-	max_w_class = max(omax, max_w_class)
+	max_volumeClass = max(omax, max_volumeClass)
 	max_storage_space = max(ospace, max_storage_space)
 
 	//Remove any specific limits that were placed, if we were originally unlimited
@@ -632,7 +635,7 @@
 	. = depth
 
 /obj/item/proc/get_storage_cost()
-	. = BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use max_w_class
+	. = BASE_STORAGE_COST(volumeClass) //If you want to prevent stuff above a certain volumeClass from being stored, use max_volumeClass
 
 
 //Useful for spilling the contents of containers all over the floor

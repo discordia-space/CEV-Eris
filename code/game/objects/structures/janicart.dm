@@ -3,7 +3,7 @@
 	desc = "The ultimate in janitorial carts! Has space for water, mops, signs, trash bags, and more!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	anchored = FALSE
 	density = TRUE
 	reagent_flags = OPENCONTAINER
@@ -30,12 +30,13 @@
 	return ..()
 
 /obj/structure/janitorialcart/examine(mob/user)
-	if(..(user, 1))
-		if (mybucket)
-			var/contains = mybucket.reagents.total_volume
-			to_chat(user, "\icon[src] The bucket contains [contains] unit\s of liquid!")
-		else
-			to_chat(user, "\icon[src] There is no bucket mounted on it!")
+	var/description = ""
+	if (mybucket)
+		var/contains = mybucket.reagents.total_volume
+		description += "\icon[src] The bucket contains [contains] unit\s of liquid!"
+	else
+		description += "\icon[src] There is no bucket mounted on it!"
+	..(user, afterDesc = description)
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)
@@ -301,7 +302,7 @@
 	reagent_flags = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
+	var/obj/item/storage/bag/trash/mybag = null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	applies_material_colour = 0
 
@@ -312,11 +313,7 @@
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(mybag)
-		to_chat(user, "\A [mybag] is hanging on the [callme].")
+	..(user, afterDesc = mybag ? "\A [mybag] is hanging on the [callme]." : "")
 
 
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
@@ -325,13 +322,13 @@
 	else if(istype(I, /obj/item/storage/bag/trash))
 		to_chat(user, SPAN_NOTICE("You hook the trashbag onto the [callme]."))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		mybag = I
 
 
 /obj/structure/bed/chair/janicart/attack_hand(mob/user)
 	if(mybag)
-		mybag.loc = get_turf(user)
+		mybag.forceMove(get_turf(user))
 		user.put_in_hands(mybag)
 		mybag = null
 	else
@@ -408,4 +405,4 @@
 	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "keys"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY

@@ -13,13 +13,15 @@
 		)
 	permeability_coefficient = 0.01
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
+	/// No modding these
+	clothingFlags = CLOTH_NO_MOD
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
 	cold_protection = HEAD
@@ -27,7 +29,7 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.9
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	species_restricted = list("exclude")
 	flash_protection = FLASH_PROTECTION_MAJOR // kept because seeing the sun in space without flash prot is... ouch.
 	price_tag = 100
@@ -43,6 +45,10 @@
 	light_overlay = "helmet_light"
 	brightness_on = 4
 	on = FALSE
+	armorComps = list(
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/head/space/Initialize()
 	. = ..()
@@ -68,28 +74,31 @@
 			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
 
 /obj/item/clothing/head/space/examine(var/mob/user)
-	if(..(user, 1) && camera_networks && camera_networks.len)
-		to_chat(user, "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active.")
+	var/description = ""
+	if(camera_networks && camera_networks.len)
+		description += "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active. \n"
+	..(user, afterDesc = description)
 
 /obj/item/clothing/suit/space
 	name = "space suit"
 	desc = "A cheap and bulky suit that protects against low pressure environments."
 	icon_state = "space"
 	item_state = "s_suit"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION|DRAG_AND_DROP_UNEQUIP
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
+	clothingFlags = CLOTH_NO_MOD
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -101,6 +110,12 @@
 	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit
 	slowdown = HEAVY_SLOWDOWN * 0.5
+	armorComps = list(
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()

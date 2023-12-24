@@ -4,7 +4,7 @@
 	icon_state = "locket"
 	item_state = "locket"
 	slot_flags = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	slot_flags = SLOT_MASK | SLOT_ACCESSORY_BUFFER
 	var/base_icon
 	var/open
@@ -24,7 +24,7 @@
 		icon_state = "[base_icon]_open"
 		if(held)
 			to_chat(user, "\The [held] falls out!")
-			held.loc = get_turf(user)
+			held.forceMove(get_turf(user))
 			src.held = null
 	else
 		icon_state = "[base_icon]"
@@ -40,7 +40,7 @@
 		else
 			to_chat(usr, "You slip [O] into [src].")
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			src.held = O
 		return
 	..()

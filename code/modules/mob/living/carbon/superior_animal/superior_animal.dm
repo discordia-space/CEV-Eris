@@ -103,6 +103,12 @@
 	// Armor related datum
 	var/datum/armor/armor
 
+/mob/living/carbon/superior_animal/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	for(var/armorType in armorToDam)
+		for(var/list/damageElement in armorToDam[armorType])
+			damageElement[2] -= clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
+	return armorToDam
+
 /mob/living/carbon/superior_animal/New()
 	..()
 

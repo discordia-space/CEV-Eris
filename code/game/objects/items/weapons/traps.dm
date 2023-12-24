@@ -7,7 +7,7 @@
 	icon_state = "beartrap"
 	desc = "A mechanically activated leg trap. Low-tech, but reliable. Looks like it could really hurt if you set it off."
 	throwforce = 0
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 25)
 	edge = TRUE
@@ -242,7 +242,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	var/mob/living/L = buckled_mob
 	//armour
 
-	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
+	if(L.damage_through_armor(list(ARMOR_POINTY = list(DELEM(BRUTE, fail_damage))), target_zone, src, 1, 1, FALSE))
 	//No damage - no stun
 		L.Stun(4) //A short stun prevents spamming failure attempts
 		shake_camera(user, 2, 1)
@@ -283,7 +283,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 100, 1,10,10)//Really loud snapping sound
 
 	//armour
-	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
+	if(L.damage_through_armor(list(ARMOR_POINTY = list(DELEM(BRUTE, fail_damage))), target_zone, src, 1, 1, FALSE))
 	//No damage - no stun
 		L.Stun(4) //A short stun prevents spamming failure attempts
 		shake_camera(L, 2, 1)
@@ -356,10 +356,12 @@ Very rarely it might escape
 	..()
 
 /obj/item/beartrap/examine(mob/user)
-	..()
+	var/description = ""
 	if(deployed && isliving(user) && !("\ref[user]" in aware_mobs))
-		to_chat(user, SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully."))
+		description += SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully.")
 		aware_mobs |= "\ref[user]"
+
+	..(user, afterDesc = description)
 
 
 /obj/item/beartrap/update_icon()

@@ -3,11 +3,10 @@
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel_t3"
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFUL
-	armor_divisor = ARMOR_PEN_SHALLOW
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,10)))
 	sharp = TRUE
 	edge = TRUE
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	worksound = WORKSOUND_HARD_SLASH
 	slot_flags = SLOT_EARS
 	throw_speed = WEAPON_FORCE_WEAK
@@ -25,22 +24,20 @@
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 1)
 	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 10)
 	degradation = 0.12
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 20
 
 /obj/item/tool/scalpel/laser
 	name = "laser scalpel"
 	desc = "A scalpel which uses a directed laser to slice instead of a blade, for more precise surgery while also cauterizing as it cuts."
 	icon_state = "scalpel_t5"
-	damtype = "fire"
-	force = WEAPON_FORCE_DANGEROUS
-	armor_divisor = ARMOR_PEN_MODERATE
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BURN,16)))
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	tool_qualities = list(QUALITY_CUTTING = 40, QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 40, QUALITY_CAUTERIZING = 20)
 	degradation = 0.11
 	use_power_cost = 0.12
 	suitable_cell = /obj/item/cell/small
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 30
 
 // Laser cutting overrides normal cutting

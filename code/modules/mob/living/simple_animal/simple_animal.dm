@@ -155,23 +155,24 @@
 	if (health <= 0 && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/examine(mob/user)
-	..()
+/mob/living/simple_animal/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(hunger_enabled)
 		if (!nutrition)
-			to_chat(user, SPAN_DANGER("It looks starving!"))
+			description += SPAN_DANGER("It looks starving! \n")
 		else if (nutrition < max_nutrition *0.5)
-			to_chat(user, SPAN_NOTICE("It looks hungry."))
+			description += SPAN_NOTICE("It looks hungry. \n")
 		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
-			to_chat(user, "It looks full and contented.")
+			description += "It looks full and contented. \n"
 	if (health < maxHealth * 0.25)
-		to_chat(user, SPAN_DANGER("It's grievously wounded!"))
+		description += SPAN_DANGER("It's grievously wounded!")
 	else if (health < maxHealth * 0.50)
-		to_chat(user, SPAN_DANGER("It's badly wounded!"))
+		description += SPAN_DANGER("It's badly wounded!")
 	else if (health < maxHealth * 0.75)
-		to_chat(user, SPAN_WARNING("It's wounded."))
+		description += SPAN_WARNING("It's wounded.")
 	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("It's a bit wounded."))
+		description += SPAN_WARNING("It's a bit wounded.")
+	..(user, afterDesc = description)
 
 /mob/living/simple_animal/Life()
 	.=..()
@@ -398,13 +399,14 @@
 	else
 		O.attack(src, user, user.targeted_organ)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, list/damages, var/hit_zone)
 
-	if(effective_force <= resistance)
+	var/total = dhTotalDamage(damages)
+	if(total <= resistance)
 		to_chat(user, SPAN_DANGER("This weapon is ineffective, it does no damage."))
 		return 2
-	effective_force -= resistance
-	.=..(O, user, effective_force, hit_zone)
+	dhRemoveDamageEqual(damages, resistance)
+	.=..(O, user, damages, hit_zone)
 
 /mob/living/simple_animal/movement_delay()
 	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
@@ -464,7 +466,7 @@
 	return verb
 
 /mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
-	W.loc = get_turf(src)
+	W.forceMove(get_turf(src))
 	return 1
 
 // Harvest an animal's delicious byproducts

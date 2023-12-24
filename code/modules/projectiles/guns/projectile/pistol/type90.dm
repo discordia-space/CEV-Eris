@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/os/type_90.dmi'
 	icon_state = "type_90"
 	item_state = "type_90"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLATINUM = 4, MATERIAL_PLASTIC = 6)
@@ -15,7 +15,6 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	magazine_type = /obj/item/ammo_magazine/pistol
 	damage_multiplier = 1.2
-	penetration_multiplier = 0.4
 	proj_step_multiplier = 0.6
 	init_recoil = HANDGUN_RECOIL(0.8)
 	spawn_tags = SPAWN_TAG_GUN_OS

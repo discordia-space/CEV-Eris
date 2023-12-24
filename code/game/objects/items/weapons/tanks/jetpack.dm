@@ -5,8 +5,12 @@
 	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
 	icon_state = "jetpack"
 	gauge_icon = null
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,10)
+		)
+	)
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 6*ONE_ATMOSPHERE
 	bad_type = /obj/item/tank/jetpack
@@ -84,11 +88,13 @@
 	return ..()
 
 /obj/item/tank/jetpack/examine(mob/user)
-	. = ..()
-	to_chat(user, "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa")
+	var/description = ""
+	description += "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa \n"
 	if(air_contents.total_moles < 5)
-		to_chat(user, SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!"))
+		description += SPAN_DANGER("The gauge on \the [src] indicates you are almost out of gas!")
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
+	..(user, afterDesc = description)
+
 
 /*****************************
 	Mode Setting

@@ -4,6 +4,11 @@
 	matter = list(MATERIAL_BIOMATTER = 20)
 	bad_type = /obj/item/organ
 	spawn_tags = SPAWN_TAG_ORGAN
+	/// Are you ready to do what it takes to find out why their weight gets duplicated ? Are you ready to sacrifice
+	/// possibly weeks of your life in the endless pursuit of fixing the issue that has crushed many others ?
+	/// Are you ready to try understand a framework for organs rewritten and regurgitated by 4 different people with 4 different mechanism?
+	/// After 4 days of trying to debug why weights on these bugged i just gave up.Fixing this shit ain't worth anyone's time hot god damn. - SPCR 2023
+	weight = 0
 
 	price_tag = 200
 
@@ -40,6 +45,7 @@
 	var/death_time						// limits organ self recovery
 
 /obj/item/organ/Destroy()
+
 	if(parent || owner)
 		removed()
 
@@ -67,9 +73,9 @@
 		blood_DNA[holder.dna_trace] = holder.b_type
 
 		if(parent_organ_base)
-			replaced(holder.get_organ(parent_organ_base))
+			insert(holder.get_organ(parent_organ_base))
 		else
-			replaced_mob(holder)
+			mob_update(holder)
 
 // Surgery hooks
 /obj/item/organ/attack_self(mob/living/user)
@@ -160,10 +166,11 @@
 	else
 		handle_rejection()
 
-/obj/item/organ/examine(mob/user)
-	..(user)
+/obj/item/organ/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(status & ORGAN_DEAD)
-		to_chat(user, SPAN_NOTICE("The decay has set in."))
+		description += SPAN_NOTICE("The decay has set in.")
+	..(user, afterDesc = description)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -270,14 +277,14 @@
 	START_PROCESSING(SSobj, src)
 
 
-/obj/item/organ/proc/replaced(obj/item/organ/external/affected)
+/obj/item/organ/proc/insert(obj/item/organ/external/affected)
 	parent = affected
 	forceMove(parent)
 	if(parent.owner)
-		replaced_mob(parent.owner)
+		mob_update(parent.owner)
 
 
-/obj/item/organ/proc/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/proc/mob_update(mob/living/carbon/human/target)
 	owner = target
 	forceMove(owner)
 	STOP_PROCESSING(SSobj, src)

@@ -17,12 +17,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 15,
-		bomb = 0,
-		bio = 25,
-		rad = 50
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =25,
+		ARMOR_RAD =50
 	)
 
 /mob/living/carbon/superior_animal/roach/bluespace/Initialize(mapload)

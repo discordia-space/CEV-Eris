@@ -16,7 +16,7 @@ obj/structure/windoor_assembly
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 	var/obj/item/electronics/airlock/electronics = null
 
@@ -136,7 +136,7 @@ obj/structure/windoor_assembly/Destroy()
 						else
 							windoor.req_access = src.electronics.conf_access
 						windoor.electronics = src.electronics
-						src.electronics.loc = windoor
+						src.electronics.forceMove(windoor)
 					else
 						var/obj/machinery/door/window/windoor = new /obj/machinery/door/window(src.loc)
 						if(src.facing == "l")
@@ -154,7 +154,7 @@ obj/structure/windoor_assembly/Destroy()
 						else
 							windoor.req_access = src.electronics.conf_access
 						windoor.electronics = src.electronics
-						src.electronics.loc = windoor
+						src.electronics.forceMove(windoor)
 
 					qdel(src)
 					return
@@ -183,7 +183,7 @@ obj/structure/windoor_assembly/Destroy()
 						src.name = "Wired Windoor Assembly"
 					var/obj/item/electronics/airlock/ae = electronics
 					electronics = null
-					ae.loc = src.loc
+					ae.forceMove(src.loc)
 					return
 			return
 
@@ -236,12 +236,12 @@ obj/structure/windoor_assembly/Destroy()
 					if(!src) return
 
 					user.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					to_chat(user, SPAN_NOTICE("You've installed the airlock electronics!"))
 					src.name = "Near finished Windoor Assembly"
 					src.electronics = I
 				else
-					I.loc = src.loc
+					I.forceMove(src.loc)
 
 			else
 				..()

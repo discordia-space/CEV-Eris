@@ -24,5 +24,4 @@
 	return new projectile_type(src)
 
 /obj/item/gun/matter/examine(user)
-	. = ..()
-	to_chat(user, "It holds [stored_matter]/[max_stored_matter] [matter_type].")
+	..(user, afterDesc = "It holds [stored_matter]/[max_stored_matter] [matter_type].")

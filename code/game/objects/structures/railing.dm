@@ -63,15 +63,15 @@
 //32 and 4 - in the same turf
 
 /obj/structure/railing/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(health < maxHealth)
 		switch(health / maxHealth)
 			if(0 to 0.25)
-				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
+				description += SPAN_WARNING("It looks severely damaged!")
 			if(0.25 to 0.5)
-				to_chat(user, SPAN_WARNING("It looks damaged!"))
+				description += SPAN_WARNING("It looks damaged!")
 			if(0.5 to 1)
-				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
+				description += SPAN_NOTICE("It has a few scrapes and dents.")
 	if(reinforced)
 		var/reinforcement_text = "It is reinforced with rods"
 		switch(reinforcement_security)
@@ -81,7 +81,9 @@
 				reinforcement_text += ", which are loosely attached"
 			if (20 to 30)
 				reinforcement_text += ", which are a bit loose"
-		to_chat(user, SPAN_NOTICE("[reinforcement_text].")) // MY rods(?) were a bit loose while writing this
+		description += SPAN_NOTICE("[reinforcement_text].") // MY rods(?) were a bit loose while writing this
+
+	..(user, afterDesc = description)
 
 /obj/structure/railing/take_damage(amount)
 	. = health - amount < 0 ? amount - health : amount
@@ -214,7 +216,7 @@
 		to_chat(user, SPAN_NOTICE("You can't flip the [src] because something blocking it."))
 		return 0
 
-	src.loc = get_step(src, src.dir)
+	forceMove(get_step(src, dir))
 	set_dir(turn(dir, 180))
 	update_icon()
 	return
@@ -237,7 +239,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
+			target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,8))), BP_HEAD, user, 1, 1, FALSE)
 			take_damage(8)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
@@ -330,7 +332,7 @@
 			to_chat(user, SPAN_NOTICE("In its current state, [src] is not valid to reinforce."))
 			return
 	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-	take_damage(I.force)
+	take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)))
 
 	return ..()
 

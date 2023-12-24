@@ -7,6 +7,7 @@
 	simulated = FALSE
 	invisibility = 101
 	layer = MID_LANDMARK_LAYER
+	weight = 0
 	var/delete_me = FALSE
 
 /obj/landmark/New()

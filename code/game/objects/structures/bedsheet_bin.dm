@@ -14,7 +14,7 @@ LINEN BINS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 2
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	var/rolled = FALSE
 	var/folded = FALSE
 	var/inuse = FALSE
@@ -80,11 +80,11 @@ LINEN BINS
 			)
 		if(!folded)
 			folded = TRUE
-			w_class = ITEM_SIZE_SMALL
+			volumeClass = ITEM_SIZE_SMALL
 		else
 
 			folded = FALSE
-			w_class =ITEM_SIZE_NORMAL
+			volumeClass =ITEM_SIZE_NORMAL
 		inuse = FALSE
 		update_icon()
 		return TRUE
@@ -215,35 +215,36 @@ LINEN BINS
 
 
 /obj/structure/bedsheetbin/examine(mob/user)
-	..(user)
-
+	var/description = ""
 	if(amount < 1)
-		to_chat(user, "There are no bed sheets in the bin.")
-		return
-	if(amount == 1)
-		to_chat(user, "There is one bed sheet in the bin.")
-		return
-	to_chat(user, "There are [amount] bed sheets in the bin.")
+		description += "There are no bed sheets in the bin."
+	else if(amount == 1)
+		description += "There is one bed sheet in the bin."
+	else
+		description += "There are [amount] bed sheets in the bin."
+	..(user, afterDesc = description)
 
 
 /obj/structure/bedsheetbin/update_icon()
-	switch(amount)
-		if(0)				icon_state = "linenbin-empty"
-		if(1 to amount / 2)	icon_state = "linenbin-half"
-		else				icon_state = "linenbin-full"
+	if(amount == 0)
+		icon_state = "linenbin-empty"
+	else if(amount < initial(amount)/2)
+		icon_state = "linenbin-half"
+	else
+		icon_state = "linenbin-full"
 
 
 /obj/structure/bedsheetbin/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/bedsheet))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		sheets.Add(I)
 		amount++
 		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
-	else if(amount && !hidden && I.w_class < ITEM_SIZE_BULKY)
+	else if(amount && !hidden && I.volumeClass < ITEM_SIZE_BULKY)
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		hidden = I
 		to_chat(user, SPAN_NOTICE("You hide [I] among the sheets."))
 
@@ -258,13 +259,13 @@ LINEN BINS
 
 		else
 			B = new /obj/item/bedsheet(loc, TRUE)
-		B.loc = user.loc
+		B.forceMove(user.loc)
 
 		user.put_in_hands(B)
 		to_chat(user, SPAN_NOTICE("You take [B] out of [src]."))
 
 		if(hidden)
-			hidden.loc = user.loc
+			hidden.forceMove(user.loc)
 			to_chat(user, SPAN_NOTICE("[hidden] falls out of [B]!"))
 			hidden = null
 
@@ -283,12 +284,12 @@ LINEN BINS
 		else
 			B = new /obj/item/bedsheet(loc, TRUE)
 
-		B.loc = loc
+		B.forceMove(loc)
 		to_chat(user, SPAN_NOTICE("You telekinetically remove [B] from [src]."))
 		update_icon()
 
 		if(hidden)
-			hidden.loc = loc
+			hidden.forceMove(loc)
 			hidden = null
 
 

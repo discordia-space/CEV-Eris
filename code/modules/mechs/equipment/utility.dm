@@ -807,7 +807,6 @@
 	name = "mech toolkit"
 	desc = "A robust selection of mech-sized tools."
 	icon_state = "engimplant"
-	force = WEAPON_FORCE_DANGEROUS
 	worksound = WORKSOUND_DRIVER_TOOL
 	flags = CONDUCT
 	tool_qualities = list(
@@ -823,7 +822,7 @@
 		QUALITY_HAMMERING = 75)
 	degradation = 0
 	workspeed = 1
-	max_upgrades = 1
+	maxUpgrades = 1
 	spawn_blacklisted = TRUE
 
 /// Fancy way to move someone up a z-level if you think about it..

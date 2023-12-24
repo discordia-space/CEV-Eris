@@ -129,7 +129,7 @@
 	twohanded = FALSE
 	suitable_cell = /obj/item/cell/small
 	can_dual = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
@@ -161,17 +161,18 @@
 	update_wear_icon()
 
 /obj/item/gun/energy/plasma/stranger/examine(user, distance)
-	. = ..()
+	var/description = ""
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			to_chat(user, SPAN_NOTICE("It's fading out."))
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			to_chat(user, SPAN_NOTICE("It's occasionally pulsing with energy."))
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold * 0.7)
+		description += SPAN_NOTICE("It's occasionally pulsing with energy. \n")
+	else if(my_area.bluespace_entropy > 0)
+		description += SPAN_NOTICE("It's fading out. \n")
+
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		to_chat(user, SPAN_NOTICE("It glows with an inner radiance."))
+		description += SPAN_NOTICE("It glows with an inner radiance.")
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		to_chat(user, SPAN_NOTICE("The energy surrounding it is overwhelming to the point of feeling warm in your hands."))
+		description += SPAN_NOTICE("The energy surrounding it is overwhelming to the point of feeling warm in your hands.")
+	..(user, afterDesc = description)
 
 
 

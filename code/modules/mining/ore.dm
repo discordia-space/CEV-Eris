@@ -2,7 +2,7 @@
 	name = "rock"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	rarity_value = 25
 	bad_type = /obj/item/ore
 	spawn_tags = SPAWN_TAG_ORE

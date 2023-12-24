@@ -6,8 +6,7 @@
 			if you could manage recoil, of course. Compatible only with special M12 8-round drum magazines."
 	icon = 'icons/obj/guns/projectile/bojevic.dmi'
 	icon_state = "bojevic"
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
@@ -19,8 +18,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 0.8
-	penetration_multiplier = 0.5 // this is not babies first gun. It's a Serb-level weapon.
+	damage_multiplier = 1
 	init_recoil = CARBINE_RECOIL(1.1)
 
 					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough

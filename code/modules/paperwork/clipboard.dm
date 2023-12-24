@@ -4,7 +4,7 @@
 	icon_state = "clipboard"
 	item_state = "clipboard"
 	throwforce = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	item_flags = DRAG_AND_DROP_UNEQUIP
 	throw_speed = 3
 	throw_range = 10
@@ -31,7 +31,7 @@
 
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		if(istype(W, /obj/item/paper))
 			toppaper = W
 		to_chat(user, SPAN_NOTICE("You clip the [W] onto \the [src]."))
@@ -76,7 +76,7 @@
 
 		if(href_list["pen"])
 			if(istype(haspen) && (haspen.loc == src))
-				haspen.loc = usr.loc
+				haspen.forceMove(usr.loc)
 				usr.put_in_hands(haspen)
 				haspen = null
 
@@ -85,7 +85,7 @@
 				var/obj/item/pen/W = usr.get_active_hand()
 				if(istype(W, /obj/item/pen))
 					usr.drop_item()
-					W.loc = src
+					W.forceMove(src)
 					haspen = W
 					to_chat(usr, SPAN_NOTICE("You slot the pen into \the [src]."))
 
@@ -105,7 +105,7 @@
 
 			if(P && (P.loc == src) && (istype(P, /obj/item/paper) || istype(P, /obj/item/photo)) )
 
-				P.loc = usr.loc
+				P.forceMove(usr.loc)
 				usr.put_in_hands(P)
 				if(P == toppaper)
 					toppaper = null

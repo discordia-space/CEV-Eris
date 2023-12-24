@@ -483,7 +483,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		return
 
 	// remove the cut cable from its turf and powernet, so that it doesn't get count in propagate_network worklist
-	loc = null
+	forceMove(NULLSPACE)
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
 	var/datum/powernet/newPN = new()// creates a new powernet...
@@ -518,7 +518,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	throwforce = WEAPON_FORCE_HARMLESS
 	description_info = "Can link between z-levels by going on the upper level and clicking the empty space, and to below, looking up and clicking the space above"
 	description_antag = "Can be used to make cable cuffs"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
 	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_PLASTIC = 0.5)
@@ -620,20 +620,23 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
-		w_class = ITEM_SIZE_TINY
+		volumeClass = ITEM_SIZE_TINY
 	else
-		w_class = ITEM_SIZE_SMALL
+		volumeClass = ITEM_SIZE_SMALL
 
 /obj/item/stack/cable_coil/examine(mob/user)
 	if(get_dist(src, user) > 1)
-		return
+		return ..(user)
+
+	var/description = ""
 
 	if(get_amount() == 1)
-		to_chat(user, "A short piece of power cable.")
+		description += "A short piece of power cable."
 	else if(get_amount() == 2)
-		to_chat(user, "A piece of power cable.")
+		description += "A piece of power cable."
 	else
-		to_chat(user, "A coil of power cable. There are [get_amount()] lengths of cable in the coil.")
+		description += "A coil of power cable. There are [get_amount()] lengths of cable in the coil."
+	..(user, afterDesc = description)
 
 
 /obj/item/stack/cable_coil/verb/make_restraint()

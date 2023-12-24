@@ -423,12 +423,13 @@ var/list/turret_icons
 						hackfail = 0
 			return 1 //No whacking the turret with tools on help intent
 
-	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
+	var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+	if (!(I.flags & NOBLUDGEON) && damage && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-		if (take_damage(I.force * I.structure_damage_factor))
+		if (take_damage(damage * I.structure_damage_factor))
 			playsound(src, 'sound/weapons/smash.ogg', 70, 1)
 		else
 			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
@@ -730,6 +731,7 @@ var/list/turret_icons
 	//If the target is grabbing someone then the turret smartly aims for extremities
 	var/def_zone = get_exposed_defense_zone(target)
 	//Shooting Code:
+	A.PrepareForLaunch()
 	A.launch(target, def_zone)
 
 /datum/turret_checks

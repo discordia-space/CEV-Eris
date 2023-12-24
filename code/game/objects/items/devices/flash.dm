@@ -5,7 +5,7 @@
 	description_info = "Can blind anyone that doesn't have welder-grade light protection"
 	item_state = "flashtool"
 	throwforce = WEAPON_FORCE_HARMLESS
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
 	price_tag = 300

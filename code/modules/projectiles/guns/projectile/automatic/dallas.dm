@@ -5,8 +5,7 @@
 	icon = 'icons/obj/guns/projectile/dallas.dmi'
 	icon_state = "dallas"
 	item_state = "dallas"
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	caliber = CAL_CLRIFLE
 	load_method = MAGAZINE
@@ -20,7 +19,6 @@
 	reload_sound = 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.3
-	penetration_multiplier = 0
 	init_recoil = LMG_RECOIL(1)
 	rarity_value = 65
 	gun_parts = list(/obj/item/part/gun/frame/dallas = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)

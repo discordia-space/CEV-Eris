@@ -29,6 +29,13 @@
 #define MATERIAL_CARPET "carpet"
 #define MATERIAL_BIOMATTER "biomatter"
 #define MATERIAL_COMPRESSED "compressed matter"
+#define MATERIAL_KEVLAR "kevlar"
+#define MATERIAL_KEVLARSTEEL "kevlarsteelweave"
+#define MATERIAL_NEOSTEEL "neosteel"
+#define MATERIAL_TPALLOY "titanplasteelalloy"
+#define MATERIAL_LOWREFLECTIVE "lowreflective"
+#define MATERIAL_HIGHREFLECTIVE "highreflective"
+#define MATERIAL_TGALLOY "titangoldalloy"
 
 #define MATERIAL_LIST list(\
 	MATERIAL_STEEL,\
@@ -59,7 +66,14 @@
 	MATERIAL_VOXALLOY,\
 	MATERIAL_CARPET,\
 	MATERIAL_BIOMATTER,\
-	MATERIAL_COMPRESSED)
+	MATERIAL_COMPRESSED,\
+	MATERIAL_KEVLAR,\
+	MATERIAL_NEOSTEEL,\
+	MATERIAL_TPALLOY,\
+	MATERIAL_TGALLOY,\
+	MATERIAL_LOWREFLECTIVE,\
+	MATERIAL_HIGHREFLECTIVE,\
+	MATERIAL_KEVLARSTEEL)
 
 #define PLASTEEL_COLOUR "#8e9799"
 //Color to exactly match concept art #b0bcbe

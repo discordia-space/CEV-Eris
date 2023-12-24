@@ -10,7 +10,7 @@
 	icon = 'icons/obj/oddities.dmi'
 	icon_state = "gift3"
 	item_state = "electronic"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	//spawn_values
 	spawn_blacklisted = TRUE
@@ -234,7 +234,11 @@
 	item_state = "knife"
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	tool_qualities = list(QUALITY_CUTTING = 20,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 13)
+		)
+	)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	slot_flags = SLOT_BELT
@@ -365,20 +369,20 @@
 	GLOB.bluespace_entropy -= rand(30, 50)
 
 /obj/item/oddity/broken_necklace/examine(user, distance)
-	. = ..()
+	var/description = ""
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			to_chat(user, SPAN_NOTICE("This feels cold to the touch."))
-
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold * 0.7)
+		description += SPAN_NOTICE("This feels cold to the touch. \n")
+	else if(my_area.bluespace_entropy > 0)
+		description += SPAN_NOTICE("This feels warm to the touch. \n")
 
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
+		description += SPAN_NOTICE("Has it always shone so brightly? \n")
 
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		to_chat(user, SPAN_NOTICE("You can see an inscription in some language unknown to you."))
+		description += SPAN_NOTICE("You can see an inscription in some language unknown to you. \n")
+	. = ..(user, afterDesc = description)
+
 
 /obj/item/oddity/broken_necklace/Destroy()
 	var/turf/T = get_turf(src)
@@ -489,7 +493,7 @@
 	name = "makeshift datapad"
 	desc = "A makeshift datapad covered in growths. Whatever data was stored here is now gone, part of it transferred to an unknown source, the rest simply wiped."
 	icon_state = "hivemind_core"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	random_stats = FALSE
 	oddity_stats = list(
 		STAT_COG = 8,
@@ -566,7 +570,7 @@
 	matter = list(MATERIAL_GOLD = 0.5)
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/golden_leaf/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
@@ -590,12 +594,12 @@
 
 
 	armor = list(
-		melee = 3,
-		bullet = 3,
-		energy = 3,
-		bomb = 50,
-		bio = 75,
-		rad = 10
+		ARMOR_BLUNT = 3,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =75,
+		ARMOR_RAD =10
 	)
 	price_tag = 1997
 

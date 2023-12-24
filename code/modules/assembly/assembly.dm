@@ -4,7 +4,7 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = ""
 	flags = CONDUCT
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 1)
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
@@ -94,12 +94,14 @@
 
 
 /obj/item/device/assembly/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(in_range(src, user) || loc == user)
 		if(secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			description += SPAN_NOTICE("\The [src] is ready!")
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			description += SPAN_NOTICE("\The [src] can be attached!")
+
+	..(user, afterDesc = description)
 
 /obj/item/device/assembly/attack_self(mob/user)
 	if(!user)

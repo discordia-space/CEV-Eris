@@ -5,8 +5,7 @@
 	icon_state = "ks23"
 	item_state = "ks23"
 	max_shells = 4
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_ROBUST
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 15)
 	proj_step_multiplier = 1.2

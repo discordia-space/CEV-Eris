@@ -4,8 +4,7 @@
 	icon = 'icons/obj/guns/projectile/os/type_17.dmi'
 	icon_state = "type_17"
 	item_state = "type_17"
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_HUGE
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
@@ -21,7 +20,6 @@
 	zoom_factors = list(0.6)
 	init_recoil = RIFLE_RECOIL(0.8)
 	damage_multiplier = 1.2
-	penetration_multiplier = 0.4
 	spawn_tags = SPAWN_TAG_GUN_OS
 	spawn_blacklisted = TRUE
 	init_firemodes = list(

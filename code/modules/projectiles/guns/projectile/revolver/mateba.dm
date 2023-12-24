@@ -7,7 +7,6 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	price_tag = 3000 //more op and rare than miller, hits as hard as a Miller and doesn't struggle with armor, good luck finding it
 	damage_multiplier = 1.6
-	penetration_multiplier = 0.4
 	init_recoil = HANDGUN_RECOIL(2)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

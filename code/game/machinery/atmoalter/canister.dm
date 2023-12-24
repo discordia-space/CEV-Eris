@@ -6,7 +6,7 @@
 	health = 100
 	maxHealth = 100
 	flags = CONDUCT
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 	var/valve_open = 0
 	var/release_pressure = ONE_ATMOSPHERE
@@ -180,7 +180,7 @@ update_flag
 		update_icon()
 
 		if (src.holding)
-			src.holding.loc = src.loc
+			src.holding.forceMove(src.loc)
 			src.holding = null
 
 		return 1
@@ -275,7 +275,7 @@ update_flag
 
 	else
 		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
-		src.health -= I.force
+		src.health -= dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
 		src.add_fingerprint(user)
 		healthcheck()
 
@@ -356,7 +356,7 @@ update_flag
 				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
 			if(istype(holding, /obj/item/tank))
 				holding.manipulated_by = usr.real_name
-			holding.loc = loc
+			holding.forceMove(loc)
 			playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 			holding = null
 

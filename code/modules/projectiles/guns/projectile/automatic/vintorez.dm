@@ -5,8 +5,7 @@
 	icon = 'icons/obj/guns/projectile/vintorez.dmi'
 	icon_state = "vintorez"
 	item_state = "vintorez"
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 6, TECH_COVERT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
@@ -17,7 +16,6 @@
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 5)
 	price_tag = 4000
 	zoom_factors = list(0.8) // double as IH_heavy
-	penetration_multiplier = 0.2
 	damage_multiplier = 1.5
 	init_recoil = RIFLE_RECOIL(0.65)
 	silenced = TRUE

@@ -26,10 +26,7 @@
 	cell = new /obj/item/cell/large(src)
 
 /obj/machinery/jammer/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	if(distance < 2)
-		if(cell)
-			to_chat(user, SPAN_NOTICE("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left."))
+	. = ..(user, afterDesc = "[(distance < 2 && cell) ? "The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left." : ""]")
 
 /obj/machinery/jammer/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/cell/large) && !cell)
@@ -86,15 +83,13 @@
 	desc = "A small, portable jammer. wil render any AI unuseable in a 8 tile radius"
 	icon = 'icons/obj/jamming.dmi'
 	icon_state = "jammer_portable2"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	suitable_cell = /obj/item/cell/small
 	spawn_blacklisted = TRUE
 	var/power_usage = 0.3
 
 /obj/item/device/jammer/examine(mob/user)
-	. = ..()
-	if(cell && get_dist(user, src) < 2)
-		to_chat(user, SPAN_NOTICE("The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left."))
+	. = ..(user, afterDesc = (cell && get_dist(user, src) <= 2) ? "The terminal reads [round(cell.charge/power_usage*SSmachines.wait/10)] seconds of operation left." : "")
 
 /obj/item/device/jammer/Initialize(mapload)
 	. = ..()

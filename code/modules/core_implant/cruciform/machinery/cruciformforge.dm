@@ -34,7 +34,7 @@
 		stored_material[_material] = rand(1, 10)
 
 /obj/machinery/neotheology/cruciformforge/examine(user)
-	. = ..()
+	var/description = ""
 
 	var/list/matter_count_need = list()
 	for(var/_material in needed_material)
@@ -44,7 +44,8 @@
 	for(var/_material in stored_material)
 		matter_count += " [stored_material[_material]] [_material]"
 
-	to_chat(user, SPAN_NOTICE("Materials required: [english_list(matter_count_need)].\nIt contains: [english_list(matter_count)]."))
+	description += SPAN_NOTICE("Materials required: [english_list(matter_count_need)].\nIt contains: [english_list(matter_count)].")
+	..(user, afterDesc = description)
 
 /obj/machinery/neotheology/cruciformforge/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack))

@@ -6,9 +6,9 @@ var/global/list/stool_cache = list() //haha stool
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "stool_preview" //set for the map
-	force = 10
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,15)))
 	throwforce = 10
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	var/base_icon = "stool_base"
 	var/material/material
 	var/material/padding_material
@@ -26,7 +26,7 @@ var/global/list/stool_cache = list() //haha stool
 	if(!istype(material))
 		qdel(src)
 		return
-	force = round(material.get_blunt_damage()*0.4)
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,material.get_blunt_damage()*0.5)))
 	update_icon()
 
 /obj/item/stool/padded/New(var/newloc, var/new_material)
@@ -80,7 +80,7 @@ var/global/list/stool_cache = list() //haha stool
 		qdel(src)
 		var/mob/living/T = M
 		T.Weaken(10)
-		T.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE)
+		T.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20))), BP_CHEST, src, 1, 1, FALSE)
 		return
 	..()
 
@@ -122,14 +122,14 @@ var/global/list/stool_cache = list() //haha stool
 		C.use(1)
 		if(!istype(src.loc, /turf))
 			user.drop_from_inventory(src)
-			src.loc = get_turf(src)
+			forceMove(get_turf(src))
 		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
 
 	else if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	else
 		..()

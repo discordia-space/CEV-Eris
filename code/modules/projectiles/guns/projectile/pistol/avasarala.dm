@@ -6,7 +6,6 @@
 	icon_state = "avasarala"
 	item_state = "avasarala"
 
-	force = WEAPON_FORCE_PAINFUL
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
@@ -16,7 +15,6 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	can_dual = TRUE
 	damage_multiplier = 1.3
-	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.8)
 
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'

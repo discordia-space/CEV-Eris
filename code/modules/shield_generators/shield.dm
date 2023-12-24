@@ -247,28 +247,31 @@ Like for example singulo act and whatever.
 
 
 // Projectiles
-/obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
-	if(proj.damage_types[BURN])
-		take_damage(proj.damage_types[BURN], SHIELD_DAMTYPE_HEAT, proj)
-	if(proj.damage_types[BRUTE])
-		take_damage(proj.damage_types[BRUTE], SHIELD_DAMTYPE_PHYSICAL, proj)
-	else
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_EM, proj)
+/obj/effect/shield/bullet_act(obj/item/projectile/proj)
+	var/totalDam = 0
+	var/dam = proj.getAllDamType(BURN)
+	take_damage(dam, SHIELD_DAMTYPE_HEAT, proj)
+	totalDam += dam
+	dam = proj.getAllDamType(BRUTE)
+	take_damage(dam, SHIELD_DAMTYPE_PHYSICAL, proj)
+	totalDam += dam
+	dam = proj.get_total_damage() - totalDam
+	if(dam > 0)
+		take_damage(dam, SHIELD_DAMTYPE_EM, proj)
 
 
 // Attacks with hand tools. Blocked by Hyperkinetic flag.
 /obj/effect/shield/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
-
+	var/brute = dhTotalDamageDamageType(I.melleDamages, BRUTE)
+	var/burn = dhTotalDamageDamageType(I.melleDamages, BURN)
+	var/rest = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, ALL_DAMAGE - BRUTE - BURN)
 	if(gen.check_flag(MODEFLAG_HYPERKINETIC))
 		user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [I]!</span>")
-		if(I.damtype == BURN)
-			take_damage(I.force, SHIELD_DAMTYPE_HEAT, user)
-		else if (I.damtype == BRUTE)
-			take_damage(I.force, SHIELD_DAMTYPE_PHYSICAL, user)
-		else
-			take_damage(I.force, SHIELD_DAMTYPE_EM, user)
+		take_damage(brute, SHIELD_DAMTYPE_PHYSICAL, user)
+		take_damage(burn, SHIELD_DAMTYPE_HEAT, user)
+		take_damage(rest, SHIELD_DAMTYPE_EM, user)
 	else
 		user.visible_message("<span class='danger'>\The [user] tries to attack \the [src] with \the [I], but it passes through!</span>")
 

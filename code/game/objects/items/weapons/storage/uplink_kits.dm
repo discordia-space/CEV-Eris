@@ -2,58 +2,63 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/syndicate/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	switch(pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "smoothoperator" = 1)))
 		if("bloodyspai")
-			new /obj/item/clothing/under/chameleon(src)
-			new /obj/item/clothing/mask/chameleon/voice(src)
-			new /obj/item/card/id/syndicate(src)
-			new /obj/item/clothing/shoes/syndigaloshes(src)
+			spawnedAtoms.Add(new /obj/item/clothing/under/chameleon(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/chameleon/voice(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/card/id/syndicate(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/shoes/syndigaloshes(NULLSPACE))
 
 		if("stealth")
-			new /obj/item/gun/energy/crossbow(src)
-			new /obj/item/pen/reagent/paralysis(src)
-			new /obj/item/device/chameleon(src)
+			spawnedAtoms.Add(new /obj/item/gun/energy/crossbow(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/pen/reagent/paralysis(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/device/chameleon(NULLSPACE))
 
 		if("screwed")
-			new /obj/effect/spawner/newbomb/timer/syndicate(src)
-			new /obj/effect/spawner/newbomb/timer/syndicate(src)
-			new /obj/item/device/powersink(src)
-			new /obj/item/clothing/suit/space/syndicate/uplink(src)
-			new /obj/item/clothing/head/space/syndicate/uplink(src)
-			new /obj/item/clothing/mask/gas/syndicate(src)
-			new /obj/item/tank/emergency_oxygen/double(src)
+			spawnedAtoms.Add(new /obj/effect/spawner/newbomb/timer/syndicate(NULLSPACE))
+			spawnedAtoms.Add(new /obj/effect/spawner/newbomb/timer/syndicate(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/device/powersink(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/suit/space/syndicate/uplink(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/head/space/syndicate/uplink(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/mask/gas/syndicate(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen/double(NULLSPACE))
 
 		if("guns")
-			new /obj/item/gun/projectile/revolver(src)
-			new /obj/item/ammo_magazine/slmagnum(src)
-			new /obj/item/card/emag(src)
-			new /obj/item/plastique(src)
-			new /obj/item/plastique(src)
+			spawnedAtoms.Add(new /obj/item/gun/projectile/revolver(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/ammo_magazine/slmagnum(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/card/emag(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/plastique(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/plastique(NULLSPACE))
 
 		if("murder")
-			new /obj/item/melee/energy/sword(src)
-			new /obj/item/clothing/glasses/powered/thermal/syndi(src)
-			new /obj/item/card/emag(src)
-			new /obj/item/clothing/shoes/syndigaloshes(src)
+			spawnedAtoms.Add(new /obj/item/melee/energy/sword(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/glasses/powered/thermal/syndi(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/card/emag(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/shoes/syndigaloshes(NULLSPACE))
 
 		if("freedom")
-			var/obj/item/implanter/O = new /obj/item/implanter(src)
+			var/obj/item/implanter/O = spawnedAtoms.Add(new /obj/item/implanter(NULLSPACE))
 			O.implant = new /obj/item/implant/freedom(O)
-			var/obj/item/implanter/U = new /obj/item/implanter(src)
+			var/obj/item/implanter/U = spawnedAtoms.Add(new /obj/item/implanter(NULLSPACE))
 			U.implant = new /obj/item/implant/uplink(U)
 
 		if("hacker")
-			new /obj/item/device/encryptionkey/syndicate(src)
-			new /obj/item/electronics/ai_module/syndicate(src)
-			new /obj/item/card/emag(src)
-			new /obj/item/device/encryptionkey/binary(src)
+			spawnedAtoms.Add(new /obj/item/device/encryptionkey/syndicate(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/electronics/ai_module/syndicate(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/card/emag(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/device/encryptionkey/binary(NULLSPACE))
 
 		if("smoothoperator")
-			new /obj/item/storage/box/syndie_kit/pistol(src)
-			new /obj/item/storage/bag/trash(src)
-			new /obj/item/soap/syndie(src)
-			new /obj/item/bodybag(src)
-			new /obj/item/clothing/shoes/reinforced(src)
+			spawnedAtoms.Add(new /obj/item/storage/box/syndie_kit/pistol(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/storage/bag/trash(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/soap/syndie(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/bodybag(NULLSPACE))
+			spawnedAtoms.Add(new /obj/item/clothing/shoes/reinforced(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit
 	desc = "A sleek, sturdy box. This one is using state of the art folding to hold more inside!"
@@ -91,67 +96,95 @@
 
 /obj/item/storage/box/syndie_kit/imp_uplink/populate_contents()
 	//Turn off passive gain for boxed implant uplinks. To prevent exploits of gathering tons of free TC
-	var/obj/item/implanter/uplink/U1 = new /obj/item/implanter/uplink(src)
+	var/list/spawnedAtoms = list()
+
+	var/obj/item/implanter/uplink/U1 = spawnedAtoms.Add(new /obj/item/implanter/uplink(NULLSPACE))
 	var/obj/item/implant/uplink/U2 = locate(/obj/item/implant/uplink) in U1
 	var/obj/item/device/uplink/hidden/U3 = locate(/obj/item/device/uplink/hidden) in U2
 	U3.passive_gain = 0
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/space
 	name = "boxed voidsuit"
 
 /obj/item/storage/box/syndie_kit/space/populate_contents()
-	new /obj/item/clothing/suit/space/void/merc/boxed(src)
-	new /obj/item/clothing/mask/gas/syndicate(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/suit/space/void/merc/boxed(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/gas/syndicate(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/mercarmor
 	name = "boxed mercenary armor"
 	desc = "A sleek, sturdy box. This one contains a full set of tan mercenary combat gear - a helmet and full-body vest."
 
 /obj/item/storage/box/syndie_kit/mercarmor/populate_contents()
-	new /obj/item/clothing/suit/storage/vest/merc/full(src)
-	new /obj/item/clothing/head/armor/helmet/merchelm(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/suit/storage/vest/merc/full(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/head/armor/helmet/merchelm(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/softsuit
 	name = "boxed soft suit"
 
 /obj/item/storage/box/syndie_kit/softsuit/populate_contents()
-	new /obj/item/clothing/suit/space/syndicate/uplink(src)
-	new /obj/item/clothing/head/space/syndicate/uplink(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/suit/space/syndicate/uplink(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/head/space/syndicate/uplink(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/backpack/chameleon/populate_contents()
-	new /obj/item/clothing/under/chameleon(src)
-	new /obj/item/clothing/head/chameleon(src)
-	new /obj/item/clothing/suit/chameleon(src)
-	new /obj/item/clothing/shoes/chameleon(src)
-	new /obj/item/clothing/gloves/chameleon(src)
-	new /obj/item/clothing/mask/chameleon(src)
-	new /obj/item/clothing/glasses/chameleon(src)
-	new /obj/item/gun/energy/chameleon(src)
-	new /obj/item/device/radio/headset/chameleon(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/under/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/head/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/suit/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/shoes/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/gloves/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/mask/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/glasses/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/gun/energy/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/radio/headset/chameleon(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/clerical
 	name = "clerical kit"
 	desc = "Comes with all you need to fake paperwork. Assumes you have passed basic writing lessons."
 
 /obj/item/storage/box/syndie_kit/clerical/populate_contents()
-	new /obj/item/stamp/chameleon(src)
-	new /obj/item/pen/chameleon(src)
-	new /obj/item/device/destTagger(src)
-	new /obj/item/packageWrap(src)
-	new /obj/item/hand_labeler(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/stamp/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/chameleon(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/destTagger(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/packageWrap(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/hand_labeler(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/spy
 	name = "spy kit"
 	desc = "For when you want to conduct voyeurism from afar."
 
 /obj/item/storage/box/syndie_kit/spy/populate_contents()
-	new /obj/item/device/spy_bug(src)
-	new /obj/item/device/spy_bug(src)
-	new /obj/item/device/spy_bug(src)
-	new /obj/item/device/spy_bug(src)
-	new /obj/item/device/spy_bug(src)
-	new /obj/item/device/spy_bug(src)
-	new /obj/item/device/spy_monitor(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/device/spy_bug(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/spy_bug(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/spy_bug(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/spy_bug(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/spy_bug(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/spy_bug(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/spy_monitor(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 
@@ -161,8 +194,12 @@
 	desc = "Just like a mosquito bite."
 
 /obj/item/storage/box/syndie_kit/dartgun/populate_contents()
-	new /obj/item/gun/projectile/dartgun(src)
-	new /obj/item/ammo_magazine/chemdart(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/dartgun(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/chemdart(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 /obj/item/storage/box/syndie_kit/pistol
@@ -170,122 +207,163 @@
 	desc = ".25 Caseless handgun with a single magazine and pocket holster for easy consealment."
 
 /obj/item/storage/box/syndie_kit/pistol/populate_contents()
-	new /obj/item/gun/projectile/mandella(src)
-	new /obj/item/ammo_magazine/cspistol(src)
-	new /obj/item/storage/pouch/holster(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/mandella(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/cspistol(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/storage/pouch/holster(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/c20r
 	name = "C-20r box"
 	desc = "C-20r kit"
 
 /obj/item/storage/box/syndie_kit/c20r/populate_contents()
-	new /obj/item/gun/projectile/automatic/c20r(src)
-	new /obj/item/ammo_magazine/smg(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/automatic/c20r(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/smg(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/revolver
 	name = "revolver box"
 	desc = "Revolver kit"
 
 /obj/item/storage/box/syndie_kit/revolver/populate_contents()
-	new /obj/item/gun/projectile/revolver(src)
-	new /obj/item/ammo_magazine/slmagnum(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/revolver(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/slmagnum(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/hornet
 	name = "revolver box"
 	desc = "Revolver kit"
 
 /obj/item/storage/box/syndie_kit/hornet/populate_contents()
-	new /obj/item/gun/projectile/revolver/hornet(src)
-	new /obj/item/ammo_magazine/slsrifle_rev(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/revolver/hornet(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/slsrifle_rev(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/sts35
 	name = "assault rifle box"
 	desc = "Assault rifle kit"
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/sts35/populate_contents()
-	new /obj/item/gun/projectile/automatic/sts35(src)
-	new /obj/item/ammo_magazine/lrifle(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/automatic/sts35(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/lrifle(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/winchester
 	name = "lever-action rifle box"
 	desc = "A suspicious looking box containing a lever-action rifle and some spare ammo to it."
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/winchester/populate_contents()
-	new /obj/item/gun/projectile/boltgun/levergun(src)
-	new /obj/item/ammo_magazine/slmagnum(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/boltgun/levergun(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/slmagnum(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/lshotgun
 	name = "lever shotgun box"
 	desc = "lever-action shotgun kit"
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/lshotgun/populate_contents()
-	new /obj/item/gun/projectile/boltgun/levergun/shotgun(src)
-	new /obj/item/ammo_casing/shotgun/prespawned(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/gun/projectile/boltgun/levergun/shotgun(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_casing/shotgun/prespawned(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
  /obj/item/storage/box/syndie_kit/pug
 	name = "pug box"
 	desc = "Pug kit with one M12 buckshot mag"
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/storage/box/syndie_kit/pug/populate_contents()
-	new /obj/item/gun/projectile/shotgun/bojevic(src)
-	new /obj/item/ammo_magazine/m12/pellet(src)
+	var/list/spawnedAtoms = list()
 
+	spawnedAtoms.Add(new /obj/item/gun/projectile/shotgun/bojevic(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/ammo_magazine/m12/pellet(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/briefcase/antimaterial_rifle
 	desc = "An ominous leather briefcase that has the unmistakeable smell of old, stale cigarette smoke, and gives those who look at it a bad feeling."
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/briefcase/antimaterial_rifle/populate_contents()
-	new /obj/item/ammo_casing/antim(src)
-	new /obj/item/part/gun/frame/heavysniper(src)
-	new /obj/item/part/gun/modular/grip/serb(src)
-	new /obj/item/part/gun/modular/mechanism/boltgun(src)
-	new /obj/item/part/gun/modular/barrel/antim(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/ammo_casing/antim(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/part/gun/frame/heavysniper(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/part/gun/modular/grip/serb(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/part/gun/modular/mechanism/boltgun(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/part/gun/modular/barrel/antim(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/toxin
 	name = "toxin kit"
 	desc = "An apple will not be enough to keep the doctor away after this."
 
 /obj/item/storage/box/syndie_kit/toxin/populate_contents()
-	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
-	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
-	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
-	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
-	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
-	new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(src)
-	new /obj/item/reagent_containers/syringe(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/glass/beaker/vial/random/toxin(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/syringe(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/cigarette
 	name = "\improper Tricky smokes"
 	desc = "Comes with the following brands of cigarettes, in this order: 2xFlash, 2xSmoke, 1xMindBreaker, 1xTricordrazine. Avoid mixing them up."
 
 /obj/item/storage/box/syndie_kit/cigarette/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	var/obj/item/storage/fancy/cigarettes/pack
-	pack = new /obj/item/storage/fancy/cigarettes(src)
+	pack = spawnedAtoms.Add(new /obj/item/storage/fancy/cigarettes(NULLSPACE))
 	fill_cigarre_package(pack, list("aluminum" = 5, "potassium" = 5, "sulfur" = 5))
 	pack.desc += " 'F' has been scribbled on it."
 
-	pack = new /obj/item/storage/fancy/cigarettes(src)
+	pack = spawnedAtoms.Add(new /obj/item/storage/fancy/cigarettes(NULLSPACE))
 	fill_cigarre_package(pack, list("aluminum" = 5, "potassium" = 5, "sulfur" = 5))
 	pack.desc += " 'F' has been scribbled on it."
 
-	pack = new /obj/item/storage/fancy/cigarettes(src)
+	pack = spawnedAtoms.Add(new /obj/item/storage/fancy/cigarettes(NULLSPACE))
 	fill_cigarre_package(pack, list("potassium" = 5, "sugar" = 5, "phosphorus" = 5))
 	pack.desc += " 'S' has been scribbled on it."
 
-	pack = new /obj/item/storage/fancy/cigarettes(src)
+	pack = spawnedAtoms.Add(new /obj/item/storage/fancy/cigarettes(NULLSPACE))
 	fill_cigarre_package(pack, list("potassium" = 5, "sugar" = 5, "phosphorus" = 5))
 	pack.desc += " 'S' has been scribbled on it."
 
-	pack = new /obj/item/storage/fancy/cigarettes(src)
+	pack = spawnedAtoms.Add(new /obj/item/storage/fancy/cigarettes(NULLSPACE))
 	// Dylovene. Going with 1.5 rather than 1.6666666...
 	fill_cigarre_package(pack, list("potassium" = 1.5, "nitrogen" = 1.5, "silicon" = 1.5))
 	// Mindbreaker
@@ -293,11 +371,13 @@
 
 	pack.desc += " 'MB' has been scribbled on it."
 
-	pack = new /obj/item/storage/fancy/cigarettes(src)
+	pack = spawnedAtoms.Add(new /obj/item/storage/fancy/cigarettes(NULLSPACE))
 	pack.reagents.add_reagent("tricordrazine", 15 * pack.storage_slots)
 	pack.desc += " 'T' has been scribbled on it."
 
-	new /obj/item/flame/lighter/zippo(src)
+	spawnedAtoms.Add(new /obj/item/flame/lighter/zippo(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /proc/fill_cigarre_package(obj/item/storage/fancy/cigarettes/C, list/reagents)
 	for(var/reagent in reagents)
@@ -308,8 +388,12 @@
 	desc = "Kit for confounding organic and synthetic entities alike."
 
 /obj/item/storage/box/syndie_kit/ewar_voice/populate_contents()
-	new /obj/item/rig_module/electrowarfare_suite(src)
-	new /obj/item/rig_module/voice(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/rig_module/electrowarfare_suite(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/rig_module/voice(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/spy_sensor
 	name = "sensor kit"
@@ -328,15 +412,20 @@
 	storage_slots = 5
 
 /obj/item/storage/box/syndie_kit/randomstim/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i, i < storage_slots , i++)
 		var/stim = pick(subtypesof(/obj/item/reagent_containers/syringe/stim))
-		new stim(src)
+		spawnedAtoms.Add(new stim(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/pickle
 	name = "Pickle box"
 	desc = "Pickle."
 	icon_state = "box_of_doom_big"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	prespawned_content_type = /obj/item/reagent_containers/food/snacks/pickle
 
 /obj/item/storage/box/syndie_kit/gentleman_kit
@@ -344,18 +433,26 @@
 	desc = "Cane with hidden sword and white insulated gloves."
 
 /obj/item/storage/box/syndie_kit/gentleman_kit/populate_contents()
-	new /obj/item/tool/cane/concealed(src)
-	new /obj/item/clothing/gloves/color/white/insulated(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/tool/cane/concealed(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/clothing/gloves/color/white/insulated(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/cleanup_kit
 	name = "\improper Crime Scene Cleanup Kit"
 	desc = "Say good-fucking-bye to the evidence."
 
 /obj/item/storage/box/syndie_kit/cleanup_kit/populate_contents()
-	new /obj/item/soap/syndie(src)
-	new /obj/item/bodybag/expanded(src)
-	new /obj/item/grenade/chem_grenade/cleaner(src)
-	new /obj/item/reagent_containers/spray/cleaner(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/soap/syndie(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/bodybag/expanded(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/grenade/chem_grenade/cleaner(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/spray/cleaner(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/syndie_kit/slmagnum
 	name = ".40 speedloader box"

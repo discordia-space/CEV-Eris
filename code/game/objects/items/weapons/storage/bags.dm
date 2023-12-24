@@ -34,8 +34,8 @@
 	icon_state = "trashbag0"
 	item_state = "trashbag"
 
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_SMALL
 	can_hold = list() // any
 	cant_hold = list(/obj/item/disk/nuclear)
 	max_storage_space = DEFAULT_NORMAL_STORAGE
@@ -70,7 +70,7 @@
 	name = "trash bag of holding"
 	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
 	icon_state = "bluetrashbag"
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	spawn_blacklisted = TRUE
@@ -93,8 +93,8 @@
 	icon_state = "plasticbag"
 	item_state = "plasticbag"
 
-	w_class = ITEM_SIZE_BULKY
-	max_w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE
 	can_hold = list() // any
 
@@ -108,9 +108,9 @@
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
 	slot_flags = SLOT_BELT | SLOT_POCKET
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	max_storage_space = 200
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/ore)
 
 /obj/item/storage/bag/ore/holding
@@ -118,7 +118,7 @@
 	desc = "A revolution in convenience, this satchel allows for infinite ore or produce storage. It's been outfitted with anti-malfunction safety measures."
 	icon_state = "satchel_bspace"
 	max_storage_space = INFINITY
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 4, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
 	can_hold = list(/obj/item/ore,
@@ -141,8 +141,8 @@
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbag"
 	max_storage_space = 100
-	max_w_class = ITEM_SIZE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_hold = list(/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/seeds,
 		/obj/item/grown,
@@ -163,7 +163,7 @@
 	desc = "A patented storage system designed for any kind of mineral sheet."
 
 	var/capacity = 300; //the number of sheets it can carry.
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	storage_slots = 7
 	allow_quick_empty = TRUE // this function is superceded
 
@@ -213,7 +213,7 @@
 		if(!S.amount)
 			qdel(S)
 		else
-			S.loc = src
+			S.forceMove(src)
 
 	refresh_all()
 	update_icon()
@@ -271,8 +271,8 @@
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
 	storage_slots = 40
 	max_storage_space = 100
-	max_w_class = ITEM_SIZE_NORMAL
-	w_class = ITEM_SIZE_HUGE
+	max_volumeClass = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/coin,
 		/obj/item/spacecash)
 

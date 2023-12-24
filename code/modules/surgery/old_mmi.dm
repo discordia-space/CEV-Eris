@@ -74,7 +74,7 @@
 	var/obj/item/organ/mmi_holder/holder = new(target, 1)
 	target.internal_organs_by_efficiency[BP_BRAIN] += holder
 	user.drop_from_inventory(tool)
-	tool.loc = holder
+	tool.forceMove(holder)
 	holder.stored_mmi = tool
 	holder.update_from_mmi()
 

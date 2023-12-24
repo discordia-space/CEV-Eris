@@ -6,13 +6,16 @@
 // (if you dig hole in 10 seconds then 50 ADDITIONAL_TIME_LOWHEALTH will add 0 on full health, 2.5sec on 50% health and 5sec ~0% health)
 #define ADDITIONAL_TIME_LOWHEALTH 60
 
+GLOBAL_LIST(melleExtrasCache)
+
 /obj/item/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
+	maxUpgrades = 3
 
 	//spawn values
 	bad_type = /obj/item/tool
@@ -64,7 +67,7 @@
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities	//This var will REPLACE tool_qualities when tool will be toggled on.
-	var/switched_on_force
+	var/list/switchedOn = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	var/switched_on_hitsound
 	var/switched_off_qualities	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
@@ -92,6 +95,13 @@
 
 	if(use_stock_cost)
 		stock = max_stock
+	if(toggleable)
+		if(!GLOB.melleExtrasCache)
+			GLOB.melleExtrasCache = list()
+		if(!GLOB.melleExtrasCache["[type]-t"])
+			GLOB.melleExtrasCache["[type]-t"] = toggleable ? switchedOn.Copy() : switchedOn
+		if(!(maxUpgrades || objectFlags & OF_UNIQUEMELLEHANDLER))
+			switchedOn = GLOB.melleExtrasCache["[type]-t"]
 
 	if(maxHealth)
 		health = maxHealth
@@ -115,6 +125,7 @@
 
 //For killing processes like hot spots
 /obj/item/tool/Destroy()
+	switchedOn = null
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
@@ -223,14 +234,14 @@
 	data["health_max"] = maxHealth
 	data["health_threshold"] = health_threshold
 
-	data["force"] = force
-	data["force_max"] = initial(force) * 10
+	data["force"] = dhTotalDamage(melleDamages) * (wielded ? wieldedMultiplier : 1 )
+	data["force_max"] = dhTotalDamage(melleDamages)*10
 
 	data["armor_divisor"] = armor_divisor
 
 	data["extra_volume"] = extra_bulk
 
-	data["upgrades_max"] = max_upgrades
+	data["upgrades_max"] = maxUpgrades
 
 	data["edge"] = edge
 	data["sharp"] = sharp
@@ -238,7 +249,7 @@
 	data["forced_broad_strike"] = forced_broad_strike
 	data["screen_shake"] = screen_shake
 	data["push_attack"] = push_attack
-	data["w_class"] = w_class
+	data["volumeClass"] = volumeClass
 
 	// it could be done with catalog using one line but whatever
 	if(item_upgrades.len)
@@ -693,10 +704,8 @@
 	tool_qualities = switched_on_qualities
 	if(switched_on_hitsound)
 		hitsound = switched_on_hitsound
-	if(!isnull(switched_on_force))
-		force = switched_on_force
-		if(wielded)
-			force *= 1.3
+	if(!isnull(switchedOn))
+		melleDamages = switchedOn.Copy()
 	if(glow_color)
 		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
@@ -711,7 +720,7 @@
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
 	hitsound = initial(hitsound)
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
@@ -819,14 +828,14 @@
 
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	force_upgrade_mults = initial(force_upgrade_mults)
 	force_upgrade_mods = initial(force_upgrade_mods)
-	switched_on_force = initial(switched_on_force)
+	switchedOn = GLOB.melleExtrasCache["[type]-t"]:Copy()
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)
-	max_upgrades = initial(max_upgrades)
+	maxUpgrades = initial(maxUpgrades)
 	color = initial(color)
 	sharp = initial(sharp)
 	prefixes = list()
@@ -845,49 +854,49 @@
 	SSnano.update_uis(src)
 
 
-/obj/item/tool/examine(mob/user)
-	if(!..(user,2))
-		return
+/obj/item/tool/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 
 	if(use_power_cost)
 		if(!cell)
-			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
+			description += SPAN_WARNING("There is no cell inside to power the tool \n")
 		else
-			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
+			description += "The charge meter reads [round(cell.percent())]%. \n"
 
 	if(use_fuel_cost)
-		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+		description += "[name] contains [get_fuel()]/[max_fuel] units of fuel! \n"
 
 	if(use_stock_cost)
-		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
+		description += SPAN_NOTICE("it has [stock] / [max_stock] units remaining. \n")
 
 	//Display a bunch of stats but only if they're nondefault values
 	if(precision != 0)
-		to_chat(user, "Precision: [SPAN_NOTICE("[precision]")]")
+		description += "Precision: [SPAN_NOTICE("[precision]")] \n"
 
 	if(workspeed != 1)
-		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
+		description += "Work Speed: [SPAN_NOTICE("[workspeed*100]%")] \n"
 
 	if(item_upgrades.len)
-		to_chat(user, "It has the following upgrades installed:")
+		description += "It has the following upgrades installed: \n"
 		for(var/obj/item/TU in item_upgrades)
-			to_chat(user, SPAN_NOTICE(TU.name))
-
+			description += "[SPAN_NOTICE(TU.name)] \n]"
 	if(health)
 		if(health > maxHealth * 0.95)
-			return
+			description += ""
 		else if(health > maxHealth * 0.80)
-			to_chat(user, "It has a few light scratches.")
+			description += "It has a few light scratches."
 		else if(health > maxHealth * 0.40)
-			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
+			description += SPAN_NOTICE("It shows minor signs of stress and wear.")
 		else if(health > maxHealth * 0.20)
-			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
+			description += SPAN_WARNING("It looks a bit cracked and worn.")
 		else if(health > maxHealth * 0.10)
-			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
+			description += SPAN_WARNING("Whatever use this tool once had is fading fast.")
 		else if(health > maxHealth * 0.05)
-			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
+			description += SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well.")
 		else
-			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
+			description += SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash.")
+
+	..(user, afterDesc = description)
 
 //Recharge the fuel at fueltank, also explode if switched on
 /obj/item/tool/afterattack(obj/O, mob/user, proximity)
@@ -1004,7 +1013,7 @@
 				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 
 
-/obj/item/tool/attack(mob/living/M, mob/living/user, target_zone)
+/obj/item/tool/attack(mob/living/M, mob/living/user, target_zone, damageMultiplier)
 	if(isBroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
@@ -1039,7 +1048,7 @@
 				to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 				return 1
 
-	return ..()
+	return ..(M, user, target_zone, damageMultiplier)
 
 /obj/item/tool/update_icon()
 	cut_overlays()

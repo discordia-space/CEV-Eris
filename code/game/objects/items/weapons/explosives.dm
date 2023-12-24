@@ -6,7 +6,7 @@
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
 	flags = NOBLUDGEON
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 2)
 	var/datum/wires/explosive/c4/wires
 	var/timer = 10
@@ -52,7 +52,7 @@
 	if(do_after(user, 2 SECONDS, target) && in_range(user, target))
 		user.drop_item()
 		src.target = target
-		loc = null
+		forceMove(NULLSPACE)
 
 		if (ismob(target))
 			add_logs(user, target, "planted [name] on")

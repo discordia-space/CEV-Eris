@@ -5,16 +5,21 @@
 	icon_state = "onestar_void"
 	item_state = "onestar_void"
 	armor = list(
-		melee = 14,
-		bullet = 12,
-		energy = 14,
-		bomb = 125,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 40,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 35,
+		ARMOR_BOMB =125,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	siemens_coefficient = 0.35
 	light_overlay = "helmet_light_dual"
 	bad_type = /obj/item/clothing/head/space/void/onestar
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17
+	)
 
 /obj/item/clothing/suit/space/void/onestar
 	name = "One Star Voidsuit"
@@ -23,12 +28,12 @@
 	item_state = "onestar_void"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-		melee = 14,
-		bullet = 12,
-		energy = 14,
-		bomb = 125,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 40,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 35,
+		ARMOR_BOMB =125,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	siemens_coefficient = 0.35
 	breach_threshold = 10
@@ -37,3 +42,11 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/sideguards/excelalloy,
+		/obj/item/armor_component/sideguards/excelalloy
+
+	)

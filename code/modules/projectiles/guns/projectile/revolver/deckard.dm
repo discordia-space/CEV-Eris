@@ -11,8 +11,6 @@
 	price_tag = 3100 //one of most robust revolvers here
 	fire_sound = 'sound/weapons/guns/fire/deckard_fire.ogg'
 	damage_multiplier = 1.35
-	penetration_multiplier = 0.5
-	proj_step_multiplier = 0.8
 	init_recoil = HANDGUN_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	gun_parts = list(/obj/item/part/gun/frame/deckard = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/revolver = 1, /obj/item/part/gun/modular/barrel/magnum = 1)

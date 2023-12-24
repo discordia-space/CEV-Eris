@@ -752,7 +752,8 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		if(istype(I, /obj/item) )
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			var/obj/item/W = I
-			if(W.force <15)
+			var/damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+			if(damage <15)
 				for (var/mob/O in hearers(5, src.loc))
 					O.show_message("[user.name] hits the [src.name] with the [W.name] with no visible effect." )
 					playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
@@ -761,7 +762,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 				if(src.hitstaken==3)
 					for (var/mob/O in hearers(5, src.loc))
 						O.show_message("[user.name] smashes the [src.name]!" )
-					src.isbroken=1
+					src.isbroken=TRUE
 					playsound(src.loc, 'sound/effects/Glassbr3.ogg', 100, 1)
 				else
 					for (var/mob/O in hearers(5, src.loc))
@@ -810,7 +811,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	desc = "An issue of The Griffon, the newspaper circulating aboard most stations."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "newspaper"
-	w_class = ITEM_SIZE_SMALL	//Let's make it fit in trashbags!
+	volumeClass = ITEM_SIZE_SMALL	//Let's make it fit in trashbags!
 	attack_verb = list("bapped")
 	spawn_tags = SPAWN_TAG_JUNK
 	rarity_value = 10

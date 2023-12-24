@@ -105,9 +105,9 @@
 	RefreshParts()
 
 /obj/machinery/reagentgrinder/industrial/disgorger/examine(mob/user)
-	..()
 	var/accepted
 	var/blacklisted
+	var/description = ""
 
 	if(accepted_objects?.len)
 		for(var/object in accepted_objects)
@@ -129,11 +129,13 @@
 
 	if(accepted)
 		accepted = copytext(accepted, 1, length(accepted) - 1)
-		to_chat(user, SPAN_NOTICE("<i>Accepts [accepted].</i>"))
+		description += SPAN_NOTICE("<i>Accepts [accepted].</i> \n")
 
 	if(blacklisted)
 		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
-		to_chat(user, SPAN_WARNING("Rejects objects with the following reagents: [blacklisted]."))
+		description += SPAN_WARNING("Rejects objects with the following reagents: [blacklisted].")
+
+	..(user, afterDesc = description)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
@@ -422,11 +424,10 @@
 						Other types of epithelium are derived from the endoderm."
 	icon = 'icons/obj/machines/disgorger.dmi'
 	icon_state = "carne_cansada"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_BIOMATTER = 60)
 	hitsound = 'sound/effects/squelch1.ogg'
 	attack_verb = list("slapped")
-	force = WEAPON_FORCE_HARMLESS
 	structure_damage_factor = 0
 	var/squelch_cooldown = 0.5 SECONDS
 	var/last_used

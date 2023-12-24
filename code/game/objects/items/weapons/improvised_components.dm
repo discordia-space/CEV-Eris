@@ -25,9 +25,15 @@
 	icon_state = "wiredrod"
 	item_state = "rods"
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 12)
+		)
+	)
+	wieldedMultiplier = 1.5
+	WieldedattackDelay = 2
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1

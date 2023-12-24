@@ -20,10 +20,9 @@
 	var/portable = TRUE
 
 /obj/machinery/recharger/examine(user)
-	..()
 	var/obj/item/cell/cell = charging?.get_cell()
-	if(cell)
-		to_chat(user, "The charge meter reads [round(cell.percent())]%.")
+	..(user, afterDesc = cell ? "The charge meter reads [round(cell.percent())]%." : "" )
+
 
 /obj/machinery/recharger/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))

@@ -9,14 +9,12 @@
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = CYCLE_CASINGS
 	max_shells = 2
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_HUGE
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	init_recoil = RIFLE_RECOIL(1.7)
 	damage_multiplier = 1
-	penetration_multiplier = 0.1
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'

@@ -96,7 +96,7 @@
 
 		else if (A.CanMouseDrop(loc, user))
 			//Mice can push around pens and paper, but not heavy tools
-			if (O.w_class <= user.can_pull_size)
+			if (O.volumeClass <= user.can_pull_size)
 				O.forceMove(loc)
 				set_pixel_click_offset(O, params, animate = TRUE)
 				return
@@ -116,7 +116,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
+			target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,8))), BP_HEAD, src, 1, 1, FALSE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>Slammed [target.name] ([target.ckey] against over \the [src])</font>"
@@ -133,8 +133,8 @@
 						SPAN_DANGER("\The [S] slices [target]'s face messily!"),
 						SPAN_DANGER("\The [S] slices your face messily!")
 					)
-					target.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
-					if(prob(2))
+					target.damage_through_armor(list(ARMOR_SLASH=list(DELEM(BRUTE,10))), BP_HEAD, src, 1, 1, FALSE)
+					if(prob(35))
 						target.embed(S, def_zone = BP_HEAD)
 		else
 			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))

@@ -73,7 +73,7 @@
 				I.forceMove(get_turf(src))
 
 			for(var/obj/item/I in src)
-				if(I.w_class > ITEM_SIZE_SMALL)
+				if(I.volumeClass > ITEM_SIZE_SMALL)
 					I.forceMove(get_turf(src))
 			qdel(src)
 		if(DROPLIMB_BLUNT)
@@ -91,7 +91,7 @@
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)
-				if(I.w_class <= ITEM_SIZE_SMALL)
+				if(I.volumeClass <= ITEM_SIZE_SMALL)
 					qdel(I)
 					continue
 				I.forceMove(get_turf(src))

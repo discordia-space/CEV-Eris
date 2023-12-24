@@ -120,11 +120,12 @@
 	..()
 
 /obj/machinery/power/os_turret/examine(mob/user)
-	..()
+	var/description = ""
 	if(should_target_players)
-		to_chat(user, SPAN_NOTICE("It is set to target humans, androids, and cyborgs."))
+		description += SPAN_NOTICE("It is set to target humans, androids, and cyborgs.")
 	else
-		to_chat(user, SPAN_NOTICE("It is set to target golems and large bugs."))
+		description += SPAN_NOTICE("It is set to target golems and large bugs.")
+	..(user, afterDesc = description)
 
 /obj/machinery/power/os_turret/update_icon()
 	underlays.Cut()
@@ -168,12 +169,12 @@
 
 	// If the turret is friendly, you can unanchor it. If not, you bash it.
 	if(should_target_players)
-		if(!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
+		if(!(I.flags & NOBLUDGEON) && dhTotalDamage(I.melleDamages) && !(stat & BROKEN))
 			// If the turret was attacked with the intention of harming it:
 			user.do_attack_animation(src)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-			if(take_damage(I.force * I.structure_damage_factor))
+			if(take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) * I.structure_damage_factor))
 				playsound(src, 'sound/weapons/smash.ogg', 70, 1)
 			else
 				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
@@ -255,6 +256,7 @@
 		return
 	set_dir(get_dir(src, target))
 	var/obj/item/projectile/P = new projectile(loc)
+	P.PrepareForLaunch()
 	P.launch(target, def_zone)
 	playsound(src, shot_sound, 60, 1)
 
@@ -283,9 +285,10 @@
 	var/target_superior_mobs = FALSE
 
 /obj/item/electronics/circuitboard/os_turret/examine(user, distance)
-	. = ..()
+	var/description = ""
 	if(target_superior_mobs)
-		to_chat(user, SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems."))
+		description += SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems.")
+	..(user, afterDesc = description)
 
 /obj/item/electronics/circuitboard/os_turret/laser
 	name = T_BOARD("One Star laser turret")
@@ -303,7 +306,11 @@
 
 /obj/item/projectile/bullet/gauss
 	name = "ferrous slug"
-	damage_types = list(BRUTE = 15)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BRUTE, 15)
+		)
+	)
 	armor_divisor = 3
 	penetrating = 2
 	recoil = 30
@@ -314,7 +321,11 @@
 /obj/item/projectile/beam/pulsed_laser
 	name = "pulsed beam"
 	icon_state = "beam_blue"
-	damage_types = list(BURN = 20)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 20)
+		)
+	)
 	armor_divisor = 2
 	stutter = 3
 	recoil = 10

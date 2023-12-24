@@ -590,7 +590,7 @@ There are 9 wires.
 		to_chat(usr, SPAN_WARNING("You can't do this."))
 		return
 	var/obj/item/tool/T = usr.get_active_hand()
-	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
+	if(istype(T) && T.volumeClass >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
 		if(!density)
 			usr.drop_item()
 			force_wedge_item(T)
@@ -627,9 +627,7 @@ There are 9 wires.
 	return ..()
 
 /obj/machinery/door/airlock/examine(mob/user)
-	..()
-	if(wedged_item)
-		to_chat(user, "You can see \icon[wedged_item] [wedged_item] wedged into it.")
+	..(user, afterDesc = wedged_item ?  "You can see \icon[wedged_item] [wedged_item] wedged into it." : "")
 
 /obj/machinery/door/airlock/proc/generate_wedge_overlay()
 	var/cache_string = "[wedged_item.icon]||[wedged_item.icon_state]||[wedged_item.overlays.len]||[wedged_item.underlays.len]"
@@ -1175,12 +1173,13 @@ There are 9 wires.
 /mob/living/airlock_crush(var/crush_damage)
 	. = ..()
 
-	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	damage_through_armor(0.7 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_HEAD, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_CHEST, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_L_LEG, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_R_LEG, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_L_ARM, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_R_ARM, src, 1, 1, FALSE)
+
 
 	SetWeakened(5)
 	var/turf/T = get_turf(src)
@@ -1211,7 +1210,7 @@ There are 9 wires.
 					return
 				if(istool(AM))
 					var/obj/item/tool/T = AM
-					if(T.w_class >= ITEM_SIZE_NORMAL)
+					if(T.volumeClass >= ITEM_SIZE_NORMAL)
 						operating = TRUE
 						density = TRUE
 						do_animate("closing")
@@ -1382,8 +1381,8 @@ There are 9 wires.
 //Override to check locked var
 /obj/machinery/door/airlock/hit(var/mob/user, var/obj/item/I)
 	var/obj/item/W = I
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
-	var/calc_damage = W.force*W.structure_damage_factor
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + (I.wielded ? I.WieldedattackDelay : I.attackDelay )*1.5 )
+	var/calc_damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))*W.structure_damage_factor
 	var/quiet = FALSE
 	if (istool(I))
 		var/obj/item/tool/T = I
@@ -1399,7 +1398,7 @@ There are 9 wires.
 	else
 		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
-		take_damage(W.force)
+		take_damage(calc_damage)
 
 
 /obj/machinery/door/airlock/take_damage(var/damage)

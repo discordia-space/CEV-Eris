@@ -1,7 +1,7 @@
 /obj/item/device/suit_cooling_unit
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	icon = 'icons/obj/device.dmi'
 	icon_state = "suitcooler0"
 	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
@@ -9,7 +9,11 @@
 
 	//copied from tank.dm
 	flags = CONDUCT
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4
@@ -150,20 +154,21 @@
 		icon_state = "suitcooler0"
 
 /obj/item/device/suit_cooling_unit/examine(mob/user)
-	if(!..(user, 1))
-		return
-
+	var/description = ""
 	if(on)
 		if(attached_to_suit(loc))
-			to_chat(user, "It's switched on and running.")
+			description += "It's switched on and running. \n"
 		else
-			to_chat(user, "It's switched on, but not attached to anything.")
+			description += "It's switched on, but not attached to anything. \n"
 	else
-		to_chat(user, "It is switched off.")
+		description += "It is switched off. \n"
 
 	if(cover_open)
 		if(cell)
-			to_chat(user, "The panel is open, exposing the [cell].")
+			description += "The panel is open, exposing the [cell]. \n"
 		else
-			to_chat(user, "The panel is open.")
+			description += "The panel is open. \n"
+	..(user, afterDesc = description)
+
+
 

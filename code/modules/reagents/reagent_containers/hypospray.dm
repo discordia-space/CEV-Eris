@@ -87,7 +87,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector
 	name = "autoinjector (inaprovaline)"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	icon_state = "autoinjector"
 	item_state = "autoinjector"

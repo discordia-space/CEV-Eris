@@ -15,7 +15,7 @@
 		return
 	var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
 	C.set_dir(dir)
-	part.loc = loc
+	part.forceMove(loc)
 	part.master = null
 	part = null
 	qdel(src)

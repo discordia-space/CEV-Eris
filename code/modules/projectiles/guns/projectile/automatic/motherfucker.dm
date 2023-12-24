@@ -4,8 +4,7 @@
 	icon = 'icons/obj/guns/projectile/motherfucker.dmi'
 	icon_state = "motherfucker"
 	item_state = "motherfucker"
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_DANGEROUS
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_PISTOL
@@ -13,7 +12,6 @@
 	handle_casings = EJECT_CASINGS
 	max_shells = 54
 	damage_multiplier = 1
-	penetration_multiplier = 0.3 // and good AP
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 19, MATERIAL_PLASTIC = 10, MATERIAL_WOOD = 16)
 	price_tag = 300

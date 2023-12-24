@@ -313,7 +313,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
+				O.forceMove(src)
 				src.r_ear = O
 				O.screen_loc = "4,3"
 				O.layer = ABOVE_HUD_LAYER
@@ -325,7 +325,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
+				O.forceMove(src)
 				src.l_ear = O
 				O.screen_loc = "4,2"
 				O.layer = ABOVE_HUD_LAYER
@@ -439,12 +439,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	return items
 
-/mob/living/carbon/human/get_max_w_class()
-	var/get_max_w_class = 0
+/mob/living/carbon/human/get_max_volumeClass()
+	var/get_max_volumeClass = 0
 	for(var/obj/item/clothing/C in get_equipped_items())
-		if(C.w_class > get_max_w_class)
-			get_max_w_class = C.w_class
-	return get_max_w_class
+		if(C.volumeClass > get_max_volumeClass)
+			get_max_volumeClass = C.volumeClass
+	return get_max_volumeClass
 
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0

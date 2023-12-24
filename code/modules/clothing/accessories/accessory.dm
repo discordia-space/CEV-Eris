@@ -1,23 +1,11 @@
 /obj/item/clothing/accessory
-	name = "tie"
-	desc = "A neosilk clip-on tie."
-	icon = 'icons/inventory/accessory/icon.dmi'
-	icon_state = "bluetie"
-	item_state = ""	//no inhands
-	slot_flags = SLOT_ACCESSORY_BUFFER
-	w_class = ITEM_SIZE_SMALL
-	bad_type = /obj/item/clothing/accessory
 	var/slot = "decor"
-	var/obj/item/clothing/has_suit		//the suit the tie may be attached to
+	var/obj/item/clothing/attachedTo
 	var/image/inv_overlay	//overlay used when attached to clothing.
 	var/image/mob_overlay
 	var/overlay_state
 	var/isRemovable = TRUE
-
-/obj/item/clothing/accessory/Destroy()
-	if(has_suit)
-		on_removed()
-	return ..()
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
 	if(!inv_overlay)
@@ -46,43 +34,57 @@
 /obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
 	if(!istype(S))
 		return
-	has_suit = S
-	loc = has_suit
-	has_suit.overlays += get_inv_overlay()
+	attachedTo = S
+	forceMove(attachedTo)
+	attachedTo.overlays += get_inv_overlay()
 
-	to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [has_suit]."))
+	to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [attachedTo]."))
+
 	src.add_fingerprint(user)
 
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
-	if(!has_suit)
+	if(!attachedTo)
 		return
-	has_suit.overlays -= get_inv_overlay()
-	has_suit = null
+	attachedTo.overlays -= get_inv_overlay()
+	attachedTo = null
 	if(user)
 		usr.put_in_hands(src)
 		src.add_fingerprint(user)
 	else
 		src.forceMove(get_turf(src))
 
-//default attackby behaviour
-/obj/item/clothing/accessory/attackby(obj/item/I, mob/user)
-	..()
+/obj/item/clothing/accessory/Destroy()
+	if(attachedTo)
+		on_removed()
+	return ..()
 
 //default attack_hand behaviour
 /obj/item/clothing/accessory/attack_hand(mob/user as mob)
-	if(has_suit)
+	if(attachedTo)
 		return	//we aren't an object on the ground so don't call parent
 	..()
 
-/obj/item/clothing/accessory/blue
+
+/obj/item/clothing/accessory/tie
+	name = "tie"
+	desc = "A neosilk clip-on tie."
+	icon = 'icons/inventory/accessory/icon.dmi'
+	icon_state = "bluetie"
+	item_state = ""	//no inhands
+	slot_flags = SLOT_ACCESSORY_BUFFER
+	volumeClass = ITEM_SIZE_SMALL
+	bad_type = /obj/item/clothing/accessory
+
+
+/obj/item/clothing/accessory/tie/blue
 	name = "blue tie"
 	icon_state = "bluetie"
 
-/obj/item/clothing/accessory/red
+/obj/item/clothing/accessory/tie/red
 	name = "red tie"
 	icon_state = "redtie"
 
-/obj/item/clothing/accessory/horrible
+/obj/item/clothing/accessory/tie/horrible
 	name = "horrible tie"
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
@@ -198,15 +200,15 @@
 	desc = "Plates from an armored vest, now usable to reinforce clothes."
 	slot = "armor"
 	icon_state = "armor"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	isRemovable = FALSE
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	matter = list(
 		MATERIAL_STEEL = 8,
@@ -216,22 +218,22 @@
 
 /obj/item/clothing/accessory/armor/on_attached()
 	..()
-	has_suit.armor = armor
-	has_suit.style -= 2
-	has_suit.slowdown += slowdown
-	has_suit.body_parts_covered = UPPER_TORSO|LOWER_TORSO // Tears up the clothes
+	attachedTo.armor = armor
+	attachedTo.style -= 2
+	attachedTo.slowdown += slowdown
+	attachedTo.body_parts_covered = UPPER_TORSO|LOWER_TORSO // Tears up the clothes
 
 /obj/item/clothing/accessory/armor/bullet
 	name = "bulletproof armor plates"
 	desc = "Plates from a bulletproof vest, now usable to reinforce clothes."
 	icon_state = "armor_bullet"
 	armor = list(
-		melee = 5,
-		bullet = 11,
-		energy = 5,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 11,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
@@ -244,12 +246,12 @@
 	desc = "Plates from a platecarrier, now usable to reinforce clothes."
 	icon_state = "armor_platecarrier"
 	armor = list(
-		melee = 5,
-		bullet = 10,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	matter = list(
 		MATERIAL_STEEL = 10,
@@ -261,12 +263,12 @@
 	desc = "Plates from riot armor, now usable to reinforce clothes."
 	icon_state = "armor_riot"
 	armor = list(
-		melee = 13,
-		bullet = 6,
-		energy = 6,
-		bomb = 50,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 6,
+		ARMOR_ENERGY = 6,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	slowdown = MEDIUM_SLOWDOWN
 
@@ -275,12 +277,12 @@
 	desc = "Sheets from ablative armor, now usable to reinforce clothes. The shape somehow feels off."
 	icon_state = "armor_ablative"
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 10,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 //Ponchos, Capes and Cloaks//

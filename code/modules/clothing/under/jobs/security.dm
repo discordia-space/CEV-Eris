@@ -98,12 +98,12 @@
 		)
 	allowed = list(/obj/item/reagent_containers/food/snacks/candy_corn, /obj/item/pen)
 	armor = list(
-		melee = 2,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	siemens_coefficient = 0.8
 	body_parts_covered = NONE

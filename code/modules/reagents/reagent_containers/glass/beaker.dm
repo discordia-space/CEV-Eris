@@ -105,7 +105,7 @@
 	lid_icon_state = "lid_vial"
 	matter = list(MATERIAL_GLASS = 1)
 	volume = 30
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
 	spawn_tags = SPAWN_TAG_VIAL
@@ -194,7 +194,7 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	matter = list(MATERIAL_PLASTIC = 2)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120,200)
 	volume = 200

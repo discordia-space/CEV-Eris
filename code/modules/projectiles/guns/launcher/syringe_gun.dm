@@ -8,8 +8,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = WEAPON_FORCE_WEAK
-	force = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	var/obj/item/reagent_containers/syringe/syringe
 
 
@@ -24,7 +23,7 @@
 		syringe = I
 		to_chat(user, SPAN_NOTICE("You carefully insert [syringe] into [src]."))
 		user.remove_from_mob(syringe)
-		syringe.loc = src
+		syringe.forceMove(src)
 		sharp = TRUE
 		name = "syringe dart"
 		update_icon()
@@ -69,8 +68,7 @@
 	description_info = "Won't penetrate thick materials"
 	icon_state = "syringegun"
 	item_state = "syringegun"
-	w_class = ITEM_SIZE_NORMAL
-	force = 7
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
 	gun_parts = list(/obj/item/stack/material/plastic = 5)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -132,7 +130,7 @@
 			to_chat(user, SPAN_WARNING("[src] is full!"))
 			return
 		user.remove_from_mob(C)
-		C.loc = src
+		C.forceMove(src)
 		darts += C //add to the end
 		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
 	else

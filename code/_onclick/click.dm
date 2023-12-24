@@ -342,6 +342,7 @@
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
 	mob_playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
+	LE.PrepareForLaunch()
 	LE.launch(A)
 
 /mob/living/carbon/human/LaserEyes()

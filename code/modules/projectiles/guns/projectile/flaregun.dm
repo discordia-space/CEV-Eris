@@ -8,7 +8,7 @@
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	bulletinsert_sound = 'sound/weapons/guns/interact/bullet_insert.ogg'
 	fire_sound = 'sound/weapons/guns/interact/hpistol_cock.ogg'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS
@@ -90,8 +90,7 @@
 	desc = "Flare gun made of cheap plastic, repurposed to fire shotgun shells."
 	icon_state = "empty_r"
 	caliber = CAL_SHOTGUN
-	damage_multiplier = 0.8
-	penetration_multiplier = 0.3
+	damage_multiplier = 0.7
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 11)

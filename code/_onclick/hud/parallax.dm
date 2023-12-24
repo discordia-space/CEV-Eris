@@ -8,6 +8,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	blend_mode = BLEND_MULTIPLY
 	plane = PLANE_SPACE_PARALLAX
 	anchored = TRUE
+	weight = 0
 	var/mob/owner
 
 /obj/parallax/New(mob/M)

@@ -21,7 +21,7 @@
 	description_info = "A highly capable modular RIG system. Can hold modules which provide additional functionality. Also has a chance to completely deflect ballistic projectiles depending on the bullet protection."
 	req_one_access = list()
 	req_access = list()
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_RIG
 	rarity_value = 10
@@ -30,12 +30,12 @@
 
 	// These values are passed on to all component pieces.
 	armor = list(
-		melee = 9,
-		bullet = 7,
-		energy = 7,
-		bomb = 100,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 9,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =100,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -124,31 +124,32 @@
 	if(wearer && visor && visor && visor.vision && visor.vision.glasses && (!helmet || (wearer.head && helmet == wearer.head)))
 		return visor.vision.glasses
 
-/obj/item/rig/examine()
-	..()
+/obj/item/rig/examine(user)
+	var/description = ""
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			to_chat(usr, "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed.")
+			description += "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed. \n"
 
 	if(loc == usr)
-		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
-		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
+		description += "The maintenance panel is [open ? "open" : "closed"]. \n"
+		description += "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"]. \n"
 
 	if(ablative_max) // If ablative armor is replaced with a module system, this should be called as a proc on the module
 		var/ablative_ratio = ablative_armor / ablative_max
 		switch(ablative_ratio)
 			if(1) // First we get this over with
-				to_chat(usr, "The armor system reports pristine condition.")
+				description += "The armor system reports pristine condition."
 			if(-INFINITY to 0.1)
-				to_chat(usr, "The armor system reports system error. Repairs mandatory.")
+				description += "The armor system reports system error. Repairs mandatory."
 			if(0.1 to 0.5)
-				to_chat(usr, "The armor system reports critical failure! Repairs mandatory.")
+				description += "The armor system reports critical failure! Repairs mandatory."
 			if(0.5 to 0.8)
-				to_chat(usr, "The armor system reports heavy damage. Repairs required.")
+				description += "The armor system reports heavy damage. Repairs required."
 			if(0.8 to 1)
-				to_chat(usr, "The armor system reports insignificant damage. Repairs advised.")
+				description += "The armor system reports insignificant damage. Repairs advised."
+	..(user, afterDesc = description)
 
 /obj/item/rig/Initialize()
 	. = ..()

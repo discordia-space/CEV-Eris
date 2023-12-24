@@ -6,9 +6,8 @@
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	item_charge_meter = TRUE
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BELT|SLOT_BACK
-	force = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8)
 	price_tag = 4500
 	fire_sound = 'sound/weapons/energy/burn.ogg'
@@ -111,7 +110,7 @@
 	icon_state = "brigador"
 	can_dual = TRUE
 	charge_meter = FALSE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	twohanded = FALSE
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	suitable_cell = /obj/item/cell/small

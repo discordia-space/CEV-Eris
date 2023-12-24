@@ -93,8 +93,7 @@
 	var/cooldown
 
 /obj/item/device/nanite_container/examine(mob/user)
-	..()
-	to_chat(user, SPAN_NOTICE("It has [charges] charges left."))
+	..(user , afterDesc = SPAN_NOTICE("It has [charges] charges left."))
 
 /obj/item/device/nanite_container/attack_self(var/mob/user)
 	if(istype(user, /mob/living/silicon))
@@ -125,8 +124,7 @@
 	var/charges = 3
 
 /obj/item/device/smokescreen/examine(mob/user)
-	..()
-	to_chat(user, SPAN_NOTICE("It has [charges] charges left."))
+	..(user, afterDesc = SPAN_NOTICE("It has [charges] charges left."))
 
 /obj/item/device/smokescreen/attack_self(var/mob/user)
 	if(istype(user, /mob/living/silicon))

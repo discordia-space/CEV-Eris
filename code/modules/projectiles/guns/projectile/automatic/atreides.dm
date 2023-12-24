@@ -6,7 +6,7 @@
 	icon = 'icons/obj/guns/projectile/atreides.dmi'
 	icon_state = "atreides"
 	item_state = "atreides"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
@@ -22,7 +22,6 @@
 	serial_type = "FS"
 
 	damage_multiplier = 0.9
-	penetration_multiplier = -0.2
 	init_recoil = SMG_RECOIL(0.4)
 
 	init_firemodes = list(

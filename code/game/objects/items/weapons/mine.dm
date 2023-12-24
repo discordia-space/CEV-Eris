@@ -3,7 +3,7 @@
 	desc = "An anti-personnel mine. A danger to about everyone except those with a Pulsing tool."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 35)
 	matter_reagents = list("fuel" = 40)
 	layer = BELOW_MOB_LAYER //fixed the wrong layer - Plasmatik

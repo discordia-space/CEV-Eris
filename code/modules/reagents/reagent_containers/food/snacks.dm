@@ -8,7 +8,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = null
 	center_of_mass = list("x"=16, "y"=16)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_COOKED_FOOD
 	bad_type = /obj/item/reagent_containers/food/snacks
 
@@ -215,21 +215,22 @@
 
 	return 0
 
-/obj/item/reagent_containers/food/snacks/examine(mob/user)
-	if(!..(user, 1))
-		return
+/obj/item/reagent_containers/food/snacks/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(junk_food)
-		to_chat(user, SPAN_WARNING("\The [src] is junk food."))
+		description += SPAN_WARNING("\The [src] is junk food.\n")
 	else if(taste_tag.len)
-		to_chat(user, SPAN_NOTICE("\The [src] tastes like [english_list(taste_tag)]."))
+		description += SPAN_NOTICE("\The [src] tastes like [english_list(taste_tag)].\n")
 	if (bitecount==0)
+		..(user, afterDesc = description)
 		return
 	else if (bitecount==1)
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten by someone."))
+		description += SPAN_NOTICE("\The [src] was bitten by someone.")
 	else if (bitecount<=3)
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten [bitecount] time\s."))
+		description += SPAN_NOTICE("\The [src] was bitten [bitecount] time\s.")
 	else
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten several times."))
+		description += SPAN_NOTICE("\The [src] was bitten several times.")
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/storage))
@@ -273,7 +274,7 @@
 		if (hide_item)
 			if(!user.canUnEquip(W))
 				return
-			if (W.w_class >= src.w_class || is_robot_module(W))
+			if (W.volumeClass >= src.volumeClass || is_robot_module(W))
 				return
 
 			to_chat(user, SPAN_WARNING("You slip \the [W] inside \the [src]."))
@@ -289,7 +290,7 @@
 				return
 
 			var/slices_lost = 0
-			if (W.w_class > ITEM_SIZE_NORMAL)
+			if (W.volumeClass > ITEM_SIZE_NORMAL)
 				user.visible_message(SPAN_NOTICE("\The [user] crudely slices \the [src] with [W]."), SPAN_NOTICE("You crudely slice \the [src] with your [W]."))
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
@@ -1125,12 +1126,13 @@
 	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)
 
 /obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+			description += "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic."
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/food/snacks/geneburger
 	name = "flesh burger"
@@ -1146,19 +1148,20 @@
 	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
 
 /obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
+			description += "Looking at \the [src] gives you a sense of darkness, it must be unholy!"
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"
 	desc = "A cockroach egg that has been boiled in salted water. It no longer pulses with an inner life."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "roach_egg"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	bitesize = 4
 	nutriment_amt = 8
 	preloaded_reagents = list("protein" = 14)
@@ -2566,7 +2569,7 @@
 // sliceable is just an organization type path, it doesn't have any additional code or variables tied to it.
 
 /obj/item/reagent_containers/food/snacks/sliceable
-	w_class = ITEM_SIZE_NORMAL //Whole pizzas and cakes shouldn't fit in a pocket, you can slice them if you want to do that.
+	volumeClass = ITEM_SIZE_NORMAL //Whole pizzas and cakes shouldn't fit in a pocket, you can slice them if you want to do that.
 
 /obj/item/reagent_containers/food/snacks/sliceable/get_item_cost(export)
 	. = ..() + SStrade.get_import_cost(slice_path) * slices_num

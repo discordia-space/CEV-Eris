@@ -14,7 +14,6 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
 	price_tag = 600
 	damage_multiplier = 1.2
-	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.9)
 	init_firemodes = list(
 		list(mode_name="semiauto", mode_desc="Fire almost as fast as you can pull the trigger", burst=1, fire_delay=1.2, icon="semi"),

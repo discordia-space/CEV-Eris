@@ -10,7 +10,7 @@
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 1)
 	bad_type = /obj/item/gun/projectile
 	spawn_tags = SPAWN_TAG_GUN_PROJECTILE
@@ -170,7 +170,7 @@
 					return
 				user.remove_from_mob(AM)
 				. = 1
-				AM.loc = src
+				AM.forceMove(src)
 				ammo_magazine = AM
 
 				if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
@@ -325,11 +325,12 @@
 		update_icon() //make sure to do this after unsetting ammo_magazine
 		set_item_state()
 
-/obj/item/gun/projectile/examine(mob/user)
-	..(user)
+/obj/item/gun/projectile/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(ammo_magazine)
-		to_chat(user, "It has \a [ammo_magazine] loaded.")
-	to_chat(user, "Has [get_ammo()] round\s remaining.")
+		description += "It has \a [ammo_magazine] loaded.\n"
+	description += "Has [get_ammo()] round\s remaining."
+	..(user, afterDesc = description)
 	return
 
 /obj/item/gun/projectile/proc/get_ammo()

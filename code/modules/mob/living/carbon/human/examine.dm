@@ -24,7 +24,7 @@
 	if(wear_mask)
 		skipface |= wear_mask.flags_inv & HIDEFACE
 
-	var/msg = "<span class='info'>*---------*\nThis is "
+	var/msg = "<div style='["background-color:#1d527a;margin:1px;border:5px solid #0a3352;padding:5px;width:auto;"]'><span class='info'>\nThis is "
 
 	var/datum/gender/T = gender_datums[gender]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
@@ -367,12 +367,13 @@
 			msg += "<span class='deptradio'><b>Damage Specifics:</span> <span style=\"color:blue\">[round(src.getOxyLoss(), 1)]</span>-<span style=\"color:green\">[round(src.getToxLoss(), 1)]</span>-<span style=\"color:#FFA500\">[round(src.getFireLoss(), 1)]</span>-<span style=\"color:red\">[round(src.getBruteLoss(), 1)]</span></b>\n"
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
-	msg += "*---------*</span>"
+	msg += "</span>"
 	if (pose)
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[T.He] [T.is] [pose]"
 
+	msg += "</div>"
 	to_chat(user, msg)
 	. = msg
 

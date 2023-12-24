@@ -825,7 +825,7 @@
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
 					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
-					circuit.loc = user.loc
+					circuit.forceMove(user.loc)
 					buildstage = 0
 					update_icon()
 					return
@@ -877,11 +877,13 @@
 		update_icon()
 
 /obj/machinery/alarm/examine(mob/user)
-	..(user)
+	var/description = ""
 	if (buildstage < 2)
-		to_chat(user, "It is not wired.")
+		description += SPAN_WARNING("It is not wired. \n")
 	if (buildstage < 1)
-		to_chat(user, "The circuit is missing.")
+		description += SPAN_WARNING("The circuit is missing. ")
+	..(user, afterDesc = description)
+
 
 /obj/machinery/alarm/proc/toggle_lock(mob/user)
 	if(stat & (NOPOWER|BROKEN))
@@ -910,7 +912,7 @@ Just a object used in constructing air alarms
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "Looks like a circuit. Probably is."
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 
 /*
@@ -981,7 +983,8 @@ FIRE ALARM
 	return nano_ui_interact(user)
 
 /obj/machinery/firealarm/bullet_act()
-	return src.alarm()
+	alarm()
+	return PROJECTILE_CONTINUE
 
 /obj/machinery/firealarm/emp_act(severity)
 	if(prob(50/severity))
@@ -1040,7 +1043,7 @@ FIRE ALARM
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					to_chat(user, "You pry out the circuit!")
 					var/obj/item/electronics/airalarm/circuit = new /obj/item/electronics/airalarm()
-					circuit.loc = user.loc
+					circuit.forceMove(user.loc)
 					buildstage = 0
 					update_icon()
 					return
@@ -1187,7 +1190,7 @@ FIRE ALARM
 	..()
 
 	if(loc)
-		src.loc = loc
+		forceMove(loc)
 
 	if(dir)
 		src.set_dir(dir)
@@ -1213,7 +1216,7 @@ Just a object used in constructing fire alarms
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	desc = "A circuit. It has a label on it, it says \"Can handle heat levels up to 40 degrees celsius!\""
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 
 /obj/machinery/partyalarm

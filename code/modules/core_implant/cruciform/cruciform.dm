@@ -115,18 +115,19 @@ var/list/disciples = list()
 	return TRUE
 
 /obj/item/implant/core_implant/cruciform/examine(mob/user)
-	..()
+	var/description = ""
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
 	if(data?.mind) // if there is cloning data and it has a mind
-		to_chat(user, SPAN_NOTICE("This cruciform has been activated."))
+		description += SPAN_NOTICE("This cruciform has been activated. \n")
 		if(isghost(user) || (user in disciples))
 			var/datum/mind/MN = data.mind
 			if(MN.name) // if there is a mind and it also has a name
-				to_chat(user, SPAN_NOTICE("It contains <b>[MN.name]</b>'s soul."))
+				description += SPAN_NOTICE("It contains <b>[MN.name]</b>'s soul.")
 			else
-				to_chat(user, SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge."))
+				description += SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge.")
 	else // no cloning data
-		to_chat(user, "This cruciform has not yet been activated.")
+		description += "This cruciform has not yet been activated."
+	..(user, afterDesc = description)
 
 
 

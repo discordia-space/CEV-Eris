@@ -9,12 +9,12 @@
 	icon_state = "merc_rig"
 	suit_type = "crimson hardsuit"
 	armor = list(
-		melee = 8,
-		bullet = 10,
-		energy = 5,
-		bomb = 200,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 45,
+		ARMOR_BULLET = 40,
+		ARMOR_ENERGY = 35,
+		ARMOR_BOMB =200,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	ablative_max = 12
 	ablation = ABLATION_DURABLE
@@ -23,6 +23,7 @@
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/merc
+	rarity_value = 300
 
 
 	initial_modules = list(

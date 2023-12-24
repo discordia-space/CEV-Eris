@@ -18,14 +18,16 @@
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
 		penetration = L.armor_divisor
-	var/list/damages = list(BRUTE = damage)
+	var/list/damages = list(ARMOR_BLUNT = list(
+		DELEM(BRUTE, damage)
+	))
 	if(user.dir & reverse_dir[dir])
 		var/obj/item/mech_equipment/shield_generator/gen = getShield()
 		if(gen)
 			damages = gen.absorbDamages(damages)
-	if(damages[BRUTE] == 0)
+	if(damages[ARMOR_BLUNT][1][2] == 0)
 		return
-	damage_through_armor(damages[BRUTE], BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration, def_zone=pick(arms, legs, body, head))
+	damage_through_armor(damages, pick(arms,legs,body,head), user, penetration, 1, FALSE)
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
@@ -45,17 +47,17 @@
 	return chosen
 
 /mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
-	if(!I.force)
+	if(dhTotalDamage(I.melleDamages) < 5)
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
 	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
 	var/roll = !prob(body.pilot_coverage)
-	var/list/damages = list(BRUTE = I.force)
+	var/list/damages = I.melleDamages.Copy()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	if(gen)
 		damages = gen.absorbDamages(damages)
 // not enough made it in
-	if(damages[BRUTE] < round(I.force / 2))
+	if(dhTotalDamage(damages) < round(dhTotalDamage(GLOB.melleDamagesCache[I.type]) / 2))
 		visible_message("\The [src]'s shields block the blow!", 1, 2 ,5)
 		return
 
@@ -141,7 +143,7 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
-	var/list/damages=  P.damage_types
+	var/list/damages = P.damage
 	if(hit_dir & reverse_dir[dir])
 		if(gen)
 			damages = gen.absorbDamages(damages)
@@ -158,13 +160,25 @@
 		qdel(P)
 		return TRUE
 	hit_impact(P.get_structure_damage(), hit_dir)
-	for(var/damage_type in damages)
-		if(damage_type == HALLOSS)
-			continue
-		damage_through_armor(damages[damage_type], damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
-
+	damage_through_armor(damages, def_zone, P,P.armor_divisor, P.wounding_mult, FALSE)
 	P.on_hit(src, def_zone)
 	return PROJECTILE_STOP
+
+/mob/living/exosuit/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	var/list/blockers = list(src)
+	if(body && body.armor)
+		blockers |= body.armor_plate
+	return blockers
+
+/mob/living/exosuit/getDamageBlockerRatings(list/relevantTypes)
+	var/list/returnList = ..()
+	if(!body)
+		return returnList
+	if(!body.armor)
+		return returnList
+	for(var/armorType in relevantTypes)
+		returnList[armorType] += body.armor.getRating(armorType)
+	return returnList
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0

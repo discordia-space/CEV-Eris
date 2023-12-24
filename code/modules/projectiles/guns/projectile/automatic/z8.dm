@@ -4,8 +4,7 @@
 	icon = 'icons/obj/guns/projectile/carabine.dmi'
 	icon_state = "z8"
 	item_state = "z8"
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10)
@@ -21,7 +20,6 @@
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
 	init_recoil = CARBINE_RECOIL(0.5)
 	damage_multiplier = 1.15
-	penetration_multiplier = 0.1
 	zoom_factors = list(0.2)
 	gun_tags = list(GUN_FA_MODDABLE)
 
@@ -78,11 +76,12 @@
 	update_icon()
 
 /obj/item/gun/projectile/automatic/z8/examine(mob/user)
-	..()
+	var/description = ""
 	if(launcher.chambered)
-		to_chat(user, "\The [launcher] has \a [launcher.chambered] loaded.")
+		description += "\The [launcher] has \a [launcher.chambered] loaded."
 	else
-		to_chat(user, "\The [launcher] is empty.")
+		description += "\The [launcher] is empty."
+	..(user, afterDesc = description)
 
 /obj/item/part/gun/frame/z8
 	name = "Z8 Bulldog frame"

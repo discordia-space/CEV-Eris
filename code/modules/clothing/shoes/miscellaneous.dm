@@ -42,8 +42,7 @@
 	icon_state = "clown"
 	item_state = "clown_shoes"
 	slowdown = SHOES_SLOWDOWN + 0.4
-	force = NONE
-	//	armor = list(melee = 100, bullet = 100, energy = 100, bomb = 100, bio = 100, rad = 100)
+	//	armor = list(ARMOR_BLUNT = 100, ARMOR_BULLET = 100, ARMOR_ENERGY = 100, ARMOR_BOMB =100, ARMOR_BIO =100, ARMOR_RAD =100)
 	species_restricted = null
 	var/footstep = 1	//used for squeeks whilst walking
 
@@ -62,7 +61,6 @@
 	desc = "A pair of boots worn by the followers of Nar-Sie."
 	icon_state = "cult"
 	item_state = "cult"
-	force = WEAPON_FORCE_WEAK
 	spawn_blacklisted = TRUE
 	siemens_coefficient = 0.7
 
@@ -83,9 +81,8 @@
 	desc = "Fluffy!"
 	icon_state = "slippers"
 	item_state = "slippers"
-	force = 0
 	species_restricted = null
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/shoes/slippers_worn
@@ -93,8 +90,7 @@
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
 	item_state = "slippers_worn"
-	force = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 /obj/item/clothing/shoes/swimmingfins
 	desc = "Help you swim good."

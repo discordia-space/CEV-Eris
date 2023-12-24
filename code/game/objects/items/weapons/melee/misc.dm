@@ -4,9 +4,13 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hm_hammer"
 	item_state = "hm_hammer"
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,15)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 3)
 	attack_verb = list("robusted", "slammed")
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
@@ -19,7 +23,11 @@
 			src.desc = "Wired mop. You need toolbox to finish this."
 			icon_state = "hm_hammer_unfinished"
 			item_state = ""
-			force = WEAPON_FORCE_WEAK
+			melleDamages = list(
+				ARMOR_BLUNT = list(
+					DELEM(BRUTE,5)
+				)
+			)
 			throwforce = WEAPON_FORCE_WEAK
 			origin_tech = list(TECH_COMBAT = 1)
 
@@ -37,7 +45,7 @@
 		user.put_in_active_hand(mop)
 	else
 		user.put_in_inactive_hand(mop)
-	toolbox.loc = user.loc
+	toolbox.forceMove(user.loc)
 
 
 /obj/item/melee/toolbox_maul/attackby(obj/item/C, mob/living/user)
@@ -62,7 +70,11 @@
 		if(istype(C, /obj/item/storage/toolbox))
 			src.name = initial(src.name)
 			src.desc = initial(src.desc)
-			src.force = initial(src.force)
+			melleDamages = list(
+				ARMOR_BLUNT = list(
+					DELEM(BRUTE,15)
+				)
+			)
 			throwforce = initial(throwforce)
 			origin_tech = initial(origin_tech)
 			icon_state = initial(icon_state)

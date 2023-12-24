@@ -30,7 +30,7 @@
 /obj/item/toy/xmas_cracker/New()
 	..()
 
-/obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
+/obj/item/toy/xmas_cracker/attack(mob/target, mob/user, defzone, damageMultiplier)
 	if( !cracked && ishuman(target) && (target.stat == CONSCIOUS) && !target.get_active_hand() )
 		target.visible_message(SPAN_NOTICE("[user] and [target] pop \an [src]! *pop*"), SPAN_NOTICE("You pull \an [src] with [target]! *pop*"), SPAN_NOTICE("You hear a *pop*."))
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)

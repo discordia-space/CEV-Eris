@@ -12,12 +12,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 //Club Artist
@@ -29,12 +29,12 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	armor = list(
-		melee = 1,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	spawn_frequency = 0
 
@@ -48,12 +48,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/suit/storage/cargo_jacket/black
@@ -65,12 +65,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/suit/storage/cargo_jacket/black/old
@@ -88,12 +88,12 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	siemens_coefficient = 0.8
 
@@ -143,16 +143,23 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	spawn_blacklisted = TRUE
+	rarity_value = 150
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	price_tag = 5000
 	style = STYLE_HIGH
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
+
 
 //NeoTheology
 /obj/item/clothing/suit/storage/neotheology_jacket
@@ -165,12 +172,12 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 5,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 50,  //same as labcoats at LEAST
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =50,  //same as labcoats at LEAST
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/suit/storage/neotheology_jacket/black
@@ -183,12 +190,12 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 5,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 50,  //same as labcoats at LEAST
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =50,  //same as labcoats at LEAST
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/suit/storage/neotheology_coat
@@ -201,12 +208,12 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
 	armor = list(
-		melee = 5,
-		bullet = 5,
-		energy = 5,
-		bomb = 0,
-		bio = 50,  //same as labcoats at LEAST
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =50,  //same as labcoats at LEAST
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/suit/storage/neotheosports
@@ -218,12 +225,12 @@
 	style_coverage = COVERS_CHEST|COVERS_UPPER_ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 //Chaplain
@@ -270,16 +277,21 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 7,
-		bullet = 5,
-		energy = 5,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	siemens_coefficient = 0.8
 	price_tag = 250
 	style = STYLE_HIGH
+	armorComps = list(
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/suit/storage/detective/brown
 	name = "inspector's brown armored trenchcoat"
@@ -323,12 +335,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 7,
-		bullet = 5,
-		energy = 5,
-		bomb = 0,
-		bio = 0,
-		rad = 10
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =10
 	)
 	price_tag = 250
 
@@ -342,12 +354,12 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	price_tag = 50
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/suit/storage/surgical_apron

@@ -20,7 +20,6 @@
 	throwforce = NONE
 	throw_speed = 4
 	throw_range = 20
-	force = NONE
 
 	//spawn_values
 	bad_type = /obj/item/toy
@@ -123,7 +122,7 @@
 		icon_l_hand = 'icons/mob/items/lefthand_guns.dmi',
 		icon_r_hand = 'icons/mob/items/righthand_guns.dmi',
 		)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	var/bullets = 5
@@ -220,7 +219,7 @@
 	desc = "It's nerf or nothing! Ages 8 and up."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "foamdart"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 
 /obj/effect/foam_dart_dummy
@@ -241,7 +240,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "sword0"
 	item_state = "sword0"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("attacked", "struck", "hit")
 	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	var/active = 0
@@ -253,13 +252,13 @@
 			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
-			src.w_class = ITEM_SIZE_BULKY
+			src.volumeClass = ITEM_SIZE_BULKY
 		else
 			to_chat(user, SPAN_NOTICE("You push the plastic blade back down into the handle."))
 			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 			src.icon_state = "sword0"
 			src.item_state = "sword0"
-			src.w_class = ITEM_SIZE_SMALL
+			src.volumeClass = ITEM_SIZE_SMALL
 
 		update_wear_icon()
 
@@ -274,9 +273,13 @@
 	item_state = "katana"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_BACK
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 0)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
@@ -288,7 +291,7 @@
 	desc = "Wow!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "snappop"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 	throw_impact(atom/hit_atom)
 		..()
@@ -374,8 +377,8 @@
 		return
 
 /obj/item/toy/waterflower/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, text("\icon[] [] units of water left!", src, src.reagents.total_volume))
+	..(user, afterDesc = "\icon[src] [reagents.total_volume] units of water left!")
+
 
 /*
  * Bosun's whistle
@@ -387,7 +390,7 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "bosunwhistle"
 	var/cooldown = 0
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 
 /obj/item/toy/bosunwhistle/attack_self(mob/user)
@@ -667,7 +670,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "cultblade"
 	item_state = "cultblade"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	attack_verb = list("attacked", "slashed", "stabbed", "poked")
 	spawn_tags = SPAWN_TAG_TOY_WEAPON
 
@@ -733,7 +736,7 @@
 	desc = "A high-tech collectible trading card. Squeeze it in your hand to switch between the viewing and transport modes."
 	icon = 'icons/obj/nft.dmi'
 	icon_state = "card"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	price_tag = 5
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_TRADING_CARD

@@ -519,7 +519,7 @@
 			var/mob/living/carbon/human/firer = Proj.firer
 			chance -= firer.stats.getStat(STAT_VIG, FALSE) / 5
 		var/obj/item/projectile/bullet/B = Proj
-		chance = max((chance - B.armor_divisor), 0)
+		chance = max((chance - B.armor_divisor * 10), 0)
 		if(B.starting && prob(chance))
 			visible_message(SPAN_DANGER("\The [Proj.name] ricochets off [src]\'s armour!"))
 			var/multiplier = round(10 / get_dist(B.starting, src))
@@ -545,7 +545,7 @@
 				C.wrapped = I
 				C.install()
 				user.drop_item()
-				I.loc = null
+				I.forceMove(NULLSPACE)
 
 				var/obj/item/robot_parts/robot_component/WC = I
 				if(istype(WC))
@@ -747,7 +747,7 @@
 			to_chat(user, SPAN_WARNING("\The [I] is too small to fit here."))
 		else
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			cell = I
 			to_chat(user, SPAN_NOTICE("You insert the power cell."))
 
@@ -789,7 +789,7 @@
 			if(U.action(src))
 				to_chat(usr, "You apply the upgrade to [src]!")
 				usr.drop_item()
-				U.loc = src
+				U.forceMove(src)
 				if(U.permanent)
 					robot_upgrades += U
 			else

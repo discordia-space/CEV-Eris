@@ -32,6 +32,7 @@
 	var/caller = new hook_path
 	var/status = 1
 	for(var/P in typesof("[hook_path]/proc"))
+		world.log<<"Calling from hooks , [P]"
 		if(!call(caller, P)(arglist(args)))
 			error("Hook '[P]' failed or runtimed.")
 			status = 0

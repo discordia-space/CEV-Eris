@@ -76,16 +76,17 @@
 	levelupdate()
 
 /turf/simulated/floor/examine(mob/user)
-	.=..()
+	var/description = ""
 	if (health < maxHealth)
 		if (health < (0.25 * maxHealth))
-			to_chat(user, SPAN_DANGER("It looks like it's about to collapse!"))
+			description += SPAN_DANGER("It looks like it's about to collapse!")
 		else if (health < (0.5 * maxHealth))
-			to_chat(user, SPAN_WARNING("It's heavily damaged!"))
+			description += SPAN_WARNING("It's heavily damaged!")
 		else if (health < (0.75 * maxHealth))
-			to_chat(user, SPAN_WARNING("It's taken a bit of a beating!"))
+			description += SPAN_WARNING("It's taken a bit of a beating!")
 		else
-			to_chat(user, SPAN_WARNING("It has a few scuffs and scrapes"))
+			description += SPAN_WARNING("It has a few scuffs and scrapes")
+	..(user, afterDesc = description)
 
 
 

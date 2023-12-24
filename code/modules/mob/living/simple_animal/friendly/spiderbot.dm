@@ -88,7 +88,7 @@
 		src.mmi = O
 		src.transfer_personality(O)
 
-		O.loc = src
+		O.forceMove(src)
 		src.update_icon()
 		return 1
 
@@ -120,7 +120,7 @@
 			to_chat(user, SPAN_NOTICE("You swipe your access card and pop the brain out of \the [src]."))
 			eject_brain()
 			if(held_item)
-				held_item.loc = src.loc
+				held_item.forceMove(src.loc)
 				held_item = null
 			return 1
 		else
@@ -170,7 +170,7 @@
 	if(mmi)
 		var/turf/T = get_turf(loc)
 		if(T)
-			mmi.loc = T
+			mmi.forceMove(T)
 		if(mind)	mind.transfer_to(mmi.brainmob)
 		mmi = null
 		real_name = initial(real_name)
@@ -201,7 +201,7 @@
 		camera.status = 0
 
 	if (held_item) // if the spiderbot is holding an item
-		held_item.loc = src.loc
+		held_item.forceMove(src.loc)
 		held_item = null
 
 	gibs(loc, null, null, /obj/effect/gibspawner/robot) //TODO: use gib() or refactor spiderbots into synthetics.
@@ -226,7 +226,7 @@
 			SPAN_DANGER("You launch \the [held_item]!"), \
 			"You hear a skittering noise and a thump!")
 		var/obj/item/grenade/G = held_item
-		G.loc = src.loc
+		G.forceMove(src.loc)
 		G.prime()
 		held_item = null
 		return 1
@@ -235,7 +235,7 @@
 		SPAN_NOTICE("You drop \the [held_item]."), \
 		"You hear a skittering noise and a soft thump.")
 
-	held_item.loc = src.loc
+	held_item.forceMove(src.loc)
 	held_item = null
 	return 1
 
@@ -253,7 +253,7 @@
 
 	var/list/items = list()
 	for(var/obj/item/I in view(1,src))
-		if(I.loc != src && I.w_class <= ITEM_SIZE_SMALL && I.Adjacent(src) )
+		if(I.loc != src && I.volumeClass <= ITEM_SIZE_SMALL && I.Adjacent(src) )
 			items.Add(I)
 
 	var/obj/selection = input("Select an item.", "Pickup") in items
@@ -262,7 +262,7 @@
 		for(var/obj/item/I in view(1, src))
 			if(selection == I)
 				held_item = selection
-				selection.loc = src
+				selection.forceMove(src)
 				visible_message(SPAN_NOTICE("\The [src] scoops up \the [held_item]."), \
 					SPAN_NOTICE("You grab \the [held_item]."), \
 					"You hear a skittering noise and a clink.")
@@ -274,9 +274,11 @@
 	return 0
 
 /mob/living/simple_animal/spiderbot/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(src.held_item)
-		to_chat(user, "It is carrying \icon[src.held_item] \a [src.held_item].")
+		description += "It is carrying \icon[src.held_item] \a [src.held_item]."
+	..(user, afterDesc = description)
+
 
 /mob/living/simple_animal/spiderbot/cannot_use_vents()
 	return

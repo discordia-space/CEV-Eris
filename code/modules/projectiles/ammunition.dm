@@ -6,9 +6,11 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 	price_tag = 0.2
+	/// very light weight ,3 grams
+	weight = 3
 
 	var/leaves_residue = 1
 	var/is_caseless = FALSE
@@ -186,10 +188,11 @@
 		src.overlays += temp_image
 
 /obj/item/ammo_casing/examine(mob/user)
-	..()
-	to_chat(user, "There [(amount == 1)? "is" : "are"] [amount] round\s left!")
+	var/description = ""
+	description += "There [(amount == 1)? "is" : "are"] [amount] round\s left!\n"
 	if (!BB)
-		to_chat(user, "[(amount == 1)? "This one is" : "These ones are"] spent.")
+		description += "[(amount == 1)? "This one is" : "These ones are"] spent."
+	..(user, afterDesc = description)
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = round(..() * amount)
@@ -206,9 +209,10 @@
 	item_state = "syringe_kit"
 	matter = list(MATERIAL_STEEL = 2)
 	throwforce = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 10
@@ -443,8 +447,7 @@
 	icon_state = "[initial(icon_state)][ammo_label_string]-[ammo_count]"
 
 /obj/item/ammo_magazine/examine(mob/user)
-	..()
-	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
+	..(user, afterDesc = "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
 
 /obj/item/ammo_magazine/get_item_cost(export)
 	. = ..()

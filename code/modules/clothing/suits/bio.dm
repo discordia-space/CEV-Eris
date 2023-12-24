@@ -9,12 +9,12 @@
 	desc = "A hood that protects the head and face from biological comtaminants."
 	permeability_coefficient = 0.01
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 100,
-		rad = 25
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =100,
+		ARMOR_RAD =25
 	)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES|EARS
@@ -28,7 +28,7 @@
 	desc = "A suit that protects against biological contamination."
 	icon_state = "bio"
 	item_state = "bio_suit"
-	w_class = ITEM_SIZE_BULKY//bulky item3
+	volumeClass = ITEM_SIZE_BULKY//bulky item3
 	spawn_blacklisted = FALSE
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_HAZMATSUIT
@@ -38,12 +38,12 @@
 	item_flags = COVER_PREVENT_MANIPULATION
 	slowdown = 0.2
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 100,
-		rad = 25
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =100,
+		ARMOR_RAD =25
 	)
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	siemens_coefficient = 0.9

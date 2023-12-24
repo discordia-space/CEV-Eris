@@ -5,7 +5,6 @@
 	icon = MECH_EQUIPMENT_ICON
 	icon_state = ""
 	matter = list(MATERIAL_STEEL = 40)
-	force = 10
 	bad_type = /obj/item/mech_equipment
 	spawn_tags = SPAWN_TAG_MECH_QUIPMENT
 	rarity_value = 10

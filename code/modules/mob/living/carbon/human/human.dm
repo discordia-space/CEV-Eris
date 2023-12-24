@@ -4,6 +4,8 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
+	/// everyone is 65 KGs
+	weight = 65000
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -622,8 +624,8 @@ var/list/rank_prefix = list(\
 	if(!parent)
 		return 0
 
-	if(parent.w_class > affecting.w_class + 1)
-		return prob(100 / 2**(parent.w_class - affecting.w_class - 1))
+	if(parent.volumeClass > affecting.volumeClass + 1)
+		return prob(100 / 2**(parent.volumeClass - affecting.volumeClass - 1))
 
 	return 1
 
@@ -881,6 +883,7 @@ var/list/rank_prefix = list(\
 			internal_organs_by_efficiency[process] = list()
 
 	rebuild_organs()
+
 	src.sync_organ_dna()
 	species.handle_post_spawn(src)
 
@@ -936,7 +939,6 @@ var/list/rank_prefix = list(\
 		checkprefcruciform = TRUE
 		qdel(CI)
 
-
 	if(from_preference)
 		for(var/obj/item/organ/organ in (organs|internal_organs))
 			qdel(organ)
@@ -956,8 +958,8 @@ var/list/rank_prefix = list(\
 			return
 
 		var/datum/body_modification/BM
-
 		for(var/tag in species.has_limbs)
+
 			BM = Pref.get_modification(tag)
 			var/datum/organ_description/OD = species.has_limbs[tag]
 //			var/datum/body_modification/PBM = Pref.get_modification(OD.parent_organ_base)
@@ -1018,12 +1020,14 @@ var/list/rank_prefix = list(\
 				C.security_clearance = mind.assigned_job.security_clearance
 
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
-		C.replaced(get_organ(C.parent_organ_base))
+		C.insert(get_organ(C.parent_organ_base))
 
 	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
 
 	update_body()
+	/// Because organ rebuilding breaks our shit
+	updateWeights()
 
 /mob/living/carbon/human/proc/post_prefinit()
 	var/obj/item/implant/core_implant/C = locate() in src

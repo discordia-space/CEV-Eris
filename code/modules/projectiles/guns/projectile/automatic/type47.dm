@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/os/type_47.dmi'
 	icon_state = "type_47"
 	item_state = "type_47"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
@@ -19,7 +19,6 @@
 	unload_sound = 'sound/weapons/guns/interact/batrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/batrifle_cock.ogg'
-	penetration_multiplier = 0.2
 	damage_multiplier = 1.2
 	spawn_tags = SPAWN_TAG_GUN_OS
 	spawn_blacklisted = TRUE

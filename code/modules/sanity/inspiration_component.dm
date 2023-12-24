@@ -28,9 +28,9 @@
 	perk = new_perk
 
 /datum/component/inspiration/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_EXTRA_EXAMINE, PROC_REF(on_examine))
 
-/datum/component/inspiration/proc/on_examine(mob/user)
+/datum/component/inspiration/proc/on_examine(mob/user ,list/reference)
 	SIGNAL_HANDLER
 	for(var/stat in stats)
 		var/aspect
@@ -38,17 +38,17 @@
 			if(10 to INFINITY)
 				aspect = "an <span style='color:#d0b050;'>overwhelming</span>"
 			if(6 to 10)
-				aspect = "a <span class='red'>strong</span>"
+				aspect = "a <span class='green'>strong</span>"
 			if(3 to 6)
-				aspect = "a <span class='green'>medium</span>"
+				aspect = "a <span class='yellow'>medium</span>"
 			if(1 to 3)
-				aspect = "a <span class='blue'>weak</span>"
+				aspect = "a <span class='red'>weak</span>"
 			else
 				continue
-		to_chat(user, SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+		reference.Add(SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
-		to_chat(user, SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
+		reference.Add(SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
 
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()

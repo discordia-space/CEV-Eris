@@ -4,7 +4,7 @@
 	icon = 'icons/inventory/belt/icon.dmi'
 	icon_state = "utility"
 	storage_slots = 7
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
@@ -73,25 +73,32 @@
 	rarity_value = 50
 
 /obj/item/storage/belt/utility/full/populate_contents()
-	new /obj/item/tool/screwdriver(src)
-	new /obj/item/tool/wrench(src)
-	new /obj/item/tool/weldingtool(src)
-	new /obj/item/tool/crowbar(src)
-	new /obj/item/tool/wirecutters(src)
-	new /obj/item/stack/cable_coil/random(src)
+	var/list/spawnedAtoms = list()
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wrench(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wirecutters(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
-/obj/item/storage/belt/utility/technomancer 
+
+/obj/item/storage/belt/utility/technomancer
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/utility/technomancer/populate_contents()
-	new /obj/item/tool/screwdriver/electric(src)
-	new /obj/item/tool/wrench/big_wrench(src)
-	new /obj/item/tool/weldingtool/advanced(src)
-	new /obj/item/tool/crowbar/pneumatic(src)
-	new /obj/item/tool/wirecutters/armature(src)
-	new /obj/item/tool/shovel/power(src)
-	new /obj/item/stack/cable_coil/random(src)
-	
+	var/list/spawnedAtoms = list()
+	spawnedAtoms.Add(new /obj/item/tool/screwdriver/electric(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wrench/big_wrench(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/weldingtool/advanced(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/crowbar/pneumatic(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/wirecutters/armature(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tool/shovel/power(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/stack/cable_coil/random(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
+
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"
 	desc = "Waist-held holy items."
@@ -232,7 +239,7 @@
 	icon_state = "holdingbelt"
 	item_state = "holdingbelt"
 	storage_slots = 14
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 3)
 	origin_tech = list(TECH_BLUESPACE = 4)
@@ -240,4 +247,4 @@
 
 /obj/item/storage/belt/holding/New()
 	..()
-	bluespace_entropy(4, get_turf(src))
+	bluespace_entropy(4, get_turf(NULLSPACE))

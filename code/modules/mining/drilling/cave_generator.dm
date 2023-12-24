@@ -139,7 +139,7 @@
 		x1_new = x0_new
 		y0_new = rand(CAVE_MARGIN, y0)
 		y1_new = rand(y0, CAVE_SIZE - CAVE_MARGIN)
-	draw_recursive_corridor(x0_new, x1_new, y0_new, y1_new, N - 1) 
+	draw_recursive_corridor(x0_new, x1_new, y0_new, y1_new, N - 1)
 
 // Run one iteration of the cellular automata that processes the initial random noise
 /obj/cave_generator/proc/run_cellular_automata()
@@ -159,7 +159,7 @@
 			return CAVE_FREE
 	else if(num_walls >= 5)
 		return CAVE_WALL
-	
+
 	return CAVE_FREE
 
 // Get number of walls in a given range around the target tile
@@ -172,7 +172,7 @@
 	return num_walls
 
 // Place points of interest on the map
-/obj/cave_generator/proc/generate_pois(seismic_lvl) 
+/obj/cave_generator/proc/generate_pois(seismic_lvl)
 
 	// Reset pois lists
 	pois_placed = list()
@@ -217,11 +217,11 @@
 		pois_placed_pos += list(list(x_corner_bl, y_corner_bl, x_corner_tr, y_corner_tr))
 
 // Check if a potential poi does not overlap with already placed pois
-/obj/cave_generator/proc/check_poi_overlap(x_bl, y_bl, size_x, size_y) 
+/obj/cave_generator/proc/check_poi_overlap(x_bl, y_bl, size_x, size_y)
 	if(!pois_placed.len)
 		// No overlap since no poi has been placed yet
 		return TRUE
- 
+
 	var/x_tr = x_bl + size_x
 	var/y_tr = y_bl + size_y
 	for(var/k = 1 to pois_placed.len)
@@ -229,14 +229,14 @@
 		// If top right corner is on the left or under the bottom left corner of already placed poi, then it's clear
 		// Otherwise it means they overlap
 		var/list/placed_pos = pois_placed_pos[k]
-			
+
 		if(!(x_bl > placed_pos[3] || y_bl > placed_pos[4] || x_tr < placed_pos[1] || y_tr < placed_pos[2]))
 			return FALSE
 	// No overlap
 	return TRUE
 
 // Generate mineral veins once cave layout has been decided
-/obj/cave_generator/proc/generate_mineral_veins(seismic_lvl) 
+/obj/cave_generator/proc/generate_mineral_veins(seismic_lvl)
 	var/x_vein = 0
 	var/y_vein = 0
 	var/N_veins = rand(15, 20 * (1 + 0.5 * (seismic_lvl - SEISMIC_MIN) / (SEISMIC_MAX - SEISMIC_MIN)))
@@ -250,7 +250,7 @@
 // Find a free spot in the cave
 /obj/cave_generator/proc/find_free_spot(x_start, y_start, x_margin = 0, y_margin = 0)
 
-	var/x0 = x_start - 1 
+	var/x0 = x_start - 1
 	var/x1 = x_start + 1
 	var/y0 = y_start - 1
 	var/y1 = y_start + 1
@@ -270,14 +270,14 @@
 			y_start = y1
 		else
 			found = FALSE
-		
+
 		if(!found)
 			x0--
 			x1++
 			y0--
 			y1++
 			edge = (x0 <= 1 + x_margin) || (x1 >= CAVE_SIZE - x_margin) || (y0 <= 1 + y_margin) || (y1 >= CAVE_SIZE - y_margin)
-	
+
 	// Hit an edge before finding an available spot
 	if(!found)
 		return list(FALSE, 0, 0)
@@ -421,7 +421,7 @@
 
 	// Find closest available spot (wall tile near a free tile)
 	var/search_for = map[x_start][y_start] == CAVE_FREE ? CAVE_WALL : CAVE_FREE
-	var/x0 = x_start - 1 
+	var/x0 = x_start - 1
 	var/x1 = x_start + 1
 	var/y0 = y_start - 1
 	var/y1 = y_start + 1
@@ -447,14 +447,14 @@
 			y_start = y1
 		else
 			found = FALSE
-		
+
 		if(!found)
 			x0--
 			x1++
 			y0--
 			y1++
 			edge = (x0 == 1) || (x1 == CAVE_SIZE) || (y0 == 1) || (y1 == CAVE_SIZE)
-	
+
 	// Hit an edge before finding an available spot
 	if(!found)
 		return 0
@@ -477,7 +477,7 @@
 	var/datum/cave_vein/CV = new vein_path()
 
 	// Place mineral vein at the available spot in a recursive manner
-	place_recursive_mineral(x_start, y_start, CV.p_spread, CV.size_max, CV.size_min, CV.mineral) 
+	place_recursive_mineral(x_start, y_start, CV.p_spread, CV.size_max, CV.size_min, CV.mineral)
 	return 1
 
 // Place a mineral vein in a recursive manner
@@ -535,7 +535,7 @@
 			continue
 		else if(!(A.type in blacklist))
 			qdel(A)
-		// No need to do forcemove since everything relevant is already displaced
+		// No need to do forceMove since everything relevant is already displaced
 
 
 /obj/cave_generator/proc/place_turfs(seismic_lvl)
@@ -580,7 +580,7 @@
 /obj/cave_generator/proc/place_pois()
 	if(!LAZYLEN(pois_placed))
 		return
- 
+
 	for(var/k = 1 to LAZYLEN(pois_placed))
 		var/turf/corner_turf = get_turf(locate(x + pois_placed_pos[k][1], y + pois_placed_pos[k][2], z))
 		pois_placed[k].load(corner_turf)
@@ -597,7 +597,7 @@
 				else
 					golem_type = pick(GLOB.golems_normal)
 				// Spawn golem at free location
-				new golem_type(get_turf(locate(x + i, y + j, z)), drill=null, parent=null)  
+				new golem_type(get_turf(locate(x + i, y + j, z)), drill=null, parent=null)
 
 //////////////////////////////
 // Mineral veins for the cave generator

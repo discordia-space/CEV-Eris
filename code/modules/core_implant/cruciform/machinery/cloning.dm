@@ -366,13 +366,12 @@
 		. += P
 
 /obj/machinery/neotheology/biomass_container/examine(mob/user)
-	if(!..(user, 2))
-		return
-
+	var/description = ""
 	if(!reagents.has_reagent("biomatter"))
-		to_chat(user, SPAN_NOTICE("It is empty."))
+		description += SPAN_NOTICE("It is empty.")
 	else
-		to_chat(user, SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity]."))
+		description += SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity].")
+	..(user, afterDesc = description)
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user)
 	if (istype(I, /obj/item/stack/material/biomatter))

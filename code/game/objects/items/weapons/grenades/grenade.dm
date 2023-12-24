@@ -2,7 +2,7 @@
 	name = "grenade"
 	desc = "A hand held grenade, with an adjustable timer."
 	description_info = "Can have its timer adjusted with a screwdriver."
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "grenade"
 	item_state = "grenade"
@@ -28,14 +28,13 @@
 */
 	return TRUE
 
-/obj/item/grenade/examine(mob/user)
-	if(..(user, 0))
-		if(det_time > 1)
-			to_chat(user, "The timer is set to [det_time/10] seconds.")
-			return
-		if(det_time == null)
-			return
-		to_chat(user, "\The [src] is set for instant detonation.")
+/obj/item/grenade/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
+	if(det_time > 1)
+		description += "The timer is set to [det_time/10] seconds ."
+	else
+		description += "\The [src] is set for instant detonation."
+	..(user, afterDesc = description)
 
 
 /obj/item/grenade/attack_self(mob/user as mob)

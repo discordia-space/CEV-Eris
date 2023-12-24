@@ -17,10 +17,6 @@
 	if(can_buckle && istype(M))
 		user_buckle_mob(M, user)
 
-/atom/Destroy()
-	unbuckle_mob()
-	return ..()
-
 
 /atom/proc/buckle_mob(mob/living/M)
 	if(buckled_mob) //unless buckled_mob becomes a list this can cause problems

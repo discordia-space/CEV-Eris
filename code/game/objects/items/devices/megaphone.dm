@@ -4,7 +4,7 @@
 	icon_state = "megaphone"
 	item_state = "radio"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = CONDUCT
 
 	suitable_cell = /obj/item/cell/small

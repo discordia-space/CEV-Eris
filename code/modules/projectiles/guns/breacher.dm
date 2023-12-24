@@ -11,7 +11,7 @@
 	flags = PASSTABLE | CONDUCT
 	slot_flags = SLOT_BELT
 	//m_amt = 2000
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	attack_verb = list("struck", "hit", "bashed")
 	price_tag = 1000
 	spawn_blacklisted = TRUE
@@ -45,7 +45,7 @@
 		if(!magazine)
 			user.drop_item()
 			magazine = W
-			magazine.loc = src
+			magazine.forceMove(src)
 			update_icon()
 			return
 	return
@@ -53,7 +53,7 @@
 
 /obj/item/hatton/attack_self(mob/living/user as mob)
 	if(magazine)
-		magazine.loc = get_turf(src.loc)
+		magazine.forceMove(get_turf(src.loc))
 		user.put_in_hands(magazine)
 		magazine.update_icon()
 		magazine = null
@@ -148,7 +148,7 @@
 	name = "Excelsior BT \"Hatton\" gas tube"
 	icon = 'icons/obj/guns/breacher.dmi'
 	icon_state = "Hatton_box1"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	//m_amt = 15
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
@@ -229,7 +229,7 @@
 		if(!magazine)
 			user.drop_item()
 			magazine = W
-			magazine.loc = src
+			magazine.forceMove(src)
 			update_icon()
 			return
 	return

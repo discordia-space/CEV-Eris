@@ -10,11 +10,13 @@
 	icon_state = "b_st"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 5)))
+	wieldedMultiplier = 3
+	WieldedattackDelay = 17
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	//Spawn_values
 	bad_type = /obj/item/cell
 	rarity_value = 2
@@ -142,14 +144,14 @@
 
 
 /obj/item/cell/examine(mob/user)
-	if(!..(user,2))
-		return
-
-	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
-	to_chat(user, "The charge meter reads [round(percent() )]%.")
+	var/description = ""
+	description += "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\n"
+	description += "The charge meter reads [round(percent() )]%. \n"
 
 	if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
-		to_chat(user, SPAN_WARNING("This cell is ready to short circuit!"))
+		description += SPAN_WARNING("This cell is ready to short circuit!")
+
+	..(user, afterDesc = description)
 
 
 /obj/item/cell/attackby(obj/item/W, mob/user)

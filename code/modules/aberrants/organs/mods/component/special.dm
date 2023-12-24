@@ -56,11 +56,11 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		var/obj/item/organ/external/active_hand = H.get_active_hand_organ()
-		if(H.getarmor_organ(active_hand, ARMOR_MELEE) < 3 && active_hand.get_total_occupied_volume() < active_hand.max_volume)
+		if(H.getarmor(active_hand, ARMOR_BIO) < 30 && active_hand.get_total_occupied_volume() < active_hand.max_volume)
 			if(istype(holder, /obj/item/organ/internal))
 				var/obj/item/organ/internal/I = holder
 				H.drop_item()
-				I.replaced(active_hand)
+				I.insert(active_hand)
 				H.apply_damage(10, HALLOSS, active_hand)
 				H.apply_damage(10, BRUTE, active_hand)
 				to_chat(owner, SPAN_WARNING("\The [holder] forces its way into your [active_hand.name]!"))

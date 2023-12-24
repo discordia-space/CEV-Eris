@@ -58,7 +58,7 @@
 	else
 		O.key = key
 
-	O.loc = loc
+	O.forceMove(loc)
 	O.job = "Robot"
 	if(O.mind.assigned_role == "Robot")
 		O.mmi = new /obj/item/device/mmi(O)

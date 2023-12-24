@@ -7,7 +7,7 @@
 	icon = 'icons/obj/guns/projectile/mandella.dmi'
 	icon_state = "mandella"
 	item_state = "mandella"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	silenced = TRUE
 	fire_sound = 'sound/weapons/Gunshot_silenced.wav'
@@ -20,7 +20,6 @@
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	proj_step_multiplier = 0.8
 	damage_multiplier = 1.6
-	penetration_multiplier = 0.5 // Penetration level of 2, penetrates much more reliably than most rifles
 	init_recoil = HANDGUN_RECOIL(0.6)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE

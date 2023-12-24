@@ -18,8 +18,8 @@ FLOOR SAFES
 	var/tumbler_2_pos
 	var/tumbler_2_open
 	var/dial = 0		//where is the dial pointing?
-	var/space = 0		//the combined w_class of everything in the safe
-	var/maxspace = 24	//the maximum combined w_class of stuff in the safe
+	var/space = 0		//the combined volumeClass of everything in the safe
+	var/maxspace = 24	//the maximum combined volumeClass of stuff in the safe
 
 
 /obj/structure/safe/New()
@@ -35,9 +35,9 @@ FLOOR SAFES
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
 			return
-		if(I.w_class + space <= maxspace)
-			space += I.w_class
-			I.loc = src
+		if(I.volumeClass + space <= maxspace)
+			space += I.volumeClass
+			I.forceMove(src)
 
 
 /obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
@@ -145,9 +145,9 @@ FLOOR SAFES
 
 /obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
 	if(open)
-		if(I.w_class + space <= maxspace)
+		if(I.volumeClass + space <= maxspace)
 			if(user.unEquip(I, src))
-				space += I.w_class
+				space += I.volumeClass
 				to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 				updateUsrDialog()
 			return

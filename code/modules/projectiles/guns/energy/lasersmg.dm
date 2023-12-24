@@ -6,7 +6,7 @@
 	icon = 'icons/obj/guns/energy/lasersmg.dmi'
 	icon_state = "lasersmg"
 	item_state = "lasersmg"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	fire_sound = 'sound/weapons/Laser.ogg'
 	suitable_cell = /obj/item/cell/medium
 	can_dual = TRUE
@@ -16,10 +16,9 @@
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_PLASTEEL = 11, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2, MATERIAL_SILVER = 1, MATERIAL_GLASS = 2)
 	price_tag = 1000
-	damage_multiplier = 0.35 //makeshift laser
-	penetration_multiplier = 1
+	damage_multiplier = 0.6 //makeshift laser
 	projectile_type = /obj/item/projectile/beam
-	init_offset = 0 
+	init_offset = 0
 	suitable_cell = /obj/item/cell/medium
 	charge_cost = 25 // 4 bursts with a 800m cell
 

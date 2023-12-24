@@ -4,6 +4,7 @@
 	desc = "Gun ammunition stored in a shiny new box. You can see caliber information on the label."
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
 	icon = 'icons/obj/ammo.dmi'
+	icon_state = "box10x24"
 	reload_delay = 30
 	ammo_mag = "box"
 	matter = list(MATERIAL_CARDBOARD = 1)
@@ -95,7 +96,7 @@
 	name = "ammunition box (.20 Rifle)"
 	icon_state = "box_srifle"
 	matter = list(MATERIAL_STEEL = 60)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 240
@@ -133,7 +134,7 @@
 	name = "ammunition box (.25 Caseless Rifle)"
 	icon_state = "box_clrifle"
 	matter = list(MATERIAL_STEEL = 60)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 240
@@ -173,7 +174,7 @@
 	name = "ammunition box (.30 Rifle)"
 	icon_state = "box_lrifle"
 	matter = list(MATERIAL_STEEL = 60)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_LRIFLE
 	ammo_type = /obj/item/ammo_casing/lrifle
 	mag_type = SPEEDLOADER | MAGAZINE
@@ -212,7 +213,7 @@
 	name = "ammunition box (.60 Anti Material)"
 	icon_state = "antim"
 	matter = list(MATERIAL_STEEL = 24)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_ANTIM
 	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
@@ -229,7 +230,7 @@
 	name = "ammunition box (.50)"
 	icon_state = "box_shot"
 	matter = list(MATERIAL_STEEL = 60)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	max_ammo = 160
@@ -291,7 +292,7 @@
 	name = "ammunition packet (.50)"
 	icon_state = "shot"
 	matter = list(MATERIAL_STEEL = 24)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	max_ammo = 40

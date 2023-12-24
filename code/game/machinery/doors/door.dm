@@ -183,15 +183,15 @@
 	..()
 
 	var/damage = Proj.get_structure_damage()
-	if(Proj.damage_types[BRUTE])
+	if(Proj.getAllDamType(BRUTE))
 		damage -= bullet_resistance
 
 	// Emitter Blasts - these will eventually completely destroy the door, given enough time.
-	if (damage > 90)
+	if (damage > 60)
 		destroy_hits--
 		if (destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
-			if(Proj.damage_types[BRUTE] > Proj.damage_types[BURN])
+			if(Proj.getAllDamType(BRUTE) > Proj.getAllDamType(BURN))
 				new /obj/item/stack/material/steel(src.loc, 2)
 				new /obj/item/stack/rods(loc, 3)
 			else
@@ -212,7 +212,7 @@
 	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
 	if(prob(30))
 		M.Weaken(1)
-	M.damage_through_armor(rand(5,8), BRUTE, body_part, ARMOR_MELEE)
+	M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,rand(5,8)))), body_part, src, 1, 1, FALSE)
 	take_damage(M.mob_size)
 
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
@@ -336,12 +336,12 @@
 
 /obj/machinery/door/proc/hit(var/mob/user, var/obj/item/I, var/thrown = FALSE)
 	var/obj/item/W = I
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
+	user.setClickCooldown((DEFAULT_ATTACK_COOLDOWN + (I.wielded ? I.WieldedattackDelay : I.attackDelay )*1.5 ))
 	var/calc_damage
 	if (thrown)
 		calc_damage= W.throwforce*W.structure_damage_factor
 	else
-		calc_damage= W.force*W.structure_damage_factor
+		calc_damage= dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))*W.structure_damage_factor
 		if (user)user.do_attack_animation(src)
 
 	calc_damage -= resistance
@@ -352,7 +352,7 @@
 	else
 		if (user)user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
-		take_damage(W.force)
+		take_damage(calc_damage)
 
 /obj/machinery/door/take_damage(damage)
 	if (!isnum(damage))
@@ -363,7 +363,7 @@
 	. *= density
 	health -= damage
 	var/smoke_amount
-	if(health < 0)
+	if(health < -(maxHealth/1.3))
 		qdel(src)
 		return
 	else if(health < maxHealth / 5 && initialhealth > maxHealth / 5)
@@ -385,15 +385,15 @@
 		S.start()
 
 
-/obj/machinery/door/examine(mob/user)
-	. = ..()
+/obj/machinery/door/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(src.health < src.maxHealth / 4)
-		to_chat(user, "\The [src] looks like it's about to break!")
+		description += "\The [src] looks like it's about to break!"
 	else if(src.health < src.maxHealth / 2)
-		to_chat(user, "\The [src] looks seriously damaged!")
+		description += "\The [src] looks seriously damaged!"
 	else if(src.health < src.maxHealth * 3/4)
-		to_chat(user, "\The [src] shows signs of damage!")
-
+		description += "\The [src] shows signs of damage!"
+	. = ..(user, afterDesc = description)
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN

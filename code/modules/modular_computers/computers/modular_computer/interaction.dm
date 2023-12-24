@@ -216,7 +216,7 @@
 
 	if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	var/obj/item/tool/tool = W
 	if(tool)
@@ -270,15 +270,6 @@
 					uninstall_component(H, user)
 					return
 	..()
-
-/obj/item/modular_computer/examine(var/mob/user)
-	. = ..()
-
-	if(enabled && .)
-		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
-
-	if(card_slot && card_slot.stored_card)
-		to_chat(user, "The [card_slot.stored_card] is inserted into it.")
 
 /obj/item/modular_computer/MouseDrop(atom/over_object)
 	var/mob/M = usr

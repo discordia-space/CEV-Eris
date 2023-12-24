@@ -197,7 +197,7 @@
 					))))
 					var/list/obj/item/organ/external/parts = holder.owner.get_damageable_organs()
 					if(parts.len)
-						holder.owner.damage_through_armor(rand(2,4), def_zone = pick(parts))
+						holder.owner.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, rand(2,4)))), pick(parts), src)
 
 /datum/breakdown/negative/selfharm/occur()
 	spawn(delay)

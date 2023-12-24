@@ -6,7 +6,7 @@
 	icon = 'icons/obj/karl_mining.dmi'
 	icon_state = "karl_axe"
 	item_state = "karl_axe"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	price_tag = 2500
 	matter = list(MATERIAL_STEEL = 6)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
@@ -14,7 +14,7 @@
 	hitsound = 'sound/weapons/melee/heavystab.ogg'
 
 	// Damage related
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,35)))
 	armor_divisor = ARMOR_PEN_HALF // It's a pickaxe. It's destined to poke holes in things, even armor.
 	throwforce = WEAPON_FORCE_NORMAL
 	sharp = TRUE
@@ -175,7 +175,8 @@
 	// Full damage if pressure < 0.5 atmosphere, one-fourth of damage in > 1 atmosphere, linear between those values
 	var/dmg = WEAPON_FORCE_DANGEROUS * clamp(1 - 0.75 * (env_pressure - 0.5 * ONE_ATMOSPHERE) / (0.5 * ONE_ATMOSPHERE), 0.25, 1)
 	// Burn because it's a plasma shot (installation gun)
-	A.damage_types[BURN] = dmg
+	A.PrepareForLaunch()
+	A.adjust_damages(list(BURN = dmg))
 
 	// Shooting Code
 	A.launch(target, def_zone)

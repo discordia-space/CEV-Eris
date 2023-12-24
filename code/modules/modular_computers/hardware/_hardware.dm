@@ -55,7 +55,7 @@
 
 /obj/item/computer_hardware/Initialize()
 	. = ..()
-	w_class = hardware_size
+	volumeClass = hardware_size
 	if(istype(loc, /obj/item/modular_computer))
 		holder2 = loc
 
@@ -79,14 +79,15 @@
 	// Good to go.
 	return TRUE
 
-/obj/item/computer_hardware/examine(mob/user)
-	. = ..()
+/obj/item/computer_hardware/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(damage > damage_failure)
-		to_chat(user, SPAN_WARNING("It seems to be severely damaged!"))
+		description += SPAN_WARNING("It seems to be severely damaged!")
 	else if(damage > damage_malfunction)
-		to_chat(user, SPAN_WARNING("It seems to be damaged!"))
+		description += SPAN_WARNING("It seems to be damaged!")
 	else if(damage)
-		to_chat(user, SPAN_NOTICE("It seems to be slightly damaged."))
+		description += SPAN_NOTICE("It seems to be slightly damaged.")
+	..(user, afterDesc = description)
 
 /obj/item/computer_hardware/drop_location()
 	return holder2 ? holder2.drop_location() : ..()

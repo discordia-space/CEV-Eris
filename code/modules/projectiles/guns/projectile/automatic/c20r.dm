@@ -8,8 +8,7 @@
 	icon_state = "c20r"
 	item_state = "c20r"
 	var/itemstring = ""
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_NORMAL
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -24,7 +23,6 @@
 	reload_sound = 'sound/weapons/guns/interact/sfrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/sfrifle_cock.ogg'
 	damage_multiplier = 1
-	penetration_multiplier = 0
 	zoom_factors = list(0.4)
 	init_recoil = SMG_RECOIL(0.6)
 	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
@@ -78,8 +76,7 @@
 	icon = 'icons/obj/guns/projectile/c20m.dmi'
 	icon_state = "c20r"
 	item_state = "c20r"
-	damage_multiplier = 1
-	penetration_multiplier = -0.2	//Not quite as good as real syndi
+	damage_multiplier = 0.8
 	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "ML"
 

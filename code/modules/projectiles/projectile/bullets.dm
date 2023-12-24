@@ -1,9 +1,12 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage_types = list(BRUTE = 40)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 40)
+		)
+	)
 	nodamage = 0
-	check_armour = ARMOR_BULLET
 	embed = TRUE
 	sharp = TRUE // Also used for checking whether this penetrates
 	hitsound_wall = "ric_sound"
@@ -40,7 +43,7 @@
 	if(istype(A, /mob/living/exosuit))
 		return 1 //exosuits have their own penetration handling
 
-	var/blocked_damage = 0
+	var/blocked_damage = 0.0001
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
 		blocked_damage = round(W.material.integrity / 8)
@@ -64,7 +67,7 @@
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		blocked_damage = 20
 
-	var/percentile_blocked = block_damage(blocked_damage, A)
+	var/percentile_blocked = (dhTotalDamage(damage)/blocked_damage)
 	if(percentile_blocked > 0.5)
 		percentile_blocked = CLAMP(percentile_blocked, 50, 90) / 100 // calculate leftover velocity, capped between 50% and 90%
 
@@ -81,7 +84,11 @@
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage_types = list(BRUTE = 15)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 15)
+		)
+	)
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.

@@ -6,8 +6,7 @@
 	icon = 'icons/obj/guns/projectile/drozd.dmi'
 	icon_state = "drozd"
 	item_state = "drozd"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
@@ -16,7 +15,6 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	price_tag = 2200
 	damage_multiplier = 0.9
-	penetration_multiplier = 0.5
 	init_recoil = SMG_RECOIL(0.7)
 
 	twohanded = FALSE

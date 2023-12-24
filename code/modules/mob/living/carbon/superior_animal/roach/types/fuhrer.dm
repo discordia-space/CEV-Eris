@@ -29,12 +29,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
-		bomb = 0,
-		bio = 25,
-		rad = 50
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =25,
+		ARMOR_RAD =50
 	)
 
 /mob/living/carbon/superior_animal/roach/fuhrer/bullet_act()

@@ -95,7 +95,7 @@
 
 /obj/machinery/am_shielding/bullet_act(obj/item/projectile/Proj)
 	if(Proj.check_armour != ARMOR_BULLET)
-		stability -= Proj.force/2
+		stability -= dhTotalDamageStrict(Proj.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))/2
 	return FALSE
 
 
@@ -114,8 +114,9 @@
 
 /obj/machinery/am_shielding/attackby(obj/item/W, mob/user)
 	if(!istype(W) || !user) return
-	if(W.force > 10)
-		stability -= W.force/2
+	var/damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+	if(damage > 10)
+		stability -= damage/2
 		check_stability()
 	..()
 
@@ -177,7 +178,7 @@
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "box"
 	item_state = "electronic"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	flags = CONDUCT
 	throwforce = 5
 	throw_speed = 1

@@ -171,7 +171,7 @@
 			return
 
 		user.drop_item()
-		O.loc = src
+		O.forceMove(src)
 		reagent_glass = O
 		to_chat(user, SPAN_NOTICE("You insert [O]."))
 		return
@@ -210,7 +210,7 @@
 
 	else if (href_list["eject"] && (!isnull(reagent_glass)))
 		if(!locked)
-			reagent_glass.loc = get_turf(src)
+			reagent_glass.forceMove(get_turf(src))
 			reagent_glass = null
 		else
 			to_chat(usr, SPAN_NOTICE("You cannot eject the beaker because the panel is locked."))
@@ -253,7 +253,7 @@
 		new /obj/item/robot_parts/l_arm(Tsec)
 
 	if(reagent_glass)
-		reagent_glass.loc = Tsec
+		reagent_glass.forceMove(Tsec)
 		reagent_glass = null
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
@@ -325,7 +325,7 @@
 	var/build_step = 0
 	var/created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/item/firstaid_arm_assembly/New()
 	..()

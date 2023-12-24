@@ -13,7 +13,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)
 	suitable_cell = /obj/item/cell/small
 	spawn_blacklisted = TRUE

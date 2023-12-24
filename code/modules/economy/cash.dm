@@ -5,10 +5,9 @@
 	desc = "It's worth something. Probably."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "spacecash1"
-	force = 1
 	throw_speed = 1
 	throw_range = 2
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/spacecash
 	var/worth = 0
 
@@ -181,8 +180,10 @@
 	var/owner_name = "" // So the ATM can set it so the EFTPOS can put a valid name on transactions.
 
 /obj/item/spacecash/ewallet/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(user in view(2) || user == loc)
-		to_chat(user, span_blue("Charge card's owner: [owner_name]. Credits remaining: [worth]."))
+		description += span_blue("Charge card's owner: [owner_name]. Credits remaining: [worth].")
+	..(user, afterDesc = description)
+
 
 #undef CASH_PER_STAT

@@ -30,7 +30,7 @@
 
 /mob/living/carbon/slime/proc/Feedon(var/mob/living/M)
 	Victim = M
-	loc = M.loc
+	forceMove(M.loc)
 	canmove = 0
 	anchored = TRUE
 
@@ -104,7 +104,7 @@
 /mob/living/carbon/slime/proc/UpdateFeed(var/mob/M)
 	if(Victim)
 		if(Victim == M)
-			loc = M.loc // simple "attach to head" effect!
+			forceMove(M.loc) // simple "attach to head" effect!
 
 /mob/living/carbon/slime/verb/Evolve()
 	set category = SPECIES_SLIME

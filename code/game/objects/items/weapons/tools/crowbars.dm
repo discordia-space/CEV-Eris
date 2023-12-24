@@ -4,9 +4,9 @@
 	icon_state = "crowbar"
 	item_state = "crowbar"
 	flags = CONDUCT
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,17)))
 	worksound = WORKSOUND_EASY_CROWBAR
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 4)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
@@ -20,7 +20,7 @@
 	item_state = "impro_crowbar"
 	tool_qualities = list(QUALITY_PRYING = 10, QUALITY_DIGGING = 10,QUALITY_HAMMERING = 10)
 	degradation = 5 //This one breaks REALLY fast
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 2
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -47,7 +47,7 @@
 	tool_qualities = list(QUALITY_PRYING = 40, QUALITY_DIGGING = 35)
 	degradation = 0.7
 	use_power_cost = 0.8
-	max_upgrades = 4
+	maxUpgrades = 4
 	suitable_cell = /obj/item/cell/medium
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED

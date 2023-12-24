@@ -8,23 +8,23 @@
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
-		bomb = 200,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 45,
+		ARMOR_BULLET = 35,
+		ARMOR_ENERGY = 25,
+		ARMOR_BOMB =200,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	ablative_max = 12
 
 	drain = 4
 	offline_vision_restriction = 1
-	rarity_value = 20
+	rarity_value = 120
 	price_tag = 500
 	helm_type = /obj/item/clothing/head/space/rig/combat
 
 /obj/item/rig/combat/equipped
-	rarity_value = 40
+	rarity_value = 200
 	initial_modules = list(
 		/obj/item/rig_module/mounted,
 		/obj/item/rig_module/vision/thermal,
@@ -43,6 +43,14 @@
 /obj/item/rig/combat/ironhammer
 	name = "ironhammer hardsuit control module"
 	desc = "Standard operative suit issued to Ironhammer mercenaries. Provides balanced overall protection against various threats and widely used on planets surface, space stations or in open space."
+	armor = list(
+		ARMOR_BLUNT = 30,
+		ARMOR_BULLET = 35,
+		ARMOR_ENERGY = 20,
+		ARMOR_BOMB =200,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
+	)
 	icon_state = "ihs_rig"
 	helm_type = /obj/item/clothing/head/space/rig/combat/ironhammer
 	suit_type = "ironhammer hardsuit"
@@ -67,12 +75,12 @@
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
 	armor = list(
-		melee = 12,
-		bullet = 9,
-		energy = 9,
-		bomb = 150,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 23,
+		ARMOR_BULLET = 15,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =150,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	ablative_max = 8
 	ablation = ABLATION_DURABLE // Lasts longer than most rigs

@@ -10,6 +10,7 @@
 /obj/item/melee
 	bad_type = /obj/item/melee
 	spawn_tags = SPAWN_TAG_WEAPON
+	maxUpgrades = 3
 
 /obj/item/melee/classic_baton
 	name = "police baton"
@@ -18,7 +19,12 @@
 	icon_state = "baton"
 	item_state = "classic_baton"
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,12),
+			DELEM(HALLOSS, 8)
+		)
+	)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/melee/classic_baton/attack(mob/M, mob/living/user)
@@ -42,8 +48,12 @@
 	icon_state = "telebaton_0"
 	item_state = "telebaton_0"
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_SMALL
-	force = 3
+	volumeClass = ITEM_SIZE_SMALL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 	var/on = FALSE
 
@@ -59,8 +69,12 @@
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
 		update_wear_icon()
-		w_class = ITEM_SIZE_NORMAL
-		force = WEAPON_FORCE_PAINFUL//quite robust
+		volumeClass = ITEM_SIZE_NORMAL
+		melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,25),
+			DELEM(HALLOSS, 10)
+		))
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message(
@@ -71,8 +85,11 @@
 		icon_state = "telebaton_0"
 		item_state = "telebaton_0"
 		update_wear_icon()
-		w_class = ITEM_SIZE_SMALL
-		force = 3//not so robust now
+		volumeClass = ITEM_SIZE_SMALL
+		melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		))
 		attack_verb = list("hit", "punched")
 
 	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)

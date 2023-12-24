@@ -65,6 +65,7 @@
 	playsound(loc, emagged ? 'sound/weapons/Laser.ogg' : 'sound/weapons/Taser.ogg', 50, 1)
 	var/obj/item/projectile/P = new projectile(loc)
 	var/def_zone = get_exposed_defense_zone(A)
+	P.PrepareForLaunch()
 	P.launch(A, def_zone)
 // Assembly
 

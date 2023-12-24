@@ -4,9 +4,10 @@
 	icon = 'icons/obj/guns/projectile/slaught_o_matic.dmi'
 	icon_state = "slaught"
 	item_state = "slaught"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = 1
 	caliber = CAL_PISTOL
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 	max_shells = 0
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -27,7 +28,6 @@
 	var/choosen_color = ""
 
 	damage_multiplier = 0.8
-	penetration_multiplier = -0.2
 	init_recoil = HANDGUN_RECOIL(1.6)
 
 	gun_tags = list(GUN_SILENCABLE)

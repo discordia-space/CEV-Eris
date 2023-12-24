@@ -6,7 +6,7 @@
 	item_state = "type_62"
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2)
 	caliber = CAL_MAGNUM
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_PISTOL|MAG_WELL_SMG
 	magazine_type = /obj/item/ammo_magazine/magnum
@@ -14,7 +14,6 @@
 	can_dual = TRUE
 	slot_flags = SLOT_BELT|SLOT_HOLSTER|SLOT_BACK
 	damage_multiplier = 1.1
-	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.9)
 	fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'

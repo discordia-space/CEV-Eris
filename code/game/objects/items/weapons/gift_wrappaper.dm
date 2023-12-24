@@ -18,8 +18,8 @@
 	..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
-	if(w_class < ITEM_SIZE_BULKY)
-		icon_state = "gift[w_class]"
+	if(volumeClass < ITEM_SIZE_BULKY)
+		icon_state = "gift[volumeClass]"
 	else
 		icon_state = "gift[pick(1, 2, 3)]"
 
@@ -65,7 +65,7 @@
 		/obj/item/device/paicard,
 		/obj/item/device/violin,
 		/obj/item/storage/belt/utility/full,
-		/obj/item/clothing/accessory/horrible)
+		/obj/item/clothing/accessory/tie/horrible)
 
 	if(!ispath(gift_type,/obj/item))	return
 
@@ -84,7 +84,7 @@
 	var/size = 3
 	var/obj/item/gift
 	item_state = "gift"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/gift/attack_self(mob/user)
 	user.drop_item()
@@ -122,7 +122,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "c_tube"
 	throwforce = WEAPON_FORCE_HARMLESS
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 5
 	rarity_value = 10
@@ -143,9 +143,9 @@
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
 		to_chat(user, SPAN_WARNING("You MUST put the paper on a table!"))
-	if (W.w_class < ITEM_SIZE_BULKY)
+	if (W.volumeClass < ITEM_SIZE_BULKY)
 		if ((istype(user.l_hand, /obj/item/tool/wirecutters) || istype(user.r_hand, /obj/item/tool/wirecutters)))
-			var/a_used = 2 ** (src.w_class - 1)
+			var/a_used = 2 ** (src.volumeClass - 1)
 			if (src.amount < a_used)
 				to_chat(user, SPAN_WARNING("You need more paper!"))
 				return
@@ -156,8 +156,8 @@
 				src.amount -= a_used
 				user.drop_item()
 				var/obj/item/gift/G = new /obj/item/gift( src.loc )
-				G.size = W.w_class
-				G.w_class = G.size + 1
+				G.size = W.volumeClass
+				G.volumeClass = G.size + 1
 				G.icon_state = text("gift[]", G.size)
 				G.gift = W
 				W.loc = G
@@ -176,8 +176,7 @@
 
 
 /obj/item/wrapping_paper/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, text("There is about [] square units of paper left!", src.amount))
+	..(user, afterDesc = "There is about [amount] square units of paper left!")
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
 	if (!ishuman(target))

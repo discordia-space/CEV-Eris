@@ -96,13 +96,14 @@
 /obj/item/gun/energy/proc/get_external_cell()
 	return loc.get_cell()
 
-/obj/item/gun/energy/examine(mob/user)
-	..(user)
+/obj/item/gun/energy/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(!cell)
-		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
-		return
-	var/shots_remaining = round(cell.charge / charge_cost)
-	to_chat(user, "Has [shots_remaining] shot\s remaining.")
+		description += SPAN_NOTICE("Has no battery cell inserted.\n")
+	else
+		var/shots_remaining = round(cell.charge / charge_cost)
+		description += "Has [shots_remaining] shot\s remaining."
+	..(user, afterDesc = description)
 	return
 
 /obj/item/gun/energy/update_icon(var/ignore_inhands)

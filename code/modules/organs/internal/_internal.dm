@@ -13,7 +13,7 @@
 	var/list/initial_organ_efficiency = list()
 	var/scanner_hidden = FALSE	//Does this organ show up on the body scanner
 	var/unique_tag	//If an organ is unique and doesn't scale off of organ processes
-	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by w_class for balance reasons
+	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by volumeClass for balance reasons
 	var/max_blood_storage = 0	//How much blood an organ stores. Base is 5 * blood_req, so the organ can survive without blood for 5 ticks beofre taking damage (+ blood supply of blood vessels)
 	var/current_blood = 100	//How much blood is currently in the organ
 	var/blood_req = 0	//How much blood an organ takes to funcion
@@ -70,7 +70,7 @@
 		owner.mutation_index--
 	..()
 
-/obj/item/organ/internal/replaced(obj/item/organ/external/affected)
+/obj/item/organ/internal/insert(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
 	parent.internal_organs[src] = specific_organ_size // Larger organs have greater pick weight for organ damage
@@ -79,7 +79,7 @@
 	RegisterSignal(parent, COMSIG_IORGAN_APPLY, PROC_REF(apply_modifiers), TRUE)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
-/obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/internal/mob_update(mob/living/carbon/human/target)
 	..()
 	owner.internal_organs |= src
 	for(var/process in organ_efficiency)
@@ -198,21 +198,22 @@
 
 	current_blood = min(current_blood + blood_req, max_blood_storage)
 
-/obj/item/organ/internal/examine(mob/user)
-	. = ..()
+/obj/item/organ/internal/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
-		to_chat(user, SPAN_NOTICE("Organ size: [specific_organ_size]"))
+		description += SPAN_NOTICE("Organ size: [specific_organ_size]")
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT - 5)
 		var/organs
 		for(var/organ in organ_efficiency)
 			organs += organ + " ([organ_efficiency[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 
-		to_chat(user, SPAN_NOTICE("Requirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>"))
-		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
+		description += SPAN_NOTICE("\nRequirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>")
+		description += SPAN_NOTICE("\nOrgan tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>")
 
 		if(item_upgrades.len)
-			to_chat(user, SPAN_NOTICE("Organ grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))
+			description += SPAN_NOTICE("\nOrgan grafts present ([item_upgrades.len]/[maxUpgrades]). Use a laser cutting tool to remove.")
+	..(user, afterDesc = description)
 
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()
@@ -382,7 +383,7 @@
 /obj/item/organ/internal/proc/refresh_organ_stats()
 	name = initial(name)
 	color = initial(color)
-	max_upgrades = initial(max_upgrades)
+	maxUpgrades = initial(maxUpgrades)
 	prefixes = list()
 	min_bruised_damage = initial(min_bruised_damage)
 	min_broken_damage = initial(min_broken_damage)

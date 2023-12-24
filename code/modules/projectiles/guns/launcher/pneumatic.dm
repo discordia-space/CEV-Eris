@@ -5,7 +5,7 @@
 	icon_state = "pneumatic"
 	item_state = "pneumatic"
 	slot_flags = SLOT_BACK
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	flags = CONDUCT
 	fire_sound_text = "a loud whoosh of moving air"
 	fire_delay = 50
@@ -14,7 +14,7 @@
 	rarity_value = 10//no price tag, high rarity
 
 	var/fire_pressure                                   // Used in fire checks/pressure checks.
-	var/max_w_class = ITEM_SIZE_NORMAL                                 // Hopper intake size.
+	var/max_volumeClass = ITEM_SIZE_NORMAL                                 // Hopper intake size.
 	var/max_storage_space = 20                      // Total internal storage size.
 	var/obj/item/tank/tank					// Tank of gas for use in firing the cannon.
 
@@ -28,7 +28,7 @@
 	..()
 	item_storage = new(src)
 	item_storage.name = "hopper"
-	item_storage.max_w_class = max_w_class
+	item_storage.max_volumeClass = max_volumeClass
 	item_storage.max_storage_space = max_storage_space
 	item_storage.use_sound = null
 
@@ -102,17 +102,17 @@
 	return launched
 
 /obj/item/gun/launcher/pneumatic/examine(mob/user)
-	if(!..(user, 2))
-		return
-	to_chat(user, "The valve is dialed to [pressure_setting]%.")
+	var/description = ""
+	description += "The valve is dialed to [pressure_setting]%. \n"
 	if(tank)
-		to_chat(user, "The tank dial reads [tank.air_contents.return_pressure()] kPa.")
+		description += "The tank dial reads [tank.air_contents.return_pressure()] kPa."
 	else
-		to_chat(user, SPAN_WARNING("Nothing is attached to the tank valve!"))
+		description += SPAN_WARNING("Nothing is attached to the tank valve!")
+	..(user, afterDesc = description)
 
 /obj/item/gun/launcher/pneumatic/update_release_force(obj/item/projectile)
 	if(tank)
-		release_force = ((fire_pressure*tank.volume)/projectile.w_class)/force_divisor //projectile speed.
+		release_force = ((fire_pressure*tank.volume)/projectile.volumeClass)/force_divisor //projectile speed.
 		if(release_force > 80) release_force = 80 //damage cap.
 	else
 		release_force = 0
@@ -150,13 +150,14 @@
 	icon_state = "pneumatic[buildstate]"
 
 /obj/item/cannonframe/examine(mob/user)
-	..(user)
+	var/description = ""
 	switch(buildstate)
-		if(1) to_chat(user, "It has a pipe segment installed.")
-		if(2) to_chat(user, "It has a pipe segment welded in place.")
-		if(3) to_chat(user, "It has an outer chassis installed.")
-		if(4) to_chat(user, "It has an outer chassis welded in place.")
-		if(5) to_chat(user, "It has a transfer valve installed.")
+		if(1) description += "It has a pipe segment installed."
+		if(2) description += "It has a pipe segment welded in place."
+		if(3) description += "It has an outer chassis installed."
+		if(4) description += "It has an outer chassis welded in place."
+		if(5) description += "It has a transfer valve installed."
+	..(user, afterDesc = description)
 
 /obj/item/cannonframe/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/pipe))

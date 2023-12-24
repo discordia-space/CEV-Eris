@@ -2,6 +2,8 @@
 	layer = TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	/// Weight of the atom.
+	var/weight = 1
 	var/level = ABOVE_PLATING_LEVEL
 	var/flags = 0
 	var/list/fingerprints
@@ -17,6 +19,9 @@
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
+
+
+	var/atomFlags = null
 
 	///Chemistry.
 	var/reagent_flags = NONE
@@ -43,6 +48,26 @@
 /atom/proc/update_icon()
 	return
 
+/atom/proc/getWeight()
+	return initial(weight)
+
+/// Will return any object that should call blockDamages and mofify the damage list
+/atom/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	RETURN_TYPE(/list)
+	return list(src)
+
+/// Will return a list in the format of armor with armor averages of all relevant blockers on said atom
+/atom/proc/getDamageBlockerRatings(list/relevantTypes)
+	RETURN_TYPE(/list)
+	return list()
+
+
+
+/// This one works by list reference , so no need to return , but just incase...
+/atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	return armorToDam
+
+
 /**
  * Called when an atom is created in byond (built in engine proc)
  *
@@ -57,6 +82,12 @@
 	init_plane()
 	update_plane()
 	init_light()
+
+	weight = getWeight()
+
+	if(isatom(loc) && loc)
+		var/atom/a = loc
+		a.recalculateWeights(weight, src)
 
 	if(datum_flags & DF_USE_TAG)
 		GenerateTag()
@@ -150,11 +181,29 @@
  * * clears the light object
  */
 /atom/Destroy()
+	if(light)
+		light.destroy()
+		light = null
+	if(statverbs)
+		statverbs.Cut()
+	if(buckled_mob && buckled_mob.buckled == src)
+		. = buckled_mob
+		buckled_mob.buckled = null
+		buckled_mob.anchored = initial(buckled_mob.anchored)
+		buckled_mob.update_lying_buckled_and_verb_status()
+		buckled_mob.update_floating()
+		buckled_mob = null
+
+		post_buckle_mob(.)
 	if(reagents)
 		QDEL_NULL(reagents)
 
 	SEND_SIGNAL(src, COMSIG_NULL_TARGET)
 	SEND_SIGNAL(src, COMSIG_NULL_SECONDARY_TARGET)
+
+	if(isatom(loc) && loc)
+		var/atom/a = loc
+		a.recalculateWeights(-weight, src)
 
 	update_openspace()
 	return ..()
@@ -336,9 +385,10 @@ its easier to just keep the beam vertical.
 
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "" , afterDesc = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/full_name = "\a [src][infix]."
+	var/examineText = ""
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
 			full_name = "some "
@@ -349,15 +399,32 @@ its easier to just keep the beam vertical.
 		else
 			full_name += "oil-stained [name][infix]."
 
+	/*
+	margin: 1px;
+	border: 5px solid #0a3352;
+	padding: 5px;
+	background-color:#1d527a;
+	width: auto; /// THESE 2 are needed because IE11 has no max-content width - SPCR 2023
+	white-space: nowrap;
+	*/
+
+
+	examineText += "<div style='["background-color:#1d527a;margin:1px;border:5px solid #0a3352;padding:5px;width:auto;"]'>"
+	examineText += "\icon[src] This is [full_name] \n [desc]"
+	examineText += "[suffix]"
+	if(afterDesc)
+		examineText += "\n [afterDesc]"
+	examineText += "</div>"
+
 	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
+		to_chat(user, examineText)
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", examineText)
 
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(desc)
-		to_chat(user, desc)
+		//to_chat(user,"<div style='["background-color:#1d527a"]';>[desc]</div>")
 		var/pref = user.get_preference_value("SWITCHEXAMINE")
 		if(pref == GLOB.PREF_YES)
 			user.client.statpanel = "Examine"

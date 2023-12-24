@@ -8,7 +8,7 @@
 	icon_state = "molly"
 	item_state = "molly"
 
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -28,7 +28,6 @@
 	can_dual = 1
 	auto_eject = 1
 	damage_multiplier = 0.8 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
-	penetration_multiplier = -0.1
 	init_recoil = HANDGUN_RECOIL(0.6)
 
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/sol.dmi'
 	icon_state = "sol"
 	item_state = "sol"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
@@ -17,7 +17,6 @@
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	init_recoil = CARBINE_RECOIL(1)
-	penetration_multiplier = 0
 	damage_multiplier = 1.1
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	gun_tags = list(GUN_FA_MODDABLE)

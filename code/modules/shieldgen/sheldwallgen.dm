@@ -135,6 +135,7 @@
 		if(can_stun(M) && prob(stun_chance))
 			var/obj/item/projectile/beam/stun/P = new(src.loc)
 			P.shot_from = src
+			P.PrepareForLaunch()
 			P.launch(M)
 
 /obj/machinery/shieldwallgen/proc/can_stun(var/mob/M)
@@ -175,7 +176,7 @@
 	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
 		T = get_step(T, f_dir)
 		var/obj/machinery/shieldwall/CF = new shield_type(src, G) //(ref to this gen, ref to connected gen)
-		CF.loc = T
+		CF.forceMove(T)
 		CF.set_dir(f_dir)
 
 

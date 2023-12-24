@@ -68,24 +68,24 @@
 		radio_connection.post_signal(src, signal)
 
 /obj/machinery/meter/examine(mob/user)
-	var/t = "A gas flow meter. "
+	var/t = "A gas flow meter. \n"
 
 	if(get_dist(user, src) > 3 && !(isAI(user) || isghost(user)))
-		t += SPAN_WARNING("You are too far away to read it.")
+		t += SPAN_WARNING("You are too far away to read it. \n")
 
 	else if(stat & (NOPOWER|BROKEN))
-		t += SPAN_WARNING("The display is off.")
+		t += SPAN_WARNING("The display is off. \n")
 
 	else if(src.target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
-			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
+			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C \n)"
 		else
-			t += "The sensor error light is blinking."
+			t += "The sensor error light is blinking. \n"
 	else
-		t += "The connect error light is blinking."
+		t += "The connect error light is blinking. \n"
 
-	to_chat(user, t)
+	..(user, afterDesc = t)
 
 /obj/machinery/meter/Click()
 

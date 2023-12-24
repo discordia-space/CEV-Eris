@@ -5,7 +5,7 @@
 	icon_state = "generic"
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	w_class = ITEM_SIZE_GARGANTUAN
+	volumeClass = ITEM_SIZE_GARGANTUAN
 	matter = list(MATERIAL_STEEL = 10)
 	//bad_type = /obj/structure/closet
 	spawn_tags = SPAWN_TAG_CLOSET
@@ -76,7 +76,7 @@
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = 0
 		for(I in src.contents)
-			content_size += CEILING(I.w_class * 0.5, 1)
+			content_size += CEILING(I.volumeClass * 0.5, 1)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
 
@@ -85,21 +85,24 @@
 	. = ..()
 
 /obj/structure/closet/examine(mob/user)
-	if(..(user, 1) && !opened && !istype(src, /obj/structure/closet/body_bag))
+	var/description = ""
+	if(!opened && !istype(src, /obj/structure/closet/body_bag))
 		var/content_size = 0
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
-				content_size += CEILING(I.w_class * 0.5, 1)
+				content_size += CEILING(I.volumeClass * 0.5, 1)
 		if(!content_size)
-			to_chat(user, "It is empty.")
+			description += "It is empty."
 		else if(storage_capacity > content_size*4)
-			to_chat(user, "It is barely filled.")
+			description += "It is barely filled."
 		else if(storage_capacity > content_size*2)
-			to_chat(user, "It is less than half full.")
+			description += "It is less than half full."
 		else if(storage_capacity > content_size)
-			to_chat(user, "There is still some free space.")
+			description += "There is still some free space."
 		else
-			to_chat(user, "It is full.")
+			description += "It is full."
+
+	..(user, afterDesc = description)
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1
@@ -287,7 +290,7 @@
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = 0
 	for(var/obj/item/I in src.loc)
-		var/item_size = CEILING(I.w_class / 2, 1)
+		var/item_size = CEILING(I.volumeClass / 2, 1)
 		if(stored_units + added_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)

@@ -13,8 +13,12 @@
 	singular_name = "broken tile"
 	icon = 'icons/obj/stack/tile.dmi'
 	desc = "This should not exist."
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_HARMLESS
+	volumeClass = ITEM_SIZE_NORMAL
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 7
@@ -47,7 +51,11 @@
 	singular_name = "wood floor tile"
 	desc = "An easy to fit wooden floor tile."
 	icon_state = "tile_wood"
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	flags = 0
 
@@ -133,7 +141,11 @@
 	singular_name = "floor tile"
 	desc = "Could work as a pretty decent throwing weapon."
 	icon_state = "tile"
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 1)
 	flags = CONDUCT

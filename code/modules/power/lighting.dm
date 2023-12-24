@@ -30,19 +30,15 @@
 		icon_state = "floortube-construct-stage1"
 
 /obj/machinery/light_construct/examine(mob/user)
-	if(!..(user, 2))
-		return
-
+	var/description = ""
 	switch(src.stage)
 		if(1)
-			to_chat(user, "It's an empty frame.")
-			return
+			description += "It's an empty frame."
 		if(2)
-			to_chat(user, "It's wired.")
-			return
+			description += "It's wired."
 		if(3)
-			to_chat(user, "The casing is closed.")
-			return
+			description += "The casing is closed."
+	..(user, afterDesc = description)
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user)
 
@@ -368,16 +364,17 @@
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
-	..()
+	var/description = ""
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [on? "on" : "off"].")
+			description += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			description += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			description += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
+			description += "The [fitting] has been smashed."
+	..(user, afterDesc = description)
 
 
 
@@ -385,13 +382,6 @@
 
 /obj/machinery/light/attackby(obj/item/I, mob/user)
 
-	//Light replacer code
-	if(istype(I, /obj/item/device/lightreplacer))
-		var/obj/item/device/lightreplacer/LR = I
-		if(isliving(user))
-			var/mob/living/U = user
-			LR.ReplaceLight(src, U)
-			return
 
 	// attempt to insert light
 	if(istype(I, /obj/item/light))
@@ -436,7 +426,7 @@
 	else if(status != LIGHT_BROKEN && status != LIGHT_EMPTY)
 
 
-		if(prob(1+I.force * 5))
+		if(prob(1+dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)) * 5))
 
 			to_chat(user, "You hit the light, and it smashes!")
 			for(var/mob/M in viewers(src))
@@ -654,9 +644,8 @@
 
 /obj/item/light
 	icon = 'icons/obj/lighting.dmi'
-	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
 	var/switchcount = 0	// number of times switched
@@ -678,7 +667,7 @@
 	brightness_power = 3
 
 /obj/item/light/tube/large
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	name = "large light tube"
 	brightness_range = 15
 	brightness_power = 4
@@ -770,7 +759,7 @@
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
 		status = LIGHT_BROKEN
-		force = WEAPON_FORCE_WEAK
+		melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,10)))
 		sharp = TRUE
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		update()

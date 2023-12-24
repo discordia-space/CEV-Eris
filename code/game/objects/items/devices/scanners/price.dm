@@ -5,7 +5,7 @@
 	icon_state = "reader0"
 	item_state = "radio"
 	flags = NOBLUDGEON
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	siemens_coefficient = 1
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	charge_per_use = 3

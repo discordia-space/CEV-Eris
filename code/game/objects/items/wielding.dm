@@ -5,7 +5,7 @@
 	var/wieldsound = 'sound/weapons/thudswoosh.ogg' //Generic sound. Replace it with a special one if you have one.
 	var/unwieldsound //If you want it to make a sound when you unwield, put one here.
 	var/wielded_icon //The item state used when it's wielded. Guns are snowflakey and have their own shit for this. This is for non guns.
-	var/force_wielded_multiplier = 0 //If you have a specific force for it being unwielded. If for whatever reason you don't want to use the original force of the weapon.
+	/// Wielded multiplier moved in obj/item/ def
 
 
 /mob/living/proc/do_wield()//The proc we actually care about.
@@ -23,10 +23,6 @@
 	if(!wielded || !user)
 		return
 	wielded = FALSE
-	if(force_wielded_multiplier)
-		force = (force / force_wielded_multiplier)
-	else
-		force = (force / 1.3)
 
 	var/sf = findtext(name," (Wielded)")
 	if(sf)
@@ -59,10 +55,6 @@
 		user.drop_offhand()
 		to_chat(user, SPAN_WARNING("You dropped \the [X]."))
 	wielded = TRUE
-	if(force_wielded_multiplier)
-		force = force * force_wielded_multiplier
-	else //This will give items wielded 30% more damage. This is balanced by the fact you cannot use your other hand.
-		force = (force * 1.3) //Items that do 0 damage will still do 0 damage though.
 	var/original_name = name //Else using [initial(name)] for the name of object returns compile-time name without any changes that've happened to the object's name
 	name = "[name] (Wielded)"
 	update_wield_icon()
@@ -133,7 +125,7 @@
 	name = "offhand"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "offhand"
-	w_class = ITEM_SIZE_COLOSSAL
+	volumeClass = ITEM_SIZE_COLOSSAL
 	item_flags = ABSTRACT
 
 /obj/item/twohanded/offhand/unwield()

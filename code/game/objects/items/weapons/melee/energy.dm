@@ -2,16 +2,25 @@
 	icon = 'icons/obj/weapons.dmi'
 	sharp = FALSE
 	edge = FALSE
-	armor_divisor = ARMOR_PEN_MASSIVE
 	flags = NOBLOODY
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
 	heat = 3800
 	embed_mult = 0 //No physical matter to catch onto things
 	bad_type = /obj/item/melee/energy
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,2)
+		)
+	)
+	var/list/activeDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BRUTE, 30),
+			DELEM(BURN, 25)
+		)
+	)
 	var/active = 0
-	var/active_force
 	var/active_throwforce
-	var/active_w_class
+	var/active_volumeClass
 
 /obj/item/melee/energy/is_hot()
 	if (active)
@@ -22,12 +31,11 @@
 	if(active)
 		return
 	active = 1
-	force = active_force
+	melleDamages = activeDamages.Copy()
 	throwforce = active_throwforce
-	damtype = BURN
 	sharp = TRUE
 	edge = TRUE
-	w_class = active_w_class
+	volumeClass = active_volumeClass
 	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 	update_wear_icon()
 
@@ -37,12 +45,11 @@
 		return
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 	active = 0
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	throwforce = initial(throwforce)
-	damtype = initial(damtype)
 	sharp = initial(sharp)
 	edge = initial(edge)
-	w_class = initial(w_class)
+	volumeClass = initial(volumeClass)
 	update_wear_icon()
 
 /obj/item/melee/energy/attack_self(mob/living/user as mob)
@@ -63,14 +70,21 @@
 	name = "energy axe"
 	desc = "A battle axe with some kind of red energy crystal. Pretty sharp."
 	icon_state = "axe0"
-	active_force = WEAPON_FORCE_GODLIKE
+	activeDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,40)), ARMOR_POINTY=list(DELEM(BRUTE,20)))
 	active_throwforce = 50
-	active_w_class = ITEM_SIZE_HUGE
-	force = 20
+	active_volumeClass = ITEM_SIZE_HUGE
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE,20)
+		),
+		ARMOR_POINTY = list(
+			DELEM(BRUTE,10)
+		)
+	)
 	throwforce = 10
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	flags = CONDUCT | NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -95,15 +109,20 @@
 	name = "energy sword"
 	desc = "May the Force be with you."
 	icon_state = "sword0"
-	active_force = WEAPON_FORCE_LETHAL // Go forth and slay, padawan
+	activeDamages = list(ARMOR_ENERGY = list(DELEM(BURN,30), DELEM(BRUTE,15))) // Go forth and slay, padawan
 	active_throwforce = WEAPON_FORCE_LETHAL
 	no_double_tact = TRUE
-	active_w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_HARMLESS
+	active_volumeClass = ITEM_SIZE_BULKY
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_COVERT = 4)
 	sharp = TRUE
@@ -174,7 +193,12 @@
 	name = "laser sabre"
 	desc = "You feel the radiant glow below your skin."
 	origin_tech = list(TECH_MAGNET = 5, TECH_POWER = 6, TECH_COMBAT = 3)
-	active_force = WEAPON_FORCE_ROBUST
+	activeDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BRUTE,20),
+			DELEM(BURN,20)
+		)
+	)
 	active_throwforce = WEAPON_FORCE_ROBUST
 
 /*
@@ -187,16 +211,18 @@
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "blade"
-	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
-	armor_divisor = ARMOR_PEN_MAX
-	damtype = BURN
+	melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN,30),
+			DELEM(BRUTE,30)
+		))
 	sharp = TRUE
 	edge = TRUE
 	anchored = TRUE    // Never spawned outside of inventory, should be fine.
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
@@ -250,7 +276,11 @@
 	if(stunmode)
 		desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 		icon_state = "blade"
-		force = WEAPON_FORCE_ROBUST
+		melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BRUTE,30),
+			DELEM(BURN,30)
+		))
 		sharp = FALSE
 		edge = TRUE
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -258,7 +288,11 @@
 	else
 		desc = "A concentrated beam of energy in the shape of a blade. Very stylish... for a stun baton."
 		icon_state = "blade_stun"
-		force = WEAPON_FORCE_PAINFUL
+		melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(HALLOSS, 40),
+			DELEM(BURN,10)
+		))
 		sharp = FALSE
 		edge = FALSE
 		attack_verb = list("beaten", "battered", "struck")

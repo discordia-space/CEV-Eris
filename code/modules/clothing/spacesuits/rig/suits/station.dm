@@ -32,12 +32,12 @@
 	icon_state = "engineering_rig"
 	price_tag = 350
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 0,
-		bomb = 100,
-		bio = 100,
-		rad = 90
+		ARMOR_BLUNT = 16,
+		ARMOR_BULLET = 15,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB =100,
+		ARMOR_BIO =100,
+		ARMOR_RAD =90
 	)
 	ablative_max = 8
 	ablation = ABLATION_SOFT
@@ -79,12 +79,12 @@
 	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
 	icon_state = "eva_rig"
 	armor = list(
-		melee = 9,
-		bullet = 3,
-		energy = 3,
-		bomb = 25,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 9,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 3,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	slowdown = 0
 	offline_slowdown = HEAVY_SLOWDOWN
@@ -122,12 +122,12 @@ Advanced Voidsuit: Technomancer Exultant
 	icon_state = "ce_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 8,
-		bullet = 8,
-		energy = 8,
-		bomb = 50,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 15,
+		ARMOR_BULLET = 14,
+		ARMOR_ENERGY = 14,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	ablative_max = 10
 	ablation = ABLATION_RESILIENT
@@ -184,12 +184,12 @@ Technomancer RIG
 	icon_state = "techno_rig"
 	rarity_value = 20
 	armor = list(
-		melee = 8,
-		bullet = 8,
-		energy = 8,
-		bomb = 50,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 14,
+		ARMOR_BULLET = 12,
+		ARMOR_ENERGY = 12,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	ablative_max = 10
 	ablation = ABLATION_DURABLE
@@ -242,12 +242,12 @@ Technomancer RIG
 	rarity_value = 25
 	price_tag = 350
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 8,
-		bomb = 350,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 8,
+		ARMOR_BOMB =350,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	ablative_max = 12
 	ablation = ABLATION_EVERLASTING
@@ -290,12 +290,12 @@ Technomancer RIG
 	desc = "A relatively lightweight ceramic RIG suit designed for medical rescue in hazardous locations."
 	icon_state = "medical_rig"
 	armor = list(
-		melee = 4,
-		bullet = 4,
-		energy = 0,
-		bomb = 50,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 4,
+		ARMOR_BULLET = 4,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	ablative_max = 10
 	ablation = ABLATION_CERAMIC

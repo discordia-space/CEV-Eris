@@ -271,12 +271,12 @@
 	desc = "Brown beret with emblem. Material that it made of will protect against energy projectiles."
 	icon_state = "germanberet"
 	armor = list(
-		melee = 1,
-		bullet = 1,
-		energy = 6,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 6,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/head/beret/merc
@@ -308,12 +308,12 @@
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
 	armor = list(
-		melee = 2,
-		bullet = 10,
-		energy = 10,
-		bomb = 50,
-		bio = 5,
-		rad = 5
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =5,
+		ARMOR_RAD =5
 	)
 
 /obj/item/clothing/head/ranger
@@ -334,12 +334,12 @@
 	siemens_coefficient = 1
 	price_tag = 600
 	armor = list(
-		melee = 5,
-		bullet = 3,
-		energy = 2,
-		bomb = 0,
-		bio = 20,
-		rad = 25
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 3,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =20,
+		ARMOR_RAD =25
 	)
 	style_coverage = COVERS_WHOLE_HEAD
 
@@ -352,12 +352,12 @@
 	body_parts_covered = HEAD|FACE|EARS
 	price_tag = 300
 	armor = list(
-		melee = 2,
-		bullet = 1,
-		energy = 1,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	style_coverage = COVERS_WHOLE_FACE
 
@@ -376,12 +376,12 @@
 	spawn_blacklisted = TRUE //its 10k, also decent armour
 	price_tag = 10000
 	armor = list(
-		melee = 7,
-		bullet = 6,
-		energy = 6,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 6,
+		ARMOR_ENERGY = 6,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	style_coverage = COVERS_WHOLE_FACE
 

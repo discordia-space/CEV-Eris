@@ -9,7 +9,7 @@
 	icon = 'icons/obj/storage/boxes.dmi'
 	icon_state = "box"
 	item_state = "box"
-	max_w_class = ITEM_SIZE_SMALL
+	max_volumeClass = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE + 1
 	contained_sprite = TRUE
 	health = 20
@@ -57,15 +57,23 @@
 	qdel(src)
 
 /obj/item/storage/box/survival/populate_contents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/survival/extended/populate_contents()
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/emergency_oxygen/engi(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector(src)
-	new /obj/item/device/lighting/glowstick/yellow(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/clothing/mask/breath(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/tank/emergency_oxygen/engi(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/reagent_containers/hypospray/autoinjector(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/lighting/glowstick/yellow(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -344,11 +352,15 @@
 	prespawned_content_type = /obj/item/implantcase/tracking
 
 /obj/item/storage/box/trackimp/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
-	new /obj/item/device/gps/locator(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/implanter(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/implantpad(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/device/gps/locator(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/chemimp
 	name = "boxed chemical implant kit"
@@ -360,10 +372,14 @@
 	prespawned_content_type = /obj/item/implantcase/chem
 
 /obj/item/storage/box/chemimp/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
-	new /obj/item/implanter(src)
-	new /obj/item/implantpad(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/implanter(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/implantpad(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/rxglasses
 	name = "box of prescription glasses"
@@ -389,9 +405,13 @@
 	prespawned_content_type = /obj/item/implantcase/death_alarm
 
 /obj/item/storage/box/cdeathalarm_kit/populate_contents()
-	new /obj/item/implanter(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/implanter(NULLSPACE))
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
@@ -478,7 +498,7 @@
 	icon_state = "matchbox"
 	item_state = "zippo"
 	illustration = null
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_BELT
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_BOX_TAG_JUNK
@@ -486,15 +506,19 @@
 	prespawned_content_type = /obj/item/flame/match
 
 /obj/item/storage/box/matches/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/matches/attackby(obj/item/flame/match/W, mob/user)
 	if(istype(W) && !W.lit && !W.burnt)
 		playsound(src, 'sound/items/matchstrike.ogg', 20, 1, 1)
 		W.lit = 1
-		W.damtype = "burn"
 		W.icon_state = "match_lit"
 		W.tool_qualities = list(QUALITY_CAUTERIZING = 10)
 		START_PROCESSING(SSobj, W)
@@ -518,8 +542,13 @@
 	prespawned_content_type = /obj/item/light/bulb
 
 /obj/item/storage/box/lights/bulbs/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/lights/tubes
@@ -530,8 +559,13 @@
 	prespawned_content_type = /obj/item/light/tube
 
 /obj/item/storage/box/lights/tubes/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/lights/mixed
@@ -543,10 +577,15 @@
 	prespawned_content_type = /obj/item/light/tube
 
 /obj/item/storage/box/lights/mixed/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to prespawned_content_amount)
-		new prespawned_content_type(src)
+		spawnedAtoms.Add(new prespawned_content_type(NULLSPACE))
 	for(var/i in 1 to 7)
-		new /obj/item/light/bulb(src)
+		spawnedAtoms.Add(new /obj/item/light/bulb(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	make_exact_fit()
 
 /obj/item/storage/box/data_disk
@@ -578,6 +617,8 @@
 	icon_state = "happy_meal"
 
 /obj/item/storage/box/happy_meal/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	var/list/things2spawn = list(
 		/obj/item/reagent_containers/food/snacks/creamcheesebreadslice,
 		/obj/item/reagent_containers/food/snacks/applecakeslice,
@@ -586,7 +627,10 @@
 		/obj/spawner/soda)
 	things2spawn += pick(/obj/spawner/toy/figure, /obj/spawner/toy/plushie, /obj/spawner/toy/card)
 	for(var/path in things2spawn)
-		new path(src)
+		spawnedAtoms.Add(new path(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/box/njoy
 	name = "red Njoy packet"

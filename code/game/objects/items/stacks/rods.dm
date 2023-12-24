@@ -6,8 +6,12 @@
 	icon_state = "rods"
 	novariants = FALSE
 	flags = CONDUCT
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_WEAK
+	volumeClass = ITEM_SIZE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 20

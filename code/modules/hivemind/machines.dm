@@ -46,17 +46,18 @@
 
 
 /obj/machinery/hivemind_machine/examine(mob/user)
-	..()
+	var/description = ""
 	if (health < maxHealth * 0.1)
-		to_chat(user, SPAN_DANGER("It's almost nothing but scrap!"))
+		description += SPAN_DANGER("It's almost nothing but scrap!")
 	else if (health < maxHealth * 0.25)
-		to_chat(user, SPAN_DANGER("It's seriously fucked up!"))
+		description += SPAN_DANGER("It's seriously fucked up!")
 	else if (health < maxHealth * 0.50)
-		to_chat(user, SPAN_DANGER("It's very damaged; you can almost see the components inside!"))
+		description += SPAN_DANGER("It's very damaged; you can almost see the components inside!")
 	else if (health < maxHealth * 0.75)
-		to_chat(user, SPAN_WARNING("It has numerous dents and deep scratches."))
+		description += SPAN_WARNING("It has numerous dents and deep scratches.")
 	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("It's a bit scratched and dented."))
+		description += SPAN_WARNING("It's a bit scratched and dented.")
+	..(user, afterDesc = description)
 
 
 /obj/machinery/hivemind_machine/Process()
@@ -157,7 +158,7 @@
 	rebuild_anim.anchored = TRUE
 	rebuild_anim.density = FALSE
 	addtimer(CALLBACK(src, PROC_REF(finish_rebuild), new_machine_path), time_in_seconds SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
 
 
 /obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)
@@ -165,7 +166,7 @@
 	if(assimilated_machinery["path"])
 		new_machine.assimilated_machinery = assimilated_machinery
 	if(saved_circuit)
-		saved_circuit.loc = new_machine
+		saved_circuit.forceMove(new_machine)
 		new_machine.saved_circuit = saved_circuit
 	qdel(src)
 
@@ -269,10 +270,11 @@
 		attack_hand(M)
 
 /obj/machinery/hivemind_machine/attackby(obj/item/I, mob/user)
-	if(!(I.flags & NOBLUDGEON) && I.force)
+	var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+	if(!(I.flags & NOBLUDGEON) && damage)
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		var/clear_damage = I.force - resistance
+		var/clear_damage = damage - resistance
 
 		if(clear_damage)
 			. = ..()
@@ -468,6 +470,7 @@
 
 /obj/machinery/hivemind_machine/turret/use_ability(atom/target)
 	var/obj/item/projectile/proj = new proj_type(loc)
+	proj.PrepareForLaunch()
 	proj.launch(target)
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 
@@ -523,7 +526,7 @@
 	if(!GLOB.hive_data_bool["maximum_existing_mobs"] || GLOB.hive_data_float["maximum_existing_mobs"] > total_mobs)
 		var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
 		var/mob/living/simple_animal/hostile/hivemind/spawned_mob = CATCH.get_item(mob_to_spawn)
-		spawned_mob.loc = loc
+		spawned_mob.forceMove(loc)
 		spawned_creatures.Add(spawned_mob)
 		spawned_mob.master = src
 		flick("[icon_state]-anim", src)

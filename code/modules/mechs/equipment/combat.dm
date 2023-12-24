@@ -14,7 +14,7 @@
 	icon_state = "claymore"
 	item_state = "claymore"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	worksound = WORKSOUND_HARD_SLASH
 	wielded = TRUE
 	canremove = FALSE
@@ -39,13 +39,14 @@
 	AddComponent(/datum/component/overlay_manager)
 
 /obj/item/mech_blade_assembly/examine(user, distance)
-	. = ..()
-	if(.)
-		if(sharpeners)
-			to_chat(user, SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough."))
-		else
-			to_chat(user, SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade."))
-		to_chat(user , SPAN_NOTICE("Use a wrench to make this mountable. This is not reversible."))
+	var/description = ""
+	if(sharpeners)
+		description += SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough. \n")
+	else
+		description += SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade. \n")
+	description +=  SPAN_NOTICE(" Use a wrench to make this mountable. This is not reversible.")
+	. = ..(user, distance, afterDesc = "description")
+
 
 /obj/item/mech_blade_assembly/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/tool_upgrade/productivity/whetstone))
@@ -69,7 +70,7 @@
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_comp = new /obj/item/mech_equipment/mounted_system/sword(get_turf(src))
 				var/obj/item/mech_equipment/mounted_system/sword/le_mech_sword = le_mech_comp.holding
 				// DULL BLADE gets DULL DAMAGE
-				le_mech_sword.force = max(0,(blade_mat.hardness - 35 * sharpeners)/2)
+				le_mech_sword.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(blade_mat.hardness - 35 * sharpeners)/2))))
 				le_mech_sword.matter = list(blade_mat.name = 5)
 				le_mech_comp.material_color = blade_mat.icon_colour
 				qdel(src)
@@ -147,7 +148,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_PLASTEEL)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.force = max(0,(mat_data.hardness/2))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_PLASTEEL = 5)
 
 
@@ -161,7 +162,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_OSMIUM)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.force = max(0,(mat_data.hardness/2))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_OSMIUM = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/cardboard
@@ -174,7 +175,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_CARDBOARD)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.force = max(0,(mat_data.hardness/2))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_CARDBOARD = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/myhydrogen
@@ -187,7 +188,7 @@
 	var/material/mat_data = get_material_by_name(MATERIAL_MHYDROGEN)
 	material_color = mat_data.icon_colour
 	. = ..()
-	holding.force = max(0,(mat_data.hardness/2))
+	holding.melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,max(0,(mat_data.hardness/2)))))
 	holding.matter = list(MATERIAL_MHYDROGEN = 5)
 
 /obj/item/mech_equipment/mounted_system/sword/Initialize()
@@ -390,9 +391,7 @@
 
 
 /obj/item/mech_equipment/mounted_system/ballistic/examine(user, distance)
-	. = ..()
-	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking."))
-
+	. = ..(user, distance, afterDesc = SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking."))
 
 /obj/item/mech_equipment/mounted_system/ballistic/Initialize()
 	. = ..()
@@ -832,8 +831,6 @@
 	visual_bluff.icon_state = "shield_null"
 	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 	visual_bluff.layer = ABOVE_ALL_MOB_LAYER
-	// the mech default offset is -8 , this neeeds 8 for some reason.
-	visual_bluff.pixel_x = 8
 
 /obj/item/mech_equipment/shield_generator/Destroy()
 	. = ..()
@@ -895,16 +892,17 @@
 		update_icon()
 		return damages
 	flick("shield_impact", visual_bluff)
-	for(var/damage in damages)
-		while(power.charge >= damage_to_power_drain && damages[damage] > 0)
-			damages[damage] -= 1
-			power.use(damage_to_power_drain)
-			// if it blows
-			if(QDELETED(power))
-				last_toggle = world.time
-				on = FALSE
-				update_icon()
-				return damages
+	for(var/armorType in damages)
+		for(var/list/damageElement in damages[armorType])
+			while(power.charge >= damage_to_power_drain && damageElement[2] > 0)
+				damageElement[2] -= 1
+				power.use(damage_to_power_drain)
+				// if it blows
+				if(QDELETED(power))
+					last_toggle = world.time
+					on = FALSE
+					update_icon()
+					return damages
 
 	return damages
 
@@ -956,6 +954,7 @@
 	if(!(visual_bluff in mech.vis_contents))
 		mech.vis_contents.Add(visual_bluff)
 	visual_bluff.dir = mech.dir
+	visual_bluff.icon_state = "mech_shield_[on ? "on_" : ""][get_hardpoint()]"
 	switch(get_hardpoint())
 		if(HARDPOINT_RIGHT_HAND)
 			// i used a switch before and it doesnt work as intended for some fucking reason FOR EAST AND WEST >:( -SPCR
@@ -978,7 +977,6 @@
 			if(visual_bluff.dir == WEST)
 				visual_bluff.layer = MECH_ABOVE_LAYER
 			return
-	visual_bluff.icon_state = "mech_shield_[on ? "on_" : ""][get_hardpoint()]"
 
 /obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)
 	var/mob/living/exosuit/mech = loc
@@ -1021,12 +1019,12 @@
 				targ.visible_message(SPAN_DANGER("[targ] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 				targ.Weaken(1)
 				targ.throw_at(get_turf_away_from_target_complex(target,user,3), 5, 1, loc)
-				targ.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 1, src, FALSE, FALSE, 1)
+				targ.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20))), BP_CHEST, src, 1, 1, FALSE)
 			else
 				knockable.visible_message(SPAN_DANGER("[knockable] gets slammed by [loc]'s [src]!"), SPAN_NOTICE("You get slammed by [loc]'s [src]!"), "You hear something soft hit a metal plate!", 6)
 				knockable.Weaken(1)
 				knockable.throw_at(get_turf_away_from_target_complex(target,user,3), 3, 1, loc)
-				knockable.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
+				knockable.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20))), BP_CHEST, src, 1, 1, FALSE)
 
 		if(length(targets))
 			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 1)

@@ -538,7 +538,7 @@
 			else
 				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
 				for(var/obj/item/W in H) //Check all items on the person
-					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now. 
+					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now.
 						W.dropped()
 				H.set_species(SPECIES_SLIME)
 
@@ -555,7 +555,7 @@
 	var/prosthetic = FALSE
 	var/mob/living/carbon/human/MH
 	if(istype(M, /mob/living/carbon/human)) //If it is human cast to human type for human procs
-		MH = M 
+		MH = M
 		prosthetic = MH.isSynthetic()
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
@@ -570,10 +570,10 @@
 			if(istype(W, /obj/item/implant) || istype(W, /obj/item/organ/external/robotic))  //Check if item is implant or prosthetic
 				if(istype(W, /obj/item/implant/core_implant/cruciform)) //If cruciform is present victim is gibbed instead of transformed
 					cruciformed = TRUE
-				W.dropped() //use the baseline dropped() 
+				W.dropped() //use the baseline dropped()
 				continue
 			W.layer = initial(W.layer)
-			W.loc = M.loc
+			W.forceMove(M.loc)
 			W.dropped(M)
 		if(!cruciformed) //If not cruciformed, get slimed
 			var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)

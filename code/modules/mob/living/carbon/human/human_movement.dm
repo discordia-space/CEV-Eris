@@ -3,6 +3,14 @@
 	var/tally = ..()
 	if(species.slowdown)
 		tally += species.slowdown
+
+	/// yes becauses we used to have -1 on shoes
+	tally -= 1.5
+
+	var/weightTally = (weight - initial(weight) - 20000) / 1000
+	if(weightTally > 0)
+		tally += weightTally*0.03
+
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
 	/// No slowdown for mech pilots , mech already handles movement.
@@ -55,11 +63,14 @@
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here
 		tally += 1 //Small slowdown so wheelchairs aren't turbospeed
+
+	/*
 	else
 		if(wear_suit)
 			tally += wear_suit.slowdown
 		if(shoes)
 			tally += shoes.slowdown
+	*/
 
 	//tally += min((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
 	tally += clamp((get_dynamic_pain() - get_painkiller()) / 40, 0, 3) // Scales from 0 to 3,
@@ -99,11 +110,11 @@
 	//Check hands and mod slip
 	if(!l_hand)
 		prob_slip -= 2
-	else if(l_hand.w_class <= ITEM_SIZE_SMALL)
+	else if(l_hand.volumeClass <= ITEM_SIZE_SMALL)
 		prob_slip -= 1
 	if (!r_hand)
 		prob_slip -= 2
-	else if(r_hand.w_class <= ITEM_SIZE_SMALL)
+	else if(r_hand.volumeClass <= ITEM_SIZE_SMALL)
 		prob_slip -= 1
 
 	return prob_slip

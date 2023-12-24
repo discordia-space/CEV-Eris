@@ -44,8 +44,8 @@
 							have_glass = TRUE
 							update_icon()
 							return
-
-		if(I.damtype == BRUTE || I.damtype == BURN)
+		
+		if(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)))
 			hit(user, I)
 			return
 

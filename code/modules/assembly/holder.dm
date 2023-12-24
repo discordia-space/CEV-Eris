@@ -5,7 +5,7 @@
 	item_state = "assembly"
 	flags = CONDUCT | PROXMOVE
 	throwforce = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 3
 	throw_range = 10
 
@@ -37,8 +37,8 @@
 	user.remove_from_mob(D2)
 	D.holder = src
 	D2.holder = src
-	D.loc = src
-	D2.loc = src
+	D.forceMove(src)
+	D2.forceMove(src)
 	left_assembly = D
 	right_assembly = D2
 	name = "[D.name]-[D2.name] assembly"
@@ -62,12 +62,14 @@
 
 
 /obj/item/device/assembly_holder/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(in_range(src, user) || src.loc == user)
 		if(src.secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			description += SPAN_NOTICE("\The [src] is ready!")
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			description += SPAN_NOTICE("\The [src] can be attached!")
+
+	..(user, afterDesc = description)
 
 
 /obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
@@ -143,10 +145,10 @@
 		if(!T)	return 0
 		if(left_assembly)
 			left_assembly:holder = null
-			left_assembly.loc = T
+			left_assembly.forceMove(T)
 		if(right_assembly)
 			right_assembly:holder = null
-			right_assembly.loc = T
+			right_assembly.forceMove(T)
 		spawn(0)
 			qdel(src)
 	return

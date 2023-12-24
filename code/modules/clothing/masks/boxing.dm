@@ -5,7 +5,7 @@
 	item_state = "luchag"
 	flags_inv = HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	style_coverage = COVERS_WHOLE_FACE
 	siemens_coefficient = 3
 

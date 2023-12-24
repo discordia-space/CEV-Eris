@@ -25,6 +25,7 @@
 	touching.clear_reagents()
 	metabolism_effects.clear_effects()
 	nutrition = 400
+	halloss = 0
 	shock_stage = 0
 	..()
 
@@ -46,8 +47,9 @@
 			user.last_special = world.time + 50
 			src.visible_message(SPAN_DANGER("You hear something rumbling inside [src]'s stomach..."))
 			var/obj/item/I = user.get_active_hand()
-			if(I && I.force)
-				var/d = rand(round(I.force / 4), I.force)
+			var/damage = dhTotalDamage(I.melleDamages)
+			if(I && damage)
+				var/d = rand(round(damage / 4), damage)
 				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/organ = H.get_organ(BP_CHEST)
@@ -62,7 +64,7 @@
 
 				if(prob(src.getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
-						A.loc = loc
+						A.forceMove(loc)
 						stomach_contents.Remove(A)
 					src.gib()
 
@@ -70,7 +72,7 @@
 	for(var/mob/M in src)
 		if(M in src.stomach_contents)
 			src.stomach_contents.Remove(M)
-		M.loc = src.loc
+		M.forceMove(loc)
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
 				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
@@ -294,9 +296,9 @@
 		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
 			var/obj/item/I = item
 			var/robust = stats.getStat(STAT_ROB)
-			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)
+			var/timer = ((5 * I.volumeClass) - (robust * 0.1)) //(volumeClass * 5) - (STR * 0.1)
 			visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
-			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
+			if((I.volumeClass < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
 				item.throwing = TRUE
 				unEquip(item, loc)
 				item.forceMove(get_turf(GetAbove(src)))

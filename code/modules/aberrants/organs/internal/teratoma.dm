@@ -9,7 +9,7 @@
 	ruined_color = "#696969"
 	icon_state = "teratoma"
 
-	max_upgrades = 1
+	maxUpgrades = 1
 	use_generated_name = FALSE
 	use_generated_color = FALSE
 	req_num_inputs = null
@@ -120,7 +120,7 @@
 /obj/item/organ/internal/scaffold/aberrant/teratoma/ruin()
 	..()
 	use_generated_name = FALSE
-	max_upgrades = 0
+	maxUpgrades = 0
 	price_tag = 25
 	matter = list(MATERIAL_BIOMATTER = 5)
 	STOP_PROCESSING(SSobj, src)
@@ -537,12 +537,16 @@
 	req_num_outputs = 4
 
 /obj/item/storage/freezer/medical/contains_teratomas/populate_contents()
-	new /obj/item/organ/internal/scaffold/aberrant/teratoma/random(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random(NULLSPACE))
 	for(var/count in 1 to 3)	// 79.6% to have at least one extra teratoma
 		if(prob(40))
-			new /obj/item/organ/internal/scaffold/aberrant/teratoma/random(src)
+			spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random(NULLSPACE))
 	for(var/count in 1 to 3)	// 27.1% to have at least one uncommon teratoma
 		if(prob(10))
-			new /obj/item/organ/internal/scaffold/aberrant/teratoma/random/uncommon(src)
+			spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random/uncommon(NULLSPACE))
 	if(prob(5))
-		new /obj/item/organ/internal/scaffold/aberrant/teratoma/random/rare(src)
+		spawnedAtoms.Add(new  /obj/item/organ/internal/scaffold/aberrant/teratoma/random/rare(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)

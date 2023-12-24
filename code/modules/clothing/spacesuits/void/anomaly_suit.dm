@@ -7,12 +7,12 @@
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_STEEL = 5)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 10,
-		bomb = 50,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	siemens_coefficient = 0
 
@@ -25,12 +25,12 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 10)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 10,
-		bomb = 50,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	siemens_coefficient = 0 // It would be funny get electrocuted to death in a suit that supposed to protect against shocks
 	helmet = /obj/item/clothing/head/space/void/hazardhelmet

@@ -43,25 +43,26 @@
 	. = ..()
 
 /obj/structure/heavy_vehicle_frame/examine(var/mob/user)
-	. = ..()
+	var/description = ""
 	if(!arms)
-		to_chat(user, SPAN_WARNING("It is missing manipulators."))
+		description += SPAN_WARNING("It is missing manipulators.\n")
 	if(!legs)
-		to_chat(user, SPAN_WARNING("It is missing propulsion."))
+		description += SPAN_WARNING("It is missing propulsion.\n")
 	if(!head)
-		to_chat(user, SPAN_WARNING("It is missing sensors."))
+		description += SPAN_WARNING("It is missing sensors.\n")
 	if(!body)
-		to_chat(user, SPAN_WARNING("It is missing a chassis."))
+		description += SPAN_WARNING("It is missing a chassis.\n")
 	if(is_wired == FRAME_WIRED)
-		to_chat(user, SPAN_WARNING("It has not had its wiring adjusted."))
+		description += SPAN_WARNING("It has not had its wiring adjusted.\n")
 	else if(!is_wired)
-		to_chat(user, SPAN_WARNING("It has not yet been wired."))
+		description += SPAN_WARNING("It has not yet been wired.\n")
 	if(is_reinforced == FRAME_REINFORCED)
-		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement secured."))
+		description += SPAN_WARNING("It has not had its internal reinforcement secured.\n")
 	else if(is_reinforced == FRAME_REINFORCED_SECURE)
-		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement welded in."))
+		description += SPAN_WARNING("It has not had its internal reinforcement welded in.\n")
 	else if(!is_reinforced)
-		to_chat(user, SPAN_WARNING("It does not have any internal reinforcement."))
+		description += SPAN_WARNING("It does not have any internal reinforcement.\n")
+	..(user, afterDesc = description)
 
 /obj/structure/heavy_vehicle_frame/update_icon()
 	. = ..()
@@ -92,7 +93,7 @@
 	if(is_reinforced == FRAME_REINFORCED_SECURE || is_reinforced == FRAME_REINFORCED_WELDED)
 		usable_qualities += QUALITY_WELDING
 
-	if(is_reinforced == FRAME_REINFORCED || arms || legs || head || body)
+	if((is_reinforced == FRAME_REINFORCED && !istype(I,/obj/item/mech_component/manipulators)) || arms || legs || head || body)
 		usable_qualities += QUALITY_PRYING
 
 	if(is_wired)

@@ -11,14 +11,19 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/engineering
 	name = "Technomancer voidsuit"
@@ -26,12 +31,12 @@
 	icon_state = "technosuit_old"
 	item_state = "technosuit_old"
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	extra_allowed = list(
@@ -42,6 +47,13 @@
 	)
 	helmet = /obj/item/clothing/head/space/void/engineering
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/sideguards/steel,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/engineering/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -61,12 +73,12 @@
 		slot_r_hand_str = "eng_helm",
 		)
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
@@ -100,12 +112,12 @@
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
-		melee = 8,
-		bullet = 7,
-		energy = 7,
-		bomb = 60,
-		bio = 100,
-		rad = 100
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =60,
+		ARMOR_BIO =100,
+		ARMOR_RAD =100
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	extra_allowed = list(
@@ -134,14 +146,19 @@
 		slot_r_hand_str = "mining_helm",
 		)
 	armor = list(
-		melee = 13,
-		bullet = 10,
-		energy = 7,
-		bomb = 50,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	light_overlay = "helmet_light_dual"
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/mining
 	name = "mining voidsuit"
@@ -149,15 +166,21 @@
 	item_state = "miner_suit"
 	icon_state = "miner_suit"
 	armor = list(
-		melee = 13,
-		bullet = 10,
-		energy = 7,
-		bomb = 50,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	helmet = /obj/item/clothing/head/space/void/mining
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/sideguards/steel,
+		/obj/item/armor_component/plate/leather
+	)
 
 //Medical
 /obj/item/clothing/head/space/void/medical
@@ -170,12 +193,12 @@
 		slot_r_hand_str = "medical_helm",
 		)
 	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 10,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 
 /obj/item/clothing/suit/space/void/medical
@@ -190,12 +213,12 @@
 		/obj/item/roller
 	)
 	armor = list(
-		melee = 5,
-		bullet = 2,
-		energy = 8,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 8,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
 	slowdown = LIGHT_SLOWDOWN
@@ -217,15 +240,21 @@
 		)
 
 	armor = list(
-		melee = 8,
-		bullet = 13,
-		energy = 10,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 13,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/security
 	name = "ironhammer voidsuit"
@@ -233,16 +262,23 @@
 	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection."
 	item_state = "ihvoidsuit"
 	armor = list(
-		melee = 8,
-		bullet = 13,
-		energy = 10,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 8,
+		ARMOR_BULLET = 13,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/security
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/kevlar,
+		/obj/item/armor_component/sideguards/plasteel,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/security/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -261,12 +297,12 @@
 		slot_r_hand_str = "atmos_helm",
 		)
 	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 2,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	light_overlay = "helmet_light_dual"
@@ -277,12 +313,12 @@
 	name = "atmos voidsuit"
 	item_state = "atmos_voidsuit"
 	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 2,
-		bomb = 25,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	helmet = /obj/item/clothing/head/space/void/atmos
@@ -304,12 +340,12 @@
 	)
 	price_tag = 200
 	armor = list(
-		melee = 10,
-		bullet = 13,
-		energy = 15,
-		bomb = 50,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 13,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0.4
 	light_overlay = "helmet_light_dual"
@@ -351,21 +387,30 @@
 	MATERIAL_PLASTEEL = 15,
 	MATERIAL_STEEL = 10,
 	MATERIAL_PLASTIC = 10,
-	MATERIAL_PLATINUM = 5
+	MATERIAL_GOLD = 8,
+	MATERIAL_DIAMOND = 4,
+	MATERIAL_PLATINUM = 8
 	)
 	armor = list(
-		melee = 10,
-		bullet = 13,
-		energy = 15,
-		bomb = 50, //platinum price justifies bloated stats
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 5,
+		ARMOR_BOMB = 50, //platinum price justifies bloated stats
+		ARMOR_BIO = 100,
+		ARMOR_RAD = 75
 	)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4)
 	price_tag = 1200
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
 	spawn_blacklisted = TRUE
+	armorComps = list(
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/plate/nt17,
+		/obj/item/armor_component/sideguards/plastic,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -395,15 +440,20 @@
 	slowdown = 2
 
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 25,
-		bio = 100,
-		rad = 5
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =5
 	)
 	light_overlay = "helmet_light_dual"
 	siemens_coefficient = 0.8
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/riggedvoidsuit
 	name = "makeshift armored voidsuit"
@@ -412,24 +462,30 @@
 	item_state = "makeshift_void"
 	siemens_coefficient = 0.4
 	armor = list(
-		melee = 7,
-		bullet = 7,
-		energy = 7,
-		bomb = 25,
-		bio = 100,
-		rad = 5
+		ARMOR_BLUNT = 7,
+		ARMOR_BULLET = 7,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =5
 	)
 	siemens_coefficient = 0.8
 	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
 	spawn_blacklisted = TRUE
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	var/obj/item/storage/internal/pockets
+	armorComps = list(
+		/obj/item/armor_component/plate/steel,
+		/obj/item/armor_component/sideguards/steel,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/riggedvoidsuit/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 3	//three slots
-	pockets.max_w_class = ITEM_SIZE_SMALL		//fit only pocket sized items
+	pockets.max_volumeClass = ITEM_SIZE_SMALL		//fit only pocket sized items
 	pockets.max_storage_space = 4
 
 /obj/item/clothing/suit/space/void/riggedvoidsuit/Destroy()
@@ -465,16 +521,22 @@
 	action_button_name = "Toggle Helmet Light"
 	flags_inv = BLOCKHAIR
 	armor = list(
-		melee = 13,
-		bullet = 11,
-		energy = 12,
-		bomb = 50,
-		bio = 100,
-		rad = 50
+		ARMOR_BLUNT = 13,
+		ARMOR_BULLET = 11,
+		ARMOR_ENERGY = 12,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	siemens_coefficient = 0.35
 	species_restricted = list(SPECIES_HUMAN)
 	light_overlay = "helmet_light"
+	armorComps = list(
+		/obj/item/armor_component/plate/neojute,
+		/obj/item/armor_component/plate/neojute,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)
 
 /obj/item/clothing/suit/space/void/NTvoid
 	name = "neotheology voidsuit"
@@ -485,12 +547,12 @@
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-	    melee = 12,
-		bullet = 11,
-		energy = 12,
-		bomb = 50,
-		bio = 100,
-		rad = 50
+	    ARMOR_BLUNT = 12,
+		ARMOR_BULLET = 11,
+		ARMOR_ENERGY = 12,
+		ARMOR_BOMB =50,
+		ARMOR_BIO =100,
+		ARMOR_RAD =50
 	)
 	siemens_coefficient = 0.35
 	breach_threshold = 10
@@ -499,3 +561,10 @@
 	helmet = /obj/item/clothing/head/space/void/NTvoid
 	spawn_blacklisted = TRUE
 	slowdown = LIGHT_SLOWDOWN
+	armorComps = list(
+		/obj/item/armor_component/plate/neojute,
+		/obj/item/armor_component/plate/neojute,
+		/obj/item/armor_component/sideguards/plastic,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)

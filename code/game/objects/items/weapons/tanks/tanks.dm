@@ -15,9 +15,15 @@ var/list/global/tank_gauge_cache = list()
 
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+	wieldedMultiplier = 5
+	WieldedattackDelay = 14
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 4
@@ -69,25 +75,23 @@ var/list/global/tank_gauge_cache = list()
 	if(default_gas)
 		air_contents.adjust_gas(default_gas, default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
-/obj/item/tank/examine(mob/user)
-	. = ..(user, 0)
-	if(.)
-		var/celsius_temperature = air_contents.temperature - T0C
-		var/descriptive
-		switch(celsius_temperature)
-			if(300 to INFINITY)
-				descriptive = "furiously hot"
-			if(100 to 300)
-				descriptive = "hot"
-			if(80 to 100)
-				descriptive = "warm"
-			if(40 to 80)
-				descriptive = "lukewarm"
-			if(20 to 40)
-				descriptive = "room temperature"
-			else
-				descriptive = "cold"
-		to_chat(user, SPAN_NOTICE("\The [src] feels [descriptive]."))
+/obj/item/tank/examine(mob/user,afterDesc)
+	var/celsius_temperature = air_contents.temperature - T0C
+	var/descriptive = "[afterDesc] \n"
+	switch(celsius_temperature)
+		if(300 to INFINITY)
+			descriptive = "furiously hot"
+		if(100 to 300)
+			descriptive = "hot"
+		if(80 to 100)
+			descriptive = "warm"
+		if(40 to 80)
+			descriptive = "lukewarm"
+		if(20 to 40)
+			descriptive = "room temperature"
+		else
+			descriptive = "cold"
+	..(user, afterDesc =  SPAN_NOTICE("\The [src] feels [descriptive]."))
 
 /obj/item/tank/attackby(obj/item/W, mob/living/user)
 	..()

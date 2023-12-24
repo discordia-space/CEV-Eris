@@ -3,7 +3,7 @@
 	desc = "A device that can record audio to data crystals, and play them. It automatically translates the content in playback."
 	icon_state = "taperecorder_idle"
 	item_state = "analyzer"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 	flags = CONDUCT
@@ -39,8 +39,7 @@
 	add_hearing()
 
 /obj/item/device/taperecorder/examine(mob/user)
-	if(..(user, 1) && open_panel)
-		to_chat(usr, "The wire panel is open.")
+	..(user, afterDesc = open_panel ? "The wire panel is open." : "")
 
 /obj/item/device/taperecorder/attackby(obj/item/I, mob/user, params)
 	if(!mydrive && istype(I, /obj/item/computer_hardware/hard_drive/portable))

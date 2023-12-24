@@ -65,31 +65,15 @@
 
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
 	var/damage = Proj.get_structure_damage()
-	var/passthrough = 0
+	var/passthrough = FALSE
 
 	if(!damage) return
 
-	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
-	//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
-	for(var/i in Proj.damage_types)
-		if(i == BRUTE)
-			//bullets
-			if(Proj.original == src || prob(20))
-				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 0.5)
-				if(prob(max((damage-10)/25, 0))*100)
-					passthrough = 1
-			else
-				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 1)
-				passthrough = 1
-		if(i == BURN)
-			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
-			if(!(Proj.original == src || prob(20)))
-				Proj.damage_types[i] *= 0.5
-				passthrough = 1
+	if(damage > 20)
+		passthrough = TRUE
 
 	if(passthrough)
 		. = PROJECTILE_CONTINUE
-		damage = between(0, (damage - Proj.get_structure_damage())*(Proj.damage_types[BRUTE] ? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
 
 	take_damage(damage * 0.2)
 
@@ -168,7 +152,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-		take_damage(I.force * I.structure_damage_factor)
+		take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) * I.structure_damage_factor)
 	..()
 	return
 

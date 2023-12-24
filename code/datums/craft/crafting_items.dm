@@ -67,12 +67,7 @@
 	tags_to_spawn = list(SPAWN_GUN)
 
 /obj/item/craft_frame/examine(user, distance)
-	. = ..()
-	if(.)
-		if(req_parts > 0)
-			to_chat(user, SPAN_NOTICE("Requires [req_parts] gun parts to be complete."))
-		else
-			to_chat(user, SPAN_NOTICE("[src] is complete."))
+	..(user, afterDesc = req_parts > 0 ? SPAN_NOTICE("Requires [req_parts] gun parts to be complete.") : SPAN_NOTICE("[src] is complete."))
 
 /obj/item/craft_frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, suitable_part))

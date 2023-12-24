@@ -111,7 +111,7 @@ see multiz/movement.dm for some info.
 	if( config.z_level_shooting && istype(mover,/obj/item/projectile) )
 		var/obj/item/projectile/P = mover
 		if(isnull(P.height) && ( istype(P.original, /turf/simulated/open) || (istype(mover, /mob/shadow)) ) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
-			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forcemove()
+			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forceMove()
 			P.trajectory.loc_z = below.z
 			P.bumped = FALSE
 			P.height = HEIGHT_LOW // We are shooting from above, this protects windows from damage
@@ -199,7 +199,7 @@ see multiz/movement.dm for some info.
 
 			if(M == mover)
 				continue
-			if(M.getarmor(BP_HEAD, ARMOR_MELEE) < fall_damage || ismob(mover))
+			if(M.getarmor(BP_HEAD, ARMOR_BLUNT) < fall_damage || ismob(mover))
 				M.Weaken(10)
 			if(fall_damage >= FALL_GIB_DAMAGE)
 				M.gib()
@@ -209,8 +209,8 @@ see multiz/movement.dm for some info.
 
 				while(fall_damage > 0)
 					fall_damage -= tmp_damage = rand(0, fall_damage)
-					M.damage_through_armor(tmp_damage, BRUTE, organ, used_weapon = mover)
 					organ = pickweight(list(BP_HEAD = 0.3, BP_CHEST = 0.8, BP_R_ARM = 0.6, BP_L_ARM = 0.6))
+					M.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, fall_damage))), organ, mover)
 
 
 // override to make sure nothing is hidden

@@ -25,13 +25,13 @@
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		E.set_dir(dir)
 		E.part = SK
-		SK.loc = E
+		SK.forceMove(E)
 		SK.master = E
 		qdel(src)
 
 	else if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
 	if(buckled_mob)
@@ -185,10 +185,10 @@
 		var/def_zone = ran_zone()
 
 		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_MELEE))
-		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_MELEE))
-		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_MELEE))
-		occupant.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_BLUNT))
+		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_BLUNT))
+		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_BLUNT))
+		occupant.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
 
 		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
 
@@ -197,10 +197,10 @@
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 
-			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
+			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_BLUNT))
+			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_BLUNT))
+			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_BLUNT))
+			victim.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
 
 		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
 

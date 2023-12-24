@@ -13,12 +13,12 @@
 	)
 
 	armor = list(
-		melee = 10,
-		bullet = 13,
-		energy = 14,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 23,
+		ARMOR_BULLET = 20,
+		ARMOR_ENERGY = 8,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0
 	species_restricted = list(SPECIES_HUMAN)
@@ -26,6 +26,13 @@
 	light_overlay = "helmet_light_green"
 	var/obj/item/clothing/glasses/hud/excelsior/hud
 	price_tag = 300
+	armorComps = list(
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/plastic
+
+	)
 
 /obj/item/clothing/head/space/void/excelsior/New()
 	..()
@@ -72,14 +79,14 @@
 	icon_state = "soviet_skaf"
 	item_state = "soviet_skaf"
 	slowdown = 0.2
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 10,
-		bullet = 13,
-		energy = 14,
-		bomb = 75,
-		bio = 100,
-		rad = 75
+		ARMOR_BLUNT = 23,
+		ARMOR_BULLET = 20,
+		ARMOR_ENERGY = 14,
+		ARMOR_BOMB =75,
+		ARMOR_BIO =100,
+		ARMOR_RAD =75
 	)
 	siemens_coefficient = 0 //Shockproof!
 	breach_threshold = 6
@@ -92,3 +99,12 @@
 	helmet = /obj/item/clothing/head/space/void/excelsior
 	spawn_blacklisted = TRUE
 	slowdown = MEDIUM_SLOWDOWN
+	armorComps = list(
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/plate/excelalloy,
+		/obj/item/armor_component/sideguards/excelalloy,
+		/obj/item/armor_component/sideguards/excelalloy,
+		/obj/item/armor_component/plate/plastic,
+		/obj/item/armor_component/plate/plastic
+	)

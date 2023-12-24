@@ -9,8 +9,7 @@
 	icon = 'icons/obj/guns/projectile/modular/ak.dmi'
 	icon_state = "frame"
 	item_state = "" // I do not believe this affects anything
-	w_class = ITEM_SIZE_BULKY // Stock increases it by 1
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY // Stock increases it by 1
 	caliber = null // Determined by barrel
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
@@ -20,6 +19,7 @@
 	matter = list() // Gunparts are be stored within the gun as extra material
 	price_tag = 0 // Debug item
 	magazine_type = null // Default magazine, only relevant for spawned AKs, not crafted or printed ones
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 	damage_multiplier = 1 // Mechanism + Barrel can modify
 	penetration_multiplier = 0 // Mechanism + Barrel can modify
@@ -49,7 +49,7 @@
 
 	serial_type = "Excelsior"
 
-	max_upgrades = 6
+	maxUpgrades = 6
 
 /obj/item/gun/projectile/automatic/modular/Initialize()
 
@@ -197,11 +197,11 @@
 		if(PARTMOD_FOLDING_STOCK & statusTags)
 			to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 			statusTags -= PARTMOD_FOLDING_STOCK
-			w_class = initial(w_class)
+			volumeClass = initial(volumeClass)
 		else
 			to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 			statusTags |= PARTMOD_FOLDING_STOCK
-			w_class = initial(w_class) + 1
+			volumeClass = initial(volumeClass) + 1
 
 		refresh_upgrades()
 		playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)

@@ -34,11 +34,13 @@
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
-	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
+	var/description = ""
+	description += "Large machine with heavy duty switching circuits used for advanced grid control \n"
 	if(on)
-		to_chat(user, "\green It seems to be online.")
+		description += "\green It seems to be online."
 	else
-		to_chat(user, SPAN_WARNING("It seems to be offline."))
+		description += SPAN_WARNING("It seems to be offline.")
+	..(user, afterDesc = description)
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)

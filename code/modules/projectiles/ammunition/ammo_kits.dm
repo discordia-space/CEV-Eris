@@ -6,7 +6,7 @@
 	icon_state = "ammo_kit-1"
 	flags = CONDUCT
 	throwforce = 1
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	spawn_tags = SPAWN_TAG_AMMO_COMMON
 
 

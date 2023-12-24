@@ -113,10 +113,11 @@
 	update_icon()
 
 /obj/machinery/shield_diffuser/examine(var/mob/user)
-	. = ..()
-	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
+	var/description = ""
+	description += "It is [enabled ? "enabled" : "disabled"].\n"
 	if(alarm)
-		to_chat(user, "A red LED labeled \"Proximity Alarm\" is blinking on the control panel.")
+		description += "A red LED labeled \"Proximity Alarm\" is blinking on the control panel."
+	..(user, afterDesc = description)
 
 /obj/machinery/shield_diffuser/explosion_act(target_power, explosion_handler/handler)
 	return 0

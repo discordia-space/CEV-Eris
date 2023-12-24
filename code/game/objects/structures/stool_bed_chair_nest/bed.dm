@@ -122,7 +122,7 @@
 		C.use(1)
 		if(!istype(src.loc, /turf))
 			user.drop_from_inventory(src)
-			src.loc = get_turf(src)
+			forceMove(get_turf(src))
 		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
@@ -241,7 +241,7 @@
 	icon_state = "folded"
 	item_state = "rbed"
 	slot_flags = SLOT_BACK
-	w_class = ITEM_SIZE_HUGE // Can't be put in backpacks. Oh well. For now.
+	volumeClass = ITEM_SIZE_HUGE // Can't be put in backpacks. Oh well. For now.
 	var/structure_form_type = /obj/structure/bed/roller	//The deployed form path.
 
 /obj/item/roller/attack_self(mob/user)
@@ -287,8 +287,7 @@
 	held.Add(new /obj/item/roller(src))
 
 /obj/item/roller_holder/examine(var/mob/user)
-	.=..()
-	to_chat(user, SPAN_NOTICE("It contains [held.len] stored beds"))
+	..(user, afterDesc = SPAN_NOTICE("It contains [held.len] stored beds"))
 
 /obj/item/roller_holder/attack_self(mob/user as mob)
 

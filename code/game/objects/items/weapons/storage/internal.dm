@@ -6,7 +6,7 @@
 
 /obj/item/storage/internal/New(obj/item/MI)
 	master_item = MI
-	loc = master_item
+	forceMove(master_item)
 	name = master_item.name
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 	..()

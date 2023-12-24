@@ -34,7 +34,7 @@ var/global/list/default_medbay_channels = list(
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
 
@@ -539,14 +539,14 @@ var/global/list/default_medbay_channels = list(
 		return get_mobs_or_objects_in_view(canhear_range, src)
 
 
-/obj/item/device/radio/examine(mob/user)
-	. = ..()
-	if ((in_range(src, user) || loc == user))
+/obj/item/device/radio/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
+	if(get_dist(user, src) <= 2)
 		if (b_stat)
-			user.show_message(SPAN_NOTICE("\The [src] can be attached and modified!"))
+			description += SPAN_NOTICE("\The [src] can be attached and modified!")
 		else
-			user.show_message(SPAN_NOTICE("\The [src] can not be modified or attached!"))
-	return
+			description +=SPAN_NOTICE("\The [src] can not be modified or attached!")
+	. = ..(user, afterDesc = description)
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()
@@ -790,7 +790,7 @@ var/global/list/default_medbay_channels = list(
 		/obj/item/cell/medium/hyper = 1,
 		/obj/item/bluespace_crystal = 1
 	)
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/device/radio/random_radio/New()
 	..()

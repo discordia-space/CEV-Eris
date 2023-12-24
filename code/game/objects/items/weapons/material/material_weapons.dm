@@ -7,7 +7,7 @@
 	gender = NEUTER
 	throw_speed = 3
 	throw_range = 7
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	sharp = FALSE
 	edge = FALSE
 	bad_type = /obj/item/material
@@ -42,10 +42,15 @@
 
 /obj/item/material/proc/update_force()
 	if(edge || sharp)
-		force = material.get_edge_damage()
+		melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE,min(16,material.get_edge_damage() * force_divisor))
+		))
 	else
-		force = material.get_blunt_damage()
-	force = min(25, round(force*force_divisor))
+		melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,min(32,material.get_blunt_damage() * force_divisor))
+		))
 	throwforce = min(15, round(material.get_blunt_damage()*thrown_force_divisor))
 	//spawn(1)
 	//	world << "[src] has force [force] and throwforce [throwforce] when made from default material [material.name]"

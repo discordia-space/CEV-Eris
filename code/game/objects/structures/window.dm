@@ -35,28 +35,31 @@
 
 	return damage
 
-/obj/structure/window/examine(mob/user)
-	. = ..(user)
+/obj/structure/window/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 
 	if(health == maxHealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+		description += SPAN_NOTICE("It looks fully intact.")
 	else
 		var/perc = health / maxHealth
 		if(perc > 0.75)
-			to_chat(user, SPAN_NOTICE("It has a few cracks."))
+			description += SPAN_NOTICE("It has a few cracks.")
 		else if(perc > 0.5)
-			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
+			description += SPAN_WARNING("It looks slightly damaged.")
 		else if(perc > 0.25)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			description += SPAN_WARNING("It looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
+			description += SPAN_DANGER("It looks heavily damaged.")
 	if(silicate)
+		description += "\n"
 		if (silicate < 30)
-			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
+			description += SPAN_NOTICE("It has a thin layer of silicate.")
 		else if (silicate < 70)
-			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
+			description += SPAN_NOTICE("It is covered in silicate.")
 		else
-			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
+			description += SPAN_NOTICE("There is a thick layer of silicate covering it.")
+
+	..(user, afterDesc = description)
 
 
 //Subtracts resistance from damage then applies it
@@ -275,7 +278,7 @@
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
 			// having ass of concrete divides damage by 3
 			// max damage can be 30 without armor, and gets mitigated by having 15 melee armor
-			target.damage_through_armor(round(10 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, round(10 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1))))),BP_HEAD, src, 0.5, 1, FALSE)
 			if(!toughTarget)
 				target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 8 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * (toughTarget ? 2 : 1 ) / windowResistance))
@@ -287,12 +290,12 @@
 				target.Weaken(1)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, toughTarget ? 6 SECONDS : 12 SECONDS, "window_smash")
 			// at most 60 without armor , 23 with 15 melee armor
-			target.damage_through_armor(round(20 * skillRatio * health/maxHealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, round(20 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1))))),BP_HEAD, src, 0.4, 1, FALSE)
 			hit(round(target.mob_size * skillRatio * 1.5 * (toughTarget ? 2 : 1) / windowResistance))
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
 			// at most 90 damage without armor, 40 with 15 melee armor
-			target.damage_through_armor(round(30 * skillRatio * health/maxHealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.3)
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, round(30 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1))))),BP_HEAD, src, 0.3, 1, FALSE)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 2, toughTarget ? 10 SECONDS : 20 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * 2 * ((toughTarget ? 2 : 1)) / windowResistance))
 	admin_attack_log(user, target,
@@ -327,13 +330,13 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 			M.adjustHalLoss(5)
 			M.Weaken(2)
 			// 40 in worst case, 10 with 15 melee armor
-			M.damage_through_armor(40 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,40 * (1 - victimToughness/toughnessDivisor) * healthRatio))), body_part, src, 1, 1, FALSE)
 		else
 			M.adjustHalLoss(3)
 			// 20 in worst  case , 5 with 15 melee armor
-			M.damage_through_armor(20 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20 * (1 - victimToughness/toughnessDivisor) * healthRatio))), body_part, src, 1, 1, FALSE)
 	else
-		M.damage_through_armor(5, BRUTE, body_part, ARMOR_MELEE) // just a scratch
+		M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,5))), body_part, src, 1, 1, FALSE)
 		tforce *= 2
 
 	if(reinf) tforce *= 0.25
@@ -418,9 +421,9 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(I.damtype == BRUTE || I.damtype == BURN)
+		if(dhHasDamageType(I.melleDamages, BRUTE) || dhHasDamageType(I.melleDamages,BURN))
 			user.do_attack_animation(src)
-			hit(I.force*I.structure_damage_factor)
+			hit(dhTotalDamage(I.melleDamages)*I.structure_damage_factor)
 			if(health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))
@@ -496,10 +499,10 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	density = FALSE
 	update_nearby_tiles()
 	var/turf/location = loc
-	loc = null
+	forceMove(NULLSPACE)
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
-	loc = location
+	forceMove(location)
 	. = ..()
 
 /obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)

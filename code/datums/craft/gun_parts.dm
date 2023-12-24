@@ -35,7 +35,7 @@ semi accepts weird caliber - +1 points
 	desc = "Spare part of gun."
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 5)
 	var/generic = TRUE
 
@@ -64,7 +64,7 @@ semi accepts weird caliber - +1 points
 	desc = "Spare part of gun."
 	icon_state = "gun_part_1"
 	spawn_tags = SPAWN_TAG_GUN_PART
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_PLASTEEL = 5)
 	generic = TRUE
 	var/part_overlay
@@ -264,25 +264,25 @@ semi accepts weird caliber - +1 points
 	return
 
 /obj/item/part/gun/frame/examine(user, distance)
-	. = ..()
-	if(.)
-		if(InstalledGrip)
-			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledGrip] installed."))
-		else
-			to_chat(user, SPAN_NOTICE("\the [src] does not have a grip installed."))
-		if(InstalledMechanism)
-			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledMechanism] installed."))
-		else
-			to_chat(user, SPAN_NOTICE("\the [src] does not have a mechanism installed."))
-		if(InstalledBarrel)
-			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed."))
-		else
-			to_chat(user, SPAN_NOTICE("\the [src] does not have a barrel installed."))
-		if(in_range(user, src) || isghost(user))
-			if(serial_type)
-				to_chat(user, SPAN_WARNING("There is a serial number on the frame, it reads [serial_type]."))
-			else if(isnull(serial_type))
-				to_chat(user, SPAN_DANGER("The serial is scribbled away."))
+	var/description = ""
+	if(InstalledGrip)
+		description += SPAN_NOTICE("\the [src] has \a [InstalledGrip] installed. \n")
+	else
+		description += SPAN_NOTICE("\the [src] does not have a grip installed. \n")
+	if(InstalledMechanism)
+		description += SPAN_NOTICE("\the [src] has \a [InstalledMechanism] installed. \n")
+	else
+		description += SPAN_NOTICE("\the [src] does not have a mechanism installed. \n")
+	if(InstalledBarrel)
+		description += SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed. \n")
+	else
+		description += SPAN_NOTICE("\the [src] does not have a barrel installed. \n")
+	if(in_range(user, src) || isghost(user))
+		if(serial_type)
+			description += SPAN_WARNING("There is a serial number on the frame, it reads [serial_type]. \n")
+		else if(isnull(serial_type))
+			description += SPAN_DANGER("The serial is scribbled away. \n")
+	..(user, distance, afterDesc = description)
 
 //Grips
 /obj/item/part/gun/modular/grip

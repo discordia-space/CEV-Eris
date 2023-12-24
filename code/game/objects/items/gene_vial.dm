@@ -5,7 +5,7 @@
 	icon_state = "bottle16" //paceholder
 	var/empty = FALSE
 	matter = list(MATERIAL_GLASS = 1)
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/gene_vial/attack(mob/M, mob/living/user, def_zone)
 	if(user != M || !istype(user))

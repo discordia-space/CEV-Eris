@@ -8,7 +8,7 @@
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 3
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 10
 	amount_per_transfer_from_this = 10
@@ -78,9 +78,8 @@
 	spray_size = next_list_item(spray_size, spray_sizes)
 	to_chat(user, SPAN_NOTICE("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
 
-/obj/item/reagent_containers/spray/examine(mob/user)
-	if(..(user, 0) && loc == user)
-		to_chat(user, "[round(reagents.total_volume)] units left.")
+/obj/item/reagent_containers/spray/examine(mob/user, afterDesc)
+	..(user, afterDesc = "[afterDesc] \n [round(reagents.total_volume)] units left.")
 
 /obj/item/reagent_containers/spray/verb/empty()
 
@@ -122,8 +121,7 @@
 	preloaded_reagents = list("condensedcapsaicin" = 40)
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "The safety is [safety ? "on" : "off"].")
+	..(user, afterDesc = "The safety is [safety ? "on" : "off"].")
 
 /obj/item/reagent_containers/spray/pepper/attack_self(var/mob/user)
 	safety = !safety
@@ -154,7 +152,7 @@
 	icon_state = "chemsprayer"
 	item_state = "chemsprayer"
 	throwforce = 3
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 4)
 	possible_transfer_amounts = null
 	volume = 600

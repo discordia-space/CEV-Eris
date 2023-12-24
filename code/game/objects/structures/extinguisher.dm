@@ -75,7 +75,7 @@
 
 /obj/structure/extinguisher_cabinet/attack_tk(mob/user)
 	if(has_extinguisher)
-		has_extinguisher.loc = loc
+		has_extinguisher.forceMove(loc)
 		to_chat(user, SPAN_NOTICE("You telekinetically remove [has_extinguisher] from [src]."))
 		has_extinguisher = null
 		opened = 1

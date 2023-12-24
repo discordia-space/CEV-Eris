@@ -6,9 +6,14 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "armblade"
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_BRUTAL
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE,20),
+			DELEM(BRUTE,20)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("stabbed", "chopped", "cut")
 	armor_divisor = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 20)
@@ -67,9 +72,13 @@
 	desc = "A stubby blade deployed from your wrist. Get shanking."
 	icon = 'icons/obj/surgery.dmi'
 	worksound = WORKSOUND_HARD_SLASH
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 10)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("shanked", "slashed", "gored")
 	armor_divisor = ARMOR_PEN_MODERATE
 	tool_qualities = list(QUALITY_CUTTING = 20)

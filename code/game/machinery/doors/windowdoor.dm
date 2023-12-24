@@ -248,10 +248,10 @@
 	//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
 	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		var/aforce = I.force
+		var/aforce = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
 		visible_message(SPAN_DANGER("[src] was hit by [I]."))
-		if(I.damtype == BRUTE || I.damtype == BURN)
+		if(aforce)
 			take_damage(aforce)
 		return
 

@@ -183,7 +183,7 @@
 		anim = 0
 	for(var/obj/item/I in src)
 		drop_from_inventory(I)
-		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
+		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.volumeClass))
 
 	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
 	if (do_gibs)
@@ -364,12 +364,11 @@
 	if(!damage || !istype(user))
 		return
 
-	var/penetration = 0
+	var/penetration = 1
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
 		penetration = L.armor_divisor
-
-	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), null, src,penetration,1, FALSE )
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))

@@ -3,8 +3,7 @@
 	desc = "A high end military grade assault rifle, designed as a modern ballistic infantry weapon. Primarily used by and produced for IH troops. Uses IH .20 Rifle magazines. \
 			The design was made to be able to fit long magazine alongside the standard ones."
 	icon = 'icons/obj/guns/projectile/modular/wintermute.dmi'
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE // So far not modular

@@ -4,8 +4,7 @@
 		 This is a copy of an ancient semi-automatic rifle. If it won't fire, percussive maintenance should get it working again. \
 		 It is known for its easy maintenance, and low price."
 	icon = 'icons/obj/guns/projectile/modular/ak.dmi'
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 1) // Parts can give better tech
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE // So far not modular

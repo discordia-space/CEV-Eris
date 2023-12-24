@@ -21,12 +21,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = GOLEM_ARMOR_LOW,
-		bullet = GOLEM_ARMOR_HIGH,
-		energy = GOLEM_ARMOR_MED,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = GOLEM_ARMOR_LOW,
+		ARMOR_BULLET = GOLEM_ARMOR_HIGH,
+		ARMOR_ENERGY = GOLEM_ARMOR_MED,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 	// Loot related variables

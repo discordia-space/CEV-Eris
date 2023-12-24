@@ -8,8 +8,7 @@
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = HOLD_CASINGS
 	max_shells = 7
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_HUGE
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
@@ -17,8 +16,7 @@
 	var/reload = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
-	damage_multiplier = 0.8
-	penetration_multiplier = 0.1
+	damage_multiplier = 1.1
 	init_recoil = CARBINE_RECOIL(1.5)
 	burst_delay = null
 	fire_delay = 4

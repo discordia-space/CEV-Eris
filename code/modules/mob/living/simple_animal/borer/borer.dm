@@ -272,7 +272,7 @@
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		head.implants.Remove(src)
 
-	loc = get_turf(host)
+	forceMove(get_turf(host))
 
 	reset_view(null)
 	machine = null

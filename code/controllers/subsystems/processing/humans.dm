@@ -5,9 +5,10 @@ PROCESSING_SUBSYSTEM_DEF(humans)
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 2 SECONDS
 
-	process_proc = /mob/proc/Life
+	process_proc = "Life"
 
 	var/list/mob_list
+
 
 /datum/controller/subsystem/processing/humans/PreInit()
 	mob_list = processing // Simply setups a more recognizable var name than "processing"

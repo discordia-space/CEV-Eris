@@ -5,8 +5,8 @@
 	icon_state = "hcase"
 	var/sticker_name = "hcase"
 
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_SMALL_STORAGE * 1.5 //a better fancy box
 	matter = list(MATERIAL_STEEL = 20)
 	spawn_blacklisted = TRUE //This shouldn't spawn randomly
@@ -90,11 +90,11 @@
 	close_all()
 	if(closed)
 		to_chat(user, SPAN_NOTICE("You open the lid of the [src]."))
-		w_class = ITEM_SIZE_BULKY
+		volumeClass = ITEM_SIZE_BULKY
 		closed = FALSE
 	else
 		to_chat(user, SPAN_NOTICE("You close the lid of the [src]."))
-		w_class = ITEM_SIZE_NORMAL
+		volumeClass = ITEM_SIZE_NORMAL
 		closed = TRUE
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
@@ -160,7 +160,7 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	rarity_value = 60
 
 	storage_slots = 20
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/part,
@@ -184,7 +184,7 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	spawn_blacklisted = FALSE
 	rarity_value = 60
 
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/scanner/health,
@@ -218,7 +218,7 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	spawn_blacklisted = FALSE
 	rarity_value = 60
 
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/cell,

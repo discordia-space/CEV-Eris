@@ -7,8 +7,6 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	wielded_item_state = "_doble"
-	damage_multiplier = 0.8
-	penetration_multiplier = -0.1
 	fire_delay = 6
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	init_firemodes = list(
