@@ -55,7 +55,6 @@
   // Basic checks to detect whether this page runs in BYOND
   var isByond = (Byond.TRIDENT !== null || window.cef_to_byond)
     && location.hostname === '127.0.0.1'
-    && location.pathname.indexOf('/tmp') === 0
     && location.search !== '?external';
 
   // Version constants
