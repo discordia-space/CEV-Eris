@@ -36,7 +36,7 @@ meteor_act
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
-			if(P.matter[1])
+			if(length(P.matter))
 				SP.material = P.matter[1]
 				SP.amount = P.matter[SP.material] // amount no longer randomized
 			organ.embed(SP)
