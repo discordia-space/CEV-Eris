@@ -181,8 +181,9 @@
 		component.covering = ARMS
 	if(istype(src, /obj/item/clothing/shoes))
 		component.covering = LEGS
-	if(istype(src, /obj/item/clothing/suit) || istype(component, /obj/item/clothing/under))
-		component.covering = UPPER_TORSO | LOWER_TORSO
+	if(istype(component, /obj/item/armor_component/sideguards))
+		if(istype(src, /obj/item/clothing/suit) || istype(src, /obj/item/clothing/under))
+			component.covering = UPPER_TORSO | LOWER_TORSO
 
 /obj/item/clothing/proc/removeArmor(obj/item/armor_component/component, mob/living/user, force = FALSE, atom/location)
 	if(clothingFlags & CLOTH_NO_MOD && !force)

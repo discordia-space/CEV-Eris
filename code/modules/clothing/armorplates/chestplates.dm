@@ -3,8 +3,8 @@
 	desc = "when weight isn't an issue."
 	icon_state = "steel"
 	weight = 4000
-	maxArmorHealth = 2000
-	armorHealth = 2000
+	maxArmorHealth = 1000
+	armorHealth = 1000
 	armor = list(
 		ARMOR_BLUNT = 12,
 		ARMOR_SLASH = 12,
@@ -34,8 +34,8 @@
 	desc = "i like my steel with a little bit of plasma"
 	icon_state = "plasteel"
 	weight = 5500
-	maxArmorHealth = 2000
-	armorHealth = 2000
+	maxArmorHealth = 1500
+	armorHealth = 1500
 	armor = list(
 		ARMOR_BLUNT = 16,
 		ARMOR_SLASH = 16,
@@ -65,8 +65,8 @@
 	desc = "the disco star is here"
 	icon_state = "ablative"
 	weight = 1200
-	maxArmorHealth = 2000
-	armorHealth = 2000
+	maxArmorHealth = 1200
+	armorHealth = 1200
 	armor = list(
 		ARMOR_BLUNT = 5,
 		ARMOR_SLASH = 5,
@@ -128,8 +128,8 @@
 	desc = "can be used as an armor plate"
 	icon_state = "panzer"
 	weight = 2400
-	maxArmorHealth = 2000
-	armorHealth = 2000
+	maxArmorHealth = 1300
+	armorHealth = 1300
 	armor = list(
 		ARMOR_BLUNT = 20,
 		ARMOR_SLASH = 16,
@@ -222,8 +222,8 @@
 	icon_state = "plastic"
 	weight = 1000
 	volume = 0.5
-	maxArmorHealth = 2000
-	armorHealth = 2000
+	maxArmorHealth = 1000
+	armorHealth = 1000
 	armor = list(
 		ARMOR_BLUNT = 8,
 		ARMOR_SLASH = 5,
@@ -284,8 +284,8 @@
 	desc = "a very tight bundle of cloth fibers"
 	icon_state = "kevlar"
 	weight = 2500
-	maxArmorHealth = 1600
-	armorHealth = 1600
+	maxArmorHealth = 1300
+	armorHealth = 1300
 	armor = list(
 		ARMOR_BLUNT = 4,
 		ARMOR_SLASH = 8,
@@ -424,7 +424,7 @@
 	)
 	armorDegradation = list(
 		ARMOR_BLUNT = 0.5,
-		ARMOR_SLASH = 3,
+		ARMOR_SLASH = 4,
 		ARMOR_POINTY = 0.3,
 		ARMOR_BULLET = 0.5,
 		ARMOR_ENERGY = 0,
@@ -456,7 +456,7 @@
 	)
 	armorDegradation = list(
 		ARMOR_BLUNT = 0.3,
-		ARMOR_SLASH = 3,
+		ARMOR_SLASH = 4,
 		ARMOR_POINTY = 0.3,
 		ARMOR_BULLET = 0.5,
 		ARMOR_ENERGY = 0,
