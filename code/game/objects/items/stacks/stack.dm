@@ -73,7 +73,7 @@
 	return ..()
 
 /obj/item/stack/examine(mob/user,afterDesc)
-	description = "[afterDesc] \n"
+	var/description = "[afterDesc] \n"
 	description +=  !uses_charge ? "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack." : "There is enough charge for [get_amount()]."
 	..(user, afterDesc = description)
 

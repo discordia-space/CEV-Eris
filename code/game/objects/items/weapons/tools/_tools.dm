@@ -882,7 +882,7 @@ GLOBAL_LIST(melleExtrasCache)
 			description += "[SPAN_NOTICE(TU.name)] \n]"
 	if(health)
 		if(health > maxHealth * 0.95)
-			return
+			description += ""
 		else if(health > maxHealth * 0.80)
 			description += "It has a few light scratches."
 		else if(health > maxHealth * 0.40)

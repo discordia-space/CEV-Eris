@@ -285,6 +285,7 @@
 		/obj/item/armor_component/plate/kevlar,
 		/obj/item/armor_component/plate/kevlar,
 		/obj/item/armor_component/sideguards/plasteel,
+		/obj/item/armor_component/sideguards/plasteel,
 		/obj/item/armor_component/plate/leather
 	)
 

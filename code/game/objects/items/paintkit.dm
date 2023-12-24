@@ -8,8 +8,8 @@
 	var/new_icon_file
 	var/uses = 1        // Uses before the kit deletes itself.
 
-/obj/item/device/kit/examine(user)
-	. = ..(user, afterDesc = "It has [uses] use\s left.")
+/obj/item/device/kit/examine(user, afterDesc)
+	. = ..(user, afterDesc = "[afterDesc] \n It has [uses] use\s left.")
 
 /obj/item/device/kit/proc/use(var/amt, var/mob/user)
 	uses -= amt

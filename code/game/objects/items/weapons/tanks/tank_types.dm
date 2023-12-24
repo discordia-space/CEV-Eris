@@ -102,8 +102,8 @@
 	volume = 2 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
 	rarity_value = 10
 
-/obj/item/tank/emergency_oxygen/examine(mob/user)
-	var/description = ""
+/obj/item/tank/emergency_oxygen/examine(mob/user,afterDesc)
+	var/description = "[afterDesc] \n"
 	if(air_contents.gas["oxygen"] < 0.2 && loc == user)
 		description += text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of air!"))
 		user << sound('sound/effects/alert.ogg')

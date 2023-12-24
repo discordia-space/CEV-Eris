@@ -100,9 +100,9 @@
 	var/description = "[afterDesc] \n"
 	if(!cell)
 		description += SPAN_NOTICE("Has no battery cell inserted.\n")
-		return
-	var/shots_remaining = round(cell.charge / charge_cost)
-	description += "Has [shots_remaining] shot\s remaining."
+	else
+		var/shots_remaining = round(cell.charge / charge_cost)
+		description += "Has [shots_remaining] shot\s remaining."
 	..(user, afterDesc = description)
 	return
 

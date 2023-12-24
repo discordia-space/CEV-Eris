@@ -156,7 +156,7 @@
 			maxArmorVolume[CLOTH_ARMOR_TORSO] += component.volume
 
 	if(istype(component, /obj/item/armor_component/sideguards))
-		if(!istype(src, /obj/item/clothing/suit) || !istype(src, /obj/item/clothing/under))
+		if(!(istype(src, /obj/item/clothing/suit) || istype(src, /obj/item/clothing/under)))
 			if(!user)
 				return
 			to_chat(user, SPAN_NOTICE("\The [component] cannot be installed on anything other than a suit or a jumpsuit"))
@@ -299,15 +299,6 @@
 			)
 			if(!do_after(user,equip_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
-
-/obj/item/clothing/equipped(mob/user, slot)
-	. = ..()
-	update_icon()
-	user.update_icon = TRUE
-	if(ishuman(user))
-		var/mob/living/carbon/human/target = user
-		target.icon_update = TRUE
-	user.update_icons()
 
 // To catch MouseDrop on clothing
 /obj/item/clothing/MouseDrop(over_object)

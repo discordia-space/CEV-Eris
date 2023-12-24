@@ -385,8 +385,8 @@
 		S.start()
 
 
-/obj/machinery/door/examine(mob/user)
-	var/description = ""
+/obj/machinery/door/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(src.health < src.maxHealth / 4)
 		description += "\The [src] looks like it's about to break!"
 	else if(src.health < src.maxHealth / 2)

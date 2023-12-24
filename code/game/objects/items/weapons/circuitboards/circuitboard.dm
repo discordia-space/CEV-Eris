@@ -56,7 +56,7 @@
 			if(!ispath(placeholder))
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
-	..(user, distance, afterDesc = "[afterDesc] \n SPAN_NOTICE("Required components: [english_list(listed_components)]."]")
+	..(user, distance, afterDesc = "[afterDesc] \n [SPAN_NOTICE("Required components: [english_list(listed_components)]")].]")
 
 /obj/item/electronics/circuitboard/get_item_cost(export)
 	. = ..()

@@ -457,213 +457,213 @@
 	SIGNAL_HANDLER
 	if(tool_upgrades[UPGRADE_SANCTIFY])
 
-		reference.Add(user, SPAN_NOTICE("Does additional burn damage to mutants."))
+		reference.Add(SPAN_NOTICE("Does additional burn damage to mutants."))
 	if (tool_upgrades[UPGRADE_PRECISION] > 0)
-		reference.Add(user, SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]"))
+		reference.Add(SPAN_NOTICE("Enhances precision by [tool_upgrades[UPGRADE_PRECISION]]"))
 	else if(tool_upgrades[UPGRADE_PRECISION] < 0)
-		reference.Add(user, SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]"))
+		reference.Add(SPAN_WARNING("Reduces precision by [abs(tool_upgrades[UPGRADE_PRECISION])]"))
 	if(tool_upgrades[UPGRADE_WORKSPEED])
-		reference.Add(user, SPAN_NOTICE("Enhances workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%"))
+		reference.Add(SPAN_NOTICE("Enhances workspeed by [tool_upgrades[UPGRADE_WORKSPEED]*100]%"))
 
 	if(tool_upgrades[UPGRADE_DEGRADATION_MULT])
 		if(tool_upgrades[UPGRADE_DEGRADATION_MULT] < 1)
-			reference.Add(user, SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
+			reference.Add(SPAN_NOTICE("Reduces tool degradation by [(1-tool_upgrades[UPGRADE_DEGRADATION_MULT])*100]%"))
 		else if	(tool_upgrades[UPGRADE_DEGRADATION_MULT] > 1)
-			reference.Add(user, SPAN_WARNING("Increases tool degradation by [(tool_upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%"))
+			reference.Add(SPAN_WARNING("Increases tool degradation by [(tool_upgrades[UPGRADE_DEGRADATION_MULT]-1)*100]%"))
 
 	if(tool_upgrades[UPGRADE_FORCE_MULT] >= 1)
-		reference.Add(user, SPAN_NOTICE("Increases tool damage by [(tool_upgrades[UPGRADE_FORCE_MULT]-1)*100]%"))
+		reference.Add(SPAN_NOTICE("Increases tool damage by [(tool_upgrades[UPGRADE_FORCE_MULT]-1)*100]%"))
 	if(tool_upgrades[UPGRADE_FORCE_MOD])
-		reference.Add(user, SPAN_NOTICE("Increases tool damage by [tool_upgrades[UPGRADE_FORCE_MOD]]"))
+		reference.Add(SPAN_NOTICE("Increases tool damage by [tool_upgrades[UPGRADE_FORCE_MOD]]"))
 	if(tool_upgrades[UPGRADE_POWERCOST_MULT] >= 1)
-		reference.Add(user, SPAN_WARNING("Modifies power usage by [(tool_upgrades[UPGRADE_POWERCOST_MULT]-1)*100]%"))
+		reference.Add(SPAN_WARNING("Modifies power usage by [(tool_upgrades[UPGRADE_POWERCOST_MULT]-1)*100]%"))
 	if(tool_upgrades[UPGRADE_FUELCOST_MULT] >= 1)
-		reference.Add(user, SPAN_WARNING("Modifies fuel usage by [(tool_upgrades[UPGRADE_FUELCOST_MULT]-1)*100]%"))
+		reference.Add(SPAN_WARNING("Modifies fuel usage by [(tool_upgrades[UPGRADE_FUELCOST_MULT]-1)*100]%"))
 	if(tool_upgrades[UPGRADE_MAXFUEL])
-		reference.Add(user, SPAN_NOTICE("Modifies fuel storage by [tool_upgrades[UPGRADE_MAXFUEL]] units."))
+		reference.Add(SPAN_NOTICE("Modifies fuel storage by [tool_upgrades[UPGRADE_MAXFUEL]] units."))
 	if(tool_upgrades[UPGRADE_BULK])
-		reference.Add(user, SPAN_WARNING("Increases tool size by [tool_upgrades[UPGRADE_BULK]]"))
+		reference.Add(SPAN_WARNING("Increases tool size by [tool_upgrades[UPGRADE_BULK]]"))
 	if(tool_upgrades[UPGRADE_MAXUPGRADES])
-		reference.Add(user, SPAN_NOTICE("Adds [tool_upgrades[UPGRADE_MAXUPGRADES]] additional modification slots."))
+		reference.Add(SPAN_NOTICE("Adds [tool_upgrades[UPGRADE_MAXUPGRADES]] additional modification slots."))
 	if(required_qualities.len)
-		reference.Add(user, SPAN_WARNING("Requires a tool with one of the following qualities:"))
-		reference.Add(user, english_list(required_qualities, and_text = " or "))
+		reference.Add(SPAN_WARNING("Requires a tool with one of the following qualities:"))
+		reference.Add(english_list(required_qualities, and_text = " or "))
 
 	if(weapon_upgrades.len)
-		reference.Add(user, SPAN_NOTICE("Can be attached to a firearm, giving the following benefits:"))
+		reference.Add(SPAN_NOTICE("Can be attached to a firearm, giving the following benefits:"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DAMAGEMOD_PLUS]
 			if(amount > 0)
-				reference.Add(user, SPAN_NOTICE("Increases projectile damage multiplier by [amount]"))
+				reference.Add(SPAN_NOTICE("Increases projectile damage multiplier by [amount]"))
 			else
-				reference.Add(user, SPAN_WARNING("Decreases projectile damage by [abs(amount)]"))
+				reference.Add(SPAN_WARNING("Decreases projectile damage by [abs(amount)]"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DAMAGE_MULT]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_NOTICE("Increases projectile damage by [amount*100]%"))
+				reference.Add(SPAN_NOTICE("Increases projectile damage by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_WARNING("Decreases projectile damage by [abs(amount*100)]%"))
+				reference.Add(SPAN_WARNING("Decreases projectile damage by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_PEN_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_PEN_MULT]
 			if(amount > 0)
-				reference.Add(user, SPAN_NOTICE("Increases projectile penetration by [amount*100]%"))
+				reference.Add(SPAN_NOTICE("Increases projectile penetration by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_WARNING("Decreases projectile penetration by [abs(amount*100)]%"))
+				reference.Add(SPAN_WARNING("Decreases projectile penetration by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_PIERC_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_PIERC_MULT]
 			if(amount > 1)
-				reference.Add(user, SPAN_NOTICE("Increases projectile piercing penetration by [amount] walls"))
+				reference.Add(SPAN_NOTICE("Increases projectile piercing penetration by [amount] walls"))
 			else if(amount == 1)
-				reference.Add(user, SPAN_NOTICE("Increases projectile piercing penetration by [amount] wall"))
+				reference.Add(SPAN_NOTICE("Increases projectile piercing penetration by [amount] wall"))
 			else if(amount == -1)
-				reference.Add(user, SPAN_WARNING("Decreases projectile piercing penetration by [amount] wall"))
+				reference.Add(SPAN_WARNING("Decreases projectile piercing penetration by [amount] wall"))
 			else
-				reference.Add(user, SPAN_WARNING("Decreases projectile piercing penetration by [amount] walls"))
+				reference.Add(SPAN_WARNING("Decreases projectile piercing penetration by [amount] walls"))
 
 		if(weapon_upgrades[GUN_UPGRADE_RICO_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RICO_MULT]
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases projectile ricochet by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases projectile ricochet by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases projectile ricochet by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases projectile ricochet by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases fire delay by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases fire delay by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases fire delay by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases fire delay by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_MOVE_DELAY_MULT]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases move delay by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases move delay by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases move delay by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases move delay by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT])
 			var/amount = weapon_upgrades[GUN_UPGRADE_STEPDELAY_MULT]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Slows down the weapons projectile by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Slows down the weapons projectile by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Speeds up the weapons projectile by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Speeds up the weapons projectile by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile brute damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile brute damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BRUTE]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile burn damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile burn damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_BURN]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile toxic damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile toxic damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_TOX]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile oxy-loss damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile oxy-loss damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_OXY]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile clone damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile clone damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_CLONE]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile pseudo damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile pseudo damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_HALLOSS]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile radiation damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile radiation damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_RADIATION]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY])
-			reference.Add(user, SPAN_NOTICE("Modifies projectile psy damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY]] damage points"))
+			reference.Add(SPAN_NOTICE("Modifies projectile psy damage by [weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY]] damage points"))
 
 		if(weapon_upgrades[GUN_UPGRADE_RECOIL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_RECOIL]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases kickback by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases kickback by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases kickback by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases kickback by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH])
 			var/amount = weapon_upgrades[GUN_UPGRADE_MUZZLEFLASH]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases muzzle flash by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases muzzle flash by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases muzzle flash by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases muzzle flash by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_MAGUP])
 			var/amount = weapon_upgrades[GUN_UPGRADE_MAGUP]
 			if(amount > 1)
-				reference.Add(user, SPAN_NOTICE("Increases internal magazine size by [amount]"))
+				reference.Add(SPAN_NOTICE("Increases internal magazine size by [amount]"))
 			else
-				reference.Add(user, SPAN_WARNING("Decreases internal magazine size by [amount]"))
+				reference.Add(SPAN_WARNING("Decreases internal magazine size by [amount]"))
 
 		if(weapon_upgrades[GUN_UPGRADE_SILENCER] == 1)
-			reference.Add(user, SPAN_NOTICE("Silences the weapon."))
+			reference.Add(SPAN_NOTICE("Silences the weapon."))
 
 		if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 0)
-			reference.Add(user, SPAN_WARNING("Disables the safety toggle of the weapon."))
+			reference.Add(SPAN_WARNING("Disables the safety toggle of the weapon."))
 		else if(weapon_upgrades[GUN_UPGRADE_FORCESAFETY] == 1)
-			reference.Add(user, SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
+			reference.Add(SPAN_WARNING("Forces the safety toggle of the weapon to always be on."))
 
 		if(weapon_upgrades[GUN_UPGRADE_DNALOCK] == 1)
-			reference.Add(user, SPAN_WARNING("Adds a biometric scanner to the weapon."))
+			reference.Add(SPAN_WARNING("Adds a biometric scanner to the weapon."))
 
 		if(weapon_upgrades[GUN_UPGRADE_CHARGECOST])
 			var/amount = weapon_upgrades[GUN_UPGRADE_CHARGECOST]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases cell firing cost by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases cell firing cost by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases cell firing cost by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases cell firing cost by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_MAX]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases overcharge maximum by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases overcharge maximum by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases overcharge maximum by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases overcharge maximum by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OVERCHARGE_RATE]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_NOTICE("Increases overcharge rate by [amount*100]%"))
+				reference.Add(SPAN_NOTICE("Increases overcharge rate by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_WARNING("Decreases overcharge rate by [abs(amount*100)]%"))
+				reference.Add(SPAN_WARNING("Decreases overcharge rate by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_OFFSET])
 			var/amount = weapon_upgrades[GUN_UPGRADE_OFFSET]-1
 			if(amount > 0)
-				reference.Add(user, SPAN_WARNING("Increases weapon inaccuracy by [amount*100]%"))
+				reference.Add(SPAN_WARNING("Increases weapon inaccuracy by [amount*100]%"))
 			else
-				reference.Add(user, SPAN_NOTICE("Decreases weapon inaccuracy by [abs(amount*100)]%"))
+				reference.Add(SPAN_NOTICE("Decreases weapon inaccuracy by [abs(amount*100)]%"))
 
 		if(weapon_upgrades[GUN_UPGRADE_HONK])
-			reference.Add(user, SPAN_WARNING("Cheers up the firing sound of the weapon."))
+			reference.Add(SPAN_WARNING("Cheers up the firing sound of the weapon."))
 
 		if(weapon_upgrades[GUN_UPGRADE_RIGGED])
-			reference.Add(user, SPAN_WARNING("Rigs the weapon to fire back on its user."))
+			reference.Add(SPAN_WARNING("Rigs the weapon to fire back on its user."))
 
 		if(weapon_upgrades[GUN_UPGRADE_EXPLODE])
-			reference.Add(user, SPAN_WARNING("Rigs the weapon to explode."))
+			reference.Add(SPAN_WARNING("Rigs the weapon to explode."))
 
 		if(weapon_upgrades[GUN_UPGRADE_ZOOM])
 			var/amount = weapon_upgrades[GUN_UPGRADE_ZOOM]
 			if(amount > 0)
-				reference.Add(user, SPAN_NOTICE("Increases scope zoom by x[amount]"))
+				reference.Add(SPAN_NOTICE("Increases scope zoom by x[amount]"))
 			else
-				reference.Add(user, SPAN_WARNING("Decreases scope zoom by x[amount]"))
+				reference.Add(SPAN_WARNING("Decreases scope zoom by x[amount]"))
 
 //	It is best we stick to description with some of these, at least for now
 		if(weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_CALIBER]
-			reference.Add(user, SPAN_WARNING("Fits [amount] caliber bullets"))
+			reference.Add(SPAN_WARNING("Fits [amount] caliber bullets"))
 		if(weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_OK_CALIBERS]
-			reference.Add(user, SPAN_WARNING("Fits the following calibers: [english_list(amount, "None are suitable!", " and ", ", ", ".")]"))
+			reference.Add(SPAN_WARNING("Fits the following calibers: [english_list(amount, "None are suitable!", " and ", ", ", ".")]"))
 		/*if(weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL])
 			var/amount = weapon_upgrades[GUN_UPGRADE_DEFINE_MAG_WELL]
-			reference.Add(user, SPAN_WARNING("Fits a variety of magazines."))*/
-		reference.Add(user, SPAN_WARNING("Requires a weapon with the following properties"))
-		reference.Add(user, english_list(req_gun_tags))
+			reference.Add(SPAN_WARNING("Fits a variety of magazines."))*/
+		reference.Add(SPAN_WARNING("Requires a weapon with the following properties"))
+		reference.Add(english_list(req_gun_tags))
 
 /datum/component/item_upgrade/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_IATTACK)

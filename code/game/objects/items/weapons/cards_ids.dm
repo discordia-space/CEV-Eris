@@ -120,15 +120,17 @@ var/const/NO_EMAG_ACT = -50
 	var/formal_name_prefix
 	var/formal_name_suffix
 
-/obj/item/card/id/examine(mob/user)
+/obj/item/card/id/examine(mob/user, afterDesc)
 	set src in oview(1)
+	var/description = "[afterDesc] \n"
 	if(in_range(user, src))
 		show(user)
-		to_chat(user, desc)
-		to_chat(user, "\icon[src] [name]: The current assignment on the card is [assignment].")
-		to_chat(user, "The blood type on the card is [blood_type].")
-		to_chat(user, "The DNA hash on the card is [dna_hash].")
-		to_chat(user, "The fingerprint hash on the card is [fingerprint_hash].")
+		description += desc
+		description += "\n\icon[src] [name]: The current assignment on the card is [assignment]."
+		description += "\nThe blood type on the card is [blood_type]."
+		description += "\nThe DNA hash on the card is [dna_hash]."
+		description += "\nThe fingerprint hash on the card is [fingerprint_hash]."
+		..(user, afterDesc = description)
 	else
 		to_chat(user, SPAN_WARNING("It is too far away."))
 

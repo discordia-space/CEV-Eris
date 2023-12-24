@@ -719,23 +719,23 @@
 	var/description = "[afterDesc] \n"
 	if(LAZYLEN(firemodes) > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		description += SPAN_NOTICE("The fire selector is set to [current_mode.name].")
+		description += SPAN_NOTICE("The fire selector is set to [current_mode.name].\n")
 
 	if(safety)
-		description += SPAN_NOTICE("The safety is on.")
+		description += SPAN_NOTICE("The safety is on.\n")
 	else
-		description += SPAN_NOTICE("The safety is off.")
+		description += SPAN_NOTICE("The safety is off.\n")
 
 	if(recoil.getRating(RECOIL_TWOHAND) > 0.4)
-		description += SPAN_WARNING("This gun needs to be braced against something to be used effectively.")
+		description += SPAN_WARNING("This gun needs to be braced against something to be used effectively.\n")
 	else if(recoil.getRating(RECOIL_ONEHAND) > 0.6)
-		description += SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively.")
+		description += SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively.\n")
 
 	if(in_range(user, src) || isghost(user))
 		if(serial_type)
-			description += SPAN_WARNING("There is a serial number on this gun, it reads [serial_type].")
+			description += SPAN_WARNING("There is a serial number on this gun, it reads [serial_type].\n")
 		else if(isnull(serial_type))
-			description += SPAN_DANGER("The serial is scribbled away.")
+			description += SPAN_DANGER("The serial is scribbled away.\n")
 	..(user, afterDesc = description)
 
 

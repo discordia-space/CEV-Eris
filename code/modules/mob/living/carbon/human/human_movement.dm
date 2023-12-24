@@ -5,12 +5,12 @@
 		tally += species.slowdown
 
 	/// yes becauses we used to have -1 on shoes
-	tally -= 1
+	tally -= 1.5
 
+	var/weightTally = (weight - initial(weight) - 20000) / 1000
+	if(weightTally > 0)
+		tally += weightTally*0.03
 
-	/// The more you carry extra , the slower you are...
-	// 7.5 KG of no slowdown capacity added ontop , then it grows exponentially
-	tally += max(0.0001,weight/(initial(weight)+20000)-1)*3
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
 	/// No slowdown for mech pilots , mech already handles movement.
