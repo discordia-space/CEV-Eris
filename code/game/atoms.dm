@@ -20,6 +20,9 @@
 	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
+
+	var/atomFlags = null
+
 	///Chemistry.
 	var/reagent_flags = NONE
 	var/datum/reagents/reagents

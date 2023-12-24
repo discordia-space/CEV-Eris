@@ -212,6 +212,7 @@
 	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 10

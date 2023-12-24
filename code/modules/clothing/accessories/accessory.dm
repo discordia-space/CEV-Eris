@@ -5,6 +5,7 @@
 	var/image/mob_overlay
 	var/overlay_state
 	var/isRemovable = TRUE
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 /obj/item/clothing/accessory/proc/get_inv_overlay()
 	if(!inv_overlay)

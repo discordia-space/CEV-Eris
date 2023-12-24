@@ -132,6 +132,7 @@
 	gun_parts = list(/obj/item/stack/material/steel = 16)
 	sawn = /obj/item/gun/projectile/boltgun/obrez/serbian
 	gun_parts = list(/obj/item/part/gun/frame/boltgun = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/boltgun = 1, /obj/item/part/gun/modular/barrel/lrifle/steel = 1)
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Kadmin\""
@@ -167,6 +168,7 @@
 	icon = 'icons/obj/guns/projectile/arisaka_civ.dmi'
 	icon_state = "arisaka_civilian"
 	item_suffix  = "_civilian"
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 	init_recoil = RIFLE_RECOIL(2)
 	zoom_factors = list(0.5) //like the xbow
 	wielded_item_state = "_doble_arisaka"

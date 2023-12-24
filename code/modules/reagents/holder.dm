@@ -55,7 +55,8 @@
 			return GAS
 
 /datum/reagents/Destroy()
-	my_atom.recalculateWeights(-3*total_volume)
+	if(my_atom)
+		my_atom.recalculateWeights(-3*total_volume)
 	. = ..()
 	if(SSchemistry)
 		SSchemistry.active_holders -= src
@@ -113,7 +114,8 @@
 			del_reagent(R.id)
 		else
 			total_volume += R.volume
-	my_atom.recalculateWeights((total_volume - old_volume)*3)
+	if(my_atom)
+		my_atom.recalculateWeights((total_volume - old_volume)*3)
 	return
 
 /datum/reagents/proc/handle_reactions()

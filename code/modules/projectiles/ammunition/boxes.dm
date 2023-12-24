@@ -4,6 +4,7 @@
 	desc = "Gun ammunition stored in a shiny new box. You can see caliber information on the label."
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
 	icon = 'icons/obj/ammo.dmi'
+	icon_state = "box10x24"
 	reload_delay = 30
 	ammo_mag = "box"
 	matter = list(MATERIAL_CARDBOARD = 1)

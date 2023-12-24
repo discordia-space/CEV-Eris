@@ -19,6 +19,7 @@
 	matter = list() // Gunparts are be stored within the gun as extra material
 	price_tag = 0 // Debug item
 	magazine_type = null // Default magazine, only relevant for spawned AKs, not crafted or printed ones
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 	damage_multiplier = 1 // Mechanism + Barrel can modify
 	penetration_multiplier = 0 // Mechanism + Barrel can modify
