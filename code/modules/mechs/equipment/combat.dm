@@ -39,13 +39,14 @@
 	AddComponent(/datum/component/overlay_manager)
 
 /obj/item/mech_blade_assembly/examine(user, distance)
-	. = ..()
-	if(.)
-		if(sharpeners)
-			to_chat(user, SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough."))
-		else
-			to_chat(user, SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade."))
-		to_chat(user , SPAN_NOTICE("Use a wrench to make this mountable. This is not reversible."))
+	var/description = ""
+	if(sharpeners)
+		description += SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough. \n")
+	else
+		description += SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade. \n")
+	description +=  SPAN_NOTICE(" Use a wrench to make this mountable. This is not reversible.")
+	. = ..(user, distance, afterDesc = "description")
+
 
 /obj/item/mech_blade_assembly/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/tool_upgrade/productivity/whetstone))
@@ -390,9 +391,7 @@
 
 
 /obj/item/mech_equipment/mounted_system/ballistic/examine(user, distance)
-	. = ..()
-	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking."))
-
+	. = ..(user, distance, afterDesc = SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking."))
 
 /obj/item/mech_equipment/mounted_system/ballistic/Initialize()
 	. = ..()

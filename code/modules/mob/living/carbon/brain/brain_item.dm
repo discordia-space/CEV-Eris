@@ -78,11 +78,13 @@
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/vital/brain/examine(mob/user) // -- TLE
-	..(user)
+	var/description = ""
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		to_chat(user, "You can feel the small spark of life still left in this one.")
+		description += "You can feel the small spark of life still left in this one."
 	else
-		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
+		description += "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
+	..(user, afterDesc = description)
+
 
 /obj/item/organ/internal/vital/brain/removed_mob(mob/living/user)
 	name = "[owner.real_name]'s brain"

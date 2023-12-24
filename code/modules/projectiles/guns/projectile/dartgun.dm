@@ -97,13 +97,14 @@
 	//update_icon()
 	//if (!..(user, 2))
 	//	return
-	..()
+	var/description = ""
 	if(beakers.len)
-		to_chat(user, SPAN_NOTICE("[src] contains:"))
+		description += SPAN_NOTICE("[src] contains:\n")
 		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
+					description += SPAN_NOTICE("[R.volume] units of [R.name]\n")
+	..(user, afterDesc = description)
 
 /obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/glass))

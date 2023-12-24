@@ -166,10 +166,11 @@
 	else
 		handle_rejection()
 
-/obj/item/organ/examine(mob/user)
-	..(user)
+/obj/item/organ/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(status & ORGAN_DEAD)
-		to_chat(user, SPAN_NOTICE("The decay has set in."))
+		description += SPAN_NOTICE("The decay has set in.")
+	..(user, afterDesc = description)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of

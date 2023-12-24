@@ -98,14 +98,15 @@ obj/item/paper_bin/MouseDrop(over_object)
 
 
 /obj/item/paper_bin/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(get_dist(src, user) <= 1)
 		if (amount)
-			to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
+			description += "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
 		else
-			to_chat(user, SPAN_NOTICE("There are no papers in the bin."))
+			description += SPAN_NOTICE("There are no papers in the bin.")
 	else
-		to_chat(user, SPAN_NOTICE("If you got closer you could see how much paper is in it."))
+		description += SPAN_NOTICE("If you got closer you could see how much paper is in it.")
+	..(user, afterDesc = description)
 	return
 
 

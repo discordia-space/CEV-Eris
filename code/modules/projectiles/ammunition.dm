@@ -188,10 +188,11 @@
 		src.overlays += temp_image
 
 /obj/item/ammo_casing/examine(mob/user)
-	..()
-	to_chat(user, "There [(amount == 1)? "is" : "are"] [amount] round\s left!")
+	var/description = ""
+	description += "There [(amount == 1)? "is" : "are"] [amount] round\s left!\n"
 	if (!BB)
-		to_chat(user, "[(amount == 1)? "This one is" : "These ones are"] spent.")
+		description += "[(amount == 1)? "This one is" : "These ones are"] spent."
+	..(user, afterDesc = description)
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = round(..() * amount)
@@ -445,8 +446,7 @@
 	icon_state = "[initial(icon_state)][ammo_label_string]-[ammo_count]"
 
 /obj/item/ammo_magazine/examine(mob/user)
-	..()
-	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
+	..(user, afterDesc = "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
 
 /obj/item/ammo_magazine/get_item_cost(export)
 	. = ..()

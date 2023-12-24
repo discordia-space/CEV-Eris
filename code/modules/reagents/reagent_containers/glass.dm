@@ -72,11 +72,11 @@
 /obj/item/reagent_containers/glass/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/reagent_containers/glass/examine(mob/user)
-	if(!..(user, 2))
-		return
+/obj/item/reagent_containers/glass/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(has_lid())
-		to_chat(user, SPAN_NOTICE("Airtight lid seals it completely."))
+		description += SPAN_NOTICE("Airtight lid seals it completely.")
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/glass/attack_self(mob/user)
 	..()

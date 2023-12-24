@@ -19,18 +19,19 @@
 	var/global/list/br_cache = null
 
 /obj/machinery/power/smes/batteryrack/examine(mob/user, distance, infix, suffix)
-	. = ..()
+	var/description = ""
 	if(open_hatch)
-		to_chat(user, SPAN_NOTICE("It currently hosts [cells_amount] cells."))
+		description += SPAN_NOTICE("It currently hosts [cells_amount] cells.\n")
 		if(distance <= 1)
-			to_chat(user, SPAN_NOTICE("Click any cell below to remove them from \the [src]:"))
+			description += SPAN_NOTICE("Click any cell below to remove them from \the [src]:\n")
 			for(var/obj/item/cell/battery in component_parts)
-				to_chat(user, SPAN_NOTICE("<a href='?src=\ref[src];remove_cell_in_hand=\ref[battery];user=\ref[user]'>\icon[battery] [battery.name]</a>"))
+				description += SPAN_NOTICE("<a href='?src=\ref[src];remove_cell_in_hand=\ref[battery];user=\ref[user]'>\icon[battery] [battery.name]</a>\n")
 	else
-		to_chat(user, SPAN_NOTICE("The hatch needs to be opened with a screwdriver to interact with the cells inside!"))
-	to_chat(user, SPAN_NOTICE("It currently has [capacitors_amount] capacitors installed."))
-	to_chat(user, SPAN_NOTICE("It has a LCD screen. Left side is for charging and right side for discharging. Green means operating. Yellow means not discharging/charging or no network."))
-	to_chat(user, SPAN_NOTICE("Can toggle input and output on/off with CtrlClick and AltClick. It is currently set to discharge at a maximum rate of [output_level] W, and recharge at a maximum rate of [input_level] W."))
+		description += SPAN_NOTICE("The hatch needs to be opened with a screwdriver to interact with the cells inside!\n")
+	description += SPAN_NOTICE("It currently has [capacitors_amount] capacitors installed.\n")
+	description += SPAN_NOTICE("It has a LCD screen. Left side is for charging and right side for discharging. Green means operating. Yellow means not discharging/charging or no network.\n")
+	description += SPAN_NOTICE("Can toggle input and output on/off with CtrlClick and AltClick. It is currently set to discharge at a maximum rate of [output_level] W, and recharge at a maximum rate of [input_level] W.\n")
+	..(user, afterDesc = description)
 
 /obj/machinery/power/smes/batteryrack/attack_hand(mob/living/user)
 	. = ..()

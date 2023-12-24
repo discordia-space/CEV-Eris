@@ -316,10 +316,11 @@
 	. = ..()
 
 /obj/structure/pulsar_fuel_tank/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	to_chat(user, "Fuel: [round(air_contents.get_total_moles())]/100")
+	var/description = ""
+	description += "Fuel: [round(air_contents.get_total_moles())]/100 \n"
 	if(round(air_contents.get_total_moles()) >= 100)
-		to_chat(user, SPAN_DANGER("It looks like its about to burst!"))
+		description += SPAN_DANGER("It looks like its about to burst!")
+	..(user, afterDesc = description)
 
 /obj/structure/pulsar_fuel_tank/filled/Initialize()
 	. = ..()

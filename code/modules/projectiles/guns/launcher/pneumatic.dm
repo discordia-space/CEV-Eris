@@ -102,13 +102,13 @@
 	return launched
 
 /obj/item/gun/launcher/pneumatic/examine(mob/user)
-	if(!..(user, 2))
-		return
-	to_chat(user, "The valve is dialed to [pressure_setting]%.")
+	var/description = ""
+	description += "The valve is dialed to [pressure_setting]%. \n"
 	if(tank)
-		to_chat(user, "The tank dial reads [tank.air_contents.return_pressure()] kPa.")
+		description += "The tank dial reads [tank.air_contents.return_pressure()] kPa."
 	else
-		to_chat(user, SPAN_WARNING("Nothing is attached to the tank valve!"))
+		description += SPAN_WARNING("Nothing is attached to the tank valve!")
+	..(user, afterDesc = description)
 
 /obj/item/gun/launcher/pneumatic/update_release_force(obj/item/projectile)
 	if(tank)
@@ -150,13 +150,14 @@
 	icon_state = "pneumatic[buildstate]"
 
 /obj/item/cannonframe/examine(mob/user)
-	..(user)
+	var/description = ""
 	switch(buildstate)
-		if(1) to_chat(user, "It has a pipe segment installed.")
-		if(2) to_chat(user, "It has a pipe segment welded in place.")
-		if(3) to_chat(user, "It has an outer chassis installed.")
-		if(4) to_chat(user, "It has an outer chassis welded in place.")
-		if(5) to_chat(user, "It has a transfer valve installed.")
+		if(1) description += "It has a pipe segment installed."
+		if(2) description += "It has a pipe segment welded in place."
+		if(3) description += "It has an outer chassis installed."
+		if(4) description += "It has an outer chassis welded in place."
+		if(5) description += "It has a transfer valve installed."
+	..(user, afterDesc = description)
 
 /obj/item/cannonframe/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/pipe))

@@ -1,6 +1,4 @@
 /mob/living/silicon/ai/examine(mob/user)
-	if(!..(user))
-		return
 
 	var/msg = ""
 	if (src.stat == DEAD)
@@ -32,7 +30,7 @@
 	if(hardware && (hardware.owner == src))
 		msg += "<br>"
 		msg += hardware.get_examine_desc()
-	to_chat(user, msg)
+	..(user, afterDesc =smg)
 	user.showLaws(src)
 	return
 

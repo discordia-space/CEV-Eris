@@ -76,11 +76,12 @@
 	update_icon()
 
 /obj/item/gun/projectile/automatic/z8/examine(mob/user)
-	..()
+	var/description = ""
 	if(launcher.chambered)
-		to_chat(user, "\The [launcher] has \a [launcher.chambered] loaded.")
+		description += "\The [launcher] has \a [launcher.chambered] loaded."
 	else
-		to_chat(user, "\The [launcher] is empty.")
+		description += "\The [launcher] is empty."
+	..(user, afterDesc = description)
 
 /obj/item/part/gun/frame/z8
 	name = "Z8 Bulldog frame"

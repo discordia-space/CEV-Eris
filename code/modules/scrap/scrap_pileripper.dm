@@ -65,10 +65,11 @@
 			cube.make_pile()
 
 /obj/machinery/pile_ripper/examine(mob/user)
-	..()
-	to_chat(user, "The power light is [(stat & NOPOWER) ? "off" : "on"].")
-	to_chat(user, "The safety-mode light is [safety_mode ? "on" : "off"].")
-	to_chat(user, "The safety-sensors status light is [emagged ? "off" : "on"].")
+	var/description = ""
+	description += "The power light is [(stat & NOPOWER) ? "off" : "on"].\n"
+	description += "The safety-mode light is [safety_mode ? "on" : "off"].\n"
+	description += "The safety-sensors status light is [emagged ? "off" : "on"].\n"
+	..(user, afterDesc = description)
 
 /obj/machinery/pile_ripper/power_change()
 	..()

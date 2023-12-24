@@ -1,5 +1,4 @@
 /mob/living/silicon/pai/examine(mob/user)
-	..(user, infix = ", personal AI")
 
 	var/msg = ""
 	switch(src.stat)
@@ -15,5 +14,4 @@
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\nIt is [pose]"
-
-	to_chat(user, msg)
+	..(user, infix = ", personal AI", afterDesc = msg)

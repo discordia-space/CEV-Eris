@@ -1,9 +1,15 @@
-/obj/item/modular_computer/examine(var/mob/user)
-	. = ..()
+/obj/item/modular_computer/examine(var/mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(damage > broken_damage)
-		to_chat(user, "<span class='danger'>It is heavily damaged!</span>")
+		description += "<span class='danger'>It is heavily damaged!</span> \n"
 	else if(damage)
-		to_chat(user, "It is damaged.")
+		description += "It is damaged. \n"
+	if(enabled && .)
+		description += "The time [stationtime2text()] is displayed in the corner of the screen."
+
+	if(card_slot && card_slot.stored_card)
+		description += "The [card_slot.stored_card] is inserted into it."
+	..(user, afterDesc = description)
 
 /obj/item/modular_computer/proc/break_apart()
 	visible_message("\The [src] breaks apart!")

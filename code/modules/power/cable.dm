@@ -626,14 +626,17 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/examine(mob/user)
 	if(get_dist(src, user) > 1)
-		return
+		return ..(user)
+
+	var/description = ""
 
 	if(get_amount() == 1)
-		to_chat(user, "A short piece of power cable.")
+		description += "A short piece of power cable."
 	else if(get_amount() == 2)
-		to_chat(user, "A piece of power cable.")
+		description += "A piece of power cable."
 	else
-		to_chat(user, "A coil of power cable. There are [get_amount()] lengths of cable in the coil.")
+		description += "A coil of power cable. There are [get_amount()] lengths of cable in the coil."
+	..(user, afterDesc = description)
 
 
 /obj/item/stack/cable_coil/verb/make_restraint()

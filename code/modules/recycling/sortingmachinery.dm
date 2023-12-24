@@ -105,12 +105,12 @@
 		overlays += I
 
 /obj/structure/bigDelivery/examine(mob/user)
-	if(..(user, 4))
-		if(sortTag)
-			to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
-		if(examtext)
-			to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
-	return
+	var/description = ""
+	if(sortTag)
+		description += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
+	if(examtext)
+		description += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+	..(user, afterDesc = description)
 
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
@@ -212,11 +212,12 @@
 		overlays += I
 
 /obj/item/smallDelivery/examine(mob/user)
-	if(..(user, 4))
-		if(sortTag)
-			to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
-		if(examtext)
-			to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
+	var/description = ""
+	if(sortTag)
+		description += "<span class='notice'>It is labeled \"[sortTag]\"</span>\n"
+	if(examtext)
+		description += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+	..(user, afterDesc = description)
 	return
 
 /obj/item/packageWrap
@@ -313,8 +314,9 @@
 	return
 
 /obj/item/packageWrap/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "\blue There are [amount] units of package wrap left!")
+	var/description = ""
+	description += "\blue There are [amount] units of package wrap left!"
+	..(user, afterDesc = description)
 
 	return
 

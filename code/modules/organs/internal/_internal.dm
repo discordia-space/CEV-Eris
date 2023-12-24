@@ -198,21 +198,22 @@
 
 	current_blood = min(current_blood + blood_req, max_blood_storage)
 
-/obj/item/organ/internal/examine(mob/user)
-	. = ..()
+/obj/item/organ/internal/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
-		to_chat(user, SPAN_NOTICE("Organ size: [specific_organ_size]"))
+		description += SPAN_NOTICE("Organ size: [specific_organ_size]")
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT - 5)
 		var/organs
 		for(var/organ in organ_efficiency)
 			organs += organ + " ([organ_efficiency[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 
-		to_chat(user, SPAN_NOTICE("Requirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>"))
-		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
+		description += SPAN_NOTICE("\nRequirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>")
+		description += SPAN_NOTICE("\nOrgan tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>")
 
 		if(item_upgrades.len)
-			to_chat(user, SPAN_NOTICE("Organ grafts present ([item_upgrades.len]/[maxUpgrades]). Use a laser cutting tool to remove."))
+			description += SPAN_NOTICE("\nOrgan grafts present ([item_upgrades.len]/[maxUpgrades]). Use a laser cutting tool to remove.")
+	..(user, afterDesc = description)
 
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()

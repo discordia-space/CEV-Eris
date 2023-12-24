@@ -30,19 +30,15 @@
 		icon_state = "floortube-construct-stage1"
 
 /obj/machinery/light_construct/examine(mob/user)
-	if(!..(user, 2))
-		return
-
+	var/description = ""
 	switch(src.stage)
 		if(1)
-			to_chat(user, "It's an empty frame.")
-			return
+			description += "It's an empty frame."
 		if(2)
-			to_chat(user, "It's wired.")
-			return
+			description += "It's wired."
 		if(3)
-			to_chat(user, "The casing is closed.")
-			return
+			description += "The casing is closed."
+	..(user, afterDesc = description)
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user)
 
@@ -368,16 +364,17 @@
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
-	..()
+	var/description = ""
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [on? "on" : "off"].")
+			description += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			description += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			description += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
+			description += "The [fitting] has been smashed."
+	..(user, afterDesc = description)
 
 
 

@@ -17,9 +17,6 @@
 
 /obj/item/robot_parts/robot_component/exosuit_control/examine(mob/user)
 	..(user, afterDesc = SPAN_NOTICE("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software]."))
-	. = ..()
-	if(.)
-		to_chat(user, )
 
 /obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/electronics/circuitboard/exosystem))

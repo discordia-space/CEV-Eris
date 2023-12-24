@@ -47,9 +47,6 @@
 	return
 
 /obj/item/device/mmi/digital/posibrain/examine(mob/user)
-	if(!..(user))
-		return
-
 	var/msg = "<span class='info'>*---------*</span>\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
 	msg += "<span class='warning'>"
 
@@ -62,7 +59,7 @@
 	else
 		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
 	msg += "</span><span class='info'>*---------*</span>"
-	to_chat(user, msg)
+	..(user, afterDesc = msg)
 	return
 
 /obj/item/device/mmi/digital/posibrain/emp_act(severity)

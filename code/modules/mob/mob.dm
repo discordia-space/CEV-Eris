@@ -249,7 +249,9 @@
  *
  * mob verbs are faster than object verbs. See
  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
- * for why this isn't atom/verb/examine()
+ * for why this isn't atom/verb/examine() (2014)
+ * Think this was fixed with Context-Menu general fixes about 1 year ago , SPCR - 2023
+ *
  */
 /mob/verb/examinate(atom/examinify as mob|obj|turf in view())
 	set name = "Examine"

@@ -95,12 +95,12 @@
 			to_chat(usr, SPAN_NOTICE("Synthesizer is now producing '[R.name]'."))
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
-	if(!..(user, 2))
-		return
+	var/description = ""
 
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
 
-	to_chat(user, SPAN_NOTICE("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left."))
+	description += SPAN_NOTICE("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/borghypo/service
 	name = "cyborg drink synthesizer"

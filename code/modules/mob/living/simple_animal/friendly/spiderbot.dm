@@ -274,9 +274,11 @@
 	return 0
 
 /mob/living/simple_animal/spiderbot/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(src.held_item)
-		to_chat(user, "It is carrying \icon[src.held_item] \a [src.held_item].")
+		description += "It is carrying \icon[src.held_item] \a [src.held_item]."
+	..(user, afterDesc = description)
+
 
 /mob/living/simple_animal/spiderbot/cannot_use_vents()
 	return

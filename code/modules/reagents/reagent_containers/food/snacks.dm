@@ -215,21 +215,22 @@
 
 	return 0
 
-/obj/item/reagent_containers/food/snacks/examine(mob/user)
-	if(!..(user, 1))
-		return
+/obj/item/reagent_containers/food/snacks/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(junk_food)
-		to_chat(user, SPAN_WARNING("\The [src] is junk food."))
+		description += SPAN_WARNING("\The [src] is junk food.\n")
 	else if(taste_tag.len)
-		to_chat(user, SPAN_NOTICE("\The [src] tastes like [english_list(taste_tag)]."))
+		description += SPAN_NOTICE("\The [src] tastes like [english_list(taste_tag)].\n")
 	if (bitecount==0)
+		..(user, afterDesc = description)
 		return
 	else if (bitecount==1)
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten by someone."))
+		description += SPAN_NOTICE("\The [src] was bitten by someone.")
 	else if (bitecount<=3)
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten [bitecount] time\s."))
+		description += SPAN_NOTICE("\The [src] was bitten [bitecount] time\s.")
 	else
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten several times."))
+		description += SPAN_NOTICE("\The [src] was bitten several times.")
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/storage))
@@ -1125,12 +1126,13 @@
 	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)
 
 /obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+			description += "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic."
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/food/snacks/geneburger
 	name = "flesh burger"
@@ -1146,12 +1148,13 @@
 	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
 
 /obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
+			description += "Looking at \the [src] gives you a sense of darkness, it must be unholy!"
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"

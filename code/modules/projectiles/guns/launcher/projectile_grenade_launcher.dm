@@ -27,9 +27,7 @@
 	wielded_item_state = "_doble"
 
 /obj/item/gun/projectile/shotgun/pump/grenade/examine(mob/user)
-	if(..(user, 2))
-		if(chambered)
-			to_chat(user, "\A [chambered] is chambered.")
+	..(user, afterDesc = chambered ? "\A [chambered] is chambered " : "")
 
 /obj/item/gun/projectile/shotgun/pump/grenade/handle_post_fire(mob/user)
 	log_and_message_admins("fired a grenade ([chambered]) from ([src]).")

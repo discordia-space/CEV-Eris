@@ -320,14 +320,14 @@
 		return //no eating the limb until everything's been removed
 	return ..()
 
-/obj/item/organ/external/examine()
-	..()
+/obj/item/organ/external/examine(user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(in_range(usr, src) || isghost(usr))
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
-			to_chat(usr, SPAN_DANGER("There is \a [I] sticking out of it."))
-	return
+			description += SPAN_DANGER("There is \a [I] sticking out of it.")
+	..(user, afterDesc = description)
 
 #define MAX_MUSCLE_SPEED -0.5
 

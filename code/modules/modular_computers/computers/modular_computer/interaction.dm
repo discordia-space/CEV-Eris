@@ -271,15 +271,6 @@
 					return
 	..()
 
-/obj/item/modular_computer/examine(var/mob/user)
-	. = ..()
-
-	if(enabled && .)
-		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
-
-	if(card_slot && card_slot.stored_card)
-		to_chat(user, "The [card_slot.stored_card] is inserted into it.")
-
 /obj/item/modular_computer/MouseDrop(atom/over_object)
 	var/mob/M = usr
 	if(!istype(over_object, /obj/screen) && can_interact(M))

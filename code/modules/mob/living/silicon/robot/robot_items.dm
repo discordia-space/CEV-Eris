@@ -335,10 +335,10 @@
 	var/mode = 0 // 0 - Walls   1 - Doors
 
 /obj/item/inflatable_dispenser/examine(mob/user)
-	if(!..(user))
-		return
-	to_chat(user, "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored.")
-	to_chat(user, "It is set to deploy [mode ? "doors" : "walls"]")
+	var/description = ""
+	description += "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored. \n"
+	description += "It is set to deploy [mode ? "doors" : "walls"]"
+	..(user, afterDesc = description)
 
 /obj/item/inflatable_dispenser/attack_self()
 	mode = !mode

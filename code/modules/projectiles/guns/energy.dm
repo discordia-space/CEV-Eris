@@ -97,12 +97,13 @@
 	return loc.get_cell()
 
 /obj/item/gun/energy/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(!cell)
-		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
+		description += SPAN_NOTICE("Has no battery cell inserted.\n")
 		return
 	var/shots_remaining = round(cell.charge / charge_cost)
-	to_chat(user, "Has [shots_remaining] shot\s remaining.")
+	description += "Has [shots_remaining] shot\s remaining."
+	..(user, afterDesc = description)
 	return
 
 /obj/item/gun/energy/update_icon(var/ignore_inhands)

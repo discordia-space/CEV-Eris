@@ -135,12 +135,12 @@
 	spawn_blacklisted = TRUE
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
-	if(!..(user, 2))
-		return
+	var/description = ""
 	if(modded)
-		to_chat(user, SPAN_WARNING("Fuel faucet is open, leaking the fuel!"))
+		description += SPAN_WARNING("Fuel faucet is open, leaking the fuel! \n")
 	if(rig)
-		to_chat(user, SPAN_NOTICE("There is some kind of device rigged to the tank."))
+		description += SPAN_NOTICE("There is some kind of device rigged to the tank.\n")
+	..(user, afterDesc = description)
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
@@ -345,13 +345,13 @@
 	. = ..()
 	update_icon()
 
-/obj/structure/reagent_dispensers/bidon/examine(mob/user)
-	if(!..(user, 2))
-		return
+/obj/structure/reagent_dispensers/bidon/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(lid)
-		to_chat(user, SPAN_NOTICE("It has lid on it."))
+		description += SPAN_NOTICE("It has lid on it.\n")
 	if(reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[volume] units of reagents."))
+		description += SPAN_NOTICE("It's filled with [reagents.total_volume]/[volume] units of reagents.\n")
+	..(user, afterDesc = description)
 
 /obj/structure/reagent_dispensers/bidon/attack_hand(mob/user)
 	lid = !lid
@@ -390,9 +390,9 @@
 			return increment
 
 /obj/structure/reagent_dispensers/bidon/advanced/examine(mob/user)
-	if(!..(user, 2))
-		return
+	var/description = ""
 	if(reagents.reagent_list.len)
 		for(var/I in reagents.reagent_list)
 			var/datum/reagent/R = I
-			to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+			description += "<span class='notice'>[R.volume] units of [R.name]</span>\n"
+	..(user, afterDesc = description)
