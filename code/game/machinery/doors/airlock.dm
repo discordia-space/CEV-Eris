@@ -1381,7 +1381,7 @@ There are 9 wires.
 //Override to check locked var
 /obj/machinery/door/airlock/hit(var/mob/user, var/obj/item/I)
 	var/obj/item/W = I
-	user.setClickCooldown((DEFAULT_ATTACK_COOLDOWN + I.wielded ? I.WieldedattackDelay : I.attackDelay )*1.5 )
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + (I.wielded ? I.WieldedattackDelay : I.attackDelay )*1.5 )
 	var/calc_damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))*W.structure_damage_factor
 	var/quiet = FALSE
 	if (istool(I))
