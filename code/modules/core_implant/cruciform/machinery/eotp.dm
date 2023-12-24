@@ -61,12 +61,12 @@ var/global/obj/machinery/power/eotp/eotp
 	eotp = null
 
 /obj/machinery/power/eotp/examine(user)
-
+	var/comment
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/core_implant/I = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
-			var/comment = "Power level: [power]/[max_power]."
+			comment = "Power level: [power]/[max_power]."
 			comment += "\nObservation level: [observation]/[max_observation]."
 			comment += "\nArmement level: [armaments_points]/[max_armaments_points]"
 	..(user, afterDesc = SPAN_NOTICE(comment))

@@ -45,7 +45,7 @@
 			description += "Requires [english_list(component_list)]."
 		else
 			description += "It's almost complete! Now just use a screwdriver to apply the finishing touch."
-	..(afterDesc = description)
+	..(user, afterDesc = description)
 
 
 /obj/machinery/constructable_frame/machine_frame/attackby(obj/item/I, mob/user)

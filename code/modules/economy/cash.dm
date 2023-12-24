@@ -180,8 +180,10 @@
 	var/owner_name = "" // So the ATM can set it so the EFTPOS can put a valid name on transactions.
 
 /obj/item/spacecash/ewallet/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(user in view(2) || user == loc)
-		to_chat(user, span_blue("Charge card's owner: [owner_name]. Credits remaining: [worth]."))
+		description += span_blue("Charge card's owner: [owner_name]. Credits remaining: [worth].")
+	..(user, afterDesc = description)
+
 
 #undef CASH_PER_STAT

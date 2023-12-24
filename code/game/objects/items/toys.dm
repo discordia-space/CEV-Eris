@@ -377,7 +377,7 @@
 		return
 
 /obj/item/toy/waterflower/examine(mob/user)
-	..(afterDesc = "\icon[src] [reagents.total_volume] units of water left!")
+	..(user, afterDesc = "\icon[src] [reagents.total_volume] units of water left!")
 
 
 /*

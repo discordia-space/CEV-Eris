@@ -400,7 +400,7 @@
 		description += "You are too far away to read the gauge. \n"
 	if(welded)
 		description += "It seems welded shut"
-	if(..(user, 1, afterDesc = description))
+	..(user, 1, afterDesc = description)
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	var/old_stat = stat

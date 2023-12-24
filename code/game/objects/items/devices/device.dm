@@ -52,11 +52,11 @@
 	var/description = ""
 	if(suitable_cell)
 		if(cell)
-			description += SPAN_NOTICE("\The [src]'s cell reads \"[round(cell.percent(),0.1)]%\""))
+			description += SPAN_NOTICE("\The [src]'s cell reads \"[round(cell.percent(),0.1)]%")
 		else
-			description += SPAN_WARNING("\The [src] has no cell installed."))
+			description += SPAN_WARNING("\The [src] has no cell installed.")
 
-	. = ..(afterDesc = description)
+	. = ..(user, afterDesc = description)
 
 /obj/item/device/proc/cell_use_check(charge, mob/user)
 	. = TRUE

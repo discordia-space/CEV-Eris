@@ -41,20 +41,18 @@
 		icon_state = initial(icon_state) + (active ? "_on" : null)
 
 /obj/machinery/power/port_gen/os_generator/examine(mob/living/user)
-	..(user)
-	if(!istype(user))
-		return
+	var/description = ""
 
 	var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
 	if(mec_or_cog >= STAT_LEVEL_PROF)
 		if(can_generate_power)
-			to_chat(user, "\The [src] appears to be producing [power_gen*power_output] W.")
+			description += "\The [src] appears to be producing [power_gen*power_output] W."
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] wasn\'t built correctly. One or more of its components are incompatible with the circuitry."))
+			description += SPAN_NOTICE("\The [src] wasn\'t built correctly. One or more of its components are incompatible with the circuitry.")
 		if(IsBroken())
-			to_chat(user, SPAN_WARNING("\The [src] seems to have broken down."))
-	else
-		to_chat(user, SPAN_WARNING("You lack the knowledge or skill to comprehend \the [src]\'s functions."))
+			description += SPAN_WARNING("\The [src] seems to have broken down.")
+		description += SPAN_WARNING("\n You lack the knowledge or skill to comprehend \the [src]\'s functions.")
+	..(user, afterDesc = description)
 
 /obj/machinery/power/port_gen/os_generator/handleInactive()
 	if(power_gen > 0)

@@ -76,7 +76,7 @@
 			update_icon()
 
 /obj/machinery/washing_machine/examine(mob/user)
-	..(afterDesc = (tick > 0 && (state == WASHSTATE_RUNNING)) ? "It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle." : "")
+	..(user, afterDesc = (tick > 0 && (state == WASHSTATE_RUNNING)) ? "It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle." : "")
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"

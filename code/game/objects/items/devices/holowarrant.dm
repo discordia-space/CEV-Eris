@@ -22,7 +22,7 @@
 		show_content(user)
 	else
 		description += "<span class='notice'>You have to be closer if you want to read it.</span>"
-	. = ..(afterDesc = description)
+	. = ..(user, afterDesc = description)
 
 
 // an active warrant with access authorized grants access

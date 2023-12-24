@@ -49,9 +49,9 @@
 	var/description = ""
 	if (src.health < maxHealth)
 		if (src.health > maxHealth/3)
-			description += SPAN_WARNING("[src]'s parts look loose."))
+			description += SPAN_WARNING("[src]'s parts look loose.")
 		else
-			description += SPAN_DANGER("[src]'s parts look very loose!"))
+			description += SPAN_DANGER("[src]'s parts look very loose!")
 	..(user, afterDesc = description)
 
 

@@ -581,7 +581,7 @@
 	else if(dead)
 		remove_dead(user)
 
-/obj/machinery/portable_atmospherics/hydroponics/examine()
+/obj/machinery/portable_atmospherics/hydroponics/examine(user)
 	var/description = ""
 	if(!seed)
 		description += "[src] is empty. \n"

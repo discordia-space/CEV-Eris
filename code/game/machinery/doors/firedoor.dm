@@ -98,7 +98,7 @@
 			continue
 		text_to_say += span_green("SAFE")
 		description += "[text_to_say] \n"
-	..(afterDesc = description)
+	..(user, afterDesc = description)
 
 
 

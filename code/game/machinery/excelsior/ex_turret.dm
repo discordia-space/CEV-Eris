@@ -31,7 +31,7 @@
 	description += "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left! \n"
 	if(!has_power_source_nearby())
 		description += "Seems to be powered down. No excelsior teleporter found nearby."
-	..(afterDesc = description)
+	..(user, afterDesc = description)
 
 /obj/machinery/porta_turret/excelsior/Initialize()
 	. = ..()

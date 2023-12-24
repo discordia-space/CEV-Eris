@@ -46,7 +46,7 @@
 				anchored = anchored ? FALSE : TRUE
 
 /obj/machinery/mindswapper/examine(user)
-	..(afterDesc = "The safety is [emagged ? SPAN_DANGER("disabled") : "enabled"]." )
+	..(user, afterDesc = "The safety is [emagged ? SPAN_DANGER("disabled") : "enabled"]." )
 
 /obj/machinery/mindswapper/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged

@@ -221,7 +221,7 @@
 				description += SPAN_NOTICE("You can now unscrew the door circuit of \the [src], or wire it back.")
 			if(-6)
 				description += SPAN_NOTICE("You can now fully dismantle \the [src], or insert in a new door circuit.")
-	..(afterDesc = description)
+	..(user, afterDesc = description)
 
 
 // Proc: attackby()

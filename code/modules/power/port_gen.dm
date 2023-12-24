@@ -147,7 +147,7 @@
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
-	var/descriptio = ""
+	var/description = ""
 	description += "\The [src] appears to be producing [power_gen*power_output] W. \n"
 	if(!use_reagents_as_fuel)
 		description += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.\n"

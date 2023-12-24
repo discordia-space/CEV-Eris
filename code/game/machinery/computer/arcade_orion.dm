@@ -487,7 +487,7 @@
 		description += SPAN_NOTICE("There's a little switch on the bottom. It's flipped down.")
 	else
 		description += SPAN_NOTICE("There's a little switch on the bottom. It's flipped up.")
-	..(afterDesc = description)
+	..(user, afterDesc = description)
 
 
 /obj/item/orion_ship/attack_self(mob/user)

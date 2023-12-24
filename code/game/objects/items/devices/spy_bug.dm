@@ -77,9 +77,7 @@
 	. = ..()
 
 /obj/item/device/spy_monitor/examine(mob/user)
-	. = ..(user, 1)
-	if(.)
-		to_chat(user, "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made.")
+	..(user, afterDesc = "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made.")
 
 /obj/item/device/spy_monitor/attack_self(mob/user)
 	if(operating)

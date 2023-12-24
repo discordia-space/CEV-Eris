@@ -311,4 +311,4 @@
 		qdel(src)
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
-	..(afterDesc = "It is [open ? "open" : "closed"].")
+	..(user, afterDesc = "It is [open ? "open" : "closed"].")

@@ -381,7 +381,7 @@
 
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
 		description += SPAN_NOTICE("You can see an inscription in some language unknown to you. \n")
-	. = ..(afterDesc = description)
+	. = ..(user, afterDesc = description)
 
 
 /obj/item/oddity/broken_necklace/Destroy()

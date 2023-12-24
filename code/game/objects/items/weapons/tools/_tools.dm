@@ -864,7 +864,7 @@ GLOBAL_LIST(melleExtrasCache)
 			description += "The charge meter reads [round(cell.percent())]%. \n"
 
 	if(use_fuel_cost)
-		description += text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+		description += "[name] contains [get_fuel()]/[max_fuel] units of fuel! \n"
 
 	if(use_stock_cost)
 		description += SPAN_NOTICE("it has [stock] / [max_stock] units remaining. \n")
@@ -879,8 +879,7 @@ GLOBAL_LIST(melleExtrasCache)
 	if(item_upgrades.len)
 		description += "It has the following upgrades installed: \n"
 		for(var/obj/item/TU in item_upgrades)
-			description += "[SPAN_NOTICE(TU.name)] \n]
-
+			description += "[SPAN_NOTICE(TU.name)] \n]"
 	if(health)
 		if(health > maxHealth * 0.95)
 			return

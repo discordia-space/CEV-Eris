@@ -315,8 +315,8 @@ var/list/global/cutoff_plant_icons = list()
 	return (health >= (max_health*0.8) && world.time > mature_time)
 
 
-/obj/effect/plant/examine()
-	var/description = ""
+/obj/effect/plant/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(seed.get_trait(TRAIT_CHEMS))
 		if(!reagents.total_volume)
 			description += SPAN_NOTICE("It looks totally dried.")

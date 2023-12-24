@@ -30,7 +30,7 @@
 	if(hardware && (hardware.owner == src))
 		msg += "<br>"
 		msg += hardware.get_examine_desc()
-	..(user, afterDesc =smg)
+	..(user, afterDesc = msg)
 	user.showLaws(src)
 	return
 

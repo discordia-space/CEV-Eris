@@ -113,16 +113,6 @@ var/list/name_to_material
 	var/explosion_resistance = 5 // Only used by walls currently.
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
-	/// Armor values for this material whenever its applied on something.
-	var/datum/armor/armor = list(
-		melee = 1,
-		bullet = 1,
-		energy = 1,
-		bomb = 1,
-		bio = 1,
-		rad = 1
-	)
-
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
 	var/created_window_full

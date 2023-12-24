@@ -393,7 +393,7 @@
 		description += "\The [src] looks seriously damaged!"
 	else if(src.health < src.maxHealth * 3/4)
 		description += "\The [src] shows signs of damage!"
-	. = ..(afterDesc = description)
+	. = ..(user, afterDesc = description)
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN

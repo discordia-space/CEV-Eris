@@ -118,5 +118,5 @@
 		return ..()
 
 /obj/structure/kitchenspike/examine(mob/user, distance, infix, suffix)
-	..(user, afterDesc = victim_name ? SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]" : ""))
+	..(user, afterDesc = victim_name ? SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]"): "")
 

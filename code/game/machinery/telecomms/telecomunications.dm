@@ -49,7 +49,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			description += SPAN_WARNING("It is glitching incoherently.")
 		if(50 to 80)
 			description += SPAN_WARNING("It is sparking and humming.")
-	..(afterDesc = description)
+	..(user, afterDesc = description)
 
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)

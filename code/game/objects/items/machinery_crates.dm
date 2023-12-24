@@ -19,7 +19,7 @@
 	var/can_place_on_table = FALSE
 
 /obj/item/machinery_crate/examine(mob/user)
-	..(afterDesc = "The piece of paper on the side reads: [machine_name]")
+	..(user, afterDesc = "The piece of paper on the side reads: [machine_name]")
 
 /obj/item/machinery_crate/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))

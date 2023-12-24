@@ -39,4 +39,4 @@
 	INVOKE_ASYNC(src, PROC_REF(imprint), user)
 
 /obj/item/device/mental_imprinter/examine(mob/user)
-	. = ..(afterDesc = spent ? SPAN_WARNING("It is spent" : ""))
+	. = ..(user, afterDesc = spent ? SPAN_WARNING("It is spent") : "")

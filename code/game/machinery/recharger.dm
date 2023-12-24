@@ -21,7 +21,7 @@
 
 /obj/machinery/recharger/examine(user)
 	var/obj/item/cell/cell = charging?.get_cell()
-	..(afterDesc = cell ? "The charge meter reads [round(cell.percent())]%." : "" )
+	..(user, afterDesc = cell ? "The charge meter reads [round(cell.percent())]%." : "" )
 
 
 /obj/machinery/recharger/attackby(obj/item/I, mob/user)

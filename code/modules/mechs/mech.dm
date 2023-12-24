@@ -204,7 +204,7 @@
 /mob/living/exosuit/examine(mob/user)
 	var/description = ""
 	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
-		description += "It is being piloted by [english_list(pilots, nothing_text = "nobody"].\n"
+		description += "It is being piloted by [english_list(pilots, nothing_text = "nobody")].\n"
 	if(body && LAZYLEN(body.pilot_positions))
 		description += "It can seat [body.pilot_positions.len] pilot\s total.\n"
 	if(hardpoints.len)
