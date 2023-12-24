@@ -3,10 +3,9 @@
 
 A fork based off CEV-Eris with significant modifications to the core combat mechanics.
 
-
-Compiles on 515.1623
-Comes with inbuilt configuration for VisualStudio Code 
-Made to run on AlmaLinux 9 for hosting.
+Compiles on 515.1623 <br>
+Comes with inbuilt configuration for VisualStudio Code <br>
+Made to run on AlmaLinux 9 for hosting. <br>
 
 ## CONTRIBUTING
 
