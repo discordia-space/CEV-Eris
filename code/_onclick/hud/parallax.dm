@@ -74,7 +74,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	if(. && parallax)
 		parallax.update()
 
-/mob/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/mob/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator)
 	. = ..()
 	if(. && parallax)
 		parallax.update()

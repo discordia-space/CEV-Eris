@@ -130,10 +130,12 @@ default behaviour is:
 							now_pushing = FALSE
 							return
 					step_glide(AM, t, glide_size)
+					/*
 					if(ishuman(AM) && AM:grabbed_by)
 						for(var/obj/item/grab/G in AM:grabbed_by)
 							step_glide(G:assailant, get_dir(G:assailant, AM), glide_size)
 							G.adjust_position()
+				*/
 				now_pushing = FALSE
 			return
 	return
@@ -754,8 +756,10 @@ default behaviour is:
 
 /mob/living/reset_layer()
 	if(hiding)
-		set_plane(HIDING_MOB_PLANE)
-		layer = HIDING_MOB_LAYER
+		if(!(atomFlags & AF_PLANE_UPDATE_HANDLED))
+			set_plane(HIDING_MOB_PLANE)
+		if(!(atomFlags & AF_LAYER_UPDATE_HANDLED))
+			layer = HIDING_MOB_LAYER
 	else
 		..()
 

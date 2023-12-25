@@ -14,6 +14,7 @@ GLOBAL_VAR_INIT(Debug,0)
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = 0
+	var/atom/movable/grabbedBy
 	var/mob/pulledby
 	var/item_state // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
@@ -126,7 +127,7 @@ GLOBAL_VAR_INIT(Debug,0)
 	for(var/atom/thing in contents)
 		thing.typeWeights(spaces + 1)
 
-/atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	if(loc == destination)
 		return FALSE
 
@@ -163,10 +164,10 @@ GLOBAL_VAR_INIT(Debug,0)
 			if(is_new_area && is_destination_turf)
 				destination.loc.Entered(src, origin)
 
-	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, origin, loc)
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, origin, loc, initiator)
 	if(origin && destination)
 		if(get_z(origin) != get_z(destination))
-			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(origin) , get_z(destination))
+			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(origin) , get_z(destination), initiator)
 			update_plane()
 		else if(!is_origin_turf)
 			update_plane()
@@ -350,7 +351,7 @@ GLOBAL_VAR_INIT(Debug,0)
 */
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
 // Spoiler alert: it is, in moved.dm
-/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator = null)
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
 
@@ -420,7 +421,7 @@ GLOBAL_VAR_INIT(Debug,0)
 		if(get_z(oldloc) != get_z(loc))
 			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(oldloc), get_z(NewLoc))
 
-		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc, initiator)
 		/* Inserting into contents uses only forceMove
 		if(!isturf(oldloc) || !isturf(loc))
 			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingAtom())

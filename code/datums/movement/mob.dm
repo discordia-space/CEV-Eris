@@ -299,39 +299,17 @@
 	mob.moving = TRUE
 
 	direction = mob.AdjustMovementDirection(direction)
-	var/old_turf = get_turf(mob)
 	step(mob, direction)
 
 	mob.add_momentum(direction)
 	// Something with pulling things
-	var/extra_delay = HandleGrabs(direction, old_turf)
-	mob.add_move_cooldown(extra_delay)
 
-	/* TODO: Bay grab system
-	for (var/obj/item/grab/G in mob)
-		if (G.assailant_reverse_facing())
-			mob.set_dir(GLOB.reverse_dir[direction])
-		G.assailant_moved()
-	for (var/obj/item/grab/G in mob.grabbed_by)
-		G.adjust_position()
-	*/
 	mob.moving = FALSE
 
 	mob.update_cursor()
 
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
-
-/datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
-	. = 0
-	// TODO: Look into making grabs use movement events instead, this is a mess.
-	for (var/obj/item/grab/G in mob)
-		. = max(., G.slowdown)
-		var/mob/M = G.affecting
-		if(M && get_dist(old_turf, M) <= 1)
-			if (isturf(M.loc) && isturf(mob.loc) && mob.loc != old_turf && M.loc != mob.loc)
-				step(M, get_dir(M.loc, old_turf))
-		G.adjust_position()
 
 /mob/proc/AdjustMovementDirection(var/direction)
 	. = direction

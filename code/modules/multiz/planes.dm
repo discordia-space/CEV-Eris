@@ -21,6 +21,8 @@
 		return min(32767,((z-LD.original_level)*PLANES_PER_Z_LEVEL) + original_plane)
 
 /atom/proc/update_plane()	//Updates plane using local z-coordinate
+	if(atomFlags & AF_PLANE_UPDATE_HANDLED)
+		return
 	if(z > 0)
 		plane = calculate_plane(z,original_plane)
 	else

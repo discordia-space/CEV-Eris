@@ -872,6 +872,8 @@
 		targ.client.perspective = MOB_PERSPECTIVE
 		targ.client.eye = src
 	currentlyLifting = null
+	target.atomFlags &= ~AF_LAYER_UPDATE_HANDLED
+	target.atomFlags &= ~AF_PLANE_UPDATE_HANDLED
 	update_icon()
 
 /obj/item/mech_equipment/forklifting_system/proc/startLifting(atom/movable/target)
@@ -879,6 +881,8 @@
 	// No clicking this whilst lifted
 	currentlyLifting.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	currentlyLifting.forceMove(src)
+	target.atomFlags &= AF_LAYER_UPDATE_HANDLED
+	target.atomFlags &= AF_PLANE_UPDATE_HANDLED
 	var/mob/targ = currentlyLifting
 	if(ismob(targ) && targ.client)
 		targ.client.perspective = EYE_PERSPECTIVE

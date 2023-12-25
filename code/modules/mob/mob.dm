@@ -331,14 +331,16 @@
 			var/obj/item/grab/G = l_hand
 			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
+				if (G.affecting && ismob(G.affecting))
+					var/mob/affected = G.affecting
+					affected.ret_grab(L, 1)
 		if(istype(r_hand, /obj/item/grab))
 			var/obj/item/grab/G = r_hand
 			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
+				if (G.affecting && ismob(G.affecting))
+					var/mob/affected = G.affecting
+					affected.ret_grab(L,1)
 		if(!flag)
 			if (L.master == src)
 				var/list/temp = list()
@@ -821,8 +823,10 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/proc/reset_layer()
 	if(lying)
-		set_plane(LYING_MOB_PLANE)
-		layer = LYING_MOB_LAYER
+		if(!(atomFlags & AF_PLANE_UPDATE_HANDLED))
+			set_plane(LYING_MOB_PLANE)
+		if(!(atomFlags & AF_LAYER_UPDATE_HANDLED))
+			layer = LYING_MOB_LAYER
 	else
 		reset_plane_and_layer()
 

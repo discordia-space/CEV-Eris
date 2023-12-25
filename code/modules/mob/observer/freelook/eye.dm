@@ -103,7 +103,7 @@
 
 	return 1
 
-/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator)
 	. = ..()
 	if(owner && owner.hud_used)
 		owner.hud_used.updatePlaneMasters(owner)

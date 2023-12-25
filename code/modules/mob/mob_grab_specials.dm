@@ -100,7 +100,7 @@
 		visible_message(SPAN_WARNING("With a forceful twist, [attacker] bents [target]'s [organ.name] into a painful jointlock!"))
 		to_chat(target, SPAN_DANGER("You feel extreme pain!"))
 		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
-		affecting.adjustHalLoss(rand(30, 40))
+		target.adjustHalLoss(rand(30, 40))
 
 /obj/item/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))

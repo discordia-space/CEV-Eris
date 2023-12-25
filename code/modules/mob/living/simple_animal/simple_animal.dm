@@ -127,7 +127,7 @@
 	else
 		create_reagents(20)
 
-/mob/living/simple_animal/Move(NewLoc, direct)
+/mob/living/simple_animal/Move(NewLoc, direct, initiator)
 	. = ..()
 	if(.)
 		if(src.nutrition && src.stat != DEAD)
