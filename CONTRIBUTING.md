@@ -25,27 +25,7 @@ Any pull requests which add or change user-visible features should have a change
 
 
 # Coding Policies
-Eris has an unusual top-down development style, with future features largely planned out.
-To avoid conflicts, it is strongly recommended to discuss any proposed changes in the discord, and get the approval of the development team, before starting work on something that may ultimately be rejected. We can work with your ideas and help fit them into the broader vision.
-
-When making adjustments to game balance, changes should be explained, and generally made in small steps unless there's an egregious problem. 15-25% at a time is the recommended change for balancing values.
-
-When working on large projects, try to make the resulting pull requests as small as feasible. Split large projects into multiple smaller phases if possible. We strongly encourage iterative development, and it's perfectly fine to implement a large feature in many PRs over several months.
-
-Try to comment your code well, there's rarely such a thing as overexplaining. comments are especially important when writing large new features, or using things in unexpected ways.
-
-Values which affect game balance, such as movespeeds, health values and weapon damage, should not be written in or read from config files. Whenever working on an area where such values already exist in config, phase them out and use defines or global variables instead.
-
-When designing new systems and features, try not to create an undue burden for future coders who will have to maintain your work.
-
-The following features or systems are deprecated and should not be used if at all possible. 
-Datacore: Use modular records instead
-/obj/item/device/pda, and PDA cartridges: Use modular PDAs instead.
-Single Function computer consoles: Use modular computers instead.
-Direct html browse calls: Use NanoUI instead.
-
-Avoid "Cargo Cult Programming", the ritual of things you don't understand. Try your best to understand the function of codeblocks you copy and paste.
-
+AEV-Oxyd is built under one vision. Make sure to ask any maintainer / repository owner before you start coding out a feature. We might deny it if it doesn't fit our vision.
 
 # Code style
 Proc defines should contain full type path.
@@ -110,26 +90,26 @@ If there's nothing after a return, and its not returning a specific value, you d
 The . var stores the return of a function and will be returned even without a specific return call.
 ***Good:***
 ```
-/proc/do_thing()
+/proc/doThing()
 	do_thing
 	return result_of_doing_thing
 	
-/proc/do_thing()
+/proc/doThing()
 	do_thing
 	. = result_of_doing_thing
 	
-/proc/do_thing()
+/proc/doThing()
 	do_thing
 	do_other_thing
 ```
 ***Bad:***
 ```
-/proc/do_thing()
+/proc/doThing()
 	do_thing
 	. = result_of_doing_thing
 	return
 	
-/proc/do_thing()
+/proc/doThing()
 	do_thing
 	do_other_thing
 	return
@@ -143,7 +123,7 @@ Boolean variables and return values should use TRUE and FALSE constans instead o
 /obj/item/pistol/
 	var/broken = FALSE
 
-/obj/item/pistol/proc/can_fire()
+/obj/item/pistol/proc/canFire()
 	return TRUE
 ```
 ***Bad:***
@@ -151,7 +131,7 @@ Boolean variables and return values should use TRUE and FALSE constans instead o
 /obj/item/pistol/
 	var/broken = 0
 
-/obj/item/pistol/proc/can_fire()
+/obj/item/pistol/proc/canFire()
 	return 1
 ```
 ***
@@ -206,12 +186,12 @@ These are fine to use for local variables within a proc though.
 
 ***Good:***
 ```
-/obj/proximity_sensor/update_sprites()
+/obj/proximitySensor/updateSprites()
 var/count = 0
 ```
 ***Bad:***
 ```
-/obj/prox_sensor/upd_sprites()
+/obj/proxSensor/updSprites()
 var/c = 1
 ```
 ***
@@ -238,17 +218,20 @@ Do not use src.var if it can be helped.
 ```
 ***
 
-Variables, types and methods should be named in "snake case". Constant values should be named in uppercase. 
+Variables, types and methods should be named in "camel case". Constant values should be in snake-case uppercase. 
 
 ***Good:***
 ```
-/proc/redraw_icons()
+/proc/redrawIcons()
 #define SHIP_NAME "Eris"
 ```
 ***Bad:***
 ```
 /proc/Reload_gun()
 var/brigArea
+
+/proc/reload_gun()
+#define SHIPNAME "Eris"
 ```
 ***
 
@@ -256,12 +239,12 @@ Procedure arguments should not contain `var/`. Specified input type e.g. `some_t
 
 ***Good:***
 ```
-/proc/rename_area(mob/user, area/A, new_name)
+/proc/renameArea(mob/user, area/A, new_name)
 
 ```
 ***Bad:***
 ```
-/proc/rename_area(var/mob/user as mob, var/area/A as area, var/new_name as text)
+/proc/renameArea(var/mob/user as mob, var/area/A as area, var/new_name as text)
 
 ```
 ***
