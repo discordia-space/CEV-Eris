@@ -81,9 +81,12 @@
 
 	explosion_power = 200
 	explosion_falloff = 75
+	var/hasBlown = FALSE
 
 /obj/item/projectile/bullet/rocket/hesh/detonate(atom/target)
-	fragment_explosion_angled(get_turf(src), starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
+	if(!hasBlown)
+		fragment_explosion_angled(get_turf(src), starting, /obj/item/projectile/bullet/pellet/fragment/strong, 20)
+		hasBlown = TRUE
 	..()
 
 /obj/item/projectile/bullet/rocket/heat

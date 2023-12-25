@@ -8,6 +8,15 @@
 			return u_attack
 	return null
 
+/mob/living/carbon/human/AltClickOn(atom/A)
+	. = ..()
+	if(.)
+		return
+	var/obj/item/gun/zoomies = get_active_hand()
+	if(istype(zoomies) && length(zoomies.zoom_factors))
+		zoomies.toggle_scope(src)
+		return
+
 /mob/living/carbon/human/attack_hand(mob/living/carbon/M as mob)
 
 	var/mob/living/carbon/human/H = M

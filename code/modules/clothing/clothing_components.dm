@@ -126,7 +126,7 @@ GLOBAL_LIST(armorInitialCache)
 		if(armorFlags & CF_ARMOR_DEG_LINEAR)
 			tempArmor[armorType] = round(((armorHealth + 0.0001)/ maxArmorHealth) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
 		else if(armorFlags & CF_ARMOR_DEG_EXPONENTIAL)
-			tempArmor[armorType] = round(min(1 - ((maxArmorHealth - armorHealth)**2/100), 0.1) * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
+			tempArmor[armorType] = round(((armorHealth+0.0001)/maxArmorHealth)**2 * armorInitial * CLOTH_NORMAL_MTA_MUT, 0.1)
 		else
 			tempArmor[armorType] = customDregadation(armorType, armorInitial)
 
@@ -151,7 +151,8 @@ GLOBAL_LIST(armorInitialCache)
 		for(var/list/damageElement in armorToDam[armorType])
 			var/blocked = clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
 			damageElement[2] -= blocked
-			armorHealth -= blocked * armorDegradation[armorType]
+			/// armorDiv also increases damage to
+			armorHealth -= blocked * armorDegradation[armorType] * armorDiv
 	updateArmor()
 	return armorToDam
 

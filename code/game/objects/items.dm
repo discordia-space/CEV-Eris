@@ -638,15 +638,19 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		switch(usr.dir)
 			if(NORTH)
 				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_y = viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_y = viewoffset
 			if(SOUTH)
 				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_y = -viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_y = -viewoffset
 			if(EAST)
-				usr.client.pixel_x = viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_x = viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_x = viewoffset
 				usr.client.pixel_y = 0
 			if(WEST)
-				usr.client.pixel_x = -viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_x = -viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
 		if(!stayzoomed)
 			usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
@@ -658,8 +662,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			//usr.toggle_zoom_hud()
 		zoom = 0
 
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
+		animate(usr.client, 0.3 SECOND, pixel_x = 0, easing = LINEAR_EASING)
+		animate(usr.client, 0.3 SECOND, pixel_y = 0, easing = LINEAR_EASING)
+		//usr.client.pixel_x = 0
+		//usr.client.pixel_y = 0
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")

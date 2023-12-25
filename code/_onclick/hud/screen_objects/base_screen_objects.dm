@@ -72,6 +72,28 @@
 			usr.unset_machine()
 
 	return TRUE
+
+// ------------energy-----------------------
+/obj/screen/energy
+	name = "energy"
+	icon_state = "energy"
+	desc = "energy, represents how tired your character is \
+	<br> the less you have , the slower you are \
+	<br> sugar, caffeine and adrenaline help with energy \
+	<br> heavy lifting and combat actions drain your energy"
+	process_flag = TRUE
+
+/obj/screen/energy/Process()
+	update_icon()
+
+/obj/screen/energy/update_icon()
+	. = ..()
+	var/mob/living/carbon/human/man = parentmob
+	if(!istype(man))
+		return
+	var/ratio = man.getEnergyRatio()
+	ratio = round(ratio, 0.2)
+	icon_state = "[initial(icon_state)][ratio]"
 //--------------------------------------------------close---------------------------------------------------------
 
 /obj/screen/close
@@ -330,7 +352,8 @@
 	name = "health"
 	desc = "Not your actual health, but an estimate of how much pain you feel.\
 	<br>Experience too much of it, and you will lose consciousness.\
-	<br>Pain tolerance scales with your Toughness."
+	<br>Pain tolerance scales with your Toughness.\
+	<br>Painkillers help with the pain"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "health0"
 	screen_loc = "15,7"

@@ -294,6 +294,7 @@ There are important things regarding this file:
 	armor_divisor = 1
 	penetrating = -5
 	nocap_structures = TRUE
+	var/hasBreached = 2
 	kill_count = 30
 
 /obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
@@ -307,8 +308,10 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/antim/breach/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	fragment_explosion_angled(target, starting ,/obj/item/projectile/bullet/pellet/fragment/strong, 5)
-	playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
+	if(hasBreached)
+		fragment_explosion_angled(target, starting ,/obj/item/projectile/bullet/pellet/fragment/strong, 5)
+		playsound(target, 'sound/effects/explosion1.ogg', 100, 25, 8, 8)
+		hasBreached--
 
 
 

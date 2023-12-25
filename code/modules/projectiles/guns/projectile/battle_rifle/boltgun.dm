@@ -65,9 +65,6 @@
 	update_icon()
 
 /obj/item/gun/projectile/boltgun/attack_self(mob/user) //Someone overrode attackself for this class, soooo.
-	if(zoom)
-		toggle_scope(user)
-		return
 	bolt_act(user)
 
 /obj/item/gun/projectile/boltgun/proc/bolt_act(mob/living/user)

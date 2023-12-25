@@ -161,8 +161,8 @@
 	var/oldLoc = loc
 	. = ..()
 	if(oldLoc != NewLoc)
-		/// 1000 From KG,  50 from conversion rate
-		var/adjustment = (weight - initial(weight) - 20000) / 1000 / 50
+		/// 1000 From KG,  25 from conversion rate
+		var/adjustment = (weight - initial(weight) - 20000) / 1000 / 25
 		if(adjustment > 0)
 			adjustEnergy(-adjustment)
 

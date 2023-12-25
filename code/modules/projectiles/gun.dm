@@ -736,6 +736,9 @@
 			description += SPAN_WARNING("There is a serial number on this gun, it reads [serial_type].\n")
 		else if(isnull(serial_type))
 			description += SPAN_DANGER("The serial is scribbled away.\n")
+
+	if(length(zoom_factors))
+		description += SPAN_NOTICE("You can use the gun's scope by alt-clicking any turf whilst holding it in your active hand")
 	..(user, afterDesc = description)
 
 

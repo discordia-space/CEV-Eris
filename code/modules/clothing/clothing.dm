@@ -181,7 +181,7 @@
 		component.covering = ARMS
 	if(istype(src, /obj/item/clothing/shoes))
 		component.covering = LEGS
-	if(istype(component, /obj/item/armor_component/sideguards))
+	if(!istype(component, /obj/item/armor_component/sideguards))
 		if(istype(src, /obj/item/clothing/suit) || istype(src, /obj/item/clothing/under))
 			component.covering = UPPER_TORSO | LOWER_TORSO
 
