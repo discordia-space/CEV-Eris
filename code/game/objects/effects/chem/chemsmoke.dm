@@ -38,7 +38,7 @@
 	walk(src, 0)
 	return ..()
 
-/obj/effect/effect/smoke/chem/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/effect/smoke/chem/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	var/list/oldlocs = view(1, src)
 	. = ..()
 	if(.)
@@ -167,7 +167,7 @@
 						var/internals = H.get_breath_from_internal()
 						var/gasmask = FALSE
 						if(H.wear_mask)
-							gasmask = H.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT			
+							gasmask = H.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT
 						if(!internals && !gasmask)
 							chemholder.reagents.trans_to_mob(H, 5, CHEM_INGEST, copy = TRUE)
 							chemholder.reagents.trans_to_mob(H, 5, CHEM_BLOOD, copy = TRUE)

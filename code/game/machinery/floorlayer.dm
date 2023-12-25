@@ -13,7 +13,7 @@
 	T = new/obj/item/stack/tile/floor(src)
 	..()
 
-/obj/machinery/floorlayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/floorlayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 
 	if(on)

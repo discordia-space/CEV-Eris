@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 /mob
 	var/obj/parallax/parallax
 
-/mob/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator)
 	. = ..()
 	if(. && parallax)
 		parallax.update()

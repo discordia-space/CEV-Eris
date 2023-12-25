@@ -4,7 +4,7 @@
 		/datum/movement_handler/mob/exosuit
 	)
 
-/mob/living/exosuit/Move()
+/mob/living/exosuit/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(.)
 		// Check for ore auto insertion

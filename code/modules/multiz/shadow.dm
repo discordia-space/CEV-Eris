@@ -45,11 +45,11 @@
 	if(shadow)
 		shadow.sync_icon(src)
 
-/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator = src)
 	. = ..()
 	check_shadow()
 
-/mob/living/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator)
+/mob/living/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = src)
 	. = ..()
 	check_shadow()
 

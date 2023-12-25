@@ -35,7 +35,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	return "off"
 
 // You aren't allowed to move.
-/obj/machinery/gravity_generator/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/gravity_generator/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	qdel(src)
 

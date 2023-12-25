@@ -1,4 +1,4 @@
-/mob/living/carbon/superior_animal/roach/Move()
+/mob/living/carbon/superior_animal/roach/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(buckled_mob)
 		buckled_mob.dir = dir

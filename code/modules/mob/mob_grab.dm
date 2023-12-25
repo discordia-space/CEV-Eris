@@ -145,7 +145,7 @@
 		else if(isturf(oldLocation) && isturf(newLocation))
 			var/turf/oldAbove = GetAbove(oldLocation)
 			var/turf/newAbove = GetBelow(newLocation)
-			if((oldAbove && oldAbove.Adjacent(newLocation)) || (newBelow && newBelow.Adjacent(oldLocation)))
+			if((oldAbove && oldAbove.Adjacent(newLocation)) || (newAbove && newAbove.Adjacent(oldLocation)))
 				affecting.forceMove(newLocation, initiator = src)
 			else
 				qdel(src)
@@ -156,6 +156,9 @@
 
 /obj/item/grab/proc/onVictimMove(atom/movable/mover, atom/oldLocation, atom/newLocation, atom/initiator)
 	SIGNAL_HANDLER
+	message_admins("initiator=[initiator]")
+	if(newLocation.Adjacent(assailant))
+		return
 	if(initiator != src)
 		qdel(src)
 		return

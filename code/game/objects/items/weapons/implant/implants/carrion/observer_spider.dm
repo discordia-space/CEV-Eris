@@ -43,7 +43,7 @@
 	. = ..()
 
 // Code for spy sensor contract completion
-/obj/item/implant/carrion_spider/observer/Move()
+/obj/item/implant/carrion_spider/observer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(.)
 		reset()

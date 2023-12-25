@@ -221,7 +221,7 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	if ((. = ..()) && modded)
 		leak_fuel(amount_per_transfer_from_this/10)
 

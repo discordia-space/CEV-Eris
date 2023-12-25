@@ -254,7 +254,7 @@
 /obj/item/projectile/flamer_lob/New()
 	.=..()
 
-/obj/item/projectile/flamer_lob/Move(atom/A)
+/obj/item/projectile/flamer_lob/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	.=..()
 	life--
 	var/turf/T = get_turf(src)

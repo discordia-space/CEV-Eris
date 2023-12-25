@@ -66,7 +66,7 @@
 	return
 
 
-/obj/effect/accelerated_particle/proc/move(var/lag)
+/obj/effect/accelerated_particle/proc/move()
 	if(target)
 		if(movetotarget)
 			if(!step_towards(src,target))

@@ -46,7 +46,7 @@
 	overlays += I
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle/train/cargo/engine/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/vehicle/train/cargo/engine/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	if(on && !cell.check_charge(charge_use))
 		turn_off()
 		update_stats()

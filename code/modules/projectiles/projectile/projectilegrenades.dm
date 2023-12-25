@@ -14,7 +14,7 @@
 	recoil = 7 // Unlike shotgun shells, this one doesn't rely on velocity, but payload instead
 	can_ricochet = FALSE
 
-/obj/item/projectile/bullet/grenade/Move()	//Makes grenade shells cause their effect when they arrive at their target turf
+/obj/item/projectile/bullet/grenade/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)	//Makes grenade shells cause their effect when they arrive at their target turf
 	if(get_turf(src) == get_turf(original))
 		grenade_effect(get_turf(src))
 		qdel(src)

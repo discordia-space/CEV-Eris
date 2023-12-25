@@ -420,7 +420,7 @@
 
 	return new_character
 
-/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/new_player/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()

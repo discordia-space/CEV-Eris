@@ -43,7 +43,7 @@
 	sleep(10)
 	qdel(src)
 
-/obj/effect/effect/water/Move(var/atom/NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/effect/water/Move(var/atom/NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	if(NewLoc.density)
 		return 0
 

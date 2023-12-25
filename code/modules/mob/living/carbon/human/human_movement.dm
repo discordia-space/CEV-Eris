@@ -157,7 +157,7 @@
 	momentum_speed--
 	update_momentum()
 
-/mob/living/carbon/human/Move(NewLoc, Dir, step_x, step_y, glide_size_override)
+/mob/living/carbon/human/Move(NewLoc, Dir, step_x, step_y, glide_size_override, initiator = src)
 	var/oldLoc = loc
 	. = ..()
 	if(oldLoc != NewLoc)

@@ -33,7 +33,7 @@
 	if(owner_core)
 		owner_core.active_spiders -= src
 
-/obj/item/implant/carrion_spider/Move(NewLoc, Dir, step_x, step_y, glide_size_override)
+/obj/item/implant/carrion_spider/Move(NewLoc, Dir, step_x, step_y, glide_size_override, initiator = src)
 	last_stun_time = world.time
 	..()
 

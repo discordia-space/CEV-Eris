@@ -89,7 +89,7 @@
 		create_track()
 	driving = 0
 
-/obj/structure/bed/chair/wheelchair/Move()
+/obj/structure/bed/chair/wheelchair/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(buckled_mob)
 		var/mob/living/occupant = buckled_mob

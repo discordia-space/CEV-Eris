@@ -161,7 +161,7 @@
 
 	.=..()
 
-/obj/structure/bed/Move()
+/obj/structure/bed/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(buckled_mob)
 		buckled_mob.forceMove(src.loc, glide_size_override = glide_size)

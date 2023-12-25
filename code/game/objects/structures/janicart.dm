@@ -345,7 +345,7 @@
 		to_chat(user, SPAN_NOTICE("You'll need the keys in one of your hands to drive this [callme]."))
 
 
-/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
