@@ -66,6 +66,14 @@
 
 	//No need to update all of these procs if the guy is dead.
 	if(. && !in_stasis)
+		if(needsEnergyUpdate)
+			handleEnergyUpdate()
+			needsEnergyUpdate = FALSE
+			if(client)
+				message_admins("Updated energy, E=[energy], ME=[maxEnergy]")
+		adjustEnergy(energyRegenRate)
+		if(client)
+			message_admins("E=[energy]")
 
 		//Organs and blood
 		handle_organs()
@@ -106,6 +114,12 @@
 	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
 		return FALSE
 	return TRUE
+
+/mob/living/carbon/human/proc/handleEnergyUpdate()
+	energyRegenRate = initial(energyRegenRate)
+	maxEnergy = initial(maxEnergy)
+	energyRegenRate += chem_effects[CE_ENERGIZANT]/10
+	maxEnergy += chem_effects[CE_ENERGIZANT]/2
 
 /mob/living/carbon/human/breathe()
 	if(!in_stasis)

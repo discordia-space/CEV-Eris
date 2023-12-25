@@ -46,6 +46,7 @@
 #define CE_PULSE			"heart stimulant"	// increases or decreases heart rate
 #define CE_NOPULSE			"arresting agent" 	// stops heartbeat
 #define CE_MIND				"mind stabilization"// Stabilizes or wrecks mind. Used for hallucinations
+#define CE_ENERGIZANT		"energizant"        // Increases regeneration rate and might reduce attack delays..
 #define CE_ANTITOX			"antitoxin"    		// Dylovene
 #define CE_TOXIN			"toxin"       		// Generic toxins, stops autoheal.
 #define CE_SPEECH_VOLUME	"speech volume"    	// speech volume multiplier , default volume is integer and equals 2

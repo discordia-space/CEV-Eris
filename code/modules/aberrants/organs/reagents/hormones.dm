@@ -67,6 +67,7 @@
 /datum/reagent/hormone/speedboost/alt
 	name = "noradrenaline"		// Fight or flight hormone
 	id = "noradrenaline"
+	effects = list(CE_ENERGIZANT = 10)
 	hormone_type = 2
 
 // Anti-toxin

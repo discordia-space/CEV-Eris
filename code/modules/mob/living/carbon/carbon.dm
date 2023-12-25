@@ -386,6 +386,10 @@
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
+	if(effect == CE_ENERGIZANT && ishuman(src))
+		var/mob/living/carbon/human/man = src
+		man.needsEnergyUpdate = TRUE
+
 
 /mob/living/carbon/get_default_language()
 	if(default_language)

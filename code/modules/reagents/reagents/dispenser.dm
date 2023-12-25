@@ -447,6 +447,7 @@
 
 /datum/reagent/organic/sugar/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustNutrition(1 * effect_multiplier)
+	M.add_chemical_effect(CE_ENERGIZANT, 10)
 
 /datum/reagent/organic/sugar/overdose(mob/living/carbon/M, alien)
 	..()

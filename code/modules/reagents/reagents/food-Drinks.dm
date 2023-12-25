@@ -706,6 +706,7 @@
 			else if(K.is_broken())
 				M.add_chemical_effect(CE_TOXIN, 1)
 	M.add_chemical_effect(CE_PULSE, 1)
+	M.add_chemical_effect(CE_ENERGIZANT, 10)
 
 /datum/reagent/drink/coffee/overdose(mob/living/carbon/M, alien)
 	M.make_jittery(5)
@@ -781,6 +782,10 @@
 	glass_icon_state = "chocolateglass"
 	glass_name = "hot chocolate"
 	glass_desc = "Made with love! And cocoa beans."
+
+/datum/reagent/drink/hot_coco/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	M.add_chemical_effect(CE_ENERGIZANT, 10)
 
 /datum/reagent/drink/sodawater
 	name = "Soda Water"

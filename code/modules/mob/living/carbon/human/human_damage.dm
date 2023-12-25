@@ -174,6 +174,13 @@
 	else
 		..()
 
+/mob/living/carbon/human/proc/adjustEnergy(amount)
+	energy = clamp(energy + amount, 0 , maxEnergy)
+
+/// Returns if we are above normal energized levels
+/mob/living/carbon/human/proc/getEnergyRatio()
+	return (energy - initial(maxEnergy) + 0.00001)/100
+
 /mob/living/carbon/human/getToxLoss()
 	return
 

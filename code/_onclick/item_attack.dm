@@ -284,8 +284,15 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 	if(!user)
 		return FALSE
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + (wielded ? WieldedattackDelay : attackDelay))
+	var/cooldown = DEFAULT_ATTACK_COOLDOWN + (wielded ? WieldedattackDelay : attackDelay)
+	if(ishuman(user))
+		var/mob/living/carbon/human/man = user
+		cooldown -= man.getEnergyRatio() * 2
+		message_admins("Reduced cooldown by [man.getEnergyRatio()*2]")
+		var/adjustment = (weight + 0.001)/1000
+		message_admins("Drained [adjustment] energy for the attack")
+		man.adjustEnergy(-adjustment)
+	user.setClickCooldown(cooldown)
 	user.do_attack_animation(M)
 
 	/////////////////////////
@@ -304,7 +311,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 	return TRUE
 
-//Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
+//Called when a weapon is used to make a successful melee attack on a mob/atom. Returns the blocked result
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, hit_zone, damageMultiplier)
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
@@ -318,14 +325,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		damMult *= H.damage_multiplier
 		if(H.holding_back)
 			damMult /= 2
-	var/list/damages = melleDamages.Copy()
-	for(var/armorType in damages)
-		for(var/list/damageElement in damages[armorType])
-			message_admins("Found DELEM([damageElement[1]],[damageElement[2]]) with ref : \ref[damageElement] in \ref[damages], damagesCopy, [armorType]")
-
-	for(var/armorType in melleDamages)
-		for(var/list/damageElement in melleDamages[armorType])
-			message_admins("Found DELEM([damageElement[1]],[damageElement[2]]) with ref : \ref[damageElement] in \ref[melleDamages],melleDamages, [armorType]")
 
 	var/list/deepCopy = deepCopyList(melleDamages)
 	dhApplyMultiplier(deepCopy, damMult)

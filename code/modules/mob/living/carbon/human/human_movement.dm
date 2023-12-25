@@ -9,7 +9,15 @@
 
 	var/weightTally = (weight - initial(weight) - 20000) / 1000
 	if(weightTally > 0)
+		if(weightTally > 50)
+			tally += weightTally*0.02
 		tally += weightTally*0.03
+	/// Slower if underenergized
+	var/energyTally = getEnergyRatio()
+	/// No boosts
+	if(energyTally > 0)
+		energyTally = 0
+	tally -= energyTally
 
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
@@ -148,3 +156,13 @@
 /mob/living/carbon/human/proc/calc_momentum()
 	momentum_speed--
 	update_momentum()
+
+/mob/living/carbon/human/Move(NewLoc, Dir, step_x, step_y, glide_size_override)
+	var/oldLoc = loc
+	. = ..()
+	if(oldLoc != NewLoc)
+		/// 1000 From KG,  50 from conversion rate
+		var/adjustment = (weight - initial(weight) - 20000) / 1000 / 50
+		if(adjustment > 0)
+			adjustEnergy(-adjustment)
+

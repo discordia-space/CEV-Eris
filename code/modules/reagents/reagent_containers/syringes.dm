@@ -19,6 +19,7 @@
 	volume = 15
 	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	melleDamages = list()
 	sharp = TRUE
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT

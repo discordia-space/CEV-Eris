@@ -24,7 +24,7 @@
 	if(wear_mask)
 		skipface |= wear_mask.flags_inv & HIDEFACE
 
-	var/msg = "<div style='["background-color:#1d527a;margin:1px;border:5px solid #0a3352;padding:5px;width:auto;"]'><span class='info'>\nThis is "
+	var/msg = "<div id='examine'><span class='info'>\nThis is "
 
 	var/datum/gender/T = gender_datums[gender]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender

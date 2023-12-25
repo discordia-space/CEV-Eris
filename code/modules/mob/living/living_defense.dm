@@ -90,7 +90,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 		for(var/i=1 to length(armorToDam[armorType]))
 			var/list/damageElement = armorToDam[armorType][i]
 			var/blocked = atdCopy[armorType][i][DAMVALUE] - damageElement[DAMVALUE]
-			message_admins("BLOCKED=[blocked]")
+			//message_admins("BLOCKED=[blocked]")
 			if(damageElement[DAMTYPE] == HALLOSS)
 				adjustHalLoss(damageElement[DAMVALUE] + blocked/4)
 			else

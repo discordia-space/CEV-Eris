@@ -9,6 +9,7 @@
 	throw_range = 2
 	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/spacecash
+	weight = 5
 	var/worth = 0
 
 
@@ -30,6 +31,7 @@
 			var/mob/living/carbon/human/H = user
 			H.drop_from_inventory(src)
 			H.drop_from_inventory(bundle)
+			bundle.weight = worth * initial(weight)
 			H.put_in_hands(bundle)
 		to_chat(user, SPAN_NOTICE("You add [worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
 		qdel(src)

@@ -6,6 +6,7 @@
 	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/reagent_containers
 	price_tag = 20
+	melleDamages = list()
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30

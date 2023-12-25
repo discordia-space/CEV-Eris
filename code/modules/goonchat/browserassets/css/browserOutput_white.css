@@ -7,16 +7,22 @@ html, body {
 	padding: 0;
 	margin: 0;
 	height: 100%;
-	color: #000000;
+	color: #101010;
 }
 body {
-	background: #fff;
+	background: #ffffff;
     font-family: Verdana, sans-serif;
     font-size: 9pt;
     line-height: 1.2;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	word-wrap: break-word;
+}
+#examine {
+	margin: 1px;
+	border: 2px solid #f0f0f0;
+	padding: 5px;
+	background-color:#e5e5e5;
 }
 
 em {
