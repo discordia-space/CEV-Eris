@@ -66,7 +66,7 @@
 			return
 	if(affecting.grabbedBy)
 		// Grab killing code
-		if(affecting.grabbedBy == user)
+		if(affecting.grabbedBy.assailant == user)
 			QDEL_NULL(affecting.grabbedBy)
 			qdel(src)
 			return
@@ -118,7 +118,10 @@
 /obj/item/grab/proc/onGrabberMove(atom/movable/mover, atom/oldLocation , atom/newLocation, atom/initiator)
 	SIGNAL_HANDLER
 	// FUCK NO - SPCR 2023
-	if(initiator == affecting)
+	if(initiator == assailant.grabbedBy)
+		return
+	// No moving when walking over / pinning down , etc/
+	if(newLocation.Adjacent(affecting) && state <= GRAB_AGGRESSIVE)
 		return
 	if(ismob(affecting))
 		affecting.layer = initial(affecting.layer)
@@ -126,25 +129,44 @@
 		if(victim.incapacitated(INCAPACITATION_CANT_MOVE) || (!(affecting.Adjacent(oldLocation)) && oldLocation.z == newLocation.z))
 			qdel(src)
 			return
-		if(victim.lying || victim.resting || get_dir(oldLocation,newLocation) == NORTH)
+		var/moveDirection = get_dir(oldLocation,newLocation)
+		if(victim.lying || victim.resting || moveDirection == NORTH)
 			affecting.layer = BELOW_MOB_LAYER
+		var/grabHugMultiplier = 1
 		if(oldLocation.z == newLocation.z)
 			switch(state)
 				if(GRAB_PASSIVE)
 					affecting.Move(oldLocation, initiator = src)
 					if(dancing)
 						assailant.set_dir(get_dir(assailant,affecting))
+					grabHugMultiplier = 0.5
 				if(GRAB_AGGRESSIVE)
 					affecting.Move(oldLocation, initiator = src)
+					grabHugMultiplier = 1
 				if(GRAB_NECK,GRAB_UPGRADING)
 					affecting.set_dir(assailant.dir)
 					affecting.Move(newLocation, initiator = src)
+					grabHugMultiplier = 0
 				if(GRAB_KILL)
 					affecting.Move(newLocation, initiator = src)
+					grabHugMultiplier = 0
+			switch(moveDirection)
+				if(NORTH)
+					animate(affecting, 0.2 SECONDS, pixel_x = 0)
+					animate(affecting, 0.2 SECONDS, pixel_y = 8 * grabHugMultiplier)
+				if(EAST)
+					animate(affecting, 0.2 SECONDS, pixel_x = 8 * grabHugMultiplier)
+					animate(affecting, 0.2 SECONDS, pixel_y = 0)
+				if(SOUTH)
+					animate(affecting, 0.2 SECONDS, pixel_x = 0)
+					animate(affecting, 0.2 SECONDS, pixel_y = -8 * grabHugMultiplier)
+				if(WEST)
+					animate(affecting, 0.2 SECONDS, pixel_x = -8 * grabHugMultiplier)
+					animate(affecting, 0.2 SECONDS, pixel_y = 0)
 		else
 			var/turf/newBelow = GetBelow(newLocation)
 			var/turf/newAbove = GetAbove(newLocation)
-			if(newBelow.Adjacent(oldLocation) || newAbove.Adjacent(oldLocation))
+			if(newBelow && newBelow.Adjacent(oldLocation) || (newAbove &&newAbove.Adjacent(oldLocation)))
 				victim.forceMove(newLocation, initiator = src)
 			else
 				qdel(src)
@@ -161,7 +183,7 @@
 		else if(isturf(oldLocation) && isturf(newLocation))
 			var/turf/newBelow = GetBelow(newLocation)
 			var/turf/newAbove = GetAbove(newLocation)
-			if(newBelow.Adjacent(oldLocation) || newAbove.Adjacent(oldLocation))
+			if(newBelow && newBelow.Adjacent(oldLocation) || (newAbove &&newAbove.Adjacent(oldLocation)))
 				affecting.forceMove(newLocation, initiator = src)
 			else
 				qdel(src)
@@ -520,6 +542,8 @@
 
 /obj/item/grab/Destroy()
 	if(affecting)
+		animate(affecting, 0.2 SECONDS, pixel_x = 0)
+		animate(affecting, 0.2 SECONDS, pixel_y = 0)
 		UnregisterSignal(affecting, COMSIG_MOVABLE_MOVED)
 		affecting.atomFlags &= ~AF_LAYER_UPDATE_HANDLED
 		if (issuperioranimal(affecting))

@@ -14,8 +14,7 @@ GLOBAL_VAR_INIT(Debug,0)
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/moved_recently = 0
-	var/atom/movable/grabbedBy
-	var/mob/pulledby
+	var/obj/item/grab/grabbedBy
 	var/item_state // Used to specify the item state for the on-mob overlays.
 	var/inertia_dir = 0
 	var/can_anchor = TRUE
