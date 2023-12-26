@@ -471,9 +471,13 @@
 	else
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 		if(isturf(A))
-			for(var/obj/O in A)
+			if(QDELETED(src)) // we don't want bombs to explode once for every time bullet_act is called
+				on_impact(A)
+				invisibility = 101
+				return TRUE // see that next line? it can overload the server.
+			for(var/obj/O in A) // if src's bullet act spawns more objs, the list will increase,
 				if(O.density)
-					O.bullet_act(src)
+					O.bullet_act(src) // causing exponential growth due to the spawned obj spawning itself
 			for(var/mob/living/M in A)
 				attack_mob(M)
 
