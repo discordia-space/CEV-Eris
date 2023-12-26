@@ -29,6 +29,7 @@
 	var/last_hit_zone = 0
 	var/force_down //determines if the affecting mob will be pinned to the ground
 	var/dancing //determines if assailant and affecting keep looking at each other.
+	var/destroying = FALSE
 
 	var/counter_timer = 3 SECONDS //sets to 3 seconds after being grabbed
 
@@ -297,7 +298,7 @@
 	if(state == GRAB_UPGRADING || state == GRAB_PRENECK)
 		return
 	///no behavior for atoms
-	if(ismob(assailant))
+	if(ismob(assailant) && ismob(affecting))
 		var/mob/living/carbon/human/grabber = assailant
 		var/mob/living/carbon/human/target = affecting
 		if(!grabber.can_click())
@@ -503,9 +504,6 @@
 		msg_admin_attack("[key_name(grabber)] lost his tight grip on [key_name(victim)] neck.")
 		hud.icon_state = "kill"
 		state = GRAB_NECK
-
-/obj/item/grab
-	var/destroying = 0
 
 /obj/item/grab/Destroy()
 	if(affecting)

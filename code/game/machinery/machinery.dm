@@ -202,6 +202,18 @@
 		return src.attack_hand(user)
 
 /obj/machinery/attack_hand(mob/user as mob)
+	/*
+	if(user.a_intent == I_GRAB)
+		if(!anchored)
+			var/obj/item/grab/G = new(user, src)
+			G.state = GRAB_PASSIVE
+			G.counter_timer = 0
+			user.put_in_active_hand(G)
+			G.synch()
+			return
+		else
+			to_chat(user, SPAN_NOTICE("You can't grab \the [src], it is anchored!"))
+	*/
 	if(inoperable(MAINT))
 		return 1
 	if(user.lying || user.stat)
