@@ -350,7 +350,6 @@
 		return
 	visible_message("\The [usr] starts squeezing into the suit storage unit!", 3)
 	if(do_after(usr, 10, src))
-		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.forceMove(src)

@@ -1040,30 +1040,6 @@ obj/screen/fire/DEADelize()
 	var/mob/living/carbon/human/H = parentmob
 	H.do_wield()
 //-----------------------wield END------------------------------
-//-----------------------Pull------------------------------
-
-/obj/screen/pull
-	name = "pull"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "pull0"
-	screen_loc = "14,2"
-
-/obj/screen/pull/New()
-	..()
-	update_icon()
-
-/obj/screen/pull/Click()
-	usr.stop_pulling()
-	//update_icon()
-	//icon_state = "pull0"
-
-/obj/screen/pull/update_icon()
-	if (parentmob.pulling)
-		icon_state = "pull1"
-	else
-		icon_state = "pull0"
-
-//-----------------------Pull end------------------------------
 //-----------------------throw------------------------------
 /obj/screen/HUDthrow
 	name = "throw"

@@ -40,7 +40,7 @@
 		if(pulling.stat || pulling.stunned || pulling.weakened || pulling.paralysis || pulling.lying || pulling.restrained())
 			pulling.pulledby = null
 			pulling = null
-	if(user.pulling && (user == pulling))
+	if(user == pulling)
 		pulling = null
 		user.pulledby = null
 		return
@@ -125,8 +125,6 @@
 		if(!pulling)
 			pulling = user
 			user.pulledby = src
-			if(user.pulling)
-				user.stop_pulling()
 			user.set_dir(get_dir(user, src))
 			to_chat(user, "You grip \the [name]'s handles.")
 		else

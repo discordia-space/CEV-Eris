@@ -73,14 +73,16 @@
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
 		visible_message(SPAN_NOTICE("\The [C] has been laid on \the [src] by [user]."), 3)
-		if (user.pulling == C)
-			user.stop_pulling() //Lets not drag your patient off the table after you just put them there
+		if(C.grabbedBy)
+			QDEL_NULL(C.grabbedBy)
+		//if (user.pulling == C)
+		//	user.stop_pulling() //Lets not drag your patient off the table after you just put them there
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
-	C.loc = loc
+	C.forceMove(loc)
 	for(var/obj/O in src)
-		O.loc = loc
+		O.forceMove(src)
 	add_fingerprint(user)
 	buckle_mob(C)
 

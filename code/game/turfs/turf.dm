@@ -80,20 +80,8 @@
 	if(FD)
 		FD.attack_hand(user)
 		return TRUE
-	if(!(user.canmove) || user.restrained() || !(user.pulling))
+	if(!(user.canmove) || user.restrained() || user.grabbedBy)
 		return FALSE
-	if(user.pulling.anchored || !isturf(user.pulling.loc))
-		return FALSE
-	if(user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1)
-		return FALSE
-	if(ismob(user.pulling))
-		var/mob/M = user.pulling
-		var/atom/movable/t = M.pulling
-		M.stop_pulling()
-		step(user.pulling, get_dir(user.pulling.loc, src))
-		M.start_pulling(t)
-	else
-		step(user.pulling, get_dir(user.pulling.loc, src))
 	return TRUE
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)

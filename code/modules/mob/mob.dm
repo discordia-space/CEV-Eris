@@ -599,11 +599,8 @@
 	set name = "Stop Pulling"
 	set category = "IC"
 
-	if(pulling)
-		pulling.pulledby = null
-		pulling = null
-		/*if(pullin)
-			pullin.icon_state = "pull0"*/
+	for(var/obj/item/g in src)
+		qdel(g)
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
@@ -653,28 +650,11 @@
 			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
-	if(pulling)
-		var/pulling_old = pulling
-		stop_pulling()
-		// Are we pulling the same thing twice? Just stop pulling.
-		if(pulling_old == AM)
-			return
-
-	src.pulling = AM
-	AM.pulledby = src
-
-	/*if(pullin)
-		pullin.icon_state = "pull1"*/
-
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
-
-	//Attempted fix for people flying away through space when cuffed and dragged.
-	if(ismob(AM))
-		var/mob/pulled = AM
-		pulled.inertia_dir = 0
+	var/obj/item/grab/g = new(src, AM)
+	if(g)
+		g.state = GRAB_PASSIVE
+		put_in_active_hand(g)
+		g.synch()
 
 /mob/proc/can_use_hands()
 	return

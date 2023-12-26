@@ -60,10 +60,8 @@ GLOBAL_VAR_INIT(Debug,0)
 		loc.handle_atom_del(src)
 
 	//forceMove(null)
-	if (pulledby)
-		if (pulledby.pulling == src)
-			pulledby.pulling = null
-		pulledby = null
+	if(grabbedBy)
+		QDEL_NULL(grabbedBy)
 
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
@@ -421,7 +419,8 @@ GLOBAL_VAR_INIT(Debug,0)
 		if(get_z(oldloc) != get_z(loc))
 			SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, get_z(oldloc), get_z(NewLoc))
 
-		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc, initiator)
+		if(oldloc != loc)
+			SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc, initiator)
 		/* Inserting into contents uses only forceMove
 		if(!isturf(oldloc) || !isturf(loc))
 			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingAtom())

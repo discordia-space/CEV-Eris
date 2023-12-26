@@ -897,9 +897,9 @@
 			AM.forceMove(T)
 			if(isliving(AM))
 				var/mob/living/L = AM
-				if(L.pulling)
-					var/atom/movable/AMP = L.pulling
-					AMP.forceMove(T)
+				for(var/obj/item/grab/g in L)
+					if(g.affecting)
+						g.affecting.forceMove(T, initiator = g)
 			if(victims) // Avoid null runtimes
 				victims -= W  // Victim has been teleported
 

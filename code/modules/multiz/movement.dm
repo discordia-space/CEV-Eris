@@ -309,6 +309,7 @@
 			return FALSE
 	return ..()
 
+/*
 // Ladders and stairs pulling movement
 /obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)
 	if(istype(M) && (ES && ES.istop == istop))
@@ -328,6 +329,7 @@
 			for(var/Elem in moveWithMob)
 				var/atom/movable/A = Elem
 				A.forceMove(pull_target)
+*/
 
 /mob/observer/ghost/verb/moveup()
 	set name = "Move Upwards"

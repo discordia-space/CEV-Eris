@@ -259,6 +259,9 @@
 			return MOVEMENT_STOP
 		*/
 	if(mob.restrained())
+		if(mob.grabbedBy && mover == mob)
+			to_chat(mob, "<span class='notice'>You're restrained! You can't move!</span>")
+		/*
 		for(var/mob/M in range(mob, 1))
 			if(M.pulling == mob)
 				if(!M.incapacitated() && mob.Adjacent(M))
@@ -267,6 +270,7 @@
 					return MOVEMENT_STOP
 				else
 					M.stop_pulling()
+			*/
 
 	if(istype(mob.loc, /obj/item/mech_equipment/forklifting_system))
 		if(mover == mob && isliving(mob))

@@ -488,7 +488,6 @@
 			to_chat(usr, "<span class='notice'><B>\The [src] is in use.</B></span>")
 			return
 
-		usr.stop_pulling()
 		set_occupant(usr)
 
 		src.add_fingerprint(usr)

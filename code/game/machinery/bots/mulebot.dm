@@ -716,7 +716,6 @@
 				src.visible_message(SPAN_WARNING("[src] bumps into [M]!"))
 			else
 				src.visible_message(SPAN_WARNING("[src] knocks over [M]!"))
-				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
 				M.lying = 1

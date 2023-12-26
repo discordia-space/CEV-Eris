@@ -65,6 +65,11 @@
 			qdel(src)
 			return
 	if(affecting.grabbedBy)
+		// Grab killing code
+		if(affecting.grabbedBy == user)
+			QDEL_NULL(affecting.grabbedBy)
+			qdel(src)
+			return
 		if(force)
 			QDEL_NULL(affecting.grabbedBy)
 		else if(tryFight)
@@ -72,8 +77,8 @@
 			if(!istype(fighter))
 				qdel(src)
 				return
-			if(fighter.energy > 50)
-				fighter.adjustEnergy(-50)
+			if(fighter.energy > 20)
+				fighter.adjustEnergy(-20)
 				fighter.visible_message(SPAN_DANGER("\The [fighter] wrestles control of [affecting]!"), SPAN_NOTICE("You wrestle control of [affecting]!"))
 				QDEL_NULL(affecting.grabbedBy)
 			else
@@ -82,6 +87,8 @@
 				return
 
 	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(onGrabberMove))
+	if(ismob(user))
+		RegisterSignal(user, COMSIG_CLICK, PROC_REF(onGrabberClick))
 	RegisterSignal(victim, COMSIG_MOVABLE_MOVED, PROC_REF(onVictimMove))
 
 	affecting.grabbedBy = src
@@ -98,7 +105,15 @@
 			grippy.dancing = TRUE
 			src.dancing = TRUE
 
-	update_slowdown()
+	update_slowdown_hold()
+
+/obj/item/grab/proc/onGrabberClick(atom/movable/grabber, atom/clicked)
+	SIGNAL_HANDLER
+	if(!isturf(clicked))
+		return
+	if(clicked.Adjacent(grabber))
+		var/turf/theWay = get_step_towards(affecting, clicked)
+		affecting.Move(theWay, initiator = src)
 
 /obj/item/grab/proc/onGrabberMove(atom/movable/mover, atom/oldLocation , atom/newLocation, atom/initiator)
 	SIGNAL_HANDLER
@@ -127,9 +142,9 @@
 				if(GRAB_KILL)
 					affecting.Move(newLocation, initiator = src)
 		else
-			var/turf/oldAbove = GetAbove(oldLocation)
 			var/turf/newBelow = GetBelow(newLocation)
-			if((oldAbove && oldAbove.Adjacent(newLocation)) || (newBelow && newBelow.Adjacent(oldLocation)))
+			var/turf/newAbove = GetAbove(newLocation)
+			if(newBelow.Adjacent(oldLocation) || newAbove.Adjacent(oldLocation))
 				victim.forceMove(newLocation, initiator = src)
 			else
 				qdel(src)
@@ -144,9 +159,9 @@
 				affecting.layer = BELOW_MOB_LAYER
 			affecting.Move(oldLocation, initiator = src)
 		else if(isturf(oldLocation) && isturf(newLocation))
-			var/turf/oldAbove = GetAbove(oldLocation)
-			var/turf/newAbove = GetBelow(newLocation)
-			if((oldAbove && oldAbove.Adjacent(newLocation)) || (newAbove && newAbove.Adjacent(oldLocation)))
+			var/turf/newBelow = GetBelow(newLocation)
+			var/turf/newAbove = GetAbove(newLocation)
+			if(newBelow.Adjacent(oldLocation) || newAbove.Adjacent(oldLocation))
 				affecting.forceMove(newLocation, initiator = src)
 			else
 				qdel(src)
@@ -158,8 +173,6 @@
 /obj/item/grab/proc/onVictimMove(atom/movable/mover, atom/oldLocation, atom/newLocation, atom/initiator)
 	SIGNAL_HANDLER
 	message_admins("initiator=[initiator]")
-	if(newLocation.Adjacent(assailant))
-		return
 	if(initiator != src)
 		qdel(src)
 		return
@@ -250,7 +263,7 @@
 					C.Weaken(5)	//Should keep you down unless you get help.
 					C.losebreath = max(C.losebreath + 2, 3)
 
-	update_slowdown()
+	update_slowdown_hold()
 
 /obj/item/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
 	//only display messages when switching between different target zones
@@ -380,11 +393,11 @@
 					C.losebreath += 1
 			else
 				state = GRAB_NECK
-	update_slowdown()
+	update_slowdown_hold()
 
-// Function to compute the current slowdown and is more adjustable and uses number as starting value
-// The code will adjust or lower the slowdown depending on STAT_ROB skill, gravity, etc.
-/obj/item/grab/proc/update_slowdown()
+// Function to compute the current slowdown_hold and is more adjustable and uses number as starting value
+// The code will adjust or lower the slowdown_hold depending on STAT_ROB skill, gravity, etc.
+/obj/item/grab/proc/update_slowdown_hold()
 	// The movment speed of grabber will be determined by the victim whatever their size or things he wears minus how strong the assailant ( ROB )
 	// New function should take the victim variables in account : size of mob, under gravity or not
 	// ROB check will start in process for the victim so the assailant can have a jump on the victim in first movement tick or some shit unless he's already grabbed
@@ -400,28 +413,28 @@
 
 			// Early exit to save processing time
 			if(!(target.check_gravity() && grabber.check_gravity()))
-				slowdown = 0
+				slowdown_hold = 0
 				return	// Nothing to do here
 
-			// initial value for slowdown
-			slowdown = 2
+			// initial value for slowdown_hold
+			slowdown_hold = 2
 
 			if(target.lying)	//putting in lying for the victim will cause the assailant to expend more effort
-				slowdown += 1
+				slowdown_hold += 1
 
 			if(target.is_dead() || target.incapacitated() )	// victim can't resist if he is dead or stunned.
-				slowdown *= 0.1
+				slowdown_hold *= 0.1
 			else
-				slowdown += max(0, -0.05 * difference_stat)			// Avoids negative values from making the grabber going supersanic
+				slowdown_hold += max(0, -0.05 * difference_stat)			// Avoids negative values from making the grabber going supersanic
 
 			// Size check here
 			if(grabber.mob_size > target.mob_size)
-				slowdown *= 0.5
+				slowdown_hold *= 0.5
 			else if (grabber.mob_size < target.mob_size)
-				slowdown *= 1.5
+				slowdown_hold *= 1.5
 		else
 			/// 5 tally for something weighting 100 KG
-			slowdown = affecting.weight/1000 * 0.05
+			slowdown_hold = affecting.weight/1000 * 0.05
 
 /obj/item/grab/attack(atom/movable/M, mob/living/user)
 	if(!affecting)

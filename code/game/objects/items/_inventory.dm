@@ -55,8 +55,9 @@
 
 /obj/item/proc/equipped(mob/user, slot)
 	equip_slot = slot
-	if(user.pulling == src)
-		user.stop_pulling()
+	for(var/obj/item/grab/g in user)
+		if(g.affecting == src)
+			QDEL_NULL(g)
 	if(overslot && !is_worn())
 		remove_overslot_contents(user)
 	if(user.l_hand)

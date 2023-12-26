@@ -184,7 +184,8 @@
 		if(occupant)
 			to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
 			return
-		M.stop_pulling()
+		for(var/obj/item/grab/g in M)
+			qdel(g)
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src

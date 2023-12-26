@@ -120,9 +120,9 @@
 	return
 
 /mob/living/proc/update_pulling()
-	if(pulling)
-		if(incapacitated())
-			stop_pulling()
+	if(incapacitated())
+		for(var/obj/item/grab/g in src)
+			qdel(g)
 
 //This updates the health and status of the mob (conscious, unconscious, dead)
 /mob/living/proc/handle_regular_status_updates()

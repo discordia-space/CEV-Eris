@@ -161,11 +161,6 @@
 	var/turf/T = locate(new_x, new_y, A.z)
 	if(T && !T.density)
 		A.forceMove(T)
-		if(isliving(A))
-			var/mob/living/L = A
-			if(L.pulling)
-				var/atom/movable/AM = L.pulling
-				AM.forceMove(T)
 
 
 // Straight copy from space.

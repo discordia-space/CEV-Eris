@@ -78,7 +78,7 @@
 /client/verb/delete_key_pressed()
 	set hidden = 1
 
-	if(!usr.pulling)
+	if(!locate(/obj/item/grab) in usr)
 		to_chat(usr, SPAN_NOTICE("You are not pulling anything."))
 		return
 	usr.stop_pulling()

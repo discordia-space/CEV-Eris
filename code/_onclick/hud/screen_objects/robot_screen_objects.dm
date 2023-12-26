@@ -206,21 +206,5 @@
 			overlays |= S.overlay
 
 
-/obj/screen/silicon/pull
-	name = "pull"
-	icon_state = "robotpull0"
 
-/obj/screen/silicon/pull/New()
-	..()
-	update_icon()
-
-/obj/screen/silicon/pull/Click()
-	usr.stop_pulling()
-	update_icon()
-
-/obj/screen/silicon/pull/update_icon()
-	if (parentmob.pulling)
-		icon_state = "robotpull1"
-	else
-		icon_state = "robotpull0"
 //-----------------------ROBOT stuff end---------------------

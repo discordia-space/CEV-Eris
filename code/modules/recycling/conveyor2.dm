@@ -91,6 +91,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	else
 		return ..()
 
+/*
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user)
 	if (!user.canmove || user.restrained() || !user.pulling)
@@ -108,6 +109,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		step(user.pulling, get_dir(user.pulling.loc, src))
 		user.stop_pulling()
 	return
+*/
 
 /obj/machinery/conveyor/update_icon()
 	..()
