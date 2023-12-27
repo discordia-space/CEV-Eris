@@ -24,6 +24,8 @@
 		return
 	trier.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	step(src, direction)
+	if(bloodiness)
+		create_track()
 	trier.dir = src.dir
 
 /obj/structure/bed/chair/wheelchair/update_icon()
@@ -43,60 +45,6 @@
 		return
 	..()
 
-/obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
-	// Redundant check?
-	if(user.incapacitated(INCAPACITATION_DISABLED | INCAPACITATION_RESTRAINED))
-		if(user.grabbedBy.assailant == src)
-			QDEL_NULL(user.grabbedBy)
-			to_chat(user, SPAN_WARNING("You lost your grip!"))
-		return
-
-	if(buckled_mob && pulling && user == buckled_mob)
-		if(pulling.incapacitated(INCAPACITATION_DISABLED | INCAPACITATION_RESTRAINED))
-			QDEL_NULL(pulling.grabbedBy)
-			pulling = null
-	if(user == pulling)
-		pulling = null
-		QDEL_NULL(user.grabbedBy)
-		return
-	if(propelled)
-		return
-	if(pulling && (get_dir(src.loc, pulling.loc) == direction))
-		to_chat(user, SPAN_WARNING("You cannot go there."))
-		return
-	if(pulling && buckled_mob && (buckled_mob == user))
-		to_chat(user, SPAN_WARNING("You cannot drive while being pushed."))
-		return
-
-	// Let's roll
-	driving = 1
-	var/turf/T = null
-	//--1---Move occupant---1--//
-	if(buckled_mob)
-		buckled_mob.buckled = null
-		step(buckled_mob, direction)
-		buckled_mob.buckled = src
-	//--2----Move driver----2--//
-	if(pulling)
-		T = pulling.loc
-		if(get_dist(src, pulling) >= 1)
-			step(pulling, get_dir(pulling.loc, src.loc))
-	//--3--Move wheelchair--3--//
-	step(src, direction)
-	if(buckled_mob) // Make sure it stays beneath the occupant
-		Move(buckled_mob.loc)
-	set_dir(direction)
-	if(pulling) // Driver
-		if(pulling.loc == src.loc) // We moved onto the wheelchair? Revert!
-			pulling.forceMove(T)
-		else
-			if(get_dist(src, pulling) > 1) // We are too far away? Losing control.
-				QDEL_NULL(user.grabbedBy)
-				pulling = null
-			pulling.set_dir(get_dir(pulling, src)) // When everything is right, face the wheelchair
-	if(bloodiness)
-		create_track()
-	driving = 0
 
 /obj/structure/bed/chair/wheelchair/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()

@@ -856,7 +856,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		reset_plane_and_layer()
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving)
+	if(!canface() || client.moving || !check_gravity())
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)

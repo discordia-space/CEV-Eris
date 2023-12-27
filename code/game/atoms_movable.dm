@@ -240,12 +240,18 @@ GLOBAL_VAR_INIT(Debug,0)
 #define I_ERROR 9 // Calculation error accumulated so far
 #define I_TURF_CLICKED 10
 #define I_THROWFLAGS 11 // pass_flags for the thrown obj
+12 is for initial throw speed
 */
 
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower, throwflags)
-	if(!target || range < 1 || speed < 1)
+	if(!target || range < 1 || speed < 0)
 		return FALSE
+	var/ref = SSthrowing.throwing_queue[src]
+	// remove old throwing entry
+	if(ref)
+		SSthrowing.throwing_queue.Remove(ref)
+		SSthrowing.current_throwing_queue.Remove(ref)
 	if(target.allow_spin && src.allow_spin)
 		SpinAnimation(5,1)
 	src.throwing = TRUE
@@ -255,7 +261,7 @@ GLOBAL_VAR_INIT(Debug,0)
 	var/dist_y = abs(target.y - src.y)
 	pass_flags += throwflags
 	/// defines for each slot are above the function def
-	var/list/tl = new /list(11)
+	var/list/tl = new /list(12)
 	tl[1] = target
 	tl[2] = speed
 	tl[3] = range
@@ -267,6 +273,7 @@ GLOBAL_VAR_INIT(Debug,0)
 	tl[9] = (dist_x > dist_y ? dist_x/2 - dist_y : dist_y/2 - dist_x)
 	tl[10] = get_turf(target)
 	tl[11] = throwflags
+	tl[12] = speed
 	SSthrowing.throwing_queue[src] = tl
 	return TRUE
 

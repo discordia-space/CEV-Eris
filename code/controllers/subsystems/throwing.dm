@@ -14,6 +14,8 @@
 #define I_ERROR 9
 #define I_TURF_CLICKED 10
 #define I_THROWFLAGS 11
+/// For sub 1 SPEEDs.
+#define I_INITIAL_SPEED 12
 
 SUBSYSTEM_DEF(throwing)
 	name = "throwing"
@@ -26,6 +28,8 @@ SUBSYSTEM_DEF(throwing)
 	if(!resumed)
 		current_throwing_queue = throwing_queue.Copy()
 	for(var/atom/movable/thing as anything in current_throwing_queue)
+		// This is a reference we grab to reavoid querying the throwing list everytime we need a variable
+		var/list/throwingRef = throwing_queue[thing]
 		//if(MC_TICK_CHECK)
 		//	return
 		if(QDELETED(thing))
@@ -35,28 +39,35 @@ SUBSYSTEM_DEF(throwing)
 			thing.throwing = FALSE
 			thing.thrower = null
 			thing.throw_source = null
-			thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
+			thing.pass_flags -= throwingRef[I_THROWFLAGS]
 			throwing_queue -= thing
 			current_throwing_queue -= thing
 			continue
-		var/tiles_to_move = throwing_queue[thing][I_SPEED]
+		var/tiles_to_move = round(throwingRef[I_SPEED])
 		var/area/cur_area = get_area(thing.loc)
 		if(cur_area && cur_area.has_gravity)
-			if(tiles_to_move + throwing_queue[thing][I_MOVED] > throwing_queue[thing][I_RANGE])
-				tiles_to_move = min(throwing_queue[thing][I_RANGE] - throwing_queue[thing][I_MOVED], tiles_to_move)
+			if(tiles_to_move + throwingRef[I_MOVED] > throwingRef[I_RANGE])
+				tiles_to_move = min(throwingRef[I_RANGE] - throwingRef[I_MOVED], tiles_to_move)
+		else if(tiles_to_move < 1)
+			throwingRef[I_SPEED] += throwingRef[I_INITIAL_SPEED]
+			continue
+
 		if(tiles_to_move < 1)
 			thing.throwing = FALSE
 			thing.thrower = null
 			thing.throw_source = null
-			thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
+			thing.pass_flags -= throwingRef[I_THROWFLAGS]
 			var/turf/new_loc = get_turf(thing)
 			if(new_loc)
 				if(isobj(thing))
-					thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
+					thing.throw_impact(new_loc,throwingRef[I_SPEED])
 				new_loc.Entered(thing)
 			throwing_queue -= thing
 			current_throwing_queue -= thing
 			continue
+		else if(throwingRef[I_INITIAL_SPEED] < 1)
+			throwingRef[I_SPEED] -= 1
+
 		var/turf/to_move
 		while(tiles_to_move > 0)
 			if(QDELETED(thing))
@@ -67,40 +78,37 @@ SUBSYSTEM_DEF(throwing)
 			if(!thing.throwing)
 				thing.thrower = null
 				thing.throw_source = null
-				thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
+				thing.pass_flags -= throwingRef[I_THROWFLAGS]
 				throwing_queue -= thing
 				current_throwing_queue -= thing
 				break
-
-
-
-			if(throwing_queue[thing][I_DIST_X] > throwing_queue[thing][I_DIST_Y])
-				if(throwing_queue[thing][I_ERROR] < 0)
-					to_move = get_step(thing, throwing_queue[thing][I_DY])
-					throwing_queue[thing][I_ERROR] += throwing_queue[thing][I_DIST_X]
+			if(throwingRef[I_DIST_X] > throwingRef[I_DIST_Y])
+				if(throwingRef[I_ERROR] < 0)
+					to_move = get_step(thing, throwingRef[I_DY])
+					throwingRef[I_ERROR] += throwingRef[I_DIST_X]
 				else
-					to_move = get_step(thing, throwing_queue[thing][I_DX])
-					throwing_queue[thing][I_ERROR] -= throwing_queue[thing][I_DIST_Y]
+					to_move = get_step(thing, throwingRef[I_DX])
+					throwingRef[I_ERROR] -= throwingRef[I_DIST_Y]
 			else
-				if(throwing_queue[thing][I_ERROR] < 0)
-					to_move = get_step(thing, throwing_queue[thing][I_DX])
-					throwing_queue[thing][I_ERROR] += throwing_queue[thing][I_DIST_Y]
+				if(throwingRef[I_ERROR] < 0)
+					to_move = get_step(thing, throwingRef[I_DX])
+					throwingRef[I_ERROR] += throwingRef[I_DIST_Y]
 				else
-					to_move = get_step(thing, throwing_queue[thing][I_DY])
-					throwing_queue[thing][I_ERROR] -= throwing_queue[thing][I_DIST_X]
+					to_move = get_step(thing, throwingRef[I_DY])
+					throwingRef[I_ERROR] -= throwingRef[I_DIST_X]
 			cur_area = get_area(thing.loc)
 			if(cur_area && cur_area.has_gravity)
-				if(thing.loc == throwing_queue[thing][I_TURF_CLICKED])
+				if(thing.loc == throwingRef[I_TURF_CLICKED])
 					to_move = FALSE
 			if(!to_move || (to_move && !thing.Move(to_move)))
 				thing.throwing = FALSE
 				thing.thrower = null
 				thing.throw_source = null
 				var/turf/new_loc = get_turf(thing)
-				thing.pass_flags -= throwing_queue[thing][I_THROWFLAGS]
+				thing.pass_flags -= throwingRef[I_THROWFLAGS]
 				if(new_loc)
 					if(isobj(thing))
-						thing.throw_impact(new_loc,throwing_queue[thing][I_SPEED])
+						thing.throw_impact(new_loc,throwingRef[I_SPEED])
 					new_loc.Entered(thing)
 				throwing_queue -= thing
 				current_throwing_queue -= thing
@@ -108,9 +116,9 @@ SUBSYSTEM_DEF(throwing)
 			// The proc below is very poorly written and i couldn't be bothered to rewrite all of its underlying
 			// code. Its why i use thing.throwing to actually check wheter we should keep going or not.
 			// reached a map corner or something we can't move towards
-			thing.hit_check(throwing_queue[thing][I_SPEED])
+			thing.hit_check(throwingRef[I_SPEED])
 			tiles_to_move--
-			throwing_queue[thing][I_MOVED]++
+			throwingRef[I_MOVED]++
 			to_move = null
 			current_throwing_queue -= thing
 			if(MC_TICK_CHECK)

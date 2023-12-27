@@ -73,6 +73,18 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	. = ..()
 	if(. && parallax)
 		parallax.update()
+	if(!check_gravity() && !incorporeal_move)
+		if(!allow_spacemove())
+			update_floating(TRUE)
+			allow_spin = FALSE
+			throw_at(get_step(src, dir), 1, 0.10, "space")
+			allow_spin = TRUE
+		else
+			throwing = FALSE
+			update_floating(FALSE)
+	else
+		update_floating(FALSE)
+
 
 /mob/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator)
 	. = ..()

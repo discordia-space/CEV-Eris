@@ -141,9 +141,6 @@
 		var/grabHugMultiplier = 1
 		if(oldLocation.z == newLocation.z)
 			switch(state)
-				if(GRAB_BUCKLING)
-					affecting.Move(newLocation, initiator = src)
-					grabHugMultiplier = 0
 				if(GRAB_PASSIVE)
 					affecting.Move(oldLocation, initiator = src)
 					if(dancing)

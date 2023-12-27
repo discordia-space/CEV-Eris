@@ -166,3 +166,5 @@
 		if(adjustment > 0)
 			adjustEnergy(-adjustment)
 
+
+
