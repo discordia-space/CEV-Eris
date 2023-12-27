@@ -136,7 +136,6 @@ default behaviour is:
 		*/
 		now_pushing = FALSE
 	return
-	return
 
 /proc/swap_density_check(var/mob/swapper, var/mob/swapee)
 	var/turf/T = get_turf(swapper)
@@ -406,8 +405,10 @@ default behaviour is:
 
 /mob/living/proc/revive()
 	rejuvenate()
+	/*
 	if(buckled)
 		buckled.unbuckle_mob()
+	*/
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 

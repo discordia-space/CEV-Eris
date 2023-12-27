@@ -119,21 +119,9 @@
 
 // Buckle movement
 /datum/movement_handler/mob/buckle_relay/DoMove(var/direction, var/mover)
-	// TODO: Datumlize buckle-handling
-	if(istype(mob.buckled, /obj/vehicle))
-		//drunk driving
-		if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
-			direction = turn(direction, pick(90, -90))
-		mob.buckled.relaymove(mob, direction)
-		return MOVEMENT_HANDLED
 
-	if(mob.pulledby || mob.buckled) // Wheelchair driving!
-		if(istype(mob.loc, /turf/space))
-			return // No wheelchair driving in space
-		if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
-			. = MOVEMENT_HANDLED
-			mob.pulledby.DoMove(direction, mob)
-		else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
+	if(mob.grabbedBy)
+		if(istype(mob.grabbedBy.assailant, /obj/structure/bed/chair/wheelchair))
 			. = MOVEMENT_HANDLED
 			if(ishuman(mob))
 				var/mob/living/carbon/human/driver = mob
@@ -141,9 +129,9 @@
 				var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
 				if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()))
 					return // No arms to drive your chair? Tough luck!
-			//drunk wheelchair driving
 			direction = mob.AdjustMovementDirection(direction)
-			mob.buckled.DoMove(direction, mob)
+			mob.grabbedBy.assailant.DoMove(direction, mob)
+
 
 /datum/movement_handler/mob/buckle_relay/MayMove(var/mover)
 	if(mob.buckled)

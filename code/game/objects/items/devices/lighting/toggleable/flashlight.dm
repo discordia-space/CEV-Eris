@@ -35,7 +35,7 @@
 		if(istype(G.loc,/mob/living))
 			var/mob/living/L = G.loc
 			set_dir(L.dir)
-	else if(pulledby && old_loc)
+	else if(loc && old_loc)
 		var/x_diff = src.x - old_loc.x
 		var/y_diff = src.y - old_loc.y
 		if(x_diff > 0)

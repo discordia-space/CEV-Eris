@@ -312,9 +312,12 @@ Like for example singulo act and whatever.
 
 /obj/effect/shield/proc/update_explosion_resistance()
 	if(gen && gen.check_flag(MODEFLAG_HYPERKINETIC))
+		var/yay = TRUE
+	/*
 		explosion_resistance = INFINITY
 	else
 		explosion_resistance = 0
+	*/
 
 ///obj/effect/shield/get_explosion_resistance() //Part of recursive explosions, probably unimplemented
 	//return explosion_resistance

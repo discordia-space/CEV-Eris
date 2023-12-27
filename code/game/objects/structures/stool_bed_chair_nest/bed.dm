@@ -87,13 +87,14 @@
 	user.visible_message(SPAN_NOTICE("[user] attempts to buckle [target] into \the [src]!"))
 	if(do_after(user, 20, src) && Adjacent(target))
 		target.forceMove(loc)
-		spawn(0)
-			if(buckle_mob(target))
-				target.visible_message(
-					SPAN_DANGER("[target] is buckled to [src] by [user]!"),
-					SPAN_DANGER("You are buckled to [src] by [user]!"),
-					SPAN_NOTICE("You hear metal clanking.")
-				)
+		/*
+		if(buckle_mob(target))
+			target.visible_message(
+				SPAN_DANGER("[target] is buckled to [src] by [user]!"),
+				SPAN_DANGER("You are buckled to [src] by [user]!"),
+				SPAN_NOTICE("You hear metal clanking.")
+			)
+		*/
 		return TRUE
 
 /obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
@@ -137,8 +138,8 @@
 	else if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
 		var/mob/living/affecting = G.affecting
-		if(user_buckle_mob(affecting, user))
-			qdel(W)
+		//if(user_buckle_mob(affecting, user))
+		//	qdel(W)
 
 	else if(!istype(W, /obj/item/bedsheet))
 		..()
@@ -171,8 +172,10 @@
 	if(buckled_mob)
 		if(isturf(src.loc))
 			buckled_mob.forceMove(destination, special_event, (glide_size_override ? glide_size_override : glide_size))
+		/*
 		else
 			unbuckle_mob()
+		*/
 
 /obj/structure/bed/proc/remove_padding()
 	if(padding_material)
@@ -256,6 +259,7 @@
 		R.add_fingerprint(user)
 		qdel(src)
 
+/*
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
 	. = ..()
 	if(M == buckled_mob)
@@ -264,6 +268,7 @@
 	else
 		set_density(0)
 		icon_state = "down"
+*/
 
 /obj/structure/bed/roller/MouseDrop(over_object, src_location, over_location)
 	..()

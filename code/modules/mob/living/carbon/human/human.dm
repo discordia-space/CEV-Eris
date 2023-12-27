@@ -1180,9 +1180,9 @@ var/list/rank_prefix = list(\
 		for(var/limbcheck in list(BP_L_LEG ,BP_R_LEG))
 			var/obj/item/organ/affecting = get_organ(limbcheck)
 			if(!affecting)
-				return 0
-		return 1
-	return 0
+				return FALSE
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/MouseDrop(var/atom/over_object)
 	var/mob/living/carbon/human/H = over_object

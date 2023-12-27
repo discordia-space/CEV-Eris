@@ -275,7 +275,7 @@
 		if(isturf(loc) && !resting && !buckled && canmove)
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby))
+				if(!(stop_automated_movement_when_pulled && grabbedBy))
 					var/moving_to = pick(cardinal)
 					set_dir(moving_to)
 					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))

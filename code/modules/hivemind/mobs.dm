@@ -123,8 +123,10 @@
 
 	if(buckled)
 		var/obj/structure/bed/B = locate() in loc
+		/*
 		if(B)
 			B.unbuckle_mob()
+		*/
 
 	if(!hive_mind_ai)
 		if(prob(5))

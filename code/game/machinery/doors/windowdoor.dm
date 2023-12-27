@@ -16,7 +16,6 @@
 	flags = ON_BORDER
 	opacity = 0
 	var/obj/item/electronics/airlock/electronics
-	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
 /obj/machinery/door/window/New()
@@ -119,7 +118,6 @@
 	src.icon_state = text("[]open", src.base_state)
 	//sleep(10)
 
-	explosion_resistance = 0
 	src.density = FALSE
 //	src.sd_SetOpacity(0)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
@@ -137,7 +135,6 @@
 	src.icon_state = src.base_state
 
 	src.density = TRUE
-	explosion_resistance = initial(explosion_resistance)
 //	if(src.visible)
 //		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()

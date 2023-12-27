@@ -75,7 +75,19 @@
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
 #define COMSIG_MOB_DEATH "mob_death"							//from mob/death()
 #define COMSIG_MOB_INITIALIZED "mob_initialized"
+#define COMSIG_MOB_TRY_MOVE "mob_try_move" // from mob/SelfMove() , intended to replace movementHandlers at some point
+	#define COMSIG_CANCEL_MOVE (1<<0)
+
+#define COMSIG_RELAY_MOVE "move_try_relay" // from buckling.dm component, intended as the way to relay moves
+#define COMSIG_BUCKLE_QUERY "is_atom_buckled" // from buckling.dm , returns a list of all buckle components that are attached.YOU NEED TO PASS THE LIST AS TEH FIRST ARGUMENT
+#define COMSIG_MOVABLE_FALLED "movable_falled" // for buckling , wheter a atom has falled.
+// clicks
+/// When the mob clicks onto something
 #define COMSIG_CLICK "clickclick"
+/// When we get clicked by anything
+#define COMSIG_CLICKED "clicked"
+/// When we get drag-dropped onto
+#define COMSIG_DRAGDROP "dragdrop"
 #define COMSIG_SHIFTCLICK "shiftclick" // used for ai_like_control component
 #define COMSIG_CTRLCLICK "ctrlclick" // used for ai_like_control component
 #define COMSIG_ALTCLICK "altclick" // used for ai_like_control component

@@ -34,16 +34,18 @@
 	if (user.incapacitated(INCAPACITATION_DEFAULT))
 		return
 	if (victim)
-		user_unbuckle_mob(user)
+		//user_unbuckle_mob(user)
 		return
 //	if (HULK in usr.mutations)
 //		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
 //		density = FALSE
 //		qdel(src)
 
+/*
 /obj/machinery/optable/unbuckle_mob()
 	. = ..()
 	check_victim()
+*/
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
@@ -84,7 +86,7 @@
 	for(var/obj/O in src)
 		O.forceMove(src)
 	add_fingerprint(user)
-	buckle_mob(C)
+	//buckle_mob(C)
 
 
 /obj/machinery/optable/MouseDrop_T(mob/target, mob/user)
@@ -121,6 +123,7 @@
 		return 0
 	return 1
 
+/*
 /obj/machinery/optable/post_buckle_mob(mob/living/M as mob)
 	if(M == buckled_mob)
 		M.pixel_y = y_offset
@@ -128,3 +131,4 @@
 		M.pixel_y = 0
 
 	check_victim()
+*/

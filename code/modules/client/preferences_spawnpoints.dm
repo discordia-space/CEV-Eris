@@ -249,7 +249,7 @@
 	if (beds.len)
 		var/obj/structure/bed/C = pick(beds)
 		M.forceMove(C.loc)
-		C.buckle_mob(M)
+		//C.buckle_mob(M)
 
 		//When spawning in bed, you start off asleep for a moment
 		M.Paralyse(2)

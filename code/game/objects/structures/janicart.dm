@@ -336,8 +336,10 @@
 
 
 /obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
+	/*
 	if(user.stat || user.stunned || user.weakened || user.paralysis)
 		unbuckle_mob()
+	*/
 	if(istype(user.l_hand, /obj/item/key) || istype(user.r_hand, /obj/item/key))
 		step(src, direction)
 		update_mob()
@@ -351,19 +353,20 @@
 		if(buckled_mob.buckled == src)
 			buckled_mob.forceMove(glide_size_override=glide_size_override)
 
-
+/*
 /obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)
 	update_mob()
 	return ..()
+*/
 
-
+/*
 /obj/structure/bed/chair/janicart/unbuckle_mob()
 	var/mob/living/M = ..()
 	if(M)
 		M.pixel_x = 0
 		M.pixel_y = 0
 	return M
-
+*/
 
 /obj/structure/bed/chair/janicart/set_dir()
 	..()

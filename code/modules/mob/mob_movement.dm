@@ -4,6 +4,9 @@
 	return mob.SelfMove(direction)
 
 /mob/proc/SelfMove(var/direction)
+
+	if(SEND_SIGNAL(src, COMSIG_MOB_TRY_MOVE, direction) & COMSIG_CANCEL_MOVE)
+		return TRUE
 	if(DoMove(direction, src) & MOVEMENT_HANDLED)
 		return TRUE // Doesn't necessarily mean the mob physically moved
 

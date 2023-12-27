@@ -224,8 +224,10 @@
 
 		qdel(handcuffed)
 		handcuffed = null
+		/*
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
+		*/
 		update_inv_handcuffed()
 
 /mob/living/carbon/proc/break_legcuffs()
@@ -258,8 +260,11 @@
 	return TRUE
 
 /mob/living/proc/escape_buckle()
+	return TRUE
+	/*
 	if(buckled)
 		buckled.user_unbuckle_mob(src)
+	*/
 
 /mob/living/carbon/escape_buckle()
 	if(!buckled) return
@@ -279,6 +284,6 @@
 				return
 			visible_message(SPAN_DANGER("\The [usr] manages to unbuckle themself!"),
 							SPAN_NOTICE("You successfully unbuckle yourself."))
-			buckled.user_unbuckle_mob(src)
+			//buckled.user_unbuckle_mob(src)
 
 

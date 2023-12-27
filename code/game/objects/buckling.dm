@@ -1,3 +1,5 @@
+
+
 /atom
 	var/can_buckle = FALSE
 	var/buckle_movable = 0
@@ -7,6 +9,7 @@
 	var/buckle_require_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
 	var/mob/living/buckled_mob = null
 
+/*
 /atom/attack_hand(mob/living/user)
 	. = ..()
 	if(can_buckle && buckled_mob)
@@ -24,8 +27,14 @@
 	if(!istype(M) || (M.loc != loc) || M.buckled || M.pinned.len || (buckle_require_restraints && !M.restrained()))
 		return 0
 
+	message_admins("Called buckle mob on [M]")
+
 
 	M.buckled = src
+	var/obj/item/grab/g = new(src,M)
+	message_admins("Grab exists = [g]")
+	g.state = GRAB_PASSIVE
+	g.forceMove(src)
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
 	M.update_lying_buckled_and_verb_status()
@@ -38,8 +47,8 @@
 /atom/proc/unbuckle_mob()
 	if(buckled_mob && buckled_mob.buckled == src)
 		. = buckled_mob
+		QDEL_NULL(buckled_mob.grabbedBy)
 		buckled_mob.buckled = null
-		buckled_mob.anchored = initial(buckled_mob.anchored)
 		buckled_mob.update_lying_buckled_and_verb_status()
 		buckled_mob.update_floating()
 		buckled_mob = null
@@ -102,3 +111,4 @@
 		add_fingerprint(user)
 	return M
 
+*/

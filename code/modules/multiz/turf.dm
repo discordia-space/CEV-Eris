@@ -143,6 +143,8 @@ see multiz/movement.dm for some info.
 	// We've made sure we can move, now.
 	mover.forceMove(below)
 
+	SEND_SIGNAL(mover, COMSIG_MOVABLE_FALLED, soft)
+
 	if(ishuman(mover) && mover.gender == MALE && prob(5))
 		playsound(src, 'sound/hallucinations/scream.ogg', 100)
 

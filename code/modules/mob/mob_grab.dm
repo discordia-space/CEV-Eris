@@ -64,6 +64,10 @@
 		if(target.incapacitated(INCAPACITATION_CANT_MOVE))
 			qdel(src)
 			return
+	var/list/bucklers = list()
+	SEND_SIGNAL(affecting, COMSIG_BUCKLE_QUERY, bucklers)
+	if(length(bucklers))
+		to_chat(user, SPAN_NOTICE("\The [victim] is buckled to something!"))
 	if(affecting.grabbedBy)
 		// Grab killing code
 		if(affecting.grabbedBy.assailant == user)
@@ -118,6 +122,7 @@
 /obj/item/grab/proc/onGrabberMove(atom/movable/mover, atom/oldLocation , atom/newLocation, atom/initiator)
 	SIGNAL_HANDLER
 	// FUCK NO - SPCR 2023
+	message_admins("Initiator for grabber , [initiator]")
 	if(initiator == assailant.grabbedBy)
 		return
 	// No moving when walking over / pinning down , etc/
@@ -132,9 +137,13 @@
 		var/moveDirection = get_dir(oldLocation,newLocation)
 		if(victim.lying || victim.resting || moveDirection == NORTH)
 			affecting.layer = BELOW_MOB_LAYER
+		affecting.dir = moveDirection
 		var/grabHugMultiplier = 1
 		if(oldLocation.z == newLocation.z)
 			switch(state)
+				if(GRAB_BUCKLING)
+					affecting.Move(newLocation, initiator = src)
+					grabHugMultiplier = 0
 				if(GRAB_PASSIVE)
 					affecting.Move(oldLocation, initiator = src)
 					if(dancing)

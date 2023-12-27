@@ -17,7 +17,6 @@
 	density = FALSE
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
-	explosion_resistance = 5
 	matter = list(MATERIAL_PLASTIC = 4)
 	var/list/mobs_can_pass = list(
 		/mob/living/carbon/slime,

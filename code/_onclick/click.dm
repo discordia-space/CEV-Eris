@@ -108,7 +108,8 @@
 	if(stat || paralysis || stunned || weakened)
 		return
 
-	SEND_SIGNAL(src, COMSIG_CLICK, A)
+	SEND_SIGNAL(src, COMSIG_CLICK, A, params)
+	SEND_SIGNAL(A, COMSIG_CLICKED, src, params)
 
 	face_atom(A) // change direction to face what you clicked on
 

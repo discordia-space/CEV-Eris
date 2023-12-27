@@ -186,13 +186,13 @@ var/const/enterloopsanity = 100
 		if(M.allow_spacemove() == TRUE)
 			M.inertia_dir  = 0
 			return
-		spawn(5)
-			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
-				if(M.inertia_dir)
-					step_glide(M, M.inertia_dir, DELAY2GLIDESIZE(5))
-					return
-				M.inertia_dir = M.last_move
-				step(M, M.inertia_dir, DELAY2GLIDESIZE(5))
+		// spawn(5)
+		if((M && !(M.anchored) && !(M.grabbedBy) && (M.loc == src)))
+			if(M.inertia_dir)
+				step_glide(M, M.inertia_dir, DELAY2GLIDESIZE(5))
+				return
+			M.inertia_dir = M.last_move
+			step(M, M.inertia_dir, DELAY2GLIDESIZE(5))
 	return
 
 /turf/proc/levelupdate()

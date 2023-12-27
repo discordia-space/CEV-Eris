@@ -25,7 +25,7 @@
 		if(prob(40))
 			visible_message("[src] thrashes around and, throws [user] clean off!")
 			user.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
-			unbuckle_mob()
+			//unbuckle_mob()
 			can_buckle = FALSE
 			return FALSE
 		friends += user

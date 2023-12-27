@@ -179,7 +179,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	return (user.IsAdvancedToolUser() && !user.stat && user.Adjacent(src))
 
 /obj/item/beartrap/proc/release_mob()
-	unbuckle_mob()
+	//unbuckle_mob()
 	anchored = FALSE
 	deployed = FALSE
 	can_buckle = initial(can_buckle)
@@ -291,7 +291,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	//trap the victim in place
 	set_dir(L.dir)
 	can_buckle = TRUE
-	buckle_mob(L)
+	//buckle_mob(L)
 	to_chat(L, SPAN_DANGER("The steel jaws of \the [src] bite into you, trapping you in place!"))
 
 

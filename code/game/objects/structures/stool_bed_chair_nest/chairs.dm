@@ -39,9 +39,10 @@
 	else
 		rotate()
 	return
-
+/*
 /obj/structure/bed/chair/post_buckle_mob()
 	update_icon()
+*/
 
 /obj/structure/bed/chair/update_icon()
 	..()
@@ -172,8 +173,10 @@
 				for (var/mob/O in src.loc)
 					if (O != occupant)
 						Bump(O)
+			/*
 			else
 				unbuckle_mob()
+			*/
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	..()
@@ -181,7 +184,7 @@
 
 	if(propelled)
 
-		var/mob/living/occupant = unbuckle_mob()
+		var/mob/living/occupant = null //unbuckle_mob()
 		var/def_zone = ran_zone()
 
 		occupant.throw_at(A, 3, propelled)

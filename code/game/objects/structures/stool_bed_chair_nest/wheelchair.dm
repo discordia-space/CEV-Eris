@@ -9,7 +9,22 @@
 	var/mob/living/pulling = null
 	var/bloodiness
 
-	movement_handlers = list(/datum/movement_handler/delay = list(2), /datum/movement_handler/move_relay_self)
+/obj/structure/bed/chair/wheelchair/Initialize()
+	. = ..()
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_FORCE_STAND | BUCKLE_MOB_ONLY | BUCKLE_REQUIRE_NOT_BUCKLED | BUCKLE_MOVE_RELAY | BUCKLE_FORCE_DIR | BUCKLE_BREAK_ON_FALL, moveProc = PROC_REF(onMoveAttempt))
+
+/obj/structure/bed/chair/wheelchair/proc/onMoveAttempt(mob/living/trier, direction)
+	SIGNAL_HANDLER
+	. = COMSIG_CANCEL_MOVE
+	if(!istype(trier))
+		return
+	if(trier.incapacitated(INCAPACITATION_CANT_ACT))
+		return
+	if(trier.next_click > world.time)
+		return
+	trier.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	step(src, direction)
+	trier.dir = src.dir
 
 /obj/structure/bed/chair/wheelchair/update_icon()
 	return
@@ -30,27 +45,22 @@
 
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
 	// Redundant check?
-	if(user.stat || user.stunned || user.weakened || user.paralysis || user.lying || user.restrained())
-		if(user==pulling)
-			pulling = null
-			user.pulledby = null
+	if(user.incapacitated(INCAPACITATION_DISABLED | INCAPACITATION_RESTRAINED))
+		if(user.grabbedBy.assailant == src)
+			QDEL_NULL(user.grabbedBy)
 			to_chat(user, SPAN_WARNING("You lost your grip!"))
 		return
+
 	if(buckled_mob && pulling && user == buckled_mob)
-		if(pulling.stat || pulling.stunned || pulling.weakened || pulling.paralysis || pulling.lying || pulling.restrained())
-			pulling.pulledby = null
+		if(pulling.incapacitated(INCAPACITATION_DISABLED | INCAPACITATION_RESTRAINED))
+			QDEL_NULL(pulling.grabbedBy)
 			pulling = null
 	if(user == pulling)
 		pulling = null
-		user.pulledby = null
+		QDEL_NULL(user.grabbedBy)
 		return
 	if(propelled)
 		return
-	if(pulling && (get_dist(src, pulling) > 1))
-		pulling = null
-		user.pulledby = null
-		if(user==pulling)
-			return
 	if(pulling && (get_dir(src.loc, pulling.loc) == direction))
 		to_chat(user, SPAN_WARNING("You cannot go there."))
 		return
@@ -80,10 +90,9 @@
 		if(pulling.loc == src.loc) // We moved onto the wheelchair? Revert!
 			pulling.forceMove(T)
 		else
-			spawn(0)
 			if(get_dist(src, pulling) > 1) // We are too far away? Losing control.
+				QDEL_NULL(user.grabbedBy)
 				pulling = null
-				user.pulledby = null
 			pulling.set_dir(get_dir(pulling, src)) // When everything is right, face the wheelchair
 	if(bloodiness)
 		create_track()
@@ -99,22 +108,17 @@
 					for (var/mob/O in src.loc)
 						if (O != occupant)
 							Bump(O)
+				/*
 				else
 					unbuckle_mob()
+				*/
 			if (pulling && (get_dist(src, pulling) > 1))
-				pulling.pulledby = null
+				QDEL_NULL(pulling.grabbedBy)
 				to_chat(pulling,  SPAN_WARNING("You lost your grip!"))
 				pulling = null
 		else
 			if (occupant && (src.loc != occupant.loc))
 				src.forceMove(occupant.loc) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
-
-/obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as mob)
-	if (pulling)
-		MouseDrop(usr)
-	else
-		user_unbuckle_mob(user)
-	return
 
 /obj/structure/bed/chair/wheelchair/CtrlClick(var/mob/user)
 	if(in_range(src, user))
@@ -124,12 +128,15 @@
 			return
 		if(!pulling)
 			pulling = user
-			user.pulledby = src
+			var/obj/item/grab/g = new(user, src)
+			g.state = GRAB_PASSIVE
+			user.put_in_active_hand(g)
+			g.synch()
 			user.set_dir(get_dir(user, src))
 			to_chat(user, "You grip \the [name]'s handles.")
 		else
-			to_chat(usr, "You let go of \the [name]'s handles.")
-			pulling.pulledby = null
+			to_chat(user, "You let go of \the [name]'s handles.")
+			QDEL_NULL(pulling.grabbedBy)
 			pulling = null
 		return
 
@@ -138,7 +145,7 @@
 	if(!buckled_mob)	return
 
 	if(propelled || (pulling && (pulling.a_intent == I_HURT)))
-		var/mob/living/occupant = unbuckle_mob()
+		var/mob/living/occupant = null //unbuckle_mob()
 
 		if (pulling && (pulling.a_intent == I_HURT))
 			occupant.throw_at(A, 3, 3, pulling)
@@ -185,15 +192,9 @@
 		B.set_dir(newdir)
 	bloodiness--
 
-/obj/structure/bed/chair/wheelchair/buckle_mob(mob/M as mob, mob/user as mob)
-	if(M == pulling)
-		pulling = null
-		usr.pulledby = null
-	..()
-
 /proc/equip_wheelchair(mob/living/carbon/human/H) //Proc for spawning in a wheelchair if a new character has no legs. Used in new_player.dm
 	var/obj/structure/bed/chair/wheelchair/W = new(H.loc)
-	W.buckle_mob(H)
+	// W.buckle_mob(H)
 
 /obj/item/wheelchair
 	name = "wheelchair"

@@ -746,7 +746,7 @@
 
 // Not sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't need to fall over yet.
 /mob/proc/can_stand_overridden()
-	return 0
+	return FALSE
 
 /mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_DEFAULT & (~INCAPACITATION_RESTRAINED))
@@ -759,9 +759,53 @@ TODO: Bay Movement:
 All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
 */
 /mob/proc/update_lying_buckled_and_verb_status(dropitems = FALSE)
+	var/list/bucklers = list()
+	lying = FALSE
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	var/hasToLie = cannot_stand() || resting || incapacitated(INCAPACITATION_KNOCKDOWN | INCAPACITATION_GROUNDED)
+	for(var/datum/component/buckling/buckleComp in bucklers)
+		// lying forces break the whole loop
+		if(buckleComp.buckleFlags & BUCKLE_FORCE_LIE)
+			hasToLie = TRUE
+			break
+
+	if(hasToLie)
+		lying = TRUE
+		if(can_stand_overridden())
+			lying = FALSE
+		for(var/datum/component/buckling/buckleComp in bucklers)
+			if(buckleComp.buckleFlags & BUCKLE_FORCE_STAND)
+				lying = FALSE
+		for(var/obj/item/grab/G in grabbed_by)
+			if(G.force_stand())
+				lying = FALSE
+
+
+	if(lying)
+		set_density(FALSE)
+		canmove = FALSE
+		if(stat == UNCONSCIOUS || dropitems)
+			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
+			if(r_hand) unEquip(r_hand)
+	else
+		set_density(initial(density))
+		canmove = TRUE
+	reset_layer()
+
+	//Temporarily moved here from the various life() procs
+	//I'm fixing stuff incrementally so this will likely find a better home.
+	//It just makes sense for now. ~Carn
+	// Fuck you Carn its been more than 6 years and people still lag from your shitty forced icon updates . SPCR -2022
+	if( update_icon )	//forces a full overlay update
+		update_icon = 0
+		regenerate_icons()
+	else if( lying != lying_prev )
+		update_icons()
+
+/*
 
 	if(!resting && cannot_stand() && can_stand_overridden())
-		lying = 0
+		lying = FALSE
 		canmove = TRUE //TODO: Remove this
 	else if(buckled)
 		anchored = TRUE
@@ -800,6 +844,7 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		regenerate_icons()
 	else if( lying != lying_prev )
 		update_icons()
+	*/
 
 /mob/proc/reset_layer()
 	if(lying)

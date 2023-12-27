@@ -194,7 +194,7 @@
 		buckled_mob.update_floating()
 		buckled_mob = null
 
-		post_buckle_mob(.)
+		//post_buckle_mob(.)
 	if(reagents)
 		QDEL_NULL(reagents)
 

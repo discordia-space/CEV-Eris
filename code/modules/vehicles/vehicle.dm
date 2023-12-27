@@ -298,8 +298,10 @@
 			C.pixel_y += load_offset_y
 		C.layer = layer + 0.1		//so it sits above the vehicle
 
+	/*
 	if(ismob(C))
 		buckle_mob(C)
+	*/
 
 	return 1
 
@@ -341,8 +343,10 @@
 	load.pixel_y = initial(load.pixel_y)
 	load.layer = initial(load.layer)
 
+	/*
 	if(ismob(load))
 		unbuckle_mob(load)
+	*/
 
 	load = null
 
