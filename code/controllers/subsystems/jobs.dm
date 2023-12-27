@@ -605,10 +605,8 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 		var/obj/item/organ/external/r_leg = H.get_organ(BP_R_LEG)
 		if(!l_leg || !r_leg)
 			var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
-			H.buckled = W
-			H.update_lying_buckled_and_verb_status()
-			W.set_dir(H.dir)
-			W.buckled_mob = H
+			var/datum/component/buckling/buckle = W.GetComponent(/datum/component/buckling)
+			buckle.buckle(H, null)
 			W.add_fingerprint(H)
 
 	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")

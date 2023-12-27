@@ -37,94 +37,11 @@
 	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", dir = src.dir)
 	O.layer = ABOVE_MOB_LAYER
 	overlays += O
-	if(buckled_mob)
-		buckled_mob.set_dir(dir)
 
 /obj/structure/bed/chair/wheelchair/attackby(obj/item/I, mob/living/user)
 	if((QUALITY_BOLT_TURNING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || istype(I, /obj/item/stack))
 		return
 	..()
-
-
-/obj/structure/bed/chair/wheelchair/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
-	. = ..()
-	if(buckled_mob)
-		var/mob/living/occupant = buckled_mob
-		if(!driving)
-			if (occupant && (src.loc != occupant.loc))
-				if (propelled)
-					for (var/mob/O in src.loc)
-						if (O != occupant)
-							Bump(O)
-				/*
-				else
-					unbuckle_mob()
-				*/
-			if (pulling && (get_dist(src, pulling) > 1))
-				QDEL_NULL(pulling.grabbedBy)
-				to_chat(pulling,  SPAN_WARNING("You lost your grip!"))
-				pulling = null
-		else
-			if (occupant && (src.loc != occupant.loc))
-				src.forceMove(occupant.loc) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
-
-/obj/structure/bed/chair/wheelchair/CtrlClick(var/mob/user)
-	if(in_range(src, user))
-		if(!ishuman(user))	return
-		if(user == buckled_mob)
-			to_chat(user, SPAN_WARNING("You realize you are unable to push the wheelchair you're sitting in."))
-			return
-		if(!pulling)
-			pulling = user
-			var/obj/item/grab/g = new(user, src)
-			g.state = GRAB_PASSIVE
-			user.put_in_active_hand(g)
-			g.synch()
-			user.set_dir(get_dir(user, src))
-			to_chat(user, "You grip \the [name]'s handles.")
-		else
-			to_chat(user, "You let go of \the [name]'s handles.")
-			QDEL_NULL(pulling.grabbedBy)
-			pulling = null
-		return
-
-/obj/structure/bed/chair/wheelchair/Bump(atom/A)
-	..()
-	if(!buckled_mob)	return
-
-	if(propelled || (pulling && (pulling.a_intent == I_HURT)))
-		var/mob/living/occupant = null //unbuckle_mob()
-
-		if (pulling && (pulling.a_intent == I_HURT))
-			occupant.throw_at(A, 3, 3, pulling)
-		else if (propelled)
-			occupant.throw_at(A, 3, 3, propelled)
-
-		var/def_zone = ran_zone()
-
-		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_BLUNT))
-		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_BLUNT))
-		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_BLUNT))
-		occupant.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
-
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
-
-		if(isliving(A))
-
-			var/mob/living/victim = A
-			def_zone = ran_zone()
-
-			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_BLUNT))
-			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_BLUNT))
-			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_BLUNT))
-			victim.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
-
-		if(pulling)
-			occupant.visible_message(SPAN_DANGER("[pulling] has thrusted \the [name] into \the [A], throwing \the [occupant] out of it!"))
-			admin_attack_log(pulling, occupant, "Crashed their victim into \an [A].", "Was crashed into \an [A].", "smashed into \the [A] using")
-		else
-			occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/wheelchair/proc/create_track()
 	var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)

@@ -34,7 +34,8 @@
 		else
 			if(isobj(target))
 				var/obj/O = target
-				if(O.buckled_mob)
+				var/datum/component/buckling/buckle = O.GetComponent(/datum/component/buckling)
+				if(buckle && buckle.buckled)
 					return
 				if(locate(/mob/living) in O)
 					to_chat(user, SPAN_WARNING("You can't load living things into the cargo compartment."))
@@ -57,7 +58,10 @@
 				owner.visible_message(SPAN_NOTICE("\The [owner] begins loading \the [O]."))
 				playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 				if(do_after(owner, 20, O, 0, 1))
-					if(O in carrying || O.buckled_mob || O.anchored || (locate(/mob/living) in O)) //Repeat checks
+					var/datum/component/buckling/buckle = O.GetComponent(/datum/component/buckling)
+					if(buckle && buckle.buckled)
+						return
+					if(O in carrying  || O.anchored || (locate(/mob/living) in O)) //Repeat checks
 						return
 					if(length(carrying) >= carrying_capacity)
 						to_chat(user, SPAN_WARNING("\The [src] is fully loaded!"))

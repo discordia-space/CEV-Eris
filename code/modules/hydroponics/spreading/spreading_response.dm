@@ -19,8 +19,9 @@
 	var/mob/living/M = AM
 	if(!istype(M))
 		return
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 
-	if(!istype(seed, /datum/seed/mushroom/maintshroom) && !buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
+	if(!istype(seed, /datum/seed/mushroom/maintshroom) && !buckled_mob && !buckle.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
 		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the moving animation),
 		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
 		spawn(1)
@@ -163,44 +164,10 @@
 	seed.do_thorns(victim,src)
 	seed.do_sting(victim,src,pick(BP_LEGS))
 
-/obj/effect/plant/proc/unbuckle()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.buckled = null
-			buckled_mob.anchored = initial(buckled_mob.anchored)
-			buckled_mob.update_lying_buckled_and_verb_status()
-		buckled_mob = null
-	return
-
-/obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
-	if(buckled_mob)
-		if(prob(seed ? min(max(0,100 - seed.get_trait(TRAIT_POTENCY)/2),100) : 50))
-			if(buckled_mob.buckled == src)
-				if(buckled_mob != user)
-					buckled_mob.visible_message(\
-						SPAN_NOTICE("[user.name] frees [buckled_mob.name] from \the [src]."),\
-						SPAN_NOTICE("[user.name] frees you from \the [src]."),\
-						SPAN_WARNING("You hear shredding and ripping."))
-				else
-					buckled_mob.visible_message(\
-						SPAN_NOTICE("[buckled_mob.name] struggles free of \the [src]."),\
-						SPAN_NOTICE("You untangle \the [src] from around yourself."),\
-						SPAN_WARNING("You hear shredding and ripping."))
-			unbuckle()
-		else
-			var/text = pick("rip","tear","pull")
-			user.visible_message(\
-				SPAN_NOTICE("[user.name] [text]s at \the [src]."),\
-				SPAN_NOTICE("You [text] at \the [src]."),\
-				SPAN_WARNING("You hear shredding and ripping."))
-	return
-
 /obj/effect/plant/proc/entangle(var/mob/living/victim)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 
-	if(buckled_mob)
-		return
-
-	if(victim.buckled)
+	if(buckle.buckle)
 		return
 
 	//grabbing people

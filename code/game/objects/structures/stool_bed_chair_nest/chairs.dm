@@ -5,13 +5,18 @@
 	icon_state = "chair_preview"
 	color = "#666666"
 	base_icon = "chair"
-	buckle_dir = 0
-	buckle_lying = 0 //force people to sit up in chairs when buckled
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
+
 
 /obj/structure/bed/chair/New()
 	..()
 	update_layer()
+
+/obj/structure/bed/chair/Initialize()
+	. = ..()
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	buckle.buckleFlags &= ~BUCKLE_FORCE_LIE
+	buckle.buckleFlags &= BUCKLE_FORCE_STAND
 
 /obj/structure/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
 	..()
@@ -34,10 +39,7 @@
 		W.forceMove(get_turf(src))
 
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
-	if(buckled_mob)
-		..()
-	else
-		rotate()
+	rotate()
 	return
 /*
 /obj/structure/bed/chair/post_buckle_mob()
@@ -46,6 +48,7 @@
 
 /obj/structure/bed/chair/update_icon()
 	..()
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 
 /*
 	var/cache_key = "[base_icon]-[material.name]-over"
@@ -66,7 +69,7 @@
 			stool_cache[padding_cache_key] = I
 		overlays |= stool_cache[padding_cache_key]
 
-	if(buckled_mob && padding_material)
+	if(buckle.buckled && padding_material)
 		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
 		if(isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
@@ -84,8 +87,6 @@
 /obj/structure/bed/chair/set_dir()
 	..()
 	update_layer()
-	if(buckled_mob)
-		buckled_mob.set_dir(dir)
 
 /obj/structure/bed/chair/verb/rotate()
 	set name = "Rotate Chair"
@@ -151,7 +152,6 @@
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
-	buckle_movable = 1
 
 /obj/structure/bed/chair/office/update_icon()
 	return
@@ -160,53 +160,6 @@
 	if(istype(W,/obj/item/stack) || istype(W, /obj/item/tool/wirecutters))
 		return
 	..()
-
-/obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
-	. = ..()
-	if(buckled_mob)
-		var/mob/living/occupant = buckled_mob
-		occupant.buckled = null
-		occupant.Move(src.loc, glide_size_override=glide_size)
-		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
-			if (propelled)
-				for (var/mob/O in src.loc)
-					if (O != occupant)
-						Bump(O)
-			/*
-			else
-				unbuckle_mob()
-			*/
-
-/obj/structure/bed/chair/office/Bump(atom/A)
-	..()
-	if(!buckled_mob)	return
-
-	if(propelled)
-
-		var/mob/living/occupant = null //unbuckle_mob()
-		var/def_zone = ran_zone()
-
-		occupant.throw_at(A, 3, propelled)
-		occupant.apply_effect(6, STUN, occupant.getarmor(def_zone, ARMOR_BLUNT))
-		occupant.apply_effect(6, WEAKEN, occupant.getarmor(def_zone, ARMOR_BLUNT))
-		occupant.apply_effect(6, STUTTER, occupant.getarmor(def_zone, ARMOR_BLUNT))
-		occupant.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
-
-		playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
-
-		if(isliving(A))
-
-			var/mob/living/victim = A
-			def_zone = ran_zone()
-
-			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_BLUNT))
-			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_BLUNT))
-			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_BLUNT))
-			victim.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,6))), def_zone, src, 1, 1, FALSE)
-
-		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
-
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
 

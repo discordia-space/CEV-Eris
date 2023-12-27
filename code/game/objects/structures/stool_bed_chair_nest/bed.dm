@@ -153,7 +153,8 @@
 //If there's blankets on the bed, got to roll them down before you can unbuckle the mob
 /obj/structure/bed/attack_hand(var/mob/user)
 	var/obj/item/bedsheet/blankets = (locate(/obj/item/bedsheet) in loc)
-	if (buckled_mob && blankets && !blankets.rolled && !blankets.folded)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	if (buckle.buckled && blankets && !blankets.rolled && !blankets.folded)
 		if (!blankets.toggle_roll(user))
 			return
 
@@ -210,12 +211,12 @@
 
 /obj/structure/bed/roller/Initialize()
 	. = ..()
-	var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+	var/datum/component/buckling/buckle = AddComponent(/datum/component/buckling)
 	buckle.flags &= BUCKLE_SEND_UPDATES
 	buckle.updateProc = PROC_REF(postBuckle)
 
 /obj/structure/bed/roller/proc/postBuckle(mob/buckled)
-	var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 	if(!buckle || (buckle && !buckle.buckled))
 		set_density(FALSE)
 	else

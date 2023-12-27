@@ -29,7 +29,7 @@
 		return
 	if(!buckler.Adjacent(src))
 		return
-	var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 	if(buckle.buckled)
 		return
 	buckle.buckle(buckler)

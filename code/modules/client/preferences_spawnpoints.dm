@@ -227,7 +227,8 @@
 
 	//We have to search specifically for padded subtype, because the main bed type is used for a lot of things, including chairs
 	for (var/obj/structure/bed/padded/C in things)
-		if (C.buckled_mob)
+		var/datum/component/buckling/buckle = C.GetComponent(/datum/component/buckling)
+		if (buckle.buckled)
 			continue
 
 		. |= C
