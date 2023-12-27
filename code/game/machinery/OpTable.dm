@@ -14,11 +14,18 @@
 	var/mob/living/carbon/victim
 
 	var/obj/machinery/computer/operating/computer
-	can_buckle = TRUE
-	buckle_dir = SOUTH
-	buckle_lying = TRUE //bed-like behavior, forces mob.lying = buckle_lying if != -1
-
 	var/y_offset = 0
+
+/obj/machinery/optable/Initialize(mapload, d)
+	. = ..()
+	var/list/visualHandle = list(
+		"[NORTH]" = list(0, y_offset, 0),
+		"[SOUTH]" = list(0, y_offset, 0),
+		"[EAST]" = list(0, y_offset, 0),
+		"[WEST]" = list(0, y_offset, 0)
+	)
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_REQUIRE_NOT_BUCKLED | BUCKLE_FORCE_DIR | BUCKLE_FORCE_LIE | BUCKLE_PIXEL_SHIFT, visualHandling = visualHandle)
+
 /obj/machinery/optable/New()
 	..()
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
@@ -56,10 +63,12 @@
 		return 0
 
 /obj/machinery/optable/proc/check_victim()
-	if (istype(buckled_mob,/mob/living/carbon))
-		victim = buckled_mob
-		if(ishuman(buckled_mob))
-			var/mob/living/carbon/human/M = buckled_mob
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckleMob = buckle.buckled
+	if (istype(buckleMob,/mob/living/carbon))
+		victim = buckleMob
+		if(ishuman(buckleMob))
+			var/mob/living/carbon/human/M = buckleMob
 			icon_state = M.pulse() ? "optable-active" : "optable-idle"
 		return 1
 
@@ -122,13 +131,3 @@
 		to_chat(usr, SPAN_NOTICE("Unbuckle \the [patient] first!"))
 		return 0
 	return 1
-
-/*
-/obj/machinery/optable/post_buckle_mob(mob/living/M as mob)
-	if(M == buckled_mob)
-		M.pixel_y = y_offset
-	else
-		M.pixel_y = 0
-
-	check_victim()
-*/

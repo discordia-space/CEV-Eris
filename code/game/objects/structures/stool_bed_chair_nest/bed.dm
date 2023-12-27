@@ -14,9 +14,6 @@
 	description_info = "Can be used as a support to climb up by looking up and clicking on a free tile that is not blocked by a railing"
 	icon_state = "bed"
 	anchored = TRUE
-	can_buckle = TRUE
-	buckle_dir = SOUTH
-	buckle_lying = 1
 	var/material/material
 	var/material/padding_material
 	var/base_icon = "bed"
@@ -34,6 +31,11 @@
 	if(new_padding_material)
 		padding_material = get_material_by_name(new_padding_material)
 	update_icon()
+
+/obj/structure/bed/Initialize()
+	. = ..()
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_FORCE_DIR | BUCKLE_FORCE_LIE | BUCKLE_REQUIRE_NOT_BUCKLED)
+
 
 /obj/structure/bed/get_material()
 	return material
@@ -162,21 +164,6 @@
 
 	.=..()
 
-/obj/structure/bed/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
-	. = ..()
-	if(buckled_mob)
-		buckled_mob.forceMove(src.loc, glide_size_override = glide_size)
-
-/obj/structure/bed/forceMove(atom/destination, var/special_event, glide_size_override=0)
-	. = ..()
-	if(buckled_mob)
-		if(isturf(src.loc))
-			buckled_mob.forceMove(destination, special_event, (glide_size_override ? glide_size_override : glide_size))
-		/*
-		else
-			unbuckle_mob()
-		*/
-
 /obj/structure/bed/proc/remove_padding()
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
@@ -221,6 +208,20 @@
 	buckle_pixel_shift = "x=0;y=6"
 	var/item_form_type = /obj/item/roller	//The folded-up object path.
 
+/obj/structure/bed/roller/Initialize()
+	. = ..()
+	var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+	buckle.flags &= BUCKLE_SEND_UPDATES
+	buckle.updateProc = PROC_REF(postBuckle)
+
+/obj/structure/bed/roller/proc/postBuckle(mob/buckled)
+	var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+	if(!buckle || (buckle && !buckle.buckled))
+		set_density(FALSE)
+	else
+		set_density(TRUE)
+	update_icon()
+
 /obj/structure/bed/roller/update_icon()
 	if(density)
 		icon_state = "up"
@@ -250,8 +251,6 @@
 /obj/item/roller/attack_self(mob/user)
 	deploy(user)
 
-
-
 /obj/item/roller/proc/deploy(var/mob/user)
 	var/turf/T = get_turf(src) //When held, this will still find the user's location
 	if (istype(T))
@@ -259,22 +258,12 @@
 		R.add_fingerprint(user)
 		qdel(src)
 
-/*
-/obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
-	. = ..()
-	if(M == buckled_mob)
-		set_density(1)
-		icon_state = "up"
-	else
-		set_density(0)
-		icon_state = "down"
-*/
-
 /obj/structure/bed/roller/MouseDrop(over_object, src_location, over_location)
 	..()
 	if(!CanMouseDrop(over_object))	return
 	if(!(ishuman(usr) || isrobot(usr)))	return
-	if(buckled_mob)	return
+	var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+	if(buckle && buckle.buckled) return
 
 	collapse()
 

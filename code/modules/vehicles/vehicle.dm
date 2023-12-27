@@ -1,5 +1,6 @@
 //Dummy object for holding items in vehicles.
 //Prevents items from being interacted with.
+/*
 /datum/vehicle_dummy_load
 	var/name = "dummy load"
 	var/actual_load
@@ -371,3 +372,4 @@
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	spawn(1) healthcheck()
 	return 1
+*/

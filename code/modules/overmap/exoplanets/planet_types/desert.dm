@@ -80,8 +80,6 @@
 	icon_state = "intact0"
 	density = 0
 	anchored = 1
-	can_buckle = 1
-	buckle_dir = SOUTH
 	var/exposed = 0
 	var/busy
 

@@ -331,10 +331,12 @@
 		I.deflate(1)
 		return
 
+	/*
 	var/obj/vehicle/V = locate() in T
 	if(V)
 		V.explosion_act(500, null)
 		return
+	*/
 	var/obj/machinery/bot/B = locate() in T
 	if(B)
 		B.explosion_act(500, null)

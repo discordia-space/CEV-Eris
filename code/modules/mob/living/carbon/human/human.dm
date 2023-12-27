@@ -207,9 +207,11 @@
 		var/obj/machinery/bot/mulebot/MB = AM
 		MB.RunOver(src)
 
+	/*
 	if(istype(AM, /obj/vehicle))
 		var/obj/vehicle/V = AM
 		V.RunOver(src)
+	*/
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(if_no_id = "No id", if_no_job = "No job")

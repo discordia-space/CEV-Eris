@@ -5,8 +5,10 @@
 	if(load && isliving(load))
 		return load
 
+/*
 /obj/vehicle/train/get_mob()
 	return buckled_mob
+*/
 
 /mob/get_mob()
 	return src

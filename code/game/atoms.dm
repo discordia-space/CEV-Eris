@@ -186,13 +186,6 @@
 		light = null
 	if(statverbs)
 		statverbs.Cut()
-	if(buckled_mob && buckled_mob.buckled == src)
-		. = buckled_mob
-		buckled_mob.buckled = null
-		buckled_mob.anchored = initial(buckled_mob.anchored)
-		buckled_mob.update_lying_buckled_and_verb_status()
-		buckled_mob.update_floating()
-		buckled_mob = null
 
 		//post_buckle_mob(.)
 	if(reagents)

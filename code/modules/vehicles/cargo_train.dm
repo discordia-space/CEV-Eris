@@ -1,3 +1,4 @@
+/*
 /obj/vehicle/train/cargo/engine
 	name = "cargo train tug"
 	desc = "A ridable electric car designed for pulling cargo trolleys."
@@ -376,3 +377,5 @@
 		anchored = FALSE
 	else
 		anchored = TRUE
+
+*/

@@ -10,9 +10,9 @@
 	var/alert_pressure = 80*ONE_ATMOSPHERE
 		//minimum pressure before check_pressure(...) should be called
 
-	can_buckle = TRUE
-	buckle_require_restraints = 1
-	buckle_lying = -1
+/obj/machinery/atmospherics/pipe/Initialize(mapload, d)
+	. = ..()
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_REQUIRE_RESTRAINTED | BUCKLE_REQUIRE_NOT_BUCKLED | BUCKLE_FORCE_LIE)
 
 /obj/machinery/atmospherics/pipe/drain_power()
 	return -1

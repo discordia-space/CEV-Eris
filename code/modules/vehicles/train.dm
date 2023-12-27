@@ -1,3 +1,4 @@
+/*
 /obj/vehicle/train
 	name = "train"
 	dir = 4
@@ -236,3 +237,5 @@
 
 /obj/vehicle/train/proc/update_car(var/train_length, var/active_engines)
 	return
+
+*/

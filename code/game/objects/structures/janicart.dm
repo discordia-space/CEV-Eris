@@ -19,6 +19,9 @@
 	var/dismantled = TRUE
 	var/signs = 0	//maximum capacity hardcoded below
 
+/obj/structure/janitorialcart/Initialize()
+	. = ..()
+	AddComponent(/datum/compoonent/buckling, buckleFlags = BUCKLE_MOB_ONLY|BUCKLE_FORCE_STAND|BUCKLE_FORCE_DIR|BUCKLE_MOVE_RELAY|BUCKLE_BREAK_ON_FALL|BUCKLE_PIXEL_SHIFT)
 
 
 /obj/structure/janitorialcart/Destroy()
