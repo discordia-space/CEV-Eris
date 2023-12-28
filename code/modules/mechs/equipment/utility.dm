@@ -58,7 +58,6 @@
 				owner.visible_message(SPAN_NOTICE("\The [owner] begins loading \the [O]."))
 				playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 				if(do_after(owner, 20, O, 0, 1))
-					var/datum/component/buckling/buckle = O.GetComponent(/datum/component/buckling)
 					if(buckle && buckle.buckled)
 						return
 					if(O in carrying  || O.anchored || (locate(/mob/living) in O)) //Repeat checks

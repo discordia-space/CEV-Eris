@@ -22,11 +22,15 @@
 		spawn(10 MINUTES)
 			src.uses++
 		to_chat(source, "You feel a faint click.")
+		var/list/bucklers = list()
+		SEND_SIGNAL(source, COMSIG_BUCKLE_QUERY, bucklers)
+
 		if (source.handcuffed && install_organ == INSTALL_HANDS)
+			for(var/datum/component/buckling/buckle in bucklers)
+				if(buckle.buckleFlags & BUCKLE_REQUIRE_RESTRAINTED)
+					buckle.unbuckle()
 			var/obj/item/W = source.handcuffed
 			source.handcuffed = null
-			if(source.buckled && source.buckled.buckle_require_restraints)
-				//source.buckled.unbuckle_mob()
 			source.update_inv_handcuffed()
 			if (source.client)
 				source.client.screen -= W

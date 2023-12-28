@@ -322,10 +322,12 @@
 
 /mob/living/carbon/can_use_hands()
 	if(handcuffed)
-		return 0
+		return FALSE
 	if(buckled && ! istype(buckled, /obj/structure/bed/chair)) // buckling does not restrict hands
-		return 0
-	return 1
+		return FALSE
+	if(incapacitated(INCAPACITATION_CANT_ACT))
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/restrained()
 	if (handcuffed)
@@ -338,10 +340,11 @@
 	else if (W == handcuffed)
 		handcuffed = null
 		update_inv_handcuffed()
-		/*
-		if(buckled && buckled.buckle_require_restraints)
-			buckled.unbuckle_mob()
-		*/
+		var/list/bucklers = list()
+		SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+		for(var/datum/component/buckling/buckle in bucklers)
+			if(buckle.buckleFlags & BUCKLE_REQUIRE_RESTRAINTED)
+				buckle.unbuckle()
 
 	else if (W == legcuffed)
 		legcuffed = null

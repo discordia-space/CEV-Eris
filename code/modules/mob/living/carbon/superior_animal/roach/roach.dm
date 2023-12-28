@@ -63,12 +63,12 @@
 /mob/living/carbon/superior_animal/roach/Initialize(mapload)
 	. = ..()
 	var/list/visualOffsets = list(
-		"[NORTH]" = list(0, 2, 0),
-		"[SOUTH]" = list(0, 6, 0),
-		"[EAST]" = list(0, 2, 0),
-		"[WEST]" = list(0, 2, 0)
+		"[NORTH]" = list(pixel_x, 0, layer+0.001),
+		"[SOUTH]" = list(pixel_x, 0, layer+0.001),
+		"[EAST]" = list(pixel_x, 0, layer+0.001),
+		"[WEST]" = list(pixel_x, 0, layer+0.001)
 	)
-	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_FORCE_DIR | BUCKLE_FORCE_STAND | BUCKLE_CUSTOM_BUCKLE | BUCKLE_BREAK_ON_FALL | BUCKLE_MOVE_RELAY | BUCKLE_PIXEL_SHIFT, moveProc = PROC_REF(onBuckledMoveTry), visualHandling = visualOffsets)
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_FORCE_DIR | BUCKLE_FORCE_STAND | BUCKLE_CUSTOM_BUCKLE | BUCKLE_BREAK_ON_FALL | BUCKLE_MOVE_RELAY | BUCKLE_PIXEL_SHIFT | BUCKLE_HANDLE_LAYER, moveProc = PROC_REF(onBuckledMoveTry), visualHandling = visualOffsets)
 
 /mob/living/carbon/superior_animal/roach/Destroy()
 	clearEatTarget()

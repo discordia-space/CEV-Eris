@@ -52,9 +52,9 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 // Attacking someone with a weapon while they are neck-grabbed
 /mob/living/carbon/proc/check_attack_throat(obj/item/W, mob/user)
 	if(user.a_intent == I_HURT)
-		for(var/obj/item/grab/G in src.grabbed_by)
-			if(G.assailant == user && G.state >= GRAB_NECK)
-				if(attack_throat(W, G, user))
+		if(grabbedBy)
+			if(grabbedBy.assailant == user && grabbedBy.state >= GRAB_NECK)
+				if(attack_throat(W, grabbedBy, user))
 					return TRUE
 	return FALSE
 

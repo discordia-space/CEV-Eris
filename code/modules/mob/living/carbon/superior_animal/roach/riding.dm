@@ -35,6 +35,9 @@
 		return
 	if(trier.next_click > world.time)
 		return
+	// roach is ded!!
+	if(stat)
+		return
 	// No roach riding for you!
 	if(!(locate("\ref[trier]") in friends))
 		return

@@ -191,28 +191,28 @@
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
-		return 1
+		return TRUE
 
 	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || weakened))
-		return 1
+		return TRUE
 
 	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && pinned.len)
-		return 1
+		return TRUE
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
-		return 1
+		return TRUE
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
-		return 1
+		return TRUE
 
 	if((incapacitation_flags & (INCAPACITATION_BUCKLED_PARTIALLY|INCAPACITATION_BUCKLED_FULLY)))
 		var/buckling = buckled()
 		if(buckling >= PARTIALLY_BUCKLED && (incapacitation_flags & INCAPACITATION_BUCKLED_PARTIALLY))
-			return 1
+			return TRUE
 		if(buckling == FULLY_BUCKLED && (incapacitation_flags & INCAPACITATION_BUCKLED_FULLY))
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 #undef UNBUCKLED
 #undef PARTIALLY_BUCKLED
@@ -650,6 +650,10 @@
 			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
+	if(get_active_hand())
+		to_chat(src, SPAN_NOTICE("You need a empty hand to pull!"))
+		return
+
 	var/obj/item/grab/g = new(src, AM)
 	if(g)
 		g.state = GRAB_PASSIVE
@@ -776,9 +780,8 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		for(var/datum/component/buckling/buckleComp in bucklers)
 			if(buckleComp.buckleFlags & BUCKLE_FORCE_STAND)
 				lying = FALSE
-		for(var/obj/item/grab/G in grabbed_by)
-			if(G.force_stand())
-				lying = FALSE
+		if(grabbedBy && grabbedBy.force_stand())
+			lying = FALSE
 
 
 	if(lying)
@@ -802,49 +805,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	else if( lying != lying_prev )
 		update_icons()
 
-/*
-
-	if(!resting && cannot_stand() && can_stand_overridden())
-		lying = FALSE
-		canmove = TRUE //TODO: Remove this
-	else if(buckled)
-		anchored = TRUE
-		if(istype(buckled))
-			if(buckled.buckle_lying == -1)
-				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
-			else
-				lying = buckled.buckle_lying
-			if(buckled.buckle_movable)
-				anchored = FALSE
-		canmove = FALSE //TODO: Remove this
-	else
-		lying = incapacitated(INCAPACITATION_GROUNDED)
-		canmove = FALSE //TODO: Remove this
-
-	if(lying)
-		set_density(0)
-		if(stat == UNCONSCIOUS || dropitems)
-			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
-			if(r_hand) unEquip(r_hand)
-	else
-		canmove = TRUE
-		set_density(initial(density))
-	reset_layer()
-
-	for(var/obj/item/grab/G in grabbed_by)
-		if(G.force_stand())
-			lying = 0
-
-	//Temporarily moved here from the various life() procs
-	//I'm fixing stuff incrementally so this will likely find a better home.
-	//It just makes sense for now. ~Carn
-	// Fuck you Carn its been more than 6 years and people still lag from your shitty forced icon updates . SPCR -2022
-	if( update_icon )	//forces a full overlay update
-		update_icon = 0
-		regenerate_icons()
-	else if( lying != lying_prev )
-		update_icons()
-	*/
 
 /mob/proc/reset_layer()
 	if(lying)
@@ -857,7 +817,12 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 
 /mob/facedir(var/ndir)
 	if(!canface() || client.moving || !check_gravity())
-		return 0
+		return FALSE
+	var/list/bucklers = list()
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckle in bucklers)
+		if(buckle.buckleFlags & BUCKLE_FORCE_DIR)
+			return FALSE
 	set_dir(ndir)
 	set_move_cooldown(movement_delay())
 	return 1

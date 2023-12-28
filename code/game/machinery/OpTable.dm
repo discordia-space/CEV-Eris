@@ -86,8 +86,6 @@
 		visible_message(SPAN_NOTICE("\The [C] has been laid on \the [src] by [user]."), 3)
 		if(C.grabbedBy)
 			QDEL_NULL(C.grabbedBy)
-		//if (user.pulling == C)
-		//	user.stop_pulling() //Lets not drag your patient off the table after you just put them there
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src

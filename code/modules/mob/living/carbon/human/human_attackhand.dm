@@ -105,10 +105,9 @@
 		if(I_GRAB)
 			if(M == src || anchored)
 				return 0
-			for(var/obj/item/grab/G in src.grabbed_by)
-				if(G.assailant == M)
-					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
-					return
+			if(grabbedBy && grabbedBy.assailant == M)
+				to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
+				return
 			if(w_uniform)
 				w_uniform.add_fingerprint(M)
 
@@ -192,11 +191,11 @@
 				to_chat(M, SPAN_DANGER("They are missing that limb!"))
 				return 1
 
-			if (M.grabbed_by.len)
+			if (M.grabbedBy)
 				// Someone got a good grip on them, they won't be able to do much damage
 				stat_damage = max(1, stat_damage - 2)
 
-			if(src.grabbed_by.len || src.buckled || !src.canmove || src==H)
+			if(grabbedBy || src.buckled || !src.canmove || src==H)
 				stat_damage = stat_damage + 2
 
 			stat_damage *= limb_efficiency_multiplier

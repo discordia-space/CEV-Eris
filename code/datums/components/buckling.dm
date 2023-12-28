@@ -106,6 +106,16 @@
 		var/mob/toBuckle = target
 		if(!istype(toBuckle))
 			return
+		if(toBuckle.a_intent == I_HURT && !toBuckle.incapacitated(INCAPACITATION_CANT_ACT) && toBuckle != user)
+			to_chat(target,  SPAN_NOTICE("You resist the buckling attempt from \the [target]"))
+			if(ishuman(target))
+				var/mob/living/carbon/human/targ = target
+				targ.adjustEnergy(-10)
+			if(user)
+				to_chat(user, SPAN_NOTICE("\The [toBuckle] is resisting buckling attempts!"))
+				var/mob/living/carbon/human/userMan = user
+				userMan.adjustEnergy(-15)
+
 		if((buckleFlags & BUCKLE_REQUIRE_RESTRAINTED) && !toBuckle.incapacitated(INCAPACITATION_RESTRAINED))
 			if(user)
 				to_chat(user, SPAN_NOTICE("\The [toBuckle] has to be restrained first!"))
@@ -114,10 +124,18 @@
 			if(user)
 				to_chat(user, SPAN_NOTICE("\The [toBuckle] is too big for you to buckle!"))
 			return
-		if(toBuckle.Adjacent(owner))
+		if(!(toBuckle.Adjacent(owner)))
 			if(user)
 				to_chat(user, SPAN_NOTICE("\The [toBuckle] has to be near \the [owner] to buckle!"))
 			return
+		if(toBuckle.grabbedBy)
+			var/obj/item/grab/grabby = toBuckle.grabbedBy
+			if(grabby.assailant != user)
+				to_chat(user, SPAN_NOTICE("\The [toBuckle] is grabbed by [grabby.assailant]!"))
+				return
+			else
+				// delete our own grab
+				QDEL_NULL(grabby)
 		toBuckle.forceMove(get_turf(owner))
 		if(user)
 			to_chat(user, SPAN_NOTICE("You buckle \the [toBuckle] to the [owner]!"))
@@ -207,5 +225,3 @@
 	if(visualHandling)
 		del(visualHandling)
 	. = ..()
-
-

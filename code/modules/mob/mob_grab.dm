@@ -56,7 +56,7 @@
 	assailant = user
 	affecting = victim
 
-	if(!isturf(assailant.loc) || !isturf(affecting.loc) || get_dist(assailant, affecting) > 1)
+	if(!isturf(assailant.loc) || !isturf(affecting.loc) || get_dist(assailant, affecting) > 1 || affecting == assailant)
 		qdel(src)
 		return
 	if(ismob(victim))
@@ -67,7 +67,9 @@
 	var/list/bucklers = list()
 	SEND_SIGNAL(affecting, COMSIG_BUCKLE_QUERY, bucklers)
 	if(length(bucklers))
-		to_chat(user, SPAN_NOTICE("\The [victim] is buckled to something!"))
+		to_chat(user, SPAN_NOTICE("\The [victim] is buckled to something, unbuckle them first!"))
+		qdel(src)
+		return
 	if(affecting.grabbedBy)
 		// Grab killing code
 		if(affecting.grabbedBy.assailant == user)
@@ -128,16 +130,16 @@
 	// No moving when walking over / pinning down , etc/
 	if(newLocation.Adjacent(affecting) && state <= GRAB_AGGRESSIVE)
 		return
+	var/moveDirection = get_dir(oldLocation,newLocation)
+	affecting.dir = moveDirection
 	if(ismob(affecting))
 		affecting.layer = initial(affecting.layer)
 		var/mob/victim = affecting
 		if(victim.incapacitated(INCAPACITATION_CANT_MOVE) || (!(affecting.Adjacent(oldLocation)) && oldLocation.z == newLocation.z))
 			qdel(src)
 			return
-		var/moveDirection = get_dir(oldLocation,newLocation)
 		if(victim.lying || victim.resting || moveDirection == NORTH)
 			affecting.layer = BELOW_MOB_LAYER
-		affecting.dir = moveDirection
 		var/grabHugMultiplier = 1
 		if(oldLocation.z == newLocation.z)
 			switch(state)

@@ -227,10 +227,11 @@
 
 	var/list/bucklers = list()
 	SEND_SIGNAL(mob, COMSIG_BUCKLE_QUERY, bucklers)
-
-	if(istype(mob.buckled) && !mob.buckled.buckle_movable)
+	for(var/datum/component/buckling/buckle in bucklers)
+		if(buckle.buckleFlags & BUCKLE_MOVING)
+			continue
 		if(mover == mob)
-//			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")
+			to_chat(mob, "<span class='notice'>You're buckled to \the [buckle.owner]!</span>")
 			if(isliving(mob))
 				mob:resist()
 		return MOVEMENT_STOP
@@ -240,28 +241,12 @@
 			to_chat(mob, "<span class='notice'>You're pinned down by \a [mob.pinned[1]]!</span>")
 		return MOVEMENT_STOP
 
-	for(var/obj/item/grab/G in mob.grabbed_by)
+	if(mob.grabbedBy)
 		return MOVEMENT_STOP
-		/* TODO: Bay grab system
-		if(G.stop_move())
-			if(mover == mob)
-				to_chat(mob, "<span class='notice'>You're stuck in a grab!</span>")
-			mob.ProcessGrabs()
-			return MOVEMENT_STOP
-		*/
+
 	if(mob.restrained())
 		if(mob.grabbedBy && mover == mob)
 			to_chat(mob, "<span class='notice'>You're restrained! You can't move!</span>")
-		/*
-		for(var/mob/M in range(mob, 1))
-			if(M.pulling == mob)
-				if(!M.incapacitated() && mob.Adjacent(M))
-					if(mover == mob)
-						to_chat(mob, "<span class='notice'>You're restrained! You can't move!</span>")
-					return MOVEMENT_STOP
-				else
-					M.stop_pulling()
-			*/
 
 	if(istype(mob.loc, /obj/item/mech_equipment/forklifting_system))
 		if(mover == mob && isliving(mob))
@@ -274,7 +259,7 @@
 
 /mob/living/ProcessGrabs()
 	//if we are being grabbed
-	if(grabbed_by.len)
+	if(grabbedBy)
 		resist() //shortcut for resisting grabs
 
 /mob/proc/ProcessGrabs()

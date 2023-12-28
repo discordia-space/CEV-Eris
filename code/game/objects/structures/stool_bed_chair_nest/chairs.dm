@@ -15,8 +15,8 @@
 /obj/structure/bed/chair/Initialize()
 	. = ..()
 	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
-	buckle.buckleFlags &= ~BUCKLE_FORCE_LIE
-	buckle.buckleFlags &= BUCKLE_FORCE_STAND
+	buckle.buckleFlags = BUCKLE_MOB_ONLY|BUCKLE_FORCE_DIR|BUCKLE_FORCE_STAND|BUCKLE_SEND_UPDATES
+	buckle.updateProc = "update_icon"
 
 /obj/structure/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
 	..()
@@ -41,24 +41,11 @@
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
 	rotate()
 	return
-/*
-/obj/structure/bed/chair/post_buckle_mob()
-	update_icon()
-*/
 
 /obj/structure/bed/chair/update_icon()
 	..()
 	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 
-/*
-	var/cache_key = "[base_icon]-[material.name]-over"
-	if(isnull(stool_cache[cache_key]))
-		var/image/I = image('icons/obj/furniture.dmi', "[base_icon]_over")
-		I.color = material.icon_colour
-		I.layer = FLY_LAYER
-		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
-*/
 	// Padding overlay.
 	if(padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]-over"
@@ -68,15 +55,15 @@
 			I.layer = FLY_LAYER
 			stool_cache[padding_cache_key] = I
 		overlays |= stool_cache[padding_cache_key]
-
-	if(buckle.buckled && padding_material)
-		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
-		if(isnull(stool_cache[cache_key]))
-			var/image/I = image(icon, "[base_icon]_armrest")
-			I.layer = ABOVE_MOB_LAYER
-			I.color = padding_material.icon_colour
-			stool_cache[cache_key] = I
-		overlays |= stool_cache[cache_key]
+	if(buckle)
+		if(buckle.buckled && padding_material)
+			var/cache_key = "[base_icon]-armrest-[padding_material.name]"
+			if(isnull(stool_cache[cache_key]))
+				var/image/I = image(icon, "[base_icon]_armrest")
+				I.layer = ABOVE_MOB_LAYER
+				I.color = padding_material.icon_colour
+				stool_cache[cache_key] = I
+			overlays |= stool_cache[cache_key]
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)

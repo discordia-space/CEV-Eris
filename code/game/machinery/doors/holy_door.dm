@@ -109,8 +109,9 @@
 
 	if(istype(AM, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/wheel = AM
+		var/datum/component/buckling/buckle = wheel.GetComponent(/datum/component/buckling)
 		if(density)
-			if(wheel.pulling && (allowed(wheel.pulling)))
+			if(buckle.buckled && (allowed(buckle.buckled)))
 				open()
 			else
 				do_animate("deny")

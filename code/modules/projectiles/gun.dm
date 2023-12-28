@@ -457,7 +457,7 @@
 			process_point_blank(projectile, user, target)
 
 		//being grabbed reduces accuracy
-		if(LAZYLEN(user.grabbed_by))
+		if(grabbedBy)
 			grabbed_inaccuracy(projectile, user)
 
 		if(projectile_color)
@@ -573,10 +573,10 @@
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))
 		var/mob/M = target
-		if(LAZYLEN(M.grabbed_by))
+		if(M.grabbedBy)
 			var/grabstate = 0
-			for(var/obj/item/grab/G in M.grabbed_by)
-				grabstate = max(grabstate, G.state)
+			var/obj/item/grab/G = M.grabbedBy
+			grabstate = max(grabstate, G.state)
 			if(grabstate >= GRAB_NECK)
 				accuracy_mult = 4
 			else if(grabstate >= GRAB_AGGRESSIVE)
@@ -592,8 +592,8 @@
 	var/accuracy_mult = 0.5
 
 	var/grabstate = 0
-	for(var/obj/item/grab/G in user.grabbed_by)
-		grabstate = max(grabstate, G.state)
+	if(user.grabbedBy)
+		grabstate = max(grabstate, user.grabbedBy.state)
 	if(grabstate >= GRAB_NECK)
 		accuracy_mult = 0.125
 	else if(grabstate >= GRAB_AGGRESSIVE)

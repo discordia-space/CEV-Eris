@@ -57,8 +57,12 @@
 			"You hear cable being cut."
 		)
 		C.handcuffed = null
-		if(C.buckled && C.buckled.buckle_require_restraints)
-			//C.buckled.unbuckle_mob()
+		var/list/bucklers = list()
+		SEND_SIGNAL(C, COMSIG_BUCKLE_QUERY, bucklers)
+		for(var/datum/component/buckling/buckle in bucklers)
+			if(buckle.buckleFlags & BUCKLE_REQUIRE_RESTRAINTED)
+				buckle.unbuckle()
+
 		C.update_inv_handcuffed()
 		return
 	else

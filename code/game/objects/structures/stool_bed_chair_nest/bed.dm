@@ -211,7 +211,14 @@
 /obj/structure/bed/roller/Initialize()
 	. = ..()
 	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
-	buckle.buckleFlags &= BUCKLE_SEND_UPDATES
+	var/list/visualHand = list(
+		"[NORTH]" = list(0, 8, 0),
+		"[SOUTH]" = list(0, 8, 0),
+		"[EAST]" = list(0, 8, 0),
+		"[WEST]" = list(0, 8, 0)
+	)
+	buckle.buckleFlags = BUCKLE_MOB_ONLY|BUCKLE_SEND_UPDATES|BUCKLE_FORCE_LIE|BUCKLE_PIXEL_SHIFT|BUCKLE_FORCE_DIR|BUCKLE_BREAK_ON_FALL
+	buckle.visualHandling = visualHand
 	buckle.updateProc = PROC_REF(postBuckle)
 
 /obj/structure/bed/roller/proc/postBuckle(mob/buckled)

@@ -66,7 +66,7 @@ default behaviour is:
 		var/mob/living/tmob = AM
 
 		for(var/mob/living/M in range(tmob, 1))
-			if(tmob.pinned.len ||  ((M == tmob.grabbedBy && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
+			if(tmob.pinned.len ||  ((M == tmob.grabbedBy && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || tmob.grabbedBy))
 				if ( !(world.time % 5) )
 					to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
 				now_pushing = FALSE
@@ -128,12 +128,6 @@ default behaviour is:
 					now_pushing = FALSE
 					return
 			step_glide(AM, t, glide_size)
-			/*
-			if(ishuman(AM) && AM:grabbed_by)
-				for(var/obj/item/grab/G in AM:grabbed_by)
-					step_glide(G:assailant, get_dir(G:assailant, AM), glide_size)
-					G.adjust_position()
-		*/
 		now_pushing = FALSE
 	return
 
@@ -559,7 +553,7 @@ default behaviour is:
 
 		is_busy = FALSE
 
-	else if(H && H.momentum_speed && !(istype(loc, /turf/space) || grabbed_by.len))
+	else if(H && H.momentum_speed && !(istype(loc, /turf/space) || grabbedBy))
 		H.dive()
 
 	else

@@ -382,8 +382,13 @@
 
 
 /atom/movable/proc/facedir(ndir)
+	var/list/bucklers = list()
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckler in bucklers)
+		if(buckler.buckleFlags & BUCKLE_FORCE_DIR)
+			return FALSE
 	set_dir(ndir)
-	return 1
+	return TRUE
 
 
 

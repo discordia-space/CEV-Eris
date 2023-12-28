@@ -4,8 +4,6 @@
 	icon_state = "wheelchair"
 	anchored = FALSE
 
-	var/driving = 0
-	var/mob/living/pulling = null
 	var/bloodiness
 
 /obj/structure/bed/chair/wheelchair/Initialize()
@@ -13,7 +11,6 @@
 	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_FORCE_STAND | BUCKLE_MOB_ONLY | BUCKLE_REQUIRE_NOT_BUCKLED | BUCKLE_MOVE_RELAY | BUCKLE_FORCE_DIR | BUCKLE_BREAK_ON_FALL, moveProc = PROC_REF(onMoveAttempt))
 
 /obj/structure/bed/chair/wheelchair/proc/onMoveAttempt(mob/living/trier, direction)
-	SIGNAL_HANDLER
 	. = COMSIG_CANCEL_MOVE
 	if(!istype(trier))
 		return
@@ -83,8 +80,6 @@
 		var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 		if(buckle.buckled)
 			return 0
-		if(pulling)
-			return 0 // You can't fold a wheelchair when somebody holding the handles.
 		visible_message("[usr] collapses \the [src.name].")
 		var/obj/item/wheelchair/R = new/obj/item/wheelchair(get_turf(src))
 		R.name = src.name

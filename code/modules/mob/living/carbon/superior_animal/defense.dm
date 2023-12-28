@@ -47,10 +47,9 @@
 		if (I_GRAB)
 			if(M == src || anchored)
 				return 0
-			for(var/obj/item/grab/G in src.grabbed_by)
-				if(G.assailant == M)
-					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
-					return
+			if(grabbedBy && grabbedBy.assailant == M)
+				to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
+				return
 
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
