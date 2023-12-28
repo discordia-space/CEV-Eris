@@ -226,9 +226,6 @@
 		canmove = TRUE
 	else
 		canmove = FALSE //TODO
-		if(buckled)
-			anchored = buckled.buckle_movable
-			lying = buckled.buckle_lying
 	if(lying)
 		set_density(FALSE)
 	else

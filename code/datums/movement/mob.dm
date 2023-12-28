@@ -225,6 +225,9 @@
 				mob:resist()
 		return MOVEMENT_STOP
 
+	var/list/bucklers = list()
+	SEND_SIGNAL(mob, COMSIG_BUCKLE_QUERY, bucklers)
+
 	if(istype(mob.buckled) && !mob.buckled.buckle_movable)
 		if(mover == mob)
 //			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")

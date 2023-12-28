@@ -3,7 +3,6 @@
 	desc = "Now we're getting somewhere."
 	icon_state = "wheelchair"
 	anchored = FALSE
-	buckle_movable = 1
 
 	var/driving = 0
 	var/mob/living/pulling = null
@@ -81,7 +80,8 @@
 	if(over_object == usr && Adjacent(usr))
 		if(!ishuman(usr) || usr.incapacitated())
 			return
-		if(buckled_mob)
+		var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+		if(buckle.buckled)
 			return 0
 		if(pulling)
 			return 0 // You can't fold a wheelchair when somebody holding the handles.

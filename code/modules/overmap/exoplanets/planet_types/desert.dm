@@ -137,11 +137,6 @@
 		return
 	icon_state = "open"
 	cut_overlays()
-	if(buckled_mob)
-		overlays += buckled_mob
-		var/image/I = image(icon,icon_state="overlay")
-		I.layer = WALL_OBJ_LAYER
-		overlays += I
 
 /obj/structure/quicksand/proc/expose()
 	if(exposed)

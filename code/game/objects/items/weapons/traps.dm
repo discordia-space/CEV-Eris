@@ -64,7 +64,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	//Does the user have the dexterity to operate the trap?
 	if (!can_use(user))
 		//If they don't, then they're probably some kind of animal trapped in it
-		if (user != buckled_mob || user.client)
+		if (user != buckle.buckled || user.client)
 			//Such a creature can't free someone else
 			return
 

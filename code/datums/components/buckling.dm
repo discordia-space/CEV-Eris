@@ -121,7 +121,7 @@
 		toBuckle.forceMove(get_turf(owner))
 		if(user)
 			to_chat(user, SPAN_NOTICE("You buckle \the [toBuckle] to the [owner]!"))
-		buckled = draggedIntoAtom
+		buckled = target
 		RegisterSignal(toBuckle, COMSIG_BUCKLE_QUERY, PROC_REF(onBuckleQuery))
 		if(buckleFlags & BUCKLE_MOVE_RELAY)
 			RegisterSignal(buckled, COMSIG_MOB_TRY_MOVE, PROC_REF(onBuckledMoveTry))

@@ -30,8 +30,10 @@
 		return prob(60)
 
 	var/obj/structure/bed/B = A
-	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
-		return 0
+	if (istype(A, /obj/structure/bed))//if it's a bed/chair and someone is buckled, it will not pass
+		var/datum/component/buckling/buckle = B.GetComponent(/datum/component/buckling)
+		if(buckle.buckled)
+			return 0
 
 	else if(istype(A, /mob/living)) // You Shall Not Pass!
 		var/mob/living/M = A

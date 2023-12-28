@@ -206,13 +206,12 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "down"
 	anchored = FALSE
-	buckle_pixel_shift = "x=0;y=6"
 	var/item_form_type = /obj/item/roller	//The folded-up object path.
 
 /obj/structure/bed/roller/Initialize()
 	. = ..()
-	var/datum/component/buckling/buckle = AddComponent(/datum/component/buckling)
-	buckle.flags &= BUCKLE_SEND_UPDATES
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	buckle.buckleFlags &= BUCKLE_SEND_UPDATES
 	buckle.updateProc = PROC_REF(postBuckle)
 
 /obj/structure/bed/roller/proc/postBuckle(mob/buckled)
@@ -263,7 +262,7 @@
 	..()
 	if(!CanMouseDrop(over_object))	return
 	if(!(ishuman(usr) || isrobot(usr)))	return
-	var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 	if(buckle && buckle.buckled) return
 
 	collapse()

@@ -859,8 +859,6 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	if(!canface() || client.moving || !check_gravity())
 		return 0
 	set_dir(ndir)
-	if(buckled && buckled.buckle_movable)
-		buckled.set_dir(ndir)
 	set_move_cooldown(movement_delay())
 	return 1
 

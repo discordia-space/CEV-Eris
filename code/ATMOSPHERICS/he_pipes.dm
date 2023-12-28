@@ -68,7 +68,7 @@
 		else if(istype(current_loc, /turf/space/))
 			parent.radiate_heat_to_space(surface, 1)
 
-		var/datum/component/buckling/buckle = getComponent(/datum/component/buckling)
+		var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
 		var/mob/living/buckleMob = buckle.buckled
 		if(buckleMob)
 			var/hc = pipe_air.heat_capacity()

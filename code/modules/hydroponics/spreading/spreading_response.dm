@@ -2,47 +2,17 @@
 /obj/effect/plant/HasProximity(var/atom/movable/AM)
 
 	if(seed.get_trait(TRAIT_CHEM_SPRAYER))
-		spawn(0)
-			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
-			var/turf/my_target = get_turf(AM)
-			D.create_reagents(10*seed.chems.len)
-			if(!src)
-				return
-			for (var/reagent in seed.chems)
-				D.reagents.add_reagent(reagent, 10)
-			D.set_color()
-			D.set_up(my_target, 1, 10)
-
-	if(!is_mature() || seed.get_trait(TRAIT_SPREAD) != 2)
-		return
-
-	var/mob/living/M = AM
-	if(!istype(M))
-		return
-	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
-
-	if(!istype(seed, /datum/seed/mushroom/maintshroom) && !buckled_mob && !buckle.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
-		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the moving animation),
-		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
-		spawn(1)
-			entangle(M)
+		var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+		var/turf/my_target = get_turf(AM)
+		D.create_reagents(10*seed.chems.len)
+		if(!src)
+			return
+		for (var/reagent in seed.chems)
+			D.reagents.add_reagent(reagent, 10)
+		D.set_color()
+		D.set_up(my_target, 1, 10)
 
 
-/*************************
-	Attack procs
-**************************/
-/obj/effect/plant/attack_hand(var/mob/user)
-	manual_unbuckle(user)
-
-/obj/effect/plant/attack_generic(mob/M, damage, attack_message)
-	if(damage)
-		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
-		health -= damage
-		check_health()
-	else
-		manual_unbuckle(M)
 
 /obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
@@ -164,22 +134,6 @@
 	seed.do_thorns(victim,src)
 	seed.do_sting(victim,src,pick(BP_LEGS))
 
-/obj/effect/plant/proc/entangle(var/mob/living/victim)
-	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
-
-	if(buckle.buckle)
-		return
-
-	//grabbing people
-	if(!victim.anchored && Adjacent(victim) && victim.loc != get_turf(src))
-		var/can_grab = 1
-		if(ishuman(victim))
-			var/mob/living/carbon/human/H = victim
-			if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
-				can_grab = 0
-		if(can_grab)
-			src.visible_message(SPAN_DANGER("Tendrils lash out from \the [src] and drag \the [victim] in!"))
-			victim.forceMove(src.loc)
 
 	//entangling people
 	/*
