@@ -182,7 +182,7 @@ var/global/obj/machinery/power/eotp/eotp
 		var/materials_reward = pick(materials)
 		var/reward_min_amount = materials[materials_reward]
 		var/obj/item/stack/material/_item = new materials_reward(get_turf(src))
-		_item.amount = rand(reward_min_amount, _item.max_amount)
+		_item.setAmount(rand(reward_min_amount, _item.max_amount))
 		visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [src]!"))
 
 	else if(type_release == ENERGY_REWARD)

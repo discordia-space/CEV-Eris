@@ -257,11 +257,11 @@
 	return TRUE
 
 /mob/living/proc/escape_buckle()
-	return TRUE
 	var/list/bucklers = list()
 	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
 	for(var/datum/component/buckling/buckle in bucklers)
 		buckle.unbuckle()
+	return TRUE
 
 /mob/living/carbon/escape_buckle()
 	if(!buckled) return

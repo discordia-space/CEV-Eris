@@ -864,22 +864,22 @@
 
 		//Accounting for the possibility of too much to fit in one stack
 		if(whole_amount <= S.max_amount)
-			S.amount = whole_amount
-			S.update_strings()
+			S.setAmount(whole_amount)
+			S.update_stack()
 			S.update_icon()
 		else
 			//There's too much, how many stacks do we need
 			var/fullstacks = round(whole_amount / S.max_amount)
 			//And how many sheets leftover for this stack
-			S.amount = whole_amount % S.max_amount
+			S.setAmount(whole_amount % S.max_amount)
 
 			if(!S.amount)
 				qdel(S)
 
 			for(var/i = 0; i < fullstacks; i++)
 				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
-				MS.amount = MS.max_amount
-				MS.update_strings()
+				MS.setAmount(MS.max_amount)
+				MS.update_stack()
 				MS.update_icon()
 
 	//And if there's any remainder, we eject that as a shard

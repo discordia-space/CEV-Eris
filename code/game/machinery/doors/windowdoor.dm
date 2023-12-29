@@ -29,7 +29,7 @@
 /obj/machinery/door/window/proc/shatter(var/display_message = 1)
 	new /obj/item/material/shard(src.loc)
 	var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src.loc)
-	CC.amount = 2
+	CC.setAmount(2)
 	var/obj/item/electronics/airlock/ae
 	if(!electronics)
 		ae = new/obj/item/electronics/airlock( src.loc )

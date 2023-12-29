@@ -68,7 +68,7 @@
 			//Tanning!
 			for(var/obj/item/stack/material/hairlesshide/HH in contents)
 				var/obj/item/stack/material/wetleather/WL = new(src)
-				WL.amount = HH.amount
+				WL.setAmount(HH.amount)
 				qdel(HH)
 
 			state = WASHSTATE_FULLCLOSEDDOOR

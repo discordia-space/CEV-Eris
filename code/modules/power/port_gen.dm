@@ -173,7 +173,7 @@
 	if(sheets)
 		var/obj/item/stack/material/S = new sheet_path(loc)
 		var/amount = min(sheets, S.max_amount)
-		S.amount = amount
+		S.setAmount(amount)
 		sheets -= amount
 	if(use_reagents_as_fuel)
 		reagents.clear_reagents()

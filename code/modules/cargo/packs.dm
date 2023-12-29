@@ -60,7 +60,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 		*/
 		if(src.amount && istype(n_item, /obj/item/stack/material/steel))
 			var/obj/item/stack/material/n_sheet = n_item
-			n_sheet.amount = src.amount
+			n_sheet.setAmount(src.amount)
 
 //----------------------------------------------
 //-----------------OPERATIONS-------------------

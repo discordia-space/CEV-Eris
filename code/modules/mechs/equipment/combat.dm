@@ -104,7 +104,7 @@
 			to_chat(user, SPAN_NOTICE("You remove 5 sheets of [blade_mat.display_name] from \the [src]'s blade attachment point."))
 			matter[blade_mat.name]-= 5
 			var/obj/item/stack/material/mat_stack = new blade_mat.stack_type(get_turf(user))
-			mat_stack.amount = 5
+			mat_stack.setAmount(5)
 			blade_mat = null
 			update_icon()
 

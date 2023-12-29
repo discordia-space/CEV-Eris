@@ -49,7 +49,7 @@
 
 		var/obj/item/stack/thrown/J = new src.type(get_turf(src))
 		J.throwforce = throwforce
-		J.amount = 1
+		J.setAmount(1)
 		J.update_icon()
 		J.launchAt(target, C)
 	visible_message(SPAN_DANGER("[C] has thrown \the [src]."))

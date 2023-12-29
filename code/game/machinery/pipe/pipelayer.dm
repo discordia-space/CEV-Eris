@@ -52,7 +52,7 @@
 				if(m)
 					use_metal(m)
 					var/obj/item/stack/material/steel/MM = new (get_turf(src))
-					MM.amount = m
+					MM.setAmount(m)
 					user.visible_message(
 						SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."),
 						SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))

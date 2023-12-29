@@ -133,7 +133,7 @@ GLOBAL_LIST_INIT(nt_constructs, init_nt_constructs())
 	for(var/obj/scrap as anything in loot)
 		if(ispath(scrap, /obj/item/stack))
 			var/obj/item/stack/mat = new scrap(target_turf)
-			mat.amount = loot[scrap]
+			mat.setAmount(loot[scrap])
 		else
 			scrap = new scrap(target_turf)
 

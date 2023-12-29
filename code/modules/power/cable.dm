@@ -542,7 +542,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
-	src.amount = length
+	src.setAmount(length)
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
 	pixel_x = rand(-2,2)
@@ -867,7 +867,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/cut/New(loc)
 	..()
-	src.amount = rand(1,2)
+	src.setAmount(rand(1,2))
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	update_icon()

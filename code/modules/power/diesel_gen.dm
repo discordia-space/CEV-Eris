@@ -66,7 +66,7 @@
 	if(sheets)
 		var/obj/item/stack/material/S = new sheet_path(loc)
 		var/amount = min(sheets, S.max_amount)
-		S.amount = amount
+		S.SetAmount(amount)
 		sheets -= amount
 
 /obj/machinery/power/port_gen/pacman/UseFuel()

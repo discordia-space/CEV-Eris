@@ -83,7 +83,8 @@
 	var/reference = buckled
 	UnregisterSignal(buckled, list(COMSIG_BUCKLE_QUERY, COMSIG_MOB_TRY_MOVE))
 	if(buckleFlags & BUCKLE_PIXEL_SHIFT)
-		animate(buckled, 0.2 SECONDS, pixel_x = initial(buckled.pixel_x), pixel_y = initial(buckled.pixel_y))
+		if(!QDELETED(buckled))
+			animate(buckled, 0.2 SECONDS, pixel_x = initial(buckled.pixel_x), pixel_y = initial(buckled.pixel_y))
 	if(buckleFlags & BUCKLE_HANDLE_LAYER)
 		buckled.layer = initial(buckled.layer)
 	if(ismob(buckled))
@@ -176,9 +177,11 @@
 	if(softLanding)
 		return
 	var/turf/above = GetAbove(fallen)
-	INVOKE_ASYNC(src, PROC_REF(unbuckle))
 	fallen.fall_impact(above, get_turf(fallen))
-	step(fallen, pick(NORTH,SOUTH,EAST,WEST))
+	if(!QDELETED(fallen))
+		INVOKE_ASYNC(src, PROC_REF(unbuckle))
+		step(fallen, pick(NORTH,SOUTH,EAST,WEST))
+
 
 /datum/component/buckling/proc/onOwnerDragDrop(atom/draggedOverAtom, atom/draggedIntoAtom, mob/living/user, src_location, over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
@@ -191,7 +194,7 @@
 	if(buckled)
 		to_chat(user, SPAN_NOTICE("\The [owner] is already buckling \the [buckled]. You need to unbuckle it first to buckle \the [draggedIntoAtom]"))
 		return
-	buckle(draggedIntoAtom, user)
+	INVOKE_ASYNC(src, PROC_REF(buckle), draggedIntoAtom, user)
 
 /datum/component/buckling/proc/onOwnerClicked(atom/clicked, mob/living/clicker, params)
 	SIGNAL_HANDLER

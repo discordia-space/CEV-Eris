@@ -69,8 +69,8 @@
 							var/stack_type = material_stack_type(material_display_name(material))
 							if(stack_type)
 								var/obj/item/stack/material/waste = new stack_type(MS_bioreactor.misc_output)
-								waste.amount = target.matter[material]
-								waste.update_strings()
+								waste.setAmount(target.matter[material])
+								waste.update_stack()
 							target.matter -= material
 						consume(target)
 				else

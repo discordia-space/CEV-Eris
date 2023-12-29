@@ -402,7 +402,8 @@
 						assembly_step = -5
 						to_chat(user,  SPAN_NOTICE("You remove the wirings of \the [src]."))
 						var/obj/item/stack/cable_coil/coil = new(null)
-						coil.amount = 3
+						coil.setAmount(3)
+
 						coil.forceMove(get_turf(user))
 					return
 

@@ -38,7 +38,7 @@
 /obj/item/stack/New(var/loc, var/amount=null)
 	.=..()
 	if (amount)
-		src.amount = amount
+		setAmount(amount)
 
 /obj/item/stack/Initialize()
 	.=..()
@@ -47,7 +47,7 @@
 
 	if (rand_min || rand_max)
 		amount = rand(rand_min, rand_max)
-		amount = round(amount, 1) //Just in case
+		setAmount(round(amount, 1)) //Just in case
 	update_icon()
 
 /obj/item/stack/update_icon()
@@ -60,6 +60,12 @@
 	else
 		icon_state = "[initial(icon_state)]_3"
 	..()
+
+/obj/item/stack/proc/setAmount(amount)
+	var/oldWeight = weight
+	src.amount = amount
+	weight = getWeight() * amount
+	recalculateWeights(weight - oldWeight)
 
 /obj/item/stack/Destroy()
 	if (synths)
@@ -179,12 +185,7 @@
 
 
 /obj/item/stack/get_matter()
-	. = list()
-	if(matter)
-		. = matter.Copy()
-		for(var/i in .)
-			.[i] *= amount
-
+	return matter
 
 /obj/item/stack/Topic(href, href_list)
 	..()
