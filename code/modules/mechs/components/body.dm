@@ -255,7 +255,7 @@
 	max_damage = 75
 	power_use = 5
 	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
-	has_hardpoints = list(HARDPOINT_BACK)
+	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5, MATERIAL_PLASTIC = 10)
 
 /obj/item/mech_component/chassis/combat

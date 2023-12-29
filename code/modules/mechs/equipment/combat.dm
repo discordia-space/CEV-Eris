@@ -855,6 +855,10 @@
 		to_chat(user, "You toggle \the [src] [on ? "on" : "off"].")
 		last_toggle = world.time
 		update_icon()
+		if(on)
+			playsound(src,'sound/mechs/shield_raise.ogg', 50, 1)
+		else
+			playsound(src,'sound/mechs/shield_drop.ogg', 50, 1)
 
 // Used to tell how effective we are against damage,
 /obj/item/mech_equipment/shield_generator/proc/getEffectiveness()
@@ -901,7 +905,7 @@
 			if(QDELETED(power))
 				last_toggle = world.time
 				on = FALSE
-				playsound(get_turf(src),'sound/mechs/internaldmgalarm.ogg', 50, 8)
+				playsound(get_turf(src),'sound/mechs/internaldmgalarm.ogg', 50, 1)
 				update_icon()
 				return damages
 
