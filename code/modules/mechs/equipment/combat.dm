@@ -666,7 +666,7 @@
 	spawn_blacklisted = FALSE
 	rarity_value = 75
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
-	matter = list(MATERIAL_PLASTEEL = 35, MATERIAL_STEEL = 25) // Gold and silver for it's ammo-regeneration electronics
+	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_STEEL = 20)
 	loading_type = LOADING_FLEXIBLE
 	ammunition_storage_limit = 4
 	accepted_types = list(
@@ -735,7 +735,7 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 5, TECH_MAGNET = 3)
-	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_STEEL = 10) // Gold and silver for it's ammo-regeneration electronics
+	matter = list(MATERIAL_PLASTEEL = 50, MATERIAL_STEEL = 10)
 	spawn_tags = SPAWN_MECH_QUIPMENT
 	spawn_blacklisted = FALSE
 	rarity_value = 110
@@ -855,6 +855,10 @@
 		to_chat(user, "You toggle \the [src] [on ? "on" : "off"].")
 		last_toggle = world.time
 		update_icon()
+		if(on)
+			playsound(src,'sound/mechs/shield_raise.ogg', 50, 1)
+		else
+			playsound(src,'sound/mechs/shield_drop.ogg', 50, 1)
 
 // Used to tell how effective we are against damage,
 /obj/item/mech_equipment/shield_generator/proc/getEffectiveness()
@@ -901,6 +905,7 @@
 			if(QDELETED(power))
 				last_toggle = world.time
 				on = FALSE
+				playsound(get_turf(src),'sound/mechs/internaldmgalarm.ogg', 50, 1)
 				update_icon()
 				return damages
 
