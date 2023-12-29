@@ -120,3 +120,5 @@
 	can_strafe = FALSE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 16)
 	can_climb = FALSE
+	mech_turn_sound = 'sound/mechs/mechmove04.ogg'
+	mech_step_sound = 'sound/mechs/engine.ogg'
