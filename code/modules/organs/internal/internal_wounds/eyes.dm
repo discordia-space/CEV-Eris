@@ -138,7 +138,7 @@
     name = "jammed mechanics"
 
 /datum/component/internal_wound/robotic/eyes_blunt/matrix
-	name = "disconected matrix"
+	name = "disconnected matrix"
 	organ_efficiency_multiplier = -1 // can't see anything because of loose wire
 
 // Sharp
@@ -242,4 +242,3 @@
 	name = "clogged circuitry"
 	severity_max = 5
 	hal_damage = IWOUND_MEDIUM_DAMAGE
-  
