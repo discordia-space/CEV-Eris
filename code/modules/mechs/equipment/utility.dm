@@ -153,7 +153,6 @@
 	icon_state = "mech_floodlight"
 	item_state = "mech_floodlight"
 	restricted_hardpoints = list(HARDPOINT_HEAD, HARDPOINT_RIGHT_SHOULDER, HARDPOINT_LEFT_SHOULDER)
-	mech_layer = MECH_INTERMEDIATE_LAYER
 
 	var/on = FALSE
 	var/l_max_bright = 1.2
@@ -168,6 +167,7 @@
 		to_chat(user, "You switch \the [src] [on ? "on" : "off"].")
 		update_icon()
 		owner.update_icon()
+		playsound(src, 'sound/mechs/industrial_floodlight.ogg', 50, 1)
 
 /obj/item/mech_equipment/light/update_icon()
 	. = ..()
@@ -179,6 +179,10 @@
 		icon_state = "[initial(icon_state)]"
 		//set_light(0, 0)
 		set_light(0, 0)
+
+	if(owner && (owner.hardpoints[HARDPOINT_HEAD] == src))
+		mech_layer = MECH_INTERMEDIATE_LAYER
+	else mech_layer = initial(mech_layer)
 
 /obj/item/mech_equipment/thrusters
 	name = "exosuit thrusters"

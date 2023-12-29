@@ -222,7 +222,7 @@
 /obj/screen/movable/exosuit/toggle/air/toggled()
 	owner.use_air = ..()
 	to_chat(usr, SPAN_NOTICE("Auxiliary atmospheric system [owner.use_air ? "enabled" : "disabled"]."))
-	playsound(src, 'sound/machines/airlock.ogg', 90, 1)
+	playsound(src, 'sound/machines/airlock.ogg', 50, 1)
 
 /obj/screen/movable/exosuit/toggle/maint
 	name = "toggle maintenance protocol"
@@ -264,7 +264,7 @@
 		to_chat(usr, SPAN_WARNING("\The body of [owner] is far too damaged to close its hatch!"))
 		return
 	owner.hatch_locked = owner.toggle_hatch_lock()
-	playsound(src, 'sound/machines/door_lock_off.ogg', 50, 1)
+	playsound(src, 'sound/machines/door_lock_off.ogg', 30, 1)
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is [owner.hatch_locked ? "now" : "no longer" ] locked."))
 	update_icon()
 
@@ -285,7 +285,7 @@
 		return
 	owner.hatch_closed = owner.toggle_hatch()
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
-	playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
+	playsound(src, 'sound/machines/Custom_closetopen.ogg', 70, 1)
 	owner.update_icon()
 	update_icon()
 
@@ -361,6 +361,7 @@
 		to_chat(usr,  SPAN_WARNING("Alternative sensor configurations not found. Contact manufacturer for more details."))
 		return
 	owner.head.active_sensors = owner.toggle_sensors()
+	playsound(src, 'sound/mechs/sensors.ogg', 75, 1)
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
 	update_icon()
 
