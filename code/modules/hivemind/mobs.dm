@@ -121,12 +121,11 @@
 		var/obj/machinery/disposal/D = loc
 		D.go_out(src)
 
-	if(buckled)
-		var/obj/structure/bed/B = locate() in loc
-		/*
-		if(B)
-			B.unbuckle_mob()
-		*/
+	var/list/bucklers = list()
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckle in bucklers)
+		if(buckle.buckled)
+			buckle.unbuckle()
 
 	if(!hive_mind_ai)
 		if(prob(5))

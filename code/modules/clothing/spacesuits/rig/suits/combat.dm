@@ -15,7 +15,6 @@
 		ARMOR_BIO =100,
 		ARMOR_RAD =50
 	)
-	ablative_max = 12
 
 	drain = 4
 	offline_vision_restriction = 1
@@ -82,8 +81,6 @@
 		ARMOR_BIO =100,
 		ARMOR_RAD =100
 	)
-	ablative_max = 8
-	ablation = ABLATION_DURABLE // Lasts longer than most rigs
 
 	drain = 4
 	offline_vision_restriction = 1

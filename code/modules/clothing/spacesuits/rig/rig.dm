@@ -24,7 +24,7 @@
 	volumeClass = ITEM_SIZE_BULKY
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_RIG
-	rarity_value = 10
+	rarity_value = 300
 	price_tag = 150
 	bad_type = /obj/item/rig //TODO: Resprite these, remove old bay leftover RIGs, add a RIG to moeb R&D, add more RIGs in general
 
@@ -42,11 +42,8 @@
 	siemens_coefficient = 0.1
 	permeability_coefficient = 0.1
 	unacidable = 1
-	slowdown = HEAVY_SLOWDOWN // Very slow, but gimbal makes aim steady
-	var/ablative_armor = 0
-	var/ablative_max = 0
-	var/ablation = ABLATION_STANDARD
-
+	weight = 40000
+	var/weightReduction = 30000
 
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
@@ -100,7 +97,6 @@
 	var/seal_delay = SEAL_DELAY
 	var/sealing                                               // Keeps track of seal status independantly of canremove.
 	var/offline = 1                                           // Should we be applying suit maluses?
-	var/offline_slowdown = HEAVY_SLOWDOWN * 3                 // If the suit is deployed and unpowered, it sets slowdown to this.
 	var/vision_restriction
 	var/offline_vision_restriction = 1                        // 0 - none, 1 - welder vision, 2 - blind. Maybe move this to helmets.
 	var/airtight = 1 //If set, will adjust AIRTIGHT and STOPPRESSUREDAMAGE flags on components. Otherwise it should leave them untouched.
@@ -136,19 +132,6 @@
 		description += "The maintenance panel is [open ? "open" : "closed"]. \n"
 		description += "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"]. \n"
 
-	if(ablative_max) // If ablative armor is replaced with a module system, this should be called as a proc on the module
-		var/ablative_ratio = ablative_armor / ablative_max
-		switch(ablative_ratio)
-			if(1) // First we get this over with
-				description += "The armor system reports pristine condition."
-			if(-INFINITY to 0.1)
-				description += "The armor system reports system error. Repairs mandatory."
-			if(0.1 to 0.5)
-				description += "The armor system reports critical failure! Repairs mandatory."
-			if(0.5 to 0.8)
-				description += "The armor system reports heavy damage. Repairs required."
-			if(0.8 to 1)
-				description += "The armor system reports insignificant damage. Repairs advised."
 	..(user, afterDesc = description)
 
 /obj/item/rig/Initialize()
@@ -191,7 +174,6 @@
 		chest.equip_delay = 0
 		if(allowed)
 			chest.allowed |= allowed
-		chest.slowdown = offline_slowdown
 		verbs |= /obj/item/rig/proc/toggle_chest
 
 	if(initial_modules && initial_modules.len)
@@ -213,8 +195,6 @@
 		piece.permeability_coefficient = permeability_coefficient
 		piece.unacidable = unacidable
 		if(armor) piece.armor = armor
-
-	ablative_armor = ablative_max
 
 	update_icon(1)
 
@@ -394,7 +374,7 @@
 			piece.forceMove(src)
 
 	if(active && cell) // dains power from the cell whenever the suit is sealed
-		cell.use(drain*0.1)
+		cell.use(drain)
 
 	if(!istype(wearer) || loc != wearer || wearer.back != src || canremove || !cell || cell.is_empty())
 		if(!cell || cell.is_empty())
@@ -403,10 +383,7 @@
 			if(!offline)
 				if(istype(wearer))
 					if(!canremove)
-						if (offline_slowdown < 3)
-							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead."))
-						else
-							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
+						to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
 					if(offline_vision_restriction == 1)
 						to_chat(wearer, SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision."))
 					else if(offline_vision_restriction == 2)
@@ -418,14 +395,15 @@
 			offline = 0
 			if(istype(wearer) && !wearer.wearing_rig)
 				wearer.wearing_rig = src
-			chest.slowdown = initial(slowdown)
+				wearer.adjustStatusEffect(SE_WEIGHT_OFFLOAD, weightReduction)
 
 	if(offline)
 		if(offline == 1)
 			for(var/obj/item/rig_module/module in installed_modules)
 				module.deactivate()
 			offline = 2
-			chest.slowdown = offline_slowdown
+			if(istype(wearer))
+				wearer.adjustStatusEffect(SE_WEIGHT_OFFLOAD, -weightReduction)
 		return
 
 	if(cell && cell.charge > 0 && electrified > 0)
@@ -817,30 +795,6 @@
 		if(user.stunned)
 			return 1
 	return 0
-
-/obj/item/rig/block_bullet(mob/user, var/obj/item/projectile/P, def_zone)
-	if(!active || !ablative_armor)
-		return FALSE
-
-	var/ablative_stack = ablative_armor // Follow-up attacks drain this
-
-	for(var/damage_type in P.damage_types)
-		if(damage_type in list(BRUTE, BURN)) // Ablative armor affects both brute and burn damage
-			var/damage = P.damage_types[damage_type]
-			P.damage_types[damage_type] -= ablative_stack / armor_divisor
-
-			ablative_stack = max(ablative_stack - damage, 0)
-		else if(damage_type == HALLOSS)
-			P.damage_types[damage_type] -= ablative_stack / armor_divisor
-
-		if(P.damage_types[damage_type] <= 0)
-			P.damage_types -= damage_type
-
-	ablative_armor -= max(-(ablative_stack - ablative_armor) / ablation - armor.getRating(P.check_armour), 0) // Damage blocked (not halloss) reduces ablative armor, base armor protects ablative armor
-
-	if(!P.damage_types.len)
-		return TRUE
-	return FALSE
 
 /obj/item/rig/proc/take_hit(damage, source, is_emp=0)
 

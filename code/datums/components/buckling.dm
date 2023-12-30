@@ -81,18 +81,18 @@
 
 /datum/component/buckling/proc/unbuckle()
 	var/reference = buckled
-	UnregisterSignal(buckled, list(COMSIG_BUCKLE_QUERY, COMSIG_MOB_TRY_MOVE))
-	if(buckleFlags & BUCKLE_PIXEL_SHIFT)
-		if(!QDELETED(buckled))
+	if(!QDELETED(buckled))
+		UnregisterSignal(buckled, list(COMSIG_BUCKLE_QUERY, COMSIG_MOB_TRY_MOVE))
+		if(buckleFlags & BUCKLE_PIXEL_SHIFT)
 			animate(buckled, 0.2 SECONDS, pixel_x = initial(buckled.pixel_x), pixel_y = initial(buckled.pixel_y))
-	if(buckleFlags & BUCKLE_HANDLE_LAYER)
-		buckled.layer = initial(buckled.layer)
-	if(ismob(buckled))
-		var/mob/living/buckledMob = buckled
-		buckledMob.update_lying_buckled_and_verb_status()
-		buckledMob.update_floating()
+		if(buckleFlags & BUCKLE_HANDLE_LAYER)
+			buckled.layer = initial(buckled.layer)
+		if(ismob(buckled))
+			var/mob/living/buckledMob = buckled
+			buckledMob.update_lying_buckled_and_verb_status()
+			buckledMob.update_floating()
 	buckled = null
-	if(buckleFlags & BUCKLE_SEND_UPDATES)
+	if(buckleFlags & BUCKLE_SEND_UPDATES && !QDELETED(buckled))
 		INVOKE_ASYNC(owner, updateProc, reference)
 
 /datum/component/buckling/proc/buckle(atom/movable/target, mob/user)

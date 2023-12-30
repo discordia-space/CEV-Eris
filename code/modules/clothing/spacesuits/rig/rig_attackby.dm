@@ -152,14 +152,6 @@
 				to_chat(user, "\The [src] access panel is not locked, there's no need to cut it.")
 				//No return here, incase they're trying to repair
 
-			if (ablative_max <= ablative_armor)
-				to_chat(user, SPAN_WARNING("There is no damage on \the [src]'s armor layers to repair."))
-
-			else if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_ZERO, required_stat = STAT_MEC, instant_finish_tier = INFINITY)) // no instant repairs
-				ablative_armor = min(ablative_armor + 2, ablative_max)
-				to_chat(user, SPAN_NOTICE("You repair the damage on the [src]'s armor layers."))
-				return
-
 		if(ABORT_CHECK)
 			return
 
@@ -241,13 +233,3 @@
 		to_chat(user, SPAN_DANGER("You short out the access protocol for the suit."))
 		return 1
 
-/obj/item/rig/proc/block_explosion(mob/user, power) // Returns damage to block
-	if(!active || !ablative_armor)
-		return FALSE
-
-	var/ablative_stack = max((ablative_armor * 8) - power, 0) // Used to determine damage to RIG
-	power = ablative_armor * 8
-
-	ablative_armor -= max(-(ablative_stack - ablative_armor * 8) / ablation, 0) // Damage blocked (not halloss) reduces ablative armor
-
-	return power

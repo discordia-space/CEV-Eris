@@ -15,7 +15,6 @@
 	emp_protection = 10
 	slowdown = 0
 	item_flags = STOPPRESSUREDAMAGE | THICKMATERIAL | DRAG_AND_DROP_UNEQUIP | EQUIP_SOUNDS
-	offline_slowdown = 0
 	offline_vision_restriction = 0
 	drain = 2
 
@@ -93,8 +92,6 @@
 		ARMOR_BIO =100,
 		ARMOR_RAD =25
 	)
-	ablative_max = 12
-	ablation = ABLATION_SOFT
 
 	emp_protection = 40 //change this to 30 if too high.
 	slowdown = 0

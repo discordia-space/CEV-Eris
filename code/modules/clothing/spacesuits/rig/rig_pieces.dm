@@ -11,6 +11,7 @@
 	cold_protection =    HEAD|FACE|EYES
 	brightness_on = 4
 	spawn_tags = null
+	armorComps = list()
 
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
@@ -22,6 +23,7 @@
 	species_restricted = null
 	gender = PLURAL
 	spawn_tags = null
+	armorComps = list()
 
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
@@ -33,6 +35,7 @@
 	gender = PLURAL
 	icon_base = null
 	spawn_tags = null
+	armorComps = list()
 
 /obj/item/clothing/suit/space/rig
 	name = "chestpiece"
@@ -49,6 +52,7 @@
 	supporting_limbs = list()
 	retract_while_active = FALSE
 	spawn_tags = null
+	armorComps = list()
 
 //TODO: move this to modules
 /obj/item/clothing/head/space/rig/proc/prevent_track()

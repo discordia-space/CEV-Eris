@@ -392,16 +392,6 @@ its easier to just keep the beam vertical.
 		else
 			full_name += "oil-stained [name][infix]."
 
-	/*
-	margin: 1px;
-	border: 5px solid #0a3352;
-	padding: 5px;
-	background-color:#1d527a;
-	width: auto; /// THESE 2 are needed because IE11 has no max-content width - SPCR 2023
-	white-space: nowrap;
-	*/
-
-
 	examineText += "<div id='examine'>"
 	examineText += "\icon[src] This is [full_name] \n [desc]"
 	examineText += "[suffix]"

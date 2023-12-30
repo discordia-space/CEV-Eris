@@ -152,6 +152,10 @@ SUBSYSTEM_DEF(chunks)
 	UnregisterSignal(oldContainer , COMSIG_MOVABLE_MOVED)
 	RegisterSignal(newContainer, COMSIG_MOVABLE_MOVED, PROC_REF(chunkOnMove))
 
+/mob/proc/tch()
+	for(var/mob/thng in getMobsInRangeChunked(get_turf(src), 8, FALSE, TRUE))
+		message_admins("Received [thng]")
+
 
 /mob/proc/chunkClearSelf(atom/source)
 	SIGNAL_HANDLER

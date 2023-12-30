@@ -1,5 +1,5 @@
 #define STAT_VALUE_DEFAULT	0
-#define STAT_VALUE_MAXIMUM 150
+#define STAT_VALUE_MAXIMUM 100
 
 #define STAT_MEC			"Mechanical"
 #define STAT_COG			"Cognition"

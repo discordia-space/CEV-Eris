@@ -110,7 +110,6 @@ var/list/name_to_material
 	var/melting_point = 1800     // K, walls will take damage if they're next to a fire hotter than this
 	var/integrity = 150          // General-use HP value for products.
 	var/opacity = 1              // Is the material transparent? 0.5< makes transparent walls/doors.
-	var/explosion_resistance = 5 // Only used by walls currently.
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.

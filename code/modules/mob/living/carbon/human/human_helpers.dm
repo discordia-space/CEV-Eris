@@ -134,3 +134,6 @@
 			equipment_see_invis = min(equipment_see_invis, A.see_invisible_gun)
 		else
 			equipment_see_invis = A.see_invisible_gun
+
+/mob/living/carbon/human/proc/adjustStatusEffect(effectType, value)
+	statusEffects[effectType] += value

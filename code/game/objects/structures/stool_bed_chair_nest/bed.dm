@@ -137,11 +137,6 @@
 		to_chat(user, "You remove the padding from \the [src].")
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		remove_padding()
-	else if(istype(W, /obj/item/grab))
-		var/obj/item/grab/G = W
-		var/mob/living/affecting = G.affecting
-		//if(user_buckle_mob(affecting, user))
-		//	qdel(W)
 
 	else if(!istype(W, /obj/item/bedsheet))
 		..()

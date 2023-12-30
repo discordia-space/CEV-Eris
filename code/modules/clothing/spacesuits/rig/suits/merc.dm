@@ -16,8 +16,6 @@
 		ARMOR_BIO =100,
 		ARMOR_RAD =50
 	)
-	ablative_max = 12
-	ablation = ABLATION_DURABLE
 
 	drain = 3.5
 	offline_vision_restriction = 1

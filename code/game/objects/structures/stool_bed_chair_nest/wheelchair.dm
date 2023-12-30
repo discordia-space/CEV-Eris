@@ -55,7 +55,9 @@
 
 /proc/equip_wheelchair(mob/living/carbon/human/H) //Proc for spawning in a wheelchair if a new character has no legs. Used in new_player.dm
 	var/obj/structure/bed/chair/wheelchair/W = new(H.loc)
-	// W.buckle_mob(H)
+	var/datum/component/buckling/buckle = W.GetComponent(/datum/component/buckling)
+	if(buckle && !buckle.buckled)
+		buckle.buckle(H)
 
 /obj/item/wheelchair
 	name = "wheelchair"

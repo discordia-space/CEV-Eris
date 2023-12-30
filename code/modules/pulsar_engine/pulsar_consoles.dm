@@ -152,16 +152,14 @@
 /obj/machinery/pulsar/explosion_act(severity)
 	return
 
-/obj/machinery/pulsar/proc/set_block_events(state_bool = TRUE){
-	if(state_bool){
+/obj/machinery/pulsar/proc/set_block_events(state_bool = TRUE)
+	if(state_bool)
 		ship.block_events = TRUE
 		ship.try_overcharge(FALSE)
 		ship.stop_rad_storm()
 		return
-	}
 	ship.block_events = FALSE
 	ship.try_move(0) //Recalc if the pulsar is in a beam
-}
 
 /obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
 	name = "pulsar power bridge"

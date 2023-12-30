@@ -7,7 +7,7 @@
 	/// yes becauses we used to have -1 on shoes
 	tally -= 1.5
 
-	var/weightTally = (weight - initial(weight) - 20000) / 1000
+	var/weightTally = (weight - initial(weight) - 20000 - statusEffects[SE_WEIGHT_OFFLOAD]) / 1000
 	if(weightTally > 0)
 		if(weightTally > 50)
 			tally += weightTally*0.02

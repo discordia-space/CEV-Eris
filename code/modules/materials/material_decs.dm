@@ -108,7 +108,6 @@
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = PLASTEEL_COLOUR//"#777777"
-	explosion_resistance = 25
 	hardness = 80
 	weight = 90
 	stack_origin_tech = list(TECH_MATERIAL = 2)
@@ -365,7 +364,6 @@
 	weight = 500
 	integrity = 1200
 	melting_point = 6000       // Hull plating.
-	explosion_resistance = 200 // Hull plating.
 	hardness = 500
 	weight = 500
 
@@ -375,7 +373,6 @@
 	icon_colour = "#824B28"
 	integrity = 50
 	icon_base = "solid"
-	explosion_resistance = 2
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
 	hardness = 15
