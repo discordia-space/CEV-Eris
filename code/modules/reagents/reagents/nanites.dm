@@ -163,22 +163,15 @@
 	description = "Microscopic construction robots programmed to heal body cells."
 
 /datum/reagent/nanites/nanosymbiotes/will_occur(mob/living/carbon/M, alien, var/location)
-	if(..() && (M.getBruteLoss() || M.getFireLoss() || M.getToxLoss() || M.getCloneLoss() || M.getBrainLoss()))
+	if(..() && (M.getBruteLoss() || M.getFireLoss() || M.getOxyLoss()))
 		return TRUE
 
 /datum/reagent/nanites/nanosymbiotes/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
 		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.03)) * effect_multiplier) 
-		M.adjustFireLoss(-(1 + (M.getBruteLoss() * 0.03)) * effect_multiplier)
+		M.adjustFireLoss(-(1 + (M.getFireLoss() * 0.03)) * effect_multiplier)
 		M.adjustBruteLoss(-(1 + (M.getBruteLoss() * 0.03)) * effect_multiplier)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/list/big_brain = H.internal_organs - H.internal_organs + H.internal_organs_by_efficiency[BP_BRAIN] // DEAL CHECK THIS OUT
-			for(var/obj/item/organ/I in big_brain)
-				var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
-				if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I))
-					M.add_chemical_effect(CE_BRAINHEAL, 1)
 
 /datum/reagent/nanites/oxyrush
 	name = "Oxyrush"
@@ -212,6 +205,8 @@
 		M.add_chemical_effect(CE_BLOODCLOT, 1)
 		M.add_chemical_effect(CE_ANTITOX, 2)
 		M.add_chemical_effect(CE_STABLE, 1)
+		M.add_chemical_effect(CE_BRAINHEAL, 1)
+		M.add_chemical_effect(CE_EYEHEAL, 1)
 
 /datum/reagent/nanites/purgers
 	name = "Purgers"

@@ -181,10 +181,9 @@
 						is_treated = TRUE
 					else
 						is_treated = S.use(charges_needed)
-			if(istype(I, /obj/item/stock_parts)) // replace with [else] once theres more items than obj/stock_parts/scanner in eyes.dm as treatment tool
-				var/obj/item/stock_parts/P
+			if(istype(I)) // check for using items without stacks
 				is_treated = TRUE
-				qdel(P)
+				qdel(I)
 			if(is_treated)
 				if(free_use)
 					to_chat(user, SPAN_NOTICE("You have managed to waste less [I.name]."))
@@ -240,7 +239,7 @@
 				if(!islist(H.internal_organs_by_efficiency[process]))
 					H.internal_organs_by_efficiency[process] = list()
 				H.internal_organs_by_efficiency[process] |= O
-	
+
 	if(organ_efficiency_multiplier)
 		for(var/organ in O.organ_efficiency)
 			O.organ_efficiency[organ] = round(O.organ_efficiency[organ] * (1 + organ_efficiency_multiplier), 1)
