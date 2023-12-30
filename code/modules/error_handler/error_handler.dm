@@ -99,8 +99,10 @@ var/total_runtimes_skipped = 0
 		desclines.Add(srcinfo)
 	if(usrinfo)
 		desclines.Add(usrinfo)
+	/*
 	if(silencing)
 		desclines += "  (This error will now be item_flags & SILENT for [ERROR_SILENCE_TIME / 600] minutes)"
+	*/
 	if(error_cache)
 		error_cache.logError(e, desclines, e_src = e_src)
 

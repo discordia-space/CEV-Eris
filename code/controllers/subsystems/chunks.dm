@@ -121,30 +121,32 @@ SUBSYSTEM_DEF(chunks)
 	SIGNAL_HANDLER
 	var/datum/chunk/chunk_reference
 	if(oldLocation?.z && newLocation?.z)
-		if(CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y) && oldLocation.z == newLocation.z)
+		if((CHUNKID(oldLocation.x, oldLocation.y) == CHUNKID(newLocation.x, newLocation.y)) && (oldLocation.z == newLocation.z))
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.mobs -= src
-		//if(ishuman(src))
-		//	message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+		if(ishuman(src))
+			message_admins("M:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z] 1  [usr]")
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.mobs += src
-		//if(ishuman(src))
-		//	message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+		if(ishuman(src))
+			message_admins("M:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z] 1 [usr]")
+		if(oldLocation.z != newLocation.z)
+			stack_trace("Stack tracing mobs")
 	else if(newLocation?.z)
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.mobs += src
-		//if(ishuman(src))
-		//	message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+		if(ishuman(src))
+			message_admins("M:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z] 2 [usr]")
 	else if(oldLocation?.z)
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.mobs -= src
-		//if(ishuman(src))
-		//	message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+		if(ishuman(src))
+			message_admins("M:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z] 2 [usr]")
 
 /mob/proc/chunkOnContainerization(atom/source, atom/newContainer , atom/oldContainer)
 	SIGNAL_HANDLER
@@ -174,26 +176,26 @@ SUBSYSTEM_DEF(chunks)
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.hearers -= src
-		//if(ishuman(src))
-		//	message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+		if(ishuman(src))
+			message_admins("H:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z]" )
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.hearers += src
-		//if(ishuman(src))
-		//	message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+		if(ishuman(src))
+			message_admins("H:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z]")
 	else if(newLocation?.z)
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.hearers += src
-		//if(ishuman(src))
-		//	message_admins("[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)]")
+		if(ishuman(src))
+			message_admins("H:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z]")
 	else if(oldLocation?.z)
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.hearers -= src
-		//if(ishuman(src))
-		//	message_admins("[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)]")
+		if(ishuman(src))
+			message_admins("H:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z]")
 	/*
 	var/datum/chunk/chunk_reference
 	if(oldLocation && oldLocation.z != 0)

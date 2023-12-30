@@ -286,6 +286,7 @@
 	if(!ES && !istop)
 		return
 
+	message_admins("forceMove called in stairs for [AM] with [ES] target on level [ES.z]")
 	AM.forceMove(get_turf(target))
 	//try_resolve_mob_pulling(AM, ES)
 
