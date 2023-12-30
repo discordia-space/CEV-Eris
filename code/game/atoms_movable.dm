@@ -47,20 +47,16 @@ GLOBAL_VAR_INIT(Debug,0)
 		set_opacity(FALSE)
 	if(LAZYLEN(movement_handlers) && !ispath(movement_handlers[1]))
 		QDEL_LIST(movement_handlers)
+	if(grabbedBy)
+		QDEL_NULL(grabbedBy)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
-	forceMove(null)
 
 	. = ..()
-	//for(var/atom/movable/AM in contents)
-	//	qdel(AM)
 
 	if(loc)
 		loc.handle_atom_del(src)
-
-	//forceMove(null)
-	if(grabbedBy)
-		QDEL_NULL(grabbedBy)
+	forceMove(null)
 
 /atom/movable/Bump(var/atom/A, yes)
 	if(src.throwing)
@@ -140,6 +136,8 @@ GLOBAL_VAR_INIT(Debug,0)
 
 	var/atom/origin = loc
 
+
+
 	loc = destination
 
 	if(origin)
@@ -190,6 +188,9 @@ GLOBAL_VAR_INIT(Debug,0)
 		if(!is_origin_turf || (get_z(loc) != get_z(origin)) )
 			update_plane()
 	*/
+	if(!loc)
+		GLOB.moved_event.raise_event(src, origin, null)
+
 
 	return TRUE
 
@@ -431,6 +432,10 @@ GLOBAL_VAR_INIT(Debug,0)
 		if(!isturf(oldloc) || !isturf(loc))
 			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, getContainingAtom())
 		*/
+		// Entered() typically lifts the moved event, but in the case of null-space we'll have to handle it.
+		if(!loc)
+			GLOB.moved_event.raise_event(src, oldloc, null)
+
 
 // Wrapper of step() that also sets glide size to a specific value.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)

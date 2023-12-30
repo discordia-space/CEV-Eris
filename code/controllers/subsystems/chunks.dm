@@ -3,6 +3,7 @@
 #define CHUNKID(x,y) max(1,round(x/CHUNK_SIZE)+round(y/CHUNK_SIZE)*round(world.maxx / CHUNK_SIZE))
 #define CHUNKSPERLEVEL(x,y) round(world.maxx * world.maxy) / (CHUNK_SIZE ** 2) + round(world.maxx / CHUNK_SIZE)
 #define CHUNKCOORDCHECK(x,y) (x > world.maxx || y > world.maxy || x <= 0 || y <= 0)
+#define CHUNKKEY(x,y,z) (CHUNKID(x,y) * (world.maxz+z))
 /// This subsystem is meant for anything that should not be employing byond view() and is generally very constraining to keep track of
 /// For now it only has mobs and hearers, but it should also include sanity , signal receivers , and anything that is very frequently
 // searched
@@ -125,28 +126,42 @@ SUBSYSTEM_DEF(chunks)
 			return
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.mobs -= src
-		if(ishuman(src))
-			message_admins("M:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z] 1  [usr]")
+		//if(ishuman(src))
+		//	message_admins("M:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z] 1  [usr]")
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
+		/// This is done because we are having cases where forceMove is being called multiple Times , causing duplicated mobs.
+		/// Wasn't able to find which part of move/forceMove causes shit to break , currently ExTools debugging don't work on the version were using
+		/// Hopefully we fix this once ExTools debugger gets updated to 515.1623 , SPCR - 2023
+		if(currentChunk == CHUNKKEY(newLocation.x, newLocation.y, newLocation.z))
+			message_admins("Prevented dupe for [src]")
+			return
+		currentChunk = CHUNKKEY(newLocation.x, newLocation.y, newLocation.z)
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.mobs += src
-		if(ishuman(src))
-			message_admins("M:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z] 1 [usr]")
+		//if(ishuman(src))
+		//	message_admins("M:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z] 1 [usr]")
 		if(oldLocation.z != newLocation.z)
 			stack_trace("Stack tracing mobs")
 	else if(newLocation?.z)
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return
+		/// This is done because we are having cases where forceMove is being called multiple Times , causing duplicated mobs.
+		/// Wasn't able to find which part of move/forceMove causes shit to break , currently ExTools debugging don't work on the version were using
+		/// Hopefully we fix this once ExTools debugger gets updated to 515.1623 , SPCR - 2023
+		if(currentChunk == CHUNKKEY(newLocation.x, newLocation.y, newLocation.z))
+			message_admins("Prevented dupe for [src]")
+			return
+		currentChunk = CHUNKKEY(newLocation.x, newLocation.y, newLocation.z)
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
 		chunk_reference.mobs += src
-		if(ishuman(src))
-			message_admins("M:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z] 2 [usr]")
+		//if(ishuman(src))
+		//	message_admins("M:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z] 2 [usr]")
 	else if(oldLocation?.z)
 		chunk_reference = SSchunks.chunk_list_by_zlevel[oldLocation.z][CHUNKID(oldLocation.x, oldLocation.y)]
 		chunk_reference.mobs -= src
-		if(ishuman(src))
-			message_admins("M:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z] 2 [usr]")
+		//if(ishuman(src))
+		//	message_admins("M:[src] removed from chunkID : [CHUNKID(oldLocation.x, oldLocation.y)] Z:[oldLocation.z] 2 [usr]")
 
 /mob/proc/chunkOnContainerization(atom/source, atom/newContainer , atom/oldContainer)
 	SIGNAL_HANDLER

@@ -148,22 +148,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /atom/proc/attackby(obj/item/W, mob/user, params)
 	return
 
-/atom/movable/attack_hand(mob/living/carbon/user)
-	if(user.a_intent == I_GRAB)
-		var/obj/item/grab/theGrab = new(user, src)
-		if(!theGrab)
-			return FALSE
-		theGrab.state = GRAB_PASSIVE
-		theGrab.counter_timer = 0
-		user.put_in_active_hand(theGrab)
-		theGrab.synch()
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-		visible_message(SPAN_NOTICE("\The [src] has been grabbed by [user]!"), range = 7)
-		return TRUE
-	else
-		return ..()
-
-
 /atom/movable/attackby(obj/item/I, mob/living/user)
 	if(!(I.flags & NOBLUDGEON))
 		if(user.client && user.a_intent == I_HELP)

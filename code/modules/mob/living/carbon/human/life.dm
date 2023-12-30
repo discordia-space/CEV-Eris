@@ -69,11 +69,7 @@
 		if(needsEnergyUpdate)
 			handleEnergyUpdate()
 			needsEnergyUpdate = FALSE
-			if(client)
-				message_admins("Updated energy, E=[energy], ME=[maxEnergy]")
 		adjustEnergy(energyRegenRate)
-		if(client)
-			message_admins("E=[energy]")
 
 		//Organs and blood
 		handle_organs()

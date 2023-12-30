@@ -117,6 +117,9 @@
 	SIGNAL_HANDLER
 	if(!isturf(clicked))
 		return
+	if(affecting.anchored)
+		qdel(src)
+		return
 	if(clicked.Adjacent(grabber))
 		var/turf/theWay = get_step_towards(affecting, clicked)
 		affecting.Move(theWay, initiator = src)
