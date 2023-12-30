@@ -59,12 +59,12 @@
 
 
 /datum/lobbyscreen/proc/show_titlescreen(client/C)
-	winset(C, "lobbybrowser", "is-disabled=false;is-visible=true")
+	winset(C, "mapwindow.lobbybrowser", "is-disabled=false;is-visible=true")
 	C << browse(image_file, "file=titlescreen.png;display=0")
 	C << browse(file('html/lobby_titlescreen.html'), "window=lobbybrowser")
 
 /datum/lobbyscreen/proc/hide_titlescreen(client/C)
 	if(C.mob) // Check if the client is still connected to something
 		// Hide title screen, allowing player to see the map
-		winset(C, "lobbybrowser", "is-disabled=true;is-visible=false")
+		winset(C, "mapwindow.lobbybrowser", "is-disabled=true;is-visible=false")
 

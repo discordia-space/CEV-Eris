@@ -63,6 +63,7 @@
 	if(client && istype(client.mob, /mob/new_player))
 		var/mob/new_player/np = client.mob
 		np.new_player_panel(TRUE)
+	client.mob.fullscreen_check()
 
 /datum/preferences/proc/load_and_update_character(var/slot)
 	load_character(slot)

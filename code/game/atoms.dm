@@ -67,6 +67,11 @@
 /atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
 	return armorToDam
 
+/atom/MouseEntered(location, control, params)
+	. = ..()
+	// Statusbar
+	status_bar_set_text(usr, name)
+
 
 /**
  * Called when an atom is created in byond (built in engine proc)

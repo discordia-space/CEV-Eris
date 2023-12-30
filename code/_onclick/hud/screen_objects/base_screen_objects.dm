@@ -83,6 +83,10 @@
 	<br> heavy lifting and combat actions drain your energy"
 	process_flag = TRUE
 
+/obj/screen/energy/New(_name, mob/living/_parentmob, _icon, _icon_state)
+	. = ..()
+	icon_state = "energy1"
+
 /obj/screen/energy/Process()
 	update_icon()
 
@@ -92,7 +96,7 @@
 	if(!istype(man))
 		return
 	var/ratio = man.getEnergyRatio()
-	ratio = round(ratio, 0.2)
+	ratio = clamp(round(ratio, 0.2), 0,2)
 	icon_state = "[initial(icon_state)][ratio]"
 //--------------------------------------------------close---------------------------------------------------------
 

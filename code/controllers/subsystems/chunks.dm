@@ -134,7 +134,6 @@ SUBSYSTEM_DEF(chunks)
 		/// Wasn't able to find which part of move/forceMove causes shit to break , currently ExTools debugging don't work on the version were using
 		/// Hopefully we fix this once ExTools debugger gets updated to 515.1623 , SPCR - 2023
 		if(currentChunk == CHUNKKEY(newLocation.x, newLocation.y, newLocation.z))
-			message_admins("Prevented dupe for [src]")
 			return
 		currentChunk = CHUNKKEY(newLocation.x, newLocation.y, newLocation.z)
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]
@@ -150,7 +149,6 @@ SUBSYSTEM_DEF(chunks)
 		/// Wasn't able to find which part of move/forceMove causes shit to break , currently ExTools debugging don't work on the version were using
 		/// Hopefully we fix this once ExTools debugger gets updated to 515.1623 , SPCR - 2023
 		if(currentChunk == CHUNKKEY(newLocation.x, newLocation.y, newLocation.z))
-			message_admins("Prevented dupe for [src]")
 			return
 		currentChunk = CHUNKKEY(newLocation.x, newLocation.y, newLocation.z)
 		chunk_reference = SSchunks.chunk_list_by_zlevel[newLocation.z][CHUNKID(newLocation.x, newLocation.y)]

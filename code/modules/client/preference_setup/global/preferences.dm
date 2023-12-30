@@ -252,6 +252,17 @@ var/list/_client_preferences_by_type
 	key = "KEEP_HOTKEY_MODE"
 	default_value = GLOB.PREF_YES
 
+/datum/client_preference/fullscreen
+	description = "Enable fullscreen"
+	key = "FULLSCREEN"
+	default_value = GLOB.PREF_YES
+
+/datum/client_preference/fullscreen/changed(mob/preference_mob, new_value)
+	if(new_value == GLOB.PREF_YES)
+		winset(preference_mob.client, null, "mainwindow.titlebar=false mainwindow.menu=none split.pos=0,0")
+	else
+		winset(preference_mob.client, null, "mainwindow.titlebar=true mainwindow.menu=menu split.pos=3,0")
+
 /datum/client_preference/tgui_fancy
 	description ="Enable/Disable tgui fancy mode"
 	key = "tgui_fancy"
