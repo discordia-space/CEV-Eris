@@ -1537,6 +1537,8 @@ obj/screen/fire/DEADelize()
 		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
 			HUDelement.invisibility = 101
 			hidden_inventory_update(HUDelement)
+		if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG)
+			HUDelement.invisibility = 101
 	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
 		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
 			HUDelement.invisibility = 101
@@ -1586,3 +1588,35 @@ obj/screen/fire/DEADelize()
 		if(slot_wear_mask)
 			if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 //-----------------------toggle_invetory End------------------------------
+// ----------- cyberdeck toggle -----------------
+/obj/screen/toggle_cyberdeck
+	name = "toggle cyberdeck"
+
+/obj/screen/toggle_cyberdeck/update_icon()
+	. = ..()
+	// check for implant
+
+// ------------- cyberdeck toggle end
+// ----------------- cyberslot start------------
+
+/obj/screen/cyberdeck_slot
+	name = "cyberdeck slot"
+	var/obj/item/implant/cyberinterface/interface = null
+	var/slotId = 0
+	var/mutable_appearance/cyberStickImage = null
+
+/obj/screen/cyberdeck_slot/update_icon()
+	if(interface)
+		invisiblity = 0
+		if(cyberStickImage)
+			overlays.Remove(cyberStickImage)
+		var/obj/stickRef = interface.slots[slotId]
+		if(stickRef)
+			cyberStickImage = mutable_appearance(stickRef)
+			overlays.Add(cyberStickImage)
+	else
+		invisibility = 101
+		overlays.Remove(cyberStickImage)
+
+	. = ..()
+

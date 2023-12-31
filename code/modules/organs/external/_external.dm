@@ -281,6 +281,14 @@
 			var/obj/item/organ/external/organ = owner?.HUDneed["right arm bionics"]
 			organ?.update_icon()
 
+/obj/item/organ/external/proc/update_cyberdeck_hud(obj/item/implant/cyberinterface/cyberdeck)
+	for(var/i = 1, i < length(cyberdeck.slots), i++)
+		var/obj/screen/cyberdeck_slot/cyberSlot = owner?.HUDneed["cyberslot[i]"]
+		if(cyberSlot)
+			cyberSlot.interface = cyberdeck
+			cyberSlot.slot = i
+			cyberSlot.update_icon()
+
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"
 	set category = "Cybernetics" //changed this to be in line with excelsior's cyber implants and such

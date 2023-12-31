@@ -284,7 +284,16 @@
 	"right arm bionics"  = list("type" = /obj/screen/bionics/r_arm,     "loc" = "7:19,1",    "minloc" = "6:20,2"),
 	"left arm bionics"   = list("type" = /obj/screen/bionics/l_arm,     "loc" = "10,1",      "minloc" = "9:-1,2"),
 
-	"toggle inventory"   = list("type" = /obj/screen/toggle_invetory,   "loc" = "2,0",       "minloc" = "1,1",          "hideflag" = TOGGLE_BOTTOM_FLAG)
+	"toggle inventory"   = list("type" = /obj/screen/toggle_invetory,   "loc" = "2,0",       "minloc" = "1,1",          "hideflag" = TOGGLE_BOTTOM_FLAG),
+	// Cyberdeck toggle
+	"toggle_cyberdeck"   = list("type" = /obj/screen/toggle_cyberdeck,  "loc" = "2,3",       "minloc" = "1,4",          "hideflag" = TOGGLE_INVENTORY_FLAG),
+	// Cyberdeck slots
+	"cyberdeck1"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,4",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
+	"cyberdeck2"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,5",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
+	"cyberdeck3"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,6",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
+	"cyberdeck4"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,7",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
+	"cyberdeck5"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,8",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
+	"cyberdeck6"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,9",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG)
 
 	)
 
