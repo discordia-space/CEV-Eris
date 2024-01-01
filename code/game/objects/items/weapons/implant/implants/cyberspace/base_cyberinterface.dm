@@ -1,7 +1,7 @@
 /obj/item/implant/cyberinterface
 	name = "cyberinterface"
-	icon = 'icons/obj/device.dmi'
-	icon_state = "implant_health"
+	icon = 'icons/obj/neuralink.dmi'
+	icon_state = "common"
 	volumeClass = ITEM_SIZE_TINY
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	external = FALSE
@@ -32,6 +32,9 @@
 	E.update_cyberdeck_hud(src)
 
 /obj/item/implant/cyberinterface/on_uninstall()
+	for(var/obj/item/cyberstick/stick in slots)
+		if(stick)
+			stick.holdingSlot = null
 	part.update_cyberdeck_hud(null)
 
 
@@ -114,4 +117,78 @@
 
 /obj/item/implant/cyberinterface/get_data()
 	return "CYBERINTERFACE - Filled Slots : [length(getFilledSlots())]"
+
+/// subtypes
+
+/obj/item/implant/cyberinterface/basic
+	name = "basic cyberinterface"
+	desc = "A very basic model of cyberinterface. Has only 1 measly slot"
+	icon_state = "cheap"
+	slots = list(
+		null
+	)
+
+/obj/item/implant/cyberinterface/carrion
+	name = "electro-organic interface"
+	desc = "A spider of carrion design, acts as a interface between the host's brain and the cyberdecks. Has 3 slots."
+	icon_state = "carrion"
+	slots = list(
+		null,
+		null,
+		null
+	)
+
+/obj/item/implant/cyberinterface/ironhammer
+	name = "ironhammer combat interface"
+	desc = "A cyberinterface of IH design. Has 2 slots."
+	icon_state = "pmc"
+	slots = list(
+		null,
+		null
+	)
+
+/obj/item/implant/cyberinterface/league
+	name = "techmomancer's league tribesman interface"
+	desc = "A cyberinterface of technomancer design for all members of the league. Has 3 slots."
+	icon_state = "league1"
+	slots = list(
+		null,
+		null,
+		null
+	)
+
+/obj/item/implant/cyberinterface/league/leader
+	name = "technomancer's league tribesleader interface"
+	desc = "A cyberinterface of technomancer design for tribeleaders. Has 5 slots."
+	icon_state = "league4"
+	slots = list(
+		null,
+		null,
+		null,
+		null,
+		null
+	)
+
+/obj/item/implant/cyberinterface/moebius
+	name = "moebius brain-intranet interface"
+	desc = "A round cyberinterface. Has 2 slots"
+	icon_state = "moebius"
+	slots = list(
+		null,
+		null
+	)
+
+
+/obj/item/implant/cyberinterface/asters
+	name = "Aster's guild interface"
+	desc = "A cyberinterface of guild design. Has only 1 slot.."
+	icon_state = "guild"
+	slots = list(
+		null
+	)
+
+
+
+
+
 

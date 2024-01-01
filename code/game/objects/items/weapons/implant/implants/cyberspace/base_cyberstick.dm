@@ -18,6 +18,8 @@
 	*/
 	var/cyberFlags = null
 	var/obj/screen/cyberdeck_slot/holdingSlot = null
+	bad_type = /obj/item/cyberstick
+	rarity_value = 200
 
 /obj/item/cyberstick/Destroy(force)
 	holdingSlot = null
@@ -46,6 +48,7 @@
 	name = "Cyberstick - League's blessing"
 	desc = "A cyberstick containing various secrets of technomancy. Most notably, telling what wires do what."
 	icon_state = "stick_technomancer"
+	spawn_blacklisted = TRUE
 	cyberFlags = CSF_SEE_WIRES
 
 /obj/item/cyberstick/engineering_booster
@@ -62,6 +65,7 @@
 	name = "Cyberstick - IH tactical analysis"
 	desc = "A cyberstick making use of a highly-simplified tactical AI. Will give you basic readouts of someone's skills"
 	icon_state = "stick_ih"
+	spawn_blacklisted = TRUE
 	cyberFlags = CSF_COMBAT_READER
 
 
@@ -84,6 +88,7 @@
 		STAT_VIG = 25,
 		STAT_TGH = 30
 	)
+	rarity_value = 300
 // Moebius
 /obj/item/cyberstick/science_analysis
 	name = "Cyberstick - Moebius liquid-metanalysis"
@@ -97,5 +102,39 @@
 	icon_state = "stick_medical"
 	skillBoosts = list(
 		STAT_BIO = 15
+	)
+
+/obj/item/cyberstick/maintenance_wired
+	name = "Cyberstick - makeshift"
+	desc = "A cyberstick of makeshift origin . Who knows what knowledge it has stored inside?"
+	icon_state = "stick_misc"
+	skillBoosts = list()
+	rarity_value = 125
+
+/obj/item/cyberstick/maintenance_wired/Initialize()
+	. = ..()
+	skillBoosts = list(
+		STAT_TGH = rand(-5,10),
+		STAT_ROB = rand(-5,10),
+		STAT_VIG = rand(-5,10),
+		STAT_MEC = rand(-5,10),
+		STAT_COG = rand(-5,10),
+		STAT_BIO = rand(-5,10)
+	)
+
+
+/obj/item/cyberstick/military
+	name = "Cyberstick - Oberth primer"
+	desc = "A cyberstick of oberth origin , famously used by mass-recruited soldiers to be on par with veterans. Time seems to have degraded it"
+	icon_state = "stick_ram"
+	skillBoosts = list()
+	rarity_value = 400
+
+/obj/item/cyberstick/military/Initialize()
+	. = ..()
+	skillBoosts = list(
+		STAT_TGH = rand(5,10),
+		STAT_ROB = rand(5,15),
+		STAT_VIG = rand(5,15)
 	)
 

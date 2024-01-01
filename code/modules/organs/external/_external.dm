@@ -282,18 +282,23 @@
 			organ?.update_icon()
 
 /obj/item/organ/external/proc/update_cyberdeck_hud(obj/item/implant/cyberinterface/cyberdeck)
-	if(cyberdeck)
-		var/obj/screen/toggle_cyberdeck/cyberToggle = owner.HUDneed["toggle_cyberdeck"]
-		if(cyberToggle)
+	var/obj/screen/toggle_cyberdeck/cyberToggle = owner.HUDneed["toggle_cyberdeck"]
+	if(cyberToggle)
+		if(cyberdeck)
 			cyberToggle.invisibility = 0
 			cyberToggle.hasInterface = TRUE
-		for(var/i = 1, i <= length(cyberdeck.slots), i++)
-			var/obj/screen/cyberdeck_slot/cyberSlot = owner.HUDneed["cyberdeck[i]"]
-			message_admins("Retrieved cyberslot [cyberSlot] ")
-			if(cyberSlot)
+		else
+			cyberToggle.invisibility = 101
+			cyberToggle.hasInterface = FALSE
+	for(var/i = 1, i <= cyberdeck ? length(cyberdeck.slots) : 6, i++)
+		var/obj/screen/cyberdeck_slot/cyberSlot = owner.HUDneed["cyberdeck[i]"]
+		message_admins("Retrieved cyberslot [cyberSlot] ")
+		if(cyberSlot)
+			if(cyberdeck)
 				cyberSlot.interface = cyberdeck
-				cyberSlot.slotId = i
-				cyberSlot.update_icon()
+			else
+				cyberSlot.interface = null
+			cyberSlot.update_icon()
 
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"
