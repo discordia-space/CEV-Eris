@@ -181,9 +181,12 @@
 
 /obj/item/implant/cyberinterface/asters
 	name = "Aster's guild interface"
-	desc = "A cyberinterface of guild design. Has only 1 slot.."
+	desc = "A cyberinterface of Aster's guild. For the richest among the masses."
 	icon_state = "guild"
 	slots = list(
+		null,
+		null,
+		null,
 		null
 	)
 
