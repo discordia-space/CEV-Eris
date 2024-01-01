@@ -1,0 +1,3 @@
+#define CSF_SEE_WIRES 1<<0
+#define CSF_SEE_REAGENTS 1<<1
+#define CSF_COMBAT_READER 1<<2

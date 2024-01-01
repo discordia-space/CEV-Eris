@@ -41,6 +41,10 @@
 							 /datum/computer_file/program/shield_control,
 							 /datum/computer_file/program/reports)
 
+	cyberSticks = list(
+		/obj/item/cyberstick/engineering_analysis
+	)
+
 	description = "You are an exultant, the head of a technomancer clan, nomadic spacefaring engineers. You and your clan have taken up residence on Eris, it is your work, your home, and your pride. <br>\
 You are to keep the ship running and constantly improve it as much as you are able. Let none question the efficacy of your labours."
 

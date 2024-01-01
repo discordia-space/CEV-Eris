@@ -14,6 +14,12 @@
 		null
 	)
 
+/obj/item/implant/cyberinterface/proc/installSticksForJob(datum/job/jobz)
+	for(var/path in jobz.cyberSticks)
+		var/obj/item/cyberstick/stick = new path(NULLSPACE)
+		message_admins("installing stick [stick]")
+		installStick(stick, null, 0, FALSE)
+
 /obj/item/implant/cyberinterface/can_install(mob/living/carbon/human/target, obj/item/organ/external/E)
 	if(!istype(target))
 		return FALSE
@@ -82,6 +88,19 @@
 		stick.onInstall(wearer)
 	part.update_cyberdeck_hud(src)
 
+/obj/item/implant/cyberinterface/proc/removeStick(targetSlot, mob/living/carbon/human/user)
+	var/obj/item/cyberstick/stick = slots[targetSlot]
+	slots[targetSlot] = null
+	if(stick)
+		stick.onUninstall(wearer)
+		if(user)
+			stick.forceMove(get_turf(user))
+			user.put_in_active_hand(stick)
+		else
+			stick.forceMove(get_turf(src))
+		stick.holdingSlot.update_icon()
+		stick.holdingSlot = null
+
 /obj/item/implant/cyberinterface/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/cyberstick))
 		installStick(I, user, 0, FALSE)
@@ -89,12 +108,7 @@
 	if(I && I.has_quality(QUALITY_SCREW_DRIVING))
 		var/chosenModule = input(user, "Choose cyberdeck to remove", "Cybermessin", null) as anything in getFilledSlots()
 		if(chosenModule)
-			var/obj/item/cyberstick/stick = slots[chosenModule]
-			slots[chosenModule] = null
-			stick.onUninstall(wearer)
-			stick.forceMove(get_turf(user))
-			user.put_in_active_hand(stick)
-			part.update_cyberdeck_hud(src)
+			removeStick(chosenModule, user)
 		return
 	..()
 

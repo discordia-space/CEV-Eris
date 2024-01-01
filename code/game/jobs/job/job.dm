@@ -46,6 +46,9 @@
 
 	var/list/perks = list()
 
+	// to be installed on job equip if they have a interface
+	var/list/cyberSticks = list()
+
 /datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit()
 	if(!outfit)

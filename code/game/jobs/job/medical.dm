@@ -37,6 +37,10 @@
 							 /datum/computer_file/program/chem_catalog,
 							 /datum/computer_file/program/reports)
 
+	cyberSticks = list(
+		/obj/item/cyberstick/medical_booster
+	)
+
 	description = "You are the head of the Moebius Medical branch, contracted by the captain to provide medical services to the crew.<br>\
 You are here to keep everyone alive and ideally, at work. You should make choices that preserve life as much as possible.<br>\
 

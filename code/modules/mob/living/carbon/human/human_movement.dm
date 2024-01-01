@@ -5,7 +5,7 @@
 		tally += species.slowdown
 
 	/// yes becauses we used to have -1 on shoes
-	tally -= 1.5
+	tally -= 1.2
 
 	var/weightTally = (weight - initial(weight) - 20000 - statusEffects[SE_WEIGHT_OFFLOAD]) / 1000
 	if(weightTally > 0)

@@ -625,10 +625,18 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 			G.prescription = 1
 
 	var/obj/item/implant/core_implant/C = H.get_core_implant()
-	if(C)
+	if(istype(C, /obj/item/implant/core_implant))
 		C.install_default_modules_by_job(job)
 		C.access.Add(job.cruciform_access)
 		C.security_clearance = job.security_clearance
+
+	for(var/bodypart in BP_ALL_LIMBS)
+		if(H.has_organ(bodypart))
+			var/obj/item/organ/external/bp = H.organs_by_name[bodypart]
+			var/obj/item/implant/cyberinterface/interface = locate() in bp.implants
+			if(interface)
+				interface.installSticksForJob(job)
+				break
 
 	var/obj/item/oddity/secdocs/D
 	if(D.inv_spawn_count > 0 && prob(5) && !(locate(/obj/item/oddity/secdocs) in H.get_contents()))

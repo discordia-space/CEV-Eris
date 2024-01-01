@@ -1615,9 +1615,10 @@ obj/screen/fire/DEADelize()
 			if(!Humie.has_organ(externalBodypart))
 				continue
 			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
-			var/obj/item/implant/cyberinterface/interface = locate() in bodypart
+			var/obj/item/implant/cyberinterface/interface = locate() in bodypart.implants
 			message_admins("[src] found [interface]")
 			if(interface)
+				hasInterface = TRUE
 				invisibility = 0
 				return
 
@@ -1638,7 +1639,7 @@ obj/screen/fire/DEADelize()
 
 // ------------- cyberdeck toggle end
 // ----------------- cyberslot start------------
-
+#define OVKEY_CYBER_IMPLANT "cyberstick"
 /obj/screen/cyberdeck_slot
 	name = "cyberdeck slot"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
@@ -1658,7 +1659,7 @@ obj/screen/fire/DEADelize()
 			if(!Humie.has_organ(externalBodypart))
 				continue
 			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
-			var/obj/item/implant/cyberinterface/cyberInterface = locate(/obj/item/implant/cyberinterface) in bodypart
+			var/obj/item/implant/cyberinterface/cyberInterface = locate(/obj/item/implant/cyberinterface) in bodypart.implants
 			message_admins("[src] with [slotId] found [cyberInterface]")
 			if(cyberInterface)
 				interface = cyberInterface
@@ -1666,21 +1667,15 @@ obj/screen/fire/DEADelize()
 				return
 
 /obj/screen/cyberdeck_slot/update_icon()
-	if(interface)
+	vis_contents.Cut()
+	if(interface && length(interface.slots) >= slotId && slotId != 0)
 		invisibility = 0
-		if(cyberStickImage)
-			overlays.Remove(cyberStickImage)
-		if(slotId)
-			var/obj/stickRef = interface.slots[slotId]
-			if(stickRef)
-				cyberStickImage = mutable_appearance(stickRef)
-				cyberStickImage.transform.Turn(180)
-				cyberStickImage.layer = ABOVE_HUD_LAYER
-				cyberStickImage.plane = ABOVE_HUD_PLANE
-				overlays.Add(cyberStickImage)
+		var/obj/item/cyberstick/stickRef = interface.slots[slotId]
+		if(stickRef)
+			stickRef.holdingSlot = src
+			vis_contents.Add(stickRef)
 	else
 		invisibility = 101
-		overlays.Remove(cyberStickImage)
 
 	. = ..()
 
@@ -1695,10 +1690,11 @@ obj/screen/fire/DEADelize()
 	if(user.incapacitated(INCAPACITATION_CANT_ACT))
 		return TRUE
 	var/obj/item/currentlyInhand = user.get_active_hand()
+	if(!currentlyInhand)
+		interface.removeStick(slotId, user)
+		return
 	if(istype(currentlyInhand, /obj/item/cyberstick))
-		interface.installStick(currentlyInhand, user, 0, FALSE)
-	if(currentlyInhand.has_quality(QUALITY_SCREW_DRIVING))
-		interface.attackby(currentlyInhand, user)
+		interface.installStick(currentlyInhand, user, slotId, FALSE)
 	return TRUE
 
 

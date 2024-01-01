@@ -90,7 +90,6 @@
 	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
 		if(!M.client)
 			continue
-		message_admins("Added [M] to messageMobs")
 		messagemobs += M
 
 	for(var/mob/ghosty in GLOB.player_ghost_list)
