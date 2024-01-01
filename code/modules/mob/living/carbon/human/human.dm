@@ -979,13 +979,18 @@ var/list/rank_prefix = list(\
 
 		var/datum/category_item/setup_option/core_implant/I = Pref.get_option("Core implant")
 		if(I.implant_type && (!mind || mind.assigned_role != "Robot"))
-			var/obj/item/implant/core_implant/C = new I.implant_type
-			C.install(src)
-			C.activate()
-			if(mind)
-				C.install_default_modules_by_job(mind.assigned_job)
-				C.access.Add(mind.assigned_job.cruciform_access)
-				C.security_clearance = mind.assigned_job.security_clearance
+			if(istype(I.implant_type, /obj/item/implant/core_implant))
+				var/obj/item/implant/core_implant/C = new I.implant_type
+				C.install(src)
+				C.activate()
+				if(mind)
+					C.install_default_modules_by_job(mind.assigned_job)
+					C.access.Add(mind.assigned_job.cruciform_access)
+					C.security_clearance = mind.assigned_job.security_clearance
+			else if(has_organ(I.target_organ))
+				var/obj/item/implant/impl = new I.implant_type
+				impl.install(src, I.target_organ)
+				impl.activate()
 
 	else
 		var/organ_type
@@ -1010,13 +1015,17 @@ var/list/rank_prefix = list(\
 
 		if(checkprefcruciform && client)
 			var/datum/category_item/setup_option/core_implant/I = client.prefs.get_option("Core implant")
-			if(I.implant_type)
+			if(istype(I.implant_type, /obj/item/implant/core_implant))
 				var/obj/item/implant/core_implant/C = new I.implant_type
 				C.install(src)
 				C.activate()
 				C.install_default_modules_by_job(mind.assigned_job)
 				C.access.Add(mind.assigned_job.cruciform_access)
 				C.security_clearance = mind.assigned_job.security_clearance
+			else if(has_organ(I.target_organ))
+				var/obj/item/implant/impl = new I.implant_type
+				impl.install(src, I.target_organ)
+				impl.activate()
 
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
 		C.insert(get_organ(C.parent_organ_base))
@@ -1025,8 +1034,6 @@ var/list/rank_prefix = list(\
 	species.organs_spawned(src)
 
 	update_body()
-	/// Because organ rebuilding breaks our shit
-	updateWeights()
 
 /mob/living/carbon/human/proc/post_prefinit()
 	var/obj/item/implant/core_implant/C = locate() in src

@@ -6,7 +6,7 @@
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	external = FALSE
 	cruciform_resist = FALSE
-	vscanner_hidden = FALSE	//Does this implant show up on the body scanner
+	scanner_hidden = FALSE	//Does this implant show up on the body scanner
 	/// defines how many slots we have,  put in a typepath to have a implant initialize with some cybersticks
 	var/list/slots = list(
 		null,
@@ -15,11 +15,10 @@
 	)
 
 /obj/item/implant/cyberinterface/can_install(mob/living/carbon/human/target, obj/item/organ/external/E)
-	if(!locate(/obj/item/organ/internal/brain) in E)
-		return FALSE
-	if(locate(/obj/item/implant/cyberinterface) in E)
-		return FALSE
 	if(!istype(target))
+		return FALSE
+	var/obj/item/organ/internal/vital/brain/cyberBrain = locate(/obj/item/organ/internal/vital/brain) in target
+	if(cyberBrain && cyberBrain.parent != E)
 		return FALSE
 	return TRUE
 
@@ -32,16 +31,18 @@
 
 /obj/item/implant/cyberinterface/Initialize()
 	. = ..()
-	for(var/i = 1, i < length(slots), i++)
+	for(var/i = 1, i <= length(slots), i++)
 		var/slotPath = slots[i]
 		if(!ispath(slotPath))
 			return
-		var/atom/newStick = new slotPath(src)
+		var/obj/item/cyberstick/newStick = new slotPath(src)
 		slots[i] = newStick
 		newStick.onInstall(wearer)
+	if(part)
+		part.update_cyberdeck_hud(src)
 
 /obj/item/implant/cyberinterface/proc/getEmptySlot()
-	for(var/i = 1, i < length(slots), i++)
+	for(var/i = 1, i <= length(slots), i++)
 		if(!QDELETED(slots[i]))
 			continue
 		return i
@@ -49,7 +50,7 @@
 
 /obj/item/implant/cyberinterface/proc/getFilledSlots()
 	var/list/filledSlots = list()
-	for(var/i = 1, i < length(slots), i++)
+	for(var/i = 1, i <= length(slots), i++)
 		if(!QDELETED(slots[i]))
 			filledSlots.Add(i)
 	return filledSlots
@@ -62,8 +63,8 @@
 			return
 		targetSlot = slotPos
 	if(slots[targetSlot] && force)
-		var/atom/existingStick = slots[targetSlot]
-		existingStick.forcemove(get_turf(src))
+		var/obj/item/cyberstick/existingStick = slots[targetSlot]
+		existingStick.forceMove(get_turf(src))
 		existingStick.onUninstall(wearer)
 		user?.drop_from_inventory(stick)
 		stick.forceMove(src)
@@ -81,14 +82,14 @@
 		stick.onInstall(wearer)
 	part.update_cyberdeck_hud(src)
 
-/obj/item/implant/attackby(obj/item/I, mob/user)
+/obj/item/implant/cyberinterface/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/cyberstick))
 		installStick(I, user, 0, FALSE)
 		return
-	if(I.has_quality(QUALITY_SCREW_DRIVING))
+	if(I && I.has_quality(QUALITY_SCREW_DRIVING))
 		var/chosenModule = input(user, "Choose cyberdeck to remove", "Cybermessin", null) as anything in getFilledSlots()
 		if(chosenModule)
-			var/atom/movable/stick = slots[chosenModule]
+			var/obj/item/cyberstick/stick = slots[chosenModule]
 			slots[chosenModule] = null
 			stick.onUninstall(wearer)
 			stick.forceMove(get_turf(user))
@@ -98,5 +99,5 @@
 	..()
 
 /obj/item/implant/cyberinterface/get_data()
-	return "CYBERINTERFACE - Filled Slots : [length(getFilledSlots)]"
+	return "CYBERINTERFACE - Filled Slots : [length(getFilledSlots())]"
 

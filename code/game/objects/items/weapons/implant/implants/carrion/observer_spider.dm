@@ -48,7 +48,7 @@
 	if(.)
 		reset()
 
-/obj/item/implant/carrion_spider/observer/forceMove()
+/obj/item/implant/carrion_spider/observer/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	. = ..()
 	if(.)
 		reset()

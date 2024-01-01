@@ -145,7 +145,16 @@
 	"right arm bionics"  = list("type" = /obj/screen/bionics/r_arm,     "loc" = "7:19,1",             "minloc" = "6:20,2",       "background" = "back16"),
 	"left arm bionics"   = list("type" = /obj/screen/bionics/l_arm,     "loc" = "10,1",               "minloc" = "9:-1,2",       "background" = "back16"),
 
-	"toggle inventory"    = list("type" = /obj/screen/toggle_invetory,   "loc" = "2,0",                "minloc" = "1,1",          "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back1")
+	"toggle inventory"    = list("type" = /obj/screen/toggle_invetory,   "loc" = "2,0",                "minloc" = "1,1",          "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back1"),
+
+	"toggle_cyberdeck"   = list("type" = /obj/screen/toggle_cyberdeck,  "loc" = "2,3",       "minloc" = "1,4",          "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back17"),
+	// Cyberdeck slots
+	"cyberdeck1"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,4",       "minloc" = "1,5",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 1)),
+	"cyberdeck2"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,5",       "minloc" = "1,6",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 2)),
+	"cyberdeck3"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,6",       "minloc" = "1,7",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 3)),
+	"cyberdeck4"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,7",       "minloc" = "1,8",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 4)),
+	"cyberdeck5"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,8",       "minloc" = "1,9",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 5)),
+	"cyberdeck6"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,9",       "minloc" = "1,10",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 6))
 
 	)
 
@@ -288,12 +297,12 @@
 	// Cyberdeck toggle
 	"toggle_cyberdeck"   = list("type" = /obj/screen/toggle_cyberdeck,  "loc" = "2,3",       "minloc" = "1,4",          "hideflag" = TOGGLE_INVENTORY_FLAG),
 	// Cyberdeck slots
-	"cyberdeck1"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,4",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
-	"cyberdeck2"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,5",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
-	"cyberdeck3"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,6",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
-	"cyberdeck4"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,7",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
-	"cyberdeck5"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,8",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG),
-	"cyberdeck6"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,9",       "minloc" = "2,2",          "hideflag" = TOGGLE_CYBERDECK_FLAG)
+	"cyberdeck1"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,4",       "minloc" = "1,5",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 1)),
+	"cyberdeck2"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,5",       "minloc" = "1,6",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 2)),
+	"cyberdeck3"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,6",       "minloc" = "1,7",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 3)),
+	"cyberdeck4"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,7",       "minloc" = "1,8",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 4)),
+	"cyberdeck5"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,8",       "minloc" = "1,9",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 5)),
+	"cyberdeck6"         = list("type" = /obj/screen/cyberdeck_slot,    "loc" = "2,9",       "minloc" = "1,10",          "hideflag" = TOGGLE_CYBERDECK_FLAG, "background" = "back17", "customvars" = list("slotId" = 6))
 
 	)
 

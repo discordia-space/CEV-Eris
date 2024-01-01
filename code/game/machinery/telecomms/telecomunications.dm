@@ -158,7 +158,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	return ..()
 
 // If moved, update listening levels
-/obj/machinery/telecomms/forceMove(atom/destination, special_event, glide_size_override=0)
+/obj/machinery/telecomms/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	. = ..()
 	if(.)
 		update_listening_levels()

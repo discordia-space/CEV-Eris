@@ -21,13 +21,13 @@
 /obj/item/cyberstick/proc/onInstall(mob/living/carbon/human/user)
 	if(user)
 		for(var/stat in skillBoosts)
-			user.addTempStat(stat, skillBoosts[stat], INFINITY, "\ref[src]")
+			user.stats.addTempStat(stat, skillBoosts[stat], INFINITY, "\ref[src]")
 	return TRUE
 
 /obj/item/cyberstick/proc/onUninstall(mob/living/carbon/human/formerUser)
 	if(formerUser)
 		for(var/stat in skillBoosts)
-			formerUser.removeTempStat(stat,"\ref[src]")
+			formerUser.stats.removeTempStat(stat,"\ref[src]")
 	return TRUE
 
 /obj/item/cyberstick/engineering

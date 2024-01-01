@@ -140,8 +140,8 @@ SUBSYSTEM_DEF(chunks)
 		chunk_reference.mobs += src
 		//if(ishuman(src))
 		//	message_admins("M:[src] added to chunkID : [CHUNKID(newLocation.x, newLocation.y)] Z:[newLocation.z] 1 [usr]")
-		if(oldLocation.z != newLocation.z)
-			stack_trace("Stack tracing mobs")
+		//if(oldLocation.z != newLocation.z)
+		//	stack_trace("Stack tracing mobs")
 	else if(newLocation?.z)
 		if(CHUNKCOORDCHECK(newLocation.x, newLocation.y))
 			return

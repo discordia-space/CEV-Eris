@@ -59,7 +59,7 @@
 	if(anchored)
 		update_music()
 
-/obj/machinery/media/forceMove(var/atom/destination)
+/obj/machinery/media/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	disconnect_media_source()
 	. = ..()
 	if(anchored)

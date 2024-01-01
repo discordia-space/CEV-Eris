@@ -18,7 +18,7 @@
 	if(.)
 		reset()
 
-/obj/item/device/spy_sensor/forceMove()
+/obj/item/device/spy_sensor/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	. = ..()
 	if(.)
 		reset()

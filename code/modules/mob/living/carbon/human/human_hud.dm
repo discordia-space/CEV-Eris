@@ -186,6 +186,10 @@
 			H.HUDneed[HUD.name] += HUD
 			if (HUD.process_flag)
 				H.HUDprocess += HUD
+			if(length(HUDdatum.HUDneed[HUDname]["customvars"]))
+				var/list/customVariables = HUDdatum.HUDneed[HUDname]["customvars"]
+				for(var/variable in customVariables)
+					HUD.vars[variable] = customVariables[variable]
 	return
 
 /mob/living/carbon/human/create_HUDfrippery()

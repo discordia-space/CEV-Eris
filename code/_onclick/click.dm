@@ -105,7 +105,7 @@
 		CtrlClickOn(A)
 		return 1
 
-	if(stat || paralysis || stunned || weakened)
+	if(incapacitated(INCAPACITATION_CANT_ACT))
 		return
 
 	SEND_SIGNAL(src, COMSIG_CLICK, A, params)

@@ -54,6 +54,10 @@
 
 	return ..()
 
+// Nope!!! SPCR on the last day of 2023
+/obj/item/organ/getWeight()
+	return 0
+
 /obj/item/organ/proc/update_health()
 	return
 

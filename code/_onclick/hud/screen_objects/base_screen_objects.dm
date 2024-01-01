@@ -1537,7 +1537,9 @@ obj/screen/fire/DEADelize()
 		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
 			HUDelement.invisibility = 101
 			hidden_inventory_update(HUDelement)
-		if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG)
+	for(var/element in parentmob.HUDneed)
+		var/obj/screen/HUDelement = parentmob.HUDneed[element]
+		if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG || istype(HUDelement, /obj/screen/toggle_cyberdeck))
 			HUDelement.invisibility = 101
 	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
 		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
@@ -1547,6 +1549,12 @@ obj/screen/fire/DEADelize()
 	for (var/obj/screen/HUDelement in parentmob.HUDinventory)
 		HUDelement.invisibility = 0
 		hidden_inventory_update(HUDelement)
+	for(var/element in parentmob.HUDneed)
+		var/obj/screen/HUDelement = parentmob.HUDneed[element]
+		if(istype(HUDelement, /obj/screen/toggle_cyberdeck))
+			var/obj/screen/toggle_cyberdeck/deck = HUDelement
+			if(deck.hasInterface)
+				HUDelement.invisibility = 0
 	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
 		HUDelement.invisibility = 0
 
@@ -1591,32 +1599,106 @@ obj/screen/fire/DEADelize()
 // ----------- cyberdeck toggle -----------------
 /obj/screen/toggle_cyberdeck
 	name = "toggle cyberdeck"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "cyberdeck"
+	invisibility = 101
+	var/showing = FALSE
+	var/hasInterface = FALSE
 
-/obj/screen/toggle_cyberdeck/update_icon()
+/obj/screen/toggle_cyberdeck/Initialize()
 	. = ..()
-	// check for implant
+	if(parentmob)
+		var/mob/living/carbon/human/Humie = parentmob
+		if(!istype(Humie))
+			return
+		for(var/externalBodypart in BP_ALL_LIMBS)
+			if(!Humie.has_organ(externalBodypart))
+				continue
+			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
+			var/obj/item/implant/cyberinterface/interface = locate() in bodypart
+			message_admins("[src] found [interface]")
+			if(interface)
+				invisibility = 0
+				return
+
+
+/obj/screen/toggle_cyberdeck/Click(location, control, params)
+	if(showing)
+		for(var/element in parentmob.HUDneed)
+			var/obj/screen/HUDelement = parentmob.HUDneed[element]
+			if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG)
+				HUDelement.invisibility = 101
+		showing = FALSE
+	else
+		for(var/element in parentmob.HUDneed)
+			var/obj/screen/HUDelement = parentmob.HUDneed[element]
+			if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG)
+				HUDelement.update_icon()
+		showing = TRUE
 
 // ------------- cyberdeck toggle end
 // ----------------- cyberslot start------------
 
 /obj/screen/cyberdeck_slot
 	name = "cyberdeck slot"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "cyberslot"
+	invisibility = 101
 	var/obj/item/implant/cyberinterface/interface = null
 	var/slotId = 0
 	var/mutable_appearance/cyberStickImage = null
 
+/obj/screen/cyberdeck_slot/Initialize()
+	. = ..()
+	if(parentmob)
+		var/mob/living/carbon/human/Humie = parentmob
+		if(!istype(Humie))
+			return
+		for(var/externalBodypart in BP_ALL_LIMBS)
+			if(!Humie.has_organ(externalBodypart))
+				continue
+			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
+			var/obj/item/implant/cyberinterface/cyberInterface = locate(/obj/item/implant/cyberinterface) in bodypart
+			message_admins("[src] with [slotId] found [cyberInterface]")
+			if(cyberInterface)
+				interface = cyberInterface
+				update_icon()
+				return
+
 /obj/screen/cyberdeck_slot/update_icon()
 	if(interface)
-		invisiblity = 0
+		invisibility = 0
 		if(cyberStickImage)
 			overlays.Remove(cyberStickImage)
-		var/obj/stickRef = interface.slots[slotId]
-		if(stickRef)
-			cyberStickImage = mutable_appearance(stickRef)
-			overlays.Add(cyberStickImage)
+		if(slotId)
+			var/obj/stickRef = interface.slots[slotId]
+			if(stickRef)
+				cyberStickImage = mutable_appearance(stickRef)
+				cyberStickImage.transform.Turn(180)
+				cyberStickImage.layer = ABOVE_HUD_LAYER
+				cyberStickImage.plane = ABOVE_HUD_PLANE
+				overlays.Add(cyberStickImage)
 	else
 		invisibility = 101
 		overlays.Remove(cyberStickImage)
 
 	. = ..()
+
+/obj/screen/cyberdeck_slot/Click(location, control, params)
+	if(!interface)
+		return TRUE
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user))
+		return TRUE
+	if(!user.can_click())
+		return TRUE
+	if(user.incapacitated(INCAPACITATION_CANT_ACT))
+		return TRUE
+	var/obj/item/currentlyInhand = user.get_active_hand()
+	if(istype(currentlyInhand, /obj/item/cyberstick))
+		interface.installStick(currentlyInhand, user, 0, FALSE)
+	if(currentlyInhand.has_quality(QUALITY_SCREW_DRIVING))
+		interface.attackby(currentlyInhand, user)
+	return TRUE
+
 
