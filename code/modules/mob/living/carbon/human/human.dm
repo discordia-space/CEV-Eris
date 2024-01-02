@@ -978,29 +978,20 @@ var/list/rank_prefix = list(\
 				new organ_type(src)
 
 		var/datum/category_item/setup_option/core_implant/I = Pref.get_option("Core implant")
-		world.log << "reached organ rebuild implant stage, received [I.name] as core implant"
 		if(I.implant_type && (!mind || mind.assigned_role != "Robot"))
-			world.log <<"passed mind check"
 			if(istype(I.implant_type, /obj/item/implant/core_implant))
 				var/obj/item/implant/core_implant/C = new I.implant_type
-				world.log << "created cruciform , installing"
 				C.install(src)
-				world.log << "cruciform installed , activating"
 				C.activate()
-				world.log <<"cruciform actiated , doing mind operations"
 				if(mind)
 					C.install_default_modules_by_job(mind.assigned_job)
 					C.access.Add(mind.assigned_job.cruciform_access)
 					C.security_clearance = mind.assigned_job.security_clearance
 			else if(has_organ(I.target_organ))
 				var/obj/item/implant/impl = new I.implant_type
-				world.log << " created  implant , [impl.name], installing"
 				impl.install(src, I.target_organ)
-				world.log << "implant installed , activating"
 				impl.activate()
-				world.log << "implant activated"
 
-		world.log << "finished organ rebuild implant stage"
 
 	else
 		var/organ_type

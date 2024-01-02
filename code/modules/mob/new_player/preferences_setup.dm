@@ -177,9 +177,7 @@
 
 /datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin, naked = FALSE)
 	var/update_icon = FALSE
-	world.log << "Dress STARTED"
 	copy_to(mannequin, TRUE)
-	world.log << "Dress copied"
 
 	if(!naked)
 		var/datum/job/previewJob
@@ -197,20 +195,15 @@
 
 		if((equip_preview_mob & EQUIP_PREVIEW_JOB) && previewJob)
 			mannequin.job = previewJob.title
-			world.log << " Dress preview equip starting"
 			previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
-			world.log << " Dress preview equip done"
 			update_icon = TRUE
 
-		world.log <<" Starting mob equipping"
 
 		if((equip_preview_mob & EQUIP_PREVIEW_LOADOUT) && !(previewJob && (equip_preview_mob & EQUIP_PREVIEW_JOB) && (previewJob.type == /datum/job/ai || previewJob.type == /datum/job/cyborg)))
 			// Equip custom gear loadout, replacing any job items
 			var/list/loadout_taken_slots = list()
-			world.log << "Starting mob equip creation & wear"
 			for(var/thing in Gear())
 				var/datum/gear/G = gear_datums[thing]
-				world.log << "creating gear datum [G] and wearing"
 				if(G)
 					var/permitted = 0
 					if(G.allowed_roles && G.allowed_roles.len)
@@ -227,16 +220,12 @@
 					if(!permitted)
 						continue
 
-					world.log << "Gear datum , before slot wear & mob spawn"
 					if(G.slot && G.slot != slot_accessory_buffer && !(G.slot in loadout_taken_slots) && G.spawn_on_mob(mannequin, gear_list[gear_slot][G.display_name]))
-						world.log << "Gear datum mob spawned & weared"
 						loadout_taken_slots.Add(G.slot)
 						update_icon = TRUE
 
-	world.log << "updating mannequin, with icon update set to [update_icon]"
 	if(update_icon)
 		mannequin.update_icons()
-		world.log << "mannequin updated"
 /*
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)

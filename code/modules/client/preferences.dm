@@ -166,9 +166,7 @@
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, is_preview_copy = FALSE)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
-	world.log << "prefs sanitizing"
 	player_setup.sanitize_setup()
-	world.log << "prefs setting species"
 	character.set_species(species)
 	var/random_first = random_first_name(gender, species)
 	var/random_last = random_last_name(gender, species)
@@ -198,11 +196,8 @@
 	character.tts_seed = tts_seed
 	character.h_style = h_style
 	character.f_style = f_style
-	world.log << "prefs rebuilding organs"
 	// Build mob body from prefs
 	character.rebuild_organs(src)
-
-	world.log << "prefs rebuilded organs"
 
 	character.eyes_color = eyes_color
 	character.hair_color = hair_color
@@ -213,8 +208,6 @@
 
 	QDEL_LIST(character.worn_underwear)
 	character.worn_underwear = list()
-
-	world.log << "setting underwear"
 	for(var/underwear_category_name in all_underwear)
 		var/datum/category_group/underwear/underwear_category = GLOB.underwear.categories_by_name[underwear_category_name]
 		if(underwear_category)
@@ -227,22 +220,17 @@
 		else
 			all_underwear -= underwear_category_name
 
-	world.log << "setting backpack"
 
 	character.backpack_setup = new(backpack, backpack_metadata["[backpack]"])
-	world.log << "updating limbs"
 
 	character.force_update_limbs()
 	character.update_mutations(0)
 	character.update_implants(0)
-	world.log << "updating body"
-
 	character.update_body(0)
 	character.update_underwear(0)
 
 	character.update_hair(0)
 
-	world.log << "updating icons"
 
 	character.update_icons()
 
@@ -259,16 +247,12 @@
 	if(!character.isSynthetic())
 		character.nutrition = rand(250, 450)
 
-	world.log << "getting options"
 
 	for(var/options_name in setup_options)
 		if(!get_option(options_name))
 			continue
-		world.log <<"at option [options_name]"
 		get_option(options_name).apply(character)
-		world.log <<" succesfully completed [options_name]"
 
-	world.log << "reached characetr post prefinit"
 	character.post_prefinit()
 
 
