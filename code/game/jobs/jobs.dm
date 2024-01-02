@@ -17,6 +17,8 @@ var/const/SERVICE           =(1<<7)
 var/const/GUILD             =(1<<8)
 var/const/CHURCH           	=(1<<9)
 
+var/const/ALLDEPS           = ENGINEERING|IRONHAMMER|MEDICAL|SCIENCE|CIVILIAN|COMMAND|MISC|SERVICE|GUILD|CHURCH
+
 var/const/ENGSEC			=(1<<0)
 
 var/const/CAPTAIN			=(1<<0)

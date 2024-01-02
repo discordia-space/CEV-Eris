@@ -282,23 +282,40 @@
 			organ?.update_icon()
 
 /obj/item/organ/external/proc/update_cyberdeck_hud(obj/item/implant/cyberinterface/cyberdeck)
-	var/obj/screen/toggle_cyberdeck/cyberToggle = owner.HUDneed["toggle_cyberdeck"]
+	world.log << "updating cyberhud"
+	var/obj/screen/toggle_cyberdeck/cyberToggle = owner?.HUDneed["toggle_cyberdeck"]
+	world.log << "Setting cybertoggle vis"
 	if(cyberToggle)
+		world.log << "Has cybertoggle"
 		if(cyberdeck)
+			world.log <<"Set visibile"
 			cyberToggle.invisibility = 0
 			cyberToggle.hasInterface = TRUE
+			world.log <<"finished visibile"
 		else
+			world.log <<"SEt inviisible"
 			cyberToggle.invisibility = 101
 			cyberToggle.hasInterface = FALSE
-	for(var/i = 1, i <= cyberdeck ? length(cyberdeck.slots) : 6, i++)
-		var/obj/screen/cyberdeck_slot/cyberSlot = owner.HUDneed["cyberdeck[i]"]
+			world.log << "invisible set"
+
+	world.log << "updating slots"
+	var/loopChoice = cyberdeck ? length(cyberdeck.slots) : 6
+	for(var/i = 1, i <= loopChoice, i++)
+		world.log << "updating slot number [i]"
+		var/obj/screen/cyberdeck_slot/cyberSlot = owner?.HUDneed["cyberdeck[i]"]
+		world.log << "retrieved cyberslot"
 		message_admins("Retrieved cyberslot [cyberSlot] ")
 		if(cyberSlot)
+			world.log << "has cyberslot"
 			if(cyberdeck)
+				world.log <<"has set cybereck interface"
 				cyberSlot.interface = cyberdeck
 			else
+				world.log <<" has set cyberinterface to null"
 				cyberSlot.interface = null
+			world.log << "updating cyberslot icon"
 			cyberSlot.update_icon()
+			world.log << "updated cyberslot icon"
 
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"

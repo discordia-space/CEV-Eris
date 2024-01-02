@@ -20,6 +20,7 @@
 	var/obj/screen/cyberdeck_slot/holdingSlot = null
 	bad_type = /obj/item/cyberstick
 	rarity_value = 200
+	spawn_tags = SPAWN_ODDITY
 
 /obj/item/cyberstick/Destroy(force)
 	holdingSlot = null

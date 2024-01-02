@@ -386,21 +386,30 @@ var/global/list/damage_icon_parts = list()
 	return
 
 /mob/living/carbon/human/update_implants(var/update_icons = 1)
+	world.log << "updating implants"
 	var/image/standing = image('icons/mob/mob.dmi', "blank")
 	var/have_icon = FALSE
 	for(var/obj/item/implant/I in src)
 		if(I.is_external() && I.wearer == src)
+			world.log <<"retrieving implant image for [I.name]"
 			var/image/mob_icon = I.get_mob_overlay(gender)
+			world.log << "completed icon retrieve"
 			if(mob_icon)
+				world.log <<"adding icon as overlay"
 				standing.overlays += mob_icon
+				world.log <<"added icon file to overlays"
 				have_icon = TRUE
 
+	world.log << "checibng have icon"
 	if(have_icon)
+		world.log <<"Setting standing overlays"
 		overlays_standing[IMPLANTS_LAYER] = standing
 	else
 		overlays_standing[IMPLANTS_LAYER] = null
 
+	world.log <<"will update icons ? [update_icons]"
 	if(update_icons) update_icons()
+	world.log <<"updated icons"
 
 /* --------------------------------------- */
 //For legacy support.

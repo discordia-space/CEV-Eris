@@ -52,6 +52,7 @@
 //return TRUE for implanter icon update.
 /obj/item/implant/proc/install(mob/living/target, organ, mob/user)
 	var/obj/item/organ/external/affected
+	world.log << "starting implant installl"
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 		affected = H.organs_by_name[organ]
@@ -70,19 +71,27 @@
 			to_chat(user, SPAN_WARNING("[src] cannot be implanted in this limb."))
 			return
 
+	world.log << "checking if can install"
+
 	if(!can_install(target, affected))
 		to_chat(user, SPAN_WARNING("You can't install [src]."))
 		return
+	world.log <<"install possible"
 	forceMove(target)
 	wearer = target
 	implanted = TRUE
 	if(affected)
 		affected.implants |= src
 		part = affected
+		world.log <<" updating nano ui's"
 		SSnano.update_uis(affected) // Update surgery UI window, if any
 
+	world.log <<"updated nanoui's , calling oninstall"
+
 	on_install(target, affected)
+	world.log << "updating implants"
 	wearer.update_implants()
+	world.log << "implants updated"
 	for(var/mob/living/carbon/human/H in viewers(target))
 		SEND_SIGNAL_OLD(H, COMSIG_HUMAN_INSTALL_IMPLANT, target, src)
 	return TRUE
@@ -91,6 +100,7 @@
 	return TRUE
 
 /obj/item/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
+	return FALSE
 
 /obj/item/implant/proc/uninstall()
 	on_uninstall()

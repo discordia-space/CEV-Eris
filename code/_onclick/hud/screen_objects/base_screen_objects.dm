@@ -1667,13 +1667,18 @@ obj/screen/fire/DEADelize()
 				return
 
 /obj/screen/cyberdeck_slot/update_icon()
+	world.log <<"cutting viscontents"
 	vis_contents.Cut()
+	world.log << "doing interface checks"
 	if(interface && length(interface.slots) >= slotId && slotId != 0)
 		invisibility = 0
 		var/obj/item/cyberstick/stickRef = interface.slots[slotId]
+		world.log << "checking stickref existance"
 		if(stickRef)
 			stickRef.holdingSlot = src
+			world.log <<"adding stickref to vis contents"
 			vis_contents.Add(stickRef)
+			world.log <<"added stickref to viscontents"
 	else
 		invisibility = 101
 

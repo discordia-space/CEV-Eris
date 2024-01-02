@@ -8,32 +8,40 @@ datum/preferences
 
 datum/preferences/proc/update_preview_icon(var/naked = FALSE)
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	world.log << "Created mannequin"
 	mannequin.delete_inventory(TRUE)
 	preview_icon = icon('icons/effects/96x64.dmi', bgstate)
+	world.log << "Reached dress"
 
 	dress_preview_mob(mannequin, naked)
 
+	world.log << "Reached 1st iconFlat"
 	preview_east = getFlatIcon(mannequin, EAST)
 
 	mannequin.dir = WEST
+	world.log << "Reached 2nd iconFlat"
 	var/icon/stamp = getFlatIcon(mannequin, WEST)
 	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 3, preview_icon.Height()/100 * 29)
 	preview_west = stamp
 
 	mannequin.dir = NORTH
+	world.log << "Reached 3rd iconFlat"
 	stamp = getFlatIcon(mannequin, NORTH)
 	preview_icon.Blend(stamp, ICON_OVERLAY,preview_icon.Width()/100 * 35, preview_icon.Height()/100 * 53)
 	preview_north = stamp
 
 	mannequin.dir = SOUTH
+	world.log << "Reached 4th iconFlat"
 	stamp = getFlatIcon(mannequin, SOUTH)
 	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 68,preview_icon.Height()/100 * 5)
 	preview_south = stamp
 
+	world.log << "Reached blend stage"
 	// Scaling here to prevent blurring in the browser.
 	preview_east.Scale(preview_east.Width() * 2, preview_east.Height() * 2)
 	preview_west.Scale(preview_west.Width() * 2, preview_west.Height() * 2)
 	preview_north.Scale(preview_north.Width() * 2, preview_north.Height() * 2)
 	preview_south.Scale(preview_south.Width() * 2, preview_south.Height() * 2)
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2)
+	world.log << "Reached proc end"
 	return mannequin.icon

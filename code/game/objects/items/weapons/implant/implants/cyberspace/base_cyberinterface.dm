@@ -13,6 +13,8 @@
 		null,
 		null
 	)
+	rarity_value = 300
+	spawn_tags = SPAWN_ODDITY
 
 /obj/item/implant/cyberinterface/proc/installSticksForJob(datum/job/jobz)
 	for(var/path in jobz.cyberSticks)
@@ -137,6 +139,7 @@
 		null,
 		null
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/implant/cyberinterface/ironhammer
 	name = "ironhammer combat interface"
@@ -146,6 +149,7 @@
 		null,
 		null
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/implant/cyberinterface/league
 	name = "techmomancer's league tribesman interface"
@@ -168,6 +172,7 @@
 		null,
 		null
 	)
+	spawn_blacklisted = TRUE
 
 /obj/item/implant/cyberinterface/moebius
 	name = "moebius brain-intranet interface"
@@ -177,6 +182,7 @@
 		null,
 		null
 	)
+	spawn_blacklisted = TRUE
 
 
 /obj/item/implant/cyberinterface/asters
@@ -189,6 +195,7 @@
 		null,
 		null
 	)
+	spawn_blacklisted = TRUE
 
 
 
