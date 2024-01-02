@@ -397,6 +397,15 @@ its easier to just keep the beam vertical.
 		else
 			full_name += "oil-stained [name][infix]."
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/humie = user
+		if(humie.stats && humie.stats.getPerk(/datum/perk/greenthumb))
+			var/datum/perk/greenthumb/P = humie.stats.getPerk(/datum/perk/greenthumb)
+			P.virtual_scanner.afterattack(src, humie, get_dist(src, humie) <= 1)
+		if(humie.hasCyberFlag(CSF_CONTENTS_READER) && !isturf(src))
+			afterDesc += "\n [SPAN_NOTICE("<a href='?src=\ref[humie];contents_read_shallow=\ref[src]'>Scan [src] contents (!SHALLOW!)</a>")]"
+
+
 	examineText += "<div id='examine'>"
 	examineText += "\icon[src] This is [full_name] \n [desc]"
 	examineText += "[suffix]"
@@ -441,10 +450,6 @@ its easier to just keep the beam vertical.
 					to_chat(user, SPAN_NOTICE("It has [reagents.total_volume] unit\s left."))
 				else
 					to_chat(user, SPAN_DANGER("It's empty."))
-
-	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
-		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
-		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
 	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user, distance)
 

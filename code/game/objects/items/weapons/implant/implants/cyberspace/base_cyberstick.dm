@@ -139,3 +139,11 @@
 		STAT_VIG = rand(5,15)
 	)
 
+/// insanely powerfull if you let it go deeper as it could read PEOPLE.
+/obj/item/cyberstick/guilds_edge
+	name = "Cyberstick - Guilds edge"
+	desc = "A cyberstick manufactured by the aster's guild. Uses bluespace manipulation to find out what others are carrying. Only works for items with 1 layer of matter encapsulation."
+	icon_state = "stick_ram"
+	skillBoosts = list()
+	cyberFlags = CSF_CONTENTS_READER
+

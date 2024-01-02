@@ -1100,6 +1100,7 @@
 #include "code\game\objects\items\weapons\implant\implants\carrion\breeding_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\carrion_spiders.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\control_spider.dm"
+#include "code\game\objects\items\weapons\implant\implants\carrion\cyber_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\explosive_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\flashbang_spider.dm"
 #include "code\game\objects\items\weapons\implant\implants\carrion\healing_spider.dm"

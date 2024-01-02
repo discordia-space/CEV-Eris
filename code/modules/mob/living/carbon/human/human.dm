@@ -320,6 +320,30 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/Topic(href, href_list)
 
+	if(href_list["contents_read_shallow"])
+		// No funny exploits
+		if(!hasCyberFlag(CSF_CONTENTS_READER))
+			return
+		var/atom/target = locate(href_list["contents_read_shallow"])
+		/// sanity , could be switched by client anyway to be something he shouldn't be able to check
+		if(isturf(target) || ismob(target))
+			return
+		if(get_dist(target, src) > 8)
+			return
+		if(incapacitated(INCAPACITATION_UNCONSCIOUS))
+			return
+		var/returnMessage = "<div id='examine'> Contents of \icon[target] [target.name] \n"
+		var/objectsAnalyzed = 0
+		for(var/object in target.contents)
+			if(istype(object, /obj/item) || istype(object, /mob/living))
+				objectsAnalyzed++
+				returnMessage += "<big> \icon[object] </big>"
+				if(objectsAnalyzed % 5 == 0 && objectsAnalyzed != 0)
+					returnMessage += "\n"
+		returnMessage += "</div>"
+		to_chat(src, returnMessage)
+		return
+
 	if(href_list["refresh"])
 		if((machine)&&(in_range(src, usr)))
 			show_inv(machine)

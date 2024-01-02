@@ -49,6 +49,11 @@ img.icon {
 	vertical-align: bottom;
 }
 
+big img.icon {
+	width: 64px;
+	height: 64px;
+}
+
 .r:before { /* "repeated" badge class for combined messages */
 	content: 'x';
 }

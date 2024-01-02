@@ -255,7 +255,7 @@
 	if (!owner)
 		return
 
-	if(!absorbed_dna.len)
+	if(!length(absorbed_dna))
 		to_chat(owner, SPAN_WARNING("You have no DNA absorbed!"))
 		return
 
@@ -267,16 +267,23 @@
 	if(!owner.check_ability(5))
 		return
 
-//	if(HUSK in owner.mutations)
-//		owner.mutations -= HUSK
-//		if(istype(owner))
-//			owner.update_body(0)
+	var/list/choiceList = absorbed_dna[S]
+	if(length(choiceList))
+		owner.real_name = choiceList["name"]
+		owner.dna_trace = sha1(S)
+		owner.fingers_trace = md5(S)
+		owner.flavor_text = choiceList["flavor_text"]
+		owner.tts_seed = choiceList["voice"]
+		owner.change_hair_color(choiceList["hair_color"])
+		owner.change_hair(choiceList["hair_style"])
+		owner.change_facial_hair_color(choiceList["beard_color"])
+		owner.change_facial_hair(choiceList["beard_style"])
+		owner.change_skin_color(choiceList["skin_color"])
+		owner.change_skin_tone(choiceList["skin_tone"])
+		owner.change_eye_color(choiceList["eye_color"])
 
 	owner.visible_message(SPAN_WARNING("[owner] transforms!"))
-	owner.real_name = S
-	owner.dna_trace = sha1(S)
-	owner.fingers_trace = md5(S)
-	owner.flavor_text = ""
+
 
 	return 1
 

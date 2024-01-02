@@ -11,6 +11,12 @@ var/list/datum/power/carrion/powerinstances = list()
 	var/organpath //Path to the organ that is getting evolved.
 	var/spiderpath //The path of the spider we spawn.
 
+/datum/power/carrion/cyber_spider
+	name = "Cyberinterface spider"
+	desc = "Creates a spider which can link to a brain in order to imitate a cyberinterface. Has 4 slots for cyberdecks."
+	genomecost = 5
+	spiderpath = /obj/item/implant/carrion_spider/cyber_spider
+
 /datum/power/carrion/flashbang_spider
 	name = "Flashbang spider"
 	desc = "Creates a spider filled with a strange substance that when activated explodes in a flash of light. Does minor damage to its host."

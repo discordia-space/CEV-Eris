@@ -26,6 +26,9 @@
 	if(!istype(target))
 		return FALSE
 	var/obj/item/organ/internal/vital/brain/cyberBrain = locate(/obj/item/organ/internal/vital/brain) in target
+	var/obj/item/implant/cyberinterface/opponent = locate() in E.implants
+	if(opponent)
+		return FALSE
 	if(cyberBrain && cyberBrain.parent != E)
 		return FALSE
 	return TRUE
@@ -54,7 +57,8 @@
 
 /obj/item/implant/cyberinterface/proc/getEmptySlot()
 	for(var/i = 1, i <= length(slots), i++)
-		if(!QDELETED(slots[i]))
+		var/obj/thing = slots[i]
+		if(!QDELETED(thing))
 			continue
 		return i
 	return 0
@@ -62,7 +66,8 @@
 /obj/item/implant/cyberinterface/proc/getFilledSlots()
 	var/list/filledSlots = list()
 	for(var/i = 1, i <= length(slots), i++)
-		if(!QDELETED(slots[i]))
+		var/obj/thing = slots[i]
+		if(!QDELETED(thing))
 			filledSlots.Add(i)
 	return filledSlots
 
