@@ -1616,7 +1616,6 @@ obj/screen/fire/DEADelize()
 				continue
 			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
 			var/obj/item/implant/cyberinterface/interface = locate() in bodypart.implants
-			message_admins("[src] found [interface]")
 			if(interface)
 				hasInterface = TRUE
 				invisibility = 0
@@ -1660,7 +1659,6 @@ obj/screen/fire/DEADelize()
 				continue
 			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
 			var/obj/item/implant/cyberinterface/cyberInterface = locate(/obj/item/implant/cyberinterface) in bodypart.implants
-			message_admins("[src] with [slotId] found [cyberInterface]")
 			if(cyberInterface)
 				interface = cyberInterface
 				update_icon()

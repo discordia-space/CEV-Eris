@@ -19,7 +19,6 @@
 /obj/item/implant/cyberinterface/proc/installSticksForJob(datum/job/jobz)
 	for(var/path in jobz.cyberSticks)
 		var/obj/item/cyberstick/stick = new path(NULLSPACE)
-		message_admins("installing stick [stick]")
 		installStick(stick, null, 0, FALSE)
 
 /obj/item/implant/cyberinterface/can_install(mob/living/carbon/human/target, obj/item/organ/external/E)
@@ -132,6 +131,16 @@
 	desc = "A very basic model of cyberinterface. Has only 1 measly slot"
 	icon_state = "cheap"
 	slots = list(
+		null
+	)
+
+/obj/item/implant/cyberinterface/contractor
+	name = "contractor cyberinterface"
+	desc = "A blackmarket cyberinterface, has 3 slots."
+	icon_state = "league10"
+	slots = list(
+		null,
+		null,
 		null
 	)
 
