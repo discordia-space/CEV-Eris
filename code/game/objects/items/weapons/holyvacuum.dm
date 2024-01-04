@@ -2,6 +2,7 @@
 	desc = "An advanced vacuum cleaner designed by NeoTheology that compresses trash into reusable biomatter bricks. It looks more like a ghost-busting gun than an actual vacuum cleaner. There is no safety switch."
 	name = "\"Tersus\" vacuum cleaner"
 	icon = 'icons/obj/janitor.dmi'
+	commonLore = "Represents 42% of Neotheology yearly income revenue. Quite the revolutionary invention in cleaning."
 	icon_state = "vacuum"
 	melleDamages = list(
 		ARMOR_BLUNT = list(

@@ -6,6 +6,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 /obj/item/device/chameleon
 	name = "chameleon projector"
 	desc = "This is chameleion projector. Chose an item and activate projector. You're beautiful!"
+	commonLore = "Makes use of psionic technology to force a hallucination upon anyone who sees it."
 	icon_state = "shield0"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT

@@ -160,3 +160,18 @@
 	skillBoosts = list()
 	cyberFlags = CSF_CONTENTS_READER|CSF_BANKING_READER
 
+/obj/item/cyberstick/taste_reader
+	name = "Cyberstick - Taste reader"
+	desc = "A cyberstick made by leading cookware companies. It tells you what something would taste like."
+	icon_state = "stick_ram"
+	skillBoosts = list()
+	cyberFlags = CSF_TASTE_READER
+
+/obj/item/cyberstick/lore_common
+	name = "Cyberstick - Public knowledge archives"
+	desc = "A cyberstick containing information about past events. This one seems to trigger only when examining a item it knows a event related to."
+	icon_state = "stick_ram"
+	skillBoosts = list()
+	cyberFlags = CSF_LORE_COMMON_KNOWLEDGE
+
+

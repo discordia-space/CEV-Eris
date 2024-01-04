@@ -5,6 +5,7 @@
 	desc = "A nulling power sink which drains energy from electrical systems."
 	icon_state = "powersink0"
 	item_state = "electronic"
+	commonLore = "A piece of old syndicate technology, making use of resistance sinks and gasses which cool when current is passed through."
 	volumeClass = ITEM_SIZE_BULKY
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_PAINFUL

@@ -19,6 +19,7 @@
 	slot_flags = SLOT_BACK
 	description_antag = "If this rig contains a chemical dispenser, its contents can be saboutaged. They will show as another reagent as long as its the majority in the beaker. You can also insert plasma into its powercell or replace the air tank inside"
 	description_info = "A highly capable modular RIG system. Can hold modules which provide additional functionality. Also has a chance to completely deflect ballistic projectiles depending on the bullet protection."
+	commonLore = "The rigsuit was a massive innovation in the field of bio-engineering, it was first invented in 2231 by Brylan Brooks, a chief engineer at old NT. Its invention led to an arms-race between various corporations, the face of conflict was changed forever."
 	req_one_access = list()
 	req_access = list()
 	volumeClass = ITEM_SIZE_BULKY

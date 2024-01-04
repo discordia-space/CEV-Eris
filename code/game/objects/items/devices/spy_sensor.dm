@@ -4,6 +4,7 @@
 	origin_tech = list(TECH_MAGNET = 5, TECH_COVERT = 2)
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
 	description_antag = "Carefull when placing spying sensors. Upon self-destruction they emp around themselves. If left near any machinery, they could trigger alarms for IH detectives to investigate."
+	commonLore = "These are usually employed by Sabotage Technicians to figure out structural weakpoints in a ship or building."
 	var/active = FALSE
 	var/datum/mind/owner
 	var/list/obj/item/device/spy_sensor/group

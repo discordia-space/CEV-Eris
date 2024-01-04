@@ -246,6 +246,12 @@ GLOBAL_LIST(melleDamagesCache)
 	for(var/text in listReference)
 		message += "[text] \n"
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/humie = user
+		if(humie.hasCyberFlag(CSF_LORE_COMMON_KNOWLEDGE) && commonLore)
+			message += SPAN_NOTICE("\n  Knowledge addendum - Common : [commonLore]")
+
+
 	. = ..(user, distance, "", message, afterDesc)
 
 	if(ishuman(user))
@@ -270,6 +276,7 @@ GLOBAL_LIST(melleDamagesCache)
 			if(has_offers)
 				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
 				to_chat(user, SPAN_NOTICE(offer_message))
+
 
 /obj/item/attack_hand(mob/user as mob)
 	if(pre_pickup(user))

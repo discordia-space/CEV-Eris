@@ -404,6 +404,9 @@ its easier to just keep the beam vertical.
 			P.virtual_scanner.afterattack(src, humie, get_dist(src, humie) <= 1)
 		if(humie.hasCyberFlag(CSF_CONTENTS_READER) && !isturf(src))
 			afterDesc += "\n [SPAN_NOTICE("<a href='?src=\ref[humie];contents_read_shallow=\ref[src]'>Scan [src] contents (!SHALLOW!)</a>")]"
+		if(humie.hasCyberFlag(CSF_TASTE_READER) && reagents && reagents.total_volume && istype(src, /obj/item/reagent_containers/food))
+			afterDesc += "\n [SPAN_NOTICE("<a href='?src=\ref[humie];read_tastes=\ref[src]'>Scan [src] for taste. </a>")]"
+
 
 
 	examineText += "<div id='examine'>"
@@ -421,7 +424,6 @@ its easier to just keep the beam vertical.
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(desc)
-		//to_chat(user,"<div style='["background-color:#1d527a"]';>[desc]</div>")
 		var/pref = user.get_preference_value("SWITCHEXAMINE")
 		if(pref == GLOB.PREF_YES)
 			user.client.statpanel = "Examine"

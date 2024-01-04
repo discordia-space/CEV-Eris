@@ -4,6 +4,7 @@
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "enricher"
 	item_state = "enricher"
+	commonLore = "Invented by 2 chemists , Molitor Ganz and Riedel Pavlov. They died from poisoning with exotic compounds 3 days after its invention."
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,240)
 	volume = 240

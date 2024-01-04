@@ -4,7 +4,7 @@
 	name = "coin"
 	desc = "It's worth something. Probably."
 	icon = 'icons/obj/items.dmi'
-	icon_state = "spacecash1"
+	icon_state = "spacecash100"
 	throw_speed = 1
 	throw_range = 2
 	volumeClass = ITEM_SIZE_SMALL
@@ -19,6 +19,9 @@
 /obj/item/spacecash/getWeight()
 	return (worth + 1) * initial(weight)
 
+/obj/item/spacecash/proc/updateCashWeight()
+	recalculateWeights(getWeight() - weight)
+
 /obj/item/spacecash/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/spacecash) && !istype(W, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/bundle/bundle
@@ -30,13 +33,16 @@
 			bundle.worth = cash.worth
 			user.drop_from_inventory(cash)
 			qdel(cash)
+		if(bundle.worth == 5000)
+			to_chat(user, SPAN_NOTICE("The bundle is already full!"))
+			return
 
 		var/drainedWorth = clamp(worth, 0, max(bundle.maxWorth - bundle.worth, 0))
 
 		bundle.worth += drainedWorth
-		bundle.recalculateWeights(bundle.getWeight() - bundle.weight)
+		bundle.updateCashWeight()
 		src.worth -= drainedWorth
-		src.recalculateWeights(getWeight() - weight)
+		updateCashWeight()
 		bundle.update_icon()
 		update_icon()
 		if(ishuman(user))
@@ -45,7 +51,7 @@
 				H.drop_from_inventory(src)
 			H.drop_from_inventory(bundle)
 			H.put_in_hands(bundle)
-		to_chat(user, SPAN_NOTICE("You add [worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
+		to_chat(user, SPAN_NOTICE("You add [drainedWorth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
 		if(worth == 0)
 			qdel(src)
 
@@ -123,7 +129,7 @@
 
 	var/obj/item/spacecash/bundle/bundle = new (usr.loc)
 	bundle.worth = amount
-	bundle.recalculateWeights(bundle.getWeight() - bundle.weight)
+	bundle.updateCashWeight()
 	bundle.update_icon()
 	usr.put_in_hands(bundle)
 	update_icon()
@@ -133,6 +139,7 @@
 	. = ..()
 	update_icon()
 	AddComponent(/datum/component/inspiration, CALLBACK(src, PROC_REF(return_stats)))
+	updateCashWeight()
 
 /// Returns a list to use with inspirations. It can be empty if there's not enough money in the bundle. Important side-effects: converts worth to points, thus reducing worth.
 /obj/item/spacecash/bundle/proc/return_stats()
@@ -184,18 +191,25 @@
 
 
 /proc/spawn_money(sum, spawnloc, mob/living/carbon/human/H)
-	var/obj/item/spacecash/bundle/bundle = new(spawnloc)
-	bundle.worth = sum
-	bundle.update_icon()
-	if(istype(H) && !H.get_active_hand())
-		H.put_in_hands(bundle)
+	while(sum > 0)
+		var/obj/item/spacecash/bundle/bundle = new(spawnloc)
+		bundle.worth = clamp(sum, 0, 5000)
+		sum -= bundle.worth
+		bundle.updateCashWeight()
+		bundle.update_icon()
+		if(istype(H) && !H.get_active_hand())
+			H.put_in_hands(bundle)
 
 
 /obj/item/spacecash/ewallet
 	name = "Charge card"
 	icon_state = "efundcard"
 	desc = "A card that holds an amount of money."
+	weight = 50
 	var/owner_name = "" // So the ATM can set it so the EFTPOS can put a valid name on transactions.
+
+/obj/item/spacecash/ewallet/getWeight()
+	return initial(weight)
 
 /obj/item/spacecash/ewallet/examine(mob/user)
 	var/description = ""

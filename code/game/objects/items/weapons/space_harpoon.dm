@@ -7,6 +7,7 @@
 	icon_state = "harpoon-1"
 	item_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
+	commonLore = "There were only 3 prototypes present when old Nanotransen collapsed. 2 of them were used to rob mega-banks. Since then , all vaults now have bluespace interference protection."
 	volumeClass = ITEM_SIZE_NORMAL
 	throw_speed = 4
 	throw_range = 20

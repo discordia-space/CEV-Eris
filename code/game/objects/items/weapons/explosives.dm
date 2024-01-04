@@ -3,6 +3,7 @@
 	desc = "Used to make holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/assemblies.dmi'
+	commonLore = "Centuries have passed, C4 is still the king of effective and cheap explosives."
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
 	flags = NOBLUDGEON

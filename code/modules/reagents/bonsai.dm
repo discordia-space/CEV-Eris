@@ -9,6 +9,8 @@
 	name = "Laurelin bonsai"
 	desc = "A small tree, gifted to the club by a previous patron. It subsists off of numerous alcohols, and produces fruits and vegetables in return."
 
+	commonLore = "Known as a anomaly in biology. The club refused to allow Moebius Technology to study it."
+
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-21" //Placeholder until we can get a proper sprite for them.
 

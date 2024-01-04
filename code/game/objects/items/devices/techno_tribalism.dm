@@ -4,6 +4,7 @@
 	icon = 'icons/obj/faction_item.dmi'
 	description_info = "Has an internal radio that informs technomancers of its delay, it can be re-enabled with a screwdriver if it is not functioning. Deconstructing other departmental oddities reduces its cooldown. Deconstructing combat-oriented oddities buffs its capability to make better combat oddities."
 	description_antag = "You can disable its internal radio with a EMP."
+	commonLore = "A technology secret from the highest tribe leaders of the technomancers. Known that it contains some reverse-engineered one-star technology."
 	icon_state = "techno_tribalism"
 	item_state = "techno_tribalism"
 	origin_tech = list(TECH_MATERIAL = 8, TECH_ENGINEERING = 7, TECH_POWER = 2)

@@ -35,6 +35,7 @@
 /obj/effect/decal/cleanable/solid_biomass
 	name = "solid biomass"
 	desc = "It's good to do not touch this. And better to kill it with fire. Very toxic."
+	var/commonLore = "Precursor of the blob. Was commonly found hidden in old Nanotransen ventilations, causing the feared blob infestation."
 	icon = 'icons/obj/bioreactor_misc.dmi'
 	icon_state = "biomass-1"
 	anchored = TRUE
@@ -48,6 +49,14 @@
 /obj/effect/decal/cleanable/solid_biomass/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
+
+/obj/effect/decal/cleanable/solid_biomass/examine(mob/user, distance, infix, suffix, afterDesc)
+	if(ishuman(user))
+		var/mob/living/carbon/human/humie = user
+		if(humie.hasCyberFlag(CSF_LORE_COMMON_KNOWLEDGE) && commonLore)
+			afterDesc += SPAN_NOTICE("\n  Knowledge addendum - Common : [commonLore]")
+	. = ..()
+
 
 
 /obj/effect/decal/cleanable/solid_biomass/Process()

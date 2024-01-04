@@ -39,6 +39,11 @@
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\nIt is [pose]"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/humie = user
+		if(humie.hasCyberFlag(CSF_LORE_COMMON_KNOWLEDGE) && commonLore)
+			msg += SPAN_NOTICE("\n  Knowledge addendum - Common : [commonLore]")
 	..(user, infix = custom_infix, afterDesc =msg)
 	user.showLaws(src)
 	return

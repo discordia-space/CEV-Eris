@@ -35,7 +35,7 @@
 	name = "Excelsior mine"
 	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a merciful brief end to others, unless they have a Pulse tool nearby."
 	icon_state = "mine_excel"
-	commonLore = "They didn't have IFF last time they were employed onboard. The excelsiors have evolved."
+	commonLore = "They didn't have IFF last time they were employed onboard. The excelsiors have upgraded their arsenal."
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10)
 	excelsior = TRUE
 	prob_explode = 100

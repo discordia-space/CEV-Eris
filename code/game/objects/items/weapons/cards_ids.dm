@@ -66,7 +66,8 @@
 /obj/item/card/emag
 	desc = "A card with a magnetic strip attached to some circuitry."
 	name = "cryptographic sequencer"
-	description_antag = "This item has 10 by default. Emagging turrets turns them lethal to everyone. Emagging a door opens it and bolts it. Emagging a non-sentient robot turns them hostile. Emagging a cyborg forces them to obey you. Emagging an APC lets only you acces it."
+	description_antag = "This item has 10 uses by default. Emagging turrets turns them lethal to everyone. Emagging a door opens it and bolts it. Emagging a non-sentient robot turns them hostile. Emagging a cyborg forces them to obey you. Emagging an APC lets only you acces it."
+	commonLore = "A fascinating piece of syndicate technology, antique by now. The hacking techniques employed by these don't work on any ships employing modern airlock systems."
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_COVERT = 2)
@@ -95,6 +96,7 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/card/id
 	name = "identification card"
 	desc = "A card used to provide ID and determine access across the ship."
+	commonLore = "This card seems to be of old NanoTransen origin."
 	icon_state = "id"
 	item_state = "card-id"
 	slot_flags = SLOT_ID

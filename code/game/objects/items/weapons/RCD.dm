@@ -8,6 +8,7 @@
 	density = FALSE
 	anchored = FALSE
 	flags = CONDUCT
+	commonLore = "A staple of the old NanoTrasen engineering departament. This invention helped shape the galaxy as it is today. Building stations became convenient with enough compressed matter."
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,8)

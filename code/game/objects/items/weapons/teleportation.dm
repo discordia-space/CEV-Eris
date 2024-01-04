@@ -14,6 +14,7 @@
 	item_state = "electronic"
 	throwforce = WEAPON_FORCE_HARMLESS
 	volumeClass = ITEM_SIZE_SMALL
+	commonLore = "The leading edge in advanced survival kits. Highly funded expeditions have this on every crewmember."
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)

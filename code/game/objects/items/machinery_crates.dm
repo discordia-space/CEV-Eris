@@ -4,6 +4,8 @@
 	icon = 'icons/obj/machinery_crates.dmi'
 	icon_state = "standart"
 
+	commonLore = "A IKEA Kit , the invention of these revolutioned multiple aspects of warfare and construction. "
+
 	anchored = FALSE
 	volumeClass = ITEM_SIZE_HUGE
 	slowdown_hold = 0.5

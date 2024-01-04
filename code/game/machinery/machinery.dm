@@ -115,6 +115,8 @@
 
 	var/hacked = FALSE // If this machine has had its access requirements hacked or not
 	var/shipside_only = FALSE // Does this mechanism need to be on the ship? Used for excel
+
+	var/commonLore = ""
 	matter = list(MATERIAL_STEEL = 8)
 
 

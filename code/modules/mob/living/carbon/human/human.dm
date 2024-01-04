@@ -350,6 +350,25 @@ var/list/rank_prefix = list(\
 		to_chat(src, returnMessage)
 		return
 
+	if(href_list["read_tastes"])
+		if(!hasCyberFlag(CSF_TASTE_READER))
+			return
+		var/obj/item/reagent_containers/food/target = locate(href_list["read_tastes"])
+		if(get_dist(target,src) > 8 || incapacitated(INCAPACITATION_UNCONSCIOUS))
+			return
+		var/returnMessage = "<div id='examine'> Taste types for \icon[target] [target.name] \n"
+		var/list/taste_list = list()
+		if(istype(target, /obj/item/reagent_containers/food/snacks))
+			var/obj/item/reagent_containers/food/snacks/snack = target
+			taste_list = snack.taste_tag.Copy()
+		for(var/datum/reagent/reag in target.reagents.reagent_list)
+			taste_list |= reag.taste_tag
+		for(var/taste_tag in taste_list)
+			returnMessage += "[uppertext(taste_tag)] "
+		returnMessage += "</div>"
+		to_chat(src, returnMessage)
+		return
+
 	if(href_list["refresh"])
 		if((machine)&&(in_range(src, usr)))
 			show_inv(machine)

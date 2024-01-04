@@ -83,5 +83,7 @@
 	var/can_multiz_pb = FALSE
 	var/is_watching = FALSE
 
+	var/commonLore = ""
+
 	spawn_frequency = 10
 	bad_type = /mob/living

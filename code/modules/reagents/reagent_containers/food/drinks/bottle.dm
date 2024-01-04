@@ -204,7 +204,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
-	desc = "A bottle filled with nothing
+	desc = "A bottle filled with nothing"
 	icon_state = "bottleofnothing"
 	center_of_mass = list("x"=17, "y"=5)
 	preloaded_reagents = list("nothing" = 100)
@@ -268,6 +268,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/ntcahors
 	name = "NeoTheology Cahors Wine"
 	desc = "Ritual drink that cleanses the soul and body."
+	commonLore = "The manufacturing technology behind this is still kept secret. Its believed this wine was chemically engineered by an AI."
 	icon_state = "ntcahors"
 	center_of_mass = list("x"=16, "y"=4)
 	preloaded_reagents = list("ntcahors" = 100)

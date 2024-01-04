@@ -30,7 +30,30 @@
 				"Ironhammer budget: evidence of SAU overfund",
 				"The truth behind the fall of One Star",
 				"Are we next? The connection between One Star and dead alien civilizations",
-				"Unknown device blueprints")
+				"Unknown device blueprints",
+				"Psionic and bluespace relativity",
+				"Data teleportation with the use of bluespace",
+				"Synthesization of darkmatter",
+				"Bluespace local-continuum energy extraction",
+				"Is god real? On the origin of cruciforms",
+				"Non-relativistic bluespace phenomenons",
+				"Moebius technologies, evidence of unethical mind experimentation",
+				"Psionics, innate force within all bluespace entities",
+				"Effects of teleportation, entanglement with one's bluespace copy",
+				"On the existence of carrion's and their population within major social hubs",
+				"Hacking methods using excelsior brute-forcing methods",
+				"On the presence of bluespace waves in galaxies",
+				"Hanza hierarchy study, a shadow government?",
+				"Old Earth and Serbians. The effects of military equipment in the hands of pirates on space trade",
+				"Psionics, found to be a common trait amongst one-star citizens",
+				"Freezing light using bluespace lasers. Applications for increased-capacity battery cells.",
+				"Interspecies wars, study into why they started.",
+				"Aster's guild and the link between the new bluespace combat operatives."
+				"Increase of brain-size correlates with insanity. Empirical study into the link between insanity and high intelligence",
+				"Mental instability and brain-modifying drugs found to play a crucial part in the acquisition of psionic powers",
+	)
+
+
 	. = ..()
 	var/mob/living/carbon/human/owner = loc
 	if(istype(owner))

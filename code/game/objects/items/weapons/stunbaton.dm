@@ -8,6 +8,7 @@
 	slot_flags = SLOT_BELT
 	description_info = "Highly effective against uninsulated people. High change to disarm when aimed at arms."
 	description_antag = "Can be saboutaged by inserting plasma into its battery cell. Upon being turned on it will blow"
+	commonLore = "The common sign of opression in space. Their use is banned on most worlds."
 	melleDamages = list(
 		ARMOR_BLUNT = list(
 			DELEM(BRUTE,8),
@@ -59,9 +60,9 @@
 	status = s
 	tool_qualities = status ? list(QUALITY_PULSING = 1) : null
 	if(status)
-		melleDamages = GLOB.melleDamagesCache[type]
-	else
 		melleDamages = GLOB.melleExtrasCache["[type]-t"]
+	else
+		melleDamages = GLOB.melleDamagesCache[type]
 	refresh_upgrades()
 	update_icon()
 
@@ -110,15 +111,6 @@
 		else
 			to_chat(user, SPAN_WARNING("[src] is out of charge."))
 	add_fingerprint(user)
-
-/obj/item/melee/baton/attack(mob/M, mob/user)
-/*	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the [src]!"))
-		user.Weaken(30)
-		deductcharge(hitcost)
-		return
-*/
-	return ..()
 
 /obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))

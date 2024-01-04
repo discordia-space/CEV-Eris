@@ -4,6 +4,7 @@
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "complicator"
 	item_state = "complicator"
+	commonLore = "The only known instance of an artifact which can condense bluespace power into physical matter. Further studies haven't been funded into finding out why."
 	volumeClass = ITEM_SIZE_SMALL
 	price_tag = 20000
 	origin_tech = list(TECH_POWER = 7, TECH_BLUESPACE = 4, TECH_MAGNET = 9)

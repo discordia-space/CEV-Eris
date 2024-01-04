@@ -4,6 +4,7 @@
 	icon = 'icons/obj/faction_item.dmi'
 	description_info = "Can be used to stun non-believers by using it in-hand"
 	description_antag = "Can be used to destroy departmental oddities on harm intent, boosting the EOTP's stats all round and adding observation."
+	commonLore = "Known to also cut bluespace continuum whenever swinged. Original use for it is unknown at large"
 	icon_state = "nt_sword_truth"
 	item_state = "nt_sword_truth"
 	slot_flags = FALSE
