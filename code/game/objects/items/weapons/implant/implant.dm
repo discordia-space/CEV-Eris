@@ -36,8 +36,16 @@
 			M.update_icon()
 		return TRUE
 
+/obj/item/implant/proc/can_trigger()
+	if(!wearer)
+		return FALSE
+	if(wearer.hasCyberFlag(CSF_IMPLANT_BLOCKER))
+		return FALSE
+	return TRUE
 
 /obj/item/implant/proc/trigger(emote, mob/living/source)
+	return can_trigger()
+
 /obj/item/implant/proc/activate()
 	return TRUE
 

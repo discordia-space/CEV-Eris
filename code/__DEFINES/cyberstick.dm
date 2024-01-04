@@ -14,3 +14,5 @@
 #define CSF_LORE_COMMON_KNOWLEDGE 1<<6
 /// Tells you what a drink/food tastes like
 #define CSF_TASTE_READER 1<<7
+/// Blocks any other implant from activating
+#define CSF_IMPLANT_BLOCKER 1<<8

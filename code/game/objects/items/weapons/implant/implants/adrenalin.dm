@@ -20,14 +20,15 @@
 
 
 /obj/item/implant/adrenalin/trigger(emote, mob/living/source)
-	if (uses < 1)
-		return
-	if (emote == "pale")
-		src.uses--
-		to_chat(source, SPAN_NOTICE("You feel a sudden surge of energy!"))
-		source.SetStunned(0)
-		source.SetWeakened(0)
-		source.SetParalysis(0)
+	if(..())
+		if (uses < 1)
+			return
+		if (emote == "pale")
+			src.uses--
+			to_chat(source, SPAN_NOTICE("You feel a sudden surge of energy!"))
+			source.SetStunned(0)
+			source.SetWeakened(0)
+			source.SetParalysis(0)
 
 /obj/item/implant/adrenalin/on_install(mob/living/source)
 	source.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)

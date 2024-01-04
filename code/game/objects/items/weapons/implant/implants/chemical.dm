@@ -31,8 +31,9 @@
 	create_reagents(50)
 
 /obj/item/implant/chem/trigger(emote, mob/living/source)
-	if(emote == "deathgasp")
-		activate()
+	if(..())
+		if(emote == "deathgasp")
+			activate()
 
 /obj/item/implant/chem/activate()
 	if(!wearer)

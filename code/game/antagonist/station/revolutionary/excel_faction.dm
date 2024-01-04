@@ -41,6 +41,7 @@
 
 		extra_text += "<br><b>Total: [num] mandates, <font color='green'>[total_power] power from mandates</font></b><br>"
 	return extra_text
+
 /datum/faction/excelsior/create_objectives()
 	objectives.Cut()
 	for (var/datum/antagonist/A in members)
@@ -56,6 +57,11 @@
 	if(!ishuman(usr))
 		return
 
+	var/mob/living/carbon/human/user = usr
+	if(user.hasCyberFlag(CSF_IMPLANT_BLOCKER))
+		to_chat(user, SPAN_NOTICE("Something prevents your excelsior implant communications from functioning!"))
+		return
+
 	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
 
 	if(!F)
@@ -69,6 +75,11 @@
 	set category = "Cybernetics"
 
 	if(!ishuman(usr))
+		return
+
+	var/mob/living/carbon/human/user = usr
+	if(user.hasCyberFlag(CSF_IMPLANT_BLOCKER))
+		to_chat(user, SPAN_NOTICE("Something prevents your excelsior implant communications from functioning!"))
 		return
 
 	var/datum/faction/excelsior/F = get_faction_by_id(FACTION_EXCELSIOR)
