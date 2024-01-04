@@ -8,6 +8,7 @@
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
+	commonLore = "A shining beacon of human innovation, cyborgs brought both destruction and luxury. Their creation led to a major increase in quality of life for the vast majority of humanity, but theres been multiple wars fought between governments , as their use was found unethical or economically crushing."
 	defaultHUD = "BorgStyle"
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL

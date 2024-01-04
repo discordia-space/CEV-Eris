@@ -29,13 +29,18 @@ meteor_act
 
 	var/check_absorb = .
 	//Shrapnel
-	if(P.can_embed() && (check_absorb == PROJECTILE_STOP))
+	if(P.can_embed() && (check_absorb < P.getAllDamType(BRUTE)))
 		if(prob(P.getAllDamType(BRUTE)))
 			var/obj/item/material/shard/shrapnel/SP = new()
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.forceMove(organ)
 			organ.embed(SP)
+	else if(check_absorb <= (P.getAllDamType(BRUTE)/3))
+		return PROJECTILE_CONTINUE
+	else
+		return PROJECTILE_STOP
+
 
 
 /mob/living/carbon/human/hit_impact(damage, dir, hit_zone)

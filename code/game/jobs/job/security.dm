@@ -112,6 +112,10 @@
 
 	loyalties = "You're a military man through and through. As such, your first loyalty is to the Commander, and thusly to the chain of command"
 
+	cyberSticks = list(
+		/obj/item/cyberstick/ironhammer_scanner
+	)
+
 /obj/landmark/join/start/gunserg
 	name = "Ironhammer Gunnery Sergeant"
 	icon_state = "player-blue"

@@ -159,6 +159,7 @@
 	projectile_type = /obj/item/projectile/bullet/clrifle
 	is_caseless = TRUE
 	maxamount = 10
+	commonLore = "Caseless ammunitions were invented during the Syndicate-NT era.They were employed by both sides for operations requiring complete stealth."
 
 	sprite_update_spawn = TRUE
 	sprite_max_rotate = 32

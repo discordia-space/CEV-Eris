@@ -47,6 +47,7 @@
 	light_range_on = 1.5
 	light_power_on = 0.2
 	density = FALSE
+	commonLore = "There was a petition to get rid of them once over security reasons, it failed."
 	CheckFaceFlag = 0
 	circuit = /obj/item/electronics/circuitboard/guestpass
 	var/obj/item/card/id/giver

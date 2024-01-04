@@ -49,6 +49,7 @@ var/list/ai_verbs_default = list(
 	name = "AI"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
+	commonLore = "The AI onboard the AEV-Oxyd is known to be a V-Type, an AI purposefully weakened & shackled to not be a threat."
 	anchored = TRUE // -- TLE
 	density = TRUE
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH

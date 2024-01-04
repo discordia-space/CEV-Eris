@@ -326,7 +326,7 @@ var/list/rank_prefix = list(\
 			return
 		var/atom/target = locate(href_list["contents_read_shallow"])
 		/// sanity , could be switched by client anyway to be something he shouldn't be able to check
-		if(isturf(target) || ismob(target))
+		if(isturf(target))
 			return
 		if(get_dist(target, src) > 8)
 			return
@@ -334,7 +334,13 @@ var/list/rank_prefix = list(\
 			return
 		var/returnMessage = "<div id='examine'> Contents of \icon[target] [target.name] \n"
 		var/objectsAnalyzed = 0
-		for(var/object in target.contents)
+		for(var/atom/object in target.contents)
+			if(istype(object, /obj/item/organ/internal) && ishuman(object.loc))
+				continue
+			if(istype(object, /obj/item/implant))
+				var/obj/item/implant/plant = object
+				if(plant.wearer)
+					continue
 			if(istype(object, /obj/item) || istype(object, /mob/living))
 				objectsAnalyzed++
 				returnMessage += "<big> \icon[object] </big>"

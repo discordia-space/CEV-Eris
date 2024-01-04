@@ -17,12 +17,12 @@
 	allow_modifications = TRUE
 
 /datum/category_item/setup_option/core_implant/cyberinterface/ihc
-	name = "Cyberinterface - IHC Suite"
-	desc = "A special cyberinterface designed for IH commanders."
+	name = "Cyberinterface - IH command suite"
+	desc = "A special cyberinterface designed for IH commanders & sergeants."
 	restricted_depts = ALLDEPS
 	implant_type = /obj/item/implant/cyberinterface/ironhammer
 	allowed_depts = null
-	allowed_jobs = list(/datum/job/ihc)
+	allowed_jobs = list(/datum/job/ihc, /datum/job/gunserg)
 
 /datum/category_item/setup_option/core_implant/cyberinterface/technomancer
 	name = "Cyberinterface - League brother"

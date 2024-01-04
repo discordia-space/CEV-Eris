@@ -54,9 +54,9 @@
 /obj/item/implanter/cyberinterface_contractor
 	name = "implanter (C)"
 	desc = "A implanter with a cyberinterface inside. Aim it where your brain is!"
-	implant_type = /obj/item/implant/cyberinterface/contractor
+	implant = /obj/item/implant/cyberinterface/contractor
 
-/datum/uplink/item/medical/interface_disk
+/datum/uplink_item/item/medical/interface_disk
 	name = "Cyberdisk - Combat booster (Toughness and Vigilance)"
 	item_cost = 20
 	path = /obj/item/cyberstick/syndicate

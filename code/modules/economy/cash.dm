@@ -9,9 +9,15 @@
 	throw_range = 2
 	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/spacecash
-	weight = 5
+	weight = 1
 	var/worth = 0
+	var/maxWorth = 5000
 
+/obj/item/spacecash/get_item_cost(export)
+	return worth
+
+/obj/item/spacecash/getWeight()
+	return (worth + 1) * initial(weight)
 
 /obj/item/spacecash/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/spacecash) && !istype(W, /obj/item/spacecash/ewallet))
@@ -25,16 +31,23 @@
 			user.drop_from_inventory(cash)
 			qdel(cash)
 
-		bundle.worth += worth
+		var/drainedWorth = clamp(worth, 0, max(bundle.maxWorth - bundle.worth, 0))
+
+		bundle.worth += drainedWorth
+		bundle.recalculateWeights(bundle.getWeight() - bundle.weight)
+		src.worth -= drainedWorth
+		src.recalculateWeights(getWeight() - weight)
 		bundle.update_icon()
+		update_icon()
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.drop_from_inventory(src)
+			if(worth == 0)
+				H.drop_from_inventory(src)
 			H.drop_from_inventory(bundle)
-			bundle.weight = worth * initial(weight)
 			H.put_in_hands(bundle)
 		to_chat(user, SPAN_NOTICE("You add [worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
-		qdel(src)
+		if(worth == 0)
+			qdel(src)
 
 
 /obj/item/spacecash/Destroy()
@@ -102,12 +115,15 @@
 		return
 
 	worth -= amount
+	recalculateWeights(getWeight() - weight)
+
 	if(!worth)
 		usr.drop_from_inventory(src)
 		qdel(src)
 
 	var/obj/item/spacecash/bundle/bundle = new (usr.loc)
 	bundle.worth = amount
+	bundle.recalculateWeights(bundle.getWeight() - bundle.weight)
 	bundle.update_icon()
 	usr.put_in_hands(bundle)
 	update_icon()
@@ -121,7 +137,7 @@
 /// Returns a list to use with inspirations. It can be empty if there's not enough money in the bundle. Important side-effects: converts worth to points, thus reducing worth.
 /obj/item/spacecash/bundle/proc/return_stats()
 	RETURN_TYPE(/list)
-	var/points = min(worth / CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
+	var/points = min(worth / CASH_PER_STAT, 30) // capped at 30 points per bundle, costs 150k
 	var/list/stats = list()
 	// Distribute points evenly with random statistics. Just skips the loop if there's not enough money in the bundle, resulting in an empty list.
 	while(points > 0)

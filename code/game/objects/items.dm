@@ -109,6 +109,11 @@ GLOBAL_LIST(melleDamagesCache)
 	//Does not affect damage dealt to mobs
 	var/style = STYLE_NONE // how much using this item increases your style
 
+	/// Lore descriptions for cyberimplants.
+	var/commonLore
+	//var/classifiedLore
+	//var/topLore
+
 	var/list/item_upgrades = list()
 	var/maxUpgrades = 0
 

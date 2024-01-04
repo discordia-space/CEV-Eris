@@ -11,6 +11,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = TRUE
+	commonLore = "The software license for these still hasn't been paid. They consistently switch their operation mode to the OFF mode whenever you try to fix a breach!"
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 80
 	active_power_usage = 3000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.

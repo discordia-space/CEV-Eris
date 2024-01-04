@@ -190,7 +190,7 @@ armorType defines the armorType that will block all the damTypes that it has ass
 	//Armor and damage
 	if(!P.nodamage)
 		hit_impact(P.get_structure_damage(), hit_dir)
-		return damage_through_armor(P.damage, def_zone_hit, P, P.armor_divisor, P.wounding_mult,TRUE )
+		return damage_through_armor(P.damage, def_zone_hit, P, P.armor_divisor, P.wounding_mult, FALSE)
 
 	return PROJECTILE_CONTINUE
 

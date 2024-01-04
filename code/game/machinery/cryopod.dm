@@ -17,6 +17,7 @@
 	light_power = 1.5
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	circuit = /obj/item/electronics/circuitboard/cryopodcontrol
+	commonLore = "Sometimes, random items appear in its storage. Their origin is unknown."
 	density = FALSE
 	interact_offline = 1
 	var/mode = null
@@ -151,6 +152,7 @@
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryopod"
+	commonLore = "There's been multiple cases of unregistered passangers waking up from cryogenics in the last 6 years."
 	density = TRUE
 	anchored = TRUE
 	dir = WEST

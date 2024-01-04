@@ -309,14 +309,63 @@
 		msg += "\n[T.He] [T.is] [pose]"
 
 	var/mob/living/carbon/human/humie = user
-	if(istype(humie) && humie.hasCyberFlag(CSF_COMBAT_READER))
-		msg += "<span class= 'danger'> \n"
-		for(var/skill in list(STAT_ROB,STAT_TGH,STAT_VIG))
-			// boosts don't show here!
-			var/value = stats.getStat(skill, TRUE)
-			msg += "[skill] approximated at [value] on the general skill database. \n"
-		msg += "</span>"
+	if(istype(humie))
+		if(humie.hasCyberFlag(CSF_COMBAT_READER))
+			msg += "<span class= 'danger'> \n"
+			for(var/skill in list(STAT_ROB,STAT_TGH,STAT_VIG))
+				// boosts don't show here!
+				var/value = stats.getStat(skill, TRUE)
+				msg += "[skill] approximated at [value] on the general skill database. \n"
+			msg += "</span>"
+		if(humie.hasCyberFlag(CSF_CONTENTS_READER))
+			msg += "\n [SPAN_NOTICE("<a href='?src=\ref[humie];contents_read_shallow=\ref[src]'>Scan [src] contents (!SHALLOW!)</a>")]"
+		if(humie.hasCyberFlag(CSF_BANKING_READER))
+			var/obj/item/card/id/yourPrivateDetails = GetIdCard()
+			if(yourPrivateDetails)
+				var/datum/money_account/customer_account = get_account(yourPrivateDetails.associated_account_number)
+				if(!customer_account)
+					msg += "\n BANKING DETAILS MISSING"
+				else
+					msg += "\n REGISTERED ASTERS GUILD CARD WEALTH : [customer_account.money]"
+			else
+				msg += "\n ID MISSING"
+		if(humie.hasCyberFlag(CSF_WEALTH_JUDGE))
+			var/wealth = 0
+			var/style = 0
+			for(var/obj/item/thing in humie.contents)
+				if(istype(thing, /obj/item/organ))
+					continue
+				wealth += thing.get_item_cost(FALSE)
+				if(istype(thing, /obj/item/clothing))
+					var/obj/item/clothing/cloth = thing
+					style += cloth.style
 
+			var/obj/item/card/id/yourPrivateDetails = GetIdCard()
+			if(yourPrivateDetails)
+				var/datum/money_account/customer_account = get_account(yourPrivateDetails.associated_account_number)
+				if(customer_account)
+					wealth += customer_account.money
+
+			/// gotta dress to part
+			if(style > 7)
+				wealth *= 1.5
+			else
+				wealth *= 0.8
+			msg += "\n WEALTH RATING : "
+			if(wealth < 1500)
+				msg += SPAN_DANGER("BROKE")
+			else if(wealth < 3000)
+				msg += SPAN_WARNING("POOR")
+			else if(wealth < 10000)
+				msg += SPAN_NOTICE("AVERAGE")
+			else if(wealth < 16000)
+				msg += span_blue("RICH")
+			else if(wealth < 32000)
+				msg += span_green("FILTHY RICH")
+			else if(wealth < 64000)
+				msg += span_green("NOBLE")
+			else
+				msg += span_bold(span_green("MILLIONAIRE"))
 
 	msg += "</div>"
 	to_chat(user, msg)

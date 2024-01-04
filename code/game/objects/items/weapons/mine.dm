@@ -35,6 +35,7 @@
 	name = "Excelsior mine"
 	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a merciful brief end to others, unless they have a Pulse tool nearby."
 	icon_state = "mine_excel"
+	commonLore = "They didn't have IFF last time they were employed onboard. The excelsiors have evolved."
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10)
 	excelsior = TRUE
 	prob_explode = 100
@@ -43,6 +44,7 @@
 /obj/item/mine/old
 	name = "old landmine"
 	desc = "A rusted anti-personnel mine. A risky and unpredictable device, albeit with simple wiring."
+	commonLore = "Most likely a mine from 4 years ago. Back when excelsiors still employed automatic mine-deploying cyborgs. The captain had to pay 83K credits for a IH delta-response team."
 	icon_state = "mine_old"
 	prob_explode = 60
 	pulse_difficulty = FAILCHANCE_EASY
@@ -59,6 +61,7 @@
 	name = "makeshift mine"
 	desc = "An improvised explosive mounted in a bear trap. Dangerous to step on, but easy to defuse."
 	icon_state = "mine_improv"
+	commonLore = "Either improvised or created whenever a excelsior mine-deploying cyborg got stuck in a bear trap."
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASMA = 5)
 	prob_explode = 75
 	pulse_difficulty = FAILCHANCE_ZERO

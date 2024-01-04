@@ -42,7 +42,7 @@
 	siemens_coefficient = 0.1
 	permeability_coefficient = 0.1
 	unacidable = 1
-	weight = 40000
+	weight = 30000
 	var/weightReduction = 30000
 
 	var/interface_path = "hardsuit.tmpl"

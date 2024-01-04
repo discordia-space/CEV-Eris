@@ -98,6 +98,10 @@
 	RegisterSignal(victim, COMSIG_MOVABLE_MOVED, PROC_REF(onVictimMove))
 
 	affecting.grabbedBy = src
+	// stop people space drifting if you  aren't drifting yourself.
+	if(SSthrowing.throwing_queue[affecting] && !SSthrowing.throwing_queue[assailant])
+		SSthrowing.throwing_queue.Remove(affecting)
+		SSthrowing.current_throwing_queue.Remove(affecting)
 	hud = new /obj/screen/grab(src)
 	hud.icon_state = "reinforce"
 	icon_state = "grabbed"

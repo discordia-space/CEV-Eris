@@ -192,6 +192,7 @@ for reference:
 	name = "deployable barrier"
 	desc = "A deployable barrier. Swipe your ID card to lock/unlock it."
 	icon = 'icons/obj/objects.dmi'
+	commonLore = "These models haven't changed a bit since 2431. The last known model used by NanoTransen before the collapse."
 	anchored = FALSE
 	density = TRUE
 	icon_state = "barrier0"

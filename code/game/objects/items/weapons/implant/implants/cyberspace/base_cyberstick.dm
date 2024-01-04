@@ -79,6 +79,12 @@
 		STAT_ROB = 10
 	)
 
+/obj/item/cyberstick/ironhammer_scanner
+	name = "Cyberstick - IH scanner"
+	desc = "A cyberstick making use of bluespace technologies to scan the contents of a object. Has a maximum depth of 1."
+	icon_state = "stick_ih_s"
+	cyberFlags = CSF_CONTENTS_READER
+
 // Syndicate old-tech
 
 /obj/item/cyberstick/syndicate
@@ -123,6 +129,13 @@
 		STAT_BIO = rand(-5,10)
 	)
 
+/obj/item/cyberstick/wealth_judge
+	name = "Cyberstick - nobility identifier"
+	desc = "A cyberstick of... noble origin?"
+	icon_state = "stick_misc"
+	rarity_value = 30
+	cyberFlags = CSF_WEALTH_JUDGE
+	spawn_tags = SPAWN_TAG_SCIENCE_JUNK
 
 /obj/item/cyberstick/military
 	name = "Cyberstick - Oberth primer"
@@ -145,5 +158,5 @@
 	desc = "A cyberstick manufactured by the aster's guild. Uses bluespace manipulation to find out what others are carrying. Only works for items with 1 layer of matter encapsulation."
 	icon_state = "stick_ram"
 	skillBoosts = list()
-	cyberFlags = CSF_CONTENTS_READER
+	cyberFlags = CSF_CONTENTS_READER|CSF_BANKING_READER
 

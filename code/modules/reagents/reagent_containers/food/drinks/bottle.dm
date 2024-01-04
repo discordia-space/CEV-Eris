@@ -187,6 +187,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
 	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
+	commonLore = "Famously known from the Zvinsky incident, when a drunk technomancer misconfigured a pipe junction, pumping vodka into the ship's air distribution. The entire crew was found unconscious due to the vapors."
 	icon_state = "vodkabottle"
 	center_of_mass = list("x"=17, "y"=3)
 	preloaded_reagents = list("vodka" = 100)
@@ -203,7 +204,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
-	desc = "A bottle filled with nothing"
+	desc = "A bottle filled with nothing
 	icon_state = "bottleofnothing"
 	center_of_mass = list("x"=17, "y"=5)
 	preloaded_reagents = list("nothing" = 100)

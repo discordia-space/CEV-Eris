@@ -324,6 +324,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 20
 	preloaded_reagents = list("nicotine" = 14)
 	quality_multiplier = 2
+	commonLore = "A cigar originating from Old Earth. These are quite rare nowdays ,however the smoke is said to have a homely feeling.."
 	matchmes = "<span class='notice'>USER lights their NAME with their FLAME.</span>"
 	lightermes = "<span class='notice'>USER manages to offend their NAME by lighting it with FLAME.</span>"
 	zippomes = "<span class='rose'>With a flick of their wrist, USER lights their NAME with their FLAME.</span>"
@@ -340,6 +341,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	name = "premium Havanian cigar"
 	desc = "A cigar fit for only the best of the best."
+	commonLore = "A cigar of top-quality originating from Old Earth. This one belongs to one of the rarest brands. Its quality is exceptional, being grown in the Old Earth Havana."
 	icon_state = "cigaroff"
 	icon_on = "cigaron"
 	icon_off = "cigaroff"
