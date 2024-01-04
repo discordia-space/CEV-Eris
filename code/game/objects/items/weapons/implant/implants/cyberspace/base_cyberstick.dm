@@ -30,7 +30,9 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = ABOVE_HUD_PLANE
 	layer = ABOVE_HUD_LAYER + 1
-	transform.Turn(-90)
+	var/matrix/transf = new(transform)
+	transf.Turn(-90)
+	transform = transf
 	if(user)
 		for(var/stat in skillBoosts)
 			user.stats.addTempStat(stat, skillBoosts[stat], INFINITY, "\ref[src]")

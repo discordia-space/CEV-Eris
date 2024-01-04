@@ -294,7 +294,6 @@
 	var/loopChoice = cyberdeck ? length(cyberdeck.slots) : 6
 	for(var/i = 1, i <= loopChoice, i++)
 		var/obj/screen/cyberdeck_slot/cyberSlot = owner?.HUDneed["cyberdeck[i]"]
-		message_admins("Retrieved cyberslot [cyberSlot] ")
 		if(cyberSlot)
 			if(cyberdeck)
 				cyberSlot.interface = cyberdeck
