@@ -143,7 +143,7 @@
 	if(istype(O)) //STAGE 1: CRUSH LUNGS
 		create_overdose_wound(O, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustOxyLoss(5)
-	if(istype(S) && (O.status & ORGAN_DEAD || !istype(O))) //STAGE 2: NO LUNGS? FUCK YOUR HEART
+	if(istype(S) && (!istype(O) || (O.status & ORGAN_DEAD))) //STAGE 2: NO LUNGS? FUCK YOUR HEART
 		create_overdose_wound(S, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
 		M.adjustHalLoss(20)
 		M.vomit()
