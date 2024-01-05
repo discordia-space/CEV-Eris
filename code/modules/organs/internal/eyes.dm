@@ -39,7 +39,7 @@
 		return
 	eyes_color = owner.eyes_color
 
-/obj/item/organ/internal/eyes/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
+/obj/item/organ/internal/eyes/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)
 	var/oldbroken = is_broken()
 	..()
 	if(is_broken() && !oldbroken && owner && !owner.stat)
@@ -50,6 +50,52 @@
 		return colourblind_matrix
 	else
 		return colourmatrix
+
+/obj/item/organ/internal/eyes/get_possible_wounds(damage_type, sharp, edge)
+	var/list/possible_wounds = list()
+
+	// Determine possible wounds based on nature and damage type
+	var/is_robotic = BP_IS_ROBOTIC(src)
+	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
+
+	switch(damage_type)
+		if(BRUTE)
+			if(!edge)
+				if(sharp)
+					if(is_organic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/eyes_sharp))
+					if(is_robotic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/eyes_sharp))
+				else
+					if(is_organic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/eyes_blunt))
+					if(is_robotic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/eyes_blunt))
+			else
+				if(is_organic)
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/eyes_edge))
+				if(is_robotic)
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/eyes_edge))
+		if(BURN)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/eyes_burn))
+			if(is_robotic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/eyes_emp_burn))
+		if(TOX)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/eyes_poisoning))
+			//if(is_robotic)
+			//	LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/eyes_build_up))
+		if(CLONE)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/radiation))
+		if(PSY)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/sanity))
+			if(is_robotic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sanity))
+
+	return possible_wounds
 
 //Subtypes
 /obj/item/organ/internal/eyes/oneeye

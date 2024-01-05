@@ -2,7 +2,7 @@
 /obj/item/device/scanner/health
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
-	icon_state = "health"
+	icon_state = "health0"
 	item_state = "analyzer"
 	throw_speed = 5
 	throw_range = 10
@@ -196,3 +196,21 @@
 				dat += span("highlight", "Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
 		dat += "<span class='highlight'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "#0080ff"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>"
 	. = jointext(dat, "<br>")
+
+/obj/item/device/scanner/health/cell_use_check(charge, mob/user)
+	. = TRUE
+	icon_state = "health"
+	if(!cell || !cell.checked_use(charge))
+		if(user)
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		. = FALSE
+		icon_state = "health0"
+
+/obj/item/device/scanner/health/cell_check(charge, mob/user)
+	. = TRUE
+	icon_state = "health"
+	if(!cell || !cell.check_charge(charge))
+		if(user)
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		. = FALSE
+		icon_state = "health0"
