@@ -69,7 +69,7 @@
 /obj/item/cyberstick/security_analysis
 	name = "Cyberstick - IH tactical analysis"
 	desc = "A cyberstick making use of a highly-simplified tactical AI. Will give you basic readouts of someone's skills"
-	icon_state = "vig_boost"
+	icon_state = "scan_stat"
 	spawn_blacklisted = TRUE
 	cyberFlags = CSF_COMBAT_READER
 
@@ -214,5 +214,12 @@
 	cyberFlags = CSF_LORE_COMMON_KNOWLEDGE
 	rarity_value = 80
 	spawn_tags = SPAWN_JUNK
+
+/obj/item/cyberstick/implant_blocker
+	name = "Cyberstick - Implant blocker"
+	desc = "A cyberstick containing a program that will block most implants from triggering."
+	icon_state = "disable_implants"
+	skillBoosts = list()
+	rarity_value = 100
 
 
