@@ -300,15 +300,38 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/dromedaryco
 	desc = "A roll of tobacco and nicotine. They are just cancer sticks."
 	preloaded_reagents = list("nicotine" = 10)
+	icon_state = "dromoff"
+	item_state = "dromoff"
+	icon_on = "dromon"
+	icon_off = "dromoff"
+	type_butt = /obj/item/trash/cigbutt/dromedaryco
 
 /obj/item/clothing/mask/smokable/cigarette/killthroat
-	desc = "A roll of tobacco and nicotine. Gives the best bang for buck for your throat."
+	desc = "A roll of tobacco and nicotine. Gives the best bang for your throat."
 	preloaded_reagents = list("nicotine" = 10, "poisonberryjuice" = 3)
+	icon_state = "acmeoff"
+	item_state = "acmeoff"
+	icon_on = "acmeon"
+	icon_off = "acmeoff"
+	type_butt = /obj/item/trash/cigbutt/acme
 
 /obj/item/clothing/mask/smokable/cigarette/homeless
 	desc = "A roll of tobacco and nicotine. Gives the feeling of fight."
 	preloaded_reagents = list("nicotine" = 6, "adrenaline" = 3)
+	icon_state = "nomadoff"
+	item_state = "nomadoff"
+	icon_on = "nomadon"
+	icon_off = "nomadoff"
+	type_butt = /obj/item/trash/cigbutt/nomad
 
+/obj/item/clothing/mask/smokable/cigarette/lucky
+	desc = "A roll of tobacco and nicotine. Gives the feeling of old wars. Feelin' lucky?"
+	preloaded_reagents = list("nicotine" = 6, "tricordrazine" = 3)
+	icon_state = "luckyoff"
+	item_state = "luckyoff"
+	icon_on = "luckyon"
+	icon_off = "luckyoff"
+	type_butt = /obj/item/trash/cigbutt/lucky
 
 ////////////
 // CIGARS //
@@ -371,6 +394,18 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "cigar butt"
 	desc = "A manky old cigar butt."
 	icon_state = "cigarbutt"
+
+/obj/item/trash/cigbutt/dromedaryco
+	icon_state = "drombutt"
+
+/obj/item/trash/cigbutt/acme
+	icon_state = "acmebutt"
+
+/obj/item/trash/cigbutt/nomad
+	icon_state = "nomadbutt"
+
+/obj/item/trash/cigbutt/lucky
+	icon_state = "luckybutt"
 
 /////////////////
 //SMOKING PIPES//

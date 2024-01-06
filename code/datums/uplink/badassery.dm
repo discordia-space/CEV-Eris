@@ -83,6 +83,13 @@
 	path = /obj/item/storage/case/donut
 	desc = "A rare donut case, that can only be purchased on the black market. Contains masterfully made donuts, with unique effects for those who eat them."
 
+/datum/uplink_item/item/badassery/luckystrike
+	name = "Lucky Strikes Pack"
+	item_cost = 1
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
+	path = /obj/item/storage/fancy/cigarettes/lucky
+	desc = "An old pack of Lucky Strikes brand cigarettes, surplus from the Corporate wars. Used by the Syndicate extremely frequently, for some reason."
+
 /datum/uplink_item/item/badassery/contract
 	name = "Ask for new contract"
 	item_cost = 4
