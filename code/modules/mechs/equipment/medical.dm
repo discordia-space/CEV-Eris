@@ -128,6 +128,10 @@
 /obj/item/mech_equipment/auto_mender/afterattack(atom/target, mob/living/user, inrange, params)
 	. = ..()
 	if(. && ishuman(target))
+		if(!trauma_charges_stored && mending_target)
+			mending_target = null
+			to_chat(user, SPAN_NOTICE("ERROR: Auto-mender stock is depleted. Refill required."))
+			return
 		if(mending_target == target)
 			mending_target = null
 			to_chat(user, SPAN_NOTICE("You cancel \the [src]'s mending on [target]."))
@@ -149,6 +153,9 @@
 			trauma_charges_stored += substract
 			to_chat(user, SPAN_NOTICE("You restock \the [src]'s internal medicine storage with \the [I], using [substract] charges."))
 
+		if(trauma_charges_stored >= trauma_storage_max)
+			to_chat(user, SPAN_NOTICE("The auto-mender's storage is full!"))
+			return
 
 /obj/item/mech_equipment/auto_mender/installed(mob/living/exosuit/_owner, hardpoint)
 	. = ..()
@@ -187,19 +194,21 @@
 			mending_target = null
 			affecting = null
 			return
-		//if(W.internal || W.bandaged)
-		//	continue
+//		if(W.internal || W.bandaged)
+//			continue
 		if(W.damage < 1)
 			continue
 		if(!trauma_charges_stored)
+			to_chat(mech.get_mob(), SPAN_NOTICE("ERROR: Auto-mender stock is depleted. Refill required."))
+			playsound(src, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
 			break
 		if(!do_mob(mech.get_mob(), mending_target, W.damage/5))
 			to_chat(mech.get_mob(), SPAN_NOTICE("You must stand still to bandage wounds."))
 			mending_target = null
 			affecting = null
 			break
-		//if(W.internal || W.bandaged)
-		//	continue
+//		if(W.internal || W.bandaged)
+//			continue
 		if (W.current_stage <= W.max_bleeding_stage)
 			mech.visible_message(
 				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
@@ -217,6 +226,7 @@
 			)
 		W.bandage()
 		W.heal_damage(10)
+		trauma_charges_stored--
 	// If it doesn't cancel or run out of kits just repeat for every external organ.
 	if(affecting.is_bandaged() && affecting.damage < 1)
 		affecting = null

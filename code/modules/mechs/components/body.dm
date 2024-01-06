@@ -255,7 +255,7 @@
 	max_damage = 75
 	power_use = 5
 	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
-	has_hardpoints = list(HARDPOINT_BACK)
+	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5, MATERIAL_PLASTIC = 10)
 
 /obj/item/mech_component/chassis/combat
@@ -290,7 +290,7 @@
 	name = "forklift chassis"
 	desc = "Has an integrated forklift clamp for the industrial relocation of resources. Are you ready to lift?"
 	icon_state = "seat-cockpit"
-	has_hardpoints = list(HARDPOINT_FRONT)
+	has_hardpoints = list(HARDPOINT_FRONT, HARDPOINT_RIGHT_SHOULDER)
 	exosuit_desc_string = "a forklifting chassis"
 	pilot_coverage = 30
 	max_damage = 100
