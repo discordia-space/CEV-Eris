@@ -97,7 +97,7 @@
 		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 			playsound(loc, 'sound/mechs/critdestr.ogg', 50)
 
-	if(total_damage == max_damage)
+	if(total_damage >= max_damage)
 		if(gib_hits > gib_hits_needed && can_gib)
 			var/mob/living/exosuit/owner = loc
 			if(!istype(owner))
@@ -133,19 +133,17 @@
 
 /obj/item/mech_component/proc/take_brute_damage(amt)
 	brute_damage += amt
-	update_health()
 	if(total_damage >= max_damage)
 		take_component_damage(amt,0)
 		gib_hits += (total_damage / 10)
-		return
+	update_health()
 
 /obj/item/mech_component/proc/take_burn_damage(amt)
 	burn_damage += amt
-	update_health()
 	if(total_damage >= max_damage)
 		take_component_damage(0,amt)
 		gib_hits += (total_damage / 10)
-		return
+	update_health()
 
 /obj/item/mech_component/proc/take_component_damage(brute, burn)
 	var/list/damageable_components = list()
