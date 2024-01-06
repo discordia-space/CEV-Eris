@@ -326,7 +326,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/cigarette/lucky
 	desc = "A roll of tobacco and nicotine. Gives the feeling of old wars. Feelin' lucky?"
-	preloaded_reagents = list("nicotine" = 6, "tricordrazine" = 3)
+	preloaded_reagents = list("nicotine" = 3, "serotrotium" = 6)
 	icon_state = "luckyoff"
 	item_state = "luckyoff"
 	icon_on = "luckyon"
