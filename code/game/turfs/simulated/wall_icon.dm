@@ -135,6 +135,10 @@
 
 	wall_connections = dirs_to_corner_states(dirs)
 
+	// doors connection
+	for(var/obj/machinery/door/D in orange(src,1))
+		D.on_door_direction_update_trigger()
+
 /turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
 	if(material && W.material && material.icon_base == W.material.icon_base)
 		return TRUE
