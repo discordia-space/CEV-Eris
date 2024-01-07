@@ -133,6 +133,12 @@
 			T.update_connections()
 			T.update_icon()
 
+	// doors connection
+	for(var/obj/machinery/door/D in orange(src,1))
+		D.on_door_direction_update_trigger()
+		var/D_dir = get_dir(src,D)
+		dirs |= D_dir
+
 	wall_connections = dirs_to_corner_states(dirs)
 
 /turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
