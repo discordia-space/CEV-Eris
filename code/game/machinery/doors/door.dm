@@ -48,10 +48,19 @@
 /obj/machinery/door/New()
 	GLOB.all_doors += src
 	..()
+	on_door_direction_update_trigger()
 
 /obj/machinery/door/Destroy()
 	GLOB.all_doors -= src
 	..()
+
+/obj/machinery/door/proc/on_door_direction_update_trigger()
+	var/turf/simulated/wall/W1 = get_step(src, SOUTH)
+	var/turf/simulated/wall/W2 = get_step(src, NORTH)
+	if(istype(W1) && istype(W2))
+		dir = WEST
+	else
+		dir = NORTH
 
 /obj/machinery/door/can_prevent_fall(above)
 	return above ? density : null
