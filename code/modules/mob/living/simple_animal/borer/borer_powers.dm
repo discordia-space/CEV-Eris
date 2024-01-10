@@ -60,6 +60,9 @@
 	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 
+	if(ishuman(M) && (!M.mind || !M.client))
+		to_chat(src, SPAN_WARNING("Host's body is in a hybernation state, you are afraid to be crushed when they roll over in their sleep!"))
+		return
 	if(M.has_brain_worms())
 		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
 		return
@@ -234,8 +237,8 @@
 	if(stat)
 		return
 
-	if(world.time - used_dominate < 150)
-		to_chat(src, SPAN_WARNING("You cannot use that ability again so soon."))
+	if(world.time - used_dominate < 600) // a two minutes cooldown.
+		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(600 - (world.time - used_dominate))/10] seconds.")
 		return
 
 	if(is_ventcrawling)
@@ -259,8 +262,8 @@
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
 
-	if(world.time - used_dominate < 150)
-		to_chat(src, SPAN_WARNING("You cannot use that ability again so soon."))
+	if(world.time - used_dominate < 600)
+		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(600 - (world.time - used_dominate))/10] seconds.")
 		return
 
 	if(!M || !Adjacent(M)) return
@@ -275,6 +278,9 @@
 		to_chat(src, "You cannot paralyze someone who is already infested!")
 		return
 
+	if(invisibility)
+		invisible() //removes invisibility on using paralyze
+		to_chat(src, SPAN_NOTICE("You become visible again."))
 	to_chat(src, SPAN_WARNING("You focus your psychic lance on [M] and freeze their limbs with a wave of terrible dread."))
 	to_chat(M, SPAN_DANGER("You feel a creeping, horrible sense of dread come over you, freezing your limbs and setting your heart racing."))
 	var/duration = 10 + (borer_level*2)
@@ -534,8 +540,8 @@
 	if(stat)
 		return
 
-	if(world.time - used_dominate < 150)
-		to_chat(src, "\red <B>You cannot use that ability again so soon.</B>")
+	if(world.time - used_dominate < 600)
+		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(600 - (world.time - used_dominate))/10] seconds.</B>")
 		return
 
 	if(host)
@@ -581,14 +587,18 @@
 	if(stat)
 		return
 
+	if(docile)
+		to_chat(src, SPAN_DANGER("You are feeling far too docile to do that."))
+		return
+
 	if(!host)
 		to_chat(src, "\red <B>You cannot do this without a host.</B>")
 		return
-
-	if(chemicals >= 100)
+	var/reproduce_cost = (round(max_chemicals_inhost * 0.75)) // literally max chems but 75% of it
+	if(chemicals >= reproduce_cost)
 		to_chat(host, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
 		visible_message("\red <B>[host.name] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
-		chemicals -= 100
+		chemicals -= reproduce_cost
 		has_reproduced = TRUE
 		borer_add_exp(10)
 
@@ -597,7 +607,7 @@
 		new /mob/living/simple_animal/borer(get_turf(host))
 
 	else
-		to_chat(src, SPAN_NOTICE("You do not have enough chemicals stored to reproduce."))
+		to_chat(src, SPAN_NOTICE("You do not have enough chemicals stored to reproduce. (You need [reproduce_cost])."))
 		return
 
 /mob/living/simple_animal/borer/proc/commune()

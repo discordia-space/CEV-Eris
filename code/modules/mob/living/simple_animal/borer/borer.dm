@@ -29,6 +29,9 @@
 	pass_flags = PASSTABLE
 	universal_understand = 1
 	faction = "borers"
+	can_pull_size = ITEM_SIZE_TINY
+	can_pull_mobs = MOB_PULL_NONE
+	density = FALSE
 
 	var/borer_level = 0
 	var/borer_exp = 0
@@ -43,6 +46,7 @@
 	var/docile = FALSE                      // Sugar can stop borers from acting.
 	var/has_reproduced
 	var/roundstart
+	var/invisibility_cost = 5
 
 	// Abilities borer can use when outside the host
 	var/list/abilities_standalone = list(
@@ -150,9 +154,11 @@
 		chemicals++
 
 /mob/living/simple_animal/borer/proc/process_invisibility()
-	if(invisibility == TRUE)
-		chemicals -= 1
-		if(chemicals <= 2)
+	if(invisibility)
+		chemicals -= invisibility_cost
+		if(chemicals <= max_chemicals/2 && (max_chemicals/2) - invisibility_cost <= chemicals)
+			to_chat(src, to_chat(src, "\red <B>Your invisibility will run out soon!</B>"))
+		if(chemicals <= invisibility_cost + 1)
 			invisible() // Disable invisibility
 			chemicals = 0
 

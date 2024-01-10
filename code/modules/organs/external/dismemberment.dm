@@ -92,6 +92,11 @@
 
 			for(var/obj/item/I in src)
 				if(I.w_class <= ITEM_SIZE_SMALL)
+					if(istype(I, /mob/living/simple_animal/borer/))
+						var/mob/living/simple_animal/borer/B = target
+						B.detatch()
+						B.leave_host()
+						continue
 					qdel(I)
 					continue
 				I.forceMove(get_turf(src))

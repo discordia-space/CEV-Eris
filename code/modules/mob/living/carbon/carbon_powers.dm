@@ -1,4 +1,6 @@
 //Brain slug proc for voluntary removal of control.
+
+ //Problem: I DONT KNOW WHY, BUT BORER ONCE PICKED THIS FILE'S ABILITIES ONCE IT INFESTED INTO MONKEY, IN MOST CASES IT PICKED borer_powers.dm. If you solve this, delete this note pls (and delete it if i'm wrong and stupid)
 /mob/living/carbon/proc/release_control()
 
 	set category = "Abilities"
@@ -49,14 +51,14 @@
 	set desc = "Spawn several young."
 
 	var/mob/living/simple_animal/borer/B = get_brain_worms()
-
+	var/reproduce_cost = (round(B.max_chemicals_inhost * 0.75))
 	if(!B)
 		return
 
-	if(B.chemicals >= 100)
+	if(B.chemicals >= reproduce_cost)
 		to_chat(src, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
 		visible_message("\red <B>[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
-		B.chemicals -= 100
+		B.chemicals -= reproduce_cost
 		B.has_reproduced = 1
 		B.borer_add_exp(10)
 
@@ -65,5 +67,5 @@
 		new /mob/living/simple_animal/borer(get_turf(src))
 
 	else
-		to_chat(src, "You do not have enough chemicals stored to reproduce.")
+		to_chat(src, "You do not have enough chemicals stored to reproduce. (You need [reproduce_cost]).")
 		return
