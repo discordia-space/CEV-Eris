@@ -1,6 +1,6 @@
-//Brain slug proc for voluntary removal of control.
 
- //Problem: I DONT KNOW WHY, BUT BORER ONCE PICKED THIS FILE'S ABILITIES ONCE IT INFESTED INTO MONKEY, IN MOST CASES IT PICKED borer_powers.dm. If you solve this, delete this note pls (and delete it if i'm wrong and stupid)
+//FILE: Borer gets powers from this one once he Assumes Control
+//Brain slug proc for voluntary removal of control.
 /mob/living/carbon/proc/release_control()
 
 	set category = "Abilities"
@@ -12,7 +12,7 @@
 	if(B && B.host_brain)
 		to_chat(src, "\red <B>You withdraw your probosci, releasing control of [B.host_brain]</B>")
 
-		B.detatch()
+		B.detach()
 
 		verbs |= /mob/living/carbon/human/proc/commune
 		verbs |= /mob/living/carbon/human/proc/psychic_whisper

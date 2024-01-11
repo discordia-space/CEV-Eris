@@ -96,7 +96,7 @@
 /datum/surgery_step/robotic/remove_item/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
 	if(istype(target, /mob/living/simple_animal/borer)) // the fact that you wrench out a borer like a bolt is fucking stupid and funny
 		var/mob/living/simple_animal/borer/B = target
-		B.detatch()
+		B.detach()
 		B.leave_host()
 	user.visible_message(
 		SPAN_NOTICE("[user] extracts something out of [organ.get_surgery_name()] with \the [tool]."),

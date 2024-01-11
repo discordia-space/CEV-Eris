@@ -91,7 +91,7 @@
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		head.implants.Remove(src) // This should be safe.
 	if(controlling)
-		detatch()
+		detach()
 	return ..()
 
 /mob/living/simple_animal/borer/Login()
@@ -166,7 +166,7 @@
 	to_chat(host, SPAN_DANGER("You feel your control over your host suddenly stop."))
 	update_abilities()
 	spawn(1)
-		detatch()
+		detach()
 
 /mob/living/simple_animal/borer/proc/process_host()
 	if(host && !stat)
@@ -223,7 +223,7 @@
 			stat("Host health", host.stat == DEAD ? "Deceased" : host.health)
 			stat("Host brain damage", host.getBrainLoss())
 
-/mob/living/simple_animal/borer/proc/detatch()
+/mob/living/simple_animal/borer/proc/detach()
 
 	if(!host || !controlling) return
 
@@ -363,7 +363,7 @@
 		alpha = 255
 		invisibility = 0
 	if(controlling || host)
-		detatch()
+		detach()
 		leave_host()
 
 /mob/living/simple_animal/borer/update_sight()
