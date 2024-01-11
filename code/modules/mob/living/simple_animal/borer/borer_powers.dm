@@ -56,13 +56,13 @@
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
 
-	// non-humanoids disabled due to not working.
+	 //non-humanoids disabled due to not working.
 	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 
-	//if(ishuman(M) && (!M.mind || !M.client))
-//		to_chat(src, SPAN_WARNING("Host's body is in a hybernation state, you are afraid to be crushed when they roll over in their sleep!"))
-//		return
+	if(ishuman(M) && (!M.mind || !M.client))
+		to_chat(src, SPAN_WARNING("Host's body is in a hybernation state, you are afraid to be crushed when they roll over in their sleep!"))
+		return
 	if(M.has_brain_worms())
 		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
 		return
