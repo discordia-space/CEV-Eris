@@ -30,7 +30,7 @@
 				to_chat(host, SPAN_DANGER("As though waking from a dream, you shake off the insidious mind control of the brain worm. Your thoughts are your own again."))
 			to_chat(host, SPAN_DANGER("Something slimy wiggles out of your ear and plops to the ground!"))
 
-		detatch()
+		detach()
 		leave_host()
 
 /mob/living/simple_animal/borer/proc/infest()
@@ -60,9 +60,9 @@
 	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 
-	if(ishuman(M) && (!M.mind || !M.client))
-		to_chat(src, SPAN_WARNING("Host's body is in a hybernation state, you are afraid to be crushed when they roll over in their sleep!"))
-		return
+	//if(ishuman(M) && (!M.mind || !M.client))
+//		to_chat(src, SPAN_WARNING("Host's body is in a hybernation state, you are afraid to be crushed when they roll over in their sleep!"))
+//		return
 	if(M.has_brain_worms())
 		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
 		return
