@@ -312,7 +312,7 @@
 
 	to_chat(src, SPAN_NOTICE("You begin delicately adjusting your connection to the host brain. This will take some time..."))
 
-	spawn(300+(host.brainloss*5))
+	spawn(30 SECONDS + (host.brainloss * 5))
 
 		if(!host || !src || controlling)
 			return
