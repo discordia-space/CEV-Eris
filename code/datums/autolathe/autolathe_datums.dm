@@ -93,7 +93,7 @@
 			adjust_materials = FALSE
 
 		for(var/a in mats)
-			var/amount = mats[a] * multiplier
+			var/amount = mats[a]
 			if(amount)
 				LAZYAPLUS(materials, a, amount)
 
