@@ -45,5 +45,5 @@
 
 /tipsAndTricks/roles/borerLang
     roles_list = list(/datum/antagonist/borer)
-    tipText = "As a borer, reading host's mind will teach you the languages host knows. For every language you learn you get more experience."
+    tipText = "As a borer, reading a host's mind will teach you the languages they know. For every language you learn you get more experience."
 
