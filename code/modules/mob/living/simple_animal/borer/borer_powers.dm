@@ -237,8 +237,8 @@
 	if(stat)
 		return
 
-	if(world.time - used_dominate < 600) // a two minutes cooldown.
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(600 - (world.time - used_dominate))/10] seconds.")
+	if(world.time - used_dominate < 1 MINUTE) // a one minutes cooldown.
+		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.")
 		return
 
 	if(is_ventcrawling)
