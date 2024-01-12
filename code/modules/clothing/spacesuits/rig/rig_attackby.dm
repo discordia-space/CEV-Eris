@@ -55,7 +55,7 @@
 					switch(to_remove)
 						if("cell")
 							if(cell)
-								to_chat(user, "You detatch \the [cell] from \the [src]'s battery mount.")
+								to_chat(user, "You detach \the [cell] from \the [src]'s battery mount.")
 								for(var/obj/item/rig_module/module in installed_modules)
 									module.deactivate()
 								user.put_in_hands(cell)
