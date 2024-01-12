@@ -540,8 +540,8 @@
 	if(stat)
 		return
 
-	if(world.time - used_dominate < 600)
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(600 - (world.time - used_dominate))/10] seconds.</B>")
+	if(world.time - used_dominate < 1 MINUTE)
+		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.</B>")
 		return
 
 	if(host)
