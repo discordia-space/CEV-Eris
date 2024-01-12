@@ -310,9 +310,9 @@
 		to_chat(src, SPAN_WARNING("You can't control a dead host."))
 		return
 
-	to_chat(src, SPAN_NOTICE("You begin delicately adjusting your connection to the host brain..."))
+	to_chat(src, SPAN_NOTICE("You begin delicately adjusting your connection to the host brain. This will take some time..."))
 
-	spawn(100+(host.brainloss*5))
+	spawn(300+(host.brainloss*5))
 
 		if(!host || !src || controlling)
 			return
@@ -598,9 +598,12 @@
 	if(chemicals >= reproduce_cost)
 		to_chat(host, "\red <B>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</B>")
 		visible_message("\red <B>[host.name] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</B>")
-		chemicals -= reproduce_cost
 		has_reproduced = TRUE
-		borer_add_exp(10)
+		chemicals -= reproduce_cost
+		if(istype(host, /mob/living/carbon/human/) && !host.isMonkey())
+			borer_add_exp(25)
+		else
+			to_chat(src, SPAN_WARNING("You do not have anything to learn from this host. Find a human!"))
 
 		new /obj/effect/decal/cleanable/vomit(get_turf(host))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
