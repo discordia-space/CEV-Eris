@@ -61,7 +61,7 @@
 		return
 
 	if(ishuman(M) && (!M.mind || !M.client))
-		to_chat(src, SPAN_WARNING("Host's body is in a hybernation state, you are afraid to be crushed when they roll over in their sleep!"))
+		to_chat(src, SPAN_WARNING("Host's body is in a state of hibernation, you are afraid to be crushed when they roll over in their sleep!"))
 		return
 	if(M.has_brain_worms())
 		to_chat(src, SPAN_WARNING("You cannot infest someone who is already infested!"))
