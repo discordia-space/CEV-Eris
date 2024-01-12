@@ -262,8 +262,8 @@
 
 	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
 
-	if(world.time - used_dominate < 600)
-		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(600 - (world.time - used_dominate))/10] seconds.")
+	if(world.time - used_dominate < 1 MINUTE)
+		to_chat(src, "\red <B>You cannot use that ability again so soon. It will be ready in [(1 MINUTE - (world.time - used_dominate))/ (1 SECOND)] seconds.")
 		return
 
 	if(!M || !Adjacent(M)) return
