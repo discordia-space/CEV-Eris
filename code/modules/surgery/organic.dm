@@ -310,6 +310,10 @@
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/remove_item/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
+	if(istype(target, /mob/living/simple_animal/borer))
+		var/mob/living/simple_animal/borer/B = target
+		B.detach()
+		B.leave_host()
 	user.visible_message(
 		SPAN_NOTICE("[user] extracts something out of [organ.get_surgery_name()] with \the [tool]."),
 		SPAN_NOTICE("You extract [target] out of [organ.get_surgery_name()] with \the [tool].")

@@ -18,9 +18,11 @@
 	sharp = TRUE
 	edge = TRUE
 	recoil = 3
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASMA = 1)
 
 /obj/item/projectile/bullet/gyro/on_hit(atom/target)
 	explosion(get_turf(target), 100, 50)
+	matter [MATERIAL_PLASMA] = 0
 	return TRUE
 
 /obj/item/projectile/bullet/rocket
@@ -36,6 +38,7 @@
 	var/explosion_falloff = 75
 	sharp = FALSE
 	edge = FALSE
+	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASMA = 2) // as it is caseless, the 'bullet' holds the entire cost.
 
 /obj/item/projectile/bullet/rocket/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	set_light(2.5, 0.5, "#dddd00")
@@ -43,6 +46,7 @@
 
 /obj/item/projectile/bullet/rocket/on_hit(atom/target)
 	detonate(target)
+	matter [MATERIAL_PLASMA] = 0
 	set_light(0)
 	return TRUE
 
@@ -55,6 +59,7 @@
 
 	explosion_power = 200
 	explosion_falloff = 75
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASMA = 2) // as it is caseless, the 'bullet' holds the entire cost.
 
 /obj/item/projectile/bullet/rocket/hesh
 	name = "high-explosive squash head rocket"
@@ -244,8 +249,9 @@
 	knockback = FALSE
 	can_ricochet = FALSE
 	sharp = FALSE
-	embed = FALSE
+	embed = FALSE	// plasma is not directly destroyed as projectile does not survive impact
 	recoil = 4
+	matter = list(MATERIAL_PLASTIC = 0.5, MATERIAL_PLASMA = 1) 
 
 /obj/item/projectile/bullet/flare/on_hit(atom/target, blocked = FALSE)
 	. = ..()
