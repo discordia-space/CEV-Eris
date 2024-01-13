@@ -4,7 +4,7 @@
 
 /obj/machinery/porta_turret/excelsior
 	icon = 'icons/obj/machines/excelsior/turret.dmi'
-	desc = "A fully automated anti infantry platform. Fires 7.62mm rounds"
+	desc = "A fully automated anti infantry platform. Fires .30 caliber rounds"
 	icon_state = "turret_legs"
 	density = TRUE
 	lethal = TRUE
