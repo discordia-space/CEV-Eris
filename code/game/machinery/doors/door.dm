@@ -57,7 +57,15 @@
 /obj/machinery/door/proc/on_door_direction_update_trigger()
 	var/turf/simulated/wall/W1 = get_step(src, SOUTH)
 	var/turf/simulated/wall/W2 = get_step(src, NORTH)
-	if(istype(W1) && istype(W2))
+	var/south_detected = istype(W1) || locate(/obj/structure/low_wall) in W1
+	var/north_detected = istype(W2) || locate(/obj/structure/low_wall) in W2
+	if(!south_detected)
+		var/obj/machinery/door/D = locate() in W1
+		south_detected = istype(D)
+	if(!north_detected)
+		var/obj/machinery/door/D = locate() in W2
+		north_detected = istype(D)
+	if(south_detected && north_detected)
 		dir = WEST
 	else
 		dir = NORTH
