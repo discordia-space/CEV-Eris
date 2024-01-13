@@ -45,14 +45,25 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation
 
+	var/atom/movable/overlay/door/door_flicker
+
 /obj/machinery/door/New()
 	GLOB.all_doors += src
 	..()
+	door_flicker = new(src)
+	door_flicker.master = src
+	vis_contents |= door_flicker
 	on_door_direction_update_trigger()
 
 /obj/machinery/door/Destroy()
 	GLOB.all_doors -= src
+	QDEL_NULL(door_flicker)
 	..()
+
+/obj/machinery/door/proc/flick_door(icon_flick, target)
+	if(!icon_flick || !target)
+		return
+	door_flicker.flick_door(icon_flick)
 
 /obj/machinery/door/proc/on_door_direction_update_trigger()
 	var/turf/simulated/wall/W1 = get_step(src, SOUTH)

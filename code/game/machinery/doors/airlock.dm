@@ -654,28 +654,27 @@ There are 9 wires.
 	if(underlays.len)
 		underlays.Cut()
 	if(density)
+		icon_state = "door_closed"
 		if(locked && lights && arePowerSystemsOn())
-			icon_state = "door_locked"
+			door_flicker.icon_state = "door_locked"
 			set_light(1.5, 0.5, COLOR_RED_LIGHT)
-		else
-			icon_state = "door_closed"
 		if(p_open || welded)
 			overlays = list()
 			if(p_open)
-				overlays += image(icon, "panel_open")
+				overlays += image(DOOR_MISC_ICON, "panel_open")
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
-					overlays += image(icon, "sparks_broken")
+					overlays += image(DOOR_MISC_ICON, "sparks_broken")
 				else if (health < maxHealth * 3/4)
-					overlays += image(icon, "sparks_damaged")
+					overlays += image(DOOR_MISC_ICON, "sparks_damaged")
 			if(welded)
-				overlays += image(icon, "welded")
+				overlays += image(DOOR_MISC_ICON, "welded")
 		else if (health < maxHealth * 3/4 && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_damaged")
+			overlays += image(DOOR_MISC_ICON, "sparks_damaged")
 	else
 		icon_state = "door_open"
 		if((stat & BROKEN) && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_open")
+			overlays += image(DOOR_MISC_ICON, "sparks_open")
 	if(wedged_item)
 		generate_wedge_overlay()
 
@@ -683,28 +682,33 @@ There are 9 wires.
 	switch(animation)
 		if("opening")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
+			if(underlays.len)
+				underlays.Cut()
+			
+			flick("door_opening", src)//[stat ? "_stat":]
 			if(p_open)
-				flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
-				update_icon()
-			else
-				flick("door_opening", src)//[stat ? "_stat":]
-				update_icon()
+				flick_door("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
+			update_icon()
 		if("closing")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
+			if(underlays.len)
+				underlays.Cut()
+			flick("door_closing", src)
 			if(p_open)
-				flick("o_door_closing", src)
-				update_icon()
-			else
-				flick("door_closing", src)
-				update_icon()
+				flick_door("o_door_closing", src)
+			update_icon()
+			// 	update_icon()
+			// else
+			// 	flick("door_closing", src)
+			// 	update_icon()
 		if("spark")
 			if(density)
-				flick("door_spark", src)
+				flick_door("door_spark", src)
 		if("deny")
 			if(density && src.arePowerSystemsOn())
-				flick("door_deny", src)
+				flick_door("door_deny", src)
 				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
 	return
 
