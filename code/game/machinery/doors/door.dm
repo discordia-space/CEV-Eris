@@ -60,6 +60,10 @@
 	QDEL_NULL(door_flicker)
 	..()
 
+
+/obj/machinery/door/proc/get_overlay_icon()
+	return icon
+
 /obj/machinery/door/proc/flick_door(icon_flick, target)
 	if(!icon_flick || !target)
 		return
@@ -80,6 +84,7 @@
 		dir = WEST
 	else
 		dir = NORTH
+	door_flicker.dir = dir
 
 /obj/machinery/door/can_prevent_fall(above)
 	return above ? density : null
