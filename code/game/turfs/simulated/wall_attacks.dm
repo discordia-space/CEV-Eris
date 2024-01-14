@@ -149,14 +149,14 @@
 					return
 			if(isnull(construction_stage) || !reinf_material)
 				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
-				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_LONG * material.heat_resistance, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You remove the outer plating."))
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 					return
 			if(construction_stage == 4)
 				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_NORMAL * material.heat_resistance, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 3
 					update_icon()
 					to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
