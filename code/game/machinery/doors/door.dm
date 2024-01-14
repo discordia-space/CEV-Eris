@@ -69,7 +69,7 @@
 		return
 	door_flicker.flick_door(icon_flick)
 
-/obj/machinery/door/proc/on_door_direction_update_trigger()
+/obj/machinery/door/proc/on_door_direction_update_trigger(from_door = FALSE)
 	var/turf/simulated/wall/W1 = get_step(src, SOUTH)
 	var/turf/simulated/wall/W2 = get_step(src, NORTH)
 	var/south_detected = istype(W1) || locate(/obj/structure/low_wall) in W1
@@ -77,9 +77,13 @@
 	if(!south_detected)
 		var/obj/machinery/door/D = locate() in W1
 		south_detected = istype(D)
+		if(istype(D) && !from_door)
+			D.on_door_direction_update_trigger(TRUE)
 	if(!north_detected)
 		var/obj/machinery/door/D = locate() in W2
 		north_detected = istype(D)
+		if(istype(D) && !from_door)
+			D.on_door_direction_update_trigger(TRUE)
 	if(south_detected && north_detected)
 		dir = WEST
 	else
