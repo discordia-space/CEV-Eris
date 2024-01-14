@@ -45,23 +45,41 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation
 
+	var/atom/movable/overlay/door/door_flicker
+
 /obj/machinery/door/New()
 	GLOB.all_doors += src
 	..()
+	door_flicker = new(src)
+	door_flicker.master = src
+	vis_contents |= door_flicker
 	on_door_direction_update_trigger()
 
 /obj/machinery/door/Destroy()
 	GLOB.all_doors -= src
+	QDEL_NULL(door_flicker)
 	..()
+
+/obj/machinery/door/proc/flick_door(icon_flick, target)
+	if(!icon_flick || !target)
+		return
+	door_flicker.flick_door(icon_flick)
 
 /obj/machinery/door/proc/on_door_direction_update_trigger()
 	var/turf/simulated/wall/W1 = get_step(src, SOUTH)
 	var/turf/simulated/wall/W2 = get_step(src, NORTH)
-	if(istype(W1) && istype(W2))
+	var/south_detected = istype(W1) || locate(/obj/structure/low_wall) in W1
+	var/north_detected = istype(W2) || locate(/obj/structure/low_wall) in W2
+	if(!south_detected)
+		var/obj/machinery/door/D = locate() in W1
+		south_detected = istype(D)
+	if(!north_detected)
+		var/obj/machinery/door/D = locate() in W2
+		north_detected = istype(D)
+	if(south_detected && north_detected)
 		dir = WEST
 	else
 		dir = NORTH
-
 
 /obj/machinery/door/can_prevent_fall(above)
 	return above ? density : null
@@ -542,4 +560,3 @@
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
-
