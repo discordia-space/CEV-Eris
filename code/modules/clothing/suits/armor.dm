@@ -456,7 +456,7 @@
 	matter = list(
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTIC = 8,
-		MATERIAL_PLASTEEL = 3,
+		MATERIAL_PLASTEEL = 3
 	)
 	armor = list(
 		melee = 20,
