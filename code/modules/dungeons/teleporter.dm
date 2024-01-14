@@ -139,6 +139,7 @@
 
 	for(var/mob/living/M in victims_to_teleport)
 		go_to_bluespace(get_turf(src), 3, FALSE, M, get_turf(target))
+		M.playsound_local(get_turf(M), "sound/machines/Teleport.ogg", 100)
 
 	destroy_teleporter()
 
