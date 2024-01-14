@@ -68,7 +68,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
 	matter = list(
 		MATERIAL_STEEL = 10, // contains a lil bit more steel because of arm+leg prot
-		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTEEL = 1
 	)
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
