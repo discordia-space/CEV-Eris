@@ -217,7 +217,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/armor
 	name = "IH Surplus Armor"
 	contains = list(/obj/item/clothing/suit/armor/vest,
-					/obj/item/clothing/suit/armor/vest/security,
+					/obj/item/clothing/suit/armor/vest/toggleable/security,
 					/obj/item/clothing/suit/armor/vest/detective,
 					/obj/item/clothing/suit/storage/vest,
 					/obj/item/clothing/head/armor/helmet,
