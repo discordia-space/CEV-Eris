@@ -23,11 +23,11 @@
 
 /datum/design/autolathe/clothing/generic_vest_security
 	name = "security armor"
-	build_path = /obj/item/clothing/suit/armor/vest/toggleable/security
+	build_path = /obj/item/clothing/suit/armor/vest/toggle/security
 
 /datum/design/autolathe/clothing/generic_vest_security_full
 	name = "fullbody security armor"
-	build_path = /obj/item/clothing/suit/armor/vest/toggleable/security/full
+	build_path = /obj/item/clothing/suit/armor/vest/toggle/security/full
 
 /datum/design/autolathe/clothing/generic_vest_webbing
 	name = "webbed armor vest"

@@ -57,7 +57,7 @@
 
 
 //This has specifically been bodged so that I can give the flak vest toggle-able buttons -VaNdU Jr
-/obj/item/clothing/suit/armor/vest/toggleable/security/full
+/obj/item/clothing/suit/armor/vest/toggle/security/full
 	name = "full security armor"
 	desc = "A tactical armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
 	icon_state = "armor_security_fullbody"
@@ -73,17 +73,17 @@
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
-/obj/item/clothing/suit/armor/vest/toggleable/security
+/obj/item/clothing/suit/armor/vest/toggle/security
 	name = "security armor"
 	icon_state = "armor_security"
 	icon_open = "armor_security_open"
 	icon_closed = "armor_security"
 
-/obj/item/clothing/suit/armor/vest/toggleable
-	bad_type = /obj/item/clothing/suit/armor/vest/toggleable
-	var/icon_open
-	var/icon_closed
-	verb/toggle()
+/obj/item/clothing/suit/armor/vest/toggle
+	bad_type = /obj/item/clothing/suit/armor/vest/toggle
+	/obj/item/clothing/suit/armor/vest/toggle/var/icon_open
+	/obj/item/clothing/suit/armor/vest/toggle/var/icon_closed
+	/obj/item/clothing/suit/armor/vest/toggle/verb/toggle()
 		set name = "Toggle Vest Buttons"
 		set category = "Object"
 		set src in usr
