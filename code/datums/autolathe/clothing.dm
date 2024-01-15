@@ -33,10 +33,6 @@
 	name = "webbed armor vest"
 	build_path = /obj/item/clothing/suit/storage/vest
 
-/datum/design/autolathe/clothing/riot_armor
-	name = "riot armor"
-	build_path = /obj/item/clothing/suit/armor/heavy/riot
-
 /datum/design/autolathe/clothing/riot_helmet
 	name = "riot helmet"
 	build_path = /obj/item/clothing/head/armor/faceshield/riot
