@@ -57,7 +57,7 @@
 
 
 //This has specifically been bodged so that I can give the flak vest toggle-able buttons -VaNdU Jr
-/obj/item/clothing/suit/armor/vest/toggle/security/full
+/obj/item/clothing/suit/armor/vest/toggle/full
 	name = "full security armor"
 	desc = "A tactical armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
 	icon_state = "armor_security_fullbody"
