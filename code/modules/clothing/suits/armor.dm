@@ -44,7 +44,7 @@
 /obj/item/clothing/suit/armor/vest/full
 	name = "full armor"
 	desc = "A generic armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
-	icon_state = "armor_security_fullbody"
+	icon_state = "armor_fullbody"
 	blood_overlay_type = "armor"
 	slowdown = 0.1
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
