@@ -73,7 +73,7 @@
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
-/obj/item/clothing/suit/armor/vest/toggle/security
+/obj/item/clothing/suit/armor/vest/toggle
 	name = "security armor"
 	icon_state = "armor_security"
 	var/icon_open = "armor_security_open"
