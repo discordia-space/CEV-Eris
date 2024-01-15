@@ -102,7 +102,7 @@
 /obj/item/mech_component/propulsion/heavy
 	name = "heavy legs"
 	exosuit_desc_string = "heavy legs"
-	desc = "Exosuit actuators struggle to move these armorsed legs, and they're even worse at turning."
+	desc = "Exosuit actuators struggle to move these armored legs, and they're even worse at turning."
 	icon_state = "heavy_legs"
 	move_delay = 5
 	turn_delay = 3
