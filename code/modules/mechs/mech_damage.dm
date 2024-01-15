@@ -72,14 +72,30 @@
 	return def_zone //Careful with effects, mechs shouldn't be stunned
 
 /mob/living/exosuit/getarmor(def_zone, type)
-	if(body?.armor_plate)
-		var/body_armor = body.armor_plate?.armor.getRating(type)
-		if(body_armor) return body_armor
+	if(!def_zone)
+		def_zone = ran_zone()
+	var/obj/item/mech_component/hit_zone = zoneToComponent(def_zone)
+	var/armor = hit_zone?.armor.getRating(type)
+	if(armor)
+		return armor
 	return 0
 
 /mob/living/exosuit/updatehealth()
 	if(body) maxHealth = body.mech_health
 	health = maxHealth - (getFireLoss() + getBruteLoss())
+
+/mob/living/exosuit/damage_through_armor(damage, damagetype, def_zone, attack_flag, armor_divisor, used_weapon, sharp, edge, wounding_multiplier, list/dmg_types = list(), return_continuation)
+	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
+	var/armor_def = comp.armor.getRating(damagetype)
+	var/deflect_chance = (comp.cur_armor + armor_def)*0.5
+	world.log << "deflect_chance was [deflect_chance]"
+	if(prob(deflect_chance))
+		visible_message(SPAN_DANGER("\The [used_weapon] glances off of \the [src]'s [comp]!"))
+		return 0
+	else
+		var/dam_dif = armor_def - damage
+		comp.cur_armor = max(0, comp.cur_armor-max(1, dam_dif))
+	. = ..()
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
@@ -131,9 +147,10 @@
 	return FALSE
 
 
-/mob/living/exosuit/bullet_act(obj/item/projectile/P, var/def_zone)
+/mob/living/exosuit/bullet_act(obj/item/projectile/P, def_zone)
 	var/hit_dir = get_dir(P.starting, src)
-	def_zone = zoneToComponent(def_zone)
+	var/dir_mult = get_dir_mult(hit_dir)
+	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
 	/// aiming for soemthing the mech doesnt have
 	if(!def_zone)
 		return PROJECTILE_FORCE_MISS
@@ -141,7 +158,7 @@
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
-	var/list/damages=  P.damage_types
+	var/list/damages = P.damage_types.Copy()
 	if(hit_dir & reverse_dir[dir])
 		if(gen)
 			damages = gen.absorbDamages(damages)
@@ -158,13 +175,41 @@
 		qdel(P)
 		return TRUE
 	hit_impact(P.get_structure_damage(), hit_dir)
+	var/local_armor_divisor = P.armor_divisor - round(comp.cur_armor/100, 0.1)
 	for(var/damage_type in damages)
 		if(damage_type == HALLOSS)
 			continue
-		damage_through_armor(damages[damage_type], damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
+		damages[damage_type] = round(damages[damage_type] * dir_mult)
+		damage_through_armor(damages[damage_type], damage_type, def_zone, P.check_armour, armor_divisor = local_armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
 
 	P.on_hit(src, def_zone)
 	return PROJECTILE_STOP
+
+/mob/living/exosuit/proc/get_dir_mult(hit_dir) // This looks like a bit of a mess, but BYOND's switch cases are very fast.
+	var/rear_dir
+	var/list/side_dirs
+	switch(dir)
+		if(NORTH)
+			rear_dir = SOUTH
+			side_dirs = list(EAST, WEST)
+		if(SOUTH)
+			rear_dir = NORTH
+			side_dirs = list(EAST, WEST)
+		if(EAST)
+			rear_dir = WEST
+			side_dirs = list(NORTH, SOUTH)
+		if(WEST)
+			rear_dir = EAST
+			side_dirs = list(NORTH, SOUTH)
+
+	if(hit_dir == rear_dir)
+		. = 1.25 // Hit from the back
+	else if(hit_dir in side_dirs)
+		. = 1 // Hit from the sides
+	else
+		. = 0.75 // Hit from the front
+	world.log << "return value was [.]"
+	return .
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0
@@ -224,4 +269,3 @@
 		occupant_message("You feel the shockwave of an external explosion pass through your body!")
 
 	return round(split*blocked)
-

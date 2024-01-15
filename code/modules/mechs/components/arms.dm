@@ -61,6 +61,8 @@
 	can_force_doors = FALSE
 	max_damage = 90
 	power_use = 30
+	armors = list(melee = 20, bullet = 8, energy = 2, bomb = 50, bio = 100, rad = 0)
+	max_armor = 40
 
 /obj/item/mech_component/manipulators/light
 	name = "light arms"
@@ -72,6 +74,7 @@
 	max_damage = 45
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	armors = list(melee = 24, bullet = 10, energy = 9, bomb = 100, bio = 100, rad = 100)
 
 /obj/item/mech_component/manipulators/combat
 	name = "combat arms"
@@ -83,6 +86,8 @@
 	max_damage = 125
 	power_use = 50
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 4, MATERIAL_DIAMOND = 2)
+	armors = list(melee = 32, bullet = 36, energy = 38, bomb = 200, bio = 100, rad = 100)
+	max_armor = 80
 
 /obj/item/mech_component/manipulators/heavy
 	name = "heavy arms"
@@ -94,3 +99,5 @@
 	max_damage = 175
 	power_use = 60
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10, MATERIAL_URANIUM = 5)
+	armors = list(melee = 40, bullet = 28, energy = 28, bomb = 200, bio = 100, rad = 100)
+	max_armor = 100

@@ -88,6 +88,8 @@
 	desc = "A primitive set of sensors designed to provide basic visual information to the pilot."
 	max_damage = 125
 	power_use = 0
+	armors = list(melee = 20, bullet = 8, energy = 2, bomb = 50, bio = 100, rad = 0)
+	max_armor = 40
 
 /obj/item/mech_component/sensors/light
 	name = "light sensors"
@@ -100,6 +102,7 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	power_use = 50
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 2) //NVG takes uranium, but mecha NVGs are bugged & it's mecha-sized so let's not
+	armors = list(melee = 24, bullet = 10, energy = 9, bomb = 100, bio = 100, rad = 100)
 
 /obj/item/mech_component/sensors/combat
 	name = "combat sensors"
@@ -112,6 +115,8 @@
 	max_damage = 75 //the sensors are delicate, the value of this part is in the SEE_MOBS flag anyway
 	power_use = 200
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 7)
+	armors = list(melee = 32, bullet = 36, energy = 38, bomb = 200, bio = 100, rad = 100)
+	max_armor = 80
 
 /obj/item/mech_component/sensors/heavy
 	name = "heavy sensors"
@@ -121,3 +126,5 @@
 	max_damage = 200
 	power_use = 0
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_URANIUM = 6)
+	armors = list(melee = 40, bullet = 28, energy = 28, bomb = 200, bio = 100, rad = 100)
+	max_armor = 100

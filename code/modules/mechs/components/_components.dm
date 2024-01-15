@@ -26,6 +26,15 @@
 	/// wheter or not this component can just blow up
 	var/can_gib = FALSE
 
+	var/list/armors = list()
+	var/max_armor = 60
+	var/cur_armor
+	var/new_armor = 0 // destroyed armor that has been replaced will be added to this until it gets welded to the frame, then removed
+
+/obj/item/mech_component/Initialize()
+    . =..()
+    cur_armor = max_armor
+
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color
 	color = new_colour
@@ -161,7 +170,11 @@
 
 /obj/item/mech_component/proc/return_diagnostics(var/mob/user)
 	to_chat(user, SPAN_NOTICE("[capitalize(name)]:"))
-	to_chat(user, SPAN_NOTICE(" - Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
+	to_chat(user, SPAN_NOTICE(" - Hull Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
+	if(cur_armor > 0)
+		to_chat(user, SPAN_NOTICE(" - Armor Integrity: <b>[round((((max_armor - cur_armor) / max_armor)) * 100)]%</b>"))
+	else
+		to_chat(user, SPAN_WARNING(" - Armor integrity failure!"))
 
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)

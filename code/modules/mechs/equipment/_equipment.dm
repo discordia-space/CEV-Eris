@@ -21,6 +21,7 @@
 	var/mech_layer = MECH_COCKPIT_LAYER //For the part where it's rendered as mech gear
 	var/active = FALSE
 	var/equipment_flags = 0
+	var/base_deflect = 5
 
 /obj/item/mech_equipment/proc/activate()
 	active = TRUE

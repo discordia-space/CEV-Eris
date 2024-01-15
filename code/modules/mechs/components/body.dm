@@ -27,7 +27,6 @@
 	var/mech_health = 300
 	var/obj/item/cell/cell
 	var/obj/item/robot_parts/robot_component/diagnosis_unit/diagnostics
-	var/obj/item/robot_parts/robot_component/armour/exosuit/armor_plate
 	var/obj/item/robot_parts/robot_component/exosuit_control/computer
 	var/obj/machinery/portable_atmospherics/canister/air_supply
 	var/obj/item/storage/mech/storage_compartment
@@ -63,7 +62,6 @@
 /obj/item/mech_component/chassis/Destroy()
 	QDEL_NULL(cell)
 	QDEL_NULL(computer)
-	QDEL_NULL(armor_plate)
 	QDEL_NULL(air_supply)
 	QDEL_NULL(diagnostics)
 	QDEL_NULL(storage_compartment)
@@ -75,8 +73,6 @@
 		cell = null
 	if(A == computer)
 		computer = null
-	if(A == armor_plate)
-		armor_plate = null
 	if(A == air_supply)
 		air_supply = null
 	if(A == diagnostics)
@@ -88,7 +84,6 @@
 	. = ..()
 	cell = locate() in src
 	computer = locate() in src
-	armor_plate = locate() in src
 	air_supply = locate() in src
 	diagnostics = locate() in src
 	storage_compartment = locate() in src
@@ -96,8 +91,6 @@
 /obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
 	if(!cell)
 		to_chat(user, SPAN_WARNING("It is missing a power cell."))
-	if(!armor_plate)
-		to_chat(user, SPAN_WARNING("It is missing exosuit armor plating."))
 	if(!computer)
 		to_chat(user, SPAN_WARNING("It is missing a control computer."))
 	if(!diagnostics)
@@ -132,7 +125,7 @@
 		cockpit.react()
 
 /obj/item/mech_component/chassis/ready_to_install()
-	return (cell && armor_plate && computer && diagnostics)
+	return (cell && computer && diagnostics)
 
 /obj/item/mech_component/chassis/update_health()
 	. = ..()
@@ -146,7 +139,6 @@
 
 /obj/item/mech_component/chassis/prebuild()
 	computer = new /obj/item/robot_parts/robot_component/exosuit_control(src)
-	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
 	cell = new /obj/item/cell/large/high(src)
 	diagnostics = new /obj/item/robot_parts/robot_component/diagnosis_unit(src)
 
@@ -163,20 +155,12 @@
 			return
 		if(insert_item(I, user))
 			cell = I
-	else if(istype(I, /obj/item/robot_parts/robot_component/armour/exosuit))
-		if(armor_plate)
-			to_chat(user, SPAN_WARNING("\The [src] already has armor installed."))
-			return
-		else if(insert_item(I, user))
-			armor_plate = I
 	else if(istype(I, /obj/item/robot_parts/robot_component/diagnosis_unit))
 		if(diagnostics)
 			to_chat(user, SPAN_WARNING("\The [src] already has a diagnosis unit installed."))
 			return
 		else if(insert_item(I, user))
 			diagnostics = I
-
-
 	else
 		return ..()
 
@@ -199,10 +183,6 @@
 		to_chat(user, SPAN_NOTICE(" Diagnostics Unit Integrity: <b>[round((((diagnostics.max_dam - diagnostics.total_dam) / diagnostics.max_dam)) * 100)]%</b>"))
 	else
 		to_chat(user, SPAN_WARNING(" Diagnostics Unit Missing or Non-functional."))
-	if(armor_plate)
-		to_chat(user, SPAN_NOTICE(" Armor Integrity: <b>[round((((armor_plate.max_dam - armor_plate.total_dam) / armor_plate.max_dam)) * 100)]%</b>"))
-	else
-		to_chat(user, SPAN_WARNING(" Armor Missing or Non-functional."))
 	if(computer)
 		to_chat(user, SPAN_NOTICE(" Installed Software"))
 		for(var/exosystem_computer in computer.installed_software)
@@ -225,6 +205,7 @@
 	max_damage = 150
 	power_use = 0
 	climb_time = 7 // Quickest entry because it's unsealed
+	armor = list(melee = 20, bullet = 8, energy = 2, bomb = 50, bio = 100, rad = 0)
 
 /obj/item/mech_component/chassis/cheap/Initialize()
 	pilot_positions = list(
@@ -257,6 +238,8 @@
 	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
 	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5, MATERIAL_PLASTIC = 10)
+	armors = list(melee = 24, bullet = 10, energy = 9, bomb = 100, bio = 100, rad = 100)
+	max_armor = 80
 
 /obj/item/mech_component/chassis/combat
 	name = "sealed exosuit chassis"
@@ -272,6 +255,8 @@
 	power_use = 40
 	climb_time = 25 //standard values for now to encourage use over heavy
 	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 12, MATERIAL_GOLD = 4, MATERIAL_SILVER = 4)
+	armors = list(melee = 32, bullet = 36, energy = 38, bomb = 200, bio = 100, rad = 100)
+	max_armor = 100
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -285,6 +270,8 @@
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
 	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)
+	armors = list(melee = 40, bullet = 28, energy = 28, bomb = 200, bio = 100, rad = 100)
+	max_armor = 120
 
 /obj/item/mech_component/chassis/forklift
 	name = "forklift chassis"
@@ -297,6 +284,8 @@
 	mech_health = 200
 	opaque_chassis = FALSE
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	armors = list(melee = 20, bullet = 8, energy = 2, bomb = 50, bio = 100, rad = 0)
+	max_armor = 20
 
 
 /obj/item/mech_component/chassis/forklift/Initialize()

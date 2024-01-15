@@ -741,7 +741,6 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 		/obj/item/robot_parts/robot_component/camera,
 		/obj/item/robot_parts/robot_component/radio,
 		/obj/item/robot_parts/robot_component/exosuit_control,
-		/obj/item/robot_parts/robot_component/armour/exosuit/plain,
 		/obj/item/robot_parts/robot_component/diagnosis_unit,
 		/obj/item/cell/large
 	)

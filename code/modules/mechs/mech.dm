@@ -110,16 +110,6 @@
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
 */
-/*
-/mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
-	if(islist(body.armor))
-		body.armor = getArmor(arglist(body.armor))
-	else if(!body.armor)
-		body.armor = getArmor()
-	else if(!istype(body.armor, /datum/armor))
-		error("Invalid type [body.armor.type] found in .armor during /obj Initialize()")
-	. = ..()
-*/
 
 /mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
 	. = ..()
@@ -153,6 +143,10 @@
 	// Generate hardpoint list.
 	var/list/component_descriptions
 	for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
+		if(islist(comp.armor))
+			comp.armor = getArmor(arglist(comp.armor))
+		else
+			comp.armor = getArmor() // In case someone leaves armor values for something unset for some reason
 		if(comp.exosuit_desc_string)
 			LAZYADD(component_descriptions, comp.exosuit_desc_string)
 		if(LAZYLEN(comp.has_hardpoints))
