@@ -10,7 +10,6 @@
 		. = ..()
 
 /mob/living/exosuit/attack_generic(mob/user, var/damage, var/attack_message)
-
 	if(!damage || !istype(user))
 		return
 
@@ -25,7 +24,11 @@
 			damages = gen.absorbDamages(damages)
 	if(damages[BRUTE] == 0)
 		return
-	damage_through_armor(damages[BRUTE], BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration, def_zone=pick(arms, legs, body, head))
+	var/obj/item/mech_component/comp = pick(arms, legs, body, head)
+	var/hit_dir = get_dir(src, user)
+	var/dir_mult = get_dir_mult(hit_dir, comp)
+	damages[BRUTE] = round(max(0, damages[BRUTE]*dir_mult))
+	damage_through_armor(damages[BRUTE], BRUTE, comp, ARMOR_MELEE, penetration, dmg_types = damages) // Removed the use of most named args here by rearranging the argument, except dmg_types, which skips used_weapon, sharp, edge and wounding_multiplier
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
@@ -51,6 +54,11 @@
 	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
 	var/roll = !prob(body.pilot_coverage)
 	var/list/damages = list(BRUTE = I.force)
+	var/hit_dir = get_dir(src, user)
+	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
+	var/dir_mult = get_dir_mult(hit_dir, comp)
+	var/orig_damage = damages[BRUTE]
+	damages[BRUTE] = round(max(0, orig_damage*dir_mult))
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	if(gen)
 		damages = gen.absorbDamages(damages)
@@ -63,6 +71,7 @@
 		var/mob/living/pilot = pick(pilots)
 		var/turf/location = get_turf(src)
 		location.visible_message(SPAN_DANGER("\The [user] attacks the pilot inside of \the [src]."),1,5)
+		damages[BRUTE] = orig_damage
 		return pilot.resolve_item_attack(I, user, def_zone)
 	else if(LAZYLEN(pilots) && !roll)
 		var/turf/location = get_turf(src)
@@ -84,34 +93,25 @@
 	if(body) maxHealth = body.mech_health
 	health = maxHealth - (getFireLoss() + getBruteLoss())
 
-/mob/living/exosuit/damage_through_armor(damage, damagetype, def_zone, attack_flag, armor_divisor, used_weapon, sharp, edge, wounding_multiplier, list/dmg_types = list(), return_continuation)
-	var/obj/item/I = used_weapon
-	var/pen_bonus = 0
-	if(I && I.armor_divisor)
-		pen_bonus = I.armor_divisor
-
-// Determine the largest damage type inflicted by the weapon and check against that armor. Splitting damage types is weakened here on purpose. Mechs should be shot at with big scary guns, not rubber bullets
-// Note that this only applies to the deflection roll and armor ablation, not to defense/damage reduction calculated in the parent proc, so rubber bullets can absolutely still damage weaker / lighter mechs if they don't deflect
-	var/main_dmg_type
-	var/last_dmg_type_dmg = 0
-	var/cur_dmg_type_dmg = 0
-	for(var/dmg_type in dmg_types)
-		if(cur_dmg_type_dmg > last_dmg_type_dmg)
-			last_dmg_type_dmg = cur_dmg_type_dmg
-			main_dmg_type = dmg_types[dmg_type]
-
+/mob/living/exosuit/damage_through_armor(damage, damagetype, def_zone, attack_flag, armor_divisor, used_weapon, sharp, edge, wounding_multiplier, list/dmg_types, return_continuation)
 	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
-	var/armor_def = comp.armor.getRating(main_dmg_type)
-	var/deflect_chance = ((comp.cur_armor + armor_def)*0.5) - (pen_bonus*5)
-	world.log <<"deflect chance was [deflect_chance]"
+	var/armor_def = comp.armor.getRating(attack_flag)
+	var/deflect_chance = ((comp.cur_armor + armor_def)*0.5) - (armor_divisor*5)
 	if(prob(deflect_chance)) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
-		world.log << "deflect called"
-		visible_message(SPAN_DANGER("\The [used_weapon] glances off of \the [src]'s [comp]!"), range = 7)
+		visible_message(SPAN_DANGER("\The [used_weapon] glances off of \the [src]'s [comp]!"), 1, 2, 7)
 		playsound(src, "ricochet", 50, 1, 7)
 		return 0
+	/*
+	Uncomment this block if you want to use armor ablation for mechs. Otherwise, cur_armor will always be equal to max_armor, and you can just change max_armor to alter the target for deflection rolls.
+
 	else
-		var/dam_dif = armor_def - round(damage*(pen_bonus))
-		comp.cur_armor = max(0, comp.cur_armor-max(0, dam_dif)) // The inner max function here causes attacks that do not deflect to always ablate at least 1 point of armor. The outer ensures that cur_armor never goes below 0
+		var/dam_dif = armor_def - round(damage*(armor_divisor))
+		var/orig_armor = comp.cur_armor
+		var/armor_change = max(0, comp.cur_armor-max(0, dam_dif))
+		comp.cur_armor = armor_change // The inner max function here causes attacks that do not deflect to always ablate at least 1 point of armor. The outer ensures that cur_armor never goes below 0
+		if(orig_armor != comp.cur_armor)
+			damage -= round(max(0, armor_change/armor_divisor))
+	*/
 	. = ..()
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
@@ -166,8 +166,8 @@
 
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, def_zone)
 	var/hit_dir = get_dir(P.starting, src)
-	var/dir_mult = get_dir_mult(hit_dir)
 	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
+	var/dir_mult = get_dir_mult(hit_dir, comp)
 	/// aiming for soemthing the mech doesnt have
 	if(!def_zone)
 		return PROJECTILE_FORCE_MISS
@@ -202,23 +202,20 @@
 	P.on_hit(src, def_zone)
 	return PROJECTILE_STOP
 
-/mob/living/exosuit/proc/get_dir_mult(hit_dir)
+/mob/living/exosuit/proc/get_dir_mult(hit_dir, obj/item/mech_component/comp)
     var/facing_vector = get_vector(dir)
     var/incoming_hit_vector = get_vector(hit_dir)
     var/angle = get_vector_angle(facing_vector, incoming_hit_vector)
 
     // Front quadrant (135 - 225 degrees)
     if(angle > 135 && angle < 225)
-        . = front_mult // Hit from the front
-        world.log << "Front hit"
+        . = comp.front_mult // Hit from the front
     // Rear quadrant (315 - 45 degrees, with wrap-around at 360/0 degrees)
     else if(angle < 45 || angle > 315)
-        . = rear_mult // Hit from the back
-        world.log << "Rear hit"
+        . = comp.rear_mult // Hit from the back
     // Side quadrants (45 - 135 degrees and 225 - 315 degrees)
     else
-        . = side_mult // Hit from the sides
-        world.log << "Side hit"
+        . = comp.side_mult // Hit from the sides
 
     return .
 

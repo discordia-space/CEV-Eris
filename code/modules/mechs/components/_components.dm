@@ -27,9 +27,16 @@
 	var/can_gib = FALSE
 
 	var/list/armors = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // Override these for individual components
-	var/max_armor = 60
+	var/max_armor = 20
 	var/cur_armor = 0
 	var/new_armor = 0 // destroyed armor that has been replaced will be added to this until it gets welded to the frame, then removed
+
+	// Multipliers for damage and deflection chances when mechs get struck from different directions
+	// Override these to change armor-facing effectiveness for different exosuits
+	// These are multipliers that increase or decrease effective armor by 25% from the front and rear, respectively, by default - they are not flat additions, and they impact both damage and deflection chance
+	var/front_mult = 0.75
+	var/side_mult = 1
+	var/rear_mult = 1.25
 
 /obj/item/mech_component/Initialize()
 	. = ..()

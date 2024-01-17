@@ -448,6 +448,8 @@
 		if(do_mob(user, src, 30) && paste.use(2))
 			mc.repair_burn_damage(15)
 			mc.repair_brute_damage(15)
+/*
+Use this if you turn on armor ablation for mechs:
 
 	else if(istype(I, material.stack_type))
 		var/obj/item/mech_component/mc = get_targeted_part(user)
@@ -465,7 +467,7 @@
 			to_chat(user, SPAN_NOTICE("You replace the damaged armor plating. Now you need to weld it to the frame."))
 			mc.new_armor = mc.max_armor
 			fix_mat.use(mats_required)
-
+*/
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.amount < 5)
@@ -536,16 +538,19 @@
 				to_chat(user, SPAN_WARNING("Brute damage on this part is already repaired."))
 				return TRUE
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
+				mc.repair_brute_damage(15)
+				return TRUE
+				/*
+				Uncomment this block and put the if line just inside if(I.use_tool) if you decide to use armor ablation for mechs
+
 				if(mc.cur_armor >= mc.max_armor)
-					visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
-					mc.repair_brute_damage(15)
-					return TRUE
 				else
 					visible_message(SPAN_WARNING("Fresh armor has been welded\the [mc]'s frame by [user]!"),"You hear welding.")
 					mc.cur_armor = min(mc.max_armor, mc.cur_armor + mc.new_armor)
 					mc.new_armor = 0
 					return TRUE
-
+					*/
 
 		if(QUALITY_PRYING)
 			if(!body)
