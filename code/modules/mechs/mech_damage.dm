@@ -111,7 +111,7 @@
 		return 0
 	else
 		var/dam_dif = armor_def - round(damage*(pen_bonus))
-		comp.cur_armor = max(0, comp.cur_armor-max(1, dam_dif)) // The inner max function here causes attacks that do not deflect to always ablate at least 1 point of armor. The outer ensures that cur_armor never goes below 0
+		comp.cur_armor = max(0, comp.cur_armor-max(0, dam_dif)) // The inner max function here causes attacks that do not deflect to always ablate at least 1 point of armor. The outer ensures that cur_armor never goes below 0
 	. = ..()
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
