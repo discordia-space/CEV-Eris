@@ -85,16 +85,33 @@
 	health = maxHealth - (getFireLoss() + getBruteLoss())
 
 /mob/living/exosuit/damage_through_armor(damage, damagetype, def_zone, attack_flag, armor_divisor, used_weapon, sharp, edge, wounding_multiplier, list/dmg_types = list(), return_continuation)
+	var/obj/item/I = used_weapon
+	var/pen_bonus = 0
+	if(I && I.armor_divisor)
+		pen_bonus = I.armor_divisor
+
+// Determine the largest damage type inflicted by the weapon and check against that armor. Splitting damage types is weakened here on purpose. Mechs should be shot at with big scary guns, not rubber bullets
+// Note that this only applies to the deflection roll and armor ablation, not to defense/damage reduction calculated in the parent proc, so rubber bullets can absolutely still damage weaker / lighter mechs if they don't deflect
+	var/main_dmg_type
+	var/last_dmg_type_dmg = 0
+	var/cur_dmg_type_dmg = 0
+	for(var/dmg_type in dmg_types)
+		if(cur_dmg_type_dmg > last_dmg_type_dmg)
+			last_dmg_type_dmg = cur_dmg_type_dmg
+			main_dmg_type = dmg_types[dmg_type]
+
 	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
-	var/armor_def = comp.armor.getRating(damagetype)
-	var/deflect_chance = (comp.cur_armor + armor_def)*0.5
-	world.log << "deflect_chance was [deflect_chance]"
-	if(prob(deflect_chance))
-		visible_message(SPAN_DANGER("\The [used_weapon] glances off of \the [src]'s [comp]!"))
+	var/armor_def = comp.armor.getRating(main_dmg_type)
+	var/deflect_chance = ((comp.cur_armor + armor_def)*0.5) - (pen_bonus*5)
+	world.log <<"deflect chance was [deflect_chance]"
+	if(prob(deflect_chance)) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
+		world.log << "deflect called"
+		visible_message(SPAN_DANGER("\The [used_weapon] glances off of \the [src]'s [comp]!"), range = 7)
+		playsound(src, "ricochet", 50, 1, 7)
 		return 0
 	else
-		var/dam_dif = armor_def - damage
-		comp.cur_armor = max(0, comp.cur_armor-max(1, dam_dif))
+		var/dam_dif = armor_def - round(damage*(pen_bonus))
+		comp.cur_armor = max(0, comp.cur_armor-max(1, dam_dif)) // The inner max function here causes attacks that do not deflect to always ablate at least 1 point of armor. The outer ensures that cur_armor never goes below 0
 	. = ..()
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
@@ -185,31 +202,25 @@
 	P.on_hit(src, def_zone)
 	return PROJECTILE_STOP
 
-/mob/living/exosuit/proc/get_dir_mult(hit_dir) // This looks like a bit of a mess, but BYOND's switch cases are very fast.
-	var/rear_dir
-	var/list/side_dirs
-	switch(dir)
-		if(NORTH)
-			rear_dir = SOUTH
-			side_dirs = list(EAST, WEST)
-		if(SOUTH)
-			rear_dir = NORTH
-			side_dirs = list(EAST, WEST)
-		if(EAST)
-			rear_dir = WEST
-			side_dirs = list(NORTH, SOUTH)
-		if(WEST)
-			rear_dir = EAST
-			side_dirs = list(NORTH, SOUTH)
+/mob/living/exosuit/proc/get_dir_mult(hit_dir)
+    var/facing_vector = get_vector(dir)
+    var/incoming_hit_vector = get_vector(hit_dir)
+    var/angle = get_vector_angle(facing_vector, incoming_hit_vector)
 
-	if(hit_dir == rear_dir)
-		. = 1.25 // Hit from the back
-	else if(hit_dir in side_dirs)
-		. = 1 // Hit from the sides
-	else
-		. = 0.75 // Hit from the front
-	world.log << "return value was [.]"
-	return .
+    // Front quadrant (135 - 225 degrees)
+    if(angle > 135 && angle < 225)
+        . = front_mult // Hit from the front
+        world.log << "Front hit"
+    // Rear quadrant (315 - 45 degrees, with wrap-around at 360/0 degrees)
+    else if(angle < 45 || angle > 315)
+        . = rear_mult // Hit from the back
+        world.log << "Rear hit"
+    // Side quadrants (45 - 135 degrees and 225 - 315 degrees)
+    else
+        . = side_mult // Hit from the sides
+        world.log << "Side hit"
+
+    return .
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0
@@ -244,7 +255,7 @@
 					pilot.emp_act(severity)
 
 /mob/living/exosuit/explosion_act(target_power, explosion_handler/handler)
-	var/damage = target_power - getarmor(body, ARMOR_BOMB)
+	var/damage = target_power - (getarmor(body, ARMOR_BOMB) + getarmor(arms, ARMOR_BOMB) + getarmor(legs, ARMOR_BOMB) + getarmor(head, ARMOR_BOMB))/4 // Now uses the average armor of all components
 	var/split = round(damage/4)
 	var/blocked = 0
 	if(head)

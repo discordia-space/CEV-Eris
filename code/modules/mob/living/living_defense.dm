@@ -140,6 +140,8 @@
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
+		if(istype(src, /mob/living/exosuit) && prob(100-P.armor_divisor*20)) // Very low chance for projectiles to pass through a whole-ass vehicle unless they're very high-AP (20% for armor_divisor of 1, 40% for 2, 60% for 3, 80% for 4, 100% for 5)
+			return PROJECTILE_STOP
 		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
 			return PROJECTILE_STOP
 		P.damage_types = dmg_types

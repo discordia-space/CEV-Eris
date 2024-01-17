@@ -26,14 +26,18 @@
 	/// wheter or not this component can just blow up
 	var/can_gib = FALSE
 
-	var/list/armors = list()
+	var/list/armors = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // Override these for individual components
 	var/max_armor = 60
-	var/cur_armor
+	var/cur_armor = 0
 	var/new_armor = 0 // destroyed armor that has been replaced will be added to this until it gets welded to the frame, then removed
 
 /obj/item/mech_component/Initialize()
-    . =..()
-    cur_armor = max_armor
+	. = ..()
+	cur_armor = max_armor
+	if(islist(armors))
+		armor = getArmor(arglist(armors))
+	else
+		armor = getArmor() // In case someone leaves armor values for something unset for some reason
 
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color

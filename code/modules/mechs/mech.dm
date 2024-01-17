@@ -80,6 +80,13 @@
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
 
+	// Multipliers for damage and deflection chances when mechs get struck from different directions
+	// Override these to change armor-facing effectiveness for different exosuits
+	// These are multipliers that increase or decrease effective armor by 25% from the front and rear, respectively, by default - they are not flat additions, and they impact both damage and deflection chance
+	var/front_mult = 0.75
+	var/side_mult = 1
+	var/rear_mult = 1.25
+
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
 		to_chat(i, msg)
@@ -143,10 +150,6 @@
 	// Generate hardpoint list.
 	var/list/component_descriptions
 	for(var/obj/item/mech_component/comp in list(arms, legs, head, body))
-		if(islist(comp.armor))
-			comp.armor = getArmor(arglist(comp.armor))
-		else
-			comp.armor = getArmor() // In case someone leaves armor values for something unset for some reason
 		if(comp.exosuit_desc_string)
 			LAZYADD(component_descriptions, comp.exosuit_desc_string)
 		if(LAZYLEN(comp.has_hardpoints))
