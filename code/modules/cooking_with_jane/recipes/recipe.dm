@@ -87,6 +87,101 @@
 		list(CWJ_USE_STOVE, J_MED, 30 SECONDS)
 	)
 
+/datum/cooking_with_jane/recipe/burger
+	cooking_container = CUTTING_BOARD
+	product_type = /obj/item/reagent_containers/food/snacks/monkeyburger
+
+	replace_reagents = TRUE
+
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
+		list(CWJ_ADD_PRODUCE_OPTIONAL, "cabbage", reagent_skip=TRUE),
+		list(CWJ_ADD_PRODUCE_OPTIONAL, "tomato", reagent_skip=TRUE),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "ketchup", 1),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/patty)
+	)
+
+/datum/cooking_with_jane/recipe/beefcurry
+	cooking_container = POT
+	product_type = /obj/item/reagent_containers/food/snacks/beefcurry
+
+	replace_reagents = TRUE
+
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, base=10),
+		list(CWJ_USE_STOVE, J_LO, 10 SECONDS),
+		list(CWJ_ADD_REAGENT, "flour", 5),
+		list(CWJ_ADD_REAGENT, "soysauce", 5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledrice, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
+		list(CWJ_ADD_PRODUCE, "chili"),
+		list(CWJ_ADD_PRODUCE, "carrot"),
+		list(CWJ_ADD_PRODUCE, "tomato"),
+		list(CWJ_USE_STOVE, J_MED, 40 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/chickencurry
+	cooking_container = POT
+	product_type = /obj/item/reagent_containers/food/snacks/chickencurry
+
+	replace_reagents = TRUE
+
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, base=10),
+		list(CWJ_USE_STOVE, J_LO, 10 SECONDS),
+		list(CWJ_ADD_REAGENT, "flour", 5),
+		list(CWJ_ADD_REAGENT, "soysauce", 5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledrice, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/chickenbreast, qmod=0.5),
+		list(CWJ_ADD_PRODUCE, "chili"),
+		list(CWJ_ADD_PRODUCE, "carrot"),
+		list(CWJ_ADD_PRODUCE, "tomato"),
+		list(CWJ_USE_STOVE, J_MED, 40 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/mashpotato
+	cooking_container = BOWL
+	product_type = /obj/item/reagent_containers/food/snacks/mashpotatoes
+
+	replace_reagents = TRUE
+
+	step_builder = list(
+		list(CWJ_ADD_PRODUCE, "potato", 2),
+		list(CWJ_ADD_REAGENT, "milk", 2),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, base=10),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1),
+		list(CWJ_USE_TOOL, QUALITY_HAMMERING, 15)
+	)
+
+/datum/cooking_with_jane/recipe/loadedbakedpotato
+	cooking_container = OVEN
+	product_type = /obj/item/reagent_containers/food/snacks/loadedbakedpotato
+
+	replace_reagents = TRUE
+
+	step_builder = list(
+		list(CWJ_ADD_PRODUCE, "potato", 1),
+		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/butterslice, base=10),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
+		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/bananabread
+	cooking_container = OVEN
+	product_type = /obj/item/reagent_containers/food/snacks/sliceable/bananabread
+
+	replace_reagents = TRUE
+
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/dough, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/dough, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/dough, qmod=0.5),
+		list(CWJ_ADD_REAGENT, "milk", 2),
+		list(CWJ_ADD_REAGENT, "sugar", 15),
+		list(CWJ_ADD_PRODUCE, "banana", 1),
+		list(CWJ_USE_OVEN, J_MED, 40 SECONDS)
+	)
 
 /datum/cooking_with_jane/recipe/porkchops
 	cooking_container = PAN
@@ -697,6 +792,16 @@
 		list(CWJ_ADD_REAGENT, "cornoil", 1, base=1),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_USE_STOVE, J_LO, 20 SECONDS)
+	)
+	
+/datum/cooking_with_jane/recipe/cooked_patty
+	cooking_container = GRILL
+	product_type = /obj/item/reagent_containers/food/snacks/patty
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/patty_raw, qmod=0.5),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "cornoil", 1, base=1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_USE_GRILL, J_LO, 10 SECONDS)
 	)
 
 // Cakes.
