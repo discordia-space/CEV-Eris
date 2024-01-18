@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE)
+/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE, dir_mult = 1)
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
@@ -102,7 +102,7 @@
 						visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
 								SPAN_WARNING("Your splints break off after being hit!"))
 						o.status &= ~ORGAN_SPLINTED
-	var/effective_armor = (1 - dealt_damage / total_dmg) * 100
+	var/effective_armor = round(((1 - dealt_damage / total_dmg) * 100)*dir_mult)
 
 
 	//Feedback
