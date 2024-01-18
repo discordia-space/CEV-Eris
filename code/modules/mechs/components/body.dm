@@ -207,7 +207,7 @@
 	climb_time = 7 // Quickest entry because it's unsealed
 	armor = list(melee = 24, bullet = 10, energy = 4, bomb = 60, bio = 100, rad = 0)
 	shielding = 5
-	rear_mult = 0.9
+	rear_mult = 1.1
 
 /obj/item/mech_component/chassis/cheap/Initialize()
 	pilot_positions = list(
@@ -258,9 +258,9 @@
 	climb_time = 25 //standard values for now to encourage use over heavy
 	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 12, MATERIAL_GOLD = 4, MATERIAL_SILVER = 4)
 	armors = list(melee = 26, bullet = 24, energy = 16, bomb = 80, bio = 100, rad = 100)
-	shielding = 15
-	front_mult = 0.75
-	rear_mult = 1.25
+	shielding = 10
+	front_mult = 2
+	rear_mult = 0.5
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -274,10 +274,10 @@
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
 	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)
-	armors = list(melee = 34, bullet = 28, energy = 20, bomb = 100, bio = 100, rad = 100)
-	shielding = 20
-	front_mult = 0.5
-	rear_mult = 1.25
+	armors = list(melee = 32, bullet = 28, energy = 20, bomb = 100, bio = 100, rad = 100)
+	shielding = 15
+	front_mult = 1.5
+	rear_mult = 0.75
 
 /obj/item/mech_component/chassis/forklift
 	name = "forklift chassis"

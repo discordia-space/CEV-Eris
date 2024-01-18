@@ -90,7 +90,7 @@
 	power_use = 0
 	armors = list(melee = 20, bullet = 8, energy = 2, bomb = 50, bio = 100, rad = 0)
 	shielding = 5
-	front_mult = 1.1
+	front_mult = 0.9
 
 /obj/item/mech_component/sensors/light
 	name = "light sensors"
@@ -106,7 +106,7 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 2) //NVG takes uranium, but mecha NVGs are bugged & it's mecha-sized so let's not
 	armors = list(melee = 24, bullet = 10, energy = 9, bomb = 100, bio = 100, rad = 100)
 
-	front_mult = 1.5
+	front_mult = 0.5
 
 
 /obj/item/mech_component/sensors/combat
@@ -121,9 +121,9 @@
 	power_use = 200
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 7)
 	armors = list(melee = 32, bullet = 36, energy = 38, bomb = 200, bio = 100, rad = 100)
-	shielding = 15
+	shielding = 10
 
-	front_mult = 1.2
+	front_mult = 0.7
 
 /obj/item/mech_component/sensors/heavy
 	name = "heavy sensors"
@@ -134,6 +134,6 @@
 	power_use = 0
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_URANIUM = 6)
 	armors = list(melee = 40, bullet = 28, energy = 28, bomb = 200, bio = 100, rad = 100)
-	shielding = 20
+	shielding = 15
 
-	front_mult = 1.1
+	front_mult = 0.9

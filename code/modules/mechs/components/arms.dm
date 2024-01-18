@@ -88,9 +88,9 @@
 	power_use = 50
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 4, MATERIAL_DIAMOND = 2)
 	armors = list(melee = 32, bullet = 36, energy = 38, bomb = 200, bio = 100, rad = 100)
-	shielding = 15
+	shielding = 10
 
-	front_mult = 0.8
+	front_mult = 1.2
 
 /obj/item/mech_component/manipulators/heavy
 	name = "heavy arms"
@@ -103,6 +103,6 @@
 	power_use = 60
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10, MATERIAL_URANIUM = 5)
 	armors = list(melee = 40, bullet = 28, energy = 28, bomb = 200, bio = 100, rad = 100)
-	shielding = 20
+	shielding = 15
 
-	front_mult = 0.7
+	front_mult = 1.3

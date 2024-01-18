@@ -98,9 +98,9 @@
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 7, MATERIAL_DIAMOND = 2) // Expensive because durable.
 	can_climb = TRUE
 	armors = list(melee = 32, bullet = 36, energy = 38, bomb = 200, bio = 100, rad = 100)
-	shielding = 15
+	shielding = 10
 
-	front_mult = 0.8
+	front_mult = 1.2
 
 /obj/item/mech_component/propulsion/heavy
 	name = "heavy legs"
@@ -115,9 +115,9 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)
 	can_climb = FALSE
 	armors = list(melee = 40, bullet = 28, energy = 28, bomb = 200, bio = 100, rad = 100)
-	shielding = 20
+	shielding = 15
 
-	front_mult = 0.7
+	front_mult = 1.3
 
 /obj/item/mech_component/propulsion/wheels
 	name = "wheels"
@@ -136,4 +136,4 @@
 	mech_step_sound = 'sound/mechs/engine.ogg'
 	armors = list(melee = 20, bullet = 8, energy = 2, bomb = 50, bio = 100, rad = 0)
 
-	side_mult = 0.9
+	side_mult = 1.1
