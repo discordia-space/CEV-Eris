@@ -3493,7 +3493,7 @@
 	name = "raw meatball"
 	desc = "A raw meatball."
 	icon = 'icons/obj/food_ingredients.dmi'
-	icon_state = "rawmeatball"
+	icon_state = "meatball_raw"
 	bitesize = 3
 	center_of_mass = list("x"=16, "y"=15)
 	preloaded_reagents = list("protein" = 2)
@@ -3634,7 +3634,7 @@
 /obj/item/reagent_containers/food/snacks/roastchicken //missing sprite
 	name = "chicken roast"
 	desc = "A wonderful roast of an entire poultry. While you can't tell if it's exactly chicken, it certainlly will end up tasting like it."
-	icon_state = "chimken"
+	icon_state = "chickenroast"
 	trash = /obj/item/trash/tray
 	bitesize = 6
 	preloaded_reagents = list("protein" = 10, "sodiumchloride" = 1, "blackpepper" = 1)
@@ -3686,7 +3686,7 @@
 	name = "raw bacon strip"
 	desc = "Tasty strips of raw porcine back meat. Uncured, unsalted, and ready to be turned into delicious bacon."
 	icon = 'icons/obj/food_ingredients.dmi'
-	icon_state = "rawbacon"
+	icon_state = "bacon_raw"
 	bitesize = 2
 	preloaded_reagents = list("protein" = 2)
 	matter = list(MATERIAL_BIOMATTER = 2)
