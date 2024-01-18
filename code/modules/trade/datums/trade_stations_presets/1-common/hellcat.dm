@@ -72,8 +72,8 @@
 		"Armor" = list(
 			/obj/item/clothing/suit/armor/heavy/riot,
 			/obj/item/clothing/head/armor/faceshield/riot,
-			/obj/item/clothing/suit/armor/vest/security,
-			/obj/item/clothing/suit/armor/vest/full/security,
+			/obj/item/clothing/suit/armor/vest/toggle,
+			/obj/item/clothing/suit/armor/vest/toggle/full,
 			/obj/item/clothing/head/armor/helmet,
 			/obj/item/clothing/suit/armor/bulletproof,
 			/obj/item/clothing/suit/armor/bulletproof/full,
