@@ -140,8 +140,6 @@
 	// Returns if a projectile should continue travelling
 	if(return_continuation)
 		var/obj/item/projectile/P = used_weapon
-		if(istype(src, /mob/living/exosuit)) // No more projectiles passing through bulky mechs. It looks and feels awful.
-			return PROJECTILE_STOP
 		if(istype(P, /obj/item/projectile/bullet/pellet)) // Pellets should never penetrate
 			return PROJECTILE_STOP
 		P.damage_types = dmg_types

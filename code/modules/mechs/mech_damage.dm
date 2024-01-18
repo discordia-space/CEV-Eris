@@ -166,7 +166,12 @@
 
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, def_zone)
 	var/hit_dir = get_dir(P.starting, src)
-	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
+	var/obj/item/mech_component/comp
+	if(istext(def_zone))
+		comp = zoneToComponent(def_zone)
+	else
+		comp = def_zone
+
 	var/dir_mult = get_dir_mult(hit_dir, comp)
 	/// aiming for soemthing the mech doesnt have
 	if(!def_zone)
@@ -277,3 +282,8 @@
 		occupant_message("You feel the shockwave of an external explosion pass through your body!")
 
 	return round(split*blocked)
+
+/mob/living/exosuit/hit_impact(damage, dir)
+	do_sparks(rand(3, 6), FALSE, src)
+	if(prob(10))
+		new /obj/effect/decal/cleanable/blood/oil(src.loc)

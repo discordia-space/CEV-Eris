@@ -31,15 +31,20 @@
 			else
 				blocked = TRUE
 			for(var/mob/living/victim in get_turf(src))
-				if(victim.lying || victim.resting || victim.mob_size <= MOB_MEDIUM)
-					if(blocked || victim.anchored)
-						victim.apply_damage(legs.stomp_damage, BRUTE, BP_CHEST, 1, 1.5, FALSE, FALSE, src.legs )
-						visible_message("The [src] stomps on [victim], crushing their chest!")
-						occupant_message("You can feel \the [src] stomp something.")
+				if(victim.mob_size <= MOB_MEDIUM)
+					if(victim.lying || victim.resting)
+						if(blocked || victim.anchored)
+							victim.apply_damage(legs.stomp_damage, BRUTE, BP_CHEST, 1, 1.5, FALSE, FALSE, src.legs )
+							visible_message("The [src] stomps on [victim], crushing their chest!")
+							occupant_message("You can feel \the [src] stomp something.")
+						else if(isinspace())
+							victim.forceMove(theDepths)
+							visible_message("The [src] pushes [victim] downwards.")
+							occupant_message("You can feel \the [src] step onto something.")
 					else
-						victim.forceMove(theDepths)
-						visible_message("The [src] pushes [victim] downwards.")
-						occupant_message("You can feel \the [src] step onto something.")
+						var/move_dir = get_dir(src, victim)
+						var/turf/move_turf = get_step(src, move_dir)
+						victim.forceMove(move_turf)
 		for(var/hardpoint in hardpoints)
 			if(!hardpoints[hardpoint])
 				continue
