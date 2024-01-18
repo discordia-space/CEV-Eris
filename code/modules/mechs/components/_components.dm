@@ -27,20 +27,22 @@
 	var/can_gib = FALSE
 
 	var/list/armors = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // Override these for individual components
-	var/max_armor = 20
-	var/cur_armor = 0
-	var/new_armor = 0 // destroyed armor that has been replaced will be added to this until it gets welded to the frame, then removed
+	var/shielding = 0
+	var/emp_shielded = FALSE // Replacement for "energy" resisting both EMP and laser/plasma (guh)
+
+//	var/cur_shielding = 0
+//	var/new_armor = 0 // destroyed armor that has been replaced will be added to this until it gets welded to the frame, then removed
 
 	// Multipliers for damage and deflection chances when mechs get struck from different directions
 	// Override these to change armor-facing effectiveness for different exosuits
 	// These are multipliers that increase or decrease effective armor by 25% from the front and rear, respectively, by default - they are not flat additions, and they impact both damage and deflection chance
-	var/front_mult = 0.75
+	var/front_mult = 1
 	var/side_mult = 1
-	var/rear_mult = 1.25
+	var/rear_mult = 1
 
 /obj/item/mech_component/Initialize()
 	. = ..()
-	cur_armor = max_armor
+//	cur_armor = shielding
 	if(islist(armors))
 		armor = getArmor(arglist(armors))
 	else
@@ -52,9 +54,11 @@
 	return color != last_colour
 
 /obj/item/mech_component/emp_act(severity)
-	take_burn_damage(rand((10 - (severity*3)),15-(severity*4)))
-	for(var/obj/item/thing in contents)
-		thing.emp_act(severity)
+	if(!emp_shielded)
+		take_burn_damage(rand((10 - (severity*3)),15-(severity*4)))
+		for(var/obj/item/thing in contents)
+			thing.emp_act(severity)
+	else return
 
 /obj/item/mech_component/examine(mob/user)
 	. = ..()
@@ -64,6 +68,8 @@
 			to_chat(user, SPAN_NOTICE("It is ready for installation."))
 		else
 			show_missing_parts(usr)
+		if(emp_shielded)
+			to_chat(user, SPAN_NOTICE("This component is fitted with a Faraday cage, making it resistant against electromagnetic pulses."))
 	/*
 	if(reinforcement)
 		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))
@@ -73,6 +79,7 @@
 
 	var/damage_string = src.get_damage_string()
 	to_chat(user, "The [src.name] [src.gender == PLURAL ? "are" : "is"] [damage_string].")
+
 
 /*
 
@@ -182,10 +189,10 @@
 /obj/item/mech_component/proc/return_diagnostics(var/mob/user)
 	to_chat(user, SPAN_NOTICE("[capitalize(name)]:"))
 	to_chat(user, SPAN_NOTICE(" - Hull Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
-	if(cur_armor > 0)
-		to_chat(user, SPAN_NOTICE(" - Armor Integrity: <b>[round((((max_armor - cur_armor) / max_armor)) * 100)]%</b>"))
-	else
-		to_chat(user, SPAN_WARNING(" - Armor integrity failure!"))
+//	if(cur_armor > 0)
+//		to_chat(user, SPAN_NOTICE(" - Armor Integrity: <b>[round((((max_armor - cur_armor) / max_armor)) * 100)]%</b>"))
+//	else
+//		to_chat(user, SPAN_WARNING(" - Armor integrity failure!"))
 
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)

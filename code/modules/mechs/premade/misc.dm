@@ -10,6 +10,7 @@
 	power_use = 75
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10, MATERIAL_SILVER = 3)
 	can_climb = TRUE
+	shielding = 10
 
 /obj/item/mech_component/propulsion/tracks
 	name = "tracks"
@@ -25,6 +26,9 @@
 	mech_step_sound = 'sound/mechs/tanktread.ogg'
 	can_strafe = FALSE
 	can_climb = FALSE
+	shielding = 15
+
+	side_mult = 0.8
 
 /obj/item/mech_component/chassis/pod
 	name = "spherical exosuit chassis"
@@ -36,10 +40,14 @@
 	max_damage = 150
 	mech_health = 350 //Default is 300, so 50 more HP then the power loader. Worse then the combat chassis as it requires sensors.
 	power_use = 5
+	emp_shielded = TRUE
 	climb_time = 30
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTEEL = 7, MATERIAL_GLASS = 12)
 	has_hardpoints = list(HARDPOINT_BACK)
 	desc = "A rugged design originally intended for space pods, this chassis has been refitted for exosuit usage. It's relatively spacious interior allows it to carry up to 3 pilots."
+
+	shielding = 5
+	front_mult = 0.85 // Hatch is reinforced because... reasons?
 
 /obj/item/mech_component/chassis/pod/Initialize()
 	pilot_positions = list(

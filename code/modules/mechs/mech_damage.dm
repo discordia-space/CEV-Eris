@@ -96,7 +96,7 @@
 /mob/living/exosuit/damage_through_armor(damage, damagetype, def_zone, attack_flag, armor_divisor, used_weapon, sharp, edge, wounding_multiplier, list/dmg_types, return_continuation)
 	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
 	var/armor_def = comp.armor.getRating(attack_flag)
-	var/deflect_chance = ((comp.cur_armor + armor_def)*0.5) - (armor_divisor*5)
+	var/deflect_chance = ((comp.shielding + armor_def)*0.5) - (armor_divisor*5)
 	if(prob(deflect_chance)) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
 		visible_message(SPAN_DANGER("\The [used_weapon] glances off of \the [src]'s [comp]!"), 1, 2, 7)
 		playsound(src, "ricochet", 50, 1, 7)
@@ -197,7 +197,7 @@
 		qdel(P)
 		return TRUE
 	hit_impact(P.get_structure_damage(), hit_dir)
-	var/local_armor_divisor = P.armor_divisor - round(comp.cur_armor/100, 0.1)
+	var/local_armor_divisor = P.armor_divisor - round(min(0,comp.shielding/100, 0.1))
 	for(var/damage_type in damages)
 		if(damage_type == HALLOSS)
 			continue
