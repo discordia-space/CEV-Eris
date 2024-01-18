@@ -153,6 +153,13 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/kaiserburger
 
+/datum/recipe/roachegg
+	reagents = list("water" = 5)
+	items = list(
+		/obj/item/roach_egg
+	)
+	result = /obj/item/reagent_containers/food/snacks/roach_egg
+
 /datum/recipe/hotdog
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
@@ -276,7 +283,7 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/xemeatpie
 
-/datum/recipe/pie
+/datum/recipe/pie //Called banana cream pie
 	fruit = list("banana" = 1)
 	reagents = list("sugar" = 5)
 	items = list(
@@ -361,6 +368,14 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/tofubread
+
+/datum/recipe/tofurkey
+	items = list(
+		/obj/item/reagent_containers/food/snacks/tofu,
+		/obj/item/reagent_containers/food/snacks/tofu,
+		/obj/item/reagent_containers/food/snacks/stuffing,
+	)
+	result = /obj/item/reagent_containers/food/snacks/tofurkey
 
 /datum/recipe/cheesyfries
 	items = list(
@@ -561,16 +576,6 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/sashimi
 
-
-/datum/recipe/sandwich
-	items = list(
-		/obj/item/reagent_containers/food/snacks/meatsteak,
-		/obj/item/reagent_containers/food/snacks/breadslice,
-		/obj/item/reagent_containers/food/snacks/breadslice,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-	)
-	result = /obj/item/reagent_containers/food/snacks/sandwich
-
 /datum/recipe/toastedsandwich
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sandwich,
@@ -700,15 +705,6 @@
 	reagents = list("sugar" = 5, "milk" = 5, "flour" = 10, "egg" = 3)
 	items = list(/obj/item/reagent_containers/food/snacks/butterslice)
 	result = /obj/item/reagent_containers/food/snacks/appletart
-
-
-/datum/recipe/tofurkey
-	items = list(
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/stuffing,
-	)
-	result = /obj/item/reagent_containers/food/snacks/tofurkey
 
 /datum/recipe/honey_bun
 	reagents = list("sugar" = 3, "honey" = 5, "cream" = 5)

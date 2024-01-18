@@ -723,6 +723,7 @@
 	preloaded_reagents = list("protein" = 3, "sodiumchloride" = 1, "blackpepper" = 1)
 	cooked = TRUE
 	taste_tag = list(SALTY_FOOD,SPICY_FOOD)
+
 /obj/item/reagent_containers/food/snacks/boiledegg
 	name = "boiled egg"
 	desc = "A hard boiled egg."
@@ -780,7 +781,7 @@
 /obj/item/reagent_containers/food/snacks/hugemushroomslice
 	name = "huge mushroom slice"
 	desc = "A slice from a huge mushroom."
-	icon_state = "hugemushroomslice"
+	icon_state = "meat_mushroom"
 	filling_color = "#E0D7C5"
 	bitesize = 6
 	center_of_mass = list("x"=17, "y"=16)
@@ -792,7 +793,7 @@
 /obj/item/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"
 	desc = "A slice from a huge tomato."
-	icon_state = "tomatomeat"
+	icon_state = "meat_tomato"
 	filling_color = "#DB0000"
 	bitesize = 6
 	center_of_mass = list("x"=17, "y"=16)
@@ -1519,10 +1520,10 @@
 	nutriment_amt = 2
 	taste_tag = list(BLAND_FOOD,VEGETARIAN_FOOD,VEGAN_FOOD)
 
-/obj/item/reagent_containers/food/snacks/spagetti
+/obj/item/reagent_containers/food/snacks/spaghetti
 	name = "spaghetti"
 	desc = "A bundle of raw spaghetti."
-	icon_state = "spagetti"
+	icon_state = "spaghetti"
 	filling_color = "#EDDD00"
 	bitesize = 1
 	center_of_mass = list("x"=16, "y"=16)
@@ -2134,10 +2135,10 @@
 	cooked = TRUE
 	taste_tag = list(VEGETARIAN_FOOD,VEGAN_FOOD)
 
-/obj/item/reagent_containers/food/snacks/boiledspagetti
+/obj/item/reagent_containers/food/snacks/boiledspaghetti
 	name = "boiled spaghetti"
 	desc = "A plain dish of noodles."
-	icon_state = "spagettiboiled"
+	icon_state = "spaghettiboiled"
 	trash = /obj/item/trash/plate
 	filling_color = "#FCEE81"
 	bitesize = 2
@@ -2185,10 +2186,10 @@
 	cooked = TRUE
 	taste_tag = list(BLAND_FOOD,VEGAN_FOOD,VEGETARIAN_FOOD)
 
-/obj/item/reagent_containers/food/snacks/meatballspagetti
+/obj/item/reagent_containers/food/snacks/meatballspaghetti
 	name = "spaghetti & meatballs"
 	desc = "Now thats a nic'e meatball!"
-	icon_state = "meatballspagetti"
+	icon_state = "meatballspaghetti"
 	trash = /obj/item/trash/plate
 	filling_color = "#DE4545"
 	bitesize = 2
@@ -3370,7 +3371,7 @@
 	desc = "A building block of an impressive dish."
 	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "doughslice"
-	slice_path = /obj/item/reagent_containers/food/snacks/spagetti
+	slice_path = /obj/item/reagent_containers/food/snacks/spaghetti
 	slices_num = 1
 	bitesize = 2
 	center_of_mass = list("x"=17, "y"=19)
@@ -3383,7 +3384,7 @@
 	desc = "A flattened building block of an impressive dish."
 	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "flatdoughslice"
-	slice_path = /obj/item/reagent_containers/food/snacks/spagetti
+	slice_path = /obj/item/reagent_containers/food/snacks/spaghetti
 	slices_num = 1
 	bitesize = 2
 	center_of_mass = list("x"=17, "y"=19)

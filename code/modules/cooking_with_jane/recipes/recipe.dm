@@ -290,15 +290,6 @@
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5)
 	)
 
-/datum/cooking_with_jane/recipe/cherrysandwich
-	cooking_container = CUTTING_BOARD
-	product_type = /obj/item/reagent_containers/food/snacks/jellysandwich/cherry
-	step_builder = list(
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5),
-		list(CWJ_ADD_REAGENT, "cherryjelly", 5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5)
-	)
-
 /datum/cooking_with_jane/recipe/jelliedtoast
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
@@ -498,22 +489,22 @@
 
 //pasta
 
-/datum/cooking_with_jane/recipe/raw_speggie
+/datum/cooking_with_jane/recipe/raw_spaghetti
 	cooking_container = CUTTING_BOARD
-	product_type = /obj/item/reagent_containers/food/snacks/spagetti
+	product_type = /obj/item/reagent_containers/food/snacks/spaghetti
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/doughslice, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "flour", 1, base=1),
 		list(CWJ_USE_TOOL, QUALITY_CUTTING, 1)
 	)
 
-/datum/cooking_with_jane/recipe/boiledspagetti
+/datum/cooking_with_jane/recipe/boiledspaghetti
 	cooking_container = POT
-	product_type = /obj/item/reagent_containers/food/snacks/boiledspagetti
+	product_type = /obj/item/reagent_containers/food/snacks/boiledspaghetti
 	step_builder = list(
 		list(CWJ_ADD_REAGENT, "water", 10),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/spagetti, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/spaghetti, qmod=0.5),
 		list(CWJ_USE_STOVE, J_MED, 30 SECONDS)
 	)
 
@@ -523,19 +514,19 @@
 	step_builder = list(
 		list(CWJ_ADD_REAGENT, "water", 10),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspagetti, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspaghetti, qmod=0.5),
 		list(CWJ_ADD_PRODUCE, "tomato", qmod=0.4, reagent_skip=TRUE),
 		list(CWJ_ADD_PRODUCE, "tomato", qmod=0.4, reagent_skip=TRUE),
 		list(CWJ_USE_STOVE, J_LO, 5 SECONDS)
 	)
 
-/datum/cooking_with_jane/recipe/meatballspagetti
+/datum/cooking_with_jane/recipe/meatballspaghetti
 	cooking_container = PAN
-	product_type = /obj/item/reagent_containers/food/snacks/meatballspagetti
+	product_type = /obj/item/reagent_containers/food/snacks/meatballspaghetti
 	step_builder = list(
 		list(CWJ_ADD_REAGENT, "water", 10),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspagetti, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspaghetti, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
 		list(CWJ_ADD_PRODUCE_OPTIONAL, "tomato", qmod=0.4, reagent_skip=TRUE),
@@ -548,7 +539,7 @@
 	step_builder = list(
 		list(CWJ_ADD_REAGENT, "water", 10),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspagetti, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspaghetti, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
@@ -698,7 +689,7 @@
 		list(CWJ_USE_STOVE, J_MED, 15 SECONDS)
 	)
 
-/datum/cooking_with_jane/recipe/mushroomsoup
+/datum/cooking_with_jane/recipe/
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/mushroomsoup
 	step_builder = list(
@@ -907,7 +898,8 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "woodpulp", 5),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
 	)
-/* TODO: check this
+
+// TODO: check this
 /datum/cooking_with_jane/recipe/birthdaycake
 	cooking_container = OVEN
 	product_type = /obj/item/reagent_containers/food/snacks/sliceable/birthdaycake
@@ -916,7 +908,7 @@
 		list(CWJ_ADD_ITEM, /obj/item/clothing/head/costume/misc/cake, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "woodpulp", 5),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
-	)*/
+	)
 
 /datum/cooking_with_jane/recipe/braincake
 	cooking_container = OVEN
