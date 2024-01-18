@@ -483,11 +483,7 @@
 			passthrough = TRUE
 		penetrating--
 	if(istype(A, /mob/living/exosuit))
-		on_impact(A)
-		density = FALSE
-		invisibility = 101
-		qdel(src)
-		return TRUE
+		passthrough = FALSE
 	//the bullet passes through a dense object!
 	if(passthrough)
 		//move ourselves onto A so we can continue on our way
