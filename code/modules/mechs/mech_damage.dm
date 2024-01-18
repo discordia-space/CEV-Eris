@@ -197,12 +197,11 @@
 		qdel(P)
 		return TRUE
 	hit_impact(P.get_structure_damage(), hit_dir)
-	var/local_armor_divisor = P.armor_divisor - round(min(0,comp.shielding/100, 0.1))
 	for(var/damage_type in damages)
 		if(damage_type == HALLOSS)
 			continue
 		damages[damage_type] = round(damages[damage_type] * dir_mult)
-		damage_through_armor(damages[damage_type], damage_type, def_zone, P.check_armour, armor_divisor = local_armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
+		damage_through_armor(damages[damage_type], damage_type, def_zone, P.check_armour, armor_divisor = P.armor_divisor, used_weapon = P, sharp = is_sharp(P), edge = has_edge(P))
 
 	P.on_hit(src, def_zone)
 	return PROJECTILE_STOP
@@ -284,6 +283,7 @@
 	return round(split*blocked)
 
 /mob/living/exosuit/hit_impact(damage, dir)
-	do_sparks(rand(3, 6), FALSE, src)
-	if(prob(10))
-		new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	if(prob(20))
+		do_sparks(rand(3, 6), FALSE, src)
+		if(prob(20))
+			new /obj/effect/decal/cleanable/blood/oil(src.loc)
