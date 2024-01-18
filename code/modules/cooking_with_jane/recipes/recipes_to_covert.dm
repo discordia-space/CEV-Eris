@@ -92,7 +92,7 @@
 /datum/recipe/chickenburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/friedchikin,
+		/obj/item/reagent_containers/food/snacks/friedchicken,
 	)
 	result = /obj/item/reagent_containers/food/snacks/chickenburger
 
@@ -433,7 +433,7 @@
 /datum/recipe/friedchicken
 	reagents = list("cornoil" = 5, "sodiumchloride" = 1, "blackpepper" = 1, "flour" = 5)
 	items = list(/obj/item/reagent_containers/food/snacks/chickenbreast)
-	result = /obj/item/reagent_containers/food/snacks/friedchikin
+	result = /obj/item/reagent_containers/food/snacks/friedchicken
 
 /datum/recipe/syntisteak
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)

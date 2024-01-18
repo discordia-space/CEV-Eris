@@ -3592,7 +3592,7 @@
 
 // Ported from Sojourn: (they will miss sprites and recipes)
 
-/obj/item/reagent_containers/food/snacks/sliceable/butterstick //missing sprite and recipe
+/obj/item/reagent_containers/food/snacks/sliceable/butterstick //missing recipe
 	name = "stick of butter"
 	desc = "A whole stick of butter, an excellent flavor booster or spread."
 	icon_state = "butter"
@@ -3610,7 +3610,7 @@
 	nutriment_amt = 2
 	nutriment_desc = list("butter" = 5)
 
-/obj/item/reagent_containers/food/snacks/cinnamonroll //missing sprite and recipe
+/obj/item/reagent_containers/food/snacks/cinnamonroll
 	name = "cinnamon roll"
 	desc = "A rolled up pastry with cream cheese frosting and cinnamon sugar filling."
 	icon_state = "cinnamonroll"
@@ -3619,7 +3619,7 @@
 	nutriment_desc = list("cinnamon" = 10, "buttery goodness" = 5, "cream cheese" = 3)
 	preloaded_reagents = list("cinnamonpowder" = 5, "sugar" = 10)
 
-/obj/item/reagent_containers/food/snacks/chickensteak ////missing sprite
+/obj/item/reagent_containers/food/snacks/chickensteak
 	name = "chicken steak"
 	desc = "Poultry breasts, cooked juicy and tender, lightly seasoned with salt and pepper." // Don't ask how they get grill marks on a microwave tho - Seb
 	icon_state = "chickenbreast_cooked"
@@ -3632,7 +3632,7 @@
 	matter = list(MATERIAL_BIOMATTER = 11)
 	cooked = TRUE
 
-/obj/item/reagent_containers/food/snacks/roastchicken //missing sprite
+/obj/item/reagent_containers/food/snacks/roastchicken
 	name = "chicken roast"
 	desc = "A wonderful roast of an entire poultry. While you can't tell if it's exactly chicken, it certainlly will end up tasting like it."
 	icon_state = "chickenroast"
@@ -3643,7 +3643,7 @@
 	matter = list(MATERIAL_BIOMATTER = 12)
 	cooked = TRUE
 
-/obj/item/reagent_containers/food/snacks/friedchikin //missing sprite and recipe
+/obj/item/reagent_containers/food/snacks/friedchicken //missing recipe
 	name = "fried poultry"
 	desc = "Crunchy on the exterior but juicy and soft on the inside, a piece of poultry that has been fried to mouthwatering perfection."
 	icon_state = "friedchicken"
@@ -3653,7 +3653,7 @@
 	matter = list(MATERIAL_BIOMATTER = 11)
 	cooked = TRUE
 
-/obj/item/reagent_containers/food/snacks/bacon //missing raw sprite and raw ingredient
+/obj/item/reagent_containers/food/snacks/bacon //missing raw ingredient
 	name = "fried bacon" // Now has a raw state.
 	desc = "When it comes to bacon, always be prepared." // Time to find 38 spots on the colony to hide it
 	icon = 'icons/obj/food_ingredients.dmi' // Refactored into here for consistency.
@@ -3662,7 +3662,7 @@
 	preloaded_reagents = list("protein" = 3, "cornoil" = 5)
 	nutriment_desc = list("artery clogging freedom" = 10, "bacon fat" = 3)
 
-/obj/item/reagent_containers/food/snacks/porkchops //missing sprite and raw ingredient
+/obj/item/reagent_containers/food/snacks/porkchops //missing raw ingredient
 	name = "glazed pork chops"
 	desc = "Perfectly grilled pork chops that are still a shade of pink on the inside, slathered generously with barbecue sauce."
 	icon_state = "porkchop"
@@ -3675,7 +3675,7 @@
 	matter = list(MATERIAL_BIOMATTER = 11)
 	cooked = TRUE
 
-/obj/item/reagent_containers/food/snacks/chickenbreast //missing sprite
+/obj/item/reagent_containers/food/snacks/chickenbreast
 	name = "poultry breast"
 	desc = "The breast meat of an avian species, chicken or otherwise."
 	icon_state = "chickenbreast"
@@ -3683,7 +3683,7 @@
 	preloaded_reagents = list("protein" = 2)
 	matter = list(MATERIAL_BIOMATTER = 3)
 
-/obj/item/reagent_containers/food/snacks/rawbacon ////missing sprite and procurement method
+/obj/item/reagent_containers/food/snacks/rawbacon ////missing procurement method
 	name = "raw bacon strip"
 	desc = "Tasty strips of raw porcine back meat. Uncured, unsalted, and ready to be turned into delicious bacon."
 	icon = 'icons/obj/food_ingredients.dmi'
@@ -3692,7 +3692,7 @@
 	preloaded_reagents = list("protein" = 2)
 	matter = list(MATERIAL_BIOMATTER = 2)
 
-/obj/item/reagent_containers/food/snacks/patty_raw //missing sprite and recipe
+/obj/item/reagent_containers/food/snacks/patty_raw //missing recipe
 	name = "raw patty"
 	desc = "A raw patty ready to be grilled into a juicy and delicious burger."
 	icon = 'icons/obj/food_ingredients.dmi'
@@ -3702,7 +3702,7 @@
 	preloaded_reagents = list("protein" = 2)
 	matter = list(MATERIAL_BIOMATTER = 3)
 
-/obj/item/reagent_containers/food/snacks/patty //missing sprite
+/obj/item/reagent_containers/food/snacks/patty
 	name = "patty"
 	desc = "A juicy cooked patty, ready to be slapped between two buns."
 	icon = 'icons/obj/food_ingredients.dmi'
@@ -3712,7 +3712,7 @@
 	preloaded_reagents = list("protein" = 3) // It's cooked
 	matter = list(MATERIAL_BIOMATTER = 3)
 
-/obj/item/reagent_containers/food/snacks/baconeggs //missing sprite
+/obj/item/reagent_containers/food/snacks/baconeggs
 	name = "eggs and bacon"
 	desc = "A classic breakfast combo of fried, sunny-side eggs, with bacon strips on the side." // Wakey wakey.
 	icon_state = "baconegg"
@@ -3720,7 +3720,7 @@
 	preloaded_reagents = list("protein" = 6, "cornoil" = 3)
 	nutriment_desc = list("bacon" = 5, "fried eggs" = 5)
 
-/obj/item/reagent_containers/food/snacks/benedict //missing sprite
+/obj/item/reagent_containers/food/snacks/benedict
 	name = "eggs benedict"
 	desc = "A perfectly poached runny egg sitting atop a bedding of Nadezhdian bacon and muffin, with hollandaise sauce generously spread on top. The best breakfast you'll ever have."
 	icon_state = "benedict"
@@ -3728,7 +3728,7 @@
 	preloaded_reagents = list("protein" = 15, "sodiumchloride" = 1, "blackpepper" = 1)
 	nutriment_desc = list("ham" = 5, "poached egg" = 5, "hollandaise sauce" = 3)
 
-/obj/item/reagent_containers/food/snacks/pancakes //missing sprite
+/obj/item/reagent_containers/food/snacks/pancakes
 	name = "pancakes"
 	desc = "A stack of fluffy pancakes, topped with melting butter and syrup flowing down. A heavensent to pair with coffee in the morning, or bacon strips."
 	icon_state = "pancakes"
@@ -3740,7 +3740,7 @@
 	cooked = TRUE
 	matter = list(MATERIAL_BIOMATTER = 8)
 
-/obj/item/reagent_containers/food/snacks/bearchili //missing sprite
+/obj/item/reagent_containers/food/snacks/bearchili
 	name = "bear meat chili"
 	desc = "A chili so manly you'll end up growing hair on your chest and wrestling Renders with your bare hands."
 	icon_state = "bearchili"
@@ -3750,7 +3750,7 @@
 	bitesize = 5
 	preloaded_reagents = list("protein" = 12, "capsaicin" = 3, "hyperzine" = 5) // Inherits from bear meat
 
-/obj/item/reagent_containers/food/snacks/sliceable/brownie //missing sprite
+/obj/item/reagent_containers/food/snacks/sliceable/brownie
 	name = "brownies"
 	desc = "A huge rectangular brownie ready to be sliced and shared."
 	icon_state = "brownies"
@@ -3762,7 +3762,7 @@
 	nutriment_desc = list("buttery goodness" = 10, "sweetness" = 10, "chocolate" = 15)
 	matter = list(MATERIAL_BIOMATTER = 30)
 
-/obj/item/reagent_containers/food/snacks/brownieslice //missing sprite
+/obj/item/reagent_containers/food/snacks/brownieslice
 	name = "brownie slice"
 	desc = "A delicious and buttery chocolate brownie, pairs perfect with icecream!"
 	icon_state = "brownieslice"
@@ -3773,3 +3773,32 @@
 	nutriment_desc = list("buttery goodness" = 5, "sweetness" = 5, "chocolate" = 10)
 	cooked = TRUE
 	matter = list(MATERIAL_BIOMATTER = 6)
+
+/obj/item/reagent_containers/food/snacks/beefcurry
+	name = "beef curry"
+	desc = "A piping hot plate of spicy beef curry atop fluffy, steamed white rice."
+	icon_state = "beefcurry"
+	trash = /obj/item/trash/snack_bowl
+	bitesize = 4
+	preloaded_reagents = list("protein" = 8, "capsaicin" = 2)
+	nutriment_desc = list("beef" = 5, "curry" = 5, "spicyness" = 2)
+
+/obj/item/reagent_containers/food/snacks/chickencurry
+	name = "poultry curry"
+	desc = "A piping hot plate of spicy poultry curry atop fluffy, steamed white rice."
+	icon_state = "chickencurry"
+	trash = /obj/item/trash/snack_bowl
+	bitesize = 4
+	preloaded_reagents = list("protein" = 8, "capsaicin" = 2)
+	nutriment_desc = list("chicken" = 5, "curry" = 5, "spicyness" = 2)
+
+/obj/item/reagent_containers/food/snacks/mashpotatoes
+	name = "mashed potatoes"
+	desc = "Soft and fluffy mashed potatoes, the perfect side dish for a variety of meats."
+	icon_state = "mashpotatoes"
+	trash = /obj/item/trash/plate
+	bitesize = 4
+	nutriment_amt = 8
+	nutriment_desc = list("mashed potatoes" = 5, "butter" = 2)
+	cooked = TRUE
+	matter = list(MATERIAL_BIOMATTER = 8)

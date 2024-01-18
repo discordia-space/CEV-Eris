@@ -30,7 +30,7 @@
 
 	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/grill
 
-	var/obj/effect/flicker_overlay/hopper_insert
+	var/obj/effect/flick_light_overlay/hopper_insert //flick_light_overlay found in machinery/autolathe/autolathe.dm
 	scan_types = list("scan_1")
 
 /obj/machinery/cooking_with_jane/grill/Initialize()

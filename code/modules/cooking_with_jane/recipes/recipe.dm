@@ -905,7 +905,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/sliceable/birthdaycake
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/sliceable/plaincake, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/clothing/head/costume/misc/cake, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/clothing/head/cakehat, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "woodpulp", 5),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
 	)
@@ -915,7 +915,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/sliceable/braincake
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/sliceable/plaincake, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/organ/internal/brain, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/organ/internal/vital/brain, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/sliceable/butterstick, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "woodpulp", 5),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
