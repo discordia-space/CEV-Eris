@@ -240,8 +240,8 @@
 	emp_shielded = TRUE
 	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
 	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5, MATERIAL_PLASTIC = 10)
-	armors = list(melee = 18, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 6, MATERIAL_PLASTIC = 10)
+	armors = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
 
 /obj/item/mech_component/chassis/combat
 	name = "sealed exosuit chassis"
@@ -256,11 +256,11 @@
 	mech_health = 500 //It's not as beefy as the heavy, but it IS a combat chassis, so let's make it slightly beefier
 	power_use = 40
 	climb_time = 25 //standard values for now to encourage use over heavy
-	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 12, MATERIAL_GOLD = 4, MATERIAL_SILVER = 4)
-	armors = list(melee = 26, bullet = 24, energy = 16, bomb = 80, bio = 100, rad = 100)
+	matter = list(MATERIAL_STEEL = 46, MATERIAL_PLASTEEL = 12, MATERIAL_GOLD = 4, MATERIAL_SILVER = 4)
+	armors = list(melee = 26, bullet = 22, energy = 16, bomb = 80, bio = 100, rad = 100)
 	shielding = 10
-	front_mult = 2
-	rear_mult = 0.5
+	front_mult = 1.25
+	rear_mult = 0.75
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -274,7 +274,7 @@
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
 	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)
-	armors = list(melee = 32, bullet = 28, energy = 20, bomb = 100, bio = 100, rad = 100)
+	armors = list(melee = 32, bullet = 24, energy = 20, bomb = 140, bio = 100, rad = 100)
 	shielding = 15
 	front_mult = 1.5
 	rear_mult = 0.75

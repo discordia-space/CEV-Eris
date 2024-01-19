@@ -37,7 +37,7 @@
 		return FALSE
 
 	// Determine DR and ADR, armour divisor reduces it
-	var/armor = getarmor(def_zone, attack_flag) / armor_divisor
+	var/armor = getarmor(def_zone, attack_flag)*dir_mult / armor_divisor
 	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
 		armor /= 5
 	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armor_divisor
@@ -102,7 +102,7 @@
 						visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
 								SPAN_WARNING("Your splints break off after being hit!"))
 						o.status &= ~ORGAN_SPLINTED
-	var/effective_armor = round(((1 - dealt_damage / total_dmg) * 100)*dir_mult)
+	var/effective_armor = round((1 - dealt_damage / total_dmg) * 100)
 
 
 	//Feedback
