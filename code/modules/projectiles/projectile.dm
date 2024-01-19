@@ -24,6 +24,16 @@ GLOBAL_LIST(projectileDamageConstants)
 	spawn_tags = null
 	/// Ammo is heavy
 	weight = 10
+	/// Location & movement vars
+	var/curPx = 0
+	var/curPy = 0
+	var/multX = 0
+	var/multY = 0
+	var/offsetX = 16
+	var/offsetY = 16
+	var/angle = 0
+	var/turfsPerTick = 1
+	///
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
 	var/hitsound_wall = "ricochet"
 	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
@@ -100,6 +110,56 @@ GLOBAL_LIST(projectileDamageConstants)
 	var/datum/vector_loc/location		// current location of the projectile in pixel space
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
+
+
+
+////Tile coordinates (x, y) to absolute coordinates (in number of pixels). Center of a tile is generally assumed to be (16,16), but can be offset.
+#define ABS_COOR(c) (((c - 1) * 32) + 16)
+#define ABS_COOR_OFFSET(c, o) (((c - 1) * 32) + o)
+
+#define ABS_PIXEL_TO_REL(apc) (MODULUS(apc, 32) || 32)
+
+#define PROJ_ABS_PIXEL_TO_TURF(abspx, abspy, zlevel) (locate(CEILING((abspx / 32), 1), CEILING((abspy / 32), 1), zlevel))
+
+/obj/item/projectile/Process()
+	if(QDELETED(src))
+		return PROCESS_KILL
+	var/turfsMoved = 0
+
+	/// label for hitscans
+	hitloop:
+
+	if(kill_count-- < 1)
+		on_impact(src.loc) //for any final impact behaviours
+		qdel(src)
+		return PROCESS_KILL
+
+	curPx += 32 * multX * turfsPerTick
+	curPy += 32 * multY * turfsPerTick
+
+	var/turf/nextLoc = PROJ_ABS_PIXEL_TO_TURF(curPx, curPy, z)
+	if(!nextLoc)
+		qdel(src)
+		return PROCESS_KILL
+	/// same location , don't process
+	if(nextLoc == loc)
+		return
+
+	before_move()
+	Move(nextLoc)
+	animate(src, )
+	pixel_x = ABS_PIXEL_TO_REL(curPx) + offSetX
+	pixel_y = ABS_PIXEL_TO_REL(curPy) + offSetY
+
+	if(first_step)
+		muzzle_effect(effect_transform)
+		first_step = FALSE
+	else if(!bumped)
+		tracer_effect(effect_transform)
+		luminosity_effect()
+
+	if(hitscan && !QDELETED(src))
+		goto hitloop
 
 /// This is done to save a lot of memory from duplicated damage lists.
 /// The list is also copied whenever PrepareForLaunch is called and modified as needs to be
@@ -570,49 +630,6 @@ GLOBAL_LIST(projectileDamageConstants)
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return TRUE
-
-/obj/item/projectile/Process()
-	var/first_step = TRUE
-
-	spawn while(src && src.loc)
-		if(kill_count-- < 1)
-			on_impact(src.loc) //for any final impact behaviours
-			qdel(src)
-			return
-		if((!( current ) || loc == current))
-			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
-		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
-			qdel(src)
-			return
-
-		trajectory.increment()	// increment the current location
-		location = trajectory.return_location(location)		// update the locally stored location data
-
-		if(!location)
-			qdel(src)	// if it's left the world... kill it
-			return
-
-		before_move()
-		Move(location.return_turf())
-		pixel_x = location.pixel_x
-		pixel_y = location.pixel_y
-
-		if(!bumped && !QDELETED(original) && !isturf(original))
-			// this used to be loc == get_turf(original) , but this would break incase the original was inside something and hit them without hitting the outside
-			if(loc == original.loc)
-				if(!(original in permutated))
-					if(Bump(original))
-						return
-
-		if(first_step)
-			muzzle_effect(effect_transform)
-			first_step = FALSE
-		else if(!bumped)
-			tracer_effect(effect_transform)
-			luminosity_effect()
-
-		if(!hitscan)
-			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
