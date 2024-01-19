@@ -462,6 +462,14 @@
 	preloaded_reagents = list("sugar" = 2, "coco" = 2)
 	taste_tag = list(SWEET_FOOD, COCO_FOOD)
 
+/obj/item/reagent_containers/food/snacks/medialuna
+	name = "croissant"
+	desc = "A flakey, buttery pastry shaped like a crescent moon. Soft and fluffy on the inside, crunchy on the outside, makes a perfect pair with a good cup of espresso."
+	icon_state = "medialuna"
+	bitesize = 3
+	nutriment_amt = 6
+	nutriment_desc = list("crunchy pastry" = 5, "buttery goodness" = 5)
+
 /obj/item/reagent_containers/food/snacks/donut
 	name = "donut"
 	desc = "Goes great with Robust Coffee."
@@ -1948,6 +1956,17 @@
 	preloaded_reagents = list("protein" = 6, "capsaicin" = 6)
 	cooked = TRUE
 	taste_tag = list(MEAT_FOOD,SPICY_FOOD)
+
+/obj/item/reagent_containers/food/snacks/tortilla
+	name = "tortilla"
+	desc = "The foldable possiblites are endless, as long as it's less than seven folds."
+	icon_state = "tortilla"
+	bitesize = 2
+	center_of_mass = list("x"=21, "y"=12)
+	nutriment_desc = list("taco shell" = 2)
+	nutriment_amt = 2
+	cooked = TRUE
+	matter = list(MATERIAL_BIOMATTER = 5)
 
 /obj/item/reagent_containers/food/snacks/monkeysdelight
 	name = "monkey's delight"
@@ -3802,3 +3821,29 @@
 	nutriment_desc = list("mashed potatoes" = 5, "butter" = 2)
 	cooked = TRUE
 	matter = list(MATERIAL_BIOMATTER = 8)
+
+/obj/item/reagent_containers/food/snacks/sashimi
+	name = "sashimi"
+	desc = "Raw cuts of carp fillet with a side of soy sauce, apparently an eastern earth delicacy."
+	icon_state = "sashimi"
+	trash = /obj/item/trash/grease
+	bitesize = 2
+	nutriment_amt = 4
+	preloaded_reagents = list("protein" = 4)
+	nutriment_desc = list("raw fish" = 2, "soy sauce" = 2)
+
+/obj/item/reagent_containers/food/snacks/blt
+	name = "BLT"
+	desc = "A classic sandwich composed of nothing more than bacon, lettuce and tomato."
+	icon_state = "blt"
+	bitesize = 2
+	nutriment_desc = list("toasted bread" = 3, "bacon" = 3, "tomato" = 2)
+	nutriment_amt = 3
+
+/obj/item/reagent_containers/food/snacks/boiledslimecore
+	name = "boiled slime core"
+	desc = "A boiled red thing."
+	icon_state = "boiledrorocore" // Fix'd
+	bitesize = 3
+	preloaded_reagents = list("slimejelly" = 5)
+	matter = list(MATERIAL_BIOMATTER = 33)
