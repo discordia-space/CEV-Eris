@@ -1421,7 +1421,7 @@
 	)
 
 //**Desserts and Sweets**//
-//missing: popcorn, fortunecookie, candy_corn, honey_bun, honey_pudding, mint
+//missing: fortunecookie, candy_corn, honey_bun, honey_pudding, mint
 /datum/cooking_with_jane/recipe/chocolateegg
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/chocolateegg
@@ -1480,6 +1480,17 @@
 		list(CWJ_ADD_REAGENT, "flour", 5),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, qmod=0.5),
 		list(CWJ_USE_OVEN, J_LO, 15 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/popcorn
+	cooking_container = PAN
+	product_type = /obj/item/reagent_containers/food/snacks/popcorn
+	step_builder = list(
+		list(CWJ_ADD_PRODUCE, "corn", reagent_skip=TRUE),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, qmod=0.5),
+		list(CWJ_ADD_REAGENT, "cornoil", 2),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_USE_STOVE, J_LO, 5 SECONDS)
 	)
 
 //UNSORTED
