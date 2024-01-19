@@ -7,7 +7,7 @@
 /datum/perk/survivor/assign(mob/living/carbon/human/H)
 	if(..())
 		holder.sanity.death_view_multiplier *= 0.5
-		holder.species.meat_type = /obj/item/reagent_containers/food/snacks/rawbacon //The only kind of pig in space is a hired one
+		holder.species.meat_type = /obj/item/reagent_containers/food/snacks/meat/pork //The only kind of pig in space is a hired one
 
 /datum/perk/survivor/remove()
 	if(holder)
