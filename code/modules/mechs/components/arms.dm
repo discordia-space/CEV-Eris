@@ -103,7 +103,7 @@
 	desc = "Designed for durability and dishing out beatings, this heavy set of manipulators can both take and dish out beatings."
 	melee_damage = WEAPON_FORCE_LETHAL + 20 // You know , these things walk like a snail . Why would you even get close to this.
 	action_delay = 20
-	max_damage = 200
+	max_damage = 175
 	power_use = 60
 	matter = list(MATERIAL_STEEL = 24, MATERIAL_PLASTEEL = 10, MATERIAL_URANIUM = 6)
 	armors = list(melee = 32, bullet = 24, energy = 20, bomb = 140, bio = 100, rad = 100)
