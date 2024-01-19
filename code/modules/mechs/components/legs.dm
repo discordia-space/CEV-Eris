@@ -71,7 +71,7 @@
 	shielding = 5
 
 	front_mult = 1.3
-	back_mult = 0.8
+	rear_mult = 0.8
 
 /obj/item/mech_component/propulsion/light
 	name = "light legs"
@@ -104,7 +104,7 @@
 	shielding = 10
 
 	front_mult = 1.2
-	back_mult = 0.8
+	rear_mult = 0.8
 
 /obj/item/mech_component/propulsion/heavy
 	name = "heavy legs"
@@ -122,7 +122,7 @@
 	shielding = 15
 
 	front_mult = 1.2
-	back_mult = 0.8
+	rear_mult = 0.8
 
 /obj/item/mech_component/propulsion/wheels
 	name = "wheels"
