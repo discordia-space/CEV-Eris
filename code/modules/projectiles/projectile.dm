@@ -101,62 +101,6 @@ GLOBAL_LIST(projectileDamageConstants)
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
-<<<<<<< HEAD
-
-
-////Tile coordinates (x, y) to absolute coordinates (in number of pixels). Center of a tile is generally assumed to be (16,16), but can be offset.
-#define ABS_COOR(c) (((c - 1) * 32) + 16)
-#define ABS_COOR_OFFSET(c, o) (((c - 1) * 32) + o)
-
-#define ABS_PIXEL_TO_REL(apc) (MODULUS(apc, 32) || 32)
-
-#define PROJ_ABS_PIXEL_TO_TURF(abspx, abspy, zlevel) (locate(CEILING((abspx / 32), 1), CEILING((abspy / 32), 1), zlevel))
-
-/obj/item/projectile/Process()
-	if(QDELETED(src))
-		return PROCESS_KILL
-
-	/// label for hitscans
-	hitloop:
-
-	if(kill_count-- < 1)
-		on_impact(src.loc) //for any final impact behaviours
-		qdel(src)
-		return PROCESS_KILL
-
-	curPx += 32 * multX * turfsPerTick
-	curPy += 32 * multY * turfsPerTick
-
-	var/turf/nextLoc = PROJ_ABS_PIXEL_TO_TURF(curPx, curPy, z)
-	if(!nextLoc)
-		qdel(src)
-		return PROCESS_KILL
-	/// same location , don't process
-	if(nextLoc == loc)
-		return
-
-	before_move()
-	Move(nextLoc)
-	//pixel_x = ABS_PIXEL_TO_REL(curPx) + offSetX
-	//pixel_y = ABS_PIXEL_TO_REL(curPy) + offSetY
-	animate(src, 1, pixel_x = ABS_PIXEL_TO_REL(curPx) + offsetX)
-	animate(src, 1, pixel_y = ABS_PIXEL_TO_REL(curPy) + offsetY)
-
-	/*
-	if(first_step)
-		muzzle_effect(effect_transform)
-		first_step = FALSE
-
-	else if(!bumped)
-		tracer_effect(effect_transform)
-		luminosity_effect()
-	*/
-
-	if(hitscan && !QDELETED(src))
-		goto hitloop
-
-=======
->>>>>>> parent of fc25366b5 (hhh)
 /// This is done to save a lot of memory from duplicated damage lists.
 /// The list is also copied whenever PrepareForLaunch is called and modified as needs to be
 /obj/item/projectile/Initialize()
