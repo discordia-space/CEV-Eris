@@ -158,6 +158,7 @@ SUBSYSTEM_DEF(bullets)
 		var/x_change = 0
 		var/y_change = 0
 		var/z_change = 0
+		var/turfsTraveled = 0
 		var/turf/target_turf
 		while(px >= PPT/2 || py >= PPT/2 || px <= -PPT/2 || py <= -PPT/2 || pz > 1 || pz < 0)
 			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px], pz = [pz]")
@@ -178,78 +179,20 @@ SUBSYSTEM_DEF(bullets)
 				break
 			//if(iswall(target_turf) && target_turf:projectileBounceCheck())
 			bullet.updateLevel()
-			if(iswall(target_turf))
-				var/turf/simulated/wall/the_rock = target_turf
-				/// Calculate coefficients for movement
-				var/dist_x = (the_rock.x - bullet.firedTurf.x) * PPT/2
-				var/dist_y = (the_rock.y - bullet.firedTurf.y) * PPT/2
-				if(!dist_x) dist_x++
-				if(!dist_y) dist_y++
-				/// Adjust for the actual point of contact
-				var/angle
-				if(abs(dist_y) > abs(dist_x))
-					// Bullet offset
-					dist_y += bullet.firedCoordinates[2]
-					// Edge offset
-					dist_x += dist_x/abs(dist_x) * PPT/2
-					// Get the angle , necesarry geometry evil.
-					angle = arcsin(dist_x/(sqrt(dist_x**2+dist_y**2)))
-				else
-					// Bullet offset
-					dist_x += bullet.firedCoordinates[1]
-					// Edge offset
-					dist_y += dist_y/abs(dist_y) * PPT/2
-					// Get the angle , necesarry geometry evil..
-					angle = arcsin(dist_y/(sqrt(dist_x**2+dist_y**2)))
-				message_admins("calculated angle is [angle]")
-				/*
-				var/x_ratio = the_rock.x - bullet.firedTurf.x
-				var/y_ratio = the_rock.y - bullet.firedTurf.y
-				x_ratio += x_ratio != 0 ? x_ratio/abs(x_ratio) : 1
-				y_ratio += y_ratio != 0 ? y_ratio/abs(y_ratio) : 1
-				x_ratio = x_ratio * 16 + 8 * x_ratio/abs(x_ratio) - bullet.currentCoords[1]
-				y_ratio = y_ratio * 16 + 8 * y_ratio/abs(y_ratio) - bullet.currentCoords[2]
-				// This covers anything below 45 to 0 , 135 to 180, -45 to 0 , and -135 to -180
-				// (Just take a look at tangent tables)
-				message_admins("x-ratio : [x_ratio] ,   y-ratio : [y_ratio]")
-				var/c_ratio = abs(x_ratio)/abs(y_ratio)
-				var/s_ratio = abs(y_ratio/abs(x_ratio))
-				if(c_ratio > 1.3 && c_ratio < 4 || c_ratio < 0.4 && c_ratio > 0)
-					if(abs(x_ratio) < abs(y_ratio))
-						bullet.movementRatios[1] = -bullet.movementRatios[1]
-						px = -px
-					else
-						bullet.movementRatios[2] = -bullet.movementRatios[2]
-						py = -py
-					target_turf = null
-				*/
-
-				/*
-				var/angle = TODEGREES(ATAN2(the_rock.x - bullet.referencedBullet.x, the_rock.y - bullet.referencedBullet.y))
-				// third quadrant is a lil silly
-				if(the_rock.x - bullet.referencedBullet.x < 0 && the_rock.y - bullet.referencedBullet.y < 0)
-					angle = -(180+angle)
-				if(abs(angle) <= 45 || abs(angle) >= 135)
-					var/opposite_angle
-					if(angle > 0)
-						opposite_angle = 180 - angle
-					else
-						opposite_angle = -(angle + 180)
-				*/
-
-
 
 			if(target_turf)
 				bullet.referencedBullet.Move(target_turf)
 				bullet.coloreds |= target_turf
 				target_turf.color = "#2fff05ee"
+				turfsTraveled++
 
 
 		bullet.currentCoords[1] = px
 		bullet.currentCoords[2] = py
 		bullet.currentCoords[3] = pz
-		bullet.referencedBullet.pixel_x = round(bullet.currentCoords[1])
-		bullet.referencedBullet.pixel_y = round(bullet.currentCoords[2])
+		bullet.referencedBullet.pixel_x = -turfsTraveled * bullet.movementRatios[1]
+		bullet.referencedBullet.pixel_y = -turfsTraveled * bullet.movementRatios[2]
+		animate(bullet.referencedBullet, 1/turfsTraveled,  pixel_x = round(bullet.currentCoords[1]), pixel_y = round(bullet.currentCoords[2]))
 		if(QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
 			for(var/turf/thing in bullet.coloreds)
