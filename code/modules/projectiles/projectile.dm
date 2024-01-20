@@ -24,16 +24,6 @@ GLOBAL_LIST(projectileDamageConstants)
 	spawn_tags = null
 	/// Ammo is heavy
 	weight = 10
-	/// Location & movement vars
-	var/curPx = 0
-	var/curPy = 0
-	var/multX = 0
-	var/multY = 0
-	var/offsetX = 16
-	var/offsetY = 16
-	var/angle = 0
-	var/turfsPerTick = 1
-	///
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
 	var/hitsound_wall = "ricochet"
 	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
@@ -111,6 +101,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+<<<<<<< HEAD
 
 
 ////Tile coordinates (x, y) to absolute coordinates (in number of pixels). Center of a tile is generally assumed to be (16,16), but can be offset.
@@ -164,6 +155,8 @@ GLOBAL_LIST(projectileDamageConstants)
 	if(hitscan && !QDELETED(src))
 		goto hitloop
 
+=======
+>>>>>>> parent of fc25366b5 (hhh)
 /// This is done to save a lot of memory from duplicated damage lists.
 /// The list is also copied whenever PrepareForLaunch is called and modified as needs to be
 /obj/item/projectile/Initialize()
@@ -634,6 +627,49 @@ GLOBAL_LIST(projectileDamageConstants)
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return TRUE
+
+/obj/item/projectile/Process()
+	var/first_step = TRUE
+
+	spawn while(src && src.loc)
+		if(kill_count-- < 1)
+			on_impact(src.loc) //for any final impact behaviours
+			qdel(src)
+			return
+		if((!( current ) || loc == current))
+			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
+		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
+			qdel(src)
+			return
+
+		trajectory.increment()	// increment the current location
+		location = trajectory.return_location(location)		// update the locally stored location data
+
+		if(!location)
+			qdel(src)	// if it's left the world... kill it
+			return
+
+		before_move()
+		Move(location.return_turf())
+		pixel_x = location.pixel_x
+		pixel_y = location.pixel_y
+
+		if(!bumped && !QDELETED(original) && !isturf(original))
+			// this used to be loc == get_turf(original) , but this would break incase the original was inside something and hit them without hitting the outside
+			if(loc == original.loc)
+				if(!(original in permutated))
+					if(Bump(original))
+						return
+
+		if(first_step)
+			muzzle_effect(effect_transform)
+			first_step = FALSE
+		else if(!bumped)
+			tracer_effect(effect_transform)
+			luminosity_effect()
+
+		if(!hitscan)
+			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
