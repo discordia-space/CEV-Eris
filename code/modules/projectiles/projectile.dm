@@ -124,7 +124,6 @@ GLOBAL_LIST(projectileDamageConstants)
 /obj/item/projectile/Process()
 	if(QDELETED(src))
 		return PROCESS_KILL
-	var/turfsMoved = 0
 
 	/// label for hitscans
 	hitloop:
@@ -147,16 +146,20 @@ GLOBAL_LIST(projectileDamageConstants)
 
 	before_move()
 	Move(nextLoc)
-	animate(src, )
-	pixel_x = ABS_PIXEL_TO_REL(curPx) + offSetX
-	pixel_y = ABS_PIXEL_TO_REL(curPy) + offSetY
+	//pixel_x = ABS_PIXEL_TO_REL(curPx) + offSetX
+	//pixel_y = ABS_PIXEL_TO_REL(curPy) + offSetY
+	animate(src, 1, pixel_x = ABS_PIXEL_TO_REL(curPx) + offsetX)
+	animate(src, 1, pixel_y = ABS_PIXEL_TO_REL(curPy) + offsetY)
 
+	/*
 	if(first_step)
 		muzzle_effect(effect_transform)
 		first_step = FALSE
+
 	else if(!bumped)
 		tracer_effect(effect_transform)
 		luminosity_effect()
+	*/
 
 	if(hitscan && !QDELETED(src))
 		goto hitloop
@@ -341,6 +344,7 @@ GLOBAL_LIST(projectileDamageConstants)
 
 	setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
 	Process()
+	START_PROCESSING(SSprojectiles, src)
 
 	return FALSE
 
