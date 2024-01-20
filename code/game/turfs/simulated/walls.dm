@@ -206,7 +206,8 @@
 
 
 /turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
-
+	return PROJECTILE_CONTINUE
+	/*
 	if(src.ricochet_id != 0)
 		if(src.ricochet_id == Proj.ricochet_id)
 			src.ricochet_id = 0
@@ -264,6 +265,7 @@
 		slug.throw_at(get_turf(Proj), 0, 1)
 
 	take_damage(damage_taken)
+	*/
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()

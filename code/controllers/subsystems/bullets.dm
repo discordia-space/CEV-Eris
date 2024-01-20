@@ -17,6 +17,8 @@ SUBSYSTEM_DEF(bullets)
 	var/list/datum/bullet_data/current_queue = list()
 	var/list/datum/bullet_data/bullet_queue = list()
 
+
+
 /// You might ask why use a bullet data datum, and not store all the vars on the bullet itself, honestly its to keep track and initialize firing relevant vars only when needed
 /// This data is guaranteed to be of temporary use spanning 15-30 seconds or how long the bullet moves for. Putting them on the bullet makes each one take up more ram
 /// And ram is not a worry , but its better to initialize less and do the lifting on fire.
@@ -138,6 +140,10 @@ SUBSYSTEM_DEF(bullets)
 		if(LEVEL_STANDING to INFINITY)
 			return LEVEL_ABOVE
 
+/datum/controller/subsystem/bullets/proc/reset()
+	current_queue = list()
+	bullet_queue = list()
+
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
 		current_queue = bullet_queue.Copy()
@@ -174,14 +180,69 @@ SUBSYSTEM_DEF(bullets)
 			bullet.updateLevel()
 			if(iswall(target_turf))
 				var/turf/simulated/wall/the_rock = target_turf
+				/// Calculate coefficients for movement
+				var/dist_x = (the_rock.x - bullet.firedTurf.x) * PPT/2
+				var/dist_y = (the_rock.y - bullet.firedTurf.y) * PPT/2
+				if(!dist_x) dist_x++
+				if(!dist_y) dist_y++
+				/// Adjust for the actual point of contact
+				var/angle
+				if(abs(dist_y) > abs(dist_x))
+					// Bullet offset
+					dist_y += bullet.firedCoordinates[2]
+					// Edge offset
+					dist_x += dist_x/abs(dist_x) * PPT/2
+					// Get the angle , necesarry geometry evil.
+					angle = arcsin(dist_x/(sqrt(dist_x**2+dist_y**2)))
+				else
+					// Bullet offset
+					dist_x += bullet.firedCoordinates[1]
+					// Edge offset
+					dist_y += dist_y/abs(dist_y) * PPT/2
+					// Get the angle , necesarry geometry evil..
+					angle = arcsin(dist_y/(sqrt(dist_x**2+dist_y**2)))
+				message_admins("calculated angle is [angle]")
+				/*
+				var/x_ratio = the_rock.x - bullet.firedTurf.x
+				var/y_ratio = the_rock.y - bullet.firedTurf.y
+				x_ratio += x_ratio != 0 ? x_ratio/abs(x_ratio) : 1
+				y_ratio += y_ratio != 0 ? y_ratio/abs(y_ratio) : 1
+				x_ratio = x_ratio * 16 + 8 * x_ratio/abs(x_ratio) - bullet.currentCoords[1]
+				y_ratio = y_ratio * 16 + 8 * y_ratio/abs(y_ratio) - bullet.currentCoords[2]
+				// This covers anything below 45 to 0 , 135 to 180, -45 to 0 , and -135 to -180
+				// (Just take a look at tangent tables)
+				message_admins("x-ratio : [x_ratio] ,   y-ratio : [y_ratio]")
+				var/c_ratio = abs(x_ratio)/abs(y_ratio)
+				var/s_ratio = abs(y_ratio/abs(x_ratio))
+				if(c_ratio > 1.3 && c_ratio < 4 || c_ratio < 0.4 && c_ratio > 0)
+					if(abs(x_ratio) < abs(y_ratio))
+						bullet.movementRatios[1] = -bullet.movementRatios[1]
+						px = -px
+					else
+						bullet.movementRatios[2] = -bullet.movementRatios[2]
+						py = -py
+					target_turf = null
+				*/
+
+				/*
 				var/angle = TODEGREES(ATAN2(the_rock.x - bullet.referencedBullet.x, the_rock.y - bullet.referencedBullet.y))
 				// third quadrant is a lil silly
 				if(the_rock.x - bullet.referencedBullet.x < 0 && the_rock.y - bullet.referencedBullet.y < 0)
 					angle = -(180+angle)
+				if(abs(angle) <= 45 || abs(angle) >= 135)
+					var/opposite_angle
+					if(angle > 0)
+						opposite_angle = 180 - angle
+					else
+						opposite_angle = -(angle + 180)
+				*/
 
-			bullet.referencedBullet.Move(target_turf)
-			bullet.coloreds |= target_turf
-			target_turf.color = "#2fff05ee"
+
+
+			if(target_turf)
+				bullet.referencedBullet.Move(target_turf)
+				bullet.coloreds |= target_turf
+				target_turf.color = "#2fff05ee"
 
 
 		bullet.currentCoords[1] = px
