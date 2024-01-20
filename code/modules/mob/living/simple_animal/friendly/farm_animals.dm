@@ -52,7 +52,7 @@
 			var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/SP = locate() in loc
 			qdel(SP)
 
-		if(!pulledby)
+		if(!grabbedBy)
 			var/obj/effect/plant/food
 			food = locate(/obj/effect/plant) in oview(5,loc)
 			if(food)
@@ -64,7 +64,7 @@
 	if(stat == CONSCIOUS)
 		visible_message(SPAN_WARNING("[src] gets an evil-looking gleam in their eye."))
 
-/mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/simple_animal/hostile/retaliate/goat/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(!stat)
 		for(var/obj/effect/plant/SV in loc)

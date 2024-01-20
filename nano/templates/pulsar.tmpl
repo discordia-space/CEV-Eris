@@ -1,0 +1,78 @@
+<!-- 
+Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
+-->
+<h2>Satellite Control</h2>
+<div class="item">
+	<div class="itemLabel">
+		Power Produced:
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.power_produced, 0, 100, 'good', data.power_produced + '% Watts')}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Fuel Levels:
+	</div>
+	<div class="itemContent">
+		{{if data.no_tank}}
+			{{:helper.link('Connect Fuel tank', null, {'scan_fuel' : 1},  null, null)}}
+		{{else}}
+			Movement fuel cost: {{:data.thrust_cost}}
+			{{:helper.displayBar(data.ship_fuel, 0, 100, 'bad', data.ship_fuel + '%')}}
+		{{/if}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Shield power rerouting:
+	</div>
+	<div class="itemContent">
+	Power needed to sustain current shields: {{:data.shield_power_req}}%
+		{{if data.shield_power >= data.shield_power_req}}
+			{{:helper.displayBar(data.shield_power, 0, 100, 'medium', data.shield_power + '%')}}
+		{{else}}
+			{{:helper.displayBar(data.shield_power, 0, 100, 'bad', data.shield_power + '%')}}
+		{{/if}}
+		{{:helper.link('Set shield power', null, {'set_shield' : 1},  null, null)}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Effective power produced:
+	</div>
+	<div class="itemContent">
+		{{:data.effective_power_produced}}%
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Orbit decay time:
+	</div>
+	<div class="itemContent">
+		{{:data.decay_time}} minutes
+	</div>
+</div>
+
+<div class='block'>
+	<div class='item'>
+		<div class="itemLabel">
+			<div class='item'>
+				{{:helper.link('', 'triangle-1-nw', { 'move' : 9 },  null, null)}}
+				{{:helper.link('', 'triangle-1-n', { 'move' : 1 },  null, null)}}
+				{{:helper.link('', 'triangle-1-ne', { 'move' : 5 },  null, null)}}
+			</div>
+			<div class='item'>
+				{{:helper.link('', 'triangle-1-w', { 'move' : 8 },  null , null)}}
+				{{:helper.link('', 'circle-close', { 'honk' : 1 },  null, null)}}
+				{{:helper.link('', 'triangle-1-e', { 'move' : 4 },  null, null)}}
+			</div>
+			<div class='item'>
+				{{:helper.link('', 'triangle-1-sw', { 'move' : 10 },  null, null)}}
+				{{:helper.link('', 'triangle-1-s', { 'move' : 2 },  null, null)}}
+				{{:helper.link('', 'triangle-1-se', { 'move' : 6 },  null, null)}}
+			</div>
+		</div>
+	</div>
+</div>

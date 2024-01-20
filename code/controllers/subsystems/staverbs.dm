@@ -71,10 +71,7 @@ SUBSYSTEM_DEF(statverbs)
 	. = ..()
 	initalize_statverbs()
 
-/atom/Destroy()
-	. = ..()
-	if(statverbs)
-		statverbs.Cut()
+
 
 /atom/proc/initalize_statverbs()
 	var/list/paths = statverbs

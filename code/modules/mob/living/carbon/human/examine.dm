@@ -24,7 +24,7 @@
 	if(wear_mask)
 		skipface |= wear_mask.flags_inv & HIDEFACE
 
-	var/msg = "<span class='info'>*---------*\nThis is "
+	var/msg = "<div id='examine'><span class='info'>This is "
 
 	var/datum/gender/T = gender_datums[gender]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
@@ -256,71 +256,6 @@
 		if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage) || (temp.status & ORGAN_MUTATED))
 			wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span><br>"
 
-	//Handles the text strings being added to the actual description.
-	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
-
-	// ***********************************************************************************
-	// THIS NEEDS TO BE ENTIRELY REWRITTEN. Commenting out for now, BADLY NEEDS REWRITING.
-	// ***********************************************************************************
-
-	/*
-	var/display_chest = 0
-	var/display_shoes = 0
-	var/display_gloves = 0
-
-	if(wound_flavor_text["head"] && (is_destroyed["head"] || (!skipmask && !(wear_mask && istype(wear_mask, /obj/item/clothing/mask/gas)))))
-		msg += wound_flavor_text["head"]
-	else if(is_bleeding["head"])
-		msg += "<span class='warning'>[src] [T.has] blood running down [T.his] face!</span>\n"
-
-	if(wound_flavor_text["upper body"] && !w_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
-		msg += wound_flavor_text["upper body"]
-	else if(is_bleeding["upper body"])
-		display_chest = 1
-
-	if(wound_flavor_text["left arm"] && (is_destroyed["left arm"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["left arm"]
-	else if(is_bleeding["left arm"])
-		display_chest = 1
-
-	if(wound_flavor_text["left hand"] && (is_destroyed["left hand"] || (!gloves && !skipgloves)))
-		msg += wound_flavor_text["left hand"]
-	else if(is_bleeding["left hand"])
-		display_gloves = 1
-
-	if(wound_flavor_text["right arm"] && (is_destroyed["right arm"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["right arm"]
-	else if(is_bleeding["right arm"])
-		display_chest = 1
-
-	if(wound_flavor_text["right hand"] && (is_destroyed["right hand"] || (!gloves && !skipgloves)))
-		msg += wound_flavor_text["right hand"]
-	else if(is_bleeding["right hand"])
-		display_gloves = 1
-
-	if(wound_flavor_text["lower body"] && (is_destroyed["lower body"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["lower body"]
-	else if(is_bleeding["lower body"])
-		display_chest = 1
-
-	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["left leg"]
-	else if(is_bleeding["left leg"])
-		display_chest = 1
-
-	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["right leg"]
-	else if(is_bleeding["right leg"])
-		display_chest = 1
-
-	if(display_chest)
-		msg += "<span class='danger'>[src] [T.has] blood soaking through from under [T.his] clothing!</span>\n"
-	if(display_shoes)
-		msg += "<span class='danger'>[src] [T.has] blood running from [T.his] shoes!</span>\n"
-	if(display_gloves)
-		msg += "<span class='danger'>[src] [T.has] blood running from under [T.his] gloves!</span>\n"
-	*/
-
 	for(var/limb in wound_flavor_text)
 		msg += wound_flavor_text[limb]
 		is_bleeding[limb] = null
@@ -367,12 +302,72 @@
 			msg += "<span class='deptradio'><b>Damage Specifics:</span> <span style=\"color:blue\">[round(src.getOxyLoss(), 1)]</span>-<span style=\"color:green\">[round(src.getToxLoss(), 1)]</span>-<span style=\"color:#FFA500\">[round(src.getFireLoss(), 1)]</span>-<span style=\"color:red\">[round(src.getBruteLoss(), 1)]</span></b>\n"
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"
 
-	msg += "*---------*</span>"
+	msg += "</span>"
 	if (pose)
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[T.He] [T.is] [pose]"
 
+	var/mob/living/carbon/human/humie = user
+	if(istype(humie))
+		if(humie.hasCyberFlag(CSF_COMBAT_READER))
+			msg += "<span class= 'danger'> \n"
+			for(var/skill in list(STAT_ROB,STAT_TGH,STAT_VIG))
+				// boosts don't show here!
+				var/value = stats.getStat(skill, TRUE)
+				msg += "[skill] approximated at [value] on the general skill database. \n"
+			msg += "</span>"
+		if(humie.hasCyberFlag(CSF_CONTENTS_READER))
+			msg += "\n [SPAN_NOTICE("<a href='?src=\ref[humie];contents_read_shallow=\ref[src]'>Scan [src] contents (!SHALLOW!)</a>")]"
+		if(humie.hasCyberFlag(CSF_BANKING_READER))
+			var/obj/item/card/id/yourPrivateDetails = GetIdCard()
+			if(yourPrivateDetails)
+				var/datum/money_account/customer_account = get_account(yourPrivateDetails.associated_account_number)
+				if(!customer_account)
+					msg += "\n BANKING DETAILS MISSING"
+				else
+					msg += "\n REGISTERED ASTERS GUILD CARD WEALTH : [customer_account.money]"
+			else
+				msg += "\n ID MISSING"
+		if(humie.hasCyberFlag(CSF_WEALTH_JUDGE))
+			var/wealth = 0
+			var/style = 0
+			for(var/obj/item/thing in humie.contents)
+				if(istype(thing, /obj/item/organ))
+					continue
+				wealth += thing.get_item_cost(FALSE)
+				if(istype(thing, /obj/item/clothing))
+					var/obj/item/clothing/cloth = thing
+					style += cloth.style
+
+			var/obj/item/card/id/yourPrivateDetails = GetIdCard()
+			if(yourPrivateDetails)
+				var/datum/money_account/customer_account = get_account(yourPrivateDetails.associated_account_number)
+				if(customer_account)
+					wealth += customer_account.money
+
+			/// gotta dress to part
+			if(style > 7)
+				wealth *= 1.5
+			else
+				wealth *= 0.8
+			msg += "\n WEALTH RATING : "
+			if(wealth < 1500)
+				msg += SPAN_DANGER("BROKE")
+			else if(wealth < 3000)
+				msg += SPAN_WARNING("POOR")
+			else if(wealth < 10000)
+				msg += SPAN_NOTICE("AVERAGE")
+			else if(wealth < 16000)
+				msg += span_blue("RICH")
+			else if(wealth < 32000)
+				msg += span_green("FILTHY RICH")
+			else if(wealth < 64000)
+				msg += span_green("NOBLE")
+			else
+				msg += span_bold(span_green("MILLIONAIRE"))
+
+	msg += "</div>"
 	to_chat(user, msg)
 	. = msg
 

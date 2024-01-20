@@ -8,7 +8,7 @@
 	icon_state = "molly"
 	item_state = "molly"
 
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -28,7 +28,6 @@
 	can_dual = 1
 	auto_eject = 1
 	damage_multiplier = 0.8 //good for rubber takedowns or self-defence, not so good to kill someone, you might want to use better smg
-	penetration_multiplier = -0.1
 	init_recoil = HANDGUN_RECOIL(0.6)
 
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
@@ -37,7 +36,7 @@
 	price_tag = 1000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	wield_delay = 0 // pistols don't get delays. X Doubt
-	gun_parts = list(/obj/item/part/gun/frame/molly = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/molly = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/molly/update_icon()
@@ -55,9 +54,10 @@
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+		wielded_item_state = "_doble_s"
+	else
+		wielded_item_state = "_doble"
 
-	if (wielded)
-		itemstring += "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
@@ -71,6 +71,6 @@
 	desc = "A Molly machine pistol frame. Toeing the line between pistol and SMG."
 	icon_state = "frame_autopistol"
 	resultvars = list(/obj/item/gun/projectile/automatic/molly)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

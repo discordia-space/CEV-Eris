@@ -6,19 +6,25 @@
 // (if you dig hole in 10 seconds then 50 ADDITIONAL_TIME_LOWHEALTH will add 0 on full health, 2.5sec on 50% health and 5sec ~0% health)
 #define ADDITIONAL_TIME_LOWHEALTH 60
 
+GLOBAL_LIST(melleExtrasCache)
+
 /obj/item/tool
 	name = "tool"
 	icon = 'icons/obj/tools.dmi'
 	slot_flags = SLOT_BELT
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
+	maxUpgrades = 3
 
 	//spawn values
 	bad_type = /obj/item/tool
 	spawn_tags = SPAWN_TAG_TOOL
 
 	price_tag = 20
+
+	health = 600
+	maxHealth = 600
 
 	var/tool_in_use = FALSE
 
@@ -51,7 +57,7 @@
 
 	//Variables used for tool degradation
 	health = 0		// Health of a tool.
-	max_health = 1000
+	maxHealth = 1000
 	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this amount after each tool operation
 	var/health_threshold  = 40 // threshold in percent on which tool health stops dropping
 	var/lastNearBreakMessage = 0 // used to show messages that tool is about to break
@@ -61,7 +67,7 @@
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
 	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
 	var/switched_on_qualities	//This var will REPLACE tool_qualities when tool will be toggled on.
-	var/switched_on_force
+	var/list/switchedOn = list(ARMOR_BLUNT = list(DELEM(BRUTE,5)))
 	var/switched_on_hitsound
 	var/switched_off_qualities	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
@@ -89,9 +95,16 @@
 
 	if(use_stock_cost)
 		stock = max_stock
+	if(toggleable)
+		if(!GLOB.melleExtrasCache)
+			GLOB.melleExtrasCache = list()
+		if(!GLOB.melleExtrasCache["[type]-t"])
+			GLOB.melleExtrasCache["[type]-t"] = toggleable ? switchedOn.Copy() : switchedOn
+		if(!(maxUpgrades || objectFlags & OF_UNIQUEMELLEHANDLER))
+			switchedOn = GLOB.melleExtrasCache["[type]-t"]
 
-	if(max_health)
-		health = max_health
+	if(maxHealth)
+		health = maxHealth
 
 	update_icon()
 	return
@@ -112,11 +125,12 @@
 
 //For killing processes like hot spots
 /obj/item/tool/Destroy()
+	switchedOn = null
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/tool/proc/adjustToolHealth(amount, user)
-	health = min(max_health, max(max_health * (health_threshold/100), health + amount))
+	health = min(maxHealth, max(maxHealth * (health_threshold/100), health + amount))
 	if(!isBroken && health == 0)
 		breakTool()
 		isBroken = TRUE
@@ -217,17 +231,17 @@
 		data["use_fuel_cost_max"] = initial(use_fuel_cost) * 10
 
 	data["health"] = health
-	data["health_max"] = max_health
+	data["health_max"] = maxHealth
 	data["health_threshold"] = health_threshold
 
-	data["force"] = force
-	data["force_max"] = initial(force) * 10
+	data["force"] = dhTotalDamage(melleDamages) * (wielded ? wieldedMultiplier : 1 )
+	data["force_max"] = dhTotalDamage(melleDamages)*10
 
 	data["armor_divisor"] = armor_divisor
 
 	data["extra_volume"] = extra_bulk
 
-	data["upgrades_max"] = max_upgrades
+	data["upgrades_max"] = maxUpgrades
 
 	data["edge"] = edge
 	data["sharp"] = sharp
@@ -235,7 +249,7 @@
 	data["forced_broad_strike"] = forced_broad_strike
 	data["screen_shake"] = screen_shake
 	data["push_attack"] = push_attack
-	data["w_class"] = w_class
+	data["volumeClass"] = volumeClass
 
 	// it could be done with catalog using one line but whatever
 	if(item_upgrades.len)
@@ -277,7 +291,7 @@
 	var/list/tm = matter.Copy()
 	//Every point of damage reduces matter by 2% of total
 	for(var/mat in tm)
-		tm[mat] *= health / max_health
+		tm[mat] *= health / maxHealth
 
 	return tm
 
@@ -357,7 +371,7 @@
 		// the worse tool condition - the more time required
 		if(T && T.degradation)
 			// so basically we adding time based on percent of missing health multiplied by ADDITIONAL_TIME_LOWHEALTH for easier balancing
-			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * (1 -(T.health/T.max_health))))
+			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * (1 -(T.health/T.maxHealth))))
 
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
@@ -437,17 +451,17 @@
 		T.breakTool(user)
 		return TOOL_USE_FAIL
 	else if(T && !T.health_threshold)
-		if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_BASIC && T.health < T.max_health/100 * 5)// tool health is < 5%
+		if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_BASIC && T.health < T.maxHealth/100 * 5)// tool health is < 5%
 			if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
 				T.lastNearBreakMessage = world.time
 				to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
-		else if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT && T.health < T.max_health/100 * 15) // tool health is < 15%
+		else if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT && T.health < T.maxHealth/100 * 15) // tool health is < 15%
 			if(T.lastNearBreakMessage > world.time + 300 SECONDS) // once in 5 minutes
 				T.lastNearBreakMessage = world.time
 				to_chat(user, SPAN_WARNING("Some parts in your [src.name] are reeling."))
 		else
 			//lets give peasants a chance
-			if(T.health < T.max_health/100 * 5 && prob(10))// tool health is < 5% and chance a 10% to notice
+			if(T.health < T.maxHealth/100 * 5 && prob(10))// tool health is < 5% and chance a 10% to notice
 				if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
 					T.lastNearBreakMessage = world.time
 					to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
@@ -525,7 +539,8 @@
 		if(T && T.degradation)
 			failtypes["damage"] = 2.5
 
-	if(user)
+	// You can only fail with tools you are holding
+	if(user && T.loc == user)
 		failtypes["slip"] = 2
 		failtypes["swing"] = 1
 		if(ishuman(user))
@@ -689,10 +704,8 @@
 	tool_qualities = switched_on_qualities
 	if(switched_on_hitsound)
 		hitsound = switched_on_hitsound
-	if(!isnull(switched_on_force))
-		force = switched_on_force
-		if(wielded)
-			force *= 1.3
+	if(!isnull(switchedOn))
+		melleDamages = switchedOn.Copy()
 	if(glow_color)
 		set_light(l_range = 1.7, l_power = 1.3, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
@@ -707,7 +720,7 @@
 	STOP_PROCESSING(SSobj, src)
 	tool_qualities = switched_off_qualities
 	hitsound = initial(hitsound)
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	if(glow_color)
 		set_light(l_range = 0, l_power = 0, l_color = glow_color)
 	update_icon()
@@ -815,14 +828,14 @@
 
 	use_fuel_cost = initial(use_fuel_cost)
 	use_power_cost = initial(use_power_cost)
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type]:Copy()
 	force_upgrade_mults = initial(force_upgrade_mults)
 	force_upgrade_mods = initial(force_upgrade_mods)
-	switched_on_force = initial(switched_on_force)
+	switchedOn = GLOB.melleExtrasCache["[type]-t"]:Copy()
 	extra_bulk = initial(extra_bulk)
 	item_flags = initial(item_flags)
 	name = initial(name)
-	max_upgrades = initial(max_upgrades)
+	maxUpgrades = initial(maxUpgrades)
 	color = initial(color)
 	sharp = initial(sharp)
 	prefixes = list()
@@ -841,49 +854,49 @@
 	SSnano.update_uis(src)
 
 
-/obj/item/tool/examine(mob/user)
-	if(!..(user,2))
-		return
+/obj/item/tool/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 
 	if(use_power_cost)
 		if(!cell)
-			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
+			description += SPAN_WARNING("There is no cell inside to power the tool \n")
 		else
-			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
+			description += "The charge meter reads [round(cell.percent())]%. \n"
 
 	if(use_fuel_cost)
-		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+		description += "[name] contains [get_fuel()]/[max_fuel] units of fuel! \n"
 
 	if(use_stock_cost)
-		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
+		description += SPAN_NOTICE("it has [stock] / [max_stock] units remaining. \n")
 
 	//Display a bunch of stats but only if they're nondefault values
 	if(precision != 0)
-		to_chat(user, "Precision: [SPAN_NOTICE("[precision]")]")
+		description += "Precision: [SPAN_NOTICE("[precision]")] \n"
 
 	if(workspeed != 1)
-		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
+		description += "Work Speed: [SPAN_NOTICE("[workspeed*100]%")] \n"
 
 	if(item_upgrades.len)
-		to_chat(user, "It has the following upgrades installed:")
+		description += "It has the following upgrades installed: \n"
 		for(var/obj/item/TU in item_upgrades)
-			to_chat(user, SPAN_NOTICE(TU.name))
-
+			description += "[SPAN_NOTICE(TU.name)] \n]"
 	if(health)
-		if(health > max_health * 0.95)
-			return
-		else if(health > max_health * 0.80)
-			to_chat(user, "It has a few light scratches.")
-		else if(health > max_health * 0.40)
-			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
-		else if(health > max_health * 0.20)
-			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
-		else if(health > max_health * 0.10)
-			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
-		else if(health > max_health * 0.05)
-			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
+		if(health > maxHealth * 0.95)
+			description += ""
+		else if(health > maxHealth * 0.80)
+			description += "It has a few light scratches."
+		else if(health > maxHealth * 0.40)
+			description += SPAN_NOTICE("It shows minor signs of stress and wear.")
+		else if(health > maxHealth * 0.20)
+			description += SPAN_WARNING("It looks a bit cracked and worn.")
+		else if(health > maxHealth * 0.10)
+			description += SPAN_WARNING("Whatever use this tool once had is fading fast.")
+		else if(health > maxHealth * 0.05)
+			description += SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well.")
 		else
-			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
+			description += SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash.")
+
+	..(user, afterDesc = description)
 
 //Recharge the fuel at fueltank, also explode if switched on
 /obj/item/tool/afterattack(obj/O, mob/user, proximity)
@@ -938,7 +951,7 @@
 				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
 				//Toolception!
 				if(use_tool(user, T, 60, QUALITY_ADHESIVE, FAILCHANCE_EASY, STAT_MEC))
-					T.adjustToolHealth(T.max_health * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
+					T.adjustToolHealth(T.maxHealth * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
 					if(user.stats.getStat(STAT_MEC) > STAT_LEVEL_BASIC/2)
 						to_chat(user, SPAN_NOTICE("You knowledge in tools helped you repair it better."))
 					refresh_upgrades()
@@ -1000,7 +1013,7 @@
 				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 
 
-/obj/item/tool/attack(mob/living/M, mob/living/user, target_zone)
+/obj/item/tool/attack(mob/living/M, mob/living/user, target_zone, damageMultiplier)
 	if(isBroken)
 		to_chat(user, SPAN_WARNING("\The [src] is broken."))
 		return
@@ -1035,7 +1048,7 @@
 				to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 				return 1
 
-	return ..()
+	return ..(M, user, target_zone, damageMultiplier)
 
 /obj/item/tool/update_icon()
 	cut_overlays()

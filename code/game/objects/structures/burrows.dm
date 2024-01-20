@@ -13,9 +13,6 @@
 	level = BELOW_PLATING_LEVEL
 	layer = ABOVE_NORMAL_TURF_LAYER
 
-	//health is used when attempting to collapse this hole. It is a multiplier on the time taken and failure rate
-	//Any failed attempt to collapse it will reduce the health, making future attempts easier
-	var/health = 100
 
 	var/isSealed = TRUE	// borrow spawns as cracks and becomes a hole when critters emerge
 
@@ -680,19 +677,19 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	//will be quieter and not travel as far
 	playsound(src, soundtype, maintenance ? volume*0.5 : volume, TRUE,maintenance ? -3 : 0)
 
-/obj/structure/burrow/examine()
-	..()
+/obj/structure/burrow/examine(mob/user)
+	var/description = ""
 	if(isSealed && recieving)
-		to_chat(usr, SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through."))
+		description += SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through.")
+	..(user, afterDesc = description)
 
 
-/obj/structure/burrow/ex_act(severity)
-	spawn(1)
-		var/turf/T = get_turf(src)
-		if(T.is_hole)
-			qdel(src)
-		else
-			collapse()
+/obj/structure/burrow/explosion_act(target_power, explosion_handler/handler)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	collapse()
+	return 0
 
 /obj/structure/burrow/preventsTurfInteractions()
 	if(isRevealed)

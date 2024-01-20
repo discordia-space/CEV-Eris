@@ -4,6 +4,7 @@
 	icon = 'icons/obj/faction_item.dmi'
 	description_info = "Can be used to stun non-believers by using it in-hand"
 	description_antag = "Can be used to destroy departmental oddities on harm intent, boosting the EOTP's stats all round and adding observation."
+	commonLore = "Known to also cut bluespace continuum whenever swinged. Original use for it is unknown at large"
 	icon_state = "nt_sword_truth"
 	item_state = "nt_sword_truth"
 	slot_flags = FALSE
@@ -12,15 +13,20 @@
 	price_tag = 20000
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
-	force = WEAPON_FORCE_BRUTAL
-	var/crusade_force = WEAPON_FORCE_NORMAL * 0.8
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE,40),
+			DELEM(BRUTE,10)
+		)
+	)
+	var/crusadeMult = 1.4
 	var/flash_cooldown = 1 MINUTES
 	var/last_use = 0
 
 /obj/item/tool/sword/nt_sword/crusade_activated()
 	. = ..()
 	if(!.) return
-	force += crusade_force
+	dhApplyMultiplier(melleDamages, crusadeMult)
 
 /obj/item/tool/sword/nt_sword/New()
 	..()

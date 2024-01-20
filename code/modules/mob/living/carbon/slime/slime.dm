@@ -65,6 +65,8 @@
 
 	var/core_removal_stage = 0 //For removing cores.
 
+	injury_type = INJURY_TYPE_HOMOGENOUS
+
 /mob/living/carbon/slime/New(var/location, var/colour="grey")
 
 	verbs += /mob/living/proc/ventcrawl
@@ -186,30 +188,11 @@
 	powerlevel = 0 // oh no, the power!
 	..()
 
-/mob/living/carbon/slime/ex_act(severity)
-	..()
-
-	var/b_loss = null
-	var/f_loss = null
-	switch (severity)
-		if (1)
-			qdel(src)
-			return
-
-		if (2)
-
-			b_loss += 60
-			f_loss += 60
-
-
-		if(3)
-			b_loss += 30
-
-	adjustBruteLoss(b_loss)
-	adjustFireLoss(f_loss)
-
+/mob/living/carbon/slime/explosion_act(target_power, explosion_handler/handler)
+	adjustBruteLoss(round(target_power))
+	adjustFireLoss(round(target_power))
 	updatehealth()
-
+	return 0
 
 /mob/living/carbon/slime/u_equip(obj/item/W as obj)
 	return
@@ -320,16 +303,17 @@
 	return
 
 /mob/living/carbon/slime/attackby(obj/item/W, mob/user)
-	if(W.force > 0)
+	var/damage = dhTotalDamage(W.melleDamages)
+	if(damage > 0)
 		attacked += 10
 		if(prob(25))
 			to_chat(user, SPAN_DANGER("[W] passes right through [src]!"))
 			return
 		if(Discipline && prob(50)) // wow, buddy, why am I getting attacked??
 			Discipline = 0
-	if(W.force >= 3)
+	if(damage >= 3)
 		if(is_adult)
-			if(prob(5 + round(W.force/2)))
+			if(prob(5 + round(damage/2)))
 				if(Victim || Target)
 					if(prob(80) && !client)
 						Discipline++
@@ -346,14 +330,14 @@
 						if(user)
 							canmove = 0
 							step_away(src, user)
-							if(prob(25 + W.force))
+							if(prob(25 + damage))
 								sleep(2)
 								if(user)
 									step_away(src, user)
 								canmove = 1
 
 		else
-			if(prob(10 + W.force*2))
+			if(prob(10 + damage*2))
 				if(Victim || Target)
 					if(prob(80) && !client)
 						Discipline++
@@ -371,7 +355,7 @@
 						if(user)
 							canmove = 0
 							step_away(src, user)
-							if(prob(25 + W.force*4))
+							if(prob(25 + damage*4))
 								sleep(2)
 								if(user)
 									step_away(src, user)

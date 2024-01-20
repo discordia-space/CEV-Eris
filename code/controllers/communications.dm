@@ -81,6 +81,7 @@ Radio:
 Devices:
 1451 - tracking implant
 1457 - RSD default
+1201 - Player-build blast doors and shutters.
 
 On the map:
 1311 for prison shuttle console (in fact, it is not used)
@@ -110,6 +111,10 @@ var/const/AI_FREQ	= 1343
 var/const/DTH_FREQ	= 1341
 var/const/SYND_FREQ = 1213
 
+// For player built blast doors.
+var/const/BLAST_DOOR_FREQ  = 1201
+var/const/YARR_FREQ = 1220
+
 // department channels
 var/const/PUB_FREQ = 1459
 var/const/NT_FREQ = 1364
@@ -134,6 +139,7 @@ var/list/radiochannels = list(
 	"Security" 		= SEC_FREQ,
 	"Special Ops" 	= DTH_FREQ,
 	"Mercenary" 	= SYND_FREQ,
+	"Pirate"        = YARR_FREQ,
 	"Supply" 		= SUP_FREQ,
 	"NT Voice"		= NT_FREQ,
 	"Service" 		= SRV_FREQ,
@@ -146,7 +152,7 @@ var/list/radiochannels = list(
 var/list/CENT_FREQS = list(DTH_FREQ)
 
 // Antag channels, i.e. Syndicate
-var/list/ANTAG_FREQS = list(SYND_FREQ)
+var/list/ANTAG_FREQS = list(SYND_FREQ, YARR_FREQ)
 
 //Department channels, arranged lexically
 var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, MED_FREQ, NT_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
@@ -204,6 +210,7 @@ var/const/RADIO_AIRLOCK = "radio_airlock"
 var/const/RADIO_SECBOT = "radio_secbot"
 var/const/RADIO_MULEBOT = "radio_mulebot"
 var/const/RADIO_MAGNETS = "radio_magnet"
+var/const/RADIO_BLASTDOORS = "radio_blastdoors"
 
 //callback used by objects to react to incoming radio signals
 /obj/proc/receive_signal(datum/signal/signal, receive_method, receive_param)

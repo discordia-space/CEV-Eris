@@ -44,7 +44,7 @@
 		S.glass_type = /obj/item/stack/material/glass
 		S.tracker = 1
 		S.anchored = TRUE
-	S.loc = src
+	S.forceMove(src)
 	update_icon()
 
 //updates the tracker icon and the facing angle for the control computer
@@ -63,7 +63,7 @@
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
-				S.loc = src.loc
+				S.forceMove(src.loc)
 				S.give_glass()
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the tracker."))
 			qdel(src)
@@ -78,5 +78,5 @@
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 2)
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	price_tag = 120

@@ -4,7 +4,6 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 	throwforce = 0
-	force = 0
 	var/net_type = /obj/effect/energy_net
 
 /obj/item/energy_net/dropped()
@@ -97,7 +96,7 @@
 	healthcheck()
 	return 0
 
-/obj/effect/energy_net/ex_act()
+/obj/effect/energy_net/explosion_act(target_power, explosion_handler/handler)
 	health = 0
 	healthcheck()
 
@@ -122,6 +121,6 @@
 	return
 
 /obj/effect/energy_net/attackby(obj/item/W as obj, mob/user as mob)
-	health -= W.force
+	health -= dhTotalDamage(W.melleDamages)
 	healthcheck()
 	..()

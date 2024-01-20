@@ -8,6 +8,7 @@
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
+	commonLore = "A shining beacon of human innovation, cyborgs brought both destruction and luxury. Their creation led to a major increase in quality of life for the vast majority of humanity, but theres been multiple wars fought between governments , as their use was found unethical or economically crushing."
 	defaultHUD = "BorgStyle"
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
@@ -82,7 +83,7 @@
 	var/modtype = "Default"
 	var/lower_mod = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/killswitch = 0
 	var/killswitch_time = 60
@@ -90,7 +91,8 @@
 	var/weaponlock_time = 120
 	var/lawupdate = TRUE //Cyborgs will sync their laws with their AI by default
 	var/lockcharge //Used when locking down a borg to preserve cell charge
-	var/speed = 0.25
+	/// Humans get a -1 by default from any shoe. , robots had a 0.25 added by default.
+	var/speed = -0.75
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"
@@ -518,7 +520,7 @@
 			var/mob/living/carbon/human/firer = Proj.firer
 			chance -= firer.stats.getStat(STAT_VIG, FALSE) / 5
 		var/obj/item/projectile/bullet/B = Proj
-		chance = max((chance - B.armor_divisor), 0)
+		chance = max((chance - B.armor_divisor * 10), 0)
 		if(B.starting && prob(chance))
 			visible_message(SPAN_DANGER("\The [Proj.name] ricochets off [src]\'s armour!"))
 			var/multiplier = round(10 / get_dist(B.starting, src))
@@ -544,7 +546,7 @@
 				C.wrapped = I
 				C.install()
 				user.drop_item()
-				I.loc = null
+				I.forceMove(NULLSPACE)
 
 				var/obj/item/robot_parts/robot_component/WC = I
 				if(istype(WC))
@@ -746,7 +748,7 @@
 			to_chat(user, SPAN_WARNING("\The [I] is too small to fit here."))
 		else
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			cell = I
 			to_chat(user, SPAN_NOTICE("You insert the power cell."))
 
@@ -788,7 +790,7 @@
 			if(U.action(src))
 				to_chat(usr, "You apply the upgrade to [src]!")
 				usr.drop_item()
-				U.loc = src
+				U.forceMove(src)
 				if(U.permanent)
 					robot_upgrades += U
 			else
@@ -984,7 +986,7 @@
 	radio.interact(src)//Just use the radio's Topic() instead of bullshit special-snowflake code
 
 
-/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator = src)
 
 	. = ..()
 
@@ -1239,3 +1241,12 @@
 
 /mob/living/silicon/robot/get_cell()
 	return cell
+
+/mob/living/silicon/robot/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
+	if(blinded)
+		return
+	if (HUDtech.Find("flash"))
+		flick("e_flash", HUDtech["flash"])
+	if(duration)
+		if(!HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
+			Weaken(duration)

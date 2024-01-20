@@ -7,10 +7,6 @@
 	reagents = bloodstr
 	..()
 
-/mob/living/carbon/Life()
-	. = ..()
-	handle_viruses()
-
 /mob/living/carbon/Destroy()
 	QDEL_NULL(metabolism_effects)
 	reagents = null
@@ -29,10 +25,11 @@
 	touching.clear_reagents()
 	metabolism_effects.clear_effects()
 	nutrition = 400
+	halloss = 0
 	shock_stage = 0
 	..()
 
-/mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/carbon/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator = src)
 	. = ..()
 	if(.)
 		if (src.nutrition && src.stat != 2)
@@ -50,8 +47,9 @@
 			user.last_special = world.time + 50
 			src.visible_message(SPAN_DANGER("You hear something rumbling inside [src]'s stomach..."))
 			var/obj/item/I = user.get_active_hand()
-			if(I && I.force)
-				var/d = rand(round(I.force / 4), I.force)
+			var/damage = dhTotalDamage(I.melleDamages)
+			if(I && damage)
+				var/d = rand(round(damage / 4), damage)
 				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/organ = H.get_organ(BP_CHEST)
@@ -66,7 +64,7 @@
 
 				if(prob(src.getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
-						A.loc = loc
+						A.forceMove(loc)
 						stomach_contents.Remove(A)
 					src.gib()
 
@@ -74,7 +72,7 @@
 	for(var/mob/M in src)
 		if(M in src.stomach_contents)
 			src.stomach_contents.Remove(M)
-		M.loc = src.loc
+		M.forceMove(loc)
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
 				N.show_message(text("\red <B>[M] bursts out of [src]!</B>"), 2)
@@ -106,8 +104,7 @@
 			"\red You hear a heavy electrical crack." \
 		)
 		SEND_SIGNAL_OLD(src, COMSIG_CARBON_ELECTROCTE)
-		Stun(10)//This should work for now, more is really silly and makes you lay there forever
-		Weaken(10)
+		Weaken(max(min(10,round(shock_damage / 10 )), 2) SECONDS)
 	else
 		src.visible_message(
 			"\red [src] was mildly shocked by the [source].", \
@@ -126,6 +123,10 @@
 	//We cache the held items before and after swapping using get active hand.
 	//This approach is future proof and will support people who possibly have >2 hands
 	var/obj/item/prev_held = get_active_hand()
+
+	if(prev_held)
+		if(prev_held.wielded)
+			prev_held.unwield(src)
 
 	//Now we do the hand swapping
 	src.hand = !( src.hand )
@@ -242,6 +243,9 @@
 /mob/living/carbon/proc/eyecheck()
 	return 0
 
+/mob/living/carbon/proc/earcheck()
+	return 0
+
 /mob/living/carbon/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
 		return
@@ -292,9 +296,9 @@
 		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
 			var/obj/item/I = item
 			var/robust = stats.getStat(STAT_ROB)
-			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)
+			var/timer = ((5 * I.volumeClass) - (robust * 0.1)) //(volumeClass * 5) - (STR * 0.1)
 			visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
-			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
+			if((I.volumeClass < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
 				item.throwing = TRUE
 				unEquip(item, loc)
 				item.forceMove(get_turf(GetAbove(src)))
@@ -310,7 +314,6 @@
 
 		unEquip(item, loc)
 		item.throw_at(target, item.throw_range, item.throw_speed, src)
-		item.throwing = FALSE
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
@@ -319,10 +322,12 @@
 
 /mob/living/carbon/can_use_hands()
 	if(handcuffed)
-		return 0
+		return FALSE
 	if(buckled && ! istype(buckled, /obj/structure/bed/chair)) // buckling does not restrict hands
-		return 0
-	return 1
+		return FALSE
+	if(incapacitated(INCAPACITATION_CANT_ACT))
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/restrained()
 	if (handcuffed)
@@ -335,8 +340,11 @@
 	else if (W == handcuffed)
 		handcuffed = null
 		update_inv_handcuffed()
-		if(buckled && buckled.buckle_require_restraints)
-			buckled.unbuckle_mob()
+		var/list/bucklers = list()
+		SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+		for(var/datum/component/buckling/buckle in bucklers)
+			if(buckle.buckleFlags & BUCKLE_REQUIRE_RESTRAINTED)
+				buckle.unbuckle()
 
 	else if (W == legcuffed)
 		legcuffed = null
@@ -358,8 +366,6 @@
 	if(now_pushing || !yes)
 		return
 	..()
-	if(iscarbon(AM) && prob(10))
-		src.spread_disease_to(AM, "Contact")
 
 /mob/living/carbon/cannot_use_vents()
 	return
@@ -385,6 +391,10 @@
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
+	if(effect == CE_ENERGIZANT && ishuman(src))
+		var/mob/living/carbon/human/man = src
+		man.needsEnergyUpdate = TRUE
+
 
 /mob/living/carbon/get_default_language()
 	if(default_language)

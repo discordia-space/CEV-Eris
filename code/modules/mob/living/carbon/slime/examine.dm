@@ -1,5 +1,4 @@
 /mob/living/carbon/slime/examine(mob/user)
-	..(user)
 	var/msg = ""
 	if (src.stat == DEAD)
 		msg += "<span class='deadsay'>It is limp and unresponsive.</span>\n"
@@ -26,6 +25,5 @@
 			if(10)
 				msg += "<span class='warning'><B>It is radiating with massive levels of electrical activity!</B></span>\n"
 
-	msg += "*---------*"
-	to_chat(user, msg)
+	..(user, afterDesc = msg)
 	return

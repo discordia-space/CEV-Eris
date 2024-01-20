@@ -41,6 +41,8 @@ var/list/possible_cable_coil_colours = list(
 	desc = "A flexible superconducting cable for heavy-duty power transfer"
 	icon = 'icons/obj/power_cond_white.dmi'
 	icon_state = "0-1"
+	health = 20
+	maxHealth = 20
 	var/d1 = 0
 	var/d2 = 1
 	color = COLOR_RED_LIGHT
@@ -89,7 +91,7 @@ var/list/possible_cable_coil_colours = list(
 	d2 = text2num( copytext( icon_state, dash+1 ) )
 
 	var/turf/T = src.loc			// hide if turf is not intact
-	if(level==1) hide(!T.is_plating())
+	if(level==1 && T) hide(!T.is_plating())
 	GLOB.cable_list += src //add it to the global cable list
 
 
@@ -265,20 +267,16 @@ var/list/possible_cable_coil_colours = list(
 	return 0
 
 //explosion handling
-/obj/structure/cable/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				qdel(src)
 
-		if(3)
-			if (prob(25))
-				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				qdel(src)
-	return
+/obj/structure/cable/explosion_act(target_power, explosion_handler/handler)
+	take_damage(target_power)
+	if(QDELING(src) && target_power < 40)
+		new /obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
+	// Non blocking
+	return 0
+
+/obj/structure/cable/take_damage(amount)
+	..()
 
 obj/structure/cable/proc/cableColor(var/colorC)
 	var/color_n = "#DD0000"
@@ -485,7 +483,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		return
 
 	// remove the cut cable from its turf and powernet, so that it doesn't get count in propagate_network worklist
-	loc = null
+	forceMove(NULLSPACE)
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
 	var/datum/powernet/newPN = new()// creates a new powernet...
@@ -520,7 +518,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	throwforce = WEAPON_FORCE_HARMLESS
 	description_info = "Can link between z-levels by going on the upper level and clicking the empty space, and to below, looking up and clicking the space above"
 	description_antag = "Can be used to make cable cuffs"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
 	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_PLASTIC = 0.5)
@@ -544,7 +542,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
 	..()
-	src.amount = length
+	src.setAmount(length)
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
 	pixel_x = rand(-2,2)
@@ -622,20 +620,23 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
-		w_class = ITEM_SIZE_TINY
+		volumeClass = ITEM_SIZE_TINY
 	else
-		w_class = ITEM_SIZE_SMALL
+		volumeClass = ITEM_SIZE_SMALL
 
 /obj/item/stack/cable_coil/examine(mob/user)
 	if(get_dist(src, user) > 1)
-		return
+		return ..(user)
+
+	var/description = ""
 
 	if(get_amount() == 1)
-		to_chat(user, "A short piece of power cable.")
+		description += "A short piece of power cable."
 	else if(get_amount() == 2)
-		to_chat(user, "A piece of power cable.")
+		description += "A piece of power cable."
 	else
-		to_chat(user, "A coil of power cable. There are [get_amount()] lengths of cable in the coil.")
+		description += "A coil of power cable. There are [get_amount()] lengths of cable in the coil."
+	..(user, afterDesc = description)
 
 
 /obj/item/stack/cable_coil/verb/make_restraint()
@@ -866,7 +867,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 
 /obj/item/stack/cable_coil/cut/New(loc)
 	..()
-	src.amount = rand(1,2)
+	src.setAmount(rand(1,2))
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	update_icon()

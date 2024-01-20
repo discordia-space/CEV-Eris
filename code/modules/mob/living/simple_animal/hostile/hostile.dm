@@ -241,6 +241,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	playsound(user, projectilesound, 100, 1)
 	if(!A)	return
 	var/def_zone = get_exposed_defense_zone(target)
+	A.PrepareForLaunch()
 	A.launch(target, def_zone)
 
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()

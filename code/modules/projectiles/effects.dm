@@ -8,7 +8,7 @@
 /obj/effect/projectile/New(var/turf/location)
 	init_plane()
 	if(istype(location))
-		loc = location
+		forceMove(location)
 	update_plane()
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)

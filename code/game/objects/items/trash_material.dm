@@ -40,7 +40,7 @@
 /obj/item/trash/material/circuit
 	name = "burnt circuit"
 	desc = "A burnt circuit that can be recycled in an autolathe."
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon_state = "circuit0"
 	rarity_value = 3.5
 	matter_chances = list(
@@ -60,7 +60,7 @@
 /obj/item/trash/material/device
 	name = "broken device"
 	desc = "A broken device that can be recycled in an autolathe."
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon_state = "device0"
 	rarity_value = 4
 	matter_chances = list(

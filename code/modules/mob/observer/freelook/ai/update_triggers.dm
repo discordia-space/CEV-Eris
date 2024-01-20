@@ -6,7 +6,7 @@
 // This might be laggy, comment it out if there are problems.
 /mob/living/silicon/var/updating = 0
 
-/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
@@ -18,7 +18,7 @@
 						cameranet.updatePortableCamera(src.camera)
 					updating = 0
 
-/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)

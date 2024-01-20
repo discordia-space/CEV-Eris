@@ -83,16 +83,9 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	// TODO: Find a way to fake the glide or something.
 	if(isliving(AM))
 		var/mob/living/L = AM
-		if(L.pulling)
-			var/atom/movable/pulled = L.pulling
-			L.stop_pulling()
-			// For some reason, trying to put the pulled object behind the person makes the drag stop and it doesn't even move to the other side.
-		//	pulled.forceMove(get_turf(counterpart))
-			pulled.forceMove(counterpart.get_focused_turf())
-			L.forceMove(counterpart.get_focused_turf())
-			L.start_pulling(pulled)
-		else
-			L.forceMove(counterpart.get_focused_turf())
+		for(var/obj/item/grab/g in L)
+			g.affecting.forceMove(counterpart.get_focused_turf(), initiator = g)
+		L.forceMove(counterpart.get_focused_turf())
 	else
 		AM.forceMove(counterpart.get_focused_turf())
 
@@ -163,7 +156,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	return ..()
 
 /obj/effect/map_effect/portal/master/proc/find_lines()
-	var/list/dirs_to_search = list( turn(dir, 90), turn(dir, -90) )
+	var/list/dirs_to_search = list(turn(dir, 90), turn(dir, -90))
 
 	for(var/dir_to_search in dirs_to_search)
 		var/turf/current_T = get_turf(src)

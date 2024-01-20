@@ -47,10 +47,9 @@
 		if (I_GRAB)
 			if(M == src || anchored)
 				return 0
-			for(var/obj/item/grab/G in src.grabbed_by)
-				if(G.assailant == M)
-					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
-					return
+			if(grabbedBy && grabbedBy.assailant == M)
+				to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
+				return
 
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
@@ -103,38 +102,16 @@
 
 				return 1
 
-/mob/living/carbon/superior_animal/ex_act(severity)
-	..()
-	flash(5, FALSE ,FALSE ,FALSE)
-
-	var/bomb_defense = getarmor(null, ARMOR_BOMB)
-	var/b_loss = null
-	switch (severity)
-		if (1)
-			gib()
-			return
-
-		if (2)
-			b_loss += 60
-			adjustEarDamage(30,120)
-
-		if (3)
-			b_loss += 30
-			if (prob(50))
-				Paralyse(1)
-			adjustEarDamage(15,60)
-
-		if (4)
-			b_loss += 15
-			if (prob(25))
-				Paralyse(1)
-			adjustEarDamage(15,60)
-
-	b_loss = max(0, b_loss - bomb_defense)
-
-	adjustBruteLoss(b_loss)
-
-	updatehealth()
+/mob/living/carbon/superior_animal/explosion_act(target_power)
+	flash(round(target_power/100), FALSE, FALSE , FALSE)
+	target_power -= getarmor(null, ARMOR_BOMB)
+	if(target_power > 1000)
+		gib()
+	else if(target_power > 300)
+		adjustEarDamage(round(target_power/10), round(target_power/100))
+	adjustBruteLoss(target_power)
+	// Non blocking
+	return 0
 
 /mob/living/carbon/superior_animal/handle_regular_status_updates()
 	..()
@@ -203,12 +180,9 @@
 /mob/living/carbon/superior_animal/gib(var/anim = icon_gib, var/do_gibs = 1)
 	if (!anim)
 		anim = 0
-
-	sleep(1)
-
 	for(var/obj/item/I in src)
 		drop_from_inventory(I)
-		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.w_class))
+		I.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,3), round(30/I.volumeClass))
 
 	playsound(src.loc, 'sound/effects/splat.ogg', max(10,min(50,maxHealth)), 1)
 	if (do_gibs)
@@ -389,12 +363,11 @@
 	if(!damage || !istype(user))
 		return
 
-	var/penetration = 0
+	var/penetration = 1
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
 		penetration = L.armor_divisor
-
-	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage))), null, src,penetration,1, FALSE )
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
 	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))

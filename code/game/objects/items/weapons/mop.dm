@@ -6,11 +6,15 @@
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mop"
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 6)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 10
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 	matter = list(MATERIAL_PLASTIC = 3)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY

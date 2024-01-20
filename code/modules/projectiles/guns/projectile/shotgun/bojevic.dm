@@ -6,12 +6,11 @@
 			if you could manage recoil, of course. Compatible only with special M12 8-round drum magazines."
 	icon = 'icons/obj/guns/projectile/bojevic.dmi'
 	icon_state = "bojevic"
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 4000
@@ -19,8 +18,7 @@
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ltrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ltrifle_cock.ogg'
-	damage_multiplier = 0.8
-	penetration_multiplier = 0.5 // this is not babies first gun. It's a Serb-level weapon.
+	damage_multiplier = 1
 	init_recoil = CARBINE_RECOIL(1.1)
 
 					//while also preserving ability to shoot as fast as you can click and maintain recoil good enough
@@ -28,7 +26,8 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_300
 		)
-	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	// Watch out when modularizing, autorifle/light cannot support shotgun barrels natively.
+	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/autorifle/light = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "SA"
 
 /obj/item/gun/projectile/shotgun/bojevic/update_icon()
@@ -40,7 +39,7 @@
 		itemstring += "_doble"
 
 	if(ammo_magazine)
-		overlays += "m12[ammo_magazine.ammo_label_string]"
+		overlays += "m12_[ammo_magazine.mag_well][ammo_magazine.ammo_label_string]"
 		itemstring += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
@@ -57,6 +56,6 @@
 	desc = "A Bojevic shotgun frame. Specially designed to sweep streets and spaceship halls."
 	icon_state = "frame_bojevic"
 	resultvars = list(/obj/item/gun/projectile/shotgun/bojevic)
-	gripvars = list(/obj/item/part/gun/grip/serb)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle // listen, its semi and full auto, not pump. makes sense
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/serb)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/light // listen, its semi and full auto, not pump. makes sense
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

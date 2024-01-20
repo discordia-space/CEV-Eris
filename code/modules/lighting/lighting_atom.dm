@@ -54,12 +54,6 @@
 		var/turf/T = loc
 		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
-// Destroy our light source so we GC correctly.
-/atom/Destroy()
-	if(light)
-		light.destroy()
-		light = null
-	return ..()
 
 /atom/movable/init_light()
 	. = ..()
@@ -72,13 +66,6 @@
 		var/turf/simulated/open/open = loc
 		if(open.isOpen())
 			open.fallThrough(src)
-
-// If we have opacity, make sure to tell (potentially) affected light sources.
-/atom/movable/Destroy()
-	var/turf/T = loc
-	if(opacity && istype(T))
-		set_opacity(FALSE)
-	return ..()
 
 // Should always be used to change the opacity of an atom.
 // It notifies (potentially) affected light sources so they can update (if needed).
@@ -118,16 +105,3 @@
 		for(var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
 			var/datum/light_source/L = A
 			L.source_atom.update_light()
-
-/obj/item/equipped()
-	. = ..()
-	update_light()
-
-/obj/item/pre_pickup()
-	update_light()
-	return ..()
-
-/obj/item/dropped()
-	. = ..()
-	SEND_SIGNAL_OLD(src, COMSIG_ITEM_DROPPED, src)
-	update_light()

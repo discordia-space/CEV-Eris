@@ -6,7 +6,7 @@
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "evidenceobj"
 	item_state = ""
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	var/obj/item/stored_item = null
 	price_tag = 5
 
@@ -46,7 +46,7 @@
 		to_chat(user, SPAN_NOTICE("You find putting an evidence bag in another evidence bag to be slightly absurd."))
 		return
 
-	if(I.w_class >= ITEM_SIZE_BULKY)
+	if(I.volumeClass >= ITEM_SIZE_BULKY)
 		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
 		return
 
@@ -70,9 +70,9 @@
 	overlays += "evidence"	//should look nicer for transparent stuff. not really that important, but hey.
 
 	desc = "An evidence bag containing [I]."
-	I.loc = src
+	I.forceMove(src)
 	stored_item = I
-	w_class = I.w_class
+	volumeClass = I.volumeClass
 	return
 
 
@@ -86,7 +86,7 @@
 		user.put_in_hands(I)
 		stored_item = null
 
-		w_class = initial(w_class)
+		volumeClass = initial(volumeClass)
 		icon_state = "evidenceobj"
 		desc = "An empty evidence bag."
 	else

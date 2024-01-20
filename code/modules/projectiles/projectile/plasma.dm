@@ -4,8 +4,11 @@
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	armor_divisor = 2
-	check_armour = ARMOR_ENERGY
-	damage_types = list(BURN = 27)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,27)
+		)
+	)
 	recoil = 4 // .20 level
 
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
@@ -14,30 +17,53 @@
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
 	armor_divisor = 2
-	damage_types = list(BURN = 23)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,19)
+		)
+	)
 	recoil = 2
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
 	armor_divisor = 2
-	damage_types = list(BURN = 34)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,35)
+		)
+	)
 	recoil = 6
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"
 	taser_effect = 1
-	damage_types = list(HALLOSS = 30, BURN = 5)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,5),
+			DELEM(HALLOSS, 30)
+		)
+	)
 	impact_type = /obj/effect/projectile/stun/impact
 
 /obj/item/projectile/plasma/stun/heavy
-	damage_types = list(HALLOSS = 30, BURN = 42)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(HALLOSS ,40),
+			DELEM(HALLOSS, 10),
+			DELEM(BURN, 25)
+		)
+	)
 	recoil = 6
 
 /obj/item/projectile/plasma/aoe
 	name = "default plasma aoe"
 	icon_state = "ion"
 	armor_divisor = 1
-	damage_types = list(BURN = 0)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,0)
+		)
+	)
 
 	var/aoe_strong = 0
 	var/aoe_weak = 0 // Should be greater or equal to strong
@@ -57,7 +83,11 @@
 	name = "ion-plasma bolt"
 	icon_state = "ion"
 	armor_divisor = 1
-	damage_types = list(BURN = 23)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,23)
+		)
+	)
 	recoil = 8
 
 	aoe_strong = 1
@@ -70,7 +100,11 @@
 /obj/item/projectile/plasma/aoe/ion/light
 	name = "light ion-plasma bolt"
 	armor_divisor = 1
-	damage_types = list(BURN = 19)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,18)
+		)
+	)
 	recoil = 6
 
 	aoe_strong = 0
@@ -83,7 +117,11 @@
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
 	armor_divisor = 3
-	damage_types = list(BURN = 19)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,19)
+		)
+	)
 	recoil = 12
 
 	aoe_strong = 1
@@ -96,7 +134,11 @@
 /obj/item/projectile/plasma/aoe/heat/strong
 	name = "high-temperature plasma blast"
 	armor_divisor = 2
-	damage_types = list(BURN = 27)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN ,27)
+		)
+	)
 	recoil = 18
 
 	aoe_strong = 1

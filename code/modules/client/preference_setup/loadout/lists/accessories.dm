@@ -104,15 +104,15 @@
 
 /datum/gear/accessory/tie/blue
 	display_name = "tie, blue"
-	path = /obj/item/clothing/accessory/blue
+	path = /obj/item/clothing/accessory/tie/blue
 
 /datum/gear/accessory/tie/red
 	display_name = "tie, red"
-	path = /obj/item/clothing/accessory/red
+	path = /obj/item/clothing/accessory/tie/red
 
 /datum/gear/accessory/tie/horrible
 	display_name = "tie, socially disgraceful"
-	path = /obj/item/clothing/accessory/horrible
+	path = /obj/item/clothing/accessory/tie/horrible
 
 /datum/gear/accessory/wallet
 	display_name = "wallet, colour select"

@@ -5,11 +5,15 @@
 	icon_state = "flamethrowerbase"
 	item_state = "flamethrower_0"
 	flags = CONDUCT | NOBLUDGEON
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2, TECH_PLASMA = 1)
 	slot_flags = SLOT_BELT
 	matter = list(MATERIAL_STEEL = 5)

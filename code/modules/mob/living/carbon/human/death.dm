@@ -14,14 +14,12 @@
 			if(on_turf)
 				E.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,max_range),30)
 
-	sleep(1)
-
 	for(var/obj/item/D in src)
 		if (keep_only_robotics && istype(D, /obj/item/organ))
 			continue
 		else
 			drop_from_inventory(D)
-			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,max_range), round(30/D.w_class))
+			D.throw_at(get_edge_target_turf(src,pick(alldirs)), rand(1,max_range), round(30/D.volumeClass))
 
 	..(species.gibbed_anim)
 	gibs(loc, src, null, species.flesh_color, species.blood_color)
@@ -82,7 +80,7 @@
 					to_chat(H, SPAN_DANGER("You are get hurt by holy light!"))
 				else
 					burn_damage_done = martyr.burn_damage / get_dist(src, L)
-					L.damage_through_armor(burn_damage_done, BURN)
+					L.damage_through_armor(list(ARMOR_ENERGY=list(DELEM(BURN,burn_damage_done))), null, C, 1, 1, FALSE)
 
 			qdel(martyr)
 			C.upgrade = null

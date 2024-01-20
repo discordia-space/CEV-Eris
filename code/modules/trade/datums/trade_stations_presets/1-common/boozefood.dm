@@ -24,7 +24,7 @@
 			/obj/item/reagent_containers/food/condiment/enzyme = custom_good_price(80)
 		),
 		"Drinks" = list(
-			/obj/item/reagent_containers/food/drinks/bottle/gin = custom_good_price(100), 
+			/obj/item/reagent_containers/food/drinks/bottle/gin = custom_good_price(100),
 			/obj/item/reagent_containers/food/drinks/bottle/whiskey = custom_good_price(100),
 			/obj/item/reagent_containers/food/drinks/bottle/tequilla = custom_good_price(100),
 			/obj/item/reagent_containers/food/drinks/bottle/vodka = custom_good_price(100),
@@ -77,5 +77,8 @@
 		/obj/item/reagent_containers/food/snacks/bigroachburger = offer_data("big roach burger", 2000, 2),
 		/obj/item/reagent_containers/food/snacks/fuhrerburger = offer_data("fuhrer burger", 2000, 2),
 		/datum/reagent/alcohol/changelingsting = offer_data("Changeling Sting bottle (60u)", 1500, 1),
-		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1)		// Lemon juice bottle may need to be added to the game
+		/datum/reagent/alcohol/longislandicedtea = offer_data("Long Island Iced Tea bottle (60u)", 1500, 1),	// Lemon juice bottle may need to be added to the game
+		/datum/reagent/alcohol/alliescocktail = offer_data("Allies Cocktail bottle (60u)", 1500, 1),
+		/datum/reagent/alcohol/manhattan_proj = offer_data("Manhattan Project bottle (60u)", 2500, 1),
+		/datum/reagent/alcohol/atomicbomb = offer_data("Atomic Bomb bottle (60u)", 3000, 1)
 	)

@@ -86,7 +86,7 @@
 				cell = W
 				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
 
-/obj/item/organ/internal/cell/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/internal/cell/mob_update(mob/living/carbon/human/target)
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner.stat == DEAD)
@@ -153,5 +153,5 @@
 			stored_mmi.icon_state = "posibrain-occupied"
 			update_from_mmi()
 		else
-			stored_mmi.loc = get_turf(src)
+			stored_mmi.forceMove(get_turf(src))
 			qdel(src)

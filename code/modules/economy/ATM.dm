@@ -63,7 +63,7 @@ log transactions
 /obj/machinery/atm/power_change()
 	..()
 	if (held_card && !powered(0))
-		held_card.loc = src.loc
+		held_card.forceMove(src.loc)
 		authenticated_account = null
 		held_card = null
 	update_icon()
@@ -414,7 +414,7 @@ log transactions
 						var/obj/item/I = usr.get_active_hand()
 						if (istype(I, /obj/item/card/id))
 							usr.drop_item()
-							I.loc = src
+							I.forceMove(src)
 							held_card = I
 				else
 					release_held_id(usr)

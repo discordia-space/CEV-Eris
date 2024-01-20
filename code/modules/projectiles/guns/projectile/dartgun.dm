@@ -1,7 +1,11 @@
 /obj/item/projectile/bullet/chemdart
 	name = "dart"
 	icon_state = "dart"
-	damage_types = list(BRUTE = 5)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 5)
+		)
+	)
 	sharp = TRUE
 	embed = 1 //the dart is shot fast enough to pierce space suits, so I guess splintering inside the target can be a thing. Should be rare due to low damage.
 	kill_count = 15 //shorter range
@@ -93,13 +97,14 @@
 	//update_icon()
 	//if (!..(user, 2))
 	//	return
-	..()
+	var/description = ""
 	if(beakers.len)
-		to_chat(user, SPAN_NOTICE("[src] contains:"))
+		description += SPAN_NOTICE("[src] contains:\n")
 		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && B.reagents.reagent_list.len)
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
+					description += SPAN_NOTICE("[R.volume] units of [R.name]\n")
+	..(user, afterDesc = description)
 
 /obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/glass))
@@ -111,7 +116,7 @@
 			return
 		var/obj/item/reagent_containers/glass/beaker/B = I
 		user.drop_item()
-		B.loc = src
+		B.forceMove(src)
 		beakers += B
 		to_chat(user, SPAN_NOTICE("You slot [B] into [src]."))
 		src.updateUsrDialog()
@@ -187,7 +192,7 @@
 				to_chat(usr, "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
-				B.loc = get_turf(src)
+				B.forceMove(get_turf(src))
 	else if (href_list["eject_cart"])
 		unload_ammo(usr)
 	src.updateUsrDialog()

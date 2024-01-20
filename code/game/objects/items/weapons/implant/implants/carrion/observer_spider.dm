@@ -43,12 +43,12 @@
 	. = ..()
 
 // Code for spy sensor contract completion
-/obj/item/implant/carrion_spider/observer/Move()
+/obj/item/implant/carrion_spider/observer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(.)
 		reset()
 
-/obj/item/implant/carrion_spider/observer/forceMove()
+/obj/item/implant/carrion_spider/observer/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	. = ..()
 	if(.)
 		reset()

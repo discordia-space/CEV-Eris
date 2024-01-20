@@ -5,7 +5,7 @@
 	desc = "A folded bag designed for the storage and transportation of cadavers."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_folded"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	price_tag = 10
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_MEDICAL
@@ -85,7 +85,7 @@
 /obj/item/bodybag/expanded
 	name = "body bag"
 	desc = "A folded bag designed for the storage and transportation of cadavers. This one is extra large."
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_blacklisted = TRUE
 
 /obj/item/bodybag/expanded/attack_self(mob/user)

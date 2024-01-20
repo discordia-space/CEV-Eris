@@ -156,7 +156,8 @@ field_generator power level display
 
 /obj/machinery/field_generator/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
-		power += Proj.damage_types[BURN] * EMITTER_DAMAGE_POWER_TRANSFER
+		var/damage = Proj.getAllDamType(BURN)
+		power += damage * EMITTER_DAMAGE_POWER_TRANSFER
 		update_icon()
 	return 0
 
@@ -282,7 +283,7 @@ field_generator power level display
 			CF.set_master(src,G)
 			fields += CF
 			G.fields += CF
-			CF.loc = T
+			CF.forceMove(T)
 			CF.set_dir(field_dir)
 	var/listcheck = 0
 	for(var/obj/machinery/field_generator/FG in connected_gens)

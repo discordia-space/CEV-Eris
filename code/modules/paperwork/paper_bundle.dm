@@ -5,7 +5,7 @@
 	icon_state = "paper"
 	item_state = "paper"
 	throwforce = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_range = 2
 	throw_speed = 1
 	layer = 4
@@ -35,7 +35,7 @@
 	else if(istype(W, /obj/item/paper_bundle))
 		user.drop_from_inventory(W)
 		for(var/obj/O in W)
-			O.loc = src
+			O.forceMove(src)
 			O.add_fingerprint(usr)
 			pages.Add(O)
 
@@ -61,7 +61,7 @@
 		to_chat(user, "<span class='notice'>You add [(sheet.name == "photo") ? "the photo" : sheet.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
 
 	user.drop_from_inventory(sheet)
-	sheet.loc = src
+	sheet.forceMove(src)
 
 	pages.Insert(index, sheet)
 
@@ -202,7 +202,7 @@
 
 	to_chat(usr, SPAN_NOTICE("You loosen the bundle."))
 	for(var/obj/O in src)
-		O.loc = usr.loc
+		O.forceMove(usr.loc)
 		O.layer = initial(O.layer)
 		O.add_fingerprint(usr)
 	usr.drop_from_inventory(src)

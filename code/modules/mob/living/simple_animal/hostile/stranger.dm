@@ -119,7 +119,7 @@
 /obj/item/gun/energy/plasma/stranger
 	name = "unknown plasma gun"
 	desc = "A plasma gun with unknown origins, it seems to always spark a different feeling in those inspired by it."
-	icon = 'icons/obj/guns/energy/lancer.dmi'
+	icon = 'icons/obj/guns/energy/lancer.dmi' // back and on_suit sprites required
 	icon_state = "lancer"
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
 	price_tag = 5000
@@ -129,12 +129,12 @@
 	twohanded = FALSE
 	suitable_cell = /obj/item/cell/small
 	can_dual = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
-		list(mode_name="XhddhrdJkJ", mode_desc="uDsfMdPQkm", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, move_delay=null, charge_cost=9, icon="destroy", projectile_color = "#FFFFFF"),
-		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF")
+		list(mode_name="XhddhrdJkJ", mode_desc="uDsfMdPQkm", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, charge_cost=9, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF")
 	)
 
 /obj/item/gun/energy/plasma/stranger/update_icon(ignore_inhands)
@@ -143,34 +143,36 @@
 
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
-			ratio = 100
-		else if(!cell)
-			ratio = "empty"
+			ratio = cell.charge / cell.maxcharge
+			ratio = min(max(round(ratio, 0.5) * 100, 50), 100)
 
 		if(modifystate)
-			icon_state = "[modifystate]-[ratio]"
+			icon_state = "[modifystate][ratio]"
+			wielded_item_state = "_doble" + "[modifystate][ratio]"
 		else
-			icon_state = "[initial(icon_state)]-[ratio]"
+			icon_state = "[initial(icon_state)][ratio]"
 
 		if(item_charge_meter)
 			set_item_state("-[item_modifystate][ratio]")
+			wielded_item_state = "_doble" + "-[item_modifystate][ratio]"
 	if(!item_charge_meter && item_modifystate)
 		set_item_state("-[item_modifystate]")
-	if(!ignore_inhands)
-		update_wear_icon()
+		wielded_item_state = "_doble" + "-[item_modifystate]"
+	update_wear_icon()
 
 /obj/item/gun/energy/plasma/stranger/examine(user, distance)
-	. = ..()
+	var/description = ""
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			to_chat(user, SPAN_NOTICE("It's fading out."))
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			to_chat(user, SPAN_NOTICE("It's occasionally pulsing with energy."))
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold * 0.7)
+		description += SPAN_NOTICE("It's occasionally pulsing with energy. \n")
+	else if(my_area.bluespace_entropy > 0)
+		description += SPAN_NOTICE("It's fading out. \n")
+
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		to_chat(user, SPAN_NOTICE("It glows with an inner radiance."))
+		description += SPAN_NOTICE("It glows with an inner radiance.")
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		to_chat(user, SPAN_NOTICE("The energy surrounding it is overwhelming to the point of feeling warm in your hands."))
+		description += SPAN_NOTICE("The energy surrounding it is overwhelming to the point of feeling warm in your hands.")
+	..(user, afterDesc = description)
 
 
 

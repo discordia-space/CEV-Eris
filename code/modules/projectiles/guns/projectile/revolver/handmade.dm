@@ -8,14 +8,13 @@
 	max_shells = 6
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
 	price_tag = 250 //one of the cheapest revolvers here
-	damage_multiplier = 1.25
-	penetration_multiplier = 0.1
+	damage_multiplier = 0.75
 	init_recoil = HANDGUN_RECOIL(1.2)
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 15)
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	serial_type = ""
-	gun_parts = list(/obj/item/part/gun/frame/revolver_handmade = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/revolver/steel = 1, /obj/item/part/gun/barrel/magnum/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/revolver_handmade = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/revolver/steel = 1, /obj/item/part/gun/modular/barrel/magnum/steel = 1)
 
 /obj/item/part/gun/frame/revolver_handmade
 	name = "Handmade revolver frame"
@@ -23,6 +22,6 @@
 	icon_state = "frame_revolver_hm"
 	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/revolver/handmade)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver/steel
-	barrelvars = list(/obj/item/part/gun/barrel/magnum/steel, /obj/item/part/gun/barrel/pistol/steel)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/revolver/steel
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum/steel, /obj/item/part/gun/modular/barrel/pistol/steel)

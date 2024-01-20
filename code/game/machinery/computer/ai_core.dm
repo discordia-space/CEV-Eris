@@ -117,7 +117,7 @@
 					state = 2
 					icon_state = "2"
 					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
-					A.amount = 5
+					A.setAmount(5)
 					return
 			return
 

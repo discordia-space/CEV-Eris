@@ -60,12 +60,7 @@
 	if(iscarbon(M))
 		eye_safety = M.eyecheck()
 		if(ishuman(M))
-			if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
-				ear_safety += 2
-//			if(HULK in M.mutations)
-//				ear_safety += 1
-			if(istype(M:head, /obj/item/clothing/head/armor/helmet))
-				ear_safety += 1
+			ear_safety = M.earcheck()
 			if(M.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
 				stat_def *= 2
 	if(intensity)

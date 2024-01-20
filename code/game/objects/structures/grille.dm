@@ -7,14 +7,14 @@
 	anchored = TRUE
 	flags = CONDUCT
 	layer = BELOW_OBJ_LAYER
-	explosion_resistance = 1
-	var/health = 50
+	// Blocks very little , since its just metal rods..
+	explosion_coverage = 0.2
+	health = 50
 	var/destroyed = 0
 
-
-/obj/structure/grille/ex_act(severity)
-	if(severity < 4)
-		qdel(src)
+/obj/structure/grille/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed = take_damage(target_power)
+	return absorbed
 
 /obj/structure/grille/update_icon()
 	if(destroyed)
@@ -64,46 +64,19 @@
 
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
 	var/damage = Proj.get_structure_damage()
-	var/passthrough = 0
+	var/passthrough = FALSE
 
 	if(!damage) return
 
-	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
-	//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
-	for(var/i in Proj.damage_types)
-		if(i == BRUTE)
-			//bullets
-			if(Proj.original == src || prob(20))
-				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 0.5)
-				if(prob(max((damage-10)/25, 0))*100)
-					passthrough = 1
-			else
-				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 1)
-				passthrough = 1
-		if(i == BURN)
-			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
-			if(!(Proj.original == src || prob(20)))
-				Proj.damage_types[i] *= 0.5
-				passthrough = 1
+	if(damage > 20)
+		passthrough = TRUE
 
 	if(passthrough)
 		. = PROJECTILE_CONTINUE
-		damage = between(0, (damage - Proj.get_structure_damage())*(Proj.damage_types[BRUTE] ? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
 
-	src.health -= damage*0.2
-	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
+	take_damage(damage * 0.2)
 
 /obj/structure/grille/attackby(obj/item/I, mob/user)
-
-	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
-		var/obj/item/gun/G = I
-		if(anchored == TRUE) //Just makes sure we're not bracing on movable cover
-			G.gun_brace(user, src)
-			return
-		else
-			to_chat(user, SPAN_NOTICE("You can't brace your weapon - the [src] is not anchored down."))
-		return
-
 	var/list/usable_qualities = list(QUALITY_WIRE_CUTTING)
 	if(anchored)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
@@ -178,13 +151,14 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-		health -= I.force * I.structure_damage_factor
-	healthcheck()
+		take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) * I.structure_damage_factor)
 	..()
 	return
 
 
-/obj/structure/grille/proc/healthcheck()
+/obj/structure/grille/take_damage(damage)
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
 	if(health <= 0)
 		if(!destroyed)
 			density = FALSE
@@ -192,11 +166,10 @@
 			update_icon()
 			new /obj/item/stack/rods(get_turf(src))
 
-		else
-			if(health <= -6)
-				new /obj/item/stack/rods(get_turf(src))
-				qdel(src)
-				return
+		else if(health <= -6)
+			new /obj/item/stack/rods(get_turf(src))
+			qdel(src)
+			return
 	return
 
 // shock user with probability prb (if all connections & power are working)
@@ -228,16 +201,14 @@
 /obj/structure/grille/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!destroyed)
 		if(exposed_temperature > T0C + 1500)
-			health -= 1
-			healthcheck()
+			take_damage(1)
 	..()
 
 /obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message(SPAN_DANGER("[user] [attack_verb] the [src]!"))
 	attack_animation(user)
-	health -= damage
-	spawn(1) healthcheck()
-	return 1
+	take_damage(damage)
+	return TRUE
 
 /obj/structure/grille/hitby(AM as mob|obj)
 	..()
@@ -249,12 +220,7 @@
 	else if(isobj(AM))
 		var/obj/item/I = AM
 		tforce = I.throwforce
-	health = max(0, health - tforce)
-	if(health <= 0)
-		destroyed=1
-		new /obj/item/stack/rods(get_turf(src))
-		density = FALSE
-		update_icon()
+	take_damage(tforce)
 
 // Used in mapping to avoid
 /obj/structure/grille/broken
@@ -263,8 +229,7 @@
 	density = FALSE
 	New()
 		..()
-		health = rand(-5, -1) //In the destroyed but not utterly threshold.
-		healthcheck() //Send this to healthcheck just in case we want to do something else with it.
+		take_damage(rand(5,1))
 
 /obj/structure/grille/cult
 	name = "cult grille"
@@ -278,7 +243,7 @@
 	..()
 
 /obj/structure/grille/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = health * 0.4
+	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)

@@ -11,7 +11,7 @@
 	flags = PASSTABLE | CONDUCT
 	slot_flags = SLOT_BELT
 	//m_amt = 2000
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	attack_verb = list("struck", "hit", "bashed")
 	price_tag = 1000
 	spawn_blacklisted = TRUE
@@ -45,7 +45,7 @@
 		if(!magazine)
 			user.drop_item()
 			magazine = W
-			magazine.loc = src
+			magazine.forceMove(src)
 			update_icon()
 			return
 	return
@@ -53,7 +53,7 @@
 
 /obj/item/hatton/attack_self(mob/living/user as mob)
 	if(magazine)
-		magazine.loc = get_turf(src.loc)
+		magazine.forceMove(get_turf(src.loc))
 		user.put_in_hands(magazine)
 		magazine.update_icon()
 		magazine = null
@@ -148,7 +148,7 @@
 	name = "Excelsior BT \"Hatton\" gas tube"
 	icon = 'icons/obj/guns/breacher.dmi'
 	icon_state = "Hatton_box1"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	//m_amt = 15
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
@@ -229,7 +229,7 @@
 		if(!magazine)
 			user.drop_item()
 			magazine = W
-			magazine.loc = src
+			magazine.forceMove(src)
 			update_icon()
 			return
 	return
@@ -241,11 +241,7 @@
 
 
 /mob/hatton_act()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		H.take_overall_damage(35, 10)
-	else
-		ex_act(2)
+	explosion_act(120, null)
 //turfs
 
 /turf/simulated/wall/hatton_act()
@@ -255,7 +251,7 @@
 	take_damage(1000)
 
 /turf/simulated/mineral/hatton_act()
-	ex_act(1)
+	explosion_act(1000, null)
 
 
 
@@ -266,7 +262,7 @@
 	Dismantle()*/
 
 /obj/structure/hatton_act()
-	ex_act(1)
+	explosion_act(1000, null)
 
 /obj/machinery/deployable/barrier/hatton_act()
 	visible_message(SPAN_DANGER("The [src] is blown apart!"))
@@ -278,7 +274,7 @@
 //machines
 
 /obj/machinery/hatton_act()
-	ex_act(2)
+	explosion_act(500, null)
 
 /obj/machinery/computer/hatton_act()
 	..()
@@ -286,7 +282,7 @@
 	return
 
 /obj/machinery/door/hatton_act()
-	ex_act(1)
+	explosion_act(500, null)
 
 
 //ignore

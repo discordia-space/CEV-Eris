@@ -22,23 +22,26 @@
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 2)
 	var/up = 0
 	armor = list(
-		melee = 5,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 	body_parts_covered = HEAD|FACE|EYES
 	action_button_name = "Flip Welding Mask"
 	siemens_coefficient = 0.9
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_MODERATE
 	style = STYLE_NEG_LOW
 	style_coverage = COVERS_WHOLE_FACE
 	var/base_state
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/head/welding/attack_self()
 	if(!base_state)
@@ -106,14 +109,10 @@
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
 	src.onfire = !( src.onfire )
 	if (src.onfire)
-		src.force = 3
-		src.damtype = "fire"
 		src.icon_state = "cake1"
 		src.item_state = "cake1"
 		START_PROCESSING(SSobj, src)
 	else
-		src.force = null
-		src.damtype = "brute"
 		src.icon_state = "cake0"
 		src.item_state = "cake0"
 	return
@@ -128,6 +127,11 @@
 	icon_state = "ushanka_down"
 	flags_inv = HIDEEARS
 	style_coverage = COVERS_HAIR
+	armorComps = list(
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather,
+		/obj/item/armor_component/plate/leather
+	)
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user)
 	if(src.icon_state == "ushanka_down")
@@ -161,7 +165,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	brightness_on = 2
 	light_overlay = "helmet_light"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	style_coverage = COVERS_WHOLE_HEAD
 
 

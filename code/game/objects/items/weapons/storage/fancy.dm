@@ -29,17 +29,15 @@
 	return
 
 /obj/item/storage/fancy/examine(mob/user)
-	if(!..(user, 1))
-		return
-
+	var/description = ""
 	if(contents.len <= 0)
-		to_chat(user, "There are no [src.icon_type]s left in the box.")
+		description += "There are no [src.icon_type]s left in the box."
 	else if(contents.len == 1)
-		to_chat(user, "There is one [src.icon_type] left in the box.")
+		description += "There is one [src.icon_type] left in the box."
 	else
-		to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
+		description += "There are [src.contents.len] [src.icon_type]s in the box."
 
-	return
+	..(user, afterDesc = description)
 
 /*
  * Egg Box
@@ -58,8 +56,13 @@
 		)
 
 /obj/item/storage/fancy/egg_box/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to storage_slots)
-		new item_obj(src)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 //MRE food
 /obj/item/storage/fancy/mre_cracker
@@ -73,8 +76,13 @@
 		)
 
 /obj/item/storage/fancy/mre_cracker/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to storage_slots)
-		new item_obj(src)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /*
  * Candle Box
@@ -94,8 +102,13 @@
 
 
 /obj/item/storage/fancy/candle_box/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to storage_slots)
-		new item_obj(src)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /*
  * Crayon Box
@@ -106,19 +119,22 @@
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/crayons.dmi'
 	icon_state = "crayonbox"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon_type = "crayon"
 	can_hold = list(
 		/obj/item/pen/crayon
 	)
 
 /obj/item/storage/fancy/crayons/populate_contents()
-	new /obj/item/pen/crayon/red(src)
-	new /obj/item/pen/crayon/orange(src)
-	new /obj/item/pen/crayon/yellow(src)
-	new /obj/item/pen/crayon/green(src)
-	new /obj/item/pen/crayon/blue(src)
-	new /obj/item/pen/crayon/purple(src)
+	var/list/spawnedAtoms = list()
+	spawnedAtoms.Add(new /obj/item/pen/crayon/red(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/orange(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/yellow(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/green(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/blue(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen/crayon/purple(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	update_icon()
 
 /obj/item/storage/fancy/crayons/update_icon()
@@ -147,7 +163,7 @@
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
@@ -178,8 +194,12 @@
 	update_icon()
 
 /obj/item/storage/fancy/cigarettes/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to storage_slots)
-		new item_obj(src)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
 /obj/item/storage/fancy/cigarettes/update_icon()
@@ -244,7 +264,7 @@
 	icon_state = "cigpacketcarton"
 	item_state = "cigpacketcarton"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	throwforce = WEAPON_FORCE_HARMLESS
 	storage_slots = 10
 	item_obj = /obj/item/storage/fancy/cigarettes
@@ -259,8 +279,13 @@
 		icon_state = "[initial(icon_state)]"
 
 /obj/item/storage/fancy/cigcartons/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to storage_slots)
-		new item_obj(src)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	update_icon()
 
 /obj/item/storage/fancy/cigcartons/dromedaryco
@@ -290,7 +315,7 @@
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
 	storage_slots = 6
@@ -340,11 +365,11 @@
 	if(!is_worn())
 		if(!open)
 			to_chat(user, SPAN_NOTICE("You open \the [src]."))
-			w_class = ITEM_SIZE_SMALL
+			volumeClass = ITEM_SIZE_SMALL
 			open = TRUE
 		else
 			to_chat(user, SPAN_NOTICE("You close \the [src]."))
-			w_class = ITEM_SIZE_TINY
+			volumeClass = ITEM_SIZE_TINY
 			open = FALSE
 		playsound(loc, 'sound/machines/click.ogg', 100, 1)
 		update_icon()
@@ -365,8 +390,13 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	. = ..()
 
 /obj/item/storage/fancy/cigar/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to storage_slots)
-		new item_obj(src)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	create_reagents(15 * storage_slots)
 	update_icon()
 
@@ -396,8 +426,13 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	item_obj = /obj/item/reagent_containers/glass/beaker/vial
 
 /obj/item/storage/fancy/vials/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	for(var/i in 1 to storage_slots)
-		new item_obj(src)
+		spawnedAtoms.Add(new item_obj(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/lockbox/vials
 	name = "secure vial storage box"
@@ -405,9 +440,9 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	icon = 'icons/obj/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
-	max_w_class = ITEM_SIZE_SMALL
+	max_volumeClass = ITEM_SIZE_SMALL
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
-	max_storage_space = 12 //The sum of the w_classes of all the items in this storage item.
+	max_storage_space = 12 //The sum of the volumeClasses of all the items in this storage item.
 	storage_slots = 6
 	req_access = list(access_virology)
 

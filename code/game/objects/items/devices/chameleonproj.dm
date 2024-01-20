@@ -6,6 +6,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 /obj/item/device/chameleon
 	name = "chameleon projector"
 	desc = "This is chameleion projector. Chose an item and activate projector. You're beautiful!"
+	commonLore = "Makes use of psionic technology to force a hallucination upon anyone who sees it."
 	icon_state = "shield0"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -13,7 +14,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)
 	suitable_cell = /obj/item/cell/small
 	spawn_blacklisted = TRUE
@@ -151,7 +152,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
 	master.disrupt()
 
-/obj/effect/dummy/chameleon/ex_act()
+/obj/effect/dummy/chameleon/explosion_act(target_power, explosion_handler/handler)
 	for(var/mob/M in src)
 		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
 	master.disrupt()

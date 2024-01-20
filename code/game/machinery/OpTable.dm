@@ -14,11 +14,18 @@
 	var/mob/living/carbon/victim
 
 	var/obj/machinery/computer/operating/computer
-	can_buckle = TRUE
-	buckle_dir = SOUTH
-	buckle_lying = TRUE //bed-like behavior, forces mob.lying = buckle_lying if != -1
-
 	var/y_offset = 0
+
+/obj/machinery/optable/Initialize(mapload, d)
+	. = ..()
+	var/list/visualHandle = list(
+		"[NORTH]" = list(0, y_offset, 0),
+		"[SOUTH]" = list(0, y_offset, 0),
+		"[EAST]" = list(0, y_offset, 0),
+		"[WEST]" = list(0, y_offset, 0)
+	)
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_REQUIRE_NOT_BUCKLED | BUCKLE_FORCE_DIR | BUCKLE_FORCE_LIE | BUCKLE_PIXEL_SHIFT, visualHandling = visualHandle)
+
 /obj/machinery/optable/New()
 	..()
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
@@ -29,38 +36,23 @@
 //	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
 //		Process()
 
-/obj/machinery/optable/ex_act(severity)
-
-	switch(severity)
-		if(1)
-			//SN src = null
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				//SN src = null
-				qdel(src)
-				return
-		if(3)
-			if (prob(25))
-				density = FALSE
-		else
-	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if (user.incapacitated(INCAPACITATION_DEFAULT))
 		return
 	if (victim)
-		user_unbuckle_mob(user)
+		//user_unbuckle_mob(user)
 		return
 //	if (HULK in usr.mutations)
 //		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
 //		density = FALSE
 //		qdel(src)
 
+/*
 /obj/machinery/optable/unbuckle_mob()
 	. = ..()
 	check_victim()
+*/
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
@@ -71,10 +63,12 @@
 		return 0
 
 /obj/machinery/optable/proc/check_victim()
-	if (istype(buckled_mob,/mob/living/carbon))
-		victim = buckled_mob
-		if(ishuman(buckled_mob))
-			var/mob/living/carbon/human/M = buckled_mob
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckleMob = buckle.buckled
+	if (istype(buckleMob,/mob/living/carbon))
+		victim = buckleMob
+		if(ishuman(buckleMob))
+			var/mob/living/carbon/human/M = buckleMob
 			icon_state = M.pulse() ? "optable-active" : "optable-idle"
 		return 1
 
@@ -90,16 +84,16 @@
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
 		visible_message(SPAN_NOTICE("\The [C] has been laid on \the [src] by [user]."), 3)
-		if (user.pulling == C)
-			user.stop_pulling() //Lets not drag your patient off the table after you just put them there
+		if(C.grabbedBy)
+			QDEL_NULL(C.grabbedBy)
 	if (C.client)
 		C.client.perspective = EYE_PERSPECTIVE
 		C.client.eye = src
-	C.loc = loc
+	C.forceMove(loc)
 	for(var/obj/O in src)
-		O.loc = loc
+		O.forceMove(src)
 	add_fingerprint(user)
-	buckle_mob(C)
+	//buckle_mob(C)
 
 
 /obj/machinery/optable/MouseDrop_T(mob/target, mob/user)
@@ -135,11 +129,3 @@
 		to_chat(usr, SPAN_NOTICE("Unbuckle \the [patient] first!"))
 		return 0
 	return 1
-
-/obj/machinery/optable/post_buckle_mob(mob/living/M as mob)
-	if(M == buckled_mob)
-		M.pixel_y = y_offset
-	else
-		M.pixel_y = 0
-
-	check_victim()

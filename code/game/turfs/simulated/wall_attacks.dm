@@ -97,7 +97,10 @@
 		return
 
 	//get the user's location
-	if(!istype(user.loc, /turf))	return	//can't do this stuff whilst inside objects and such
+	if(!istype(user.loc, /turf))
+		if(!(ismech(user.loc) && istype(I, /obj/item/tool/mech_kit)))
+			return
+
 
 	if(I)
 		radiate()
@@ -107,7 +110,7 @@
 	var/list/usable_qualities = list()
 	if(construction_stage == 2)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
-	if((locate(/obj/effect/overlay/wallrot) in src) || thermite || damage || isnull(construction_stage) || !reinf_material || construction_stage == 4 || construction_stage == 1)
+	if((locate(/obj/effect/overlay/wallrot) in src) || thermite || (health < maxHealth) || isnull(construction_stage) || !reinf_material || construction_stage == 4 || construction_stage == 1)
 		usable_qualities.Add(QUALITY_WELDING)
 	if(construction_stage == 3 || construction_stage == 0)
 		usable_qualities.Add(QUALITY_PRYING)
@@ -141,11 +144,11 @@
 					to_chat(user, SPAN_NOTICE("You ignite the thermite with the [I]!"))
 					thermitemelt(user)
 					return
-			if(damage)
+			if(health < maxHealth)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You repair the damage to [src]."))
 					clear_bulletholes()
-					take_damage(-damage)
+					take_damage(-health)
 					return
 			if(isnull(construction_stage) || !reinf_material)
 				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
@@ -227,9 +230,9 @@
 		return
 
 	else if(!istype(I,/obj/item/rcd) && !istype(I, /obj/item/reagent_containers))
-		if(!I.force)
+		var/attackforce = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))*I.structure_damage_factor
+		if(attackforce < 5)
 			return attack_hand(user)
-		var/attackforce = I.force*I.structure_damage_factor
 		var/dam_threshhold = material.integrity
 		if(reinf_material)
 			dam_threshhold = CEILING(max(dam_threshhold,reinf_material.integrity) * 0.5, 1)

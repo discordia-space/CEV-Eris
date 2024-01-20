@@ -4,10 +4,9 @@
 	desc = "You have got a bone to pick with this"
 	organ_efficiency = list(OP_BONE = 100)
 	price_tag = 100
-	force = WEAPON_FORCE_NORMAL
 	max_damage = IORGAN_SKELETAL_HEALTH
-	min_bruised_damage = 4
-	min_broken_damage = 6
+	min_bruised_damage = IORGAN_SKELETAL_BRUISE
+	min_broken_damage = IORGAN_SKELETAL_BREAK
 
 /obj/item/organ/internal/bone/Initialize()
     . = ..()
@@ -17,9 +16,14 @@
 /obj/item/organ/internal/bone/die()
 	return
 
+/obj/item/organ/internal/bone/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
+	if(damage > (min_broken_damage * ORGAN_HEALTH_MULTIPLIER) && !(status & ORGAN_BROKEN))
+		fracture()
+	. = ..()
+
 /obj/item/organ/internal/bone/get_possible_wounds(damage_type, sharp, edge)
 	var/list/possible_wounds = list()
-		
+
 	// Determine possible wounds based on nature and damage type
 	var/is_robotic = BP_IS_ROBOTIC(src)
 	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
@@ -79,13 +83,13 @@
 	name = "right femur"
 	icon_state = "right_leg"
 	parent_organ_base = BP_R_LEG
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 19)))
 
 /obj/item/organ/internal/bone/l_leg
 	name = "left femur"
 	icon_state = "left_leg"
 	parent_organ_base = BP_L_LEG
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE, 19)))
 
 //Robotic limb variants
 /obj/item/organ/internal/bone/chest/robotic

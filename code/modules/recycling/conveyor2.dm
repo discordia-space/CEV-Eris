@@ -91,6 +91,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	else
 		return ..()
 
+/*
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user)
 	if (!user.canmove || user.restrained() || !user.pulling)
@@ -108,6 +109,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		step(user.pulling, get_dir(user.pulling.loc, src))
 		user.stop_pulling()
 	return
+*/
 
 /obj/machinery/conveyor/update_icon()
 	..()
@@ -359,7 +361,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	desc = "A conveyor belt assembly, used for the assembly of conveyor belt systems."
 	icon = 'icons/obj/machines/conveyor.dmi'
 	icon_state = "conveyor_loose"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	var/id = "" //inherited by the belt
 
@@ -392,7 +394,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	desc = "A conveyor control switch assembly. When set up, it'll control any and all conveyor belts it is linked to."
 	icon = 'icons/obj/machines/conveyor.dmi'
 	icon_state = "switch"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_STEEL = 4)
 	var/id = "" //inherited by the switch
 

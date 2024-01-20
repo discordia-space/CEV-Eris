@@ -6,8 +6,9 @@
 	icon = 'icons/obj/traps.dmi'
 	icon_state = "beartrap"
 	desc = "A mechanically activated leg trap. Low-tech, but reliable. Looks like it could really hurt if you set it off."
+	commonLore = "They were here before the ship was bought. No one knows why."
 	throwforce = 0
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(MATERIAL_STEEL = 25)
 	edge = TRUE
@@ -27,7 +28,13 @@
 
 /obj/item/beartrap/Initialize()
 	.=..()
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_CUSTOM_UNBUCKLE | BUCKLE_CUSTOM_BUCKLE | BUCKLE_MOVE_RELAY | BUCKLE_FORCE_DIR, moveProc = PROC_REF(onMoveAttempt))
 	update_icon()
+
+/obj/item/beartrap/proc/onMoveAttempt(mob/living/trier, direction)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(attempt_release), trier, null)
+	return COMSIG_CANCEL_MOVE
 
 
 /***********************************
@@ -43,24 +50,22 @@ Every failure causes the trap to dig deeper and hurt the victim more
 Freeing yourself is much harder than freeing someone else. Calling for help is advised if practical
 */
 /obj/item/beartrap/proc/attempt_release(mob/living/user, obj/item/I)
-	if (!buckled_mob || QDELETED(buckled_mob))
-		return //Nobody there to rescue?
-
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	if(!buckle)
+		return
+	if(!buckle.buckled)
+		return
 	if (!user)
 		return //No user, or too far away
-
-	if(iscarbon(user)) //check if mob is carbon as handcuffed only applies to carbon mobs
-		var/mob/living/carbon/C = user //set carbon to user
-		if(C.handcuffed)
-			return//you instantly fail if you are handcuffed and trapped, this way you will loose the handcuffs first instead of repeatedly snapping your torso in half
-
+	if(user.incapacitated(INCAPACITATION_CANT_ACT))
+		return
 	//How hard will this be? The chance of failure
 	var/difficulty = base_difficulty
 
 	//Does the user have the dexterity to operate the trap?
 	if (!can_use(user))
 		//If they don't, then they're probably some kind of animal trapped in it
-		if (user != buckled_mob || user.client)
+		if (user != buckle.buckled || user.client)
 			//Such a creature can't free someone else
 			return
 
@@ -71,7 +76,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		Such is nature*/
 
 	else
-		if (user != buckled_mob)
+		if (user != buckle.buckled)
 			difficulty -= 35 //It's easier to free someone else than to free yourself
 
 		//Is there a tool involved?
@@ -79,7 +84,7 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 			//Using a crowbar helps
 			to_chat(user, SPAN_NOTICE("\The [I] gives you extra leverage"))
 			var/reduction = I.get_tool_quality(QUALITY_PRYING)*0.5
-			if (user == buckled_mob)
+			if (user == buckle.buckled)
 				reduction *= 0.66 //But it helps less if you don't have good leverage
 			difficulty -= reduction
 			I.consume_resources(time_to_escape * 3, user)
@@ -90,14 +95,14 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 		//How about your stats? Being strong or crafty helps.
 		//We'll subtract the highest of either robustness or mechanical, from the difficulty
 		var/reduction = user.stats.getMaxStat(list(STAT_ROB, STAT_MEC))
-		if (user == buckled_mob)
+		if (user == buckle.buckled)
 			reduction *= 0.66 //But it helps less if you don't have good leverage
 		difficulty -= reduction
 
 	//Alright we calculated the difficulty, now lets do the attempt
 
 	//Firstly a visible message
-	if (buckled_mob == user)
+	if (buckle.buckled == user)
 		user.visible_message(
 			SPAN_NOTICE("\The [user] tries to free themselves from \the [src]."),
 			SPAN_NOTICE("You carefully begin to free yourself from \the [src]."),
@@ -105,8 +110,8 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 			)
 	else
 		user.visible_message(
-			SPAN_NOTICE("\The [user] tries to free \the [buckled_mob] from \the [src]."),
-			SPAN_NOTICE("You carefully begin to free \the [buckled_mob] from \the [src]."),
+			SPAN_NOTICE("\The [user] tries to free \the [buckle.buckled] from \the [src]."),
+			SPAN_NOTICE("You carefully begin to free \the [buckle.buckled] from \the [src]."),
 			SPAN_NOTICE("You hear metal creaking.")
 			)
 
@@ -128,8 +133,8 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 	//You succeeded yay
 	user.visible_message(
-			SPAN_NOTICE("[user] successfully releases [buckled_mob] from \the [src]."),
-			SPAN_NOTICE("You successfully release [buckled_mob] from \the [src]."),
+			SPAN_NOTICE("[user] successfully releases [buckle.buckled] from \the [src]."),
+			SPAN_NOTICE("You successfully release [buckle.buckled] from \the [src]."),
 			SPAN_DANGER("You hear metal creaking.")
 			)
 	release_mob()
@@ -143,7 +148,9 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	.=..()
 
 /obj/item/beartrap/attack_hand(mob/user as mob)
-	if (buckled_mob)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckleMob = buckle.buckled
+	if (buckleMob)
 		attempt_release(user)
 		return
 	if (deployed)
@@ -164,13 +171,17 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	.=..()
 
 /obj/item/beartrap/attack_generic(mob/user, damage)
-	if (buckled_mob)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckleMob = buckle.buckled
+	if (buckleMob)
 		attempt_release(user)
 		return
 	.=..()
 
 /obj/item/beartrap/attack_robot(mob/user)
-	if (buckled_mob)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckleMob = buckle.buckled
+	if (buckleMob)
 		attempt_release(user)
 		return
 	.=..()
@@ -179,16 +190,19 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	return (user.IsAdvancedToolUser() && !user.stat && user.Adjacent(src))
 
 /obj/item/beartrap/proc/release_mob()
-	unbuckle_mob()
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	if(buckle && buckle.buckled)
+		buckle.unbuckle()
 	anchored = FALSE
 	deployed = FALSE
-	can_buckle = initial(can_buckle)
 	update_icon()
 	STOP_PROCESSING(SSobj, src)
 
 //Attempting to resist out of a beartrap will be counted as using your hand on the trap.
 /obj/item/beartrap/resist_buckle(mob/user)
-	if (user == buckled_mob && !user.stunned)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckleMob = buckle.buckled
+	if (user == buckleMob && !user.stunned)
 		//We check stunned here, and a failure stuns the victim. This prevents someone from just spam-resisting and instantly killing themselves
 		if (user.client)
 			attack_hand(user)
@@ -236,28 +250,30 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 
 //If an attempt to release the mob fails, it digs in and deals more damage
 /obj/item/beartrap/proc/fail_attempt(user, difficulty)
-	if (!buckled_mob)
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	if(!buckle)
 		return
-
-	var/mob/living/L = buckled_mob
+	if(!buckle.buckled)
+		return
+	var/mob/living/L = buckle.buckled
 	//armour
 
-	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
+	if(L.damage_through_armor(list(ARMOR_POINTY = list(DELEM(BRUTE, fail_damage))), target_zone, src, 1, 1, FALSE))
 	//No damage - no stun
 		L.Stun(4) //A short stun prevents spamming failure attempts
 		shake_camera(user, 2, 1)
 
 	if (ishuman(L))
 		var/mob/living/carbon/human/H = L
-		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]'s [H.get_organ(target_zone).name]"))
+		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [L.name]'s [H.get_organ(target_zone).name]"))
 	else
-		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [buckled_mob.name]"))
+		visible_message(SPAN_DANGER("\The [src] snaps back, digging deeper into [L.name]"))
 
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 10, 1,-2,-2)//Fairly quiet snapping sound
 
 	if (difficulty)
 		to_chat(user, SPAN_NOTICE("You failed to release the trap. There was a [round(100 - difficulty)]% chance of success"))
-		if (user == buckled_mob)
+		if (user == L)
 			to_chat(user, SPAN_NOTICE("Freeing yourself is very difficult. Perhaps you should call for help?"))
 
 
@@ -278,20 +294,22 @@ Freeing yourself is much harder than freeing someone else. Calling for help is a
 	else
 		target_zone = pick(BP_L_LEG, BP_R_LEG)
 
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	if(buckle.buckled)
+		return
+
 	deployed = FALSE
-	can_buckle = initial(can_buckle)
 	playsound(src, 'sound/effects/impacts/beartrap_shut.ogg', 100, 1,10,10)//Really loud snapping sound
 
 	//armour
-	if( L.damage_through_armor(fail_damage, BRUTE, target_zone, ARMOR_MELEE, used_weapon = src) )
+	if(L.damage_through_armor(list(ARMOR_POINTY = list(DELEM(BRUTE, fail_damage))), target_zone, src, 1, 1, FALSE))
 	//No damage - no stun
 		L.Stun(4) //A short stun prevents spamming failure attempts
 		shake_camera(L, 2, 1)
 
 	//trap the victim in place
 	set_dir(L.dir)
-	can_buckle = TRUE
-	buckle_mob(L)
+	buckle.buckle(L, null)
 	to_chat(L, SPAN_DANGER("The steel jaws of \the [src] bite into you, trapping you in place!"))
 
 
@@ -307,7 +325,13 @@ Periodically the mob will attempt to struggle out. It will probably fail, take d
 Very rarely it might escape
 */
 /obj/item/beartrap/Process()
-	var/mob/living/L = buckled_mob
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	if(!buckle)
+		return PROCESS_KILL
+	if(!buckle.buckled)
+		return PROCESS_KILL
+
+	var/mob/living/L = buckle.buckled
 
 	//If its dead or gone, stop processing
 	//Also stop if a player took control of it, they can try to free themselves
@@ -347,19 +371,23 @@ Very rarely it might escape
 			SPAN_DANGER("You step on \the [src]!"),
 			"<b>You hear a loud metallic snap!</b>"
 			)
-
 		attack_mob(L)
-		if(!buckled_mob)
+		var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+		if(!buckle)
+			anchored = FALSE
+		if(!buckle.buckled)
 			anchored = FALSE
 		deployed = FALSE
 		update_icon()
 	..()
 
 /obj/item/beartrap/examine(mob/user)
-	..()
+	var/description = ""
 	if(deployed && isliving(user) && !("\ref[user]" in aware_mobs))
-		to_chat(user, SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully."))
+		description += SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully.")
 		aware_mobs |= "\ref[user]"
+
+	..(user, afterDesc = description)
 
 
 /obj/item/beartrap/update_icon()

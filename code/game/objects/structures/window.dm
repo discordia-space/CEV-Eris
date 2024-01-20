@@ -7,11 +7,12 @@
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = TRUE
 	flags = ON_BORDER
-	var/maxhealth = 20
+	maxHealth = 20
+	health = 20
+	explosion_coverage = 1
 	var/resistance = RESISTANCE_FLIMSY	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
-	var/health = 20
 	var/ini_dir = null
 	var/state = 2
 	var/reinf = 0
@@ -23,75 +24,77 @@
 
 	atmos_canpass = CANPASS_PROC
 
-/obj/structure/window/can_prevent_fall()
-	return !is_fulltile()
+/obj/structure/window/can_prevent_fall(above)
+	return above ? !is_fulltile() : FALSE
 
 /obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = health * 0.4
+	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
 
 	return damage
 
-/obj/structure/window/examine(mob/user)
-	. = ..(user)
+/obj/structure/window/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 
-	if(health == maxhealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+	if(health == maxHealth)
+		description += SPAN_NOTICE("It looks fully intact.")
 	else
-		var/perc = health / maxhealth
+		var/perc = health / maxHealth
 		if(perc > 0.75)
-			to_chat(user, SPAN_NOTICE("It has a few cracks."))
+			description += SPAN_NOTICE("It has a few cracks.")
 		else if(perc > 0.5)
-			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
+			description += SPAN_WARNING("It looks slightly damaged.")
 		else if(perc > 0.25)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			description += SPAN_WARNING("It looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
+			description += SPAN_DANGER("It looks heavily damaged.")
 	if(silicate)
+		description += "\n"
 		if (silicate < 30)
-			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
+			description += SPAN_NOTICE("It has a thin layer of silicate.")
 		else if (silicate < 70)
-			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
+			description += SPAN_NOTICE("It is covered in silicate.")
 		else
-			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
+			description += SPAN_NOTICE("There is a thick layer of silicate covering it.")
+
+	..(user, afterDesc = description)
 
 
 //Subtracts resistance from damage then applies it
 //Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes
-/obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1, var/ignore_resistance = FALSE)
+/obj/structure/window/take_damage(damage = 0)
 	var/initialhealth = health
+	. = health - (damage * (1 - silicate / 200) - resistance) < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
+	damage = damage * (1 - silicate / 200) // up to 50% damage resistance
+	damage -= resistance // then flat resistance from material
 
-	if (!ignore_resistance)
-		damage = damage * (1 - silicate / 200) // up to 50% damage resistance
-		damage -= resistance // then flat resistance from material
 	if (damage <= 0)
 		return 0
 
-	health = max(0, health - damage)
+	health -= damage
 
 	if(health <= 0)
-		if (prob(damage*2))//Heavy hits are more likely to send shards flying
+		if(health < -100)
 			shatter(FALSE, TRUE)
 		else
-			//To break it safely, use a lighter hit to deal the finishing touch, or throw things from afar
 			shatter()
 	else
-		if(sound_effect)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
-		if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
+		if(health < maxHealth / 4 && initialhealth >= maxHealth / 4)
 			visible_message("[src] looks like it's about to shatter!" )
-		else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
+		else if(health < maxHealth / 2 && initialhealth >= maxHealth / 2)
 			visible_message("[src] looks seriously damaged!" )
-		else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
+		else if(health < maxHealth * 3/4 && initialhealth >= maxHealth * 3/4)
 			visible_message("Cracks begin to appear in [src]!" )
-	return damage
+	return
 
 /obj/structure/window/proc/apply_silicate(var/amount)
-	if(health < maxhealth) // Mend the damage
-		health = min(health + amount * 3, maxhealth)
-		if(health == maxhealth)
+	if(health < maxHealth) // Mend the damage
+		health = min(health + amount * 3, maxHealth)
+		if(health == maxHealth)
 			visible_message("[src] looks fully repaired." )
 	else // Reinforce
 		silicate = min(silicate + amount, 100)
@@ -134,8 +137,8 @@
 			var/obj/item/material/shard/S = new shardtype(loc)
 			if (nearby.len > 0)
 				var/turf/target = pick(nearby)
-				spawn()
-					S.throw_at(target,40,3)
+				//spawn()
+				S.throw_at(target,40,3)
 			index++
 	else
 		new shardtype(loc) //todo pooling?
@@ -149,35 +152,26 @@
 
 	if(config.z_level_shooting && Proj.height)
 		if(Proj.height == HEIGHT_LOW)// Bullet is too low
-			return TRUE
+			return PROJECTILE_STOP
 		else if(Proj.height == HEIGHT_HIGH) // Guaranteed hit
 			var/proj_damage = Proj.get_structure_damage()
 			if(proj_damage)
 				hit(proj_damage)
 			..()
-			return TRUE
+			return PROJECTILE_STOP
 
+	. = PROJECTILE_CONTINUE
 	var/targetzone = check_zone(Proj.def_zone)
 	if(targetzone in list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM))
 		var/proj_damage = Proj.get_structure_damage()
 		if(proj_damage)
 			hit(proj_damage)
 		..()
+		if(!QDELETED(src))
+			return PROJECTILE_STOP
 
-	return TRUE
+	return PROJECTILE_STOP
 
-
-/obj/structure/window/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			shatter(0,TRUE)
-		if(3)
-			shatter(0,TRUE)
-		if(4)
-			if(prob(50))
-				shatter(0,TRUE)
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -287,7 +281,7 @@
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
 			// having ass of concrete divides damage by 3
 			// max damage can be 30 without armor, and gets mitigated by having 15 melee armor
-			target.damage_through_armor(round(10 * skillRatio * (health/maxhealth) / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, round(10 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1))))),BP_HEAD, src, 0.5, 1, FALSE)
 			if(!toughTarget)
 				target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 8 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * (toughTarget ? 2 : 1 ) / windowResistance))
@@ -299,12 +293,12 @@
 				target.Weaken(1)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, toughTarget ? 6 SECONDS : 12 SECONDS, "window_smash")
 			// at most 60 without armor , 23 with 15 melee armor
-			target.damage_through_armor(round(20 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, round(20 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1))))),BP_HEAD, src, 0.4, 1, FALSE)
 			hit(round(target.mob_size * skillRatio * 1.5 * (toughTarget ? 2 : 1) / windowResistance))
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
 			// at most 90 damage without armor, 40 with 15 melee armor
-			target.damage_through_armor(round(30 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.3)
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, round(30 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1))))),BP_HEAD, src, 0.3, 1, FALSE)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 2, toughTarget ? 10 SECONDS : 20 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * 2 * ((toughTarget ? 2 : 1)) / windowResistance))
 	admin_attack_log(user, target,
@@ -331,7 +325,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		var/victimToughness = M.stats.getStat(STAT_TGH, FALSE)
 		victimToughness = victimToughness ? victimToughness : 1
 		var/windowResistance = resistance ? resistance : 1
-		var/healthRatio = health/maxhealth
+		var/healthRatio = health/maxHealth
 		// you shall suffer for being negative on toughness , it becomes negative so it cancels the negative toughness
 		var/toughnessDivisor = victimToughness > 0 ? STAT_VALUE_MAXIMUM : -(STAT_VALUE_MAXIMUM - victimToughness)
 		// if you less tougher and less sized than the window itself and its health , you are more likely to suffer more
@@ -339,13 +333,13 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 			M.adjustHalLoss(5)
 			M.Weaken(2)
 			// 40 in worst case, 10 with 15 melee armor
-			M.damage_through_armor(40 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,40 * (1 - victimToughness/toughnessDivisor) * healthRatio))), body_part, src, 1, 1, FALSE)
 		else
 			M.adjustHalLoss(3)
 			// 20 in worst  case , 5 with 15 melee armor
-			M.damage_through_armor(20 * (1 - victimToughness/toughnessDivisor) * healthRatio, BRUTE, body_part, ARMOR_MELEE, sharp = FALSE)
+			M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,20 * (1 - victimToughness/toughnessDivisor) * healthRatio))), body_part, src, 1, 1, FALSE)
 	else
-		M.damage_through_armor(5, BRUTE, body_part, ARMOR_MELEE) // just a scratch
+		M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,5))), body_part, src, 1, 1, FALSE)
 		tforce *= 2
 
 	if(reinf) tforce *= 0.25
@@ -365,18 +359,18 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(reinf && state <= 1)
 		usable_qualities.Add(QUALITY_PRYING)
-	if (health < maxhealth)
+	if (health < maxHealth)
 		usable_qualities.Add(QUALITY_SEALING)
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
-	if (usr.a_intent != I_HURT)
+	if (user.a_intent != I_HURT)
 		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
-				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+				if (I.use_tool(user, src, 60 + ((maxHealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
 					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
-					health = maxhealth
+					health = maxHealth
 			if(QUALITY_BOLT_TURNING)
 				if(!anchored && (!state || !reinf))
 					if(!glasstype)
@@ -430,9 +424,9 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	else
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if(I.damtype == BRUTE || I.damtype == BURN)
+		if(dhHasDamageType(I.melleDamages, BRUTE) || dhHasDamageType(I.melleDamages,BURN))
 			user.do_attack_animation(src)
-			hit(I.force*I.structure_damage_factor)
+			hit(dhTotalDamage(I.melleDamages)*I.structure_damage_factor)
 			if(health <= 7)
 				set_anchored(FALSE)
 				step(src, get_dir(user, src))
@@ -493,7 +487,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	if (start_dir)
 		set_dir(start_dir)
 
-	health = maxhealth
+	health = maxHealth
 
 	ini_dir = dir
 
@@ -508,13 +502,13 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	density = FALSE
 	update_nearby_tiles()
 	var/turf/location = loc
-	loc = null
+	forceMove(NULLSPACE)
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
-	loc = location
+	forceMove(location)
 	. = ..()
 
-/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
 	. = ..()
@@ -600,7 +594,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
 	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
-	maxhealth = 15
+	maxHealth = 15
 	resistance = RESISTANCE_FLIMSY
 
 /obj/structure/window/basic/full
@@ -608,7 +602,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
 	alpha = 120
-	maxhealth = 40
+	maxHealth = 40
 	resistance = RESISTANCE_FLIMSY
 	flags = null
 
@@ -621,7 +615,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	glasstype = /obj/item/stack/material/glass/plasmaglass
 	maximal_heat = T0C + 5227  // Safe use temperature at 5500 kelvin. Easy to remember.
 	damage_per_fire_tick = 1.5 // Lowest per-tick damage so overheated supermatter chambers have some time to respond to it. Will still shatter before a delam.
-	maxhealth = 150
+	maxHealth = 150
 	resistance = RESISTANCE_AVERAGE
 
 /obj/structure/window/plasmabasic/full
@@ -630,7 +624,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	basestate = "pwindow"
 	icon_state = "plasmawindow_mask"
 	alpha = 150
-	maxhealth = 200
+	maxHealth = 200
 	resistance = RESISTANCE_AVERAGE
 	flags = null
 
@@ -644,7 +638,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	damage_per_fire_tick = 2
 	glasstype = /obj/item/stack/material/glass/reinforced
 
-	maxhealth = 50
+	maxHealth = 50
 	resistance = RESISTANCE_FRAGILE
 
 /obj/structure/window/New(Loc, constructed=0)
@@ -659,7 +653,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "fwindow"
 	alpha = 150
-	maxhealth = 80
+	maxHealth = 80
 	resistance = RESISTANCE_FRAGILE
 	flags = null
 
@@ -672,7 +666,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	glasstype = /obj/item/stack/material/glass/plasmarglass
 	maximal_heat = T0C + 5453 // Safe use temperature at 6000 kelvin.
 	damage_per_fire_tick = 1.5
-	maxhealth = 200
+	maxHealth = 200
 	resistance = RESISTANCE_IMPROVED
 
 /obj/structure/window/reinforced/plasma/full
@@ -681,7 +675,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	basestate = "rpwindow"
 	icon_state = "plasmarwindow_mask"
 	alpha = 150
-	maxhealth = 250
+	maxHealth = 250
 	resistance = RESISTANCE_IMPROVED
 	flags = null
 
@@ -704,7 +698,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "window"
 	basestate = "window"
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_IMPROVED
 	reinf = 1
 	basestate = "w"
@@ -738,8 +732,8 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 /obj/structure/window/reinforced/crescent/attackby()
 	return
 
-/obj/structure/window/reinforced/crescent/ex_act()
-	return
+/obj/structure/window/reinforced/crescent/explosion_act(target_power, explosion_handler/handler)
+	return target_power
 
 /obj/structure/window/reinforced/crescent/hitby()
 	return
@@ -771,9 +765,8 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 	for(var/obj/structure/window/reinforced/polarized/W in range(src,range))
 		if (W.id == src.id || !W.id)
-			spawn(0)
-				W.toggle()
-				return
+			W.toggle()
+			return
 
 /obj/machinery/button/windowtint/power_change()
 	..()
@@ -820,7 +813,5 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 //Used when the window finds itself no longer on a tile. For example if someone drags it out of the wall
 //The window will do a litle animation of falling to the floor, giving them a brief moment to regret their mistake
 /obj/structure/window/proc/shatterfall()
-	sleep(5)
 	animate(src, pixel_y = -12, time = 7, easing = QUAD_EASING)
-	spawn(8)
-		shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards
+	shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards

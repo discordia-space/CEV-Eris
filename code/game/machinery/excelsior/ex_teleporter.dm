@@ -17,6 +17,7 @@ var/global/excelsior_last_draft = 0
 	idle_power_usage = 40
 	active_power_usage = 15000
 	circuit = /obj/item/electronics/circuitboard/excelsior_teleporter
+	shipside_only = TRUE
 
 	var/max_energy = 100
 	var/energy_gain = 1
@@ -25,7 +26,7 @@ var/global/excelsior_last_draft = 0
 	var/mob/current_user
 	var/time_until_scan
 
-	var/reinforcements_delay = 20 MINUTES
+	var/reinforcements_delay = 5 MINUTES
 	var/reinforcements_cost = 2000
 
 	var/list/nanoui_data = list()			// Additional data for NanoUI use
@@ -48,6 +49,8 @@ var/global/excelsior_last_draft = 0
 		/obj/item/stock_parts/manipulator = 100,
 		/obj/item/stock_parts/micro_laser = 100,
 		/obj/item/stock_parts/matter_bin = 100,
+		/obj/item/computer_hardware/processor_unit/adv = 250,
+		/obj/item/computer_hardware/hard_drive/advanced = 250,
 		/obj/item/stock_parts/capacitor/excelsior = 350,
 		/obj/item/stock_parts/scanning_module/excelsior = 350,
 		/obj/item/stock_parts/manipulator/excelsior = 350,
@@ -61,8 +64,18 @@ var/global/excelsior_last_draft = 0
 		/obj/item/electronics/circuitboard/excelsiorshieldwallgen = 150,
 		/obj/item/electronics/circuitboard/excelsior_boombox = 150,
 		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
+		/// its expensive so they need to do a few mandates before they manage to get it
+		/obj/item/electronics/circuitboard/excelsior_navigation_cracker = 3000,
 		/obj/item/electronics/circuitboard/diesel = 150
 		)
+
+	var/list/IKEA_list = list(
+		/obj/item/machinery_crate/excelsior/shield = 500,
+		/obj/item/machinery_crate/excelsior/autolathe = 300,
+		/obj/item/machinery_crate/excelsior/boombox = 400,
+		/obj/item/machinery_crate/excelsior/diesel_generator = 300,
+		/obj/item/machinery_crate/excelsior/turret = 400
+	)
 	var/entropy_value = 8
 
 /obj/machinery/complant_teleporter/Initialize()
@@ -135,18 +148,6 @@ var/global/excelsior_last_draft = 0
 		excelsior_energy = excelsior_max_energy
 		set_power_use(IDLE_POWER_USE)
 
-
-/obj/machinery/complant_teleporter/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				qdel(src)
-				return
-
-
  /**
   * The nano_ui_interact proc is used to open and update Nano UIs
   * If nano_ui_interact is not used then the UI will not update correctly
@@ -208,6 +209,17 @@ var/global/excelsior_last_draft = 0
 
 	data["list_of_parts"] = order_list_p
 
+	var/list/order_list_i = list()
+	for(var/obj/item/machinery_crate/I as anything in IKEA_list)
+		order_list_i += list(list(
+			"name_i" = initial(I.name),
+			"price_i" = IKEA_list[I],
+			"commands_i" = list("order_i" = I)
+			)
+		)
+
+	data["list_of_IKEA"] = order_list_i
+
 	return data
 
 
@@ -230,6 +242,12 @@ var/global/excelsior_last_draft = 0
 		var/ordered_item = text2path(href_list["order_p"])
 		if (parts_list.Find(ordered_item))
 			var/order_energy_cost = parts_list[ordered_item]
+			send_order(ordered_item, order_energy_cost, 1)
+
+	if(href_list["order_i"])
+		var/ordered_item = text2path(href_list["order_i"])
+		if (IKEA_list.Find(ordered_item))
+			var/order_energy_cost = IKEA_list[ordered_item]
 			send_order(ordered_item, order_energy_cost, 1)
 
 	if(href_list["open_menu"])
@@ -351,7 +369,7 @@ var/global/excelsior_last_draft = 0
 		to_chat(user, SPAN_WARNING("Not enough energy."))
 		return
 	if(world.time < (excelsior_last_draft + reinforcements_delay))
-		to_chat(user, SPAN_WARNING("You can call only one conscript for 20 minutes."))
+		to_chat(user, SPAN_WARNING("You can call only one conscript for [reinforcements_delay / 600] minutes."))
 		return
 	if(excelsior_conscripts <= 0)
 		to_chat(user, SPAN_WARNING("They have nobody to send to you."))
@@ -373,12 +391,17 @@ var/global/excelsior_last_draft = 0
 	var/mob/living/carbon/human/conscript = new /mob/living/carbon/human(loc)
 	conscript.ckey = candidate.ckey
 	make_antagonist(conscript.mind, ROLE_EXCELSIOR_REV)
-	conscript.stats.setStat(STAT_TGH, 10)
-	conscript.stats.setStat(STAT_VIG, 10)
+	conscript.stats.setStat(STAT_TGH, 30)
+	conscript.stats.setStat(STAT_VIG, 30)
+	conscript.stats.setStat(STAT_ROB, 30)
+	conscript.stats.setStat(STAT_MEC, 10)
+	conscript.stats.setStat(STAT_BIO, 10)
+	conscript.randomize_appearance()
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/under/excelsior())
 	conscript.equip_to_appropriate_slot(new /obj/item/clothing/shoes/workboots())
 	conscript.equip_to_appropriate_slot(new /obj/item/device/radio/headset())
 	conscript.equip_to_appropriate_slot(new /obj/item/storage/backpack/satchel())
+	conscript.equip_to_appropriate_slot(new /obj/item/melee/baton/excelbaton())
 	var/obj/item/card/id/card = new(conscript)
 	conscript.set_id_info(card)
 	card.assignment = "Excelsior Conscript"

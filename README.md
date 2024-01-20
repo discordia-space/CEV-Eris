@@ -1,8 +1,11 @@
-![](https://cdn.discordapp.com/attachments/265411250341543936/269612274765791242/eris_128.png)
-# Endless Horizon: CEV-Eris [![Build Status](https://travis-ci.org/discordia-space/CEV-Eris.svg?branch=master)](https://travis-ci.org/Endless-Horizon/CEV-Eris)
-[![discord](https://discordapp.com/api/guilds/255035529085583360/widget.png)](https://discord.gg/QfEg7K7)
+#  AEV-Oxyd
+Discord - https://discord.gg/SGsRQvWsyk
 
-Корабль, который должен умирать.
+A fork based off CEV-Eris with significant modifications to the core combat mechanics.
+
+Compiles on 515.1623 <br>
+Comes with inbuilt configuration for VisualStudio Code <br>
+Made to run on AlmaLinux 9 for hosting, includes 3.0 TG rust-g utils. <br>
 
 ## CONTRIBUTING
 

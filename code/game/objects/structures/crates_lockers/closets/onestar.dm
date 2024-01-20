@@ -13,6 +13,8 @@
 	icon_state = "lootcloset"
 
 /obj/structure/closet/onestar/tier1/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/pack/rare/low_chance(src)
@@ -27,6 +29,8 @@
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/gun_loot/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 // Tier 2
 /obj/structure/closet/onestar/tier2
@@ -35,6 +39,8 @@
 	icon_state = "lootcloset1"
 
 /obj/structure/closet/onestar/tier2/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/pack/rare/low_chance(src)
@@ -49,6 +55,8 @@
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/gun_loot/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 // Tier 3
 /obj/structure/closet/onestar/tier3
@@ -57,6 +65,8 @@
 	icon_state = "lootcloset2"
 
 /obj/structure/closet/onestar/tier3/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/pack/rare/low_chance(src)
@@ -73,6 +83,8 @@
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/gun_loot/low_chance(src)
 	new /obj/spawner/tool/advanced/onestar/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 ////// Closets
@@ -117,8 +129,12 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/special/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/rare/low_chance(src)
 	new /obj/spawner/pack/rare/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -132,8 +148,12 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/special/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/rare/low_chance(src)
 	new /obj/spawner/pack/rare/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -147,8 +167,12 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/special/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/rare/low_chance(src)
 	new /obj/spawner/pack/rare/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -163,8 +187,12 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/mineral/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -178,8 +206,12 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/mineral/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -193,8 +225,12 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/mineral/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -209,8 +245,12 @@
 	old_chance = 70
 
 /obj/structure/closet/onestar/tier1/medical/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/lowkeyrandom(src)
 	new /obj/spawner/lowkeyrandom(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -224,8 +264,12 @@
 	old_chance = 30
 
 /obj/structure/closet/onestar/tier2/medical/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/lowkeyrandom(src)
 	new /obj/spawner/lowkeyrandom(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty
@@ -239,8 +283,12 @@
 	old_chance = 10
 
 /obj/structure/closet/onestar/tier3/medical/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/lowkeyrandom(src)
 	new /obj/spawner/lowkeyrandom(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 	..()
 
 // Empty

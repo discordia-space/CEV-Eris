@@ -6,7 +6,7 @@
 	icon = 'icons/obj/guns/projectile/atreides.dmi'
 	icon_state = "atreides"
 	item_state = "atreides"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
@@ -18,17 +18,19 @@
 	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 13, MATERIAL_PLASTIC = 2)
 	price_tag = 800
 	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
-	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 
 	damage_multiplier = 0.9
-	penetration_multiplier = -0.2
 	init_recoil = SMG_RECOIL(0.4)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
 		SEMI_AUTO_300,
 		)
+/obj/item/gun/projectile/automatic/atreides/equipped(var/mob/user, var/slot)
+	.=..()
+	update_icon()
 
 /obj/item/gun/projectile/automatic/atreides/update_icon()
 	..()
@@ -39,16 +41,23 @@
 	if(gilded)
 		iconstring += "_gold"
 		itemstring += "_gold"
+		wielded_item_state = "_doble_gold"
+	else
+		wielded_item_state = "_doble"
 
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state += "_mag"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
 
 	if (silenced)
 		iconstring += "_s"
+		itemstring += "_s"
+		wielded_item_state += "_s"
+
 
 	icon_state = iconstring
 	set_item_state(itemstring)
@@ -62,6 +71,6 @@
 	desc = "An Atreides SMG frame. The king of street warfare."
 	icon_state = "frame_atreides"
 	resultvars = list(/obj/item/gun/projectile/automatic/atreides)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

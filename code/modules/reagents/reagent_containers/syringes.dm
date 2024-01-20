@@ -17,8 +17,9 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	volume = 15
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
+	melleDamages = list()
 	sharp = TRUE
 	unacidable = 1 //glass
 	reagent_flags = TRANSPARENT
@@ -262,7 +263,7 @@
 		if((user != target) && H.check_shields(7, src, user, "\the [src]"))
 			return
 
-		if (target != user && H.getarmor(target_zone, ARMOR_MELEE) > 5 && prob(50))
+		if (target != user && H.getarmor(target_zone, ARMOR_POINTY) > 5 && prob(50))
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("\red <B>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</B>"), 1)
 			user.remove_from_mob(src)
@@ -335,7 +336,7 @@
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(5,10)
 	volume = 30
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	sharp = TRUE
 	unacidable = 1 //glass

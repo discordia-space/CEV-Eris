@@ -6,8 +6,12 @@
 	icon_state = "rods"
 	novariants = FALSE
 	flags = CONDUCT
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_WEAK
+	volumeClass = ITEM_SIZE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 20
@@ -56,3 +60,9 @@
 
 /obj/item/stack/rods/attack_self(mob/living/user)
 	user.open_craft_menu("Tiles")//see menu.dm
+
+//when thrown on impact, rods make an audio sound
+/obj/item/stack/rods/throw_impact(atom/hit_atom, speed)
+	..()
+	if(isfloor(hit_atom))
+		playsound(loc, 'sound/effects/metalpipe.ogg', 100, 1)

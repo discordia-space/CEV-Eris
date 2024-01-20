@@ -10,7 +10,7 @@
 
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	caliber = CAL_PISTOL
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -24,12 +24,11 @@
 		)
 
 	can_dual = 1
-	damage_multiplier = 0.8
-	penetration_multiplier = 0
+	damage_multiplier = 0.7
 	init_recoil = SMG_RECOIL(0.6)
 	spawn_blacklisted = TRUE
 	wield_delay = 0 // No delay for this , its litteraly a junk gun
-	gun_parts = list(/obj/item/part/gun/frame/luty = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg/steel = 1, /obj/item/part/gun/barrel/pistol/steel = 1)
+	gun_parts = list(/obj/item/part/gun/frame/luty = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/smg/steel = 1, /obj/item/part/gun/modular/barrel/pistol/steel = 1)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 
@@ -39,9 +38,9 @@
 	icon_state = "frame_luty"
 	matter = list(MATERIAL_STEEL = 5)
 	resultvars = list(/obj/item/gun/projectile/automatic/luty)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/smg/steel
-	barrelvars = list(/obj/item/part/gun/barrel/pistol/steel, /obj/item/part/gun/barrel/magnum/steel)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg/steel
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol/steel, /obj/item/part/gun/modular/barrel/magnum/steel)
 
 /obj/item/gun/projectile/automatic/luty/update_icon()
 	cut_overlays()

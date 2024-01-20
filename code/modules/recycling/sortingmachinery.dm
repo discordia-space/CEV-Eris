@@ -105,12 +105,12 @@
 		overlays += I
 
 /obj/structure/bigDelivery/examine(mob/user)
-	if(..(user, 4))
-		if(sortTag)
-			to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
-		if(examtext)
-			to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
-	return
+	var/description = ""
+	if(sortTag)
+		description += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
+	if(examtext)
+		description += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+	..(user, afterDesc = description)
 
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
@@ -212,18 +212,19 @@
 		overlays += I
 
 /obj/item/smallDelivery/examine(mob/user)
-	if(..(user, 4))
-		if(sortTag)
-			to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
-		if(examtext)
-			to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
+	var/description = ""
+	if(sortTag)
+		description += "<span class='notice'>It is labeled \"[sortTag]\"</span>\n"
+	if(examtext)
+		description += "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>"
+	..(user, afterDesc = description)
 	return
 
 /obj/item/packageWrap
 	name = "package wrapper"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "deliveryPaper"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 50
 	price_tag = 20
@@ -256,8 +257,8 @@
 					user.client.screen -= O
 			P.wrapped = O
 			O.forceMove(P)
-			P.w_class = O.w_class
-			var/i = round(O.w_class)
+			P.volumeClass = O.volumeClass
+			var/i = round(O.volumeClass)
 			if(i in list(1,2,3,4,5))
 				P.icon_state = "deliverycrate[i]"
 				switch(i)
@@ -313,20 +314,21 @@
 	return
 
 /obj/item/packageWrap/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "\blue There are [amount] units of package wrap left!")
+	var/description = ""
+	description += "\blue There are [amount] units of package wrap left!"
+	..(user, afterDesc = description)
 
 	return
 
 /obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = (get_turf(loc))
+		wrapped.forceMove((get_turf(loc)))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in contents)
-		AM.loc = T
+		AM.forceMove(T)
 	. = ..()
 
 /obj/item/device/destTagger
@@ -337,7 +339,7 @@
 	rarity_value = 50
 	var/currTag = 0
 
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -430,8 +432,8 @@
 	flushing = 0
 	// now reset disposal state
 	flush = 0
-	if(mode == 2)	// if was ready,
-		mode = 1	// switch to charging
+	if(mode == DISPOSALS_CHARGED)
+		mode = DISPOSALS_CHARGING
 	update()
 	return
 
@@ -448,33 +450,37 @@
 	switch(tool_type)
 
 		if(QUALITY_SCREW_DRIVING)
-			if(contents.len > 0)
+			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
-			if(mode<=0)
-				var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-					if(c_mode==0) // It's off but still not unscrewed
-						c_mode=1 // Set it to doubleoff l0l
-						to_chat(user, "You remove the screws around the power connection.")
-						return
-					else if(c_mode==1)
-						c_mode=0
-						to_chat(user, "You attach the screws around the power connection.")
-						return
+
+			if(mode != DISPOSALS_OFF)
+				to_chat(user, "Turn off the pump first!")
+				return
+
+			var/used_sound = mode ? 'sound/machines/Custom_screwdriverclose.ogg' : 'sound/machines/Custom_screwdriveropen.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				to_chat(user, "You [panel_open ? "attach" : "remove"] the screws around the power connection.")
+				panel_open = !panel_open
+				return
+
 			return
 
 		if(QUALITY_WELDING)
-			if(mode==-1)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
-					to_chat(user, "You sliced the floorweld off the disposal unit.")
-					var/obj/structure/disposalconstruct/C = new (src.loc)
-					src.transfer_fingerprints_to(C)
-					C.pipe_type = PIPE_TYPE_INTAKE
-					C.anchored = TRUE
-					C.density = TRUE
-					C.update()
-					qdel(src)
+			if(!panel_open || mode != DISPOSALS_OFF)
+				to_chat(user, "You cannot work on the delivery chute if it is not turned off with its power connection exposed.")
+				return
+
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY))
+				to_chat(user, "You sliced the floorweld off the delivery chute.")
+				var/obj/structure/disposalconstruct/C = new (src.loc)
+				src.transfer_fingerprints_to(C)
+				C.pipe_type = PIPE_TYPE_INTAKE
+				C.anchored = TRUE
+				C.density = TRUE
+				C.update()
+				qdel(src)
+
 			return
 
 /obj/machinery/disposal/deliveryChute/Destroy()

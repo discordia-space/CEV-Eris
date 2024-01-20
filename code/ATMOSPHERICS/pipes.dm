@@ -10,9 +10,9 @@
 	var/alert_pressure = 80*ONE_ATMOSPHERE
 		//minimum pressure before check_pressure(...) should be called
 
-	can_buckle = TRUE
-	buckle_require_restraints = 1
-	buckle_lying = -1
+/obj/machinery/atmospherics/pipe/Initialize(mapload, d)
+	. = ..()
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_REQUIRE_RESTRAINTED | BUCKLE_REQUIRE_NOT_BUCKLED | BUCKLE_FORCE_LIE)
 
 /obj/machinery/atmospherics/pipe/drain_power()
 	return -1
@@ -303,12 +303,12 @@
 /obj/machinery/atmospherics/pipe/simple/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node2 = null
 
 	update_icon()
@@ -469,17 +469,17 @@
 /obj/machinery/atmospherics/pipe/manifold/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node2 = null
 
 	if(reference == node3)
 		if(istype(node3, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node3 = null
 
 	update_icon()
@@ -710,22 +710,22 @@
 /obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node1 = null
 
 	if(reference == node2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node2 = null
 
 	if(reference == node3)
 		if(istype(node3, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node3 = null
 
 	if(reference == node4)
 		if(istype(node4, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node4 = null
 
 	update_icon()
@@ -960,7 +960,7 @@
 /obj/machinery/atmospherics/pipe/cap/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node)
 		if(istype(node, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node = null
 
 	update_icon()
@@ -1096,7 +1096,7 @@
 /obj/machinery/atmospherics/pipe/tank/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node1 = null
 
 	update_underlays()
@@ -1262,7 +1262,7 @@
 /obj/machinery/atmospherics/pipe/vent/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
-			qdel(parent)
+			QDEL_NULL(parent)
 		node1 = null
 
 	update_icon()

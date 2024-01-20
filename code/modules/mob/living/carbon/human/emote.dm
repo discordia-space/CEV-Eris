@@ -220,6 +220,12 @@
 					message = "makes a weak noise."
 					m_type = 2
 			cloud_emote = "cloud-gasp"
+			var/gaspSound = ""
+			if(gender == FEMALE)
+				gaspSound = pick('sound/voice/LeScreams/gasp_female1.ogg', 'sound/voice/LeScreams/gasp_female3.ogg')
+			if(gender == MALE)
+				gaspSound = pick('sound/voice/LeScreams/gasp_male1.ogg', 'sound/voice/LeScreams/gasp_male2.ogg')
+			playsound(src, gaspSound, 100, FALSE, 4)
 
 		if ("deathgasp")
 			if(stats.getPerk(PERK_TERRIBLE_FATE))
@@ -552,9 +558,15 @@
 				message = "acts out a scream!"
 				m_type = 1
 			else
+				var/screamSound = ""
 				if (!muzzled)
 					message = "screams!"
 					m_type = 2
+					if(gender == FEMALE)
+						screamSound = pick('sound/voice/LeScreams/femalescream_4.ogg','sound/voice/LeScreams/femalescream_5.ogg')
+					if(gender == MALE)
+						screamSound = pick('sound/voice/LeScreams/malescream_1.ogg','sound/voice/LeScreams/malescream_2.ogg','sound/voice/LeScreams/malescream_3.ogg','sound/voice/LeScreams/malescream_4.ogg')
+					playsound(src, screamSound, 100, FALSE, 10)
 				else
 					message = "makes a very loud noise."
 					m_type = 2
@@ -569,9 +581,6 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"})
 
 		else
 			to_chat(src, "\blue Unusable emote '[act]'. Say *help for a list.")
-
-
-
 
 
 	if (message)

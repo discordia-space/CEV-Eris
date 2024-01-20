@@ -131,7 +131,7 @@
 		if(!beaker)
 			beaker = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			user.visible_message(SPAN_NOTICE("\The [user] adds \a [I] to \the [src]."), SPAN_NOTICE("You add \a [I] to \the [src]."))
 		else
 			to_chat(user, SPAN_WARNING("\The [src] has a beaker already."))
@@ -146,7 +146,6 @@
 	go_in(target, user)
 
 /obj/machinery/sleeper/relaymove(var/mob/user)
-	..()
 	go_out()
 
 /obj/machinery/sleeper/emp_act(var/severity)
@@ -185,11 +184,12 @@
 		if(occupant)
 			to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
 			return
-		M.stop_pulling()
+		for(var/obj/item/grab/g in M)
+			qdel(g)
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
-		M.loc = src
+		M.forceMove(src)
 		update_use_power(2)
 		occupant = M
 		update_icon()
@@ -205,14 +205,14 @@
 	for(var/atom/movable/A in src) // In case an object was dropped inside or something
 		if(A == beaker)
 			continue
-		A.loc = loc
+		A.forceMove(loc)
 	update_use_power(1)
 	update_icon()
 	toggle_filter()
 
 /obj/machinery/sleeper/proc/remove_beaker()
 	if(beaker)
-		beaker.loc = loc
+		beaker.forceMove(loc)
 		beaker = null
 		toggle_filter()
 

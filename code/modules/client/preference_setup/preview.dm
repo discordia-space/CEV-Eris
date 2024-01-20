@@ -12,7 +12,6 @@ datum/preferences/proc/update_preview_icon(var/naked = FALSE)
 	preview_icon = icon('icons/effects/96x64.dmi', bgstate)
 
 	dress_preview_mob(mannequin, naked)
-
 	preview_east = getFlatIcon(mannequin, EAST)
 
 	mannequin.dir = WEST
@@ -29,7 +28,6 @@ datum/preferences/proc/update_preview_icon(var/naked = FALSE)
 	stamp = getFlatIcon(mannequin, SOUTH)
 	preview_icon.Blend(stamp, ICON_OVERLAY, preview_icon.Width()/100 * 68,preview_icon.Height()/100 * 5)
 	preview_south = stamp
-
 	// Scaling here to prevent blurring in the browser.
 	preview_east.Scale(preview_east.Width() * 2, preview_east.Height() * 2)
 	preview_west.Scale(preview_west.Width() * 2, preview_west.Height() * 2)

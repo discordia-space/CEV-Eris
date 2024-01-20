@@ -6,9 +6,11 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = 1
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 	price_tag = 0.2
+	/// very light weight ,3 grams
+	weight = 3
 
 	var/leaves_residue = 1
 	var/is_caseless = FALSE
@@ -55,40 +57,45 @@
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
+/// special case where is the location is specified as a ammo_Casing , it will clone all relevant vars
+/obj/item/ammo_casing/New(loc, ...)
+	. = ..()
+	if(istype(loc, /obj/item/ammo_casing))
+		var/obj/item/ammo_casing/C = loc
+		name = C.name
+		desc = C.desc
+		caliber = C.caliber
+		projectile_type = C.projectile_type
+		icon_state = C.icon_state
+		spent_icon = C.spent_icon
+		maxamount = C.maxamount
+		if(ispath(projectile_type) && C.BB)
+			BB = new projectile_type(src)
+
+		sprite_use_small = C.sprite_use_small
+		sprite_max_rotate = C.sprite_max_rotate
+		sprite_scale = C.sprite_scale
+		sprite_update_spawn = C.sprite_update_spawn
+
+		if(sprite_update_spawn)
+			var/matrix/rotation_matrix = matrix()
+			rotation_matrix.Turn(round(45 * rand(0, sprite_max_rotate) / 2))
+			if(sprite_use_small)
+				transform = rotation_matrix * sprite_scale
+			else
+				transform = rotation_matrix
+
+		is_caseless = C.is_caseless	//How did someone forget this before!?!?!?
+		shell_color = C.shell_color
+		C.update_icon()
+		update_icon()
+
+
 /obj/item/ammo_casing/attack_hand(mob/user)
 	if((src.amount > 1) && (src == user.get_inactive_hand()))
 		src.amount -= 1
-		var/obj/item/ammo_casing/new_casing = new /obj/item/ammo_casing(get_turf(user))
-		new_casing.name = src.name
-		new_casing.desc = src.desc
-		new_casing.caliber = src.caliber
-		new_casing.projectile_type = src.projectile_type
-		new_casing.icon_state = src.icon_state
-		new_casing.spent_icon = src.spent_icon
-		new_casing.maxamount = src.maxamount
-		if(ispath(new_casing.projectile_type) && src.BB)
-			new_casing.BB = new new_casing.projectile_type(new_casing)
-		else
-			new_casing.BB = null
-
-		new_casing.sprite_max_rotate = src.sprite_max_rotate
-		new_casing.sprite_scale = src.sprite_scale
-		new_casing.sprite_use_small = src.sprite_use_small
-		new_casing.sprite_update_spawn = src.sprite_update_spawn
-
-		if(new_casing.sprite_update_spawn)
-			var/matrix/rotation_matrix = matrix()
-			rotation_matrix.Turn(round(45 * rand(0, new_casing.sprite_max_rotate) / 2))
-			if(new_casing.sprite_use_small)
-				new_casing.transform = rotation_matrix * new_casing.sprite_scale
-			else
-				new_casing.transform = rotation_matrix
-
-		new_casing.is_caseless = src.is_caseless
-		new_casing.shell_color = src.shell_color
-
-		new_casing.update_icon()
-		src.update_icon()
+		var/obj/item/ammo_casing/new_casing = new /obj/item/ammo_casing(src)
+		new_casing.forceMove(get_turf(user))
 		user.put_in_active_hand(new_casing)
 	else
 		return ..()
@@ -181,10 +188,11 @@
 		src.overlays += temp_image
 
 /obj/item/ammo_casing/examine(mob/user)
-	..()
-	to_chat(user, "There [(amount == 1)? "is" : "are"] [amount] round\s left!")
+	var/description = ""
+	description += "There [(amount == 1)? "is" : "are"] [amount] round\s left!\n"
 	if (!BB)
-		to_chat(user, "[(amount == 1)? "This one is" : "These ones are"] spent.")
+		description += "[(amount == 1)? "This one is" : "These ones are"] spent."
+	..(user, afterDesc = description)
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = round(..() * amount)
@@ -201,9 +209,10 @@
 	item_state = "syringe_kit"
 	matter = list(MATERIAL_STEEL = 2)
 	throwforce = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 4
 	throw_range = 10
+	atomFlags = AF_ICONGRABNEEDSINSTANTATION
 
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 10
@@ -344,35 +353,7 @@
 	if(C.amount > 1)
 		C.amount -= 1
 
-		var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
-		inserted_casing.name = C.name
-		inserted_casing.desc = C.desc
-		inserted_casing.caliber = C.caliber
-		inserted_casing.projectile_type = C.projectile_type
-		inserted_casing.icon_state = C.icon_state
-		inserted_casing.spent_icon = C.spent_icon
-		inserted_casing.maxamount = C.maxamount
-		if(ispath(inserted_casing.projectile_type) && C.BB)
-			inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
-
-		inserted_casing.sprite_max_rotate = C.sprite_max_rotate
-		inserted_casing.sprite_scale = C.sprite_scale
-		inserted_casing.sprite_use_small = C.sprite_use_small
-		inserted_casing.sprite_update_spawn = C.sprite_update_spawn
-
-		if(inserted_casing.sprite_update_spawn)
-			var/matrix/rotation_matrix = matrix()
-			rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
-			if(inserted_casing.sprite_use_small)
-				inserted_casing.transform = rotation_matrix * inserted_casing.sprite_scale
-			else
-				inserted_casing.transform = rotation_matrix
-
-		inserted_casing.is_caseless = C.is_caseless
-		inserted_casing.shell_color = C.shell_color
-
-		C.update_icon()
-		inserted_casing.update_icon()
+		var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(C)
 		stored_ammo.Insert(1, inserted_casing)
 	else
 		if(ismob(C.loc))
@@ -466,8 +447,7 @@
 	icon_state = "[initial(icon_state)][ammo_label_string]-[ammo_count]"
 
 /obj/item/ammo_magazine/examine(mob/user)
-	..()
-	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
+	..(user, afterDesc = "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
 
 /obj/item/ammo_magazine/get_item_cost(export)
 	. = ..()

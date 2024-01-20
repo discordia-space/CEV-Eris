@@ -3,10 +3,11 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "aicard" // aicard-full
 	item_state = "electronic"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 4)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	commonLore = "An AI storage card. This device makes use of old Nanotransen flash sticks to store the core-programming of an AI. The highly specialised structure inside permits efficient storage of AI programs of sizes up to 150 TB"
 	//spawn_blacklisted = TRUE//antag_item_targets??
 	var/mob/living/silicon/ai/carded_ai
 	var/flush

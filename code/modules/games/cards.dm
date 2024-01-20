@@ -5,7 +5,7 @@
 	var/desc = "regular old playing card."
 
 /obj/item/deck
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon = 'icons/obj/playing_cards.dmi'
 	var/list/cards = list()
 
@@ -14,7 +14,7 @@
 	desc = "A small leather case to show how classy you are compared to everyone else."
 	icon_state = "card_holder"
 	icon = 'icons/obj/playing_cards.dmi'
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_hold = list(/obj/item/deck)
 	allow_quick_gather = TRUE
 	use_to_pickup = TRUE
@@ -25,8 +25,13 @@
 	var/deck_type
 
 /obj/item/storage/card_holder/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	if(deck_type)
-		new deck_type(src)
+		spawnedAtoms.Add(new  deck_type(NULLSPACE))
+
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/deck/cards
 	name = "deck of cards"
@@ -189,7 +194,7 @@
 
 	icon_state = "card_pack"
 	icon = 'icons/obj/playing_cards.dmi'
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	var/list/cards = list()
 
 
@@ -210,7 +215,7 @@
 	desc = "Some playing cards."
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state = "empty"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 	var/concealed = 0
 	var/list/cards = list()
@@ -237,7 +242,7 @@
 	H.update_icon()
 	src.update_icon()
 	usr.visible_message("\The [usr] plays \the [discarding].")
-	H.loc = get_step(usr,usr.dir)
+	H.forceMove(get_step(usr,usr.dir))
 
 	if(!cards.len)
 		qdel(src)
@@ -248,11 +253,12 @@
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
 
 /obj/item/hand/examine(mob/user)
-	..(user)
+	var/description = ""
 	if((!concealed || src.loc == user) && cards.len)
-		to_chat(user, "It contains: ")
+		description += "It contains:\n "
 		for(var/datum/playingcard/P in cards)
-			to_chat(user, "The [P.name].")
+			description += "The [P.name].\n"
+	..(user, afterDesc = description)
 
 /obj/item/hand/update_icon(var/direction = 0)
 

@@ -31,7 +31,7 @@
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
-		W.loc = get_turf(src)
+		W.forceMove(get_turf(src))
 
 	else if(W.is_refillable())
 		return FALSE //so we can refill them via their afterattack.
@@ -67,19 +67,8 @@
 	chem_splash(loc, 5, list(reagents))
 	qdel(src)
 
-/obj/structure/reagent_dispensers/ex_act(severity)
-	switch(severity)
-		if(1)
-			explode()
-			return
-		if(2)
-			if (prob(50))
-				explode()
-				return
-		if(3)
-			if (prob(5))
-				explode()
-				return
+/obj/structure/reagent_dispensers/take_damage(damage)
+	explode()
 
 /obj/structure/reagent_dispensers/get_item_cost(export)
 	if(export)
@@ -146,19 +135,19 @@
 	spawn_blacklisted = TRUE
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
-	if(!..(user, 2))
-		return
+	var/description = ""
 	if(modded)
-		to_chat(user, SPAN_WARNING("Fuel faucet is open, leaking the fuel!"))
+		description += SPAN_WARNING("Fuel faucet is open, leaking the fuel! \n")
 	if(rig)
-		to_chat(user, SPAN_NOTICE("There is some kind of device rigged to the tank."))
+		description += SPAN_NOTICE("There is some kind of device rigged to the tank.\n")
+	..(user, afterDesc = description)
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
 		usr.visible_message(SPAN_NOTICE("\The [usr] begins to detach [rig] from \the [src]."), SPAN_NOTICE("You begin to detach [rig] from \the [src]."))
 		if(do_after(usr, 20, src))
 			usr.visible_message(SPAN_NOTICE("\The [usr] detaches \the [rig] from \the [src]."), SPAN_NOTICE("You detach [rig] from \the [src]"))
-			rig.loc = get_turf(usr)
+			rig.forceMove(get_turf(usr))
 			rig = null
 			overlays = new/list()
 
@@ -188,7 +177,7 @@
 
 			rig = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 
 			var/icon/test = getFlatIcon(I)
 			test.Shift(NORTH,1)
@@ -210,21 +199,18 @@
 
 		if(!istype(Proj ,/obj/item/projectile/beam/lastertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
 			explode()
-
-/obj/structure/reagent_dispensers/fueltank/ex_act()
-	explode()
+/obj/structure/reagent_dispensers/fueltank/explosion_act(target_power, explosion_handler/handle)
+	if(target_power > health)
+		explode()
+	else
+		take_damage(target_power)
 
 /obj/structure/reagent_dispensers/fueltank/ignite_act()
 	if(modded)
 		explode()
 
 /obj/structure/reagent_dispensers/fueltank/explode()
-	if (reagents.total_volume > 500)
-		explosion(src.loc,1,2,4)
-	else if (reagents.total_volume > 100)
-		explosion(src.loc,0,1,3)
-	else if (reagents.total_volume > 50)
-		explosion(src.loc,-1,1,2)
+	explosion(get_turf(src), reagents.total_volume / 2, 50)
 	if(src)
 		qdel(src)
 
@@ -235,7 +221,7 @@
 		explode()
 	return ..()
 
-/obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/reagent_dispensers/fueltank/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	if ((. = ..()) && modded)
 		leak_fuel(amount_per_transfer_from_this/10)
 
@@ -282,6 +268,17 @@
 	contents_cost = 700
 	spawn_blacklisted = TRUE
 
+/obj/structure/reagent_dispensers/rumkeg
+	name = "rum keg"
+	desc = "A rum keg"
+	icon_state = "beertankTEMP"
+	amount_per_transfer_from_this = 10
+	volume = 1000
+	starting_reagent = "rum"
+	price_tag = 50
+	contents_cost = 700
+	spawn_blacklisted = TRUE
+
 /obj/structure/reagent_dispensers/coolanttank
 	name = "coolant tank"
 	desc = "A tank of industrial coolant"
@@ -304,16 +301,6 @@
 	contents_cost = 950
 	spawn_blacklisted = TRUE
 
-/obj/structure/reagent_dispensers/virusfood
-	name = "virus food dispenser"
-	desc = "A dispenser of virus food."
-	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
-	anchored = TRUE
-	density = FALSE
-	volume = 1000
-	starting_reagent = "virusfood"
-	spawn_blacklisted = TRUE
 
 /obj/structure/reagent_dispensers/acid
 	name = "sulphuric acid dispenser"
@@ -358,13 +345,13 @@
 	. = ..()
 	update_icon()
 
-/obj/structure/reagent_dispensers/bidon/examine(mob/user)
-	if(!..(user, 2))
-		return
+/obj/structure/reagent_dispensers/bidon/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(lid)
-		to_chat(user, SPAN_NOTICE("It has lid on it."))
+		description += SPAN_NOTICE("It has lid on it.\n")
 	if(reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[volume] units of reagents."))
+		description += SPAN_NOTICE("It's filled with [reagents.total_volume]/[volume] units of reagents.\n")
+	..(user, afterDesc = description)
 
 /obj/structure/reagent_dispensers/bidon/attack_hand(mob/user)
 	lid = !lid
@@ -403,9 +390,9 @@
 			return increment
 
 /obj/structure/reagent_dispensers/bidon/advanced/examine(mob/user)
-	if(!..(user, 2))
-		return
+	var/description = ""
 	if(reagents.reagent_list.len)
 		for(var/I in reagents.reagent_list)
 			var/datum/reagent/R = I
-			to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+			description += "<span class='notice'>[R.volume] units of [R.name]</span>\n"
+	..(user, afterDesc = description)

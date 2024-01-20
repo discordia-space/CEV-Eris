@@ -7,7 +7,7 @@
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = FACE|EYES
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -16,12 +16,12 @@
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 75,
-		rad = 40
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =75,
+		ARMOR_RAD =40
 	)
 	price_tag = 20
 	style = STYLE_NEG_LOW

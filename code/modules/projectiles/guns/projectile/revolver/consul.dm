@@ -12,10 +12,9 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
 	price_tag = 1700
 	damage_multiplier = 1.35
-	penetration_multiplier = 0.2
 	init_recoil = HANDGUN_RECOIL(1)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/consul = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/consul = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/revolver = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 	serial_type = "FS"
 
 /obj/item/part/gun/frame/consul
@@ -23,6 +22,6 @@
 	desc = "A Consul revolver frame. The standard detective's choice."
 	icon_state = "frame_inspector"
 	resultvars = list(/obj/item/gun/projectile/revolver/consul)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/revolver
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)

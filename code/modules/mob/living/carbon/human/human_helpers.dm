@@ -27,6 +27,8 @@
 		return TRUE
 	if(stats.getStat(STAT_COG) >= HUMAN_REQ_COG_FOR_REG || stats.getStat(STAT_BIO) >= HUMAN_REQ_BIO_FOR_REG)
 		return TRUE
+	if(hasCyberFlag(CSF_SEE_REAGENTS))
+		return TRUE
 	/*
 	if(stats.check_for_shared_perk(PERK_SHARED_SEE_CONSUMER_REAGENTS))
 		return 2
@@ -113,11 +115,15 @@
 
 /mob/living/carbon/human/reset_layer()
 	if(hiding)
-		set_plane(HIDING_MOB_PLANE)
-		layer = HIDING_MOB_LAYER
+		if(!(atomFlags & AF_PLANE_UPDATE_HANDLED))
+			set_plane(HIDING_MOB_PLANE)
+		if(!(atomFlags & AF_LAYER_UPDATE_HANDLED))
+			layer = HIDING_MOB_LAYER
 	else if(lying)
-		set_plane(LYING_HUMAN_PLANE)
-		layer = LYING_HUMAN_LAYER
+		if(!(atomFlags & AF_PLANE_UPDATE_HANDLED))
+			set_plane(LYING_HUMAN_PLANE)
+		if(!(atomFlags & AF_LAYER_UPDATE_HANDLED))
+			layer = LYING_HUMAN_LAYER
 	else
 		..()
 
@@ -130,3 +136,18 @@
 			equipment_see_invis = min(equipment_see_invis, A.see_invisible_gun)
 		else
 			equipment_see_invis = A.see_invisible_gun
+
+/mob/living/carbon/human/proc/adjustStatusEffect(effectType, value)
+	statusEffects[effectType] += value
+
+/mob/living/carbon/human/proc/hasCyberFlag(flagToObtain)
+	for(var/bodypart in BP_ALL_LIMBS)
+		if(!has_organ(bodypart))
+			continue
+		var/obj/item/organ/external/part = organs_by_name[bodypart]
+		var/obj/item/implant/cyberinterface/interface = locate() in part.implants
+		if(interface)
+			for(var/obj/item/cyberstick/stick in interface.slots)
+				if(stick.cyberFlags & flagToObtain)
+					return TRUE
+	return FALSE

@@ -135,6 +135,7 @@
 		if(can_stun(M) && prob(stun_chance))
 			var/obj/item/projectile/beam/stun/P = new(src.loc)
 			P.shot_from = src
+			P.PrepareForLaunch()
 			P.launch(M)
 
 /obj/machinery/shieldwallgen/proc/can_stun(var/mob/M)
@@ -175,7 +176,7 @@
 	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
 		T = get_step(T, f_dir)
 		var/obj/machinery/shieldwall/CF = new shield_type(src, G) //(ref to this gen, ref to connected gen)
-		CF.loc = T
+		CF.forceMove(T)
 		CF.set_dir(f_dir)
 
 
@@ -325,38 +326,15 @@
 	..()
 	return
 
-
-/obj/machinery/shieldwall/ex_act(severity)
+/obj/machinery/shieldwall/take_damage(amount)
 	if(needs_power)
 		var/obj/machinery/shieldwallgen/G
-		switch(severity)
-			if(1) //big boom
-				if(prob(50))
-					G = gen_primary
-				else
-					G = gen_secondary
-				G.storedpower -= 120000
-
-			if(2) //medium boom
-				if(prob(50))
-					G = gen_primary
-				else
-					G = gen_secondary
-				G.storedpower -= 30000
-
-			if(3) //lil boom
-				if(prob(50))
-					G = gen_primary
-				else
-					G = gen_secondary
-				G.storedpower -= 12000
-			if(3) //minuscule amount of boom
-				if(prob(50))
-					G = gen_primary
-				else
-					G = gen_secondary
-				G.storedpower -= 6000
-	return
+		if(prob(50))
+			G = gen_primary
+		else
+			G = gen_secondary
+		G.storedpower -= amount * 10
+	. = ..()
 
 
 /obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)

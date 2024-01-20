@@ -5,8 +5,7 @@
 	icon_state = "ks23"
 	item_state = "ks23"
 	max_shells = 4
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_ROBUST
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_STEEL = 15)
 	proj_step_multiplier = 1.2
@@ -19,3 +18,13 @@
 	saw_off = FALSE
 	spawn_blacklisted = TRUE
 	serial_type = "Excelsior"
+	gun_parts = list(/obj/item/part/gun/frame/ks = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
+
+/obj/item/part/gun/frame/ks
+	name = "KS-23 frame"
+	desc = "A KS-23 shotgun frame. A prolitarian's favorite."
+	icon_state = "frame_shotgun"
+	resultvars = list(/obj/item/gun/projectile/shotgun/pump/ks)
+	gripvars = list(/obj/item/part/gun/modular/grip/excel)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

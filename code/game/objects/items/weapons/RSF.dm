@@ -15,11 +15,10 @@ RSF
 	var/max_stored_matter = 30
 	var/stored_matter = 30
 	var/mode = 1
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/item/rsf/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "It currently holds [stored_matter]/30 Compressed Matter.")
+	..(user, afterDesc = "It currently holds [stored_matter]/30 Compressed Matter.")
 
 /obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/stack/material/M = W
@@ -87,7 +86,7 @@ RSF
 			product = new /obj/item/pen()
 			used_energy = 50
 		if(5)
-			product = new /obj/item/storage/pill_bottle/dice()
+			product = new /obj/item/storage/box/dice()
 			used_energy = 200
 
 	to_chat(user, "Dispensing [product ? product : "product"]...")

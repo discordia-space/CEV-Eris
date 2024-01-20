@@ -95,7 +95,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	else if(href_list["remove"])
 		if(copyitem)
-			copyitem.loc = usr.loc
+			copyitem.forceMove(usr.loc)
 			usr.put_in_hands(copyitem)
 			to_chat(usr, SPAN_NOTICE("You take \the [copyitem] out of \the [src]."))
 			copyitem = null
@@ -104,17 +104,17 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	if(href_list["scan"])
 		if (scan)
 			if(ishuman(usr))
-				scan.loc = usr.loc
+				scan.forceMove(usr.loc)
 				if(!usr.get_active_hand())
 					usr.put_in_hands(scan)
 				scan = null
 			else
-				scan.loc = src.loc
+				scan.forceMove(src.loc)
 				scan = null
 		else
 			var/obj/item/I = usr.get_active_hand()
 			if (istype(I, /obj/item/card/id) && usr.unEquip(I))
-				I.loc = src
+				I.forceMove(src)
 				scan = I
 		authenticated = 0
 
@@ -192,7 +192,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		visible_message("[src] beeps, \"Error transmitting message.\"")
 		return
 
-	rcvdcopy.loc = null //hopefully this shouldn't cause trouble
+	rcvdcopy.forceMove(null) //hopefully this shouldn't cause trouble
 	adminfaxes += rcvdcopy
 
 	//message badmins that a fax has arrived

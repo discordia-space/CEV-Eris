@@ -33,7 +33,7 @@
 	if(owner_core)
 		owner_core.active_spiders -= src
 
-/obj/item/implant/carrion_spider/Move(NewLoc, Dir, step_x, step_y, glide_size_override)
+/obj/item/implant/carrion_spider/Move(NewLoc, Dir, step_x, step_y, glide_size_override, initiator = src)
 	last_stun_time = world.time
 	..()
 
@@ -52,7 +52,7 @@
 	last_stun_time = world.time
 
 /obj/item/implant/carrion_spider/attackby(obj/item/I, mob/living/user, params) //Overrides implanter behaviour
-	if(I.force >= WEAPON_FORCE_WEAK)
+	if(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)) >= WEAPON_FORCE_WEAK)
 		attack_animation(user)
 		die_from_attack()
 

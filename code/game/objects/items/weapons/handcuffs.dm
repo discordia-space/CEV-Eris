@@ -9,7 +9,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 2
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
@@ -40,16 +40,16 @@
 		return
 
 	var/cuff_delay = 4 SECONDS
-	for (var/obj/item/grab/G in C.grabbed_by)
-		if (G.loc == user)
-			if(G.state >= GRAB_PASSIVE)
-				cuff_delay -= 1 SECONDS //3
-			if(G.state >= GRAB_AGGRESSIVE)
-				cuff_delay /= 2 //1.5
-			if(G.state >= GRAB_NECK)
-				cuff_delay /= 2 //0.75
-			if(G.state >= GRAB_KILL)
-				cuff_delay = 0
+	var/obj/item/grab/G = C.grabbedBy
+	if(G && G.assailant == user)
+		if(G.state >= GRAB_PASSIVE)
+			cuff_delay -= 1 SECONDS //3
+		if(G.state >= GRAB_AGGRESSIVE)
+			cuff_delay /= 2 //1.5
+		if(G.state >= GRAB_NECK)
+			cuff_delay /= 2 //0.75
+		if(G.state >= GRAB_KILL)
+			cuff_delay = 0
 	if(C.handcuffed)
 		to_chat(user,SPAN_WARNING("\The [C] is already handcuffed."))
 		return

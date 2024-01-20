@@ -169,7 +169,7 @@
 	return 0
 
 
-/mob/living/simple_animal/hostile/commanded/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_animal/hostile/commanded/hit_with_weapon(obj/item/O, mob/living/user, list/damages, var/hit_zone)
 	//if they attack us, we want to kill them. None of that "you weren't given a command so free kill" bullshit.
 	. = ..()
 	if(!.)

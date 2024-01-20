@@ -95,7 +95,7 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
-		hat.loc = get_turf(src)
+		hat.forceMove(get_turf(src))
 	GLOB.drones.Remove(src)
 	. = ..()
 

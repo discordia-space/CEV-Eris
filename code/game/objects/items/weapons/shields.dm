@@ -38,18 +38,20 @@
 	style = STYLE_NEG_HIGH
 
 /obj/item/shield/examine(var/mob/user)
-	. = ..()
+	var/description = ""
 	switch(get_block_chance(user))
 		if(0 to 30)
-			to_chat(user, "So heavy... You feel doubtful in your ability to parry with this shield using only one hand until you grow stronger.")
+			description += "So heavy... You feel doubtful in your ability to parry with this shield using only one hand until you grow stronger."
 		if(31 to 45)
-			to_chat(user, "Holding this feels a little clumsy. Perhaps if you were a bit stronger...")
+			description += "Holding this feels a little clumsy. Perhaps if you were a bit stronger..."
 		if(46 to 55)
-			to_chat(user, "A bit hefty, but you feel confident in your ability to parry with this shield.")
+			description += "A bit hefty, but you feel confident in your ability to parry with this shield."
 		if(56 to 70)
-			to_chat(user, "The weight of this shield feels comfortable and maneuverable.")
+			description += "The weight of this shield feels comfortable and maneuverable."
 		if(71 to INFINITY)
-			to_chat(user, "You feel ready for a gladiator duel! Bring it on, roaches!")
+			description += "You feel ready for a gladiator duel! Bring it on, roaches!"
+
+	. = ..(user, afterDesc = description)
 
 
 
@@ -140,11 +142,15 @@
 	item_state = "tactical"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT|SLOT_BACK
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 2
 	throw_range = 6
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 5, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 12)
 	price_tag = 500
@@ -196,11 +202,15 @@
 	item_state = "riot"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,7)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list(TECH_MATERIAL = 2)
 	matter = list(MATERIAL_GLASS = 10, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 15)
 	price_tag = 500
@@ -300,11 +310,15 @@
 	item_state = "dozershield"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_DANGEROUS
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,7)
+		)
+	)
 	throwforce = WEAPON_FORCE_DANGEROUS
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list()
 	matter = list(MATERIAL_GLASS = 20, MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10)
 	price_tag = 200
@@ -327,11 +341,15 @@
 	item_state = "hardshield"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
-	force = WEAPON_FORCE_PAINFUL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,15)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	origin_tech = list()
 	matter = list()
 	price_tag = 0
@@ -460,11 +478,15 @@
 	icon_state = "eshield0" // eshield1 for expanded
 	item_state = "eshield0"
 	flags = CONDUCT
-	force = 3
+	melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN,10)
+		)
+	)
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_COVERT = 4)
 	attack_verb = list("shoved", "bashed")
 	var/active = 0
@@ -490,16 +512,22 @@
 	active = !active
 */
 	if(active)
-		force = WEAPON_FORCE_PAINFUL
+		melleDamages = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN,10)
+		))
 		update_icon()
-		w_class = ITEM_SIZE_BULKY
+		volumeClass = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] is now active."))
 
 	else
-		force = 3
+		melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		))
 		update_icon()
-		w_class = ITEM_SIZE_TINY
+		volumeClass = ITEM_SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 		to_chat(user, SPAN_NOTICE("\The [src] can now be concealed."))
 

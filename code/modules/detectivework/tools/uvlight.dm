@@ -3,7 +3,7 @@
 	desc = "A small handheld black light."
 	icon_state = "uv_off"
 	slot_flags = SLOT_BELT
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	action_button_name = "Toggle UV light"
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)

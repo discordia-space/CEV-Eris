@@ -42,7 +42,6 @@ var/global/list/modifications_types = list(
 	var/nature = MODIFICATION_ORGANIC
 	var/hascolor = FALSE
 	var/allow_nt = TRUE
-	var/list/department_specific = ALL_DEPARTMENTS
 
 /datum/body_modification/proc/get_mob_icon(organ, color="#ffffff", gender = MALE, species)	//Use in setup character only
 	return new/icon('icons/mob/human.dmi', "blank")
@@ -62,24 +61,6 @@ var/global/list/modifications_types = list(
 		if(parent.nature > nature)
 			to_chat(usr, "[name] can't be attached to [parent.name]")
 			return FALSE
-
-	if(department_specific.len)
-		if(H && H.mind)
-			var/department = H.mind.assigned_job.department
-			if(!department)
-				return FALSE
-			else if(!department_specific.Find(department))
-				to_chat(usr, "This body-mod does not match your chosen department.")
-				return FALSE
-		else if(P)
-			var/datum/job/J
-			if(ASSISTANT_TITLE in P.job_low)
-				J = SSjob.GetJob(ASSISTANT_TITLE)
-			else
-				J = SSjob.GetJob(P.job_high)
-			if(!J || !department_specific.Find(J.department))
-				to_chat(usr, "This body-mod does not match your highest-priority department.")
-				return FALSE
 
 	if(!allow_nt && H?.get_core_implant(/obj/item/implant/core_implant/cruciform))
 		to_chat(usr, "Your cruciform prevents you from using this modification.")
@@ -128,7 +109,7 @@ var/global/list/modifications_types = list(
 	name = "Unbranded"
 	id = "prosthesis_basic"
 	desc = "Simple, brutal and reliable prosthesis"
-	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
+	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_CHEST, BP_HEAD)
 	replace_limb = /obj/item/organ/external/robotic
 	icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'
 	nature = MODIFICATION_SILICON
@@ -166,14 +147,12 @@ var/global/list/modifications_types = list(
 	id = "prosthesis_technomancer"
 	replace_limb = /obj/item/organ/external/robotic/technomancer
 	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN, BP_HEAD)
-	department_specific = list(DEPARTMENT_ENGINEERING)
 	icon = 'icons/mob/human_races/cyberlimbs/technomancer.dmi'
 
 /datum/body_modification/limb/prosthesis/moebius
 	id = "prosthesis_moebius"
 	replace_limb = /obj/item/organ/external/robotic/moebius
 	body_parts = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_CHEST, BP_GROIN, BP_HEAD)
-	department_specific = list(DEPARTMENT_MEDICAL, DEPARTMENT_SCIENCE)
 	icon = 'icons/mob/human_races/cyberlimbs/moebius.dmi'
 
 /datum/body_modification/limb/prosthesis/makeshift

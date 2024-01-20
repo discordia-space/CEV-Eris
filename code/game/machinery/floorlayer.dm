@@ -13,7 +13,7 @@
 	T = new/obj/item/stack/tile/floor(src)
 	..()
 
-/obj/machinery/floorlayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/floorlayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 
 	if(on)
@@ -66,11 +66,10 @@
 	..()
 
 /obj/machinery/floorlayer/examine(mob/user)
-	..()
 	var/dismantle = mode["dismantle"]
 	var/laying = mode["laying"]
 	var/collect = mode["collect"]
-	to_chat(user, "<span class='notice'>\The [src] [!T?"don't ":""]has [!T?"":"[T.get_amount()] [T] "]tile\s, dismantle is [dismantle?"on":"off"], laying is [laying?"on":"off"], collect is [collect?"on":"off"].</span>")
+	..(user, afterDesc = "<span class='notice'>\The [src] [!T?"don't ":""]has [!T?"":"[T.get_amount()] [T] "]tile\s, dismantle is [dismantle?"on":"off"], laying is [laying?"on":"off"], collect is [collect?"on":"off"].</span>")
 
 /obj/machinery/floorlayer/proc/reset()
 	on=0

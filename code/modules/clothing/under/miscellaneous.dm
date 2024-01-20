@@ -157,8 +157,8 @@
 
 
 /obj/item/clothing/under/blazer
-	name = "blue blazer"
-	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
+	name = "black tailcoat"
+	desc = "A bold, yet conservative outfit; red slacks and almost Victorian style tailcoat."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
@@ -203,6 +203,18 @@ obj/item/clothing/under/leisure/pullover
 	desc = "Brown pullover with indeterminable pattern."
 	icon_state = "pullover"
 	item_state = "pullover"
+
+/obj/item/clothing/under/leisure/joe
+	name = "red casual suit"
+	desc = "A salmon colored casual suit for office workers."
+	icon_state = "joe"
+	item_state = "joe"
+
+/obj/item/clothing/under/leisure/casual/blue
+	name = "blue casual suit"
+	desc = "An qqua colored casual suit for office workers."
+	icon_state = "business_blue"
+	item_state = "business_blue"
 
 obj/item/clothing/under/neon
 	name = "green neon tracksuit"
@@ -331,12 +343,12 @@ obj/item/clothing/under/genericr
 	icon_state = "johnny"
 	item_state = "johnny"
 	armor = list(
-		melee = 2,
-		bullet = 1,
-		energy = 1,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/under/jamrock//Disco
@@ -363,12 +375,12 @@ obj/item/clothing/under/genericr
 	icon_state = "raider"
 	item_state = "raider"
 	armor = list(
-		melee = 2,
-		bullet = 1,
-		energy = 1,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 1,
+		ARMOR_ENERGY = 1,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/under/onestar
@@ -379,12 +391,12 @@ obj/item/clothing/under/genericr
 	spawn_tags = SPAWN_TAG_CLOTHING_OS
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 1,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 5,
-		rad = 5
+		ARMOR_BLUNT = 1,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =5,
+		ARMOR_RAD =5
 	)
 
 /obj/item/clothing/under/tropicalpink
@@ -428,10 +440,10 @@ obj/item/clothing/under/genericr
 /obj/item/clothing/under/tuxedo/adminspawn
 	spawn_blacklisted = TRUE
 	armor = list(
-		melee = 15,
-		bullet = 18,
-		energy = 15,
-		bomb = 75,
-		bio = 100,
-		rad = 30
+		ARMOR_BLUNT = 15,
+		ARMOR_BULLET = 18,
+		ARMOR_ENERGY = 15,
+		ARMOR_BOMB =300,
+		ARMOR_BIO =100,
+		ARMOR_RAD =30
 	)

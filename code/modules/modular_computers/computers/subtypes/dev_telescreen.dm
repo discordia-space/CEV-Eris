@@ -15,7 +15,7 @@
 	screen_light_range = 2.5
 	max_damage = 300
 	broken_damage = 150
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 
 /obj/item/modular_computer/telescreen/New()
 	..()

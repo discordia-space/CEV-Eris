@@ -38,7 +38,7 @@
 /obj/item/stack/New(var/loc, var/amount=null)
 	.=..()
 	if (amount)
-		src.amount = amount
+		setAmount(amount)
 
 /obj/item/stack/Initialize()
 	.=..()
@@ -47,7 +47,7 @@
 
 	if (rand_min || rand_max)
 		amount = rand(rand_min, rand_max)
-		amount = round(amount, 1) //Just in case
+		setAmount(round(amount, 1)) //Just in case
 	update_icon()
 
 /obj/item/stack/update_icon()
@@ -61,6 +61,12 @@
 		icon_state = "[initial(icon_state)]_3"
 	..()
 
+/obj/item/stack/proc/setAmount(amount)
+	var/oldWeight = weight
+	src.amount = amount
+	weight = getWeight() * amount
+	recalculateWeights(weight - oldWeight)
+
 /obj/item/stack/Destroy()
 	if (synths)
 		synths.Cut() //Preventing runtimes
@@ -72,12 +78,10 @@
 
 	return ..()
 
-/obj/item/stack/examine(mob/user)
-	if(..(user, 1))
-		if(!uses_charge)
-			to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack.")
-		else
-			to_chat(user, "There is enough charge for [get_amount()].")
+/obj/item/stack/examine(mob/user,afterDesc)
+	var/description = "[afterDesc] \n"
+	description +=  !uses_charge ? "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack." : "There is enough charge for [get_amount()]."
+	..(user, afterDesc = description)
 
 /obj/item/stack/attack_self(mob/user as mob)
 	list_recipes(user)
@@ -181,12 +185,7 @@
 
 
 /obj/item/stack/get_matter()
-	. = list()
-	if(matter)
-		. = matter.Copy()
-		for(var/i in .)
-			.[i] *= amount
-
+	return matter
 
 /obj/item/stack/Topic(href, href_list)
 	..()

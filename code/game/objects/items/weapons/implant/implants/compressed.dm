@@ -12,10 +12,11 @@
 /obj/item/implant/compressed/trigger(emote, mob/living/source)
 	if(!scanned)
 		return
+	if(..())
 
-	if(emote == activation_emote)
-		to_chat(source, "The air glows as \the [scanned.name] uncompresses.")
-		activate()
+		if(emote == activation_emote)
+			to_chat(source, "The air glows as \the [scanned.name] uncompresses.")
+			activate()
 
 /obj/item/implant/compressed/activate()
 	if(wearer)

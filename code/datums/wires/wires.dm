@@ -122,8 +122,9 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	for(var/colour in wires)
 		html += "<tr>"
 		var/datum/wire_description/wd = get_description(GetIndex(colour))
+		var/mob/living/carbon/human/humie = user
 		if(wd)
-			if(user.stats && user.stats.getPerk(PERK_TECHNOMANCER) || user_skill && (wd.skill_level <= user_skill))
+			if(user.stats && user.stats.getPerk(PERK_TECHNOMANCER) || user_skill && (wd.skill_level <= user_skill) || (istype(humie) && humie.hasCyberFlag(CSF_SEE_WIRES)))
 				html += "<td[row_options1]><font color='[colour]'>[wd.description]</font></td>"
 			else
 				html += "<td[row_options1]><font color='[colour]'>[capitalize(colour)]</font></td>"
@@ -145,7 +146,11 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		var/mob/living/L = usr
 		if(CanUse(L) && href_list["action"])
 			var/obj/item/I = L.get_active_hand()
-			holder.add_hiddenprint(L)
+			if(!ismech(L.loc))
+				holder.add_hiddenprint(L)
+			else
+				var/mob/living/exosuit/mech = L.loc
+				I = mech.get_active_hand()
 			if(href_list["cut"]) // Toggles the cut/mend status
 				if (!istype(I))
 					return

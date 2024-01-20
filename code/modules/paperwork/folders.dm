@@ -3,7 +3,7 @@
 	desc = "A folder."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "folder"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	matter = list(MATERIAL_BIOMATTER = 2)
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_JUNK
@@ -33,7 +33,7 @@
 /obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/paper_bundle))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		playsound(src,'sound/effects/Paper_Shake.ogg',40,1)
 		to_chat(user, SPAN_NOTICE("You put the [W] into \the [src]."))
 		update_icon()
@@ -67,7 +67,7 @@
 		if(href_list["remove"])
 			var/obj/item/P = locate(href_list["remove"])
 			if(P && (P.loc == src) && istype(P))
-				P.loc = usr.loc
+				P.forceMove(usr.loc)
 				playsound(src,'sound/effects/Paper_Remove.ogg',40,1)
 				usr.put_in_hands(P)
 

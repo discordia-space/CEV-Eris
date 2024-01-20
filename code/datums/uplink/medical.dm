@@ -45,6 +45,23 @@
 	path = /obj/item/gene_vial
 	antag_roles = list(ROLE_CARRION)
 
+/datum/uplink_item/item/medical/interface_implanter
+	name = "Cyberinterface implanter"
+	item_cost = 10
+	path = /obj/item/implanter/cyberinterface_contractor
+	antag_roles = list(ROLE_CONTRACTOR, ROLE_MERCENARY)
+
+/obj/item/implanter/cyberinterface_contractor
+	name = "implanter (C)"
+	desc = "A implanter with a cyberinterface inside. Aim it where your brain is!"
+	implant = /obj/item/implant/cyberinterface/contractor
+
+/datum/uplink_item/item/medical/interface_disk
+	name = "Cyberdisk - Combat booster (Toughness and Vigilance)"
+	item_cost = 20
+	path = /obj/item/cyberstick/syndicate
+	antag_roles = list(ROLE_CONTRACTOR, ROLE_MERCENARY, ROLE_CARRION)
+
 /datum/uplink_item/item/medical/nanopaste
 	name = "Nanopaste"
 	item_cost = 3

@@ -1,8 +1,8 @@
 // Stacked resources. They use a material datum for a lot of inherited values.
 /obj/item/stack/material
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,15)))
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	icon = 'icons/obj/stack/material.dmi'
 	throw_speed = 3
 	throw_range = 3
@@ -13,8 +13,7 @@
 	var/material/material
 	var/apply_colour //temp pending icon rewrite
 
-/obj/item/stack/material/Initialize()
-	. = ..()
+/obj/item/stack/material/New(loc)
 	pixel_x = rand(0,10)-5
 	pixel_y = rand(0,10)-5
 
@@ -22,7 +21,7 @@
 		default_type = MATERIAL_STEEL
 	material = get_material_by_name("[default_type]")
 	if(!material)
-		return INITIALIZE_HINT_QDEL
+		return ..()
 
 	stacktype = material.stack_type
 	if(islist(material.stack_origin_tech))
@@ -35,7 +34,10 @@
 		flags |= CONDUCT
 
 	matter = material.get_matter()
-	update_strings()
+	for(var/matterType in matter)
+		matter[matterType] = matter[matterType] * amount
+	update_stack()
+	..()
 
 /obj/item/stack/material/attack_self(mob/living/user)
 	user.craft_menu()
@@ -46,7 +48,7 @@
 /obj/item/stack/material/proc/get_default_type()
 	return default_type
 
-/obj/item/stack/material/proc/update_strings()
+/obj/item/stack/material/proc/update_stack()
 	// Update from material datum.
 	singular_name = material.sheet_singular_name
 
@@ -59,9 +61,14 @@
 		desc = "A [material.sheet_singular_name] of [material.use_name]."
 		gender = NEUTER
 
+	matter = material.get_matter()
+	for(var/matterType in matter)
+		matter[matterType] = matter[matterType] * amount
+	recalculateWeights(getWeight() - weight)
+
 /obj/item/stack/material/use(used)
 	. = ..()
-	update_strings()
+	update_stack()
 	return
 
 /obj/item/stack/material/transfer_to(obj/item/stack/S, tamount=null, type_verified)
@@ -69,9 +76,13 @@
 	if(!istype(M) || material.name != M.material.name)
 		return 0
 	var/transfer = ..(S,tamount,1)
-	if(src) update_strings()
-	if(M) M.update_strings()
+	if(src) update_stack()
+	if(M) M.update_stack()
 	return transfer
+
+/obj/item/stack/material/setAmount(amount)
+	src.amount = amount
+	update_stack()
 
 /obj/item/stack/material/attack_self(mob/user)
 	if(!material.build_windows(user, src))
@@ -88,7 +99,7 @@
 
 /obj/item/stack/material/add(extra)
 	..()
-	update_strings()
+	update_stack()
 
 
 /obj/item/stack/material/iron

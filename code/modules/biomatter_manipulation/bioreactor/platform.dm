@@ -55,22 +55,22 @@
 				//if we found biomatter, let's start processing
 				//it will slowly disappear. Time based at size of object and we manipulate with its alpha (we also check for it)
 				if((MATERIAL_BIOMATTER in target.matter) && !target.unacidable)
-					target.alpha -= round(100 / target.w_class)
+					target.alpha -= round(100 / target.volumeClass)
 					var/icon/I = new(target.icon, icon_state = target.icon_state)
 					//we turn this things to degenerate sprite a bit
 					I.Turn(rand(-10, 10))
 					target.icon = I
 					if(target.alpha <= 50)
 						MS_bioreactor.biotank_platform.take_amount(target.matter[MATERIAL_BIOMATTER])
-						MS_bioreactor.biotank_platform.pipes_wearout(target.w_class)
+						MS_bioreactor.biotank_platform.pipes_wearout(target.volumeClass)
 						target.matter -= MATERIAL_BIOMATTER
 						//if we have other matter, let's spit it out
 						for(var/material in target.matter)
 							var/stack_type = material_stack_type(material_display_name(material))
 							if(stack_type)
 								var/obj/item/stack/material/waste = new stack_type(MS_bioreactor.misc_output)
-								waste.amount = target.matter[material]
-								waste.update_strings()
+								waste.setAmount(target.matter[material])
+								waste.update_stack()
 							target.matter -= material
 						consume(target)
 				else
@@ -109,8 +109,10 @@
 				organ.forceMove(get_turf(neighbor_platform))
 				organ.removed()
 				continue
-		if(H && H.mind && H.mind.key && H.stat == DEAD)
-			var/mob/M = key2mob(H.mind.key)
+	if(istype(object, /obj/item/organ/internal/vital/brain))
+		var/obj/item/organ/internal/vital/brain/B = object
+		if(B.brainmob && B.brainmob.mind && B.brainmob.mind.key)
+			var/mob/M = key2mob(B.brainmob.mind.key)
 			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by [(BIOREACTOR_RESPAWN_BONUS)/600] minutes."))
 			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
 			M.set_respawn_bonus("CORPSE_DISSOLVING", BIOREACTOR_RESPAWN_BONUS)
@@ -191,20 +193,21 @@
 
 
 /obj/structure/window/reinforced/bioreactor/examine(mob/user)
-	..()
+	var/description = ""
 	switch(contamination_level)
 		if(1)
-			to_chat(user, SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean."))
+			description += SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean.")
 		if(2)
-			to_chat(user, SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up."))
+			description += SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up.")
 		if(3)
-			to_chat(user, SPAN_WARNING("This [src] has clear signs and stains of biomatter."))
+			description += SPAN_WARNING("This [src] has clear signs and stains of biomatter.")
 		if(4)
-			to_chat(user, SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell."))
+			description += SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell.")
 		if(5)
-			to_chat(user, SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src]."))
+			description += SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src].")
 		else
-			to_chat(user, SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?"))
+			description += SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?")
+	..(user, afterDesc = description)
 
 
 /obj/structure/window/reinforced/bioreactor/update_icon()

@@ -155,9 +155,6 @@
 	else
 		icon_state = "ironfoam"
 
-/obj/structure/foamedmetal/ex_act(severity)
-	qdel(src)
-
 /obj/structure/foamedmetal/bullet_act()
 	if(metal == 1 || prob(50))
 		qdel(src)
@@ -183,7 +180,7 @@
 /obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
 	if(!istype(I))
 		return
-	if(prob(I.force * 20 - metal * 25))
+	if(prob(dhTotalDamage(I.melleDamages) * 20 - metal * 25))
 		user.visible_message(
 			SPAN_WARNING("[user] smashes through the foamed metal."),
 			SPAN_NOTICE("You smash through the foamed metal with \the [I].")

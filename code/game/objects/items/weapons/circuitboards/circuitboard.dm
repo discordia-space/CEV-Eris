@@ -20,9 +20,8 @@
 	matter_reagents = list("silicon" = 10)
 	density = FALSE
 	anchored = FALSE
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = CONDUCT
-	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 3
 	throw_range = 15
@@ -48,17 +47,16 @@
 		return TRUE
 	return FALSE
 
-/obj/item/electronics/circuitboard/examine(user, distance)
-	. = ..()
+/obj/item/electronics/circuitboard/examine(user, distance,afterDesc)
 	// gets the required components and displays it in a list to the user when examined.
+	var/list/listed_components = list()
 	if(length(req_components))
-		var/list/listed_components = list()
 		for(var/requirement in req_components)
 			var/atom/placeholder = requirement
 			if(!ispath(placeholder))
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
-		to_chat(user, SPAN_NOTICE("Required components: [english_list(listed_components)]."))
+	..(user, distance, afterDesc = "[afterDesc] \n [SPAN_NOTICE("Required components: [english_list(listed_components)]")].]")
 
 /obj/item/electronics/circuitboard/get_item_cost(export)
 	. = ..()

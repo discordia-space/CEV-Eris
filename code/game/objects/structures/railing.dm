@@ -13,8 +13,9 @@
 	icon_state = "railing0"
 	matter = list(MATERIAL_STEEL = 2)
 	var/broken = 0
-	var/health=70
-	var/maxhealth=70
+	health=70
+	maxHealth=70
+	explosion_coverage = 0
 	var/check = 0
 	var/reinforced = FALSE
 	var/reinforcement_security = 0 // extra health from being reinforced, hardcoded to 40 on add
@@ -62,15 +63,15 @@
 //32 and 4 - in the same turf
 
 /obj/structure/railing/examine(mob/user)
-	. = ..()
-	if(health < maxhealth)
-		switch(health / maxhealth)
+	var/description = ""
+	if(health < maxHealth)
+		switch(health / maxHealth)
 			if(0 to 0.25)
-				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
+				description += SPAN_WARNING("It looks severely damaged!")
 			if(0.25 to 0.5)
-				to_chat(user, SPAN_WARNING("It looks damaged!"))
+				description += SPAN_WARNING("It looks damaged!")
 			if(0.5 to 1)
-				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
+				description += SPAN_NOTICE("It has a few scrapes and dents.")
 	if(reinforced)
 		var/reinforcement_text = "It is reinforced with rods"
 		switch(reinforcement_security)
@@ -80,9 +81,13 @@
 				reinforcement_text += ", which are loosely attached"
 			if (20 to 30)
 				reinforcement_text += ", which are a bit loose"
-		to_chat(user, SPAN_NOTICE("[reinforcement_text].")) // MY rods(?) were a bit loose while writing this
+		description += SPAN_NOTICE("[reinforcement_text].") // MY rods(?) were a bit loose while writing this
 
-/obj/structure/railing/proc/take_damage(amount)
+	..(user, afterDesc = description)
+
+/obj/structure/railing/take_damage(amount)
+	. = health - amount < 0 ? amount - health : amount
+	. *= explosion_coverage
 	if (reinforced)
 		if (reinforcement_security == 0)
 			visible_message(SPAN_WARNING("[src]'s reinforcing rods fall off!"))
@@ -99,6 +104,7 @@
 		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
 		new /obj/item/stack/rods(get_turf(usr))
 		qdel(src)
+	return
 
 /obj/structure/railing/proc/NeighborsCheck(var/UpdateNeighbors = 1)
 	check = 0
@@ -210,7 +216,7 @@
 		to_chat(user, SPAN_NOTICE("You can't flip the [src] because something blocking it."))
 		return 0
 
-	src.loc = get_step(src, src.dir)
+	forceMove(get_step(src, dir))
 	set_dir(turn(dir, 180))
 	update_icon()
 	return
@@ -233,7 +239,7 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
-			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
+			target.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,8))), BP_HEAD, user, 1, 1, FALSE)
 			take_damage(8)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
@@ -257,7 +263,7 @@
 
 /obj/structure/railing/attackby(obj/item/I, mob/user)
 	var/list/usable_qualities = list(QUALITY_SCREW_DRIVING)
-	if(health < maxhealth)
+	if(health < maxHealth)
 		usable_qualities.Add(QUALITY_WELDING)
 	if(!anchored || reinforced)
 		usable_qualities.Add(QUALITY_BOLT_TURNING)
@@ -283,10 +289,10 @@
 			return
 
 		if(QUALITY_WELDING)
-			if(health < maxhealth)
+			if(health < maxHealth)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."), SPAN_NOTICE("You repair some damage to \the [src]."))
-					health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
+					health = min(health+(maxHealth/5), maxHealth)//max(health+(maxHealth/5), maxHealth) // 20% repair per application
 			return
 
 		if(QUALITY_BOLT_TURNING)
@@ -326,23 +332,9 @@
 			to_chat(user, SPAN_NOTICE("In its current state, [src] is not valid to reinforce."))
 			return
 	playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
-	take_damage(I.force)
+	take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN)))
 
 	return ..()
-
-/obj/structure/railing/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			qdel(src)
-			return
-		if(3)
-			qdel(src)
-			return
-		else
-	return
 
 /obj/structure/railing/attack_generic(mob/M, damage, attack_message)
 	if(damage)
@@ -354,7 +346,7 @@
 	else
 		attack_hand(M)
 
-/obj/structure/railing/do_climb(var/mob/living/user)
+/obj/structure/railing/do_climb(mob/living/user)
 	if(!can_climb(user))
 		return
 
@@ -377,12 +369,12 @@
 		return
 
 	if(get_turf(user) == get_turf(src))
-		usr.forceMove(get_step(src, src.dir))
+		user.forceMove(get_step(src, src.dir))
 	else
-		usr.forceMove(get_turf(src))
+		user.forceMove(get_turf(src))
 
-	usr.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
-	if(!anchored)	take_damage(maxhealth) // Fatboy
+	user.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
+	if(!anchored)	take_damage(maxHealth) // Fatboy
 	climbers -= user
 
 /obj/structure/railing/get_fall_damage(var/turf/from, var/turf/dest)

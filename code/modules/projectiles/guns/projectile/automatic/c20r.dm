@@ -7,8 +7,8 @@
 	icon = 'icons/obj/guns/projectile/cr20.dmi'
 	icon_state = "c20r"
 	item_state = "c20r"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
+	var/itemstring = ""
+	volumeClass = ITEM_SIZE_NORMAL
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -23,10 +23,9 @@
 	reload_sound = 'sound/weapons/guns/interact/sfrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/sfrifle_cock.ogg'
 	damage_multiplier = 1
-	penetration_multiplier = 0
 	zoom_factors = list(0.4)
 	init_recoil = SMG_RECOIL(0.6)
-	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/c20r = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -43,13 +42,15 @@
 	desc = "A C20r SMG frame. The syndicate's bread and butter."
 	icon_state = "frame_syndi"
 	resultvars = list(/obj/item/gun/projectile/automatic/c20r)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
 
 /obj/item/gun/projectile/automatic/c20r/update_icon()
 	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+	itemstring = "[silenced ? "_s" : ""]"
+	set_item_state(itemstring)
 
 	if(ammo_magazine)
 		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_label_string]"
@@ -57,6 +58,12 @@
 			overlays += "slide[silenced ? "_s" : ""]"
 	else
 		overlays += "slide[silenced ? "_s" : ""]"
+
+	if (silenced)
+		wielded_item_state = "_s"
+	else
+		wielded_item_state = ""
+
 
 /obj/item/gun/projectile/automatic/c20r/Initialize()
 	. = ..()
@@ -69,9 +76,8 @@
 	icon = 'icons/obj/guns/projectile/c20m.dmi'
 	icon_state = "c20r"
 	item_state = "c20r"
-	damage_multiplier = 1
-	penetration_multiplier = -0.2	//Not quite as good as real syndi
-	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
+	damage_multiplier = 0.8
+	gun_parts = list(/obj/item/part/gun/frame/c20r/moebius = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "ML"
 
 /obj/item/part/gun/frame/c20r/moebius

@@ -42,7 +42,7 @@
 /obj/machinery/shield_gen/Destroy()
 	for(var/obj/effect/energy_field/D in field)
 		field.Remove(D)
-		D.loc = null
+		D.forceMove(null)
 	. = ..()
 
 /obj/machinery/shield_gen/emag_act(var/remaining_charges, var/mob/user)
@@ -201,8 +201,7 @@
 
 	updateDialog()
 
-/obj/machinery/shield_gen/ex_act(var/severity)
-
+/obj/machinery/shield_gen/explosion_act(target_power, explosion_handler/handler)
 	if(active)
 		toggle()
 	return ..()
@@ -226,7 +225,7 @@
 	else
 		for(var/obj/effect/energy_field/D in field)
 			field.Remove(D)
-			D.loc = null
+			D.forceMove(null
 
 		for(var/mob/M in view(5,src))
 			M << "\icon[src] You hear heavy droning fade out."

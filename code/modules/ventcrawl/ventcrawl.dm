@@ -56,7 +56,7 @@ var/list/ventcrawl_machinery = list(
 
 /mob/living/carbon/human/is_allowed_vent_crawl_item(var/obj/item/carried_item)
 	if(carried_item in list(l_hand,r_hand))
-		return carried_item.w_class <= ITEM_SIZE_NORMAL
+		return carried_item.volumeClass <= ITEM_SIZE_NORMAL
 	return ..()
 
 /mob/living/simple_animal/spiderbot/is_allowed_vent_crawl_item(var/obj/item/carried_item)

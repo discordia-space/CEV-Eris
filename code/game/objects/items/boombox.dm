@@ -5,6 +5,7 @@
 	name = "BL4ST4-TUN3 3000"
 	desc = "A snazzy boombox, hefty enough to be carried around your shoulder."
 	icon = 'icons/obj/boombox.dmi'
+	commonLore = "Produced after Old Earth models , this invokes nostalgia in all refugees."
 	icon_state = "boombox"
 	item_state = "boombox"
 

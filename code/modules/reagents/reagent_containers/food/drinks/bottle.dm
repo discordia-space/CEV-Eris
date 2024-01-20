@@ -7,7 +7,6 @@
 	volume = 100
 	description_info = "Thrown bottles don't break when you throw them while being on help intent."
 	item_state = "broken_beer" //Generic held-item sprite until unique ones are made.
-	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
 	rarity_value = 14
 	bad_type = /obj/item/reagent_containers/food/drinks/bottle
@@ -147,14 +146,14 @@
 		return //won't always break on the first hit
 
 	// You are going to knock someone out for longer if they are not wearing a helmet.
-	var/weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, ARMOR_MELEE) + 10)
+	var/weaken_duration = smash_duration + min(0, dhTotalDamage(melleDamages) - target.getarmor(hit_zone, ARMOR_BLUNT) + 10)
 
 	var/mob/living/carbon/human/H = target
 	if(istype(H) && H.headcheck(hit_zone))
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
 		user.visible_message(SPAN_DANGER("[user] smashes [src] into [H]'s [affecting.name]!"))
 		if(weaken_duration)
-			target.apply_effect(min(weaken_duration, 5), WEAKEN, armor_value = target.getarmor(hit_zone, ARMOR_MELEE)) // Never weaken more than a flash!
+			target.apply_effect(min(weaken_duration, 5), WEAKEN, armor_value = target.getarmor(hit_zone, ARMOR_BLUNT)) // Never weaken more than a flash!
 	else
 		user.visible_message(SPAN_DANGER("\The [user] smashes [src] into [target]!"))
 
@@ -188,6 +187,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
 	desc = "Aah, vodka. Prime choice of drink AND fuel by Russians worldwide."
+	commonLore = "Famously known from the Zvinsky incident, when a drunk technomancer misconfigured a pipe junction, pumping vodka into the ship's air distribution. The entire crew was found unconscious due to the vapors."
 	icon_state = "vodkabottle"
 	center_of_mass = list("x"=17, "y"=3)
 	preloaded_reagents = list("vodka" = 100)
@@ -268,6 +268,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/ntcahors
 	name = "NeoTheology Cahors Wine"
 	desc = "Ritual drink that cleanses the soul and body."
+	commonLore = "The manufacturing technology behind this is still kept secret. Its believed this wine was chemically engineered by an AI."
 	icon_state = "ntcahors"
 	center_of_mass = list("x"=16, "y"=4)
 	preloaded_reagents = list("ntcahors" = 100)
@@ -283,19 +284,17 @@
 /obj/item/reagent_containers/food/drinks/bottle/melonliquor
 	name = "Emeraldine Melon Liquor"
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
-	icon_state = "alco-green" //Placeholder.
+	icon_state = "emeraldine"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("melonliquor" = 100)
-	icon_state_empty = "alco-clear"
 	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao
 	name = "Miss Blue Curacao"
 	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
-	icon_state = "alco-blue" //Placeholder.
+	icon_state = "curacao"
 	center_of_mass = list("x"=16, "y"=6)
 	preloaded_reagents = list("bluecuracao" = 100)
-	icon_state_empty = "alco-clear"
 	spawn_tags = SPAWN_TAG_BOOZE
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine

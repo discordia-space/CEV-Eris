@@ -44,7 +44,6 @@
 
 	var/current_vertical_travel_method // Link currently used VTM if we moving between Z-levels
 	var/last_move_attempt = 0 //Last time the mob attempted to move, successful or not
-	var/atom/movable/pulling
 	var/other_mobs
 	var/next_move
 	var/transforming	//Carbon
@@ -111,7 +110,6 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 	var/datum/hud/hud_used
 
-	var/list/grabbed_by = list()
 	var/list/requests = list()
 
 	var/in_throw_mode = 0
@@ -122,7 +120,7 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 //	var/job = null//Living
 
-	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum w_class the mob can pull.
+	var/can_pull_size = ITEM_SIZE_TITANIC // Maximum volumeClass the mob can pull.
 	var/can_pull_mobs = MOB_PULL_LARGER       // Whether or not the mob can pull other mobs.
 
 	var/b_type // GLOB.blood_types // list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")
@@ -211,3 +209,6 @@ While it would be entirely possible to check the mob's move handlers list for th
 	bad_type = /mob
 
 	var/list/additional_vision_handlers = list() //Basically a list of atoms from which additional vision data is retrieved
+
+	// Used by SSchunks to prevent stacking additions due to various move/Forcemove fuckery. SPCR 2023
+	var/currentChunk = null

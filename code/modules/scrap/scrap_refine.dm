@@ -19,7 +19,7 @@
 /obj/structure/scrap_cube/attackby(obj/item/W, mob/user)
 	user.do_attack_animation(src)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(istype(W,/obj/item) && W.force >= 8)
+	if(istype(W,/obj/item) && dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN)) >= 8)
 		visible_message(SPAN_NOTICE("\The [user] smashes \the [src], restoring its original form."))
 		make_pile()
 	else
@@ -30,7 +30,7 @@
 	desc = "This thing is messed up beyond any recognition. Into the grinder it goes!"
 	icon = 'icons/obj/structures/scrap/refine.dmi'
 	icon_state = "unrefined"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/scrap_lump/Initialize()
 	. = ..()

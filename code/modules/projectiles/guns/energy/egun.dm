@@ -24,6 +24,12 @@
 		)
 	serial_type = "FS"
 
+/obj/item/gun/energy/gun/update_icon()
+	..()
+	if(wielded)
+		set_item_state(item_state)
+
+
 /obj/item/gun/energy/gun/mounted
 	name = "mounted energy gun"
 	self_recharge = TRUE
@@ -39,7 +45,7 @@
 	icon_state = "PDW"
 	item_state = "gun"
 	charge_meter = FALSE
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	can_dual = TRUE
 	charge_cost = 50
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 1)
@@ -60,8 +66,10 @@
 		overlays += "taser_pdw"
 	else
 		overlays += "lazer_pdw"
+	update_held_icon()
 
 /obj/item/gun/energy/gun/martin/update_icon()
 	cut_overlays()
+	wielded_item_state = null
 	if(cell && cell.charge >= charge_cost) //no overlay if we dont have any power
 		update_mode()

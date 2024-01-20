@@ -335,18 +335,10 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		warning("Mandate completed twice: [name] [desc]")
 	completed = TRUE
 
+	if(user)
+		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
 
 	excelsior_energy += reward
-	var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
-	var/datum/objective/timed/excelsior/E = (locate(/datum/objective/timed/excelsior) in F.objectives)
-	if(E)
-		E.mandate_completion()
-	if(user)
-		if(E)
-			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy, [E.time2minutes(E.mandate_increase)] minutes have been added to the detection countdown timer.)"))
-		else
-			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
-	
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 		t.update_nano_data()
 
@@ -377,7 +369,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	reward = 1200
 	var/datum/mind/target_mind
 	var/cruciform_check = FALSE
-	var/desc_text = "by stuffing them alive in the teleporter" // Text for the end of desc, a bit hacky
+	var/desc_text = "by stuffing them alive in the teleporter. We will provide reinforcements for the completion of this objective." // Text for the end of desc, a bit hacky
 	var/command_bias = 15 //Bonus chance for targeting heads and IH
 
 /datum/antag_contract/excel/targeted/New()
@@ -450,7 +442,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			candidates -= target
 			continue
 		targets += target
-	desc = "Activate propaganda chips in 3 different areas: [english_list(targets, and_text = " or ")] and let them spread the revolution!."
+	desc = "Activate propaganda chips in 3 different areas: [english_list(targets, and_text = " or ")] and let them spread the revolution!"
 	..()
 
 /datum/antag_contract/excel/propaganda/can_place()

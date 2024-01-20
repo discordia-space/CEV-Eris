@@ -66,9 +66,9 @@
 		/obj/item/computer_hardware/hard_drive/portable/research_points = offer_data("research data disk", 1000, 2),
 		/obj/item/computer_hardware/hard_drive/portable/advanced/shady = offer_data("design disk - 'warez'", 1200, 2),
 		/obj/item/computer_hardware/hard_drive/portable/advanced/nuke = offer_data("design disk - 'nuke'", 1200, 2),
-		/obj/item/stock_parts/capacitor/one_star = offer_data("one star capacitor", 1000, 3),
-		/obj/item/stock_parts/scanning_module/one_star = offer_data("one star scanning module", 1000, 3),
-		/obj/item/stock_parts/manipulator/one_star = offer_data("one star manipulator", 1000, 3),
-		/obj/item/stock_parts/micro_laser/one_star = offer_data("one star micro-laser", 1000, 3),
-		/obj/item/stock_parts/matter_bin/one_star = offer_data("one star matter bin", 1000, 3)
+		/obj/item/stock_parts/capacitor/one_star = offer_data("one star capacitor", 2000, 3),
+		/obj/item/stock_parts/scanning_module/one_star = offer_data("one star scanning module", 2000, 3),
+		/obj/item/stock_parts/manipulator/one_star = offer_data("one star manipulator", 2000, 3),
+		/obj/item/stock_parts/micro_laser/one_star = offer_data("one star micro-laser", 2000, 3),
+		/obj/item/stock_parts/matter_bin/one_star = offer_data("one star matter bin", 2000, 3)
 	)

@@ -220,12 +220,13 @@
 
 
 /obj/machinery/multistructure/biogenerator_part/port/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(panel_open)
 		if(pipes_dirtiness)
-			to_chat(user, SPAN_WARNING("You see a layers of a solid biomass here."))
+			description += SPAN_WARNING("You see a layers of a solid biomass here.")
 		else
-			to_chat(user, SPAN_NOTICE("You didn't see any signs of biomass here. Pipes are clear."))
+			description += SPAN_NOTICE("You didn't see any signs of biomass here. Pipes are clear.")
+	..(user, afterDesc = description)
 
 
 /obj/machinery/multistructure/biogenerator_part/port/attackby(obj/item/I, mob/user)
@@ -344,21 +345,22 @@
 
 
 /obj/machinery/atmospherics/binary/biogen_chamber/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(panel_open)
 		if(wires)
 			if(!wires_integrity)
-				to_chat(user, SPAN_WARNING("All wiring is damaged and not functional."))
+				description += SPAN_WARNING("All wiring is damaged and not functional.")
 			else if(wires_integrity < 30)
-				to_chat(user, SPAN_WARNING("Wiring is completly burnt. But somehow it's still functional."))
+				description += SPAN_WARNING("Wiring is completly burnt. But somehow it's still functional.")
 			else if(wires_integrity < 50)
-				to_chat(user, SPAN_WARNING("Wiring is damaged, most of cables are burnt."))
+				description += SPAN_WARNING("Wiring is damaged, most of cables are burnt.")
 			else if(wires_integrity < 80)
-				to_chat(user, SPAN_NOTICE("Wiring is slightly damaged and some of them are burnt."))
+				description += SPAN_NOTICE("Wiring is slightly damaged and some of them are burnt.")
 			else
-				to_chat(user, SPAN_NOTICE("Wiring looks like new."))
+				description += SPAN_NOTICE("Wiring looks like new.")
 		else
-			to_chat(user, SPAN_WARNING("There are no wires here."))
+			description += SPAN_WARNING("There are no wires here.")
+	..(user, afterDesc = description)
 
 
 /obj/machinery/atmospherics/binary/biogen_chamber/attackby(obj/item/I, mob/user)
@@ -450,18 +452,19 @@
 
 
 /obj/machinery/power/biogenerator_core/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(!coil_frame)
 		if(!coil_condition)
-			to_chat(user, SPAN_WARNING("Coil is completly burnt."))
+			description += SPAN_WARNING("Coil is completly burnt.")
 		else if(coil_condition < 30)
-			to_chat(user, SPAN_WARNING("Most of coil's sectors are burnt, but it's still functional."))
+			description += SPAN_WARNING("Most of coil's sectors are burnt, but it's still functional.")
 		else if(coil_condition < 50)
-			to_chat(user, SPAN_WARNING("Half of coil's sectors are damaged."))
+			description += SPAN_WARNING("Half of coil's sectors are damaged.")
 		else if(coil_condition < 80)
-			to_chat(user, SPAN_NOTICE("You can see damaged sectors at [src]'s coil."))
+			description += SPAN_NOTICE("You can see damaged sectors at [src]'s coil.")
 		else
-			to_chat(user, SPAN_NOTICE("Coil looks like new."))
+			description += SPAN_NOTICE("Coil looks like new.")
+	..(user, afterDesc = description)
 
 
 /obj/machinery/power/biogenerator_core/attackby(obj/item/I, mob/user)

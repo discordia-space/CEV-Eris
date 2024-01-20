@@ -393,12 +393,14 @@
 	return
 
 /obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+	var/description = ""
+	if(get_dist(user, src) <= 2)
+		description += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W \n"
 	else
-		to_chat(user, "You are too far away to read the gauge.")
+		description += "You are too far away to read the gauge. \n"
 	if(welded)
-		to_chat(user, "It seems welded shut.")
+		description += "It seems welded shut"
+	..(user, 1, afterDesc = description)
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	var/old_stat = stat

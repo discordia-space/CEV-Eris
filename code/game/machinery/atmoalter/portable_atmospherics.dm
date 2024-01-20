@@ -111,7 +111,7 @@
 			return
 		var/obj/item/tank/T = I
 		user.drop_item()
-		T.loc = src
+		T.forceMove(src)
 		src.holding = T
 		playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 		update_icon()
@@ -174,7 +174,7 @@
 		user.drop_item()
 		C.add_fingerprint(user)
 		src.cell = C
-		C.loc = src
+		C.forceMove(src)
 		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and inserts [C]."), SPAN_NOTICE("You open the panel on [src] and insert [C]."))
 		power_change()
 		return
@@ -184,7 +184,7 @@
 			return
 		var/obj/item/tank/T = I
 		user.drop_item()
-		T.loc = src
+		T.forceMove(src)
 		src.holding = T
 		playsound(usr.loc, 'sound/machines/Custom_extin.ogg', 100, 1)
 		update_icon()
@@ -200,7 +200,7 @@
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))
 				cell.add_fingerprint(user)
-				cell.loc = src.loc
+				cell.forceMove(src.loc)
 				cell = null
 				power_change()
 				return

@@ -1,7 +1,7 @@
 /obj/item/device/lighting
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flashlight"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	var/on = FALSE

@@ -311,7 +311,7 @@ The actual fire event proc is located in storyteller_meta*/
 		delay = 1 //Basically no delay on these to reduce bugginess
 	else
 		delay = rand(1, event_schedule_delay)
-	var/handle = addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(fire_event), C, event_type), delay, TIMER_STOPPABLE)
+	var/handle = addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fire_event), C, event_type), delay, TIMER_STOPPABLE)
 	scheduled_events.Add(list(C), type, handle)
 
 

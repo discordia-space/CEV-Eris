@@ -29,7 +29,7 @@
 		//We dont want to melt external walls and cause breaches
 		if(!near_external && floor.density)
 			if(!isnull(seed.chems["pacid"]))
-				spawn(rand(5,25)) floor.ex_act(3)
+				spawn(rand(5,25)) floor.explosion_act(100, null)
 			continue
 		if(!Adjacent(floor))
 			continue
@@ -102,7 +102,10 @@
 
 	// Handle life.
 	life()
-
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckled_mob = null
+	if(buckle)
+		buckled_mob = buckle.buckled
 	if(buckled_mob)
 		seed.do_sting(buckled_mob,src)
 		if(seed.get_trait(TRAIT_CARNIVOROUS))

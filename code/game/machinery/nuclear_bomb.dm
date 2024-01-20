@@ -328,8 +328,8 @@ var/bomb_set
 	security_state.set_security_level(previous_level)
 	update_icon()
 
-/obj/machinery/nuclearbomb/ex_act(severity)
-	return
+/obj/machinery/nuclearbomb/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 #define NUKERANGE 80
 /obj/machinery/nuclearbomb/proc/explode()
@@ -394,7 +394,7 @@ if(!N.lighthack)
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "nuclear"
 	item_state = "card-id"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

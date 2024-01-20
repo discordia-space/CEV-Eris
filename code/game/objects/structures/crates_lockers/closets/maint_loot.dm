@@ -14,6 +14,7 @@
 	rarity_value = 10
 
 /obj/structure/closet/random/miscellaneous/populate_contents()
+
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/contraband/low_chance(src)
 	new /obj/spawner/pack/rare/low_chance(src)
@@ -41,6 +42,8 @@
 	rarity_value = 15
 
 /obj/structure/closet/random/tech/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -51,6 +54,8 @@
 	new /obj/spawner/pack/tech_loot(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 /obj/structure/closet/random/spareparts
@@ -62,6 +67,8 @@
 	rarity_value = 50
 
 /obj/structure/closet/random/spareparts/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -79,6 +86,8 @@
 	new /obj/spawner/lathe_disk/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 
@@ -93,6 +102,8 @@
 	rarity_value = 50
 
 /obj/structure/closet/random/milsupply/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -113,9 +124,8 @@
 	new /obj/spawner/medical/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
-
-
-
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 /obj/structure/closet/random/medsupply
@@ -125,6 +135,8 @@
 	old_chance = 10
 
 /obj/structure/closet/random/medsupply/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -138,6 +150,8 @@
 	new /obj/spawner/medical(src)
 	new /obj/spawner/medical/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 
@@ -152,6 +166,8 @@
 	rarity_value = 100
 
 /obj/structure/closet/secure_closet/rare_loot/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/pack/rare(src)
@@ -161,6 +177,8 @@
 	new /obj/spawner/pack/gun_loot(src)
 	new /obj/spawner/pack/gun_loot(src)
 	new /obj/spawner/pack/gun_loot(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 
 
@@ -174,6 +192,8 @@
 	spawn_blacklisted = TRUE
 
 /obj/structure/closet/random/hostilemobs/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/rare(src) //To reward players for fighting this bullshit
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -184,12 +204,16 @@
 	new /obj/spawner/rations(src)
 	new /obj/spawner/rations(src)
 	new /obj/spawner/mob/roaches/cluster(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 // Used for scrap beacon
 /obj/structure/closet/random/hostilemobs/beacon
 	rarity_value = 6
 
 /obj/structure/closet/random/hostilemobs/beacon/populate_contents()
+	var/list/spawnedAtoms = list()
+
 	new /obj/spawner/pack/rare(src) //To reward players for fighting this bullshit
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -200,3 +224,5 @@
 	new /obj/spawner/rations(src)
 	new /obj/spawner/rations(src)
 	new /obj/spawner/mob/roaches/cluster/beacon(src)
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)

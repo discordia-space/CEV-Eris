@@ -4,7 +4,7 @@
 	icon_state = "lamp"
 	item_state = "lamp"
 	brightness_on = 4
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	flags = CONDUCT
 	slot_flags = null
 

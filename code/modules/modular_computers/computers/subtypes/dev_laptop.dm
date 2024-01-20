@@ -6,7 +6,7 @@
 	icon = 'icons/obj/modular_laptop.dmi'
 	icon_state = "laptop"
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 4)
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	base_idle_power_usage = 25
 	base_active_power_usage = 200
 	max_hardware_size = 2
@@ -15,7 +15,7 @@
 	max_damage = 200
 	broken_damage = 100
 	screen_on = FALSE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	price_tag = 200
 
 /obj/item/modular_computer/laptop/AltClick(var/mob/user)

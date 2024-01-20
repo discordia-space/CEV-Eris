@@ -9,7 +9,9 @@
 #define COMSIG_GLOB_FABRIC_NEW "!fabric_new"					//(image/fabric)
 
 //////////////////////////////////////////////////////////////////
+// world signals
 
+#define COMSIG_WORLD_MAXZ_INCREMENTING "world_maxz_increase"
 // /datum signals
 /// when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_ADDED "component_added"
@@ -50,6 +52,8 @@
 #define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
 #define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
 #define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
+// Whenever we are put into a container of any sort , storage , closets , pockets. (atom/true_parent)
+#define COMSIG_ATOM_CONTAINERED "atom_containered"
 
 // /area signals
 #define COMSIG_AREA_SANCTIFY "sanctify_area"
@@ -58,14 +62,32 @@
 #define COMSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
 
 // /atom/movable signals
-#define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
-#define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from base of atom/movable/onTransitZ(): (oldz, newz)
+// These 2 can be sent at the same time togheter, if you only care about the Z-level , only use the Z-changed , else only use the moved.
+#define COMSIG_MOVABLE_MOVED "movable_moved"					//from atom/movable/Move and forceMove: (/atom, origin_loc, new_loc)
+#define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from atom/movable/Move and forceMove): (oldz, newz)
 #define COMSIG_MOVABLE_PREMOVE "moveable_boutta_move"
+
+#define COMSIG_ATTEMPT_PULLING "attempt_pulling"
+	#define COMSIG_PULL_CANCEL (1<<0)
 
 // /mob signals
 #define COMSIG_MOB_LIFE  "mob_life"							 //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
 #define COMSIG_MOB_DEATH "mob_death"							//from mob/death()
+#define COMSIG_MOB_INITIALIZED "mob_initialized"
+#define COMSIG_MOB_TRY_MOVE "mob_try_move" // from mob/SelfMove() , intended to replace movementHandlers at some point
+	#define COMSIG_CANCEL_MOVE (1<<0)
+
+#define COMSIG_RELAY_MOVE "move_try_relay" // from buckling.dm component, intended as the way to relay moves
+#define COMSIG_BUCKLE_QUERY "is_atom_buckled" // from buckling.dm , returns a list of all buckle components that are attached.YOU NEED TO PASS THE LIST AS TEH FIRST ARGUMENT
+#define COMSIG_MOVABLE_FALLED "movable_falled" // for buckling , wheter a atom has falled.
+// clicks
+/// When the mob clicks onto something
+#define COMSIG_CLICK "clickclick"
+/// When we get clicked by anything
+#define COMSIG_CLICKED "clicked"
+/// When we get drag-dropped onto
+#define COMSIG_DRAGDROP "dragdrop"
 #define COMSIG_SHIFTCLICK "shiftclick" // used for ai_like_control component
 #define COMSIG_CTRLCLICK "ctrlclick" // used for ai_like_control component
 #define COMSIG_ALTCLICK "altclick" // used for ai_like_control component
@@ -100,6 +122,7 @@
 #define COMSIG_OBJ_TECHNO_TRIBALISM "techno_tribalism"
 #define COMSIG_OBJ_FACTION_ITEM_DESTROY "faction_item_destroy"
 #define SWORD_OF_TRUTH_OF_DESTRUCTION "sword_of_truth"
+#define COMSIG_EXTRA_EXAMINE "send_extra_examine"
 
 //machinery
 #define COMSIG_AREA_APC_OPERATING "area_operating"  //from apc process()
@@ -107,6 +130,8 @@
 #define COMSIG_AREA_APC_POWER_CHANGE "area_apc_power_change"
 #define COMSING_DESTRUCTIVE_ANALIZER "destructive_analizer"
 #define COMSIG_TURRENT "create_turrent"
+#define COMSIG_DOOR_OPENED "door_opened"
+#define COMSIG_DOOR_CLOSED "door_closed"
 
 // /obj/item signals
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack

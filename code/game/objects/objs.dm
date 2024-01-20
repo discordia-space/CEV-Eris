@@ -2,25 +2,30 @@
 	//Used to store information about the contents of the object.
 	var/list/matter
 	var/list/matter_reagents
-	var/w_class // Size of the object.
+	var/volumeClass // Size of the object.
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
 	var/sharp = FALSE		// whether this object cuts
 	var/edge = FALSE		// whether this object is more likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
-	var/damtype = "brute"
 	var/armor_divisor = 1
-	var/style_damage = 30 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
 
+/// Used for calculating weight, return value will set the atom's weight
+/obj/getWeight()
+	var/w = initial(weight)
+	for(var/material in matter)
+		var/material/mat = get_material_by_name(material)
+		w += mat.weight * matter[material]
+	return w
 
 /obj/proc/is_hot()
 	return heat
 
 /obj/get_fall_damage()
-	return w_class * 2
+	return volumeClass * 2
 
 /obj/Destroy()
 	if(!ismachinery(src))
@@ -176,9 +181,11 @@
 	return
 
 /obj/proc/add_hearing()
+	//InitiateHearerTracking()
 	GLOB.hearing_objects |= src
 
 /obj/proc/remove_hearing()
+	//chunkHearerClearSelf()
 	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
@@ -251,13 +258,10 @@
 /obj/proc/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
 
-/obj/proc/multiply_projectile_style_damage(newmult)
-	style_damage = initial(style_damage) * newmult
-
 /obj/proc/multiply_pierce_penetration(newmult)
 
 /obj/proc/multiply_ricochet(newmult)
 
 /obj/proc/multiply_projectile_step_delay(newmult)
 
-/obj/proc/multiply_projectile_agony(newmult)
+/obj/proc/multiply_projectile_halloss(newmult)

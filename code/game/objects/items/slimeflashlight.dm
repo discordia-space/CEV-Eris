@@ -5,7 +5,7 @@
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	spawn_blacklisted = TRUE
 
 /obj/item/device/slimelight/New()

@@ -36,7 +36,7 @@
 /mob/living/simple_animal/spider_core/death()
 	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
 	qdel(src)
-	
+
 
 /mob/living/simple_animal/spider_core/proc/generate_body()
 	set name = "Build a Body"
@@ -50,10 +50,11 @@
 		return
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(loc)
+	H.randomize_appearance()
 	visible_message(SPAN_DANGER("[src] morphs into a human body!"))
 	gibs(loc, null)
 	var/obj/item/organ/internal/carrion/core/core = locate(/obj/item/organ/internal/carrion/core) in contents
-	
+
 	var/list/powers_to_buy = list()
 
 	H.faction = "spiders"
@@ -73,7 +74,7 @@
 				powerinstances += new P()
 
 		var/obj/item/organ/external/chest/chest = H.get_organ(BP_CHEST) // get_organ with no arguments defaults to BP_CHEST, but it makes it less readable
-		core.replaced(chest)
+		core.insert(chest)
 		for(var/item in core.active_spiders)
 			var/obj/item/implant/carrion_spider/CS = item
 			if(istype(CS))

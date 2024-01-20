@@ -17,13 +17,13 @@
 					"<span class='moderate'><b>Your [src.name] goes flying off!</b></span>",\
 					SPAN_DANGER("You hear a terrible sound of [gore_sound]."))
 		if(DROPLIMB_BURN)
-			var/gore = "[BP_IS_ROBOTIC(src) ? "": " of burning flesh"]"
+			var/gore = "[BP_IS_ROBOTIC(src) ? " of melting metal": " of burning flesh"]"
 			owner.visible_message(
 				SPAN_DANGER("\The [owner]'s [src.name] flashes away into ashes!"),\
 				"<span class='moderate'><b>Your [src.name] flashes away into ashes!</b></span>",\
 				SPAN_DANGER("You hear a crackling sound[gore]."))
 		if(DROPLIMB_BLUNT)
-			var/gore = BP_IS_ROBOTIC(src) ? "": " in shower of gore"
+			var/gore = BP_IS_ROBOTIC(src) ? " in shower of sparks": " in shower of gore"
 			var/gore_sound = BP_IS_ROBOTIC(src) ? "rending sound of tortured metal" : "sickening splatter of gore"
 			owner.visible_message(
 				SPAN_DANGER("\The [owner]'s [src.name] explodes[gore]!"),\
@@ -73,7 +73,7 @@
 				I.forceMove(get_turf(src))
 
 			for(var/obj/item/I in src)
-				if(I.w_class > ITEM_SIZE_SMALL)
+				if(I.volumeClass > ITEM_SIZE_SMALL)
 					I.forceMove(get_turf(src))
 			qdel(src)
 		if(DROPLIMB_BLUNT)
@@ -91,7 +91,7 @@
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 			for(var/obj/item/I in src)
-				if(I.w_class <= ITEM_SIZE_SMALL)
+				if(I.volumeClass <= ITEM_SIZE_SMALL)
 					qdel(I)
 					continue
 				I.forceMove(get_turf(src))

@@ -10,7 +10,6 @@
 	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
 	language = null
 	default_language = LANGUAGE_MONKEY
-	greater_form = SPECIES_HUMAN
 	mob_size = MOB_SMALL
 	has_fine_manipulation = 0
 	show_ssd = null
@@ -44,7 +43,7 @@
 /datum/species/monkey/handle_npc(var/mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)
 		return
-	if(prob(33) && H.canmove && isturf(H.loc) && !H.pulledby) //won't move if being pulled
+	if(prob(33) && H.canmove && isturf(H.loc) && !H.grabbedBy) //won't move if being pulled
 		step(H, pick(cardinal))
 	if(prob(1))
 		H.emote(pick("scratch","jump","roll","tail"))

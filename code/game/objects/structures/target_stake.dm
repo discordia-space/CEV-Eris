@@ -5,11 +5,11 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_stake"
 	density = TRUE
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	flags = CONDUCT
 	var/obj/item/target/pinned_target // the current pinned target
 
-	Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 		..()
 		// Move the pinned target along with the stake
 		if(pinned_target in view(3, src))
@@ -28,7 +28,7 @@
 			density = FALSE
 			W.density = TRUE
 			user.remove_from_mob(W)
-			W.loc = loc
+			W.forceMove(loc)
 			W.layer = 3.1
 			pinned_target = W
 			to_chat(user, "You slide the target into the stake.")
@@ -41,13 +41,13 @@
 			pinned_target.density = FALSE
 			pinned_target.layer = OBJ_LAYER
 
-			pinned_target.loc = user.loc
+			pinned_target.forceMove(user.loc)
 			if(ishuman(user))
 				if(!user.get_active_hand())
 					user.put_in_hands(pinned_target)
 					to_chat(user, "You take the target out of the stake.")
 			else
-				pinned_target.loc = get_turf(user)
+				pinned_target.forceMove(get_turf(user))
 				to_chat(user, "You take the target out of the stake.")
 
 			pinned_target = null

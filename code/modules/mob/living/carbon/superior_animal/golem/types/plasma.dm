@@ -22,12 +22,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = GOLEM_ARMOR_LOW,
-		energy = GOLEM_ARMOR_HIGH,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = GOLEM_ARMOR_LOW,
+		ARMOR_ENERGY = GOLEM_ARMOR_HIGH,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 	// Loot related variables
@@ -61,15 +61,14 @@
 					// Plasma ball on location
 					visible_message(SPAN_DANGER("\The [src] explodes into a ball of burning palsma!"))
 					for(var/turf/simulated/floor/target_tile in range(2, loc))
-						target_tile.assume_gas("plasma", 0.3, 400 + T0C)
-						target_tile.assume_gas("oxygen", 0.3, 400 + T0C)
-						spawn (0) target_tile.hotspot_expose(700, 400)
+						new /obj/effect/decal/cleanable/liquid_fuel(target_tile, 2, 1)
+						spawn (0) target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code
 					. = ..()
 	else if(det_status == DET_DEFUSED)  // Will triger when hit by melee while blowing
 		. = ..()
 
 // Called when the mob is hit with an item in combat.
-/mob/living/carbon/superior_animal/golem/plasma/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/superior_animal/golem/plasma/hit_with_weapon(obj/item/I, mob/living/user, list/damages ,var/hit_zone)
 	if(det_status == DET_BLOWING)
 		det_status = DET_DEFUSED
 		icon_state = "golem_plasma"

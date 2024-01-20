@@ -25,8 +25,8 @@
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/cargotech
-	name = "cargo worker's jumpsuit"
-	desc = "A pair of jeans and turtleneck worn by the cargo workers."
+	desc = "A pair of jeans and turtleneck worn by the guild workers."
+	name = "guild worker's uniform"
 	icon_state = "cargotech"
 	item_state = "lb_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -88,25 +88,25 @@
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/hydroponics
-	desc = "A jumpsuit designed to protect against minor plant-related hazards."
+	desc = "A jumpsuit from the Bradhaanata Agroponics 'Farm Yourself' kit."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
 	item_state = "g_suit"
 	permeability_coefficient = 0.50
 
 /obj/item/clothing/under/rank/janitor
-	desc = "It's the official uniform of the ship's janitor."
+	desc = "An ancient janitorial jumpsuit."
 	name = "janitor's jumpsuit"
 	icon_state = "janitor"
 	item_state = "janitor"
 	permeability_coefficient = 0.50
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 10,
-		rad = 0
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =10,
+		ARMOR_RAD =0
 	)
 
 /obj/item/clothing/under/librarian

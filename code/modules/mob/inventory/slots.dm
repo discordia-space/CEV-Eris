@@ -15,7 +15,7 @@
 	//req one of it
 	var/req_slot_flags
 	var/req_type
-	var/max_w_class
+	var/max_volumeClass
 
 /datum/inventory_slot/proc/update_icon(mob/living/owner, redraw)
 	if(update_proc)
@@ -48,7 +48,7 @@
 		return TRUE
 	else if(req_slot_flags && (req_slot_flags & I.slot_flags))
 		return TRUE
-	else if(max_w_class && (I.w_class <= max_w_class))
+	else if(max_volumeClass && (I.volumeClass <= max_volumeClass))
 		return TRUE
 
 	if(!disable_warning)
@@ -61,21 +61,21 @@
 	id = slot_back
 	req_organ = BP_CHEST
 	req_slot_flags = SLOT_BACK
-	update_proc = /mob/proc/update_inv_back
+	update_proc = "update_inv_back"
 
 /datum/inventory_slot/mask
 	name = "Mask"
 	id = slot_wear_mask
 	req_organ = BP_HEAD
 	req_slot_flags = SLOT_MASK
-	update_proc = /mob/proc/update_inv_wear_mask
+	update_proc = "update_inv_wear_mask"
 
 /datum/inventory_slot/handcuffs
 	name = "Handcuffs"
 	id = slot_handcuffed
 	req_organ = list(BP_L_ARM, BP_R_ARM)
 	req_type = /obj/item/handcuffs
-	update_proc = /mob/proc/update_inv_handcuffed
+	update_proc = "update_inv_handcuffed"
 
 /datum/inventory_slot/handcuffs/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(..())
@@ -90,7 +90,7 @@
 	id = slot_legcuffed
 	req_organ = list(BP_L_LEG, BP_R_LEG)
 	req_type = /obj/item/legcuffs
-	update_proc = /mob/proc/update_inv_legcuffed
+	update_proc = "update_inv_legcuffed"
 
 
 /datum/inventory_slot/hand
@@ -107,32 +107,32 @@
 	name = "Left hand"
 	id = slot_l_hand
 	req_organ = list(BP_L_ARM = ORGAN_SHOULD_BE_FINE)
-	update_proc = /mob/proc/update_inv_l_hand
+	update_proc = "update_inv_l_hand"
 
 /datum/inventory_slot/hand/rigth
 	name = "Right hand"
 	id = slot_r_hand
 	req_organ = list(BP_R_ARM = ORGAN_SHOULD_BE_FINE)
-	update_proc = /mob/proc/update_inv_r_hand
+	update_proc = "update_inv_r_hand"
 
 /datum/inventory_slot/belt
 	name = "belt"
 	id = slot_belt
 	req_organ = BP_CHEST
 	req_slot_flags = SLOT_BELT
-	update_proc = /mob/proc/update_inv_belt
+	update_proc = "update_inv_belt"
 
 /datum/inventory_slot/id
 	name = "ID card"
 	id = slot_wear_id
 	req_slot_flags = SLOT_ID
-	update_proc = /mob/proc/update_inv_wear_id
+	update_proc = "update_inv_wear_id"
 
 
 /datum/inventory_slot/ear
 	req_organ = BP_HEAD
 	req_slot_flags = SLOT_EARS|SLOT_TWOEARS
-	update_proc = /mob/proc/update_inv_ears
+	update_proc = "update_inv_ears"
 
 /datum/inventory_slot/ear/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(I.slot_flags & SLOT_TWOEARS)
@@ -148,7 +148,7 @@
 	name = "Right ear"
 	id = slot_r_ear
 	req_slot_flags = SLOT_EARS
-	max_w_class = ITEM_SIZE_TINY
+	max_volumeClass = ITEM_SIZE_TINY
 
 
 /datum/inventory_slot/glasses
@@ -156,48 +156,48 @@
 	id = slot_glasses
 	req_organ = BP_HEAD
 	req_slot_flags = SLOT_EYES
-	update_proc = /mob/proc/update_inv_glasses
+	update_proc = "update_inv_glasses"
 
 /datum/inventory_slot/gloves
 	name = "Gloves"
 	id = slot_gloves
 	req_organ = list(BP_L_ARM, BP_R_ARM)
 	req_slot_flags = SLOT_GLOVES
-	update_proc = /mob/proc/update_inv_gloves
+	update_proc = "update_inv_gloves"
 
 /datum/inventory_slot/head
 	name = "Head"
 	id = slot_head
 	req_organ = BP_HEAD
 	req_slot_flags = SLOT_HEAD
-	update_proc = /mob/proc/update_inv_head
+	update_proc = "update_inv_head"
 
 /datum/inventory_slot/shoes
 	name = "Shoes"
 	id = slot_shoes
 	req_organ = list(BP_L_LEG, BP_R_LEG)
 	req_slot_flags = SLOT_FEET
-	update_proc = /mob/proc/update_inv_shoes
+	update_proc = "update_inv_shoes"
 
 /datum/inventory_slot/wear_suit
 	name = "Wear suit"
 	id = slot_wear_suit
 	req_organ = BP_CHEST
 	req_slot_flags = SLOT_OCLOTHING
-	update_proc = /mob/proc/update_inv_wear_suit
+	update_proc = "update_inv_wear_suit"
 
 /datum/inventory_slot/uniform
 	name = "Uniform"
 	id = slot_w_uniform
 	req_organ = BP_CHEST
 	req_slot_flags = SLOT_ICLOTHING
-	update_proc = /mob/proc/update_inv_w_uniform
+	update_proc = "update_inv_w_uniform"
 
 /datum/inventory_slot/store
 	req_item_in_slot = slot_w_uniform
 	req_slot_flags = SLOT_POCKET
-	max_w_class = ITEM_SIZE_SMALL
-	update_proc = /mob/proc/update_inv_pockets
+	max_volumeClass = ITEM_SIZE_SMALL
+	update_proc = "update_inv_pockets"
 
 /datum/inventory_slot/store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	if(I.slot_flags & SLOT_DENYPOCKET)
@@ -222,7 +222,7 @@
 	name = "Store"
 	id = slot_s_store
 	req_item_in_slot = slot_wear_suit
-	update_proc = /mob/proc/update_inv_s_store
+	update_proc = "update_inv_s_store"
 
 /datum/inventory_slot/suit_store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
 	var/obj/item/wear_suit = owner.get_equipped_item(slot_wear_suit)

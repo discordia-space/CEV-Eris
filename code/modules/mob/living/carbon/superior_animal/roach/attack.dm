@@ -18,4 +18,21 @@
 
 	. = ..()
 
+/mob/living/carbon/superior_animal/roach/MouseDrop_T(atom/dropping, mob/user, src_location, over_location, src_control, over_control, params)
+	. = ..()
+	if(!canBuckle)
+		return
+	if(!ishuman(dropping))
+		return
+	var/mob/living/carbon/human/buckler = dropping
+	if(buckler.incapacitated(INCAPACITATION_CANT_ACT))
+		return
+	if(!buckler.Adjacent(src))
+		return
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	if(buckle.buckled)
+		return
+	buckle.buckle(buckler)
+
+
 

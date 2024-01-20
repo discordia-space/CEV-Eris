@@ -5,7 +5,6 @@
 	name = "contraband item"
 	desc = "You probably shouldn't be holding this."
 	icon = 'icons/obj/contraband.dmi'
-	force = 0
 	bad_type = /obj/item/contraband
 	spawn_tags = SPAWN_ITEM_CONTRABAND
 

@@ -19,17 +19,16 @@
 
 	language = null
 	default_language = null
-	greater_form = SPECIES_HUMAN
 	show_ssd = null
 
 	eyes = "blank_eyes"
 
 	death_message = null
 
-	meat_type = null
-	gibber_type = null
-	single_gib_type = null
-	remains_type = null
+	meat_type = /obj/effect/decal/cleanable/ash
+	gibber_type = /obj/effect/gibspawner/generic //TODO: Add sanity check to gibber so it can handle null values.
+	single_gib_type = /obj/effect/decal/cleanable/ash
+	remains_type = /obj/item/remains/human
 
 	lower_sanity_process = FALSE
 
@@ -44,6 +43,8 @@
 	warning_high_pressure = INFINITY
 	warning_low_pressure = -1
 	hazard_low_pressure = -1
+
+	injury_type =  INJURY_TYPE_UNLIVING
 
 	has_process = list()
 

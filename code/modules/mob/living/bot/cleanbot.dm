@@ -95,7 +95,7 @@
 
 		// Find a target
 
-	if(pulledby) // Don't wiggle if someone pulls you
+	if(grabbedBy) // Don't wiggle if someone pulls you
 		patrol_path = list()
 		return
 
@@ -147,7 +147,7 @@
 						patrol_path = AStar(loc, next_dest_loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id = botcard, exclude = null)
 						signal_sent = 0
 		else
-			if(pulledby) // Don't wiggle if someone pulls you
+			if(grabbedBy) // Don't wiggle if someone pulls you
 				patrol_path = list()
 				return
 			if(patrol_path[1] == loc)
@@ -310,11 +310,10 @@
 	name = "proxy bucket"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "bucket_proxy"
-	force = 3
 	throwforce = 10
 	throw_speed = 2
 	throw_range = 5
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	var/created_name = "Cleanbot"
 
 /obj/item/bucket_sensor/attackby(var/obj/item/O, var/mob/user)
@@ -343,6 +342,13 @@
 	desc = "A small round drone, usually tasked with carrying out menial tasks. This one seems pretty harmless."
 	icon = 'icons/mob/battle_roomba.dmi'
 	icon_state = "roomba_medical"
+	possible_phrases = list(
+		"I shouldn't have signed that contract!",
+		"You let your imagination float! and it sinked!",
+		"Discovered anything new?",
+		"Future simulations show that you will only get stinkier!",
+		"I hope you still remember your contract, im corporate equipment of the finest order!"
+	)
 	botcard_access = list(access_moebius, access_maint_tunnels)
 
 /mob/living/bot/cleanbot/roomba/update_icons()
@@ -359,6 +365,7 @@
 /mob/living/bot/cleanbot/roomba/ironhammer
 	name = "RMB-A 2000"
 	icon_state = "roomba_IH"
+	commonLore = "A RMB-A 2000 unit , designed for cleaning IH garrisons. One of these was once executed since its onboard circuits became sentient.."
 	botcard_access = list(access_brig, access_maint_tunnels)
 	possible_phrases = list(
 		"Born to clean!",

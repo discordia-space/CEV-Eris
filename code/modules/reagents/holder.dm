@@ -55,6 +55,8 @@
 			return GAS
 
 /datum/reagents/Destroy()
+	if(my_atom)
+		my_atom.recalculateWeights(-3*total_volume)
 	. = ..()
 	if(SSchemistry)
 		SSchemistry.active_holders -= src
@@ -105,12 +107,15 @@
 	return the_id
 
 /datum/reagents/proc/update_total() // Updates volume.
+	var/old_volume = total_volume
 	total_volume = 0
 	for(var/datum/reagent/R in reagent_list)
 		if(R.volume < MINIMUM_CHEMICAL_VOLUME)
 			del_reagent(R.id)
 		else
 			total_volume += R.volume
+	if(my_atom)
+		my_atom.recalculateWeights((total_volume - old_volume)*3)
 	return
 
 /datum/reagents/proc/handle_reactions()
@@ -209,6 +214,7 @@
 /datum/reagents/proc/add_reagent(id, amount, data = null, safety = 0)
 	if(!isnum(amount) || amount <= 0)
 		return 0
+
 
 	update_total()
 	amount = min(amount, get_free_space())

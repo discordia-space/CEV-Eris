@@ -19,12 +19,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = GOLEM_ARMOR_LOW,
-		energy = GOLEM_ARMOR_LOW,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = GOLEM_ARMOR_LOW,
+		ARMOR_ENERGY = GOLEM_ARMOR_LOW,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 
 	// Loot related variables
@@ -32,7 +32,7 @@
 
 // Special capacity of silver golem: when attacked in melee, it reflects part of the damage to the attacker.
 // Called when the mob is hit with an item in combat.
-/mob/living/carbon/superior_animal/golem/silver/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/carbon/superior_animal/golem/silver/hit_with_weapon(obj/item/I, mob/living/user, list/damages, var/hit_zone)
 	. = ..()
 	visible_message(SPAN_DANGER("\The [src] reflects \the [I.name]!"))
-	user.hit_with_weapon(I, user, effective_force * 0.2, pick(BP_ALL_LIMBS))
+	user.hit_with_weapon(I, user, dhApplyMultiplier(damages.Copy(), 0.2), pick(BP_ALL_LIMBS))

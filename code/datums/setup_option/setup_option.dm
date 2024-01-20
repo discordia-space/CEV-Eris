@@ -19,7 +19,7 @@
 	for(var/job in GLOB.joblist)
 		var/datum/job/J = GLOB.joblist[job]
 		if(!J.setup_restricted)
-			if(J.type in allowed_jobs)
+			if((J.type in allowed_jobs) || (J.department_flag & allowed_depts))
 				allowed_jobs -= J.type //job is not setup_restricted so no reason to keep it
 				                       //however do not add to restricted as it was explicitly allowed
 			else if(J.department_flag & restricted_depts)

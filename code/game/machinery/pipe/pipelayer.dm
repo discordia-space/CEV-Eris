@@ -19,7 +19,7 @@
 	W = new(src)
 	..()
 
-/obj/machinery/pipelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/pipelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 
 	if(on && a_dis)
@@ -52,7 +52,7 @@
 				if(m)
 					use_metal(m)
 					var/obj/item/stack/material/steel/MM = new (get_turf(src))
-					MM.amount = m
+					MM.setAmount(m)
 					user.visible_message(
 						SPAN_NOTICE("[user] removes [m] sheet\s of metal from the \the [src]."),
 						SPAN_NOTICE("You remove [m] sheet\s of metal from \the [src]"))
@@ -97,8 +97,7 @@
 	return
 
 /obj/machinery/pipelayer/examine(mob/user)
-	..()
-	to_chat(user, "\The [src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated.")
+	..(user, afterDesc = "\The [src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated.")
 
 /obj/machinery/pipelayer/proc/reset()
 	on=0

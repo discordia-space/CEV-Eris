@@ -476,17 +476,19 @@
 	desc = "A model spaceship, it looks like those used back in the day when travelling to Orion! It even has a miniature FX-293 reactor, which was renowned for its instability and tendency to explode..."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ship"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	var/active = 0 //if the ship is on
 
 /obj/item/orion_ship/examine(mob/user)
-	..()
+	var/description = ""
 	if(!(in_range(user, src)))
 		return
 	if(!active)
-		to_chat(user, SPAN_NOTICE("There's a little switch on the bottom. It's flipped down."))
+		description += SPAN_NOTICE("There's a little switch on the bottom. It's flipped down.")
 	else
-		to_chat(user, SPAN_NOTICE("There's a little switch on the bottom. It's flipped up."))
+		description += SPAN_NOTICE("There's a little switch on the bottom. It's flipped up.")
+	..(user, afterDesc = description)
+
 
 /obj/item/orion_ship/attack_self(mob/user)
 	if(active)

@@ -46,8 +46,8 @@
 					if(!H.gloves)
 						H.adjustHalLoss(250/(target.mob_size))
 		if (!isrobot(target))
-			target.damage_through_armor(rand(15,30), HALLOSS, zone, ARMOR_MELEE, used_weapon = src)
-			target.damage_through_armor(rand(8,15), BRUTE, zone, ARMOR_MELEE, used_weapon = src)
+			/// todo , add traitor version which is pointy and make IH shoes have 0 pointy armor (trollface) SPCR - 2023
+			target.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, 15),DELEM(HALLOSS, 15))),zone, src, 1, 1, FALSE)
 
 	playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
 	layer = MOB_LAYER - 0.2

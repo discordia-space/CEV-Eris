@@ -14,14 +14,14 @@
 	max_shells = 5
 	price_tag = 20000
 	damage_multiplier = 1.3
-	penetration_multiplier = 9
+	penetration_multiplier = 20
 	pierce_multiplier = 10
 	zoom_factors = list(0.4) // it has a giant scope
 	init_recoil = HANDGUN_RECOIL(1.8) // maybe it was a bit too low
 	spawn_frequency = 0
 	spawn_blacklisted = TRUE
 	noricochet = TRUE
-	gun_parts = list(/obj/item/part/gun/frame/sky_driver = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/revolver = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/sky_driver = 1, /obj/item/part/gun/modular/grip/black = 1, /obj/item/part/gun/modular/mechanism/revolver = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "S"
 
 /obj/item/gun/projectile/revolver/sky_driver/New()
@@ -45,7 +45,7 @@
 	desc = "A Sky Driver revolver frame. A device that can put holes in ships, let alone a person."
 	icon_state = "frame_skydriver"
 	resultvars = list(/obj/item/gun/projectile/revolver/sky_driver)
-	gripvars = list(/obj/item/part/gun/grip/black)
-	mechanismvar = /obj/item/part/gun/mechanism/revolver
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/black)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/revolver
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
 	spawn_blacklisted = TRUE

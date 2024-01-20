@@ -147,8 +147,7 @@
 		walk(src,0)
 		spawn(rand(50,150))
 			if(!disabled && exploding)
-				explosion(get_turf(src), 0, 1, 4, 7)
-				//proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1)
+				explosion(get_turf(src), 200, 75)
 	..()
 
 //ion rifle!
@@ -274,7 +273,15 @@
 	. = ..()
 
 /obj/item/projectile/beam/drone
-	damage_types = list(BURN = 15)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 15)
+		)
+	)
 
 /obj/item/projectile/beam/pulse/drone
-	damage_types = list(BURN = 10)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 10)
+		)
+	)

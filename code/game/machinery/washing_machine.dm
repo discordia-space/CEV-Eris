@@ -68,7 +68,7 @@
 			//Tanning!
 			for(var/obj/item/stack/material/hairlesshide/HH in contents)
 				var/obj/item/stack/material/wetleather/WL = new(src)
-				WL.amount = HH.amount
+				WL.setAmount(HH.amount)
 				qdel(HH)
 
 			state = WASHSTATE_FULLCLOSEDDOOR
@@ -76,10 +76,7 @@
 			update_icon()
 
 /obj/machinery/washing_machine/examine(mob/user)
-	..()
-	if(tick > 0 && (state ==WASHSTATE_RUNNING))
-		to_chat(user, SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle."))
-
+	..(user, afterDesc = (tick > 0 && (state == WASHSTATE_RUNNING)) ? "It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle." : "")
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
@@ -108,7 +105,7 @@
 
 	sleep(20)
 	if(state in list(WASHSTATE_EMPTYOPENDOOR, WASHSTATE_FULLOPENDOOR) )
-		usr.loc = src.loc
+		usr.forceMove(src.loc)
 
 
 /obj/machinery/washing_machine/update_icon()
@@ -121,7 +118,7 @@
 			if(!crayon)
 				user.drop_item()
 				crayon = W
-				crayon.loc = src
+				crayon.forceMove(src)
 			else
 				..()
 		else
@@ -148,12 +145,12 @@
 		if(WASHSTATE_EMPTYCLOSEDDOOR)
 			state = WASHSTATE_EMPTYOPENDOOR
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.forceMove(src.loc)
 		if(WASHSTATE_FULLOPENDOOR)
 			state = WASHSTATE_FULLCLOSEDDOOR
 		if(WASHSTATE_FULLCLOSEDDOOR)
 			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+				O.forceMove(src.loc)
 			crayon = null
 			state = WASHSTATE_EMPTYOPENDOOR
 		if(WASHSTATE_RUNNING)

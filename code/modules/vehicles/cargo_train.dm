@@ -1,3 +1,4 @@
+/*
 /obj/vehicle/train/cargo/engine
 	name = "cargo train tug"
 	desc = "A ridable electric car designed for pulling cargo trolleys."
@@ -20,7 +21,7 @@
 	desc = "A keyring with a small steel key, and a yellow fob reading \"Choo Choo!\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "train_keys"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 
 /obj/vehicle/train/cargo/trolley
 	name = "cargo train trolley"
@@ -46,7 +47,7 @@
 	overlays += I
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle/train/cargo/engine/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/vehicle/train/cargo/engine/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	if(on && !cell.check_charge(charge_use))
 		turn_off()
 		update_stats()
@@ -146,13 +147,12 @@
 		H.apply_damage(rand(1,5), BRUTE, pick(parts), used_weapon = "Crashed by a train")
 
 	var/damage = rand(1,3)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
-
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 2))), BP_HEAD, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 2))), BP_CHEST, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_L_ARM, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_R_ARM, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_L_LEG, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage * 0.5))), BP_R_LEG, src, 1, 1, FALSE)
 
 /obj/vehicle/train/cargo/trolley/RunOver(var/mob/living/carbon/human/H)
 	..()
@@ -188,14 +188,11 @@
 		return ..()
 
 /obj/vehicle/train/cargo/engine/examine(mob/user)
-	if(!..(user, 1))
-		return
+	var/description = ""
 
-	if(!ishuman(usr))
-		return
-
-	to_chat(user, "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition.")
-	to_chat(user, "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%")
+	description += "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition.\n"
+	description += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
+	..(user, afterDesc = description)
 
 /obj/vehicle/train/cargo/engine/verb/start_engine()
 	set name = "Start engine"
@@ -248,7 +245,7 @@
 	if(on)
 		turn_off()
 
-	key.loc = usr.loc
+	key.forceMove(usr.loc)
 	if(!usr.get_active_hand())
 		usr.put_in_hands(key)
 	key = null
@@ -380,3 +377,5 @@
 		anchored = FALSE
 	else
 		anchored = TRUE
+
+*/

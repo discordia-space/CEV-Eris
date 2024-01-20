@@ -24,7 +24,7 @@ COMSIG_ABERRANT_SECONDARY
 	var/install_start_action = "attaching"
 	var/install_success_action = "attached"
 	var/install_time = WORKTIME_FAST
-	//var/install_tool_quality = null				
+	//var/install_tool_quality = null
 	var/install_difficulty = FAILCHANCE_ZERO
 	var/install_stat = STAT_COG
 	var/install_sound = WORKSOUND_HONK
@@ -35,13 +35,13 @@ COMSIG_ABERRANT_SECONDARY
 	var/removal_stat = STAT_COG
 
 	var/mod_time = WORKTIME_FAST
-	var/mod_tool_quality = null				
+	var/mod_tool_quality = null
 	var/mod_difficulty = FAILCHANCE_ZERO
 	var/mod_stat = STAT_COG
 	var/mod_sound = WORKSOUND_HONK
 
 	var/adjustable = FALSE
-	var/destroy_on_removal = FALSE 
+	var/destroy_on_removal = FALSE
 	var/removable = TRUE
 	var/breakable = FALSE //Some mods are meant to be tamper-resistant and should be removed only in a hard way
 
@@ -69,7 +69,7 @@ COMSIG_ABERRANT_SECONDARY
 /datum/component/modification/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_IATTACK, PROC_REF(attempt_install))
 	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(try_modify))
-	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_EXTRA_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_REMOVE, PROC_REF(uninstall))
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)
@@ -92,7 +92,7 @@ COMSIG_ABERRANT_SECONDARY
 	return FALSE
 
 /datum/component/modification/proc/check_item(obj/item/I, mob/living/user)
-	if(I.item_upgrades.len >= I.max_upgrades)
+	if(I.item_upgrades.len >= I.maxUpgrades)
 		if(user)
 			to_chat(user, SPAN_WARNING("\The [I] can not fit anymore modifications!"))
 		return FALSE
@@ -115,7 +115,7 @@ COMSIG_ABERRANT_SECONDARY
 				if(user)
 					to_chat(user, SPAN_WARNING("\The [I] can not accept \the [parent]!"))
 				return FALSE
-	
+
 	return TRUE
 
 /datum/component/modification/proc/apply(obj/item/A, mob/living/user)
@@ -165,19 +165,19 @@ COMSIG_ABERRANT_SECONDARY
 		holder.color = new_color
 	return TRUE
 
-/datum/component/modification/proc/on_examine(mob/user)
+/datum/component/modification/proc/on_examine(mob/user, list/reference)
 	SIGNAL_HANDLER
 	var/details_unlocked = FALSE
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
 	if(examine_stat_secondary)
 		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
-	
+
 	if(examine_msg)
-		to_chat(user, SPAN_WARNING(examine_msg))
+		reference.Add( SPAN_WARNING(examine_msg))
 	if(details_unlocked)
 		var/function_info = get_function_info()
 		if(function_info)
-			to_chat(user, SPAN_NOTICE(function_info))
+			reference.Add(SPAN_NOTICE(function_info))
 
 /datum/component/modification/proc/get_function_info()
 	return
@@ -265,8 +265,7 @@ COMSIG_ABERRANT_SECONDARY
 /obj/item/modification
 	name = "modification"
 	//icon = 'icons/obj/mod_cores.dmi'
-	force = WEAPON_FORCE_HARMLESS
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	//spawn_tags = SPAWN_TAG_MODIFICATION
 	price_tag = 0
 	rarity_value = 50

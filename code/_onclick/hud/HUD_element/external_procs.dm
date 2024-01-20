@@ -62,7 +62,7 @@ getAlignmentHorizontal() -> alignmentHorizontal
 setAlignment(var/horizontal, var/vertical) -> src
 - sets alignment behavior for element, relative to parent, null arguments indicate not to change the relevant alignment
 - look HUD_defines.dm for arguments
-	
+
 
 getPositionX() -> x
 getPositionY() -> y
@@ -479,7 +479,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 	if(!is_associative(additionsData))
 		error("OverlayData list is not associative")
 		return
-		
+
 	for (var/additionName in additionsData)
 		var/list/data = additionsData[additionName]
 		if(!is_associative(data))
@@ -504,7 +504,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		_iconsBuffer["[additionType]_[additionName]"] = null
 		updateIcon()
 		return src
-	
+
 	if(!data)
 		data = list()
 		if(additionType == HUD_ICON_UNDERLAY)
@@ -522,7 +522,7 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 
 	setIconAdditionAlpha(additionType, additionName, alpha, noIconUpdate = TRUE)
 	setIconAdditionColor(additionType, additionName, color, noIconUpdate = TRUE)
-	
+
 	_assembleAndBufferIcon(additionType, additionName, data)
 	updateIcon()
 
@@ -658,9 +658,9 @@ alignElements(var/horizontal, var/vertical, var/list/HUD_element/targets) -> /HU
 		qdel(debugBox)
 	/*
 		I.DrawBox(ReadRGB(COLOR_BLACK),0,0,getWidth(),getHeight())
-		I.DrawBox(ReadRGB(debugColor),1,1,getWidth()-1,getHeight()-1) 
+		I.DrawBox(ReadRGB(debugColor),1,1,getWidth()-1,getHeight()-1)
 		setIconOverlay(HUD_OVERLAY_DEBUG,I, alpha = 80)*/
-	
+
 	updateIcon()
 
 // mob clicks overrides

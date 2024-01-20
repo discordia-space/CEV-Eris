@@ -90,17 +90,17 @@
 		return
 
 	operating = 1
-	var/energy = 0
+	var/ARMOR_ENERGY = 0
 
 	if(antiH_fuel == H_fuel)
 		var/mass = antiH_fuel + H_fuel
-		energy = convert2energy(mass)
+		ARMOR_ENERGY = convert2energy(mass)
 		H_fuel = 0
 		antiH_fuel = 0
 	else
 		var/residual_matter = modulus(H_fuel - antiH_fuel)
 		var/mass = antiH_fuel + H_fuel - residual_matter
-		energy = convert2energy(mass)
+		ARMOR_ENERGY = convert2energy(mass)
 		if( H_fuel > antiH_fuel )
 			H_fuel = residual_matter
 			antiH_fuel = 0
@@ -113,7 +113,7 @@
 
 	//Q = k x (delta T)
 
-	energy = energy*0.75
+	ARMOR_ENERGY = energy*0.75
 	operating = 0
 
 	//TODO: DEFERRED Heat tile
@@ -144,14 +144,14 @@
 
 		if(antiH_fuel == H_fuel)		//if they're equal then convert the whole mass to energy
 			mass = antiH_fuel + H_fuel
-			energy = convert2energy(mass)
+			ARMOR_ENERGY = convert2energy(mass)
 
 		else	//else if they're not equal determine which isn't equal
 				//and set it equal to either H or antiH so we don't lose anything
 
 			var/residual_matter = modulus(H_fuel - antiH_fuel)
 			mass = antiH_fuel + H_fuel - residual_matter
-			energy = convert2energy(mass)
+			ARMOR_ENERGY = convert2energy(mass)
 
 			if( H_fuel > antiH_fuel )
 				H = residual_matter
@@ -173,7 +173,7 @@
 			antiH_fuel = antiH_fuel/2
 			H_fuel = H_fuel/2
 
-			energy = convert2energy(H_fuel + antiH_fuel)
+			ARMOR_ENERGY = convert2energy(H_fuel + antiH_fuel)
 
 			H_fuel += H
 			antiH_fuel += antiH

@@ -200,7 +200,7 @@
 		//You can get yourself out of the cryopod, or it will auto-eject after one minute
 		spawn(600)
 			if (C && C.occupant == M)
-				C.eject() 
+				C.eject()
 		return TRUE
 	return FALSE
 
@@ -227,7 +227,8 @@
 
 	//We have to search specifically for padded subtype, because the main bed type is used for a lot of things, including chairs
 	for (var/obj/structure/bed/padded/C in things)
-		if (C.buckled_mob)
+		var/datum/component/buckling/buckle = C.GetComponent(/datum/component/buckling)
+		if (buckle.buckled)
 			continue
 
 		. |= C
@@ -249,7 +250,7 @@
 	if (beds.len)
 		var/obj/structure/bed/C = pick(beds)
 		M.forceMove(C.loc)
-		C.buckle_mob(M)
+		//C.buckle_mob(M)
 
 		//When spawning in bed, you start off asleep for a moment
 		M.Paralyse(2)

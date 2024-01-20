@@ -115,14 +115,12 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	return ..()
 
 /obj/machinery/power/rad_collector/examine(mob/user)
-	if(..())
-		to_chat(user, "The meter indicates that [src] is collecting [last_power] W.")
+	..(user, afterDesc = "The meter indicates that [src] is collecting [last_power] W.")
 
-/obj/machinery/power/rad_collector/ex_act(severity)
-	switch(severity)
-		if(2, 3)
-			eject()
-	return ..()
+/obj/machinery/power/rad_collector/take_damage(amount)
+	if(amount > 50)
+		eject()
+	. = ..()
 
 
 /obj/machinery/power/rad_collector/proc/eject()

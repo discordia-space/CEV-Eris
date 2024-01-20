@@ -13,11 +13,26 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 	var/cooldown = 15 MINUTES
 	var/last_teleport = -15 MINUTES
 	var/scan = FALSE
+	var/obj/item/device/radio/internal_radio = null
+	var/radio_broadcasting
 
 /obj/item/device/last_shelter/New()
 	..()
 	GLOB.last_shelter = src
 	GLOB.all_faction_items[src] = GLOB.department_church
+
+/obj/item/device/last_shelter/Initialize(mapload)
+	. = ..()
+	internal_radio = new /obj/item/device/radio{channels=list("NT Voice" = 1)}(src)
+	radio_broadcasting = TRUE
+
+/obj/item/device/last_shelter/proc/alert_believers()
+	if(radio_broadcasting)
+		internal_radio.autosay("The [src] has rescued a believer's cruciform from bluespace.", "The Last Shelter", "NT Voice", TRUE)
+
+/obj/item/device/last_shelter/emp_act(severity)
+	. = ..()
+	radio_broadcasting = FALSE
 
 /obj/item/device/last_shelter/Destroy()
 	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
@@ -27,6 +42,11 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 	..()
 
 /obj/item/device/last_shelter/attackby(obj/item/I, mob/living/user, params)
+	if(I.get_tool_quality(QUALITY_SCREW_DRIVING) && !radio_broadcasting && user.a_intent == I_HELP)
+		radio_broadcasting = TRUE
+		to_chat(user, SPAN_NOTICE("You re-enable the radio inside of [src]."))
+		return
+
 	if(nt_sword_attack(I, user))
 		return FALSE
 	..()
@@ -74,6 +94,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 	if(!MN)
 		return FALSE
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
+	H.randomize_appearance()
 	for(var/stat in ALL_STATS)
 		H.stats.changeStat(stat, rand(STAT_LEVEL_ADEPT, STAT_LEVEL_PROF))
 	var/datum/perk/perk_random = pick(subtypesof(/datum/perk/oddity))
@@ -90,6 +111,7 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 		M.write_wearer(H)
 		M.ckey = MN.key
 		M.mind = MN
+	alert_believers()
 	qdel(H)
 	return cruciform
 

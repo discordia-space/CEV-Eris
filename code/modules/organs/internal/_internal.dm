@@ -4,8 +4,8 @@
 	bad_type = /obj/item/organ/internal
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
 	max_damage = IORGAN_STANDARD_HEALTH
-	min_bruised_damage = 3
-	min_broken_damage = 5
+	min_bruised_damage = IORGAN_STANDARD_BRUISE
+	min_broken_damage = IORGAN_STANDARD_BREAK
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()
@@ -13,7 +13,7 @@
 	var/list/initial_organ_efficiency = list()
 	var/scanner_hidden = FALSE	//Does this organ show up on the body scanner
 	var/unique_tag	//If an organ is unique and doesn't scale off of organ processes
-	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by w_class for balance reasons
+	var/specific_organ_size = 1  //Space organs take up in weight calculations, unaffected by volumeClass for balance reasons
 	var/max_blood_storage = 0	//How much blood an organ stores. Base is 5 * blood_req, so the organ can survive without blood for 5 ticks beofre taking damage (+ blood supply of blood vessels)
 	var/current_blood = 100	//How much blood is currently in the organ
 	var/blood_req = 0	//How much blood an organ takes to funcion
@@ -65,20 +65,21 @@
 	if(!skipverbs)
 		for(var/verb_path in owner_verbs)
 			verbs -= verb_path
-	
+
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index--
 	..()
 
-/obj/item/organ/internal/replaced(obj/item/organ/external/affected)
+/obj/item/organ/internal/insert(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
+	parent.internal_organs[src] = specific_organ_size // Larger organs have greater pick weight for organ damage
 	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, PROC_REF(wound_count), TRUE)
 	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, PROC_REF(refresh_organ_stats), TRUE)
 	RegisterSignal(parent, COMSIG_IORGAN_APPLY, PROC_REF(apply_modifiers), TRUE)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
-/obj/item/organ/internal/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/internal/mob_update(mob/living/carbon/human/target)
 	..()
 	owner.internal_organs |= src
 	for(var/process in organ_efficiency)
@@ -88,7 +89,7 @@
 
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
-	
+
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
 
@@ -96,11 +97,11 @@
 	var/organ_eff = organ_efficiency[process_define]
 	return organ_eff - (organ_eff * (damage / max_damage))
 
-/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
+/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
 
-	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
+	var/wound_count = max(0, round(amount / (damage_type == BRUTE || damage_type == BURN ? 4 : 8)))	// At base values, every 8 points of damage is 1 wound, or 4 if brute or burn.
 
 	if(!wound_count)
 		return FALSE
@@ -111,7 +112,7 @@
 		for(var/i in 1 to wound_count)
 			var/choice = pick(possible_wounds)
 			add_wound(choice)
-			LAZYREMOVE(possible_wounds, choice)
+			//LAZYREMOVE(possible_wounds, choice) // If this is commented out, we can get a higher severity of a single wound
 			if(!LAZYLEN(possible_wounds))
 				break
 
@@ -197,21 +198,22 @@
 
 	current_blood = min(current_blood + blood_req, max_blood_storage)
 
-/obj/item/organ/internal/examine(mob/user)
-	. = ..()
+/obj/item/organ/internal/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
-		to_chat(user, SPAN_NOTICE("Organ size: [specific_organ_size]"))
+		description += SPAN_NOTICE("Organ size: [specific_organ_size]")
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT - 5)
 		var/organs
 		for(var/organ in organ_efficiency)
 			organs += organ + " ([organ_efficiency[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 
-		to_chat(user, SPAN_NOTICE("Requirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>"))
-		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
+		description += SPAN_NOTICE("\nRequirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>")
+		description += SPAN_NOTICE("\nOrgan tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>")
 
 		if(item_upgrades.len)
-			to_chat(user, SPAN_NOTICE("Organ grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))
+			description += SPAN_NOTICE("\nOrgan grafts present ([item_upgrades.len]/[maxUpgrades]). Use a laser cutting tool to remove.")
+	..(user, afterDesc = description)
 
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()
@@ -381,7 +383,7 @@
 /obj/item/organ/internal/proc/refresh_organ_stats()
 	name = initial(name)
 	color = initial(color)
-	max_upgrades = initial(max_upgrades)
+	maxUpgrades = initial(maxUpgrades)
 	prefixes = list()
 	min_bruised_damage = initial(min_bruised_damage)
 	min_broken_damage = initial(min_broken_damage)

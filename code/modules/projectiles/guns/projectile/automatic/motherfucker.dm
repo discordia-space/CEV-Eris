@@ -4,8 +4,7 @@
 	icon = 'icons/obj/guns/projectile/motherfucker.dmi'
 	icon_state = "motherfucker"
 	item_state = "motherfucker"
-	w_class = ITEM_SIZE_HUGE
-	force = WEAPON_FORCE_DANGEROUS
+	volumeClass = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	caliber = CAL_PISTOL
@@ -13,21 +12,20 @@
 	handle_casings = EJECT_CASINGS
 	max_shells = 54
 	damage_multiplier = 1
-	penetration_multiplier = 0.3 // and good AP
 	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 19, MATERIAL_PLASTIC = 10, MATERIAL_WOOD = 16)
 	price_tag = 300
 	init_recoil = LMG_RECOIL(1)
 	burst_delay = 0
 	burst = 6
-	init_offset = 14 //awful accuracy
+	init_offset = 4 //awful accuracy
 	init_firemodes = list(
-		list(mode_name="6-round bursts", burst=6, fire_delay=null, move_delay=7, icon="burst"),
+		list(mode_name="6-round bursts", burst=6, fire_delay=null, move_delay=3, icon="burst"),
 		)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	var/recentpumpmsg = 0
 	var/pumped = FALSE
-	gun_parts = list(/obj/item/part/gun/frame/motherfucker = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/motherfucker = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 
 /obj/item/part/gun/frame/motherfucker
 	name = "Motherfucker frame"
@@ -35,9 +33,9 @@
 	icon_state = "frame_motherfucker"
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 10, MATERIAL_PLASTIC = 10)
 	resultvars = list(/obj/item/gun/projectile/automatic/motherfucker)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun // its effectively a shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun // its effectively a shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)
 
 /obj/item/gun/projectile/automatic/motherfucker/attack_self(mob/living/user)
 	if(world.time >= recentpumpmsg + 10)

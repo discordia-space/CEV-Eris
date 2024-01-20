@@ -47,6 +47,7 @@
 		/datum/design/autolathe/misc/radio_bounced,
 		/datum/design/autolathe/misc/ashtray,
 		/datum/design/autolathe/misc/mirror,
+		/datum/design/autolathe/misc/earmuffs,
 		/datum/design/autolathe/container/drinkingglass,
 		/datum/design/autolathe/container/carafe,
 		/datum/design/autolathe/container/insulated_pitcher,
@@ -67,7 +68,8 @@
 		/datum/design/autolathe/device/floorpainter,
 		/datum/design/autolathe/device/mechpainter,
 		/datum/design/autolathe/container/hcase_engi,
-		/datum/design/autolathe/container/hcase_parts
+		/datum/design/autolathe/container/hcase_parts,
+		/datum/design/autolathe/device/spraypaint
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/devices
@@ -85,7 +87,6 @@
 		/datum/design/research/item/medical/reagent_scanner,
 		/datum/design/research/item/medical/robot_scanner,
 		/datum/design/autolathe/device/slime_scanner,
-		/datum/design/autolathe/device/antibody_scanner,
 		/datum/design/autolathe/device/megaphone,
 		/datum/design/autolathe/device/t_scanner,
 		/datum/design/autolathe/device/gps,

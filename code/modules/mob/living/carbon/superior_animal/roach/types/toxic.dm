@@ -24,12 +24,12 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = 5,
-		energy = 0,
-		bomb = 0,
-		bio = 50,
-		rad = 100
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 5,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =50,
+		ARMOR_RAD =100
 	)
 
 /mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
@@ -39,7 +39,7 @@
 			var/mob/living/L = A
 			var/damage = rand(melee_damage_lower, melee_damage_upper)
 			L.apply_effect(10, IRRADIATE)
-			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
+			L.damage_through_armor(list(ARMOR_BIO = list(DELEM(TOX,damage))), null, src, 1, 1, FALSE)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
 
@@ -47,9 +47,12 @@
 	name = "Glowing bile"
 	icon = 'icons/obj/hivemind.dmi'
 	icon_state = "goo_proj"
-	damage_types = list(TOX = 15)
+	damage_types = list(
+		ARMOR_BIO = list(
+			DELEM(TOX, 15)
+		)
+	)
 	irradiate = 5
-	check_armour = ARMOR_BIO
 	step_delay = 2
 
 /obj/item/projectile/roach_spit/on_hit(atom/target)
@@ -57,7 +60,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/damage = rand(3, 7)
-		L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
+		L.damage_through_armor(list(ARMOR_BIO = list(DELEM(TOX,damage))), null, src, 1, 1, FALSE)
 
 /obj/item/projectile/roach_spit/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
 	if (isroach(target_mob))

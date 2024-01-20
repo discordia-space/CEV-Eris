@@ -12,7 +12,7 @@
 /area/crawler)
 "d" = (
 /obj/structure/closet/onestar/tier3,
-/obj/spawner/gun/onestar/low_chance,
+/obj/spawner/gun/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "e" = (
@@ -112,11 +112,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating/under,
-/area/crawler)
-"G" = (
-/obj/structure/closet/onestar/tier3,
-/obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "J" = (
 /obj/structure/closet/onestar/tier3,
@@ -220,7 +215,7 @@ j
 j
 j
 g
-G
+J
 b
 "}
 (10,1,1) = {"

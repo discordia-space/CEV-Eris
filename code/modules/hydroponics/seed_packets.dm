@@ -5,7 +5,7 @@ var/global/list/plant_seed_sprites = list()
 	name = "packet of seeds"
 	icon = 'icons/obj/seeds.dmi'
 	icon_state = "blank"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/seeds
 	var/seed_type
 	var/datum/seed/seed
@@ -58,9 +58,10 @@ var/global/list/plant_seed_sprites = list()
 		src.desc = "It's labelled as coming from [seed.display_name]."
 
 /obj/item/seeds/examine(mob/user)
-	..(user)
+	var/description = ""
 	if(seed && !seed.roundstart)
-		to_chat(user, "It's tagged as variety #[seed.uid].")
+		description += "It's tagged as variety #[seed.uid]."
+	..(user, afterDesc = description)
 
 /obj/item/seeds/cutting
 	name = "cuttings"
@@ -114,6 +115,9 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/eggplantseed
 	seed_type = "eggplant"
+
+/obj/item/seeds/realeggplant
+	seed_type = "realeggplant"
 
 /obj/item/seeds/bloodtomatoseed
 	seed_type = "bloodtomato"
@@ -279,3 +283,18 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/thaadra
 	seed_type = "thaadra"
+
+/obj/item/seeds/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pen))
+		var/new_name = input(user, "What would you like to label the seed packet?", "Tape labeling") as null|text
+		if(isnull(new_name)) return
+		new_name = sanitizeSafe(new_name)
+		if(new_name)
+			SetName("[initial(name)] - '[new_name]'")
+			to_chat(user, SPAN_NOTICE("You label the seed packet '[new_name]'."))
+		else
+			SetName("[initial(name)]")
+			to_chat(user, SPAN_NOTICE("You wipe off the label."))
+		return
+
+	..()

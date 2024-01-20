@@ -19,16 +19,18 @@
 		return temp_access
 
 /obj/item/card/id/guest/examine(mob/user)
-	..(user)
+	var/description = ""
 	if (world.time < expiration_time)
-		to_chat(user, SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)]."))
+		description += SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)]. \n")
 	else
-		to_chat(user, SPAN_WARNING("It expired at [worldtime2stationtime(expiration_time)]."))
+		description += SPAN_WARNING("It expired at [worldtime2stationtime(expiration_time)].\n")
 
-	to_chat(usr, SPAN_NOTICE("It grants access to the following areas:"))
+	description += SPAN_NOTICE("It grants access to the following areas:\n")
 	for (var/A in temp_access)
-		to_chat(usr, SPAN_NOTICE("[get_access_desc(A)]."))
-	to_chat(usr, SPAN_NOTICE("Issuing reason: [reason]."))
+		description += SPAN_NOTICE("[get_access_desc(A)].\n")
+	description += SPAN_NOTICE("Issuing reason: [reason].")
+
+	..(user, afterDesc = description)
 
 /////////////////////////////////////////////
 //Guest pass terminal////////////////////////
@@ -45,6 +47,7 @@
 	light_range_on = 1.5
 	light_power_on = 0.2
 	density = FALSE
+	commonLore = "There was a petition to get rid of them once over security reasons, it failed."
 	CheckFaceFlag = 0
 	circuit = /obj/item/electronics/circuitboard/guestpass
 	var/obj/item/card/id/giver

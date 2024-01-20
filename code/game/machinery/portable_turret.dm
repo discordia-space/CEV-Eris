@@ -21,8 +21,8 @@
 
 	var/raised = 0			//if the turret cover is "open" and the turret is raised
 	var/raising= 0			//if the turret is currently opening or closing its cover
-	var/health = 80			//the turret's health
-	var/maxhealth = 80		//turrets maximal health.
+	health = 80			//the turret's health
+	maxHealth = 80		//turrets maximal health.
 	var/resistance = RESISTANCE_FRAGILE 		//reduction on incoming damage
 	var/auto_repair = 0		//if 1 the turret slowly repairs itself.
 	var/locked = 1			//if the turret's behaviour control access is locked
@@ -423,12 +423,13 @@ var/list/turret_icons
 						hackfail = 0
 			return 1 //No whacking the turret with tools on help intent
 
-	if (!(I.flags & NOBLUDGEON) && I.force && !(stat & BROKEN))
+	var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+	if (!(I.flags & NOBLUDGEON) && damage && !(stat & BROKEN))
 		//if the turret was attacked with the intention of harming it:
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
-		if (take_damage(I.force * I.structure_damage_factor))
+		if (take_damage(damage * I.structure_damage_factor))
 			playsound(src, 'sound/weapons/smash.ogg', 70, 1)
 		else
 			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
@@ -455,7 +456,7 @@ var/list/turret_icons
 		enabled = 1 //turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 		return 1
 
-/obj/machinery/porta_turret/proc/take_damage(var/force)
+/obj/machinery/porta_turret/take_damage(var/force)
 	if(!raised && !raising)
 		force = force / 8
 
@@ -509,16 +510,6 @@ var/list/turret_icons
 
 	..()
 
-/obj/machinery/porta_turret/ex_act(severity)
-	switch (severity)
-		if (1)
-			take_damage(rand(140,300))
-		if (2)
-			take_damage(rand(80,170))
-		if (3)
-			take_damage(rand(50,120))
-		if (4)
-			take_damage(rand(25,60))
 
 /obj/machinery/porta_turret/proc/die()	//called when the turret dies, ie, health <= 0
 	health = 0
@@ -550,9 +541,9 @@ var/list/turret_icons
 			spawn()
 				popDown() // no valid targets, close the cover
 
-	if(auto_repair && (health < maxhealth))
+	if(auto_repair && (health < maxHealth))
 		use_power(20000)
-		health = min(health+1, maxhealth) // 1HP for 20kJ
+		health = min(health+1, maxHealth) // 1HP for 20kJ
 
 /obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
 	switch(assess_living(L))
@@ -740,6 +731,7 @@ var/list/turret_icons
 	//If the target is grabbing someone then the turret smartly aims for extremities
 	var/def_zone = get_exposed_defense_zone(target)
 	//Shooting Code:
+	A.PrepareForLaunch()
 	A.launch(target, def_zone)
 
 /datum/turret_checks
@@ -912,7 +904,7 @@ var/list/turret_icons
 			//attack_hand() removes the gun
 
 		if(4)
-			if(is_proximity_sensor(I))
+			if(isproxsensor(I))
 				build_step = 5
 				if(!user.unEquip(I))
 					to_chat(user, SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]"))

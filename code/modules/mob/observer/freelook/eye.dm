@@ -23,7 +23,7 @@
 
 	var/datum/visualnet/visualnet
 
-/mob/observer/eye/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/observer/eye/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	if(owner == src)
 		return EyeMove(NewLoc, Dir)
 	return 0
@@ -103,7 +103,7 @@
 
 	return 1
 
-/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator)
 	. = ..()
 	if(owner && owner.hud_used)
 		owner.hud_used.updatePlaneMasters(owner)

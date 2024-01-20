@@ -11,7 +11,7 @@
 	// #####	CREATING LAYOUTS    #####
 	//var/HUD_element/layout/horizontal/actionPanel = newUIElement("actionPanel", /HUD_element/layout/horizontal)
 	var/HUD_element/layout/vertical/navigationPanel = newUIElement("navigationPanel", /HUD_element/layout/vertical)
-	
+
 	// #####	CREATING LIST THAT WILL CONTAIN ELEMENTS FOR EASY ACCESS    #####
 	//var/list/HUD_element/actions = list()
 	var/list/HUD_element/navigation = list()
@@ -21,8 +21,8 @@
 	navigation += newUIElement("Move upwards", /HUD_element/button/thin, list(icon = 'icons/mob/screen/silicon/AI/HUD_actionButtons.dmi', icon_state = "up"))
 
 	// #####	ADDING CLICK PROCS TO BUTTONS    #####
-	getElementByID("Move upwards").setClickProc(/mob/observer/ghost/verb/moveup, _observer.mob)
-	getElementByID("Move downwards").setClickProc(/mob/observer/ghost/verb/movedown, _observer.mob)
+	getElementByID("Move upwards").setClickProc(TYPE_VERB_REF(/mob/observer/ghost,moveup), _observer.mob)
+	getElementByID("Move downwards").setClickProc(TYPE_VERB_REF(/mob/observer/ghost,movedown), _observer.mob)
 
 	// #####	ALIGNING ELEMENTS USING LAYOUTS    #####
 	//actionPanel.alignElements(HUD_HORIZONTAL_WEST_INSIDE_ALIGNMENT, HUD_NO_ALIGNMENT, actions, 0)

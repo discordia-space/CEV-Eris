@@ -4,14 +4,16 @@
 	mob_hit_sound = list('sound/effects/gore/sear.ogg')
 	hitsound_wall = 'sound/weapons/guns/misc/laser_searwall.ogg'
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage_types = list(BURN = 30)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 30)
+		)
+	)
 	armor_divisor = 1
-	check_armour = ARMOR_ENERGY
 	eyeblur = 4
 	var/frequency = 1
 	hitscan = 1
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
-	style_damage = 30 //hitscan, light speed projectiles? Be glad its easier to dodge than a revolver.
 	recoil = 1 // Even less than self-propelled bullets
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle
@@ -30,12 +32,22 @@
 		return 1
 	return 0
 
+
+/// Only used by the mech plasmacutter ofr now
 /obj/item/projectile/beam/cutter
 	name = "cutting beam"
 	icon_state = "plasmablaster"
-	damage_types = list(BRUTE = 25)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 25)
+		)
+	)
 	armor_divisor = 1.2
 	pass_flags = PASSTABLE
+	penetrating = 5
+	/// start with 1 extra since somehow 5 becomes 6
+	var/rocks_pierced = 1
+	var/pierce_max = 5
 
 	muzzle_type = /obj/effect/projectile/laser/plasmacutter/muzzle
 	tracer_type = /obj/effect/projectile/laser/plasmacutter/tracer
@@ -44,15 +56,29 @@
 /obj/item/projectile/beam/cutter/on_impact(var/atom/A)
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A
-		M.GetDrilled(1)
+		M.GetDrilled(5)
 	.=..()
+
+/obj/item/projectile/beam/cutter/check_penetrate(atom/A)
+	. = ..()
+	if(.)
+		return .
+	if(istype(A, /turf/simulated/mineral) && rocks_pierced < pierce_max)
+		on_impact(A)
+		rocks_pierced++
+		return TRUE
+	else
+		return FALSE
 
 /obj/item/projectile/beam/practice
 	name = "laser"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage_types = list(BURN = 0)
-	check_armour = ARMOR_ENERGY
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 0)
+		)
+	)
 	eyeblur = 2
 
 /obj/item/projectile/beam/midlaser
@@ -61,9 +87,12 @@
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
-	damage_types = list(BURN = 50)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 50)
+		)
+	)
 	armor_divisor = 1
-	style_damage = 60 //it's a slow firing beam weapon, this is probably fair.
 	recoil = 3
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
@@ -75,9 +104,12 @@
 	icon_state = "psychic_heavylaser"
 	var/obj/item/gun/energy/psychic/holder
 	var/contractor = FALSE //Check if it's a contractor psychic beam
-	damage_types = list(PSY = 30)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(PSY, 30)
+		)
+	)
 	armor_divisor = ARMOR_PEN_MAX
-	style_damage = 60 //It's magic brain beams, deal with it.
 	recoil = 2
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
@@ -93,7 +125,11 @@
 /obj/item/projectile/beam/psychic/heavylaser
 	name = "psychic heavy laser"
 	icon_state = "psychic_heavylaser"
-	damage_types = list(PSY = 40)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(PSY, 40)
+		)
+	)
 	contractor = TRUE
 	recoil = 3
 
@@ -104,7 +140,11 @@
 /obj/item/projectile/beam/xray
 	name = "xray beam"
 	icon_state = "xray"
-	damage_types = list(BURN = 25)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 25)
+		)
+	)
 	armor_divisor = 2.5
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
@@ -114,7 +154,11 @@
 /obj/item/projectile/beam/pulse
 	name = "pulse"
 	icon_state = "u_laser"
-	damage_types = list(BURN = 40)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 40)
+		)
+	)
 	armor_divisor = 1
 	recoil = 5 // Effectively hattons floors and walls
 
@@ -124,13 +168,17 @@
 
 /obj/item/projectile/beam/pulse/on_hit(atom/target)
 	if(isturf(target))
-		target.ex_act(2)
+		target.explosion_act(100, null)
 	..()
 
 /obj/item/projectile/beam/emitter
 	name = "emitter beam"
 	icon_state = "emitter"
-	damage_types = list(BURN = 0)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 0)
+		)
+	)
 	recoil = 0
 
 	muzzle_type = /obj/effect/projectile/emitter/muzzle
@@ -141,9 +189,12 @@
 	name = "lasertag beam"
 	icon_state = "bluelaser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage_types = list(BURN = 0)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 0)
+		)
+	)
 	no_attack_log = 1
-	check_armour = ARMOR_ENERGY
 
 	muzzle_type = /obj/effect/projectile/laser_blue/muzzle
 	tracer_type = /obj/effect/projectile/laser_blue/tracer
@@ -160,9 +211,12 @@
 	name = "lasertag beam"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage_types = list(BURN = 0)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 0)
+		)
+	)
 	no_attack_log = 1
-	check_armour = ARMOR_ENERGY
 
 /obj/item/projectile/beam/lastertag/red/on_hit(atom/target)
 	if(ishuman(target))
@@ -175,8 +229,11 @@
 	name = "lasertag beam"
 	icon_state = "omnilaser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage_types = list(BURN = 0)
-	check_armour = ARMOR_ENERGY
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 0)
+		)
+	)
 
 	muzzle_type = /obj/effect/projectile/laser_omni/muzzle
 	tracer_type = /obj/effect/projectile/laser_omni/tracer
@@ -192,10 +249,13 @@
 /obj/item/projectile/beam/sniper
 	name = "sniper beam"
 	icon_state = "xray"
-	damage_types = list(BURN = 60)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 60)
+		)
+	)
 	armor_divisor = 2
 	stutter = 3
-	style_damage = 70 //it's the laser AMR.
 	recoil = 10
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle
@@ -207,7 +267,11 @@
 	icon_state = "stun"
 	nodamage = 1
 	taser_effect = 1
-	damage_types = list(HALLOSS = 30)
+	damage_types = list(
+		ARMOR_ENERGY = list(
+			DELEM(BURN, 30)
+		)
+	)
 
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer

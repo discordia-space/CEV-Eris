@@ -90,14 +90,14 @@ see multiz/movement.dm for some info.
 		if(!below)
 			return
 
-	if(catwalk != (locate(/obj/structure/catwalk) in src))
-		return
+	/// If anything on our turf stops falls downwards
+	for(var/atom/A in contents)
+		if(A.can_prevent_fall(FALSE, null))
+			return
 
-	if(locate(/obj/structure/multiz/stairs) in src)
-		return
-
+	/// If anything below stops falls from above
 	for(var/atom/A in below)
-		if(A.can_prevent_fall())
+		if(A.can_prevent_fall(TRUE,null))
 			return
 
 	return TRUE
@@ -111,11 +111,15 @@ see multiz/movement.dm for some info.
 	if( config.z_level_shooting && istype(mover,/obj/item/projectile) )
 		var/obj/item/projectile/P = mover
 		if(isnull(P.height) && ( istype(P.original, /turf/simulated/open) || (istype(mover, /mob/shadow)) ) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
-			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forcemove()
+			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forceMove()
 			P.trajectory.loc_z = below.z
 			P.bumped = FALSE
 			P.height = HEIGHT_LOW // We are shooting from above, this protects windows from damage
 			return // We are done here
+
+	for(var/atom/A in contents)
+		if(A.can_prevent_fall(FALSE, mover))
+			return
 
 	if(!mover.can_fall())
 		return
@@ -138,6 +142,8 @@ see multiz/movement.dm for some info.
 
 	// We've made sure we can move, now.
 	mover.forceMove(below)
+
+	SEND_SIGNAL(mover, COMSIG_MOVABLE_FALLED, soft)
 
 	if(ishuman(mover) && mover.gender == MALE && prob(5))
 		playsound(src, 'sound/hallucinations/scream.ogg', 100)
@@ -195,7 +201,7 @@ see multiz/movement.dm for some info.
 
 			if(M == mover)
 				continue
-			if(M.getarmor(BP_HEAD, ARMOR_MELEE) < fall_damage || ismob(mover))
+			if(M.getarmor(BP_HEAD, ARMOR_BLUNT) < fall_damage || ismob(mover))
 				M.Weaken(10)
 			if(fall_damage >= FALL_GIB_DAMAGE)
 				M.gib()
@@ -205,8 +211,8 @@ see multiz/movement.dm for some info.
 
 				while(fall_damage > 0)
 					fall_damage -= tmp_damage = rand(0, fall_damage)
-					M.damage_through_armor(tmp_damage, BRUTE, organ, used_weapon = mover)
 					organ = pickweight(list(BP_HEAD = 0.3, BP_CHEST = 0.8, BP_R_ARM = 0.6, BP_L_ARM = 0.6))
+					M.damage_through_armor(list(ARMOR_BLUNT = list(DELEM(BRUTE, fall_damage))), organ, mover)
 
 
 // override to make sure nothing is hidden

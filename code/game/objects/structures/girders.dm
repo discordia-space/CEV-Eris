@@ -6,8 +6,9 @@
 	layer = BELOW_OBJ_LAYER
 	matter = list(MATERIAL_STEEL = 5)
 	var/state = 0
-	var/health = 100
 	var/cover = 50 //how much cover the girder provides against projectiles.
+	// Not a lot of explosion blocking but still there.
+	explosion_coverage = 0.4
 	var/material/reinf_material
 	var/reinforcing = 0
 	var/resistance = RESISTANCE_TOUGH
@@ -69,21 +70,13 @@
 		reinforce_girder()
 
 /obj/structure/girder/attackby(obj/item/I, mob/user)
-	if(user.a_intent == I_HELP && istype(I, /obj/item/gun))
-		var/obj/item/gun/G = I
-		if(anchored == TRUE) //Just makes sure we're not bracing on movable cover
-			G.gun_brace(user, src)
-			return
-		else
-			to_chat(user, SPAN_NOTICE("You can't brace your weapon - the [src] is not anchored down."))
-		return
 
 	//Attempting to damage girders
 	//This supercedes all construction, deconstruction and similar actions. So change your intent out of harm if you don't want to smack it
 	if (usr.a_intent == I_HURT && user.Adjacent(src))
 		if(!(I.flags & NOBLUDGEON))
 			user.do_attack_animation(src)
-			var/calc_damage = (I.force*I.structure_damage_factor) - resistance
+			var/calc_damage = (dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))*I.structure_damage_factor) - resistance
 			var/volume = (calc_damage)*3.5
 			volume = min(volume, 15)
 			if (I.hitsound)
@@ -91,7 +84,7 @@
 
 			if (calc_damage > 0)
 				visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
-				take_damage(I.force*I.structure_damage_factor, I.damtype)
+				take_damage(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))*I.structure_damage_factor, BRUTE)
 			else
 				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.75)
@@ -249,9 +242,6 @@
 	if(!istype(M))
 		return 0
 
-	if (!istype(M, /material/steel))
-		to_chat(user, SPAN_NOTICE("Low walls can only be made of steel."))
-		return 0
 	add_hiddenprint(usr)
 
 	to_chat(user, SPAN_NOTICE("You begin adding the plating..."))
@@ -260,7 +250,7 @@
 		return 1 //once we've gotten this far don't call parent attackby()
 
 
-	var/obj/structure/low_wall/T = new(loc)
+	var/obj/structure/low_wall/T = new(loc, M.name, reinf_material?.name)
 	T.add_hiddenprint(usr)
 	T.Created()
 	qdel(src)
@@ -308,31 +298,24 @@
 */
 	return ..()
 
-/obj/structure/girder/proc/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+/obj/structure/girder/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
 	if (!ignore_resistance)
 		damage -= resistance
 	if (!damage || damage <= 0)
 		return
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
 
 	health -= damage
 	if (health <= 0)
 		dismantle()
 
-
-/obj/structure/girder/ex_act(severity)
-	switch(severity)
-		if(1)
-			take_damage(rand(500))
-		if(2)
-			take_damage(rand(120,300))
-		if(3)
-			take_damage(rand(60,180))
-		if(4)
-			take_damage(rand(20,80))
-
+/obj/structure/girder/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed = take_damage(target_power)
+	return absorbed
 
 /obj/structure/girder/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = health * 0.4
+	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)

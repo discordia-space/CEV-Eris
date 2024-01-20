@@ -4,6 +4,9 @@
 	return mob.SelfMove(direction)
 
 /mob/proc/SelfMove(var/direction)
+
+	if(SEND_SIGNAL(src, COMSIG_MOB_TRY_MOVE, direction) & COMSIG_CANCEL_MOVE)
+		return TRUE
 	if(DoMove(direction, src) & MOVEMENT_HANDLED)
 		return TRUE // Doesn't necessarily mean the mob physically moved
 
@@ -78,7 +81,7 @@
 /client/verb/delete_key_pressed()
 	set hidden = 1
 
-	if(!usr.pulling)
+	if(!locate(/obj/item/grab) in usr)
 		to_chat(usr, SPAN_NOTICE("You are not pulling anything."))
 		return
 	usr.stop_pulling()
@@ -156,13 +159,13 @@
 //For the same reason lattices in space don't count - those are things you grip, presumably.
 /mob/proc/check_gravity()
 	if(istype(loc, /turf/space))
-		return 0
+		return FALSE
 
 	lastarea = get_area(src)
 	if(!lastarea || !lastarea.has_gravity)
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk

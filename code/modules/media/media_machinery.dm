@@ -53,13 +53,13 @@
 			M.update_music()
 	master_area = null
 
-/obj/machinery/media/Move()
+/obj/machinery/media/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	disconnect_media_source()
 	. = ..()
 	if(anchored)
 		update_music()
 
-/obj/machinery/media/forceMove(var/atom/destination)
+/obj/machinery/media/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	disconnect_media_source()
 	. = ..()
 	if(anchored)

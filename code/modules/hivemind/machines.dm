@@ -13,8 +13,8 @@
 	use_power = NO_POWER_USE
 	var/illumination_color = 	COLOR_LIGHTING_CYAN_MACHINERY
 	var/wireweeds_required =	TRUE		//machine got damage if there's no any wireweed on it's turf
-	var/health = 				60
-	var/max_health = 			60
+	health = 				60
+	maxHealth = 			60
 	var/can_regenerate =		TRUE
 	var/regen_cooldown_time = 	30 SECONDS	//min time to regeneration activation since last damage taken
 	var/resistance = RESISTANCE_FRAGILE		//reduction on incoming damage
@@ -33,7 +33,7 @@
 /obj/machinery/hivemind_machine/Initialize()
 	. = ..()
 	name_pick()
-	health = max_health
+	health = maxHealth
 	set_light(2, 3, illumination_color)
 
 
@@ -46,17 +46,18 @@
 
 
 /obj/machinery/hivemind_machine/examine(mob/user)
-	..()
-	if (health < max_health * 0.1)
-		to_chat(user, SPAN_DANGER("It's almost nothing but scrap!"))
-	else if (health < max_health * 0.25)
-		to_chat(user, SPAN_DANGER("It's seriously fucked up!"))
-	else if (health < max_health * 0.50)
-		to_chat(user, SPAN_DANGER("It's very damaged; you can almost see the components inside!"))
-	else if (health < max_health * 0.75)
-		to_chat(user, SPAN_WARNING("It has numerous dents and deep scratches."))
-	else if (health < max_health)
-		to_chat(user, SPAN_WARNING("It's a bit scratched and dented."))
+	var/description = ""
+	if (health < maxHealth * 0.1)
+		description += SPAN_DANGER("It's almost nothing but scrap!")
+	else if (health < maxHealth * 0.25)
+		description += SPAN_DANGER("It's seriously fucked up!")
+	else if (health < maxHealth * 0.50)
+		description += SPAN_DANGER("It's very damaged; you can almost see the components inside!")
+	else if (health < maxHealth * 0.75)
+		description += SPAN_WARNING("It has numerous dents and deep scratches.")
+	else if (health < maxHealth)
+		description += SPAN_WARNING("It's a bit scratched and dented.")
+	..(user, afterDesc = description)
 
 
 /obj/machinery/hivemind_machine/Process()
@@ -68,10 +69,10 @@
 
 	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
 		//slow health regeneration
-		if(can_regenerate && (health != max_health) && (world.time > time_until_regen))
+		if(can_regenerate && (health != maxHealth) && (world.time > time_until_regen))
 			health += REGENERATION_SPEED
-			if(health > max_health)
-				health = max_health
+			if(health > maxHealth)
+				health = maxHealth
 
 		return TRUE
 
@@ -157,7 +158,7 @@
 	rebuild_anim.anchored = TRUE
 	rebuild_anim.density = FALSE
 	addtimer(CALLBACK(src, PROC_REF(finish_rebuild), new_machine_path), time_in_seconds SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
 
 
 /obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)
@@ -165,7 +166,7 @@
 	if(assimilated_machinery["path"])
 		new_machine.assimilated_machinery = assimilated_machinery
 	if(saved_circuit)
-		saved_circuit.loc = new_machine
+		saved_circuit.forceMove(new_machine)
 		new_machine.saved_circuit = saved_circuit
 	qdel(src)
 
@@ -215,7 +216,7 @@
 		sparks.start()
 
 
-/obj/machinery/hivemind_machine/proc/take_damage(var/amount, var/on_damage_react = TRUE)
+/obj/machinery/hivemind_machine/take_damage(var/amount, var/on_damage_react = TRUE)
 	health -= amount
 	time_until_regen = world.time + regen_cooldown_time
 	if(on_damage_react)
@@ -269,10 +270,11 @@
 		attack_hand(M)
 
 /obj/machinery/hivemind_machine/attackby(obj/item/I, mob/user)
-	if(!(I.flags & NOBLUDGEON) && I.force)
+	var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+	if(!(I.flags & NOBLUDGEON) && damage)
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		var/clear_damage = I.force - resistance
+		var/clear_damage = damage - resistance
 
 		if(clear_damage)
 			. = ..()
@@ -292,18 +294,9 @@
 			damage_reaction()
 			stun(10)
 
-
-/obj/machinery/hivemind_machine/ex_act(severity)
-	switch(severity)
-		if(1)
-			take_damage(80)
-		if(2)
-			take_damage(30)
-		if(3)
-			take_damage(10)
-		if(4)
-			take_damage(5)
-
+/obj/machinery/hivemind_machine/explosion_act(target_power, explosion_handler/handler)
+	take_damage(round(target_power / 10))
+	return 0
 
 /obj/machinery/hivemind_machine/emp_act(severity)
 	switch(severity)
@@ -333,7 +326,7 @@
 //	icon = 'icons/obj/food.dmi'
 //	icon_state = "pickle"
 //	When Hope Is Gone Undo This Lock And Send Me Forth On A Moonlit Walk. inotherwordsimgonnadoitagain
-	max_health = 420
+	maxHealth = 420
 	resistance = RESISTANCE_TOUGH
 	can_regenerate = FALSE
 	wireweeds_required = FALSE
@@ -457,7 +450,7 @@
 /obj/machinery/hivemind_machine/turret
 	name = "Projector"
 	desc = "This mass of machinery is topped with some sort of nozzle."
-	max_health = 220
+	maxHealth = 220
 	resistance = RESISTANCE_IMPROVED
 	icon_state = "turret"
 	cooldown_time = 5 SECONDS
@@ -477,6 +470,7 @@
 
 /obj/machinery/hivemind_machine/turret/use_ability(atom/target)
 	var/obj/item/projectile/proj = new proj_type(loc)
+	proj.PrepareForLaunch()
 	proj.launch(target)
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 
@@ -487,7 +481,7 @@
 /obj/machinery/hivemind_machine/mob_spawner
 	name = "Assembler"
 	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
-	max_health = 260
+	maxHealth = 260
 	resistance = RESISTANCE_IMPROVED
 	icon_state = "spawner"
 	cooldown_time = 25 SECONDS
@@ -532,7 +526,7 @@
 	if(!GLOB.hive_data_bool["maximum_existing_mobs"] || GLOB.hive_data_float["maximum_existing_mobs"] > total_mobs)
 		var/obj/randomcatcher/CATCH = new /obj/randomcatcher(src)
 		var/mob/living/simple_animal/hostile/hivemind/spawned_mob = CATCH.get_item(mob_to_spawn)
-		spawned_mob.loc = loc
+		spawned_mob.forceMove(loc)
 		spawned_creatures.Add(spawned_mob)
 		spawned_mob.master = src
 		flick("[icon_state]-anim", src)
@@ -545,7 +539,7 @@
 /obj/machinery/hivemind_machine/babbler
 	name = "Jammer"
 	desc = "A column-like structure with lights. You can see streams of energy moving inside."
-	max_health = 100
+	maxHealth = 100
 	evo_level_required = 3 //it's better to wait a bit
 	cooldown_time = 90 SECONDS
 	spawn_weight  =	20
@@ -614,7 +608,7 @@
 	name = "Tormentor"
 	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
 	icon_state = "head"
-	max_health = 100
+	maxHealth = 100
 	evo_level_required = 3
 	cooldown_time = 25 SECONDS
 	spawn_weight  =	35
@@ -661,7 +655,7 @@
 /obj/machinery/hivemind_machine/supplicant
 	name = "Whisperer"
 	desc = "A small pulsating orb with no apparent purpose. It emits an almost inaudible whisper."
-	max_health = 80
+	maxHealth = 80
 	icon_state = "orb"
 	evo_level_required = 2
 	cooldown_time = 1 MINUTES
@@ -700,7 +694,7 @@
 /obj/machinery/hivemind_machine/distractor
 	name = "Psi-Modulator"
 	desc = "A strange machine shaped like a pyramid. Somehow the pulsating lights shine brighter through closed eyelids."
-	max_health = 110
+	maxHealth = 110
 	icon_state = "psy"
 	evo_level_required = 3
 	cooldown_time = 10 SECONDS

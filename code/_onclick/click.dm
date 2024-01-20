@@ -6,6 +6,7 @@
 // 1 decisecond click delay (above and beyond mob/next_move)
 /mob/var/next_click = 0
 
+
 /*
 	Before anything else, defer these calls to a per-mobtype handler.  This allows us to
 	remove istype() spaghetti code, but requires the addition of other handler procs to simplify it.
@@ -104,8 +105,11 @@
 		CtrlClickOn(A)
 		return 1
 
-	if(stat || paralysis || stunned || weakened)
+	if(incapacitated(INCAPACITATION_CANT_ACT))
 		return
+
+	SEND_SIGNAL(src, COMSIG_CLICK, A, params)
+	SEND_SIGNAL(A, COMSIG_CLICKED, src, params)
 
 	face_atom(A) // change direction to face what you clicked on
 
@@ -123,7 +127,7 @@
 		return 1
 
 	if(in_throw_mode)
-		if(isturf(A) || isturf(A.loc))
+		if(isturf(A) || isturf(A.loc) && isturf(loc))
 			throw_item(A)
 			return 1
 		throw_mode_off()
@@ -189,8 +193,8 @@
 
 /mob/proc/can_click()
 	if(next_click <= world.time)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
 /mob/proc/DblClickOn(atom/A, params)
@@ -292,8 +296,15 @@
 	return
 
 /atom/movable/CtrlClick(mob/user)
-	if(Adjacent(user))
-		user.start_pulling(src)
+	if(Adjacent(user) && !anchored)
+		var/obj/item/grab/G = new(user,src, force = FALSE, tryFight = TRUE)
+		if(G)
+			G.state = GRAB_PASSIVE
+			user.put_in_active_hand(G)
+			G.synch()
+			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			visible_message(SPAN_NOTICE("\The [src] has been grabbed by [user]!"), range = 7)
+		//user.start_pulling(src)
 
 /*
 	Alt click
@@ -341,6 +352,7 @@
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
 	mob_playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
+	LE.PrepareForLaunch()
 	LE.launch(A)
 
 /mob/living/carbon/human/LaserEyes()
@@ -370,8 +382,13 @@
 
 
 /atom/movable/proc/facedir(ndir)
+	var/list/bucklers = list()
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckler in bucklers)
+		if(buckler.buckleFlags & BUCKLE_FORCE_DIR)
+			return FALSE
 	set_dir(ndir)
-	return 1
+	return TRUE
 
 
 

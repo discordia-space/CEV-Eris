@@ -3,7 +3,7 @@
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "posibrain"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2, TECH_DATA = 4)
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 5, MATERIAL_SILVER = 5, MATERIAL_GOLD = 5)
 	var/searching = 0
@@ -47,10 +47,7 @@
 	return
 
 /obj/item/device/mmi/digital/posibrain/examine(mob/user)
-	if(!..(user))
-		return
-
-	var/msg = "<span class='info'>*---------*</span>\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
+	var/msg = "\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
 	msg += "<span class='warning'>"
 
 	if(src.brainmob && src.brainmob.key)
@@ -61,8 +58,8 @@
 			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
 	else
 		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	msg += "</span><span class='info'>*---------*</span>"
-	to_chat(user, msg)
+	msg += "</span>"
+	..(user, afterDesc = msg)
 	return
 
 /obj/item/device/mmi/digital/posibrain/emp_act(severity)

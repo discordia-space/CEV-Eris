@@ -5,7 +5,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "roach_egg"
 	preloaded_reagents = list("egg" = 9, "blattedin" = 3)
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	health = 5
 	var/amount_grown = 0
 
@@ -25,7 +25,7 @@
 	else
 		visible_message(SPAN_WARNING("\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]"))
 
-	health -= (I.force / 2)
+	health -= (dhTotalDamageStrict(I.melleDamages, ALL_ARMOR,  list(BRUTE,BURN)) / 2)
 	healthcheck()
 
 /obj/item/roach_egg/bullet_act(var/obj/item/projectile/Proj)

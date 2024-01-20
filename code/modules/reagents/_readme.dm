@@ -195,7 +195,7 @@ About Reagents:
 			"#RRGGBB" or "#RRGGBBAA" where A is alpha channel.
 
 		color_weight
-			How much reagent affects color of holder. Used by paint.
+			How much reagent affects color of holder. Used by (no longer existing) paint.
 
 	Procs:
 
@@ -230,7 +230,7 @@ About Reagents:
 			Called when reagent is created. Defaults to setting [data] to [newdata].
 
 		mix_data(var/newdata, var/newamount)
-			Called when [newamount] of reagent with [newdata] data is added to the current reagent. Used by paint.
+			Called when [newamount] of reagent with [newdata] data is added to the current reagent. Used by (now removed) paint.
 
 		get_data()
 			Returns data. Can be overriden.
@@ -275,7 +275,7 @@ About Recipes:
 			Called when reaction happens. Used by explosives.
 
 		send_data(var/datum/reagents/T)
-			Sets resulting reagent's data. Used by blood paint.
+			Sets resulting reagent's data. Used by (also removed) blood paint.
 
 About the Tools:
 

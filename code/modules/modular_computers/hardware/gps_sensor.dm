@@ -25,8 +25,7 @@
 	return ..()
 
 /obj/item/computer_hardware/gps_sensor/examine(mob/user)
-	..()
-	to_chat(user, "Serial number is [gps.serial_number].")
+	..(user, afterDesc =  "Serial number is [gps.serial_number].")
 
 /obj/item/computer_hardware/gps_sensor/proc/get_position_text()
 	var/error_text = "<span class='average'>ERROR: Unable to reach positioning system relays.</span>"

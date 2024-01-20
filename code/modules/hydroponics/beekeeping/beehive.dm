@@ -31,9 +31,7 @@
 				overlays += "bees3"
 
 /obj/machinery/beehive/examine(var/mob/user)
-	..()
-	if(!closed)
-		to_chat(user, "The lid is open.")
+	..(user, afterDesc = !closed ? "The lid is open" : "")
 
 /obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/tool/crowbar))
@@ -192,14 +190,14 @@
 	desc = "A device used to calm down bees before harvesting honey."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "battererburnt"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 /obj/item/honey_frame
 	name = "beehive frame"
 	desc = "A frame for the beehive that the bees will fill with honeycombs."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "honeyframe"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 
 	var/honey = 0
 

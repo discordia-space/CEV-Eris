@@ -177,6 +177,15 @@
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 		reagents.add_reagent("mold", rand(0, actual_volume - reagents.total_volume))
 
+//Old chemical bottles also hide their reagents
+/obj/item/reagent_containers/glass/bottle/make_old(low_quality_oldification)
+	.=..()
+	if(.)
+		name = "[pick("scratched", "cracked", "dirty", "chipped")] bottle"
+		desc = "A small old glass bottle."
+		if(display_label)
+			desc += " The label is unreadable."
+
 /obj/item/reagent_containers/food/snacks/make_old(low_quality_oldification)
 	.=..()
 	if(.)
@@ -271,7 +280,18 @@
 				var/list/armorList = armor	// Typecasting to a list from datum
 				for(var/i in armorList)
 					armorList[i] = rand(0, armorList[i])*/ //NOPE
-			armor = armor.setRating(melee = rand(0, armor.getRating(ARMOR_MELEE)), bullet =  rand(0, armor.getRating(ARMOR_BULLET)), energy = rand(0, armor.getRating(ARMOR_ENERGY)), bomb = rand(0, armor.getRating(ARMOR_BOMB)), bio = rand(0, armor.getRating(ARMOR_BIO)), rad = rand(0, armor.getRating(ARMOR_RAD)))
+			armor = armor.setRating(
+				blunt = rand(0, armor.getRating(ARMOR_BLUNT)),
+				slash = rand(0, armor.getRating(ARMOR_SLASH)),
+				pointy = rand(0, armor.getRating(ARMOR_POINTY)),
+				ARMOR_BULLET =  rand(0, armor.getRating(ARMOR_BULLET)),
+				ARMOR_ENERGY = rand(0, armor.getRating(ARMOR_ENERGY)),
+				electric = rand(0,  armor.getRating(ARMOR_ELECTRIC)),
+				ARMOR_BOMB =rand(0, armor.getRating(ARMOR_BOMB)),
+				ARMOR_BIO =rand(0, armor.getRating(ARMOR_BIO)),
+				chem = rand(0, armor.getRating(ARMOR_CHEM)),
+				ARMOR_RAD =rand(0, armor.getRating(ARMOR_RAD))
+				)
 		if(prob(40))
 			heat_protection = rand(0, round(heat_protection * 0.5))
 		if(prob(40))
@@ -292,7 +312,7 @@
 
 /obj/machinery/broken/Initialize()
 	..()
-	explosion(loc, 1, 2, 3, 3)
+	explosion(get_turf(src), 300, 50)
 	return INITIALIZE_HINT_QDEL
 
 /obj/machinery/broken/Destroy()
@@ -305,7 +325,7 @@
 /obj/item/electronics/ai_module/broken/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()
 	IonStorm()
-	explosion(sender.loc, 1, 1, 1, 3)
+	explosion(get_turf(sender), 100, 20)
 	sender.drop_from_inventory(src)
 	QDEL_NULL(src)
 

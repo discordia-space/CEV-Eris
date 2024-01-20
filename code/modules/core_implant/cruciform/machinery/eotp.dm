@@ -56,17 +56,20 @@ var/global/obj/machinery/power/eotp/eotp
 	for(var/arm in arm_paths)
 		armaments += new arm
 
-/obj/machinery/power/eotp/examine(user)
-	..()
+/obj/machinery/power/eotp/Destroy()
+	. = ..()
+	eotp = null
 
+/obj/machinery/power/eotp/examine(user)
+	var/comment
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/core_implant/I = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
-			var/comment = "Power level: [power]/[max_power]."
+			comment = "Power level: [power]/[max_power]."
 			comment += "\nObservation level: [observation]/[max_observation]."
 			comment += "\nArmement level: [armaments_points]/[max_armaments_points]"
-			to_chat(user, SPAN_NOTICE(comment))
+	..(user, afterDesc = SPAN_NOTICE(comment))
 
 /obj/machinery/power/eotp/Process()
 	..()
@@ -179,7 +182,7 @@ var/global/obj/machinery/power/eotp/eotp
 		var/materials_reward = pick(materials)
 		var/reward_min_amount = materials[materials_reward]
 		var/obj/item/stack/material/_item = new materials_reward(get_turf(src))
-		_item.amount = rand(reward_min_amount, _item.max_amount)
+		_item.setAmount(rand(reward_min_amount, _item.max_amount))
 		visible_message(SPAN_NOTICE("The [_item.name] appears out of bluespace near the [src]!"))
 
 	else if(type_release == ENERGY_REWARD)

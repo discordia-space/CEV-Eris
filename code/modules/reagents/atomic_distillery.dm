@@ -6,8 +6,9 @@
 	item_state = "atomic_distillery"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,200,250,300,400,500)
+	commonLore = "Nobody thought they'd use bluespace technology to create super-vodka."
 	volume = 500
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	price_tag = 20000

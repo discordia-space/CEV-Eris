@@ -1,14 +1,12 @@
 /obj/item/gun/energy/rxd
 	name = "Rapid Crossbow Device"
 	desc = "A hacked and heavily modified RCD. In exchange for losing versitility, it can flash forge its own ammunition using cell charges."
-	icon = 'icons/obj/guns/energy/poweredcrossbow.dmi'
+	icon = 'icons/obj/guns/energy/rapidcrossbow.dmi' // NOTE! It lacks a back and onsuit sprites and requiers one now
 	icon_state = "rxb_empty"
 	item_state = "rxb_empty"
 	flags = CONDUCT
 	slot_flags = SLOT_BACK|SLOT_BELT|SLOT_HOLSTER
 	wielded_item_state = "_doble"
-	damage_multiplier = 0.8
-	penetration_multiplier = -0.1
 	fire_delay = 6
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	init_firemodes = list(

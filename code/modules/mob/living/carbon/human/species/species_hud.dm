@@ -2,10 +2,11 @@
 
 	var/list/equip_slots = list() // Checked by mob_can_equip().
 	var/list/ProcessHUD = list(
-		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
-		"throw","pull","resist","drop","look up","rest", "wield", "block",//"jump",
-		"move intent","intent","damage zone","craft menu",
-		"equip","swap hand","left arm bionics","right arm bionics","toggle inventory"
+		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation","energy",
+		"throw","resist","drop","look up","rest", "wield", "block",//"jump",
+		"move intent","intent","damage zone","craft menu","look down","language menu","examine",
+		"equip","swap hand","left arm bionics","right arm bionics","toggle inventory", "toggle_cyberdeck",
+		"cyberdeck1","cyberdeck2","cyberdeck3","cyberdeck4","cyberdeck5","cyberdeck6"
 	)
 	var/icon              // If set, overrides ui_style.
 	//var/has_a_intent = 1  // Set to draw intent box.

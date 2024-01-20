@@ -30,7 +30,7 @@
 
 /mob/living/carbon/slime/proc/Feedon(var/mob/living/M)
 	Victim = M
-	loc = M.loc
+	forceMove(M.loc)
 	canmove = 0
 	anchored = TRUE
 
@@ -104,10 +104,10 @@
 /mob/living/carbon/slime/proc/UpdateFeed(var/mob/M)
 	if(Victim)
 		if(Victim == M)
-			loc = M.loc // simple "attach to head" effect!
+			forceMove(M.loc) // simple "attach to head" effect!
 
 /mob/living/carbon/slime/verb/Evolve()
-	set category = "Slime"
+	set category = SPECIES_SLIME
 	set desc = "This will let you evolve from baby to adult slime."
 
 	if(stat)
@@ -127,7 +127,7 @@
 		to_chat(src, SPAN_NOTICE("I have already evolved..."))
 
 /mob/living/carbon/slime/verb/Reproduce()
-	set category = "Slime"
+	set category = SPECIES_SLIME
 	set desc = "This will make you split into four Slimes."
 
 	if(stat)

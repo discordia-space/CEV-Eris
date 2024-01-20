@@ -35,7 +35,7 @@
 	update_icon()
 
 /obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+	if(dhTotalDamage(melleDamages) && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
 	if(standard_feed_mob(user, M))
@@ -123,8 +123,7 @@
 	name = "golden cup"
 	icon_state = "golden_cup"
 	item_state = "" //nope :(
-	w_class = ITEM_SIZE_BULKY
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_BULKY
 	throwforce = 10
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = null
@@ -198,7 +197,7 @@
 	desc = "A heart attack that fits in your pocket."
 	icon_state = "energy_drink"
 	center_of_mass = list("x"=15, "y"=13)
-	preloaded_reagents = list("sugar" = 10, "nuka_cola" = 20)
+	preloaded_reagents = list("sugar" = 10, "adrenaline" = 20)
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
 
@@ -291,7 +290,7 @@
 	center_of_mass = "x=16;y=7"
 
 /obj/item/reagent_containers/food/drinks/flask
-	name = "Captain's Flask"
+	name = "captain's flask"
 	desc = "A metal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
@@ -308,7 +307,7 @@
 	icon_state = "lithiumflask"
 
 /obj/item/reagent_containers/food/drinks/flask/detflask
-	name = "Inspector's Flask"
+	name = "inspector's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the inspector."
 	icon_state = "detflask"
 	volume = 60

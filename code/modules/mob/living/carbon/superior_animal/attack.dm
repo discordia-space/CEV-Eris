@@ -73,4 +73,5 @@
 	playsound(user, projectilesound, 100, 1)
 	if(!A)	return
 	var/def_zone = get_exposed_defense_zone(target)
+	A.PrepareForLaunch()
 	A.launch(target, def_zone)

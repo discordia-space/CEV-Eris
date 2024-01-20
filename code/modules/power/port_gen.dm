@@ -53,13 +53,13 @@
 	if(!active)
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/port_gen/examine(mob/user)
-	if(!..(user,1 ))
-		return
+/obj/machinery/power/port_gen/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(active)
-		to_chat(user, SPAN_NOTICE("The generator is on."))
+		description += SPAN_NOTICE("The generator is on.")
 	else
-		to_chat(user, SPAN_NOTICE("The generator is off."))
+		description += SPAN_NOTICE("The generator is off.")
+	..(user, afterDesc = description)
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes
@@ -80,7 +80,7 @@
 			stat &= ~EMPED
 
 /obj/machinery/power/port_gen/proc/explode()
-	explosion(src.loc, -1, 3, 5, -1)
+	explosion(get_turf(src), min(power_gen/100, 400), power_gen/500)
 	qdel(src)
 
 #define TEMPERATURE_DIVISOR 40
@@ -90,6 +90,7 @@
 /obj/machinery/power/port_gen/pacman
 	name = "\improper P.A.C.M.A.N.-type Portable Generator"
 	desc = "A power generator that runs on solid plasma sheets. Rated for 80 kW max safe output."
+	icon_state = "portgen_p0"
 
 	var/sheet_name = "Plasma Sheets"
 	var/sheet_path = /obj/item/stack/material/plasma
@@ -146,15 +147,16 @@
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
 /obj/machinery/power/port_gen/pacman/examine(mob/user)
-	..(user)
-	to_chat(user, "\The [src] appears to be producing [power_gen*power_output] W.")
+	var/description = ""
+	description += "\The [src] appears to be producing [power_gen*power_output] W. \n"
 	if(!use_reagents_as_fuel)
-		to_chat(user, "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
+		description += "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.\n"
 
 	if(IsBroken())
-		to_chat(user, SPAN_WARNING("\The [src] seems to have broken down."))
+		description += SPAN_WARNING("\The [src] seems to have broken down.\n")
 	if(overheating)
-		to_chat(user, SPAN_DANGER("\The [src] is overheating!"))
+		description += SPAN_DANGER("\The [src] is overheating!")
+	..(user, afterDesc = description)
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_fuel = power_output / time_per_fuel_unit
@@ -171,7 +173,7 @@
 	if(sheets)
 		var/obj/item/stack/material/S = new sheet_path(loc)
 		var/amount = min(sheets, S.max_amount)
-		S.amount = amount
+		S.setAmount(amount)
 		sheets -= amount
 	if(use_reagents_as_fuel)
 		reagents.clear_reagents()
@@ -309,7 +311,7 @@
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 						for(var/obj/item/CP in component_parts)
-							CP.loc = src.loc
+							CP.forceMove(src.loc)
 						while ( sheets > 0 )
 							DropFuel()
 						new_frame.state = 2
@@ -415,9 +417,9 @@
 
 /obj/machinery/power/port_gen/pacman/update_icon()
 	if(active)
-		icon_state = "portgen1"
+		icon_state = "portgen_p1"
 	else
-		icon_state = "portgen0"
+		icon_state = "portgen_p0"
 
 /obj/machinery/power/port_gen/pacman/Topic(href, href_list)
 	if(..())
@@ -445,11 +447,17 @@
 /obj/machinery/power/port_gen/pacman/super
 	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
 	desc = "A power generator that utilizes uranium sheets as fuel. Can run for much longer than the standard PACMAN type generators. Rated for 80 kW max safe output."
-	icon_state = "portgen1"
+	icon_state = "portgen_u0"
 	sheet_path = /obj/item/stack/material/uranium
 	sheet_name = "Uranium Sheets"
 	time_per_fuel_unit = 576 //same power output, but a 50 sheet stack will last 2 hours at max safe power
 	circuit = /obj/item/electronics/circuitboard/pacman/super
+
+/obj/machinery/power/port_gen/pacman/super/update_icon()
+	if(active)
+		icon_state = "portgen_u1"
+	else
+		icon_state = "portgen_u0"
 
 /obj/machinery/power/port_gen/pacman/super/UseFuel()
 	//produces a tiny amount of radiation when in use
@@ -466,7 +474,7 @@
 		//I dunno, maybe physics works different when you live in 2D -- SM radiation also works like this, apparently
 		L.apply_effect(max(20, round(rads/get_dist(L,src))), IRRADIATE)
 
-	explosion(src.loc, 3, 3, 5, 3)
+	explosion(get_turf(src), min(sheets * 10, 700), 100, EFLAG_EXPONENTIALFALLOFF)
 	qdel(src)
 
 /obj/machinery/power/port_gen/pacman/mrs
@@ -488,5 +496,5 @@
 
 /obj/machinery/power/port_gen/pacman/mrs/explode()
 	//no special effects, but the explosion is pretty big (same as a supermatter shard).
-	explosion(src.loc, 3, 6, 12, 16, 1)
+	explosion(get_turf(src), min(sheets * 50, 900), 100, EFLAG_ADDITIVEFALLOFF)
 	qdel(src)

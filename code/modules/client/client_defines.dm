@@ -120,3 +120,6 @@
 	/// Last asset send job id.
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
+
+	/// For bottom-left hover-over info.
+	var/status_bar_prev_text = ""

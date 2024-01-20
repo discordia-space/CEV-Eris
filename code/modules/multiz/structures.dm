@@ -136,14 +136,19 @@
 	. = ..()
 	if(throw_through(I,user))
 		return
+	else if(istype(I, /obj/item/mech_equipment) || istype(I, /obj/item/mech_component) || istype(I, /obj/item/tool/mech_kit))
+		var/mob/living/exosuit = I.getContainingAtom()
+		if(exosuit)
+			attack_hand(exosuit)
 	else
 		attack_hand(user)
 
 /obj/structure/multiz/ladder/attack_hand(var/mob/M)
-	if (isrobot(M) && !isdrone(M))
+	if (isrobot(M))
 		var/mob/living/silicon/robot/R = M
-		climb(M, (climb_delay*3)/R.speed_factor) //Robots are not built for climbing, they should go around where possible
-		//I'd rather make them unable to use ladders at all, but eris' labyrinthine maintenance necessitates it
+		var/new_delay = climb_delay * (R.HasTrait(CYBORG_TRAIT_PARKOUR) ? 0.75 : 1) * (isdrone(M) ? 1 : 3 / R.speed_factor)
+		climb(M, (new_delay))	//Robots are not built for climbing, they should go around where possible
+								//I'd rather make them unable to use ladders at all, but eris' labyrinthine maintenance necessitates it
 	else
 		climb(M, climb_delay)
 
@@ -200,7 +205,7 @@
 
 	if(do_after(M, delay, src))
 		M.forceMove(T)
-		try_resolve_mob_pulling(M, src)
+		//try_resolve_mob_pulling(M, src)
 
 /obj/structure/multiz/ladder/AltClick(var/mob/living/carbon/human/user)
 	if(get_dist(src, user) <= 3)
@@ -241,6 +246,10 @@
 	icon_state = "ramptop"
 	layer = 2.4
 
+/obj/structure/multiz/stairs/can_prevent_fall(above)
+	return above ? FALSE : TRUE
+
+
 /obj/structure/multiz/stairs/enter
 	icon_state = "ramptop"
 
@@ -278,7 +287,7 @@
 		return
 
 	AM.forceMove(get_turf(target))
-	try_resolve_mob_pulling(AM, ES)
+	//try_resolve_mob_pulling(AM, ES)
 
 /obj/structure/multiz/stairs/attackby(obj/item/C, mob/user)
 	. = ..()

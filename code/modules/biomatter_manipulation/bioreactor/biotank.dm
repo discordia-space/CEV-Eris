@@ -42,18 +42,18 @@
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/examine(mob/user)
-	..()
-	if(!pipes_opened)
-		return
-	switch(get_dirtiness_level())
-		if(DIRT_LVL_LOW)
-			to_chat(user, SPAN_NOTICE("Pipes are weared a bit, it's slightly dirty. You see a signs of biomass inside these pipes."))
-		if(DIRT_LVL_MEDIUM)
-			to_chat(user, SPAN_WARNING("It's very dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up."))
-		if(DIRT_LVL_HIGH)
-			to_chat(user, SPAN_WARNING("You see a high amount of biomass. Pipes are fully blocked. You need to clean this first if you want bioreactor to work."))
-		else
-			to_chat(user, SPAN_NOTICE("Pipes looks clean."))
+	var/description = ""
+	if(pipes_opened)
+		switch(get_dirtiness_level())
+			if(DIRT_LVL_LOW)
+				description += SPAN_NOTICE("Pipes are weared a bit, it's slightly dirty. You see a signs of biomass inside these pipes.")
+			if(DIRT_LVL_MEDIUM)
+				description += SPAN_WARNING("It's very dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up.")
+			if(DIRT_LVL_HIGH)
+				description += SPAN_WARNING("You see a high amount of biomass. Pipes are fully blocked. You need to clean this first if you want bioreactor to work.")
+			else
+				description += SPAN_NOTICE("Pipes looks clean.")
+	..(user, afterDesc = description)
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/update_icon()

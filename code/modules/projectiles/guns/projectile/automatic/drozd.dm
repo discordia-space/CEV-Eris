@@ -6,8 +6,7 @@
 	icon = 'icons/obj/guns/projectile/drozd.dmi'
 	icon_state = "drozd"
 	item_state = "drozd"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_PAINFUL
+	volumeClass = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
 	caliber = CAL_MAGNUM
 	load_method = MAGAZINE
@@ -16,7 +15,6 @@
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	price_tag = 2200
 	damage_multiplier = 0.9
-	penetration_multiplier = 0.5
 	init_recoil = SMG_RECOIL(0.7)
 
 	twohanded = FALSE
@@ -26,7 +24,7 @@
 		FULL_AUTO_300,
 		SEMI_AUTO_300
 		)
-	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
+	gun_parts = list(/obj/item/part/gun/frame/drozd = 1, /obj/item/part/gun/modular/grip/excel = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/magnum = 1)
 
 	serial_type = "Excelsior"
 
@@ -48,6 +46,6 @@
 	desc = "A Drozd SMG frame. Workhorse of the Excelsior force."
 	icon_state = "frame_excelsmg"
 	resultvars = list(/obj/item/gun/projectile/automatic/drozd)
-	gripvars = list(/obj/item/part/gun/grip/excel)
-	mechanismvar = /obj/item/part/gun/mechanism/smg
-	barrelvars = list(/obj/item/part/gun/barrel/magnum)
+	gripvars = list(/obj/item/part/gun/modular/grip/excel)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg
+	barrelvars = list(/obj/item/part/gun/modular/barrel/magnum)

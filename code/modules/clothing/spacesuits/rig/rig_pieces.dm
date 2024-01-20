@@ -11,10 +11,13 @@
 	cold_protection =    HEAD|FACE|EYES
 	brightness_on = 4
 	spawn_tags = null
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/gloves/rig
 	name = "gauntlets"
-	item_flags = THICKMATERIAL|COVER_PREVENT_MANIPULATION
+	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 	overslot = 1
 	body_parts_covered = ARMS
 	heat_protection =    ARMS
@@ -22,10 +25,13 @@
 	species_restricted = null
 	gender = PLURAL
 	spawn_tags = null
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/shoes/magboots/rig
 	name = "boots"
-	item_flags = COVER_PREVENT_MANIPULATION
+	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 	body_parts_covered = LEGS
 	cold_protection = LEGS
 	heat_protection = LEGS
@@ -33,13 +39,16 @@
 	gender = PLURAL
 	icon_base = null
 	spawn_tags = null
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 /obj/item/clothing/suit/space/rig
 	name = "chestpiece"
 
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	heat_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection =    UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	heat_protection =    UPPER_TORSO|LOWER_TORSO
+	cold_protection =    UPPER_TORSO|LOWER_TORSO
 	flags_inv =          HIDEJUMPSUIT|HIDETAIL
 	item_flags =         STOPPRESSUREDAMAGE|THICKMATERIAL|AIRTIGHT|COVER_PREVENT_MANIPULATION
 	slowdown = 0
@@ -49,6 +58,9 @@
 	supporting_limbs = list()
 	retract_while_active = FALSE
 	spawn_tags = null
+	armorComps = list(
+		/obj/item/armor_component/plate/steel
+	)
 
 //TODO: move this to modules
 /obj/item/clothing/head/space/rig/proc/prevent_track()

@@ -3,7 +3,7 @@
 	desc = "The ultimate in janitorial carts! Has space for water, mops, signs, trash bags, and more!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	anchored = FALSE
 	density = TRUE
 	reagent_flags = OPENCONTAINER
@@ -19,6 +19,9 @@
 	var/dismantled = TRUE
 	var/signs = 0	//maximum capacity hardcoded below
 
+/obj/structure/janitorialcart/Initialize()
+	. = ..()
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY|BUCKLE_FORCE_STAND|BUCKLE_FORCE_DIR|BUCKLE_MOVE_RELAY|BUCKLE_BREAK_ON_FALL|BUCKLE_PIXEL_SHIFT)
 
 
 /obj/structure/janitorialcart/Destroy()
@@ -30,12 +33,13 @@
 	return ..()
 
 /obj/structure/janitorialcart/examine(mob/user)
-	if(..(user, 1))
-		if (mybucket)
-			var/contains = mybucket.reagents.total_volume
-			to_chat(user, "\icon[src] The bucket contains [contains] unit\s of liquid!")
-		else
-			to_chat(user, "\icon[src] There is no bucket mounted on it!")
+	var/description = ""
+	if (mybucket)
+		var/contains = mybucket.reagents.total_volume
+		description += "\icon[src] The bucket contains [contains] unit\s of liquid!"
+	else
+		description += "\icon[src] There is no bucket mounted on it!"
+	..(user, afterDesc = description)
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)
@@ -287,129 +291,6 @@
 		dismantled = 1
 		qdel(src)
 
-
-/obj/structure/janitorialcart/ex_act(severity)
-	spill(100 / severity)
-	..()
-
-
-
-
-//old style retardo-cart
-/obj/structure/bed/chair/janicart
-	name = "janicart"
-	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "pussywagon"
-	anchored = TRUE
-	density = FALSE
-	reagent_flags = OPENCONTAINER
-	//copypaste sorry
-	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
-	var/callme = "pimpin' ride"	//how do people refer to it?
-	applies_material_colour = 0
-
-
-/obj/structure/bed/chair/janicart/New()
-	..()
-	create_reagents(100)
-
-
-/obj/structure/bed/chair/janicart/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(mybag)
-		to_chat(user, "\A [mybag] is hanging on the [callme].")
-
-
-/obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/key))
-		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
-	else if(istype(I, /obj/item/storage/bag/trash))
-		to_chat(user, SPAN_NOTICE("You hook the trashbag onto the [callme]."))
-		user.drop_item()
-		I.loc = src
-		mybag = I
-
-
-/obj/structure/bed/chair/janicart/attack_hand(mob/user)
-	if(mybag)
-		mybag.loc = get_turf(user)
-		user.put_in_hands(mybag)
-		mybag = null
-	else
-		..()
-
-
-/obj/structure/bed/chair/janicart/relaymove(mob/user, direction)
-	if(user.stat || user.stunned || user.weakened || user.paralysis)
-		unbuckle_mob()
-	if(istype(user.l_hand, /obj/item/key) || istype(user.r_hand, /obj/item/key))
-		step(src, direction)
-		update_mob()
-	else
-		to_chat(user, SPAN_NOTICE("You'll need the keys in one of your hands to drive this [callme]."))
-
-
-/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/janitorialcart/take_damage(damage)
+	spill(100 / (damage / 100))
 	. = ..()
-	if(buckled_mob)
-		if(buckled_mob.buckled == src)
-			buckled_mob.forceMove(glide_size_override=glide_size_override)
-
-
-/obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)
-	update_mob()
-	return ..()
-
-
-/obj/structure/bed/chair/janicart/unbuckle_mob()
-	var/mob/living/M = ..()
-	if(M)
-		M.pixel_x = 0
-		M.pixel_y = 0
-	return M
-
-
-/obj/structure/bed/chair/janicart/set_dir()
-	..()
-	if(buckled_mob)
-		if(buckled_mob.loc != loc)
-			buckled_mob.buckled = null //Temporary, so Move() succeeds.
-			buckled_mob.buckled = src //Restoring
-
-	update_mob()
-
-
-/obj/structure/bed/chair/janicart/proc/update_mob()
-	if(buckled_mob)
-		buckled_mob.set_dir(dir)
-		switch(dir)
-			if(SOUTH)
-				buckled_mob.pixel_x = 0
-				buckled_mob.pixel_y = 7
-			if(WEST)
-				buckled_mob.pixel_x = 13
-				buckled_mob.pixel_y = 7
-			if(NORTH)
-				buckled_mob.pixel_x = 0
-				buckled_mob.pixel_y = 4
-			if(EAST)
-				buckled_mob.pixel_x = -13
-				buckled_mob.pixel_y = 7
-
-
-/obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
-	if(buckled_mob)
-		if(prob(85))
-			return buckled_mob.bullet_act(Proj)
-	visible_message(SPAN_WARNING("[Proj] ricochets off the [callme]!"))
-
-
-/obj/item/key
-	name = "key"
-	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
-	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "keys"
-	w_class = ITEM_SIZE_TINY

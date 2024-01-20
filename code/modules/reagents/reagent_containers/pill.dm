@@ -8,7 +8,7 @@
 	icon_state = null
 	item_state = "pill"
 	possible_transfer_amounts = null
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 60
 	matter = list(MATERIAL_BIOMATTER = 1)
@@ -192,6 +192,11 @@
 	icon_state = "pill13"
 	preloaded_reagents = list("anti_toxin" = 15)
 
+/obj/item/reagent_containers/pill/carbon
+	name = "Carbon pill"
+	desc = "A pill of activated charcoal, used to purge stomach contents."
+	icon_state = "pill9"
+	preloaded_reagents = list("carbon" = 15)
 
 /obj/item/reagent_containers/pill/inaprovaline
 	name = "Inaprovaline pill"
@@ -279,7 +284,6 @@
 					list("sacid" = 15) = 1,\
 					list("hclacid" = 15) = 1,\
 					list("impedrezene" = 15, "dexalinp" = 35) = 1,\
-					list("virusfood" = 15) = 1,\
 					list("leporazine" = 15) = 1,\
 					list("anti_toxin" = 15, "zombiepowder" = 10) = 0.5,\
 					list("dexalinp" = 35, "cyanide" = 15) = 0.5,\

@@ -5,14 +5,14 @@
 	item_state = "mindreader"
 	flags_inv = HIDEEARS
 	action_button_name = "Extract Memory"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	style = STYLE_NEG_HIGH
 	style_coverage = COVERS_HAIR

@@ -5,7 +5,7 @@
 	name = "electrohelmet assembly"
 	desc = "This appears to be made from both an electropack and a helmet."
 	icon_state = "shock_kit"
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	flags = CONDUCT
 	var/obj/item/clothing/head/armor/helmet/part1
 	var/obj/item/device/radio/electropack/part2
@@ -30,8 +30,8 @@
 					var/turf/T = loc
 					if(ismob(T))
 						T = T.loc
-					part1.loc = T
-					part2.loc = T
+					part1.forceMove(T)
+					part2.forceMove(T)
 					part1.master = null
 					part2.master = null
 					part1 = null

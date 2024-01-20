@@ -92,7 +92,7 @@ I said no!
 /datum/recipe/brainburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/organ/internal/brain
+		/obj/item/organ/internal/vital/brain
 	)
 	result = /obj/item/reagent_containers/food/snacks/brainburger
 
@@ -481,9 +481,9 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/fortunecookie
 	make_food(var/obj/container as obj)
 		var/obj/item/paper/paper = locate() in container
-		paper.loc = null //prevent deletion
+		paper.forceMove(NULLSPACE) //prevent deletion
 		var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
-		paper.loc = being_cooked
+		paper.forceMove(being_cooked)
 		being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
 		return being_cooked
 	check_items(var/obj/container as obj)
@@ -972,12 +972,6 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/tofurkey
 
-// Fuck Science!
-/datum/recipe/ruinedvirusdish
-	items = list(
-		/obj/item/virusdish
-	)
-	result = /obj/item/ruinedvirusdish
 
 //////////////////////////////////////////
 // bs12 food port stuff
@@ -1071,5 +1065,5 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/sliceable/applecake
 
 /datum/recipe/cake/brain
-	items = list(/obj/item/organ/internal/brain)
+	items = list(/obj/item/organ/internal/vital/brain)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/braincake

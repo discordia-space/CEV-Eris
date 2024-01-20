@@ -1,5 +1,5 @@
 //wrapper
-/proc/do_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+/proc/do_teleport(ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin, aeffectout, asoundin, asoundout, no_checks = FALSE)
 	new /datum/teleport/instant/science(arglist(args))
 	return
 
@@ -12,15 +12,16 @@
 	var/soundin //soundfile to play before teleportation
 	var/soundout //soundfile to play after teleportation
 	var/force_teleport = 1 //if false, teleport will use Move() proc (dense objects will prevent teleportation)
+	var/no_checks = FALSE //Bypasses all teleportation checks, used for admin portals and pulsar portals
 
 
-/datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+/datum/teleport/New(ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin, aeffectout, asoundin, asoundout, no_checks = FALSE)
 	..()
 	if(!initTeleport(arglist(args)))
 		return 0
 	return 1
 
-/datum/teleport/proc/initTeleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout)
+/datum/teleport/proc/initTeleport(ateleatom, adestination, aprecision, afteleport, aeffectin, aeffectout, asoundin, asoundout, no_checks)
 	if(!setTeleatom(ateleatom))
 		return 0
 	if(!setDestination(adestination))
@@ -30,6 +31,7 @@
 	setEffects(aeffectin, aeffectout)
 	setForceTeleport(afteleport)
 	setSounds(asoundin, asoundout)
+	setChecks(no_checks)
 	return 1
 
 //must succeed
@@ -70,6 +72,10 @@
 		soundin = isfile(asoundin) ? asoundin : null
 		soundout = isfile(asoundout) ? asoundout : null
 		return 1
+
+//optional
+/datum/teleport/proc/setChecks(_no_checks = FALSE)
+	no_checks = _no_checks
 
 //placeholder
 /datum/teleport/proc/teleportChecks()
@@ -124,13 +130,13 @@
 	return 1
 
 /datum/teleport/proc/teleport()
-	if(teleportChecks())
+	if(no_checks || teleportChecks())
 		return doTeleport()
 	return 0
 
 /datum/teleport/instant //teleports when datum is created
 
-/datum/teleport/instant/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
+/datum/teleport/instant/New(ateleatom, adestination, aprecision = 0, afteleport = 1, aeffectin, aeffectout, asoundin, asoundout, no_checks = FALSE)
 	if(..())
 		teleport()
 	return

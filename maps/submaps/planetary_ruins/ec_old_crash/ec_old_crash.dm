@@ -53,7 +53,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0"
 	item_state = "card-id"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	spawn_blacklisted = TRUE
 
 /obj/item/ecletters

@@ -28,7 +28,7 @@
 
 
 /obj/effect/accelerated_particle/New(loc, dir = 2)
-	src.loc = loc
+	src.forceMove(loc)
 	src.set_dir(dir)
 	if(movement_range > 20)
 		movement_range = 20
@@ -52,9 +52,9 @@
 	return
 
 
-/obj/effect/accelerated_particle/ex_act(severity)
+/obj/effect/accelerated_particle/explosion_act(target_power, explosion_handler/handler)
 	qdel(src)
-	return
+	return 0
 
 
 
@@ -70,15 +70,15 @@
 	if(target)
 		if(movetotarget)
 			if(!step_towards(src,target))
-				src.loc = get_step(src, get_dir(src,target))
+				src.forceMove(get_step(src, get_dir(src,target)))
 			if(get_dist(src,target) < 1)
 				movetotarget = 0
 		else
 			if(!step(src, get_step_away(src,source)))
-				src.loc = get_step(src, get_step_away(src,source))
+				src.forceMove(get_step(src, get_step_away(src,source)))
 	else
 		if(!step(src,dir))
-			src.loc = get_step(src,dir)
+			src.forceMove(get_step(src,dir))
 	movement_range--
 	if(movement_range <= 0)
 		qdel(src)

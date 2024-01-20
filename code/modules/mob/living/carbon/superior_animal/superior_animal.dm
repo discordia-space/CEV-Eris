@@ -103,6 +103,12 @@
 	// Armor related datum
 	var/datum/armor/armor
 
+/mob/living/carbon/superior_animal/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	for(var/armorType in armorToDam)
+		for(var/list/damageElement in armorToDam[armorType])
+			damageElement[2] -= clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
+	return armorToDam
+
 /mob/living/carbon/superior_animal/New()
 	..()
 
@@ -220,9 +226,6 @@
 		canmove = TRUE
 	else
 		canmove = FALSE //TODO
-		if(buckled)
-			anchored = buckled.buckle_movable
-			lying = buckled.buckle_lying
 	if(lying)
 		set_density(FALSE)
 	else
@@ -269,7 +272,7 @@
 		if(isturf(loc) && !resting && !buckled && canmove)
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
-				if(!(stop_automated_movement_when_pulled && pulledby))
+				if(!(stop_automated_movement_when_pulled && grabbedBy))
 					var/moving_to = pick(cardinal)
 					set_dir(moving_to)
 					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))

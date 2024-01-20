@@ -17,7 +17,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
@@ -31,7 +31,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
@@ -45,7 +45,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
 		else
@@ -173,6 +173,13 @@
 		oxyloss = 0
 	else
 		..()
+
+/mob/living/carbon/human/proc/adjustEnergy(amount)
+	energy = clamp(energy + amount, 0 , maxEnergy)
+
+/// Returns if we are above normal energized levels
+/mob/living/carbon/human/proc/getEnergyRatio()
+	return (energy - initial(maxEnergy) + 0.00001)/100
 
 /mob/living/carbon/human/getToxLoss()
 	return
@@ -319,7 +326,7 @@ This function restores all organs.
 	//Handle other types of damage
 	if(damagetype != BRUTE && damagetype != BURN)
 		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))
-			if(!stat && (damage > 25 && prob(20)) || (damage > 50 && prob(60)))
+			if(!stat && (damage > 20 && prob(20)) || (damage > 40 && prob(60)))
 				emote("scream")
 
 		if(damagetype == PSY)
@@ -340,7 +347,6 @@ This function restores all organs.
 				damage = damage*species.brute_mod
 			if(BURN)
 				damage = damage*species.burn_mod
-
 	var/obj/item/organ/external/organ
 	if(isorgan(def_zone))
 		organ = def_zone
@@ -352,6 +358,7 @@ This function restores all organs.
 	if(!organ)
 		return FALSE
 
+	//Wounding multiplier is handled in the organ itself
 	damageoverlaytemp = 20
 	if(organ.take_damage(damage, damagetype, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
 		UpdateDamageIcon()

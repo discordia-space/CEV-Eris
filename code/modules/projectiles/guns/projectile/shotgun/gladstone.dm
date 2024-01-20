@@ -10,13 +10,12 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 6)
 	init_recoil = RIFLE_RECOIL(2.3)
-	damage_multiplier = 0.8
-	penetration_multiplier = 0.5
+	damage_multiplier = 1.2
 	saw_off = FALSE
 
 	price_tag = 1800
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
-	gun_parts = list(/obj/item/part/gun/frame/gladstone = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/gladstone = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "FS"
 
 /obj/item/part/gun/frame/gladstone
@@ -24,6 +23,6 @@
 	desc = "A Gladstone shotgun frame. Where capacity and force combine."
 	icon_state = "frame_gladstone"
 	resultvars = list(/obj/item/gun/projectile/shotgun/pump/gladstone)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

@@ -59,7 +59,7 @@
 
 	var/list/stat_rig_module/stat_modules = new()
 
-	
+
 
 /obj/item/rig_module/get_cell()
 	holder = get_rig()
@@ -73,15 +73,16 @@
 
 
 
-/obj/item/rig_module/examine()
-	..()
+/obj/item/rig_module/examine(mob/user)
+	var/description = ""
 	switch(damage)
 		if(0)
-			to_chat(usr, "It is undamaged.")
+			description += "It is undamaged."
 		if(1)
-			to_chat(usr, "It is badly damaged.")
+			description += "It is badly damaged."
 		if(2)
-			to_chat(usr, "It is almost completely destroyed.")
+			description += "It is almost completely destroyed."
+	..(user, afterDesc = description)
 
 /obj/item/rig_module/attackby(obj/item/W, mob/user)
 
@@ -279,6 +280,7 @@
 
 /stat_rig_module
 	parent_type = /atom/movable
+	weight = 0
 	var/module_mode = ""
 	var/obj/item/rig_module/module
 

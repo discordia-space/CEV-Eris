@@ -127,7 +127,7 @@
 	else
 		create_reagents(20)
 
-/mob/living/simple_animal/Move(NewLoc, direct)
+/mob/living/simple_animal/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if(.)
 		if(src.nutrition && src.stat != DEAD)
@@ -155,23 +155,24 @@
 	if (health <= 0 && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/examine(mob/user)
-	..()
+/mob/living/simple_animal/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(hunger_enabled)
 		if (!nutrition)
-			to_chat(user, SPAN_DANGER("It looks starving!"))
+			description += SPAN_DANGER("It looks starving! \n")
 		else if (nutrition < max_nutrition *0.5)
-			to_chat(user, SPAN_NOTICE("It looks hungry."))
+			description += SPAN_NOTICE("It looks hungry. \n")
 		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
-			to_chat(user, "It looks full and contented.")
+			description += "It looks full and contented. \n"
 	if (health < maxHealth * 0.25)
-		to_chat(user, SPAN_DANGER("It's grievously wounded!"))
+		description += SPAN_DANGER("It's grievously wounded!")
 	else if (health < maxHealth * 0.50)
-		to_chat(user, SPAN_DANGER("It's badly wounded!"))
+		description += SPAN_DANGER("It's badly wounded!")
 	else if (health < maxHealth * 0.75)
-		to_chat(user, SPAN_WARNING("It's wounded."))
+		description += SPAN_WARNING("It's wounded.")
 	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("It's a bit wounded."))
+		description += SPAN_WARNING("It's a bit wounded.")
+	..(user, afterDesc = description)
 
 /mob/living/simple_animal/Life()
 	.=..()
@@ -264,7 +265,7 @@
 			if(!client && !stop_automated_movement && wander && !anchored)
 				if(isturf(loc) && !incapacitated() && canmove)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
 					if(turns_since_move >= turns_per_move)
-						if(!(stop_automated_movement_when_pulled && pulledby)) //Soma animals don't move when pulled
+						if(!(stop_automated_movement_when_pulled && grabbedBy)) //Soma animals don't move when pulled
 							var/moving_to = 0 // otherwise it always picks 4, fuck if I know.   Did I mention fuck BYOND
 							moving_to = pick(cardinal)
 							set_dir(moving_to)			//How about we turn them the direction they are moving, yay.
@@ -398,13 +399,14 @@
 	else
 		O.attack(src, user, user.targeted_organ)
 
-/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, list/damages, var/hit_zone)
 
-	if(effective_force <= resistance)
+	var/total = dhTotalDamage(damages)
+	if(total <= resistance)
 		to_chat(user, SPAN_DANGER("This weapon is ineffective, it does no damage."))
 		return 2
-	effective_force -= resistance
-	.=..(O, user, effective_force, hit_zone)
+	dhRemoveDamageEqual(damages, resistance)
+	.=..(O, user, damages, hit_zone)
 
 /mob/living/simple_animal/movement_delay()
 	var/tally = MOVE_DELAY_BASE //Incase I need to add stuff other than "speed" later
@@ -434,22 +436,12 @@
 	stasis = TRUE
 	return ..(gibbed,deathmessage)
 
-/mob/living/simple_animal/ex_act(severity)
-	flash(0, FALSE,FALSE,FALSE)
-	switch (severity)
-		if (1)
-			adjustBruteLoss(500)
-			gib()
-			return
-
-		if (2)
-			adjustBruteLoss(60)
-
-
-		if(3)
-			adjustBruteLoss(30)
-		if(4)
-			adjustBruteLoss(15)
+/mob/living/simple_animal/explosion_act(target_power)
+	if(target_power/3 > maxHealth)
+		gib()
+	else
+		adjustBruteLoss(target_power / 3)
+	return 0
 
 
 
@@ -474,7 +466,7 @@
 	return verb
 
 /mob/living/simple_animal/put_in_hands(var/obj/item/W) // No hands.
-	W.loc = get_turf(src)
+	W.forceMove(get_turf(src))
 	return 1
 
 // Harvest an animal's delicious byproducts

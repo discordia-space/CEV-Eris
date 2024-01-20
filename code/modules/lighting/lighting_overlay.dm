@@ -14,6 +14,8 @@
 
 	blend_mode       = BLEND_OVERLAY
 
+	weight = 0
+
 	var/needs_update = FALSE
 
 

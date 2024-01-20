@@ -57,11 +57,9 @@
 	status_flags = 0
 
 /mob/living/simple_animal/hostile/syndicate/melee/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(O.force)
+	var/damage = dhTotalDamage(O.melleDamages)
+	if(damage)
 		if(prob(80))
-			var/damage = O.force
-			if (O.damtype == HALLOSS)
-				damage = 0
 			health -= damage
 			visible_message("\red \b [src] has been attacked with the [O] by [user]. ")
 		else

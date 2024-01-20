@@ -5,7 +5,7 @@
 	item_state = "breath"
 	item_flags = AIRTIGHT|FLEXIBLEMATERIAL
 	body_parts_covered = FACE
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	action_button_name = "Adjust mask"
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50

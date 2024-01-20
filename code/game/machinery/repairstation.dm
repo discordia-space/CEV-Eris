@@ -23,8 +23,7 @@
 	var/repair_complexity = REPAIR_HULL //How complex we get regarding repairing things
 
 /obj/machinery/repair_station/examine(mob/user)
-	..()
-	to_chat(user, "It has [SPAN_NOTICE("[repair_amount]")] repair points remaining.")
+	..(user, afterDesc = "It has [SPAN_NOTICE("[repair_amount]")] repair points remaining.")
 
 /obj/machinery/repair_station/Crossed(var/mob/living/silicon/robot/R)
 	. = ..()

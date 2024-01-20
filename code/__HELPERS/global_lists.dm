@@ -10,6 +10,7 @@ GLOBAL_LIST_EMPTY(ships) // List of ships in the game.
 
 GLOBAL_LIST_EMPTY(mob_list)					//EVERY single mob, dead or alive
 GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with clients attached**. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(player_ghost_list)		// List of all ghosts with an connected client.
 GLOBAL_LIST_EMPTY(human_mob_list)				//List of all human mobs and sub-types, including clientless
 GLOBAL_LIST_EMPTY(silicon_mob_list)			//List of all silicon mobs, including clientless
 GLOBAL_LIST_EMPTY(living_mob_list)			//List of all alive mobs, including clientless. Excludes /mob/new_player
@@ -295,8 +296,8 @@ var/global/list/severity_to_string = list("[EVENT_LEVEL_MUNDANE]" = "Mundane", "
 */
 var/global/list/paramslist_cache = list()
 
-#define cached_key_number_decode(key_number_data) cached_params_decode(key_number_data, /proc/key_number_decode)
-#define cached_number_list_decode(number_list_data) cached_params_decode(number_list_data, /proc/number_list_decode)
+#define cached_key_number_decode(key_number_data) cached_params_decode(key_number_data, GLOBAL_PROC_REF(key_number_decode))
+#define cached_number_list_decode(number_list_data) cached_params_decode(number_list_data, GLOBAL_PROC_REF(number_list_decode))
 
 /proc/cached_params_decode(var/params_data, var/decode_proc)
 	. = paramslist_cache[params_data]

@@ -6,7 +6,7 @@
 	item_state = "electronic"
 	throw_speed = 1
 	throw_range = 5
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	var/obj/item/implantcase/case = null
 
 

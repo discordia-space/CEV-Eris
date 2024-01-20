@@ -7,7 +7,16 @@
 	light_color = COLOR_LIGHTING_RED_BRIGHT
 	icon_state = "flare"
 	max_fuel = 1000
-	var/on_damage = 7
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 3)
+		)
+	)
+	var/list/onDamage = list(
+		ARMOR_BLUNT = list(
+			DELEM(BURN, 15)
+		)
+	)
 	var/produce_heat = 1500
 	turn_on_sound = 'sound/effects/Custom_flare.ogg'
 	heat = 1873
@@ -22,8 +31,7 @@
 
 /obj/item/device/lighting/glowstick/flare/burn_out()
 	..()
-	damtype = initial(damtype)
-	force = initial(force)
+	melleDamages = GLOB.melleDamagesCache[type]
 
 /obj/item/device/lighting/glowstick/flare/attack_self(mob/user)
 	if(turn_on(user))
@@ -35,8 +43,7 @@
 /obj/item/device/lighting/glowstick/flare/turn_on(var/mob/user)
 	. = ..()
 	if(.)
-		force = on_damage
-		damtype = "fire"
+		melleDamages = onDamage
 
 /obj/item/device/lighting/glowstick/flare/update_icon()
 	overlays.Cut()

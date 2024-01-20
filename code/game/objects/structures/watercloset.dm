@@ -10,7 +10,7 @@
 	layer = SIGN_LAYER
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
-	var/w_items = 0			//the combined w_class of all the items in the cistern
+	var/w_items = 0			//the combined volumeClass of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
 
 /obj/structure/toilet/New()
@@ -36,9 +36,9 @@
 			if(ishuman(user))
 				user.put_in_hands(I)
 			else
-				I.loc = get_turf(src)
+				I.forceMove(get_turf(src))
 			to_chat(user, SPAN_NOTICE("You find \an [I] in the cistern."))
-			w_items -= I.w_class
+			w_items -= I.volumeClass
 			return
 
 	open = !open
@@ -57,15 +57,15 @@
 			return
 
 	if(cistern && !isrobot(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
-		if(I.w_class >= ITEM_SIZE_BULKY)
+		if(I.volumeClass >= ITEM_SIZE_BULKY)
 			to_chat(user, SPAN_NOTICE("\The [I] does not fit."))
 			return
-		if(w_items + I.w_class > ITEM_SIZE_HUGE)
+		if(w_items + I.volumeClass > ITEM_SIZE_HUGE)
 			to_chat(user, SPAN_NOTICE("The cistern is full."))
 			return
 		user.drop_item()
-		I.loc = src
-		w_items += I.w_class
+		I.forceMove(src)
+		w_items += I.volumeClass
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 

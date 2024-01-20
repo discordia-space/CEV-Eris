@@ -80,15 +80,13 @@
 	icon_state = "intact0"
 	density = 0
 	anchored = 1
-	can_buckle = 1
-	buckle_dir = SOUTH
 	var/exposed = 0
 	var/busy
 
 /obj/structure/quicksand/New()
 	icon_state = "intact[rand(0,2)]"
 	..()
-
+/*
 /obj/structure/quicksand/user_unbuckle_mob(mob/user)
 	if(buckled_mob && !user.stat && !user.restrained())
 		if(busy)
@@ -118,12 +116,13 @@
 				user.visible_message("<span class='notice'>\The [buckled_mob] pulls himself out of \the [src].</span>")
 			else
 				user.visible_message("<span class='notice'>\The [buckled_mob] has been freed from \the [src] by \the [user].</span>")
-			unbuckle_mob()
+			//unbuckle_mob()
 		else
 			busy = 0
 			to_chat(user, "<span class='warning'>You slip and fail to get out!</span>")
 			return
-
+*/
+/*
 /obj/structure/quicksand/unbuckle_mob()
 	..()
 	update_icon()
@@ -131,17 +130,13 @@
 /obj/structure/quicksand/buckle_mob(var/mob/L)
 	..()
 	update_icon()
+*/
 
 /obj/structure/quicksand/update_icon()
 	if(!exposed)
 		return
 	icon_state = "open"
 	cut_overlays()
-	if(buckled_mob)
-		overlays += buckled_mob
-		var/image/I = image(icon,icon_state="overlay")
-		I.layer = WALL_OBJ_LAYER
-		overlays += I
 
 /obj/structure/quicksand/proc/expose()
 	if(exposed)
@@ -153,7 +148,7 @@
 	update_icon()
 
 /obj/structure/quicksand/attackby(obj/item/W, mob/user)
-	if(!exposed && W.force)
+	if(!exposed && dhTotalDamage(W.melleDamages))
 		expose()
 	else
 		..()
@@ -163,7 +158,7 @@
 		var/mob/living/L = AM
 		if(L.throwing) //|| L.can_overcome_gravity()
 			return
-		buckle_mob(L)
+		//buckle_mob(L)
 		if(!exposed)
 			expose()
 		to_chat(L, SPAN_DANGER("You fall into \the [src]!"))

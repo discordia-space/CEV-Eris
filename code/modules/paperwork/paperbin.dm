@@ -4,7 +4,7 @@
 	icon_state = "paper_bin1"
 	item_state = "sheet-metal"
 	throwforce = 1
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	throw_speed = 3
 	throw_range = 7
 	layer = OBJ_LAYER - 0.1
@@ -90,7 +90,7 @@ obj/item/paper_bin/MouseDrop(over_object)
 		return
 
 	user.drop_item()
-	i.loc = src
+	i.forceMove(src)
 	to_chat(user, SPAN_NOTICE("You put [i] in [src]."))
 	papers.Add(i)
 	update_icon()
@@ -98,14 +98,15 @@ obj/item/paper_bin/MouseDrop(over_object)
 
 
 /obj/item/paper_bin/examine(mob/user)
-	. = ..()
+	var/description = ""
 	if(get_dist(src, user) <= 1)
 		if (amount)
-			to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
+			description += "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
 		else
-			to_chat(user, SPAN_NOTICE("There are no papers in the bin."))
+			description += SPAN_NOTICE("There are no papers in the bin.")
 	else
-		to_chat(user, SPAN_NOTICE("If you got closer you could see how much paper is in it."))
+		description += SPAN_NOTICE("If you got closer you could see how much paper is in it.")
+	..(user, afterDesc = description)
 	return
 
 

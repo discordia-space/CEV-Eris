@@ -63,6 +63,8 @@
 	if(client && istype(client.mob, /mob/new_player))
 		var/mob/new_player/np = client.mob
 		np.new_player_panel(TRUE)
+	if(client?.mob)
+		client.mob.fullscreen_check()
 
 /datum/preferences/proc/load_and_update_character(var/slot)
 	load_character(slot)
@@ -88,13 +90,14 @@
 		load_and_update_character()
 
 	var/dat = "<html><body><center>"
-
 	if(path)
+		SSjob.UpdatePlayableJobs(user.client.ckey)
 		dat += "Slot - "
 		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
 		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
 		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a> - "
 		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a>"
+
 
 	else
 		dat += "Please create an account to save your preferences."
@@ -193,7 +196,6 @@
 	character.tts_seed = tts_seed
 	character.h_style = h_style
 	character.f_style = f_style
-
 	// Build mob body from prefs
 	character.rebuild_organs(src)
 
@@ -206,7 +208,6 @@
 
 	QDEL_LIST(character.worn_underwear)
 	character.worn_underwear = list()
-
 	for(var/underwear_category_name in all_underwear)
 		var/datum/category_group/underwear/underwear_category = GLOB.underwear.categories_by_name[underwear_category_name]
 		if(underwear_category)
@@ -219,17 +220,17 @@
 		else
 			all_underwear -= underwear_category_name
 
+
 	character.backpack_setup = new(backpack, backpack_metadata["[backpack]"])
 
 	character.force_update_limbs()
 	character.update_mutations(0)
 	character.update_implants(0)
-
-
 	character.update_body(0)
 	character.update_underwear(0)
 
 	character.update_hair(0)
+
 
 	character.update_icons()
 
@@ -245,6 +246,7 @@
 	character.exploit_record = exploit_record
 	if(!character.isSynthetic())
 		character.nutrition = rand(250, 450)
+
 
 	for(var/options_name in setup_options)
 		if(!get_option(options_name))

@@ -8,8 +8,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon_state = "door_closed"
 	power_channel = STATIC_ENVIRON
 
-	explosion_resistance = 10
-	maxhealth = 400
+	maxHealth = 400
 
 	var/aiControlDisabled = 0
 	//If 1, AI control is disabled until the AI hacks back in and disables the lock.
@@ -106,9 +105,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Doorglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	glass = 1
 
@@ -120,7 +118,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/vault
 	name = "Vault"
 	icon = 'icons/obj/doors/vault.dmi'
-	explosion_resistance = RESISTANCE_ARMOURED
 	resistance = RESISTANCE_VAULT
 	opacity = 1
 	secured_wires = 1
@@ -139,7 +136,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/hatch
 	name = "Airtight Hatch"
 	icon = 'icons/obj/doors/Doorhatchele.dmi'
-	explosion_resistance = RESISTANCE_ARMOURED
 	resistance = RESISTANCE_ARMOURED
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
@@ -147,7 +143,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorhatchmaint2.dmi'
-	explosion_resistance = RESISTANCE_ARMOURED
 	resistance = RESISTANCE_ARMOURED
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
@@ -156,9 +151,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorcomglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = 1
@@ -167,9 +161,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorengglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = 1
@@ -178,10 +171,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorsecglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	bullet_resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = 1
@@ -190,9 +182,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormedglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	glass = 1
@@ -216,9 +207,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorresearchglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
@@ -228,9 +218,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorminingglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	glass = 1
@@ -239,9 +228,8 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Dooratmoglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	glass = 1
@@ -367,7 +355,7 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
 	icon = 'icons/obj/doors/Doorsciglass.dmi'
-	maxhealth = 300
+	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
@@ -376,7 +364,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/highsecurity
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
-	explosion_resistance = 20
 	resistance = RESISTANCE_ARMOURED
 	bullet_resistance = RESISTANCE_ARMOURED
 	secured_wires = 1
@@ -590,7 +577,7 @@ There are 9 wires.
 		to_chat(usr, SPAN_WARNING("You can't do this."))
 		return
 	var/obj/item/tool/T = usr.get_active_hand()
-	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
+	if(istype(T) && T.volumeClass >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
 		if(!density)
 			usr.drop_item()
 			force_wedge_item(T)
@@ -627,9 +614,7 @@ There are 9 wires.
 	return ..()
 
 /obj/machinery/door/airlock/examine(mob/user)
-	..()
-	if(wedged_item)
-		to_chat(user, "You can see \icon[wedged_item] [wedged_item] wedged into it.")
+	..(user, afterDesc = wedged_item ?  "You can see \icon[wedged_item] [wedged_item] wedged into it." : "")
 
 /obj/machinery/door/airlock/proc/generate_wedge_overlay()
 	var/cache_string = "[wedged_item.icon]||[wedged_item.icon_state]||[wedged_item.overlays.len]||[wedged_item.underlays.len]"
@@ -666,11 +651,11 @@ There are 9 wires.
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
 					overlays += image(icon, "sparks_broken")
-				else if (health < maxhealth * 3/4)
+				else if (health < maxHealth * 3/4)
 					overlays += image(icon, "sparks_damaged")
 			if(welded)
 				overlays += image(icon, "welded")
-		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
+		else if (health < maxHealth * 3/4 && !(stat & NOPOWER))
 			overlays += image(icon, "sparks_damaged")
 	else
 		icon_state = "door_open"
@@ -1154,7 +1139,7 @@ There are 9 wires.
 	return FALSE
 
 /obj/structure/window/airlock_crush(crush_damage)
-	ex_act(2)//Smashin windows
+	explosion_act(500, null)
 
 /obj/machinery/portable_atmospherics/canister/airlock_crush(crush_damage)
 	. = ..()
@@ -1175,12 +1160,13 @@ There are 9 wires.
 /mob/living/airlock_crush(var/crush_damage)
 	. = ..()
 
-	damage_through_armor(0.7 * crush_damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	damage_through_armor(0.7 * crush_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	damage_through_armor(0.5 * crush_damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_HEAD, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_CHEST, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_L_LEG, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_R_LEG, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_L_ARM, src, 1, 1, FALSE)
+	damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,crush_damage*0.7))), BP_R_ARM, src, 1, 1, FALSE)
+
 
 	SetWeakened(5)
 	var/turf/T = get_turf(src)
@@ -1211,7 +1197,7 @@ There are 9 wires.
 					return
 				if(istool(AM))
 					var/obj/item/tool/T = AM
-					if(T.w_class >= ITEM_SIZE_NORMAL)
+					if(T.volumeClass >= ITEM_SIZE_NORMAL)
 						operating = TRUE
 						density = TRUE
 						do_animate("closing")
@@ -1382,8 +1368,8 @@ There are 9 wires.
 //Override to check locked var
 /obj/machinery/door/airlock/hit(var/mob/user, var/obj/item/I)
 	var/obj/item/W = I
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
-	var/calc_damage = W.force*W.structure_damage_factor
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN + (I.wielded ? I.WieldedattackDelay : I.attackDelay )*1.5 )
+	var/calc_damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))*W.structure_damage_factor
 	var/quiet = FALSE
 	if (istool(I))
 		var/obj/item/tool/T = I
@@ -1399,7 +1385,7 @@ There are 9 wires.
 	else
 		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
-		take_damage(W.force)
+		take_damage(calc_damage)
 
 
 /obj/machinery/door/airlock/take_damage(var/damage)

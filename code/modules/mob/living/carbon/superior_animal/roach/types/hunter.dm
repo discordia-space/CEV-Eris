@@ -21,10 +21,10 @@
 
 	// Armor related variables - jager jacket
 	armor = list(
-		melee = 5,
-		bullet = 2,
-		energy = 2,
-		bomb = 0,
-		bio = 25,
-		rad = 50
+		ARMOR_BLUNT = 5,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =25,
+		ARMOR_RAD =50
 	)

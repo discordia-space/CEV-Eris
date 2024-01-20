@@ -13,6 +13,7 @@
 	original_plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 	vis_flags = VIS_HIDE // Prevents mob shadows from stacking on open spaces when the mob is more than 1 z-level below
+	weight = 0
 	var/mob/owner = null
 
 /mob/shadow/can_fall()
@@ -44,11 +45,11 @@
 	if(shadow)
 		shadow.sync_icon(src)
 
-/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator = src)
 	. = ..()
 	check_shadow()
 
-/mob/living/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/mob/living/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = src)
 	. = ..()
 	check_shadow()
 

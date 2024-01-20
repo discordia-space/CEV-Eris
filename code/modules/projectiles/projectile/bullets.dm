@@ -1,9 +1,12 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
-	damage_types = list(BRUTE = 40)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 40)
+		)
+	)
 	nodamage = 0
-	check_armour = ARMOR_BULLET
 	embed = TRUE
 	sharp = TRUE // Also used for checking whether this penetrates
 	hitsound_wall = "ric_sound"
@@ -40,7 +43,7 @@
 	if(istype(A, /mob/living/exosuit))
 		return 1 //exosuits have their own penetration handling
 
-	var/blocked_damage = 0
+	var/blocked_damage = 0.0001
 	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
 		var/turf/simulated/wall/W = A
 		blocked_damage = round(W.material.integrity / 8)
@@ -49,7 +52,7 @@
 		blocked_damage = round(S.shield_integrity / 8)
 	else if(istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		blocked_damage = round(D.maxhealth / 8)
+		blocked_damage = round(D.maxHealth / 8)
 		if(D.glass) blocked_damage /= 2
 	else if(istype(A, /obj/structure/girder))
 		return TRUE
@@ -57,7 +60,7 @@
 		blocked_damage = 20 // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
-		blocked_damage = round(T.maxhealth / 8)
+		blocked_damage = round(T.maxHealth / 8)
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
 		blocked_damage = round(B.material.integrity / 8)
@@ -81,7 +84,11 @@
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
-	damage_types = list(BRUTE = 15)
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 15)
+		)
+	)
 	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
 	var/pellets = 4			//number of pellets
 	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
@@ -140,7 +147,7 @@
 	var/distance = get_dist(loc, starting)
 	return ..() * get_pellets(distance)
 
-/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 
 	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too

@@ -5,7 +5,7 @@
 	icon = 'icons/obj/radio.dmi'
 	icon_state = "cypherkey"
 	item_state = ""
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	spawn_blacklisted = TRUE
 	description_antag = "This is a special key with acces to restricted channels"
@@ -14,6 +14,7 @@
 	var/translate_hive = FALSE
 	var/syndie = FALSE
 	var/merc = FALSE
+	var/pirate = FALSE
 	var/list/channels = list()
 
 /obj/item/device/encryptionkey/attackby(obj/item/W, mob/user)
@@ -28,6 +29,11 @@
 	icon_state = "cypherkey"
 	channels = list("Mercenary" = 1)
 	merc = TRUE
+
+/obj/item/device/encryptionkey/pirates
+	icon_state = "cypherkey"
+	channels = list("Pirate" = 1)
+	pirate = TRUE
 
 /obj/item/device/encryptionkey/binary
 	icon_state = "cypherkey"

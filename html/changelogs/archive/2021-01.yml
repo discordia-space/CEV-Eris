@@ -9,7 +9,7 @@
   Alliostra:
   - balance: ammo casings no longer have any export value.
   Evankhell561:
-  - code_imp: fix get_max_w_class proc
+  - code_imp: fix get_max_volumeClass proc
   Kurgis:
   - bugfix: Fixed a broken pixel offset on acolyte armor.
   MadmanMartian:

@@ -9,7 +9,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT
 	spawn_blacklisted = TRUE
 	//Main variables
@@ -63,9 +63,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
 
 /obj/item/device/pda/examine(mob/user)
-	if(..(user, 1))
-		var/turf/T = get_turf(src)
-		to_chat(user, "The time [stationtime2text()], and Coordinates: [T.x],[T.y],[T.z] are displayed in the corner of the screen.")
+	var/turf/T = get_turf(src)
+	..(user, afterDesc = "The time [stationtime2text()], and Coordinates: [T.x],[T.y],[T.z] are displayed in the corner of the screen.")
 
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/cartridge/medical
@@ -1305,10 +1304,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/proc/explode() //This needs tuning. //Sure did.
 	if(!src.detonate) return
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
-		explosion(T, 0, 0, 1, rand(1,2))
+		explosion(T, 100, 100)
 	return
 
 /obj/item/device/pda/Destroy()

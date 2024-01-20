@@ -15,7 +15,7 @@
 		return
 	var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
 	C.set_dir(dir)
-	part.loc = loc
+	part.forceMove(loc)
 	part.master = null
 	part = null
 	qdel(src)
@@ -56,12 +56,14 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(12, 1, src)
 	s.start()
-	if(buckled_mob)
-		buckled_mob.burn_skin(110)
-		to_chat(buckled_mob, SPAN_DANGER("You feel a deep shock course through your body!"))
+	var/datum/component/buckling/buckle = GetComponent(/datum/component/buckling)
+	var/mob/living/buckleMob = buckle.buckled
+	if(buckleMob)
+		buckleMob.burn_skin(110)
+		to_chat(buckleMob, SPAN_DANGER("You feel a deep shock course through your body!"))
 		sleep(1)
-		buckled_mob.burn_skin(110)
-		buckled_mob.Stun(600)
+		buckleMob.burn_skin(110)
+		buckleMob.Stun(600)
 	visible_message(SPAN_DANGER("The electric chair went off!"), SPAN_DANGER("You hear a deep sharp shock!"))
 	icon_state = "echair0"
 

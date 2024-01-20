@@ -15,13 +15,6 @@
 	},
 /turf/unsimulated/wall,
 /area/space)
-"ae" = (
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_desert)
-"af" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_desert)
 "ag" = (
 /obj/structure/window/reinforced/crescent{
 	dir = 4
@@ -32,58 +25,21 @@
 /turf/unsimulated/wall,
 /area/space)
 "ah" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"ai" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"aj" = (
-/obj/item/clothing/head/hairflower,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_theatre)
-"ak" = (
-/obj/landmark/costume,
-/obj/structure/table/holo_woodentable,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_theatre)
-"al" = (
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_courtroom)
-"am" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 4
-	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-10"
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_courtroom)
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "an" = (
-/obj/structure/table/holo_woodentable,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"ao" = (
-/turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source_wildlife)
-"ap" = (
-/turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source_plating)
-"aq" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_emptycourt)
-"ar" = (
-/obj/structure/holostool,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_emptycourt)
-"as" = (
-/obj/structure/holostool,
-/obj/structure/window/reinforced/holowindow{
+/obj/structure/railing/holorailing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_emptycourt)
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"ap" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/structure/catwalk/holo,
+/obj/machinery/floor_light/prebuilt,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
 "at" = (
 /obj/structure/cryofeed{
 	dir = 4;
@@ -105,31 +61,22 @@
 /turf/unsimulated/wall,
 /area/space)
 "aw" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_desert)
-"ax" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"ay" = (
-/obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"az" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_theatre)
-"aA" = (
-/obj/machinery/door/window/holowindoor,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_courtroom)
-"aB" = (
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"aC" = (
-/obj/landmark/mob/holocarpspawn,
-/turf/simulated/floor/holofloor/reinforced,
-/area/holodeck/source_wildlife)
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/item/device/scanner/price,
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "aD" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/centcom/evac)
@@ -143,54 +90,9 @@
 "aF" = (
 /turf/unsimulated/wall,
 /area/centcom/suppy)
-"aG" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/effect/floor_decal/spline/fancy/wood/corner,
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"aH" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
 "aI" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"aJ" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/floor_decal/spline/fancy/wood/corner{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"aK" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_courtroom)
-"aL" = (
-/obj/structure/bed/chair/holochair,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"aM" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 1
-	},
-/obj/structure/window/reinforced/holowindow{
-	dir = 8
-	},
-/obj/structure/table/holo_woodentable,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"aN" = (
-/obj/machinery/door/window/holowindoor{
-	name = "Red Team"
-	},
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_emptycourt)
+/area/holodeck/source/industrial)
 "aO" = (
 /turf/unsimulated/floor{
 	icon_state = "plating";
@@ -205,101 +107,61 @@
 	name = "Shuttle Bay Blast Door"
 	},
 /area/centcom/suppy)
-"aQ" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 6
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
 "aR" = (
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_picnicarea)
-"aS" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/holostool,
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_picnicarea)
-"aT" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_picnicarea)
-"aU" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"aV" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_theatre)
-"aW" = (
-/obj/structure/window/reinforced/holowindow,
-/obj/machinery/door/window/holowindoor{
-	dir = 1;
-	name = "Court Reporter's Box"
-	},
-/obj/structure/bed/chair/holochair,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"aX" = (
-/obj/structure/table/holo_woodentable,
-/obj/structure/window/reinforced/holowindow,
-/obj/structure/window/reinforced/holowindow{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"aY" = (
-/obj/structure/table/holo_woodentable,
-/obj/structure/window/reinforced/holowindow,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"aZ" = (
-/obj/structure/table/holo_woodentable,
-/obj/structure/window/reinforced/holowindow,
-/obj/structure/window/reinforced/holowindow{
+/obj/structure/table/bar_special,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"ba" = (
-/obj/structure/window/reinforced/holowindow,
-/obj/machinery/door/window/holowindoor{
-	base_state = "right";
-	dir = 1;
-	icon_state = "right";
-	name = "Witness Box"
-	},
-/obj/structure/bed/chair/holochair,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"bb" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 8
-	},
-/obj/structure/table/holo_woodentable,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_courtroom)
-"bc" = (
-/obj/structure/bed/chair/holochair{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet{
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"aT" = (
+/obj/machinery/slotmachine,
+/obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/obj/effect/floor_decal/carpet{
-	dir = 9
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
 	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"aU" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"aX" = (
+/obj/structure/table/holobar_special,
+/obj/structure/catwalk,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"aZ" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "bd" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall8"
@@ -339,89 +201,10 @@
 "bk" = (
 /turf/simulated/shuttle/wall/cargo,
 /area/supply/dock)
-"bl" = (
-/obj/structure/table/holo_woodentable,
-/turf/simulated/floor/holofloor/desert,
-/area/holodeck/source_picnicarea)
-"bm" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"bn" = (
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_theatre)
-"bo" = (
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 9
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"bp" = (
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"bq" = (
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 5
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"br" = (
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 9
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"bs" = (
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
 "bt" = (
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 5
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"bu" = (
-/obj/structure/bed/chair/holochair{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "bv" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall9"
@@ -469,45 +252,6 @@
 	icon_state = "cargoshwall11"
 	},
 /area/supply/dock)
-"bB" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"bC" = (
-/obj/structure/holostool,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"bD" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"bE" = (
-/obj/structure/table/holo_woodentable,
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"bF" = (
-/obj/structure/table/holo_woodentable,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"bG" = (
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"bH" = (
-/obj/structure/table/holo_woodentable,
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
 "bI" = (
 /obj/structure/cryofeed,
 /turf/simulated/floor/tiled/dark/gray_platform,
@@ -549,51 +293,6 @@
 	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
-"bN" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"bO" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"bP" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 5
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"bQ" = (
-/obj/structure/bed/chair/holochair{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"bR" = (
-/obj/structure/bed/chair/holochair{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"bS" = (
-/obj/structure/bed/chair/holochair{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
 "bT" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall14"
@@ -625,47 +324,6 @@
 	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
-"bX" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/effect/floor_decal/spline/fancy/wood/corner{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"bY" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/effect/floor_decal/spline/fancy/wood/corner{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/grass,
-/area/holodeck/source_picnicarea)
-"bZ" = (
-/obj/machinery/door/window/holowindoor{
-	base_state = "right";
-	icon_state = "right"
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_courtroom)
-"ca" = (
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"cb" = (
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"cc" = (
-/obj/machinery/door/window/holowindoor{
-	base_state = "right";
-	icon_state = "right";
-	name = "Green Team"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_emptycourt)
 "cd" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall16"
@@ -684,45 +342,8 @@
 	},
 /area/supply/dock)
 "cg" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 10
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"ch" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"ci" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 6
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_theatre)
-"cj" = (
-/obj/structure/bed/chair/holochair{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 10
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/holodeck/source/industrial_arena)
 "ck" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall19"
@@ -734,52 +355,10 @@
 	icon_state = "cargoshwall20"
 	},
 /area/supply/dock)
-"cm" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-06"
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_theatre)
-"cn" = (
-/obj/structure/bed/chair/holochair{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 10
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"co" = (
-/obj/structure/bed/chair/holochair{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
-"cp" = (
-/obj/structure/bed/chair/holochair{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 6
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_courtroom)
 "cq" = (
 /obj/machinery/cryopod,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
-"cr" = (
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_emptycourt)
 "cs" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall21"
@@ -832,20 +411,6 @@
 	name = "Cargo Transport Shuttle (A5)"
 	},
 /area/supply/dock)
-"cy" = (
-/obj/structure/window/reinforced/crescent,
-/obj/structure/window/reinforced/crescent{
-	dir = 1
-	},
-/turf/unsimulated/wall,
-/area/space)
-"cz" = (
-/obj/structure/window/reinforced/crescent{
-	dir = 1
-	},
-/obj/structure/window/reinforced/crescent,
-/turf/unsimulated/wall,
-/area/space)
 "cA" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall23"
@@ -869,28 +434,15 @@
 	},
 /area/supply/dock)
 "cE" = (
-/turf/simulated/floor/holofloor/space,
-/area/holodeck/source_space)
-"cF" = (
-/turf/simulated/floor/holofloor/snow,
-/area/holodeck/source_snowfield)
-"cG" = (
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_meetinghall)
-"cH" = (
+/obj/structure/railing/holorailing,
 /turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_basketball)
-"cI" = (
-/obj/structure/holostool,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_basketball)
-"cJ" = (
-/obj/structure/holostool,
-/obj/structure/window/reinforced/holowindow{
-	dir = 4
+/area/holodeck/source/industrial_arena)
+"cF" = (
+/obj/machinery/light/small{
+	dir = 1
 	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_basketball)
+/turf/simulated/open/holonofloor,
+/area/space)
 "cK" = (
 /turf/simulated/floor/tiled/dark/techfloor_grid,
 /area/centcom/evac)
@@ -899,44 +451,21 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/centcom/evac)
 "cM" = (
-/obj/structure/holohoop,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_basketball)
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "cN" = (
 /turf/simulated/floor/tiled/dark/golden,
 /area/centcom/evac)
-"cO" = (
-/turf/simulated/floor/holofloor/beach/sand,
-/area/holodeck/source_beach)
-"cP" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_thunderdomecourt)
-"cQ" = (
-/obj/structure/holostool,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
-"cR" = (
-/obj/structure/holostool,
-/obj/structure/window/reinforced/holowindow{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
-"cS" = (
-/obj/structure/table/holotable,
-/obj/machinery/readybutton{
-	pixel_y = 0
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
-"cU" = (
-/obj/structure/table/holotable,
-/obj/item/clothing/gloves/boxing/hologlove,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"cV" = (
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
 "cW" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall26"
@@ -978,53 +507,6 @@
 	icon_state = "cargoshwall33"
 	},
 /area/supply/dock)
-"de" = (
-/obj/landmark/mob/holocarprandom,
-/turf/simulated/floor/holofloor/space,
-/area/holodeck/source_space)
-"df" = (
-/obj/structure/flora/grass/both,
-/turf/simulated/floor/holofloor/snow,
-/area/holodeck/source_snowfield)
-"dg" = (
-/obj/effect/floor_decal/carpet{
-	dir = 8
-	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 9
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 10
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"dh" = (
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"di" = (
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 5
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 6
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
 "dj" = (
 /obj/machinery/light{
 	dir = 1
@@ -1049,10 +531,6 @@
 	},
 /turf/simulated/floor/tiled/dark/golden,
 /area/centcom/evac)
-"dm" = (
-/obj/effect/overlay/palmtree_r,
-/turf/simulated/floor/holofloor/beach/sand,
-/area/holodeck/source_beach)
 "dn" = (
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
@@ -1060,10 +538,6 @@
 /obj/structure/bed/chair/wood,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
-"dp" = (
-/obj/structure/holostool,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
 "dq" = (
 /obj/structure/shuttle_part/cargo{
 	icon_state = "cargoshwall34"
@@ -1112,61 +586,16 @@
 	},
 /turf/space,
 /area/supply/dock)
-"dy" = (
-/obj/structure/flora/tree/pine,
-/turf/simulated/floor/holofloor/snow,
-/area/holodeck/source_snowfield)
 "dz" = (
-/obj/structure/table/holo_woodentable,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_meetinghall)
-"dA" = (
-/obj/machinery/door/window/holowindoor{
-	name = "Red Team"
+/obj/structure/lattice,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"dI" = (
+/obj/structure/mirror/antag{
+	pixel_x = 28
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_basketball)
-"dB" = (
-/obj/item/clothing/glasses/sunglasses,
-/turf/simulated/floor/holofloor/beach/sand,
-/area/holodeck/source_beach)
-"dC" = (
-/obj/effect/overlay/palmtree_l,
-/obj/effect/overlay/coconut,
-/turf/simulated/floor/holofloor/beach/sand,
-/area/holodeck/source_beach)
-"dD" = (
-/obj/machinery/door/window/holowindoor{
-	name = "Red Team"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_thunderdomecourt)
-"dE" = (
-/obj/machinery/door/window/holowindoor{
-	base_state = "right";
-	dir = 2;
-	icon_state = "right";
-	name = "Red Corner"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"dF" = (
-/obj/structure/window/reinforced/holowindow,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"dG" = (
-/obj/structure/flora/tree/dead,
-/turf/simulated/floor/holofloor/snow,
-/area/holodeck/source_snowfield)
-"dH" = (
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"dJ" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "dK" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
@@ -1183,74 +612,34 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
 "dM" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "escape_pod_2_recovery";
-	pixel_x = 25;
-	pixel_y = 0;
-	req_one_access = list(13);
-	tag_door = "escape_pod_2_recovery_hatch"
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/obj/structure/mirror/antag{
+	pixel_y = -28
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/simulated/floor/carpet/bcarpet,
 /area/centcom/evac)
-"dN" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 8
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
 "dO" = (
-/obj/structure/flora/grass/green,
-/turf/simulated/floor/holofloor/snow,
-/area/holodeck/source_snowfield)
+/turf/simulated/shuttle/wall{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
 "dP" = (
-/obj/effect/floor_decal/carpet{
-	dir = 5
+/obj/structure/table/steel_reinforced,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
 	},
-/obj/effect/floor_decal/carpet{
-	dir = 6
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 9
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 10
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"dQ" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
+/obj/effect/floor_decal/industrial/danger{
 	dir = 8
 	},
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 9
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"dR" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"dS" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
+/obj/effect/floor_decal/industrial/danger{
 	dir = 4
 	},
-/obj/effect/floor_decal/carpet{
-	dir = 1
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 5
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "dT" = (
 /obj/structure/bed/chair/wood{
 	dir = 1;
@@ -1269,14 +658,20 @@
 	},
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/centcom/evac)
+"dW" = (
+/obj/structure/railing/holorailing,
+/obj/structure/railing/holorailing{
+	dir = 4
+	},
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "dX" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark/golden,
 /area/centcom/evac)
-"dY" = (
-/obj/structure/window/reinforced/holowindow/disappearing,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
 "dZ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light{
@@ -1304,24 +699,16 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
-"ed" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
+"ee" = (
+/obj/structure/railing/holorailing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"ee" = (
-/obj/structure/holostool,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/spacebar)
 "ef" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
 "eg" = (
 /obj/machinery/light{
 	dir = 8;
@@ -1329,21 +716,23 @@
 	pixel_y = 0
 	},
 /obj/structure/uplink/mercenary,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"eh" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
 "ei" = (
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/space)
-"ej" = (
-/obj/structure/window/reinforced/holowindow/disappearing{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
 "ek" = (
 /obj/effect/window_lwall_spawn/smartspawn,
 /turf/simulated/floor/plating,
@@ -1360,12 +749,6 @@
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
-"en" = (
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
-"eo" = (
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_boxingcourt)
 "ep" = (
 /turf/space,
 /turf/simulated/shuttle/wall{
@@ -1374,26 +757,16 @@
 	},
 /area/shuttle/mercenary)
 "eq" = (
-/obj/structure/flora/grass/brown,
-/turf/simulated/floor/holofloor/snow,
-/area/holodeck/source_snowfield)
-"er" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/turf/simulated/floor/holofloor/carpet{
+/obj/structure/railing/holorailing/grey{
 	dir = 8
 	},
-/area/holodeck/source_meetinghall)
+/obj/structure/lattice,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "es" = (
-/obj/machinery/door/window/holowindoor{
-	base_state = "right";
-	icon_state = "right";
-	name = "Green Team"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_basketball)
+/obj/effect/shuttle_landmark/pirate/internim,
+/turf/space/transit/north/shuttlespace_ns6,
+/area/space)
 "et" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -1404,83 +777,24 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
-"eu" = (
-/turf/unsimulated/beach/sand{
-	icon_state = "beach"
-	},
-/area/holodeck/source_beach)
 "ev" = (
-/obj/machinery/door/window/holowindoor{
-	base_state = "right";
-	icon_state = "right";
-	name = "Green Team"
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_thunderdomecourt)
-"ew" = (
-/obj/structure/window/reinforced/holowindow{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"ex" = (
-/obj/machinery/door/window/holowindoor{
-	dir = 1;
-	name = "Green Corner"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
-"ey" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet{
+/turf/space/transit/north/shuttlespace_ns14,
+/area/space)
+"ez" = (
+/obj/structure/railing/holorailing/grey,
+/obj/structure/railing/holorailing/grey{
 	dir = 8
 	},
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 10
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"ez" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet,
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"eA" = (
-/obj/structure/holostool,
-/obj/effect/floor_decal/carpet,
-/obj/effect/floor_decal/carpet{
-	dir = 4
-	},
-/obj/effect/floor_decal/carpet{
-	dir = 6
-	},
-/turf/simulated/floor/holofloor/carpet,
-/area/holodeck/source_meetinghall)
-"eC" = (
-/turf/simulated/floor/holofloor/beach/water,
-/area/holodeck/source_beach)
-"eE" = (
-/obj/structure/holohoop{
-	dir = 1
-	},
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_basketball)
-"eF" = (
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_basketball)
-"eG" = (
-/obj/structure/table/holotable,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
-"eI" = (
-/obj/structure/table/holotable,
-/obj/item/clothing/gloves/boxing/hologlove{
-	icon_state = "boxinggreen";
-	item_state = "boxinggreen"
-	},
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/holodeck/source_boxingcourt)
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/spacebar)
 "eJ" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -2598,6 +1912,13 @@
 /obj/structure/grille,
 /turf/space,
 /area/space)
+"hD" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "hE" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -2636,16 +1957,17 @@
 	},
 /area/centcom/merc_base)
 "hK" = (
-/obj/structure/sign/double/map/left{
+/obj/structure/table/rack,
+/obj/structure/sign/faction/serbian{
 	pixel_y = 32
 	},
+/obj/item/storage/deferred/crate/shotgun,
 /turf/unsimulated/floor{
-	icon_state = "cult";
-	name = "plating"
+	icon_state = "dark"
 	},
 /area/centcom/merc_base)
 "hL" = (
-/obj/structure/sign/double/map/right{
+/obj/machinery/holomap{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -2673,6 +1995,7 @@
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
+/obj/structure/table/rack,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -2697,9 +2020,24 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"hX" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_right";
+	name = "remote shutter control";
+	pixel_x = -25;
+	req_access = list(145)
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "hZ" = (
 /turf/simulated/floor/carpet/bcarpet,
 /area/centcom/evac)
+"ib" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "ic" = (
 /turf/space,
 /turf/simulated/shuttle/wall{
@@ -2713,10 +2051,45 @@
 	icon_state = "floor3"
 	},
 /area/skipjack_station/start)
+"if" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_right";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "ik" = (
 /obj/effect/shuttle_landmark/escape_pod/out/pod1,
 /turf/space,
 /area/space)
+"io" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"ip" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/obj/structure/railing/holorailing{
+	dir = 1
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "iq" = (
 /turf/simulated/shuttle/wall{
 	icon_state = "wall3"
@@ -2982,6 +2355,13 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"jp" = (
+/obj/structure/railing/holorailing{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "jq" = (
 /turf/unsimulated/floor{
 	dir = 2;
@@ -3019,6 +2399,22 @@
 	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
+"jx" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
 "jy" = (
 /turf/space,
 /area/centcom/evac)
@@ -3027,6 +2423,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
+/obj/item/toy/figure/serbian,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
@@ -3100,6 +2497,10 @@
 /obj/effect/shuttle_landmark/eris/transit/exploration_shuttle,
 /turf/space,
 /area/space)
+"jQ" = (
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "jS" = (
 /obj/structure/closet,
 /obj/item/clothing/under/turtleneck,
@@ -3114,10 +2515,24 @@
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
+/obj/item/clothing/mask/balaclava,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"jT" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/pirate)
 "jU" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -3168,6 +2583,23 @@
 /obj/structure/lattice,
 /turf/simulated/mineral,
 /area/space)
+"kb" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1331;
+	id_tag = "pirate_shuttle_outer";
+	name = "Ship External Access";
+	req_access = list(145)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_left";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/obj/machinery/shield_diffuser,
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "ke" = (
 /obj/item/device/radio/electropack,
 /turf/simulated/shuttle/floor{
@@ -3427,11 +2859,17 @@
 /area/centcom/merc_base)
 "kG" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/item/storage/box/phosphorous,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"kH" = (
+/obj/machinery/recharger,
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "kI" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -3479,6 +2917,23 @@
 	},
 /turf/space,
 /area/space)
+"kN" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1331;
+	id_tag = "pirate_shuttle_outer";
+	name = "Ship External Access";
+	req_access = list(145)
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_right";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/obj/machinery/shield_diffuser,
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
 "kP" = (
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
 	pixel_x = 3;
@@ -3500,6 +2955,14 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"kS" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/meds,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "kT" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -3596,6 +3059,13 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
+"lg" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/texas)
 "lh" = (
 /obj/machinery/light{
 	dir = 8;
@@ -3765,6 +3235,12 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"lG" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
 "lH" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/material/steel/full,
@@ -3974,6 +3450,11 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet,
 /area/wizard_station)
+"mv" = (
+/obj/structure/catwalk,
+/obj/structure/table/holobar_special,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "mw" = (
 /obj/structure/toilet{
 	pixel_y = 8
@@ -4034,6 +3515,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/raider_base)
+"mF" = (
+/obj/structure/window/reinforced/crescent{
+	dir = 4
+	},
+/obj/structure/window/reinforced/crescent,
+/turf/unsimulated/wall,
+/area/space)
 "mH" = (
 /obj/structure/bookcase{
 	name = "bookcase (Tactics)"
@@ -4054,6 +3542,12 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"mL" = (
+/obj/structure/bed/chair/custom/holochair/bar{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "mM" = (
 /turf/unsimulated/floor{
 	icon_state = "lino"
@@ -4582,6 +4076,10 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"oF" = (
+/obj/machinery/cryopod,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "oH" = (
 /obj/effect/shuttle_landmark/eris/transit/hulk,
 /turf/space,
@@ -4763,6 +4261,13 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"pm" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "pn" = (
 /obj/machinery/door/airlock/hatch{
 	frequency = 1331;
@@ -5087,6 +4592,21 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"qG" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
 "qH" = (
 /obj/effect/shuttle_landmark/escape_pod/transit/pod2,
 /turf/space,
@@ -5102,11 +4622,14 @@
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
+"rh" = (
+/turf/simulated/floor/holofloor/tiled/bar_dance,
+/area/space)
 "rl" = (
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/unsimulated/floor{
 	icon_state = "cult";
@@ -5123,9 +4646,14 @@
 	},
 /area/shuttle/mercenary)
 "rv" = (
-/obj/item/inflatable_duck,
-/turf/simulated/floor/holofloor/beach/sand,
-/area/holodeck/source_beach)
+/turf/simulated/floor/carpet,
+/area/centcom/pirate_base)
+"rz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
 "rE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
@@ -5147,6 +4675,66 @@
 /obj/item/card/emag,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"rJ" = (
+/obj/machinery/slotmachine,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger/corner,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"rX" = (
+/obj/structure/table/bar_special,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"rY" = (
+/obj/structure/bed/chair/custom/holochair,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"sc" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/area/shuttle/pirate)
+"sr" = (
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial)
+"sA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/obj/item/clothing/suit/space/void/riggedvoidsuit,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "sN" = (
 /obj/item/caution,
 /turf/unsimulated/floor{
@@ -5154,6 +4742,24 @@
 	icon_state = "freezerfloor"
 	},
 /area/wizard_station)
+"sO" = (
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"sT" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_front";
+	name = "remote shutter control";
+	pixel_x = 25;
+	req_access = list(145)
+	},
+/obj/structure/table/reinforced,
+/obj/item/device/loot_checker,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "sW" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
@@ -5161,6 +4767,60 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"td" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"te" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_left";
+	name = "remote shutter control";
+	pixel_x = -25;
+	pixel_y = 25;
+	req_access = list(145)
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"tg" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/machinery/floor_light/prebuilt,
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"tp" = (
+/obj/structure/table/woodentable,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen{
+	pixel_y = 4
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"tv" = (
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/area/shuttle/pirate)
 "ty" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/meds,
@@ -5179,6 +4839,18 @@
 /obj/item/tank/nitrogen,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"tN" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
 "tS" = (
 /obj/item/stack/material/glass{
 	amount = 15
@@ -5233,6 +4905,16 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"ui" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
 "uo" = (
 /obj/item/paper_bin{
 	pixel_x = -3;
@@ -5245,6 +4927,11 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"uq" = (
+/obj/structure/bed,
+/obj/item/bedsheet/hos,
+/turf/simulated/floor/carpet,
+/area/centcom/pirate_base)
 "uu" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/shoes/sandal,
@@ -5272,6 +4959,19 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"uE" = (
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"uG" = (
+/turf/simulated/shuttle/wall{
+	icon_state = "wall3"
+	},
+/area/shuttle/pirate)
+"uH" = (
+/obj/structure/catwalk/holo,
+/obj/machinery/floor_light/prebuilt,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
 "uL" = (
 /obj/structure/table/rack,
 /obj/item/stack/rods{
@@ -5290,6 +4990,20 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"uM" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/obj/structure/railing/holorailing/grey{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"uS" = (
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/texas)
 "uW" = (
 /obj/structure/table/steel,
 /obj/item/storage/deferred/lights,
@@ -5305,6 +5019,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"vf" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial)
 "vi" = (
 /obj/structure/closet,
 /obj/item/tool/pickaxe/diamonddrill,
@@ -5325,11 +5045,56 @@
 	icon_state = "lino"
 	},
 /area/centcom/merc_base)
+"vx" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"vz" = (
+/obj/structure/table/bar_special,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "vF" = (
 /obj/effect/shuttle_landmark/merc/start,
 /obj/effect/window_lwall_spawn/reinforced,
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
+"vG" = (
+/obj/structure/closet/crate/pirate,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"vU" = (
+/obj/machinery/slotmachine,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"vX" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 1
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"wa" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"wb" = (
+/obj/structure/bed/chair/custom/holochair/bar{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
 "wd" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/item/tank/nitrogen,
@@ -5383,6 +5148,29 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"wo" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns13,
+/area/space)
+"wp" = (
+/obj/structure/reagent_dispensers/rumkeg,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"wq" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial)
 "wu" = (
 /obj/structure/closet,
 /obj/machinery/light{
@@ -5393,6 +5181,82 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"wx" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/accarmors,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
+"wO" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"xd" = (
+/obj/machinery/slotmachine,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"xh" = (
+/obj/structure/railing/holorailing/grey,
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/space)
+"xk" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"xn" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"xq" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"xr" = (
+/obj/item/ammo_magazine/ammobox/lrifle,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "xs" = (
 /obj/structure/table/rack,
 /obj/item/gun/energy/ionrifle,
@@ -5415,10 +5279,121 @@
 	icon_state = "floor3"
 	},
 /area/skipjack_station/start)
+"xM" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"xP" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"xZ" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/space)
+"yg" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"yn" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"yq" = (
+/obj/structure/railing/holorailing/grey,
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/texas)
+"yv" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial)
 "yx" = (
 /obj/structure/grille,
 /turf/space,
 /area/space)
+"yy" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -4;
+	pixel_y = 9
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = -3;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shot{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"yD" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"yE" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "yF" = (
 /obj/structure/sink{
 	dir = 8;
@@ -5434,6 +5409,24 @@
 	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
+"yQ" = (
+/obj/structure/railing/holorailing/grey,
+/obj/structure/lattice,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"yR" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "yT" = (
 /obj/machinery/microwave{
 	pixel_x = -1;
@@ -5444,6 +5437,34 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"yU" = (
+/obj/structure/table/rack,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/obj/item/handcuffs/zipties,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"yX" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial)
+"zl" = (
+/obj/machinery/vending/cigarette{
+	name = "hacked cigarette machine";
+	prices = list();
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "zs" = (
 /obj/structure/urinal{
 	pixel_y = 32
@@ -5455,13 +5476,16 @@
 	},
 /area/centcom/raider_base)
 "zt" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/item/storage/box/phosphorous,
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
+/obj/structure/bed/chair{
+	dir = 4
 	},
-/area/centcom/merc_base)
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/mercenary)
 "zv" = (
 /obj/structure/table/rack,
 /obj/item/gun/energy/sniperrifle,
@@ -5483,6 +5507,60 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
+"zK" = (
+/turf/simulated/shuttle/wall{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
+"zM" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"zN" = (
+/obj/structure/window/reinforced/crescent{
+	dir = 4
+	},
+/obj/structure/window/reinforced/crescent,
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/turf/unsimulated/wall,
+/area/space)
+"zO" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"zT" = (
+/obj/structure/bed/chair/custom/holochair,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "zW" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/box/drinkingglasses{
@@ -5499,6 +5577,38 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/evac)
+"Aa" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"Av" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/deferred/rations,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"Ay" = (
+/obj/structure/table/bar_special,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"AD" = (
+/obj/structure/railing/holorailing{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"AU" = (
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 8
+	},
+/turf/unsimulated/wall,
+/area/space)
 "AW" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/saw,
@@ -5506,6 +5616,17 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Bc" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns12,
+/area/space)
 "Bd" = (
 /obj/item/storage/deferred/crate/alcohol,
 /obj/structure/table/reinforced,
@@ -5513,12 +5634,41 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"Be" = (
+/obj/item/stool/holostool/bar,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "Bg" = (
 /obj/item/storage/deferred/crate/tools,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"Bk" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
+"Bo" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Bp" = (
+/turf/simulated/open/holonofloor,
+/area/space)
+"Bq" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/wireframe)
 "Bt" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -5534,6 +5684,17 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"BJ" = (
+/obj/machinery/slotmachine,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger/corner,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "BP" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/grenadier,
@@ -5541,6 +5702,33 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"BQ" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/ak,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"BR" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_left";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
+"BX" = (
+/obj/structure/bed/chair/custom/holochair,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
 "Cc" = (
 /obj/structure/table/rack,
 /obj/item/rig/light/hacker,
@@ -5555,6 +5743,29 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"Cl" = (
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/space)
+"Cq" = (
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"Cw" = (
+/obj/structure/railing/holorailing{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"Cx" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/space)
+"CD" = (
+/obj/structure/bed/chair/custom/holochair/bar,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
 "CE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -5562,10 +5773,25 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
-"CW" = (
-/obj/item/beach_ball,
-/turf/simulated/floor/holofloor/beach/sand,
-/area/holodeck/source_beach)
+"CF" = (
+/obj/structure/bed/chair/custom/holochair/bar{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"CJ" = (
+/obj/structure/table/bar_special,
+/obj/item/flame/lighter{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"CK" = (
+/turf/simulated/shuttle/wall{
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
 "Dg" = (
 /obj/structure/table/standard,
 /obj/item/storage/deferred/surgery,
@@ -5573,6 +5799,46 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
+"Dl" = (
+/obj/effect/floor_decal/industrial/danger/full,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"Du" = (
+/obj/structure/table/rack,
+/obj/item/tool/hammer/sledgehammer,
+/obj/item/tool/hammer/sledgehammer,
+/obj/item/tool/hammer/sledgehammer,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"Dy" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"DD" = (
+/obj/structure/table/rack,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"DE" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "DJ" = (
 /obj/structure/table/steel,
 /obj/item/storage/deferred/comms,
@@ -5580,10 +5846,74 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
-"Eb" = (
-/obj/item/beach_ball/holoball,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_basketball)
+"DS" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"Ec" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"Ej" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns11,
+/area/space)
+"Em" = (
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/item/device/lighting/toggleable/flashlight/seclite,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"Er" = (
+/obj/structure/window/reinforced/crescent{
+	dir = 1
+	},
+/obj/structure/window/reinforced/crescent{
+	dir = 4
+	},
+/turf/unsimulated/wall,
+/area/space)
+"ED" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
 "EK" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rd,
@@ -5601,6 +5931,17 @@
 	name = "plating"
 	},
 /area/centcom/merc_base)
+"EN" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
 "EP" = (
 /obj/item/paper_bin{
 	pixel_x = -3;
@@ -5616,6 +5957,19 @@
 	name = "plating"
 	},
 /area/centcom/merc_base)
+"ER" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
 "EY" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/drinkingglasses{
@@ -5633,6 +5987,9 @@
 	icon_state = "dark"
 	},
 /area/centcom/raider_base)
+"Fc" = (
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/spacebar)
 "Ff" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -5646,6 +6003,20 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
+"Fp" = (
+/obj/structure/table/holo_woodentable,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"Ft" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"Fy" = (
+/obj/structure/table/bar_special,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
 "FE" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/backpack/satchel/leather/withwallet,
@@ -5671,19 +6042,78 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"Ga" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"Ge" = (
+/obj/item/stool/holostool,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"Gg" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/obj/structure/railing/holorailing/grey{
+	dir = 1
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"Gl" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Go" = (
 /obj/structure/lattice,
 /obj/structure/lattice,
 /turf/space,
 /area/space)
-"GK" = (
-/obj/structure/table/holotable,
-/obj/item/clothing/head/armor/helmet/thunderdome,
-/obj/item/clothing/suit/armor/heavy/red,
-/obj/item/clothing/under/color/red,
-/obj/item/holo/esword/red,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
+"Gp" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Gt" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_front";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
+"Gw" = (
+/turf/simulated/floor/holofloor/tiled/bar_dance,
+/area/holodeck/source/spacebar)
+"GL" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "GU" = (
 /obj/item/tool/knife/ritual,
 /turf/unsimulated/floor{
@@ -5695,7 +6125,7 @@
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
@@ -5709,13 +6139,29 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"Hk" = (
+/obj/structure/table/bar_special,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "Ho" = (
-/obj/item/storage/box/phosphorous,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/unsimulated/floor{
-	dir = 2;
-	icon_state = "dark"
+	icon_state = "cult";
+	name = "plating"
 	},
 /area/centcom/merc_base)
+"Hp" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/monkeykabob,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "Hs" = (
 /obj/structure/table/woodentable,
 /obj/item/dice/d20,
@@ -5724,6 +6170,12 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"Hu" = (
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"HB" = (
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "HD" = (
 /obj/item/deck/cards,
 /obj/structure/table/steel,
@@ -5731,6 +6183,18 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"HF" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"HH" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/surgery,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "HJ" = (
 /obj/structure/table/rack,
 /obj/item/tank/jetpack/oxygen,
@@ -5743,6 +6207,16 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"HL" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 4
+	},
+/obj/structure/railing/holorailing/grey{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
 "HQ" = (
 /obj/structure/table/rack,
 /obj/item/storage/box/handcuffs{
@@ -5761,18 +6235,131 @@
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
 /obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
+/obj/item/storage/box/phosphorous,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
-"JC" = (
-/obj/structure/table/holotable,
-/obj/item/clothing/head/armor/helmet/thunderdome,
-/obj/item/clothing/suit/armor/heavy/green,
-/obj/item/clothing/under/color/green,
-/obj/item/holo/esword/green,
-/turf/simulated/floor/holofloor/tiled,
-/area/holodeck/source_thunderdomecourt)
+"HY" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/demolition,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"Ii" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial)
+"Ik" = (
+/obj/machinery/computer/shuttle_control/multi/pirate,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"Ir" = (
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/texas)
+"II" = (
+/obj/structure/cryofeed,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"IK" = (
+/obj/structure/railing/holorailing{
+	dir = 4
+	},
+/obj/structure/railing/holorailing{
+	dir = 1
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
+"IL" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/crate/sidearm,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"IN" = (
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/spacebar)
+"IP" = (
+/obj/structure/table/bar_special,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"IZ" = (
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"Ja" = (
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/space)
+"Jj" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"Jr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/table/bar_special,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"Jw" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial)
+"Jx" = (
+/obj/machinery/light,
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"JA" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"JH" = (
+/obj/structure/table/rack,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "JJ" = (
 /obj/item/tool/knife{
 	pixel_x = -6
@@ -5799,6 +6386,9 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"JK" = (
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "JM" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/adv{
@@ -5831,6 +6421,18 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Ke" = (
+/obj/machinery/button/remote/blast_door{
+	id = "pirateshutters_right";
+	name = "remote shutter control";
+	pixel_x = 25;
+	pixel_y = 24;
+	req_access = list(145)
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
 "Kn" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility/full,
@@ -5843,6 +6445,17 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Kp" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "Kq" = (
 /obj/effect/window_lwall_spawn/reinforced,
 /obj/structure/grille,
@@ -5851,6 +6464,25 @@
 	name = "plating"
 	},
 /area/centcom/merc_base)
+"Kr" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Kt" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
 "Ku" = (
 /obj/structure/table/standard,
 /obj/item/deck/cards,
@@ -5858,6 +6490,50 @@
 	icon_state = "floor7"
 	},
 /area/skipjack_station/start)
+"KJ" = (
+/obj/structure/railing/holorailing{
+	dir = 4
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
+"KL" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_x = -5;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"KM" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns3,
+/area/space)
+"KX" = (
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/off)
+"KZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/bar_dance,
+/area/space)
+"Lb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/holo_woodentable,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
 "Lj" = (
 /obj/item/book/manual/wiki/science_robotics,
 /obj/structure/table/glass,
@@ -5866,6 +6542,13 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"Lk" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
 "Ln" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -5876,6 +6559,21 @@
 /obj/item/tool/crowbar,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"Lx" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns8,
+/area/space)
+"Ly" = (
+/obj/structure/bed/chair/custom/holochair,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
 "LG" = (
 /obj/machinery/door/airlock/external{
 	density = 1;
@@ -5914,6 +6612,30 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"LZ" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Mp" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "MA" = (
 /obj/structure/table/rack,
 /obj/item/storage/toolbox/electrical,
@@ -5951,6 +6673,17 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"MM" = (
+/obj/structure/table/rack,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/item/tank/emergency_oxygen/double,
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
 "MO" = (
 /obj/structure/table/woodentable,
 /obj/item/dice,
@@ -5966,6 +6699,29 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Ng" = (
+/obj/structure/table/holo_woodentable,
+/obj/item/flame/lighter{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"Nj" = (
+/obj/structure/table/holo_woodentable,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"Nw" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/spacebar)
 "NA" = (
 /obj/structure/table/woodentable,
 /obj/item/book/manual/wiki/security_ironparagraphs,
@@ -5974,6 +6730,20 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"NE" = (
+/obj/structure/table/bar_special,
+/obj/item/flame/lighter{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"NF" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
 "NG" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -5995,6 +6765,68 @@
 	icon_state = "floor3"
 	},
 /area/skipjack_station/start)
+"NK" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"NL" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"NM" = (
+/obj/structure/bed/chair/custom/holochair,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"NO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/table/holo_woodentable,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"NW" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns8,
+/area/space)
 "Od" = (
 /obj/structure/table/woodentable,
 /obj/item/spacecash/bundle/c1,
@@ -6007,15 +6839,46 @@
 /obj/machinery/vending/assist{
 	contraband = null;
 	name = "AntagCorpVend";
-	products = list(/obj/item/device/assembly/prox_sensor = 5, /obj/item/device/assembly/signaler = 4, /obj/item/device/assembly/infra = 4, /obj/item/device/assembly/prox_sensor = 4, /obj/item/handcuffs = 8, /obj/item/device/flash = 4, /obj/item/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
+	products = list(/obj/item/device/assembly/prox_sensor=5,/obj/item/device/assembly/signaler=4,/obj/item/device/assembly/infra=4,/obj/item/device/assembly/prox_sensor=4,/obj/item/handcuffs=8,/obj/item/device/flash=4,/obj/item/cartridge/signal=4,/obj/item/clothing/glasses/sunglasses=4)
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"Ok" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Om" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/obj/effect/shuttle_landmark/pirate/start,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "pirateshutters_front";
+	name = "Outer Airlock";
+	opacity = 0
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/pirate)
+"Or" = (
+/obj/machinery/light,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "Ot" = (
 /obj/structure/table/rack,
 /obj/item/grenade/empgrenade,
@@ -6031,6 +6894,44 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"OA" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"OI" = (
+/obj/structure/bed/chair/custom/holochair/bar{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"OM" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"OQ" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial_arena)
 "OT" = (
 /obj/item/modular_computer/console/preset{
 	dir = 10
@@ -6040,6 +6941,33 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"OV" = (
+/obj/structure/bed/chair/custom/holochair/bar{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"OX" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"OZ" = (
+/obj/structure/railing/holorailing,
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial)
+"Pc" = (
+/obj/structure/catwalk,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
 "Pd" = (
 /obj/structure/table/rack,
 /obj/item/storage/belt/utility/full,
@@ -6049,6 +6977,43 @@
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"Pg" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"Pi" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Barracks";
+	req_access = list(145)
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"Pk" = (
+/obj/structure/table/holosteel_reinforced,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial_arena)
+"Pl" = (
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source/texas)
+"Pn" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "PA" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -6065,6 +7030,81 @@
 	icon_state = "asteroid"
 	},
 /area/centcom/raider_base)
+"PY" = (
+/obj/machinery/slotmachine,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"Qo" = (
+/obj/structure/table/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"Qp" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Qw" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Qz" = (
+/obj/structure/table/rack,
+/obj/item/storage/deferred/cybernetics,
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/centcom/merc_base)
+"QG" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"QH" = (
+/obj/structure/window/reinforced/crescent,
+/obj/structure/window/reinforced/crescent{
+	dir = 4
+	},
+/turf/unsimulated/wall,
+/area/space)
+"QN" = (
+/obj/structure/cyberplant,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"QO" = (
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/obj/item/storage/toolbox/syndicate{
+	pixel_x = -1;
+	pixel_y = 3
+	},
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"QQ" = (
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial)
 "QR" = (
 /obj/machinery/shower{
 	pixel_y = 32
@@ -6074,6 +7114,19 @@
 	icon_state = "freezerfloor"
 	},
 /area/centcom/merc_base)
+"QU" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
 "Rc" = (
 /obj/structure/table/woodentable,
 /obj/structure/table/woodentable,
@@ -6083,6 +7136,22 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"Re" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns2,
+/area/space)
+"Rh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/table/holo_woodentable,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
 "Rm" = (
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/potatoseed,
@@ -6092,6 +7161,9 @@
 /obj/structure/table/steel,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"Rn" = (
+/turf/unsimulated/wall,
+/area/centcom/pirate_base)
 "RA" = (
 /obj/structure/table/standard,
 /obj/item/storage/toolbox/syndicate{
@@ -6102,6 +7174,78 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"RB" = (
+/obj/structure/railing/holorailing,
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/obj/structure/railing/holorailing{
+	dir = 4
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial_arena)
+"RO" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
+"RP" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/obj/structure/railing/holorailing/grey{
+	dir = 4
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"RU" = (
+/obj/machinery/door/airlock/external{
+	req_access = list(145)
+	},
+/turf/unsimulated/floor{
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/centcom/pirate_base)
+"Sc" = (
+/obj/structure/catwalk,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"Sd" = (
+/obj/structure/closet/wall_mounted/emcloset{
+	pixel_y = -31
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"Sh" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial_arena)
+"Si" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns9,
+/area/space)
 "Sk" = (
 /obj/structure/table/standard,
 /obj/item/paper_bin{
@@ -6118,6 +7262,52 @@
 	icon_state = "lino"
 	},
 /area/centcom/merc_base)
+"Ss" = (
+/obj/structure/closet/crate,
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum{
+	pixel_x = 7
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"Sz" = (
+/obj/structure/bed/chair/custom/holochair,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"SR" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
+"SS" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
 "SW" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/kovacs,
@@ -6125,6 +7315,42 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"SY" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 4
+	},
+/obj/structure/lattice,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"Tc" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"Td" = (
+/obj/structure/table/rack,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/obj/item/cell/small/high,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"Te" = (
+/obj/item/stool/holostool,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source/texas)
 "Tf" = (
 /obj/structure/closet/cabinet,
 /obj/item/staff,
@@ -6132,6 +7358,34 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
+"To" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial_arena)
+"Tr" = (
+/obj/structure/table/bar_special,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"TL" = (
+/obj/structure/bed/chair/custom/holochair,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
 "TT" = (
 /obj/structure/closet{
 	name = "custodial"
@@ -6143,6 +7397,16 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"TY" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
 "TZ" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/marksman,
@@ -6157,6 +7421,12 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"Ug" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "Uj" = (
 /mob/living/bot/secbot/beepsky{
 	desc = "Very robust and powerful companion.";
@@ -6167,6 +7437,12 @@
 	name = "plating"
 	},
 /area/centcom/merc_base)
+"Uk" = (
+/obj/structure/table/bar_special,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "Uy" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list(150)
@@ -6183,6 +7459,14 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
+"UE" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/structure/catwalk/holo,
+/turf/simulated/floor/holofloor/plating/under,
+/area/holodeck/source/industrial)
 "UP" = (
 /obj/structure/table/standard,
 /obj/item/bodybag,
@@ -6204,6 +7488,19 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
+"UV" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/space)
+"UZ" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/space)
 "Va" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/item/reagent_containers/food/snacks/human/kabob,
@@ -6211,6 +7508,36 @@
 	icon_state = "white"
 	},
 /area/centcom/merc_base)
+"Vd" = (
+/obj/structure/window/reinforced/crescent,
+/obj/structure/window/reinforced/crescent{
+	dir = 8
+	},
+/turf/unsimulated/wall,
+/area/space)
+"Vi" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"Vs" = (
+/obj/structure/closet/secure_closet/pirate,
+/turf/simulated/floor/carpet,
+/area/centcom/pirate_base)
+"Vu" = (
+/obj/item/stool/padded,
+/obj/landmark/storyevent/pirate_spawn,
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
+"Vx" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/texas)
 "VH" = (
 /obj/structure/table/woodentable,
 /obj/item/book/manual/nuclear,
@@ -6219,6 +7546,19 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"VK" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
 "VM" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/box/donut,
@@ -6232,9 +7572,80 @@
 /obj/item/mop,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"VR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/table/bar_special,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"Wd" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/space)
 "Wf" = (
 /turf/simulated/mineral,
 /area/centcom/merc_base)
+"Wg" = (
+/obj/structure/railing/holorailing,
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/turf/simulated/open/holonofloor,
+/area/space)
+"Wj" = (
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"Wl" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial_arena)
+"Wq" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Ws" = (
+/obj/structure/table/holosteel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial_arena)
+"Wt" = (
+/obj/item/stack/material/steel{
+	amount = 120
+	},
+/obj/item/stack/material/steel{
+	amount = 120
+	},
+/obj/structure/table/rack,
+/turf/simulated/floor/tiled/steel/gray_platform,
+/area/centcom/pirate_base)
+"Ww" = (
+/obj/structure/railing/holorailing/grey{
+	dir = 4
+	},
+/obj/structure/railing/holorailing/grey,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/wireframe)
+"WK" = (
+/obj/structure/table/woodentable,
+/obj/item/device/lighting/toggleable/lamp{
+	pixel_x = 4;
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood,
+/area/centcom/pirate_base)
 "WS" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bag/money,
@@ -6243,6 +7654,54 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"Xl" = (
+/obj/structure/table/holo_woodentable,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
+"Xn" = (
+/obj/item/stool/holostool/bar,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"Xr" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial_arena)
+"Xu" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor6"
+	},
+/area/shuttle/pirate)
+"Xz" = (
+/obj/structure/bed/chair/custom/holochair/bar,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
+"XB" = (
+/obj/structure/railing/holorailing{
+	dir = 8
+	},
+/obj/structure/railing/holorailing,
+/turf/simulated/open/holonofloor,
+/area/holodeck/source/industrial)
+"XJ" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "escape_pod_2_recovery";
+	pixel_x = 25;
+	pixel_y = 0;
+	req_one_access = list(13);
+	tag_door = "escape_pod_2_recovery_hatch"
+	},
+/turf/simulated/floor/tiled/dark/golden,
+/area/centcom/evac)
 "XL" = (
 /obj/structure/table/standard,
 /obj/item/roller{
@@ -6279,6 +7738,23 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"XV" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial)
+"Yd" = (
+/obj/structure/bed/chair/custom/holochair/bar{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/space)
 "Yj" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chemical_dispenser/beer,
@@ -6313,6 +7789,32 @@
 	icon_state = "floor3"
 	},
 /area/shuttle/mercenary)
+"YJ" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns10,
+/area/space)
+"YN" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/holofloor/reinforced,
+/area/space)
+"YO" = (
+/obj/machinery/slotmachine,
+/turf/simulated/floor/holofloor/carpet,
+/area/holodeck/source/texas)
 "YR" = (
 /obj/structure/bed,
 /obj/item/bedsheet/clown,
@@ -6320,13 +7822,39 @@
 	icon_state = "floor4"
 	},
 /area/skipjack_station/start)
+"YV" = (
+/obj/structure/table/bar_special,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/simulated/floor/holofloor/tiled/bar_light,
+/area/holodeck/source/spacebar)
+"Ze" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns5,
+/area/space)
 "Zl" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/sidearm,
+/obj/structure/sign/faction/serbian{
+	pixel_y = 32
+	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"Zo" = (
+/turf/simulated/shuttle/wall{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/pirate)
 "Zr" = (
 /obj/machinery/button/remote/blast_door{
 	id = "syndieshutters_workshop";
@@ -6338,6 +7866,41 @@
 	icon_state = "floor6"
 	},
 /area/shuttle/mercenary)
+"Zs" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/space)
+"Zv" = (
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	direction = 2;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
+	},
+/turf/space/transit/north/shuttlespace_ns4,
+/area/space)
+"ZR" = (
+/obj/structure/bed/chair/custom/holochair{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/danger,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/reinforced,
+/area/holodeck/source/industrial)
 "ZT" = (
 /obj/item/storage/toolbox/syndicate{
 	pixel_x = -1;
@@ -6352,6 +7915,19 @@
 	icon_state = "dark"
 	},
 /area/centcom/merc_base)
+"ZY" = (
+/obj/item/stool/holostool,
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/holofloor/tiled/dark,
+/area/holodeck/source/industrial)
 
 (1,1,1) = {"
 aa
@@ -9229,31 +10805,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
 aa
 aa
 aa
@@ -9431,31 +11007,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eN
+eQ
+eP
+eL
+eR
+eO
+eW
+eT
+eJ
+eY
 aa
 aa
 aa
@@ -9633,31 +11209,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eM
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+ff
+eJ
+eY
 aa
 aa
 aa
@@ -9835,31 +11411,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eN
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+eJ
+eY
 aa
 aa
 aa
@@ -10037,31 +11613,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eO
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+eJ
+eY
 aa
 aa
 aa
@@ -10239,31 +11815,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eK
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fe
+eJ
+eY
 aa
 aa
 aa
@@ -10441,31 +12017,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eL
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fj
+eJ
+eY
 aa
 aa
 aa
@@ -10643,31 +12219,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eM
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+ff
+eJ
+eY
 aa
 aa
 aa
@@ -10845,31 +12421,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eN
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+ev
+wo
+Bc
+Ej
+YJ
+Si
+NW
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+eJ
+eY
 aa
 aa
 aa
@@ -11047,31 +12623,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eO
+fn
+fk
+fh
+fj
+fm
+fc
+fv
+fs
+fa
+fd
+fg
+ff
+fb
+KM
+Re
+fn
+fk
+fh
+fj
+fm
+fc
+eJ
+eY
 aa
 aa
 aa
@@ -11249,31 +12825,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eP
+fb
+fe
+fe
+fn
+fk
+fx
+gz
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+Ze
+Zv
+KM
+Re
+fn
+fk
+fh
+eJ
+eY
 aa
 aa
 aa
@@ -11451,31 +13027,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eQ
+ff
+fb
+fi
+fe
+fn
+gp
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+KM
+fe
+fn
+fk
+eJ
+eY
 aa
 aa
 aa
@@ -11653,31 +13229,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+fj
+fm
+fc
+fl
+fo
+hi
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+Ej
+fl
+fo
+fa
+eJ
+eY
 aa
 aa
 aa
@@ -11855,31 +13431,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eR
+fd
+ff
+fl
+fo
+fa
+fr
+es
+ff
+fb
+fi
+fe
+fn
+ff
+fb
+fi
+fe
+fn
+hb
+fh
+fj
+fm
+eJ
+eY
 aa
 aa
 aa
@@ -12057,31 +13633,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eS
+ff
+fh
+fn
+fk
+fh
+gz
+fm
+fc
+fl
+fo
+fa
+fd
+fk
+fh
+fj
+fm
+fc
+YJ
+fo
+fa
+fd
+eJ
+eY
 aa
 aa
 aa
@@ -12259,31 +13835,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eT
+fh
+fo
+fa
+fd
+fg
+gy
+fb
+fi
+fe
+fn
+fk
+fh
+fe
+fn
+fk
+fh
+fj
+Bc
+fc
+fl
+fo
+eJ
+eY
 aa
 aa
 aa
@@ -12461,31 +14037,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eQ
+ff
+fd
+ff
+fe
+fn
+gp
+fx
+fj
+fm
+fc
+fl
+fo
+fm
+fc
+YJ
+Si
+Lx
+ha
+fg
+ff
+fb
+eJ
+eY
 aa
 aa
 aa
@@ -12663,31 +14239,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+fh
+fn
+fh
+fc
+fl
+fo
+hi
+fr
+fg
+ff
+fb
+fi
+fh
+wo
+Bc
+fc
+fl
+fo
+fa
+fd
+fg
+eJ
+eY
 aa
 aa
 aa
@@ -12865,31 +14441,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eR
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+ev
+wo
+Bc
+Ej
+YJ
+KM
+Re
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+eJ
+eY
 aa
 aa
 aa
@@ -13067,31 +14643,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eS
+ff
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+eJ
+eY
 aa
 aa
 aa
@@ -13269,31 +14845,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eT
+fh
+fn
+fe
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+eJ
+eY
 aa
 aa
 aa
@@ -13471,31 +15047,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eM
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+ff
+eJ
+eY
 aa
 aa
 aa
@@ -13673,31 +15249,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eN
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+eJ
+eY
 aa
 aa
 aa
@@ -13875,31 +15451,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eO
+fn
+fk
+fh
+fj
+fm
+fc
+fl
+fo
+fa
+fd
+fg
+ff
+fb
+fi
+fe
+fn
+fk
+fh
+fj
+fm
+fc
+eJ
+eY
 aa
 aa
 aa
@@ -14077,31 +15653,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eJ
+eS
+eV
+eM
+eU
+eX
+eK
+eN
+eQ
+eP
+eL
+eR
+eO
+eW
+eT
+eJ
+eY
 aa
 aa
 aa
@@ -14279,31 +15855,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
+eY
 aa
 aa
 aa
@@ -16568,7 +18144,7 @@ cN
 hR
 cN
 hZ
-Ln
+dM
 ho
 aa
 aa
@@ -17370,9 +18946,9 @@ dn
 hZ
 hZ
 hZ
-dM
 dn
-cN
+dn
+XJ
 ho
 jy
 aa
@@ -29091,7 +30667,7 @@ iJ
 iJ
 iJ
 iq
-iU
+zt
 iU
 iU
 iJ
@@ -29181,19 +30757,19 @@ aa
 "}
 (114,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
 aa
 aa
 aa
@@ -29383,19 +30959,19 @@ aa
 "}
 (115,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ad
+ad
+ad
+ad
+mF
+uE
+uE
+uE
+zN
+uE
+uE
+eZ
 aa
 aa
 aa
@@ -29585,19 +31161,19 @@ aa
 "}
 (116,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+uE
+eZ
 aa
 aa
 aa
@@ -29787,19 +31363,19 @@ aa
 "}
 (117,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+uE
+uE
+uE
+Cw
+Cw
+Cw
+Cw
+uE
+uE
+uE
+uE
+eZ
 aa
 aa
 aa
@@ -29989,19 +31565,19 @@ aa
 "}
 (118,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+uE
+uE
+cE
+cg
+cg
+cg
+cg
+AD
+uE
+uE
+uE
+eZ
 aa
 aa
 aa
@@ -30191,19 +31767,19 @@ aa
 "}
 (119,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+uE
+uE
+cE
+cg
+cg
+cg
+cg
+AD
+uE
+uE
+uE
+eZ
 aa
 aa
 aa
@@ -30393,6 +31969,19 @@ aa
 "}
 (120,1,1) = {"
 aa
+ac
+uE
+uE
+cE
+cg
+cg
+cg
+cg
+AD
+uE
+uE
+uE
+eZ
 aa
 aa
 aa
@@ -30411,29 +32000,16 @@ aa
 aa
 aa
 aa
-ab
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ab
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -30595,47 +32171,47 @@ aa
 "}
 (121,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-af
-cy
+uE
+uE
 cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
+cg
+cg
+cg
+cg
+AD
+uE
+DE
+JA
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -30797,47 +32373,47 @@ aa
 "}
 (122,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ae
-ae
-aw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cy
-cE
-cE
-cE
-de
-cE
-cE
-cE
-cE
-de
-cE
-eZ
+uE
+uE
+uE
+vx
+vx
+vx
+vx
+uE
+OX
+Pk
+Pk
+Er
+ad
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -30999,47 +32575,47 @@ aa
 "}
 (123,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ae
-ae
-ae
-ae
-af
-ae
-ae
-aw
-ae
-ae
-cy
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
+ab
+av
+Vd
+ib
+ib
+Bk
+uE
+uE
+uE
+yE
+Pk
+uE
+uE
+uE
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31065,19 +32641,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gi
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+eb
+ab
 aa
 aa
 aa
@@ -31203,45 +32779,45 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-af
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cy
-cE
-de
-cE
-cE
-cE
-cE
-de
-cE
-cE
-cE
+JK
+JK
+ah
+uE
+uE
+uE
+yE
+Pk
+uE
+uE
+To
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31267,19 +32843,19 @@ aa
 aa
 aa
 aa
+eb
+aa
+aa
+Zo
+uG
+kb
+BR
+CK
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -31403,47 +32979,47 @@ aa
 "}
 (125,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-aw
-cy
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
+ab
+ad
+QH
+JK
+JK
+ah
+uE
+uE
+uE
+Xr
+Pk
+uE
+uE
+Lk
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31469,19 +33045,19 @@ aa
 aa
 aa
 aa
+eb
+aa
+Zo
+uG
+sO
+sO
+Sd
+uG
+CK
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -31605,47 +33181,47 @@ aa
 "}
 (126,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ae
-ae
-ae
-af
-ae
-ae
-aw
-ae
-ae
-ae
-cy
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
+JK
+KJ
+KJ
+KJ
+ah
+uE
+uE
+uE
+Xr
+uE
+uE
+uE
+Lk
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31671,19 +33247,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Zo
+uG
+aw
+te
+sO
+sO
+vG
+uG
+uG
+uG
+CK
+ab
 aa
 aa
 aa
@@ -31710,7 +33286,7 @@ hf
 hf
 hf
 gZ
-hK
+hJ
 hp
 gN
 EM
@@ -31807,47 +33383,47 @@ aa
 "}
 (127,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ae
-ae
-ae
-ae
-af
-ae
-ae
-ae
-ae
-ae
-cy
-cE
-cE
-cE
-de
-cE
-cE
-cE
-cE
-de
-cE
+ah
+Pc
+Pc
+Pc
+IK
+dW
+uE
+uE
+Xr
+uE
+uE
+OQ
+Dy
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -31873,19 +33449,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Gt
+kH
+sO
+sO
+sO
+sO
+sO
+DS
+vG
+jT
+sc
+ab
 aa
 aa
 aa
@@ -32009,47 +33585,47 @@ aa
 "}
 (128,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cy
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-cE
-eZ
+ah
+Pc
+Pc
+Pc
+jp
+Pc
+uE
+uE
+Xr
+uE
+Wl
+AU
+av
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32075,19 +33651,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Om
+Ik
+Xu
+sO
+sO
+sO
+sO
+sO
+vG
+uG
+uG
+ab
 aa
 aa
 aa
@@ -32114,7 +33690,7 @@ hh
 hh
 hh
 gZ
-hJ
+Ho
 hp
 gN
 gN
@@ -32211,46 +33787,18 @@ aa
 "}
 (129,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ae
-aw
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-cy
-cE
-de
-cE
-cE
-cE
-cE
-de
-cE
-cE
-cE
+ah
+Pc
+Pc
+Pc
+ip
+RB
+uE
+uE
+Xr
+uE
+Ws
 eZ
 aa
 aa
@@ -32258,6 +33806,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 ei
 ei
 el
@@ -32277,19 +33853,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+eb
+Gt
+sT
+sO
+sO
+sO
+sO
+sO
+Gl
+vG
+jT
+tv
+ab
 aa
 aa
 aa
@@ -32413,6 +33989,19 @@ aa
 "}
 (130,1,1) = {"
 aa
+ac
+JK
+ib
+ib
+ib
+ah
+uE
+uE
+uE
+Pg
+uE
+Sh
+eZ
 aa
 aa
 aa
@@ -32431,29 +34020,16 @@ aa
 aa
 aa
 aa
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32479,19 +34055,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+zK
+uG
+sA
+Ke
+sO
+sO
+vG
+uG
+uG
+uG
+dO
+ab
 aa
 aa
 aa
@@ -32615,6 +34191,19 @@ aa
 "}
 (131,1,1) = {"
 aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
 aa
 aa
 aa
@@ -32633,29 +34222,16 @@ aa
 aa
 aa
 aa
-ac
-ah
-ax
-ay
-aH
-aT
-aT
-bN
-ay
-ax
-ah
-cy
-cF
-cF
-cF
-cF
-cF
-cF
-cF
-eq
-cF
-cF
-eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32681,19 +34257,19 @@ aa
 aa
 aa
 aa
+ab
+aa
+zK
+uG
+sO
+sO
+Sd
+uG
+dO
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -32817,47 +34393,47 @@ aa
 "}
 (132,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ai
-ay
-ax
-aI
-aT
-aT
-bO
-ax
-ay
-ai
-cy
-cF
-df
-cF
-cF
-cF
-cF
-cF
-cF
-dO
-cF
+ab
+ad
+ad
+ad
+ad
+mF
+Bq
+Bq
+Bq
+zN
+Bq
+Bq
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -32883,19 +34459,19 @@ aa
 aa
 aa
 aa
+ab
+aa
+aa
+zK
+uG
+kN
+if
+dO
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
 aa
 aa
 aa
@@ -32934,7 +34510,7 @@ jq
 jq
 jq
 jq
-Ho
+jq
 hf
 mO
 iB
@@ -33019,46 +34595,18 @@ aa
 "}
 (133,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ah
-ax
-aG
-aQ
-aT
-aT
-bP
-bX
-ax
-ah
-cy
-cF
-cF
-cF
-dG
-cF
-cF
-cF
-cF
-cF
-cF
+IZ
+IZ
+IZ
+IZ
+an
+uM
+RP
+eq
+IZ
+Ft
+Ft
 eZ
 aa
 aa
@@ -33070,6 +34618,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 el
 fT
 fT
@@ -33085,19 +34661,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+Rn
+Rn
+Rn
+Rn
+RU
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa
@@ -33118,11 +34694,11 @@ hl
 hl
 hl
 hl
-Wf
-Wf
-Wf
-Wf
-Wf
+hl
+hl
+hl
+hl
+hl
 gZ
 gZ
 gZ
@@ -33221,46 +34797,18 @@ aa
 "}
 (134,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ai
-ay
-aH
-aR
-aT
-aT
-aR
-bN
-ay
-ai
-cy
-cF
-cF
-cF
-cF
-dO
-cF
-cF
-cF
-dG
-cF
+IZ
+IZ
+IZ
+Ww
+aX
+aX
+aX
+pm
+IZ
+IZ
+IZ
 eZ
 aa
 aa
@@ -33272,6 +34820,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 el
 fT
 fT
@@ -33287,19 +34863,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HH
+kS
+kS
+hX
+HB
+HB
+HB
+HB
+HB
+HB
+wp
+Rn
 aa
 aa
 aa
@@ -33423,47 +34999,47 @@ aa
 "}
 (135,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ah
-ax
-aI
-aS
-bl
-bl
-aS
-bO
-ax
-ah
-cy
-cF
-cF
-cF
-dy
-cF
-cF
-df
-cF
-cF
-eq
+IZ
+IZ
+bt
+aX
+Sc
+Sc
+mv
+HL
+an
+an
+an
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -33489,19 +35065,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+HB
+Vu
+Vu
+Vu
+HB
+Ss
+Rn
 aa
 aa
 aa
@@ -33625,46 +35201,18 @@ aa
 "}
 (136,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ah
-ay
-aH
-aS
-bl
-bl
-aS
-bN
-ay
-ah
-cy
-cF
-cF
-cF
-cF
-cF
-cF
-cF
-eq
-cF
-cF
+dz
+dz
+yQ
+aX
+Sc
+Sc
+Sc
+Bq
+Bq
+Bq
+Bq
 eZ
 aa
 aa
@@ -33676,6 +35224,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 el
 fU
 fT
@@ -33691,19 +35267,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+QO
+Qo
+DD
+HB
+HB
+Vu
+Av
+WK
+Hp
+HB
+KL
+Rn
 aa
 aa
 aa
@@ -33827,46 +35403,18 @@ aa
 "}
 (137,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ai
-ax
-aI
-aT
-aT
-aT
-aT
-bO
-ax
-ai
-cy
-cF
-df
-cF
-cF
-cF
-cF
-dG
-cF
-dO
-cF
+an
+an
+bt
+aX
+Sc
+Sc
+mv
+Gg
+eq
+Ft
+Ft
 eZ
 aa
 aa
@@ -33878,6 +35426,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 el
 fT
 fT
@@ -33893,19 +35469,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+Vu
+Av
+tp
+Hp
+HB
+yy
+Rn
 aa
 aa
 aa
@@ -33933,16 +35509,16 @@ hl
 hl
 hl
 gZ
-SW
+hK
 MV
-JW
-nL
+TZ
+AW
+XP
 ty
+iX
+iX
 wf
-iX
-iX
-iX
-zt
+hf
 jq
 jq
 jG
@@ -34029,46 +35605,18 @@ aa
 "}
 (138,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ah
-ay
-aJ
-aU
-bm
-bm
-aU
-bY
-ay
-ah
-cy
-cF
-cF
-dy
-cF
-cF
-cF
-cF
-cF
-cF
-cF
+Sc
+Sc
+vX
+HF
+aX
+aX
+aX
+pm
+dz
+IZ
+IZ
 eZ
 aa
 aa
@@ -34080,6 +35628,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 el
 fT
 fT
@@ -34095,19 +35671,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HY
+IL
+Du
+HB
+HB
+HB
+Vu
+Vu
+Vu
+HB
+zl
+Rn
 aa
 aa
 aa
@@ -34231,47 +35807,47 @@ aa
 "}
 (139,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ai
-ax
-ay
-ax
-ay
-ay
-ax
-ay
-ay
-ai
-cy
-cF
-cF
-cF
-cF
-dO
-cF
-cF
-cF
-dG
-cF
-eZ
+Sc
+Sc
+pm
+dz
+eq
+eq
+Ft
+IZ
+dz
+IZ
+IZ
+Er
+ad
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -34297,19 +35873,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+HB
+HB
+HB
+HB
+HB
+HB
+dI
+HB
+dI
+HB
+QN
+Rn
 aa
 aa
 aa
@@ -34433,47 +36009,47 @@ aa
 "}
 (140,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
+av
+Vd
+IZ
+IZ
+IZ
+dz
+IZ
+IZ
+dz
+IZ
+bt
+Sc
+Sc
+eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -34499,19 +36075,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Rn
+xr
+xr
+BQ
+HB
+HB
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa
@@ -34540,10 +36116,10 @@ hl
 hl
 gZ
 Zl
-AW
-TZ
+nL
+SW
 BP
-XP
+JW
 HQ
 iX
 iX
@@ -34637,44 +36213,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-aj
-az
-az
-aV
-bn
-bn
-bn
-bn
-bn
-cm
-cy
-cG
-cG
-cG
-dH
-dP
-dP
-dH
-dH
-dH
-dH
+IZ
+IZ
+IZ
+dz
+IZ
+IZ
+dz
+IZ
+bt
+Sc
+Sc
 eZ
 aa
 aa
@@ -34718,6 +36268,32 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Rn
+HB
+HB
+HB
+HB
+HB
+uq
+Vs
+uq
+Vs
+uq
+Vs
+Rn
+aa
+aa
+aa
+aa
 hk
 aa
 aa
@@ -34749,7 +36325,7 @@ iX
 iX
 iX
 iX
-iX
+wx
 gZ
 gZ
 gZ
@@ -34837,46 +36413,20 @@ aa
 "}
 (142,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ak
-az
-az
-aV
-bn
-bn
-bn
-bn
-bn
-bn
-cy
-cG
-cG
-cG
-dH
-dQ
-ed
-ed
-ed
-ey
-dH
+ab
+ad
+QH
+IZ
+IZ
+IZ
+dz
+IZ
+IZ
+dz
+IZ
+bt
+Sc
+Sc
 eZ
 aa
 aa
@@ -34920,6 +36470,32 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Rn
+Wt
+Td
+Em
+HB
+HB
+rv
+rv
+rv
+rv
+rv
+rv
+Rn
+aa
+aa
+aa
+aa
 hk
 aa
 aa
@@ -34951,7 +36527,7 @@ iX
 iX
 iX
 iX
-iX
+Qz
 gZ
 hl
 hl
@@ -35039,46 +36615,20 @@ aa
 "}
 (143,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ak
-az
-az
-aV
-bo
-bB
-bB
-bB
-cg
-bn
-cy
-cG
-dg
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-dH
-dR
-ee
-ee
-ee
-ez
-dH
+IZ
+IZ
+dz
+IZ
+bt
+Sc
+Sc
 eZ
 aa
 aa
@@ -35118,6 +36668,32 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Rn
+HB
+HB
+HB
+HB
+HB
+rv
+rv
+rv
+rv
+rv
+rv
+Rn
 aa
 aa
 aa
@@ -35241,46 +36817,20 @@ aa
 "}
 (144,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ak
-az
-az
-aV
-bp
-bC
-bC
-bC
-ch
-bn
-cy
-cG
-dh
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-dH
-dR
-ee
-ee
-ee
-ez
-dH
+IZ
+IZ
+dz
+dz
+yQ
+Sc
+Sc
 eZ
 aa
 aa
@@ -35320,6 +36870,32 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Rn
+MM
+JH
+yU
+HB
+HB
+uq
+Vs
+uq
+Vs
+uq
+Vs
+Rn
 aa
 aa
 aa
@@ -35443,47 +37019,21 @@ aa
 "}
 (145,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ak
-az
-az
-aV
-bp
-bC
-bC
-bC
-ch
-bn
-cy
-cG
-dh
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-dH
-dR
-ee
-ee
-ee
-ez
-dH
-eZ
+IZ
+IZ
+dz
+IZ
+IZ
+AU
+av
+ab
 aa
 aa
 aa
@@ -35522,6 +37072,32 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Rn
+Rn
+Rn
+Rn
+Rn
+Pi
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa
@@ -35645,46 +37221,18 @@ aa
 "}
 (146,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ak
-az
-az
-aV
-bp
-bC
-bC
-bC
-ch
-bn
-cy
-cG
-dh
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-dH
-dR
-ee
-ee
-ee
-ez
-dH
+IZ
+an
+SY
+IZ
+IZ
 eZ
 aa
 aa
@@ -35721,6 +37269,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Rn
+HB
+HB
+HB
+HB
+HB
+HB
+HB
+Rn
 aa
 aa
 aa
@@ -35847,46 +37423,18 @@ aa
 "}
 (147,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 ac
-ak
-az
-az
-aV
-bp
-bC
-bC
-bC
-ch
-bn
-cy
-cG
-di
+IZ
+IZ
+IZ
+IZ
+IZ
 dz
-dH
-dR
-ee
-ee
-ee
-ez
-dH
+bt
+Bq
+Bq
+vX
+IZ
 eZ
 aa
 aa
@@ -35923,6 +37471,34 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Rn
+oF
+oF
+oF
+HB
+oF
+oF
+oF
+Rn
 aa
 aa
 aa
@@ -36049,47 +37625,36 @@ aa
 "}
 (148,1,1) = {"
 aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
 aa
 aa
 aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ak
-az
-az
-aV
-bq
-bD
-bD
-bD
-ci
-bn
-cy
-cG
-cG
-cG
-dH
-dS
-ef
-ef
-er
-eA
-dH
-eZ
 aa
 aa
 aa
@@ -36125,6 +37690,17 @@ aa
 aa
 aa
 aa
+aa
+aa
+Rn
+II
+II
+II
+QN
+II
+II
+II
+Rn
 aa
 aa
 aa
@@ -36251,46 +37827,34 @@ aa
 "}
 (149,1,1) = {"
 aa
+ab
+ad
+ad
+ad
+ad
+mF
+yn
+NK
+RO
+zN
+ED
+wO
+eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ak
-az
-az
-aV
-bn
-bn
-bn
-bn
-bn
-bn
-cy
-cG
-cG
-cG
-dH
-dH
-dH
-dH
-dH
-dH
-dH
+ab
+ad
+ad
+ad
+ad
+mF
+KX
+KX
+KX
+zN
+KX
+KX
 eZ
 aa
 aa
@@ -36327,6 +37891,18 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
+Rn
 aa
 aa
 aa
@@ -36453,6 +38029,35 @@ aa
 "}
 (150,1,1) = {"
 aa
+ac
+ap
+aI
+Dl
+aI
+ap
+aI
+aI
+aI
+aI
+aI
+aI
+eZ
+aa
+aa
+aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -36465,35 +38070,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
 aa
 aa
 aa
@@ -36655,47 +38231,47 @@ aa
 "}
 (151,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+aI
+aI
+aI
+aI
+zM
+aI
+aI
+aI
+aI
+rY
+tg
+eZ
 aa
 aa
 aa
 ac
-al
-al
-al
-al
-al
-al
-al
-al
-al
-al
-cz
-cH
-cH
-cH
-cH
-cH
-cH
-cH
-cH
-cH
-cH
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -36857,47 +38433,47 @@ aa
 "}
 (152,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+VK
+aI
+Ec
+aI
+aI
+aI
+yg
+NL
+aI
+aI
+xq
+eZ
 aa
 aa
 aa
 ac
-am
-aA
-aK
-aK
-aK
-aK
-aK
-bZ
-aK
-am
-cz
-cI
-cI
-cH
-cI
-cI
-cI
-cI
-cH
-cI
-cI
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -37059,47 +38635,47 @@ aa
 "}
 (153,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+eh
+aI
+eh
+aI
+aI
+Sz
+eh
+eh
+ER
+aI
+aI
+eZ
 aa
 aa
 aa
 ac
-an
-aB
-aB
-aW
-br
-bE
-bQ
-ca
-bQ
-cn
-cz
-cJ
-cJ
-dA
-cJ
-cJ
-cJ
-cJ
-es
-cJ
-cJ
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -37261,47 +38837,47 @@ aa
 "}
 (154,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+eh
+aI
+eh
+aI
+aI
+BX
+eh
+eh
+ZR
+aI
+aI
+eZ
 aa
 aa
 aa
 ac
-an
-aB
-an
-aX
-bs
-bF
-bR
-bG
-bR
-co
-cz
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -37463,47 +39039,47 @@ aa
 "}
 (155,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+zM
+aI
+zM
+aI
+aI
+aI
+qG
+SR
+aI
+ZY
+yv
+eZ
 aa
 aa
 aa
 ac
-an
-aB
-aL
-aY
-bs
-bG
-bG
-bG
-bR
-co
-cz
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -37665,47 +39241,47 @@ aa
 "}
 (156,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+Ii
+ap
+eh
+Er
+ad
+ab
 aa
 ac
-an
-aB
-an
-aZ
-bs
-bF
-bR
-bG
-bR
-co
-cz
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eZ
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+Er
+ad
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -37867,47 +39443,47 @@ aa
 "}
 (157,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-an
-aB
-aB
-ba
-bt
-bH
-bS
-cb
-bS
-cp
-cz
-cM
-eF
-eF
-eF
-Eb
-eF
-eF
-eF
-eF
-eE
+ab
+av
+Vd
+vf
+XB
+rJ
+SS
+aI
+aI
+wq
+eh
+aI
+aI
+aI
 eZ
+aa
+ab
+av
+Vd
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -38071,45 +39647,45 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+QQ
+sr
+uH
+aI
+aI
+aI
+Jw
+eh
+aI
+aI
+xM
+eZ
 aa
 aa
 aa
 ac
-an
-aB
-aM
-bb
-bb
-bb
-bb
-bb
-bb
-bb
-cz
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -38271,47 +39847,47 @@ aa
 "}
 (159,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-an
-aB
-aB
-bc
-bu
-bu
-bu
-bu
-cj
-an
-cz
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
-eF
+ab
+ad
+QH
+QQ
+sr
+aT
+SS
+aI
+XV
+ap
+eh
+aI
+aI
+UE
 eZ
+aa
+ab
+ad
+QH
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -38473,6 +40049,37 @@ aa
 "}
 (160,1,1) = {"
 aa
+ac
+QQ
+QQ
+QQ
+QQ
+OZ
+aI
+aI
+wq
+eh
+aI
+aI
+aI
+UE
+eZ
+aa
+ac
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+eZ
 aa
 aa
 aa
@@ -38483,37 +40090,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
 aa
 aa
 aa
@@ -38675,47 +40251,47 @@ aa
 "}
 (161,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+QQ
+QQ
+QQ
+QQ
+sr
+aI
+aI
+wq
+eh
+aI
+aI
+jx
+xP
+eZ
 aa
 ac
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-cz
-cO
-cO
-cO
-cO
-cO
-cO
-cO
-eu
-eC
-eC
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -38877,47 +40453,47 @@ aa
 "}
 (162,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+QQ
+QQ
+QQ
+QQ
+sr
+aI
+aI
+wq
+ap
+aI
+tN
+AU
+av
+ab
 aa
 ac
-ao
-aC
-ao
-ao
-ao
-ao
-ao
-ao
-aC
-ao
-cz
-cO
-cO
-cO
-cO
-cO
-cO
-cO
-eu
-eC
-eC
-eZ
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+AU
+av
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -39079,47 +40655,47 @@ aa
 "}
 (163,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+QQ
+QQ
+QQ
+QQ
+sr
+aI
+aI
+wq
+eh
+aI
+Jj
+eZ
 aa
 aa
 aa
 ac
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-cz
-cO
-dm
-cO
-cO
-cO
-cO
-cO
-eu
-eC
-eC
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -39281,47 +40857,47 @@ aa
 "}
 (164,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+QQ
+QQ
+QQ
+QQ
+sr
+aI
+aI
+yX
+eh
+aI
+xn
+eZ
 aa
 aa
 aa
 ac
-ao
-ao
-ao
-aC
-ao
-ao
-aC
-ao
-ao
-ao
-cz
-cO
-cO
-cO
-cO
-cO
-cO
-cO
-eu
-eC
-eC
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
+KX
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -39483,6 +41059,35 @@ aa
 "}
 (165,1,1) = {"
 aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
+aa
+aa
+aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
 aa
 aa
 aa
@@ -39495,35 +41100,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-cz
-cO
-cO
-cO
-CW
-cO
-cO
-cO
-eu
-eC
-eC
-eZ
 aa
 aa
 aa
@@ -39685,47 +41261,47 @@ aa
 "}
 (166,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-cz
-cO
-cO
-cO
-cO
-cO
-cO
-cO
-eu
-eC
-eC
+ab
+ad
+ad
+ad
+ad
+mF
+Cq
+Cq
+Cq
+zN
+Ge
+YO
 eZ
+aa
+aa
+aa
+ab
+ad
+ad
+ad
+ad
+mF
+Ok
+Qp
+ui
+zN
+td
+OM
+eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -39887,47 +41463,47 @@ aa
 "}
 (167,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Fp
+Pl
+Cq
+Pl
+Fp
+Pl
+Pl
+Pl
+Pl
+Pl
+Pl
+eZ
 aa
 aa
 aa
 ac
-ao
-ao
-ao
-aC
-ao
-ao
-aC
-ao
-ao
-ao
-cz
-cO
-cO
-dB
-cO
-cO
-cO
-cO
-eu
-eC
-eC
+wa
+LZ
+ef
+NM
+Kp
+ef
+ef
+ef
+ef
+ef
+ef
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -40089,47 +41665,47 @@ aa
 "}
 (168,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Pl
+Pl
+Pl
+Pl
+NF
+Pl
+Pl
+Pl
+Pl
+Ly
+Fp
+eZ
 aa
 aa
 aa
 ac
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-cz
-cO
-cO
-dC
-cO
-rv
-cO
-cO
-eu
-eC
-eC
+rz
+ef
+ef
+ef
+ef
+ef
+io
+GL
+ef
+ef
+Ga
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -40291,47 +41867,47 @@ aa
 "}
 (169,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+lG
+Pl
+lG
+Pl
+Pl
+Pl
+lG
+lG
+Pl
+Pl
+NF
+eZ
 aa
 aa
 aa
 ac
-ao
-aC
-ao
-ao
-ao
-ao
-ao
-ao
-aC
-ao
-cz
-cO
-cO
-cO
-cO
-cO
-cO
-cO
-eu
-eC
-eC
+yD
+ef
+yD
+ef
+ef
+TL
+jQ
+jQ
+Tc
+ef
+Jx
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -40493,6 +42069,35 @@ aa
 "}
 (170,1,1) = {"
 aa
+ac
+Fp
+Pl
+Fp
+Pl
+Pl
+Ly
+Lb
+NO
+Aa
+Pl
+Pl
+eZ
+aa
+aa
+aa
+ac
+Vi
+ef
+Vi
+ef
+ef
+zT
+jQ
+jQ
+Pn
+ef
+ef
+eZ
 aa
 aa
 aa
@@ -40505,35 +42110,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
 aa
 aa
 aa
@@ -40695,47 +42271,47 @@ aa
 "}
 (171,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Fp
+Pl
+Fp
+Pl
+Pl
+Ly
+Rh
+Rh
+Aa
+Pl
+Pl
+eZ
 aa
 aa
 aa
 ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-cP
-cP
-cP
-cP
-cP
-cP
-cP
-cP
-cP
-cP
+Vi
+ef
+Vi
+ef
+ef
+ef
+aU
+cM
+ef
+ef
+ef
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -40897,47 +42473,47 @@ aa
 "}
 (172,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+NF
+Pl
+NF
+Pl
+Pl
+Pl
+NF
+NF
+Pl
+Te
+Te
+eZ
 aa
 aa
 aa
 ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-cQ
-cQ
-cP
-cQ
-cQ
-cQ
-cQ
-cP
-cQ
-cQ
+yR
+ef
+yR
+ef
+ef
+ef
+ef
+ef
+ef
+QU
+Zs
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -41099,47 +42675,47 @@ aa
 "}
 (173,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Pl
+Pl
+Pl
+Pl
+Pl
+Pl
+Pl
+Pl
+Te
+Fp
+Fp
+Er
+ad
+ab
 aa
 ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-cR
-cR
-dD
-cR
-cR
-cR
-cR
-ev
-cR
-cR
-eZ
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+ef
+EN
+jQ
+jQ
+Er
+ad
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -41301,47 +42877,47 @@ aa
 "}
 (174,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-cS
-en
-en
-en
-dY
-ej
-en
-en
-en
-eG
+ab
+av
+Vd
+Vx
+lg
+YO
+Ge
+Pl
+Pl
+Te
+Fp
+Pl
+Pl
+Pl
 eZ
+aa
+ab
+av
+Vd
+UV
+UZ
+BJ
+zO
+ef
+ef
+Gp
+jQ
+xk
+ef
+ef
+eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -41505,45 +43081,45 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Ir
+uS
+Cq
+Pl
+Pl
+Pl
+Te
+Nj
+Pl
+Pl
+Fp
+eZ
 aa
 aa
 aa
 ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-GK
-en
-en
-en
-dY
-ej
-en
-en
-en
-JC
+Bp
+Ja
+hD
+ef
+ef
+ef
+Bo
+jQ
+Wq
+ef
+Mp
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -41705,47 +43281,47 @@ aa
 "}
 (176,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-GK
-en
-en
-en
-dY
-ej
-en
-en
-en
-JC
+ab
+ad
+QH
+Ir
+uS
+YO
+Ge
+Pl
+Te
+Ng
+Fp
+Pl
+Pl
+Cq
 eZ
+aa
+ab
+ad
+QH
+cF
+Ja
+xd
+zO
+ef
+Kt
+jQ
+jQ
+Wq
+ef
+Kr
+eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -41907,47 +43483,47 @@ aa
 "}
 (177,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Ir
+Ir
+Ir
+Ir
+yq
+Pl
+Pl
+Te
+Fp
+Pl
+Pl
+Pl
+Cq
+eZ
 aa
 ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-GK
-en
-en
-en
-dY
-ej
-en
-en
-en
-JC
+Bp
+Cx
+Bp
+Bp
+Wg
+ef
+ef
+Gp
+jQ
+xk
+QG
+ef
+OA
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -42109,47 +43685,47 @@ aa
 "}
 (178,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Ir
+Ir
+Ir
+Ir
+uS
+Pl
+Pl
+Te
+Fp
+Pl
+Pl
+Xl
+Cq
+eZ
 aa
 ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-GK
-en
-en
-en
-dY
-ej
-en
-en
-en
-JC
+Bp
+Bp
+Bp
+Bp
+Ja
+ef
+ef
+Gp
+jQ
+Wq
+ef
+dP
+TY
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -42311,47 +43887,47 @@ aa
 "}
 (179,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Ir
+Ir
+Ir
+Ir
+uS
+Pl
+Pl
+Te
+Fp
+Pl
+Fp
+AU
+av
+ab
 aa
 ac
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-cz
-GK
-en
-en
-en
-dY
-ej
-en
-en
-en
-JC
-eZ
+Bp
+Bp
+Bp
+Bp
+Ja
+ef
+ef
+Gp
+jQ
+Wq
+aZ
+AU
+av
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -42513,6 +44089,35 @@ aa
 "}
 (180,1,1) = {"
 aa
+ac
+Ir
+Ir
+Ir
+Ir
+uS
+Pl
+Pl
+Te
+Fp
+Pl
+Fp
+eZ
+aa
+aa
+aa
+ac
+Bp
+Bp
+Bp
+Bp
+Ja
+ef
+ef
+Gp
+jQ
+Wq
+Vi
+eZ
 aa
 aa
 aa
@@ -42525,35 +44130,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ab
 aa
 aa
 aa
@@ -42715,47 +44291,47 @@ aa
 "}
 (181,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Ir
+Ir
+Ir
+Ir
+uS
+Pl
+Pl
+Pl
+Fp
+Pl
+Fp
+eZ
 aa
 aa
 aa
 ac
-aq
-aq
-aq
-aq
-aq
-aq
-aq
-aq
-aq
-aq
-cz
-cU
-cV
-cV
-cV
-cV
-cV
-cV
-cV
-cV
-cV
+Bp
+Bp
+Bp
+Bp
+Ja
+ef
+ef
+Qw
+jQ
+Wq
+YN
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -42917,6 +44493,35 @@ aa
 "}
 (182,1,1) = {"
 aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
+aa
+aa
+aa
+ab
+av
+av
+av
+av
+av
+ag
+ag
+ag
+av
+ag
+ag
+ab
 aa
 aa
 aa
@@ -42929,35 +44534,6 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ar
-ar
-aq
-ar
-ar
-ar
-ar
-aq
-ar
-ar
-cz
-cU
-cV
-cV
-dp
-dp
-dp
-dp
-cV
-cV
-cV
-eZ
 aa
 aa
 aa
@@ -43119,47 +44695,47 @@ aa
 "}
 (183,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-as
-as
-aN
-as
-as
-as
-as
-cc
-as
-as
-cz
-cV
-cV
-cV
-dJ
-dJ
-dJ
-dJ
-cV
-cV
-cV
+ab
+ad
+ad
+ad
+ad
+mF
+Hu
+Hu
+Hu
+zN
+Xn
+PY
 eZ
+aa
+aa
+aa
+ab
+ad
+ad
+ad
+ad
+mF
+Wj
+Wj
+Wj
+zN
+Be
+vU
+eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -43321,47 +44897,47 @@ aa
 "}
 (184,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Fy
+OI
+Gw
+CD
+Fy
+Gw
+Gw
+Gw
+Gw
+Gw
+Gw
+eZ
 aa
 aa
 aa
 ac
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cz
-cV
-cV
-dE
-eo
-eo
-eo
-eo
-ew
-dp
-cV
+vz
+Yd
+rh
+Xz
+vz
+rh
+rh
+rh
+rh
+rh
+rh
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -43523,47 +45099,47 @@ aa
 "}
 (185,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Gw
+Gw
+Gw
+Gw
+Gw
+Gw
+wb
+wb
+Gw
+Gw
+Fy
+eZ
 aa
 aa
 aa
 ac
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cz
-cV
-dp
-dF
-eo
-eo
-eo
-eo
-ew
-dp
-cV
+KZ
+rh
+rh
+rh
+rh
+rh
+OV
+OV
+rh
+rh
+vz
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -43725,47 +45301,47 @@ aa
 "}
 (186,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+wb
+Gw
+wb
+Gw
+Gw
+CD
+Ay
+aR
+OI
+Gw
+CF
+eZ
 aa
 aa
 aa
 ac
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cz
-cV
-dp
-dF
-eo
-eo
-eo
-eo
-ew
-dp
-cV
+OV
+rh
+OV
+rh
+rh
+Xz
+Tr
+rX
+Yd
+rh
+mL
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -43927,47 +45503,47 @@ aa
 "}
 (187,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Fy
+Gw
+Fy
+Gw
+Gw
+CD
+VR
+VR
+OI
+Gw
+Gw
+eZ
 aa
 aa
 aa
 ac
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cz
-cV
-dp
-dF
-eo
-eo
-eo
-eo
-ex
-cV
-cV
+vz
+rh
+vz
+rh
+rh
+Xz
+Jr
+Jr
+Yd
+rh
+rh
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -44129,47 +45705,47 @@ aa
 "}
 (188,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Fy
+Gw
+Fy
+Gw
+Gw
+Gw
+CF
+CF
+Gw
+Gw
+Gw
+eZ
 aa
 aa
 aa
 ac
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cz
-cV
-cV
-cV
-dN
-dN
-dN
-dN
-cV
-cV
-eI
+vz
+rh
+vz
+rh
+rh
+rh
+mL
+mL
+rh
+rh
+rh
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -44331,47 +45907,47 @@ aa
 "}
 (189,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+CF
+Gw
+CF
+Gw
+Gw
+Gw
+Gw
+Gw
+Gw
+Xn
+Xn
+eZ
 aa
 aa
 aa
 ac
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cr
-cz
-cV
-cV
-cV
-dp
-dp
-dp
-dp
-cV
-cV
-eI
+mL
+rh
+mL
+rh
+rh
+rh
+rh
+rh
+rh
+Be
+Be
 eZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -44533,47 +46109,47 @@ aa
 "}
 (190,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Gw
+Gw
+Gw
+Gw
+Gw
+Gw
+Gw
+Gw
+Xn
+Fy
+Fy
+Er
+ad
 ab
-av
-av
-av
-av
-av
-av
-av
-av
-av
-av
+aa
+ac
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+Be
+vz
+vz
+Er
+ad
 ab
-av
-av
-av
-av
-av
-av
-av
-av
-av
-av
-ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -44735,37 +46311,37 @@ aa
 "}
 (191,1,1) = {"
 aa
+ab
+av
+Vd
+Nw
+ee
+PY
+Xn
+Gw
+Gw
+Xn
+Fy
+Gw
+Gw
+Gw
+eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+av
+Vd
+Wd
+xZ
+vU
+Be
+rh
+rh
+Be
+vz
+rh
+rh
+rh
+eZ
 aa
 aa
 aa
@@ -44939,35 +46515,35 @@ aa
 aa
 aa
 aa
+ac
+Fc
+IN
+Hu
+Gw
+Gw
+Gw
+Xn
+IP
+Gw
+Gw
+Fy
+eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Bp
+Cl
+Wj
+rh
+rh
+rh
+Be
+Hk
+rh
+rh
+vz
+eZ
 aa
 aa
 aa
@@ -45139,37 +46715,37 @@ aa
 "}
 (193,1,1) = {"
 aa
+ab
+ad
+QH
+Fc
+IN
+PY
+Xn
+Gw
+Xn
+CJ
+Fy
+Gw
+Gw
+Hu
+eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ad
+QH
+cF
+Cl
+vU
+Be
+rh
+Be
+NE
+vz
+rh
+rh
+Or
+eZ
 aa
 aa
 aa
@@ -45341,37 +46917,37 @@ aa
 "}
 (194,1,1) = {"
 aa
+ac
+Fc
+Fc
+Fc
+Fc
+ez
+Gw
+Gw
+Xn
+Fy
+Gw
+Gw
+Gw
+Hu
+eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Bp
+Cx
+Bp
+Bp
+xh
+rh
+rh
+Be
+vz
+rh
+rh
+rh
+Wj
+eZ
 aa
 aa
 aa
@@ -45543,37 +47119,37 @@ aa
 "}
 (195,1,1) = {"
 aa
+ac
+Fc
+Fc
+Fc
+Fc
+IN
+Gw
+Gw
+Xn
+Fy
+Gw
+Gw
+YV
+Hu
+eZ
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Bp
+Bp
+Bp
+Bp
+Cl
+rh
+rh
+Be
+vz
+rh
+rh
+Uk
+Wj
+eZ
 aa
 aa
 aa
@@ -45745,37 +47321,37 @@ aa
 "}
 (196,1,1) = {"
 aa
+ac
+Fc
+Fc
+Fc
+Fc
+IN
+Gw
+Gw
+Xn
+Fy
+Gw
+Fy
+AU
+av
+ab
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Bp
+Bp
+Bp
+Bp
+Cl
+rh
+rh
+Be
+vz
+rh
+vz
+AU
+av
+ab
 aa
 aa
 aa
@@ -45947,35 +47523,35 @@ aa
 "}
 (197,1,1) = {"
 aa
+ac
+Fc
+Fc
+Fc
+Fc
+IN
+Gw
+Gw
+Xn
+Fy
+Gw
+Fy
+eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Bp
+Bp
+Bp
+Bp
+Cl
+rh
+rh
+Be
+vz
+rh
+vz
+eZ
 aa
 aa
 aa
@@ -46149,35 +47725,35 @@ aa
 "}
 (198,1,1) = {"
 aa
+ac
+Fc
+Fc
+Fc
+Fc
+IN
+Gw
+Gw
+Hu
+Fy
+Gw
+Fy
+eZ
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Bp
+Bp
+Bp
+Bp
+Cl
+rh
+rh
+Ug
+vz
+rh
+vz
+eZ
 aa
 aa
 aa
@@ -46351,35 +47927,35 @@ aa
 "}
 (199,1,1) = {"
 aa
+ab
+av
+av
+av
+av
+av
+av
+av
+av
+av
+av
+av
+ab
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+av
+av
+av
+av
+av
+av
+av
+av
+av
+av
+av
+ab
 aa
 aa
 aa

@@ -8,6 +8,8 @@
 #define ADD "add"
 #define SET "set"
 */
+
+GLOBAL_LIST(projectileDamageConstants)
 /obj/item/projectile
 	name = "projectile"
 	icon = 'icons/obj/projectiles.dmi'
@@ -20,7 +22,8 @@
 	spawn_blacklisted = TRUE
 	spawn_frequency = 0
 	spawn_tags = null
-	style_damage = 13 // stylish people can dodge lots of projectiles
+	/// Ammo is heavy
+	weight = 10
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
 	var/hitsound_wall = "ricochet"
 	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
@@ -44,7 +47,13 @@
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
 	var/ricochet_ability = 1 // multiplier for how much it can ricochet, modified by the bullet blender weapon mod
 
-	var/list/damage_types = list(BRUTE = 10) //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS -> int are the only things that should be in here
+	var/list/damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 10)
+		)
+	)
+	/// Will be left as nothing until we get fired(we copy damage_types then)
+	var/list/damage = null
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
 	var/check_armour = ARMOR_BULLET //Defines what armor to use when it hits things. Full list could be found at defines\damage_organs.dm
@@ -92,6 +101,20 @@
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+/// This is done to save a lot of memory from duplicated damage lists.
+/// The list is also copied whenever PrepareForLaunch is called and modified as needs to be
+/obj/item/projectile/Initialize()
+	. = ..()
+	if(!GLOB.projectileDamageConstants)
+		GLOB.projectileDamageConstants = list()
+	if(!GLOB.projectileDamageConstants[type])
+		GLOB.projectileDamageConstants = damage_types
+	else
+		/// delete the list. Don't need QDEL for this
+		del(damage_types)
+		damage_types = GLOB.projectileDamageConstants[type]
+
+
 /obj/item/projectile/Destroy()
 	firer = null
 	original = null
@@ -99,25 +122,36 @@
 	LAZYCLEARLIST(permutated)
 	return ..()
 
+/// This MUST be called before any modifications are done to the damage list.
+/obj/item/projectile/proc/PrepareForLaunch()
+	damage = deepCopyList(damage_types)
+
 /obj/item/projectile/is_hot()
-	if (damage_types[BURN])
-		return damage_types[BURN] * heat
+	return dhTotalDamageDamageType(damage ? damage : damage_types, BURN) * heat
 
 /obj/item/projectile/proc/get_total_damage()
-	var/val = 0
-	for(var/i in damage_types)
-		val += damage_types[i]
-	return val
+	var/damageList = damage
+	if(!length(damage) || !damage)
+		damageList = damage_types
+	return dhTotalDamage(damageList)
 
 /obj/item/projectile/proc/is_halloss()
-	for(var/i in damage_types)
-		if(i != HALLOSS)
-			return FALSE
-	return TRUE
+	var/damageList = damage
+	if(!length(damage) || !damage)
+		damageList = damage_types
+	return dhHasDamageType(damageList, HALLOSS)
 
-/obj/item/projectile/multiply_projectile_damage(newmult)
-	for(var/i in damage_types)
-		damage_types[i] *= i == HALLOSS ? 1 : newmult
+/obj/item/projectile/proc/getAllDamType(type)
+	var/damageList = damage
+	if(!length(damage) || !damage)
+		damageList = damage_types
+	return dhTotalDamageDamageType(damageList, type)
+
+/obj/item/projectile/multiply_projectile_damage(newMult)
+	dhApplyStrictMultiplier(damage, ALL_ARMOR, ALL_DAMAGE - HALLOSS, newMult)
+
+/obj/item/projectile/multiply_projectile_halloss(newMult)
+	dhApplyStrictMultiplier(damage, ALL_ARMOR, HALLOSS, newMult)
 
 /obj/item/projectile/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
@@ -136,14 +170,41 @@
 	projectile_accuracy = initial(projectile_accuracy) * newmult
 
 // bullet/pellets redefines this
-/obj/item/projectile/proc/adjust_damages(var/list/newdamages)
+/obj/item/projectile/proc/adjust_damages(list/newdamages)
 	if(!newdamages.len)
 		return
 	for(var/damage_type in newdamages)
 		if(damage_type == IRRADIATE)
 			irradiate += newdamages[IRRADIATE]
 			continue
-		damage_types[damage_type] += newdamages[damage_type]
+		var/isNeg = newdamages[damage_type] < 0
+		if(!isNeg)
+			for(var/armorType in damage)
+				var/damageApplied = FALSE
+				for(var/list/damageElement in damage[armorType])
+					if(damageElement[1] == damage_type)
+						damageElement[2] += damageElement[2] + newdamages[damage_type]
+						damageApplied = TRUE
+						break
+				if(!damageApplied)
+					var/list/elements = damage[armorType]
+					elements.Add(DELEM(damage_type, newdamages[damage_type]))
+				break
+			damage_types[damage_type] += newdamages[damage_type]
+		else
+			var/damToRemove = abs(newdamages[damage_type])
+			for(var/armorType in damage)
+				for(var/list/damageElement in damage)
+					if(damageElement[1] == damage_type)
+						var/removed = min(damageElement[2], damToRemove)
+						damageElement[2] -= removed
+						damToRemove -= removed
+						if(damageElement[2] == 0)
+							damage[armorType] -= damageElement
+						if(damToRemove <= 0)
+							break
+				if(damToRemove <= 0)
+					break
 
 /obj/item/projectile/proc/adjust_ricochet(noricochet)
 	if(noricochet)
@@ -162,7 +223,7 @@
     impact_effect(effect_transform)
     if(luminosity_ttl && attached_effect)
         spawn(luminosity_ttl)
-        qdel(attached_effect)
+        QDEL_NULL(attached_effect)
 
     if(!ismob(A))
         playsound(src, hitsound_wall, 50, 1, -2)
@@ -171,12 +232,15 @@
 //Checks if the projectile is eligible for embedding. Not that it necessarily will.
 /obj/item/projectile/proc/can_embed()
 	//embed must be enabled and damage type must be brute
-	if(!embed || damage_types[BRUTE] <= 0)
+	if(!embed || getAllDamType(BRUTE) <= 0)
 		return FALSE
 	return TRUE
 
-/obj/item/projectile/proc/get_structure_damage()
-	return damage_types[BRUTE] + damage_types[BURN]
+/obj/item/projectile/proc/get_structure_damage(var/injury_type)
+	if(!injury_type) // Assume homogenous
+		return (getAllDamType(BRUTE) + getAllDamType(BURN)) * wound_check(INJURY_TYPE_HOMOGENOUS, wounding_mult, edge, sharp) * 2
+	else
+		return (getAllDamType(BRUTE) + getAllDamType(BURN)) * wound_check(injury_type, wounding_mult, edge, sharp) * 2
 
 //return 1 if the projectile should be allowed to pass through after all, 0 if not.
 /obj/item/projectile/proc/check_penetrate(atom/A)
@@ -228,7 +292,7 @@
 		qdel(src)
 		return FALSE
 
-	loc = get_turf(user)
+	forceMove(get_turf(user))
 
 	var/recoil = 0
 	if(isliving(user))
@@ -239,17 +303,21 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.can_multiz_pb && (!isturf(target)))
-				loc = get_turf(H.client.eye)
+				forceMove(get_turf(H.client.eye))
 				if(!(loc.Adjacent(target)))
-					loc = get_turf(H)
+					forceMove(get_turf(H))
 			if(config.z_level_shooting && H.client.eye == H.shadow && !height) // Player is watching a higher zlevel
 				var/newTurf = get_turf(H.shadow)
 				if(!(locate(/obj/structure/catwalk) in newTurf)) // Can't shoot through catwalks
-					loc = newTurf
+					forceMove(newTurf)
 					height = HEIGHT_HIGH // We are shooting from below, this protects resting players at the expense of windows
 					original = get_turf(original) // Aim at turfs instead of mobs, to ensure we don't hit players
 
-	firer = user
+	// Special case for mechs, in a ideal world this should always go for the top-most atom.
+	if(istype(launcher.loc, /obj/item/mech_equipment))
+		firer = launcher.loc.loc
+	else
+		firer = user
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 
@@ -370,13 +438,13 @@
 			if(isroach(target_mob))
 				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
 		return FALSE
-
+	/*
 	//hit messages
 	if(silenced)
 		to_chat(target_mob, SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
 	else
 		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
-
+	*/
 	playsound(target_mob, pick(mob_hit_sound), 40, 1)
 
 	//admin logs
@@ -423,8 +491,9 @@
 	if(A == src)
 		return FALSE
 	if(A == firer)
-		loc = A.loc
+		forceMove(A.loc)
 		return FALSE //go fuck yourself in another place pls
+
 
 	if((bumped && !forced) || (A in permutated))
 		return FALSE
@@ -441,8 +510,12 @@
 			trajectory.loc_z = loc.z
 			bumped = FALSE
 			return FALSE
-
 	if(ismob(A))
+		// Mobs inside containers shouldnt get bumped(such as mechs or closets)
+		if(!isturf(A.loc))
+			bumped = FALSE
+			return FALSE
+
 		var/mob/M = A
 		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
@@ -476,7 +549,7 @@
 			qdel(src)
 			return TRUE
 
-		loc = tempLoc
+		forceMove(tempLoc)
 		if (A)
 			permutated.Add(A)
 		bumped = FALSE //reset bumped variable!
@@ -492,8 +565,9 @@
 	qdel(src)
 	return TRUE
 
-/obj/item/projectile/ex_act()
-	return //explosions probably shouldn't delete projectiles
+
+/obj/item/projectile/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return TRUE
@@ -525,7 +599,8 @@
 		pixel_y = location.pixel_y
 
 		if(!bumped && !QDELETED(original) && !isturf(original))
-			if(loc == get_turf(original))
+			// this used to be loc == get_turf(original) , but this would break incase the original was inside something and hit them without hitting the outside
+			if(loc == original.loc)
 				if(!(original in permutated))
 					if(Bump(original))
 						return
@@ -632,30 +707,29 @@
 			P.pixel_y = location.pixel_y
 			P.activate(P.lifetime)
 
-/obj/item/projectile/proc/block_damage(var/amount, atom/A)
+/obj/item/projectile/proc/block_damage(amount, atom/A)
 	amount /= armor_divisor
-	var/dmg_total = 0
-	var/dmg_remaining = 0
-	for(var/dmg_type in damage_types)
-		var/dmg = damage_types[dmg_type]
-		if(!(dmg_type == HALLOSS))
-			dmg_total += dmg
-		if(dmg > 0 && amount > 0)
-			var/dmg_armor_difference = dmg - amount
-			var/is_difference_positive = dmg_armor_difference > 0
-			amount = is_difference_positive ? 0 : -dmg_armor_difference
-			dmg = is_difference_positive ? dmg_armor_difference : 0
-			if(!(dmg_type == HALLOSS))
-				dmg_remaining += dmg
-		if(dmg > 0)
-			damage_types[dmg_type] = dmg
-		else
-			damage_types -= dmg_type
-	if(!damage_types.len)
+	var/damageLeft = 0
+	var/damageTotal = 0
+	for(var/armorType in damage)
+		for(var/list/damageElement in damage[armorType])
+			damageTotal += damageElement[2]
+			damageElement[2] = max(0, damageElement[2] - amount)
+			if(damageElement[2] == 0)
+				damage[armorType] -= damageElement
+			else
+				damageLeft += damageElement[2]
+
+	var/elementsLeft = 0
+	for(var/armorType in damage)
+		for(var/list/damageElement in damage[armorType])
+			elementsLeft++
+
+	if(!elementsLeft)
 		on_impact(A)
 		qdel(src)
 
-	return dmg_total > 0 ? (dmg_remaining / dmg_total) : 0
+	return damageTotal > 0 ? (damageLeft / damageTotal) :0
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
@@ -666,11 +740,11 @@
 
 /obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area, forced)
 	if(A == firer)
-		loc = A.loc
+		forceMove(A.loc)
 		return //cannot shoot yourself
 	if(istype(A, /obj/item/projectile))
 		return
-	if(isliving(A) || istype(A, /mob/living/exosuit) || istype(A, /obj/vehicle))
+	if(isliving(A) || istype(A, /mob/living/exosuit))
 		result = 2 //We hit someone, return 1!
 		return
 	result = 1

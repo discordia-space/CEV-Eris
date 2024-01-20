@@ -254,23 +254,13 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 			src.ispowered = 0
 			src.update_icon()
 
-
-/obj/machinery/newscaster/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			src.isbroken = 1
-			if(prob(50))
-				qdel(src)
-			else
-				src.update_icon() //can't place it above the return and outside the if-else. or we might get runtimes of null.update_icon() if(prob(50)) goes in.
-			return
-		else
-			if(prob(50))
-				src.isbroken = 1
-			src.update_icon()
+/obj/machinery/newscaster/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	isbroken = TRUE
+	update_icon()
+	return 0
 
 /obj/machinery/newscaster/attack_hand(mob/user as mob)            //########### THE MAIN BEEF IS HERE! And in the proc below this...############
 
@@ -762,7 +752,8 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 		if(istype(I, /obj/item) )
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			var/obj/item/W = I
-			if(W.force <15)
+			var/damage = dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))
+			if(damage <15)
 				for (var/mob/O in hearers(5, src.loc))
 					O.show_message("[user.name] hits the [src.name] with the [W.name] with no visible effect." )
 					playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
@@ -771,7 +762,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 				if(src.hitstaken==3)
 					for (var/mob/O in hearers(5, src.loc))
 						O.show_message("[user.name] smashes the [src.name]!" )
-					src.isbroken=1
+					src.isbroken=TRUE
 					playsound(src.loc, 'sound/effects/Glassbr3.ogg', 100, 1)
 				else
 					for (var/mob/O in hearers(5, src.loc))
@@ -820,7 +811,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	desc = "An issue of The Griffon, the newspaper circulating aboard most stations."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "newspaper"
-	w_class = ITEM_SIZE_SMALL	//Let's make it fit in trashbags!
+	volumeClass = ITEM_SIZE_SMALL	//Let's make it fit in trashbags!
 	attack_verb = list("bapped")
 	spawn_tags = SPAWN_TAG_JUNK
 	rarity_value = 10

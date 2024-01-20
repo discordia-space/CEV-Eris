@@ -74,7 +74,7 @@
 	var/translator_on = 0 // keeps track of the translator module
 
 /mob/living/silicon/pai/New(var/obj/item/device/paicard)
-	src.loc = paicard
+	src.forceMove(paicard)
 	card = paicard
 	sradio = new(src)
 	if(card)
@@ -336,9 +336,9 @@
 
 //Overriding this will stop a number of headaches down the track.
 /mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.force)
+	if(dhTotalDamage(W.melleDamages))
 		visible_message(SPAN_DANGER("[user.name] attacks [src] with [W]!"))
-		src.adjustBruteLoss(W.force)
+		src.adjustBruteLoss(dhTotalDamage(W.melleDamages))
 		src.updatehealth()
 	else
 		visible_message(SPAN_WARNING("[user.name] bonks [src] harmlessly with [W]."))
@@ -374,12 +374,12 @@
 		var/mob/living/M = H.loc
 		if(istype(M))
 			M.drop_from_inventory(H)
-		H.loc = get_turf(src)
-		src.loc = get_turf(H)
+		H.forceMove(get_turf(src))
+		src.forceMove(get_turf(H))
 
 	// Move us into the card and move the card to the ground.
-	src.loc = card
-	card.loc = get_turf(card)
+	src.forceMove(card)
+	card.forceMove(get_turf(card))
 	src.forceMove(card)
 	card.forceMove(card.loc)
 	canmove = 1

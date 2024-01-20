@@ -3,7 +3,7 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pai"
 	item_state = "electronic"
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_DATA = 2)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
@@ -313,11 +313,10 @@
 	for(var/mob/M in src)
 		M.emp_act(severity)
 
-/obj/item/device/paicard/ex_act(severity)
+/obj/item/device/paicard/take_damage(amount)
 	if(pai)
-		pai.ex_act(severity)
-	else
-		qdel(src)
+		pai.adjustBruteLoss(amount)
+	. = ..()
 
 /obj/item/device/paicard/see_emote(mob/living/M, text)
 	if(pai && pai.client && !pai.canmove)

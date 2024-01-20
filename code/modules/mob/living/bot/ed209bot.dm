@@ -65,6 +65,7 @@
 	playsound(loc, emagged ? 'sound/weapons/Laser.ogg' : 'sound/weapons/Taser.ogg', 50, 1)
 	var/obj/item/projectile/P = new projectile(loc)
 	var/def_zone = get_exposed_defense_zone(A)
+	P.PrepareForLaunch()
 	P.launch(A, def_zone)
 // Assembly
 
@@ -158,7 +159,7 @@
 				icon_state = "ed209_hat"
 
 		if(5)
-			if(is_proximity_sensor(I))
+			if(isproxsensor(I))
 				user.drop_item()
 				qdel(I)
 				build_step++

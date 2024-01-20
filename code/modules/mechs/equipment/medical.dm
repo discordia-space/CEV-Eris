@@ -77,3 +77,160 @@
 			user.visible_message("<span class='notice'>\The [user] removes \the [beaker] from \the [src].</span>", "<span class='notice'>You remove \the [beaker] from \the [src].</span>")
 		beaker = I
 		user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
+
+/obj/item/mech_equipment/sleeper/upgraded
+	name = "\improper MK2 mounted sleeper"
+	desc = "An exosuit-mounted sleeper designed to heal patients"
+	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 3, TECH_BIO = 5)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 3, MATERIAL_PLATINUM = 1)
+
+/obj/item/mech_equipment/sleeper/upgraded/Initialize()
+	. = ..()
+	// delete old one
+	qdel(sleeper)
+	sleeper = new /obj/machinery/sleeper/mounted/upgraded(src)
+	sleeper.forceMove(src)
+
+/obj/machinery/sleeper/mounted/upgraded
+	name = "\improper MK2 mounted sleeper"
+	available_chemicals = list("inaprovaline2" = "Synth-Inaprovaline",
+	"quickclot" = "Quick-Clot",
+	"stoxin" = "Soporific",
+	"tramadol" = "Tramadol",
+	"anti_toxin" = "Dylovene",
+	"dexalin" = "Dexalin",
+	"tricordrazine" = "Tricordrazine",
+	"polystem" = "PolyStem")
+
+/obj/item/mech_equipment/auto_mender
+	name = "\improper exosuit auto-mender"
+	desc = "A mech-designed and equipped medical system for fast and automatic application of advanced trauma treatments to pacients. Makes use of medical gear found in trauma kits."
+	icon_state = "mech_mender"
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	restricted_software = list(MECH_SOFTWARE_MEDICAL)
+	equipment_delay = 10 //don't spam it on people pls
+	active_power_use = 0 //Usage doesn't really require power.
+	origin_tech = list(TECH_DATA = 3, TECH_BIO = 5, TECH_ENGINEERING = 3)
+	spawn_frequency = 80
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 8, MATERIAL_GLASS = 5)
+	passive_power_use = 1.5 KILOWATTS
+	var/mob/living/carbon/human/mending_target = null
+	var/mob/living/exosuit/mech = null
+	var/obj/item/organ/external/affecting = null
+	var/trauma_charges_stored = 0
+	var/trauma_storage_max = 30
+
+/obj/item/mech_equipment/auto_mender/afterattack(atom/target, mob/living/user, inrange, params)
+	. = ..()
+	if(. && ishuman(target))
+		if(!trauma_charges_stored && mending_target)
+			mending_target = null
+			to_chat(user, SPAN_NOTICE("ERROR: Auto-mender stock is depleted. Refill required."))
+			return
+		if(mending_target == target)
+			mending_target = null
+			to_chat(user, SPAN_NOTICE("You cancel \the [src]'s mending on [target]."))
+			return
+		if(mending_target)
+			to_chat(user, SPAN_NOTICE("You stop \the [src] from mending [mending_target]."))
+			mending_target = null
+		if(!target.Adjacent(mech))
+			to_chat(user, SPAN_NOTICE("You need to be next to \the [target] to start mending them!"))
+		mending_target = target
+		mending_loop()
+
+/obj/item/mech_equipment/auto_mender/attackby(obj/item/I, mob/living/user, params)
+	. = ..()
+	if(istype(I, /obj/item/stack/medical/advanced/bruise_pack))
+		var/obj/item/stack/medical/advanced/bruise_pack/pack = I
+		var/substract = clamp(pack.amount, 0, trauma_storage_max - trauma_charges_stored)
+		if(substract && pack.use(substract))
+			trauma_charges_stored += substract
+			to_chat(user, SPAN_NOTICE("You restock \the [src]'s internal medicine storage with \the [I], using [substract] charges."))
+
+		if(trauma_charges_stored >= trauma_storage_max)
+			to_chat(user, SPAN_NOTICE("The auto-mender's storage is full!"))
+			return
+
+/obj/item/mech_equipment/auto_mender/installed(mob/living/exosuit/_owner, hardpoint)
+	. = ..()
+	mech = _owner
+
+/obj/item/mech_equipment/auto_mender/uninstalled()
+	. = ..()
+	mech = null
+
+/obj/item/mech_equipment/auto_mender/proc/mending_loop()
+	if(!mending_target || !mech)
+		return
+	if(!mech.Adjacent(mending_target))
+		mending_target = null
+		affecting = null
+		return
+	var/obj/item/organ/external/checking
+	if(!affecting || (affecting && affecting.is_bandaged()))
+		for(var/zone in BP_ALL_LIMBS)
+			checking = mending_target.organs_by_name[zone]
+			if(checking.is_bandaged() && checking.damage < 1)
+				continue
+			if(affecting)
+				if(checking.damage > affecting.damage)
+					affecting = checking
+			else
+				affecting = checking
+
+	if(!affecting)
+		mending_target = null
+
+		return
+
+	for(var/datum/wound/W in affecting.wounds)
+		if(!mech.Adjacent(mending_target))
+			mending_target = null
+			affecting = null
+			return
+//		if(W.internal || W.bandaged)
+//			continue
+		if(W.damage < 1)
+			continue
+		if(!trauma_charges_stored)
+			to_chat(mech.get_mob(), SPAN_NOTICE("ERROR: Auto-mender stock is depleted. Refill required."))
+			playsound(src, 'sound/mechs/internaldmgalarm.ogg', 50, 1)
+			break
+		if(!do_mob(mech.get_mob(), mending_target, W.damage/5))
+			to_chat(mech.get_mob(), SPAN_NOTICE("You must stand still to bandage wounds."))
+			mending_target = null
+			affecting = null
+			break
+//		if(W.internal || W.bandaged)
+//			continue
+		if (W.current_stage <= W.max_bleeding_stage)
+			mech.visible_message(
+				SPAN_NOTICE("\The [mech] cleans \a [W.desc] on [mending_target]'s [affecting.name] and seals the edges with bioglue."),
+				SPAN_NOTICE("You clean and seal \a [W.desc] on [mending_target]'s [affecting.name].")
+			)
+		else if (W.damage_type == BRUISE)
+			mech.visible_message(
+				SPAN_NOTICE("\The [mech] places a medical patch over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				SPAN_NOTICE("You place a medical patch over \a [W.desc] on [mending_target]'s [affecting.name].")
+			)
+		else
+			mech.visible_message(
+				SPAN_NOTICE("\The [mech] smears some bioglue over \a [W.desc] on [mending_target]'s [affecting.name]."),
+				SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [mending_target]'s [affecting.name].")
+			)
+		W.bandage()
+		W.heal_damage(10)
+		trauma_charges_stored--
+	// If it doesn't cancel or run out of kits just repeat for every external organ.
+	if(affecting.is_bandaged() && affecting.damage < 1)
+		affecting = null
+		mending_loop()
+
+
+

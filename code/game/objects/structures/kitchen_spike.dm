@@ -32,7 +32,7 @@
 	if(do_after(user, 80))
 		if(spike(target))
 			visible_message(SPAN_DANGER("[user] has forced [target] onto \the [src], killing them instantly!"))
-			target.damage_through_armor(201, BRUTE, BP_CHEST)
+			target.damage_through_armor(list(ARMOR_POINTY=list(DELEM(BRUTE, 200))), BP_CHEST, src, 1, 1, FALSE)
 			for(var/obj/item/thing in target)
 				if(thing.is_equipped())
 					target.drop_from_inventory(thing)
@@ -52,7 +52,7 @@
 		icon_state = "spike_[H.species.name]"
 	else
 		return FALSE
-	victim.loc = src
+	victim.forceMove(src)
 	victim_name = victim.name
 	occupant = victim
 	occupied = TRUE
@@ -65,7 +65,7 @@
 	to_chat(user, "You start to remove [victim_name] from \the [src].")
 	if(!do_after(user, 40))
 		return 0
-	occupant.loc = get_turf(src)
+	occupant.forceMove(get_turf(src))
 	occupied = FALSE
 	meat = 0
 	meat_type = initial(meat_type)
@@ -118,7 +118,5 @@
 		return ..()
 
 /obj/structure/kitchenspike/examine(mob/user, distance, infix, suffix)
-	if(distance < 4)
-		to_chat(user, SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]"))
-	..()
+	..(user, afterDesc = victim_name ? SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]"): "")
 

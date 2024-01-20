@@ -34,7 +34,8 @@
 			cooldown++
 			sleep(rand(1,2))
 			var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
-			A.damage_types = list(BURN = round(2000/DAMAGE_POWER_TRANSFER))
+			A.PrepareForLaunch()
+			A.adjust_damages(list(BURN = round(2000/DAMAGE_POWER_TRANSFER)))
 			A.launch( get_step(src.loc, pick(SOUTH, NORTH, WEST, EAST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)) )
 		cooldown = FALSE
 	shooting = FALSE

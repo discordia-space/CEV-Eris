@@ -23,6 +23,13 @@ body {
 	scrollbar-highlight-color:#171717;
 }
 
+#examine {
+	margin: 1px;
+	border: 2px solid #181818;
+	padding: 5px;
+	background-color:#000000;
+}
+
 em {
 	font-style: normal;
 	font-weight: bold;
@@ -40,6 +47,11 @@ img.icon {
 	min-height: 16px;
 	width: auto;
 	vertical-align: bottom;
+}
+
+big img.icon {
+	width: 64px;
+	height: 64px;
 }
 
 .r:before { /* "repeated" badge class for combined messages */

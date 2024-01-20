@@ -1,4 +1,5 @@
-//ITEM INVENTORY WEIGHT, FOR w_class
+//ITEM INVENTORY WEIGHT, FOR volumeClass
+// Repurposed for volume.
 
 /// Usually items smaller then a human hand, (e.g. playing cards, lighter, scalpel, coins/holochips)
 #define ITEM_SIZE_TINY           1
@@ -19,11 +20,11 @@
 
 
 
-#define BASE_STORAGE_COST(w_class) (2**(w_class-1)) //1,2,4,8,16,...
+#define BASE_STORAGE_COST(volumeClass) (2**(volumeClass-1)) //1,2,4,8,16,...
 
 //linear increase. Using many small storage containers is more space-efficient than using large ones,
-//in exchange for being limited in the w_class of items that will fit
-#define BASE_STORAGE_CAPACITY(w_class) (10*(w_class-1))
+//in exchange for being limited in the volumeClass of items that will fit
+#define BASE_STORAGE_CAPACITY(volumeClass) (10*(volumeClass-1))
 
 #define DEFAULT_GARGANTUAN_STORAGE BASE_STORAGE_CAPACITY(6)  //50 after BASE_STORAGE_CAPACITY calculation
 #define DEFAULT_HUGE_STORAGE       BASE_STORAGE_CAPACITY(5)  //40 after BASE_STORAGE_CAPACITY calculation

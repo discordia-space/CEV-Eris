@@ -6,7 +6,11 @@
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "violin"
 	item_state = "violin"
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	var/datum/song/song
 	var/playing = 0
 	var/help = 0

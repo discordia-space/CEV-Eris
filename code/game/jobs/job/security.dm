@@ -37,6 +37,10 @@
 							 /datum/computer_file/program/camera_monitor,
 							 /datum/computer_file/program/reports)
 
+	cyberSticks = list(
+		/obj/item/cyberstick/security_analysis
+	)
+
 	description = "You are the commander of the local regiment of the Ironhammer Mercenary company, contracted to protect and serve aboard the CEV Eris. Ironhammer serves as both an internal security force, and as a guard for expeditions outwith the ship.<br>\
 	<br>\
 	Your goal is to keep everyone aboard the ship as safe as possible, and to eliminate any threats to safety.<br>\
@@ -107,6 +111,10 @@
 		4. In times of peace, prepare for war. To this end, you are also the onsite military instructor. If the ship is in a lull and there are no outstanding threats, you should take the initiative to order training drills. Allow junior operatives to train and learn with less conventional weapons and tactics, give lessons on aiming, trigger discipline, hand to hand combat. Conduct drills on threat response, squad tactics, and EVA manoeuvres.<br>\ "
 
 	loyalties = "You're a military man through and through. As such, your first loyalty is to the Commander, and thusly to the chain of command"
+
+	cyberSticks = list(
+		/obj/item/cyberstick/ironhammer_scanner
+	)
 
 /obj/landmark/join/start/gunserg
 	name = "Ironhammer Gunnery Sergeant"

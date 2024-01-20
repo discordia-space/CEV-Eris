@@ -153,7 +153,7 @@ obj/var/contaminated = 0
 	if(gloves) gloves.contaminate()
 
 
-turf/Entered(obj/item/I)
+/turf/Entered(obj/item/I)
 	. = ..()
 	//Items that are in plasma, but not on a mob, can still be contaminated.
 	if(istype(I) && vsc.plc.CLOTH_CONTAMINATION && I.can_contaminate())

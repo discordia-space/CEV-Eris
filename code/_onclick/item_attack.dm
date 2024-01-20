@@ -26,7 +26,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 // Called at the start of resolve_attackby(), before the actual attack.
 // Return a nonzero value to abort the attack
-/obj/item/proc/pre_attack(atom/a, mob/user, var/params)
+/obj/item/proc/pre_attack(atom/movable/a, mob/user, var/params)
 	return
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
@@ -40,7 +40,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/mob/living/carbon/human/H = user
 		if(H.blocking)
 			H.stop_blocking()
-	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
+	if(ishuman(user) && !(user == A) && !(user.loc == A) && (volumeClass >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
 		swing_attack(A, user, params)
 		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
 			return A.attackby(src, user, params)
@@ -51,7 +51,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/double_tact(mob/user, atom/atom_target, adjacent)
 	if(atom_target.loc == user)//putting stuff in your backpack, or something else on your person?
 		return TRUE //regular bags won't even be able to hold items this big, but who knows
-	if(w_class >= ITEM_SIZE_BULKY && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal w_class. You can't raise something that does not exist.
+	if((volumeClass >= ITEM_SIZE_HUGE || (volumeClass == ITEM_SIZE_BULKY && !wielded)) && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal volumeClass. You can't raise something that does not exist.
 		if(!adjacent || istype(atom_target, /turf) || istype(atom_target, /mob) || user.a_intent == I_HURT)//guns have the point blank privilege
 			if(!ready)
 				user.visible_message(SPAN_DANGER("[user] raises [src]!"))
@@ -84,6 +84,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /obj/item/proc/swing_attack(atom/A, mob/user, params)
 	var/holdinghand = user.get_inventory_slot(src)
+	if(params && islist(params) && params["mech"])
+		holdinghand = params["mech_hand"]
 	var/turf/R
 	var/turf/C
 	var/turf/L
@@ -122,7 +124,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(SOUTHWEST)
 			R = get_step(C, NORTH)
 			L = get_step(C, EAST)
-	var/obj/effect/effect/melee/swing/S = new(user.loc)
+	var/obj/effect/effect/melee/swing/S = new(get_turf(user))
 	S.dir = _dir
 	user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
 	playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
@@ -166,6 +168,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(!istype(I, /obj/item/tool/sword/nt_sword))
 		return FALSE
 	var/obj/item/tool/sword/nt_sword/NT = I
+	if(user.a_intent != I_HURT)
+		to_chat(user, SPAN_NOTICE("You need to be in a harming stance."))
+		return FALSE
 	if(NT.isBroken)
 		return FALSE
 	if(!(NT.flags & NOBLUDGEON))
@@ -200,28 +205,20 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(surgery_check && do_surgery(src, user, I, surgery_check)) //Surgery
 		return TRUE
 	else
-		return I.attack(src, user, user.targeted_organ)
+		return I.attack(src, user, user.targeted_organ, 1)
 
 //Used by Area of effect attacks, if it returns FALSE, it failed
 /obj/item/proc/attack_with_multiplier(mob/living/user, var/atom/target, var/modifier = 1)
 	if(!wielded && modifier > 0)
 		return FALSE
-	var/original_force = force
-	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
-	force *= modifier
-	target.attackby(src, user)
-	force = wielded ? original_force : round(original_unwielded_force, 1)
+	attack(target, user, user.targeted_organ, modifier)
 	return TRUE
 
 //Same as above but for mobs
 /obj/item/proc/attack_with_multiplier_mob(mob/living/user, var/mob/living/target, var/modifier = 1)
 	if(!wielded && modifier > 0)
 		return FALSE
-	var/original_force = force
-	var/original_unwielded_force = force_wielded_multiplier ? force / force_wielded_multiplier : force / 1.3
-	force *= modifier
-	attack(target, user, user.targeted_organ)
-	force = wielded ? original_force : round(original_unwielded_force, 1)
+	attack(target, user, user.targeted_organ, modifier)
 	return TRUE
 
 //Area of effect attacks (swinging), return remaining damage
@@ -232,7 +229,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			return (modifier - swing_degradation) // We hit a static object, prevents hitting anything underneath
 	var/successful_hit = FALSE
 	for(var/obj/S in targetarea)
-		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
+		if ((S.density || istype(S, /obj/effect/plant)) && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
 			if(attack_with_multiplier(user, S, modifier))
 				successful_hit = TRUE // Livings or targeted mobs can still be hit
 	if(successful_hit)
@@ -281,47 +278,55 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	return
 
 //I would prefer to rename this attack_as_weapon(), but that would involve touching hundreds of files.
-/obj/item/proc/attack(mob/living/M, mob/living/user, target_zone)
-	if(!force || (flags & NOBLUDGEON))
+/obj/item/proc/attack(mob/living/M, mob/living/user, target_zone, damageMultiplier)
+	if(!melleDamages || !dhTotalDamage(melleDamages) || (flags & NOBLUDGEON))
 		return FALSE
 
 	if(!user)
 		return FALSE
+	var/cooldown = DEFAULT_ATTACK_COOLDOWN + (wielded ? WieldedattackDelay : attackDelay)
+	if(ishuman(user))
+		var/mob/living/carbon/human/man = user
+		cooldown -= man.getEnergyRatio() * 2
+		message_admins("Reduced cooldown by [man.getEnergyRatio()*2]")
+		var/adjustment = (weight + 0.001)/1000
+		message_admins("Drained [adjustment] energy for the attack")
+		man.adjustEnergy(-adjustment)
+	user.setClickCooldown(cooldown)
+	user.do_attack_animation(M)
 
 	/////////////////////////
 	user.lastattacked = M
-	M.lastattacker = user
+	if(isliving(M))
+		M.lastattacker = user
 
-	if(!no_attack_log)
-		user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])</font>"
-		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])</font>"
-		msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])" )
-	/////////////////////////
-
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	user.do_attack_animation(M)
+	if(!no_attack_log && istype(M))
+		user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
+		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
+		msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)])" )
 
 	var/hit_zone = M.resolve_item_attack(src, user, target_zone)
 	if(hit_zone)
-		apply_hit_effect(M, user, hit_zone)
+		apply_hit_effect(M, user, hit_zone, damageMultiplier)
 
 	return TRUE
 
-//Called when a weapon is used to make a successful melee attack on a mob. Returns the blocked result
-/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+//Called when a weapon is used to make a successful melee attack on a mob/atom. Returns the blocked result
+/obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, hit_zone, damageMultiplier)
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		target.IgniteMob()
 
-	var/power = force
+	var/damMult = 1 + damageMultiplier + 0.0001 + wielded ? wieldedMultiplier : 0
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		power *= H.damage_multiplier
+		damMult *= H.damage_multiplier
 		if(H.holding_back)
-			power /= 2
-//	if(HULK in user.mutations)
-//		power *= 2
-	target.hit_with_weapon(src, user, power, hit_zone)
+			damMult /= 2
+
+	var/list/deepCopy = deepCopyList(melleDamages)
+	dhApplyMultiplier(deepCopy, damMult)
+	target.hit_with_weapon(src, user, deepCopy, hit_zone)
 	return

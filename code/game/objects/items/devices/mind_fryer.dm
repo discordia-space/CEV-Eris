@@ -4,6 +4,7 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 	name = "mind fryer"
 	desc = "A device that attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns."
 	description_antag = "Doesn't work inside of objects."
+	commonLore = "Initially employed by Neotheology to purge any psionics. They fell out of use when the psionic-bluespace continuum collapsed. Now employed by various organizations to obtain research on psionic links."
 	icon_state = "mind_fryer"
 	origin_tech = list(TECH_BIO = 5, TECH_COMBAT = 3, TECH_COVERT = 3)
 	matter = list(MATERIAL_STEEL = 6, MATERIAL_URANIUM = 4)

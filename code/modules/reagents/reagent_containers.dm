@@ -3,9 +3,10 @@
 	desc = "..."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = null
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	bad_type = /obj/item/reagent_containers
 	price_tag = 20
+	melleDamages = list()
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
@@ -188,11 +189,11 @@
 
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_NOTICE("[src] is empty."))
-		return FALSE
+		return TRUE // if it returns false, it drains from its target when empty
 
 	if(!target.reagents.get_free_space())
 		to_chat(user, SPAN_NOTICE("[target] is full."))
-		return FALSE
+		return TRUE // if it returns false, it drains from a full target
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)

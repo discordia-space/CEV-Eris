@@ -6,7 +6,7 @@
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant_health"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
 	var/implanted = FALSE
 	var/mob/living/carbon/human/wearer
@@ -23,6 +23,10 @@
 
 /obj/item/implant/attackby(obj/item/I, mob/user)
 	..()
+	if(istype(I, /obj/item/implanter/installer))
+		to_chat(user, SPAN_NOTICE("You cannot insert implants into a cybernetic applicator."))
+		return
+
 	if(istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
 		if(is_external())
@@ -32,8 +36,16 @@
 			M.update_icon()
 		return TRUE
 
+/obj/item/implant/proc/can_trigger()
+	if(!wearer)
+		return FALSE
+	if(wearer.hasCyberFlag(CSF_IMPLANT_BLOCKER))
+		return FALSE
+	return TRUE
 
 /obj/item/implant/proc/trigger(emote, mob/living/source)
+	return can_trigger()
+
 /obj/item/implant/proc/activate()
 	return TRUE
 
@@ -59,12 +71,13 @@
 		affected = H.organs_by_name[organ]
 
 		if(!affected)
-			to_chat(user, SPAN_WARNING("[H] is missing that body part!."))
+			to_chat(user, SPAN_WARNING("[H] is missing that body part!"))
 			return
 
 		if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
 			to_chat(user, SPAN_WARNING("[src] cannot be implanted in this limb."))
 			return
+
 
 	if(!can_install(target, affected))
 		to_chat(user, SPAN_WARNING("You can't install [src]."))
@@ -77,6 +90,7 @@
 		part = affected
 		SSnano.update_uis(affected) // Update surgery UI window, if any
 
+
 	on_install(target, affected)
 	wearer.update_implants()
 	for(var/mob/living/carbon/human/H in viewers(target))
@@ -87,6 +101,7 @@
 	return TRUE
 
 /obj/item/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
+	return FALSE
 
 /obj/item/implant/proc/uninstall()
 	on_uninstall()

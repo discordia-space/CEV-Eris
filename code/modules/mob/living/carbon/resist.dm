@@ -2,7 +2,7 @@
 	set name = "Resist"
 	set category = "IC"
 
-	if(!stat && can_click())
+	if(!incapacitated(INCAPACITATION_UNCONSCIOUS) && can_click())
 		setClickCooldown(1)//only 1/10th of a second so no macros spamming
 		resist_grab()
 		if(!weakened)
@@ -14,14 +14,21 @@
 		escape_inventory(src.loc)
 		return
 
-	//unbuckling yourself
-	if(buckled)
-		if (buckled.resist_buckle(src))
-			spawn()
-				escape_buckle()
-			return TRUE
-		else
-			return FALSE
+	if(istype(loc, /obj/item/mech_equipment/forklifting_system))
+		var/obj/item/mech_equipment/forklifting_system/fork = loc
+		fork.ejectLifting(get_turf(fork))
+		return
+
+	if(!incapacitated(INCAPACITATION_CANT_ACT))
+		var/list/bucklers = list()
+		SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+		var/resisted = FALSE
+		for(var/datum/component/buckling/buckle in bucklers)
+			if(buckle.buckled.resist_buckle(src))
+				resisted = TRUE
+				buckle.unbuckle()
+			if(resisted)
+				return resisted
 
 	//Breaking out of a locker?
 	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
@@ -47,24 +54,33 @@
 
 /mob/living/proc/resist_grab()
 	var/resisting = 0
+	if(ishuman(src))
+		var/mob/living/carbon/human/resister = src
+		resister.adjustEnergy(-20)
 	for(var/obj/O in requests)
 		requests.Remove(O)
 		qdel(O)
 		resisting++
-	for(var/obj/item/grab/G in grabbed_by)
-		resisting++
-		switch(G.state)
-			if(GRAB_PASSIVE)
+	var/obj/item/grab/G = grabbedBy
+	if(!G)
+		return
+	resisting++
+	var/mob/living/carbon/human/grabber = G.assailant
+	grabber.adjustEnergy(-20)
+	switch(G.state)
+		if(GRAB_PASSIVE)
+			qdel(G)
+		if(GRAB_AGGRESSIVE)
+			if(prob(max(60 + ((stats?.getStat(STAT_ROB)) - (grabber?.stats?.getStat(STAT_ROB)+0.001) ** 0.8), 1))) // same scaling as cooldown increase and if you manage to be THAT BAD, 1% for luck
+				visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
 				qdel(G)
-			if(GRAB_AGGRESSIVE)
-				if(prob(max(60 + ((stats?.getStat(STAT_ROB)) - G.assailant?.stats.getStat(STAT_ROB) ** 0.8), 1))) // same scaling as cooldown increase and if you manage to be THAT BAD, 1% for luck
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s grip!</span>")
-					qdel(G)
-			if(GRAB_NECK)
-				var/conditionsapply = (world.time - G.assailant.l_move_time < 30 || !stunned) ? 3 : 1 //If you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
-				if(prob(conditionsapply * (5 + max((stats?.getStat(STAT_ROB)) - G.assailant.stats?.getStat(STAT_ROB), 1) ** 0.8))) // 4% minimal chance
-					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
-					qdel(G)
+				return
+		if(GRAB_NECK)
+			var/conditionsapply = (world.time - G.assailant.l_move_time < 30 || !stunned) ? 3 : 1 //If you move when grabbing someone then it's easier for them to break free. Same if the affected mob is immune to stun.
+			if(prob(conditionsapply * (5 + max((stats?.getStat(STAT_ROB)) - grabber?.stats?.getStat(STAT_ROB), 1) ** 0.8))) // 4% minimal chance
+				visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
+				qdel(G)
+				return
 	if(resisting)
 		setClickCooldown(20)
 		visible_message("<span class='danger'>[src] resists!</span>")
@@ -83,11 +99,6 @@
 			SPAN_DANGER("[src] rolls on the floor, trying to put themselves out!"),
 			SPAN_NOTICE("You stop, drop, and roll!")
 			)
-		if (ishuman(src))
-			var/mob/living/carbon/human/depleted = src
-			depleted.regen_slickness(-1)
-			depleted.confidence = FALSE
-			depleted.dodge_time = get_game_time()
 		sleep(30)
 		if(fire_stacks <= 0)
 			visible_message(
@@ -119,7 +130,7 @@
 	var/obj/item/handcuffs/HC = handcuffed
 
 	//A default in case you are somehow handcuffed with something that isn't an obj/item/handcuffs type
-	var/breakouttime = 1200 - src.stats.getStat(STAT_ROB) * 10
+	var/breakouttime = 2 MINUTES - src.stats.getStat(STAT_ROB) SECONDS
 	//If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 	if(istype(HC))
 		breakouttime = HC.breakouttime - src.stats.getStat(STAT_ROB) * 10
@@ -127,11 +138,18 @@
 	var/mob/living/carbon/human/H = src
 	if(istype(H) && H.gloves && istype(H.gloves,/obj/item/clothing/gloves/rig))
 		breakouttime /= 2
+	var/list/bucklers = list()
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckle in bucklers)
+		if(istype(buckle.owner, /obj/item/beartrap))
+			to_chat(src, SPAN_NOTICE("You make use of \the [buckle.owner] to fasten your release!"))
+			breakouttime /= 2
+			break
 
-	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
-		visible_message(
+	visible_message(
 		SPAN_DANGER("\The [src] attempts to remove \the [HC]!"),
 		SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [breakouttime / 10] seconds and you need to stand still)"))
+	if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 		if(!handcuffed || buckled)
 			return
 		visible_message(
@@ -140,20 +158,6 @@
 			)
 		drop_from_inventory(handcuffed)
 
-	if(istype(buckled, /obj/item/beartrap))
-		breakouttime /= 2
-		visible_message(
-		SPAN_DANGER("\The [src] attempts to remove \the [HC] using the trap!"),
-		SPAN_WARNING("You attempt to remove \the [HC] using the trap. (This will take around [breakouttime / 10] seconds and you need to stand still)")
-		)
-		if(do_after(src, breakouttime, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
-			if(!handcuffed)
-				return
-			visible_message(
-			SPAN_DANGER("\The [src] manages to remove \the [handcuffed]!"),
-			SPAN_NOTICE("You successfully remove \the [handcuffed].")
-			)
-			drop_from_inventory(handcuffed)
 
 /mob/living/carbon/proc/escape_legcuffs()
 	if(!can_click())
@@ -217,8 +221,10 @@
 
 		qdel(handcuffed)
 		handcuffed = null
+		/*
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
+		*/
 		update_inv_handcuffed()
 
 /mob/living/carbon/proc/break_legcuffs()
@@ -251,8 +257,11 @@
 	return TRUE
 
 /mob/living/proc/escape_buckle()
-	if(buckled)
-		buckled.user_unbuckle_mob(src)
+	var/list/bucklers = list()
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckle in bucklers)
+		buckle.unbuckle()
+	return TRUE
 
 /mob/living/carbon/escape_buckle()
 	if(!buckled) return
@@ -268,10 +277,12 @@
 
 
 		if(do_after(usr, 2 MINUTES, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
-			if(!buckled)
-				return
+			var/list/bucklers = list()
+			SEND_SIGNAL(usr, COMSIG_BUCKLE_QUERY, bucklers)
+			for(var/datum/component/buckling/buckle in bucklers)
+				buckle.unbuckle()
 			visible_message(SPAN_DANGER("\The [usr] manages to unbuckle themself!"),
 							SPAN_NOTICE("You successfully unbuckle yourself."))
-			buckled.user_unbuckle_mob(src)
+			//buckled.user_unbuckle_mob(src)
 
 

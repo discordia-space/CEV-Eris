@@ -5,23 +5,27 @@
 	icon_state = "cane"
 	item_state = "stick"
 	flags = CONDUCT
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	worksound = WORKSOUND_EASY_CROWBAR
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 5)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 	tool_qualities = list(QUALITY_PRYING = 10)
 
 /obj/item/tool/cane/concealed
 	var/concealed_blade
-	max_upgrades = 5
+	maxUpgrades = 5
 
 /obj/item/tool/cane/concealed/New()
 	..()
 	var/obj/item/tool/knife/switchblade/temp_blade = new(src)
 	concealed_blade = temp_blade
-	temp_blade.max_upgrades = 5
+	temp_blade.maxUpgrades = 5
 	temp_blade.attack_self()
 
 /obj/item/tool/cane/concealed/attack_self(var/mob/user)

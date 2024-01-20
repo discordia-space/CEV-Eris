@@ -85,6 +85,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 	SET_IS_EXTERNAL(mover)
 	for(var/mh in movement_handlers)
 		var/datum/movement_handler/movement_handler = mh
+
 		if(movement_handler.MayMove(mover, is_external) & MOVEMENT_STOP)
 			return MOVEMENT_HANDLED
 
@@ -115,11 +116,6 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 #undef INIT_MOVEMENT_HANDLERS
 #undef REMOVE_AND_QDEL
 
-// Base
-/atom/movable/Destroy()
-	if(LAZYLEN(movement_handlers) && !ispath(movement_handlers[1]))
-		QDEL_LIST(movement_handlers)
-	. = ..()
 
 /datum/movement_handler
 	var/expected_host_type = /atom/movable

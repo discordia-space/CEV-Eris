@@ -3,8 +3,27 @@
 	var/tally = ..()
 	if(species.slowdown)
 		tally += species.slowdown
+
+	/// yes becauses we used to have -1 on shoes
+	tally -= 1.2
+
+	var/weightTally = (weight - initial(weight) - 20000 - statusEffects[SE_WEIGHT_OFFLOAD]) / 1000
+	if(weightTally > 0)
+		if(weightTally > 50)
+			tally += weightTally*0.02
+		tally += weightTally*0.03
+	/// Slower if underenergized
+	var/energyTally = getEnergyRatio()
+	/// No boosts
+	if(energyTally > 0)
+		energyTally = 0
+	tally -= energyTally
+
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
+	/// No slowdown for mech pilots , mech already handles movement.
+	if(ismech(loc))
+		return 0
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
@@ -22,6 +41,23 @@
 	if(blocking)
 		tally += 1
 
+	if(recoil)
+		var/obj/item/gun/GA = get_active_hand()
+		var/obj/item/gun/GI = get_inactive_hand()
+
+		var/brace_recoil = 0
+		if(istype(GA))
+			var/datum/recoil/R = GA.recoil
+			brace_recoil = R.getRating(RECOIL_TWOHAND)
+		if(istype(GI))
+			var/datum/recoil/R = GI.recoil
+			brace_recoil = max(brace_recoil, R.getRating(RECOIL_TWOHAND))
+
+		if(brace_recoil)
+			tally += CLAMP(round(recoil) / (60 / brace_recoil), 0, 8) // Scales with the size of the gun - bigger guns slow you more
+		else
+			tally += CLAMP(round(recoil) / 20, 0, 8) // Lowest possible while holding a gun
+
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.active)
 		var/obj/item/cruciform_upgrade/upgrade = C.upgrade
@@ -35,11 +71,14 @@
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here
 		tally += 1 //Small slowdown so wheelchairs aren't turbospeed
+
+	/*
 	else
 		if(wear_suit)
 			tally += wear_suit.slowdown
 		if(shoes)
 			tally += shoes.slowdown
+	*/
 
 	//tally += min((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
 	tally += clamp((get_dynamic_pain() - get_painkiller()) / 40, 0, 3) // Scales from 0 to 3,
@@ -79,11 +118,11 @@
 	//Check hands and mod slip
 	if(!l_hand)
 		prob_slip -= 2
-	else if(l_hand.w_class <= ITEM_SIZE_SMALL)
+	else if(l_hand.volumeClass <= ITEM_SIZE_SMALL)
 		prob_slip -= 1
 	if (!r_hand)
 		prob_slip -= 2
-	else if(r_hand.w_class <= ITEM_SIZE_SMALL)
+	else if(r_hand.volumeClass <= ITEM_SIZE_SMALL)
 		prob_slip -= 1
 
 	return prob_slip
@@ -117,3 +156,15 @@
 /mob/living/carbon/human/proc/calc_momentum()
 	momentum_speed--
 	update_momentum()
+
+/mob/living/carbon/human/Move(NewLoc, Dir, step_x, step_y, glide_size_override, initiator = src)
+	var/oldLoc = loc
+	. = ..()
+	if(oldLoc != NewLoc)
+		/// 1000 From KG,  25 from conversion rate
+		var/adjustment = (weight - initial(weight) - 20000) / 1000 / 25
+		if(adjustment > 0)
+			adjustEnergy(-adjustment)
+
+
+

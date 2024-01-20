@@ -1,9 +1,15 @@
-/obj/item/modular_computer/examine(var/mob/user)
-	. = ..()
+/obj/item/modular_computer/examine(var/mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(damage > broken_damage)
-		to_chat(user, "<span class='danger'>It is heavily damaged!</span>")
+		description += "<span class='danger'>It is heavily damaged!</span> \n"
 	else if(damage)
-		to_chat(user, "It is damaged.")
+		description += "It is damaged. \n"
+	if(enabled && .)
+		description += "The time [stationtime2text()] is displayed in the corner of the screen."
+
+	if(card_slot && card_slot.stored_card)
+		description += "The [card_slot.stored_card] is inserted into it."
+	..(user, afterDesc = description)
 
 /obj/item/modular_computer/proc/break_apart()
 	visible_message("\The [src] breaks apart!")
@@ -16,7 +22,7 @@
 			H.take_damage(rand(10,30))
 	qdel(src)
 
-/obj/item/modular_computer/proc/take_damage(var/amount, var/component_probability, var/damage_casing = 1, var/randomize = 1)
+/obj/item/modular_computer/take_damage(var/amount, var/component_probability, var/damage_casing = 1, var/randomize = 1)
 	if(!modifiable)
 		return
 
@@ -36,11 +42,6 @@
 	if(damage >= max_damage)
 		break_apart()
 
-// Stronger explosions cause serious damage to internal components
-// Minor explosions are mostly mitigitated by casing.
-/obj/item/modular_computer/ex_act(var/severity)
-	take_damage(rand(100,200) / severity, 30 / severity)
-
 // EMPs are similar to explosions, but don't cause physical damage to the casing. Instead they screw up the components
 /obj/item/modular_computer/emp_act(var/severity)
 	take_damage(rand(100,200) / severity, 50 / severity, 0)
@@ -49,11 +50,7 @@
 // "Burn" damage is equally strong against internal components and exterior casing
 // "Brute" damage mostly damages the casing.
 /obj/item/modular_computer/bullet_act(var/obj/item/projectile/P)
-	for(var/i in P.damage_types)
-		if(i == BRUTE)
-			take_damage(P.damage_types[i], P.damage_types[i] / 2)
-		// TODO: enable after baymed
-		/*if(PAIN)
-			take_damage(Proj.damage, Proj.damage / 3, 0)*/
-		if(i == BURN)
-			take_damage(P.damage_types[i], P.damage_types[i] / 1.5)
+	var/dam = P.getAllDamType(BRUTE)
+	take_damage(dam, dam/2)
+	dam = P.getAllDamType(BURN)
+	take_damage(dam, dam/2)

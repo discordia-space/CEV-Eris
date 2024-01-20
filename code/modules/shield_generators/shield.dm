@@ -96,7 +96,6 @@ Like for example singulo act and whatever.
 	set_invisibility(INVISIBILITY_MAXIMUM)
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
 
 
 // Regenerates this shield segment.
@@ -112,7 +111,6 @@ Like for example singulo act and whatever.
 		set_invisibility(0)
 		update_nearby_tiles()
 		update_icon()
-		update_explosion_resistance()
 		gen.damaged_segments -= src
 
 		//When we regenerate, affect any mobs that happen to be standing in our spot
@@ -132,7 +130,6 @@ Like for example singulo act and whatever.
 	set_invisibility(INVISIBILITY_MAXIMUM)
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
 
 /obj/effect/shield/attack_generic(var/source, var/damage, var/emote)
 	take_damage(damage, SHIELD_DAMTYPE_PHYSICAL, src)
@@ -156,6 +153,7 @@ Like for example singulo act and whatever.
 		// The closer we are to impact site, the longer it takes for shield to come back up.
 		S.fail(-(-range + get_dist(src, S)) * 2)
 
+// returns how much damage was blocked by the shield
 /obj/effect/shield/proc/take_damage(damage, damtype, hitby)
 	if(!gen)
 		qdel(src)
@@ -169,29 +167,28 @@ Like for example singulo act and whatever.
 	new/obj/effect/shield_impact(get_turf(src))
 	gen.handle_reporting() //This will queue up a damage report if one isnt already. It's delayed so its fine to call it before the damage is applied
 	var/list/field_segments = gen.field_segments
-	switch(gen.take_damage(damage, damtype, hitby))
+	switch(gen.take_shield_damage(damage, damtype, hitby))
 		if(SHIELD_ABSORBED)
 			shield_impact_sound(get_turf(src), damage*0.5, damage*1.5)
-			return
+			return damage
 		if(SHIELD_BREACHED_MINOR)
 			shield_impact_sound(get_turf(src), 25, 50)
 			fail_adjacent_segments(rand(1, 3), hitby)
-			return
+			return damage * 0.75
 		if(SHIELD_BREACHED_MAJOR)
 			shield_impact_sound(get_turf(src), 60, 60)
 			fail_adjacent_segments(rand(2, 5), hitby)
-			return
+			return damage * 0.5
 		if(SHIELD_BREACHED_CRITICAL)
 			shield_impact_sound(get_turf(src), 90, 70)
 			fail_adjacent_segments(rand(4, 8), hitby)
-			return
+			return damage * 0.25
 		if(SHIELD_BREACHED_FAILURE)
 			shield_impact_sound(get_turf(src), 255) //Absolutely guaranteed to hear this one anywhere
 			fail_adjacent_segments(rand(8, 16), hitby)
 			for(var/obj/effect/shield/S in field_segments)
 				S.fail(1)
-				CHECK_TICK
-			return
+			return 0
 
 /obj/effect/shield/proc/isInactive()
 	if(!gen)
@@ -235,10 +232,10 @@ Like for example singulo act and whatever.
 
 
 // Explosions
-/obj/effect/shield/ex_act(var/severity)
-	if (!ignoreExAct)
-		if (!isInactive())
-			take_damage(rand(10,15) / severity, SHIELD_DAMTYPE_PHYSICAL, src)
+
+/obj/effect/shield/explosion_act(target_power, explosion_handler/handler)
+	if(!ignoreExAct && !isInactive())
+		return take_damage(target_power, SHIELD_DAMTYPE_PHYSICAL, src)
 
 // Fire
 /obj/effect/shield/fire_act()
@@ -247,28 +244,31 @@ Like for example singulo act and whatever.
 
 
 // Projectiles
-/obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
-	if(proj.damage_types[BURN])
-		take_damage(proj.damage_types[BURN], SHIELD_DAMTYPE_HEAT, proj)
-	if(proj.damage_types[BRUTE])
-		take_damage(proj.damage_types[BRUTE], SHIELD_DAMTYPE_PHYSICAL, proj)
-	else
-		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_EM, proj)
+/obj/effect/shield/bullet_act(obj/item/projectile/proj)
+	var/totalDam = 0
+	var/dam = proj.getAllDamType(BURN)
+	take_damage(dam, SHIELD_DAMTYPE_HEAT, proj)
+	totalDam += dam
+	dam = proj.getAllDamType(BRUTE)
+	take_damage(dam, SHIELD_DAMTYPE_PHYSICAL, proj)
+	totalDam += dam
+	dam = proj.get_total_damage() - totalDam
+	if(dam > 0)
+		take_damage(dam, SHIELD_DAMTYPE_EM, proj)
 
 
 // Attacks with hand tools. Blocked by Hyperkinetic flag.
 /obj/effect/shield/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
-
+	var/brute = dhTotalDamageDamageType(I.melleDamages, BRUTE)
+	var/burn = dhTotalDamageDamageType(I.melleDamages, BURN)
+	var/rest = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, ALL_DAMAGE - BRUTE - BURN)
 	if(gen.check_flag(MODEFLAG_HYPERKINETIC))
 		user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [I]!</span>")
-		if(I.damtype == BURN)
-			take_damage(I.force, SHIELD_DAMTYPE_HEAT, user)
-		else if (I.damtype == BRUTE)
-			take_damage(I.force, SHIELD_DAMTYPE_PHYSICAL, user)
-		else
-			take_damage(I.force, SHIELD_DAMTYPE_EM, user)
+		take_damage(brute, SHIELD_DAMTYPE_PHYSICAL, user)
+		take_damage(burn, SHIELD_DAMTYPE_HEAT, user)
+		take_damage(rest, SHIELD_DAMTYPE_EM, user)
 	else
 		user.visible_message("<span class='danger'>\The [user] tries to attack \the [src] with \the [I], but it passes through!</span>")
 
@@ -282,7 +282,7 @@ Like for example singulo act and whatever.
 	return ..()
 
 // If moved (usually by a shuttle), the field ceases to exist
-/obj/effect/shield/forceMove()
+/obj/effect/shield/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator = null)
 	. = ..()
 	// qdel() also calls forceMove() to nullspace the object - no recursive qdel calls allowed, no thanks
 	if(. && !QDELETED(src))
@@ -305,18 +305,6 @@ Like for example singulo act and whatever.
 	// Update airflow
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
-
-/obj/effect/shield/proc/update_explosion_resistance()
-	if(gen && gen.check_flag(MODEFLAG_HYPERKINETIC))
-		explosion_resistance = INFINITY
-	else
-		explosion_resistance = 0
-
-///obj/effect/shield/get_explosion_resistance() //Part of recursive explosions, probably unimplemented
-	//return explosion_resistance
-
-// Shield collision checks below
 
 /atom/movable/proc/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
 	return 1

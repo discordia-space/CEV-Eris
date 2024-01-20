@@ -5,10 +5,10 @@
 	//icon_state = "pouch" //TODO
 	//item_state = "pouch" //TODO
 
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	slot_flags = SLOT_BELT //Pouches can be worn on belt
 	storage_slots = 1
-	max_w_class = ITEM_SIZE_SMALL
+	max_volumeClass = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_SMALL_STORAGE
 	matter = list(MATERIAL_BIOMATTER = 12)
 	attack_verb = list("pouched")
@@ -48,7 +48,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 3)
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE * 0.5
-	max_w_class = ITEM_SIZE_SMALL
+	max_volumeClass = ITEM_SIZE_SMALL
 	rarity_value = 10
 	price_tag = 100
 
@@ -60,7 +60,7 @@
 	matter = list(MATERIAL_BIOMATTER = 24, MATERIAL_STEEL = 6 )
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	rarity_value = 20
 	price_tag = 255
 
@@ -70,11 +70,11 @@
 	icon_state = "large_generic"
 	item_state = "large_generic"
 	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 9 )
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_NORMAL_STORAGE
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 	rarity_value = 100
 	price_tag = 410
 
@@ -88,7 +88,7 @@
 
 	storage_slots = null 
 	max_storage_space = DEFAULT_SMALL_STORAGE //Medkits typically hold 5 items in them, this is pocket medkit
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/scanner/health,
@@ -116,7 +116,7 @@
 	rarity_value = 20
 
 	storage_slots = 4 
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/tool,
@@ -151,8 +151,8 @@
 
 	storage_slots = null
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 0.8 //Not as big as a large pouch, even though hyper-specialized
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/cell,
@@ -179,8 +179,8 @@
 
 	storage_slots = null
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 0.6 //Enough space for 3 stacks
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/stack/material,
@@ -199,8 +199,8 @@
 	price_tag = 200
 
 	storage_slots = 6
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/ammo_magazine,
@@ -227,8 +227,8 @@
 	price_tag = 140
 
 	storage_slots = 5
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/device/lighting/glowstick,
@@ -272,7 +272,7 @@
 	icon_state = "holdingpouch"
 	item_state = "holdingpouch"
 	storage_slots = 7
-	max_w_class = ITEM_SIZE_BULKY
+	max_volumeClass = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
@@ -291,7 +291,7 @@
 
 	storage_slots = null
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 0.8 //Actually smaller than previous but illusion of space with continuous holding space
-	max_w_class = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_NORMAL
 
 	can_hold = list(
 		/obj/item/part,

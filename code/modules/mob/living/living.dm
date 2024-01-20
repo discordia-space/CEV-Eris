@@ -59,83 +59,76 @@ default behaviour is:
 		return FALSE
 
 /mob/living/Bump(atom/movable/AM, yes)
-	spawn(0)
-		if ((!( yes ) || now_pushing) || !loc)
+	if ((!( yes ) || now_pushing) || !loc)
+		return
+	now_pushing = TRUE
+	if (isliving(AM))
+		var/mob/living/tmob = AM
+
+		for(var/mob/living/M in range(tmob, 1))
+			if(tmob.pinned.len ||  ((M == tmob.grabbedBy && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || tmob.grabbedBy))
+				if ( !(world.time % 5) )
+					to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
+				now_pushing = FALSE
+				return
+			if( tmob == M.grabbedBy && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
+				if ( !(world.time % 5) )
+					to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
+				now_pushing = FALSE
+				return
+
+		//Leaping mobs just land on the tile, no pushing, no anything.
+		if(status_flags & LEAPING)
+			forceMove(tmob.loc)
+			status_flags &= ~LEAPING
+			now_pushing = FALSE
 			return
+
+		if(can_swap_with(tmob)) // mutual brohugs all around!
+			var/turf/oldloc = loc
+			forceMove(tmob.loc)
+			tmob.forceMove(oldloc)
+			now_pushing = FALSE
+			for(var/mob/living/carbon/slime/slime in view(1,tmob))
+				if(slime.Victim == tmob)
+					slime.UpdateFeed()
+			return
+
+		if(!can_move_mob(tmob, 0, 0))
+			now_pushing = FALSE
+			return
+		if(a_intent == I_HELP || src.restrained())
+			now_pushing = FALSE
+			return
+		if(tmob.r_hand && istype(tmob.r_hand, /obj/item/shield/riot))
+			if(prob(99))
+				now_pushing = FALSE
+				return
+		if(tmob.l_hand && istype(tmob.l_hand, /obj/item/shield/riot))
+			if(prob(99))
+				now_pushing = FALSE
+				return
+		if(!(tmob.status_flags & CANPUSH))
+			now_pushing = FALSE
+			return
+
+		tmob.LAssailant = src
+
+	now_pushing = FALSE
+	..()
+	if (!istype(AM, /atom/movable))
+		return
+	if (!now_pushing)
 		now_pushing = TRUE
-		if (isliving(AM))
-			var/mob/living/tmob = AM
 
-			for(var/mob/living/M in range(tmob, 1))
-				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
-					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
+		if (!AM.anchored)
+			var/t = get_dir(src, AM)
+			if (istype(AM, /obj/structure/window))
+				for(var/obj/structure/window/win in get_step(AM,t))
 					now_pushing = FALSE
 					return
-				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
-					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
-					now_pushing = FALSE
-					return
-
-			//Leaping mobs just land on the tile, no pushing, no anything.
-			if(status_flags & LEAPING)
-				loc = tmob.loc
-				status_flags &= ~LEAPING
-				now_pushing = FALSE
-				return
-
-			if(can_swap_with(tmob)) // mutual brohugs all around!
-				var/turf/oldloc = loc
-				forceMove(tmob.loc)
-				tmob.forceMove(oldloc)
-				now_pushing = FALSE
-				for(var/mob/living/carbon/slime/slime in view(1,tmob))
-					if(slime.Victim == tmob)
-						slime.UpdateFeed()
-				return
-
-			if(!can_move_mob(tmob, 0, 0))
-				now_pushing = FALSE
-				return
-			if(a_intent == I_HELP || src.restrained())
-				now_pushing = FALSE
-				return
-			if(tmob.r_hand && istype(tmob.r_hand, /obj/item/shield/riot))
-				if(prob(99))
-					now_pushing = FALSE
-					return
-			if(tmob.l_hand && istype(tmob.l_hand, /obj/item/shield/riot))
-				if(prob(99))
-					now_pushing = FALSE
-					return
-			if(!(tmob.status_flags & CANPUSH))
-				now_pushing = FALSE
-				return
-
-			tmob.LAssailant = src
-
+			step_glide(AM, t, glide_size)
 		now_pushing = FALSE
-		spawn(0)
-			..()
-			if (!istype(AM, /atom/movable))
-				return
-			if (!now_pushing)
-				now_pushing = TRUE
-
-				if (!AM.anchored)
-					var/t = get_dir(src, AM)
-					if (istype(AM, /obj/structure/window))
-						for(var/obj/structure/window/win in get_step(AM,t))
-							now_pushing = FALSE
-							return
-					step_glide(AM, t, glide_size)
-					if(ishuman(AM) && AM:grabbed_by)
-						for(var/obj/item/grab/G in AM:grabbed_by)
-							step_glide(G:assailant, get_dir(G:assailant, AM), glide_size)
-							G.adjust_position()
-				now_pushing = FALSE
-			return
 	return
 
 /proc/swap_density_check(var/mob/swapper, var/mob/swapee)
@@ -406,8 +399,10 @@ default behaviour is:
 
 /mob/living/proc/revive()
 	rejuvenate()
+	/*
 	if(buckled)
 		buckled.unbuckle_mob()
+	*/
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
 
@@ -520,99 +515,14 @@ default behaviour is:
 /mob/living/proc/UpdateDamageIcon()
 	return
 
-/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator = src)
 	if (buckled)
 		return
 
 	if (restrained())
 		stop_pulling()
 
-
-	var/t7 = 1
-	if (restrained())
-		for(var/mob/living/M in range(src, 1))
-			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
-				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (moving)))))
-		var/turf/T = loc
-		. = ..()
-
-		if (pulling && pulling.loc)
-			if(!(isturf(pulling.loc)))
-				stop_pulling()
-				return
-
-		/////
-		if(pulling && pulling.anchored)
-			stop_pulling()
-			return
-
-		if (!restrained())
-			var/diag = get_dir(src, pulling)
-			if ((diag - 1) & diag)
-			else
-				diag = null
-			if ((get_dist(src, pulling) > 1 || diag))
-				if (isliving(pulling))
-					var/mob/living/M = pulling
-					var/ok = 1
-					if (locate(/obj/item/grab, M.grabbed_by))
-						if (prob(75))
-							var/obj/item/grab/G = pick(M.grabbed_by)
-							if (istype(G, /obj/item/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(text("\red [] has been pulled from []'s grip by []", G.affecting, G.assailant, src), 1)
-								//G = null
-								qdel(G)
-						else
-							ok = 0
-						if (locate(/obj/item/grab, M.grabbed_by.len))
-							ok = 0
-					if (ok)
-						var/atom/movable/t = M.pulling
-						M.stop_pulling()
-
-						if(!istype(M.loc, /turf/space))
-							var/area/A = get_area(M)
-							if(A.has_gravity)
-								//this is the gay blood on floor shit -- Added back -- Skie
-								if(M.lying && (prob(M.getBruteLoss() / 6)))
-									var/turf/location = M.loc
-									if(istype(location, /turf/simulated))
-										location.add_blood(M)
-								//pull damage with injured people
-									if(prob(25))
-										M.adjustBruteLoss(1)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
-								if(M.pull_damage())
-									if(prob(25))
-										M.adjustBruteLoss(2)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
-										var/turf/location = M.loc
-										if(istype(location, /turf/simulated))
-											if(ishuman(M))
-												var/mob/living/carbon/human/H = M
-												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
-												if(blood_volume > 0)
-													H.vessel.remove_reagent("blood", 0.5)
-													location.add_blood(M)
-
-
-						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
-						if(t)
-							M.start_pulling(t)
-				else
-					if (pulling)
-						if (istype(pulling, /obj/structure/window))
-							var/obj/structure/window/W = pulling
-							if(W.is_full_window())
-								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
-									stop_pulling()
-					if (pulling)
-						step_glide(pulling, get_dir(pulling.loc, T), glide_size)
-	else
-		stop_pulling()
-		. = ..()
+	. = ..()
 
 	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
@@ -643,7 +553,7 @@ default behaviour is:
 
 		is_busy = FALSE
 
-	else if(H && H.momentum_speed && !(istype(loc, /turf/space) || grabbed_by.len))
+	else if(H && H.momentum_speed && !(istype(loc, /turf/space) || grabbedBy))
 		H.dive()
 
 	else
@@ -676,15 +586,13 @@ default behaviour is:
 
 		// Diving
 		to_chat(src, SPAN_NOTICE("You dive onwards!"))
-		pass_flags += PASSTABLE // Jump over them!
 		allow_spin = FALSE
 		if(istype(get_step(src, _dir), /turf/simulated/open))
 			range++
 		if(momentum_speed > 4)
 			range++
-		throw_at(get_edge_target_turf(src, _dir), range, 1) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
+		throw_at(get_edge_target_turf(src, _dir), range, 1, src, PASSTABLE) // If you dive over a table, your momentum is set to 0. If you dive over space, you are thrown 1 tile further.
 		update_lying_buckled_and_verb_status()
-		pass_flags -= PASSTABLE // Jumpn't over them anymore!
 		allow_spin = TRUE
 
 		// Slide
@@ -693,7 +601,6 @@ default behaviour is:
 		while(livmomentum > 0 && C.true_dir)
 			Move(get_step(loc, _dir),dir)
 			livmomentum--
-			regen_slickness(0.25) // The longer you slide, the more stylish it is
 			sleep(world.tick_lag + 0.5)
 		C.mloop = 0
 
@@ -757,8 +664,10 @@ default behaviour is:
 
 /mob/living/reset_layer()
 	if(hiding)
-		set_plane(HIDING_MOB_PLANE)
-		layer = HIDING_MOB_LAYER
+		if(!(atomFlags & AF_PLANE_UPDATE_HANDLED))
+			set_plane(HIDING_MOB_PLANE)
+		if(!(atomFlags & AF_LAYER_UPDATE_HANDLED))
+			layer = HIDING_MOB_LAYER
 	else
 		..()
 
@@ -784,19 +693,16 @@ default behaviour is:
 	set name = "Stop Pulling"
 	set category = "IC"
 
-	if(pulling)
-		pulling.pulledby = null
-		pulling = null
-/*		if(pullin)
-			pullin.icon_state = "pull0"*/
-		if (HUDneed.Find("pull"))
-			var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
-			HUD.update_icon()
+	for(var/obj/item/grab/g in src)
+		QDEL_NULL(g)
 
 /mob/living/start_pulling(var/atom/movable/AM)
 
 	if (!AM || !usr || src==AM || !isturf(src.loc))	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
+
+	if(isobj(AM)) // even if we fail all the checks assume they touched the thing
+		AM.add_fingerprint(usr)
 
 	if (AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
@@ -832,33 +738,17 @@ default behaviour is:
 
 	else if(isobj(AM))
 		var/obj/I = AM
-		if(!can_pull_size || can_pull_size < I.w_class)
+		if(!can_pull_size || can_pull_size < I.volumeClass)
 			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
-	if(pulling)
-		var/pulling_old = pulling
-		stop_pulling()
-		// Are we pulling the same thing twice? Just stop pulling.
-		if(pulling_old == AM)
-			return
+	if(get_active_hand() != null)
+		to_chat(src, SPAN_NOTICE("You need a empty hand to pull"))
 
-	src.pulling = AM
-	AM.pulledby = src
-
-	if (HUDneed.Find("pull"))
-		var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
-		HUD.update_icon()
-
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
-
-	//Attempted fix for people flying away through space when cuffed and dragged.
-	if(ismob(AM))
-		var/mob/pulled = AM
-		pulled.inertia_dir = 0
+	var/obj/item/grab/g = new(src, AM)
+	g.state = GRAB_PASSIVE
+	put_in_active_hand(g)
+	g.synch()
 
 
 // Static Overlays and Stats
@@ -867,12 +757,12 @@ default behaviour is:
 	static_overlay = image(get_static_icon(new/icon(icon, icon_state)), loc = src)
 	static_overlay.override = 1
 
+
 /mob/living/Initialize()
 	. = ..()
-
-	if(!real_name)
-		real_name = name
-
+	/// This proc used to be done in New() and was still somehow random with people having the same real name and name
+	/// I think it was random because of Human New calling Initialize and then calling the parent of New()
+	/// Hence it kept being random whilst unexpected...  -SPCR
 	dna_trace = sha1(real_name)
 	fingers_trace = md5(real_name)
 

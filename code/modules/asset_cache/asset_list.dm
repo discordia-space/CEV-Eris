@@ -106,6 +106,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/spritesheet/register()
 	if (!name)
 		CRASH("spritesheet [type] cannot register without a name")
+	create_spritesheets()
 	ensure_stripped()
 	for(var/size_id in sizes)
 		var/size = sizes[size_id]
@@ -172,6 +173,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		out += ".[name][size_id].[sprite_id]{background-position:-[x]px -[y]px;}"
 
 	return out.Join("\n")
+/**
+ * Override this proc to start creation of the spritesheet. All of the Insert,
+ * InsertAll and etc. calls go here.
+ */
+/datum/asset/spritesheet/proc/create_spritesheets()
+	SHOULD_CALL_PARENT(FALSE)
+	CRASH("create_spritesheets() not implemented for [type]!")
 
 /datum/asset/spritesheet/proc/Insert(sprite_name, icon/I, icon_state="", dir=SOUTH, frame=1, moving=FALSE)
 	I = icon(I, icon_state=icon_state, dir=dir, frame=frame, moving=moving)
@@ -255,6 +263,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 #undef SPRSZ_ICON
 #undef SPRSZ_STRIPPED
 
+/datum/asset/spritesheet/simple
+	_abstract = /datum/asset/spritesheet/simple
+	var/list/assets
+
+/datum/asset/spritesheet/simple/create_spritesheets()
+	for(var/key in assets)
+		Insert(key, assets[key])
 
 /datum/asset/changelog_item
 	_abstract = /datum/asset/changelog_item
@@ -273,15 +288,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	if (!item_filename)
 		return
 	. = list("[item_filename]" = SSassets.transport.get_asset_url(item_filename))
-
-/datum/asset/spritesheet/simple
-	_abstract = /datum/asset/spritesheet/simple
-	var/list/assets
-
-/datum/asset/spritesheet/simple/register()
-	for (var/key in assets)
-		Insert(key, assets[key])
-	..()
 
 //Generates assets based on iconstates of a single icon
 /datum/asset/simple/icon_states

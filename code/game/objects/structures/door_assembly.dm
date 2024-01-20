@@ -4,7 +4,7 @@
 	icon_state = "door_as_0"
 	anchored = FALSE
 	density = TRUE
-	w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_HUGE
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
@@ -71,7 +71,7 @@
 					to_chat(user, SPAN_NOTICE("You removed the airlock electronics!"))
 					src.state = 1
 					src.name = "Wired Airlock Assembly"
-					electronics.loc = src.loc
+					electronics.forceMove(loc)
 					electronics = null
 			update_state()
 			return
@@ -122,7 +122,7 @@
 		if(do_after(user, 40,src))
 			if(!src) return
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You installed the airlock electronics!"))
 			src.state = 2
 			src.name = "Near finished Airlock Assembly"
@@ -323,7 +323,7 @@
 	. = ..()
 	update_dir()
 
-/obj/structure/door_assembly/multi_tile/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/door_assembly/multi_tile/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	update_dir()
 

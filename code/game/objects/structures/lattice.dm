@@ -6,7 +6,7 @@
 	density = FALSE
 	plane = FLOOR_PLANE
 	anchored = TRUE
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	layer = LATTICE_LAYER //under pipes
 	//	flags = CONDUCT
 
@@ -35,19 +35,6 @@
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays(src.loc)
 	. = ..()
-
-/obj/structure/lattice/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			qdel(src)
-			return
-		if(3)
-			return
-		else
-	return
 
 /obj/structure/lattice/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(user, list(QUALITY_WELDING), src))
@@ -94,5 +81,5 @@
 		return
 
 
-/obj/structure/lattice/can_prevent_fall()
-	return TRUE
+/obj/structure/lattice/can_prevent_fall(above)
+	return above ? FALSE : TRUE

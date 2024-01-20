@@ -176,7 +176,6 @@
 			log_debug("[usr] try create a [HUDname], but it no have in HUDdatum [HUDdatum.name]")
 		else
 			var/HUDtype = HUDdatum.HUDneed[HUDname]["type"]
-
 			var/obj/screen/HUD = new HUDtype(HUDname, H,\
 			HUDdatum.HUDneed[HUDname]["icon"] ? HUDdatum.HUDneed[HUDname]["icon"] : HUDdatum.icon,\
 			HUDdatum.HUDneed[HUDname]["icon_state"] ? HUDdatum.HUDneed[HUDname]["icon_state"] : null)
@@ -186,6 +185,11 @@
 			H.HUDneed[HUD.name] += HUD
 			if (HUD.process_flag)
 				H.HUDprocess += HUD
+			if(length(HUDdatum.HUDneed[HUDname]["customvars"]))
+				var/list/customVariables = HUDdatum.HUDneed[HUDname]["customvars"]
+				for(var/variable in customVariables)
+					HUD.vars[variable] = customVariables[variable]
+			HUD.update_icon()
 	return
 
 /mob/living/carbon/human/create_HUDfrippery()

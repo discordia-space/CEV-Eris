@@ -49,13 +49,26 @@
 
 	// Armor related variables
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 0,
-		bomb = 0,
-		bio = 25,
-		rad = 50
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =25,
+		ARMOR_RAD =50
 	)
+
+	// For buckle taming
+	var/canBuckle = FALSE
+
+/mob/living/carbon/superior_animal/roach/Initialize(mapload)
+	. = ..()
+	var/list/visualOffsets = list(
+		"[NORTH]" = list(pixel_x, 0, layer+0.001),
+		"[SOUTH]" = list(pixel_x, 0, layer+0.001),
+		"[EAST]" = list(pixel_x, 0, layer+0.001),
+		"[WEST]" = list(pixel_x, 0, layer+0.001)
+	)
+	AddComponent(/datum/component/buckling, buckleFlags = BUCKLE_MOB_ONLY | BUCKLE_FORCE_DIR | BUCKLE_FORCE_STAND | BUCKLE_CUSTOM_BUCKLE | BUCKLE_BREAK_ON_FALL | BUCKLE_MOVE_RELAY | BUCKLE_PIXEL_SHIFT | BUCKLE_HANDLE_LAYER, moveProc = PROC_REF(onBuckledMoveTry), visualHandling = visualOffsets)
 
 /mob/living/carbon/superior_animal/roach/Destroy()
 	clearEatTarget()
@@ -74,3 +87,5 @@
 		if(prob(3))
 			visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
 			new /obj/item/music_tape(get_turf(src))
+
+

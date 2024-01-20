@@ -3,9 +3,8 @@
 	desc = "A latex glove, now filled with air as an oddly-shaped balloon."
 	icon_state = "latexballon"
 	item_state = "lgloves"
-	force = 0
 	throwforce = 0
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throw_speed = 1
 	throw_range = 15
 	var/state
@@ -26,14 +25,12 @@
 	item_state = "lgloves"
 	loc.assume_air(air_contents)
 
-/obj/item/latexballon/ex_act(severity)
+/obj/item/latexballon/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
 	burst()
-	switch(severity)
-		if (1)
-			qdel(src)
-		if (2)
-			if (prob(50))
-				qdel(src)
+	return 0
 
 /obj/item/latexballon/bullet_act()
 	burst()

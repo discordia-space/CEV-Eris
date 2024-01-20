@@ -8,15 +8,17 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, used_weapon = null)
+/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, armor_divisor = 1, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, used_weapon = null) // After melee rebalance set wounding_multiplier to 0 to activate melee wounding level determination
 	activate_ai()
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage)
+			wounding_multiplier = wound_check(injury_type, wounding_multiplier, edge, sharp)
+			adjustBruteLoss(damage * wounding_multiplier)
 		if(BURN)
 //			if(COLD_RESISTANCE in mutations)
 //				damage = 0
-			adjustFireLoss(damage)
+			wounding_multiplier = wound_check(injury_type, wounding_multiplier, edge, sharp) // Why not?
+			adjustFireLoss(damage * wounding_multiplier)
 		if(TOX)
 			adjustToxLoss(damage)
 		if(OXY)

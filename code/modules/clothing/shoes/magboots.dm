@@ -3,7 +3,6 @@
 	name = "magboots"
 	icon_state = "magboots0"
 	species_restricted = null
-	force = WEAPON_FORCE_WEAK
 	overslot = 1
 	action_button_name = "Toggle Magboots"
 	siemens_coefficient = 0 // DAMN BOI
@@ -25,14 +24,12 @@
 		item_flags &= ~NOSLIP
 		magpulse = FALSE
 		set_slowdown()
-		force = WEAPON_FORCE_WEAK
 		if(icon_base) icon_state = "[icon_base]0"
 		to_chat(user, "You disable the mag-pulse traction system.")
 	else
 		item_flags |= NOSLIP
 		magpulse = TRUE
 		set_slowdown()
-		force = WEAPON_FORCE_PAINFUL
 		if(icon_base) icon_state = "[icon_base]1"
 		to_chat(user, "You enable the mag-pulse traction system.")
 	user.update_inv_shoes()	//so our mob-overlays update
@@ -40,11 +37,12 @@
 	user.update_floating()
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
-	..(user)
+	var/description = ""
 	var/state = "disabled"
 	if(item_flags & NOSLIP)
 		state = "enabled"
-	to_chat(user, "Its mag-pulse traction system appears to be [state].")
+	description += "Its mag-pulse traction system appears to be [state]. \n"
+	..(user, afterDesc = description)
 
 
 /*
@@ -56,7 +54,6 @@
 	icon_state = "mercboots"
 	item_flags = NOSLIP|DRAG_AND_DROP_UNEQUIP
 	species_restricted = null
-	force = WEAPON_FORCE_PAINFUL
 	overslot = FALSE
 	magpulse = FALSE
 	mag_slow = 0

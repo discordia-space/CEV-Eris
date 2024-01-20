@@ -70,7 +70,7 @@
 		if(istype(item, /obj/item/implant) || istype(item, /obj/item/organ_module))
 			continue
 
-		. += item.w_class
+		. += item.volumeClass
 
 	for(var/organ_inside in internal_organs)
 		var/obj/item/organ/internal/internal = organ_inside
@@ -172,7 +172,7 @@
 
 // Cavity implants
 
-	if(total_volume + I.w_class > max_volume)
+	if(total_volume + I.volumeClass > max_volume)
 		to_chat(user, SPAN_WARNING("There isn't enough space in [get_surgery_name()]!"))
 		return FALSE
 
@@ -206,7 +206,7 @@
 	// Internal organs
 	else if(istype(I, /obj/item/organ/internal))
 		var/obj/item/organ/organ = I
-		organ.replaced(src)
+		organ.insert(src)
 
 	// Limbs
 	else if(istype(I, /obj/item/organ/external))
@@ -222,13 +222,13 @@
 		// Remove existing limb (usually a limb stump)
 		if(existing_limb)
 			// Prevent the new limb from being deleted along with the old one
-			limb.loc = null
+			limb.forceMove(null)
 
 			// Remove and delete the old limb
 			existing_limb.removed(null, FALSE)
 			qdel(existing_limb)
 
-		limb.replaced(target_limb)
+		limb.insert(target_limb)
 
 		saved_owner.update_body()
 		saved_owner.updatehealth()

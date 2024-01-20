@@ -15,7 +15,7 @@
 	desc = "A glowing bluespace crystal, not much is known about how they work. It looks very delicate."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
-	w_class = 1
+	volumeClass = 1
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 3)
 	matter = list(MATERIAL_DIAMOND = 5, MATERIAL_PLASMA = 5)
 	price_tag = 1000

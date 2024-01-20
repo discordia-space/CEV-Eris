@@ -1,7 +1,7 @@
 /obj/item/storage/case //created for future tweaks
 	name = "Case"
-	max_w_class = ITEM_SIZE_BULKY
-	w_class = ITEM_SIZE_HUGE
+	max_volumeClass = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_HUGE
 	var/opened = FALSE //Checking opened case or not
 
 /obj/item/storage/case/attack_hand(mob/user as mob)

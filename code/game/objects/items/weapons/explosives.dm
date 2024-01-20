@@ -3,10 +3,11 @@
 	desc = "Used to make holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/assemblies.dmi'
+	commonLore = "Centuries have passed, C4 is still the king of effective and cheap explosives."
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
 	flags = NOBLUDGEON
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	origin_tech = list(TECH_COVERT = 2)
 	var/datum/wires/explosive/c4/wires
 	var/timer = 10
@@ -52,7 +53,7 @@
 	if(do_after(user, 2 SECONDS, target) && in_range(user, target))
 		user.drop_item()
 		src.target = target
-		loc = null
+		forceMove(NULLSPACE)
 
 		if (ismob(target))
 			add_logs(user, target, "planted [name] on")
@@ -70,21 +71,17 @@
 			explode(get_turf(target))
 
 /obj/item/plastique/proc/explode(location)
-	if(!target)
-		target = get_atom_on_turf(src)
-	if(!target)
-		target = src
-	if(location)
-		explosion(location, -1, -1, 2, 3)
-
+	explosion(location, 2000, 1000)
+	/*
 	if(target)
 		if (istype(target, /turf/simulated/wall))
 			var/turf/simulated/wall/W = target
 			W.dismantle_wall(no_product = TRUE)
 		else if(isliving(target))
-			target.ex_act(2) // c4 can't gib mobs anymore.
+			target.explosion_act(1000) // c4 can't gib mobs anymore.
 		else
-			target.ex_act(1)
+			target.explosion_act(1000)
+	*/
 
 	//Girders are a pain, just delete em
 	//for (var/obj/structure/girder/G in loc)

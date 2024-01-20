@@ -13,8 +13,7 @@ AI MODULES
 	item_state = "electronic"
 	desc = "An AI Module for transmitting encrypted instructions to the AI."
 	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 15
@@ -376,8 +375,6 @@ AI MODULES
 		return 0
 	..()
 
-
-
 /******************** Robocop ********************/
 
 /obj/item/electronics/ai_module/robocop // -- TLE
@@ -393,3 +390,35 @@ AI MODULES
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = list(TECH_DATA = 4)
 	laws = new/datum/ai_laws/antimov()
+
+/******************** Partybot ********************/
+
+/obj/item/electronics/ai_module/partybot
+	name = "\improper 'Partybot' core AI module"
+	desc = "A 'Partybot' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/partybot()
+
+/******************** Chefbot ********************/
+
+/obj/item/electronics/ai_module/chefbot
+	name = "\improper 'Chefbot' core AI module"
+	desc = "A 'Chefbot' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/chefbot()
+
+/******************** TravelGuide ********************/
+
+/obj/item/electronics/ai_module/travelguide
+	name = "\improper 'TravelGuide' core AI module"
+	desc = "A 'TravelGuide' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/travelguide()
+
+/******************** Friendbot ********************/
+
+/obj/item/electronics/ai_module/friendbot
+	name = "\improper 'Friendbot' core AI module"
+	desc = "A 'Friendbot' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_MATERIAL = 4)
+	laws = new/datum/ai_laws/friendbot()

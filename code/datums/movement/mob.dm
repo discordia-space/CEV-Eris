@@ -119,21 +119,9 @@
 
 // Buckle movement
 /datum/movement_handler/mob/buckle_relay/DoMove(var/direction, var/mover)
-	// TODO: Datumlize buckle-handling
-	if(istype(mob.buckled, /obj/vehicle))
-		//drunk driving
-		if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
-			direction = turn(direction, pick(90, -90))
-		mob.buckled.relaymove(mob, direction)
-		return MOVEMENT_HANDLED
 
-	if(mob.pulledby || mob.buckled) // Wheelchair driving!
-		if(istype(mob.loc, /turf/space))
-			return // No wheelchair driving in space
-		if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
-			. = MOVEMENT_HANDLED
-			mob.pulledby.DoMove(direction, mob)
-		else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
+	if(mob.grabbedBy)
+		if(istype(mob.grabbedBy.assailant, /obj/structure/bed/chair/wheelchair))
 			. = MOVEMENT_HANDLED
 			if(ishuman(mob))
 				var/mob/living/carbon/human/driver = mob
@@ -141,9 +129,9 @@
 				var/obj/item/organ/external/r_arm = driver.get_organ(BP_R_ARM)
 				if((!l_arm || l_arm.is_stump()) && (!r_arm || r_arm.is_stump()))
 					return // No arms to drive your chair? Tough luck!
-			//drunk wheelchair driving
 			direction = mob.AdjustMovementDirection(direction)
-			mob.buckled.DoMove(direction, mob)
+			mob.grabbedBy.assailant.DoMove(direction, mob)
+
 
 /datum/movement_handler/mob/buckle_relay/MayMove(var/mover)
 	if(mob.buckled)
@@ -237,9 +225,13 @@
 				mob:resist()
 		return MOVEMENT_STOP
 
-	if(istype(mob.buckled) && !mob.buckled.buckle_movable)
+	var/list/bucklers = list()
+	SEND_SIGNAL(mob, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckle in bucklers)
+		if(buckle.buckleFlags & BUCKLE_MOVING)
+			continue
 		if(mover == mob)
-//			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")
+			to_chat(mob, "<span class='notice'>You're buckled to \the [buckle.owner]!</span>")
 			if(isliving(mob))
 				mob:resist()
 		return MOVEMENT_STOP
@@ -249,31 +241,25 @@
 			to_chat(mob, "<span class='notice'>You're pinned down by \a [mob.pinned[1]]!</span>")
 		return MOVEMENT_STOP
 
-	for(var/obj/item/grab/G in mob.grabbed_by)
+	if(mob.grabbedBy)
 		return MOVEMENT_STOP
-		/* TODO: Bay grab system
-		if(G.stop_move())
-			if(mover == mob)
-				to_chat(mob, "<span class='notice'>You're stuck in a grab!</span>")
-			mob.ProcessGrabs()
-			return MOVEMENT_STOP
-		*/
+
 	if(mob.restrained())
-		for(var/mob/M in range(mob, 1))
-			if(M.pulling == mob)
-				if(!M.incapacitated() && mob.Adjacent(M))
-					if(mover == mob)
-						to_chat(mob, "<span class='notice'>You're restrained! You can't move!</span>")
-					return MOVEMENT_STOP
-				else
-					M.stop_pulling()
+		if(mob.grabbedBy && mover == mob)
+			to_chat(mob, "<span class='notice'>You're restrained! You can't move!</span>")
+
+	if(istype(mob.loc, /obj/item/mech_equipment/forklifting_system))
+		if(mover == mob && isliving(mob))
+			mob:resist()
+		return MOVEMENT_STOP
+
 
 	return MOVEMENT_PROCEED
 
 
 /mob/living/ProcessGrabs()
 	//if we are being grabbed
-	if(grabbed_by.len)
+	if(grabbedBy)
 		resist() //shortcut for resisting grabs
 
 /mob/proc/ProcessGrabs()
@@ -290,42 +276,20 @@
 		mob.lastarea = get_area(mob.loc)
 
 	//We are now going to move
-	mob.moving = 1
+	mob.moving = TRUE
 
 	direction = mob.AdjustMovementDirection(direction)
-	var/old_turf = get_turf(mob)
 	step(mob, direction)
 
-	if(!MOVING_DELIBERATELY(mob))
-		mob.handle_movement_recoil()
 	mob.add_momentum(direction)
 	// Something with pulling things
-	var/extra_delay = HandleGrabs(direction, old_turf)
-	mob.add_move_cooldown(extra_delay)
 
-	/* TODO: Bay grab system
-	for (var/obj/item/grab/G in mob)
-		if (G.assailant_reverse_facing())
-			mob.set_dir(GLOB.reverse_dir[direction])
-		G.assailant_moved()
-	for (var/obj/item/grab/G in mob.grabbed_by)
-		G.adjust_position()
-	*/
-	mob.moving = 0
+	mob.moving = FALSE
+
+	mob.update_cursor()
 
 /datum/movement_handler/mob/movement/MayMove(var/mob/mover)
 	return IS_SELF(mover) &&  mob.moving ? MOVEMENT_STOP : MOVEMENT_PROCEED
-
-/datum/movement_handler/mob/movement/proc/HandleGrabs(var/direction, var/old_turf)
-	. = 0
-	// TODO: Look into making grabs use movement events instead, this is a mess.
-	for (var/obj/item/grab/G in mob)
-		. = max(., G.slowdown)
-		var/mob/M = G.affecting
-		if(M && get_dist(old_turf, M) <= 1)
-			if (isturf(M.loc) && isturf(mob.loc) && mob.loc != old_turf && M.loc != mob.loc)
-				step(M, get_dir(M.loc, old_turf))
-		G.adjust_position()
 
 /mob/proc/AdjustMovementDirection(var/direction)
 	. = direction

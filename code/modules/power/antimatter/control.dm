@@ -43,7 +43,7 @@
 
 /obj/machinery/power/am_control_unit/Process()
 	if(exploding)
-		explosion(get_turf(src),8,12,18,12)
+		explosion(get_turf(src), 5000, 250)
 		if(src) qdel(src)
 
 	if(update_shield_icons && !shield_icon_delay)
@@ -100,26 +100,10 @@
 	..()
 	return 0
 
-
-/obj/machinery/power/am_control_unit/ex_act(severity)
-	switch(severity)
-		if(1)
-			stability -= 60
-		if(2)
-			stability -= 40
-		if(3)
-			stability -= 20
-		if(4)
-			stability -= 10
+/obj/machinery/power/am_control_unit/explosion_act(target_power, explosion_handler/handler)
+	stability -= target_power / 10
 	check_stability()
-	return
-
-
-/obj/machinery/power/am_control_unit/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.check_armour != ARMOR_BULLET)
-		stability -= Proj.force
-	return 0
-
+	return target_power
 
 /obj/machinery/power/am_control_unit/power_change()
 	..()
@@ -160,15 +144,15 @@
 			return
 		fueljar = I
 		user.remove_from_mob(I)
-		I.loc = src
+		I.forceMove(src)
 		user.update_icons()
 		user.visible_message("[user.name] loads an [I.name] into the [src.name].", \
 				"You load an [I.name].", \
 				"You hear a thunk.")
 		return
 
-	if(I.force >= 20)
-		stability -= I.force/2
+	if(dhTotalDamage(I.melleDamages) >= 20)
+		stability -= dhTotalDamage(I.melleDamages)/2
 		check_stability()
 	..()
 	return
@@ -306,7 +290,7 @@
 
 	if(href_list["ejectjar"])
 		if(fueljar)
-			fueljar.loc = src.loc
+			fueljar.forceMove(src.loc)
 			fueljar = null
 			//fueljar.control_unit = null currently it does not care where it is
 			//update_icon() when we have the icon for it

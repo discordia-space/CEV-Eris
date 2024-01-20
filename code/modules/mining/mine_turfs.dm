@@ -45,16 +45,11 @@
 
 /turf/simulated/mineral/is_plating()
 	return TRUE
-
-/turf/simulated/mineral/ex_act(severity)
-	switch(severity)
-		if(2)
-			if (prob(70))
-				mined_ore = 1 //some of the stuff gets blown up
-				GetDrilled()
-		if(1)
-			mined_ore = 2 //some of the stuff gets blown up
-			GetDrilled()
+/turf/simulated/mineral/explosion_act(target_power, explosion_handler/handler)
+	. = ..()
+	if(src && target_power > 75)
+		mined_ore = 1
+		GetDrilled()
 
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
 
@@ -125,7 +120,7 @@
 			var/excavation_amount = input("How deep are you going to dig?", "Excavation depth", 0)
 			if(excavation_amount)
 				to_chat(user, SPAN_NOTICE("You start exacavating [src]."))
-				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
 					to_chat(user, SPAN_NOTICE("You finish excavating [src]."))
 					excavation_level += excavation_amount
 					GetDrilled(0)
@@ -134,7 +129,7 @@
 
 		if(QUALITY_DIGGING)
 			to_chat(user, SPAN_NOTICE("You start digging the [src]."))
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
 				GetDrilled(0)
 			return
@@ -218,16 +213,10 @@
 		overlay_detail = "asteroid[rand(0,8)]"
 		updateMineralOverlays(1)
 
-/turf/simulated/floor/asteroid/ex_act(severity)
-	switch(severity)
-		if(3)
-			return
-		if(2)
-			if (prob(70))
-				gets_dug()
-		if(1)
-			gets_dug()
-	return
+/turf/simulated/floor/asteroid/explosion_act(target_power, explosion_handler/handler)
+	. = ..()
+	if(src && target_power > 50)
+		gets_dug()
 
 /turf/simulated/floor/asteroid/is_plating()
 	return !density
@@ -238,7 +227,7 @@
 		if (dug)
 			to_chat(user, SPAN_WARNING("This area has already been dug"))
 			return
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))
+		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			to_chat(user, SPAN_NOTICE("You dug a hole."))
 			gets_dug()
 

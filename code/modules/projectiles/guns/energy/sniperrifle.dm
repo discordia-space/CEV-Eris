@@ -11,8 +11,7 @@
 	slot_flags = SLOT_BACK
 	charge_cost = 300
 	fire_delay = 35
-	force = 10
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 8, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 6)
 	price_tag = 5000
 	cell_type = /obj/item/cell/medium

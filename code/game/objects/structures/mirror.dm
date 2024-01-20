@@ -53,8 +53,8 @@
 	if(shattered)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return
-
-	if(prob(I.force * 2))
+	var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+	if(prob(damage * 2))
 		visible_message(SPAN_WARNING("[user] smashes [src] with [I]!"))
 		shatter()
 	else

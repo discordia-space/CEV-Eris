@@ -3,7 +3,7 @@
 	desc = "A dice with six sides."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "d66"
-	w_class = ITEM_SIZE_TINY
+	volumeClass = ITEM_SIZE_TINY
 	attack_verb = list("diced")
 	price_tag = 1
 	spawn_tags = SPAWN_TAG_DICE

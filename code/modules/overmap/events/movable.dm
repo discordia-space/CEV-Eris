@@ -144,7 +144,7 @@
 
 	icon_stages[1] = pick(list("asteroid0", "asteroid1", "asteroid2", "asteroid3"))
 
-/obj/effect/overmap_event/movable/comet/Move()
+/obj/effect/overmap_event/movable/comet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	if(type == /obj/effect/overmap_event/movable/comet)
 		var/obj/effect/overmap_event/movable/comet/cometmedium/CT = new /obj/effect/overmap_event/movable/comet/cometmedium()
 

@@ -56,7 +56,7 @@
 	name = "infantryman's rations kit"
 	icon_state = "irp_box"
 	item_state = "irp_box"
-	desc = "A box of preserved, ready-to-eat food for soldiers and spacefarers on the go."
+	desc = "A box of preserved, ready-to-eat, and medicinally enhanced food for soldiers and spacefarers on the go."
 	initial_contents = list(/obj/item/storage/ration_pack = 7)
 
 
@@ -73,6 +73,11 @@
 	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field."
 	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/storage/pouch/holster = 1)
 	//One guaranteed holster and plenty of randoms
+
+/obj/item/storage/deferred/accarmors
+	name = "uniform accessory armor kit"
+	desc = "A box full of various armor plates and holsters designed to attach to uniforms for a bit extra cushion between user and death."
+	initial_contents = list(/obj/item/clothing/accessory/armor = 2, /obj/item/clothing/accessory/armor/bullet = 2, /obj/item/clothing/accessory/armor/platecarrier = 1, /obj/item/clothing/accessory/armor/riot = 1, /obj/item/clothing/accessory/armor/laser = 1, /obj/item/clothing/accessory/holster = 6)
 
 /obj/item/storage/deferred/comms
 	name = "communications kit"
@@ -117,13 +122,21 @@
 		/obj/item/stack/medical/advanced/bruise_pack
 		)
 
+/obj/item/storage/deferred/cybernetics
+	name = "soldier cybernetic kit"
+	desc = "Contains various single use cybernetic applicators."
+	initial_contents = list(
+		/obj/item/implanter/installer/disposable/armor = 6,
+		/obj/item/implanter/installer/disposable/muscle = 12
+	)
 
 /obj/item/storage/deferred/meds
 	name = "combat medical kit"
 	desc = "Contains advanced medical treatments."
 	icon_state = "combat_medical_kit"
 	item_state = "combat_medical_kit"
-	initial_contents = list(/obj/item/storage/pill_bottle/bicaridine,
+	initial_contents = list(
+	/obj/item/storage/pill_bottle/meralyne,
 	/obj/item/storage/pill_bottle/dermaline,
 	/obj/item/storage/pill_bottle/dexalin_plus,
 	/obj/item/storage/pill_bottle/dylovene,
@@ -136,7 +149,7 @@
 //Crates
 //These use open topped crate sprites but are still functionally boxes. They can be picked up, but are too large to fit in anything
 /obj/item/storage/deferred/crate
-	w_class = ITEM_SIZE_HUGE //This is too big to fit in a backpack
+	volumeClass = ITEM_SIZE_HUGE //This is too big to fit in a backpack
 	icon_state = "serbcrate_deferred_worn"
 	item_state = "crate"
 
@@ -161,7 +174,7 @@
 	name = "rifleman crate"
 	desc = "A crate containing six SA AK-47 rifles, and plenty of magazines."
 	icon_state = "serbcrate_deferred_green"
-	initial_contents = list(/obj/item/gun/projectile/automatic/ak47/sa  = 6,
+	initial_contents = list(/obj/item/gun/projectile/automatic/modular/ak/serbian_arms  = 6,
 	/obj/item/ammo_magazine/lrifle = 12, /obj/item/ammo_magazine/lrifle/drum = 6)
 
 /obj/item/storage/deferred/crate/kovacs
@@ -225,6 +238,17 @@
 	initial_contents = list(
 		/obj/item/gun/projectile/automatic/zoric = 4,
 		/obj/item/ammo_magazine/msmg = 16,
+		)
+
+/obj/item/storage/deferred/crate/shotgun
+	name = "pointman shotgun crate"
+	desc = "A crate containing 4 bojevic autoshotguns and 120 rounds of .50 buck and slug ammunition each. good to keep handy \
+			for close encounters."
+	icon_state = "serbcrate_deferred_black"
+	initial_contents = list(
+		/obj/item/gun/projectile/shotgun/bojevic = 4,
+		/obj/item/ammo_magazine/m12/pellet = 10,
+		/obj/item/ammo_magazine/m12 = 10
 		)
 
 /obj/item/storage/deferred/crate/cells
@@ -309,7 +333,7 @@
 	/obj/item/storage/fancy/cigarettes = 1)
 
 /obj/item/storage/deferred/crate/german_uniform
-	name = "german uniform crate"
+	name = "oberthian uniform crate"
 	desc = "A moderately sized crate full of clothes."
 	icon_state = "germancrate_deferred"
 	initial_contents = list(
@@ -322,7 +346,7 @@
 
 /obj/item/storage/deferred/crate/clown_crime
 	name = "mastermind suit bag"
-	desc = "A duffelbag filled with clothing and... a second duffelbag?."
+	desc = "A duffelbag filled with clothing and... a second duffelbag?"
 	icon = 'icons/obj/storage/backpack.dmi'
 	icon_state = "lootbag"
 	spawn_blacklisted = TRUE

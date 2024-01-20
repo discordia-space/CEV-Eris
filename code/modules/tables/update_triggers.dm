@@ -13,7 +13,7 @@
 	loc=oldloc
 	. = ..()
 
-/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	var/oldloc = loc
 	. = ..()
 	if(loc != oldloc)

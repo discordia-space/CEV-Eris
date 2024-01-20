@@ -40,6 +40,8 @@ SUBSYSTEM_DEF(ticker)
 	var/ship_nuke_code = "NO CODE"       // Heads will get parts of this code.
 	var/ship_nuke_code_rotation_part = 1 // What part of code next Head will get.
 	var/nuke_in_progress = 0           	// Sit back and relax
+	/// See excelsior_redirector.dm,0 for not happening,  1 for in progress , 2 for finished(And for the round to end immediately)
+	var/excelsior_hijacking = 0
 
 	var/newscaster_announcements = null
 
@@ -130,11 +132,13 @@ SUBSYSTEM_DEF(ticker)
 			if(!process_empty_server())
 				return
 
-			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked || universe_has_ended)
+			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked || universe_has_ended || excelsior_hijacking == 2)
 
 			if(!nuke_in_progress && game_finished)
 				current_state = GAME_STATE_FINISHED
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+				for(var/client_key in SSinactivity_and_job_tracking.current_playtimes)
+					SSjob.SavePlaytimes(client_key)
 				declare_completion()
 
 				spawn(50)
@@ -463,7 +467,6 @@ SUBSYSTEM_DEF(ticker)
 				captainless = FALSE
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
 				SSjob.EquipRank(player, player.mind.assigned_role)
-				equip_custom_items(player)
 	if(captainless)
 		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))

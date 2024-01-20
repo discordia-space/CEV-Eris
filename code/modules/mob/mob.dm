@@ -41,6 +41,7 @@
 		GLOB.living_mob_list += src
 	GLOB.mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_INITIALIZED, src)
 	. = ..()
 
 /**
@@ -84,21 +85,16 @@
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
 /mob/visible_message(var/message, var/self_message, var/blind_message, var/range = world.view)
-	var/list/messageturfs = list()//List of turfs we broadcast to.
 	var/list/messagemobs = list()//List of living mobs nearby who can hear it, and distant ghosts who've chosen to hear it
-	for (var/turf in view(range, get_turf(src)))
 
-		messageturfs += turf
+	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
+		if(!M.client)
+			continue
+		messagemobs += M
 
-	for(var/A in GLOB.player_list)
-		var/mob/M = A
-		if (QDELETED(M))
-			GLOB.player_list -= M
-			continue
-		if (!M.client || istype(M, /mob/new_player))
-			continue
-		if(get_turf(M) in messageturfs)
-			messagemobs += M
+	for(var/mob/ghosty in GLOB.player_ghost_list)
+		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
+			messagemobs |= ghosty
 
 	for(var/A in messagemobs)
 		var/mob/M = A
@@ -189,28 +185,28 @@
 
 /mob/proc/incapacitated(var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if ((incapacitation_flags & INCAPACITATION_STUNNED) && stunned)
-		return 1
+		return TRUE
 
 	if ((incapacitation_flags & INCAPACITATION_SOFTLYING) && (resting || weakened))
-		return 1
+		return TRUE
 
 	if ((incapacitation_flags & INCAPACITATION_FORCELYING) && pinned.len)
-		return 1
+		return TRUE
 
 	if ((incapacitation_flags & INCAPACITATION_UNCONSCIOUS) && (stat || paralysis || sleeping || (status_flags & FAKEDEATH)))
-		return 1
+		return TRUE
 
 	if((incapacitation_flags & INCAPACITATION_RESTRAINED) && restrained())
-		return 1
+		return TRUE
 
 	if((incapacitation_flags & (INCAPACITATION_BUCKLED_PARTIALLY|INCAPACITATION_BUCKLED_FULLY)))
 		var/buckling = buckled()
 		if(buckling >= PARTIALLY_BUCKLED && (incapacitation_flags & INCAPACITATION_BUCKLED_PARTIALLY))
-			return 1
+			return TRUE
 		if(buckling == FULLY_BUCKLED && (incapacitation_flags & INCAPACITATION_BUCKLED_FULLY))
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 #undef UNBUCKLED
 #undef PARTIALLY_BUCKLED
@@ -247,7 +243,9 @@
  *
  * mob verbs are faster than object verbs. See
  * [this byond forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
- * for why this isn't atom/verb/examine()
+ * for why this isn't atom/verb/examine() (2014)
+ * Think this was fixed with Context-Menu general fixes about 1 year ago , SPCR - 2023
+ *
  */
 /mob/verb/examinate(atom/examinify as mob|obj|turf in view())
 	set name = "Examine"
@@ -327,14 +325,16 @@
 			var/obj/item/grab/G = l_hand
 			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
+				if (G.affecting && ismob(G.affecting))
+					var/mob/affected = G.affecting
+					affected.ret_grab(L, 1)
 		if(istype(r_hand, /obj/item/grab))
 			var/obj/item/grab/G = r_hand
 			if (!L.container.Find(G.affecting))
 				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
+				if (G.affecting && ismob(G.affecting))
+					var/mob/affected = G.affecting
+					affected.ret_grab(L,1)
 		if(!flag)
 			if (L.master == src)
 				var/list/temp = list()
@@ -366,6 +366,27 @@
 	var/obj/item/W = get_active_hand()
 	if (W)
 		W.attack_self(src)
+
+
+/mob/verb/toggle_flashlight()
+	set name = "Toggle Flashlight"
+	set category = "Object"
+
+	if(incapacitated())
+		return
+
+	var/obj/item/item = get_active_hand()
+	if(!item)
+		return
+
+	if(isgun(item))
+		var/obj/item/gun/gun = item
+		if(gun.flashlight_attachment)
+			item = gun.flashlight_attachment
+
+	if(istype(item, /obj/item/device/lighting/toggleable/flashlight))
+		var/obj/item/device/lighting/toggleable/flashlight/flashlight = item
+		flashlight.attack_self(src)
 
 /*
 /mob/verb/dump_source()
@@ -572,11 +593,8 @@
 	set name = "Stop Pulling"
 	set category = "IC"
 
-	if(pulling)
-		pulling.pulledby = null
-		pulling = null
-		/*if(pullin)
-			pullin.icon_state = "pull0"*/
+	for(var/obj/item/g in src)
+		qdel(g)
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
@@ -586,6 +604,11 @@
 	if (AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
+
+	if(SEND_SIGNAL(AM, COMSIG_ATTEMPT_PULLING) == COMSIG_PULL_CANCEL)
+		to_chat(src, SPAN_WARNING("It won't budge!"))
+		return
+
 
 	var/mob/M = AM
 	if(ismob(AM))
@@ -617,32 +640,19 @@
 
 	else if(isobj(AM))
 		var/obj/I = AM
-		if(!can_pull_size || can_pull_size < I.w_class)
+		if(!can_pull_size || can_pull_size < I.volumeClass)
 			to_chat(src, "<span class='warning'>It won't budge!</span>")
 			return
 
-	if(pulling)
-		var/pulling_old = pulling
-		stop_pulling()
-		// Are we pulling the same thing twice? Just stop pulling.
-		if(pulling_old == AM)
-			return
+	if(get_active_hand())
+		to_chat(src, SPAN_NOTICE("You need a empty hand to pull!"))
+		return
 
-	src.pulling = AM
-	AM.pulledby = src
-
-	/*if(pullin)
-		pullin.icon_state = "pull1"*/
-
-	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
-		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
-
-	//Attempted fix for people flying away through space when cuffed and dragged.
-	if(ismob(AM))
-		var/mob/pulled = AM
-		pulled.inertia_dir = 0
+	var/obj/item/grab/g = new(src, AM)
+	if(g)
+		g.state = GRAB_PASSIVE
+		put_in_active_hand(g)
+		g.synch()
 
 /mob/proc/can_use_hands()
 	return
@@ -734,7 +744,7 @@
 
 // Not sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't need to fall over yet.
 /mob/proc/can_stand_overridden()
-	return 0
+	return FALSE
 
 /mob/proc/cannot_stand()
 	return incapacitated(INCAPACITATION_DEFAULT & (~INCAPACITATION_RESTRAINED))
@@ -747,37 +757,37 @@ TODO: Bay Movement:
 All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
 */
 /mob/proc/update_lying_buckled_and_verb_status(dropitems = FALSE)
+	var/list/bucklers = list()
+	lying = FALSE
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	var/hasToLie = cannot_stand() || resting || incapacitated(INCAPACITATION_KNOCKDOWN | INCAPACITATION_GROUNDED)
+	for(var/datum/component/buckling/buckleComp in bucklers)
+		// lying forces break the whole loop
+		if(buckleComp.buckleFlags & BUCKLE_FORCE_LIE)
+			hasToLie = TRUE
+			break
 
-	if(!resting && cannot_stand() && can_stand_overridden())
-		lying = 0
-		canmove = TRUE //TODO: Remove this
-	else if(buckled)
-		anchored = TRUE
-		if(istype(buckled))
-			if(buckled.buckle_lying == -1)
-				lying = incapacitated(INCAPACITATION_KNOCKDOWN)
-			else
-				lying = buckled.buckle_lying
-			if(buckled.buckle_movable)
-				anchored = FALSE
-		canmove = FALSE //TODO: Remove this
-	else
-		lying = incapacitated(INCAPACITATION_GROUNDED)
-		canmove = FALSE //TODO: Remove this
+	if(hasToLie)
+		lying = TRUE
+		if(can_stand_overridden())
+			lying = FALSE
+		for(var/datum/component/buckling/buckleComp in bucklers)
+			if(buckleComp.buckleFlags & BUCKLE_FORCE_STAND)
+				lying = FALSE
+		if(grabbedBy && grabbedBy.force_stand())
+			lying = FALSE
+
 
 	if(lying)
-		set_density(0)
+		set_density(FALSE)
+		canmove = FALSE
 		if(stat == UNCONSCIOUS || dropitems)
 			if(l_hand) unEquip(l_hand) //we want to be able to keep items, for tactical resting and ducking behind cover
 			if(r_hand) unEquip(r_hand)
 	else
-		canmove = TRUE
 		set_density(initial(density))
+		canmove = TRUE
 	reset_layer()
-
-	for(var/obj/item/grab/G in grabbed_by)
-		if(G.force_stand())
-			lying = 0
 
 	//Temporarily moved here from the various life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
@@ -789,19 +799,25 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	else if( lying != lying_prev )
 		update_icons()
 
+
 /mob/proc/reset_layer()
 	if(lying)
-		set_plane(LYING_MOB_PLANE)
-		layer = LYING_MOB_LAYER
+		if(!(atomFlags & AF_PLANE_UPDATE_HANDLED))
+			set_plane(LYING_MOB_PLANE)
+		if(!(atomFlags & AF_LAYER_UPDATE_HANDLED))
+			layer = LYING_MOB_LAYER
 	else
 		reset_plane_and_layer()
 
 /mob/facedir(var/ndir)
-	if(!canface() || client.moving)
-		return 0
+	if(!canface() || client.moving || !check_gravity())
+		return FALSE
+	var/list/bucklers = list()
+	SEND_SIGNAL(src, COMSIG_BUCKLE_QUERY, bucklers)
+	for(var/datum/component/buckling/buckle in bucklers)
+		if(buckle.buckleFlags & BUCKLE_FORCE_DIR)
+			return FALSE
 	set_dir(ndir)
-	if(buckled && buckled.buckle_movable)
-		buckled.set_dir(ndir)
 	set_move_cooldown(movement_delay())
 	return 1
 
@@ -1011,7 +1027,7 @@ mob/proc/yank_out_object()
 		affected.embedded -= selection
 		selection.on_embed_removal(src)
 		H.shock_stage+=20
-		affected.take_damage((selection.w_class * 3), 0, 0, 1, "Embedded object extraction")
+		affected.take_damage((selection.volumeClass * 3), 0, 0, 1, "Embedded object extraction")
 
 		if (ishuman(U))
 			var/mob/living/carbon/human/human_user = U
@@ -1116,65 +1132,15 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
 /mob/verb/browse_mine_stats()
-	set name		= "Show stats and perks"
-	set desc		= "Browse your character stats and perks."
-	set category	= "IC"
-	set src			= usr
+	set name = "Show stats and perks"
+	set desc = "Browse your character stats and perks."
+	set category = "IC"
+	set src = usr
 
-	browse_src_stats(src)
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		return
 
-/mob/proc/browse_src_stats(mob/user)
-	var/additionalcss = {"
-		<style>
-			table {
-				float: left;
-			}
-			table, th, td {
-				border: #3333aa solid 1px;
-				border-radius: 5px;
-				padding: 5px;
-				text-align: center;
-			}
-			th{
-				background:#633;
-			}
-		</style>
-	"}
-	var/table_header = "<th>Stat Name<th>Stat Value"
-	var/list/S = list()
-	for(var/TS in ALL_STATS)
-		S += "<td>[TS]<td>[getStatStats(TS)]"
-	var/data = {"
-		[additionalcss]
-		[user == src ? "Your stats:" : "[name]'s stats"]<br>
-		<table width=20%>
-			<tr>[table_header]
-			<tr>[S.Join("<tr>")]
-		</table>
-	"}
-	// Perks
-	var/list/Plist = list()
-	if (stats) // Check if mob has stats. Otherwise we cannot read null.perks
-		for(var/perk in stats.perks)
-			var/datum/perk/P = perk
-			Plist += "<td valign='middle'><img src=[SSassets.transport.get_asset_url(P.type)]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
-	data += {"
-		<table width=80%>
-			<th colspan=2>Perks</th>
-			<tr>[Plist.Join("</tr><tr>")]</tr>
-		</table>
-	"}
-
-	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 1000, 345)
-	B.set_content(data)
-	B.set_window_options("can_minimize=0")
-	B.open()
-
-/mob/proc/getStatStats(typeOfStat)
-	if (SSticker.current_state != GAME_STATE_PREGAME)
-		if(stats)
-			return stats.getStat(typeOfStat)
-		return 0
+	stats?.ui_interact(usr)
 
 /mob/proc/set_face_dir(var/newdir)
 	if(!isnull(facing_dir) && newdir == facing_dir)

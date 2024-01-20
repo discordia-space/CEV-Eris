@@ -163,7 +163,7 @@
   - tweak: Rocket in-flight now glows yellow so it's more spottable, especially in
       darkness.
   - tweak: Nerfed quantity of RPG rockets from 20 to 12 (nicely looks in crate-box),
-      buffed their w_class to normal, but allowed tubular pouches to carry it, added
+      buffed their volumeClass to normal, but allowed tubular pouches to carry it, added
       one tubular pouch to Demolition crate also.
   - tweak: You can throw things over low walls now, including grenades.
   - tweak: c20r no more inherits all possible fire modes for automatic weapons, now

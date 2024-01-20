@@ -69,7 +69,7 @@
 
 	name = lowertext("[fullname] sandwich")
 	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
-	w_class = n_ceil(CLAMP((ingredients.len/2),2,4))
+	volumeClass = n_ceil(CLAMP((ingredients.len/2),2,4))
 
 /obj/item/reagent_containers/food/snacks/csandwich/Destroy()
 	for(var/obj/item/O in ingredients)
@@ -77,9 +77,10 @@
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/csandwich/examine(mob/user)
-	..(user)
+	var/description = ""
 	var/obj/item/O = pick(contents)
-	to_chat(user, SPAN_NOTICE("You think you can see [O.name] in there."))
+	description += SPAN_NOTICE("You think you can see [O.name] in there.")
+	..(user, afterDesc = description)
 
 /obj/item/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
 	var/obj/item/shard

@@ -4,21 +4,7 @@
 	opacity = 0
 	density = FALSE
 	layer = SIGN_LAYER
-	w_class = ITEM_SIZE_NORMAL
-
-/obj/structure/sign/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			qdel(src)
-			return
-		if(3)
-			qdel(src)
-			return
-		else
-	return
+	volumeClass = ITEM_SIZE_NORMAL
 
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
 	if(istype(tool, /obj/item/tool/screwdriver) && !istype(src, /obj/structure/sign/double))
@@ -37,7 +23,7 @@
 	name = "sign"
 	desc = ""
 	icon = 'icons/obj/decals.dmi'
-	w_class = ITEM_SIZE_NORMAL		//big
+	volumeClass = ITEM_SIZE_NORMAL		//big
 	var/sign_state = ""
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction

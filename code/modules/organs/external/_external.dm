@@ -74,7 +74,7 @@
 	var/encased				// Needs to be opened with a saw to access certain organs.
 
 	var/cavity_name = "cavity"				// Name of body part's cavity, displayed during cavity implant surgery
-	var/max_volume = ITEM_SIZE_SMALL	// Max w_class of cavity implanted items
+	var/max_volume = ITEM_SIZE_SMALL	// Max volumeClass of cavity implanted items
 
 	// Surgery vars.
 	var/open = 0
@@ -134,7 +134,7 @@
 	src.vital = desc.vital
 	src.cannot_amputate = desc.cannot_amputate
 
-	src.w_class = desc.w_class
+	src.volumeClass = desc.volumeClass
 	src.max_volume = desc.max_volume
 
 	src.amputation_point = desc.amputation_point
@@ -146,7 +146,7 @@
 	if(desc.drop_on_remove)
 		src.drop_on_remove = desc.drop_on_remove.Copy()
 
-/obj/item/organ/external/replaced(obj/item/organ/external/affected)
+/obj/item/organ/external/insert(obj/item/organ/external/affected)
 	..()
 	parent.children |= src
 
@@ -156,12 +156,12 @@
 		qdel(W)
 	parent.update_damages()
 
-/obj/item/organ/external/replaced_mob(mob/living/carbon/human/target)
+/obj/item/organ/external/mob_update(mob/living/carbon/human/target)
 	..()
 	owner.organs_by_name[organ_tag] = src
 	owner.organs |= src
 	for(var/obj/item/organ/O in children + internal_organs)
-		O.replaced_mob(owner)
+		O.mob_update(owner)
 
 	if(module)
 		module.organ_installed(src, owner)
@@ -190,7 +190,7 @@
 			var/obj/item/implant/Imp = I
 			Imp.uninstall()
 			continue
-		if(istype(I) && I.w_class < ITEM_SIZE_NORMAL)
+		if(istype(I) && I.volumeClass < ITEM_SIZE_NORMAL)
 			implant.forceMove(get_turf(owner))
 		else
 			implant.forceMove(src)
@@ -213,9 +213,11 @@
 	..()
 	SSnano.update_uis(src)
 
+//// THE ISSUE!!!!
 /obj/item/organ/external/proc/make_base_internal_organs()
 	if(is_stump(src))
 		return
+	/// these 4 god damn things cause issues with weight !!!!
 	if(generation_flags & ORGAN_HAS_BONES)
 		make_bones()
 	if(generation_flags & ORGAN_HAS_NERVES)
@@ -233,8 +235,7 @@
 		else
 			var/mecha_bone = text2path("[default_bone_type]/robotic")
 			bone = new mecha_bone
-
-		bone?.replaced(src)
+		bone?.insert(src)
 
 /obj/item/organ/external/proc/make_nerves()
 	var/obj/item/organ/internal/nerve/nerve
@@ -243,7 +244,7 @@
 	else
 		nerve = new /obj/item/organ/internal/nerve/robotic
 
-	nerve?.replaced(src)
+	nerve?.insert(src)
 
 /obj/item/organ/external/proc/make_muscles()
 	var/obj/item/organ/internal/muscle/muscle
@@ -252,14 +253,14 @@
 	else
 		muscle = new /obj/item/organ/internal/muscle/robotic
 
-	muscle?.replaced(src)
+	muscle?.insert(src)
 
 /obj/item/organ/external/proc/make_blood_vessels()
 	var/obj/item/organ/internal/blood_vessel/blood_vessel
 	if(nature < MODIFICATION_SILICON)	//No robotic blood vesseles
 		blood_vessel = new /obj/item/organ/internal/blood_vessel
 
-	blood_vessel?.replaced(src)
+	blood_vessel?.insert(src)
 
 /obj/item/organ/external/proc/update_limb_efficiency()
 	limb_efficiency = 0
@@ -279,6 +280,26 @@
 		if(BP_R_ARM)
 			var/obj/item/organ/external/organ = owner?.HUDneed["right arm bionics"]
 			organ?.update_icon()
+
+/obj/item/organ/external/proc/update_cyberdeck_hud(obj/item/implant/cyberinterface/cyberdeck)
+	var/obj/screen/toggle_cyberdeck/cyberToggle = owner?.HUDneed["toggle_cyberdeck"]
+	if(cyberToggle)
+		if(cyberdeck)
+			cyberToggle.invisibility = 0
+			cyberToggle.hasInterface = TRUE
+		else
+			cyberToggle.invisibility = 101
+			cyberToggle.hasInterface = FALSE
+
+	var/loopChoice = cyberdeck ? length(cyberdeck.slots) : 6
+	for(var/i = 1, i <= loopChoice, i++)
+		var/obj/screen/cyberdeck_slot/cyberSlot = owner?.HUDneed["cyberdeck[i]"]
+		if(cyberSlot)
+			if(cyberdeck)
+				cyberSlot.interface = cyberdeck
+			else
+				cyberSlot.interface = null
+			cyberSlot.update_icon()
 
 /obj/item/organ/external/proc/activate_module()
 	set name = "Activate module"
@@ -312,21 +333,21 @@
 			removable_objects |= I
 	if(removable_objects.len)
 		var/obj/item/I = pick(removable_objects)
-		I.loc = get_turf(user) //just in case something was embedded that is not an item
+		I.forceMove(get_turf(user)) //just in case something was embedded that is not an item
 		if(istype(I))
 			user.put_in_hands(I)
 		user.visible_message(SPAN_DANGER("\The [user] rips \the [I] out of \the [src]!"))
 		return //no eating the limb until everything's been removed
 	return ..()
 
-/obj/item/organ/external/examine()
-	..()
+/obj/item/organ/external/examine(user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(in_range(usr, src) || isghost(usr))
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
-			to_chat(usr, SPAN_DANGER("There is \a [I] sticking out of it."))
-	return
+			description += SPAN_DANGER("There is \a [I] sticking out of it.")
+	..(user, afterDesc = description)
 
 #define MAX_MUSCLE_SPEED -0.5
 
@@ -351,11 +372,11 @@
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
 
-	var/muscle_eff = owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag)
-	var/nerve_eff = max(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag),1)
+	var/muscle_eff = max(owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag), 50)
+	var/nerve_eff = max(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag), 100)
 	muscle_eff = (muscle_eff/100) - (muscle_eff/nerve_eff) //Need more nerves to control those new muscles
-	. += max(-(muscle_eff), MAX_MUSCLE_SPEED)
-
+	if(muscle_eff)
+		. -= 0.6 * muscle_eff / (muscle_eff + 0.4) // Diminishing returns with a hard cap of 0.6 and soft cap of 0.5
 	. += tally
 
 /obj/item/organ/external/proc/is_nerve_struck()
@@ -425,7 +446,7 @@ This function completely restores a damaged organ to perfect condition.
 	// remove embedded objects and drop them on the floor
 	for(var/obj/implanted_object in implants)
 		if(!istype(implanted_object,/obj/item/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
-			implanted_object.loc = get_turf(src)
+			implanted_object.forceMove(get_turf(src))
 			implants -= implanted_object
 
 	SSnano.update_uis(src)
@@ -800,7 +821,7 @@ This function completely restores a damaged organ to perfect condition.
 	W.on_embed(owner)
 	if(!((W.flags & NOBLOODY)||(W.item_flags & NOBLOODY)))
 		W.add_blood(owner)
-	W.loc = owner
+	W.forceMove(owner)
 
 /obj/item/organ/external/proc/disfigure(var/type = "brute")
 	if(disfigured)

@@ -11,10 +11,10 @@
 
 /obj/machinery/cablelayer/New()
 	cable = new(src)
-	cable.amount = 100
+	cable.setAmount(100)
 	..()
 
-/obj/machinery/cablelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/cablelayer/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	layCable(NewLoc, Dir)
 
@@ -45,13 +45,12 @@
 				playsound(loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				use_cable(m)
 				var/obj/item/stack/cable_coil/CC = new (get_turf(src))
-				CC.amount = m
+				CC.setAmount(m)
 		else
 			to_chat(usr, SPAN_WARNING("There's no more cable on the reel."))
 
 /obj/machinery/cablelayer/examine(mob/user)
-	..()
-	to_chat(user, "\The [src]'s cable reel has [cable.amount] length\s left.")
+	..(user, afterDesc = "\The [src]'s cable reel has [cable.amount] length\s left.")
 
 /obj/machinery/cablelayer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
 	if(istype(CC) && CC.amount)
@@ -61,8 +60,8 @@
 			to_load = min(CC.amount, to_load)
 			if(!cable)
 				cable = new(src)
-				cable.amount = 0
-			cable.amount += to_load
+				cable.setAmount(0)
+			cable.setAmount(cable.amount + to_load)
 			CC.use(to_load)
 			return to_load
 		else

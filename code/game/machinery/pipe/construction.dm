@@ -5,11 +5,15 @@
 	//var/pipe_dir = 0
 	var/pipename
 	var/connect_types = CONNECT_TYPE_REGULAR
-	force = 7
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	icon = 'icons/obj/pipe-item.dmi'
 	icon_state = "simple"
 	item_state = "buildpipe"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	level = ABOVE_PLATING_LEVEL
 
 /obj/item/pipe/can_fall()
@@ -291,7 +295,7 @@
 	//src.pipe_set_dir(get_pipe_dir())
 	return
 
-/obj/item/pipe/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/pipe/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	. = ..()
 	if ((pipe_type in list (PIPE_SIMPLE_BENT, PIPE_SUPPLY_BENT, PIPE_SCRUBBERS_BENT, PIPE_HE_BENT, PIPE_INSULATED_BENT)) \
 		&& (src.dir in cardinal))
@@ -1114,7 +1118,7 @@
 	icon = 'icons/obj/pipe-item.dmi'
 	icon_state = "meter"
 	item_state = "buildpipe"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()

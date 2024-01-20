@@ -3,7 +3,7 @@
 	icon = 'icons/obj/tank.dmi'
 	item_state = "assembly"
 	throwforce = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	throw_speed = 2
 	throw_range = 4
 	flags = CONDUCT | PROXMOVE
@@ -35,11 +35,11 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 				to_chat(user, SPAN_NOTICE("You disassemble [src]."))
 
-				bombassembly.loc = user.loc
+				bombassembly.forceMove(user.loc)
 				bombassembly.master = null
 				bombassembly = null
 
-				bombtank.loc = user.loc
+				bombtank.forceMove(user.loc)
 				bombtank.master = null
 				bombtank = null
 
@@ -93,7 +93,7 @@
 	var/mob/M = user
 	if(!S.secured)										//Check if the assembly is secured
 		return
-	if(is_igniter(S.left_assembly) == is_igniter(S.right_assembly))		//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
+	if(isigniter(S.left_assembly) == isigniter(S.right_assembly))		//Check if either part of the assembly has an igniter, but if both parts are igniters, then fuck it
 		return
 
 	var/obj/item/device/onetankbomb/R = new /obj/item/device/onetankbomb(loc)
@@ -104,57 +104,28 @@
 
 	R.bombassembly = S	//Tell the bomb about its assembly part
 	S.master = R		//Tell the assembly about its new owner
-	S.loc = R			//Move the assembly out of the fucking way
+	S.forceMove(R)		//Move the assembly out of the fucking way
 
 	R.bombtank = src	//Same for tank
 	master = R
-	loc = R
+	forceMove(R)
 	R.update_icon()
 	return
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.gas["plasma"] + air_contents.gas["oxygen"] / 6
-	var/strength = 1
 
 	var/turf/ground_zero = get_turf(loc)
-	loc = null
+	forceMove(NULLSPACE)
 
 	if(air_contents.temperature > (T0C + 400))
-		strength = (fuel_moles/15)
-
-		if(strength >=1)
-			explosion(ground_zero, round(strength,1), round(strength*2,1), round(strength*3,1), round(strength*4,1))
-		else if(strength >=0.5)
-			explosion(ground_zero, 0, 1, 2, 4)
-		else if(strength >=0.2)
-			explosion(ground_zero, -1, 0, 1, 2)
-		else
-			ground_zero.assume_air(air_contents)
-			ground_zero.hotspot_expose(1000, 125)
-
+		explosion(ground_zero, fuel_moles * 75, fuel_moles * 15)
 	else if(air_contents.temperature > (T0C + 250))
-		strength = (fuel_moles/20)
-
-		if(strength >=1)
-			explosion(ground_zero, 0, round(strength,1), round(strength*2,1), round(strength*3,1))
-		else if (strength >=0.5)
-			explosion(ground_zero, -1, 0, 1, 2)
-		else
-			ground_zero.assume_air(air_contents)
-			ground_zero.hotspot_expose(1000, 125)
-
+		explosion(ground_zero, fuel_moles * 50, fuel_moles * 15)
 	else if(air_contents.temperature > (T0C + 100))
-		strength = (fuel_moles/25)
-
-		if (strength >=1)
-			explosion(ground_zero, -1, 0, round(strength,1), round(strength*3,1))
-		else
-			ground_zero.assume_air(air_contents)
-			ground_zero.hotspot_expose(1000, 125)
-
-	else
-		ground_zero.assume_air(air_contents)
-		ground_zero.hotspot_expose(1000, 125)
+		explosion(ground_zero, fuel_moles * 25, fuel_moles * 15)
+	ground_zero.assume_air(air_contents)
+	ground_zero.hotspot_expose(1000, 125)
 
 	if(master)
 		qdel(master)

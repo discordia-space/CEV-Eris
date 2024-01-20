@@ -100,7 +100,7 @@
 		previous.Detach()
 	. = ..()
 
-/mob/living/simple_animal/space_worm/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/simple_animal/space_worm/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	var/attachementNextPosition = loc
 	if(..())
 		if(previous)
@@ -177,9 +177,9 @@
 					new /obj/item/stack/material/plasma(src, oldStack.get_amount())
 					qdel(oldStack)
 					continue
-			else if(istype(stomachContent,/obj/item)) //converts to plasma, keeping the w_class
+			else if(istype(stomachContent,/obj/item)) //converts to plasma, keeping the volumeClass
 				var/obj/item/oldItem = stomachContent
-				new /obj/item/stack/material/plasma(src, oldItem.w_class)
+				new /obj/item/stack/material/plasma(src, oldItem.volumeClass)
 				qdel(oldItem)
 				continue
 			else

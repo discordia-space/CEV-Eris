@@ -86,8 +86,8 @@
 			organ_data["damage"] = organ.damage
 			organ_data["max_damage"] = organ.max_damage
 			organ_data["wound_count"] = LAZYLEN(organ.GetComponents(/datum/component/internal_wound))
-			if(istype(organ, /obj/item/organ/internal/brain))
-				var/obj/item/organ/internal/brain/B = organ
+			if(istype(organ, /obj/item/organ/internal/vital/brain))
+				var/obj/item/organ/internal/vital/brain/B = organ
 				organ_data["brain_health"] = B.health
 				organ_data["brain_health_max"] = initial(B.health)
 			organ_data["status"] = organ.get_status_data()
@@ -213,7 +213,7 @@
 					if(prob(100 - FAILCHANCE_NORMAL + usr.stats.getStat(target_stat)))
 						for(var/obj/item/material/shard/shrapnel/shrapnel in src.implants)
 							implants -= shrapnel
-							shrapnel.loc = get_turf(src)
+							shrapnel.forceMove(get_turf(src))
 						to_chat(user, SPAN_WARNING("You have removed shrapnel from [get_surgery_name()]."))
 					else
 						to_chat(user, SPAN_WARNING("You failed to remove any shrapnel from [get_surgery_name()]!"))

@@ -17,10 +17,7 @@
 
 		var/obj/item/clothing/accessory/A = I
 		if(can_attach_accessory(A) && user.unEquip(A, src))
-			accessories += A
-			A.on_attached(src, user)
-			src.verbs |= /obj/item/clothing/proc/removetie_verb
-			src.update_wear_icon()
+			attach_accessory(user, A)
 		else
 			to_chat(user, SPAN_WARNING("You cannot attach more accessories of this type to [src]."))
 		return
@@ -41,7 +38,7 @@
 /obj/item/clothing/proc/attach_accessory(mob/user, obj/item/clothing/accessory/A)
 	accessories += A
 	A.on_attached(src, user)
-	src.verbs |= /obj/item/clothing/proc/removetie_verb
+	src.verbs |= /obj/item/clothing/proc/removeAccessory
 	src.update_wear_icon()
 
 /obj/item/clothing/attack_hand(var/mob/user)
@@ -51,12 +48,6 @@
 			A.attack_hand(user)
 		return
 	return ..()
-
-/obj/item/clothing/examine(var/mob/user)
-	. = ..(user)
-	if(accessories.len)
-		for(var/obj/item/clothing/accessory/A in accessories)
-			to_chat(user, "\A [A] is attached to it.")
 
 /obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
 	if(!(A in accessories))
@@ -70,7 +61,7 @@
 		update_wear_icon()
 	return
 
-/obj/item/clothing/proc/removetie_verb()
+/obj/item/clothing/proc/removeAccessory()
 	set name = "Remove Accessory"
 	set category = "Object"
 	set src in usr
@@ -86,8 +77,8 @@
 	else
 		A = accessories[1]
 	src.remove_accessory(usr,A)
-	if(!accessories.len)
-		src.verbs -= /obj/item/clothing/proc/removetie_verb
+	if(!length(accessories))
+		src.verbs -= /obj/item/clothing/proc/removeAccessory
 
 /obj/item/clothing/emp_act(severity)
 	if(accessories.len)

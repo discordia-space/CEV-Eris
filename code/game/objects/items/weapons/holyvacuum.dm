@@ -2,12 +2,17 @@
 	desc = "An advanced vacuum cleaner designed by NeoTheology that compresses trash into reusable biomatter bricks. It looks more like a ghost-busting gun than an actual vacuum cleaner. There is no safety switch."
 	name = "\"Tersus\" vacuum cleaner"
 	icon = 'icons/obj/janitor.dmi'
+	commonLore = "Represents 42% of Neotheology yearly income revenue. Quite the revolutionary invention in cleaning."
 	icon_state = "vacuum"
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
 	throw_range = 3
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	attack_verb = list("bashed", "bludgeoned", "whacked")
 	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 5)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
@@ -27,8 +32,7 @@
 	update_icon()
 
 /obj/item/holyvacuum/examine(mob/user)
-	..()
-	to_chat(user, "\The [src]'s tank contains [amount] units of compressed filth.")
+	..(user, afterDesc = "\The [src]'s tank contains [amount] units of compressed filth.")
 
 /obj/item/holyvacuum/update_icon()
 	.=..()
@@ -88,11 +92,10 @@
 	name = "compressed filth"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "filth-biomatter"
-	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 5
 	throw_range = 6
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	attack_verb = list("bashed", "bludgeoned", "whacked")
 	matter = list(MATERIAL_BIOMATTER=0)
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY

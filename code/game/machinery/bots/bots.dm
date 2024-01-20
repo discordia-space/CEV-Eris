@@ -7,8 +7,8 @@
 	use_power = NO_POWER_USE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = TRUE
-	var/health = 0 //do not forget to set health for your bot!
-	var/maxhealth = 0
+	health = 0 //do not forget to set health for your bot!
+	maxHealth = 0
 	var/fire_dam_coeff = 1
 	var/brute_dam_coeff = 1
 	var/open = 0//Maint panel
@@ -46,13 +46,14 @@
 		return 1
 
 /obj/machinery/bot/examine(mob/user)
-	..(user)
-	if (src.health < maxhealth)
-		if (src.health > maxhealth/3)
-			to_chat(user, SPAN_WARNING("[src]'s parts look loose."))
+	var/description = ""
+	if (src.health < maxHealth)
+		if (src.health > maxHealth/3)
+			description += SPAN_WARNING("[src]'s parts look loose.")
 		else
-			to_chat(user, SPAN_DANGER("[src]'s parts look very loose!"))
-	return
+			description += SPAN_DANGER("[src]'s parts look very loose!")
+	..(user, afterDesc = description)
+
 
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/screwdriver))
@@ -60,9 +61,9 @@
 			open = !open
 			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
 	else if(istype(W, /obj/item/tool/weldingtool))
-		if(health < maxhealth)
+		if(health < maxHealth)
 			if(open)
-				health = min(maxhealth, health+10)
+				health = min(maxHealth, health+10)
 				user.visible_message(SPAN_WARNING("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
@@ -70,17 +71,10 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
 	else
-		if(hasvar(W,"force") && hasvar(W,"damtype"))
-			switch(W.damtype)
-				if("fire")
-					src.health -= W.force * fire_dam_coeff
-				if("brute")
-					src.health -= W.force * brute_dam_coeff
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-			..()
-			healthcheck()
-		else
-			..()
+		health -= dhTotalDamageStrict(W.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+		..()
+		healthcheck()
 
 /obj/machinery/bot/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj.get_structure_damage())
@@ -89,23 +83,11 @@
 	..()
 	healthcheck()
 
-/obj/machinery/bot/ex_act(severity)
-	switch(severity)
-		if(1)
-			src.explode()
-			return
-		if(2)
-			src.health -= rand(5,10)*fire_dam_coeff
-			src.health -= rand(10,20)*brute_dam_coeff
-			healthcheck()
-			return
-		if(3)
-			if (prob(50))
-				src.health -= rand(1,5)*fire_dam_coeff
-				src.health -= rand(1,5)*brute_dam_coeff
-				healthcheck()
-				return
-	return
+/obj/machinery/bot/take_damage(amount)
+	health -= amount/10 * brute_dam_coeff * 2
+	health -= amount/10 * fire_dam_coeff
+	healthcheck()
+
 
 /obj/machinery/bot/emp_act(severity)
 	var/was_on = on

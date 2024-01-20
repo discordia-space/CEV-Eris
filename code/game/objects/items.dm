@@ -1,14 +1,20 @@
+GLOBAL_LIST(melleDamagesCache)
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items.dmi'
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 
+
+	/// FLAGS FOR OBJECT BEHAVIOUR
+	var/objectFlags = 0
 	//spawn_values
 	price_tag = 0
 	//spawn_tags = SPAWN_TAG_ITEM
 	rarity_value = 10
 	spawn_frequency = 10
 	bad_type = /obj/item
+	/// 5 grams
+	weight = 5
 
 	pass_flags = PASSTABLE
 	var/image/blood_overlay //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
@@ -16,12 +22,16 @@
 	var/abstract = 0
 	var/r_speed = 1
 	var/health = 100
-	var/max_health = 100
+	var/maxHealth = 100
 	var/burn_point
 	var/burning
 	var/hitsound = 'sound/weapons/genhit1.ogg'
 	var/worksound
 	var/no_attack_log = 0			//If it's an item we don't want to log attack_logs with, set this to 1
+	/// Extra delay for attacking when one handed
+	var/attackDelay = 0
+	/// Extra delay for attacking when wielded ,one-handed delay doesn't get added
+	var/WieldedattackDelay = 0
 
 	//The cool stuff for melee
 	var/screen_shake = FALSE 		//If a weapon can shake the victim's camera on hit.
@@ -87,18 +97,41 @@
 	var/list/hud_actions
 
 	//Damage vars
-	var/force = 0	//How much damage the weapon deals
+	/// The damages to enact when hitting with this object.
+	var/list/melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE , 1)
+		)
+	)
+	var/wieldedMultiplier = 1.3
 	var/embed_mult = 1 //Multiplier for the chance of embedding in mobs. Set to zero to completely disable embedding
 	var/structure_damage_factor = STRUCTURE_DAMAGE_NORMAL	//Multiplier applied to the damage when attacking structures and machinery
 	//Does not affect damage dealt to mobs
 	var/style = STYLE_NONE // how much using this item increases your style
 
+	/// Lore descriptions for cyberimplants.
+	var/commonLore
+	//var/classifiedLore
+	//var/topLore
+
 	var/list/item_upgrades = list()
-	var/max_upgrades = 3
+	var/maxUpgrades = 0
 
 	var/can_use_lying = 0
 
 	var/chameleon_type
+
+/obj/item/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	for(var/armorType in armorToDam)
+		for(var/list/damageElement in armorToDam[armorType])
+			damageElement[2] -= clamp(armor.getRating(armorType)/armorDiv, 0, damageElement[2])
+	return armorToDam
+
+/obj/item/getDamageBlockerRatings(list/relevantTypes)
+	var/list/returnList = list()
+	for(var/armorType in relevantTypes)
+		returnList[armorType] = armor.getRating(armorType)
+	return returnList
 
 
 /obj/item/Initialize()
@@ -108,6 +141,16 @@
 		armor = getArmor()
 	else if(!istype(armor, /datum/armor))
 		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+	if(!GLOB.melleDamagesCache)
+		GLOB.melleDamagesCache = list()
+	if(!GLOB.melleDamagesCache[type])
+		GLOB.melleDamagesCache[type] = melleDamages
+	else
+		if(maxUpgrades || objectFlags & OF_UNIQUEMELLEHANDLER)
+			melleDamages = GLOB.melleDamagesCache[type]:Copy()
+		else
+			del(melleDamages)
+			melleDamages = GLOB.melleDamagesCache[type]
 	if(chameleon_type)
 		verbs.Add(/obj/item/proc/set_chameleon_appearance)
 	. = ..()
@@ -115,12 +158,12 @@
 /obj/item/Destroy(force)
 	// This var exists as a weird proxy "owner" ref
 	// It's used in a few places. Stop using it, and optimially replace all uses please
+	melleDamages = null
 	master = null
 	if(ismob(loc))
 		var/mob/m = loc
 		m.u_equip(src)
 		remove_hud_actions(m)
-		loc = null
 
 	QDEL_NULL(hidden_uplink)
 	blood_overlay = null
@@ -133,18 +176,16 @@
 	return ..()
 
 /obj/item/get_fall_damage()
-	return w_class * 2
+	return volumeClass * 2
 
-/obj/item/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(5))
-				qdel(src)
+/obj/item/proc/take_damage(amount)
+	health -= amount
+	if(health <= 0)
+		qdel(src)
+
+/obj/item/explosion_act(target_power, explosion_handler/handler)
+	take_damage(target_power)
+	return 0
 
 /obj/item/emp_act(severity)
 	if(chameleon_type)
@@ -165,14 +206,13 @@
 
 	var/turf/T = loc
 
-	loc = null
+	forceMove(NULLSPACE)
+	forceMove(T)
 
-	loc = T
-
-/obj/item/examine(user, distance = -1)
+/obj/item/examine(user, distance = -1, afterDesc = "")
 	var/message
 	var/size
-	switch(w_class)
+	switch(volumeClass)
 		if(ITEM_SIZE_TINY)
 			size = "tiny"
 		if(ITEM_SIZE_SMALL)
@@ -190,11 +230,29 @@
 		if(ITEM_SIZE_TITANIC)
 			size = "titanic"
 	message += "\nIt is a [size] item."
+	message += "\nIt weights [weight > 999 ? "[round(weight/1000, 0.1)] KG" : "[weight] GRAMS"]."
+	if(attackDelay || WieldedattackDelay)
+		message += "\nIt has a attack delay of [round((attackDelay+0.0001)/10, 0.1)] seconds, and wielded of [round((WieldedattackDelay+0.0001)/10,0.1)]."
+	if(wieldedMultiplier)
+		message += "\nWhen wielded, the damages will be increased by a factor of [wieldedMultiplier]."
 
 	for(var/Q in tool_qualities)
-		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+		message += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
-	. = ..(user, distance, "", message)
+	var/list/listReference = list()
+	SEND_SIGNAL(src, COMSIG_EXTRA_EXAMINE, listReference)
+	if(length(listReference))
+		message += "\n"
+	for(var/text in listReference)
+		message += "[text] \n"
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/humie = user
+		if(humie.hasCyberFlag(CSF_LORE_COMMON_KNOWLEDGE) && commonLore)
+			message += SPAN_NOTICE("\n  Knowledge addendum - Common : [commonLore]")
+
+
+	. = ..(user, distance, "", message, afterDesc)
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -218,6 +276,7 @@
 			if(has_offers)
 				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
 				to_chat(user, SPAN_NOTICE(offer_message))
+
 
 /obj/item/attack_hand(mob/user as mob)
 	if(pre_pickup(user))
@@ -270,16 +329,18 @@
 //	NOTE: This proc name was changed form pickup() as it makes more sense
 //	keep that in mind when porting items form other builds
 /obj/item/proc/pre_pickup(mob/user)
+	update_light()
 	return TRUE
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/the_storage)
-	SEND_SIGNAL_OLD(the_storage, COMSIG_STORAGE_TAKEN, src, the_storage)
+	SEND_SIGNAL(the_storage, COMSIG_STORAGE_TAKEN, src)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
 /obj/item/proc/on_enter_storage(obj/item/storage/the_storage)
-	SEND_SIGNAL_OLD(the_storage, COMSIG_STORAGE_INSERTED, src, the_storage)
+	SEND_SIGNAL(the_storage, COMSIG_STORAGE_INSERTED, src, the_storage)
+	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, the_storage.getContainingMovable())
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
@@ -480,10 +541,6 @@ var/global/list/items_blood_overlay_by_type = list()
 		if (grabbed)
 			if (grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
 				visible_message(SPAN_WARNING("[src] tries to pick up [grabbed], and fails!"))
-				if (ishuman(src))
-					var/mob/living/carbon/human/depleted = src
-					depleted.regen_slickness(-1) // unlucky and unobservant gets the penalty
-					return
 
 			else
 				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
@@ -502,13 +559,13 @@ var/global/list/items_blood_overlay_by_type = list()
 						//low damage for walls, medium for windows, fall over for railings
 						if(istype(get_step(grabbed, whip_dir), /turf/simulated/wall))
 							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
-							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
+							grabbed.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,15))), BP_CHEST, src, 1, 1, FALSE)
 							break
 
 						for(var/obj/structure/S in get_step(grabbed, whip_dir))
 							if(istype(S, /obj/structure/window))
 								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
-								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
+								grabbed.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,25))), BP_CHEST, src, 1, 1, FALSE)
 
 								moves = 3
 								break
@@ -548,9 +605,6 @@ var/global/list/items_blood_overlay_by_type = list()
 			unEquip(I)
 			return
 		I.hand_spin(src)
-	if (ishuman(src))
-		var/mob/living/carbon/human/stylish = src
-		stylish.regen_slickness()
 
 /obj/item/proc/hand_spin(mob/living/carbon/caller) // used for custom behaviour on the above proc
 	return
@@ -596,15 +650,19 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		switch(usr.dir)
 			if(NORTH)
 				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_y = viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_y = viewoffset
 			if(SOUTH)
 				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_y = -viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_y = -viewoffset
 			if(EAST)
-				usr.client.pixel_x = viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_x = viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_x = viewoffset
 				usr.client.pixel_y = 0
 			if(WEST)
-				usr.client.pixel_x = -viewoffset
+				animate(usr.client, 0.3 SECOND, pixel_x = -viewoffset, easing = LINEAR_EASING)
+				//usr.client.pixel_x = -viewoffset
 				usr.client.pixel_y = 0
 		if(!stayzoomed)
 			usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
@@ -616,8 +674,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			//usr.toggle_zoom_hud()
 		zoom = 0
 
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
+		animate(usr.client, 0.3 SECOND, pixel_x = 0, easing = LINEAR_EASING)
+		animate(usr.client, 0.3 SECOND, pixel_y = 0, easing = LINEAR_EASING)
+		//usr.client.pixel_x = 0
+		//usr.client.pixel_y = 0
 
 		if(!cannotzoom)
 			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")

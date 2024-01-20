@@ -2,7 +2,7 @@
 /obj/item/computer_hardware/hard_drive/portable
 	name = "data disk"
 	desc = "A removable disk used to store data."
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	icon = 'icons/obj/discs.dmi'
 	icon_state = "blue"
 	critical = FALSE
@@ -57,7 +57,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/Initialize()
 	. = ..()
-	w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_SMALL
 	if(disk_name)
 		SetName("[initial(name)] - '[disk_name]'")
 

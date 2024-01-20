@@ -8,7 +8,7 @@
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 2	//two slots
-	pockets.max_w_class = ITEM_SIZE_SMALL		//fit only pocket sized items
+	pockets.max_volumeClass = ITEM_SIZE_SMALL		//fit only pocket sized items
 	pockets.max_storage_space = 4
 
 /obj/item/clothing/suit/storage/Destroy()
@@ -26,8 +26,9 @@
 	..(over_object)
 
 /obj/item/clothing/suit/storage/attackby(obj/item/W, mob/user)
+	if(!istype(W, /obj/item/clothing/accessory)) // Do not put accessories into pockets
+		pockets.attackby(W, user)
 	..()
-	pockets.attackby(W, user)
 
 /obj/item/clothing/suit/storage/emp_act(severity)
 	pockets.emp_act(severity)
@@ -61,14 +62,14 @@
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
 /obj/item/clothing/suit/storage/vest/ironhammer/New()
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 
 //Makeshift chest rig.
@@ -78,12 +79,12 @@
 	icon_state = "mchestrig"
 	item_state = "mchestrig"
 	armor = list(
-		melee = 2,
-		bullet = 2,
-		energy = 2,
-		bomb = 5,
-		bio = 0,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 2,
+		ARMOR_ENERGY = 2,
+		ARMOR_BOMB =5,
+		ARMOR_BIO =0,
+		ARMOR_RAD =0
 	)
 	spawn_blacklisted = TRUE
 
@@ -91,6 +92,6 @@
 	..()
 	pockets = new/obj/item/storage/internal(src)
 	pockets.storage_slots = 4
-	pockets.max_w_class = ITEM_SIZE_SMALL
+	pockets.max_volumeClass = ITEM_SIZE_SMALL
 	pockets.max_storage_space = 8
 

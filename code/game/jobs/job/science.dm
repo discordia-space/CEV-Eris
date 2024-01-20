@@ -33,6 +33,10 @@
 
 	perks = list(/datum/perk/selfmedicated)
 
+	cyberSticks = list(
+		/obj/item/cyberstick/science_analysis
+	)
+
 	// TODO: enable after baymed
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							///datum/computer_file/program/aidiag,

@@ -255,7 +255,7 @@
 	if (!owner)
 		return
 
-	if(!absorbed_dna.len)
+	if(!length(absorbed_dna))
 		to_chat(owner, SPAN_WARNING("You have no DNA absorbed!"))
 		return
 
@@ -267,16 +267,23 @@
 	if(!owner.check_ability(5))
 		return
 
-//	if(HUSK in owner.mutations)
-//		owner.mutations -= HUSK
-//		if(istype(owner))
-//			owner.update_body(0)
+	var/list/choiceList = absorbed_dna[S]
+	if(length(choiceList))
+		owner.real_name = choiceList["name"]
+		owner.dna_trace = sha1(S)
+		owner.fingers_trace = md5(S)
+		owner.flavor_text = choiceList["flavor_text"]
+		owner.tts_seed = choiceList["voice"]
+		owner.change_hair_color(choiceList["hair_color"])
+		owner.change_hair(choiceList["hair_style"])
+		owner.change_facial_hair_color(choiceList["beard_color"])
+		owner.change_facial_hair(choiceList["beard_style"])
+		owner.change_skin_color(choiceList["skin_color"])
+		owner.change_skin_tone(choiceList["skin_tone"])
+		owner.change_eye_color(choiceList["eye_color"])
 
 	owner.visible_message(SPAN_WARNING("[owner] transforms!"))
-	owner.real_name = S
-	owner.dna_trace = sha1(S)
-	owner.fingers_trace = md5(S)
-	owner.flavor_text = ""
+
 
 	return 1
 
@@ -371,7 +378,7 @@
 					if (istype(to_blacklist, /obj/item/organ/internal/bone/))
 						blacklist += to_blacklist
 						continue
-					if (istype(to_blacklist, /obj/item/organ/internal/brain/))
+					if (istype(to_blacklist, /obj/item/organ/internal/vital/brain/))
 						blacklist += to_blacklist// removing bones from a valid_organs list based on
 				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
 				if (!valid_organs.len)
@@ -578,7 +585,7 @@
 
 /obj/structure/spider_nest/attackby(obj/item/I, mob/living/user)
 	..()
-	if(I.force >= WEAPON_FORCE_PAINFUL)
+	if(dhTotalDamage(I.melleDamages) >= WEAPON_FORCE_PAINFUL)
 		playsound(loc, 'sound/voice/shriek1.ogg', 85, 1, 8, 8)
 		spawn_spider()
 		attack_animation(user)
@@ -608,5 +615,5 @@
 		var/obj/item/organ/external/chest = user.get_organ(BP_CHEST)
 		if(chest)
 			var/obj/item/organ/internal/carrion/core/C = new /obj/item/organ/internal/carrion/core
-			C.replaced(chest)
+			C.insert(chest)
 		user.faction = "spiders"

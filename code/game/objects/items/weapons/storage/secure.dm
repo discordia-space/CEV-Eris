@@ -12,8 +12,8 @@
 // -----------------------------
 /obj/item/storage/secure
 	name = "secstorage"
-	w_class = ITEM_SIZE_NORMAL
-	max_w_class = ITEM_SIZE_SMALL
+	volumeClass = ITEM_SIZE_NORMAL
+	max_volumeClass = ITEM_SIZE_SMALL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	bad_type = /obj/item/storage/secure
 	var/icon_locking = "secureb"
@@ -29,8 +29,7 @@
 	var/open = 0
 
 /obj/item/storage/secure/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, text("The service panel is [src.open ? "open" : "closed"]."))
+	..(user, afterDesc = "The service panel is [src.open ? "open" : "closed"]")
 
 /obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
@@ -147,10 +146,16 @@
 	icon_state = "secure"
 	item_state = "sec-case"
 	desc = "A large briefcase with a digital locking system."
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE,5)
+		)
+	)
+	wieldedMultiplier = 5
+	WieldedattackDelay = 18
 	throw_speed = 1
 	throw_range = 4
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
 	if ((src.loc == user) && (src.locked == 1))
@@ -176,17 +181,20 @@
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"
-	force = WEAPON_FORCE_NORMAL
-	w_class = ITEM_SIZE_GARGANTUAN
-	max_w_class = ITEM_SIZE_HUGE
+	volumeClass = ITEM_SIZE_GARGANTUAN
+	max_volumeClass = ITEM_SIZE_HUGE
 	max_storage_space = DEFAULT_GARGANTUAN_STORAGE
 	anchored = TRUE
 	density = FALSE
 	cant_hold = list(/obj/item/storage/secure/briefcase)
 
 /obj/item/storage/secure/safe/populate_contents()
-	new /obj/item/paper(src)
-	new /obj/item/pen(src)
+	var/list/spawnedAtoms = list()
+
+	spawnedAtoms.Add(new /obj/item/paper(NULLSPACE))
+	spawnedAtoms.Add(new /obj/item/pen(NULLSPACE))
+	for(var/atom/movable/a in spawnedAtoms)
+		a.forceMove(src)
 
 /obj/item/storage/secure/safe/attack_hand(mob/user)
 	return attack_self(user)

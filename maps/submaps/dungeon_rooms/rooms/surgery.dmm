@@ -14,9 +14,8 @@
 /turf/simulated/floor/tiled/cafe,
 /area/crawler)
 "e" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
 /obj/structure/curtain/medical,
-/obj/structure/low_wall,
-/obj/effect/window_lwall_spawn,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "f" = (
@@ -120,8 +119,7 @@
 /turf/simulated/floor/tiled/derelict,
 /area/crawler)
 "y" = (
-/obj/structure/low_wall,
-/obj/effect/window_lwall_spawn,
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "z" = (

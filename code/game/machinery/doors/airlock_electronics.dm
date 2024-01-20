@@ -2,7 +2,7 @@
 	name = "airlock electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
-	w_class = ITEM_SIZE_SMALL //It should be tiny! -Agouri
+	volumeClass = ITEM_SIZE_SMALL //It should be tiny! -Agouri
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 3)
 
@@ -14,6 +14,8 @@
 	var/last_configurator = null
 	var/locked = TRUE
 	var/lockable = TRUE
+	/// Used for blast doors and shutters
+	var/wifi_id = null
 
 /obj/item/electronics/airlock/attack_self(mob/user)
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))

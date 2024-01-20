@@ -13,19 +13,19 @@
 	desc = "A suit that protects against fire and heat."
 	icon_state = "firesuit"
 	item_state = "firefighter"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
 	extra_allowed = list(/obj/item/extinguisher)
 	armor = list(
-		melee = 2,
-		bullet = 0,
-		energy = 0,
-		bomb = 10,
-		bio = 10,
-		rad = 0
+		ARMOR_BLUNT = 2,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 0,
+		ARMOR_BOMB =10,
+		ARMOR_BIO =10,
+		ARMOR_RAD =0
 	)
 	slowdown = 0.2
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
@@ -48,12 +48,12 @@
 	body_parts_covered = HEAD|FACE|EYES
 	style_coverage = COVERS_HAIR|COVERS_EARS
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 7,
-		bomb = 0,
-		bio = 90,
-		rad = 100
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =90,
+		ARMOR_RAD =100
 	)
 	price_tag = 50
 	style = STYLE_NEG_LOW
@@ -64,7 +64,7 @@
 	desc = "A suit that protects against radiation."
 	icon_state = "rad"
 	item_state = "rad_suit"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
@@ -73,12 +73,12 @@
 	extra_allowed = list(/obj/item/clothing/head/radiation)
 	slowdown = 0.2
 	armor = list(
-		melee = 0,
-		bullet = 0,
-		energy = 7,
-		bomb = 0,
-		bio = 90,
-		rad = 100
+		ARMOR_BLUNT = 0,
+		ARMOR_BULLET = 0,
+		ARMOR_ENERGY = 7,
+		ARMOR_BOMB =0,
+		ARMOR_BIO =90,
+		ARMOR_RAD =100
 	)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL
 	price_tag = 100

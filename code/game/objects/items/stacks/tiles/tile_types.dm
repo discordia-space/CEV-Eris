@@ -13,8 +13,12 @@
 	singular_name = "broken tile"
 	icon = 'icons/obj/stack/tile.dmi'
 	desc = "This should not exist."
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_HARMLESS
+	volumeClass = ITEM_SIZE_NORMAL
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
 	throw_range = 7
@@ -36,6 +40,9 @@
 	flags = 0
 	origin_tech = list(TECH_BIO = 1)
 
+/obj/item/stack/tile/grass/full
+	amount = 60
+
 /*
  * Wood
  */
@@ -44,9 +51,16 @@
 	singular_name = "wood floor tile"
 	desc = "An easy to fit wooden floor tile."
 	icon_state = "tile_wood"
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_BLUNT = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	flags = 0
+
+/obj/item/stack/tile/wood/full
+	amount = 60
 
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
@@ -67,33 +81,57 @@
 	icon_state = "tile_carpet"
 	flags = 0
 
+/obj/item/stack/tile/carpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/bcarpet
 	name = "black carpet"
 	icon_state = "tile_bcarpet"
+
+/obj/item/stack/tile/carpet/bcarpet/full
+	amount = 60
 
 /obj/item/stack/tile/carpet/blucarpet
 	name = "blue carpet"
 	icon_state = "tile_blucarpet"
 
+/obj/item/stack/tile/carpet/blucarpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/turcarpet
 	name = "turquoise carpet"
 	icon_state = "tile_turcarpet"
+
+/obj/item/stack/tile/carpet/turcarpet/full
+	amount = 60
 
 /obj/item/stack/tile/carpet/sblucarpet
 	name = "silver blue carpet"
 	icon_state = "tile_sblucarpet"
 
+/obj/item/stack/tile/carpet/sblucarpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/gaycarpet
 	name = "clown carpet"
 	icon_state = "tile_gaycarpet"
+
+/obj/item/stack/tile/carpet/gaycarpet/full
+	amount = 60
 
 /obj/item/stack/tile/carpet/purcarpet
 	name = "purple carpet"
 	icon_state = "tile_purcarpet"
 
+/obj/item/stack/tile/carpet/purcarpet/full
+	amount = 60
+
 /obj/item/stack/tile/carpet/oracarpet
 	name = "orange carpet"
 	icon_state = "tile_oracarpet"
+
+/obj/item/stack/tile/carpet/oracarpet/full
+	amount = 60
 
 /*
  * Flooring parent
@@ -103,7 +141,11 @@
 	singular_name = "floor tile"
 	desc = "Could work as a pretty decent throwing weapon."
 	icon_state = "tile"
-	force = WEAPON_FORCE_NORMAL
+	melleDamages = list(
+		ARMOR_SLASH = list(
+			DELEM(BRUTE, 7)
+		)
+	)
 	throwforce = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 1)
 	flags = CONDUCT

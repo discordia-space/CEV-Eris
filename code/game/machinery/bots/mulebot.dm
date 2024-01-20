@@ -14,7 +14,7 @@
 	anchored = TRUE
 	animate_movement=1
 	health = 150 //yeah, it's tougher than ed209 because it is a big metal box with wheels --rastaf0
-	maxhealth = 150
+	maxHealth = 150
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 	var/atom/movable/load = null		// the loaded crate (usually)
@@ -118,8 +118,8 @@
 
 		updateDialog()
 	else if (istype(I, /obj/item/tool/wrench))
-		if (src.health < maxhealth)
-			src.health = min(maxhealth, src.health+25)
+		if (src.health < maxHealth)
+			src.health = min(maxHealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message(
 				SPAN_NOTICE("\The [user] repairs \the [src]!"),
@@ -128,7 +128,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need a repair!"))
 	else if(load && ismob(load))  // chance to knock off rider
-		if(prob(1+I.force * 2))
+		if(prob(1+dhTotalDamage(I.melleDamages) * 2))
 			unload(0)
 			user.visible_message(SPAN_WARNING("[user] knocks [load] off [src] with \the [I]!"), SPAN_WARNING("You knock [load] off [src] with \the [I]!"))
 		else
@@ -145,17 +145,17 @@
 	playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
 
-/obj/machinery/bot/mulebot/ex_act(var/severity)
+/obj/machinery/bot/mulebot/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
 	unload(0)
-	switch(severity)
-		if(2)
-			BITRESET(wires, rand(0,9))
-			BITRESET(wires, rand(0,9))
-			BITRESET(wires, rand(0,9))
-		if(3)
-			BITRESET(wires, rand(0,9))
-	..()
-	return
+	if(amount > 100)
+		BITRESET(wires, rand(0,9))
+		BITRESET(wires, rand(0,9))
+		BITRESET(wires, rand(0,9))
+	else
+		BITRESET(wires, rand(0,9))
 
 /obj/machinery/bot/mulebot/bullet_act()
 	if(prob(50) && !isnull(load))
@@ -716,7 +716,6 @@
 				src.visible_message(SPAN_WARNING("[src] bumps into [M]!"))
 			else
 				src.visible_message(SPAN_WARNING("[src] knocks over [M]!"))
-				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
 				M.lying = 1
@@ -729,12 +728,13 @@
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_HEAD, ARMOR_MELEE)
-	H.damage_through_armor( 2  * damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_LEG, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_L_ARM, ARMOR_MELEE)
-	H.damage_through_armor(0.5 * damage, BRUTE, BP_R_ARM, ARMOR_MELEE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*2))), BP_HEAD, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*2))), BP_CHEST, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_L_LEG, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_R_LEG, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_L_ARM, src, 1, 1, FALSE)
+	H.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,damage*0.5))), BP_R_ARM, src, 1, 1, FALSE)
+
 
 	blood_splatter(src,H,1)
 	bloodiness += 4

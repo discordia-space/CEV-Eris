@@ -49,6 +49,7 @@ var/list/ai_verbs_default = list(
 	name = "AI"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
+	commonLore = "The AI onboard the AEV-Oxyd is known to be a V-Type, an AI purposefully weakened & shackled to not be a threat."
 	anchored = TRUE // -- TLE
 	density = TRUE
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
@@ -113,6 +114,9 @@ var/list/ai_verbs_default = list(
 	var/drone_cooldown_time = 30 MINUTES  // Cooldown before creating a new drone
 	var/time_destroyed = 0.0
 
+	// Stored when on login and used for custom login out behaviur. Needed for proper removal of click handlers.
+	var/client/old_client
+
 	defaultHUD = "Eris"
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
@@ -150,7 +154,7 @@ var/list/ai_verbs_default = list(
 	anchored = TRUE
 	canmove = 0
 	density = TRUE
-	loc = loc
+	forceMove(loc)
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 
@@ -320,7 +324,7 @@ var/list/ai_verbs_default = list(
 		use_power = NO_POWER_USE
 		return
 	if(!powered_ai.anchored)
-		loc = powered_ai.loc
+		forceMove(powered_ai.loc)
 		use_power = NO_POWER_USE
 		use_power(50000) // Less optimalised but only called if AI is unwrenched. This prevents usage of wrenching as method to keep AI operational without power. Intellicard is for that.
 	if(powered_ai.anchored)
@@ -694,12 +698,11 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/is_in_chassis()
 	return istype(loc, /turf)
 
-
-/mob/living/silicon/ai/ex_act(var/severity)
-	if(severity == 1)
+/mob/living/silicon/ai/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > maxHealth)
 		qdel(src)
-		return
-	..()
+	else
+		adjustBruteLoss(target_power)
 
 /mob/living/silicon/ai/proc/multitool_mode()
 	set name = "Toggle Multitool Mode"

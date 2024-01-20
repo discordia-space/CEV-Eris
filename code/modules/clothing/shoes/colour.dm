@@ -14,6 +14,10 @@
 	name = "black shoes"
 	icon_state = "black"
 
+/obj/item/clothing/shoes/color/grey
+	name = "grey shoes"
+	icon_state = "grey"
+
 /obj/item/clothing/shoes/color/white
 	name = "white shoes"
 	icon_state = "white"
@@ -65,7 +69,7 @@
 	if (src.chained) return
 
 	user.drop_item()
-	cuffs.loc = src
+	cuffs.forceMove(src)
 	src.chained = cuffs
 	src.slowdown = 15
 	src.icon_state = "orange1"

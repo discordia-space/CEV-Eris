@@ -104,25 +104,6 @@
 		return 1
 	return 0
 
-
-/*******************
-*   Virus Storage
-********************/
-/obj/machinery/smartfridge/secure/virology
-	name = "\improper Refrigerated Virus Storage"
-	desc = "A refrigerated storage unit for storing viral material."
-	req_access = list(access_virology)
-	icon_state = "smartfridge_virology"
-	icon_on = "smartfridge_virology"
-	icon_off = "smartfridge_virology-off"
-
-/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
-		return 1
-	if(istype(O,/obj/item/virusdish/))
-		return 1
-	return 0
-
 /obj/machinery/smartfridge/chemistry
 	name = "\improper Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
@@ -131,11 +112,6 @@
 	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))
 		return 1
 	return 0
-
-/obj/machinery/smartfridge/chemistry/virology
-	name = "\improper Smart Virus Storage"
-	desc = "A refrigerated storage unit for volatile sample storage."
-
 
 
 /*************************

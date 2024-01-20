@@ -3,10 +3,11 @@
 	desc = "Hunts on flora and fauna that sometimes populates bluespace, and use them to produce donuts endlessly. May also produce rare and powerful donuts when fed with the meat of non-bluespace fauna."
 	description_info = "Produces donuts constantly, highly valuable. Can be upgraded with the Molitor-Riedel Enricher to also generate syringes of healing chemicals."
 	description_antag = "IH tends to fully trust any donut box thats put above the biospyhon. You could poison a box of donuts."
+	commonLore = "Theres been scandals about the existence of this device. The hunting of bluespace flora could have unknown consequences."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "biosyphon"
 	item_state = "biosyphon"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	flags = CONDUCT
 	throwforce = WEAPON_FORCE_PAINFUL
 	throw_speed = 1

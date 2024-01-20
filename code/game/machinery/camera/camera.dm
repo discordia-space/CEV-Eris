@@ -102,15 +102,10 @@
 /obj/machinery/camera/bullet_act(var/obj/item/projectile/P)
 	take_damage(P.get_structure_damage())
 
-/obj/machinery/camera/ex_act(severity)
-	if(src.invuln)
-		return
-
-	//camera dies if an explosion touches it!
-	if(severity <= 2 || prob(50))
-		destroy()
-
-	..() //and give it the regular chance of being deleted outright
+/obj/machinery/camera/explosion_act(target_power, explosion_handler/handler)
+	if(invuln)
+		return 0
+	. = ..()
 
 /obj/machinery/camera/hitby(AM as mob|obj)
 	..()
@@ -272,14 +267,15 @@
 			to_chat(user, SPAN_NOTICE("Camera bugged."))
 			src.bugged = 1
 
-	else if(I.damtype == BRUTE || I.damtype == BURN) //bashing cameras
+	else if(dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))) //bashing cameras
+		var/damage = dhTotalDamageStrict(I.melleDamages, ALL_ARMOR, list(BRUTE,BURN))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		if (I.force >= src.toughness)
+		if (damage >= src.toughness)
 			user.do_attack_animation(src)
 			visible_message(SPAN_WARNING("<b>[src] has been [pick(I.attack_verb)] with [I] by [user]!</b>"))
 			if (I.hitsound)
 				playsound(loc, I.hitsound, 50, 1, -1)
-		take_damage(I.force)
+		take_damage(damage)
 
 	else
 		..()
@@ -310,7 +306,7 @@
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
 
-/obj/machinery/camera/proc/take_damage(var/force, var/message)
+/obj/machinery/camera/take_damage(var/force, var/message)
 	//prob(25) gives an average of 3-4 hits
 	if (force >= toughness && (force > toughness*4 || prob(25)))
 		destroy()

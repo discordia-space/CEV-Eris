@@ -21,6 +21,7 @@
 	var/process_flag = FALSE
 	var/hideflag = 0
 	var/list/image/ovrls = list()
+	weight = 0
 
 /obj/screen/New(_name = "unnamed", mob/living/_parentmob, _icon, _icon_state)//(_name = "unnamed", _screen_loc = "7,7", mob/living/_parentmob, _icon, _icon_state)
 	src.parentmob = _parentmob
@@ -71,6 +72,32 @@
 			usr.unset_machine()
 
 	return TRUE
+
+// ------------energy-----------------------
+/obj/screen/energy
+	name = "energy"
+	icon_state = "energy"
+	desc = "energy, represents how tired your character is \
+	<br> the less you have , the slower you are \
+	<br> sugar, caffeine and adrenaline help with energy \
+	<br> heavy lifting and combat actions drain your energy"
+	process_flag = TRUE
+
+/obj/screen/energy/New(_name, mob/living/_parentmob, _icon, _icon_state)
+	. = ..()
+	icon_state = "energy1"
+
+/obj/screen/energy/Process()
+	update_icon()
+
+/obj/screen/energy/update_icon()
+	. = ..()
+	var/mob/living/carbon/human/man = parentmob
+	if(!istype(man))
+		return
+	var/ratio = man.getEnergyRatio()
+	ratio = clamp(round(ratio, 0.2), 0,2)
+	icon_state = "[initial(icon_state)][ratio]"
 //--------------------------------------------------close---------------------------------------------------------
 
 /obj/screen/close
@@ -329,7 +356,8 @@
 	name = "health"
 	desc = "Not your actual health, but an estimate of how much pain you feel.\
 	<br>Experience too much of it, and you will lose consciousness.\
-	<br>Pain tolerance scales with your Toughness."
+	<br>Pain tolerance scales with your Toughness.\
+	<br>Painkillers help with the pain"
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "health0"
 	screen_loc = "15,7"
@@ -452,8 +480,85 @@
 	if(!ishuman(parentmob))
 		return FALSE
 	var/mob/living/carbon/human/H = parentmob
+	H?.sanity?.ui_interact(H)
+	return TRUE
+
+/obj/screen/sanity_alt
+	name = "inspiration"
+	desc = "The color of the icon displays how close you are to receive an inspiration from your experiences.\
+	Once you gain an inspiration, you will crave for food, drinks or drugs, to be able to reflect upon all you've learned so far. \
+	Satisfy these cravings and you'll be able to \"rest\", improving upon your stats slightly, or depending on any oddities held, \
+	you'll gain a new perk, for ill or good, and better stat gains."
+	icon_state = "insight1"
+
+/obj/screen/sanity_alt/New()
+	..()
+	ovrls["sanity0"] += new /image/(icon = src.icon, icon_state = "sanity0")
+	ovrls["sanity1"] += new /image/(icon = src.icon, icon_state = "sanity1")
+	ovrls["sanity2"] += new /image/(icon = src.icon, icon_state = "sanity2")
+	ovrls["sanity3"] += new /image/(icon = src.icon, icon_state = "sanity3")
+	ovrls["sanity4"] += new /image/(icon = src.icon, icon_state = "sanity4")
+	ovrls["sanity5"] += new /image/(icon = src.icon, icon_state = "sanity5")
+	ovrls["sanity6"] += new /image/(icon = src.icon, icon_state = "sanity6")
+
+	update_icon()
+
+
+/obj/screen/sanity_alt/update_icon()
+	var/mob/living/carbon/human/H = parentmob
+	if(!istype(H) || H.stat == DEAD)
+		return
+
+	cut_overlays()
+	var/image/ovrl
+
+	add_overlay( image(icon = src.icon, icon_state =  "insight_side", pixel_x = 32))
+	switch(H.sanity.level / H.sanity.max_level)
+		if(-INFINITY to 0)
+			add_overlay( ovrls["sanity6"])
+			return
+		if(1 to INFINITY)
+			ovrl = ovrls["sanity0"]
+		if(0.8 to 1)
+			ovrl = ovrls["sanity1"]
+		if(0.6 to 0.8)
+			ovrl = ovrls["sanity2"]
+		if(0.4 to 0.6)
+			ovrl = ovrls["sanity3"]
+		if(0.2 to 0.4)
+			ovrl = ovrls["sanity4"]
+		if(0 to 0.2)
+			ovrl = ovrls["sanity5"]
+
+	add_overlay(ovrl)
+
+	switch(H.sanity.insight)
+		if(-INFINITY to 0)
+			icon_state = "insight1"
+			return
+		if(66 to 101)
+			icon_state = "insight4"
+		if(33 to 66)
+			icon_state = "insight3"
+		if(2 to 33)
+			icon_state = "insight2"
+		if(1 to INFINITY)
+			icon_state = "insight1"
+
+/obj/screen/sanity_alt/DEADelize()
+	cut_overlays()
+	add_overlay( ovrls["sanity0"])
+
+/obj/screen/sanity_alt/Click()
+	if(!..())
+		return
+	if(!ishuman(parentmob))
+		return FALSE
+	var/mob/living/carbon/human/H = parentmob
 	H.nano_ui_interact(H)
+	H.sanity.print_desires()
 	return	TRUE
+
 
 //--------------------------------------------------sanity end---------------------------------------------------------
 //--------------------------------------------------nsa---------------------------------------------------------
@@ -897,7 +1002,23 @@ obj/screen/fire/DEADelize()
 	if(istype(H))
 		H.lookup()
 //-----------------------look up END------------------------------
+//-----------------------look down------------------------------
+/obj/screen/look_down
+	name = "look down"
+	icon_state = "look_down"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
+/obj/screen/look_down/New()
+	..()
+	update_icon()
+
+/obj/screen/look_down/Click()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H))
+		var/turf/temp_turf = get_turf(H)
+		temp_turf.examine(H)
+//-----------------------look down END------------------------------
 //-----------------------wield------------------------------
 /obj/screen/wield
 	name = "wield"
@@ -908,31 +1029,21 @@ obj/screen/fire/DEADelize()
 /obj/screen/wield/Click()
 	var/mob/living/carbon/human/H = parentmob
 	H.do_wield()
-//-----------------------wield END------------------------------
-//-----------------------Pull------------------------------
 
-/obj/screen/pull
-	name = "pull"
-	icon = 'icons/mob/screen/ErisStyle.dmi'
-	icon_state = "pull0"
-	screen_loc = "14,2"
+/obj/screen/wield_alt
+	name = "wield"
+	icon_state = "wield-l"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
-/obj/screen/pull/New()
+/obj/screen/wield_alt/New()
 	..()
-	update_icon()
+	add_overlay( image(icon = src.icon, icon_state =  "wield-r", pixel_x = 32))
 
-/obj/screen/pull/Click()
-	usr.stop_pulling()
-	//update_icon()
-	//icon_state = "pull0"
-
-/obj/screen/pull/update_icon()
-	if (parentmob.pulling)
-		icon_state = "pull1"
-	else
-		icon_state = "pull0"
-
-//-----------------------Pull end------------------------------
+/obj/screen/wield_alt/Click()
+	var/mob/living/carbon/human/H = parentmob
+	H.do_wield()
+//-----------------------wield END------------------------------
 //-----------------------throw------------------------------
 /obj/screen/HUDthrow
 	name = "throw"
@@ -1077,6 +1188,18 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/swap/Click()
 	parentmob.swap_hand()
+
+
+/obj/screen/swap_alt
+	name = "swap hand"
+	icon = 'icons/mob/screen/LibertyStyle.dmi'
+	icon_state = "swap_alone"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/swap_alt/Click()
+	parentmob.swap_hand()
+
 //-----------------------swap END------------------------------
 //-----------------------bionics------------------------------
 /obj/screen/bionics
@@ -1117,6 +1240,37 @@ obj/screen/fire/DEADelize()
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 //-----------------------bionics END------------------------------
+//-----------------------language------------------------------
+/obj/screen/language
+	name = "language menu"
+	icon_state = "language"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/language/New()
+	..()
+	update_icon()
+
+/obj/screen/language/Click()
+	parentmob.check_languages()
+
+//-----------------------language END------------------------------
+//-----------------------examine------------------------------
+/obj/screen/examine_area
+	name = "examine"
+	icon_state = "examine"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/examine_area/New()
+	..()
+	update_icon()
+
+/obj/screen/examine_area/Click()
+	var/look_at = input("Examine:","Mob|Object|Turf") as mob|obj|turf in view()
+	parentmob.examinate(look_at)
+
+//-----------------------examine END------------------------------
 //-----------------------craft menu------------------------------
 /obj/screen/craft_menu
 	name = "craft menu"
@@ -1383,6 +1537,10 @@ obj/screen/fire/DEADelize()
 		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
 			HUDelement.invisibility = 101
 			hidden_inventory_update(HUDelement)
+	for(var/element in parentmob.HUDneed)
+		var/obj/screen/HUDelement = parentmob.HUDneed[element]
+		if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG || istype(HUDelement, /obj/screen/toggle_cyberdeck))
+			HUDelement.invisibility = 101
 	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
 		if (HUDelement.hideflag & TOGGLE_INVENTORY_FLAG)
 			HUDelement.invisibility = 101
@@ -1391,6 +1549,12 @@ obj/screen/fire/DEADelize()
 	for (var/obj/screen/HUDelement in parentmob.HUDinventory)
 		HUDelement.invisibility = 0
 		hidden_inventory_update(HUDelement)
+	for(var/element in parentmob.HUDneed)
+		var/obj/screen/HUDelement = parentmob.HUDneed[element]
+		if(istype(HUDelement, /obj/screen/toggle_cyberdeck))
+			var/obj/screen/toggle_cyberdeck/deck = HUDelement
+			if(deck.hasInterface)
+				HUDelement.invisibility = 0
 	for (var/obj/screen/HUDelement in parentmob.HUDfrippery)
 		HUDelement.invisibility = 0
 
@@ -1432,3 +1596,103 @@ obj/screen/fire/DEADelize()
 		if(slot_wear_mask)
 			if(H.wear_mask) H.wear_mask.screen_loc = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 //-----------------------toggle_invetory End------------------------------
+// ----------- cyberdeck toggle -----------------
+/obj/screen/toggle_cyberdeck
+	name = "toggle cyberdeck"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "cyberdeck"
+	invisibility = 101
+	var/showing = FALSE
+	var/hasInterface = FALSE
+
+/obj/screen/toggle_cyberdeck/Initialize()
+	. = ..()
+	if(parentmob)
+		var/mob/living/carbon/human/Humie = parentmob
+		if(!istype(Humie))
+			return
+		for(var/externalBodypart in BP_ALL_LIMBS)
+			if(!Humie.has_organ(externalBodypart))
+				continue
+			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
+			var/obj/item/implant/cyberinterface/interface = locate() in bodypart.implants
+			if(interface)
+				hasInterface = TRUE
+				invisibility = 0
+				return
+
+
+/obj/screen/toggle_cyberdeck/Click(location, control, params)
+	if(showing)
+		for(var/element in parentmob.HUDneed)
+			var/obj/screen/HUDelement = parentmob.HUDneed[element]
+			if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG)
+				HUDelement.invisibility = 101
+		showing = FALSE
+	else
+		for(var/element in parentmob.HUDneed)
+			var/obj/screen/HUDelement = parentmob.HUDneed[element]
+			if(HUDelement.hideflag & TOGGLE_CYBERDECK_FLAG)
+				HUDelement.update_icon()
+		showing = TRUE
+
+// ------------- cyberdeck toggle end
+// ----------------- cyberslot start------------
+#define OVKEY_CYBER_IMPLANT "cyberstick"
+/obj/screen/cyberdeck_slot
+	name = "cyberdeck slot"
+	icon = 'icons/mob/screen/ErisStyle.dmi'
+	icon_state = "cyberslot"
+	invisibility = 101
+	var/obj/item/implant/cyberinterface/interface = null
+	var/slotId = 0
+	var/mutable_appearance/cyberStickImage = null
+
+/obj/screen/cyberdeck_slot/Initialize()
+	. = ..()
+	if(parentmob)
+		var/mob/living/carbon/human/Humie = parentmob
+		if(!istype(Humie))
+			return
+		for(var/externalBodypart in BP_ALL_LIMBS)
+			if(!Humie.has_organ(externalBodypart))
+				continue
+			var/obj/item/organ/external/bodypart = Humie.organs_by_name[externalBodypart]
+			var/obj/item/implant/cyberinterface/cyberInterface = locate(/obj/item/implant/cyberinterface) in bodypart.implants
+			if(cyberInterface)
+				interface = cyberInterface
+				update_icon()
+				return
+
+/obj/screen/cyberdeck_slot/update_icon()
+	vis_contents.Cut()
+	if(interface && length(interface.slots) >= slotId && slotId != 0)
+		invisibility = 0
+		var/obj/item/cyberstick/stickRef = interface.slots[slotId]
+		if(stickRef)
+			stickRef.holdingSlot = src
+			vis_contents.Add(stickRef)
+	else
+		invisibility = 101
+
+	. = ..()
+
+/obj/screen/cyberdeck_slot/Click(location, control, params)
+	if(!interface)
+		return TRUE
+	var/mob/living/carbon/human/user = usr
+	if(!istype(user))
+		return TRUE
+	if(!user.can_click())
+		return TRUE
+	if(user.incapacitated(INCAPACITATION_CANT_ACT))
+		return TRUE
+	var/obj/item/currentlyInhand = user.get_active_hand()
+	if(!currentlyInhand)
+		interface.removeStick(slotId, user)
+		return
+	if(istype(currentlyInhand, /obj/item/cyberstick))
+		interface.installStick(currentlyInhand, user, slotId, FALSE)
+	return TRUE
+
+

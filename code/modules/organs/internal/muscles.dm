@@ -6,8 +6,8 @@
 	organ_efficiency = list(OP_MUSCLE = 100)
 	price_tag = 100
 	max_damage = IORGAN_SMALL_HEALTH
-	min_bruised_damage = 2
-	min_broken_damage = 4
+	min_bruised_damage = IORGAN_SMALL_BRUISE
+	min_broken_damage = IORGAN_SMALL_BREAK
 	specific_organ_size = 0.5
 	blood_req = 0.5
 	max_blood_storage = 2.5

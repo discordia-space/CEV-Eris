@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/sol.dmi'
 	icon_state = "sol"
 	item_state = "sol"
-	w_class = ITEM_SIZE_BULKY
+	volumeClass = ITEM_SIZE_BULKY
 	ammo_mag = "ih_sol"
 	load_method = MAGAZINE
 	mag_well = MAG_WELL_IH
@@ -17,7 +17,6 @@
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	init_recoil = CARBINE_RECOIL(1)
-	penetration_multiplier = 0
 	damage_multiplier = 1.1
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	gun_tags = list(GUN_FA_MODDABLE)
@@ -28,7 +27,7 @@
 		BURST_3_ROUND_RAPID
 		)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/sol = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/clrifle = 1)
+	gun_parts = list(/obj/item/part/gun/frame/sol = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/smg = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/sol/proc/update_charge()
@@ -44,8 +43,9 @@
 	..()
 
 	icon_state = initial(icon_state) + (ammo_magazine ? "-full" : "")
-	set_item_state(ammo_magazine ? "-full" : "", back = TRUE)
+	set_item_state(ammo_magazine ? "_mag" : "", hands = TRUE, back = TRUE, onsuit = TRUE)
 	cut_overlays()
+	update_wear_icon()
 	update_charge()
 
 /obj/item/part/gun/frame/sol
@@ -53,6 +53,6 @@
 	desc = "A Sol carbine frame. Ironhammer's favorite."
 	icon_state = "frame_ihbullpup"
 	resultvars = list(/obj/item/gun/projectile/automatic/sol)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/smg // guh?? ok you do you
-	barrelvars = list(/obj/item/part/gun/barrel/clrifle)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/smg // guh?? ok you do you
+	barrelvars = list(/obj/item/part/gun/modular/barrel/clrifle)

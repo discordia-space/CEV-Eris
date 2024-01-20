@@ -36,11 +36,9 @@
 	return list_secure_channels()
 
 /obj/item/device/radio/headset/examine(mob/user)
-	if(!(..(user, 1) && radio_desc))
-		return
-
-	to_chat(user, "The following channels are available:")
-	to_chat(user, radio_desc)
+	var/description = "The following channels are available:"
+	description += radio_desc
+	..(user, afterDesc = description)
 
 /obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
 	if (channel == "special")
@@ -74,6 +72,11 @@
 /obj/item/device/radio/headset/mercenaries
 	origin_tech = list(TECH_COVERT = 3)
 	ks1type = /obj/item/device/encryptionkey/mercenaries
+	spawn_blacklisted = TRUE
+
+/obj/item/device/radio/headset/pirates
+	origin_tech = list(TECH_COVERT = 2)
+	ks1type = /obj/item/device/encryptionkey/pirates
 	spawn_blacklisted = TRUE
 
 /obj/item/device/radio/headset/binary
@@ -272,6 +275,7 @@
 	src.translate_hive = FALSE
 	src.syndie = FALSE
 	src.merc = FALSE
+	src.pirate = FALSE
 
 	if(keyslot1)
 		for(var/ch_name in keyslot1.channels)
@@ -292,6 +296,9 @@
 		if(keyslot1.merc)
 			src.merc = TRUE
 
+		if(keyslot1.pirate)
+			src.pirate = TRUE
+
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
 			if(ch_name in src.channels)
@@ -310,6 +317,9 @@
 
 		if(keyslot2.merc)
 			src.merc = TRUE
+
+		if(keyslot2.pirate)
+			src.pirate = TRUE
 
 
 	for (var/ch_name in channels)

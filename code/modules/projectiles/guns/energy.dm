@@ -39,6 +39,7 @@
 	. = ..()
 	if(.)
 		update_icon()
+		update_held_icon()
 
 /obj/item/gun/energy/emp_act(severity)
 	..()
@@ -95,13 +96,14 @@
 /obj/item/gun/energy/proc/get_external_cell()
 	return loc.get_cell()
 
-/obj/item/gun/energy/examine(mob/user)
-	..(user)
+/obj/item/gun/energy/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
 	if(!cell)
-		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
-		return
-	var/shots_remaining = round(cell.charge / charge_cost)
-	to_chat(user, "Has [shots_remaining] shot\s remaining.")
+		description += SPAN_NOTICE("Has no battery cell inserted.\n")
+	else
+		var/shots_remaining = round(cell.charge / charge_cost)
+		description += "Has [shots_remaining] shot\s remaining."
+	..(user, afterDesc = description)
 	return
 
 /obj/item/gun/energy/update_icon(var/ignore_inhands)
@@ -115,21 +117,24 @@
 
 		if(modifystate)
 			icon_state = "[modifystate][ratio]"
+			wielded_item_state = "_doble" + "[modifystate][ratio]"
 		else
 			icon_state = "[initial(icon_state)][ratio]"
 
 		if(item_charge_meter)
 			set_item_state("-[item_modifystate][ratio]")
+			wielded_item_state = "_doble" + "-[item_modifystate][ratio]"
 	if(!item_charge_meter && item_modifystate)
 		set_item_state("-[item_modifystate]")
+		wielded_item_state = "_doble" + "-[item_modifystate]"
 	if(!ignore_inhands)
 		update_wear_icon()
 
 /obj/item/gun/energy/MouseDrop(over_object)
 	if(disposable)
-		to_chat(usr, SPAN_WARNING("[src] is a disposable, its batteries cannot be removed!."))
+		to_chat(usr, SPAN_WARNING("[src] is a disposable, its batteries cannot be removed!"))
 	else if(self_recharge)
-		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!."))
+		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!"))
 	else if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 		update_icon()

@@ -11,15 +11,19 @@
 	sharp = TRUE
 	edge = TRUE
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 5, QUALITY_CUTTING = 5)
-	max_upgrades = 0
+	maxUpgrades = 0
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	matter = list(MATERIAL_PLASTEEL = 2)
 	amount = 1
 	max_amount = 3
-	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_NORMAL
+	volumeClass = ITEM_SIZE_SMALL
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 20)
+		)
+	)
 	throwforce = WEAPON_FORCE_WEAK
 	armor_divisor = ARMOR_PEN_SHALLOW
 	throw_speed = 3
@@ -33,8 +37,7 @@
 	icon_state = "[initial(icon_state)][amount]"
 
 /obj/item/stack/thrown/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.amount == 1 ? singular_name : plural_name] in the stack.")
+	..(user, afterDesc = "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.amount == 1 ? singular_name : plural_name] in the stack.")
 
 /obj/item/stack/thrown/proc/fireAt(atom/target, mob/living/carbon/C)
 	if(amount == 1)
@@ -46,7 +49,7 @@
 
 		var/obj/item/stack/thrown/J = new src.type(get_turf(src))
 		J.throwforce = throwforce
-		J.amount = 1
+		J.setAmount(1)
 		J.update_icon()
 		J.launchAt(target, C)
 	visible_message(SPAN_DANGER("[C] has thrown \the [src]."))
@@ -68,15 +71,19 @@
 	edge = TRUE
 	embed_mult = 80 //MADE for embedding
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 5, QUALITY_CUTTING = 5)
-	max_upgrades = 0
+	maxUpgrades = 0
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	matter = list(MATERIAL_PLASTEEL = 1)
 	amount = 3
 	max_amount = 3
-	w_class = ITEM_SIZE_SMALL
-	force = WEAPON_FORCE_NORMAL
+	volumeClass = ITEM_SIZE_SMALL
+	melleDamages = list(
+		ARMOR_POINTY = list(
+			DELEM(BRUTE, 15)
+		)
+	)
 	throwforce = WEAPON_FORCE_NORMAL
 	armor_divisor = ARMOR_PEN_SHALLOW
 	slot_flags = SLOT_BELT

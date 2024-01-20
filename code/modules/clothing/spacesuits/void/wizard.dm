@@ -9,12 +9,12 @@
 		)
 	unacidable = 1 //No longer shall our kind be foiled by lone chemists with spray bottles!
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
-		bomb = 25,
-		bio = 100,
-		rad = 90
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =90
 	)
 	siemens_coefficient = 0.7
 
@@ -26,12 +26,12 @@
 	slowdown = 1
 	unacidable = 1
 	armor = list(
-		melee = 10,
-		bullet = 10,
-		energy = 10,
-		bomb = 25,
-		bio = 100,
-		rad = 90
+		ARMOR_BLUNT = 10,
+		ARMOR_BULLET = 10,
+		ARMOR_ENERGY = 10,
+		ARMOR_BOMB =25,
+		ARMOR_BIO =100,
+		ARMOR_RAD =90
 	)
 	siemens_coefficient = 0.7
 	helmet = /obj/item/clothing/head/space/void/wizard

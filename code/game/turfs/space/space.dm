@@ -77,17 +77,13 @@
 // Ported from unstable r355
 
 /turf/space/Entered(atom/movable/A as mob|obj)
-	if(movement_disabled)
-		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
-		return
 	..()
-	if ((!(A) || src != A.loc))	return
-
+	if(QDELETED(A))
+		return
 	// Okay, so let's make it so that people can travel z levels
 	if (A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE + 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE + 1))
 		A.touch_map_edge()
 
-	..()
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
 	var/cur_x

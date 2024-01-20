@@ -3,7 +3,7 @@
 	desc = "Cuts wires and other objects with it."
 	icon_state = "cutters"
 	flags = CONDUCT
-	force = WEAPON_FORCE_WEAK
+	melleDamages = list(ARMOR_SLASH = list(DELEM(BRUTE,12)))
 	worksound = WORKSOUND_WIRECUTTING
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1)
@@ -19,11 +19,10 @@
 	name = "wiremanglers"
 	desc = "An improvised monstrosity made of bent rods which can sometimes be used to snip things. Could serve you well if you stuff it with enough tool mods."
 	icon_state = "impro_cutter"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 20, QUALITY_RETRACTING = 10, QUALITY_BONE_SETTING = 10)
 	degradation = 1.5
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	maxUpgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
 	rarity_value = 6
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -31,12 +30,14 @@
 	name = "armature cutter"
 	desc = "Bigger brother of wirecutter. Can't do much in terms of emergency surgery, but does its main job better."
 	icon_state = "arm-cutter"
-	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
+	melleDamages = list(ARMOR_BLUNT = list(DELEM(BRUTE,20)))
+	wieldedMultiplier = 4
+	WieldedattackDelay = 30
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1)
 	tool_qualities = list(QUALITY_WIRE_CUTTING = 40, QUALITY_CUTTING = 30)
 	degradation = 0.7
-	max_upgrades = 4
+	maxUpgrades = 4
 	rarity_value = 24
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
@@ -56,8 +57,12 @@
 			"You hear cable being cut."
 		)
 		C.handcuffed = null
-		if(C.buckled && C.buckled.buckle_require_restraints)
-			C.buckled.unbuckle_mob()
+		var/list/bucklers = list()
+		SEND_SIGNAL(C, COMSIG_BUCKLE_QUERY, bucklers)
+		for(var/datum/component/buckling/buckle in bucklers)
+			if(buckle.buckleFlags & BUCKLE_REQUIRE_RESTRAINTED)
+				buckle.unbuckle()
+
 		C.update_inv_handcuffed()
 		return
 	else

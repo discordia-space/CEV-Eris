@@ -134,6 +134,7 @@ What is the naming convention for planes or layers?
 #define MECH_INTERMEDIATE_LAYER 4.5
 #define MECH_PILOT_LAYER   5
 #define MECH_COCKPIT_LAYER 6
+#define MECH_ABOVE_LAYER 7
 //[/MEHCS]
 
 #define ABOVE_MOB_LAYER 4.1
@@ -182,8 +183,10 @@ What is the naming convention for planes or layers?
 #define ABOVE_PLATING_LEVEL 2
 
 /atom/proc/reset_plane_and_layer()
-	set_plane(original_plane)
-	layer = initial(layer)
+	if(!(atomFlags & AF_PLANE_UPDATE_HANDLED))
+		set_plane(original_plane)
+	if(!(atomFlags & AF_LAYER_UPDATE_HANDLED))
+		layer = initial(layer)
 
 
 /image/proc/plating_decal_layerise()

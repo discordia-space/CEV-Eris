@@ -5,8 +5,10 @@
 	if(load && isliving(load))
 		return load
 
+/*
 /obj/vehicle/train/get_mob()
 	return buckled_mob
+*/
 
 /mob/get_mob()
 	return src
@@ -346,6 +348,14 @@ Proc for attack log creation, because really why not
 
 /mob/proc/can_see_reagents()
 	return TRUE
+
+/mob/proc/fullscreen_check()
+	if(!client)
+		return
+	if(client.get_preference_value(/datum/client_preference/fullscreen) == GLOB.PREF_YES)
+		winset(client, null, "mainwindow.titlebar=false mainwindow.menu=none mainwindow.is-maximized=true split.pos=0,0")
+	else
+		winset(client, null, "mainwindow.titlebar=true mainwindow.menu=menu split.pos=3,0")
 
 
 // Returns true if M was not already in the dead mob list

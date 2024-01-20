@@ -1,26 +1,47 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
-	w_class = ITEM_SIZE_GARGANTUAN
+	volumeClass = ITEM_SIZE_GARGANTUAN
 	spawn_frequency = 10
 	rarity_value = 10
 	//spawn_tags = SPAWN_TAG_STRUCTURE
 	bad_type = /obj/structure
+	var/health = 100
+	var/maxHealth = 100
+	var/explosion_coverage = 0
 	var/climbable
 	var/breakable
 	var/parts
 	var/list/climbers = list()
 
+/obj/structure/proc/get_health_ratio()
+	if(health)
+		return health/maxHealth
+	else
+		return 1/maxHealth
+
+// Should  always return the amount of damage done
+/obj/structure/proc/take_damage(damage)
+	// Blocked amount
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
+	health -= damage
+	if(health < 0)
+		qdel(src)
+	return
+
+
+
 /**
  * An overridable proc used by SSfalling to determine whether if the object deals
- * mimimal dmg or their w_class * 10
+ * mimimal dmg or their volumeClass * 10
  *
- * @return	ITEM_SIZE_TINY * 10 	if w_class is not defined in subtypes structures
- *			w_class * 10 			if w_class is set
+ * @return	ITEM_SIZE_TINY * 10 	if volumeClass is not defined in subtypes structures
+ *			volumeClass * 10 			if volumeClass is set
  *
  * Values are found in code/__defines/inventory_sizes.dm
  */
 /obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = w_class * 10
+	var/damage = volumeClass * 10 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
@@ -52,17 +73,9 @@
 /obj/structure/attack_tk()
 	return
 
-/obj/structure/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if(prob(50))
-				qdel(src)
-				return
-		if(3)
-			return
+/obj/structure/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed = take_damage(target_power)
+	return absorbed
 
 /obj/structure/New()
 	..()
@@ -81,24 +94,29 @@
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 
 	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
+	if(istype(H) && can_climb(H) && (target == user || ismech(user.loc)))
 		do_climb(target)
 	else
 		return ..()
 
-/obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
+/obj/structure/proc/can_climb(mob/living/user, post_climb_check=0)
 	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
-		return 0
+		return FALSE
 
-	if (!user.Adjacent(src))
+	if(ismech(user.loc))
+		var/mob/living/mech = user.loc
+		if(!mech.Adjacent(src))
+			to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
+			return FALSE
+	else if (!user.Adjacent(src))
 		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
-		return 0
+		return FALSE
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
@@ -200,7 +218,8 @@
 		return 0
 	if(!Adjacent(user))
 		return 0
-	if (user.restrained() || user.buckled)
+
+	if (!ismech(user) && (user.restrained() || user.buckled))
 		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)

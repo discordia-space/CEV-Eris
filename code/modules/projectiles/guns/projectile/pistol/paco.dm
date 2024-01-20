@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/paco.dmi'
 	icon_state = "paco"
 	item_state = "paco"
-	w_class = ITEM_SIZE_NORMAL
+	volumeClass = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
@@ -19,12 +19,11 @@
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	damage_multiplier = 1.3
-	penetration_multiplier = 0
 	init_recoil = HANDGUN_RECOIL(0.7)
 	gun_tags = list(GUN_SILENCABLE)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-	gun_parts = list(/obj/item/part/gun/frame/paco = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/paco = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/paco/update_icon()
@@ -35,6 +34,9 @@
 
 	if (ammo_magazine)
 		iconstring += "_mag"
+		wielded_item_state = "_doble" + "_mag"
+	else
+		wielded_item_state = "_doble"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"
@@ -42,6 +44,7 @@
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+		wielded_item_state += "_s"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
@@ -55,6 +58,6 @@
 	desc = "A Paco pistol frame. A reliable companion in the field."
 	icon_state = "frame_paco"
 	resultvars = list(/obj/item/gun/projectile/paco)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

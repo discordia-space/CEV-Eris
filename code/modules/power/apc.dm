@@ -269,28 +269,27 @@
 	terminal.master = src
 
 /obj/machinery/power/apc/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A control terminal for the area electrical systems.")
-		if(stat & BROKEN)
-			to_chat(user, "Looks broken.")
-			return
-		if(opened)
-			if(has_electronics && terminal)
-				to_chat(user, "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"].")
-			else if (!has_electronics && terminal)
-				to_chat(user, "There are some wires but no any electronics.")
-			else if (has_electronics && !terminal)
-				to_chat(user, "Electronics installed but not wired.")
-			else /* if (!has_electronics && !terminal) */
-				to_chat(user, "There is no electronics nor connected wires.")
-
+	var/description = ""
+	description += "A control terminal for the area electrical systems. \n"
+	if(stat & BROKEN)
+		description += "Looks broken.\n"
+	else if(opened)
+		if(has_electronics && terminal)
+			description += "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"].\n"
+		else if (!has_electronics && terminal)
+			description += "There are some wires but no any electronics.\n"
+		else if (has_electronics && !terminal)
+			description += "Electronics installed but not wired.\n"
+		else /* if (!has_electronics && !terminal) */
+			description += "There is no electronics nor connected wires.\n"
+	else
+		if (stat & MAINT)
+			description += "The cover is closed. Something wrong with it: it doesn't work."
+		else if (hacker)
+			description += "The cover is locked."
 		else
-			if (stat & MAINT)
-				to_chat(user, "The cover is closed. Something wrong with it: it doesn't work.")
-			else if (hacker)
-				to_chat(user, "The cover is locked.")
-			else
-				to_chat(user, "The cover is closed.")
+			description += "The cover is closed."
+	..(user, afterDesc = description)
 
 
 // update the APC icon to show the three base states
@@ -608,8 +607,8 @@
 		if (stat & MAINT)
 			to_chat(user, SPAN_WARNING("There is no connector for your power cell."))
 			return
-		if(I.w_class != ITEM_SIZE_NORMAL)
-			to_chat(user, "\The [I] is too [I.w_class < ITEM_SIZE_NORMAL? "small" : "large"] to fit here.")
+		if(I.volumeClass != ITEM_SIZE_NORMAL)
+			to_chat(user, "\The [I] is too [I.volumeClass < ITEM_SIZE_NORMAL? "small" : "large"] to fit here.")
 			return
 
 		user.drop_item()
@@ -696,8 +695,8 @@
 	else
 		if (((stat & BROKEN) || hacker) \
 				&& !opened \
-				&& I.force >= 5 \
-				&& I.w_class >= ITEM_SIZE_NORMAL \
+				&& dhTotalDamage(I.melleDamages) >= 5 \
+				&& I.volumeClass >= ITEM_SIZE_NORMAL \
 				&& prob(20) )
 			opened = 2
 			user.visible_message(SPAN_DANGER("The APC cover was knocked down with the [I.name] by [user.name]!"), \
@@ -1257,25 +1256,15 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 	update_icon()
 	..()
 
-/obj/machinery/power/apc/ex_act(severity)
-	switch(severity)
-		if(1)
-			//set_broken() //now qdel() do what we need
-			if (cell)
-				cell.ex_act(1) // more lags woohoo
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				set_broken()
-				if (cell && prob(50))
-					cell.ex_act(2)
-		if(3)
-			if (prob(25))
-				set_broken()
-				if (cell && prob(25))
-					cell.ex_act(3)
-	return
+/obj/machinery/power/apc/take_damage(amount)
+	if(cell)
+		cell.take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	if(health < maxHealth * 0.5)
+		set_broken()
+	return 0
 
 /obj/machinery/power/apc/disconnect_terminal()
 	if(terminal)
@@ -1285,12 +1274,11 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 /obj/machinery/power/apc/proc/set_broken()
 	// Aesthetically much better!
 	visible_message(SPAN_NOTICE("[src]'s screen flickers with warnings briefly!"))
-	spawn(rand(2,5))
-		visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
-		stat |= BROKEN
-		operating = 0
-		update_icon()
-		update()
+	visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
+	stat |= BROKEN
+	operating = 0
+	update_icon()
+	update()
 
 // overload the lights in this APC area
 

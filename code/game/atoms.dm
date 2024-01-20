@@ -2,6 +2,8 @@
 	layer = TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	/// Weight of the atom.
+	var/weight = 1
 	var/level = ABOVE_PLATING_LEVEL
 	var/flags = 0
 	var/list/fingerprints
@@ -17,6 +19,9 @@
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
+
+
+	var/atomFlags = null
 
 	///Chemistry.
 	var/reagent_flags = NONE
@@ -43,6 +48,31 @@
 /atom/proc/update_icon()
 	return
 
+/atom/proc/getWeight()
+	return initial(weight)
+
+/// Will return any object that should call blockDamages and mofify the damage list
+/atom/proc/getDamageBlockers(list/armorToDam, armorDiv, woundMult, defZone)
+	RETURN_TYPE(/list)
+	return list(src)
+
+/// Will return a list in the format of armor with armor averages of all relevant blockers on said atom
+/atom/proc/getDamageBlockerRatings(list/relevantTypes)
+	RETURN_TYPE(/list)
+	return list()
+
+
+
+/// This one works by list reference , so no need to return , but just incase...
+/atom/proc/blockDamages(list/armorToDam, armorDiv, woundMult, defZone)
+	return armorToDam
+
+/atom/MouseEntered(location, control, params)
+	. = ..()
+	// Statusbar
+	status_bar_set_text(usr, name)
+
+
 /**
  * Called when an atom is created in byond (built in engine proc)
  *
@@ -57,6 +87,12 @@
 	init_plane()
 	update_plane()
 	init_light()
+
+	weight = getWeight()
+
+	if(isatom(loc) && loc)
+		var/atom/a = loc
+		a.recalculateWeights(weight, src)
 
 	if(datum_flags & DF_USE_TAG)
 		GenerateTag()
@@ -150,11 +186,22 @@
  * * clears the light object
  */
 /atom/Destroy()
+	if(light)
+		light.destroy()
+		light = null
+	if(statverbs)
+		statverbs.Cut()
+
+		//post_buckle_mob(.)
 	if(reagents)
 		QDEL_NULL(reagents)
 
 	SEND_SIGNAL(src, COMSIG_NULL_TARGET)
 	SEND_SIGNAL(src, COMSIG_NULL_SECONDARY_TARGET)
+
+	if(isatom(loc) && loc)
+		var/atom/a = loc
+		a.recalculateWeights(-weight, src)
 
 	update_openspace()
 	return ..()
@@ -336,9 +383,10 @@ its easier to just keep the beam vertical.
 
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "" , afterDesc = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/full_name = "\a [src][infix]."
+	var/examineText = ""
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
 			full_name = "some "
@@ -349,15 +397,33 @@ its easier to just keep the beam vertical.
 		else
 			full_name += "oil-stained [name][infix]."
 
+	if(ishuman(user))
+		var/mob/living/carbon/human/humie = user
+		if(humie.stats && humie.stats.getPerk(/datum/perk/greenthumb))
+			var/datum/perk/greenthumb/P = humie.stats.getPerk(/datum/perk/greenthumb)
+			P.virtual_scanner.afterattack(src, humie, get_dist(src, humie) <= 1)
+		if(humie.hasCyberFlag(CSF_CONTENTS_READER) && !isturf(src))
+			afterDesc += "\n [SPAN_NOTICE("<a href='?src=\ref[humie];contents_read_shallow=\ref[src]'>Scan [src] contents (!SHALLOW!)</a>")]"
+		if(humie.hasCyberFlag(CSF_TASTE_READER) && reagents && reagents.total_volume && istype(src, /obj/item/reagent_containers/food))
+			afterDesc += "\n [SPAN_NOTICE("<a href='?src=\ref[humie];read_tastes=\ref[src]'>Scan [src] for taste. </a>")]"
+
+
+
+	examineText += "<div id='examine'>"
+	examineText += "\icon[src] This is [full_name] \n [desc]"
+	examineText += "[suffix]"
+	if(afterDesc)
+		examineText += "\n [afterDesc]"
+	examineText += "</div>"
+
 	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
+		to_chat(user, examineText)
 	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", examineText)
 
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(desc)
-		to_chat(user, desc)
 		var/pref = user.get_preference_value("SWITCHEXAMINE")
 		if(pref == GLOB.PREF_YES)
 			user.client.statpanel = "Examine"
@@ -387,10 +453,6 @@ its easier to just keep the beam vertical.
 				else
 					to_chat(user, SPAN_DANGER("It's empty."))
 
-	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
-		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
-		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
-
 	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user, distance)
 
 	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
@@ -415,8 +477,10 @@ its easier to just keep the beam vertical.
 /atom/proc/container_dir_changed(new_dir)
 	return
 
-/atom/proc/ex_act()
-	return
+// Explosion action proc , should never SLEEP, and should avoid icon updates , overlays and other visual stuff as much as possible , since they cause massive time delays
+// in explosion processing.
+/atom/proc/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return NO_EMAG_ACT
@@ -645,9 +709,10 @@ its easier to just keep the beam vertical.
 	return 42
 
 /atom/movable/proc/fall_impact(turf/from, turf/dest)
+	return
 
 //If atom stands under open space, it can prevent fall, or not
-/atom/proc/can_prevent_fall()
+/atom/proc/can_prevent_fall(above, atom/movable/thing)
 	return FALSE
 
 // Show a message to all mobs and objects in sight of this atom
@@ -660,9 +725,9 @@ its easier to just keep the beam vertical.
 	var/list/objs = list()
 	get_mobs_and_objs_in_view_fast(T,range, mobs, objs, ONLY_GHOSTS_IN_VIEW)
 
-	for(var/o in objs)
-		var/obj/O = o
-		O.show_message(message,1,blind_message,2)
+	for(var/obj/O as anything in objs)
+		if(!QDELETED(O))
+			O.show_message(message,1,blind_message,2)
 
 	for(var/m in mobs)
 		var/mob/M = m
@@ -758,8 +823,8 @@ its easier to just keep the beam vertical.
 
 //Bullethole shit.
 /atom/proc/create_bullethole(var/obj/item/projectile/Proj)
-	var/p_x = Proj.p_x + pick(0,0,0,0,0,-1,1) // really ugly way of coding "sometimes offset Proj.p_x!"
-	var/p_y = Proj.p_y + pick(0,0,0,0,0,-1,1) // Used for bulletholes
+	var/p_x = Proj.p_x + rand(-8,8) // really ugly way of coding "sometimes offset Proj.p_x!"
+	var/p_y = Proj.p_y + rand(-8,8) // Used for bulletholes
 	var/obj/effect/overlay/bmark/BM = new(src)
 
 	BM.pixel_x = p_x

@@ -296,6 +296,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 
 		// Normal humans do
 		var/atom/chair = locate(/obj/structure/bed/chair, M.loc)
-		return (chair && chair.buckled_mob == M) ? CAN_OPERATE_ALL : CAN_OPERATE_STANDING
+		var/list/bucklers = list()
+		SEND_SIGNAL(M, COMSIG_BUCKLE_QUERY, bucklers)
+		return (chair && length(bucklers)) ? CAN_OPERATE_ALL : CAN_OPERATE_STANDING
 
 	return M.lying && (locate(/obj/machinery/optable, M.loc) || (locate(/obj/structure/bed, M.loc)) || locate(/obj/structure/table, M.loc))

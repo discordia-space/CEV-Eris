@@ -8,6 +8,7 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 	blend_mode = BLEND_MULTIPLY
 	plane = PLANE_SPACE_PARALLAX
 	anchored = TRUE
+	weight = 0
 	var/mob/owner
 
 /obj/parallax/New(mob/M)
@@ -68,12 +69,24 @@ GLOBAL_VAR_INIT(random_parallax, pick("space0", "space1", "space2", "space3", "s
 /mob
 	var/obj/parallax/parallax
 
-/mob/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0, initiator)
 	. = ..()
 	if(. && parallax)
 		parallax.update()
+	if(!check_gravity() && !incorporeal_move)
+		if(!allow_spacemove())
+			update_floating(TRUE)
+			allow_spin = FALSE
+			throw_at(get_step(src, dir), 1, 0.10, "space")
+			allow_spin = TRUE
+		else
+			throwing = FALSE
+			update_floating(FALSE)
+	else
+		update_floating(FALSE)
 
-/mob/forceMove(atom/destination, var/special_event, glide_size_override=0)
+
+/mob/forceMove(atom/destination, var/special_event, glide_size_override=0, initiator)
 	. = ..()
 	if(. && parallax)
 		parallax.update()

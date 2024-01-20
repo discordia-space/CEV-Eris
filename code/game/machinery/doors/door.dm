@@ -21,8 +21,8 @@
 	var/normalspeed = 1
 	var/heat_proof = 0 // For glass airlocks/opacity firedoors
 	var/air_properties_vary_with_direction = 0
-	var/maxhealth = 250
-	var/health
+	maxHealth = 250
+	health = 250
 	var/destroy_hits = 10 //How many strong hits it takes to destroy the door
 	var/resistance = RESISTANCE_TOUGH //minimum amount of force needed to damage the door with a melee weapon
 	var/bullet_resistance = RESISTANCE_FRAGILE
@@ -53,8 +53,8 @@
 	GLOB.all_doors -= src
 	..()
 
-/obj/machinery/door/can_prevent_fall()
-	return density
+/obj/machinery/door/can_prevent_fall(above)
+	return above ? density : null
 
 /obj/machinery/door/attack_generic(mob/user, var/damage)
 	if(damage >= resistance)
@@ -70,11 +70,9 @@
 	. = ..()
 	if(density)
 		layer = closed_layer
-		explosion_resistance = initial(explosion_resistance)
 		update_heat_protection(get_turf(src))
 	else
 		layer = open_layer
-		explosion_resistance = 0
 
 
 	if(width > 1)
@@ -85,7 +83,7 @@
 			bound_width = world.icon_size
 			bound_height = width * world.icon_size
 
-	health = maxhealth
+	health = maxHealth
 
 	update_nearby_tiles(need_rebuild=1)
 	return
@@ -101,13 +99,19 @@
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
-		return 0
-	return 1
+		return FALSE
+	var/obj/machinery/door/blast/overlayed_door = locate(/obj/machinery/door/blast/regular) in get_turf(src)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	overlayed_door = locate(/obj/machinery/door/blast/shutters) in get_turf(src)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/proc/can_close()
 	if(density || operating)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/Bumped(atom/AM)
 	if(operating) return
@@ -144,7 +148,8 @@
 	if(istype(AM, /obj/structure/bed/chair/wheelchair))
 		var/obj/structure/bed/chair/wheelchair/wheel = AM
 		if(density)
-			if(wheel.pulling && (src.allowed(wheel.pulling)))
+			var/datum/component/buckling/buckle = wheel.GetComponent(/datum/component/buckling)
+			if(buckle.buckled && (src.allowed(buckle.buckled)))
 				open()
 			else
 				do_animate("deny")
@@ -177,15 +182,15 @@
 	..()
 
 	var/damage = Proj.get_structure_damage()
-	if(Proj.damage_types[BRUTE])
+	if(Proj.getAllDamType(BRUTE))
 		damage -= bullet_resistance
 
 	// Emitter Blasts - these will eventually completely destroy the door, given enough time.
-	if (damage > 90)
+	if (damage > 60)
 		destroy_hits--
 		if (destroy_hits <= 0)
 			visible_message(SPAN_DANGER("\The [src.name] disintegrates!"))
-			if(Proj.damage_types[BRUTE] > Proj.damage_types[BURN])
+			if(Proj.getAllDamType(BRUTE) > Proj.getAllDamType(BURN))
 				new /obj/item/stack/material/steel(src.loc, 2)
 				new /obj/item/stack/rods(loc, 3)
 			else
@@ -206,7 +211,7 @@
 	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
 	if(prob(30))
 		M.Weaken(1)
-	M.damage_through_armor(rand(5,8), BRUTE, body_part, ARMOR_MELEE)
+	M.damage_through_armor(list(ARMOR_BLUNT=list(DELEM(BRUTE,rand(5,8)))), body_part, src, 1, 1, FALSE)
 	take_damage(M.mob_size)
 
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
@@ -258,7 +263,7 @@
 			if(QUALITY_WELDING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You finish repairing the damage to \the [src]."))
-					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxhealth)
+					health = between(health, health + repairing.amount*DOOR_REPAIR_AMOUNT, maxHealth)
 					update_icon()
 					qdel(repairing)
 					repairing = null
@@ -280,7 +285,7 @@
 		if(stat & BROKEN)
 			to_chat(user, SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now."))
 			return
-		if(health >= maxhealth)
+		if(health >= maxHealth)
 			to_chat(user, SPAN_NOTICE("Nothing to fix!"))
 			return
 		if(!density)
@@ -288,7 +293,7 @@
 			return
 
 		//figure out how much metal we need
-		var/amount_needed = (maxhealth - health) / DOOR_REPAIR_AMOUNT
+		var/amount_needed = (maxHealth - health) / DOOR_REPAIR_AMOUNT
 		amount_needed = CEILING(amount_needed, 1)
 
 		var/obj/item/stack/stack = I
@@ -330,12 +335,12 @@
 
 /obj/machinery/door/proc/hit(var/mob/user, var/obj/item/I, var/thrown = FALSE)
 	var/obj/item/W = I
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
+	user.setClickCooldown((DEFAULT_ATTACK_COOLDOWN + (I.wielded ? I.WieldedattackDelay : I.attackDelay )*1.5 ))
 	var/calc_damage
 	if (thrown)
 		calc_damage= W.throwforce*W.structure_damage_factor
 	else
-		calc_damage= W.force*W.structure_damage_factor
+		calc_damage= dhTotalDamageStrict(W.melleDamages, ALL_ARMOR,  list(BRUTE,BURN))*W.structure_damage_factor
 		if (user)user.do_attack_animation(src)
 
 	calc_damage -= resistance
@@ -346,26 +351,30 @@
 	else
 		if (user)user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, calc_damage*2.5, 1, 3,3)
-		take_damage(W.force)
+		take_damage(calc_damage)
 
-/obj/machinery/door/proc/take_damage(var/damage)
+/obj/machinery/door/take_damage(damage)
 	if (!isnum(damage))
 		return
-
+	var/initialhealth = health
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	// Not closed , not protected.
+	. *= density
+	health -= damage
 	var/smoke_amount
-
-	var/initialhealth = src.health
-	src.health = max(0, src.health - damage)
-	if(src.health <= 0 && initialhealth > 0)
-		src.set_broken()
+	if(health < -(maxHealth/1.3))
+		qdel(src)
+		return
+	else if(health < maxHealth / 5 && initialhealth > maxHealth / 5)
+		set_broken()
 		smoke_amount = 4
-	else if(src.health < src.maxhealth / 4 && initialhealth >= src.maxhealth / 4)
+	else if(health < maxHealth / 4 && initialhealth >= maxHealth / 4)
 		visible_message("\The [src] looks like it's about to break!" )
 		smoke_amount = 3
-	else if(src.health < src.maxhealth / 2 && initialhealth >= src.maxhealth / 2)
+	else if(health < maxHealth / 2 && initialhealth >= maxHealth / 2)
 		visible_message("\The [src] looks seriously damaged!" )
 		smoke_amount = 2
-	else if(src.health < src.maxhealth * 3/4 && initialhealth >= src.maxhealth * 3/4)
+	else if(health < maxHealth * 3/4 && initialhealth >= maxHealth * 3/4)
 		visible_message("\The [src] shows signs of damage!" )
 		smoke_amount = 1
 	update_icon()
@@ -373,18 +382,17 @@
 		var/datum/effect/effect/system/smoke_spread/S = new
 		S.set_up(smoke_amount, 0, src)
 		S.start()
-	return
 
 
-/obj/machinery/door/examine(mob/user)
-	. = ..()
-	if(src.health < src.maxhealth / 4)
-		to_chat(user, "\The [src] looks like it's about to break!")
-	else if(src.health < src.maxhealth / 2)
-		to_chat(user, "\The [src] looks seriously damaged!")
-	else if(src.health < src.maxhealth * 3/4)
-		to_chat(user, "\The [src] shows signs of damage!")
-
+/obj/machinery/door/examine(mob/user, afterDesc)
+	var/description = "[afterDesc] \n"
+	if(src.health < src.maxHealth / 4)
+		description += "\The [src] looks like it's about to break!"
+	else if(src.health < src.maxHealth / 2)
+		description += "\The [src] looks seriously damaged!"
+	else if(src.health < src.maxHealth * 3/4)
+		description += "\The [src] shows signs of damage!"
+	. = ..(user, afterDesc = description)
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN
@@ -396,33 +404,10 @@
 		visible_message(SPAN_WARNING("\The [src.name] breaks!"))
 	update_icon()
 
-
-/obj/machinery/door/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(25))
-				qdel(src)
-			else
-				take_damage(300)
-		if(3)
-			if(prob(80))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(2, 1, src)
-				s.start()
-			else
-				take_damage(150)
-		if(4)
-			if(prob(80))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-				s.set_up(2, 1, src)
-				s.start()
-			else
-				take_damage(60)
-
-	return
-
+/obj/machinery/door/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed = take_damage(target_power)
+	//message_admins("Door block absorbed [absorbed] damage , whilst having a health pool of [health] out of a maximum of [maxHealth]")
+	return absorbed
 
 /obj/machinery/door/update_icon()
 	icon_state = "door[density]"
@@ -463,12 +448,12 @@
 
 	do_animate("opening")
 	icon_state = "door0"
-	sleep(3)
+	//sleep(3)
 	src.density = FALSE
+	SEND_SIGNAL(src, COMSIG_DOOR_OPENED, forced)
 	update_nearby_tiles()
-	sleep(7)
+	//sleep(7)
 	src.layer = open_layer
-	explosion_resistance = 0
 	update_icon()
 	update_nearby_tiles()
 	operating = FALSE
@@ -484,12 +469,12 @@
 	operating = TRUE
 
 	do_animate("closing")
-	sleep(3)
+	//sleep(3)
 	src.density = TRUE
+	SEND_SIGNAL(src, COMSIG_DOOR_CLOSED, forced)
 	update_nearby_tiles()
-	sleep(7)
+	//sleep(7)
 	src.layer = closed_layer
-	explosion_resistance = initial(explosion_resistance)
 	update_icon()
 	update_nearby_tiles()
 
@@ -529,7 +514,7 @@
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/door/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0, initiator = src)
 	//update_nearby_tiles()
 	. = ..()
 	if(width > 1)
