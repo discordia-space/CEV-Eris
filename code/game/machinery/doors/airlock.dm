@@ -69,6 +69,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 		return get_material_by_name(mineral)
 	return get_material_by_name(MATERIAL_STEEL)
 
+/obj/machinery/door/airlock/get_overlay_icon()
+	return DOOR_MISC_ICON
+
 /obj/machinery/door/airlock/command
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorcom.dmi'
@@ -135,6 +138,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doorfreezer.dmi'
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_fre
+
+/obj/machinery/door/airlock/freezer/get_overlay_icon()
+	return icon
 
 /obj/machinery/door/airlock/hatch
 	name = "Airtight Hatch"
@@ -653,28 +659,31 @@ There are 9 wires.
 		cut_overlays()
 	if(underlays.len)
 		underlays.Cut()
+	if(door_flicker.overlays.len)
+		door_flicker.overlays.Cut()
 	if(density)
 		icon_state = "door_closed"
 		if(locked && lights && arePowerSystemsOn())
-			door_flicker.icon_state = "door_locked"
+			overlays += image(get_overlay_icon(), "door_locked")
 			set_light(1.5, 0.5, COLOR_RED_LIGHT)
+		else
+			overlays += image(get_overlay_icon(), "door_closed")
 		if(p_open || welded)
-			overlays = list()
 			if(p_open)
-				overlays += image(DOOR_MISC_ICON, "panel_open")
+				door_flicker.overlays += image(get_overlay_icon(), "panel_open")
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
-					overlays += image(DOOR_MISC_ICON, "sparks_broken")
+					door_flicker.overlays += image(get_overlay_icon(), "sparks_broken")
 				else if (health < maxHealth * 3/4)
-					overlays += image(DOOR_MISC_ICON, "sparks_damaged")
+					door_flicker.overlays += image(get_overlay_icon(), "sparks_damaged")
 			if(welded)
-				overlays += image(DOOR_MISC_ICON, "welded")
+				overlays += image(get_overlay_icon(), "welded")
 		else if (health < maxHealth * 3/4 && !(stat & NOPOWER))
-			overlays += image(DOOR_MISC_ICON, "sparks_damaged")
+			door_flicker.overlays += image(get_overlay_icon(), "sparks_damaged")
 	else
 		icon_state = "door_open"
 		if((stat & BROKEN) && !(stat & NOPOWER))
-			overlays += image(DOOR_MISC_ICON, "sparks_open")
+			door_flicker.overlays += image(get_overlay_icon(), "sparks_open")
 	if(wedged_item)
 		generate_wedge_overlay()
 
@@ -685,6 +694,9 @@ There are 9 wires.
 				cut_overlays()
 			if(underlays.len)
 				underlays.Cut()
+			if(door_flicker.overlays.len)
+				door_flicker.overlays.Cut()
+
 
 			flick("door_opening", src)//[stat ? "_stat":]
 			if(p_open)
@@ -695,14 +707,13 @@ There are 9 wires.
 				cut_overlays()
 			if(underlays.len)
 				underlays.Cut()
+			if(door_flicker.overlays.len)
+				door_flicker.overlays.Cut()
+
 			flick("door_closing", src)
 			if(p_open)
 				flick_door("o_door_closing", src)
 			update_icon()
-			// 	update_icon()
-			// else
-			// 	flick("door_closing", src)
-			// 	update_icon()
 		if("spark")
 			if(density)
 				flick_door("door_spark", src)
