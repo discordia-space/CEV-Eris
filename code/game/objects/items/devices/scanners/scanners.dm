@@ -28,7 +28,7 @@
 	var/window_width = 450
 	var/window_height = 600
 
-	var/charge_per_use = 0
+	var/charge_per_use = 5
 
 	var/is_virtual = FALSE // for non-physical scanner to avoid displaying action messages
 

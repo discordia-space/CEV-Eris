@@ -76,7 +76,6 @@
 	new /obj/item/clothing/accessory/badge/commander(src)
 	new /obj/item/storage/pouch/holster(src)
 	new /obj/item/storage/pouch/holster/baton(src)
-	new /obj/item/flame/lighter/zippo/syndicate(src)
 
 /obj/structure/closet/secure_closet/warden
 	name = "Gunnery Sergeant's locker"

@@ -54,8 +54,7 @@
 		dir = 2
 
 	switch(disintegrate)
-		if(DROPLIMB_EDGE, DROPLIMB_EDGE_BURN)
-			compile_icon()
+		if(DROPLIMB_EDGE, DROPLIMB_EDGE_BURN) //TODO: IF head cut off, borer actions "stay" in body, camera will be on cut off head, will not be able to be detach. Too Bad!
 			add_blood(victim)
 			var/matrix/M = matrix()
 			M.Turn(rand(180))
@@ -90,6 +89,13 @@
 				I.forceMove(get_turf(src))
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
+			for(var/mob/living/I in src) // check for mobs inside you... yeah
+				if(istype(I, /mob/living/simple_animal/borer/))
+					var/mob/living/simple_animal/borer/B = I
+					B.detach()
+					B.leave_host()
+					I.forceMove(get_turf(src))
+					I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 			for(var/obj/item/I in src)
 				if(I.w_class <= ITEM_SIZE_SMALL)
 					qdel(I)

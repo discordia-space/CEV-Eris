@@ -92,13 +92,14 @@
 	if(is_reinforced == FRAME_REINFORCED_SECURE || is_reinforced == FRAME_REINFORCED_WELDED)
 		usable_qualities += QUALITY_WELDING
 
-	if(is_reinforced == FRAME_REINFORCED || arms || legs || head || body)
-		usable_qualities += QUALITY_PRYING
+	if(!istype(I, /obj/item/mech_component/manipulators))
+		if((is_reinforced == FRAME_REINFORCED || arms || legs || head || body))
+			usable_qualities += QUALITY_PRYING
 
 	if(is_wired)
 		usable_qualities += QUALITY_WIRE_CUTTING
 
-	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && arms && legs && head && body)
+	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && legs && body)
 		usable_qualities += QUALITY_SCREW_DRIVING
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
@@ -225,7 +226,7 @@
 		// Final construction step
 		if(QUALITY_SCREW_DRIVING)
 			// Check for basic components.
-			if(!(arms && legs && head && body))
+			if(!(legs && body))
 				to_chat(user,  SPAN_WARNING("There are still parts missing from \the [src]."))
 				return
 
@@ -251,7 +252,7 @@
 			if(!I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_ZERO))
 				return
 
-			if(is_reinforced < FRAME_REINFORCED_WELDED || is_wired < FRAME_WIRED_ADJUSTED || !(arms && legs && head && body))
+			if(is_reinforced < FRAME_REINFORCED_WELDED || is_wired < FRAME_WIRED_ADJUSTED || !(legs && body))
 				return
 
 			// We're all done. Finalize the exosuit and pass the frame to the new system.
@@ -318,6 +319,9 @@
 
 	// Installing basic components.
 	if(istype(I, /obj/item/mech_component/manipulators))
+		if(istype(body, /obj/item/mech_component/chassis/forklift))
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support manipulators!"))
+			return
 		if(arms)
 			to_chat(user, SPAN_WARNING("\The [src] already has manipulators installed."))
 			return
@@ -330,12 +334,18 @@
 		if(legs)
 			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
 			return
+		if(istype(body, /obj/item/mech_component/chassis/forklift) && !istype(I, /obj/item/mech_component/propulsion/wheels))
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support this type of propulsation, only wheels!"))
+			return
 		if(install_component(I, user))
 			if(legs)
 				user.unEquip(I, loc)
 				return
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
+		if(istype(body, /obj/item/mech_component/chassis/forklift))
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
+			return
 		if(head)
 			to_chat(user, SPAN_WARNING("\The [src] already has a sensor array installed."))
 			return
@@ -369,6 +379,16 @@
 		if(!user.unEquip(I))
 			return
 	I.forceMove(src)
+	if(istype(MC, /obj/item/mech_component/chassis/forklift))
+		if(arms)
+			arms.forceMove(get_turf(src))
+			arms = null
+		if(head)
+			head.forceMove(get_turf(src))
+			head = null
+		if(legs && !istype(legs, /obj/item/mech_component/propulsion/wheels))
+			legs.forceMove(get_turf(src))
+			legs = null
 	visible_message(SPAN_NOTICE("\The [user] installs \the [I] into \the [src]."))
 	playsound(user.loc, 'sound/machines/click.ogg', 50, 1)
 	return 1

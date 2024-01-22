@@ -40,6 +40,25 @@
 						victim.forceMove(theDepths)
 						visible_message("The [src] pushes [victim] downwards.")
 						occupant_message("You can feel \the [src] step onto something.")
+		for(var/hardpoint in hardpoints)
+			if(!hardpoints[hardpoint])
+				continue
+			var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
+			if(!(thing.equipment_flags & EQUIPFLAG_UPDTMOVE))
+				continue
+			thing.update_icon()
+
+/mob/living/exosuit/set_dir()
+	. = ..()
+	if(.)
+		update_pilots()
+		for(var/hardpoint in hardpoints)
+			if(!hardpoints[hardpoint])
+				continue
+			var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
+			if(!(thing.equipment_flags & EQUIPFLAG_UPDTMOVE))
+				continue
+			thing.update_icon()
 
 /mob/living/exosuit/get_jetpack()
 	for(var/hardpoint_thing in hardpoints)
@@ -132,7 +151,7 @@
 	var/obj/item/cell/C = exosuit.get_cell()
 	C.use(exosuit.legs.power_use * CELLRATE)
 	if(exosuit.dir != moving_dir && !exosuit.strafing)
-		playsound(exosuit.loc, exosuit.mech_turn_sound, 40,1)
+		playsound(exosuit.loc, exosuit.legs.mech_turn_sound, 40,1)
 		exosuit.set_dir(moving_dir)
 		next_move = world.time + exosuit.legs.turn_delay
 	else
@@ -178,11 +197,17 @@
 
 /mob/living/exosuit/proc/moveBlocked()
 	for(var/hardpoint in hardpoints)
-		var/obj/item/mech_equipment/shield_generator/ballistic/blocker = hardpoints[hardpoint]
-		if(!istype(blocker))
-			continue
-		if(blocker.on)
-			return "\The [blocker] is deployed! Immobilizing you. "
+		var/obj/item/mech_equipment/equip = hardpoints[hardpoint]
+		if(equip)
+			switch(equip.type)
+				if(/obj/item/mech_equipment/shield_generator/ballistic)
+					var/obj/item/mech_equipment/shield_generator/ballistic/blocker = equip
+					if(blocker.on)
+						return "\The [blocker] is deployed! Immobilizing you. "
+				if(/obj/item/mech_equipment/forklifting_system)
+					var/obj/item/mech_equipment/forklifting_system/fork = equip
+					if(fork.lifted)
+						return "\The [fork] is lifted, locking you in place!"
 	return ""
 
 

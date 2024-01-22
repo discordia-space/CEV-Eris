@@ -6,6 +6,8 @@
 	has_hardpoints = list(HARDPOINT_HEAD)
 	power_use = 15
 	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 4)
+	can_gib = TRUE
+	gib_hits_needed = 5
 	var/vision_flags = NONE
 	var/see_invisible = 0
 	var/active_sensors = FALSE
@@ -32,18 +34,19 @@
 	radio = locate() in src
 	camera = locate() in src
 
-/obj/item/mech_component/sensors/proc/get_sight()
+/obj/item/mech_component/sensors/proc/get_sight(powered)
 	var/flags = 0
-	if(total_damage >= 0.8 * max_damage)
+	var/mob/living/exosuit/mech = loc
+	if(total_damage >= 0.8 * max_damage || (!powered && mech.hatch_closed))
 		flags |= BLIND
 	else if(active_sensors)
 		flags |= vision_flags
 
 	return flags
 
-/obj/item/mech_component/sensors/proc/get_invisible()
+/obj/item/mech_component/sensors/proc/get_invisible(powered)
 	var/invisible = 0
-	if((total_damage <= 0.8 * max_damage) && active_sensors)
+	if((total_damage <= 0.8 * max_damage) && active_sensors && powered)
 		invisible = see_invisible
 	return invisible
 
