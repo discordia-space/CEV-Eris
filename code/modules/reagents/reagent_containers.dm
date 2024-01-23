@@ -217,6 +217,8 @@
 	if(!containers.len)
 		return FALSE
 	for(var/datum/reagent/R in reagents.reagent_list)
+		if(R.churnable && R.volume == R.churn_ratio(A)) //???????????
+			churn()
 		if(R.id in ignore_reagents_ids)
 			continue
 		var/amount_to_transfer = amount_per_reagent ? amount_per_reagent : R.volume

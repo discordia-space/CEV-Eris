@@ -581,16 +581,26 @@
 	taste_description = "milk"
 	color = "#DFDFDF"
 	taste_tag = list(TASTE_LIGHT)
-
 	glass_unique_appearance = TRUE
 	glass_icon_state = "glass_white"
 	glass_name = "milk"
 	glass_desc = "White and nutritious goodness!"
+	churnable = TRUE //Any child should NOT be churnable. This var is defined in /datum/reagent.
+	churn_ratio = list(10, /obj/item/reagent_containers/food/snacks/sliceable/butterstick = 1, "buttermilk" = 1) //Required Volume of Reagent, Item Spawned, Reagent Separated
 
 /datum/reagent/drink/milk/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.heal_organ_damage(0.05 * effect_multiplier, 0)
 	holder.remove_reagent("capsaicin", 1 * effect_multiplier)
+
+/datum/reagent/drink/milk/buttermilk
+	name = "Buttermilk"
+	id = "buttermilk"
+	description = "Dairy product composed of the slightly more viscous liquid left behind after churning butter. Once rumored to slow aging."
+	taste_description = "buttery cream"
+	glass_name = "buttermilk"
+	glass_desc = "Extra thick."
+	churnable = FALSE
 
 /datum/reagent/drink/milk/cream
 	name = "Cream"
@@ -598,12 +608,9 @@
 	description = "Dairy product composed of the higher-fat layer skimmed from the top of milk before homogenization."
 	taste_description = "creamy milk"
 	color = "#dfd7af"
-	taste_tag = list(TASTE_LIGHT)
-
-	glass_unique_appearance = TRUE
-	glass_icon_state = "glass_white"
 	glass_name = "cream"
 	glass_desc = "Ewwww..."
+	churnable = FALSE
 
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
@@ -611,12 +618,9 @@
 	description = "An opaque white liquid made from soybeans."
 	taste_description = "soy milk"
 	color = "#DFDFC7"
-	taste_tag = list(TASTE_LIGHT)
-
-	glass_unique_appearance = TRUE
-	glass_icon_state = "glass_white"
 	glass_name = "soy milk"
 	glass_desc = "White and nutritious soy goodness!"
+	churnable = FALSE
 
 /datum/reagent/drink/tea
 	name = "Tea"
@@ -880,6 +884,7 @@
 	color = "#aee5e4"
 	adj_temp = -9
 	taste_tag = list(TASTE_LIGHT)
+	churnable = FALSE
 
 	glass_unique_appearance = TRUE
 	glass_icon_state = "milkshake"

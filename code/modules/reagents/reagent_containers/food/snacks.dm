@@ -3826,7 +3826,7 @@
 	name = "sashimi"
 	desc = "Raw cuts of carp fillet with a side of soy sauce, apparently an eastern earth delicacy."
 	icon_state = "sashimi"
-	trash = /obj/item/trash/grease
+	trash = /obj/item/trash/plate
 	bitesize = 2
 	nutriment_amt = 4
 	preloaded_reagents = list("protein" = 4)

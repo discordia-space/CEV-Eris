@@ -1495,6 +1495,7 @@
 
 //UNSORTED
 //missing: spacylibertyduff, amanitajelly, butter
+//Butter solution: Centrifuge milk into butter and buttermilk
 /datum/cooking_with_jane/recipe/boiledslimeextract
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/boiledslimecore
