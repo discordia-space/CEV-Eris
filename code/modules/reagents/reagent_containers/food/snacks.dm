@@ -1008,7 +1008,7 @@
 
 	New()
 		..()
-co		reagents.add_reagent("protein", 8)
+		reagents.add_reagent("protein", 8)
 		bitesize = 2
 	taste_tag = list(INSECTS_FOOD)
 

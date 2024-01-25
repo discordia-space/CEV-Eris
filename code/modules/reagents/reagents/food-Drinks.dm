@@ -617,10 +617,10 @@
 /datum/reagent/drink/milk/butter/touch_turf(turf/simulated/T, amount) //Just dump it on the floor, I couldn't figure out a better way to solidify it into a stick
 	if(!istype(T))
 		return
-	if(!amount == 30)
+	if(!amount < 30)
 		to_chat(src, SPAN_NOTICE("Need more butter to make a whole stick."))
 		return
-	if(amount == 30)
+	if(amount >= 30)
 		new /obj/item/reagent_containers/food/snacks/sliceable/butterstick(T)
 	return TRUE
 

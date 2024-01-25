@@ -22,8 +22,8 @@
 	icon_state = "freezer"
 
 /obj/structure/closet/secure_closet/freezer/meat/populate_contents()
-	for(var/i in 1 to 3)
-		new /obj/item/reagent_containers/food/snacks/meat/monkey(src)
+	for(var/i in 1 to 6)
+		new /obj/item/reagent_containers/food/snacks/meat/(src)
 
 /obj/structure/closet/secure_closet/freezer/fridge
 	name = "refrigerator"

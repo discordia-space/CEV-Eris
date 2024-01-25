@@ -53,7 +53,7 @@
 	log_debug("cooking_container/attackby() called!")
 	#endif
 
-	if(istype(used_item, /obj/item/spatula))
+	if(istype(used_item, /obj/item/tool/shovel/))
 		do_empty(user, target=null, reagent_clear = FALSE)
 		return
 

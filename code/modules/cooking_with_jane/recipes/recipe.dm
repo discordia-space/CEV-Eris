@@ -566,7 +566,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/jelliedtoast/amanita
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/amanitajelly, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/jelly/amanita, qmod=0.5),
 		list(CWJ_USE_TOOL, QUALITY_CUTTING, 1)
 	)
 
@@ -869,7 +869,7 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1),
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/bacon, qmod=0.5),
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/amanitajelly, qmod=0.5)
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/jelly/amanita, qmod=0.5)
 	)
 
 /datum/cooking_with_jane/recipe/slimeburger
@@ -928,7 +928,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/jellysandwich/amanita
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/amanitajelly, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/jelly/amanita, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5)
 	)
 

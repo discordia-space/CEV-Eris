@@ -7,5 +7,5 @@
 	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL
 	attack_verb = list("smacked", "slapped", "spanked", "whapped", "whacked")
-	hitsound = 'sound/weapons/melee/punch3.ogg'
+	hitsound = 'sound/weapons/punch3.ogg'
 	tool_qualities = list(QUALITY_SHOVELING = 5, QUALITY_DIGGING = 5, QUALITY_HAMMERING = 1)

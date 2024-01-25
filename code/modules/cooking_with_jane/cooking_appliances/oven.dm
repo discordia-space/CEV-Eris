@@ -116,7 +116,7 @@
 		if(items != null)
 			var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items
 
-			if(istype(used_item, /obj/item/spatula))
+			if(istype(used_item, /obj/item/tool/shovel))
 				container.do_empty(user, target=src, reagent_clear = FALSE)
 			else
 				container.process_item(used_item, params)
