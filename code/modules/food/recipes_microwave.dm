@@ -70,7 +70,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meat/monkey,
 		/obj/item/reagent_containers/food/snacks/meat/monkey,
 	)
-	result = /obj/item/reagent_containers/food/snacks/monkeykabob
+	result = /obj/item/reagent_containers/food/snacks/kabob
 
 /datum/recipe/tofukabob
 	items = list(

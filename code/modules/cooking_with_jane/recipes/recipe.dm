@@ -12,7 +12,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/meatsteak
 
 	//The product will have it's initial reagents wiped, prior to the recipe adding in reagents of its own.
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 
@@ -28,8 +28,8 @@
 
 		//A steak is needed to start the meal.
 		//qmod- Half of the food quality of the parent will be considered.
-		//exclude_reagents- Blattedin and Carpotoxin will be filtered out of the steak.
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		//exclude_reagents- Blattedin and Carpotoxin will be filtered out of the steak. EXCEPT THIS IS ERIS, WE EMBRACE THE ROACH, and has thus been removed from every recipe.
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "sodiumchloride", 1),
 		list(CWJ_ADD_REAGENT, "blackpepper", 1),
 		//Add some mushrooms to give it some zest. Only one kind is allowed!
@@ -59,7 +59,7 @@
 	)
 
 //**Meat and Seafood**//
-//Missing: kabob, humankabob, monkeykabob, tofukabob, cubancarp, friedchicken, tonkatsu, enchiladas, monkeysdelight, fishandchips, katsudon, fishfingers,
+//Missing: cubancarp, friedchicken, tonkatsu, enchiladas, monkeysdelight, fishandchips, katsudon, fishfingers,
 /datum/cooking_with_jane/recipe/donkpocket //Special interactions in recipes_microwave.dm, not sure if this is going to function as expected
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/donkpocket
@@ -70,18 +70,48 @@
 		list(CWJ_ADD_REAGENT, "thermite", 1) //So it cooks inhand, totally.
 	)
 
+/datum/cooking_with_jane/recipe/cooked_cutlet
+	cooking_container = GRILL
+	product_type = /obj/item/reagent_containers/food/snacks/cutlet
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/rawcutlet, qmod=0.5),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "cornoil", 1, base=1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_USE_STOVE, J_LO, 15 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/cooked_meatball
+	cooking_container = PAN
+	product_type = /obj/item/reagent_containers/food/snacks/meatball
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/rawmeatball, qmod=0.5),
+		list(CWJ_ADD_REAGENT, "cornoil", 1, base=1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_USE_STOVE, J_LO, 20 SECONDS)
+	)
+	
+/datum/cooking_with_jane/recipe/cooked_patty
+	cooking_container = GRILL
+	product_type = /obj/item/reagent_containers/food/snacks/patty
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/patty_raw, qmod=0.5),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "cornoil", 1, base=1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_USE_GRILL, J_LO, 10 SECONDS)
+	)
+
 /datum/cooking_with_jane/recipe/chickensteak
 	cooking_container = PAN
 	product_type = /obj/item/reagent_containers/food/snacks/chickensteak
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		CWJ_BEGIN_OPTION_CHAIN,
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/butterslice, base=10, reagent_skip=TRUE),
 		list(CWJ_USE_STOVE_OPTIONAL, J_LO, 10 SECONDS),
 		CWJ_END_OPTION_CHAIN,
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/chickenbreast, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/chickenbreast, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "sodiumchloride", 1),
 		list(CWJ_ADD_REAGENT, "blackpepper", 1),
 		CWJ_BEGIN_EXCLUSIVE_OPTIONS,
@@ -102,14 +132,14 @@
 	cooking_container = PAN
 	product_type = /obj/item/reagent_containers/food/snacks/porkchops
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		CWJ_BEGIN_OPTION_CHAIN,
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/butterslice, base=10, reagent_skip=TRUE),
 		list(CWJ_USE_STOVE_OPTIONAL, J_LO, 10 SECONDS),
 		CWJ_END_OPTION_CHAIN,
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/pork, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/pork, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "sodiumchloride", 1),
 		list(CWJ_ADD_REAGENT, "blackpepper", 1),
 		CWJ_BEGIN_EXCLUSIVE_OPTIONS,
@@ -134,6 +164,19 @@
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/chicken, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "sodiumchloride", 1),
 		list(CWJ_ADD_REAGENT, "blackpepper", 1),
+		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/stuffing, qmod=0.5),
+		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/tofurkey //Not quite meat but cooked similar to roast chicken
+	cooking_container = OVEN
+	product_type = /obj/item/reagent_containers/food/snacks/tofurkey
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/stuffing, qmod=0.5),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
 	)
 
@@ -141,7 +184,7 @@
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/boiledegg
 	step_builder = list(
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/egg, qmod=0.5, exclude_reagents=list("blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/egg, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "water", 5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_USE_STOVE, J_MED, 15 SECONDS)
@@ -157,7 +200,7 @@
 		list(CWJ_USE_STOVE_OPTIONAL, J_LO, 10 SECONDS),
 		CWJ_END_OPTION_CHAIN,
 
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/egg, qmod=0.5, exclude_reagents=list("blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/egg, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "sodiumchloride", 1),
 		list(CWJ_ADD_REAGENT, "blackpepper", 1),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "cornoil", 1, base=1),
@@ -219,36 +262,6 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1, base=1),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, qmod=0.5),
 		list(CWJ_USE_OVEN, J_LO, 10 SECONDS)
-	)
-
-/datum/cooking_with_jane/recipe/cooked_cutlet
-	cooking_container = GRILL
-	product_type = /obj/item/reagent_containers/food/snacks/cutlet
-	step_builder = list(
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/rawcutlet, qmod=0.5),
-		list(CWJ_ADD_REAGENT_OPTIONAL, "cornoil", 1, base=1),
-		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_USE_STOVE, J_LO, 15 SECONDS)
-	)
-
-/datum/cooking_with_jane/recipe/cooked_meatball
-	cooking_container = PAN
-	product_type = /obj/item/reagent_containers/food/snacks/meatball
-	step_builder = list(
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/rawmeatball, qmod=0.5),
-		list(CWJ_ADD_REAGENT, "cornoil", 1, base=1),
-		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_USE_STOVE, J_LO, 20 SECONDS)
-	)
-	
-/datum/cooking_with_jane/recipe/cooked_patty
-	cooking_container = GRILL
-	product_type = /obj/item/reagent_containers/food/snacks/patty
-	step_builder = list(
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/patty_raw, qmod=0.5),
-		list(CWJ_ADD_REAGENT_OPTIONAL, "cornoil", 1, base=1),
-		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_USE_GRILL, J_LO, 10 SECONDS)
 	)
 
 /datum/cooking_with_jane/recipe/taco
@@ -323,6 +336,42 @@
 		list(CWJ_USE_OVEN, J_LO, 15 SECONDS)
 	)
 
+/datum/cooking_with_jane/recipe/kabob
+	cooking_container = GRILL
+	product_type = /obj/item/reagent_containers/food/snacks/kabob
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/stack/rods = 1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1, base=1),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
+		list(CWJ_USE_GRILL, J_MED, 20 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/tofukabob
+	cooking_container = GRILL
+	product_type = /obj/item/reagent_containers/food/snacks/tofukabob
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/stack/rods = 1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1, base=1),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5),
+		list(CWJ_USE_GRILL, J_MED, 20 SECONDS)
+	)
+
+/datum/cooking_with_jane/recipe/humankabob
+	cooking_container = GRILL
+	product_type = /obj/item/reagent_containers/food/snacks/kabob
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/stack/rods = 1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1, base=1),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/human, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/human, qmod=0.5),
+		list(CWJ_USE_GRILL, J_MED, 20 SECONDS)
+	)
+
 //**Cereals and Grains**//
 //missing: poppyprezel
 /datum/cooking_with_jane/recipe/bread
@@ -393,7 +442,7 @@
 	cooking_container = OVEN
 	product_type = /obj/item/reagent_containers/food/snacks/sliceable/bananabread
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/dough, qmod=0.5),
@@ -579,7 +628,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/monkeyburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -597,7 +646,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/human/burger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -615,7 +664,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/brainburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -633,7 +682,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/roburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -651,7 +700,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/xenoburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -669,7 +718,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/fishburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -687,7 +736,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/tofuburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -705,7 +754,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/clownburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -723,7 +772,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/mimeburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -741,7 +790,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/bigbiteburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/monkeyburger, qmod=0.5),
@@ -762,7 +811,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/superbiteburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bigbiteburger, qmod=0.5),
@@ -782,7 +831,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/jellyburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -793,7 +842,7 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1),
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/bacon, qmod=0.5),
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
-		list(CWJ_ADD_REAGENT, "cherryjelly", 5, qmod=0.5)
+		list(CWJ_ADD_REAGENT, "cherryjelly", 5)
 	)
 
 
@@ -801,7 +850,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/jellyburger/slime
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -812,7 +861,7 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1),
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/bacon, qmod=0.5),
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
-		list(CWJ_ADD_REAGENT, "slimejelly", 5, qmod=0.5)
+		list(CWJ_ADD_REAGENT, "slimejelly", 5)
 	)
 
 //**Sandwiches**//
@@ -888,7 +937,7 @@
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/roach_egg
 	step_builder = list(
-		list(CWJ_ADD_ITEM, /obj/item/roach_egg, qmod=0.5, exclude_reagents=list("blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/roach_egg, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "water", 5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_USE_STOVE, J_MED, 15 SECONDS)
@@ -898,7 +947,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/kampferburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -912,7 +961,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/seucheburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -926,7 +975,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/panzerburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -940,7 +989,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/jagerburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -954,7 +1003,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/bigroachburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -972,7 +1021,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/fuhrerburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -987,7 +1036,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/kaiserburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -1002,7 +1051,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/wormburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -1016,7 +1065,7 @@
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/geneburger
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
@@ -1065,8 +1114,8 @@
 		list(CWJ_ADD_REAGENT, "water", 10),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspaghetti, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5),
 		list(CWJ_ADD_PRODUCE_OPTIONAL, "tomato", qmod=0.4, reagent_skip=TRUE),
 		list(CWJ_USE_STOVE, J_LO, 5 SECONDS)
 	)
@@ -1078,10 +1127,10 @@
 		list(CWJ_ADD_REAGENT, "water", 10),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledspaghetti, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5, exclude_reagents=list("blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meatball, qmod=0.5),
 		list(CWJ_ADD_PRODUCE_OPTIONAL, "tomato", qmod=0.4, reagent_skip=TRUE),
 		list(CWJ_USE_STOVE, J_LO, 5 SECONDS)
 	)
@@ -1107,9 +1156,9 @@
 	product_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/sliceable/flatdough, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "water", 5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "flour", 5),
@@ -1156,7 +1205,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/meatpie
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/sliceable/flatdough, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "woodpulp", 1, base=1),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
 	)
@@ -1166,7 +1215,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/tofupie
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/sliceable/flatdough, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "woodpulp", 1, base=1),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
 	)
@@ -1176,7 +1225,7 @@
 	product_type = /obj/item/reagent_containers/food/snacks/xemeatpie
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/sliceable/flatdough, qmod=0.5),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/xenomeat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/xenomeat, qmod=0.5),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "woodpulp", 1, base=1),
 		list(CWJ_USE_OVEN, J_MED, 30 SECONDS)
 	)
@@ -1373,7 +1422,7 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_ADD_PRODUCE, "icechili", reagent_skip=TRUE),
 		list(CWJ_ADD_PRODUCE, "tomato", reagent_skip=TRUE),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
 		list(CWJ_USE_STOVE, J_LO, 30 SECONDS)
 	)
 
@@ -1385,7 +1434,7 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_ADD_PRODUCE, "chili", reagent_skip=TRUE),
 		list(CWJ_ADD_PRODUCE, "tomato", reagent_skip=TRUE),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
 		list(CWJ_USE_STOVE, J_LO, 30 SECONDS)
 	)
 
@@ -1397,7 +1446,7 @@
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
 		list(CWJ_ADD_PRODUCE, "chili", reagent_skip=TRUE),
 		list(CWJ_ADD_PRODUCE, "tomato", reagent_skip=TRUE),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/bearmeat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/bearmeat, qmod=0.5),
 		list(CWJ_USE_STOVE, J_LO, 30 SECONDS)
 	)
 
@@ -1411,7 +1460,7 @@
 		list(CWJ_ADD_PRODUCE, "potato", reagent_skip=TRUE),
 		list(CWJ_ADD_PRODUCE, "mushrooms", reagent_skip=TRUE),
 		list(CWJ_ADD_PRODUCE, "tomato", reagent_skip=TRUE),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
 		list(CWJ_USE_STOVE, J_MED, 15 SECONDS)
 	)
 
@@ -1421,10 +1470,10 @@
 	step_builder = list(
 		list(CWJ_ADD_REAGENT, "water", 10),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1, base=1),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/soydope, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/soydope, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5, exclude_reagents=list("carpotoxin", "blattedin")),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/soydope, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/soydope, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu, qmod=0.5),
 		list(CWJ_USE_STOVE, J_MED, 15 SECONDS)
 	)
 
@@ -1500,7 +1549,7 @@
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/beefcurry
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, base=10),
@@ -1519,7 +1568,7 @@
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/chickencurry
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/butterslice, base=10),
@@ -1535,12 +1584,12 @@
 	)
 
 //**Vegetables**//
-//missing: soylenviridians, soylentgreen, tofurkey
+//missing: soylenviridians, soylentgreen
 /datum/cooking_with_jane/recipe/mashpotato
 	cooking_container = BOWL
 	product_type = /obj/item/reagent_containers/food/snacks/mashpotatoes
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_PRODUCE, "potato", 2),
@@ -1554,7 +1603,7 @@
 	cooking_container = OVEN
 	product_type = /obj/item/reagent_containers/food/snacks/loadedbakedpotato
 
-	replace_reagents = TRUE
+	replace_reagents = FALSE
 
 	step_builder = list(
 		list(CWJ_ADD_PRODUCE, "potato", 1),
@@ -1738,7 +1787,8 @@
 	)
 
 //**Desserts and Sweets**//
-//missing: fortunecookie, candy_corn(who genuinely cares about candy corn?), honey_bun, honey_pudding, mint
+//missing: fortunecookie, honey_bun, honey_pudding
+//Changes: Now a chemical reaction: candy_corn, mint,
 /datum/cooking_with_jane/recipe/chocolateegg
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/chocolateegg

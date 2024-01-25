@@ -1382,7 +1382,7 @@
 	preloaded_reagents = list("protein" = 8)
 	taste_tag = list(MEAT_FOOD,SALTY_FOOD)
 
-/obj/item/reagent_containers/food/snacks/monkeykabob
+/obj/item/reagent_containers/food/snacks/kabob
 	name = "meat-kabob"
 	icon_state = "kabob"
 	desc = "Delicious meat on a stick."

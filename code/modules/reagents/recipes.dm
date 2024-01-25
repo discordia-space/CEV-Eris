@@ -1189,6 +1189,26 @@
 	required_reagents = list("capsaicin" = 1, "hot_ramen" = 6)
 	result_amount = 6
 
+/datum/chemical_reaction/mint
+	result = null
+	required_reagents = list("sugar" = 5, "frostoil" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/mint/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/mint(location)
+
+/datum/chemical_reaction/candy_corn
+	result = null
+	required_reagents = list("sugar" = 5, "cornoil" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/candy_corn/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/candy_corn(location)
+
 /* Alcohol */
 
 /datum/chemical_reaction/goldschlager
