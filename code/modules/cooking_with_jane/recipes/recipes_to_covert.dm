@@ -65,12 +65,6 @@
 	)
 	result = /obj/item/reagent_containers/food/snacks/cubancarp
 
-/datum/recipe/popcorn
-	reagents = list("cornoil" = 2)
-	fruit = list("corn" = 1)
-	items = list(/obj/item/reagent_containers/food/snacks/butterslice)
-	result = /obj/item/reagent_containers/food/snacks/popcorn
-
 /datum/recipe/fortunecookie
 	reagents = list("sugar" = 5)
 	items = list(
@@ -108,14 +102,6 @@
 /datum/recipe/spacylibertyduff
 	reagents = list("water" = 5, "vodka" = 5, "psilocybin" = 5)
 	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
-
-/datum/recipe/amanitajelly
-	reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
-	result = /obj/item/reagent_containers/food/snacks/amanitajelly
-	make_food(var/obj/container as obj)
-		var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked = ..(container)
-		being_cooked.reagents.del_reagent("amatoxin")
-		return being_cooked
 
 /datum/recipe/enchiladas
 	fruit = list("chili" = 2, "corn" = 1)

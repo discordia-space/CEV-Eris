@@ -17,7 +17,8 @@ I said no!
 		/obj/item/device/assembly/signaler
 	)
 	result = /obj/item/reagent_containers/food/snacks/telebacon
-*/
+
+Depreciated recipes that had special functions with a microwave I'm trying to remove -Mycah
 /datum/recipe/donkpocket
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -42,6 +43,7 @@ I said no!
 		if(being_cooked && !being_cooked.warm)
 			warm_up(being_cooked)
 		return being_cooked
+*/
 
 /datum/recipe/soylenviridians
 	fruit = list("soybeans" = 1)
@@ -56,30 +58,6 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/soylentgreen
 
-/datum/recipe/humankabob
-	items = list(
-		/obj/item/stack/rods,
-		/obj/item/reagent_containers/food/snacks/meat/human,
-		/obj/item/reagent_containers/food/snacks/meat/human,
-	)
-	result = /obj/item/reagent_containers/food/snacks/human/kabob
-
-/datum/recipe/monkeykabob
-	items = list(
-		/obj/item/stack/rods,
-		/obj/item/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/reagent_containers/food/snacks/meat/monkey,
-	)
-	result = /obj/item/reagent_containers/food/snacks/kabob
-
-/datum/recipe/tofukabob
-	items = list(
-		/obj/item/stack/rods,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/tofu,
-	)
-	result = /obj/item/reagent_containers/food/snacks/tofukabob
-
 /datum/recipe/cubancarp
 	fruit = list("chili" = 1)
 	items = list(
@@ -87,10 +65,6 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meat/carp
 	)
 	result = /obj/item/reagent_containers/food/snacks/cubancarp
-
-/datum/recipe/popcorn
-	fruit = list("corn" = 1)
-	result = /obj/item/reagent_containers/food/snacks/popcorn
 
 /datum/recipe/fortunecookie
 	reagents = list("sugar" = 5)
@@ -117,15 +91,7 @@ I said no!
 /datum/recipe/spacylibertyduff
 	reagents = list("water" = 5, "vodka" = 5, "psilocybin" = 5)
 	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
-
-/datum/recipe/amanitajelly
-	reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
-	result = /obj/item/reagent_containers/food/snacks/amanitajelly
-	make_food(var/obj/container as obj)
-		var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked = ..(container)
-		being_cooked.reagents.del_reagent("amatoxin")
-		return being_cooked
-
+	
 /datum/recipe/enchiladas
 	fruit = list("chili" = 2, "corn" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/cutlet)
@@ -158,20 +124,3 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meat/carp,
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishfingers
-
-/datum/recipe/tofurkey
-	items = list(
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/stuffing,
-	)
-	result = /obj/item/reagent_containers/food/snacks/tofurkey
-
-
-//////////////////////////////////////////
-// bs12 food port stuff
-//////////////////////////////////////////
-
-/datum/recipe/mint
-	reagents = list("sugar" = 5, "frostoil" = 5)
-	result = /obj/item/reagent_containers/food/snacks/mint
