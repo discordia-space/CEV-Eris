@@ -18,90 +18,6 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/telebacon
 */
-/datum/recipe/humanburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/meat/human,
-		/obj/item/reagent_containers/food/snacks/bun
-	)
-	result = /obj/item/reagent_containers/food/snacks/human/burger
-
-/datum/recipe/plainburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/meat //do not place this recipe before /datum/recipe/humanburger
-	)
-	result = /obj/item/reagent_containers/food/snacks/monkeyburger
-
-/datum/recipe/brainburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/organ/internal/vital/brain
-	)
-	result = /obj/item/reagent_containers/food/snacks/brainburger
-
-/datum/recipe/roburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/robot_parts/head
-	)
-	result = /obj/item/reagent_containers/food/snacks/roburger
-
-/datum/recipe/xenoburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat
-	)
-	result = /obj/item/reagent_containers/food/snacks/xenoburger
-
-/datum/recipe/fishburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/meat/carp
-	)
-	result = /obj/item/reagent_containers/food/snacks/fishburger
-
-/datum/recipe/tofuburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/tofu
-	)
-	result = /obj/item/reagent_containers/food/snacks/tofuburger
-
-/datum/recipe/clownburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/clothing/mask/gas/clown_hat
-	)
-	result = /obj/item/reagent_containers/food/snacks/clownburger
-
-/datum/recipe/mimeburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/clothing/head/beret
-	)
-	result = /obj/item/reagent_containers/food/snacks/mimeburger
-
-/datum/recipe/wormburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/moecube/worm,
-		/obj/item/reagent_containers/food/snacks/bun
-	)
-	result = /obj/item/reagent_containers/food/snacks/wormburger
-
-/datum/recipe/geneburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/moecube,
-		/obj/item/reagent_containers/food/snacks/bun
-	)
-	result = /obj/item/reagent_containers/food/snacks/geneburger
-
-/datum/recipe/hotdog
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/sausage
-	)
-	result = /obj/item/reagent_containers/food/snacks/hotdog
-
 /datum/recipe/donkpocket
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -126,20 +42,6 @@ I said no!
 		if(being_cooked && !being_cooked.warm)
 			warm_up(being_cooked)
 		return being_cooked
-
-/datum/recipe/xenomeatbread
-	items = list(
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-		/obj/item/reagent_containers/food/snacks/meat/xenomeat,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread
 
 /datum/recipe/soylenviridians
 	fruit = list("soybeans" = 1)
@@ -177,20 +79,6 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/tofu,
 	)
 	result = /obj/item/reagent_containers/food/snacks/tofukabob
-
-/datum/recipe/tofubread
-	items = list(
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/tofubread
 
 /datum/recipe/cubancarp
 	fruit = list("chili" = 1)
@@ -238,29 +126,10 @@ I said no!
 		being_cooked.reagents.del_reagent("amatoxin")
 		return being_cooked
 
-/datum/recipe/bigbiteburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/monkeyburger,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/egg,
-	)
-	result = /obj/item/reagent_containers/food/snacks/bigbiteburger
-
 /datum/recipe/enchiladas
 	fruit = list("chili" = 2, "corn" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/cutlet)
 	result = /obj/item/reagent_containers/food/snacks/enchiladas
-
-/datum/recipe/creamcheesebread
-	items = list(
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-	)
-	result = /obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread
 
 /datum/recipe/monkeysdelight
 	fruit = list("banana" = 1)
@@ -281,32 +150,6 @@ I said no!
 	fruit = list("poppy" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/dough)
 	result = /obj/item/reagent_containers/food/snacks/poppypretzel
-
-/datum/recipe/superbiteburger
-	fruit = list("tomato" = 1)
-	reagents = list("sodiumchloride" = 5, "blackpepper" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bigbiteburger,
-		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/boiledegg,
-	)
-	result = /obj/item/reagent_containers/food/snacks/superbiteburger
-
-/datum/recipe/slimeburger
-	reagents = list("slimejelly" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun
-	)
-	result = /obj/item/reagent_containers/food/snacks/jellyburger/slime
-
-/datum/recipe/jellyburger
-	reagents = list("cherryjelly" = 5)
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun
-	)
-	result = /obj/item/reagent_containers/food/snacks/jellyburger/cherry
 
 /datum/recipe/fishfingers
 	reagents = list("flour" = 10)

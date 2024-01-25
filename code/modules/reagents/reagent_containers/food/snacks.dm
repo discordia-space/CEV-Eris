@@ -809,6 +809,22 @@
 	nutriment_desc = list("raw" = 2, "tomato" = 3)
 	taste_tag = list(VEGAN_FOOD,VEGETARIAN_FOOD)
 
+/obj/item/reagent_containers/food/snacks/rawmeatball
+	name = "raw meatball"
+	desc = "A raw meatball."
+	icon = 'icons/obj/food_ingredients.dmi'
+	icon_state = "meatball_raw"
+	bitesize = 3
+	center_of_mass = list("x"=16, "y"=15)
+	preloaded_reagents = list("protein" = 2)
+	taste_tag = list(MEAT_FOOD)
+
+/obj/item/reagent_containers/food/snacks/rawmeatball/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/material/kitchen/rollingpin))
+		new /obj/item/reagent_containers/food/snacks/patty_raw(src)
+		to_chat(user, "You flatten the raw meatball.")
+		qdel(src)
+
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
 	desc = "A great meal all round."
@@ -829,7 +845,7 @@
 	preloaded_reagents = list("protein" = 6)
 	taste_tag = list(MEAT_FOOD,SALTY_FOOD)
 
-/obj/item/reagent_containers/food/snacks/donkpocket
+/obj/item/reagent_containers/food/snacks/donkpocket //Gave heat-in-hand functionality with the removal of microwaves
 	name = "donk-pocket"
 	desc = "The food of choice for the seasoned contractor."
 	icon_state = "donkpocket"
@@ -838,6 +854,7 @@
 	nutriment_desc = list("heartiness" = 1, "dough" = 2)
 	nutriment_amt = 2
 	preloaded_reagents = list("protein" = 2)
+	var/has_been_heated = 0
 
 	var/warm = 0
 	var/list/heated_reagents = list("tricordrazine" = 5)
@@ -859,17 +876,7 @@
 						for(var/reagent in heated_reagents)
 							src.reagents.del_reagent(reagent)
 
-/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket
-	name = "\improper sin-pocket"
-	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
-	filling_color = "#6D6D00"
-	heated_reagents = list("doctorsdelight" = 5, "hyperzine" = 1)
-	rarity_value = 20
-	spawn_tags = SPAWN_TAG_RATIONS
-	var/has_been_heated = 0
-
-
-/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
+/obj/item/reagent_containers/food/snacks/donkpocket/attack_self(mob/user)
 	if(has_been_heated)
 		to_chat(user, SPAN_NOTICE("The heating chemicals have already been spent."))
 		return
@@ -881,6 +888,14 @@
 	spawn(200)
 		to_chat(user, "You think \the [src] is ready to eat about now.")
 		heat()
+
+/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket
+	name = "\improper sin-pocket"
+	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
+	filling_color = "#6D6D00"
+	heated_reagents = list("doctorsdelight" = 5, "hyperzine" = 1)
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_RATIONS
 
 /obj/item/reagent_containers/food/snacks/brainburger
 	name = "brainburger"
@@ -3509,16 +3524,6 @@
 	preloaded_reagents = list("protein" = 3)
 	taste_tag = list(MEAT_FOOD,SPICY_FOOD)
 
-/obj/item/reagent_containers/food/snacks/rawmeatball
-	name = "raw meatball"
-	desc = "A raw meatball."
-	icon = 'icons/obj/food_ingredients.dmi'
-	icon_state = "meatball_raw"
-	bitesize = 3
-	center_of_mass = list("x"=16, "y"=15)
-	preloaded_reagents = list("protein" = 2)
-	taste_tag = list(MEAT_FOOD)
-
 /obj/item/reagent_containers/food/snacks/hotdog
 	name = "hotdog"
 	desc = "Unrelated to actual dogs. Maybe."
@@ -3672,16 +3677,16 @@
 	matter = list(MATERIAL_BIOMATTER = 11)
 	cooked = TRUE
 
-/obj/item/reagent_containers/food/snacks/bacon //missing raw ingredient
-	name = "fried bacon" // Now has a raw state.
-	desc = "When it comes to bacon, always be prepared." // Time to find 38 spots on the colony to hide it
-	icon = 'icons/obj/food_ingredients.dmi' // Refactored into here for consistency.
+/obj/item/reagent_containers/food/snacks/bacon
+	name = "fried bacon" 
+	desc = "When it comes to bacon, always be prepared." 
+	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "bacon"
 	bitesize = 2
 	preloaded_reagents = list("protein" = 3, "cornoil" = 5)
 	nutriment_desc = list("artery clogging freedom" = 10, "bacon fat" = 3)
 
-/obj/item/reagent_containers/food/snacks/porkchops //missing raw ingredient
+/obj/item/reagent_containers/food/snacks/porkchops
 	name = "glazed pork chops"
 	desc = "Perfectly grilled pork chops that are still a shade of pink on the inside, slathered generously with barbecue sauce."
 	icon_state = "porkchop"
@@ -3690,7 +3695,7 @@
 	filling_color = "#7A3D11"
 	bitesize = 3
 	center_of_mass = list("x"=16, "y"=13)
-	preloaded_reagents = list("protein" = 8, "sodiumchloride" = 1, "blackpepper" = 1, "bbqsauce" = 5)
+	preloaded_reagents = list("protein" = 8, "sodiumchloride" = 1, "blackpepper" = 1)
 	matter = list(MATERIAL_BIOMATTER = 11)
 	cooked = TRUE
 
@@ -3702,7 +3707,7 @@
 	preloaded_reagents = list("protein" = 2)
 	matter = list(MATERIAL_BIOMATTER = 3)
 
-/obj/item/reagent_containers/food/snacks/rawbacon ////missing procurement method
+/obj/item/reagent_containers/food/snacks/rawbacon
 	name = "raw bacon strip"
 	desc = "Tasty strips of raw porcine back meat. Uncured, unsalted, and ready to be turned into delicious bacon."
 	icon = 'icons/obj/food_ingredients.dmi'
@@ -3711,7 +3716,7 @@
 	preloaded_reagents = list("protein" = 2)
 	matter = list(MATERIAL_BIOMATTER = 2)
 
-/obj/item/reagent_containers/food/snacks/patty_raw //missing recipe
+/obj/item/reagent_containers/food/snacks/patty_raw
 	name = "raw patty"
 	desc = "A raw patty ready to be grilled into a juicy and delicious burger."
 	icon = 'icons/obj/food_ingredients.dmi'

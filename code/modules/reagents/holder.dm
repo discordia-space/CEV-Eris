@@ -536,6 +536,24 @@
 					dirtoverlay.add_reagents(R)
 	return
 
+/datum/reagents/proc/trans_one_to_turf(turf/target, id,  amount = 1) //copy of trans_to_turf but only one reagent is sent. All this just to throw milk on the floor during churning. Insane.
+	var/datum/reagents/R = new /datum/reagents
+	R.add_reagent(id, amount)
+	if(!R.touch_turf(target))
+		switch(R.get_average_reagents_state())
+			if(LIQUID)
+				var/obj/effect/decal/cleanable/reagents/splashed/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/splashed, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/reagents/splashed(target, reagents_to_add = R)
+				else
+					dirtoverlay.add_reagents(R)
+			if(SOLID)
+				var/obj/effect/decal/cleanable/reagents/piled/dirtoverlay = locate(/obj/effect/decal/cleanable/reagents/piled, target)
+				if (!dirtoverlay)
+					dirtoverlay = new/obj/effect/decal/cleanable/reagents/piled(target, reagents_to_add =  R)
+				else
+					dirtoverlay.add_reagents(R)
+
 /datum/reagents/proc/trans_to_obj(obj/target, amount = 1, multiplier = 1, copy = 0) // Objects may or may not; if they do, it's probably a beaker or something and we need to transfer properly; otherwise, just touch.
 	if(!target || !target.simulated)
 		return

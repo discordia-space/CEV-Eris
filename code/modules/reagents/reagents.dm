@@ -52,8 +52,8 @@
 	var/heating_sound = 'sound/effects/bubbles.ogg'
 	var/list/heating_products
 
-	var/churnable = FALSE //Used for centrifuge interaction in getting a physical item from a liquid, like churning butter from milk.
-	var/list/churn_ratio //Input reagent volume (ID is reagent this is written under, see /datum/reagent/drink/milk) | object path of physical item or reagent | object path of physical item or reagent | ad nauseum.
+	var/churnable = FALSE //Used for centrifuge interaction in getting a physical item from a liquid, like churning butter from milk. **AVOID HAVING A CHURNABLE REAGENT THAT HAS MORE CHURNABLE REAGENTS AS A RESULT**
+	var/list/churn_ratio //Reagent list that isn't typical to centrifuging a solution, specifically written for milk to separate.
 
 	var/constant_metabolism = FALSE	// if metabolism factor should not change with volume or blood circulation
 
