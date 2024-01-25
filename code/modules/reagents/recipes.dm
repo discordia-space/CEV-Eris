@@ -1209,6 +1209,16 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/candy_corn(location)
 
+/datum/chemical_reaction/amanitajelly
+	result = null
+	required_reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
+	result = 1
+
+/datum/chemical_reaction/amanitajelly/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/jelly/amanita(location)
+
 /* Alcohol */
 
 /datum/chemical_reaction/goldschlager

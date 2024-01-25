@@ -28,7 +28,7 @@
 
 		//A steak is needed to start the meal.
 		//qmod- Half of the food quality of the parent will be considered.
-		//exclude_reagents- Blattedin and Carpotoxin will be filtered out of the steak. EXCEPT THIS IS ERIS, WE EMBRACE THE ROACH, and has thus been removed from every recipe.
+		//exclude_reagents- Blattedin and Carpotoxin will be filtered out of the steak. EXCEPT THIS IS ERIS, WE EMBRACE THE ROACH, and has thus been removed from every
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "sodiumchloride", 1),
 		list(CWJ_ADD_REAGENT, "blackpepper", 1),
@@ -561,6 +561,15 @@
 		list(CWJ_USE_TOOL, QUALITY_CUTTING, 1)
 	)
 
+/datum/cooking_with_jane/recipe/amanitajellytoast
+	cooking_container = CUTTING_BOARD
+	product_type = /obj/item/reagent_containers/food/snacks/jelliedtoast/amanita
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/amanitajelly, qmod=0.5),
+		list(CWJ_USE_TOOL, QUALITY_CUTTING, 1)
+	)
+
 /datum/cooking_with_jane/recipe/slimetoast
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/jelliedtoast/slime
@@ -845,6 +854,23 @@
 		list(CWJ_ADD_REAGENT, "cherryjelly", 5)
 	)
 
+/datum/cooking_with_jane/recipe/amanitajellyburger
+	cooking_container = CUTTING_BOARD
+	product_type = /obj/item/reagent_containers/food/snacks/jellyburger/amanita
+
+	replace_reagents = FALSE
+
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/bun, qmod=0.5),
+		list(CWJ_ADD_PRODUCE_OPTIONAL, "cabbage", reagent_skip=TRUE),
+		list(CWJ_ADD_PRODUCE_OPTIONAL, "tomato", reagent_skip=TRUE),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "ketchup", 1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "sodiumchloride", 1),
+		list(CWJ_ADD_REAGENT_OPTIONAL, "blackpepper", 1),
+		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/bacon, qmod=0.5),
+		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/amanitajelly, qmod=0.5)
+	)
 
 /datum/cooking_with_jane/recipe/slimeburger
 	cooking_container = CUTTING_BOARD
@@ -894,6 +920,15 @@
 	step_builder = list(
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "cherryjelly", 5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5)
+	)
+
+/datum/cooking_with_jane/recipe/amanitajellysandwich
+	cooking_container = CUTTING_BOARD
+	product_type = /obj/item/reagent_containers/food/snacks/jellysandwich/amanita
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/amanitajelly, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/breadslice, qmod=0.5)
 	)
 
@@ -1861,7 +1896,7 @@
 	)
 
 //UNSORTED
-//missing: spacylibertyduff, amanitajelly
+//missing: spacylibertyduff
 /datum/cooking_with_jane/recipe/boiledslimeextract
 	cooking_container = POT
 	product_type = /obj/item/reagent_containers/food/snacks/boiledslimecore

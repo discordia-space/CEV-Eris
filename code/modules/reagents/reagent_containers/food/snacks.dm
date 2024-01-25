@@ -1008,7 +1008,7 @@
 
 	New()
 		..()
-		reagents.add_reagent("protein", 8)
+co		reagents.add_reagent("protein", 8)
 		bitesize = 2
 	taste_tag = list(INSECTS_FOOD)
 
@@ -1614,7 +1614,7 @@
 	cooked = TRUE
 	taste_tag = list(BLAND_FOOD,UMAMI_FOOD)
 
-/obj/item/reagent_containers/food/snacks/amanitajelly
+/obj/item/reagent_containers/food/snacks/jelly/amanita
 	name = "amanita jelly"
 	desc = "Looks curiously toxic."
 	icon_state = "amanitajelly"
@@ -2121,9 +2121,13 @@
 /obj/item/reagent_containers/food/snacks/jelliedtoast/cherry
 	preloaded_reagents = list("cherryjelly" = 5)
 	taste_tag = list(SWEET_FOOD)
+/obj/item/reagent_containers/food/snacks/jelliedtoast/amanita
+	preloaded_reagents = list("amatoxin" = 6, "psilocybin" = 3)
+	taste_tag = list(BLAND_FOOD, UMAMI_FOOD)
 /obj/item/reagent_containers/food/snacks/jelliedtoast/slime
 	preloaded_reagents = list("slimejelly" = 5)
 	taste_tag = list(UMAMI_FOOD)
+
 
 /obj/item/reagent_containers/food/snacks/jellyburger
 	name = "jelly burger"
@@ -2140,6 +2144,9 @@
 /obj/item/reagent_containers/food/snacks/jellyburger/slime
 	preloaded_reagents = list("slimejelly" = 5)
 	taste_tag = list(SWEET_FOOD)
+/obj/item/reagent_containers/food/snacks/jellyburger/amanita
+	preloaded_reagents = list("amatoxin" = 6, "psilocybin" = 3)
+	taste_tag = list(BLAND_FOOD, UMAMI_FOOD)
 /obj/item/reagent_containers/food/snacks/jellyburger/cherry
 	preloaded_reagents = list("cherryjelly" = 5)
 	taste_tag = list(UMAMI_FOOD)
@@ -2338,7 +2345,9 @@
 /obj/item/reagent_containers/food/snacks/jellysandwich/slime
 	preloaded_reagents = list("slimejelly" = 5)
 	taste_tag = list(UMAMI_FOOD)
-
+/obj/item/reagent_containers/food/snacks/jellysandwich/amanita
+	preloaded_reagents = list("amatoxin" = 6, "psilocybin" = 3)
+	taste_tag = list(BLAND_FOOD, UMAMI_FOOD)
 /obj/item/reagent_containers/food/snacks/jellysandwich/cherry
 	preloaded_reagents = list("cherryjelly" = 5)
 	taste_tag = list(SWEET_FOOD)
