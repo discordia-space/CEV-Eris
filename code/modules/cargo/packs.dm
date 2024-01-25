@@ -1456,8 +1456,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/collectable/slime,
 					/obj/item/clothing/head/collectable/police,
 					/obj/item/clothing/head/collectable/slime,
-					/obj/item/clothing/head/collectable/petehat,
-					/obj/item/clothing/head/armor/xenom)
+					/obj/item/clothing/head/collectable/xenom,
+					/obj/item/clothing/head/collectable/petehat)
 	crate_name = "Collectable hats crate! Brought to you by Bass.inc!"
 	group = "Miscellaneous"
 
