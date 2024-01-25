@@ -3446,6 +3446,7 @@
 	nutriment_amt = 4
 	taste_tag = list(BLAND_FOOD,FLOURY_FOOD)
 
+/*
 /obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/W as obj, mob/user as mob)
 	// Bun + meatball = burger
 	if(istype(W,/obj/item/reagent_containers/food/snacks/meatball))
@@ -3489,6 +3490,7 @@
 		return
 	else
 		..()
+*/
 
 /obj/item/reagent_containers/food/snacks/tortilla
 	name = "tortilla"
@@ -3522,6 +3524,13 @@
 	center_of_mass = list("x"=17, "y"=20)
 	preloaded_reagents = list("protein" = 3)
 	taste_tag = list(MEAT_FOOD)
+
+/obj/item/reagent_containers/food/snacks/rawcutlet/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/material/kitchen/rollingpin))
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		to_chat(user, "You ground the sliced meat, and shape it into a ball.")
+		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/cutlet
 	name = "cutlet"

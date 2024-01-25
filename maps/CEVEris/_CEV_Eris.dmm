@@ -101758,6 +101758,8 @@
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate,
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/oven,
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/oven,
+/obj/item/storage/freezer,
+/obj/item/storage/freezer,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "jSY" = (
@@ -104940,10 +104942,6 @@
 /area/eris/crew_quarters/fitness)
 "rEX" = (
 /obj/structure/closet/chefcloset,
-/obj/item/material/kitchen/rollingpin,
-/obj/item/tool/knife,
-/obj/item/tool/shovel/spatula,
-/obj/item/storage/freezer,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/crew_quarters/kitchen)
 "rGA" = (

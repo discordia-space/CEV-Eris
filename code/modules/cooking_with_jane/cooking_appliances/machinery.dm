@@ -12,6 +12,7 @@
 	else
 		scan_chance = 0
 
+//Seems to be some Sojourn specific spy network installed in my Damson Firehazard 2150, but commenting it out fails to compile every appliance. No idea what this does. Probably mines bitcoin.
 /obj/machinery/cooking_with_jane/proc/decide_action(var/force_action)
 	if(prob(scan_chance) || force_action)
 		var/list/witnesses = list()

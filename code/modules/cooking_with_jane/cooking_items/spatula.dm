@@ -1,5 +1,5 @@
 /obj/item/tool/shovel/spatula
-	name = "Spatula"
+	name = "spatula"
 	desc = "A Hydrodynamic Spatula. Port and Starboard attachments not included."
 	icon = 'icons/obj/cwj_cooking/kitchen.dmi'
 	icon_state = "spatula"
