@@ -8697,6 +8697,9 @@
 	specialfunctions = 4
 	},
 /obj/item/storage/box/donkpockets,
+/obj/machinery/camera/network/second_section{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "auA" = (
@@ -100562,14 +100565,6 @@
 /obj/spawner/gun_parts/low_chance,
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4port)
-"hxe" = (
-/obj/structure/table/bar_special,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "hxU" = (
 /obj/structure/railing,
 /turf/simulated/open,
@@ -103514,11 +103509,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2port)
-"olz" = (
-/obj/structure/table/bar_special,
-/obj/item/storage/box/donkpockets,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/eris/crew_quarters/bar)
 "orM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
@@ -166291,7 +166281,7 @@ anJ
 anJ
 anJ
 cYO
-olz
+cjQ
 ctD
 erj
 elW
@@ -167905,7 +167895,7 @@ cBw
 csN
 anJ
 rXJ
-hxe
+cjQ
 cjf
 cjQ
 kcK
