@@ -19,6 +19,25 @@
 	icon_state = "slime"
 	body_parts_covered = 0
 
+/obj/item/clothing/head/collectable/xenom
+	name = "collectable xenomorph helmet!"
+	desc = "Hiss hiss hiss!"
+	icon_state = "xenom"
+	item_state_slots = list(
+		slot_l_hand_str = "xenos_helm",
+		slot_r_hand_str = "xenos_helm",
+		)
+	body_parts_covered = HEAD|FACE|EYES
+	style_coverage = COVERS_WHOLE_HEAD
+	armor = list(
+		melee = 7,
+		bullet = 2,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+
 /obj/item/clothing/head/collectable/chef
 	name = "collectable chef's hat"
 	desc = "A rare Chef's Hat meant for hat collectors!"
@@ -134,22 +153,3 @@
 	desc = "A crappy paper hat that you are REQUIRED to wear."
 	flags_inv = 0
 	body_parts_covered = 0
-
-/obj/item/clothing/head/collectable/xenom
-	name = "collectable xenomorph helmet!"
-	desc = "Hiss hiss hiss!"
-	icon_state = "xenom"
-	item_state_slots = list(
-		slot_l_hand_str = "xenos_helm",
-		slot_r_hand_str = "xenos_helm",
-		)
-	body_parts_covered = HEAD|FACE|EYES
-	style_coverage = COVERS_WHOLE_HEAD
-	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
-	)
