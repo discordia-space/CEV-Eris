@@ -24,7 +24,13 @@
 			damages = gen.absorbDamages(damages)
 	if(damages[BRUTE] == 0)
 		return
-	var/obj/item/mech_component/comp = pick(arms, legs, body, head)
+	var/list/picks = list()
+	if(arms) picks += arms
+	if(legs) picks += legs
+	if(body) picks += body
+	if(head) picks += head
+	if(!length(picks)) return error("ERROR: \the [src] at [loc] had an empty components list when [user] called attack_generic") // Shouldn't happen since the body being destroyed turns mechs into wrecks, but just in case...
+	var/obj/item/mech_component/comp = pick(picks)
 	var/hit_dir = get_dir(user, src)
 	var/dir_mult = get_dir_mult(hit_dir, comp)
 	damage_through_armor(damages[BRUTE], BRUTE, comp, ARMOR_MELEE, penetration, dmg_types = damages, dir_mult = dir_mult) // Removed the use of most named args here by rearranging the argument, except dmg_types, which skips used_weapon, sharp, edge and wounding_multiplier
