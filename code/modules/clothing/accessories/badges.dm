@@ -6,18 +6,18 @@
 
 /obj/item/clothing/accessory/badge
 	name = "faded Detective's badge"
-	desc = "An ancient badge of the Nanotrasen Detective Agency, made of gold and set on false leather."
+	desc = "An ancient badge of the NanoTrasen Detective Agency, made of gold and set on false leather."
 	icon_state = "badge"
 	item_state = "marshalbadge"
 	slot_flags = SLOT_BELT | SLOT_ACCESSORY_BUFFER
 	price_tag = 200
 
 	var/stored_name
-	var/badge_string = "Nanotrasen Detective Agency"
+	var/badge_string = "NanoTrasen Detective Agency"
 
 /obj/item/clothing/accessory/badge/old
 	name = "faded security badge"
-	desc = "An ancient badge of the Nanotrasen Security Division, made of silver and set on false black leather."
+	desc = "An ancient badge of the NanoTrasen Security Division, made of silver and set on false black leather."
 	icon_state = "badge_round"
 	badge_string = "Nanotrasen Security Division"
 
