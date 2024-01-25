@@ -71,7 +71,7 @@
 			/obj/item/clothing/head/collectable/police,
 			/obj/item/clothing/head/collectable/petehat,
 			/obj/item/clothing/head/collectable/festive,
-			/obj/item/clothing/head/armor/xenom
+			/obj/item/clothing/head/collectable/xenom
 		)
 	)
 	offer_types = list(
