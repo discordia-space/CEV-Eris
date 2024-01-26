@@ -496,7 +496,7 @@
 		if(heart) //Check for existence of the heart BEFORE checking for robotic heart, otherwise function WILL return null
 			if(BP_IS_ROBOTIC(heart)) // neither it should work on robotic hearts, chemistry and stuff
 				return
-			heart.take_damage(16, TOX)
+			heart.take_damage(32, TOX)
 			if(prob(30))
 				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
 			if(H.stat == DEAD)
