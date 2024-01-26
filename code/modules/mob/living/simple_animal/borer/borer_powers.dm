@@ -60,7 +60,7 @@
 	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 
-	if((ishuman(M) && isMonkey(M)) && (!M.mind || !M.client))
+	if((ishuman(M) && !M.isMonkey()) && (!M.mind || !M.client))
 		to_chat(src, SPAN_WARNING("Host's body is in a state of hibernation, you are afraid to be crushed when they roll over in their sleep!"))
 		return
 	if(M.has_brain_worms())
