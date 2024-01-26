@@ -82,12 +82,14 @@
 	treatments_tool = list(QUALITY_RETRACTING = FAILCHANCE_HARD)
 	scar = /datum/component/internal_wound/organic/eyes_deep_burn
 
-/datum/component/internal_wound/organic/eyes_deep_burn //stage 2
+/datum/component/internal_wound/organic/eyes_deep_burn/stage2 //stage 2
 	name = "scorched deep tissue"
-	severity = 3 // starts with max damage as it is a second stage
-	severity_max = 3
 	treatments_item = list(/obj/item/stack/medical/advanced/ointment = 2)
 	treatments_chem = list(CE_EYEHEAL = 1)
+	severity = 3 //starting at max damage because stage 2
+	severity_max = 3
+	hal_damage = IWOUND_HEAVY_DAMAGE
+	diagnosis_difficulty = STAT_LEVEL_EXPERT
 
 // Tox (toxins)
 /datum/component/internal_wound/organic/eyes_poisoning
