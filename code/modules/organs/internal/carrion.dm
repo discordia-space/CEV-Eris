@@ -32,6 +32,7 @@
 /obj/item/organ/internal/carrion
 	max_damage = 15 //resilient
 	scanner_hidden = TRUE //sneaky
+	status = 0 //Carry organs are attached by default because they are only grown inside and not printed
 
 /obj/item/organ/internal/carrion/chemvessel
 	name = "chemical vessel"
