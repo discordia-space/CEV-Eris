@@ -253,6 +253,8 @@ proc/get_vector(dir) // Accepts a directional string and returns a list containi
             return list(-1, 0)
         if(NORTHWEST)
             return list(-1, 1)
+        else if(!dir)
+            return list(1, 0)
 
 proc/get_vector_angle(vec1, vec2) // Calculates the angle between two vectors, then returns the angle. Uses degrees instead of radians because BYOND expects trig functions to be called with degrees.
     var/dot = vec1[1] * vec2[1] + vec1[2] * vec2[2] // Calculate the dot product

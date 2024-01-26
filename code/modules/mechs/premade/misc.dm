@@ -28,7 +28,7 @@
 	can_climb = FALSE
 	shielding = 15
 
-	side_mult = 0.8
+	side_mult = 1.2
 
 /obj/item/mech_component/chassis/pod
 	name = "spherical exosuit chassis"
@@ -47,7 +47,7 @@
 	desc = "A rugged design originally intended for space pods, this chassis has been refitted for exosuit usage. It's relatively spacious interior allows it to carry up to 3 pilots."
 
 	shielding = 5
-	front_mult = 0.85 // Hatch is reinforced because... reasons?
+	front_mult = 1.15 // Hatch is reinforced because... reasons?
 
 /obj/item/mech_component/chassis/pod/Initialize()
 	pilot_positions = list(

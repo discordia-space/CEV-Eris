@@ -228,6 +228,9 @@
     else if(angle < 45 || angle > 315)
         . = comp.rear_mult // Hit from the back
     // Side quadrants (45 - 135 degrees and 225 - 315 degrees)
+
+    else if (!facing_vector||!angle||!incoming_hit_vector)
+        . = comp.side_mult
     else
         . = comp.side_mult // Hit from the sides
 
@@ -244,7 +247,7 @@
 	for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
 		total += MC.brute_damage
 	return total
-
+/*
 /mob/living/exosuit/emp_act(severity)
 	var/emp_resist = 1 + getarmor(null, ARMOR_ENERGY)
 
@@ -264,7 +267,7 @@
 				for(var/thing in pilots)
 					var/mob/pilot = thing
 					pilot.emp_act(severity)
-
+*/
 /mob/living/exosuit/explosion_act(target_power, explosion_handler/handler)
 	var/damage = target_power - (getarmor(body, ARMOR_BOMB) + getarmor(arms, ARMOR_BOMB) + getarmor(legs, ARMOR_BOMB) + getarmor(head, ARMOR_BOMB))/4 // Now uses the average armor of all components
 	var/split = round(damage/4)
@@ -293,7 +296,7 @@
 	return round(split*blocked)
 
 /mob/living/exosuit/hit_impact(damage, dir)
-	if(prob(20))
+	if(prob(50))
 		do_sparks(rand(3, 6), FALSE, src)
-		if(prob(20))
+		if(prob(5))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

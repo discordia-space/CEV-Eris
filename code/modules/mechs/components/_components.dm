@@ -7,6 +7,8 @@
 	dir = SOUTH
 	bad_type = /obj/item/mech_component
 
+	armor = list(melee = 10, bullet = 10, energy = 10, bomb = 10, bio = 100, rad = 100) // Override these for individual components
+
 	price_tag = 150
 
 	var/on_mech_icon = MECH_PARTS_ICON
@@ -25,13 +27,8 @@
 	var/gib_hits = 0
 	/// wheter or not this component can just blow up
 	var/can_gib = FALSE
-
-	var/list/armors = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // Override these for individual components
 	var/shielding = 0
 	var/emp_shielded = FALSE // Replacement for "energy" resisting both EMP and laser/plasma (guh)
-
-//	var/cur_shielding = 0
-//	var/new_armor = 0 // destroyed armor that has been replaced will be added to this until it gets welded to the frame, then removed
 
 	// Multipliers for damage and deflection chances when mechs get struck from different directions
 	// Override these to change armor-facing effectiveness for different exosuits
@@ -42,11 +39,10 @@
 
 /obj/item/mech_component/Initialize()
 	. = ..()
-//	cur_armor = shielding
-	if(islist(armors))
-		armor = getArmor(arglist(armors))
-	else
-		armor = getArmor() // In case someone leaves armor values for something unset for some reason
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+//	else
+//	armor = getArmor() // In case someone leaves armor values for something unset for some reason
 
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color

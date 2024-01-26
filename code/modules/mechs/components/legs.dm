@@ -67,7 +67,7 @@
 	power_use = 10
 	// clunky
 	can_climb = FALSE
-	armors = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
+	armor = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
 	shielding = 5
 
 	front_mult = 1.3
@@ -86,7 +86,7 @@
 	emp_shielded = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	can_climb = TRUE
-	armors = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
+	armor = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
 
 /obj/item/mech_component/propulsion/combat
 	name = "combat legs"
@@ -100,7 +100,7 @@
 	power_use = 25
 	matter = list(MATERIAL_STEEL = 16, MATERIAL_PLASTEEL = 8, MATERIAL_DIAMOND = 2) // Expensive because durable.
 	can_climb = TRUE
-	armors = list(melee = 26, bullet = 22, energy = 16, bomb = 80, bio = 100, rad = 100)
+	armor = list(melee = 26, bullet = 22, energy = 16, bomb = 100, bio = 100, rad = 100)
 	shielding = 10
 
 	front_mult = 1.2
@@ -118,7 +118,7 @@
 	power_use = 100
 	matter = list(MATERIAL_STEEL = 24, MATERIAL_URANIUM = 8)
 	can_climb = FALSE
-	armors = list(melee = 32, bullet = 24, energy = 20, bomb = 140, bio = 100, rad = 100)
+	armor = list(melee = 32, bullet = 24, energy = 20, bomb = 160, bio = 100, rad = 100)
 	shielding = 15
 
 	front_mult = 1.2
@@ -139,6 +139,6 @@
 	can_climb = FALSE
 	mech_turn_sound = 'sound/mechs/mechmove04.ogg'
 	mech_step_sound = 'sound/mechs/engine.ogg'
-	armors = list(melee = 16, bullet = 8, energy = 2, bomb = 40, bio = 100, rad = 0)
+	armor = list(melee = 16, bullet = 8, energy = 2, bomb = 40, bio = 100, rad = 0)
 
 	side_mult = 1.1

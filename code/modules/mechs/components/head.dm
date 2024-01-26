@@ -88,7 +88,7 @@
 	desc = "A primitive set of sensors designed to provide basic visual information to the pilot."
 	max_damage = 125
 	power_use = 0
-	armors = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
+	armor = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
 	shielding = 5
 	front_mult = 0.9
 
@@ -104,7 +104,7 @@
 	power_use = 50
 	emp_shielded = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 2) //NVG takes uranium, but mecha NVGs are bugged & it's mecha-sized so let's not
-	armors = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
+	armor = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
 
 	front_mult = 0.5
 
@@ -120,7 +120,7 @@
 	max_damage = 75 //the sensors are delicate, the value of this part is in the SEE_MOBS flag anyway
 	power_use = 200
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 6, MATERIAL_GOLD = 8, MATERIAL_SILVER = 8, MATERIAL_URANIUM = 8)
-	armors = list(melee = 26, bullet = 22, energy = 16, bomb = 80, bio = 100, rad = 100)
+	armor = list(melee = 26, bullet = 22, energy = 16, bomb = 100, bio = 100, rad = 100)
 	shielding = 10
 
 	front_mult = 0.7
@@ -133,7 +133,5 @@
 	max_damage = 200
 	power_use = 0
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_URANIUM = 6)
-	armors = list(melee = 32, bullet = 24, energy = 20, bomb = 140, bio = 100, rad = 100)
+	armor = list(melee = 32, bullet = 24, energy = 20, bomb = 160, bio = 100, rad = 100)
 	shielding = 15
-
-	front_mult = 0.9
