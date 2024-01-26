@@ -142,7 +142,7 @@
 	)
 
 	organ.status &= ~ORGAN_CUT_AWAY
-	organ.replaced(organ.get_limb())
+	organ.handle_organ_eff() //organ is attacheds. Refreshing eff. list
 
 /datum/surgery_step/attach_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
@@ -178,6 +178,7 @@
 		SPAN_NOTICE("You separate [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.status |= ORGAN_CUT_AWAY
+	organ.handle_organ_eff() //detaTch of organ. Refreshing eff. list
 
 /datum/surgery_step/detach_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(

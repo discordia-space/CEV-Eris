@@ -4,6 +4,7 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
+	status_flags = REBUILDING_ORGANS //will protect from gibbing before organs are built. flag should be removed by set_species in initialize
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -1020,6 +1021,10 @@ var/list/rank_prefix = list(\
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
 		C.replaced(get_organ(C.parent_organ_base))
 
+	for(var/obj/item/organ/internal/I in internal_organs)
+		I.status &= ~ORGAN_CUT_AWAY
+		I.handle_organ_eff()
+
 	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
 
@@ -1348,13 +1353,24 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
-	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
+	
+	var/obj/item/organ/internal/vital/heart/heart_organ = random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/vital/brain/brain_organ = random_organ_by_process(BP_BRAIN)
 
-	if(!is_asystole() && !(heart_organ && brain_organ) || (heart_organ.is_broken() || brain_organ.is_broken()))
+	if((!heart_organ || heart_organ.is_broken()) && (!brain_organ) || brain_organ.is_broken())
+		visible_message(SPAN_WARNING("\The [src] lay still, devoid of any hint of vitality or warmth."))
+		return 0
+
+	if(!heart_organ || heart_organ.is_broken())
+		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body remains lifeless, unresponsive to any stimulus."))
+		return 0
+
+	if(!brain_organ || brain_organ.is_broken())
+		visible_message(SPAN_WARNING("\The [src] changes is colour, but remains tranquil and utterly still."))
 		return 0
 
 	if(world.time >= (timeofdeath + NECROZTIME))
+		visible_message(SPAN_WARNING("\The [src] shows no signs of reaction, a grim reminder of the boundaries that separate life and death."))
 		return 0
 
 	var/oxyLoss = getOxyLoss()
@@ -1362,7 +1378,7 @@ var/list/rank_prefix = list(\
 		setOxyLoss(20)
 
 	if(health <= (HEALTH_THRESHOLD_DEAD - oxyLoss))
-		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body is too damaged to sustain life!"))
+		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body is too damaged to sustain life."))
 		timeofdeath = 0
 		return 0
 

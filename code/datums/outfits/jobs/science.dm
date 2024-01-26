@@ -31,11 +31,10 @@
 	name = OUTFIT_JOB_NAME("Moebius Roboticist")
 	uniform = /obj/item/clothing/under/rank/roboticist
 	suit = /obj/item/clothing/suit/storage/robotech_jacket
-	belt = /obj/item/storage/belt/utility/full
+	belt = /obj/item/storage/belt/utility/roboticist
 	pda_slot = slot_r_store
 	id_type = /obj/item/card/id/dkgrey
 	pda_type = /obj/item/modular_computer/pda/moebius/roboticist
-	l_hand = /obj/item/storage/toolbox/mechanical
 
 /decl/hierarchy/outfit/job/science/roboticist/New()
 	..()

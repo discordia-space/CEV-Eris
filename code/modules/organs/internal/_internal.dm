@@ -7,6 +7,7 @@
 	min_bruised_damage = IORGAN_STANDARD_BRUISE
 	min_broken_damage = IORGAN_STANDARD_BREAK
 	desc = "A vital organ."
+	status = ORGAN_CUT_AWAY
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()
 	var/list/organ_efficiency = list()	//Efficency of an organ, should become the most important variable
@@ -34,6 +35,10 @@
 	refresh_damage()	// Death check is in the parent proc
 	..()
 	handle_blood()
+
+/obj/item/organ/internal/die()
+	handle_organ_eff()
+	..()
 
 /obj/item/organ/internal/Destroy()
 	QDEL_LIST(item_upgrades)
@@ -85,13 +90,24 @@
 	for(var/process in organ_efficiency)
 		if(!islist(owner.internal_organs_by_efficiency[process]))
 			owner.internal_organs_by_efficiency[process] = list()
-		owner.internal_organs_by_efficiency[process] += src
+		if(src.is_usable())
+			owner.internal_organs_by_efficiency[process] += src
+		else
+			owner.internal_organs_by_efficiency[process] -= src
 
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
 
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
+
+/obj/item/organ/internal/proc/handle_organ_eff()
+	owner = src.owner
+	for(var/process in organ_efficiency)
+		if(src.is_usable())
+			owner.internal_organs_by_efficiency[process] += src
+		else
+			owner.internal_organs_by_efficiency[process] -= src
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	var/organ_eff = organ_efficiency[process_define]
