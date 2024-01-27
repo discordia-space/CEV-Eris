@@ -3,7 +3,7 @@
 
 /obj/machinery/cooking_with_jane/stove
 	name = "Stovetop"
-	desc = "A set of four burners for cooking food. There seems to be other equipment built into the machine. Is... That a camera? \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on a burner."
+	desc = "A set of four burners for cooking food. There seems to be other equipment built into the machine. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on a burner."
 	icon = 'icons/obj/cwj_cooking/stove.dmi'
 	icon_state = "stove"
 	density = FALSE
