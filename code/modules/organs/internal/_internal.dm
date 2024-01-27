@@ -90,7 +90,7 @@
 	for(var/process in organ_efficiency)
 		if(!islist(owner.internal_organs_by_efficiency[process]))
 			owner.internal_organs_by_efficiency[process] = list()
-		if(src.is_usable())
+		if(is_usable())
 			owner.internal_organs_by_efficiency[process] += src
 		else
 			owner.internal_organs_by_efficiency[process] -= src
@@ -102,9 +102,8 @@
 		owner.mutation_index++
 
 /obj/item/organ/internal/proc/handle_organ_eff()
-	owner = src.owner
 	for(var/process in organ_efficiency)
-		if(src.is_usable())
+		if(is_usable())
 			owner.internal_organs_by_efficiency[process] += src
 		else
 			owner.internal_organs_by_efficiency[process] -= src
