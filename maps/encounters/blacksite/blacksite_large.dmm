@@ -67,10 +67,9 @@
 	},
 /area/space)
 "aJ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "11,17"
-	},
-/turf/space,
+/obj/effect/decal/cleanable/rubble,
+/obj/item/tool/pickaxe/onestar,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "aN" = (
 /turf/simulated/shuttle/floor/mining{
@@ -78,15 +77,12 @@
 	},
 /area/space)
 "aR" = (
-/obj/machinery/suit_storage_unit/moebius,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,8"
-	},
+/obj/machinery/holoposter,
+/turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "aV" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,2"
-	},
+/obj/effect/decal/cleanable/rubble,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "aW" = (
 /obj/structure/shuttle_part/mining{
@@ -95,10 +91,9 @@
 /turf/space,
 /area/space)
 "aX" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "10,20"
-	},
-/turf/space,
+/obj/effect/decal/cleanable/rubble,
+/obj/landmark/corpse/one_star/void,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "aZ" = (
 /turf/simulated/floor/tiled/derelict,
@@ -111,9 +106,8 @@
 	},
 /area/space)
 "bg" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,6"
-	},
+/obj/structure/cyberplant,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "bj" = (
 /obj/structure/table/onestar,
@@ -141,21 +135,12 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "bE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,8"
-	},
+/obj/machinery/vending/one_star/health,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "bH" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,8"
-	},
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "bJ" = (
 /obj/machinery/camera/network/mining{
@@ -209,9 +194,11 @@
 /turf/simulated/mineral,
 /area/space)
 "ce" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,10"
+/obj/structure/lattice,
+/obj/structure/sign/faction/one_star_old{
+	pixel_y = 32
 	},
+/turf/space,
 /area/space)
 "cg" = (
 /turf/simulated/shuttle/wall/mining{
@@ -289,45 +276,36 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "cR" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,1"
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 1
 	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "cS" = (
-/obj/structure/table/standard,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "North APC";
-	pixel_y = 28
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/item/stack/material/plasma{
-	amount = 25
-	},
-/obj/item/tank/plasma,
-/obj/item/tank/plasma,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,5"
-	},
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "db" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "8,20"
+/obj/structure/bed/chair/custom/onestar/red{
+	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "dc" = (
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "3,20"
 	},
 /area/space)
-"de" = (
+"dd" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "12,15"
+	icon_state = "7,0"
 	},
+/area/space)
+"de" = (
+/obj/machinery/vending/one_star/food,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "dj" = (
 /obj/structure/cable{
@@ -340,10 +318,8 @@
 	},
 /area/space)
 "dq" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,0"
-	},
-/turf/space,
+/obj/machinery/vending/one_star,
+/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "dv" = (
 /turf/simulated/shuttle/wall/mining{
@@ -373,24 +349,29 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "dC" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,1"
+/obj/structure/shuttle_part/science{
+	icon_state = "7,21"
 	},
+/turf/space,
 /area/space)
 "dE" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,11"
+/obj/structure/shuttle_part/science{
+	icon_state = "8,21"
 	},
+/obj/effect/shuttle_landmark/eris/dock/exploration_shuttle,
+/turf/space,
 /area/space)
 "dF" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,5"
+/obj/structure/shuttle_part/science{
+	icon_state = "9,21"
 	},
+/turf/space,
 /area/space)
 "dG" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "13,6"
+/obj/structure/shuttle_part/science{
+	icon_state = "6,20"
 	},
+/turf/space,
 /area/space)
 "dI" = (
 /obj/machinery/conveyor_switch{
@@ -415,29 +396,22 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "dO" = (
-/obj/machinery/porta_turret/excelsior,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/obj/structure/shuttle_part/science{
+	icon_state = "7,20"
+	},
+/turf/space,
 /area/space)
 "dQ" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "research_shuttle_pump";
-	power_rating = 30000
+/obj/structure/shuttle_part/science{
+	icon_state = "8,20"
 	},
-/obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "research_shuttle_sensor";
-	pixel_y = 25
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,12"
-	},
+/turf/space,
 /area/space)
 "dS" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,1"
+/obj/structure/shuttle_part/science{
+	icon_state = "9,20"
 	},
+/turf/space,
 /area/space)
 "dV" = (
 /obj/structure/filingcabinet/filingcabinet{
@@ -464,9 +438,10 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "ei" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,1"
+/obj/structure/shuttle_part/science{
+	icon_state = "10,20"
 	},
+/turf/space,
 /area/space)
 "en" = (
 /turf/simulated/shuttle/wall/mining{
@@ -486,26 +461,22 @@
 	},
 /turf/space,
 /area/space)
+"ew" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "12,0"
+	},
+/turf/space,
+/area/space)
 "eA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/structure/shuttle_part/science{
+	icon_state = "6,19"
 	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "vasiliy_dokuchaev_shuttle";
-	name = "interior access button";
-	pixel_y = 25;
-	req_one_access = list(13,65)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,12"
-	},
+/turf/space,
 /area/space)
 "eD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,19";
+	opacity = 0
 	},
 /area/space)
 "eG" = (
@@ -527,16 +498,15 @@
 	icon_state = "15,8"
 	},
 /area/space)
+"eQ" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "8,0"
+	},
+/area/space)
 "eS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,14"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "8,19";
+	opacity = 0
 	},
 /area/space)
 "eV" = (
@@ -582,18 +552,16 @@
 	},
 /area/space)
 "fp" = (
-/obj/structure/table/standard,
-/obj/machinery/camera/network/research_outpost{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,17"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,19";
+	opacity = 0
 	},
 /area/space)
 "fr" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,2"
+/obj/structure/shuttle_part/science{
+	icon_state = "10,19"
 	},
+/turf/space,
 /area/space)
 "fz" = (
 /obj/structure/bed/chair/custom/onestar{
@@ -612,7 +580,7 @@
 /area/space)
 "fK" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "14,6"
+	opacity = 0
 	},
 /area/space)
 "fN" = (
@@ -636,23 +604,23 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "gc" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,16"
+/obj/structure/table/standard,
+/obj/item/storage/box/donut,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,18"
 	},
 /area/space)
 "gd" = (
-/obj/machinery/light/small,
+/obj/machinery/computer/shuttle_control/explore/exploration_shuttle,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "10,7"
+	icon_state = "8,18"
 	},
 /area/space)
 "gf" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/light/small,
+/obj/structure/table/standard,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "6,14"
+	icon_state = "9,18"
 	},
 /area/space)
 "gk" = (
@@ -676,22 +644,10 @@
 	},
 /area/space)
 "gv" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Hulk Mining Barge";
-	charge = 1.5e+007;
-	cur_coils = 3;
-	input_attempt = 1;
-	input_level = 750000;
-	input_level_max = 750000;
-	output_attempt = 1;
-	output_level = 750000;
-	output_level_max = 750000
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,18";
+	opacity = 0
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor,
 /area/space)
 "gB" = (
 /obj/structure/bed/chair/custom/onestar/red{
@@ -726,9 +682,10 @@
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "gW" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "13,1"
+/obj/structure/shuttle_part/science{
+	icon_state = "4,17"
 	},
+/turf/space,
 /area/space)
 "gX" = (
 /obj/effect/window_lwall_spawn/smartspawn/onestar,
@@ -757,9 +714,10 @@
 	},
 /area/space)
 "hh" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,5"
+/obj/structure/shuttle_part/science{
+	icon_state = "5,17"
 	},
+/turf/space,
 /area/space)
 "hi" = (
 /obj/structure/bed/chair/custom/onestar/red{
@@ -800,10 +758,9 @@
 	},
 /area/space)
 "hs" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,5"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,17";
+	opacity = 0
 	},
 /area/space)
 "hz" = (
@@ -826,10 +783,13 @@
 /turf/simulated/floor,
 /area/space)
 "hJ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,6"
+/obj/structure/table/standard,
+/obj/machinery/camera/network/research_outpost{
+	dir = 1
 	},
-/turf/space,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,17"
+	},
 /area/space)
 "hM" = (
 /obj/effect/window_lwall_spawn/plasma/reinforced,
@@ -853,13 +813,19 @@
 /turf/space,
 /area/space)
 "hQ" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "12,3"
+	icon_state = "8,17"
 	},
 /area/space)
 "hV" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,11"
+/obj/structure/table/standard,
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,17"
 	},
 /area/space)
 "hW" = (
@@ -874,12 +840,9 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "hZ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,14"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,17";
+	opacity = 0
 	},
 /area/space)
 "ia" = (
@@ -890,9 +853,10 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/space)
 "id" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,16"
+/obj/structure/shuttle_part/science{
+	icon_state = "11,17"
 	},
+/turf/space,
 /area/space)
 "ie" = (
 /obj/structure/shuttle_part/mining{
@@ -936,9 +900,10 @@
 	},
 /area/space)
 "iA" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,0"
+/obj/structure/shuttle_part/science{
+	icon_state = "12,17"
 	},
+/turf/space,
 /area/space)
 "iB" = (
 /turf/simulated/shuttle/floor/mining{
@@ -981,7 +946,7 @@
 /area/space)
 "iO" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "6,6"
+	icon_state = "4,16"
 	},
 /area/space)
 "iQ" = (
@@ -1002,10 +967,9 @@
 /turf/space,
 /area/space)
 "iT" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,4"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,16"
 	},
-/turf/space,
 /area/space)
 "iX" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1051,16 +1015,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "jt" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,1"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,16"
 	},
-/turf/space,
 /area/space)
 "jC" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,1"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,16"
 	},
-/turf/space,
 /area/space)
 "jM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1071,8 +1033,13 @@
 	},
 /area/space)
 "jT" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,1"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,16"
 	},
 /area/space)
 "jV" = (
@@ -1096,10 +1063,8 @@
 /turf/simulated/floor/wood,
 /area/space)
 "jZ" = (
-/obj/structure/table/standard,
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,17"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,16"
 	},
 /area/space)
 "ka" = (
@@ -1120,10 +1085,9 @@
 	},
 /area/space)
 "kh" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,5"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,16"
 	},
-/turf/space,
 /area/space)
 "ki" = (
 /turf/simulated/shuttle/wall/mining{
@@ -1140,7 +1104,7 @@
 /area/space)
 "kk" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "5,10"
+	icon_state = "11,16"
 	},
 /area/space)
 "kp" = (
@@ -1151,7 +1115,7 @@
 /area/space)
 "kr" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "2,5"
+	icon_state = "12,16"
 	},
 /area/space)
 "ku" = (
@@ -1199,7 +1163,7 @@
 /area/space)
 "kF" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "11,6"
+	icon_state = "4,15"
 	},
 /area/space)
 "kJ" = (
@@ -1231,8 +1195,10 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/space)
 "kR" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "3,1"
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,15"
 	},
 /area/space)
 "lb" = (
@@ -1242,9 +1208,10 @@
 	},
 /area/space)
 "ld" = (
-/obj/machinery/suit_storage_unit/moebius,
+/obj/machinery/camera/network/research_outpost,
+/obj/machinery/doppler_array,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "11,7"
+	icon_state = "6,15"
 	},
 /area/space)
 "lh" = (
@@ -1255,7 +1222,7 @@
 /area/space)
 "li" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "4,6"
+	icon_state = "7,15"
 	},
 /area/space)
 "lk" = (
@@ -1291,10 +1258,11 @@
 	},
 /area/space)
 "lT" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,4"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light/small{
+	dir = 4
 	},
+/turf/simulated/shuttle/floor/science,
 /area/space)
 "lW" = (
 /obj/structure/ore_box,
@@ -1334,15 +1302,16 @@
 /turf/simulated/floor/tiled/dark,
 /area/space)
 "mm" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,15"
 	},
-/turf/space,
 /area/space)
 "mp" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/structure/bed/padded,
+/obj/item/bedsheet,
+/obj/machinery/camera/network/research_outpost,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,11"
+	icon_state = "10,15"
 	},
 /area/space)
 "mt" = (
@@ -1351,9 +1320,10 @@
 	},
 /area/space)
 "mx" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,19";
-	opacity = 0
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,15"
 	},
 /area/space)
 "mz" = (
@@ -1372,36 +1342,42 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "mJ" = (
-/obj/item/tool/pickaxe/excavation,
-/obj/item/tool/pickaxe,
-/obj/item/tool/wrench,
-/obj/item/device/measuring_tape,
-/obj/structure/table/steel,
-/obj/item/stack/flag/yellow,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "13,2"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,15"
 	},
 /area/space)
 "mM" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "7,6"
+	icon_state = "4,14"
 	},
 /area/space)
 "mW" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,0"
+/obj/structure/bed/chair{
+	dir = 4
 	},
-/turf/space,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,14"
+	},
 /area/space)
 "mZ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,10"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
-/turf/space,
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,14"
+	},
 /area/space)
 "nc" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,14"
 	},
 /area/space)
 "nf" = (
@@ -1450,8 +1426,9 @@
 	},
 /area/space)
 "nI" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,2"
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,16"
 	},
 /area/space)
 "nV" = (
@@ -1527,6 +1504,12 @@
 	icon_state = "7,2"
 	},
 /area/space)
+"oI" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "11,0"
+	},
+/turf/space,
+/area/space)
 "oJ" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "5,18"
@@ -1543,30 +1526,42 @@
 	},
 /area/space)
 "oY" = (
-/obj/machinery/camera/network/research_outpost,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "10,9"
+	icon_state = "9,14"
 	},
 /area/space)
 "oZ" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,9"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,14"
 	},
 /area/space)
 "pc" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,16"
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,14"
 	},
 /area/space)
 "pd" = (
-/obj/machinery/computer/shuttle_control/explore/exploration_shuttle,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,18"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,14"
 	},
 /area/space)
 "pe" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "9,5"
+	icon_state = "4,13"
 	},
 /area/space)
 "pg" = (
@@ -1579,22 +1574,19 @@
 /turf/simulated/floor,
 /area/space)
 "pq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,5"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,13"
 	},
 /area/space)
 "pv" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "8,19";
-	opacity = 0
+	icon_state = "6,13"
 	},
 /area/space)
 "py" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "10,19"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,13"
 	},
-/turf/space,
 /area/space)
 "pD" = (
 /obj/structure/closet/onestar/tier2/medical,
@@ -1613,8 +1605,13 @@
 	},
 /area/space)
 "pG" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,3"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,14"
 	},
 /area/space)
 "pH" = (
@@ -1640,6 +1637,12 @@
 	icon_state = "9,18"
 	},
 /area/space)
+"pW" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "10,0"
+	},
+/turf/space,
+/area/space)
 "pX" = (
 /obj/structure/shuttle_part/mining{
 	icon_state = "1,4"
@@ -1654,7 +1657,7 @@
 /area/space)
 "pZ" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "6,1"
+	icon_state = "9,13"
 	},
 /area/space)
 "qc" = (
@@ -1675,6 +1678,12 @@
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "11,15"
 	},
+/area/space)
+"qg" = (
+/obj/item/storage/briefcase{
+	pixel_y = 16
+	},
+/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "ql" = (
 /obj/structure/shuttle_part/mining{
@@ -1706,16 +1715,14 @@
 	},
 /area/space)
 "qy" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "14,9"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,13"
 	},
-/turf/space,
 /area/space)
 "qA" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,0"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,13"
 	},
-/turf/space,
 /area/space)
 "qB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -1740,7 +1747,7 @@
 /area/space)
 "qK" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "12,14"
+	icon_state = "12,13"
 	},
 /area/space)
 "qM" = (
@@ -1774,8 +1781,16 @@
 	},
 /area/space)
 "rc" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,1"
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "vasiliy_dokuchaev_shuttle";
+	name = "exterior access button";
+	pixel_y = 25;
+	req_one_access = list(13,65)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,12"
 	},
 /area/space)
 "re" = (
@@ -1795,8 +1810,18 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "rl" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "3,6"
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "vasiliy_dokuchaev_shuttle";
+	pixel_y = 28;
+	req_one_access = list(13,48);
+	tag_airpump = "research_shuttle_pump";
+	tag_chamber_sensor = "research_shuttle_sensor";
+	tag_exterior_door = "research_shuttle_outer";
+	tag_interior_door = "research_shuttle_inner"
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,12"
 	},
 /area/space)
 "rq" = (
@@ -1824,16 +1849,35 @@
 /turf/simulated/floor/tiled/cafe,
 /area/space)
 "rM" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,15"
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "research_shuttle_pump";
+	power_rating = 30000
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	id_tag = "research_shuttle_sensor";
+	pixel_y = 25
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,12"
 	},
 /area/space)
 "rN" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "vasiliy_dokuchaev_shuttle";
+	name = "interior access button";
+	pixel_y = 25;
+	req_one_access = list(13,65)
 	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "6,4"
+	icon_state = "7,12"
 	},
 /area/space)
 "rP" = (
@@ -1913,8 +1957,9 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "sF" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,4"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,12"
 	},
 /area/space)
 "sH" = (
@@ -1940,12 +1985,10 @@
 /turf/simulated/floor/wood,
 /area/space)
 "sM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/light/small{
-	dir = 8
-	},
+/obj/item/device/radio/beacon,
+/obj/machinery/camera/network/research_outpost,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,9"
+	icon_state = "9,12"
 	},
 /area/space)
 "sO" = (
@@ -1978,11 +2021,11 @@
 /turf/simulated/floor,
 /area/space)
 "sX" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "9,11"
+	icon_state = "10,12"
 	},
 /area/space)
 "sY" = (
@@ -1994,8 +2037,13 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "ta" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,2"
+/obj/structure/table/standard,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,12"
 	},
 /area/space)
 "tb" = (
@@ -2016,10 +2064,9 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "to" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,9"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,12"
 	},
-/turf/space,
 /area/space)
 "tz" = (
 /obj/structure/table/standard,
@@ -2034,7 +2081,7 @@
 /area/space)
 "tD" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "3,9"
+	icon_state = "13,12"
 	},
 /turf/space,
 /area/space)
@@ -2093,23 +2140,23 @@
 	},
 /area/space)
 "un" = (
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
 	frequency = 1380;
-	id_tag = "vasiliy_dokuchaev_shuttle";
-	pixel_y = 28;
-	req_one_access = list(13,48);
-	tag_airpump = "research_shuttle_pump";
-	tag_chamber_sensor = "research_shuttle_sensor";
-	tag_exterior_door = "research_shuttle_outer";
-	tag_interior_door = "research_shuttle_inner"
+	icon_state = "door_locked";
+	id_tag = "research_shuttle_outer";
+	locked = 1;
+	name = "Vasiliy Dokuchaev External Access";
+	req_access = list(13)
 	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "5,12"
+	icon_state = "4,11"
 	},
 /area/space)
 "uo" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,15"
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,11"
 	},
 /area/space)
 "up" = (
@@ -2119,9 +2166,17 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "uq" = (
-/obj/machinery/suit_storage_unit/moebius,
+/obj/machinery/camera/network/research_outpost{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "research_shuttle_pump";
+	power_rating = 30000
+	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "11,9"
+	icon_state = "6,11"
 	},
 /area/space)
 "uw" = (
@@ -2162,10 +2217,19 @@
 	},
 /area/space)
 "uJ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "9,21"
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "research_shuttle_inner";
+	locked = 1;
+	name = "Vasiliy Dokuchaev Internal Access";
+	req_access = list(13)
 	},
-/turf/space,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,11"
+	},
 /area/space)
 "uK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2201,21 +2265,22 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "uS" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,7"
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,11"
 	},
 /area/space)
 "uX" = (
-/obj/structure/table/standard,
-/obj/item/storage/box/donut,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "7,18"
+	icon_state = "9,11"
 	},
 /area/space)
 "uZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,12"
+	icon_state = "10,11"
 	},
 /area/space)
 "vc" = (
@@ -2246,11 +2311,11 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "vk" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/machinery/sleeper{
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "6,8"
+	icon_state = "11,11"
 	},
 /area/space)
 "vq" = (
@@ -2295,7 +2360,7 @@
 /area/space)
 "vL" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "5,16"
+	icon_state = "12,11"
 	},
 /area/space)
 "vN" = (
@@ -2324,13 +2389,13 @@
 /area/space)
 "vS" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "7,21"
+	icon_state = "13,11"
 	},
 /turf/space,
 /area/space)
 "vV" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "12,12"
+	icon_state = "4,10"
 	},
 /area/space)
 "vW" = (
@@ -2363,15 +2428,14 @@
 /turf/simulated/floor/plating,
 /area/space)
 "wk" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,9"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,10"
 	},
 /area/space)
 "wl" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,20"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,10"
 	},
-/turf/space,
 /area/space)
 "wm" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2380,14 +2444,9 @@
 	},
 /area/space)
 "wn" = (
-/obj/machinery/power/terminal{
-	dir = 1
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,10"
 	},
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor,
 /area/space)
 "wp" = (
 /obj/machinery/conveyor/southwest/ccw{
@@ -2417,15 +2476,13 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "wy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/freezer{
 	name = "Vasiliy Dokuchaev Internal Airlock";
 	req_access = list(5)
 	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "7,4"
+	icon_state = "8,10"
 	},
 /area/space)
 "wC" = (
@@ -2452,10 +2509,9 @@
 /turf/simulated/floor,
 /area/space)
 "wM" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "6,19"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,10"
 	},
-/turf/space,
 /area/space)
 "wQ" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2486,13 +2542,8 @@
 	},
 /area/space)
 "xd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,14"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,10"
 	},
 /area/space)
 "xe" = (
@@ -2514,14 +2565,13 @@
 /area/space)
 "xo" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "4,9"
+	icon_state = "11,10"
 	},
 /area/space)
 "xs" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "12,17"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,10"
 	},
-/turf/space,
 /area/space)
 "xw" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2547,6 +2597,12 @@
 /mob/living/carbon/superior_animal/stalker/dual,
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
+"xL" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "15,0"
+	},
+/turf/space,
+/area/space)
 "xM" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/derelict/white_small_edges,
@@ -2559,7 +2615,7 @@
 /area/space)
 "xQ" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "7,20"
+	icon_state = "13,10"
 	},
 /turf/space,
 /area/space)
@@ -2568,21 +2624,22 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "xV" = (
-/turf/simulated/shuttle/wall/science{
-	opacity = 0
+/obj/structure/shuttle_part/science{
+	icon_state = "14,10"
 	},
+/turf/space,
 /area/space)
 "xW" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "4,17"
+	icon_state = "2,9"
 	},
 /turf/space,
 /area/space)
 "xZ" = (
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,7"
+/obj/structure/shuttle_part/science{
+	icon_state = "3,9"
 	},
+/turf/space,
 /area/space)
 "yf" = (
 /obj/machinery/door/airlock/sandstone,
@@ -2590,8 +2647,7 @@
 /area/space)
 "yi" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "10,17";
-	opacity = 0
+	icon_state = "4,9"
 	},
 /area/space)
 "yk" = (
@@ -2622,6 +2678,12 @@
 	icon_state = "13,12";
 	opacity = 0
 	},
+/area/space)
+"yu" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "14,0"
+	},
+/turf/space,
 /area/space)
 "yy" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2671,9 +2733,8 @@
 	},
 /area/space)
 "zc" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,18";
-	opacity = 0
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,9"
 	},
 /area/space)
 "zg" = (
@@ -2686,7 +2747,7 @@
 "zj" = (
 /obj/machinery/camera/network/research_outpost,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "12,5"
+	icon_state = "6,9"
 	},
 /area/space)
 "zG" = (
@@ -2704,22 +2765,21 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "zS" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,12"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,9"
 	},
-/turf/space,
 /area/space)
 "zT" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "zY" = (
-/obj/structure/bed/chair{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,17"
+	icon_state = "8,9"
 	},
 /area/space)
 "Ab" = (
@@ -2752,20 +2812,14 @@
 /turf/space,
 /area/space)
 "AB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,8"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,9"
 	},
 /area/space)
 "AE" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,13"
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,9"
 	},
 /area/space)
 "AF" = (
@@ -2774,8 +2828,9 @@
 /turf/simulated/floor/tiled/dark/brown_platform,
 /area/space)
 "AH" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,7"
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,9"
 	},
 /area/space)
 "AJ" = (
@@ -2785,15 +2840,15 @@
 /turf/space,
 /area/space)
 "AK" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,0"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,9"
 	},
-/turf/space,
 /area/space)
 "AL" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,10"
+/obj/structure/shuttle_part/science{
+	icon_state = "13,9"
 	},
+/turf/space,
 /area/space)
 "AQ" = (
 /obj/structure/closet/crate,
@@ -2836,7 +2891,7 @@
 /area/space)
 "Bg" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "4,0"
+	icon_state = "14,9"
 	},
 /turf/space,
 /area/space)
@@ -2868,15 +2923,16 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "BD" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,16"
+/obj/structure/shuttle_part/science{
+	icon_state = "1,8"
 	},
+/turf/space,
 /area/space)
 "BJ" = (
-/obj/machinery/atmospherics/pipe/tank/air,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,5"
+/obj/structure/shuttle_part/science{
+	icon_state = "2,8"
 	},
+/turf/space,
 /area/space)
 "BK" = (
 /obj/structure/sign/faction/one_star{
@@ -2884,6 +2940,12 @@
 	},
 /obj/structure/salvageable/os/machine,
 /turf/simulated/floor/tiled/dark/brown_perforated,
+/area/space)
+"BM" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "13,0"
+	},
+/turf/space,
 /area/space)
 "BO" = (
 /turf/simulated/shuttle/wall/mining{
@@ -2938,10 +3000,10 @@
 	},
 /area/space)
 "Cn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,4"
+/obj/structure/shuttle_part/science{
+	icon_state = "3,8"
 	},
+/turf/space,
 /area/space)
 "Co" = (
 /obj/effect/shuttle_landmark/eris/dock/hulk,
@@ -2991,15 +3053,13 @@
 /turf/space,
 /area/space)
 "CG" = (
-/obj/machinery/floodlight,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,8"
 	},
 /area/space)
 "CH" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,17";
-	opacity = 0
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,8"
 	},
 /area/space)
 "CL" = (
@@ -3021,32 +3081,41 @@
 /turf/space,
 /area/space)
 "CU" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,2"
+	icon_state = "6,8"
 	},
 /area/space)
 "CV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "11,4"
+	icon_state = "7,8"
 	},
 /area/space)
 "CX" = (
-/obj/structure/table/standard,
-/obj/item/storage/firstaid/toxin,
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/o2,
-/obj/item/storage/firstaid/regular,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "11,12"
+	icon_state = "8,8"
 	},
 /area/space)
 "CY" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,16"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,8"
 	},
 /area/space)
 "Dc" = (
@@ -3055,6 +3124,10 @@
 	},
 /turf/space,
 /area/space)
+"Dd" = (
+/obj/structure/closet/crate/serbcrate_gray,
+/turf/simulated/floor/tiled/derelict/white_big_edges,
+/area/space)
 "Dj" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "6,1";
@@ -3062,20 +3135,18 @@
 	},
 /area/space)
 "Dk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,10"
+	icon_state = "10,8"
 	},
 /area/space)
 "Dm" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,4"
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,8"
 	},
-/turf/space,
 /area/space)
 "Dn" = (
 /turf/simulated/shuttle/floor/mining{
@@ -3129,7 +3200,7 @@
 /area/space)
 "DL" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "4,15"
+	icon_state = "12,8"
 	},
 /area/space)
 "DQ" = (
@@ -3143,9 +3214,10 @@
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "DV" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,7"
+/obj/structure/shuttle_part/science{
+	icon_state = "13,8"
 	},
+/turf/space,
 /area/space)
 "Ed" = (
 /obj/structure/salvageable/os/implant_container{
@@ -3154,9 +3226,10 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Ef" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,14"
+/obj/structure/shuttle_part/science{
+	icon_state = "14,8"
 	},
+/turf/space,
 /area/space)
 "Eh" = (
 /obj/machinery/mining/deep_drill,
@@ -3179,9 +3252,10 @@
 	},
 /area/space)
 "Et" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "2,3"
+/obj/structure/shuttle_part/science{
+	icon_state = "15,8"
 	},
+/turf/space,
 /area/space)
 "Ev" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3215,9 +3289,10 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "EH" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,1"
+/obj/structure/shuttle_part/science{
+	icon_state = "1,7"
 	},
+/turf/space,
 /area/space)
 "EJ" = (
 /obj/structure/lattice,
@@ -3229,16 +3304,15 @@
 /turf/space,
 /area/space)
 "EM" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,10"
+/obj/structure/shuttle_part/science{
+	icon_state = "2,7"
 	},
+/turf/space,
 /area/space)
 "EO" = (
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
+/turf/simulated/shuttle/wall/science{
+	icon_state = "3,7"
 	},
-/obj/structure/cable/yellow,
-/turf/simulated/floor,
 /area/space)
 "EW" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait{
@@ -3268,10 +3342,9 @@
 /turf/space,
 /area/space)
 "Fj" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "9,20"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,7"
 	},
-/turf/space,
 /area/space)
 "Fk" = (
 /turf/simulated/floor,
@@ -3311,9 +3384,9 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "FM" = (
-/obj/machinery/floodlight,
+/obj/machinery/light/small,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "11,3"
+	icon_state = "6,7"
 	},
 /area/space)
 "FR" = (
@@ -3327,8 +3400,8 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "FZ" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,8"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,7"
 	},
 /area/space)
 "Gb" = (
@@ -3344,20 +3417,18 @@
 "Gj" = (
 /obj/machinery/optable,
 /obj/spawner/prothesis_one_star,
-/obj/item/remains/human,
+/obj/landmark/corpse/skeleton,
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Gm" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "10,8"
+	icon_state = "8,7"
 	},
 /area/space)
 "Go" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "4,1"
+	icon_state = "9,7"
 	},
 /area/space)
 "Gp" = (
@@ -3366,14 +3437,15 @@
 	},
 /area/space)
 "Gq" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,8"
+/obj/machinery/light/small,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,7"
 	},
-/turf/space,
 /area/space)
 "Gr" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "4,13"
+/obj/machinery/suit_storage_unit/moebius,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,7"
 	},
 /area/space)
 "Gu" = (
@@ -3384,7 +3456,7 @@
 /area/space)
 "Gw" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "5,13"
+	icon_state = "12,7"
 	},
 /area/space)
 "Gy" = (
@@ -3402,9 +3474,8 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "GF" = (
-/obj/machinery/light/small,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,11"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "13,7"
 	},
 /area/space)
 "GI" = (
@@ -3432,7 +3503,7 @@
 /area/space)
 "GW" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "12,10"
+	icon_state = "14,7"
 	},
 /area/space)
 "GX" = (
@@ -3440,6 +3511,11 @@
 /obj/item/device/radio/off,
 /turf/simulated/shuttle/floor/mining{
 	icon_state = "10,2"
+	},
+/area/space)
+"Ha" = (
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,0"
 	},
 /area/space)
 "He" = (
@@ -3463,33 +3539,29 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Hq" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/shuttle_part/science{
+	icon_state = "15,7"
 	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,12"
-	},
+/turf/space,
 /area/space)
 "Hs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,7"
+/obj/structure/shuttle_part/science{
+	icon_state = "1,6"
 	},
+/turf/space,
 /area/space)
 "Hv" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "4,15"
 	},
 /area/space)
+"Hx" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/mineral,
+/area/space)
 "HA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/structure/fuel_port{
-	pixel_y = -32
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,6"
 	},
 /area/space)
 "HD" = (
@@ -3519,27 +3591,18 @@
 /area/space)
 "HH" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "7,7"
+	icon_state = "3,6"
 	},
 /area/space)
 "HI" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "vasiliy_dokuchaev_shuttle";
-	name = "exterior access button";
-	pixel_y = 25;
-	req_one_access = list(13,65)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,12"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "4,6"
 	},
 /area/space)
 "HJ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "3,8"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,6"
 	},
-/turf/space,
 /area/space)
 "HK" = (
 /obj/machinery/light/floor{
@@ -3559,10 +3622,8 @@
 	},
 /area/space)
 "HO" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/mechanical,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,18"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,6"
 	},
 /area/space)
 "HU" = (
@@ -3588,11 +3649,8 @@
 	},
 /area/space)
 "Ic" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,14"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,6"
 	},
 /area/space)
 "Ie" = (
@@ -3612,14 +3670,20 @@
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/space)
 "Ik" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "3,0"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/camera/network/research_outpost{
+	dir = 8
 	},
-/turf/space,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,6"
+	},
 /area/space)
 "In" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "5,2"
+	icon_state = "9,6"
 	},
 /area/space)
 "Iq" = (
@@ -3628,11 +3692,8 @@
 	},
 /area/space)
 "Iu" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,11"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,6"
 	},
 /area/space)
 "Iw" = (
@@ -3650,17 +3711,8 @@
 	},
 /area/space)
 "IA" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_shuttle_outer";
-	locked = 1;
-	name = "Vasiliy Dokuchaev External Access";
-	req_access = list(13)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,11"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,6"
 	},
 /area/space)
 "IB" = (
@@ -3690,19 +3742,18 @@
 /turf/simulated/floor/tiled/cafe,
 /area/space)
 "IU" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "12,6"
 	},
-/turf/space,
 /area/space)
 "Jd" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "7,0"
+	icon_state = "13,6"
 	},
 /area/space)
 "Je" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "10,2"
+	icon_state = "14,6"
 	},
 /area/space)
 "Jf" = (
@@ -3715,17 +3766,16 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Jl" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/structure/shuttle_part/science{
+	icon_state = "15,6"
 	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,14"
-	},
+/turf/space,
 /area/space)
 "Jp" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,6"
+/obj/structure/shuttle_part/science{
+	icon_state = "1,5"
 	},
+/turf/space,
 /area/space)
 "Jq" = (
 /obj/landmark/machinery/input,
@@ -3735,24 +3785,27 @@
 	},
 /area/space)
 "Jr" = (
-/obj/item/tool/pickaxe/excavation,
-/obj/item/tool/pickaxe,
-/obj/item/tool/wrench,
-/obj/item/device/measuring_tape,
-/obj/structure/table/steel,
-/obj/item/stack/flag/yellow,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "13,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,5"
 	},
 /area/space)
 "Jx" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,7"
+/obj/machinery/power/smes/buildable{
+	RCon_tag = "Hulk Mining Barge";
+	charge = 1.5e+007;
+	cur_coils = 3;
+	input_attempt = 1;
+	input_level = 750000;
+	input_level_max = 750000;
+	output_attempt = 1;
+	output_level = 750000;
+	output_level_max = 750000
 	},
-/turf/space,
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor,
 /area/space)
 "Jy" = (
 /obj/structure/closet/secure_closet/personal/miner,
@@ -3761,10 +3814,24 @@
 	},
 /area/space)
 "Jz" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,11"
+/obj/structure/table/standard,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "North APC";
+	pixel_y = 28
 	},
-/turf/space,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/item/stack/material/plasma{
+	amount = 25
+	},
+/obj/item/tank/plasma,
+/obj/item/tank/plasma,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "4,5"
+	},
 /area/space)
 "JA" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3772,17 +3839,17 @@
 	},
 /area/space)
 "JC" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "14,0"
+/obj/machinery/atmospherics/pipe/tank/air,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,5"
 	},
-/turf/space,
 /area/space)
 "JF" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "8,21"
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,5"
 	},
-/obj/effect/shuttle_landmark/eris/dock/exploration_shuttle,
-/turf/space,
 /area/space)
 "JH" = (
 /turf/simulated/shuttle/wall/mining{
@@ -3837,10 +3904,9 @@
 	},
 /area/space)
 "Kb" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,5"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,5"
 	},
-/turf/space,
 /area/space)
 "Kj" = (
 /turf/simulated/shuttle/floor/mining{
@@ -3859,30 +3925,24 @@
 "Ks" = (
 /obj/structure/table/onestar,
 /obj/item/ammo_magazine/hpistol/empty,
-/obj/item/gun/projectile/pistol/type_90,
+/obj/item/gun/projectile/type_90,
 /turf/simulated/floor/carpet/bcarpet,
 /area/space)
 "Kv" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,5"
 	},
-/turf/space,
 /area/space)
 "Kx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/camera/network/research_outpost{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "8,6"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,5"
 	},
 /area/space)
 "Kz" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "8,0"
+/obj/structure/dispenser/oxygen,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,5"
 	},
 /area/space)
 "KB" = (
@@ -3901,8 +3961,8 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "KN" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "6,13"
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,5"
 	},
 /area/space)
 "KP" = (
@@ -3981,13 +4041,20 @@
 /turf/space,
 /area/space)
 "LK" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,16"
+/obj/machinery/camera/network/research_outpost,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "12,5"
 	},
 /area/space)
 "LL" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,7"
+/obj/item/tool/pickaxe/excavation,
+/obj/item/tool/pickaxe,
+/obj/item/tool/wrench,
+/obj/item/device/measuring_tape,
+/obj/item/stack/flag/green,
+/obj/structure/table/steel,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "13,5"
 	},
 /area/space)
 "LO" = (
@@ -4038,13 +4105,14 @@
 /area/space)
 "Mn" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "7,13"
+	icon_state = "14,5"
 	},
 /area/space)
 "Mr" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,10"
+/obj/structure/shuttle_part/science{
+	icon_state = "15,5"
 	},
+/turf/space,
 /area/space)
 "Mv" = (
 /turf/simulated/shuttle/floor/mining{
@@ -4053,7 +4121,7 @@
 /area/space)
 "Mw" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "5,0"
+	icon_state = "1,4"
 	},
 /turf/space,
 /area/space)
@@ -4075,8 +4143,9 @@
 /turf/space,
 /area/space)
 "MI" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,4"
+	},
 /area/space)
 "MQ" = (
 /obj/structure/shuttle_part/mining{
@@ -4120,20 +4189,18 @@
 /turf/simulated/floor,
 /area/space)
 "Nf" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "5,15"
+/obj/machinery/power/terminal{
+	dir = 1
 	},
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor,
 /area/space)
 "Ng" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,16"
+	icon_state = "4,4"
 	},
 /area/space)
 "Ni" = (
@@ -4150,28 +4217,36 @@
 	},
 /turf/space,
 /area/space)
+"NA" = (
+/obj/structure/shuttle_part/science{
+	icon_state = "6,0"
+	},
+/turf/space,
+/area/space)
 "NC" = (
-/obj/machinery/camera/network/research_outpost{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "research_shuttle_pump";
-	power_rating = 30000
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "6,11"
+	icon_state = "5,4"
 	},
 /area/space)
 "ND" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "13,7"
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "6,4"
 	},
 /area/space)
 "NE" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "10,6"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "7,4"
 	},
 /area/space)
 "NG" = (
@@ -4189,10 +4264,10 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "NQ" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "15,8"
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,4"
 	},
-/turf/space,
 /area/space)
 "NV" = (
 /obj/structure/table/onestar,
@@ -4215,11 +4290,16 @@
 /turf/space,
 /area/space)
 "Oa" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/light/small{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/science,
+/obj/machinery/door/airlock/freezer{
+	name = "Vasiliy Dokuchaev Internal Airlock";
+	req_access = list(5)
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "9,4"
+	},
 /area/space)
 "Oc" = (
 /obj/structure/table/onestar,
@@ -4248,8 +4328,11 @@
 /turf/space,
 /area/space)
 "Oi" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,3"
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,4"
 	},
 /area/space)
 "Or" = (
@@ -4264,7 +4347,7 @@
 /area/space)
 "OA" = (
 /turf/simulated/shuttle/floor/science{
-	icon_state = "12,4"
+	icon_state = "11,4"
 	},
 /area/space)
 "OB" = (
@@ -4286,9 +4369,8 @@
 	},
 /area/space)
 "OK" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,16"
+	icon_state = "12,4"
 	},
 /area/space)
 "OM" = (
@@ -4306,6 +4388,10 @@
 	},
 /turf/simulated/shuttle/floor/mining,
 /area/space)
+"OT" = (
+/obj/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/derelict/red_white_edges,
+/area/space)
 "OU" = (
 /turf/simulated/shuttle/wall/mining{
 	icon_state = "12,12"
@@ -4322,10 +4408,15 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Pe" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "12,0"
+/obj/item/tool/pickaxe/excavation,
+/obj/item/tool/pickaxe,
+/obj/item/tool/wrench,
+/obj/item/device/measuring_tape,
+/obj/item/stack/flag/green,
+/obj/structure/table/steel,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "13,4"
 	},
-/turf/space,
 /area/space)
 "Pk" = (
 /obj/structure/table/onestar,
@@ -4338,7 +4429,7 @@
 /area/space)
 "PH" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "9,13"
+	icon_state = "14,4"
 	},
 /area/space)
 "PK" = (
@@ -4369,14 +4460,15 @@
 /area/space)
 "PW" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "10,0"
+	icon_state = "15,4"
 	},
 /turf/space,
 /area/space)
 "Qb" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,5"
+/obj/structure/shuttle_part/science{
+	icon_state = "1,3"
 	},
+/turf/space,
 /area/space)
 "Qc" = (
 /obj/machinery/light/floor,
@@ -4433,18 +4525,30 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Qv" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "11,0"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,3"
 	},
-/turf/space,
 /area/space)
 "Qx" = (
 /obj/item/stock_parts/manipulator/nano,
 /turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "QA" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "11,2"
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "3,3"
 	},
 /area/space)
 "QB" = (
@@ -4458,11 +4562,13 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "QG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "5,3"
+	icon_state = "4,3"
 	},
 /area/space)
 "QL" = (
@@ -4470,8 +4576,11 @@
 /turf/simulated/floor/tiled/derelict/white_red_edges,
 /area/space)
 "QP" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,6"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/science{
+	icon_state = "5,3"
 	},
 /area/space)
 "QW" = (
@@ -4480,9 +4589,14 @@
 	},
 /area/space)
 "QY" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/structure/fuel_port{
+	pixel_y = -32
+	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "8,8"
+	icon_state = "6,3"
 	},
 /area/space)
 "Rb" = (
@@ -4514,12 +4628,13 @@
 /area/space)
 "Ri" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "4,10"
+	icon_state = "7,3"
 	},
 /area/space)
 "Rj" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,1"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "8,3"
 	},
 /area/space)
 "Rl" = (
@@ -4554,15 +4669,16 @@
 /area/space)
 "RG" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "6,16"
+	icon_state = "9,3"
 	},
 /area/space)
 "RJ" = (
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "RK" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,8"
+/obj/machinery/floodlight,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "10,3"
 	},
 /area/space)
 "RN" = (
@@ -4592,24 +4708,28 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "RY" = (
+/obj/machinery/floodlight,
+/turf/simulated/shuttle/floor/science{
+	icon_state = "11,3"
+	},
+/area/space)
+"RZ" = (
+/turf/simulated/shuttle/floor/science{
+	icon_state = "12,3"
+	},
+/area/space)
+"Sc" = (
 /obj/item/tool/pickaxe/excavation,
 /obj/item/tool/pickaxe,
 /obj/item/tool/wrench,
 /obj/item/device/measuring_tape,
-/obj/item/stack/flag/green,
 /obj/structure/table/steel,
+/obj/item/stack/flag/yellow,
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/science{
-	icon_state = "13,5"
-	},
-/area/space)
-"RZ" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,10"
-	},
-/area/space)
-"Sc" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "7,9"
+	icon_state = "13,3"
 	},
 /area/space)
 "Sg" = (
@@ -4653,10 +4773,9 @@
 	},
 /area/space)
 "Sq" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,2"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,3"
 	},
-/turf/space,
 /area/space)
 "Sw" = (
 /obj/structure/salvageable/os/console{
@@ -4670,19 +4789,10 @@
 /turf/simulated/floor/tiled/derelict/red_white_edges,
 /area/space)
 "Sx" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_shuttle_inner";
-	locked = 1;
-	name = "Vasiliy Dokuchaev Internal Access";
-	req_access = list(13)
+/obj/structure/shuttle_part/science{
+	icon_state = "15,3"
 	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "7,11"
-	},
+/turf/space,
 /area/space)
 "Sy" = (
 /turf/simulated/shuttle/wall/mining{
@@ -4696,10 +4806,10 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "SB" = (
-/obj/structure/dispenser/oxygen,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,5"
+/obj/structure/shuttle_part/science{
+	icon_state = "1,2"
 	},
+/turf/space,
 /area/space)
 "SD" = (
 /obj/structure/bed/chair,
@@ -4711,11 +4821,8 @@
 	},
 /area/space)
 "SF" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,15"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,2"
 	},
 /area/space)
 "SJ" = (
@@ -4729,9 +4836,11 @@
 	},
 /area/space)
 "SR" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "5,6"
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
 	},
+/obj/structure/cable/yellow,
+/turf/simulated/floor,
 /area/space)
 "SS" = (
 /turf/simulated/shuttle/wall/mining{
@@ -4748,10 +4857,13 @@
 	},
 /area/space)
 "Tn" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "13,8"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,2"
 	},
-/turf/space,
+/area/space)
+"Tq" = (
+/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/wall/untinted/onestar_reinforced,
 /area/space)
 "Ts" = (
 /obj/structure/table/onestar,
@@ -4762,9 +4874,8 @@
 /turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/space)
 "Tv" = (
-/obj/machinery/camera/network/research_outpost,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,9"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,2"
 	},
 /area/space)
 "Tz" = (
@@ -4788,27 +4899,17 @@
 	},
 /area/space)
 "TL" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait{
-	dir = 1
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,2"
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "TM" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "3,3"
+	icon_state = "8,2"
 	},
 /area/space)
 "TP" = (
@@ -4818,20 +4919,13 @@
 /turf/space,
 /area/space)
 "TV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "9,4"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,2"
 	},
 /area/space)
 "TX" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "9,3"
+	icon_state = "10,2"
 	},
 /area/space)
 "TY" = (
@@ -4885,10 +4979,9 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "Us" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,0"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,2"
 	},
-/turf/space,
 /area/space)
 "Uw" = (
 /obj/machinery/mineral/stacking_unit_console,
@@ -4902,10 +4995,8 @@
 	},
 /area/space)
 "UC" = (
-/obj/item/device/radio/beacon,
-/obj/machinery/camera/network/research_outpost,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "9,12"
+	icon_state = "12,2"
 	},
 /area/space)
 "UE" = (
@@ -4944,22 +5035,20 @@
 	},
 /area/space)
 "UQ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/freezer{
-	name = "Vasiliy Dokuchaev Internal Airlock";
-	req_access = list(5)
-	},
+/obj/item/tool/pickaxe/excavation,
+/obj/item/tool/pickaxe,
+/obj/item/tool/wrench,
+/obj/item/device/measuring_tape,
+/obj/structure/table/steel,
+/obj/item/stack/flag/yellow,
 /turf/simulated/shuttle/floor/science{
-	icon_state = "9,14"
+	icon_state = "13,2"
 	},
 /area/space)
 "UR" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "2,9"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,2"
 	},
-/turf/space,
 /area/space)
 "UU" = (
 /turf/simulated/floor/tiled/derelict/white_red_edges,
@@ -4984,16 +5073,14 @@
 /turf/space,
 /area/space)
 "Vp" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
+/obj/structure/shuttle_part/science{
+	icon_state = "15,2"
 	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "10,4"
-	},
+/turf/space,
 /area/space)
 "Vs" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "1,8"
+	icon_state = "1,1"
 	},
 /turf/space,
 /area/space)
@@ -5048,17 +5135,14 @@
 /turf/simulated/floor/wood,
 /area/space)
 "VQ" = (
-/obj/machinery/camera/network/research_outpost,
-/obj/machinery/doppler_array,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "6,15"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "2,1"
 	},
 /area/space)
 "VY" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "5,17"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "3,1"
 	},
-/turf/space,
 /area/space)
 "Wd" = (
 /obj/structure/table/onestar,
@@ -5088,14 +5172,12 @@
 /area/space)
 "Wl" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "11,13"
+	icon_state = "4,1"
 	},
 /area/space)
 "Wy" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "11,15"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "5,1"
 	},
 /area/space)
 "WA" = (
@@ -5194,16 +5276,14 @@
 /turf/simulated/floor/tiled/dark/brown_perforated,
 /area/space)
 "Xt" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,7"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "6,1"
 	},
-/turf/space,
 /area/space)
 "Xv" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "14,8"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "7,1"
 	},
-/turf/space,
 /area/space)
 "XJ" = (
 /obj/structure/table/reinforced,
@@ -5236,8 +5316,8 @@
 	},
 /area/space)
 "XO" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "12,2"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "9,1"
 	},
 /area/space)
 "XQ" = (
@@ -5252,25 +5332,18 @@
 /turf/simulated/wall/untinted/onestar,
 /area/space)
 "Yi" = (
-/obj/item/tool/pickaxe/excavation,
-/obj/item/tool/pickaxe,
-/obj/item/tool/wrench,
-/obj/item/device/measuring_tape,
-/obj/item/stack/flag/green,
-/obj/structure/table/steel,
-/turf/simulated/shuttle/floor/science{
-	icon_state = "13,4"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "10,1"
 	},
 /area/space)
 "Yj" = (
-/obj/structure/shuttle_part/science{
-	icon_state = "1,6"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "11,1"
 	},
-/turf/space,
 /area/space)
 "Yk" = (
 /turf/simulated/shuttle/wall/science{
-	icon_state = "10,13"
+	icon_state = "12,1"
 	},
 /area/space)
 "Yl" = (
@@ -5296,18 +5369,13 @@
 /turf/space,
 /area/space)
 "Yo" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,3"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "13,1"
 	},
 /area/space)
 "Yp" = (
-/turf/simulated/shuttle/floor/science{
-	icon_state = "4,4"
+/turf/simulated/shuttle/wall/science{
+	icon_state = "14,1"
 	},
 /area/space)
 "Yq" = (
@@ -5322,9 +5390,10 @@
 	},
 /area/space)
 "Yu" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "12,9"
+/obj/structure/shuttle_part/science{
+	icon_state = "15,1"
 	},
+/turf/space,
 /area/space)
 "Yz" = (
 /obj/machinery/mech_recharger,
@@ -5342,9 +5411,10 @@
 /turf/simulated/floor/tiled/derelict/white_big_edges,
 /area/space)
 "YH" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "3,7"
+/obj/structure/shuttle_part/science{
+	icon_state = "1,0"
 	},
+/turf/space,
 /area/space)
 "YJ" = (
 /obj/structure/bed,
@@ -5375,10 +5445,10 @@
 /turf/space,
 /area/space)
 "YR" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "9,19";
-	opacity = 0
+/obj/structure/shuttle_part/science{
+	icon_state = "2,0"
 	},
+/turf/space,
 /area/space)
 "YT" = (
 /obj/structure/shuttle_part/mining{
@@ -5387,9 +5457,10 @@
 /turf/space,
 /area/space)
 "YU" = (
-/turf/simulated/shuttle/wall/science{
-	icon_state = "14,4"
+/obj/structure/shuttle_part/science{
+	icon_state = "3,0"
 	},
+/turf/space,
 /area/space)
 "YW" = (
 /obj/structure/salvageable/os/computer,
@@ -5448,7 +5519,7 @@
 /area/space)
 "Zt" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "15,7"
+	icon_state = "4,0"
 	},
 /turf/space,
 /area/space)
@@ -5472,7 +5543,7 @@
 /area/space)
 "ZS" = (
 /obj/structure/shuttle_part/science{
-	icon_state = "14,10"
+	icon_state = "5,0"
 	},
 /turf/space,
 /area/space)
@@ -10613,7 +10684,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -10814,8 +10885,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+cb
+cb
 cb
 cb
 cb
@@ -12617,7 +12688,7 @@ aa
 aa
 aa
 aa
-aa
+cb
 cb
 cb
 cb
@@ -13886,7 +13957,7 @@ NZ
 ww
 Ab
 gV
-NZ
+Ab
 ww
 Ab
 gV
@@ -15289,22 +15360,22 @@ cb
 cb
 gV
 eu
-NZ
-NZ
-NZ
+Ab
+Ab
+Ab
 iM
-NZ
+Ab
 gV
 vd
 vR
 Hj
 vd
 gV
-NZ
+Ab
 iM
-NZ
-NZ
-NZ
+Ab
+Ab
+Ab
 ns
 gV
 gV
@@ -17083,11 +17154,11 @@ gV
 gV
 gV
 gV
-NZ
-NZ
+Ab
+Ab
 gV
-NZ
-NZ
+Ab
+Ab
 gV
 gV
 Vv
@@ -17099,8 +17170,8 @@ gV
 FW
 FW
 gV
-NZ
-NZ
+FW
+FW
 gV
 FW
 FW
@@ -17119,14 +17190,14 @@ Hj
 gV
 gV
 gV
-MI
-MI
+Ab
+Ab
 gV
-MI
-MI
+Ab
+Ab
 gV
-MI
-MI
+Ab
+Ab
 gV
 gV
 gV
@@ -17297,13 +17368,13 @@ Ew
 Cp
 Ew
 Ew
-Am
 Ew
 Ew
 Ew
 Ew
 Ew
-Am
+Ew
+Ew
 Ew
 Ew
 Ew
@@ -17538,7 +17609,7 @@ Ew
 Ew
 Ew
 XW
-Ew
+qg
 Ew
 gV
 gV
@@ -17701,13 +17772,13 @@ Ew
 Cp
 Ew
 Ew
-dB
 Ew
 Ew
 Ew
 Ew
 Ew
-dB
+Ew
+Ew
 Ew
 Ew
 Ew
@@ -17891,13 +17962,27 @@ gV
 gV
 gV
 gV
-NZ
-NZ
+Ab
+Ab
 gV
-NZ
-NZ
+Ab
+Ab
 gV
 gV
+gV
+gV
+gV
+FW
+FW
+gV
+gB
+gB
+bg
+Yq
+gB
+gV
+FW
+FW
 gV
 gV
 gV
@@ -17907,23 +17992,9 @@ gV
 FW
 FW
 gV
-FW
-FW
 gV
 FW
-FW
-gV
-gV
-gV
-NZ
-NZ
-gV
-NZ
-NZ
-gV
-NZ
-NZ
-gV
+Tq
 gV
 gV
 gV
@@ -17931,10 +18002,10 @@ gV
 NZ
 gV
 gV
-gV
-Ew
-TL
-gV
+OT
+af
+af
+Ul
 gV
 gV
 gV
@@ -18106,11 +18177,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+Ab
+Ab
+gV
+Ab
+Ab
 aa
 aa
 aa
@@ -18131,13 +18202,13 @@ cb
 cb
 cb
 aa
-cb
 cb
 gV
-Ew
-Ew
+OT
+af
+af
+Ul
 gV
-cb
 cb
 cb
 cb
@@ -18290,7 +18361,7 @@ Zk
 gV
 sI
 sI
-wj
+Ab
 Zk
 aa
 aa
@@ -18335,10 +18406,10 @@ aa
 aa
 aa
 cb
-gV
-Ew
-Ew
-gV
+NZ
+NZ
+NZ
+NZ
 cb
 cb
 cb
@@ -18537,10 +18608,10 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -18739,10 +18810,10 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
+aa
+aa
+aa
+aa
 aa
 cb
 cb
@@ -18887,7 +18958,7 @@ cb
 aa
 aa
 aa
-gZ
+aa
 aa
 aa
 cb
@@ -18941,10 +19012,10 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
+aa
+aa
+aa
+aa
 aa
 aa
 cb
@@ -19143,10 +19214,10 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -19345,10 +19416,10 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -19360,7 +19431,7 @@ cb
 cb
 cb
 gV
-Ew
+Dd
 Ew
 Ew
 Ew
@@ -19547,10 +19618,10 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -19749,10 +19820,10 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -19951,20 +20022,20 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
 aa
-Vs
-Xt
-Yj
-kh
-iT
-mm
-Sq
-jC
-Us
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20153,20 +20224,20 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
-UR
-Gq
-Jx
-bg
-kr
-sF
-Et
-aV
-jT
-mW
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20355,20 +20426,20 @@ aa
 aa
 aa
 aa
-gV
-Ew
-Ew
-gV
-tD
-HJ
-YH
-rl
-gv
-wn
-TM
-EO
-kR
-Ik
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20553,24 +20624,24 @@ aa
 aa
 aa
 aa
-xW
-BD
-DL
-Ef
-Gr
-HI
-IA
-Ri
-xo
-bH
-AH
-li
-cS
-Yp
-Yo
-EO
-Go
-Bg
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20728,7 +20799,6 @@ aa
 aa
 aa
 aa
-gZ
 aa
 aa
 aa
@@ -20755,24 +20825,25 @@ aa
 aa
 aa
 aa
-VY
-vL
-Nf
-Ic
-Gw
-un
-GF
-kk
-wk
-FZ
-Fl
-SR
-BJ
-Cn
-QG
-In
-Rj
-Mw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20954,27 +21025,27 @@ aa
 aa
 aa
 aa
-wl
-wM
-xV
-CH
-RG
-VQ
-gf
-KN
-dQ
-NC
-EM
-Tv
-vk
-xZ
-iO
-hs
-rN
-HA
-ta
-pZ
-dq
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21155,28 +21226,28 @@ aa
 aa
 aa
 aa
-vS
-xQ
-mx
-uX
-fp
-pc
-rM
-eS
-Mn
-eA
-Sx
-RZ
-Sc
-bE
-HH
-mM
-Qb
-wy
-Oi
-nI
-EH
-Jd
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21357,28 +21428,28 @@ aa
 aa
 aa
 aa
-JF
-db
-pv
-pd
-zY
-Ng
-Oa
-OK
-xd
-uZ
-mp
-Dk
-sM
-QY
-Hs
-Kx
-pq
-lT
-eD
-CU
-XK
-Kz
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21532,7 +21603,6 @@ aa
 aa
 aa
 aa
-gZ
 aa
 aa
 aa
@@ -21559,28 +21629,29 @@ aa
 aa
 aa
 aa
-uJ
-Fj
-YR
-HO
-jZ
-id
-uo
-UQ
-PH
-UC
-sX
-ce
-oZ
-AB
-LL
-Jp
-pe
-TV
-TX
-fr
-rc
-iA
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21714,7 +21785,6 @@ gV
 cb
 aa
 aa
-gZ
 aa
 aa
 aa
@@ -21762,27 +21832,28 @@ aa
 aa
 aa
 aa
-aX
-py
-zc
-yi
-gc
-SF
-hZ
-Yk
-Hq
-dE
-Mr
-oY
-Gm
-gd
-NE
-SB
-Vp
-CG
-Je
-dC
-PW
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21967,24 +22038,24 @@ aa
 aa
 aa
 aa
-aJ
-CY
-Wy
-Jl
-Wl
-CX
-Iu
-AL
-uq
-aR
-ld
-kF
-hh
-CV
-FM
-QA
-ei
-Qv
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22169,24 +22240,24 @@ aa
 aa
 aa
 aa
-xs
-LK
-de
-qK
-AE
-vV
-hV
-GW
-Yu
-RK
-uS
-QP
-zj
-OA
-hQ
-XO
-cR
-Pe
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22376,19 +22447,19 @@ aa
 aa
 aa
 aa
-zS
-Jz
-mZ
-to
-Tn
-ND
-dG
-RY
-Yi
-Jr
-mJ
-gW
-qA
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22532,7 +22603,6 @@ aa
 aa
 aa
 aa
-gZ
 aa
 aa
 aa
@@ -22580,17 +22650,18 @@ aa
 aa
 aa
 aa
-ZS
-qy
-Xv
-DV
-fK
-dF
-YU
-pG
-nc
-dS
-JC
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22726,19 +22797,6 @@ aa
 aa
 aa
 aa
-gZ
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-gZ
 aa
 aa
 aa
@@ -22784,15 +22842,28 @@ aa
 aa
 aa
 aa
-NQ
-Zt
-hJ
-Kb
-Dm
-IU
-Kv
-jt
-AK
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22931,7 +23002,7 @@ aa
 aa
 aa
 aa
-gZ
+aa
 aa
 aa
 aa
@@ -23733,7 +23804,7 @@ Zk
 aa
 aa
 aa
-gZ
+aa
 aa
 aa
 aa
@@ -24534,10 +24605,10 @@ cb
 cb
 cb
 gZ
+XW
+Zk
 aa
 aa
-aa
-gZ
 aa
 aa
 aa
@@ -24736,11 +24807,11 @@ cb
 cb
 cb
 aa
+XW
+ce
 aa
-gZ
-aa
-aa
-aa
+Zk
+XW
 aa
 aa
 aa
@@ -24945,7 +25016,7 @@ aa
 aa
 aa
 aa
-gZ
+aa
 aa
 aa
 aa
@@ -25144,7 +25215,7 @@ aa
 aa
 gZ
 aa
-gZ
+aa
 aa
 aa
 aa
@@ -25748,8 +25819,8 @@ cb
 aa
 aa
 aa
-aa
-aa
+Zk
+Zk
 aa
 aa
 aa
@@ -25949,10 +26020,10 @@ cb
 cb
 aa
 aa
-aa
-aa
-aa
-aa
+Zk
+Zk
+Ew
+gV
 aa
 aa
 aa
@@ -26116,45 +26187,45 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+Cp
+gV
+Cp
+gV
 aa
 aa
 aa
@@ -26318,45 +26389,45 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+gV
+Ew
+gV
 aa
 aa
 aa
@@ -26520,45 +26591,45 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+gV
+Ew
+gV
 aa
 aa
 aa
@@ -26722,45 +26793,45 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+Cp
+gV
+Cp
+gV
 aa
 aa
 aa
@@ -26958,11 +27029,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+yV
+Ew
+gV
 aa
 aa
 aa
@@ -27160,11 +27231,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+bH
+Ew
+Ew
+Ew
+bH
 aa
 aa
 aa
@@ -27362,11 +27433,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+bH
+Ew
+Ew
+Ew
+bH
 aa
 aa
 aa
@@ -27564,11 +27635,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+Ew
+Ew
+gV
 aa
 aa
 aa
@@ -27766,11 +27837,11 @@ cb
 cb
 cb
 aa
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+Ew
+Ew
+gV
 aa
 aa
 aa
@@ -27968,11 +28039,11 @@ cb
 cb
 cb
 cb
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+Ew
+Ew
+gV
 aa
 aa
 aa
@@ -28170,11 +28241,11 @@ cb
 cb
 cb
 cb
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+Ew
+Ew
+gV
 aa
 aa
 aa
@@ -28243,14 +28314,14 @@ cb
 cb
 cb
 cb
-gV
-NZ
-gV
-gV
-gV
-gV
-NZ
-gV
+cb
+Hx
+cb
+cb
+cb
+cb
+Hx
+cb
 cb
 aa
 aa
@@ -28372,87 +28443,87 @@ cb
 cb
 cb
 cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
 gV
-lO
-lO
-lO
-lO
-lO
-dO
-NZ
+Ew
+Ew
+Ew
+gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+Hx
 aa
 aa
 aa
@@ -28574,87 +28645,87 @@ cb
 cb
 cb
 cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
 gV
-lO
-lO
-lO
-lO
-lO
-lO
-NZ
+Ew
+Ew
+Ew
+gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+Hx
 aa
 aa
 aa
@@ -28776,87 +28847,87 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
 gV
-lO
-lO
-lO
-lO
-lO
-lO
-NZ
+Ew
+Ew
+Ew
+gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+Hx
 aa
 aa
 aa
@@ -28978,87 +29049,87 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
 gV
-lO
-lO
-lO
-lO
-lO
-lO
+Ew
+Ew
+Ew
 gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 aa
@@ -29180,87 +29251,87 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
 gV
-lO
-lO
-lO
-lO
-lO
-lO
+Ew
+Ew
+Ew
 gV
+cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 aa
@@ -29350,7 +29421,6 @@ aa
 aa
 aa
 aa
-aa
 cb
 cb
 cb
@@ -29369,78 +29439,6 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 cb
 cb
 cb
@@ -29456,13 +29454,86 @@ cb
 cb
 cb
 gV
-lO
-lO
-lO
-lO
-lO
-lO
+Ew
+Ew
+Ew
 gV
+cb
+cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 aa
@@ -29552,8 +29623,6 @@ aa
 aa
 aa
 aa
-aa
-aa
 cb
 cb
 cb
@@ -29584,87 +29653,89 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aV
+Ew
+Cp
+Ew
+Ew
+Ew
 gV
+cb
+cb
+cb
+cb
 aa
 aa
 aa
-gV
-gV
-gV
-gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -29755,7 +29826,6 @@ aa
 aa
 aa
 aa
-aa
 cb
 cb
 cb
@@ -29784,86 +29854,87 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aV
+aV
+Ew
 gV
-aa
-aa
-aa
+up
+Ew
+Ew
 gV
+cb
+cb
+cb
+cb
+cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -29957,7 +30028,6 @@ aa
 aa
 aa
 aa
-aa
 cb
 cb
 cb
@@ -29985,87 +30055,88 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aJ
+aX
+Ew
+Ew
+Cp
+Ew
+Ew
+Ew
 gV
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
-gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -30159,7 +30230,6 @@ aa
 aa
 aa
 aa
-aa
 cb
 cb
 cb
@@ -30188,86 +30258,87 @@ cb
 cb
 cb
 cb
+gV
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 gV
 gV
+Ew
+Ew
+Ew
 gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
-gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -30392,84 +30463,84 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 gV
+Ew
+Ew
+Ew
+gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -30564,7 +30635,6 @@ aa
 aa
 aa
 aa
-aa
 cb
 cb
 cb
@@ -30595,83 +30665,84 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 gV
+Ew
+Ew
+Ew
+gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -30796,84 +30867,84 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 gV
+Ew
+Ew
+Ew
+gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -30998,6 +31069,51 @@ cb
 cb
 cb
 cb
+gV
+Ew
+Ew
+Ew
+gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -31014,68 +31130,23 @@ cb
 cb
 cb
 cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
-gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -31200,6 +31271,11 @@ cb
 cb
 cb
 cb
+gV
+Ew
+Ew
+Ew
+gV
 cb
 cb
 cb
@@ -31214,45 +31290,40 @@ cb
 cb
 cb
 cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -31402,6 +31473,11 @@ cb
 cb
 cb
 cb
+gV
+Ew
+Bu
+Ew
+gV
 cb
 cb
 cb
@@ -31420,37 +31496,32 @@ cb
 cb
 cb
 cb
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 cb
 cb
 cb
@@ -31577,7 +31648,6 @@ aa
 aa
 aa
 aa
-aa
 cb
 cb
 cb
@@ -31604,6 +31674,13 @@ cb
 cb
 cb
 cb
+gV
+gV
+EF
+gV
+EF
+gV
+gV
 cb
 cb
 cb
@@ -31620,14 +31697,6 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -31646,9 +31715,11 @@ aa
 aa
 aa
 aa
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -31780,77 +31851,77 @@ aa
 aa
 aa
 aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+gV
+bE
+RJ
+RJ
+RJ
+RJ
+RJ
+de
+gV
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -32005,6 +32076,17 @@ cb
 cb
 cb
 cb
+gV
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+gV
 cb
 cb
 cb
@@ -32019,40 +32101,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -32206,55 +32277,55 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+gV
+RJ
+RJ
+RJ
+RJ
+UU
+UU
+UU
+RJ
+RJ
+RJ
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -32390,6 +32461,7 @@ aa
 aa
 aa
 aa
+aa
 cb
 cb
 cb
@@ -32407,57 +32479,56 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+gV
+LQ
+RJ
+RJ
+UU
+EF
+cS
+EF
+UU
+RJ
+RJ
+EF
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
 cb
 cb
 cb
@@ -32593,73 +32664,73 @@ aa
 aa
 aa
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+aR
+LQ
+RJ
+RJ
+UU
+cR
+aR
+Wi
+UU
+RJ
+RJ
+gV
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
 cb
 cb
 cb
@@ -32796,72 +32867,72 @@ aa
 aa
 aa
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+gV
+LQ
+RJ
+RJ
+UU
+EF
+db
+EF
+UU
+RJ
+RJ
+EF
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
+Ew
 cb
 cb
 cb
@@ -33000,6 +33071,11 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -33008,61 +33084,56 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+gV
+gV
+RJ
+RJ
+RJ
+RJ
+UU
+UU
+UU
+RJ
+RJ
+RJ
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+gV
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -33204,6 +33275,30 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Ab
+Ul
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+gV
 cb
 cb
 cb
@@ -33218,53 +33313,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -33408,6 +33479,27 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Ab
+Ul
+lO
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+RJ
+dq
+gV
 cb
 cb
 cb
@@ -33423,50 +33515,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -33611,6 +33682,25 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Ab
+bg
+lO
+RJ
+RJ
+LQ
+LQ
+LQ
+RJ
+gV
 cb
 cb
 cb
@@ -33627,48 +33717,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -33814,6 +33885,23 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Ab
+Yq
+Yq
+gV
+gV
+aR
+gV
+gV
 cb
 cb
 cb
@@ -33831,46 +33919,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34017,6 +34088,18 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+Ab
+Ab
+gV
 cb
 cb
 cb
@@ -34038,41 +34121,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34220,6 +34291,16 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34242,39 +34323,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34424,6 +34495,15 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34445,38 +34525,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34628,6 +34699,13 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34649,36 +34727,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34832,6 +34903,11 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -34853,34 +34929,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -35035,54 +35106,11 @@ aa
 aa
 aa
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -35106,6 +35134,49 @@ cb
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -35238,53 +35309,11 @@ aa
 aa
 aa
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -35305,6 +35334,48 @@ cb
 cb
 cb
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -35442,6 +35513,11 @@ aa
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -35459,34 +35535,29 @@ cb
 cb
 cb
 cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -35646,10 +35717,10 @@ aa
 aa
 aa
 aa
-cb
-cb
-cb
-cb
+aa
+aa
+aa
+aa
 cb
 cb
 cb
@@ -35852,43 +35923,9 @@ aa
 aa
 aa
 aa
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
-cb
+aa
+aa
+aa
 cb
 cb
 cb
@@ -35904,6 +35941,40 @@ cb
 aa
 aa
 aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
+cb
 aa
 aa
 aa
@@ -38706,20 +38777,20 @@ aa
 aa
 aa
 aa
+gV
+Ew
+Ew
+gV
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+BD
+EH
+Hs
+Jp
+Mw
+Qb
+SB
+Vs
+YH
 aa
 aa
 aa
@@ -38908,20 +38979,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+Ew
+gV
+xW
+BJ
+EM
+HA
+Jr
+MI
+Qv
+SF
+VQ
+YR
 aa
 aa
 aa
@@ -39110,20 +39181,20 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gV
+Ew
+Ew
+gV
+xZ
+Cn
+EO
+HH
+Jx
+Nf
+QA
+SR
+VY
+YU
 aa
 aa
 aa
@@ -39308,24 +39379,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+gW
+iO
+kF
+mM
+pe
+rc
+un
+vV
+yi
+CG
+Fj
+HI
+Jz
+Ng
+QG
+SR
+Wl
+Zt
 aa
 aa
 aa
@@ -39510,24 +39581,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hh
+iT
+kR
+mW
+pq
+rl
+uo
+wk
+zc
+CH
+Fl
+HJ
+JC
+NC
+QP
+Tn
+Wy
+ZS
 aa
 aa
 aa
@@ -39709,27 +39780,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+dG
+eA
+fK
+hs
+jt
+ld
+mZ
+pv
+rM
+uq
+wl
+zj
+CU
+FM
+HO
+JF
+ND
+QY
+Tv
+Xt
+NA
 aa
 aa
 aa
@@ -39910,28 +39981,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+dC
+dO
+eD
+gc
+hJ
+jC
+li
+nc
+py
+rN
+uJ
+wn
+zS
+CV
+FZ
+Ic
+Kb
+NE
+Ri
+TL
+Xv
+dd
 aa
 aa
 aa
@@ -40112,28 +40183,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+dE
+dQ
+eS
+gd
+hQ
+jT
+lT
+nI
+pG
+sF
+uS
+wy
+zY
+CX
+Gm
+Ik
+Kv
+NQ
+Rj
+TM
+XK
+eQ
 aa
 aa
 aa
@@ -40314,28 +40385,28 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+dF
+dS
+fp
+gf
+hV
+jZ
+mm
+oY
+pZ
+sM
+uX
+wM
+AB
+CY
+Go
+In
+Kx
+Oa
+RG
+TV
+XO
+Ha
 aa
 aa
 aa
@@ -40517,27 +40588,27 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ei
+fr
+gv
+hZ
+kh
+mp
+oZ
+qy
+sX
+uZ
+xd
+AE
+Dk
+Gq
+Iu
+Kz
+Oi
+RK
+TX
+Yi
+pW
 aa
 aa
 aa
@@ -40722,24 +40793,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+id
+kk
+mx
+pc
+qA
+ta
+vk
+xo
+AH
+Dm
+Gr
+IA
+KN
+OA
+RY
+Us
+Yj
+oI
 aa
 aa
 aa
@@ -40924,24 +40995,24 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+iA
+kr
+mJ
+pd
+qK
+to
+vL
+xs
+AK
+DL
+Gw
+IU
+LK
+OK
+RZ
+UC
+Yk
+ew
 aa
 aa
 aa
@@ -41131,19 +41202,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+tD
+vS
+xQ
+AL
+DV
+GF
+Jd
+LL
+Pe
+Sc
+UQ
+Yo
+BM
 aa
 aa
 aa
@@ -41335,17 +41406,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+xV
+Bg
+Ef
+GW
+Je
+Mn
+PH
+Sq
+UR
+Yp
+yu
 aa
 aa
 aa
@@ -41539,15 +41610,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Et
+Hq
+Jl
+Mr
+PW
+Sx
+Vp
+Yu
+xL
 aa
 aa
 aa
