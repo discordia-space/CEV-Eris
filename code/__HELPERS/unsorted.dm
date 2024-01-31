@@ -45,6 +45,19 @@
 	else if(dx<0)
 		.+=360
 
+/// First 2 are for the start,  last 2 for the end
+/proc/getAngleCoordinates(x1,y1,x2,y2)
+	var/dy = y2-y1
+	var/dx = x2-x1
+	if(dy == 0)
+		return (dx >= 0) ? 90 : 270
+	. = arctan(dx/dy)
+	if(dy < 0)
+		. += 180
+	else if(dx < 0)
+		. += 360
+
+
 //Returns location. Returns null if no location was found.
 /proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
 /*

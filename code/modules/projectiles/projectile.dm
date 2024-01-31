@@ -286,12 +286,12 @@ GLOBAL_LIST(projectileDamageConstants)
 	return FALSE
 
 //called to launch a projectile from a gun
-/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
+/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset, params)
 	if(user == target) //Shooting yourself
 		user.bullet_act(src, target_zone)
 		qdel(src)
 		return FALSE
-
+	params = params2list(params)
 	forceMove(get_turf(user))
 
 	var/recoil = 0
@@ -320,7 +320,8 @@ GLOBAL_LIST(projectileDamageConstants)
 		firer = user
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
-
+	x_offset += params["icon-x"]
+	y_offset += params["icon-y"]
 	return launch(target, target_zone, x_offset, y_offset, angle_offset, user_recoil = recoil)
 
 //Used to change the direction of the projectile in flight.

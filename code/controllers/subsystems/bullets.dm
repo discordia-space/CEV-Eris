@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(bullets)
 	var/currentLevel = 0
 	var/turfsPerTick = 0
 	var/projectileAccuracy = 0
-	var/lifetime = 10
+	var/lifetime = 30
 	var/bulletLevel = 0
 
 /datum/bullet_data/New(atom/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
@@ -104,10 +104,15 @@ SUBSYSTEM_DEF(bullets)
 	coordinates[1] = coordinates[1]/r
 	coordinates[2] = coordinates[2]/r
 	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
+	if(referencedBullet)
+		var/matrix/rotation = matrix()
+		// we get the angle of the trajectory by incrementing it.
+		rotation.Turn(getAngleCoordinates(coordinates[1] * 2, coordinates[2] * 2, coordinates[1], coordinates[2]))
+		referencedBullet.transform = rotation
 	movementRatios = coordinates
 
 /datum/bullet_data/proc/ricochet(atom/wall)
-	var/list/bCoords = list(bullet.referencedBullet.x, bullet.referencedBullet.y)
+	var/list/bCoords = list(referencedBullet.x, referencedBullet.y)
 	var/list/wCoords = list(wall.x, wall.y)
 	var/list/cCoords = list(abs(bCoords[1] - wCoords[1] + 0.00001), abs(bCoords[2] - wCoords[2] + 0.00001))
 	var/list/tCoords = list(0,0)
@@ -172,7 +177,7 @@ SUBSYSTEM_DEF(bullets)
 			continue
 		var/px = bullet.movementRatios[1] * bullet.turfsPerTick + bullet.currentCoords[1]
 		var/py = bullet.movementRatios[2] * bullet.turfsPerTick + bullet.currentCoords[2]
-		var/pz = bullet.movementRatios[3] + bullet.currentCoords[3]
+		var/pz = bullet.movementRatios[3] * bullet.turfsPerTick + bullet.currentCoords[3]
 		var/x_change = 0
 		var/y_change = 0
 		var/z_change = 0
@@ -181,19 +186,17 @@ SUBSYSTEM_DEF(bullets)
 		while(px >= PPT/2 || py >= PPT/2 || px <= -PPT/2 || py <= -PPT/2 || pz > 1 || pz < 0)
 			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px], pz = [pz]")
 			if(QDELETED(bullet.referencedBullet))
+				bullet_queue -= bullet
 				break
-			x_change = px >= PPT/2 ? 1 : px <= -PPT/2 ? -1 : 0
-			y_change = py >= PPT/2 ? 1 : py <= -PPT/2 ? -1 : 0
-			if(round(pz) > 1)
-				z_change = 1
-			else if(round(pz) < 0)
-				z_change = -1
+			x_change = (px >= PPT/2) ? 1 : (px <= -PPT/2 ? -1 : 0)
+			y_change = (py >= PPT/2) ? 1 : (py <= -PPT/2 ? -1 : 0)
+			z_change = (pz >= 1) ? 1 : (pz <= 0 ? -1 : 0)
 			px += -1 * x_change * PPT/2
 			py += -1 * y_change * PPT/2
 			pz += -1 * z_change
 			if(z_change)
 				if(z_change > 1)
-					target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z++)
+					target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z + 1)
 				else
 					target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
 				target_turf.take_damage(bullet.referencedBullet.get_structure_damage(), BRUTE, FALSE)
@@ -201,6 +204,10 @@ SUBSYSTEM_DEF(bullets)
 				target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
 
 			if(!target_turf)
+				bullet_queue -= bullet
+				break
+			bullet.lifetime--
+			if(bullet.lifetime < 0)
 				bullet_queue -= bullet
 				break
 			//if(iswall(target_turf) && target_turf:projectileBounceCheck())

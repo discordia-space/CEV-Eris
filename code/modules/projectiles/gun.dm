@@ -636,7 +636,7 @@
 
 	offset = roll(2, offset) - (offset + 1)
 
-	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
+	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset, params)
 
 //Support proc for calculate_offset
 /obj/item/gun/proc/init_offset_with_brace(mob/living/user)
