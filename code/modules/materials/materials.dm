@@ -578,6 +578,7 @@ var/list/name_to_material
 /material/osmium
 	name = MATERIAL_OSMIUM
 	stack_type = /obj/item/stack/material/osmium
+	integrity = 480 // might as well.
 	icon_colour = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	heat_resistance = 10 // osmium is REALLY dense and high melting point.
