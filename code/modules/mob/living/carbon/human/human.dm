@@ -1354,31 +1354,31 @@ var/list/rank_prefix = list(\
 
 /mob/living/carbon/human/proc/resuscitate()
 	
-	var/obj/item/organ/internal/vital/heart/heart_organ = random_organ_by_process(OP_HEART)
-	var/obj/item/organ/internal/vital/brain/brain_organ = random_organ_by_process(BP_BRAIN)
+	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 
-	if((!heart_organ || heart_organ.is_broken()) && (!brain_organ) || brain_organ.is_broken())
-		visible_message(SPAN_WARNING("\The [src] lay still, devoid of any hint of vitality or warmth."))
+	if((!heart_organ || heart_organ.is_broken()) && (!brain_organ || brain_organ.is_broken()))
+		resuscitate_notify(1)
 		return 0
 
 	if(!heart_organ || heart_organ.is_broken())
-		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body remains lifeless, unresponsive to any stimulus."))
+		resuscitate_notify(2)
 		return 0
 
 	if(!brain_organ || brain_organ.is_broken())
-		visible_message(SPAN_WARNING("\The [src] changes is colour, but remains tranquil and utterly still."))
+		resuscitate_notify(3)
 		return 0
 
 	if(world.time >= (timeofdeath + NECROZTIME))
-		visible_message(SPAN_WARNING("\The [src] shows no signs of reaction, a grim reminder of the boundaries that separate life and death."))
+		resuscitate_notify(4)
 		return 0
 
 	var/oxyLoss = getOxyLoss()
 	if(oxyLoss > 20)
 		setOxyLoss(20)
 
-	if(health <= (HEALTH_THRESHOLD_DEAD - oxyLoss))
-		visible_message(SPAN_WARNING("\The [src] twitches a bit, but their body is too damaged to sustain life."))
+	if(getBruteLoss() + getFireLoss() >= abs(HEALTH_THRESHOLD_DEAD))
+		resuscitate_notify(5)
 		timeofdeath = 0
 		return 0
 
@@ -1399,6 +1399,34 @@ var/list/rank_prefix = list(\
 				else
 					break
 	return 1
+
+/mob/living/carbon/human/proc/resuscitate_notify(type)
+	if(prob(50))
+		return
+	visible_message(SPAN_WARNING("\The [src] twitches and twists intensely"))
+	for(var/mob/O in viewers(world.view, src.loc))
+		if(O == src)
+			continue
+		if(!Adjacent(O))
+			continue
+		var/bio_stat = 0
+		if(O.stats)
+			bio_stat = O.stats.getStat(STAT_BIO)
+
+		if(bio_stat >= STAT_LEVEL_ADEPT)
+			switch(type)
+				if(1) //brain and heart fail
+					to_chat(O, "<font color='blue'>You can identify that [src]'s circulatory and central neural systems are failing, preventing them from resurrection.</font>")
+				if(2) //heart fail
+					to_chat(O, "<font color='blue'>You can identify that [src]'s circulatory system is unable to restart in this state.</font>")
+				if(3) //brain fail
+					to_chat(O, "<font color='blue'>You can identify that [src]'s central neural system is too damaged to be resurrected.</font>")
+				if(4) //corpse is too old
+					to_chat(O, "<font color='blue'>You see that rotting process in [src]'s body already gone too far. This is nothing but a corpse now.</font>")
+				if(5) //too much damage
+					to_chat(O, "<font color='blue'>[src]'s body is too damaged to sustain life.</font>")
+		else
+			to_chat(O, "<font color='red'>You're too unskilled to understand what's happening...</font>")
 
 /mob/living/carbon/human/proc/generate_dna()
 	if(!b_type)
