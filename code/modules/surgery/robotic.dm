@@ -67,10 +67,8 @@
 	)
 	if(organ.status & ORGAN_CUT_AWAY)
 		organ.status &= ~ORGAN_CUT_AWAY
-		organ.handle_organ_eff()
 	else
 		organ.status |= ORGAN_CUT_AWAY
-		organ.handle_organ_eff()
 
 /datum/surgery_step/robotic/connect_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(

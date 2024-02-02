@@ -81,7 +81,7 @@
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()
-#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs or ethanol in blood
+#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs o ethanol in blood
 
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"	   //mob/living/carbon/electrocute_act()
