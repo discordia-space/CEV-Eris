@@ -723,7 +723,7 @@
 				if(50 to 90)
 					to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick."))
 				if(90 to 100)
-					to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick.\nYou hear a faint tapping emanating from [src]."))
+					to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick.\nYou hear a faint tapping emanating from \the [src]."))
 		else
 			..()
 
