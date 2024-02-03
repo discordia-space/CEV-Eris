@@ -107736,6 +107736,8 @@
 /obj/machinery/camera/network/third_section{
 	dir = 1
 	},
+/obj/item/device/destTagger,
+/obj/item/packageWrap,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "xTu" = (
