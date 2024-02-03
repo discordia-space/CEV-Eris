@@ -397,7 +397,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "xw" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/prisonhulk/cells)
 "xA" = (
@@ -735,7 +735,7 @@
 /turf/simulated/floor/carpet,
 /area/outpost/prisonhulk/security)
 "Pd" = (
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Chemistry Storage";
 	req_access = list(33)
 	},
@@ -760,7 +760,7 @@
 /turf/simulated/wall/r_wall,
 /area/outpost/prisonhulk/food)
 "Qr" = (
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -892,7 +892,7 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "VE" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/prisonhulk)
 "VP" = (

@@ -10,6 +10,9 @@
 	. = ..()
 	SetBounds()
 
+/obj/machinery/door/airlock/multi_tile/get_overlay_icon()
+	return icon
+
 /obj/machinery/door/airlock/multi_tile/on_door_direction_update_trigger()
 	var/turf/simulated/wall/W1 = get_step(src, SOUTH)
 	var/turf/simulated/wall/W2 = get_step(src, NORTH)

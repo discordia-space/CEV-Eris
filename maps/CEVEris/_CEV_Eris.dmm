@@ -585,7 +585,7 @@
 /area/eris/security/prison)
 "abI" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_security{
+/obj/machinery/door/airlock/maintenance/security{
 	name = "Security Maintenance";
 	req_access = list(1)
 	},
@@ -936,7 +936,7 @@
 /area/eris/security/disposal)
 "acv" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_security{
+/obj/machinery/door/airlock/maintenance/security{
 	name = "Security and Bridge Disposal";
 	req_access = list(1)
 	},
@@ -1687,7 +1687,7 @@
 /area/eris/security/prison)
 "aeg" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -1938,7 +1938,7 @@
 /area/eris/security/armory)
 "aeO" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_security{
+/obj/machinery/door/airlock/maintenance/security{
 	name = "Security Maintenance";
 	req_access = list(1)
 	},
@@ -2790,7 +2790,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "agO" = (
-/obj/machinery/door/airlock/maintenance_security{
+/obj/machinery/door/airlock/maintenance/security{
 	name = "Security Maintenance";
 	req_access = list(1)
 	},
@@ -4744,7 +4744,7 @@
 "alk" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -4752,7 +4752,7 @@
 /area/eris/crew_quarters/sleep)
 "all" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Robotics Maintenance";
 	req_access = list(29)
 	},
@@ -5402,7 +5402,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/rnd/podbay)
 "amO" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -5928,7 +5928,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
 "aob" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -6039,7 +6039,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "aop" = (
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Reserve Storage";
 	req_access = list(12)
 	},
@@ -6489,7 +6489,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5port)
 "apD" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -6497,7 +6497,7 @@
 /area/eris/maintenance/section2deck5port)
 "apE" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /obj/structure/cable/green{
@@ -6552,7 +6552,7 @@
 "apK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -6853,7 +6853,7 @@
 /area/eris/crew_quarters/toilet/medbay)
 "aqp" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /obj/structure/cable/green{
@@ -8194,7 +8194,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck5port)
 "ath" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -8352,7 +8352,7 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/quartermaster/disposaldrop)
 "atz" = (
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Reserve Storage";
 	req_access = list(12)
 	},
@@ -8587,7 +8587,7 @@
 /turf/simulated/floor/tiled/dark/cargo,
 /area/eris/hallway/side/section3starboard)
 "auo" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -8885,7 +8885,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "ave" = (
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Reserve Storage";
 	req_access = list(12)
 	},
@@ -9003,7 +9003,7 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/eris/quartermaster/disposaldrop)
 "avt" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -9573,7 +9573,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "axf" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -11384,7 +11384,7 @@
 /area/eris/crew_quarters/hydroponics)
 "aBH" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_cargo{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Cargo Maintenance";
 	req_access = list(50)
 	},
@@ -12544,7 +12544,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section4deck5starboard)
 "aEH" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -13662,7 +13662,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/chargebay)
 "aHV" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -15559,7 +15559,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "aNe" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -17610,7 +17610,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -18742,7 +18742,7 @@
 /area/eris/security/warden)
 "aUt" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -18949,7 +18949,7 @@
 /turf/simulated/wall,
 /area/eris/security/warden)
 "aUQ" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -19069,7 +19069,7 @@
 /turf/simulated/open,
 /area/eris/security/prison)
 "aVd" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/crew_quarters/sleep)
 "aVe" = (
@@ -20248,7 +20248,7 @@
 /area/eris/medical/virology)
 "aXM" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Atmospherics Maintenance";
 	req_access = list(24)
 	},
@@ -20293,7 +20293,7 @@
 /area/eris/medical/virology)
 "aXR" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Atmospherics Maintenance";
 	req_access = list(24)
 	},
@@ -21653,7 +21653,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "baB" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section1deck4central)
 "baC" = (
@@ -21824,7 +21824,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/substation/section1)
 "baY" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -22257,7 +22257,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
 "bbM" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -22320,7 +22320,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bbV" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck4central)
 "bbW" = (
@@ -23367,7 +23367,7 @@
 /turf/simulated/open,
 /area/eris/crew_quarters/sleep)
 "bdG" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -23660,7 +23660,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4port)
 "bew" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck4port)
 "bex" = (
@@ -23865,7 +23865,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "beV" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -24399,7 +24399,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4central)
 "bgp" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -24440,7 +24440,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/sleep/cryo)
 "bgt" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -27530,7 +27530,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/eris/hallway/side/morguehallway)
 "bno" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /obj/machinery/door/firedoor,
@@ -28262,7 +28262,7 @@
 /area/eris/crew_quarters/sleep)
 "boX" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Robotics Maintenance";
 	req_access = list(29)
 	},
@@ -28954,7 +28954,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section2deck4port)
 "bqK" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -29836,7 +29836,7 @@
 /area/eris/crew_quarters/sleep/cryo)
 "bto" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Robotics Maintenance";
 	req_access = list(29)
 	},
@@ -29863,7 +29863,7 @@
 /area/eris/maintenance/sorter)
 "btq" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_cargo{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Cargo Maintenance";
 	req_access = list(50)
 	},
@@ -30220,7 +30220,7 @@
 /turf/simulated/floor/tiled/steel/bluecorner,
 /area/eris/maintenance/section3deck1central)
 "bul" = (
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -30668,7 +30668,7 @@
 /turf/simulated/floor/plating,
 /area/eris/rnd/lab)
 "bvv" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -31478,7 +31478,7 @@
 /area/eris/crew_quarters/toilet/medbay)
 "bxh" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Morgue Maintenance";
 	req_access = list(6)
 	},
@@ -31794,7 +31794,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_cargo{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Cargo Maintenance";
 	req_access = list(50)
 	},
@@ -32626,7 +32626,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /turf/simulated/floor/plating/under,
@@ -34907,7 +34907,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bFy" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -35070,7 +35070,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/rnd/anomalisolthree)
 "bFS" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -36052,7 +36052,7 @@
 /area/eris/maintenance/section3deck1central)
 "bHU" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_cargo{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Cargo Maintenance";
 	req_access = list(50)
 	},
@@ -36879,7 +36879,7 @@
 /area/eris/maintenance/section4deck4central)
 "bJF" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -37306,7 +37306,7 @@
 /area/eris/maintenance/section4deck4port)
 "bKy" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -38181,7 +38181,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bMx" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -38544,7 +38544,7 @@
 /area/eris/maintenance/section1deck3central)
 "bNm" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -38764,7 +38764,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/engineering/propulsion/right)
 "bNF" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -40224,7 +40224,7 @@
 /area/eris/engineering/drone_fabrication)
 "bRe" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -40567,7 +40567,7 @@
 /area/eris/engineering/drone_fabrication)
 "bSc" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -40615,7 +40615,7 @@
 "bSi" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -40634,7 +40634,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
 "bSl" = (
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -40698,7 +40698,7 @@
 "bSs" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -40812,7 +40812,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/clothingstorage)
 "bSO" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -41468,7 +41468,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Operating Maintenance";
 	req_access = list(45)
 	},
@@ -41568,7 +41568,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/security/main)
 "bUz" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -41761,7 +41761,7 @@
 /area/eris/crew_quarters/janitor)
 "bVe" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -41808,7 +41808,7 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "bVl" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -41853,7 +41853,7 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/bioreactor)
 "bVq" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -42381,7 +42381,7 @@
 /area/eris/security/inspectors_office)
 "bWH" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_security{
+/obj/machinery/door/airlock/maintenance/security{
 	name = "Inspector Maintenance";
 	req_access = list(4)
 	},
@@ -44176,7 +44176,7 @@
 /area/eris/hallway/main/section2)
 "cbv" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "First Officer Maintenance";
 	req_access = list(57)
 	},
@@ -44407,7 +44407,7 @@
 "cbV" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -44807,7 +44807,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Operating Maintenance";
 	req_access = list(45)
 	},
@@ -44957,7 +44957,7 @@
 /area/eris/command/mbo)
 "cdq" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Central Maintenance"
 	},
 /turf/simulated/floor/tiled/techmaint_cargo,
@@ -45178,7 +45178,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "cdV" = (
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -46319,7 +46319,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Operating Maintenance";
 	req_access = list(45)
 	},
@@ -48201,7 +48201,7 @@
 /turf/simulated/floor/tiled/white/gray_platform,
 /area/eris/rnd/mixing)
 "ckU" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -49263,7 +49263,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -51015,7 +51015,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "csb" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -51268,7 +51268,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "csO" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -52006,7 +52006,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/oldtele)
 "cvf" = (
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -53054,7 +53054,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/engineering/post)
 "cxM" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -53744,7 +53744,7 @@
 /area/eris/maintenance/section3deck4central)
 "czv" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -53799,7 +53799,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/office)
 "czC" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -55935,7 +55935,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -57977,7 +57977,7 @@
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "cJW" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -58122,7 +58122,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/virology)
 "cKr" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -60416,7 +60416,7 @@
 /area/eris/command/exultant)
 "cQS" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -60475,7 +60475,7 @@
 /area/eris/hallway/main/section4)
 "cQZ" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -62757,7 +62757,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cXd" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -62770,7 +62770,7 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section4deck3port)
 "cXe" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -62833,7 +62833,7 @@
 	name = "Cargo Total Lockdown";
 	opacity = 0
 	},
-/obj/machinery/door/airlock/maintenance_cargo{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Cargo Maintenance";
 	req_access = list(50)
 	},
@@ -63074,7 +63074,7 @@
 /turf/space,
 /area/shuttle/mining/station)
 "cXO" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -63337,7 +63337,7 @@
 /area/eris/hallway/main/section3)
 "cYm" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -63478,7 +63478,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck3port)
 "cYG" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -64904,7 +64904,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck4port)
 "dcf" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -65320,7 +65320,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "dcU" = (
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Research Maintenance";
 	req_access = list(5)
 	},
@@ -67283,7 +67283,7 @@
 /turf/simulated/floor/carpet/blucarpet,
 /area/eris/command/fo/quarters)
 "dhh" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -67743,7 +67743,7 @@
 "din" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -68234,7 +68234,7 @@
 /area/eris/hallway/side/section3starboard)
 "djt" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Toxins Maintenance";
 	req_access = list(7)
 	},
@@ -68719,7 +68719,7 @@
 /area/turret_protected/ai)
 "dkx" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -70667,7 +70667,7 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/medical/medbay/iso)
 "doK" = (
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -71298,7 +71298,7 @@
 /area/eris/maintenance/section3deck4central)
 "dqk" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Chemistry Storage";
 	req_access = list(33)
 	},
@@ -72045,7 +72045,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/medical/reception)
 "dse" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -72413,7 +72413,7 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/medbay/uppercor)
 "dtc" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -72807,7 +72807,7 @@
 /turf/simulated/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/left)
 "dub" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -73443,7 +73443,7 @@
 /area/eris/command/bridge)
 "dvz" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -73489,7 +73489,7 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/command/bridge)
 "dvI" = (
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Medbay Maintenance";
 	req_access = list(5)
 	},
@@ -75101,7 +75101,7 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/eris/command/mbo)
 "dzE" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck3port)
 "dzF" = (
@@ -75340,7 +75340,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -78031,7 +78031,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2port)
 "dGI" = (
-/obj/machinery/door/airlock/maintenance_command{
+/obj/machinery/door/airlock/maintenance/command{
 	name = "Bridge Maintenance";
 	req_access = list(19)
 	},
@@ -78080,7 +78080,7 @@
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/crew_quarters/pubeva)
 "dGQ" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -78546,7 +78546,7 @@
 /area/eris/crew_quarters/library)
 "dHQ" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -78560,7 +78560,7 @@
 /area/eris/hallway/side/atmosphericshallway)
 "dHS" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -78680,7 +78680,7 @@
 /area/eris/engineering/starboardhallway)
 "dIg" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -79032,7 +79032,7 @@
 /area/eris/security/lobby)
 "dIR" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -79345,7 +79345,7 @@
 	name = "Engineering Total Lockdown";
 	opacity = 0
 	},
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -79821,7 +79821,7 @@
 /area/eris/engineering/engine_room)
 "dKI" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -80320,7 +80320,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "dMu" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -81227,7 +81227,7 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck3starboard)
 "dOY" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -81607,7 +81607,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/medical/chemstor)
 "dQh" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -81951,7 +81951,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck2port)
 "dRd" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -82804,7 +82804,7 @@
 /area/eris/engineering/construction)
 "dTq" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -83372,7 +83372,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1port)
 "dUV" = (
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Reserve Storage";
 	req_access = list(12)
 	},
@@ -83697,7 +83697,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck1port)
 "dVL" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -83801,7 +83801,7 @@
 /turf/space,
 /area/space)
 "dVZ" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -84678,7 +84678,7 @@
 /area/eris/rnd/docking)
 "dXX" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Research Maintenance";
 	req_access = list(5)
 	},
@@ -85155,7 +85155,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dZt" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -86157,7 +86157,7 @@
 /area/shuttle/research/station)
 "ebT" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Research Maintenance";
 	req_access = list(5)
 	},
@@ -87004,7 +87004,7 @@
 /area/eris/rnd/anomalisolthree)
 "edR" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Chemistry Storage";
 	req_access = list(33)
 	},
@@ -87873,7 +87873,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Research Maintenance";
 	req_access = list(5)
 	},
@@ -87947,7 +87947,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Research Maintenance";
 	req_access = list(5)
 	},
@@ -87979,7 +87979,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Research Maintenance";
 	req_access = list(5)
 	},
@@ -88413,7 +88413,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck1central)
 "ehs" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -88747,7 +88747,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -89471,7 +89471,7 @@
 /area/eris/maintenance/section4deck1central)
 "ejK" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Theatre Maintenance";
 	req_access = list(43)
 	},
@@ -90206,7 +90206,7 @@
 /turf/simulated/open,
 /area/eris/medical/medbay/uppercor)
 "elC" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -90980,7 +90980,7 @@
 /area/eris/rnd/research)
 "enL" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Theatre Maintenance";
 	req_access = list(43)
 	},
@@ -91061,7 +91061,7 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "enU" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -91574,7 +91574,7 @@
 /area/eris/maintenance/section3deck2starboard)
 "epk" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -92470,7 +92470,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section3deck4starboard)
 "ers" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -92652,7 +92652,7 @@
 /area/eris/crew_quarters/clownoffice)
 "erL" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -92716,7 +92716,7 @@
 /area/eris/engineering/breakroom)
 "erT" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -93417,7 +93417,7 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/section3starboard)
 "etA" = (
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Medbay Maintenance";
 	req_access = list(5)
 	},
@@ -94065,7 +94065,7 @@
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/section3deck2starboard)
 "evb" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -94599,7 +94599,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -94949,7 +94949,7 @@
 /area/eris/quartermaster/miningdock)
 "exe" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -97314,7 +97314,7 @@
 /area/eris/quartermaster/misc)
 "eCn" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -97411,7 +97411,7 @@
 /area/eris/engineering/gravity_generator)
 "eCw" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -98475,7 +98475,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_cargo{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Cargo Maintenance";
 	req_access = list(50)
 	},
@@ -98537,7 +98537,7 @@
 /area/eris/crew_quarters/hydroponics)
 "eFk" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -98611,7 +98611,7 @@
 /area/eris/maintenance/section3deck2port)
 "eFp" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -98659,7 +98659,7 @@
 /area/eris/crew_quarters/library)
 "eFu" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -99741,7 +99741,7 @@
 /turf/simulated/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "fSw" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -99967,7 +99967,7 @@
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
 "grN" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -100058,7 +100058,7 @@
 /area/eris/crew_quarters/artistoffice)
 "gCq" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -100094,7 +100094,7 @@
 /turf/simulated/floor/plating,
 /area/holodeck/alphadeck)
 "gHp" = (
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Chemistry Maintenance";
 	req_access = list(33)
 	},
@@ -100125,7 +100125,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -100459,7 +100459,7 @@
 	name = "Science Total Lockdown";
 	opacity = 0
 	},
-/obj/machinery/door/airlock/maintenance_rnd{
+/obj/machinery/door/airlock/maintenance/rnd{
 	name = "Research Maintenance";
 	req_access = list(5)
 	},
@@ -100912,7 +100912,7 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/hydroponics/garden)
 "isV" = (
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Medbay Maintenance";
 	req_access = list(5)
 	},
@@ -101522,7 +101522,7 @@
 /area/eris/medical/morgue)
 "jDU" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Chemistry Maintenance";
 	req_access = list(33)
 	},
@@ -101542,7 +101542,7 @@
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/medical/chemstor)
 "jFt" = (
-/obj/machinery/door/airlock/maintenance_common,
+/obj/machinery/door/airlock/maintenance/common,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck3port)
@@ -102332,7 +102332,7 @@
 /turf/simulated/floor/tiled/white/bluecorner,
 /area/eris/security/exerooms)
 "lzu" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -102379,7 +102379,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_cargo{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Cargo Maintenance";
 	req_access = list(50)
 	},
@@ -103023,7 +103023,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -103083,7 +103083,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/quartermaster/storage)
 "nmJ" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -103339,7 +103339,7 @@
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "ocY" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -106826,7 +106826,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section2deck4central)
 "wah" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -106964,7 +106964,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},

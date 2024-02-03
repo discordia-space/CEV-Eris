@@ -22,7 +22,7 @@
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "ag" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -188,7 +188,7 @@
 /area/template_noop)
 "aN" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_medical{
+/obj/machinery/door/airlock/maintenance/medical{
 	name = "Chemistry Maintenance";
 	req_access = list(33)
 	},

@@ -49,10 +49,11 @@
 
 /obj/machinery/door/New()
 	GLOB.all_doors += src
-	..()
 	door_flicker = new(src)
 	door_flicker.master = src
+	door_flicker.icon = get_overlay_icon()
 	vis_contents |= door_flicker
+	..()
 	on_door_direction_update_trigger()
 
 /obj/machinery/door/Destroy()
