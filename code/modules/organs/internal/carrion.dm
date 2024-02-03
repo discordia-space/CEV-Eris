@@ -61,7 +61,7 @@
 		/obj/item/organ/internal/carrion/core/proc/carrion_transform,
 		/obj/item/organ/internal/carrion/core/proc/EvolutionMenu,
 		/obj/item/organ/internal/carrion/core/proc/carrion_fakedeath,
-		/obj/item/organ/internal/carrion/core/proc/detatch,
+		/obj/item/organ/internal/carrion/core/proc/detach,
 		/obj/item/organ/internal/carrion/core/proc/make_spider,
 		/obj/item/organ/internal/carrion/core/proc/spider_menu
 	)
@@ -213,9 +213,9 @@
 		EvolutionMenu()
 	..()
 
-/obj/item/organ/internal/carrion/core/proc/detatch()
+/obj/item/organ/internal/carrion/core/proc/detach()
 	set category = "Carrion"
-	set name = "Detatch"
+	set name = "Detach"
 
 	if(owner.status_flags & FAKEDEATH)
 		to_chat(owner, SPAN_WARNING("We are regenerating our body!"))

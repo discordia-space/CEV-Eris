@@ -7,6 +7,7 @@
 	kill_count = 15 //shorter range
 	muzzle_type = null
 	var/reagent_amount = 15
+	matter = list(MATERIAL_GLASS = 0.2)
 
 /obj/item/projectile/bullet/chemdart/New()
 	create_reagents(reagent_amount)
@@ -23,10 +24,9 @@
 	desc = "A small hardened, hollow dart."
 	icon_state = "dart"
 	caliber = CAL_DART
+	is_caseless = TRUE
 	projectile_type = /obj/item/projectile/bullet/chemdart
 
-/obj/item/ammo_casing/chemdart/expend()
-	qdel(src)
 
 /obj/item/ammo_magazine/chemdart
 	name = "dart cartridge"
