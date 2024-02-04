@@ -15,9 +15,9 @@
 	name = get_artwork_name(TRUE)
 	icon_state = "artwork_statue_[rand(1,6)]"
 
-//weighted bell curve from -6 to 6. 17% chance of 0, ~0.4% chance of either 6, ~1.5% of either 5, and so on.
+//weighted bell curve from -6 to 6, slight favour to positive numbers
 //extremely sanity rending/healing statues are possible but very rare.
-	var/sanity_value = (rand(1,4) - rand(1,4)) - (rand(1,4) - rand(1,4))
+	var/sanity_value = clamp((rand(1,4) - rand(1,4)) - (rand(1,4) - rand(1,4)) + rand(0,1), -6, 6)
 	sanity_damage = sanity_value
 	price_tag += rand(0,5000)
 	switch(sanity_value)
