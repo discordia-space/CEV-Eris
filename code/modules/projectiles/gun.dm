@@ -268,7 +268,7 @@
 				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
 			else
 				item_state_slots[slot_l_hand_str] = "lefthand"
-			item_state_slots[slot_r_hand_str] = "righthand"
+				item_state_slots[slot_r_hand_str] = "righthand"
 		else//Otherwise we can just pull from the generic left and right hand icons.
 			if(wielded_icon)
 				item_state_slots[slot_l_hand_str] = wielded_item_state

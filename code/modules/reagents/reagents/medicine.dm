@@ -346,8 +346,12 @@
 	scannable = 1
 
 /datum/reagent/medicine/alkysine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 10)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/vital/brain/B = H.internal_organs_by_efficiency[BP_BRAIN]
+		if(!BP_IS_ROBOTIC(B) && prob(75))
+			M.add_chemical_effect(CE_PAINKILLER, 10)
+			M.add_chemical_effect(CE_BRAINHEAL, 1)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -367,8 +371,8 @@
 		var/obj/item/organ/internal/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
 			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && prob(10))
-				SEND_SIGNAL_OLD(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+			if(LAZYLEN(current_wounds) && prob(75))
+				M.add_chemical_effect(CE_EYEHEAL, 1)
 
 /datum/reagent/medicine/imidazoline/overdose(mob/living/carbon/M, alien)
 	. = ..()
@@ -395,7 +399,9 @@
 		for(var/obj/item/organ/I in organs_sans_brain_and_bones)
 			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
 			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
-				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+				M.add_chemical_effect(CE_ONCOCIDAL, 1)
+				M.add_chemical_effect(CE_BLOODCLOT, 1)
+				M.add_chemical_effect(CE_ANTITOX, 2)
 
 /datum/reagent/medicine/peridaxon/overdose(mob/living/carbon/M, alien)
 	. = ..()

@@ -151,7 +151,7 @@
 	var/obj/item/cell/C = exosuit.get_cell()
 	C.use(exosuit.legs.power_use * CELLRATE)
 	if(exosuit.dir != moving_dir && !exosuit.strafing)
-		playsound(exosuit.loc, exosuit.mech_turn_sound, 40,1)
+		playsound(exosuit.loc, exosuit.legs.mech_turn_sound, 40,1)
 		exosuit.set_dir(moving_dir)
 		next_move = world.time + exosuit.legs.turn_delay
 	else

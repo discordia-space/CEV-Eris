@@ -617,12 +617,14 @@
 	// Otherwise toggle the hatch.
 	if(hatch_locked)
 		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+		playsound(src,'sound/mechs/doorlocked.ogg', 50, 1)
 		return
 	if(body && body.total_damage >= body.max_damage)
 		to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
 		return
 
 	hatch_closed = !hatch_closed
+	playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
 	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
 	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
 	if(H && istype(H)) H.update_icon()

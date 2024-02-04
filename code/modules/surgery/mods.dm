@@ -37,7 +37,7 @@
 		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [mod]!"),
 		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [mod]!")
 	)
-	organ.take_damage(5, 0)
+	organ.take_damage(rand(24, 32), BRUTE, edge = TRUE)
 
 /datum/surgery_step/remove_mod
 	required_tool_quality = QUALITY_LASER_CUTTING
@@ -61,7 +61,7 @@
 		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
 		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
-	organ.take_damage(5, 0)
+	organ.take_damage(rand(24, 32), BRUTE, sharp = TRUE)
 
 /datum/surgery_step/examine
 	required_tool_quality = null

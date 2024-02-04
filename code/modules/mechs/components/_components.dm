@@ -98,7 +98,7 @@
 		if(damage_state == MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 			playsound(loc, 'sound/mechs/critdestr.ogg', 50)
 
-	if(total_damage == max_damage)
+	if(total_damage >= max_damage)
 		if(gib_hits > gib_hits_needed && can_gib)
 			var/mob/living/exosuit/owner = loc
 			if(!istype(owner))

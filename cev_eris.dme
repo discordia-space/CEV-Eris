@@ -2333,6 +2333,8 @@
 #include "code\modules\organs\internal\stomach.dm"
 #include "code\modules\organs\internal\internal_wounds\_internal_wound.dm"
 #include "code\modules\organs\internal\internal_wounds\bone.dm"
+#include "code\modules\organs\internal\internal_wounds\brain.dm"
+#include "code\modules\organs\internal\internal_wounds\eyes.dm"
 #include "code\modules\organs\internal\internal_wounds\organic.dm"
 #include "code\modules\organs\internal\internal_wounds\robotic.dm"
 #include "code\modules\organs\internal\internal_wounds\sanity.dm"

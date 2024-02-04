@@ -108,6 +108,7 @@ var/list/name_to_material
 	var/radioactivity            // Radiation var. Used in wall and object processing to irradiate surroundings.
 	var/ignition_point           // K, point at which the material catches on fire.
 	var/melting_point = 1800     // K, walls will take damage if they're next to a fire hotter than this
+	var/heat_resistance = 1 	 // divisor, walls resist thermite and welding based on this
 	var/integrity = 150          // General-use HP value for products.
 	var/opacity = 1              // Is the material transparent? 0.5< makes transparent walls/doors.
 	var/explosion_resistance = 5 // Only used by walls currently.
@@ -399,6 +400,7 @@ var/list/name_to_material
 	shard_type = SHARD_STONE_PIECE
 	weight = 22
 	hardness = 55
+	heat_resistance = 8
 	door_icon_base = "stone"
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
@@ -464,6 +466,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_over"
 	icon_colour = PLASTEEL_COLOUR//"#777777"
 	explosion_resistance = 25
+	heat_resistance = 3
 	hardness = 80
 	weight = 23
 	stack_origin_tech = list(TECH_MATERIAL = 2)
@@ -483,6 +486,7 @@ var/list/name_to_material
 	stack_type = null
 	icon_base = "metal"
 	weight = 20
+	heat_resistance = 4
 	hardness = 90
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
@@ -736,8 +740,11 @@ var/list/name_to_material
 /material/osmium
 	name = MATERIAL_OSMIUM
 	stack_type = /obj/item/stack/material/osmium
+	integrity = 480 // might as well.
 	icon_colour = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
+	heat_resistance = 10 // osmium is REALLY dense and high melting point.
+	melting_point = T0C+3025
 	weight = 90
 	hardness = 90
 	sheet_singular_name = "ingot"
@@ -854,6 +861,7 @@ var/list/name_to_material
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
 	hardness = 15
+	heat_resistance = 0.5 // not good
 	weight = 18
 	melting_point = T0C+300 //okay, not melting in this case, but hot enough to destroy wood
 	ignition_point = T0C+288
@@ -897,6 +905,7 @@ var/list/name_to_material
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#AAAAAA"
+	heat_resistance = 0.25 // very bad
 	hardness = 1
 	weight = 1
 	ignition_point = T0C+232 //"the temperature at which book-paper catches fire, and burns." close enough
@@ -918,6 +927,7 @@ var/list/name_to_material
 	name = MATERIAL_CLOTH
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	door_icon_base = "wood"
+	heat_resistance = 0.25 // very bad
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	flags = MATERIAL_PADDING

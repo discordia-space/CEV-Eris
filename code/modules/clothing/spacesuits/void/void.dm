@@ -241,7 +241,7 @@
 				tank.forceMove(get_turf(src))
 				src.tank = null
 			else if(choice == boots)
-				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
+				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
 				src.boots = null
 		else
