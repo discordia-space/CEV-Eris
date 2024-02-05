@@ -8,7 +8,7 @@
 	var/list/resources
 	var/seismic_activity = 1  // SEISMIC_MIN
 
-	var/thermite = 0
+	var/thermite = FALSE
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
