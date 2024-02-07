@@ -224,6 +224,16 @@
    		/datum/design/autolathe/device/headset_church
 	)
 
+/obj/item/computer_hardware/hard_drive/portable/design/nt_ritual
+	disk_name = "NeoTheology Supplies - \"Ritualis Supplies\""
+	icon_state = "neotheology"
+	
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/nt_clothes/ritual_robe,
+		/datum/design/bioprinter/candles
+	)
+
 // Basic melee
 /obj/item/computer_hardware/hard_drive/portable/design/nt_melee
 	disk_name = "NeoTheology Armory - \"Hastatii Arms\""
