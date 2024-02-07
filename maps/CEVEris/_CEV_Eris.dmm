@@ -92595,6 +92595,7 @@
 /obj/item/device/synthesized_instrument/guitar/multi,
 /obj/item/device/synthesized_instrument/guitar,
 /obj/item/device/synthesized_instrument/synthesizer,
+/obj/item/toy/plushie/fumo/bocchi,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "erF" = (
@@ -102369,6 +102370,7 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/mug/gold,
+/obj/item/stamp/nt,
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
 "lCK" = (
