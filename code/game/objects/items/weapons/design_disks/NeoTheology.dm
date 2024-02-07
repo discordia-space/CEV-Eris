@@ -227,6 +227,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/nt_ritual
 	disk_name = "NeoTheology Supplies - \"Ritualis Supplies\""
 	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
 	
 	license = -1
 	designs = list(
