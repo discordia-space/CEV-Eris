@@ -45,13 +45,13 @@
 	glass = TRUE
 	assembly_type = /obj/structure/door_assembly/multi_tile
 
+/obj/machinery/door/airlock/multi_tile/glass/get_overlay_icon()
+	return 'icons/obj/doors/door2x1_misc.dmi'
+
 /obj/machinery/door/airlock/multi_tile/metal
 	name = "Airlock"
 	icon = 'icons/obj/doors/Door2x1metal.dmi'
 	assembly_type = /obj/structure/door_assembly/multi_tile
-
-/obj/machinery/door/airlock/multi_tile/metal/get_overlay_icon()
-	return 'icons/obj/doors/door2x1_misc.dmi'
 
 /obj/machinery/door/airlock/multi_tile/New()
 	..()
