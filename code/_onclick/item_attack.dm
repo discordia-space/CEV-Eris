@@ -40,7 +40,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/mob/living/carbon/human/H = user
 		if(H.blocking)
 			H.stop_blocking()
-	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
+	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user && !no_swing)
 		swing_attack(A, user, params)
 		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
 			return A.attackby(src, user, params)
