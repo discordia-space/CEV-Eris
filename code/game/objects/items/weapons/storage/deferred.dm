@@ -81,8 +81,8 @@
 
 /obj/item/storage/deferred/comms
 	name = "communications kit"
-	desc = "A box full of radios and beacons"
-	initial_contents = list(/obj/item/device/radio/beacon = 6, /obj/item/device/radio = 6)
+	desc = "A box full of radios"
+	initial_contents = list(/obj/item/device/radio = 6)
 
 /obj/item/storage/deferred/lights
 	name = "illumination kit"
