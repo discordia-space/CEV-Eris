@@ -115,6 +115,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	opacity = 0
 	glass = 1
 
+/obj/machinery/door/airlock/glass/get_overlay_icon()
+	return icon
+
 /obj/machinery/door/airlock/centcom
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorele.dmi'
