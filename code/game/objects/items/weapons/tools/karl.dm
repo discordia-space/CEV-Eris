@@ -42,6 +42,7 @@
 	var/projectile			// Holder for bullettype
 	var/shot_sound 			// What sound should play when the gun fires
 	var/reqpower = 10		// Power needed to shoot
+	var/isPumping = FALSE   // Whether someone is currently pumping the KARL to recharge it
 
 /obj/item/tool/karl/New()
 	. = ..()
@@ -93,13 +94,18 @@
 	if(gunmode)
 		if(cell)
 			if(!cell.fully_charged())
+				if(isPumping)
+					to_chat(user, SPAN_NOTICE("You are already pumping \the [src] to recharge it."))
 				var/pumping_time = wielded ? 1 SECOND : 2 SECONDS
+				isPumping = TRUE
 				if(do_after(user, pumping_time))
 					if(cell)  // Check the cell is still there in case big brain player chose to remove it during pumping
 						cell.give(use_power_cost * 1 SECOND) // Enough to use the tool during 1 second
 						to_chat(user, SPAN_NOTICE("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
 						// Continue pumping till user cancels the pumping
+						isPumping = FALSE
 						attack_self(user)
+				isPumping = FALSE
 			else
 				to_chat(user, SPAN_NOTICE("\The [src]\'cell is fully charged'."))
 		else
