@@ -143,6 +143,7 @@
 /obj/item/tool/karl/proc/toggle_karl_mode(mob/user)
 	gunmode = !gunmode
 	to_chat(user, SPAN_NOTICE("\The [src] switches to [gunmode ? "gun" : "tool"] mode."))
+	no_double_tact = gunmode ? FALSE : TRUE  // No double tact in gunmode
 	update_icon()
 	update_wear_icon()
 
