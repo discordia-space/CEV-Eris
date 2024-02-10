@@ -118,9 +118,11 @@
 	. = ..()
 	if(.)
 		to_chat(user, SPAN_NOTICE("A dangerous energy blade now covers the edges of the tool."))
+		force = WEAPON_FORCE_ROBUST  // Increased damage when KARL is turned on
 
 /obj/item/tool/karl/turn_off(mob/user)
 	to_chat(user, SPAN_NOTICE("The energy blade swiftly retracts."))
+	force = initial(force)  // Back to standard damage when KARL is turned off
 	..()
 
 // Same values than /obj/item/proc/use_tool
