@@ -7,6 +7,112 @@
 		return C.charge/C.maxcharge
 	return null
 
+/obj/item/tool/hammer/mace/mech
+	name = "mech mace"
+	desc = "What are you standing around staring at this for? You shouldn't be seeing this..."
+	tool_qualities = list(QUALITY_HAMMERING = 45)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
+	wielded = TRUE
+	canremove = FALSE
+	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
+	spawn_blacklisted = TRUE
+
+#define OVERKEY_MACE "blade_overlay"
+/obj/item/mech_mace_assembly
+	name = "unfinished mech blade"
+	desc = "A mech-blade framework lacking a blade."
+	icon_state = "mech_mace_assembly"
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
+	var/material/head_mat = null
+
+/obj/item/mech_mace_assembly/Initialize()
+	. = ..()
+	AddComponent(/datum/component/overlay_manager)
+
+/obj/item/mech_mace_assembly/examine(user, distance)
+	. = ..()
+	if(.)
+		to_chat(user , SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic head.\n\
+		Use a wrench to make this mountable. This is not reversible."))
+
+/obj/item/mech_mace_assembly/attackby(obj/item/I, mob/living/user, params)
+	if(istool(I))
+		var/obj/item/tool/thing = I
+		if(thing.has_quality(QUALITY_BOLT_TURNING))
+			if(!head_mat)
+				to_chat(user, SPAN_NOTICE("You can't tighten the head-mechanism onto a head of air!"))
+				return
+			to_chat(user, SPAN_NOTICE("You start tightening \the [src] onto the head made of [head_mat.display_name]."))
+			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, 0, STAT_MEC, 150))
+				if(QDELETED(src))
+					return
+				to_chat(user, SPAN_NOTICE("You tighten the blade on \the [src], creating a mech-mountable blade."))
+				var/obj/item/mech_equipment/mounted_system/mace/le_mech_comp = new /obj/item/mech_equipment/mounted_system/mace(get_turf(src))
+				var/obj/item/tool/hammer/mace/mech/le_mech_mace = le_mech_comp.holding
+				// DULL BLADE gets DULL DAMAGE
+				le_mech_mace.force = min(WEAPON_FORCE_LETHAL, max(0,(head_mat.hardness)/2))
+				le_mech_mace.matter = list(head_mat.name = 5)
+				le_mech_comp.material_color = head_mat.icon_colour
+				qdel(src)
+				return
+
+	if(!istype(I, /obj/item/stack/material))
+		return ..()
+	if(head_mat)
+		to_chat(user, SPAN_NOTICE("There is already a blade formed! You can remove it by using it in hand."))
+		return
+	var/obj/item/stack/material/mat = I
+	if(!mat.material.hardness)
+		to_chat(user, SPAN_NOTICE("This material can't be sharpened!"))
+		return
+	if(mat.can_use(5))
+		if(mat.use(5))
+			to_chat(user , SPAN_NOTICE("You insert 5 sheets of \the [mat] into \the [src]."))
+			head_mat = mat.material
+			matter[mat.material.name]+= 5
+			update_icon()
+
+/obj/item/mech_mace_assembly/attack_self(mob/user)
+	if(head_mat)
+		to_chat(user, SPAN_NOTICE("You start removing the head from \the [src]."))
+		if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
+			// No duping!!
+			if(!head_mat)
+				to_chat(user, SPAN_NOTICE("There is no material left to remove from \the [src]."))
+				return
+			to_chat(user, SPAN_NOTICE("You remove 5 sheets of [head_mat.display_name] from \the [src]'s head attachment point."))
+			matter[head_mat.name]-= 5
+			var/obj/item/stack/material/mat_stack = new head_mat.stack_type(get_turf(user))
+			mat_stack.amount = 5
+			head_mat = null
+			update_icon()
+
+/obj/item/mech_mace_assembly/update_icon()
+	. = ..()
+	var/datum/component/overlay_manager/thing = GetComponent(/datum/component/overlay_manager)
+	if(thing)
+		thing.removeOverlay(OVERKEY_MACE)
+		if(head_mat)
+			var/mutable_appearance/overlay = mutable_appearance(src.icon, "[icon_state]_material")
+			overlay.color = head_mat.icon_colour
+			thing.addOverlay(OVERKEY_MACE, overlay)
+
+#undef OVERKEY_MACE
+
+/obj/item/mech_equipment/mounted_system/mace
+	name = "\improper NT \"Warcrack\" mace"
+	desc = "An exosuit-mounted mace. The real mace for soldiers of luck."
+	icon_state = "mech_blade"
+	holding_type = /obj/item/tool/hammer/mace/mech
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+	spawn_blacklisted = TRUE
+	var/material_color = null
+	var/obj/visual_bluff = null
+
+/obj/item/mech_equipment/mounted_system/mace/get_additional_icon_info()
+	return active ? "_on" : "_off"
 /obj/item/tool/sword/mech
 	name = "mech blade"
 	desc = "What are you standing around staring at this for? You shouldn't be seeing this..."
