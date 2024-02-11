@@ -22,6 +22,14 @@
 	if(current_rank != rank && (!take_larger || current_rank < rank))
 		psi.set_rank(faculty, rank, defer_update, temporary)
 
+/mob/living/proc/set_psi_power(amount = 0, additive = FALSE, defer_update = FALSE)
+	if(!src.targeted_organ) // What is this for? x2
+		to_chat(src, SPAN_NOTICE("You feel something strange brush against your mind... but your brain is not able to grasp it."))
+		return
+	if(!psi)
+		psi = new(src)
+	psi.set_rank(amount, additive, defer_update)
+
 /mob/living/proc/deflect_psionic_attack(attacker)
 
 /* TODO: replace with our version of psi protection, taking NT into account

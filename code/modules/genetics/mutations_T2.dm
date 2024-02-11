@@ -64,3 +64,8 @@
 /datum/mutation/t2/spider_pheromones/cleanse(mob/living/carbon/user)
 	if(..())
 		user.verbs -= /mob/living/carbon/human/proc/spider_pheromones
+
+/datum/mutation/t2/psionic_compatibility_low
+	name = "Psionic Attunement"
+	desc = "Improves the brain's connections to psionic energies, unlocking Operant level Psionic powers without the need for psionic drugs."
+	NSA_load = 0

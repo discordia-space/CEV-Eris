@@ -19,6 +19,9 @@
 			highest_faculty = faculty
 			highest_rank = check_rank
 
+	// To determine powerlevel we add up every source of power: this will be Chem Signals, Genetic Mutations (only the highest grade), and Perks
+	power_level = (get_active_mutation(src, MUTATION_PSI_HIGH) ? 3 : (get_active_mutation(src, MUTATION_PSI_LOW) ? 2 : 0)) + power_bonus
+
 	UNSETEMPTY(latencies)
 	var/rank_count = max(1, LAZYLEN(ranks))
 	if(force || last_rating != ceil(combined_rank/rank_count))
@@ -30,9 +33,11 @@
 			rebuild_power_cache = TRUE
 			sound_to(owner, 'sound/effects/psi/power_unlock.ogg')
 			rating = ceil(combined_rank/rank_count)
+
+			// We use a rating system relying on Genetics - the power_level variable
 			cost_modifier = 1
-			if(rating > 1)
-				cost_modifier -= min(1, max(0.1, (rating-1) / 10))
+			if(power_level > 1)
+				cost_modifier -= min(1, max(0.1, (power_level-1) / 10))
 			if(!ui)
 				ui = new(owner)
 				if(owner.client)
@@ -47,9 +52,10 @@
 					owner.client.images |= thing
 
 			var/image/aura_image = get_aura_image()
-			if(rating >= PSI_RANK_PARAMOUNT) // spooky boosters
-				aura_color = "#aaffaa"
+			if(power_level >= PSI_RANK_PARAMOUNT) // spooky boosters
 				aura_image.blend_mode = BLEND_SUBTRACT
+			if(rating >= PSI_RANK_PARAMOUNT)
+				aura_color = "#aaffaa"
 			else
 				aura_image.blend_mode = BLEND_ADD
 				if(highest_faculty == PSI_COERCION)

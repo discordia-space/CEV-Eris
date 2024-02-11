@@ -32,20 +32,24 @@
 	return TRUE
 
 /datum/antagonist/paramount/equip()
-	var/mob/living/L = owner.current
+	var/mob/living/carbon/human/H = owner.current
 
 	for(var/name in stat_modifiers)
-		L.stats.changeStat(name, stat_modifiers[name])
+		H.stats.changeStat(name, stat_modifiers[name])
 
 	if(!owner.current)
 		return FALSE
 
 //	owner.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/psi_amp(owner), slot_head)
-	L.set_psi_rank(PSI_REDACTION, 3,     defer_update = TRUE)
-	L.set_psi_rank(PSI_COERCION, 3,      defer_update = TRUE)
-	L.set_psi_rank(PSI_PSYCHOKINESIS, 3, defer_update = TRUE)
-	L.set_psi_rank(PSI_ENERGISTICS, 3,   defer_update = TRUE)
-	L.psi.update(TRUE)
+	H.set_psi_rank(PSI_REDACTION, 3,     defer_update = TRUE)
+	H.set_psi_rank(PSI_COERCION, 3,      defer_update = TRUE)
+	H.set_psi_rank(PSI_PSYCHOKINESIS, 3, defer_update = TRUE)
+	H.set_psi_rank(PSI_ENERGISTICS, 3,   defer_update = TRUE)
+	H.set_psi_power(3, FALSE, defer_update = TRUE)
+	if(!get_active_mutation(H, MUTATION_PSI_HIGH))
+		var/datum/mutation/M = new MUTATION_PSI_HIGH
+		M.imprint(H)
+	H.psi.update(TRUE)
 
 /*
 	owner.equip_to_slot_or_del(new /obj/item/clothing/under/psysuit(owner), slot_w_uniform)

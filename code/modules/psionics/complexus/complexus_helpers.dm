@@ -31,6 +31,11 @@
 		if(!defer_update)
 			update()
 
+/datum/psi_complexus/proc/set_power(amount = 0, additive = FALSE, defer_update)
+	power_bonus = additive ? (power_bonus + amount) : amount
+	if(!defer_update)
+		update()
+
 /datum/psi_complexus/proc/set_cooldown(value)
 	next_power_use = world.time + value
 	ui.update_icon()

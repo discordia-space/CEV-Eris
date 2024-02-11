@@ -149,7 +149,7 @@
 	min_rank =        PSI_RANK_PARAMOUNT // But at least it is limited to the HIGHLY red paragraph antagonist
 	faculty =         PSI_REDACTION
 	use_description = "Obtain a grab on a dead target, target the head, then select help intent and use the grab against them to attempt to bring them back to life. The process is lengthy and failure is punished harshly."
-	admin_log = FALSE
+	admin_log = TRUE
 
 /decl/psionic_power/revive/invoke(mob/living/user, mob/living/target)
 	if(!isliving(target) || !istype(target) || user.targeted_organ != BP_HEAD)

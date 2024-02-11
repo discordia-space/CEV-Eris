@@ -11,11 +11,14 @@
 	var/next_power_use = 0            // world.time minimum before next power use.
 	var/stamina = 50                  // Current psi pool.
 	var/max_stamina = 50              // Max psi pool.
-	var/armor_cost = 0                // Amount of power to substract this tick from psi armor blocking damage
+	var/armor_cost = 0                // Amount of power to substract this tick from psi armor blocking damage.
+
+	var/power_level = 0				// Psi Power Level determined by Genetics, and similar factors.
+	var/power_bonus = 0				// Not normally measurable Psi Power obtained from external means. As a result of coding method, lost permanently if all ranks are set to 0 or lower.
 
 	var/list/latencies                // List of all currently latent faculties.
 	var/list/ranks                    // Assoc list of psi faculties to current rank.
-	var/list/base_ranks               // Assoc list of psi faculties to base rank, in case reset is needed
+	var/list/base_ranks               // Assoc list of psi faculties to base rank, in case reset is needed.
 	var/list/manifested_items         // List of atoms manifested/maintained by psychic power.
 	var/next_latency_trigger = 0      // world.time minimum before a trigger can be attempted again.
 	var/last_aura_size
