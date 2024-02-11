@@ -15,9 +15,9 @@
 
 /obj/item/flame/candle/update_icon()
 	var/i
-	if(wax > 1500)
+	if(wax > 900)
 		i = 1
-	else if(wax > 800)
+	else if(wax > 700)
 		i = 2
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
