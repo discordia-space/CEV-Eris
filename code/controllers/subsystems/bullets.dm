@@ -44,6 +44,12 @@ SUBSYSTEM_DEF(bullets)
 	var/bulletLevel = 0
 
 /datum/bullet_data/New(atom/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
+	if(!target)
+		message_admins("Created bullet without target , [referencedBullet]")
+		return
+	if(!firer)
+		message_admins("Created bullet without firer, [referencedBullet]")
+		return
 	src.referencedBullet = referencedBullet
 	src.currentTurf = get_turf(referencedBullet)
 	src.currentCoords = list(referencedBullet.pixel_x, referencedBullet.pixel_y, 0)
@@ -97,8 +103,8 @@ SUBSYSTEM_DEF(bullets)
 	var/list/coordinates = list(0,0,0)
 	// These add 0.0001 so in the case we are firing straight we don't have to handle special cases(division by 0)
 	// The 0.0001 are meaningless overall considering the scale of calculation.
-	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1] - firedCoordinates[1]) / PPT + 0.0001
-	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2] - firedCoordinates[2]) / PPT + 0.0001
+	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1] - firedCoordinates[1]) / PPT + 0.0000000001
+	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2] - firedCoordinates[2]) / PPT + 0.0000000001
 	var/r = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
 	coordinates[3] = (targetCoords[3] - firedCoordinates[3] + targetLevel - firedLevel)/r
 	coordinates[1] = coordinates[1]/r
@@ -107,27 +113,40 @@ SUBSYSTEM_DEF(bullets)
 	if(referencedBullet)
 		var/matrix/rotation = matrix()
 		// we get the angle of the trajectory by incrementing it.
-		rotation.Turn(getAngleCoordinates(coordinates[1] * 2, coordinates[2] * 2, coordinates[1], coordinates[2]))
+		rotation.Turn(getAngleCoordinates(targetTurf.x, targetTurf.y, firedTurf.x, firedTurf.y))
 		referencedBullet.transform = rotation
 	movementRatios = coordinates
 
-/datum/bullet_data/proc/ricochet(atom/wall)
-	var/list/bCoords = list(referencedBullet.x, referencedBullet.y)
+/datum/bullet_data/proc/ricochet(atom/wall, implementation)
+	var/list/bCoords = list(referencedBullet.x, referencedBullet.y, referencedBullet.pixel_x, referencedBullet.pixel_y)
 	var/list/wCoords = list(wall.x, wall.y)
-	var/list/cCoords = list(abs(bCoords[1] - wCoords[1] + 0.00001), abs(bCoords[2] - wCoords[2] + 0.00001))
-	var/list/tCoords = list(0,0)
-	var/ipothenuse = sqrt(cCoords[1]**2 + cCoords[2]**2)
-	if(cCoords[1] > cCoords[2])
-		var/s = cCoords[1]/ipothenuse
-		s = 90 - arcsin(s)
-		if(s < 30)
-			cCoords[1] = -cCoords[1]
+	if(implementation == 1)
+		var/list/cCoords = list(abs(bCoords[1] - wCoords[1] + 0.00001), abs(bCoords[2] - wCoords[2] + 0.00001))
+		var/list/tCoords = list(0,0)
+		var/ipothenuse = sqrt(cCoords[1]**2 + cCoords[2]**2)
+		if(cCoords[1] > cCoords[2])
+			var/s = cCoords[1]/ipothenuse
+			s = 90 - arcsin(s)
+			if(s < 30)
+				cCoords[1] = -cCoords[1]
+		else
+			var/s = cCoords[2]/ipothenuse
+			s = 90 - arcsin(s)
+			if(s < 30)
+				cCoords[2] = -cCoords[2]
+		return cCoords
 	else
-		var/s = cCoords[2]/ipothenuse
-		s = 90 - arcsin(s)
-		if(s < 30)
-			cCoords[2] = -cCoords[2]
-	return cCoords
+		var/bSlope = (referencedBullet.y + referencedBullet.pixel_y )/(referencedBullet.x + referencedBullet.pixel_x)
+		var/trueAngle = 0
+		if(targetCoords[1] > targetCoords[2])
+			trueAngle = arctan(bSlope)
+		else
+			trueAngle = 180 - arctan(bSlope)
+
+		message_admins("TRUE ANGLE - [trueAngle]")
+
+
+
 
 /datum/bullet_data/proc/updateLevel()
 	switch(currentCoords[3])
@@ -172,7 +191,7 @@ SUBSYSTEM_DEF(bullets)
 		current_queue = bullet_queue.Copy()
 	for(var/datum/bullet_data/bullet in current_queue)
 		current_queue -= bullet
-		if(!istype(bullet.referencedBullet, /obj/item/projectile/bullet))
+		if(!istype(bullet.referencedBullet, /obj/item/projectile/bullet) || QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
 			continue
 		var/px = bullet.movementRatios[1] * bullet.turfsPerTick + bullet.currentCoords[1]
@@ -184,7 +203,7 @@ SUBSYSTEM_DEF(bullets)
 		var/turfsTraveled = 0
 		var/turf/target_turf
 		while(px >= PPT/2 || py >= PPT/2 || px <= -PPT/2 || py <= -PPT/2 || pz > 1 || pz < 0)
-			message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px], pz = [pz]")
+			//message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px], pz = [pz]")
 			if(QDELETED(bullet.referencedBullet))
 				bullet_queue -= bullet
 				break
@@ -211,6 +230,9 @@ SUBSYSTEM_DEF(bullets)
 				bullet_queue -= bullet
 				break
 			//if(iswall(target_turf) && target_turf:projectileBounceCheck())
+
+			if(iswall(target_turf))
+				bullet.ricochet(target_turf, 2)
 			bullet.updateLevel()
 
 			if(target_turf)
@@ -223,8 +245,10 @@ SUBSYSTEM_DEF(bullets)
 		bullet.currentCoords[1] = px
 		bullet.currentCoords[2] = py
 		bullet.currentCoords[3] = pz
-		bullet.referencedBullet.pixel_x = -turfsTraveled * bullet.movementRatios[1]
-		bullet.referencedBullet.pixel_y = -turfsTraveled * bullet.movementRatios[2]
+		bullet.referencedBullet.pixel_x = -turfsTraveled * bullet.movementRatios[1] - 8 * x_change
+		bullet.referencedBullet.pixel_y = -turfsTraveled * bullet.movementRatios[2] - 8 * y_change
+		if(turfsTraveled < 1)
+			turfsTraveled = 0.5
 		animate(bullet.referencedBullet, 1/turfsTraveled,  pixel_x = round(bullet.currentCoords[1]), pixel_y = round(bullet.currentCoords[2]))
 		if(QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
