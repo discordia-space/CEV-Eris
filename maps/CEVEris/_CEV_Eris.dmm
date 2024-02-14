@@ -105608,8 +105608,8 @@
 /obj/structure/table/woodentable,
 /obj/item/gun/projectile/shotgun/doublebarrel,
 /obj/item/reagent_containers/bonsai{
-	pixel_x = null;
-	pixel_y = null
+	pixel_x = 0;
+	pixel_y = 0
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1

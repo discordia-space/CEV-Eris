@@ -27,6 +27,8 @@
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_civilian
 	START_PROCESSING(SSobj, src)
+	icon_state = "bonsai_[rand(1, 4)]"
+//make the bonsai a random color each round
 
 /obj/item/reagent_containers/bonsai/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -56,8 +58,3 @@
 					"potato",
 					"rice")]
 				S.harvest(get_turf(src),0,0,1)
-
-/obj/item/reagent_containers/bonsai/New()
-	..()
-	icon_state = "bonsai_[rand(1, 4)]"
-//make the bonsai a random color each round
