@@ -232,7 +232,58 @@ SUBSYSTEM_DEF(bullets)
 			//if(iswall(target_turf) && target_turf:projectileBounceCheck())
 
 			if(iswall(target_turf))
-				bullet.ricochet(target_turf, 2)
+				var/list/bulletCoords = list(px,py)
+				var/list/wallCoords = list(0,0)
+				var/direction = null
+				if(x_change > 0)
+					direction &= EAST
+				else if(x_change < 0)
+					direction &= WEST
+				if(y_change > 0)
+					direction &= NORTH
+				else if(y_change < 0)
+					direction &= SOUTH
+				switch(direction)
+					if(NORTH)
+						wallCoords[1] = 0
+						wallCoords[2] = 8
+					if(NORTHEAST)
+						wallCoords[1] = 8
+						wallCoords[2] = 8
+					if(EAST)
+						wallCoords[1] = 8
+						wallCoords[2] = 0
+					if(SOUTHEAST)
+						wallCoords[1] = 8
+						wallCoords[2] = -8
+					if(SOUTH)
+						wallCoords[1] = 0
+						wallCoords[2] = -8
+					if(SOUTHWEST)
+						wallCoords[1] = -8
+						wallCoords[2] = -8
+					if(WEST)
+						wallCoords[1] = -8
+						wallCoords[2] = 0
+					if(NORTHWEST)
+						wallCoords[1] = -8
+						wallCoords[2] = 8
+				message_admins("Angle for this bullet is said to be [arctan(wallCoords[1] - bulletCoords[1], wallCoords[2] - bulletCoords[2])], reversed : [arctan(bulletCoords[1] - wallCoords[1], bulletCoords[2] - wallCoords[2])]")
+				/*
+				var/trueAngle = 0
+				var/bSlope = (referencedBullet.y + referencedBullet.pixel_y )/(referencedBullet.x + referencedBullet.pixel_x)
+				if(x_change > 0)
+					if(y_change > 0)
+						/// we get the ratio between the x and y tilt. this will tell if the bullet is coming to hit top right or just right top
+						//var/ratio = bullet.movementRatios[1]/bullet.movementRatios[2]
+						if(px < py)
+							trueAngle = arctan(bSlope)
+						else
+							trueAngle = 180 - arctan(bSlope)
+					else
+				*/
+
+
 			bullet.updateLevel()
 
 			if(target_turf)
