@@ -11,7 +11,6 @@
 
 	icon = 'icons/obj/bonsai.dmi'
 	icon_state = "bonsai_1"
-	layer = ABOVE_MOB_LAYER
 
 	volume = 100 //Average bottle volume
 	reagent_flags = OPENCONTAINER
