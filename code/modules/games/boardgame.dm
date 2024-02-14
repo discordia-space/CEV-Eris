@@ -177,7 +177,7 @@ obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
 
 /obj/item/checker/queen
 	name = "black checker queen"
-	desc = "two black checkers stacked to form a queen, this one seems to have been glued."
+	desc = "Two black checkers stacked to form a queen. This one seems to have been glued together..."
 	icon_state = "checker_black_queen"
 
 /obj/item/checker/white
