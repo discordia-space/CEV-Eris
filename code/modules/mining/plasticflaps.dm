@@ -6,7 +6,6 @@
 	density = FALSE
 	anchored = TRUE
 	layer = 4
-	explosion_resistance = 5
 /*
 /obj/structure/plasticflaps/CanAStarPass(obj/item/card/id/ID, to_dir, caller)
 	if(istype(caller, /obj/machinery/bot/mulebot))
