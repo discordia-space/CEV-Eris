@@ -59,7 +59,7 @@
 	mod.holder = null
 
 	if (user)
-		to_chat(user, "You detatch \the [mod] from \the [src].")
+		to_chat(user, "You detach \the [mod] from \the [src].")
 
 	mod.uninstalled(src, user)
 	if (delete)

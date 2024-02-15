@@ -105,7 +105,7 @@
 			for(var/obj/item/ammo_casing/temp_casing in chambered.loc)
 				if(temp_casing == chambered)
 					continue
-				if((temp_casing.desc == chambered.desc) && !temp_casing.BB)
+				if((temp_casing.type == chambered.type) && !temp_casing.BB)
 					var/temp_amount = temp_casing.amount + chambered.amount
 					if(temp_amount > chambered.maxamount)
 						temp_casing.amount -= (chambered.maxamount - chambered.amount)
@@ -217,7 +217,7 @@
 
 		if(C.amount > 1)
 			C.amount -= 1
-			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(C)	//Couldn't make it seperate, so it must be cloned
+			var/obj/item/ammo_casing/inserted_casing = new C.type(C)	//Couldn't make it seperate, so it must be cloned
 			loaded.Insert(1, inserted_casing)
 		else
 			user.remove_from_mob(C)

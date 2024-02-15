@@ -136,6 +136,10 @@
 	. = ..()
 	if(throw_through(I,user))
 		return
+	else if(istype(I, /obj/item/mech_equipment) || istype(I, /obj/item/mech_component) || istype(I, /obj/item/tool/mech_kit))
+		var/mob/living/exosuit = I.getContainingAtom()
+		if(exosuit)
+			attack_hand(exosuit)
 	else
 		attack_hand(user)
 
@@ -241,6 +245,10 @@
 	description_antag = "Don't try placing traps/slippery items at the stair exit directly. They will not work"
 	icon_state = "ramptop"
 	layer = 2.4
+
+/obj/structure/multiz/stairs/can_prevent_fall(above)
+	return above ? FALSE : TRUE
+
 
 /obj/structure/multiz/stairs/enter
 	icon_state = "ramptop"

@@ -97,6 +97,7 @@
 	volume = 5
 	preloaded_reagents = list("inaprovaline" = 5)
 	spawn_blacklisted = TRUE
+	var/image/filling_overlay
 
 /obj/item/reagent_containers/hypospray/autoinjector/on_reagent_change()
 	..()
@@ -107,11 +108,15 @@
 	cut_overlays()
 	if(reagents && reagents.total_volume > 0)
 		icon_state = initial(icon_state)
-		var/image/filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector")
+		filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector")
 		filling_overlay.color = reagents.get_color()
 		add_overlay(filling_overlay)
 	else
-		icon_state = "[initial(icon_state)]0"
+		if(reagents && reagents.total_volume <= 0)
+			filling_overlay = mutable_appearance('icons/obj/reagentfillings.dmi', "autoinjector0")
+			filling_overlay.color = reagents.get_color()
+			add_overlay(filling_overlay)
+			icon_state = "[initial(icon_state)]0"
 
 // TRADE
 /obj/item/reagent_containers/hypospray/autoinjector/antitoxin

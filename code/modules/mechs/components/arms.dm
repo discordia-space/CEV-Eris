@@ -6,9 +6,17 @@
 
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 10)
+	can_gib = TRUE
+	gib_hits_needed = 10
 	var/melee_damage = WEAPON_FORCE_PAINFUL
 	var/action_delay = 15
+	/// if they can force open powered doors
+	var/can_force_doors = TRUE
 	var/obj/item/robot_parts/robot_component/actuator/motivator
+	tool_qualities = list(
+		QUALITY_HAMMERING = 30,
+		QUALITY_PRYING = 20
+	)
 	var/punch_sound = ('sound/mechs/mech_punch.ogg')
 
 /obj/item/mech_component/manipulators/Destroy()
@@ -50,6 +58,7 @@
 	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
 	exosuit_desc_string = "industrial lifter arms"
 	icon_state = "loader_arms"
+	can_force_doors = FALSE
 	max_damage = 90
 	power_use = 30
 
@@ -59,6 +68,7 @@
 	desc = "As flexible as they are fragile, these manipulators can follow a pilot's movements in close to real time."
 	icon_state = "light_arms"
 	action_delay = 5
+	can_force_doors = FALSE
 	max_damage = 45
 	power_use = 10
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)

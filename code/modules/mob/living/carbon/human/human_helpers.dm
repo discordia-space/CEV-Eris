@@ -112,6 +112,10 @@
 		process_glasses(G,TRUE)
 
 /mob/living/carbon/human/reset_layer()
+	/// The forklift handles it for us here.
+	if(istype(loc, /obj/item/mech_equipment/forklifting_system))
+		if(lying) set_plane(LYING_HUMAN_PLANE)
+		return
 	if(hiding)
 		set_plane(HIDING_MOB_PLANE)
 		layer = HIDING_MOB_LAYER

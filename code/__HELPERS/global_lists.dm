@@ -123,7 +123,8 @@ var/global/list/organ_tag_to_name = list(
 	groin = "groin",l_leg = "left leg",
 	chest2= "back", heart = "heart",
 	lungs  = "lungs", liver = "liver",
-	"left kidney" = "left kidney", "right kidney" = "right kidney",
+	"left kidney" = "left kidney", 
+	"right kidney" = "right kidney",
 	stomach = "stomach", brain = "brain"
 	)
 

@@ -91,8 +91,8 @@
 
 		messageturfs += turf
 
-	
-	
+
+
 	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
 		if(!M.client)
 			continue
@@ -609,6 +609,11 @@
 	if (AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
+
+	if(SEND_SIGNAL(AM, COMSIG_ATTEMPT_PULLING) == COMSIG_PULL_CANCEL)
+		to_chat(src, SPAN_WARNING("It won't budge!"))
+		return
+
 
 	var/mob/M = AM
 	if(ismob(AM))
