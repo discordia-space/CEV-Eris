@@ -116,9 +116,6 @@
 	if (config.log_adminwarn)
 		game_log("ADMINWARN", text)
 
-/proc/log_pda(text)
-	if (config.log_pda)
-		game_log("PDA", text)
 
 /**
  * Appends a tgui-related log entry. All arguments are optional.

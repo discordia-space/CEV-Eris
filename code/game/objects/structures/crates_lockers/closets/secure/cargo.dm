@@ -69,7 +69,7 @@
 	new/obj/item/clothing/glasses/monocle(src)
 	new/obj/item/storage/fancy/crayons(src)
 	new/obj/item/reagent_containers/spray/waterflower(src)
-	new/obj/item/device/pda/clown(src)
+	new/obj/item/modular_computer/pda/artist(src)
 	new/obj/item/clothing/mask/gas/plaguedoctor(src)
 	new/obj/item/clothing/gloves/color/green(src)
 	new/obj/item/clothing/gloves/color/rainbow(src)

@@ -15,7 +15,6 @@
 
 /datum/unit_test/zas_area_test/Run()
 	var/list/normal_test = list(
-		/area/supply/dock,
 		/area/shuttle/escape/centcom,
 		/area/turret_protected/ai,
 		/area/shuttle/mining/station,

@@ -74535,9 +74535,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/status_display/supply_display{
-	pixel_x = -32
-	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/eris/command/meeting_room)
 "dyF" = (
@@ -102871,27 +102868,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck3port)
 "nnj" = (
-/obj/structure/closet/wardrobe/color/pink,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/bikehorn,
-/obj/item/reagent_containers/spray/waterflower,
-/obj/item/reagent_containers/spray/waterflower,
-/obj/item/storage/fancy/crayons,
-/obj/item/storage/fancy/crayons,
-/obj/item/device/pda/clown,
-/obj/item/device/pda/clown,
-/obj/item/clothing/mask/gas/plaguedoctor,
-/obj/item/clothing/mask/gas/plaguedoctor,
-/obj/item/clothing/glasses/monocle,
-/obj/item/clothing/glasses/monocle,
+/obj/structure/closet/wardrobe/color/pink/artist,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clownoffice)
 "npf" = (
@@ -107148,12 +107125,6 @@
 	},
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay/organs)
-"xwS" = (
-/obj/machinery/status_display/supply_display{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/steel,
-/area/eris/quartermaster/hangarsupply)
 "xxt" = (
 /obj/structure/closet/crate/hydroponics,
 /obj/item/tool/minihoe,
@@ -130660,7 +130631,7 @@ ato
 ato
 ato
 ato
-xwS
+ato
 ato
 fFd
 atx

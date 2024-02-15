@@ -1,16 +1,3 @@
-
-/area/supply/station
-	name = "supply shuttle"
-	icon_state = "shuttle3"
-	requires_power = 0
-
-/area/supply/dock
-	name = "supply shuttle"
-	icon_state = "shuttle3"
-	requires_power = 0
-
-//SUPPLY PACKS MOVED TO /code/modules/cargo/packs.dm
-
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
 	desc = "Completely impassable - or are they?"

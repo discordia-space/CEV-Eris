@@ -538,9 +538,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
 
-				if("allow_holidays")
-					Holiday = 1
-
 				if("use_irc_bot")
 					use_irc_bot = 1
 
@@ -852,7 +849,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		else //probably windows, if not this should work anyway
 			config.python_path = "python"
 
-	world.name = station_name()
+	world.name = station_name
 
 
 /datum/configuration/proc/LoadChatFilter()
