@@ -236,13 +236,13 @@ SUBSYSTEM_DEF(bullets)
 				var/list/wallCoords = list(0,0)
 				var/direction = null
 				if(x_change > 0)
-					direction &= EAST
+					direction |= EAST
 				else if(x_change < 0)
-					direction &= WEST
+					direction |= WEST
 				if(y_change > 0)
-					direction &= NORTH
+					direction |= NORTH
 				else if(y_change < 0)
-					direction &= SOUTH
+					direction |= SOUTH
 				switch(direction)
 					if(NORTH)
 						wallCoords[1] = 0
