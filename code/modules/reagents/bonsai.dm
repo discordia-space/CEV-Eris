@@ -9,8 +9,8 @@
 	name = "Laurelin bonsai"
 	desc = "A small tree, gifted to the club by a previous patron. It subsists off of numerous alcohols, and produces fruits and vegetables in return."
 
-	icon = 'icons/obj/plants.dmi'
-	icon_state = "plant-21" //Placeholder until we can get a proper sprite for them.
+	icon = 'icons/obj/bonsai.dmi'
+	icon_state = "bonsai_1"
 
 	volume = 100 //Average bottle volume
 	reagent_flags = OPENCONTAINER
@@ -26,6 +26,8 @@
 	..()
 	GLOB.all_faction_items[src] = GLOB.department_civilian
 	START_PROCESSING(SSobj, src)
+	icon_state = "bonsai_[rand(1, 4)]"
+//make the bonsai a random color each round
 
 /obj/item/reagent_containers/bonsai/Destroy()
 	STOP_PROCESSING(SSobj, src)

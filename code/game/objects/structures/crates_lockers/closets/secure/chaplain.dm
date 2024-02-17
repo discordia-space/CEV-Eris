@@ -31,7 +31,7 @@
 	new /obj/item/tool/sword/nt/longsword(src)
 	new /obj/item/tool/knife/dagger/nt(src)
 	new /obj/item/storage/box/ids(src)
-
+	new /obj/item/computer_hardware/hard_drive/portable/design/nt_ritual(src)
 
 /obj/structure/closet/secure_closet/acolyte
 	name = "acolyte closet"

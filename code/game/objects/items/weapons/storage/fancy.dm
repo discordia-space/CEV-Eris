@@ -82,7 +82,7 @@
 
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
-	desc = "A pack of red candles."
+	desc = "A pack of wax candles."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candlebox5"
 	icon_type = "candle"
