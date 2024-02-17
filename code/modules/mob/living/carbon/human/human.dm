@@ -4,7 +4,6 @@
 	voice_name = "unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
-	status_flags = REBUILDING_ORGANS //will protect from gibbing before organs are built. flag should be removed by set_species in initialize
 
 	var/list/hud_list[10]
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
@@ -1020,10 +1019,6 @@ var/list/rank_prefix = list(\
 
 	for(var/obj/item/organ/internal/carrion/C in organs_to_readd)
 		C.replaced(get_organ(C.parent_organ_base))
-
-	for(var/obj/item/organ/internal/I in internal_organs)
-		I.status &= ~ORGAN_CUT_AWAY
-		I.handle_organ_eff()
 
 	status_flags &= ~REBUILDING_ORGANS
 	species.organs_spawned(src)
