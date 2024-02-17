@@ -80,7 +80,7 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/stack/cable_coil/random(src)
 
-/obj/item/storage/belt/utility/technomancer 
+/obj/item/storage/belt/utility/technomancer
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/belt/utility/technomancer/populate_contents()
@@ -91,6 +91,18 @@
 	new /obj/item/tool/wirecutters/armature(src)
 	new /obj/item/tool/shovel/power(src)
 	new /obj/item/stack/cable_coil/random(src)
+	
+/obj/item/storage/belt/utility/roboticist
+	spawn_blacklisted = TRUE
+
+/obj/item/storage/belt/utility/roboticist/populate_contents()
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/weldingtool(src)
+	new /obj/item/tool/crowbar(src)
+	new /obj/item/tool/wirecutters/pliers(src)
+	new /obj/item/stack/cable_coil/random(src)
+	new /obj/item/tool/multitool(src)
 	
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"

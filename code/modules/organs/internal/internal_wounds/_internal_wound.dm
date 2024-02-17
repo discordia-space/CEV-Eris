@@ -181,7 +181,7 @@
 						is_treated = TRUE
 					else
 						is_treated = S.use(charges_needed)
-			if(istype(I)) // check for using items without stacks
+			else if(istype(I)) // check for using items without stacks
 				is_treated = TRUE
 				qdel(I)
 			if(is_treated)

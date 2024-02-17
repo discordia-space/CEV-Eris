@@ -50,6 +50,7 @@
 	new/obj/item/clothing/suit/artist(src)
 	new/obj/item/clothing/shoes/artist_shoes(src)
 	new/obj/item/clothing/head/beret/artist(src)
+	new/obj/item/clothing/head/beret/artist/lime(src)
 	new/obj/item/clothing/glasses/artist(src)
 	new/obj/item/clothing/mask/gas/artist_hat(src)
 	new/obj/item/device/radio/headset/headset_service(src)
