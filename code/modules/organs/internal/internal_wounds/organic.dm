@@ -138,7 +138,7 @@
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_ANTITOX = 2)
 	severity = 0
-	severity_max = 3
+	severity_max = 4
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /// Cheap hack, but prevents unbalanced toxins from killing someone immediately
