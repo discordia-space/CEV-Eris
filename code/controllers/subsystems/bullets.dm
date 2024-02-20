@@ -233,8 +233,33 @@ SUBSYSTEM_DEF(bullets)
 
 			if(iswall(target_turf))
 				var/direction = null
-				var/hypotenuse = sqrt((px+8.000000001)**2 + (py+8.0000000001)**2)
-				var/angle = 9999
+				// this gets us a approxation of the intersection angle , a proper algorith would also offset the
+				//  "wall vector" towards the direction the bullet came from.
+				var/npx = abs(bullet.referencedBullet.x) + (abs(px) + 16)/PPT - target_turf.x
+				var/npy = abs(bullet.referencedBullet.y) + (abs(py) + 16)/PPT - target_turf.y
+				/// if we have nothing force it to be something , lowest number possible as this approaches 0 .
+				if(!npx)
+					npx = 1>>23
+				if(!npy)
+					npy = 1>>23
+				var/hypotenuse = sqrt(npx**2 + npy**2)
+				var/xangle = arctan(npy, npx)
+				/// angle normalization, all angles get reduced to +90  and 0.
+				if(xangle > 180)
+					xangle -= 180
+				else if(xangle < 0)
+					xangle += 180
+				if(xangle > 90)
+					xangle -= 90
+				var/yangle = 90 - xangle
+				if(yangle > 180)
+					yangle -= 180
+				else if(yangle < 0)
+					yangle += 180
+				if(yangle > 90)
+					yangle -= 90
+				if(y_change < 0)
+					xangle = 90 - yangle
 				if(x_change > 0)
 					direction |= EAST
 				else if(x_change < 0)
@@ -243,28 +268,19 @@ SUBSYSTEM_DEF(bullets)
 					direction |= NORTH
 				else if(y_change < 0)
 					direction |= SOUTH
-				message_admins("x:[x_change] | y:[y_change]")
-				message_admins("direction : [direction]")
+				//message_admins("x:[x_change] | y:[y_change]")
+				//message_admins("direction : [direction]")
+				message_admins("x-angle:[xangle] | y-angle [yangle]")
+				//message_admins("npx : [npx] | npy : [npy]")
+				if(xangle < 35)
+					message_admins("Ricochet on x-axis")
+					bullet.movementRatios[1] *= -1
+					px *= -1
+				else if(yangle < 35)
+					message_admins("Ricochet on y-axis")
+					bullet.movementRatios[2] *= -1
+					py *= -1
 
-				switch(direction)
-					if(NORTH)
-						angle = arcsin((abs(py+8)+0.000000001)/hypotenuse)
-					if(NORTHEAST)
-						angle = arcsin((abs(py+8)+0.000000001)/hypotenuse)
-					if(EAST)
-						angle = arcsin((abs(px+8)+0.000000001)/hypotenuse)
-					if(SOUTHEAST)
-						angle = arcsin((abs(px+8)+0.000000001)/hypotenuse)
-					if(SOUTH)
-						angle = arcsin((abs(py+8)+0.000000001)/hypotenuse)
-					if(SOUTHWEST)
-						angle = arcsin((abs(py+8)+0.000000001)/hypotenuse)
-					if(WEST)
-						angle = arcsin((abs(px+8)+0.000000001)/hypotenuse)
-					if(NORTHWEST)
-						angle = arcsin((abs(px+8)+0.000000001)/hypotenuse)
-
-				message_admins("THE ANGLE IS [angle]")
 
 
 
