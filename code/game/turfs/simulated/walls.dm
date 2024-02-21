@@ -221,6 +221,7 @@
 
 	Proj.on_hit(src)
 
+	/*
 	if(Proj.can_ricochet && proj_health != 0 && (src.x != Proj.starting.x) && (src.y != Proj.starting.y))
 		var/ricochetchance = 1
 		if(proj_health <= 60)
@@ -268,6 +269,8 @@
 		slug.throw_at(get_turf(Proj), 0, 1)
 
 	take_damage(health_taken)
+
+	*/
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()

@@ -28,10 +28,12 @@ SUBSYSTEM_DEF(bullets)
 	var/atom/firer = null
 	var/turf/firedTurf = null
 	var/list/firedCoordinates = list(0,0,0)
+	var/list/firedPos = list(0,0,0)
 	var/firedLevel = 0
 	var/atom/target = null
 	var/turf/targetTurf = null
 	var/list/targetCoords = list(0,0,0)
+	var/list/targetPos = list(0,0,0)
 	var/turf/currentTurf = null
 	var/currentCoords = list(0,0,0)
 	var/movementRatios = list(0,0,0,0)
@@ -56,9 +58,11 @@ SUBSYSTEM_DEF(bullets)
 	src.aimedZone = aimedZone
 	src.firer = firer
 	src.firedTurf = get_turf(firer)
+	src.firedPos = list(firer.x , firer.y , firer.z)
 	src.target = target
 	src.targetTurf = get_turf(target)
 	src.targetCoords = targetCoords
+	src.targetPos = list(target.x, target.y , target.z)
 	//src.targetCoords = list(8,8, targetTurf.z)
 	src.turfsPerTick = turfsPerTick
 	src.projectileAccuracy = projectileAccuracy
@@ -100,21 +104,37 @@ SUBSYSTEM_DEF(bullets)
 
 /// I hate trigonometry, but i hate ATAN2 more.
 /datum/bullet_data/proc/updateCoordinateRatio()
-	var/list/coordinates = list(0,0,0)
-	// These add 0.0001 so in the case we are firing straight we don't have to handle special cases(division by 0)
-	// The 0.0001 are meaningless overall considering the scale of calculation.
-	coordinates[1] = ((targetTurf.x - firedTurf.x) * PPT + targetCoords[1] - firedCoordinates[1]) / PPT + 0.0000000001
-	coordinates[2] = ((targetTurf.y - firedTurf.y) * PPT + targetCoords[2] - firedCoordinates[2]) / PPT + 0.0000000001
-	var/r = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
-	coordinates[3] = (targetCoords[3] - firedCoordinates[3] + targetLevel - firedLevel)/r
-	coordinates[1] = coordinates[1]/r
-	coordinates[2] = coordinates[2]/r
-	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
-	if(referencedBullet)
-		var/matrix/rotation = matrix()
-		// we get the angle of the trajectory by incrementing it.
-		rotation.Turn(getAngleCoordinates(targetTurf.x, targetTurf.y, firedTurf.x, firedTurf.y))
+	var/list/coordinates = list(0,0,0,0)
+	coordinates[1] = ((targetPos[1] - firedPos[1]) * PPT + targetCoords[1] - firedCoordinates[1])
+	coordinates[2] = ((targetPos[2] - firedPos[2]) * PPT + targetCoords[2] - firedCoordinates[2])
+	coordinates[3] = ((targetPos[3] - firedPos[3]) + targetLevel - firedLevel) + 1 >> 23
+	var/matrix/rotation = matrix()
+	var/distance = 0
+	if(coordinates[1] == 0)
+		movementRatios = list(0, 1, coordinates[3]/coordinates[2], coordinates[2] > 0 ? 90 : 270)
+		rotation.Turn(movementRatios[4])
 		referencedBullet.transform = rotation
+		return
+	if(coordinates[2] == 0)
+		movementRatios = list(1, 0, coordinates[3]/coordinates[1], coordinates[1] > 0 ? 0 : 180)
+		rotation.Turn(movementRatios[4])
+		referencedBullet.transform = rotation
+		return
+	coordinates[1] /= PPT
+	coordinates[2] /= PPT
+	var/r = sqrt(coordinates[1] ** 2 + coordinates[2] ** 2)
+	/// normalize to a representation of 360 degrees
+	coordinates[4] = ATAN2(coordinates[1], coordinates[2])
+	if(coordinates[4] < 0)
+		coordinates[4] = 360 + coordinates[4]
+	coordinates[1] /= r
+	coordinates[2] /= r
+	coordinates[3] /= r
+
+	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
+	// we get the angle of the trajectory by incrementing it.
+	rotation.Turn(coordinates[4])
+	referencedBullet.transform = rotation
 	movementRatios = coordinates
 
 /datum/bullet_data/proc/ricochet(atom/wall, implementation)
@@ -202,6 +222,7 @@ SUBSYSTEM_DEF(bullets)
 		var/z_change = 0
 		var/turfsTraveled = 0
 		var/turf/target_turf
+		var/updateCoords = FALSE
 		while(px >= PPT/2 || py >= PPT/2 || px <= -PPT/2 || py <= -PPT/2 || pz > 1 || pz < 0)
 			//message_admins("Moving [bullet.referencedBullet], y = [round(py/PPT)], py = [py], x = [round(px/PPT)], px = [px], pz = [pz]")
 			if(QDELETED(bullet.referencedBullet))
@@ -213,75 +234,153 @@ SUBSYSTEM_DEF(bullets)
 			px += -1 * x_change * PPT/2
 			py += -1 * y_change * PPT/2
 			pz += -1 * z_change
-			if(z_change)
-				if(z_change > 1)
-					target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z + 1)
-				else
-					target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
-				target_turf.take_damage(bullet.referencedBullet.get_structure_damage(), BRUTE, FALSE)
-			else
-				target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
+			if(x_change && y_change)
+				var/y_bias = 0
+				var/x_bias = 0
+				switch(bullet.movementRatios[4])
+					if(0 to 45)
+						x_bias = 1
+						//y_bias = -1
+					if(45 to 90)
+						y_bias = 1
+					if(90 to 135)
+						y_bias = 1
+					if(135 to 180)
+						//y_bias = 0
+						x_bias = -1
+					if(180 to 225)
+						x_bias = -1
+						//y_bias = 1
+					if(225 to 270)
+						y_bias = -1
+					if(270 to 315)
+						y_bias = -1
+					if(315 to 360)
+						x_bias = 1
+				message_admins("bias : [y_bias]")
+				if(y_bias)
+					y_change = 0
+				if(x_bias)
+					x_change = 0
+				// bullet loop
+				target_turf = locate(bullet.referencedBullet.x + x_bias, bullet.referencedBullet.y + y_bias, bullet.referencedBullet.z)
+				bullet.lifetime--
+				if(!target_turf || bullet.lifetime < 0)
+					bullet_queue -= bullet
+					break
+				if(iswall(target_turf))
+				message_admins("[bullet.movementRatios[4]]")
+				var/yMod = 0
+				var/xMod = 0
+				switch(bullet.movementRatios[4])
+					if(0 to 15)
+						if(y_change)
+							message_admins("deflection on the y-axis")
+							//y_change *= -1
+							//py *= -1
+							yMod = -y_change
+							bullet.targetPos[2] *= -1
+							//bullet.updateCoordinateRatio()
+					if(345 to 360)
+						if(y_change)
+							message_admins("deflection on the y-axis")
+							//y_change *= -1
+							//py *= -1
+							yMod = -y_change
+							bullet.targetPos[2] *= -1
+							//bullet.updateCoordinateRatio()
+					if(75 to 105)
+						if(x_change)
+							message_admins("deflection on the x-axis")
+							//x_change *= -1
+							//px *= -1
+							xMod = -x_change
+							bullet.targetPos[1] *= -1
+							//bullet.updateCoordinateRatio()
+					if(165 to 195)
+						if(y_change)
+							message_admins("deflection on the y-axis")
+							//y_change *= -1
+							//py *= -1
+							yMod = -y_change
+							bullet.targetPos[2] *= -1
+							//bullet.updateCoordinateRatio()
+					if(255 to 285)
+						if(x_change)
+							message_admins("deflection on the x-axis")
+							//x_change *= -1
+							//px *= -1
+							xMod = -x_change
+							bullet.targetPos[1] *= -1
+							//bullet.updateCoordinateRatio()
 
-			if(!target_turf)
-				bullet_queue -= bullet
-				break
+				if(xMod || yMod)
+					updateCoords = TRUE
+				target_turf = locate(bullet.referencedBullet.x + xMod, bullet.referencedBullet.y + yMod, bullet.referencedBullet.z)
+
+				bullet.updateLevel()
+				if(target_turf)
+					bullet.referencedBullet.Move(target_turf)
+					bullet.coloreds |= target_turf
+					target_turf.color = "#2fff05ee"
+					turfsTraveled++
+				//
+
+			// bullet loop
+			target_turf = locate(bullet.referencedBullet.x + x_change, bullet.referencedBullet.y + y_change, bullet.referencedBullet.z)
 			bullet.lifetime--
-			if(bullet.lifetime < 0)
+			if(!target_turf || bullet.lifetime < 0)
 				bullet_queue -= bullet
 				break
-			//if(iswall(target_turf) && target_turf:projectileBounceCheck())
-
 			if(iswall(target_turf))
-				var/direction = null
-				// this gets us a approxation of the intersection angle , a proper algorith would also offset the
-				//  "wall vector" towards the direction the bullet came from.
-				var/npx = abs(bullet.referencedBullet.x) + (abs(px) + 16)/PPT - target_turf.x
-				var/npy = abs(bullet.referencedBullet.y) + (abs(py) + 16)/PPT - target_turf.y
-				/// if we have nothing force it to be something , lowest number possible as this approaches 0 .
-				if(!npx)
-					npx = 1>>23
-				if(!npy)
-					npy = 1>>23
-				var/hypotenuse = sqrt(npx**2 + npy**2)
-				var/xangle = arctan(npy, npx)
-				/// angle normalization, all angles get reduced to +90  and 0.
-				if(xangle > 180)
-					xangle -= 180
-				else if(xangle < 0)
-					xangle += 180
-				if(xangle > 90)
-					xangle -= 90
-				var/yangle = 90 - xangle
-				if(yangle > 180)
-					yangle -= 180
-				else if(yangle < 0)
-					yangle += 180
-				if(yangle > 90)
-					yangle -= 90
-				if(y_change < 0)
-					xangle = 90 - yangle
-				if(x_change > 0)
-					direction |= EAST
-				else if(x_change < 0)
-					direction |= WEST
-				if(y_change > 0)
-					direction |= NORTH
-				else if(y_change < 0)
-					direction |= SOUTH
-				//message_admins("x:[x_change] | y:[y_change]")
-				//message_admins("direction : [direction]")
-				message_admins("x-angle:[xangle] | y-angle [yangle]")
-				//message_admins("npx : [npx] | npy : [npy]")
-				if(xangle < 35)
-					message_admins("Ricochet on x-axis")
-					bullet.movementRatios[1] *= -1
-					px *= -1
-				else if(yangle < 35)
-					message_admins("Ricochet on y-axis")
-					bullet.movementRatios[2] *= -1
-					py *= -1
+				message_admins("[bullet.movementRatios[4]]")
+				var/yMod = 0
+				var/xMod = 0
+				switch(bullet.movementRatios[4])
+					if(0 to 15)
+						if(y_change)
+							message_admins("deflection on the y-axis")
+							//y_change *= -1
+							//py *= -1
+							yMod = -y_change
+							bullet.targetPos[2] *= -1
+							//bullet.updateCoordinateRatio()
+					if(345 to 360)
+						if(y_change)
+							message_admins("deflection on the y-axis")
+							//y_change *= -1
+							//py *= -1
+							yMod = -y_change
+							bullet.targetPos[2] *= -1
+							//bullet.updateCoordinateRatio()
+					if(75 to 105)
+						if(x_change)
+							message_admins("deflection on the x-axis")
+							//x_change *= -1
+							//px *= -1
+							xMod = -x_change
+							bullet.targetPos[1] *= -1
+							//bullet.updateCoordinateRatio()
+					if(165 to 195)
+						if(y_change)
+							message_admins("deflection on the y-axis")
+							//y_change *= -1
+							//py *= -1
+							yMod = -y_change
+							bullet.targetPos[2] *= -1
+							//bullet.updateCoordinateRatio()
+					if(255 to 285)
+						if(x_change)
+							message_admins("deflection on the x-axis")
+							//x_change *= -1
+							//px *= -1
+							xMod = -x_change
+							bullet.targetPos[1] *= -1
+							//bullet.updateCoordinateRatio()
 
-
+				if(xMod || yMod)
+					updateCoords = TRUE
+				target_turf = locate(bullet.referencedBullet.x + xMod, bullet.referencedBullet.y + yMod, bullet.referencedBullet.z)
 
 
 			bullet.updateLevel()
@@ -291,13 +390,16 @@ SUBSYSTEM_DEF(bullets)
 				bullet.coloreds |= target_turf
 				target_turf.color = "#2fff05ee"
 				turfsTraveled++
+			//
 
 
 		bullet.currentCoords[1] = px
 		bullet.currentCoords[2] = py
 		bullet.currentCoords[3] = pz
-		bullet.referencedBullet.pixel_x = -turfsTraveled * bullet.movementRatios[1] - PPT/2 * x_change
-		bullet.referencedBullet.pixel_y = -turfsTraveled * bullet.movementRatios[2] - PPT/2 * y_change
+		bullet.referencedBullet.pixel_x = -round(turfsTraveled * bullet.movementRatios[1]) - PPT/2 * x_change
+		bullet.referencedBullet.pixel_y = -round(turfsTraveled * bullet.movementRatios[2]) - PPT/2 * y_change
+		if(updateCoords)
+			bullet.updateCoordinateRatio()
 		if(turfsTraveled < 1)
 			turfsTraveled = 0.5
 		animate(bullet.referencedBullet, 1/turfsTraveled,  pixel_x = round(bullet.currentCoords[1]), pixel_y = round(bullet.currentCoords[2]))
