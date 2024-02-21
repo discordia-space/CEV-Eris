@@ -11,6 +11,7 @@
 
 	icon = 'icons/obj/bonsai.dmi'
 	icon_state = "bonsai_1"
+	layer = ABOVE_OBJ_LAYER
 
 	volume = 100 //Average bottle volume
 	reagent_flags = OPENCONTAINER
@@ -57,3 +58,5 @@
 					"potato",
 					"rice")]
 				S.harvest(get_turf(src),0,0,1)
+				flick(icon_state+"_animation", src)
+				playsound(loc, 'sound/effects/ding2.ogg', 50, 1, -1)
