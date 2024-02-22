@@ -244,6 +244,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "cigoff"
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_MASK
+	spawn_tags = SPAWN_CIGARETTE
 	attack_verb = list("burnt", "singed")
 	icon_on = "cigon"  //Note - these are in masks.dmi not in cigarette.dmi
 	icon_off = "cigoff"
@@ -322,6 +323,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "nomadoff"
 	icon_on = "nomadon"
 	icon_off = "nomadoff"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
 	type_butt = /obj/item/trash/cigbutt/nomad
 
 /obj/item/clothing/mask/smokable/cigarette/lucky
@@ -331,7 +333,38 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "luckyoff"
 	icon_on = "luckyon"
 	icon_off = "luckyoff"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
 	type_butt = /obj/item/trash/cigbutt/lucky
+
+/obj/item/clothing/mask/smokable/cigarette/robusto
+	desc = "A roll of tobacco and nicotine. Gives the feeling of old wars. Let's crack some skulls!"
+	preloaded_reagents = list("nicotine" = 6, "violence" = 1)
+	icon_state = "robustoff"
+	item_state = "robustoff"
+	icon_on = "robuston"
+	icon_off = "robustoff"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	type_butt = /obj/item/trash/cigbutt/robusto
+
+/obj/item/clothing/mask/smokable/cigarette/buckshot
+	desc = "A roll of tobacco and nicotine. Maint cig, some say it helps take the edge off better than most."
+	preloaded_reagents = list("nicotine" = 6, "paracetamol" = 3)
+	icon_state = "klassikaoff"
+	item_state = "klassikaoff"
+	icon_on = "klassikaon"
+	icon_off = "klassikaoff"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	type_butt = /obj/item/trash/cigbutt/buckshot
+
+/obj/item/clothing/mask/smokable/cigarette/quasimorph
+	desc = "A roll of tobacco and nicotine. Maint cig, ancient paper, how old is this...?"
+	preloaded_reagents = list("nicotine" = 6, "dexalin" = 3)
+	icon_state = "kosmosoff"
+	item_state = "kosmosoff"
+	icon_on = "kosmoson"
+	icon_off = "kosmossoff"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	type_butt = /obj/item/trash/cigbutt/quasimorph
 
 ////////////
 // CIGARS //
@@ -406,6 +439,15 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/trash/cigbutt/lucky
 	icon_state = "luckybutt"
+
+/obj/item/trash/cigbutt/robusto
+	icon_state = "robustbutt"
+
+/obj/item/trash/cigbutt/buckshot
+	icon_state = "klassikabutt"
+
+/obj/item/trash/cigbutt/quasimorph
+	icon_state = "kosmosbutt"
 
 /////////////////
 //SMOKING PIPES//

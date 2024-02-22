@@ -150,6 +150,7 @@
 	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
+	spawn_tags = SPAWN_CIGARETTE
 	storage_slots = 6
 	item_obj = /obj/item/clothing/mask/smokable/cigarette
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/flame/lighter)
@@ -236,6 +237,7 @@
 	desc = "A packet of six Nomads cigarettes. Nomads's Extra strong for when your life is more extra hard"
 	icon_state = "Cpacket"
 	item_state = "Cpacket"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/homeless
 
 /obj/item/storage/fancy/cigarettes/lucky
@@ -244,6 +246,30 @@
 	icon_state = "luckpacket"
 	item_state = "luckpacket"
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/lucky
+
+/obj/item/storage/fancy/cigarettes/robusto
+	name = "\improper Red Robusto packet"
+	desc = "A packet of six Red Robusto Cigarettes. Old NanoTrasen cigs, some say they make you more robust..."
+	icon_state = "robpacket"
+	item_state = "robpacket"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/robusto
+
+/obj/item/storage/fancy/cigarettes/buckshot
+	name = "\improper Klassika Filter packet"
+	desc = "A packet of six Klassika Filter Cigarettes. Old unknown brand, says 'Klassika Filter' on the front..."
+	icon_state = "bpacket"
+	item_state = "bpacket"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/buckshot
+
+/obj/item/storage/fancy/cigarettes/quasimorph
+	name = "\improper Kosmos packet"
+	desc = "A packet of six Kosmos Cigarettes. Old Russian brand, says 'Kocmoc' on the front, along with a white rocket."
+	icon_state = "kpacket"
+	item_state = "kpacket"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/quasimorph
 
 /obj/item/storage/fancy/cigcartons
 	name = "carton of cigarettes"
