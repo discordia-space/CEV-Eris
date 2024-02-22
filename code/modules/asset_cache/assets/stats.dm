@@ -1,5 +1,5 @@
-/datum/asset/spritesheet/simple/perks
+/datum/asset/spritesheet/perks
 	name = "perks"
 
-/datum/asset/spritesheet/simple/perks/create_spritesheets()
+/datum/asset/spritesheet/perks/create_spritesheets()
 	InsertAll("", 'icons/effects/perks.dmi')

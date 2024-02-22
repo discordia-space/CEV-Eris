@@ -42,3 +42,8 @@
 /tipsAndTricks/roles/carrionsurgery
     roles_list = list(/datum/antagonist/carrion)
     tipText = "As a carrion, you have greatly increased control over your body - if you want to perform self-surgery, you can do it standing up."
+
+/tipsAndTricks/roles/borerLang
+    roles_list = list(/datum/antagonist/borer)
+    tipText = "As a borer, reading a host's mind will teach you the languages they know. For every language you learn you get more experience."
+

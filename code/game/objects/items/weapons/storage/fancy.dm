@@ -82,7 +82,7 @@
 
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
-	desc = "A pack of red candles."
+	desc = "A pack of wax candles."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candlebox5"
 	icon_type = "candle"
@@ -237,6 +237,13 @@
 	icon_state = "Cpacket"
 	item_state = "Cpacket"
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/homeless
+
+/obj/item/storage/fancy/cigarettes/lucky
+	name = "\improper Lucky Strikes packet"
+	desc = "A packet of six Lucky Strikes cigarettes. For some reason the Syndicate loved these things back in the war, still around as surplus today."
+	icon_state = "luckpacket"
+	item_state = "luckpacket"
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/lucky
 
 /obj/item/storage/fancy/cigcartons
 	name = "carton of cigarettes"

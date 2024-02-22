@@ -128,19 +128,107 @@
 /obj/machinery/button/remote/blast_door
 	name = "remote blast door-control"
 	desc = "It controls blast doors, remotely."
+	var/datum/radio_frequency/radio_conn
+	var/door_status = "OPENED"
+	var/open = 0
+	var/closed = 0
+	var/last_message
+
+/obj/machinery/button/remote/blast_door/Initialize()
+	. = ..()
+	radio_conn = SSradio.add_object(src, BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
+	AddComponent(/datum/component/overlay_manager)
+
+/// Update status at initialization!
+/obj/machinery/button/remote/blast_door/LateInitialize()
+	. = ..()
+	var/datum/signal/signal = new
+	signal.source = src
+	signal.encryption = id
+	signal.data["message"] = "CMD_DOOR_STATE"
+	radio_conn.post_signal(src, signal, RADIO_BLASTDOORS)
+
+
+
+/obj/machinery/button/remote/blast_door/Destroy()
+	SSradio.remove_object(src, BLAST_DOOR_FREQ)
+	radio_conn = null
+	. = ..()
+
+/obj/machinery/button/remote/blast_door/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(.)
+		to_chat(user, "Linked doors status is currently [door_status]")
 
 /obj/machinery/button/remote/blast_door/trigger()
-	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
-		if(M.id == id)
-			if(M.density)
-				spawn(0)
-					M.open()
-					return
-			else
-				spawn(0)
-					M.close()
-					return
+	door_status = "UNKNOWN"
+	var/datum/signal/signal = new
+	signal.source = src
+	signal.encryption = id
+	signal.data["message"] = "CMD_DOOR_TOGGLE"
+	radio_conn.post_signal(src, signal, RADIO_BLASTDOORS)
 
+#define OVERKEY_DOOR_STATUS "door_status"
+
+/obj/machinery/button/remote/blast_door/update_icon()
+	. = ..()
+	var/datum/component/overlay_manager/overlay_manager = GetComponent(/datum/component/overlay_manager)
+	if(!overlay_manager)
+		return
+	var/mutable_appearance/appear = mutable_appearance(icon = src.icon, icon_state = "")
+	appear.dir = src.dir
+	if(stat & NOPOWER)
+		overlay_manager.removeOverlay(OVERKEY_DOOR_STATUS)
+		return
+	switch(door_status)
+		if("OPENED")
+			appear.icon_state = "doorctrl-open"
+		if("MIXED")
+			appear.icon_state = "doorctrl-mixed"
+		if("CLOSED")
+			appear.icon_state = "doorctrl-closed"
+		if("UNKNOWN")
+			appear.icon_state = "doorctrl-unknown"
+	overlay_manager.updateOverlay(OVERKEY_DOOR_STATUS, appear)
+
+#undef OVERKEY_DOOR_STATUS
+
+
+/obj/machinery/button/remote/blast_door/receive_signal(datum/signal/signal, receive_method, receive_param)
+	if(!signal)
+		return
+	if(signal.encryption != id)
+		return
+	if(stat & NOPOWER)
+		return
+	if(last_message < world.time)
+		closed = 0
+		open = 0
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 2 SECONDS)
+	switch(signal.data["message"])
+		if("DATA_DOOR_OPENED")
+			last_message = world.time + 1 SECOND
+			open++
+		if("DATA_DOOR_CLOSED")
+			last_message = world.time + 1 SECOND
+			closed++
+		if("CMD_DOOR_OPEN")
+			return
+		if("CMD_DOOR_CLOSE")
+			return
+		if("CMD_DOOR_TOGGLE")
+			return
+		if("CMD_DOOR_STATE")
+			return
+
+	if(open && closed)
+		door_status = "MIXED"
+	else if(open)
+		door_status = "OPENED"
+	else if(closed)
+		door_status = "CLOSED"
+	else
+		door_status = "UNKNOWN"
 
 /obj/machinery/button/remote/blast_door/id_card
 	name = "remote blast id card door-control"

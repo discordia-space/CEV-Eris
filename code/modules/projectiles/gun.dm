@@ -105,7 +105,8 @@
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
 	var/serial_type = "" // If there is a serial type, the gun will add a number that will show on examine
 
-	var/flashlight_attachment = FALSE
+	var/obj/item/device/lighting/toggleable/flashlight/flashlight_attachment
+
 
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
@@ -114,11 +115,10 @@
 	var/calculated_delay = wield_delay
 	if(ishuman(user))
 		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
-	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
+	if(calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
 		..()
-	else if (calculated_delay <= 0)
+	else if(calculated_delay <= 0)
 		..()
-
 
 
 // Modular guns overwrite this
@@ -151,6 +151,24 @@
 						amount--
 				qdel(src)
 
+	if(flashlight_attachment)
+		if(istype(I, flashlight_attachment.suitable_cell))
+			if(flashlight_attachment.cell) // Replace existing power cell
+				if(replace_item(flashlight_attachment.cell, I, user))
+					flashlight_attachment.cell = I
+			else if(flashlight_attachment.insert_item(I, user)) // Add a missing power cell
+				flashlight_attachment.cell = I
+
+	else if(istype(I, /obj/item/device/lighting/toggleable/flashlight/seclite))
+		if(!user.unEquip(I))
+			return
+		flashlight_attachment = I
+		I.forceMove(src)
+		playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+		to_chat(user, SPAN_NOTICE("You attach \the [I] to \the [src]."))
+		verbs += /obj/item/gun/proc/remove_flashlight
+		verbs += /obj/item/gun/proc/toggle_flashlight
+
 
 /obj/item/gun/get_item_cost(export)
 	if(export)
@@ -170,7 +188,7 @@
 	initialize_firemode_actions()
 	initialize_scope()
 	//Properly initialize the default firing mode
-	if (firemodes.len)
+	if(LAZYLEN(firemodes))
 		set_firemode(sel_mode)
 
 	if(!restrict_safety)
@@ -206,7 +224,13 @@
 		if(!islist(i))
 			qdel(i)
 	firemodes = null
-	return ..()
+	if(isliving(loc))
+		var/mob/living/L = loc
+		L.remove_cursor()
+	if(flashlight_attachment)
+		flashlight_attachment.forceMove(get_turf(src))
+		flashlight_attachment = null
+	..()
 
 /obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
 	var/wield_state
@@ -242,7 +266,7 @@
 				item_state_slots[slot_r_hand_str] = "righthand" + wielded_item_state
 			else
 				item_state_slots[slot_l_hand_str] = "lefthand"
-			item_state_slots[slot_r_hand_str] = "righthand"
+				item_state_slots[slot_r_hand_str] = "righthand"
 		else//Otherwise we can just pull from the generic left and right hand icons.
 			if(wielded_icon)
 				item_state_slots[slot_l_hand_str] = wielded_item_state
@@ -313,7 +337,7 @@
 /obj/item/gun/proc/twohanded_check(user)
 	if(twohanded)
 		if(!wielded)
-			if (world.time >= recentwield + 1 SECONDS)
+			if(world.time >= recentwield + 1 SECONDS)
 				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
 				recentwield = world.time
 			return FALSE
@@ -331,7 +355,15 @@
 		O.emp_act(severity)
 
 /obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
-	if(adjacent) return //A is adjacent, is the user, or is on the user's person
+	if(adjacent)
+		return //A is adjacent, is the user, or is on the user's person
+
+	if(flashlight_attachment)
+		flashlight_attachment.afterattack(A, user)
+
+	if(!is_held())
+		user.remove_cursor()
+		check_safety_cursor(user)
 
 	var/obj/item/gun/off_hand   //DUAL WIELDING
 	if(ishuman(user) && user.a_intent == "harm")
@@ -358,7 +390,7 @@
 	Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)
+	if(A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
@@ -366,13 +398,12 @@
 		return ..() //Pistolwhippin'
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target) return
-
+	if(!user || !target)
+		return
 	if(world.time < next_fire_time)
-		if (!suppress_delay_warning && world.time % 3) //to prevent spam
+		if(!suppress_delay_warning && world.time % 3) //to prevent spam
 			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
 		return
-
 
 	add_fingerprint(user)
 
@@ -418,7 +449,7 @@
 			process_point_blank(projectile, user, target)
 
 		//being grabbed reduces accuracy
-		if(user.grabbed_by.len)
+		if(LAZYLEN(user.grabbed_by))
 			grabbed_inaccuracy(projectile, user)
 
 		if(projectile_color)
@@ -464,7 +495,7 @@
 
 //called if there was no projectile to shoot
 /obj/item/gun/proc/handle_click_empty(mob/user)
-	if (user)
+	if(user)
 		user.visible_message("*click click*", SPAN_DANGER("*click*"))
 	else
 		src.visible_message("*click click*")
@@ -534,7 +565,7 @@
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))
 		var/mob/M = target
-		if(M.grabbed_by.len)
+		if(LAZYLEN(M.grabbed_by))
 			var/grabstate = 0
 			for(var/obj/item/grab/G in M.grabbed_by)
 				grabstate = max(grabstate, G.state)
@@ -563,7 +594,7 @@
 	P.multiply_projectile_accuracy(accuracy_mult)
 
 //does the actual launching of the projectile
-/obj/item/gun/proc/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
+/obj/item/gun/proc/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, target_zone, params=null)
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
 
@@ -620,7 +651,7 @@
 		mouthshoot = FALSE
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
-	if (istype(in_chamber))
+	if(istype(in_chamber))
 		user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
 		if(silenced)
 			playsound(user, fire_sound, 10, 1)
@@ -632,7 +663,7 @@
 			return
 
 		in_chamber.on_hit(M)
-		if (!in_chamber.is_halloss())
+		if(!in_chamber.is_halloss())
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
 			for(var/damage_type in in_chamber.damage_types)
 				var/damage = in_chamber.damage_types[damage_type]*2.5
@@ -666,20 +697,19 @@
 /obj/item/gun/proc/switch_zoom(mob/living/user)
 	if(!zoom_factors)
 		return null
-	if(zoom_factors.len <= 1)
+	if(LAZYLEN(zoom_factors) <= 1)
 		return null
 //	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
 	active_zoom_factor++
-	if(active_zoom_factor > zoom_factors.len)
+	if(active_zoom_factor > LAZYLEN(zoom_factors))
 		active_zoom_factor = 1
 	refresh_upgrades()
 	toggle_scope(user, TRUE)
 
 
-
 /obj/item/gun/examine(mob/user)
 	..()
-	if(firemodes.len > 1)
+	if(LAZYLEN(firemodes) > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
 		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
 
@@ -703,14 +733,14 @@
 /obj/item/gun/proc/initialize_firemodes()
 	QDEL_LIST(firemodes)
 
-	for(var/i in 1 to init_firemodes.len)
+	for(var/i in 1 to LAZYLEN(init_firemodes))
 		var/list/L = init_firemodes[i]
 		add_firemode(L)
 
 
 /obj/item/gun/proc/initialize_firemode_actions()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
-	if(firemodes.len > 1)
+	if(LAZYLEN(firemodes) > 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/fire_mode
 			action.owner = src
@@ -721,7 +751,7 @@
 
 /obj/item/gun/proc/initialize_scope()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/scope) in hud_actions
-	if(zoom_factors.len >= 1)
+	if(LAZYLEN(zoom_factors) >= 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
@@ -738,24 +768,24 @@
 
 /obj/item/gun/proc/add_firemode(list/firemode)
 	//If this var is set, it means spawn a specific subclass of firemode
-	if (firemode["mode_type"])
+	if(firemode["mode_type"])
 		var/newtype = firemode["mode_type"]
 		firemodes.Add(new newtype(src, firemode))
 	else
 		firemodes.Add(new /datum/firemode(src, firemode))
 
 /obj/item/gun/proc/switch_firemodes()
-	if(firemodes.len <= 1)
+	if(LAZYLEN(firemodes) <= 1)
 		return null
 	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
 	sel_mode++
-	if(sel_mode > firemodes.len)
+	if(sel_mode > LAZYLEN(firemodes))
 		sel_mode = 1
 	return set_firemode(sel_mode)
 
 /obj/item/gun/proc/set_firemode(index)
 	refresh_upgrades()
-	if(index > firemodes.len)
+	if(index > LAZYLEN(firemodes))
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.update()
@@ -764,7 +794,7 @@
 
 /// Set firemode , but without a refresh_upgrades at the start
 /obj/item/gun/proc/very_unsafe_set_firemode(index)
-	if(index > firemodes.len)
+	if(index > LAZYLEN(firemodes))
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
@@ -823,7 +853,7 @@
 //When gun is picked up
 //When gun is readied
 /obj/item/gun/proc/update_firemode(force_state = null)
-	if (sel_mode && firemodes && firemodes.len)
+	if(sel_mode && firemodes && LAZYLEN(firemodes))
 		var/datum/firemode/new_mode = firemodes[sel_mode]
 		new_mode.update(force_state)
 
@@ -837,24 +867,20 @@
 
 //Updating firing modes at appropriate times
 /obj/item/gun/pickup(mob/user)
-	.=..()
+	..()
 	update_firemode()
 
-/obj/item/gun/dropped(mob/user)
-	// I really fucking hate this but this is how this is going to work.
-	var/mob/living/carbon/human/H = user
-	if (istype(H) && H.using_scope)
-		toggle_scope(H)
-	update_firemode(FALSE)
-	.=..()
-
-/obj/item/gun/swapped_from()
-	.=..()
-	update_firemode(FALSE)
-
-/obj/item/gun/swapped_to()
-	.=..()
+/obj/item/gun/swapped_from(mob/user)
+	remove_hud_actions(user)
 	update_firemode()
+	if(isliving(loc))
+		check_safety_cursor(loc)
+
+/obj/item/gun/swapped_to(mob/user)
+	add_hud_actions(user)
+	update_firemode()
+	if(isliving(loc))
+		check_safety_cursor(loc)
 
 /obj/item/gun/proc/toggle_safety_verb()
 	set name = "Toggle gun's safety"
@@ -889,7 +915,7 @@
 
 	var/total_recoil = 0
 	var/list/recoilList = recoil.getFancyList()
-	if(recoilList.len)
+	if(LAZYLEN(recoilList))
 		var/list/recoil_vals = list()
 		for(var/i in recoilList)
 			if(recoilList[i])
@@ -904,9 +930,9 @@
 
 	data += ui_data_projectile(get_dud_projectile())
 
-	if(firemodes.len)
+	if(LAZYLEN(firemodes))
 		var/list/firemodes_info = list()
-		for(var/i = 1 to firemodes.len)
+		for(var/i = 1 to LAZYLEN(firemodes))
 			data["firemode_count"] += 1
 			var/datum/firemode/F = firemodes[i]
 			var/list/firemode_info = list(
@@ -926,7 +952,7 @@
 			firemodes_info += list(firemode_info)
 		data["firemode_info"] = firemodes_info
 
-	if(item_upgrades.len)
+	if(LAZYLEN(item_upgrades))
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
 			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(A)))
@@ -946,7 +972,7 @@
 /obj/item/gun/proc/get_dud_projectile()
 	return null
 
-/obj/item/gun/proc/ui_data_projectile(var/obj/item/projectile/P)
+/obj/item/gun/proc/ui_data_projectile(obj/item/projectile/P)
 	if(!P)
 		return list()
 	var/list/data = list()
@@ -991,11 +1017,9 @@
 	sharp = initial(sharp)
 	braceable = initial(braceable)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
-	flashlight_attachment = initial(flashlight_attachment)
-	verbs -= /obj/item/gun/proc/toggle_light
 
 	attack_verb = list()
-	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
+	if(LAZYLEN(custom_default)) // this override is used by the artwork_revolver for RNG gun stats
 		for(var/propname in custom_default) // taken from gun_firemode.dm
 			if(propname in vars)
 				vars[propname] = custom_default[propname]
@@ -1008,7 +1032,7 @@
 
 	initialize_firemode_actions()
 
-	if(firemodes.len)
+	if(LAZYLEN(firemodes))
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
 
 	update_icon()
@@ -1019,7 +1043,7 @@
 /obj/item/gun/proc/generate_guntags()
 	if(recoil.getRating(RECOIL_BASE) < recoil.getRating(RECOIL_TWOHAND))
 		gun_tags |= GUN_GRIP
-	if(zoom_factors.len < 1 && !(slot_flags & SLOT_HOLSTER))
+	if(LAZYLEN(zoom_factors) < 1 && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET
@@ -1032,42 +1056,62 @@
 		refresh_upgrades()
 
 /obj/item/gun/container_dir_changed(new_dir)
-	. = ..()
 	if(flashlight_attachment)
-		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
-			FL.container_dir_changed(new_dir)
+		flashlight_attachment.container_dir_changed(new_dir)
 
 /obj/item/gun/moved(mob/user, old_loc)
-	. = ..()
 	if(flashlight_attachment)
-		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
-			FL.moved(user, old_loc)
+		flashlight_attachment.moved(user, old_loc)
 
 /obj/item/gun/entered_with_container()
-	. = ..()
 	if(flashlight_attachment)
-		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
-			FL.entered_with_container()
+		flashlight_attachment.entered_with_container()
 
 /obj/item/gun/pre_pickup(mob/user)
-	. = ..()
+	update_light()
 	if(flashlight_attachment)
-		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
-			FL.pre_pickup(user)
+		flashlight_attachment.pre_pickup(user)
+	return TRUE
 
-/obj/item/gun/dropped(mob/user as mob)
-	. = ..()
+/obj/item/gun/dropped(mob/user)
+	..()
+	update_firemode(force_state = FALSE)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.using_scope)
+			toggle_scope(H)
 	if(flashlight_attachment)
-		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
-			FL.dropped(user)
+		flashlight_attachment.dropped(user)
 
-/obj/item/gun/afterattack(atom/A, mob/user)
+/obj/item/gun/equipped(mob/living/H)
 	. = ..()
-	if(flashlight_attachment)
-		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
-			FL.afterattack(A, user)
+	update_light()
+	if(is_held() && !safety)
+		H.update_cursor()
+	else
+		H.remove_cursor()
 
-/obj/item/gun/proc/toggle_light(mob/user)
-	if(flashlight_attachment)
-		for(var/obj/item/device/lighting/toggleable/flashlight/FL in contents)
-			FL.attack_self(user)
+/obj/item/gun/try_transfer(target, mob/living/user)
+	. = ..()
+	user.remove_cursor()
+
+/obj/item/gun/proc/toggle_flashlight()
+	set name = "Toggle flashlight"
+	set category = "Object"
+
+	if(flashlight_attachment && ishuman(usr))
+		flashlight_attachment.attack_self(usr)
+
+/obj/item/gun/proc/remove_flashlight()
+	set name = "Remove flashlight"
+	set category = "Object"
+
+	if(flashlight_attachment && ishuman(usr))
+		verbs -= /obj/item/gun/proc/remove_flashlight
+		verbs -= /obj/item/gun/proc/toggle_flashlight
+		var/mob/living/carbon/human/user = usr
+		flashlight_attachment.forceMove(get_turf(user))
+		playsound(loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
+		to_chat(user, SPAN_NOTICE("You detach \the [flashlight_attachment] from \the [src]."))
+		flashlight_attachment = null
+

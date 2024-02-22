@@ -60,7 +60,7 @@
 		var/overlayCount = 16
 		var/alpha_inc = 256 / overlayCount
 
-		for(var/i = 1; i <= overlayCount; i++)
+		for(var/i = 0; i <= overlayCount; i++)
 			var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
 			img.blend_mode = BLEND_MULTIPLY
 			img.alpha = (i * alpha_inc) - 1
@@ -327,7 +327,7 @@
 /turf/simulated/wall/take_damage(damage)
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		damage *= 10
-	. = health - damage < 0 ? damage - (damage - health) : damage
+	. = min(health, damage)
 	health -= damage
 	if(health <= 0)
 		var/leftover = abs(health)
@@ -398,15 +398,20 @@
 	O.anchored = TRUE
 	O.density = TRUE
 	O.layer = 5
+	
+	thermite = FALSE
+	take_damage((material.integrity*2.5) / material.heat_resistance) // thermite overkills steel immediately but not plasteel
 
-	src.ChangeTurf(/turf/simulated/floor/plating)
+	if(istype(src, /turf/simulated/floor))
+		var/turf/simulated/floor/F = src
+		F.burn_tile()
+		F.icon_state = "wall_thermite"
+		to_chat(user, SPAN_WARNING("The thermite starts melting the wall away."))
+	else
+		to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
 
-	var/turf/simulated/floor/F = src
-	F.burn_tile()
-	F.icon_state = "wall_thermite"
-	to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
 
-	spawn(100)
+	spawn(10 SECONDS)
 		if(O)
 			qdel(O)
 //	F.sd_LumReset()		//TODO: ~Carn

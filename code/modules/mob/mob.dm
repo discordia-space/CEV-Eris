@@ -91,8 +91,8 @@
 
 		messageturfs += turf
 
-	
-	
+
+
 	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
 		if(!M.client)
 			continue
@@ -369,6 +369,27 @@
 	if (W)
 		W.attack_self(src)
 
+
+/mob/verb/toggle_flashlight()
+	set name = "Toggle Flashlight"
+	set category = "Object"
+
+	if(incapacitated())
+		return
+
+	var/obj/item/item = get_active_hand()
+	if(!item)
+		return
+
+	if(isgun(item))
+		var/obj/item/gun/gun = item
+		if(gun.flashlight_attachment)
+			item = gun.flashlight_attachment
+
+	if(istype(item, /obj/item/device/lighting/toggleable/flashlight))
+		var/obj/item/device/lighting/toggleable/flashlight/flashlight = item
+		flashlight.attack_self(src)
+
 /*
 /mob/verb/dump_source()
 
@@ -588,6 +609,11 @@
 	if (AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
+
+	if(SEND_SIGNAL(AM, COMSIG_ATTEMPT_PULLING) == COMSIG_PULL_CANCEL)
+		to_chat(src, SPAN_WARNING("It won't budge!"))
+		return
+
 
 	var/mob/M = AM
 	if(ismob(AM))

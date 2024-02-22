@@ -44,6 +44,10 @@
 	contents_cost = 700
 	export_types = list(/obj/structure/reagent_dispensers/beerkeg)
 
+/datum/export/large/reagent_dispenser/rum
+	unit_name = "rum keg"
+	contents_cost = 700
+	export_types = list(/obj/structure/reagent_dispensers/rumkeg)
 
 
 // Heavy engineering equipment. Singulo/Tesla parts mostly.

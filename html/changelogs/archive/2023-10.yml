@@ -1,0 +1,55 @@
+2023-10-07:
+  SirRichardFrancis:
+  - tweak: Made it possible to (un)equip spacesuits with drag and drop.
+  - tweak: Changed "lie" button location on LibertyStyle HUD.
+  - bugfix: Fixed accessories added to suits with pockets taking up space in said
+      pockets.
+  - rscadd: Added "L" hotkey for toggling flashlights, standalone and mounted on a
+      gun.
+  - rscadd: Added a way to quickly replace power cell in a mounted flashlight. Have
+      to click on a gun with a proper power cell.
+  - tweak: Changed the way flashlight attaches to guns, could be easily added and
+      removed now.
+  - code_imp: Merged several gun-related proc redefinitions.
+  - bugfix: Fixed flashlight beam being movable by conveyor belts
+  TheLeopold:
+  - tweak: surgically removed cruciforms keep owner's name
+2023-10-14:
+  thevandie:
+  - rscadd: gives new sprites to the colored jumpsuits, and adds them back to the
+      loadout
+  - rscadd: gives new sprites to the sneakers, and adds a new grey one to the loadout
+  - rscadd: gives the psychiatrist's turtleneck a new sprite (in more moemed colors,
+      considering they exist for mental healing)
+  - rscadd: gives the leather shoes a new sprite, and lumps them under the classy
+      shoes selection
+  - rscadd: gives the botany gloves a new sprite, and adds them to the loadout
+  - rscadd: makes the oberth boots use the colorscheme used in their item sprite
+  - rscadd: gives the bio-engie and chemist labcoats new sprites
+  - rscadd: slightly improves the scientist labcoat
+  - rscadd: adds a new blue business casual uniform, and adds it to the loadout under
+      leisure suits selection
+  - rscadd: adds new sprite for the botanist jumpsuit, and adds it to the loadout
+  - rscadd: adds a new sprite for the virologist's uniform, and adds it to the loadout
+      (as it's unused)
+  - rscadd: adds a new sprite for the janitor's jumpsuit, and adds it to the loadout
+      under the jumpsuits selection
+  - rscadd: gives the blue blazer a new sprite, and adds it to the suits selection
+  - rscadd: gives the guild uniform (the beige shirt and jeans) a new sprite
+  - rscadd: gives the guild merchant a new coat sprite (specifically designed to be
+      a remaster of the old guild tech coat that everyone loves)
+  - rscadd: adds the old merchant coat to the loadout, as well as the old technician
+      coat. they are "hand-me-downs" from the merchant
+  - rscadd: changes the guild tech coat SLIGHTLY, to make it more palatable (the newer
+      one everyone hated on)
+  - bugfix: gives the black softcap it's PROPER sprite (it previously had the cargo
+      softcap sprite)
+2023-10-21:
+  Hyperio:
+  - rscadd: 'Add new Pirates antags : pirate base, pirate shuttle, landmark locations,
+      pirate channel, pirate objectives, pirate hailer'
+  - bugfix: Prevent deep drill unwrenching during collapse
+  - rscadd: Add K.A.R.L mining tool
+  intercepti0n:
+  - refactor: converted signaler, timer, proximity sensor and transfer valve UIs to
+      TGUI.

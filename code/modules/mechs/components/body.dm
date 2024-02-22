@@ -40,6 +40,10 @@
 	var/min_pilot_size = MOB_SMALL
 	var/max_pilot_size = MOB_LARGE
 	var/climb_time = 25
+	/// does this mech chassis have support for charging all cells inside of its storage? if its 0 it doesnt
+	var/cell_charge_rate = 200
+	/// Wheter chassis blocks sight from a outside POV (aka can see behind mech or not ?)
+	var/opaque_chassis = TRUE
 
 /obj/item/mech_component/chassis/New()
 	..()
@@ -103,7 +107,7 @@
 	. = ..()
 	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
 	storage_compartment = new(src)
-	cockpit = new(20)
+	cockpit = new(250)
 	if(loc)
 		cockpit.equalize(loc.return_air())
 
@@ -129,6 +133,16 @@
 
 /obj/item/mech_component/chassis/ready_to_install()
 	return (cell && armor_plate && computer && diagnostics)
+
+/obj/item/mech_component/chassis/update_health()
+	. = ..()
+	if(total_damage >= max_damage)
+		var/mob/living/exosuit/hold = loc
+		if(!istype(hold))
+			return
+		hold.hatch_locked = FALSE
+		hold.hatch_closed = FALSE
+		hold.update_icon()
 
 /obj/item/mech_component/chassis/prebuild()
 	computer = new /obj/item/robot_parts/robot_component/exosuit_control(src)
@@ -241,7 +255,7 @@
 	max_damage = 75
 	power_use = 5
 	climb_time = 10 //gets a buff to climb_time, in exchange for being less beefy
-	has_hardpoints = list(HARDPOINT_BACK)
+	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_GLASS = 5, MATERIAL_PLASTIC = 10)
 
 /obj/item/mech_component/chassis/combat
@@ -271,3 +285,33 @@
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
 	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)
+
+/obj/item/mech_component/chassis/forklift
+	name = "forklift chassis"
+	desc = "Has an integrated forklift clamp for the industrial relocation of resources. Are you ready to lift?"
+	icon_state = "seat-cockpit"
+	has_hardpoints = list(HARDPOINT_FRONT, HARDPOINT_RIGHT_SHOULDER)
+	exosuit_desc_string = "a forklifting chassis"
+	pilot_coverage = 30
+	max_damage = 100
+	mech_health = 200
+	opaque_chassis = FALSE
+	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+
+
+/obj/item/mech_component/chassis/forklift/Initialize()
+	pilot_positions = list(
+		list(
+			"[NORTH]" = list("x" = 9,  "y" = 5),
+			"[SOUTH]" = list("x" = 9,  "y" = 5),
+			"[EAST]"  = list("x" = 6,  "y" = 5),
+			"[WEST]"  = list("x" = 8,  "y" = 5)
+		),
+		list(
+			"[NORTH]" = list("x" = 9,  "y" = 5),
+			"[SOUTH]" = list("x" = 9,  "y" = 10),
+			"[EAST]"  = list("x" = 0,  "y" = 5),
+			"[WEST]"  = list("x" = 16,  "y" = 5)
+		)
+	)
+	. = ..()

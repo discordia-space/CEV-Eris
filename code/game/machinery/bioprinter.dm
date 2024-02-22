@@ -19,7 +19,8 @@
 	var/list/products = list(
 		OP_HEART =   list(/obj/item/organ/internal/vital/heart,  50),
 		OP_LUNGS =   list(/obj/item/organ/internal/vital/lungs,  40),
-		OP_KIDNEYS = list(/obj/item/organ/internal/kidney, 20),
+		OP_KIDNEY_LEFT = list(/obj/item/organ/internal/kidney/left, 20),
+		OP_KIDNEY_RIGHT = list(/obj/item/organ/internal/kidney/right, 20),
 		OP_EYES =    list(/obj/item/organ/internal/eyes,   30),
 		OP_LIVER =   list(/obj/item/organ/internal/liver,  50),
 		OP_STOMACH = list(/obj/item/organ/internal/stomach,  40)

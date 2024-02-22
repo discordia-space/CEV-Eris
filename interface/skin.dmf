@@ -682,6 +682,9 @@ macro "hotkeymode"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem
+		name = "L"
+		command = "Toggle-Flashlight"
+	elem
 		name = "NUMPAD1"
 		command = "body-r-leg"
 	elem

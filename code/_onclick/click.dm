@@ -124,7 +124,7 @@
 		return 1
 
 	if(in_throw_mode)
-		if(isturf(A) || isturf(A.loc))
+		if(isturf(A) || isturf(A.loc) && isturf(loc))
 			throw_item(A)
 			return 1
 		throw_mode_off()

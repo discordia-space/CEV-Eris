@@ -118,16 +118,3 @@
 		for(var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
 			var/datum/light_source/L = A
 			L.source_atom.update_light()
-
-/obj/item/equipped()
-	. = ..()
-	update_light()
-
-/obj/item/pre_pickup()
-	update_light()
-	return ..()
-
-/obj/item/dropped()
-	. = ..()
-	SEND_SIGNAL_OLD(src, COMSIG_ITEM_DROPPED, src)
-	update_light()

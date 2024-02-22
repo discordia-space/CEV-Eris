@@ -10,6 +10,11 @@
 	path = /obj/item/clothing/gloves/thick
 	cost = 3
 
+/datum/gear/gloves/leather
+	display_name = "gloves, leather"
+	path = /obj/item/clothing/gloves/botanic_leather
+	cost = 3
+
 /datum/gear/gloves/rainbow
 	display_name = "gloves, rainbow"
 	path = /obj/item/clothing/gloves/color/rainbow

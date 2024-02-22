@@ -80,6 +80,7 @@ h1.alert, h2.alert		{color: #000000;}
 .notice					{color: #000099;}
 .alium					{color: #00ff00;}
 .revolution				{color: #B00030; font-weight: bold; font-style: italic;}
+.revolution_alert		{color: #B00030; font-weight: bold; font-style: italic; font-size: 200%;}
 
 .reflex_shoot			{color: #000099; font-style: italic;}
 

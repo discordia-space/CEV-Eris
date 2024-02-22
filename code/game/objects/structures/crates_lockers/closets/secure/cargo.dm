@@ -6,7 +6,8 @@
 
 /obj/structure/closet/secure_closet/personal/cargotech/populate_contents()
 	new /obj/item/clothing/under/rank/cargotech(src)
-	new /obj/item/clothing/suit/storage/cargo_jacket/old(src)
+	new /obj/item/clothing/suit/storage/cargo_jacket/black/old(src)
+	new /obj/item/clothing/suit/storage/cargo_jacket/black(src)
 	new /obj/item/clothing/suit/storage/cargo_jacket(src)
 	new /obj/item/clothing/shoes/color/black(src)
 	new /obj/item/device/radio/headset/headset_cargo(src)
@@ -49,6 +50,7 @@
 	new/obj/item/clothing/suit/artist(src)
 	new/obj/item/clothing/shoes/artist_shoes(src)
 	new/obj/item/clothing/head/beret/artist(src)
+	new/obj/item/clothing/head/beret/artist/lime(src)
 	new/obj/item/clothing/glasses/artist(src)
 	new/obj/item/clothing/mask/gas/artist_hat(src)
 	new/obj/item/device/radio/headset/headset_service(src)

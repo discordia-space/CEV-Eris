@@ -34,6 +34,7 @@
 	var/list/new_overlays = get_mech_images(list(body, head), MECH_BASE_LAYER)
 	if(body && !hatch_closed)
 		new_overlays += get_mech_image(body.decal, "[body.icon_state]_cockpit", body.on_mech_icon, MECH_BASE_LAYER)
+
 	update_pilots(FALSE)
 	if(LAZYLEN(pilot_overlays))
 		new_overlays += pilot_overlays
@@ -56,9 +57,10 @@
 				else if(head)
 					color = head.color
 					decal = head.decal
+				new_overlays += get_mech_image(decal, use_icon_state, MECH_WEAPON_OVERLAYS_ICON, color, hardpoint_object.mech_layer )
 
-				new_overlays += get_mech_image(decal, use_icon_state, 'icons/mechs/mech_weapon_overlays.dmi', color, hardpoint_object.mech_layer )
 	overlays = new_overlays
+
 
 /mob/living/exosuit/proc/update_pilots(var/update_overlays = TRUE)
 	if(update_overlays && LAZYLEN(pilot_overlays))

@@ -43,6 +43,7 @@
 	brightness = 9 //similar to a flare
 	light_duration = 200
 	recoil = 8 // Shot from shotguns
+	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_SILVER = 0.5)
 
 /obj/item/projectile/energy/electrode
 	name = "electrode"
