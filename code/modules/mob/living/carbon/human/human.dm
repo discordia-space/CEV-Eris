@@ -1396,7 +1396,7 @@ var/list/rank_prefix = list(\
 	return 1
 
 /mob/living/carbon/human/proc/resuscitate_notify(type)
-	visible_message(SPAN_WARNING("\The [src] twitches and twists intensely"))
+	visible_message(SPAN_WARNING("\The [src] twitches and twists intensely!"))
 	for(var/mob/O in viewers(world.view, src.loc))
 		if(O == src)
 			continue
