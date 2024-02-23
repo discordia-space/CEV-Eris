@@ -203,15 +203,17 @@ SUBSYSTEM_DEF(bullets)
 		bulletRatios = bullet.movementRatios
 		bulletCoords = bullet.currentCoords
 		projectile = bullet.referencedBullet
-		bulletCoords[1] += bulletRatios[1] * bullet.turfsPerTick/2
-		bulletCoords[2] += bulletRatios[2] * bullet.turfsPerTick/2
-		bulletCoords[3] += bulletRatios[3] * bullet.turfsPerTick/2
+		bulletCoords[1] += (bulletRatios[1] * bullet.turfsPerTick)
+		bulletCoords[2] += (bulletRatios[2] * bullet.turfsPerTick)
+		bulletCoords[3] += (bulletRatios[3] * bullet.turfsPerTick)
 		var/turf/moveTurf = null
 		var/x_change = round(abs(bulletCoords[1]) / HPPT) * sign(bulletCoords[1])
 		var/y_change = round(abs(bulletCoords[2]) / HPPT) * sign(bulletCoords[2])
 		var/z_change = round(abs(bulletCoords[3]) / HPPT) * sign(bulletCoords[3])
 		var/tx_change
 		var/ty_change
+		if(istype(projectile, /obj/item/projectile/bullet/clrifle))
+			message_admins("BEFORE - px: [bulletCoords[1]], py:[bulletCoords[2]], x:[projectile.x], y:[projectile.y]")
 		while(x_change || y_change)
 			if(QDELETED(projectile))
 				bullet_queue -= bullet
@@ -225,9 +227,9 @@ SUBSYSTEM_DEF(bullets)
 			moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
 			x_change -= tx_change
 			y_change -= ty_change
-			bulletCoords[1] -= HPPT * tx_change
-			bulletCoords[2] -= HPPT * ty_change
-			animate(projectile, 2, pixel_x = bulletCoords[1]%HPPT-1, pixel_y = bulletCoords[2]%HPPT-1)
+			bulletCoords[1] -= PPT * tx_change
+			bulletCoords[2] -= PPT * ty_change
+			animate(projectile, 2, pixel_x = abs(bulletCoords[1])%HPPT * sign(bulletCoords[1]) - 1, pixel_y = abs(bulletCoords[2])%HPPT * sign(bulletCoords[2]) - 1)
 			//projectile.pixel_x = bulletCoords[1] % HPPT - 1
 			//projectile.pixel_y = bulletCoords[2] % HPPT - 1
 			bullet.lifetime--
@@ -240,7 +242,7 @@ SUBSYSTEM_DEF(bullets)
 				bullet.coloreds |= moveTurf
 				moveTurf.color = "#2fff05ee"
 				if(istype(projectile, /obj/item/projectile/bullet/clrifle))
-					message_admins("px: [bulletCoords[1]], py:[bulletCoords[2]], x:[projectile.x], y:[projectile.y]")
+					message_admins("AFTER - px: [bulletCoords[1]], py:[bulletCoords[2]], x:[projectile.x], y:[projectile.y]")
 			moveTurf = null
 
 		bullet.currentCoords = bulletCoords
