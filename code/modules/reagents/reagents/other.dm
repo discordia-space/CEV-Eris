@@ -501,8 +501,10 @@
 				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
 			if(H.stat == DEAD)
 				H.resuscitate()
+				remove_self(60)
 		else
 			H.resuscitate() //it will fail and give explanations why
+			remove_self(60)
 
 /datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
 	. = ..()

@@ -1396,8 +1396,6 @@ var/list/rank_prefix = list(\
 	return 1
 
 /mob/living/carbon/human/proc/resuscitate_notify(type)
-	if(prob(50))
-		return
 	visible_message(SPAN_WARNING("\The [src] twitches and twists intensely"))
 	for(var/mob/O in viewers(world.view, src.loc))
 		if(O == src)
@@ -1408,7 +1406,7 @@ var/list/rank_prefix = list(\
 		if(O.stats)
 			bio_stat = O.stats.getStat(STAT_BIO)
 
-		if(bio_stat >= STAT_LEVEL_ADEPT)
+		if(bio_stat >= STAT_LEVEL_BASIC && prob(clamp((bio_stat / STAT_LEVEL_EXPERT) * 100, 0, 100)))
 			switch(type)
 				if(1) //brain and heart fail
 					to_chat(O, "<font color='blue'>You can identify that [src]'s circulatory and central neural systems are failing, preventing them from resurrection.</font>")
