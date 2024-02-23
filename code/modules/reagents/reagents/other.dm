@@ -503,8 +503,9 @@
 				H.resuscitate()
 				remove_self(60)
 		else
-			H.resuscitate() //it will fail and give explanations why
-			remove_self(60)
+			if(H.stat == DEAD)
+				H.resuscitate() //it will fail and give explanations why
+				remove_self(60)
 
 /datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
 	. = ..()

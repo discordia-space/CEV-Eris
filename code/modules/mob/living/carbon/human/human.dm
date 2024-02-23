@@ -1402,9 +1402,11 @@ var/list/rank_prefix = list(\
 			continue
 		if(!Adjacent(O))
 			continue
-		var/bio_stat = 0
+		var/bio_stat = STAT_LEVEL_NONE
 		if(O.stats)
 			bio_stat = O.stats.getStat(STAT_BIO)
+		if(isghost(O))
+			bio_stat = STAT_LEVEL_GODLIKE
 
 		if(bio_stat >= STAT_LEVEL_BASIC && prob(clamp((bio_stat / STAT_LEVEL_EXPERT) * 100, 0, 100)))
 			switch(type)
