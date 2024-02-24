@@ -636,7 +636,7 @@
 
 	offset = roll(2, offset) - (offset + 1)
 
-	return !P.launch_from_gun(target, user, src, target_zone, text2num(paramList["icon-x"])-16, text2num(paramList["icon-y"])-16, offset)
+	return !P.launch_from_gun(target, user, src, target_zone, text2num(paramList["icon-x"]), text2num(paramList["icon-y"]), offset)
 
 //Support proc for calculate_offset
 /obj/item/gun/proc/init_offset_with_brace(mob/living/user)

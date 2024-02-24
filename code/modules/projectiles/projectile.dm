@@ -22,6 +22,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	spawn_blacklisted = TRUE
 	spawn_frequency = 0
 	spawn_tags = null
+	animate_movement = SLIDE_STEPS
 	/// Ammo is heavy
 	weight = 10
 	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
