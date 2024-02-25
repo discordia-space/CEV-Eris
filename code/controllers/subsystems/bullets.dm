@@ -270,6 +270,7 @@ SUBSYSTEM_DEF(bullets)
 
 		//projectile.pixel_x = bulletCoords[1] - x_mod
 		//projectile.pixel_y = bulletCoords[2] - y_mod
+		//// decrementeaza pe miscare pe fiecare turf miscat.
 		animate(projectile, 1, pixel_x =(abs(bulletCoords[1]))%HPPT * sign(bulletCoords[1]) - 1, pixel_y = (abs(bulletCoords[2]))%HPPT * sign(bulletCoords[2]) - 1, flags = ANIMATION_END_NOW)
 		bullet.currentCoords = bulletCoords
 
