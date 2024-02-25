@@ -228,23 +228,6 @@ SUBSYSTEM_DEF(bullets)
 				break
 			if(istype(projectile, /obj/item/projectile/bullet/clrifle))
 				message_admins("BEFORE - px: [bulletCoords[1]], py:[bulletCoords[2]], x:[projectile.x], y:[projectile.y]")
-			/*
-			if(x_change && y_change)
-				if(abs(x_change)/abs(y_change) < 1)
-					if(x_change > y_change)
-						sy_change = y_change
-						y_change = 0
-					else
-						sx_change = x_change
-						x_change = 0
-				else
-					if(y_change > x_change)
-						sx_change = x_change
-						x_change = 0
-					else
-						sy_change = y_change
-						y_change = 0
-			*/
 			tx_change = 0
 			ty_change = 0
 			if(x_change)
@@ -254,8 +237,8 @@ SUBSYSTEM_DEF(bullets)
 			moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
 			x_change -= tx_change
 			y_change -= ty_change
-			bulletCoords[1] -= PPT * tx_change - tx_change
-			bulletCoords[2] -= PPT * ty_change - tx_change
+			bulletCoords[1] -= PPT * tx_change
+			bulletCoords[2] -= PPT * ty_change
 			projectile.pixel_x -= PPT * tx_change
 			projectile.pixel_y -= PPT * ty_change
 			bullet.lifetime--
