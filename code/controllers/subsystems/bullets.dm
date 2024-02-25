@@ -192,9 +192,18 @@ SUBSYSTEM_DEF(bullets)
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
 		current_queue = bullet_queue.Copy()
+	/// Prevent random dealocations and reallocations , just have em up initialized once.
 	var/list/bulletRatios
 	var/list/bulletCoords
 	var/obj/item/projectile/projectile
+	var/x_change
+	var/y_change
+	var/z_change
+	var/tx_change
+	var/ty_change
+	var/sx_change
+	var/sy_change
+	var/turf/moveTurf = null
 	for(var/datum/bullet_data/bullet in current_queue)
 		current_queue -= bullet
 		if(!istype(bullet.referencedBullet, /obj/item/projectile/bullet) || QDELETED(bullet.referencedBullet))
@@ -203,34 +212,39 @@ SUBSYSTEM_DEF(bullets)
 		bulletRatios = bullet.movementRatios
 		bulletCoords = bullet.currentCoords
 		projectile = bullet.referencedBullet
-		bulletCoords[1] += (bulletRatios[1] * bullet.turfsPerTick/4)
-		bulletCoords[2] += (bulletRatios[2] * bullet.turfsPerTick/4)
-		bulletCoords[3] += (bulletRatios[3] * bullet.turfsPerTick/4)
-		var/turf/moveTurf = null
-		var/x_change = round(abs(bulletCoords[1]) / HPPT) * sign(bulletCoords[1])
-		var/y_change = round(abs(bulletCoords[2]) / HPPT) * sign(bulletCoords[2])
-		var/z_change = round(abs(bulletCoords[3]) / HPPT) * sign(bulletCoords[3])
-		var/tx_change
-		var/ty_change
-		var/iterations = 0
-		var/sx_change = 0
-		var/sy_change = 0
-		var/x_mod = 0
-		var/y_mod = 0
+		bulletCoords[1] += (bulletRatios[1] * bullet.turfsPerTick)
+		bulletCoords[2] += (bulletRatios[2] * bullet.turfsPerTick)
+		bulletCoords[3] += (bulletRatios[3] * bullet.turfsPerTick)
+		x_change = round(abs(bulletCoords[1]) / HPPT) * sign(bulletCoords[1])
+		y_change = round(abs(bulletCoords[2]) / HPPT) * sign(bulletCoords[2])
+		z_change = round(abs(bulletCoords[3]) / HPPT) * sign(bulletCoords[3])
+		tx_change = 0
+		ty_change = 0
+		sx_change = 0
+		sy_change = 0
 		while(x_change || y_change)
 			if(QDELETED(projectile))
 				bullet_queue -= bullet
 				break
 			if(istype(projectile, /obj/item/projectile/bullet/clrifle))
 				message_admins("BEFORE - px: [bulletCoords[1]], py:[bulletCoords[2]], x:[projectile.x], y:[projectile.y]")
+			/*
 			if(x_change && y_change)
 				if(abs(x_change)/abs(y_change) < 1)
-					sx_change = x_change
-					x_change = 0
+					if(x_change > y_change)
+						sy_change = y_change
+						y_change = 0
+					else
+						sx_change = x_change
+						x_change = 0
 				else
-					sy_change = y_change
-					y_change = 0
-			iterations++
+					if(y_change > x_change)
+						sx_change = x_change
+						x_change = 0
+					else
+						sy_change = y_change
+						y_change = 0
+			*/
 			tx_change = 0
 			ty_change = 0
 			if(x_change)
@@ -242,12 +256,8 @@ SUBSYSTEM_DEF(bullets)
 			y_change -= ty_change
 			bulletCoords[1] -= PPT * tx_change - tx_change
 			bulletCoords[2] -= PPT * ty_change - tx_change
-			x_mod -= PPT * tx_change
-			y_mod -= PPT * ty_change
-			//animate(projectile, 1, pixel_x = CEILING(abs(bulletCoords[1]), 1)%HPPT * sign(bulletCoords[1]), pixel_y = CEILING(abs(bulletCoords[2]), 1)%HPPT * sign(bulletCoords[2]))
-			//animate(projectile, 1, pixel_x = abs(bulletCoords[1])%HPPT * sign(bulletCoords[1]) - 1, pixel_y = abs(bulletCoords[2])%HPPT * sign(bulletCoords[2]) - 1)
-			//projectile.pixel_x = bulletCoords[1] % HPPT - 1
-			//projectile.pixel_y = bulletCoords[2] % HPPT - 1
+			projectile.pixel_x -= PPT * tx_change
+			projectile.pixel_y -= PPT * ty_change
 			bullet.lifetime--
 			if(bullet.lifetime < 0)
 				bullet_queue -= bullet
@@ -267,16 +277,9 @@ SUBSYSTEM_DEF(bullets)
 				y_change = sy_change
 				sy_change = 0
 
-
-		//projectile.pixel_x = bulletCoords[1] - x_mod
-		//projectile.pixel_y = bulletCoords[2] - y_mod
-		//// decrementeaza pe miscare pe fiecare turf miscat.
 		animate(projectile, 1, pixel_x =(abs(bulletCoords[1]))%HPPT * sign(bulletCoords[1]) - 1, pixel_y = (abs(bulletCoords[2]))%HPPT * sign(bulletCoords[2]) - 1, flags = ANIMATION_END_NOW)
 		bullet.currentCoords = bulletCoords
 
-		//bullet.referencedBullet.pixel_x = -round(turfsTraveled * bullet.movementRatios[1]) - PPT/2 * x_change
-		//bullet.referencedBullet.pixel_y = -round(turfsTraveled * bullet.movementRatios[2]) - PPT/2 * y_change
-		//animate(bullet.referencedBullet, 1/turfsTraveled,  pixel_x = round(bullet.currentCoords[1]), pixel_y = round(bullet.currentCoords[2]))
 		if(QDELETED(projectile))
 			bullet_queue -= bullet
 			for(var/turf/thing in bullet.coloreds)
