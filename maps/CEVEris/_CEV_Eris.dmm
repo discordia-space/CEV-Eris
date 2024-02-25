@@ -19512,6 +19512,11 @@
 "aWd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/window_lwall_spawn/smartspawn,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating,
 /area/eris/maintenance/section3deck4port)
 "aWe" = (
@@ -19723,6 +19728,11 @@
 "aWy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/spawner/junk/low_chance,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
 "aWz" = (
@@ -22254,6 +22264,11 @@
 /area/eris/maintenance/section1deck4central)
 "bbL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
 "bbM" = (
@@ -41736,6 +41751,15 @@
 /area/eris/crew_quarters/janitor)
 "bVa" = (
 /obj/machinery/atmospherics/pipe/zpipe/up,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
 "bVb" = (
@@ -41929,6 +41953,11 @@
 /area/eris/security/lobby)
 "bVB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
 "bVC" = (
@@ -46092,6 +46121,11 @@
 	dir = 8
 	},
 /obj/spawner/junk/low_chance,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
 "cfH" = (
@@ -46374,6 +46408,11 @@
 	},
 /obj/structure/disposalpipe/sortjunction/flipped{
 	sortType = list("Church")
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
