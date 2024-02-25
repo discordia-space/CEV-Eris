@@ -258,16 +258,16 @@
 /obj/item/storage/fancy/cigarettes/buckshot
 	name = "\improper Klassika Filter packet"
 	desc = "A packet of six Klassika Filter Cigarettes. Old unknown brand, says 'Klassika Filter' on the front..."
-	icon_state = "bpacket"
-	item_state = "bpacket"
+	icon_state = "buckpacket"
+	item_state = "buckpacket"
 	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/buckshot
 
 /obj/item/storage/fancy/cigarettes/quasimorph
 	name = "\improper Kosmos packet"
 	desc = "A packet of six Kosmos Cigarettes. Old Russian brand, says 'Космос' on the front, along with a white rocket."
-	icon_state = "kpacket"
-	item_state = "kpacket"
+	icon_state = "kosmospacket"
+	item_state = "kosmospacket"
 	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/quasimorph
 

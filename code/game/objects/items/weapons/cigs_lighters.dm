@@ -338,7 +338,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/cigarette/robusto
 	desc = "A roll of tobacco and nicotine. Gives the feeling of old wars. Let's crack some skulls!"
-	preloaded_reagents = list("nicotine" = 6, "violence" = 1)
+	preloaded_reagents = list("nicotine" = 6, "violence" = 3)
 	icon_state = "robustoff"
 	item_state = "robustoff"
 	icon_on = "robuston"
