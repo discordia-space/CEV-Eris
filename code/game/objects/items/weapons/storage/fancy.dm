@@ -265,7 +265,7 @@
 
 /obj/item/storage/fancy/cigarettes/quasimorph
 	name = "\improper Kosmos packet"
-	desc = "A packet of six Kosmos Cigarettes. Old Russian brand, says 'Kocmoc' on the front, along with a white rocket."
+	desc = "A packet of six Kosmos Cigarettes. Old Russian brand, says 'Космос' on the front, along with a white rocket."
 	icon_state = "kpacket"
 	item_state = "kpacket"
 	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
