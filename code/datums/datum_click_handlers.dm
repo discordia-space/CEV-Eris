@@ -133,11 +133,11 @@
 		shooting_loop()
 
 /datum/click_handler/fullauto/MouseDrag(src_object,over_object,src_location,over_location,src_control,over_control,params)
-	src_location = resolve_world_target(src_location)
-	if(src_location)
+	over_object = resolve_world_target(over_object)
+	if(over_object)
 		//message_admins("MouseDrag - [params]")
 		storedParams = params
-		target = src_location
+		target = over_object
 		return FALSE
 	return TRUE
 
