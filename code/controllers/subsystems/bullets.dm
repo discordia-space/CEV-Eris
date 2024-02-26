@@ -47,12 +47,14 @@ SUBSYSTEM_DEF(bullets)
 	var/bulletLevel = 0
 
 /datum/bullet_data/New(atom/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
+	/*
 	if(!target)
 		message_admins("Created bullet without target , [referencedBullet]")
 		return
 	if(!firer)
 		message_admins("Created bullet without firer, [referencedBullet]")
 		return
+	*/
 	src.referencedBullet = referencedBullet
 	src.currentTurf = get_turf(referencedBullet)
 	src.currentCoords = list(referencedBullet.pixel_x, referencedBullet.pixel_y, referencedBullet.z)
@@ -115,7 +117,7 @@ SUBSYSTEM_DEF(bullets)
 	coordinates[2] = cos(coordinates[4])
 	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
 	// we get the angle of the trajectory by incrementing it.
-	message_admins("[referencedBullet] -/- [coordinates[4]] , x: [coordinates[1]], y:[coordinates[2]]")
+	//message_admins("[referencedBullet] -/- [coordinates[4]] , x: [coordinates[1]], y:[coordinates[2]]")
 	rotation.Turn(coordinates[4] + 180)
 	referencedBullet.transform = rotation
 	movementRatios = coordinates
@@ -226,8 +228,6 @@ SUBSYSTEM_DEF(bullets)
 			if(QDELETED(projectile))
 				bullet_queue -= bullet
 				break
-			if(istype(projectile, /obj/item/projectile/bullet/clrifle))
-				message_admins("BEFORE - px: [bulletCoords[1]], py:[bulletCoords[2]], x:[projectile.x], y:[projectile.y]")
 			tx_change = 0
 			ty_change = 0
 			if(x_change)
@@ -250,8 +250,6 @@ SUBSYSTEM_DEF(bullets)
 				projectile.Move(moveTurf)
 				bullet.coloreds |= moveTurf
 				moveTurf.color = "#2fff05ee"
-				if(istype(projectile, /obj/item/projectile/bullet/clrifle))
-					message_admins("AFTER - px: [bulletCoords[1]], py:[bulletCoords[2]], x:[projectile.x], y:[projectile.y]")
 			moveTurf = null
 			if(sx_change)
 				x_change = sx_change

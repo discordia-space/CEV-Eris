@@ -38,12 +38,14 @@
 /datum/click_handler/proc/MouseDown(object,location,control,params)
 	return TRUE
 
-/datum/click_handler/proc/MouseDrag(over_object,src_location,over_location,src_control,over_control,params)
+/datum/click_handler/proc/MouseDrag(src_object,over_object,src_location,over_location,src_control,over_control,params)
 	return TRUE
 
 /datum/click_handler/proc/MouseUp(object,location,control,params)
 	return TRUE
 
+/datum/click_handler/proc/MouseMove(object, location, control, params)
+	return TRUE
 
 /datum/click_handler/proc/mob_check(mob/living/carbon/human/user) //Check can mob use a ability
 	return
@@ -102,6 +104,7 @@
 
 	object = resolve_world_target(object)
 	if(object)
+		//message_admins("MouseDown - [params]")
 		storedParams = params
 		target = object
 		time_since_last_shot = world.time
@@ -122,19 +125,25 @@
 	if(target)
 		owner.mob.face_atom(target)
 
-	while(time_since_last_shot < world.time)
+	if(time_since_last_shot < world.time)
 		do_fire()
 		time_since_last_shot = world.time + (reciever.fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : reciever.fire_delay) * min(world.tick_lag, 1)
 
 	spawn(1)
 		shooting_loop()
 
-/datum/click_handler/fullauto/MouseDrag(over_object, src_location, over_location, src_control, over_control, params)
+/datum/click_handler/fullauto/MouseDrag(src_object,over_object,src_location,over_location,src_control,over_control,params)
 	src_location = resolve_world_target(src_location)
 	if(src_location)
+		//message_admins("MouseDrag - [params]")
 		storedParams = params
 		target = src_location
 		return FALSE
+	return TRUE
+
+/datum/click_handler/fullauto/MouseMove(object, location, control, params)
+	//message_admins("MouseMove - [params]")
+	storedParams = params
 	return TRUE
 
 /datum/click_handler/fullauto/MouseUp(object, location, control, params)

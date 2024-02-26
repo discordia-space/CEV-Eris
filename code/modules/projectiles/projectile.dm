@@ -282,7 +282,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	check_hit_zone(distance, user_recoil)
 
 	setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
-	message_admins("[src] - x-off:[x_offset], y-off:[y_offset]")
+	//message_admins("[src] - x-off:[x_offset], y-off:[y_offset]")
 	new /datum/bullet_data(src, target_zone, usr, target, list(x_offset, y_offset, target.z), 32, 1, 50)
 	//Process()
 
