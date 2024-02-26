@@ -1919,7 +1919,8 @@
 	products = list(
 		/obj/item/gym_ticket = 99,
 		/obj/item/tool/hammer/dumbbell = 10,
-		/obj/item/reagent_containers/food/drinks/protein_shake = 10
+		/obj/item/reagent_containers/food/drinks/protein_shake = 10,
+		/obj/item/reagent_containers/food/drinks/energy = 10
 		)
 
 	prices = list(
@@ -1935,7 +1936,6 @@
 		)
 
 	contraband = list(
-		/obj/item/reagent_containers/food/drinks/energy = 10,
 		/obj/item/reagent_containers/syringe/paracetamol = 10,
 		/obj/item/reagent_containers/syringe/adrenaline = 10,
 		/obj/item/reagent_containers/syringe/stim/steady = 5,

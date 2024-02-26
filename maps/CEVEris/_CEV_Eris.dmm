@@ -9879,18 +9879,23 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "axX" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
-/turf/simulated/floor/wood,
+/obj/effect/window_lwall_spawn/smartspawn,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/plating,
 /area/eris/crew_quarters/library)
 "axZ" = (
 /obj/structure/table/woodentable,
-/obj/machinery/librarypubliccomp,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
+/obj/item/hand_labeler,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "aya" = (
 /obj/structure/table/woodentable,
-/obj/machinery/recharger,
+/obj/machinery/librarypubliccomp,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "ayb" = (
@@ -9907,7 +9912,7 @@
 /area/eris/maintenance/disposal)
 "ayd" = (
 /obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
+/obj/item/clothing/glasses/regular/hipster,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "aye" = (
@@ -9965,19 +9970,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/eschangara)
 "ayj" = (
-/obj/structure/bookcase,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
-"ayk" = (
-/obj/structure/bookcase{
-	name = "bookcase (Reports)"
-	},
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
-"ayl" = (
-/obj/structure/bookcase{
-	name = "bookcase (Adult)"
-	},
+/obj/structure/bookcase/manuals/engineering,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "aym" = (
@@ -9985,13 +9978,16 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "ayn" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 1
+/obj/structure/bed/chair/shuttle{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "ayo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "ayp" = (
@@ -10087,18 +10083,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
-"ayz" = (
-/obj/structure/bookcase{
-	name = "bookcase (Tactics)"
-	},
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
-"ayA" = (
-/obj/structure/bookcase{
-	name = "bookcase (Non-Fiction)"
-	},
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
 "ayB" = (
 /obj/machinery/light{
 	dir = 4
@@ -10251,8 +10235,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2starboard)
 "ayW" = (
-/obj/structure/bookcase{
-	name = "Forbidden Knowledge"
+/obj/structure/flora/pottedplant{
+	icon_state = "plant-08"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
@@ -10288,26 +10272,15 @@
 /turf/simulated/floor/plating,
 /area/eris/maintenance/junk)
 "aza" = (
-/obj/structure/bookcase{
-	name = "bookcase (Reference)"
-	},
+/obj/structure/table/woodentable,
+/obj/item/folder,
+/obj/item/pen,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "azb" = (
 /obj/structure/table/woodentable,
-/obj/item/pen/blue{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/pen/red{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
-"azc" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin,
+/obj/item/folder/cyan,
+/obj/item/pen,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "azd" = (
@@ -10326,8 +10299,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "azg" = (
-/obj/structure/bed/chair/comfy/black{
-	dir = 8
+/obj/structure/cyberplant{
+	possible_plants = list("plant-09","plant-xmas");
+	possible_colors = list("#B5FFD8")
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
@@ -10543,9 +10517,9 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "azH" = (
-/obj/structure/bookcase{
-	name = "bookcase (Religious)"
-	},
+/obj/structure/table/woodentable,
+/obj/item/folder/cyan,
+/obj/item/pen/blue,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "azI" = (
@@ -10574,11 +10548,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/eris/security/warden)
-"azK" = (
-/obj/structure/table/woodentable,
-/obj/item/device/camera_film,
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
 "azL" = (
 /obj/machinery/photocopier,
 /turf/simulated/floor/wood,
@@ -53102,6 +53071,9 @@
 /obj/spawner/lathe_disk,
 /obj/spawner/lathe_disk,
 /obj/item/computer_hardware/hard_drive/portable/design/tools,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/crew_quarters/kitchen_storage)
 "cxT" = (
@@ -84322,9 +84294,6 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/kitchen)
 "dXa" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -92217,6 +92186,8 @@
 	pixel_y = -28
 	},
 /obj/structure/cable/green,
+/obj/machinery/light,
+/obj/machinery/vending/gym,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "eqP" = (
@@ -93825,13 +93796,8 @@
 /turf/simulated/floor/tiled/white/gray_perforated,
 /area/eris/medical/paramedic)
 "euu" = (
-/obj/structure/table/woodentable,
-/obj/item/hand_labeler,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/item/packageWrap,
-/obj/item/device/destTagger,
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "euv" = (
@@ -95546,11 +95512,11 @@
 /area/eris/medical/paramedic)
 "eyy" = (
 /obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
 /obj/machinery/camera/network/third_section,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
+/obj/machinery/recharger,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "eyz" = (
@@ -98631,17 +98597,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2port)
-"eFr" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/wood,
-/area/eris/crew_quarters/library)
 "eFs" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -98656,6 +98611,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/machinery/braingym/mechanical,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "eFu" = (
@@ -98679,6 +98635,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
@@ -98708,35 +98667,29 @@
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "eFz" = (
-/obj/structure/bed/chair/comfy/black,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/machinery/braingym,
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "eFA" = (
-/obj/structure/bed/chair/comfy/black,
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
 "eFD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/library)
@@ -101454,6 +101407,15 @@
 /obj/spawner/traps/wire_splicing,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"juy" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/braingym/biology,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/library)
 "jwB" = (
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
@@ -103189,6 +103151,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"nwE" = (
+/obj/structure/bookcase/manuals/research_and_development,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/library)
 "nwR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -107187,6 +107153,10 @@
 /obj/structure/railing,
 /turf/simulated/open,
 /area/eris/engineering/engine_room)
+"wRl" = (
+/obj/structure/bookcase/manuals/medical,
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/library)
 "wTB" = (
 /turf/simulated/wall,
 /area/eris/neotheology/bioprinter)
@@ -243693,8 +243663,8 @@ axB
 eym
 dGw
 eFs
-ayj
-ayj
+nwE
+wRl
 ayj
 ayg
 abF
@@ -244097,8 +244067,8 @@ gxX
 voZ
 awr
 eFw
-ayk
-ayz
+axW
+axW
 ayW
 ayg
 ayg
@@ -244298,11 +244268,11 @@ rVB
 uND
 voZ
 awr
-eFr
+juy
 axW
 axW
-axW
-axW
+ayn
+ayn
 dHk
 aaa
 cAO
@@ -244500,9 +244470,9 @@ lds
 njW
 voZ
 awr
-eFs
-ayl
-ayA
+eFA
+axW
+axW
 aza
 azH
 ayg
@@ -244705,9 +244675,9 @@ awr
 eFt
 eFx
 eFy
-axW
-axW
-ayg
+ayn
+ayn
+axX
 abF
 cAO
 aDb
@@ -244906,7 +244876,7 @@ fqH
 awr
 axW
 axW
-eFz
+eFs
 azb
 ayd
 ayg
@@ -245106,11 +245076,11 @@ jZP
 rAx
 reR
 awr
-axX
-aym
-eFA
-azc
-azK
+eFz
+axW
+eFs
+axW
+axW
 ayg
 abF
 cAO
@@ -245309,9 +245279,9 @@ qoW
 rnF
 awr
 euu
-axW
+aym
 eFD
-azg
+axW
 azg
 ayg
 abF
@@ -245511,7 +245481,7 @@ lwM
 rqg
 awr
 axZ
-ayn
+axW
 eFE
 eqL
 eqO
