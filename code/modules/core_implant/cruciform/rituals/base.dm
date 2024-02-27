@@ -303,7 +303,7 @@
 		fail("Soul transfer failed.", user, C)
 		return FALSE
 	set_personal_cooldown(user)
-	LAZYREMOVE(lost_cruciforms, CI)
+	lost_cruciforms -= CI
 
 
 	return TRUE

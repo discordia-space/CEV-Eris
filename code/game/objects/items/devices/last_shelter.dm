@@ -100,10 +100,11 @@ var/list/shelter_blacklist = list(
 
 /obj/item/device/last_shelter/proc/get_cruciform()
 	var/datum/mind/MN = request_player()
+
 	if(!MN)
 		var/list/cruciforms_temporary = lost_cruciforms.Copy()
 		while(cruciforms_temporary.len)
-			var/obj/item/implant/core_implant/picked = pick(cruciforms_temporary)
+			var/obj/item/implant/core_implant/picked = pick_n_take(cruciforms_temporary)
 			var/container = picked.is_inside(shelter_blacklist)
 			if(container)
 				if(ishuman(container))
@@ -111,11 +112,11 @@ var/list/shelter_blacklist = list(
 					if((body.stat == DEAD) && (world.time >= (body.timeofdeath + NECROZTIME)))
 						picked.uninstall()
 						return picked
-				cruciforms_temporary -= picked
 				continue
 			else
 				return picked
 		return FALSE
+
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	H.randomize_appearance()
 	for(var/stat in ALL_STATS)

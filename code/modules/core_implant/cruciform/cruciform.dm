@@ -65,7 +65,11 @@ var/list/lost_cruciforms = list()
 	unregister_wearer()
 	wearer.stats.removePerk(/datum/perk/sanityboost)
 	wearer.stats.removePerk(/datum/perk/active_sanityboost)
-	LAZYADD(lost_cruciforms, src)
+	lost_cruciforms |= src
+	return ..()
+
+/obj/item/implant/core_implant/cruciform/Destroy()
+	lost_cruciforms -= src
 	return ..()
 
 /obj/item/implant/core_implant/cruciform/get_mob_overlay(gender)
@@ -221,7 +225,6 @@ var/list/lost_cruciforms = list()
 		return
 
 	add_module(new CRUCIFORM_CLONING)
-
 
 //////////////////////////
 //////////////////////////
