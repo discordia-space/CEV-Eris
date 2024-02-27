@@ -8,7 +8,7 @@
 
 /// Pixels per turf
 #define PPT 32
-#define HPPT 16
+#define HPPT (PPT/2)
 SUBSYSTEM_DEF(bullets)
 	name = "Bullets"
 	wait = 1
@@ -45,8 +45,9 @@ SUBSYSTEM_DEF(bullets)
 	var/projectileAccuracy = 0
 	var/lifetime = 30
 	var/bulletLevel = 0
+	var/lastChanges = list(0,0,0)
 
-/datum/bullet_data/New(atom/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
+/datum/bullet_data/New(obj/item/projectile/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
 	/*
 	if(!target)
 		message_admins("Created bullet without target , [referencedBullet]")
@@ -55,6 +56,7 @@ SUBSYSTEM_DEF(bullets)
 		message_admins("Created bullet without firer, [referencedBullet]")
 		return
 	*/
+	referencedBullet.dataRef = src
 	src.referencedBullet = referencedBullet
 	src.currentTurf = get_turf(referencedBullet)
 	src.currentCoords = list(referencedBullet.pixel_x, referencedBullet.pixel_y, referencedBullet.z)
@@ -105,7 +107,12 @@ SUBSYSTEM_DEF(bullets)
 	updateCoordinateRatio()
 	SSbullets.bullet_queue += src
 
-/// I hate trigonometry, but i hate ATAN2 more.
+/datum/bullet_data/proc/redirect(list/targetCoordinates, list/firingCoordinates)
+	src.firedTurf = get_turf(referencedBullet)
+	src.firedPos = firingCoordinates
+	src.targetCoords = targetCoordinates
+	updateCoordinateRatio()
+
 /datum/bullet_data/proc/updateCoordinateRatio()
 	var/list/coordinates = list(0,0,0,0)
 	var/matrix/rotation = matrix()
@@ -116,41 +123,10 @@ SUBSYSTEM_DEF(bullets)
 	coordinates[1] = sin(coordinates[4])
 	coordinates[2] = cos(coordinates[4])
 	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
-	// we get the angle of the trajectory by incrementing it.
 	//message_admins("[referencedBullet] -/- [coordinates[4]] , x: [coordinates[1]], y:[coordinates[2]]")
 	rotation.Turn(coordinates[4] + 180)
 	referencedBullet.transform = rotation
 	movementRatios = coordinates
-
-/datum/bullet_data/proc/ricochet(atom/wall, implementation)
-	var/list/bCoords = list(referencedBullet.x, referencedBullet.y, referencedBullet.pixel_x, referencedBullet.pixel_y)
-	var/list/wCoords = list(wall.x, wall.y)
-	if(implementation == 1)
-		var/list/cCoords = list(abs(bCoords[1] - wCoords[1] + 0.00001), abs(bCoords[2] - wCoords[2] + 0.00001))
-		var/list/tCoords = list(0,0)
-		var/ipothenuse = sqrt(cCoords[1]**2 + cCoords[2]**2)
-		if(cCoords[1] > cCoords[2])
-			var/s = cCoords[1]/ipothenuse
-			s = 90 - arcsin(s)
-			if(s < 30)
-				cCoords[1] = -cCoords[1]
-		else
-			var/s = cCoords[2]/ipothenuse
-			s = 90 - arcsin(s)
-			if(s < 30)
-				cCoords[2] = -cCoords[2]
-		return cCoords
-	else
-		var/bSlope = (referencedBullet.y + referencedBullet.pixel_y )/(referencedBullet.x + referencedBullet.pixel_x)
-		var/trueAngle = 0
-		if(targetCoords[1] > targetCoords[2])
-			trueAngle = arctan(bSlope)
-		else
-			trueAngle = 180 - arctan(bSlope)
-
-		message_admins("TRUE ANGLE - [trueAngle]")
-
-
 
 
 /datum/bullet_data/proc/updateLevel()
@@ -208,6 +184,9 @@ SUBSYSTEM_DEF(bullets)
 	var/turf/moveTurf = null
 	for(var/datum/bullet_data/bullet in current_queue)
 		current_queue -= bullet
+		bullet.lastChanges[1] = 0
+		bullet.lastChanges[2] = 0
+		bullet.lastChanges[3] = 0
 		if(!istype(bullet.referencedBullet, /obj/item/projectile/bullet) || QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
 			continue
@@ -237,6 +216,8 @@ SUBSYSTEM_DEF(bullets)
 			moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
 			x_change -= tx_change
 			y_change -= ty_change
+			lastChanges[1] += tx_change
+			lastChanges[2] += ty_change
 			bulletCoords[1] -= PPT * tx_change
 			bulletCoords[2] -= PPT * ty_change
 			projectile.pixel_x -= PPT * tx_change

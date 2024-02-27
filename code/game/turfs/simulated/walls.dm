@@ -206,71 +206,26 @@
 		return
 
 
-/turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
-	if(src.ricochet_id != 0)
-		if(src.ricochet_id == Proj.ricochet_id)
-			src.ricochet_id = 0
-			new /obj/effect/sparks(get_turf(Proj))
-			return PROJECTILE_CONTINUE
-		src.ricochet_id = 0
+/turf/simulated/wall/bullet_act(obj/item/projectile/Proj)
 	var/proj_health = Proj.get_structure_damage()
 	if(istype(Proj,/obj/item/projectile/beam))
 		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
 	else if(istype(Proj,/obj/item/projectile/ion))
 		burn(500)
+	else if(istype(Proj,/obj/item/projectile/bullet))
+		var/list/lastMoves = proj.dataRef.lastChanges
+		var/angle = proj.dataRef.movementRatios[4]
+		switch(angle)
+			if(0 to 25)
+				if(l)
+			if(65 to 115)
+			if(155 to 205)
+			if(245 to 295)
+			if(335 to 360)
 
 	Proj.on_hit(src)
 
-	/*
-	if(Proj.can_ricochet && proj_health != 0 && (src.x != Proj.starting.x) && (src.y != Proj.starting.y))
-		var/ricochetchance = 1
-		if(proj_health <= 60)
-			ricochetchance = 2 + round((60 - proj_health) / 5)
-			ricochetchance = min(ricochetchance * ricochetchance, 100)
-		// here it is multiplied by 1/2 temporally, changes will be required when new wall system gets implemented
-		ricochetchance = round(ricochetchance * projectile_reflection(Proj, TRUE) / 2)
 
-		ricochetchance *= Proj.ricochet_ability
-		ricochetchance = min(max(ricochetchance, 0), 100)
-		if(prob(ricochetchance))
-			// projectile loses up to 50% of its health when it ricochets, depending on situation
-			var/healthdiff = round(proj_health / 2 + proj_health * ricochetchance / 200) // projectile loses up to 50% of its health when it ricochets, depending on situation
-			var/list/damageAdjustment= list()
-			var/dam = Proj.getAllDamType(BRUTE)
-			damageAdjustment[BRUTE] = round(dam/2 + dam*ricochetchance/200)
-			dam = Proj.getAllDamType(BURN)
-			damageAdjustment[BURN] = round(dam/2 + dam*ricochetchance/200)
-			Proj.adjust_damages(damageAdjustment)
-			Proj.def_zone = ran_zone()
-			projectile_reflection(Proj)		// Reflect before health, runtimes occur in some cases if health happens first.
-			visible_message("<span class='danger'>\The [Proj] ricochets off the surface of wall!</span>")
-			take_damage(min(proj_health - healthdiff, 100))
-			new /obj/effect/sparks(get_turf(Proj))
-			return PROJECTILE_CONTINUE // complete projectile permutation
-
-	//cut some projectile health here and not in projectile.dm, because we need not to all things what are using get_str_dam() becomes thin and weak.
-	//in general, bullets have 35-95 health, and they are plased in ~30 bullets magazines, so 50*30 = 150, but plasteel walls have only 400 hp =|
-	//but you may also increase materials thickness or etc.
-	proj_health = round(Proj.get_structure_damage() / 3)//Yo may replace 3 to 5-6 to make walls fucking stronk as a Poland
-
-	//cap the amount of health, so that things like emitters can't destroy walls in one hit.
-	var/health_taken = 0
-	if(Proj.nocap_structures)
-		health_taken = proj_health * 4
-	else
-		health_taken = min(proj_health, 100)
-
-	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
-
-	if(Proj.damage_types[BRUTE] && prob(health / maxHealth * 33))
-		var/obj/item/trash/material/metal/slug = new(get_turf(Proj))
-		slug.matter.Cut()
-		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
-		slug.throw_at(get_turf(Proj), 0, 1)
-
-	take_damage(health_taken)
-
-	*/
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()

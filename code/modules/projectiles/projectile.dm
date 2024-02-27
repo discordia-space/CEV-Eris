@@ -103,6 +103,8 @@ GLOBAL_LIST(projectileDamageConstants)
 	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
 										//  have to be recreated multiple times
 
+	var/datum/bullet_data/dataRef = null
+
 /// This is done to save a lot of memory from duplicated damage lists.
 /// The list is also copied whenever PrepareForLaunch is called and modified as needs to be
 /obj/item/projectile/Initialize()
