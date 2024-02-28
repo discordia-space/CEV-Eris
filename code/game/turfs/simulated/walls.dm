@@ -213,15 +213,39 @@
 	else if(istype(Proj,/obj/item/projectile/ion))
 		burn(500)
 	else if(istype(Proj,/obj/item/projectile/bullet))
-		var/list/lastMoves = proj.dataRef.lastChanges
-		var/angle = proj.dataRef.movementRatios[4]
+		var/list/lastMoves = Proj.dataRef.lastChanges
+		var/angle = Proj.dataRef.movementRatios[4]
+		var/ricochet = FALSE
+		message_admins("Bullet hit wall at [angle]")
 		switch(angle)
-			if(0 to 25)
-				if(l)
+			if(-180 to -155)
+				if((abs(lastMoves[2]) >= abs(lastMoves[1]))  && abs(lastMoves[1]))
+					dataRef.tweeeeng()
+					//Proj.dataRef.movementRatios[1] *= -1
+					ricochet = TRUE
+			if(-115 to -65)
+				if((abs(lastMoves[1]) >= abs(lastMoves[2]))  && abs(lastMoves[2]))
+					dataRef.tweeeeng()
+					//Proj.dataRef.movementRatios[2] *= -1
+					ricochet = TRUE
+			if(-25 to 25)
+				if((abs(lastMoves[2]) >= abs(lastMoves[1])) && abs(lastMoves[1]))
+					dataRef.tweeeeng()
+					//Proj.dataRef.movementRatios[1] *= -1
+					ricochet = TRUE
 			if(65 to 115)
-			if(155 to 205)
-			if(245 to 295)
-			if(335 to 360)
+				if((abs(lastMoves[1]) >= abs(lastMoves[2]))  && abs(lastMoves[2]))
+					dataRef.tweeeeng()
+					//Proj.dataRef.movementRatios[2] *= -1
+					ricochet = TRUE
+			if(155 to 180)
+				if((abs(lastMoves[2]) >= abs(lastMoves[1]))  && abs(lastMoves[1]))
+					dataRef.tweeeeng()
+					//Proj.dataRef.movementRatios[1] *= -1
+					ricochet = TRUE
+		if(ricochet)
+			message_admins("Ricochet!")
+			return PROJECTILE_CONTINUE
 
 	Proj.on_hit(src)
 

@@ -113,6 +113,14 @@ SUBSYSTEM_DEF(bullets)
 	src.targetCoords = targetCoordinates
 	updateCoordinateRatio()
 
+/datum/bullet_data/proc/tweeeeng()
+	var/matrix/rotation = matrix()
+	movementRatios[4] = (abs(movementRatios[90] + 90) * sign(movementRatios[4])%180)
+	message_admins("Tweeng : [movementRatios[4]]")
+	movementRatios[1] = sin(movementRatios[4])
+	movementRatios[2] = cos(movementRatios[4])
+	rotation.Turn(movementRatios[4] + 180)
+
 /datum/bullet_data/proc/updateCoordinateRatio()
 	var/list/coordinates = list(0,0,0,0)
 	var/matrix/rotation = matrix()
@@ -216,8 +224,8 @@ SUBSYSTEM_DEF(bullets)
 			moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
 			x_change -= tx_change
 			y_change -= ty_change
-			lastChanges[1] += tx_change
-			lastChanges[2] += ty_change
+			bullet.lastChanges[1] += tx_change
+			bullet.lastChanges[2] += ty_change
 			bulletCoords[1] -= PPT * tx_change
 			bulletCoords[2] -= PPT * ty_change
 			projectile.pixel_x -= PPT * tx_change
