@@ -389,14 +389,8 @@
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
 			visible_message(SPAN_DANGER("\The [user]'s [src.name] reflects [attack_text]!"))
-
-			// Find a turf near or on the original location to bounce to
-			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-			var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-			var/turf/curloc = get_turf(user)
-
-			// redirect the projectile
-			P.redirect(new_x, new_y, curloc, user)
+			P.dataRef.movementRatios[4] += rand(25,50) * sign(rand(-1,1))
+			P.dataRef.updatePathByAngle()
 
 			return PROJECTILE_CONTINUE // complete projectile permutation
 

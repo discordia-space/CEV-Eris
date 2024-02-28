@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(bullets)
 	src.targetCoords = targetCoords
 	src.targetPos = list(target.x, target.y , target.z)
 	//src.targetCoords = list(8,8, targetTurf.z)
-	src.turfsPerTick = turfsPerTick
+	src.turfsPerTick = turfsPerTick * 4
 	src.projectileAccuracy = projectileAccuracy
 	src.lifetime = lifetime
 	if(ismob(firer))
