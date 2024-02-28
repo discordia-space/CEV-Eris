@@ -116,139 +116,51 @@
 	if(!radiate())
 		return PROCESS_KILL
 
-// Extracts angle's tan if ischance = TRUE.
-// In other case it just makes bullets and lazorz go where they're supposed to.
-
-/turf/simulated/wall/proc/projectile_reflection(obj/item/projectile/Proj, var/ischance = FALSE)
-	if(Proj.starting)
-		var/ricochet_temp_id = rand(1,1000)
-		if(!ischance)
-			Proj.ricochet_id = ricochet_temp_id
-		var/turf/curloc = get_turf(src)
-
-		var/check_x0 = 32 * curloc.x
-		var/check_y0 = 32 * curloc.y
-		var/check_x1 = 32 * Proj.starting.x
-		var/check_y1 = 32 * Proj.starting.y
-		var/check_x2 = 32 * Proj.original.x
-		var/check_y2 = 32 * Proj.original.y
-		var/corner_x0 = check_x0
-		var/corner_y0 = check_y0
-		if(check_y0 - check_y1 > 0)
-			corner_y0 = corner_y0 - 16
-		else
-			corner_y0 = corner_y0 + 16
-		if(check_x0 - check_x1 > 0)
-			corner_x0 = corner_x0 - 16
-		else
-			corner_x0 = corner_x0 + 16
-
-		// Checks if original is lower or upper than line connecting proj's starting and wall
-		// In specific coordinate system that has wall as (0,0) and 'starting' as (r, 0), where r > 0.
-		// So, this checks whether 'original's' y-coordinate is positive or negative in new c.s.
-		// In order to understand, in which direction bullet will ricochet.
-		// Actually new_y isn't y-coordinate, but it has the same sign.
-		var/new_y = (check_y2 - corner_y0) * (check_x1 - corner_x0) - (check_x2 - corner_x0) * (check_y1 - corner_y0)
-		// Here comes the thing which differs two situations:
-		// First - bullet comes from north-west or south-east, with negative func value. Second - NE or SW.
-		var/new_func = (corner_x0 - check_x1) * (corner_y0 - check_y1)
-
-		// Added these wall things because my original code works well with one-tiled walls, but ignores adjacent turfs which in my current opinion was pretty wrong.
-		var/wallnorth = 0
-		var/wallsouth = 0
-		var/walleast = 0
-		var/wallwest = 0
-		for (var/turf/simulated/wall/W in range(2, curloc))
-			var/turf/tempwall = get_turf(W)
-			if (tempwall.x == curloc.x)
-				if (tempwall.y == (curloc.y - 1))
-					wallnorth = 1
-					if (!ischance)
-						W.ricochet_id = ricochet_temp_id
-				else if (tempwall.y == (curloc.y + 1))
-					wallsouth = 1
-					if (!ischance)
-						W.ricochet_id = ricochet_temp_id
-			if (tempwall.y == curloc.y)
-				if (tempwall.x == (curloc.x + 1))
-					walleast = 1
-					if (!ischance)
-						W.ricochet_id = ricochet_temp_id
-				else if (tempwall.x == (curloc.x - 1))
-					wallwest = 1
-					if (!ischance)
-						W.ricochet_id = ricochet_temp_id
-
-		if((wallnorth || wallsouth) && ((Proj.starting.y - curloc.y)*(wallsouth - wallnorth) >= 0))
-			if(!ischance)
-				Proj.redirect(round(check_x1 / 32), round((2 * check_y0 - check_y1)/32), curloc, src)
-				return
-			else
-				return abs((check_y0 - check_y1) / (check_x0 - check_x1))
-
-		if((walleast || wallwest) && ((Proj.starting.x - curloc.x)*(walleast-wallwest) >= 0))
-			if(!ischance)
-				Proj.redirect(round((2 * check_x0 - check_x1) / 32), round(check_y1 / 32), curloc, src)
-				return
-			else
-				return abs((check_x0 - check_x1) / (check_y0 - check_y1))
-
-		if((new_y * new_func) > 0)
-			if(!ischance)
-				Proj.redirect(round((2 * check_x0 - check_x1) / 32), round(check_y1 / 32), curloc, src)
-			else
-				return abs((check_x0 - check_x1) / (check_y0 - check_y1))
-		else
-			if(!ischance)
-				Proj.redirect(round(check_x1 / 32), round((2 * check_y0 - check_y1)/32), curloc, src)
-			else
-				return abs((check_y0 - check_y1) / (check_x0 - check_x1))
-		return
-
-
-/turf/simulated/wall/bullet_act(obj/item/projectile/Proj)
-	var/proj_health = Proj.get_structure_damage()
-	if(istype(Proj,/obj/item/projectile/beam))
+/turf/simulated/wall/bullet_act(obj/item/projectile/hittingProjectile)
+	var/projectileDamage = hittingProjectile.get_structure_damage()
+	if(istype(hittingProjectile,/obj/item/projectile/beam))
 		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
-	else if(istype(Proj,/obj/item/projectile/ion))
+	else if(istype(hittingProjectile,/obj/item/projectile/ion))
 		burn(500)
-	else if(istype(Proj,/obj/item/projectile/bullet))
-		var/list/lastMoves = Proj.dataRef.lastChanges
-		var/angle = Proj.dataRef.movementRatios[4]
+	else if(istype(hittingProjectile,/obj/item/projectile/bullet))
+		var/list/lastMoves = hittingProjectile.dataRef.lastChanges
+		var/angle = hittingProjectile.dataRef.movementRatios[4]
 		var/ricochet = FALSE
 		message_admins("Bullet hit wall at [angle]")
 		switch(angle)
 			if(-180 to -155)
 				if((abs(lastMoves[2]) >= abs(lastMoves[1]))  && abs(lastMoves[1]))
-					Proj.dataRef.bounce(1)
+					hittingProjectile.dataRef.bounce(1)
 					ricochet = TRUE
 			if(-115 to -65)
 				if((abs(lastMoves[1]) >= abs(lastMoves[2]))  && abs(lastMoves[2]))
-					Proj.dataRef.bounce(2)
-					//Proj.dataRef.movementRatios[2] *= -1
+					hittingProjectile.dataRef.bounce(2)
 					ricochet = TRUE
 			if(-25 to 25)
 				if((abs(lastMoves[2]) >= abs(lastMoves[1])) && abs(lastMoves[1]))
-					Proj.dataRef.bounce(1)
-					//Proj.dataRef.movementRatios[1] *= -1
+					hittingProjectile.dataRef.bounce(1)
 					ricochet = TRUE
 			if(65 to 115)
 				if((abs(lastMoves[1]) >= abs(lastMoves[2]))  && abs(lastMoves[2]))
-					Proj.dataRef.bounce(2)
-					//Proj.dataRef.movementRatios[2] *= -1
+					hittingProjectile.dataRef.bounce(2)
 					ricochet = TRUE
 			if(155 to 180)
 				if((abs(lastMoves[2]) >= abs(lastMoves[1]))  && abs(lastMoves[1]))
-					Proj.dataRef.bounce(1)
-					//Proj.dataRef.movementRatios[1] *= -1
+					hittingProjectile.dataRef.bounce(1)
 					ricochet = TRUE
 		if(ricochet)
 			message_admins("Ricochet!")
+			take_damage(round(projectileDamage * 0.33))
 			return PROJECTILE_CONTINUE
 
-	Proj.on_hit(src)
+	take_damage(projectileDamage)
+	if(health < maxHealth * 0.4 && prob(projectileDamage))
+		var/obj/item/trash/material/metal/slug = new(get_turf(hittingProjectile))
+		slug.matter.Cut()
+		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
+		slug.throw_at(get_turf(hittingProjectile), 0, 1)
 
-
+	hittingProjectile.on_hit(src)
 
 /turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
 	..()

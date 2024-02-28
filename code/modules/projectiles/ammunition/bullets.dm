@@ -336,6 +336,13 @@
 	sprite_max_rotate = 22
 	sprite_scale = 0.75
 
+/obj/item/ammo_casing/shotgun/newBuckshot
+	name = "12 Gauge buckshot"
+	desc = "A container filled with 16 pellets of 12 Gauge"
+	caliber = CAL_SHOTGUN
+	projectile_type = /obj/item/projectile/bullet/shotgunBuckshot
+	maxamount = 5
+
 /obj/item/ammo_casing/shotgun/prespawned
 	amount = 5
 

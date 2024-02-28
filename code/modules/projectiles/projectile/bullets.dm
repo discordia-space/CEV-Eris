@@ -81,6 +81,32 @@
 
 	return 0
 
+/obj/item/projectile/bullet/shotgunBuckshot
+	name = "12 Gauge buck pellet"
+	damage_types = list(
+		ARMOR_BULLET = list(
+			DELEM(BRUTE, 12)
+		)
+	)
+	/// Wheter we are the initla buckshot pellet that should create the rest or not
+	var/isInitial = TRUE
+	/// Amount of pellets to create / replicate
+	var/pelletCount = 15
+	/// How much can we spread ? will be random from 0 to its value. IN PIXELS. Modified by shotguns before launching
+	var/pixelSpread = 6
+
+/obj/item/projectile/bullet/shotgunBuckshot/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
+	if(!isInitial)
+		return ..()
+	else while(pelletCount)
+		pelletCount--
+		var/obj/item/projectile/bullet/shotgunBuckshot/fellowPellet = new(get_turf(src))
+		fellowPellet.isInitial = FALSE
+		fellowPellet.firer = src.firer
+		fellowPellet.PrepareForLaunch()
+		fellowPellet.launch(target, target_zone, x_offset + rand(0, pixelSpread), y_offset + rand(0, pixelSpread), 0)
+	..()
+
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
 	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
