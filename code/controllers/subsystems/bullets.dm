@@ -45,6 +45,8 @@ SUBSYSTEM_DEF(bullets)
 	var/projectileAccuracy = 0
 	var/lifetime = 30
 	var/bulletLevel = 0
+	var/changeDelta = 0
+	var/changeAxis = 0
 	var/lastChanges = list(0,0,0)
 
 /datum/bullet_data/New(obj/item/projectile/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
@@ -130,6 +132,14 @@ SUBSYSTEM_DEF(bullets)
 	var/matrix/rotation = matrix()
 	coordinates[1] = ((targetPos[1] - firedPos[1]) * PPT + targetCoords[1] - firedCoordinates[1] - HPPT)
 	coordinates[2] = ((targetPos[2] - firedPos[2]) * PPT + targetCoords[2] - firedCoordinates[2] - HPPT)
+	if(coordinates[1] > coordinates[2])
+		changeDelta = round(abs(coordinates[1])/abs(coordinates[2]))
+		changeAxis = 2
+	else
+		changeDelta = round(abs(coordinates[2])/abs(coordinates[1]))
+		changeAxis = 1
+	if(changeDelta < 1)
+		changeAxis = 0
 	coordinates[3] = ((targetPos[3] - firedPos[3]) + targetLevel - firedLevel)
 	coordinates[4] = ATAN2(coordinates[2], coordinates[1])
 	coordinates[1] = sin(coordinates[4])
@@ -185,6 +195,9 @@ SUBSYSTEM_DEF(bullets)
 	/// Prevent random dealocations and reallocations , just have em up initialized once.
 	var/list/bulletRatios
 	var/list/bulletCoords
+	var/list/lastChanges
+	var/changeAxis
+	var/changeDelta
 	var/obj/item/projectile/projectile
 	var/x_change
 	var/y_change
@@ -194,14 +207,18 @@ SUBSYSTEM_DEF(bullets)
 	var/sx_change
 	var/sy_change
 	var/turf/moveTurf = null
+	var/iteration
 	for(var/datum/bullet_data/bullet in current_queue)
 		current_queue -= bullet
-		bullet.lastChanges[1] = 0
-		bullet.lastChanges[2] = 0
-		bullet.lastChanges[3] = 0
 		if(!istype(bullet.referencedBullet, /obj/item/projectile/bullet) || QDELETED(bullet.referencedBullet))
 			bullet_queue -= bullet
 			continue
+		iteration = 1
+		lastChanges = bullet.lastChanges
+		movementError = bullet.movementError
+		lastChanges[1] = 0
+		lastChanges[2] = 0
+		lastChanges[3] = 0
 		bulletRatios = bullet.movementRatios
 		bulletCoords = bullet.currentCoords
 		projectile = bullet.referencedBullet
@@ -211,20 +228,23 @@ SUBSYSTEM_DEF(bullets)
 		x_change = round(abs(bulletCoords[1]) / HPPT) * sign(bulletCoords[1])
 		y_change = round(abs(bulletCoords[2]) / HPPT) * sign(bulletCoords[2])
 		z_change = round(abs(bulletCoords[3]) / HPPT) * sign(bulletCoords[3])
+		message_admins("Calculated changeRatio : [changeRatio] , axis : [changeAxis]")
 		tx_change = 0
 		ty_change = 0
 		sx_change = 0
 		sy_change = 0
-		while(x_change || y_change)
+		while(x_change || y_change || sx_change || sy_change)
 			if(QDELETED(projectile))
 				bullet_queue -= bullet
 				break
+
 			tx_change = 0
 			ty_change = 0
 			if(x_change)
 				tx_change = x_change/abs(x_change)
 			if(y_change)
 				ty_change = y_change/abs(y_change)
+
 			moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
 			x_change -= tx_change
 			y_change -= ty_change
@@ -244,20 +264,17 @@ SUBSYSTEM_DEF(bullets)
 				bullet.coloreds |= moveTurf
 				moveTurf.color = "#2fff05ee"
 			moveTurf = null
-			if(sx_change)
-				x_change = sx_change
-				sx_change = 0
-			if(sy_change)
-				y_change = sy_change
-				sy_change = 0
+			iteration++
 
 		animate(projectile, 1, pixel_x =(abs(bulletCoords[1]))%HPPT * sign(bulletCoords[1]) - 1, pixel_y = (abs(bulletCoords[2]))%HPPT * sign(bulletCoords[2]) - 1, flags = ANIMATION_END_NOW)
 		bullet.currentCoords = bulletCoords
-
+		/*
 		if(QDELETED(projectile))
 			bullet_queue -= bullet
 			for(var/turf/thing in bullet.coloreds)
 				thing.color = initial(thing.color)
+		*/
+
 
 
 #undef LEVEL_BELOW
