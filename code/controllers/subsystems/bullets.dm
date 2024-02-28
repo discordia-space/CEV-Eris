@@ -113,13 +113,12 @@ SUBSYSTEM_DEF(bullets)
 	src.targetCoords = targetCoordinates
 	updateCoordinateRatio()
 
-/datum/bullet_data/proc/tweeeeng()
+/datum/bullet_data/proc/bounce(bounceAxis, pixelOffset)
 	var/matrix/rotation = matrix()
-	movementRatios[4] = (abs(movementRatios[90] + 90) * sign(movementRatios[4])%180)
-	message_admins("Tweeng : [movementRatios[4]]")
-	movementRatios[1] = sin(movementRatios[4])
-	movementRatios[2] = cos(movementRatios[4])
+	movementRatios[bounceAxis] *= -1
+	movementRatios[4] = arctan(movementRatios[2], movementRatios[1])
 	rotation.Turn(movementRatios[4] + 180)
+	referencedBullet.transform = rotation
 
 /datum/bullet_data/proc/updateCoordinateRatio()
 	var/list/coordinates = list(0,0,0,0)
