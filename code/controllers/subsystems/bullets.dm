@@ -104,23 +104,28 @@ SUBSYSTEM_DEF(bullets)
 		src.targetLevel = LEVEL_TURF
 	src.firedCoordinates = list(0,0, referencedBullet.z)
 	src.currentCoords[3] += firedLevel
-	updateCoordinateRatio()
+	updatePathByPosition()
 	SSbullets.bullet_queue += src
 
 /datum/bullet_data/proc/redirect(list/targetCoordinates, list/firingCoordinates)
 	src.firedTurf = get_turf(referencedBullet)
 	src.firedPos = firingCoordinates
 	src.targetCoords = targetCoordinates
-	updateCoordinateRatio()
+	updatePathByPosition()
 
-/datum/bullet_data/proc/bounce(bounceAxis, pixelOffset)
-	var/matrix/rotation = matrix()
+/datum/bullet_data/proc/bounce(bounceAxis, angleOffset)
 	movementRatios[bounceAxis] *= -1
-	movementRatios[4] = arctan(movementRatios[2], movementRatios[1])
+	movementRatios[4] = arctan(movementRatios[2], movementRatios[1]) + angleOffset
+	updatePathByAngle()
+
+/datum/bullet_data/proc/updatePathByAngle()
+	var/matrix/rotation = matrix()
+	movementRatios[1] = sin(movementRatios[4])
+	movementRatios[2] = cos(movementRatios[4])
 	rotation.Turn(movementRatios[4] + 180)
 	referencedBullet.transform = rotation
 
-/datum/bullet_data/proc/updateCoordinateRatio()
+/datum/bullet_data/proc/updatePathByPosition()
 	var/list/coordinates = list(0,0,0,0)
 	var/matrix/rotation = matrix()
 	coordinates[1] = ((targetPos[1] - firedPos[1]) * PPT + targetCoords[1] - firedCoordinates[1] - HPPT)

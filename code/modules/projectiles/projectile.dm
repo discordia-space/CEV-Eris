@@ -283,8 +283,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	var/distance = get_dist(curloc, original)
 	check_hit_zone(distance, user_recoil)
 
-	setup_trajectory(curloc, targloc, x_offset, y_offset, angle_offset) //plot the initial trajectory
-	//message_admins("[src] - x-off:[x_offset], y-off:[y_offset]")
+	muzzle_effect(effect_transform)
 	new /datum/bullet_data(src, target_zone, usr, target, list(x_offset, y_offset, target.z), 32, 1, 50)
 	//Process()
 
@@ -325,16 +324,6 @@ GLOBAL_LIST(projectileDamageConstants)
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 	return launch(target, target_zone, x_offset, y_offset, angle_offset, user_recoil = recoil)
-
-//Used to change the direction of the projectile in flight.
-/obj/item/projectile/proc/redirect(new_x, new_y, atom/starting_loc, mob/new_firer)
-	var/turf/new_target = locate(new_x, new_y, src.z)
-
-	original = new_target
-	if(new_firer)
-		firer = src
-
-	setup_trajectory(starting_loc, new_target)
 
 /obj/item/projectile/proc/istargetloc(mob/living/target_mob)
 	if(target_mob && original)
@@ -620,24 +609,6 @@ GLOBAL_LIST(projectileDamageConstants)
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
-
-/obj/item/projectile/proc/setup_trajectory(turf/startloc, turf/targloc, x_offset = 0, y_offset = 0, angle_offset)
-	// setup projectile state
-	starting = startloc
-	current = startloc
-	yo = targloc.y - startloc.y + y_offset
-	xo = targloc.x - startloc.x + x_offset
-
-	// plot the initial trajectory
-	trajectory = new()
-	trajectory.setup(starting, original, pixel_x, pixel_y, angle_offset)
-
-	// generate this now since all visual effects the projectile makes can use it
-	effect_transform = new()
-	effect_transform.Scale(trajectory.return_hypotenuse(), 1)
-	effect_transform.Turn(-trajectory.return_angle())		//no idea why this has to be inverted, but it works
-
-	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
 
 /obj/item/projectile/proc/muzzle_effect(var/matrix/T)
 	//This can happen when firing inside a wall, safety check
