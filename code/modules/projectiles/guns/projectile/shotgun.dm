@@ -8,8 +8,8 @@
 	twohanded = TRUE
 	var/recentpumpmsg = 0 //	Variable to prevent chat message spam
 	var/fired_one_handed = FALSE
-	/// How many pixels large our choke radious can be ? Better shotguns have it lower
-	var/chokeRandomness = 8
+	/// How much angle offset does our shotgun have?
+	var/angleOffset = 12
 	wield_delay = 0 SECOND
 	wield_delay_factor = 0
 
@@ -22,7 +22,7 @@
 /obj/item/gun/projectile/shotgun/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, target_zone, params)
 	if(istype(P, /obj/item/projectile/bullet/shotgunBuckshot))
 		var/obj/item/projectile/bullet/shotgunBuckshot/buck = P
-		buck.pixelSpread = chokeRandomness
+		buck.angleOffset = src.angleOffset
 	. = ..()
 
 /obj/item/gun/projectile/shotgun/handle_post_fire(var/mob/living/user)

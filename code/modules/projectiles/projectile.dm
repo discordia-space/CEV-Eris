@@ -284,7 +284,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	check_hit_zone(distance, user_recoil)
 
 	muzzle_effect(effect_transform)
-	new /datum/bullet_data(src, target_zone, usr, target, list(x_offset, y_offset, target.z), 32, 1, 50)
+	new /datum/bullet_data(src, target_zone, usr, target, list(x_offset, y_offset, target.z), 48, angle_offset, 50)
 	//Process()
 
 	return FALSE

@@ -41,13 +41,13 @@ SUBSYSTEM_DEF(bullets)
 	var/list/turf/coloreds = list()
 	var/targetLevel = 0
 	var/currentLevel = 0
-	var/turfsPerTick = 0
+	var/pixelsPerTick = 0
 	var/projectileAccuracy = 0
 	var/lifetime = 30
 	var/bulletLevel = 0
 	var/lastChanges = list(0,0,0)
 
-/datum/bullet_data/New(obj/item/projectile/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, turfsPerTick, projectileAccuracy, lifetime)
+/datum/bullet_data/New(obj/item/projectile/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, pixelsPerTick, angleOffset, lifetime)
 	/*
 	if(!target)
 		message_admins("Created bullet without target , [referencedBullet]")
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(bullets)
 	src.targetCoords = targetCoords
 	src.targetPos = list(target.x, target.y , target.z)
 	//src.targetCoords = list(8,8, targetTurf.z)
-	src.turfsPerTick = turfsPerTick * 4
+	src.pixelsPerTick = pixelsPerTick
 	src.projectileAccuracy = projectileAccuracy
 	src.lifetime = lifetime
 	if(ismob(firer))
@@ -104,7 +104,9 @@ SUBSYSTEM_DEF(bullets)
 		src.targetLevel = LEVEL_TURF
 	src.firedCoordinates = list(0,0, referencedBullet.z)
 	src.currentCoords[3] += firedLevel
-	updatePathByPosition()
+	movementRatios[4] = getAngleByPosition()
+	movementRatios[4] += angleOffset
+	updatePathByAngle()
 	SSbullets.bullet_queue += src
 
 /datum/bullet_data/proc/redirect(list/targetCoordinates, list/firingCoordinates)
@@ -118,6 +120,11 @@ SUBSYSTEM_DEF(bullets)
 	movementRatios[4] = arctan(movementRatios[2], movementRatios[1]) + angleOffset
 	updatePathByAngle()
 
+/datum/bullet_data/proc/getAngleByPosition()
+	var/x = ((targetPos[1] - firedPos[1]) * PPT + targetCoords[1] - firedCoordinates[1] - HPPT)
+	var/y = ((targetPos[2] - firedPos[2]) * PPT + targetCoords[2] - firedCoordinates[2] - HPPT)
+	return ATAN2(y, x)
+
 /datum/bullet_data/proc/updatePathByAngle()
 	var/matrix/rotation = matrix()
 	movementRatios[1] = sin(movementRatios[4])
@@ -128,14 +135,10 @@ SUBSYSTEM_DEF(bullets)
 /datum/bullet_data/proc/updatePathByPosition()
 	var/list/coordinates = list(0,0,0,0)
 	var/matrix/rotation = matrix()
-	coordinates[1] = ((targetPos[1] - firedPos[1]) * PPT + targetCoords[1] - firedCoordinates[1] - HPPT)
-	coordinates[2] = ((targetPos[2] - firedPos[2]) * PPT + targetCoords[2] - firedCoordinates[2] - HPPT)
 	coordinates[3] = ((targetPos[3] - firedPos[3]) + targetLevel - firedLevel)
-	coordinates[4] = ATAN2(coordinates[2], coordinates[1])
+	coordinates[4] = getAngleByPosition()
 	coordinates[1] = sin(coordinates[4])
 	coordinates[2] = cos(coordinates[4])
-	// [1] is X ratio , [2] is Y ratio,  [3] is Z-ratio
-	//message_admins("[referencedBullet] -/- [coordinates[4]] , x: [coordinates[1]], y:[coordinates[2]]")
 	rotation.Turn(coordinates[4] + 180)
 	referencedBullet.transform = rotation
 	movementRatios = coordinates
@@ -186,13 +189,13 @@ SUBSYSTEM_DEF(bullets)
 	var/list/bulletRatios
 	var/list/bulletCoords
 	var/obj/item/projectile/projectile
+	var/pixelsToTravel
+	var/pixelsThisStep
 	var/x_change
 	var/y_change
 	var/z_change
 	var/tx_change
 	var/ty_change
-	var/sx_change
-	var/sy_change
 	var/turf/moveTurf = null
 	for(var/datum/bullet_data/bullet in current_queue)
 		current_queue -= bullet
@@ -205,59 +208,63 @@ SUBSYSTEM_DEF(bullets)
 		bulletRatios = bullet.movementRatios
 		bulletCoords = bullet.currentCoords
 		projectile = bullet.referencedBullet
-		bulletCoords[1] += (bulletRatios[1] * bullet.turfsPerTick)
-		bulletCoords[2] += (bulletRatios[2] * bullet.turfsPerTick)
-		bulletCoords[3] += (bulletRatios[3] * bullet.turfsPerTick)
-		x_change = round(abs(bulletCoords[1]) / HPPT) * sign(bulletCoords[1])
-		y_change = round(abs(bulletCoords[2]) / HPPT) * sign(bulletCoords[2])
-		z_change = round(abs(bulletCoords[3]) / HPPT) * sign(bulletCoords[3])
-		tx_change = 0
-		ty_change = 0
-		sx_change = 0
-		sy_change = 0
-		while(x_change || y_change)
-			if(QDELETED(projectile))
-				bullet_queue -= bullet
-				break
+		pixelsToTravel = bullet.pixelsPerTick
+		/// We have to break up the movement into steps if its too big(since it leads to erronous steps) , this is preety much continous collision
+		/// but less performant A more performant version would be to use the same algorithm as throwing for determining which turfs to "intersect"
+		/// Im using this implementation because im getting skill issued trying to implement the same one as throwing(i had to rewrite this 4 times already)
+		/// and also because it has.. much more information about the general trajectory stored  SPCR - 2024
+		while(pixelsToTravel > 0)
+			pixelsThisStep = pixelsToTravel > 32 ? 32 : pixelsToTravel
+			pixelsToTravel -= pixelsThisStep
+			bulletCoords[1] += (bulletRatios[1] * pixelsThisStep)
+			bulletCoords[2] += (bulletRatios[2] * pixelsThisStep)
+			bulletCoords[3] += (bulletRatios[3] * pixelsThisStep)
+			x_change = round(abs(bulletCoords[1]) / HPPT) * sign(bulletCoords[1])
+			y_change = round(abs(bulletCoords[2]) / HPPT) * sign(bulletCoords[2])
+			z_change = round(abs(bulletCoords[3]) / HPPT) * sign(bulletCoords[3])
 			tx_change = 0
 			ty_change = 0
-			if(x_change)
-				tx_change = x_change/abs(x_change)
-			if(y_change)
-				ty_change = y_change/abs(y_change)
-			moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
-			x_change -= tx_change
-			y_change -= ty_change
-			bullet.lastChanges[1] += tx_change
-			bullet.lastChanges[2] += ty_change
-			bulletCoords[1] -= PPT * tx_change
-			bulletCoords[2] -= PPT * ty_change
-			projectile.pixel_x -= PPT * tx_change
-			projectile.pixel_y -= PPT * ty_change
-			bullet.lifetime--
-			if(bullet.lifetime < 0)
-				bullet_queue -= bullet
-				break
-			bullet.updateLevel()
-			if(moveTurf)
-				projectile.Move(moveTurf)
-				bullet.coloreds |= moveTurf
-				moveTurf.color = "#2fff05ee"
-			moveTurf = null
-			if(sx_change)
-				x_change = sx_change
-				sx_change = 0
-			if(sy_change)
-				y_change = sy_change
-				sy_change = 0
+			while(x_change || y_change)
+				if(QDELETED(projectile))
+					bullet_queue -= bullet
+					break
+				tx_change = 0
+				ty_change = 0
+				if(x_change)
+					tx_change = x_change/abs(x_change)
+				if(y_change)
+					ty_change = y_change/abs(y_change)
+				moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
+				x_change -= tx_change
+				y_change -= ty_change
+				bullet.lastChanges[1] += tx_change
+				bullet.lastChanges[2] += ty_change
+				bulletCoords[1] -= PPT * tx_change
+				bulletCoords[2] -= PPT * ty_change
+				projectile.pixel_x -= PPT * tx_change
+				projectile.pixel_y -= PPT * ty_change
+				bullet.lifetime--
+				if(bullet.lifetime < 0)
+					bullet_queue -= bullet
+					break
+				bullet.updateLevel()
+				if(moveTurf)
+					projectile.Move(moveTurf)
+				/*
+					bullet.coloreds |= moveTurf
+					moveTurf.color = "#2fff05ee"
+				*/
+				moveTurf = null
 
 		animate(projectile, 1, pixel_x =(abs(bulletCoords[1]))%HPPT * sign(bulletCoords[1]) - 1, pixel_y = (abs(bulletCoords[2]))%HPPT * sign(bulletCoords[2]) - 1, flags = ANIMATION_END_NOW)
 		bullet.currentCoords = bulletCoords
 
+		/*
 		if(QDELETED(projectile))
 			bullet_queue -= bullet
 			for(var/turf/thing in bullet.coloreds)
 				thing.color = initial(thing.color)
+		*/
 
 
 #undef LEVEL_BELOW

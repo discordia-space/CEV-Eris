@@ -92,8 +92,8 @@
 	var/isInitial = TRUE
 	/// Amount of pellets to create / replicate
 	var/pelletCount = 15
-	/// How much can we spread ? will be random from 0 to its value. IN PIXELS. Modified by shotguns before launching
-	var/pixelSpread = 6
+	/// Angle offset. This is forced by the shotgun if fired from one. If not, then the default is used
+	var/angleOffset = 24
 
 /obj/item/projectile/bullet/shotgunBuckshot/launch(atom/target, target_zone, x_offset, y_offset, angle_offset, proj_sound, user_recoil)
 	if(!isInitial)
@@ -104,7 +104,9 @@
 		fellowPellet.isInitial = FALSE
 		fellowPellet.firer = src.firer
 		fellowPellet.PrepareForLaunch()
-		fellowPellet.launch(target, target_zone, x_offset + rand(0, pixelSpread), y_offset + rand(0, pixelSpread), 0)
+		var/angleBruh = rand(-angleOffset/2,angleOffset/2)
+		message_admins("Random angle is : [angleBruh]")
+		fellowPellet.launch(target, target_zone, x_offset , y_offset, angleBruh, null, null)
 	..()
 
 //For projectiles that actually represent clouds of projectiles
