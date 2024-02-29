@@ -710,12 +710,3 @@ GLOBAL_LIST(projectileDamageConstants)
 	I.Blend(color)
 	return I
 
-/proc/check_trajectory(list/startingCoordinates, list/targetCoordinates, pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
-	var/angle = ATAN2(targetCoordinates[2] - startingCoordinates[2], targetCoordinates[1] - startingCoordinates[1])
-	var/xRatio = sin(angle)
-	var/yRatio = cos(angle)
-	return TRUE
-
-
-
-
