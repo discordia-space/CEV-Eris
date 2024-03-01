@@ -251,7 +251,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	return TRUE
 
 /obj/item/projectile/proc/check_fire(atom/target as mob, mob/living/user as mob)  //Checks if you can hit them or not.
-	check_trajectory(target, user, pass_flags, flags)
+	check_trajectory(list(user.x,user.y,user.z), list(target.x, target.y, target.z),null,null)
 
 //sets the click point of the projectile using mouse input params
 /obj/item/projectile/proc/set_clickpoint(params)
@@ -710,8 +710,10 @@ GLOBAL_LIST(projectileDamageConstants)
 	I.Blend(color)
 	return I
 
+#define MAX_ITER 16
 /proc/check_trajectory(list/startingCoordinates, list/targetCoordinates, pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
 	var/angle = ATAN2(targetCoordinates[2] - startingCoordinates[2], targetCoordinates[1] - startingCoordinates[1])
+	message_admins("CT angle : [angle]")
 	var/xRatio = sin(angle)
 	var/yRatio = cos(angle)
 	var/xChange = 0
@@ -726,13 +728,15 @@ GLOBAL_LIST(projectileDamageConstants)
 		simCoords[2] += yRatio * 32
 		xChange = round(abs(simCoords[1])/16) * sign(simCoords[1])
 		yChange = round(abs(simCoords[2])/16) * sign(simCoords[2])
-		while(xChange || yChange)
+		while((xChange || yChange) && (check != targetTurf))
 			if(xChange)
 				tX = abs(xChange)/xChange
 			if(yChange)
 				tY = abs(yChange)/yChange
 			check = locate(check.x + tX, check.y + tY, check.z)
 			// collision checks
+			if(!check)
+				return FALSE
 			if(check.density)
 				return FALSE
 			for(var/atom/movable/object in check.contents)
@@ -746,12 +750,14 @@ GLOBAL_LIST(projectileDamageConstants)
 					else if(istype(object, /obj/structure/grille))
 						if(!(pass_flags & PASSGRILLE))
 							return FALSE
-					else
+					else if(!istype(object, /obj/structure/railing))
 						return FALSE
 			xChange -= tX
 			yChange -= tY
 			simCoords[1] -= 32 * tX
 			simCoords[2] -= 32 * tY
+			tX = 0
+			tY = 0
 	return TRUE
 
 

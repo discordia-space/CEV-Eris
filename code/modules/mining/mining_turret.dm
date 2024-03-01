@@ -73,7 +73,7 @@
 	if(get_dist(src, L) > 7)
 		return TURRET_NOT_TARGET
 
-	if(!check_trajectory(L, src))
+	if(!check_trajectory(list(x,y,z), list(L.x, L.y, L.z),null,null))
 		return TURRET_NOT_TARGET
 
 	if(emagged)  // If emagged not even the dead get a rest

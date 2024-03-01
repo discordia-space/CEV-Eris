@@ -105,7 +105,6 @@
 		fellowPellet.firer = src.firer
 		fellowPellet.PrepareForLaunch()
 		var/angleBruh = rand(-angleOffset/2,angleOffset/2)
-		message_admins("Random angle is : [angleBruh]")
 		fellowPellet.launch(target, target_zone, x_offset , y_offset, angleBruh, null, null)
 	..()
 
