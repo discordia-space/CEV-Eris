@@ -714,6 +714,44 @@ GLOBAL_LIST(projectileDamageConstants)
 	var/angle = ATAN2(targetCoordinates[2] - startingCoordinates[2], targetCoordinates[1] - startingCoordinates[1])
 	var/xRatio = sin(angle)
 	var/yRatio = cos(angle)
+	var/xChange = 0
+	var/yChange = 0
+	var/tX = 0
+	var/tY = 0
+	var/turf/check = locate(round(startingCoordinates[1]/32), round(startingCoordinates[2]/32), round(startingCoordinates[3]))
+	var/turf/targetTurf = locate(round(targetCoordinates[1]/32), round(targetCoordinates[2]/32), round(targetCoordinates[3]))
+	var/simCoords = list(0,0,0)
+	while(check != targetTurf)
+		simCoords[1] += xRatio * 32
+		simCoords[2] += yRatio * 32
+		xChange = round(abs(simCoords[1])/16) * sign(simCoords[1])
+		yChange = round(abs(simCoords[2])/16) * sign(simCoords[2])
+		while(xChange || yChange)
+			if(xChange)
+				tX = abs(xChange)/xChange
+			if(yChange)
+				tY = abs(yChange)/yChange
+			check = locate(check.x + tX, check.y + tY, check.z)
+			// collision checks
+			if(check.density)
+				return FALSE
+			for(var/atom/movable/object in check.contents)
+				if(object.density)
+					if(istype(object, /obj/structure/window))
+						if(!(pass_flags & PASSGLASS))
+							return FALSE
+					else if(istype(object, /obj/structure/table))
+						if(!(pass_flags & PASSTABLE))
+							return FALSE
+					else if(istype(object, /obj/structure/grille))
+						if(!(pass_flags & PASSGRILLE))
+							return FALSE
+					else
+						return FALSE
+			xChange -= tX
+			yChange -= tY
+			simCoords[1] -= 32 * tX
+			simCoords[2] -= 32 * tY
 	return TRUE
 
 
