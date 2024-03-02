@@ -176,6 +176,33 @@
 	updatehealth()
 	return FALSE
 
+/mob/living/exosuit/fall_impact(turf/from, turf/dest)
+	//Wreck the contents of the tile
+	for (var/atom/movable/AM in dest)
+		if (AM != src)
+			AM.explosion_act(200, null)
+
+	//Damage surrounding tiles
+	for (var/turf/T in range(1, src))
+		if (T == dest)
+			continue
+
+		T.explosion_act(100, null)
+
+	//And do some screenshake for everyone in the vicinity
+	for (var/mob/M in range(20, src))
+		var/dist = get_dist(M, src)
+		dist *= 0.5
+		if (dist <= 1)
+			dist = 1 //Prevent runtime errors
+
+		shake_camera(M, 10/dist, 2.5/dist, 0.12)
+
+	playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(1)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(2)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
 
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, def_zone)
 	var/hit_dir = get_dir(P.starting, src)
@@ -191,20 +218,14 @@
 		return PROJECTILE_FORCE_MISS
 	var/armor_def = comp.armor.getRating(P.check_armour) * dir_mult
 	var/deflect_chance = ((comp.shielding + armor_def)*0.5) - (armor_divisor*5)
-	if(TRUE) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
+	if(prob(deflect_chance)) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
 		visible_message(SPAN_DANGER("\The [P] glances off of \the [src]'s [comp]!"), 1, 2, 7)
 		playsound(src, "ricochet", 50, 1, 7)
-		message_admins("Deflecting!")
 		if(P.starting)
-			message_admins("Reflected")
-			message_admins("[P.starting]")
 			var/turf/sourceloc = get_turf_away_from_target_simple(src, P.starting, 6)
-			message_admins("[sourceloc]")
 			var/new_x = sourceloc.x + ( rand(2, 5) * (prob(50) ? -1 : 1 ))
 			var/new_y = sourceloc.y + ( rand(2, 5) * (prob(50) ? -1 : 1 ))
-			message_admins("new X,Y : [new_x] [] [new_y]")
 			sourceloc = locate(new_x , new_y, sourceloc.z)
-			message_admins("Source loc is now [sourceloc]")
 			sourceloc.color = "#a92312"
 			P.redirect(new_x, new_y, get_turf(src), src)
 		return PROJECTILE_CONTINUE
