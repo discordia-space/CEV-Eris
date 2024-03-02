@@ -66,6 +66,9 @@
 			show_missing_parts(usr)
 		if(emp_shielded)
 			to_chat(user, SPAN_NOTICE("This component is fitted with a Faraday cage, making it resistant against electromagnetic pulses."))
+		if(front_mult != 1 || side_mult != 1 || rear_mult != 1)
+			to_chat(user, SPAN_NOTICE("This component has uneven armor distribution. Frontal armor is multiplied by [front_mult], side armor by [side_mult] and the rear plates by [rear_mult]"))
+
 	/*
 	if(reinforcement)
 		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))

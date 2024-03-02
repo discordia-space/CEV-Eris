@@ -104,6 +104,7 @@
 	if(body) maxHealth = body.mech_health
 	health = maxHealth - (getFireLoss() + getBruteLoss())
 
+/*
 /mob/living/exosuit/damage_through_armor(damage, damagetype, def_zone, attack_flag, armor_divisor, used_weapon, sharp, edge, wounding_multiplier, list/dmg_types, return_continuation, dir_mult)
 	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
 	var/armor_def = comp.armor.getRating(attack_flag)
@@ -124,6 +125,7 @@
 			damage -= round(max(0, armor_change/armor_divisor))
 	*/
 	. = ..()
+*/
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
@@ -187,6 +189,25 @@
 	/// aiming for soemthing the mech doesnt have
 	if(!def_zone)
 		return PROJECTILE_FORCE_MISS
+	var/armor_def = comp.armor.getRating(P.check_armour) * dir_mult
+	var/deflect_chance = ((comp.shielding + armor_def)*0.5) - (armor_divisor*5)
+	if(TRUE) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
+		visible_message(SPAN_DANGER("\The [P] glances off of \the [src]'s [comp]!"), 1, 2, 7)
+		playsound(src, "ricochet", 50, 1, 7)
+		message_admins("Deflecting!")
+		if(P.starting)
+			message_admins("Reflected")
+			message_admins("[P.starting]")
+			var/turf/sourceloc = get_turf_away_from_target_simple(src, P.starting, 6)
+			message_admins("[sourceloc]")
+			var/new_x = sourceloc.x + ( rand(2, 5) * (prob(50) ? -1 : 1 ))
+			var/new_y = sourceloc.y + ( rand(2, 5) * (prob(50) ? -1 : 1 ))
+			message_admins("new X,Y : [new_x] [] [new_y]")
+			sourceloc = locate(new_x , new_y, sourceloc.z)
+			message_admins("Source loc is now [sourceloc]")
+			sourceloc.color = "#a92312"
+			P.redirect(new_x, new_y, get_turf(src), src)
+		return PROJECTILE_CONTINUE
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
