@@ -177,6 +177,9 @@
 	return FALSE
 
 /mob/living/exosuit/fall_impact(turf/from, turf/dest)
+	if(legs && legs.can_fall_safe)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 100, 1, 10, 10)
+		return
 	//Wreck the contents of the tile
 	for (var/atom/movable/AM in dest)
 		if (AM != src)
@@ -184,10 +187,9 @@
 
 	//Damage surrounding tiles
 	for (var/turf/T in range(1, src))
-		if (T == dest)
-			continue
+		T.explosion_act(150, null)
 
-		T.explosion_act(100, null)
+	apply_damage(abs(from.z - dest.z)*30, BRUTE, BP_LEGS, 10)
 
 	//And do some screenshake for everyone in the vicinity
 	for (var/mob/M in range(20, src))

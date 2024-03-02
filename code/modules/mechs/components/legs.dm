@@ -12,6 +12,7 @@
 	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
 	var/can_strafe = TRUE
 	var/can_climb = TRUE
+	var/can_fall_safe = FALSE
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)
@@ -87,6 +88,7 @@
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
 	can_climb = TRUE
 	armor = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
+	can_fall_safe = TRUE
 
 /obj/item/mech_component/propulsion/combat
 	name = "combat legs"
