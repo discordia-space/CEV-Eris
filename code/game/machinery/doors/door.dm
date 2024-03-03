@@ -49,15 +49,6 @@
 	var/auto_change_door_direction = TRUE
 	var/can_be_connected_to_wall = TRUE
 
-/obj/machinery/door/New()
-	GLOB.all_doors += src
-	door_flicker = new(src)
-	door_flicker.master = src
-	door_flicker.icon = get_overlay_icon()
-	vis_contents |= door_flicker
-	..()
-	on_door_direction_update_trigger()
-
 /obj/machinery/door/Destroy()
 	GLOB.all_doors -= src
 	QDEL_NULL(door_flicker)
@@ -110,7 +101,13 @@
 	attack_animation(user)
 
 /obj/machinery/door/New()
+	GLOB.all_doors += src
+	door_flicker = new(src)
+	door_flicker.master = src
+	door_flicker.icon = get_overlay_icon()
+	vis_contents |= door_flicker
 	. = ..()
+	on_door_direction_update_trigger()
 	if(density)
 		layer = closed_layer
 		explosion_resistance = initial(explosion_resistance)
