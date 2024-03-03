@@ -33,6 +33,7 @@
 
 /obj/rogue/teleporter/attack_hand(mob/user)
 	if(!charge)
+		charge++
 		dungeon_generator = locate(/obj/crawler/map_maker)
 		if(dungeon_generator)
 			to_chat(user, "You activate the teleporter. A strange rumbling fills the area around you.")
@@ -62,6 +63,7 @@
 	while(charge < charge_max)
 		update_icon()
 		sleep(15)
+		playsound(src, pick("sound/machines/Teleport_charging_1.ogg", "sound/machines/Teleport_charging_2", "sound/machines/Teleport_charging_3"), 500, 1, use_pressure = FALSE)
 		charge++
 		if(ticks_before_next_summon)
 			ticks_before_next_summon--
