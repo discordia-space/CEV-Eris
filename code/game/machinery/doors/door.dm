@@ -46,6 +46,8 @@
 	var/atom/movable/overlay/c_animation
 
 	var/atom/movable/overlay/door/door_flicker
+	var/auto_change_door_direction = TRUE
+	var/can_be_connected_to_wall = TRUE
 
 /obj/machinery/door/New()
 	GLOB.all_doors += src
@@ -71,6 +73,9 @@
 	door_flicker.flick_door(icon_flick)
 
 /obj/machinery/door/proc/on_door_direction_update_trigger(from_door = FALSE)
+	if(!auto_change_door_direction)
+		door_flicker.dir = dir
+		return
 	var/turf/simulated/wall/W1 = get_step(src, SOUTH)
 	var/turf/simulated/wall/W2 = get_step(src, NORTH)
 	var/south_detected = istype(W1) || locate(/obj/structure/low_wall) in W1

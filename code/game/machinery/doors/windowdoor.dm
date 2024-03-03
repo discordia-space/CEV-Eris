@@ -18,6 +18,8 @@
 	var/obj/item/electronics/airlock/electronics
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
+	auto_change_door_direction = FALSE
+	can_be_connected_to_wall = FALSE
 
 /obj/machinery/door/window/New()
 	..()

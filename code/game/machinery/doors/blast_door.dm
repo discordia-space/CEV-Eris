@@ -48,6 +48,8 @@
 	var/obj/item/electronics/airlock/electronics
 	// here for map compatibility
 	var/_wifi_id
+	auto_change_door_direction = FALSE
+	can_be_connected_to_wall = FALSE
 
 /obj/machinery/door/blast/Initialize()
 	. = ..()
