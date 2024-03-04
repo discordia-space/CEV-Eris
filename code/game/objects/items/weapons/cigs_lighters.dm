@@ -362,7 +362,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "kosmosoff"
 	item_state = "kosmosoff"
 	icon_on = "kosmoson"
-	icon_off = "kosmossoff"
+	icon_off = "kosmosoff"
 	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
 	type_butt = /obj/item/trash/cigbutt/quasimorph
 
