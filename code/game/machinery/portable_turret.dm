@@ -573,10 +573,10 @@ var/list/turret_icons
 	if(L.stat && !emagged)		//if the perp is dead/dying, no need to bother really
 		return TURRET_NOT_TARGET	//move onto next potential victim!
 
-	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
+	if(get_dist(src, L) > 12)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
-	if(!check_trajectory(list(x,y,z), list(L.x, L.y, L.z),null,null))	//check if we have true line of sight
+	if(!check_trajectory(list(x,y,z), list(L.x, L.y, L.z),null,null, L))	//check if we have true line of sight
 		return TURRET_NOT_TARGET
 
 	if(emagged)		// If emagged not even the dead get a rest

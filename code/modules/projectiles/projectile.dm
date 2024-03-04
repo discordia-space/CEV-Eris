@@ -216,8 +216,8 @@ GLOBAL_LIST(projectileDamageConstants)
 		return
 
 /obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
-	if(!isliving(target))	return 0
-	if(isanimal(target))	return 0
+	if(!isliving(target))	return FALSE
+	if(isanimal(target))	return FALSE
 	var/mob/living/L = target
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy)
 	return TRUE
@@ -251,7 +251,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	return TRUE
 
 /obj/item/projectile/proc/check_fire(atom/target as mob, mob/living/user as mob)  //Checks if you can hit them or not.
-	check_trajectory(list(user.x,user.y,user.z), list(target.x, target.y, target.z),null,null)
+	check_trajectory(list(user.x,user.y,user.z), list(target.x, target.y, target.z),null,null, target)
 
 //sets the click point of the projectile using mouse input params
 /obj/item/projectile/proc/set_clickpoint(params)
@@ -548,15 +548,14 @@ GLOBAL_LIST(projectileDamageConstants)
 		return FALSE
 
 	//stop flying
-	on_impact(A)
-
-	density = FALSE
-	invisibility = 101
-
-
-	qdel(src)
+	onBlockingHit(A)
 	return TRUE
 
+/obj/item/projectile/proc/onBlockingHit(atom/A)
+	on_impact(A)
+	density = FALSE
+	invisibility = 101
+	qdel(src)
 
 /obj/item/projectile/explosion_act(target_power, explosion_handler/handler)
 	return 0
@@ -711,7 +710,7 @@ GLOBAL_LIST(projectileDamageConstants)
 	return I
 
 #define MAX_ITER 16
-/proc/check_trajectory(list/startingCoordinates, list/targetCoordinates, pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
+/proc/check_trajectory(list/startingCoordinates, list/targetCoordinates, pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null, mob/targetMob)
 	var/angle = ATAN2(targetCoordinates[2] - startingCoordinates[2], targetCoordinates[1] - startingCoordinates[1])
 	message_admins("CT angle : [angle]")
 	var/xRatio = sin(angle)
@@ -740,6 +739,8 @@ GLOBAL_LIST(projectileDamageConstants)
 			if(check.density)
 				return FALSE
 			for(var/atom/movable/object in check.contents)
+				if(object == targetMob)
+					return TRUE
 				if(object.density)
 					if(istype(object, /obj/structure/window))
 						if(!(pass_flags & PASSGLASS))

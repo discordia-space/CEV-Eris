@@ -34,11 +34,11 @@
 		for(var/obj/structure/lattice/L in src)
 			if(damage > 75)
 				L.take_damage(damage)
-		return
+		return FALSE
 
 	damage -= flooring ? flooring.resistance : 0
 	if(damage <= 0)
-		return
+		return FALSE
 
 	health -= damage
 
@@ -50,6 +50,7 @@
 		//spawn()
 		//We'll spawn off a new stack in order to damage the next layer, incase it turns into a different turf object
 		damage_floor_at(x, y, z, leftover, damage_type, ignore_resistance)
+		return TRUE
 	else if(flooring)
 		//Breaking or burning overlays.
 		//A tile can have one of each type
@@ -60,6 +61,7 @@
 		if(!burnt && (damage_type == BURN || damage_type == BLAST) && health < (flooring.health * 0.75))
 			burnt = TRUE
 			update_icon()
+		return FALSE
 
 
 /proc/damage_floor_at(x, y, z, damage, damage_type, ignore_resistance)

@@ -99,10 +99,10 @@
 	if(L.invisibility >= INVISIBILITY_LEVEL_ONE)
 		return TURRET_NOT_TARGET
 
-	if(get_dist(src, L) > 7)
+	if(get_dist(src, L) > 12)
 		return TURRET_NOT_TARGET
 
-	if(!check_trajectory(list(x,y,z), list(L.x, L.y, L.z),null,null))
+	if(!check_trajectory(list(x,y,z), list(L.x, L.y, L.z),null,null, L))
 		return TURRET_NOT_TARGET
 
 	if(emagged)		// If emagged not even the dead get a rest

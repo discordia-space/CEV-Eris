@@ -1,9 +1,9 @@
-#define LEVEL_BELOW 0
-#define LEVEL_TURF 0.2
-#define LEVEL_LYING 0.3
-#define LEVEL_LOWWALL 0.5
-#define LEVEL_TABLE 0.6
-#define LEVEL_STANDING 0.8
+#define LEVEL_BELOW -1
+#define LEVEL_TURF -0.7
+#define LEVEL_LYING -0.5
+#define LEVEL_LOWWALL 0
+#define LEVEL_TABLE 0.2
+#define LEVEL_STANDING 0.7
 #define LEVEL_ABOVE 1
 
 /// Pixels per turf
@@ -17,6 +17,19 @@ SUBSYSTEM_DEF(bullets)
 
 	var/list/datum/bullet_data/current_queue = list()
 	var/list/datum/bullet_data/bullet_queue = list()
+	// Used for processing bullets. No point in deallocating and reallocating them every MC tick.
+	var/list/bulletRatios
+	var/list/bulletCoords
+	var/obj/item/projectile/projectile
+	var/pixelsToTravel
+	var/pixelsThisStep
+	var/x_change
+	var/y_change
+	var/z_change
+	var/tx_change
+	var/ty_change
+	var/tz_change
+	var/turf/moveTurf = null
 
 
 
@@ -37,6 +50,7 @@ SUBSYSTEM_DEF(bullets)
 	var/list/targetPos = list(0,0,0)
 	var/turf/currentTurf = null
 	var/currentCoords = list(0,0,0)
+	/// [1]=X , [2]=Y, [3]=Z, [4]=Angle
 	var/movementRatios = list(0,0,0,0)
 	var/list/turf/coloreds = list()
 	var/targetLevel = 0
@@ -46,6 +60,8 @@ SUBSYSTEM_DEF(bullets)
 	var/lifetime = 30
 	var/bulletLevel = 0
 	var/lastChanges = list(0,0,0)
+	/// Used to determine wheter a projectile should be allowed to bump a turf or not.
+	var/isTraversingLevel = FALSE
 
 /datum/bullet_data/New(obj/item/projectile/referencedBullet, aimedZone, atom/firer, atom/target, list/targetCoords, pixelsPerTick, angleOffset, lifetime)
 	/*
@@ -133,15 +149,20 @@ SUBSYSTEM_DEF(bullets)
 	referencedBullet.transform = rotation
 
 /datum/bullet_data/proc/updatePathByPosition()
-	var/list/coordinates = list(0,0,0,0)
 	var/matrix/rotation = matrix()
-	coordinates[3] = ((targetPos[3] - firedPos[3]) + targetLevel - firedLevel)
-	coordinates[4] = getAngleByPosition()
-	coordinates[1] = sin(coordinates[4])
-	coordinates[2] = cos(coordinates[4])
-	rotation.Turn(coordinates[4] + 180)
+	movementRatios[3] = ((targetPos[3] - firedPos[3]) + targetLevel - firedLevel)/(distStartToFinish())
+	movementRatios[4] = getAngleByPosition()
+	movementRatios[1] = sin(movementRatios[4])
+	movementRatios[2] = cos(movementRatios[4])
+	rotation.Turn(movementRatios[4] + 180)
 	referencedBullet.transform = rotation
-	movementRatios = coordinates
+
+/datum/bullet_data/proc/distStartToFinish()
+	var/x = targetPos[1] - firedPos[1]
+	var/y = targetPos[2] - firedPos[2]
+	var/px = targetCoords[1] - firedCoordinates[1]
+	var/py = targetCoords[2] - firedCoordinates[2]
+	return sqrt(x**2 + y**2) + sqrt(px**2 + py**2)
 
 
 /datum/bullet_data/proc/updateLevel()
@@ -185,18 +206,6 @@ SUBSYSTEM_DEF(bullets)
 /datum/controller/subsystem/bullets/fire(resumed)
 	if(!resumed)
 		current_queue = bullet_queue.Copy()
-	/// Prevent random dealocations and reallocations , just have em up initialized once.
-	var/list/bulletRatios
-	var/list/bulletCoords
-	var/obj/item/projectile/projectile
-	var/pixelsToTravel
-	var/pixelsThisStep
-	var/x_change
-	var/y_change
-	var/z_change
-	var/tx_change
-	var/ty_change
-	var/turf/moveTurf = null
 	for(var/datum/bullet_data/bullet in current_queue)
 		current_queue -= bullet
 		bullet.lastChanges[1] = 0
@@ -218,29 +227,46 @@ SUBSYSTEM_DEF(bullets)
 			pixelsToTravel -= pixelsThisStep
 			bulletCoords[1] += (bulletRatios[1] * pixelsThisStep)
 			bulletCoords[2] += (bulletRatios[2] * pixelsThisStep)
-			bulletCoords[3] += (bulletRatios[3] * pixelsThisStep)
+			bulletCoords[3] += (bulletRatios[3] * pixelsThisStep/PPT)
 			x_change = round(abs(bulletCoords[1]) / HPPT) * sign(bulletCoords[1])
 			y_change = round(abs(bulletCoords[2]) / HPPT) * sign(bulletCoords[2])
-			z_change = round(abs(bulletCoords[3]) / HPPT) * sign(bulletCoords[3])
-			tx_change = 0
-			ty_change = 0
+			//z_change = round(abs(bulletCoords[3])) * sign(bulletCoords[3])
 			while(x_change || y_change)
 				if(QDELETED(projectile))
 					bullet_queue -= bullet
 					break
-				tx_change = 0
-				ty_change = 0
+				tx_change = ((x_change + (x_change == 0))/abs(x_change + (x_change == 0))) * (x_change != 0)
+				ty_change = ((y_change + (y_change == 0))/abs(y_change + (y_change == 0))) * (y_change != 0)
+				//tz_change = ((z_change + (z_change == 0))/abs(z_change + (z_change == 0))) * (z_change != 0)
+				/*
 				if(x_change)
 					tx_change = x_change/abs(x_change)
 				if(y_change)
 					ty_change = y_change/abs(y_change)
+				if(z_change)
+					tz_change = z_change/abs(z_change)
+				*/
 				moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
+				if(tz_change && !istype(moveTurf, /turf/simulated/open))
+					if(tz_change <= -1)
+						if(moveTurf.bullet_act(projectile) == PROJECTILE_CONTINUE)
+							moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z + tz_change)
+						else
+							projectile.onBlockingHit(moveTurf)
+					else
+						moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z + tz_change)
+						if(moveTurf.bullet_act(projectile) != PROJECTILE_CONTINUE)
+							projectile.onBlockingHit(moveTurf)
+
 				x_change -= tx_change
 				y_change -= ty_change
+				z_change -= tz_change
 				bullet.lastChanges[1] += tx_change
 				bullet.lastChanges[2] += ty_change
+				bullet.lastChanges[3] += tz_change
 				bulletCoords[1] -= PPT * tx_change
 				bulletCoords[2] -= PPT * ty_change
+				bulletCoords[3] -= tz_change * 1.99
 				projectile.pixel_x -= PPT * tx_change
 				projectile.pixel_y -= PPT * ty_change
 				bullet.lifetime--
@@ -256,6 +282,7 @@ SUBSYSTEM_DEF(bullets)
 				*/
 				moveTurf = null
 
+		bullet.updateLevel()
 		animate(projectile, 1, pixel_x =(abs(bulletCoords[1]))%HPPT * sign(bulletCoords[1]) - 1, pixel_y = (abs(bulletCoords[2]))%HPPT * sign(bulletCoords[2]) - 1, flags = ANIMATION_END_NOW)
 		bullet.currentCoords = bulletCoords
 

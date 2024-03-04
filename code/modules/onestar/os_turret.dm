@@ -95,7 +95,7 @@
 
 		if(L.invisibility >= INVISIBILITY_LEVEL_ONE) // Cannot see him. see_invisible is a mob-var
 			continue
-		if(!check_trajectory(list(x,y,z), list(L.x, L.y, L.z),null,null))	//check if we have true line of sight
+		if(!check_trajectory(list(x,y,z), list(L.x, L.y, L.z),null,null, L))	//check if we have true line of sight
 			continue
 
 		if(!nearest_valid_target)
