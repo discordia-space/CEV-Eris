@@ -106,6 +106,7 @@ GLOBAL_LIST_INIT(art_description_types_statue, file2list("strings/artist_strings
 	var/description_artwork_statue = pick(description_artwork_statue_verb,description_artwork_statue_stationary)
 
 	var/description_statue = "[description_artwork_statue] [get_artwork_description()]"
+	description_statue += qualitydesc
 	desc += " [description_statue]"
 	return description_statue
 

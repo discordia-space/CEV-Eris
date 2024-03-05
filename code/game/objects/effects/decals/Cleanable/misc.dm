@@ -225,6 +225,9 @@
 	desc = "A graffiti of one star's eye."
 	icon_state = "onestar"
 
+/obj/effect/decal/cleanable/graffiti/graffiti_carrion
+	desc = "Consume the flesh."
+	icon_state = "carrion"
 
 /obj/effect/decal/cleanable/graffiti/graffiti_doodle
 	desc = "A vagabond beaten by IH, this is mercenary brutality."

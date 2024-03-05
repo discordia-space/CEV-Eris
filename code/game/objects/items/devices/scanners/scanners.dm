@@ -52,8 +52,9 @@
 		return
 	if (!user.IsAdvancedToolUser())
 		return
-	if(!cell_use_check(charge_per_use, user))
-		return
+	if(!is_virtual)
+		if(!cell_use_check(charge_per_use, user))
+			return
 	return TRUE
 
 /obj/item/device/scanner/proc/is_valid_scan_target(atom/O)
