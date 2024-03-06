@@ -486,8 +486,6 @@
 		if(check_penetrate(A))
 			passthrough = TRUE
 		penetrating--
-	if(istype(A, /mob/living/exosuit))
-		passthrough = FALSE
 	//the bullet passes through a dense object!
 	if(passthrough)
 		//move ourselves onto A so we can continue on our way

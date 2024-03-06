@@ -10,6 +10,7 @@
 	power_use = 75
 	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 10, MATERIAL_SILVER = 3)
 	can_climb = TRUE
+	can_fall_safe = TRUE
 	shielding = 10
 
 /obj/item/mech_component/propulsion/tracks

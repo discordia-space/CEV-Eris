@@ -104,6 +104,7 @@
 	if(body) maxHealth = body.mech_health
 	health = maxHealth - (getFireLoss() + getBruteLoss())
 
+/*
 /mob/living/exosuit/damage_through_armor(damage, damagetype, def_zone, attack_flag, armor_divisor, used_weapon, sharp, edge, wounding_multiplier, list/dmg_types, return_continuation, dir_mult)
 	var/obj/item/mech_component/comp = zoneToComponent(def_zone)
 	var/armor_def = comp.armor.getRating(attack_flag)
@@ -124,6 +125,7 @@
 			damage -= round(max(0, armor_change/armor_divisor))
 	*/
 	. = ..()
+*/
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = null)
 	if(!MC)
@@ -174,6 +176,35 @@
 	updatehealth()
 	return FALSE
 
+/mob/living/exosuit/fall_impact(turf/from, turf/dest)
+	if(legs && legs.can_fall_safe)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 100, 1, 10, 10)
+		return
+	//Wreck the contents of the tile
+	for (var/atom/movable/AM in dest)
+		if (AM != src)
+			AM.explosion_act(200, null)
+
+	//Damage surrounding tiles
+	for (var/turf/T in range(1, src))
+		T.explosion_act(150, null)
+
+	apply_damage(abs(from.z - dest.z)*30, BRUTE, BP_LEGS, 10)
+
+	//And do some screenshake for everyone in the vicinity
+	for (var/mob/M in range(20, src))
+		var/dist = get_dist(M, src)
+		dist *= 0.5
+		if (dist <= 1)
+			dist = 1 //Prevent runtime errors
+
+		shake_camera(M, 10/dist, 2.5/dist, 0.12)
+
+	playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(1)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
+	spawn(2)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 100, 1, 20,20)
 
 /mob/living/exosuit/bullet_act(obj/item/projectile/P, def_zone)
 	var/hit_dir = get_dir(P.starting, src)
@@ -187,6 +218,19 @@
 	/// aiming for soemthing the mech doesnt have
 	if(!def_zone)
 		return PROJECTILE_FORCE_MISS
+	var/armor_def = comp.armor.getRating(P.check_armour) * dir_mult
+	var/deflect_chance = ((comp.shielding + armor_def)*0.5) - (armor_divisor*5)
+	if(prob(deflect_chance)) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
+		visible_message(SPAN_DANGER("\The [P] glances off of \the [src]'s [comp]!"), 1, 2, 7)
+		playsound(src, "ricochet", 50, 1, 7)
+		if(P.starting)
+			var/turf/sourceloc = get_turf_away_from_target_simple(src, P.starting, 6)
+			var/new_x = sourceloc.x + ( rand(2, 5) * (prob(50) ? -1 : 1 ))
+			var/new_y = sourceloc.y + ( rand(2, 5) * (prob(50) ? -1 : 1 ))
+			sourceloc = locate(new_x , new_y, sourceloc.z)
+			sourceloc.color = "#a92312"
+			P.redirect(new_x, new_y, get_turf(src), src)
+		return PROJECTILE_CONTINUE
 
 	if (P.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 		IgniteMob()
