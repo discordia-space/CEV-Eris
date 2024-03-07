@@ -19,6 +19,10 @@
 	build_path = /obj/item/stock_parts/capacitor/super
 	sort_string = "CAAAC"
 
+/datum/design/research/item/part/os_capacitor
+	build_path = /obj/item/stock_parts/capacitor/one_star
+	sort_string = "CAAAD"
+
 /datum/design/research/item/part/micro_mani
 	build_path = /obj/item/stock_parts/manipulator
 	sort_string = "CAABA"
@@ -30,6 +34,10 @@
 /datum/design/research/item/part/pico_mani
 	build_path = /obj/item/stock_parts/manipulator/pico
 	sort_string = "CAABC"
+
+/datum/design/research/item/part/os_mani
+	build_path = /obj/item/stock_parts/manipulator/one_star
+	sort_string = "CAABD"
 
 /datum/design/research/item/part/basic_matter_bin
 	build_path = /obj/item/stock_parts/matter_bin
@@ -43,6 +51,10 @@
 	build_path = /obj/item/stock_parts/matter_bin/super
 	sort_string = "CAACC"
 
+/datum/design/research/item/part/os_matter_bin
+	build_path = /obj/item/stock_parts/matter_bin/one_star
+	sort_string = "CAACD"
+
 /datum/design/research/item/part/basic_micro_laser
 	build_path = /obj/item/stock_parts/micro_laser
 	sort_string = "CAADA"
@@ -55,6 +67,10 @@
 	build_path = /obj/item/stock_parts/micro_laser/ultra
 	sort_string = "CAADC"
 
+/datum/design/research/item/part/os_micro_laser
+	build_path = /obj/item/stock_parts/micro_laser/one_star
+	sort_string = "CAADD"
+
 /datum/design/research/item/part/basic_sensor
 	build_path = /obj/item/stock_parts/scanning_module
 	sort_string = "CAAEA"
@@ -66,6 +82,10 @@
 /datum/design/research/item/part/phasic_sensor
 	build_path = /obj/item/stock_parts/scanning_module/phasic
 	sort_string = "CAAEC"
+
+/datum/design/research/item/part/os_sensor
+	build_path = /obj/item/stock_parts/scanning_module/one_star
+	sort_string = "CAAED"
 
 
 // Telecomm parts

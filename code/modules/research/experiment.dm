@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		TECH_MAGNET = 350,
 		TECH_DATA = 400,
 		TECH_COVERT = 5000,
+		TECH_ONESTAR = 4000,
 	)
 
 	var/list/saved_tech_levels = list() // list("materials" = list(1, 4, ...), ...)
