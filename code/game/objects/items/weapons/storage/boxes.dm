@@ -310,7 +310,7 @@
 
 /obj/item/storage/box/smoke_rounds
 	name = "box of Smoke rounds"
-	desc = "A box containing 6 Smoke rounds, designed to be fired from grenade launchers."
+	desc = "A box containing 6 smoke rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
