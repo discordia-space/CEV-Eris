@@ -372,7 +372,7 @@
 
 
 /obj/item/grenade/chem_grenade/smoke
-	name = "smoke greande"
+	name = "FS SG \"Reynolds\""
 	desc = " a smoke grenade constructed by the FS. Contents under pressure. Use with caution." //for if this shows up
 	can_be_modified = FALSE
 	icon_state = "smokegrenade"
