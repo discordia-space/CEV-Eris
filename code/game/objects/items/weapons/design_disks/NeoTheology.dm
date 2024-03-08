@@ -13,6 +13,7 @@
 		/datum/design/bioprinter/leather/holster/baton,
 		/datum/design/bioprinter/leather/holster/belt,
 		/datum/design/bioprinter/leather/holster/sheath,
+		/datum/design/bioprinter/leather/holster/accessory/scabbard,
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
