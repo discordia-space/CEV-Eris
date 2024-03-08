@@ -9,6 +9,8 @@
 	anchored = TRUE
 	icon = 'icons/obj/stairs.dmi'
 	bad_type = /obj/structure/multiz
+	health = 5000
+	maxHealth = 5000
 	var/istop = TRUE
 	var/obj/structure/multiz/target
 	var/obj/structure/multiz/targeted_by
