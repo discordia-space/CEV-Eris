@@ -47,7 +47,6 @@
 			/obj/item/grenade/smokebomb,
 			/obj/item/ammo_casing/grenade/teargas,
 			/obj/item/ammo_casing/grenade/flash,
-			/obj/item/ammo_casing/grenade/smoke,
 			/obj/item/grenade/flashbang,
 			/obj/item/ammo_magazine/ammobox/magnum,
 			/obj/item/ammo_magazine/lrifle,

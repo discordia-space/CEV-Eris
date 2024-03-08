@@ -308,16 +308,6 @@
 	prespawned_content_amount = 6
 	prespawned_content_type = /obj/item/ammo_casing/grenade/flash
 
-/obj/item/storage/box/smoke_rounds
-	name = "box of smoke rounds"
-	desc = "A box containing 6 smoke rounds, designed to be fired from grenade launchers."
-	icon_state = "box_security"
-	illustration = "flashbang"
-	rarity_value = 60
-	prespawned_content_amount = 6
-	prespawned_content_type = /obj/item/ammo_casing/grenade/smoke
-
-
 /obj/item/storage/box/whitephos_rounds
 	name = "box of white phosphorous rounds"
 	desc = "A box containing 6 shite phosphorous rounds, designed to be fired from grenade launchers."
