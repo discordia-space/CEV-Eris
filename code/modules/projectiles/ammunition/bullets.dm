@@ -500,7 +500,7 @@
 
 /obj/item/ammo_casing/grenade/white_phosphorous
 	name = "SA WPR \"Gornja\""
-	desc = "A modernized incendiary fresh out of serbia very flammable, for clearing out ship's and villages."
+	desc = "An incendiary grenade shell, intended for clearing out tight spaces such as ship interiors and village houses. With love from Serbia."
 	icon_state = "warcrime"
 	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/white_phosphorous
 	w_class = ITEM_SIZE_SMALL
@@ -509,6 +509,7 @@
 	maxamount = 1
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 25
+
 /obj/item/ammo_casing/grenade/weak
 	name = "NT SR \"Dard\""
 	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of details makes it ubiquitous."

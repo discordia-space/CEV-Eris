@@ -300,8 +300,8 @@
 	prespawned_content_type = /obj/item/ammo_casing/grenade
 
 /obj/item/storage/box/flash_rounds
-	name = "box of Flash rounds"
-	desc = "A box containing 6 Flashbang rounds, designed to be fired from grenade launchers."
+	name = "box of flash rounds"
+	desc = "A box containing 6 flashbang rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
@@ -309,8 +309,8 @@
 	prespawned_content_type = /obj/item/ammo_casing/grenade/flash
 
 /obj/item/storage/box/smoke_rounds
-	name = "box of Smoke rounds"
-	desc = "A box containing 6 Smoke rounds, designed to be fired from grenade launchers."
+	name = "box of smoke rounds"
+	desc = "A box containing 6 smoke rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
@@ -320,7 +320,7 @@
 
 /obj/item/storage/box/whitephos_rounds
 	name = "box of white phosphorous rounds"
-	desc = "A box containing 6 White phosphorous rounds, designed to be fired from grenade launchers."
+	desc = "A box containing 6 shite phosphorous rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
