@@ -316,6 +316,7 @@
 	rarity_value = 60
 	prespawned_content_amount = 6
 	prespawned_content_type = /obj/item/ammo_casing/grenade/white_phosphorous
+
 /obj/item/storage/box/blast_rounds
 	name = "box of explosive grenade shells"
 	desc = "A box containing 6 explosive grenade shells, designed to be fired from grenade launchers."
