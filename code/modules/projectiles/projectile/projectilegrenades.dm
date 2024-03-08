@@ -115,7 +115,7 @@
 
 
 /obj/item/projectile/bullet/grenade/handgrenade/white_phosphorous
-	name = "White phosphorus grenade"
+	name = "white phosphorus grenade"
 	hand_gren = /obj/item/grenade/frag/white_phosphorous
 
 
