@@ -18139,8 +18139,6 @@
 /obj/item/grenade/frag,
 /obj/item/storage/box/teargas_rounds,
 /obj/item/storage/box/teargas_rounds,
-/obj/item/storage/box/smoke_rounds,
-/obj/item/storage/box/smoke_rounds,
 /obj/item/storage/box/flash_rounds,
 /obj/item/storage/box/flash_rounds,
 /turf/simulated/floor/tiled/dark/gray_platform,
