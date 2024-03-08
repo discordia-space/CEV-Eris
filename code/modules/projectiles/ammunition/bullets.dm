@@ -476,7 +476,7 @@
 
 /obj/item/ammo_casing/grenade/flash
 	name = "FS FBR \"Stallone\""
-	desc = "A Duty-grade Frozen Star flash round, for clearing out criminal hideouts."
+	desc = "A standard-issue Frozen Star flash round, for clearing out criminal hideouts."
 	icon_state = "flash"
 	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/flash
 	w_class = ITEM_SIZE_SMALL
