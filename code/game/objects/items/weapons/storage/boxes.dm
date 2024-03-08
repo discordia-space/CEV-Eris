@@ -299,6 +299,33 @@
 	prespawned_content_amount = 6
 	prespawned_content_type = /obj/item/ammo_casing/grenade
 
+/obj/item/storage/box/flash_rounds
+	name = "box of Flash rounds"
+	desc = "A box containing 6 Flashbang rounds, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	prespawned_content_amount = 6
+	prespawned_content_type = /obj/item/ammo_casing/grenade/flash
+
+/obj/item/storage/box/smoke_rounds
+	name = "box of Smoke rounds"
+	desc = "A box containing 6 Smoke rounds, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	prespawned_content_amount = 6
+	prespawned_content_type = /obj/item/ammo_casing/grenade/smoke
+
+
+/obj/item/storage/box/whitephos_rounds
+	name = "box of white phosphorous rounds"
+	desc = "A box containing 6 White phosphorous rounds, designed to be fired from grenade launchers."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 60
+	prespawned_content_amount = 6
+	prespawned_content_type = /obj/item/ammo_casing/grenade/white_phosphorous
 /obj/item/storage/box/blast_rounds
 	name = "box of explosive grenade shells"
 	desc = "A box containing 6 explosive grenade shells, designed to be fired from grenade launchers."

@@ -104,3 +104,21 @@
 /obj/item/projectile/bullet/grenade/handgrenade/teargas    // Because why not
 	name = "cs shell"
 
+
+/obj/item/projectile/bullet/grenade/handgrenade/smoke
+	icon_state = "grenade"
+	name = "smoke grenade"
+	hand_gren = /obj/item/grenade/smokebomb
+
+/obj/item/projectile/bullet/grenade/handgrenade/flash
+	icon_state = "grenade"
+	name = "Flash grenade"
+	hand_gren = /obj/item/grenade/flashbang
+
+
+/obj/item/projectile/bullet/grenade/handgrenade/white_phosphorous
+	icon_state = "grenade"
+	name = "White phosphorus grenade"
+	hand_gren = /obj/item/grenade/frag/white_phosphorous
+
+
