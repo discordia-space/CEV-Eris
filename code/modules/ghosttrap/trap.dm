@@ -126,7 +126,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 
 // Fluff!
 /datum/ghosttrap/proc/welcome_candidate(var/mob/target)
-	to_chat(target, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
+	to_chat(target, "<b>You are a positronic brain, brought into existence on [station_name].</b>")
 	to_chat(target, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
 	to_chat(target, "<b>Remember, the purpose of your existence is to serve the crew and the ship. Above all else, do no harm.</b>")
 	to_chat(target, "<b>Use say [target.get_language_prefix()]b to speak to other artificial intelligences.</b>")
