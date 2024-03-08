@@ -497,6 +497,7 @@
 	maxamount = 1
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 25
+
 /obj/item/ammo_casing/grenade/weak
 	name = "NT SR \"Dard\""
 	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of details makes it ubiquitous."
