@@ -370,6 +370,31 @@
 	beakers += B1
 	beakers += B2
 
+
+/obj/item/grenade/chem_grenade/smoke
+	name = "smoke greande"
+	desc = " a smoke grenade constructed by the FS. Contents under pressure. Use with caution." //for if this shows up
+	can_be_modified = FALSE
+	icon_state = "smokegrenade"
+	item_state = "smokegrenade"
+	stage = READY
+	spawn_blacklisted = TRUE
+	path = 1
+
+/obj/item/grenade/chem_grenade/teargas/Initialize()
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
+
+	B1.reagents.add_reagent("phosphorus", 40)
+	B1.reagents.add_reagent("potassium", 40)
+	B2.reagents.add_reagent("sugar", 40)
+
+	detonator = new/obj/item/device/assembly_holder/timer_igniter(src)
+
+	beakers += B1
+	beakers += B2
+
 #undef EMPTY
 #undef WIRED
 #undef READY

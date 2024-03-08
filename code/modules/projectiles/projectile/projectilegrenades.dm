@@ -107,7 +107,7 @@
 
 /obj/item/projectile/bullet/grenade/handgrenade/smoke
 	name = "smoke grenade"
-	hand_gren = /obj/item/grenade/smokebomb
+	hand_gren = /obj/item/grenade/chem_grenade/smoke
 
 /obj/item/projectile/bullet/grenade/handgrenade/flash
 	name = "Flash grenade"
