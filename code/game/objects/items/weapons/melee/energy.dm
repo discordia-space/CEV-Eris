@@ -190,7 +190,7 @@
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "blade"
-	force = WEAPON_FORCE_BRUTAL //Normal attacks deal very high damage - about the same as wielded fire axe
+	force = WEAPON_FORCE_BRUTAL //Normal attacks deal very high damage - about the same as The Sword of Truth
 	armor_divisor = ARMOR_PEN_MASSIVE
 	damtype = BURN
 	sharp = TRUE
