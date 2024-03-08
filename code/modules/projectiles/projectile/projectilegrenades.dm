@@ -110,7 +110,7 @@
 	hand_gren = /obj/item/grenade/smokebomb
 
 /obj/item/projectile/bullet/grenade/handgrenade/flash
-	name = "Flash grenade"
+	name = "flash grenade"
 	hand_gren = /obj/item/grenade/flashbang
 
 
