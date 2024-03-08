@@ -300,7 +300,7 @@
 	prespawned_content_type = /obj/item/ammo_casing/grenade
 
 /obj/item/storage/box/flash_rounds
-	name = "box of Flash rounds"
+	name = "box of flash rounds"
 	desc = "A box containing 6 Flashbang rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
