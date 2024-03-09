@@ -105,6 +105,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	opacity = 0
 	glass = 1
 
+/obj/machinery/door/airlock/external/get_overlay_icon()
+	return 'icons/obj/doors/Doorext_misc.dmi'
+
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Doorglass.dmi'
