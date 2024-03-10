@@ -344,6 +344,26 @@
 			chosen.attackby(I, user)
 		return
 
+	// crossbow bolt handling
+	if(istype(I, /obj/item/stack/material))
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/crossbow))
+				var/obj/item/mech_equipment/mounted_system/crossbow/cross = hardpoints[hardpoint]
+				choices["[hardpoint] - [cross.CM.shots_amount]/3"] = cross
+		var/obj/item/mech_equipment/mounted_system/crossbow/cross = null
+		if(!length(choices))
+			return
+		if(length(choices)==1)
+			cross = choices[choices[1]]
+		else
+			var/chosenCross = input("Select crossbow to reload") as null|anything in choices
+			if(chosenCross)
+				cross = choices[chosenCross]
+		if(cross)
+			cross.attackby(I, user)
+		return
+
 	/// Welding generator handling
 	/// Double negation to turn into 0/1 format since if its more than 1 it doesn't count as true.
 	if(I.is_drainable())
