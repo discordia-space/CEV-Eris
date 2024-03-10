@@ -128,7 +128,7 @@
 	icon_state = "mech_blade"
 	holding_type = /obj/item/tool/sword/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
-	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 	spawn_blacklisted = TRUE
 	var/material_color = null
@@ -245,7 +245,7 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 3)
-	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 
 /obj/item/gun/energy/taser/mounted/mech
 	restrict_safety = TRUE
@@ -262,7 +262,7 @@
 	desc = "An exosuit-mounted ion rifle. Handle with care."
 	icon_state = "mech_ionrifle"
 	holding_type = /obj/item/gun/energy/ionrifle/mounted/mech
-	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 4)
 
 /obj/item/gun/energy/ionrifle/mounted
@@ -283,7 +283,7 @@
 	desc = "An exosuit-mounted laser rifle. Handle with care."
 	icon_state = "mech_lasercarbine"
 	holding_type = /obj/item/gun/energy/laser/mounted/mech
-	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10, MATERIAL_SILVER = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
 /obj/item/gun/energy/laser/mounted
@@ -1043,7 +1043,7 @@
 	icon_state = "mech_mace"
 	holding_type = /obj/item/tool/hammer/mace/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
-	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_STEEL = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
 /obj/item/mech_equipment/mounted_system/mace/Initialize()
@@ -1120,7 +1120,7 @@
 	restricted_software = list(MECH_SOFTWARE_ADVWEAPONS)
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 5)
+	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_STEEL = 10, MATERIAL_SILVER = 10)
 	spawn_tags = SPAWN_MECH_QUIPMENT
 	spawn_blacklisted = FALSE
 	rarity_value = 60
@@ -1150,7 +1150,7 @@
 	restricted_software = list(MECH_SOFTWARE_WEAPONS)
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PLASMA = 4, TECH_ENGINEERING = 6, TECH_COMBAT = 3)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 5)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 15)
 	spawn_tags = SPAWN_MECH_QUIPMENT
 	spawn_blacklisted = FALSE
 	rarity_value = 60
@@ -1197,7 +1197,7 @@
 
 /obj/item/gun/energy/crossbow_mech
 	name = "mounted crossbow"
-	desc = "A large, bulky weapon that fires a massive energy bolt. It's a bit unwieldy, but it packs a punch."
+	desc = "A large, bulky weapon that fires a plasteel bolt. It's a bit unwieldy, but it packs a punch."
 	safety = FALSE
 	spawn_tags = null
 	spawn_blacklisted = TRUE
