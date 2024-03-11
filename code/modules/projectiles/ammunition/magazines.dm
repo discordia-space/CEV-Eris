@@ -166,7 +166,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 6)
+	matter = list(MATERIAL_STEEL = 4)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 25
 	ammo_states = list(25)
@@ -203,7 +203,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_L
 	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 9)
+	matter = list(MATERIAL_STEEL = 6)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 35
 	ammo_states = list(35)
@@ -272,7 +272,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D
 	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 18)
+	matter = list(MATERIAL_STEEL = 9)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 60
 	ammo_states = list(60)
@@ -349,7 +349,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_BOX
 	caliber = CAL_CLRIFLE
-	matter = list(MATERIAL_STEEL = 16)
+	matter = list(MATERIAL_STEEL = 8)
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 80
 	w_class = ITEM_SIZE_NORMAL
@@ -362,7 +362,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PISTOL
 	ammo_type = /obj/item/ammo_casing/clrifle
-	matter = list(MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_STEEL = 2)
 	caliber = CAL_CLRIFLE
 	max_ammo = 10
 	ammo_states = list(2, 4, 6, 8, 10)
@@ -387,7 +387,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_STEEL = 4)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 30
 	ammo_states = list(30)
@@ -416,7 +416,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_BOX
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 16)
+	matter = list(MATERIAL_STEEL = 8)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 80
 	w_class = ITEM_SIZE_NORMAL
@@ -431,7 +431,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_RIFLE_D
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_STEEL = 6)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 45
 	ammo_states = list(45)
@@ -473,7 +473,7 @@
 	mag_type = MAGAZINE
 	mag_well = MAG_WELL_PAN
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 20)
+	matter = list(MATERIAL_STEEL = 10)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 96
 	w_class = ITEM_SIZE_NORMAL
@@ -490,7 +490,7 @@
 	icon = 'icons/obj/ammo_speed.dmi'
 	icon_state = "slpistol_base"
 	caliber = CAL_PISTOL
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 1)
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 6
 	rarity_value = 6.66
@@ -530,7 +530,7 @@
 	icon_state = "slmagnum_base"
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 1)
 	max_ammo = 6
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
@@ -572,7 +572,7 @@
 	icon_state = "lrifle"
 	modular_sprites = FALSE
 	caliber = CAL_LRIFLE
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 1)
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 5
 	w_class = ITEM_SIZE_TINY
@@ -594,7 +594,7 @@
 	icon = 'icons/obj/ammo_speed.dmi'
 	icon_state = "stripper_base"
 	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 1)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 6
 	w_class = ITEM_SIZE_TINY
@@ -630,7 +630,7 @@
 	icon = 'icons/obj/ammo_speed.dmi'
 	icon_state = "slsrifle_base"
 	caliber = CAL_SRIFLE
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 1)
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 8
 	w_class = ITEM_SIZE_TINY
@@ -664,7 +664,7 @@
 	icon = 'icons/obj/ammo_speed.dmi'
 	icon_state = "clrifle_base"
 	caliber = CAL_CLRIFLE
-	matter = list(MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_STEEL = 1)
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 5
 	w_class = ITEM_SIZE_TINY
@@ -733,7 +733,7 @@
 	mag_well = MAG_WELL_RIFLE_D
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
-	matter = list(MATERIAL_STEEL = 18)
+	matter = list(MATERIAL_STEEL = 8)
 	w_class = ITEM_SIZE_NORMAL
 	max_ammo = 16
 	ammo_names = list(
@@ -773,7 +773,7 @@
 	name = "magazine (.50)"
 	icon_state = "m12_short"
 	mag_well = MAG_WELL_RIFLE
-	matter = list(MATERIAL_STEEL = 6)
+	matter = list(MATERIAL_STEEL = 3)
 	w_class = ITEM_SIZE_SMALL
 	max_ammo = 8
 

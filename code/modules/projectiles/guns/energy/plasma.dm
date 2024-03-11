@@ -45,6 +45,9 @@
 	icon_state = "plasma_turret"
 	charge_meter = FALSE
 	bad_type = /obj/item/gun/energy/plasma/mounted/blitz
+	init_firemodes = list(
+		list(mode_name="Medium", mode_desc="A standard plasma round, effective against armor", projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/vaporize.ogg', burst=1, fire_delay=6, charge_cost=25, icon="kill", projectile_color = "#00AAFF")
+	)
 
 /obj/item/gun/energy/plasma/destroyer
 	name = "NT PR \"Purger\""

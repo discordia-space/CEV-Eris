@@ -46,19 +46,19 @@ var/global/list/big_deepmaint_room_templates = list()
 	Finds a line of walls adjacent to the line of turfs given
 */
 
-/obj/procedural/jp_DungeonGenerator/deepmaint/proc/checkForWalls(var/list/line)
+/obj/procedural/jp_DungeonGenerator/deepmaint/proc/checkForWalls(var/list/line) 
 	var/turf/t1 = line[1]
 	var/turf/t2 = line[2]
 	var/direction = get_dir(t1, t2)
 	var/list/walls = list()
-	for(var/turf/A in getAdjacent(t1))
+	for(var/turf/A in getAdjacent(t1)) //Interates through all 4 turf tiles adjacent to the second turf tile in the list generated before this in makeNiche
 		var/length = line.len
 		var/turf/T = A
-		walls += T
-		while(length > 0)
+		walls += T //Does not check if the adjacent tile in question is a wall, but includes it in the returned list anyways.
+		while(length > 0) //Iterates from the current adjacent tile through direction chosen in makeNiche to check if the next 4 tiles are walls. If they are, they are returned, otherwise the list is reset and returned.
 			length = length - 1
-			T = get_step(T, direction)
-			if (T.is_wall)
+			T = get_step(T, direction) 
+			if (T.is_wall) 
 				walls += T
 				if(walls.len == line.len)
 					return walls
@@ -126,7 +126,7 @@ var/global/list/big_deepmaint_room_templates = list()
 
 /obj/procedural/jp_DungeonGenerator/deepmaint/proc/makeNiche(var/turf/T)
 	var/list/nicheline = list()
-	for(var/i in list(NORTH,EAST,SOUTH,WEST))
+	for(var/i in list(NORTH,EAST,SOUTH,WEST)) //Checks range of 5 tiles in all 4 directions from the turf tile being passed
 		switch(i)
 			if(NORTH)
 				nicheline = findNicheTurfs(block(T, locate(T.x, T.y + 4, T.z)))
@@ -136,17 +136,17 @@ var/global/list/big_deepmaint_room_templates = list()
 				nicheline = findNicheTurfs(block(T, locate(T.x, T.y - 4, T.z)))
 			if(WEST)
 				nicheline = findNicheTurfs(block(T, locate(T.x - 4, T.y, T.z)))
-		if(nicheline.len > 3)
+		if(nicheline.len > 3) //If all 5 turf tiles in the chosen diretion were not walls or nonexistant, continue with said list. Otherwise, check a different direction
 			break
-
+// If nothing ever fulfills the above requirements, functionally, nothing will happen for the rest of the function
 	var/list/wall_line = list()
 	if(nicheline.len > 3)
-	 wall_line = checkForWalls(nicheline)
-	if(wall_line.len)
-		for(var/turf/W in nicheline)
+	 wall_line = checkForWalls(nicheline) //Checks whether 4 turf tiles are walls in the chosen direction from tiles adjacent to the second tile. If this is not met in any direction, the function is functionally done
+	if(wall_line.len) 
+		for(var/turf/W in nicheline) //Every turf in the path returned by findNicheTurfs has a 30% chance of becoming a random deepmaint machine
 			if(prob(30))
 				new /obj/spawner/pack/deep_machine(W)
-		for(var/turf/W in wall_line)
+		for(var/turf/W in wall_line) //Every turf in the path returned by checkForWalls is turned into a floor tile, and has a 70% chance of becoming a random deepmaint machine
 			if(locate(/obj/machinery/light/small/autoattach, W))
 				var/obj/machinery/light/small/autoattach/L = locate(/obj/machinery/light/small/autoattach, W)
 				qdel(L)
@@ -159,17 +159,17 @@ var/global/list/big_deepmaint_room_templates = list()
 	else
 		return FALSE
 
-/obj/procedural/jp_DungeonGenerator/deepmaint/proc/findNicheTurfs(var/list/turfs)
+/obj/procedural/jp_DungeonGenerator/deepmaint/proc/findNicheTurfs(var/list/turfs) //Checks turf type of turf list passed to it to make sure none of them are walls or nonexistant.
     var/list/L = list()
     for(var/turf/F in turfs)
-        if(F.is_wall || !(F in path_turfs))
-            if(L.len < 3)
-                L = list()
+        if(F.is_wall || !(F in path_turfs)) 
+            if(L.len < 3)  //Why is this check here? The function this list being returned to will discard any list that isn't length 5. Is the < operator meant to be an > operator? But if that was the case, the for loop would have ended before reaching this anyways?
+                L = list() //Resets the list to 0 and returns it if a tile in this direction was a wall or nonexistant, so that the makeNiche function will check another direction
             break
         else
             L += F
 
-    return L
+    return L //Returns entire list of tiles if none of them were walls or nonexistant.
 
 
 /obj/procedural/jp_DungeonGenerator/deepmaint/proc/populateCorridors()

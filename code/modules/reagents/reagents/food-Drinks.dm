@@ -914,7 +914,7 @@
 	color = "#100800"
 	adj_temp = -5
 	adj_sleepy = -2
-	nerve_system_accumulations = 50
+	nerve_system_accumulations = 30
 	taste_tag = list(TASTE_SWEET,TASTE_BUBBLY)
 
 	glass_unique_appearance = TRUE
@@ -925,12 +925,12 @@
 
 /datum/reagent/drink/nuka_cola/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.add_chemical_effect(CE_SPEEDBOOST, 0.6)
+	M.add_chemical_effect(CE_SPEEDBOOST, 0.2)
+	M.add_chemical_effect(CE_PULSE, 2)
 	M.make_jittery(20 * effect_multiplier)
 	M.druggy = max(M.druggy, 30 * effect_multiplier)
 	M.dizziness += 5 * effect_multiplier
-	M.drowsyness = 0
-	M.apply_effect(0.5 * effect_multiplier, IRRADIATE, 0)
+	M.apply_effect(1 * effect_multiplier, IRRADIATE, 0)
 
 /datum/reagent/drink/grenadine
 	name = "Grenadine Syrup"
@@ -1185,8 +1185,8 @@
 	SEND_SIGNAL_OLD(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
 
 /datum/reagent/alcohol/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_TOXIN, toxicity * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))
-	M.add_chemical_effect(CE_PAINKILLER, max(35 - (strength / 2), 1))	//Vodka 32.5 painkiller, beer 15
+	var/datum/reagents/metabolism/met = M.get_metabolism_handler(CHEM_BLOOD)
+	met.add_reagent("ethanol", effect_multiplier / strength * strength_mod * 4)
 
 /datum/reagent/alcohol/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	M.adjustNutrition(nutriment_factor * (issmall(M) ? effect_multiplier * 2 : effect_multiplier))

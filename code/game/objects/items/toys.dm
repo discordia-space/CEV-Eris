@@ -647,7 +647,7 @@
 
 /obj/item/toy/plushie/fumo
 	name = "fumo"
-	desc = "A plushie of a....?."
+	desc = "A plushie of a....?"
 	icon_state = "fumoplushie_marisa"
 	spawn_blacklisted = TRUE
 
@@ -656,6 +656,9 @@
 
 /obj/item/toy/plushie/fumo/cirno
 	icon_state = "fumoplushie_cirno"
+
+/obj/item/toy/plushie/fumo/bocchi
+	icon_state = "fumoplushie_bocchi"
 
 //Toy cult sword
 /obj/item/toy/cultsword

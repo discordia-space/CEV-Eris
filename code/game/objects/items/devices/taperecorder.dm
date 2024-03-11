@@ -348,7 +348,7 @@
 	for(var/datum/computer_file/data/audio/A in mydrive.stored_files)
 		audio_list[A.filename] = A
 	if(show_message)
-		var/usr_input = input(usr, "Which audio file do you want to switch to?.", "Audio Files") in audio_list|"New File"|"Cancel"|null
+		var/usr_input = input(usr, "Which audio file do you want to switch to?", "Audio Files") in audio_list|"New File"|"Cancel"|null
 		if(isnull(usr_input))
 			return
 		if(usr_input == "New File")

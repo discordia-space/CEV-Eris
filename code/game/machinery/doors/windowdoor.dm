@@ -16,7 +16,6 @@
 	flags = ON_BORDER
 	opacity = 0
 	var/obj/item/electronics/airlock/electronics
-	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
 /obj/machinery/door/window/New()
@@ -78,7 +77,7 @@
 	var/mob/M = AM // we've returned by here if M is not a mob
 	if (src.operating)
 		return
-	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM))
+	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM) && can_open())
 		open()
 		addtimer(CALLBACK(src, PROC_REF(close)), 5 SECONDS)
 		/*
@@ -107,42 +106,43 @@
 		return 1
 
 /obj/machinery/door/window/open()
-	if (src.operating == 1) //doors can still open when emag-disabled
-		return 0
+	if (src.operating == TRUE) //doors can still open when emag-disabled
+		return FALSE
+	if(!can_open())
+		return FALSE
 	if(!src.operating) //in case of emag
-		src.operating = 1
+		src.operating = TRUE
+
 	flick(text("[]opening", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]open", src.base_state)
 	//sleep(10)
 
-	explosion_resistance = 0
 	src.density = FALSE
 //	src.sd_SetOpacity(0)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
-	if(operating == 1) //emag again
-		src.operating = 0
-	return 1
+	if(operating == TRUE) //emag again
+		src.operating = FALSE
+	return TRUE
 
 /obj/machinery/door/window/close()
 	if (src.operating)
-		return 0
-	src.operating = 1
+		return FALSE
+	src.operating = TRUE
 	flick(text("[]closing", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = src.base_state
 
 	src.density = TRUE
-	explosion_resistance = initial(explosion_resistance)
 //	if(src.visible)
 //		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
 	//sleep(10)
 
-	src.operating = 0
-	return 1
+	src.operating = FALSE
+	return TRUE
 
 /obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)

@@ -29,11 +29,21 @@
 	RegisterSignal(src, COMSIG_IORGAN_ADD_WOUND, PROC_REF(add_wound))
 	RegisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND, PROC_REF(remove_wound))
 	RegisterSignal(src, COMSIG_IORGAN_REFRESH_SELF, PROC_REF(refresh_upgrades))
+	spawn(10)
+		PostInit()
+
+/obj/item/organ/internal/proc/PostInit()
+	if(!get_limb())
+		status |= ORGAN_CUT_AWAY
 
 /obj/item/organ/internal/Process()
 	refresh_damage()	// Death check is in the parent proc
 	..()
 	handle_blood()
+
+/obj/item/organ/internal/die()
+	..()
+	handle_organ_eff()
 
 /obj/item/organ/internal/Destroy()
 	QDEL_LIST(item_upgrades)
@@ -85,13 +95,23 @@
 	for(var/process in organ_efficiency)
 		if(!islist(owner.internal_organs_by_efficiency[process]))
 			owner.internal_organs_by_efficiency[process] = list()
-		owner.internal_organs_by_efficiency[process] += src
+		if(is_usable())
+			owner.internal_organs_by_efficiency[process] |= src
+		else
+			owner.internal_organs_by_efficiency[process] -= src
 
 	for(var/proc_path in owner_verbs)
 		verbs |= proc_path
 
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
+
+/obj/item/organ/internal/proc/handle_organ_eff()
+	for(var/process in organ_efficiency)
+		if(is_usable())
+			owner.internal_organs_by_efficiency[process] |= src
+		else
+			owner.internal_organs_by_efficiency[process] -= src
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	var/organ_eff = organ_efficiency[process_define]
@@ -101,7 +121,7 @@
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
 
-	var/wound_count = max(0, round(amount / 4))	// At base values, every 8 points of damage is 1 wound
+	var/wound_count = max(0, round(amount / (damage_type == BRUTE || damage_type == BURN ? 4 : 8)))	// At base values, every 8 points of damage is 1 wound, or 4 if brute or burn.
 
 	if(!wound_count)
 		return FALSE

@@ -350,3 +350,15 @@ Based on /datum/design of \code\datums\autolathe\autolathe_datums.dm
 	name = "\"Sermak\" rifle frame"
 	build_path = /obj/item/gun/projectile/automatic/modular/ak/makeshift
 	minimum_quality = 0
+
+// misc
+/datum/design/makeshift/stock_frame
+	name = "stock frame"
+	build_path = /obj/item/part/gun/modular/stock
+
+/datum/design/makeshift/armor_part
+	name = "armor part"
+	build_path = /obj/item/part/armor
+	minimum_quality = 0
+	// I dunno, it kinda meant to be affordable and a comodity since all amor you make with it is medicore.
+	// Probably could be changed to +1 but the average vaga would need to upgrade the lath at least with t2

@@ -556,7 +556,7 @@
 	sound_env = LARGE_ENCLOSED
 
 /area/eris/neotheology/storage
-	name = "\improper Church Storage"
+	name = "\improper Church Break Room"
 	icon_state = "erisyellow"
 	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
 
@@ -579,6 +579,14 @@
 	name = "Chapel Rituals Room"
 	icon_state = "erisgreen"
 
+/area/eris/neotheology/altar
+	name = "Chapel Altar Room"
+	icon_state = "erisblue"
+
+/area/eris/neotheology/bioprinter
+	name = "Chapel Work Room"
+	icon_state = "purple"
+	
 /area/eris/neotheology/biogenerator
 	name = "\improper Church Biogenerator Room"
 	icon_state = "erisred"

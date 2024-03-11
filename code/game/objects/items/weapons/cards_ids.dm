@@ -329,3 +329,26 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/card/id/blankwhite
 	icon_state = "id_blankwhite"
+
+/obj/item/card/id/randomassistant
+
+/obj/item/card/id/randomassistant/examine(mob/user)
+	if("\[UNSET\]" != blood_type) // we have to call the parent only if the variables are loaded or else these variables will only appear after the first examine
+		return ..()
+	dna_hash = sha1("A"+registered_name) // something is subtly wrong with these IDs
+	fingerprint_hash = md5("A"+registered_name)
+	blood_type = pick(GLOB.blood_types)
+	. = ..()
+
+/obj/item/card/id/randomassistant/Initialize()
+	. = ..()
+	age = num2text(max(18, rand(1, 50)+rand(1,50)))
+	var/datum/job_flavor/flavortype = pick(subtypesof(/datum/job_flavor/assistant))
+	assignment = initial(flavortype.title)
+	access = list(access_maint_tunnels)
+	var/csex = pick(MALE, FEMALE)
+	sex = capitalize(csex)
+	var/theoretical_first_name = random_first_name(csex)
+	var/theoretical_last_name = random_last_name()
+	registered_name = addtext(theoretical_first_name, " ", theoretical_last_name) // is this faster than two concats? probably!
+	update_name()

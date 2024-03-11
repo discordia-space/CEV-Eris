@@ -363,7 +363,7 @@
 		user.remove_from_mob(W)
 		qdel(W)
 
-	else if((is_proximity_sensor(W)) && (build_step == 3))
+	else if((isproxsensor(W)) && (build_step == 3))
 		build_step++
 		to_chat(user, "You complete the Farmbot! Beep boop.")
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)

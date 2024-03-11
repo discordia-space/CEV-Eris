@@ -1,0 +1,148 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/closet/crate/freezer/rations,
+/obj/effect/decal/cleanable/cobweb2,
+/obj/spawner/booze,
+/obj/spawner/junkfood/rotten/low_chance,
+/obj/spawner/junkfood/low_chance,
+/obj/spawner/junkfood,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"b" = (
+/turf/simulated/wall/silver,
+/area/asteroid/cave)
+"c" = (
+/obj/structure/table/rack,
+/obj/spawner/voidsuit,
+/obj/spawner/gun/energy_cheap/low_chance,
+/obj/spawner/gun/energy_cheap/low_chance,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"d" = (
+/obj/structure/table/marble,
+/obj/spawner/pack/tech_loot/onestar,
+/obj/spawner/booze,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"f" = (
+/obj/machinery/r_n_d/server,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"g" = (
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet,
+/area/asteroid/cave)
+"h" = (
+/obj/structure/inflatable/door,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"i" = (
+/obj/structure/filingcabinet,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"k" = (
+/obj/structure/bed/chair/wheelchair,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"n" = (
+/turf/simulated/floor/asteroid,
+/area/asteroid/cave)
+"p" = (
+/obj/spawner/junk,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"q" = (
+/mob/living/simple_animal/hostile/hivebot/range,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"r" = (
+/mob/living/bot/medbot,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"C" = (
+/obj/structure/bed,
+/obj/item/bedsheet/rainbow,
+/obj/spawner/lowkeyrandom,
+/turf/simulated/floor/carpet,
+/area/asteroid/cave)
+"G" = (
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"I" = (
+/obj/item/pen/multi,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+"K" = (
+/obj/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/wood,
+/area/asteroid/cave)
+"Z" = (
+/obj/structure/table/marble,
+/obj/item/paper_bin,
+/turf/simulated/floor/tiled/dark,
+/area/asteroid/cave)
+
+(1,1,1) = {"
+b
+b
+K
+K
+b
+b
+b
+"}
+(2,1,1) = {"
+b
+i
+p
+c
+G
+f
+b
+"}
+(3,1,1) = {"
+b
+G
+G
+q
+I
+d
+b
+"}
+(4,1,1) = {"
+b
+a
+q
+r
+k
+Z
+K
+"}
+(5,1,1) = {"
+b
+b
+b
+G
+b
+b
+b
+"}
+(6,1,1) = {"
+n
+h
+h
+G
+g
+C
+b
+"}
+(7,1,1) = {"
+n
+b
+b
+b
+b
+b
+b
+"}

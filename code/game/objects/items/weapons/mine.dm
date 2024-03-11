@@ -49,6 +49,7 @@
 
 /obj/item/mine/old/armed
 	armed = TRUE
+	anchored = TRUE
 	deployed = TRUE
 	rarity_value = 55
 	spawn_frequency = 10
@@ -66,6 +67,7 @@
 
 /obj/item/mine/improv/armed
 	armed = TRUE
+	anchored = TRUE
 	deployed = TRUE
 	rarity_value = 44
 	spawn_frequency = 10
@@ -96,13 +98,13 @@
 	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("you begin deploying \the [src]!")
+			SPAN_DANGER("You begin deploying \the [src]!")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("you have deployed \the [src]!")
+				SPAN_DANGER("You have deployed \the [src]!")
 				)
 
 			deployed = TRUE
@@ -197,10 +199,18 @@
 			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
 			return ..()
 		if(isliving(AM))
+
 			if(excelsior)
-				for(var/datum/antagonist/A in AM.mind.antagonist)
-					if(A.id == ROLE_EXCELSIOR_REV)
-						return
+				if(ismech(AM))
+					/// if at least one of the people inside is an excel.
+					for(var/mob/living/carbon/human/agent in AM)
+						for(var/datum/antagonist/A in agent.mind.antagonist)
+							if(A.id == ROLE_EXCELSIOR_REV)
+								return
+				else
+					for(var/datum/antagonist/A in AM.mind.antagonist)
+						if(A.id == ROLE_EXCELSIOR_REV)
+							return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
 			if(prob(true_prob_explode))
 				explode()

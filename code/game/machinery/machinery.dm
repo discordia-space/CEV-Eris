@@ -114,6 +114,7 @@
 	var/area/current_power_area // What area are we powering currently
 
 	var/hacked = FALSE // If this machine has had its access requirements hacked or not
+	var/shipside_only = FALSE // Does this mechanism need to be on the ship? Used for excel
 
 
 /obj/machinery/Initialize(mapload, d=0)
@@ -168,6 +169,9 @@
 
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
+
+/obj/machinery/ui_state(mob/user)
+	return GLOB.machinery_state
 
 /obj/machinery/CanUseTopic(mob/user)
 	if(stat & BROKEN)

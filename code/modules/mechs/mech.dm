@@ -29,7 +29,7 @@
 	// Access updating/container.
 	var/obj/item/card/id/access_card
 	var/list/saved_access = list()
-	var/sync_access = 1
+	var/sync_access = TRUE
 
 	// Mob currently piloting the exosuit.
 	var/list/pilots
@@ -45,11 +45,13 @@
 	var/datum/effect/effect/system/spark_spread/sparks
 
 	// Equipment tracking vars.
-	var/obj/item/selected_system
+	var/obj/item/mech_equipment/selected_system
 	var/selected_hardpoint
 	var/list/hardpoints = list()
 	var/hardpoints_locked
 	var/maintenance_protocols
+	/// For equipment that has a process based on mech Life tick
+	var/list/obj/item/mech_equipment/tickers = list()
 
 	// Material
 	var/material/material = MATERIAL_STEEL
@@ -73,12 +75,36 @@
 	var/obj/screen/movable/exosuit/toggle/power_control/hud_power_control
 	var/obj/screen/movable/exosuit/toggle/camera/hud_camera
 
+	var/power = MECH_POWER_OFF
+
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
 
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
 		to_chat(i, msg)
+
+/mob/living/exosuit/proc/toggle_power(mob/living/user)
+	if(power == MECH_POWER_TRANSITION)
+		to_chat(user, SPAN_NOTICE("Power transition in progress. Please wait."))
+	else if(power == MECH_POWER_ON) //Turning it off is instant
+		playsound(src, 'sound/mechs/mech-shutdown.ogg', 100, 0)
+		power = MECH_POWER_OFF
+	else if(get_cell(TRUE))
+		//Start power up sequence
+		power = MECH_POWER_TRANSITION
+		playsound(src, 'sound/mechs/powerup.ogg', 50, 0)
+		if(do_after(user, 1.5 SECONDS, src) && power == MECH_POWER_TRANSITION)
+			playsound(src, 'sound/mechs/nominal.ogg', 50, 0)
+			power = MECH_POWER_ON
+		else
+			to_chat(user, SPAN_WARNING("You abort the powerup sequence."))
+			power = MECH_POWER_OFF
+		//hud_power_control?.queue_icon_update()
+	else
+		to_chat(user, SPAN_WARNING("Error: No power cell was detected."))
+
+
 
 /*
 /mob/living/exosuit/is_flooded()
@@ -135,6 +161,9 @@
 
 	if(head && head.radio)
 		radio = new(src)
+
+	if(body)
+		opacity = body.opaque_chassis
 
 	if(LAZYLEN(component_descriptions))
 		desc = "[desc] It has been built with [english_list(component_descriptions)]."
@@ -194,11 +223,31 @@
 		to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
 
 	to_chat(user, "It menaces with reinforcements of [material].")
+	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
+	to_chat(user, SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button."))
+	if(body.storage_compartment)
+		to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character."))
+	if(body && body.cell_charge_rate)
+		to_chat(user, SPAN_NOTICE("This mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate]."))
+	if(arms && arms.can_force_doors)
+		to_chat(user, SPAN_NOTICE("The arms on this mech can force open any unbolted door."))
+	if(locate(/obj/item/mech_equipment/mounted_system/ballistic) in contents)
+		to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition."))
+	if(locate(/obj/item/mech_equipment/auto_mender) in contents)
+		to_chat(user, SPAN_NOTICE("You can refill its auto mender by attacking the mech with trauma kits."))
+	if(locate(/obj/item/mech_equipment/forklifting_system) in contents)
+		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's forklifting system by using grab intent."))
+	if(locate(/obj/item/mech_equipment/towing_hook) in contents)
+		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's towing system by using grab intent."))
+	if(locate(/obj/item/mech_equipment/power_generator/fueled) in contents)
+		to_chat(user, SPAN_NOTICE("You can refill the mounted power generators by attacking \the [src] with the fuel they use."))
+	if(locate(/obj/item/mech_equipment/power_generator/fueled/welding) in contents)
+		to_chat(user, SPAN_NOTICE("You can drain from the mounted fuel welding fuel generator by attacking with a beaker on GRAB intent"))
 
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		if(ispath(body) || !hatch_closed)
+		if(ispath(body) || !hatch_closed || body.pilot_coverage < 100)
 			var/turf/current_loc = get_turf(src)
 			return current_loc.return_air()
 		if(body.pilot_coverage >= 100 && hatch_closed)
@@ -208,14 +257,9 @@
 /mob/living/exosuit/GetIdCard()
 	return access_card
 
-/mob/living/exosuit/set_dir()
-	. = ..()
-	if(.)
-		update_pilots()
-
 /mob/living/exosuit/proc/return_temperature()
 	return bodytemperature
 
 /mob/living/exosuit/get_mob()
 	if(length(pilots))
-		return pilots[1]
+		return pick(pilots)

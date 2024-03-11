@@ -10,6 +10,7 @@
 	station_drone = FALSE
 	eyecolor = null
 	ai_access = FALSE
+	local_transmit = 0 // Give these fellas at least the bare MINIMUM of RP capacity.
 
 /mob/living/silicon/robot/drone/blitzshell/updatename()
 	real_name = "\"Blitzshell\" assault drone ([rand(100,999)])"
@@ -27,6 +28,7 @@
 	remove_language(LANGUAGE_ROBOT)
 	remove_language(LANGUAGE_DRONE)
 	add_language(LANGUAGE_BLITZ, 1)
+	add_language(LANGUAGE_GERMAN, 1) // Oberth drone. Give these fellas at least the bare MINIMUM of RP capacity.
 	UnlinkSelf()
 
 /mob/living/silicon/robot/drone/blitzshell/GetIdCard()
@@ -42,27 +44,6 @@
 
 /mob/living/silicon/robot/drone/blitzshell/allowed()
 	return FALSE
-
-/obj/item/robot_module/blitzshell
-	networks = list()
-	health = 60 //Able to take 2 bullets
-	speed_factor = 1.2
-	hide_on_manifest = TRUE
-
-
-/obj/item/robot_module/blitzshell/New()
-	//modules += new /obj/item/gun/energy/laser/mounted/blitz(src) //Deemed too strong for initial loadout
-	modules += new /obj/item/gun/energy/plasma/mounted/blitz(src)
-	modules += new /obj/item/tool/knife/tacknife(src) //For claiming heads for assassination missions
-	//Objective stuff
-	modules += new /obj/item/storage/bsdm/permanent(src) //for sending off item contracts
-	modules += new /obj/item/gripper/antag(src) //For picking up item contracts
-	modules += new /obj/item/reagent_containers/syringe/blitzshell(src) //Blood extraction
-	modules += new /obj/item/device/drone_uplink(src)
-	//Misc equipment
-	modules += new /obj/item/card/id/syndicate(src) //This is our access. Scan cards to get better access
-	modules += new /obj/item/device/nanite_container(src) //For self repair. Get more charges via the contract system
-	..()
 
 /obj/item/gripper/antag
 	name = "Objective Gripper"

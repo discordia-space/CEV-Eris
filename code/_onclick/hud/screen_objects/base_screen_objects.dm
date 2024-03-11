@@ -452,8 +452,85 @@
 	if(!ishuman(parentmob))
 		return FALSE
 	var/mob/living/carbon/human/H = parentmob
+	H?.sanity?.ui_interact(H)
+	return TRUE
+
+/obj/screen/sanity_alt
+	name = "inspiration"
+	desc = "The color of the icon displays how close you are to receive an inspiration from your experiences.\
+	Once you gain an inspiration, you will crave for food, drinks or drugs, to be able to reflect upon all you've learned so far. \
+	Satisfy these cravings and you'll be able to \"rest\", improving upon your stats slightly, or depending on any oddities held, \
+	you'll gain a new perk, for ill or good, and better stat gains."
+	icon_state = "insight1"
+
+/obj/screen/sanity_alt/New()
+	..()
+	ovrls["sanity0"] += new /image/(icon = src.icon, icon_state = "sanity0")
+	ovrls["sanity1"] += new /image/(icon = src.icon, icon_state = "sanity1")
+	ovrls["sanity2"] += new /image/(icon = src.icon, icon_state = "sanity2")
+	ovrls["sanity3"] += new /image/(icon = src.icon, icon_state = "sanity3")
+	ovrls["sanity4"] += new /image/(icon = src.icon, icon_state = "sanity4")
+	ovrls["sanity5"] += new /image/(icon = src.icon, icon_state = "sanity5")
+	ovrls["sanity6"] += new /image/(icon = src.icon, icon_state = "sanity6")
+
+	update_icon()
+
+
+/obj/screen/sanity_alt/update_icon()
+	var/mob/living/carbon/human/H = parentmob
+	if(!istype(H) || H.stat == DEAD)
+		return
+
+	cut_overlays()
+	var/image/ovrl
+
+	add_overlay( image(icon = src.icon, icon_state =  "insight_side", pixel_x = 32))
+	switch(H.sanity.level / H.sanity.max_level)
+		if(-INFINITY to 0)
+			add_overlay( ovrls["sanity6"])
+			return
+		if(1 to INFINITY)
+			ovrl = ovrls["sanity0"]
+		if(0.8 to 1)
+			ovrl = ovrls["sanity1"]
+		if(0.6 to 0.8)
+			ovrl = ovrls["sanity2"]
+		if(0.4 to 0.6)
+			ovrl = ovrls["sanity3"]
+		if(0.2 to 0.4)
+			ovrl = ovrls["sanity4"]
+		if(0 to 0.2)
+			ovrl = ovrls["sanity5"]
+
+	add_overlay(ovrl)
+
+	switch(H.sanity.insight)
+		if(-INFINITY to 0)
+			icon_state = "insight1"
+			return
+		if(66 to 101)
+			icon_state = "insight4"
+		if(33 to 66)
+			icon_state = "insight3"
+		if(2 to 33)
+			icon_state = "insight2"
+		if(1 to INFINITY)
+			icon_state = "insight1"
+
+/obj/screen/sanity_alt/DEADelize()
+	cut_overlays()
+	add_overlay( ovrls["sanity0"])
+
+/obj/screen/sanity_alt/Click()
+	if(!..())
+		return
+	if(!ishuman(parentmob))
+		return FALSE
+	var/mob/living/carbon/human/H = parentmob
 	H.nano_ui_interact(H)
+	H.sanity.print_desires()
 	return	TRUE
+
 
 //--------------------------------------------------sanity end---------------------------------------------------------
 //--------------------------------------------------nsa---------------------------------------------------------
@@ -897,7 +974,23 @@ obj/screen/fire/DEADelize()
 	if(istype(H))
 		H.lookup()
 //-----------------------look up END------------------------------
+//-----------------------look down------------------------------
+/obj/screen/look_down
+	name = "look down"
+	icon_state = "look_down"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
 
+/obj/screen/look_down/New()
+	..()
+	update_icon()
+
+/obj/screen/look_down/Click()
+	var/mob/living/carbon/human/H = parentmob
+	if(istype(H))
+		var/turf/temp_turf = get_turf(H)
+		temp_turf.examine(H)
+//-----------------------look down END------------------------------
 //-----------------------wield------------------------------
 /obj/screen/wield
 	name = "wield"
@@ -906,6 +999,20 @@ obj/screen/fire/DEADelize()
 	plane = HUD_PLANE
 
 /obj/screen/wield/Click()
+	var/mob/living/carbon/human/H = parentmob
+	H.do_wield()
+
+/obj/screen/wield_alt
+	name = "wield"
+	icon_state = "wield-l"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/wield_alt/New()
+	..()
+	add_overlay( image(icon = src.icon, icon_state =  "wield-r", pixel_x = 32))
+
+/obj/screen/wield_alt/Click()
 	var/mob/living/carbon/human/H = parentmob
 	H.do_wield()
 //-----------------------wield END------------------------------
@@ -1077,6 +1184,18 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/swap/Click()
 	parentmob.swap_hand()
+
+
+/obj/screen/swap_alt
+	name = "swap hand"
+	icon = 'icons/mob/screen/LibertyStyle.dmi'
+	icon_state = "swap_alone"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/swap_alt/Click()
+	parentmob.swap_hand()
+
 //-----------------------swap END------------------------------
 //-----------------------bionics------------------------------
 /obj/screen/bionics
@@ -1117,6 +1236,37 @@ obj/screen/fire/DEADelize()
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 //-----------------------bionics END------------------------------
+//-----------------------language------------------------------
+/obj/screen/language
+	name = "language menu"
+	icon_state = "language"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/language/New()
+	..()
+	update_icon()
+
+/obj/screen/language/Click()
+	parentmob.check_languages()
+
+//-----------------------language END------------------------------
+//-----------------------examine------------------------------
+/obj/screen/examine_area
+	name = "examine"
+	icon_state = "examine"
+	layer = HUD_LAYER
+	plane = HUD_PLANE
+
+/obj/screen/examine_area/New()
+	..()
+	update_icon()
+
+/obj/screen/examine_area/Click()
+	var/look_at = input("Examine:","Mob|Object|Turf") as mob|obj|turf in view()
+	parentmob.examinate(look_at)
+
+//-----------------------examine END------------------------------
 //-----------------------craft menu------------------------------
 /obj/screen/craft_menu
 	name = "craft menu"

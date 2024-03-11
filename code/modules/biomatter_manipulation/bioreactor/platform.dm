@@ -109,8 +109,10 @@
 				organ.forceMove(get_turf(neighbor_platform))
 				organ.removed()
 				continue
-		if(H && H.mind && H.mind.key && H.stat == DEAD)
-			var/mob/M = key2mob(H.mind.key)
+	if(istype(object, /obj/item/organ/internal/vital/brain))
+		var/obj/item/organ/internal/vital/brain/B = object
+		if(B.brainmob && B.brainmob.mind && B.brainmob.mind.key)
+			var/mob/M = key2mob(B.brainmob.mind.key)
 			to_chat(M, SPAN_NOTICE("Your remains have been dissolved and reused. Your crew respawn time is reduced by [(BIOREACTOR_RESPAWN_BONUS)/600] minutes."))
 			M << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
 			M.set_respawn_bonus("CORPSE_DISSOLVING", BIOREACTOR_RESPAWN_BONUS)

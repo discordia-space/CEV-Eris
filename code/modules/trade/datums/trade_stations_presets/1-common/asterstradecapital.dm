@@ -52,8 +52,11 @@
 		),
 		"Mining Gear" = list(
 			/obj/machinery/mining/deep_drill,
+			/obj/item/tool/karl,
 			/obj/item/tool/pickaxe,
-			/obj/item/tool/pickaxe/excavation
+			/obj/item/tool/pickaxe/excavation,
+			/obj/item/storage/bag/ore,
+			/obj/structure/ore_box
 		),
 		"Toys" = list(
 			/obj/item/toy/balloon = good_data("Water Balloon", list(1, 50), null),
@@ -101,13 +104,6 @@
 			/obj/item/storage/box = custom_good_price(5),
 			/obj/item/hand_labeler = custom_good_price(10),
 			/obj/item/storage/fancy/crayons = custom_good_price(6),
-			/obj/item/reagent_containers/glass/paint/red = good_data("Red Paint", list(1, 10), null),
-			/obj/item/reagent_containers/glass/paint/green = good_data("Green Paint", list(1, 10), null),
-			/obj/item/reagent_containers/glass/paint/blue = good_data("Blue Paint", list(1, 10), null),
-			/obj/item/reagent_containers/glass/paint/yellow = good_data("Yellow Paint", list(1, 10), null),
-			/obj/item/reagent_containers/glass/paint/purple = good_data("Purple Paint", list(1, 10), null),
-			/obj/item/reagent_containers/glass/paint/black = good_data("Black Paint", list(1, 10), null),
-			/obj/item/reagent_containers/glass/paint/white = good_data("White Paint", list(1, 10), null),
 			/obj/item/storage/lunchbox = good_data("Lunchbox", list(1, 10), null),
 			/obj/item/storage/lunchbox/rainbow = good_data("Rainbow Lunchbox", list(1, 10), null),
 			/obj/item/storage/lunchbox/cat = good_data("Cat Lunchbox", list(1, 10), null),
@@ -115,11 +111,9 @@
 		),
 		"IKEA crates" = list(
 		/obj/item/machinery_crate/crafting_station = custom_good_price(700),
-		/obj/item/machinery_crate/autholate = custom_good_price(600),
+		/obj/item/machinery_crate/autolathe = custom_good_price(600),
 		/obj/item/machinery_crate/pacman = custom_good_price(700),
-		/obj/item/machinery_crate/recharger = custom_good_price(700),
-		/obj/item/machinery_crate/beer_dispenser = custom_good_price(600),
-		/obj/item/machinery_crate/soda_dispenser = custom_good_price(600)
+		/obj/item/machinery_crate/recharger = custom_good_price(700)
 		)
 	)
 	hidden_inventory = list(

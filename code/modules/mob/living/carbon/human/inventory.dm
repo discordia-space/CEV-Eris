@@ -11,10 +11,16 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!I)
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
+
+
 	var/target_slot = get_quick_slot(I)
 	if(I.pre_equip(usr, target_slot))
 		return
-	if(!equip_to_slot_if_possible(I, target_slot, disable_warning = TRUE, redraw_mob = TRUE))
+
+	if((get_preference_value(/datum/client_preference/equip_open_inventory) == GLOB.PREF_YES) && s_active)
+		s_active.attackby(I, src)
+
+	if(!I.try_transfer(target_slot, usr))
 		quick_equip_storage(I)
 	/*
 	if(!equip_to_appropriate_slot(I))

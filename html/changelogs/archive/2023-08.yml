@@ -26,3 +26,65 @@
   - rscadd: new casual suit for people to use, a salmon shirt and corduroy pants.
       Perfect for an office worker
   - rscadd: variants of boots and reinforced shoes to the loadout (IH and oberth)
+2023-08-08:
+  Humonitarian:
+  - refactor: Crafting Station refactored, has an UI now
+  - tweak: Lots of modular gun and part tweaks
+  - balance: Modular Fullauto and Burst nerfed, modular AK sets rebalanced
+  - bugfix: Lots of modular sprite bugs squashed
+  - code_imp: Autolathes and designs now support quality, determined by component
+2023-08-12:
+  Firefox13:
+  - balance: Removed beer and chem dispensers from FTS Solnishko
+  - spellcheck: Changes autholate to autolathe in code
+  Mycah142:
+  - bugfix: The power of Disco sealed a hole in techno maint.
+  - tweak: Corrected name of THE uniform crate to accurately represent inworld lore.
+  - bugfix: Removed unintended trash catholics.
+  thevandie:
+  - rscadd: added a new sprite for the syndicate turtleneck
+  - rscadd: added a new syndicate beret, to go along with the cap from last week
+  - rscadd: added a brown syndicate beret
+  - rscadd: added all of those to the loadout menu
+2023-08-16:
+  intercepti0n:
+  - refactor: converted sanity to TGUI.
+2023-08-19:
+  Mycah142:
+  - rscadd: Cybernetic Installer to Uplink
+  - rscadd: Cybernetic Installer Kit to Serb Base
+  - rscadd: Uniform Accessory Kit for uniform armors and concealed holsters (Serb
+      Only)
+  - rscadd: Missing Serb Shotgun crate missed in a previous PR
+  - tweak: Serb stats slightly hire, closer to IHC round start values
+  - tweak: Subdermal Armor Description to accurately represent it as a torso only
+      cybernetic
+  - tweak: Serb MRE Description to better represent medicinal properties
+  - tweak: SCAF armor fire damage threshold to be half that of the firesuit
+  - imageadd: Cybernetic Installer has it's own sprite, thanks to SirRichardFrancis
+      (chad only)
+  - imageadd: Cybernetic Installer cybernetic-unique sprites, again thank you SirRichardFrancis
+  TheLeopold:
+  - bugfix: missing materials for some grenade launcher's shells
+  - tweak: acolyte's locker and custodian's locker now lockable
+  intercepti0n:
+  - refactor: converted vending unit UI to TGUI.
+2023-08-26:
+  Humonitarian:
+  - bugfix: toxins no longer twice as lethal as intended
+  - bugfix: modular guns no longer have extreme damage multipliers
+  Mycah142:
+  - bugfix: Plant Gene splicing machine can apply multiple genes per seed, as code
+      originally implied.
+  TheLeopold:
+  - bugfix: missing acolyte's access for preacher
+  Twomoon:
+  - rscadd: Added 2 new haircut
+  - imageadd: Added 2 haircut icons
+  - code_imp: Added 2 haitcut to the char setup
+  intercepti0n:
+  - bugfix: vending UI buttons no longer go offscreen.
+  - bugfix: long messages in vending UI are yet again readable.
+2023-08-29:
+  Hyperio:
+  - rscadd: Mining rework (cavern system)

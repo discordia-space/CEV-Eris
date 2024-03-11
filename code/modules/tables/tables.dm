@@ -278,7 +278,7 @@ var/list/custom_table_appearance = list(
 		to_chat(user, SPAN_WARNING("You cannot [verb]e \the [src] with \the [S]."))
 		return null
 	if (src.flipped && istype(M, /material/glass))
-		to_chat(user, SPAN_WARNING("You cannot [verb]e \the [src] with \the [S] when [src] flipped!."))
+		to_chat(user, SPAN_WARNING("You cannot [verb]e \the [src] with \the [S] when [src] flipped!"))
 		return null
 	if(manipulating) return M
 	manipulating = 1

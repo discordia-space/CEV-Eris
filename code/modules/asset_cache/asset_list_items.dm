@@ -391,15 +391,6 @@
 // 		"view_variables.css" = 'html/admin/view_variables.css'
 // 	)
 
-/datum/asset/spritesheet/sheetmaterials
-	name = "sheetmaterials"
-
-/datum/asset/spritesheet/sheetmaterials/register()
-	InsertAll("", 'icons/obj/stack/material.dmi')
-	// Special case on RCD objects
-	Insert("rcd", 'icons/obj/ammo.dmi', "rcd")
-	..()
-
 /* === ERIS STUFF === */
 /datum/asset/simple/design_icons/register()
 	for(var/D in SSresearch.all_designs)

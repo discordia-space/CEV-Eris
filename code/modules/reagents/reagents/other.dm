@@ -51,63 +51,6 @@
 	id = "crayon_dust_brown"
 	color = "#846F35"
 
-/datum/reagent/other/paint
-	name = "Paint"
-	id = "paint"
-	description = "This paint will stick to almost any object."
-	taste_description = "chalk"
-	reagent_state = LIQUID
-	color = "#808080"
-	overdose = REAGENTS_OVERDOSE * 0.5
-	color_weight = 20
-
-/datum/reagent/other/paint/touch_turf(turf/T)
-	if(istype(T) && !istype(T, /turf/space))
-		T.color = color
-	return TRUE
-
-/datum/reagent/other/paint/touch_obj(obj/O)
-	if(istype(O))
-		O.color = color
-
-/datum/reagent/other/paint/touch_mob(mob/M)
-	if(istype(M) && !isobserver(M)) //painting observers: not allowed
-		M.color = color //maybe someday change this to paint only clothes and exposed body parts for human mobs.
-
-/datum/reagent/other/paint/get_data()
-	return color
-
-/datum/reagent/other/paint/initialize_data(var/newdata)
-	..()
-	color = newdata
-	return
-
-/datum/reagent/other/paint/mix_data(var/newdata, var/newamount)
-	var/list/colors = list(0, 0, 0, 0)
-	var/tot_w = 0
-
-	var/hex1 = uppertext(color)
-	var/hex2 = uppertext(newdata)
-	if(length(hex1) == 7)
-		hex1 += "FF"
-	if(length(hex2) == 7)
-		hex2 += "FF"
-	if(length(hex1) != 9 || length(hex2) != 9)
-		return
-	colors[1] += hex2num(copytext(hex1, 2, 4)) * volume
-	colors[2] += hex2num(copytext(hex1, 4, 6)) * volume
-	colors[3] += hex2num(copytext(hex1, 6, 8)) * volume
-	colors[4] += hex2num(copytext(hex1, 8, 10)) * volume
-	tot_w += volume
-	colors[1] += hex2num(copytext(hex2, 2, 4)) * newamount
-	colors[2] += hex2num(copytext(hex2, 4, 6)) * newamount
-	colors[3] += hex2num(copytext(hex2, 6, 8)) * newamount
-	colors[4] += hex2num(copytext(hex2, 8, 10)) * newamount
-	tot_w += newamount
-
-	color = rgb(colors[1] / tot_w, colors[2] / tot_w, colors[3] / tot_w, colors[4] / tot_w)
-	return
-
 /* Things that didn't fit anywhere else */
 
 /datum/reagent/adminordrazine //An OP chemical for admins
@@ -204,6 +147,7 @@
 	M.add_chemical_effect(CE_PAINKILLER, 15)
 	M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "adrenaline")
 	M.add_chemical_effect(CE_TOXIN, 3)
+	M.add_chemical_effect(CE_PULSE, 1)
 
 /datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
 	M.adjustOxyLoss(15)
@@ -250,7 +194,7 @@
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
-			W.thermite = 1
+			W.thermite = TRUE
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
 	return TRUE
@@ -542,17 +486,26 @@
 	affects_dead = TRUE
 	reagent_type = "Medicine"
 
-/datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/resuscitator/affect_ingest(mob/living/carbon/M, var/alien, effect_multiplier)
+	return // since it's a "cardiac stimulant" it shouldn't really work unless injected
 
+/datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/vital/heart/heart = H.random_organ_by_process(OP_HEART)
-		if(heart)
-			heart.damage += 0.5
+		var/obj/item/organ/internal/vital/heart = H.random_organ_by_process(OP_HEART)
+		if(heart) //Check for existence of the heart BEFORE checking for robotic heart, otherwise function WILL return null
+			if(BP_IS_ROBOTIC(heart)) // neither it should work on robotic hearts, chemistry and stuff
+				return
+			heart.take_damage(64, TOX)
 			if(prob(30))
 				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
-		if(H.stat == DEAD)
-			H.resuscitate()
+			if(H.stat == DEAD)
+				H.resuscitate()
+				remove_self(60)
+		else
+			if(H.stat == DEAD)
+				H.resuscitate() //it will fail and give explanations why
+				remove_self(60)
 
 /datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
 	. = ..()

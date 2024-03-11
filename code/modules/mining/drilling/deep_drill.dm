@@ -25,6 +25,8 @@
 	var/active = FALSE
 	var/list/resource_field = list()
 	var/datum/golem_controller/GC
+	var/obj/cave_generator/cave_gen
+	var/cave_connected = FALSE
 	var/last_use = 0.0
 
 	var/ore_types = list(
@@ -53,10 +55,21 @@
 
 /obj/machinery/mining/deep_drill/Initialize()
 	. = ..()
+	cave_gen = locate(/obj/cave_generator)
 	var/obj/item/cell/large/high/C = new(src)
 	component_parts += C
 	cell = C
 	update_icon()
+
+/obj/machinery/mining/deep_drill/Destroy()
+	if(cave_connected)
+		// In case the drill gets destroyed with an active cave system
+		log_and_message_admins("Collapsing active cave system as its associated drill got destroyed.")
+		cave_gen.initiate_collapse()
+		cave_connected = FALSE
+	if(cave_gen)
+		cave_gen = null
+	. = ..()
 
 /obj/machinery/mining/deep_drill/Process()
 	if(!active)
@@ -174,8 +187,11 @@
 
 	// Wrench / Unwrench the drill
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(active)
-			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+		if(cave_connected)
+			to_chat(user, SPAN_WARNING("You have to collapse the cave first!"))
+			return
+		else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
+			to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
 			return
 		else if (check_surroundings())
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
@@ -248,6 +264,28 @@
 		else if(world.time - last_use < DRILL_COOLDOWN)
 			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
 		else if(use_cell_power())
+			
+			if(!cave_connected)
+				if(cave_gen.is_generating())
+					to_chat(user, SPAN_WARNING("A cave system is already being dug."))
+				else if(cave_gen.is_opened())
+					to_chat(user, SPAN_WARNING("A cave system is already being explored."))
+				else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
+					to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
+				else if(!cave_gen.check_cooldown())
+					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
+				else
+					var/turf/simulated/T = get_turf(loc)
+					cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
+					update_icon()
+			else
+				if(!cave_gen.is_closed())  // If cave is already closed, something went wrong
+					log_and_message_admins("[key_name(user)] has collapsed an active cave system.")
+					cave_gen.initiate_collapse()
+				cave_connected = FALSE
+				update_icon()
+
+			/* // Only if on mother load
 			active = !active
 			if(active)
 				var/turf/simulated/T = get_turf(loc)
@@ -259,6 +297,7 @@
 				GC.stop()
 				GC = null
 				visible_message(SPAN_NOTICE("\The [src] shudders to a grinding halt."))
+			*/
 		else
 			to_chat(user, SPAN_NOTICE("The drill is unpowered."))
 	else
@@ -269,7 +308,7 @@
 /obj/machinery/mining/deep_drill/update_icon()
 	if(need_player_check)
 		icon_state = "mining_drill_error"
-	else if(active)
+	else if(active || cave_connected)
 		icon_state = "mining_drill_active"
 	else
 		icon_state = "mining_drill"

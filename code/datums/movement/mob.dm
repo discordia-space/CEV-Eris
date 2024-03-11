@@ -268,6 +268,12 @@
 				else
 					M.stop_pulling()
 
+	if(istype(mob.loc, /obj/item/mech_equipment/forklifting_system))
+		if(mover == mob && isliving(mob))
+			mob:resist()
+		return MOVEMENT_STOP
+
+
 	return MOVEMENT_PROCEED
 
 

@@ -106,6 +106,7 @@ var/list/disciples = list()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
 	disciples |= wearer
+	name = "[wearer]'s Cruciform"
 	var/datum/core_module/cruciform/cloning/M = get_module(CRUCIFORM_CLONING)
 	if(M)
 		M.write_wearer(wearer) //writes all needed data to cloning module

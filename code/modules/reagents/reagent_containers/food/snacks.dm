@@ -668,6 +668,7 @@
 	center_of_mass = list("x"=16, "y"=13)
 	preloaded_reagents = list("egg" = 3)
 	price_tag = 5
+	description_info = "Can have a flashlight used on it to determine if there is a chick inside."
 
 /obj/item/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
@@ -699,7 +700,32 @@
 		to_chat(user, SPAN_NOTICE("You color \the [src] [clr]"))
 		icon_state = "egg-[clr]"
 	else
-		..()
+		var/valid = FALSE
+		if (istype(W, /obj/item/device/lighting))
+			var/obj/item/device/lighting/light = W
+			if(!light.on)
+				to_chat(usr, SPAN_WARNING("[W] needs to be turned on to reveal the egg's insides."))
+				return
+			valid = TRUE
+
+		else if (istype(W, /obj/item/flame))
+			var/obj/item/flame/fire = W
+			if(!fire.lit)
+				to_chat(usr, SPAN_WARNING("[W] needs to be aflame to reveal the egg's insides."))
+				return
+			valid = TRUE
+		if(valid)
+			switch(amount_grown)
+				if(0 to 10)
+					to_chat(usr, SPAN_NOTICE("[src] appears to be a normal egg."))
+				if(10 to 50)
+					to_chat(usr, SPAN_NOTICE("[src] contains a spidery red mass."))
+				if(50 to 90)
+					to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick."))
+				if(90 to 100)
+					to_chat(usr, SPAN_NOTICE("[src] contains a partially-grown chick.\nYou hear a faint tapping emanating from \the [src]."))
+		else
+			..()
 
 /obj/item/reagent_containers/food/snacks/egg/blue
 	icon_state = "egg-blue"
@@ -2443,6 +2469,7 @@
 /obj/item/reagent_containers/food/snacks/mre
 	name = "mre"
 	desc = "A closed mre, ready to be opened."
+	description_info = "Crush inhand to open it, heat it, and once it's warm, the tricordrazine is activated."
 	icon_state = "mre"
 	trash = /obj/item/trash/mre
 	filling_color = "#948051"
@@ -2496,6 +2523,7 @@
 /obj/item/reagent_containers/food/snacks/mre/can
 	name = "ration can"
 	desc = "A can of stew meat complete with tab on top for easy opening."
+	description_info = "Crush inhand to open it, heat it, and once it's warm, the bicaridine and kelotane are activated."
 	icon_state = "ration_can"
 	trash = /obj/item/trash/mre_can
 	filling_color = "#948051"
@@ -2507,6 +2535,7 @@
 /obj/item/reagent_containers/food/snacks/mre_paste
 	name = "nutrient paste"
 	desc = "A peachy-looking paste."
+	description_info = "The hyperzine and paracetamol within will keep you fast and moving."
 	icon_state = "paste"
 	trash = /obj/item/trash/mre_paste
 	filling_color = "#DEDEAB"
@@ -2519,6 +2548,7 @@
 /obj/item/reagent_containers/food/snacks/mre_cracker
 	name = "enriched cracker"
 	desc = "A salted cracker swimming in oil."
+	description_info = "Coated in Dexalin Plus, Steady, and a bit of Nicotine, it's healthier than smokes."
 	icon_state = "mre_cracker"
 	filling_color = "#F5DEB8"
 	center_of_mass = list("x"=17, "y"=6)
@@ -2531,6 +2561,7 @@
 /obj/item/reagent_containers/food/snacks/candy/mre
 	name = "morale bar"
 	desc = "Some brand of non-melting military chocolate."
+	description_info = "Willy was a madman to get away with adding Serotrotium to chocolate, but he did it anyways. What a lad."
 	icon_state = "mre_candy"
 	trash = /obj/item/trash/mre_candy
 	preloaded_reagents = list("sugar" = 3, "serotrotium" = 2)

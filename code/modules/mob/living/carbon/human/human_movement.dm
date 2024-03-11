@@ -5,6 +5,9 @@
 		tally += species.slowdown
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
+	/// No slowdown for mech pilots , mech already handles movement.
+	if(ismech(loc))
+		return 0
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.

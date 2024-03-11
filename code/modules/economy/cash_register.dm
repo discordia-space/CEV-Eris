@@ -28,7 +28,7 @@
 // Claim machine ID
 /obj/machinery/cash_register/New()
 	. = ..()
-	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
+	machine_id = "[station_name] RETAIL #[num_financial_terminals++]"
 	cash_stored = rand(10, 70)*10
 	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
