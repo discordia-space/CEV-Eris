@@ -20,12 +20,11 @@
 				tracklist |= T
 	. = ..()
 
-/obj/item/music_tape/examine(mob/user)
-	..()
-	var/msg = "This tape contains such tracks as:"
+/obj/item/music_tape/examine(mob/user, extra_description = "")
+	extra_description += "This tape contains such tracks as:"
 	for(var/datum/track/T in tracklist)
-		msg += "\n[T.title]"
-	to_chat(user, msg)
+		extra_description += "\n[T.title]"
+	..(user, extra_description)
 
 /obj/item/music_tape/cursed_songs_that_nobody_likes
 	songlist = "cringe"

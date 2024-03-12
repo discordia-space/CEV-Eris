@@ -124,31 +124,31 @@
 	if(wearer && visor && visor && visor.vision && visor.vision.glasses && (!helmet || (wearer.head && helmet == wearer.head)))
 		return visor.vision.glasses
 
-/obj/item/rig/examine()
-	..()
+/obj/item/rig/examine(mob/user, extra_description = "")
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			to_chat(usr, "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed.")
+			extra_description += "\n\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
 
 	if(loc == usr)
-		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
-		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
+		extra_description += "\nThe maintenance panel is [open ? "open" : "closed"]."
+		extra_description += "\nHardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"]."
 
 	if(ablative_max) // If ablative armor is replaced with a module system, this should be called as a proc on the module
 		var/ablative_ratio = ablative_armor / ablative_max
 		switch(ablative_ratio)
 			if(1) // First we get this over with
-				to_chat(usr, "The armor system reports pristine condition.")
+				extra_description += "\nThe armor system reports pristine condition."
 			if(-INFINITY to 0.1)
-				to_chat(usr, "The armor system reports system error. Repairs mandatory.")
+				extra_description += "\nThe armor system reports system error. Repairs mandatory."
 			if(0.1 to 0.5)
-				to_chat(usr, "The armor system reports critical failure! Repairs mandatory.")
+				extra_description += "\nThe armor system reports critical failure! Repairs mandatory."
 			if(0.5 to 0.8)
-				to_chat(usr, "The armor system reports heavy damage. Repairs required.")
+				extra_description += "\nThe armor system reports heavy damage. Repairs required."
 			if(0.8 to 1)
-				to_chat(usr, "The armor system reports insignificant damage. Repairs advised.")
+				extra_description += "\nThe armor system reports insignificant damage. Repairs advised."
+	..(user, extra_description)
 
 /obj/item/rig/Initialize()
 	. = ..()

@@ -60,41 +60,36 @@
 
 	return ..()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	if(statpanel("Status"))
-		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[move_intent.name]")
-		if(evacuation_controller)
-			var/eta_status = evacuation_controller.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+	. += "Intent: [a_intent]"
+	. += "Move Mode: [MOVING_DELIBERATELY(src) ? "walk" : "run"]"
+	if(internal)
+		if(!internal.air_contents)
+			qdel(internal)
+		else
+			. += "Internal Atmosphere Info: [internal.name]"
+			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
+			. += "Distribution Pressure: [internal.distribute_pressure]"
 
-		if(internal)
-			if(!internal.air_contents)
-				qdel(internal)
-			else
-				stat("Internal Atmosphere Info", internal.name)
-				stat("Tank Pressure", internal.air_contents.return_pressure())
-				stat("Distribution Pressure", internal.distribute_pressure)
+	if(back && istype(back,/obj/item/rig))
+		var/obj/item/rig/suit = back
+		SetupStat(suit)
+		var/cell_status = "ERROR"
+		if(suit.cell)
+			cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
+		. += "Suit charge: [cell_status]"
 
-		if(back && istype(back,/obj/item/rig))
-			var/obj/item/rig/suit = back
-			var/cell_status = "ERROR"
-			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
-			stat(null, "Suit charge: [cell_status]")
+	var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
+	if(chemvessel_efficiency > 1)
+		. += "Chemical Storage: [carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]"
 
-		var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
-		if(chemvessel_efficiency > 1)
-			stat("Chemical Storage", "[carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]")
-
-		var/maw_efficiency = get_organ_efficiency(OP_MAW)
-		if(maw_efficiency > 1)
-			stat("Gnawing hunger", "[carrion_hunger]/[round(maw_efficiency/10)]")
-
-		var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
-		if(C)
-			stat("Cruciform", "[C.power]/[C.max_power]")
+	var/maw_efficiency = get_organ_efficiency(OP_MAW)
+	if(maw_efficiency > 1)
+		. += "Gnawing hunger: [carrion_hunger]/[round(maw_efficiency/10)]"
+	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(C)
+		. += "Cruciform: [C.power]/[C.max_power]"
 
 /mob/living/carbon/human/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
@@ -731,7 +726,7 @@ var/list/rank_prefix = list(\
 			blood_DNA[M.dna_trace] = M.b_type
 	hand_blood_color = blood_color
 	src.update_inv_gloves()	//handles bloody hands overlays and updating
-	verbs += /mob/living/carbon/human/proc/bloody_doodle
+	add_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
@@ -1046,7 +1041,7 @@ var/list/rank_prefix = list(\
 		return 0 //something is terribly wrong
 
 	if(!bloody_hands)
-		verbs -= /mob/living/carbon/human/proc/bloody_doodle
+		remove_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
 
 	if(src.gloves)
 		to_chat(src, SPAN_WARNING("Your [src.gloves] are getting in the way."))

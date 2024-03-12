@@ -173,7 +173,7 @@
 
 	O.owner.mutation_index--
 
-/datum/component/modification/organ/on_examine(mob/user)
+/datum/component/modification/organ/on_examine(mob/user, list/reference)
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
@@ -193,10 +193,10 @@
 			details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
 
 	if(examine_msg)
-		to_chat(user, SPAN_WARNING(examine_msg))
+		reference.Add(SPAN_WARNING(examine_msg))
 
 	if(adjustable)
-		to_chat(user, SPAN_WARNING("Can be adjusted with a laser cutting tool."))
+		reference.Add(SPAN_WARNING("Can be adjusted with a laser cutting tool."))
 
 	if(using_sci_goggles || details_unlocked)
 		var/info = "Organoid size: [specific_organ_size_mod ? specific_organ_size_mod : "0"]"
@@ -210,10 +210,10 @@
 		organs = copytext(organs, 1, length(organs) - 1)
 		info += "\nOrgan tissues present: <span style='color:pink'>[organs ? organs : "none"]</span>"
 		
-		to_chat(user, SPAN_NOTICE(info))
+		reference.Add(SPAN_NOTICE(info))
 
 		var/function_info = get_function_info()
 		if(function_info)
-			to_chat(user, SPAN_NOTICE(function_info))
+			reference.Add(SPAN_NOTICE(function_info))
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))
+		reference.Add(SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))

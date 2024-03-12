@@ -190,7 +190,7 @@ var/syndicate_code_response//Code response for contractors.
 					if(2)
 						code_phrase += pick(GLOB.adjectives)
 					if(3)
-						code_phrase += pick(GLOB.verbs)
+						code_phrase += pick(GLOB.verb_names)
 		if(words==1)
 			code_phrase += "."
 		else

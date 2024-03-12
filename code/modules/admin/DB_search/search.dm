@@ -1,7 +1,3 @@
-ADMIN_VERB_ADD(/datum/DB_search/verb/new_search, R_ADMIN, FALSE)
-ADMIN_VERB_ADD(/datum/DB_search/verb/new_search_related, R_ADMIN, FALSE)
-
-
 /datum/DB_search
 	var/datum/browser/panel
 	var/empty = 1

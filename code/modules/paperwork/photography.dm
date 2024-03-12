@@ -57,12 +57,12 @@ var/global/photo_count = 0
 			scribble = txt
 	..()
 
-/obj/item/photo/examine(mob/user)
+/obj/item/photo/examine(mob/user, extra_description = "")
 	if(in_range(user, src))
 		show(user)
-		to_chat(user, desc)
 	else
-		to_chat(user, SPAN_NOTICE("It is too far away."))
+		extra_description += SPAN_NOTICE("It is too far away.")
+	..(user, extra_description)
 
 /obj/item/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo_[id].png")

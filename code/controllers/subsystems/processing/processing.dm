@@ -14,8 +14,9 @@ SUBSYSTEM_DEF(processing)
 	var/debug_last_thing
 	var/debug_original_process_proc // initial() does not work with procs
 
-/datum/controller/subsystem/processing/stat_entry()
-	..("P:[length(processing)]")
+/datum/controller/subsystem/processing/stat_entry(msg)
+	msg = "P:[LAZYLEN(processing)]"
+	return ..()
 
 /datum/controller/subsystem/processing/fire(resumed = FALSE)
 	if (!resumed)

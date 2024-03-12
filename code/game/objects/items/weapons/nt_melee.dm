@@ -187,10 +187,10 @@
 		visible_message(SPAN_DANGER("The spear-tip of the [src] bends into a useless shape!"))
 
 
-/obj/item/tool/sword/nt/spear/examine(mob/user)
-	..()
-	if (tipbroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a hammer."))
+/obj/item/tool/sword/nt/spear/examine(mob/user, extra_description = "")
+	if(tipbroken)
+		extra_description += SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a hammer.")
+	..(user, extra_description)
 
 /obj/item/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
 	..()

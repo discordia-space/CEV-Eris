@@ -47,12 +47,14 @@
 
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
-/obj/machinery/power/port_gen/pacman/examine(mob/user)
-	..(user)
-	user << "\The [src] appears to be producing [power_gen*power_output] W."
-	user << "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
-	if(IsBroken()) user << SPAN_WARNING("\The [src] seems to have broken down.")
-	if(overheating) user << SPAN_DANGER("\The [src] is overheating!")
+/obj/machinery/power/port_gen/pacman/examine(mob/user, extra_description = "")
+	extra_description += "\n\The [src] appears to be producing [power_gen*power_output] W."
+	extra_description += "\nThere [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
+	if(IsBroken())
+		extra_description += SPAN_WARNING("\n\The [src] seems to have broken down.")
+	if(overheating)
+		extra_description += SPAN_DANGER("\n\The [src] is overheating!")
+	..(user, extra_description)
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_sheets = power_output / time_per_sheet

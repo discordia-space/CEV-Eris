@@ -3,7 +3,7 @@
 // can also operate on non-loc area through "otherarea" var
 /obj/machinery/light_switch
 	name = "light switch"
-	desc = "It turns lights on and off. What are you, simple?"
+	desc = "A light switch. It turns lights on and off."
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "light1"
 	anchored = TRUE
@@ -59,9 +59,8 @@
 		set_plane(ABOVE_LIGHTING_PLANE)
 		layer = ABOVE_LIGHTING_LAYER
 
-/obj/machinery/light_switch/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A light switch. It is [on? "on" : "off"].")
+/obj/machinery/light_switch/examine(mob/user, extra_description = "")
+	..(user, "It is [on ? "on" : "off"].")
 
 /obj/machinery/light_switch/proc/dramatic_turning()
 	if(slow_turning_on) // Sanity check. So nothing can force this thing to run twice simultaneously.

@@ -41,32 +41,20 @@
 		else
 			stored_ore[O.name] = 1
 
-/obj/structure/ore_box/examine(mob/user)
-	to_chat(user, "That's an [src].")
-	to_chat(user, desc)
+/obj/structure/ore_box/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2) //Can only check the contents of ore boxes if you can physically reach them.
+		if(!LAZYLEN(contents))
+			extra_description += "\nIt is empty."
+		else
+			if(world.time > last_update + 10)
+				update_ore_count() //TODO: Get rid of this --KIROV
+				last_update = world.time
 
-	// Borgs can now check contents too.
-	if((!ishuman(user)) && (!isrobot(user)))
-		return
+			extra_description += "\nIt holds:"
+			for(var/ore in stored_ore)
+				extra_description += "\n- [stored_ore[ore]] [ore]"
 
-	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.
-		return
-
-	add_fingerprint(user)
-
-	if(!contents.len)
-		to_chat(user, "It is empty.")
-		return
-
-	if(world.time > last_update + 10)
-		update_ore_count()
-		last_update = world.time
-
-	to_chat(user, "It holds:")
-	for(var/ore in stored_ore)
-		to_chat(user, "- [stored_ore[ore]] [ore]")
-	return
-
+	..(user, extra_description)
 
 /obj/structure/ore_box/verb/empty_box()
 	set name = "Empty Ore Box"

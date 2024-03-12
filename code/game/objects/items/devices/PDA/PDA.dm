@@ -62,11 +62,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
 
-/obj/item/device/pda/examine(mob/user)
-	if(..(user, 1))
+/obj/item/device/pda/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 		var/turf/T = get_turf(src)
-		to_chat(user, "The time [stationtime2text()], and Coordinates: [T.x],[T.y],[T.z] are displayed in the corner of the screen.")
-
+		extra_description += "The time [stationtime2text()], and Coordinates: [T.x],[T.y],[T.z] are displayed in the corner of the screen."
+	..(user, extra_description)
 /obj/item/device/pda/medical
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-m"

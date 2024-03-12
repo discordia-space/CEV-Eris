@@ -34,7 +34,7 @@ var/global/list/image/ghost_sightless_images = list() //this is a list of images
 /mob/observer/ghost/New(mob/body)
 
 	see_in_dark = 100
-	verbs += /mob/observer/ghost/proc/dead_tele
+	add_verb(src, /mob/observer/ghost/proc/dead_tele)
 
 	if(ismob(body))
 		var/turf/T = get_turf(body)				//Where is the body located?
@@ -165,10 +165,10 @@ Works together with spawning an observer, noted above.
 			src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		ghost.ckey = ckey
-		ghost.client = client
+		ghost.client.init_verbs()
 		ghost.initialise_postkey()
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
-			ghost.verbs -= /mob/observer/ghost/verb/toggle_antagHUD	// Poor guys, don't know what they are missing!
+			remove_verb(ghost, /mob/observer/ghost/verb/toggle_antagHUD)
 
 		ghost.client?.create_UI(ghost.type)
 
@@ -200,16 +200,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			ghostize(0)
 			announce_ghost_joinleave(client)
 
-/mob/observer/ghost/can_use_hands()	return 0
-/mob/observer/ghost/is_active()		return 0
-
-/mob/observer/ghost/Stat()
-	. = ..()
-	if(statpanel("Status"))
-		if(evacuation_controller)
-			var/eta_status = evacuation_controller.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+/mob/observer/ghost/can_use_hands()
+/mob/observer/ghost/is_active()
 
 /mob/observer/ghost/verb/reenter_corpse()
 	set category = "Ghost"
@@ -279,11 +271,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!isghost(usr))
 		to_chat(usr, "Not when you're not dead!")
 		return
-	usr.verbs -= /mob/observer/ghost/proc/dead_tele
+	remove_verb(usr, /mob/observer/ghost/proc/dead_tele)
 	spawn(30)
-		usr.verbs += /mob/observer/ghost/proc/dead_tele
+		add_verb(usr, /mob/observer/ghost/proc/dead_tele)
 	var/area/thearea = SSmapping.ghostteleportlocs[A]
-	if(!thearea)	return
+	if(!thearea)
+		return
 
 	var/list/L = list()
 	var/holyblock = 0
@@ -308,7 +301,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	usr.forceMove(pick(L))
 
 /mob/observer/ghost/verb/Follow(atom/A as mob|obj in view(usr.client)) ////// Follow verb in context menu
-	set category ="Ghost"
 	set name = ".Follow"
 	if(following)
 		stop_following()
@@ -606,7 +598,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/is_manifest = 0
 	if(!is_manifest)
 		is_manifest = 1
-		verbs += /mob/observer/ghost/proc/toggle_visibility
+		add_verb(src, /mob/observer/ghost/proc/toggle_visibility)
 
 	if(src.invisibility != 0)
 		user.visible_message( \

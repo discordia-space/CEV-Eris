@@ -175,9 +175,10 @@
 	return
 
 
-/obj/item/wrapping_paper/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, text("There is about [] square units of paper left!", src.amount))
+/obj/item/wrapping_paper/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "There is about [amount] square units of paper left!"
+	..(user, extra_description)
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)
 	if (!ishuman(target))

@@ -145,6 +145,6 @@ SUBSYSTEM_DEF(verb_manager)
 	//note that wait SECONDS is incorrect if this is called outside of fire() but because byond is garbage i need to add a timer to rustg to find a valid solution
 
 /datum/controller/subsystem/verb_manager/stat_entry(msg)
-	// . = ..()
 	if(use_default_stats)
-		..("V/S: [round(verbs_executed_per_second, 0.01)]")
+		msg += "V/S: [round(verbs_executed_per_second, 0.01)]"
+	return ..()

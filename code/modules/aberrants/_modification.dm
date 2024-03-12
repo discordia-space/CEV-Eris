@@ -69,7 +69,7 @@ COMSIG_ABERRANT_SECONDARY
 /datum/component/modification/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_IATTACK, PROC_REF(attempt_install))
 	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(try_modify))
-	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_EXTRA_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_REMOVE, PROC_REF(uninstall))
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)
@@ -165,7 +165,7 @@ COMSIG_ABERRANT_SECONDARY
 		holder.color = new_color
 	return TRUE
 
-/datum/component/modification/proc/on_examine(mob/user)
+/datum/component/modification/proc/on_examine(mob/user, list/reference)
 	SIGNAL_HANDLER
 	var/details_unlocked = FALSE
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
@@ -173,11 +173,11 @@ COMSIG_ABERRANT_SECONDARY
 		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
 	
 	if(examine_msg)
-		to_chat(user, SPAN_WARNING(examine_msg))
+		reference.Add(SPAN_WARNING(examine_msg))
 	if(details_unlocked)
 		var/function_info = get_function_info()
 		if(function_info)
-			to_chat(user, SPAN_NOTICE(function_info))
+			reference.Add(SPAN_NOTICE(function_info))
 
 /datum/component/modification/proc/get_function_info()
 	return
