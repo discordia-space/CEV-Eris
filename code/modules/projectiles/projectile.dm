@@ -709,7 +709,6 @@ GLOBAL_LIST(projectileDamageConstants)
 	I.Blend(color)
 	return I
 
-#define MAX_ITER 16
 /proc/check_trajectory(list/startingCoordinates, list/targetCoordinates, pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null, mob/targetMob)
 	var/angle = ATAN2(targetCoordinates[2] - startingCoordinates[2], targetCoordinates[1] - startingCoordinates[1])
 	message_admins("CT angle : [angle]")

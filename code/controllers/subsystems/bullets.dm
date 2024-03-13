@@ -237,16 +237,10 @@ SUBSYSTEM_DEF(bullets)
 					break
 				tx_change = ((x_change + (x_change == 0))/abs(x_change + (x_change == 0))) * (x_change != 0)
 				ty_change = ((y_change + (y_change == 0))/abs(y_change + (y_change == 0))) * (y_change != 0)
-				//tz_change = ((z_change + (z_change == 0))/abs(z_change + (z_change == 0))) * (z_change != 0)
+				tz_change = ((z_change + (z_change == 0))/abs(z_change + (z_change == 0))) * (z_change != 0)
+				moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z + tz_change)
+				if(tz_change == 1)
 				/*
-				if(x_change)
-					tx_change = x_change/abs(x_change)
-				if(y_change)
-					ty_change = y_change/abs(y_change)
-				if(z_change)
-					tz_change = z_change/abs(z_change)
-				*/
-				moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z)
 				if(tz_change && !istype(moveTurf, /turf/simulated/open))
 					if(tz_change <= -1)
 						if(moveTurf.bullet_act(projectile) == PROJECTILE_CONTINUE)
@@ -257,7 +251,7 @@ SUBSYSTEM_DEF(bullets)
 						moveTurf = locate(projectile.x + tx_change, projectile.y + ty_change, projectile.z + tz_change)
 						if(moveTurf.bullet_act(projectile) != PROJECTILE_CONTINUE)
 							projectile.onBlockingHit(moveTurf)
-
+				*/
 				x_change -= tx_change
 				y_change -= ty_change
 				z_change -= tz_change
