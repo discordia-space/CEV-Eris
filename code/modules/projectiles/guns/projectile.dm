@@ -327,8 +327,8 @@
 
 /obj/item/gun/projectile/examine(mob/user, extra_description = "")
 	if(ammo_magazine)
-		extra_description += "\nIt has \a [ammo_magazine] loaded."
-	extra_description += "\nHas [get_ammo()] round\s remaining."
+		extra_description += "It has \a [ammo_magazine] loaded.\n"
+	extra_description += "Has [get_ammo()] round\s remaining."
 	..(user, extra_description)
 
 /obj/item/gun/projectile/proc/get_ammo()

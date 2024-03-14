@@ -165,6 +165,7 @@ Works together with spawning an observer, noted above.
 			src << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
 
 		ghost.ckey = ckey
+		ghost.client = client
 		ghost.client.init_verbs()
 		ghost.initialise_postkey()
 		if(ghost.client && !ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.

@@ -422,8 +422,7 @@
 
 /mob/living/simple_animal/get_status_tab_items()
 	. = ..()
-	. += ""
-	. += "Health: [round((health / maxHealth) * 100)]%"
+	. += list(list("Health: [round((health / maxHealth) * 100)]%"))
 
 /mob/living/simple_animal/death(gibbed, deathmessage = "dies!")
 	walk_to(src,0)

@@ -578,6 +578,16 @@
 
 	return 1
 
+/obj/item/rig/proc/check_suit_access_alternative(mob/living/carbon/human/user)
+	// Old proc does checks that are not always needed
+	// and spams into chat, which is less than ideal in some cases
+	// TODO: Emag functionality? See 'subverted' var
+
+	if((req_access || req_one_access) && !allowed(user))
+		return FALSE
+
+	return TRUE
+
 //TODO: Fix Topic vulnerabilities for malfunction and AI override.
 /obj/item/rig/Topic(href,href_list)
 	if(!check_suit_access(usr))
@@ -587,6 +597,8 @@
 		if(ishuman(usr) && (usr.stat || usr.stunned || usr.lying))
 			return 0
 		toggle_piece(href_list["toggle_piece"], usr)
+	else if(href_list["open_ui"])
+		nano_ui_interact(usr)
 	else if(href_list["toggle_seals"])
 		toggle_seals(usr)
 	else if(href_list["interact_module"])

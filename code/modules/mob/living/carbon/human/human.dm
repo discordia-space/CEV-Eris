@@ -62,34 +62,98 @@
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
-	. += "Intent: [a_intent]"
-	. += "Move Mode: [MOVING_DELIBERATELY(src) ? "walk" : "run"]"
+	. += list(list("Intent: [a_intent]"))
+	. += list(list("Move Mode: [MOVING_DELIBERATELY(src) ? "walk" : "run"]"))
 	if(internal)
-		if(!internal.air_contents)
-			qdel(internal)
+		if(!internal.air_contents) // Leftover from the old stat() proc
+			qdel(internal) // TODO: See if that is necessary, probably should just null the variable instead
 		else
-			. += "Internal Atmosphere Info: [internal.name]"
-			. += "Tank Pressure: [internal.air_contents.return_pressure()]"
-			. += "Distribution Pressure: [internal.distribute_pressure]"
+			. += list(list("Internal Atmosphere Info: [internal.name]"))
+			. += list(list("Tank Pressure: [internal.air_contents.return_pressure()]"))
+			. += list(list("Distribution Pressure: [internal.distribute_pressure]"))
 
 	if(back && istype(back,/obj/item/rig))
 		var/obj/item/rig/suit = back
-		SetupStat(suit)
-		var/cell_status = "ERROR"
-		if(suit.cell)
-			cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
-		. += "Suit charge: [cell_status]"
+		. += list(list(""))
+		. += list(list("Using [suit.name]"))
+
+		if(suit.interface_locked)
+			. += list(list("-- HARDSUIT INTERFACE OFFLINE --"))
+		else if(suit.control_overridden)
+			. += list(list("-- HARDSUIT CONTROL OVERRIDDEN BY AI UNIT--"))
+		else if(suit.security_check_enabled && !suit.check_suit_access_alternative(src))
+			. += list(list("-- ACCESS DENIED --"))
+		else if(suit.malfunction_delay > 1)
+			. += list(list("-- CRITICAL ERROR --"))
+		else
+			. += list(list("-- OPEN HARDSUIT INTERFACE --", "\ref[suit]", ";open_ui=1"))
+			. += list(list("Suit charge: [suit.cell ? "[suit.cell.charge]/[suit.cell.maxcharge]" : "ERROR"]"))
+			. += list(list("AI control: [suit.ai_override_enabled ? "ENABLED" : "DISABLED"]", "\ref[suit]", ";toggle_ai_control=1"))
+			. += list(list("Suit status: [suit.active ? "ACTIVE" : "INACTIVE"]", "\ref[suit]", ";toggle_seals=1"))
+			. += list(list("Cover status: [suit.locked ? "LOCKED" : "UNLOCKED"]", "\ref[suit]", ";toggle_suit_lock=1"))
+			if(suit.sealing)
+				. += list(list("-- ADJUSTING SEALS --"))
+			else
+				var/static/list/cached_images
+				if(!cached_images)
+					cached_images = list()
+
+				for(var/atom/movable/i in list(suit.helmet, suit.gloves, suit.boots, suit.chest))
+					if(isnull(i) || ("\ref[i]" in cached_images))
+						continue
+					client << browse_rsc(getFlatIcon(i, no_anim = TRUE), "\ref[i].png")
+					cached_images += "\ref[i]"
+
+				if(suit.helmet)
+					. += list(list("Toggle helmet", "\ref[suit]", ";toggle_piece=helmet", "\ref[suit.helmet].png"))
+				if(suit.gloves)
+					. += list(list("Toggle gauntlets", "\ref[suit]", ";toggle_piece=gauntlets", "\ref[suit.gloves].png"))
+				if(suit.boots)
+					. += list(list("Toggle boots", "\ref[suit]", ";toggle_piece=boots", "\ref[suit.boots].png"))
+				if(suit.chest)
+					. += list(list("Toggle chestpiece", "\ref[suit]", ";toggle_piece=chest", "\ref[suit.chest].png"))
+
+				if(suit.active)
+					. += list(list(""))
+					. += list(list("Modules:"))
+					var/i = 1
+					var/stat_rig_module/SRM
+					for(var/obj/item/rig_module/module in suit.installed_modules)
+						if(!("\ref[module]" in cached_images))
+							client << browse_rsc(getFlatIcon(module, no_anim = TRUE), "\ref[module].png")
+							cached_images += "\ref[module]"
+						for(var/stat_rig_module/stat_rig_module in module.stat_modules)
+							if(stat_rig_module.CanUse())
+								SRM = stat_rig_module
+								break
+
+						var/module_damage = "ERROR"
+						switch(module.damage)
+							if(0)
+								module_damage = "<font color='green'>nominal</font>"
+							if(1)
+								module_damage = "damaged"
+							if(2)
+								module_damage = "severely damaged"
+						if(SRM)
+							. += list(list("[module.interface_name]: [module_damage]. Press to [SRM.module_mode]", "\ref[suit]", ";interact_module=[i];module_mode=[SRM.module_mode]", "\ref[module].png"))
+						else
+							. += list(list("[module.interface_name]: [module_damage]", null, null, "\ref[module].png"))
+
+						SRM = null
+						i++
+					. += list(list(""))
 
 	var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
 	if(chemvessel_efficiency > 1)
-		. += "Chemical Storage: [carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]"
+		. += list("Chemical Storage: [carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]")
 
 	var/maw_efficiency = get_organ_efficiency(OP_MAW)
 	if(maw_efficiency > 1)
-		. += "Gnawing hunger: [carrion_hunger]/[round(maw_efficiency/10)]"
+		. += list("Gnawing hunger: [carrion_hunger]/[round(maw_efficiency/10)]")
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C)
-		. += "Cruciform: [C.power]/[C.max_power]"
+		. += list("Cruciform: [C.power]/[C.max_power]")
 
 /mob/living/carbon/human/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)

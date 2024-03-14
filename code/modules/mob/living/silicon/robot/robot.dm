@@ -482,22 +482,21 @@
 
 /mob/living/silicon/robot/get_status_tab_items()
 	. = ..()
-	. += ""
 	if(cell)
-		. += "Charge Left: [round(cell.percent())]%"
-		. += "Cell Rating: [round(cell.maxcharge)]"
-		. += "Power Cell Load: [round(used_power_this_tick)]W"
+		. += list(list("Charge Left: [round(cell.percent())]%"))
+		. += list(list("Cell Rating: [round(cell.maxcharge)]"))
+		. += list(list("Power Cell Load: [round(used_power_this_tick)]W"))
 	else
-		. += "No Cell Inserted!"
+		. += list(list("No Cell Inserted!"))
 
 	if(jetpack)
-		. += "Internal Atmosphere Info: [jetpack.name]"
-		. += "Tank Pressure: [jetpack.gastank.air_contents.return_pressure()]"
-		. += "Lights: [lights_on ? "ON" : "OFF"]"
+		. += list(list("Internal Atmosphere Info: [jetpack.name]"))
+		. += list(list("Tank Pressure: [jetpack.gastank.air_contents.return_pressure()]"))
+		. += list(list("Lights: [lights_on ? "ON" : "OFF"]"))
 
 	if(module)
 		for(var/datum/matter_synth/ms in module.synths)
-			. += "[ms.name]: [ms.energy]/[ms.max_energy_multiplied]"
+			. += list(list("[ms.name]: [ms.energy]/[ms.max_energy_multiplied]"))
 
 /mob/living/silicon/robot/restrained()
 	return FALSE

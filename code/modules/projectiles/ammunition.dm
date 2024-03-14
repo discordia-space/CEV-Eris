@@ -144,7 +144,7 @@
 		src.overlays += temp_image
 
 /obj/item/ammo_casing/examine(mob/user, extra_description = "")
-	extra_description += "\nThere [(amount == 1)? "is" : "are"] [amount] round\s left!"
+	extra_description += "There [(amount == 1)? "is" : "are"] [amount] round\s left!"
 	if(!BB)
 		extra_description += "\n[(amount == 1)? "This one is" : "These ones are"] spent."
 	..(user, extra_description)

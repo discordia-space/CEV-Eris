@@ -142,9 +142,9 @@
 /mob/living/silicon/get_status_tab_items()
 	. = ..()
 	if(!stat)
-		. = "System integrity: [round((health/maxHealth)*100)]%"
+		. += list(list("System integrity: [round((health/maxHealth)*100)]%"))
 	else
-		. = "Systems nonfunctional"
+		. += list(list("Systems nonfunctional"))
 
 //can't inject synths
 /mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone)

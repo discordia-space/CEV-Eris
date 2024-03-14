@@ -95,7 +95,7 @@
 	. = ..()
 	if(silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)
-		. += "Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
+		. += list(list("Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"))
 
 /mob/living/silicon/pai/check_eye(mob/user)
 	if (!src.current)

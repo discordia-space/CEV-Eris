@@ -352,7 +352,8 @@ its easier to just keep the beam vertical.
 
 	output += "<div id='examine'>"
 	output += "\icon[src] This is [full_name]"
-	output += "\n[desc]"
+	if(desc)
+		output += "\n[desc]"
 	if(extra_description)
 		output += "\n[extra_description]"
 

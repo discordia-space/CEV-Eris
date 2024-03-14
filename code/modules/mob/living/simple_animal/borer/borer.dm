@@ -208,11 +208,11 @@
 
 /mob/living/simple_animal/borer/get_status_tab_items()
 	. = ..()
-	. += "Evolution Level: borer_level"
-	. += "Chemicals [host ? (chemicals/max_chemicals_inhost) : (chemicals/max_chemicals)]"
+	. += list(list("Evolution Level: borer_level"))
+	. += list(list("Chemicals [host ? (chemicals/max_chemicals_inhost) : (chemicals/max_chemicals)]"))
 	if(host)
-		. += "Host health [host.stat == DEAD ? "Deceased" : host.health]"
-		. += "Host brain damage: [host.getBrainLoss()]"
+		. += list(list("Host health [host.stat == DEAD ? "Deceased" : host.health]"))
+		. += list(list("Host brain damage: [host.getBrainLoss()]"))
 
 /mob/living/simple_animal/borer/proc/detach()
 

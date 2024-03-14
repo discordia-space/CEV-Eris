@@ -139,10 +139,10 @@ macro "robot"
 		command = "toggle-module 3"
 	elem
 		name = "4"
-		command = "a-intent"
+		command = "a-intent 1"
 	elem
 		name = "CTRL+4"
-		command = "a-intent"
+		command = "a-intent 1"
 	elem
 		name = "5"
 		command = "me-verb"
@@ -235,7 +235,7 @@ macro "robot"
 		command = "Invisimin"
 	elem
 		name = "F11"
-		command = "Toogle Fullscreen"
+		command = "Toogle-Fullscreen"
 	elem
 		name = "F12"
 		command = "F12"
@@ -546,7 +546,7 @@ macro "default"
 		command = "Invisimin"
 	elem
 		name = "F11"
-		command = "Toogle Fullscreen"
+		command = "Toogle-Fullscreen"
 	elem
 		name = "F12"
 		command = "F12"

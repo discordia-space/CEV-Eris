@@ -855,7 +855,7 @@
 				extra_description += "The charge meter reads [round(cell.percent())]%."
 
 		if(use_fuel_cost)
-			extra_description += text("\n\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel )
+			extra_description += "\nContains [get_fuel()] / [max_fuel] units of fuel!"
 
 		if(use_stock_cost)
 			extra_description += SPAN_NOTICE("\nIt has [stock] / [max_stock] units remaining.")
@@ -874,7 +874,7 @@
 
 		if(health)
 			if(health > maxHealth * 0.95)
-				return
+				extra_description += "\nIt looks pristine."
 			else if(health > maxHealth * 0.80)
 				extra_description += "\nIt has a few light scratches."
 			else if(health > maxHealth * 0.40)

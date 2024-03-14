@@ -74,15 +74,15 @@
 /mob/new_player/get_status_tab_items()
 	. = ..()
 	if(SSticker.current_state == GAME_STATE_PREGAME)
-		. += "Storyteller: [master_storyteller]" // Old setting for showing the game mode
-		. += "Time To Start: [SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]"
-		. += "Players: [totalPlayers]"
-		. += "Players Ready: [totalPlayersReady]"
+		. += list(list("Storyteller: [master_storyteller]"))
+		. += list(list("Time To Start: [SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]"))
+		. += list(list("Players: [totalPlayers]"))
+		. += list(list("Players Ready: [totalPlayersReady]"))
 		totalPlayers = 0
 		totalPlayersReady = 0
 		for(var/mob/new_player/player in GLOB.player_list)
 			if(player.ready)
-				. += "[player.client.prefs.real_name] [(player.ready)?("[player.client.prefs.job_high]"):(null)]"
+				. += list(list("[player.client.prefs.real_name] [(player.ready)?("[player.client.prefs.job_high]"):(null)]"))
 			totalPlayers++
 			if(player.ready)
 				totalPlayersReady++
@@ -417,6 +417,7 @@
 	new_character.update_eyes()
 	new_character.regenerate_icons()
 	new_character.key = key//Manually transfer the key to log them in
+	new_character.mind.active = TRUE
 	new_character.client.init_verbs()
 
 	return new_character

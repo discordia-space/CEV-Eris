@@ -196,7 +196,7 @@
 	if(LAZYLEN(listReference))
 		extra_description += "\n"
 	for(var/text in listReference)
-		extra_description += "[text] \n"
+		extra_description += "\n[text]"
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

@@ -160,12 +160,12 @@
 
 /mob/living/carbon/slime/get_status_tab_items()
 	. = ..()
-	. += "Health: [round((health / maxHealth) * 100)]%"
-	. += "Intent: [a_intent]"
-	. += "Nutrition: [nutrition]/[get_max_nutrition()]"
+	. += list(list("Health: [round((health / maxHealth) * 100)]%"))
+	. += list(list("Intent: [a_intent]"))
+	. += list(list("Nutrition: [nutrition]/[get_max_nutrition()]"))
 	if(amount_grown >= 10)
-		. += is_adult ? "You can reproduce!" : "You can evolve!"
-		. += "Power Level: [powerlevel]"
+		. += list(list(is_adult ? "You can reproduce!" : "You can evolve!"))
+		. += list(list("Power Level: [powerlevel]"))
 
 /mob/living/carbon/slime/adjustFireLoss(amount)
 	..(-abs(amount)) // Heals them

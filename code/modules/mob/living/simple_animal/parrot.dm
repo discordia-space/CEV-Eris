@@ -112,8 +112,7 @@
 
 /mob/living/simple_animal/parrot/get_status_tab_items()
 	. = ..()
-	. += ""
-	. += "Held Item: [held_item]"
+	. += list(list("Held Item: [held_item]"))
 
 /*
  * Inventory

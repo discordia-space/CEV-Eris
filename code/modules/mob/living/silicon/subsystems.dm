@@ -96,7 +96,7 @@
 	. = ..()
 	for(var/subsystem_type in silicon_subsystems)
 		var/stat_silicon_subsystem/SSS = silicon_subsystems[subsystem_type]
-		. += SSS.subsystem.name
+		. += list(list(SSS.subsystem.name))
 
 /mob/living/silicon/proc/get_subsystem_from_path(subsystem_type)
 	var/stat_silicon_subsystem/SSS = silicon_subsystems[subsystem_type]

@@ -205,7 +205,7 @@ if (window.location) {
 }); */
 
 // Status panel implementation ------------------------------------------------
-var status_tab_parts = ["loading..."];
+var status_tab_parts = [["loading..."]];
 var current_tab = null;
 var mc_tab_parts = [["loading...", ""]];
 var href_token = null;
@@ -391,12 +391,16 @@ function init_verbs(c, v) {
 	}
 }
 
-function update(global_data, ping_entry, other_entries) {
-	status_tab_parts = [ping_entry];
+function update(global_data, personal_data) {
+	status_tab_parts = [];
 	var parsed = JSON.parse(global_data);
-	for(var i = 0; i < parsed.length; i++) if(parsed[i] != null) status_tab_parts.push(parsed[i]);
-	parsed = JSON.parse(other_entries);
-	for(var i = 0; i < parsed.length; i++) if(parsed[i] != null) status_tab_parts.push(parsed[i]);
+	for(var i = 0; i < parsed.length; i++)
+		if(parsed[i] != null)
+			status_tab_parts.push(parsed[i]);
+	parsed = JSON.parse(personal_data);
+	for(var i = 0; i < parsed.length; i++)
+		if(parsed[i] != null)
+			status_tab_parts.push(parsed[i]);
 	if(current_tab == "Status")
 		draw_status();
 	else if(current_tab == "Debug Stat Panel")
@@ -514,19 +518,45 @@ function draw_status() {
 		current_tab = "Status";
 	}
 	statcontentdiv[textContentKey] = inner;
+	var table = document.createElement("table");
 	for(var i = 0; i < status_tab_parts.length; i++) {
-		if(status_tab_parts[i].trim() == "") {
-			document.getElementById("statcontent").appendChild(document.createElement("br"));
-		} else {
+		var part = status_tab_parts[i];
+		if(part[3])
+		{ // There's an icon!
+			var img = document.createElement("img");
+			img.src = part[3];
+			table.appendChild(img);
+		}
+		if(part[0].trim() == "") // Nothing to see here
+		{
+			table.appendChild(document.createElement("br"));
+		}
+		else if(part[1]) // Entry comes with a reference to something, so let's make it clickable
+		{
+			var a = document.createElement("a");
+			var br = document.createElement("br");
+			if(part[2]) { // There are some arguments to be passed along
+				a.href = "?_src_=statpanel;statpanel_ref=" + part[1] + part[2];
+			}
+			else {
+				a.href = "?_src_=statpanel;statpanel_ref=" + part[1];
+			}
+			a[textContentKey] = part[0];
+			table.appendChild(a);
+			table.appendChild(br);
+		}
+		else
+		{
 			var div = document.createElement("div");
-			div[textContentKey] = status_tab_parts[i];
-			document.getElementById("statcontent").appendChild(div);
+			div[textContentKey] = part[0];
+			table.appendChild(div);
 		}
 	}
 	if(verb_tabs.length == 0 || !verbs)
 	{
 		window.location.href = "byond://winset?command=Fix-Stat-Panel";
 	}
+	document.getElementById("statcontent").appendChild(table);
 }
 function draw_mc() {
 	var statcontentdiv = document.getElementById("statcontent");
@@ -552,17 +582,7 @@ function draw_mc() {
 	}
 	document.getElementById("statcontent").appendChild(table);
 }
-/*
-function update_tickets(T){
-	tickets = JSON.parse(T);
-	if(!verb_tabs.includes("Tickets")) {
-		verb_tabs.push("Tickets");
-		addPermanentTab("Tickets");
-	}
-	if(current_tab == "Tickets")
-		draw_tickets();
-}
-*/
+
 function update_sqdl2(S) {
 	sqdl2 = JSON.parse(S);
 	if(sqdl2.length > 0 && !verb_tabs.includes("SQDL2")) {
@@ -582,21 +602,10 @@ function remove_sqdl2() {
 	}
 	checkStatusTab();
 }
-/*
-function remove_tickets() {
-	if(tickets) {
-		tickets = [];
-		removePermanentTab("Tickets");
-		if(current_tab == "Tickets")
-			tab_change("Status");
-	}
-	checkStatusTab();
-}
-*/
-// removes MC, Tickets and MC tabs.
+
+// removes MC tabs
 function remove_admin_tabs() {
 	remove_mc();
-//	remove_tickets();
 	remove_sqdl2();
 }
 
@@ -681,39 +690,6 @@ function draw_sqdl2(){
 	}
 	document.getElementById("statcontent").appendChild(table);
 }
-/*
-function draw_tickets() {
-	var statcontentdiv = document.getElementById("statcontent");
-	statcontentdiv[textContentKey] = "";
-	var table = document.createElement("table");
-	if(!tickets)
-		return;
-	for(var i = 0; i < tickets.length; i++) {
-		var part = tickets[i];
-		var tr = document.createElement("tr");
-		var td1 = document.createElement("td");
-		td1[textContentKey] = part[0];
-		var td2 = document.createElement("td");
-		if(part[2]) {
-			var a = document.createElement("a");
-			a.href = "?_src_=holder;admin_token=" + href_token + ";ahelp=" + part[2] + ";ahelp_action=ticket;statpanel_item_click=1;action=ticket" ;
-			a[textContentKey] = part[1];
-			td2.appendChild(a);
-		} else if(part[3]){
-			var a = document.createElement("a");
-			a.href = "?src=" + part[3] + ";statpanel_item_click=1";
-			a[textContentKey] = part[1];
-			td2.appendChild(a);
-		} else {
-			td2[textContentKey] = part[1];
-		}
-		tr.appendChild(td1);
-		tr.appendChild(td2);
-		table.appendChild(tr);
-	}
-	document.getElementById("statcontent").appendChild(table);
-}
-*/
 function draw_verbs(cat){
 	var statcontentdiv = document.getElementById("statcontent");
 	statcontentdiv[textContentKey] = "";

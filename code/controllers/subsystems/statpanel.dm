@@ -11,13 +11,13 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if(!resumed)
 		var/list/global_data = list(
-			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
-			"Round Time: [roundduration2text()]",
-			"Ship Time: [stationtime2text()]",
+			list("Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]"),
+			list("Round Time: [roundduration2text()]"),
+			list("Ship Time: [stationtime2text()]"),
 		)
 		var/eta_status = evacuation_controller.get_status_panel_eta()
 		if(eta_status)
-			global_data += eta_status
+			global_data += list(list(eta_status))
 
 		encoded_global_data = url_encode(json_encode(global_data))
 
@@ -35,7 +35,6 @@ SUBSYSTEM_DEF(statpanels)
 		for(var/ss in Master.subsystems)
 			var/datum/controller/subsystem/sub_system = ss
 			mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
-//		mc_data[++mc_data.len] = list("Camera Net", "Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]", "\ref[GLOB.cameranet]")
 		mc_data_encoded = url_encode(json_encode(mc_data))
 		src.currentrun = clients.Copy()
 
@@ -43,9 +42,10 @@ SUBSYSTEM_DEF(statpanels)
 	while(LAZYLEN(currentrun))
 		var/client/target = currentrun[LAZYLEN(currentrun)]
 		currentrun.len--
-		var/ping_str = url_encode("Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)")
-		var/other_str = url_encode(json_encode(target.mob.get_status_tab_items()))
-		target << output("[encoded_global_data];[ping_str];[other_str]", "statbrowser:update")
+		var/list/personal_data = list(list("Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)"))
+		personal_data += target.mob.get_status_tab_items()
+		var/encoded_personal_data = url_encode(json_encode(personal_data))
+		target << output("[encoded_global_data];[encoded_personal_data]", "statbrowser:update")
 
 		if(!target.holder)
 			target << output("", "statbrowser:remove_admin_tabs")
