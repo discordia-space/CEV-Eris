@@ -17,6 +17,7 @@
 	item_state = "electropack"
 	w_class = ITEM_SIZE_TINY
 	price_tag = 10
+	matter = list(MATERIAL_PLASTIC = 1)
 
 
 /********

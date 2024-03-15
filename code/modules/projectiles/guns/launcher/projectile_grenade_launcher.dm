@@ -63,6 +63,7 @@
 	max_shells = 0
 	safety = FALSE
 	twohanded = FALSE
+	bad_type = /obj/item/gun/projectile/shotgun/pump/grenade/underslung
 
 /obj/item/gun/projectile/shotgun/pump/grenade/lenar
 	name = "FS GL \"Lenar\""

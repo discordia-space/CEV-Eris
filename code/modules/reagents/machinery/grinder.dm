@@ -336,6 +336,7 @@
 	desc = "Mortar and pestle to grind ingridients."
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "mortar"
+	matter = list(MATERIAL_STEEL = 3)
 	storage_slots = 3
 	unacidable = 1
 	rarity_value = 25
