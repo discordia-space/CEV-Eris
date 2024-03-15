@@ -108,6 +108,19 @@
 	name = "flash grenade"
 	hand_gren = /obj/item/grenade/flashbang
 
+/obj/item/projectile/bullet/grenade/smoke
+	name = "smoke grenade"
+
+/obj/item/projectile/bullet/grenade/smoke/grenade_effect(target)
+	var/datum/effect/effect/system/smoke_spread/bad/smoke = new()
+	playsound(loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	// If this is >9 byond shits itself and crashes
+	smoke.set_up(10, 0, get_turf(target))
+	addtimer(CALLBACK(smoke, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread/bad, start)), 1 SECOND)
+	addtimer(CALLBACK(smoke, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread/bad, start)), 1 SECOND)
+	addtimer(CALLBACK(smoke, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread/bad, start)), 1 SECOND)
+	addtimer(CALLBACK(smoke, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread/bad, start)), 1 SECOND)
+	..()
 
 /obj/item/projectile/bullet/grenade/handgrenade/white_phosphorous
 	name = "white phosphorus grenade"

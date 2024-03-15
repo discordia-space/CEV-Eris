@@ -18141,6 +18141,8 @@
 /obj/item/storage/box/teargas_rounds,
 /obj/item/storage/box/flash_rounds,
 /obj/item/storage/box/flash_rounds,
+/obj/item/storage/box/smoke,
+/obj/item/storage/box/smoke,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
 "aSX" = (

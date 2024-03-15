@@ -344,6 +344,15 @@
 	prespawned_content_amount = 6
 	prespawned_content_type =  /obj/item/ammo_casing/grenade/teargas
 
+/obj/item/storage/box/smoke
+	name = "box of smoke grenade Shells"
+	desc = "A box containing 6 smoke grenade shells for use with a launcher."
+	icon_state = "box_security"
+	illustration = "flashbang"
+	rarity_value = 50
+	prespawned_content_amount = 6
+	prespawned_content_type =  /obj/item/ammo_casing/grenade/teargas
+
 /obj/item/storage/box/emp_rounds
 	name = "box of EMP grenade shells"
 	desc = "A box containing 6 EMP grenade shells, designed to be fired from grenade launchers."

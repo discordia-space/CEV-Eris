@@ -486,6 +486,19 @@
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 15
 
+
+/obj/item/ammo_casing/grenade/smoke
+	name = "FS FBR \"Stallone\""
+	desc = "A standard-issue Frozen Star smoke round, for hiding troop movements."
+	icon_state = "grenade"
+	projectile_type = /obj/item/projectile/bullet/grenade/smoke
+	w_class = ITEM_SIZE_SMALL
+	caliber = CAL_GRENADE
+	is_caseless = TRUE
+	maxamount = 1
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 15
+
 /obj/item/ammo_casing/grenade/white_phosphorous
 	name = "SA WPR \"Gornja\""
 	desc = "A modernized incendiary fresh out of serbia very flammable, for clearing out ship's and villages."
