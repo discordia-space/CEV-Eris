@@ -59,10 +59,11 @@ const exchange = (props, context) => {
       {selection !== -1 && (
         <Button
           content="Buy Selected"
-          onClick={() =>
-            { setAmt(0); setSelection(-1); 
-            act('buymat', { 'matselected': selection + 1, 'amount': amt }); }
-          }
+          onClick={() => {
+            setAmt(0);
+            setSelection(-1);
+            act('buymat', { 'matselected': selection + 1, 'amount': amt });
+          }}
         />
       )}
       <Divider hidden:true />
@@ -98,12 +99,22 @@ const sale = (props, context) => {
             />
           )}
           {portmatnames !== null && (
-            <Button content="Eject Mats" onClick={() => { setSelection(-1);
-              act('eject'); }} />
+            <Button
+              content="Eject Mats"
+              onClick={() => {
+                setSelection(-1);
+                act('eject');
+              }}
+            />
           )}
           {portmatnames !== null && (
-            <Button content="Sell Mats" onClick={() => { setSelection(-1); 
-              act('sellmat'); }} />
+            <Button
+              content="Sell Mats"
+              onClick={() => {
+                setSelection(-1);
+                act('sellmat');
+              }}
+            />
           )}
 
           {portmaticons &&
@@ -113,23 +124,27 @@ const sale = (props, context) => {
                 portmatamounts[count],
                 portmatvalues[count],
                 portmaticons[count],
-                context
+                true
               );
             })}
 
           {selection !== -1 && (
             <Button
               content="Eject Selected"
-              onClick={() => { setSelection(-1); 
-                act('eject', { 'selected': selection + 1 }); }}
+              onClick={() => {
+                setSelection(-1);
+                act('eject', { 'selected': selection + 1 });
+              }}
             />
           )}
 
           {selection !== -1 && (
             <Button
               content="Sell Selected"
-              onClick={() => { setSelection(-1); 
-                act('sellmat', { 'selected': selection + 1 }); }}
+              onClick={() => {
+                setSelection(-1);
+                act('sellmat', { 'selected': selection + 1 });
+              }}
             />
           )}
         </LabeledList.Item>
@@ -155,7 +170,7 @@ const displayfourstats = (name, _number, value, icon, context) => {
       {_number}
       <Divider hidden />
       {'price per unit '}
-      {value}
+      {context === true ? value * 0.9 : value * 1.1}
     </Box>
   );
 };
@@ -277,7 +292,7 @@ export const StorageNode = (props, context) => {
     <Window resizable>
       <Window.Content scrollable>
         {(otherprimeloc && (
-            <>
+          <>
             {'Location of Prime Silo:'}
             {otherprimeloc}
             <Divider hidden />
@@ -285,7 +300,7 @@ export const StorageNode = (props, context) => {
               content="Reset Prime status"
               onClick={() => act('resetprime')}
             />
-            </>
+          </>
         )) || (
           <>
             <Button
@@ -333,9 +348,12 @@ export const StorageNode = (props, context) => {
                 context
               )}
             {menu === 'materialexchange' &&
-              exchange({ matnames, matnums, matvalues, dosh, maticons }, context)}
+              exchange(
+                { matnames, matnums, matvalues, dosh, maticons },
+                context
+              )}
           </>
-        )};
+        )}
       </Window.Content>
     </Window>
   );
