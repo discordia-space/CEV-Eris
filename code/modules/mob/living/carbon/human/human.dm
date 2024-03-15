@@ -1385,6 +1385,11 @@ var/list/rank_prefix = list(\
 	jitteriness += 3 SECONDS
 	updatehealth()
 	switch_from_dead_to_living_mob_list()
+
+	var/obj/item/implant/core_implant/cruciform/CI = get_core_implant(/obj/item/implant/core_implant/cruciform, req_activated = FALSE)
+	if(CI && CI.active)
+		lost_cruciforms -= CI
+
 	if(mind)
 		for(var/mob/observer/ghost/G in GLOB.player_list)
 			if(G.can_reenter_corpse && G.mind == mind)
