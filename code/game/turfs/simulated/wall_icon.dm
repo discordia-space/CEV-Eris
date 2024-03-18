@@ -25,12 +25,9 @@
 		if(!material)
 			material = get_material_by_name(MATERIAL_STEEL)
 		if(material)
-			explosion_resistance = material.explosion_resistance
 			hitsound = material.hitsound
 			health = material.integrity
 			maxHealth = material.integrity
-		if(reinf_material && reinf_material.explosion_resistance > explosion_resistance)
-			explosion_resistance = reinf_material.explosion_resistance
 		if(reinf_material)
 			health += reinf_material.integrity
 			maxHealth += reinf_material.integrity

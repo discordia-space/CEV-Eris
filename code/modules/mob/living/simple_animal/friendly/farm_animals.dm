@@ -181,6 +181,7 @@
 			qdel(src)
 
 var/const/MAX_CHICKENS = 50
+#define MEDIUM_CHICKENS 10
 var/global/chicken_count = 0
 
 /mob/living/simple_animal/chicken
@@ -247,8 +248,8 @@ var/global/chicken_count = 0
 		var/obj/item/reagent_containers/food/snacks/egg/E = new(get_turf(src))
 		E.pixel_x = rand(-6,6)
 		E.pixel_y = rand(-6,6)
-		if(chicken_count < MAX_CHICKENS && prob(10))
-			START_PROCESSING(SSobj, E)
+		if(chicken_count < MEDIUM_CHICKENS || prob(clamp((100/MAX_CHICKENS)*(MAX_CHICKENS-chicken_count), 0, 100)))
+			START_PROCESSING(SSobj, E) // chicken threshold, then chicken ratio, then number of chickens to create
 
 
 /obj/item/reagent_containers/food/snacks/egg/var/amount_grown = 0

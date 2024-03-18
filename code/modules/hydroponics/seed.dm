@@ -237,7 +237,7 @@
 
 		create_spores(origin_turf)
 
-		var/flood_dist = min(10,max(1,get_trait(TRAIT_POTENCY)/15))
+		var/flood_dist = min(10,max(1,get_trait(TRAIT_POTENCY)/50))
 		var/list/open_turfs = list()
 		var/list/closed_turfs = list()
 		var/list/valid_turfs = list()

@@ -57,12 +57,13 @@
 
 /// special case where is the location is specified as a ammo_Casing , it will clone all relevant vars
 /obj/item/ammo_casing/New(loc, ...)
-	. = ..()
 	if(istype(loc, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = loc
 		src.amount = 1 // otherwise duplicating the type will make Type/Prespawned start with too large an amount
+		if(!C.BB)
+			projectile_type = FALSE // this prevents spent projectiles resetting their status- this is safe because it typechecks for path, and this is not path
 		C.update_icon()
-		update_icon()
+	. = ..()
 
 
 /obj/item/ammo_casing/attack_hand(mob/user)
@@ -316,6 +317,7 @@
 		C.amount -= 1
 
 		var/obj/item/ammo_casing/inserted_casing = new C.type(C)
+		inserted_casing.forceMove(src)
 		stored_ammo.Insert(1, inserted_casing)
 	else
 		if(ismob(C.loc))

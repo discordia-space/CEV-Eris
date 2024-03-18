@@ -1,5 +1,5 @@
 /obj/item/flame/candle
-	name = "red candle"
+	name = "wax candle"
 	desc = "a small pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
@@ -15,9 +15,9 @@
 
 /obj/item/flame/candle/update_icon()
 	var/i
-	if(wax > 1500)
+	if(wax > 800)
 		i = 1
-	else if(wax > 800)
+	else if(wax > 600)
 		i = 2
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"

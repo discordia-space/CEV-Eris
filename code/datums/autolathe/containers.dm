@@ -77,11 +77,11 @@
 	build_path = /obj/item/storage/hcases/parts
 
 /datum/design/autolathe/container/hcase_med
-	name = "Parts Hardcase"
+	name = "Medical Hardcase"
 	build_path = /obj/item/storage/hcases/med
 
 /datum/design/autolathe/container/hcase_engi
-	name = "Parts Hardcase"
+	name = "Tool Hardcase"
 	build_path = /obj/item/storage/hcases/engi
 
 /datum/design/autolathe/bodybag/cryobag

@@ -5,20 +5,21 @@
 */
 
 /obj/item/clothing/accessory/badge
-	name = "faded Inspector's badge"
-	desc = "A NanoTrasen badge, made from gold and set on false leather."
+	name = "faded Detective's badge"
+	desc = "An ancient badge of the NanoTrasen Detective Agency, made of gold and set on false leather."
 	icon_state = "badge"
 	item_state = "marshalbadge"
 	slot_flags = SLOT_BELT | SLOT_ACCESSORY_BUFFER
 	price_tag = 200
 
 	var/stored_name
-	var/badge_string = "Ironhammer Security"
+	var/badge_string = "NanoTrasen Detective Agency"
 
 /obj/item/clothing/accessory/badge/old
-	name = "faded badge"
-	desc = "A faded badge, backed with leather. It bears the emblem of the NanoTrasen Security division."
+	name = "faded security badge"
+	desc = "An ancient badge of the NanoTrasen Security Division, made of silver and set on false black leather."
 	icon_state = "badge_round"
+	badge_string = "Nanotrasen Security Division"
 
 /obj/item/clothing/accessory/badge/proc/set_name(var/new_name)
 	stored_name = new_name
@@ -48,6 +49,7 @@
 	icon_state = "holobadge"
 	item_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
+	badge_string = "Ironhammer Security"
 
 /obj/item/clothing/accessory/badge/holo/cord
 	icon_state = "holobadge-cord"
@@ -116,6 +118,7 @@
 	icon_state = "goldbadge"
 	item_state = "goldbadge"
 	slot_flags = SLOT_ACCESSORY_BUFFER
+	badge_string = "Ironhammer Officer Corps"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/accessory/badge/inspector

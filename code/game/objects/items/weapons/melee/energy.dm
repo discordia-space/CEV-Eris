@@ -93,7 +93,7 @@
 /obj/item/melee/energy/sword
 	color
 	name = "energy sword"
-	desc = "May the Force be with you."
+	desc = "A tight and compact hilt featuring a side switch for deploying a highly precise, deadly, and concentrated beam of light. Used by assassins, honor guards, and rich men, this sword of light strikes fear into even the coldest of mercenaries."
 	icon_state = "sword0"
 	active_force = WEAPON_FORCE_LETHAL // Go forth and slay, padawan
 	active_throwforce = WEAPON_FORCE_LETHAL
@@ -101,6 +101,7 @@
 	active_w_class = ITEM_SIZE_BULKY
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_HARMLESS
+	armor_divisor = ARMOR_PEN_HALF
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
@@ -143,6 +144,8 @@
 	icon_state = "sword[blade_color]"
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	hitsound = 'sound/weapons/blade1.ogg'
+
 	tool_qualities = list(QUALITY_CUTTING = 30,  QUALITY_WIRE_CUTTING = 20, QUALITY_LASER_CUTTING = 20, QUALITY_WELDING = 10, QUALITY_CAUTERIZING = 10)
 
 /obj/item/melee/energy/sword/deactivate(mob/living/user)
@@ -187,8 +190,8 @@
 	desc = "A concentrated beam of energy in the shape of a blade. Very stylish... and lethal."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "blade"
-	force = WEAPON_FORCE_ROBUST //Normal attacks deal very high damage - about the same as wielded fire axe
-	armor_divisor = ARMOR_PEN_MAX
+	force = WEAPON_FORCE_BRUTAL //Normal attacks deal very high damage - about the same as The Sword of Truth
+	armor_divisor = ARMOR_PEN_MASSIVE
 	damtype = BURN
 	sharp = TRUE
 	edge = TRUE
@@ -198,6 +201,7 @@
 	throw_range = 1
 	w_class = ITEM_SIZE_BULKY
 	flags = NOBLOODY
+	hitsound = 'sound/weapons/blade1.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/mob/living/creator
 	var/datum/effect/effect/system/spark_spread/spark_system

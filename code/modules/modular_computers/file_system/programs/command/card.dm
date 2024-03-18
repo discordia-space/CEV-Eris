@@ -28,7 +28,7 @@
 	var/list/data = host.initial_data()
 
 	data["src"] = "\ref[src]"
-	data["station_name"] = station_name()
+	data["station_name"] = station_name
 	data["manifest"] = html_crew_manifest()
 	data["assignments"] = show_assignments
 	if(program && program.computer)
