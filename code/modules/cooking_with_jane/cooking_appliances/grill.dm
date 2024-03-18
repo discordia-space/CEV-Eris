@@ -140,7 +140,7 @@
 	if(container.handle_ignition())
 		on_fire = TRUE
 
-//Retrieve which quadrant of the baking pan is being used.
+//Retrieve which half of the baking pan is being used.
 /obj/machinery/cooking_with_jane/grill/proc/getInput(params)
 	var/list/click_params = params2list(params)
 	var/input
