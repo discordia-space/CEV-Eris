@@ -53,7 +53,7 @@
 	log_debug("cooking_container/attackby() called!")
 	#endif
 
-	if(istype(used_item, /obj/item/tool/shovel/))
+	if(istype(used_item, /obj/item/tool/shovel))
 		do_empty(user, target=null, reagent_clear = FALSE)
 		return
 
@@ -332,7 +332,6 @@
 	item_state = "airfryer_basket"
 	removal_penalty = 5
 	appliancetype = AF_BASKET
-
 
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate
 	name = "grill grate"

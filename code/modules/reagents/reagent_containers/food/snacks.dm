@@ -3660,7 +3660,7 @@
 
 // Ported from Sojourn: (they will miss sprites and recipes)
 
-/obj/item/reagent_containers/food/snacks/sliceable/butterstick //missing recipe
+/obj/item/reagent_containers/food/snacks/sliceable/butterstick //missing recipe, tried to make it churnable using a centrifuge and failed miserably. Good luck to the next guy.
 	name = "stick of butter"
 	desc = "A whole stick of butter, an excellent flavor booster or spread."
 	icon_state = "butter"
@@ -3722,8 +3722,8 @@
 	cooked = TRUE
 
 /obj/item/reagent_containers/food/snacks/bacon
-	name = "fried bacon" 
-	desc = "When it comes to bacon, always be prepared." 
+	name = "fried bacon"
+	desc = "When it comes to bacon, always be prepared."
 	icon = 'icons/obj/food_ingredients.dmi'
 	icon_state = "bacon"
 	bitesize = 2
