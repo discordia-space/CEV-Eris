@@ -222,50 +222,18 @@
 		if(R.id in ignore_reagents_ids)
 			continue
 		var/amount_to_transfer = amount_per_reagent ? amount_per_reagent : R.volume
-		
-		if(R.churnable) //For simplicity, never have a churnable reagent have churnable reagents as a result
-			var/totalnumber = 0
-			var/grabbedlist = R.churn_ratio.Copy()
 
-			for(var/entry in grabbedlist)
-				totalnumber += grabbedlist[entry] //Builds churn_ratio reagent list into a number. In the case of Milk, it would be "3"
-			amount_to_transfer = min(amount_to_transfer, R.volume)
-			reagents.remove_reagent(R.id, amount_to_transfer) //Removes churned reagent during processing				
-			var/amountperpart = amount_to_transfer / totalnumber //Value of each 'unit'(not actual units) is worth inside grabbedlist
-
-			for(var/entry in grabbedlist) //Different collection of the same list, getting the volume of the reagents. In the case of Milk, it would also be 3, but this may not always be the case
-				var/trueamount = grabbedlist[entry] * amountperpart
-				for(var/obj/item/reagent_containers/C in containers)
-					if(!trueamount)
-						break
-					if(!C.reagents.get_free_space())
-						containers.Remove(C)
-						continue
-
-					var/amount = min(C.reagents.get_free_space(), trueamount)
-					if(!C.reagents.total_volume || C.reagents.has_reagent(entry))
-						C.reagents.add_reagent(entry, amount)
-						trueamount = max(0,trueamount - amount)
-					if(trueamount)
-						amount = min(reagents.get_free_space(), trueamount)
-						reagents.add_reagent(entry,amount)
-						trueamount = max(0, trueamount - amount)
-//					if(trueamount)
-//						happy birthday to the ground //will be a function
-
-
-		else //resume normal operation
-			for(var/obj/item/reagent_containers/C in containers)
-				if(!amount_to_transfer)
-					break
-				if(!C.reagents.get_free_space())
-					containers.Remove(C)
-					continue
-				var/amount = min(C.reagents.get_free_space(), min(amount_to_transfer, R.volume))
-				if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
-					C.reagents.add_reagent(R.id, amount, R.get_data())
-					reagents.remove_reagent(R.id, amount)
-					amount_to_transfer = max(0,amount_to_transfer - amount)
+		for(var/obj/item/reagent_containers/C in containers)
+			if(!amount_to_transfer)
+				break
+			if(!C.reagents.get_free_space())
+				containers.Remove(C)
+				continue
+			var/amount = min(C.reagents.get_free_space(), min(amount_to_transfer, R.volume))
+			if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
+				C.reagents.add_reagent(R.id, amount, R.get_data())
+				reagents.remove_reagent(R.id, amount)
+				amount_to_transfer = max(0,amount_to_transfer - amount)
 	return TRUE
 
 /obj/item/reagent_containers/get_item_cost(export)

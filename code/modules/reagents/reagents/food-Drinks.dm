@@ -585,44 +585,11 @@
 	glass_icon_state = "glass_white"
 	glass_name = "milk"
 	glass_desc = "White and nutritious goodness!"
-	churnable = TRUE //Any child should NOT be churnable. This var is defined in /datum/reagent.
-	churn_ratio = list("butter"= 1, "water" = 1, "buttermilk" = 1) //What Milk breaks down to when used in the centrifuge
 
 /datum/reagent/drink/milk/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.heal_organ_damage(0.05 * effect_multiplier, 0)
 	holder.remove_reagent("capsaicin", 1 * effect_multiplier)
-
-/datum/reagent/drink/milk/buttermilk
-	name = "Buttermilk"
-	id = "buttermilk"
-	description = "Dairy product composed of the slightly more viscous liquid left behind after churning butter. Once rumored to slow aging."
-	taste_description = "buttery cream"
-	glass_name = "buttermilk"
-	glass_desc = "Extra thick."
-	churnable = FALSE
-	churn_ratio = null
-
-/datum/reagent/drink/milk/butter
-	name = "Butter"
-	id = "butter"
-	description = "What happens when you stir your milk a little too much. For a solid stick, dump this container."
-	taste_description = "butter"
-	color = "#d8cb89"
-	glass_name = "butter"
-	glass_desc = "Kinda thick."
-	churnable = FALSE
-	churn_ratio = null
-
-/datum/reagent/drink/milk/butter/touch_turf(turf/simulated/T, amount) //Just dump it on the floor, I couldn't figure out a better way to solidify it into a stick
-	if(!istype(T))
-		return
-	if(!amount < 30)
-		to_chat(src, SPAN_NOTICE("Need more butter to make a whole stick."))
-		return
-	if(amount >= 30)
-		new /obj/item/reagent_containers/food/snacks/sliceable/butterstick(T)
-	return TRUE
 
 /datum/reagent/drink/milk/cream
 	name = "Cream"
@@ -632,8 +599,6 @@
 	color = "#dfd7af"
 	glass_name = "cream"
 	glass_desc = "Ewwww..."
-	churnable = FALSE
-	churn_ratio = null
 
 /datum/reagent/drink/milk/soymilk
 	name = "Soy Milk"
@@ -643,8 +608,6 @@
 	color = "#DFDFC7"
 	glass_name = "soy milk"
 	glass_desc = "White and nutritious soy goodness!"
-	churnable = FALSE
-	churn_ratio = null
 
 /datum/reagent/drink/tea
 	name = "Tea"
@@ -907,8 +870,6 @@
 	id = "milkshake"
 	color = "#aee5e4"
 	adj_temp = -9
-	taste_tag = list(TASTE_LIGHT)
-	churnable = FALSE
 
 	glass_unique_appearance = TRUE
 	glass_icon_state = "milkshake"
