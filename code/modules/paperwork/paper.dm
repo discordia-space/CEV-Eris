@@ -34,8 +34,6 @@
 	var/list/ico[0]      //Icons and
 	var/list/offset_x[0] //offsets stored for later
 	var/list/offset_y[0] //usage by the photocopier
-	var/rigged = 0
-	var/spam_flag = 0
 	var/crumpled = FALSE
 
 	var/const/deffont = "Verdana"
@@ -115,12 +113,6 @@
 		crumpled = TRUE
 		return
 	user.examinate(src)
-	if(rigged && (Holiday == "April Fool's Day"))
-		if (spam_flag == 0)
-			spam_flag = 1
-			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
-			spawn(20)
-				spam_flag = 0
 
 /obj/item/paper/attack_ai(var/mob/living/silicon/ai/user)
 	show_content(user)

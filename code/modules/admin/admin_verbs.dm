@@ -29,7 +29,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 
 GLOBAL_LIST_INIT(admin_verbs_server, list(
 	/client/proc/cmd_admin_delete,
-	/client/proc/Set_Holiday,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/restart,
 	/datum/admins/proc/startnow,

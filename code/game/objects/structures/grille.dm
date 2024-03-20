@@ -7,7 +7,6 @@
 	anchored = TRUE
 	flags = CONDUCT
 	layer = BELOW_OBJ_LAYER
-	explosion_resistance = 1
 	// Blocks very little , since its just metal rods..
 	explosion_coverage = 0.2
 	health = 50

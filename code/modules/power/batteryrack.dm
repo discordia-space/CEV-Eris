@@ -12,7 +12,6 @@
 	output_level = 0
 	input_level_max = 0
 	output_level_max = 0
-	icon_state = "mpsu_closed"
 	circuit = /obj/item/electronics/circuitboard/batteryrack
 	var/cells_amount = 0
 	var/capacitors_amount = 0
@@ -49,7 +48,7 @@
 			input.forceMove(get_turf(user))
 			user.put_in_active_hand(input)
 
-/obj/machinery/power/smes/batteryrack/Topic(href, href_list)
+/obj/machinery/power/smes/batteryrack/Topic(href, href_list)// May be better to strip this completely as it currently is, force a reconstruction for cell removal.
 	/// For any UI related fuckery to NanoUI/Tgui
 	. = ..()
 	if(QDELETED(src))
@@ -73,6 +72,8 @@
 			component_parts.Remove(battery)
 			battery.forceMove(get_turf(target))
 			target.put_in_active_hand(battery)
+			RefreshParts()
+			update_icon()
 
 /obj/machinery/power/smes/batteryrack/Initialize(mapload, d)
 	. = ..()
@@ -136,13 +137,7 @@
 			if (charge < (capacity / 100) || capacity == 0)
 				if (!output_attempt && !input_attempt)
 					playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
-					var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
-					M.state = 2
-					M.icon_state = "box_1"
-					for(var/obj/I in component_parts)
-						I.forceMove(get_turf(src))
-					qdel(src)
-					return 1
+					dismantle()
 				else
 					to_chat(user, SPAN_WARNING("Turn off the [src] before dismantling it."))
 			else

@@ -8,7 +8,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon_state = "door_closed"
 	power_channel = STATIC_ENVIRON
 
-	explosion_resistance = 10
 	maxHealth = 400
 
 	var/aiControlDisabled = 0
@@ -108,7 +107,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	glass = 1
 
@@ -120,7 +118,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/vault
 	name = "Vault"
 	icon = 'icons/obj/doors/vault.dmi'
-	explosion_resistance = RESISTANCE_ARMOURED
 	resistance = RESISTANCE_VAULT
 	opacity = 1
 	secured_wires = 1
@@ -139,7 +136,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/hatch
 	name = "Airtight Hatch"
 	icon = 'icons/obj/doors/Doorhatchele.dmi'
-	explosion_resistance = RESISTANCE_ARMOURED
 	resistance = RESISTANCE_ARMOURED
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
@@ -147,7 +143,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorhatchmaint2.dmi'
-	explosion_resistance = RESISTANCE_ARMOURED
 	resistance = RESISTANCE_ARMOURED
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
@@ -158,7 +153,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = 1
@@ -169,7 +163,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = 1
@@ -181,7 +174,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
 	bullet_resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = 1
@@ -192,7 +184,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	glass = 1
@@ -218,7 +209,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
@@ -230,7 +220,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	glass = 1
@@ -241,7 +230,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	hitsound = 'sound/effects/Glasshit.ogg'
 	maxHealth = 300
 	resistance = RESISTANCE_AVERAGE
-	explosion_resistance = 5
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	glass = 1
@@ -376,7 +364,6 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 /obj/machinery/door/airlock/highsecurity
 	name = "Secure Airlock"
 	icon = 'icons/obj/doors/hightechsecurity.dmi'
-	explosion_resistance = 20
 	resistance = RESISTANCE_ARMOURED
 	bullet_resistance = RESISTANCE_ARMOURED
 	secured_wires = 1

@@ -157,7 +157,7 @@
 	build_path = /obj/item/clothing/accessory/holster
 
 /datum/design/bioprinter/leather/holster/accessory/scabbard
-	name = "scabbard"
+	name = "uniform scabbard"
 	build_path = /obj/item/clothing/accessory/holster/scabbard
 
 /datum/design/bioprinter/leather/holster/accessory/knife

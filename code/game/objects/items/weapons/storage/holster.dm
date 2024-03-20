@@ -232,7 +232,7 @@
 		)
 
 /obj/item/clothing/accessory/holster/scabbard
-	name = "scabbard"
+	name = "uniform scabbard"
 	desc = "A sturdy brown leather scabbard with a gold trim, made to house a variety of swords. Needs to be attached to your uniform to be properly held in place."
 	icon_state = "sheath"
 	overlay_state = "sword"

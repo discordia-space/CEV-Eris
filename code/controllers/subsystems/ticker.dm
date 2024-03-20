@@ -260,8 +260,6 @@ SUBSYSTEM_DEF(ticker)
 	GLOB.storyteller.set_up()
 	to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 	SEND_SOUND(world, sound('sound/AI/welcome.ogg')) // Skie
-	//Holiday Round-start stuff	~Carn
-	Holiday_Game_Start()
 
 	for(var/mob/new_player/N in SSmobs.mob_list)
 		N.new_player_panel_proc()
@@ -486,22 +484,22 @@ SUBSYSTEM_DEF(ticker)
 				var/turf/playerTurf = get_turf(Player)
 				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
 					if(isNotAdminLevel(playerTurf.z))
-						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>")
+						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name] as [Player.real_name]...</b></font>")
 					else
-						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>")
+						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name] as [Player.real_name].</b></font>")
 				else if(isAdminLevel(playerTurf.z))
-					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name] as [Player.real_name].</b></font>")
 				else if(issilicon(Player))
-					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name] as [Player.real_name].</b></font>")
 				else
-					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name] as [Player.real_name].</b></font>")
 			else
 				if(isghost(Player))
 					var/mob/observer/ghost/O = Player
 					if(!O.started_as_observer)
-						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name]...</b></font>")
 				else
-					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name]...</b></font>")
 	to_chat(world, "<br>")
 
 	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)

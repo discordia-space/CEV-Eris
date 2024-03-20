@@ -76,7 +76,6 @@
 /mob/living/silicon/pai/New(var/obj/item/device/paicard)
 	src.loc = paicard
 	card = paicard
-	sradio = new(src)
 	if(card)
 		if(!card.radio)
 			card.radio = new /obj/item/device/radio(src.card)

@@ -1,6 +1,7 @@
 #define OBELISK_UPDATE_TIME 5 SECONDS
 
 var/list/disciples = list()
+var/list/lost_cruciforms = list()
 
 /obj/item/implant/core_implant/cruciform
 	name = "cruciform"
@@ -64,6 +65,11 @@ var/list/disciples = list()
 	unregister_wearer()
 	wearer.stats.removePerk(/datum/perk/sanityboost)
 	wearer.stats.removePerk(/datum/perk/active_sanityboost)
+	lost_cruciforms |= src
+	return ..()
+
+/obj/item/implant/core_implant/cruciform/Destroy()
+	lost_cruciforms -= src
 	return ..()
 
 /obj/item/implant/core_implant/cruciform/get_mob_overlay(gender)
@@ -216,7 +222,6 @@ var/list/disciples = list()
 		return
 
 	add_module(new CRUCIFORM_CLONING)
-
 
 //////////////////////////
 //////////////////////////

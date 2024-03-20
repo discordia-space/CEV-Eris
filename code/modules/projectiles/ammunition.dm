@@ -63,7 +63,6 @@
 		if(!C.BB)
 			projectile_type = FALSE // this prevents spent projectiles resetting their status- this is safe because it typechecks for path, and this is not path
 		C.update_icon()
-		update_icon()
 	. = ..()
 
 
@@ -318,6 +317,7 @@
 		C.amount -= 1
 
 		var/obj/item/ammo_casing/inserted_casing = new C.type(C)
+		inserted_casing.forceMove(src)
 		stored_ammo.Insert(1, inserted_casing)
 	else
 		if(ismob(C.loc))
