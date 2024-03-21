@@ -1,6 +1,6 @@
 /datum/trade_station/boozefood
 	name_pool = list(
-		"BTB \'Vermouth\'" = "Bradhaata Trade Beacon \'Vermouth\': \"Best beverages, ingredients for your cooks, and anything that is needed for your private bars and more!\""
+		"BTB \'Vermouth\'" = "Bradhaanata Trade Beacon \'Vermouth\': \"Best beverages, ingredients for your cooks, and anything that is needed for your private bars and more!\""
 	)
 	icon_states = list("htu_station", "station")
 	uid = "commissary"

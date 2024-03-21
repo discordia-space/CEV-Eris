@@ -1,8 +1,8 @@
 
 
 /obj/machinery/cooking_with_jane/oven
-	name = "Bradhaata Oven"
-	desc = "A cozy oven for baking food. You feel like it is watching you... \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on the oven."
+	name = "Bradhaanata Oven"
+	desc = "A cozy oven for baking food. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on the oven."
 	icon = 'icons/obj/cwj_cooking/oven.dmi'
 	icon_state = "oven"
 	density = TRUE

@@ -417,8 +417,8 @@
 
 // Kitchen supply
 /obj/item/storage/deferred/crate/kitchen
-	name = "bradhaata kitchen tool supply box"
-	desc = "A collection of kitchen essentials, brought to you by Bradhaata"
+	name = "bradhaanata kitchen tool supply box"
+	desc = "A collection of kitchen essentials, brought to you by Bradhaanata"
 	initial_contents = list(
 		/obj/item/tool/knife = 1,
 		/obj/item/tool/knife/butch = 1,

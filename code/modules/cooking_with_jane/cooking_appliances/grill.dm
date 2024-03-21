@@ -1,7 +1,7 @@
 #define ICON_SPLIT_X 16
 
 /obj/machinery/cooking_with_jane/grill
-	name = "Bradhaata Grill"
+	name = "Bradhaanata Grill"
 	desc = "A deep pit of charcoal for cooking food. A slot on the side of the machine takes wood and converts it into charcoal. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on a burner."
 	icon = 'icons/obj/cwj_cooking/grill.dmi'
 	icon_state = "grill"

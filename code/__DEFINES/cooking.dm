@@ -1,4 +1,4 @@
-//#define CWJ_DEBUG 1
+#define CWJ_DEBUG 1
 
 
 //Step classifications, for easy reference later.
