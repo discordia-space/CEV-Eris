@@ -231,8 +231,9 @@
 	name = "wax"
 	singular_name = "wax piece"
 	desc = "Soft substance produced by bees. Used to make candles."
-	icon = 'icons/obj/beekeeping.dmi'
-	icon_state = "wax"
+	icon = 'icons/obj/stack/material.dmi'
+	icon_state = "sheet-wax"
+	novariants = FALSE
 
 /obj/item/stack/wax/New()
 	..()
