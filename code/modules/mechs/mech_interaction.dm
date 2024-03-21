@@ -369,9 +369,8 @@
 		return
 
 
-	else if(user.a_intent != I_HELP)
-		if(attack_tool(I, user))
-			return
+	else if(attack_tool(I, user))
+		return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
 	else if(user.a_intent != I_HELP && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
 		var/mob/living/target = get_mob()
@@ -472,22 +471,31 @@
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_PULSING)
-			if(hardpoints_locked)
-				to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+			if(user.a_intent == I_HELP)
+				if(hardpoints_locked)
+					to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+					return TRUE
+
+				var/list/parts = list()
+				for(var/hardpoint in hardpoints)
+					if(hardpoints[hardpoint])
+						parts += hardpoint
+
+				if(!length(parts))
+					to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+					return TRUE
+
+				var/to_remove = input("Which component would you like to remove") as null|anything in parts
+				remove_system(to_remove, user)
 				return TRUE
+			else
+				if(hatch_locked)
+					to_chat(user, SPAN_WARNING("You start hacking \the [src]'s hatch locking mechanisms."))
+					if(do_after(user, 20 SECONDS, src, TRUE))
+						to_chat(user, SPAN_NOTICE("You hack [src]'s hatch locking. It is now unlocked."))
+						toggle_hatch_lock()
+						return TRUE
 
-			var/list/parts = list()
-			for(var/hardpoint in hardpoints)
-				if(hardpoints[hardpoint])
-					parts += hardpoint
-
-			if(!length(parts))
-				to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
-				return TRUE
-
-			var/to_remove = input("Which component would you like to remove") as null|anything in parts
-			remove_system(to_remove, user)
-			return TRUE
 
 		if(QUALITY_BOLT_TURNING)
 			if(!maintenance_protocols)

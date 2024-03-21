@@ -225,6 +225,7 @@
 	to_chat(user, "It menaces with reinforcements of [material].")
 	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
 	to_chat(user, SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button."))
+	to_chat(user, SPAN_NOTICE("A multitool can be used on HELP intent to remove module from hardpoints , or on any other intent to start unlocking the mech through hacking."))
 	if(body.storage_compartment)
 		to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character."))
 	if(body && body.cell_charge_rate)
