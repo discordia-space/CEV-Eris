@@ -430,7 +430,7 @@
 	icon_state = "strafe"
 
 /obj/screen/movable/exosuit/toggle/strafe/toggled() // Prevents exosuits from strafing when EMP'd enough
-	if(owner.legs.can_strafe == FALSE)
+	if(owner.legs.can_strafe == MECH_STRAFING_NONE)
 		to_chat(usr, SPAN_WARNING("Error: This propulsion system doesn't support synchronization!"))
 		return
 	if(owner.emp_damage >= EMP_STRAFE_DISABLE)
