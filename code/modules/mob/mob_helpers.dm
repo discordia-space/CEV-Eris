@@ -626,7 +626,7 @@ proc/is_blind(A)
 	for(var/atom/vision_handler in additional_vision_handlers)
 		//Grab their flags
 		asight |= vision_handler.additional_sight_flags()
-		ainvis = max(ainvis, vision_handler.additional_see_invisible())
+		ainvis = min(ainvis, vision_handler.additional_see_invisible())
 	result[1] = asight
 	result[2] = ainvis
 

@@ -191,15 +191,16 @@
 	if (user.buckled)
 		to_chat(user, SPAN_WARNING("You cannot enter a mech while buckled, unbuckle first."))
 		return FALSE
-	if(hatch_locked)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
-		return FALSE
-	if(hatch_closed)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is closed."))
-		return FALSE
-	if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
-		to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
-		return FALSE
+	if(body && body.has_hatch)
+		if(hatch_locked)
+			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			return FALSE
+		if(hatch_closed)
+			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is closed."))
+			return FALSE
+		if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
+			to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
+			return FALSE
 	return TRUE
 
 /mob/living/exosuit/proc/enter(var/mob/user)
@@ -230,15 +231,18 @@
 
 /mob/living/exosuit/proc/eject(mob/living/user, silent)
 	if(!user || !(user in src.contents)) return
-	if(hatch_closed)
-		if(hatch_locked)
-			if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
-			return
-		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
-		if(H && istype(H))
-			H.toggled()
-		if(!silent)
-			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+	if(body && body.has_hatch)
+		if(hatch_closed)
+			if(hatch_locked)
+				if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+				return
+			var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+			if(H && istype(H))
+				H.toggled()
+			if(!silent)
+				to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+		else if(!silent)
+			to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 	else if(!silent)
 		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
@@ -372,7 +376,7 @@
 	else if(attack_tool(I, user))
 		return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
-	else if(user.a_intent != I_HELP && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
+	else if(user.a_intent != I_HELP && (!hatch_closed || (body && !body.has_hatch) )&& get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
 		var/mob/living/target = get_mob()
 		target.attackby(I, user)
 		return
@@ -614,7 +618,7 @@
 	if(user.a_intent == I_HURT)
 		if(!LAZYLEN(pilots))
 			to_chat(user, SPAN_WARNING("There is nobody inside \the [src]."))
-		else if(!hatch_closed)
+		else if(!hatch_closed || (body && !body.has_hatch))
 			var/mob/pilot = pick(pilots)
 			user.visible_message(SPAN_DANGER("\The [user] is trying to pull \the [pilot] out of \the [src]!"))
 			if(do_after(user, 30) && user.Adjacent(src) && (pilot in pilots) && !hatch_closed)
@@ -622,22 +626,23 @@
 				eject(pilot, silent=1)
 		return
 
-	// Otherwise toggle the hatch.
-	if(hatch_locked)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
-		playsound(src,'sound/mechs/doorlocked.ogg', 50, 1)
-		return
-	if(body && body.total_damage >= body.max_damage)
-		to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
-		return
+	if(body && body.has_hatch)
+		// Otherwise toggle the hatch.
+		if(hatch_locked)
+			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			playsound(src,'sound/mechs/doorlocked.ogg', 50, 1)
+			return
+		if(body && body.total_damage >= body.max_damage)
+			to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
+			return
 
-	hatch_closed = !hatch_closed
-	playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
-	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
-	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
-	if(H && istype(H)) H.update_icon()
-	update_icon()
-	return
+		hatch_closed = !hatch_closed
+		playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
+		to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
+		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+		if(H && istype(H)) H.update_icon()
+		update_icon()
+		return
 
 /mob/living/exosuit/proc/attack_self(mob/user)
 	return visible_message("\The [src] pokes itself.")

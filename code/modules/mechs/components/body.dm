@@ -3,7 +3,7 @@
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_sound = 'sound/effects/storage/toolbox.ogg'
-	anchored = 1
+	anchored = TRUE
 
 /obj/item/mech_component/chassis/Adjacent(var/atom/neighbor, var/recurse = 1) //For interaction purposes we consider body to be adjacent to whatever holder mob is adjacent
 	var/mob/living/exosuit/E = loc
@@ -37,6 +37,15 @@
 	var/hatch_descriptor = "cockpit"
 	var/list/pilot_positions
 	var/pilot_coverage = 100
+	/// if defined , will have coverage multiplied by the dir the attack is coming from.
+	// first slot is frontal, second is sides and the last is behind
+	var/list/coverage_multipliers
+	/// wheter this chasis has a hatch or not to open/close
+	var/has_hatch = TRUE
+	/// wheter this mech can only take one type of this component. Setting it to true will make it not take any kind of component. False is universal. setting a type will enforce that type as acceptable
+	var/strict_arm_type = FALSE
+	var/strict_leg_type = FALSE
+	var/strict_sensor_type = FALSE
 	var/min_pilot_size = MOB_SMALL
 	var/max_pilot_size = MOB_LARGE
 	var/climb_time = 25
@@ -292,6 +301,9 @@
 	icon_state = "seat-cockpit"
 	has_hardpoints = list(HARDPOINT_FRONT, HARDPOINT_RIGHT_SHOULDER)
 	exosuit_desc_string = "a forklifting chassis"
+	strict_sensor_type = TRUE
+	strict_leg_type = /obj/item/mech_component/propulsion/wheels
+	strict_arm_type = TRUE
 	pilot_coverage = 30
 	max_damage = 100
 	mech_health = 200
@@ -312,6 +324,35 @@
 			"[SOUTH]" = list("x" = 9,  "y" = 10),
 			"[EAST]"  = list("x" = 0,  "y" = 5),
 			"[WEST]"  = list("x" = 16,  "y" = 5)
+		)
+	)
+	. = ..()
+
+/obj/item/mech_component/chassis/walker
+	name = "walker chassis"
+	desc = "A walker mech chassis. Very sturdy but only provides decent pilot coverage from the front."
+	icon_state = "walker"
+	has_hatch = FALSE
+	has_hardpoints = list(HARDPOINT_RIGHT_HAND, HARDPOINT_LEFT_HAND)
+	opaque_chassis = FALSE
+	strict_sensor_type = TRUE
+	strict_arm_type = TRUE
+	max_damage = 400
+	mech_health = 900
+	power_use = 40
+	climb_time = 10
+	matter = list(MATERIAL_STEEL = 40, MATERIAL_PLASTEEL = 30, MATERIAL_SILVER = 5)
+	pilot_coverage = 30
+	coverage_multipliers = list(3, 1.5, 0)
+
+
+/obj/item/mech_component/chassis/walker/Initialize()
+	pilot_positions = list(
+		list(
+			"[NORTH]" = list("x" = 8,  "y" = 15),
+			"[SOUTH]" = list("x" = 8,  "y" = 20),
+			"[EAST]"  = list("x" = 0,  "y" = 16),
+			"[WEST]"  = list("x" = 16,  "y" = 16)
 		)
 	)
 	. = ..()

@@ -269,6 +269,11 @@
 	update_icon()
 
 /obj/screen/movable/exosuit/toggle/hatch/update_icon()
+	if(owner && owner.body && !(owner.body.has_hatch))
+		invisibility = 101
+		return
+	else
+		invisibility = 0
 	toggled = owner.hatch_locked
 	. = ..()
 
@@ -290,6 +295,11 @@
 	update_icon()
 
 /obj/screen/movable/exosuit/toggle/hatch_open/update_icon()
+	if(owner && owner.body && !(owner.body.has_hatch))
+		invisibility = 101
+		return
+	else
+		invisibility = 0
 	toggled = owner.hatch_closed
 	. = ..()
 	if(toggled)

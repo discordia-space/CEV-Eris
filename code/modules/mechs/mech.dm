@@ -203,7 +203,7 @@
 
 /mob/living/exosuit/examine(mob/user)
 	. = ..()
-	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
+	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin || (body && !body.has_hatch)))
 		to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
 	if(body && LAZYLEN(body.pilot_positions))
 		to_chat(user, "It can seat [body.pilot_positions.len] pilot\s total.")
@@ -248,7 +248,7 @@
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		if(ispath(body) || !hatch_closed || body.pilot_coverage < 100)
+		if(ispath(body) || !hatch_closed || (body && !body.has_hatch) || body.pilot_coverage < 100)
 			var/turf/current_loc = get_turf(src)
 			return current_loc.return_air()
 		if(body.pilot_coverage >= 100 && hatch_closed)
