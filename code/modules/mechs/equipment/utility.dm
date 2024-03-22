@@ -892,9 +892,9 @@
 	update_icon()
 
 /obj/item/mech_equipment/forklifting_system/uninstalled()
-	. = ..()
 	if(currentlyLifting)
 		ejectLifting(get_turf(owner))
+	. = ..()
 
 
 /obj/structure/forklift_platform

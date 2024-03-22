@@ -10,12 +10,17 @@
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	var/mech_turn_sound = 'sound/mechs/Mech_Rotation.ogg'
 	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
-	var/can_strafe = TRUE
+	var/can_strafe = MECH_STRAFING_OMNI
 	var/can_climb = TRUE
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)
 	. = ..()
+
+/obj/item/mech_component/propulsion/examine(mob/user)
+	. = ..()
+	if(can_strafe != MECH_STRAFING_NONE)
+		to_chat(user, SPAN_NOTICE(can_strafe == MECH_STRAFING_BACK ? "Can only strafe foward and backwards" : "Can strafe in all directions."))
 
 /obj/item/mech_component/propulsion/show_missing_parts(var/mob/user)
 	if(!motivator)
@@ -42,12 +47,22 @@
 
 /obj/item/mech_component/propulsion/proc/can_move_on(var/turf/location, var/turf/target_loc)
 	if(!location) //Unsure on how that'd even work
-		return 0
+		return FALSE
 	if(!istype(location))
-		return 1 // Inside something, assume you can get out.
+		return TRUE // Inside something, assume you can get out.
 	if(!istype(target_loc))
-		return 0 // What are you even doing.
-	return 1
+		return FALSE // What are you even doing.
+	if(ismech(loc))
+		var/mob/living/exosuit/ownerMech = loc
+		var/moveDir = get_dir(location, target_loc)
+		if(ownerMech.strafing)
+			switch(can_strafe)
+				if(MECH_STRAFING_NONE)
+					if(moveDir != ownerMech.dir) return FALSE
+				if(MECH_STRAFING_BACK)
+					if(!(moveDir == ownerMech.dir || moveDir == reverse_dir[ownerMech.dir])) return FALSE
+				//if(MECH_STRAFING_OMNI)
+	return TRUE
 
 /obj/item/mech_component/propulsion/return_diagnostics(mob/user)
 	..()
@@ -117,7 +132,7 @@
 	max_damage = 60
 	stomp_damage = 15
 	power_use = 10
-	can_strafe = FALSE
+	can_strafe = MECH_STRAFING_BACK
 	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 16)
 	can_climb = FALSE
 	mech_turn_sound = 'sound/mechs/mechmove04.ogg'

@@ -191,15 +191,16 @@
 	if (user.buckled)
 		to_chat(user, SPAN_WARNING("You cannot enter a mech while buckled, unbuckle first."))
 		return FALSE
-	if(hatch_locked)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
-		return FALSE
-	if(hatch_closed)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is closed."))
-		return FALSE
-	if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
-		to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
-		return FALSE
+	if(body && body.has_hatch)
+		if(hatch_locked)
+			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			return FALSE
+		if(hatch_closed)
+			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is closed."))
+			return FALSE
+		if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
+			to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
+			return FALSE
 	return TRUE
 
 /mob/living/exosuit/proc/enter(var/mob/user)
@@ -217,7 +218,7 @@
 	sync_access()
 	playsound(get_turf(src), 'sound/machines/windowdoor.ogg', 50, 1)
 	user.playsound_local(null, 'sound/mechs/nominal.ogg', 50)
-	LAZYDISTINCTADD(user.additional_vision_handlers, src)
+	//LAZYDISTINCTADD(user.additional_vision_handlers, src)
 	update_pilots()
 	return TRUE
 
@@ -230,20 +231,23 @@
 
 /mob/living/exosuit/proc/eject(mob/living/user, silent)
 	if(!user || !(user in src.contents)) return
-	if(hatch_closed)
-		if(hatch_locked)
-			if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
-			return
-		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
-		if(H && istype(H))
-			H.toggled()
-		if(!silent)
-			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+	if(body && body.has_hatch)
+		if(hatch_closed)
+			if(hatch_locked)
+				if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+				return
+			var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+			if(H && istype(H))
+				H.toggled()
+			if(!silent)
+				to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+		else if(!silent)
+			to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 	else if(!silent)
 		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
 	user.forceMove(get_turf(src))
-	LAZYREMOVE(user.additional_vision_handlers, src)
+	//LAZYREMOVE(user.additional_vision_handlers, src)
 	if(user in pilots)
 		a_intent = I_HURT
 		LAZYREMOVE(pilots, user)
@@ -344,36 +348,41 @@
 			chosen.attackby(I, user)
 		return
 
-	/// Welding generator handling
+	/// REAGENT INSERTION HANDLING
 	/// Double negation to turn into 0/1 format since if its more than 1 it doesn't count as true.
 	if(I.is_drainable())
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its internal generator!"))
+			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its equipment!"))
 			return
 		var/list/choices = list()
 		for(var/hardpoint in hardpoints)
+			/// welding fuel generator
 			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/power_generator/fueled/welding))
 				var/obj/item/mech_equipment/power_generator/fueled/welding/gen = hardpoints[hardpoint]
-				choices["[hardpoint] - [gen.fuel_amount]/[gen.fuel_max]"] = gen
-		var/obj/item/mech_equipment/power_generator/fueled/welding/chosen = null
+				choices["[hardpoint]-[gen.name] [gen.fuel_amount]/[gen.fuel_max]"] = gen
+			/// chemical sprayer
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/sprayer))
+				var/obj/item/mech_equipment/mounted_system/system = hardpoints[hardpoint]
+				var/obj/item/reagent_containers/spray/chemsprayer/sprayer = system.holding
+				choices["[hardpoint]-[system.name] [sprayer.reagents.total_volume]/[sprayer.reagents.maximum_volume]"] = system
+		var/obj/item/mech_equipment/chosen = null
 		if(!length(choices))
 			return
 		if(length(choices)==1)
 			chosen = choices[choices[1]]
 		else
-			var/chosenGen = input("Select generator to refill") as null|anything in choices
-			if(chosenGen)
-				chosen = choices[chosenGen]
+			var/chosenAcceptor = input("Select equipment to refill") as null|anything in choices
+			if(chosenAcceptor)
+				chosen = choices[chosenAcceptor]
 		if(chosen)
 			chosen.attackby(I, user)
 		return
 
 
-	else if(user.a_intent != I_HELP)
-		if(attack_tool(I, user))
-			return
+	else if(attack_tool(I, user))
+		return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
-	else if(user.a_intent != I_HELP && !hatch_closed && get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
+	else if(user.a_intent != I_HELP && (!hatch_closed || (body && !body.has_hatch) )&& get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
 		var/mob/living/target = get_mob()
 		target.attackby(I, user)
 		return
@@ -472,22 +481,31 @@
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_PULSING)
-			if(hardpoints_locked)
-				to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+			if(user.a_intent == I_HELP)
+				if(hardpoints_locked)
+					to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
+					return TRUE
+
+				var/list/parts = list()
+				for(var/hardpoint in hardpoints)
+					if(hardpoints[hardpoint])
+						parts += hardpoint
+
+				if(!length(parts))
+					to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+					return TRUE
+
+				var/to_remove = input("Which component would you like to remove") as null|anything in parts
+				remove_system(to_remove, user)
 				return TRUE
+			else
+				if(hatch_locked)
+					to_chat(user, SPAN_WARNING("You start hacking \the [src]'s hatch locking mechanisms."))
+					if(do_after(user, 20 SECONDS, src, TRUE))
+						to_chat(user, SPAN_NOTICE("You hack [src]'s hatch locking. It is now unlocked."))
+						toggle_hatch_lock()
+						return TRUE
 
-			var/list/parts = list()
-			for(var/hardpoint in hardpoints)
-				if(hardpoints[hardpoint])
-					parts += hardpoint
-
-			if(!length(parts))
-				to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
-				return TRUE
-
-			var/to_remove = input("Which component would you like to remove") as null|anything in parts
-			remove_system(to_remove, user)
-			return TRUE
 
 		if(QUALITY_BOLT_TURNING)
 			if(!maintenance_protocols)
@@ -606,7 +624,7 @@
 	if(user.a_intent == I_HURT)
 		if(!LAZYLEN(pilots))
 			to_chat(user, SPAN_WARNING("There is nobody inside \the [src]."))
-		else if(!hatch_closed)
+		else if(!hatch_closed || (body && !body.has_hatch))
 			var/mob/pilot = pick(pilots)
 			user.visible_message(SPAN_DANGER("\The [user] is trying to pull \the [pilot] out of \the [src]!"))
 			if(do_after(user, 30) && user.Adjacent(src) && (pilot in pilots) && !hatch_closed)
@@ -614,22 +632,23 @@
 				eject(pilot, silent=1)
 		return
 
-	// Otherwise toggle the hatch.
-	if(hatch_locked)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
-		playsound(src,'sound/mechs/doorlocked.ogg', 50, 1)
-		return
-	if(body && body.total_damage >= body.max_damage)
-		to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
-		return
+	if(body && body.has_hatch)
+		// Otherwise toggle the hatch.
+		if(hatch_locked)
+			to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			playsound(src,'sound/mechs/doorlocked.ogg', 50, 1)
+			return
+		if(body && body.total_damage >= body.max_damage)
+			to_chat(user, SPAN_NOTICE("The chest of \the [src] is far too damaged. The hatch hinges are stuck!"))
+			return
 
-	hatch_closed = !hatch_closed
-	playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
-	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
-	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
-	if(H && istype(H)) H.update_icon()
-	update_icon()
-	return
+		hatch_closed = !hatch_closed
+		playsound(src, 'sound/machines/Custom_closetopen.ogg', 50, 1)
+		to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
+		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+		if(H && istype(H)) H.update_icon()
+		update_icon()
+		return
 
 /mob/living/exosuit/proc/attack_self(mob/user)
 	return visible_message("\The [src] pokes itself.")

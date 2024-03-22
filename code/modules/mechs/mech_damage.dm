@@ -9,6 +9,23 @@
 	if(!(effecttype in list(STUTTER, EYE_BLUR, DROWSY, STUN, WEAKEN)))
 		. = ..()
 
+/mob/living/exosuit/proc/getPilotCoverage(direction)
+	if(!body)
+		return 0
+	if(!length(body.coverage_multipliers))
+		return body.pilot_coverage
+	else
+		if(direction & dir)
+			// behind
+			return body.pilot_coverage * body.coverage_multipliers[3]
+		else if(direction & reverse_dir[dir])
+			// front
+			return body.pilot_coverage * body.coverage_multipliers[1]
+		else
+			// sides
+			return body.pilot_coverage * body.coverage_multipliers[2]
+
+
 /mob/living/exosuit/attack_generic(mob/user, var/damage, var/attack_message)
 
 	if(!damage || !istype(user))
@@ -49,7 +66,7 @@
 		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
 	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
-	var/roll = !prob(body.pilot_coverage)
+	var/roll = !prob(getPilotCoverage(get_dir(user,src)))
 	var/list/damages = list(BRUTE = I.force)
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	if(gen)
@@ -59,7 +76,7 @@
 		visible_message("\The [src]'s shields block the blow!", 1, 2 ,5)
 		return
 
-	if(LAZYLEN(pilots) && ((!hatch_closed && (get_dir(user,src) & reverse_dir[dir])) || roll))
+	if(LAZYLEN(pilots) && ((!hatch_closed * body.has_hatch) && (get_dir(user,src) & reverse_dir[dir])) || roll)
 		var/mob/living/pilot = pick(pilots)
 		var/turf/location = get_turf(src)
 		location.visible_message(SPAN_DANGER("\The [user] attacks the pilot inside of \the [src]."),1,5)
@@ -146,7 +163,7 @@
 		if(gen)
 			damages = gen.absorbDamages(damages)
 		if(def_zone == body)
-			if(!hatch_closed || !prob(body.pilot_coverage))
+			if((!hatch_closed * body.has_hatch) || !getPilotCoverage(hit_dir))
 				var/mob/living/pilot = get_mob()
 				if(pilot)
 					var/result = pilot.bullet_act(P, ran_zone())

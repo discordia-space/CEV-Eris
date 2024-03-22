@@ -554,10 +554,11 @@ var/global/list/items_blood_overlay_by_type = list()
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
+mech zooming.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(tileoffset = 14,viewsize = 9, stayzoomed = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-	if(!usr)
+/obj/item/proc/zoom(mob/living/carbon/targetMob,tileoffset = 14,viewsize = 9, stayzoomed = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	if(!targetMob.client)
 		return
 
 	var/devicename
@@ -569,56 +570,57 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	var/cannotzoom
 
-	if(usr.stat || !(ishuman(usr)))
-		to_chat(usr, "You are unable to focus through the [devicename]")
+	if(targetMob.stat || !(ishuman(targetMob)))
+		to_chat(targetMob, "You are unable to focus through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
-		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
+		to_chat(targetMob, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
-	else if(!zoom && usr.get_active_hand() != src)
-		to_chat(usr, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
+	else if(!zoom && targetMob.get_active_hand() != src && !ismech(targetMob.loc))
+		to_chat(targetMob, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
 		cannotzoom = 1
 
 	if((!zoom && !cannotzoom)|stayzoomed)
 		//if(usr.hud_used.hud_shown)
 			//usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		usr.client.view = viewsize
-		zoom = 1
+		targetMob.client.view = viewsize
+		zoom = TRUE
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
-
-		switch(usr.dir)
+		if(ismech(targetMob.loc))
+			targetMob.dir = targetMob.loc.dir
+		switch(targetMob.dir)
 			if(NORTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
+				targetMob.client.pixel_x = 0
+				targetMob.client.pixel_y = viewoffset
 			if(SOUTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
+				targetMob.client.pixel_x = 0
+				targetMob.client.pixel_y = -viewoffset
 			if(EAST)
-				usr.client.pixel_x = viewoffset
-				usr.client.pixel_y = 0
+				targetMob.client.pixel_x = viewoffset
+				targetMob.client.pixel_y = 0
 			if(WEST)
-				usr.client.pixel_x = -viewoffset
-				usr.client.pixel_y = 0
+				targetMob.client.pixel_x = -viewoffset
+				targetMob.client.pixel_y = 0
 		if(!stayzoomed)
-			usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
-		var/mob/living/carbon/human/H = usr
+			targetMob.visible_message("[targetMob] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
+		var/mob/living/carbon/human/H = targetMob
 		H.using_scope = src
 	else
-		usr.client.view = world.view
+		targetMob.client.view = world.view
 		//if(!usr.hud_used.hud_shown)
 			//usr.toggle_zoom_hud()
-		zoom = 0
+		zoom = FALSE
 
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
+		targetMob.client.pixel_x = 0
+		targetMob.client.pixel_y = 0
 
 		if(!cannotzoom)
-			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
-		var/mob/living/carbon/human/H = usr
+			targetMob.visible_message("[zoomdevicename ? "[targetMob] looks up from the [name]" : "[targetMob] lowers the [name]"].")
+		var/mob/living/carbon/human/H = targetMob
 		H.using_scope = null
-	usr.parallax.update()
+	targetMob.parallax.update()
 	return
 
 /obj/item/proc/pwr_drain()

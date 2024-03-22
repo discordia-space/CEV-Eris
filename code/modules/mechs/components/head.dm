@@ -37,7 +37,7 @@
 /obj/item/mech_component/sensors/proc/get_sight(powered)
 	var/flags = 0
 	var/mob/living/exosuit/mech = loc
-	if(total_damage >= 0.8 * max_damage || (!powered && mech.hatch_closed))
+	if(total_damage >= 0.8 * max_damage || (!powered && mech.hatch_closed && (mech.body && mech.body.has_hatch)))
 		flags |= BLIND
 	else if(active_sensors)
 		flags |= vision_flags

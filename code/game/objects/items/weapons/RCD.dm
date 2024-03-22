@@ -236,14 +236,24 @@
 
 /obj/item/rcd/mounted/useResource(var/amount, mob/user, var/checkOnly)
 	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
+	/// RIG MOUNTED
 	if(istype(loc,/obj/item/rig_module))
 		var/obj/item/rig_module/module = loc
 		if(module.holder && module.holder.cell)
 			if(module.holder.cell.charge >= cost)
 				if (!checkOnly)
 					module.holder.cell.use(cost)
-				return 1
-	return 0
+				return TRUE
+	/// MECH MOUNTED
+	if(istype(loc, /obj/item/mech_equipment/mounted_system/rcd))
+		var/mob/living/exosuit/mech = loc.loc
+		if(!mech || !istype(mech))
+			return FALSE
+		var/obj/item/cell/power = mech.get_cell()
+		if(power && power.charge >= cost)
+			power.use(cost)
+			return TRUE
+	return FALSE
 
 /obj/item/rcd/mounted/attackby()
 	return

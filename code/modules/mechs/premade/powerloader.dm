@@ -62,3 +62,22 @@
 	installed_systems = list(
 		HARDPOINT_FRONT = /obj/item/mech_equipment/forklifting_system
 	)
+
+/mob/living/exosuit/premade/walker
+	name = "OR \"Walker\""
+	desc = "A walker exosuit. Is heavily armoured but trades this off for only covering the pilot from frontal attacks."
+	rarity_value = 50
+	material = MATERIAL_PLASTEEL
+	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
+	body = /obj/item/mech_component/chassis/walker
+	legs = /obj/item/mech_component/propulsion/heavy
+	arms = null
+	head = null
+	installed_software_boards = list(
+		/obj/item/electronics/circuitboard/exosystem/weapons
+	)
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/ballistic/shotgun,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/baton
+	)
+

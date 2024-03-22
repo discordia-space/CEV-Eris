@@ -1348,7 +1348,7 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	
+
 	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
 	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 

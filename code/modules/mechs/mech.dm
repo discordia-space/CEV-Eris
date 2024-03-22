@@ -179,7 +179,9 @@
 	for(var/mob/living/Pilot in pilots)
 		eject(Pilot)
 	pilots = null
-
+	var/obj/item/mech_equipment/forklifting_system/lifter = locate() in contents
+	if(lifter)
+		lifter.ejectLifting(get_turf(src))
 	for(var/thing in HUDneed)
 		qdel(HUDneed[thing])
 	HUDneed.Cut()
@@ -203,7 +205,7 @@
 
 /mob/living/exosuit/examine(mob/user)
 	. = ..()
-	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
+	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin || (body && !body.has_hatch)))
 		to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
 	if(body && LAZYLEN(body.pilot_positions))
 		to_chat(user, "It can seat [body.pilot_positions.len] pilot\s total.")
@@ -225,6 +227,7 @@
 	to_chat(user, "It menaces with reinforcements of [material].")
 	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
 	to_chat(user, SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button."))
+	to_chat(user, SPAN_NOTICE("A multitool can be used on HELP intent to remove module from hardpoints , or on any other intent to start unlocking the mech through hacking."))
 	if(body.storage_compartment)
 		to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character."))
 	if(body && body.cell_charge_rate)
@@ -247,7 +250,7 @@
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		if(ispath(body) || !hatch_closed || body.pilot_coverage < 100)
+		if(ispath(body) || !hatch_closed || (body && !body.has_hatch) || body.pilot_coverage < 100)
 			var/turf/current_loc = get_turf(src)
 			return current_loc.return_air()
 		if(body.pilot_coverage >= 100 && hatch_closed)

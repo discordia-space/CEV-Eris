@@ -211,9 +211,8 @@
 			sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 			see_in_dark = initial(see_in_dark)
 			see_invisible = initial(see_invisible)
-	var/list/vision = get_accumulated_vision_handlers()
-	set_sight(sight | vision[1])
-	set_see_invisible(max(vision[2], see_invisible))
+	set_sight(sight)
+	set_see_invisible(see_invisible)
 
 /mob/living/proc/update_dead_sight()
 	sight |= SEE_TURFS

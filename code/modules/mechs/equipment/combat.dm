@@ -760,7 +760,7 @@
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech
 	name = 	"SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Slightly inaccurate, but packs quite a punch."
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires .30 , full auto. Slightly inaccurate, but packs quite a punch."
 	restrict_safety = TRUE
 	safety = FALSE
 	twohanded = FALSE
@@ -1033,6 +1033,108 @@
 
 		if(length(targets))
 			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 1)
+
+/obj/item/mech_equipment/mounted_system/baton
+	name = "\improper IHS \"Compliance\" baton "
+	desc = "An exosuit-mounted baton. Double the zap for 3 times the size."
+	icon_state = "mech_baton_off"
+	holding_type = /obj/item/melee/baton/mounted
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
+	origin_tech = list(TECH_COMBAT = 4)
+	equipment_flags = EQUIPFLAG_PRETICK
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 60
+
+/obj/item/mech_equipment/mounted_system/baton/pretick()
+	if(owner && !(owner.power == MECH_POWER_ON))
+		var/obj/item/melee/baton/mounted/batong = holding
+		batong.set_status(FALSE)
+		update_icon()
+		owner.update_icon()
+
+/obj/item/mech_equipment/mounted_system/baton/update_icon(hardpoint)
+	. = ..()
+	if(owner)
+		var/obj/item/melee/baton/mounted/batong = holding
+		icon_state = "mech_baton[batong.status ? "" : "_off"]"
+
+
+/obj/item/mech_equipment/mounted_system/baton/attack_self(mob/user)
+	var/obj/item/melee/baton/mounted/batong = holding
+	if(!owner)
+		return
+	if(batong.status == FALSE)
+		if(owner.power == MECH_POWER_ON)
+			to_chat(user, "You toggle \the [src] on.")
+			batong.set_status(TRUE)
+		else
+			to_chat(user, "You try to power [src], but nothing happens.")
+	else
+		to_chat(user, "You toggle \the [src] off.")
+		batong.set_status(FALSE)
+	update_icon()
+	owner.update_icon()
+
+
+/obj/item/mech_equipment/mounted_system/sprayer
+	name = "ML \"Washer\" sprayer"
+	desc = "A upsized chemical sprayer for mechs"
+	icon_state = "sprayer"
+	holding_type = /obj/item/reagent_containers/spray/chemsprayer
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 10, MATERIAL_SILVER = 3, MATERIAL_GLASS = 10) // more expensive
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 90
+
+/obj/item/mech_equipment/mounted_system/sprayer/attackby(obj/item/I, mob/living/user, params)
+	if(I.is_drainable() && I.reagents.total_volume && user.a_intent != I_GRAB)
+		to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal chemical storage."))
+		I.reagents.trans_to_holder(holding.reagents, 10, 1, FALSE)
+	else if(I.reagents && I.reagent_flags & REFILLABLE && user.a_intent == I_GRAB)
+		to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
+		holding.reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
+	else
+		to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
+
+/obj/item/mech_equipment/mounted_system/sprayer/afterattack(atom/target, mob/living/user, inrange, params)
+	if(!ismech(user.loc))
+		return
+	var/obj/item/reagent_containers/spray/chemsprayer/sprayer = holding
+	sprayer.Spray_at(target, user, )
+
+	playsound(get_turf(src), 'sound/effects/spray2.ogg', 50, 1, -6)
+
+	user.setClickCooldown(4)
+
+	if(sprayer.reagents.has_reagent("sacid"))
+		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src] mounted on a mech..")
+		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
+	if(sprayer.reagents.has_reagent("pacid"))
+		message_admins("[key_name_admin(user)] fired Polyacid from \a [src] mounted on a mech.")
+		log_game("[key_name(user)] fired Polyacid from \a [src].")
+	if(sprayer.reagents.has_reagent("lube"))
+		message_admins("[key_name_admin(user)] fired Space lube from \a [src] mounted on a mech.")
+		log_game("[key_name(user)] fired Space lube from \a [src].")
+	return
+
+
+
+/obj/item/mech_equipment/mounted_system/binoculars
+	name = "TM \"32K\" binoculars"
+	desc = "A shoulder-mounted mech binocular system. "
+	icon_state = "mech_binoculars"
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	holding_type = /obj/item/device/binoculars/mech
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 50
+
+
 
 
 
