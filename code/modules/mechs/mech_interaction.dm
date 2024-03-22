@@ -348,26 +348,32 @@
 			chosen.attackby(I, user)
 		return
 
-	/// Welding generator handling
+	/// REAGENT INSERTION HANDLING
 	/// Double negation to turn into 0/1 format since if its more than 1 it doesn't count as true.
 	if(I.is_drainable())
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its internal generator!"))
+			to_chat(user, SPAN_NOTICE("\The [src] needs to be in maintenance mode for you to refill its equipment!"))
 			return
 		var/list/choices = list()
 		for(var/hardpoint in hardpoints)
+			/// welding fuel generator
 			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/power_generator/fueled/welding))
 				var/obj/item/mech_equipment/power_generator/fueled/welding/gen = hardpoints[hardpoint]
-				choices["[hardpoint] - [gen.fuel_amount]/[gen.fuel_max]"] = gen
-		var/obj/item/mech_equipment/power_generator/fueled/welding/chosen = null
+				choices["[hardpoint]-[gen.name] [gen.fuel_amount]/[gen.fuel_max]"] = gen
+			/// chemical sprayer
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/sprayer))
+				var/obj/item/mech_equipment/mounted_system/system = hardpoints[hardpoint]
+				var/obj/item/reagent_containers/spray/chemsprayer/sprayer = system.holding
+				choices["[hardpoint]-[system.name] [sprayer.reagents.total_volume]/[sprayer.reagents.maximum_volume]"] = system
+		var/obj/item/mech_equipment/chosen = null
 		if(!length(choices))
 			return
 		if(length(choices)==1)
 			chosen = choices[choices[1]]
 		else
-			var/chosenGen = input("Select generator to refill") as null|anything in choices
-			if(chosenGen)
-				chosen = choices[chosenGen]
+			var/chosenAcceptor = input("Select equipment to refill") as null|anything in choices
+			if(chosenAcceptor)
+				chosen = choices[chosenAcceptor]
 		if(chosen)
 			chosen.attackby(I, user)
 		return

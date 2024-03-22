@@ -1102,6 +1102,8 @@
 		to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
 
 /obj/item/mech_equipment/mounted_system/sprayer/afterattack(atom/target, mob/living/user, inrange, params)
+	if(!ismech(user.loc))
+		return
 	var/obj/item/reagent_containers/spray/chemsprayer/sprayer = holding
 	sprayer.Spray_at(target, user, )
 
