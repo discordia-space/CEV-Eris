@@ -1043,7 +1043,9 @@
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
 	origin_tech = list(TECH_COMBAT = 4)
 	equipment_flags = EQUIPFLAG_PRETICK
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 60
 
 /obj/item/mech_equipment/mounted_system/baton/pretick()
 	if(owner && !(owner.power == MECH_POWER_ON))
@@ -1108,13 +1110,13 @@
 	user.setClickCooldown(4)
 
 	if(sprayer.reagents.has_reagent("sacid"))
-		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
+		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src] mounted on a mech..")
 		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
 	if(sprayer.reagents.has_reagent("pacid"))
-		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
+		message_admins("[key_name_admin(user)] fired Polyacid from \a [src] mounted on a mech.")
 		log_game("[key_name(user)] fired Polyacid from \a [src].")
 	if(sprayer.reagents.has_reagent("lube"))
-		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
+		message_admins("[key_name_admin(user)] fired Space lube from \a [src] mounted on a mech.")
 		log_game("[key_name(user)] fired Space lube from \a [src].")
 	return
 
@@ -1126,6 +1128,9 @@
 	icon_state = "mech_binoculars"
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	holding_type = /obj/item/device/binoculars/mech
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 50
 
 
 

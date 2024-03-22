@@ -152,6 +152,7 @@
 /obj/item/melee/baton/mounted
 	name = "IHS \"Compliance\" baton"
 	desc = "A mech sized baton for mech-sized problems."
+	agonyforce = 80
 	suitable_cell = FALSE
 	starting_cell = FALSE
 	spawn_blacklisted = TRUE
