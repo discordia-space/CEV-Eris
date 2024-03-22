@@ -46,6 +46,8 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 
+	can_be_connected_to_wall = FALSE
+
 /obj/machinery/door/firedoor/New()
 	..()
 

@@ -37,7 +37,7 @@
 /area/template_noop)
 "h" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},

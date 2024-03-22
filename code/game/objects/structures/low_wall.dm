@@ -363,6 +363,14 @@
 			wall_dirs |= (d)
 			connection_dirs |= d
 
+	// doors connection
+	for(var/obj/machinery/door/D in orange(src,1))
+		if(!D.can_be_connected_to_wall)
+			continue
+		D.on_door_direction_update_trigger()
+		var/D_dir = get_dir(src,D)
+		connection_dirs |= D_dir
+
 	connections = dirs_to_corner_states(connection_dirs)
 	wall_connections = dirs_to_corner_states(wall_dirs)
 

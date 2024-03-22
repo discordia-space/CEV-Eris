@@ -766,6 +766,7 @@
 #include "code\game\machinery\doors\brigdoors.dm"
 #include "code\game\machinery\doors\checkForMultipleDoors.dm"
 #include "code\game\machinery\doors\door.dm"
+#include "code\game\machinery\doors\door_visual_object.dm"
 #include "code\game\machinery\doors\firedoor.dm"
 #include "code\game\machinery\doors\firedoor_assembly.dm"
 #include "code\game\machinery\doors\holy_door.dm"

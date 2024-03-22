@@ -212,7 +212,7 @@
 /turf/simulated/floor/plating/airless,
 /area/template_noop)
 "bW" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -237,7 +237,7 @@
 /area/template_noop)
 "ci" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Atmospherics Maintenance";
 	req_access = list(24)
 	},

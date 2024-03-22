@@ -111,7 +111,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "dj" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -152,7 +152,7 @@
 /area/outpost/pulsar/maintenance)
 "dX" = (
 /obj/structure/catwalk,
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -296,7 +296,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "ks" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -393,7 +393,7 @@
 /turf/simulated/floor/wood,
 /area/outpost/pulsar)
 "pc" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	icon_state = "door_locked";
 	locked = 1;
 	name = "Engineering Maintenance";
@@ -572,7 +572,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/outpost/pulsar)
 "wJ" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -658,7 +658,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "yj" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -722,7 +722,7 @@
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "Af" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -850,7 +850,7 @@
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "EK" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -1133,7 +1133,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "LP" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -1238,7 +1238,7 @@
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "PF" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -1298,7 +1298,7 @@
 /turf/simulated/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Sk" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
@@ -1374,7 +1374,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "Wj" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},

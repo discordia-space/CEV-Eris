@@ -366,3 +366,5 @@
 #define TTS_SEED_DEFAULT_FEMALE "Female_1"
 #define TTS_SEED_DEFAULT_MALE "Male_1"
 #define TTS_SEED_ANNOUNCER "Robot_2"
+
+#define DOOR_MISC_ICON 'icons/obj/doors/door_misc.dmi'
