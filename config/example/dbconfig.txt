@@ -15,3 +15,10 @@ LOGIN mylogin
 
 # Password used to access the database
 PASSWORD mypassword
+
+# Second database, external bots can only access it
+DONATION_ADDRESS localhost
+DONATION_PORT 3306
+DONATION_DATABASE donations
+DONATION_LOGIN mylogin
+DONATION_PASSWORD mypassword

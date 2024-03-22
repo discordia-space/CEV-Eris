@@ -5,6 +5,7 @@
 
 	//spawn_values
 	price_tag = 0
+	var/iriska_cost = 0
 	//spawn_tags = SPAWN_TAG_ITEM
 	rarity_value = 10
 	spawn_frequency = 10
