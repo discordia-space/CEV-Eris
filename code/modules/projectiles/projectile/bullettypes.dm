@@ -360,3 +360,8 @@ There are important things regarding this file:
     if(istype(target))
         var/obj/item/ammo_casing/crossbow/bolt/R = new(null)
         target.embed(R, def_zone)
+
+/obj/item/projectile/bullet/bolt/mech
+	name = "large bolt"
+	damage_types = list(BRUTE = 34)
+	matter = list(MATERIAL_STEEL = 5)

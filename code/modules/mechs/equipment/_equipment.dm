@@ -22,6 +22,9 @@
 	var/active = FALSE
 	var/equipment_flags = 0
 
+/obj/item/mech_equipment/proc/get_overlay_state()
+	return icon_state
+
 /obj/item/mech_equipment/proc/activate()
 	active = TRUE
 
