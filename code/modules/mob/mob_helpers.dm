@@ -619,6 +619,7 @@ proc/is_blind(A)
 	if(max_w_class > ITEM_SIZE_TINY)
 		return max_w_class/(ITEM_SIZE_TITANIC)
 
+/*
 /mob/proc/get_accumulated_vision_handlers()
 	var/result[2]
 	var/asight = 0
@@ -631,6 +632,7 @@ proc/is_blind(A)
 	result[2] = ainvis
 
 	return result
+*/
 
 /mob/proc/set_faction(target_faction)
 	faction = target_faction ? target_faction : initial(faction)

@@ -179,7 +179,9 @@
 	for(var/mob/living/Pilot in pilots)
 		eject(Pilot)
 	pilots = null
-
+	var/obj/item/mech_equipment/forklifting_system/lifter = locate() in contents
+	if(lifter)
+		lifter.ejectLifting(get_turf(src))
 	for(var/thing in HUDneed)
 		qdel(HUDneed[thing])
 	HUDneed.Cut()

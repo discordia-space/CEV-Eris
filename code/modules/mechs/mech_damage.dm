@@ -76,7 +76,7 @@
 		visible_message("\The [src]'s shields block the blow!", 1, 2 ,5)
 		return
 
-	if(LAZYLEN(pilots) && ((!hatch_closed && (get_dir(user,src) & reverse_dir[dir])) || roll))
+	if(LAZYLEN(pilots) && ((!hatch_closed * body.has_hatch) && (get_dir(user,src) & reverse_dir[dir])) || roll)
 		var/mob/living/pilot = pick(pilots)
 		var/turf/location = get_turf(src)
 		location.visible_message(SPAN_DANGER("\The [user] attacks the pilot inside of \the [src]."),1,5)
@@ -163,7 +163,7 @@
 		if(gen)
 			damages = gen.absorbDamages(damages)
 		if(def_zone == body)
-			if(!hatch_closed || !getPilotCoverage(hit_dir))
+			if((!hatch_closed * body.has_hatch) || !getPilotCoverage(hit_dir))
 				var/mob/living/pilot = get_mob()
 				if(pilot)
 					var/result = pilot.bullet_act(P, ran_zone())

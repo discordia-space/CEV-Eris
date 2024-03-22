@@ -1125,7 +1125,7 @@
 	desc = "A shoulder-mounted mech binocular system. "
 	icon_state = "mech_binoculars"
 	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
-	holding_type = /obj/item/device/binoculars
+	holding_type = /obj/item/device/binoculars/mech
 
 
 
