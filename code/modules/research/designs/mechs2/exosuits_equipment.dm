@@ -69,7 +69,7 @@
 
 /datum/design/research/item/exosuit/weapon/stunbaton
 	name = "mech-mounted stunbaton"
-	build_path = /obj/item/mech_equipment/mounted_system/stunbaton
+	build_path = /obj/item/mech_equipment/mounted_system/baton
 
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp
