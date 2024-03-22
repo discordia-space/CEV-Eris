@@ -15,21 +15,7 @@
 
 /obj/structure/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
-		var/obj/item/assembly/shock_kit/SK = W
-		if(!SK.status)
-			to_chat(user, SPAN_NOTICE("\The [SK] is not ready to be attached!"))
-			return
-		user.drop_item()
-		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		E.set_dir(dir)
-		E.part = SK
-		SK.loc = E
-		SK.master = E
-		qdel(src)
-
-	else if(istype(W, /obj/item/device/spy_bug))
+	if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
 		W.loc = get_turf(src)
 

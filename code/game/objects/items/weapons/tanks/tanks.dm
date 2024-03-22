@@ -89,6 +89,9 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "cold"
 		to_chat(user, SPAN_NOTICE("\The [src] feels [descriptive]."))
 
+/obj/item/assembly
+	bad_type = /obj/item/assembly
+
 /obj/item/tank/attackby(obj/item/W, mob/living/user)
 	..()
 	if (istype(src.loc, /obj/item/assembly))
