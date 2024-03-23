@@ -310,7 +310,7 @@
 
 /obj/item/storage/box/whitephos_rounds
 	name = "box of white phosphorous rounds"
-	desc = "A box containing 6 shite phosphorous rounds, designed to be fired from grenade launchers."
+	desc = "A box containing 6 white phosphorous rounds, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
