@@ -94,7 +94,7 @@
 	shielding = 10
 
 	front_mult = 1.2
-	rear_mult = 0.7
+	rear_mult = 0.8
 
 /obj/item/mech_component/manipulators/heavy
 	name = "heavy arms"
@@ -110,4 +110,4 @@
 	shielding = 15
 
 	front_mult = 1.2
-	rear_mult = 0.7
+	rear_mult = 0.8

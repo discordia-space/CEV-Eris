@@ -71,7 +71,7 @@
 	armor = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
 	shielding = 5
 
-	front_mult = 1.3
+	front_mult = 1.2
 	rear_mult = 0.8
 
 /obj/item/mech_component/propulsion/light
@@ -141,6 +141,4 @@
 	can_climb = FALSE
 	mech_turn_sound = 'sound/mechs/mechmove04.ogg'
 	mech_step_sound = 'sound/mechs/engine.ogg'
-	armor = list(melee = 16, bullet = 8, energy = 2, bomb = 40, bio = 100, rad = 0)
-
-	side_mult = 1.1
+	armor = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 0)

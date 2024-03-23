@@ -90,7 +90,6 @@
 	power_use = 0
 	armor = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
 	shielding = 5
-	front_mult = 0.9
 
 /obj/item/mech_component/sensors/light
 	name = "light sensors"
@@ -123,7 +122,7 @@
 	armor = list(melee = 26, bullet = 22, energy = 16, bomb = 100, bio = 100, rad = 100)
 	shielding = 10
 
-	front_mult = 0.7
+	front_mult = 0.75
 
 /obj/item/mech_component/sensors/heavy
 	name = "heavy sensors"

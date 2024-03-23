@@ -207,7 +207,7 @@
 	climb_time = 7 // Quickest entry because it's unsealed
 	armor = list(melee = 24, bullet = 10, energy = 4, bomb = 60, bio = 100, rad = 0)
 	shielding = 5
-	rear_mult = 1.1
+	rear_mult = 1.2
 
 /obj/item/mech_component/chassis/cheap/Initialize()
 	pilot_positions = list(
