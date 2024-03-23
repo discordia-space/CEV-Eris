@@ -488,7 +488,7 @@
 
 
 /obj/item/ammo_casing/grenade/smoke
-	name = "FS FBR \"Dalton\""
+	name = "FS SGR \"Dalton\""
 	desc = "A standard-issue Frozen Star smoke round, for hiding troop movements."
 	icon_state = "grenade"
 	projectile_type = /obj/item/projectile/bullet/grenade/smoke
