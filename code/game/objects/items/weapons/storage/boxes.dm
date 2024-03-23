@@ -346,7 +346,7 @@
 
 /obj/item/storage/box/smoke
 	name = "box of smoke grenade Shells"
-	desc = "A box containing 6 smoke grenade shells for use with a launcher."
+	desc = "A box containing 6 smoke grenade shells, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 50
