@@ -660,11 +660,11 @@
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+				if(M.eyecheck() < FLASH_PROTECTION_MAJOR)
 					M.flash(15, FALSE , FALSE , FALSE)
 
 			if(4 to 5)
-				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+				if(M.eyecheck() < FLASH_PROTECTION_MAJOR)
 					M.flash(0, FALSE , FALSE , FALSE)
 
 /datum/chemical_reaction/emp_pulse
