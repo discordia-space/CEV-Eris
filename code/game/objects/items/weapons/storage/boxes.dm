@@ -345,7 +345,7 @@
 	prespawned_content_type =  /obj/item/ammo_casing/grenade/teargas
 
 /obj/item/storage/box/smoke
-	name = "box of smoke grenade Shells"
+	name = "box of smoke grenade rounds"
 	desc = "A box containing 6 smoke grenade shells, designed to be fired from grenade launchers."
 	icon_state = "box_security"
 	illustration = "flashbang"
