@@ -417,7 +417,6 @@
 	new_character.update_eyes()
 	new_character.regenerate_icons()
 	new_character.key = key//Manually transfer the key to log them in
-	new_character.mind.active = TRUE
 	new_character.client.init_verbs()
 
 	return new_character

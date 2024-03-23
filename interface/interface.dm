@@ -65,8 +65,74 @@
 	set name = "Hotkeys Help"
 	set category = "OOC"
 
-	//if(!GLOB.hotkeys_tgui)
-	//	GLOB.hotkeys_tgui = new /datum/hotkeys_help()
+	var/static/admin = {"<font color='purple'>
+	Admin:
+	\tF5 = Aghost (admin-ghost)
+	\tF6 = player-panel
+	\tF7 = admin-pm
+	\tF8 = Invisimin
+	Admin Ghost:
+	\tShift + Ctrl + Click = View Variables
+	</font>"}
 
-	//GLOB.hotkeys_tgui.ui_interact(mob)
-	return
+	var/static/default = {"<font color='blue'>
+	Hotkey-Mode: (hotkey-mode must be on)
+	\tTAB = change focus between the chat and the game
+	\ta = left
+	\ts = down
+	\td = right
+	\tw = up
+	\tq = drop
+	\te = equip
+	\tf = block
+	\tb = resist
+	\tc = rest
+	\tShift+e = belt-equip
+	\tShift+q = suit-storage-equip
+	\tShift+b = bag-equip
+	\tr = throw
+	\tt = say
+	\t5 = emote
+	\tx = swap-hand
+	\tz = activate held object (or y)
+	\tl = toogle flashlight
+	\tj = toggle-aiming-mode
+	\tf = cycle-intents-left
+	\tg = cycle-intents-right
+	\t1 = help-intent
+	\t2 = disarm-intent
+	\t3 = grab-intent
+	\t4 = harm-intent
+	\tCtrl = drag
+	\tShift = examine
+	\tF11 = toggle fullscreen
+	</font>"}
+
+	var/static/robot = {"<font color='purple'>
+	\tTAB = change focus between the chat and the game
+	\ta = left
+	\ts = down
+	\td = right
+	\tw = up
+	\tq = unequip active module
+	\tt = say
+	\tx = cycle active modules
+	\tz = activate held object (or y)
+	\tf = cycle-intents-left
+	\tg = cycle-intents-right
+	\t1 = activate module 1
+	\t2 = activate module 2
+	\t3 = activate module 3
+	\t4 = toggle intents
+	\t5 = emote
+	\tCtrl = drag
+	\tShift = examine
+	\tF11 = toggle fullscreen
+	</font>"}
+
+	if(isrobot(mob))
+		to_chat(src, robot)
+	else
+		to_chat(src, default)
+	if(holder)
+		to_chat(src, admin)

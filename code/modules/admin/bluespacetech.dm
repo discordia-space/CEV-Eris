@@ -90,6 +90,7 @@
 		bst_post_spawn(bst)
 
 	log_admin("Bluespace Tech Spawned: X:[bst.x] Y:[bst.y] Z:[bst.z] User:[src]")
+	init_verbs()
 	return 1
 
 /client/proc/bst_post_spawn(mob/living/carbon/human/bst/bst)

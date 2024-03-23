@@ -51,7 +51,7 @@
 	var/suit_overlay_mob_only           // Set to 1 for overlay to only display on mob and not on icon
 
 	//Display fluff
-	var/interface_name = "hardsuit upgrade"
+	var/interface_name = "Hardsuit upgrade"
 	var/interface_desc = "A generic hardsuit upgrade."
 	var/engage_string = "Engage"
 	var/activate_string = "Activate"

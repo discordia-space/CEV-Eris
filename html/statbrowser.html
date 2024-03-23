@@ -518,45 +518,101 @@ function draw_status() {
 		current_tab = "Status";
 	}
 	statcontentdiv[textContentKey] = inner;
-	var table = document.createElement("table");
 	for(var i = 0; i < status_tab_parts.length; i++) {
 		var part = status_tab_parts[i];
-		if(part[3])
-		{ // There's an icon!
-			var img = document.createElement("img");
-			img.src = part[3];
-			table.appendChild(img);
-		}
-		if(part[0].trim() == "") // Nothing to see here
+
+		if(part[0] == "RIG_INTERFACE_DATA")
 		{
-			table.appendChild(document.createElement("br"));
+			var RIG_pieces = [""];
+			RIG_pieces = part[1];
+			var RIG_modules = [""];
+			RIG_modules = part[2];
+
+			for(var RIG_piece_index = 0; RIG_piece_index < RIG_pieces.length; RIG_piece_index++)
+			{
+				var RIG_piece_current = [""];
+				RIG_piece_current = RIG_pieces[RIG_piece_index];
+
+				var a = document.createElement("a");
+				a.href = "?_src_=statpanel;statpanel_ref=" + RIG_piece_current[0];
+				var img = document.createElement("img");
+				img.src = RIG_piece_current[1];
+				img.width *= 1.5;
+				img.height *= 1.5;
+				a.appendChild(img);
+				document.getElementById("statcontent").appendChild(a);
+			}
+
+			for(var RIG_module_index = 0; RIG_module_index < RIG_modules.length; RIG_module_index++)
+			{
+				var current_module = [""];
+				current_module = RIG_modules[RIG_module_index];
+
+				var module_icon = document.createElement("img");
+				module_icon.src = current_module[0]; // First entry in a module is always an image
+//				module_icon.align = "left";
+//				module_icon.vspace = "5";
+				module_icon.width *= 1.25;
+				module_icon.height *= 1.25;
+				var module_div = document.createElement("div");
+				module_div.appendChild(module_icon);
+
+				// Following entries are lists of textContent string with optional href string
+				for(var module_data_index = 1; module_data_index < current_module.length; module_data_index++)
+				{
+					var current_module_data = [""];
+					current_module_data = current_module[module_data_index];
+
+					if(current_module_data[1] != null)
+					{
+						var a = document.createElement("a");
+						a[textContentKey] = current_module_data[0];
+						a.href = "?_src_=statpanel;statpanel_ref=" + current_module_data[1];
+						module_div.appendChild(a);
+						module_div.appendChild(document.createElement("br"));
+					}
+					else
+					{
+						var div = document.createElement("div");
+						div[textContentKey] = current_module_data[0];
+						module_div.appendChild(div);
+					}
+					
+				}
+				document.getElementById("statcontent").appendChild(module_div);
+			}
+		}
+		else if(part[0] == "br")
+		{
+			document.getElementById("statcontent").appendChild(document.createElement("br"));
 		}
 		else if(part[1]) // Entry comes with a reference to something, so let's make it clickable
 		{
+			if(part[2]) // There's an icon!
+			{
+				var img = document.createElement("img");
+				img.src = part[2];
+				document.getElementById("statcontent").appendChild(img);
+			}
 			var a = document.createElement("a");
-			var br = document.createElement("br");
-			if(part[2]) { // There are some arguments to be passed along
-				a.href = "?_src_=statpanel;statpanel_ref=" + part[1] + part[2];
-			}
-			else {
-				a.href = "?_src_=statpanel;statpanel_ref=" + part[1];
-			}
+			a.href = "?_src_=statpanel;statpanel_ref=" + part[1];
 			a[textContentKey] = part[0];
-			table.appendChild(a);
-			table.appendChild(br);
+			document.getElementById("statcontent").appendChild(a);
+
+			var br = document.createElement("br");
+			document.getElementById("statcontent").appendChild(br);
 		}
 		else
 		{
 			var div = document.createElement("div");
 			div[textContentKey] = part[0];
-			table.appendChild(div);
+			document.getElementById("statcontent").appendChild(div);
 		}
 	}
 	if(verb_tabs.length == 0 || !verbs)
 	{
 		window.location.href = "byond://winset?command=Fix-Stat-Panel";
 	}
-	document.getElementById("statcontent").appendChild(table);
 }
 function draw_mc() {
 	var statcontentdiv = document.getElementById("statcontent");

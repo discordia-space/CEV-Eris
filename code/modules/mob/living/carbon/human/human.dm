@@ -61,6 +61,7 @@
 	return ..()
 
 /mob/living/carbon/human/get_status_tab_items()
+	// Remember that BYOND "unwraps" a list when it's added to another list, hence the use of list() matryoshkas here
 	. = ..()
 	. += list(list("Intent: [a_intent]"))
 	. += list(list("Move Mode: [MOVING_DELIBERATELY(src) ? "walk" : "run"]"))
@@ -72,9 +73,12 @@
 			. += list(list("Tank Pressure: [internal.air_contents.return_pressure()]"))
 			. += list(list("Distribution Pressure: [internal.distribute_pressure]"))
 
+	// RIG/hardsuit territory
+	// TODO: /stat_rig_module/ got no reason to continue existing, delete it
+	// TODO: Cache some of the stuff below on the RIG side
 	if(back && istype(back,/obj/item/rig))
 		var/obj/item/rig/suit = back
-		. += list(list(""))
+		. += list(list("br"))
 		. += list(list("Using [suit.name]"))
 
 		if(suit.interface_locked)
@@ -86,11 +90,13 @@
 		else if(suit.malfunction_delay > 1)
 			. += list(list("-- CRITICAL ERROR --"))
 		else
-			. += list(list("-- OPEN HARDSUIT INTERFACE --", "\ref[suit]", ";open_ui=1"))
+			// TODO: Consider deleting the following along with RIG's nano_ui_interact() when functionality here is comprehensive and stable enough
+			// Could be replaced with "-- ACCESS GRANTED --" or some such line
+			. += list(list("-- OPEN HARDSUIT INTERFACE --", "\ref[suit];open_ui=1"))
 			. += list(list("Suit charge: [suit.cell ? "[suit.cell.charge]/[suit.cell.maxcharge]" : "ERROR"]"))
-			. += list(list("AI control: [suit.ai_override_enabled ? "ENABLED" : "DISABLED"]", "\ref[suit]", ";toggle_ai_control=1"))
-			. += list(list("Suit status: [suit.active ? "ACTIVE" : "INACTIVE"]", "\ref[suit]", ";toggle_seals=1"))
-			. += list(list("Cover status: [suit.locked ? "LOCKED" : "UNLOCKED"]", "\ref[suit]", ";toggle_suit_lock=1"))
+			. += list(list("AI control: [suit.ai_override_enabled ? "ENABLED" : "DISABLED"]", "\ref[suit];toggle_ai_control=1"))
+			. += list(list("Suit status: [suit.active ? "ACTIVE" : "INACTIVE"]", "\ref[suit];toggle_seals=1"))
+			. += list(list("Cover status: [suit.locked ? "LOCKED" : "UNLOCKED"]", "\ref[suit];toggle_suit_lock=1"))
 			if(suit.sealing)
 				. += list(list("-- ADJUSTING SEALS --"))
 			else
@@ -98,51 +104,73 @@
 				if(!cached_images)
 					cached_images = list()
 
-				for(var/atom/movable/i in list(suit.helmet, suit.gloves, suit.boots, suit.chest))
-					if(isnull(i) || ("\ref[i]" in cached_images))
+				for(var/atom/atom in list(suit.helmet, suit.gloves, suit.boots, suit.chest))
+					if(isnull(atom))
 						continue
-					client << browse_rsc(getFlatIcon(i, no_anim = TRUE), "\ref[i].png")
-					cached_images += "\ref[i]"
+					if("[atom.name]_[atom.icon_state]" in cached_images)
+						continue
+					client << browse_rsc(getFlatIcon(atom, no_anim = TRUE), "[atom.name]_[atom.icon_state].png")
+					cached_images += "[atom.name]_[atom.icon_state]"
 
+				var/RIG_pieces = list()
 				if(suit.helmet)
-					. += list(list("Toggle helmet", "\ref[suit]", ";toggle_piece=helmet", "\ref[suit.helmet].png"))
+					RIG_pieces += list(list("\ref[suit];toggle_piece=helmet", "[suit.helmet.name]_[suit.helmet.icon_state].png"))
 				if(suit.gloves)
-					. += list(list("Toggle gauntlets", "\ref[suit]", ";toggle_piece=gauntlets", "\ref[suit.gloves].png"))
+					RIG_pieces += list(list("\ref[suit];toggle_piece=gauntlets", "[suit.gloves.name]_[suit.gloves.icon_state].png"))
 				if(suit.boots)
-					. += list(list("Toggle boots", "\ref[suit]", ";toggle_piece=boots", "\ref[suit.boots].png"))
+					RIG_pieces += list(list("\ref[suit];toggle_piece=boots", "[suit.boots.name]_[suit.boots.icon_state].png"))
 				if(suit.chest)
-					. += list(list("Toggle chestpiece", "\ref[suit]", ";toggle_piece=chest", "\ref[suit.chest].png"))
+					RIG_pieces += list(list("\ref[suit];toggle_piece=chest", "[suit.chest.name]_[suit.chest.icon_state].png"))
 
+				var/RIG_modules = list()
 				if(suit.active)
-					. += list(list(""))
-					. += list(list("Modules:"))
-					var/i = 1
-					var/stat_rig_module/SRM
+					var/module_index = 0
 					for(var/obj/item/rig_module/module in suit.installed_modules)
+						module_index++
 						if(!("\ref[module]" in cached_images))
 							client << browse_rsc(getFlatIcon(module, no_anim = TRUE), "\ref[module].png")
 							cached_images += "\ref[module]"
-						for(var/stat_rig_module/stat_rig_module in module.stat_modules)
-							if(stat_rig_module.CanUse())
-								SRM = stat_rig_module
-								break
 
-						var/module_damage = "ERROR"
+						var/current_module = list("\ref[module].png")
+						var/module_damage = "DESTROYED"
 						switch(module.damage)
 							if(0)
-								module_damage = "<font color='green'>nominal</font>"
+								module_damage = "status nominal"
 							if(1)
 								module_damage = "damaged"
 							if(2)
-								module_damage = "severely damaged"
-						if(SRM)
-							. += list(list("[module.interface_name]: [module_damage]. Press to [SRM.module_mode]", "\ref[suit]", ";interact_module=[i];module_mode=[SRM.module_mode]", "\ref[module].png"))
-						else
-							. += list(list("[module.interface_name]: [module_damage]", null, null, "\ref[module].png"))
+								module_damage = "critical damage"
 
-						SRM = null
-						i++
-					. += list(list(""))
+						current_module += list(list("[module.interface_name]: [module_damage]"))
+
+						if(module.selectable)
+							if(suit.selected_module && (module == suit.selected_module))
+								current_module += list(list("Selected now"))
+							else
+								current_module += list(list("Select module", "\ref[suit];interact_module=[module_index];module_mode=select"))
+
+						if(module.usable)
+							current_module += list(list("[module.engage_string]", "\ref[suit];interact_module=[module_index];module_mode=engage"))
+							
+						if(module.toggleable)
+							if(module.active)
+								current_module += list(list("[module.deactivate_string]", "\ref[suit];interact_module=[module_index];module_mode=deactivate"))
+							else
+								current_module += list(list("[module.activate_string]", "\ref[suit];interact_module=[module_index];module_mode=activate"))
+
+						if(module.charges && LAZYLEN(module.charges))
+							var/datum/rig_charge/selected_rig_charge = module.charges[module.charge_selected]
+							if(selected_rig_charge)
+								current_module += list(list("Selected type: [selected_rig_charge.display_name], [selected_rig_charge.charges] charges left"))
+							else
+								current_module += list(list("No charge type is selected"))
+
+							for(var/charge_index in module.charges)
+								var/datum/rig_charge/rig_charge = module.charges[charge_index]
+								current_module += list(list("Select [rig_charge.display_name], [rig_charge.charges] left", "\ref[suit];interact_module=[module_index];module_mode=select_charge_type;charge_type=[charge_index]"))
+
+						RIG_modules += list(current_module)
+				. += list(list("RIG_INTERFACE_DATA", RIG_pieces, RIG_modules))
 
 	var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
 	if(chemvessel_efficiency > 1)
