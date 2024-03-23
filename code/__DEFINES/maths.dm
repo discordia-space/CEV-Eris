@@ -235,6 +235,33 @@ proc/leftmost_bit(num)
 			pos++
 	return pos
 
+proc/get_vector(dir) // Accepts a directional string and returns a list containing an actual vector
+    switch(dir)
+        if(NORTH)
+            return list(0, 1)
+        if(NORTHEAST)
+            return list(1, 1)
+        if(EAST)
+            return list(1, 0)
+        if(SOUTHEAST)
+            return list(1, -1)
+        if(SOUTH)
+            return list(0, -1)
+        if(SOUTHWEST)
+            return list(-1, -1)
+        if(WEST)
+            return list(-1, 0)
+        if(NORTHWEST)
+            return list(-1, 1)
+        else if(!dir)
+            return list(1, 0)
+
+proc/get_vector_angle(vec1, vec2) // Calculates the angle between two vectors, then returns the angle. Uses degrees instead of radians because BYOND expects trig functions to be called with degrees.
+    var/dot = vec1[1] * vec2[1] + vec1[2] * vec2[2] // Calculate the dot product
+    var/mag1 = sqrt((vec1[1] ** 2) + (vec1[2] ** 2)) // Calculate the magnitudes of the vectors
+    var/mag2 = sqrt((vec2[1] ** 2) + (vec2[2] ** 2))
+    var/angle = arccos(dot / (mag1 * mag2)) // Calculate the angle based on the dot product and magnitudes of the vectors
+    return angle
 
 #define T100C 373.15 //  100.0 degrees celsius
 
