@@ -502,7 +502,7 @@
 /obj/item/ammo_casing/grenade/white_phosphorous
 	name = "SA WPR \"Gornja\""
 	desc = "An incendiary grenade shell, intended for clearing out tight spaces such as ship interiors and village houses. With love from Serbia."
-	icon_state = "High_incendiary "
+	icon_state = "high_incendiary "
 	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/white_phosphorous
 	w_class = ITEM_SIZE_SMALL
 	caliber = CAL_GRENADE
