@@ -428,7 +428,7 @@ Food quality is calculated based on the steps taken.
 	var/datum/cooking_with_jane/recipe_step/use_grill/step = new (heat, time, src)
 	return src.add_step(step, optional)
 //-----------------------------------------------------------------------------------
-//Use Stove step shortcut commands
+//Use Oven step shortcut commands
 /datum/cooking_with_jane/recipe/proc/create_step_use_oven(var/heat, var/time, var/optional)
 	var/datum/cooking_with_jane/recipe_step/use_oven/step = new (heat, time, src)
 	return src.add_step(step, optional)

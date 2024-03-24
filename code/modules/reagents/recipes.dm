@@ -1212,7 +1212,7 @@
 /datum/chemical_reaction/amanitajelly
 	result = null
 	required_reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
-	result = 1
+	result_amount = 1
 
 /datum/chemical_reaction/amanitajelly/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)

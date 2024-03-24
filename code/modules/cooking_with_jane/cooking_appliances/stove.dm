@@ -24,7 +24,6 @@
 	var/on_fire = FALSE //if the stove has caught fire or not.
 
 	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/stove
-	scan_types = list("scan_1")
 
 //Did not want to use this...
 /obj/machinery/cooking_with_jane/stove/Process()
@@ -52,10 +51,6 @@
 	if(switches[4] == 1)
 		used_power += power_cost
 	use_power(used_power)
-
-	if(!(stat & NOPOWER))
-		decide_action()
-
 
 /obj/machinery/cooking_with_jane/stove/RefreshParts()
 	..()
@@ -298,7 +293,7 @@
 
 
 
-/obj/machinery/cooking_with_jane/stove/update_icon(var/play_scan)
+/obj/machinery/cooking_with_jane/stove/update_icon()
 	cut_overlays()
 
 	for(var/obj/item/our_item in vis_contents)
@@ -340,6 +335,7 @@
 		src.add_to_visible(our_item, i)
 		if(switches[i] == 1)
 			add_overlay(image(src.icon, icon_state="steam_[i]", layer=ABOVE_OBJ_LAYER))
+
 /obj/machinery/cooking_with_jane/stove/proc/add_to_visible(var/obj/item/our_item, input)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 	src.vis_contents += our_item

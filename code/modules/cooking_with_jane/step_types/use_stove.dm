@@ -41,7 +41,7 @@
 
 	bad_cooking = round(bad_cooking/(5 SECONDS))
 
-	var/good_cooking = round(time/3 SECONDS) - bad_cooking + our_stove.quality_mod
+	var/good_cooking = round(time/(3 SECONDS)) - bad_cooking + our_stove.quality_mod
 
 	return clamp_quality(good_cooking)
 

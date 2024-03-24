@@ -26,9 +26,6 @@
 
 	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/oven
 
-	scan_types = list("smile", "peep")
-
-
 //Did not want to use this...
 /obj/machinery/cooking_with_jane/oven/Process()
 
@@ -47,10 +44,6 @@
 
 	if(switches)
 		use_power(power_cost)
-
-	if(!(stat & NOPOWER))
-		decide_action()
-
 
 /obj/machinery/cooking_with_jane/oven/RefreshParts()
 	..()
@@ -317,7 +310,7 @@
 
 
 
-/obj/machinery/cooking_with_jane/oven/update_icon(var/play_scan)
+/obj/machinery/cooking_with_jane/oven/update_icon()
 	cut_overlays()
 	icon_state = "oven_base"
 	for(var/obj/item/our_item in vis_contents)
@@ -330,11 +323,6 @@
 		src.add_to_visible(our_item)
 	if(!opened)
 		add_overlay(image(src.icon, icon_state="oven_hatch[switches?"_on":""]", layer=ABOVE_OBJ_LAYER))
-	if(play_scan)
-		add_overlay(image('icons/obj/cwj_cooking/scan.dmi', icon_state=play_scan, layer=ABOVE_WINDOW_LAYER))
-		spawn(100)
-			update_icon()
-
 
 /obj/machinery/cooking_with_jane/oven/proc/add_to_visible(var/obj/item/our_item)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID

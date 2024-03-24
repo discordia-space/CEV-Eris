@@ -87,3 +87,13 @@
 //Determines how much quality is taken from a food each tick when a 'no recipe' response is made.
 #define CWJ_BASE_QUAL_REDUCTION 5
 
+//Food Quality Tiers
+#define CWJ_QUALITY_GARBAGE			0.3
+#define CWJ_QUALITY_GROSS			0.5
+#define CWJ_QUALITY_MEH				1
+#define CWJ_QUALITY_NORMAL			1
+#define CWJ_QUALITY_GOOD			1.1
+#define CWJ_QUALITY_VERY_GOOD		1.2
+#define CWJ_QUALITY_CUISINE			1.3
+#define CWJ_QUALITY_LEGENDARY		1.4
+#define CWJ_QUALITY_ELDRITCH		1.5

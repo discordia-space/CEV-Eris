@@ -31,7 +31,6 @@
 	circuit = /obj/item/electronics/circuitboard/cooking_with_jane/grill
 
 	var/obj/effect/flick_light_overlay/hopper_insert //flick_light_overlay found in machinery/autolathe/autolathe.dm
-	scan_types = list("scan_1")
 
 /obj/machinery/cooking_with_jane/grill/Initialize()
 	. = ..()
@@ -65,13 +64,6 @@
 			handle_switch(null, 1)
 		else
 			stored_wood -= 1
-
-	if(!(stat & NOPOWER))
-		decide_action()
-
-
-
-
 
 /obj/machinery/cooking_with_jane/grill/RefreshParts()
 	..()
@@ -340,7 +332,7 @@
 
 
 
-/obj/machinery/cooking_with_jane/grill/update_icon(var/play_scan)
+/obj/machinery/cooking_with_jane/grill/update_icon()
 	cut_overlays()
 
 	for(var/obj/item/our_item in vis_contents)
@@ -367,11 +359,6 @@
 				our_item.pixel_x = 7
 				our_item.pixel_y = 0
 		src.add_to_visible(our_item, i)
-
-	if(play_scan)
-		add_overlay(image('icons/obj/cwj_cooking/scan.dmi', icon_state=play_scan, layer=ABOVE_WINDOW_LAYER))
-		spawn(100)
-			update_icon()
 
 /obj/machinery/cooking_with_jane/grill/proc/add_to_visible(var/obj/item/our_item, input)
 	our_item.vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID

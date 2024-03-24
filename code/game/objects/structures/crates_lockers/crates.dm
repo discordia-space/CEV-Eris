@@ -325,7 +325,5 @@
 	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/oven(src)
 	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pan(src)
 	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pan(src)
-	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/plate(src)
-	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/plate(src)
 	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pot(src)
 	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pot(src)

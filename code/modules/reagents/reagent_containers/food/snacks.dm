@@ -25,6 +25,7 @@
 	var/list/nutriment_desc = list("food" = 1)
 
 	var/food_quality = 1
+	var/food_tier
 	var/cooking_description_modifier
 	var/sanity_gain = 0.2 //per nutriment
 	var/junk_food = FALSE //if TRUE, sanity gain per nutriment will be zero
@@ -42,7 +43,7 @@
 	var/current_nutriment = reagents.get_reagent_amount("nutriment")
 	var/nutriment_percent = current_nutriment/reagents.total_volume
 	var/nutriment_eaten = min(reagents.total_volume, bitesize) * nutriment_percent
-	var/base_sanity_gain_per_bite = nutriment_eaten * sanity_gain
+	var/base_sanity_gain_per_bite = nutriment_eaten * sanity_gain * food_tier
 	var/message
 	if(!iscarbon(eater))
 		return  list(0, message)
@@ -1018,11 +1019,7 @@
 	bitesize = 0.1
 	volume = 100
 	center_of_mass = list("x"=16, "y"=11)
-
-	New()
-		..()
-		reagents.add_reagent("nanites", 100)
-		bitesize = 0.1
+	preloaded_reagents = list("nanites" = 100)
 	taste_tag = list(INSECTS_FOOD)
 
 /obj/item/reagent_containers/food/snacks/xenoburger
@@ -1031,11 +1028,8 @@
 	icon_state = "xburger"
 	filling_color = "#43DE18"
 	center_of_mass = list("x"=16, "y"=11)
-
-	New()
-		..()
-		reagents.add_reagent("protein", 8)
-		bitesize = 2
+	preloaded_reagents = list("protein" = 8)
+	bitesize = 2
 	taste_tag = list(INSECTS_FOOD)
 
 /obj/item/reagent_containers/food/snacks/clownburger
