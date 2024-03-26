@@ -1,4 +1,4 @@
-import { BooleanLike } from 'common/react';
+import { BooleanLike } from '../../common/react';
 import { useBackend, sendAct, useLocalState } from '../backend';
 import { Button, Box, LabeledList, Divider, Dropdown, NumberInput } from '../components';
 import { GameIcon } from '../components/GameIcon';
@@ -54,7 +54,7 @@ const recycling = (props, context) => {
         {itemnames[0] && siloactive && (
           <Button content="Recycle Items" onClick={() => act('recycle_item')} />
         )}
-        {siloactive && (
+        {siloactive &&
           icons.map((mapped, count: number) => {
             return displaythreestats(
               itemnames[count],
@@ -62,30 +62,35 @@ const recycling = (props, context) => {
               icons[count],
               context
             );
-          })
-        )}
+          })}
 
         {selection !== -1 && (
           <Button
             content="Eject Selected"
-            onClick={() => { setSelection(-1);
-              act('eject_item', { 'chosen': selection + 1 }); }}
+            onClick={() => {
+              setSelection(-1);
+              act('eject_item', { 'chosen': selection + 1 });
+            }}
           />
         )}
 
         {selection !== -1 && siloactive && (
           <Button
             content="Sell Selected"
-            onClick={() => { setSelection(-1);
-              act('sell_item', { 'chosen': selection + 1 }); }}
+            onClick={() => {
+              setSelection(-1);
+              act('sell_item', { 'chosen': selection + 1 });
+            }}
           />
         )}
 
         {selection !== -1 && siloactive && (
           <Button
             content="Recycle Selected"
-            onClick={() => { setSelection(-1);
-              act('recycle_item', { 'chosen': selection + 1 }); }}
+            onClick={() => {
+              setSelection(-1);
+              act('recycle_item', { 'chosen': selection + 1 });
+            }}
           />
         )}
       </LabeledList>
@@ -155,10 +160,11 @@ const exchange = (props, context) => {
       {selection !== -1 && (
         <Button
           content="Buy Selected"
-          onClick={() =>
-            { setSelection(-1); setAmt(0);
-              act('buy_mat', { 'matselected': selection + 1, 'amount': amt }); }
-          }
+          onClick={() => {
+            setSelection(-1);
+            setAmt(0);
+            act('buy_mat', { 'matselected': selection + 1, 'amount': amt });
+          }}
         />
       )}
       <Divider hidden:true />
