@@ -104,13 +104,13 @@
 			I.pixel_y = -3
 		overlays += I
 
-/obj/structure/bigDelivery/examine(mob/user)
-	if(..(user, 4))
+/obj/structure/bigDelivery/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 5)
 		if(sortTag)
-			to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
+			extra_description += SPAN_NOTICE("\nIt is labeled \"[sortTag]\"")
 		if(examtext)
-			to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
-	return
+			extra_description += SPAN_NOTICE("\nIt has a note attached which reads, \"[examtext]\"")
+	..(user, extra_description)
 
 /obj/item/smallDelivery
 	desc = "A small wrapped package."
@@ -211,13 +211,13 @@
 				I.pixel_y = -3
 		overlays += I
 
-/obj/item/smallDelivery/examine(mob/user)
-	if(..(user, 4))
+/obj/item/smallDelivery/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 4)
 		if(sortTag)
-			to_chat(user, "<span class='notice'>It is labeled \"[sortTag]\"</span>")
+			extra_description += SPAN_NOTICE("\nIt is labeled \"[sortTag]\"")
 		if(examtext)
-			to_chat(user, "<span class='notice'>It has a note attached which reads, \"[examtext]\"</span>")
-	return
+			extra_description += SPAN_NOTICE("\nIt has a note attached which reads, \"[examtext]\"")
+	..(user, extra_description)
 
 /obj/item/packageWrap
 	name = "package wrapper"
@@ -312,11 +312,10 @@
 		return
 	return
 
-/obj/item/packageWrap/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "\blue There are [amount] units of package wrap left!")
-
-	return
+/obj/item/packageWrap/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += SPAN_NOTICE("\nThere are [amount] units of package wrap left!")
+	..(user, extra_description)
 
 /obj/structure/bigDelivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0

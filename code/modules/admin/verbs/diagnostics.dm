@@ -54,67 +54,25 @@
 
 	usr << browse(output,"window=radioreport")
 
-
-ADMIN_VERB_ADD(/client/proc/reload_admins, R_SERVER, FALSE)
 /client/proc/reload_admins()
 	set name = "Reload Admins"
 	set category = "Debug"
 
-	if(!check_rights(R_SERVER))	return
+	if(!check_rights(R_SERVER))
+		return
 
 	message_admins("[usr] manually reloaded admins")
 	load_admins()
 
-
-ADMIN_VERB_ADD(/client/proc/reload_mentors, R_SERVER, FALSE)
 /client/proc/reload_mentors()
 	set name = "Reload Mentors"
 	set category = "Debug"
 
-	if(!check_rights(R_SERVER)) return
+	if(!check_rights(R_SERVER))
+		return
 
 	message_admins("[usr] manually reloaded Mentors")
 	world.load_mentors()
-
-/*
-//todo:
-ADMIN_VERB_ADD(/client/proc/jump_to_dead_group, R_DEBUG, FALSE)
-/client/proc/jump_to_dead_group()
-	set name = "Jump to dead group"
-	set category = "Debug"
-	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
-
-	var/datum/air_group/dead_groups = list()
-	for(var/datum/air_group/group in SSair.air_groups)
-		if (!group.group_processing)
-			dead_groups += group
-	var/datum/air_group/dest_group = pick(dead_groups)
-	usr.loc = pick(dest_group.members)
-
-	return
-*/
-
-/*
-ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
-/client/proc/kill_airgroup()
-	set name = "Kill Local Airgroup"
-	set desc = "Use this to allow manual manupliation of atmospherics."
-	set category = "Debug"
-	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
-
-	var/turf/T = get_turf(usr)
-	if(istype(T, /turf/simulated))
-		var/datum/air_group/AG = T:parent
-		AG.next_check = 30
-		AG.group_processing = 0
-	else
-		to_chat(usr, "Local airgroup is unsimulated!")
-
-*/
 
 /client/proc/print_jobban_old()
 	set name = "Print Jobban Log"

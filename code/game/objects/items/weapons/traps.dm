@@ -355,12 +355,11 @@ Very rarely it might escape
 		update_icon()
 	..()
 
-/obj/item/beartrap/examine(mob/user)
-	..()
+/obj/item/beartrap/examine(mob/user, extra_description = "")
 	if(deployed && isliving(user) && !("\ref[user]" in aware_mobs))
-		to_chat(user, SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully."))
+		extra_description += SPAN_NOTICE("You're aware of this trap, now. You won't set it off when walking carefully.")
 		aware_mobs |= "\ref[user]"
-
+	..(user, extra_description)
 
 /obj/item/beartrap/update_icon()
 	..()

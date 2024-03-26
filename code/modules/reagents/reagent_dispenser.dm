@@ -134,13 +134,13 @@
 	icon_state = "hvweldtank-derelict"
 	spawn_blacklisted = TRUE
 
-/obj/structure/reagent_dispensers/fueltank/examine(mob/user)
-	if(!..(user, 2))
-		return
-	if(modded)
-		to_chat(user, SPAN_WARNING("Fuel faucet is open, leaking the fuel!"))
-	if(rig)
-		to_chat(user, SPAN_NOTICE("There is some kind of device rigged to the tank."))
+/obj/structure/reagent_dispensers/fueltank/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(modded)
+			extra_description += SPAN_WARNING("\nFuel faucet is open, leaking the fuel!")
+		if(rig)
+			extra_description += SPAN_NOTICE("\nThere is some kind of device rigged to the tank.")
+	..(user, extra_description)
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
@@ -345,13 +345,13 @@
 	. = ..()
 	update_icon()
 
-/obj/structure/reagent_dispensers/bidon/examine(mob/user)
-	if(!..(user, 2))
-		return
-	if(lid)
-		to_chat(user, SPAN_NOTICE("It has lid on it."))
-	if(reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[volume] units of reagents."))
+/obj/structure/reagent_dispensers/bidon/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(lid)
+			extra_description += SPAN_NOTICE("\nIt has lid on it.")
+		if(reagents.total_volume)
+			extra_description += SPAN_NOTICE("\nIt's filled with [reagents.total_volume]/[volume] units of reagents.")
+	..(user, extra_description)
 
 /obj/structure/reagent_dispensers/bidon/attack_hand(mob/user)
 	lid = !lid
@@ -389,10 +389,8 @@
 		if(increment >= percent)
 			return increment
 
-/obj/structure/reagent_dispensers/bidon/advanced/examine(mob/user)
-	if(!..(user, 2))
-		return
-	if(reagents.reagent_list.len)
-		for(var/I in reagents.reagent_list)
-			var/datum/reagent/R = I
-			to_chat(user, "<span class='notice'>[R.volume] units of [R.name]</span>")
+/obj/structure/reagent_dispensers/bidon/advanced/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && LAZYLEN(reagents.reagent_list))
+		for(var/datum/reagent/R as anything in reagents.reagent_list)
+			extra_description += SPAN_NOTICE("\n[R.volume] units of [R.name]")
+	..(user, extra_description)

@@ -32,10 +32,10 @@
 /obj/item/rcd/proc/can_use(var/mob/user,var/turf/T)
 	return (user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
 
-/obj/item/rcd/examine()
-	..()
-	if(src.type == /obj/item/rcd && loc == usr)
-		to_chat(usr, "It currently holds [stored_matter]/30 matter-units.")
+/obj/item/rcd/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "It holds [stored_matter] out of [max_stored_matter] charges."
+	..(user, extra_description)
 
 /obj/item/rcd/New()
 	..()

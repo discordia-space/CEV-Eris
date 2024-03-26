@@ -315,12 +315,12 @@ var/list/global/cutoff_plant_icons = list()
 	return (health >= (max_health*0.8) && world.time > mature_time)
 
 
-/obj/effect/plant/examine()
-	. = ..()
+/obj/effect/plant/examine(mob/user, extra_description = "")
 	if(seed.get_trait(TRAIT_CHEMS))
 		if(!reagents.total_volume)
-			to_chat(usr, SPAN_NOTICE("It looks totally dried."))
-		else if (!reagents.get_free_space())
-			to_chat(usr, SPAN_NOTICE("It looks juicy."))
+			extra_description += SPAN_NOTICE("It looks totally dried.")
+		else if(!reagents.get_free_space())
+			extra_description += SPAN_NOTICE("It looks juicy.")
 		else
-			to_chat(usr, SPAN_NOTICE("It looks a bit dry."))
+			extra_description += SPAN_NOTICE("It looks a bit dry.")
+	..(user, extra_description)

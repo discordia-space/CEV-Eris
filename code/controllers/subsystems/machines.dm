@@ -47,8 +47,9 @@ SUBSYSTEM_DEF(machines)
 			new_powernet.add_cable(power_cable)
 			propagate_network(power_cable, power_cable.powernet)
 
-/datum/controller/subsystem/machines/stat_entry()
-	..("M:[processing.len]|PN:[powernets.len]")
+/datum/controller/subsystem/machines/stat_entry(msg)
+	msg = "M:[LAZYLEN(processing)]|PN:[LAZYLEN(powernets)]"
+	return ..()
 
 /datum/controller/subsystem/machines/fire(resumed = FALSE)
 	if (!resumed)

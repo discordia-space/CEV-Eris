@@ -21,9 +21,9 @@
 
 /mob/living/silicon/robot/drone/blitzshell/New()
 	..()
-	verbs |= /mob/living/proc/ventcrawl
-	verbs -= /mob/living/silicon/robot/drone/verb/choose_armguard
-	verbs -= /mob/living/silicon/robot/drone/verb/choose_eyecolor
+	add_verb(src, /mob/living/proc/ventcrawl)
+	remove_verb(src, /mob/living/silicon/robot/drone/verb/choose_armguard)
+	remove_verb(src, /mob/living/silicon/robot/drone/verb/choose_eyecolor)
 
 	remove_language(LANGUAGE_ROBOT)
 	remove_language(LANGUAGE_DRONE)
@@ -92,9 +92,9 @@
 	var/charges = 3
 	var/cooldown
 
-/obj/item/device/nanite_container/examine(mob/user)
-	..()
-	to_chat(user, SPAN_NOTICE("It has [charges] charges left."))
+/obj/item/device/nanite_container/examine(mob/user, extra_description = "")
+	extra_description += SPAN_NOTICE("It has [charges] charges left.")
+	..(user, extra_description)
 
 /obj/item/device/nanite_container/attack_self(var/mob/user)
 	if(istype(user, /mob/living/silicon))
@@ -124,9 +124,9 @@
 	spawn_tags = null
 	var/charges = 3
 
-/obj/item/device/smokescreen/examine(mob/user)
-	..()
-	to_chat(user, SPAN_NOTICE("It has [charges] charges left."))
+/obj/item/device/smokescreen/examine(mob/user, extra_description = "")
+	extra_description += SPAN_NOTICE("It has [charges] charges left.")
+	..(user, extra_description)
 
 /obj/item/device/smokescreen/attack_self(var/mob/user)
 	if(istype(user, /mob/living/silicon))

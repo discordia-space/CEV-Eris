@@ -14,14 +14,14 @@
 	var/datum/computer_file/data/warrant/active
 
 //look at it
-/obj/item/device/holowarrant/examine(mob/user, distance)
-	. = ..()
+/obj/item/device/holowarrant/examine(mob/user, extra_description = "")
 	if(active)
-		to_chat(user, "A holographic warrant for '[active.fields["namewarrant"]]'.")
-	if(distance <= 1)
+		extra_description += "A holographic warrant for '[active.fields["namewarrant"]]'."
+	if(get_dist(user, src) < 2)
 		show_content(user)
 	else
-		to_chat(user, "<span class='notice'>You have to be closer if you want to read it.</span>")
+		extra_description += "<span class='notice'>You have to be closer if you want to read it.</span>"
+	..(user, extra_description)
 
 // an active warrant with access authorized grants access
 /obj/item/device/holowarrant/GetAccess()

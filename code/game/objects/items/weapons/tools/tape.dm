@@ -143,20 +143,18 @@
 	anchored = TRUE //it's sticky, no you cant move it
 	spawn_frequency = 0
 	bad_type = /obj/item/ducttape
-
+	flags = NOBLUDGEON
 	var/obj/item/stuck
-
-/obj/item/ducttape/New()
-	..()
-	flags |= NOBLUDGEON
 
 /obj/item/ducttape/update_plane()
 	..()
 	update_icon()
 
-
-/obj/item/ducttape/examine(mob/user)
-	return stuck.examine(user)
+/obj/item/ducttape/examine(mob/user, extra_description = "")
+	if(stuck)
+		stuck.examine(user)
+	else
+		..(user, extra_description)
 
 /obj/item/ducttape/proc/attach(obj/item/W)
 	stuck = W

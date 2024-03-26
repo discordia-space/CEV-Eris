@@ -24,9 +24,9 @@
 	QDEL_NULL(gps)
 	return ..()
 
-/obj/item/computer_hardware/gps_sensor/examine(mob/user)
-	..()
-	to_chat(user, "Serial number is [gps.serial_number].")
+/obj/item/computer_hardware/gps_sensor/examine(mob/user, extra_description = "")
+	extra_description += "Serial number is [gps.serial_number]."
+	..(user, extra_description)
 
 /obj/item/computer_hardware/gps_sensor/proc/get_position_text()
 	var/error_text = "<span class='average'>ERROR: Unable to reach positioning system relays.</span>"

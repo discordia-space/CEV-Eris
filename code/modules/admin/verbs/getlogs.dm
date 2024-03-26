@@ -18,7 +18,6 @@
 //Permissions expire at the end of each round.
 //Runtimes can be used to meta or spot game-crashing exploits so it's advised to only grant coders that
 //you trust access. Also, it may be wise to ensure that they are not going to play in the current round.
-ADMIN_VERB_ADD(/client/proc/giveruntimelog, R_ADMIN, FALSE)
 //allows us to give access to runtime logs to somebody
 /client/proc/giveruntimelog()
 	set name = ".giveruntimelog"
@@ -34,15 +33,11 @@ ADMIN_VERB_ADD(/client/proc/giveruntimelog, R_ADMIN, FALSE)
 		to_chat(src, "<font color='red'>Error: giveruntimelog(): Client not found.</font>")
 		return
 
-	target.verbs |= /client/proc/getruntimelog
+	add_verb(target, /client/proc/getruntimelog)
 	to_chat(target, "<font color='red'>You have been granted access to runtime logs. Please use them responsibly or risk being banned.</font>")
-	return
-
 
 //This proc allows download of runtime logs saved within the data/logs/ folder by dreamdeamon.
 //It works similarly to show-server-log.
-ADMIN_VERB_ADD(/client/proc/getruntimelog, R_DEBUG, FALSE)
-// allows us to access runtime logs to somebody
 /client/proc/getruntimelog()
 	set name = ".getruntimelog"
 	set desc = "Retrieve any session logfiles saved by dreamdeamon."
@@ -58,10 +53,7 @@ ADMIN_VERB_ADD(/client/proc/getruntimelog, R_DEBUG, FALSE)
 	message_admins("[key_name_admin(src)] accessed file: [path]")
 	src << run( file(path) )
 	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
-	return
 
-
-ADMIN_VERB_ADD(/client/proc/getserverlog, R_ADMIN, FALSE)
 //This proc allows download of past server logs saved within the data/logs/ folder.
 //It works similarly to show-server-log.
 /client/proc/getserverlog()
@@ -79,23 +71,17 @@ ADMIN_VERB_ADD(/client/proc/getserverlog, R_ADMIN, FALSE)
 	message_admins("[key_name_admin(src)] accessed file: [path]")
 	src << run( file(path) )
 	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
-	return
-
 
 //Other log stuff put here for the sake of organisation
 
 //Shows today's server log
-ADMIN_VERB_ADD(/datum/admins/proc/view_txt_log, R_ADMIN, FALSE)
-//shows the server log (diary) for today
 /datum/admins/proc/view_txt_log()
 	set category = "Admin"
 	set name = "Show Server Log"
 	set desc = "Shows today's server log."
 
 	src << run(diary)
-	return
 
-ADMIN_VERB_ADD(/datum/admins/proc/view_atk_log, R_ADMIN, FALSE)
 //Shows today's attack log
 //shows the server combat-log, doesn't do anything presently
 /datum/admins/proc/view_atk_log()
@@ -110,5 +96,3 @@ ADMIN_VERB_ADD(/datum/admins/proc/view_atk_log, R_ADMIN, FALSE)
 		to_chat(src, "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>")
 		return
 	usr << run( file(path) )
-
-	return

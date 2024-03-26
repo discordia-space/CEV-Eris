@@ -35,10 +35,9 @@
 		to_chat(user, SPAN_WARNING("The pack is already full!"))
 		return
 
-/obj/item/weldpack/examine(mob/user)
-	..(user)
-	to_chat(user, text("\icon[] [] units of fuel left!", src, src.reagents.total_volume))
-	return
+/obj/item/weldpack/examine(mob/user, extra_description = "")
+	extra_description += "\icon[src] [reagents.total_volume] units of fuel left!"
+	..(user, extra_description)
 
 /obj/item/weldpack/proc/explode()
 	explosion(get_turf(src), reagents.total_volume/2, 50)

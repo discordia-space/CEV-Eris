@@ -61,13 +61,13 @@
 		master.update_icon()
 
 
-/obj/item/device/assembly_holder/examine(mob/user)
-	..(user)
-	if(in_range(src, user) || src.loc == user)
-		if(src.secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+/obj/item/device/assembly_holder/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(secured)
+			extra_description += SPAN_NOTICE("\The [src] is ready!")
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			extra_description += SPAN_NOTICE("\The [src] can be attached!")
+	..(user, extra_description)
 
 
 /obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)

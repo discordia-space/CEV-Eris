@@ -46,7 +46,7 @@
 
 	active_power_cost = 0.05
 
-	interface_name = "optical scanners"
+	interface_name = "Optical scanners"
 	interface_desc = "An integrated multi-mode vision system."
 
 	usable = 1
@@ -73,7 +73,7 @@
 	icon_state = "fulloptics"
 
 
-	interface_name = "multi optical visor"
+	interface_name = "Multi optical visor"
 	interface_desc = "An integrated multi-mode vision system."
 
 	vision_modes = list(/datum/rig_vision/meson,
@@ -90,7 +90,7 @@
 
 	usable = 0
 
-	interface_name = "meson scanner"
+	interface_name = "Meson scanner"
 	interface_desc = "An integrated meson scanner."
 
 	vision_modes = list(/datum/rig_vision/meson)
@@ -103,7 +103,7 @@
 
 	usable = 0
 
-	interface_name = "thermal scanner"
+	interface_name = "Thermal scanner"
 	interface_desc = "An integrated thermal scanner."
 
 	vision_modes = list(/datum/rig_vision/thermal)
@@ -116,7 +116,7 @@
 
 	usable = 0
 
-	interface_name = "night vision interface"
+	interface_name = "Night vision interface"
 	interface_desc = "An integrated night vision system."
 	vision_modes = list(/datum/rig_vision/nvg)
 	rarity_value = 30
@@ -129,7 +129,7 @@
 
 	usable = 0
 
-	interface_name = "security HUD"
+	interface_name = "Security HUD"
 	interface_desc = "An integrated security heads up display."
 
 	vision_modes = list(/datum/rig_vision/sechud)
@@ -142,7 +142,7 @@
 
 	usable = 0
 
-	interface_name = "medical HUD"
+	interface_name = "Medical HUD"
 	interface_desc = "An integrated medical heads up display."
 
 	vision_modes = list(/datum/rig_vision/medhud)

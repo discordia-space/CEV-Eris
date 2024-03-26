@@ -38,7 +38,7 @@
 	set src = usr.contents
 	return 0
 
-/mob/observer/eye/examine(mob/user)
+/mob/observer/eye/examine(mob/user, extra_description = "")
 
 // Use this when setting the eye's location.
 // It will also stream the chunk that the new loc is in.

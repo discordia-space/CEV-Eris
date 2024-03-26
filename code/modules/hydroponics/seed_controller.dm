@@ -4,7 +4,6 @@
 #define PLANTS_PER_TICK 500 // Cap on number of plant segments processed.
 #define PLANT_TICK_TIME 75  // Number of ticks between the plant processor cycling.
 
-ADMIN_VERB_ADD(/client/proc/show_plant_genes, R_DEBUG, FALSE)
 // Debug for testing seed genes.
 /client/proc/show_plant_genes()
 	set category = "Debug"

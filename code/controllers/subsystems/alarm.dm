@@ -42,5 +42,6 @@ SUBSYSTEM_DEF(alarm)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/alarm/stat_entry()
-	..("[active_alarm_cache.len] alarm\s")
+/datum/controller/subsystem/alarm/stat_entry(msg)
+	msg += "[LAZYLEN(active_alarm_cache)] alarm\s"
+	return ..()

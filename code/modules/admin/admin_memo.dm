@@ -1,6 +1,5 @@
 #define MEMOFILE "data/memo.sav"	//where the memos are saved
 
-ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 //admin memo system. show/delete/write.
 // +SERVER needed to delete admin memos of others
 //switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.

@@ -1,6 +1,6 @@
 /obj/machinery/meter
 	name = "meter"
-	desc = "It measures something."
+	desc = "A gas flow meter."
 	icon = 'icons/obj/meter.dmi'
 	icon_state = "meterX"
 	layer = GAS_PUMP_LAYER
@@ -67,25 +67,23 @@
 		)
 		radio_connection.post_signal(src, signal)
 
-/obj/machinery/meter/examine(mob/user)
-	var/t = "A gas flow meter. "
-
+/obj/machinery/meter/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) > 3 && !(isAI(user) || isghost(user)))
-		t += SPAN_WARNING("You are too far away to read it.")
+		extra_description += SPAN_WARNING("You are too far away to read it.")
 
 	else if(stat & (NOPOWER|BROKEN))
-		t += SPAN_WARNING("The display is off.")
+		extra_description += SPAN_WARNING("The display is off.")
 
-	else if(src.target)
+	else if(target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
-			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
+			extra_description += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
 		else
-			t += "The sensor error light is blinking."
+			extra_description += "The sensor error light is blinking."
 	else
-		t += "The connect error light is blinking."
+		extra_description += "The connect error light is blinking."
 
-	to_chat(user, t)
+	..(user, extra_description)
 
 /obj/machinery/meter/Click()
 

@@ -33,13 +33,12 @@
 	var/force_holder //
 	var/justdropped = 0//When set to 1, the gripper has just dropped its item, and should not attempt to trigger anything
 
-/obj/item/gripper/examine(var/mob/user)
-	..()
-	if (wrapped)
-		to_chat(user, span("notice", "It is holding \the [wrapped]"))
+/obj/item/gripper/examine(mob/user, extra_description = "")
+	if(wrapped)
+		extra_description += "\nIt is holding \the [wrapped]"
 	else
-		to_chat(user, "It is empty.")
-
+		extra_description += "\nIt is empty."
+	..(user, extra_description)
 
 /proc/grippersafety(var/obj/item/gripper/G)
 	if (!G || !G.wrapped)//The object must have been lost

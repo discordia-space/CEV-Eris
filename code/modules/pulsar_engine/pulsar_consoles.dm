@@ -159,8 +159,9 @@
 		ship.stop_rad_storm()
 		return
 	}
-	ship.block_events = FALSE
-	ship.try_move(0) //Recalc if the pulsar is in a beam
+	if(ship)
+		ship.block_events = FALSE
+		ship.try_move(0) //Recalc if the pulsar is in a beam
 }
 
 /obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
@@ -315,11 +316,11 @@
 	to_chat(user, SPAN_NOTICE("[src] can only be refiled with portable fuel tanks"))
 	. = ..()
 
-/obj/structure/pulsar_fuel_tank/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	to_chat(user, "Fuel: [round(air_contents.get_total_moles())]/100")
+/obj/structure/pulsar_fuel_tank/examine(mob/user, extra_description = "")
+	extra_description += "\nFuel: [round(air_contents.get_total_moles())]/100"
 	if(round(air_contents.get_total_moles()) >= 100)
-		to_chat(user, SPAN_DANGER("It looks like its about to burst!"))
+		extra_description += SPAN_DANGER("\nIt looks like its about to burst!")
+	..(user, extra_description)
 
 /obj/structure/pulsar_fuel_tank/filled/Initialize()
 	. = ..()

@@ -110,16 +110,16 @@ var/list/custom_table_appearance = list(
 			return 1
 	return ..()
 
-/obj/structure/table/examine(mob/user)
-	. = ..()
+/obj/structure/table/examine(mob/user, extra_description = "")
 	if(health < maxHealth)
 		switch(health / maxHealth)
 			if(0 to 0.5)
-				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
+				extra_description += SPAN_WARNING("\nIt looks severely damaged!")
 			if(0.25 to 0.5)
-				to_chat(user, SPAN_WARNING("It looks damaged!"))
+				extra_description += SPAN_WARNING("\nIt looks damaged!")
 			if(0.5 to 1)
-				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
+				extra_description += SPAN_NOTICE("\nIt has a few scrapes and dents.")
+	..(user, extra_description)
 
 /obj/structure/table/attackby(obj/item/I, mob/user)
 

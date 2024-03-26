@@ -263,26 +263,28 @@ semi accepts weird caliber - +1 points
 	qdel(src)
 	return
 
-/obj/item/part/gun/frame/examine(user, distance)
-	. = ..()
-	if(.)
-		if(InstalledGrip)
-			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledGrip] installed."))
-		else
-			to_chat(user, SPAN_NOTICE("\the [src] does not have a grip installed."))
-		if(InstalledMechanism)
-			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledMechanism] installed."))
-		else
-			to_chat(user, SPAN_NOTICE("\the [src] does not have a mechanism installed."))
-		if(InstalledBarrel)
-			to_chat(user, SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed."))
-		else
-			to_chat(user, SPAN_NOTICE("\the [src] does not have a barrel installed."))
-		if(in_range(user, src) || isghost(user))
-			if(serial_type)
-				to_chat(user, SPAN_WARNING("There is a serial number on the frame, it reads [serial_type]."))
-			else if(isnull(serial_type))
-				to_chat(user, SPAN_DANGER("The serial is scribbled away."))
+/obj/item/part/gun/frame/examine(mob/user, extra_description = "")
+	if(InstalledGrip)
+		extra_description += SPAN_NOTICE("\the [src] has \a [InstalledGrip] installed.")
+	else
+		extra_description += SPAN_NOTICE("\the [src] does not have a grip installed.")
+
+	if(InstalledMechanism)
+		extra_description += SPAN_NOTICE("\the [src] has \a [InstalledMechanism] installed.")
+	else
+		extra_description += SPAN_NOTICE("\the [src] does not have a mechanism installed.")
+
+	if(InstalledBarrel)
+		extra_description += SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed.")
+	else
+		extra_description += SPAN_NOTICE("\the [src] does not have a barrel installed.")
+
+	if(in_range(user, src) || isghost(user))
+		if(serial_type)
+			extra_description += SPAN_WARNING("There is a serial number on the frame, it reads [serial_type].")
+		else if(isnull(serial_type))
+			extra_description += SPAN_DANGER("The serial is scribbled away.")
+	..(user, extra_description)
 
 //Grips
 /obj/item/part/gun/modular/grip

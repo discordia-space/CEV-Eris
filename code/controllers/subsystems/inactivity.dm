@@ -40,5 +40,6 @@ SUBSYSTEM_DEF(inactivity_and_job_tracking)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/inactivity_and_job_tracking/stat_entry()
-	..("Kicked: [number_kicked]")
+/datum/controller/subsystem/inactivity_and_job_tracking/stat_entry(msg)
+	msg += "Kicked: [number_kicked]"
+	return ..()

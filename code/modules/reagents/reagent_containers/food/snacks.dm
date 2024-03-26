@@ -215,21 +215,24 @@
 
 	return 0
 
-/obj/item/reagent_containers/food/snacks/examine(mob/user)
-	if(!..(user, 1))
-		return
-	if(junk_food)
-		to_chat(user, SPAN_WARNING("\The [src] is junk food."))
-	else if(taste_tag.len)
-		to_chat(user, SPAN_NOTICE("\The [src] tastes like [english_list(taste_tag)]."))
-	if (bitecount==0)
-		return
-	else if (bitecount==1)
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten by someone."))
-	else if (bitecount<=3)
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten [bitecount] time\s."))
-	else
-		to_chat(user, SPAN_NOTICE("\The [src] was bitten several times."))
+/obj/item/reagent_containers/food/snacks/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(junk_food)
+			extra_description += SPAN_WARNING("\n\The [src] is junk food.")
+		else if(LAZYLEN(taste_tag))
+			extra_description += SPAN_NOTICE("\n\The [src] tastes like [english_list(taste_tag)].")
+
+		switch(bitecount)
+			if(0)
+				//TODO: Consider adding a description of food being not bitten, can't think of one that makes sense at the moment
+			if(1)
+				extra_description += SPAN_NOTICE("\n\The [src] was bitten by someone.")
+			if(2,3)
+				extra_description += SPAN_NOTICE("\n\The [src] was bitten [bitecount] time\s.")
+			else
+				extra_description += SPAN_NOTICE("\n\The [src] was bitten several times.")
+
+	..(user, extra_description)
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/storage))
@@ -1150,13 +1153,13 @@
 	cooked = TRUE
 	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)
 
-/obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user)
-	. = ..()
+/obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user, extra_description = "")
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+			extra_description += "\nLooking at \the [src] gives you a sense of reassurance, it almost seems angelic."
+	..(user, extra_description)
 
 /obj/item/reagent_containers/food/snacks/geneburger
 	name = "flesh burger"
@@ -1171,13 +1174,13 @@
 	cooked = TRUE
 	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
 
-/obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user)
-	. = ..()
+/obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user, extra_description = "")
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
+			extra_description += "\nLooking at \the [src] gives you a sense of darkness, it must be unholy!"
+	..(user, extra_description)
 
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"

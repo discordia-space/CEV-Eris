@@ -36,40 +36,15 @@
 	for(var/obj/item/thing in contents)
 		thing.emp_act(severity)
 
-/obj/item/mech_component/examine(mob/user)
-	. = ..()
-
-	if(.)
-		if(ready_to_install())
-			to_chat(user, SPAN_NOTICE("It is ready for installation."))
-		else
-			show_missing_parts(usr)
-	/*
-	if(reinforcement)
-		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))
+/obj/item/mech_component/examine(mob/user, extra_description = "")
+	if(ready_to_install())
+		extra_description += SPAN_NOTICE("\nIt is ready for installation.")
 	else
-		to_chat(user, SPAN_NOTICE("It can be reinforced with 5 sheets of a material for additional protection."))
-	*/
+		show_missing_parts(user)
 
-	var/damage_string = src.get_damage_string()
-	to_chat(user, "The [src.name] [src.gender == PLURAL ? "are" : "is"] [damage_string].")
-
-/*
-
-/obj/item/mech_component/attackby(obj/item/I, mob/living/user)
-	. = ..()
-
-	if(!reinforcement && istype(I, /obj/item/stack/material))
-		var/obj/item/stack/material/mat = I
-		if(!mat.can_use(5))
-			to_chat(user, SPAN_NOTICE("You need 5 sheets of reinforcing material!"))
-			return
-		to_chat(user, SPAN_NOTICE("You start reinforcing \the src."))
-*/
-
-
-
-
+	var/damage_string = get_damage_string()
+	extra_description += "\nThe [name] [gender == PLURAL ? "are" : "is"] [damage_string]."
+	..(user, extra_description)
 
 //These icons have multiple directions but before they're attached we only want south.
 /obj/item/mech_component/set_dir()

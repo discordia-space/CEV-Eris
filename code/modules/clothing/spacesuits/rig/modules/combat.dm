@@ -13,7 +13,7 @@
 	desc = "You are the law."
 	icon_state = "flash"
 	use_power_cost = 2
-	interface_name = "mounted flash"
+	interface_name = "Mounted flash"
 	interface_desc = "Stuns your target by blinding them with a bright light."
 	device_type = /obj/item/device/flash
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
@@ -24,7 +24,7 @@
 	selectable = 1
 	icon_state = "grenadelauncher"
 
-	interface_name = "integrated grenade launcher"
+	interface_name = "Integrated grenade launcher"
 	interface_desc = "Discharges loaded grenades against the wearer's location."
 	rarity_value = 20
 
@@ -102,7 +102,7 @@
 
 	engage_string = "Configure"
 
-	interface_name = "mounted laser cannon"
+	interface_name = "Mounted laser cannon"
 	interface_desc = "A shoulder-mounted cell-powered laser cannon."
 	rarity_value = 100
 	var/gun_type = /obj/item/gun/energy/lasercannon/mounted
@@ -131,7 +131,7 @@
 
 
 
-	interface_name = "mounted energy gun"
+	interface_name = "Mounted energy gun"
 	interface_desc = "A forearm-mounted suit-powered energy gun."
 
 	gun_type = /obj/item/gun/energy/gun/mounted
@@ -149,7 +149,7 @@
 	suit_overlay_active = "mounted-taser"
 	suit_overlay_inactive = "mounted-taser"
 
-	interface_name = "mounted taser"
+	interface_name = "Mounted taser"
 	interface_desc = "A shoulder-mounted cell-powered taser."
 
 	gun_type = /obj/item/gun/energy/taser/mounted
@@ -166,7 +166,7 @@
 	activate_string = "Project Blade"
 	deactivate_string = "Cancel Blade"
 
-	interface_name = "spider fang blade"
+	interface_name = "Spider fang blade"
 	interface_desc = "A lethal energy projector that can shape a blade projected from the hand of the wearer."
 
 	usable = 0
@@ -222,7 +222,7 @@
 	activate_string = "Deploy Shield"
 	deactivate_string = "Retract Shield"
 
-	interface_name = "frozen star shield"
+	interface_name = "Frozen star shield"
 	interface_desc = "A reinforced ballistic shield for use against high-velocity projectiles and energy weapons."
 
 	usable = 0
@@ -290,7 +290,7 @@
 
 	engage_string = "Fabricate Star"
 
-	interface_name = "death blossom launcher"
+	interface_name = "Death blossom launcher"
 	interface_desc = "An integrated microfactory that produces poisoned throwing stars from thin air and electricity."
 	rarity_value = 100
 	var/fabrication_type = /obj/item/material/star/ninja

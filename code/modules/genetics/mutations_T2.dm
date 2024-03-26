@@ -15,11 +15,11 @@
 
 /datum/mutation/t2/remotesay/imprint(mob/living/carbon/user)
 	if(..())
-		user.verbs += /mob/living/carbon/human/proc/remotesay
+		add_verb(user, /mob/living/carbon/human/proc/remotesay)
 
 /datum/mutation/t2/remotesay/cleanse(mob/living/carbon/user)
 	if(..())
-		user.verbs -= /mob/living/carbon/human/proc/remotesay
+		remove_verb(user, /mob/living/carbon/human/proc/remotesay)
 
 /datum/mutation/t2/forcespeak
 	name = "Force speak"
@@ -27,11 +27,11 @@
 
 /datum/mutation/t2/forcespeak/imprint(mob/living/carbon/user)
 	if(..())
-		user.verbs += /mob/living/carbon/human/proc/forcespeak
+		add_verb(user, /mob/living/carbon/human/proc/forcespeak)
 
 /datum/mutation/t2/forcespeak/cleanse(mob/living/carbon/user)
 	if(..())
-		user.verbs -= /mob/living/carbon/human/proc/forcespeak
+		remove_verb(user, /mob/living/carbon/human/proc/forcespeak)
 
 
 /datum/mutation/t2/noprints
@@ -46,11 +46,11 @@
 
 /datum/mutation/t2/roach_pheromones/imprint(mob/living/carbon/user)
 	if(..())
-		user.verbs += /mob/living/carbon/human/proc/roach_pheromones
+		add_verb(user, /mob/living/carbon/human/proc/roach_pheromones)
 
 /datum/mutation/t2/roach_pheromones/cleanse(mob/living/carbon/user)
 	if(..())
-		user.verbs -= /mob/living/carbon/human/proc/roach_pheromones
+		remove_verb(user, /mob/living/carbon/human/proc/roach_pheromones)
 
 
 /datum/mutation/t2/spider_pheromones
@@ -59,8 +59,8 @@
 
 /datum/mutation/t2/spider_pheromones/imprint(mob/living/carbon/user)
 	if(..())
-		user.verbs += /mob/living/carbon/human/proc/spider_pheromones
+		add_verb(user, /mob/living/carbon/human/proc/spider_pheromones)
 
 /datum/mutation/t2/spider_pheromones/cleanse(mob/living/carbon/user)
 	if(..())
-		user.verbs -= /mob/living/carbon/human/proc/spider_pheromones
+		remove_verb(user, /mob/living/carbon/human/proc/spider_pheromones)

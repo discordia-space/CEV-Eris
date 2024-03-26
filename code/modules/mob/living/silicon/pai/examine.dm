@@ -1,19 +1,20 @@
-/mob/living/silicon/pai/examine(mob/user)
-	..(user, infix = ", personal AI")
-
-	var/msg = ""
-	switch(src.stat)
+/mob/living/silicon/pai/examine(mob/user, extra_description = "")
+	switch(stat)
 		if(CONSCIOUS)
-			if(!src.client)	msg += "\nIt appears to be in stand-by mode." //afk
-		if(UNCONSCIOUS)		msg += "\n<span class='warning'>It doesn't seem to be responding.</span>"
-		if(DEAD)			msg += "\n<span class='deadsay'>It looks completely unsalvageable.</span>"
-	msg += "\n*---------*"
+			if(!client)
+				extra_description += "\nIt appears to be in stand-by mode." //afk
+		if(UNCONSCIOUS)
+			extra_description += "\n<span class='warning'>It doesn't seem to be responding.</span>"
+		if(DEAD)
+			extra_description += "\n<span class='deadsay'>It looks completely unsalvageable.</span>"
+	extra_description += "\n*---------*"
 
-	if(print_flavor_text()) msg += "\n[print_flavor_text()]\n"
+	if(print_flavor_text())
+		extra_description += "\n[print_flavor_text()]\n"
 
-	if (pose)
+	if(pose)
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
-		msg += "\nIt is [pose]"
+		extra_description += "\nIt is [pose]"
 
-	to_chat(user, msg)
+	..(user, extra_description)

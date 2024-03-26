@@ -67,9 +67,10 @@
 		else
 			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
 
-/obj/item/clothing/head/space/examine(var/mob/user)
-	if(..(user, 1) && camera_networks && camera_networks.len)
-		to_chat(user, "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active.")
+/obj/item/clothing/head/space/examine(mob/user, extra_description = "")
+	if((get_dist(user, src) < 2) && camera_networks && LAZYLEN(camera_networks))
+		extra_description += "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active."
+	..(user, extra_description)
 
 /obj/item/clothing/suit/space
 	name = "space suit"

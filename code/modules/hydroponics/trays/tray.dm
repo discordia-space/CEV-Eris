@@ -581,53 +581,52 @@
 	else if(dead)
 		remove_dead(user)
 
-/obj/machinery/portable_atmospherics/hydroponics/examine()
-	..()
-	if(!seed)
-		to_chat(usr, "[src] is empty.")
-		return
+/obj/machinery/portable_atmospherics/hydroponics/examine(mob/user, extra_description = "")
+	if(seed)
+		extra_description += SPAN_NOTICE("[seed.display_name] are growing here.")
 
-	to_chat(usr, SPAN_NOTICE("[seed.display_name] are growing here."))
+		if(get_dist(user, src) < 2)
+			extra_description += "Water: [round(waterlevel,0.1)]/100"
+			extra_description += "Nutrient: [round(nutrilevel,0.1)]/10"
 
-	if(!Adjacent(usr))
-		return
+		if(weedlevel >= 5)
+			extra_description += "\The [src] is <span class='danger'>infested with weeds</span>!"
+		if(pestlevel >= 5)
+			extra_description += "\The [src] is <span class='danger'>infested with tiny worms</span>!"
 
-	to_chat(usr, "Water: [round(waterlevel,0.1)]/100")
-	to_chat(usr, "Nutrient: [round(nutrilevel,0.1)]/10")
+		if(dead)
+			extra_description += SPAN_DANGER("The plant is dead.")
+		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
+			extra_description += "\nThe plant looks [SPAN_DANGER("unhealthy")]."
 
-	if(weedlevel >= 5)
-		to_chat(usr, "\The [src] is <span class='danger'>infested with weeds</span>!")
-	if(pestlevel >= 5)
-		to_chat(usr, "\The [src] is <span class='danger'>infested with tiny worms</span>!")
+		if(mechanical)
+			var/turf/T = loc
+			var/datum/gas_mixture/environment
 
-	if(dead)
-		to_chat(usr, SPAN_DANGER("The plant is dead."))
-	else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
-		to_chat(usr, "The plant looks <span class='danger'>unhealthy</span>.")
+			if(closed_system && (connected_port || holding))
+				environment = air_contents
 
-	if(mechanical)
-		var/turf/T = loc
-		var/datum/gas_mixture/environment
+			if(!environment)
+				if(istype(T))
+					environment = T.return_air()
 
-		if(closed_system && (connected_port || holding))
-			environment = air_contents
+			if(!environment) //We're in a crate or nullspace, bail out.
+				return
 
-		if(!environment)
-			if(istype(T))
-				environment = T.return_air()
+			var/light_string
+			if(closed_system && mechanical)
+				light_string = "that the internal lights are set to [tray_light] lumens"
+			else
+				var/light_available
+				light_available = round((T.get_lumcount()*10)-5)
+				light_string = "a light level of [light_available] lumens"
 
-		if(!environment) //We're in a crate or nullspace, bail out.
-			return
+			extra_description += "\nThe tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
+	else
+		extra_description += "[src] is empty."
+	
+	..(user, extra_description)
 
-		var/light_string
-		if(closed_system && mechanical)
-			light_string = "that the internal lights are set to [tray_light] lumens"
-		else
-			var/light_available
-			light_available = round((T.get_lumcount()*10)-5)
-			light_string = "a light level of [light_available] lumens"
-
-		to_chat(usr, "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K.")
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb()
 	set name = "Toggle Tray Lid"
