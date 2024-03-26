@@ -1,4 +1,4 @@
-import { BooleanLike } from 'common/react';
+import { BooleanLike } from '../../common/react';
 import { useBackend, sendAct, useLocalState } from '../backend';
 import { Button, Box, LabeledList, Divider, Dropdown, NumberInput } from '../components';
 import { GameIcon } from '../components/GameIcon';
