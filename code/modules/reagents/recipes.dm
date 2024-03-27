@@ -906,7 +906,7 @@
 
 /datum/chemical_reaction/slime/freeze/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom))50)
+	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom))50,)
 
 /datum/chemical_reaction/slime/freeze/proc/do_freeze(turf/target)
 	playsound(target, 'sound/effects/phasein.ogg', 100, 1)
