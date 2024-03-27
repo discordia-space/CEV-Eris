@@ -906,7 +906,7 @@
 
 /datum/chemical_reaction/slime/freeze/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom)), 500)
+	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/freeze/proc/do_freeze(turf/target)
 	playsound(target, 'sound/effects/phasein.ogg', 100, 1)
@@ -934,7 +934,7 @@
 
 /datum/chemical_reaction/slime/fire/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/fire/proc/do_fire(turf/target)
 	for(var/turf/simulated/floor/target_tile in range(0, target))
@@ -1053,7 +1053,7 @@
 
 /datum/chemical_reaction/slime/explosion/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/explosion/proc/do_explode(turf/target)
 	explosion(target, 600, 50)
