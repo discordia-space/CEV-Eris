@@ -10,7 +10,7 @@
 	#endif
 
 	var/food_descriptor
-	if(food_quality < 0)
+	if(food_quality < -9)
 		food_tier = CWJ_QUALITY_GARBAGE
 		food_descriptor = "It looks gross. Someone cooked this poorly."
 	else if (food_quality >= 100)
@@ -18,7 +18,7 @@
 		food_descriptor = "What cruel twist of fate it must be, for this unparalleled artistic masterpiece can only be truly appreciated through its destruction. Does this dish's transient form belie the true nature of all things? You see the totality of existence reflected through \the [src]."
 	else
 		switch(food_quality)
-			if(0)
+			if(-9 to 0)
 				food_tier = CWJ_QUALITY_GROSS
 				food_descriptor = "It looks like an unappetizing a meal."
 			if(1 to 10)

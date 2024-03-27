@@ -198,6 +198,7 @@
 	id = "mint"
 	description = "Also known as Mentha."
 	taste_description = "mint"
+	nutriment_factor = 0.1
 	reagent_state = LIQUID
 	color = "#CF3600"
 	taste_tag = list(TASTE_REFRESHING)

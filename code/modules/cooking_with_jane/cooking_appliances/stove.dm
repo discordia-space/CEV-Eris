@@ -11,7 +11,7 @@
 	layer = BELOW_OBJ_LAYER
 	cooking = FALSE
 	var/list/temperature= list("Low", "Low", "Low", "Low")
-	var/list/timer = list(30, 30, 30, 30)
+	var/list/timer = list(0, 0, 0, 0)
 	var/list/timerstamp = list(0, 0, 0, 0)
 	var/list/switches = list(0, 0, 0, 0)
 	var/list/cooking_timestamp = list(0, 0, 0, 0) //Timestamp of when cooking initialized so we know if the prep was disturbed at any point.

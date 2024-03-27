@@ -24,8 +24,8 @@
 	var/nutriment_amt = 0
 	var/list/nutriment_desc = list("food" = 1)
 
-	var/food_quality = 1
-	var/food_tier
+	var/food_quality = 1 //Result of cooking effort
+	var/food_tier //Where on the tier scale the food falls on, determines multiplier
 	var/cooking_description_modifier
 	var/sanity_gain = 0.2 //per nutriment
 	var/junk_food = FALSE //if TRUE, sanity gain per nutriment will be zero
@@ -40,10 +40,16 @@
 		reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/proc/get_sanity_gain(mob/living/carbon/eater) //sanity_gain per bite
-	var/current_nutriment = reagents.get_reagent_amount("nutriment")
+	var/current_nutriment
+	for(var/datum/reagent/reagent in reagents.reagent_list)
+		var/reagent_amount = 0
+		if(istype(reagent, /datum/reagent/organic/nutriment))
+			var/datum/reagent/organic/nutriment/N = reagent
+			reagent_amount = N.volume
+			current_nutriment += reagent_amount * N.nutriment_factor
 	var/nutriment_percent = current_nutriment/reagents.total_volume
 	var/nutriment_eaten = min(reagents.total_volume, bitesize) * nutriment_percent
-	var/base_sanity_gain_per_bite = nutriment_eaten * sanity_gain * food_tier
+	var/base_sanity_gain_per_bite = nutriment_eaten * sanity_gain
 	var/message
 	if(!iscarbon(eater))
 		return  list(0, message)
@@ -56,7 +62,7 @@
 	var/sanity_gain_per_bite = base_sanity_gain_per_bite
 	message = "This food helps you relax."
 	if(cooked)
-		sanity_gain_per_bite += base_sanity_gain_per_bite * 0.2
+		sanity_gain_per_bite += base_sanity_gain_per_bite * food_tier
 	if(junk_food || !cooked)
 		message += " However, only healthy food will help you rest."
 		return  list(sanity_gain_per_bite, SPAN_NOTICE(message))
