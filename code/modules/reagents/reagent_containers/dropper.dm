@@ -10,7 +10,7 @@
 	possible_transfer_amounts = list(1,2,3,4,5)
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
-	matter = list(MATERIAL_GLASS = 1, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_GLASS = 0.5, MATERIAL_PLASTIC = 0.5)
 	volume = 5
 	reagent_flags = TRANSPARENT
 	spawn_tags = SPAWN_TAG_JUNK

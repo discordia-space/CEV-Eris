@@ -11,6 +11,7 @@
 	desc = "Contains blood used for transfusion."
 	icon = 'icons/obj/bloodpack.dmi'
 	icon_state = "bloodpack"
+	matter = list(MATERIAL_PLASTIC = 0.5)
 	volume = 200
 	reagent_flags = OPENCONTAINER
 	filling_states = "25;50;75;100"

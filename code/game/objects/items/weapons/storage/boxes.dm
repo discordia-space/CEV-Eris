@@ -13,6 +13,7 @@
 	max_storage_space = DEFAULT_SMALL_STORAGE + 1
 	contained_sprite = TRUE
 	health = 20
+	matter = list(MATERIAL_CARDBOARD = 1)
 	bad_type = /obj/item/storage/box
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_BOX

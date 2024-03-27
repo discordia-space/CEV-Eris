@@ -12,9 +12,11 @@
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_JUNK
 	price_tag = 10
+	matter = list(MATERIAL_PLASTIC = 4)
 
 /obj/item/caution/cone
 	desc = "This cone is trying to warn you of something!"
 	name = "warning cone"
 	icon_state = "cone"
+	matter = list(MATERIAL_PLASTIC = 2)
 

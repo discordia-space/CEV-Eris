@@ -5,7 +5,7 @@ var/list/shelter_blacklist = list(
 	/mob,
 	/obj/machinery/neotheology/reader,
 	/obj/item/storage/bsdm,
-	/obj/machinery/recycle_vendor,
+	/obj/machinery/amerecycler,
 	/obj/machinery/r_n_d/destructive_analyzer
 	)
 

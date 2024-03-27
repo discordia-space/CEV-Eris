@@ -24,6 +24,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hm_spikeclub"
 	item_state = "hm_spikeclub"
+	matter = list(MATERIAL_WOOD = 2, MATERIAL_STEEL = 2)
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = WEAPON_FORCE_PAINFUL
 	w_class = ITEM_SIZE_NORMAL

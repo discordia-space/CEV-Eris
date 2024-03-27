@@ -30,6 +30,7 @@ var/list/global/tank_gauge_cache = list()
 	spawn_tags = SPAWN_TAG_TANK_GAS
 
 	price_tag = 50
+	matter = list(MATERIAL_STEEL = 8)
 
 	var/datum/gas_mixture/air_contents
 	var/distribute_pressure = ONE_ATMOSPHERE

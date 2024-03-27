@@ -127,6 +127,7 @@
 	throw_range = 5
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_JUNK
+	matter = list(MATERIAL_CARDBOARD = 2)
 
 /obj/item/wrapping_paper
 	name = "wrapping paper"

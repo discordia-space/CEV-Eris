@@ -8,7 +8,7 @@
 var/const/VENDING_WIRE_SPEAKER = 2
 
 /datum/wires/recycle_vendor
-	holder_type = /obj/machinery/recycle_vendor
+	holder_type = /obj/machinery/amerecycler
 	wire_count = 4
 	descriptions = list(
 		new /datum/wire_description(VENDING_WIRE_THROW, "Safety"),
@@ -17,14 +17,14 @@ var/const/VENDING_WIRE_SPEAKER = 2
 		new /datum/wire_description(VENDING_WIRE_IDSCAN, "ID scanner"))
 
 /datum/wires/recycle_vendor/CanUse(mob/living/L)
-	var/obj/machinery/recycle_vendor/V = holder
+	var/obj/machinery/amerecycler/V = holder
 	if(BITTEST(V.wire_flags, WIRE_SHOCK) && V.shock(L, 100))
 		return FALSE
 	if(V.panel_open)
 		return TRUE
 
 /datum/wires/recycle_vendor/GetInteractWindow(mob/living/user)
-	var/obj/machinery/recycle_vendor/V = holder
+	var/obj/machinery/amerecycler/V = holder
 	. += ..(user)
 	. += "<BR>The orange light is [BITTEST(V.wire_flags, WIRE_SHOCK) ? "off" : "on"].<BR>"
 	. += "The red light is [BITTEST(V.wire_flags, WIRE_THROW) ? "off" : "blinking"].<BR>"
@@ -32,7 +32,7 @@ var/const/VENDING_WIRE_SPEAKER = 2
 	. += "The [BITTEST(V.wire_flags, WIRE_ID_SCAN) ? "purple" : "yellow"] light is on.<BR>"
 
 /datum/wires/recycle_vendor/UpdatePulsed(index)
-	var/obj/machinery/recycle_vendor/V = holder
+	var/obj/machinery/amerecycler/V = holder
 	switch(index)
 		if(VENDING_WIRE_THROW)
 			BITFLIP(V.wire_flags, WIRE_THROW)
@@ -42,7 +42,7 @@ var/const/VENDING_WIRE_SPEAKER = 2
 			BITSET(V.wire_flags, WIRE_SHOCK)
 
 /datum/wires/recycle_vendor/UpdateCut(index, mended)
-	var/obj/machinery/recycle_vendor/V = holder
+	var/obj/machinery/amerecycler/V = holder
 	switch(index)
 		if(VENDING_WIRE_THROW)
 			mended ? (BITRESET(V.wire_flags, WIRE_THROW))	: (BITSET(V.wire_flags, WIRE_THROW))

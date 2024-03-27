@@ -213,6 +213,7 @@
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "electrolysis_makeshift"
 	rarity_value = 50
+	matter = list(MATERIAL_STEEL = 9, MATERIAL_PLASTIC = 5)
 	starting_cell = FALSE
 	suitable_cell = /obj/item/cell/small
 	spawn_tags = SPAWN_TAG_JUNKTOOL

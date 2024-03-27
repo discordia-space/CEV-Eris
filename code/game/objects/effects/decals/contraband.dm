@@ -19,6 +19,7 @@
 	var/serial_number = 0
 	var/ruined = 0
 	var/datum/poster/design
+	matter = list(MATERIAL_PLASTIC = 1)
 
 /obj/item/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	switch(poster_datum)
