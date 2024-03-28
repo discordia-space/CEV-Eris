@@ -459,7 +459,7 @@
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "by" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},

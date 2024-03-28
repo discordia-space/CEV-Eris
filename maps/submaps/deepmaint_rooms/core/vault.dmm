@@ -31,7 +31,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/deepmaint)
 "aj" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -90,7 +90,7 @@
 /turf/simulated/floor/tiled/steel/cargo,
 /area/deepmaint)
 "au" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
@@ -477,7 +477,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/deepmaint)
 "bD" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},

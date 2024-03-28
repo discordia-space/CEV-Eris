@@ -45,13 +45,47 @@
 	// turf animation
 	var/atom/movable/overlay/c_animation
 
-/obj/machinery/door/New()
-	GLOB.all_doors += src
-	..()
+	var/atom/movable/overlay/door/door_flicker
+	var/auto_change_door_direction = TRUE
+	var/can_be_connected_to_wall = TRUE
 
 /obj/machinery/door/Destroy()
 	GLOB.all_doors -= src
+	QDEL_NULL(door_flicker)
 	..()
+
+
+/obj/machinery/door/proc/get_overlay_icon()
+	return icon
+
+/obj/machinery/door/proc/flick_door(icon_flick, target)
+	if(!icon_flick || !target)
+		return
+	door_flicker.flick_door(icon_flick)
+
+/obj/machinery/door/proc/on_door_direction_update_trigger(from_door = FALSE)
+	if(!auto_change_door_direction)
+		door_flicker.dir = dir
+		return
+	var/turf/simulated/wall/W1 = get_step(src, SOUTH)
+	var/turf/simulated/wall/W2 = get_step(src, NORTH)
+	var/south_detected = istype(W1) || locate(/obj/structure/low_wall) in W1
+	var/north_detected = istype(W2) || locate(/obj/structure/low_wall) in W2
+	if(!south_detected)
+		var/obj/machinery/door/D = locate() in W1
+		south_detected = istype(D)
+		if(istype(D) && !from_door)
+			D.on_door_direction_update_trigger(TRUE)
+	if(!north_detected)
+		var/obj/machinery/door/D = locate() in W2
+		north_detected = istype(D)
+		if(istype(D) && !from_door)
+			D.on_door_direction_update_trigger(TRUE)
+	if(south_detected && north_detected)
+		dir = WEST
+	else
+		dir = NORTH
+	door_flicker.dir = dir
 
 /obj/machinery/door/can_prevent_fall(above)
 	return above ? density : null
@@ -67,7 +101,13 @@
 	attack_animation(user)
 
 /obj/machinery/door/New()
+	GLOB.all_doors += src
+	door_flicker = new(src)
+	door_flicker.master = src
+	door_flicker.icon = get_overlay_icon()
+	vis_contents |= door_flicker
 	. = ..()
+	on_door_direction_update_trigger()
 	if(density)
 		layer = closed_layer
 		update_heat_protection(get_turf(src))

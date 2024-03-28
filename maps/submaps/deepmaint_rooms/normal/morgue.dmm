@@ -77,7 +77,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/deepmaint)
 "p" = (
-/obj/machinery/door/airlock/maintenance_common{
+/obj/machinery/door/airlock/maintenance/common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},

@@ -45,7 +45,7 @@
 /turf/simulated/floor/plating/under/airless,
 /area/template_noop)
 "k" = (
-/obj/machinery/door/airlock/maintenance_engineering{
+/obj/machinery/door/airlock/maintenance/engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},

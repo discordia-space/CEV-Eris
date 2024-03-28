@@ -39,7 +39,7 @@
 	},
 /area/template_noop)
 "bm" = (
-/obj/machinery/door/airlock/maintenance_interior{
+/obj/machinery/door/airlock/maintenance/interior{
 	icon_state = "door_locked";
 	locked = 1
 	},
@@ -602,7 +602,7 @@
 	},
 /area/template_noop)
 "XL" = (
-/obj/machinery/door/airlock/maintenance_interior,
+/obj/machinery/door/airlock/maintenance/interior,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
 	name = "plating"

@@ -9,6 +9,9 @@
 	var/air_frequency = 1437
 	autoclose = 0
 
+/obj/machinery/door/airlock/alarmlock/get_overlay_icon()
+	return icon
+
 /obj/machinery/door/airlock/alarmlock/New()
 	..()
 	air_connection = new

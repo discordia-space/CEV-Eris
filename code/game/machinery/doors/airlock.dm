@@ -68,6 +68,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 		return get_material_by_name(mineral)
 	return get_material_by_name(MATERIAL_STEEL)
 
+/obj/machinery/door/airlock/get_overlay_icon()
+	return DOOR_MISC_ICON
+
 /obj/machinery/door/airlock/command
 	name = "Airlock"
 	icon = 'icons/obj/doors/Doorcom.dmi'
@@ -101,6 +104,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	opacity = 0
 	glass = 1
 
+/obj/machinery/door/airlock/external/get_overlay_icon()
+	return 'icons/obj/doors/Doorext_misc.dmi'
+
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Doorglass.dmi'
@@ -109,6 +115,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	resistance = RESISTANCE_AVERAGE
 	opacity = 0
 	glass = 1
+
+/obj/machinery/door/airlock/glass/get_overlay_icon()
+	return icon
 
 /obj/machinery/door/airlock/centcom
 	name = "Airlock"
@@ -123,6 +132,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
 
+/obj/machinery/door/airlock/vault/get_overlay_icon()
+	return 'icons/obj/doors/vault_misc.dmi'
+
 /obj/machinery/door/airlock/vault/bolted
 	icon_state = "door_locked"
 	locked = 1
@@ -132,6 +144,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	icon = 'icons/obj/doors/Doorfreezer.dmi'
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_fre
+
+/obj/machinery/door/airlock/freezer/get_overlay_icon()
+	return icon
 
 /obj/machinery/door/airlock/hatch
 	name = "Airtight Hatch"
@@ -236,42 +251,45 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 
 /* NEW AIRLOCKS BLOCK */
 
-/obj/machinery/door/airlock/maintenance_cargo
+/obj/machinery/door/airlock/maintenance/get_overlay_icon()
+	return 'icons/obj/doors/door_maint_misc.dmi'
+
+/obj/machinery/door/airlock/maintenance/cargo
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_cargo.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_cargo
 
-/obj/machinery/door/airlock/maintenance_command
+/obj/machinery/door/airlock/maintenance/command
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_command.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_command
 
-/obj/machinery/door/airlock/maintenance_engineering
+/obj/machinery/door/airlock/maintenance/engineering
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_engi.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_engi
 
-/obj/machinery/door/airlock/maintenance_medical
+/obj/machinery/door/airlock/maintenance/medical
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_med.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_med
 
-/obj/machinery/door/airlock/maintenance_rnd
+/obj/machinery/door/airlock/maintenance/rnd
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_rnd.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_rnd
 
-/obj/machinery/door/airlock/maintenance_security
+/obj/machinery/door/airlock/maintenance/security
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_sec.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_sec
 
-/obj/machinery/door/airlock/maintenance_common
+/obj/machinery/door/airlock/maintenance/common
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_common.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_common
 
-/obj/machinery/door/airlock/maintenance_interior
+/obj/machinery/door/airlock/maintenance/interior
 	name = "Maintenance Hatch"
 	icon = 'icons/obj/doors/Doormaint_int.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_maint_int
@@ -368,6 +386,9 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	bullet_resistance = RESISTANCE_ARMOURED
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
+
+/obj/machinery/door/airlock/highsecurity/get_overlay_icon()
+	return 'icons/obj/doors/hightechsecurity_misc.dmi'
 
 /*
 About the new airlock wires panel:
@@ -640,29 +661,31 @@ There are 9 wires.
 		cut_overlays()
 	if(underlays.len)
 		underlays.Cut()
+	if(door_flicker.overlays.len)
+		door_flicker.overlays.Cut()
 	if(density)
+		icon_state = "door_closed"
 		if(locked && lights && arePowerSystemsOn())
-			icon_state = "door_locked"
+			overlays += image(get_overlay_icon(), "door_locked")
 			set_light(1.5, 0.5, COLOR_RED_LIGHT)
 		else
-			icon_state = "door_closed"
+			overlays += image(get_overlay_icon(), "door_closed")
 		if(p_open || welded)
-			overlays = list()
 			if(p_open)
-				overlays += image(icon, "panel_open")
+				door_flicker.overlays += image(get_overlay_icon(), "panel_open")
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
-					overlays += image(icon, "sparks_broken")
+					door_flicker.overlays += image(get_overlay_icon(), "sparks_broken")
 				else if (health < maxHealth * 3/4)
-					overlays += image(icon, "sparks_damaged")
+					door_flicker.overlays += image(get_overlay_icon(), "sparks_damaged")
 			if(welded)
-				overlays += image(icon, "welded")
+				overlays += image(get_overlay_icon(), "welded")
 		else if (health < maxHealth * 3/4 && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_damaged")
+			door_flicker.overlays += image(get_overlay_icon(), "sparks_damaged")
 	else
 		icon_state = "door_open"
 		if((stat & BROKEN) && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_open")
+			door_flicker.overlays += image(get_overlay_icon(), "sparks_open")
 	if(wedged_item)
 		generate_wedge_overlay()
 
@@ -670,28 +693,35 @@ There are 9 wires.
 	switch(animation)
 		if("opening")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
+			if(underlays.len)
+				underlays.Cut()
+			if(door_flicker.overlays.len)
+				door_flicker.overlays.Cut()
+
+			
+			flick("door_opening", src)//[stat ? "_stat":]
 			if(p_open)
-				flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
-				update_icon()
-			else
-				flick("door_opening", src)//[stat ? "_stat":]
-				update_icon()
+				flick_door("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
+			update_icon()
 		if("closing")
 			if(overlays.len)
-				overlays.Cut()
+				cut_overlays()
+			if(underlays.len)
+				underlays.Cut()
+			if(door_flicker.overlays.len)
+				door_flicker.overlays.Cut()
+
+			flick("door_closing", src)
 			if(p_open)
-				flick("o_door_closing", src)
-				update_icon()
-			else
-				flick("door_closing", src)
-				update_icon()
+				flick_door("o_door_closing", src)
+			update_icon()
 		if("spark")
 			if(density)
-				flick("door_spark", src)
+				flick_door("door_spark", src)
 		if("deny")
 			if(density && src.arePowerSystemsOn())
-				flick("door_deny", src)
+				flick_door("door_deny", src)
 				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
 	return
 
