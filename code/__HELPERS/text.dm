@@ -51,7 +51,7 @@
 	return input
 
 /proc/sanitizeFileName(var/input)
-	input = replace_characters(input, list(" "="_", "\\" = "_", "\""="'", "/" = "_", ":" = "_", "*" = "_", "?" = "_", "|" = "_", "<" = "_", ">" = "_"))
+	input = replace_characters(input, list(" "="_", "\\" = "_", "\""="'", "/" = "_", ":" = "_", "*" = "_", "?" = "_", "|" = "_", "<" = "_", ">" = "_", "#" = "_"))
 	if(findtext(input,"_") == 1)
 		input = copytext(input, 2)
 	return input

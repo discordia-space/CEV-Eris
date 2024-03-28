@@ -136,7 +136,19 @@
 	can_place_on_table = TRUE
 	constructing_machine = /obj/machinery/chemical_dispenser/soda
 
+/obj/item/machinery_crate/stove
+	name = "stove IKEA"
+	machine_name = "stove"
+	can_place_on_table = TRUE
+	constructing_machine = /obj/machinery/cooking_with_jane/stove
 
+/obj/item/machinery_crate/grill
+	name = "grill IKEA"
+	machine_name = "grill"
+	can_place_on_table = TRUE
+	constructing_machine = /obj/machinery/cooking_with_jane/grill
 
-
-
+/obj/item/machinery_crate/oven
+	name = "oven IKEA"
+	machine_name = "oven"
+	constructing_machine = /obj/machinery/cooking_with_jane/oven

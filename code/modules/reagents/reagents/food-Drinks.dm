@@ -198,6 +198,7 @@
 	id = "mint"
 	description = "Also known as Mentha."
 	taste_description = "mint"
+	nutriment_factor = 0.1
 	reagent_state = LIQUID
 	color = "#CF3600"
 	taste_tag = list(TASTE_REFRESHING)
@@ -581,7 +582,6 @@
 	taste_description = "milk"
 	color = "#DFDFDF"
 	taste_tag = list(TASTE_LIGHT)
-
 	glass_unique_appearance = TRUE
 	glass_icon_state = "glass_white"
 	glass_name = "milk"
@@ -598,10 +598,6 @@
 	description = "Dairy product composed of the higher-fat layer skimmed from the top of milk before homogenization."
 	taste_description = "creamy milk"
 	color = "#dfd7af"
-	taste_tag = list(TASTE_LIGHT)
-
-	glass_unique_appearance = TRUE
-	glass_icon_state = "glass_white"
 	glass_name = "cream"
 	glass_desc = "Ewwww..."
 
@@ -611,10 +607,6 @@
 	description = "An opaque white liquid made from soybeans."
 	taste_description = "soy milk"
 	color = "#DFDFC7"
-	taste_tag = list(TASTE_LIGHT)
-
-	glass_unique_appearance = TRUE
-	glass_icon_state = "glass_white"
 	glass_name = "soy milk"
 	glass_desc = "White and nutritious soy goodness!"
 
@@ -879,7 +871,6 @@
 	id = "milkshake"
 	color = "#aee5e4"
 	adj_temp = -9
-	taste_tag = list(TASTE_LIGHT)
 
 	glass_unique_appearance = TRUE
 	glass_icon_state = "milkshake"

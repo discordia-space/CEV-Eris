@@ -416,16 +416,22 @@
 	initial_contents = list(/obj/spawner/electronics = 7)
 
 // Kitchen supply
-/obj/item/storage/deferred/kitchen
-	name = "galley supply box"
-	desc = "A small collection of kitchen essentials"
+/obj/item/storage/deferred/crate/kitchen
+	name = "bradhaanata kitchen tool supply box"
+	desc = "A collection of kitchen essentials, brought to you by Bradhaanata"
 	initial_contents = list(
 		/obj/item/tool/knife = 1,
 		/obj/item/tool/knife/butch = 1,
 		/obj/item/material/kitchen/rollingpin = 1,
-		/obj/item/packageWrap = 1,
-		/obj/item/reagent_containers/food/condiment/saltshaker = 1,
-		/obj/item/reagent_containers/food/condiment/peppermill = 1
+		/obj/item/tool/shovel/spatula = 1,
+		/obj/item/reagent_containers/cooking_with_jane/cooking_container/board = 1,
+		/obj/item/reagent_containers/cooking_with_jane/cooking_container/oven = 1,
+		/obj/item/reagent_containers/cooking_with_jane/cooking_container/pan = 1,
+		/obj/item/reagent_containers/cooking_with_jane/cooking_container/pot = 1,
+		/obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate = 1,
+		/obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl = 1,
+		/obj/item/reagent_containers/food/condiment/saltshaker = 3,
+		/obj/item/reagent_containers/food/condiment/peppermill = 3
 	)
 
 // MoeSci supply

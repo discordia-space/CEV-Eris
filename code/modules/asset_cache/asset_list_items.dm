@@ -230,7 +230,7 @@
 // 		"ketchup" = 'icons/ui_icons/condiments/ketchup.png',
 // 		"capsaicin" = 'icons/ui_icons/condiments/hotsauce.png',
 // 		"frostoil" = 'icons/ui_icons/condiments/coldsauce.png',
-// 		"bbqsauce" = 'icons/ui_icons/condiments/bbqsauce.png',
+// 		"bbqsauce" = 'icons/ui_icons/condiments/bbqsauce.png', //Currently doesn't exist
 // 		"cornoil" = 'icons/ui_icons/condiments/oliveoil.png',
 // 	)
 

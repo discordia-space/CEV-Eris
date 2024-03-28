@@ -164,6 +164,7 @@
 	designs = list(
 		/datum/design/bioprinter/meat,
 		/datum/design/bioprinter/milk,
+		/datum/design/bioprinter/butter,
 		/datum/design/bioprinter/soap,
 
 		/datum/design/bioprinter/ez,
@@ -229,7 +230,7 @@
 	disk_name = "NeoTheology Supplies - \"Ritualis Supplies\""
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
-	
+
 	license = -1
 	designs = list(
 		/datum/design/bioprinter/nt_clothes/ritual_robe,

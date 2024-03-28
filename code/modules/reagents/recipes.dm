@@ -1155,7 +1155,7 @@
 /datum/chemical_reaction/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/meatball(location)
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(location)
 
 /datum/chemical_reaction/dough
 	result = null
@@ -1188,6 +1188,36 @@
 	result = "hell_ramen"
 	required_reagents = list("capsaicin" = 1, "hot_ramen" = 6)
 	result_amount = 6
+
+/datum/chemical_reaction/mint
+	result = null
+	required_reagents = list("sugar" = 5, "frostoil" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/mint/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/mint(location)
+
+/datum/chemical_reaction/candy_corn
+	result = null
+	required_reagents = list("sugar" = 5, "cornoil" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/candy_corn/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/candy_corn(location)
+
+/datum/chemical_reaction/amanitajelly
+	result = null
+	required_reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/amanitajelly/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/jelly/amanita(location)
 
 /* Alcohol */
 

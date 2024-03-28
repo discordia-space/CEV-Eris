@@ -1,0 +1,25 @@
+{{if data.catalog_browse_stage == "list"}}
+	<table align="center">
+		<tr>
+			<td>{{:helper.link(data.catalog_search, 'search', {'catalog_search_run' : 1})}}</td>
+		</tr>
+	</table>
+	<table style="width:100%">
+		<tr><td>Preview<th style="width:30%">Name<th style="width:30%">Product<th style="width:30%">Byproduct
+		{{for data.entries}}
+			<tr class="candystripe">
+			<td style="background-color: #1a1a1a;" align="center"><img src='{{:value.icon}}' height=50 width=50>
+			<td style="background-color: #1a1a1a;" align="center">{{:helper.link(value.name, '', {'set_active_entry' : value.id})}}
+			{{if value.product_is_reagent == 0}}
+				<td style="background-color: #1a1a1a;" align="center">{{:value.product_count}} {{:value.product_name}}{{if value.product_count > 1}}s{{/if}}
+			{{else}}
+				<td style="background-color: #1a1a1a;" align="center">{{:value.product_count}}u of {{:value.product_name}}
+			{{/if}}
+			{{if value.byproduct_count == 0}}
+				<td style="background-color: #1a1a1a;" align="center"> 
+			{{else}}
+				<td style="background-color: #1a1a1a;" align="center">{{:value.byproduct_count}}u of {{:value.byproduct_name}}
+			{{/if}}
+		{{/for}}
+	</table>
+{{/if}}

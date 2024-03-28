@@ -18,6 +18,7 @@
 	var/list/recipes = list(
 		"Food",
 			list(name="Milk, 30u", cost=60, reagent="milk"),
+			list(name="Stick of butter", cost=60, path=/obj/item/reagent_containers/food/snacks/sliceable/butterstick),
 			list(name="Slab of meat", cost=50, path=/obj/item/reagent_containers/food/snacks/meat),
 			list(name="Box of eggs", cost=200, path=/obj/item/storage/fancy/egg_box),
 		"Nutrient",
