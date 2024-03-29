@@ -103,7 +103,7 @@
 
 	if(I.contents.len)
 		if(istype(I, /obj/item/storage/deferred))
-			var/obj/item/storage/deferred/fllinsides
+			var/obj/item/storage/deferred/fillinsides
 			fillinsides.populate_contents()
 		if(istype(I, /obj/item/storage))
 			var/obj/item/storage/todump = I
