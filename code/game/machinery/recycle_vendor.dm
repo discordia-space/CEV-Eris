@@ -103,8 +103,8 @@
 
 	if(I.contents.len)
 		if(istype(I, /obj/item/storage/deferred))
-			var/obj/item/storage/deferred/tocreatenewinstanceswithintoallowformassrecyclingofitemsinsidestorage
-			tocreatenewinstanceswithintoallowformassrecyclingofitemsinsidestorage.populate_contents() // don't lie in the comments.
+			var/obj/item/storage/deferred/fllinsides
+			fillinsides.populate_contents()
 		if(istype(I, /obj/item/storage))
 			var/obj/item/storage/todump = I
 			for(var/obj/item/emptyit in todump.contents)
@@ -168,8 +168,6 @@
 	if(!silo)
 		return FALSE // if there is no silo, it is not stored
 
-// don't lie in the comments.
-
 	var/valueofitem = 0
 	var/list/intermediary = evaluated.get_matter()
 	var/matsinitem = intermediary?.Copy()
@@ -201,6 +199,8 @@
 		combinedvalue += saleworthy_items[toadd] * 0.8 // 20% fee on vendor
 	if(!combinedvalue || combinedvalue > silo?.my_account.money) // can we afford it all?
 		flick("recycle_screen_red", overlays[1])
+		if(!BITTEST(wire_flags, WIRE_SPEAKER))
+			audible_message("[src] outputs \"Error: Funding Insufficient.\"")
 		return
 	var/list/combinedmats = list()
 	for(var/obj/item/getthisone in stufftorecycle)
