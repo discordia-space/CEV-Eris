@@ -5,7 +5,6 @@
 
 	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_TITANIUM
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	arms = /obj/item/mech_component/manipulators/heavy
 	legs = /obj/item/mech_component/propulsion/heavy
 	head = /obj/item/mech_component/sensors/heavy
