@@ -1189,3 +1189,14 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 	var/icon/I = getFlatIcon(thing)
 	return icon2html(I, target, sourceonly = sourceonly)
+
+/proc/iconstate2appearance(icon, iconstate)
+	var/static/image/image = new()
+	image.icon = icon
+	image.icon_state = iconstate
+	return image.appearance
+
+/proc/icon2appearance(icon)
+	var/static/image/image = new()
+	image.icon = icon
+	return image.appearance
