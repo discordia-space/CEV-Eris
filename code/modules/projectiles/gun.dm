@@ -707,28 +707,27 @@
 	toggle_scope(user, TRUE)
 
 
-/obj/item/gun/examine(mob/user)
-	..()
+/obj/item/gun/examine(mob/user, extra_description = "")
 	if(LAZYLEN(firemodes) > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
+		extra_description += SPAN_NOTICE("\nThe fire selector is set to [current_mode.name].")
 
 	if(safety)
-		to_chat(user, SPAN_NOTICE("The safety is on."))
+		extra_description += SPAN_NOTICE("\nThe safety is on.")
 	else
-		to_chat(user, SPAN_NOTICE("The safety is off."))
+		extra_description += SPAN_NOTICE("\nThe safety is off.")
 
 	if(recoil.getRating(RECOIL_TWOHAND) > 0.4)
-		to_chat(user, SPAN_WARNING("This gun needs to be braced against something to be used effectively."))
+		extra_description += SPAN_WARNING("\nThis gun needs to be braced against something to be used effectively.")
 	else if(recoil.getRating(RECOIL_ONEHAND) > 0.6)
-		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
+		extra_description += SPAN_WARNING("\nThis gun needs to be wielded in both hands to be used most effectively.")
 
 	if(in_range(user, src) || isghost(user))
 		if(serial_type)
-			to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
+			extra_description += SPAN_WARNING("\nThere is a serial number on this gun, it reads [serial_type].")
 		else if(isnull(serial_type))
-			to_chat(user, SPAN_DANGER("The serial is scribbled away."))
-
+			extra_description += SPAN_DANGER("\nThe serial is scribbled away.")
+	..(user, extra_description)
 
 /obj/item/gun/proc/initialize_firemodes()
 	QDEL_LIST(firemodes)

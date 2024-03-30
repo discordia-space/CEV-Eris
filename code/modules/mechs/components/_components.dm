@@ -56,46 +56,21 @@
 			thing.emp_act(severity)
 	else return
 
-/obj/item/mech_component/examine(mob/user)
-	. = ..()
+/obj/item/mech_component/examine(mob/user, extra_description = "")
 
 	if(.)
 		if(ready_to_install())
-			to_chat(user, SPAN_NOTICE("It is ready for installation."))
+			extra_description += SPAN_NOTICE("It is ready for installation.")
 		else
 			show_missing_parts(usr)
 		if(emp_shielded)
-			to_chat(user, SPAN_NOTICE("This component is fitted with a Faraday cage, making it resistant against electromagnetic pulses."))
+			extra_description += SPAN_NOTICE("This component is fitted with a Faraday cage, making it resistant against electromagnetic pulses.")
 		if(front_mult != 1 || side_mult != 1 || rear_mult != 1)
-			to_chat(user, SPAN_NOTICE("This component has uneven armor distribution. Frontal armor is multiplied by [front_mult], side armor by [side_mult] and the rear plates by [rear_mult]"))
+			extra_description += SPAN_NOTICE("This component has uneven armor distribution. Frontal armor is multiplied by [front_mult], side armor by [side_mult] and the rear plates by [rear_mult]")
 
-	/*
-	if(reinforcement)
-		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))
-	else
-		to_chat(user, SPAN_NOTICE("It can be reinforced with 5 sheets of a material for additional protection."))
-	*/
-
-	var/damage_string = src.get_damage_string()
-	to_chat(user, "The [src.name] [src.gender == PLURAL ? "are" : "is"] [damage_string].")
-
-
-/*
-
-/obj/item/mech_component/attackby(obj/item/I, mob/living/user)
-	. = ..()
-
-	if(!reinforcement && istype(I, /obj/item/stack/material))
-		var/obj/item/stack/material/mat = I
-		if(!mat.can_use(5))
-			to_chat(user, SPAN_NOTICE("You need 5 sheets of reinforcing material!"))
-			return
-		to_chat(user, SPAN_NOTICE("You start reinforcing \the src."))
-*/
-
-
-
-
+	var/damage_string = get_damage_string()
+	extra_description += "\nThe [name] [gender == PLURAL ? "are" : "is"] [damage_string]."
+	..(user, extra_description)
 
 //These icons have multiple directions but before they're attached we only want south.
 /obj/item/mech_component/set_dir()

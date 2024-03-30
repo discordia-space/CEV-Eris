@@ -14,7 +14,6 @@
 		message_admins(logstr)
 	log_admin(logstr)
 
-ADMIN_VERB_ADD(/client/proc/view_chemical_reaction_logs, R_ADMIN, FALSE)
 /client/proc/view_chemical_reaction_logs()
 	set name = "Show Chemical Reactions"
 	set category = "Admin"

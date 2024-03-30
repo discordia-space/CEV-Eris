@@ -168,8 +168,7 @@
 
 	loc = T
 
-/obj/item/examine(user, distance = -1)
-	var/message
+/obj/item/examine(mob/user, extra_description = "")
 	var/size
 	switch(w_class)
 		if(ITEM_SIZE_TINY)
@@ -188,18 +187,22 @@
 			size = "colossal"
 		if(ITEM_SIZE_TITANIC)
 			size = "titanic"
-	message += "\nIt is a [size] item."
+	extra_description += "It is a [size] item."
 
 	for(var/Q in tool_qualities)
-		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+		extra_description += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
-	. = ..(user, distance, "", message)
+	var/list/listReference = list()
+	SEND_SIGNAL(src, COMSIG_EXTRA_EXAMINE, listReference)
+	if(LAZYLEN(listReference))
+		extra_description += "\n"
+	for(var/text in listReference)
+		extra_description += "\n[text]"
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.stats.getPerk(PERK_MARKET_PROF))
-			to_chat(user,SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]"))
-
+			extra_description += SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]")
 			var/offer_message = "This item is requested at: "
 			var/has_offers = FALSE
 			for(var/datum/trade_station/TS in SStrade.discovered_stations)
@@ -213,10 +216,11 @@
 							offer_message += "[TS.name] ([round(offer_price / offer_amount, 1)][CREDITS] each, [offer_amount] requested), "
 						else
 							offer_message += "[TS.name] (offer fulfilled, awaiting new contract), "
-
 			if(has_offers)
 				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
-				to_chat(user, SPAN_NOTICE(offer_message))
+				extra_description += offer_message
+
+	..(user, extra_description)
 
 /obj/item/attack_hand(mob/user as mob)
 	if(pre_pickup(user))

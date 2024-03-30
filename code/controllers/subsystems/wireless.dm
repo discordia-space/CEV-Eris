@@ -31,8 +31,9 @@ SUBSYSTEM_DEF(wireless)
 /datum/controller/subsystem/wireless/proc/add_request(datum/connection_request/C)
 	pending_connections += C
 
-/datum/controller/subsystem/wireless/stat_entry()
-	..("RL:[receiver_list.len]|PC:[pending_connections.len]|RC:[retry_connections.len]|FC:[failed_connections.len]")
+/datum/controller/subsystem/wireless/stat_entry(msg)
+	msg += "RL:[LAZYLEN(receiver_list)]|PC:[LAZYLEN(pending_connections)]|RC:[LAZYLEN(retry_connections)]|FC:[LAZYLEN(failed_connections)]"
+	return ..()
 
 /datum/controller/subsystem/wireless/Recover()
 	if (istype(SSwireless.receiver_list))

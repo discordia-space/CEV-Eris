@@ -365,14 +365,13 @@
 		P.dir = dir
 		. += P
 
-/obj/machinery/neotheology/biomass_container/examine(mob/user)
-	if(!..(user, 2))
-		return
-
-	if(!reagents.has_reagent("biomatter"))
-		to_chat(user, SPAN_NOTICE("It is empty."))
-	else
-		to_chat(user, SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity]."))
+/obj/machinery/neotheology/biomass_container/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(reagents.has_reagent("biomatter"))
+			extra_description += SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity].")
+		else
+			extra_description += SPAN_NOTICE("It is empty.")
+	..(user, extra_description)
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user)
 	if (istype(I, /obj/item/stack/material/biomatter))

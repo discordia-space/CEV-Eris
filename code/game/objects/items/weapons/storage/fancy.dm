@@ -23,23 +23,20 @@
 	var/icon_type = "donut"
 	var/item_obj				// It can take a path or a list, the populate_contents() must be added when using item_obj in order to work.
 
-/obj/item/storage/fancy/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
-	return
+/obj/item/storage/fancy/update_icon(itemremoved = 0)
+	var/total_contents = LAZYLEN(contents) - itemremoved
+	icon_state = "[icon_type]box[total_contents]"
 
-/obj/item/storage/fancy/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(contents.len <= 0)
-		to_chat(user, "There are no [src.icon_type]s left in the box.")
-	else if(contents.len == 1)
-		to_chat(user, "There is one [src.icon_type] left in the box.")
-	else
-		to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
-
-	return
+/obj/item/storage/fancy/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		var/content_count = LAZYLEN(contents)
+		if(!content_count)
+			extra_description += "There is no [icon_type]s left in the box."
+		else if(content_count == 1)
+			extra_description += "There is one [icon_type] left in the box."
+		else
+			extra_description += "There are [content_count] [icon_type]\s in the box."
+	..(user, extra_description)
 
 /*
  * Egg Box
