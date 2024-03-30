@@ -83,6 +83,9 @@
 /datum/design/research/item/mechfab/exosuit/chassis/heavy
 	build_path = /obj/item/mech_component/chassis/heavy
 
+/datum/design/research/item/mechfab/exosuit/chassis/walker
+	build_path = /obj/item/mech_component/chassis/walker
+
 /datum/design/research/item/mechfab/exosuit/chassis/pod
 	build_path = /obj/item/mech_component/chassis/pod
 

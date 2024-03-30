@@ -138,9 +138,10 @@
 	unlocks_designs = list(
 		/datum/design/research/item/mechfab/exosuit/sensors/heavy,
 		/datum/design/research/item/mechfab/exosuit/chassis/heavy,
+		/datum/design/research/item/mechfab/exosuit/chassis/walker,
 		/datum/design/research/item/mechfab/exosuit/manipulators/heavy,
 		/datum/design/research/item/mechfab/exosuit/propulsion/heavy,
-		/datum/design/research/item/exosuit/shield_generator,
+		/datum/design/research/item/exosuit/shield_generator
 	)
 
 /datum/technology/mech_propulsion_alt
