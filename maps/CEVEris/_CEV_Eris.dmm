@@ -10124,7 +10124,6 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "ayE" = (
-/obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/sign/faction/neotheology_cross/gold{
 	pixel_y = 32
 	},
@@ -10134,6 +10133,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/table/woodentable,
+/obj/item/stack/material/cardboard/random,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "ayF" = (
@@ -10659,6 +10662,8 @@
 /obj/item/beehive_assembly,
 /obj/item/beehive_assembly,
 /obj/item/electronics/circuitboard/honey_extractor,
+/obj/item/stock_parts/capacitor,
+/obj/item/stock_parts/scanning_module,
 /turf/simulated/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "azU" = (
