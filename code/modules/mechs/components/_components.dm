@@ -43,7 +43,7 @@
 		if(ready_to_install())
 			to_chat(user, SPAN_NOTICE("It is ready for installation."))
 		else
-			show_missing_parts(usr)
+			show_missing_parts(user)
 	/*
 	if(reinforcement)
 		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))
