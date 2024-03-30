@@ -146,4 +146,5 @@
 		equipment_see_invis = min(equipment_see_invis, mech.see_invisible)
 	else
 		equipment_see_invis = mech.see_invisible
+	equipment_vision_flags |= mech.additional_sight_flags()
 
