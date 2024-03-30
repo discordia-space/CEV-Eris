@@ -149,6 +149,27 @@
 		cell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
+/obj/item/melee/baton/mounted
+	name = "IHS \"Compliance\" baton"
+	desc = "A mech sized baton for mech-sized problems."
+	agonyforce = 80
+	suitable_cell = FALSE
+	starting_cell = FALSE
+	spawn_blacklisted = TRUE
+
+/obj/item/melee/baton/mounted/deductcharge(power_drain)
+	/// Will be inside of mech equipment , which should be inside of a mech.
+	var/mob/living/exosuit/mountedMech = loc.loc
+	if(!istype(mountedMech))
+		return FALSE
+	var/obj/item/cell/mechCell = mountedMech.get_cell(FALSE)
+	if(!mechCell)
+		set_status(FALSE)
+		return FALSE
+	. = mechCell.checked_use(power_drain) //try to use enough power
+	if(!mechCell.check_charge(hitcost))	//do we have enough power for another hit?
+		set_status(FALSE)
+
 //secborg stun baton module
 /obj/item/melee/baton/robot
 	bad_type = /obj/item/melee/baton/robot

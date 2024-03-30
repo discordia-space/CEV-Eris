@@ -690,7 +690,7 @@
 	var/zoom_offset = round(world.view * tozoom)
 	var/view_size = round(world.view + tozoom)
 
-	zoom(zoom_offset, view_size, switchzoom)
+	zoom(user, zoom_offset, view_size, switchzoom)
 	check_safety_cursor(user)
 	update_hud_actions()
 
