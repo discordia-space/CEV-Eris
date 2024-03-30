@@ -334,6 +334,8 @@
 				return
 			arms = I
 	else if(istype(I, /obj/item/mech_component/propulsion))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
 		if(legs)
 			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
 			return
@@ -349,6 +351,8 @@
 				return
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
 		if(body.strict_sensor_type == TRUE)
 			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
 			return

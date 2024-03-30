@@ -62,7 +62,7 @@
 		if(ready_to_install())
 			extra_description += SPAN_NOTICE("It is ready for installation.")
 		else
-			show_missing_parts(usr)
+			show_missing_parts(user)
 		if(emp_shielded)
 			extra_description += SPAN_NOTICE("This component is fitted with a Faraday cage, making it resistant against electromagnetic pulses.")
 		if(front_mult != 1 || side_mult != 1 || rear_mult != 1)
