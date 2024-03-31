@@ -74,10 +74,10 @@
 
 	var/creation_time = 0 //World time when this datum was New'd. Useful to tell how long since a character spawned
 
-/datum/mind/New(var/key)
+/datum/mind/New(key)
 	src.key = key
 	creation_time = world.time
-	..()
+	active = TRUE
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	if(!istype(new_character))
@@ -102,10 +102,7 @@
 		last_activity = world.time
 	if(new_character.client)
 		new_character.client.create_UI(new_character.type)
-		if(new_character.client.get_preference_value(/datum/client_preference/stay_in_hotkey_mode) == GLOB.PREF_YES)
-			winset(new_character.client, null, "mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0")
-			if(istype(new_character, /mob/living/silicon/robot))
-				winset(new_character.client, null, "mainwindow.macro=borgmacro")
+		new_character.client.init_verbs()
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"

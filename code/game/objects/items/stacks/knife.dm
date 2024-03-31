@@ -32,9 +32,10 @@
 /obj/item/stack/thrown/update_icon()
 	icon_state = "[initial(icon_state)][amount]"
 
-/obj/item/stack/thrown/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.amount == 1 ? singular_name : plural_name] in the stack.")
+/obj/item/stack/thrown/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "There [amount == 1 ? "is" : "are"] [amount] [amount == 1 ? singular_name : plural_name] in the stack."
+	..(user, extra_description)
 
 /obj/item/stack/thrown/proc/fireAt(atom/target, mob/living/carbon/C)
 	if(amount == 1)

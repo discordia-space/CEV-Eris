@@ -94,13 +94,11 @@
 			var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
 			to_chat(usr, SPAN_NOTICE("Synthesizer is now producing '[R.name]'."))
 
-/obj/item/reagent_containers/borghypo/examine(mob/user)
-	if(!..(user, 2))
-		return
-
-	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
-
-	to_chat(user, SPAN_NOTICE("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left."))
+/obj/item/reagent_containers/borghypo/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
+		extra_description += SPAN_NOTICE("Hypospray is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")
+	// Intentionally not calling parent proc
 
 /obj/item/reagent_containers/borghypo/service
 	name = "cyborg drink synthesizer"

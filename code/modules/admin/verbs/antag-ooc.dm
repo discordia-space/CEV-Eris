@@ -1,13 +1,14 @@
-ADMIN_VERB_ADD(/client/proc/aooc, R_ADMIN, FALSE)
 /client/proc/aooc(msg as text)
 	set category = "OOC"
 	set name = "AOOC"
 	set desc = "Antagonist OOC"
 
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN))
+		return
 
 	msg = sanitize(msg)
-	if(!msg)	return
+	if(!msg)
+		return
 
 	var/display_name = src.key
 	if(holder && holder.fakekey)

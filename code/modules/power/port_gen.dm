@@ -53,13 +53,10 @@
 	if(!active)
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/port_gen/examine(mob/user)
-	if(!..(user,1 ))
-		return
-	if(active)
-		to_chat(user, SPAN_NOTICE("The generator is on."))
-	else
-		to_chat(user, SPAN_NOTICE("The generator is off."))
+/obj/machinery/power/port_gen/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += SPAN_NOTICE("The generator is [active ? "on" : "off"].")
+	..(user, extra_description)
 
 /obj/machinery/power/port_gen/emp_act(severity)
 	var/duration = 6000 //ten minutes
@@ -146,16 +143,15 @@
 
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
-/obj/machinery/power/port_gen/pacman/examine(mob/user)
-	..(user)
-	to_chat(user, "\The [src] appears to be producing [power_gen*power_output] W.")
+/obj/machinery/power/port_gen/pacman/examine(mob/user, extra_description = "")
+	extra_description += "\n\The [src] appears to be producing [power_gen*power_output] W."
 	if(!use_reagents_as_fuel)
-		to_chat(user, "There [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper.")
-
+		extra_description += "\nThere [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
 	if(IsBroken())
-		to_chat(user, SPAN_WARNING("\The [src] seems to have broken down."))
+		extra_description += SPAN_WARNING("\n\The [src] seems to have broken down.")
 	if(overheating)
-		to_chat(user, SPAN_DANGER("\The [src] is overheating!"))
+		extra_description += SPAN_DANGER("\n\The [src] is overheating!")
+	..(user, extra_description)
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
 	var/needed_fuel = power_output / time_per_fuel_unit

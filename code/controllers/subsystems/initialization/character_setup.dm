@@ -26,4 +26,8 @@ SUBSYSTEM_DEF(character_setup)
 	for(var/client/C in clients)
 		GLOB.lobbyScreen.play_music(C)
 
+		// These checks normally happen on Login(), but if user have Login()'ed before preferences are loaded,
+		// then magic is not going to happen. This is a workaround
+		C.fullscreen_check()
+
 	. = ..()

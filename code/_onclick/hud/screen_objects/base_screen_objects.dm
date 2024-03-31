@@ -32,9 +32,9 @@
 		src.icon_state = _icon_state
 	..()
 
-/obj/screen/examine(mob/user)
+/obj/screen/examine(mob/user, extra_description = "")
 	if(desc)
-		to_chat(user, SPAN_NOTICE(desc))
+		to_chat(user, SPAN_NOTICE("<div id='examine'>[desc]</div>"))
 
 /obj/screen/Process()
 	return

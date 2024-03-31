@@ -18,9 +18,9 @@
 	var/activated
 	var/can_place_on_table = FALSE
 
-/obj/item/machinery_crate/examine(mob/user)
-	..()
-	to_chat(user, "The piece of paper on the side reads: [machine_name]")
+/obj/item/machinery_crate/examine(mob/user, extra_description = "")
+	extra_description += "The piece of paper on the side reads: [machine_name]"
+	..(user, extra_description)
 
 /obj/item/machinery_crate/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))

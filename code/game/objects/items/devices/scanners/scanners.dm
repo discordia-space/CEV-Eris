@@ -116,6 +116,7 @@
 	user.put_in_hands(P)
 	user.visible_message("\The [src] spits out a piece of paper.")
 
-/obj/item/device/scanner/examine(mob/user)
-	if(..(user, 2) && scan_data)
+/obj/item/device/scanner/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && scan_data)
 		show_results(user)
+	..(user, extra_description)

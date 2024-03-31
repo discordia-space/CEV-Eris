@@ -46,8 +46,7 @@
 	if(owner && !on_cooldown && damage < min_broken_damage)
 		SEND_SIGNAL_OLD(src, COMSIG_ABERRANT_INPUT, src, owner)
 
-/obj/item/organ/internal/scaffold/examine(mob/user)
-	. = ..()
+/obj/item/organ/internal/scaffold/examine(mob/user, extra_description = "")
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
@@ -89,12 +88,14 @@
 						secondary_info
 
 		if(aberrant_cooldown_time > 0)
-			to_chat(user, SPAN_NOTICE("Average organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds"))
+			extra_description += SPAN_NOTICE("\nAverage organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds")
 
 		if(function_info)
-			to_chat(user, SPAN_NOTICE(function_info))
+			extra_description += SPAN_NOTICE(function_info)
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions."))
+		extra_description += SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions.")
+
+	..(user, extra_description)
 
 /obj/item/organ/internal/scaffold/refresh_upgrades()
 	name = initial(name)

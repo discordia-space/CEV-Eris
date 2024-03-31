@@ -18,10 +18,6 @@
 	. = ..()
 	ensure_breath()
 
-/obj/item/tank/onestar_regenerator/examine(mob/user)
-	. = ..(user, 0)
-
-
 /obj/item/tank/onestar_regenerator/remove_air(amount)
 	var/datum/gas_mixture/M = air_contents.remove(amount)
 	if(istype(loc, /mob/living/carbon))

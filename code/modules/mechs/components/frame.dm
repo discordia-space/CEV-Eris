@@ -42,26 +42,26 @@
 	QDEL_NULL(body)
 	. = ..()
 
-/obj/structure/heavy_vehicle_frame/examine(var/mob/user)
-	. = ..()
+/obj/structure/heavy_vehicle_frame/examine(mob/user, extra_description = "")
 	if(!arms)
-		to_chat(user, SPAN_WARNING("It is missing manipulators."))
+		extra_description += SPAN_WARNING("It is missing manipulators.")
 	if(!legs)
-		to_chat(user, SPAN_WARNING("It is missing propulsion."))
+		extra_description += SPAN_WARNING("It is missing propulsion.")
 	if(!head)
-		to_chat(user, SPAN_WARNING("It is missing sensors."))
+		extra_description += SPAN_WARNING("It is missing sensors.")
 	if(!body)
-		to_chat(user, SPAN_WARNING("It is missing a chassis."))
+		extra_description += SPAN_WARNING("It is missing a chassis.")
 	if(is_wired == FRAME_WIRED)
-		to_chat(user, SPAN_WARNING("It has not had its wiring adjusted."))
+		extra_description += SPAN_WARNING("It has not had its wiring adjusted.")
 	else if(!is_wired)
-		to_chat(user, SPAN_WARNING("It has not yet been wired."))
+		extra_description += SPAN_WARNING("It has not yet been wired.")
 	if(is_reinforced == FRAME_REINFORCED)
-		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement secured."))
+		extra_description += SPAN_WARNING("It has not had its internal reinforcement secured.")
 	else if(is_reinforced == FRAME_REINFORCED_SECURE)
-		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement welded in."))
+		extra_description += SPAN_WARNING("It has not had its internal reinforcement welded in.")
 	else if(!is_reinforced)
-		to_chat(user, SPAN_WARNING("It does not have any internal reinforcement."))
+		extra_description += SPAN_WARNING("It does not have any internal reinforcement.")
+	..(user, extra_description)
 
 /obj/structure/heavy_vehicle_frame/update_icon()
 	. = ..()
@@ -319,8 +319,11 @@
 
 	// Installing basic components.
 	if(istype(I, /obj/item/mech_component/manipulators))
-		if(istype(body, /obj/item/mech_component/chassis/forklift))
-			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support manipulators!"))
+		if(body.strict_arm_type == TRUE)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			return
+		else if(body.strict_arm_type && !istype(I, body.strict_arm_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_arm_type:name)]"))
 			return
 		if(arms)
 			to_chat(user, SPAN_WARNING("\The [src] already has manipulators installed."))
@@ -331,11 +334,16 @@
 				return
 			arms = I
 	else if(istype(I, /obj/item/mech_component/propulsion))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
 		if(legs)
 			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
 			return
-		if(istype(body, /obj/item/mech_component/chassis/forklift) && !istype(I, /obj/item/mech_component/propulsion/wheels))
-			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support this type of propulsation, only wheels!"))
+		if(body.strict_leg_type == TRUE)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			return
+		else if(body.strict_leg_type && !istype(I, body.strict_leg_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_leg_type:name)]"))
 			return
 		if(install_component(I, user))
 			if(legs)
@@ -343,8 +351,13 @@
 				return
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
-		if(istype(body, /obj/item/mech_component/chassis/forklift))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
+		if(body.strict_sensor_type == TRUE)
 			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
+			return
+		else if(body.strict_sensor_type && !istype(I, body.strict_sensor_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_sensor_type:name)]"))
 			return
 		if(head)
 			to_chat(user, SPAN_WARNING("\The [src] already has a sensor array installed."))

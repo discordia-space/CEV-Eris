@@ -69,9 +69,8 @@ var/list/global/tank_gauge_cache = list()
 	if(default_gas)
 		air_contents.adjust_gas(default_gas, default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
-/obj/item/tank/examine(mob/user)
-	. = ..(user, 0)
-	if(.)
+/obj/item/tank/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 		var/celsius_temperature = air_contents.temperature - T0C
 		var/descriptive
 		switch(celsius_temperature)
@@ -87,7 +86,8 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "room temperature"
 			else
 				descriptive = "cold"
-		to_chat(user, SPAN_NOTICE("\The [src] feels [descriptive]."))
+		extra_description += SPAN_NOTICE("\The [src] feels [descriptive].")
+	..(user, extra_description)
 
 /obj/item/tank/attackby(obj/item/W, mob/living/user)
 	..()

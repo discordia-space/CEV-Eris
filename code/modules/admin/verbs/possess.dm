@@ -1,4 +1,3 @@
-ADMIN_VERB_ADD(/proc/possess, R_FUN, FALSE)
 /proc/possess(obj/O as obj)
 	set name = "Possess Obj"
 	set category = "Object"

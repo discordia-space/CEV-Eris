@@ -112,9 +112,9 @@
 	else if(choice == "Colour")
 		choose_colour()
 
-/obj/item/device/floor_painter/examine(mob/user)
-	..(user)
-	to_chat(user, "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint.")
+/obj/item/device/floor_painter/examine(mob/user, extra_description = "")
+	extra_description += "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint."
+	..(user, extra_description)
 
 /obj/item/device/floor_painter/verb/choose_colour()
 	set name = "Choose Colour"

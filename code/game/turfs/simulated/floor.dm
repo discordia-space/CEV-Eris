@@ -75,18 +75,17 @@
 
 	levelupdate()
 
-/turf/simulated/floor/examine(mob/user)
-	.=..()
-	if (health < maxHealth)
-		if (health < (0.25 * maxHealth))
-			to_chat(user, SPAN_DANGER("It looks like it's about to collapse!"))
+/turf/simulated/floor/examine(mob/user, extra_description = "")
+	if(health < maxHealth)
+		if(health < (0.25 * maxHealth))
+			extra_description += SPAN_DANGER("It looks like it's about to collapse!")
 		else if (health < (0.5 * maxHealth))
-			to_chat(user, SPAN_WARNING("It's heavily damaged!"))
+			extra_description += SPAN_WARNING("It's heavily damaged!")
 		else if (health < (0.75 * maxHealth))
-			to_chat(user, SPAN_WARNING("It's taken a bit of a beating!"))
+			extra_description += SPAN_WARNING("It's taken a bit of a beating!")
 		else
-			to_chat(user, SPAN_WARNING("It has a few scuffs and scrapes"))
-
+			extra_description += SPAN_WARNING("It has a few scuffs and scrapes")
+	..(user, extra_description)
 
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf

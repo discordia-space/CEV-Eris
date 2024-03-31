@@ -82,7 +82,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 				if("permissions", "rights")
 					rights |= R_PERMISSIONS
 				if("everything", "host", "all")
-					rights |= (R_ADMIN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS | R_MOD | R_MENTOR)
+					rights = R_HOST
 				if("mod")
 					rights |= R_MOD
 				if("mentor")

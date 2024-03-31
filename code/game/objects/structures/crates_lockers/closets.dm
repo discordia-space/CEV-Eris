@@ -84,22 +84,23 @@
 	dump_contents()
 	. = ..()
 
-/obj/structure/closet/examine(mob/user)
-	if(..(user, 1) && !opened && !istype(src, /obj/structure/closet/body_bag))
+/obj/structure/closet/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && !opened && !istype(src, /obj/structure/closet/body_bag))
 		var/content_size = 0
-		for(var/obj/item/I in src.contents)
+		for(var/obj/item/I in contents)
 			if(!I.anchored)
 				content_size += CEILING(I.w_class * 0.5, 1)
 		if(!content_size)
-			to_chat(user, "It is empty.")
+			extra_description += "\nIt is empty."
 		else if(storage_capacity > content_size*4)
-			to_chat(user, "It is barely filled.")
+			extra_description += "\nIt is barely filled."
 		else if(storage_capacity > content_size*2)
-			to_chat(user, "It is less than half full.")
+			extra_description += "\nIt is less than half full."
 		else if(storage_capacity > content_size)
-			to_chat(user, "There is still some free space.")
+			extra_description += "\nThere is still some free space."
 		else
-			to_chat(user, "It is full.")
+			extra_description += "\nIt is full."
+	..(user, extra_description)
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1

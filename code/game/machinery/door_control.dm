@@ -155,10 +155,9 @@
 	radio_conn = null
 	. = ..()
 
-/obj/machinery/button/remote/blast_door/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	if(.)
-		to_chat(user, "Linked doors status is currently [door_status]")
+/obj/machinery/button/remote/blast_door/examine(mob/user, extra_description = "")
+	extra_description += "Linked doors status is currently [door_status]"
+	..(user, extra_description)
 
 /obj/machinery/button/remote/blast_door/trigger()
 	door_status = "UNKNOWN"

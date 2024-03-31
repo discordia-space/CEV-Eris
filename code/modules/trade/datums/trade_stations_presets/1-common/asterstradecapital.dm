@@ -139,9 +139,6 @@
 		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 8),
 		/obj/item/mech_component = offer_data("mech component", 300, 4),															// base price: 150
 		/obj/item/mech_equipment = offer_data("mech equipment", 400, 4),															// base price: 200
-		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 700, 4),					// base price: 400
-		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 700, 4),		// base price: 550
-		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1750, 4),			// base price: 1000
 		/obj/item/tool/crowbar/onestar = offer_data("one star crowbar", 5000, 3),
 		/obj/item/tool/hammer/sledgehammer/onestar = offer_data("one star sledgehammer", 5000, 3),
 		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("one star combi driver", 6500, 3),

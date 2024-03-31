@@ -56,7 +56,7 @@ var/list/holder_mob_icon_cache = list()
 		release_mob(FALSE)
 	return ..()
 
-/obj/item/holder/examine(mob/user)
+/obj/item/holder/examine(mob/user, extra_description = "")
 	if (contained)
 		contained.examine(user)
 
@@ -218,8 +218,8 @@ var/list/holder_mob_icon_cache = list()
 		to_chat(grabber, "<span class='warning'>Your hand is full!</span>")
 		return
 
-	src.verbs += /mob/living/proc/get_holder_location//This has to be before we move the mob into the holder
-
+	//This has to be before we move the mob into the holder
+	add_verb(src, /mob/living/proc/get_holder_location)
 
 	spawn(2)
 		var/obj/item/holder/H = new holder_type(loc)

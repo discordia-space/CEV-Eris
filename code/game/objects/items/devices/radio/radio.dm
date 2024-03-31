@@ -539,14 +539,10 @@ var/global/list/default_medbay_channels = list(
 		return get_mobs_or_objects_in_view(canhear_range, src)
 
 
-/obj/item/device/radio/examine(mob/user)
-	. = ..()
-	if ((in_range(src, user) || loc == user))
-		if (b_stat)
-			user.show_message(SPAN_NOTICE("\The [src] can be attached and modified!"))
-		else
-			user.show_message(SPAN_NOTICE("\The [src] can not be modified or attached!"))
-	return
+/obj/item/device/radio/examine(mob/user, extra_description = "")
+	if((in_range(src, user) || loc == user))
+		extra_description += SPAN_NOTICE("\The [src] can [b_stat ? "" : "not "]be attached and modified!")
+	..(user, extra_description)
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()

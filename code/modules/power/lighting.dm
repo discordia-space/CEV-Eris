@@ -29,20 +29,16 @@
 	else if (istype(src, /obj/machinery/light_construct/floor))
 		icon_state = "floortube-construct-stage1"
 
-/obj/machinery/light_construct/examine(mob/user)
-	if(!..(user, 2))
-		return
-
-	switch(src.stage)
-		if(1)
-			to_chat(user, "It's an empty frame.")
-			return
-		if(2)
-			to_chat(user, "It's wired.")
-			return
-		if(3)
-			to_chat(user, "The casing is closed.")
-			return
+/obj/machinery/light_construct/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		switch(stage)
+			if(1)
+				extra_description += "\nIt's an empty frame."
+			if(2)
+				extra_description += "\nIt's wired."
+			if(3)
+				extra_description += "\nThe casing is closed."
+	..(user, extra_description)
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user)
 
@@ -367,22 +363,19 @@
 	update()
 
 // examine verb
-/obj/machinery/light/examine(mob/user)
-	..()
+/obj/machinery/light/examine(mob/user, extra_description = "")
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [on? "on" : "off"].")
+			extra_description += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			extra_description += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			extra_description += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
-
-
+			extra_description += "The [fitting] has been smashed."
+	..(user, extra_description)
 
 // attack with item - insert light (if right type), otherwise try to break the light
-
 /obj/machinery/light/attackby(obj/item/I, mob/user)
 
 	//Light replacer code

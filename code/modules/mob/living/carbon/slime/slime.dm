@@ -69,7 +69,7 @@
 
 /mob/living/carbon/slime/New(var/location, var/colour="grey")
 
-	verbs += /mob/living/proc/ventcrawl
+	add_verb(src, /mob/living/proc/ventcrawl)
 
 	src.colour = colour
 	number = rand(1, 1000)
@@ -158,22 +158,14 @@
 /mob/living/carbon/slime/allow_spacemove()
 	return -1
 
-/mob/living/carbon/slime/Stat()
+/mob/living/carbon/slime/get_status_tab_items()
 	. = ..()
-
-	statpanel("Status")
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
-	stat(null, "Intent: [a_intent]")
-
-	if (client.statpanel == "Status")
-		stat(null, "Nutrition: [nutrition]/[get_max_nutrition()]")
-		if(amount_grown >= 10)
-			if(is_adult)
-				stat(null, "You can reproduce!")
-			else
-				stat(null, "You can evolve!")
-
-		stat(null,"Power Level: [powerlevel]")
+	. += list(list("Health: [round((health / maxHealth) * 100)]%"))
+	. += list(list("Intent: [a_intent]"))
+	. += list(list("Nutrition: [nutrition]/[get_max_nutrition()]"))
+	if(amount_grown >= 10)
+		. += list(list(is_adult ? "You can reproduce!" : "You can evolve!"))
+		. += list(list("Power Level: [powerlevel]"))
 
 /mob/living/carbon/slime/adjustFireLoss(amount)
 	..(-abs(amount)) // Heals them

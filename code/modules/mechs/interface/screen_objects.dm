@@ -269,6 +269,11 @@
 	update_icon()
 
 /obj/screen/movable/exosuit/toggle/hatch/update_icon()
+	if(owner && owner.body && !(owner.body.has_hatch))
+		invisibility = 101
+		return
+	else
+		invisibility = 0
 	toggled = owner.hatch_locked
 	. = ..()
 
@@ -290,6 +295,11 @@
 	update_icon()
 
 /obj/screen/movable/exosuit/toggle/hatch_open/update_icon()
+	if(owner && owner.body && !(owner.body.has_hatch))
+		invisibility = 101
+		return
+	else
+		invisibility = 0
 	toggled = owner.hatch_closed
 	. = ..()
 	if(toggled)
@@ -430,7 +440,7 @@
 	icon_state = "strafe"
 
 /obj/screen/movable/exosuit/toggle/strafe/toggled() // Prevents exosuits from strafing when EMP'd enough
-	if(owner.legs.can_strafe == FALSE)
+	if(owner.legs.can_strafe == MECH_STRAFING_NONE)
 		to_chat(usr, SPAN_WARNING("Error: This propulsion system doesn't support synchronization!"))
 		return
 	if(owner.emp_damage >= EMP_STRAFE_DISABLE)

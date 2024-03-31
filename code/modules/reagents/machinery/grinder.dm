@@ -451,14 +451,13 @@
 	if(N)
 		amount_per_transfer_from_this = N
 
-/obj/item/storage/makeshift_grinder/examine(mob/user)
-	if(!..(user, 2))
-		return
-	if(contents.len)
-		to_chat(user, SPAN_NOTICE("It has something inside."))
-	if(reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents."))
-
+/obj/item/storage/makeshift_grinder/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(LAZYLEN(contents))
+			extra_description += SPAN_NOTICE("\nIt has something inside.")
+		if(reagents.total_volume)
+			extra_description += SPAN_NOTICE("\nIt's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents.")
+	..(user, extra_description)
 
 /obj/item/storage/makeshift_grinder/update_icon()
 	. = ..()

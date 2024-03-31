@@ -46,24 +46,25 @@
 		G.transfer_personality(user, brainmob, check_respawn_timer=FALSE)
 	return
 
-/obj/item/device/mmi/digital/posibrain/examine(mob/user)
-	if(!..(user))
-		return
+/obj/item/device/mmi/digital/posibrain/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		var/msg = "<span class='info'>*---------*</span>\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
+		msg += "<span class='warning'>"
 
-	var/msg = "<span class='info'>*---------*</span>\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
-	msg += "<span class='warning'>"
-
-	if(src.brainmob && src.brainmob.key)
-		switch(src.brainmob.stat)
-			if(CONSCIOUS)
-				if(!src.brainmob.client)	msg += "It appears to be in stand-by mode.\n" //afk
-			if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
-			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	else
-		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	msg += "</span><span class='info'>*---------*</span>"
-	to_chat(user, msg)
-	return
+		if(brainmob && brainmob.key)
+			switch(brainmob.stat)
+				if(CONSCIOUS)
+					if(!brainmob.client)
+						msg += "It appears to be in stand-by mode.\n" //afk
+				if(UNCONSCIOUS)
+					msg += "It doesn't seem to be responsive.\n"
+				if(DEAD)
+					msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+		else
+			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+		msg += "</span><span class='info'>*---------*</span>"
+		extra_description += msg
+	..(user, extra_description)
 
 /obj/item/device/mmi/digital/posibrain/emp_act(severity)
 	if(!src.brainmob)

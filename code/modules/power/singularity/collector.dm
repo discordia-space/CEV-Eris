@@ -114,9 +114,9 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		return
 	return ..()
 
-/obj/machinery/power/rad_collector/examine(mob/user)
-	if(..())
-		to_chat(user, "The meter indicates that [src] is collecting [last_power] W.")
+/obj/machinery/power/rad_collector/examine(mob/user, extra_description = "")
+	extra_description += "The meter indicates that [src] is collecting [last_power] W."
+	..(user, extra_description)
 
 /obj/machinery/power/rad_collector/take_damage(amount)
 	if(amount > 50)

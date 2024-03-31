@@ -39,7 +39,7 @@
 	if(objectives.len)
 		member.set_objectives(objectives)
 
-	member.owner.current.verbs |= verbs
+	add_verb(member.owner.current, verbs)
 	add_icons(member)
 	update_members()
 	return TRUE
@@ -52,7 +52,7 @@
 		add_member(member,FALSE)
 
 	leaders.Add(member)
-	member.owner.current.verbs |= leader_verbs
+	add_verb(member.owner.current, leader_verbs)
 	if(announce)
 		to_chat(member.owner.current, SPAN_NOTICE("You became a <b>leader</b> of the [name]."))
 	update_members()

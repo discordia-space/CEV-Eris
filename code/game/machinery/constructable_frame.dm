@@ -24,15 +24,13 @@
 	var/list/req_component_names
 	var/state = STATE_NONE
 
-/obj/machinery/constructable_frame/machine_frame/examine(mob/user)
-	. = ..()
-
+/obj/machinery/constructable_frame/machine_frame/examine(mob/user, extra_description = "")
 	if(state == STATE_NONE)
-		to_chat(user, "The beginning of a machine. Add wires, a circuit board, and any extra required parts.")
+		extra_description += "The beginning of a machine. Add wires, a circuit board, and any extra required parts."
 	else if(state == STATE_WIRES)
-		to_chat(user, "A wired machine frame. Now it needs a circuit board that will decide what kind of machine it becomes.")
+		extra_description += "A wired machine frame. Now it needs a circuit board that will decide what kind of machine it becomes."
 	else if(state == STATE_CIRCUIT)
-		to_chat(user, "A machine frame with \a [circuit] in it.")
+		extra_description += "A machine frame with \a [circuit] in it."
 
 		var/list/component_list = list()
 		if(req_components)
@@ -42,11 +40,11 @@
 					continue
 				component_list += "[amt] [amt == 1 ? req_component_names[I] : "[req_component_names[I]]\s"]"
 
-		if(length(component_list))
-			to_chat(user, "Requires [english_list(component_list)].")
+		if(LAZYLEN(component_list))
+			extra_description += "\nRequires [english_list(component_list)]."
 		else
-			to_chat(user, "It's almost complete! Now just use a screwdriver to apply the finishing touch.")
-
+			extra_description += "\nIt's almost complete! Now just use a screwdriver to apply the finishing touch."
+	..(user, extra_description)
 
 /obj/machinery/constructable_frame/machine_frame/attackby(obj/item/I, mob/user)
 

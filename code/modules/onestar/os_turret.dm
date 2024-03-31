@@ -119,12 +119,12 @@
 			deltimer(id)
 	..()
 
-/obj/machinery/power/os_turret/examine(mob/user)
-	..()
+/obj/machinery/power/os_turret/examine(mob/user, extra_description = "")
 	if(should_target_players)
-		to_chat(user, SPAN_NOTICE("It is set to target humans, androids, and cyborgs."))
+		extra_description += SPAN_NOTICE("It is set to target humans, androids, and cyborgs.")
 	else
-		to_chat(user, SPAN_NOTICE("It is set to target golems and large bugs."))
+		extra_description += SPAN_NOTICE("It is set to target golems and large bugs.")
+	..(user, extra_description)
 
 /obj/machinery/power/os_turret/update_icon()
 	underlays.Cut()
@@ -282,10 +282,10 @@
 	)
 	var/target_superior_mobs = FALSE
 
-/obj/item/electronics/circuitboard/os_turret/examine(user, distance)
-	. = ..()
+/obj/item/electronics/circuitboard/os_turret/examine(mob/user, extra_description = "")
 	if(target_superior_mobs)
-		to_chat(user, SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems."))
+		extra_description += SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems.")
+	..(user, extra_description)
 
 /obj/item/electronics/circuitboard/os_turret/laser
 	name = T_BOARD("One Star laser turret")

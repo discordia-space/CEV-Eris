@@ -124,31 +124,31 @@
 	if(wearer && visor && visor && visor.vision && visor.vision.glasses && (!helmet || (wearer.head && helmet == wearer.head)))
 		return visor.vision.glasses
 
-/obj/item/rig/examine()
-	..()
+/obj/item/rig/examine(mob/user, extra_description = "")
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			to_chat(usr, "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed.")
+			extra_description += "\n\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
 
 	if(loc == usr)
-		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
-		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
+		extra_description += "\nThe maintenance panel is [open ? "open" : "closed"]."
+		extra_description += "\nHardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"]."
 
 	if(ablative_max) // If ablative armor is replaced with a module system, this should be called as a proc on the module
 		var/ablative_ratio = ablative_armor / ablative_max
 		switch(ablative_ratio)
 			if(1) // First we get this over with
-				to_chat(usr, "The armor system reports pristine condition.")
+				extra_description += "\nThe armor system reports pristine condition."
 			if(-INFINITY to 0.1)
-				to_chat(usr, "The armor system reports system error. Repairs mandatory.")
+				extra_description += "\nThe armor system reports system error. Repairs mandatory."
 			if(0.1 to 0.5)
-				to_chat(usr, "The armor system reports critical failure! Repairs mandatory.")
+				extra_description += "\nThe armor system reports critical failure! Repairs mandatory."
 			if(0.5 to 0.8)
-				to_chat(usr, "The armor system reports heavy damage. Repairs required.")
+				extra_description += "\nThe armor system reports heavy damage. Repairs required."
 			if(0.8 to 1)
-				to_chat(usr, "The armor system reports insignificant damage. Repairs advised.")
+				extra_description += "\nThe armor system reports insignificant damage. Repairs advised."
+	..(user, extra_description)
 
 /obj/item/rig/Initialize()
 	. = ..()
@@ -178,20 +178,16 @@
 		air_supply = new air_type(src)
 	if(glove_type)
 		gloves = new glove_type(src)
-		verbs |= /obj/item/rig/proc/toggle_gauntlets
 	if(helm_type)
 		helmet = new helm_type(src)
-		verbs |= /obj/item/rig/proc/toggle_helmet
 	if(boot_type)
 		boots = new boot_type(src)
-		verbs |= /obj/item/rig/proc/toggle_boots
 	if(chest_type)
 		chest = new chest_type(src)
 		chest.equip_delay = 0
 		if(allowed)
 			chest.allowed |= allowed
 		chest.slowdown = offline_slowdown
-		verbs |= /obj/item/rig/proc/toggle_chest
 
 	if(initial_modules && initial_modules.len)
 		for(var/path in initial_modules)
@@ -578,6 +574,16 @@
 
 	return 1
 
+/obj/item/rig/proc/check_suit_access_alternative(mob/living/carbon/human/user)
+	// Old proc does checks that are not always needed
+	// and spams into chat, which is less than ideal in some cases
+	// TODO: Emag functionality? See 'subverted' var
+
+	if((req_access || req_one_access) && !allowed(user))
+		return FALSE
+
+	return TRUE
+
 //TODO: Fix Topic vulnerabilities for malfunction and AI override.
 /obj/item/rig/Topic(href,href_list)
 	if(!check_suit_access(usr))
@@ -587,6 +593,8 @@
 		if(ishuman(usr) && (usr.stat || usr.stunned || usr.lying))
 			return 0
 		toggle_piece(href_list["toggle_piece"], usr)
+	else if(href_list["open_ui"])
+		nano_ui_interact(usr)
 	else if(href_list["toggle_seals"])
 		toggle_seals(usr)
 	else if(href_list["interact_module"])

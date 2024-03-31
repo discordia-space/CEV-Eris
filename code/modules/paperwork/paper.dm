@@ -67,14 +67,14 @@
 	if(!new_text)
 		free_space -= length(strip_html_properly(new_text))
 
-/obj/item/paper/examine(mob/user)
-	. = ..()
+/obj/item/paper/examine(mob/user, extra_description = "")
 	if(name != "sheet of paper")
-		to_chat(user, "It's titled '[name]'.")
+		extra_description += "\nIt's titled '[name]'."
 	if(in_range(user, src) || isghost(user))
-		show_content(usr)
+		show_content(user)
 	else
-		to_chat(user, "<span class='notice'>You have to go closer if you want to read it.</span>")
+		extra_description += SPAN_NOTICE("\nYou have to come closer if you want to read it.")
+	..(user, extra_description)
 
 /obj/item/paper/proc/show_content(mob/user, forceshow)
 	var/can_read = (istype(user, /mob/living/carbon/human) || isghost(user) || istype(user, /mob/living/silicon)) || forceshow

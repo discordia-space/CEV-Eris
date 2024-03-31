@@ -31,9 +31,9 @@
 		last_regen = world.time
 		update_icon()
 
-/obj/item/gun/launcher/spikethrower/examine(mob/user)
-	..(user)
-	to_chat(user, "It has [spikes] spike\s remaining.")
+/obj/item/gun/launcher/spikethrower/examine(mob/user, extra_description = "")
+	extra_description += "It has [spikes] spike\s remaining."
+	..(user, extra_description)
 
 /obj/item/gun/launcher/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"

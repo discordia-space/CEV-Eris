@@ -14,4 +14,9 @@
 
 
 /obj/item/device/binoculars/attack_self(mob/user)
-	zoom()
+	zoom(user)
+
+/// special subtype for handling
+/obj/item/device/binoculars/mech
+	name = "mech binoculars"
+	desc = "Vision in 32K pixel resolution!"

@@ -37,7 +37,8 @@ SUBSYSTEM_DEF(tgui)
 	close_all_uis()
 
 /datum/controller/subsystem/tgui/stat_entry(msg)
-	..("P:[length(open_uis)]")
+	msg = "P:[LAZYLEN(open_uis)]"
+	return ..()
 
 /datum/controller/subsystem/tgui/fire(resumed = FALSE)
 	if(!resumed)

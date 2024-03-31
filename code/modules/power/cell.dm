@@ -141,15 +141,13 @@
 	return amount_used
 
 
-/obj/item/cell/examine(mob/user)
-	if(!..(user,2))
-		return
-
-	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
-	to_chat(user, "The charge meter reads [round(percent() )]%.")
-
-	if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
-		to_chat(user, SPAN_WARNING("This cell is ready to short circuit!"))
+/obj/item/cell/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it."
+		extra_description += "\nThe charge meter reads [round(percent() )]%."
+		if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
+			extra_description += SPAN_WARNING("\nThis cell is ready to short circuit!")
+	..(user, extra_description)
 
 
 /obj/item/cell/attackby(obj/item/W, mob/user)

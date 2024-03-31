@@ -310,11 +310,12 @@
 		else
 			return ..()
 
-/obj/machinery/atmospherics/unary/vent_scrubber/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+/obj/machinery/atmospherics/unary/vent_scrubber/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
 	else
-		to_chat(user, "You are too far away to read the gauge.")
+		extra_description += "You are too far away to read the gauge."
+	..(user, extra_description)
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	if(initial_loc)

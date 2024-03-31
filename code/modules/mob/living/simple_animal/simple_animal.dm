@@ -117,7 +117,7 @@
 	seek_move_delay = (1 / seek_speed) / (world.tick_lag / 10)//number of ticks between moves
 	turns_since_scan = rand(min_scan_interval, max_scan_interval)//Randomise this at the start so animals don't sync up
 
-	verbs -= /mob/verb/observe
+	remove_verb(src, /mob/verb/observe)
 
 	if(mob_size)
 		nutrition_step = mob_size * 0.03 * metabolic_factor
@@ -155,23 +155,23 @@
 	if (health <= 0 && stat != DEAD)
 		death()
 
-/mob/living/simple_animal/examine(mob/user)
-	..()
+/mob/living/simple_animal/examine(mob/user, extra_description = "")
 	if(hunger_enabled)
-		if (!nutrition)
-			to_chat(user, SPAN_DANGER("It looks starving!"))
-		else if (nutrition < max_nutrition *0.5)
-			to_chat(user, SPAN_NOTICE("It looks hungry."))
-		else if ((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
-			to_chat(user, "It looks full and contented.")
-	if (health < maxHealth * 0.25)
-		to_chat(user, SPAN_DANGER("It's grievously wounded!"))
-	else if (health < maxHealth * 0.50)
-		to_chat(user, SPAN_DANGER("It's badly wounded!"))
-	else if (health < maxHealth * 0.75)
-		to_chat(user, SPAN_WARNING("It's wounded."))
-	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("It's a bit wounded."))
+		if(!nutrition)
+			extra_description += SPAN_DANGER("\nIt looks starving!")
+		else if(nutrition < max_nutrition *0.5)
+			extra_description += SPAN_NOTICE("\nIt looks hungry.")
+		else if((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
+			extra_description += "\nIt looks full and contented."
+	if(health < maxHealth * 0.25)
+		extra_description += SPAN_DANGER("\nIt's grievously wounded!")
+	else if(health < maxHealth * 0.50)
+		extra_description += SPAN_DANGER("\nIt's badly wounded!")
+	else if(health < maxHealth * 0.75)
+		extra_description += SPAN_WARNING("\nIt's wounded.")
+	else if(health < maxHealth)
+		extra_description += SPAN_WARNING("\nIt's a bit wounded.")
+	..(user, extra_description)
 
 /mob/living/simple_animal/Life()
 	.=..()
@@ -420,11 +420,9 @@
 
 	return tally
 
-/mob/living/simple_animal/Stat()
+/mob/living/simple_animal/get_status_tab_items()
 	. = ..()
-
-	if(statpanel("Status") && show_stat_health)
-		stat(null, "Health: [round((health / maxHealth) * 100)]%")
+	. += list(list("Health: [round((health / maxHealth) * 100)]%"))
 
 /mob/living/simple_animal/death(gibbed, deathmessage = "dies!")
 	walk_to(src,0)

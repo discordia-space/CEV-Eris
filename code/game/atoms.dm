@@ -336,64 +336,69 @@ its easier to just keep the beam vertical.
 
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, extra_description = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/full_name = "\a [src][infix]."
-	if(src.blood_DNA && !istype(src, /obj/effect/decal))
+	var/full_name = "\a [src]."
+	var/output = ""
+	if(blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
 			full_name = "some "
 		else
 			full_name = "a "
 		if(blood_color != "#030303")
-			full_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			full_name += "<span class='danger'>blood-stained</span> [name]!"
 		else
-			full_name += "oil-stained [name][infix]."
+			full_name += "oil-stained [name]."
 
-	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
-	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
-
-	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
-
+	output += "<div id='examine'>"
+	output += "\icon[src] This is [full_name]"
 	if(desc)
-		to_chat(user, desc)
-		var/pref = user.get_preference_value("SWITCHEXAMINE")
-		if(pref == GLOB.PREF_YES)
-			user.client.statpanel = "Examine"
-
+		output += "\n[desc]"
+	if(extra_description)
+		output += "\n[extra_description]"
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
-			to_chat(user, SPAN_NOTICE("It contains:"))
-			var/return_value = user.can_see_reagents()
-			if(return_value == TRUE) //Show each individual reagent
-				for(var/datum/reagent/R in reagents.reagent_list)
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			/* Uncomment to check for consumer reagents also in can_see_reagents
-			else if(return_value == 2) // Check for consumer reagents
-				for(var/datum/reagent/R in reagents.reagent_list)
-					if(!(istype(R,/datum/reagent/ethanol) || istype(R,/datum/reagent/drink) || istype(R, /datum/reagent/water)))
-						//to_chat(user, SPAN_NOTICE("[R.volume] units of an unfamiliar substance")) For balance concers , don't let them know
-						continue
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			*/
-			else if(reagents && reagents.reagent_list.len)
-				to_chat(user, SPAN_NOTICE("[reagents.total_volume] units of various reagents."))
-		else
-			if(reagent_flags & AMOUNT_VISIBLE)
-				if(reagents.total_volume)
-					to_chat(user, SPAN_NOTICE("It has [reagents.total_volume] unit\s left."))
+			if(LAZYLEN(reagents.reagent_list) > 1)
+				if(user.can_see_reagents())
+					output += SPAN_NOTICE("\nIt contains:")
+					for(var/datum/reagent/R in reagents.reagent_list)
+						output += SPAN_NOTICE("\n[R.volume] units of [R.name]")
 				else
-					to_chat(user, SPAN_DANGER("It's empty."))
+					output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of various reagents.")
+			else
+				output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
+		else if(reagent_flags & AMOUNT_VISIBLE)
+			output += SPAN_NOTICE("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
+
+	var/desc_info = get_description_info()
+	if(desc_info)
+		output += "\n<font color='#084b8a'><b>[desc_info]</b></font>"
+
+	var/desc_fluff = get_description_fluff()
+	if(desc_fluff)
+		output += "\n<font color='#298a08'><b>[desc_fluff]</b></font>"
+
+	var/desc_antag = (isghost(user) || player_is_antag(user.mind)) ? get_description_antag() : null
+	if(desc_antag)
+		output += "\n<font color='#8a0808'><b>[desc_antag]</b></font>"
+
+	output += "</div>"
+
+	if(isobserver(user))
+		to_chat(user, output)
+	else
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", output)
+
+	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
-	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user, distance)
+	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user)
 
-	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
+	return (get_dist(src, user) <= world.view) || isobserver(user)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -843,6 +848,23 @@ its easier to just keep the beam vertical.
 		M.death(FALSE, FALSE)
 	qdel(src)
 	. = TRUE
+
+// Passes Stat Panel clicks to the game and calls client click on an atom
+/atom/Topic(href, list/href_list)
+	. = ..()
+	if(!usr?.client)
+		return
+	var/client/usr_client = usr.client
+	var/list/paramslist = list()
+	if(href_list["statpanel_item_shiftclick"])
+		paramslist["shift"] = "1"
+	if(href_list["statpanel_item_ctrlclick"])
+		paramslist["ctrl"] = "1"
+	if(href_list["statpanel_item_altclick"])
+		paramslist["alt"] = "1"
+	if(href_list["statpanel_item_click"])
+		var/mouseparams = list2params(paramslist)
+		usr_client.Click(src, loc, null, mouseparams)
 
 // Called after we wrench/unwrench this object
 /obj/proc/wrenched_change()

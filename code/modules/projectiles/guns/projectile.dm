@@ -325,12 +325,11 @@
 		update_icon() //make sure to do this after unsetting ammo_magazine
 		set_item_state()
 
-/obj/item/gun/projectile/examine(mob/user)
-	..(user)
+/obj/item/gun/projectile/examine(mob/user, extra_description = "")
 	if(ammo_magazine)
-		to_chat(user, "It has \a [ammo_magazine] loaded.")
-	to_chat(user, "Has [get_ammo()] round\s remaining.")
-	return
+		extra_description += "It has \a [ammo_magazine] loaded.\n"
+	extra_description += "Has [get_ammo()] round\s remaining."
+	..(user, extra_description)
 
 /obj/item/gun/projectile/proc/get_ammo()
 	var/bullets = 0
