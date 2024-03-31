@@ -1080,46 +1080,6 @@
 		var/obj/item/photo/H = bundle.pages[page]
 		H.show(source.owner)
 
-
-/datum/admin_topic/centcomfaxreply
-	keyword = "CentcomFaxReply"
-
-/datum/admin_topic/centcomfaxreply/Run(list/input)
-	var/mob/sender = locate(input["CentcomFaxReply"])
-	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
-
-	//todo: sanitize
-	var/msg = input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcom", "") as message|null
-	if(!msg)
-		return
-
-	var/customname = input(source.owner, "Pick a title for the report", "Title") as text|null
-
-	// Create the reply message
-	var/obj/item/paper/P = new /obj/item/paper( null ) //hopefully the null loc won't cause trouble for us
-	P.name = "[command_name()]- [customname]"
-	P.info = msg
-	P.update_icon()
-
-	// Stamps
-	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-	stampoverlay.icon_state = "paper_stamp-cent"
-	if(!P.stamped)
-		P.stamped = new
-	P.stamped += /obj/item/stamp
-	P.overlays += stampoverlay
-	P.stamps += "<HR><i>This paper has been stamped by the [boss_name] Quantum Relay.</i>"
-
-	if(fax.recievefax(P))
-		to_chat(source.owner, "\blue Message reply to transmitted successfully.")
-		log_admin("[key_name(source.owner)] replied to a fax message from [key_name(sender)]: [msg]")
-		message_admins("[key_name_admin(source.owner)] replied to a fax message from [key_name_admin(sender)]", 1)
-	else
-		to_chat(source.owner, "\red Message reply failed.")
-
-	QDEL_IN(P, 100)
-
-
 /datum/admin_topic/jumpto
 	keyword = "jumpto"
 	require_perms = list(R_ADMIN)

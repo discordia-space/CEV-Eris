@@ -302,17 +302,6 @@
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_sec3east5"
 
-//Cargo shuttle
-
-/datum/shuttle/autodock/ferry/supply/drone
-	name = "Supply Shuttle"
-	location = 1
-	warmup_time = 10
-	shuttle_area = /area/supply/dock
-	waypoint_offsite = "nav_cargo_start"
-	waypoint_station = "nav_cargo_vessel"
-	default_docking_controller = "supply_shuttle"
-
 /obj/effect/shuttle_landmark/supply/centcom
 	name = "Centcom"
 	landmark_tag = "nav_cargo_start"

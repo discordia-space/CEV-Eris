@@ -18,6 +18,16 @@
 
 	return null//If we get here, the holder must be buried many layers deep in nested containers, or else is somehow contained in nullspace
 
+/atom/proc/is_inside(LIST)
+	var/atom/A = loc
+	while(!is_type_in_list(A, LIST))
+		if(isnull(A))
+			return null
+		A = A.loc
+		if(isturf(A))
+			return FALSE
+	return A
+
 /atom/proc/add_overlay(overlay)
 	ASSERT(overlay)
 
