@@ -35,12 +35,11 @@
 /obj/item/device/radio/headset/list_channels(var/mob/user)
 	return list_secure_channels()
 
-/obj/item/device/radio/headset/examine(mob/user)
-	if(!(..(user, 1) && radio_desc))
-		return
-
-	to_chat(user, "The following channels are available:")
-	to_chat(user, radio_desc)
+/obj/item/device/radio/headset/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && radio_desc)
+		extra_description += "The following channels are available:"
+		extra_description += radio_desc
+	..(user, extra_description)
 
 /obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
 	if (channel == "special")

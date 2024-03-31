@@ -39,13 +39,9 @@
 	user.update_action_buttons()
 	user.update_floating()
 
-/obj/item/clothing/shoes/magboots/examine(mob/user)
-	..(user)
-	var/state = "disabled"
-	if(item_flags & NOSLIP)
-		state = "enabled"
-	to_chat(user, "Its mag-pulse traction system appears to be [state].")
-
+/obj/item/clothing/shoes/magboots/examine(mob/user, extra_description = "")
+	extra_description += "Mag-pulse traction system appears to be [(item_flags & NOSLIP) ? "enabled" : "disabled"]."
+	..(user, extra_description)
 
 /*
 	Used by mercenaries

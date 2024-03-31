@@ -101,13 +101,13 @@
 			icon_state = "pinonfar"
 	spawn(5) .()
 
-/obj/item/pinpointer/examine(mob/user)
-	..(user)
+/obj/item/pinpointer/examine(mob/user, extra_description = "")
 	if(slot)
-		to_chat(user, "Nuclear disk is loaded inside [src].")
+		extra_description += "Nuclear disk is loaded inside [src]."
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
-			to_chat(user, SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"))
+			extra_description += SPAN_WARNING("Extreme danger. Arming signal detected. Time remaining: [bomb.timeleft]")
+	..(user, extra_description)
 
 /obj/item/pinpointer/Destroy()
 	active = FALSE

@@ -26,7 +26,7 @@
 	activate_string = "Enable Cloak"
 	deactivate_string = "Disable Cloak"
 
-	interface_name = "integrated stealth system"
+	interface_name = "Integrated stealth system"
 	interface_desc = "An integrated active camouflage system."
 
 	spawn_blacklisted = TRUE
@@ -147,7 +147,7 @@
 	desc = "Some kind of complex energy projector with a hardsuit mount."
 	icon_state = "enet"
 
-	interface_name = "energy net launcher"
+	interface_name = "Energy net launcher"
 	interface_desc = "An advanced energy-patterning projector used to capture targets."
 
 	engage_string = "Fabricate Net"
@@ -174,7 +174,7 @@
 
 	engage_string = "Detonate"
 
-	interface_name = "dead man's switch"
+	interface_name = "Dead man's switch"
 	interface_desc = "An integrated self-destruct module. When the wearer dies, so does the surrounding area. Do not press this button."
 	rarity_value = 20
 	var/explosion_power = 800

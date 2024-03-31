@@ -1,8 +1,8 @@
-ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debug-Game"
-	if(!check_rights(R_DEBUG))	return
+	if(!check_rights(R_DEBUG))
+		return
 
 	if(Debug2)
 		Debug2 = 0
@@ -13,11 +13,6 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 		message_admins("[key_name(src)] toggled debugging on.")
 		log_admin("[key_name(src)] toggled debugging on.")
 
-
-
-// callproc moved to code/modules/admin/callproc
-
-
 /client/proc/Cell()
 	set category = "Debug"
 	set name = "Cell"
@@ -25,7 +20,7 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 		return
 	var/turf/T = mob.loc
 
-	if (!istype(T, /turf))
+	if(!istype(T, /turf))
 		return
 
 	var/datum/gas_mixture/env = T.return_air()
@@ -37,7 +32,6 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n"
 
 	usr.show_message(t, 1)
-
 
 /client/proc/cmd_admin_robotize(var/mob/living/M)
 	set category = "Fun"
@@ -66,34 +60,6 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	spawn(10)
 		M.Animalize()
 
-
-/client/proc/makepAI(turf/T)
-	set category = "Fun"
-	set name = "Make pAI"
-	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
-
-	var/list/available = list()
-	for(var/mob/C in SSmobs.mob_list)
-		if(C.key)
-			available.Add(C)
-	var/mob/choice = input("Choose a player to play the pAI", "Spawn pAI") in available
-	if(!choice)
-		return 0
-	if(!isghost(choice))
-		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
-		if(confirm != "Yes")
-			return 0
-	var/obj/item/device/paicard/card = new(T)
-	var/mob/living/silicon/pai/pai = new(card)
-	pai.name = sanitizeSafe(input(choice, "Enter your pAI name:", "pAI Name", "Personal AI") as text)
-	pai.real_name = pai.name
-	pai.key = choice.key
-	card.setPersonality(pai)
-	for(var/datum/paiCandidate/candidate in SSpai.pai_candidates)
-		if(candidate.key == choice.key)
-			SSpai.pai_candidates.Remove(candidate)
-
-
 /client/proc/cmd_admin_slimeize(mob/living/M)
 	set category = "Fun"
 	set name = "Make slime"
@@ -108,50 +74,7 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	else
 		alert("Invalid mob")
 
-/*
-/client/proc/make_cultist(var/mob/M in SSmobs.mob_list) // -- TLE, modified by Urist
-	set category = "Fun"
-	set name = "Make Cultist"
-	set desc = "Makes target a cultist"
-	if(!cultwords["travel"])
-		runerandom()
-	if(M)
-		if(M.mind in ticker.mode.cult)
-			return
-		else
-			if(alert("Spawn that person a tome?",,"Yes","No")=="Yes")
-				to_chat(M, "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie. A tome, a message from your new master, appears on the ground.")
-				new /obj/item/book/tome(M.loc)
-			else
-				to_chat(M, "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie.")
-			var/glimpse=pick("1","2","3","4","5","6","7","8")
-			switch(glimpse)
-				if("1")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["travel"]] is travel...")
-				if("2")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["blood"]] is blood...")
-				if("3")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["join"]] is join...")
-				if("4")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["hell"]] is Hell...")
-				if("5")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["destroy"]] is destroy...")
-				if("6")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["technology"]] is technology...")
-				if("7")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["self"]] is self...")
-				if("8")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["see"]] is see...")
-
-			if(M.mind)
-				M.mind.special_role = "Cultist"
-				ticker.mode.cult += M.mind
-			to_chat(src, "Made [M] a cultist.")
-*/
-
-
 //TODO: merge the vievars version into this or something maybe mayhaps
-ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
 	set name = "Del-All"
@@ -166,7 +89,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG, FALSE)
 		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
 		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
 
-ADMIN_VERB_ADD(/client/proc/cmd_display_del_log, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/cmd_display_del_log()
 	set category = "Debug"
 	set name = "Display del() Log"
@@ -196,7 +118,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_display_del_log, R_ADMIN|R_DEBUG, FALSE)
 
 	usr << browse(dellog.Join(), "window=dellog")
 
-ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 /client/proc/cmd_debug_make_powernets()
 	set category = "Debug"
 	set name = "Make Powernets"
@@ -204,11 +125,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in SShumans.mob_list)
+/client/proc/cmd_admin_grantfullaccess(mob/M in SShumans.mob_list)
 	set category = "Admin"
 	set name = "Grant Full Access"
 
-	if (ishuman(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/card/id/id = H.GetIdCard()
 		if(id)
@@ -229,12 +150,13 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("\blue [key_name_admin(usr)] has granted [M.key] full access.", 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
+/client/proc/cmd_assume_direct_control(mob/M in SSmobs.mob_list | SShumans.mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
 
-	if(!check_rights(R_DEBUG|R_ADMIN))	return
+	if(!check_rights(R_DEBUG|R_ADMIN))
+		return
 	if(M.ckey)
 		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
 			return
@@ -247,12 +169,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	M.ckey = src.ckey
 	if(isghost(adminmob))
 		qdel(adminmob)
-
-
-
-
-
-
 
 /client/proc/cmd_admin_areatest()
 	set category = "Mapping"
@@ -342,18 +258,17 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	for(var/areatype in areas_without_camera)
 		to_chat(world, "* [areatype]")
 
-
-ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 /client/proc/cmd_admin_dress()
 	set category = "Fun"
 	set name = "Select equipment"
 
 	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
-	if(!M) return
+	if(!M)
+		return
 
 	var/list/dresspacks = outfits()
 	var/decl/hierarchy/outfit/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
-	if (isnull(dresscode))
+	if(isnull(dresscode))
 		return
 
 	dresscode.equip(M)
@@ -408,8 +323,6 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		if(SMES.anchored)
 			SMES.input_attempt = 1
 
-
-ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"
 	set name = "Debug Mob Lists"
@@ -429,15 +342,12 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 		if("Clients")
 			to_chat(usr, jointext(clients,","))
 
-ADMIN_VERB_ADD(/client/proc/view_runtimes, R_DEBUG, FALSE)
 /client/proc/view_runtimes()
 	set category = "Debug"
 	set name = "View Runtimes"
 	set desc = "Open the Runtime Viewer"
 	error_cache.showTo(usr)
 
-
-ADMIN_VERB_ADD(/client/proc/spawn_disciple, R_DEBUG, FALSE)
 /client/proc/spawn_disciple()
 	set category = "Debug"
 	set name = "Spawn Disciple"
@@ -451,8 +361,6 @@ ADMIN_VERB_ADD(/client/proc/spawn_disciple, R_DEBUG, FALSE)
 	C.install(H)
 	C.activate()
 
-
-ADMIN_VERB_ADD(/client/proc/delete_npcs, R_DEBUG, FALSE)
 /client/proc/delete_npcs()
 	set category = "Debug"
 	set name = "Delete NPC mobs"
@@ -462,8 +370,8 @@ ADMIN_VERB_ADD(/client/proc/delete_npcs, R_DEBUG, FALSE)
 		return
 
 	var/total = 0
-	for (var/mob/living/L in world)
-		if ((L in GLOB.player_list))
+	for(var/mob/living/L in world)
+		if((L in GLOB.player_list))
 			continue
 		qdel(L)
 		total++

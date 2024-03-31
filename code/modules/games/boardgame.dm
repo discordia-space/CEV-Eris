@@ -16,12 +16,11 @@
 		new /obj/item/checker(src.loc)
 		new /obj/item/checker/white(src.loc)
 
-/obj/item/board/examine(mob/user, var/distance = -1)
-	if(in_range(user,src))
+/obj/item/board/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 		user.set_machine(src)
 		interact(user)
-		return
-	..()
+	..(user, extra_description)
 
 /obj/item/board/attack_hand(mob/living/carbon/human/M as mob)
 	if(M.machine == src)
