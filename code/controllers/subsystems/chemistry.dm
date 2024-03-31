@@ -26,8 +26,9 @@ SUBSYSTEM_DEF(chemistry)
 	if(holder.process_reactions())
 		active_holders += holder
 
-/datum/controller/subsystem/chemistry/stat_entry()
-	..("[active_holders.len] reagent holder\s")
+/datum/controller/subsystem/chemistry/stat_entry(msg)
+	msg += "[LAZYLEN(active_holders)] reagent holder\s"
+	return ..()
 
 /datum/controller/subsystem/chemistry/proc/get_random_chem(var/only_if_unique = FALSE, temperature = T20C)
 /*	for(var/type in typesof(/datum/reagent/random))

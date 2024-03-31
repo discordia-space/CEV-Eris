@@ -120,21 +120,18 @@ var/list/lost_cruciforms = list()
 		eotp.addObservation(observation_points*0.25)
 	return TRUE
 
-/obj/item/implant/core_implant/cruciform/examine(mob/user)
-	..()
+/obj/item/implant/core_implant/cruciform/examine(mob/user, extra_description = "")
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
-	if(data?.mind) // if there is cloning data and it has a mind
-		to_chat(user, SPAN_NOTICE("This cruciform has been activated."))
+	if(data && data.mind) // if there is cloning data and it has a mind
+		extra_description += SPAN_NOTICE("This cruciform has been activated.")
 		if(isghost(user) || (user in disciples))
-			var/datum/mind/MN = data.mind
-			if(MN.name) // if there is a mind and it also has a name
-				to_chat(user, SPAN_NOTICE("It contains <b>[MN.name]</b>'s soul."))
+			if(data.mind.name) // if there is a mind and it also has a name
+				extra_description += SPAN_NOTICE("It contains <b>[data.mind.name]</b>'s soul.")
 			else
-				to_chat(user, SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge."))
+				extra_description += SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge.")
 	else // no cloning data
-		to_chat(user, "This cruciform has not yet been activated.")
-
-
+		extra_description += "This cruciform has not yet been activated."
+	..(user, extra_description)
 
 /obj/item/implant/core_implant/cruciform/deactivate()
 	if(!active || !wearer)

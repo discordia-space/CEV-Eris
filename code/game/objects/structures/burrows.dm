@@ -677,11 +677,10 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	//will be quieter and not travel as far
 	playsound(src, soundtype, maintenance ? volume*0.5 : volume, TRUE,maintenance ? -3 : 0)
 
-/obj/structure/burrow/examine()
-	..()
+/obj/structure/burrow/examine(mob/user, extra_description = "")
 	if(isSealed && recieving)
-		to_chat(usr, SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through."))
-
+		extra_description += SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through.")
+	..(user, extra_description)
 
 /obj/structure/burrow/explosion_act(target_power, explosion_handler/handler)
 	. = ..()

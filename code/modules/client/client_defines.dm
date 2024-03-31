@@ -62,6 +62,12 @@
 
 	var/adminhelped = 0
 
+	/// List of Stat Panel tabs
+	var/list/verb_tabs = list()
+
+	/// Disables default BYOND verb panel in favor of Stat Panel™
+	show_verb_panel = FALSE
+
 		///////////////
 		//SOUND STUFF//
 		///////////////

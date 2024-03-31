@@ -43,7 +43,6 @@
 		return
 	log_misc("ToR data update aborted: no data.")
 
-ADMIN_VERB_ADD(/client/proc/ToRban, R_SERVER, FALSE)
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"
 	set category = "Server"

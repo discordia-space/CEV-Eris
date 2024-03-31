@@ -3,12 +3,12 @@
 	examine_msg = "Can be attached to internal organs."
 	examine_difficulty = STAT_LEVEL_BASIC
 
-/datum/component/modification/organ/stromal/on_examine(mob/user)
+/datum/component/modification/organ/stromal/on_examine(mob/user, list/reference)
 	var/function_info = get_function_info()
 	if(function_info)
-		to_chat(user, SPAN_NOTICE(function_info))
+		reference.Add(SPAN_NOTICE(function_info))
 	if(examine_msg)
-		to_chat(user, SPAN_WARNING(examine_msg))
+		reference.Add(SPAN_WARNING(examine_msg))
 
 /datum/component/modification/organ/stromal/get_function_info()
 	var/function_info = "<i>"

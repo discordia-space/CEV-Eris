@@ -139,6 +139,17 @@
 
 /obj/effect/effect/telegraph/New()
 	sleep(10)
+
+
+/*
+New AI 5 year plan:
+Initially dormant, activates as a reaction to recieving damage or specific tile (entrance to the boss room) being triggered
+
+
+Make jump sequience and call related proc "great_leap_forward"
+*/
+
+/mob/living/simple_animal/hostile/megafauna/one_star/death()
 	..()
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "telegraph"

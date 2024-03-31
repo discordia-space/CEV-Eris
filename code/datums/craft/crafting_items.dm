@@ -66,13 +66,12 @@
 	spawn_frequency = 0
 	tags_to_spawn = list(SPAWN_GUN)
 
-/obj/item/craft_frame/examine(user, distance)
-	. = ..()
-	if(.)
-		if(req_parts > 0)
-			to_chat(user, SPAN_NOTICE("Requires [req_parts] gun parts to be complete."))
-		else
-			to_chat(user, SPAN_NOTICE("[src] is complete."))
+/obj/item/craft_frame/examine(user, extra_description = "")
+	if(req_parts > 0)
+		extra_description += SPAN_NOTICE("Requires [req_parts] gun parts to be complete.")
+	else
+		extra_description += SPAN_NOTICE("[src] is complete.")
+	..(user, extra_description)
 
 /obj/item/craft_frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, suitable_part))
