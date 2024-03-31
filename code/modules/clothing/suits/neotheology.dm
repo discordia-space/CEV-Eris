@@ -109,3 +109,50 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+
+//The following are being implemented as fashion options, but are intended for functional mechanics with NT "Rituals" rework. They are intentionally nonviable for anything but cosmetic use.
+/obj/item/clothing/head/robe/ritual_robe
+	name = "ritual robe hood"
+	icon_state = "nt_ritualrobe_hood"
+	item_state = "nt_ritualrobe_hood"
+	desc = "A hood to cover one's features while chanting hymns or holy sacrements."
+	permeability_coefficient = 0.01
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 5,
+		bomb = 0,
+		bio = 100,
+		rad = 0
+	)
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR|HIDEFACE
+	body_parts_covered = HEAD|FACE|EYES|EARS
+	item_flags = FLEXIBLEMATERIAL
+	siemens_coefficient = 0.9
+	style = STYLE_HIGH //Spooky = cool = stylish
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/storage/toggle/robe/ritual_robe
+	name = "Ritual robe"
+	desc = "A robe to cover one's features while chanting hymns or holy sacrements. Has a couple pockets for trinkets."
+	hood = /obj/item/clothing/head/robe/ritual_robe
+	icon_state = "nt_robe"
+	icon_up = "nt_robe"
+	icon_down = "nt_robe_down"
+	action_button_name = "Toggle Hood"
+	permeability_coefficient = 0.01
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 5,
+		bomb = 0,
+		bio = 100,
+		rad = 0
+	)
+	flags_inv = HIDEJUMPSUIT|HIDETAIL|HIDESHOES
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	item_flags = COVER_PREVENT_MANIPULATION|DRAG_AND_DROP_UNEQUIP
+	siemens_coefficient = 0.9
+	style = STYLE_HIGH //Spooky = cool = stylish
+	spawn_blacklisted = TRUE
+	matter = list(MATERIAL_BIOMATTER = 50)

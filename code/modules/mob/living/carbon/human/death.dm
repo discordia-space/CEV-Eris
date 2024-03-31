@@ -61,6 +61,7 @@
 
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.active)
+		lost_cruciforms |= C
 		var/obj/item/cruciform_upgrade/upgrade = C.upgrade
 		if(upgrade && upgrade.active && istype(upgrade, CUPGRADE_MARTYR_GIFT))
 			var/obj/item/cruciform_upgrade/martyr_gift/martyr = upgrade

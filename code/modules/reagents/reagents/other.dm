@@ -194,7 +194,7 @@
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
-			W.thermite = 1
+			W.thermite = TRUE
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
 	return TRUE
@@ -492,15 +492,20 @@
 /datum/reagent/resuscitator/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/vital/heart/heart = H.random_organ_by_process(OP_HEART)
-		if(BP_IS_ROBOTIC(heart)) // neither it should work on robotic hearts, chemistry and stuf
-			return
-		if(heart)
-			heart.damage += 0.5
+		var/obj/item/organ/internal/vital/heart = H.random_organ_by_process(OP_HEART)
+		if(heart) //Check for existence of the heart BEFORE checking for robotic heart, otherwise function WILL return null
+			if(BP_IS_ROBOTIC(heart)) // neither it should work on robotic hearts, chemistry and stuff
+				return
+			heart.take_damage(64, TOX)
 			if(prob(30))
 				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
-		if(H.stat == DEAD)
-			H.resuscitate()
+			if(H.stat == DEAD)
+				H.resuscitate()
+				remove_self(60)
+		else
+			if(H.stat == DEAD)
+				H.resuscitate() //it will fail and give explanations why
+				remove_self(60)
 
 /datum/reagent/resuscitator/overdose(mob/living/carbon/M, alien)
 	. = ..()

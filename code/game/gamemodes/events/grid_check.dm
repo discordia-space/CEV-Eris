@@ -32,13 +32,13 @@ So sometimes this event can result in people finding new and interesting things
 	power_failure(0, strength, GLOB.maps_data.contact_levels)
 
 /datum/event/grid_check/announce()
-	command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Automated Grid Check", new_sound = 'sound/AI/poweroff.ogg')
+	command_announcement.Announce("Abnormal activity detected in [station_name]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Automated Grid Check", new_sound = 'sound/AI/poweroff.ogg')
 
 
 
 /proc/power_failure(var/announce = 1, var/severity = 2, var/list/affected_z_levels)
 	if(announce)
-		command_announcement.Announce("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
+		command_announcement.Announce("Abnormal activity detected in [station_name]'s powernet. As a precautionary measure, the ship's power will be shut off for an indeterminate duration.", "Critical Power Failure", new_sound = 'sound/AI/poweroff.ogg')
 
 	for(var/obj/machinery/power/smes/buildable/S in GLOB.smes_list)
 		if (is_valid_smes(S))
@@ -53,7 +53,7 @@ So sometimes this event can result in people finding new and interesting things
 	var/list/skipped_areas = list(/area/turret_protected/ai)
 
 	if(announce)
-		command_announcement.Announce("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+		command_announcement.Announce("Power has been restored to [station_name]. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
 	for(var/obj/machinery/power/apc/C in GLOB.apc_list)
 		C.failure_timer = 0
 		if(C.cell)
@@ -70,7 +70,7 @@ So sometimes this event can result in people finding new and interesting things
 /proc/power_restore_quick(var/announce = 1)
 
 	if(announce)
-		command_announcement.Announce("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+		command_announcement.Announce("All SMESs on [station_name] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
 	for(var/obj/machinery/power/smes/S in GLOB.smes_list)
 		S.failure_timer = 0
 		S.charge = S.capacity

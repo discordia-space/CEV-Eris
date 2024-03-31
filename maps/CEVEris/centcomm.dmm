@@ -87,26 +87,9 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
-"aF" = (
-/turf/unsimulated/wall,
-/area/centcom/suppy)
 "aI" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source/industrial)
-"aO" = (
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
-/area/centcom/suppy)
-"aP" = (
-/turf/unsimulated/wall{
-	desc = "That looks like it doesn't open easily.";
-	icon = 'icons/obj/doors/rapid_pdoor.dmi';
-	icon_state = "pdoor1";
-	name = "Shuttle Bay Blast Door"
-	},
-/area/centcom/suppy)
 "aR" = (
 /obj/structure/table/bar_special,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -162,277 +145,21 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/holofloor/reinforced,
 /area/space)
-"bd" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall8"
-	},
-/turf/space,
-/area/supply/dock)
-"be" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall7"
-	},
-/area/supply/dock)
-"bf" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall6"
-	},
-/area/supply/dock)
-"bg" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall5"
-	},
-/area/supply/dock)
-"bh" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall4"
-	},
-/area/supply/dock)
-"bi" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall3"
-	},
-/area/supply/dock)
-"bj" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall2"
-	},
-/area/supply/dock)
-"bk" = (
-/turf/simulated/shuttle/wall/cargo,
-/area/supply/dock)
 "bt" = (
 /obj/structure/railing/holorailing/grey,
 /turf/simulated/open/holonofloor,
 /area/holodeck/source/wireframe)
-"bv" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall9"
-	},
-/turf/space,
-/area/supply/dock)
-"bw" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall10"
-	},
-/area/supply/dock)
-"bx" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"by" = (
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"bz" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "supply_shuttle";
-	pixel_x = 0;
-	pixel_y = 25;
-	req_one_access = list(13,31);
-	tag_door = "supply_shuttle_hatch"
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"bA" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall11"
-	},
-/area/supply/dock)
 "bI" = (
 /obj/structure/cryofeed,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
-"bJ" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall12"
-	},
-/turf/space,
-/area/supply/dock)
-"bK" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall13"
-	},
-/area/supply/dock)
-"bL" = (
-/obj/machinery/conveyor/east{
-	id = "QMLoad"
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"bM" = (
-/obj/machinery/door/airlock/maintenance{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "supply_shuttle_hatch";
-	locked = 1;
-	name = "Shuttle Hatch";
-	req_access = list(13)
-	},
-/obj/machinery/conveyor/east{
-	id = "QMLoad"
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"bT" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall14"
-	},
-/turf/space,
-/area/supply/dock)
-"bU" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall15"
-	},
-/area/supply/dock)
-"bV" = (
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor3";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"bW" = (
-/obj/machinery/door/airlock/maintenance{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "supply_shuttle_hatch";
-	locked = 1;
-	name = "Shuttle Hatch";
-	req_access = list(13)
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"cd" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall16"
-	},
-/turf/space,
-/area/supply/dock)
-"ce" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall17"
-	},
-/area/supply/dock)
-"cf" = (
-/obj/effect/shuttle_landmark/supply/centcom,
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall18"
-	},
-/area/supply/dock)
 "cg" = (
 /turf/simulated/floor/tiled/dark/gray_perforated,
 /area/holodeck/source/industrial_arena)
-"ck" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall19"
-	},
-/turf/space,
-/area/supply/dock)
-"cl" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall20"
-	},
-/area/supply/dock)
 "cq" = (
 /obj/machinery/cryopod,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
-"cs" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall21"
-	},
-/turf/space,
-/area/supply/dock)
-"ct" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall22"
-	},
-/area/supply/dock)
-"cu" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"cv" = (
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor5";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"cw" = (
-/obj/machinery/conveyor/west{
-	id = "QMLoad2"
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"cx" = (
-/obj/machinery/door/airlock/maintenance{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "supply_shuttle_hatch";
-	locked = 1;
-	name = "Shuttle Hatch";
-	req_access = list(13)
-	},
-/obj/machinery/conveyor/west{
-	id = "QMLoad2"
-	},
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"cA" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall23"
-	},
-/turf/space,
-/area/supply/dock)
-"cB" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall24"
-	},
-/area/supply/dock)
-"cC" = (
-/turf/simulated/shuttle/floor{
-	icon_state = "cargofloor6";
-	name = "Cargo Transport Shuttle (A5)"
-	},
-/area/supply/dock)
-"cD" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall25"
-	},
-/area/supply/dock)
 "cE" = (
 /obj/structure/railing/holorailing,
 /turf/simulated/floor/holofloor/tiled/dark,
@@ -466,47 +193,6 @@
 "cN" = (
 /turf/simulated/floor/tiled/dark/golden,
 /area/centcom/evac)
-"cW" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall26"
-	},
-/turf/space,
-/area/supply/dock)
-"cX" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall27"
-	},
-/area/supply/dock)
-"cY" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall28"
-	},
-/area/supply/dock)
-"cZ" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall29"
-	},
-/area/supply/dock)
-"da" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall30"
-	},
-/area/supply/dock)
-"db" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall31"
-	},
-/area/supply/dock)
-"dc" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall32"
-	},
-/area/supply/dock)
-"dd" = (
-/turf/simulated/shuttle/wall/cargo{
-	icon_state = "cargoshwall33"
-	},
-/area/supply/dock)
 "dj" = (
 /obj/machinery/light{
 	dir = 1
@@ -538,54 +224,6 @@
 /obj/structure/bed/chair/wood,
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/centcom/evac)
-"dq" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall34"
-	},
-/turf/space,
-/area/supply/dock)
-"dr" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall35"
-	},
-/turf/space,
-/area/supply/dock)
-"ds" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall36"
-	},
-/turf/space,
-/area/supply/dock)
-"dt" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall37"
-	},
-/turf/space,
-/area/supply/dock)
-"du" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall38"
-	},
-/turf/space,
-/area/supply/dock)
-"dv" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall39"
-	},
-/turf/space,
-/area/supply/dock)
-"dw" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall40"
-	},
-/turf/space,
-/area/supply/dock)
-"dx" = (
-/obj/structure/shuttle_part/cargo{
-	icon_state = "cargoshwall41"
-	},
-/turf/space,
-/area/supply/dock)
 "dz" = (
 /obj/structure/lattice,
 /turf/simulated/open/holonofloor,
@@ -2719,7 +2357,7 @@
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
-	id = "smindicate";
+	id = "serbianmerc";
 	name = "Outer Airlock";
 	opacity = 0
 	},
@@ -2760,7 +2398,7 @@
 /obj/structure/table/standard,
 /obj/machinery/computer/pod/old/syndicate{
 	dir = 4;
-	id = "smindicate"
+	id = "serbianmerc"
 	},
 /obj/machinery/door/window{
 	dir = 4;
@@ -6585,7 +6223,7 @@
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
-	id = "smindicate";
+	id = "serbianmerc";
 	name = "Outer Airlock";
 	opacity = 0
 	},
@@ -6839,7 +6477,7 @@
 /obj/machinery/vending/assist{
 	contraband = null;
 	name = "AntagCorpVend";
-	products = list(/obj/item/device/assembly/prox_sensor=5,/obj/item/device/assembly/signaler=4,/obj/item/device/assembly/infra=4,/obj/item/device/assembly/prox_sensor=4,/obj/item/handcuffs=8,/obj/item/device/flash=4,/obj/item/cartridge/signal=4,/obj/item/clothing/glasses/sunglasses=4)
+	products = list(/obj/item/device/assembly/prox_sensor=5,/obj/item/device/assembly/signaler=4,/obj/item/device/assembly/infra=4,/obj/item/device/assembly/prox_sensor=4,/obj/item/handcuffs=8,/obj/item/device/flash=4,/obj/item/clothing/glasses/sunglasses=4)
 	},
 /obj/machinery/light{
 	dir = 4
@@ -25324,21 +24962,21 @@ aa
 aa
 aa
 aa
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25526,21 +25164,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25728,21 +25366,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-bd
-bv
-bJ
-bT
-cd
-ck
-cs
-cA
-cW
-dq
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25930,21 +25568,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-be
-bw
-bK
-bU
-ce
-cl
-ct
-cB
-cX
-dr
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26132,21 +25770,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-bf
-bx
-by
-by
-by
-by
-cu
-by
-cY
-ds
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26334,21 +25972,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-bg
-by
-by
-by
-by
-by
-by
-by
-cZ
-dt
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26536,21 +26174,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-bh
-bz
-by
-by
-by
-by
-cv
-cC
-da
-du
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26738,21 +26376,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-bi
-by
-by
-by
-by
-by
-by
-by
-db
-dv
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26940,21 +26578,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-bj
-by
-bL
-bV
-by
-bV
-cw
-by
-dc
-dw
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27142,21 +26780,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-bk
-bA
-bM
-bW
-cf
-bW
-cx
-cD
-dd
-dx
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27344,21 +26982,21 @@ aa
 aa
 aa
 aa
-aF
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aO
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27546,21 +27184,21 @@ aa
 aa
 aa
 aa
-aF
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aP
-aF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
