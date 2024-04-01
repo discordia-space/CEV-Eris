@@ -62,7 +62,7 @@
 #define DF_BASKET		"deep fryer basket"
 #define AF_BASKET		"air fryer basket"
 #define OVEN			"oven"
-#define GRILL			"grill"
+#define GRILL			"grill grate"
 
 //Stove temp settings.
 #define J_LO "Low"

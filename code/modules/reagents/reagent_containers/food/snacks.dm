@@ -947,7 +947,7 @@
 	taste_tag = list(MEAT_FOOD)
 
 /obj/item/reagent_containers/food/snacks/human/burger
-	name = "-burger"
+	name = "'burger'"
 	desc = "A bloody burger."
 	icon_state = "hburger"
 	bitesize = 2

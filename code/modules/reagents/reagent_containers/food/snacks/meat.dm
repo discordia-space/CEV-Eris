@@ -21,6 +21,8 @@
 // TODO: rewrite kitchen code to check a var on the meat item so we can remove
 // all these sybtypes.
 /obj/item/reagent_containers/food/snacks/meat/human
+	name = "human meat"
+	desc = "Fresh long pig. Hopefully you didn't know them."
 /obj/item/reagent_containers/food/snacks/meat/monkey
 	//same as plain meat
 
