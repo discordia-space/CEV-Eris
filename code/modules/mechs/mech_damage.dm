@@ -17,11 +17,14 @@
 	else
 		if(direction & dir)
 			// behind
+			message_admins("3")
 			return body.pilot_coverage * body.coverage_multipliers[3]
 		else if(direction & reverse_dir[dir])
 			// front
+			message_admins("1")
 			return body.pilot_coverage * body.coverage_multipliers[1]
 		else
+			message_admins("2")
 			// sides
 			return body.pilot_coverage * body.coverage_multipliers[2]
 
@@ -162,15 +165,18 @@
 	if(hit_dir & reverse_dir[dir])
 		if(gen)
 			damages = gen.absorbDamages(damages)
-		if(def_zone == body)
-			if((!hatch_closed * body.has_hatch) || !getPilotCoverage(hit_dir))
-				var/mob/living/pilot = get_mob()
-				if(pilot)
-					var/result = pilot.bullet_act(P, ran_zone())
-					var/turf/location = get_turf(src)
-					location.visible_message("[get_mob()] gets hit by \the [P]!")
-					if(result != PROJECTILE_CONTINUE)
-						return
+	var/coverage = getPilotCoverage(hit_dir)
+	if(def_zone == body)
+		// enforce frontal attacks for first case. Second case just enforce a prob check on coverage.
+		if((body.has_hatch && !hatch_closed && hit_dir & reverse_dir[dir]) || (!body.has_hatch && !prob(coverage)))
+			var/mob/living/pilot = get_mob()
+			if(pilot)
+				var/result = pilot.bullet_act(P, ran_zone())
+				var/turf/location = get_turf(src)
+				location.visible_message("[get_mob()] gets hit by \the [P]!")
+				if(result != PROJECTILE_CONTINUE)
+					return
+
 	if(P.taser_effect)
 		qdel(P)
 		return TRUE
