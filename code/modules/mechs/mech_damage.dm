@@ -17,14 +17,11 @@
 	else
 		if(direction & dir)
 			// behind
-			message_admins("3")
 			return body.pilot_coverage * body.coverage_multipliers[3]
 		else if(direction & reverse_dir[dir])
 			// front
-			message_admins("1")
 			return body.pilot_coverage * body.coverage_multipliers[1]
 		else
-			message_admins("2")
 			// sides
 			return body.pilot_coverage * body.coverage_multipliers[2]
 
