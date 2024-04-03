@@ -315,7 +315,7 @@
 	current_step = current_recipe.first_step
 
 	#ifdef CWJ_DEBUG
-		steps_taken["[current_step.unique_id]"]="Started with a [start_type]"
+	steps_taken["[current_step.unique_id]"]="Started with a [start_type]"
 	#endif
 
 //A list returning the next possible steps in a given recipe

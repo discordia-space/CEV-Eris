@@ -253,7 +253,7 @@
 
 /obj/machinery/cooking_with_jane/grill/proc/handle_timer(user, input)
 	var/old_time = timer[input]? round((timer[input]/(1 SECONDS)), 1 SECONDS): 1
-	timer[input] = (input(user, "Enter a timer for burner #[input] (In Seconds)","Set Timer", old_time) as num) SECONDS
+	timer[input] = (input(user, "Enter a timer for burner #[input] (In Seconds, 0 Stays On) ","Set Timer", old_time) as num) SECONDS
 	if(timer[input] != 0 && switches[input] == 1)
 		timer_act(user, input)
 	update_icon()
@@ -326,9 +326,9 @@
 
 
 	if(user && user.Adjacent(src))
-		container.process_item(src, user, lower_quality_on_fail=CWJ_BASE_QUAL_REDUCTION, send_message=TRUE)
+		container.process_item(src, user, send_message=TRUE)
 	else
-		container.process_item(src, user,  lower_quality_on_fail=CWJ_BASE_QUAL_REDUCTION)
+		container.process_item(src, user)
 
 
 

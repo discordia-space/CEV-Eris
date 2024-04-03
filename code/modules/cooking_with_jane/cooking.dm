@@ -726,6 +726,7 @@ Food quality is calculated based on the steps taken.
 
 				new_item?:food_quality = pointer.tracked_quality + reagent_quality
 				new_item?:cooking_description_modifier = cooking_description_modifier
+				new_item?:get_food_tier()
 				//TODO: Consider making an item's base components show up in the reagents of the product.
 		else
 			//Purge the contents of the container we no longer need it

@@ -182,7 +182,7 @@
 		if(OVEN)
 			data["create_in"] = "Made with an oven dish."
 		if(GRILL)
-			data["create_in"] = "Made on a grill."
+			data["create_in"] = "Made on a grill grate."
 		else
 			data["create_in"] = "Made with a ~//SEGMENTATION FAULT//~ 00110001"
 

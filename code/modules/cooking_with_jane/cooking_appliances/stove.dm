@@ -213,7 +213,7 @@
 
 /obj/machinery/cooking_with_jane/stove/proc/handle_timer(user, input)
 	var/old_time = timer[input]? round((timer[input]/(1 SECONDS)), 1 SECONDS): 1
-	timer[input] = (input(user, "Enter a timer for burner #[input] (In Seconds)","Set Timer", old_time) as num) SECONDS
+	timer[input] = (input(user, "Enter a timer for burner #[input] (In Seconds, 0 Stays On)","Set Timer", old_time) as num) SECONDS
 	if(timer[input] != 0 && switches[input] == 1)
 		timer_act(user, input)
 	update_icon()

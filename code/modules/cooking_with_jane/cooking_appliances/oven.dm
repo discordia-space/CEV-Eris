@@ -226,7 +226,7 @@
 
 /obj/machinery/cooking_with_jane/oven/proc/handle_timer(var/mob/user)
 	var/old_time = timer? round((timer/(1 SECONDS)), 1 SECONDS): 1
-	timer = (input(user, "Enter a timer for burner # (In Seconds)","Set Timer", old_time) as num) SECONDS
+	timer = (input(user, "Enter a timer for burner # (In Seconds, 0 Stays On)","Set Timer", old_time) as num) SECONDS
 	if(timer != 0 && switches == 1)
 		timer_act(user)
 	update_icon()
@@ -304,9 +304,9 @@
 
 
 	if(user && user.Adjacent(src))
-		container.process_item(src, user, lower_quality_on_fail=CWJ_BASE_QUAL_REDUCTION, send_message=TRUE)
+		container.process_item(src, user, send_message=TRUE)
 	else
-		container.process_item(src, user,  lower_quality_on_fail=CWJ_BASE_QUAL_REDUCTION)
+		container.process_item(src, user)
 
 
 
