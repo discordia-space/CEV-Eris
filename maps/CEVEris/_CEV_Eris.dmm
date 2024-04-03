@@ -53124,6 +53124,7 @@
 /obj/spawner/lathe_disk,
 /obj/spawner/lathe_disk,
 /obj/item/computer_hardware/hard_drive/portable/design/tools,
+/obj/item/computer_hardware/hard_drive/portable/design/kitchen,
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/crew_quarters/kitchen_storage)
 "cxT" = (
