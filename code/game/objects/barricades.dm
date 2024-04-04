@@ -12,9 +12,9 @@
 	matter = list(MATERIAL_STEEL = 10)
 	health = 100
 	maxHealth = 100
+	var/resistance = RESISTANCE_AVERAGE // Flat reduction on incoming damage. Some day it will be moved to /obj, but not today...
 	var/is_damaged // Recieved enough damage for it to be visible on the sprite
 	var/is_open // Some barricades have open and closed states
-	var/is_animated // If sprite comes with opening and closing animations
 	var/block_vehicles = TRUE // Prevent mechs and legacy vehicles from moving past, even if not dense
 
 
@@ -25,40 +25,27 @@
 			return FALSE
 
 	if(is_open && !density) // If barrier is deployed, but meant to only block one direction
-		if(get_dir(loc, target) == dir)
-			return FALSE
-		else if(istype(mover, /obj/item/projectile))
-			// Achtung! This is fifth time the code below is being copypasted
-			// TODO: Maybe do something about that
-			// TODO: Also review the code itself, doesn't look great
-			var/obj/item/projectile/P = mover
-			if(config.z_level_shooting)
-				if(P.height == HEIGHT_HIGH)
-					return TRUE // Bullet is too high to hit
-				P.height = (P.height == HEIGHT_LOW) ? HEIGHT_LOW : HEIGHT_CENTER
+		if(istype(mover, /obj/item/projectile))
+			var/obj/item/projectile/projectile = mover
+			if(projectile.original && (projectile.original == src))
+				return FALSE // Specifically targeting the barricade, hit
 
-			if(get_dist(P.starting, loc) <= 1) // Cover won't help you if people are THIS close
-				return TRUE
-			if(get_dist(loc, P.trajectory.target) > 1 ) // Target turf must be adjacent for it to count as cover
-				return TRUE
-			if(!P.def_zone)
-				return TRUE // Emitters, or anything with no targeted bodypart will always bypass the cover
+			if(get_dir(loc, target) in list(dir, turn(dir, 45), turn(dir, -45))) // Front plate is in the way
+				// Projectile is targets a mob that is hiding behind the barricade
+				if(projectile.original && isliving(projectile.original) && (projectile.original.loc == loc))
+					var/mob/living/living = projectile.original
+					if(living.lying)
+						return FALSE // Aiming at a mob that's lying behind the barricade, so hit the barricade
+					else if(projectile.def_zone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
+						return FALSE // Targeting body part covered by the barricade, hit
+			return TRUE // Good enough angle, won't be stopped by the front panel
 
-			var/valid = FALSE
-			var/targetzone = check_zone(P.def_zone)
-			if(targetzone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
-				valid = TRUE // Lower body is always concealed
-			if(ismob(P.original))
-				var/mob/M = P.original
-				if(M.lying)
-					valid = TRUE // Lying down covers your whole body
-			// Bullet is low enough to hit
-//			if(config.z_level_shooting && P.height == HEIGHT_LOW)
-//				valid = TRUE
-			if(valid)
-				take_damage(P.get_structure_damage())
-				return P.check_penetrate(src)
-			return TRUE
+			// Note: return FALSE for a projectile will call 'bullet_act()', in which the barricade will take damage
+			// and most likely stop the projectile from moving past, see 'check_penetrate()' for details
+
+		else if(get_dir(loc, target) == dir)
+			return FALSE // Facing the open front plate, can't pass
+		return TRUE
 	. = ..()
 
 
@@ -71,6 +58,9 @@
 
 
 /obj/structure/barrier/take_damage(amount)
+	amount -= resistance
+	if(amount < 1)
+		return
 	health -= amount
 	if(health <= 0)
 		visible_message(SPAN_WARNING("\The [src] breaks apart!"))
@@ -92,8 +82,6 @@
 	if(is_open)
 		new_icon_state = "[new_icon_state]_open"
 	icon_state = new_icon_state
-	if(is_animated)
-		flick(new_icon_state + "_animation", src)
 
 
 /obj/structure/barrier/attackby(obj/item/I, mob/user)
@@ -109,12 +97,13 @@
 				user.visible_message(SPAN_NOTICE("\The [user] repairs \the [src]."), SPAN_NOTICE("You repair \the [src]."))
 				health = maxHealth
 				is_damaged = FALSE
+				update_icon()
 				return
 	if(tool_type == QUALITY_BOLT_TURNING)
 		if(!is_open && I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
 			for(var/material_name in matter)
 				var/material/material_datum = get_material_by_name(material_name)
-				material_datum.place_sheet(src, amount = matter[material_name])
+				material_datum.place_sheet(loc, amount = matter[material_name])
 			user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
 			qdel(src)
 			return
@@ -133,11 +122,11 @@
 	description_info = "Repaired by welding, dismantled by bolt turning, toggled by prying and hacked by pulsing.\nOnly retracted barrier could be dismantled. Use a signaler on the barrier to link them, use again to break the link."
 	icon_state = "4-way"
 	climbable = TRUE
-	is_animated = TRUE
 	block_vehicles = FALSE
 	matter = list(MATERIAL_PLASTEEL = 15)
 	health = 750
 	maxHealth = 750
+	resistance = RESISTANCE_TOUGH
 
 	// Remote control galore
 	var/code // A number from 1 to 100
@@ -200,12 +189,13 @@
 					user.visible_message(SPAN_NOTICE("\The [user] repairs \the [src]."), SPAN_NOTICE("You repair \the [src]."))
 					health = maxHealth
 					is_damaged = FALSE
+					update_icon()
 					return
 		if(QUALITY_BOLT_TURNING) // Deconstruction and hacking be harder when barrier is deployed
 			if(I.use_tool(user, src, (is_open ? WORKTIME_LONG : WORKTIME_NORMAL), tool_type, (is_open ? FAILCHANCE_CHALLENGING : FAILCHANCE_NORMAL),  required_stat = STAT_MEC))
 				for(var/material_name in matter)
 					var/material/material_datum = get_material_by_name(material_name)
-					material_datum.place_sheet(src, amount = matter[material_name])
+					material_datum.place_sheet(loc, amount = matter[material_name])
 				user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
 				qdel(src)
 				return
@@ -231,7 +221,9 @@
 /obj/structure/barrier/four_way/proc/toggle_barrier()
 	is_open = !is_open
 	density = !density
+	playsound(loc, 'sound/machines/Custom_bolts.ogg', 20)
 	update_icon()
+	flick(icon_state + "_animation", src)
 
 
 /obj/structure/barrier/hedgehog
@@ -244,6 +236,7 @@
 	matter = list(MATERIAL_STEEL = 15)
 	health = 500
 	maxHealth = 500
+	resistance = RESISTANCE_TOUGH
 
 
 /obj/structure/barrier/barbed_wire
@@ -269,6 +262,7 @@
 				user.visible_message(SPAN_NOTICE("\The [user] repairs \the [src]."), SPAN_NOTICE("You repair \the [src]."))
 				health = maxHealth
 				is_damaged = FALSE
+				update_icon()
 				return
 	if(tool_type == QUALITY_WIRE_CUTTING)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
@@ -329,6 +323,8 @@
 	matter = list(MATERIAL_PLASTEEL = 20)
 	health = 600
 	maxHealth = 600
+	climbable = TRUE
+	resistance = RESISTANCE_ARMOURED
 
 
 /obj/structure/barrier/ballistic/AltClick(mob/user)
@@ -339,12 +335,16 @@
 
 
 /obj/structure/barrier/ballistic/proc/toggle_barrier(mob/user)
+	for(var/obj/structure/barrier/ballistic/barrier in get_turf(src))
+		if(barrier.is_open && (barrier != src))
+			return // Current sprites are great, but do not overlap well, corners are especially meh
 	is_open = !is_open
 	anchored = !anchored
 	if(is_open)
 		flags |= ON_BORDER
 	else
 		flags &= ~ON_BORDER
+	playsound(loc, 'sound/machines/click.ogg', 20)
 	update_icon()
 
 
@@ -364,3 +364,16 @@
 			ballistic_overlay_damaged = image.appearance
 		add_overlay(is_damaged ? ballistic_overlay_damaged : ballistic_overlay)
 	icon_state = new_icon_state
+
+/obj/structure/barrier/ballistic/CheckExit(atom/movable/mover, turf/target)
+	if(is_open && (get_dir(loc, target) == dir))
+		return FALSE // Can't step through the open front panel
+	return TRUE
+
+/obj/structure/barrier/ballistic/verb/rotate()
+	set name = "Rotate"
+	set category = "Object"
+	set src in view(1)
+
+	if(!anchored && can_touch(usr))
+		set_dir(turn(dir, -90))

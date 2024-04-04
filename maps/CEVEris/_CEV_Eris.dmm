@@ -31171,7 +31171,7 @@
 	dir = 4
 	},
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
@@ -31624,7 +31624,7 @@
 	pixel_y = -23
 	},
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/clothingstorage)
@@ -31698,7 +31698,7 @@
 	dir = 8
 	},
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
@@ -31708,7 +31708,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
@@ -42325,7 +42325,7 @@
 	dir = 10
 	},
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel/monofloor{
 	dir = 8
@@ -44448,7 +44448,7 @@
 	dir = 8
 	},
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clothingstorage)
@@ -102850,7 +102850,7 @@
 /area/eris/neotheology/chapelritualroom)
 "mqU" = (
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel/monofloor{
 	dir = 4
@@ -105594,7 +105594,7 @@
 /area/eris/hallway/side/section3starboard)
 "sHP" = (
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/clothingstorage)
@@ -106070,7 +106070,7 @@
 	dir = 4
 	},
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clothingstorage)
@@ -106446,7 +106446,7 @@
 /area/space)
 "uqV" = (
 /obj/structure/barrier/four_way{
-	roundstart_barrier_id = "guild_lobby"
+	roundstart_barrier_id = "first_section"
 	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
