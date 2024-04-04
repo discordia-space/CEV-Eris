@@ -368,18 +368,13 @@ var/list/rank_prefix = list(\
 				perpname = src.name
 
 			// Retrieve crew member record
-			var/datum/computer_file/report/crew_record/E = get_crewmember_record(perpname)
-
-			if(E)
-				// Check if user has security HUD again
-				if(hasHUD(usr,"security"))
-					to_chat(usr, "<b>Name:</b> [E.get_name()]")
-					to_chat(usr, "<b>Criminal Status:</b> [E.get_criminalStatus()]")
-					to_chat(usr, "<b>Details:</b> [E.get_secRecord()]")
-					read = 1
-
-			if(!read)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+			var/datum/computer_file/report/crew_record/crew_record = get_crewmember_record(perpname)
+			if(crew_record && hasHUD(usr, "security"))
+				to_chat(usr, "<b>Name:</b> [crew_record.get_name()]")
+				to_chat(usr, "<b>Criminal Status:</b> [crew_record.get_criminalStatus()]")
+				to_chat(usr, "<b>Details:</b> [crew_record.get_secRecord()]")
+			else
+				to_chat(usr, span_red("Unable to locate a data core entry for this person."))
 
 	if(href_list["secrecordComment"])
 		if(hasHUD(usr,"security"))
