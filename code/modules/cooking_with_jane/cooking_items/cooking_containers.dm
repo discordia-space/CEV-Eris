@@ -268,6 +268,7 @@
 	shortname = "plate"
 	desc = "A shitty serving plate. You probably shouldn't be seeing this."
 	icon_state = "plate"
+	matter = list(MATERIAL_STEEL = 5)
 	appliancetype = PLATE
 
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/board
@@ -276,6 +277,7 @@
 	desc = "Good for making sandwiches on, too."
 	icon_state = "cutting_board"
 	item_state = "cutting_board"
+	matter = list(MATERIAL_WOOD = 5)
 	appliancetype = CUTTING_BOARD
 
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/oven
@@ -285,6 +287,7 @@
 	icon_state = "oven_dish"
 	lip = "oven_dish_lip"
 	item_state = "oven_dish"
+	matter = list(MATERIAL_STEEL = 10)
 	appliancetype = OVEN
 
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/pan
@@ -294,6 +297,7 @@
 	icon_state = "pan" //Default state is the base icon so it looks nice in the map builder
 	lip = "pan_lip"
 	item_state = "pan"
+	matter = list(MATERIAL_PLASTEEL = 5)
 	hitsound = 'sound/weapons/smash.ogg'
 	appliancetype = PAN
 
@@ -305,6 +309,7 @@
 	icon_state = "pot"
 	lip = "pot_lip"
 	item_state = "pot"
+	matter = list(MATERIAL_STEEL = 5)
 
 	hitsound = 'sound/weapons/smash.ogg'
 	removal_penalty = 5
@@ -340,6 +345,7 @@
 	desc = "Primarily used to grill meat, place this on a grill and enjoy an ancient human tradition."
 
 	icon_state = "grill_grate"
+	matter = list(MATERIAL_STEEL = 5)
 
 	appliancetype = GRILL
 
@@ -351,6 +357,7 @@
 	icon_state = "bowl"
 	lip = "bowl_lip"
 	item_state = "pot"
+	matter = list(MATERIAL_PLASTIC = 5)
 
 	removal_penalty = 2
 	appliancetype = BOWL
