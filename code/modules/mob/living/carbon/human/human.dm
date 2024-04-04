@@ -359,7 +359,6 @@ var/list/rank_prefix = list(\
 	if(href_list["secrecord"])
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
-			var/read = 0
 
 			var/obj/item/card/id/id = GetIdCard()
 			if(istype(id))
