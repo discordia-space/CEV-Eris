@@ -22625,6 +22625,7 @@
 	dir = 1;
 	sortType = list("Dormitories","Security","FO Office")
 	},
+/obj/structure/barrier/hedgehog,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bcr" = (
@@ -22809,6 +22810,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bcG" = (
@@ -22828,7 +22830,7 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/spawner/traps/wire_splicing/low_chance,
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bcH" = (
@@ -22895,6 +22897,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bcM" = (
@@ -22906,6 +22909,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bcN" = (
@@ -23638,7 +23642,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/spawner/traps/wire_splicing/low_chance,
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bet" = (
@@ -29533,6 +29537,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "bsu" = (
@@ -31165,6 +31170,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
 "bwy" = (
@@ -31615,6 +31623,9 @@
 	dir = 1;
 	pixel_y = -23
 	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/crew_quarters/clothingstorage)
 "bxA" = (
@@ -31686,6 +31697,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
 "bxJ" = (
@@ -31693,6 +31707,9 @@
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section1)
 "bxK" = (
@@ -36029,6 +36046,7 @@
 	icon_state = "1-2"
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section4deck4central)
 "bHT" = (
@@ -42306,6 +42324,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel/monofloor{
 	dir = 8
 	},
@@ -44425,6 +44446,9 @@
 "cbW" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
 	},
 /turf/simulated/floor/wood,
 /area/eris/crew_quarters/clothingstorage)
@@ -54359,6 +54383,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/structure/barrier/barbed_wire,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cAS" = (
@@ -66286,6 +66311,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/item/device/assembly/signaler{
+	roundstart_barrier_id = "first_section";
+	name = "first section barrier control"
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/eris/command/captain)
 "dfb" = (
@@ -74457,6 +74486,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dye" = (
@@ -78297,6 +78329,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dHp" = (
@@ -99872,6 +99907,13 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
+"gbh" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "gdl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -100864,6 +100906,17 @@
 	},
 /turf/simulated/open,
 /area/eris/engineering/gravity_generator)
+"ifD" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/spawner/traps/wire_splicing/low_chance,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section2deck4central)
 "igk" = (
 /obj/machinery/door/firedoor,
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -101110,6 +101163,17 @@
 /obj/structure/closet/random/tech,
 /turf/simulated/floor/tiled/steel/panels,
 /area/eris/engineering/post)
+"iLn" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/barrier/barbed_wire,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section2deck4central)
 "iLJ" = (
 /obj/spawner/junkfood/rotten,
 /turf/simulated/floor/tiled/techmaint,
@@ -102133,6 +102197,20 @@
 	},
 /turf/simulated/open,
 /area/eris/hallway/main/section3)
+"kPA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/spawner/traps/wire_splicing/low_chance,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section1deck4central)
 "kPU" = (
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
@@ -102770,6 +102848,14 @@
 /obj/structure/flora/ausbushes/leafybush,
 /turf/simulated/floor/grass,
 /area/eris/neotheology/chapelritualroom)
+"mqU" = (
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
+/turf/simulated/floor/tiled/steel/monofloor{
+	dir = 4
+	},
+/area/eris/hallway/main/section1)
 "mri" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9;
@@ -102941,6 +103027,10 @@
 	},
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/crew_quarters/kitchen_storage)
+"mCE" = (
+/obj/structure/barrier/ballistic,
+/turf/simulated/floor/tiled/dark/cargo,
+/area/eris/security/armory)
 "mCG" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/simulated/floor/plating,
@@ -103282,6 +103372,13 @@
 /obj/spawner/toy/figure,
 /turf/simulated/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
+"nBv" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "nCx" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -103420,6 +103517,15 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
+"obI" = (
+/obj/structure/table/rack,
+/obj/spawner/lowkeyrandom,
+/obj/item/device/assembly/signaler{
+	roundstart_barrier_id = "guild_lobby";
+	name = "guild lobby barrier control"
+	},
+/turf/simulated/floor/tiled/steel/brown_platform,
+/area/eris/quartermaster/office)
 "ocY" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
@@ -103878,6 +103984,9 @@
 /obj/machinery/holoposter{
 	pixel_y = -32
 	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "oYV" = (
@@ -103983,6 +104092,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2port)
+"poy" = (
+/obj/structure/barrier/barbed_wire,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4central)
 "ppW" = (
 /obj/structure/table/rack/shelf,
 /obj/machinery/power/apc{
@@ -104802,6 +104915,19 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
+"rjR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/barrier/barbed_wire,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4central)
 "rky" = (
 /mob/living/bot/cleanbot/roomba,
 /turf/simulated/floor/tiled/white,
@@ -105010,6 +105136,15 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"rMW" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/item/device/assembly/signaler{
+	roundstart_barrier_id = "first_section";
+	name = "first section barrier control"
+	},
+/turf/simulated/floor/tiled/dark/gray_perforated,
+/area/eris/security/warden)
 "rNW" = (
 /obj/machinery/holoposter,
 /turf/simulated/wall,
@@ -105457,6 +105592,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
+"sHP" = (
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/crew_quarters/clothingstorage)
 "sJl" = (
 /obj/machinery/conveyor/east{
 	id = "hangar_to_disposal"
@@ -105924,6 +106065,15 @@
 	},
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
+"tFk" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
+/turf/simulated/floor/wood,
+/area/eris/crew_quarters/clothingstorage)
 "tGQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -106098,6 +106248,13 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
+"tZr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/side/section3starboard)
 "tZw" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -106287,6 +106444,12 @@
 	},
 /turf/simulated/floor/hull,
 /area/space)
+"uqV" = (
+/obj/structure/barrier/four_way{
+	roundstart_barrier_id = "guild_lobby"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/eris/hallway/main/section1)
 "uqX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -106478,6 +106641,18 @@
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
+"uOf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/barrier/barbed_wire,
+/turf/simulated/floor/plating/under,
+/area/eris/maintenance/section3deck4central)
 "uPp" = (
 /obj/structure/table/standard,
 /obj/machinery/button/remote/blast_door{
@@ -130510,7 +130685,7 @@ abf
 abf
 abf
 aci
-abS
+mCE
 acI
 adi
 adR
@@ -130712,7 +130887,7 @@ abg
 abf
 abf
 aci
-abS
+mCE
 acI
 adj
 dUw
@@ -130914,7 +131089,7 @@ abh
 abf
 abE
 adh
-abS
+mCE
 acJ
 adQ
 adT
@@ -167502,7 +167677,7 @@ cvH
 cvH
 cvH
 cvH
-bbX
+kPA
 bcK
 aEu
 bdD
@@ -168523,8 +168698,8 @@ bdC
 bcY
 aEb
 bcI
-ben
-ben
+iLn
+ifD
 beX
 dzk
 bfJ
@@ -169565,7 +169740,7 @@ cFW
 bCZ
 cdf
 dli
-cHC
+uOf
 cJw
 cTs
 dab
@@ -169773,7 +169948,7 @@ cWb
 day
 ddc
 cxj
-bZy
+poy
 dpb
 bbk
 bbk
@@ -169969,13 +170144,13 @@ cGN
 iFm
 cdf
 dli
-cHC
+uOf
 cJw
 cWe
 daz
 ddh
 cJw
-bZy
+poy
 dpb
 bbk
 bvG
@@ -170304,7 +170479,7 @@ aaB
 aSY
 aaJ
 aTa
-aSx
+rMW
 aUz
 aSx
 aVb
@@ -170577,9 +170752,9 @@ cdC
 dlH
 doP
 dqx
-dqx
-dqx
-dqx
+rjR
+rjR
+rjR
 dqx
 cAY
 cDw
@@ -207293,10 +207468,10 @@ bwv
 bYu
 cKi
 cbW
-ccD
+tFk
 cdh
 cdI
-bxv
+sHP
 bxz
 caH
 aTG
@@ -208500,7 +208675,7 @@ bYp
 bYq
 bYp
 bXV
-bwn
+uqV
 bwx
 caL
 bYu
@@ -209116,7 +209291,7 @@ bVG
 bVQ
 bVQ
 bVQ
-bVQ
+mqU
 bVQ
 ccC
 bYh
@@ -210167,8 +210342,8 @@ bvy
 avn
 avn
 dEW
-cYE
-dTr
+gbh
+nBv
 dyd
 oYe
 bvy
@@ -211184,7 +211359,7 @@ czT
 cwD
 cwD
 ews
-dLa
+tZr
 cAQ
 dYB
 dqf
@@ -211383,7 +211558,7 @@ cvv
 cwE
 cxK
 cyY
-ctm
+obI
 cwD
 ccX
 etk

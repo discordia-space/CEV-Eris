@@ -130,7 +130,7 @@
 /obj/structure/barrier/four_way
 	name = "4-way barrier"
 	desc = "Retractable barrier. Could be climbed over."
-	description_info = "Repaired by welding and dismantled with a tool capable of bolt turning.\nOnly retracted barrier could be dismantled. Alt-Click to set an ID for remote control."
+	description_info = "Repaired by welding, dismantled by bolt turning, toggled by prying and hacked by pulsing.\nOnly retracted barrier could be dismantled. Use a signaler on the barrier to link them, use again to break the link."
 	icon_state = "4-way"
 	climbable = TRUE
 	is_animated = TRUE
@@ -138,31 +138,95 @@
 	matter = list(MATERIAL_PLASTEEL = 15)
 	health = 750
 	maxHealth = 750
-	var/_wifi_id
-	var/datum/wifi/receiver/button/barrier/wifi_receiver
+
+	// Remote control galore
+	var/code // A number from 1 to 100
+	var/frequency // A number from 1200 to 1600
+	var/roundstart_barrier_id // Text. Links a group of pre-mapped barriers with a signaller that has matching ID
 
 
 /obj/structure/barrier/four_way/Initialize()
 	. = ..()
-	if(_wifi_id)
-		wifi_receiver = new(_wifi_id, src)
+	if(roundstart_barrier_id)
+		var/list/code_and_frequency_list = GLOB.roundstart_barrier_groups[roundstart_barrier_id]
+		if(!code_and_frequency_list)
+			code_and_frequency_list = list(	rand(1,100), // var/code used by src and /obj/item/device/assembly/signaler
+											rand(1200, 1600)) // var/frequency, just like above
+			GLOB.roundstart_barrier_groups[roundstart_barrier_id] = code_and_frequency_list
+
+		update_wifi_password(code_and_frequency_list[1], code_and_frequency_list[2])
 
 
 /obj/structure/barrier/four_way/Destroy()
-	QDEL_NULL(wifi_receiver)
-	wifi_receiver = null
+	if(frequency)
+		SSradio.remove_object(src, frequency)
 	. = ..()
 
 
-/obj/structure/barrier/four_way/AltClick(mob/user)
-	if(!_wifi_id && can_touch(user))
-		// PROMPT FOR _wifi_id HERE
-		// var/new_wifi_id = input(user, "Enter an ID for remote activation:", name) as null|text
-		// if(new_wifi_id)
-		// 	_wifi_id = new_wifi_id
-		// 	wifi_receiver = new(_wifi_id, src)
+/obj/structure/barrier/four_way/proc/update_wifi_password(new_code, new_frequency)
+	if(frequency)
+		SSradio.remove_object(src, frequency)
+	code = new_code
+	frequency = new_frequency
+	if(frequency)
+		SSradio.add_object(src, frequency)
 
-		// Don't use that shit, it's... well, shit
+
+/obj/structure/barrier/four_way/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/device/assembly/signaler))
+		var/obj/item/device/assembly/signaler/signaler = I
+		if((signaler.code == code) && (signaler.frequency == frequency)) // Linked signaler is used, break the link
+			update_wifi_password()
+			signaler.audible_message("\icon[signaler] *beep*")
+		else if(!frequency || !code) // There is no link, establish one
+			update_wifi_password(signaler.code, signaler.frequency)
+			signaler.audible_message("\icon[signaler] *beep* *beep*")
+		else // Access denied
+			signaler.audible_message("\icon[signaler] *beep* *beep* *beep*") // Silly and cryptic, yet authentic signaler feedback
+		return
+
+	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
+	if(health < maxHealth)
+		usable_qualities.Add(QUALITY_WELDING)
+	if(code || frequency)
+		usable_qualities.Add(QUALITY_PULSING)
+
+	var/tool_type = I.get_tool_type(user, usable_qualities)
+
+	switch(tool_type)
+		if(QUALITY_WELDING)
+			if(health < maxHealth)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
+					user.visible_message(SPAN_NOTICE("\The [user] repairs \the [src]."), SPAN_NOTICE("You repair \the [src]."))
+					health = maxHealth
+					is_damaged = FALSE
+					return
+		if(QUALITY_BOLT_TURNING) // Deconstruction and hacking be harder when barrier is deployed
+			if(I.use_tool(user, src, (is_open ? WORKTIME_LONG : WORKTIME_NORMAL), tool_type, (is_open ? FAILCHANCE_CHALLENGING : FAILCHANCE_NORMAL),  required_stat = STAT_MEC))
+				for(var/material_name in matter)
+					var/material/material_datum = get_material_by_name(material_name)
+					material_datum.place_sheet(src, amount = matter[material_name])
+				user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
+				qdel(src)
+				return
+		if(QUALITY_PULSING)
+			if(I.use_tool(user, src, (is_open ? WORKTIME_LONG : WORKTIME_NORMAL), tool_type, (is_open ? FAILCHANCE_CHALLENGING : FAILCHANCE_NORMAL),  required_stat = STAT_MEC))
+				update_wifi_password()
+				return
+
+	user.do_attack_animation(src)
+	if(I.hitsound)
+		playsound(loc, I.hitsound, 50, 1, -1)
+	visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	take_damage(I.force * I.structure_damage_factor)
+
+
+/obj/structure/barrier/four_way/receive_signal(datum/signal/signal, receive_method, receive_param)
+	ASSERT(signal)
+	if(signal.encryption == code)
+		toggle_barrier()
+
 
 /obj/structure/barrier/four_way/proc/toggle_barrier()
 	is_open = !is_open
