@@ -314,8 +314,8 @@
 	page_link = "Guide_to_Food_and_Drinks"
 
 /obj/item/book/manual/wiki/chef_recipes
-	name = "Chef Recipes"
-	icon_state = "chefbook"
-	author = "Victoria Ponsonby"
-	title = "Chef Recipes"
+	name = "Bradhaanata Cooking Guide"
+	icon_state = "cooked_book"
+	author = "Jordan Damnsey"
+	title = "Bradhaanata cooking guide"
 	page_link = "Guide_to_Food_and_Drinks"
