@@ -1,6 +1,6 @@
 /obj/structure/barrier
 	name = "bollards"
-	desc = "A barrier that allows humans to pass, but blocks vehicles. Not very durable."
+	desc = "A barrier that allows humans to pass, but blocks mechs. Not very durable."
 	description_info = "Repaired by welding and dismantled with a tool capable of bolt turning."
 	icon = 'icons/obj/structures/eris_barricades.dmi'
 	icon_state = "bollards"
@@ -31,13 +31,19 @@
 				return FALSE // Specifically targeting the barricade, hit
 
 			if(get_dir(loc, target) in list(dir, turn(dir, 45), turn(dir, -45))) // Front plate is in the way
-				// Projectile is targets a mob that is hiding behind the barricade
+				// Projectile targets a mob that is hiding behind the barricade
 				if(projectile.original && isliving(projectile.original) && (projectile.original.loc == loc))
 					var/mob/living/living = projectile.original
 					if(living.lying)
 						return FALSE // Aiming at a mob that's lying behind the barricade, so hit the barricade
 					else if(projectile.def_zone in list(BP_R_LEG, BP_L_LEG, BP_GROIN))
 						return FALSE // Targeting body part covered by the barricade, hit
+
+				// Looking at this code some time after writing it, I think that bullets, which
+				// do not directly target a mob, should be stopped anyway in some cases
+				// Perhaps try to 'locate()' a mob on our tile and roll a 'prob()'?
+				// TODO: See if this could be improved after player feedback comes --KIROV
+
 			return TRUE // Good enough angle, won't be stopped by the front panel
 
 			// Note: return FALSE for a projectile will call 'bullet_act()', in which the barricade will take damage
@@ -50,7 +56,7 @@
 
 
 /obj/structure/barrier/bullet_act(obj/item/projectile/P, def_zone)
-	if(prob(15))
+	if(prob(20))
 		new /obj/effect/sparks(get_turf(P))
 	P.on_hit(src)
 	take_damage(P.get_structure_damage())
@@ -118,7 +124,7 @@
 
 /obj/structure/barrier/four_way
 	name = "4-way barrier"
-	desc = "Retractable barrier. Could be climbed over."
+	desc = "Retractable barrier. Can be climbed over."
 	description_info = "Repaired by welding, dismantled by bolt turning, toggled by prying and hacked by pulsing.\nOnly retracted barrier could be dismantled. Use a signaler on the barrier to link them, use again to break the link."
 	icon_state = "4-way"
 	climbable = TRUE
@@ -227,8 +233,8 @@
 
 
 /obj/structure/barrier/hedgehog
-	name = "Serb hedgehog"
-	desc = "Static anti-mech barrier. Could be climbed over."
+	name = "serbian hedgehog"
+	desc = "Static anti-mech barrier. Can be climbed over."
 	description_info = "Repaired by welding and dismantled with a tool capable of bolt turning."
 	icon_state = "hedgehog"
 	density = TRUE
@@ -269,7 +275,7 @@
 			for(var/material_name in matter)
 				var/material/material_datum = get_material_by_name(material_name)
 				material_datum.place_sheet(loc, amount = matter[material_name])
-			user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
+			user.visible_message(SPAN_NOTICE("\The [user] cuts \the [src]."), SPAN_NOTICE("You cut \the [src]."))
 			qdel(src)
 			return
 
