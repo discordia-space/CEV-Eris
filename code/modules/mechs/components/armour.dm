@@ -3,7 +3,7 @@
 	if(prob(get_blocked(damage_type, damage_flags, armor_pen) * 100)) //extra removal of sharp and edge on account of us being big robots
 		damage_flags &= ~(DAM_SHARP | DAM_EDGE)
 	. = ..()
-*/
+
 
 /obj/item/robot_parts/robot_component/armour/exosuit
 	name = "exosuit armor plating"
@@ -46,3 +46,4 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
 	spawn_blacklisted = FALSE
 	price_tag = 1000
+*/
