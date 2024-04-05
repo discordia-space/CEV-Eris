@@ -145,6 +145,10 @@
 	log_debug("cooking_with_jane/oven/proc/getInput returned area [input]. icon-x: [click_params["icon-x"]], icon-y: [click_params["icon-y"]]")
 	#endif
 	return input
+#undef ICON_SPLIT_X_1
+#undef ICON_SPLIT_X_2
+#undef ICON_SPLIT_Y_1
+#undef ICON_SPLIT_Y_2
 
 
 /obj/machinery/cooking_with_jane/oven/attack_hand(mob/user as mob, params)
