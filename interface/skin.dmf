@@ -145,7 +145,7 @@ macro "robot"
 		command = "a-intent 1"
 	elem
 		name = "5"
-		command = "me-verb"
+		command = "Emote"
 	elem
 		name = "F"
 		command = "a-intent left"
@@ -178,7 +178,7 @@ macro "robot"
 		command = ".southwest"
 	elem
 		name = "T"
-		command = "say-verb"
+		command = "Say"
 	elem
 		name = "X"
 		command = ".northeast"
@@ -217,10 +217,10 @@ macro "robot"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = "say-verb"
+		command = "Say"
 	elem
 		name = "F4"
-		command = "me-verb"
+		command = "Emote"
 	elem
 		name = "F5"
 		command = "asay"
@@ -411,7 +411,7 @@ macro "default"
 		command = "a-intent harm"
 	elem
 		name = "5"
-		command = "me-verb"
+		command = "Emote"
 	elem
 		name = "E"
 		command = "quick-equip"
@@ -465,7 +465,7 @@ macro "default"
 		command = ".southwest"
 	elem
 		name = "T"
-		command = "say-verb"
+		command = "Say"
 	elem
 		name = "X"
 		command = ".northeast"
@@ -528,10 +528,10 @@ macro "default"
 		command = ".screenshot"
 	elem
 		name = "F3"
-		command = "say-verb"
+		command = "Say"
 	elem
 		name = "F4"
-		command = "me-verb"
+		command = "Emote"
 	elem
 		name = "F5"
 		command = "asay"
@@ -896,7 +896,7 @@ window "outputwindow"
 		background-color = none
 		border = line
 		saved-params = "is-checked"
-		text = "Me"
+		text = "Emote"
 		command = ".winset \"mebutton.is-checked=true ? input.command=\"!me \\\"\" : input.command=\"\"mebutton.is-checked=true ? saybutton.is-checked=false\"\"mebutton.is-checked=true ? oocbutton.is-checked=false\""
 		is-flat = true
 		button-type = pushbox

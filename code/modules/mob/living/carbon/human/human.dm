@@ -63,8 +63,6 @@
 /mob/living/carbon/human/get_status_tab_items()
 	// Remember that BYOND "unwraps" a list when it's added to another list, hence the use of list() matryoshkas here
 	. = ..()
-	. += list(list("Intent: [a_intent]"))
-	. += list(list("Move Mode: [MOVING_DELIBERATELY(src) ? "walk" : "run"]"))
 	if(internal)
 		if(!internal.air_contents) // Leftover from the old stat() proc
 			qdel(internal) // TODO: See if that is necessary, probably should just null the variable instead
@@ -151,7 +149,7 @@
 
 						if(module.usable)
 							current_module += list(list("[module.engage_string]", "\ref[suit];interact_module=[module_index];module_mode=engage"))
-							
+
 						if(module.toggleable)
 							if(module.active)
 								current_module += list(list("[module.deactivate_string]", "\ref[suit];interact_module=[module_index];module_mode=deactivate"))
@@ -174,14 +172,14 @@
 
 	var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
 	if(chemvessel_efficiency > 1)
-		. += list("Chemical Storage: [carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]")
+		. += list(list("Chemical Storage: [carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]"))
 
 	var/maw_efficiency = get_organ_efficiency(OP_MAW)
 	if(maw_efficiency > 1)
-		. += list("Gnawing hunger: [carrion_hunger]/[round(maw_efficiency/10)]")
+		. += list(list("Gnawing hunger: [carrion_hunger]/[round(maw_efficiency/10)]"))
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C)
-		. += list("Cruciform: [C.power]/[C.max_power]")
+		. += list(list("Cruciform: [C.power]/[C.max_power]"))
 
 /mob/living/carbon/human/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
@@ -1435,7 +1433,7 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	
+
 	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
 	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 

@@ -590,15 +590,16 @@
 
 
 /mob/verb/stop_pulling()
-
 	set name = "Stop Pulling"
 	set category = "IC"
 
 	if(pulling)
 		pulling.pulledby = null
 		pulling = null
-		/*if(pullin)
-			pullin.icon_state = "pull0"*/
+		if(HUDneed.Find("pull"))
+			var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
+			HUD.update_icon()
+
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 

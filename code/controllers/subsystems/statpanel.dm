@@ -11,6 +11,7 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if(!resumed)
 		var/list/global_data = list(
+			list("Storyteller: [master_storyteller ? master_storyteller : "being democratically elected"]"),
 			list("Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]"),
 			list("Round Time: [roundduration2text()]"),
 			list("Ship Time: [stationtime2text()]"),

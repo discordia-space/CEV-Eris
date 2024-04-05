@@ -1,14 +1,18 @@
 /mob/proc/say()
 	return
 
-/mob/verb/whisper()
-	set name = "Whisper"
-	set category = "IC"
+/mob/verb/say_verb()
+	set name = "Say"
+	set hidden = TRUE
+	if(say_disabled)	//This is here to try to identify lag problems
+		to_chat(usr, "\red Speech is currently admin-disabled.")
+		return
 
-
-/mob/verb/say_wrapper()
-	set name = "Say verb"
-	set category = "IC"
+	if(ishuman(src))
+		var/mob/living/carbon/human/human = src
+		if(human.suppress_communication)
+			to_chat(src, human.get_suppressed_message())
+			return
 
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE
@@ -16,22 +20,22 @@
 	hud_typing = FALSE
 	set_typing_indicator(FALSE)
 	if(message)
-		say_verb(message)
+		say(message)
 
 
-/mob/verb/say_verb(message as text)
-	set name = "Say"
-	set hidden = TRUE
+/mob/verb/me_verb()
+	set name = "Emote"
+	set category = "IC"
+
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
-	set_typing_indicator(FALSE)
-	usr.say(message)
 
-
-/mob/verb/me_wrapper()
-	set name = "Me verb"
-	set category = "IC"
+	if(ishuman(src))
+		var/mob/living/carbon/human/human = src
+		if(human.suppress_communication)
+			to_chat(src, human.get_suppressed_message())
+			return
 
 	set_typing_indicator(TRUE)
 	hud_typing = TRUE
@@ -39,24 +43,12 @@
 	hud_typing = FALSE
 	set_typing_indicator(FALSE)
 	if(message)
-		me_verb(message)
+		message = sanitize(message)
+		if(use_me)
+			emote("me", emote_type, message)
+		else
+			emote(message)
 
-
-/mob/verb/me_verb(message as text)
-	set name = "Me"
-	set hidden = TRUE
-
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
-		return
-
-	message = sanitize(message)
-
-	set_typing_indicator(FALSE)
-	if(use_me)
-		usr.emote("me", usr.emote_type, message)
-	else
-		usr.emote(message)
 
 /mob/proc/say_dead(message)
 	if(say_disabled)	//This is here to try to identify lag problems
@@ -160,7 +152,7 @@
 //returns the language object only if the code corresponds to a language that src can speak, otherwise null.
 /mob/proc/parse_language(message)
 	var/prefix = copytext(message, 1, 2)
-	
+
 	if(length(message) >= 1 && prefix == get_prefix_key(/decl/prefix/audible_emote))
 		return all_languages["Noise"]
 

@@ -74,18 +74,26 @@
 /mob/new_player/get_status_tab_items()
 	. = ..()
 	if(SSticker.current_state == GAME_STATE_PREGAME)
-		. += list(list("Storyteller: [master_storyteller]"))
 		. += list(list("Time To Start: [SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]"))
 		. += list(list("Players: [totalPlayers]"))
 		. += list(list("Players Ready: [totalPlayersReady]"))
 		totalPlayers = 0
 		totalPlayersReady = 0
+		// This list shouldn't be compiled separately for each player
+		// TODO: Move this under 'global_data' in statpanel subsystem --KIROV
 		for(var/mob/new_player/player in GLOB.player_list)
-			if(player.ready)
-				. += list(list("[player.client.prefs.real_name] [(player.ready)?("[player.client.prefs.job_high]"):(null)]"))
 			totalPlayers++
 			if(player.ready)
 				totalPlayersReady++
+				var/job_of_choice = "Unknown"
+				// Player chose to be a vagabond, that takes priority over all other settings,
+				// and is in a low priority job list for some reason
+				if(ASSISTANT_TITLE in player.client.prefs.job_low)
+					job_of_choice = ASSISTANT_TITLE
+				// Only take top priority job into account, no use divining what lower priority job player could get
+				else if(player.client.prefs.job_high)
+					job_of_choice = player.client.prefs.job_high
+				. += list(list("[player.client.prefs.real_name] : [job_of_choice]"))
 
 /mob/new_player/Topic(href, href_list[])
 	if(src != usr || !client)
@@ -252,15 +260,15 @@
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = SSjob.GetJob(rank)
-	if(!job)	
+	if(!job)
 		return FALSE
-	if(!job.is_position_available())	
+	if(!job.is_position_available())
 		return FALSE
-	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title])	
+	if(IsGuestKey(ckey) && SSjob.job_to_playtime_requirement[job.title])
 		return FALSE
 	if(!SSjob.ckey_to_job_to_can_play[client.ckey][job.title])
 		return FALSE
-	if(jobban_isbanned(src,rank))	
+	if(jobban_isbanned(src,rank))
 		return FALSE
 	return TRUE
 

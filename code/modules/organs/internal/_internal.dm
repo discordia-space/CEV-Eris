@@ -73,8 +73,7 @@
 		if(I.type == type)
 			skipverbs = TRUE
 	if(!skipverbs)
-		for(var/verb_path in owner_verbs)
-			verbs -= verb_path
+		remove_verb(owner, owner_verbs)
 
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index--
@@ -100,8 +99,7 @@
 		else
 			owner.internal_organs_by_efficiency[process] -= src
 
-	for(var/proc_path in owner_verbs)
-		verbs |= proc_path
+	add_verb(owner, owner_verbs)
 
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
@@ -407,7 +405,11 @@
 	min_bruised_damage = initial(min_bruised_damage)
 	min_broken_damage = initial(min_broken_damage)
 	max_damage = initial(max_damage)
-	owner_verbs = initial(owner_verbs)
+	if(owner)
+		remove_verb(owner, owner_verbs)
+	owner_verbs = initial_owner_verbs.Copy()
+	if(owner)
+		add_verb(owner, owner_verbs)
 	organ_efficiency = initial_organ_efficiency.Copy()
 	scanner_hidden = initial(scanner_hidden)
 	unique_tag = initial(unique_tag)
