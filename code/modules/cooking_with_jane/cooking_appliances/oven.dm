@@ -239,7 +239,9 @@
 	#endif
 	var/old_timerstamp = timerstamp
 	spawn(timer)
+		#ifdef CWJ_DEBUG
 		log_debug("Comparimg timerstamp() of [timerstamp] to old_timerstamp [old_timerstamp]")
+		#endif
 		if(old_timerstamp == timerstamp)
 			playsound(src, 'sound/items/lighter.ogg', 100, 1, 0)
 
