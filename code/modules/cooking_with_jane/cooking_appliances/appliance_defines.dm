@@ -8,4 +8,3 @@
 	layer = BELOW_OBJ_LAYER
 	var/cooking = FALSE
 
-	//circuit = /obj/item/electronics/circuitboard/cooking_with_jane/
