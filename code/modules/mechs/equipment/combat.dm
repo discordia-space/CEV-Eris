@@ -815,8 +815,12 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 6, TECH_PLASMA = 5)
 	// so it has update icon called everytime it moves
 	equipment_flags = EQUIPFLAG_UPDTMOVE
-	/// Defines the amount of power drained per hit thats blocked
-	var/damage_to_power_drain = 30
+	///The max amount of charge the capacitor can hold
+	var/max_capacitor_charge = 500
+	///Internal charge of the shield
+	var/current_capacitor_charge = 0
+	///What portion of damage is absorbed by the shield; should be a number from 1 to 0, where 1 is 100% absorption and 0 is 0% absorption
+	var/absorption_ratio = 1
 	/// Are we toggled on ?
 	var/on = FALSE
 	/// last time we toggled ,. stores world.time
@@ -832,6 +836,7 @@
 	visual_bluff.icon_state = "shield_null"
 	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 	visual_bluff.layer = ABOVE_ALL_MOB_LAYER
+	current_capacitor_charge = max_capacitor_charge
 
 /obj/item/mech_equipment/shield_generator/Destroy()
 	. = ..()
@@ -840,29 +845,34 @@
 		mech.vis_contents.Remove(visual_bluff)
 	QDEL_NULL(visual_bluff)
 
+/obj/item/mech_equipment/shield_generator/installed(mob/living/exosuit/_owner, hardpoint)
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
 /obj/item/mech_equipment/shield_generator/uninstalled()
+	STOP_PROCESSING(SSobj, src)
 	owner.vis_contents.Remove(visual_bluff)
 	if(on)
 		on = FALSE
 		update_icon()
 	. = ..()
 
-
 /obj/item/mech_equipment/shield_generator/attack_self(mob/user)
 	. = ..()
 	if(.)
-		on = !on
-		to_chat(user, "You toggle \the [src] [on ? "on" : "off"].")
-		last_toggle = world.time
-		update_icon()
-		if(on)
-			playsound(src,'sound/mechs/shield_raise.ogg', 50, 1)
-		else
-			playsound(src,'sound/mechs/shield_drop.ogg', 50, 1)
+		toggle_shield(user)
 
-// Used to tell how effective we are against damage,
-/obj/item/mech_equipment/shield_generator/proc/getEffectiveness()
-	return on
+///Toggle the shield between on and off
+/obj/item/mech_equipment/shield_generator/proc/toggle_shield(mob/user)
+	on = !on
+	last_toggle = world.time
+	update_icon()
+	playsound(get_turf(src), on ? 'sound/mechs/shield_raise.ogg' : 'sound/mechs/shield_drop.ogg', 50, 3)
+
+///Proc that plays an alarm and then toggle the shield
+/obj/item/mech_equipment/shield_generator/proc/power_failure()
+	playsound(get_turf(src), 'sound/mechs/internaldmgalarm.ogg', 50, 3)
+	toggle_shield()
 
 /obj/item/mech_equipment/shield_generator/update_icon(skip)
 	. = ..()
@@ -886,30 +896,42 @@
 		else
 			flick("shield_drop", visual_bluff)
 
-/obj/item/mech_equipment/shield_generator/proc/absorbDamages(list/damages)
-	var/mob/living/exosuit/mech = loc
-	var/obj/item/cell/power = mech.get_cell()
-	if(!on)
-		return damages
-	if(!power || (power && power.charge <= damage_to_power_drain * 3))
-		last_toggle = world.time
-		on = FALSE
-		update_icon()
-		return damages
-	flick("shield_impact", visual_bluff)
-	for(var/damage in damages)
-		while(power.charge >= damage_to_power_drain && damages[damage] > 0)
-			damages[damage] -= 1
-			power.use(damage_to_power_drain)
-			// if it blows
-			if(QDELETED(power))
-				last_toggle = world.time
-				on = FALSE
-				playsound(get_turf(src),'sound/mechs/internaldmgalarm.ogg', 50, 1)
-				update_icon()
-				return damages
+/obj/item/mech_equipment/shield_generator/proc/absorbDamages(damage)
+	if(!on || !damage)	//Don't bother if the damage is 0
+		return damage
 
-	return damages
+	if(!current_capacitor_charge)	//If somehow the shield is on and capacitor is empty, just turn it off
+		power_failure()
+		return damage
+
+	flick("shield_impact", visual_bluff)
+
+	//Absorb as much as the capacitor can and only what the shield can absorb
+	var/damage_absorbed = (damage * absorption_ratio >= current_capacitor_charge * absorption_ratio ? current_capacitor_charge : damage) * absorption_ratio
+	damage -= damage_absorbed
+	current_capacitor_charge -= damage_absorbed
+	if(!current_capacitor_charge)	//Turn it off if the capacitor is empty
+		power_failure()
+
+	return damage
+
+/obj/item/mech_equipment/shield_generator/Process(delta_time)
+	//Capactor loses power just maintaining the shield
+	if(on)
+		current_capacitor_charge -= 10
+		if(current_capacitor_charge <= 0)
+			power_failure()
+
+	var/obj/item/cell/cell = owner.get_cell()
+	if(!cell?.charge)	//No battery or no charge
+		maptext = "<span class='maptext' style=text-align:center>[!current_capacitor_charge ? "0" : (current_capacitor_charge / max_capacitor_charge) * 100]%"
+		return
+
+	//Transfer in increments of 10 or the remaining charge
+	var/transfer_amount = min(10, max_capacitor_charge - current_capacitor_charge, cell.charge)
+	cell.use(transfer_amount)
+	current_capacitor_charge += transfer_amount
+	maptext = "<span class='maptext' style=text-align:center>[!current_capacitor_charge ? "0" : (current_capacitor_charge / max_capacitor_charge) * 100]%"
 
 /obj/item/mech_equipment/shield_generator/ballistic
 	name = "ballistic mech shield"
@@ -917,6 +939,9 @@
 	icon_state = "mech_shield"
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 3)
+	absorption_ratio = 0.66	//66% of damage is absorbed
+	///Boolean to know if the shield is currently being deployed or retracted
+	var/performing_action = FALSE
 
 /obj/item/mech_equipment/shield_generator/ballistic/Initialize()
 	. = ..()
@@ -935,18 +960,12 @@
 	owner.vis_contents.Remove(visual_bluff)
 	. = ..()
 
-// 66% efficient when deployed
-/obj/item/mech_equipment/shield_generator/ballistic/getEffectiveness()
-	return on ? 0.66 : 0
+/obj/item/mech_equipment/shield_generator/ballistic/absorbDamages(damage)
+	if(!on || !damage)
+		return damage
 
-/obj/item/mech_equipment/shield_generator/ballistic/absorbDamages(list/damages)
-	if(!on)
-		return damages
-	for(var/damage in damages)
-		/// blocks 66% of damage
-		damages[damage] -= round(damages[damage]/1.5)
 	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 50, 8)
-	return damages
+	return damage * absorption_ratio
 
 /obj/item/mech_equipment/shield_generator/ballistic/update_icon()
 	/// Not needed since we already have handling for visual bluffs layering
@@ -983,18 +1002,19 @@
 				visual_bluff.layer = MECH_ABOVE_LAYER
 			return
 
-/obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)
-	var/mob/living/exosuit/mech = loc
-	if(!istype(mech))
+/obj/item/mech_equipment/shield_generator/ballistic/toggle_shield(mob/user)
+	if(canremove || performing_action)	//From what I gather, canremove is only TRUE when not installed
 		return
-	to_chat(user , SPAN_NOTICE("[on ? "Retracting" : "Deploying"] \the [src]..."))
-	var/time = on ? 0.5 SECONDS : 3 SECONDS
-	if(do_after(user, time, src, FALSE))
+
+	performing_action = TRUE
+	if(do_after(user, 0.5 SECONDS, owner, FALSE))
 		on = !on
-		to_chat(user, "You [on ? "deploy" : "retract"] \the [src].")
-		mech.visible_message(SPAN_DANGER("\The [mech] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
+		owner.visible_message(SPAN_DANGER("\The [owner] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
 		playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
 		/// movement blocking is handled in MoveBlock()
+
+	performing_action = FALSE
+	update_icon()
 
 /// Pass all attack attempts to afterattack if we're installed
 /obj/item/mech_equipment/shield_generator/ballistic/resolve_attackby(atom/A, mob/user, params)
@@ -1032,9 +1052,10 @@
 				knockable.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
 
 		if(length(targets))
-			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 1)
+			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 3)
 
-
+/obj/item/mech_equipment/shield_generator/ballistic/Process(delta_time)
+	STOP_PROCESSING(SSobj, src)	//Ballistic shield doesn't need to process anything
 
 
 
