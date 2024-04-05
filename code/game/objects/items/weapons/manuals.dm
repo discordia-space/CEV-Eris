@@ -7,10 +7,10 @@
 
 
 /obj/item/book/manual/chef_recipes
-	name = "Chef Recipes"
+	name = "Bradhaanata Cooking Guide"
 	icon_state = "cooked_book"
-	author = "Victoria Ponsonby"
-	title = "Chef Recipes"
+	author = "Jordan Damnsey"
+	title = "Bradhaanata cooking guide"
 
 	dat = {"<html>
 				<head>
@@ -27,38 +27,39 @@
 				<body>
 
 				<h1>Food for Dummies</h1>
-				Here is a guide on basic food recipes and also how to not poison your customers accidentally.
+				Here is a guide on basic food ingredients and how to not set the stove on fire. For actual recipes, please see the Bradhaanata Cooking Assistant App.
 
-				<h3>Basics:</h3>
-				Knead an egg and some flour to make dough. Bake that to make a bun or flatten and cut it.
+				<h2>Basics</h2>
+				The appliances focus entirely around the cooking containers, such as the Pan, Cutting Board, Pot, Oven Tray, ect. You'll be starting with adding your ingredients to the container, and ending by scooping everything out with the spatula.
+				The Prep Bowl cooking container is different than the Mixing Bowl.
+				Any steps except the first and last can be done in any order.
+				Scooping ingredients out before the recipe is done, leaving excess reagents in the container, having the wrong heat set, or leaving the food on the appliance too long will lead to lower quality meals.
+				Some meals are inherently better than another, for various reasons. Some have more steps one could take to improve it, others are simply packed with nutrition. Both contribute to the mental wellbeing of your customer.
+				For ease, you can leave cooking containers on the appliance, and place your ingredients or scoop them out with the spatula without ever taking it off the appliance.
+				Setting the appliance timer to 0 will force it to Stay On when activated. An attentive chef can make use of keeping a burner on, and quickly mix new recipes without ever turning the burner off.
 
-				<h3>Burger:</h3>
-				Put a bun and some meat into the microwave and turn it on. Then wait.
+				<h3>Ingredients:</h3>
+				Knead an egg and some flour to make dough.
+				Cut some meat for cutlets.
+				Flatten cutlets for meatballs.
+				Mix a little bit of animal protein with some flour for an alternative source of meatballs.
+				Flatten a meatball for a meat patty.
+				Drop a little bit of Universal Enzyme into a beaker, then add milk for cheese.
 
-				<h3>Bread:</h3>
-				Put some dough and an egg into the microwave and then wait.
+				<h2>Appliances</h2>
 
-				<h3>Waffles:</h3>
-				Add two lumps of dough and 10 units of sugar to the microwave and then wait.
+				<h3>Stovetop:</h3>
+				Four burners, each with their own temperature and timer control.
+				Requires nothing additional to power to operate.
+				A skilled chef can designate two burners to simply ingredient preparation, keeping them on to continually cook low heat items such as cutlets.
 
-				<h3>Popcorn:</h3>
-				Add 1 corn to the microwave and wait.
+				<h3>Grill:</h3>
+				Two burners, each with their own temperature and timer control.
+				In addition to power, it needs wood to turn into charcoal, and everyone knows carcinogens adds flavor.
 
-				<h3>Meat Steak:</h3>
-				Put a slice of meat, 1 unit of salt, and 1 unit of pepper into the microwave and wait.
-
-				<h3>Meat Pie:</h3>
-				Put a flattened piece of dough and some meat into the microwave and wait.
-
-				<h3>Boiled Spaghetti:</h3>
-				Put the spaghetti (processed flour) and 5 units of water into the microwave and wait.
-
-				<h3>Donuts:</h3>
-				Add some dough and 5 units of sugar to the microwave and wait.
-
-				<h3>Fries:</h3>
-				Add one potato to the processor, then bake them in the microwave.
-
+				<h3>Oven:</h3>
+				One burner, with it's own temperature and timer control.
+				To open or close it, there's a latch towards the top of the unit.
 
 				</body>
 			</html>

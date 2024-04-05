@@ -420,6 +420,7 @@
 	name = "bradhaanata kitchen tool supply box"
 	desc = "A collection of kitchen essentials, brought to you by Bradhaanata"
 	initial_contents = list(
+		/obj/item/book/manual/chef_recipes = 1,
 		/obj/item/tool/knife = 1,
 		/obj/item/tool/knife/butch = 1,
 		/obj/item/material/kitchen/rollingpin = 1,
