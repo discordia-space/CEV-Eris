@@ -407,7 +407,7 @@ Food quality is calculated based on the steps taken.
 	return src.add_step(step, optional)
 
 //-----------------------------------------------------------------------------------
-//Use item step shortcut commands
+//Add produce step shortcut commands
 /datum/cooking_with_jane/recipe/proc/create_step_add_produce(var/produce, var/optional)
 	var/datum/cooking_with_jane/recipe_step/add_produce/step = new /datum/cooking_with_jane/recipe_step/add_produce(produce, src)
 	return src.add_step(step, optional)
