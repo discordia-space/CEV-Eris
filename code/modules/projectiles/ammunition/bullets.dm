@@ -474,6 +474,43 @@
 	spawn_tags = SPAWN_TAG_AMMO
 	rarity_value = 15
 
+/obj/item/ammo_casing/grenade/flash
+	name = "FS FBR \"Stallone\""
+	desc = "A standard-issue Frozen Star flash round, for clearing out criminal hideouts."
+	icon_state = "flash"
+	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/flash
+	w_class = ITEM_SIZE_SMALL
+	caliber = CAL_GRENADE
+	is_caseless = TRUE
+	maxamount = 1
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 15
+
+
+/obj/item/ammo_casing/grenade/smoke
+	name = "FS SGR \"Dalton\""
+	desc = "A standard-issue Frozen Star smoke round, for hiding troop movements."
+	icon_state = "grenade"
+	projectile_type = /obj/item/projectile/bullet/grenade/smoke
+	w_class = ITEM_SIZE_SMALL
+	caliber = CAL_GRENADE
+	is_caseless = TRUE
+	maxamount = 1
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 15
+
+/obj/item/ammo_casing/grenade/white_phosphorous
+	name = "SA WPR \"Gornja\""
+	desc = "An incendiary grenade shell, intended for clearing out tight spaces such as ship interiors and village houses. With love from Serbia."
+	icon_state = "high_incendiary "
+	projectile_type = /obj/item/projectile/bullet/grenade/handgrenade/white_phosphorous
+	w_class = ITEM_SIZE_SMALL
+	caliber = CAL_GRENADE
+	is_caseless = TRUE
+	maxamount = 1
+	spawn_tags = SPAWN_TAG_AMMO
+	rarity_value = 25
+
 /obj/item/ammo_casing/grenade/weak
 	name = "NT SR \"Dard\""
 	desc = "A standard-issue sting round for use against unruly crowds. The abbreviation \"NT\" marks its producer, but the lack of details makes it ubiquitous."
@@ -528,7 +565,6 @@
 	description_info = "Relying purely on explosive power, HE shells provide the biggest boom on the best budget."
 	icon_state = "rocketshell"
 	projectile_type = /obj/item/projectile/bullet/rocket
-	
 	caliber = CAL_ROCKET
 	maxamount = 1
 	reload_delay = 15
