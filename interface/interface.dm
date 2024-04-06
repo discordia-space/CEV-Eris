@@ -51,7 +51,8 @@
 
 /client/verb/changelog()
 	set name = "Changelog"
-	set category = "OOC"
+	set desc = "See what's new"
+	set hidden = TRUE
 	if(!GLOB.changelog_tgui)
 		GLOB.changelog_tgui = new /datum/changelog()
 
@@ -60,6 +61,16 @@
 		prefs.lastchangelog = changelog_hash
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
+
+/client/verb/tickets()
+	set name = "tickets"
+	set desc = "Bwoink logs"
+	set hidden = TRUE
+
+	if(check_rights(R_ADMIN))
+		SStickets.showUI(usr)
+	else
+		SStickets.userDetailUI(usr)
 
 /client/verb/hotkeys_help()
 	set name = "Hotkeys Help"

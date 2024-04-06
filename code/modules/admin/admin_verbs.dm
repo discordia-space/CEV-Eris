@@ -1,8 +1,7 @@
 GLOBAL_LIST_INIT(admin_verbs_default, list(
 	/datum/admins/proc/show_player_panel,
 	/client/proc/deadmin_self,
-	/client/proc/hide_verbs,
-	/client/proc/deadmin_self))
+	/client/proc/hide_verbs))
 
 GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/hivemind_panel,
@@ -60,10 +59,6 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/cmd_dev_bst,
 	/client/proc/callproc,
 	/client/proc/callproc_target,
-	/client/proc/Jump,
-	/client/proc/jumptomob,
-	/client/proc/jumptocoord,
-	/client/proc/dsay,
 	/client/proc/Debug2,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_display_del_log,
@@ -145,7 +140,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/Jump,
 	/client/proc/jumptomob,
 	/client/proc/jumptocoord,
-	/client/proc/dsay,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_display_del_log,
 	/client/proc/cmd_admin_delete,

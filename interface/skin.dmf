@@ -790,7 +790,7 @@ window "infowindow"
 		pos = 16,5
 		size = 104x20
 		anchor1 = 3,0
-		anchor2 = 19,0
+		anchor2 = 15,0
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
@@ -798,8 +798,8 @@ window "infowindow"
 		type = BUTTON
 		pos = 120,5
 		size = 100x20
-		anchor1 = 19,0
-		anchor2 = 34,0
+		anchor1 = 15,0
+		anchor2 = 27,0
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -807,8 +807,8 @@ window "infowindow"
 		type = BUTTON
 		pos = 220,5
 		size = 100x20
-		anchor1 = 34,0
-		anchor2 = 50,0
+		anchor1 = 27,0
+		anchor2 = 39,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -816,8 +816,8 @@ window "infowindow"
 		type = BUTTON
 		pos = 320,5
 		size = 100x20
-		anchor1 = 50,0
-		anchor2 = 66,0
+		anchor1 = 39,0
+		anchor2 = 51,0
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
@@ -825,8 +825,8 @@ window "infowindow"
 		type = BUTTON
 		pos = 420,5
 		size = 100x20
-		anchor1 = 66,0
-		anchor2 = 81,0
+		anchor1 = 51,0
+		anchor2 = 63,0
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
@@ -834,11 +834,21 @@ window "infowindow"
 		type = BUTTON
 		pos = 520,5
 		size = 100x20
-		anchor1 = 81,0
-		anchor2 = 97,0
+		anchor1 = 63,0
+		anchor2 = 75,0
 		saved-params = "is-checked"
 		text = "Discord"
 		command = "discord"
+	elem "tickets"
+		type = BUTTON
+		pos = 620,5
+		size = 100x20
+		anchor1 = 75,0
+		anchor2 = 87,0
+		saved-params = "is-checked"
+		text = "Tickets"
+		command = "tickets"
+
 
 window "outputwindow"
 	elem "outputwindow"
@@ -897,7 +907,7 @@ window "outputwindow"
 		border = line
 		saved-params = "is-checked"
 		text = "Emote"
-		command = ".winset \"mebutton.is-checked=true ? input.command=\"!me \\\"\" : input.command=\"\"mebutton.is-checked=true ? saybutton.is-checked=false\"\"mebutton.is-checked=true ? oocbutton.is-checked=false\""
+		command = ".winset \"mebutton.is-checked=true ? input.command=\"!Emote \\\"\" : input.command=\"\"mebutton.is-checked=true ? saybutton.is-checked=false\"\"mebutton.is-checked=true ? oocbutton.is-checked=false\""
 		is-flat = true
 		button-type = pushbox
 	elem "browseroutput"

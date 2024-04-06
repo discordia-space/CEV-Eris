@@ -187,7 +187,7 @@
 			size = "colossal"
 		if(ITEM_SIZE_TITANIC)
 			size = "titanic"
-	extra_description += "It is a [size] item."
+	extra_description += "\nIt is a [size] item."
 
 	for(var/Q in tool_qualities)
 		extra_description += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"

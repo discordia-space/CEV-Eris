@@ -57,6 +57,8 @@ export const setClientTheme = (name) => {
       'github.text-color': '#000000',
       'discord.background-color': 'none',
       'discord.text-color': '#000000',
+      'tickets.background-color': 'none',
+      'tickets.text-color': '#000000',
       // Status and verb tabs
       'output.background-color': 'none',
       'output.text-color': '#000000',
@@ -109,6 +111,8 @@ export const setClientTheme = (name) => {
       'github.text-color': COLOR_DARK_TEXT,
       'discord.background-color': '#492020',
       'discord.text-color': COLOR_DARK_TEXT,
+      'tickets.background-color': '#494949',
+      'tickets.text-color': COLOR_DARK_TEXT,
       // Status and verb tabs
       'output.background-color': COLOR_DARK_BG_DARKER,
       'output.text-color': COLOR_DARK_TEXT,

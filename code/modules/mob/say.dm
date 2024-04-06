@@ -1,9 +1,10 @@
 /mob/proc/say()
 	return
 
-/mob/verb/say_verb()
+/mob/verb/say_verb(message as text)
 	set name = "Say"
-	set hidden = TRUE
+	set category = "IC"
+
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
@@ -14,16 +15,17 @@
 			to_chat(src, human.get_suppressed_message())
 			return
 
-	set_typing_indicator(TRUE)
-	hud_typing = TRUE
-	var/message = input("", "say (text)") as text
-	hud_typing = FALSE
-	set_typing_indicator(FALSE)
+	if(!message)
+		set_typing_indicator(TRUE)
+		hud_typing = TRUE
+		message = input("", "say (text)") as text
+		hud_typing = FALSE
+		set_typing_indicator(FALSE)
 	if(message)
 		say(message)
 
 
-/mob/verb/me_verb()
+/mob/verb/me_verb(message as text)
 	set name = "Emote"
 	set category = "IC"
 
@@ -37,11 +39,12 @@
 			to_chat(src, human.get_suppressed_message())
 			return
 
-	set_typing_indicator(TRUE)
-	hud_typing = TRUE
-	var/message = input("", "me (text)") as text
-	hud_typing = FALSE
-	set_typing_indicator(FALSE)
+	if(!message)
+		set_typing_indicator(TRUE)
+		hud_typing = TRUE
+		message = input("", "me (text)") as text
+		hud_typing = FALSE
+		set_typing_indicator(FALSE)
 	if(message)
 		message = sanitize(message)
 		if(use_me)

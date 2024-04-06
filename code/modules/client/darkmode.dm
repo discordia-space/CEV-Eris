@@ -50,6 +50,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 			"forum",
 			"github",
 			"discord",
+			"tickets",
 			"oocbutton",
 			"saybutton",
 			"mebutton")
@@ -87,6 +88,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 			"forum",
 			"github",
 			"discord",
+			"tickets",
 			"oocbutton",
 			"saybutton",
 			"mebutton")
