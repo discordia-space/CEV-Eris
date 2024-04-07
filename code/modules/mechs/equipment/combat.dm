@@ -813,8 +813,11 @@
 	icon_state = "mech_atmoshield"
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 6, TECH_PLASMA = 5)
-	// so it has update icon called everytime it moves
-	equipment_flags = EQUIPFLAG_UPDTMOVE
+	// so it has update icon called everytime it moves; and run Process() too
+	equipment_flags = EQUIPFLAG_UPDTMOVE|EQUIPFLAG_PROCESS
+	active_power_use = 0
+	///How much power the shield uses every time Process() is called; using active_power_use would result in some double dipping
+	var/power_cost = 10
 	///The max amount of charge the capacitor can hold
 	var/max_capacitor_charge = 500
 	///Internal charge of the shield
@@ -845,17 +848,19 @@
 		mech.vis_contents.Remove(visual_bluff)
 	QDEL_NULL(visual_bluff)
 
-/obj/item/mech_equipment/shield_generator/installed(mob/living/exosuit/_owner, hardpoint)
-	. = ..()
-	START_PROCESSING(SSobj, src)
-
 /obj/item/mech_equipment/shield_generator/uninstalled()
-	STOP_PROCESSING(SSobj, src)
-	owner.vis_contents.Remove(visual_bluff)
+	maptext = null
 	if(on)
-		on = FALSE
-		update_icon()
+		toggle_shield()
+	owner.vis_contents.Remove(visual_bluff)
 	. = ..()
+
+/obj/item/mech_equipment/shield_generator/deactivate()
+	. = ..()
+	if(!on)
+		return
+
+	power_failure()
 
 /obj/item/mech_equipment/shield_generator/attack_self(mob/user)
 	. = ..()
@@ -868,6 +873,7 @@
 	last_toggle = world.time
 	update_icon()
 	playsound(get_turf(src), on ? 'sound/mechs/shield_raise.ogg' : 'sound/mechs/shield_drop.ogg', 50, 3)
+	active = on
 
 ///Proc that plays an alarm and then toggle the shield
 /obj/item/mech_equipment/shield_generator/proc/power_failure()
@@ -918,7 +924,7 @@
 /obj/item/mech_equipment/shield_generator/Process(delta_time)
 	//Capactor loses power just maintaining the shield
 	if(on)
-		current_capacitor_charge -= 10
+		current_capacitor_charge -= power_cost
 		if(current_capacitor_charge <= 0)
 			power_failure()
 
@@ -927,8 +933,8 @@
 		maptext = "<span class='maptext' style=text-align:center>[!current_capacitor_charge ? "0" : (current_capacitor_charge / max_capacitor_charge) * 100]%"
 		return
 
-	//Transfer in increments of 10 or the remaining charge
-	var/transfer_amount = min(10, max_capacitor_charge - current_capacitor_charge, cell.charge)
+	//Transfer in increments of power_cost or the remaining charge
+	var/transfer_amount = min(power_cost, max_capacitor_charge - current_capacitor_charge, cell.charge)
 	cell.use(transfer_amount)
 	current_capacitor_charge += transfer_amount
 	maptext = "<span class='maptext' style=text-align:center>[!current_capacitor_charge ? "0" : (current_capacitor_charge / max_capacitor_charge) * 100]%"
@@ -937,6 +943,7 @@
 	name = "ballistic mech shield"
 	desc = "A large, bulky shield meant to protect hunkering mechs."
 	icon_state = "mech_shield"
+	equipment_flags = EQUIPFLAG_UPDTMOVE
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 3)
 	absorption_ratio = 0.66	//66% of damage is absorbed
@@ -955,10 +962,6 @@
 		_owner.vis_contents.Add(visual_bluff)
 	visual_bluff.icon_state = "mech_shield_[hardpoint]"
 	update_icon()
-
-/obj/item/mech_equipment/shield_generator/ballistic/uninstalled()
-	owner.vis_contents.Remove(visual_bluff)
-	. = ..()
 
 /obj/item/mech_equipment/shield_generator/ballistic/absorbDamages(damage)
 	if(!on || !damage)
@@ -1007,14 +1010,20 @@
 		return
 
 	performing_action = TRUE
-	if(do_after(user, 0.5 SECONDS, owner, FALSE))
-		on = !on
+	//Check if there is a user because in the event this is called when being uninstalled, just skip the do_after and message
+	if(user)
+		if(!do_after(user, 0.5 SECONDS, owner, FALSE))
+			performing_action = FALSE
+			return
 		owner.visible_message(SPAN_DANGER("\The [owner] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
-		playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
-		/// movement blocking is handled in MoveBlock()
+
+	on = !on
+	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
+	/// movement blocking is handled in MoveBlock()
 
 	performing_action = FALSE
 	update_icon()
+	active = on
 
 /// Pass all attack attempts to afterattack if we're installed
 /obj/item/mech_equipment/shield_generator/ballistic/resolve_attackby(atom/A, mob/user, params)
