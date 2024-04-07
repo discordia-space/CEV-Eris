@@ -586,7 +586,7 @@
 /area/eris/neotheology/bioprinter
 	name = "Chapel Work Room"
 	icon_state = "purple"
-	
+
 /area/eris/neotheology/biogenerator
 	name = "\improper Church Biogenerator Room"
 	icon_state = "erisred"
@@ -708,7 +708,7 @@
 	icon_state = "erisgreen"
 
 /area/eris/engineering/wastingroom
-	name = "Old Wasting Room"
+	name = "Propulsion Fuel Chamber"
 	icon_state = "erisred"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
 
@@ -716,10 +716,6 @@
 	name = "Engineering Post"
 	icon_state = "erisred"
 	area_light_color = COLOR_LIGHTING_SCI_DARK
-
-/area/eris/engineering/wastingroom
-	name = "Wasting Room"
-	icon_state = "erisred"
 
 /area/eris/engineering/techstorage
 	name = "Tools Storage"
