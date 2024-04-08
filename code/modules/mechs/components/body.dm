@@ -44,6 +44,8 @@
 	var/cell_charge_rate = 200
 	/// Wheter chassis blocks sight from a outside POV (aka can see behind mech or not ?)
 	var/opaque_chassis = TRUE
+	///If TRUE, the chassis will not allow humans with heavy armor to board it
+	var/armor_restrictions = FALSE
 
 /obj/item/mech_component/chassis/New()
 	..()
@@ -272,6 +274,7 @@
 	power_use = 40
 	climb_time = 25 //standard values for now to encourage use over heavy
 	matter = list(MATERIAL_STEEL = 45, MATERIAL_PLASTEEL = 12, MATERIAL_GOLD = 4, MATERIAL_SILVER = 4)
+	armor_restrictions = TRUE
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -285,6 +288,7 @@
 	power_use = 50
 	climb_time = 35 //Takes longer to climb into, but is beefy as HELL.
 	matter = list(MATERIAL_STEEL = 50, MATERIAL_URANIUM = 20, MATERIAL_PLASTEEL = 20)
+	armor_restrictions = TRUE
 
 /obj/item/mech_component/chassis/forklift
 	name = "forklift chassis"
