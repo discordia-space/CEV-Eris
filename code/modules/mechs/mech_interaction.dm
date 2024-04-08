@@ -367,6 +367,26 @@
 		if(do_mob(user, src, 30) && coil.use(5))
 			mc.repair_burn_damage(15)
 
+	// crossbow bolt handling
+	else if(istype(I, /obj/item/stack/material))
+		var/list/choices = list()
+		for(var/hardpoint in hardpoints)
+			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/crossbow))
+				var/obj/item/mech_equipment/mounted_system/crossbow/cross = hardpoints[hardpoint]
+				choices["[hardpoint] - [cross.CM.shots_amount]/3"] = cross
+		var/obj/item/mech_equipment/mounted_system/crossbow/cross = null
+		if(!length(choices))
+			return
+		if(length(choices)==1)
+			cross = choices[choices[1]]
+		else
+			var/chosenCross = input("Select crossbow to reload") as null|anything in choices
+			if(chosenCross)
+				cross = choices[chosenCross]
+		if(cross)
+			cross.attackby(I, user)
+		return
+
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_PRYING, QUALITY_SCREW_DRIVING, QUALITY_WELDING)
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
