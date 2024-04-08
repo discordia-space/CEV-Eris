@@ -263,6 +263,7 @@
 	shielding = 10
 	front_mult = 1.25
 	rear_mult = 0.75
+	armor_restrictions = TRUE
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -280,6 +281,7 @@
 	shielding = 15
 	front_mult = 1.5
 	rear_mult = 0.75
+	armor_restrictions = TRUE
 
 /obj/item/mech_component/chassis/forklift
 	name = "forklift chassis"
