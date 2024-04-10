@@ -62,6 +62,10 @@
 	..()
 
 /obj/item/organ/internal/removed_mob()
+	action_button_name = initial(action_button_name)
+	action_button_proc = initial(action_button_proc)
+	action_button_is_hands_free = initial(action_button_is_hands_free)
+
 	for(var/process in organ_efficiency)
 		owner.internal_organs_by_efficiency[process] -= src
 
@@ -105,6 +109,8 @@
 
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
+	
+	SEND_SIGNAL(src, COMSIG_ADDVAL)
 
 /obj/item/organ/internal/proc/handle_organ_eff()
 	for(var/process in organ_efficiency)
@@ -423,6 +429,8 @@
 	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_IWOUND_LIMB_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_APPVAL)
+	SEND_SIGNAL(src, COMSIG_APPVAL_MULT)
+	SEND_SIGNAL(src, COMSIG_APPVAL_FLAT)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 	refresh_damage()

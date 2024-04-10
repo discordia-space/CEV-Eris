@@ -27,7 +27,7 @@
 // Offer mod groups
 #define OFFER_ABERRANT_ORGAN list(/obj/item/modification/organ/internal/input, /obj/item/modification/organ/internal/process, /obj/item/modification/organ/internal/output)
 #define OFFER_ABERRANT_ORGAN_PLUS list(/obj/item/modification/organ/internal/input, /obj/item/modification/organ/internal/process, \
-										/obj/item/modification/organ/internal/output, /obj/item/modification/organ/internal/special)
+										/obj/item/modification/organ/internal/output, /obj/item/modification/organ/internal)
 #define OFFER_MODDED_ORGAN list(/obj/item/modification/organ/internal/stromal, /obj/item/modification/organ/internal/parenchymal)
 #define OFFER_MODDED_TOOL list(/obj/item/tool_upgrade)
 #define OFFER_MODDED_GUN list(/obj/item/tool_upgrade, /obj/item/gun_upgrade)

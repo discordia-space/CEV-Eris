@@ -31,8 +31,7 @@
 	)
 	hidden_inventory = list(
 		"Back Alley Organs" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/surgery = good_data("back alley organs disk", list(1, 2), 2000),
-			/obj/item/organ/internal/scaffold/aberrant/teratoma/random = good_data("strange growth", list(2, 5), 1500),
+			/obj/item/computer_hardware/hard_drive/portable/design/surgery = good_data("back alley organs disk", list(1, 2), 2000)
 		),
 		"Autoinjectors" = list(
 			// Autoinjectors defined in hypospray.dm
