@@ -1,7 +1,7 @@
 
 
 /obj/machinery/cooking_with_jane/oven
-	name = "Bradhaanata Oven"
+	name = "Convection Oven"
 	desc = "A cozy oven for baking food. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on the oven."
 	icon = 'icons/obj/cwj_cooking/oven.dmi'
 	icon_state = "oven"

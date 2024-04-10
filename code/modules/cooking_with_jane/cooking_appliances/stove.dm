@@ -2,7 +2,7 @@
 #define ICON_SPLIT_Y 21
 
 /obj/machinery/cooking_with_jane/stove
-	name = "Bradhaanata Stovetop"
+	name = "Stovetop"
 	desc = "A set of four burners for cooking food. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on a burner."
 	icon = 'icons/obj/cwj_cooking/stove.dmi'
 	icon_state = "stove"

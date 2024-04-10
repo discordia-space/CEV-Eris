@@ -310,7 +310,7 @@
 	icon_state = "germancrate"
 
 /obj/structure/closet/crate/kitchentools
-	name = "Bradhaanata cookware crate"
+	name = "Cookware crate"
 	desc = "Everything a thriving kitchen needs to start cooking (Food not included)."
 	icon_door = "plasticcrate"
 

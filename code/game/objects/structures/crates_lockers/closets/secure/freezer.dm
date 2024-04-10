@@ -15,6 +15,7 @@
 	new /obj/item/reagent_containers/food/condiment/soysauce(src)
 	new /obj/item/reagent_containers/food/condiment/coldsauce(src)
 	new /obj/item/reagent_containers/food/condiment/cornoil(src)
+	new /obj/item/reagent_containers/food/condiment/enzyme(src)
 	for(var/i in 1 to 3)
 		new /obj/item/reagent_containers/food/snacks/sliceable/butterstick(src)
 	for(var/i in 2 to 3)
@@ -23,7 +24,12 @@
 		new /obj/item/reagent_containers/food/drinks/soymilk(src)
 	for(var/i in 2 to 3)
 		new /obj/item/storage/fancy/egg_box(src)
-
+	for(var/i in 1 to 3)
+		new /obj/item/reagent_containers/food/condiment/saltshaker(src)
+	for(var/i in 1 to 3)
+		new /obj/item/reagent_containers/food/condiment/peppermill(src)
+	for(var/i in 1 to 3)
+		new /obj/item/reagent_containers/food/snacks/mint(src)
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	icon_state = "freezer"
 	req_access = list()

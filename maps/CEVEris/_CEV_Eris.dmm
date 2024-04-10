@@ -55052,6 +55052,14 @@
 /obj/machinery/camera/network/third_section{
 	dir = 4
 	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = -6;
+	pixel_y = -5
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = -4;
+	pixel_y = 10
+	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCy" = (
@@ -55088,16 +55096,11 @@
 /turf/simulated/floor/wood,
 /area/eris/neotheology/storage)
 "cCB" = (
-/obj/structure/table/rack,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze/low_chance,
-/obj/spawner/booze/low_chance,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCC" = (
@@ -55108,7 +55111,7 @@
 /area/eris/hallway/side/bridgehallway)
 "cCD" = (
 /obj/machinery/light,
-/obj/structure/closet/secure_closet/freezer/kitchen,
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "cCE" = (
@@ -80869,10 +80872,8 @@
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "dNS" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -27
-	},
-/turf/simulated/floor/tiled/cafe,
+/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen)
 "dNT" = (
 /obj/machinery/atmospherics/binary/passive_gate{
@@ -91889,7 +91890,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/structure/table/standard,
+/obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "eqa" = (
@@ -93069,27 +93070,6 @@
 	},
 /turf/simulated/open,
 /area/eris/maintenance/section3deck1central)
-"esC" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
-	},
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
-/obj/item/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = -4;
-	pixel_y = 10
-	},
-/turf/simulated/floor/tiled/cafe,
-/area/eris/crew_quarters/kitchen)
 "esD" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 1
@@ -99351,6 +99331,7 @@
 /area/eris/hallway/side/section3deck2port)
 "eVa" = (
 /obj/machinery/light,
+/obj/spawner/junkfood/rotten,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen)
 "eWR" = (
@@ -100692,6 +100673,12 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze/low_chance,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/spawner/booze,
+/obj/structure/table/rack,
 /turf/simulated/floor/tiled/white/brown_platform,
 /area/eris/crew_quarters/kitchen)
 "hIj" = (
@@ -103392,6 +103379,7 @@
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/bioprinter)
 "nAr" = (
+/obj/spawner/booze/low_chance,
 /turf/simulated/floor/plating/under,
 /area/eris/crew_quarters/kitchen)
 "nBk" = (
@@ -107198,6 +107186,9 @@
 /area/eris/crew_quarters/clubmanager)
 "vSf" = (
 /obj/machinery/light,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -28
+	},
 /turf/simulated/floor/tiled/cafe,
 /area/eris/crew_quarters/kitchen)
 "vSl" = (
@@ -204738,7 +204729,7 @@ kzV
 cBr
 uxm
 cCf
-dNS
+ncl
 cCx
 wja
 vGE
@@ -204941,7 +204932,7 @@ ltZ
 lxc
 cCg
 gol
-esC
+lsH
 wsA
 abF
 abF
@@ -205143,7 +205134,7 @@ tyx
 gol
 cCy
 gol
-lsH
+ncl
 wsA
 abF
 cwU
@@ -205332,7 +205323,7 @@ crX
 evu
 fYJ
 cmE
-nAr
+dNS
 nAr
 wsA
 dYf

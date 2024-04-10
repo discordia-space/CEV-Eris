@@ -1,5 +1,5 @@
 /obj/item/electronics/circuitboard/cooking_with_jane/stove
-	name = "Circuit board (Bradhaanata Stovetop)"
+	name = "Circuit board (Stovetop)"
 	build_path = /obj/machinery/cooking_with_jane/stove
 	board_type = "machine"
 	origin_tech = list(TECH_BIO = 1)
@@ -8,7 +8,7 @@
 	)
 
 /obj/item/electronics/circuitboard/cooking_with_jane/oven
-	name = "Circuit board (Bradhaanata Convection Oven)"
+	name = "Circuit board (Convection Oven)"
 	build_path = /obj/machinery/cooking_with_jane/oven
 	board_type = "machine"
 	origin_tech = list(TECH_BIO = 1)
@@ -17,7 +17,7 @@
 	)
 
 /obj/item/electronics/circuitboard/cooking_with_jane/grill
-	name = "Circuit board (Bradhaanata Charcoal Grill)"
+	name = "Circuit board (Charcoal Grill)"
 	build_path = /obj/machinery/cooking_with_jane/grill
 	board_type = "machine"
 	origin_tech = list(TECH_BIO = 1)
