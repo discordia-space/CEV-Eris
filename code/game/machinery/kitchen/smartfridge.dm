@@ -73,7 +73,7 @@
 /obj/machinery/smartfridge/kitchen/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/seeds/))
 		return 1
-	if(istype(O,/obj/item/reagent_containers/grown/))
+	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/))
 		return 1
 	if(istype(O,/obj/item/reagent_containers/food/snacks/cheesewedge))
 		return 1
@@ -87,9 +87,9 @@
 		return 1
 	if(istype(O,/obj/item/reagent_containers/food/snacks/rawbacon))
 		return 1
-	if(istype(O,/obj/item/reagent_containers/cutlet))
+	if(istype(O,/obj/item/reagent_containers/food/snacks/cutlet))
 		return 1
-	if(istype(O,/obj/item/reagent_containers/rawcutlet))
+	if(istype(O,/obj/item/reagent_containers/food/snacks/rawcutlet))
 		return 1
 	if(istype(O,/obj/item/reagent_containers/food/snacks/dough))
 		return 1
