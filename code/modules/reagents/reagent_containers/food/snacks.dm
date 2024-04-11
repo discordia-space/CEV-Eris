@@ -41,6 +41,10 @@
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)
 
+/obj/item/reagent_containers/food/snacks/New()
+	..()
+	get_food_tier()
+
 /obj/item/reagent_containers/food/snacks/proc/get_sanity_gain(mob/living/carbon/eater) //sanity_gain per bite
 	var/current_nutriment
 	for(var/datum/reagent/reagent in reagents.reagent_list)

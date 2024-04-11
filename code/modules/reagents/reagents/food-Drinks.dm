@@ -8,7 +8,7 @@
 	taste_mult = 4
 	reagent_state = SOLID
 	metabolism = REM * 2
-	var/nutriment_factor = 12 // Per metabolism tick
+	var/nutriment_factor = 8 // Per metabolism tick
 	var/regen_factor = 0.8 //Used for simple animal health regeneration
 	var/injectable = 0
 	sanity_gain_ingest = 0.3 //well they are a sort of food so, this defines how good eating the thing will make you feel
@@ -163,7 +163,7 @@
 	taste_description = "slime"
 	taste_mult = 0.1
 	reagent_state = LIQUID
-	nutriment_factor = 8
+	nutriment_factor = 6
 	color = "#302000"
 	taste_tag = list(TASTE_SLIMEY)
 
