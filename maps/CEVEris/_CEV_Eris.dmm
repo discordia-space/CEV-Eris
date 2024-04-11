@@ -73447,7 +73447,7 @@
 /turf/simulated/floor/plating,
 /area/eris/quartermaster/misc)
 "dvV" = (
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/left)
 "dvW" = (
 /obj/structure/cable/green{
@@ -73516,7 +73516,7 @@
 	id = "left_propulsion_in";
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/left)
 "dwe" = (
 /obj/machinery/hologram/holopad,
@@ -86371,7 +86371,7 @@
 	id = "right_propulsion_in";
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/right)
 "edi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -86380,7 +86380,7 @@
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2port)
 "edj" = (
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/right)
 "edk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -86819,7 +86819,7 @@
 	id_tag = "right_propulsion_out";
 	frequency = 1441
 	},
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/right)
 "eep" = (
 /obj/item/newspaper,
@@ -87266,7 +87266,7 @@
 	id_tag = "right_propulsion_sensor";
 	output = 63
 	},
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/right)
 "efu" = (
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -88492,7 +88492,7 @@
 	id_tag = "left_propulsion_sensor";
 	output = 63
 	},
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/left)
 "eir" = (
 /obj/structure/disposalpipe/segment{
@@ -88838,7 +88838,7 @@
 	name = "Left Emergency Tank";
 	frequency = 1441
 	},
-/turf/simulated/floor/reinforced/engine,
+/turf/simulated/floor/reinforced/airless,
 /area/eris/engineering/propulsion/left)
 "ejh" = (
 /turf/simulated/shuttle/wall/science{
