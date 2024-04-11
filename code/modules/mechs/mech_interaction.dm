@@ -621,7 +621,7 @@ Use this if you turn on armor ablation for mechs:
 /mob/living/exosuit/proc/toggle_sensors()
 	if(head)
 		if(!head.active_sensors)
-			if(get_cell().drain_power(0,0,head.power_use))
+			if(get_cell()?.drain_power(0,0,head.power_use))
 				head.active_sensors = TRUE
 				return TRUE
 			return FALSE

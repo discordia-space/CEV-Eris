@@ -337,6 +337,8 @@
 	matter = list(MATERIAL_STEEL = 40, MATERIAL_PLASTEEL = 30, MATERIAL_SILVER = 5)
 	pilot_coverage = 30
 	coverage_multipliers = list(3, 1.5, 0)
+	armor = list(melee = 36, bullet = 26, energy = 20, bomb = 160, bio = 100, rad = 100)
+	shielding = 20
 
 
 /obj/item/mech_component/chassis/walker/Initialize()

@@ -66,7 +66,6 @@
 	desc = "A walker exosuit. Is heavily armoured but trades this off for only covering the pilot from frontal attacks."
 	rarity_value = 50
 	material = MATERIAL_PLASTEEL
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	body = /obj/item/mech_component/chassis/walker
 	legs = /obj/item/mech_component/propulsion/heavy
 	arms = null
