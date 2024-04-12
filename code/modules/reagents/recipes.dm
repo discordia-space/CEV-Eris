@@ -660,11 +660,11 @@
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+				if(M.eyecheck() < FLASH_PROTECTION_MAJOR)
 					M.flash(15, FALSE , FALSE , FALSE)
 
 			if(4 to 5)
-				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+				if(M.eyecheck() < FLASH_PROTECTION_MAJOR)
 					M.flash(0, FALSE , FALSE , FALSE)
 
 /datum/chemical_reaction/emp_pulse
@@ -906,7 +906,7 @@
 
 /datum/chemical_reaction/slime/freeze/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/freeze/proc/do_freeze(turf/target)
 	playsound(target, 'sound/effects/phasein.ogg', 100, 1)
@@ -934,7 +934,7 @@
 
 /datum/chemical_reaction/slime/fire/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/fire/proc/do_fire(turf/target)
 	for(var/turf/simulated/floor/target_tile in range(0, target))
@@ -1053,7 +1053,7 @@
 
 /datum/chemical_reaction/slime/explosion/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/explosion/proc/do_explode(turf/target)
 	explosion(target, 600, 50)
@@ -1907,7 +1907,7 @@
 
 /datum/chemical_reaction/nanosymbiotes
 	result = "nanosymbiotes"
-	required_reagents = list("nanites" = 1, "peridaxon" = 1)
+	required_reagents = list("nanites" = 1, "bicaridine" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/oxyrush
@@ -1917,7 +1917,7 @@
 
 /datum/chemical_reaction/trauma_control_system
 	result = "trauma_control_system"
-	required_reagents = list("nanites" = 1, "bicaridine" = 1)
+	required_reagents = list("nanites" = 1, "peridaxon" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/nanopurgers

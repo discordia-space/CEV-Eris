@@ -41,7 +41,7 @@
 	anchored = FALSE
 	light_range = 4
 
-	price_tag = 10000
+	price_tag = 20000
 
 	var/gasefficency = 0.25
 

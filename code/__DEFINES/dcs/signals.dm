@@ -67,6 +67,9 @@
 #define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from atom/movable/Move and forceMove): (oldz, newz)
 #define COMSIG_MOVABLE_PREMOVE "moveable_boutta_move"
 
+#define COMSIG_ATTEMPT_PULLING "attempt_pulling"
+	#define COMSIG_PULL_CANCEL (1<<0)
+
 // /mob signals
 #define COMSIG_MOB_LIFE  "mob_life"							 //from mob/Life()
 #define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
@@ -78,7 +81,7 @@
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()
-#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs o ethanol in blood
+#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs or ethanol in blood
 
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"	   //mob/living/carbon/electrocute_act()

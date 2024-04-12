@@ -34,6 +34,7 @@
 /obj/item/device/MouseDrop(over_object)
 	if((loc == usr) && suitable_cell && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
+		update_icon()
 		return
 	. = ..()
 

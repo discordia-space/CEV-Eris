@@ -442,7 +442,7 @@
 		return
 	var/datum/money_account/KROMER = holder.mind.initial_account
 	if(holder.get_equipped_item(slot_wear_mask) != my_mask)
-		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT VERY BIG SHOT OF YOU", station_name(), 1997))
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT VERY BIG SHOT OF YOU", station_name, 1997))
 			holder.adjustCloneLoss(rand(19, 97))
 			to_chat(src, SPAN_DANGER("You feel like you didn't have enough KROMERS."))
 		holder.stats.removePerk(type)
@@ -454,7 +454,7 @@
 	my_mask.style = rand(-2, 2)//EXCLUSIVE OFFICIAL SPAMTON
 	var/KROMER_GOOD = TRUE
 	if(KROMER)
-		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 4)))
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name, rand(1, 4)))
 			KROMER_GOOD = FALSE
 	else
 		KROMER_GOOD = FALSE

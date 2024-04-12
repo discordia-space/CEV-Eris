@@ -5,4 +5,3 @@
 	InsertAll("", 'icons/obj/stack/material.dmi')
 	// Special case on RCD objects
 	Insert("rcd", 'icons/obj/ammo.dmi', "rcd")
-

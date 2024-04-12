@@ -37,7 +37,6 @@
 	var/last_message = 0
 
 	dir = 1
-	explosion_resistance = 25
 
 	//Most blast doors are infrequently toggled and sometimes used with regular doors anyways,
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
@@ -514,6 +513,24 @@
 	matter = list(
 		MATERIAL_PLASTEEL = 5
 	)
+
+/obj/machinery/door/blast/shutters/holey
+	icon_state_open = "lshutter0"
+	icon_state_opening = "lshutterc0"
+	icon_state_closed = "lshutter1"
+	icon_state_closing = "lshutterc1"
+	icon_sufix = "lshutter"
+	icon_state = "lshutter1"
+	matter = list(
+		MATERIAL_PLASTEEL = 4
+	)
+	opacity = 0
+	visible = 0
+
+/obj/machinery/door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(istype(mover) && mover.checkpass(PASSGRILLE))
+		return !opacity
+	return ..()
 
 /obj/machinery/door/proc/crush()
 	for(var/mob/living/L in get_turf(src))

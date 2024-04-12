@@ -307,12 +307,12 @@
 	if(href_list["action"])
 		if(href_list["action"] == "enable")
 			if(!active && HasFuel() && !IsBroken())
-				active = 1
-				icon_state = "portgen1"
+				active = TRUE
+				update_icon()
 		if(href_list["action"] == "disable")
 			if (active)
-				active = 0
-				icon_state = "portgen0"
+				active = FALSE
+				update_icon()
 		if(href_list["action"] == "eject")
 			if(!active)
 				DropFuel()

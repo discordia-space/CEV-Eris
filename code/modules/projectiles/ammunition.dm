@@ -55,62 +55,28 @@
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
+/// special case where is the location is specified as a ammo_Casing , it will clone all relevant vars
+/obj/item/ammo_casing/New(loc, ...)
+	if(istype(loc, /obj/item/ammo_casing))
+		var/obj/item/ammo_casing/C = loc
+		src.amount = 1 // otherwise duplicating the type will make Type/Prespawned start with too large an amount
+		if(!C.BB)
+			projectile_type = FALSE // this prevents spent projectiles resetting their status- this is safe because it typechecks for path, and this is not path
+		C.update_icon()
+	. = ..()
+
+
 /obj/item/ammo_casing/attack_hand(mob/user)
 	if((src.amount > 1) && (src == user.get_inactive_hand()))
 		src.amount -= 1
-		var/obj/item/ammo_casing/new_casing = new /obj/item/ammo_casing(get_turf(user))
-		new_casing.name = src.name
-		new_casing.desc = src.desc
-		new_casing.caliber = src.caliber
-		new_casing.projectile_type = src.projectile_type
-		new_casing.icon_state = src.icon_state
-		new_casing.spent_icon = src.spent_icon
-		new_casing.maxamount = src.maxamount
-		if(ispath(new_casing.projectile_type) && src.BB)
-			new_casing.BB = new new_casing.projectile_type(new_casing)
-		else
-			new_casing.BB = null
-
-		new_casing.sprite_max_rotate = src.sprite_max_rotate
-		new_casing.sprite_scale = src.sprite_scale
-		new_casing.sprite_use_small = src.sprite_use_small
-		new_casing.sprite_update_spawn = src.sprite_update_spawn
-
-		if(new_casing.sprite_update_spawn)
-			var/matrix/rotation_matrix = matrix()
-			rotation_matrix.Turn(round(45 * rand(0, new_casing.sprite_max_rotate) / 2))
-			if(new_casing.sprite_use_small)
-				new_casing.transform = rotation_matrix * new_casing.sprite_scale
-			else
-				new_casing.transform = rotation_matrix
-
-		new_casing.is_caseless = src.is_caseless
-		new_casing.shell_color = src.shell_color
-
-		new_casing.update_icon()
-		src.update_icon()
+		var/obj/item/ammo_casing/new_casing = new src.type(src)
+		new_casing.forceMove(get_turf(user))
 		user.put_in_active_hand(new_casing)
 	else
 		return ..()
 
 /obj/item/ammo_casing/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING, QUALITY_CUTTING), src))
-		if(!BB)
-			to_chat(user, SPAN_NOTICE("There is no bullet in the casing to inscribe anything into."))
-			return
-
-		var/tmp_label = ""
-		var/label_text = sanitizeSafe(input(user, "Inscribe some text into \the [initial(BB.name)]","Inscription",tmp_label), MAX_NAME_LEN)
-		if(length(label_text) > 20)
-			to_chat(user, SPAN_WARNING("The inscription can be at most 20 characters long."))
-		else if(!label_text)
-			to_chat(user, SPAN_NOTICE("You scratch the inscription off of [initial(BB)]."))
-			BB.name = initial(BB.name)
-		else
-			to_chat(user, SPAN_NOTICE("You inscribe \"[label_text]\" into \the [initial(BB.name)]."))
-			BB.name = "[initial(BB.name)] (\"[label_text]\")"
-		return TRUE
-	else if(istype(I, /obj/item/ammo_casing))
+	if(istype(I, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/merging_casing = I
 		if(isturf(src.loc))
 			if(merging_casing.amount == merging_casing.maxamount)
@@ -126,11 +92,7 @@
 		return FALSE
 	if(!user && noMessage == FALSE)
 		error("Passed no user to mergeCasing() when output messages is active.")
-	if(src.caliber != AC.caliber)
-		if(!noMessage)
-			to_chat(user, SPAN_WARNING("Ammo are different calibers."))
-		return FALSE
-	if(src.projectile_type != AC.projectile_type)
+	if(src.type != AC.type)
 		if(!noMessage)
 			to_chat(user, SPAN_WARNING("Ammo are different types."))
 		return FALSE
@@ -188,6 +150,16 @@
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = round(..() * amount)
+	if(BB)
+		. *= 2 // being loaded increases the value by 100%
+
+/obj/item/ammo_casing/get_matter()
+	. = matter?.Copy() // return starts at default matter
+	if(isnull(.)) // if the casing is matterless, handling is pointless.
+		return
+	else if(amount > 1) // if there is only one, there is no need to multiply
+		for(var/mattertype in .)
+			.[mattertype] *= amount // multiply matter appropriately
 
 //An item that holds casings and can be used to put them inside guns
 /obj/item/ammo_magazine
@@ -344,35 +316,8 @@
 	if(C.amount > 1)
 		C.amount -= 1
 
-		var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)
-		inserted_casing.name = C.name
-		inserted_casing.desc = C.desc
-		inserted_casing.caliber = C.caliber
-		inserted_casing.projectile_type = C.projectile_type
-		inserted_casing.icon_state = C.icon_state
-		inserted_casing.spent_icon = C.spent_icon
-		inserted_casing.maxamount = C.maxamount
-		if(ispath(inserted_casing.projectile_type) && C.BB)
-			inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
-
-		inserted_casing.sprite_max_rotate = C.sprite_max_rotate
-		inserted_casing.sprite_scale = C.sprite_scale
-		inserted_casing.sprite_use_small = C.sprite_use_small
-		inserted_casing.sprite_update_spawn = C.sprite_update_spawn
-
-		if(inserted_casing.sprite_update_spawn)
-			var/matrix/rotation_matrix = matrix()
-			rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
-			if(inserted_casing.sprite_use_small)
-				inserted_casing.transform = rotation_matrix * inserted_casing.sprite_scale
-			else
-				inserted_casing.transform = rotation_matrix
-
-		inserted_casing.is_caseless = C.is_caseless
-		inserted_casing.shell_color = C.shell_color
-
-		C.update_icon()
-		inserted_casing.update_icon()
+		var/obj/item/ammo_casing/inserted_casing = new C.type(C)
+		inserted_casing.forceMove(src)
 		stored_ammo.Insert(1, inserted_casing)
 	else
 		if(ismob(C.loc))

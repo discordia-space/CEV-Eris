@@ -1,8 +1,11 @@
 // Screen objects hereon out.
+
+#define MECH_UI_STYLE(X) "<span style=\"font-family: 'Small Fonts'; -dm-text-outline: 1 black; font-size: 5px;\">" + X + "</span>"
+
 /obj/screen/movable/exosuit
 	name = "hardpoint"
 	icon = MECH_HUD_ICON
-	icon_state = "hardpoint"
+	icon_state = "base"
 	var/mob/living/exosuit/owner
 
 /obj/screen/movable/exosuit/proc/on_handle_hud(var/mob/living/exosuit/E)
@@ -13,7 +16,10 @@
 
 /obj/screen/movable/exosuit/radio
 	name = "radio"
-	icon_state = "radio"
+	//icon_state = "radio"
+	maptext = MECH_UI_STYLE("RADIO")
+	maptext_x = 5
+	maptext_y = 12
 
 /obj/screen/movable/exosuit/radio/Click()
 	if(..())
@@ -22,6 +28,7 @@
 
 /obj/screen/movable/exosuit/hardpoint
 	name = "hardpoint"
+	icon_state = "hardpoint"
 	desc = "To activate additional hardpoint's options click on it with shift-button."
 	var/hardpoint_tag
 	var/obj/item/holding
@@ -44,6 +51,7 @@
 	if(holding) holding.screen_loc = screen_loc
 
 /obj/screen/movable/exosuit/hardpoint/proc/update_system_info()
+	maptext = null
 
 	// No point drawing it if we have no item to use or nobody to see it.
 	if(!holding || !owner)
@@ -117,14 +125,12 @@
 
 /obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
 	if(..() && owner && holding)
-		if(!owner.hatch_closed)
-			to_chat(usr, SPAN_WARNING("Error: Hardpoint interface disabled while [owner.body.hatch_descriptor] is open."))
-			return
-
 		var/modifiers = params2list(params)
 		if(modifiers["ctrl"])
 			if(owner.hardpoints_locked) to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
-			else if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
+			else if(owner.remove_system(hardpoint_tag))
+				update_system_info()
+				to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
 			else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
 		else if(modifiers["shift"] && holding) holding.attack_self(usr)
 		else if(owner.selected_hardpoint == hardpoint_tag)
@@ -132,16 +138,38 @@
 			owner.clear_selected_hardpoint()
 		else if(owner.set_hardpoint(hardpoint_tag)) icon_state = "hardpoint_selected"
 
+
+/obj/screen/movable/exosuit/toggle/power_control
+	name = "Power control"
+	icon_state = "small_important"
+	maptext = MECH_UI_STYLE("POWER")
+	maptext_x = 3
+	maptext_y = 13
+
+/obj/screen/movable/exosuit/toggle/power_control/toggled()
+	. = ..()
+	owner.toggle_power(usr)
+
+/obj/screen/movable/exosuit/toggle/power_control/update_icon()
+	toggled = (owner.power == MECH_POWER_ON)
+	. = ..()
+
 /obj/screen/movable/exosuit/eject
 	name = "eject"
-	icon_state = "eject"
+	//icon_state = "eject"
+	maptext = MECH_UI_STYLE("EJECT")
+	maptext_x = 5
+	maptext_y = 12
 
 /obj/screen/movable/exosuit/eject/Click()
 	if(..()) owner.eject(usr)
 
 /obj/screen/movable/exosuit/rename
 	name = "rename"
-	icon_state = "rename"
+	//icon_state = "rename"
+	maptext = MECH_UI_STYLE("RENAME")
+	maptext_x = 1
+	maptext_y = 12
 
 /obj/screen/movable/exosuit/power
 	name = "power"
@@ -150,76 +178,126 @@
 	maptext_width = 64
 	maptext_x = 2
 	maptext_y = 20
-	maptext = "power"
+
 
 /obj/screen/movable/exosuit/power/on_handle_hud(var/mob/living/exosuit/E)
 	. = ..()
 	if(owner)
 		var/obj/item/cell/C = owner.get_cell()
-		if(C && istype(C)) maptext = "[round(C.charge)]/[round(C.maxcharge)]"
-		else maptext = "CHECK POWER"
+		if(C && istype(C)) maptext = MECH_UI_STYLE("[round(C.charge)]/[round(C.maxcharge)]")
+		else maptext = MECH_UI_STYLE("CHECK POWER")
 
 /obj/screen/movable/exosuit/rename/Click()
 	if(..()) owner.rename(usr)
 
 /obj/screen/movable/exosuit/toggle
 	name = "toggle"
-	var/toggled
+	var/toggled = FALSE
+
+/obj/screen/movable/exosuit/toggle/LateInitialize()
+	. = ..()
+	update_icon()
+
+/obj/screen/movable/exosuit/toggle/update_icon()
+	. = ..()
+	icon_state = "[initial(icon_state)][toggled ? "_enabled" : ""]"
+	maptext = FONT_COLORED(toggled ? COLOR_WHITE : COLOR_GRAY, initial(maptext))
 
 /obj/screen/movable/exosuit/toggle/Click()
 	if(..()) toggled()
 
 /obj/screen/movable/exosuit/toggle/proc/toggled()
 	toggled = !toggled
-	icon_state = "[initial(icon_state)][toggled ? "_enabled" : ""]"
+	update_icon()
 	return toggled
 
 /obj/screen/movable/exosuit/toggle/air
 	name = "air"
-	icon_state = "air"
+	//icon_state = "air"
+	icon_state = "small_important"
+	maptext = MECH_UI_STYLE("AIR")
+	maptext_x = 9
+	maptext_y = 13
 
 /obj/screen/movable/exosuit/toggle/air/toggled()
 	owner.use_air = ..()
 	to_chat(usr, SPAN_NOTICE("Auxiliary atmospheric system [owner.use_air ? "enabled" : "disabled"]."))
+	playsound(src, 'sound/machines/airlock.ogg', 50, 1)
 
 /obj/screen/movable/exosuit/toggle/maint
 	name = "toggle maintenance protocol"
-	icon_state = "maint"
+	//icon_state = "maint"
+	icon_state = "small"
+	maptext = MECH_UI_STYLE("MAINT")
+	maptext_x = 5
+	maptext_y = 13
 
 /obj/screen/movable/exosuit/toggle/maint/toggled()
 	owner.maintenance_protocols = ..()
 	to_chat(usr, SPAN_NOTICE("Maintenance protocols [owner.maintenance_protocols ? "enabled" : "disabled"]."))
+	playsound(src, 'sound/machines/Custom_boltsup.ogg', 50, 1)
 
 /obj/screen/movable/exosuit/toggle/hardpoint
 	name = "toggle hardpoint lock"
-	icon_state = "hardpoint_lock"
+	//icon_state = "hardpoint_lock"
+	maptext = MECH_UI_STYLE("GEAR")
+	maptext_x = 5
+	maptext_y = 12
 
 /obj/screen/movable/exosuit/toggle/hardpoint/toggled()
 	owner.hardpoints_locked = ..()
 	to_chat(usr, SPAN_NOTICE("Hardpoint system access is now [owner.hardpoints_locked ? "disabled" : "enabled"]."))
+	playsound(src, 'sound/mechs/UI_SCI-FI_Tone_10_stereo.ogg', 50, 1)
 
 /obj/screen/movable/exosuit/toggle/hatch
 	name = "toggle hatch lock"
-	icon_state = "hatch_lock"
+	//icon_state = "hatch_lock"
+	maptext = MECH_UI_STYLE("LOCK")
+	maptext_x = 5
+	maptext_y = 12
 
 /obj/screen/movable/exosuit/toggle/hatch/toggled()
 	if(!owner.hatch_locked && !owner.hatch_closed)
 		to_chat(usr, SPAN_WARNING("You cannot lock the hatch while it is open."))
 		return
-	owner.hatch_locked = ..()
+	if(owner.body && owner.body.total_damage >= owner.body.max_damage)
+		to_chat(usr, SPAN_WARNING("\The body of [owner] is far too damaged to close its hatch!"))
+		return
+	owner.hatch_locked = owner.toggle_hatch_lock()
+	playsound(src, 'sound/machines/door_lock_off.ogg', 30, 1)
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is [owner.hatch_locked ? "now" : "no longer" ] locked."))
+	update_icon()
+
+/obj/screen/movable/exosuit/toggle/hatch/update_icon()
+	toggled = owner.hatch_locked
+	. = ..()
 
 /obj/screen/movable/exosuit/toggle/hatch_open
 	name = "open or close hatch"
-	icon_state = "hatch_status"
+	//icon_state = "hatch_status"
+	maptext = MECH_UI_STYLE("CLOSE")
+	maptext_x = 4
+	maptext_y = 12
 
 /obj/screen/movable/exosuit/toggle/hatch_open/toggled()
 	if(owner.hatch_locked && owner.hatch_closed)
 		to_chat(usr, SPAN_WARNING("You cannot open the hatch while it is locked."))
 		return
-	owner.hatch_closed = ..()
+	owner.hatch_closed = owner.toggle_hatch()
 	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
+	playsound(src, 'sound/machines/Custom_closetopen.ogg', 70, 1)
 	owner.update_icon()
+	update_icon()
+
+/obj/screen/movable/exosuit/toggle/hatch_open/update_icon()
+	toggled = owner.hatch_closed
+	. = ..()
+	if(toggled)
+		maptext = MECH_UI_STYLE("OPEN")
+		maptext_x = 5
+	else
+		maptext = MECH_UI_STYLE("CLOSE")
+		maptext_x = 4
 
 // This is basically just a holder for the updates the exosuit does.
 /obj/screen/movable/exosuit/health
@@ -269,7 +347,11 @@
 //Controls if cameras set the vision flags
 /obj/screen/movable/exosuit/toggle/camera
 	name = "toggle camera matrix"
-	icon_state = "camera"
+	//icon_state = "camera"
+	icon_state = "small_important"
+	maptext = MECH_UI_STYLE("SENSOR")
+	maptext_x = 1
+	maptext_y = 13
 
 /obj/screen/movable/exosuit/toggle/camera/toggled()
 	if(!owner.head)
@@ -278,8 +360,16 @@
 	if(!owner.head.vision_flags)
 		to_chat(usr,  SPAN_WARNING("Alternative sensor configurations not found. Contact manufacturer for more details."))
 		return
-	owner.head.active_sensors = ..()
+	owner.head.active_sensors = owner.toggle_sensors()
+	playsound(src, 'sound/mechs/sensors.ogg', 75, 1)
 	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
+	update_icon()
+
+/obj/screen/movable/exosuit/toggle/camera/update_icon()
+	if(owner.head)
+		toggled = owner.head.active_sensors
+	else toggled = FALSE
+	. = ..()
 
 /obj/screen/movable/exosuit/needle
 	vis_flags = VIS_INHERIT_ID
@@ -348,6 +438,7 @@
 		return
 	owner.strafing = ..()
 	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
+	playsound(src,'sound/mechs/lever.ogg', 40, 1)
 
 
 #undef BAR_CAP

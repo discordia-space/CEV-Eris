@@ -57,6 +57,105 @@
 			return
 		update_wear_icon()	//so our overlays update
 
+//Outerwear with a hoodie, used to put it up or down, like the Ritual Robe, but not a voidsuit. Adopted much from voidsuit.
+/obj/item/clothing/suit/storage/toggle/robe
+	bad_type = /obj/item/clothing/suit/storage/toggle/robe
+	var/obj/item/clothing/head/robe/hood //Deployable Hood, if any.
+	var/icon_up
+	var/icon_down
+
+/obj/item/clothing/suit/storage/toggle/robe/Initialize()
+	if(hood && ispath(hood))
+		hood = new hood(src)
+
+/obj/item/clothing/suit/storage/toggle/robe/ui_action_click(mob/living/user, action_name)
+	if(..())
+		return TRUE
+	toggle_hood()
+
+/obj/item/clothing/suit/storage/toggle/robe/clean_blood()
+	//So that you dont have to detach the components to clean them, also since you can't detach the helmet
+	if(hood) hood.clean_blood()
+
+	return ..()
+
+/obj/item/clothing/suit/storage/toggle/robe/decontaminate()
+	if(hood) hood.decontaminate()
+
+	return ..()
+
+/obj/item/clothing/suit/storage/toggle/robe/make_young()
+	..()
+	if(hood) hood.make_young()
+
+/obj/item/clothing/suit/storage/toggle/robe/equipped(mob/M)
+	..()
+
+	if(is_held())
+		lower_hood()
+
+	var/mob/living/carbon/human/H = M
+
+	if(!istype(H)) return
+
+	if(H.wear_suit != src)
+		return
+
+	if(hood)
+		toggle_hood()
+
+/obj/item/clothing/suit/storage/toggle/robe/dropped()
+	..()
+	lower_hood()
+
+/obj/item/clothing/suit/storage/toggle/robe/proc/lower_hood()
+	var/mob/living/carbon/human/H
+
+	if(hood)
+		hood.canremove = 1
+		H = hood.loc
+		if(istype(H))
+			if(hood && H.head == hood)
+				H.drop_from_inventory(hood)
+				hood.forceMove(src)
+				icon_state = icon_down
+				if(hood.overslot)
+					hood.remove_overslot_contents(H)
+
+/obj/item/clothing/suit/storage/toggle/robe/verb/toggle_hood()
+	set name = "Toggle Hood"
+	set category = "Object"
+	set src in usr
+		
+	if(!isliving(loc))
+		return
+
+	if(!hood)
+		to_chat(usr, "There is no hood attached.")
+		return
+
+	var/mob/living/carbon/human/H = usr
+
+	if(!istype(H)) return
+	if(H.stat) return
+	if(H.wear_suit != src) return
+
+	if(H.head == hood)
+		to_chat(H, SPAN_NOTICE("You lower your hood."))
+		hood.canremove = 1
+		H.drop_from_inventory(hood)
+		hood.forceMove(src)
+		icon_state = icon_down
+		playsound(src.loc, "rustle", 75, 1)
+	else
+		if(H.head)
+			to_chat(H, SPAN_DANGER("You cannot raise your hood while wearing \the [H.head]."))
+			return
+		if(H.equip_to_slot_if_possible(hood, slot_head))
+			hood.canremove = 0
+			to_chat(H, "<span class='info'>You raise your hood, obscuring your face.</span>")
+			icon_state = icon_up
+			playsound(src.loc, "rustle", 75, 1)
 
 /obj/item/clothing/suit/storage/vest/merc/New()
 	..()

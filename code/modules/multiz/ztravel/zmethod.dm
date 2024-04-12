@@ -87,7 +87,7 @@
 	var/animating = FALSE
 
 
-/datum/vertical_travel_method/New(var/mob/L)
+/datum/vertical_travel_method/New(mob/L)
 	if (istype(L.loc, /mob/living/exosuit)) //Add more vehicle related checks here in future
 		M = L.loc
 	else
@@ -169,7 +169,7 @@
 	if (!get_destination())
 		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
 		return FALSE
-	
+
 	if(ismob(M))
 		var/mob/O = M
 		if(O.resting)

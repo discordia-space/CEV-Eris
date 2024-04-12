@@ -6,7 +6,6 @@
 	rarity_value = 15
 	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	arms = /obj/item/mech_component/manipulators/cheap
 	legs = /obj/item/mech_component/propulsion/cheap
 	head = /obj/item/mech_component/sensors/cheap
@@ -43,4 +42,21 @@
 		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
 		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/extinguisher,
 		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+	)
+
+/mob/living/exosuit/premade/forklift
+	name = "Aster's Guild \"Forklift\""
+	desc = "A modernized forklift for usage on space-ships. Are you ready to lift?"
+	rarity_value = 40
+	material = MATERIAL_PLASTIC
+	exosuit_color = "#c6c37b"
+	body = /obj/item/mech_component/chassis/forklift
+	legs = /obj/item/mech_component/propulsion/wheels
+	arms = null
+	head = null
+	installed_software_boards = list(
+		/obj/item/electronics/circuitboard/exosystem/utility
+	)
+	installed_systems = list(
+		HARDPOINT_FRONT = /obj/item/mech_equipment/forklifting_system
 	)

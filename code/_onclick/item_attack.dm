@@ -40,7 +40,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/mob/living/carbon/human/H = user
 		if(H.blocking)
 			H.stop_blocking()
-	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
+	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user && !no_swing)
 		swing_attack(A, user, params)
 		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
 			return A.attackby(src, user, params)
@@ -84,6 +84,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 /obj/item/proc/swing_attack(atom/A, mob/user, params)
 	var/holdinghand = user.get_inventory_slot(src)
+	if(params && islist(params) && params["mech"])
+		holdinghand = params["mech_hand"]
 	var/turf/R
 	var/turf/C
 	var/turf/L
@@ -122,7 +124,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		if(SOUTHWEST)
 			R = get_step(C, NORTH)
 			L = get_step(C, EAST)
-	var/obj/effect/effect/melee/swing/S = new(user.loc)
+	var/obj/effect/effect/melee/swing/S = new(get_turf(user))
 	S.dir = _dir
 	user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
 	playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
@@ -235,7 +237,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			return (modifier - swing_degradation) // We hit a static object, prevents hitting anything underneath
 	var/successful_hit = FALSE
 	for(var/obj/S in targetarea)
-		if (S.density && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
+		if ((S.density || istype(S, /obj/effect/plant)) && !istype(S, /obj/structure/table) && !istype(S, /obj/machinery/disposal) && !istype(S, /obj/structure/closet))
 			if(attack_with_multiplier(user, S, modifier))
 				successful_hit = TRUE // Livings or targeted mobs can still be hit
 	if(successful_hit)

@@ -28,7 +28,7 @@
 	var/window_width = 450
 	var/window_height = 600
 
-	var/charge_per_use = 0
+	var/charge_per_use = 5
 
 	var/is_virtual = FALSE // for non-physical scanner to avoid displaying action messages
 
@@ -52,8 +52,9 @@
 		return
 	if (!user.IsAdvancedToolUser())
 		return
-	if(!cell_use_check(charge_per_use, user))
-		return
+	if(!is_virtual)
+		if(!cell_use_check(charge_per_use, user))
+			return
 	return TRUE
 
 /obj/item/device/scanner/proc/is_valid_scan_target(atom/O)

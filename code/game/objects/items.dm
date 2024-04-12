@@ -29,6 +29,7 @@
 	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
 	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
 	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact
+	var/no_swing = FALSE            //for when you do not want an item to swing-attack
 	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
 	//Why are we using vars instead of defines or anything else?
 	//Because we need them to be shown in the tool info UI.
@@ -377,7 +378,8 @@
 				SPAN_DANGER("You stab yourself in the eyes with [src]!") \
 			)
 
-		eyes.damage += rand(3,4)
+		playsound(loc, 'sound/weapons/melee/lightstab.ogg', 50, 1, -1)
+		eyes.take_damage(rand(24, 32), BRUTE, 1, FALSE, TRUE, FALSE)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != DEAD)
 				if(BP_IS_ORGANIC(eyes) || BP_IS_ASSISTED(eyes)) //robot eyes bleeding might be a bit silly

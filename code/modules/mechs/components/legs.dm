@@ -6,10 +6,13 @@
 	matter = list(MATERIAL_STEEL = 8)
 	var/move_delay = 5
 	var/turn_delay = 5
+	var/stomp_damage = 10
 	var/obj/item/robot_parts/robot_component/actuator/motivator
 	var/mech_turn_sound = 'sound/mechs/Mech_Rotation.ogg'
 	var/mech_step_sound = 'sound/mechs/Mech_Step.ogg'
 	var/can_strafe = TRUE
+	var/can_climb = TRUE
+	var/can_fall_safe = FALSE
 
 /obj/item/mech_component/propulsion/Destroy()
 	QDEL_NULL(motivator)
@@ -59,9 +62,17 @@
 	exosuit_desc_string = "reinforced lifter legs"
 	desc = "Wide and stable, but not particularly fast."
 	max_damage = 95
+	stomp_damage = 50
 	move_delay = 3 // Slow and chunky
 	turn_delay = 3
 	power_use = 10
+	// clunky
+	can_climb = FALSE
+	armor = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
+	shielding = 5
+
+	front_mult = 1.2
+	rear_mult = 0.8
 
 /obj/item/mech_component/propulsion/light
 	name = "light legs"
@@ -71,8 +82,13 @@
 	move_delay = 1.5 // Very fast
 	turn_delay = 2 // Too fast to turn at drifting speed
 	max_damage = 45
+	stomp_damage = 30
 	power_use = 20
+	emp_shielded = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	can_climb = TRUE
+	armor = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
+	can_fall_safe = TRUE
 
 /obj/item/mech_component/propulsion/combat
 	name = "combat legs"
@@ -82,8 +98,15 @@
 	move_delay = 3
 	turn_delay = 2
 	max_damage = 125
+	stomp_damage = 60
 	power_use = 25
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 7, MATERIAL_DIAMOND = 2) // Expensive because durable.
+	matter = list(MATERIAL_STEEL = 16, MATERIAL_PLASTEEL = 8, MATERIAL_DIAMOND = 2) // Expensive because durable.
+	can_climb = TRUE
+	armor = list(melee = 26, bullet = 22, energy = 16, bomb = 100, bio = 100, rad = 100)
+	shielding = 10
+
+	front_mult = 1.2
+	rear_mult = 0.8
 
 /obj/item/mech_component/propulsion/heavy
 	name = "heavy legs"
@@ -93,5 +116,29 @@
 	move_delay = 5
 	turn_delay = 3
 	max_damage = 250
+	stomp_damage = 90
 	power_use = 100
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_URANIUM = 8)
+	matter = list(MATERIAL_STEEL = 24, MATERIAL_URANIUM = 8)
+	can_climb = FALSE
+	armor = list(melee = 32, bullet = 24, energy = 20, bomb = 160, bio = 100, rad = 100)
+	shielding = 15
+
+	front_mult = 1.2
+	rear_mult = 0.8
+
+/obj/item/mech_component/propulsion/wheels
+	name = "wheels"
+	exosuit_desc_string = "wheels"
+	desc = "A pair of wheels for any mobile vehicle"
+	icon_state = "wheels"
+	move_delay = 1.5
+	turn_delay = 4
+	max_damage = 60
+	stomp_damage = 15
+	power_use = 10
+	can_strafe = FALSE
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 16)
+	can_climb = FALSE
+	mech_turn_sound = 'sound/mechs/mechmove04.ogg'
+	mech_step_sound = 'sound/mechs/engine.ogg'
+	armor = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 0)

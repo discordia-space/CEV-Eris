@@ -43,6 +43,26 @@
 	name = "mounted rigged PK"
 	build_path = /obj/item/mech_equipment/mounted_system/ballistic/pk
 
+/datum/design/research/item/exosuit/weapon/smg
+	name = "mounted C25R SMG"
+	build_path = /obj/item/mech_equipment/mounted_system/ballistic/smg
+
+/datum/design/research/item/exosuit/weapon/shotgun
+	name = "mounted shotgun"
+	build_path = /obj/item/mech_equipment/mounted_system/ballistic/shotgun
+
+/datum/design/research/item/exosuit/shield_generator
+	name = "mounted energy shield generator"
+	build_path = /obj/item/mech_equipment/shield_generator
+
+/datum/design/research/item/exosuit/shield_generator/ballistic
+	name = "mounted ballistic shield"
+	build_path = /obj/item/mech_equipment/shield_generator/ballistic
+
+/datum/design/research/item/exosuit/weapon/mech_blade
+	name = "mounted blade framework"
+	build_path = /obj/item/mech_blade_assembly
+
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp
 	name = "hydraulic clamp"
@@ -64,13 +84,44 @@
 	name = "gravity catapult"
 	build_path = /obj/item/mech_equipment/catapult
 
+/datum/design/research/item/exosuit/ion_thruster
+	name = "mounted ion thrusters"
+	build_path = /obj/item/mech_equipment/thrusters
+
+/datum/design/research/item/exosuit/forklift
+	name = "forklift clamps"
+	build_path = /obj/item/mech_equipment/forklifting_system
+
+/datum/design/research/item/exosuit/fuel_generator
+	name = "welding fuel mech generator"
+	build_path = /obj/item/mech_equipment/power_generator/fueled/welding
+
+/datum/design/research/item/exosuit/plasma_generator
+	name = "plasma mech generator"
+	build_path = /obj/item/mech_equipment/power_generator/fueled/plasma
+
+/datum/design/research/item/exosuit/towing_hook
+	name = "mech towing hook"
+	build_path = /obj/item/mech_equipment/towing_hook
+
 //MEDICAL
 /datum/design/research/item/exosuit/sleeper
 	name = "mounted sleeper"
 	build_path = /obj/item/mech_equipment/sleeper
 
+/datum/design/research/item/exosuit/sleeper/upgraded
+	name = "mounted sleeper MK2"
+	build_path = /obj/item/mech_equipment/sleeper/upgraded
+
+/datum/design/research/item/exosuit/automender
+	name = "mech auto-mender"
+	build_path = /obj/item/mech_equipment/auto_mender
 
 //ENGINEERING
 /datum/design/research/item/exosuit/rcd
 	name = "mounted RCD"
 	build_path = /obj/item/mech_equipment/mounted_system/rcd
+
+/datum/design/research/item/exosuit/toolkit
+	name = "mounted toolkit"
+	build_path = /obj/item/mech_equipment/mounted_system/toolkit

@@ -80,6 +80,7 @@
 	GET_COMPONENT(oldified, /datum/component/oldficator)
 	if(oldified)
 		return FALSE
+	pre_old(low_quality_oldification)
 	AddComponent(/datum/component/oldficator)
 	light_color = color
 	if(!low_quality_oldification)
@@ -170,6 +171,15 @@
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 
 /obj/item/reagent_containers/make_old(low_quality_oldification)
+	.=..()
+	if(. && (!low_quality_oldification))
+		var/actual_volume = reagents.total_volume
+		for(var/datum/reagent/R in reagents.reagent_list)
+			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
+		reagents.add_reagent("mold", rand(0, actual_volume - reagents.total_volume))
+
+//makes old cigarettes rank
+/obj/item/clothing/mask/smokable/cigarette/make_old(low_quality_oldification)
 	.=..()
 	if(. && (!low_quality_oldification))
 		var/actual_volume = reagents.total_volume
@@ -412,3 +422,28 @@
 			if(SEND_SIGNAL_OLD(trash_mod, COMSIG_IATTACK, src, null))
 				break
 			QDEL_NULL(trash_mod)
+
+/obj/item/ammo_casing/make_old(low_quality_oldification)
+	if(!low_quality_oldification)// reducing the materials otherwise is infeasible due to BYOND's
+		if(prob(90)) // incapability of restoring the initial value of a list typed var
+			return // so 10% of the time we just delete the bullet
+		if(is_caseless)
+			if(istype(loc, /obj/item/ammo_magazine)) // delete lingering reference
+				var/obj/item/ammo_magazine/holder = loc
+				holder.stored_ammo.Remove(src)
+				qdel(src)
+			else
+				qdel(src)
+		else
+			expend()
+
+/obj/item/projectile/make_old(low_quality_oldification)
+	return // why would the bullet being old change anything?
+
+/obj/proc/pre_old() // defined for compatibility
+	return
+
+/obj/item/ammo_magazine/pre_old(low_quality_oldification = FALSE) // this is needed to allow casings
+	if(!low_quality_oldification) // contained to self-delete
+		for(var/obj/item/ammo_casing/casing in stored_ammo)
+			casing.make_old() // this doesn't technically oldify anything, so can be done here

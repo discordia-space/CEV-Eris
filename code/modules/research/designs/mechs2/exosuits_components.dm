@@ -20,20 +20,6 @@
 /datum/design/research/item/mechfab/exosuit/basics/diagnosis_unit
 	build_path = /obj/item/robot_parts/robot_component/diagnosis_unit
 
-//Armor
-/datum/design/research/item/mechfab/exosuit/armour
-	category = "Exosuit Armor"
-
-/datum/design/research/item/mechfab/exosuit/armour/plain
-	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/plain
-	starts_unlocked = TRUE
-
-/datum/design/research/item/mechfab/exosuit/armour/em
-	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/ablative
-
-/datum/design/research/item/mechfab/exosuit/armour/combat
-	build_path = /obj/item/robot_parts/robot_component/armour/exosuit/combat
-
 //Drill bits
 /datum/design/research/item/mechfab/exosuit/drillbit
 	category = "Exosuit Drill Bits"
@@ -86,6 +72,9 @@
 /datum/design/research/item/mechfab/exosuit/chassis/pod
 	build_path = /obj/item/mech_component/chassis/pod
 
+/datum/design/research/item/mechfab/exosuit/chassis/forklift
+	build_path = /obj/item/mech_component/chassis/forklift
+
 //Manipulators
 /datum/design/research/item/mechfab/exosuit/manipulators
 	category = "Exosuit Manipulators"
@@ -124,3 +113,6 @@
 
 /datum/design/research/item/mechfab/exosuit/propulsion/tracks
 	build_path = /obj/item/mech_component/propulsion/tracks
+
+/datum/design/research/item/mechfab/exosuit/propulsion/wheels
+	build_path = /obj/item/mech_component/propulsion/wheels

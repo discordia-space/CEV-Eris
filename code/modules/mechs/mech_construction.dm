@@ -93,7 +93,7 @@
 				playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 			else return FALSE
 
-	system.installed(src)
+	system.installed(src, system_hardpoint)
 	GLOB.destroyed_event.register(system, src, PROC_REF(forget_module))
 
 
@@ -128,9 +128,10 @@
 		user.visible_message(SPAN_NOTICE("\The [user] begins trying to remove \the [system] from \the [src]."))
 		if(!do_after(user, delay, src) || hardpoints[system_hardpoint] != system) return 0
 
-	hardpoints[system_hardpoint] = null
-
 	if(system_hardpoint == selected_hardpoint) clear_selected_hardpoint()
+	hardpoints[system_hardpoint] = null
+	// Remove this from screens. Would just be left on a player screen before , SPCR - 2023
+	system.screen_loc = null
 
 	var/obj/item/mech_equipment/ME = system
 	if(istype(ME)) ME.uninstalled()

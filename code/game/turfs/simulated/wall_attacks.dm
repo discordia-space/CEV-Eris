@@ -97,7 +97,10 @@
 		return
 
 	//get the user's location
-	if(!istype(user.loc, /turf))	return	//can't do this stuff whilst inside objects and such
+	if(!istype(user.loc, /turf))
+		if(!(ismech(user.loc) && istype(I, /obj/item/tool/mech_kit)))
+			return
+
 
 	if(I)
 		radiate()
@@ -149,14 +152,14 @@
 					return
 			if(isnull(construction_stage) || !reinf_material)
 				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
-				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_SLOW * material.heat_resistance, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You remove the outer plating."))
 					dismantle_wall()
 					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
 					return
 			if(construction_stage == 4)
 				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_SLOW * material.heat_resistance, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					construction_stage = 3
 					update_icon()
 					to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
@@ -232,7 +235,7 @@
 		var/attackforce = I.force*I.structure_damage_factor
 		var/dam_threshhold = material.integrity
 		if(reinf_material)
-			dam_threshhold = CEILING(max(dam_threshhold,reinf_material.integrity) * 0.5, 1)
+			dam_threshhold += reinf_material.integrity * 0.5
 		var/dam_prob = material.hardness * 1.4
 		if (locate(/obj/effect/overlay/wallrot) in src)
 			dam_prob *= 0.5 //Rot makes reinforced walls breakable

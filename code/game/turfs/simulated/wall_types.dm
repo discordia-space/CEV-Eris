@@ -1,9 +1,22 @@
+/turf/simulated/wall/steelr_wall
+	icon_state = "rgeneric"
+	description_info = "Can be deconstructed by following these steps \n Use a cutting tool on the wall \n Use a screw-driving tool on the wall \n Use a welder \n Use a wrench \n Use a welder \n Pry off the outer shell"
+
+/turf/simulated/wall/steelr_wall/New(var/newloc)
+	..(newloc, MATERIAL_STEEL, MATERIAL_STEEL) //2strong
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
 	description_info = "Can be deconstructed by following these steps \n Use a cutting tool on the wall \n Use a screw-driving tool on the wall \n Use a welder \n Use a wrench \n Use a welder \n Pry off the outer shell"
 
 /turf/simulated/wall/r_wall/New(var/newloc)
 	..(newloc, MATERIAL_PLASTEEL, MATERIAL_PLASTEEL) //3strong
+
+/turf/simulated/wall/v_wall
+	icon_state = "rgeneric"
+	description_info = "Can be deconstructed by following these steps \n Use a cutting tool on the wall \n Use a screw-driving tool on the wall \n Use a welder for some minutes \n Use a wrench \n Use a welder \n Pry off the outer shell"
+
+/turf/simulated/wall/v_wall/New(var/newloc)
+	..(newloc, MATERIAL_OSMIUM, MATERIAL_OSMIUM) //4strong
 
 /turf/simulated/wall/cult
 	icon_state = "cult"
@@ -87,6 +100,8 @@
 
 /turf/simulated/wall/iron/New(var/newloc)
 	..(newloc,MATERIAL_IRON)
+/turf/simulated/wall/plasteel/New(var/newloc)
+	..(newloc, MATERIAL_PLASTEEL)
 /turf/simulated/wall/uranium/New(var/newloc)
 	..(newloc,MATERIAL_URANIUM)
 /turf/simulated/wall/diamond/New(var/newloc)
