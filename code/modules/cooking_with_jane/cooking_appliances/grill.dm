@@ -2,7 +2,8 @@
 
 /obj/machinery/cooking_with_jane/grill
 	name = "Grill"
-	desc = "A deep pit of charcoal for cooking food. A slot on the side of the machine takes wood and converts it into charcoal. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on a burner."
+	desc = "A deep pit of charcoal for cooking food. A slot on the side of the machine takes wood and converts it into charcoal."
+	description_info = "Ctrl+Click: Set Temperatures / Timers. \nShift+Ctrl+Click: Turn on a burner.\nAlt+Click: Empty container of physical food."
 	icon = 'icons/obj/cwj_cooking/grill.dmi'
 	icon_state = "grill"
 	density = FALSE
@@ -173,11 +174,7 @@
 
 	if(items[input] != null)
 		var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
-
-		if(istype(used_item, /obj/item/tool/shovel/))
-			container.do_empty(user, target=src, reagent_clear = FALSE)
-		else
-			container.process_item(used_item, params)
+		container.process_item(used_item, params)
 
 	else if(istype(used_item, /obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate))
 		to_chat(usr, SPAN_NOTICE("You put a [used_item] on the grill."))
@@ -236,6 +233,21 @@
 	log_debug("/cooking_with_jane/grill/CtrlClick called on burner [input]")
 	#endif
 	handle_switch(user, input)
+
+//Empty a container without a tool
+/obj/machinery/cooking_with_jane/grill/AltClick(var/mob/user, params)
+	if(user.stat || user.restrained() || (!in_range(src, user)))
+		return
+
+	var/input = getInput(params)
+	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
+		return
+	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
+
+	#ifdef CWJ_DEBUG
+	log_debug("/cooking_with_jane/grill/AltClick called on burner [input] [container]")
+	#endif
+	container.do_empty(user)
 
 /obj/machinery/cooking_with_jane/grill/proc/handle_temperature(user, input)
 	var/old_temp = temperature[input]

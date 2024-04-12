@@ -2,7 +2,8 @@
 
 /obj/machinery/cooking_with_jane/oven
 	name = "Convection Oven"
-	desc = "A cozy oven for baking food. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on the oven."
+	desc = "A cozy oven for baking food."
+	description_info = "Ctrl+Click: Set Temperatures / Timers. \nShift+Ctrl+Click: Turn on the oven.\nAlt+Click: Empty container of physical food."
 	icon = 'icons/obj/cwj_cooking/oven.dmi'
 	icon_state = "oven"
 	density = TRUE
@@ -108,11 +109,7 @@
 	if(opened && center_selected)
 		if(items != null)
 			var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items
-
-			if(istype(used_item, /obj/item/tool/shovel))
-				container.do_empty(user, target=src, reagent_clear = FALSE)
-			else
-				container.process_item(used_item, params)
+			container.process_item(used_item, params)
 
 		else if(istype(used_item, /obj/item/reagent_containers/cooking_with_jane/cooking_container))
 			to_chat(usr, SPAN_NOTICE("You put a [used_item] on the oven."))
@@ -196,7 +193,6 @@
 
 //Switch the cooking device on or off
 /obj/machinery/cooking_with_jane/oven/CtrlShiftClick(var/mob/user, params)
-
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 
@@ -205,6 +201,24 @@
 	#endif
 	handle_switch(user)
 
+//Empty a container without a tool
+/obj/machinery/cooking_with_jane/oven/AltClick(var/mob/user, params)
+	if(user.stat || user.restrained() || (!in_range(src, user)))
+		return
+
+	var/center_selected = getInput(params)
+	switch(center_selected)
+		if(TRUE)
+			if(!opened)
+				to_chat(user, SPAN_NOTICE("The oven must be open to retrieve the food."))
+			else
+				if((items != null && istype(items, /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
+					var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items
+
+					#ifdef CWJ_DEBUG
+					log_debug("/cooking_with_jane/oven/AltClick called on [container]")
+					#endif
+					container.do_empty(user)
 
 /obj/machinery/cooking_with_jane/oven/proc/handle_open(var/mob/user)
 	if(opened)

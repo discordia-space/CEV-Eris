@@ -3,7 +3,8 @@
 
 /obj/machinery/cooking_with_jane/stove
 	name = "Stovetop"
-	desc = "A set of four burners for cooking food. \nCtrl+Click: Set Temperatures / Timers \nShift+Ctrl+Click: Turn on a burner."
+	desc = "A set of four burners for cooking food."
+	description_info = "Ctrl+Click: Set Temperatures / Timers. \nShift+Ctrl+Click: Turn on a burner.\nAlt+Click: Empty container of physical food."
 	icon = 'icons/obj/cwj_cooking/stove.dmi'
 	icon_state = "stove"
 	density = FALSE
@@ -134,11 +135,7 @@
 
 	if(items[input] != null)
 		var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
-
-		if(istype(used_item, /obj/item/tool/shovel))
-			container.do_empty(user, target=src, reagent_clear = FALSE)
-		else
-			container.process_item(used_item, params)
+		container.process_item(used_item, params)
 
 	else if(istype(used_item, /obj/item/reagent_containers/cooking_with_jane/cooking_container))
 		to_chat(usr, SPAN_NOTICE("You put a [used_item] on the stove."))
@@ -187,7 +184,6 @@
 
 //Switch the cooking device on or off
 /obj/machinery/cooking_with_jane/stove/CtrlShiftClick(var/mob/user, params)
-
 	if(user.stat || user.restrained() || (!in_range(src, user)))
 		return
 	var/input = getInput(params)
@@ -196,6 +192,21 @@
 	log_debug("/cooking_with_jane/stove/CtrlShiftClick called on burner [input]")
 	#endif
 	handle_switch(user, input)
+
+//Empty a container without a tool
+/obj/machinery/cooking_with_jane/stove/AltClick(var/mob/user, params)
+	if(user.stat || user.restrained() || (!in_range(src, user)))
+		return
+
+	var/input = getInput(params)
+	if(!(items[input] && istype(items[input], /obj/item/reagent_containers/cooking_with_jane/cooking_container)))
+		return
+	var/obj/item/reagent_containers/cooking_with_jane/cooking_container/container = items[input]
+
+	#ifdef CWJ_DEBUG
+	log_debug("/cooking_with_jane/stove/AltClick called on burner [input] [container]")
+	#endif
+	container.do_empty(user)
 
 /obj/machinery/cooking_with_jane/stove/proc/handle_temperature(user, input)
 	var/old_temp = temperature[input]

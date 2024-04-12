@@ -9,6 +9,7 @@
 
 /obj/item/reagent_containers/cooking_with_jane/cooking_container
 	icon = 'icons/obj/cwj_cooking/kitchen.dmi'
+	description_info = "Can be emptied of physical food with alt-click."
 	var/shortname
 	var/place_verb = "into"
 	var/appliancetype //string beans

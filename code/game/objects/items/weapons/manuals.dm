@@ -30,12 +30,12 @@
 				Here is a guide on basic food ingredients and how to not set the stove on fire. For actual recipes, please see the Bradhaanata Cooking Assistant App.
 
 				<h2>Basics</h2>
-				<li>The appliances focus entirely around the cooking containers, such as the Pan, Cutting Board, Pot, Oven Tray, ect. You'll be starting with adding your ingredients to the container, and ending by scooping everything out with the spatula.</li>
+				<li>The appliances focus entirely around the cooking containers, such as the Pan, Cutting Board, Pot, Oven Tray, ect. You'll be starting with adding your ingredients to the container, and ending by scooping everything out.</li>
 				<li>The Prep Bowl cooking container is different than the Mixing Bowl.</li>
 				<li>Any steps except the first and last can be done in any order, with the exception of Exclusive Optional Steps.</li>
 				<li>Scooping ingredients out before the recipe is done, leaving excess reagents in the container, having the wrong heat set, or leaving the food on an active appliance too long will lead to lower quality meals.</li>
 				<li>Some meals are inherently better than another, for various reasons. Some have more steps one could take to improve it, others are simply packed with nutrition. Both contribute to the mental wellbeing of your customer.</li>
-				<li>For ease, you can leave cooking containers on the appliance, and place your ingredients or scoop them out with the spatula without ever taking it off the appliance.</li>
+				<li>For ease, you can leave cooking containers on the appliance, and place your ingredients or scoop them out without ever taking it off the appliance.</li>
 				<li>Setting the appliance timer to 0 will force it to Stay On when activated. An attentive chef can make use of keeping a burner on, and quickly mix new recipes without ever turning the burner off.</li>
 
 				<h3>Ingredients:</h3>
