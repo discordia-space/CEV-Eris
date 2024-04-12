@@ -120,9 +120,10 @@
 	unlocks_designs = list(
 		/datum/design/research/item/mechfab/exosuit/sensors/heavy,
 		/datum/design/research/item/mechfab/exosuit/chassis/heavy,
+		/datum/design/research/item/mechfab/exosuit/chassis/walker,
 		/datum/design/research/item/mechfab/exosuit/manipulators/heavy,
 		/datum/design/research/item/mechfab/exosuit/propulsion/heavy,
-		/datum/design/research/item/exosuit/shield_generator,
+		/datum/design/research/item/exosuit/shield_generator
 	)
 
 /datum/technology/mech_propulsion_alt
@@ -223,7 +224,8 @@
 		/datum/design/research/item/exosuit/plasma_generator,
 		/datum/design/research/item/exosuit/towing_hook,
 		/datum/design/research/item/exosuit/rcd,
-		/datum/design/research/item/exosuit/toolkit
+		/datum/design/research/item/exosuit/toolkit,
+		/datum/design/research/item/exosuit/binoculars
 	)
 
 /datum/technology/mech_teleporter_modules
@@ -261,7 +263,9 @@
 			/datum/design/research/circuit/exosuit/weapons,
 			/datum/design/research/item/exosuit/taser,
 			/datum/design/research/item/exosuit/weapon/ion,
-			/datum/design/research/item/exosuit/weapon/shotgun
+			/datum/design/research/item/exosuit/weapon/shotgun,
+			/datum/design/research/item/exosuit/weapon/sprayer,
+			/datum/design/research/item/exosuit/weapon/stunbaton
 		)
 
 /datum/technology/mech_heavy_weaponry_modules

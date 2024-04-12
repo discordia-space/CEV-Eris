@@ -77,7 +77,7 @@
 	SEND_SIGNAL_OLD(src, COMSIG_ITEM_DROPPED, src)
 	update_light()
 	if(zoom) //binoculars, scope, etc
-		zoom()
+		zoom(user)
 	remove_hud_actions(user)
 	if(overslot && is_held())
 		remove_overslot_contents(user)
@@ -171,5 +171,5 @@
 		if(H.get_holding_hand(src))
 			add_hud_actions(H)
 		return TRUE
-	
+
 
