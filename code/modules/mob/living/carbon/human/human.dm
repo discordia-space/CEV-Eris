@@ -359,7 +359,6 @@ var/list/rank_prefix = list(\
 	if(href_list["secrecord"])
 		if(hasHUD(usr,"security"))
 			var/perpname = "wot"
-			var/read = 0
 
 			var/obj/item/card/id/id = GetIdCard()
 			if(istype(id))
@@ -367,22 +366,14 @@ var/list/rank_prefix = list(\
 			else
 				perpname = src.name
 
-			for(var/datum/data/record/E in data_core.general)
-				if(E.fields["name"] == perpname)
-					for(var/datum/data/record/R in data_core.security)
-						if(R.fields["id"] == E.fields["id"])
-							if(hasHUD(usr,"security"))
-								to_chat(usr, "<b>Name:</b> [R.fields["name"]]	<b>Criminal Status:</b> [R.fields["criminal"]]")
-								to_chat(usr, "<b>Minor Crimes:</b> [R.fields["mi_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["mi_crim_d"]]")
-								to_chat(usr, "<b>Major Crimes:</b> [R.fields["ma_crim"]]")
-								to_chat(usr, "<b>Details:</b> [R.fields["ma_crim_d"]]")
-								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
-								read = 1
-
-			if(!read)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+			// Retrieve crew member record
+			var/datum/computer_file/report/crew_record/crew_record = get_crewmember_record(perpname)
+			if(crew_record && hasHUD(usr, "security"))
+				to_chat(usr, "<b>Name:</b> [crew_record.get_name()]")
+				to_chat(usr, "<b>Criminal Status:</b> [crew_record.get_criminalStatus()]")
+				to_chat(usr, "<b>Details:</b> [crew_record.get_secRecord()]")
+			else
+				to_chat(usr, span_red("Unable to locate a data core entry for this person."))
 
 	if(href_list["secrecordComment"])
 		if(hasHUD(usr,"security"))
@@ -1348,7 +1339,6 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	
 	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
 	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 
