@@ -316,7 +316,7 @@
 	rarity_value = 18
 
 /obj/item/oddity/common/old_newspaper/attack_self(mob/user)
-	zoom(8, 8)
+	zoom(user,8, 8)
 	..()
 
 /obj/item/oddity/common/paper_omega
