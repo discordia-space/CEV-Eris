@@ -85,6 +85,10 @@
 	name = "excavation pick"
 	build_path = /obj/item/tool/pickaxe/excavation
 
+/datum/design/autolathe/tool/spatula
+	name = "spatula"
+	build_path = /obj/item/tool/shovel/spatula
+
 /datum/design/autolathe/tool/knife
 	name = "kitchen knife"
 	build_path = /obj/item/tool/knife
