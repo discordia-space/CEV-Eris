@@ -359,7 +359,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	<b>Final personal score:</b> [get_color_score(final_score, final_score, max_personal_score)] Points<br><br>
 	"}
 
-	if(is_scored_departmen())
+	if(is_scored_department())
 		final_score += get_faction_score()
 		max_personal_score += MAX_FACTION_SCORE
 
@@ -367,6 +367,21 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	dat += "<b><u>Your total score is:</u></b> [get_color_score(final_score, final_score, max_personal_score)] Points<br>"
 
 	src << browse(dat, "window=roundstats;size=500x600")
+
+/mob/proc/get_total_score(include_faction = TRUE)
+	var/objectives_score = mind.individual_objectives_completed * 20
+	var/contracts_score = mind.contracts_completed * 20
+	var/survive_score = 0
+	var/scaped_score = 0
+	if(client.survive)
+		survive_score += 300
+		if(client.escaped)
+			scaped_score += 200
+
+	var/final_score = objectives_score + contracts_score + survive_score + scaped_score
+	if(include_faction && is_scored_department())
+		final_score += get_faction_score()
+	return final_score
 
 /mob/proc/get_faction_score()
 	if(mind && mind.assigned_job && mind.assigned_job.department)
@@ -381,7 +396,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		else if(mind.assigned_job.department == DEPARTMENT_CHURCH)
 			return GLOB.neotheology_score
 
-/mob/proc/is_scored_departmen()
+/mob/proc/is_scored_department()
 	. = FALSE
 	if(mind && mind.assigned_job && mind.assigned_job.department)
 		switch(mind.assigned_job.department)
