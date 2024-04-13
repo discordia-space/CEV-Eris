@@ -989,7 +989,7 @@
 		list(CWJ_ADD_PRODUCE_OPTIONAL, "cabbage"),
 		list(CWJ_ADD_PRODUCE_OPTIONAL, "tomato"),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "ketchup", 1),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/roachmeat)
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/roachmeat/kampfer)
 	)
 
 /datum/cooking_with_jane/recipe/seucheburger
@@ -1046,7 +1046,7 @@
 		list(CWJ_ADD_PRODUCE_OPTIONAL, "tomato"),
 		list(CWJ_ADD_REAGENT_OPTIONAL, "ketchup", 1),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/roach_egg),
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/roachmeat),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/roachmeat/kampfer),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/roachmeat/seuche),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/roachmeat/panzer),
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager)
