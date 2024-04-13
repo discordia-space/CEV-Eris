@@ -12,7 +12,7 @@
 	description_info = "Can be emptied of physical food with alt-click."
 	var/shortname
 	var/place_verb = "into"
-	var/appliancetype //string beans
+	var/appliancetype //string
 	w_class = ITEM_SIZE_SMALL
 	volume = 240 //Don't make recipes using reagents in larger quantities than this amount; they won't work.
 	var/datum/cooking_with_jane/recipe_tracker/tracker = null //To be populated the first time the plate is interacted with.
