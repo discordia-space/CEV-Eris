@@ -8,6 +8,7 @@
 	w_class = ITEM_SIZE_TINY
 	health = 5
 	var/amount_grown = 0
+	var/food_quality = 1 //So it can be boiled
 
 /obj/item/roach_egg/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
@@ -61,7 +62,7 @@
 
 	. = ..()
 
-/obj/item/roach_egg/Process()	
+/obj/item/roach_egg/Process()
 	if (isturf(src.loc) || istype(src.loc, /obj/structure/closet) || istype(src.loc, /obj/item/organ/external)) // suppresses hatching when not in a suitable loc
 		if(amount_grown >= 100)
 			var/obj/item/organ/external/O

@@ -38,7 +38,7 @@
 
 	var/obj/item/reagent_containers/food/snacks/grown/added_produce = added_item
 
-	if(added_produce.plantname == required_produce_type)
+	if(added_produce.seed.kitchen_tag == required_produce_type)
 		return CWJ_CHECK_VALID
 
 	return CWJ_CHECK_INVALID
