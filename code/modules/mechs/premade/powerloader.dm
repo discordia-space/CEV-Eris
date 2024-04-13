@@ -6,7 +6,6 @@
 	rarity_value = 15
 	material = MATERIAL_STEEL
 	exosuit_color = "#ffbc37"
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	arms = /obj/item/mech_component/manipulators/cheap
 	legs = /obj/item/mech_component/propulsion/cheap
 	head = /obj/item/mech_component/sensors/cheap
@@ -50,7 +49,6 @@
 	desc = "A modernized forklift for usage on space-ships. Are you ready to lift?"
 	rarity_value = 40
 	material = MATERIAL_PLASTIC
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	exosuit_color = "#c6c37b"
 	body = /obj/item/mech_component/chassis/forklift
 	legs = /obj/item/mech_component/propulsion/wheels
@@ -62,3 +60,21 @@
 	installed_systems = list(
 		HARDPOINT_FRONT = /obj/item/mech_equipment/forklifting_system
 	)
+
+/mob/living/exosuit/premade/walker
+	name = "OR \"Walker\""
+	desc = "A walker exosuit. Is heavily armoured but trades this off for only covering the pilot from frontal attacks."
+	rarity_value = 50
+	material = MATERIAL_PLASTEEL
+	body = /obj/item/mech_component/chassis/walker
+	legs = /obj/item/mech_component/propulsion/heavy
+	arms = null
+	head = null
+	installed_software_boards = list(
+		/obj/item/electronics/circuitboard/exosystem/weapons
+	)
+	installed_systems = list(
+		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/mounted_system/ballistic/shotgun,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/baton
+	)
+

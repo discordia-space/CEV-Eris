@@ -193,6 +193,8 @@
 	else if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant
 		meat_type = C.species.meat_type
+		if(occupant.stats.getPerk(PERK_SURVIVOR))
+			meat_type = /obj/item/reagent_containers/food/snacks/meat/pork
 	else if(isanimal(occupant))
 		var/mob/living/simple_animal/A = occupant
 		meat_type = A.meat_type

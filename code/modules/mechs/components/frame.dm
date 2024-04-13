@@ -319,8 +319,11 @@
 
 	// Installing basic components.
 	if(istype(I, /obj/item/mech_component/manipulators))
-		if(istype(body, /obj/item/mech_component/chassis/forklift))
-			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support manipulators!"))
+		if(body.strict_arm_type == TRUE)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			return
+		else if(body.strict_arm_type && !istype(I, body.strict_arm_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_arm_type:name)]"))
 			return
 		if(arms)
 			to_chat(user, SPAN_WARNING("\The [src] already has manipulators installed."))
@@ -331,11 +334,16 @@
 				return
 			arms = I
 	else if(istype(I, /obj/item/mech_component/propulsion))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
 		if(legs)
 			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
 			return
-		if(istype(body, /obj/item/mech_component/chassis/forklift) && !istype(I, /obj/item/mech_component/propulsion/wheels))
-			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support this type of propulsation, only wheels!"))
+		if(body.strict_leg_type == TRUE)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			return
+		else if(body.strict_leg_type && !istype(I, body.strict_leg_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_leg_type:name)]"))
 			return
 		if(install_component(I, user))
 			if(legs)
@@ -343,8 +351,13 @@
 				return
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
-		if(istype(body, /obj/item/mech_component/chassis/forklift))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
+		if(body.strict_sensor_type == TRUE)
 			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
+			return
+		else if(body.strict_sensor_type && !istype(I, body.strict_sensor_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_sensor_type:name)]"))
 			return
 		if(head)
 			to_chat(user, SPAN_WARNING("\The [src] already has a sensor array installed."))
