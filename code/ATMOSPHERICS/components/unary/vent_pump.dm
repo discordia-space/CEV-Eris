@@ -155,6 +155,9 @@
 		use_power = NO_POWER_USE
 		return
 
+	if(!can_pump())
+		return 0
+
 	if(!use_power)
 		return 0
 
