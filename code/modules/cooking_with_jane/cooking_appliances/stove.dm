@@ -58,7 +58,7 @@
 	var/man_rating = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
-	quality_mod = man_rating - 2
+	quality_mod = round(man_rating/2)
 
 //Process how a specific stove is interacting with material
 /obj/machinery/cooking_with_jane/stove/proc/cook_checkin(var/input)
