@@ -113,7 +113,7 @@
 	// Eject the pilots
 	hatch_locked = FALSE // So they can get out
 	for(var/pilot in pilots)
-		eject(pilot, silent=TRUE)
+		eject(pilot, TRUE, TRUE)
 
 	// Salvage moves into the wreck unless we're exploding violently.
 	var/obj/wreck = new wreckage_path(drop_location(), src, gibbed)

@@ -229,8 +229,10 @@
 			access_card.access |= pilot.GetAccess()
 			to_chat(pilot, SPAN_NOTICE("Security access permissions synchronized."))
 
-/mob/living/exosuit/proc/eject(mob/living/user, silent)
-	if(!user || !(user in src.contents)) return
+/mob/living/exosuit/proc/eject(mob/living/user, silent, mech_death)
+	if(!user || !(user in src.contents))
+		return
+
 	if(body && body.has_hatch)
 		if(hatch_closed)
 			if(hatch_locked)
@@ -247,6 +249,12 @@
 		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
 
 	user.forceMove(get_turf(src))
+
+	if(mech_death)
+		user.apply_damages(30, 30)	//Give them bruises and burns
+		//Mobs process every 2 seconds but both handle_statuses() and handle_status_effects() decrements by 1
+		user.AdjustWeakened(4)
+
 	//LAZYREMOVE(user.additional_vision_handlers, src)
 	if(user in pilots)
 		a_intent = I_HURT
