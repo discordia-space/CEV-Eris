@@ -73,6 +73,12 @@
 		add_clothing_protection(wear_mask)
 	if(istype(wearing_rig,/obj/item/rig))
 		process_rig(wearing_rig)
+	if(istype(loc, /mob/living/exosuit))
+		process_mech(loc)
+	// reset zoom
+	else if(istype(using_scope, /obj/item/device/binoculars/mech))
+		var/obj/item/device/binoculars/binos = using_scope
+		binos.zoom(src)
 	if(istype(using_scope,/obj/item/gun))
 		process_scope(using_scope)
 	if(get_active_mutation(src, MUTATION_NIGHT_VISION))
@@ -134,3 +140,10 @@
 			equipment_see_invis = min(equipment_see_invis, A.see_invisible_gun)
 		else
 			equipment_see_invis = A.see_invisible_gun
+
+/mob/living/carbon/human/proc/process_mech(mob/living/exosuit/mech)
+	if(equipment_see_invis)
+		equipment_see_invis = min(equipment_see_invis, mech.see_invisible)
+	else
+		equipment_see_invis = mech.see_invisible
+	equipment_vision_flags |= mech.additional_sight_flags()
