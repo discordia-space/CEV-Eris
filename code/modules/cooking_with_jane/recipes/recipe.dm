@@ -669,7 +669,7 @@
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/human)
 	)
 
-/datum/cooking_with_jane/recipe/brainburger
+/*/datum/cooking_with_jane/recipe/brainburger //Currently nonfunctional as base body parts do not have food_quality\
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/brainburger
 
@@ -687,7 +687,7 @@
 		list(CWJ_ADD_ITEM, /obj/item/organ/internal/vital/brain)
 	)
 
-/datum/cooking_with_jane/recipe/roburger
+/datum/cooking_with_jane/recipe/roburger //Currently nonfunctional as base body parts do not have food_quality
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/roburger
 
@@ -704,7 +704,7 @@
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/robot_parts/head)
 	)
-
+*/
 /datum/cooking_with_jane/recipe/xenoburger
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/xenoburger
@@ -759,7 +759,7 @@
 		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/tofu)
 	)
 
-/datum/cooking_with_jane/recipe/clownburger
+/*/datum/cooking_with_jane/recipe/clownburger //Currently nonfunctional as clothing do not have food_quality
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/clownburger
 
@@ -777,7 +777,7 @@
 		list(CWJ_ADD_ITEM, /obj/item/clothing/mask/gas/clown_hat)
 	)
 
-/datum/cooking_with_jane/recipe/mimeburger
+/datum/cooking_with_jane/recipe/mimeburger //Currently nonfunctional as clothing do not have food_quality
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/mimeburger
 
@@ -794,7 +794,7 @@
 		list(CWJ_ADD_ITEM_OPTIONAL, /obj/item/reagent_containers/food/snacks/cheesewedge, qmod=0.5),
 		list(CWJ_ADD_ITEM, /obj/item/clothing/head/beret)
 	)
-
+*/
 /datum/cooking_with_jane/recipe/bigbiteburger
 	cooking_container = CUTTING_BOARD
 	product_type = /obj/item/reagent_containers/food/snacks/bigbiteburger
