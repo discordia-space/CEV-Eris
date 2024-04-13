@@ -13065,10 +13065,10 @@
 /area/space)
 "aGE" = (
 /obj/machinery/camera/network/engineering,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/atmos)
 "aGF" = (
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/atmos)
 "aGG" = (
 /obj/structure/closet,
@@ -15058,11 +15058,12 @@
 /obj/machinery/atmospherics/pipe/vent{
 	dir = 8
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/hull{
 	flooring_override = "hullcenter18";
 	icon_state = "hullcenter18"
 	},
-/area/space)
+/area/eris/rnd/mixing)
 "aMI" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -48229,10 +48230,10 @@
 	pump_direction = 0;
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "cmN" = (
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "cmO" = (
 /obj/machinery/door/firedoor,
@@ -48502,8 +48503,7 @@
 	id_tag = "toxins_mixing_1";
 	output = 63
 	},
-/obj/machinery/shield_diffuser,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "cnB" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
@@ -48512,8 +48512,7 @@
 	id = "toxins1_in";
 	use_power = 1
 	},
-/obj/machinery/shield_diffuser,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "cnC" = (
 /obj/structure/cable{
@@ -48814,13 +48813,13 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "cou" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 8
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "cov" = (
 /obj/machinery/door/firedoor,
@@ -49547,7 +49546,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "cqq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -49930,8 +49929,7 @@
 	id_tag = "toxins_mixing_2";
 	output = 63
 	},
-/obj/machinery/shield_diffuser,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "crl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -100322,7 +100320,7 @@
 	id_tag = "left_propulsion_sensor";
 	output = 63
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/left)
 "kaS" = (
 /obj/structure/cable/green{
@@ -100675,7 +100673,7 @@
 	dir = 8;
 	id_tag = "waste_out"
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/atmos)
 "kPU" = (
 /obj/machinery/button/remote/blast_door{
@@ -100739,7 +100737,7 @@
 	id = "right_propulsion_in";
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/right)
 "kXZ" = (
 /obj/structure/cable{
@@ -101010,7 +101008,7 @@
 	id_tag = "right_propulsion_sensor";
 	output = 63
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/right)
 "lBl" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -101726,7 +101724,7 @@
 	name = "Left Emergency Tank";
 	frequency = 1441
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/left)
 "mOw" = (
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -102127,7 +102125,7 @@
 	id = "waste_in";
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/atmos)
 "nKn" = (
 /obj/machinery/atmospherics/binary/passive_gate{
@@ -103216,7 +103214,7 @@
 	id = "left_propulsion_in";
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/left)
 "pRq" = (
 /obj/structure/bed/chair/wood{
@@ -103418,7 +103416,7 @@
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/medical/chemistry)
 "qld" = (
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/left)
 "qlL" = (
 /obj/machinery/vending/sovietsoda,
@@ -103452,7 +103450,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/eris/maintenance/section1deck1central)
 "qnA" = (
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/right)
 "qnS" = (
 /obj/structure/closet/wall_mounted/firecloset{
@@ -104759,7 +104757,7 @@
 	frequency = 1441;
 	output = 63
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/atmos)
 "sMn" = (
 /obj/structure/table/rack/shelf,
@@ -105401,7 +105399,7 @@
 	id_tag = "right_propulsion_out";
 	frequency = 1441
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/right)
 "tKZ" = (
 /obj/machinery/sparker{
@@ -105644,7 +105642,7 @@
 	pump_direction = 0;
 	use_power = 1
 	},
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "uim" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -107140,8 +107138,7 @@
 	id = "toxins2_in";
 	use_power = 1
 	},
-/obj/machinery/shield_diffuser,
-/turf/simulated/floor/reinforced/airless,
+/turf/simulated/floor/reinforced/almost_airless,
 /area/eris/rnd/mixing)
 "wYo" = (
 /obj/structure/toilet{
