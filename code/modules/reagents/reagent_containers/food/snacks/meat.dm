@@ -40,7 +40,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/rawbacon
 	slices_num = 4 // Since 2u protein each
 
-/obj/item/reagent_containers/food/snacks/meat/roachmeat/
+/obj/item/reagent_containers/food/snacks/meat/roachmeat/ //Kampfer being "default" roachmeat caused recipe issues
 	name = "Roach meat"
 	desc = "A slab of sickly-green bubbling meat cut from an unnamed roach. You shouldn't be seeing this."
 	icon_state = "meat_xeno"
