@@ -136,7 +136,7 @@
 	update_icon()
 	update_underlays()
 
-/obj/machinery/atmospherics/unary/vent_pump/proc/can_pump()
+/obj/machinery/atmospherics/unary/vent_pump/proc/can_pump() //What would stop the pump from working
 	if(inoperable())
 		return 0
 	if(!use_power)
