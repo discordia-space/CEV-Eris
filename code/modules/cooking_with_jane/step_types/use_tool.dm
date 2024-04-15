@@ -3,7 +3,7 @@
 	class=CWJ_USE_ITEM
 	var/tool_type
 	var/tool_quality
-	var/inherited_quality_modifier = 0.1
+	var/inherited_quality_modifier = 1
 
 //item_type: The type path of the object we are looking for.
 //base_quality_award: The quality awarded by following this step.
@@ -42,5 +42,10 @@
 //Think about a way to make this more intuitive?
 /datum/cooking_with_jane/recipe_step/use_tool/calculate_quality(var/obj/added_item)
 	var/obj/item/tool/our_tool = added_item
-	var/raw_quality = (our_tool.get_tool_quality(tool_type) - tool_quality) * inherited_quality_modifier
+	var/raw_quality
+	if(usr.a_intent == I_HELP)
+		raw_quality = (our_tool.get_tool_quality(tool_type) - tool_quality) * inherited_quality_modifier
+	else
+		raw_quality = ((our_tool.get_tool_quality(tool_type) * -1) - tool_quality) * inherited_quality_modifier //Purposefully mucking up a recipe should invert the positive bonus into a negative
+		to_chat(usr, SPAN_NOTICE("You deliberately apply the [added_item] poorly, resulting in a worse dish."))
 	return clamp_quality(raw_quality)

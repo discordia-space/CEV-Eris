@@ -4,7 +4,7 @@
 	var/required_produce_type
 	var/base_potency
 	var/reagent_skip = FALSE
-	var/inherited_quality_modifier
+	var/inherited_quality_modifier = 1
 
 	var/list/exclude_reagents = list()
 

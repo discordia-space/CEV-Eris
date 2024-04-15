@@ -170,7 +170,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = "libertycap"
 
 /obj/item/seeds/chantermycelium
-	seed_type = "mushrooms"
+	seed_type = "mushroom"
 
 /obj/item/seeds/towermycelium
 	seed_type = "towercap"
