@@ -321,6 +321,17 @@
 					"organ" = "\ref[src]",
 					"step" = /datum/surgery_step/robotic/fix_bone
 				)))
+		else if(BP_IS_ASSISTED(src))
+			actions_list.Add(list(list(
+				"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
+				"organ" = "\ref[src]",
+				"step" = (parent.status & ORGAN_BROKEN) ? /datum/surgery_step/assisted/mend_bone : /datum/surgery_step/assisted/break_bone
+			)))
+			actions_list.Add(list(list(
+					"name" = "Replace",
+					"organ" = "\ref[src]",
+					"step" = /datum/surgery_step/assisted/replace_bone
+				)))
 		else
 			actions_list.Add(list(list(
 				"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
