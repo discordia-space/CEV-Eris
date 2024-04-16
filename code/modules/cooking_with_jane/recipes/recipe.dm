@@ -533,7 +533,7 @@
 	cooking_container = PAN
 	product_type = /obj/item/reagent_containers/food/snacks/rofflewaffles
 	step_builder = list(
-		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/rofflewaffles, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/waffles, qmod=0.5),
 		list(CWJ_ADD_REAGENT, "psilocybin", 5),
 		CWJ_BEGIN_EXCLUSIVE_OPTIONS,
 		list(CWJ_ADD_REAGENT_OPTIONAL, "pwine", 5, base=6, remain_percent=0.1, prod_desc="The fancy wine soaks up into the fluffy waffles."),

@@ -47,5 +47,5 @@
 		raw_quality = (our_tool.get_tool_quality(tool_type) - tool_quality) * inherited_quality_modifier
 	else
 		raw_quality = ((our_tool.get_tool_quality(tool_type) * -1) - tool_quality) * inherited_quality_modifier //Purposefully mucking up a recipe should invert the positive bonus into a negative
-		to_chat(usr, SPAN_NOTICE("You deliberately apply the [added_item] poorly, resulting in a worse dish."))
+		to_chat(usr, SPAN_NOTICE("You apply the [added_item] with ill intent, resulting in a worse dish."))
 	return clamp_quality(raw_quality)
