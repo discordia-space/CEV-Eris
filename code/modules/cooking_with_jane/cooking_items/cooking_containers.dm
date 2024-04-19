@@ -32,7 +32,7 @@
 	appearance_flags |= KEEP_TOGETHER
 
 
-/obj/item/reagent_containers/cooking_with_jane/cooking_container/examine(var/mob/user)
+/obj/item/reagent_containers/cooking_with_jane/cooking_container/examine(var/mob/user, extra_description = "")
 	if(!..(user, 1))
 		return FALSE
 	if(contents)
