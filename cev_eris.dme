@@ -2703,6 +2703,7 @@
 #include "code\modules\stashes\stash_types\valueables.dm"
 #include "code\modules\stashes\stash_types\weapons.dm"
 #include "code\modules\surgery\_defines.dm"
+#include "code\modules\surgery\assisted.dm"
 #include "code\modules\surgery\autodoc.dm"
 #include "code\modules\surgery\hardsuit.dm"
 #include "code\modules\surgery\internal.dm"
