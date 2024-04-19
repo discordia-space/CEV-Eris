@@ -8,7 +8,7 @@
 /turf/space,
 /area/space)
 "bq" = (
-/turf/simulated/mineral,
+/turf/mineral,
 /area/space)
 "ci" = (
 /obj/effect/shuttle_landmark/blacksite/small/nav1,

@@ -436,7 +436,7 @@
 				supplies["[i]"] = max(0,supplies["[i]"] + rand(-10,10))
 		if(ORION_TRAIL_COLLISION)
 			if(prob(90) && !supplies["2"])
-				var/turf/simulated/floor/F = src.loc
+				var/turf/floor/F = src.loc
 				F.ChangeTurf(/turf/space)
 				src.visible_message(SPAN_DANGER("Something slams into the floor around \the [src], exposing it to space!"), "You hear something crack and break.")
 			else

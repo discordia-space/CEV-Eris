@@ -1021,7 +1021,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/phaser/proc/is_can_jump_on(turf/target)
-	if(!target || target.density || istype(target, /turf/space) || istype(target, /turf/simulated/open))
+	if(!target || target.density || istype(target, /turf/space) || istype(target, /turf/open))
 		return FALSE
 
 	//to prevent reflection's stacking

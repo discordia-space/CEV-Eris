@@ -287,7 +287,7 @@ SUBSYSTEM_DEF(air)
 
 	map_init_levels = world.maxz // we simply set current max Z level (later on this value will be increased by maploading process).
 
-	for(var/turf/simulated/T in turfs_to_init)
+	for(var/turf/T in turfs_to_init)
 		T.update_air_properties()
 		CHECK_TICK
 
@@ -337,7 +337,7 @@ SUBSYSTEM_DEF(air)
 		return BLOCKED
 	return ablock | B.c_airblock(A)
 
-/datum/controller/subsystem/air/proc/has_valid_zone(turf/simulated/T)
+/datum/controller/subsystem/air/proc/has_valid_zone(turf/T)
 	#ifdef ZASDBG
 	ASSERT(istype(T))
 	#endif
@@ -360,7 +360,7 @@ SUBSYSTEM_DEF(air)
 		B.c_merge(A)
 		mark_zone_update(A)
 
-/datum/controller/subsystem/air/proc/connect(turf/simulated/A, turf/simulated/B)
+/datum/controller/subsystem/air/proc/connect(turf/A, turf/B)
 	#ifdef ZASDBG
 	ASSERT(istype(A))
 	ASSERT(isturf(B))
@@ -408,7 +408,7 @@ SUBSYSTEM_DEF(air)
 	if(direct)
 		c.mark_direct()
 
-/datum/controller/subsystem/air/proc/mark_for_update(turf/simulated/T)
+/datum/controller/subsystem/air/proc/mark_for_update(turf/T)
 	#ifdef ZASDBG
 	ASSERT(isturf(T))
 	#endif

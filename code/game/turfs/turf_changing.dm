@@ -9,9 +9,12 @@
 		qdel(L)
 
 //Creates a new turf
-/turf/proc/ChangeTurf(turf/N, tell_universe=1, force_lighting_update = 0)
+/turf/proc/ChangeTurf(turf/N, tell_universe = TRUE, force_lighting_update)
 	if (!N)
 		return
+
+	var/old_density = density
+	var/old_opacity = opacity
 
 	var/turf/T = null
 
@@ -19,10 +22,9 @@
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
 		if(istype(below) && (TURF_HAS_VALID_ZONE(below) || TURF_HAS_VALID_ZONE(src)))
-			N = /turf/simulated/open
+			N = /turf/open
 
 	var/obj/fire/old_fire = fire
-	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
 	var/list/old_affecting_lights = affecting_lights
 	var/old_lighting_overlay = lighting_overlay
@@ -31,21 +33,21 @@
 	if(connections)
 		connections.erase_all()
 
-	if(istype(src,/turf/simulated))
+	if(istype(src,/turf))
 		//Yeah, we're just going to rebuild the whole thing.
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.
-		var/turf/simulated/S = src
+		var/turf/S = src
 		if(S.zone)
 			S.zone.rebuild()
 
-	if(ispath(N, /turf/simulated/floor))
-		var/turf/simulated/W = new N(src)
+	if(ispath(N, /turf/floor))
+		var/turf/W = new N(src)
 		T = W
 		if(old_fire)
 			fire = old_fire
 
-		if (istype(W,/turf/simulated/floor))
+		if (istype(W,/turf/floor))
 			W.RemoveLattice()
 		/*
 		if(tell_universe)
@@ -73,7 +75,7 @@
 		if (istype(neighbour, /turf/space))
 			var/turf/space/SP = neighbour
 			SP.update_starlight()
-		if (istype(neighbour, /turf/simulated/))
+		if (istype(neighbour, /turf/))
 			neighbour.update_icon()
 	if (SSlighting && SSlighting.initialized)
 		lighting_overlay = old_lighting_overlay
@@ -87,6 +89,7 @@
 			else
 				lighting_clear_overlay()
 	T.update_openspace()
+	GLOB.turf_changed_event.raise_event(src, old_density, density, old_opacity, opacity)
 
 /turf/proc/transport_properties_from(turf/other)
 	if(!istype(other, src.type))
@@ -105,7 +108,7 @@
 	return 1
 
 //I would name this copy_from() but we remove the other turf from their air zone for some reason
-/turf/simulated/transport_properties_from(turf/simulated/other)
+/turf/transport_properties_from(turf/other)
 	if(!..())
 		return 0
 

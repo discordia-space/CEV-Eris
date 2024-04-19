@@ -12,7 +12,7 @@ var/global/dmm_suite/preloader/_preloader = null
  * WORKING :
  *
  * 1) Makes an associative mapping of model_keys with model
- *		e.g aa = /turf/unsimulated/wall{icon_state = "rock"}
+ *		e.g aa = /turf/wall/dummy{icon_state = "rock"}
  * 2) Read the map line by line, parsing the result (using parse_grid)
  *
  */
@@ -96,7 +96,7 @@ var/global/dmm_suite/preloader/_preloader = null
 
 /**
  * Fill a given tile with its area/turf/objects/mobs
- * Variable model is one full map line (e.g /turf/unsimulated/wall{icon_state = "rock"},/area/mine/explored)
+ * Variable model is one full map line (e.g /turf/wall/dummy{icon_state = "rock"},/area/mine/explored)
  *
  * WORKING :
  *
@@ -117,7 +117,7 @@ var/global/dmm_suite/preloader/_preloader = null
 		same construction as those contained in a .dmm file, and instantiates them.
 	*/
 
-	var/list/members = list()//will contain all members (paths) in model (in our example : /turf/unsimulated/wall and /area/mine/explored)
+	var/list/members = list()//will contain all members (paths) in model (in our example : /turf/wall/dummy and /area/mine/explored)
 	var/list/members_attributes = list()//will contain lists filled with corresponding variables, if any (in our example : list(icon_state = "rock") and list())
 
 
@@ -130,7 +130,7 @@ var/global/dmm_suite/preloader/_preloader = null
 	var/dpos
 
 	do
-		//finding next member (e.g /turf/unsimulated/wall{icon_state = "rock"} or /area/mine/explored)
+		//finding next member (e.g /turf/wall/dummy{icon_state = "rock"} or /area/mine/explored)
 		dpos= find_next_delimiter_position(model,old_position,",","{","}")//find next delimiter (comma here) that's not within {...}
 
 		var/full_def = copytext(model,old_position,dpos)//full definition, e.g : /obj/foo/bar{variables=derp}
@@ -302,13 +302,6 @@ var/global/dmm_suite/preloader/_preloader = null
 	if(underturf.opacity)
 		placed.set_opacity(TRUE)
 	placed.underlays += turfs_underlays
-
-//atom creation method that preloads variables at creation
-/atom/New()
-	if(_preloader && (src.type == _preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		_preloader.load(src)
-
-	. = ..()
 
 //////////////////
 //Preloader datum

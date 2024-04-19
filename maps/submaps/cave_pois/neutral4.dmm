@@ -1,40 +1,40 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "b" = (
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "d" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/asteroid/cave)
 "e" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "f" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "g" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "h" = (
 /obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "i" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "j" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "D" = (
 /obj/structure/lattice,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 
 (1,1,1) = {"

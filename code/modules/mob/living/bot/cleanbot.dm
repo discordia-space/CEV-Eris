@@ -82,8 +82,8 @@
 		visible_message("[src] makes an excited beeping booping sound!")
 
 	if(screwloose && prob(5)) // Make a mess
-		if(istype(loc, /turf/simulated))
-			var/turf/simulated/T = loc
+		if(istype(loc, /turf))
+			var/turf/T = loc
 			T.wet_floor()
 
 	if(oddbutton && prob(5)) // Make a big mess

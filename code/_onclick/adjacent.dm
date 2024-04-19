@@ -118,11 +118,11 @@ Quick adjacency (to turf):
 	return FALSE
 
 /obj/structure/window/is_block_dir(target_dir, border_only, atom/target)
-	if(!is_fulltile())
+	if(!is_fulltile)
 		var/obj/structure/window/W = target
 		if(istype(W))
 			//exception for breaking full tile windows on top of single pane windows
-			if(W.is_fulltile())
+			if(W.is_fulltile)
 				return FALSE
 	return ..()
 

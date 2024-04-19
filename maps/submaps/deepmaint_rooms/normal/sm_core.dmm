@@ -1,48 +1,48 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/deepmaint)
 "b" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/deepmaint)
 "c" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/deepmaint)
 "d" = (
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/deepmaint)
 "e" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "f" = (
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "g" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "h" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "i" = (
 /obj/machinery/deployable/barrier,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "j" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "k" = (
 /obj/structure/catwalk,
 /obj/structure/barricade,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "l" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/deepmaint)
 "m" = (
 /obj/effect/window_lwall_spawn/plasma,
@@ -53,28 +53,28 @@
 	name = "Reactor Core";
 	p_open = 0
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/deepmaint)
 "n" = (
 /obj/spawner/pack/rare,
-/turf/simulated/floor/reinforced{
+/turf/floor/reinforced{
 	name = "engine floor";
 	oxygen = 0
 	},
 /area/deepmaint)
 "o" = (
-/turf/simulated/floor/reinforced{
+/turf/floor/reinforced{
 	name = "engine floor";
 	oxygen = 0
 	},
 /area/deepmaint)
 "p" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/deepmaint)
 "q" = (
 /obj/machinery/power/supermatter/shard,
-/turf/simulated/floor/reinforced{
+/turf/floor/reinforced{
 	name = "engine floor";
 	oxygen = 0
 	},
@@ -88,19 +88,19 @@
 	name = "Reactor Core";
 	p_open = 0
 	},
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/deepmaint)
 "t" = (
 /obj/structure/barricade,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "u" = (
-/obj/structure/girder/displaced,
-/turf/simulated/floor/plating/under,
+/obj/structure/girder,
+/turf/floor/plating/under,
 /area/deepmaint)
 "v" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/deepmaint)
 
 (1,1,1) = {"

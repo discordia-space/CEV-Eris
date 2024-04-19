@@ -3,7 +3,7 @@
 	ret = 0; \
 	if (T.zone) { \
 		for (var/_gzn_dir in GLOB.gzn_check) { \
-			var/turf/simulated/other = get_step(T, _gzn_dir); \
+			var/turf/other = get_step(T, _gzn_dir); \
 			if (istype(other) && other.zone == T.zone) { \
 				var/block; \
 				ATMOS_CANPASS_TURF(block, other, T); \
@@ -15,13 +15,13 @@
 	}
 
 
-/turf/simulated/var/zone/zone
-/turf/simulated/var/open_directions
+/turf/var/zone/zone
+/turf/var/open_directions
 
 /turf/var/needs_air_update = 0
 /turf/var/datum/gas_mixture/air
 
-/turf/simulated/proc/update_graphic(list/graphic_add = null, list/graphic_remove = null)
+/turf/proc/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	if(graphic_add && graphic_add.len)
 		vis_contents += graphic_add
 	if(graphic_remove && graphic_remove.len)
@@ -56,9 +56,9 @@
 		if(r_block & AIR_BLOCKED)
 			continue
 
-		if(istype(unsim, /turf/simulated))
+		if(istype(unsim, /turf))
 
-			var/turf/simulated/sim = unsim
+			var/turf/sim = unsim
 			if(TURF_HAS_VALID_ZONE(sim))
 				SSair.connect(sim, src)
 
@@ -70,7 +70,7 @@
 
 // Ported from Bay , Optimized in part by Kappu and some other guys
 
-/turf/simulated/proc/can_safely_remove_from_zone()
+/turf/proc/can_safely_remove_from_zone()
 	if(!zone)
 		return TRUE
 
@@ -86,7 +86,7 @@
 		//for each pair of "adjacent" cardinals (e.g. NORTH and WEST, but not NORTH and SOUTH)
 		if((dir & check_dirs) == dir)
 			//check that they are connected by the corner turf
-			var/turf/simulated/T = get_step(src, dir)
+			var/turf/T = get_step(src, dir)
 			if (!istype(T))
 				. &= ~dir
 				continue
@@ -100,15 +100,15 @@
 	. = !.
 
 //helper for can_safely_remove_from_zone()
-/turf/simulated/proc/get_zone_neighbours(turf/simulated/T)
+/turf/proc/get_zone_neighbours(turf/T)
 	. = 0
 	if(istype(T) && T.zone)
 		for(var/dir in cardinal)
-			var/turf/simulated/other = get_step(T, dir)
+			var/turf/other = get_step(T, dir)
 			if(istype(other) && other.zone == T.zone && !(other.c_airblock(T) & AIR_BLOCKED) && get_dist(src, other) <= 1)
 				. |= dir
 
-/turf/simulated/update_air_properties()
+/turf/update_air_properties()
 
 	if(zone && zone.invalid)
 		c_copy_air()
@@ -167,8 +167,8 @@
 
 			//Check that our zone hasn't been cut off recently.
 			//This happens when windows move or are constructed. We need to rebuild.
-			if((previously_open & d) && istype(unsim, /turf/simulated))
-				var/turf/simulated/sim = unsim
+			if((previously_open & d) && istype(unsim, /turf))
+				var/turf/sim = unsim
 				if(zone && sim.zone == zone)
 					zone.rebuild()
 					return
@@ -177,9 +177,9 @@
 
 		open_directions |= d
 
-		if(istype(unsim, /turf/simulated))
+		if(istype(unsim, /turf))
 
-			var/turf/simulated/sim = unsim
+			var/turf/sim = unsim
 			sim.open_directions |= reverse_dir[d]
 
 			if(TURF_HAS_VALID_ZONE(sim))
@@ -278,11 +278,11 @@
 
 	return GM
 
-/turf/simulated/assume_air(datum/gas_mixture/giver)
+/turf/assume_air(datum/gas_mixture/giver)
 	var/datum/gas_mixture/my_air = return_air()
 	my_air.merge(giver)
 
-/turf/simulated/assume_gas(gasid, moles, temp = null)
+/turf/assume_gas(gasid, moles, temp = null)
 	var/datum/gas_mixture/my_air = return_air()
 
 	if(isnull(temp))
@@ -292,11 +292,11 @@
 
 	return 1
 
-/turf/simulated/remove_air(amount as num)
+/turf/remove_air(amount as num)
 	var/datum/gas_mixture/my_air = return_air()
 	return my_air.remove(amount)
 
-/turf/simulated/return_air()
+/turf/return_air()
 	if(zone)
 		if(!zone.invalid)
 			SSair.mark_zone_update(zone)
@@ -318,7 +318,7 @@
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 
-/turf/simulated/proc/c_copy_air()
+/turf/proc/c_copy_air()
 	if(!air) air = new/datum/gas_mixture
 	air.copy_from(zone.air)
 	air.group_multiplier = 1

@@ -408,21 +408,21 @@
 						drill_head.shatter()
 						drill_head = null
 						return
-					if(istype(target, /turf/simulated/wall))
-						var/turf/simulated/wall/W = target
-						if(max(W.material.hardness, W.reinf_material ? W.reinf_material.hardness : 0) > drill_head.material.hardness)
+					if(istype(target, /turf/wall))
+						var/turf/wall/W = target
+						if(W.hardness > drill_head.material.hardness)
 							to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head."))
 							return
 						target.explosion_act(100, null)
 						drill_head.durability -= 1
 						log_and_message_admins("used [src] on the wall [W].", user, owner.loc)
-					else if(istype(target, /turf/simulated/mineral))
-						for(var/turf/simulated/mineral/M in range(target,1))
+					else if(istype(target, /turf/mineral))
+						for(var/turf/mineral/M in range(target,1))
 							if(get_dir(owner,M)&owner.dir)
 								M.GetDrilled()
 								drill_head.durability -= 1
-					else if(istype(target, /turf/simulated/floor/asteroid))
-						for(var/turf/simulated/floor/asteroid/M in range(target,1))
+					else if(istype(target, /turf/floor/asteroid))
+						for(var/turf/floor/asteroid/M in range(target,1))
 							if(get_dir(owner,M)&owner.dir)
 								M.gets_dug()
 								drill_head.durability -= 0.1
@@ -975,7 +975,7 @@
 			if(!aboveSpace)
 				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
-			if(!istype(aboveSpace, /turf/simulated/open) || locate(/obj/structure/catwalk) in aboveSpace)
+			if(!istype(aboveSpace, /turf/open) || locate(/obj/structure/catwalk) in aboveSpace)
 				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
 				return
 			/// Then the one infront + above
@@ -984,7 +984,7 @@
 			if(!aboveSpace)
 				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
-			if(!istype(aboveSpace, /turf/simulated/open) || locate(/obj/structure/catwalk) in aboveSpace)
+			if(!istype(aboveSpace, /turf/open) || locate(/obj/structure/catwalk) in aboveSpace)
 				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
 				return
 			to_chat(user, SPAN_NOTICE("You start elevating \the [src] platform."))

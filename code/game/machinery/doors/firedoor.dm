@@ -75,7 +75,7 @@
 
 	to_chat(user, "<b> EMERGENCY SENSOR READINGS </b>")
 	for(var/possible_cardinal in cardinal)
-		var/turf/simulated/turf_sim = get_step(src, possible_cardinal)
+		var/turf/turf_sim = get_step(src, possible_cardinal)
 		var/text_to_say = "&nbsp;&nbsp" // Magic bullshit im not even gonna question from the old proc
 		text_to_say += "[uppertext(dir2text(possible_cardinal))] : "
 		if(!istype(turf_sim) || turf_sim.is_wall || !turf_sim.zone)

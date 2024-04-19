@@ -22,7 +22,7 @@
 		return
 
 	turfcount = 0
-	for (var/turf/simulated/S in area)
+	for (var/turf/S in area)
 		turfcount++
 
 	active_power_usage = 4000 + (turfcount * power_usage_per_tile)

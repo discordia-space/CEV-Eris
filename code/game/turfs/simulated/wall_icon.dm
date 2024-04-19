@@ -1,138 +1,89 @@
-//How wall icons work
-//1. A default sprite is specified in the wall's variables. This is quickly forgotten so ignore it
-//2. Sprites are chosen from wall_masks.dmi, based on the material of the wall. Seven sets of four small sprites are carefully picked from
-// to make the corners of each wall tile.
-//3. These are blended with the material's colour to create a wall image which bends and connects to other walls
+/proc/get_overlay_connection_type(overlay_direction, list/any_wall_connections)
+	var/horizontal_neighbour
+	var/vertical_neighbour
+	var/diagonal_neighbour
+	switch(overlay_direction)
+		if(SOUTH) // Bottom left corner
+			horizontal_neighbour = any_wall_connections[WEST]
+			vertical_neighbour = any_wall_connections[SOUTH]
+			diagonal_neighbour = any_wall_connections[SOUTHWEST]
+		if(NORTH) // Top left corner
+			horizontal_neighbour = any_wall_connections[WEST]
+			vertical_neighbour = any_wall_connections[NORTH]
+			diagonal_neighbour = any_wall_connections[NORTHWEST]
+		if(EAST) // Top right corner
+			horizontal_neighbour = any_wall_connections[EAST]
+			vertical_neighbour = any_wall_connections[NORTH]
+			diagonal_neighbour = any_wall_connections[NORTHEAST]
+		if(WEST) // Bottom right corner
+			horizontal_neighbour = any_wall_connections[EAST]
+			vertical_neighbour = any_wall_connections[SOUTH]
+			diagonal_neighbour = any_wall_connections[SOUTHEAST]
 
-//The logic for how connections work is mostly found in tables.dm, in the dirs_to_corner_states proc
-
-/turf/simulated/wall/proc/update_material(update = TRUE)
-	icon_base = ""
-	icon_base_reinf = ""
-	health = 0
-	maxHealth = 0
-
-	if(material)
-		//We'll set the icon bases to those of the materials
-		icon_base = material.icon_base
-		base_color = material.icon_colour
-		if(reinf_material)
-			icon_base_reinf = reinf_material.icon_reinf
-			reinf_color = reinf_material.icon_colour
-			construction_stage = 6
+	if(horizontal_neighbour)
+		if(vertical_neighbour)
+			. = diagonal_neighbour ? "full" : "corner"
 		else
-			construction_stage = null
-		if(!material)
-			material = get_material_by_name(MATERIAL_STEEL)
-		if(material)
-			hitsound = material.hitsound
-			health = material.integrity
-			maxHealth = material.integrity
-		if(reinf_material)
-			health += reinf_material.integrity
-			maxHealth += reinf_material.integrity
-			name = "reinforced [material.display_name] wall"
-			desc = "It seems to be a section of hull reinforced with [reinf_material.display_name] and plated with [material.display_name]."
-		else
-			name = "[material.display_name] wall"
-			desc = "It seems to be a section of hull plated with [material.display_name]."
-
-		if(material.opacity > 0.5 && !opacity)
-			set_light(1)
-		else if(material.opacity < 0.5 && opacity)
-			set_light(0)
-
-		//IF we have a radioactive material on our walls then we need to process
-		var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
-		if(total_radiation)
-			START_PROCESSING(SSturf, src) //Used for radiation.
-
-	//If we have overrides for icon bases, we set them here. even if we just set them from the material, those will be overridden
-	if (icon_base_override)
-		icon_base = icon_base_override
-
-	if (icon_base_reinf_override)
-		icon_base_reinf = icon_base_reinf_override
-
-	if (base_color_override)
-		base_color = base_color_override
-
-	if (reinf_color_override)
-		reinf_color = reinf_color_override
-
-	//Update will be false at roundstart
-	if (update)
-		update_connections(1)
-		update_icon()
+			. = "horizontal"
+	else
+		. = vertical_neighbour ? "vertical" : "unconnected"
 
 
-/turf/simulated/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial)
-	material = newmaterial
-	reinf_material = newrmaterial
-	update_material()
-
-/turf/simulated/wall/update_icon()
-	if(!icon_base)
+/turf/wall/update_icon()
+	if(flat_icon)
 		return
+	// We'll be using 4 overlays for each corner instead of an icon_state, which will be empty
+	// It is, however, set to a preview image initially, so mappers see a wall instead of a purple square
+	icon_state = ""
+	cut_overlays()
+	var/initial_icon_state = initial(icon_state)
+	for(var/overlay_direction in cardinal)
+		var/connection_type = get_overlay_connection_type(overlay_direction, any_wall_connections)
+		var/overlay_icon_state = "[initial_icon_state]_[connection_type]"
+		if((connection_type == "horizontal") && (initial_icon_state == "frontier_wall")) // Snowflake af
+			if((overlay_direction == SOUTH) && any_wall_connections[SOUTHWEST])
+				overlay_icon_state = "[initial_icon_state]_[connection_type]_right_angle"
+			if((overlay_direction == WEST) && any_wall_connections[SOUTHEAST])
+				overlay_icon_state = "[initial_icon_state]_[connection_type]_right_angle"
 
-	overlays.Cut()
-	var/image/I
-	for(var/i = 1 to 4)
-		I = image('icons/turf/wall_masks.dmi', "[icon_base][wall_connections[i]]", dir = GLOB.cardinal[i])
+		var/image/image = image(icon, icon_state = overlay_icon_state, dir = overlay_direction)
+		add_overlay(image.appearance)
 
-		I.color = base_color
-		overlays += I
+	var/static/list/damage_overlays
+	if(!damage_overlays)
+		damage_overlays = new
+		var/damage_overlay_count = 16
+		var/alpha_inc = 256 / damage_overlay_count
+		for(var/i = 0; i <= damage_overlay_count; i++)
+			var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
+			img.blend_mode = BLEND_MULTIPLY
+			img.alpha = (i * alpha_inc) - 1
+			damage_overlays.Add(img.appearance)
 
-	if(icon_base_reinf)
-		if(construction_stage != null && construction_stage < 6)
-			I = image('icons/turf/wall_masks.dmi', "reinf_construct-[construction_stage]")
-			I.color = reinf_color
-			overlays += I
+	var/overlay_index = round((1 - health/maxHealth) * LAZYLEN(damage_overlays)) + 1
+	if(overlay_index > LAZYLEN(damage_overlays))
+		overlay_index = LAZYLEN(damage_overlays)
+	overlays += damage_overlays[overlay_index]
+
+
+/turf/wall/proc/update_connections()
+	for(var/direction in alldirs)
+		var/turf/wall/wall = get_step(src, direction)
+		if(istype(wall))
+			any_wall_connections[direction] = TRUE
+			full_wall_connections[direction] = wall.is_low_wall ? FALSE : TRUE
+			// Update neighbour connections as well
+			wall.any_wall_connections[turn(direction, 180)] = TRUE
+			wall.full_wall_connections[turn(direction, 180)] = is_low_wall ? FALSE : TRUE
+			wall.update_icon()
 		else
-			if("[icon_base_reinf]0" in icon_states('icons/turf/wall_masks.dmi'))
-				// Directional icon
-				for(var/i = 1 to 4)
-					I = image('icons/turf/wall_masks.dmi', "[icon_base_reinf][wall_connections[i]]", dir = 1<<(i-1))
-					I.color = reinf_color
-					overlays += I
-			else
-				I = image('icons/turf/wall_masks.dmi', icon_base_reinf)
-				I.color = reinf_color
-				overlays += I
+			any_wall_connections[direction] = FALSE
+			full_wall_connections[direction] = FALSE
 
-	var/overlay = round((1 - health/maxHealth) * damage_overlays.len) + 1
-	if(overlay > damage_overlays.len)
-		overlay = damage_overlays.len
-
-	overlays += damage_overlays[overlay]
-
-
-/turf/simulated/wall/proc/update_connections(propagate = 0)
-	if(!material)
-		return
-	var/list/dirs = list()
-	for(var/turf/simulated/wall/W in RANGE_TURFS(1, src) - src)
-		if(!W.material)
-			continue
-		if(propagate)
-			W.update_connections()
-			W.update_icon()
-		if(can_join_with(W))
-			dirs += get_dir(src, W)
-
-	for(var/obj/structure/low_wall/T in orange(src, 1))
-		if (!T.connected)
-			continue
-
-		var/T_dir = get_dir(src, T)
-		dirs |= T_dir
-		if(propagate)
-			T.update_connections()
-			T.update_icon()
-
-	wall_connections = dirs_to_corner_states(dirs)
-
-/turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
-	if(material && W.material && material.icon_base == W.material.icon_base)
-		return TRUE
-	return FALSE
+/turf/wall/proc/remove_neighbour_connections()
+	for(var/direction in alldirs)
+		if(any_wall_connections[direction])
+			var/turf/wall/wall = get_step(src, direction)
+			wall.any_wall_connections[turn(direction, 180)] = FALSE
+			wall.full_wall_connections[turn(direction, 180)] = FALSE
+			wall.update_icon()

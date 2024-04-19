@@ -8,15 +8,6 @@
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	related_stats = list(STAT_MEC)
 
-/datum/craft_recipe/wall_girders/low
-	name = "low wall girder"
-	result = /obj/structure/girder/low
-	time = WORKTIME_FAST
-	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL)
-	)
-	related_stats = list(STAT_MEC)
-
 /datum/craft_recipe/kitchen_spike
 	name = "Meat spike"
 	result = /obj/structure/kitchenspike

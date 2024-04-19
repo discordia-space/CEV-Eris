@@ -1,8 +1,8 @@
 //Only humans make footstep sounds
-/mob/proc/handle_footstep(var/turf/simulated/T)
+/mob/proc/handle_footstep(var/turf/T)
 	return
 
-/mob/living/carbon/human/handle_footstep(var/turf/simulated/T)
+/mob/living/carbon/human/handle_footstep(var/turf/T)
 	if(!istype(T))
 		return
 
@@ -37,6 +37,3 @@
 			range -= 0.333
 
 		mob_playsound(T, footsound, volume, 1, range)
-
-/proc/get_footstep(var/footstep_type, var/mob/caller)
-	return //todo

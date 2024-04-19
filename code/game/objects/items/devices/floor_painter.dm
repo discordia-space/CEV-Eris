@@ -46,7 +46,7 @@
 	if(!proximity)
 		return
 
-	var/turf/simulated/floor/F = A
+	var/turf/floor/F = A
 	if(!istype(F))
 		to_chat(user, SPAN_WARNING("\The [src] can only be used on ship flooring."))
 		return

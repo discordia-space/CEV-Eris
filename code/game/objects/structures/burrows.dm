@@ -69,7 +69,7 @@
 		offset_to(anchor, 8)
 
 	//Hide burrows under floors
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if (istype(F))
 		F.levelupdate()
 
@@ -310,7 +310,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		//Do a shake animation each second that gets more intense the closer we are to emergence
 		// We shake florring only if burrow is still a cracks
 		if (!isRevealed)
-			var/turf/simulated/floor/F = loc
+			var/turf/floor/F = loc
 			if (istype(F) && F.flooring)
 				//This should never be false
 				if (prob(25)) //Occasional impact sound of something trying to force its way through
@@ -342,7 +342,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		audio("crumble", 120) //And a loud sound as mobs emerge
 		//Next get a list of floors to move them to
 		var/list/floors = list()
-		for (var/turf/simulated/floor/F in dview(2, loc))
+		for (var/turf/floor/F in dview(2, loc))
 			if (F.is_wall)
 				continue
 
@@ -448,7 +448,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		icon_state = "hole"
 		name = "burrow"
 		desc = "Some sort of hole that leads inside a wall. It's full of hardened resin and secretions. Collapsing this would require some heavy digging tools"
-		var/turf/simulated/floor/F = loc
+		var/turf/floor/F = loc
 		if (istype(F) && F.flooring)
 			//This should never be false
 			//Play a sound
@@ -460,7 +460,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	if(!isRevealed)
 		isRevealed = TRUE
 		level = ABOVE_PLATING_LEVEL
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if (istype(F))
 		F.levelupdate()
 
@@ -581,7 +581,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		return FALSE
 
 	var/list/floors = list()
-	for (var/turf/simulated/floor/F in dview(spread, T))
+	for (var/turf/floor/F in dview(spread, T))
 		if (F.is_wall)
 			continue
 		if (locate(/obj/effect/decal/cleanable/rubble) in F)

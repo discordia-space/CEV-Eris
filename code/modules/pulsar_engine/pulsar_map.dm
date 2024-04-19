@@ -9,10 +9,10 @@
 /area/pulsar
 	name = "Pulsar Map"
 	icon_state = "grid"
-	requires_power = 0
-	base_turf = /turf/unsimulated/map/pulsar
+	requires_power = FALSE
+	base_turf = /turf/map/pulsar
 
-/turf/unsimulated/map/pulsar/New()
+/turf/map/pulsar/New()
 	..()
 	name = "Deep Space"
 
@@ -49,7 +49,7 @@
 	addtimer(CALLBACK(src, .proc/decay_orbit), decay_timer)
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
 	name = pick(list("Dutchman", "Celeste", "Barnham's Pride", "Horseman", "Christian", "Hera's Dream", "Manatee", "Antelope"))
-	
+
 /obj/effect/pulsar_ship/Destroy()
 	. = ..()
 	qdel(radio)
@@ -108,11 +108,11 @@
 		if(!overcharge_timer_id)
 			radio.autosay("WARNING: pulsar overcharge imminent! ETA: 3 minutes!", "Pulsar Monitor", "Engineering", TRUE)
 			overcharge_timer_id = addtimer(CALLBACK(src, .proc/overcharge), 3 MINUTES, TIMER_STOPPABLE)
-	else 
+	else
 		if(overcharge_timer_id)
 			deltimer(overcharge_timer_id)
 			radio.autosay("Pulsar overcharge avoided.", "Pulsar Monitor", "Engineering", TRUE)
-			overcharge_timer_id = null	
+			overcharge_timer_id = null
 		if(overcharge)
 			overcharge.endWhen = 1
 			overcharge = null

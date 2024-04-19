@@ -21,7 +21,7 @@
 #define SOUTHDOWN (SOUTH|DOWN)
 #define WESTDOWN (WEST|DOWN)
 
-#define TURF_HAS_VALID_ZONE(T) (istype(T, /turf/simulated) && T:zone && !T:zone:invalid)
+#define TURF_HAS_VALID_ZONE(T) (istype(T, /turf) && T:zone && !T:zone:invalid)
 
 #ifdef MULTIZAS
 
@@ -60,10 +60,10 @@ GLOBAL_LIST_INIT(csrfz_check, list(
 	} \
 	else if (B.z != A.z) { \
 		if (B.z < A.z) { \
-			ret = istype(A, /turf/simulated/open) ? ZONE_BLOCKED : BLOCKED; \
+			ret = istype(A, /turf/open) ? ZONE_BLOCKED : BLOCKED; \
 		} \
 		else { \
-			ret = istype(B, /turf/simulated/open) ? ZONE_BLOCKED : BLOCKED; \
+			ret = istype(B, /turf/open) ? ZONE_BLOCKED : BLOCKED; \
 		} \
 	} \
 	else if (A.blocks_air & ZONE_BLOCKED || B.blocks_air & ZONE_BLOCKED) { \

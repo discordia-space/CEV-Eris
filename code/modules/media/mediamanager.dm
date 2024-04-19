@@ -94,16 +94,6 @@
 	return
 
 //
-// ### Define media source to areas ###
-// Each area may have at most one media source that plays songs into that area.
-// We keep track of that source so any mob entering the area can lookup what to play.
-//
-/area
-	// For now, only one media source per area allowed
-	// Possible Future: turn into a list, then only play the first one that's playing.
-	var/obj/machinery/media/media_source = null
-
-//
 // ### Media Manager Datum
 //
 

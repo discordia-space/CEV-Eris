@@ -41,9 +41,9 @@
 		return 1 //exosuits have their own penetration handling
 
 	var/blocked_damage = 0
-	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
-		var/turf/simulated/wall/W = A
-		blocked_damage = round(W.material.integrity / 8)
+	if(istype(A, /turf/wall)) // TODO: refactor this from functional into OOP
+		var/turf/wall/W = A
+		blocked_damage = round(W.maxHealth / 8)
 	else if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
 		blocked_damage = round(S.shield_integrity / 8)
@@ -53,8 +53,6 @@
 		if(D.glass) blocked_damage /= 2
 	else if(istype(A, /obj/structure/girder))
 		return TRUE
-	else if(istype(A, /obj/structure/low_wall))
-		blocked_damage = 20 // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
 		blocked_damage = round(T.maxHealth / 8)
@@ -92,7 +90,7 @@
 	matter = list(MATERIAL_STEEL = 0.4)
 
 /obj/item/projectile/bullet/pellet/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
-	for(var/entry in matter) // this allows for the projectile in the casing having the correct matter 
+	for(var/entry in matter) // this allows for the projectile in the casing having the correct matter
 		matter[entry] /= pellets // yet disallows for pellet shrapnel created on impact multiplying the matter count
 	. = ..()
 

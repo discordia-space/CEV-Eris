@@ -107,7 +107,7 @@ ADMIN_VERB_ADD(/client/proc/kill_airgroup, R_DEBUG, FALSE)
 		return
 
 	var/turf/T = get_turf(usr)
-	if(istype(T, /turf/simulated))
+	if(istype(T, /turf))
 		var/datum/air_group/AG = T:parent
 		AG.next_check = 30
 		AG.group_processing = 0

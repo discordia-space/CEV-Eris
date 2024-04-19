@@ -16,7 +16,7 @@
 	var/environment_smash = 1
 
 /mob/living/bot/miningonestar/UnarmedAttack(var/atom/A, var/proximity)
-	if(istype(A, /turf/simulated/floor/asteroid))
+	if(istype(A, /turf/floor/asteroid))
 		sleep(rand(10,20))
 		A:gets_dug()
 
@@ -83,7 +83,7 @@
 	weakened = 0
 	stunned = 0
 	paralysis = 0
-	for(var/turf/simulated/floor/asteroid/AST in view(3, src))
+	for(var/turf/floor/asteroid/AST in view(3, src))
 		if(get_dist(src, AST) >= 1)
 			UnarmedAttack(AST)
 		else

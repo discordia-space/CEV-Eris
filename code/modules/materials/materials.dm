@@ -5,7 +5,7 @@
 	self-explanatory but the various object types may have their own documentation. ~Z
 
 	PATHS THAT USE DATUMS
-		turf/simulated/wall
+		turf/wall
 		obj/item/material
 		obj/structure/barricade
 		obj/item/stack/material
@@ -142,8 +142,6 @@ var/list/name_to_material
 	var/hitsound = 'sound/weapons/genhit.ogg'
 	// Path to resulting stacktype. Todo remove need for this.
 	var/stack_type
-	// Wallrot crumble message.
-	var/rotting_touch_message = "crumbles under your touch"
 
 // Placeholders for light tiles and rglass.
 /material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
@@ -202,28 +200,10 @@ var/list/name_to_material
 		temp_matter[name] = 1
 	return temp_matter
 
-// As above.
-/material/proc/get_edge_damage()
-	return hardness //todo
-
-// Snowflakey, only checked for alien doors at the moment.
-/material/proc/can_open_material_door(var/mob/living/user)
-	return 1
-
 // Currently used for weapons and objects made of uranium to irradiate things.
 /material/proc/products_need_process()
 	return (radioactivity>0) //todo
 
-// Used by walls when qdel()ing to avoid neighbor merging.
-/material/placeholder
-	name = "placeholder"
-
-// Places a girder object when a wall is dismantled, also applies reinforced material.
-/material/proc/place_dismantled_girder(target, material/reinf_material)
-	var/obj/structure/girder/G = new(target)
-	if(reinf_material)
-		G.reinf_material = reinf_material
-		G.reinforce_girder()
 
 // Use this to drop a given amount of material.
 /material/proc/place_material(target, amount=1, mob/living/user = null)
@@ -381,7 +361,7 @@ var/list/name_to_material
 	if(temperature < ignition_point)
 		return 0
 	var/totalPlasma = 0
-	for(var/turf/simulated/floor/target_tile in RANGE_TURFS(2, T))
+	for(var/turf/floor/target_tile in RANGE_TURFS(2, T))
 		var/plasmaToDeduce = (temperature/30) * effect_multiplier
 		totalPlasma += plasmaToDeduce
 		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
@@ -585,22 +565,18 @@ var/list/name_to_material
 		build_dir = SOUTHWEST
 		//We're attempting to build a full window.
 		//We need to find a suitable low wall to build ontop of
-		var/obj/structure/low_wall/mount = null
+		var/turf/wall/low/mount = get_step(T, user.dir)
 		//We will check the tile infront of the user
-		var/turf/t = get_step(T, user.dir)
-		mount = locate(/obj/structure/low_wall) in t
-
-
-		if (!mount)
+		if(!istype(mount))
 			to_chat(user, SPAN_WARNING("Full windows must be mounted on a low wall infront of you."))
 			return 1
 
-		if (locate(/obj/structure/window) in t)
+		if (locate(/obj/structure/window) in mount)
 			to_chat(user, SPAN_WARNING("The target tile must be clear of other windows"))
 			return 1
 
 		//building will be successful, lets set the build location
-		T = t
+		T = mount
 
 	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]

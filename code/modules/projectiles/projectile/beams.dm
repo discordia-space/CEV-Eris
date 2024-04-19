@@ -47,8 +47,8 @@
 	impact_type = /obj/effect/projectile/laser/plasmacutter/impact
 
 /obj/item/projectile/beam/cutter/on_impact(var/atom/A)
-	if(istype(A, /turf/simulated/mineral))
-		var/turf/simulated/mineral/M = A
+	if(istype(A, /turf/mineral))
+		var/turf/mineral/M = A
 		M.GetDrilled(5)
 	.=..()
 
@@ -56,7 +56,7 @@
 	. = ..()
 	if(.)
 		return .
-	if(istype(A, /turf/simulated/mineral) && rocks_pierced < pierce_max)
+	if(istype(A, /turf/mineral) && rocks_pierced < pierce_max)
 		on_impact(A)
 		rocks_pierced++
 		return TRUE

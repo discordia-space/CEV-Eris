@@ -298,10 +298,12 @@
 //Changes by Nanako, 14th october 2018
 //Blob now deals vastly reduced damage to walls and windows, but vastly increased damage to doors
 /obj/effect/blob/proc/expand(var/turf/T)
-	if(istype(T, /turf/unsimulated/) || istype(T, /turf/space) || (istype(T, /turf/simulated/mineral) && T.density))
+	if(!T.is_simulated)
 		return
-	if(istype(T, /turf/simulated/wall))
-		var/turf/simulated/wall/SW = T
+	if(istype(T, /turf/space) || (istype(T, /turf/mineral) && T.density))
+		return
+	if(istype(T, /turf/wall))
+		var/turf/wall/SW = T
 		SW.take_damage(rand(0,3))
 		return
 	var/obj/structure/girder/G = locate() in T

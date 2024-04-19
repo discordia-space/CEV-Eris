@@ -92,7 +92,7 @@
 	return
 
 /mob/living/carbon/human/RangedAttack(var/atom/A)
-	if((istype(A, /turf/simulated/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
+	if((istype(A, /turf/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
 		var/turf/T = get_turf(A)
 		if(T.Adjacent(shadow))
 			for(var/obj/structure/S in shadow.loc)

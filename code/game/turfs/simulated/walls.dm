@@ -1,123 +1,64 @@
-/turf/simulated/wall
+/turf/wall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	description_info = "Can be deconstructed by welding"
 	description_antag = "Deconstructing these will leave fingerprints. C4 or Thermite leave none"
-	icon = 'icons/turf/wall_masks.dmi'
-	icon_state = "generic"
+	icon = 'icons/test_walls_best_walls.dmi'
+	icon_state = "frontier_wall" // eris_wall
 	layer = CLOSED_TURF_LAYER
-	opacity = 1
+	opacity = TRUE
 	density = TRUE
-	blocks_air = 1
+	blocks_air = TRUE
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
-
-	var/ricochet_id = 0
-	var/health = 0
-	var/maxHealth = 0
-	var/damage_overlay = 0
-	var/active
-	var/can_open = 0
-	var/material/material
-	var/material/reinf_material
-	var/last_state
-	var/construction_stage
-	var/hitsound = 'sound/weapons/Genhit.ogg'
-	var/list/wall_connections = list("0", "0", "0", "0")
-
-	/*
-		If set, these vars will be used instead of the icon base taken from the material.
-		These should be set at authortime
-		Currently, they can only be set at authortime, on specially coded wall variants
-
-		In future we should add some way to create walls of specific styles. Possibly during the construction process
-	*/
-	var/icon_base_override = ""
-	var/icon_base_reinf_override = ""
-	var/base_color_override = ""
-	var/reinf_color_override = ""
-
-	//These will be set from the set_material function. It just caches which base we're going to use, to simplify icon updating logic.
-	//These should not be set at compiletime, they will be overwritten
-	var/icon_base = ""
-	var/icon_base_reinf = ""
-	var/base_color = ""
-	var/reinf_color = ""
-
-	var/static/list/damage_overlays
 	is_wall = TRUE
+	var/ricochet_id = 0
+	var/health = 150
+	var/maxHealth = 150
+	var/hardness = 60
+	var/hitsound = 'sound/weapons/Genhit.ogg'
+	var/any_wall_connections[10] // 8 total directions, 10 is maximum value, 7 and 3 aren't used
+	var/full_wall_connections[10]
+	var/flat_icon = FALSE
+	var/is_low_wall = FALSE
 
-// Walls always hide the stuff below them.
-/turf/simulated/wall/levelupdate()
-	for(var/obj/O in src)
-		O.hide(TRUE)
-		SEND_SIGNAL_OLD(O, COMSIG_TURF_LEVELUPDATE, TRUE)
-
-/turf/simulated/wall/New(newloc, materialtype, rmaterialtype)
-	if (!damage_overlays)
-		damage_overlays = new
-
-		var/overlayCount = 16
-		var/alpha_inc = 256 / overlayCount
-
-		for(var/i = 0; i <= overlayCount; i++)
-			var/image/img = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
-			img.blend_mode = BLEND_MULTIPLY
-			img.alpha = (i * alpha_inc) - 1
-			damage_overlays.Add(img)
-
-
-	icon_state = "blank"
-	if(!materialtype)
-		materialtype = MATERIAL_STEEL
-	material = get_material_by_name(materialtype)
-	if(!isnull(rmaterialtype))
-		reinf_material = get_material_by_name(rmaterialtype)
-	update_material(FALSE) //We call update material with update set to false, so it won't update connections or icon yet
-	..(newloc)
-
-
-/turf/simulated/wall/Initialize(mapload)
+/turf/wall/Initialize(mapload, ...)
 	..()
-
-	if (mapload)
-		//We defer icon updates to late initialize at roundstart
+	if(mapload) // We defer icon updates to late initialize at roundstart
 		return INITIALIZE_HINT_LATELOAD
-
-	else
-		//If we get here, this wall was built during the round
-		//We'll update its connections and icons as normal
-		update_connections(TRUE)
-		update_icon()
-
-
-/turf/simulated/wall/LateInitialize()
-	//If we get here, this wall was mapped in at roundstart
-	update_connections(FALSE)
-	/*We set propagate to false when updating connections at roundstart
-	This ensures that each wall will only update itself, once.
-	*/
-
+	update_connections()
 	update_icon()
 
+/turf/wall/LateInitialize()
+	update_connections()
+	update_icon()
 
-/turf/simulated/wall/Destroy()
-	STOP_PROCESSING(SSturf, src)
-	dismantle_wall(null,null,1)
+/turf/wall/Destroy()
+	remove_neighbour_connections()
+	ChangeTurf(/turf/floor/plating)
 	. = ..()
 
-/turf/simulated/wall/Process(wait, times_fired)
-	// Calling parent will kill processing
-	var/how_often = max(round(2 SECONDS / wait), 1)
-	if(times_fired % how_often)
-		return //We only work about every 2 seconds
-	if(!radiate())
-		return PROCESS_KILL
+/turf/wall/proc/dismantle_wall(mob/user)
+	playsound(src, 'sound/items/Welder.ogg', 100, 1)
+	drop_materials(drop_location(), user)
+	for(var/obj/O in contents) //Eject contents!
+		if(istype(O,/obj/item/contraband/poster))
+			var/obj/item/contraband/poster/P = O
+			P.roll_and_drop(src)
+		else
+			O.loc = src
+
+/turf/wall/get_matter()
+	return list(MATERIAL_STEEL = 10)
+
+/turf/wall/levelupdate()
+	for(var/obj/O in src)
+		O.hide(TRUE) // Walls always hide the stuff below them
+		SEND_SIGNAL_OLD(O, COMSIG_TURF_LEVELUPDATE, TRUE)
 
 // Extracts angle's tan if ischance = TRUE.
 // In other case it just makes bullets and lazorz go where they're supposed to.
-
-/turf/simulated/wall/proc/projectile_reflection(obj/item/projectile/Proj, var/ischance = FALSE)
+/turf/wall/proc/projectile_reflection(obj/item/projectile/Proj, ischance = FALSE)
 	if(Proj.starting)
 		var/ricochet_temp_id = rand(1,1000)
 		if(!ischance)
@@ -156,7 +97,7 @@
 		var/wallsouth = 0
 		var/walleast = 0
 		var/wallwest = 0
-		for (var/turf/simulated/wall/W in range(2, curloc))
+		for (var/turf/wall/W in range(2, curloc))
 			var/turf/tempwall = get_turf(W)
 			if (tempwall.x == curloc.x)
 				if (tempwall.y == (curloc.y - 1))
@@ -204,23 +145,18 @@
 		return
 
 
-/turf/simulated/wall/bullet_act(var/obj/item/projectile/Proj)
-
-	if(src.ricochet_id != 0)
-		if(src.ricochet_id == Proj.ricochet_id)
-			src.ricochet_id = 0
+/turf/wall/bullet_act(obj/item/projectile/Proj)
+	if(ricochet_id != 0)
+		if(ricochet_id == Proj.ricochet_id)
+			ricochet_id = 0
 			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE
-		src.ricochet_id = 0
+		ricochet_id = 0
 	var/proj_health = Proj.get_structure_damage()
-	if(istype(Proj,/obj/item/projectile/beam))
-		burn(500)//TODO : fucking write these two procs not only for plasma (see plasma in materials.dm:283) ~
-	else if(istype(Proj,/obj/item/projectile/ion))
-		burn(500)
 
 	Proj.on_hit(src)
 
-	if(Proj.can_ricochet && proj_health != 0 && (src.x != Proj.starting.x) && (src.y != Proj.starting.y))
+	if(Proj.can_ricochet && proj_health != 0 && (x != Proj.starting.x) && (y != Proj.starting.y))
 		var/ricochetchance = 1
 		if(proj_health <= 60)
 			ricochetchance = 2 + round((60 - proj_health) / 5)
@@ -256,41 +192,39 @@
 
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
+/* TODO: Let's not chip off material for now, this could be a separate proc --KIROV
 	if(Proj.damage_types[BRUTE] && prob(health / maxHealth * 33))
 		var/obj/item/trash/material/metal/slug = new(get_turf(Proj))
 		slug.matter.Cut()
 		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
 		slug.throw_at(get_turf(Proj), 0, 1)
-
+*/
 	take_damage(health_taken)
 
-/turf/simulated/wall/hitby(AM as mob|obj, var/speed=THROWFORCE_SPEED_DIVISOR)
-	..()
+
+/turf/wall/hitby(atom/movable/AM, speed = THROWFORCE_SPEED_DIVISOR)
+	if(density)
+		AM.throwing = FALSE
 	if(ismob(AM))
 		return
-
 	var/tforce = AM:throwforce * (speed/THROWFORCE_SPEED_DIVISOR)
-	if (tforce < 15)
+	if(tforce < 15)
 		return
-
 	take_damage(tforce)
 
 
-/turf/simulated/wall/proc/clear_plants()
+/turf/wall/ChangeTurf(turf/N, tell_universe = TRUE, force_lighting_update)
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
 	for(var/obj/effect/plant/plant in range(src, 1))
 		if(plant.wall_mount == src) //shrooms drop to the floor
 			qdel(plant)
 		plant.update_neighbors()
-
-/turf/simulated/wall/ChangeTurf(var/newtype)
-	clear_plants()
 	clear_bulletholes()
-	..(newtype)
+	..()
 
-//Appearance
-/turf/simulated/wall/examine(mob/user)
+
+/turf/wall/examine(mob/user)
 	. = ..(user)
 
 	if(health == maxHealth)
@@ -307,24 +241,17 @@
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		to_chat(user, SPAN_WARNING("There is fungus growing on [src]."))
 
-//health
 
-/turf/simulated/wall/melt()
-
-	if(!can_melt())
-		return
-
-	src.ChangeTurf(/turf/simulated/floor/plating)
-
-	var/turf/simulated/floor/F = src
+/turf/wall/melt()
+	ChangeTurf(/turf/floor/plating)
+	var/turf/floor/F = src
 	if(!F)
 		return
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
 	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!")) //!!OH SHIT!!
-	return
 
-/turf/simulated/wall/take_damage(damage)
+/turf/wall/take_damage(damage)
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		damage *= 10
 	. = min(health, damage)
@@ -332,7 +259,7 @@
 	if(health <= 0)
 		var/leftover = abs(health)
 		if (leftover > 150)
-			dismantle_wall(no_product = TRUE)
+			dismantle_wall()
 		else
 			dismantle_wall()
 		// because we can do changeTurf and lose the var
@@ -340,56 +267,19 @@
 	update_icon()
 	return
 
-/turf/simulated/wall/explosion_act(target_power, explosion_handler/handler)
+/turf/wall/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
 	// All health has been blocked
 	if(absorbed == target_power)
 		return target_power
 	return absorbed + ..(target_power - absorbed)
 
-/turf/simulated/wall/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)//Doesn't fucking work because walls don't interact with air :(
-	burn(exposed_temperature)
+/turf/wall/adjacent_fire_act(turf/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+	var/melting_point = (hardness > 100) ? 6000 : 1800
+	if(adj_temp > melting_point)
+		take_damage(log(RAND_DECIMAL(0.9, 1.1) * (adj_temp - melting_point)))
 
-/turf/simulated/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
-	burn(adj_temp)
-	if(adj_temp > material.melting_point)
-		take_damage(log(RAND_DECIMAL(0.9, 1.1) * (adj_temp - material.melting_point)))
-
-	return ..()
-
-/turf/simulated/wall/proc/dismantle_wall(devastated, explode, no_product, mob/user)
-	playsound(src, 'sound/items/Welder.ogg', 100, 1)
-	if(!no_product)
-		if(reinf_material)
-			reinf_material.place_dismantled_girder(src, reinf_material)
-		else
-			material.place_dismantled_girder(src)
-		var/obj/sheets = material.place_sheet(src, amount=3)
-		sheets.add_fingerprint(user)
-
-	for(var/obj/O in src.contents) //Eject contents!
-		if(istype(O,/obj/item/contraband/poster))
-			var/obj/item/contraband/poster/P = O
-			P.roll_and_drop(src)
-		else
-			O.loc = src
-
-	clear_plants()
-	clear_bulletholes()
-	material = get_material_by_name("placeholder")
-	reinf_material = null
-	update_connections(1)
-
-	ChangeTurf(/turf/simulated/floor/plating)
-
-/turf/simulated/wall/proc/can_melt()
-	if(material.flags & MATERIAL_UNMELTABLE)
-		return 0
-	return 1
-
-/turf/simulated/wall/proc/thermitemelt(mob/user)
-	if(!can_melt())
-		return
+/turf/wall/proc/thermitemelt(mob/user) // TODO: Refactor this --KIROV
 	var/obj/effect/overlay/O = new/obj/effect/overlay(src)
 	O.name = "Thermite"
 	O.desc = "Looks hot."
@@ -398,12 +288,12 @@
 	O.anchored = TRUE
 	O.density = TRUE
 	O.layer = 5
-	
-	thermite = FALSE
-	take_damage((material.integrity*2.5) / material.heat_resistance) // thermite overkills steel immediately but not plasteel
 
-	if(istype(src, /turf/simulated/floor))
-		var/turf/simulated/floor/F = src
+	thermite = FALSE
+	take_damage(maxHealth / ((hardness > 100) ? 2 : 1)) // thermite overkills steel immediately but not plasteel
+
+	if(istype(src, /turf/floor))
+		var/turf/floor/F = src
 		F.burn_tile()
 		F.icon_state = "wall_thermite"
 		to_chat(user, SPAN_WARNING("The thermite starts melting the wall away."))
@@ -414,24 +304,3 @@
 	spawn(10 SECONDS)
 		if(O)
 			qdel(O)
-//	F.sd_LumReset()		//TODO: ~Carn
-	return
-
-/turf/simulated/wall/proc/radiate()
-	var/total_radiation = material.radioactivity + (reinf_material ? reinf_material.radioactivity / 2 : 0)
-	if(!total_radiation)
-		return
-
-	for(var/mob/living/L in range(3,src))
-		L.apply_effect(total_radiation, IRRADIATE,0)
-	return total_radiation
-
-/turf/simulated/wall/proc/burn(temperature)
-	if(material.combustion_effect(src, temperature, 0.7))//it wont return something in any way, this proc is commented and it belongs to plasma material.(see materials.dm:283)
-		spawn(2)
-			new /obj/structure/girder(src)
-			src.ChangeTurf(/turf/simulated/floor)
-			for(var/turf/simulated/wall/W in RANGE_TURFS(3, src) - src)
-				W.burn((temperature/4))
-			for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
-				D.ignite(temperature/4)

@@ -26,7 +26,7 @@
 		//We will give each turf a score to determine its suitability
 		var/best_score = -INFINITY
 		for (var/obj/structure/cable/C in range(3, loc))
-			var/turf/simulated/floor/T = get_turf(C)
+			var/turf/floor/T = get_turf(C)
 
 			//Wire inside a wall? can't splice there
 			if (!istype(T))

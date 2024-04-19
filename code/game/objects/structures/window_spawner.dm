@@ -10,12 +10,12 @@
 	density = TRUE
 	anchored = TRUE
 	var/win_path = /obj/structure/window/basic/full
-	var/wall_path = /obj/structure/low_wall
+	var/wall_path = /turf/wall/low
 	var/activated = FALSE
 
 
 /obj/effect/window_lwall_spawn/smartspawn/onestar
-	wall_path = /obj/structure/low_wall/onestar
+	wall_path = /turf/wall/low/onestar
 
 // stops ZAS expanding zones past us, the windows will block the zone anyway
 /obj/effect/window_lwall_spawn/CanPass()
@@ -108,15 +108,3 @@
 
 		new /obj/structure/window/reinforced/plasma/full(loc)
 		return
-
-/obj/effect/window_lwall_spawn/reinforced/polarized
-	name = "polarized window low-wall spawner"
-	icon_state = "sp_full_window_tinted"
-	win_path = /obj/structure/window/reinforced/polarized/full
-	var/id
-
-/obj/effect/window_lwall_spawn/reinforced/polarized/handle_window_spawn(var/obj/structure/window/reinforced/polarized/P)
-	..()
-	if(id)
-		P.id = id
-	return

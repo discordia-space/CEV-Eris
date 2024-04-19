@@ -80,7 +80,7 @@
 	 ***********************************************************************************/
 
 /obj/procedural/jp_DungeonGenerator/proc/updateWallConnections()
-	for(var/turf/simulated/wall/W in border_turfs)
+	for(var/turf/wall/W in border_turfs)
 		W.update_connections(1)
 
 /*

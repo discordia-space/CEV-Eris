@@ -4,7 +4,7 @@
 /area/template_noop)
 "b" = (
 /obj/effect/paint/black,
-/turf/simulated/wall/ocp_wall,
+/turf/wall/ocp_wall,
 /area/map_template/datacapsule)
 "c" = (
 /obj/effect/damagedfloor,
@@ -12,17 +12,17 @@
 /area/template_noop)
 "d" = (
 /obj/machinery/door/blast/shutters,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/datacapsule)
 "e" = (
-/turf/simulated/wall/ocp_wall,
+/turf/wall/ocp_wall,
 /area/map_template/datacapsule)
 "f" = (
-/turf/simulated/floor/reinforced/airless,
+/turf/floor/reinforced/airless,
 /area/map_template/datacapsule)
 "g" = (
 /obj/effect/landmark/map_load_mark/ejected_datapod,
-/turf/simulated/floor/reinforced/airless,
+/turf/floor/reinforced/airless,
 /area/map_template/datacapsule)
 
 (1,1,1) = {"

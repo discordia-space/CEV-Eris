@@ -90,12 +90,12 @@
 		get_resource_field()
 
 	//Drill through the flooring, if any.
-	if(istype(get_turf(src), /turf/simulated/floor/asteroid))
-		var/turf/simulated/floor/asteroid/T = get_turf(src)
+	if(istype(get_turf(src), /turf/floor/asteroid))
+		var/turf/floor/asteroid/T = get_turf(src)
 		if(!T.dug)
 			T.gets_dug()
-	else if(istype(get_turf(src), /turf/simulated/floor))
-		var/turf/simulated/floor/T = get_turf(src)
+	else if(istype(get_turf(src), /turf/floor))
+		var/turf/floor/T = get_turf(src)
 		T.explosion_act(200, null)
 
 	dig_ore()
@@ -106,7 +106,7 @@
 		system_error("resources depleted")
 		return
 
-	var/turf/simulated/harvesting = pick(resource_field)
+	var/turf/harvesting = pick(resource_field)
 
 	//remove emty trufs
 	while(resource_field.len && !harvesting.resources)
@@ -196,7 +196,7 @@
 		else if (check_surroundings())
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 			return
-		else if(!(istype(loc, /turf/simulated/floor/asteroid) || istype(loc, /turf/simulated/floor/exoplanet)))
+		else if(!(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
 			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
 			return
 
@@ -275,7 +275,7 @@
 				else if(!cave_gen.check_cooldown())
 					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
 				else
-					var/turf/simulated/T = get_turf(loc)
+					var/turf/T = get_turf(loc)
 					cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
 					update_icon()
 			else
@@ -288,7 +288,7 @@
 			/* // Only if on mother load
 			active = !active
 			if(active)
-				var/turf/simulated/T = get_turf(loc)
+				var/turf/T = get_turf(loc)
 				GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
 				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
 				last_use = world.time
@@ -349,11 +349,11 @@
 	resource_field = list()
 	need_update_field = FALSE
 
-	var/turf/simulated/T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(!istype(T))
 		return
 
-	for(var/turf/simulated/mine_trufs in range(T, radius))
+	for(var/turf/mine_trufs in range(T, radius))
 		if(mine_trufs.has_resources)
 			resource_field += mine_trufs
 

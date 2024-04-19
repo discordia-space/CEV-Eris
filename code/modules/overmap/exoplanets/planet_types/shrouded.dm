@@ -29,8 +29,8 @@
 	flora_diversity = 3
 	water_level_max = 3
 	water_level_min = 2
-	land_type = /turf/simulated/floor/exoplanet/shrouded
-	water_type = /turf/simulated/floor/exoplanet/water/shallow/tar
+	land_type = /turf/floor/exoplanet/shrouded
+	water_type = /turf/floor/exoplanet/water/shallow/tar
 	/*fauna_types = list(/mob/living/simple_animal/hostile/retaliate/royalcrab,
 					   /mob/living/simple_animal/hostile/retaliate/jelly/alt,
 					   /mob/living/simple_animal/hostile/retaliate/beast/shantak/alt,
@@ -39,28 +39,23 @@
 
 /area/exoplanet/shrouded
 //	forced_ambience = list("sound/ambience/spookyspace1.ogg", "sound/ambience/spookyspace2.ogg")
-	base_turf = /turf/simulated/floor/exoplanet/shrouded
+	base_turf = /turf/floor/exoplanet/shrouded
 
-/turf/simulated/floor/exoplanet/water/shallow/tar
+/turf/floor/exoplanet/water/shallow/tar
 	name = "tar"
 	icon = 'icons/turf/shrouded.dmi'
 	icon_state = "shrouded_tar"
 	desc = "A pool of viscous and sticky tar."
-	movement_delay = 12
 	reagent_type = /datum/reagent/toxin/tar
 	dirt_color = "#3e3960"
 
-/turf/simulated/floor/exoplanet/water/shallow/tar/get_footstep_sound(var/mob/caller)
-	return get_footstep(/decl/footsteps/water, caller)
-
-
-/turf/simulated/floor/exoplanet/shrouded
+/turf/floor/exoplanet/shrouded
 	name = "packed sand"
 	icon = 'icons/turf/shrouded.dmi'
 	icon_state = "shrouded"
 	desc = "Sand that has been packed in to solid earth."
 	dirt_color = "#3e3960"
 
-/turf/simulated/floor/exoplanet/shrouded/New()
+/turf/floor/exoplanet/shrouded/New()
 	icon_state = "shrouded[rand(0,8)]"
 	..()

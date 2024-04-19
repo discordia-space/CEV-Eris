@@ -301,7 +301,7 @@
 			icon_state = "pulsar_tank"
 
 		if(round(air_contents.get_total_moles()) >= 125)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/T = get_turf(src)
 			if(!T)
 				return
 			visible_message(SPAN_DANGER("[src] explodes violently and all of the gas starts pouring out!"))
