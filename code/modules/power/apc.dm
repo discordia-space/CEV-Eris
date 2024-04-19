@@ -268,30 +268,27 @@
 	terminal.set_dir(tdir)
 	terminal.master = src
 
-/obj/machinery/power/apc/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A control terminal for the area electrical systems.")
+/obj/machinery/power/apc/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 		if(stat & BROKEN)
-			to_chat(user, "Looks broken.")
-			return
-		if(opened)
+			extra_description += "\nLooks broken."
+		else if(opened)
 			if(has_electronics && terminal)
-				to_chat(user, "The cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"].")
+				extra_description += "\nThe cover is [opened==2?"removed":"open"] and the power cell is [ cell ? "installed" : "missing"]."
 			else if (!has_electronics && terminal)
-				to_chat(user, "There are some wires but no any electronics.")
+				extra_description += "\nThere are some wires but no any electronics."
 			else if (has_electronics && !terminal)
-				to_chat(user, "Electronics installed but not wired.")
+				extra_description += "\nElectronics installed but not wired."
 			else /* if (!has_electronics && !terminal) */
-				to_chat(user, "There is no electronics nor connected wires.")
-
+				extra_description += "\nThere is no electronics nor connected wires."
 		else
-			if (stat & MAINT)
-				to_chat(user, "The cover is closed. Something wrong with it: it doesn't work.")
-			else if (hacker)
-				to_chat(user, "The cover is locked.")
+			if(stat & MAINT)
+				extra_description += "\nThe cover is closed. Something wrong with it: it doesn't work."
+			else if(hacker)
+				extra_description += "\nThe cover is locked."
 			else
-				to_chat(user, "The cover is closed.")
-
+				extra_description += "\nThe cover is closed."
+	..(user, extra_description)
 
 // update the APC icon to show the three base states
 // also add overlays for indicator lights

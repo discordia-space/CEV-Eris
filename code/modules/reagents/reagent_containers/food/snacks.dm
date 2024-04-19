@@ -1209,13 +1209,13 @@
 	cooked = TRUE
 	taste_tag = list(UMAMI_FOOD, INSECTS_FOOD)
 
-/obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user)
-	. = ..()
+/obj/item/reagent_containers/food/snacks/wormburger/examine(mob/user, extra_description = "")
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of reassurance, it almost seems angelic.")
+			extra_description += "\nLooking at \the [src] gives you a sense of reassurance, it almost seems angelic."
+	..(user, extra_description)
 
 /obj/item/reagent_containers/food/snacks/geneburger
 	name = "flesh burger"
@@ -1230,13 +1230,13 @@
 	cooked = TRUE
 	taste_tag = list(MEAT_FOOD, UMAMI_FOOD)
 
-/obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user)
-	. = ..()
+/obj/item/reagent_containers/food/snacks/geneburger/examine(mob/user, extra_description = "")
 	if(ishuman(user))
 		var/mob/living/carbon/human/human = user
 		var/obj/item/implant/core_implant/cruciform/cruciform = human.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(cruciform && cruciform.active)
-			to_chat(user, "Looking at \the [src] gives you a sense of darkness, it must be unholy!")
+			extra_description += "\nLooking at \the [src] gives you a sense of darkness, it must be unholy!"
+	..(user, extra_description)
 
 /obj/item/reagent_containers/food/snacks/roach_egg
 	name = "boiled roach egg"

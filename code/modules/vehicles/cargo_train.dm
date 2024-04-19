@@ -187,15 +187,11 @@
 	else
 		return ..()
 
-/obj/vehicle/train/cargo/engine/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(!ishuman(usr))
-		return
-
-	to_chat(user, "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition.")
-	to_chat(user, "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%")
+/obj/vehicle/train/cargo/engine/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "\nThe power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition."
+		extra_description += "\nThe charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
+	..(user, extra_description)
 
 /obj/vehicle/train/cargo/engine/verb/start_engine()
 	set name = "Start engine"

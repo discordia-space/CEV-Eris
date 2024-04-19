@@ -48,7 +48,6 @@ GLOBAL_DATUM_INIT(maps_data, /datum/maps_data, new)
 		return TRUE
 	return FALSE
 
-ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 /client/proc/test_MD()
 	set name = "Check level data"
 	set category = "Debug"

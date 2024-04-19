@@ -290,22 +290,22 @@
 	..(newtype)
 
 //Appearance
-/turf/simulated/wall/examine(mob/user)
-	. = ..(user)
-
+/turf/simulated/wall/examine(mob/user, extra_description = "")
 	if(health == maxHealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+		extra_description += SPAN_NOTICE("It looks fully intact.")
 	else
 		var/hratio = health / maxHealth
 		if(hratio <= 0.3)
-			to_chat(user, SPAN_WARNING("It looks heavily damaged."))
+			extra_description += SPAN_WARNING("It looks heavily damaged.")
 		else if(hratio <= 0.6)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			extra_description += SPAN_WARNING("It looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks lightly damaged."))
+			extra_description += SPAN_DANGER("It looks lightly damaged.")
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		to_chat(user, SPAN_WARNING("There is fungus growing on [src]."))
+		extra_description += SPAN_WARNING("\nThere is fungus growing on [src].")
+
+	..(user, extra_description)
 
 //health
 
