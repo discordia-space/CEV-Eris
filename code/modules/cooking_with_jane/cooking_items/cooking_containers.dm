@@ -54,10 +54,6 @@
 	log_debug("cooking_container/attackby() called!")
 	#endif
 
-	if(istype(used_item, /obj/item/tool/shovel))
-		do_empty(user, target=null, reagent_clear = FALSE)
-		return
-
 	if(!tracker && (contents.len || reagents.total_volume != 0))
 		to_chat(user, "The [src] is full. Empty its contents first.")
 	else

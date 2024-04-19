@@ -27,7 +27,7 @@ list(<CWJ_STEP_CLASS><_OPTIONAL>, <REQUIRED_ARGS>, <CUSTOM_ARGS>=value)
 			Add a grown item to the recipe. The item is inserted in the container.
 			The product inherits reagents if able, and its quality scales with the plant's potency.
 			<REQUIRED_ARGS>:
-				plantname - the NAME of the SEED DATUM of the plant being added.
+				kitchen_tag - the kitchen_tag string of the SEED DATUM of the plant being added. This can mean multiple produce items have the same kitchen_tag. This is intentional.
 			Example: list(CWJ_ADD_PRODUCE, "banana")
 
 		CWJ_USE_TOOL
