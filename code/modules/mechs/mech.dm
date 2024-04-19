@@ -194,7 +194,7 @@
 	return TRUE
 
 /mob/living/exosuit/examine(mob/user, extra_description = "")
-	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin || (body && !body.has_hatch))
+	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin || (body && !body.has_hatch)))
 		extra_description += "\nIt is being piloted by [english_list(pilots, nothing_text = "nobody")]."
 	if(body && LAZYLEN(body.pilot_positions))
 		extra_description += "\nIt can seat [body.pilot_positions.len] pilot\s total."
