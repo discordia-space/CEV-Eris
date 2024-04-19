@@ -169,7 +169,9 @@
 	for(var/mob/living/Pilot in pilots)
 		eject(Pilot)
 	pilots = null
-
+	var/obj/item/mech_equipment/forklifting_system/lifter = locate() in contents
+	if(lifter)
+		lifter.ejectLifting(get_turf(src))
 	for(var/thing in HUDneed)
 		qdel(HUDneed[thing])
 	HUDneed.Cut()
@@ -192,7 +194,7 @@
 	return TRUE
 
 /mob/living/exosuit/examine(mob/user, extra_description = "")
-	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
+	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin || (body && !body.has_hatch))
 		extra_description += "\nIt is being piloted by [english_list(pilots, nothing_text = "nobody")]."
 	if(body && LAZYLEN(body.pilot_positions))
 		extra_description += "\nIt can seat [body.pilot_positions.len] pilot\s total."
@@ -207,13 +209,12 @@
 	for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
 		if(!thing)
 			continue
-
 		var/damage_string = thing.get_damage_string()
 		extra_description += "\nIts [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string]."
-
 	extra_description += "\nIt menaces with reinforcements of [material]."
 	extra_description += SPAN_NOTICE("\nYou can remove people inside by HARM intent clicking with your hand. The hatch must be opened.")
 	extra_description += SPAN_NOTICE("\nYou can eject any module from its UI by CtrlClicking the hardpoint button.")
+	extra_description += SPAN_NOTICE("\nA multitool can be used on HELP intent to remove module from hardpoints, or on any other intent to start unlocking the mech through hacking.")
 	if(body.storage_compartment)
 		extra_description += SPAN_NOTICE("\nYou can acces its internal storage by click-dragging onto your character.")
 	if(body && body.cell_charge_rate)
@@ -236,7 +237,7 @@
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		if(ispath(body) || !hatch_closed || body.pilot_coverage < 100)
+		if(ispath(body) || !hatch_closed || (body && !body.has_hatch) || body.pilot_coverage < 100)
 			var/turf/current_loc = get_turf(src)
 			return current_loc.return_air()
 		if(body.pilot_coverage >= 100 && hatch_closed)

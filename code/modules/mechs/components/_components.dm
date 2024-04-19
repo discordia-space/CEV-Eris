@@ -65,7 +65,8 @@
 		extra_description += SPAN_NOTICE("\nThis component is fitted with a Faraday cage, making it resistant against electromagnetic pulses.")
 	if(front_mult != 1 || side_mult != 1 || rear_mult != 1)
 		extra_description += SPAN_NOTICE("\nThis component has uneven armor distribution. Frontal armor is multiplied by [front_mult], side armor by [side_mult] and the rear plates by [rear_mult]")
-
+	if(reinforcement)
+		extra_description += SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name].")
 	var/damage_string = get_damage_string()
 	extra_description += "\nThe [name] [gender == PLURAL ? "are" : "is"] [damage_string]."
 	..(user, extra_description)

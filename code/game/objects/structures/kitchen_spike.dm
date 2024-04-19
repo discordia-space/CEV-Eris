@@ -49,6 +49,8 @@
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		meat_type = H.species.meat_type
+		if(victim.stats.getPerk(PERK_SURVIVOR))
+			meat_type = /obj/item/reagent_containers/food/snacks/meat/pork
 		icon_state = "spike_[H.species.name]"
 	else
 		return FALSE
