@@ -167,7 +167,8 @@
 	selected_system = null
 
 	for(var/mob/living/Pilot in pilots)
-		eject(Pilot)
+		eject(Pilot, TRUE, TRUE)
+
 	pilots = null
 	var/obj/item/mech_equipment/forklifting_system/lifter = locate() in contents
 	if(lifter)
