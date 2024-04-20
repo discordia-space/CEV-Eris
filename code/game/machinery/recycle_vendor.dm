@@ -68,21 +68,14 @@
 		return
 
 	if(user.a_intent != I_HURT)
-		var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING), src)
-		switch(tool_type)
-			if(QUALITY_BOLT_TURNING)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
-					anchored = !anchored
-				return
-
-			if(QUALITY_SCREW_DRIVING)
-				var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-					panel_open = !panel_open
-					to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
-					update_icon()
-				return
+		var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING), src)
+		if(tool_type == QUALITY_SCREW_DRIVING)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				panel_open = !panel_open
+				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
+				update_icon()
+			return
 
 	if(istype(I, /obj/item/spacecash))
 		if(istype(I, /obj/item/spacecash/ewallet))
