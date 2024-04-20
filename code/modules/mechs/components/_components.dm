@@ -7,6 +7,8 @@
 	dir = SOUTH
 	bad_type = /obj/item/mech_component
 
+	armor = list(melee = 10, bullet = 10, energy = 10, bomb = 10, bio = 100, rad = 100) // Override these for individual components
+
 	price_tag = 150
 
 	var/on_mech_icon = MECH_PARTS_ICON
@@ -25,6 +27,22 @@
 	var/gib_hits = 0
 	/// wheter or not this component can just blow up
 	var/can_gib = FALSE
+	var/shielding = 0
+	var/emp_shielded = FALSE // Replacement for "energy" resisting both EMP and laser/plasma (guh)
+
+	// Multipliers for damage and deflection chances when mechs get struck from different directions
+	// Override these to change armor-facing effectiveness for different exosuits
+	// These are multipliers that increase or decrease effective armor by 25% from the front and rear, respectively, by default - they are not flat additions, and they impact both damage and deflection chance
+	var/front_mult = 1
+	var/side_mult = 1
+	var/rear_mult = 1
+
+/obj/item/mech_component/Initialize()
+	. = ..()
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+//	else
+//	armor = getArmor() // In case someone leaves armor values for something unset for some reason
 
 /obj/item/mech_component/proc/set_colour(new_colour)
 	var/last_colour = color
@@ -32,44 +50,24 @@
 	return color != last_colour
 
 /obj/item/mech_component/emp_act(severity)
-	take_burn_damage(rand((10 - (severity*3)),15-(severity*4)))
-	for(var/obj/item/thing in contents)
-		thing.emp_act(severity)
+	if(!emp_shielded)
+		take_burn_damage(rand((10 - (severity*3)),15-(severity*4)))
+		for(var/obj/item/thing in contents)
+			thing.emp_act(severity)
+	else return
 
-/obj/item/mech_component/examine(mob/user)
-	. = ..()
-
-	if(.)
-		if(ready_to_install())
-			to_chat(user, SPAN_NOTICE("It is ready for installation."))
-		else
-			show_missing_parts(usr)
-	/*
-	if(reinforcement)
-		to_chat(user, SPAN_NOTICE("It is reinforced with sheets of [reinforcement.material_display_name]."))
+/obj/item/mech_component/examine(mob/user, extra_description = "")
+	if(ready_to_install())
+		extra_description += SPAN_NOTICE("\nIt is ready for installation.")
 	else
-		to_chat(user, SPAN_NOTICE("It can be reinforced with 5 sheets of a material for additional protection."))
-	*/
-
-	var/damage_string = src.get_damage_string()
-	to_chat(user, "The [src.name] [src.gender == PLURAL ? "are" : "is"] [damage_string].")
-
-/*
-
-/obj/item/mech_component/attackby(obj/item/I, mob/living/user)
-	. = ..()
-
-	if(!reinforcement && istype(I, /obj/item/stack/material))
-		var/obj/item/stack/material/mat = I
-		if(!mat.can_use(5))
-			to_chat(user, SPAN_NOTICE("You need 5 sheets of reinforcing material!"))
-			return
-		to_chat(user, SPAN_NOTICE("You start reinforcing \the src."))
-*/
-
-
-
-
+		show_missing_parts(user)
+	if(emp_shielded)
+		extra_description += SPAN_NOTICE("\nThis component is fitted with a Faraday cage, making it resistant against electromagnetic pulses.")
+	if(front_mult != 1 || side_mult != 1 || rear_mult != 1)
+		extra_description += SPAN_NOTICE("\nThis component has uneven armor distribution. Frontal armor is multiplied by [front_mult], side armor by [side_mult] and the rear plates by [rear_mult]")
+	var/damage_string = get_damage_string()
+	extra_description += "\nThe [name] [gender == PLURAL ? "are" : "is"] [damage_string]."
+	..(user, extra_description)
 
 //These icons have multiple directions but before they're attached we only want south.
 /obj/item/mech_component/set_dir()
@@ -161,7 +159,11 @@
 
 /obj/item/mech_component/proc/return_diagnostics(var/mob/user)
 	to_chat(user, SPAN_NOTICE("[capitalize(name)]:"))
-	to_chat(user, SPAN_NOTICE(" - Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
+	to_chat(user, SPAN_NOTICE(" - Hull Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
+//	if(cur_armor > 0)
+//		to_chat(user, SPAN_NOTICE(" - Armor Integrity: <b>[round((((max_armor - cur_armor) / max_armor)) * 100)]%</b>"))
+//	else
+//		to_chat(user, SPAN_WARNING(" - Armor integrity failure!"))
 
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)

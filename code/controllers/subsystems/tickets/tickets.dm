@@ -56,8 +56,9 @@ SUBSYSTEM_DEF(tickets)
 		log_admin("<span class='[span_class]'>Tickets [report] have been open for over [TICKET_TIMEOUT / 600] minutes. Changing status to stale.</span>")
 		message_admins("<span class='[span_class]'>Tickets [report] have been open for over [TICKET_TIMEOUT / 600] minutes. Changing status to stale.</span>")
 
-/datum/controller/subsystem/tickets/stat_entry()
-	..("Tickets: [LAZYLEN(allTickets)]")
+/datum/controller/subsystem/tickets/stat_entry(msg)
+	msg += "Tickets: [LAZYLEN(allTickets)]"
+	return ..()
 
 /datum/controller/subsystem/tickets/proc/checkStaleness()
 	var/stales = list()

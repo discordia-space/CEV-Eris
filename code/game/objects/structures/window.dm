@@ -35,29 +35,27 @@
 
 	return damage
 
-/obj/structure/window/examine(mob/user)
-	. = ..(user)
-
+/obj/structure/window/examine(mob/user, extra_description = "")
 	if(health == maxHealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+		extra_description += SPAN_NOTICE("\nIt looks fully intact.")
 	else
 		var/perc = health / maxHealth
 		if(perc > 0.75)
-			to_chat(user, SPAN_NOTICE("It has a few cracks."))
+			extra_description += SPAN_NOTICE("\nIt has a few cracks.")
 		else if(perc > 0.5)
-			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
+			extra_description += SPAN_WARNING("\nIt looks slightly damaged.")
 		else if(perc > 0.25)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			extra_description += SPAN_WARNING("\nIt looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
+			extra_description += SPAN_DANGER("\nIt looks heavily damaged.")
 	if(silicate)
-		if (silicate < 30)
-			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
-		else if (silicate < 70)
-			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
+		if(silicate < 30)
+			extra_description += SPAN_NOTICE("\nIt has a thin layer of silicate.")
+		else if(silicate < 70)
+			extra_description += SPAN_NOTICE("\nIt is covered in silicate.")
 		else
-			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
-
+			extra_description += SPAN_NOTICE("\nThere is a thick layer of silicate covering it.")
+	..(user, extra_description)
 
 //Subtracts resistance from damage then applies it
 //Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes

@@ -382,16 +382,15 @@
 		S.set_up(smoke_amount, 0, src)
 		S.start()
 
+/obj/machinery/door/examine(mob/user, extra_description = "")
+	if(health < maxHealth / 4)
+		extra_description += "\The [src] looks like it's about to break!"
+	else if(health < maxHealth / 2)
+		extra_description += "\The [src] looks seriously damaged!"
+	else if(health < maxHealth * 3/4)
+		extra_description += "\The [src] shows signs of damage!"
 
-/obj/machinery/door/examine(mob/user)
-	. = ..()
-	if(src.health < src.maxHealth / 4)
-		to_chat(user, "\The [src] looks like it's about to break!")
-	else if(src.health < src.maxHealth / 2)
-		to_chat(user, "\The [src] looks seriously damaged!")
-	else if(src.health < src.maxHealth * 3/4)
-		to_chat(user, "\The [src] shows signs of damage!")
-
+	..(user, extra_description)
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN

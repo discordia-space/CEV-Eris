@@ -1,0 +1,40 @@
+{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
+	{{if data.print_avaliable}}
+		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+	{{/if}}
+	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
+	<br><br>
+	<img src='{{:data.icon}}' style ="display: block; margin: auto; width: 30%;">
+	<div class="item"><h1>{{:data.name}}</h1></div>
+	<div class="item">{{:data.create_in}}</div>
+	<div class="item">{{:data.description}}</div>
+	<div class="item">
+		<h4>Specifications:</h4>
+
+		{{if data.product_is_reagent}}
+			<div class="itemLabel">Reagent Name:</div>
+			<div class="itemContent">{{:data.product_name}}</div>
+			<div class="itemLabel">Units Produced:</div>
+			<div class="itemContent">{{:data.product_count}}</div>
+		{{else}}
+			<div class="itemLabel">Product Name:</div>
+			<div class="itemContent">{{:data.product_name}}</div>
+			<div class="itemLabel">Product Count:</div>
+			<div class="itemContent">{{:data.product_count}}</div>
+			{{if data.byproduct_count}}
+				<div class="itemLabel">Reagent Byproduct:</div>
+				<div class="itemContent">{{:data.byproduct_name}}</div>
+				<div class="itemLabel">Byproduct Units Produced:</div>
+				<div class="itemContent">{{:data.byproduct_count}}</div>
+			{{/if}}
+		{{/if}}
+		{{if data.recipe_guide}}
+			<div class="itemLabel">Recipe:</div>
+			<div class="itemContent">
+					<div class="statusDisplay" style="overflow: auto;">
+						{{:data.recipe_guide}}
+					</div>
+			</div>
+		{{/if}}
+	</div>
+{{/if}}

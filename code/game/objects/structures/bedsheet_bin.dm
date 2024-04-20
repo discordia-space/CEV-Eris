@@ -214,17 +214,15 @@ LINEN BINS
 	var/obj/item/hidden
 
 
-/obj/structure/bedsheetbin/examine(mob/user)
-	..(user)
-
+/obj/structure/bedsheetbin/examine(mob/user, extra_description = "")
 	if(amount < 1)
-		to_chat(user, "There are no bed sheets in the bin.")
-		return
-	if(amount == 1)
-		to_chat(user, "There is one bed sheet in the bin.")
-		return
-	to_chat(user, "There are [amount] bed sheets in the bin.")
+		extra_description += "There is no bed sheets in the bin."
+	else if(amount == 1)
+		extra_description += "There is one bed sheet in the bin."
+	else
+		extra_description += "There are [amount] bed sheets in the bin."
 
+	..(user, extra_description)
 
 /obj/structure/bedsheetbin/update_icon()
 	switch(amount)

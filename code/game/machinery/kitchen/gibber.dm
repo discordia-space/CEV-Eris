@@ -98,9 +98,8 @@
 				SPAN_WARNING("You [emagged? "disable" : "enable"] the safety guard of [name] with multitool")
 				)
 
-/obj/machinery/gibber/examine()
-	..()
-	to_chat(usr, "The safety guard is [emagged ? SPAN_DANGER("disabled") : "enabled"].")
+/obj/machinery/gibber/examine(mob/user, extra_description = "")
+	..(user, "The safety guard is [emagged ? SPAN_DANGER("disabled") : "enabled"].")
 
 /obj/machinery/gibber/emag_act(remaining_charges, mob/user)
 	emagged = !emagged
@@ -193,6 +192,8 @@
 	else if(iscarbon(occupant))
 		var/mob/living/carbon/C = occupant
 		meat_type = C.species.meat_type
+		if(occupant.stats.getPerk(PERK_SURVIVOR))
+			meat_type = /obj/item/reagent_containers/food/snacks/meat/pork
 	else if(isanimal(occupant))
 		var/mob/living/simple_animal/A = occupant
 		meat_type = A.meat_type

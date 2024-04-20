@@ -50,7 +50,7 @@
 			chargeUsed += to_charge.give(mech_cell.drain_power(0,0, chargeNeeded / CELLRATE))
 
 
-	body.update_air(hatch_closed && use_air)
+	body.update_air(hatch_closed && use_air && (body && body.has_hatch))
 
 	updatehealth()
 	if(health <= 0 && stat != DEAD)
@@ -113,7 +113,7 @@
 	// Eject the pilots
 	hatch_locked = FALSE // So they can get out
 	for(var/pilot in pilots)
-		eject(pilot, silent=TRUE)
+		eject(pilot, TRUE, TRUE)
 
 	// Salvage moves into the wreck unless we're exploding violently.
 	var/obj/wreck = new wreckage_path(drop_location(), src, gibbed)
@@ -168,7 +168,7 @@
 		see_invisible = head.get_invisible(powered)
 	else if(hatch_closed)
 		sight &= BLIND
-	if(body && (body.pilot_coverage < 100 || body.transparent_cabin) || !hatch_closed)
+	if(body && (body.pilot_coverage < 100 || body.transparent_cabin) || !hatch_closed || (body && !body.has_hatch))
 		sight &= ~BLIND
 
 /mob/living/exosuit/additional_sight_flags()

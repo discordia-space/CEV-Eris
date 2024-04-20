@@ -244,14 +244,44 @@
 	set category = "IC"
 	set src = usr
 
+
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
-	for(var/datum/language/L in languages)
-		if(!(L.flags & NONGLOBAL))
-			dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
+	if(issilicon(src))
+		var/mob/living/silicon/silicon = src
+
+		if(silicon.default_language)
+			dat += "Current default language: [silicon.default_language] - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
+
+		for(var/datum/language/L in languages)
+			if(!(L.flags & NONGLOBAL))
+				var/default_str
+				if(L == silicon.default_language)
+					default_str = " - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a>"
+				else
+					default_str = " - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a>"
+
+				var/synth = (L in silicon.speech_synthesizer_langs)
+				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br/>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br/>[L.desc]<br/><br/>"
+	else
+		for(var/datum/language/L in languages)
+			if(!(L.flags & NONGLOBAL))
+				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
 
 	src << browse(dat, "window=checklanguage")
-	return
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /mob/living/check_languages()
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"

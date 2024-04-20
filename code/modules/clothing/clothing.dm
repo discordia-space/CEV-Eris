@@ -635,17 +635,17 @@ BLIND     // can't see anything
 	..()
 	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
 
-/obj/item/clothing/under/examine(mob/user)
-	..(user)
-	switch(src.sensor_mode)
+/obj/item/clothing/under/examine(mob/user, extra_description = "")
+	switch(sensor_mode)
 		if(0)
-			to_chat(user, "Its sensors appear to be disabled.")
+			extra_description += "Its sensors appear to be disabled."
 		if(1)
-			to_chat(user, "Its binary life sensors appear to be enabled.")
+			extra_description += "Its binary life sensors appear to be enabled."
 		if(2)
-			to_chat(user, "Its vital tracker appears to be enabled.")
+			extra_description += "Its vital tracker appears to be enabled."
 		if(3)
-			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
+			extra_description += "Its vital tracker and tracking beacon appear to be enabled."
+	..(user, extra_description)
 
 /obj/item/clothing/under/proc/set_sensors(mob/M)
 	if(has_sensor >= 2)

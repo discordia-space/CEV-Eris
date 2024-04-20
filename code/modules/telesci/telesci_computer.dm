@@ -38,9 +38,9 @@
 		inserted_gps = null
 	return ..()
 
-/obj/machinery/computer/telescience/examine(mob/user)
-	. = ..()
-	to_chat(user, "There are [crystals.len ? crystals.len : "no"] bluespace crystal\s in the crystal slots.")
+/obj/machinery/computer/telescience/examine(mob/user, extra_description = "")
+	extra_description += "\nThere are [LAZYLEN(crystals)] bluespace crystal\s in the crystal slots."
+	..(user, extra_description)
 
 /obj/machinery/computer/telescience/Initialize()
 	. = ..()
