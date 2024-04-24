@@ -65,7 +65,7 @@
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
 	description_info = "Controls all of this area's machinery."
-	description_antag = "Can be unlocked by pulsing the lock wire. Can also be saboutaged by inserting plasma into its cell, making it blow whenever its turned on"
+	description_antag = "Can be unlocked by pulsing the lock wire. Can also be sabotaged by inserting plasma into its cell, making it blow whenever its turned on"
 
 	icon_state = "apc0"
 	anchored = TRUE
