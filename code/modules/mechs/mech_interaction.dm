@@ -203,8 +203,8 @@
 			return FALSE
 	if(ishuman(user) && body?.armor_restrictions)	//wear_suit only exists on humans; only bother with checking if the chassis forbids it
 		var/mob/living/carbon/human/enterer = user
-		if(enterer.wear_suit && enterer.wear_suit.slowdown >= MEDIUM_SLOWDOWN)	//If the user is wearing armor, check if it's too bulky
-			to_chat(user, SPAN_WARNING("Your armor is too bulky, preventing you from boarding."))
+		if(enterer.wear_suit && enterer.wear_suit)	//If the user is wearing anything in their suit slot
+			to_chat(user, SPAN_WARNING("You must remove your [enterer.wear_suit] to fit inside."))
 			return FALSE
 	return TRUE
 
