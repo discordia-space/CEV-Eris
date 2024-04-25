@@ -123,7 +123,7 @@
 				if(!istype(R, reagent_path))
 					continue
 				biomatter_counter += round(R.volume * (accepted_reagents[reagent_path] / production_denominator), 0.01)
-				research_counter += round(R.volume * (accepted_reagents[reagent_path] / research_denominator), 0,01)
+				research_counter += round(R.volume * (accepted_reagents[reagent_path] / research_denominator), 0.01)
 
 	// Check biomatter content and contained objects (depth of 2, include self)
 	for(var/path in accepted_objects)
