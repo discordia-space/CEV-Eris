@@ -123,7 +123,7 @@
 				if(!istype(R, reagent_path))
 					continue
 				biomatter_counter += round(R.volume * (accepted_reagents[reagent_path] / production_denominator), 0.01)
-				research_counter += round(R.volume / research_denominator)
+				research_counter += round(R.volume * (accepted_reagents[reagent_path] / research_denominator), 0,01)
 
 	// Check biomatter content and contained objects (depth of 2, include self)
 	for(var/path in accepted_objects)
@@ -135,7 +135,7 @@
 		var/amount_to_take
 
 		for(var/obj/item/O in I.GetAllContents(2, TRUE))
-			amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER] / 2)
+			amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER])
 			var/obj/item/organ/organ = O
 			var/is_valid_organ = (organ && organ.b_type)
 			qdel(O)
