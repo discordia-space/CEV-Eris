@@ -36,12 +36,12 @@
 /datum/component/modification/organ/Initialize()
 	if(somatic)
 		trigger_signal = COMSIG_ABERRANT_INPUT_VERB
-		modifications[ORGAN_OWNER_VERB] = list(/datum/component/modification/organ/verb/somatic_trigger)
-		modifications[ITEM_VERB_PROC] = /datum/component/modification/organ/verb/somatic_trigger
+		//modifications[ORGAN_OWNER_VERB] = list(/datum/component/modification/organ/verb/somatic_trigger)
+		//modifications[ITEM_VERB_PROC] = /datum/component/modification/organ/verb/somatic_trigger
 	. = ..()
 
 /datum/component/modification/organ/check_item(obj/item/I, mob/living/user)
-	. = ..()
+	..()
 
 	if(istype(I, /obj/item/organ))
 		var/obj/item/organ/O = I
@@ -97,7 +97,7 @@
 
 	var/aberrant_cooldown_time_base = modifications[ORGAN_ABERRANT_COOLDOWN]
 
-	var/list/owner_verb_adds = modifications[ORGAN_OWNER_VERB]
+	//var/list/owner_verb_adds = modifications[ORGAN_OWNER_VERB]
 
 	var/obj/item/organ/internal/scaffold/S
 	if(istype(holder, /obj/item/organ/internal/scaffold))
@@ -117,9 +117,6 @@
 		holder.desc = new_desc
 	if(new_color && !using_generated_color)
 		holder.color = new_color
-
-	if(LAZYLEN(owner_verb_adds))
-		holder.owner_verbs |= owner_verb_adds
 
 	if(!islist(holder.organ_efficiency))
 		holder.organ_efficiency = list()
@@ -246,12 +243,12 @@
 
 	if(somatic)
 		var/somatic_action_name = modifications[ITEM_VERB_NAME]
-		var/somatic_verb = somatic ? modifications[ITEM_VERB_PROC] : "somatic_trigger"
+		//var/somatic_verb = somatic ? modifications[ITEM_VERB_PROC] : "somatic_trigger"
 		var/somatic_hands_free = modifications[ITEM_VERB_HANDS_FREE]
 		var/list/somatic_verb_args = modifications[ITEM_VERB_ARGS]
 
-		holder.action_button_name = somatic_action_name ? somatic_action_name :"Activate [holder.name]"
-		holder.action_button_proc = somatic_verb
+		holder.action_button_name = somatic_action_name ? somatic_action_name : "Activate [holder.name]"
+		holder.action_button_proc = null
 		holder.action_button_is_hands_free = somatic_hands_free
 		if(LAZYLEN(somatic_verb_args))
 			holder.action_button_arguments = somatic_verb_args.Copy()
@@ -269,6 +266,8 @@
 	O.owner.mutation_index--
 
 /datum/component/modification/organ/on_examine(mob/user, list/reference)
+	LAZYINITLIST(reference)
+
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
@@ -327,6 +326,7 @@
 	else
 		reference.Add(SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))
 
+/*	Commented out until I figure out how to make this work with the owner verb changes
 /datum/component/modification/organ/verb/somatic_trigger()
 	set category = "Organs and Implants"
 	set name = "Activate Organ"
@@ -345,3 +345,4 @@
 
 	if(O && O.owner)
 		SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT_VERB, O.owner)
+*/

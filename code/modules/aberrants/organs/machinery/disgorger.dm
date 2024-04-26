@@ -137,7 +137,7 @@
 		for(var/obj/item/O in I.GetAllContents(2, TRUE))
 			amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER])
 			var/obj/item/organ/organ = O
-			var/is_valid_organ = (organ && organ.b_type)
+			var/is_valid_organ = (organ && LAZYLEN(organ.transplant_data))
 			qdel(O)
 			if(amount_to_take)
 				biomatter_counter += round(amount_to_take / production_denominator, 0.01)

@@ -391,7 +391,10 @@
 						if(output != path && possible_outputs.Find(path))
 							adjustable_qualities.Remove(path)
 
-				var/decision = input("Choose a reagent (current: [adjustable_qualities[adjustable_qualities.Find(output)]])","Adjusting Organoid") as null|anything in adjustable_qualities
+				var/datum/reagent/R = output
+				var/reagent_name = initial(R.name)
+
+				var/decision = input("Choose a reagent (current: [reagent_name])","Adjusting Organoid") as null|anything in adjustable_qualities
 				if(!decision)
 					return
 

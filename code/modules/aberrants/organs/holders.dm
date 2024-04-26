@@ -152,6 +152,13 @@
 	else
 		icon_state = initial(icon_state)
 
+/obj/item/organ/internal/scaffold/ui_action_click(mob/living/user, action_name)
+	if(on_cooldown)
+		to_chat(user, SPAN_NOTICE("\The [src] is not ready to be activated."))
+		return
+	
+	SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT_VERB, owner)
+
 /obj/item/organ/internal/scaffold/proc/update_color()
 	if(!num_colors)
 		return

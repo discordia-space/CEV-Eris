@@ -32,7 +32,7 @@
 
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
-	var/description = "<span style='color:green'>Functional information (input):</span> metabolizes reagents"
+	var/description = "\n<span style='color:green'>Functional information (input):</span> metabolizes reagents"
 	description += "\n<span style='color:green'>Source:</span> [source]"
 	description += "\n<span style='color:green'>Reagents metabolized:</span> [inputs]"
 
@@ -132,7 +132,7 @@
 		
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
-	var/description = "<span style='color:green'>Functional information (input):</span> injury response"
+	var/description = "\n<span style='color:green'>Functional information (input):</span> injury response"
 	description += "\n<span style='color:green'>Damage types (threshold):</span> [inputs]"
 
 	return description
@@ -204,7 +204,7 @@
 
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
-	var/description = "<span style='color:green'>Functional information (input):</span> consumes held object"
+	var/description = "\n<span style='color:green'>Functional information (input):</span> consumes held object"
 	description += "\n<span style='color:green'>Digestable materials:</span> [inputs]"
 
 	return description
@@ -222,7 +222,7 @@
 				if(input != source_type && accepted_inputs.Find(source_type))
 					possibilities.Remove(source)
 
-		var/atom/movable/AM = input_qualities[input]
+		var/atom/movable/AM = input
 
 		var/decision = input("Choose a digestable material (current: [AM ? initial(AM.name) : "unknown"])","Adjusting Organoid") as null|anything in possibilities
 		if(!decision)
@@ -317,7 +317,7 @@
 
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
-	var/description = "<span style='color:green'>Functional information (input):</span> drains held power sources"
+	var/description = "\n<span style='color:green'>Functional information (input):</span> drains held power sources"
 	description += "\n<span style='color:green'>Sources accepted:</span> [inputs]"
 
 	return description

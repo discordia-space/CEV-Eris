@@ -280,9 +280,9 @@
 		var/obj/item/organ/external/active_hand = H.get_active_hand_organ()
 		if(BP_IS_ROBOTIC(active_hand))
 			return
-		if(H.getarmor_organ(active_hand, ARMOR_BIO) < 75 && active_hand.get_total_occupied_volume() < active_hand.max_volume)
-			if(istype(holder, /obj/item/organ/internal))
-				var/obj/item/organ/internal/I = holder
+		if(istype(holder, /obj/item/organ/internal))
+			var/obj/item/organ/internal/I = holder
+			if(H.getarmor_organ(active_hand, ARMOR_BIO) < 75 && active_hand.get_total_occupied_volume() + I.specific_organ_size < active_hand.max_volume)
 				H.drop_item()
 				I.replaced(active_hand)
 				H.apply_damage(10, HALLOSS, active_hand)
