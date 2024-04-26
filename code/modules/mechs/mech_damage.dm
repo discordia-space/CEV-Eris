@@ -38,7 +38,7 @@
 	if(user.dir & reverse_dir[dir])
 		var/obj/item/mech_equipment/shield_generator/gen = getShield()
 		if(gen)
-			damages = gen.absorbDamages(damages)
+			damages[BRUTE] = gen.absorbDamages(damages[BRUTE])
 	if(damages[BRUTE] == 0)
 		return
 	var/list/picks = list()
@@ -77,7 +77,7 @@
 		var/obj/item/mech_equipment/thing = hardpoints[hardpoint]
 		if(istype(thing , /obj/item/mech_equipment/shield_generator))
 			var/obj/item/mech_equipment/shield_generator/gen = thing
-			if(!chosen || (chosen && (chosen.getEffectiveness() < gen.getEffectiveness())))
+			if(!chosen || (chosen && (chosen.absorption_ratio < gen.absorption_ratio)))
 				chosen = gen
 	return chosen
 
@@ -90,7 +90,7 @@
 	var/list/damages = list(BRUTE = I.force)
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	if(gen)
-		damages = gen.absorbDamages(damages)
+		damages[BRUTE] = gen.absorbDamages(damages[BRUTE])
 // not enough made it in
 	if(damages[BRUTE] < round(I.force / 2))
 		visible_message("\The [src]'s shields block the blow!", 1, 2 ,5)
@@ -253,9 +253,9 @@
 		IgniteMob()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	var/list/damages = P.damage_types
-	if(hit_dir & reverse_dir[dir])
-		if(gen)
-			damages = gen.absorbDamages(damages)
+	if(gen && hit_dir & reverse_dir[dir])
+		for(var/damage in damages)	//Loop once just to get the key from the list
+			damages[damage] = gen.absorbDamages(damages[damage])
 	var/coverage = getPilotCoverage(hit_dir)
 	if(def_zone == body)
 		// enforce frontal attacks for first case. Second case just enforce a prob check on coverage.
