@@ -52,7 +52,7 @@
 
 	var/eff_details
 	if(LAZYLEN(organ_efficiency_base) || LAZYLEN(organ_efficiency_mod))
-		eff_details += "Adds organ functions: "
+		eff_details += "\nAdds organ functions: "
 		for(var/organ in organ_efficiency_base)
 			var/added_efficiency = organ_efficiency_base[organ]
 			eff_details += organ + " ([added_efficiency]), "

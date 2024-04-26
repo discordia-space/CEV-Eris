@@ -69,7 +69,7 @@ COMSIG_ABERRANT_SECONDARY
 /datum/component/modification/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_IATTACK, PROC_REF(attempt_install))
 	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(try_modify))
-	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	//RegisterSignal(parent, COMSIG_EXTRA_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_REMOVE, PROC_REF(uninstall))
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)

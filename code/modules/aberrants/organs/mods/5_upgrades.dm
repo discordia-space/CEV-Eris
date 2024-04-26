@@ -3,6 +3,7 @@
 	icon = 'icons/obj/organ_mods.dmi'
 	bad_type = /obj/item/modification/organ/internal/stromal
 	use_generated_icon = FALSE
+	organ_size = 0
 
 // Printable mods
 
@@ -159,6 +160,7 @@
 	icon_state = "bone_braces"
 	matter = list(MATERIAL_PLASTEEL = 3)
 	price_tag = 90
+	organ_size = 0
 
 /obj/item/modification/organ/internal/electromechanical/bone_braces/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)

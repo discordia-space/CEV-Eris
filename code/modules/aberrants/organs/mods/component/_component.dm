@@ -265,7 +265,8 @@
 
 	O.owner.mutation_index--
 
-/datum/component/modification/organ/on_examine(mob/user, list/reference)
+/*
+/datum/component/modification/organ/on_examine(/obj/mod, list/reference)
 	LAZYINITLIST(reference)
 
 	var/using_sci_goggles = FALSE
@@ -325,6 +326,7 @@
 			reference.Add(SPAN_NOTICE(function_info))
 	else
 		reference.Add(SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))
+*/
 
 /*	Commented out until I figure out how to make this work with the owner verb changes
 /datum/component/modification/organ/verb/somatic_trigger()
