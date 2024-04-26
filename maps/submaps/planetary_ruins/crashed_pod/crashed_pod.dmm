@@ -16,8 +16,7 @@
 	icon_state = "heater"
 	},
 /obj/structure/girder,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/map_template/crashed_pod)
 "ah" = (
 /obj/machinery/alarm{

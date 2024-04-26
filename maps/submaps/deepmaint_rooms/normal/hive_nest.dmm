@@ -70,9 +70,8 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/deepmaint)
 "n" = (
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/turf/wall/low/with_glass/smart_plasma,
 /obj/machinery/door/blast/regular,
-/turf/floor/tiled/steel/techfloor_grid,
 /area/deepmaint)
 "o" = (
 /mob/living/simple_animal/hostile/hivemind/mechiver{
@@ -252,9 +251,8 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/deepmaint)
 "X" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/barricade,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "Y" = (
 /obj/item/trash/wok,

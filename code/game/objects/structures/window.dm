@@ -19,12 +19,8 @@
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 	var/no_color = FALSE //If true, don't apply a color to the base
-	var/is_fulltile = FALSE
 
 	atmos_canpass = CANPASS_PROC
-
-/obj/structure/window/can_prevent_fall(above)
-	return above ? !is_fulltile : FALSE
 
 /obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
@@ -371,11 +367,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-						var/obj/glass
-						if(is_fulltile)
-							glass = new glasstype(loc, 6)
-						else
-							glass = new glasstype(loc, 1)
+						var/obj/glass = new glasstype(loc, 1)
 						glass.add_fingerprint(user)
 
 						qdel(src)
@@ -531,30 +523,10 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		verbs += /obj/structure/window/proc/rotate
 		verbs += /obj/structure/window/proc/revrotate
 
-//merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
-/obj/structure/window/update_icon()
-	if(!is_fulltile)
-		icon_state = initial(icon_state)
-		return
-	icon_state = ""
-	cut_overlays()
-	var/initial_icon_state = initial(icon_state)
-	var/list/any_wall_connections[10]
-	var/turf/wall/low/LW = get_turf(src)
-	if(istype(LW)) // Since fulltile windows can't exist without an underlying wall, we will just copy connections from our low wall
-		any_wall_connections = LW.any_wall_connections
-
-	for(var/overlay_direction in cardinal)
-		var/connection_type = get_overlay_connection_type(overlay_direction, any_wall_connections)
-		var/image/image = image(icon = 'icons/test_walls_best_walls.dmi', icon_state = "[initial_icon_state]_[connection_type]", dir = overlay_direction)
-		add_overlay(image.appearance)
-
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > maximal_heat)
 		hit(damage_per_fire_tick, TRUE, TRUE)
 	..()
-
-
 
 /obj/structure/window/basic
 	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."
@@ -564,14 +536,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
 	maxHealth = 15
 	resistance = RESISTANCE_FLIMSY
-
-/obj/structure/window/basic/full
-	dir = SOUTH|EAST
-	alpha = 120
-	maxHealth = 40
-	resistance = RESISTANCE_FLIMSY
-	flags = null
-	is_fulltile = TRUE
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
@@ -585,14 +549,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	maxHealth = 150
 	resistance = RESISTANCE_AVERAGE
 
-/obj/structure/window/plasmabasic/full
-	dir = SOUTH|EAST
-	icon_state = "plasma_window"
-	alpha = 150
-	maxHealth = 200
-	resistance = RESISTANCE_AVERAGE
-	flags = null
-	is_fulltile = TRUE
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -613,15 +569,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	if (constructed)
 		state = 0
 
-/obj/structure/window/reinforced/full
-	dir = SOUTH|EAST
-	icon_state = "reinf_window"
-	alpha = 150
-	maxHealth = 80
-	resistance = RESISTANCE_FRAGILE
-	flags = null
-	is_fulltile = TRUE
-
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
@@ -632,16 +579,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	damage_per_fire_tick = 1.5
 	maxHealth = 200
 	resistance = RESISTANCE_IMPROVED
-
-/obj/structure/window/reinforced/plasma/full
-	dir = SOUTH|EAST
-	icon_state = "plasma_reinf_window"
-	alpha = 150
-	maxHealth = 250
-	resistance = RESISTANCE_IMPROVED
-	flags = null
-	is_fulltile = TRUE
-
 
 /obj/structure/window/shuttle
 	name = "shuttle window"

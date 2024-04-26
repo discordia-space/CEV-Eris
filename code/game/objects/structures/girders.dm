@@ -12,6 +12,16 @@
 	var/static/rods_amount_to_reinforce = 2
 	var/static/metal_amount_to_complete = 5
 
+/obj/structure/girder/update_icon()
+	var/new_icon_state = "girder"
+	if(is_reinforced)
+		new_icon_state = "reinforced"
+	else if(!anchored)
+		new_icon_state = "displaced"
+	if(is_low)
+		new_icon_state = "[new_icon_state]_low"
+	icon_state = new_icon_state
+
 /obj/structure/girder/get_matter()
 	if(is_reinforced)
 		return list(MATERIAL_STEEL = 6) // Including the 2 metal rods, each is 0.5 steel
@@ -118,8 +128,6 @@
 				var/obj/item/stack/material/steel/steel = I
 				if(do_after(user, 40, src) && steel.use(metal_amount_to_complete))
 					construct_wall(user)
-					to_chat(user, SPAN_NOTICE("You've built a [is_low ? "low " : ""]wall!"))
-				else
 					to_chat(user, SPAN_NOTICE("You've built a [is_low ? "low " : ""]wall!"))
 			else
 				to_chat(user, SPAN_NOTICE("You need steel to finish the [is_low ? "low " : ""]wall!"))

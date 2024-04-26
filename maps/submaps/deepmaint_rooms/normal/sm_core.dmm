@@ -45,7 +45,7 @@
 /turf/wall/reinforced,
 /area/deepmaint)
 "m" = (
-/obj/effect/window_lwall_spawn/plasma,
+/turf/wall/low/with_glass/plasma,
 /obj/machinery/door/blast/regular{
 	_wifi_id = null;
 	icon_state = "pdoor1";
@@ -53,7 +53,6 @@
 	name = "Reactor Core";
 	p_open = 0
 	},
-/turf/floor/plating,
 /area/deepmaint)
 "n" = (
 /obj/spawner/pack/rare,
@@ -80,7 +79,7 @@
 	},
 /area/deepmaint)
 "r" = (
-/obj/effect/window_lwall_spawn/plasma,
+/turf/wall/low/with_glass/plasma,
 /obj/machinery/door/blast/regular{
 	_wifi_id = null;
 	icon_state = "pdoor1";
@@ -88,7 +87,6 @@
 	name = "Reactor Core";
 	p_open = 0
 	},
-/turf/floor/reinforced,
 /area/deepmaint)
 "t" = (
 /obj/structure/barricade,

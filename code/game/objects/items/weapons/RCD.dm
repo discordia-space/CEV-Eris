@@ -145,7 +145,7 @@
 			else if(istype(T,/turf/wall))
 				var/turf/wall/W = T
 				build_delay = 40
-				build_cost =  (W.hardness > 100) ? 10 : 5
+				build_cost =  W.is_reinforced
 				build_turf =  /turf/floor
 			else if(istype(T,/obj/machinery/door/airlock))
 				build_cost =  10

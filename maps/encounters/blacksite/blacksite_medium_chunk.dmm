@@ -124,11 +124,10 @@
 /turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "ci" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/wall/low/onestar,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating/under,
 /area/outpost/blacksite/medium)
 "cr" = (
 /obj/machinery/door/airlock/centcom{
@@ -892,8 +891,7 @@
 /turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "tc" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/plating/under,
+/turf/wall/low/onestar,
 /area/outpost/blacksite/medium)
 "tg" = (
 /obj/spawner/toy/plushie,

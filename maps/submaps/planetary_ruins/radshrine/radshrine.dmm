@@ -22,8 +22,7 @@
 /turf/floor/carpet,
 /area/template_noop)
 "h" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "i" = (
 /obj/machinery/artifact,

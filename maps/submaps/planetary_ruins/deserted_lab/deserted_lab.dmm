@@ -293,8 +293,7 @@
 /turf/floor/tiled/white,
 /area/template_noop)
 "sW" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 
 (1,1,1) = {"

@@ -22,9 +22,8 @@
 /turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "f" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/barricade,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/map_template/spider_nest)
 "h" = (
 /obj/structure/grille,

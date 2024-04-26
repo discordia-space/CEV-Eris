@@ -6,8 +6,7 @@
 /turf/wall,
 /area/deepmaint)
 "c" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "d" = (
 /obj/spawner/mob/roaches/cluster/low_chance,

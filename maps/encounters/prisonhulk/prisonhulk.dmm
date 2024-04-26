@@ -262,8 +262,7 @@
 /turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "ro" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/space,
+/turf/wall/low/with_glass/reinforced,
 /area/outpost/prisonhulk)
 "ru" = (
 /obj/item/device/radio/beacon,
@@ -625,8 +624,7 @@
 /area/outpost/prisonhulk/security)
 "IS" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/prisonhulk/security)
 "Je" = (
 /obj/item/modular_computer/console/preset/security/camera{
@@ -747,8 +745,7 @@
 /turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "PA" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/tiled/steel,
+/turf/wall/low/with_glass/reinforced,
 /area/outpost/prisonhulk/cells)
 "PE" = (
 /mob/living/simple_animal/hostile/hivebot/range,

@@ -7,8 +7,7 @@
 /area/eris/security/main)
 "aac" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/main)
 "aad" = (
 /obj/structure/lattice,
@@ -22,13 +21,11 @@
 /area/eris/security/barracks)
 "aag" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/barracks)
 "aah" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/range)
 "aai" = (
 /turf/wall/reinforced,
@@ -61,8 +58,7 @@
 /area/eris/security/armory)
 "aam" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/prison)
 "aan" = (
 /obj/structure/table/reinforced,
@@ -104,8 +100,7 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/range)
 "aaq" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/range)
 "aar" = (
 /turf/floor/tiled/dark/gray_perforated,
@@ -181,8 +176,7 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "aaF" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/prison)
 "aaG" = (
 /turf/wall/reinforced,
@@ -222,8 +216,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/armory)
 "aaM" = (
 /obj/landmark/mob/carpspawn,
@@ -267,8 +260,7 @@
 /area/eris/security/armory)
 "aaS" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/disposal)
 "aaT" = (
 /obj/machinery/door/firedoor,
@@ -803,8 +795,7 @@
 /area/eris/security/prison)
 "ach" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/commander)
 "aci" = (
 /obj/machinery/flasher/portable,
@@ -1096,8 +1087,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/commander)
 "acL" = (
 /obj/machinery/access_button{
@@ -1386,8 +1376,7 @@
 /area/eris/security/disposal)
 "adt" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/exerooms)
 "adu" = (
 /obj/machinery/computer/area_atmos/area{
@@ -1508,8 +1497,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/exerooms)
 "adK" = (
 /obj/machinery/light/small{
@@ -1844,8 +1832,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/exerooms)
 "aeB" = (
 /obj/structure/sign/faction/ironhammer,
@@ -1891,8 +1878,7 @@
 /turf/floor/tiled/dark/brown_perforated,
 /area/eris/security/prison)
 "aeH" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/exerooms)
 "aeI" = (
 /obj/structure/table/standard,
@@ -2444,8 +2430,7 @@
 /area/eris/security/prisoncells)
 "agf" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "agg" = (
 /obj/structure/disposalpipe/segment{
@@ -2640,8 +2625,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/exerooms)
 "agz" = (
 /obj/machinery/power/apc{
@@ -2690,8 +2674,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/exerooms)
 "agD" = (
 /turf/wall/reinforced,
@@ -2990,8 +2973,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/maintpost)
 "ahk" = (
 /obj/structure/disposalpipe/segment{
@@ -3100,8 +3082,7 @@
 /turf/wall/reinforced,
 /area/eris/security/exerooms)
 "ahu" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/maintpost)
 "ahv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3972,9 +3953,8 @@
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/crew_quarters/sleep)
 "ajw" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
 /area/eris/rnd/podbay)
 "ajx" = (
 /obj/machinery/door/firedoor,
@@ -4138,8 +4118,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/podbay)
 "ajM" = (
 /obj/structure/cable/green{
@@ -4794,8 +4773,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/podbay)
 "als" = (
 /obj/item/modular_computer/console/preset/civilian{
@@ -4897,8 +4875,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "alC" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck1starboard)
 "alD" = (
 /obj/machinery/light{
@@ -5158,8 +5135,7 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/eschangarb)
 "amk" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck1port)
 "aml" = (
 /obj/structure/railing,
@@ -5191,8 +5167,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck5starboard)
 "amn" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/hangarsupply)
 "amo" = (
 /obj/structure/table/rack/shelf,
@@ -6378,8 +6353,7 @@
 /area/eris/maintenance/section2deck5port)
 "apj" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/eschangarb)
 "apk" = (
 /obj/machinery/door/firedoor,
@@ -6673,8 +6647,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/exerooms)
 "apX" = (
 /obj/structure/disposalpipe/segment{
@@ -6824,8 +6797,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck5port)
 "aqn" = (
 /obj/structure/catwalk,
@@ -6994,8 +6966,7 @@
 /area/eris/maintenance/section2deck5port)
 "aqG" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/toilet/medbay)
 "aqH" = (
 /obj/machinery/door/firedoor,
@@ -7154,13 +7125,11 @@
 /area/eris/maintenance/section2deck5port)
 "aqU" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5starboard)
 "aqV" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/bar)
 "aqW" = (
 /turf/wall/reinforced,
@@ -7574,8 +7543,7 @@
 /area/eris/crew_quarters/toilet/medbay)
 "arQ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3starboard)
 "arR" = (
 /obj/machinery/atmospherics/pipe/tank/air{
@@ -8482,8 +8450,7 @@
 /area/eris/quartermaster/disposaldrop)
 "atT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "atU" = (
 /obj/structure/cable/green{
@@ -8681,8 +8648,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "auz" = (
 /obj/structure/toilet{
@@ -8748,8 +8714,7 @@
 /area/eris/maintenance/section2deck4central)
 "auH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4starboard)
 "auI" = (
 /turf/shuttle/wall/escpod,
@@ -8845,8 +8810,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "auX" = (
 /obj/machinery/camera/network/third_section,
@@ -9024,8 +8988,7 @@
 /area/eris/maintenance/section4deck5port)
 "avx" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/hangarsupply)
 "avy" = (
 /obj/machinery/smartfridge/secure/extract,
@@ -9113,9 +9076,8 @@
 /turf/floor/tiled/dark/techfloor,
 /area/eris/hallway/side/section3starboard)
 "avK" = (
-/obj/effect/window_lwall_spawn/smartspawn,
+/turf/wall/low/with_glass/smart,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
 /area/eris/maintenance/section3deck5port)
 "avL" = (
 /obj/machinery/camera/network/research{
@@ -9170,8 +9132,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "avU" = (
 /obj/structure/cable/green{
@@ -9205,8 +9166,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4starboard)
 "avY" = (
 /obj/machinery/atmospherics/pipe/zpipe/down,
@@ -10174,7 +10134,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
+/turf/wall/low/with_glass/smart,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -10195,11 +10155,10 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
 /area/eris/quartermaster/hangarsupply)
 "ayL" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/window_lwall_spawn/smartspawn,
+/turf/wall/low/with_glass/smart,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_lower_cargo";
@@ -10284,8 +10243,7 @@
 /area/eris/maintenance/section4deck5port)
 "ayZ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/junk)
 "aza" = (
 /obj/structure/bookcase{
@@ -11131,8 +11089,7 @@
 /turf/floor/tiled/techmaint,
 /area/eris/crew_quarters/sleep)
 "aAY" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/steel,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "aAZ" = (
 /obj/machinery/vending/coffee,
@@ -12155,8 +12112,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aDN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -12168,8 +12124,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aDO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -12179,8 +12134,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aDP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -12483,8 +12437,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4central)
 "aEC" = (
 /obj/structure/cable/green{
@@ -12540,8 +12493,7 @@
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/security/prisoncells)
 "aEG" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5starboard)
 "aEH" = (
 /obj/machinery/door/airlock/maintenance_common{
@@ -12961,12 +12913,10 @@
 /area/eris/engineering/atmos)
 "aFT" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aFU" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aFV" = (
 /obj/machinery/constructable_frame/machine_frame,
@@ -13221,8 +13171,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aGJ" = (
 /obj/structure/disposalpipe/segment{
@@ -13437,8 +13386,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aHn" = (
 /obj/structure/catwalk,
@@ -13682,8 +13630,7 @@
 /turf/floor/tiled/steel,
 /area/eris/rnd/chargebay)
 "aHY" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aHZ" = (
 /obj/machinery/atmospherics/unary/outlet_injector{
@@ -14069,8 +14016,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aJc" = (
 /obj/structure/railing{
@@ -14649,8 +14595,7 @@
 /area/eris/maintenance/section4deck5port)
 "aKC" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5starboard)
 "aKD" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -14681,8 +14626,7 @@
 /area/eris/maintenance/section3deck1central)
 "aKI" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/robotics)
 "aKJ" = (
 /obj/structure/railing,
@@ -15028,9 +14972,8 @@
 /turf/space,
 /area/space)
 "aLG" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5starboard)
 "aLH" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green,
@@ -15071,8 +15014,7 @@
 "aLM" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aLN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
@@ -15258,9 +15200,8 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section4deck5starboard)
 "aMl" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/eschangara)
 "aMm" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -15548,8 +15489,7 @@
 /area/eris/maintenance/section4deck5port)
 "aNb" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aNc" = (
 /obj/spawner/firstaid/low_chance,
@@ -15914,8 +15854,7 @@
 /area/eris/engineering/atmos/storage)
 "aNV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aNW" = (
 /turf/wall,
@@ -17109,8 +17048,7 @@
 /area/eris/security/prisoncells)
 "aQz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aQA" = (
 /obj/structure/cable/green{
@@ -17119,8 +17057,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/blue,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aQB" = (
 /obj/structure/table/reinforced,
@@ -17249,8 +17186,7 @@
 /area/eris/security/main)
 "aQU" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aQV" = (
 /obj/spawner/traps/low_chance,
@@ -17321,8 +17257,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/engineering/atmos)
 "aRe" = (
 /turf/floor/tiled/steel/gray_perforated,
@@ -17448,8 +17383,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aRw" = (
 /obj/structure/table/reinforced,
@@ -17560,8 +17494,7 @@
 /area/eris/security/warden)
 "aRI" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/eschangara)
 "aRJ" = (
 /obj/machinery/door/firedoor,
@@ -17588,8 +17521,7 @@
 /area/eris/rnd/lab)
 "aRL" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/engineering/atmos)
 "aRM" = (
 /obj/spawner/junk/low_chance,
@@ -17668,8 +17600,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/engineering/atmos)
 "aRV" = (
 /obj/machinery/multistructure/bioreactor_part/platform{
@@ -17732,8 +17663,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aSd" = (
 /turf/floor/hull,
@@ -18401,20 +18331,18 @@
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/security/main)
 "aTC" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aTD" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/engineering/atmos)
 "aTE" = (
 /obj/machinery/door/firedoor,
@@ -18437,13 +18365,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "aTI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "aTJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
@@ -18636,9 +18562,8 @@
 /turf/floor/tiled/dark/techfloor_grid,
 /area/eris/engineering/atmos)
 "aUd" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aUe" = (
 /obj/structure/lattice,
@@ -18753,16 +18678,14 @@
 /area/eris/hallway/side/eschangara)
 "aUu" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/maintenance/disposal)
 "aUv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aUw" = (
 /obj/structure/disposalpipe/segment,
@@ -18894,8 +18817,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/engineering/atmos)
 "aUJ" = (
 /obj/structure/disposalpipe/segment{
@@ -18992,8 +18914,7 @@
 	},
 /obj/machinery/meter,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aUV" = (
 /obj/structure/disposalpipe/segment{
@@ -19027,8 +18948,7 @@
 	name = "Maintenance Hatch";
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/eschangara)
 "aUX" = (
 /obj/machinery/conveyor/south{
@@ -19042,8 +18962,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/maintenance/disposal)
 "aUZ" = (
 /obj/machinery/door/window/brigdoor{
@@ -19098,32 +19017,27 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/turret_protected/ai)
 "aVh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/red,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aVi" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/disposal)
 "aVj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/disposal)
 "aVk" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck5port)
 "aVl" = (
 /obj/machinery/computer/telecomms/monitor,
@@ -19141,8 +19055,7 @@
 "aVn" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/green,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aVo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -19514,8 +19427,7 @@
 /area/eris/maintenance/section1deck4central)
 "aWd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4port)
 "aWe" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -19544,8 +19456,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/turret_protected/ai)
 "aWh" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -19597,8 +19508,7 @@
 "aWm" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "aWn" = (
 /obj/structure/disposalpipe/segment{
@@ -20112,8 +20022,7 @@
 "aXx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/engineering/atmos)
 "aXy" = (
 /obj/machinery/power/apc{
@@ -20131,8 +20040,7 @@
 "aXz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/engineering/atmos)
 "aXA" = (
 /obj/item/device/radio/intercom{
@@ -20218,14 +20126,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "aXJ" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/wastingroom)
 "aXK" = (
 /obj/machinery/door/firedoor,
@@ -20348,8 +20254,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "aXW" = (
 /turf/floor/tiled/techmaint_panels,
@@ -20781,8 +20686,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "aYS" = (
 /obj/structure/disposalpipe/segment{
@@ -21087,9 +20991,8 @@
 /turf/floor/tiled/white/panels,
 /area/eris/medical/virology)
 "aZA" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "aZB" = (
 /obj/structure/closet/crate/secure/gear{
@@ -21172,13 +21075,11 @@
 /area/eris/maintenance/section1deck4central)
 "aZE" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/warden)
 "aZF" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/armory)
 "aZG" = (
 /obj/structure/table/reinforced,
@@ -21239,13 +21140,11 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "aZN" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "aZO" = (
 /obj/structure/railing{
@@ -21393,8 +21292,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "baa" = (
 /obj/structure/disposalpipe/segment{
@@ -21521,8 +21419,7 @@
 /area/turret_protected/ai)
 "bak" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/security/main)
 "bal" = (
 /obj/structure/railing{
@@ -21579,8 +21476,7 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "bar" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue{
@@ -21705,9 +21601,8 @@
 /area/eris/maintenance/substation/section1)
 "baJ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/main)
 "baK" = (
 /obj/machinery/door/firedoor,
@@ -21823,8 +21718,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/section1)
 "baY" = (
 /obj/machinery/door/airlock/maintenance_common{
@@ -21857,9 +21751,8 @@
 /area/eris/hallway/side/eschangara)
 "bbc" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/barracks)
 "bbd" = (
 /obj/machinery/door/firedoor,
@@ -21915,8 +21808,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "bbh" = (
 /obj/machinery/atmospherics/pipe/zpipe/up{
@@ -22028,8 +21920,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bbr" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/section1)
 "bbs" = (
 /obj/structure/cable{
@@ -22308,8 +22199,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "bbU" = (
 /obj/structure/disposalpipe/segment,
@@ -22519,8 +22409,7 @@
 /area/eris/crew_quarters/sleep)
 "bcj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "bck" = (
 /obj/structure/catwalk,
@@ -22848,7 +22737,6 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "bcJ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
 	id = "maint_hatch_medbay_rec";
@@ -22863,7 +22751,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbreak)
 "bcK" = (
 /obj/structure/disposalpipe/segment{
@@ -23416,8 +23304,7 @@
 /turf/wall/reinforced,
 /area/eris/maintenance/section2deck2starboard)
 "bdO" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2starboard)
 "bdP" = (
 /obj/structure/multiz/ladder,
@@ -23433,8 +23320,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4central)
 "bdS" = (
 /obj/structure/disposalpipe/down{
@@ -23469,8 +23355,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bdW" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "bdX" = (
 /obj/structure/railing{
@@ -23748,8 +23633,7 @@
 /area/eris/rnd/lab)
 "beE" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/security/prisoncells)
 "beF" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -24058,8 +23942,7 @@
 /area/eris/maintenance/section3deck1central)
 "bfu" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/server)
 "bfv" = (
 /turf/floor/tiled/steel/panels,
@@ -24079,7 +23962,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
 	id = "maint_hatch_medbay_rec";
@@ -24094,7 +23976,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbreak)
 "bfx" = (
 /obj/structure/bed/chair,
@@ -24214,8 +24096,7 @@
 "bfO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/maintenance/disposal)
 "bfP" = (
 /obj/machinery/computer/cryopod{
@@ -24253,8 +24134,7 @@
 /area/eris/medical/virology)
 "bfU" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/prisoncells)
 "bfV" = (
 /obj/machinery/disposal,
@@ -24279,8 +24159,7 @@
 /area/eris/rnd/chargebay)
 "bfY" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/mixing)
 "bfZ" = (
 /obj/structure/cable/green{
@@ -24609,10 +24488,9 @@
 /area/eris/rnd/server)
 "bgM" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/warden)
 "bgN" = (
 /obj/machinery/blackbox_recorder,
@@ -24675,9 +24553,8 @@
 /area/eris/maintenance/section2deck4starboard)
 "bgU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "bgV" = (
 /obj/effect/decal/cleanable/dirt,
@@ -24923,14 +24800,12 @@
 /area/eris/rnd/podbay)
 "bhz" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/maintenance/disposal)
 "bhA" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4central)
 "bhB" = (
 /obj/structure/disposalpipe/segment{
@@ -24968,8 +24843,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4central)
 "bhI" = (
 /obj/structure/cable{
@@ -24989,8 +24863,7 @@
 "bhK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4starboard)
 "bhL" = (
 /turf/wall/reinforced,
@@ -25058,11 +24931,10 @@
 /turf/floor/tiled/steel/techfloor,
 /area/eris/rnd/chargebay)
 "bhT" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "bhU" = (
 /obj/structure/cable/green{
@@ -25113,8 +24985,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2starboard)
 "bia" = (
 /obj/structure/disposalpipe/segment,
@@ -25459,12 +25330,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "biT" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/section2)
 "biU" = (
 /obj/structure/cable/green,
@@ -25755,8 +25624,7 @@
 "bju" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/maintenance/disposal)
 "bjv" = (
 /obj/machinery/door/firedoor,
@@ -25927,8 +25795,7 @@
 /area/eris/maintenance/section3deck4central)
 "bjL" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/evidencestorage)
 "bjM" = (
 /obj/structure/ore_box,
@@ -25938,8 +25805,7 @@
 "bjN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "bjO" = (
 /obj/machinery/firealarm{
@@ -26172,8 +26038,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/section2)
 "bkm" = (
 /obj/machinery/power/breakerbox{
@@ -26215,8 +26080,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/morguehallway)
 "bkr" = (
 /obj/machinery/light{
@@ -26653,14 +26517,13 @@
 /turf/floor/tiled/white,
 /area/eris/medical/virology)
 "blm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "bln" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/black{
@@ -26804,8 +26667,7 @@
 "blE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "blF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -26817,8 +26679,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/prisoncells)
 "blG" = (
 /obj/structure/cable/green{
@@ -26946,8 +26807,7 @@
 "blZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4starboard)
 "bma" = (
 /obj/structure/closet,
@@ -26982,8 +26842,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/prisoncells)
 "bmf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -26995,8 +26854,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/prisoncells)
 "bmg" = (
 /obj/structure/catwalk,
@@ -27044,8 +26902,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4starboard)
 "bmm" = (
 /obj/structure/disposalpipe/segment{
@@ -27132,8 +26989,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/evidencestorage)
 "bmu" = (
 /obj/machinery/shower{
@@ -27190,8 +27046,7 @@
 "bmA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "bmB" = (
 /obj/structure/disposalpipe/segment{
@@ -27434,8 +27289,7 @@
 "bna" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "bnb" = (
 /obj/structure/table/standard,
@@ -27610,9 +27464,8 @@
 /area/eris/maintenance/section2deck4central)
 "bnt" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
+/turf/wall/low/with_glass/smart_plasma,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
 /area/eris/maintenance/disposal)
 "bnu" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -27659,8 +27512,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/dark/cargo,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4central)
 "bnx" = (
 /obj/structure/disposalpipe/segment{
@@ -27780,8 +27632,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "bnJ" = (
 /obj/machinery/camera/network/research{
@@ -28093,8 +27944,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "boB" = (
 /obj/structure/table/standard,
@@ -28136,8 +27986,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "boF" = (
 /turf/floor/tiled/white/brown_platform,
@@ -28196,8 +28045,7 @@
 /turf/floor/tiled/white/brown_platform,
 /area/eris/maintenance/section3deck1central)
 "boN" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "boO" = (
 /obj/machinery/door/airlock/glass_medical{
@@ -28237,8 +28085,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4central)
 "boS" = (
 /turf/wall,
@@ -28260,8 +28107,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep)
 "boX" = (
 /obj/machinery/door/firedoor,
@@ -28513,8 +28359,7 @@
 /area/eris/command/courtroom)
 "bpE" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/virology)
 "bpF" = (
 /obj/structure/catwalk,
@@ -28532,8 +28377,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bpH" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/librarybackroom)
 "bpI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -28848,8 +28692,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "bqs" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck3central)
 "bqt" = (
 /obj/structure/catwalk,
@@ -28933,8 +28776,7 @@
 "bqG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4port)
 "bqH" = (
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -28953,8 +28795,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4port)
 "bqK" = (
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -29151,8 +28992,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4central)
 "brn" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/techmaint,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "bro" = (
 /obj/machinery/light/small{
@@ -29238,9 +29078,8 @@
 /turf/floor/plating,
 /area/eris/engineering/construction)
 "brA" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "brB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
@@ -29267,8 +29106,7 @@
 /turf/open,
 /area/eris/maintenance/section2deck4port)
 "brE" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4central)
 "brF" = (
 /obj/structure/disposalpipe/segment,
@@ -29363,8 +29201,7 @@
 /area/eris/maintenance/section3deck1central)
 "brT" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/robotics)
 "brU" = (
 /obj/structure/table/rack/shelf,
@@ -29447,8 +29284,7 @@
 "bsh" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/virology)
 "bsi" = (
 /obj/item/modular_computer/console/preset/trade{
@@ -29537,9 +29373,7 @@
 /area/eris/maintenance/section3deck4central)
 "bsu" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/space,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/office)
 "bsv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
@@ -29591,8 +29425,7 @@
 "bsB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/virology)
 "bsC" = (
 /obj/structure/catwalk,
@@ -29923,13 +29756,11 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/virology)
 "bty" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/tiled/dark/gray_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/chapelritualroom)
 "btz" = (
 /obj/machinery/light/small{
@@ -30259,8 +30090,7 @@
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/maintenance/section3deck1central)
 "buq" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bur" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30371,8 +30201,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "buH" = (
 /turf/wall,
@@ -30643,8 +30472,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "bvs" = (
 /obj/structure/railing,
@@ -30670,8 +30498,7 @@
 /area/eris/security/prisoncells)
 "bvu" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "bvv" = (
 /obj/machinery/door/airlock/maintenance_common{
@@ -30697,8 +30524,7 @@
 /area/eris/hallway/side/section3starboard)
 "bvA" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/morgue)
 "bvB" = (
 /obj/machinery/teleport/station,
@@ -30720,8 +30546,7 @@
 	open_layer = 2.5;
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "bvF" = (
 /obj/machinery/door/firedoor,
@@ -30733,8 +30558,7 @@
 	open_layer = 2.5;
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "bvG" = (
 /obj/machinery/atmospherics/pipe/zpipe/up{
@@ -30831,11 +30655,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "bvO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -31384,8 +31207,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/dark/cargo,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/eschangarb)
 "bwV" = (
 /obj/structure/disposalpipe/segment{
@@ -31491,8 +31313,7 @@
 /turf/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck4port)
 "bxi" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck2central)
 "bxj" = (
 /obj/structure/railing,
@@ -31544,8 +31365,7 @@
 /area/eris/hallway/main/section1)
 "bxp" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/morguehallway)
 "bxq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -31932,8 +31752,7 @@
 	open_layer = 2.5;
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "byk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -32552,7 +32371,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
 	id = "maint_hatch_cargo_bay";
@@ -32567,7 +32385,7 @@
 	name = "Cargo Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/tiled/steel/cargo,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/storage)
 "bzJ" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
@@ -33029,8 +32847,7 @@
 /area/eris/maintenance/section1deck3central)
 "bAN" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/storage)
 "bAO" = (
 /obj/spawner/pack/gun_loot,
@@ -33126,9 +32943,8 @@
 /turf/floor/tiled/dark/golden,
 /area/eris/hallway/side/section3port)
 "bAY" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "bBa" = (
 /obj/machinery/light/small,
@@ -33148,8 +32964,7 @@
 /area/eris/neotheology/churchcorridor)
 "bBc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "bBd" = (
 /obj/structure/railing{
@@ -33762,12 +33577,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/steel,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck2starboard)
 "bCO" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/steel,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck2starboard)
 "bCP" = (
 /obj/structure/multiz/ladder,
@@ -33847,8 +33660,7 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
 "bCZ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4central)
 "bDa" = (
 /turf/floor/tiled/steel,
@@ -34401,8 +34213,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/turret_protected/ai)
 "bEv" = (
 /obj/machinery/light{
@@ -35907,8 +35718,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/section4)
 "bHF" = (
 /turf/floor/plating/under,
@@ -35985,8 +35795,7 @@
 /turf/open,
 /area/eris/engineering/atmos)
 "bHN" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/tcommsat/computer)
 "bHO" = (
 /obj/structure/railing{
@@ -36533,8 +36342,7 @@
 /area/eris/engineering/atmos)
 "bIT" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/telecommonitor)
 "bIU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
@@ -36793,8 +36601,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/tcommsat/chamber)
 "bJx" = (
 /obj/machinery/camera/network/engineering{
@@ -36910,8 +36717,7 @@
 /turf/open,
 /area/eris/engineering/atmos)
 "bJI" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/tcommsat/chamber)
 "bJJ" = (
 /obj/structure/extinguisher_cabinet{
@@ -37045,19 +36851,16 @@
 /turf/open,
 /area/eris/maintenance/section1deck3central)
 "bJV" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4central)
 "bJW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4central)
 "bJX" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4central)
 "bJY" = (
 /turf/wall,
@@ -37459,8 +37262,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4central)
 "bKO" = (
 /obj/structure/cable/green{
@@ -37529,15 +37331,13 @@
 /area/eris/maintenance/section4deck4central)
 "bKX" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmoscontrol)
 "bKY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bKZ" = (
 /turf/shuttle/wall/pulsar{
@@ -37553,8 +37353,7 @@
 /area/eris/maintenance/section4deck4port)
 "bLb" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bLc" = (
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -37695,8 +37494,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "bLp" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -37721,13 +37519,12 @@
 /area/eris/maintenance/section4deck4port)
 "bLs" = (
 /obj/structure/cable/cyan,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	id = "AICore";
 	name = "AI core maintenance hatch";
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/turret_protected/ai)
 "bLt" = (
 /obj/structure/cable{
@@ -37919,8 +37716,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos)
 "bLP" = (
 /obj/structure/disposalpipe/segment,
@@ -38071,8 +37867,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bMk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -38089,8 +37884,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bMm" = (
 /obj/structure/disposalpipe/segment{
@@ -38568,8 +38362,7 @@
 /area/eris/maintenance/section4deck4port)
 "bNn" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/engine_room)
 "bNo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -38589,8 +38382,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/tcommsat/chamber)
 "bNp" = (
 /obj/structure/cable/green{
@@ -38707,8 +38499,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/tcommsat/chamber)
 "bNz" = (
 /obj/machinery/atmospherics/pipe/zpipe/down,
@@ -39033,8 +38824,7 @@
 /area/eris/engineering/construction)
 "bOg" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/hydroponics)
 "bOh" = (
 /obj/structure/cable{
@@ -39195,8 +38985,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck3central)
 "bOB" = (
 /obj/structure/railing{
@@ -39219,8 +39008,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bOD" = (
 /obj/spawner/ammo/ihs/low_chance,
@@ -39373,9 +39161,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/lobby)
 "bPb" = (
 /obj/structure/disposalpipe/segment,
@@ -39490,8 +39277,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/engineering)
 "bPp" = (
 /obj/structure/railing{
@@ -39626,8 +39412,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck3central)
 "bPD" = (
 /obj/structure/catwalk,
@@ -39823,7 +39608,6 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section4deck4port)
 "bQa" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -39835,7 +39619,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5port)
 "bQb" = (
 /obj/machinery/seed_extractor,
@@ -40013,8 +39797,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/drone_fabrication)
 "bQA" = (
 /obj/structure/flora/ausbushes/ywflowers,
@@ -40031,8 +39814,7 @@
 /area/eris/crew_quarters/hydroponics)
 "bQB" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/drone_fabrication)
 "bQC" = (
 /obj/structure/flora/ausbushes/ywflowers,
@@ -40068,11 +39850,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5starboard)
 "bQJ" = (
 /obj/structure/cable/green,
@@ -40136,8 +39917,7 @@
 /area/eris/maintenance/section4deck4port)
 "bQP" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bQQ" = (
 /obj/structure/cable/green{
@@ -40146,8 +39926,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/blue,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bQR" = (
 /obj/machinery/power/apc{
@@ -40204,9 +39983,8 @@
 /area/eris/neotheology/bioprinter)
 "bQZ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/tiled/dark/gray_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/altar)
 "bRa" = (
 /obj/structure/bed/chair{
@@ -40228,8 +40006,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/drone_fabrication)
 "bRe" = (
 /obj/machinery/door/firedoor,
@@ -40350,13 +40127,11 @@
 /area/eris/quartermaster/hangarsupply)
 "bRs" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/storage)
 "bRt" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck4port)
 "bRu" = (
 /obj/structure/disposalpipe/up{
@@ -40592,8 +40367,7 @@
 /area/eris/maintenance/section4deck4port)
 "bSd" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/construction)
 "bSe" = (
 /obj/structure/table/standard,
@@ -40735,8 +40509,7 @@
 /turf/wall/reinforced,
 /area/eris/maintenance/section2deck3port)
 "bSy" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck3starboard)
 "bSz" = (
 /obj/structure/multiz/ladder/up,
@@ -41172,7 +40945,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -41181,7 +40953,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5starboard)
 "bTF" = (
 /obj/machinery/power/terminal{
@@ -41322,8 +41094,7 @@
 /area/eris/security/lobby)
 "bTV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5starboard)
 "bTW" = (
 /obj/machinery/power/nt_obelisk,
@@ -41335,9 +41106,8 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "bTY" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/lobby)
 "bTZ" = (
 /obj/structure/disposalpipe/segment{
@@ -41351,8 +41121,7 @@
 /area/eris/security/lobby)
 "bUa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5starboard)
 "bUb" = (
 /obj/structure/disposalpipe/segment{
@@ -41450,9 +41219,8 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck5port)
 "bUn" = (
-/obj/effect/window_lwall_spawn/plasma,
+/turf/wall/low/with_glass/plasma,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
 /area/eris/crew_quarters/sleep/cryo)
 "bUo" = (
 /obj/structure/cable/green{
@@ -41662,8 +41430,7 @@
 /area/eris/rnd/server)
 "bUP" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/courtroom)
 "bUQ" = (
 /obj/structure/mopbucket,
@@ -41925,9 +41692,8 @@
 /area/eris/security/lobby)
 "bVz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/lobby)
 "bVA" = (
 /obj/machinery/light{
@@ -41944,8 +41710,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section1)
 "bVD" = (
 /obj/machinery/power/apc{
@@ -42023,8 +41788,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section1)
 "bVK" = (
 /obj/machinery/alarm{
@@ -42037,9 +41801,8 @@
 /area/eris/security/inspectors_office)
 "bVL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4port)
 "bVN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -42139,12 +41902,10 @@
 "bWa" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/command/courtroom)
 "bWc" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section1)
 "bWe" = (
 /obj/structure/disposalpipe/segment{
@@ -42231,8 +41992,7 @@
 "bWq" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/courtroom)
 "bWr" = (
 /obj/machinery/firealarm{
@@ -42612,8 +42372,7 @@
 /area/eris/hallway/side/bridgehallway)
 "bXl" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/inspectors_office)
 "bXm" = (
 /obj/machinery/door/firedoor,
@@ -42622,8 +42381,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/inspectors_office)
 "bXn" = (
 /obj/machinery/light{
@@ -42715,8 +42473,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/inspectors_office)
 "bXB" = (
 /obj/machinery/door/firedoor,
@@ -42818,8 +42575,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/security/lobby)
 "bXP" = (
 /obj/machinery/firealarm{
@@ -42883,8 +42639,7 @@
 	name = "Brig External Lobby Lockdown";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/security/lobby)
 "bXV" = (
 /obj/machinery/door/firedoor,
@@ -42897,8 +42652,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/hallway/main/section1)
 "bXW" = (
 /obj/machinery/door/firedoor,
@@ -42986,8 +42740,7 @@
 /area/eris/hallway/main/section1)
 "bYj" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section1)
 "bYk" = (
 /obj/structure/disposalpipe/segment,
@@ -43004,7 +42757,6 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -43015,7 +42767,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/mixing)
 "bYl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -43064,8 +42816,7 @@
 /area/eris/security/lobby)
 "bYu" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/clothingstorage)
 "bYw" = (
 /obj/structure/cable/green{
@@ -43200,11 +42951,10 @@
 	},
 /area/eris/command/tcommsat/chamber)
 "bYR" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck5port)
 "bYS" = (
 /obj/structure/cable/green{
@@ -43334,9 +43084,8 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/meo)
 "bZf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -43868,8 +43617,7 @@
 /area/turret_protected/ai)
 "caA" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/fo)
 "caB" = (
 /obj/machinery/light/small{
@@ -43920,8 +43668,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/clothingstorage)
 "caK" = (
 /obj/machinery/door/firedoor,
@@ -43981,21 +43728,19 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/clothingstorage)
 "caR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
 	id = "firstofficer_access";
 	name = "First Officer Line Access"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/fo)
 "caS" = (
 /turf/wall/reinforced,
@@ -44024,13 +43769,12 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
 	id = "firstofficer_access";
 	name = "First Officer Line Access"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/fo)
 "caW" = (
 /obj/machinery/flasher{
@@ -44464,8 +44208,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/clothingstorage)
 "ccd" = (
 /obj/structure/cable/green{
@@ -44496,14 +44239,13 @@
 /area/eris/hallway/main/section2)
 "ccj" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_therapy2";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay)
 "cck" = (
 /obj/structure/closet/secure_closet/personal/scientist,
@@ -44826,7 +44568,6 @@
 /turf/wall/reinforced,
 /area/eris/neotheology/chapelritualroom)
 "ccV" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
@@ -44834,7 +44575,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay)
 "ccX" = (
 /obj/structure/disposalpipe/segment{
@@ -45098,8 +44839,7 @@
 /turf/floor/grass,
 /area/eris/crew_quarters/hydroponics)
 "cdL" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section2)
 "cdN" = (
 /obj/machinery/door/firedoor,
@@ -45111,13 +44851,12 @@
 	name = "Science Total Lockdown";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
 	id = "psych_front";
 	name = "Psychology Shutters"
 	},
-/turf/floor/plating,
 /area/eris/medical/psych)
 "cdO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -45135,13 +44874,12 @@
 	name = "Science Total Lockdown";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
 	id = "genetics_back";
 	name = "Research Desk Shutters"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/psych)
 "cdQ" = (
 /obj/structure/table/woodentable,
@@ -45200,9 +44938,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/cryo)
 "cdX" = (
 /obj/machinery/atmospherics/unary/freezer{
@@ -45240,8 +44977,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/server)
 "cdZ" = (
 /obj/structure/catwalk,
@@ -45364,8 +45100,7 @@
 /area/eris/hallway/main/section2)
 "cei" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/surgery)
 "cej" = (
 /obj/structure/table/rack,
@@ -45467,8 +45202,7 @@
 /area/eris/hallway/main/section2)
 "ces" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/server)
 "cet" = (
 /obj/structure/table/woodentable,
@@ -45914,8 +45648,7 @@
 /turf/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/mixing)
 "cfm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4starboard)
 "cfn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -46039,8 +45772,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/captain)
 "cfB" = (
 /obj/structure/cable/green{
@@ -46079,8 +45811,7 @@
 	dir = 6
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/server)
 "cfF" = (
 /obj/machinery/power/apc{
@@ -46183,8 +45914,7 @@
 	dir = 9
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/server)
 "cfR" = (
 /obj/structure/table/rack,
@@ -46229,8 +45959,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4port)
 "cfY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
@@ -46245,8 +45974,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/captain)
 "cfZ" = (
 /obj/structure/table/rack,
@@ -46275,12 +46003,10 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/bridgebar)
 "cgc" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/meeting_room)
 "cgd" = (
 /obj/structure/table/rack,
@@ -46403,9 +46129,8 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/eschangara)
 "cgn" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/hydroponics)
 "cgp" = (
 /obj/structure/closet/crate,
@@ -46475,8 +46200,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4port)
 "cgx" = (
 /turf/wall/reinforced,
@@ -46703,8 +46427,7 @@
 /turf/floor/tiled/white/danger,
 /area/eris/rnd/mixing)
 "chg" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/captain)
 "chh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -46804,8 +46527,7 @@
 /area/eris/quartermaster/storage)
 "chr" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/mixing)
 "chs" = (
 /obj/machinery/button/remote/blast_door{
@@ -46992,8 +46714,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/patients_rooms)
 "chI" = (
 /obj/structure/bed/chair/office/light,
@@ -47011,8 +46732,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/mixing)
 "chL" = (
 /obj/item/device/radio/intercom{
@@ -48114,9 +47834,8 @@
 /area/eris/maintenance/section4deck3port)
 "ckC" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck3port)
 "ckD" = (
 /obj/structure/catwalk,
@@ -48492,8 +48211,7 @@
 /turf/floor/plating/under,
 /area/eris/quartermaster/storage)
 "clI" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/surgery)
 "clJ" = (
 /obj/structure/catwalk,
@@ -48780,8 +48498,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/mixing)
 "cmr" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
@@ -48898,8 +48615,7 @@
 	name = "MEO Privacy Shutters";
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/command/meo)
 "cmH" = (
 /obj/machinery/computer/teleporter,
@@ -48975,9 +48691,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/research)
 "cmQ" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
@@ -49736,14 +49451,13 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_rd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck3starboard)
 "coS" = (
 /turf/floor/tiled/white,
@@ -49792,14 +49506,13 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_rd";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck3starboard)
 "cpa" = (
 /obj/machinery/firealarm{
@@ -49834,8 +49547,7 @@
 /area/eris/rnd/lab)
 "cpe" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section2)
 "cpf" = (
 /obj/structure/extinguisher_cabinet{
@@ -49944,14 +49656,13 @@
 /area/eris/hallway/main/section3)
 "cpq" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_church_north";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/hydroponics/garden)
 "cpr" = (
 /obj/structure/bed/chair/office/light,
@@ -50043,7 +49754,6 @@
 /turf/floor/tiled/white/brown_platform,
 /area/eris/medical/surgery)
 "cpE" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_therapy1";
@@ -50051,7 +49761,7 @@
 	name = "Maintenance Hatch"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay)
 "cpF" = (
 /obj/structure/bed/chair,
@@ -50105,8 +49815,7 @@
 /area/eris/engineering/engine_room)
 "cpM" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/white/cargo,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/kitchen)
 "cpO" = (
 /obj/machinery/light{
@@ -50250,8 +49959,7 @@
 /area/eris/neotheology/chapel)
 "cqn" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/hydroponics/garden)
 "cqo" = (
 /obj/machinery/sparker{
@@ -50332,14 +50040,13 @@
 /turf/floor,
 /area/shuttle/mining/station)
 "cqz" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/section3)
 "cqA" = (
 /obj/structure/cable/green{
@@ -50367,7 +50074,6 @@
 /area/eris/medical/reception)
 "cqE" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_bar_north";
@@ -50379,7 +50085,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3port)
 "cqF" = (
 /obj/machinery/vending/coffee,
@@ -50493,14 +50199,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_bar_north";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3port)
 "cqP" = (
 /obj/structure/multiz/ladder/up,
@@ -50558,9 +50263,8 @@
 /turf/wall,
 /area/eris/rnd/lab)
 "crb" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "crc" = (
 /obj/machinery/atmospherics/pipe/zpipe/up{
@@ -51293,8 +50997,7 @@
 /turf/open,
 /area/eris/quartermaster/storage)
 "csR" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/oldtele)
 "csS" = (
 /turf/wall/reinforced,
@@ -51307,8 +51010,7 @@
 /turf/open,
 /area/eris/quartermaster/storage)
 "csU" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck4central)
 "csV" = (
 /obj/structure/multiz/stairs/active/bottom{
@@ -52192,8 +51894,7 @@
 "cvE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/storage)
 "cvF" = (
 /obj/structure/catwalk,
@@ -52219,8 +51920,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/post)
 "cvK" = (
 /obj/machinery/disposal,
@@ -52308,11 +52008,10 @@
 /area/eris/command/meo)
 "cvZ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/storage)
 "cwa" = (
 /obj/structure/table/standard,
@@ -52422,11 +52121,10 @@
 /area/eris/maintenance/section1deck2central)
 "cwp" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3starboard)
 "cwq" = (
 /obj/machinery/door/firedoor,
@@ -52521,8 +52219,7 @@
 /area/eris/medical/reception)
 "cwD" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/quartermaster/office)
 "cwE" = (
 /obj/structure/filingcabinet,
@@ -52610,8 +52307,7 @@
 /area/eris/hallway/side/bridgehallway)
 "cwM" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section3)
 "cwN" = (
 /obj/machinery/disposal/deliveryChute,
@@ -52854,9 +52550,8 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/crew_quarters/artistoffice)
 "cxj" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/section3)
 "cxl" = (
 /obj/structure/disposalpipe/segment{
@@ -53033,7 +52728,6 @@
 /area/eris/quartermaster/office)
 "cxI" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -53042,7 +52736,7 @@
 	name = "Cargo Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/office)
 "cxJ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -53168,8 +52862,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/quartermaster/office)
 "cxZ" = (
 /turf/wall,
@@ -53764,8 +53457,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/quartermaster/office)
 "czx" = (
 /turf/floor/tiled/white/violetcorener,
@@ -53937,8 +53629,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/gravity_generator)
 "czV" = (
 /obj/structure/disposalpipe/segment,
@@ -54050,8 +53741,7 @@
 /area/eris/command/meeting_room)
 "cAh" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck3port)
 "cAi" = (
 /obj/structure/table/standard,
@@ -54339,8 +54029,7 @@
 /area/eris/quartermaster/office)
 "cAO" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/atmosphericshallway)
 "cAP" = (
 /obj/machinery/vending/cigarette,
@@ -54394,9 +54083,8 @@
 /area/eris/quartermaster/storage)
 "cAW" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/storage)
 "cAX" = (
 /obj/machinery/suit_storage_unit/standard_unit,
@@ -54490,8 +54178,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck2central)
 "cBh" = (
 /obj/structure/cable/green{
@@ -54693,8 +54380,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck2central)
 "cBG" = (
 /obj/structure/disposalpipe/segment{
@@ -55000,7 +54686,6 @@
 /area/eris/crew_quarters/janitor)
 "cCv" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -55009,7 +54694,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3starboard)
 "cCx" = (
 /obj/structure/table/standard,
@@ -55366,7 +55051,6 @@
 /area/eris/maintenance/section3deck2port)
 "cDq" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -55375,7 +55059,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3starboard)
 "cDr" = (
 /obj/structure/disposalpipe/segment,
@@ -55513,14 +55197,13 @@
 /area/eris/crew_quarters/kitchen)
 "cDJ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3starboard)
 "cDK" = (
 /obj/machinery/door/firedoor,
@@ -55833,13 +55516,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck3starboard)
 "cEA" = (
 /obj/spawner/junk/low_chance,
@@ -56165,14 +55847,12 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "cFm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4starboard)
 "cFn" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4starboard)
 "cFo" = (
 /obj/machinery/light{
@@ -56290,8 +55970,7 @@
 /area/eris/maintenance/section3deck4central)
 "cFD" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/pubeva)
 "cFE" = (
 /obj/structure/disposalpipe/segment{
@@ -56519,8 +56198,7 @@
 /area/eris/maintenance/section4deck3port)
 "cGc" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/miningdock)
 "cGd" = (
 /obj/machinery/disposal,
@@ -57024,8 +56702,7 @@
 /area/eris/engineering/drone_fabrication)
 "cHp" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck3starboard)
 "cHq" = (
 /obj/structure/catwalk,
@@ -57062,9 +56739,8 @@
 /turf/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/storage)
 "cHw" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "cHx" = (
 /obj/structure/catwalk,
@@ -57434,7 +57110,6 @@
 /area/eris/medical/surgery)
 "cIy" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -57444,7 +57119,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "cIz" = (
 /obj/spawner/junk/low_chance,
@@ -57899,8 +57574,7 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section4deck4central)
 "cJK" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4port)
 "cJL" = (
 /obj/structure/disposalpipe/segment{
@@ -58101,8 +57775,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "cKm" = (
 /obj/machinery/vending/cigarette,
@@ -58122,8 +57795,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cKp" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck3port)
 "cKq" = (
 /obj/structure/table/standard,
@@ -58302,8 +57974,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "cKG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -58366,8 +58037,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/red{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "cKP" = (
 /obj/machinery/light/small{
@@ -58473,13 +58143,12 @@
 "cLd" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck3starboard)
 "cLe" = (
 /obj/machinery/door/firedoor,
@@ -58552,8 +58221,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 9
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "cLp" = (
 /obj/structure/dispenser/oxygen,
@@ -58600,8 +58268,7 @@
 /area/eris/engineering/breakroom)
 "cLu" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/storage/tech)
 "cLv" = (
 /obj/machinery/computer/arcade,
@@ -58631,8 +58298,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/steel/gray_perforated,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/office)
 "cLA" = (
 /obj/structure/catwalk,
@@ -58655,8 +58321,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/bridge)
 "cLC" = (
 /turf/wall/reinforced,
@@ -58706,8 +58371,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/storage/tech)
 "cLK" = (
 /obj/structure/sign/atmos_waste{
@@ -58721,8 +58385,7 @@
 "cLL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/storage/tech)
 "cLM" = (
 /obj/structure/table/standard,
@@ -58812,9 +58475,8 @@
 /turf/wall/reinforced,
 /area/eris/engineering/foyer)
 "cLW" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/cryo)
 "cLX" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
@@ -58831,8 +58493,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/bridge)
 "cLY" = (
 /obj/structure/table/standard,
@@ -59237,8 +58898,7 @@
 /turf/open,
 /area/eris/hallway/main/section4)
 "cNj" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/misc_lab)
 "cNk" = (
 /obj/machinery/portable_atmospherics/powered/pump,
@@ -59503,8 +59163,7 @@
 	id = "xenobio5";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cOj" = (
 /obj/machinery/light/small,
@@ -59608,8 +59267,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "cOA" = (
 /obj/structure/disposalpipe/segment,
@@ -59617,8 +59275,7 @@
 	id = "xenobio3";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cOB" = (
 /obj/item/modular_computer/console/preset/command,
@@ -59655,16 +59312,14 @@
 	id = "xenobio5";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cOG" = (
 /obj/machinery/door/blast/regular/open{
 	id = "xenobio1";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cOH" = (
 /obj/spawner/pack/machine,
@@ -59839,8 +59494,7 @@
 	id = "xenobio3";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cPh" = (
 /turf/open,
@@ -59876,8 +59530,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/cyan{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "cPo" = (
 /obj/structure/table/standard,
@@ -60125,8 +59778,7 @@
 /area/eris/maintenance/section4deck3port)
 "cPZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2starboard)
 "cQa" = (
 /obj/structure/table/rack,
@@ -60193,8 +59845,7 @@
 	id = "xenobio1";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cQi" = (
 /obj/structure/disposalpipe/segment{
@@ -60230,8 +59881,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/cryo)
 "cQn" = (
 /obj/machinery/door/firedoor,
@@ -60407,8 +60057,7 @@
 /turf/open,
 /area/eris/maintenance/section2deck2port)
 "cQN" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/techmaint,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck3port)
 "cQO" = (
 /obj/structure/table/reinforced,
@@ -60505,8 +60154,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/cryo)
 "cRb" = (
 /obj/machinery/firealarm{
@@ -60520,8 +60168,7 @@
 	id = "xenobio6";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cRd" = (
 /obj/structure/shuttle_part/mining{
@@ -60677,15 +60324,13 @@
 	id = "xenobio4";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cRy" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "cRB" = (
 /obj/spawner/scrap/sparse,
@@ -60706,9 +60351,8 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "cRE" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/sleep/cryo)
 "cRG" = (
 /obj/spawner/pack/tech_loot/low_chance,
@@ -60936,8 +60580,7 @@
 	id = "xenobio6";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cSo" = (
 /turf/wall,
@@ -61197,8 +60840,7 @@
 	id = "xenobio2";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cSY" = (
 /obj/machinery/light/small{
@@ -61333,8 +60975,7 @@
 	id = "xenobio4";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cTs" = (
 /obj/structure/cable/green{
@@ -61392,8 +61033,7 @@
 	id = "xenobio2";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/xenobiology)
 "cTy" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -61627,8 +61267,7 @@
 /area/eris/maintenance/section2deck2port)
 "cUd" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/bridgebar)
 "cUe" = (
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -61748,16 +61387,14 @@
 	id = "genlab";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section2deck1starboard)
 "cUA" = (
 /obj/machinery/door/blast/regular/open{
 	id = "genlab";
 	name = "containment blast door"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section2deck1starboard)
 "cUB" = (
 /obj/structure/shuttle_part/mining{
@@ -62403,7 +62040,7 @@
 /area/eris/rnd/storage)
 "cWg" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
+/turf/wall/low/with_glass/plasma,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -62412,7 +62049,6 @@
 	name = "Captain's Window Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
 /area/eris/command/captain)
 "cWh" = (
 /obj/structure/closet/l3closet/scientist,
@@ -62601,8 +62237,7 @@
 /area/eris/maintenance/section2deck2port)
 "cWD" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/bridgehallway)
 "cWE" = (
 /obj/structure/table/woodentable,
@@ -62653,8 +62288,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4starboard)
 "cWK" = (
 /obj/structure/shuttle_part/mining{
@@ -63955,8 +63589,7 @@
 /area/eris/crew_quarters/sleep/cryo)
 "cZA" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/tcommsat/computer)
 "cZB" = (
 /obj/structure/shuttle_part/mining{
@@ -64094,8 +63727,7 @@
 /area/eris/maintenance/section4deck3port)
 "cZW" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/meo/quarters)
 "cZX" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -64277,8 +63909,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck3port)
 "daw" = (
 /obj/structure/disposalpipe/segment,
@@ -64317,8 +63948,7 @@
 /area/eris/maintenance/substation/section3)
 "daA" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/meeting_room)
 "daB" = (
 /obj/structure/catwalk,
@@ -64413,8 +64043,7 @@
 /area/shuttle/mining/station)
 "daN" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/rnd/mixing)
 "daO" = (
 /obj/structure/catwalk{
@@ -64877,8 +64506,7 @@
 /area/eris/maintenance/section2deck2port)
 "dcc" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/fo/quarters)
 "dcd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -64928,7 +64556,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -64938,7 +64565,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "dch" = (
 /obj/structure/cable/green{
@@ -64949,8 +64576,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2starboard)
 "dci" = (
 /obj/structure/catwalk,
@@ -65226,7 +64852,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -65236,7 +64861,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "dcJ" = (
 /obj/structure/disposalpipe/segment{
@@ -65245,8 +64870,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2starboard)
 "dcK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -65428,8 +65052,7 @@
 /area/eris/maintenance/section2deck2starboard)
 "ddg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "ddh" = (
 /obj/structure/closet/crate,
@@ -65446,8 +65069,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "ddj" = (
 /obj/structure/multiz/stairs/active/bottom{
@@ -65508,13 +65130,11 @@
 /turf/wall/reinforced,
 /area/eris/command/bridgebar)
 "dds" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/atmosphericshallway)
 "ddt" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/space)
 "ddu" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -65857,8 +65477,7 @@
 	id = "shieldroom";
 	name = "Shield Generator Screen"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/shield_generator)
 "dea" = (
 /obj/structure/table/woodentable,
@@ -66026,8 +65645,7 @@
 /area/eris/command/meeting_room)
 "dey" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/turret_protected/ai_upload_foyer{
 	name = "AI Upload Foyer"
 	})
@@ -66825,8 +66443,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/rnd/mixing)
 "dgq" = (
 /obj/structure/bed/chair,
@@ -67319,13 +66936,12 @@
 "dhl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4starboard)
 "dhm" = (
 /turf/open,
@@ -67779,8 +67395,7 @@
 /area/turret_protected/ai)
 "dip" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/exultant/quarters)
 "diq" = (
 /obj/structure/disposalpipe/segment,
@@ -67813,8 +67428,7 @@
 /area/eris/medical/genetics)
 "dit" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/mbo/quarters)
 "diu" = (
 /obj/machinery/camera/network/command{
@@ -67931,8 +67545,7 @@
 /area/eris/maintenance/substation/bridge)
 "diJ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/bridge)
 "diK" = (
 /obj/structure/closet,
@@ -68142,8 +67755,7 @@
 /area/eris/rnd/anomal)
 "djh" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck2central)
 "dji" = (
 /obj/structure/table/standard,
@@ -68237,9 +67849,8 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "djs" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3starboard)
 "djt" = (
 /obj/machinery/door/firedoor,
@@ -68332,8 +67943,7 @@
 /area/eris/rnd/research)
 "djD" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/mbo)
 "djE" = (
 /obj/structure/catwalk,
@@ -68691,8 +68301,7 @@
 /area/eris/rnd/xenobiology)
 "dkq" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay/iso)
 "dkr" = (
 /obj/machinery/hologram/holopad,
@@ -68815,8 +68424,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/substation/bridge)
 "dkJ" = (
 /obj/machinery/light{
@@ -69136,8 +68744,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/breakroom)
 "dlq" = (
 /obj/item/modular_computer/console/preset/security/records{
@@ -69252,8 +68859,7 @@
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/rnd/anomal)
 "dlC" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/gravity_generator)
 "dlE" = (
 /obj/machinery/door/firedoor,
@@ -70141,8 +69747,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2starboard)
 "dny" = (
 /obj/structure/disposalpipe/segment{
@@ -70221,8 +69826,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay/iso)
 "dnF" = (
 /obj/machinery/door/firedoor,
@@ -70237,8 +69841,7 @@
 "dnG" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay/iso)
 "dnH" = (
 /obj/structure/catwalk,
@@ -70386,8 +69989,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2starboard)
 "dob" = (
 /obj/structure/disposalpipe/segment,
@@ -70658,8 +70260,7 @@
 /area/eris/rnd/storage)
 "doI" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/research)
 "doJ" = (
 /obj/machinery/door/firedoor,
@@ -70728,8 +70329,7 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck1central)
 "doR" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck1central)
 "doS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -71003,8 +70603,7 @@
 /turf/floor/tiled/white,
 /area/eris/rnd/docking)
 "dpA" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck4starboard)
 "dpC" = (
 /turf/wall,
@@ -71438,8 +71037,7 @@
 /area/eris/maintenance/section3deck2port)
 "dqC" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/reception)
 "dqD" = (
 /obj/spawner/junk/low_chance,
@@ -71539,9 +71137,8 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2starboard)
 "dqQ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/morgue)
 "dqR" = (
 /obj/machinery/door/window/southright{
@@ -72021,8 +71618,7 @@
 /turf/floor/tiled/white/cargo,
 /area/eris/medical/chemistry)
 "drZ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "dsa" = (
 /obj/structure/extinguisher_cabinet{
@@ -72054,8 +71650,7 @@
 /area/eris/hallway/main/section2)
 "dsd" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/tiled/white/brown_perforated,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/medical/reception)
 "dse" = (
 /obj/machinery/door/airlock/maintenance_common{
@@ -72180,8 +71775,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 10
 	},
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "dsy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -72220,11 +71814,10 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "dsD" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -72273,13 +71866,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay/uppercor)
 "dsJ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay/uppercor)
 "dsK" = (
 /obj/machinery/door/firedoor,
@@ -72593,7 +72184,6 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -72603,7 +72193,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/research)
 "dtu" = (
 /obj/structure/closet/cabinet,
@@ -72626,8 +72216,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "dty" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/chemistry)
 "dtz" = (
 /obj/structure/cable/green{
@@ -72793,8 +72382,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "dtY" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4starboard)
 "dtZ" = (
 /obj/spawner/scrap/dense,
@@ -73509,7 +73097,6 @@
 /turf/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck2port)
 "dvK" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -73520,7 +73107,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "dvL" = (
 /obj/spawner/junk/low_chance,
@@ -73611,8 +73198,7 @@
 /area/eris/medical/medbay/uppercor)
 "dvU" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/misc)
 "dvV" = (
 /obj/machinery/atmospherics/pipe/vent{
@@ -73633,8 +73219,7 @@
 	dir = 6
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "dvZ" = (
 /obj/structure/disposalpipe/segment{
@@ -74156,8 +73741,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/engine_room)
 "dxl" = (
 /obj/structure/table/standard,
@@ -74190,8 +73774,7 @@
 /area/eris/hallway/side/section3deck2port)
 "dxq" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/fitness)
 "dxr" = (
 /obj/structure/cable/green{
@@ -74775,8 +74358,7 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "dyQ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/oldbridge)
 "dyR" = (
 /obj/item/modular_computer/console/preset/security/camera{
@@ -75013,8 +74595,7 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck5central)
 "dzq" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck5central)
 "dzr" = (
 /obj/machinery/hologram/holopad,
@@ -75058,11 +74639,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "dzx" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -75387,8 +74967,7 @@
 /area/eris/command/mbo)
 "dAk" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/storage/primary)
 "dAl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
@@ -76017,16 +75596,14 @@
 "dBK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "dBL" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "dBM" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -76257,8 +75834,7 @@
 /area/eris/medical/reception)
 "dCi" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2port)
 "dCj" = (
 /obj/machinery/door/firedoor,
@@ -76486,16 +76062,14 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 9
 	},
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "dCM" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 5
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "dCN" = (
 /obj/structure/disposalpipe/segment{
@@ -76661,8 +76235,7 @@
 /area/eris/maintenance/section2deck3port)
 "dDj" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "dDk" = (
 /obj/machinery/status_display{
@@ -77422,8 +76995,7 @@
 /area/eris/hallway/main/section2)
 "dEW" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/hallway/side/section3starboard)
 "dEZ" = (
 /obj/structure/disposalpipe/segment{
@@ -77559,8 +77131,7 @@
 /turf/floor/tiled/dark,
 /area/eris/command/bridge)
 "dFq" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/office)
 "dFr" = (
 /obj/structure/disposalpipe/segment{
@@ -77616,14 +77187,13 @@
 /turf/floor/tiled/dark/golden,
 /area/eris/neotheology/chapel)
 "dFB" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "neotheology_shop";
 	name = "NeoTheology Shop Access"
 	},
-/turf/floor/plating,
 /area/eris/neotheology/churchbooth)
 "dFC" = (
 /obj/structure/bed/chair/office/dark,
@@ -77643,8 +77213,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
 "dFF" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck2port)
 "dFG" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
@@ -77809,8 +77378,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck3starboard)
 "dGe" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -78142,8 +77710,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section1deck1central)
 "dGZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -78261,8 +77828,7 @@
 /area/eris/maintenance/section3deck4starboard)
 "dHk" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/library)
 "dHl" = (
 /obj/spawner/mob/roaches/cluster,
@@ -78720,7 +78286,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_holodeck_north";
@@ -78732,7 +78297,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3deck2port)
 "dIk" = (
 /obj/machinery/door/airlock/atmos{
@@ -79178,8 +78743,7 @@
 /area/eris/engineering/breakroom)
 "dJd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck3starboard)
 "dJe" = (
 /obj/structure/disposalpipe/segment,
@@ -79306,8 +78870,7 @@
 /area/eris/maintenance/section2deck1starboard)
 "dJr" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "dJs" = (
 /obj/item/modular_computer/console/preset/engineering/shield{
@@ -79557,8 +79120,7 @@
 /area/eris/hallway/side/section3port)
 "dJW" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/foyer)
 "dJX" = (
 /obj/structure/cable/green{
@@ -79591,8 +79153,7 @@
 /area/eris/engineering/propulsion/left)
 "dKa" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/starboardhallway)
 "dKb" = (
 /obj/structure/cable/green{
@@ -80052,8 +79613,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/foyer)
 "dLA" = (
 /obj/spawner/pack/tech_loot,
@@ -80115,8 +79675,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section4)
 "dLJ" = (
 /obj/machinery/computer/general_air_control/large_tank_control{
@@ -80526,7 +80085,7 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/right)
 "dMX" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/blast/shutters{
 	density = 0;
 	dir = 4;
@@ -80544,7 +80103,6 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
 /area/eris/medical/chemistry)
 "dMY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -80807,8 +80365,7 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck5port)
 "dNO" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck5port)
 "dNP" = (
 /obj/structure/bed/chair,
@@ -81236,8 +80793,7 @@
 /area/eris/rnd/docking)
 "dOX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck3starboard)
 "dOY" = (
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -81307,8 +80863,7 @@
 "dPh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/quartermaster/office)
 "dPi" = (
 /obj/effect/floor_decal/rust,
@@ -81316,8 +80871,7 @@
 /area/eris/hallway/side/atmosphericshallway)
 "dPk" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/gravity_generator)
 "dPl" = (
 /turf/floor/tiled/steel/gray_platform,
@@ -81589,8 +81143,7 @@
 /turf/floor/tiled/dark,
 /area/eris/neotheology/chapel)
 "dQa" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck5starboard)
 "dQb" = (
 /obj/structure/cable/green{
@@ -81667,8 +81220,7 @@
 /area/eris/maintenance/section2deck1starboard)
 "dQo" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/engineering/foyer)
 "dQp" = (
 /obj/spawner/structures/common/low_chance,
@@ -81690,8 +81242,7 @@
 /turf/open,
 /area/eris/maintenance/section2deck1port)
 "dQs" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck2starboard)
 "dQt" = (
 /obj/structure/railing,
@@ -81884,8 +81435,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck2port)
 "dQU" = (
 /obj/structure/cable/green{
@@ -82010,8 +81560,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/engineering/foyer)
 "dRm" = (
 /obj/structure/cable/green{
@@ -82256,8 +81805,7 @@
 /area/eris/maintenance/section4deck2port)
 "dRV" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/engeva)
 "dRX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -82362,8 +81910,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck2port)
 "dSl" = (
 /obj/structure/railing{
@@ -82507,8 +82054,7 @@
 /area/eris/maintenance/section4deck2starboard)
 "dSB" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/chemstor)
 "dSC" = (
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -83060,8 +82606,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/checkpoint/supply)
 "dTX" = (
 /obj/structure/table/standard,
@@ -83109,8 +82654,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck2port)
 "dUe" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -83199,8 +82743,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/checkpoint/supply)
 "dUr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -83227,8 +82770,7 @@
 /area/eris/neotheology/biogenerator)
 "dUv" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/bridge)
 "dUw" = (
 /obj/structure/table/rack,
@@ -84763,19 +84305,17 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "dYf" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	id = "Backroom_hatch";
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/kitchen)
 "dYj" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/quartermaster/office)
 "dYk" = (
 /obj/machinery/atmospherics/pipe/tank/air{
@@ -84788,8 +84328,7 @@
 /area/eris/maintenance/section3deck2starboard)
 "dYl" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/genetics)
 "dYn" = (
 /obj/structure/disposalpipe/down{
@@ -84866,8 +84405,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/anomalisolone)
 "dYx" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
@@ -85016,8 +84554,7 @@
 /area/eris/maintenance/section3deck3starboard)
 "dYU" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/anomalisolone)
 "dYV" = (
 /obj/structure/cable/green{
@@ -85035,8 +84572,7 @@
 /area/eris/rnd/docking)
 "dYX" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/anomalisoltwo)
 "dYY" = (
 /obj/machinery/disposal,
@@ -85325,8 +84861,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/anomalisoltwo)
 "dZR" = (
 /obj/machinery/atmospherics/pipe/zpipe/down,
@@ -85694,14 +85229,13 @@
 /turf/floor/tiled/steel/monofloor,
 /area/eris/rnd/misc_lab)
 "eaD" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_preacher";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2port)
 "eaE" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
@@ -85751,13 +85285,12 @@
 "eaI" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "eaJ" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
@@ -85845,8 +85378,7 @@
 /area/eris/medical/genetics)
 "eaU" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck1port)
 "eaV" = (
 /obj/structure/table/standard,
@@ -86375,13 +85907,11 @@
 /area/eris/engineering/starboardhallway)
 "ecw" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/anomal)
 "ecx" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/docking)
 "ecy" = (
 /obj/structure/table/standard,
@@ -87011,13 +86541,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/anomalisolthree)
 "edQ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/anomalisolthree)
 "edR" = (
 /obj/machinery/door/firedoor,
@@ -87601,8 +87129,7 @@
 /area/eris/maintenance/oldbridge)
 "efr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/oldbridge)
 "efs" = (
 /obj/structure/lattice,
@@ -88048,7 +87575,6 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -88057,7 +87583,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/chemstor)
 "egt" = (
 /obj/structure/railing{
@@ -88419,8 +87945,7 @@
 "ehq" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck1starboard)
 "ehr" = (
 /obj/structure/disposalpipe/segment,
@@ -88668,8 +88193,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck1central)
 "ehY" = (
 /obj/structure/cable/green{
@@ -88682,8 +88206,7 @@
 "ehZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck1central)
 "eia" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -89627,8 +89150,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck1central)
 "ejR" = (
 /turf/space,
@@ -90036,8 +89558,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section4deck1central)
 "ekU" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck1central)
 "ekV" = (
 /obj/structure/catwalk,
@@ -90348,8 +89869,7 @@
 /area/eris/maintenance/section4deck1central)
 "elS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck1central)
 "elT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -90398,8 +89918,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/red,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section4deck1central)
 "ema" = (
 /obj/machinery/botany/extractor,
@@ -90594,9 +90113,8 @@
 /turf/open,
 /area/eris/maintenance/section4deck1central)
 "emG" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/clownoffice)
 "emH" = (
 /obj/structure/plasticflaps/mining,
@@ -91117,7 +90635,6 @@
 "enX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
@@ -91131,7 +90648,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3deck2port)
 "enY" = (
 /obj/machinery/light,
@@ -91288,8 +90805,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/security/prison)
 "eot" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
@@ -91786,8 +91302,7 @@
 /area/eris/crew_quarters/kitchen_storage)
 "epJ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "epK" = (
 /obj/structure/shuttle_part/science{
@@ -92152,9 +91667,8 @@
 /turf/floor/wood,
 /area/eris/crew_quarters/library)
 "eqI" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "eqJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -92372,12 +91886,11 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
 "erb" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "erc" = (
 /obj/structure/catwalk,
@@ -92413,7 +91926,6 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section3deck2starboard)
 "erg" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -92424,7 +91936,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "erh" = (
 /obj/structure/cable/green{
@@ -92599,14 +92111,13 @@
 /area/eris/crew_quarters/clownoffice)
 "erD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "erE" = (
 /obj/structure/table/rack,
@@ -92732,8 +92243,7 @@
 /area/eris/maintenance/section3deck1central)
 "erS" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/breakroom)
 "erT" = (
 /obj/machinery/door/firedoor,
@@ -92813,8 +92323,7 @@
 /area/eris/maintenance/section3deck1central)
 "esa" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/techstorage)
 "esb" = (
 /obj/structure/cable/green{
@@ -92987,7 +92496,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -92996,7 +92504,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "esw" = (
 /obj/structure/catwalk,
@@ -93034,13 +92542,12 @@
 /area/eris/maintenance/section3deck1central)
 "esz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "esA" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
@@ -93103,8 +92610,7 @@
 /area/eris/neotheology/chapel)
 "esG" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/exultant)
 "esH" = (
 /obj/machinery/door/firedoor,
@@ -93198,14 +92704,13 @@
 /area/eris/engineering/gravity_generator)
 "esS" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "ClubTotalLockdown";
 	layer = 2.6;
 	name = "Club Total Lockdown"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/side/section3port)
 "esT" = (
 /obj/structure/cable/green{
@@ -93453,7 +92958,6 @@
 /turf/floor/tiled/white/cargo,
 /area/eris/maintenance/section2deck2port)
 "etB" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -93464,7 +92968,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay)
 "etC" = (
 /obj/structure/disposalpipe/segment{
@@ -93636,7 +93140,6 @@
 /area/eris/quartermaster/misc)
 "etW" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -93645,7 +93148,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay)
 "etX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -93707,7 +93210,6 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -93716,7 +93218,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay/iso)
 "eud" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -94317,8 +93819,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/quartermaster/office)
 "evE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -94582,13 +94083,12 @@
 /area/eris/maintenance/section3deck3starboard)
 "ewh" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
 	id = "ClubTotalLockdown";
 	layer = 2.6;
 	name = "Club Total Lockdown"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/hallway/main/section3)
 "ewi" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
@@ -94597,14 +94097,12 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2port)
 "ewj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2port)
 "ewk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -94836,14 +94334,13 @@
 /area/eris/hallway/side/section3starboard)
 "ewQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "ewR" = (
 /obj/structure/table/standard,
@@ -95404,9 +94901,8 @@
 /turf/floor/tiled/steel,
 /area/eris/storage/primary)
 "eyd" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/sorter)
 "eye" = (
 /obj/structure/railing{
@@ -95530,7 +95026,6 @@
 /turf/floor/tiled/steel,
 /area/eris/storage/primary)
 "eyu" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
@@ -95538,7 +95033,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "eyv" = (
 /obj/structure/multiz/stairs/enter{
@@ -95659,14 +95154,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
 	id = "maint_hatch_vacant_office";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "eyK" = (
 /obj/structure/railing{
@@ -96074,8 +95568,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/left)
 "ezJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -96428,8 +95921,6 @@
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/left)
 "eAu" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /obj/structure/cable/green{
 	d1 = 1;
@@ -96437,7 +95928,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck1central)
 "eAv" = (
 /obj/item/device/radio/intercom{
@@ -96793,7 +96284,6 @@
 /area/eris/maintenance/section3deck1central)
 "eBf" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -96803,7 +96293,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck2port)
 "eBg" = (
 /obj/spawner/junk/low_chance,
@@ -97144,14 +96634,12 @@
 /area/eris/engineering/propulsion/left)
 "eBO" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/left)
 "eBP" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/left)
 "eBQ" = (
 /obj/machinery/door/firedoor,
@@ -97180,8 +96668,7 @@
 "eBU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/right)
 "eBV" = (
 /obj/structure/table/standard,
@@ -97238,8 +96725,7 @@
 /area/eris/engineering/propulsion/right)
 "eCb" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/right)
 "eCc" = (
 /obj/machinery/door/firedoor,
@@ -97442,37 +96928,32 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/left)
 "eCy" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/right)
 "eCz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/right)
 "eCB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/left)
 "eCC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/propulsion/right)
 "eCD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -97486,8 +96967,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "eCE" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -97551,8 +97031,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "eCN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -97625,8 +97104,7 @@
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/quartermaster/misc)
 "eCZ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "eDa" = (
 /obj/spawner/traps/low_chance,
@@ -97942,8 +97420,7 @@
 /area/eris/maintenance/section3deck1central)
 "eDR" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section3deck1central)
 "eDS" = (
 /obj/spawner/pack/machine,
@@ -97954,45 +97431,39 @@
 	dir = 10
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/left)
 "eDU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/left)
 "eDV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/left)
 "eDW" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/left)
 "eDX" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/right)
 "eDY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 6
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/right)
 "eDZ" = (
 /obj/machinery/light/small{
@@ -98008,28 +97479,24 @@
 /area/eris/maintenance/section2deck1port)
 "eEa" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/right)
 "eEb" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 10
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/right)
 "eEc" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/left)
 "eEd" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart_plasma,
 /area/eris/engineering/propulsion/right)
 "eEe" = (
 /obj/spawner/junkfood/rotten/low_chance,
@@ -98426,14 +97893,13 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
 	id = "maint_hatch_paramedic_closet";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/paramedic)
 "eEY" = (
 /obj/structure/cable/green{
@@ -98524,7 +97990,6 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -98544,7 +98009,7 @@
 	name = "Cargo Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/misc)
 "eFg" = (
 /turf/wall/reinforced,
@@ -98565,7 +98030,6 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/maintenance/section3deck2port)
 "eFl" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -98587,10 +98051,9 @@
 	name = "Cargo Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/misc)
 "eFm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -98609,7 +98072,7 @@
 	name = "Cargo Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/misc)
 "eFn" = (
 /obj/structure/cable/green{
@@ -99741,8 +99204,7 @@
 /turf/floor/wood,
 /area/eris/neotheology/churchbarracks)
 "fPb" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "fRP" = (
 /obj/structure/cable/green{
@@ -99842,8 +99304,7 @@
 /area/eris/medical/psych)
 "fXE" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/dark/gray_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/altar)
 "fYF" = (
 /obj/structure/nt_pedestal,
@@ -100131,8 +99592,7 @@
 /area/eris/medical/genetics)
 "gGA" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/holodeck/alphadeck)
 "gHp" = (
 /obj/machinery/door/airlock/maintenance_medical{
@@ -100259,16 +99719,14 @@
 /area/eris/quartermaster/hangarsupply)
 "gWh" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/hangarsupply)
 "gWL" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/space,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/funeral)
 "gWZ" = (
 /obj/item/device/radio/intercom{
@@ -100323,9 +99781,8 @@
 /turf/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
 "haX" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4port)
 "hbk" = (
 /obj/machinery/button/remote/blast_door{
@@ -100368,8 +99825,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck5port)
 "hgX" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck3port)
 "hhp" = (
 /obj/machinery/shower{
@@ -100451,7 +99907,6 @@
 "hnK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_church_south";
@@ -100465,7 +99920,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/hydroponics/garden)
 "hqI" = (
 /obj/structure/disposalpipe/segment{
@@ -100586,8 +100041,7 @@
 /area/eris/hallway/side/section3starboard)
 "hCo" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/sorter)
 "hEe" = (
 /obj/machinery/gym/toughness,
@@ -100749,7 +100203,6 @@
 /turf/floor/tiled/dark/golden,
 /area/eris/neotheology/funeral)
 "hRl" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_nt_garden";
@@ -100765,7 +100218,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/hydroponics)
 "hRs" = (
 /obj/machinery/light{
@@ -100792,8 +100245,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck2starboard)
 "hXZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -100866,13 +100318,12 @@
 /area/eris/engineering/gravity_generator)
 "igk" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 8;
 	id = "firstofficer_access";
 	name = "First Officer Line Access"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/fo)
 "igC" = (
 /obj/structure/table/rack,
@@ -101216,9 +100667,8 @@
 /area/eris/maintenance/section3deck5starboard)
 "iTh" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment,
-/turf/floor/tiled/dark/gray_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/bioprinter)
 "iTx" = (
 /obj/structure/disposalpipe/segment{
@@ -101591,9 +101041,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/morgue)
 "jDU" = (
 /obj/machinery/door/firedoor,
@@ -101794,9 +101243,8 @@
 /turf/floor/dirt,
 /area/eris/neotheology/chapelritualroom)
 "jYS" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/tiled/dark/gray_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/altar)
 "jZP" = (
 /obj/machinery/light{
@@ -102060,7 +101508,6 @@
 /area/eris/crew_quarters/kitchen)
 "kAg" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular/open{
 	id = "ClubTotalLockdown";
 	layer = 2.6;
@@ -102072,7 +101519,7 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/artistoffice)
 "kAt" = (
 /obj/structure/disposalpipe/segment,
@@ -102093,8 +101540,7 @@
 /area/eris/engineering/atmos)
 "kFA" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/quartermaster/disposaldrop)
 "kFJ" = (
 /obj/structure/table/standard,
@@ -102269,11 +101715,10 @@
 /area/eris/maintenance/section3deck4starboard)
 "llD" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck3port)
 "llX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -102633,8 +102078,7 @@
 /area/eris/engineering/engine_room)
 "lWf" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/medbay/organs)
 "lXg" = (
 /obj/machinery/light{
@@ -102854,13 +102298,12 @@
 /area/eris/crew_quarters/fitness)
 "myt" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/blast/shutters{
 	dir = 4;
 	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown"
 	},
-/turf/floor/plating,
 /area/eris/engineering/foyer)
 "myz" = (
 /obj/structure/catwalk,
@@ -103442,8 +102885,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/hydroponics)
 "ofp" = (
 /obj/machinery/disposal,
@@ -103483,7 +102925,6 @@
 /turf/floor/tiled/steel,
 /area/eris/neotheology/churchcorridor)
 "ojP" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	d1 = 1;
@@ -103491,7 +102932,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section3deck4port)
 "ojV" = (
 /obj/structure/bed/chair{
@@ -103765,7 +103206,6 @@
 /turf/floor/carpet/sblucarpet,
 /area/eris/crew_quarters/clubmanager)
 "oQR" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_church_break";
@@ -103774,7 +103214,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
-/turf/floor/tiled/dark/gray_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/storage)
 "oRc" = (
 /obj/structure/cable{
@@ -104179,7 +103619,6 @@
 /turf/floor/tiled/steel,
 /area/eris/crew_quarters/kitchen)
 "pFm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -104189,7 +103628,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck1port)
 "pGF" = (
 /obj/structure/railing{
@@ -104233,8 +103672,7 @@
 /area/eris/maintenance/section2deck4central)
 "pNw" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/medical/reception)
 "pRq" = (
 /obj/structure/bed/chair/wood{
@@ -104282,8 +103720,7 @@
 /area/eris/neotheology/chapel)
 "pXs" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/rnd/research)
 "pXQ" = (
 /obj/structure/table/woodentable,
@@ -104313,8 +103750,7 @@
 /area/eris/neotheology/bioprinter)
 "qcf" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "qcs" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -104430,9 +103866,8 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/tiled/techmaint,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/churchbarracks)
 "qnc" = (
 /obj/structure/closet/oldstyle,
@@ -104666,9 +104101,8 @@
 /area/eris/maintenance/section3deck3port)
 "qOs" = (
 /obj/structure/lattice,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "qOz" = (
 /obj/structure/cyberplant,
@@ -104722,7 +104156,6 @@
 /turf/floor/tiled/steel,
 /area/eris/quartermaster/storage)
 "qXm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -104733,7 +104166,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/rnd/lab)
 "qZm" = (
 /obj/spawner/pack/tech_loot,
@@ -104823,8 +104256,7 @@
 	id = "scannerroom";
 	name = "Long Range Scanner Screen"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/long_range_scanner)
 "rnc" = (
 /obj/structure/cable/green{
@@ -104925,9 +104357,8 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/breakroom)
 "rDZ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/atmos/storage)
 "rEb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -105062,7 +104493,6 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/hangarsupply)
 "rPI" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
@@ -105070,7 +104500,7 @@
 	layer = 3.3;
 	name = "Kitchen Hatch"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/kitchen)
 "rTm" = (
 /obj/effect/decal/cleanable/graffiti/graffiti_kot{
@@ -105184,17 +104614,15 @@
 	name = "Maintenance Hatch"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/office)
 "sgS" = (
 /obj/structure/table/woodentable,
 /turf/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
 "shD" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/hull,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/breakroom)
 "siL" = (
 /obj/structure/cable/green{
@@ -105248,13 +104676,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	pixel_x = 3
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "TechnomancerShopLockdown";
 	name = "Technomancer Shop Lockdown"
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/engineering/foyer)
 "snt" = (
 /obj/structure/cable{
@@ -105280,17 +104707,15 @@
 /turf/floor/tiled/dark/golden,
 /area/eris/crew_quarters/janitor)
 "spV" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/hull,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/exultant)
 "sss" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/eris/rnd/mixing)
 "ssB" = (
 /obj/structure/closet/crate/medical,
@@ -105326,8 +104751,7 @@
 /area/eris/engineering/long_range_scanner)
 "stV" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/dark/gray_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/bioprinter)
 "sug" = (
 /obj/machinery/light,
@@ -105738,8 +105162,7 @@
 /area/eris/crew_quarters/hydroponics)
 "tnz" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/neotheology/office)
 "tol" = (
 /obj/machinery/door/firedoor,
@@ -105791,7 +105214,6 @@
 /area/eris/neotheology/chapelritualroom)
 "tss" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_medchem";
@@ -105808,7 +105230,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/tiled/white/brown_platform,
+/turf/wall/low/with_glass/smart,
 /area/eris/medical/chemistry)
 "tti" = (
 /obj/machinery/light,
@@ -105962,8 +105384,7 @@
 /area/eris/crew_quarters/kitchen)
 "tKP" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section2deck1starboard)
 "tLB" = (
 /obj/machinery/holoposter{
@@ -107219,9 +106640,8 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/foyer)
 "wsF" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/crew_quarters/kitchen)
 "wtT" = (
 /obj/item/device/techno_tribalism,
@@ -107278,8 +106698,7 @@
 /turf/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck1port)
 "wxB" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section3deck2starboard)
 "wzP" = (
 /obj/structure/flora/bush,
@@ -107515,8 +106934,7 @@
 /area/eris/maintenance/section3deck5port)
 "xiI" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/eris/crew_quarters/sleep/cryo)
 "xjC" = (
 /obj/structure/cable/green{
@@ -107633,7 +107051,6 @@
 /area/eris/medical/medbay/organs)
 "xxi" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -107643,7 +107060,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck1port)
 "xxt" = (
 /obj/structure/closet/crate/hydroponics,
@@ -107848,8 +107265,7 @@
 	opacity = 0;
 	dir = 4
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/command/meeting_room)
 "xUQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -107935,7 +107351,6 @@
 /turf/floor/tiled/white/brown_platform,
 /area/eris/medical/medbay/organs)
 "xZq" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -107944,7 +107359,7 @@
 	name = "Medbay Total Lockdown";
 	opacity = 0
 	},
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/eris/maintenance/section2deck1port)
 "xZy" = (
 /obj/structure/disposalpipe/segment,

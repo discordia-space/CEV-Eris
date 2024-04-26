@@ -430,8 +430,7 @@
 /area/template_noop)
 "ME" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 "Ns" = (
 /obj/structure/mirror/antag{

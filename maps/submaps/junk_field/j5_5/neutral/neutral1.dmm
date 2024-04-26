@@ -11,8 +11,7 @@
 /turf/template_noop,
 /area/template_noop)
 "d" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "e" = (
 /turf/wall/reinforced,

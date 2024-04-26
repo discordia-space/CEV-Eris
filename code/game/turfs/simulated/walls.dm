@@ -4,52 +4,72 @@
 	description_info = "Can be deconstructed by welding"
 	description_antag = "Deconstructing these will leave fingerprints. C4 or Thermite leave none"
 	icon = 'icons/test_walls_best_walls.dmi'
-	icon_state = "frontier_wall" // eris_wall
+	icon_state = "eris_wall"
 	layer = CLOSED_TURF_LAYER
 	opacity = TRUE
 	density = TRUE
 	blocks_air = TRUE
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
-	is_wall = TRUE
-	var/ricochet_id = 0
+	is_wall = TRUE // Leftover from times when low walls were not technically walls, could be replaced by a macro
+	var/is_low_wall = FALSE // Similar to above, but new. Certainly should be a type check macro // TODO --KIROV
+	var/is_reinforced = FALSE
+	var/is_using_flat_icon = FALSE // Some very old walls aren't using 3/4 perspective and composite sprites
 	var/health = 150
 	var/maxHealth = 150
 	var/hardness = 60
-	var/hitsound = 'sound/weapons/Genhit.ogg'
-	var/any_wall_connections[10] // 8 total directions, 10 is maximum value, 7 and 3 aren't used
-	var/full_wall_connections[10]
-	var/flat_icon = FALSE
-	var/is_low_wall = FALSE
+	var/ricochet_id = 0
+	var/any_wall_connections[10] // List of booleans. 8 total directions, 10 is maximum value, 7 and 3 aren't used
+	var/full_wall_connections[10] // Used for adding extra overlays in cases when low and full walls meet
+
+	var/window_type // Low wall stuff, defined here so we can override as few procs as possible
+	var/window_health
+	var/window_maxHealth
+	var/window_heat_resistance
+	var/window_damage_resistance
+	var/window_prespawned_material
 
 /turf/wall/Initialize(mapload, ...)
-	..()
+	. = ..() // Calls /turf/Initialize()
 	if(mapload) // We defer icon updates to late initialize at roundstart
 		return INITIALIZE_HINT_LATELOAD
 	update_connections()
-	update_icon()
+	if(window_prespawned_material)
+		create_window(window_prespawned_material)
+	else
+		update_icon()
 
 /turf/wall/LateInitialize()
 	update_connections()
-	update_icon()
+	if(window_prespawned_material)
+		create_window(window_prespawned_material)
+	else
+		update_icon()
 
 /turf/wall/Destroy()
 	remove_neighbour_connections()
 	ChangeTurf(/turf/floor/plating)
 	. = ..()
 
+// This is only called in an event of IC wall deconstruction
+// Admin deleting the object will not call this, hence producing no girder or shards
 /turf/wall/proc/dismantle_wall(mob/user)
-	playsound(src, 'sound/items/Welder.ogg', 100, 1)
-	drop_materials(drop_location(), user)
 	for(var/obj/O in contents) //Eject contents!
 		if(istype(O,/obj/item/contraband/poster))
 			var/obj/item/contraband/poster/P = O
 			P.roll_and_drop(src)
 		else
 			O.loc = src
+	playsound(src, 'sound/items/Welder.ogg', 100, 1)
+	drop_materials(src, user)
+	var/obj/structure/girder/girder = new(src)
+	girder.is_low = is_low_wall
+	girder.is_reinforced = is_reinforced
+	girder.update_icon()
+	qdel(src)
 
 /turf/wall/get_matter()
-	return list(MATERIAL_STEEL = 10)
+	return list(MATERIAL_STEEL = 5)
 
 /turf/wall/levelupdate()
 	for(var/obj/O in src)
@@ -252,20 +272,17 @@
 	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!")) //!!OH SHIT!!
 
 /turf/wall/take_damage(damage)
+	if(damage < 1)
+		return
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		damage *= 10
 	. = min(health, damage)
 	health -= damage
 	if(health <= 0)
-		var/leftover = abs(health)
-		if (leftover > 150)
-			dismantle_wall()
-		else
-			dismantle_wall()
-		// because we can do changeTurf and lose the var
-		return
-	update_icon()
-	return
+		dismantle_wall()
+	else
+		update_icon()
+
 
 /turf/wall/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed = take_damage(target_power)
@@ -304,3 +321,5 @@
 	spawn(10 SECONDS)
 		if(O)
 			qdel(O)
+
+/turf/wall/proc/create_window()

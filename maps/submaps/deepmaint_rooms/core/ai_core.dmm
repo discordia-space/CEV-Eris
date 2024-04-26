@@ -93,9 +93,8 @@
 /turf/floor/plating/under,
 /area/deepmaint)
 "aq" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/structure/disposalpipe/segment,
-/turf/floor/plating,
 /area/deepmaint)
 "ar" = (
 /turf/floor/bluegrid,

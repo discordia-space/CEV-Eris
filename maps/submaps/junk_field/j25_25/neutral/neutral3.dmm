@@ -93,8 +93,7 @@
 /area/template_noop)
 "bd" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "bf" = (
 /mob/living/simple_animal/hostile/carp,
@@ -177,8 +176,7 @@
 /area/template_noop)
 "bw" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/plasma,
 /area/template_noop)
 "bx" = (
 /turf/floor/plating/under/airless,
@@ -197,8 +195,7 @@
 /turf/floor/plating/under/airless,
 /area/template_noop)
 "bC" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "bK" = (
 /obj/structure/catwalk,
@@ -388,8 +385,7 @@
 /turf/floor/plating/airless,
 /area/template_noop)
 "dj" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "NP" = (
 /obj/spawner/scrap/dense,

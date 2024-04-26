@@ -41,8 +41,7 @@
 /turf/wall,
 /area/deepmaint)
 "i" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "j" = (
 /mob/living/bot/medbot{

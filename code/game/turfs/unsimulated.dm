@@ -4,7 +4,7 @@
 	icon_state = "riveted"
 	opacity = TRUE
 	density = TRUE
-	flat_icon = TRUE
+	is_using_flat_icon = TRUE
 
 
 /turf/wall/dummy/fakeglass
@@ -14,7 +14,7 @@
 
 /turf/wall/dummy/other
 	icon_state = "eris_reinf_wall"
-	flat_icon = FALSE
+	is_using_flat_icon = FALSE
 
 
 /turf/floor/dummy

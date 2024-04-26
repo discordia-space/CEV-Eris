@@ -122,8 +122,7 @@
 /turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "C" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/tiled/dark/brown_perforated,
+/turf/wall/low/onestar,
 /area/crawler)
 "H" = (
 /obj/structure/table/onestar,

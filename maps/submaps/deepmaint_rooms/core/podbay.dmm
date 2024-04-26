@@ -419,8 +419,7 @@
 /area/deepmaint)
 "br" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "bs" = (
 /obj/machinery/chemical_dispenser/industrial,
@@ -474,8 +473,7 @@
 /turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "bA" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "bB" = (
 /obj/effect/decal/cleanable/blood/oil,

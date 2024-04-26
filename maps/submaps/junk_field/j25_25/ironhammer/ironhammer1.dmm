@@ -14,8 +14,7 @@
 /area/template_noop)
 "ay" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "aH" = (
 /obj/item/modular_computer/console{

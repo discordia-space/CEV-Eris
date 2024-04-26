@@ -2,95 +2,122 @@
 #define OVERLAY_WALL_ONLY	2 // Only add extra overlays when connected to the wall
 #define OVERLAY_FULL		3 // Always add extra overlays
 
-// Waist-height object with some traits from both walls and tables
+// Waist-height object with traits from both walls and tables
 // It goes over a turf, can have items and a full tile window on it, blocks movement, can be climbed over, and provides cover
 /turf/wall/low
 	name = "low wall"
-	desc = ""
+	desc = "" // TODO --KIROV
 	icon = 'icons/test_walls_best_walls.dmi'
-	icon_state = "frontier_low" // eris_low
-	density = TRUE
+	icon_state = "eris_low"
 	opacity = FALSE
 	layer = LOW_WALL_LAYER
 	throwpass = TRUE
 	maxHealth = 450
 	health = 450
 	is_low_wall = TRUE
-	var/overlay_type = OVERLAY_FULL // OVERLAY_WALL_ONLY
+	var/wall_type = "eris_low" // icon_state that would be used for overlay generation, icon_state serves for map preview only
+	var/overlay_type = OVERLAY_WALL_ONLY
 
-	var/window
-	var/window_health
-	var/window_maxHealth
-
-// Remember /obj/effect/window_lwall_spawn
-
-/turf/wall/low/onestar
+/turf/wall/low/onestar // Standard dungeon low wall, only comes in one flavor
 	name = "One Star low wall"
-	icon_state = "onestar_low"
+	icon_state = "onestar_low_smart"
+	wall_type = "onestar_low"
 	overlay_type = OVERLAY_NONE
+	window_prespawned_material = "smart"
 
-/turf/wall/low/frontier
-	name = "low wall"
-	icon_state = "frontier_low"
+/turf/wall/low/frontier // Fancy downstream low wall, does not spawn in the wild yet
+	icon_state = "frontier_low_smart"
+	wall_type = "frontier_low"
 	overlay_type = OVERLAY_FULL
+	window_prespawned_material = "smart"
 
-/turf/wall/low/update_icon()
-	// We'll be using 4 overlays for each corner instead of an icon_state, which will be empty
-	// It is, however, set to a preview image initially, so mappers see a wall instead of a purple square
-	icon_state = ""
-	cut_overlays()
-	var/initial_icon_state = initial(icon_state)
-	for(var/overlay_direction in cardinal)
-		var/connection_type = get_overlay_connection_type(overlay_direction, any_wall_connections)
-		var/image/image = image(icon, icon_state = "[initial_icon_state]_[connection_type]", dir = overlay_direction)
-		add_overlay(image.appearance)
+/turf/wall/low/with_glass
+	icon_state = "eris_low_window"
+	wall_type = "eris_low"
+	window_prespawned_material = MATERIAL_GLASS
 
-		var/overlay_icon_state = "[initial_icon_state]_over_[connection_type]"
-		var/add_extra_overlay
-		if(overlay_type == OVERLAY_FULL)
-			add_extra_overlay = TRUE
-			if(connection_type == "horizontal") // Use an alternative sprite when connecting to a corner
-				if((overlay_direction == SOUTH) && any_wall_connections[SOUTHWEST])
-					overlay_icon_state = "[initial_icon_state]_over_[connection_type]_right_angle"
-				if((overlay_direction == WEST) && any_wall_connections[SOUTHEAST])
-					overlay_icon_state = "[initial_icon_state]_over_[connection_type]_right_angle"
+/turf/wall/low/with_glass/reinforced
+	icon_state = "eris_low_window_reinf"
+	window_prespawned_material = MATERIAL_RGLASS
 
-		if(overlay_type == OVERLAY_WALL_ONLY)
-			add_extra_overlay = full_wall_connections[overlay_direction]
+/turf/wall/low/with_glass/smart
+	icon_state = "eris_low_smart"
+	window_prespawned_material = "smart" // MATERIAL_RGLASS if near space, MATERIAL_GLASS otherwise
 
-		if(add_extra_overlay)
-			image = image(icon, icon_state = overlay_icon_state, dir = overlay_direction, layer = ABOVE_WINDOW_LAYER)
-			add_overlay(image.appearance)
+/turf/wall/low/with_glass/plasma
+	icon_state = "eris_low_plasma_window"
+	window_prespawned_material = MATERIAL_PLASMAGLASS
 
-	var/obj/structure/window/window = locate() in loc
-	if(window)
-		window.update_icon()
+/turf/wall/low/with_glass/plasma_reinforced
+	icon_state = "eris_low_plasma_window_reinf"
+	window_prespawned_material = MATERIAL_RPLASMAGLASS
 
-#undef OVERLAY_NONE
-#undef OVERLAY_WALL_ONLY
-#undef OVERLAY_FULL
-
-/turf/wall/low/Initialize(mapload, ...)
-	..()
-	if(mapload)
-		return INITIALIZE_HINT_LATELOAD
-	update_connections()
-	update_icon()
-
-/turf/wall/low/LateInitialize()
-	update_connections()
-	update_icon()
+/turf/wall/low/with_glass/smart_plasma
+	icon_state = "eris_low_smart_plasma"
+	window_prespawned_material = "smart_plasma" // MATERIAL_RPLASMAGLASS if near space, MATERIAL_PLASMAGLASS otherwise
 
 /turf/wall/low/dismantle_wall(mob/user)
-	if(window)
+	if(window_type)
 		shatter_window()
 	..() // Call /turf/wall/proc/dismantle_wall()
 
-
 /turf/wall/low/proc/shatter_window()
-	return
+	playsound(src, "shatter", 70, 1)
+	visible_message("Window shatters!")
+	var/list/adjacent_turfs = RANGE_TURFS(1, src) - src
+	if(findtext(window_type, "reinf")) // Not worth it's own variable
+		new /obj/item/stack/rods(src)
+	var/material/glass/window_material = get_material_by_name(window_type)
+	if(istype(window_material))
+		for(var/i in 1 to 6)
+			var/obj/item/material/shard/shard = window_material.place_shard(src)
+			if(LAZYLEN(adjacent_turfs))
+				var/turf/target_turf = pick(adjacent_turfs)
+				shard.throw_at(target = target_turf, range = 40, speed = 3)
+	window_type = null
+	window_health = null
+	window_maxHealth = null
+	window_heat_resistance = null
+	window_damage_resistance = null
+	update_icon()
+
+/turf/wall/low/create_window(material)
+	ASSERT(material)
+	if(material == "smart")
+		material = is_turf_near_space(src) ? MATERIAL_RGLASS : MATERIAL_GLASS
+	else if(material == "smart_plasma")
+		material = is_turf_near_space(src) ? MATERIAL_RPLASMAGLASS : MATERIAL_PLASMAGLASS
+	switch(material)
+		if(MATERIAL_GLASS)
+			window_type = MATERIAL_GLASS
+			window_health = 40
+			window_maxHealth = 40
+			window_heat_resistance = T0C + 200
+			window_damage_resistance = RESISTANCE_FLIMSY
+		if(MATERIAL_RGLASS)
+			window_type = MATERIAL_RGLASS
+			window_health = 80
+			window_maxHealth = 80
+			window_heat_resistance = T0C + 750
+			window_damage_resistance = RESISTANCE_FRAGILE
+		if(MATERIAL_PLASMAGLASS)
+			window_type = MATERIAL_PLASMAGLASS
+			window_health = 200
+			window_maxHealth = 200
+			window_heat_resistance = T0C + 5227 // 5500 kelvin
+			window_damage_resistance = RESISTANCE_AVERAGE
+		if(MATERIAL_RPLASMAGLASS)
+			window_type = MATERIAL_RPLASMAGLASS
+			window_health = 250
+			window_maxHealth = 250
+			window_heat_resistance = T0C + 5453 // 6000 kelvin
+			window_damage_resistance = RESISTANCE_IMPROVED
+	update_icon()
 
 /turf/wall/low/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+	if(window_type)
+		return FALSE
+
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 
@@ -169,48 +196,26 @@
 
 	// CLIMBING CODE GOES HERE, DON'T FORGET --KIROV
 
-/turf/wall/low/attack_generic(mob/M, damage, attack_message)
-	if(damage)
-		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
-		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
-		take_damage(damage*2)
-	else
-		attack_hand(M)
-
-/turf/wall/attack_generic(mob/user, damage, attack_message)
-	if(!is_simulated)
-		return
-	ASSERT(user)
-	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(!damage)
-		attack_hand(user)
-	else if(damage >= hardness)
-		to_chat(user, SPAN_DANGER("You smash through the wall!"))
-		user.do_attack_animation(src)
-		dismantle_wall(user)
-	else
-		playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
-		to_chat(user, SPAN_DANGER("You smash against the wall!"))
-		user.do_attack_animation(src)
-		take_damage(rand(15,45))
-
-
-
-
-
-
 
 /turf/wall/low/take_damage(damage)
-	. = health - damage < 0 ? damage - (damage - health) : damage
-	if(locate(/obj/effect/overlay/wallrot) in src)
-		damage *= 10
-	health -= damage
-	if(health < 0)
-		dismantle_wall()
+	if(window_health)
+		var/damage_to_window = damage// - window_damage_resistance
+		if(damage_to_window < 1)
+			playsound(src, 'sound/effects/Glasshit.ogg', 25, 1)
+			return
+		var/remaining_damage = damage_to_window - health
+		window_health -= damage_to_window
+		if(window_health < 1)
+			shatter_window()
+			if(remaining_damage > 1)
+				. = ..(remaining_damage)
+		else
+			playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
 	else
-		update_icon()
+		. = ..() // Calls /turf/wall/take_damage()
+
+
+
 /*
 /turf/wall/low/affect_grab(mob/living/user, mob/living/target, state)
 	if(window)

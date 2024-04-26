@@ -19,8 +19,7 @@
 /turf/wall,
 /area/outpost/abandoned)
 "ag" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/abandoned)
 "ai" = (
 /turf/floor/asteroid,

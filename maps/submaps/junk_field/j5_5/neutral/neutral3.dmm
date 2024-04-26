@@ -30,8 +30,7 @@
 /turf/template_noop,
 /area/template_noop)
 "N" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 
 (1,1,1) = {"

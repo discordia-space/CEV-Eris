@@ -279,8 +279,7 @@
 /turf/floor/tiled/dark/brown_perforated/airless,
 /area/outpost/blacksite/small)
 "oU" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/tiled/dark/brown_perforated/airless,
+/turf/wall/low/onestar,
 /area/outpost/blacksite/small)
 "pg" = (
 /mob/living/carbon/superior_animal/stalker/dual,

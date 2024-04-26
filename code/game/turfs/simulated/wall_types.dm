@@ -1,16 +1,16 @@
 /turf/wall/reinforced
 	name = "reinforced wall"
-	icon_state = "frontier_wall" // eris_reinf_wall
+	icon_state = "eris_reinf_wall"
 	health = 550
 	maxHealth = 550
 	hardness = 140
+	is_reinforced = TRUE
 
 /turf/wall/reinforced/get_matter()
-	return list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 5)
+	return list(MATERIAL_PLASTEEL = 5)
 
 /turf/wall/frontier
-	name = "reinforced wall"
-	icon_state = "frontier_wall" // eris_reinf_wall
+	icon_state = "frontier_wall"
 
 /turf/shuttle/wall
 	name = "wall"

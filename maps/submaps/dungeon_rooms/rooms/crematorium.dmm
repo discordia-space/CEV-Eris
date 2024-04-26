@@ -34,8 +34,7 @@
 /turf/floor/tiled/derelict,
 /area/crawler)
 "j" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/tiled/derelict/white_small_edges,
+/turf/wall/low/onestar,
 /area/crawler)
 "k" = (
 /turf/floor/tiled/derelict,

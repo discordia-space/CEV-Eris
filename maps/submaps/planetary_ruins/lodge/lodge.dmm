@@ -26,8 +26,7 @@
 /turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "g" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/map_template/lodge)
 "h" = (
 /obj/structure/table/woodentable,
@@ -261,8 +260,7 @@
 /area/map_template/lodge)
 "U" = (
 /obj/structure/window/reinforced/full,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/map_template/lodge)
 "V" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{

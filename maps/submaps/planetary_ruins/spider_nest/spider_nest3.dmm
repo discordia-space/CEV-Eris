@@ -48,8 +48,7 @@
 /turf/floor/tiled/white/violetcorener,
 /area/map_template/spider_nest)
 "r" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/map_template/spider_nest)
 "t" = (
 /obj/structure/bed/chair/comfy/purp{

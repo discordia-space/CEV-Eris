@@ -17,8 +17,7 @@
 /area/crawler)
 "f" = (
 /obj/structure/lattice,
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/plating/under,
+/turf/wall/low/onestar,
 /area/crawler)
 "g" = (
 /obj/crawler/crawler_wallbreaker/vertical,
@@ -99,8 +98,7 @@
 /turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "y" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/plating/under,
+/turf/wall/low/onestar,
 /area/crawler)
 "D" = (
 /obj/structure/sign/directions/evac{

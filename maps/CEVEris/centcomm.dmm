@@ -372,8 +372,7 @@
 	},
 /area/space)
 "ek" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/centcom/evac)
 "el" = (
 /turf/shuttle/wall{
@@ -1009,18 +1008,10 @@
 	},
 /area/shuttle/syndicate_elite/mothership)
 "gd" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/dummy{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/wall/low/with_glass/smart,
 /area/space)
 "ge" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/dummy{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/wall/low/with_glass/smart,
 /area/centcom/small_base)
 "gf" = (
 /obj/machinery/door/airlock/external{
@@ -1051,8 +1042,7 @@
 	},
 /area/space)
 "gj" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/shuttle/plating,
+/turf/wall/low/with_glass/smart,
 /area/space)
 "gk" = (
 /turf/shuttle/wall{
@@ -1404,11 +1394,7 @@
 	},
 /area/centcom/merc_base)
 "hf" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/dummy{
-	icon_state = "plating";
-	name = "plating"
-	},
+/turf/wall/low/with_glass/reinforced,
 /area/centcom/merc_base)
 "hg" = (
 /obj/structure/table/reinforced,
@@ -1618,8 +1604,7 @@
 /turf/wall/reinforced,
 /area/centcom/evac)
 "hN" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/shuttle/plating,
+/turf/wall/low/with_glass/smart,
 /area/skipjack_station/start)
 "hR" = (
 /obj/machinery/door/airlock/hatch,
@@ -1690,7 +1675,7 @@
 	},
 /area/skipjack_station/start)
 "if" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -1698,7 +1683,6 @@
 	name = "Outer Airlock";
 	opacity = 0
 	},
-/turf/shuttle/plating,
 /area/shuttle/pirate)
 "ik" = (
 /obj/effect/shuttle_landmark/escape_pod/out/pod1,
@@ -2739,8 +2723,7 @@
 	},
 /area/shuttle/mercenary)
 "ll" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/shuttle/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/shuttle/mercenary)
 "ln" = (
 /turf/shuttle/floor{
@@ -3608,10 +3591,7 @@
 	},
 /area/centcom/raider_base)
 "on" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/dummy{
-	icon_state = "dark"
-	},
+/turf/wall/low/with_glass/smart,
 /area/centcom/raider_base)
 "oo" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -4695,8 +4675,7 @@
 /area/space)
 "vF" = (
 /obj/effect/shuttle_landmark/merc/start,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/shuttle/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/shuttle/mercenary)
 "vG" = (
 /obj/structure/closet/crate/pirate,
@@ -5346,7 +5325,7 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/centcom/pirate_base)
 "BR" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -5354,7 +5333,6 @@
 	name = "Outer Airlock";
 	opacity = 0
 	},
-/turf/shuttle/plating,
 /area/shuttle/pirate)
 "BX" = (
 /obj/structure/bed/chair/custom/holochair,
@@ -5726,7 +5704,7 @@
 /turf/floor/holofloor/tiled/dark,
 /area/space)
 "Gt" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -5734,7 +5712,6 @@
 	name = "Outer Airlock";
 	opacity = 0
 	},
-/turf/shuttle/plating,
 /area/shuttle/pirate)
 "Gw" = (
 /turf/floor/holofloor/tiled/bar_dance,
@@ -6095,12 +6072,8 @@
 /turf/floor/holofloor/reinforced,
 /area/space)
 "Kq" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/structure/grille,
-/turf/floor/dummy{
-	icon_state = "plating";
-	name = "plating"
-	},
 /area/centcom/merc_base)
 "Kr" = (
 /obj/machinery/light,
@@ -6502,7 +6475,7 @@
 /turf/floor/holofloor/tiled/dark,
 /area/space)
 "Om" = (
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/effect/shuttle_landmark/pirate/start,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -6511,7 +6484,6 @@
 	name = "Outer Airlock";
 	opacity = 0
 	},
-/turf/shuttle/plating,
 /area/shuttle/pirate)
 "Or" = (
 /obj/machinery/light,

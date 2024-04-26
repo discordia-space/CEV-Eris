@@ -278,8 +278,7 @@
 /turf/floor/wood,
 /area/deepmaint)
 "bg" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/deepmaint)
 "bh" = (
 /obj/structure/reagent_dispensers/water_cooler,

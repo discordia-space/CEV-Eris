@@ -85,8 +85,7 @@
 /turf/floor/carpet,
 /area/asteroid/cave)
 "U" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/asteroid/cave)
 "Z" = (
 /obj/structure/bed/chair/comfy/brown{

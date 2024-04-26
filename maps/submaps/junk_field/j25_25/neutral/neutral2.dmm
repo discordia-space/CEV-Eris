@@ -11,8 +11,7 @@
 /turf/template_noop,
 /area/template_noop)
 "ad" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "ae" = (
 /obj/spawner/structures/common/low_chance,
@@ -279,8 +278,7 @@
 /area/template_noop)
 "bi" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "bj" = (
 /obj/structure/table/standard,

@@ -125,7 +125,6 @@ var/list/name_to_material
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
-	var/created_window_full
 	var/rod_product
 	var/wire_product
 	var/list/window_options = list()
@@ -492,9 +491,8 @@ var/list/name_to_material
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
-	window_options = list("One Direction" = 1, "Full Window" = 6)
+	window_options = list("One Direction" = 1)
 	created_window = /obj/structure/window/basic
-	created_window_full = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
 	conductive = FALSE
 	hitsound = 'sound/effects/Glasshit.ogg'
@@ -507,8 +505,7 @@ var/list/name_to_material
 		rad = 0
 	)
 
-/material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
-
+/material/glass/build_windows(mob/living/user, obj/item/stack/used_stack)
 	if(!user || !used_stack || !created_window || !window_options.len)
 		return 0
 
@@ -529,61 +526,39 @@ var/list/name_to_material
 
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
-	if(choice in list("One Direction","Windoor"))
-		// Get data for building windows here.
-		var/list/possible_directions = cardinal.Copy()
-		var/window_count = 0
-		for (var/obj/structure/window/check_window in user.loc)
-			window_count++
-			possible_directions  -= check_window.dir
+	// Get data for building windows here.
+	var/list/possible_directions = cardinal.Copy()
+	var/window_count = 0
+	for(var/obj/structure/window/check_window in user.loc)
+		window_count++
+		possible_directions  -= check_window.dir
 
-
-		var/failed_to_build
-
-		if(window_count >= 4)
-			failed_to_build = 1
-		else
-			if(possible_directions.len)
-				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
-					if(direction in possible_directions)
-						build_dir = direction
-						break
-			else
-				failed_to_build = 1
-			if(!failed_to_build && choice == "Windoor")
-				if(!is_reinforced())
-					to_chat(user, SPAN_WARNING("This material is not reinforced enough to use for a door."))
-					return
-				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
-					failed_to_build = 1
-
-		if(failed_to_build)
-			to_chat(user, SPAN_WARNING("There is no room in this location."))
-			return 1
-
+	var/failed_to_build
+	if(window_count >= 4)
+		failed_to_build = 1
 	else
-		build_dir = SOUTHWEST
-		//We're attempting to build a full window.
-		//We need to find a suitable low wall to build ontop of
-		var/turf/wall/low/mount = get_step(T, user.dir)
-		//We will check the tile infront of the user
-		if(!istype(mount))
-			to_chat(user, SPAN_WARNING("Full windows must be mounted on a low wall infront of you."))
-			return 1
+		if(possible_directions.len)
+			for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
+				if(direction in possible_directions)
+					build_dir = direction
+					break
+		else
+			failed_to_build = 1
+		if(!failed_to_build && choice == "Windoor")
+			if(!is_reinforced())
+				to_chat(user, SPAN_WARNING("This material is not reinforced enough to use for a door."))
+				return
+			if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
+				failed_to_build = 1
 
-		if (locate(/obj/structure/window) in mount)
-			to_chat(user, SPAN_WARNING("The target tile must be clear of other windows"))
-			return 1
-
-		//building will be successful, lets set the build location
-		T = mount
+	if(failed_to_build)
+		to_chat(user, SPAN_WARNING("There is no room in this location."))
+		return 1
 
 	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
 	if(choice == "Windoor")
 		build_dir = user.dir
-	else if (choice == "Full Window")
-		build_path = created_window_full
 	else
 		build_path = created_window
 
@@ -614,9 +589,8 @@ var/list/name_to_material
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(MATERIAL_STEEL = 2,MATERIAL_GLASS = 3)
-	window_options = list("One Direction" = 1, "Full Window" = 6, "Windoor" = 5)
+	window_options = list("One Direction" = 1, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
-	created_window_full = /obj/structure/window/reinforced/full
 	conductive = FALSE
 	wire_product = null
 	rod_product = null
@@ -640,7 +614,6 @@ var/list/name_to_material
 	weight = 40
 	hardness = 50
 	created_window = /obj/structure/window/plasmabasic
-	created_window_full = /obj/structure/window/plasmabasic/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plasmarglass
 	conductive = FALSE
@@ -660,7 +633,6 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
 	created_window = /obj/structure/window/reinforced/plasma
-	created_window_full = /obj/structure/window/reinforced/plasma/full
 	hardness = 60
 	weight = 50
 	conductive = FALSE

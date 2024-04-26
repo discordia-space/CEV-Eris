@@ -37,8 +37,7 @@
 /turf/wall/reinforced,
 /area/outpost/pulsar/maintenance)
 "aS" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "aT" = (
 /obj/structure/table/standard,
@@ -328,8 +327,7 @@
 /area/outpost/pulsar/maintenance)
 "lQ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar)
 "lS" = (
 /obj/spawner/junk/low_chance,
@@ -452,8 +450,7 @@
 /turf/floor/wood,
 /area/outpost/pulsar)
 "qW" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar)
 "rp" = (
 /obj/machinery/door/window/eastright{
@@ -1071,8 +1068,7 @@
 /area/outpost/pulsar/maintenance)
 "JO" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "Kh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -1160,12 +1156,10 @@
 /turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Mm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "Nc" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/tiled/steel/orangecorner,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "Nh" = (
 /obj/structure/reagent_dispensers/fueltank/huge,

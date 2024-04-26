@@ -14,8 +14,7 @@
 /turf/wall/reinforced,
 /area/template_noop)
 "e" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "f" = (
 /obj/spawner/junk/low_chance,

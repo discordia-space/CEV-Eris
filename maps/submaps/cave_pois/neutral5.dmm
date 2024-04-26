@@ -11,8 +11,7 @@
 /turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "f" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/asteroid/cave)
 "h" = (
 /obj/structure/lattice,

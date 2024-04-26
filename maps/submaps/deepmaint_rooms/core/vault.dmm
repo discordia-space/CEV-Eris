@@ -20,8 +20,7 @@
 /turf/floor/tiled/steel,
 /area/deepmaint)
 "ag" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "ah" = (
 /turf/floor/tiled/dark/techfloor,
@@ -74,8 +73,7 @@
 /area/deepmaint)
 "ar" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/deepmaint)
 "as" = (
 /obj/structure/disposalpipe/segment{
@@ -285,12 +283,11 @@
 /area/deepmaint)
 "aY" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
+/turf/wall/low/with_glass/reinforced,
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-s"
 	},
-/turf/floor/plating,
 /area/deepmaint)
 "aZ" = (
 /obj/structure/catwalk,

@@ -98,9 +98,8 @@
 /turf/floor/tiled/dark/cargo/airless,
 /area/template_noop)
 "ib" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/machinery/door/firedoor,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "iz" = (
 /obj/structure/bed/chair{
@@ -245,8 +244,7 @@
 /area/template_noop)
 "yJ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 "zc" = (
 /obj/structure/table/woodentable,
@@ -397,8 +395,7 @@
 /area/template_noop)
 "LE" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "LZ" = (
 /obj/structure/bed/chair{

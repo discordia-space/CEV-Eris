@@ -54,7 +54,7 @@
 	if(!A.ship_area)
 		if(z in GLOB.maps_data.station_levels)
 			A.set_ship_area()
-	. = ..()
+	. = ..() // Calls /atom/proc/Initialize()
 
 /turf/Destroy()
 	turfs -= src

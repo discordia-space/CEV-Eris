@@ -9,8 +9,7 @@
 /turf/wall/reinforced,
 /area/outpost/abandoned_fortress)
 "ad" = (
-/obj/effect/window_lwall_spawn/plasma,
-/turf/floor/plating,
+/turf/wall/low/with_glass/plasma,
 /area/outpost/abandoned_fortress)
 "ae" = (
 /turf/floor/plating,
@@ -96,8 +95,7 @@
 /turf/floor/tiled,
 /area/outpost/abandoned_fortress)
 "aw" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/abandoned_fortress)
 "ax" = (
 /obj/spawner/junk/low_chance,

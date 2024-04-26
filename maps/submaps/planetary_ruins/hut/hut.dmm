@@ -82,8 +82,7 @@
 /turf/floor/tiled/dark,
 /area/template_noop)
 "K" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 "Z" = (
 /obj/structure/table/marble,

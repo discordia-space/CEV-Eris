@@ -24,8 +24,7 @@
 /turf/floor/tiled/techmaint_cargo,
 /area/deepmaint)
 "h" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "i" = (
 /obj/structure/table/standard,

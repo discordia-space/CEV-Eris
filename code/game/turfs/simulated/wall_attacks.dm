@@ -33,7 +33,7 @@
 		return
 
 	var/list/usable_qualities = list(QUALITY_WELDING)
-	if(is_low_wall)
+	if(window_type)
 		usable_qualities.Add(QUALITY_PRYING) // Removing a window
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
@@ -57,15 +57,29 @@
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You dismantle the [src]."))
 					dismantle_wall()
-		if(QUALITY_PRYING)
 			return
-			//
-			//
-			//
-
-	if(istype(I, /obj/item/frame))
+		if(QUALITY_PRYING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				var/material/glass/window_material = get_material_by_name(window_type)
+				window_material.place_sheet(src, 6)
+				window_type = null
+				window_health = null
+				window_maxHealth = null
+				window_heat_resistance = null
+				window_damage_resistance = null
+				to_chat(user, SPAN_NOTICE("You pry the glass out of the frame."))
+			return
+	if(!is_low_wall && istype(I, /obj/item/frame))
 		var/obj/item/frame/F = I
 		F.try_build(src)
+
+	else if(is_low_wall && istype(I, /obj/item/stack/material/glass))
+		var/obj/item/stack/material/glass/glass_stack = I
+		if(glass_stack.get_amount() < 6)
+			to_chat(user, SPAN_NOTICE("There isn't enough glass sheets, you need at least six."))
+		else if(do_after(user, 40, src) && glass_stack.use(6))
+			create_window(glass_stack.material)
+
 	else if(is_low_wall && user.a_intent != I_HURT && user.unEquip(I, loc))
 		set_pixel_click_offset(I, params) // Place something on a low wall
 	else if(I.force)
@@ -92,4 +106,4 @@
 		dismantle_wall(user)
 		return
 	to_chat(user, SPAN_NOTICE("You push the wall, but nothing happens."))
-	playsound(src, hitsound, 25, 1)
+	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)

@@ -57,8 +57,7 @@
 /turf/floor/tiled/dark,
 /area/asteroid/cave)
 "u" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/asteroid/cave)
 "w" = (
 /mob/living/simple_animal/hostile/hivebot/range,

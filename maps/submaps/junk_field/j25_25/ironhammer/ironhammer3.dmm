@@ -137,8 +137,7 @@
 /turf/template_noop,
 /area/template_noop)
 "aG" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/floor/plating/under/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "aH" = (
 /obj/machinery/telecomms/relay,
@@ -186,8 +185,7 @@
 /turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aS" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/template_noop,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "aT" = (
 /obj/spawner/junk,

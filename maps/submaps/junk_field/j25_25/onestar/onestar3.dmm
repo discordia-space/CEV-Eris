@@ -66,8 +66,7 @@
 /turf/wall/untinted/onestar,
 /area/template_noop)
 "au" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/tiled/dark/brown_perforated/airless,
+/turf/wall/low/onestar,
 /area/template_noop)
 "av" = (
 /obj/structure/closet/onestar/tier2/mineral,

@@ -100,8 +100,7 @@
 /turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "A" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/tiled/techmaint,
+/turf/wall/low/onestar,
 /area/crawler)
 "B" = (
 /obj/machinery/light/built{

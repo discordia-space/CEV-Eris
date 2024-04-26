@@ -74,8 +74,7 @@
 /turf/floor/tiled/dark,
 /area/asteroid/cave)
 "K" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/asteroid/cave)
 "Z" = (
 /obj/structure/table/marble,

@@ -30,7 +30,6 @@
 /area/template_noop)
 "aw" = (
 /turf/wall/low/onestar,
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
 /area/template_noop)
 "ay" = (
 /obj/structure/railing/grey,
@@ -202,8 +201,7 @@
 /turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "lU" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/floor/tiled/dark/brown_perforated/airless,
+/turf/wall/low/onestar,
 /area/template_noop)
 "pA" = (
 /mob/living/simple_animal/hostile/roomba/slayer,

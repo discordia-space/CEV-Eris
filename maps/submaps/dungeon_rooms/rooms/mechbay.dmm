@@ -55,8 +55,7 @@
 /turf/floor/tiled/derelict,
 /area/crawler)
 "m" = (
-/turf/wall/low,
-/obj/effect/window_lwall_spawn,
+/turf/wall/low/with_glass,
 /area/crawler)
 "n" = (
 /obj/structure/table/onestar,
