@@ -434,6 +434,7 @@
 		return
 
 	target.GetDrilled()
+	drill_head.durability -= 1
 	gather_ores(target, user)
 
 /obj/item/mech_equipment/drill/proc/use_drill(atom/target, user, adjacent, show_message)
