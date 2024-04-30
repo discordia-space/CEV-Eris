@@ -342,13 +342,12 @@
 	icon_state = "mech_drill"
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
-	equipment_delay = 10
 
 	//Drill can have a head
 	var/obj/item/material/drill_head/drill_head
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-
-
+	///If the drill is currently being used
+	var/drilling = FALSE
 
 /obj/item/mech_equipment/drill/Initialize()
 	. = ..()
@@ -363,95 +362,138 @@
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)
 
 
-/obj/item/mech_equipment/drill/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_equipment/drill/afterattack(atom/target, mob/living/user, adjacent, params)
 	. = ..()
 	if(.)
+		process_drill_action(target, user, adjacent)
 
+///Handle all the possible actions a drill can perform; will call itself recursively if attacking a wall or object
+/obj/item/mech_equipment/drill/proc/process_drill_action(atom/target, mob/living/user, adjacent)
+	if(!target || !user)
+		return
 
-		if (!inrange)
-			to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the mounted drill."))
-		else
-			if(isobj(target))
-				var/obj/target_obj = target
-				if(target_obj.unacidable)
-					return
-			if(istype(target,/obj/item/material/drill_head))
-				var/obj/item/material/drill_head/DH = target
-				if(drill_head)
-					owner.visible_message(SPAN_NOTICE("\The [owner] detaches the [drill_head] mounted on the [src]."))
-					drill_head.forceMove(owner.loc)
-				DH.forceMove(src)
-				drill_head = DH
-				owner.visible_message(SPAN_NOTICE("\The [owner] mounts the [drill_head] on the [src]."))
-				return
+	if(istype(target, /turf/simulated/mineral))
+		mine(target, user, adjacent)
+		return
 
-			if(drill_head == null)
-				to_chat(user, SPAN_WARNING("Your drill doesn't have a head!"))
-				return
+	if(adjacent && istype(target,/obj/item/material/drill_head))
+		var/obj/item/material/drill_head/unmounted_drill_head = target
+		if(drill_head)
+			owner.visible_message(SPAN_NOTICE("\The [owner] detaches the [drill_head] mounted on the [src]."))
+			drill_head.forceMove(owner.loc)
 
-			var/obj/item/cell/C = owner.get_cell()
-			if(istype(C))
-				C.use(active_power_use * CELLRATE)
-			playsound(src, 'sound/mechs/mechdrill.ogg', 50, 1)
-			owner.visible_message(SPAN_DANGER("\The [owner] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
-			var/T = target.loc
+		unmounted_drill_head.forceMove(src)
+		drill_head = unmounted_drill_head
+		owner.visible_message(SPAN_NOTICE("\The [owner] mounts the [drill_head] on the [src]."))
+		return
 
-			//Better materials = faster drill! //
-			var/delay = 20
-			switch (drill_head.material.hardness) // It's either default (steel), plasteel or diamond
-				if(80) delay = 10
-				if(100) delay = 5
-			owner.setClickCooldown(delay) //Don't spamclick!
-			if(do_after(owner, delay, target) && drill_head)
-				if(src == owner.selected_system)
-					if(drill_head.durability <= 0)
-						drill_head.shatter()
-						drill_head = null
-						return
-					if(istype(target, /turf/simulated/wall))
-						var/turf/simulated/wall/W = target
-						if(max(W.material.hardness, W.reinf_material ? W.reinf_material.hardness : 0) > drill_head.material.hardness)
-							to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head."))
-							return
-						target.explosion_act(100, null)
-						drill_head.durability -= 1
-						log_and_message_admins("used [src] on the wall [W].", user, owner.loc)
-					else if(istype(target, /turf/simulated/mineral))
-						for(var/turf/simulated/mineral/M in range(target,1))
-							if(get_dir(owner,M)&owner.dir)
-								M.GetDrilled()
-								drill_head.durability -= 1
-					else if(istype(target, /turf/simulated/floor/asteroid))
-						for(var/turf/simulated/floor/asteroid/M in range(target,1))
-							if(get_dir(owner,M)&owner.dir)
-								M.gets_dug()
-								drill_head.durability -= 0.1
-					else if(target.loc == T)
-						target.explosion_act(200, null)
-						drill_head.durability -= 1
-						log_and_message_admins("[src] used to drill [target].", user, owner.loc)
+	if(!use_drill(target, user, adjacent, TRUE))
+		return
 
+	if(istype(target, /turf/simulated/wall))
+		var/turf/simulated/wall/W = target
+		if(max(W.material.hardness, W.reinf_material ? W.reinf_material.hardness : 0) > drill_head.material.hardness)
+			to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head."))
+			return
 
+		target.explosion_act(100, null)
+		drill_head.durability -= 1
+		log_and_message_admins("used [src] on the wall [W].", user, owner.loc)
+		if(target_still_valid(target))
+			process_drill_action(target, user, adjacent)
+		return
 
+	if(istype(target, /turf/simulated/floor/asteroid))
+		for(var/turf/simulated/floor/asteroid/floor in range(target, 1))
+			if(get_dir(owner, floor) & owner.dir)
+				floor.gets_dug()
+				drill_head.durability -= 0.1
 
-					if(owner.hardpoints.len) //if this isn't true the drill should not be working to be fair
-						for(var/hardpoint in owner.hardpoints)
-							var/obj/item/I = owner.hardpoints[hardpoint]
-							if(!istype(I))
-								continue
-							var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in I //clamps work, but anythin that contains an ore crate internally is valid
-							if(ore_box)
-								for(var/obj/item/ore/ore in range(T,1))
-									if(get_dir(owner,ore)&owner.dir)
-										ore.Move(ore_box)
-								to_chat(user, SPAN_NOTICE("The drill automatically loaded the ore into the ore box."))
-					playsound(src, 'sound/weapons/rapidslice.ogg', 50, 1)
+		gather_ores(target, user)
+		return
 
-			else
-				to_chat(user, "You must stay still while the drill is engaged!")
+	//Everything else just takes damage
+	target.explosion_act(200, null)
+	log_and_message_admins("[src] used to drill [target].", user, owner.loc)
+	if(target_still_valid(target))
+		process_drill_action(target, user, adjacent)
 
+///Check if it can continue drilling recursively
+/obj/item/mech_equipment/drill/proc/target_still_valid(atom/target)
+	if(QDELETED(target))
+		return FALSE
 
-			return 1
+	//Funny event where the drill just keeps drilling into space if you let it keep going; also to prevent infinite loop with base turfs
+	if(isturf(target) && (istype(target, /turf/space) || istype(target, /turf/simulated/open) || get_base_turf_by_area(target) == target))
+		return FALSE
+
+	return TRUE
+
+/obj/item/mech_equipment/drill/proc/mine(turf/simulated/mineral/target, mob/living/user, adjacent)
+	if(!use_drill(target, user, adjacent))
+		return
+
+	target.GetDrilled()
+	gather_ores(target, user)
+
+/obj/item/mech_equipment/drill/proc/use_drill(atom/target, user, adjacent, show_message)
+	if(drilling)
+		return FALSE
+
+	if(!adjacent)
+		to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the mounted drill."))
+		return FALSE
+
+	if(isobj(target))
+		var/obj/target_obj = target
+		if(target_obj.unacidable)
+			to_chat(user, SPAN_WARNING("You can't drill [target]."))
+			return FALSE
+
+	if(!drill_head)
+		to_chat(user, SPAN_WARNING("Your drill doesn't have a head!"))
+		return FALSE
+
+	var/obj/item/cell/cell = owner.get_cell()
+	if(!cell?.checked_use(active_power_use * CELLRATE))
+		to_chat(user, SPAN_WARNING("Insufficient power!"))
+		return FALSE
+
+	playsound(src, 'sound/mechs/mechdrill.ogg', 50, 3)
+	if(show_message)
+		owner.visible_message(SPAN_DANGER("\The [owner] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
+	drilling = TRUE
+
+	//Better materials = faster drill! //
+	//Formula: 0.3 seconds base duration with each lower tier of hardness adding around a half second to the duration
+	if(!do_after(user, (0.3 + ((100 - drill_head.material.hardness) * 0.03)) SECONDS, owner, FALSE) || !drill_head || src != owner.selected_system)
+		to_chat(user, SPAN_WARNING("You must stay still while the drill is engaged!"))
+		drilling = FALSE
+		return FALSE
+
+	drilling = FALSE
+	if(drill_head.durability <= 0)
+		drill_head.shatter()
+		drill_head = null
+		return FALSE
+
+	return TRUE
+
+///Call to scoop up any ores in front of the mech
+/obj/item/mech_equipment/drill/proc/gather_ores(target, user)
+	//if this isn't true the drill should not be working to be fair
+	//As the previous coder commented, no need to check if hardpoints list exists, just loop through it
+	for(var/hardpoint in owner.hardpoints)
+		var/obj/item/I = owner.hardpoints[hardpoint]
+		if(!istype(I))
+			continue
+
+		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in I //clamps work, but anythin that contains an ore crate internally is valid
+		if(ore_box)
+			for(var/obj/item/ore/ore in range(target, 1))
+				if(get_dir(owner, ore) & owner.dir)
+					ore.Move(ore_box)
+			to_chat(user, SPAN_NOTICE("The drill automatically loaded the ore into the ore box."))
 
 /obj/item/mech_equipment/mounted_system/extinguisher
 	icon_state = "mech_exting"
