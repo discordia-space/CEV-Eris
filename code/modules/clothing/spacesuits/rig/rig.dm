@@ -274,6 +274,9 @@
 
 	//Only force deploy when we're turning it on, not when removing it
 	if (seal_target)
+		if(process_mech_suit_restriction())
+			return
+
 		deploy(wearer,instant)
 
 	var/failed_to_seal
@@ -721,6 +724,9 @@
 
 
 		else if (deploy_mode != ONLY_RETRACT)
+			if(process_mech_suit_restriction())
+				return
+
 			if(check_slot && check_slot == use_obj)
 				return
 
@@ -1054,6 +1060,18 @@
 	var/obj/glasses = getCurrentGlasses()
 	if(glasses)
 		glasses.make_young()
+
+///Checks if the RIG wearer is inside a mech that restricts suit deployment; returns TRUE if so
+/obj/item/rig/proc/process_mech_suit_restriction()
+	if(!istype(wearer.loc, /mob/living/exosuit))
+		return FALSE
+
+	var/mob/living/exosuit/mech = wearer.loc
+	if(!mech?.body.armor_restrictions)
+		return FALSE
+
+	to_chat(wearer, SPAN_NOTICE("You cannot deploy your suit inside a mech."))
+	return TRUE
 
 #undef ONLY_DEPLOY
 #undef ONLY_RETRACT
