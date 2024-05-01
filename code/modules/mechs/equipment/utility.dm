@@ -429,12 +429,14 @@
 
 	return TRUE
 
-/obj/item/mech_equipment/drill/proc/mine(turf/simulated/mineral/target, mob/living/user, adjacent)
+/obj/item/mech_equipment/drill/proc/mine(atom/target, mob/living/user, adjacent)
 	if(!use_drill(target, user, adjacent))
 		return
 
-	target.GetDrilled()
-	drill_head.durability -= 1
+	for(var/turf/simulated/mineral/rock in range(1, get_turf(src)))
+		rock.GetDrilled()
+		drill_head.durability -= 1
+
 	gather_ores(target, user)
 
 /obj/item/mech_equipment/drill/proc/use_drill(atom/target, user, adjacent, show_message)
@@ -467,12 +469,15 @@
 
 	//Better materials = faster drill! //
 	//Formula: 0.3 seconds base duration with each lower tier of hardness adding around a half second to the duration
-	if(!do_after(user, (0.3 + ((100 - drill_head.material.hardness) * 0.03)) SECONDS, owner, FALSE) || !drill_head || src != owner.selected_system)
+	if(!do_after(user, (0.5 + ((100 - drill_head.material.hardness) * 0.03)) SECONDS, owner, FALSE) || !drill_head || src != owner.selected_system)
 		to_chat(user, SPAN_WARNING("You must stay still while the drill is engaged!"))
 		drilling = FALSE
 		return FALSE
 
 	drilling = FALSE
+	if(QDELETED(target))	//Just in case
+		return FALSE
+
 	if(drill_head.durability <= 0)
 		drill_head.shatter()
 		drill_head = null
