@@ -60,41 +60,126 @@
 
 	return ..()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
+	// Remember that BYOND "unwraps" a list when it's added to another list, hence the use of list() matryoshkas here
 	. = ..()
-	if(statpanel("Status"))
-		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[move_intent.name]")
-		if(evacuation_controller)
-			var/eta_status = evacuation_controller.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+	if(internal)
+		if(!internal.air_contents) // Leftover from the old stat() proc
+			qdel(internal) // TODO: See if that is necessary, probably should just null the variable instead
+		else
+			. += list(list("Internal Atmosphere Info: [internal.name]"))
+			. += list(list("Tank Pressure: [internal.air_contents.return_pressure()]"))
+			. += list(list("Distribution Pressure: [internal.distribute_pressure]"))
 
-		if(internal)
-			if(!internal.air_contents)
-				qdel(internal)
+	// RIG/hardsuit territory
+	// TODO: /stat_rig_module/ got no reason to continue existing, delete it
+	// TODO: Cache some of the stuff below on the RIG side
+	if(back && istype(back,/obj/item/rig))
+		var/obj/item/rig/suit = back
+		. += list(list("br"))
+		. += list(list("Using [suit.name]"))
+
+		if(suit.interface_locked)
+			. += list(list("-- HARDSUIT INTERFACE OFFLINE --"))
+		else if(suit.control_overridden)
+			. += list(list("-- HARDSUIT CONTROL OVERRIDDEN BY AI UNIT--"))
+		else if(suit.security_check_enabled && !suit.check_suit_access_alternative(src))
+			. += list(list("-- ACCESS DENIED --"))
+		else if(suit.malfunction_delay > 1)
+			. += list(list("-- CRITICAL ERROR --"))
+		else
+			// TODO: Consider deleting the following along with RIG's nano_ui_interact() when functionality here is comprehensive and stable enough
+			// Could be replaced with "-- ACCESS GRANTED --" or some such line
+			. += list(list("-- OPEN HARDSUIT INTERFACE --", "\ref[suit];open_ui=1"))
+			. += list(list("Suit charge: [suit.cell ? "[suit.cell.charge]/[suit.cell.maxcharge]" : "ERROR"]"))
+			. += list(list("AI control: [suit.ai_override_enabled ? "ENABLED" : "DISABLED"]", "\ref[suit];toggle_ai_control=1"))
+			. += list(list("Suit status: [suit.active ? "ACTIVE" : "INACTIVE"]", "\ref[suit];toggle_seals=1"))
+			. += list(list("Cover status: [suit.locked ? "LOCKED" : "UNLOCKED"]", "\ref[suit];toggle_suit_lock=1"))
+			if(suit.sealing)
+				. += list(list("-- ADJUSTING SEALS --"))
 			else
-				stat("Internal Atmosphere Info", internal.name)
-				stat("Tank Pressure", internal.air_contents.return_pressure())
-				stat("Distribution Pressure", internal.distribute_pressure)
+				var/static/list/cached_images
+				if(!cached_images)
+					cached_images = list()
 
-		if(back && istype(back,/obj/item/rig))
-			var/obj/item/rig/suit = back
-			var/cell_status = "ERROR"
-			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
-			stat(null, "Suit charge: [cell_status]")
+				for(var/atom/atom in list(suit.helmet, suit.gloves, suit.boots, suit.chest))
+					if(isnull(atom))
+						continue
+					if("[atom.name]_[atom.icon_state]" in cached_images)
+						continue
+					client << browse_rsc(getFlatIcon(atom, no_anim = TRUE), "[atom.name]_[atom.icon_state].png")
+					cached_images += "[atom.name]_[atom.icon_state]"
 
-		var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
-		if(chemvessel_efficiency > 1)
-			stat("Chemical Storage", "[carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]")
+				var/RIG_pieces = list()
+				if(suit.helmet)
+					RIG_pieces += list(list("\ref[suit];toggle_piece=helmet", "[suit.helmet.name]_[suit.helmet.icon_state].png"))
+				if(suit.gloves)
+					RIG_pieces += list(list("\ref[suit];toggle_piece=gauntlets", "[suit.gloves.name]_[suit.gloves.icon_state].png"))
+				if(suit.boots)
+					RIG_pieces += list(list("\ref[suit];toggle_piece=boots", "[suit.boots.name]_[suit.boots.icon_state].png"))
+				if(suit.chest)
+					RIG_pieces += list(list("\ref[suit];toggle_piece=chest", "[suit.chest.name]_[suit.chest.icon_state].png"))
 
-		var/maw_efficiency = get_organ_efficiency(OP_MAW)
-		if(maw_efficiency > 1)
-			stat("Gnawing hunger", "[carrion_hunger]/[round(maw_efficiency/10)]")
+				var/RIG_modules = list()
+				if(suit.active)
+					var/module_index = 0
+					for(var/obj/item/rig_module/module in suit.installed_modules)
+						module_index++
+						if(!("\ref[module]" in cached_images))
+							client << browse_rsc(getFlatIcon(module, no_anim = TRUE), "\ref[module].png")
+							cached_images += "\ref[module]"
 
-		var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
-		if(C)
-			stat("Cruciform", "[C.power]/[C.max_power]")
+						var/current_module = list("\ref[module].png")
+						var/module_damage = "DESTROYED"
+						switch(module.damage)
+							if(0)
+								module_damage = "status nominal"
+							if(1)
+								module_damage = "damaged"
+							if(2)
+								module_damage = "critical damage"
+
+						current_module += list(list("[module.interface_name]: [module_damage]"))
+
+						if(module.selectable)
+							if(suit.selected_module && (module == suit.selected_module))
+								current_module += list(list("Selected now"))
+							else
+								current_module += list(list("Select module", "\ref[suit];interact_module=[module_index];module_mode=select"))
+
+						if(module.usable)
+							current_module += list(list("[module.engage_string]", "\ref[suit];interact_module=[module_index];module_mode=engage"))
+
+						if(module.toggleable)
+							if(module.active)
+								current_module += list(list("[module.deactivate_string]", "\ref[suit];interact_module=[module_index];module_mode=deactivate"))
+							else
+								current_module += list(list("[module.activate_string]", "\ref[suit];interact_module=[module_index];module_mode=activate"))
+
+						if(module.charges && LAZYLEN(module.charges))
+							var/datum/rig_charge/selected_rig_charge = module.charges[module.charge_selected]
+							if(selected_rig_charge)
+								current_module += list(list("Selected type: [selected_rig_charge.display_name], [selected_rig_charge.charges] charges left"))
+							else
+								current_module += list(list("No charge type is selected"))
+
+							for(var/charge_index in module.charges)
+								var/datum/rig_charge/rig_charge = module.charges[charge_index]
+								current_module += list(list("Select [rig_charge.display_name], [rig_charge.charges] left", "\ref[suit];interact_module=[module_index];module_mode=select_charge_type;charge_type=[charge_index]"))
+
+						RIG_modules += list(current_module)
+				. += list(list("RIG_INTERFACE_DATA", RIG_pieces, RIG_modules))
+
+	var/chemvessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
+	if(chemvessel_efficiency > 1)
+		. += list(list("Chemical Storage: [carrion_stored_chemicals]/[round(0.5 * chemvessel_efficiency)]"))
+
+	var/maw_efficiency = get_organ_efficiency(OP_MAW)
+	if(maw_efficiency > 1)
+		. += list(list("Gnawing hunger: [carrion_hunger]/[round(maw_efficiency/10)]"))
+	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
+	if(C)
+		. += list(list("Cruciform: [C.power]/[C.max_power]"))
 
 /mob/living/carbon/human/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
@@ -731,7 +816,7 @@ var/list/rank_prefix = list(\
 			blood_DNA[M.dna_trace] = M.b_type
 	hand_blood_color = blood_color
 	src.update_inv_gloves()	//handles bloody hands overlays and updating
-	verbs += /mob/living/carbon/human/proc/bloody_doodle
+	add_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
@@ -1046,7 +1131,7 @@ var/list/rank_prefix = list(\
 		return 0 //something is terribly wrong
 
 	if(!bloody_hands)
-		verbs -= /mob/living/carbon/human/proc/bloody_doodle
+		remove_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
 
 	if(src.gloves)
 		to_chat(src, SPAN_WARNING("Your [src.gloves] are getting in the way."))
@@ -1348,7 +1433,7 @@ var/list/rank_prefix = list(\
 	reset_view(A)
 
 /mob/living/carbon/human/proc/resuscitate()
-	
+
 	var/obj/item/organ/internal/vital/heart_organ = random_organ_by_process(OP_HEART)
 	var/obj/item/organ/internal/vital/brain_organ = random_organ_by_process(BP_BRAIN)
 

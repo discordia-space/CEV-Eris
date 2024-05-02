@@ -660,11 +660,11 @@
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+				if(M.eyecheck() < FLASH_PROTECTION_MAJOR)
 					M.flash(15, FALSE , FALSE , FALSE)
 
 			if(4 to 5)
-				if(M.eyecheck() <= FLASH_PROTECTION_MAJOR)
+				if(M.eyecheck() < FLASH_PROTECTION_MAJOR)
 					M.flash(0, FALSE , FALSE , FALSE)
 
 /datum/chemical_reaction/emp_pulse
@@ -906,7 +906,7 @@
 
 /datum/chemical_reaction/slime/freeze/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_freeze), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/freeze/proc/do_freeze(turf/target)
 	playsound(target, 'sound/effects/phasein.ogg', 100, 1)
@@ -934,7 +934,7 @@
 
 /datum/chemical_reaction/slime/fire/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_fire), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/fire/proc/do_fire(turf/target)
 	for(var/turf/floor/target_tile in range(0, target))
@@ -1053,7 +1053,7 @@
 
 /datum/chemical_reaction/slime/explosion/on_reaction(var/datum/reagents/holder)
 	..()
-	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom), 5 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(do_explode), get_turf(holder.my_atom)), 5 SECONDS)
 
 /datum/chemical_reaction/slime/explosion/proc/do_explode(turf/target)
 	explosion(target, 600, 50)
@@ -1155,7 +1155,7 @@
 /datum/chemical_reaction/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
-		new /obj/item/reagent_containers/food/snacks/meatball(location)
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(location)
 
 /datum/chemical_reaction/dough
 	result = null
@@ -1188,6 +1188,36 @@
 	result = "hell_ramen"
 	required_reagents = list("capsaicin" = 1, "hot_ramen" = 6)
 	result_amount = 6
+
+/datum/chemical_reaction/mint
+	result = null
+	required_reagents = list("sugar" = 5, "frostoil" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/mint/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/mint(location)
+
+/datum/chemical_reaction/candy_corn
+	result = null
+	required_reagents = list("sugar" = 5, "cornoil" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/candy_corn/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/candy_corn(location)
+
+/datum/chemical_reaction/amanitajelly
+	result = null
+	required_reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
+	result_amount = 1
+
+/datum/chemical_reaction/amanitajelly/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	for(var/i = 1, i <= created_volume, i++)
+		new /obj/item/reagent_containers/food/snacks/jelly/amanita(location)
 
 /* Alcohol */
 

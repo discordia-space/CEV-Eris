@@ -624,17 +624,16 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	else
 		w_class = ITEM_SIZE_SMALL
 
-/obj/item/stack/cable_coil/examine(mob/user)
-	if(get_dist(src, user) > 1)
-		return
-
-	if(get_amount() == 1)
-		to_chat(user, "A short piece of power cable.")
-	else if(get_amount() == 2)
-		to_chat(user, "A piece of power cable.")
-	else
-		to_chat(user, "A coil of power cable. There are [get_amount()] lengths of cable in the coil.")
-
+/obj/item/stack/cable_coil/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		switch(get_amount())
+			if(1)
+				extra_description += "\nA short piece of power cable."
+			if(2)
+				extra_description += "\nA piece of power cable."
+			else
+				extra_description += "\nA coil of power cable. There are [get_amount()] lengths of cable in the coil."
+	..(user, extra_description)
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"

@@ -10,10 +10,8 @@
 	head = /obj/item/mech_component/sensors/combat
 	body = /obj/item/mech_component/chassis/combat
 
-
 	material = MATERIAL_PLASTEEL
 	exosuit_color = COLOR_GUNMETAL
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/combat
 	installed_software_boards = list(
 		/obj/item/electronics/circuitboard/exosystem/weapons
 	)

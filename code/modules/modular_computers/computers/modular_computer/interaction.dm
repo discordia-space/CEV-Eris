@@ -271,14 +271,13 @@
 					return
 	..()
 
-/obj/item/modular_computer/examine(var/mob/user)
-	. = ..()
-
-	if(enabled && .)
-		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
-
-	if(card_slot && card_slot.stored_card)
-		to_chat(user, "The [card_slot.stored_card] is inserted into it.")
+/obj/item/modular_computer/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(enabled)
+			extra_description += "\nThe time [stationtime2text()] is displayed in the corner of the screen."
+		if(card_slot && card_slot.stored_card)
+			extra_description += "\nThe [card_slot.stored_card] is inserted into it."
+	..(user, extra_description)
 
 /obj/item/modular_computer/MouseDrop(atom/over_object)
 	var/mob/M = usr

@@ -104,7 +104,7 @@
 
 	RefreshParts()
 
-/obj/machinery/reagentgrinder/industrial/disgorger/examine(mob/user)
+/obj/machinery/reagentgrinder/industrial/disgorger/examine(mob/user, extra_description = "")
 	..()
 	var/accepted
 	var/blacklisted
@@ -129,11 +129,13 @@
 
 	if(accepted)
 		accepted = copytext(accepted, 1, length(accepted) - 1)
-		to_chat(user, SPAN_NOTICE("<i>Accepts [accepted].</i>"))
+		extra_description += SPAN_NOTICE("\n<i>Accepts [accepted].</i>")
 
 	if(blacklisted)
 		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
-		to_chat(user, SPAN_WARNING("Rejects objects with the following reagents: [blacklisted]."))
+		extra_description += SPAN_WARNING("\nRejects objects with the following reagents: [blacklisted].")
+
+	..(user, extra_description)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)

@@ -363,9 +363,9 @@
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
 
-/turf/floor/reinforced/airless
+/turf/floor/reinforced/almost_airless //Shields detect zero atmosphere next to walls, which empty chambers with airless tiles technically count, and diffusers don't allow gasses through injectors
 	oxygen = 0
-	nitrogen = 0
+	nitrogen = 0.5
 
 /turf/floor/reinforced/airmix
 	oxygen = MOLES_O2ATMOS

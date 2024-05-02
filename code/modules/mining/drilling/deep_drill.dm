@@ -407,26 +407,26 @@
 		else
 			stored_ore[O.name] = 1
 
-/obj/machinery/mining/deep_drill/examine(mob/user)
-	. = ..()
+/obj/machinery/mining/deep_drill/examine(mob/user, extra_description = "")
 	if(health <= 0)
-		to_chat(user, "\The [src] is wrecked.")
+		extra_description += "\n\The [src] is wrecked."
 	else if(health < maxHealth * 0.33)
-		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
+		extra_description += SPAN_DANGER("\n\The [src] looks like it's about to break!")
 	else if(health < maxHealth * 0.66)
-		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
+		extra_description += SPAN_DANGER("\n\The [src] looks seriously damaged!")
 	else if(health < maxHealth)
-		to_chat(user, "\The [src] shows signs of damage!")
+		extra_description += "\n\The [src] shows signs of damage!"
 	else
-		to_chat(user, "\The [src] is in pristine condition.")
+		extra_description += "\n\The [src] is in pristine condition."
 
 	if(world.time > last_update + 1 SECONDS)
 		update_ore_count()
 		last_update = world.time
 
-	to_chat(user, "It holds:")
+	extra_description += "\nIt holds:"
 	for(var/obj/item/ore/O in contents)
-		to_chat(user, "- [stored_ore[O]] [O]")
+		extra_description += "\n- [stored_ore[O]] [O]"
+	..(user, extra_description)
 
 /obj/machinery/mining/deep_drill/verb/unload()
 	set name = "Unload Drill"

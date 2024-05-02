@@ -210,6 +210,8 @@
 	// nothing to separate
 	if(reagents.reagent_list.len <= 1)
 		return FALSE
+	reagents.update_total()
+
 	var/list/obj/item/reagent_containers/containers = accepting_containers.Copy()
 	for(var/obj/item/reagent_containers/C in containers)
 		if(!C.is_refillable())
@@ -220,13 +222,13 @@
 		if(R.id in ignore_reagents_ids)
 			continue
 		var/amount_to_transfer = amount_per_reagent ? amount_per_reagent : R.volume
+
 		for(var/obj/item/reagent_containers/C in containers)
 			if(!amount_to_transfer)
 				break
 			if(!C.reagents.get_free_space())
 				containers.Remove(C)
 				continue
-
 			var/amount = min(C.reagents.get_free_space(), min(amount_to_transfer, R.volume))
 			if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
 				C.reagents.add_reagent(R.id, amount, R.get_data())

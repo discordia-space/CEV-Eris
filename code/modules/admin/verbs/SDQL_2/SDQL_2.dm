@@ -138,9 +138,8 @@
 // Assumes the variable actually exists.
 /datum/proc/SDQL_update(var/const/var_name, var/new_value)
 	vars[var_name] = new_value
-	return 1
+	return TRUE
 
-ADMIN_VERB_ADD(/client/proc/SDQL2_query, R_DEBUG, FALSE)
 /client/proc/SDQL2_query(query_text as message)
 	set category = "Debug"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.

@@ -25,12 +25,6 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	SHOULD_CALL_PARENT(FALSE)
 	return QDEL_HINT_IWILLGC
 
-/datum/controller/global_vars/stat_entry()
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
-
-	stat("Globals:", statclick.update("Edit"))
-
 /datum/controller/global_vars/VV_hidden()//Part of bay var viewer improvements
 	return ..() + gvars_datum_protected_varlist
 

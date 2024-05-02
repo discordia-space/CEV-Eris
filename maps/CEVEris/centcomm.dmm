@@ -5774,7 +5774,7 @@
 /area/centcom/merc_base)
 "Hp" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/monkeykabob,
+/obj/item/reagent_containers/food/snacks/kabob,
 /turf/floor/wood,
 /area/centcom/pirate_base)
 "Hs" = (

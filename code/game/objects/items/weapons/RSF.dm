@@ -17,9 +17,10 @@ RSF
 	var/mode = 1
 	w_class = ITEM_SIZE_NORMAL
 
-/obj/item/rsf/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "It currently holds [stored_matter]/30 Compressed Matter.")
+/obj/item/rsf/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "It holds [stored_matter] out of [max_stored_matter] charges."
+	..(user, extra_description)
 
 /obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/stack/material/M = W
