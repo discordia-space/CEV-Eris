@@ -115,7 +115,7 @@
 
 		var/overlay_icon_state = "[wall_type]_over_[connection_type]"
 		var/add_extra_overlay
-		if(overlay_type == OVERLAY_FULL)
+		if(overlay_type == OVERLAY_FULL) // Fancy overlays that are always present
 			add_extra_overlay = TRUE
 			if(connection_type == "horizontal") // Use an alternative sprite when connecting to a corner
 				if((overlay_direction == SOUTH) && any_wall_connections[SOUTHWEST])
@@ -123,8 +123,11 @@
 				if((overlay_direction == WEST) && any_wall_connections[SOUTHEAST])
 					overlay_icon_state = "[wall_type]_over_[connection_type]_right_angle"
 
-		if(overlay_type == OVERLAY_WALL_ONLY)
-			add_extra_overlay = full_wall_connections[overlay_direction]
+		else if(overlay_type == OVERLAY_BORDER) // Minimalistic overlays that connect regular and low walls
+			var/full_wall_connection_type = get_overlay_connection_type(overlay_direction, full_wall_connections)
+			if(full_wall_connection_type == connection_type)
+				add_extra_overlay = TRUE
+				overlay_icon_state = "[wall_type]_over_[full_wall_connection_type]"
 
 		if(add_extra_overlay)
 			image = image(icon, icon_state = overlay_icon_state, dir = overlay_direction, layer = ABOVE_WINDOW_LAYER)

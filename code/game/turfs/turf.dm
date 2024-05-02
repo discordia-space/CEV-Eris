@@ -45,8 +45,6 @@
 /turf/Initialize(mapload, ...)
 	if(opacity)
 		has_opaque_atom = TRUE
-//	for(var/atom/movable/movable_atom in src) // TODO: Check if this is even needed --KIROV
-//		Entered(movable_atom)
 	turfs += src
 
 	// TODO: Check which areas are on the ship, but marked improperly, and remove this code
@@ -225,7 +223,8 @@
 							step(M, M.dir)
 							sleep(1)
 
-		else if(isitem(Obj) && vsc.plc.CLOTH_CONTAMINATION) // TODO: Probably get rid of this mechanic
+		// TODO: Contamination is ancient and utterly useless mechanic, remove in a separate PR --KIROV
+		else if(isitem(Obj) && vsc.plc.CLOTH_CONTAMINATION)
 			var/obj/item/I = Obj
 			if(I.can_contaminate())
 				var/datum/gas_mixture/env = return_air(1)

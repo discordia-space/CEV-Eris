@@ -25,7 +25,7 @@
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
 	// If user is not on turf, not in a mech, and holds a mech kit - do nothing?
-	// Bruh. Makes little sense to me, but surely SPCR knew what he was doing --KIROV
+	// Bruh. Makes little sense, but surely SPCR knew what he was doing
 	if(!istype(user.loc, /turf))
 		if(!(ismech(user.loc) && istype(I, /obj/item/tool/mech_kit)))
 			return
@@ -67,6 +67,9 @@
 				window_maxHealth = null
 				window_heat_resistance = null
 				window_damage_resistance = null
+				blocks_air = FALSE
+				SSair.mark_for_update(src)
+				update_icon()
 				to_chat(user, SPAN_NOTICE("You pry the glass out of the frame."))
 			return
 	if(!is_low_wall && istype(I, /obj/item/frame))
@@ -84,7 +87,13 @@
 		set_pixel_click_offset(I, params) // Place something on a low wall
 	else if(I.force)
 		var/attackforce = I.force * I.structure_damage_factor
-		if(attackforce > (maxHealth / 10))
+		if(window_type)
+			if(attackforce > (window_maxHealth / 10))
+				take_damage(attackforce) // Playsound is included here
+				visible_message(SPAN_DANGER("\The [user] hits the window with \the [I]!"))
+			else
+				visible_message(SPAN_DANGER("\The [user] hits the window with \the [I], but it bounces off!"))
+		else if(attackforce > (maxHealth / 10))
 			playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
 			take_damage(attackforce)
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))

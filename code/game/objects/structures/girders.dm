@@ -43,8 +43,10 @@
 	ASSERT(user)
 	if(!user.Adjacent(src))
 		return
-	if(user.a_intent == I_HURT)
-		return ..() // Attempting to damage girder supercedes all other actions. So change your intent if you don't want to smack it
+	if(user.a_intent == I_HURT) // Attempting to damage girder supercedes all other actions. So change your intent if you don't want to smack it
+		take_damage(I.force * I.structure_damage_factor)
+		return ..() // Calls /atom/movable/attackby(), which plays the sound, animation, and sets a cooldown, but doesn't do damage
+		// TODO: This is silly, structures need a standardized damage system and related procs --KIROV
 
 	var/list/usable_qualities = list(
 		QUALITY_BOLT_TURNING, // Toggling 'anchored' var, always available
@@ -132,7 +134,8 @@
 			else
 				to_chat(user, SPAN_NOTICE("You need steel to finish the [is_low ? "low " : ""]wall!"))
 	else
-		. = ..()
+		take_damage(I.force * I.structure_damage_factor)
+		. = ..() // Calls /atom/movable/attackby(), which plays the sound, animation, and sets a cooldown, but doesn't do damage
 
 /obj/structure/girder/proc/construct_wall(mob/user)
 	var/wall_type_to_make = /turf/wall

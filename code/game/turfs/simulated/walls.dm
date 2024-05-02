@@ -323,3 +323,4 @@
 			qdel(O)
 
 /turf/wall/proc/create_window()
+	CRASH("Proc 'create_window()' is called on a wrong wall type! src: [src], usr: [usr]" )

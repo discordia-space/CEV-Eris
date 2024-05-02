@@ -30,10 +30,9 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/list/old_lighting_corners = corners
 
-	if(connections)
+	if(connections) // Look at this -- KIROV
 		connections.erase_all()
 
-	if(istype(src,/turf))
 		//Yeah, we're just going to rebuild the whole thing.
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.

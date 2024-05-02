@@ -142,81 +142,65 @@
 	for(var/d = 1, d < 16, d *= 2)
 	#endif
 
-		var/turf/unsim = get_step(src, d)
-
-		if(!unsim) //edge of map
+		var/turf/turf = get_step(src, d)
+		if(!turf) //edge of map
 			continue
 
-		var/block = unsim.c_airblock(src)
+		var/block = turf.c_airblock(src)
 		if(block & AIR_BLOCKED)
 
 			#ifdef ZASDBG
-			if(verbose) to_chat(world, "[d] is blocked.")
-			//unsim.dbg(air_blocked, turn(180,d))
+			if(verbose)
+				to_chat(world, "[d] is blocked.")
+			//turf.dbg(air_blocked, turn(180,d))
 			#endif
-
 			continue
 
-		var/r_block = c_airblock(unsim)
+		var/r_block = c_airblock(turf)
 		if(r_block & AIR_BLOCKED)
-
 			#ifdef ZASDBG
 			if(verbose) to_chat(world, "[d] is blocked.")
 			//dbg(air_blocked, d)
 			#endif
-
 			//Check that our zone hasn't been cut off recently.
 			//This happens when windows move or are constructed. We need to rebuild.
-			if((previously_open & d) && istype(unsim, /turf))
-				var/turf/sim = unsim
-				if(zone && sim.zone == zone)
+			if((previously_open & d) && turf.is_simulated)
+				if(zone && turf.zone == zone)
 					zone.rebuild()
 					return
-
 			continue
-
 		open_directions |= d
 
-		if(istype(unsim, /turf))
-
-			var/turf/sim = unsim
-			sim.open_directions |= reverse_dir[d]
-
-			if(TURF_HAS_VALID_ZONE(sim))
-
+		if(turf.is_simulated)
+			turf.open_directions |= reverse_dir[d]
+			if(TURF_HAS_VALID_ZONE(turf))
 				//Might have assigned a zone, since this happens for each direction.
 				if(!zone)
-
 					//We do not merge if
 					//    they are blocking us and we are not blocking them, or if
 					//    we are blocking them and not blocking ourselves - this prevents tiny zones from forming on doorways.
 					if(((block & ZONE_BLOCKED) && !(r_block & ZONE_BLOCKED)) || ((r_block & ZONE_BLOCKED) && !(s_block & ZONE_BLOCKED)))
 						#ifdef ZASDBG
-						if(verbose) to_chat(world, "[d] is zone blocked.")
+						if(verbose)
+							to_chat(world, "[d] is zone blocked.")
 						//dbg(zone_blocked, d)
 						#endif
-
 						//Postpone this tile rather than exit, since a connection can still be made.
-						if(!postponed) postponed = list()
-						postponed.Add(sim)
-
+						if(!postponed)
+							postponed = list()
+						postponed.Add(turf)
 					else
-
-						sim.zone.add(src)
-
+						turf.zone.add(src)
 						#ifdef ZASDBG
 						dbg(assigned)
 						if(verbose) to_chat(world, "Added to [zone]")
 						#endif
 
-				else if(sim.zone != zone)
-
+				else if(turf.zone != zone)
 					#ifdef ZASDBG
-					if(verbose) to_chat(world, "Connecting to [sim.zone]")
+					if(verbose) to_chat(world, "Connecting to [turf.zone]")
 					#endif
-
-					SSair.connect(src, sim)
-
+					SSair.connect(src, turf)
 
 			#ifdef ZASDBG
 				else if(verbose) to_chat(world, "[d] has same zone.")
@@ -225,10 +209,10 @@
 			#endif
 
 		else
-
 			//Postponing connections to tiles until a zone is assured.
-			if(!postponed) postponed = list()
-			postponed.Add(unsim)
+			if(!postponed)
+				postponed = list()
+			postponed.Add(turf)
 
 	if(!TURF_HAS_VALID_ZONE(src)) //Still no zone, make a new one.
 		var/zone/newzone = new/zone()
@@ -236,13 +220,11 @@
 
 	#ifdef ZASDBG
 		dbg(created)
-
-	ASSERT(zone)
+		ASSERT(zone)
 	#endif
 
 	//At this point, a zone should have happened. If it hasn't, don't add more checks, fix the bug.
-
-	for(var/turf/T in postponed)
+	for(var/turf/T as anything in postponed)
 		SSair.connect(src, T)
 
 /turf/proc/post_update_air_properties()

@@ -1,5 +1,5 @@
-#define OVERLAY_NONE		1 // No overlays beyond the base low wall
-#define OVERLAY_WALL_ONLY	2 // Only add extra overlays when connected to the wall
+#define OVERLAY_NONE		1 // No overlays beyond the base low wall and glass
+#define OVERLAY_BORDER		2 // Always add extra overlays, but only consider regular walls neighbours
 #define OVERLAY_FULL		3 // Always add extra overlays
 
 // Waist-height object with traits from both walls and tables
@@ -15,8 +15,9 @@
 	maxHealth = 450
 	health = 450
 	is_low_wall = TRUE
+	blocks_air = FALSE
 	var/wall_type = "eris_low" // icon_state that would be used for overlay generation, icon_state serves for map preview only
-	var/overlay_type = OVERLAY_WALL_ONLY
+	var/overlay_type = OVERLAY_BORDER
 
 /turf/wall/low/onestar // Standard dungeon low wall, only comes in one flavor
 	name = "One Star low wall"
@@ -79,6 +80,8 @@
 	window_maxHealth = null
 	window_heat_resistance = null
 	window_damage_resistance = null
+	blocks_air = FALSE
+	SSair.mark_for_update(src)
 	update_icon()
 
 /turf/wall/low/create_window(material)
@@ -112,27 +115,35 @@
 			window_maxHealth = 250
 			window_heat_resistance = T0C + 5453 // 6000 kelvin
 			window_damage_resistance = RESISTANCE_IMPROVED
+	blocks_air = TRUE
+	SSair.mark_for_update(src)
 	update_icon()
 
 /turf/wall/low/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(window_type)
+	if(window_type) // Full-tile glass blocks everything
 		return FALSE
-
-	if(istype(mover,/obj/item/projectile))
-		return (check_cover(mover,target))
-
-	//Its debateable whether its correct to use layer in a logic check like this.
-	//The main intent is to prevent creatures from walking under the wall in hide mode, there is no "under" the wall.
-	//This is necessary because low walls can't be placed below the hide layer due to shutters
-	if(istype(mover) && mover.checkpass(PASSTABLE) && mover.layer > layer)
+	if(istype(mover.loc, /turf/wall/low)) // Mover is located on a connected low wall
 		return TRUE
-	if(locate(/turf/wall/low) in get_turf(mover))
-		return TRUE
-	if(isliving(mover))
-		var/mob/living/L = mover
-		if(L.weakened)
+	if(istype(mover, /obj/item/projectile))
+		return check_cover(mover, target)
+	if(istype(mover))
+		// Its debateable whether its correct to use layer in a logic check like this
+		// The main intent is to prevent creatures from walking under the wall in hide mode, there is no "under" the wall
+		// This is necessary because low walls can't be placed below the hide layer due to shutters
+		if(mover.checkpass(PASSTABLE) && mover.layer > layer)
 			return TRUE
-	return ..()
+		return FALSE
+	else
+		if(target.blocks_air || blocks_air)
+			return FALSE
+		for(var/obj/obstacle in src)
+			if(!obstacle.CanPass(mover, target, height, air_group))
+				return FALSE
+		if(target != src)
+			for(var/obj/obstacle in target)
+				if(!obstacle.CanPass(mover, src, height, air_group))
+					return FALSE
+		return TRUE
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /turf/wall/low/proc/check_cover(obj/item/projectile/P, turf/from)
@@ -175,7 +186,7 @@
 
 //Drag and drop onto low walls. Copied from tables
 /turf/wall/low/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
-	if(!CanMouseDrop(A, user))
+	if(!CanMouseDrop(A, user)) // isghost(), incapacitated(), and Adjacent() checks
 		return
 
 	if(ismob(A.loc))
@@ -194,7 +205,36 @@
 			to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
 			return
 
-	// CLIMBING CODE GOES HERE, DON'T FORGET --KIROV
+	// Climbing
+	if(A == user)
+		if(window_type)
+			to_chat(user, SPAN_WARNING("A window is in the way!"))
+			return
+		add_fingerprint(user)
+		if(user.stats.getPerk(PERK_PARKOUR))
+			user.forceMove(src)
+			user.visible_message(SPAN_WARNING("[user] hops onto \the [src]!"))
+		else
+			user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
+			if(do_after(user = user, delay = 3 SECONDS, target = src))
+				user.forceMove(src)
+				user.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
+
+
+/turf/wall/low/adjacent_fire_act(turf/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+	if(window_type)
+		if(adj_temp > window_heat_resistance)
+			take_damage(damage = 2) // Number here is average of damage_per_fire_tick variable on widows
+	else
+		..() // Calls /turf/wall/adjacent_fire_act()
+
+
+/turf/wall/low/bullet_act(obj/item/projectile/Proj)
+	Proj.on_hit(src)
+	var/projectile_structure_damage = Proj.get_structure_damage()
+	if(Proj.nocap_structures)
+		projectile_structure_damage *= 4
+	take_damage(projectile_structure_damage)
 
 
 /turf/wall/low/take_damage(damage)
@@ -208,13 +248,11 @@
 		if(window_health < 1)
 			shatter_window()
 			if(remaining_damage > 1)
-				. = ..(remaining_damage)
+				. = ..(remaining_damage) // Calls /turf/wall/take_damage(), but passes along reduced damage
 		else
 			playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
 	else
 		. = ..() // Calls /turf/wall/take_damage()
-
-
 
 /*
 /turf/wall/low/affect_grab(mob/living/user, mob/living/target, state)

@@ -584,7 +584,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	name = "shuttle window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon = 'icons/obj/podwindows.dmi'
-	icon_state = "window" // Probably should be "w" isntead, verify --KIROV
+	icon_state = "window" // Probably should be "w" isnstead, verify --KIROV
 	maxHealth = 300
 	resistance = RESISTANCE_IMPROVED
 	reinf = 1
