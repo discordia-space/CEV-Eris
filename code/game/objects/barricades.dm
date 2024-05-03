@@ -24,6 +24,7 @@
 			// Consider notifying the pilot (if any) that they can't move because of the barrier
 			return FALSE
 
+/* // TODO: This is exclusive to ballistic barrier, should be entirely rewritten with no regard to what tables and low walls do --KIROV
 	if(is_open && !density) // If barrier is deployed, but meant to only block one direction
 		if(istype(mover, /obj/item/projectile))
 			var/obj/item/projectile/projectile = mover
@@ -52,6 +53,7 @@
 		else if(get_dir(loc, target) == dir)
 			return FALSE // Facing the open front plate, can't pass
 		return TRUE
+*/
 	. = ..()
 
 
@@ -252,7 +254,7 @@
 	icon_state = "barbed_wire"
 	block_vehicles = FALSE
 	matter = list(MATERIAL_STEEL = 10)
-	var/tresspass_damage = 15 // How much brute is dealt when someone tries to cross or attack the wire
+	var/tresspass_damage = 20 // How much brute is dealt when someone tries to cross or attack the wire
 
 
 /obj/structure/barrier/barbed_wire/attackby(obj/item/I, mob/user)
@@ -318,7 +320,7 @@
 			superior_animal.damage_through_armor(tresspass_damage, BRUTE, BP_CHEST, ARMOR_MELEE)
 			superior_animal.updatehealth()
 
-
+/* // TODO: Review the cover mechanic later --KIROV
 /obj/structure/barrier/ballistic
 	name = "ballistic barrier"
 	desc = "Portable and robust directional cover."
@@ -383,3 +385,4 @@
 
 	if(!anchored && can_touch(usr))
 		set_dir(turn(dir, -90))
+*/

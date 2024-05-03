@@ -56,7 +56,7 @@
 	)
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	related_stats = list(STAT_MEC)
-
+/*
 /datum/craft_recipe/ballistic_barrier
 	name = "ballistic barrier"
 	result = /obj/structure/barrier/ballistic
@@ -66,7 +66,7 @@
 	)
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	related_stats = list(STAT_MEC)
-
+*/ // TODO --KIROV
 /datum/craft_recipe/kitchen_spike
 	name = "Meat spike"
 	result = /obj/structure/kitchenspike

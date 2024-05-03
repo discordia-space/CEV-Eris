@@ -61,6 +61,8 @@
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
 		blocked_damage = round(B.material.integrity / 8)
+
+/*
 	else if(istype(A, /obj/structure/barrier/ballistic))
 		// Okay, so to stop every single bullet from damaging, and then phazing right trough the barricade, we must come here and do this shit
 		// You'd think that checking 'penetration' variable would do the thing, yet it's the same for almost everything,
@@ -68,6 +70,9 @@
 		if(armor_divisor < 2)
 			return FALSE // Anything but anti-materiel, high-velocity, and few other projectiles with great penetration will bounce
 		blocked_damage = 20
+*/
+// Ballistic barriers are temporarily disabled // TODO: Fix later --KIROV
+
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		blocked_damage = 20
 
