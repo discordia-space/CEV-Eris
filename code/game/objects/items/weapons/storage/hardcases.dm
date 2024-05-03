@@ -74,6 +74,11 @@
 	open_close(user)
 
 /obj/item/storage/hcases/AltClick(mob/user)
+	if(user.incapacitated())
+		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		return
+	if(!in_range(src, user))
+		return
 
 	var/able = can_interact(user)
 
@@ -92,6 +97,7 @@
 		to_chat(user, SPAN_NOTICE("You open the lid of the [src]."))
 		w_class = ITEM_SIZE_BULKY
 		closed = FALSE
+		open(user)
 	else
 		to_chat(user, SPAN_NOTICE("You close the lid of the [src]."))
 		w_class = ITEM_SIZE_NORMAL

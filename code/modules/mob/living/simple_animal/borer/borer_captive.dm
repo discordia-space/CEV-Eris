@@ -69,9 +69,10 @@
 			to_chat(H, SPAN_DANGER("With an immense exertion of will, you regain control of your body!"))
 			to_chat(B.host, SPAN_DANGER("You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you."))
 			B.detach()
-			verbs |= /mob/living/carbon/human/proc/commune
-			verbs |= /mob/living/carbon/human/proc/psychic_whisper
-			verbs |= /mob/living/carbon/proc/spawn_larvae
+			add_verb(src, list(
+				/mob/living/carbon/human/proc/commune,
+				/mob/living/carbon/human/proc/psychic_whisper,
+				/mob/living/carbon/proc/spawn_larvae))
 
 		return
 

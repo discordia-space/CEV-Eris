@@ -145,11 +145,11 @@
 		air_contents.volume = max(initial(internal_volume) - 200, 0) + 200 * bin_rating
 	set_power_level(power_setting)
 
-/obj/machinery/atmospherics/unary/heater/proc/set_power_level(var/new_power_setting)
+/obj/machinery/atmospherics/unary/heater/proc/set_power_level(new_power_setting)
 	power_setting = new_power_setting
 	power_rating = max_power_rating * (power_setting/100)
 
-/obj/machinery/atmospherics/unary/heater/attackby(var/obj/item/I as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/heater/attackby(obj/item/I, mob/user)
 
 	if(default_deconstruction(I, user))
 		return
@@ -157,9 +157,5 @@
 	if(default_part_replacement(I, user))
 		return
 
-	return
-
-/obj/machinery/atmospherics/unary/heater/examine(mob/user)
-	..(user)
-	if(panel_open)
-		to_chat(user, "The maintenance hatch is open.")
+/obj/machinery/atmospherics/unary/heater/examine(mob/user, extra_description = "")
+	..(user, "The maintenance hatch is [panel_open ? "open" : "closed"].")

@@ -373,9 +373,10 @@
 
 		return
 
-/obj/item/toy/waterflower/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, text("\icon[] [] units of water left!", src, src.reagents.total_volume))
+/obj/item/toy/waterflower/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "\icon[src] [reagents.total_volume] units of water left!"
+	..(user, extra_description)
 
 /*
  * Bosun's whistle

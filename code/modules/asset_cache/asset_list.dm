@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/simple/register()
 	for(var/asset_name in assets)
 		var/datum/asset_cache_item/ACI = SSassets.transport.register_asset(asset_name, assets[asset_name])
-		if (!ACI)
+		if (!istype(ACI, /datum/asset_cache_item))
 			log_asset("ERROR: Invalid asset: [type]:[asset_name]:[ACI]")
 			continue
 		if (legacy)

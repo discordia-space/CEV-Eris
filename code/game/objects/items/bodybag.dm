@@ -167,12 +167,14 @@
 		return tank.air_contents
 	..()
 
-/obj/structure/closet/body_bag/cryobag/examine(mob/user)
-	..()
+/obj/structure/closet/body_bag/cryobag/examine(mob/user, extra_description = "")
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
-		to_chat(user, "<span class='info'>You peer into \the [src].</span>")
+		extra_description += "<span class='info'>You peer into \the [src].</span>"
+		..(user, extra_description)
 		for(var/mob/living/L in contents)
 			L.examine(user)
+	else
+		..(user, extra_description)
 
 /obj/structure/closet/body_bag/attackby(obj/item/W, mob/user)
 	..() // Allows to use health analyzer on the mob inside

@@ -32,10 +32,10 @@
 /obj/item/rcd/proc/can_use(var/mob/user,var/turf/T)
 	return (user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
 
-/obj/item/rcd/examine()
-	..()
-	if(src.type == /obj/item/rcd && loc == usr)
-		to_chat(usr, "It currently holds [stored_matter]/30 matter-units.")
+/obj/item/rcd/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "It holds [stored_matter] out of [max_stored_matter] charges."
+	..(user, extra_description)
 
 /obj/item/rcd/New()
 	..()
@@ -236,14 +236,24 @@
 
 /obj/item/rcd/mounted/useResource(var/amount, mob/user, var/checkOnly)
 	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
+	/// RIG MOUNTED
 	if(istype(loc,/obj/item/rig_module))
 		var/obj/item/rig_module/module = loc
 		if(module.holder && module.holder.cell)
 			if(module.holder.cell.charge >= cost)
 				if (!checkOnly)
 					module.holder.cell.use(cost)
-				return 1
-	return 0
+				return TRUE
+	/// MECH MOUNTED
+	if(istype(loc, /obj/item/mech_equipment/mounted_system/rcd))
+		var/mob/living/exosuit/mech = loc.loc
+		if(!mech || !istype(mech))
+			return FALSE
+		var/obj/item/cell/power = mech.get_cell()
+		if(power && power.charge >= cost)
+			power.use(cost)
+			return TRUE
+	return FALSE
 
 /obj/item/rcd/mounted/attackby()
 	return

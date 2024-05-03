@@ -34,7 +34,7 @@
 	name = "health scanner module"
 	desc = "A hardsuit-mounted health scanner."
 	icon_state = "scanner"
-	interface_name = "health scanner"
+	interface_name = "Health scanner"
 	interface_desc = "Shows an informative health readout when used on a subject."
 	device_type = /obj/item/device/scanner/health
 	rarity_value = 2.5
@@ -44,7 +44,7 @@
 	name = "hardsuit drill mount"
 	desc = "A very heavy diamond-tipped drill."
 	icon_state = "drill"
-	interface_name = "mounted drill"
+	interface_name = "Mounted drill"
 	interface_desc = "A diamond-tipped industrial drill."
 	suit_overlay_active = "mounted-drill"
 	suit_overlay_inactive = "mounted-drill"
@@ -58,7 +58,7 @@
 	name = "ore scanner module"
 	desc = "A clunky old ore scanner."
 	icon_state = "scanner"
-	interface_name = "ore detector"
+	interface_name = "Ore detector"
 	interface_desc = "A sonar system for detecting large masses of ore."
 	engage_string = "Begin Scan"
 	usable = 1
@@ -71,7 +71,7 @@
 	name = "RCD mount"
 	desc = "A cell-powered rapid construction device for a hardsuit."
 	icon_state = "rcd"
-	interface_name = "mounted RCD"
+	interface_name = "Mounted RCD"
 	interface_desc = "A device for building or removing walls. Cell-powered."
 	usable = 1
 	engage_string = "Configure RCD"
@@ -113,7 +113,7 @@
 
 	engage_string = "Inject"
 
-	interface_name = "integrated dispenser"
+	interface_name = "Integrated dispenser"
 	interface_desc = "A chemical dispenser"
 	var/list/beakers = list()
 	var/max_beakers = 5
@@ -248,7 +248,7 @@
 		list(/obj/item/reagent_containers/glass/beaker/large, "tricordrazine", 60)
 	)
 
-	interface_name = "integrated combat dispenser"
+	interface_name = "Integrated combat dispenser"
 	interface_desc = "A chemical combat dispenser"
 
 /obj/item/rig_module/modular_injector/medical
@@ -267,7 +267,7 @@
 		list(/obj/item/reagent_containers/glass/beaker/large, "spaceacillin", 60)
 	)
 
-	interface_name = "integrated injector"
+	interface_name = "Integrated injector"
 	//Extra bit here to help get the idea that this one can inject
 	interface_desc = "Dispenses loaded chemicals directly into the wearer\'s bloodstream or patients."
 /*
@@ -283,7 +283,7 @@
 
 	engage_string = "Inject"
 
-	interface_name = "integrated chemical dispenser"
+	interface_name = "Integrated chemical dispenser"
 	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream."
 
 	charges = list(
@@ -403,7 +403,7 @@
 		list("nutrients",     "glucose",     0, 80),
 		)
 
-	interface_name = "combat chem dispenser"
+	interface_name = "Combat chem dispenser"
 	interface_desc = "Dispenses loaded chemicals directly into the bloodstream."
 	rarity_value = 12.5
 
@@ -414,7 +414,7 @@
 	selectable = 1
 	disruptive = 1
 
-	interface_name = "mounted chem injector"
+	interface_name = "Mounted chem injector"
 	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
 	rarity_value = 20
 */
@@ -431,7 +431,7 @@
 
 	engage_string = "Configure Synthesiser"
 
-	interface_name = "voice synthesiser"
+	interface_name = "Voice synthesiser"
 	interface_desc = "A flexible and powerful voice modulator system."
 	rarity_value = 5
 	var/obj/item/voice_changer/voice_holder
@@ -489,7 +489,7 @@
 	activate_string = "Activate Thrusters"
 	deactivate_string = "Deactivate Thrusters"
 
-	interface_name = "maneuvering jets"
+	interface_name = "Maneuvering jets"
 	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
 	rarity_value = 2
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON

@@ -18,9 +18,9 @@
 	var/activated
 	var/can_place_on_table = FALSE
 
-/obj/item/machinery_crate/examine(mob/user)
-	..()
-	to_chat(user, "The piece of paper on the side reads: [machine_name]")
+/obj/item/machinery_crate/examine(mob/user, extra_description = "")
+	extra_description += "The piece of paper on the side reads: [machine_name]"
+	..(user, extra_description)
 
 /obj/item/machinery_crate/attackby(obj/item/I, mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
@@ -136,7 +136,19 @@
 	can_place_on_table = TRUE
 	constructing_machine = /obj/machinery/chemical_dispenser/soda
 
+/obj/item/machinery_crate/stove
+	name = "stove IKEA"
+	machine_name = "stove"
+	can_place_on_table = TRUE
+	constructing_machine = /obj/machinery/cooking_with_jane/stove
 
+/obj/item/machinery_crate/grill
+	name = "grill IKEA"
+	machine_name = "grill"
+	can_place_on_table = TRUE
+	constructing_machine = /obj/machinery/cooking_with_jane/grill
 
-
-
+/obj/item/machinery_crate/oven
+	name = "oven IKEA"
+	machine_name = "oven"
+	constructing_machine = /obj/machinery/cooking_with_jane/oven

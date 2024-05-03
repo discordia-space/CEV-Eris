@@ -151,7 +151,6 @@ SUBSYSTEM_DEF(atoms)
 	if(initlog)
 		text2file(initlog, "data/logs/initialize.log")
 
-ADMIN_VERB_ADD(/client/proc/cmd_display_init_log, R_DEBUG, null)
 /client/proc/cmd_display_init_log()
 	set category = "Debug"
 	set name = "Display Initialize() Log"

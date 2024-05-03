@@ -57,10 +57,10 @@ var/global/list/plant_seed_sprites = list()
 		src.name = "sample of [seed.seed_name] [seed.seed_noun]"
 		src.desc = "It's labelled as coming from [seed.display_name]."
 
-/obj/item/seeds/examine(mob/user)
-	..(user)
+/obj/item/seeds/examine(mob/user, extra_description = "")
 	if(seed && !seed.roundstart)
-		to_chat(user, "It's tagged as variety #[seed.uid].")
+		extra_description += "It's tagged as variety #[seed.uid]."
+	..(user, extra_description)
 
 /obj/item/seeds/cutting
 	name = "cuttings"
@@ -170,7 +170,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = "libertycap"
 
 /obj/item/seeds/chantermycelium
-	seed_type = "mushrooms"
+	seed_type = "mushroom"
 
 /obj/item/seeds/towermycelium
 	seed_type = "towercap"

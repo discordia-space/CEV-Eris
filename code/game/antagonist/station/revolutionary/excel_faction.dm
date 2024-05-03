@@ -13,7 +13,7 @@
 	hud_indicator = "excelsior"
 
 	possible_antags = list(ROLE_EXCELSIOR_REV)
-	verbs = list(/datum/faction/excelsior/proc/communicate_verb,
+	faction_datum_verbs = list(/datum/faction/excelsior/proc/communicate_verb,
 				/datum/faction/excelsior/proc/summon_stash)
 
 	var/stash_holder = null

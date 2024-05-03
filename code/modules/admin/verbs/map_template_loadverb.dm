@@ -1,4 +1,3 @@
-ADMIN_VERB_ADD(/client/proc/map_template_load, R_DEBUG, FALSE)
 /client/proc/map_template_load()
 	set category = "Debug"
 	set name = "Map template - Place At Loc"
@@ -39,7 +38,6 @@ ADMIN_VERB_ADD(/client/proc/map_template_load, R_DEBUG, FALSE)
 			to_chat(usr, "Failed to place map")
 	usr.client.images -= preview
 
-ADMIN_VERB_ADD(/client/proc/map_template_load_on_new_z, R_DEBUG, FALSE)
 /client/proc/map_template_load_on_new_z()
 	set category = "Debug"
 	set name = "Map template - New Z"
@@ -69,8 +67,6 @@ ADMIN_VERB_ADD(/client/proc/map_template_load_on_new_z, R_DEBUG, FALSE)
 		else
 			to_chat(usr, "Failed to place map")
 
-
-ADMIN_VERB_ADD(/client/proc/map_template_upload, R_DEBUG, FALSE)
 /client/proc/map_template_upload()
 	set category = "Debug"
 	set name = "Map Template - Upload"
