@@ -144,3 +144,12 @@ GLOBAL_LIST_INIT(gzn_check, list(
 	}
 
 #endif
+
+// Numbers are indexes in add_ZAS_debug_overlay()'s appearance_cache list, text is associated icon_state
+#define ZAS_DEBUG_OVERLAY_ZONE_ASSIGNED			1 // "assigned"
+#define ZAS_DEBUG_OVERLAY_ZONE_CREATED			2 // "created"
+#define ZAS_DEBUG_OVERLAY_ZONE_MERGED			3 // "merged"
+#define ZAS_DEBUG_OVERLAY_ZONE_INVALID			4 // "invalid"
+#define ZAS_DEBUG_OVERLAY_MARKED_FOR_UPDATE		5 // "mark"
+#define ZAS_DEBUG_OVERLAY_AIR_FULLY_BLOCKED		6 // "fullblock"
+#define ZAS_DEBUG_OVERLAY_AIR_DIRECTION_BLOCKED	7 // "block"

@@ -7,10 +7,10 @@
 	return mloc
 
 /proc/iswall(turf/T)
-	return (istype(T, /turf/wall) || istype(T, /turf/wall/dummy) || istype(T, /turf/shuttle/wall))
+	return (istype(T, /turf/wall) || istype(T, /turf/shuttle/wall))
 
 /proc/isfloor(turf/T)
-	return (istype(T, /turf/floor) || istype(T, /turf/floor/dummy) || istype(T, /turf/shuttle/floor))
+	return (istype(T, /turf/floor) || istype(T, /turf/shuttle/floor))
 
 //Edit by Nanako
 //This proc is used in only two places, ive changed it to make more sense

@@ -233,7 +233,7 @@
 	take_damage(tforce)
 
 
-/turf/wall/ChangeTurf(turf/N, tell_universe = TRUE, force_lighting_update)
+/turf/wall/ChangeTurf(new_turf_type, force_lighting_update)
 	for(var/obj/effect/overlay/wallrot/WR in src)
 		qdel(WR)
 	for(var/obj/effect/plant/plant in range(src, 1))
@@ -241,7 +241,7 @@
 			qdel(plant)
 		plant.update_neighbors()
 	clear_bulletholes()
-	..()
+	..() // Call /turf/proc/ChangeTurf()
 
 
 /turf/wall/examine(mob/user, extra_description = "")

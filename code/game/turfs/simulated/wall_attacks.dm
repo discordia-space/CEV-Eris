@@ -68,8 +68,8 @@
 				window_heat_resistance = null
 				window_damage_resistance = null
 				blocks_air = FALSE
-				SSair.mark_for_update(src)
 				update_icon()
+				SSair.mark_for_update(src)
 				to_chat(user, SPAN_NOTICE("You pry the glass out of the frame."))
 			return
 	if(!is_low_wall && istype(I, /obj/item/frame))

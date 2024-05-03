@@ -100,6 +100,11 @@
 		overlay_index = LAZYLEN(damage_overlays)
 	overlays += damage_overlays[overlay_index]
 
+	#ifdef ZASDBG
+	for(var/ZAS_overlay in ZAS_debug_overlays)
+		overlays += ZAS_overlay
+	#endif
+
 
 /turf/wall/low/update_icon()
 	icon_state = ""
@@ -132,3 +137,9 @@
 		if(add_extra_overlay)
 			image = image(icon, icon_state = overlay_icon_state, dir = overlay_direction, layer = ABOVE_WINDOW_LAYER)
 			add_overlay(image.appearance)
+
+	#ifdef ZASDBG
+	for(var/ZAS_overlay in ZAS_debug_overlays)
+		overlays += ZAS_overlay
+	#endif
+

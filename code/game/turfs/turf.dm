@@ -17,12 +17,16 @@
 	var/is_wet = FALSE
 	var/is_transparent = FALSE
 	var/_initialized_transparency = FALSE //used only for roundstard update_icon
-
 	// Initial air contents (in moles)
 	var/oxygen = MOLES_O2STANDARD
 	var/carbon_dioxide = 0
 	var/nitrogen = MOLES_N2STANDARD
 	var/plasma = 0
+	// ZAS stuff
+	var/zone/zone
+	var/open_directions
+	var/needs_air_update = FALSE
+	var/datum/gas_mixture/air
 
 	var/has_resources
 	var/list/resources // Mining resources (for the large drills)
@@ -36,6 +40,12 @@
 	var/list/image/obfuscations = new()
 	var/image/wet_overlay = null
 	var/obj/landmark/loot_biomes/biome
+
+
+
+	#ifdef ZASDBG
+	var/list/ZAS_debug_overlays
+	#endif
 
 /turf/New()
 	..()

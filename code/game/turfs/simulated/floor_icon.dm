@@ -135,6 +135,11 @@ var/list/flooring_cache = list()
 			F.update_icon()
 	update_openspace()
 
+	#ifdef ZASDBG
+	for(var/ZAS_overlay in ZAS_debug_overlays)
+		overlays += ZAS_overlay
+	#endif
+
 
 //Tests whether this flooring will smooth with the specified turf
 //You can override this if you want a flooring to have super special snowflake smoothing behaviour

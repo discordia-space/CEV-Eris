@@ -136,8 +136,8 @@
 /turf/open/holonofloor/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
-/turf/open/holonofloor/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-	if(N == /turf/space) // If we want to become space,
+/turf/open/holonofloor/ChangeTurf(new_turf_type, force_lighting_update)
+	if(new_turf_type == /turf/space) // If we want to become space,
 		var/area/A = get_area(src)
 		if(istype(A, /area/holodeck/source)) // Check if we are a holodeck source,
 			return // And return to prevent becoming space

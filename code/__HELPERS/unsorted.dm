@@ -1002,12 +1002,10 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 					refined_trg -= B
 					continue moving
 
-
-
-
 	if(toupdate.len)
 		for(var/turf/T1 in toupdate)
-			SSair.mark_for_update(T1)
+			if(T1.is_simulated)
+				SSair.mark_for_update(T1)
 
 	return copiedobjs
 

@@ -81,8 +81,8 @@
 	window_heat_resistance = null
 	window_damage_resistance = null
 	blocks_air = FALSE
-	SSair.mark_for_update(src)
 	update_icon()
+	SSair.mark_for_update(src)
 
 /turf/wall/low/create_window(material)
 	ASSERT(material)
@@ -116,8 +116,9 @@
 			window_heat_resistance = T0C + 5453 // 6000 kelvin
 			window_damage_resistance = RESISTANCE_IMPROVED
 	blocks_air = TRUE
-	SSair.mark_for_update(src)
 	update_icon()
+	SSair.mark_for_update(src)
+
 
 /turf/wall/low/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(window_type) // Full-tile glass blocks everything
