@@ -250,6 +250,7 @@
 	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
+	matter = list(MATERIAL_STEEL = 2)
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,20,30,60,120)
 	volume = 120
@@ -293,6 +294,7 @@
 /obj/item/reagent_containers/food/drinks/flask
 	name = "captain's flask"
 	desc = "A metal flask belonging to the captain"
+	matter = list(MATERIAL_STEEL = 1)
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
@@ -335,6 +337,7 @@
 	desc = "A plain mug."
 	icon_state = "mug"
 	item_state = "cup_old"
+	matter = list(MATERIAL_PLASTIC = 1)
 	volume = 30
 	center_of_mass = "x=15;y=13"
 	filling_states = "100"
@@ -345,6 +348,7 @@
 	name = "gold mug"
 	desc = "A shiny gold-like mug."
 	icon_state = "mug_gold"
+	matter = list(MATERIAL_GOLD = 1)
 
 /obj/item/reagent_containers/food/drinks/mug/old_nt
 	name = "NanoTrasen mug"
@@ -355,6 +359,7 @@
 	name = "NeoTheology mug"
 	desc = "A brown mug, it prominently features a tau-cross."
 	icon_state = "mug_new_nt"
+	matter = list(MATERIAL_WOOD = 1)
 
 /obj/item/reagent_containers/food/drinks/mug/syndie
 	name = "Syndicate mug"
@@ -412,6 +417,7 @@
 	item_state = "tea"
 	center_of_mass = "x=16;y=14"
 	filling_states = "100"
+	matter = list(MATERIAL_PLASTIC = 1)
 	base_name = "tea"
 	base_icon = "tea"
 

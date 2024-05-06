@@ -31136,6 +31136,7 @@
 /area/eris/hallway/main/section2)
 "bxR" = (
 /obj/machinery/light,
+/obj/machinery/amerecycler,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "bxS" = (
@@ -31608,6 +31609,7 @@
 /obj/item/device/radio/intercom{
 	pixel_y = 24
 	},
+/obj/machinery/amerecycler,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/main/section4)
 "bzb" = (
@@ -39876,7 +39878,7 @@
 /turf/simulated/floor/plating,
 /area/eris/engineering/construction)
 "bSe" = (
-/obj/structure/table/standard,
+/obj/machinery/amerecycler,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -23
@@ -45505,8 +45507,36 @@
 /turf/simulated/floor/tiled/white/cargo,
 /area/eris/rnd/storage)
 "cfW" = (
-/obj/structure/closet/crate/internals,
+/obj/structure/closet/crate,
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/item/caution{
+	name = "Caution Sign"
+	},
+/obj/item/caution{
+	name = "Caution Sign"
+	},
+/obj/item/caution{
+	name = "Caution Sign"
+	},
+/obj/item/caution{
+	name = "Caution Sign"
+	},
+/obj/item/caution{
+	name = "Caution Sign"
+	},
+/obj/item/caution{
+	name = "Caution Sign"
+	},
+/obj/spawner/contraband/low_chance,
+/obj/spawner/boxes,
+/obj/spawner/boxes,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/structure/railing/grey{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "cfX" = (
@@ -45723,6 +45753,9 @@
 /obj/spawner/medical_lowcost/low_chance,
 /obj/machinery/light,
 /obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/railing/grey{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "cgr" = (
@@ -99933,36 +99966,7 @@
 /turf/simulated/floor/tiled/white/golden,
 /area/eris/neotheology/bioprinter)
 "jrc" = (
-/obj/structure/closet/crate,
-/obj/item/caution{
-	name = "Caution Sign"
-	},
-/obj/item/caution{
-	name = "Caution Sign"
-	},
-/obj/item/caution{
-	name = "Caution Sign"
-	},
-/obj/item/caution{
-	name = "Caution Sign"
-	},
-/obj/item/caution{
-	name = "Caution Sign"
-	},
-/obj/item/caution{
-	name = "Caution Sign"
-	},
-/obj/spawner/contraband/low_chance,
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/obj/spawner/boxes/low_chance,
-/obj/spawner/boxes/low_chance,
-/obj/spawner/boxes/low_chance,
-/obj/spawner/boxes/low_chance,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/amesilo,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "jsu" = (
@@ -105741,7 +105745,7 @@
 /turf/simulated/floor/reinforced/plasma,
 /area/eris/engineering/atmos)
 "umG" = (
-/obj/machinery/recycle_vendor,
+/obj/machinery/amerecycler,
 /turf/simulated/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
 "uoJ" = (
@@ -107195,11 +107199,6 @@
 /turf/simulated/floor/tiled/dark/techfloor,
 /area/eris/hallway/side/section3starboard)
 "xaI" = (
-/obj/structure/closet/crate/radiation,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/steel/cargo,
 /area/eris/quartermaster/hangarsupply)
 "xbj" = (

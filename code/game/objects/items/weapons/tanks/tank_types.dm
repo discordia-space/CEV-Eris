@@ -102,6 +102,7 @@
 	default_gas = "oxygen"
 	volume = 2 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
 	rarity_value = 10
+	matter = list(MATERIAL_STEEL = 2)
 
 /obj/item/tank/emergency_oxygen/engi
 	name = "extended-capacity emergency oxygen tank"
@@ -115,6 +116,7 @@
 	gauge_icon = "indicator-tank-double"
 	volume = 10
 	rarity_value = 25
+	matter = list(MATERIAL_STEEL = 4)
 
 /obj/item/tank/emergency_oxygen/nitrogen
 	name = "emergency nitrogen tank"
