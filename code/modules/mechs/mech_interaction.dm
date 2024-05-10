@@ -201,6 +201,11 @@
 		if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
 			to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
 			return FALSE
+	if(ishuman(user) && body?.armor_restrictions)	//wear_suit only exists on humans; only bother with checking if the chassis forbids it
+		var/mob/living/carbon/human/enterer = user
+		if(enterer.wear_suit && enterer.wear_suit)	//If the user is wearing anything in their suit slot
+			to_chat(user, SPAN_WARNING("You must remove your [enterer.wear_suit] to fit inside."))
+			return FALSE
 	return TRUE
 
 /mob/living/exosuit/proc/enter(var/mob/user)
