@@ -114,6 +114,10 @@
 		if(!resolved && A && selected_system)
 			selected_system.afterattack(A,user,adj,params)
 
+		//Interferes with mining
+		if(istype(selected_system, /obj/item/mech_equipment/drill))
+			return
+
 		// Mech equipment subtypes can add further click delays
 		var/extra_delay = selected_system.equipment_delay
 		setClickCooldown(arms_action_delay() + extra_delay)
