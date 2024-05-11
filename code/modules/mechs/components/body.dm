@@ -52,6 +52,8 @@
 	var/cell_charge_rate = 200
 	/// Wheter chassis blocks sight from a outside POV (aka can see behind mech or not ?)
 	var/opaque_chassis = TRUE
+	///If TRUE, the chassis will not allow humans with heavy armor to board it
+	var/armor_restrictions = FALSE
 
 /obj/item/mech_component/chassis/New()
 	..()
@@ -270,6 +272,7 @@
 	shielding = 10
 	front_mult = 1.25
 	rear_mult = 0.75
+	armor_restrictions = TRUE
 
 /obj/item/mech_component/chassis/heavy
 	name = "reinforced exosuit chassis"
@@ -287,6 +290,7 @@
 	shielding = 15
 	front_mult = 1.5
 	rear_mult = 0.75
+	armor_restrictions = TRUE
 
 /obj/item/mech_component/chassis/forklift
 	name = "forklift chassis"

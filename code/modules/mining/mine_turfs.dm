@@ -83,10 +83,10 @@
 				attackby(I,R)
 
 	else if(istype(AM,/mob/living/exosuit))
-		var/mob/living/exosuit/M = AM
-		if(istype(M.selected_hardpoint, /obj/item/mech_equipment/drill))
-			var/obj/item/mech_equipment/drill/D = M.selected_hardpoint
-			D.afterattack(src)
+		var/mob/living/exosuit/mech = AM
+		if(LAZYLEN(mech.pilots) && istype(mech.selected_system, /obj/item/mech_equipment/drill))
+			var/obj/item/mech_equipment/drill/drill = mech.selected_system
+			drill.mine(src, mech.pilots[1], mech.Adjacent(src))
 
 /turf/simulated/mineral/proc/MineralSpread()
 	if(mineral && mineral.spread)

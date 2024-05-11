@@ -299,30 +299,6 @@
 
 	def_zone = ran_zone(def_zone, 100 - (distance + recoil) * 10)
 
-/obj/item/projectile/proc/check_miss_chance(mob/target_mob)
-
-	var/hit_mod = 0
-	switch(target_mob.mob_size)
-		if(120 to INFINITY)
-			hit_mod = -6
-		if(80 to 120)
-			hit_mod = -4
-		if(40 to 80)
-			hit_mod = -2
-		if(20 to 40)
-			hit_mod = 0
-		if(10 to 20)
-			hit_mod = 2
-		if(5 to 10)
-			hit_mod = 4
-		else
-			hit_mod = 6
-
-	if(target_mob == original)
-		var/acc_mod = leftmost_bit(projectile_accuracy)
-		hit_mod -= acc_mod //LOG2 on the projectile accuracy
-	return prob((base_miss_chance[def_zone] + hit_mod) * 10)
-
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(mob/living/target_mob, miss_modifier=0)
 	if(!istype(target_mob))
@@ -368,10 +344,7 @@
 //			qdel(src)
 //			return TRUE
 
-	if(check_miss_chance(target_mob))
-		result = PROJECTILE_FORCE_MISS
-	else
-		result = target_mob.bullet_act(src, def_zone)
+	result = target_mob.bullet_act(src, def_zone)
 
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
