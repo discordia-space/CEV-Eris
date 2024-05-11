@@ -23,6 +23,6 @@
 	stored_matter -= projectile_cost
 	return new projectile_type(src)
 
-/obj/item/gun/matter/examine(user)
-	. = ..()
-	to_chat(user, "It holds [stored_matter]/[max_stored_matter] [matter_type].")
+/obj/item/gun/matter/examine(mob/user, extra_description = "")
+	extra_description += "It holds [stored_matter]/[max_stored_matter] [matter_type]."
+	..(user, extra_description)

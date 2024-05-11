@@ -119,10 +119,10 @@
 			else
 				to_chat(user, SPAN_WARNING("\The [W] is empty."))
 
-/obj/item/grenade/chem_grenade/examine(mob/user)
-	..(user)
+/obj/item/grenade/chem_grenade/examine(mob/user, extra_description = "")
 	if(detonator)
-		to_chat(user, "With attached [detonator.name]")
+		extra_description +=  "With attached [detonator.name]"
+	..(user, extra_description)
 
 /obj/item/grenade/chem_grenade/activate(mob/user as mob)
 	if(active) return

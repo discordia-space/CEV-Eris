@@ -5,10 +5,6 @@
 // They are mostly invincible, although godmode is a bit imperfect.
 // Most of their superhuman qualities can be toggled off if you need a normal human for testing biological functions
 */
-
-
-ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
-
 /client/proc/cmd_dev_bst()
 	set category = "Debug"
 	set name = "Spawn Bluespace Tech"
@@ -94,6 +90,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		bst_post_spawn(bst)
 
 	log_admin("Bluespace Tech Spawned: X:[bst.x] Y:[bst.y] Z:[bst.z] User:[src]")
+	init_verbs()
 	return 1
 
 /client/proc/bst_post_spawn(mob/living/carbon/human/bst/bst)

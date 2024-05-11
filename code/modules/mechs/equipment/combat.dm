@@ -41,14 +41,13 @@
 	. = ..()
 	AddComponent(/datum/component/overlay_manager)
 
-/obj/item/mech_blade_assembly/examine(user, distance)
-	. = ..()
-	if(.)
-		if(sharpeners)
-			to_chat(user, SPAN_NOTICE("It requires [sharpeners] sharpeners to be sharp enough."))
-		else
-			to_chat(user, SPAN_NOTICE("It needs 5 sheets of a metal inserted to form the basic blade."))
-		to_chat(user , SPAN_NOTICE("Use a wrench to make this mountable. This is not reversible."))
+/obj/item/mech_blade_assembly/examine(mob/user, extra_description = "")
+	if(sharpeners)
+		extra_description += SPAN_NOTICE("\nIt requires [sharpeners] sharpeners to be sharp enough.")
+	else
+		extra_description += SPAN_NOTICE("\nIt needs 5 sheets of a metal inserted to form the basic blade.")
+	extra_description += SPAN_NOTICE("\nUse a wrench to make this mountable. This is not reversible.")
+	..(user, extra_description)
 
 /obj/item/mech_blade_assembly/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/tool_upgrade/productivity/whetstone))
@@ -392,10 +391,9 @@
 
 
 
-/obj/item/mech_equipment/mounted_system/ballistic/examine(user, distance)
-	. = ..()
-	to_chat(user, SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking."))
-
+/obj/item/mech_equipment/mounted_system/ballistic/examine(mob/user, extra_description = "")
+	extra_description += SPAN_NOTICE("Ammunition can be inserted inside, or removed by self-attacking.")
+	..(user, extra_description)
 
 /obj/item/mech_equipment/mounted_system/ballistic/Initialize()
 	. = ..()
@@ -763,7 +761,7 @@
 
 /obj/item/gun/projectile/automatic/lmg/pk/mounted/mech
 	name = 	"SA \"VJP\""
-	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires in 5 round bursts. Slightly inaccurate, but packs quite a punch."
+	desc = "A reverse engineered Pulemyot Kalashnikova fitted for mech use. Fires .30 , full auto. Slightly inaccurate, but packs quite a punch."
 	restrict_safety = TRUE
 	safety = FALSE
 	twohanded = FALSE
@@ -1010,10 +1008,17 @@
 	icon_state = "mech_atmoshield"
 	restricted_hardpoints = list(HARDPOINT_BACK)
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 6, TECH_PLASMA = 5)
-	// so it has update icon called everytime it moves
-	equipment_flags = EQUIPFLAG_UPDTMOVE
-	/// Defines the amount of power drained per hit thats blocked
-	var/damage_to_power_drain = 30
+	// so it has update icon called everytime it moves; and run Process() too
+	equipment_flags = EQUIPFLAG_UPDTMOVE|EQUIPFLAG_PROCESS
+	active_power_use = 0
+	///How much power the shield uses every time Process() is called; using active_power_use would result in some double dipping
+	var/power_cost = 10
+	///The max amount of charge the capacitor can hold
+	var/max_capacitor_charge = 500
+	///Internal charge of the shield
+	var/current_capacitor_charge = 0
+	///What portion of damage is absorbed by the shield; should be a number from 1 to 0, where 1 is 100% absorption and 0 is 0% absorption
+	var/absorption_ratio = 1
 	/// Are we toggled on ?
 	var/on = FALSE
 	/// last time we toggled ,. stores world.time
@@ -1029,6 +1034,7 @@
 	visual_bluff.icon_state = "shield_null"
 	visual_bluff.vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 	visual_bluff.layer = ABOVE_ALL_MOB_LAYER
+	current_capacitor_charge = max_capacitor_charge
 
 /obj/item/mech_equipment/shield_generator/Destroy()
 	. = ..()
@@ -1038,28 +1044,36 @@
 	QDEL_NULL(visual_bluff)
 
 /obj/item/mech_equipment/shield_generator/uninstalled()
-	owner.vis_contents.Remove(visual_bluff)
+	maptext = null
 	if(on)
-		on = FALSE
-		update_icon()
+		toggle_shield()
+	owner.vis_contents.Remove(visual_bluff)
 	. = ..()
 
+/obj/item/mech_equipment/shield_generator/deactivate()
+	. = ..()
+	if(!on)
+		return
+
+	power_failure()
 
 /obj/item/mech_equipment/shield_generator/attack_self(mob/user)
 	. = ..()
 	if(.)
-		on = !on
-		to_chat(user, "You toggle \the [src] [on ? "on" : "off"].")
-		last_toggle = world.time
-		update_icon()
-		if(on)
-			playsound(src,'sound/mechs/shield_raise.ogg', 50, 1)
-		else
-			playsound(src,'sound/mechs/shield_drop.ogg', 50, 1)
+		toggle_shield(user)
 
-// Used to tell how effective we are against damage,
-/obj/item/mech_equipment/shield_generator/proc/getEffectiveness()
-	return on
+///Toggle the shield between on and off
+/obj/item/mech_equipment/shield_generator/proc/toggle_shield(mob/user)
+	on = !on
+	last_toggle = world.time
+	update_icon()
+	playsound(get_turf(src), on ? 'sound/mechs/shield_raise.ogg' : 'sound/mechs/shield_drop.ogg', 50, 3)
+	active = on
+
+///Proc that plays an alarm and then toggle the shield
+/obj/item/mech_equipment/shield_generator/proc/power_failure()
+	playsound(get_turf(src), 'sound/mechs/internaldmgalarm.ogg', 50, 3)
+	toggle_shield()
 
 /obj/item/mech_equipment/shield_generator/update_icon(skip)
 	. = ..()
@@ -1083,37 +1097,53 @@
 		else
 			flick("shield_drop", visual_bluff)
 
-/obj/item/mech_equipment/shield_generator/proc/absorbDamages(list/damages)
-	var/mob/living/exosuit/mech = loc
-	var/obj/item/cell/power = mech.get_cell()
-	if(!on)
-		return damages
-	if(!power || (power && power.charge <= damage_to_power_drain * 3))
-		last_toggle = world.time
-		on = FALSE
-		update_icon()
-		return damages
-	flick("shield_impact", visual_bluff)
-	for(var/damage in damages)
-		while(power.charge >= damage_to_power_drain && damages[damage] > 0)
-			damages[damage] -= 1
-			power.use(damage_to_power_drain)
-			// if it blows
-			if(QDELETED(power))
-				last_toggle = world.time
-				on = FALSE
-				playsound(get_turf(src),'sound/mechs/internaldmgalarm.ogg', 50, 1)
-				update_icon()
-				return damages
+/obj/item/mech_equipment/shield_generator/proc/absorbDamages(damage)
+	if(!on || !damage)	//Don't bother if the damage is 0
+		return damage
 
-	return damages
+	if(!current_capacitor_charge)	//If somehow the shield is on and capacitor is empty, just turn it off
+		power_failure()
+		return damage
+
+	flick("shield_impact", visual_bluff)
+
+	//Absorb as much as the capacitor can and only what the shield can absorb
+	var/damage_absorbed = (damage * absorption_ratio >= current_capacitor_charge * absorption_ratio ? current_capacitor_charge : damage) * absorption_ratio
+	damage -= damage_absorbed
+	current_capacitor_charge -= damage_absorbed
+	if(!current_capacitor_charge)	//Turn it off if the capacitor is empty
+		power_failure()
+
+	return damage
+
+/obj/item/mech_equipment/shield_generator/Process(delta_time)
+	//Capactor loses power just maintaining the shield
+	if(on)
+		current_capacitor_charge -= power_cost
+		if(current_capacitor_charge <= 0)
+			power_failure()
+
+	var/obj/item/cell/cell = owner.get_cell()
+	if(!cell?.charge)	//No battery or no charge
+		maptext = "<span class='maptext' style=text-align:center>[!current_capacitor_charge ? "0" : (current_capacitor_charge / max_capacitor_charge) * 100]%"
+		return
+
+	//Transfer in increments of power_cost or the remaining charge
+	var/transfer_amount = min(power_cost, max_capacitor_charge - current_capacitor_charge, cell.charge)
+	cell.use(transfer_amount)
+	current_capacitor_charge += transfer_amount
+	maptext = "<span class='maptext' style=text-align:center>[!current_capacitor_charge ? "0" : (current_capacitor_charge / max_capacitor_charge) * 100]%"
 
 /obj/item/mech_equipment/shield_generator/ballistic
 	name = "ballistic mech shield"
 	desc = "A large, bulky shield meant to protect hunkering mechs."
 	icon_state = "mech_shield"
+	equipment_flags = EQUIPFLAG_UPDTMOVE
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 3)
+	absorption_ratio = 0.66	//66% of damage is absorbed
+	///Boolean to know if the shield is currently being deployed or retracted
+	var/performing_action = FALSE
 
 /obj/item/mech_equipment/shield_generator/ballistic/Initialize()
 	. = ..()
@@ -1128,22 +1158,12 @@
 	visual_bluff.icon_state = "mech_shield_[hardpoint]"
 	update_icon()
 
-/obj/item/mech_equipment/shield_generator/ballistic/uninstalled()
-	owner.vis_contents.Remove(visual_bluff)
-	. = ..()
+/obj/item/mech_equipment/shield_generator/ballistic/absorbDamages(damage)
+	if(!on || !damage)
+		return damage
 
-// 66% efficient when deployed
-/obj/item/mech_equipment/shield_generator/ballistic/getEffectiveness()
-	return on ? 0.66 : 0
-
-/obj/item/mech_equipment/shield_generator/ballistic/absorbDamages(list/damages)
-	if(!on)
-		return damages
-	for(var/damage in damages)
-		/// blocks 66% of damage
-		damages[damage] -= round(damages[damage]/1.5)
 	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 50, 8)
-	return damages
+	return damage * absorption_ratio
 
 /obj/item/mech_equipment/shield_generator/ballistic/update_icon()
 	/// Not needed since we already have handling for visual bluffs layering
@@ -1180,18 +1200,25 @@
 				visual_bluff.layer = MECH_ABOVE_LAYER
 			return
 
-/obj/item/mech_equipment/shield_generator/ballistic/attack_self(mob/user)
-	var/mob/living/exosuit/mech = loc
-	if(!istype(mech))
+/obj/item/mech_equipment/shield_generator/ballistic/toggle_shield(mob/user)
+	if(canremove || performing_action)	//From what I gather, canremove is only TRUE when not installed
 		return
-	to_chat(user , SPAN_NOTICE("[on ? "Retracting" : "Deploying"] \the [src]..."))
-	var/time = on ? 0.5 SECONDS : 3 SECONDS
-	if(do_after(user, time, src, FALSE))
-		on = !on
-		to_chat(user, "You [on ? "deploy" : "retract"] \the [src].")
-		mech.visible_message(SPAN_DANGER("\The [mech] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
-		playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
-		/// movement blocking is handled in MoveBlock()
+
+	performing_action = TRUE
+	//Check if there is a user because in the event this is called when being uninstalled, just skip the do_after and message
+	if(user)
+		if(!do_after(user, 0.5 SECONDS, owner, FALSE))
+			performing_action = FALSE
+			return
+		owner.visible_message(SPAN_DANGER("\The [owner] [on ? "deploys" : "retracts"] \the [src]!"), "", "You hear the sound of a heavy metal plate hitting the floor!", 8)
+
+	on = !on
+	playsound(get_turf(src), 'sound/weapons/shield/shieldblock.ogg', 300, 8)
+	/// movement blocking is handled in MoveBlock()
+
+	performing_action = FALSE
+	update_icon()
+	active = on
 
 /// Pass all attack attempts to afterattack if we're installed
 /obj/item/mech_equipment/shield_generator/ballistic/resolve_attackby(atom/A, mob/user, params)
@@ -1229,7 +1256,112 @@
 				knockable.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
 
 		if(length(targets))
-			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 1)
+			playsound(get_turf(src), 'sound/effects/shieldbash.ogg', 100, 3)
+
+/obj/item/mech_equipment/shield_generator/ballistic/Process(delta_time)
+	STOP_PROCESSING(SSobj, src)	//Ballistic shield doesn't need to process anything
+
+/obj/item/mech_equipment/mounted_system/baton
+	name = "\improper IHS \"Compliance\" baton "
+	desc = "An exosuit-mounted baton. Double the zap for 3 times the size."
+	icon_state = "mech_baton_off"
+	holding_type = /obj/item/melee/baton/mounted
+	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
+	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 10)
+	origin_tech = list(TECH_COMBAT = 4)
+	equipment_flags = EQUIPFLAG_PRETICK
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 60
+
+/obj/item/mech_equipment/mounted_system/baton/pretick()
+	if(owner && !(owner.power == MECH_POWER_ON))
+		var/obj/item/melee/baton/mounted/batong = holding
+		batong.set_status(FALSE)
+		update_icon()
+		owner.update_icon()
+
+/obj/item/mech_equipment/mounted_system/baton/update_icon(hardpoint)
+	. = ..()
+	if(owner)
+		var/obj/item/melee/baton/mounted/batong = holding
+		icon_state = "mech_baton[batong.status ? "" : "_off"]"
+
+
+/obj/item/mech_equipment/mounted_system/baton/attack_self(mob/user)
+	var/obj/item/melee/baton/mounted/batong = holding
+	if(!owner)
+		return
+	if(batong.status == FALSE)
+		if(owner.power == MECH_POWER_ON)
+			to_chat(user, "You toggle \the [src] on.")
+			batong.set_status(TRUE)
+		else
+			to_chat(user, "You try to power [src], but nothing happens.")
+	else
+		to_chat(user, "You toggle \the [src] off.")
+		batong.set_status(FALSE)
+	update_icon()
+	owner.update_icon()
+
+
+/obj/item/mech_equipment/mounted_system/sprayer
+	name = "ML \"Washer\" sprayer"
+	desc = "A upsized chemical sprayer for mechs"
+	icon_state = "sprayer"
+	holding_type = /obj/item/reagent_containers/spray/chemsprayer
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	restricted_software = list(MECH_SOFTWARE_WEAPONS)
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 10, MATERIAL_SILVER = 3, MATERIAL_GLASS = 10) // more expensive
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 90
+
+/obj/item/mech_equipment/mounted_system/sprayer/attackby(obj/item/I, mob/living/user, params)
+	if(I.is_drainable() && I.reagents.total_volume && user.a_intent != I_GRAB)
+		to_chat(user, SPAN_NOTICE("You transfer 10 units of substance from \the [I] to \the [src]'s internal chemical storage."))
+		I.reagents.trans_to_holder(holding.reagents, 10, 1, FALSE)
+	else if(I.reagents && I.reagent_flags & REFILLABLE && user.a_intent == I_GRAB)
+		to_chat(user, SPAN_NOTICE("You drain 10 units of substance from \the [src] to \the [I]."))
+		holding.reagents.trans_to_holder(I.reagents, 10, 1, FALSE)
+	else
+		to_chat(user, SPAN_NOTICE("You need to be on GRAB intent to drain from \the [src]."))
+
+/obj/item/mech_equipment/mounted_system/sprayer/afterattack(atom/target, mob/living/user, inrange, params)
+	if(!ismech(user.loc))
+		return
+	var/obj/item/reagent_containers/spray/chemsprayer/sprayer = holding
+	sprayer.Spray_at(target, user, )
+
+	playsound(get_turf(src), 'sound/effects/spray2.ogg', 50, 1, -6)
+
+	user.setClickCooldown(4)
+
+	if(sprayer.reagents.has_reagent("sacid"))
+		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src] mounted on a mech..")
+		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
+	if(sprayer.reagents.has_reagent("pacid"))
+		message_admins("[key_name_admin(user)] fired Polyacid from \a [src] mounted on a mech.")
+		log_game("[key_name(user)] fired Polyacid from \a [src].")
+	if(sprayer.reagents.has_reagent("lube"))
+		message_admins("[key_name_admin(user)] fired Space lube from \a [src] mounted on a mech.")
+		log_game("[key_name(user)] fired Space lube from \a [src].")
+	return
+
+
+
+/obj/item/mech_equipment/mounted_system/binoculars
+	name = "TM \"32K\" binoculars"
+	desc = "A shoulder-mounted mech binocular system. "
+	icon_state = "mech_binoculars"
+	restricted_hardpoints = list(HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
+	holding_type = /obj/item/device/binoculars/mech
+	spawn_tags = SPAWN_MECH_QUIPMENT
+	spawn_blacklisted = FALSE
+	rarity_value = 50
+
+
 
 #undef CROSSBOW_MAX_AMOUNT
 #undef CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT

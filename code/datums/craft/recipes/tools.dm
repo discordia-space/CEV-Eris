@@ -216,7 +216,7 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
-		list(/obj/item/stack/cable_coil, 30, "time" = 10),
+		list(/obj/item/stack/cable_coil, 10, "time" = 10),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(/obj/item/stack/rods, 2, 30)
 	)

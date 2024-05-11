@@ -419,7 +419,7 @@
 	else
 		underlays += GLOB.wedge_icon_cache[cache_string]
 
-/obj/machinery/door/holy/examine(mob/user)
-	..()
+/obj/machinery/door/holy/examine(mob/user, extra_description = "")
 	if(wedged_item)
-		to_chat(user, "You can see \icon[wedged_item] [wedged_item] wedged into it.")
+		extra_description += "You can see \icon[wedged_item] [wedged_item] wedged into it."
+	..(user, extra_description)

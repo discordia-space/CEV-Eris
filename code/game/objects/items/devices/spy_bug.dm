@@ -32,11 +32,11 @@
 	. = ..()
 	add_hearing()
 
-/obj/item/device/spy_bug/examine(mob/user)
-	. = ..(user, 0)
-	if(.)
-		to_chat(user, "A tiny camera, microphone, and transmission device in a happy union.")
-		to_chat(user, "Needs to be both configured and brought in contact with monitor device to be fully functional.")
+/obj/item/device/spy_bug/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "A tiny camera, microphone, and transmission device in a happy union."
+		extra_description += "Needs to be both configured and brought in contact with monitor device to be fully functional."
+	..(user, extra_description)
 
 /obj/item/device/spy_bug/attack_self(mob/user)
 	radio.attack_self(user)
@@ -80,10 +80,10 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/device/spy_monitor/examine(mob/user)
-	. = ..(user, 1)
-	if(.)
-		to_chat(user, "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made.")
+/obj/item/device/spy_monitor/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made."
+	..(user, extra_description)
 
 /obj/item/device/spy_monitor/attack_self(mob/user)
 	if(operating)

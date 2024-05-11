@@ -99,6 +99,8 @@
 	if(!roundstart && mind && !mind.antagonist.len)
 		var/datum/antagonist/A = create_antag_instance(ROLE_BORER_REPRODUCED)
 		A.create_antagonist(mind,update = FALSE)
+	if(client)
+		client.init_verbs()
 
 /mob/living/simple_animal/borer/New()
 	..()
@@ -130,20 +132,19 @@
 
 /mob/living/simple_animal/borer/proc/update_abilities(force_host=FALSE)
 	// Remove all abilities
-	verbs -= abilities_standalone
-	verbs -= abilities_in_host
-	host?.verbs -= abilities_in_control
+	remove_verb(src, abilities_standalone)
+	remove_verb(src, abilities_in_host)
+	if(host)
+		remove_verb(host, abilities_in_control)
 
 	// Re-grant some of the abilities, depending on the situation
 	if(!host)
-		verbs += abilities_standalone
+		add_verb(src, abilities_standalone)
 	else if(!controlling)
-		verbs += abilities_in_host
-		Stat()
+		add_verb(src, abilities_in_host)
 		return
 	else
-		host.verbs += abilities_in_control
-	Stat()
+		add_verb(host, abilities_in_control)
 
 // If borer is controlling a host directly, send messages to host instead of borer
 /mob/living/simple_animal/borer/proc/get_borer_control()
@@ -207,21 +208,13 @@
 	// Keep at the end
 	process_host()
 
-/mob/living/simple_animal/borer/Stat()
+/mob/living/simple_animal/borer/get_status_tab_items()
 	. = ..()
-	statpanel("Status")
-
-	if(evacuation_controller)
-		var/eta_status = evacuation_controller.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
-
-	if (client?.statpanel == "Status")
-		stat("Evolution Level", borer_level)
-		stat("Chemicals", host ? "[chemicals] / [max_chemicals_inhost]" : "[chemicals] / [max_chemicals]")
-		if(host)
-			stat("Host health", host.stat == DEAD ? "Deceased" : host.health)
-			stat("Host brain damage", host.getBrainLoss())
+	. += list(list("Evolution Level: borer_level"))
+	. += list(list("Chemicals [host ? (chemicals/max_chemicals_inhost) : (chemicals/max_chemicals)]"))
+	if(host)
+		. += list(list("Host health [host.stat == DEAD ? "Deceased" : host.health]"))
+		. += list(list("Host brain damage: [host.getBrainLoss()]"))
 
 /mob/living/simple_animal/borer/proc/detach()
 

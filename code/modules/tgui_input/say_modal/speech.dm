@@ -33,13 +33,13 @@
 /datum/tgui_say/proc/delegate_speech(entry, channel)
 	switch(channel)
 		if(SAY_CHANNEL)
-			client.mob.say_verb(entry)
+			client.mob.say(entry)
 			return TRUE
 		if(RADIO_CHANNEL)
-			client.mob.say_verb(";" + entry)
+			client.mob.say(";" + entry)
 			return TRUE
 		if(ME_CHANNEL)
-			client.mob.me_verb(entry)
+			client.mob.me(entry)
 			return TRUE
 		if(OOC_CHANNEL)
 			client.ooc(entry)

@@ -7,7 +7,7 @@
 	item_state = "baton"
 	slot_flags = SLOT_BELT
 	description_info = "Highly effective against uninsulated people. High change to disarm when aimed at arms."
-	description_antag = "Can be saboutaged by inserting plasma into its battery cell. Upon being turned on it will blow"
+	description_antag = "Can be sabotaged by inserting plasma into its battery cell. Upon being turned on it will blow"
 	force = WEAPON_FORCE_PAINFUL
 	sharp = FALSE
 	edge = FALSE
@@ -69,14 +69,13 @@
 	else
 		set_light(0)
 
-/obj/item/melee/baton/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(cell)
-		to_chat(user, SPAN_NOTICE("The baton is [round(cell.percent())]% charged."))
-	else
-		to_chat(user, SPAN_WARNING("The baton does not have a power source installed."))
+/obj/item/melee/baton/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(cell)
+			extra_description += SPAN_NOTICE("The baton is [round(cell.percent())]% charged.")
+		else
+			extra_description += SPAN_WARNING("The baton does not have a power source installed.")
+	..(user, extra_description)
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))
@@ -148,6 +147,29 @@
 	if(cell)
 		cell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
+
+/obj/item/melee/baton/mounted
+	name = "IHS \"Compliance\" baton"
+	desc = "A mech sized baton for mech-sized problems."
+	agonyforce = 80
+	// 2x of a normal baton
+	force = WEAPON_FORCE_PAINFUL * 2
+	suitable_cell = FALSE
+	starting_cell = FALSE
+	spawn_blacklisted = TRUE
+
+/obj/item/melee/baton/mounted/deductcharge(power_drain)
+	/// Will be inside of mech equipment , which should be inside of a mech.
+	var/mob/living/exosuit/mountedMech = loc.loc
+	if(!istype(mountedMech))
+		return FALSE
+	var/obj/item/cell/mechCell = mountedMech.get_cell(FALSE)
+	if(!mechCell)
+		set_status(FALSE)
+		return FALSE
+	. = mechCell.checked_use(power_drain) //try to use enough power
+	if(!mechCell.check_charge(hitcost))	//do we have enough power for another hit?
+		set_status(FALSE)
 
 //secborg stun baton module
 /obj/item/melee/baton/robot

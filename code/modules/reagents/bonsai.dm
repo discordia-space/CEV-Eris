@@ -54,7 +54,7 @@
 					"corn",
 					"eggplant",
 					"chili",
-					"mushrooms",
+					"mushroom",
 					"wheat",
 					"potato",
 					"rice")]

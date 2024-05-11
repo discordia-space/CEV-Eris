@@ -8,9 +8,9 @@
 	var/new_icon_file
 	var/uses = 1        // Uses before the kit deletes itself.
 
-/obj/item/device/kit/examine()
-	. = ..()
-	to_chat(usr, "It has [uses] use\s left.")
+/obj/item/device/kit/examine(mob/user, extra_description = "")
+	extra_description += "It has [uses] use\s left."
+	..(user, extra_description)
 
 /obj/item/device/kit/proc/use(var/amt, var/mob/user)
 	uses -= amt
@@ -75,9 +75,9 @@
 	bad_type = /obj/item/device/kit/paint
 	var/removable
 
-/obj/item/device/kit/paint/examine()
-	. = ..()
-	to_chat(usr, "This kit will add a '[new_name]' decal to a exosuit'.")
+/obj/item/device/kit/paint/examine(mob/user, extra_description = "")
+	extra_description += "This kit will add a '[new_name]' decal to a exosuit'."
+	..(user, extra_description)
 
 // exosuit kits.
 /obj/item/device/kit/paint/powerloader
