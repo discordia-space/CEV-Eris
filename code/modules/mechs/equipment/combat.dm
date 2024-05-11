@@ -807,18 +807,29 @@
 
 /obj/item/mech_equipment/mounted_system/mace
 	name = "\improper NT \"Warhead\" mace"
-	desc = "An exosuit-mounted mace. Handle with care."
+	desc = "An exosuit-mounted mace. Doubles as a flail. Handle with care."
 	icon_state = "mech_mace"
 	holding_type = /obj/item/tool/hammer/mace/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_STEEL = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+	/// Determines what mode our mace is. FALSE is mace, TRUE is flail
+	var/flail_mode = FALSE
 
 /obj/item/mech_equipment/mounted_system/mace/Initialize()
 	. = ..()
 	var/obj/item/tool/hammer/mace/mech/holdin = holding
 	holdin.wielded = TRUE
 
+/obj/item/mech_equipment/mounted_system/mace/attack_self(mob/user)
+	. = ..()
+	if(.)
+		var/obj/item/tool/hammer/mace/mech/holdin = holding
+		holdin.update_flail_mode(flail_mode)
+		flail_mode = !flail_mode
+		owner.update_icon()
+
+/*
 /obj/item/mech_equipment/mounted_system/mace/activate()
 	. = ..()
 	owner.update_icon()
@@ -834,31 +845,31 @@
 /obj/item/mech_equipment/mounted_system/mace/on_unselect()
 	. = ..()
 	deactivate()
+*/
 
 /obj/item/mech_equipment/mounted_system/mace/resolve_attackby(mob/living/target, mob/user, params)
 	. = ..()
 	if(. && ismech(loc) && istype(target) && target != loc)
-		if(ishuman(target))
-			var/mob/living/carbon/human/targ = target
-			if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
-				targ.visible_message(SPAN_DANGER("[targ] dodges the [holding] slam!"), "You dodge [loc]'s [holding] slam!", "You hear a woosh.", 6)
-				return
+		if(flail_mode)
+
+		else
+			if(ishuman(target))
+				var/mob/living/carbon/human/targ = target
+				if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
+					targ.visible_message(SPAN_DANGER("[targ] dodges the [holding] slam!"), "You dodge [loc]'s [holding] slam!", "You hear a woosh.", 6)
+					return
+
 			targ.visible_message(SPAN_DANGER("[targ] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
 			targ.Weaken(1)
-			targ.throw_at(get_turf_away_from_target_complex(target,user,3), 5, 1, loc)
-			targ.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 1, src, FALSE, FALSE, 1)
-		else
-			target.visible_message(SPAN_DANGER("[target] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
-			target.Weaken(1)
-			target.throw_at(get_turf_away_from_target_complex(target,user,3), 3, 1, loc)
-			target.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
+			targ.throw_at(get_turf_away_from_target_complex(target,user, 3), 5, 1, loc)
+			targ.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
 
 
 /obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
-	return "[icon_state]_[active ? "on" : "off"]"
+	return "[icon_state][active ? "_flail" : ""]"
 
 /obj/item/tool/hammer/mace/mech
-	name = "mace head"
+	name = "huge mace"
 	desc = "What are you standing around staring at this for? You shouldn't be seeing this..."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "mace"
@@ -869,13 +880,31 @@
 	wielded = TRUE
 	canremove = FALSE
 	// Its Big
-	armor_divisor = ARMOR_PEN_DEEP
+	armor_divisor = ARMOR_PEN_HALF
 	tool_qualities = list(QUALITY_HAMMERING = 45)
 	// its mech sized!!!!!
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	spawn_blacklisted = TRUE
-	force= WEAPON_FORCE_BRUTAL
+	force = WEAPON_FORCE_BRUTAL
 	force_wielded_multiplier = 1.5
+
+/obj/item/tool/hammer/mace/mech/proc/update_flail_mode(flail = FALSE)
+	if(flail)
+		name = "huge flail"
+		extended_reach = TRUE
+		forced_broad_strike = TRUE
+		force = WEAPON_FORCE_LETHAL
+		armor_divisor = ARMOR_PEN_SHALLOW
+		structure_damage_factor = STRUCTURE_DAMAGE_WEAK // lot harder to bash a wall open when your flail keeps glancing off
+		tool_qualities = list()
+	else
+		name = initial(name)
+		extended_reach = initial(extended_reach)
+		forced_broad_strike = initial(forced_broad_strike)
+		force = initial(force)
+		armor_divisor = initial(armor_divisor)
+		structure_damage_factor = initial(structure_damage_factor)
+		tool_qualities = list(QUALITY_HAMMERING = 45) // initial doesn't work on lists
 
 /obj/item/tool/hammer/mace/mech/attack_self(mob/user)
 	. = ..()
@@ -907,6 +936,9 @@
 	projectile_type = /obj/item/projectile/plasma/aoe/heat/strong/mech
 	fire_sound='sound/weapons/energy/melt.ogg'
 	burst = 1
+	init_firemodes = list(
+		WEAPON_CHARGE
+		)
 	fire_delay = 120
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
@@ -977,24 +1009,31 @@
 	projectile_type = /obj/item/projectile/bullet/bolt/mech
 	fire_sound='sound/weapons/energy/melt.ogg'
 	burst = 1
+	init_firemodes = list(
+		WEAPON_CHARGE
+		)
 	fire_delay = 10
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
 	var/shots_amount = 0
 	var/damage_types = list(BRUTE = 34)
+	var/armor_divisor = 2
 	var/material/bolt_mat = null
 
 /obj/item/gun/energy/crossbow_mech/proc/calculate_damage()
 	if(bolt_mat)
-		damage_types = list(BRUTE = max(0,round((bolt_mat.hardness/2.5), 1)))
+		damage_types = list(BRUTE = max(0,round((bolt_mat.weight * 1.2), 1)))
+		armor_divisor = max(1, round(log(bolt_mat.hardness / 20) + 1, 1))
 		return
 	damage_types = initial(damage_types)
+	armor_divisor = initial(armor_divisor)
 
 /obj/item/gun/energy/crossbow_mech/consume_next_projectile()
 	if(cell.use(charge_cost) && shots_amount)
 		shots_amount -= 1
 		var/obj/item/projectile/bullet/bolt/mech/bolt = new projectile_type
 		bolt.damage_types = damage_types
+		bolt.armor_divisor = armor_divisor
 		. = bolt
 	if(!shots_amount)
 		bolt_mat = null
