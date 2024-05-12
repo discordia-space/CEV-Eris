@@ -848,21 +848,21 @@
 */
 
 /obj/item/mech_equipment/mounted_system/mace/resolve_attackby(mob/living/target, mob/user, params)
+	if(ishuman(target))
+		var/mob/living/carbon/human/targ = target
+		if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
+			targ.visible_message(SPAN_DANGER("[targ] dodges the [holding] swing!"), "You dodge [loc]'s [holding] swing!", "You hear a woosh.", 6)
+			return
 	. = ..()
-	if(. && ismech(loc) && istype(target) && target != loc)
+	if(. && ismech(loc) && istype(target) && target != owner)
 		if(flail_mode)
-
+			target.visible_message(SPAN_DANGER("[target] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
+			target.Weaken(5)
+			target.throw_at(get_turf_away_from_target_complex(target, user, 3), 5, 1, owner)
 		else
-			if(ishuman(target))
-				var/mob/living/carbon/human/targ = target
-				if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
-					targ.visible_message(SPAN_DANGER("[targ] dodges the [holding] slam!"), "You dodge [loc]'s [holding] slam!", "You hear a woosh.", 6)
-					return
-
 			target.visible_message(SPAN_DANGER("[target] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
 			target.Weaken(1)
-			target.throw_at(get_turf_away_from_target_complex(target,user, 3), 5, 1, loc)
-			target.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
+			target.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, ARMOR_PEN_HALF, src, FALSE, FALSE, 1)
 
 
 /obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
