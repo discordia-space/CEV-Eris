@@ -9,6 +9,7 @@
 // BEGIN_INCLUDE
 #include "code\_compile_options.dm"
 #include "code\_debugger.dm"
+#include "code\client_macros.dm"
 #include "code\global.dm"
 #include "code\hub.dm"
 #include "code\stylesheet.dm"
