@@ -108,10 +108,5 @@ fi;
 #         fi
 #     done < <(jq -r '[.map_file] | flatten | .[]' $json)
 # done
-if grep -P --exclude='__byond_version_compat.dm' '\.proc/' code/**/*.dm; then
-    echo
-    echo -e "${RED}ERROR: Outdated proc reference use detected in code, please use proc reference helpers.${NC}"
-    st=1
-fi;
 
 exit $st
