@@ -893,7 +893,7 @@
 		name = "huge flail"
 		extended_reach = TRUE
 		forced_broad_strike = TRUE
-		force = WEAPON_FORCE_LETHAL
+		force = WEAPON_FORCE_ROBUST
 		armor_divisor = ARMOR_PEN_SHALLOW
 		structure_damage_factor = STRUCTURE_DAMAGE_WEAK // lot harder to bash a wall open when your flail keeps glancing off
 		tool_qualities = list()
