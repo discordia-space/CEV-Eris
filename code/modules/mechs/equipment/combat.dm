@@ -829,24 +829,6 @@
 		flail_mode = !flail_mode
 		owner.update_icon()
 
-/*
-/obj/item/mech_equipment/mounted_system/mace/activate()
-	. = ..()
-	owner.update_icon()
-
-/obj/item/mech_equipment/mounted_system/mace/deactivate()
-	. = ..()
-	owner.update_icon()
-
-/obj/item/mech_equipment/mounted_system/mace/on_select()
-	. = ..()
-	activate()
-
-/obj/item/mech_equipment/mounted_system/mace/on_unselect()
-	. = ..()
-	deactivate()
-*/
-
 /obj/item/mech_equipment/mounted_system/mace/resolve_attackby(mob/living/target, mob/user, params)
 	if(ishuman(target))
 		var/mob/living/carbon/human/targ = target
