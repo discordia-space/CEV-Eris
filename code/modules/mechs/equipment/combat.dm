@@ -859,10 +859,10 @@
 					targ.visible_message(SPAN_DANGER("[targ] dodges the [holding] slam!"), "You dodge [loc]'s [holding] slam!", "You hear a woosh.", 6)
 					return
 
-			targ.visible_message(SPAN_DANGER("[targ] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
-			targ.Weaken(1)
-			targ.throw_at(get_turf_away_from_target_complex(target,user, 3), 5, 1, loc)
-			targ.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
+			target.visible_message(SPAN_DANGER("[target] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
+			target.Weaken(1)
+			target.throw_at(get_turf_away_from_target_complex(target,user, 3), 5, 1, loc)
+			target.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, 2, src, FALSE, FALSE, 1)
 
 
 /obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
@@ -1017,23 +1017,23 @@
 	cell_type = /obj/item/cell/medium/mech
 	var/shots_amount = 0
 	var/damage_types = list(BRUTE = 34)
-	var/armor_divisor = 2
+	var/bolt_armor_divisor = 2
 	var/material/bolt_mat = null
 
 /obj/item/gun/energy/crossbow_mech/proc/calculate_damage()
 	if(bolt_mat)
 		damage_types = list(BRUTE = max(0,round((bolt_mat.weight * 1.2), 1)))
-		armor_divisor = max(1, round(log(bolt_mat.hardness / 20) + 1, 1))
+		bolt_armor_divisor = max(1, round(log(bolt_mat.hardness / 20) + 1, 1))
 		return
 	damage_types = initial(damage_types)
-	armor_divisor = initial(armor_divisor)
+	bolt_armor_divisor = initial(bolt_armor_divisor)
 
 /obj/item/gun/energy/crossbow_mech/consume_next_projectile()
 	if(cell.use(charge_cost) && shots_amount)
 		shots_amount -= 1
 		var/obj/item/projectile/bullet/bolt/mech/bolt = new projectile_type
 		bolt.damage_types = damage_types
-		bolt.armor_divisor = armor_divisor
+		bolt.armor_divisor = bolt_armor_divisor
 		. = bolt
 	if(!shots_amount)
 		bolt_mat = null
