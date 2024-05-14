@@ -200,27 +200,33 @@ const administration = (props, context) => {
   );
   return (
     <>
-      {<LabeledList.Item label="Budget">{budget}</LabeledList.Item>}
-      <NumberInput
-        value={newbudget}
-        onChange={(e, value) => setBudget(value)}
-      />
+      <LabeledList.Item label="Current Budget">{budget}</LabeledList.Item>
       {authorization && (
-        <Button
-          content="Set Maximum Budget"
-          onClick={() => act('setbudget', { 'newbudget': newbudget })}
-        />
+        <LabeledList.Item label="Maximum Budget">
+          <NumberInput
+            value={newbudget}
+            onChange={(e, value) => setBudget(value)}
+          />
+          {authorization && (
+            <Button
+              content="Set Maximum Budget"
+              onClick={() => act('setbudget', { 'newbudget': newbudget })}
+            />
+          )}
+        </LabeledList.Item>
       )}
       {
-        <LabeledList.Item label="Sale Threshold">
+        <LabeledList.Item label="Current Sale Threshold">
           {sellthreshold}
         </LabeledList.Item>
       }
       {authorization && (
-        <NumberInput
-          value={newthreshold}
-          onChange={(e, value) => setThreshold(value)}
-        />
+        <LabeledList.Item label="Maximum Sale Threshold">
+          <NumberInput
+            value={newthreshold}
+            onChange={(e, value) => setThreshold(value)}
+          />
+        </LabeledList.Item>
       )}
       {authorization && (
         <Button
