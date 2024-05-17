@@ -238,8 +238,8 @@
 	var/obj/item/I = parent
 	I.forceMove(A)
 	A.item_upgrades.Add(I)
-	RegisterSignal(A, COMSIG_APPVAL, .proc/apply_values)
-	RegisterSignal(A, COMSIG_ADDVAL, .proc/add_values)
+	RegisterSignal(A, COMSIG_APPVAL, PROC_REF(apply_values))
+	RegisterSignal(A, COMSIG_ADDVAL, PROC_REF(add_values))
 	A.AddComponent(/datum/component/upgrade_removal)
 	return TRUE
 

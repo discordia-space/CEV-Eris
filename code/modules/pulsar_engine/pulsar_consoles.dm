@@ -17,7 +17,7 @@
 	linked = GLOB.maps_data.pulsar_star
 	ship = locate(/obj/effect/pulsar_ship) in get_area(linked)
 	if(ship)
-		RegisterSignal(ship, COMSIG_MOVABLE_MOVED, .proc/onShipMoved)
+		RegisterSignal(ship, COMSIG_MOVABLE_MOVED, PROC_REF(onShipMoved))
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
