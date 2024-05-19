@@ -3,7 +3,7 @@
 
 /turf/space/pulsar/Initialize()
 	linked = locate(/obj/machinery/pulsar) in GLOB.machines
-	RegisterSignal(linked, COMSIG_PULSAR_LIGHTS, .proc/update_starlight)
+	RegisterSignal(linked, COMSIG_PULSAR_LIGHTS, PROC_REF(update_starlight))
 	..()
 
 /turf/space/pulsar/Destroy()

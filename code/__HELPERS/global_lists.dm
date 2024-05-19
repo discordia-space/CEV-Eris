@@ -31,6 +31,10 @@ GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs targ
 GLOBAL_LIST_EMPTY(all_burrows)				//list of all burrows
 GLOBAL_LIST_EMPTY(all_maintshrooms)			//list of all maintshrooms
 
+// Associated list where key is shared between /obj/structure/barrier/four_way and /obj/item/device/assembly/signaler, linking them together
+// Value is a list of 'code' and 'frequency' variables which are assigned to both linked objects on Initialize()
+GLOBAL_LIST_EMPTY(roundstart_barrier_groups)
+
 //Machinery lists
 GLOBAL_LIST_EMPTY(alarm_list) //List of fire alarms
 GLOBAL_LIST_EMPTY(ai_status_display_list) //List of AI status displays
@@ -143,7 +147,7 @@ var/global/list/organ_tag_to_name = list(
 	groin = "groin",l_leg = "left leg",
 	chest2= "back", heart = "heart",
 	lungs  = "lungs", liver = "liver",
-	"left kidney" = "left kidney", 
+	"left kidney" = "left kidney",
 	"right kidney" = "right kidney",
 	stomach = "stomach", brain = "brain"
 	)

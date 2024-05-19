@@ -44,7 +44,7 @@
 
 /obj/effect/explosion/New()
 	..()
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, src), 1 SECOND)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 1 SECOND)
 	//spawn (10)
 	//	qdel(src)
 	return
@@ -74,7 +74,7 @@
 
 /obj/effect/explosion_fire/New()
 	..()
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/qdel, src), 0.5 SECOND)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), 0.5 SECOND)
 
 
 

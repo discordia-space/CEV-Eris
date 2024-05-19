@@ -41,7 +41,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	purchase_log = list()
 	world_uplinks += src
 	uses = telecrystals
-	addtimer(CALLBACK(src, .obj/item/device/uplink/proc/gain_TC), 600)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/device/uplink, gain_TC)), 600)
 
 /obj/item/device/uplink/Destroy()
 	world_uplinks -= src
@@ -50,16 +50,18 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 //Passive TC gain, triggers once per minute as long as the owner is alive and active
 /obj/item/device/uplink/proc/gain_TC()
-	addtimer(CALLBACK(src, .obj/item/device/uplink/proc/gain_TC), 600)
-	if (!uplink_owner || !uplink_owner.current)
+	if(QDELETED(src))
+		return
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/device/uplink, gain_TC)), 600)
+	if(!uplink_owner || !uplink_owner.current)
 		return
 
 	var/mob/M = uplink_owner.current
-	if (M.stat == DEAD)
+	if(M.stat == DEAD)
 		return
 
 	gain_progress += passive_gain
-	if (gain_progress >= 1)
+	if(gain_progress >= 1)
 		uses += 1
 		gain_progress -= 1
 
