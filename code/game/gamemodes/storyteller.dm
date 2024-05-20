@@ -67,7 +67,6 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 	var/votable = TRUE
 	//whether or not the players can vote for it. If this is set to false, it can only be activated by being forced by admins.
-	var/last_chaos_hour = 0
 
 
 /********************************
@@ -111,7 +110,6 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()
-	last_chaos_hour = REALTIMEOFDAY
 	set_timer()
 	set_up_events()
 
@@ -154,9 +152,6 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 	last_tick = world.time
 	next_tick = last_tick + tick_interval
-	if(REALTIMEOFDAY > last_chaos_hour + 1 HOUR)
-		GLOB.chaos_level += 1
-		last_chaos_hour += 1 HOUR
 
 
 
