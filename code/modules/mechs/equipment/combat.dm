@@ -830,21 +830,23 @@
 		owner.update_icon()
 
 /obj/item/mech_equipment/mounted_system/mace/resolve_attackby(mob/living/target, mob/user, params)
+	var/intensity = 1
+	var/hit_verb = "slammed"
 	if(ishuman(target))
 		var/mob/living/carbon/human/targ = target
-		if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_EXPERT)
-			targ.visible_message(SPAN_DANGER("[targ] dodges the [holding] swing!"), "You dodge [loc]'s [holding] swing!", "You hear a woosh.", 6)
+		if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_ADEPT)
+			intensity = STAT_LEVEL_ADEPT / (targ.stats.getStat(STAT_VIG) - STAT_LEVEL_ADEPT)
+			hit_verb = (intensity > 0.6) ? "knocked" : "grazed"
 			return
 	. = ..()
 	if(. && ismech(loc) && istype(target) && target != owner)
 		if(flail_mode)
-			target.visible_message(SPAN_DANGER("[target] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
-			target.Weaken(5)
-			target.throw_at(get_turf_away_from_target_complex(target, user, 3), 5, 1, owner)
+			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [src]'s [holding]!"), SPAN_DANGER("You get [hit_verb] by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
+			target.Weaken(3 * intensity)
+			target.throw_at(get_turf_away_from_target_complex(target, user, 3), floor(5 * intensity), 1, owner)
 		else
-			target.visible_message(SPAN_DANGER("[target] gets slammed by [src]'s [holding]!"), SPAN_NOTICE("You get slammed by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
-			target.Weaken(1)
-			target.damage_through_armor(20, BRUTE, BP_CHEST, ARMOR_MELEE, ARMOR_PEN_HALF, src, FALSE, FALSE, 1)
+			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [src]'s [holding]!"), SPAN_DANGER("You get [hit_verb] by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
+			target.damage_through_armor(20 * intensity, BRUTE, BP_CHEST, ARMOR_MELEE, ARMOR_PEN_HALF, src, FALSE, FALSE, 1)
 
 
 /obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
