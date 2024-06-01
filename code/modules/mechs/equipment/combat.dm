@@ -835,7 +835,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/targ = target
 		if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_ADEPT)
-			intensity = STAT_LEVEL_ADEPT / (targ.stats.getStat(STAT_VIG) - STAT_LEVEL_ADEPT)
+			intensity = STAT_LEVEL_ADEPT / targ.stats.getStat(STAT_VIG)
 			hit_verb = (intensity > 0.6) ? "knocked" : "grazed"
 			return
 	. = ..()
