@@ -46,10 +46,10 @@
 
 /obj/effect/pulsar_ship/New()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/decay_orbit), decay_timer)
+	addtimer(CALLBACK(src, PROC_REF(decay_orbit)), decay_timer)
 	radio = new /obj/item/device/radio{channels=list("Engineering")}(src)
 	name = pick(list("Dutchman", "Celeste", "Barnham's Pride", "Horseman", "Christian", "Hera's Dream", "Manatee", "Antelope"))
-	
+
 /obj/effect/pulsar_ship/Destroy()
 	. = ..()
 	qdel(radio)
@@ -62,7 +62,7 @@
 	if(!crash_timer_id && !overcharge_timer_id)
 		var/movedir = pick(NORTH, SOUTH, EAST, WEST)
 		try_move(movedir)
-	addtimer(CALLBACK(src, .proc/decay_orbit), decay_timer)
+	addtimer(CALLBACK(src, PROC_REF(decay_orbit)), decay_timer)
 
 /obj/effect/pulsar_ship/proc/try_move(newdir)
 	var/turf/newloc = get_step(src, newdir)
@@ -84,7 +84,7 @@
 				beam_collision = TRUE
 				if(!crash_timer_id)
 					radio.autosay("WARNING: collision with radiation beams imminent! ETA: 3 minutes!", "Pulsar Monitor", "Engineering", TRUE)
-					crash_timer_id = addtimer(CALLBACK(src, .proc/crash_into_beam), 3 MINUTES, TIMER_STOPPABLE)
+					crash_timer_id = addtimer(CALLBACK(src, PROC_REF(crash_into_beam)), 3 MINUTES, TIMER_STOPPABLE)
 		if(!beam_collision)
 			stop_rad_storm()
 
@@ -107,12 +107,12 @@
 	if(start && !block_events)
 		if(!overcharge_timer_id)
 			radio.autosay("WARNING: pulsar overcharge imminent! ETA: 3 minutes!", "Pulsar Monitor", "Engineering", TRUE)
-			overcharge_timer_id = addtimer(CALLBACK(src, .proc/overcharge), 3 MINUTES, TIMER_STOPPABLE)
-	else 
+			overcharge_timer_id = addtimer(CALLBACK(src, PROC_REF(overcharge)), 3 MINUTES, TIMER_STOPPABLE)
+	else
 		if(overcharge_timer_id)
 			deltimer(overcharge_timer_id)
 			radio.autosay("Pulsar overcharge avoided.", "Pulsar Monitor", "Engineering", TRUE)
-			overcharge_timer_id = null	
+			overcharge_timer_id = null
 		if(overcharge)
 			overcharge.endWhen = 1
 			overcharge = null

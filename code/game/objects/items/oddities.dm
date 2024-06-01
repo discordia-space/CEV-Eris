@@ -366,12 +366,10 @@
 
 /obj/item/oddity/broken_necklace/examine(mob/user, extra_description = "")
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			extra_description += SPAN_NOTICE("This feels cold to the touch.")
-
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			extra_description += SPAN_NOTICE("This feels warm to the touch.")
+	if(my_area.bluespace_entropy < (my_area.bluespace_hazard_threshold * 0.75))
+		extra_description += SPAN_NOTICE("This feels cold to the touch.")
+	else
+		extra_description += SPAN_NOTICE("This feels warm to the touch.")
 
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
 		extra_description += SPAN_NOTICE("\nHas it always shone so brightly?")

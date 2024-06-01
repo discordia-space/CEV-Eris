@@ -540,14 +540,15 @@
 	bitesize = 3
 	nutriment_amt = 3
 	preloaded_reagents = list("sprinkles" = 1)
-	New()
-		..()
-		if(prob(30))
-			src.icon_state = "donut2"
-			src.overlay_state = "box-donut2"
-			src.name = "frosted donut"
-			reagents.add_reagent("sprinkles", 2)
-			center_of_mass = list("x"=19, "y"=16)
+
+/obj/item/reagent_containers/food/snacks/donut/normal/New()
+	if(prob(30))
+		icon_state = "donut2"
+		overlay_state = "box-donut2"
+		name = "frosted donut"
+		preloaded_reagents["sprinkles"] = 2
+		center_of_mass = list("x"=19, "y"=16)
+	..()
 
 /obj/item/reagent_containers/food/snacks/donut/chaos
 	name = "chaos donut"
@@ -557,36 +558,35 @@
 	nutriment_amt = 2
 	bitesize = 10
 	preloaded_reagents = list("sprinkles" = 1)
-	New()
-		..()
-		var/chaosselect = pick(1,2,3,4,5,6,7,8,9,10)
-		switch(chaosselect)
-			if(1)
-				reagents.add_reagent("nutriment", 3)
-			if(2)
-				reagents.add_reagent("capsaicin", 3)
-			if(3)
-				reagents.add_reagent("frostoil", 3)
-			if(4)
-				reagents.add_reagent("sprinkles", 3)
-			if(5)
-				reagents.add_reagent("plasma", 3)
-			if(6)
-				reagents.add_reagent("coco", 3)
-			if(7)
-				reagents.add_reagent("slimejelly", 3)
-			if(8)
-				reagents.add_reagent("banana", 3)
-			if(9)
-				reagents.add_reagent("berryjuice", 3)
-			if(10)
-				reagents.add_reagent("tricordrazine", 3)
-		if(prob(30))
-			src.icon_state = "donut2"
-			src.overlay_state = "box-donut2"
-			src.name = "frosted chaos donut"
-			reagents.add_reagent("sprinkles", 2)
 
+/obj/item/reagent_containers/food/snacks/donut/chaos/New()
+	switch(rand(1, 10))
+		if(1)
+			preloaded_reagents = list("nutriment" = 3)
+		if(2)
+			preloaded_reagents = list("capsaicin" = 3)
+		if(3)
+			preloaded_reagents = list("frostoil" = 3)
+		if(4)
+			preloaded_reagents = list("sprinkles" = 3)
+		if(5)
+			preloaded_reagents = list("plasma" = 3)
+		if(6)
+			preloaded_reagents = list("coco" = 3)
+		if(7)
+			preloaded_reagents = list("slimejelly" = 3)
+		if(8)
+			preloaded_reagents = list("banana" = 3)
+		if(9)
+			preloaded_reagents = list("berryjuice" = 3)
+		if(10)
+			preloaded_reagents = list("tricordrazine" = 3)
+	if(prob(30))
+		icon_state = "donut2"
+		overlay_state = "box-donut2"
+		name = "frosted chaos donut"
+		preloaded_reagents["sprinkles"] = 2
+	..()
 
 /obj/item/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
@@ -597,13 +597,14 @@
 	nutriment_amt = 3
 	bitesize = 5
 	preloaded_reagents = list("sprinkles" = 1, "berryjuice" = 5)
-	New()
-		..()
-		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "frosted jelly donut"
-			reagents.add_reagent("sprinkles", 2)
+
+/obj/item/reagent_containers/food/snacks/donut/jelly/New()
+	if(prob(30))
+		icon_state = "jdonut2"
+		overlay_state = "box-donut2"
+		name = "frosted jelly donut"
+		preloaded_reagents = list("sprinkles" = 2, "berryjuice" = 5)
+	..()
 
 /obj/item/reagent_containers/food/snacks/donut/slimejelly
 	name = "jelly donut"
@@ -614,13 +615,13 @@
 	nutriment_amt = 3
 	bitesize = 5
 	preloaded_reagents = list("sprinkles" = 1, "slimejelly" = 5)
-	New()
-		..()
-		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "frosted jelly donut"
-			reagents.add_reagent("sprinkles", 2)
+
+/obj/item/reagent_containers/food/snacks/donut/slimejelly/New()
+	if(prob(30))
+		icon_state = "jdonut2"
+		overlay_state = "box-donut2"
+		name = "frosted jelly donut"
+		preloaded_reagents = list("sprinkles" = 2, "slimejelly" = 5)
 
 /obj/item/reagent_containers/food/snacks/donut/cherryjelly
 	name = "jelly donut"
@@ -631,13 +632,13 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 3
 	preloaded_reagents = list("sprinkles" = 1, "cherryjelly" = 5)
-	New()
-		..()
-		if(prob(30))
-			src.icon_state = "jdonut2"
-			src.overlay_state = "box-donut2"
-			src.name = "frosted jelly donut"
-			reagents.add_reagent("sprinkles", 2)
+
+/obj/item/reagent_containers/food/snacks/donut/cherryjelly/New()
+	if(prob(30))
+		icon_state = "jdonut2"
+		overlay_state = "box-donut2"
+		name = "frosted jelly donut"
+		preloaded_reagents = list("sprinkles" = 2, "cherryjelly" = 5)
 
 /obj/item/reagent_containers/food/snacks/donut/stat_buff
 	name = "masterpiece donut"
@@ -1058,11 +1059,12 @@
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_desc = list("bun" = 2, "metal" = 3)
 	nutriment_amt = 2
-	New()
-		..()
-		if(prob(5))
-			reagents.add_reagent("nanites", 2)
+
+/obj/item/reagent_containers/food/snacks/roburger/New()
+	if(prob(5))
+		preloaded_reagents = list("nanites" = 2)
 	taste_tag = list(BLAND_FOOD)
+	..()
 
 /obj/item/reagent_containers/food/snacks/roburgerbig
 	name = "roburger"
@@ -1414,13 +1416,14 @@
 	nutriment_amt = 8
 	cooked = TRUE
 	taste_tag = list(SWEET_FOOD)
-	New()
-		..()
-		if(prob(10))
-			name = "exceptional plump pie"
-			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
-			reagents.add_reagent("tricordrazine", 5)
+
+/obj/item/reagent_containers/food/snacks/plump_pie/New()
+	if(prob(10))
+		name = "exceptional plump pie"
+		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
+		preloaded_reagents = list("tricordrazine" = 5)
 	taste_tag = list(SWEET_FOOD, UMAMI_FOOD)
+	..()
 
 /obj/item/reagent_containers/food/snacks/xemeatpie
 	name = "xeno-pie"
@@ -1506,14 +1509,6 @@
 	bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
 	junk_food = TRUE
 	spawn_tags = SPAWN_TAG_JUNKFOOD
-	New()
-		..()
-		unpopped = rand(1,10)
-	On_Consume()
-		if(prob(unpopped))	//lol ...what's the point?
-			to_chat(usr, SPAN_WARNING("You bite down on an un-popped kernel!"))
-			unpopped = max(0, unpopped-1)
-		..()
 
 /obj/item/reagent_containers/food/snacks/sosjerky
 	name = "scaredy's private reserve beef jerky"
@@ -1795,44 +1790,56 @@
 	nutriment_desc = list("backwash" = 1)
 	nutriment_amt = 1
 	bitesize = 5
-	New()
-		..()
-		var/mysteryselect = pick(1,2,3,4,5,6,7,8,9,10)
-		switch(mysteryselect)
-			if(1)
-				reagents.add_reagent("nutriment", 6)
-				reagents.add_reagent("capsaicin", 3)
-				reagents.add_reagent("tomatojuice", 2)
-			if(2)
-				reagents.add_reagent("nutriment", 6)
-				reagents.add_reagent("frostoil", 3)
-				reagents.add_reagent("tomatojuice", 2)
-			if(3)
-				reagents.add_reagent("nutriment", 5)
-				reagents.add_reagent("water", 5)
-				reagents.add_reagent("tricordrazine", 5)
-			if(4)
-				reagents.add_reagent("nutriment", 5)
-				reagents.add_reagent("water", 10)
-			if(5)
-				reagents.add_reagent("nutriment", 2)
-				reagents.add_reagent("banana", 10)
-			if(6)
-				reagents.add_reagent("nutriment", 6)
-				reagents.add_reagent("blood", 10)
-			if(7)
-				reagents.add_reagent("slimejelly", 10)
-				reagents.add_reagent("water", 10)
-			if(8)
-				reagents.add_reagent("carbon", 10)
-				reagents.add_reagent("toxin", 10)
-			if(9)
-				reagents.add_reagent("nutriment", 5)
-				reagents.add_reagent("tomatojuice", 10)
-			if(10)
-				reagents.add_reagent("nutriment", 6)
-				reagents.add_reagent("tomatojuice", 5)
-				reagents.add_reagent("imidazoline", 5)
+
+/obj/item/reagent_containers/food/snacks/mysterysoup/New()
+	// Having 'preloaded_reagents' variable will result in 'reagents' datum being created
+	// on ..() call and fillied with stuff listed in 'preloaded_reagents'
+	switch(rand(1, 10))
+		if(1)
+			preloaded_reagents = list(
+			"nutriment" = 6,
+			"capsaicin" = 3,
+			"tomatojuice" = 2)
+		if(2)
+			preloaded_reagents = list(
+			"nutriment" = 6,
+			"frostoil" = 3,
+			"tomatojuice" = 2)
+		if(3)
+			preloaded_reagents = list(
+			"nutriment" = 5,
+			"water" = 5,
+			"tricordrazine" = 5)
+		if(4)
+			preloaded_reagents = list(
+			"nutriment" = 5,
+			"water" = 10)
+		if(5)
+			preloaded_reagents = list(
+			"nutriment" = 2,
+			"banana" = 10)
+		if(6)
+			preloaded_reagents = list(
+			"nutriment" = 6,
+			"blood" = 10)
+		if(7)
+			preloaded_reagents = list(
+			"slimejelly" = 10,
+			"water" = 10)
+		if(8)
+			preloaded_reagents = list(
+			"carbon" = 10,
+			"toxin" = 10)
+		if(9)
+			preloaded_reagents = list(
+			"nutriment" = 5,
+			"tomatojuice" = 10)
+		if(10)
+			preloaded_reagents = list(
+			"nutriment" = 6,
+			"tomatojuice" = 5,
+			"imidazoline" = 5)
+	..()
 
 /obj/item/reagent_containers/food/snacks/wishsoup
 	name = "wish soup"
@@ -1843,12 +1850,13 @@
 	center_of_mass = list("x"=16, "y"=11)
 	bitesize = 5
 	preloaded_reagents = list("water" = 10)
-	New()
-		..()
-		if(prob(25))
-			src.desc = "A wish come true!"
-			reagents.add_reagent("nutriment", 8, list("something good" = 8))
+
+/obj/item/reagent_containers/food/snacks/wishsoup/New()
+	if(prob(25))
+		desc = "A wish come true!"
+		preloaded_reagents = list("nutriment" = 8)
 	taste_tag = list(VEGETARIAN_FOOD, VEGAN_FOOD,BLAND_FOOD)
+	..()
 
 /obj/item/reagent_containers/food/snacks/hotchili
 	name = "hot chili"
@@ -2466,14 +2474,14 @@
 	nutriment_desc = list("mushroom" = 4)
 	nutriment_amt = 5
 	cooked = TRUE
-	New()
-		..()
-		if(prob(10))
-			name = "exceptional plump helmet biscuit"
-			desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
-			reagents.add_reagent("nutriment", 3)
-			reagents.add_reagent("tricordrazine", 5)
+
+/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit/New()
+	if(prob(10))
+		name = "exceptional plump helmet biscuit"
+		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
+		preloaded_reagents = list("nutriment" = 3, "tricordrazine" = 5)
 	taste_tag = list(BLAND_FOOD,UMAMI_FOOD)
+	..()
 
 /obj/item/reagent_containers/food/snacks/chawanmushi
 	name = "chawanmushi"
@@ -2498,10 +2506,12 @@
 	nutriment_desc = list("tomato" = 4, "beet" = 4)
 	nutriment_amt = 8
 	cooked = TRUE
-	New()
-		..()
-		name = pick(list("borsch","bortsch","borstch","borsh","borshch","borscht"))
+
+/obj/item/reagent_containers/food/snacks/beetsoup/New()
+	name = pick(list("borsch","bortsch","borstch","borsh","borshch","borscht"))
 	taste_tag = list(BLAND_FOOD,VEGAN_FOOD,VEGETARIAN_FOOD,UMAMI_FOOD)
+	..()
+
 /obj/item/reagent_containers/food/snacks/tossedsalad
 	name = "tossed salad"
 	desc = "A proper salad, basic and simple, with little bits of carrot, tomato and apple intermingled. Vegan!"

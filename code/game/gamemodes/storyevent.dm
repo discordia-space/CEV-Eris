@@ -65,7 +65,7 @@
 
 
 //Check if we can trigger
-/datum/storyevent/proc/can_trigger(var/severity, var/mob/report)
+/datum/storyevent/proc/can_trigger(var/severity, var/mob/report, var/manual)
 	.=TRUE
 	if (!enabled)
 		if (report) to_chat(report, SPAN_NOTICE("Failure: The event is disabled"))
@@ -77,6 +77,9 @@
 
 	if(processing && is_processing())
 		if (report) to_chat(report, SPAN_NOTICE("Failure: This event is already processing"))
+		return FALSE
+
+	if(!manual && GLOB.storyteller.calculate_event_cost(src, severity) > GLOB.storyteller.points[severity])
 		return FALSE
 
 	//IF this is a wrapper for a random event, we'll check if that event can trigger
@@ -156,4 +159,4 @@
 	return max(mod-(abs(val-req)**2),0)/mod
 
 /datum/storyevent/proc/get_cost(var/event_type)
-	return event_pools[event_type]
+	return event_pools[event_type] * GLOB.storyteller.repetition_multiplier ** occurrences
