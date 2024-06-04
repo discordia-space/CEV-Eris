@@ -62,7 +62,7 @@
 			if(H.stats.getPerk(PERK_ARTIST) && H.sanity.insight > 40)
 				ins_used = input("How much of your insight will you dedicate to this work? 40-[H.sanity.insight > 100 ? 100 : H.sanity.insight]","Insight Used") as null|num
 			else
-				ins_used = H.sanity.insight
+				ins_used = H.sanity.insight > 100 ? 100 : H.sanity.insight
 			create_art(ins_used, H)
 			return TRUE
 		return FALSE
