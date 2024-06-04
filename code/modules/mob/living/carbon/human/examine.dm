@@ -181,7 +181,7 @@
 		if(H.stats.getPerk(PERK_NOBLE))
 			msg += "[T.He] [T.has] a noble demeanour.\n"
 		if(H.stats.getPerk(PERK_LOWBORN))
-			msg += "[T.He] [T.has] a common demeanour.\n"
+			msg += "[T.He] [T.has] a lowborn demeanour.\n"
 
 	//crazy
 	if(ishuman(user) && !wear_mask)
