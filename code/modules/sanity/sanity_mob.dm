@@ -352,7 +352,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 	owner.pick_individual_objective()
 	resting = 0
-	insight = 0
+	insight -= 100
 
 /datum/sanity/proc/onDamage(amount)
 	changeLevel(-SANITY_DAMAGE_HURT(amount, owner.stats.getStat(STAT_VIG)))
