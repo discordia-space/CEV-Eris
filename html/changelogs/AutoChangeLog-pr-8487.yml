@@ -1,0 +1,6 @@
+author: Chickenish
+delete-after: true
+changes:
+  - balance: The AME is now subsidized by Command where necessary in exchange for
+      paying taxes.
+  - bugfix: fixed a few things wrong with Silo.
