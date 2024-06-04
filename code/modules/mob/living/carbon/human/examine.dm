@@ -187,9 +187,9 @@
 	if(ishuman(user) && !wear_mask)
 		var/mob/living/carbon/human/H = user
 		if(H.sanity.level <=33 && H.sanity.level > 5)
-			msg += "<span class='warning'><B>[T.He] [T.has] a weird look on [T.his] face.</B>\n"
+			msg += "<span class='warning'><B>[T.He] [T.has] a weird look on [T.his] face.</B></span>\n"
 		else if(H.sanity.level <= 5)
-			msg += "<span class='warning'><B>[T.He] [T.has] a crazed look on [T.his] face.</B>\n"
+			msg += "<span class='warning'><B>[T.He] [T.has] a crazed look on [T.his] face.</B></span>\n"
 
 	//splints
 	for(var/organ in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG, BP_GROIN, BP_HEAD, BP_CHEST))
