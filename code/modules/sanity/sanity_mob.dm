@@ -283,16 +283,16 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 /datum/sanity/proc/level_up()
 	rest_timer_active = FALSE
-	var/rest = input(owner, "How would you like to improve your stats?", "Rest complete", null) in list(
-		"Internalize your recent experiences",
-		"Focus on an oddity",
-		"Convert your fulfilled insight for later use"
+	var/rest = input(owner, "How would you like to improve your stats?", "Rest complete.", null) in list(
+		"Internalize your recent experiences.",
+		"Focus on an oddity.",
+		"Convert your fulfilled insight for later use."
 		)
 
 	if(rest == "Focus on an oddity")
 		if(owner.stats.getPerk(PERK_ARTIST))
 			to_chat(owner, SPAN_NOTICE("Your artistic mind prevents you from using an oddity."))
-			rest = "Internalize your recent experiences"
+			rest = "Internalize your recent experiences."
 		else
 			var/oddity_in_posession = FALSE
 
@@ -303,7 +303,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 			if(!oddity_in_posession)
 				to_chat(owner, SPAN_NOTICE("You do not have any oddities to use."))
-				rest = "Internalize your recent experiences"
+				rest = "Internalize your recent experiences."
 
 	switch(rest)
 
@@ -315,7 +315,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 					inspiration_items += I
 
 			if(inspiration_items.len)//should always work, but in case of bug, there is an else
-				var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
+				var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration.", "Level up.") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
 				if(!O)
 					return
 
@@ -323,7 +323,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 				var/list/L = I.calculate_statistics()
 				for(var/stat in L)
 					var/stat_up = L[stat] * 2
-					to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
+					to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]."))
 					owner.stats.changeStat(stat, stat_up)
 
 				if(I.perk)
