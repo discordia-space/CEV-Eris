@@ -29,10 +29,6 @@
 	addtimer(CALLBACK(smoke, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread/bad, start)), 2 SECOND)
 	addtimer(CALLBACK(smoke, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread/bad, start)), 3 SECOND)
 	addtimer(CALLBACK(smoke, TYPE_PROC_REF(/datum/effect/effect/system/smoke_spread/bad, start)), 4 SECOND)
-	for(var/obj/effect/blob/B in view(8,src))
-		var/damage = round(30/(get_dist(B,src)+1))
-		B.health -= damage
-		B.update_icon()
 
 	addtimer(CALLBACK(src, PROC_REF(used_up)), 8 SECOND)
 	return

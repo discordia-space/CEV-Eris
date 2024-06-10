@@ -9,7 +9,6 @@
 		/datum/design/research/item/flash,
 		/datum/design/autolathe/sec/handcuffs,
 		/datum/design/autolathe/sec/zipties,
-		/datum/design/autolathe/sec/electropack,
 		/datum/design/autolathe/misc/taperecorder,
 		/datum/design/autolathe/tool/tacknife,
 		/datum/design/autolathe/sec/beartrap,

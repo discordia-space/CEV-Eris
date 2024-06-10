@@ -90,6 +90,9 @@ var/list/global/tank_gauge_cache = list()
 		extra_description += SPAN_NOTICE("\The [src] feels [descriptive].")
 	..(user, extra_description)
 
+/obj/item/assembly
+	bad_type = /obj/item/assembly
+
 /obj/item/tank/attackby(obj/item/W, mob/living/user)
 	..()
 	if (istype(src.loc, /obj/item/assembly))

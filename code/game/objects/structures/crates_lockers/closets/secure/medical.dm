@@ -114,17 +114,6 @@
 	new /obj/item/storage/belt/medical(src)
 	new /obj/item/storage/pouch/medical_supply(src)
 
-/obj/structure/closet/secure_closet/animal
-	name = "animal control closet"
-	req_access = list(access_surgery)
-	icon_state = "sec"
-
-/obj/structure/closet/secure_closet/animal/populate_contents()
-	new /obj/item/device/assembly/signaler(src)
-	new /obj/item/device/radio/electropack(src)
-	new /obj/item/device/radio/electropack(src)
-	new /obj/item/device/radio/electropack(src)
-
 /obj/structure/closet/secure_closet/chemical
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
