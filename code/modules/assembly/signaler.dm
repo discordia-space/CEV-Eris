@@ -19,12 +19,22 @@
 	var/datum/wires/connected
 	var/datum/radio_frequency/radio_connection
 	var/deadman = 0
+	var/roundstart_barrier_id // Text. Links this signaller with a group of pre-mapped barriers that has matching ID
 
-/obj/item/device/assembly/signaler/New()
-	..()
-	spawn(40)
-		set_frequency(frequency)
-	return
+
+/obj/item/device/assembly/signaler/Initialize()
+	. = ..()
+	if(roundstart_barrier_id)
+		var/list/frequency_and_code_list = GLOB.roundstart_barrier_groups[roundstart_barrier_id]
+		if(!frequency_and_code_list)
+			frequency_and_code_list = list(	rand(1,100), // var/code used by src and /obj/structure/barrier/four_way
+											rand(1200, 1600)) // var/frequency, just like above
+			GLOB.roundstart_barrier_groups[roundstart_barrier_id] = frequency_and_code_list
+
+		code = frequency_and_code_list[1]
+		frequency = frequency_and_code_list[2]
+		radio_connection = SSradio.add_object(src, frequency)
+	set_frequency(frequency)
 
 
 /obj/item/device/assembly/signaler/activate()

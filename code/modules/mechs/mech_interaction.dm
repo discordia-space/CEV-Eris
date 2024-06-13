@@ -114,6 +114,10 @@
 		if(!resolved && A && selected_system)
 			selected_system.afterattack(A,user,adj,params)
 
+		//Interferes with mining
+		if(istype(selected_system, /obj/item/mech_equipment/drill))
+			return
+
 		// Mech equipment subtypes can add further click delays
 		var/extra_delay = selected_system.equipment_delay
 		setClickCooldown(arms_action_delay() + extra_delay)
@@ -200,6 +204,11 @@
 			return FALSE
 		if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
 			to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
+			return FALSE
+	if(ishuman(user) && body?.armor_restrictions)	//wear_suit only exists on humans; only bother with checking if the chassis forbids it
+		var/mob/living/carbon/human/enterer = user
+		if(enterer.wear_suit && enterer.wear_suit)	//If the user is wearing anything in their suit slot
+			to_chat(user, SPAN_WARNING("You must remove your [enterer.wear_suit] to fit inside."))
 			return FALSE
 	return TRUE
 

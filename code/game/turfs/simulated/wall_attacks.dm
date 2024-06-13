@@ -185,12 +185,12 @@
 	if(I.force)
 		var/attackforce = I.force * I.structure_damage_factor
 		if(window_type)
-			if(attackforce > (window_max_health / 10))
+			if(attackforce > (window_max_health / 20))
 				take_damage(attackforce) // Playsound is included here
 				visible_message(SPAN_DANGER("\The [user] hits the window with \the [I]!"))
 			else
 				visible_message(SPAN_DANGER("\The [user] hits the window with \the [I], but it bounces off!"))
-		else if(attackforce > (max_health / 10))
+		else if(attackforce > (max_health / 20))
 			playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
 			take_damage(attackforce)
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))

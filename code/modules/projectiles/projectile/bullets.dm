@@ -34,11 +34,11 @@
 		return FALSE
 	return ..()
 
-/obj/item/projectile/bullet/check_penetrate(var/atom/A)
-	if((!A || !A.density) && !istype(A, /obj/item/shield)) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
+/obj/item/projectile/bullet/check_penetrate(atom/A)
+	ASSERT(A)
 
 	if(istype(A, /mob/living/exosuit))
-		return 1 //exosuits have their own penetration handling
+		return TRUE //exosuits have their own penetration handling
 
 	var/blocked_damage = 0
 	if(istype(A, /turf/wall)) // TODO: refactor this from functional into OOP
@@ -62,6 +62,18 @@
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
 		blocked_damage = round(B.material.integrity / 8)
+
+/*
+	else if(istype(A, /obj/structure/barrier/ballistic))
+		// Okay, so to stop every single bullet from damaging, and then phazing right trough the barricade, we must come here and do this shit
+		// You'd think that checking 'penetration' variable would do the thing, yet it's the same for almost everything,
+		// from measly pistol to anti-materiel rounds. But 'armor_divisor', on the other hand, actually represents penetration potential
+		if(armor_divisor < 2)
+			return FALSE // Anything but anti-materiel, high-velocity, and few other projectiles with great penetration will bounce
+		blocked_damage = 20
+*/
+// Ballistic barriers are temporarily disabled // TODO: Fix later --KIROV
+
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		blocked_damage = 20
 
@@ -75,9 +87,7 @@
 			//display a message so that people on the other side aren't so confused
 			A.visible_message(SPAN_WARNING("\The [src] pierces through \the [A]!"))
 			playsound(A.loc, 'sound/weapons/shield/shieldpen.ogg', 50, 1)
-		return 1
-
-	return 0
+		return TRUE
 
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet

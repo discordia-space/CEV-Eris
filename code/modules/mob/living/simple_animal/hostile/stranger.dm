@@ -162,11 +162,12 @@
 
 /obj/item/gun/energy/plasma/stranger/examine(mob/user, extra_description = "")
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			extra_description += SPAN_NOTICE("\nIt's fading out.")
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			extra_description += SPAN_NOTICE("\nIt's occasionally pulsing with energy.")
+
+	if(my_area.bluespace_entropy < (my_area.bluespace_hazard_threshold * 0.3))
+		extra_description += SPAN_NOTICE("\nIt's fading out.")
+	else
+		extra_description += SPAN_NOTICE("\nIt's occasionally pulsing with energy.")
+
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
 		extra_description += SPAN_NOTICE("\nIt glows with an inner radiance.")
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)

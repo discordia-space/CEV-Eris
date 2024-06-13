@@ -935,8 +935,8 @@ proc/admin_notice(message, rights)
 		tts_seeds += seed_name
 	tts_seeds[seed_name] = list("value" = seed_value, "category" = seed_category, "gender" = seed_gender_restriction)
 
-	call(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
-	call(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
+	LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
+	LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
 
 	message_admins("\blue [key_name_admin(usr)] added text-to-speech seed \"[seed_value]\", named \"[seed_name]\".", 1)
 	log_admin("[key_name(usr)] added text-to-speech seed \"[seed_value]\", named \"[seed_name]\".")

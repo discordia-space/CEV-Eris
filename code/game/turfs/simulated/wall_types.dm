@@ -1,8 +1,8 @@
 /turf/wall/reinforced
 	name = "reinforced wall"
 	icon_state = "eris_reinf_wall"
-	health = 1200
-	max_health = 1200
+	health = 600
+	max_health = 600
 	hardness = 140
 	is_reinforced = TRUE
 	wall_type = "eris_reinf_wall"

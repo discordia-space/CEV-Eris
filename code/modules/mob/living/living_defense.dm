@@ -109,18 +109,19 @@
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
 	//Goon/tg chat should take care of spam issue on this one
 	switch(effective_armor)
-		if(INFINITY to 90)
-			armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"),
-							SPAN_NOTICE("Your armor absorbed the impact!"))
-		if(90 to 74)
-			armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
-							SPAN_NOTICE("Your armor reduced the impact greatly!"))
-		if(74 to 49)
-			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
-							SPAN_NOTICE("Your armor protects you from the impact!"))
-		if(49 to 24)
+		if(24 to 49)
 			armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."),
 							SPAN_NOTICE("Your armor reduced the impact a little."))
+		if(50 to 74)
+			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
+							SPAN_NOTICE("Your armor protects you from the impact!"))
+		if(75 to 89)
+			armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
+							SPAN_NOTICE("Your armor reduced the impact greatly!"))
+		if(90 to INFINITY)
+			armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"),
+							SPAN_NOTICE("Your armor absorbed the impact!"))
+
 
 	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
 	if(ablative_armor)
@@ -279,15 +280,6 @@
 		var/obj/O = AM
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
-
-		if (prob(miss_chance))
-			visible_message("\blue \The [O] misses [src] narrowly!")
-			playsound(src, "miss_sound", 50, 1, -6)
-			return
 
 		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 			IgniteMob()

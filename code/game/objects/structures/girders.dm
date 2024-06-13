@@ -215,6 +215,7 @@
 	return absorbed
 
 /obj/structure/girder/bullet_act(obj/item/projectile/P, def_zone)
+	P.on_hit(src)
 	// Girders only provide partial cover. There's a chance that the projectiles will just pass through, unless you are trying to shoot the girder
 	var/prop_of_blocking = is_low ? 25 : 50
 	if(P.original != src && !prob(prop_of_blocking))

@@ -8,8 +8,8 @@
 	opacity = FALSE
 	layer = LOW_WALL_LAYER
 	throwpass = TRUE
-	max_health = 600
-	health = 600
+	max_health = 500
+	health = 500
 	is_low_wall = TRUE
 	blocks_air = FALSE
 	wall_type = "eris_low"
@@ -28,12 +28,12 @@
 	window_prespawned_material = "smart"
 
 /turf/wall/low/with_glass
-	icon_state = "eris_low_window"
+	icon_state = "eris_low_glass"
 	wall_type = "eris_low"
 	window_prespawned_material = MATERIAL_GLASS
 
 /turf/wall/low/with_glass/reinforced
-	icon_state = "eris_low_window_reinf"
+	icon_state = "eris_low_reinf_glass"
 	window_prespawned_material = MATERIAL_RGLASS
 
 /turf/wall/low/with_glass/smart
@@ -41,11 +41,11 @@
 	window_prespawned_material = "smart" // MATERIAL_RGLASS if near space, MATERIAL_GLASS otherwise
 
 /turf/wall/low/with_glass/plasma
-	icon_state = "eris_low_plasma_window"
+	icon_state = "eris_low_plasma_glass"
 	window_prespawned_material = MATERIAL_PLASMAGLASS
 
 /turf/wall/low/with_glass/plasma_reinforced
-	icon_state = "eris_low_plasma_window_reinf"
+	icon_state = "eris_low_plasma_reinf_glass"
 	window_prespawned_material = MATERIAL_RPLASMAGLASS
 
 /turf/wall/low/with_glass/smart_plasma
