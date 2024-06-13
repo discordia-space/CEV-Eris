@@ -96,5 +96,9 @@
 /turf/wall/untinted/onestar_reinforced
 	name = "reinforced wall"
 	icon_state = "onestar_reinf_wall"
+	health = 600
+	max_health = 600
+	hardness = 140
+	is_reinforced = TRUE
 	wall_style = "minimalistic"
 	wall_type = "onestar_reinf_wall"
