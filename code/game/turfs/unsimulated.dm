@@ -5,7 +5,7 @@
 	opacity = TRUE
 	density = TRUE
 	is_using_flat_icon = TRUE
-
+	is_simulated = FALSE
 
 /turf/wall/dummy/fakeglass
 	name = "window"

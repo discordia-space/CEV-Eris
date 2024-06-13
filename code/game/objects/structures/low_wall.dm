@@ -1,35 +1,30 @@
-#define OVERLAY_NONE		1 // No overlays beyond the base low wall and glass
-#define OVERLAY_BORDER		2 // Always add extra overlays, but only consider regular walls neighbours
-#define OVERLAY_FULL		3 // Always add extra overlays
-
 // Waist-height object with traits from both walls and tables
 // It goes over a turf, can have items and a full tile window on it, blocks movement, can be climbed over, and provides cover
 /turf/wall/low
 	name = "low wall"
 	desc = "" // TODO --KIROV
-	icon = 'icons/test_walls_best_walls.dmi'
+	icon = 'icons/walls.dmi'
 	icon_state = "eris_low"
 	opacity = FALSE
 	layer = LOW_WALL_LAYER
 	throwpass = TRUE
-	maxHealth = 450
-	health = 450
+	max_health = 600
+	health = 600
 	is_low_wall = TRUE
 	blocks_air = FALSE
-	var/wall_type = "eris_low" // icon_state that would be used for overlay generation, icon_state serves for map preview only
-	var/overlay_type = OVERLAY_BORDER
+	wall_type = "eris_low"
 
 /turf/wall/low/onestar // Standard dungeon low wall, only comes in one flavor
 	name = "One Star low wall"
 	icon_state = "onestar_low_smart"
+	wall_style = "minimalistic" // No overlays at all
 	wall_type = "onestar_low"
-	overlay_type = OVERLAY_NONE
 	window_prespawned_material = "smart"
 
 /turf/wall/low/frontier // Fancy downstream low wall, does not spawn in the wild yet
 	icon_state = "frontier_low_smart"
+	wall_style = "fancy" // Fancy overlays on every wall
 	wall_type = "frontier_low"
-	overlay_type = OVERLAY_FULL
 	window_prespawned_material = "smart"
 
 /turf/wall/low/with_glass
@@ -77,7 +72,7 @@
 				shard.throw_at(target = target_turf, range = 40, speed = 3)
 	window_type = null
 	window_health = null
-	window_maxHealth = null
+	window_max_health = null
 	window_heat_resistance = null
 	window_damage_resistance = null
 	blocks_air = FALSE
@@ -94,25 +89,25 @@
 		if(MATERIAL_GLASS)
 			window_type = MATERIAL_GLASS
 			window_health = 40
-			window_maxHealth = 40
+			window_max_health = 40
 			window_heat_resistance = T0C + 200
 			window_damage_resistance = RESISTANCE_FLIMSY
 		if(MATERIAL_RGLASS)
 			window_type = MATERIAL_RGLASS
 			window_health = 80
-			window_maxHealth = 80
+			window_max_health = 80
 			window_heat_resistance = T0C + 750
 			window_damage_resistance = RESISTANCE_FRAGILE
 		if(MATERIAL_PLASMAGLASS)
 			window_type = MATERIAL_PLASMAGLASS
 			window_health = 200
-			window_maxHealth = 200
+			window_max_health = 200
 			window_heat_resistance = T0C + 5227 // 5500 kelvin
 			window_damage_resistance = RESISTANCE_AVERAGE
 		if(MATERIAL_RPLASMAGLASS)
 			window_type = MATERIAL_RPLASMAGLASS
 			window_health = 250
-			window_maxHealth = 250
+			window_max_health = 250
 			window_heat_resistance = T0C + 5453 // 6000 kelvin
 			window_damage_resistance = RESISTANCE_IMPROVED
 	blocks_air = TRUE
@@ -191,7 +186,7 @@
 		return
 
 	if(ismob(A.loc))
-		user.unEquip(A, loc)
+		user.unEquip(A, src)
 		set_pixel_click_offset(A, params)
 		return
 
@@ -199,13 +194,12 @@
 		var/obj/item/O = A
 		//Mice can push around pens and paper, but not heavy tools
 		if(O.w_class <= user.can_pull_size)
-			O.forceMove(loc)
+			O.forceMove(src)
 			set_pixel_click_offset(O, params, animate=TRUE)
 			return
 		else
 			to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
 			return
-
 	// Climbing
 	if(A == user)
 		if(window_type)
@@ -255,9 +249,9 @@
 	else
 		. = ..() // Calls /turf/wall/take_damage()
 
-/*
-/turf/wall/low/affect_grab(mob/living/user, mob/living/target, state)
-	if(window)
+
+/turf/wall/low/proc/affect_grab(mob/living/user, mob/living/target, state)
+	if(window_type)
 		to_chat(user, SPAN_DANGER("There's a window in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc == loc)
@@ -267,17 +261,14 @@
 			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 50, 1)
-
 		else
 			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
-		target.forceMove(loc)
+		target.forceMove(src)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
 		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey] )</font>"
 		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"
 		msg_admin_attack("[user] puts a [target] on \the [src].")
 	return TRUE
-*/
-

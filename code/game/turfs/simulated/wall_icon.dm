@@ -68,78 +68,103 @@
 /turf/wall/update_icon()
 	if(is_using_flat_icon) // This is some ancient wall, leave it alone
 		return
+
 	icon_state = ""
 	cut_overlays()
-	// TODO: Cache the appearances, no need in re-generating images for every single corner
-	var/initial_icon_state = initial(icon_state)
+
+	var/static/list/appearance_cache
+	if(!appearance_cache)
+		appearance_cache = list()
+
 	for(var/overlay_direction in cardinal)
 		var/connection_type = get_overlay_connection_type(overlay_direction, any_wall_connections)
-		var/overlay_icon_state = "[initial_icon_state]_[connection_type]"
-		if((connection_type == "horizontal") && (initial_icon_state == "frontier_wall")) // Snowflake af
+
+		// Fancy walls and low wall overlays use a different icon in some cases
+		var/right_angle_override = FALSE
+		if((wall_style == "fancy") && (connection_type == "horizontal"))
 			if((overlay_direction == SOUTH) && any_wall_connections[SOUTHWEST])
-				overlay_icon_state = "[initial_icon_state]_[connection_type]_right_angle"
-			if((overlay_direction == WEST) && any_wall_connections[SOUTHEAST])
-				overlay_icon_state = "[initial_icon_state]_[connection_type]_right_angle"
+				right_angle_override = TRUE
+			else if((overlay_direction == WEST) && any_wall_connections[SOUTHEAST])
+				right_angle_override = TRUE
 
-		var/image/image = image(icon, icon_state = overlay_icon_state, dir = overlay_direction)
-		add_overlay(image.appearance)
+		// WALL SPRITE //
+		var/sprite_state = "[wall_type]_[connection_type]"
+		if(right_angle_override)
+			sprite_state = "[wall_type]_[connection_type]_right_angle"
 
-	var/static/list/damage_overlays
-	if(!damage_overlays)
-		damage_overlays = new
-		var/damage_overlay_count = 16
-		var/alpha_inc = 256 / damage_overlay_count
-		for(var/i = 0; i <= damage_overlay_count; i++)
-			var/image/image = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
-			image.blend_mode = BLEND_MULTIPLY
-			image.alpha = (i * alpha_inc) - 1
-			damage_overlays.Add(image.appearance)
+		var/sprite_id = "[sprite_state]_[overlay_direction]"
+		if(appearance_cache[sprite_id] != null)
+			add_overlay(appearance_cache[sprite_id])
+		else
+			var/image/image = image(icon, icon_state = sprite_state, dir = overlay_direction)
+			appearance_cache[sprite_id] = image.appearance
+			add_overlay(appearance_cache[sprite_id])
 
-	var/overlay_index = round((1 - health/maxHealth) * LAZYLEN(damage_overlays)) + 1
-	if(overlay_index > LAZYLEN(damage_overlays))
-		overlay_index = LAZYLEN(damage_overlays)
-	overlays += damage_overlays[overlay_index]
+		// WINDOW SPRITE //
+		if(window_type) // Glass on top of the low wall, if any
+			sprite_state = "[window_type]_[connection_type]"
+			sprite_id = "[sprite_state]_[overlay_direction]"
+			if(appearance_cache[sprite_id] != null)
+				add_overlay(appearance_cache[sprite_id])
+			else
+				var/image/image = image(icon, icon_state = sprite_state, dir = overlay_direction, layer = ABOVE_OBJ_LAYER)
+				image.alpha = 180
+				appearance_cache[sprite_id] = image.appearance
+				add_overlay(appearance_cache[sprite_id])
 
-	#ifdef ZASDBG
-	for(var/ZAS_overlay in ZAS_debug_overlays)
-		overlays += ZAS_overlay
-	#endif
-
-
-/turf/wall/low/update_icon()
-	icon_state = ""
-	cut_overlays()
-	for(var/overlay_direction in cardinal)
-		var/connection_type = get_overlay_connection_type(overlay_direction, any_wall_connections)
-		var/image/image = image(icon, icon_state = "[wall_type]_[connection_type]", dir = overlay_direction)
-		add_overlay(image.appearance) // Main part of the low wall
-		if(window_type)
-			image = image(icon = icon, icon_state = "[window_type]_[connection_type]", dir = overlay_direction)
-			image.alpha = 180
-			add_overlay(image.appearance) // Glass on top of the low wall, if any
-
-		var/overlay_icon_state = "[wall_type]_over_[connection_type]"
-		var/add_extra_overlay
-		if(overlay_type == OVERLAY_FULL) // Fancy overlays that are always present
-			add_extra_overlay = TRUE
-			if(connection_type == "horizontal") // Use an alternative sprite when connecting to a corner
-				if((overlay_direction == SOUTH) && any_wall_connections[SOUTHWEST])
-					overlay_icon_state = "[wall_type]_over_[connection_type]_right_angle"
-				if((overlay_direction == WEST) && any_wall_connections[SOUTHEAST])
-					overlay_icon_state = "[wall_type]_over_[connection_type]_right_angle"
-
-		else if(overlay_type == OVERLAY_BORDER) // Minimalistic overlays that connect regular and low walls
-			var/full_wall_connection_type = get_overlay_connection_type(overlay_direction, full_wall_connections)
-			if(full_wall_connection_type == connection_type)
+		// LOW WALL OVERLAY //
+		if(is_low_wall)
+			sprite_state = "[wall_type]_over_[connection_type]"
+			var/add_extra_overlay
+			if(wall_style == "fancy") // Fancy overlays that are always present
 				add_extra_overlay = TRUE
-				overlay_icon_state = "[wall_type]_over_[full_wall_connection_type]"
+				if(right_angle_override) // Use an alternative sprite when connecting to a corner
+					sprite_state = "[wall_type]_over_[connection_type]_right_angle"
 
-		if(add_extra_overlay)
-			image = image(icon, icon_state = overlay_icon_state, dir = overlay_direction, layer = ABOVE_WINDOW_LAYER)
-			add_overlay(image.appearance)
+			else if(wall_style == "default") // Minimalistic overlays that connect regular and low walls
+				var/full_wall_connection_type = get_overlay_connection_type(overlay_direction, full_wall_connections)
+				if(full_wall_connection_type == connection_type)
+					add_extra_overlay = TRUE
+					sprite_state = "[wall_type]_over_[full_wall_connection_type]"
+
+			if(add_extra_overlay)
+				sprite_id = "[sprite_state]_[overlay_direction]"
+				if(appearance_cache[sprite_id] != null)
+					add_overlay(appearance_cache[sprite_id])
+				else
+					var/image/image = image(icon, icon_state = sprite_state, dir = overlay_direction, layer = ABOVE_WINDOW_LAYER)
+					appearance_cache[sprite_id] = image.appearance
+					add_overlay(appearance_cache[sprite_id])
+
+	// DAMAGE OVERLAY //
+	if(!is_low_wall)
+		var/static/list/damage_overlays
+		if(!damage_overlays)
+			damage_overlays = new
+			var/damage_overlay_count = 16
+			var/alpha_inc = 256 / damage_overlay_count
+			for(var/i = 0; i <= damage_overlay_count; i++)
+				var/image/image = image(icon = 'icons/turf/walls.dmi', icon_state = "overlay_damage")
+				image.blend_mode = BLEND_MULTIPLY
+				image.alpha = (i * alpha_inc) - 1
+				damage_overlays.Add(image.appearance)
+
+		var/damage_overlay_index = round((1 - health / max_health) * LAZYLEN(damage_overlays)) + 1
+		if(damage_overlay_index > LAZYLEN(damage_overlays))
+			damage_overlay_index = LAZYLEN(damage_overlays)
+		overlays += damage_overlays[damage_overlay_index]
+
+	// DISASSEMBLY OVERLAY //
+	if(!isnull(deconstruction_steps_left))
+		var/deconstruction_steps_total = is_reinforced ? 5 : 1
+		if(deconstruction_steps_left < deconstruction_steps_total) // Wall is partially taken apart
+			var/static/construction_overlay_placeholder
+			if(!construction_overlay_placeholder)
+				var/image/image = image('icons/turf/wall_masks.dmi', "reinf_construct-3")
+				construction_overlay_placeholder = image.appearance
+			overlays += construction_overlay_placeholder
 
 	#ifdef ZASDBG
 	for(var/ZAS_overlay in ZAS_debug_overlays)
 		overlays += ZAS_overlay
 	#endif
-

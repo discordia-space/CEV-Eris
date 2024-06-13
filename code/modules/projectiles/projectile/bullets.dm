@@ -43,7 +43,7 @@
 	var/blocked_damage = 0
 	if(istype(A, /turf/wall)) // TODO: refactor this from functional into OOP
 		var/turf/wall/W = A
-		blocked_damage = round(W.maxHealth / 8)
+		blocked_damage = round(W.max_health / 8)
 	else if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
 		blocked_damage = round(S.shield_integrity / 8)
@@ -52,6 +52,9 @@
 		blocked_damage = round(D.maxHealth / 8)
 		if(D.glass) blocked_damage /= 2
 	else if(istype(A, /obj/structure/girder))
+		if(armor_divisor < 2)
+			return FALSE
+		blocked_damage = 10
 		return TRUE
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A

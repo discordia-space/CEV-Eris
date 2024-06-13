@@ -1,9 +1,8 @@
 /turf/wall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
-	description_info = "Can be deconstructed by welding"
-	description_antag = "Deconstructing these will leave fingerprints. C4 or Thermite leave none"
-	icon = 'icons/test_walls_best_walls.dmi'
+	description_antag = "Deconstruction with tools will leave fingerprints. Explosives, RCD and thermite leave none."
+	icon = 'icons/walls.dmi'
 	icon_state = "eris_wall"
 	layer = CLOSED_TURF_LAYER
 	opacity = TRUE
@@ -15,16 +14,19 @@
 	var/is_low_wall = FALSE // Similar to above, but new. Certainly should be a type check macro // TODO --KIROV
 	var/is_reinforced = FALSE
 	var/is_using_flat_icon = FALSE // Some very old walls aren't using 3/4 perspective and composite sprites
-	var/health = 150
-	var/maxHealth = 150
+	var/health = 300
+	var/max_health = 300
 	var/hardness = 60
 	var/ricochet_id = 0
 	var/any_wall_connections[10] // List of booleans. 8 total directions, 10 is maximum value, 7 and 3 aren't used
 	var/full_wall_connections[10] // Used for adding extra overlays in cases when low and full walls meet
+	var/wall_style = "default" // Affects how the wall sprite is composed. Different styles have different levels of complexity, see update_icon() for details
+	var/wall_type = "eris_wall" // icon_state that would be used for overlay generation, icon_state serves for map preview only
+	var/deconstruction_steps_left
 
 	var/window_type // Low wall stuff, defined here so we can override as few procs as possible
 	var/window_health
-	var/window_maxHealth
+	var/window_max_health
 	var/window_heat_resistance
 	var/window_damage_resistance
 	var/window_prespawned_material
@@ -213,7 +215,7 @@
 	create_bullethole(Proj)//Potentially infinite bullet holes but most walls don't last long enough for this to be a problem.
 
 /* TODO: Let's not chip off material for now, this could be a separate proc --KIROV
-	if(Proj.damage_types[BRUTE] && prob(health / maxHealth * 33))
+	if(Proj.damage_types[BRUTE] && prob(health / max_health * 33))
 		var/obj/item/trash/material/metal/slug = new(get_turf(Proj))
 		slug.matter.Cut()
 		slug.matter[reinf_material ? reinf_material.name : material.name] = 0.1
@@ -245,19 +247,62 @@
 
 
 /turf/wall/examine(mob/user, extra_description = "")
-	if(health == maxHealth)
-		extra_description += SPAN_NOTICE("It looks fully intact.")
+	if(!simulated)
+		return ..(user, extra_description)
+
+	if(health == max_health)
+		extra_description += SPAN_NOTICE("It is undamaged.")
 	else
-		var/hratio = health / maxHealth
-		if(hratio <= 0.3)
+		var/health_ratio = health / max_health
+		if(health_ratio <= 0.3)
 			extra_description += SPAN_WARNING("It looks heavily damaged.")
-		else if(hratio <= 0.6)
-			extra_description += SPAN_WARNING("It looks moderately damaged.")
+		else if(health_ratio <= 0.6)
+			extra_description += SPAN_WARNING("It looks damaged.")
 		else
-			extra_description += SPAN_DANGER("It looks lightly damaged.")
+			extra_description += SPAN_WARNING("It looks slightly damaged.")
+
+	if(is_reinforced)
+		if(isnull(deconstruction_steps_left) || deconstruction_steps_left == 5)
+			extra_description += SPAN_NOTICE("\nYou can start disassembling the wall with a bolt turning tool.")
+		else
+			extra_description += SPAN_WARNING("\nThe wall is partually disassembled.")
+			switch(deconstruction_steps_left)
+				if(4)
+					extra_description += SPAN_NOTICE("\nYou can deconstruct it further by prying away the armor plates.")
+					extra_description += SPAN_NOTICE("\nAlternatively, armor plates could be secured with a bolt turning tool, thus returning the wall to it's original state.")
+				if(3)
+					extra_description += SPAN_NOTICE("\nCut the support beams to advance the process, or pry armor plates in place to reverse it.")
+				if(2)
+					extra_description += SPAN_NOTICE("\nYou can hammer out what's left of support beams or weld them back together.")
+				if(1)
+					extra_description += SPAN_NOTICE("\nYou can finish the process by welding, or turn back and hammer the support beams in place.")
+	else
+		extra_description += SPAN_NOTICE("\nYou can dismantle this wall by welding.")
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		extra_description += SPAN_WARNING("\nThere is fungus growing on [src].")
+		extra_description += SPAN_WARNING("\nThere is a corrosive fungus growing on it, one touch and entire wall will crumble.")
+		extra_description += SPAN_WARNING("\nDirectly applying heat will remove the fungus.")
+
+	if(window_type)
+		var/material/glass/window_material = get_material_by_name(window_type)
+		if(window_material && window_material.display_name)
+			extra_description += SPAN_NOTICE("\nThere is a [window_material.display_name] window")
+
+			var/health_ratio = window_health / window_max_health
+			if(health_ratio == 1)
+				extra_description += SPAN_NOTICE(", it looks fully intact.")
+			else if(health_ratio > 0.75)
+				extra_description += SPAN_NOTICE(", it is slightly cracked.")
+			else if(health_ratio > 0.50)
+				extra_description += SPAN_NOTICE(", it has a few cracks.")
+			else if(health_ratio > 0.25)
+				extra_description += SPAN_NOTICE(", it is heavily cracked!")
+			else
+				extra_description += SPAN_NOTICE(", it is about to break!")
+
+			extra_description += SPAN_NOTICE("\nYou can pry it out with a crowbar.")
+
+	..(user, extra_description)
 
 
 /turf/wall/melt()
@@ -295,30 +340,21 @@
 		take_damage(log(RAND_DECIMAL(0.9, 1.1) * (adj_temp - melting_point)))
 
 /turf/wall/proc/thermitemelt(mob/user) // TODO: Refactor this --KIROV
-	var/obj/effect/overlay/O = new/obj/effect/overlay(src)
-	O.name = "Thermite"
-	O.desc = "Looks hot."
-	O.icon = 'icons/effects/fire.dmi'
-	O.icon_state = "2"
-	O.anchored = TRUE
-	O.density = TRUE
-	O.layer = 5
+	var/obj/effect/overlay/burn_overlay = new/obj/effect/overlay(src)
+	burn_overlay.name = "Thermite"
+	burn_overlay.desc = "Looks hot."
+	burn_overlay.icon = 'icons/effects/fire.dmi'
+	burn_overlay.icon_state = "2"
+	burn_overlay.anchored = TRUE
+	burn_overlay.density = TRUE
+	burn_overlay.layer = 5
 
 	thermite = FALSE
-	take_damage(maxHealth / ((hardness > 100) ? 2 : 1)) // thermite overkills steel immediately but not plasteel
 
-	if(istype(src, /turf/floor))
-		var/turf/floor/F = src
-		F.burn_tile()
-		F.icon_state = "wall_thermite"
-		to_chat(user, SPAN_WARNING("The thermite starts melting the wall away."))
-	else
-		to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
-
-
-	spawn(10 SECONDS)
-		if(O)
-			qdel(O)
+	to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
+	var/burn_duration = (hardness > 100) ? (10 SECONDS) : (5 SECONDS)
+	QDEL_IN(burn_overlay, burn_duration)
+	QDEL_IN(src, burn_duration)
 
 /turf/wall/proc/create_window()
 	CRASH("Proc 'create_window()' is called on a wrong wall type! src: [src], usr: [usr]" )

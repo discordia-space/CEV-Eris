@@ -1,16 +1,19 @@
 /turf/wall/reinforced
 	name = "reinforced wall"
 	icon_state = "eris_reinf_wall"
-	health = 550
-	maxHealth = 550
+	health = 1200
+	max_health = 1200
 	hardness = 140
 	is_reinforced = TRUE
+	wall_type = "eris_reinf_wall"
 
 /turf/wall/reinforced/get_matter()
 	return list(MATERIAL_PLASTEEL = 5)
 
 /turf/wall/frontier
 	icon_state = "frontier_wall"
+	wall_style = "fancy"
+	wall_type = "frontier_wall"
 
 /turf/shuttle/wall
 	name = "wall"
@@ -87,7 +90,11 @@
 */
 /turf/wall/untinted/onestar
 	icon_state = "onestar_wall"
+	wall_style = "minimalistic"
+	wall_type = "onestar_wall"
 
 /turf/wall/untinted/onestar_reinforced
 	name = "reinforced wall"
 	icon_state = "onestar_reinf_wall"
+	wall_style = "minimalistic"
+	wall_type = "onestar_reinf_wall"
