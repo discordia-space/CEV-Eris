@@ -73,8 +73,6 @@
 	if(isSwitchingStates) return
 	if(ismob(user))
 		var/mob/M = user
-		if(!material.can_open_material_door(user))
-			return
 		if(world.time - user.last_bumped <= 60)
 			return
 		if(M.client)

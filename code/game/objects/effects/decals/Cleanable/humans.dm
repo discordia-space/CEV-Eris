@@ -241,10 +241,10 @@ var/global/list/image/splatter_cache=list()
 
 //This proc prevents blood on openspace tiles, by causing them to fall down until they hit the ground
 /obj/effect/decal/cleanable/blood/proc/fall_to_floor()
-	if (istype(loc, /turf/simulated/open))
+	if (istype(loc, /turf/open))
 		anchored = FALSE //Anchored things can't fall
-		while (istype(loc, /turf/simulated/open))
-			var/turf/simulated/open/T = loc
+		while (istype(loc, /turf/open))
+			var/turf/open/T = loc
 			T.fallThrough(src)
 
 			//A failsafe. If falling through the floor somehow fails to send us anywhere new, we break out to avoid an infinite loop

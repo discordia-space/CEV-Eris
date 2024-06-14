@@ -4,7 +4,7 @@
 /turf/template_noop,
 /area/template_noop)
 "d" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "e" = (
 /obj/structure/railing,
@@ -13,11 +13,11 @@
 /area/template_noop)
 "f" = (
 /obj/spawner/junkfood/rotten,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "g" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "h" = (
 /obj/structure/railing{
@@ -28,7 +28,7 @@
 /area/template_noop)
 "i" = (
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "j" = (
 /obj/structure/lattice,
@@ -43,10 +43,10 @@
 /area/template_noop)
 "w" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "x" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "F" = (
 /obj/structure/lattice,

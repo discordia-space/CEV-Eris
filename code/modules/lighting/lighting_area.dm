@@ -1,13 +1,3 @@
-/area
-	luminosity           = TRUE
-	var/dynamic_lighting = TRUE
-
-/area/New()
-	. = ..()
-
-	if (dynamic_lighting)
-		luminosity = FALSE
-
 /area/proc/set_dynamic_lighting(var/new_dynamic_lighting = TRUE)
 	if (new_dynamic_lighting == dynamic_lighting)
 		return FALSE

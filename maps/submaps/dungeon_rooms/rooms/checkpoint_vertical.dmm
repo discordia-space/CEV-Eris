@@ -1,150 +1,150 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "d" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "e" = (
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/crawler)
 "f" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "g" = (
 /obj/effect/floor_decal/industrial/loading,
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/crawler)
 "h" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "i" = (
 /obj/structure/table/onestar,
 /obj/item/oddity/common/old_id,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "j" = (
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "k" = (
 /obj/machinery/door/airlock/highsecurity,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "l" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "m" = (
 /obj/structure/table/onestar,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "n" = (
 /obj/structure/table/onestar,
 /obj/item/stack/os_cash,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "o" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/crawler)
 "p" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/crawler)
 "q" = (
 /obj/structure/closet/onestar/tier2,
 /obj/spawner/cloth/onestar,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "r" = (
 /obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "s" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "t" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "u" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "v" = (
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/crawler)
 "w" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "x" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "y" = (
 /obj/spawner/mob/roomba,
 /obj/structure/sign/derelict1{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/crawler)
 "E" = (
 /obj/structure/table/onestar,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "F" = (
 /obj/item/storage/briefcase{
 	pixel_x = -4;
 	pixel_y = 18
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "M" = (
 /obj/structure/closet/onestar/tier2,
 /obj/spawner/firstaid/low_chance,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "Q" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/sign/derelict2{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/crawler)
 "U" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "X" = (
 /obj/structure/salvageable/os/console_broken,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 
 (1,1,1) = {"

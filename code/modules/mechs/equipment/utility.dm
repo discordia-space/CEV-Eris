@@ -372,7 +372,7 @@
 	if(!target || !user)
 		return
 
-	if(istype(target, /turf/simulated/mineral))
+	if(istype(target, /turf/mineral))
 		mine(target, user, adjacent)
 		return
 
@@ -390,9 +390,9 @@
 	if(!use_drill(target, user, adjacent, TRUE))
 		return
 
-	if(istype(target, /turf/simulated/wall))
-		var/turf/simulated/wall/W = target
-		if(max(W.material.hardness, W.reinf_material ? W.reinf_material.hardness : 0) > drill_head.material.hardness)
+	if(istype(target, /turf/wall) && target:is_simulated)
+		var/turf/wall/W = target
+		if(W.hardness > drill_head.material.hardness)
 			to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head."))
 			return
 
@@ -403,8 +403,8 @@
 			process_drill_action(target, user, adjacent)
 		return
 
-	if(istype(target, /turf/simulated/floor/asteroid))
-		for(var/turf/simulated/floor/asteroid/floor in range(target, 1))
+	if(istype(target, /turf/floor/asteroid))
+		for(var/turf/floor/asteroid/floor in range(target, 1))
 			if(get_dir(owner, floor) & owner.dir)
 				floor.gets_dug()
 				drill_head.durability -= 0.1
@@ -424,7 +424,7 @@
 		return FALSE
 
 	//Funny event where the drill just keeps drilling into space if you let it keep going; also to prevent infinite loop with base turfs
-	if(isturf(target) && (istype(target, /turf/space) || istype(target, /turf/simulated/open) || get_base_turf_by_area(target) == target))
+	if(isturf(target) && (istype(target, /turf/space) || istype(target, /turf/open) || get_base_turf_by_area(target) == target))
 		return FALSE
 
 	return TRUE
@@ -433,7 +433,7 @@
 	if(!use_drill(target, user, adjacent))
 		return
 
-	for(var/turf/simulated/mineral/rock in range(1, get_turf(src)))
+	for(var/turf/mineral/rock in range(1, get_turf(src)))
 		rock.GetDrilled()
 		drill_head.durability -= 1
 
@@ -1023,7 +1023,7 @@
 			if(!aboveSpace)
 				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
-			if(!istype(aboveSpace, /turf/simulated/open) || locate(/obj/structure/catwalk) in aboveSpace)
+			if(!istype(aboveSpace, /turf/open) || locate(/obj/structure/catwalk) in aboveSpace)
 				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
 				return
 			/// Then the one infront + above
@@ -1032,7 +1032,7 @@
 			if(!aboveSpace)
 				to_chat(user, SPAN_NOTICE("The universe runs out of fabric here! You cannot possibly elevate something here."))
 				return
-			if(!istype(aboveSpace, /turf/simulated/open) || locate(/obj/structure/catwalk) in aboveSpace)
+			if(!istype(aboveSpace, /turf/open) || locate(/obj/structure/catwalk) in aboveSpace)
 				to_chat(user, SPAN_NOTICE("Something dense prevents lifting up."))
 				return
 			to_chat(user, SPAN_NOTICE("You start elevating \the [src] platform."))

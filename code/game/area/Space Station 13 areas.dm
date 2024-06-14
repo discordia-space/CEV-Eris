@@ -6,59 +6,11 @@
 	name = "NICE NAME" 				(not required but makes things really nice)
 	icon = "ICON FILENAME" 			(defaults to areas.dmi)
 	icon_state = "NAME OF ICON" 	(defaults to "unknown" (blank))
-	requires_power = 0 				(defaults to 1)
+	requires_power = FALSE 				(defaults to 1)
 
 NOTE: there are two lists of areas in the end of this file: centcom and station itself. Please maintain these lists valid. --rastaf0
 
 */
-
-/area
-	var/fire
-	var/atmos = 1
-	var/atmosalm = 0
-	var/poweralm = 1
-	var/party
-	level = null
-	name = "Unknown"
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "unknown"
-	mouse_opacity = 0
-	var/lightswitch = 1
-
-	var/eject
-	var/is_maintenance = FALSE
-	var/debug = 0
-	var/requires_power = 1
-	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
-
-	var/power_equip = 1
-	var/power_light = 1
-	var/power_environ = 1
-	var/area_light_color		//Used by lights to create different light on different departments and locations
-
-	var/has_gravity = 1
-	var/cached_gravity = 1		//stores updated has_gravity even if it's blocked
-	var/atom/gravity_blocker	//ref to antigrav
-	var/obj/machinery/power/apc/apc
-	var/no_air
-	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
-	var/air_doors_activated = 0
-	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
-	var/list/forced_ambience
-	var/sound_env = STANDARD_STATION
-	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
-	var/holomap_color // Color of this area on station holomap
-	var/vessel = "CEV Eris" //The ship or station this area is on. This is so far just for the benefit of shield generators
-	//Consoles can only control shields on the same vessel as them
-
-/*Adding a wizard area teleport list because motherfucking lag -- Urist*/
-/*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
-
-/*-----------------------------------------------------------------------------*/
-
-/////////
-//SPACE//
-/////////
 
 /area/space
 	name = "\improper Space"
@@ -66,9 +18,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	requires_power = TRUE
 	always_unpowered = TRUE
 	dynamic_lighting = TRUE
-	power_light = 0
-	power_equip = 0
-	power_environ = 0
+	power_light = FALSE
+	power_equip = FALSE
+	power_environ = FALSE
 	has_gravity = FALSE
 	flags = AREA_FLAG_EXTERNAL
 	ambience = list('sound/ambience/ambispace.ogg','sound/ambience/spaceambient1.ogg','sound/ambience/spaceambient2.ogg','sound/ambience/spaceambient3.ogg','sound/ambience/spaceambient4.ogg','sound/ambience/spaceambient5.ogg','sound/ambience/spaceambient6.ogg')
@@ -93,7 +45,7 @@ area/space/atmosalert()
 	flags = AREA_FLAG_CRITICAL
 
 /area/arrival
-	requires_power = 0
+	requires_power = FALSE
 
 /area/arrival/start
 	name = "\improper Arrival Area"
@@ -113,7 +65,7 @@ area/space/atmosalert()
 //All shuttles should now be under shuttle since we have smooth-wall code.
 
 /area/shuttle
-	requires_power = 0
+	requires_power = FALSE
 	sound_env = SMALL_ENCLOSED
 	base_turf = /turf/space
 
@@ -145,6 +97,7 @@ area/space/atmosalert()
 /area/shuttle/escape_pod1
 	name = "\improper Escape Pod One"
 	flags = AREA_FLAG_RAD_SHIELDED
+	ship_area = TRUE
 
 /area/shuttle/escape_pod1/station
 	icon_state = "shuttle2"
@@ -161,6 +114,7 @@ area/space/atmosalert()
 
 /area/shuttle/escape_pod2/station
 	icon_state = "shuttle2"
+	ship_area = TRUE
 
 /area/shuttle/escape_pod2/centcom
 	icon_state = "shuttle"
@@ -199,12 +153,13 @@ area/space/atmosalert()
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
-	requires_power = 1
+	requires_power = TRUE
+	ship_area = TRUE
 
 /area/shuttle/mining/outpost
 	icon_state = "shuttle"
-	requires_power = 1
-	base_turf = /turf/simulated/floor/asteroid
+	requires_power = TRUE
+	base_turf = /turf/floor/asteroid
 
 /area/shuttle/transport1/centcom
 	icon_state = "shuttle"
@@ -217,12 +172,12 @@ area/space/atmosalert()
 /area/shuttle/alien/base
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Base"
-	requires_power = 1
+	requires_power = TRUE
 
 /area/shuttle/alien/mine
 	icon_state = "shuttle"
 	name = "\improper Alien Shuttle Mine"
-	requires_power = 1
+	requires_power = TRUE
 
 /area/shuttle/prison/
 	name = "\improper Prison Shuttle"
@@ -301,12 +256,13 @@ area/space/atmosalert()
 
 /area/shuttle/research/station
 	icon_state = "shuttle2"
-	requires_power = 1
+	requires_power = TRUE
+	ship_area = TRUE
 
 /area/shuttle/research/outpost
 	icon_state = "shuttle"
-	requires_power = 1
-	base_turf = /turf/simulated/floor/asteroid
+	requires_power = TRUE
+	base_turf = /turf/floor/asteroid
 
 
 
@@ -315,7 +271,7 @@ area/space/atmosalert()
 /area/centcom
 	name = "\improper Centcom"
 	icon_state = "centcom"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 	vessel = "centcom"
 
@@ -352,20 +308,20 @@ area/space/atmosalert()
 /area/centcom/alien
 	name = "\improper Alien base"
 	icon_state = "yellow"
-	requires_power = 0
+	requires_power = FALSE
 	vessel = "alien"
 
 /area/centcom/merc_base
 	name = "\improper Mercenary Base"
 	icon_state = "syndie-ship"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 	vessel = "syndicate mothership"
 
 /area/centcom/pirate_base
 	name = "\improper Pirate Base"
 	icon_state = "syndie-ship"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 	vessel = "pirate mothership"
 
@@ -394,7 +350,7 @@ area/space/atmosalert()
 	name = "\improper Pulsar Satellite Core"
 	icon_state = "engineering"
 	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = TRUE
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 	ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg',
@@ -415,13 +371,13 @@ area/space/atmosalert()
 /area/asteroid					// -- TLE
 	name = "\improper Moon"
 	icon_state = "asteroid"
-	requires_power = 0
+	requires_power = FALSE
 	sound_env = ASTEROID
 
 /area/asteroid/cave				// -- TLE
 	name = "\improper Moon - Underground"
 	icon_state = "cave"
-	requires_power = 0
+	requires_power = FALSE
 	sound_env = ASTEROID
 	flags = AREA_FLAG_RAD_SHIELDED
 
@@ -435,13 +391,13 @@ area/space/atmosalert()
 /area/wizard_station
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
-	requires_power = 0
+	requires_power = FALSE
 	dynamic_lighting = 0
 
 /area/skipjack_station
 	name = "\improper Skipjack"
 	icon_state = "yellow"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/skipjack_station/start
 	name = "\improper Skipjack"
@@ -470,7 +426,7 @@ area/space/atmosalert()
 /area/skipjack_station/mining
 	name = "\improper south of mining station"
 	icon_state = "north"
-	base_turf = /turf/simulated/floor/asteroid
+	base_turf = /turf/floor/asteroid
 
 
 
@@ -483,7 +439,7 @@ area/space/atmosalert()
 	requires_power = FALSE
 	var/obj/machinery/computer/HolodeckControl/linked_console
 
-/area/holodeck/powered(var/chan)		// return true if the area has power to given channel
+/area/holodeck/powered(chan)		// return true if the area has power to given channel
 
 	if(linked_console && linked_console.active)
 		return TRUE // If the linked console is active, we are always powered
@@ -498,6 +454,7 @@ area/space/atmosalert()
 /area/holodeck/alphadeck
 	name = "\improper Holodeck Alpha"
 	sound_env = LARGE_ENCLOSED
+	ship_area = TRUE
 
 /area/holodeck/source
 	name = "\improper Holodeck - Nonexistent"
@@ -703,6 +660,7 @@ area/space/atmosalert()
 	icon_state = "ai_foyer"
 	ambience = list('sound/ambience/ambimalf.ogg','sound/ambience/aicoreambient.ogg')
 	sound_env = SMALL_ENCLOSED
+	ship_area = TRUE
 
 /area/turret_protected/ai_server_room
 	name = "Messaging Server Room"
@@ -715,6 +673,7 @@ area/space/atmosalert()
 	icon_state = "ai_chamber"
 	ambience = list('sound/ambience/ambimalf.ogg','sound/ambience/aicoreambient.ogg')
 	flags = AREA_FLAG_CRITICAL
+	ship_area = TRUE
 
 /area/turret_protected/ai_cyborg_station
 	name = "\improper Cyborg Station"
@@ -795,19 +754,19 @@ area/space/atmosalert()
 	name = "\improper Wild West Mines"
 	icon_state = "away1"
 	luminosity = 1
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/wwgov
 	name = "\improper Wild West Mansion"
 	icon_state = "away2"
 	luminosity = 1
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/wwrefine
 	name = "\improper Wild West Refinery"
 	icon_state = "away3"
 	luminosity = 1
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/wwvault
 	name = "\improper Wild West Vault"
@@ -816,7 +775,7 @@ area/space/atmosalert()
 /area/awaymission/wwvaultdoors
 	name = "\improper Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
 	icon_state = "away2"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/desert
 	name = "Mars"
@@ -837,7 +796,7 @@ area/space/atmosalert()
 /area/awaymission/spacebattle
 	name = "\improper Space Battle"
 	icon_state = "away"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/spacebattle/cruiser
 	name = "\improper Nanotrasen Cruiser"
@@ -869,14 +828,14 @@ area/space/atmosalert()
 /area/awaymission/listeningpost
 	name = "\improper Listening Post"
 	icon_state = "away"
-	requires_power = 0
+	requires_power = FALSE
 
 /area/awaymission/beach
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
 	dynamic_lighting = 0
-	requires_power = 0
+	requires_power = FALSE
 	ambience = list()
 	var/sound/mysound
 
@@ -963,7 +922,61 @@ var/list/centcom_areas = list (
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
 	forced_ambience = list('sound/ambience/maintambience.ogg')
-	base_turf = /turf/simulated/floor/tiled
+	base_turf = /turf/floor/tiled
 	has_gravity = 1
-	requires_power = 0
+	requires_power = FALSE
 	area_light_color = COLOR_LIGHTING_MAINT_DARK
+
+
+/datum/turf_initializer/proc/Initialize(turf/T)
+	return
+
+/datum/turf_initializer/maintenance/Initialize(turf/T)
+	if(T.density)
+		return
+	// Quick and dirty check to avoid placing things inside windows
+	if(locate(/obj/structure/grille, T))
+		return
+
+	var/cardinal_turfs = T.CardinalTurfs()
+
+	if(prob(2))
+		var/path = junk()
+		new path(T)
+	if(prob(2))
+		new /obj/effect/decal/cleanable/blood/oil(T)
+	if(prob(1))
+		new /mob/living/simple_animal/mouse(T)
+	if(prob(25))	// Keep in mind that only "corners" get any sort of web
+		attempt_web(T, cardinal_turfs)
+
+var/global/list/random_junk
+/datum/turf_initializer/maintenance/proc/junk()
+	if(prob(25))
+		return /obj/effect/decal/cleanable/generic
+	if(!random_junk)
+		random_junk = subtypesof(/obj/item/trash)
+		random_junk += /obj/effect/decal/cleanable/spiderling_remains
+		random_junk += /obj/item/remains/mouse
+		random_junk += /obj/item/remains/robot
+		random_junk -= /obj/item/trash/material
+		random_junk -= /obj/item/trash/plate
+		random_junk -= /obj/item/trash/snack_bowl
+		random_junk -= /obj/item/trash/wok
+		random_junk -= /obj/item/trash/tray
+	return pick(random_junk)
+
+/datum/turf_initializer/maintenance/proc/attempt_web(turf/T)
+	var/turf/north_turf = get_step(T, NORTH)
+	if(!north_turf || !north_turf.density)
+		return
+
+	for(var/dir in list(WEST, EAST))	// For the sake of efficiency, west wins over east in the case of 1-tile valid spots, rather than doing pick()
+		var/turf/neighbour = get_step(T, dir)
+		if(neighbour && neighbour.density)
+			if(dir == WEST)
+				new /obj/effect/decal/cleanable/cobweb(T)
+			if(dir == EAST)
+				new /obj/effect/decal/cleanable/cobweb2(T)
+			return
+

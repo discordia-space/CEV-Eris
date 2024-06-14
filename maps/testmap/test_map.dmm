@@ -3,10 +3,10 @@
 /turf/space,
 /area/space)
 "ab" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/space)
 "ac" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "ad" = (
 /obj/machinery/shieldwallgen,
@@ -15,7 +15,7 @@
 	icon_state = "0-2";
 	pixel_y = 0
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "ae" = (
 /obj/structure/cable{
@@ -24,64 +24,64 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "af" = (
 /obj/structure/multiz/ladder{
 	icon_state = "ladderup"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ag" = (
 /obj/structure/multiz/ladder,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ah" = (
 /obj/machinery/neotheology/biomass_container,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ai" = (
 /obj/machinery/neotheology/cloner,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "aj" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/machinery/neotheology/reader,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ak" = (
 /obj/machinery/autolathe/excelsior,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "al" = (
 /obj/machinery/complant_maker,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "an" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ar" = (
 /obj/item/robot_parts/l_leg,
 /obj/item/robot_parts/robot_component/actuator,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "as" = (
 /obj/item/prosthesis/l_arm,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "av" = (
 /obj/landmark/join/late,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "aw" = (
 /obj/landmark/join/observer,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ax" = (
 /obj/landmark/join/start,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "az" = (
 /obj/structure/cable{
@@ -90,7 +90,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/space)
 "aA" = (
 /obj/structure/cable{
@@ -99,7 +99,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "aB" = (
 /obj/machinery/shieldwallgen,
@@ -113,7 +113,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "aC" = (
 /obj/machinery/shieldwallgen,
@@ -134,27 +134,27 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable,
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "aF" = (
 /mob/living/carbon/human/dummy,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "aG" = (
 /obj/item/stack/material/glass{
 	amount = 50
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "aH" = (
 /obj/machinery/optable,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "aI" = (
 /obj/item/stack/material/steel{
 	amount = 50
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "aV" = (
 /obj/machinery/power/smes/magical,
@@ -162,7 +162,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "aX" = (
 /obj/structure/cable{
@@ -171,7 +171,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/testing/first)
 "aY" = (
 /obj/structure/cable{
@@ -179,12 +179,12 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/wall,
+/turf/wall,
 /area/testing/first)
 "aZ" = (
 /obj/item/device/assembly/timer,
 /obj/item/device/assembly/signaler,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ba" = (
 /obj/machinery/light,
@@ -192,20 +192,20 @@
 /obj/item/device/assembly/signaler,
 /obj/item/device/assembly/igniter,
 /obj/item/device/assembly/igniter,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "bb" = (
 /obj/machinery/autolathe,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "bc" = (
 /obj/landmark/storyevent/midgame_stash_spawn,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "bd" = (
 /obj/machinery/shieldwallgen,
 /obj/structure/cable,
-/turf/simulated/floor,
+/turf/floor,
 /area/space)
 "be" = (
 /obj/map_data/multiz/station{
@@ -259,29 +259,29 @@
 /area/space)
 "bl" = (
 /obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "bm" = (
 /obj/structure/window/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/visible/red,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "bn" = (
 /obj/structure/multiz/ladder,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bo" = (
 /obj/structure/multiz/ladder{
 	icon_state = "ladderup"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bp" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	icon_state = "intact";
 	dir = 5
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bq" = (
 /obj/machinery/light{
@@ -291,14 +291,14 @@
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "br" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	icon_state = "map";
 	dir = 1
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -306,56 +306,56 @@
 	dir = 4
 	},
 /obj/machinery/meter,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	icon_state = "intact";
 	dir = 9
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bv" = (
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bw" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bz" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bA" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	icon_state = "intact";
 	dir = 8
 	},
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	icon_state = "intact";
 	dir = 10
 	},
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bC" = (
 /obj/machinery/power/apc/high{
@@ -368,7 +368,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bD" = (
 /obj/structure/cable{
@@ -377,7 +377,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bE" = (
 /obj/structure/cable{
@@ -389,7 +389,7 @@
 /obj/machinery/atmospherics/binary/pump{
 	dir = 1
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bF" = (
 /obj/machinery/power/smes/magical,
@@ -397,37 +397,37 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bG" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bH" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	icon_state = "intact";
 	dir = 6
 	},
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	icon_state = "intact";
 	dir = 9
 	},
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bJ" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bL" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bM" = (
 /obj/machinery/light{
@@ -435,87 +435,87 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /obj/machinery/meter,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bN" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bO" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bP" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	icon_state = "map";
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bR" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bS" = (
 /obj/machinery/light,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	icon_state = "intact";
 	dir = 5
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "bU" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bV" = (
-/turf/simulated/floor/hull,
+/turf/floor/hull,
 /area/space)
 "bX" = (
 /obj/item/mine,
 /mob/living/carbon/human/dummy,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "fA" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "he" = (
 /obj/item/implantcase/excelsior,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "hO" = (
 /obj/item/disk/autolathe_disk/basic,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "jn" = (
 /obj/item/implant/compressed,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "jP" = (
 /obj/item/grenade/frag,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "ky" = (
 /obj/item/disk/autolathe_disk/security,
 /obj/item/stock_parts/micro_laser/ultra,
 /obj/item/stock_parts/micro_laser/ultra,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "mc" = (
 /obj/structure/cable{
@@ -525,7 +525,7 @@
 	pixel_x = 0
 	},
 /obj/item/disk/autolathe_disk/lethal_ammo,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "pd" = (
 /obj/machinery/light{
@@ -533,20 +533,20 @@
 	dir = 8
 	},
 /obj/item/mine,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "pv" = (
 /obj/item/mine,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "wA" = (
 /obj/item/storage/toolbox/mechanical,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/second)
 "AG" = (
 /obj/item/stock_parts/micro_laser/high,
 /obj/item/stock_parts/micro_laser/high,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "Dt" = (
 /obj/structure/window/reinforced/full,
@@ -554,39 +554,39 @@
 	dir = 4;
 	icon_state = "intact"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/space)
 "Gc" = (
 /obj/item/reagent_containers/glass/beaker/tungsten,
 /obj/item/tool/screwdriver,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "Hc" = (
 /obj/item/reagent_containers/glass/beaker/water,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "LZ" = (
 /obj/item/implanter,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "QE" = (
 /obj/item/implanter/excelsior,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "QJ" = (
 /obj/item/disk/autolathe_disk/security,
 /obj/item/stock_parts/scanning_module/adv,
 /obj/item/stock_parts/scanning_module/phasic,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "RE" = (
 /obj/item/book/ritual,
 /obj/landmark/join/late/cryo,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "Tb" = (
 /obj/item/implant/adrenalin,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "TG" = (
 /obj/structure/cable{
@@ -604,15 +604,15 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "Up" = (
 /obj/item/grenade/explosive,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "Vb" = (
 /obj/item/implant/revolution/excelsior,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "Xr" = (
 /obj/machinery/power/apc/high{
@@ -627,7 +627,7 @@
 	},
 /obj/item/disk/autolathe_disk/excelsior,
 /mob/living/carbon/human/dummy,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 "Ze" = (
 /obj/structure/cable{
@@ -637,7 +637,7 @@
 	pixel_y = 0
 	},
 /obj/item/disk/autolathe_disk/blank,
-/turf/simulated/floor,
+/turf/floor,
 /area/testing/first)
 
 (1,1,1) = {"

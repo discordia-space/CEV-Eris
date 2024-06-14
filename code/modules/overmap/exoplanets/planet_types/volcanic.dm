@@ -36,8 +36,8 @@
 /datum/random_map/noise/exoplanet/volcanic
 	descriptor = "volcanic exoplanet"
 	smoothing_iterations = 5
-	land_type = /turf/simulated/floor/exoplanet/volcanic
-	water_type = /turf/simulated/floor/exoplanet/lava
+	land_type = /turf/floor/exoplanet/volcanic
+	water_type = /turf/floor/exoplanet/lava
 	water_level_min = 5
 	water_level_max = 6
 
@@ -67,50 +67,49 @@
 
 /area/exoplanet/volcanic
 	forced_ambience = list('sound/ambience/magma.ogg')
-	base_turf = /turf/simulated/floor/exoplanet/volcanic
+	base_turf = /turf/floor/exoplanet/volcanic
 
-/turf/simulated/floor/exoplanet/volcanic
+/turf/floor/exoplanet/volcanic
 	name = "volcanic floor"
 	icon = 'icons/turf/volcanic.dmi'
 	icon_state = "basalt"
 	dirt_color = COLOR_GRAY20
 
-/turf/simulated/floor/exoplanet/volcanic/New()
+/turf/floor/exoplanet/volcanic/New()
 	icon_state = "basalt[rand(0,12)]"
 	..()
 
 /datum/random_map/automata/cave_system/mountains/volcanic
 	iterations = 2
 	descriptor = "space volcanic mountains"
-	wall_type =  /turf/simulated/mineral/volcanic
-	mineral_sparse =  /turf/simulated/mineral/random/volcanic
+	wall_type =  /turf/mineral/volcanic
+	mineral_sparse =  /turf/mineral/random/volcanic
 	rock_color = COLOR_DARK_GRAY
 
-/datum/random_map/automata/cave_system/mountains/volcanic/get_additional_spawns(value, var/turf/simulated/mineral/T)
+/datum/random_map/automata/cave_system/mountains/volcanic/get_additional_spawns(value, var/turf/mineral/T)
 	..()
 	if(planetary_area)
-		T.mined_turf = prob(90) ? planetary_area.base_turf : /turf/simulated/floor/exoplanet/lava
+		T.mined_turf = prob(90) ? planetary_area.base_turf : /turf/floor/exoplanet/lava
 
-/turf/simulated/floor/exoplanet/lava
+/turf/floor/exoplanet/lava
 	name = "lava"
 	icon = 'icons/turf/volcanic.dmi'
 	icon_state = "lava"
-	movement_delay = 4
 	dirt_color = COLOR_GRAY20
 	var/list/victims
 
-/turf/simulated/floor/exoplanet/lava/update_icon()
+/turf/floor/exoplanet/lava/update_icon()
 	return
 
-/turf/simulated/floor/exoplanet/lava/Initialize()
+/turf/floor/exoplanet/lava/Initialize()
 	. = ..()
 	set_light(0.95, 0.5, 2, l_color = COLOR_ORANGE)
 
-/turf/simulated/floor/exoplanet/lava/Destroy()
+/turf/floor/exoplanet/lava/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/turf/simulated/floor/exoplanet/lava/Entered(atom/movable/AM)
+/turf/floor/exoplanet/lava/Entered(atom/movable/AM)
 	..()
 	if(locate(/obj/structure/catwalk/) in src)
 		return
@@ -121,11 +120,11 @@
 	LAZYADD(victims, WEAKREF(AM))
 	START_PROCESSING(SSobj, src)
 
-/turf/simulated/floor/exoplanet/lava/Exited(atom/movable/AM)
+/turf/floor/exoplanet/lava/Exited(atom/movable/AM)
 	. = ..()
 	LAZYREMOVE(victims, WEAKREF(AM))
 
-/turf/simulated/floor/exoplanet/lava/Process()
+/turf/floor/exoplanet/lava/Process()
 	if(locate(/obj/structure/catwalk/) in src)
 		victims = null
 		return PROCESS_KILL
@@ -142,17 +141,14 @@
 	if(!LAZYLEN(victims))
 		return PROCESS_KILL
 
-/turf/simulated/floor/exoplanet/lava/get_footstep_sound(var/mob/caller)
-	return get_footstep(/decl/footsteps/lava, caller)
-
-/turf/simulated/mineral/volcanic
+/turf/mineral/volcanic
 	name = "volcanic rock"
 	color = COLOR_DARK_GRAY
 
-/turf/simulated/mineral/random/volcanic
+/turf/mineral/random/volcanic
 	name = "volcanic rock"
 	color = COLOR_DARK_GRAY
 
-/turf/simulated/mineral/random/high_chance/volcanic
+/turf/mineral/random/high_chance/volcanic
 	name = "volcanic rock"
 	color = COLOR_DARK_GRAY

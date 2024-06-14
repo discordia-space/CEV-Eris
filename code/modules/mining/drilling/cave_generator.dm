@@ -545,35 +545,35 @@
 		for(var/j = 1 to CAVE_SIZE)
 			switch(map[i][j])
 				if(CAVE_FREE)
-					turf_type = /turf/simulated/floor/asteroid/cave
+					turf_type = /turf/floor/asteroid/cave
 				if(CAVE_WALL)
-					turf_type = /turf/simulated/impassable_rock
+					turf_type = /turf/impassable_rock
 				if(CAVE_POI)
 					turf_type = /turf/space
 				if(CAVE_CARBON)
-					turf_type = /turf/simulated/cave_mineral/carbon
+					turf_type = /turf/cave_mineral/carbon
 				if(CAVE_IRON)
-					turf_type = /turf/simulated/cave_mineral/iron
+					turf_type = /turf/cave_mineral/iron
 				if(CAVE_PLASMA)
-					turf_type = /turf/simulated/cave_mineral/plasma
+					turf_type = /turf/cave_mineral/plasma
 				if(CAVE_URANIUM)
-					turf_type = /turf/simulated/cave_mineral/uranium
+					turf_type = /turf/cave_mineral/uranium
 				if(CAVE_DIAMOND)
-					turf_type = /turf/simulated/cave_mineral/diamond
+					turf_type = /turf/cave_mineral/diamond
 				if(CAVE_SILVER)
-					turf_type = /turf/simulated/cave_mineral/silver
+					turf_type = /turf/cave_mineral/silver
 				if(CAVE_GOLD)
-					turf_type = /turf/simulated/cave_mineral/gold
+					turf_type = /turf/cave_mineral/gold
 				if(CAVE_PLATINUM)
-					turf_type = /turf/simulated/cave_mineral/platinum
+					turf_type = /turf/cave_mineral/platinum
 				else
-					turf_type = /turf/simulated/floor/asteroid/cave
+					turf_type = /turf/floor/asteroid/cave
 
 			var/turf/T = get_turf(locate(x + i, y + j, z))
 			if(!istype(T, turf_type))
 				T.ChangeTurf(turf_type)
-			if(istype(T, /turf/simulated/cave_mineral))
-				var/turf/simulated/cave_mineral/CM = T
+			if(istype(T, /turf/cave_mineral))
+				var/turf/cave_mineral/CM = T
 				CM.seismic_multiplier = seismic_lvl
 
 // Spawn points of interest at their respective position

@@ -17,7 +17,7 @@
 	id = "lodge3"
 	suffix = "lodge/lodge3.dmm"
 
-/turf/simulated/floor/wood/usedup
+/turf/floor/wood/usedup
 	initial_gas = list(GAS_CO2 = MOLES_O2STANDARD, GAS_NITROGEN = MOLES_N2STANDARD)
 
 /area/map_template/lodge

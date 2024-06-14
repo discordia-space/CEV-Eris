@@ -7,104 +7,103 @@
 /turf/template_noop,
 /area/template_noop)
 "ac" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ad" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ae" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "af" = (
 /obj/spawner/junk,
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "ag" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "ah" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "ai" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aj" = (
 /obj/structure/sign/derelict3,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "ak" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "al" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "an" = (
 /obj/structure/closet/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "ao" = (
 /obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "ap" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aq" = (
 /obj/structure/sign/derelict1,
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "as" = (
 /obj/structure/sign/derelict2,
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "au" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/wall/low/onestar,
 /area/template_noop)
 "av" = (
 /obj/structure/closet/onestar/tier2/mineral,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "aw" = (
 /obj/item/remains,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "ax" = (
 /obj/structure/salvageable/os/computer,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "ay" = (
 /obj/structure/salvageable/os/console_broken,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "az" = (
 /obj/structure/salvageable/os/console,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "aA" = (
 /obj/machinery/door/airlock/external{
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "aB" = (
 /obj/structure/bed/chair/custom/onestar/red{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "aC" = (
 /obj/structure/closet/onestar/tier1/mineral/empty,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "aD" = (
 /obj/effect/floor_decal/industrial/loading,
@@ -112,7 +111,7 @@
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "aE" = (
 /obj/effect/floor_decal/industrial/loading{
@@ -122,18 +121,18 @@
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "aF" = (
 /obj/structure/salvageable/os/machine,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "aG" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "aH" = (
 /obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "aI" = (
 /obj/structure/catwalk,
@@ -150,7 +149,7 @@
 /turf/template_noop,
 /area/template_noop)
 "aL" = (
-/turf/simulated/mineral,
+/turf/mineral,
 /area/template_noop)
 "aM" = (
 /obj/structure/railing{
@@ -190,7 +189,7 @@
 /area/template_noop)
 "aR" = (
 /obj/structure/salvageable/os/server,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "aS" = (
 /obj/structure/railing{
@@ -212,7 +211,7 @@
 /turf/template_noop,
 /area/template_noop)
 "aV" = (
-/turf/simulated/mineral/random,
+/turf/mineral/random,
 /area/template_noop)
 "aW" = (
 /obj/structure/inflatable/door,
@@ -223,7 +222,7 @@
 	dir = 1;
 	icon_state = "direction_med"
 	},
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "aY" = (
 /obj/structure/sign/directions/evac{
@@ -235,57 +234,57 @@
 	icon_state = "direction_eng";
 	pixel_y = 10
 	},
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "aZ" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "ba" = (
 /obj/spawner/structures/os,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "bb" = (
 /obj/item/gun/projectile/handmade_pistol,
 /obj/item/ammo_casing/pistol/scrap,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "bc" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "bd" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "be" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "bf" = (
 /obj/item/remains,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bg" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bh" = (
 /obj/spawner/structures/os,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bi" = (
 /obj/item/storage/bag/ore,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bj" = (
 /obj/structure/catwalk,
@@ -307,40 +306,40 @@
 /obj/effect/floor_decal/industrial/loading{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "bJ" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bQ" = (
 /obj/effect/floor_decal/industrial/loading,
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "bT" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bY" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "ch" = (
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "fR" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "jf" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "nf" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "qP" = (
 /obj/structure/catwalk,
@@ -349,15 +348,15 @@
 /area/template_noop)
 "sD" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "xF" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "Vr" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 
 (1,1,1) = {"

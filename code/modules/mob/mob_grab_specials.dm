@@ -264,7 +264,7 @@
 	qdel(src)
 	target.update_lying_buckled_and_verb_status()
 
-	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
+	if(!istype(get_step(attacker, fireman_dir), /turf/wall))
 		target.forceMove(get_step(target, fireman_dir))
 
 	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_MELEE)
@@ -285,7 +285,7 @@
 		return
 	var/free_space = TRUE//if there are walls or structures around us, we can't do this.
 	for (var/turf/T in range(1, attacker.loc))
-		if(istype(T, /turf/simulated/wall))
+		if(istype(T, /turf/wall))
 			free_space = FALSE
 		if(!T.Enter(attacker))
 			free_space = FALSE

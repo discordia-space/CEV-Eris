@@ -68,12 +68,7 @@
 
 /obj/machinery/door/New()
 	. = ..()
-	if(density)
-		layer = closed_layer
-		update_heat_protection(get_turf(src))
-	else
-		layer = open_layer
-
+	layer = density ? closed_layer : open_layer
 
 	if(width > 1)
 		if(dir in list(EAST, WEST))
@@ -499,13 +494,12 @@
 	return ..(M)
 
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
-	for(var/turf/simulated/turf in locs)
-		update_heat_protection(turf)
-		SSair.mark_for_update(turf)
+	for(var/turf/turf in locs)
+		if(turf.is_simulated)
+			SSair.mark_for_update(turf)
+	return TRUE
 
-	return 1
-
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
+/obj/machinery/door/proc/update_heat_protection(turf/source)
 	if(istype(source))
 		if(src.density && (src.opacity || src.heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT

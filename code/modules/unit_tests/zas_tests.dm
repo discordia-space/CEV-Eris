@@ -35,8 +35,8 @@
 	TEST_ASSERT(istype(A, test_area), "Unable to get [test_area]")
 
 	var/list/GM_checked = list()
-	for(var/turf/simulated/T in A)
-		if(!istype(T) || isnull(T.zone) || istype(T, /turf/simulated/floor/airless))
+	for(var/turf/T in A)
+		if(!istype(T) || isnull(T.zone) || istype(T, /turf/floor/airless))
 			continue
 		if(T.zone.air in GM_checked)
 			continue

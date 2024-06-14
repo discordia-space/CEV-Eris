@@ -10,7 +10,7 @@ var/list/flooring_cache = list()
 	update_icon(TRUE, TRUE)
 */
 
-/turf/simulated/floor/update_icon(var/update_neighbors)
+/turf/floor/update_icon(var/update_neighbors)
 	icon_updates_count++
 	var/has_smooth = 0 //This is just the has_border bitfield inverted for easier logic
 	if(lava) //Wtf why
@@ -42,7 +42,7 @@ var/list/flooring_cache = list()
 
 				//Check the cardinal turfs
 				for(var/step_dir in cardinal)
-					var/turf/simulated/floor/T = get_step(src, step_dir)
+					var/turf/floor/T = get_step(src, step_dir)
 
 					//Test link is a flooring proc but its defined farther down in this file
 					var/is_linked = flooring.test_link(src, T, FALSE)
@@ -129,11 +129,16 @@ var/list/flooring_cache = list()
 				overlays |= get_damage_overlay("scorched[n]-[plane]", "scorched[n]")
 
 	if(update_neighbors)
-		for(var/turf/simulated/floor/F in RANGE_TURFS(1, src))
+		for(var/turf/floor/F in RANGE_TURFS(1, src))
 			if(F == src)
 				continue
 			F.update_icon()
 	update_openspace()
+
+	#ifdef ZASDBG
+	for(var/ZAS_overlay in ZAS_debug_overlays)
+		overlays += ZAS_overlay
+	#endif
 
 
 //Tests whether this flooring will smooth with the specified turf
@@ -160,8 +165,8 @@ var/list/flooring_cache = list()
 
 
 		//If we get here then its a normal floor
-		else if (istype(T, /turf/simulated/floor) && !istype(T, /turf/simulated/floor/exoplanet))
-			var/turf/simulated/floor/t = T
+		else if (istype(T, /turf/floor) && !istype(T, /turf/floor/exoplanet))
+			var/turf/floor/t = T
 			//If the floor is the same as us,then we're linked,
 			if (t.flooring?.type == type) // Because it can , and will be null
 				is_linked = TRUE
@@ -304,7 +309,7 @@ var/list/flooring_cache = list()
 
 
 
-/turf/simulated/floor/proc/get_damage_overlay(var/cache_key, var/icon_base	)
+/turf/floor/proc/get_damage_overlay(var/cache_key, var/icon_base	)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = 'icons/turf/damage_overlays.dmi', icon_state = icon_base)
 
@@ -314,7 +319,7 @@ var/list/flooring_cache = list()
 	return flooring_cache[cache_key]
 
 
-/turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/external = FALSE)
+/turf/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/external = FALSE)
 	if(!flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer+0.01

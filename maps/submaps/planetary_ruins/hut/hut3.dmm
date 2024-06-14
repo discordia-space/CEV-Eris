@@ -3,11 +3,11 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall/silver,
+/turf/wall,
 /area/template_noop)
 "c" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "d" = (
 /obj/machinery/door/airlock/external{
@@ -16,7 +16,7 @@
 	id_tag = "atmos_airlock_door_int";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "h" = (
 /obj/structure/table/woodentable,
@@ -25,18 +25,18 @@
 	pixel_y = -2
 	},
 /obj/spawner/booze,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/template_noop)
 "i" = (
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/template_noop)
 "n" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rainbow,
 /obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/template_noop)
 "p" = (
 /obj/structure/table/rack/shelf,
@@ -44,35 +44,34 @@
 /obj/spawner/powercell,
 /obj/spawner/powercell,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/template_noop)
 "r" = (
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/template_noop)
 "t" = (
 /obj/structure/closet/crate/freezer,
 /obj/spawner/junkfood,
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "u" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 "w" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "z" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/template_noop)
 "C" = (
 /obj/machinery/power/port_gen/pacman,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "D" = (
 /obj/structure/table/rack,
@@ -86,17 +85,17 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/template_noop)
 "I" = (
 /obj/structure/table/rack,
 /obj/spawner/voidsuit,
 /obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/gun/energy_cheap,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "K" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/template_noop)
 "L" = (
 /obj/structure/closet,
@@ -112,11 +111,11 @@
 /obj/item/stack/material/glass/reinforced{
 	amount = 10
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/template_noop)
 "N" = (
 /obj/structure/inflatable/door,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "Y" = (
 /obj/structure/table/rack,
@@ -124,7 +123,7 @@
 /turf/template_noop,
 /area/template_noop)
 "Z" = (
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 
 (1,1,1) = {"

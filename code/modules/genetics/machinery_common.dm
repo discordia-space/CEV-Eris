@@ -17,17 +17,14 @@
 	color_key = default_dna_machinery_style
 	update_icon()
 	log_add("Initialization complete.")
+	if(req_access.len)
+		add_statverb(/datum/statverb/hack_console)
 
 
 /obj/machinery/dna/New()
 	..()
 	color_key = default_dna_machinery_style
 	update_icon()
-
-
-/obj/machinery/dna/initalize_statverbs()
-	if(req_access.len)
-		add_statverb(/datum/statverb/hack_console)
 
 
 /obj/machinery/dna/proc/log_add(entry, do_check)

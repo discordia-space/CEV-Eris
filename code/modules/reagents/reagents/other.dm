@@ -152,11 +152,6 @@
 /datum/reagent/adrenaline/withdrawal_act(mob/living/carbon/M)
 	M.adjustOxyLoss(15)
 
-/datum/reagent/water/holywater/touch_turf(turf/T)
-	if(volume >= 5)
-		T.holy = 1
-	return TRUE
-
 /datum/reagent/other/diethylamine
 	name = "Diethylamine"
 	id = "diethylamine"
@@ -192,8 +187,8 @@
 
 /datum/reagent/other/thermite/touch_turf(turf/T)
 	if(volume >= 5)
-		if(istype(T, /turf/simulated/wall))
-			var/turf/simulated/wall/W = T
+		if(istype(T, /turf/wall))
+			var/turf/wall/W = T
 			W.thermite = TRUE
 			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
@@ -242,9 +237,9 @@
 
 /datum/reagent/other/space_cleaner/touch_turf(turf/T)
 	if(volume >= 1)
-		if(istype(T, /turf/simulated))
-			var/turf/simulated/S = T
-			if(S.wet >= 2)
+		if(istype(T, /turf))
+			var/turf/S = T
+			if(S.is_wet >= 2)
 				S.wet_floor(1, TRUE)
 		T.clean_blood()
 
@@ -290,7 +285,7 @@
 	reagent_state = LIQUID
 	color = "#009CA8"
 
-/datum/reagent/other/lube/touch_turf(turf/simulated/T)
+/datum/reagent/other/lube/touch_turf(turf/T)
 	if(!istype(T))
 		return TRUE
 	if(volume >= 1)
@@ -349,7 +344,7 @@
 
 /*		Proc was removed because of griefing
 #define COOLANT_LATENT_HEAT 19000
-/datum/reagent/other/coolant/touch_turf(var/turf/simulated/T)
+/datum/reagent/other/coolant/touch_turf(var/turf/T)
 	if(!istype(T))
 		return
 

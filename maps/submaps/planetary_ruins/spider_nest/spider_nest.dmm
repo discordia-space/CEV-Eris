@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/map_template/spider_nest)
 "c" = (
 /obj/structure/closet/wall_mounted/emcloset{
@@ -11,24 +11,23 @@
 	},
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "d" = (
 /obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/spider_nest)
 "e" = (
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "f" = (
-/obj/effect/window_lwall_spawn/smartspawn,
 /obj/structure/barricade,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/map_template/spider_nest)
 "h" = (
 /obj/structure/grille,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/spider_nest)
 "i" = (
 /obj/structure/table/standard{
@@ -38,7 +37,7 @@
 /obj/spawner/junkfood,
 /obj/spawner/powercell,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "j" = (
 /obj/structure/table/standard{
@@ -47,19 +46,19 @@
 /obj/item/pen,
 /obj/spawner/junk,
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/spider_nest)
 "k" = (
 /obj/structure/filingcabinet,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "l" = (
 /obj/structure/bed/chair/comfy/blue,
 /obj/item/pen,
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/spider_nest)
 "m" = (
 /obj/spawner/junk,
@@ -69,7 +68,7 @@
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "o" = (
 /obj/structure/table/standard{
@@ -78,7 +77,7 @@
 /obj/spawner/junk,
 /obj/spawner/pack/tech_loot,
 /obj/item/paper,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "p" = (
 /obj/landmark/corpse/doctor,
@@ -86,7 +85,7 @@
 /obj/item/material/shard,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/vomit,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/spider_nest)
 "q" = (
 /obj/item/melee/telebaton,
@@ -95,38 +94,38 @@
 /obj/structure/fireaxecabinet{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "r" = (
 /obj/item/paper_bin,
 /obj/spawner/junk,
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "s" = (
 /obj/machinery/seed_storage/random,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "t" = (
 /obj/item/paper,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "u" = (
 /obj/effect/spider/stickyweb,
 /obj/item/paper,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "v" = (
 /obj/spawner/junk,
 /obj/effect/spider/stickyweb,
 /obj/item/seeds/random,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "w" = (
 /obj/effect/decal/cleanable/spiderling_remains,
 /obj/effect/decal/cleanable/blood,
 /mob/living/carbon/superior_animal/giant_spider,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "x" = (
 /obj/structure/grille/broken,
@@ -134,18 +133,18 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood/drip,
 /mob/living/carbon/superior_animal/giant_spider/nurse,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/spider_nest)
 "y" = (
 /obj/spawner/junk,
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "z" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/paper,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "A" = (
 /obj/spawner/pack/tech_loot,
@@ -157,65 +156,65 @@
 "B" = (
 /obj/spawner/booze,
 /obj/spawner/voidsuit/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "C" = (
 /obj/spawner/pack/tech_loot,
 /mob/living/carbon/superior_animal/giant_spider/hunter,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "D" = (
 /obj/structure/bookcase/manuals/research_and_development,
 /obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "E" = (
 /obj/effect/spider/stickyweb,
 /obj/effect/spider/cocoon,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "F" = (
 /obj/structure/bed/chair/comfy/purp,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "G" = (
 /obj/structure/grille/broken,
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/spider_nest)
 "H" = (
 /obj/structure/grille/broken,
 /obj/spawner/junk,
 /obj/effect/decal/cleanable/blood,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/spider_nest)
 "I" = (
 /obj/item/paper,
 /obj/effect/decal/cleanable/blood/drip,
 /mob/living/carbon/superior_animal/giant_spider,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "J" = (
 /obj/effect/spider/stickyweb,
 /obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/spider_nest)
 "K" = (
 /obj/spawner/junk,
 /obj/effect/decal/cleanable/blood/gibs/body,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "L" = (
 /obj/spawner/pack/tech_loot,
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "M" = (
 /obj/effect/decal/cleanable/blood,
@@ -224,7 +223,7 @@
 "N" = (
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "O" = (
 /obj/effect/decal/cleanable/spiderling_remains,
@@ -236,7 +235,7 @@
 /area/template_noop)
 "R" = (
 /obj/structure/sign/biohazard,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/map_template/spider_nest)
 "W" = (
 /obj/effect/spider/stickyweb,
@@ -246,20 +245,20 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "X" = (
 /obj/structure/filingcabinet,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/map_template/spider_nest)
 "Y" = (
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "Z" = (
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/spider_nest)
 
 (1,1,1) = {"

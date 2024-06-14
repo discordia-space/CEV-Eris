@@ -244,13 +244,13 @@
 	explosion_act(120, null)
 //turfs
 
-/turf/simulated/wall/hatton_act()
-	src.ChangeTurf("/turf/simulated/floor")
+/turf/wall/hatton_act()
+	src.ChangeTurf("/turf/floor")
 
-/turf/simulated/wall/r_wall/hatton_act()
+/turf/wall/reinforced/hatton_act()
 	take_damage(1000)
 
-/turf/simulated/mineral/hatton_act()
+/turf/mineral/hatton_act()
 	explosion_act(1000, null)
 
 

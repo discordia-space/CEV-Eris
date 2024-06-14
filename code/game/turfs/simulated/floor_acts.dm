@@ -1,5 +1,5 @@
 
-/turf/simulated/floor/explosion_act(target_power, explosion_handler/handler)
+/turf/floor/explosion_act(target_power, explosion_handler/handler)
 	var/absorbed_damage = 0
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
@@ -19,7 +19,7 @@
 
 
 
-/turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/turf/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 
 	var/temp_destroy = get_damage_temperature()
 	if(!burnt && prob(5))
@@ -30,12 +30,12 @@
 
 
 //should be a little bit lower than the temperature required to destroy the material
-/turf/simulated/floor/proc/get_damage_temperature()
+/turf/floor/proc/get_damage_temperature()
 	return flooring ? flooring.damage_temperature : null
 
-/turf/simulated/floor/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+/turf/floor/adjacent_fire_act(turf/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	var/dir_to = get_dir(src, adj_turf)
 
 	for(var/obj/structure/window/W in src)
-		if(W.dir == dir_to || W.is_fulltile()) //Same direction or diagonal (full tile)
+		if(W.dir == dir_to) //Same direction or diagonal (full tile)
 			W.fire_act(adj_air, adj_temp, adj_volume)
