@@ -1,0 +1,6 @@
+author: SirRichardFrancis
+delete-after: true
+changes:
+  - tweak: Changed reinforced wall deconstruction steps.
+  - refactor: Refactored part of turf code, including wall.
+  - code_imp: Changed how wall sprites are generated.
