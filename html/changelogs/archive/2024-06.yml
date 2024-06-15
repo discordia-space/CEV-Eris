@@ -7,3 +7,8 @@
   - balance: The AME is now subsidized by Command where necessary in exchange for
       paying taxes.
   - bugfix: fixed a few things wrong with Silo.
+2024-06-15:
+  SirRichardFrancis:
+  - tweak: Changed reinforced wall deconstruction steps.
+  - refactor: Refactored part of turf code, including wall.
+  - code_imp: Changed how wall sprites are generated.
