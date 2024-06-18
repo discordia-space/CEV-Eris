@@ -165,9 +165,17 @@
 
 
 /turf/Entered(atom/movable/Obj, atom/OldLoc)
+	..()
+	for(var/entry in Obj.light_sources)
+		var/datum/light_source/light_source = entry
+		light_source.source_atom.update_light()
 	if(is_simulated)
 		if(isliving(Obj))
 			var/mob/living/M = Obj
+
+			for(var/atom/movable/updatee in M.update_on_move)
+				updatee.entered_with_container(OldLoc)
+
 			if(!M.lying)
 				var/obj/effect/plant/plant = locate() in contents
 				if(plant)

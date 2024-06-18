@@ -208,24 +208,16 @@
 
 #define DO_MOVE(this_dir) var/final_dir = turn(this_dir, -dir2angle(dir)); Move(get_step(mob, final_dir), final_dir);
 
-/client/verb/moveup()
-	set name = ".moveup"
-	set instant = 1
+/client/proc/moveup()
 	DO_MOVE(NORTH)
 
-/client/verb/movedown()
-	set name = ".movedown"
-	set instant = 1
+/client/proc/movedown()
 	DO_MOVE(SOUTH)
 
-/client/verb/moveright()
-	set name = ".moveright"
-	set instant = 1
+/client/proc/moveright()
 	DO_MOVE(EAST)
 
-/client/verb/moveleft()
-	set name = ".moveleft"
-	set instant = 1
+/client/proc/moveleft()
 	DO_MOVE(WEST)
 
 #undef DO_MOVE

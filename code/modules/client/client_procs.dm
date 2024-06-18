@@ -767,16 +767,25 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	init_verbs()
 
-/client/proc/fullscreen_check()
-	if(get_preference_value(/datum/client_preference/fullscreen) == GLOB.PREF_YES)
-		winset(src, null, "mainwindow.titlebar=false mainwindow.menu=none mainwindow.is-maximized=true split.pos=0,0")
-	else
-		winset(src, null, "mainwindow.titlebar=true mainwindow.menu=menu split.pos=3,0")
-	fit_viewport()
 
 /client/verb/toggle_fullscreen() // F11 hotkey
 	set name = "Toogle Fullscreen"
-	set hidden = TRUE
+	set category = "OOC"
 
-	cycle_preference(/datum/client_preference/fullscreen)
-	fullscreen_check()
+	src << output("", "browseroutput:fullscreen_check")
+
+
+/client/verb/enable_fullscreen()
+	set hidden = TRUE
+	winset(usr, "mainwindow", "titlebar=false")
+	winset(usr, "mainwindow", "menu=")
+	winset(usr, "mainwindow", "is-maximized=false")
+	winset(usr, "mainwindow", "is-maximized=true")
+	fit_viewport()
+
+/client/verb/disable_fullscreen()
+	set hidden = TRUE
+	winset(usr, "mainwindow", "titlebar=true")
+	winset(usr, "mainwindow", "menu=menu")
+	winset(usr, "mainwindow", "is-maximized=false")
+	fit_viewport()
