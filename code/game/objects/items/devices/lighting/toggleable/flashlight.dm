@@ -3,6 +3,7 @@
 	dir = WEST
 	suitable_cell = /obj/item/cell/small
 	rarity_value = 5
+	flags = CONDUCT|MOVE_NOTIFY
 	var/tick_cost = 0.4
 
 	var/obj/effect/effect/light/light_spot

@@ -168,6 +168,8 @@
 
 
 /turf/wall/bullet_act(obj/item/projectile/Proj)
+	if(!is_simulated)
+		return
 	if(ricochet_id != 0)
 		if(ricochet_id == Proj.ricochet_id)
 			ricochet_id = 0
@@ -225,6 +227,8 @@
 
 
 /turf/wall/hitby(atom/movable/AM, speed = THROWFORCE_SPEED_DIVISOR)
+	if(!is_simulated)
+		return
 	if(density)
 		AM.throwing = FALSE
 	if(ismob(AM))
@@ -247,7 +251,8 @@
 
 
 /turf/wall/examine(mob/user, extra_description = "")
-	if(!simulated)
+	if(!is_simulated)
+		extra_description += SPAN_NOTICE("It looks very tough.")
 		return ..(user, extra_description)
 
 	if(health == max_health)
@@ -315,6 +320,8 @@
 	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!")) //!!OH SHIT!!
 
 /turf/wall/take_damage(damage)
+	if(!is_simulated)
+		return
 	if(damage < 1)
 		return
 	if(locate(/obj/effect/overlay/wallrot) in src)
@@ -328,6 +335,8 @@
 
 
 /turf/wall/explosion_act(target_power, explosion_handler/handler)
+	if(!is_simulated)
+		return 0
 	var/absorbed = take_damage(target_power)
 	// All health has been blocked
 	if(absorbed == target_power)
@@ -335,11 +344,15 @@
 	return absorbed + ..(target_power - absorbed)
 
 /turf/wall/adjacent_fire_act(turf/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+	if(!is_simulated)
+		return
 	var/melting_point = (hardness > 100) ? 6000 : 1800
 	if(adj_temp > melting_point)
 		take_damage(log(RAND_DECIMAL(0.9, 1.1) * (adj_temp - melting_point)))
 
-/turf/wall/proc/thermitemelt(mob/user) // TODO: Refactor this --KIROV
+/turf/wall/proc/thermitemelt(mob/user)
+	if(!is_simulated)
+		return
 	var/obj/effect/overlay/burn_overlay = new/obj/effect/overlay(src)
 	burn_overlay.name = "Thermite"
 	burn_overlay.desc = "Looks hot."
