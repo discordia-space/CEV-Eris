@@ -3953,3 +3953,33 @@
 	bitesize = 3
 	preloaded_reagents = list("slimejelly" = 5)
 	matter = list(MATERIAL_BIOMATTER = 33)
+
+/obj/item/reagent_containers/food/snacks/nigiri
+	name = "nigiri"
+	desc = "Raw cut of fishes on top of rice, a Shimatengoku overpriced delicacy."
+	icon_state = "nigiri"
+	bitesize = 2
+	nutriment_amt = 5
+	preloaded_reagents = list("protein" = 5)
+	nutriment_desc = list("raw fish" = 1, "rice" = 2)
+	taste_tag = list(UMAMI_FOOD)
+
+/obj/item/reagent_containers/food/snacks/makiroll
+	name = "maki roll"
+	desc = "A long roll of fish, rice and vegetables, to cut into multiple makis."
+	icon_state = "makiroll"
+	bitesize = 5
+	nutriment_amt = 8
+	preloaded_reagents = list("protein" = 6)
+	nutriment_desc = list("raw fish" = 1, "rice" = 2, "soy sauce" = 2)
+	taste_tag = list(UMAMI_FOOD)
+
+/obj/item/reagent_containers/food/snacks/maki
+	name = "maki"
+	desc = "Rice, fish, vegetables and soy sauce held together, another expensive Shimatengoku meal."
+	icon_state = "maki"
+	bitesize = 2
+	nutriment_amt = 4
+	preloaded_reagents = list("protein" = 2)
+	nutriment_desc = list("raw fish" = 1, "rice" = 1, "soy sauce" = 1)
+	taste_tag = list(UMAMI_FOOD)
