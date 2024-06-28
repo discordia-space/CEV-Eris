@@ -51,7 +51,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	maxHealth = 1700
 	break_stuff_probability = 95
 	stop_automated_movement = 1
-	var/attack_text = "kicks"
+	attacktext = "kicked"
 
 	melee_damage_lower = 10
 	melee_damage_upper = 100
@@ -93,7 +93,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 
 	if(ismob(target))
 		var/kick_dir = get_dir(src, target)
-		src.UnarmedAttack(target, rand(50,100), attacktext) // DEAL LOOK
+		UnarmedAttack(target, rand(50,100)) // DEAL LOOK
 		target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 
 /mob/living/simple_animal/hostile/megafauna/one_star/UnarmedAttack(atom/A, proximity)
