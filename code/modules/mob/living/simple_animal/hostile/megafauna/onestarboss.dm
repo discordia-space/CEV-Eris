@@ -15,8 +15,6 @@ Effects demand parent code, so ..()
 #define OS_BOSS_ROCKET		3
 #define OS_BOSS_MINIGUN		4
 #define OS_BOSS_SPAWN_BOTS	5
-var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MINIGUN, OS_BOSS_SPAWN_BOTS) //shotgun, sniper, rockets, you get the drill. MOVE THIS TO MOB!!!
-//var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER) //shotgun, sniper, rockets, you get the drill.
 /mob/living/simple_animal/hostile/megafauna/one_star
 	name = "Type - 0315"
 	desc = "Love and concrete."
@@ -30,7 +28,6 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	pixel_x = -16
 	default_pixel_x = -16 // this shit is for make_jittery proc
 	ranged = TRUE
-	var/action
 	var/move_lock = FALSE
 	var/first_activation = 0
 	var/is_jittery = 0
@@ -179,15 +176,13 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	//edge = FALSE
 	//matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASMA = 2)
 
-/obj/effect/effect/mech_aiming/
-	..()
-	//mouse_opacity = 0
-	anchored = 1
+/obj/effect/effect/mech_aiming
+	anchored = TRUE
 	alpha = 200
 	pixel_y = -16
 	pixel_x = -16
-	layer = 5
-	unacidable = 1
+	layer = FLY_LAYER
+	unacidable = TRUE
 
 /obj/effect/effect/mech_aiming/Crossed(obj/item/projectile/bullet/rocket/one_star/rocket)
 	if(istype(rocket))
@@ -278,9 +273,6 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 		P.launch(target, def_zone)
 	playsound(src, "sound/weapons/guns/fire/shotgunp_fire.ogg", 100, 1)
 
-/obj/effect/effect/telegraph/
-	..()
-	mouse_opacity = 0
 
 /obj/effect/effect/telegraph/New()
 	..()
@@ -450,7 +442,10 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	if(!doing_something)
 		if(src.stat != DEAD && target_mob)
 			if(!move_lock)
-				action = pick(move_list)
+				var/static/list/move_list
+				if(!move_list)
+					move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MINIGUN, OS_BOSS_SPAWN_BOTS) // Shotgun, sniper, rockets, you get the drill
+				var/action = pick(move_list)
 			switch(action)
 				if(OS_BOSS_SHOTGUN)
 					var/obj/effect/effect/telegraph/F = new /obj/effect/effect/telegraph(target_mob.loc)
@@ -464,7 +459,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 									targ.Weaken(3)
 									//playsound(targ.loc, 'sound/mechs/obliteration.ogg', 100) DEAL LOOK
 									var/kick_dir = get_dir(src, targ)
-									src.UnarmedAttack(targ, rand(50,100), attacktext)
+									UnarmedAttack(targ, rand(50,100))
 									targ.throw_at(get_edge_target_turf(targ, kick_dir), 3, 1)
 									doing_something = FALSE
 									LoseTarget()
