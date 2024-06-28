@@ -30,9 +30,6 @@
 /obj/rogue/teleporter/New()
 	for(var/turf/T in orange(7, src))
 		turfs_around += T
-	initiate_sound()
-
-/obj/rogue/teleporter/proc/initiate_sound()
 	var/order = 1
 	while(charge <= 0)
 		playsound(src, ('sound/machines/onestar/teleporter1.ogg'), 100, 1, 4, use_pressure = FALSE)

@@ -89,24 +89,23 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	if(!isinspace())
 		playsound(src, 'sound/mechs/mechstep.ogg', 100)
 
-/mob/living/simple_animal/hostile/megafauna/one_star/Bump(var/mob/target)
+/mob/living/simple_animal/hostile/megafauna/one_star/Bump(mob/target)
 
 	if(ismob(target))
 		var/kick_dir = get_dir(src, target)
 		src.UnarmedAttack(target, rand(50,100), attacktext) // DEAL LOOK
 		target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 
-/mob/living/simple_animal/hostile/megafauna/one_star/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/simple_animal/hostile/megafauna/one_star/UnarmedAttack(atom/A, proximity)
 	attack_sound = pick("sound/weapons/punch1.ogg", "sound/weapons/punch2.ogg", "sound/weapons/punch3.ogg")
-	if(!..())
-		return
+	..()
 
 
 
 ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////MINIGUN//////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-/mob/living/simple_animal/hostile/megafauna/one_star/proc/shoot_minigun(var/target)
+/mob/living/simple_animal/hostile/megafauna/one_star/proc/shoot_minigun(target)
 	var/def_zone = pick(
 		organ_rel_size[BP_HEAD]; BP_HEAD,
 		organ_rel_size[BP_CHEST]; BP_CHEST,
@@ -124,20 +123,20 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 
 
 /obj/effect/effect/minigun_aim
-	..()
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "spin"
 	//flick("stupid_circle.dmi", src)
 	//mouse_opacity = 0
-	anchored = 1
+	anchored = TRUE
 	alpha = 200
-	layer = 5
-	unacidable = 1
+	layer = FLY_LAYER
+	unacidable = TRUE
+
 /obj/effect/effect/minigun_aim/New()
 	..()
 	flick("wind_up", src)
 
-/obj/effect/effect/minigun_aim/proc/StayOn(var/mob/living/target)
+/obj/effect/effect/minigun_aim/proc/StayOn(mob/living/target)
 	loc = target.loc
 	var/prev_position = get_turf(target)
 	var/timer = 50
@@ -164,6 +163,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	if(target)
 		P.original = target
 	P.launch(get_step(marker, get_dir(src, get_turf(marker))))
+
 /obj/item/projectile/bullet/rocket/one_star // this rocket is unchanged from parent, balance it as you want
 	name = "one star torpedo"
 	icon_state = "rocket"
@@ -189,17 +189,16 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	layer = 5
 	unacidable = 1
 
-/obj/effect/effect/mech_aiming/Crossed(O as obj)
-	if(istype(O, /obj/item/projectile/bullet/rocket/one_star))
-		var/obj/item/projectile/bullet/rocket/one_star/M = O
-		M.detonate(src)
+/obj/effect/effect/mech_aiming/Crossed(obj/item/projectile/bullet/rocket/one_star/rocket)
+	if(istype(rocket))
+		rocket.detonate(src)
 		qdel(src)
-		qdel(M)
+		qdel(rocket)
 /obj/item/projectile/bullet/rocket/one_star/detonate()
 	..()
 	if(istype(firer, /mob/living/simple_animal/hostile/megafauna/one_star/))
 		var/mob/living/simple_animal/hostile/megafauna/one_star/boss = firer
-		boss.doing_something = 0
+		boss.doing_something = FALSE
 	
 
 /obj/effect/effect/mech_aiming/New()
@@ -232,6 +231,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	var/obj/item/projectile/P = new /obj/item/projectile/beam/sniper(loc)
 	P.launch(target, def_zone)
 	playsound(src, 'sound/machines/onestar/boss/obliteration.ogg', 100)
+
 /obj/effect/effect/crosshair
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "aiming_crosshair"
@@ -243,7 +243,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 
 ///obj/effect/effect/crosshair/New(var/mob/living/M)
 
-/obj/effect/effect/crosshair/proc/StayOn(var/mob/living/M)
+/obj/effect/effect/crosshair/proc/StayOn(mob/living/M)
 	loc = M.loc
 	anchored = TRUE
 	if(M)
@@ -289,20 +289,12 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	flick("telegraph_flick", src)
 	spawn(100) qdel(src)
 
-/obj/effect/effect/telegraph/Crossed(BB as mob)
-	if(istype(BB, /mob/living/simple_animal/hostile/megafauna/one_star))
-		var/mob/living/simple_animal/hostile/megafauna/one_star/boss = BB
+/obj/effect/effect/telegraph/Crossed(mob/living/simple_animal/hostile/megafauna/one_star/boss)
+	if(istype(boss) && boss.target_mob)
 		boss.shoot_shotgun(boss.target_mob)
 		boss.doing_something = FALSE
 		boss.move_lock = FALSE
 		qdel(src)
-	//else //
-		//if(istype(BB, /mob/living) && !istype(BB, /mob/living/simple_animal/hostile/megafauna/one_star))
-		//	for(var/mob/living/simple_animal/hostile/megafauna/one_star in orange(src, 1))
-			//	var/mob/living/idiot = BB
-				//idiot.gib() //lmaooo
-				//var/kick_dir = get_dir(src, BB)
-				//target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -314,7 +306,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 	animate(pixel_x=init_px, time=8, easing=BOUNCE_EASING)
 
 
-/mob/living/simple_animal/hostile/megafauna/one_star/make_jittery(var/amount)
+/mob/living/simple_animal/hostile/megafauna/one_star/make_jittery(amount)
 	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
 													// clamped to max 1000
 	if(jitteriness > 100 && !is_jittery)
@@ -481,7 +473,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 									break
 						move_to_delay = 3
 						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-						if(src.stat != DEAD)
+						if(stat != DEAD)
 							walk_to(src, F.loc, 0, move_to_delay)
 				if(OS_BOSS_SNIPER)
 					doing_something = TRUE
@@ -515,7 +507,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 						if(target.stat != DEAD && target.faction != "onestar")
 							minigun_target.Add(target)
 					doing_something = TRUE
-					switch(minigun_target.len)
+					switch(LAZYLEN(minigun_target))
 						if(0)
 							sleep(500 MILLISECONDS)
 							error(SPAN_DANGER("[src] is fucking up, tell c*ders!"))
@@ -565,7 +557,7 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 								step_towards(A, target_location)
 								step_towards(B, target_location)
 							var/i = 15
-							playsound(src.loc, 'sound/machines/onestar/boss/minigun_windup.ogg', 75)
+							playsound(loc, 'sound/machines/onestar/boss/minigun_windup.ogg', 75)
 							sleep(500 MILLISECONDS)
 							while(i != 0 && src.stat != DEAD)
 								i--
@@ -614,27 +606,6 @@ var/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MI
 						sparks.set_up(3, 0, get_turf(newmob.loc))
 						sparks.start()
 						mobs_to_spawn--
-			if(!move_lock && src.stat != DEAD) // I fucking hate what I am doing with this code
+			if(!move_lock && stat != DEAD) // I fucking hate what I am doing with this code
 				target_mob = FindTarget()
 						
-					
-					
-
-
-
-						//var/obj/effect/effect/minigun_aim/A = new /obj/effect/effect/minigun_aim(target1.loc)
-
-						//if(!target1 || !target2)
-						//	LoseTarget()
-						//	return
-						//var/i = 10
-						//while(i != 0)
-						//	i--
-						//	shoot_minigun(A)
-						//	shoot_minigun(B)
-						//	sleep(1)
-	//		if(OS_BOSS_MELEE)
-//			if(OS_BOSS_)
-		//	if(OS_BOSS_)
-	//			return
-
