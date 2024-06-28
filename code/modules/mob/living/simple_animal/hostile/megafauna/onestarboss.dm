@@ -43,6 +43,8 @@ Effects demand parent code, so ..()
 		/mob/living/carbon/superior_animal/stalker/dual,
 		/mob/living/carbon/superior_animal/stalker/,
 		)
+	var/static/list/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MINIGUN, OS_BOSS_SPAWN_BOTS) // Shotgun, sniper, rockets, you get the drill
+	var/action = OS_BOSS_SHOTGUN //action has to be some kind of default before it will be changed at the start of first attack
 
 	health = 1700
 	maxHealth = 1700
@@ -442,10 +444,7 @@ Effects demand parent code, so ..()
 	if(!doing_something)
 		if(src.stat != DEAD && target_mob)
 			if(!move_lock)
-				var/static/list/move_list
-				if(!move_list)
-					move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MINIGUN, OS_BOSS_SPAWN_BOTS) // Shotgun, sniper, rockets, you get the drill
-				var/action = pick(move_list)
+				action = pick(move_list)
 			switch(action)
 				if(OS_BOSS_SHOTGUN)
 					var/obj/effect/effect/telegraph/F = new /obj/effect/effect/telegraph(target_mob.loc)
