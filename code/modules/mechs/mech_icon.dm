@@ -43,7 +43,7 @@
 	for(var/hardpoint in hardpoints)
 		var/obj/item/mech_equipment/hardpoint_object = hardpoints[hardpoint]
 		if(hardpoint_object)
-			var/use_icon_state = "[hardpoint_object.icon_state]_[hardpoint]"
+			var/use_icon_state = "[hardpoint_object.get_overlay_state()]_[hardpoint]"
 			if(use_icon_state in GLOB.mech_weapon_overlays)
 				var/color = COLOR_WHITE
 				var/decal = null
