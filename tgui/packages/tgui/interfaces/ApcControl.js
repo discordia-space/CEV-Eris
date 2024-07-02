@@ -2,7 +2,16 @@ import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { pureComponentHooks } from 'common/react';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Dimmer, Icon, Table, Tabs, Stack, Section } from '../components';
+import {
+  Box,
+  Button,
+  Dimmer,
+  Icon,
+  Table,
+  Tabs,
+  Stack,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 import { AreaCharge, powerRank } from './PowerMonitor';
 
@@ -47,7 +56,8 @@ const ApcLoggedIn = (props, context) => {
           onClick={() => {
             setTabIndex(1);
             act('check-apcs');
-          }}>
+          }}
+        >
           APC Control Panel
         </Tabs.Tab>
         <Tabs.Tab
@@ -55,7 +65,8 @@ const ApcLoggedIn = (props, context) => {
           onClick={() => {
             setTabIndex(2);
             act('check-logs');
-          }}>
+          }}
+        >
           Log View Panel
         </Tabs.Tab>
       </Tabs>
@@ -204,7 +215,8 @@ const ApcControlScene = (props, context) => {
                   act('access-apc', {
                     ref: apc.ref,
                   })
-                }>
+                }
+              >
                 {apc.name}
               </Button>
             </td>

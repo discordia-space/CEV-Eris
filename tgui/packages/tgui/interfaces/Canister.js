@@ -1,6 +1,17 @@
 import { toFixed } from 'common/math';
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Icon, Knob, LabeledControls, LabeledList, RoundGauge, Section, Tooltip } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Knob,
+  LabeledControls,
+  LabeledList,
+  RoundGauge,
+  Section,
+  Tooltip,
+} from '../components';
 import { formatSiUnit } from '../format';
 import { Window } from '../layouts';
 
@@ -63,7 +74,8 @@ export const Canister = (props, context) => {
                     onClick={() => act('relabel')}
                   />
                 </>
-              }>
+              }
+            >
               <LabeledControls>
                 <LabeledControls.Item minWidth="66px" label="Pressure">
                   <RoundGauge
@@ -141,7 +153,8 @@ export const Canister = (props, context) => {
                 <LabeledControls.Item mr={1} label="Port">
                   <Tooltip
                     content={portConnected ? 'Connected' : 'Disconnected'}
-                    position="top">
+                    position="top"
+                  >
                     <Box position="relative">
                       <Icon
                         size={1.25}
@@ -188,7 +201,8 @@ export const Canister = (props, context) => {
                     onClick={() => act('eject')}
                   />
                 )
-              }>
+              }
+            >
               {!!hasHoldingTank && (
                 <LabeledList>
                   <LabeledList.Item label="Label">

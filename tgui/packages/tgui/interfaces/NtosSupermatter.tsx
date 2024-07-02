@@ -32,7 +32,8 @@ export const NtosSupermatter = (props, context) => {
                 content="Refresh"
                 onClick={() => act('PRG_refresh')}
               />
-            }>
+            }
+          >
             <Table>
               {sm_data.map((sm) => (
                 <Table.Row key={sm.uid}>

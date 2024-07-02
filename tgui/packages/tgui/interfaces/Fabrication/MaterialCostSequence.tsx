@@ -87,7 +87,8 @@ export const MaterialCostSequence = (
                         ? '#f08f11'
                         : '#db2828',
                 }
-              }>
+              }
+            >
               {formatSiUnit((amount || 1) * quantity, 0)}
             </Flex.Item>
           </Flex>

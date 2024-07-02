@@ -29,7 +29,8 @@ export const OreBox = (props, context) => {
               content="Eject All Ores"
               onClick={() => act('ejectallores')}
             />
-          }>
+          }
+        >
           <Stack direction="column">
             <Stack.Item>
               <Section>

@@ -89,13 +89,15 @@ const MaterialCounter = (props: MaterialCounterProps, context) => {
         'MaterialDock',
         hovering && 'MaterialDock--active',
         !canEject && 'MaterialDock--disabled',
-      ])}>
+      ])}
+    >
       <Stack vertial direction={'column-reverse'}>
         <Flex
           direction="column"
           textAlign="center"
           onClick={() => onEjectRequested(1)}
-          className="MaterialDock__Label">
+          className="MaterialDock__Label"
+        >
           <Flex.Item>
             <MaterialIcon
               materialName={material.name}
@@ -159,7 +161,8 @@ const EjectButton = (props: EjectButtonProps, context) => {
         'Fabricator__PrintAmount',
         amount * 2_000 > available && 'Fabricator__PrintAmount--disabled',
       ])}
-      onClick={() => onEject(amount)}>
+      onClick={() => onEject(amount)}
+    >
       &times;{amount}
     </Button>
   );

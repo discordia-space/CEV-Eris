@@ -23,7 +23,8 @@ const HoloposterContent = (props: any, context: any) => {
           'display': 'flex',
           'align-items': 'center',
           'justify-content': 'center',
-        }}>
+        }}
+      >
         <GameIcon
           html={icon}
           style={{
@@ -43,7 +44,8 @@ const HoloposterContent = (props: any, context: any) => {
               tooltip={'Toggle poster rotation.'}
               onClick={() => act('random')}
             />
-          }>
+          }
+        >
           {Object.keys(posterTypes).map((value) => (
             <Button
               key={value}

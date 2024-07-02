@@ -52,7 +52,8 @@ export const EventOptionsPanel = (props, context) => {
     <Button.Checkbox
       fluid
       checked={announce}
-      onClick={() => setAnnounce(!announce)}>
+      onClick={() => setAnnounce(!announce)}
+    >
       Announce event to the crew
     </Button.Checkbox>
   );

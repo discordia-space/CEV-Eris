@@ -1,7 +1,15 @@
 import { createSearch } from 'common/string';
 import { filter, map, reduce, sortBy } from 'common/collections';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Input, NoticeBox, Section, Collapsible, Table } from '../components';
+import {
+  Box,
+  Button,
+  Input,
+  NoticeBox,
+  Section,
+  Collapsible,
+  Table,
+} from '../components';
 import { Window } from '../layouts';
 import { clamp } from 'common/math';
 import { flow } from 'common/fp';
@@ -114,7 +122,8 @@ export const StackCrafting = (_props, context) => {
                 mx={1}
               />
             </>
-          }>
+          }
+        >
           {filteredRecipes ? (
             <RecipeListBox recipes={filteredRecipes} />
           ) : (

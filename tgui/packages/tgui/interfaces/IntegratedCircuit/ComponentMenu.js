@@ -99,7 +99,8 @@ export class ComponentMenu extends Component {
         onMouseUp={(event) => {
           event.preventDefault();
         }}
-        scrollable>
+        scrollable
+      >
         <Stack vertical>
           <Stack.Item>
             <Dropdown
@@ -137,7 +138,8 @@ export class ComponentMenu extends Component {
                 <Stack.Item
                   key={val.type}
                   mt={1}
-                  onMouseDown={(e) => onMouseDownComponent(e, val)}>
+                  onMouseDown={(e) => onMouseDownComponent(e, val)}
+                >
                   <DisplayComponent component={val} fixedSize />
                 </Stack.Item>
               ))}

@@ -3,7 +3,13 @@ import { BooleanLike, classes } from 'common/react';
 import { ComponentType, createComponentVNode, InfernoNode } from 'inferno';
 import { VNodeFlags } from 'inferno-vnode-flags';
 import { sendAct, useBackend, useLocalState } from '../../../../backend';
-import { Box, Button, Dropdown, NumberInput, Stack } from '../../../../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  NumberInput,
+  Stack,
+} from '../../../../components';
 import { createSetPreference, PreferencesMenuData } from '../../data';
 import { ServerPreferencesFetcher } from '../../ServerPreferencesFetcher';
 
@@ -12,7 +18,7 @@ export const sortChoices = sortBy<[string, InfernoNode]>(([name]) => name);
 export type Feature<
   TReceiving,
   TSending = TReceiving,
-  TServerData = undefined
+  TServerData = undefined,
 > = {
   name: string;
   component: FeatureValue<TReceiving, TSending, TServerData>;
@@ -29,13 +35,13 @@ export type Feature<
 type FeatureValue<
   TReceiving,
   TSending = TReceiving,
-  TServerData = undefined
+  TServerData = undefined,
 > = ComponentType<FeatureValueProps<TReceiving, TSending, TServerData>>;
 
 export type FeatureValueProps<
   TReceiving,
   TSending = TReceiving,
-  TServerData = undefined
+  TServerData = undefined,
 > = {
   act: typeof sendAct;
   featureId: string;
@@ -52,7 +58,8 @@ export const FeatureColorInput = (props: FeatureValueProps<string>) => {
         props.act('set_color_preference', {
           preference: props.featureId,
         });
-      }}>
+      }}
+    >
       <Stack align="center" fill>
         <Stack.Item>
           <Box
@@ -66,8 +73,8 @@ export const FeatureColorInput = (props: FeatureValueProps<string>) => {
               width: '11px',
               ...(props.shrink
                 ? {
-                  'margin': '1px',
-                }
+                    'margin': '1px',
+                  }
                 : {}),
             }}
           />
@@ -142,10 +149,7 @@ export type FeatureChoicedServerData = {
 export type FeatureChoiced = Feature<string, string, FeatureChoicedServerData>;
 
 const capitalizeFirstLetter = (text: string) =>
-  text
-    .toString()
-    .charAt(0)
-    .toUpperCase() + text.toString().slice(1);
+  text.toString().charAt(0).toUpperCase() + text.toString().slice(1);
 
 export const StandardizedDropdown = (props: {
   choices: string[];

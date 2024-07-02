@@ -78,14 +78,16 @@ const PrintButton = (props: PrintButtonProps, context) => {
           amount={quantity}
           available={available}
         />
-      }>
+      }
+    >
       <div
         className={classes([
           'FabricatorRecipe__Button',
           !canPrint && 'FabricatorRecipe__Button--disabled',
         ])}
         color={'transparent'}
-        onClick={() => act('build', { ref: design.id, amount: quantity })}>
+        onClick={() => act('build', { ref: design.id, amount: quantity })}
+      >
         &times;{quantity}
       </div>
     </Tooltip>
@@ -109,7 +111,8 @@ const Recipe = (props: { design: Design; available: MaterialMap }, context) => {
             'FabricatorRecipe__Button',
             'FabricatorRecipe__Button--icon',
             !canPrint && 'FabricatorRecipe__Button--disabled',
-          ])}>
+          ])}
+        >
           <Icon name="question-circle" />
         </div>
       </Tooltip>
@@ -120,13 +123,15 @@ const Recipe = (props: { design: Design; available: MaterialMap }, context) => {
             amount={1}
             available={available}
           />
-        }>
+        }
+      >
         <div
           className={classes([
             'FabricatorRecipe__Title',
             !canPrint && 'FabricatorRecipe__Title--disabled',
           ])}
-          onClick={() => act('build', { ref: design.id, amount: 1 })}>
+          onClick={() => act('build', { ref: design.id, amount: 1 })}
+        >
           <div className="FabricatorRecipe__Icon">
             <Box
               width={'32px'}

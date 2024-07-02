@@ -111,7 +111,8 @@ export const Log = (props, context) => {
             onClick={() => {
               setViewedChunk(chunk);
               setModal('viewChunk');
-            }}>
+            }}
+          >
             View Source
           </Button>
         </>
@@ -131,7 +132,8 @@ export const Log = (props, context) => {
             style={{
               'border-radius': '0.5em',
             }}
-            backgroundColor={messageColor}>
+            backgroundColor={messageColor}
+          >
             x{repeats + 1}
           </Box>
         )}
