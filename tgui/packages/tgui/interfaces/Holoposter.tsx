@@ -20,7 +20,7 @@ const HoloposterContent = (props: any, context: any) => {
       <Stack.Item
         grow
         style={{
-          'display': 'flex',
+          display: 'flex',
           'align-items': 'center',
           'justify-content': 'center',
         }}
@@ -28,8 +28,8 @@ const HoloposterContent = (props: any, context: any) => {
         <GameIcon
           html={icon}
           style={{
-            'height': 'auto',
-            'width': '100%',
+            height: 'auto',
+            width: '100%',
           }}
         />
       </Stack.Item>

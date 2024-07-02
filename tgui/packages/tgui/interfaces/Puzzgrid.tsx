@@ -31,8 +31,8 @@ const PuzzgridButton: SFC<{
     <Button
       verticalAlignContent="middle"
       style={{
-        'width': '100%',
-        'height': '100%',
+        width: '100%',
+        height: '100%',
 
         'text-align': 'center',
         'vertical-align': 'middle',
@@ -52,7 +52,7 @@ export const Puzzgrid = (props, context) => {
 
   const answersLeft = data.answers.filter(
     (answer) =>
-      !data.solved_groups.find((group) => group.answers.indexOf(answer) !== -1)
+      !data.solved_groups.find((group) => group.answers.indexOf(answer) !== -1),
   );
 
   return (

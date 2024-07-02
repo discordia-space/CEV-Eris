@@ -393,12 +393,12 @@ const RecipeLibrary = (props, context) => {
   const [reagentFilter, setReagentFilter] = useLocalState(
     context,
     'reagentFilter',
-    true
+    true,
   );
   const [bookmarkMode, setBookmarkMode] = useLocalState(
     context,
     'bookmarkMode',
-    false
+    false,
   );
 
   const matchReagents = (reaction) => {
@@ -406,7 +406,7 @@ const RecipeLibrary = (props, context) => {
       return true;
     }
     let matches = reaction.reactants.filter((reactant) =>
-      currentReagents.includes(reactant.id)
+      currentReagents.includes(reactant.id),
     ).length;
     return matches === currentReagents.length;
   };
@@ -423,7 +423,7 @@ const RecipeLibrary = (props, context) => {
         (reaction) =>
           (selectedBitflags
             ? matchBitflag(selectedBitflags, reaction.bitflags)
-            : true) && matchReagents(reaction)
+            : true) && matchReagents(reaction),
       );
 
   const pageIndexMax = Math.ceil(visibleReactions.length / 50);

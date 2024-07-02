@@ -41,7 +41,7 @@ const CameraControls = (props, context) => {
   const cameras = selectCameras(data.cameras);
   const [prevCameraName, nextCameraName] = prevNextCamera(
     cameras,
-    activeCamera
+    activeCamera,
   );
 
   return (

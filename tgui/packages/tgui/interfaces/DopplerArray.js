@@ -28,7 +28,7 @@ const DopplerArrayContent = (props, context) => {
   const [activeRecordName, setActiveRecordName] = useSharedState(
     context,
     'activeRecordrecord',
-    records[0]?.name
+    records[0]?.name,
   );
   const activeRecord = records.find((record) => {
     return record.name === activeRecordName;
@@ -74,7 +74,7 @@ const DopplerArrayContent = (props, context) => {
                     color="bad"
                     onClick={() =>
                       act('delete_record', {
-                        'ref': activeRecord.ref,
+                        ref: activeRecord.ref,
                       })
                     }
                   />
@@ -86,7 +86,7 @@ const DopplerArrayContent = (props, context) => {
                     tooltipPosition="bottom"
                     onClick={() =>
                       act('print_record', {
-                        'ref': activeRecord.ref,
+                        ref: activeRecord.ref,
                       })
                     }
                   />

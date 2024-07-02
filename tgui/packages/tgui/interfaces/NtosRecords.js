@@ -43,7 +43,7 @@ export const NtosRecords = (props, context) => {
                       ' ' +
                       record.age +
                       ' ' +
-                      record.fingerprint
+                      record.fingerprint,
                   )
                 )
               }
@@ -81,7 +81,7 @@ export const NtosRecords = (props, context) => {
                       ' ' +
                       record.m_stat +
                       ' ' +
-                      record.p_stat
+                      record.p_stat,
                   )
                 )
               }

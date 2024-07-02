@@ -35,7 +35,7 @@ export const AtmosControlConsole = (props, context) => {
   const [chamberId, setChamberId] = useLocalState(
     context,
     'chamberId',
-    chambers[0]?.id
+    chambers[0]?.id,
   );
   const selectedChamber =
     chambers.length === 1
@@ -54,7 +54,7 @@ export const AtmosControlConsole = (props, context) => {
               onSelected={(value) =>
                 setChamberId(
                   chambers.find((chamber) => chamber.name === value)?.id ||
-                    chambers[0].id
+                    chambers[0].id,
                 )
               }
             />

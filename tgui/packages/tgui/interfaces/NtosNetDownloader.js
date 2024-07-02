@@ -32,12 +32,12 @@ export const NtosNetDownloader = (props, context) => {
   } = data;
   const all_categories = ['All'].concat(categories);
   const downloadpercentage = toFixed(
-    scale(downloadcompletion, 0, downloadsize) * 100
+    scale(downloadcompletion, 0, downloadsize) * 100,
   );
   const [selectedCategory, setSelectedCategory] = useLocalState(
     context,
     'category',
-    all_categories[0]
+    all_categories[0],
   );
   const items = flow([
     // This filters the list to only contain programs with category
@@ -50,7 +50,7 @@ export const NtosNetDownloader = (props, context) => {
     // This sorts all programs in the lists by name and compatibility
     sortBy(
       (program) => -program.compatible,
-      (program) => program.filedesc
+      (program) => program.filedesc,
     ),
   ])(programs);
   const disk_free_space = downloading

@@ -35,8 +35,8 @@ export const Fax = (props, context) => {
       ? data.faxes.filter((filterFax: FaxInfo) => filterFax.visible)
       : data.faxes.filter(
           (filterFax: FaxInfo) =>
-            filterFax.visible && !filterFax.syndicate_network
-        )
+            filterFax.visible && !filterFax.syndicate_network,
+        ),
   );
   return (
     <Window width={340} height={540}>

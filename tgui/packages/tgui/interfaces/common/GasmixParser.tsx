@@ -127,7 +127,7 @@ export const GasmixParser = (props: GasmixParserProps, context) => {
                   </Box>
                 ) : (
                   <div>{reaction[1]}</div>
-                )
+                ),
               )
             : 'No reactions detected'}
         </LabeledList.Item>

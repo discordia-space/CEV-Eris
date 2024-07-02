@@ -30,7 +30,7 @@ export const Fabricator = (props, context) => {
               buildRecipeElement={(
                 design,
                 availableMaterials,
-                onPrintDesign
+                onPrintDesign,
               ) => <Recipe design={design} available={availableMaterials} />}
             />
           </Stack.Item>
@@ -67,7 +67,7 @@ const PrintButton = (props: PrintButtonProps, context) => {
 
   const canPrint = !Object.entries(design.cost).some(
     ([material, amount]) =>
-      !available[material] || amount * quantity > (available[material] ?? 0)
+      !available[material] || amount * quantity > (available[material] ?? 0),
   );
 
   return (
@@ -100,7 +100,7 @@ const Recipe = (props: { design: Design; available: MaterialMap }, context) => {
 
   const canPrint = !Object.entries(design.cost).some(
     ([material, amount]) =>
-      !available[material] || amount > (available[material] ?? 0)
+      !available[material] || amount > (available[material] ?? 0),
   );
 
   return (

@@ -206,7 +206,7 @@ export const HypertorusRecipes = (props) => {
                       <Tooltip
                         content={(item.tooltip || ((v) => 'x' + v))(
                           value,
-                          rest
+                          rest,
                         )}
                       >
                         <Icon
@@ -214,7 +214,7 @@ export const HypertorusRecipes = (props) => {
                           name={effect_to_icon(
                             value,
                             item.scale,
-                            item.override_base || 1
+                            item.override_base || 1,
                           )}
                         />
                       </Tooltip>

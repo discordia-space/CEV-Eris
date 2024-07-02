@@ -91,7 +91,7 @@ export const reputationLevelsTooltip = (
               className={value.gradient}
               style={{
                 'border-radius': '5px',
-                'display': 'inline-block',
+                display: 'inline-block',
               }}
               px={0.8}
               py={0.6}
@@ -120,7 +120,7 @@ export const getReputation = (progression_points: number) => {
 
 export const calculateReputationLevel = (
   progression_points: number,
-  textOnly: boolean
+  textOnly: boolean,
 ) => {
   const minutes = progression_points / 600;
   const displayedProgression = calculateProgression(progression_points);
@@ -138,7 +138,7 @@ export const calculateReputationLevel = (
       className={reputation.gradient}
       style={{
         'border-radius': '5px',
-        'display': 'inline-block',
+        display: 'inline-block',
       }}
       px={0.8}
       py={0.6}

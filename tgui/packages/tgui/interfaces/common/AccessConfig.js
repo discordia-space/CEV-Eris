@@ -15,13 +15,13 @@ export const AccessConfig = (props, context) => {
   const [selectedAccessName, setSelectedAccessName] = useLocalState(
     context,
     'accessName',
-    accesses[0]?.name
+    accesses[0]?.name,
   );
   const selectedAccess = accesses.find(
-    (access) => access.name === selectedAccessName
+    (access) => access.name === selectedAccessName,
   );
   const selectedAccessEntries = sortBy((entry) => entry.desc)(
-    selectedAccess?.accesses || []
+    selectedAccess?.accesses || [],
   );
 
   const checkAccessIcon = (accesses) => {

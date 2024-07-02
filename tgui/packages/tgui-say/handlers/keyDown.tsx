@@ -18,7 +18,7 @@ import { Modal } from '../types';
 export const handleKeyDown = function (
   this: Modal,
   event: KeyboardEvent,
-  value: string
+  value: string,
 ) {
   const { channel } = this.state;
   const { radioPrefix } = this.fields;

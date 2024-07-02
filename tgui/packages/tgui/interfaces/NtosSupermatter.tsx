@@ -55,7 +55,7 @@ export const NtosSupermatter = (props, context) => {
                     <Button
                       icon="bell"
                       color={focus_uid === sm.uid && 'yellow'}
-                      onClick={() => act('PRG_focus', { 'focus_uid': sm.uid })}
+                      onClick={() => act('PRG_focus', { focus_uid: sm.uid })}
                     />
                   </Table.Cell>
                   <Table.Cell collapsing>

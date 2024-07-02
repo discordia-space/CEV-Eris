@@ -68,7 +68,7 @@ function isRecipeList(value: Recipe | RecipeList): value is RecipeList {
  */
 const filterRecipeList = (
   list: RecipeList,
-  keyFilter: (key: string) => boolean
+  keyFilter: (key: string) => boolean,
 ) => {
   const filteredList: RecipeList = flow([
     map((entry: RecipeListEntry): RecipeListFilterableEntry => {
@@ -173,7 +173,7 @@ const Multipliers = (props: MultiplierProps, context) => {
 
   const maxM = Math.min(
     maxMultiplier,
-    Math.floor(recipe.max_res_amount / recipe.res_amount)
+    Math.floor(recipe.max_res_amount / recipe.res_amount),
   );
 
   const multipliers = [5, 10, 25];
@@ -191,7 +191,7 @@ const Multipliers = (props: MultiplierProps, context) => {
               multiplier: multiplier,
             })
           }
-        />
+        />,
       );
     }
   }
@@ -206,7 +206,7 @@ const Multipliers = (props: MultiplierProps, context) => {
             multiplier: maxM,
           })
         }
-      />
+      />,
     );
   }
 

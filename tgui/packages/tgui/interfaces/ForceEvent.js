@@ -20,7 +20,7 @@ export const EventSearch = (props, context) => {
   const [searchQuery, setSearchQuery] = useLocalState(
     context,
     'searchQuery',
-    ''
+    '',
   );
 
   return (
@@ -78,7 +78,7 @@ export const EventList = (props, context) => {
 
   const filtered_events = flow([
     filter((event) =>
-      event.name?.toLowerCase().includes(searchQuery.toLowerCase())
+      event.name?.toLowerCase().includes(searchQuery.toLowerCase()),
     ),
     sortBy((event) => event.name),
   ])(category.events || []);

@@ -103,7 +103,7 @@ export const Stats = (props: any, context: any) => {
   const [currentTab, setCurrentTab] = useLocalState(
     context,
     'stats_tab',
-    TABS.stats
+    TABS.stats,
   );
 
   return (

@@ -117,7 +117,7 @@ const MaterialRow = (props, context) => {
   const [amount, setAmount] = useLocalState(
     context,
     'amount' + material.name,
-    1
+    1,
   );
 
   const amountAvailable = Math.floor(material.amount);

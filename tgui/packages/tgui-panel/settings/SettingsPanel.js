@@ -45,7 +45,7 @@ export const SettingsPanel = (props, context) => {
                   dispatch(
                     changeSettingsTab({
                       tabId: tab.id,
-                    })
+                    }),
                   )
                 }
               >
@@ -87,7 +87,7 @@ export const SettingsGeneral = (props, context) => {
               dispatch(
                 updateSettings({
                   theme: value,
-                })
+                }),
               )
             }
           />
@@ -103,7 +103,7 @@ export const SettingsGeneral = (props, context) => {
                     dispatch(
                       updateSettings({
                         fontFamily: value,
-                      })
+                      }),
                     )
                   }
                 />
@@ -114,7 +114,7 @@ export const SettingsGeneral = (props, context) => {
                     dispatch(
                       updateSettings({
                         fontFamily: value,
-                      })
+                      }),
                     )
                   }
                 />
@@ -147,7 +147,7 @@ export const SettingsGeneral = (props, context) => {
               dispatch(
                 updateSettings({
                   fontSize: value,
-                })
+                }),
               )
             }
           />
@@ -165,7 +165,7 @@ export const SettingsGeneral = (props, context) => {
               dispatch(
                 updateSettings({
                   lineHeight: value,
-                })
+                }),
               )
             }
           />
@@ -186,7 +186,7 @@ export const SettingsGeneral = (props, context) => {
                 dispatch(
                   updateSettings({
                     highlightColor: value,
-                  })
+                  }),
                 )
               }
             />
@@ -199,7 +199,7 @@ export const SettingsGeneral = (props, context) => {
             dispatch(
               updateSettings({
                 highlightText: value,
-              })
+              }),
             )
           }
         />
@@ -211,7 +211,7 @@ export const SettingsGeneral = (props, context) => {
             dispatch(
               updateSettings({
                 matchWord: !matchWord,
-              })
+              }),
             )
           }
         >
@@ -223,7 +223,7 @@ export const SettingsGeneral = (props, context) => {
             dispatch(
               updateSettings({
                 matchCase: !matchCase,
-              })
+              }),
             )
           }
         >

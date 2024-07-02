@@ -19,8 +19,8 @@ export const Gps = (props, context) => {
         signal.dist &&
         Math.round(
           vecLength(
-            vecSubtract(coordsToVec(currentCoords), coordsToVec(signal.coords))
-          )
+            vecSubtract(coordsToVec(currentCoords), coordsToVec(signal.coords)),
+          ),
         );
       return { ...signal, dist, index };
     }),
@@ -28,7 +28,7 @@ export const Gps = (props, context) => {
       // Signals with distance metric go first
       (signal) => signal.dist === undefined,
       // Sort alphabetically
-      (signal) => signal.entrytag
+      (signal) => signal.entrytag,
     ),
   ])(data.signals || []);
   return (

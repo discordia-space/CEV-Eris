@@ -43,7 +43,7 @@ export const DecalPainter = (props, context) => {
   const { act, data } = useBackend<DecalPainterData>(context);
 
   const custom_color_selected = !data.color_list.some(
-    (color) => color.color === data.current_color
+    (color) => color.color === data.current_color,
   );
   const supports_custom_color = !!data.supports_custom_color;
 
@@ -84,7 +84,7 @@ export const DecalPainter = (props, context) => {
           <Flex direction="row" wrap="nowrap" align="fill" justify="fill">
             {data.decal_list.map((decal) => {
               const nondirectional = data.nondirectional_decals.includes(
-                decal.decal
+                decal.decal,
               );
 
               return nondirectional ? (

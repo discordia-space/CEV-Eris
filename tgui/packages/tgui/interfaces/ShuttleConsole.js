@@ -63,12 +63,12 @@ const getLocationIdByName = (locations, name) => {
 
 const STATUS_COLOR_KEYS = {
   'In Transit': 'good',
-  'Idle': 'average',
-  'Igniting': 'average',
-  'Recharging': 'average',
-  'Missing': 'bad',
+  Idle: 'average',
+  Igniting: 'average',
+  Recharging: 'average',
+  Missing: 'bad',
   'Unauthorized Access': 'bad',
-  'Locked': 'bad',
+  Locked: 'bad',
 };
 
 export const ShuttleConsoleContent = (props, context) => {

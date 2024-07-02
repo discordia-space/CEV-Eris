@@ -21,9 +21,9 @@ type Turret = {
 };
 
 const STATUS_COLOR_KEYS = {
-  'ERROR': 'bad',
-  'Disabled': 'bad',
-  'Firing': 'average',
+  ERROR: 'bad',
+  Disabled: 'bad',
+  Firing: 'average',
   'All Clear': 'good',
 } as const;
 

@@ -29,12 +29,12 @@ export const GenericUplink = (props: GenericUplinkProps, context) => {
   const [selectedCategory, setSelectedCategory] = useLocalState(
     context,
     'category',
-    categories[0]
+    categories[0],
   );
   const [compactMode, setCompactMode] = useSharedState(
     context,
     'compactModeUplink',
-    false
+    false,
   );
   let items = props.items.filter((value) => {
     if (searchText.length === 0) {

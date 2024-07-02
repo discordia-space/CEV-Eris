@@ -71,7 +71,7 @@ const ScanSelectionSection = (props, context) => {
           buttons={
             <Button
               content="Back"
-              onClick={() => act('select_site', { 'site_ref': null })}
+              onClick={() => act('select_site', { site_ref: null })}
             />
           }
         >
@@ -288,7 +288,7 @@ export const ExoscannerConsole = (props, context) => {
                         <Button
                           content={site.name}
                           onClick={() =>
-                            act('select_site', { 'site_ref': site.ref })
+                            act('select_site', { site_ref: site.ref })
                           }
                         />
                       </Stack.Item>

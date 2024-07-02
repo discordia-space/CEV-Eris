@@ -45,7 +45,7 @@ export const Button = (props) => {
       `Lowercase 'onclick' is not supported on Button and lowercase` +
         ` prop names are discouraged in general. Please use a camelCase` +
         `'onClick' instead and read: ` +
-        `https://infernojs.org/docs/guides/event-handling`
+        `https://infernojs.org/docs/guides/event-handling`,
     );
   }
   rest.onClick = (e) => {
@@ -274,7 +274,7 @@ export class ButtonInput extends Component {
           ref={this.inputRef}
           className="NumberInput__input"
           style={{
-            'display': !this.state.inInput ? 'none' : undefined,
+            display: !this.state.inInput ? 'none' : undefined,
             'text-align': 'left',
           }}
           onBlur={(e) => {

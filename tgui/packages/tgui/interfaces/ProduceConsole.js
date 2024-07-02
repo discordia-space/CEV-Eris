@@ -28,7 +28,7 @@ const ShoppingTab = (props, context) => {
   const { order_datums } = data;
   const [shopIndex, setShopIndex] = useLocalState(context, 'shop-index', 1);
   const mapped_food = order_datums.filter(
-    (food) => food && food.cat === shopIndex
+    (food) => food && food.cat === shopIndex,
   );
   return (
     <Stack fill vertical>

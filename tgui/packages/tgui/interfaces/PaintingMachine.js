@@ -10,13 +10,13 @@ export const PaintingMachine = (props, context) => {
   const [selectedPDA] = useSharedState(
     context,
     'pdaSelection',
-    pdaTypes[Object.keys(pdaTypes)[0]]
+    pdaTypes[Object.keys(pdaTypes)[0]],
   );
 
   const [selectedTrim] = useSharedState(
     context,
     'trimSelection',
-    cardTrims[Object.keys(cardTrims)[0]]
+    cardTrims[Object.keys(cardTrims)[0]],
   );
 
   return (
@@ -117,7 +117,7 @@ export const PainterDropdown = (props, context) => {
   const [selectedOption, setSelectedOption] = useSharedState(
     context,
     stateKey,
-    options[Object.keys(options)[0]]
+    options[Object.keys(options)[0]],
   );
 
   return (

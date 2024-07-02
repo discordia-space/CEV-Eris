@@ -42,7 +42,7 @@ export const PowerMonitorContent = (props, context) => {
   const [sortByField, setSortByField] = useLocalState(
     context,
     'sortByField',
-    null
+    null,
   );
   const supply = history.supply[history.supply.length - 1] || 0;
   const demand = history.demand[history.demand.length - 1] || 0;
@@ -61,7 +61,7 @@ export const PowerMonitorContent = (props, context) => {
     sortByField === 'draw' &&
       sortBy(
         (area) => -powerRank(area.load),
-        (area) => -parseFloat(area.load)
+        (area) => -parseFloat(area.load),
       ),
   ])(data.areas);
   return (

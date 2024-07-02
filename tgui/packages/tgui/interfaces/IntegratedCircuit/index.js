@@ -537,7 +537,7 @@ export class IntegratedCircuit extends Component {
                     onPortMouseUp={this.handlePortUp}
                     act={act}
                   />
-                )
+                ),
             )}
             {!!draggingComponent && (
               <DisplayComponent

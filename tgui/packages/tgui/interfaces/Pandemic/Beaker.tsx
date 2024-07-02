@@ -96,9 +96,9 @@ const Info = (props, context) => {
               minValue={0}
               maxValue={beaker.capacity}
               ranges={{
-                'good': [beaker.capacity * 0.85, beaker.capacity],
-                'average': [beaker.capacity * 0.25, beaker.capacity * 0.85],
-                'bad': [0, beaker.capacity * 0.25],
+                good: [beaker.capacity * 0.85, beaker.capacity],
+                average: [beaker.capacity * 0.25, beaker.capacity * 0.85],
+                bad: [0, beaker.capacity * 0.25],
               }}
             />
           </LabeledList.Item>

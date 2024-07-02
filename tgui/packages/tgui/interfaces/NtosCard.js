@@ -119,7 +119,7 @@ const IDCardTabs = (props, context) => {
   const [selectedTab, setSelectedTab] = useSharedState(
     context,
     'selectedTab',
-    'login'
+    'login',
   );
 
   return (

@@ -174,14 +174,14 @@ const MafiaRole = (props, context) => {
           <Box
             className={classes(['mafia32x32', roleinfo.revealed_icon])}
             style={{
-              'transform': 'scale(2) translate(0px, 10%)',
+              transform: 'scale(2) translate(0px, 10%)',
               'vertical-align': 'middle',
             }}
           />
           <Box
             className={classes(['mafia32x32', roleinfo.hud_icon])}
             style={{
-              'transform': 'scale(2) translate(-5px, -5px)',
+              transform: 'scale(2) translate(-5px, -5px)',
               'vertical-align': 'middle',
             }}
           />

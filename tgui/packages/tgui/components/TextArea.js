@@ -206,7 +206,7 @@ export class TextArea extends Component {
                 'TextArea__textarea_custom',
               ])}
               style={{
-                'transform': `translateY(-${scrolledAmount}px)`,
+                transform: `translateY(-${scrolledAmount}px)`,
               }}
             >
               {displayedValue}
@@ -229,7 +229,7 @@ export class TextArea extends Component {
           onScroll={this.handleScroll}
           maxLength={maxLength}
           style={{
-            'color': displayedValue ? 'rgba(0, 0, 0, 0)' : 'inherit',
+            color: displayedValue ? 'rgba(0, 0, 0, 0)' : 'inherit',
           }}
         />
       </Box>

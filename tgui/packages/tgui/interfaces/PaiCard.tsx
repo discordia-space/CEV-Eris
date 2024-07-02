@@ -90,7 +90,7 @@ const PaiDownload = (props, context) => {
  */
 const CandidateDisplay = (
   props: { candidate: Candidate; index: number },
-  context
+  context,
 ) => {
   const { act } = useBackend<Data>(context);
   const {

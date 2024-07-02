@@ -32,7 +32,7 @@ const altRegex = /(.*)(Alt)(.*)/;
 const addColorModifier = (
   content: string,
   regex: RegExp,
-  color: string
+  color: string,
 ): JSX.Element | null => {
   const match = content.match(regex);
 
@@ -125,7 +125,7 @@ export const HotkeysHelp = (props, context) => {
                       <Box p={1} m={1} inline className="HotkeysHelp__pill">
                         {binding.name}
                       </Box>
-                    )
+                    ),
                   )}
                 </Table.Cell>
               </Table.Row>

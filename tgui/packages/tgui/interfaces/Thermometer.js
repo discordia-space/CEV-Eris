@@ -48,12 +48,12 @@ const ThermometerIcon = (props) => {
     <Box>
       <Box
         style={{
-          'position': 'relative',
-          'width': '22px',
-          'height': '340px',
-          'margin': '0 auto',
+          position: 'relative',
+          width: '22px',
+          height: '340px',
+          margin: '0 auto',
           'background-color': '#595959',
-          'border': '4px solid #363636',
+          border: '4px solid #363636',
           'border-radius': '12px',
           'border-bottom': 'none',
           'border-index': '0',
@@ -62,14 +62,14 @@ const ThermometerIcon = (props) => {
       >
         <Box
           style={{
-            'position': 'absolute',
-            'width': '5x',
-            'bottom': 0,
-            'left': '0px',
-            'right': 0,
-            'transition': 'height 2s ease-out',
+            position: 'absolute',
+            width: '5x',
+            bottom: 0,
+            left: '0px',
+            right: 0,
+            transition: 'height 2s ease-out',
             // Temp in %
-            'height': `${(temperature / maxTemperature) * 100}%`,
+            height: `${(temperature / maxTemperature) * 100}%`,
             'background-color': '#bd2020',
             'border-radius': '8px',
             'border-bottom': 'none',
@@ -79,13 +79,13 @@ const ThermometerIcon = (props) => {
       </Box>
       <Box
         style={{
-          'position': 'relative',
-          'width': '56px',
+          position: 'relative',
+          width: '56px',
           'line-height': '48px',
           'text-align': 'center',
-          'margin': '-8px auto 0 auto',
+          margin: '-8px auto 0 auto',
           'background-color': '#bd2020',
-          'border': '4px solid #363636',
+          border: '4px solid #363636',
           'border-spacing': '5px',
           'border-radius': '35px',
           'border-index': '1',

@@ -61,9 +61,9 @@ export const Autolathe = (props, context) => {
                     minValue={0}
                     maxValue={materialsmax}
                     ranges={{
-                      'good': [materialsmax * 0.85, materialsmax],
-                      'average': [materialsmax * 0.25, materialsmax * 0.85],
-                      'bad': [0, materialsmax * 0.25],
+                      good: [materialsmax * 0.85, materialsmax],
+                      average: [materialsmax * 0.25, materialsmax * 0.85],
+                      bad: [0, materialsmax * 0.25],
                     }}
                   >
                     {materialtotal + '/' + materialsmax + ' cm³'}
@@ -108,7 +108,7 @@ export const Autolathe = (props, context) => {
               buildRecipeElement={(
                 design,
                 availableMaterials,
-                _onPrintDesign
+                _onPrintDesign,
               ) => (
                 <AutolatheRecipe
                   design={design}
@@ -136,7 +136,7 @@ const PrintButton = (props: PrintButtonProps, context) => {
   const canPrint = !Object.entries(design.cost).some(
     ([material, amount]) =>
       !availableMaterials[material] ||
-      amount * quantity > (availableMaterials[material] ?? 0)
+      amount * quantity > (availableMaterials[material] ?? 0),
   );
 
   return (
@@ -175,7 +175,7 @@ const AutolatheRecipe = (props: AutolatheRecipeProps, context) => {
   const canPrint = !Object.entries(design.cost).some(
     ([material, amount]) =>
       !availableMaterials[material] ||
-      amount > (availableMaterials[material] ?? 0)
+      amount > (availableMaterials[material] ?? 0),
   );
 
   return (

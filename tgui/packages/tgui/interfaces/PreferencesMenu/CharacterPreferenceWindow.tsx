@@ -50,7 +50,7 @@ export const CharacterPreferenceWindow = (props, context) => {
   const [currentPage, setCurrentPage] = useLocalState(
     context,
     'currentPage',
-    Page.Main
+    Page.Main,
   );
 
   let pageContents;

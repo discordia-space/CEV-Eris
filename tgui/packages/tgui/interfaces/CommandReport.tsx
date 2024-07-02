@@ -106,7 +106,7 @@ const ReportText = (props, context) => {
   const [commandReport, setCommandReport] = useLocalState<string>(
     context,
     'textArea',
-    command_report_content
+    command_report_content,
   );
 
   return (

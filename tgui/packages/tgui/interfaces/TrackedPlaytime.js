@@ -12,7 +12,7 @@ const PlaytimeSection = (props) => {
   const { playtimes } = props;
 
   const sortedPlaytimes = sortByPlaytime(Object.entries(playtimes)).filter(
-    (entry) => entry[1]
+    (entry) => entry[1],
   );
 
   if (!sortedPlaytimes.length) {
@@ -41,8 +41,8 @@ const PlaytimeSection = (props) => {
                   <Flex.Item width={`${ratio * 100}%`} />
                   <Flex.Item>
                     {(playtime / 60).toLocaleString(undefined, {
-                      'minimumFractionDigits': 1,
-                      'maximumFractionDigits': 1,
+                      minimumFractionDigits: 1,
+                      maximumFractionDigits: 1,
                     })}
                     h
                   </Flex.Item>
@@ -82,9 +82,9 @@ export const TrackedPlaytime = (props, context) => {
             <Section title="Total">
               <PlaytimeSection
                 playtimes={{
-                  'Ghost': ghostTime,
-                  'Living': livingTime,
-                  'Admin': adminTime,
+                  Ghost: ghostTime,
+                  Living: livingTime,
+                  Admin: adminTime,
                 }}
               />
             </Section>

@@ -40,7 +40,7 @@ export class NumberInput extends Component {
             this.setState({
               suppressingFlicker: false,
             }),
-          suppressFlicker
+          suppressFlicker,
         );
       }
     };
@@ -87,13 +87,13 @@ export class NumberInput extends Component {
           state.internalValue = clamp(
             state.internalValue + (offset * step) / stepPixelSize,
             minValue - step,
-            maxValue + step
+            maxValue + step,
           );
           // Clamp the final value
           state.value = clamp(
             state.internalValue - (state.internalValue % step) + stepOffset,
             minValue,
-            maxValue
+            maxValue,
           );
           state.origin = e.screenY;
         } else if (Math.abs(offset) > 4) {

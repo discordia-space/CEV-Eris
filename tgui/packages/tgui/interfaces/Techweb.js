@@ -152,7 +152,7 @@ export const TechwebContent = (props, context) => {
   const [techwebRoute, setTechwebRoute] = useLocalState(
     context,
     'techwebRoute',
-    null
+    null,
   );
   const [lastPoints, setLastPoints] = useLocalState(context, 'lastPoints', {});
 
@@ -251,7 +251,7 @@ const TechwebOverview = (props, context) => {
         n.name.toLowerCase().includes(searchText) ||
         n.description.toLowerCase().includes(searchText) ||
         n.design_ids.some((e) =>
-          design_cache[e].name.toLowerCase().includes(searchText)
+          design_cache[e].name.toLowerCase().includes(searchText),
         )
       );
     });
@@ -259,7 +259,7 @@ const TechwebOverview = (props, context) => {
     displayedNodes = sortBy((x) => node_cache[x.id].name)(
       tabIndex < 2
         ? nodes.filter((x) => x.tier === tabIndex)
-        : nodes.filter((x) => x.tier >= tabIndex)
+        : nodes.filter((x) => x.tier >= tabIndex),
     );
   }
 
@@ -333,7 +333,7 @@ const TechwebDiskMenu = (props, context) => {
   const [techwebRoute, setTechwebRoute] = useLocalState(
     context,
     'techwebRoute',
-    null
+    null,
   );
 
   // Check for the disk actually being inserted
@@ -402,12 +402,12 @@ const TechwebDesignDisk = (props, context) => {
   const [selectedDesign, setSelectedDesign] = useLocalState(
     context,
     'designDiskSelect',
-    null
+    null,
   );
   const [showModal, setShowModal] = useLocalState(
     context,
     'showDesignModal',
-    -1
+    -1,
   );
 
   const designIdByIdx = Object.keys(researched_designs);
@@ -513,17 +513,17 @@ const TechNodeDetail = (props, context) => {
   const [tabIndex, setTabIndex] = useLocalState(
     context,
     'nodeDetailTabIndex',
-    0
+    0,
   );
   const [techwebRoute, setTechwebRoute] = useLocalState(
     context,
     'techwebRoute',
-    null
+    null,
   );
 
   const prereqNodes = nodes.filter((x) => prereq_ids.includes(x.id));
   const complPrereq = prereq_ids.filter(
-    (x) => nodes.find((y) => y.id === x)?.tier === 0
+    (x) => nodes.find((y) => y.id === x)?.tier === 0,
   ).length;
   const unlockedNodes = nodes.filter((x) => unlock_ids.includes(x.id));
 
@@ -597,16 +597,16 @@ const TechNode = (props, context) => {
   const [techwebRoute, setTechwebRoute] = useLocalState(
     context,
     'techwebRoute',
-    null
+    null,
   );
   const [tabIndex, setTabIndex] = useLocalState(
     context,
     'nodeDetailTabIndex',
-    0
+    0,
   );
 
   const expcompl = required_experiments.filter(
-    (x) => experiments[x]?.completed
+    (x) => experiments[x]?.completed,
   ).length;
   const experimentProgress = (
     <ProgressBar
@@ -622,7 +622,7 @@ const TechNode = (props, context) => {
   );
 
   const techcompl = prereq_ids.filter(
-    (x) => nodes.find((y) => y.id === x)?.tier === 0
+    (x) => nodes.find((y) => y.id === x)?.tier === 0,
   ).length;
   const techProgress = (
     <ProgressBar

@@ -183,11 +183,11 @@ export class ObjectiveMenu extends Component<
                           handleObjectiveAction,
                           handleObjectiveCompleted,
                           handleObjectiveAbort,
-                          true
+                          true,
                         )}
                       </Stack.Item>
                     );
-                  }
+                  },
                 )}
               </Stack>
             </Section>
@@ -219,11 +219,11 @@ export class ObjectiveMenu extends Component<
                           undefined,
                           undefined,
                           undefined,
-                          true
+                          true,
                         )) || (
                         <Box
                           style={{
-                            'border': '2px dashed black',
+                            border: '2px dashed black',
                           }}
                           width="100%"
                           height="100%"
@@ -298,7 +298,7 @@ const ObjectiveFunction = (
   handleObjectiveAction?: (objective: Objective, action: string) => void,
   handleCompletion?: (objective: Objective) => void,
   handleAbort?: (objective: Objective) => void,
-  grow: boolean = false
+  grow: boolean = false,
 ) => {
   const reputation = getReputation(objective.progression_minimum);
   return (
@@ -463,7 +463,7 @@ const ObjectiveElement = (props: ObjectiveElementProps, context) => {
               <Stack align="center" justify="center">
                 <Box
                   style={{
-                    'border': '2px solid rgba(0, 0, 0, 0.5)',
+                    border: '2px solid rgba(0, 0, 0, 0.5)',
                     'border-left': 'none',
                     'border-right': 'none',
                     'border-bottom': objectiveFinished ? 'none' : undefined,
@@ -527,7 +527,7 @@ const ObjectiveElement = (props: ObjectiveElementProps, context) => {
                   className={reputation.gradient}
                   style={{
                     'border-radius': '0',
-                    'border': '2px solid rgba(0, 0, 0, 0.5)',
+                    border: '2px solid rgba(0, 0, 0, 0.5)',
                     'border-left': 'none',
                     'border-right': 'none',
                   }}
@@ -552,7 +552,7 @@ const ObjectiveElement = (props: ObjectiveElementProps, context) => {
                     onClick={handleCompletion}
                     color={objectiveFailed ? 'bad' : 'good'}
                     style={{
-                      'border': '1px solid rgba(0, 0, 0, 0.65)',
+                      border: '1px solid rgba(0, 0, 0, 0.65)',
                     }}
                     my={1}
                   >

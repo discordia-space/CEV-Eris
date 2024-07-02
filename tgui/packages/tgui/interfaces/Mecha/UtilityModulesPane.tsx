@@ -51,7 +51,7 @@ export const UtilityModulesPane = (props, context) => {
   const { data } = useBackend<OperatorData>(context);
   const { mech_equipment } = data;
   return (
-    <Box style={{ 'height': '16rem' }}>
+    <Box style={{ height: '16rem' }}>
       <Section scrollable fill>
         <div>
           {mech_equipment['utility'].map((module, i) => {

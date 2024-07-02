@@ -160,7 +160,7 @@ const searchForSupplies = (supplies, search) => {
     filter(
       (pack) =>
         pack.name?.toLowerCase().includes(search.toLowerCase()) ||
-        pack.desc?.toLowerCase().includes(search.toLowerCase())
+        pack.desc?.toLowerCase().includes(search.toLowerCase()),
     ),
     sortBy((pack) => pack.name),
     (packs) => packs.slice(0, 25),
@@ -178,13 +178,13 @@ export const CargoCatalog = (props, context) => {
   const [activeSupplyName, setActiveSupplyName] = useSharedState(
     context,
     'supply',
-    supplies[0]?.name
+    supplies[0]?.name,
   );
 
   const [searchText, setSearchText] = useSharedState(
     context,
     'search_text',
-    ''
+    '',
   );
 
   const activeSupply =
@@ -294,7 +294,7 @@ export const CargoCatalog = (props, context) => {
                       {formatMoney(
                         (self_paid && !pack.goody) || app_cost
                           ? Math.round(pack.cost * 1.1)
-                          : pack.cost
+                          : pack.cost,
                       )}
                       {' cr'}
                     </Button>
@@ -454,7 +454,7 @@ const CargoCart = (props, context) => {
               color="green"
               style={{
                 'line-height': '28px',
-                'padding': '0 12px',
+                padding: '0 12px',
               }}
               content="Confirm the order"
               onClick={() => act('send')}

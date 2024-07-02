@@ -16,7 +16,7 @@ export const Connections = (props, context) => {
       width="100%"
       height="100%"
       style={{
-        'position': 'absolute',
+        position: 'absolute',
         'pointer-events': 'none',
         'z-index': -1,
       }}

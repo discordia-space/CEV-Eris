@@ -35,7 +35,7 @@ export const SelectEquipment = (props, context) => {
   const [searchText, setSearchText] = useLocalState(context, 'searchText', '');
   const searchFilter = createSearch(
     searchText,
-    (entry) => entry.name + entry.path
+    (entry) => entry.name + entry.path,
   );
 
   const visibleOutfits = flow([
@@ -44,7 +44,7 @@ export const SelectEquipment = (props, context) => {
     sortBy(
       (entry) => !entry.favorite,
       (entry) => !entry.priority,
-      (entry) => entry.name
+      (entry) => entry.name,
     ),
   ])(outfits);
 
@@ -190,7 +190,7 @@ const CurrentlySelectedDisplay = (props, context) => {
         <Box
           title={entry?.path}
           style={{
-            'overflow': 'hidden',
+            overflow: 'hidden',
             'white-space': 'nowrap',
             'text-overflow': 'ellipsis',
           }}

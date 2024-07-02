@@ -35,7 +35,7 @@ export const Newscaster = (props, context) => {
   const [screenmode, setScreenmode] = useSharedState(
     context,
     'tab_main',
-    NEWSCASTER_SCREEN
+    NEWSCASTER_SCREEN,
   );
   return (
     <>
@@ -500,7 +500,7 @@ const processedText = (value) => {
         smartypants: true,
         smartLists: true,
         baseUrl: 'thisshouldbreakhttp',
-      })
+      }),
     ),
   };
   return textHtml;
@@ -528,7 +528,7 @@ const NewscasterChannelMessages = (props, context) => {
     );
   }
   const visibleMessages = messages.filter(
-    (message) => message.ID !== viewing_channel
+    (message) => message.ID !== viewing_channel,
   );
   return (
     <Section>

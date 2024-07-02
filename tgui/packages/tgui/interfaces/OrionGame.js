@@ -28,8 +28,8 @@ const variousButtonIcons = {
   'Restore Hull': 'wrench',
   'Fix Engine': 'rocket',
   'Repair Electronics': 'server',
-  'Wait': 'clock',
-  'Continue': 'arrow-right',
+  Wait: 'clock',
+  Continue: 'arrow-right',
   'Explore Ship': 'door-open',
   'Leave the Derelict': 'arrow-right',
   'Welcome aboard.': 'user-plus',
@@ -41,7 +41,7 @@ const variousButtonIcons = {
   'Speed Past': 'tachometer-alt',
   'Go Around': 'redo',
   'Oh...': 'circle',
-  'Dock': 'dollar-sign',
+  Dock: 'dollar-sign',
 };
 
 const STATUS2COMPONENT = [

@@ -181,7 +181,7 @@ export const AntagInfoMalf = (props, context) => {
   const [antagInfoTab, setAntagInfoTab] = useLocalState(
     context,
     'antagInfoTab',
-    0
+    0,
   );
   const categoriesList: string[] = [];
   const items: Item[] = [];

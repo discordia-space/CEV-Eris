@@ -13,9 +13,9 @@ import {
 import { Window } from '../layouts';
 
 const ALIGNMENT2COLOR = {
-  'good': 'yellow',
-  'neutral': 'white',
-  'evil': 'red',
+  good: 'yellow',
+  neutral: 'white',
+  evil: 'red',
 };
 
 export const ReligiousTool = (props, context) => {

@@ -180,7 +180,7 @@ const Blanks = (props, context) => {
 
   const selectedCategory = category ?? categories[0];
   const visibleBlanks = sortedBlanks.filter(
-    (blank) => blank.category === selectedCategory
+    (blank) => blank.category === selectedCategory,
   );
 
   return (

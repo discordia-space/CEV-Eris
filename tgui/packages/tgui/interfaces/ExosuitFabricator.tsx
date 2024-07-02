@@ -76,7 +76,7 @@ const Recipe = (props: { design: Design; available: MaterialMap }, context) => {
 
   const canPrint = !Object.entries(design.cost).some(
     ([material, amount]) =>
-      !available[material] || amount > (available[material] ?? 0)
+      !available[material] || amount > (available[material] ?? 0),
   );
 
   return (
@@ -214,7 +214,7 @@ const Queue = (props: { availableMaterials: MaterialMap }, context) => {
           </Section>
         </Stack.Item>
         <Stack.Item grow>
-          <Section fill style={{ 'overflow': 'auto' }}>
+          <Section fill style={{ overflow: 'auto' }}>
             <QueueList availableMaterials={availableMaterials} />
           </Section>
         </Stack.Item>

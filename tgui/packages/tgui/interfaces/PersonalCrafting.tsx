@@ -123,7 +123,7 @@ const remapData = (rawData: RawData): Data => {
     }
 
     throw new Error(
-      `Invalid entry in 'crafting_recipes', neither '{ has_subcats: 1 }' nor 'Recipe[]'`
+      `Invalid entry in 'crafting_recipes', neither '{ has_subcats: 1 }' nor 'Recipe[]'`,
     );
   }
 
@@ -153,7 +153,7 @@ export const PersonalCrafting = (props, context) => {
         // Show selected category only
         isCategorySelected(data, recipe) &&
         // If craftable only is selected, then filter by craftability
-        (!display_craftable_only || recipe.craftable)
+        (!display_craftable_only || recipe.craftable),
     ),
     sortBy<Recipe>((recipe) => [-recipe.craftable, recipe.name]),
   ])(recipes);

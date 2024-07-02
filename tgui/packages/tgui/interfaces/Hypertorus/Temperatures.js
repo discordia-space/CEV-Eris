@@ -87,7 +87,7 @@ export const HypertorusTemperatures = (props, context) => {
     temperature_period;
 
   const selected_fuel = (data.selectable_fuel || []).filter(
-    (d) => d.id === data.selected
+    (d) => d.id === data.selected,
   )[0];
 
   let prev_power_level_temperature = 10 ** (1 + power_level);
@@ -118,7 +118,7 @@ export const HypertorusTemperatures = (props, context) => {
   const maxTemperature = Math.max(...temperatures);
   const minTemperature = Math.max(
     2.73,
-    Math.min(20, ...temperatures.filter((d) => d > 0))
+    Math.min(20, ...temperatures.filter((d) => d > 0)),
   );
 
   if (power_level === 6) {

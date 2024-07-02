@@ -107,7 +107,7 @@ const ControlPanel = (props, context) => {
   const [sortByField, setSortByField] = useLocalState(
     context,
     'sortByField',
-    'name'
+    'name',
   );
   return (
     <Stack justify="space-between">
@@ -173,7 +173,7 @@ const ApcControlScene = (props, context) => {
     sortByField === 'draw' &&
       sortBy(
         (apc) => -powerRank(apc.load),
-        (apc) => -parseFloat(apc.load)
+        (apc) => -parseFloat(apc.load),
       ),
   ])(data.apcs);
   return (

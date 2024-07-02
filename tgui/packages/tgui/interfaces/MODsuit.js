@@ -30,9 +30,9 @@ const ConfigureNumberEntry = (props, context) => {
       width="39px"
       onChange={(e, value) =>
         act('configure', {
-          'key': name,
-          'value': value,
-          'ref': module_ref,
+          key: name,
+          value: value,
+          ref: module_ref,
         })
       }
     />
@@ -47,9 +47,9 @@ const ConfigureBoolEntry = (props, context) => {
       checked={value}
       onClick={() =>
         act('configure', {
-          'key': name,
-          'value': !value,
-          'ref': module_ref,
+          key: name,
+          value: !value,
+          ref: module_ref,
         })
       }
     />
@@ -65,8 +65,8 @@ const ConfigureColorEntry = (props, context) => {
         icon="paint-brush"
         onClick={() =>
           act('configure', {
-            'key': name,
-            'ref': module_ref,
+            key: name,
+            ref: module_ref,
           })
         }
       />
@@ -84,9 +84,9 @@ const ConfigureListEntry = (props, context) => {
       options={values}
       onSelected={(value) =>
         act('configure', {
-          'key': name,
-          'value': value,
-          'ref': module_ref,
+          key: name,
+          value: value,
+          ref: module_ref,
         })
       }
     />
@@ -634,7 +634,7 @@ const ModuleSection = (props, context) => {
   const [configureState, setConfigureState] = useLocalState(
     context,
     'module_configuration',
-    null
+    null,
   );
   return (
     <Section title="Modules" fill>
@@ -722,7 +722,7 @@ const ModuleSection = (props, context) => {
                         </Table.Cell>
                         <Table.Cell textAlign="center">
                           <Button
-                            onClick={() => act('select', { 'ref': module.ref })}
+                            onClick={() => act('select', { ref: module.ref })}
                             icon="bullseye"
                             selected={module.module_active}
                             tooltip={displayText(module.module_type)}
@@ -738,7 +738,7 @@ const ModuleSection = (props, context) => {
                             disabled={module.configuration_data.length === 0}
                           />
                           <Button
-                            onClick={() => act('pin', { 'ref': module.ref })}
+                            onClick={() => act('pin', { ref: module.ref })}
                             icon="thumbtack"
                             selected={module.pinned}
                             tooltip="Pin"

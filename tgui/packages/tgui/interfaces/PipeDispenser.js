@@ -13,7 +13,7 @@ const PipeTypeSection = (props, context) => {
   const { categories = [] } = data;
   const [categoryName, setCategoryName] = useLocalState(
     context,
-    'categoryName'
+    'categoryName',
   );
   const shownCategory =
     categories.find((category) => category.cat_name === categoryName) ||

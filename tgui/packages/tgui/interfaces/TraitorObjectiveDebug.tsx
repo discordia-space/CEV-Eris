@@ -44,7 +44,7 @@ const recursivelyGetObjectives = (value: ObjectiveList) => {
     const possibleValue = value.objectives[i];
     if ((possibleValue as ObjectiveList).objectives) {
       listToReturn = listToReturn.concat(
-        recursivelyGetObjectives(possibleValue as ObjectiveList)
+        recursivelyGetObjectives(possibleValue as ObjectiveList),
       );
     } else {
       listToReturn.push(possibleValue as Objective);
@@ -163,25 +163,25 @@ export const TraitorObjectiveDebug = (props, context) => {
           {/* Time in minutes of this threshold */}
           {Math.round((sizeLimit * (i / 100)) / 600)} mins
         </Box>
-      </Box>
+      </Box>,
     );
   }
   let objectivesToRender: Objective[] = [];
   const [currentTab, setCurrentTab] = useLocalState(
     context,
     'currentTab',
-    'All'
+    'All',
   );
   const [sortingFunc, setSortingFunc] = useLocalState(
     context,
     'sortingFunc',
-    sortingOptions[0].name
+    sortingOptions[0].name,
   );
   // true = ascending, false = descending
   const [sortDirection, setSortingDirection] = useLocalState(
     context,
     'sortDirection',
-    true
+    true,
   );
 
   let actualSortingFunc;
@@ -198,7 +198,7 @@ export const TraitorObjectiveDebug = (props, context) => {
       continue;
     }
     objectivesToRender = objectivesToRender.concat(
-      recursivelyGetObjectives(value)
+      recursivelyGetObjectives(value),
     );
   }
 
@@ -294,7 +294,7 @@ export const TraitorObjectiveDebug = (props, context) => {
                       </LabeledList.Item>
                       <LabeledList.Item label={'Obj PR'}>
                         {Math.floor(
-                          value.total_progression_from_objectives / 600
+                          value.total_progression_from_objectives / 600,
                         )}{' '}
                         mins
                       </LabeledList.Item>
@@ -327,7 +327,7 @@ export const TraitorObjectiveDebug = (props, context) => {
           })}
           <Tooltip
             content={`Expected Progression: ${Math.floor(
-              current_progression / 600
+              current_progression / 600,
             )} mins`}
             position="top"
           >
@@ -384,7 +384,7 @@ const ObjectiveBox = (props: ObjectiveBoxProps, context) => {
           style={{
             'text-overflow': 'ellipsis',
             'white-space': 'nowrap',
-            'overflow': 'hidden',
+            overflow: 'hidden',
           }}
         >
           {objective.name}

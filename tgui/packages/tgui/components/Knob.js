@@ -72,7 +72,7 @@ export const Knob = (props) => {
         const scaledFillValue = scale(
           fillValue ?? displayValue,
           minValue,
-          maxValue
+          maxValue,
         );
         const scaledDisplayValue = scale(displayValue, minValue, maxValue);
         const effectiveColor =
@@ -126,7 +126,7 @@ export const Knob = (props) => {
                     ((bipolar ? 2.75 : 2.0) - scaledFillValue * 1.5) *
                       Math.PI *
                       50,
-                    0
+                    0,
                   ),
                 }}
                 cx="50"

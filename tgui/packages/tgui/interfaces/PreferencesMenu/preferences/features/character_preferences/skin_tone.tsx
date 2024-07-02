@@ -18,7 +18,7 @@ type SkinToneServerData = FeatureChoicedServerData & {
 };
 
 const sortHexValues = sortBy<[string, HexValue]>(
-  ([_, hexValue]) => -hexValue.lightness
+  ([_, hexValue]) => -hexValue.lightness,
 );
 
 export const skin_tone: Feature<string, string, SkinToneServerData> = {
@@ -33,7 +33,7 @@ export const skin_tone: Feature<string, string, SkinToneServerData> = {
     return (
       <StandardizedDropdown
         choices={sortHexValues(Object.entries(serverData.to_hex)).map(
-          ([key]) => key
+          ([key]) => key,
         )}
         displayNames={Object.fromEntries(
           Object.entries(serverData.display_names).map(([key, displayName]) => {
@@ -47,8 +47,8 @@ export const skin_tone: Feature<string, string, SkinToneServerData> = {
                     style={{
                       background: hexColor.value,
                       'box-sizing': 'content-box',
-                      'height': '11px',
-                      'width': '11px',
+                      height: '11px',
+                      width: '11px',
                     }}
                   />
                 </Stack.Item>
@@ -56,7 +56,7 @@ export const skin_tone: Feature<string, string, SkinToneServerData> = {
                 <Stack.Item grow>{displayName}</Stack.Item>
               </Stack>,
             ];
-          })
+          }),
         )}
         onSetValue={handleSetValue}
         value={value}

@@ -37,12 +37,12 @@ export const FishCatalog = (props, context) => {
   const { act, data } = useBackend<FishCatalogData>(context);
   const { fish_info, sponsored_by } = data;
   const fish_by_name = flow([sortBy((fish: FishInfo) => fish.name)])(
-    fish_info || []
+    fish_info || [],
   );
   const [currentFish, setCurrentFish] = useLocalState<FishInfo | null>(
     context,
     'currentFish',
-    null
+    null,
   );
   return (
     <Window width={500} height={300}>

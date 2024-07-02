@@ -32,7 +32,7 @@ export const pingReducer = (state = {}, action) => {
   if (type === pingFail.type) {
     const { failCount = 0 } = state;
     const networkQuality = clamp01(
-      state.networkQuality - failCount / PING_MAX_FAILS
+      state.networkQuality - failCount / PING_MAX_FAILS,
     );
     const nextState = {
       ...state,

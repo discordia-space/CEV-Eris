@@ -181,7 +181,7 @@ export const Checkout = (props, context) => {
   const [checkoutBook, setCheckoutBook] = useLocalState(
     context,
     'CheckoutBook',
-    false
+    false,
   );
   return (
     <Stack vertical height="100%" justify="space-between">
@@ -268,22 +268,22 @@ const CheckoutModal = (props, context) => {
   const [checkoutBook, setCheckoutBook] = useLocalState(
     context,
     'CheckoutBook',
-    false
+    false,
   );
   const [bookName, setBookName] = useLocalState(
     context,
     'CheckoutBookName',
-    checking_out || 'Book'
+    checking_out || 'Book',
   );
   const [checkoutee, setCheckoutee] = useLocalState(
     context,
     'Checkoutee',
-    'Recipient'
+    'Recipient',
   );
   const [checkoutPeriod, setCheckoutPeriod] = useLocalState(
     context,
     'CheckoutPeriod',
-    5
+    5,
   );
 
   return (
@@ -627,7 +627,7 @@ const UploadModal = (props, context) => {
   const [uploadCategory, setUploadCategory] = useLocalState(
     context,
     'ModalUpload',
-    ''
+    '',
   );
 
   const display_category = uploadCategory || default_category;
@@ -683,7 +683,7 @@ export const Print = (props, context) => {
   const [selectedPoster, setSelectedPoster] = useLocalState(
     context,
     'selected_poster',
-    posters[0]
+    posters[0],
   );
 
   return (

@@ -16,7 +16,7 @@ import { PreferencesMenuData } from './data';
 const requireAntag = require.context(
   './antagonists/antagonists',
   false,
-  /.ts$/
+  /.ts$/,
 );
 
 const antagsByCategory = new Map<Category, Antagonist[]>();
@@ -38,7 +38,7 @@ for (const antagKey of requireAntag.keys()) {
 
   antagsByCategory.set(
     antag.category,
-    binaryInsertAntag(antagsByCategory.get(antag.category) || [], antag)
+    binaryInsertAntag(antagsByCategory.get(antag.category) || [], antag),
   );
 }
 
@@ -47,7 +47,7 @@ const AntagSelection = (
     antagonists: Antagonist[];
     name: string;
   },
-  context
+  context,
 ) => {
   const { act, data } = useBackend<PreferencesMenuData>(context);
   const className = 'PreferencesMenu__Antags__antagSelection';
@@ -55,7 +55,7 @@ const AntagSelection = (
   const [predictedState, setPredictedState] = useLocalState(
     context,
     'AntagSelection_predictedState',
-    new Set(data.selected_antags)
+    new Set(data.selected_antags),
   );
 
   const enableAntags = (antags: string[]) => {

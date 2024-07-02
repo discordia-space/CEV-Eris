@@ -30,7 +30,7 @@ export const Safe = (properties, context) => {
               className="Safe__dial"
               src={resolveAsset('safe_dial.png')}
               style={{
-                'transform': 'rotate(-' + 3.6 * dial + 'deg)',
+                transform: 'rotate(-' + 3.6 * dial + 'deg)',
               }}
             />
           )}

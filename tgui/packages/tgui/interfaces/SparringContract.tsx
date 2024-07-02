@@ -93,7 +93,7 @@ export const SparringContract = (props, context) => {
                     options={weaponlist}
                     onSelected={(value) =>
                       setWeapon(
-                        weaponlist.findIndex((title) => title === value) + 1
+                        weaponlist.findIndex((title) => title === value) + 1,
                       )
                     }
                   />
@@ -132,7 +132,7 @@ export const SparringContract = (props, context) => {
                     options={stakelist}
                     onSelected={(value) =>
                       setStakes(
-                        stakelist.findIndex((title) => title === value) + 1
+                        stakelist.findIndex((title) => title === value) + 1,
                       )
                     }
                   />
@@ -150,10 +150,10 @@ export const SparringContract = (props, context) => {
                       icon="pen"
                       onClick={() =>
                         act('sign', {
-                          'weapon': weapon,
-                          'area': area,
-                          'stakes': stakes,
-                          'sign_position': 'left',
+                          weapon: weapon,
+                          area: area,
+                          stakes: stakes,
+                          sign_position: 'left',
                         })
                       }
                     >
@@ -169,9 +169,9 @@ export const SparringContract = (props, context) => {
                       icon="pen"
                       onClick={() =>
                         act('sign', {
-                          'weapon': weapon,
-                          'area': area,
-                          'stakes': stakes,
+                          weapon: weapon,
+                          area: area,
+                          stakes: stakes,
                         })
                       }
                     >

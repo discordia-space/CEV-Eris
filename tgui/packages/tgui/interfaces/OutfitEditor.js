@@ -27,7 +27,7 @@ export const OutfitEditor = (props, context) => {
               <Stack.Item
                 grow={1}
                 style={{
-                  'overflow': 'hidden',
+                  overflow: 'hidden',
                   'white-space': 'nowrap',
                   'text-overflow': 'ellipsis',
                 }}
@@ -161,7 +161,7 @@ const OutfitSlot = (props, context) => {
       <Box
         color="label"
         style={{
-          'overflow': 'hidden',
+          overflow: 'hidden',
           'white-space': 'nowrap',
           'text-overflow': 'ellipsis',
         }}

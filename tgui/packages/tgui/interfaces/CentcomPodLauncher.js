@@ -427,7 +427,7 @@ const ViewTabHolder = (props, context) => {
   const [tabPageIndex, setTabPageIndex] = useLocalState(
     context,
     'tabPageIndex',
-    1
+    1,
   );
   const { mapRef } = data;
   const TabPageComponent = TABPAGES[tabPageIndex].component();
@@ -689,7 +689,7 @@ const ReverseMenu = (props, context) => {
   const [tabPageIndex, setTabPageIndex] = useLocalState(
     context,
     'tabPageIndex',
-    1
+    1,
   );
   return (
     <Section
@@ -840,17 +840,17 @@ class PresetsPage extends Component {
     const [presetIndex, setSelectedPreset] = useLocalState(
       this.context,
       'presetIndex',
-      0
+      0,
     );
     const [settingName, setEditingNameStatus] = useLocalState(
       this.context,
       'settingName',
-      0
+      0,
     );
     const [newNameText, setText] = useLocalState(
       this.context,
       'newNameText',
-      ''
+      '',
     );
     const [hue, setHue] = useLocalState(this.context, 'hue', 0);
     return (
@@ -1046,7 +1046,7 @@ const StylePage = (props, context) => {
           <Box
             className={classes(['supplypods64x64', 'pod_asset' + (i + 1)])}
             style={{
-              'transform': 'rotate(45deg) translate(-25%,-10%)',
+              transform: 'rotate(45deg) translate(-25%,-10%)',
               'pointer-events': 'none',
             }}
           />

@@ -136,9 +136,9 @@ const TankCompressorControls = (props, context) => {
                 maxValue={fragmentPressure * 1.15}
                 alertAfter={leakPressure}
                 ranges={{
-                  'good': [0, leakPressure],
-                  'average': [leakPressure, fragmentPressure],
-                  'bad': [fragmentPressure, fragmentPressure * 1.15],
+                  good: [0, leakPressure],
+                  average: [leakPressure, fragmentPressure],
+                  bad: [fragmentPressure, fragmentPressure * 1.15],
                 }}
                 size={5}
                 textAlign="center"
@@ -263,7 +263,7 @@ const TankCompressorRecords = (props, context) => {
   const [activeRecordRef, setActiveRecordRef] = useSharedState(
     context,
     'recordRef',
-    records[0]?.ref
+    records[0]?.ref,
   );
   const activeRecord =
     !!activeRecordRef &&
@@ -304,7 +304,7 @@ const TankCompressorRecords = (props, context) => {
                     color="bad"
                     onClick={() => {
                       act('delete_record', {
-                        'ref': activeRecord.ref,
+                        ref: activeRecord.ref,
                       });
                     }}
                   />,
@@ -317,7 +317,7 @@ const TankCompressorRecords = (props, context) => {
                     tooltipPosition="bottom"
                     onClick={() => {
                       act('print_record', {
-                        'ref': activeRecord.ref,
+                        ref: activeRecord.ref,
                       });
                     }}
                   />,

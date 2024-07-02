@@ -61,7 +61,7 @@ export const TramControl = (props, context) => {
   const [transitIndex, setTransitIndex] = useLocalState(
     context,
     'transit-index',
-    1
+    1,
   );
   const MovingTramDimmer = () => {
     return (
@@ -117,7 +117,7 @@ export const TramControl = (props, context) => {
                     tooltip={dep}
                     style={{
                       'border-radius': '5em',
-                      'border': '2px solid white',
+                      border: '2px solid white',
                     }}
                   />
                 </Stack.Item>

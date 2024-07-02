@@ -29,7 +29,7 @@ const EMAG_SHUTTLE_NOTICE =
 
 const sortShuttles = sortBy(
   (shuttle) => !shuttle.emagOnly,
-  (shuttle) => shuttle.creditCost
+  (shuttle) => shuttle.creditCost,
 );
 
 const AlertButton = (props, context) => {
@@ -262,22 +262,22 @@ const PageMain = (props, context) => {
   const [callingShuttle, setCallingShuttle] = useLocalState(
     context,
     'calling_shuttle',
-    false
+    false,
   );
   const [messagingAssociates, setMessagingAssociates] = useLocalState(
     context,
     'messaging_associates',
-    false
+    false,
   );
   const [messagingSector, setMessagingSector] = useLocalState(
     context,
     'messaing_sector',
-    null
+    null,
   );
   const [requestingNukeCodes, setRequestingNukeCodes] = useLocalState(
     context,
     'requesting_nuke_codes',
-    false
+    false,
   );
 
   const [
@@ -584,7 +584,7 @@ const PageMessages = (props, context) => {
         content="Back"
         onClick={() => act('setState', { state: STATE_MAIN })}
       />
-    </Section>
+    </Section>,
   );
 
   const messageElements = [];
@@ -639,7 +639,7 @@ const PageMessages = (props, context) => {
         <Box dangerouslySetInnerHTML={textHtml} />
 
         {answers}
-      </Section>
+      </Section>,
     );
   }
 

@@ -44,7 +44,7 @@ export const TraitFluff = (props: TraitFluffProps) => {
       <Stack.Item
         grow
         style={{
-          'overflow': 'hidden',
+          overflow: 'hidden',
           'white-space': 'wrap',
           'text-overflow': 'ellipsis',
         }}
@@ -63,7 +63,7 @@ export const DesiresTraitFluff = (props: DesiresTraitFluffProps) => {
       <Stack.Item
         grow
         style={{
-          'overflow': 'hidden',
+          overflow: 'hidden',
           'white-space': 'wrap',
           'text-overflow': 'ellipsis',
         }}

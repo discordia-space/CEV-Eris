@@ -47,7 +47,7 @@ export const NtosRadarContent = (props, context) => {
             'url("' + resolveAsset('ntosradarbackground.png') + '")',
           'background-position': 'center',
           'background-repeat': 'no-repeat',
-          'top': '20px',
+          top: '20px',
         }}
         position="relative"
         m={1.5}
@@ -132,7 +132,7 @@ const TargetDisplay = (props, context) => {
       top="20px"
       left="243px"
       style={{
-        'transform': `rotate(${target.rot}deg)`,
+        transform: `rotate(${target.rot}deg)`,
       }}
     />
   ) : (

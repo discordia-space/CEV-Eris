@@ -187,7 +187,7 @@ export const ImplantedSkillchips = (props, context) => {
               </Table.Cell>
               <Table.Cell textAlign="center">
                 <Button
-                  onClick={() => act('remove', { 'ref': skill.ref })}
+                  onClick={() => act('remove', { ref: skill.ref })}
                   icon={skill.removable ? 'eject' : 'trash'}
                   color={skill.removable ? 'good' : 'bad'}
                   tooltip={skill.removable ? 'Extract' : 'Destroy'}
@@ -195,7 +195,7 @@ export const ImplantedSkillchips = (props, context) => {
                   disabled={skill.cooldown || working}
                 />
                 <Button
-                  onClick={() => act('toggle_activate', { 'ref': skill.ref })}
+                  onClick={() => act('toggle_activate', { ref: skill.ref })}
                   icon={skill.active ? 'check-square-o' : 'square-o'}
                   color={skill.active ? 'good' : 'default'}
                   tooltip={
@@ -228,11 +228,11 @@ export const TimeFormat = (props, context) => {
   const seconds = toFixed(Math.floor((value / 10) % 60)).padStart(2, '0');
   const minutes = toFixed(Math.floor((value / (10 * 60)) % 60)).padStart(
     2,
-    '0'
+    '0',
   );
   const hours = toFixed(Math.floor((value / (10 * 60 * 60)) % 24)).padStart(
     2,
-    '0'
+    '0',
   );
   const formattedValue = `${hours}:${minutes}:${seconds}`;
   return formattedValue;

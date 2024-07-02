@@ -216,7 +216,7 @@ const FilterEntry = (props, context) => {
   const filterDefaults = data['filter_info'];
 
   const targetFilterPossibleKeys = Object.keys(
-    filterDefaults[type]['defaults']
+    filterDefaults[type]['defaults'],
   );
 
   return (
@@ -285,12 +285,12 @@ export const Filteriffic = (props, context) => {
   const [massApplyPath, setMassApplyPath] = useLocalState(
     context,
     'massApplyPath',
-    ''
+    '',
   );
   const [hiddenSecret, setHiddenSecret] = useLocalState(
     context,
     'hidden',
-    false
+    false,
   );
   return (
     <Window title="Filteriffic" width={500} height={500}>

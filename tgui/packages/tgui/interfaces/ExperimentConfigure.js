@@ -81,7 +81,7 @@ export const TechwebServer = (props, context) => {
             onClick={() =>
               servers[0].selected
                 ? act('clear_server')
-                : act('select_server', { 'ref': servers[0].ref })
+                : act('select_server', { ref: servers[0].ref })
             }
             content={servers[0].selected ? 'Disconnect' : 'Connect'}
             backgroundColor={
@@ -208,7 +208,7 @@ export const Experiment = (props, context) => {
           controllable &&
           (selected
             ? act('clear_experiment')
-            : act('select_experiment', { 'ref': ref }))
+            : act('select_experiment', { ref: ref }))
         }
         backgroundColor={selected ? 'good' : '#40628a'}
         className="ExperimentConfigure__ExperimentName"

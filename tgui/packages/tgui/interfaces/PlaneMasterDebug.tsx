@@ -161,14 +161,14 @@ const planeToPosition = function (plane: Plane, index, is_incoming): Position {
 const getPlaneNodeHeight = function (plane: Plane): number {
   return Math.max(
     plane.incoming_relays.length + plane.incoming_filters.length,
-    plane.outgoing_relays.length + plane.outgoing_filters.length
+    plane.outgoing_relays.length + plane.outgoing_filters.length,
   );
 };
 
 const sortConnectionRefs = function (
   refs: ConnectionRef[],
   direction: ConnectionDirection,
-  connectSources: AssocConnected
+  connectSources: AssocConnected,
 ) {
   refs = sortBy((connection: ConnectionRef) => connection.sort_by)(refs);
   refs.map((connection, index) => {
@@ -187,7 +187,7 @@ const addConnectionRefs = function (
   add_type: ConnectionDirection,
   add_to: ConnectionRef[],
   reference: AssocConnected,
-  plane_info: AssocPlane
+  plane_info: AssocPlane,
 ) {
   for (const ref of read_from) {
     const connected = reference[ref];
@@ -235,38 +235,38 @@ const positionPlanes = function (context, connectSources: AssocConnected) {
       ConnectionDirection.Incoming,
       incoming_conct,
       relay_info,
-      plane_info
+      plane_info,
     );
     addConnectionRefs(
       our_plane.incoming_filters,
       ConnectionDirection.Incoming,
       incoming_conct,
       filter_connect,
-      plane_info
+      plane_info,
     );
     addConnectionRefs(
       our_plane.outgoing_relays,
       ConnectionDirection.Outgoing,
       outgoing_conct,
       relay_info,
-      plane_info
+      plane_info,
     );
     addConnectionRefs(
       our_plane.outgoing_filters,
       ConnectionDirection.Outgoing,
       outgoing_conct,
       filter_connect,
-      plane_info
+      plane_info,
     );
     our_plane.incoming_connections = sortConnectionRefs(
       incoming_conct,
       ConnectionDirection.Incoming,
-      connectSources
+      connectSources,
     );
     our_plane.outgoing_connections = sortConnectionRefs(
       outgoing_conct,
       ConnectionDirection.Outgoing,
-      connectSources
+      connectSources,
     );
   }
 
@@ -284,7 +284,7 @@ const positionPlanes = function (context, connectSources: AssocConnected) {
         }
         return read_from.plane;
       }),
-    ])(Object.keys(layer))
+    ])(Object.keys(layer)),
   );
 
   let base_x = 0;
@@ -362,11 +362,11 @@ export class PlaneMasterDebug extends Component {
       let target_plane = plane_info[connection.source_ref];
       source_plane.outgoing_relays = arrayRemove(
         source_plane.outgoing_relays,
-        connection.our_ref
+        connection.our_ref,
       );
       target_plane.incoming_relays = arrayRemove(
         target_plane.incoming_relays,
-        connection.our_ref
+        connection.our_ref,
       );
     } else if (connection.connect_type === ConnectionType.Filter) {
       // Close the connection
@@ -379,11 +379,11 @@ export class PlaneMasterDebug extends Component {
       let target_plane = plane_info[connection.source_ref];
       source_plane.outgoing_filters = arrayRemove(
         source_plane.outgoing_filters,
-        connection.our_ref
+        connection.our_ref,
       );
       target_plane.incoming_filters = arrayRemove(
         target_plane.incoming_filters,
-        connection.our_ref
+        connection.our_ref,
       );
     }
   }
@@ -396,7 +396,7 @@ export class PlaneMasterDebug extends Component {
     const [connectSources, setConnectSouces] = useLocalState<AssocConnected>(
       this.context,
       'connectionSources',
-      {}
+      {},
     );
 
     positionPlanes(this.context, connectSources);
@@ -441,7 +441,7 @@ export class PlaneMasterDebug extends Component {
                     onPortMouseDown={this.handlePortClick}
                     act={act}
                   />
-                )
+                ),
             )}
             <Connections connections={connections} />
           </InfinitePlane>
@@ -494,12 +494,12 @@ class PlaneMaster extends Component<PlaneMasterProps> {
     const [currentPlane, setCurrentPlane] = useLocalState(
       this.context,
       'currentPlane',
-      {}
+      {},
     );
     const [readPlane, setReadPlane] = useLocalState(
       this.context,
       'readPlane',
-      ''
+      '',
     );
 
     // Assigned onto the ports
@@ -950,12 +950,12 @@ const AddModal = (props, context) => {
   const [currentPlane, setCurrentPlane] = useLocalState<Plane>(
     context,
     'currentPlane',
-    {} as Plane
+    {} as Plane,
   );
   const [currentTarget, setCurrentTarget] = useLocalState<Plane>(
     context,
     'currentTarget',
-    {} as Plane
+    {} as Plane,
   );
 
   const plane_list = Object.keys(plane_info).map((plane) => plane_info[plane]);

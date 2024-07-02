@@ -246,8 +246,8 @@ export const Canvas = (props, context) => {
                     key={`${index}`}
                     backgroundColor={element.color}
                     style={{
-                      'width': '24px',
-                      'height': '24px',
+                      width: '24px',
+                      height: '24px',
                       'border-style': 'solid',
                       'border-color': element.is_selected
                         ? 'lightblue'

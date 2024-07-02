@@ -96,7 +96,7 @@ const AdventureList = (props, context) => {
   const [openAdventure, setOpenAdventure] = useLocalState<string | null>(
     context,
     'openAdventure',
-    null
+    null,
   );
 
   return (

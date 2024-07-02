@@ -85,9 +85,9 @@ export const Canister = (props, context) => {
                     maxValue={pressureLimit}
                     alertAfter={pressureLimit * 0.7}
                     ranges={{
-                      'good': [0, pressureLimit * 0.7],
-                      'average': [pressureLimit * 0.7, pressureLimit * 0.85],
-                      'bad': [pressureLimit * 0.85, pressureLimit],
+                      good: [0, pressureLimit * 0.7],
+                      average: [pressureLimit * 0.7, pressureLimit * 0.85],
+                      bad: [pressureLimit * 0.85, pressureLimit],
                     }}
                     format={formatPressure}
                   />
@@ -215,12 +215,12 @@ export const Canister = (props, context) => {
                       maxValue={holdingTankFragPressure * 1.15}
                       alertAfter={holdingTankLeakPressure}
                       ranges={{
-                        'good': [0, holdingTankLeakPressure],
-                        'average': [
+                        good: [0, holdingTankLeakPressure],
+                        average: [
                           holdingTankLeakPressure,
                           holdingTankFragPressure,
                         ],
-                        'bad': [
+                        bad: [
                           holdingTankFragPressure,
                           holdingTankFragPressure * 1.15,
                         ],

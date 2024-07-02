@@ -107,7 +107,7 @@ export class Dropdown extends Component {
         }}
         tabIndex="-1"
         style={{
-          'width': openWidth,
+          width: openWidth,
         }}
         className={classes([
           (noscroll && 'Dropdown__menu-noscroll') || 'Dropdown__menu',
@@ -147,7 +147,7 @@ export class Dropdown extends Component {
           <span
             className="Dropdown__selected-text"
             style={{
-              'overflow': clipSelectedText ? 'hidden' : 'visible',
+              overflow: clipSelectedText ? 'hidden' : 'visible',
             }}
           >
             {displayText ? displayText : this.state.selected}

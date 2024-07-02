@@ -240,12 +240,12 @@ const PackagingControls = (props, context) => {
   const [patchAmount, setPatchAmount] = useSharedState(
     context,
     'patchAmount',
-    1
+    1,
   );
   const [bottleAmount, setBottleAmount] = useSharedState(
     context,
     'bottleAmount',
-    1
+    1,
   );
   const [packAmount, setPackAmount] = useSharedState(context, 'packAmount', 1);
   const {

@@ -37,7 +37,7 @@ export const TextInputModal = (props, context) => {
   const [input, setInput] = useLocalState<string>(
     context,
     'input',
-    placeholder || ''
+    placeholder || '',
   );
   const onType = (value: string) => {
     if (value === input) {

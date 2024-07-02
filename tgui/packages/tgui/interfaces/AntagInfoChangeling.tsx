@@ -69,7 +69,7 @@ export const AntagInfoChangeling = (props, context) => {
     <Window width={720} height={720}>
       <Window.Content
         style={{
-          'backgroundImage': 'none',
+          backgroundImage: 'none',
         }}
       >
         <Stack vertical fill>
@@ -222,7 +222,7 @@ const MemoriesSection = (props, context) => {
   const [selectedMemory, setSelectedMemory] = useSharedState(
     context,
     'memory',
-    (!!memories && memories[0]) || null
+    (!!memories && memories[0]) || null,
   );
   const memoryMap = {};
   for (const index in memories) {

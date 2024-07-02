@@ -134,7 +134,7 @@ export const HypertorusGases = (props, context) => {
   const { fusion_gases, moderator_gases } = data;
 
   const selected_fuel = (data.selectable_fuel || []).filter(
-    (d) => d.id === data.selected
+    (d) => d.id === data.selected,
   )[0];
 
   return (

@@ -35,13 +35,13 @@ const FutureStationTraitsPage = (props, context) => {
   const [selectedTrait, setSelectedTrait] = useLocalState<string | null>(
     context,
     'selectedFutureTrait',
-    null
+    null,
   );
 
   const traitsByName = Object.fromEntries(
     data.valid_station_traits.map((trait) => {
       return [trait.name, trait.path];
-    })
+    }),
   );
 
   const traitNames = Object.keys(traitsByName);
@@ -74,7 +74,7 @@ const FutureStationTraitsPage = (props, context) => {
               let newStationTraits = [selectedPath];
               if (future_station_traits) {
                 const selectedTraitPaths = future_station_traits.map(
-                  (trait) => trait.path
+                  (trait) => trait.path,
                 );
 
                 if (selectedTraitPaths.indexOf(selectedPath) !== -1) {
@@ -82,7 +82,7 @@ const FutureStationTraitsPage = (props, context) => {
                 }
 
                 newStationTraits = newStationTraits.concat(
-                  ...selectedTraitPaths
+                  ...selectedTraitPaths,
                 );
               }
 
@@ -120,7 +120,7 @@ const FutureStationTraitsPage = (props, context) => {
                               } else {
                                 return otherTrait.path;
                               }
-                            }
+                            },
                           ),
                         });
                       }}
@@ -213,7 +213,7 @@ export const StationTraitsPanel = (props, context) => {
   const [currentTab, setCurrentTab] = useLocalState(
     context,
     'station_traits_tab',
-    Tab.ViewStationTraits
+    Tab.ViewStationTraits,
   );
 
   let currentPage;

@@ -31,7 +31,7 @@ export const RoundGauge = (props) => {
 
   const scaledValue = scale(value, minValue, maxValue);
   const clampedValue = clamp01(scaledValue);
-  const scaledRanges = ranges ? {} : { 'primary': [0, 1] };
+  const scaledRanges = ranges ? {} : { primary: [0, 1] };
   if (ranges) {
     Object.keys(ranges).forEach((x) => {
       const range = ranges[x];
@@ -103,7 +103,7 @@ export const RoundGauge = (props) => {
                   style={{
                     'stroke-dashoffset': Math.max(
                       (2.0 - (col_ranges[1] - col_ranges[0])) * Math.PI * 50,
-                      0
+                      0,
                     ),
                   }}
                   transform={`rotate(${180 + 180 * col_ranges[0]} 50 50)`}

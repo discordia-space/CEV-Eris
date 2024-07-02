@@ -28,7 +28,7 @@ const InstalledSoftware = (props, context) => {
   const [currentSelection, setCurrentSelection] = useLocalState(
     context,
     'software',
-    ''
+    '',
   );
 
   return (
@@ -53,7 +53,7 @@ const InstalledInfo = (props, context) => {
   const [currentSelection, setCurrentSelection] = useLocalState(
     context,
     'software',
-    ''
+    '',
   );
   const title = !currentSelection ? 'Select a Program' : currentSelection;
 
@@ -81,7 +81,7 @@ const SoftwareButtons = (props, context) => {
   const [currentSelection, setCurrentSelection] = useLocalState(
     context,
     'software',
-    ''
+    '',
   );
 
   switch (currentSelection) {

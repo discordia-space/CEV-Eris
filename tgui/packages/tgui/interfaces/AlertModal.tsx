@@ -127,7 +127,7 @@ const ButtonDisplay = (props, context) => {
               selected={selected === index}
             />
           </Flex.Item>
-        )
+        ),
       )}
     </Flex>
   );

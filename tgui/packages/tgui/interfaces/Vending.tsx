@@ -63,7 +63,7 @@ const managing = (managingData: ErrorData, context: any) => {
         {managingData.message.length > 0 && (
           <NoticeBox
             style={{
-              'overflow': 'hidden',
+              overflow: 'hidden',
               'word-break': 'break-all',
             }}
           >
@@ -155,7 +155,7 @@ const product = (product: ProductData, context: any) => {
               <Stack fill align="center">
                 <Stack.Item
                   style={{
-                    'display': 'flex',
+                    display: 'flex',
                     'align-items': 'center',
                     'justify-content': 'center',
                   }}

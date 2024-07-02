@@ -21,17 +21,17 @@ export const Adminhelp = (props, context) => {
   const [requestForAdmin, setRequestForAdmin] = useLocalState(
     context,
     'request_for_admin',
-    false
+    false,
   );
   const [currentlyInputting, setCurrentlyInputting] = useLocalState(
     context,
     'confirm_request',
-    false
+    false,
   );
   const [ahelpMessage, setAhelpMessage] = useLocalState(
     context,
     'ahelp_message',
-    ''
+    '',
   );
 
   const confirmationText = 'alert admins';

@@ -31,7 +31,7 @@ export const MultiNameInput = (
     handleUpdateName: (nameType: string, value: string) => void;
     names: Record<string, string>;
   },
-  context
+  context,
 ) => {
   const [currentlyEditingName, setCurrentlyEditingName] = useLocalState<
     string | null
@@ -52,15 +52,15 @@ export const MultiNameInput = (
             {
               key,
               name,
-            }
+            },
           );
         }
 
         return (
           <Modal
             style={{
-              'margin': '0 auto',
-              'width': '40%',
+              margin: '0 auto',
+              width: '40%',
             }}
           >
             <TrackOutsideClicks onOutsideClick={props.handleClose}>
@@ -143,7 +143,7 @@ export const MultiNameInput = (
                           <LabeledList.Divider />
                         )}
                       </>
-                    )
+                    ),
                   )}
                 </LabeledList>
               </Section>
@@ -161,7 +161,7 @@ export const NameInput = (
     name: string;
     openMultiNameInput: () => void;
   },
-  context
+  context,
 ) => {
   const [lastNameBeforeEdit, setLastNameBeforeEdit] = useLocalState<
     string | null
@@ -187,7 +187,7 @@ export const NameInput = (
         <Stack.Item>
           <Icon
             style={{
-              'color': 'rgba(255, 255, 255, 0.5)',
+              color: 'rgba(255, 255, 255, 0.5)',
               'font-size': '17px',
             }}
             name="edit"
@@ -252,8 +252,8 @@ export const NameInput = (
                   <Icon
                     name="ellipsis-v"
                     style={{
-                      'position': 'relative',
-                      'left': '1px',
+                      position: 'relative',
+                      left: '1px',
                       'min-width': '0px',
                     }}
                   />

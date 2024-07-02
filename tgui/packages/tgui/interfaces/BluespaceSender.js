@@ -26,7 +26,7 @@ export const BluespaceSender = (props, context) => {
   ])(data.bluespace_network_gases || []);
   const gasMax = Math.max(
     1,
-    ...bluespace_network_gases.map((gas) => gas.amount)
+    ...bluespace_network_gases.map((gas) => gas.amount),
   );
   return (
     <Window title="Bluespace Sender" width={500} height={600}>
