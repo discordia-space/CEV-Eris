@@ -20,7 +20,7 @@ export const Radio = (props, context) => {
     subspaceSwitchable,
   } = data;
   const tunedChannel = RADIO_CHANNELS.find(
-    (channel) => channel.freq === frequency
+    (channel) => channel.freq === frequency,
   );
   const channels = map((value, key) => ({
     name: key,

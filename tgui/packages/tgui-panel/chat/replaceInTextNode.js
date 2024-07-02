@@ -27,7 +27,7 @@ export const replaceInTextNode = (regex, createNode) => (node) => {
     // Insert previous unmatched chunk
     if (lastIndex < matchIndex) {
       fragment.appendChild(
-        document.createTextNode(text.substring(lastIndex, matchIndex))
+        document.createTextNode(text.substring(lastIndex, matchIndex)),
       );
     }
     lastIndex = matchIndex + matchLength;
@@ -38,7 +38,7 @@ export const replaceInTextNode = (regex, createNode) => (node) => {
     // Insert the remaining unmatched chunk
     if (lastIndex < textLength) {
       fragment.appendChild(
-        document.createTextNode(text.substring(lastIndex, textLength))
+        document.createTextNode(text.substring(lastIndex, textLength)),
       );
     }
     // Commit the fragment
@@ -71,7 +71,7 @@ const createHighlightNode = (text) => {
 export const highlightNode = (
   node,
   regex,
-  createNode = createHighlightNode
+  createNode = createHighlightNode,
 ) => {
   if (!createNode) {
     createNode = createHighlightNode;

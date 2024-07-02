@@ -17,14 +17,14 @@ export const RequestManager = (props, context) => {
     context,
     'filteredTypes',
     Object.fromEntries(
-      Object.entries(displayTypeMap).map(([type, _]) => [type, true])
-    )
+      Object.entries(displayTypeMap).map(([type, _]) => [type, true]),
+    ),
   );
   const [searchText, setSearchText] = useLocalState(context, 'searchText');
 
   // Handle filtering
   let displayedRequests = requests.filter(
-    (request) => filteredTypes[request.req_type]
+    (request) => filteredTypes[request.req_type],
   );
   if (searchText) {
     const filterText = searchText.toLowerCase();
@@ -33,7 +33,7 @@ export const RequestManager = (props, context) => {
         decodeHtmlEntities(request.message)
           .toLowerCase()
           .includes(filterText) ||
-        request.owner_name.toLowerCase().includes(filterText)
+        request.owner_name.toLowerCase().includes(filterText),
     );
   }
 
@@ -52,7 +52,8 @@ export const RequestManager = (props, context) => {
               />
               <FilterPanel />
             </>
-          }>
+          }
+        >
           {displayedRequests.map((request) => (
             <div className="RequestManager__row" key={request.id}>
               <div className="RequestManager__rowContents">
@@ -80,10 +81,10 @@ export const RequestManager = (props, context) => {
 };
 
 const displayTypeMap = {
-  'request_prayer': 'PRAYER',
-  'request_centcom': 'CENTCOM',
-  'request_syndicate': 'SYNDICATE',
-  'request_nuke': 'NUKE CODE',
+  request_prayer: 'PRAYER',
+  request_centcom: 'CENTCOM',
+  request_syndicate: 'SYNDICATE',
+  request_nuke: 'NUKE CODE',
 };
 
 const RequestType = (props) => {
@@ -125,14 +126,14 @@ const FilterPanel = (props, context) => {
   const [filterVisible, setFilterVisible] = useLocalState(
     context,
     'filterVisible',
-    false
+    false,
   );
   const [filteredTypes, setFilteredTypes] = useLocalState(
     context,
     'filteredTypes',
     Object.fromEntries(
-      Object.entries(displayTypeMap).map(([type, _]) => [type, true])
-    )
+      Object.entries(displayTypeMap).map(([type, _]) => [type, true]),
+    ),
   );
 
   return (
@@ -145,7 +146,8 @@ const FilterPanel = (props, context) => {
           className="RequestManager__filterPanel"
           style={{
             display: filterVisible ? 'block' : 'none',
-          }}>
+          }}
+        >
           <Table width="0">
             {Object.keys(displayTypeMap).map((type) => {
               return (
@@ -168,7 +170,8 @@ const FilterPanel = (props, context) => {
             })}
           </Table>
         </div>
-      }>
+      }
+    >
       <Button icon="cog" onClick={() => setFilterVisible(!filterVisible)}>
         Type Filter
       </Button>

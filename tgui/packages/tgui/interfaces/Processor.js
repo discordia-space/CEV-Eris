@@ -61,7 +61,8 @@ export const Processor = (props, context) => {
                             })
                           }
                         />
-                      }>
+                      }
+                    >
                       {material.amount}
                     </LabeledList.Item>
                   ))}

@@ -1,6 +1,14 @@
 import { BooleanLike } from 'common/react';
 import { useBackend, sendAct, useLocalState } from '../backend';
-import { Button, Box, LabeledList, Divider, Dropdown, NumberInput, Collapsible } from '../components';
+import {
+  Button,
+  Box,
+  LabeledList,
+  Divider,
+  Dropdown,
+  NumberInput,
+  Collapsible,
+} from '../components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -30,7 +38,7 @@ const exchange = (props, context) => {
   const [selection, setSelection] = useLocalState(
     context,
     'storageexchangeSelection',
-    -1
+    -1,
   );
   const [amt, setAmt] = useLocalState(context, 'storageexchangeAmt', 0);
   const act = sendAct;
@@ -42,7 +50,7 @@ const exchange = (props, context) => {
           matnums[count],
           matvalues[count],
           maticons[count],
-          false
+          false,
         );
       })}
       <Dropdown
@@ -62,7 +70,7 @@ const exchange = (props, context) => {
           onClick={() => {
             setAmt(0);
             setSelection(-1);
-            act('buymat', { 'matselected': selection + 1, 'amount': amt });
+            act('buymat', { matselected: selection + 1, amount: amt });
           }}
         />
       )}
@@ -124,7 +132,7 @@ const sale = (props, context) => {
                 portmatamounts[count],
                 portmatvalues[count],
                 portmaticons[count],
-                true
+                true,
               );
             })}
 
@@ -133,7 +141,7 @@ const sale = (props, context) => {
               content="Eject Selected"
               onClick={() => {
                 setSelection(-1);
-                act('eject', { 'selected': selection + 1 });
+                act('eject', { selected: selection + 1 });
               }}
             />
           )}
@@ -143,7 +151,7 @@ const sale = (props, context) => {
               content="Sell Selected"
               onClick={() => {
                 setSelection(-1);
-                act('sellmat', { 'selected': selection + 1 });
+                act('sellmat', { selected: selection + 1 });
               }}
             />
           )}
@@ -191,12 +199,12 @@ const administration = (props, context) => {
   const [newthreshold, setThreshold] = useLocalState(
     context,
     'amethreshold',
-    sellthreshold
+    sellthreshold,
   );
   const [newaccount, setAccount] = useLocalState(
     context,
     'ameaccount',
-    accountnum
+    accountnum,
   );
   return (
     <>
@@ -210,7 +218,7 @@ const administration = (props, context) => {
           {authorization && (
             <Button
               content="Set Maximum Budget"
-              onClick={() => act('setbudget', { 'newbudget': newbudget })}
+              onClick={() => act('setbudget', { newbudget: newbudget })}
             />
           )}
         </LabeledList.Item>
@@ -231,7 +239,7 @@ const administration = (props, context) => {
       {authorization && (
         <Button
           content="Set Sale Threshold"
-          onClick={() => act('setthreshold', { 'newthreshold': newthreshold })}
+          onClick={() => act('setthreshold', { newthreshold: newthreshold })}
         />
       )}
       {<LabeledList.Item label="Account">{accountname}</LabeledList.Item>}
@@ -244,7 +252,7 @@ const administration = (props, context) => {
       {authorization && (
         <Button
           content="Set Account ID"
-          onClick={() => act('setaccount', { 'newID': newaccount })}
+          onClick={() => act('setaccount', { newID: newaccount })}
         />
       )}
       {authorization && (
@@ -253,7 +261,7 @@ const administration = (props, context) => {
             <Button
               content={iddescs[count]}
               selected={IDcodereq === mapped}
-              onClick={() => act('setID', { 'newID': mapped })}
+              onClick={() => act('setID', { newID: mapped })}
               key={mapped}
             />
           ))}
@@ -292,7 +300,7 @@ export const StorageNode = (props, context) => {
       ? 'sale'
       : authorization
         ? 'administration'
-        : 'materialexchange'
+        : 'materialexchange',
   );
   return (
     <Window resizable>
@@ -339,7 +347,7 @@ export const StorageNode = (props, context) => {
                   iddescs,
                   IDcodereq,
                 },
-                context
+                context,
               )}
             {menu === 'sale' &&
               sale(
@@ -351,12 +359,12 @@ export const StorageNode = (props, context) => {
                   portmaticons,
                   portmatvalues,
                 },
-                context
+                context,
               )}
             {menu === 'materialexchange' &&
               exchange(
                 { matnames, matnums, matvalues, dosh, maticons },
-                context
+                context,
               )}
           </>
         )}

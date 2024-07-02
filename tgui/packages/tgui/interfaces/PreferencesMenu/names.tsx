@@ -1,6 +1,17 @@
 import { binaryInsertWith, sortBy } from 'common/collections';
 import { useLocalState } from '../../backend';
-import { Box, Button, FitText, Icon, Input, LabeledList, Modal, Section, Stack, TrackOutsideClicks } from '../../components';
+import {
+  Box,
+  Button,
+  FitText,
+  Icon,
+  Input,
+  LabeledList,
+  Modal,
+  Section,
+  Stack,
+  TrackOutsideClicks,
+} from '../../components';
 import { Name } from './data';
 import { ServerPreferencesFetcher } from './ServerPreferencesFetcher';
 
@@ -20,7 +31,7 @@ export const MultiNameInput = (
     handleUpdateName: (nameType: string, value: string) => void;
     names: Record<string, string>;
   },
-  context
+  context,
 ) => {
   const [currentlyEditingName, setCurrentlyEditingName] = useLocalState<
     string | null
@@ -41,16 +52,17 @@ export const MultiNameInput = (
             {
               key,
               name,
-            }
+            },
           );
         }
 
         return (
           <Modal
             style={{
-              'margin': '0 auto',
-              'width': '40%',
-            }}>
+              margin: '0 auto',
+              width: '40%',
+            }}
+          >
             <TrackOutsideClicks onOutsideClick={props.handleClose}>
               <Section
                 buttons={
@@ -58,7 +70,8 @@ export const MultiNameInput = (
                     Close
                   </Button>
                 }
-                title="Alternate names">
+                title="Alternate names"
+              >
                 <LabeledList>
                   {sortNameWithKeyEntries(Object.entries(namesIntoGroups)).map(
                     ([_, names], index, collection) => (
@@ -92,7 +105,8 @@ export const MultiNameInput = (
                                   setCurrentlyEditingName(key);
                                   event.cancelBubble = true;
                                   event.stopPropagation();
-                                }}>
+                                }}
+                              >
                                 <FitText maxFontSize={12} maxWidth={130}>
                                   {props.names[key]}
                                 </FitText>
@@ -103,7 +117,8 @@ export const MultiNameInput = (
                           return (
                             <LabeledList.Item
                               key={key}
-                              label={name.explanation}>
+                              label={name.explanation}
+                            >
                               <Stack fill>
                                 <Stack.Item grow>{content}</Stack.Item>
 
@@ -128,7 +143,7 @@ export const MultiNameInput = (
                           <LabeledList.Divider />
                         )}
                       </>
-                    )
+                    ),
                   )}
                 </LabeledList>
               </Section>
@@ -146,7 +161,7 @@ export const NameInput = (
     name: string;
     openMultiNameInput: () => void;
   },
-  context
+  context,
 ) => {
   const [lastNameBeforeEdit, setLastNameBeforeEdit] = useLocalState<
     string | null
@@ -166,12 +181,13 @@ export const NameInput = (
       }}
       textAlign="center"
       width="100%"
-      height="28px">
+      height="28px"
+    >
       <Stack align="center" fill>
         <Stack.Item>
           <Icon
             style={{
-              'color': 'rgba(255, 255, 255, 0.5)',
+              color: 'rgba(255, 255, 255, 0.5)',
               'font-size': '17px',
             }}
             name="edit"
@@ -231,12 +247,13 @@ export const NameInput = (
                     // Did you know that's against the W3C standard? :)
                     event.cancelBubble = true;
                     event.stopPropagation();
-                  }}>
+                  }}
+                >
                   <Icon
                     name="ellipsis-v"
                     style={{
-                      'position': 'relative',
-                      'left': '1px',
+                      position: 'relative',
+                      left: '1px',
                       'min-width': '0px',
                     }}
                   />

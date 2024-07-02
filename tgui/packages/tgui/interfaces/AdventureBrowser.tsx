@@ -1,5 +1,12 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, LabeledList, Section, Box, NoticeBox, Table } from '../components';
+import {
+  Button,
+  LabeledList,
+  Section,
+  Box,
+  NoticeBox,
+  Table,
+} from '../components';
 import { Window } from '../layouts';
 import { AdventureDataProvider, AdventureScreen } from './ExodroneConsole';
 import { formatTime } from '../format';
@@ -89,7 +96,7 @@ const AdventureList = (props, context) => {
   const [openAdventure, setOpenAdventure] = useLocalState<string | null>(
     context,
     'openAdventure',
-    null
+    null,
   );
 
   return (
@@ -133,7 +140,8 @@ const DebugPlayer = (props, context) => {
   return (
     <Section
       title="Playtest"
-      buttons={<Button onClick={() => act('end_play')}>End Playtest</Button>}>
+      buttons={<Button onClick={() => act('end_play')}>End Playtest</Button>}
+    >
       {data.delay_time > 0 ? (
         <Box>
           DELAY {formatTime(data.delay_time)} / {data.delay_message}

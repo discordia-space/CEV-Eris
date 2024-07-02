@@ -1,4 +1,12 @@
-import { BlockQuote, Collapsible, LabeledList, Modal, Section, Stack, Tabs } from '../components';
+import {
+  BlockQuote,
+  Collapsible,
+  LabeledList,
+  Modal,
+  Section,
+  Stack,
+  Tabs,
+} from '../components';
 import { useBackend } from '../backend';
 import { useLocalState } from '../backend';
 import { Window } from '../layouts';
@@ -34,7 +42,7 @@ export const AccountingConsole = (props, context) => {
   const [screenmode, setScreenmode] = useLocalState(
     context,
     'tab_main',
-    SCREENS.users
+    SCREENS.users,
   );
 
   return (
@@ -46,12 +54,14 @@ export const AccountingConsole = (props, context) => {
             <Tabs fluid textAlign="center">
               <Tabs.Tab
                 selected={screenmode === SCREENS.users}
-                onClick={() => setScreenmode(SCREENS.users)}>
+                onClick={() => setScreenmode(SCREENS.users)}
+              >
                 Users
               </Tabs.Tab>
               <Tabs.Tab
                 selected={screenmode === SCREENS.audit}
-                onClick={() => setScreenmode(SCREENS.audit)}>
+                onClick={() => setScreenmode(SCREENS.audit)}
+              >
                 Audit
               </Tabs.Tab>
             </Tabs>

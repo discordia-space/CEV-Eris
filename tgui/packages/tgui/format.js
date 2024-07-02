@@ -41,7 +41,7 @@ const SI_BASE_INDEX = SI_SYMBOLS.indexOf(' ');
 export const formatSiUnit = (
   value,
   minBase1000 = -SI_BASE_INDEX,
-  unit = ''
+  unit = '',
 ) => {
   if (typeof value !== 'number' || !Number.isFinite(value)) {
     return value;
@@ -139,7 +139,7 @@ const SI_BASE_TEN_INDEX = SI_BASE_TEN_UNIT.indexOf(' ');
 export const formatSiBaseTenUnit = (
   value,
   minBase1000 = -SI_BASE_TEN_INDEX,
-  unit = ''
+  unit = '',
 ) => {
   if (typeof value !== 'number' || !Number.isFinite(value)) {
     return value;
@@ -151,7 +151,7 @@ export const formatSiBaseTenUnit = (
   const symbolIndex = clamp(
     SI_BASE_TEN_INDEX + base1000,
     0,
-    SI_BASE_TEN_UNIT.length
+    SI_BASE_TEN_UNIT.length,
   );
   const symbol = SI_BASE_TEN_UNIT[symbolIndex];
   const scaledNumber = value / Math.pow(1000, base1000);

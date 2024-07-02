@@ -1,6 +1,16 @@
 import { capitalize } from '../../common/string';
 import { useBackend } from '../backend';
-import { BlockQuote, Box, Button, Icon, LabeledList, Modal, NoticeBox, Section, Stack } from '../components';
+import {
+  BlockQuote,
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  Modal,
+  NoticeBox,
+  Section,
+  Stack,
+} from '../components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -53,9 +63,10 @@ const managing = (managingData: ErrorData, context: any) => {
         {managingData.message.length > 0 && (
           <NoticeBox
             style={{
-              'overflow': 'hidden',
+              overflow: 'hidden',
               'word-break': 'break-all',
-            }}>
+            }}
+          >
             {managingData.message}
           </NoticeBox>
         )}
@@ -144,10 +155,11 @@ const product = (product: ProductData, context: any) => {
               <Stack fill align="center">
                 <Stack.Item
                   style={{
-                    'display': 'flex',
+                    display: 'flex',
                     'align-items': 'center',
                     'justify-content': 'center',
-                  }}>
+                  }}
+                >
                   <GameIcon
                     html={product.icon}
                     className="Vending--game-icon"

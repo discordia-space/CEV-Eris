@@ -86,7 +86,8 @@ const CfStep2 = (props, context) => {
         <Box bold color="good">
           {data.totalprice} cr
         </Box>
-      }>
+      }
+    >
       <Table>
         <Table.Row>
           <Table.Cell bold position="relative">
@@ -95,7 +96,8 @@ const CfStep2 = (props, context) => {
                 Allows your device to operate without external utility power
                 source. Advanced batteries increase battery life.
               `}
-              position="right">
+              position="right"
+            >
               Battery:
             </Tooltip>
           </Table.Cell>
@@ -140,7 +142,8 @@ const CfStep2 = (props, context) => {
                 Stores file on your device. Advanced drives can store more
                 files, but use more power, shortening battery life.
               `}
-              position="right">
+              position="right"
+            >
               Hard Drive:
             </Tooltip>
           </Table.Cell>
@@ -188,7 +191,8 @@ const CfStep2 = (props, context) => {
                 allow the device to read your identification, but one
                 is included in the base price.
               `}
-              position="right">
+              position="right"
+            >
               Secondary Card Reader:
             </Tooltip>
           </Table.Cell>
@@ -251,7 +255,8 @@ const CfStep3 = (props, context) => {
         mt={0.5}
         textAlign="center"
         fontSize="18px"
-        color={data.credits >= data.totalprice ? 'good' : 'bad'}>
+        color={data.credits >= data.totalprice ? 'good' : 'bad'}
+      >
         {data.credits} cr
       </Box>
       <Button

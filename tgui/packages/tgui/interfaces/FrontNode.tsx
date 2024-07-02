@@ -1,6 +1,13 @@
 import { BooleanLike } from 'common/react';
 import { useBackend, sendAct, useLocalState } from '../backend';
-import { Button, Box, LabeledList, Divider, Dropdown, NumberInput } from '../components';
+import {
+  Button,
+  Box,
+  LabeledList,
+  Divider,
+  Dropdown,
+  NumberInput,
+} from '../components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -25,7 +32,7 @@ const recycling = (props, context) => {
   const [selection, setSelection] = useLocalState(
     context,
     'recyclingSelection',
-    -1
+    -1,
   );
   return (
     <>
@@ -60,7 +67,7 @@ const recycling = (props, context) => {
               itemnames[count],
               itemprices[count],
               icons[count],
-              context
+              context,
             );
           })}
 
@@ -69,7 +76,7 @@ const recycling = (props, context) => {
             content="Eject Selected"
             onClick={() => {
               setSelection(-1);
-              act('eject_item', { 'chosen': selection + 1 });
+              act('eject_item', { chosen: selection + 1 });
             }}
           />
         )}
@@ -79,7 +86,7 @@ const recycling = (props, context) => {
             content="Sell Selected"
             onClick={() => {
               setSelection(-1);
-              act('sell_item', { 'chosen': selection + 1 });
+              act('sell_item', { chosen: selection + 1 });
             }}
           />
         )}
@@ -89,7 +96,7 @@ const recycling = (props, context) => {
             content="Recycle Selected"
             onClick={() => {
               setSelection(-1);
-              act('recycle_item', { 'chosen': selection + 1 });
+              act('recycle_item', { chosen: selection + 1 });
             }}
           />
         )}
@@ -124,7 +131,7 @@ const exchange = (props, context) => {
   const [selection, setSelection] = useLocalState(
     context,
     'exchangeSelection',
-    -1
+    -1,
   );
   const [amt, setAmt] = useLocalState(context, 'exchangeAmt', 0);
   const act = sendAct;
@@ -137,7 +144,7 @@ const exchange = (props, context) => {
             matnums[count],
             matvalues[count],
             maticons[count],
-            context
+            context,
           );
         })
       ) : (
@@ -163,7 +170,7 @@ const exchange = (props, context) => {
           onClick={() => {
             setSelection(-1);
             setAmt(0);
-            act('buy_mat', { 'matselected': selection + 1, 'amount': amt });
+            act('buy_mat', { matselected: selection + 1, amount: amt });
           }}
         />
       )}
@@ -231,7 +238,7 @@ export const FrontNode = (props, context) => {
   const [menu, setMenu] = useLocalState(
     context,
     'FrontNodeMenu',
-    itemnames[0] ? 'recycling' : 'materialexchange'
+    itemnames[0] ? 'recycling' : 'materialexchange',
   );
   return (
     <Window resizable>
@@ -262,13 +269,13 @@ export const FrontNode = (props, context) => {
           salesactive &&
           recycling(
             { budget, dosh, siloactive, itemnames, icons, itemprices },
-            context
+            context,
           )}
         {menu === 'materialexchange' &&
           siloactive &&
           exchange(
             { matnames, matnums, matvalues, dosh, maticons, siloactive },
-            context
+            context,
           )}
       </Window.Content>
     </Window>

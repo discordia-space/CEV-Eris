@@ -1,5 +1,21 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, ColorBox, LabeledList, ProgressBar, Section, Collapsible, Box, Icon, Stack, Table, Dimmer, NumberInput, Flex, AnimatedNumber, Dropdown } from '../components';
+import {
+  Button,
+  ColorBox,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Collapsible,
+  Box,
+  Icon,
+  Stack,
+  Table,
+  Dimmer,
+  NumberInput,
+  Flex,
+  AnimatedNumber,
+  Dropdown,
+} from '../components';
 import { Window } from '../layouts';
 
 const ConfigureNumberEntry = (props, context) => {
@@ -14,9 +30,9 @@ const ConfigureNumberEntry = (props, context) => {
       width="39px"
       onChange={(e, value) =>
         act('configure', {
-          'key': name,
-          'value': value,
-          'ref': module_ref,
+          key: name,
+          value: value,
+          ref: module_ref,
         })
       }
     />
@@ -31,9 +47,9 @@ const ConfigureBoolEntry = (props, context) => {
       checked={value}
       onClick={() =>
         act('configure', {
-          'key': name,
-          'value': !value,
-          'ref': module_ref,
+          key: name,
+          value: !value,
+          ref: module_ref,
         })
       }
     />
@@ -49,8 +65,8 @@ const ConfigureColorEntry = (props, context) => {
         icon="paint-brush"
         onClick={() =>
           act('configure', {
-            'key': name,
-            'ref': module_ref,
+            key: name,
+            ref: module_ref,
           })
         }
       />
@@ -68,9 +84,9 @@ const ConfigureListEntry = (props, context) => {
       options={values}
       onSelected={(value) =>
         act('configure', {
-          'key': name,
-          'value': value,
-          'ref': module_ref,
+          key: name,
+          value: value,
+          ref: module_ref,
         })
       }
     />
@@ -100,7 +116,8 @@ const RadCounter = (props, context) => {
       <Stack.Item grow>
         <Section
           title="Radiation Level"
-          color={active && userradiated ? 'bad' : 'good'}>
+          color={active && userradiated ? 'bad' : 'good'}
+        >
           {active && userradiated ? 'IRRADIATED' : 'RADIATION-FREE'}
         </Section>
       </Stack.Item>
@@ -112,7 +129,8 @@ const RadCounter = (props, context) => {
               good: [-Infinity, 0.2],
               average: [0.2, 0.5],
               bad: [0.5, Infinity],
-            }}>
+            }}
+          >
             <AnimatedNumber value={usertoxins} />
           </ProgressBar>
         </Section>
@@ -121,7 +139,8 @@ const RadCounter = (props, context) => {
         <Section
           title="Hazard Level"
           color={active && threatlevel ? 'bad' : 'good'}
-          bold>
+          bold
+        >
           {active && threatlevel ? threatlevel : 0}
         </Section>
       </Stack.Item>
@@ -148,7 +167,8 @@ const HealthAnalyzer = (props, context) => {
             good: [0.5, Infinity],
             average: [0.2, 0.5],
             bad: [-Infinity, 0.2],
-          }}>
+          }}
+        >
           <AnimatedNumber value={active ? userhealth : 0} />
         </ProgressBar>
       </Section>
@@ -161,7 +181,8 @@ const HealthAnalyzer = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={active ? userbrute : 0} />
             </ProgressBar>
           </Section>
@@ -174,7 +195,8 @@ const HealthAnalyzer = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={active ? userburn : 0} />
             </ProgressBar>
           </Section>
@@ -187,7 +209,8 @@ const HealthAnalyzer = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={active ? usertoxin : 0} />
             </ProgressBar>
           </Section>
@@ -200,7 +223,8 @@ const HealthAnalyzer = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={active ? useroxy : 0} />
             </ProgressBar>
           </Section>
@@ -248,7 +272,8 @@ const StatusReadout = (props, context) => {
             good: [0.5, Infinity],
             average: [0.2, 0.5],
             bad: [-Infinity, 0.2],
-          }}>
+          }}
+        >
           <AnimatedNumber value={active ? statushealth : 0} />
         </ProgressBar>
       </Section>
@@ -261,7 +286,8 @@ const StatusReadout = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={active ? statusbrute : 0} />
             </ProgressBar>
           </Section>
@@ -274,7 +300,8 @@ const StatusReadout = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={active ? statusburn : 0} />
             </ProgressBar>
           </Section>
@@ -287,7 +314,8 @@ const StatusReadout = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={statustoxin} />
             </ProgressBar>
           </Section>
@@ -300,7 +328,8 @@ const StatusReadout = (props, context) => {
                 good: [-Infinity, 0.2],
                 average: [0.2, 0.5],
                 bad: [0.5, Infinity],
-              }}>
+              }}
+            >
               <AnimatedNumber value={statusoxy} />
             </ProgressBar>
           </Section>
@@ -437,7 +466,8 @@ const ConfigureScreen = (props, context) => {
               fluid
               onClick={props.onExit}
               icon="times"
-              textAlign="center">
+              textAlign="center"
+            >
               Exit
             </Button>
           </Box>
@@ -488,7 +518,8 @@ const ParametersSection = (props, context) => {
               content={active ? 'Deactivate' : 'Activate'}
               onClick={() => act('activate')}
             />
-          }>
+          }
+        >
           {status}
         </LabeledList.Item>
         <LabeledList.Item
@@ -499,7 +530,8 @@ const ParametersSection = (props, context) => {
               content={locked ? 'Unlock' : 'Lock'}
               onClick={() => act('lock')}
             />
-          }>
+          }
+        >
           {locked ? 'Locked' : 'Unlocked'}
         </LabeledList.Item>
         <LabeledList.Item label="Cover">
@@ -602,7 +634,7 @@ const ModuleSection = (props, context) => {
   const [configureState, setConfigureState] = useLocalState(
     context,
     'module_configuration',
-    null
+    null,
   );
   return (
     <Section title="Modules" fill>
@@ -690,7 +722,7 @@ const ModuleSection = (props, context) => {
                         </Table.Cell>
                         <Table.Cell textAlign="center">
                           <Button
-                            onClick={() => act('select', { 'ref': module.ref })}
+                            onClick={() => act('select', { ref: module.ref })}
                             icon="bullseye"
                             selected={module.module_active}
                             tooltip={displayText(module.module_type)}
@@ -706,7 +738,7 @@ const ModuleSection = (props, context) => {
                             disabled={module.configuration_data.length === 0}
                           />
                           <Button
-                            onClick={() => act('pin', { 'ref': module.ref })}
+                            onClick={() => act('pin', { ref: module.ref })}
                             icon="thumbtack"
                             selected={module.pinned}
                             tooltip="Pin"
@@ -740,7 +772,8 @@ export const MODsuit = (props, context) => {
       height={525}
       theme={ui_theme}
       title="MOD Interface Panel"
-      resizable>
+      resizable
+    >
       <Window.Content scrollable={!interface_break}>
         {(!!interface_break && <LockedInterface />) || (
           <Stack vertical fill>

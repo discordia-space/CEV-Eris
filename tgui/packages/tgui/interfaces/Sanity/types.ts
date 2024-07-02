@@ -39,8 +39,8 @@ type Desires = {
 };
 
 type RighteousLife = {
-  'present': boolean;
-  'value': number;
+  present: boolean;
+  value: number;
 };
 
 type SanityData = {

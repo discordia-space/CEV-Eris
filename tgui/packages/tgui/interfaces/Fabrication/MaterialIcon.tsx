@@ -2,41 +2,41 @@ import { classes } from 'common/react';
 import { Icon } from '../../components';
 
 const MATERIAL_ICONS: Record<string, [number, string][]> = {
-  'iron': [
+  iron: [
     [0, 'sheet-metal'],
     [17, 'sheet-metal_2'],
     [34, 'sheet-metal_3'],
   ],
-  'glass': [
+  glass: [
     [0, 'sheet-glass'],
     [17, 'sheet-glass_2'],
     [34, 'sheet-glass_3'],
   ],
-  'silver': [
+  silver: [
     [0, 'sheet-silver'],
     [17, 'sheet-silver_2'],
     [34, 'sheet-silver_3'],
   ],
-  'gold': [
+  gold: [
     [0, 'sheet-gold'],
     [17, 'sheet-gold_2'],
     [34, 'sheet-gold_3'],
   ],
-  'diamond': [[0, 'sheet-diamond']],
-  'plasma': [
+  diamond: [[0, 'sheet-diamond']],
+  plasma: [
     [0, 'sheet-plasma'],
     [17, 'sheet-plasma_2'],
     [34, 'sheet-plasma_3'],
   ],
-  'uranium': [[0, 'sheet-uranium']],
-  'bananium': [[0, 'sheet-bananium']],
-  'titanium': [
+  uranium: [[0, 'sheet-uranium']],
+  bananium: [[0, 'sheet-bananium']],
+  titanium: [
     [0, 'sheet-titanium'],
     [17, 'sheet-titanium_2'],
     [34, 'sheet-titanium_3'],
   ],
   'bluespace crystal': [[0, 'bluespace_crystal']],
-  'plastic': [
+  plastic: [
     [0, 'sheet-plastic'],
     [17, 'sheet-plastic_2'],
     [34, 'sheet-plastic_3'],

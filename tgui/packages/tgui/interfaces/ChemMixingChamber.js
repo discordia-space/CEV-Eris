@@ -1,5 +1,13 @@
 import { useBackend, useLocalState } from '../backend';
-import { AnimatedNumber, Box, Button, Input, NumberInput, Section, Stack } from '../components';
+import {
+  AnimatedNumber,
+  Box,
+  Button,
+  Input,
+  NumberInput,
+  Section,
+  Stack,
+} from '../components';
 import { Window } from '../layouts';
 import { round, toFixed } from 'common/math';
 
@@ -9,12 +17,12 @@ export const ChemMixingChamber = (props, context) => {
   const [reagentName, setReagentName] = useLocalState(
     context,
     'reagentName',
-    ''
+    '',
   );
   const [reagentQuantity, setReagentQuantity] = useLocalState(
     context,
     'reagentQuantity',
-    1
+    1,
   );
 
   const { emptying, temperature, ph, targetTemp, isReacting } = data;
@@ -46,7 +54,8 @@ export const ChemMixingChamber = (props, context) => {
                     />
                   </Stack.Item>
                 </Stack>
-              }>
+              }
+            >
               <Stack vertical>
                 <Stack.Item>
                   <Stack fill>
@@ -79,11 +88,13 @@ export const ChemMixingChamber = (props, context) => {
                     fontSize="16px"
                     inline
                     bold
-                    color={emptying ? 'bad' : 'good'}>
+                    color={emptying ? 'bad' : 'good'}
+                  >
                     {emptying ? 'Emptying' : 'Filling'}
                   </Box>
                 )
-              }>
+              }
+            >
               <Stack vertical fill>
                 <Stack.Item>
                   <Stack fill>

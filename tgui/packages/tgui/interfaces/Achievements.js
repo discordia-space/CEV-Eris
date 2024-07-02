@@ -8,10 +8,10 @@ export const Achievements = (props, context) => {
   const [selectedCategory, setSelectedCategory] = useLocalState(
     context,
     'category',
-    categories[0]
+    categories[0],
   );
   const achievements = data.achievements.filter(
-    (x) => x.category === selectedCategory
+    (x) => x.category === selectedCategory,
   );
   return (
     <Window title="Achievements" width={540} height={680}>
@@ -21,13 +21,15 @@ export const Achievements = (props, context) => {
             <Tabs.Tab
               key={category}
               selected={selectedCategory === category}
-              onClick={() => setSelectedCategory(category)}>
+              onClick={() => setSelectedCategory(category)}
+            >
               {category}
             </Tabs.Tab>
           ))}
           <Tabs.Tab
             selected={selectedCategory === 'High Scores'}
-            onClick={() => setSelectedCategory('High Scores')}>
+            onClick={() => setSelectedCategory('High Scores')}
+          >
             High Scores
           </Tabs.Tab>
         </Tabs>
@@ -81,7 +83,7 @@ const HighScoreTable = (props, context) => {
   const [highScoreIndex, setHighScoreIndex] = useLocalState(
     context,
     'highscore',
-    0
+    0,
   );
   const highscore = highscores[highScoreIndex];
   if (!highscore) {
@@ -99,7 +101,8 @@ const HighScoreTable = (props, context) => {
             <Tabs.Tab
               key={highscore.name}
               selected={highScoreIndex === i}
-              onClick={() => setHighScoreIndex(i)}>
+              onClick={() => setHighScoreIndex(i)}
+            >
               {highscore.name}
             </Tabs.Tab>
           ))}
@@ -119,7 +122,8 @@ const HighScoreTable = (props, context) => {
               </Table.Cell>
               <Table.Cell
                 color={score.ckey === user_ckey && 'green'}
-                textAlign="center">
+                textAlign="center"
+              >
                 {i === 0 && <Icon name="crown" color="yellow" mr={2} />}
                 {score.ckey}
                 {i === 0 && <Icon name="crown" color="yellow" ml={2} />}

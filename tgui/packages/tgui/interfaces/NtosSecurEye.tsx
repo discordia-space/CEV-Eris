@@ -1,7 +1,11 @@
 import { useBackend } from '../backend';
 import { Button, ByondUi } from '../components';
 import { NtosWindow } from '../layouts';
-import { prevNextCamera, selectCameras, CameraConsoleContent } from './CameraConsole';
+import {
+  prevNextCamera,
+  selectCameras,
+  CameraConsoleContent,
+} from './CameraConsole';
 
 type Data = {
   PC_device_theme: string;
@@ -37,7 +41,7 @@ const CameraControls = (props, context) => {
   const cameras = selectCameras(data.cameras);
   const [prevCameraName, nextCameraName] = prevNextCamera(
     cameras,
-    activeCamera
+    activeCamera,
   );
 
   return (

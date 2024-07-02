@@ -1,7 +1,14 @@
 import { useBackend, useLocalState } from '../backend';
 import { filter, sortBy } from 'common/collections';
 import { capitalizeFirst, multiline } from 'common/string';
-import { Button, Collapsible, Icon, Input, Section, Stack } from '../components';
+import {
+  Button,
+  Collapsible,
+  Icon,
+  Input,
+  Section,
+  Stack,
+} from '../components';
 import { Window } from '../layouts';
 import { flow } from 'common/fp';
 
@@ -30,17 +37,17 @@ type SectionProps = {
 };
 
 const ANTAG2COLOR = {
-  'Abductors': 'pink',
+  Abductors: 'pink',
   'Ash Walkers': 'olive',
-  'Biohazards': 'brown',
-  'CentCom': 'teal',
+  Biohazards: 'brown',
+  CentCom: 'teal',
 } as const;
 
 const ANTAG2GROUP = {
   'Abductor Agent': 'Abductors',
   'Abductor Scientist': 'Abductors',
   'Ash Walker': 'Ash Walkers',
-  'Blob': 'Biohazards',
+  Blob: 'Biohazards',
   'Sentient Disease': 'Biohazards',
   'CentCom Commander': 'CentCom',
   'CentCom Head Intern': 'CentCom',
@@ -96,12 +103,12 @@ const ObservableSearch = (props, context) => {
   const [autoObserve, setAutoObserve] = useLocalState<boolean>(
     context,
     'autoObserve',
-    false
+    false,
   );
   const [searchQuery, setSearchQuery] = useLocalState<string>(
     context,
     'searchQuery',
-    ''
+    '',
   );
   /** Gets a list of Observable[], then filters the most relevant to orbit */
   const orbitMostRelevant = (searchQuery: string): void => {
@@ -109,7 +116,7 @@ const ObservableSearch = (props, context) => {
     const mostRelevant: Observable = flow([
       // Filters out anything that doesn't match search
       filter<Observable>((observable) =>
-        observable.name?.toLowerCase().includes(searchQuery?.toLowerCase())
+        observable.name?.toLowerCase().includes(searchQuery?.toLowerCase()),
       ),
       // Sorts descending by orbiters
       sortBy<Observable>((poi) => -(poi.orbiters || 0)),
@@ -218,11 +225,11 @@ const ObservableSection = (props: SectionProps, context) => {
   const [searchQuery, setSearchQuery] = useLocalState<string>(
     context,
     'searchQuery',
-    ''
+    '',
   );
   const filteredSection: Observable[] = flow([
     filter<Observable>((poi) =>
-      poi.name?.toLowerCase().includes(searchQuery?.toLowerCase())
+      poi.name?.toLowerCase().includes(searchQuery?.toLowerCase()),
     ),
     sortBy<Observable>((poi) => poi.name.toLowerCase()),
   ])(section);
@@ -236,7 +243,8 @@ const ObservableSection = (props: SectionProps, context) => {
         bold
         color={color}
         open={color !== 'grey'}
-        title={title + ` - (${filteredSection.length})`}>
+        title={title + ` - (${filteredSection.length})`}
+      >
         {filteredSection.map((poi, index) => {
           return <ObservableItem color={color} item={poi} key={index} />;
         })}
@@ -248,7 +256,7 @@ const ObservableSection = (props: SectionProps, context) => {
 /** Renders an observable button */
 const ObservableItem = (
   props: { color: string; item: Observable },
-  context
+  context,
 ) => {
   const { act } = useBackend<Data>(context);
   const {
@@ -258,14 +266,15 @@ const ObservableItem = (
   const [autoObserve, setAutoObserve] = useLocalState<boolean>(
     context,
     'autoObserve',
-    false
+    false,
   );
   const threat = getThreat(orbiters || 0);
 
   return (
     <Button
       color={threat || color}
-      onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}>
+      onClick={() => act('orbit', { auto_observe: autoObserve, ref: ref })}
+    >
       {capitalizeFirst(name).slice(0, 44) /** prevents it from overflowing */}
       {!!orbiters && (
         <>
@@ -294,7 +303,7 @@ const collateAntagonists = (antagonists: Observable[]): AntagGroup[] => {
     collatedAntagonists[resolvedName].push(antagonist);
   }
   const sortedAntagonists = sortBy<AntagGroup>((antagonist) => antagonist[0])(
-    Object.entries(collatedAntagonists)
+    Object.entries(collatedAntagonists),
   );
 
   return sortedAntagonists;

@@ -21,7 +21,7 @@ export const FishingPortalGenerator = (props, context) => {
                 <LabeledList.Item key={x}>
                   <Button
                     disabled={data.active}
-                    onClick={() => act('preset', { 'preset': x })}
+                    onClick={() => act('preset', { preset: x })}
                     content={x}
                     selected={x === data.active_preset}
                   />

@@ -104,7 +104,8 @@ const MemoRow = (props) => {
       className={`hypertorus-recipes__row${
         active ? ' hypertorus-recipes__activerow' : ''
       }`}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </Table.Row>
   );
@@ -205,14 +206,15 @@ export const HypertorusRecipes = (props) => {
                       <Tooltip
                         content={(item.tooltip || ((v) => 'x' + v))(
                           value,
-                          rest
-                        )}>
+                          rest,
+                        )}
+                      >
                         <Icon
                           className="hypertorus-recipes__icon"
                           name={effect_to_icon(
                             value,
                             item.scale,
-                            item.override_base || 1
+                            item.override_base || 1,
                           )}
                         />
                       </Tooltip>
