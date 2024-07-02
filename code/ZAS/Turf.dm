@@ -282,15 +282,15 @@
 		initial_gas["oxygen"] = initial_oxygen
 
 	var/initial_carbon_dioxide = initial(carbon_dioxide)
-	if(initial_oxygen)
+	if(initial_carbon_dioxide )
 		initial_gas["carbon_dioxide"] = initial_carbon_dioxide
 
 	var/initial_nitrogen = initial(nitrogen)
-	if(initial_oxygen)
+	if(initial_nitrogen)
 		initial_gas["nitrogen"] = initial_nitrogen
 
 	var/initial_plasma = initial(plasma)
-	if(initial_oxygen)
+	if(initial_plasma )
 		initial_gas["plasma"] = initial_plasma
 
 	air.gas = initial_gas
