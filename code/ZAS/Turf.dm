@@ -273,6 +273,30 @@
 	air.copy_from(zone.air)
 	air.group_multiplier = 1
 
+/turf/proc/reset_air()
+	QDEL_NULL(fire)
+	var/list/initial_gas = new
+
+	var/initial_oxygen = initial(oxygen)
+	if(initial_oxygen)
+		initial_gas["oxygen"] = initial_oxygen
+
+	var/initial_carbon_dioxide = initial(carbon_dioxide)
+	if(initial_carbon_dioxide )
+		initial_gas["carbon_dioxide"] = initial_carbon_dioxide
+
+	var/initial_nitrogen = initial(nitrogen)
+	if(initial_nitrogen)
+		initial_gas["nitrogen"] = initial_nitrogen
+
+	var/initial_plasma = initial(plasma)
+	if(initial_plasma )
+		initial_gas["plasma"] = initial_plasma
+
+	air.gas = initial_gas
+	air.temperature = initial(temperature)
+	air.update_values()
+
 
 // LINDA proc placeholder, used for compatibility with some tgstation code
 /turf/proc/GetAtmosAdjacentTurfs(alldir = FALSE)
