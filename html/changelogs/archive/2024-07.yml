@@ -1,0 +1,11 @@
+2024-07-06:
+  Deal:
+  - tweak: Some things inside One Star facility have been changed...
+  SirRichardFrancis:
+  - admin: Added "Fix air" button to "Admin" tab
+  - code_imp: Bumped Node to 20.12.0
+  - code_imp: Bumped Yarn to 4.3.1
+  - code_imp: Replaced Prettierx with Prettier
+  Twomoon:
+  - rscadd: Added new posters
+  - imageadd: added some posters icons
