@@ -70,6 +70,7 @@
 	SEND_SIGNAL_OLD(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
 	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_EQUIPPED, user)
 	update_light()
+	user.regenerate_icons()
 	if(flags & MOVE_NOTIFY)
 		user.update_on_move |= src
 
