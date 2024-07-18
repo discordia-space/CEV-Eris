@@ -9,10 +9,10 @@
 /area/pulsar
 	name = "Pulsar Map"
 	icon_state = "grid"
-	requires_power = 0
-	base_turf = /turf/unsimulated/map/pulsar
+	requires_power = FALSE
+	base_turf = /turf/map/pulsar
 
-/turf/unsimulated/map/pulsar/New()
+/turf/map/pulsar/New()
 	..()
 	name = "Deep Space"
 

@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ai" = (
 /obj/machinery/computer/arcade,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "aA" = (
 /obj/item/storage/toolbox/mechanical,
@@ -11,22 +11,22 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "aK" = (
 /obj/machinery/media/jukebox,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "aO" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/spawner/tool_upgrade/rare/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "aS" = (
 /obj/structure/salvageable/os/implant_container,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "bt" = (
 /obj/structure/table/onestar,
@@ -35,25 +35,25 @@
 	},
 /obj/item/stamp/chameleon,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "bu" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/tool/knife/butch,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "bw" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
-/turf/simulated/floor/dirt,
+/turf/floor/dirt,
 /area/outpost/blacksite/medium)
 "bD" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "bE" = (
 /obj/structure/table/onestar,
@@ -64,18 +64,18 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "bH" = (
 /obj/structure/table/rack,
 /obj/spawner/powercell/low_chance,
 /obj/spawner/powercell/medium,
 /obj/spawner/powercell/small,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "bJ" = (
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "bN" = (
 /obj/structure/table/onestar,
@@ -86,7 +86,7 @@
 	dir = 4
 	},
 /obj/item/paper_bin,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "bV" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -96,12 +96,12 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "bX" = (
 /obj/structure/table/standard,
 /obj/machinery/reagentgrinder/portable,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "bY" = (
 /obj/structure/shuttle/engine/heater{
@@ -113,7 +113,7 @@
 /obj/structure/window/reinforced/crescent{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "ca" = (
 /obj/structure/table/rack,
@@ -121,21 +121,20 @@
 	dir = 1
 	},
 /obj/spawner/gun/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "ci" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/wall/low/onestar,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
 /area/outpost/blacksite/medium)
 "cr" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "cA" = (
 /obj/structure/window/reinforced{
@@ -143,7 +142,7 @@
 	},
 /obj/structure/table/onestar,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "cW" = (
 /obj/structure/window/reinforced{
@@ -152,41 +151,41 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "da" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "dk" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "dp" = (
 /obj/structure/table/onestar,
 /obj/spawner/soda,
 /obj/spawner/soda,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "ds" = (
 /obj/structure/table/bar_special,
 /obj/machinery/chemical_dispenser/soda,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "dA" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /obj/spawner/soda,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "dK" = (
 /obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "dM" = (
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/blacksite/medium)
 "dS" = (
 /obj/structure/table/onestar,
@@ -197,35 +196,35 @@
 	dir = 1
 	},
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "dT" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "dZ" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/blacksite/medium)
 "et" = (
 /obj/structure/bed/chair/custom/onestar/red,
 /obj/spawner/soda/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "eJ" = (
 /obj/structure/salvageable/os/server,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "eN" = (
 /obj/structure/table/onestar,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "eO" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/outpost/blacksite/medium)
 "eQ" = (
 /obj/structure/table/onestar,
@@ -233,11 +232,11 @@
 	dir = 4
 	},
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "eS" = (
 /obj/machinery/slotmachine,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "fg" = (
 /obj/structure/railing/grey{
@@ -246,21 +245,21 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/blacksite/medium)
 "fh" = (
 /obj/structure/table/bar_special,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/bar_dance,
+/turf/floor/tiled/steel/bar_dance,
 /area/outpost/blacksite/medium)
 "fn" = (
 /obj/structure/salvageable/os/console,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "fr" = (
 /obj/structure/table/rack,
 /obj/spawner/tank,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "fw" = (
 /obj/machinery/door/airlock/sandstone{
@@ -268,43 +267,43 @@
 	locked = 1;
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "fx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "fD" = (
-/turf/simulated/floor/dirt,
+/turf/floor/dirt,
 /area/outpost/blacksite/medium)
 "fU" = (
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "fV" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/steel/bar_dance,
+/turf/floor/tiled/steel/bar_dance,
 /area/outpost/blacksite/medium)
 "gb" = (
 /obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "gk" = (
 /obj/structure/table/bar_special,
 /obj/item/reagent_containers/food/drinks/shaker,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "gz" = (
 /obj/structure/table/onestar,
 /obj/item/folder/red,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "gB" = (
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "gC" = (
 /obj/structure/table/standard,
@@ -316,11 +315,11 @@
 	pixel_x = 3
 	},
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "gE" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/steel/bar_dance,
+/turf/floor/tiled/steel/bar_dance,
 /area/outpost/blacksite/medium)
 "gV" = (
 /obj/structure/table/onestar,
@@ -328,18 +327,18 @@
 	dir = 8
 	},
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "gW" = (
 /obj/structure/toilet{
 	dir = 8
 	},
 /obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "gX" = (
 /obj/structure/closet/onestar/tier2/normal,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "hi" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -350,19 +349,19 @@
 /area/template_noop)
 "ho" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "hq" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "hy" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "hF" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -371,7 +370,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "hN" = (
 /obj/structure/window/reinforced{
@@ -385,7 +384,7 @@
 	pixel_y = -30
 	},
 /obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "hS" = (
 /obj/structure/table/rack/shelf,
@@ -393,45 +392,45 @@
 	pixel_x = 3;
 	pixel_y = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "hX" = (
 /obj/structure/table/bar_special,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "if" = (
 /obj/structure/table/onestar,
 /obj/item/storage/lunchbox/rainbow,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "ii" = (
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "ix" = (
 /obj/structure/closet/crate,
 /obj/item/storage/freezer,
 /obj/item/storage/freezer,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "iy" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/spawner/cloth/under/low_chance,
 /obj/spawner/cloth/suit/low_chance,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "iY" = (
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "je" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/blacksite/medium)
 "jg" = (
 /obj/structure/table/onestar,
@@ -439,7 +438,7 @@
 	dir = 1
 	},
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "jj" = (
 /obj/item/paper/blacksite/medium/note02{
@@ -449,16 +448,16 @@
 /obj/item/paper/blacksite/medium/note05{
 	pixel_x = -5
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "jD" = (
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "jE" = (
 /obj/structure/sign/derelict3{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "jF" = (
 /obj/structure/table/rack,
@@ -467,31 +466,31 @@
 /obj/spawner/rations,
 /obj/spawner/rations,
 /obj/spawner/rations,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "jG" = (
 /obj/structure/table/onestar,
 /obj/item/deck/cards,
-/turf/simulated/floor/dirt,
+/turf/floor/dirt,
 /area/outpost/blacksite/medium)
 "jH" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/outpost/blacksite/medium)
 "jO" = (
 /obj/structure/morgue,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "jW" = (
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "km" = (
 /obj/structure/table/bar_special,
 /obj/spawner/soda/low_chance,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "kz" = (
 /obj/structure/salvageable/os/computer,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "kC" = (
 /obj/structure/table/onestar,
@@ -503,7 +502,7 @@
 	},
 /obj/item/stamp/denied,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "kD" = (
 /obj/structure/toilet{
@@ -513,7 +512,7 @@
 	dir = 1
 	},
 /obj/spawner/credits/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "kG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -523,18 +522,18 @@
 	id_tag = null;
 	locked = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "kJ" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "lc" = (
 /obj/structure/sign/derelict1{
 	pixel_x = 32
 	},
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "ld" = (
 /obj/structure/window/reinforced{
@@ -543,35 +542,35 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "li" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "lB" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "lC" = (
 /obj/structure/sign/derelict2{
 	pixel_x = -32
 	},
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "lE" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/medical_lowcost/low_chance,
 /obj/spawner/medical_lowcost,
 /obj/spawner/tool_upgrade/rare/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "lM" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "lW" = (
 /obj/item/storage/box/donkpockets{
@@ -586,62 +585,62 @@
 /obj/item/storage/box/donkpockets,
 /obj/structure/closet/crate,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "mc" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "ml" = (
 /obj/structure/closet/onestar/tier2/normal,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/outpost/blacksite/medium)
 "mr" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/machinery/door/window/westleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "mv" = (
 /obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "mB" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "mI" = (
 /obj/structure/salvageable/os/machine,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "mJ" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "mS" = (
 /obj/structure/table/onestar,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "mW" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "mX" = (
 /obj/machinery/vending/boozeomat,
 /obj/structure/sign/faction/one_star_sign{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "nk" = (
 /obj/structure/morgue{
@@ -650,12 +649,12 @@
 /obj/machinery/camera/network/security{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "nm" = (
 /obj/machinery/centrifuge,
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "nz" = (
 /obj/structure/bed/chair/comfy/black,
@@ -667,7 +666,7 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "nF" = (
 /obj/structure/shuttle/engine/heater{
@@ -679,24 +678,24 @@
 /obj/structure/window/reinforced/crescent{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "nN" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "ob" = (
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/outpost/blacksite/medium)
 "oi" = (
 /obj/structure/bed,
 /obj/spawner/toy/plushie,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "oj" = (
 /obj/structure/table/woodentable,
 /obj/spawner/junkfood,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "ok" = (
 /obj/structure/table/rack/shelf,
@@ -705,82 +704,82 @@
 	pixel_y = 3
 	},
 /obj/spawner/prothesis_one_star,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "oF" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/outpost/blacksite/medium)
 "oK" = (
 /obj/structure/table/bar_special,
 /obj/spawner/booze/low_chance,
 /obj/spawner/soda/low_chance,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "oX" = (
 /obj/machinery/light,
 /obj/structure/salvageable/os/console_broken{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "pa" = (
 /obj/landmark/corpse/one_star,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "pf" = (
 /obj/structure/sign/derelict2{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "pk" = (
 /obj/structure/bed/chair/custom/bar_special{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "pp" = (
 /obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "pr" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "px" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "pH" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "pI" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "pJ" = (
 /obj/structure/table/woodentable,
 /obj/spawner/toy/plushie,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "pK" = (
 /obj/machinery/shower{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "qe" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/medical_lowcost/low_chance,
 /obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "qp" = (
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "qv" = (
 /obj/structure/curtain/open/shower,
@@ -790,46 +789,46 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "qw" = (
 /obj/machinery/vending/cigarette,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "qD" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
 /obj/landmark/corpse/one_star/void,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "qP" = (
 /obj/structure/table/onestar,
 /obj/item/newspaper,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "qZ" = (
 /obj/machinery/vending/assist{
 	dir = 4
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "ro" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "rp" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/material/resources,
 /obj/spawner/material/resources,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "rD" = (
 /obj/structure/table/onestar,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "rH" = (
 /obj/structure/catwalk,
@@ -837,17 +836,17 @@
 /area/template_noop)
 "rN" = (
 /obj/structure/dispenser,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "rQ" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "rX" = (
 /obj/structure/closet/l3closet/scientist,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "sf" = (
 /obj/structure/sign/derelict3{
@@ -856,14 +855,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "sl" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "sv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -873,37 +872,36 @@
 	id_tag = null;
 	locked = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "sx" = (
 /obj/structure/bed/padded,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/blacksite/medium)
 "sy" = (
 /obj/structure/table/rack,
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "sC" = (
 /obj/structure/cyberplant,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "tc" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/plating/under,
+/turf/wall/low/onestar,
 /area/outpost/blacksite/medium)
 "tg" = (
 /obj/spawner/toy/plushie,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "ti" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/dirt,
+/turf/floor/dirt,
 /area/outpost/blacksite/medium)
 "tp" = (
 /obj/structure/railing,
@@ -911,11 +909,11 @@
 /area/template_noop)
 "tF" = (
 /mob/living/carbon/superior_animal/stalker/dual,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "tK" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "tM" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -924,11 +922,11 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "tP" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/outpost/blacksite/medium)
 "us" = (
 /obj/structure/table/onestar,
@@ -940,30 +938,30 @@
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "uC" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 26
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "uT" = (
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "vd" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
 /obj/machinery/door/window/eastleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "vC" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "vN" = (
 /obj/structure/closet/secure_closet/personal,
@@ -971,53 +969,53 @@
 /obj/spawner/cloth/suit/low_chance,
 /obj/spawner/cloth/helmet/low_chance,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "wt" = (
 /obj/machinery/chem_heater,
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "wz" = (
 /obj/structure/table/onestar,
 /obj/item/board,
 /obj/spawner/toy/figure,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "wA" = (
 /obj/machinery/vending/dinnerware,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "wY" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "xe" = (
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "xq" = (
 /obj/structure/closet/onestar/tier1,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "xU" = (
 /obj/spawner/cloth/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "yv" = (
 /obj/machinery/cryo_slab,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "yD" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "yE" = (
 /obj/structure/closet,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "yN" = (
 /obj/structure/table/onestar,
@@ -1025,24 +1023,24 @@
 	dir = 6
 	},
 /obj/item/device/taperecorder,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "zb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/blacksite/medium)
 "zG" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "zJ" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "zL" = (
 /obj/machinery/door/airlock/sandstone{
@@ -1050,7 +1048,7 @@
 	locked = 1;
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "zM" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -1061,7 +1059,7 @@
 /area/template_noop)
 "Ah" = (
 /obj/spawner/pack/tech_loot/onestar,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Av" = (
 /obj/machinery/door/window/brigdoor/northright{
@@ -1069,18 +1067,18 @@
 	req_access = null
 	},
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "AV" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
 /obj/machinery/door/window/eastright,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Bd" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Bg" = (
 /obj/item/storage/box/syringes{
@@ -1089,7 +1087,7 @@
 	},
 /obj/item/storage/box/beakers,
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "BB" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -1100,7 +1098,7 @@
 /area/template_noop)
 "BX" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Ce" = (
 /obj/structure/disposalpipe/trunk{
@@ -1109,41 +1107,41 @@
 /obj/structure/disposaloutlet{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/blacksite/medium)
 "Co" = (
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
 /obj/spawner/soda,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "CU" = (
 /obj/structure/urinal{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "Da" = (
 /obj/machinery/chem_master/condimaster,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "Dl" = (
 /obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Dm" = (
 /obj/structure/table/bar_special,
 /obj/spawner/pizza/low_chance,
-/turf/simulated/floor/tiled/steel/bar_dance,
+/turf/floor/tiled/steel/bar_dance,
 /area/outpost/blacksite/medium)
 "Dp" = (
 /obj/structure/table/standard,
 /obj/item/tool/saw/circular,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "Dz" = (
 /obj/structure/sign/faction/one_star{
@@ -1151,7 +1149,7 @@
 	},
 /obj/structure/bed/chair/custom/onestar,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "DU" = (
 /obj/structure/table/onestar,
@@ -1159,7 +1157,7 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Ea" = (
 /obj/structure/window/reinforced{
@@ -1169,17 +1167,17 @@
 	dir = 8
 	},
 /obj/structure/salvageable/os/computer,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Ei" = (
 /mob/living/carbon/superior_animal/stalker,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Eo" = (
 /obj/structure/morgue{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Er" = (
 /obj/item/paper/blacksite/medium/note01{
@@ -1190,18 +1188,18 @@
 	pixel_x = 3;
 	pixel_y = -2
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Ex" = (
 /obj/spawner/boxes,
 /obj/spawner/boxes,
 /obj/structure/table/rack,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "EI" = (
 /obj/structure/table/onestar,
 /obj/item/newspaper,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "ES" = (
 /obj/structure/table/standard,
@@ -1213,51 +1211,51 @@
 	layer = 5
 	},
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "EU" = (
 /obj/structure/table/rack,
 /obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "EW" = (
 /obj/structure/table/onestar,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/onestar,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Fe" = (
 /obj/structure/table/rack,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Fm" = (
 /obj/structure/table/onestar,
 /obj/spawner/gun/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Fn" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/blacksite/medium)
 "Fs" = (
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "FF" = (
 /obj/structure/table/rack,
 /obj/spawner/ammo,
 /obj/item/storage/belt/holding,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "FJ" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/machinery/door/window/westright,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Gc" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Gf" = (
 /obj/structure/closet/secure_closet/personal,
@@ -1265,103 +1263,103 @@
 /obj/spawner/cloth/suit/low_chance,
 /obj/spawner/cloth/shoes/low_chance,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "Gj" = (
 /obj/machinery/chemical_dispenser,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "Gq" = (
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "Gt" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Gx" = (
 /obj/machinery/vending,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "GC" = (
 /obj/structure/sign/derelict1{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "GL" = (
 /obj/structure/sign/faction/one_star_sign{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "GW" = (
 /obj/machinery/power/port_gen/os_generator,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "GY" = (
 /obj/structure/table/bar_special,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "Ha" = (
 /obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Hp" = (
 /obj/spawner/soda,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Hu" = (
 /obj/item/stool/custom/bar_special,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/steel/bar_dance,
+/turf/floor/tiled/steel/bar_dance,
 /area/outpost/blacksite/medium)
 "HA" = (
 /obj/machinery/optable,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "HD" = (
 /obj/structure/salvageable/os/computer,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/outpost/blacksite/medium)
 "HF" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "HK" = (
 /obj/item/stool/custom/bar_special,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "HM" = (
 /obj/landmark/corpse/one_star,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "If" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "IA" = (
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "IE" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Jv" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
 /obj/structure/window/reinforced/crescent,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "JA" = (
 /obj/structure/sink{
@@ -1372,7 +1370,7 @@
 	dir = 8;
 	pixel_x = -28
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "JD" = (
 /obj/structure/railing{
@@ -1384,59 +1382,59 @@
 /obj/structure/sign/faction/one_star{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "JM" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "JW" = (
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "Kd" = (
 /obj/structure/salvageable/os/console{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Kl" = (
 /obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Ko" = (
 /obj/structure/table/rack,
 /obj/spawner/boxes,
 /obj/spawner/boxes,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Kz" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "KI" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/item/soap,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "KO" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/spawner/cloth/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Lq" = (
 /obj/structure/sign/derelict2{
 	pixel_x = -32
 	},
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Ls" = (
 /turf/template_noop,
@@ -1444,49 +1442,49 @@
 "LI" = (
 /obj/structure/bed,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "LT" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Mz" = (
 /obj/structure/table/standard,
 /obj/item/storage/freezer/medical,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "MC" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "MF" = (
 /obj/structure/table/rack,
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/flashbangs,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "MT" = (
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "MX" = (
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "NN" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "NX" = (
 /obj/spawner/scrap/sparse,
 /obj/structure/sign/derelict3{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "Og" = (
 /obj/structure/window/reinforced{
@@ -1495,44 +1493,44 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Oh" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/electronics,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "OA" = (
 /obj/structure/window/reinforced,
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "OC" = (
 /obj/machinery/shower{
 	dir = 1
 	},
 /obj/structure/curtain/open/shower,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "OH" = (
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Pp" = (
 /mob/living/simple_animal/hostile/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "PH" = (
-/turf/simulated/floor/tiled/steel/bar_dance,
+/turf/floor/tiled/steel/bar_dance,
 /area/outpost/blacksite/medium)
 "PL" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/lathe_disk,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "PQ" = (
 /obj/structure/table/standard,
@@ -1540,24 +1538,24 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "PT" = (
 /obj/structure/closet,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Qi" = (
 /obj/structure/table/rack,
 /obj/spawner/powercell/low_chance,
 /obj/spawner/powercell/large,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "Qt" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "Qv" = (
 /obj/structure/bed/chair/comfy/beige{
@@ -1567,20 +1565,20 @@
 	dir = 4
 	},
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "QC" = (
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "QJ" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "QS" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Ra" = (
 /obj/structure/table/onestar,
@@ -1588,13 +1586,13 @@
 /obj/item/reagent_containers/dropper{
 	pixel_y = -4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Ry" = (
 /obj/structure/sign/faction/one_star{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "RF" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -1612,25 +1610,25 @@
 /obj/item/reagent_containers/food/drinks/milk,
 /obj/item/reagent_containers/food/drinks/milk,
 /obj/item/reagent_containers/food/drinks/milk,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "RH" = (
 /obj/structure/bed/chair/custom/bar_special,
-/turf/simulated/floor/tiled/steel/bar_light,
+/turf/floor/tiled/steel/bar_light,
 /area/outpost/blacksite/medium)
 "RX" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Sa" = (
 /obj/item/stool/custom/bar_special,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "Sf" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/outpost/blacksite/medium)
 "Sh" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -1639,40 +1637,40 @@
 /obj/structure/closet/chefcloset,
 /obj/item/tool/knife,
 /obj/item/tool/knife,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "Sr" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "SB" = (
 /obj/item/soap,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/blacksite/medium)
 "SP" = (
 /obj/machinery/door/window/brigdoor/northleft{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "SX" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "Tq" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Tu" = (
 /obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Tv" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "Tz" = (
 /obj/structure/table/standard,
@@ -1684,37 +1682,37 @@
 	},
 /obj/machinery/light,
 /obj/item/material/kitchen/rollingpin,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "TC" = (
 /obj/item/clothing/accessory/blue,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "TZ" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Ub" = (
 /obj/spawner/junk,
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Ul" = (
 /obj/landmark/corpse/one_star,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Ux" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/outpost/blacksite/medium)
 "Uz" = (
 /obj/machinery/door/window/southleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "UK" = (
 /obj/machinery/shower{
@@ -1723,79 +1721,79 @@
 /obj/structure/window/reinforced{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/outpost/blacksite/medium)
 "UZ" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Vi" = (
 /obj/machinery/door/window/westright,
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/outpost/blacksite/medium)
 "Vl" = (
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/dirt,
+/turf/floor/dirt,
 /area/outpost/blacksite/medium)
 "Vz" = (
 /obj/machinery/suit_storage_unit/standard_unit,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "VC" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet,
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/blacksite/medium)
 "VG" = (
 /obj/machinery/door/window/northleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "VT" = (
 /obj/structure/table/onestar,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "VV" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "VW" = (
 /obj/structure/sign/derelict3{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Wu" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "WF" = (
 /obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "WH" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "WT" = (
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Xa" = (
 /obj/structure/table/bar_special,
 /obj/spawner/pizza/low_chance,
-/turf/simulated/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_flat,
 /area/outpost/blacksite/medium)
 "Xc" = (
 /obj/structure/bed/chair/custom/onestar/red,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/outpost/blacksite/medium)
 "Xg" = (
 /obj/structure/toilet{
@@ -1805,60 +1803,60 @@
 	dir = 1
 	},
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "Xm" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Xr" = (
 /obj/structure/table/onestar,
 /obj/spawner/firstaid,
 /obj/spawner/gun/onestar/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/outpost/blacksite/medium)
 "XQ" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "Yd" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Yp" = (
 /obj/structure/table/rack,
 /obj/spawner/tank,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "Yz" = (
 /obj/structure/sign/derelict1{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "YJ" = (
 /obj/structure/salvageable/os/server,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/outpost/blacksite/medium)
 "YM" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/outpost/blacksite/medium)
 "YU" = (
 /obj/spawner/junk,
-/turf/simulated/floor/dirt,
+/turf/floor/dirt,
 /area/outpost/blacksite/medium)
 "YZ" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/outpost/blacksite/medium)
 "Zp" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/outpost/blacksite/medium)
 "ZQ" = (
 /obj/structure/table/onestar,
@@ -1869,11 +1867,11 @@
 	dir = 6
 	},
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/outpost/blacksite/medium)
 "ZS" = (
 /obj/structure/sign/faction/one_star,
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/outpost/blacksite/medium)
 
 (1,1,1) = {"

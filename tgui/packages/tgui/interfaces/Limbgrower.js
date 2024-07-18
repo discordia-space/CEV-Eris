@@ -1,5 +1,13 @@
 import { useBackend, useSharedState } from '../backend';
-import { Box, Button, Dimmer, Icon, LabeledList, Section, Tabs } from '../components';
+import {
+  Box,
+  Button,
+  Dimmer,
+  Icon,
+  LabeledList,
+  Section,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
 
 export const Limbgrower = (props, context) => {
@@ -14,7 +22,7 @@ export const Limbgrower = (props, context) => {
   const [tab, setTab] = useSharedState(
     context,
     'category',
-    categories[0]?.name
+    categories[0]?.name,
   );
   const designList =
     categories.find((category) => category.name === tab)?.designs || [];
@@ -49,7 +57,8 @@ export const Limbgrower = (props, context) => {
                       })
                     }
                   />
-                }>
+                }
+              >
                 {reagent.reagent_amount}u
               </LabeledList.Item>
             ))}
@@ -62,7 +71,8 @@ export const Limbgrower = (props, context) => {
                 fluid
                 key={category.name}
                 selected={tab === category.name}
-                onClick={() => setTab(category.name)}>
+                onClick={() => setTab(category.name)}
+              >
                 {category.name}
               </Tabs.Tab>
             ))}
@@ -83,7 +93,8 @@ export const Limbgrower = (props, context) => {
                       })
                     }
                   />
-                }>
+                }
+              >
                 {design.needed_reagents.map((reagent) => (
                   <Box key={reagent.name}>
                     {reagent.name}: {reagent.amount}u

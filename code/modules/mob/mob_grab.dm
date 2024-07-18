@@ -41,7 +41,9 @@
 /obj/item/grab/resolve_attackby(obj/O, mob/user, var/click_params)
 	if(ismob(O))
 		return ..()
-	if(!istype(O) || get_dist(O, affecting) > 1)
+	if(get_dist(O, affecting) > 1)
+		return TRUE
+	if(!istype(O) && !istype(O, /turf/wall/low))
 		return TRUE
 	if(O.affect_grab(assailant, affecting, state))
 		qdel(src)

@@ -1,59 +1,59 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/tiled/steel/brown_perforated,
+/turf/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
 "b" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "c" = (
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/tiled/steel/brown_perforated,
+/turf/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
 "d" = (
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "e" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/brown_perforated,
+/turf/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
 "f" = (
 /obj/machinery/recharge_station,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "g" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "h" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "i" = (
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "j" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "k" = (
 /obj/structure/table/rack,
@@ -61,10 +61,10 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/panels,
+/turf/floor/tiled/steel/panels,
 /area/deepmaint)
 "l" = (
-/turf/simulated/floor/tiled/steel/panels,
+/turf/floor/tiled/steel/panels,
 /area/deepmaint)
 "m" = (
 /obj/structure/toilet{
@@ -77,18 +77,18 @@
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/pack/rare/low_chance,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "n" = (
 /obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "o" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/gun_loot,
 /obj/spawner/pack/gun_loot/low_chance,
 /obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/steel/panels,
+/turf/floor/tiled/steel/panels,
 /area/deepmaint)
 "p" = (
 /obj/structure/toilet{
@@ -99,10 +99,10 @@
 	},
 /obj/spawner/oddities/low_chance,
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "q" = (
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "r" = (
 /obj/structure/sink{
@@ -116,25 +116,25 @@
 	pixel_x = 28;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "s" = (
 /obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/steel/brown_perforated,
+/turf/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
 "t" = (
 /obj/landmark/loot_biomes/mob/roach/room{
 	range = 6
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "u" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "v" = (
 /obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 
 (1,1,1) = {"

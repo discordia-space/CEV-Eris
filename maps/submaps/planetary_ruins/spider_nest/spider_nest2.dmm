@@ -1,22 +1,22 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/map_template/spider_nest)
 "c" = (
 /obj/effect/spider/stickyweb,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "d" = (
 /mob/living/carbon/superior_animal/giant_spider/hunter,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "f" = (
 /obj/structure/disposalpipe/trunk,
 /obj/structure/disposaloutlet{
 	dir = 4
 	},
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "h" = (
 /obj/structure/sink{
@@ -25,19 +25,19 @@
 	pixel_y = 2
 	},
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "j" = (
 /obj/effect/spider/stickyweb,
 /obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/spider_nest)
 "n" = (
 /obj/effect/spider/stickyweb,
 /obj/landmark/corpse/doctor,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/vomit,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "o" = (
 /obj/spawner/junk,
@@ -45,47 +45,46 @@
 /area/template_noop)
 "q" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/map_template/spider_nest)
 "r" = (
 /obj/structure/table/standard{
 	flipped = 1
 	},
 /obj/item/folder/blue,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "s" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "t" = (
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "u" = (
 /obj/structure/table/standard{
 	flipped = 1
 	},
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "v" = (
 /obj/effect/spider/stickyweb,
 /obj/item/melee/telebaton,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "w" = (
 /obj/item/material/shard,
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/map_template/spider_nest)
 "x" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/cloth/armor,
 /obj/spawner/gun/energy_cheap,
 /obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "y" = (
 /obj/structure/window/reinforced{
@@ -96,7 +95,7 @@
 	},
 /obj/item/tool/knife/butch,
 /obj/item/storage/box/monkeycubes,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/map_template/spider_nest)
 "A" = (
 /obj/structure/sign/department/xenolab{
@@ -105,18 +104,17 @@
 /turf/template_noop,
 /area/template_noop)
 "B" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/map_template/spider_nest)
 "D" = (
 /obj/structure/sign/biohazard,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/map_template/spider_nest)
 "E" = (
 /obj/structure/bed/chair/comfy/purp{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "F" = (
 /obj/effect/spider/stickyweb,
@@ -124,54 +122,54 @@
 	pixel_x = -32
 	},
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "G" = (
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "H" = (
 /obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "J" = (
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "L" = (
 /obj/effect/spider/stickyweb,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "N" = (
 /obj/structure/closet/crate/freezer,
 /obj/spawner/junkfood,
 /obj/spawner/junkfood,
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/map_template/spider_nest)
 "O" = (
 /mob/living/carbon/superior_animal/giant_spider/nurse,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "P" = (
 /obj/effect/spider/stickyweb,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/map_template/spider_nest)
 "R" = (
 /obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/spider_nest)
 "U" = (
 /mob/living/carbon/superior_animal/giant_spider,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "V" = (
 /mob/living/carbon/superior_animal/giant_spider,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "W" = (
 /obj/machinery/disposal,
@@ -181,7 +179,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/map_template/spider_nest)
 "X" = (
 /turf/template_noop,
@@ -191,14 +189,14 @@
 	anchored = 1;
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 "Z" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/white/danger,
+/turf/floor/tiled/white/danger,
 /area/map_template/spider_nest)
 
 (1,1,1) = {"

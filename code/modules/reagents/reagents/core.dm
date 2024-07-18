@@ -23,7 +23,7 @@
 	var/T = data.Copy()
 	return T
 
-/datum/reagent/organic/blood/touch_turf(turf/simulated/T)
+/datum/reagent/organic/blood/touch_turf(turf/T)
 	if(!istype(T) || volume < 3)
 		return TRUE
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
@@ -58,7 +58,7 @@
 	nerve_system_accumulations = 0
 	reagent_type = "Water"
 
-/datum/reagent/water/touch_turf(turf/simulated/T)
+/datum/reagent/water/touch_turf(turf/T)
 	if(!istype(T))
 		return TRUE
 

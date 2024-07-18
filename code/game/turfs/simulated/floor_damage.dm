@@ -1,12 +1,12 @@
-/turf/simulated/floor/proc/gets_drilled()
+/turf/floor/proc/gets_drilled()
 	return
 
-/turf/simulated/floor/proc/break_tile_to_plating()
+/turf/floor/proc/break_tile_to_plating()
 	if(!is_plating())
 		make_plating()
 	break_tile()
 
-/turf/simulated/floor/proc/break_tile(rust)
+/turf/floor/proc/break_tile(rust)
 	if(!flooring || !(flooring.flags & TURF_CAN_BREAK) || !isnull(broken))
 		return
 	if(rust)
@@ -17,7 +17,7 @@
 		broken = 0
 	update_icon()
 
-/turf/simulated/floor/proc/burn_tile()
+/turf/floor/proc/burn_tile()
 	if(!flooring || !(flooring.flags & TURF_CAN_BURN) || !isnull(burnt))
 		return
 	if(flooring.has_burn_range)
@@ -27,7 +27,7 @@
 	update_icon()
 
 
-/turf/simulated/floor/take_damage(damage = 0, damage_type = BRUTE, ignore_resistance = FALSE)
+/turf/floor/take_damage(damage = 0, damage_type = BRUTE, ignore_resistance = FALSE)
 	if(is_hole)
 		//This turf is space or an open space, it can't break, burn or be damaged
 		//But we could break lattices in this tile
@@ -63,7 +63,7 @@
 
 
 /proc/damage_floor_at(x, y, z, damage, damage_type, ignore_resistance)
-	var/turf/simulated/floor/F = locate(x,y,z)
+	var/turf/floor/F = locate(x,y,z)
 	if (istype(F))
 		F.take_damage(damage, damage_type, ignore_resistance)
 

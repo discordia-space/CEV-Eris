@@ -1,13 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "b" = (
-/turf/simulated/wall/silver,
+/turf/wall,
 /area/asteroid/cave)
 "c" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 "d" = (
 /obj/machinery/door/airlock/external{
@@ -16,7 +16,7 @@
 	id_tag = "atmos_airlock_door_int";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 "h" = (
 /obj/structure/table/woodentable,
@@ -25,18 +25,18 @@
 	pixel_y = -2
 	},
 /obj/spawner/booze,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/asteroid/cave)
 "i" = (
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/asteroid/cave)
 "n" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rainbow,
 /obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/asteroid/cave)
 "p" = (
 /obj/structure/table/rack/shelf,
@@ -44,40 +44,39 @@
 /obj/spawner/powercell,
 /obj/spawner/powercell,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/asteroid/cave)
 "r" = (
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/asteroid/cave)
 "t" = (
 /obj/structure/closet/crate/freezer,
 /obj/spawner/junkfood,
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 "u" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/asteroid/cave)
 "w" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 "z" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/asteroid/cave)
 "C" = (
 /obj/machinery/power/port_gen/pacman,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 "D" = (
 /obj/structure/table/rack,
 /obj/spawner/material,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "G" = (
 /obj/structure/table/rack/shelf,
@@ -86,17 +85,17 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/asteroid/cave)
 "I" = (
 /obj/structure/table/rack,
 /obj/spawner/voidsuit,
 /obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/gun/energy_cheap,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 "K" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/asteroid/cave)
 "L" = (
 /obj/structure/closet,
@@ -112,19 +111,19 @@
 /obj/item/stack/material/glass/reinforced{
 	amount = 10
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/asteroid/cave)
 "N" = (
 /obj/structure/inflatable/door,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 "Y" = (
 /obj/structure/table/rack,
 /obj/spawner/material/resources,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "Z" = (
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/asteroid/cave)
 
 (1,1,1) = {"

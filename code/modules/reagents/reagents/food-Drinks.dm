@@ -95,7 +95,7 @@
 	color = "#FFFFFF"
 	taste_tag = list(TASTE_SLIMEY)
 
-/datum/reagent/organic/nutriment/flour/touch_turf(turf/simulated/T)
+/datum/reagent/organic/nutriment/flour/touch_turf(turf/T)
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 	return TRUE
@@ -167,7 +167,7 @@
 	color = "#302000"
 	taste_tag = list(TASTE_SLIMEY)
 
-/datum/reagent/organic/nutriment/cornoil/touch_turf(turf/simulated/T)
+/datum/reagent/organic/nutriment/cornoil/touch_turf(turf/T)
 	if(!istype(T))
 		return TRUE
 

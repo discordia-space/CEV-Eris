@@ -120,7 +120,7 @@
 		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
 		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
 		return 1
-	else if(istype(A, /obj/structure/barricade) || istype(A, /obj/structure/table) || istype(A, /obj/structure/low_wall))
+	else if(istype(A, /obj/structure/barricade) || istype(A, /obj/structure/table) || istype(A, /turf/wall/low))
 		return 0
 
 	return 1

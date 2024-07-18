@@ -159,10 +159,8 @@
 //There we apply sprites and directions to created glass
 /obj/machinery/multistructure/bioreactor_part/platform/proc/apply_window(obj/structure/window/reinforced/glass, var/direction)
 	if(MS_bioreactor.platform_enter_side == direction)
-		glass.basestate = "platform_door"
 		glass.icon_state = "platform_door"
 	else
-		glass.basestate = "[icon_state]-glass_[direction]"
 		glass.icon_state = "[icon_state]-glass_[direction]"
 	glass.dir = direction
 	glass.update_icon()

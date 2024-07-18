@@ -1,75 +1,75 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "d" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "e" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "f" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "g" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "h" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 8
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "i" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "j" = (
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/crawler)
 "k" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "l" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "m" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "n" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/crawler)
 "o" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "q" = (
 /obj/effect/floor_decal/grass_edge,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "s" = (
 /obj/structure/railing/grey{
@@ -77,48 +77,48 @@
 	},
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "t" = (
 /obj/structure/railing/grey{
 	dir = 1
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "u" = (
 /obj/structure/railing/grey{
 	dir = 1
 	},
 /obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "v" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "w" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
 /obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "x" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "y" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "z" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/crawler)
 
 (1,1,1) = {"

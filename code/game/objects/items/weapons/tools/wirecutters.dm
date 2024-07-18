@@ -11,7 +11,7 @@
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	sharp = TRUE
 	edge = TRUE
-	tool_qualities = list(QUALITY_WIRE_CUTTING = 30, QUALITY_RETRACTING = 15, QUALITY_BONE_SETTING = 15)
+	tool_qualities = list(QUALITY_WIRE_CUTTING = 25, QUALITY_RETRACTING = 15, QUALITY_BONE_SETTING = 15)
 	rarity_value = 12
 
 //Better and more flexible than most improvised tools, but more bulky and annoying to make

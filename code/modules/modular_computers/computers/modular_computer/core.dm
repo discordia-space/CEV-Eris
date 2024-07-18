@@ -68,6 +68,8 @@
 		install_default_programs()
 	if(scanner)
 		scanner.do_after_install(null, src)
+	if(enabled == 0)
+		add_statverb(/datum/statverb/fix_computer)
 	update_icon()
 	update_verbs()
 	update_name()

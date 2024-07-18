@@ -281,23 +281,16 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/list/L = list()
-	var/holyblock = 0
 
 	if(usr.invisibility <= SEE_INVISIBLE_LIVING)
 		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!T.holy)
-				L+=T
-			else
-				holyblock = 1
+			L+=T
 	else
 		for(var/turf/T in get_area_turfs(thearea.type))
 			L+=T
 
 	if(!L || !L.len)
-		if(holyblock)
-			to_chat(usr, "<span class='warning'>This area has been entirely made into sacred grounds, you cannot enter it while you are in this plane of existence!</span>")
-		else
-			to_chat(usr, "No area available.")
+		to_chat(usr, "No area available.")
 
 	stop_following()
 	usr.forceMove(pick(L))
@@ -355,21 +348,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 // Makes the ghost cease following if the user has moved
 /mob/observer/ghost/PostIncorporealMovement()
 	stop_following()
-
-/mob/observer/ghost/move_to_turf(var/atom/movable/am, var/old_loc, var/new_loc)
-	var/turf/T = get_turf(new_loc)
-	if(check_holy(T))
-		to_chat(usr, "<span class='warning'>You cannot follow something standing on holy grounds!</span>")
-		return
-	..()
-
-/mob/proc/check_holy(var/turf/T)
-	return 0
-
-/mob/observer/ghost/check_holy(var/turf/T)
-	if(check_rights(R_ADMIN|R_FUN, 0, src))
-		return 0
-	return (T && T.holy) && (invisibility <= SEE_INVISIBLE_LIVING)
 
 /mob/observer/ghost/verb/jumptomob_ghost(target in getmobs()) //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"

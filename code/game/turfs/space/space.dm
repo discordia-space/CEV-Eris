@@ -6,11 +6,11 @@
 
 	plane = PLANE_SPACE
 	layer = SPACE_LAYER
-
-	temperature = T20C
+	oxygen = 0
+	nitrogen = 0
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
 	is_hole = TRUE
-//	heat_capacity = 700000 No.
+	is_simulated = FALSE
 
 /turf/space/New()
 	if(!istype(src, /turf/space/transit))
@@ -25,7 +25,7 @@
 	plane = np
 
 /turf/space/is_space()
-	return 1
+	return TRUE
 
 // override for space turfs, since they should never hide anything
 /turf/space/levelupdate()
@@ -39,10 +39,11 @@
 /turf/space/proc/update_starlight()
 	if(!config.starlight)
 		return
-	if(locate(/turf/simulated) in RANGE_TURFS(1, src))
-		set_light(2, 1, config.starlight)
-	else
-		set_light(0)
+	for(var/turf/turf in RANGE_TURFS(1, src))
+		if(istype(turf) && turf.is_simulated) // RANGE_TURFS() can give 'null' type objects; the loop doesn't type check a thing
+			set_light(2, 1, config.starlight)
+			return
+	set_light(0)
 
 /turf/space/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/stack/rods))
@@ -69,25 +70,20 @@
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
 				M.use(1)
-				ChangeTurf(/turf/simulated/floor/plating/under)
+				ChangeTurf(/turf/floor/plating/under)
 			return
 		else
 			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
 
 // Ported from unstable r355
 
-/turf/space/Entered(atom/movable/A as mob|obj)
-	if(movement_disabled)
-		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
-		return
+/turf/space/Entered(atom/movable/A)
+	ASSERT(A)
 	..()
-	if ((!(A) || src != A.loc))	return
-
 	// Okay, so let's make it so that people can travel z levels
-	if (A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE + 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE + 1))
+	if(A.x <= TRANSITIONEDGE || A.x >= (world.maxx - TRANSITIONEDGE + 1) || A.y <= TRANSITIONEDGE || A.y >= (world.maxy - TRANSITIONEDGE + 1))
 		A.touch_map_edge()
 
-	..()
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
 	var/cur_x
@@ -197,6 +193,3 @@
 				if ((A && A.loc))
 					A.loc.Entered(A)
 	return
-
-/turf/space/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-	return ..(N, tell_universe, 1)

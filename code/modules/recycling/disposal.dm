@@ -761,8 +761,8 @@
 		return
 
 
-	if(!T.is_plating() && istype(T,/turf/simulated/floor)) //intact floor, pop the tile
-		var/turf/simulated/floor/F = T
+	if(!T.is_plating() && istype(T,/turf/floor)) //intact floor, pop the tile
+		var/turf/floor/F = T
 		F.break_tile()
 		new /obj/item/stack/tile(H)	// add to holder so it will be thrown with other stuff
 

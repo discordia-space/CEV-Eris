@@ -2,14 +2,14 @@
 // An asteroid object, could be spawned in, or not
 // May or may not include phat lewt
 //////////////////////////////
-/turf/simulated/mineral/random/rogue
-	var/floor_under	= /turf/simulated/floor/asteroid
+/turf/mineral/random/rogue
+	var/floor_under	= /turf/floor/asteroid
 
-/turf/simulated/mineral/random/rogue/New()
+/turf/mineral/random/rogue/New()
 	spawn(25)
 		for(var/turf/T in oview(src,1))
 			if(istype(get_turf(T),/turf/space))
-				var/turf/simulated/floor/asteroid/flooring = new /turf/simulated/floor/asteroid(T)
+				var/turf/floor/asteroid/flooring = new /turf/floor/asteroid(T)
 				flooring.updateMineralOverlays(1)
 	. = ..()
 
@@ -18,8 +18,8 @@
 
 /datum/rogue/asteroid
 	//Composition
-	var/type_wall	= /turf/simulated/mineral/random/rogue		//Type of turf used to generate the asteroid
-	var/type_under	= /turf/simulated/floor/asteroid	//Type of turf that's under the normal one
+	var/type_wall	= /turf/mineral/random/rogue		//Type of turf used to generate the asteroid
+	var/type_under	= /turf/floor/asteroid	//Type of turf that's under the normal one
 
 	//Dimensions
 	var/coresize 	= 3		//The size of the center square
@@ -81,8 +81,8 @@
 
 //Abandoned 1-tile hollow cargo box (pressurized).
 /datum/rogue/asteroid/predef/cargo
-	type_wall	= /turf/simulated/wall/untinted/onestar
-	type_under	= /turf/simulated/floor/plating
+	type_wall	= /turf/wall/untinted/onestar
+	type_under	= /turf/floor/plating
 
 	New()
 		..()
@@ -99,8 +99,8 @@
 
 //Abandoned 1-tile hollow cargo box (ANGRY).
 /datum/rogue/asteroid/predef/cargo/angry
-	type_wall	= /turf/simulated/wall/untinted/onestar
-	type_under	= /turf/simulated/floor/plating
+	type_wall	= /turf/wall/untinted/onestar
+	type_under	= /turf/floor/plating
 
 	New()
 		..()
@@ -110,8 +110,8 @@
 //Longer cargo container for higher difficulties
 /datum/rogue/asteroid/predef/cargo_large
 	width = 5
-	type_wall	= /turf/simulated/wall/untinted/onestar
-	type_under	= /turf/simulated/floor/plating
+	type_wall	= /turf/wall/untinted/onestar
+	type_under	= /turf/floor/plating
 
 	New()
 		..()
@@ -143,8 +143,8 @@
 
 
 /datum/rogue/asteroid/predef/teleporter
-	type_wall	= /turf/simulated/wall/untinted/onestar
-	type_under	= /turf/simulated/floor/plating
+	type_wall	= /turf/wall/untinted/onestar
+	type_under	= /turf/floor/plating
 
 	New()
 		..()
