@@ -843,7 +843,7 @@
 		if(flail_mode)
 			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [src]'s [holding]!"), SPAN_DANGER("You get [hit_verb] by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
 			target.Weaken(3 * intensity)
-			target.throw_at(get_turf_away_from_target_complex(target, user, 3), floor(5 * intensity), 1, owner)
+			target.throw_at(get_turf_away_from_target_complex(target, user, 3), FLOOR(5 * intensity, 1), 1, owner)
 		else
 			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [src]'s [holding]!"), SPAN_DANGER("You get [hit_verb] by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
 			target.damage_through_armor(20 * intensity, BRUTE, BP_CHEST, ARMOR_MELEE, ARMOR_PEN_HALF, src, FALSE, FALSE, 1)
