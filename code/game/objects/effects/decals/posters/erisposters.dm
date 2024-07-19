@@ -19,3 +19,19 @@
 	name = "Roachburger"
 	desc = "So crunchy, so juicy, so toxic, yum!"
 	icon_state = "roachburger"
+
+/datum/poster/erisposters/paramedic
+	name = "Paramedic"
+	desc = "I got you covered!"
+	icon_state = "paramedic"
+
+/datum/poster/erisposters/chrome
+	name = "Chrome Up!"
+	desc = "About time you chromed the fuck up!"
+	icon_state = "chrome"
+
+/datum/poster/erisposters/stonks
+	name = "Stock Market"
+	desc = "Buy the dip, trust me."
+	icon_state = "stonks"
+
