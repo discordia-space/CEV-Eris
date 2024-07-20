@@ -1,6 +1,3 @@
-#define CROSSBOW_MAX_AMOUNT 3
-#define CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT 5
-
 /obj/item/gun/energy/get_hardpoint_maptext()
 	return "[round(cell.charge / charge_cost)]/[round(cell.maxcharge / charge_cost)]"
 
@@ -813,44 +810,19 @@
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_STEEL = 10)
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
-	/// Determines what mode our mace is. FALSE is mace, TRUE is flail
-	var/flail_mode = FALSE
+
+/obj/item/mech_equipment/mounted_system/attack_self(mob/user)
+	. = ..()
+	owner.update_icon()
 
 /obj/item/mech_equipment/mounted_system/mace/Initialize()
 	. = ..()
 	var/obj/item/tool/hammer/mace/mech/holdin = holding
 	holdin.wielded = TRUE
 
-/obj/item/mech_equipment/mounted_system/mace/attack_self(mob/user)
-	. = ..()
-	if(.)
-		var/obj/item/tool/hammer/mace/mech/holdin = holding
-		holdin.update_flail_mode(flail_mode)
-		flail_mode = !flail_mode
-		owner.update_icon()
 
-/obj/item/mech_equipment/mounted_system/mace/resolve_attackby(mob/living/target, mob/user, params)
-	var/intensity = 1
-	var/hit_verb = "slammed"
-	if(ishuman(target))
-		var/mob/living/carbon/human/targ = target
-		if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_ADEPT)
-			intensity = STAT_LEVEL_ADEPT / targ.stats.getStat(STAT_VIG)
-			hit_verb = (intensity > 0.6) ? "knocked" : "grazed"
-			return
-	. = ..()
-	if(. && ismech(loc) && istype(target) && target != owner)
-		if(flail_mode)
-			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [src]'s [holding]!"), SPAN_DANGER("You get [hit_verb] by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
-			target.Weaken(3 * intensity)
-			target.throw_at(get_turf_away_from_target_complex(target, user, 3), FLOOR(5 * intensity, 1), 1, owner)
-		else
-			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [src]'s [holding]!"), SPAN_DANGER("You get [hit_verb] by [src]'s [holding]!"), "You hear something soft hit a metal plate!", 6)
-			target.damage_through_armor(20 * intensity, BRUTE, BP_CHEST, ARMOR_MELEE, ARMOR_PEN_HALF, src, FALSE, FALSE, 1)
-
-
-/obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
-	return "[icon_state][active ? "_flail" : ""]"
+//obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
+//	return "[icon_state][active ? "_flail" : ""]"
 
 /obj/item/tool/hammer/mace/mech
 	name = "huge mace"
@@ -865,15 +837,19 @@
 	canremove = FALSE
 	// Its Big
 	armor_divisor = ARMOR_PEN_HALF
-	tool_qualities = list(QUALITY_HAMMERING = 45)
+	tool_qualities = list(QUALITY_HAMMERING = 45) // SEE: attack_self()
 	// its mech sized!!!!!
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	spawn_blacklisted = TRUE
 	force = WEAPON_FORCE_BRUTAL
 	force_wielded_multiplier = 1.5
+	/// Determines what mode our mace is. FALSE is mace, TRUE is flail
+	var/flail_mode = FALSE
 
-/obj/item/tool/hammer/mace/mech/proc/update_flail_mode(flail = FALSE)
-	if(flail)
+/obj/item/tool/hammer/mace/mech/attack_self(mob/user)
+	flail_mode = !flail_mode
+
+	if(flail_mode)
 		name = "huge flail"
 		extended_reach = TRUE
 		forced_broad_strike = TRUE
@@ -890,9 +866,23 @@
 		structure_damage_factor = initial(structure_damage_factor)
 		tool_qualities = list(QUALITY_HAMMERING = 45) // initial doesn't work on lists
 
-/obj/item/tool/hammer/mace/mech/attack_self(mob/user)
+/obj/item/tool/hammer/mace/mech/attackby(mob/living/target, mob/user, params)
 	. = ..()
-	return TRUE
+	if(. && ismech(loc) && istype(target) && target != user)
+		var/hit_verb = "slammed"
+		var/intensity = 1
+		if(ishuman(target))
+			var/mob/living/carbon/human/targ = target
+			if(targ.stats.getStat(STAT_VIG) > STAT_LEVEL_ADEPT)
+				intensity = STAT_LEVEL_ADEPT / targ.stats.getStat(STAT_VIG)
+				hit_verb = (intensity > 0.6) ? "knocked" : "grazed"
+		if(flail_mode)
+			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [user]'s [src]!"), SPAN_DANGER("You get [hit_verb] by [user]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+			target.Weaken(3 * intensity)
+			target.throw_at(get_turf_away_from_target_complex(target, user, 3), FLOOR(5 * intensity, 1), 1, user)
+		else
+			target.visible_message(SPAN_NOTICE("[target] gets [hit_verb] by [user]'s [src]!"), SPAN_DANGER("You get [hit_verb] by [user]'s [src]!"), "You hear something soft hit a metal plate!", 6)
+			target.damage_through_armor(20 * intensity, BRUTE, BP_CHEST, ARMOR_MELEE, ARMOR_PEN_HALF, src, FALSE, FALSE, 1)
 
 /obj/item/mech_equipment/mounted_system/bfg
 	name = "mounted BFG"
@@ -927,6 +917,9 @@
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
 
+#define CROSSBOW_MAX_AMOUNT 3
+#define CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT 5
+
 /obj/item/mech_equipment/mounted_system/crossbow
 	name = "mounted crossbow"
 	icon_state = "crossbow"
@@ -950,34 +943,17 @@
 	if(!istype(I, /obj/item/stack/material))
 		return ..()
 	if(CM.shots_amount == CROSSBOW_MAX_AMOUNT)
-		to_chat(user, SPAN_NOTICE("There is already pack of material here! You can remove it by using it in hand."))
+		to_chat(user, SPAN_NOTICE("There is already a pack of material here!"))
 		return
 	var/obj/item/stack/material/mat = I
 	if(!mat.material.hardness)
-		to_chat(user, SPAN_NOTICE("This material can't be sharpened!"))
+		to_chat(user, SPAN_NOTICE("\The [mat] can't be used as a bolt!"))
 		return
 	if(mat.can_use(CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT*(CROSSBOW_MAX_AMOUNT - CM.shots_amount)))
-		if(mat.use(CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT*(CROSSBOW_MAX_AMOUNT - CM.shots_amount)))
-			to_chat(user , SPAN_NOTICE("You pack [CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * CM.shots_amount] sheets of \the [mat] into \the [src]."))
-			CM.bolt_mat = mat.material
-			matter[mat.material.name] += full_pack
-			CM.shots_amount += CROSSBOW_MAX_AMOUNT - CM.shots_amount
-			CM.calculate_damage()
-
-/obj/item/mech_equipment/mounted_system/crossbow/attack_self(mob/user)
-	if(CM.bolt_mat)
-		to_chat(user, SPAN_NOTICE("You start removing pack from \the [src]."))
-		if(do_after(user, 3 SECONDS, src, TRUE, TRUE))
-			// No duping!!
-			if(!CM.bolt_mat)
-				to_chat(user, SPAN_NOTICE("There is no material left to remove from \the [src]."))
-				return
-			to_chat(user, SPAN_NOTICE("You remove [CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * CM.shots_amount] sheets of [CM.bolt_mat.display_name] from \the [src]'s pack attachment point."))
-			matter[CM.bolt_mat.name] -= CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * CM.shots_amount
-			var/obj/item/stack/material/mat_stack = new CM.bolt_mat.stack_type(get_turf(user))
-			mat_stack.amount = CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * CM.shots_amount
-			CM.bolt_mat = null
-			CM.shots_amount = 0
+		to_chat(user , SPAN_NOTICE("You pack [CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * CM.shots_amount] sheets of \the [mat] into \the [src]."))
+		CM.shots_amount = CROSSBOW_MAX_AMOUNT
+		CM.calculate_damage(mat.material)
+		mat.use(CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT*(CROSSBOW_MAX_AMOUNT - CM.shots_amount))
 
 /obj/item/gun/energy/crossbow_mech
 	name = "mounted crossbow"
@@ -1002,26 +978,24 @@
 	var/shots_amount = 0
 	var/damage_types = list(BRUTE = 34)
 	var/bolt_armor_divisor = 2
-	var/material/bolt_mat = null
 
-/obj/item/gun/energy/crossbow_mech/proc/calculate_damage()
-	if(bolt_mat)
-		damage_types = list(BRUTE = max(0,round((bolt_mat.weight * 1.2), 1)))
-		bolt_armor_divisor = max(1, round(log(bolt_mat.hardness / 20) + 1, 1))
-		return
-	damage_types = initial(damage_types)
-	bolt_armor_divisor = initial(bolt_armor_divisor)
+/obj/item/gun/energy/crossbow_mech/proc/calculate_damage(material/bolt_mat)
+	if(!bolt_mat || !istype(bolt_mat))
+		CRASH("calculate_damage() called with no/invalid bolt material!")
+
+	damage_types = list(BRUTE = max(0,round((bolt_mat.weight * 1.2), 1)))
+	bolt_armor_divisor = max(1, round(log(bolt_mat.hardness / 20) + 1, 1))
 
 /obj/item/gun/energy/crossbow_mech/consume_next_projectile()
 	if(cell.use(charge_cost) && shots_amount)
-		shots_amount -= 1
+		shots_amount--
 		var/obj/item/projectile/bullet/bolt/mech/bolt = new projectile_type
 		bolt.damage_types = damage_types
 		bolt.armor_divisor = bolt_armor_divisor
 		. = bolt
-	if(!shots_amount)
-		bolt_mat = null
-		calculate_damage()
+
+#undef CROSSBOW_MAX_AMOUNT
+#undef CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT
 
 /// Yes this also drains power from blocking halloss
 ///  Yes i justify it cause it stops by kinetic power and not by lethality / material hardness
@@ -1383,8 +1357,3 @@
 	spawn_tags = SPAWN_MECH_QUIPMENT
 	spawn_blacklisted = FALSE
 	rarity_value = 50
-
-
-
-#undef CROSSBOW_MAX_AMOUNT
-#undef CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT
