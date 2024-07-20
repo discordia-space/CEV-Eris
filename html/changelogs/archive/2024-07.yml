@@ -9,3 +9,11 @@
   Twomoon:
   - rscadd: Added new posters
   - imageadd: added some posters icons
+2024-07-20:
+  MLGTASTICa:
+  - bugfix: Fixed a runtime relating to forklift bars
+  Twomoon:
+  - rscadd: Added posters
+  - rscdel: Removed some old posters
+  - imageadd: added 3 new posters
+  - imagedel: deleted some old posters
