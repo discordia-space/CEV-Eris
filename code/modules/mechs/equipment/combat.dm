@@ -820,25 +820,23 @@
 	var/obj/item/tool/hammer/mace/mech/holdin = holding
 	holdin.wielded = TRUE
 
-
-//obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
-//	return "[icon_state][active ? "_flail" : ""]"
+obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
+	var/obj/item/tool/hammer/mace/mech/mace = holding
+	if(mace.flail_mode)
+		icon_state = "mech_mace_flail"
+	else
+		icon_state = initial(icon_state)
+	return "[icon_state][active ? "_flail" : ""]"
 
 /obj/item/tool/hammer/mace/mech
 	name = "huge mace"
-	desc = "What are you standing around staring at this for? You shouldn't be seeing this..."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "mace"
-	item_state = "mace"
+	desc = "You should not see this. Contact a coder"
 	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 5)
 	w_class = ITEM_SIZE_BULKY
-	worksound = WORKSOUND_HAMMER
 	wielded = TRUE
 	canremove = FALSE
-	// Its Big
 	armor_divisor = ARMOR_PEN_HALF
 	tool_qualities = list(QUALITY_HAMMERING = 45) // SEE: attack_self()
-	// its mech sized!!!!!
 	structure_damage_factor = STRUCTURE_DAMAGE_DESTRUCTIVE
 	spawn_blacklisted = TRUE
 	force = WEAPON_FORCE_BRUTAL
@@ -914,6 +912,7 @@
 		WEAPON_CHARGE
 		)
 	fire_delay = 120
+	overcharge_max = 12
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
 
@@ -932,28 +931,31 @@
 	spawn_blacklisted = FALSE
 	rarity_value = 60
 
-	var/obj/item/gun/energy/crossbow_mech/CM
-	var/full_pack = 15
-
-/obj/item/mech_equipment/mounted_system/crossbow/Initialize()
-	. = ..()
-	CM = holding
-
 /obj/item/mech_equipment/mounted_system/crossbow/attackby(obj/item/I, mob/living/user, params)
 	if(!istype(I, /obj/item/stack/material))
 		return ..()
+
+	var/obj/item/gun/energy/crossbow_mech/CM = holding
 	if(CM.shots_amount == CROSSBOW_MAX_AMOUNT)
-		to_chat(user, SPAN_NOTICE("There is already a pack of material here!"))
+		to_chat(user, SPAN_NOTICE("\The [CM] is full!"))
 		return
+
 	var/obj/item/stack/material/mat = I
 	if(!mat.material.hardness)
 		to_chat(user, SPAN_NOTICE("\The [mat] can't be used as a bolt!"))
 		return
-	if(mat.can_use(CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT*(CROSSBOW_MAX_AMOUNT - CM.shots_amount)))
-		to_chat(user , SPAN_NOTICE("You pack [CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * CM.shots_amount] sheets of \the [mat] into \the [src]."))
-		CM.shots_amount = CROSSBOW_MAX_AMOUNT
-		CM.calculate_damage(mat.material)
-		mat.use(CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT*(CROSSBOW_MAX_AMOUNT - CM.shots_amount))
+
+	// precalc using amount to cut down on calculations. we use EITHER enough to fill up the slot OR the entire stack minus a remainder
+	var/using = min(CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT * (CROSSBOW_MAX_AMOUNT - CM.shots_amount), mat.amount - (mat.amount % CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT))
+
+	if(using == 0)
+		to_chat(user, SPAN_NOTICE("There aren't enough sheets in \the [mat]!"))
+		return
+
+	to_chat(user , SPAN_NOTICE("You pack [using] sheets of \the [mat] into \the [src]."))
+	CM.shots_amount += using / CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT
+	CM.calculate_damage(mat.material)
+	mat.use(using)
 
 /obj/item/gun/energy/crossbow_mech
 	name = "mounted crossbow"
@@ -973,6 +975,7 @@
 		WEAPON_CHARGE
 		)
 	fire_delay = 10
+	overcharge_max = 3
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
 	var/shots_amount = 0
@@ -983,7 +986,7 @@
 	if(!bolt_mat || !istype(bolt_mat))
 		CRASH("calculate_damage() called with no/invalid bolt material!")
 
-	damage_types = list(BRUTE = max(0,round((bolt_mat.weight * 1.2), 1)))
+	damage_types = list(BRUTE = max(0, round((bolt_mat.weight * 1.2), 1)))
 	bolt_armor_divisor = max(1, round(log(bolt_mat.hardness / 20) + 1, 1))
 
 /obj/item/gun/energy/crossbow_mech/consume_next_projectile()

@@ -45,8 +45,8 @@
 	if(!(user in pilots) && user != src)
 		return
 
-	// Are we facing the target?
-	if(A.loc != src && !(get_dir(src, A) & dir))
+	// Are we facing the target? Skipped if we're targetting ourselves
+	if(src != A && A.loc != src && !(get_dir(src, A) & dir))
 		return
 
 	if(!selected_system)
@@ -86,10 +86,9 @@
 		failed = TRUE
 
 	if(!failed && selected_system)
-		if(selected_system == A)
-			selected_system.attack_self(user)
+		if(src == A)
 			setClickCooldown(5)
-			return
+			return selected_system.attack_self(user)
 		// Slip up and attack yourself maybe.
 		failed = FALSE
 		if(emp_damage > EMP_MOVE_DISRUPT && prob(10))
@@ -518,7 +517,8 @@ Use this if you turn on armor ablation for mechs:
 		for(var/hardpoint in hardpoints)
 			if(istype(hardpoints[hardpoint], /obj/item/mech_equipment/mounted_system/crossbow))
 				var/obj/item/mech_equipment/mounted_system/crossbow/cross = hardpoints[hardpoint]
-				choices["[hardpoint] - [cross.CM.shots_amount]/3"] = cross
+				var/obj/item/gun/energy/crossbow_mech/CM = cross.holding
+				choices["[hardpoint] - [CM.shots_amount]/3"] = cross
 		var/obj/item/mech_equipment/mounted_system/crossbow/cross = null
 		if(!length(choices))
 			return
