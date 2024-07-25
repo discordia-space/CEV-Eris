@@ -83,6 +83,9 @@
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_pellet,
 		/datum/design/autolathe/sec/silencer,						//misc
+		/datum/design/autolathe/clothing/excelsior_flak,
+		/datum/design/autolathe/clothing/excelsior_shock,
+		/datum/design/autolathe/clothing/excel_shock_helmet,
 		/datum/design/autolathe/clothing/excelsior_armor,
 		/datum/design/autolathe/device/excelbaton,					//security
 		/datum/design/autolathe/device/excelsiormine,
