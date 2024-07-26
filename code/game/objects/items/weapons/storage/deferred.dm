@@ -351,9 +351,9 @@
 	icon_state = "germancrate_deferred"
 	initial_contents = list(
 	/obj/item/clothing/gloves/security = 1,
-	/obj/item/clothing/head/beret/german = 1,
+	/obj/item/gun/projectile/boltgun = 1,
+	/obj/item/ammo_magazine/sllrifle = 7,
 	/obj/item/clothing/mask/gas = 1,
-	/obj/item/clothing/shoes/jackboots/german = 1,
 	/obj/item/clothing/suit/armor/flak/excelsior = 1)
 
 /obj/item/storage/deferred/crate/Excel_shock_kit
