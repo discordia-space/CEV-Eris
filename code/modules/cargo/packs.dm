@@ -201,7 +201,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 				/obj/item/gun/energy/taser,
 				/obj/item/gun/energy/nt_svalinn,
 				/obj/item/gun/energy/nt_svalinn)
-	cost = 4000
+	cost = 4500
 	containertype = /obj/structure/closet/crate/secure/weapon
 	crate_name = "FS Energy Weapons"
 	group = "Security"
