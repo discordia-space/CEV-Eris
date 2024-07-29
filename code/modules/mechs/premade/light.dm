@@ -7,7 +7,6 @@
 
 	material = MATERIAL_PLASTIC
 	exosuit_color = COLOR_OFF_WHITE
-	installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit/plain
 	arms = /obj/item/mech_component/manipulators/light
 	legs = /obj/item/mech_component/propulsion/light
 	head = /obj/item/mech_component/sensors/light

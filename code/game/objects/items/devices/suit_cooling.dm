@@ -149,21 +149,19 @@
 	else
 		icon_state = "suitcooler0"
 
-/obj/item/device/suit_cooling_unit/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(on)
-		if(attached_to_suit(loc))
-			to_chat(user, "It's switched on and running.")
+/obj/item/device/suit_cooling_unit/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(on)
+			if(attached_to_suit(loc))
+				extra_description += "It's switched on and running."
+			else
+				extra_description += "It's switched on, but not attached to anything."
 		else
-			to_chat(user, "It's switched on, but not attached to anything.")
-	else
-		to_chat(user, "It is switched off.")
+			extra_description += "It is switched off."
 
-	if(cover_open)
-		if(cell)
-			to_chat(user, "The panel is open, exposing the [cell].")
-		else
-			to_chat(user, "The panel is open.")
-
+		if(cover_open)
+			if(cell)
+				extra_description += "\nThe panel is open, exposing the [cell]."
+			else
+				extra_description += "\nThe panel is open."
+	..(user, extra_description)

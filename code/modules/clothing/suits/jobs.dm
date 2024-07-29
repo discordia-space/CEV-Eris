@@ -20,7 +20,7 @@
 		rad = 0
 	)
 
-//Guild Artist
+//Club Artist
 /obj/item/clothing/suit/artist
 	name = "Complicated Vest"
 	desc = "The tubes don't even do anything."
@@ -41,7 +41,7 @@
 //Guild Technician
 /obj/item/clothing/suit/storage/cargo_jacket
 	name = "guild technician jacket"
-	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm."
+	desc = "An orange and grey jacket, a hybrid of a hazard vest and a proper jacket."
 	icon_state = "cargo_jacket"
 	item_state = "cargo_jacket"
 	blood_overlay_type = "coat"
@@ -56,11 +56,11 @@
 		rad = 0
 	)
 
-/obj/item/clothing/suit/storage/cargo_jacket/old
+/obj/item/clothing/suit/storage/cargo_jacket/black
 	name = "black guild technician jacket"
-	desc = "Stylish jacket lined with pockets. It seems to have a little protection from physical harm. This one is done in dark black color."
-	icon_state = "cargo_jacket_old"
-	item_state = "cargo_jacket_old"
+	desc = "A black stylish jacket. Used by guild technicians."
+	icon_state = "cargo_jacket_black"
+	item_state = "cargo_jacket_black"
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS
@@ -73,10 +73,16 @@
 		rad = 0
 	)
 
+/obj/item/clothing/suit/storage/cargo_jacket/black/old
+	name = "old guild technician jacket"
+	desc = "An older version of the guild tech coat, still used occasionally."
+	icon_state = "cargo_jacket_old"
+	item_state = "cargo_jacket_old"
+
 //Merchant
 /obj/item/clothing/suit/storage/qm_coat
 	name = "guild merchant coat"
-	desc = "An ideal choice for a smuggler. This coat seems have good impact resistance, and is made from resistant and expensive materials."
+	desc = "A grungy brown coat, perfect for a smuggler."
 	icon_state = "qm_coat"
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
@@ -90,6 +96,12 @@
 		rad = 0
 	)
 	siemens_coefficient = 0.8
+
+/*/obj/item/clothing/suit/storage/qm_coat/old
+	name = "old brown guild coat"
+	desc = "One of the old merchant coat designs, passed down to technicians after it fell out of fashion."
+	icon_state = "qm_coat_old"
+	item_state = "qm_coat_old"*/
 
 //Botanist
 /obj/item/clothing/suit/apron
@@ -108,7 +120,7 @@
 
 //Club
 /obj/item/clothing/suit/storage/toggle/club
-	name = "Manager's jacket"
+	name = "manager's jacket"
 	desc = "A well tailored and rich jacket of the club manager"
 	icon_state = "cm_coat"
 	item_state = "cm_coat"

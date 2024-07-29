@@ -6,20 +6,6 @@
 	layer = SIGN_LAYER
 	w_class = ITEM_SIZE_NORMAL
 
-/obj/structure/sign/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			qdel(src)
-			return
-		if(3)
-			qdel(src)
-			return
-		else
-	return
-
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
 	if(istype(tool, /obj/item/tool/screwdriver) && !istype(src, /obj/structure/sign/double))
 		to_chat(user, "You unfasten the sign with your [tool].")

@@ -717,3 +717,11 @@
 /datum/sprite_accessory/hair/row_braid
 	name = "Row Braid"
 	icon_state = "row_braid"
+
+/datum/sprite_accessory/hair/aviator
+	name = "Aviator"
+	icon_state = "aviator"
+
+/datum/sprite_accessory/hair/aviator2
+	name = "Aviator 2"
+	icon_state = "aviator2"

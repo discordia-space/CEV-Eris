@@ -88,6 +88,10 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 			swaptodarkmode()
 		if("swaptolightmode")
 			swaptolightmode()
+		if("enable_fullscreen")
+			enable_fullscreen()
+		if("disable_fullscreen")
+			disable_fullscreen()
 
 	if(data)
 		ehjax_send(data = data)
@@ -268,9 +272,15 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 /datum/chatOutput/proc/swaptodarkmode()
 	owner.force_dark_theme()
 
-/proc/to_chat(target, message, handle_whitespace = TRUE)
+/datum/chatOutput/proc/enable_fullscreen()
+	owner.enable_fullscreen()
+
+/datum/chatOutput/proc/disable_fullscreen()
+	owner.disable_fullscreen()
+
+/proc/to_chat(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
 		to_chat_immediate(target, message, handle_whitespace)
 		return
-	SSchat.queue(target, message, handle_whitespace)
+	SSchat.queue(target, message, handle_whitespace, trailing_newline)
 

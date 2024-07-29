@@ -9,14 +9,13 @@
 	var/base_state = "left"
 	resistance = RESISTANCE_FRAGILE
 	hitsound = 'sound/effects/Glasshit.ogg'
-	maxhealth = 100 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
+	maxHealth = 100 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	health = 100
 	visible = 0
 	use_power = NO_POWER_USE
 	flags = ON_BORDER
 	opacity = 0
 	var/obj/item/electronics/airlock/electronics
-	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
 /obj/machinery/door/window/New()
@@ -65,26 +64,28 @@
 		if(istype(bot))
 			if(density && src.check_access(bot.botcard))
 				open()
-				sleep(50)
-				close()
+				//sleep(50)
+				addtimer(CALLBACK(src, PROC_REF(close)), 5 SECONDS)
 		else if(istype(AM, /mob/living/exosuit))
 			var/mob/living/exosuit/exosuit = AM
 			if(density)
 				if(exosuit.pilots.len && allowed(exosuit.pilots[1]))
 					open()
-					sleep(50)
-					close()
+					//sleep(50)
+					addtimer(CALLBACK(src, PROC_REF(close), 5 SECONDS))
 		return
 	var/mob/M = AM // we've returned by here if M is not a mob
 	if (src.operating)
 		return
-	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM))
+	if (src.density && (!issmall(M) || ishuman(M)) && src.allowed(AM) && can_open())
 		open()
+		addtimer(CALLBACK(src, PROC_REF(close)), 5 SECONDS)
+		/*
 		if(src.check_access(null))
 			sleep(50)
 		else //secure doors close faster
 			sleep(20)
-		close()
+		*/
 	return
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
@@ -105,42 +106,43 @@
 		return 1
 
 /obj/machinery/door/window/open()
-	if (src.operating == 1) //doors can still open when emag-disabled
-		return 0
+	if (src.operating == TRUE) //doors can still open when emag-disabled
+		return FALSE
+	if(!can_open())
+		return FALSE
 	if(!src.operating) //in case of emag
-		src.operating = 1
+		src.operating = TRUE
+
 	flick(text("[]opening", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = text("[]open", src.base_state)
-	sleep(10)
+	//sleep(10)
 
-	explosion_resistance = 0
 	src.density = FALSE
 //	src.sd_SetOpacity(0)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
-	if(operating == 1) //emag again
-		src.operating = 0
-	return 1
+	if(operating == TRUE) //emag again
+		src.operating = FALSE
+	return TRUE
 
 /obj/machinery/door/window/close()
 	if (src.operating)
-		return 0
-	src.operating = 1
+		return FALSE
+	src.operating = TRUE
 	flick(text("[]closing", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	src.icon_state = src.base_state
 
 	src.density = TRUE
-	explosion_resistance = initial(explosion_resistance)
 //	if(src.visible)
 //		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
-	sleep(10)
+	//sleep(10)
 
-	src.operating = 0
-	return 1
+	src.operating = FALSE
+	return TRUE
 
 /obj/machinery/door/window/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
@@ -276,7 +278,7 @@
 	base_state = "leftsecure"
 	req_access = list(access_security)
 	var/id
-	maxhealth = 200
+	maxHealth = 200
 	health = 200 //Stronger doors for prison (regular window door health is 100)
 
 

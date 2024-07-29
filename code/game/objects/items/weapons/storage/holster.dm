@@ -24,10 +24,11 @@
 		/obj/item/gun/projectile/handmade_pistol,
 		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/automatic/modular/mk58/gray/stock,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/type_62,
+		/obj/item/gun/projectile/type_90,
+		/obj/item/gun/projectile/automatic/modular/mk58,
 		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
@@ -183,7 +184,8 @@
 		/obj/item/gun/projectile/automatic/modular/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/type_90,
+		/obj/item/gun/projectile/type_62,
 		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
@@ -230,7 +232,7 @@
 		)
 
 /obj/item/clothing/accessory/holster/scabbard
-	name = "scabbard"
+	name = "uniform scabbard"
 	desc = "A sturdy brown leather scabbard with a gold trim, made to house a variety of swords. Needs to be attached to your uniform to be properly held in place."
 	icon_state = "sheath"
 	overlay_state = "sword"

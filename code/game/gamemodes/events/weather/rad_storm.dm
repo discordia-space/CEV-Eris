@@ -21,6 +21,7 @@
 	/area/shuttle/escape_pod5, /area/shuttle/specops/centcom, /area/shuttle/mercenary, /area/shuttle/administration, /area/eris/maintenance, \
 	/area/eris/crew_quarters/sleep/cryo, /area/eris/security/disposal, /area/eris/security/maintpost, /area/eris/rnd/anomalisolone, \
 	/area/eris/rnd/anomalisoltwo, /area/eris/rnd/anomalisolthree, /area/eris/rnd/server, \
-	/area/outpost/blacksite/small, /area/outpost/blacksite/medium, /area/outpost/blacksite/large)
+	/area/outpost/blacksite/small, /area/outpost/blacksite/medium, /area/outpost/blacksite/large, \
+	/area/asteroid/cave, /area/shuttle/pirate)
 
 	immunity_type = "rad"

@@ -31,10 +31,6 @@
 /obj/machinery/porta_turret/mining/allowed(mob/M)  // No access lock on turret
 	return TRUE
 
-/obj/machinery/porta_turret/mining/examine(mob/user)
-	if(!..(user, 2))
-		return
-
 /obj/machinery/porta_turret/mining/Initialize()
 	. = ..()
 	update_icon()

@@ -7,20 +7,29 @@
 		to_chat(user, SPAN_NOTICE("[H] is missing that bodypart."))
 		return
 
+
+
 	user.visible_message(SPAN_NOTICE("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_mob(user,H, 10))
 		to_chat(user, SPAN_NOTICE("You must stand still to inspect [E] for wounds."))
 	else
 		var/wound_found = FALSE
 
+
+		if (target_zone == BP_HEAD)
+			if ((H.sanity.level >= 0) && (H.sanity.level < 5))
+				to_chat(user, SPAN_WARNING("[H] appears to be in acute shock, presenting dilated pupils, pale, clammy skin and a tense jaw."))
+			else if((H.sanity.level >= 5) && (H.sanity.level < 30))
+				to_chat(user, SPAN_WARNING("[H] appears to be in a state of heavy 	shock, presenting dilated pupils and clammy skin."))
+			else if(H.sanity.level <= 50)
+				to_chat(user, SPAN_NOTICE("[H] is visibly stressed, shivering slightly and grinding their teeth."))
+
 		if(E.wounds.len)
 			to_chat(user, SPAN_WARNING("You find [E.get_wounds_desc()]"))
 			wound_found = TRUE
-	
 		if(E.number_internal_wounds)
 			to_chat(user, SPAN_WARNING("You find evidence of one or more internal injuries."))
 			wound_found = TRUE
-
 		if(!wound_found)
 			to_chat(user, SPAN_NOTICE("You find no visible wounds."))
 	if(locate(/obj/item/material/shard/shrapnel) in E.implants)
@@ -143,7 +152,6 @@
 	//deal damage AFTER the kick
 	var/damage = max(1, min(30, (attacker.stats.getStat(STAT_ROB) / 3)))
 	target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE)
-	attacker.regen_slickness()
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")
@@ -167,7 +175,6 @@
 		attacker.Weaken(2)
 		target.Stun(6)
 		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
-		attacker.regen_slickness()
 		//admin messaging
 		attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Suplexed [target.name] ([target.ckey])</font>")
 		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Suplexed by [attacker.name] ([attacker.ckey])</font>")
@@ -266,14 +273,13 @@
 	qdel(src)
 	target.update_lying_buckled_and_verb_status()
 
-	if(!istype(get_step(attacker, fireman_dir), /turf/simulated/wall))
+	if(!istype(get_step(attacker, fireman_dir), /turf/wall))
 		target.forceMove(get_step(target, fireman_dir))
 
 	target.damage_through_armor(damage, HALLOSS, BP_CHEST, ARMOR_MELEE)
 
 	target.Weaken(1)
 	playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
-	attacker.regen_slickness(0.15)//sick, but a dropkick is even sicker
 
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Fireman-thrown [target.name] ([target.ckey])</font>")
 	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Fireman-thrown by [attacker.name] ([attacker.ckey])</font>")
@@ -288,7 +294,7 @@
 		return
 	var/free_space = TRUE//if there are walls or structures around us, we can't do this.
 	for (var/turf/T in range(1, attacker.loc))
-		if(istype(T, /turf/simulated/wall))
+		if(istype(T, /turf/wall))
 			free_space = FALSE
 		if(!T.Enter(attacker))
 			free_space = FALSE
@@ -318,7 +324,6 @@
 
 	target.throw_at(get_edge_target_turf(target, dir), 7, 2)//this is very fast, and very painful for any obstacle involved
 	target.damage_through_armor(damage, HALLOSS, armor_divisor = 2)
-	attacker.regen_slickness(0.4)
 
 	//admin messaging
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Swung [target.name] ([target.ckey])</font>")

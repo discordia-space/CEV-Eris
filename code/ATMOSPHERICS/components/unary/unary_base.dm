@@ -30,7 +30,7 @@
 
 		if(node1)
 			node1.disconnect(src)
-			qdel(network)
+			QDEL_NULL(network)
 
 		node1 = null
 

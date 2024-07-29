@@ -134,6 +134,7 @@ What is the naming convention for planes or layers?
 #define MECH_INTERMEDIATE_LAYER 4.5
 #define MECH_PILOT_LAYER   5
 #define MECH_COCKPIT_LAYER 6
+#define MECH_ABOVE_LAYER 7
 //[/MEHCS]
 
 #define ABOVE_MOB_LAYER 4.1

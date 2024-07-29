@@ -1,32 +1,32 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
-/turf/unsimulated/mineral,
+/turf/mineral_unsimulated,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "d" = (
 /obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "e" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "f" = (
 /obj/structure/closet/onestar/tier1/mineral,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "g" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "h" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 
 (1,1,1) = {"

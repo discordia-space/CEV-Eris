@@ -6,39 +6,29 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = 1//Dissolving the case would also delete the gun.
-	var/health = 60
+	explosion_coverage = 0.8
+	health = 60
+	maxHealth = 60
 	var/occupied = 1
 	var/destroyed = 0
 
-/obj/structure/displaycase/ex_act(severity)
-	switch(severity)
-		if (1)
-			new /obj/item/material/shard( src.loc )
-			if (occupied)
-				new /obj/item/gun/energy/captain( src.loc )
-				occupied = 0
-			qdel(src)
-		if (2)
-			if (prob(50))
-				src.health -= 15
-				src.healthcheck()
-		if (3)
-			if (prob(50))
-				src.health -= 5
-				src.healthcheck()
-
+/obj/structure/displaycase/explosion_act(target_power, explosion_handler/handler)
+	var/absorbed = take_damage(target_power)
+	return absorbed
 
 /obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.get_structure_damage()
+	take_damage(Proj.get_structure_damage())
 	..()
-	src.healthcheck()
 	return
 
-/obj/structure/displaycase/proc/healthcheck()
-	if (src.health <= 0)
-		if (!( src.destroyed ))
+/obj/structure/displaycase/take_damage(damage)
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
+	health -= damage
+	if (health <= 0)
+		if (!(destroyed ))
 			src.density = FALSE
-			src.destroyed = 1
+			src.destroyed = TRUE
 			new /obj/item/material/shard( src.loc )
 			playsound(src, "shatter", 70, 1)
 			update_icon()
@@ -56,8 +46,7 @@
 
 /obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	src.health -= W.force
-	src.healthcheck()
+	take_damage(W.force)
 	..()
 	return
 
@@ -74,6 +63,5 @@
 		for(var/mob/O in oviewers())
 			if ((O.client && !( O.blinded )))
 				to_chat(O, SPAN_WARNING("[usr] kicks the display case."))
-		src.health -= 2
-		healthcheck()
+		take_damage(2)
 		return

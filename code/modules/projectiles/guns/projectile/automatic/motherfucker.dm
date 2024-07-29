@@ -20,9 +20,9 @@
 	init_recoil = LMG_RECOIL(1)
 	burst_delay = 0
 	burst = 6
-	init_offset = 14 //awful accuracy
+	init_offset = 4 //awful accuracy
 	init_firemodes = list(
-		list(mode_name="6-round bursts", burst=6, fire_delay=null, move_delay=7, icon="burst"),
+		list(mode_name="6-round bursts", burst=6, fire_delay=null, move_delay=3, icon="burst"),
 		)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	var/recentpumpmsg = 0

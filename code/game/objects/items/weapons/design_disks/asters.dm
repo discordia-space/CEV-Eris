@@ -47,6 +47,7 @@
 		/datum/design/autolathe/misc/radio_bounced,
 		/datum/design/autolathe/misc/ashtray,
 		/datum/design/autolathe/misc/mirror,
+		/datum/design/autolathe/misc/earmuffs,
 		/datum/design/autolathe/container/drinkingglass,
 		/datum/design/autolathe/container/carafe,
 		/datum/design/autolathe/container/insulated_pitcher,
@@ -67,7 +68,8 @@
 		/datum/design/autolathe/device/floorpainter,
 		/datum/design/autolathe/device/mechpainter,
 		/datum/design/autolathe/container/hcase_engi,
-		/datum/design/autolathe/container/hcase_parts
+		/datum/design/autolathe/container/hcase_parts,
+		/datum/design/autolathe/device/spraypaint
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/devices
@@ -85,7 +87,6 @@
 		/datum/design/research/item/medical/reagent_scanner,
 		/datum/design/research/item/medical/robot_scanner,
 		/datum/design/autolathe/device/slime_scanner,
-		/datum/design/autolathe/device/antibody_scanner,
 		/datum/design/autolathe/device/megaphone,
 		/datum/design/autolathe/device/t_scanner,
 		/datum/design/autolathe/device/gps,
@@ -119,8 +120,28 @@
 	rarity_value = 13 // between standard and bulletproof armor
 	license = 6
 	designs = list(
-		/datum/design/autolathe/clothing/generic_vest_webbing,
+		/datum/design/autolathe/clothing/generic_vest_webbing = 2,
+		/datum/design/autolathe/clothing/generic_vest_security,
 		/datum/design/autolathe/clothing/generic_helmet_visored,
 		/datum/design/autolathe/clothing/generic_vest_security_full = 2,
 		/datum/design/autolathe/clothing/riot_helmet = 2,
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/kitchen
+	disk_name = "Bradhaanata Kitchen Designs"
+	icon_state = "guild"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
+	rarity_value = 20
+	license = 10
+	designs = list(
+		/datum/design/autolathe/circuit/stove = 2,
+		/datum/design/autolathe/circuit/oven = 2,
+		/datum/design/autolathe/circuit/grill = 2,
+		/datum/design/autolathe/tool/spatula = 1,
+		/datum/design/autolathe/container/cooking_with_jane/board = 1,
+		/datum/design/autolathe/container/cooking_with_jane/oven = 1,
+		/datum/design/autolathe/container/cooking_with_jane/pan = 1,
+		/datum/design/autolathe/container/cooking_with_jane/pot = 1,
+		/datum/design/autolathe/container/cooking_with_jane/grill_grate = 1,
+		/datum/design/autolathe/container/cooking_with_jane/bowl = 1
 	)

@@ -188,11 +188,11 @@
 
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_NOTICE("[src] is empty."))
-		return FALSE
+		return TRUE // if it returns false, it drains from its target when empty
 
 	if(!target.reagents.get_free_space())
 		to_chat(user, SPAN_NOTICE("[target] is full."))
-		return FALSE
+		return TRUE // if it returns false, it drains from a full target
 
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
@@ -210,6 +210,8 @@
 	// nothing to separate
 	if(reagents.reagent_list.len <= 1)
 		return FALSE
+	reagents.update_total()
+
 	var/list/obj/item/reagent_containers/containers = accepting_containers.Copy()
 	for(var/obj/item/reagent_containers/C in containers)
 		if(!C.is_refillable())
@@ -220,13 +222,13 @@
 		if(R.id in ignore_reagents_ids)
 			continue
 		var/amount_to_transfer = amount_per_reagent ? amount_per_reagent : R.volume
+
 		for(var/obj/item/reagent_containers/C in containers)
 			if(!amount_to_transfer)
 				break
 			if(!C.reagents.get_free_space())
 				containers.Remove(C)
 				continue
-
 			var/amount = min(C.reagents.get_free_space(), min(amount_to_transfer, R.volume))
 			if(!C.reagents.total_volume || C.reagents.has_reagent(R.id))
 				C.reagents.add_reagent(R.id, amount, R.get_data())

@@ -105,7 +105,7 @@
 			for(var/obj/item/ammo_casing/temp_casing in chambered.loc)
 				if(temp_casing == chambered)
 					continue
-				if((temp_casing.desc == chambered.desc) && !temp_casing.BB)
+				if((temp_casing.type == chambered.type) && !temp_casing.BB)
 					var/temp_amount = temp_casing.amount + chambered.amount
 					if(temp_amount > chambered.maxamount)
 						temp_casing.amount -= (chambered.maxamount - chambered.amount)
@@ -217,35 +217,7 @@
 
 		if(C.amount > 1)
 			C.amount -= 1
-			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)	//Couldn't make it seperate, so it must be cloned
-			inserted_casing.name = C.name
-			inserted_casing.desc = C.desc
-			inserted_casing.caliber = C.caliber
-			inserted_casing.projectile_type = C.projectile_type
-			inserted_casing.icon_state = C.icon_state
-			inserted_casing.spent_icon = C.spent_icon
-			inserted_casing.maxamount = C.maxamount
-			if(ispath(inserted_casing.projectile_type) && C.BB)
-				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
-
-			inserted_casing.sprite_use_small = C.sprite_use_small
-			inserted_casing.sprite_max_rotate = C.sprite_max_rotate
-			inserted_casing.sprite_scale = C.sprite_scale
-			inserted_casing.sprite_update_spawn = C.sprite_update_spawn
-
-			if(inserted_casing.sprite_update_spawn)
-				var/matrix/rotation_matrix = matrix()
-				rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
-				if(inserted_casing.sprite_use_small)
-					inserted_casing.transform = rotation_matrix * inserted_casing.sprite_scale
-				else
-					inserted_casing.transform = rotation_matrix
-
-			inserted_casing.is_caseless = C.is_caseless	//How did someone forget this before!?!?!?
-			inserted_casing.shell_color = C.shell_color
-
-			C.update_icon()
-			inserted_casing.update_icon()
+			var/obj/item/ammo_casing/inserted_casing = new C.type(C)	//Couldn't make it seperate, so it must be cloned
 			loaded.Insert(1, inserted_casing)
 		else
 			user.remove_from_mob(C)
@@ -292,6 +264,7 @@
 	update_icon()
 	update_held_icon()
 
+// Modular guns overwrite this
 /obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	.=..()
 	if(QUALITY_SAWING in A.tool_qualities)
@@ -352,12 +325,11 @@
 		update_icon() //make sure to do this after unsetting ammo_magazine
 		set_item_state()
 
-/obj/item/gun/projectile/examine(mob/user)
-	..(user)
+/obj/item/gun/projectile/examine(mob/user, extra_description = "")
 	if(ammo_magazine)
-		to_chat(user, "It has \a [ammo_magazine] loaded.")
-	to_chat(user, "Has [get_ammo()] round\s remaining.")
-	return
+		extra_description += "It has \a [ammo_magazine] loaded.\n"
+	extra_description += "Has [get_ammo()] round\s remaining."
+	..(user, extra_description)
 
 /obj/item/gun/projectile/proc/get_ammo()
 	var/bullets = 0

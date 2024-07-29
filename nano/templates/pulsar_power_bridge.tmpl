@@ -1,0 +1,30 @@
+<!-- 
+Used In File(s): code/modules/pulsar_engine/pulsar_consoles.dm
+-->
+<h2>Pulsar power bridge</h2>
+{{if data.pulsar_connected}}
+<div class="item">
+	<div class="itemLabel">
+		Power Produced:
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.power_percentage, 0, 100, 'good', data.power_produced + ' Megawatts')}}
+        {{:helper.link('disconnect satellite', 'radiation', { 'disconnect' : 1 },  null, null)}}
+	</div>
+</div>
+{{else}}
+    <h2>NO POWER</h2>
+	{{if data.reconnect_not_ready}}
+    	<div class='item'>
+        	<div class="itemLabel">
+        		<span class='bad'>The pulsar satellite takes 5 minutes to reconnect.</span>
+        	</div>
+    	</div>
+	{{/if}}
+	{{:helper.link('reconnect satellite', 'radiation', { 'reconnect' : 1 },  null, null)}}
+{{/if}}
+{{if data.portal_active}}
+    <h2>PORTAL LINK ACTIVE AND STABLE</h2>
+{{else}}
+	<h2>PORTAL LINK DISCONNECTED</h2>
+{{/if}}

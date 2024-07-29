@@ -436,7 +436,7 @@
 				supplies["[i]"] = max(0,supplies["[i]"] + rand(-10,10))
 		if(ORION_TRAIL_COLLISION)
 			if(prob(90) && !supplies["2"])
-				var/turf/simulated/floor/F = src.loc
+				var/turf/floor/F = src.loc
 				F.ChangeTurf(/turf/space)
 				src.visible_message(SPAN_DANGER("Something slams into the floor around \the [src], exposing it to space!"), "You hear something crack and break.")
 			else
@@ -479,14 +479,13 @@
 	w_class = ITEM_SIZE_SMALL
 	var/active = 0 //if the ship is on
 
-/obj/item/orion_ship/examine(mob/user)
-	..()
-	if(!(in_range(user, src)))
-		return
-	if(!active)
-		to_chat(user, SPAN_NOTICE("There's a little switch on the bottom. It's flipped down."))
-	else
-		to_chat(user, SPAN_NOTICE("There's a little switch on the bottom. It's flipped up."))
+/obj/item/orion_ship/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(active)
+			extra_description += SPAN_NOTICE("There's a little switch on the bottom. It's flipped up.")
+		else
+			extra_description += SPAN_NOTICE("There's a little switch on the bottom. It's flipped down.")
+	..(user, extra_description)
 
 /obj/item/orion_ship/attack_self(mob/user)
 	if(active)

@@ -11,7 +11,6 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_divisor = 1
-	var/style_damage = 30 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
 
@@ -19,7 +18,7 @@
 /obj/proc/is_hot()
 	return heat
 
-/obj/get_fall_damage()
+/obj/get_fall_damage(turf/from, turf/dest)
 	return w_class * 2
 
 /obj/Destroy()
@@ -176,9 +175,11 @@
 	return
 
 /obj/proc/add_hearing()
+	//InitiateHearerTracking()
 	GLOB.hearing_objects |= src
 
 /obj/proc/remove_hearing()
+	//chunkHearerClearSelf()
 	GLOB.hearing_objects.Remove(src)
 
 /obj/proc/eject_item(obj/item/I, mob/living/user)
@@ -215,13 +216,16 @@
 
 //Returns the list of matter in this object
 //You can override it to customise exactly what is returned.
-/obj/proc/get_matter()
-	return matter ? matter : list()
+/atom/proc/get_matter()
+	return list()
+
+/obj/get_matter()
+	return matter ? matter.Copy() : list()
 
 //Drops the materials in matter list on into target location
 //Use for deconstrction
 // Dropper is whoever is handling these materials if any , causes them to leave fingerprints on the sheets.
-/obj/proc/drop_materials(target_loc, mob/living/dropper)
+/atom/proc/drop_materials(target_loc, mob/living/dropper)
 	var/list/materials = get_matter()
 
 	for(var/mat_name in materials)
@@ -251,13 +255,10 @@
 /obj/proc/add_projectile_penetration(newmult)
 	armor_divisor = initial(armor_divisor) + newmult
 
-/obj/proc/multiply_projectile_style_damage(newmult)
-	style_damage = initial(style_damage) * newmult
-
 /obj/proc/multiply_pierce_penetration(newmult)
 
 /obj/proc/multiply_ricochet(newmult)
 
 /obj/proc/multiply_projectile_step_delay(newmult)
 
-/obj/proc/multiply_projectile_agony(newmult)
+/obj/proc/multiply_projectile_halloss(newmult)

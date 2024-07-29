@@ -2,20 +2,19 @@
 	name = "window"
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
-
 	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = TRUE
 	flags = ON_BORDER
-	var/maxhealth = 20
+	maxHealth = 20
+	health = 20
+	explosion_coverage = 1
 	var/resistance = RESISTANCE_FLIMSY	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
 	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
-	var/health = 20
 	var/ini_dir = null
 	var/state = 2
 	var/reinf = 0
-	var/basestate
 	var/shardtype = /obj/item/material/shard
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
@@ -23,75 +22,69 @@
 
 	atmos_canpass = CANPASS_PROC
 
-/obj/structure/window/can_prevent_fall()
-	return !is_fulltile()
-
 /obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = health * 0.4
+	var/damage = health * 0.4 * get_health_ratio()
 
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
 
 	return damage
 
-/obj/structure/window/examine(mob/user)
-	. = ..(user)
-
-	if(health == maxhealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+/obj/structure/window/examine(mob/user, extra_description = "")
+	if(health == maxHealth)
+		extra_description += SPAN_NOTICE("\nIt looks fully intact.")
 	else
-		var/perc = health / maxhealth
+		var/perc = health / maxHealth
 		if(perc > 0.75)
-			to_chat(user, SPAN_NOTICE("It has a few cracks."))
+			extra_description += SPAN_NOTICE("\nIt has a few cracks.")
 		else if(perc > 0.5)
-			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
+			extra_description += SPAN_WARNING("\nIt looks slightly damaged.")
 		else if(perc > 0.25)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			extra_description += SPAN_WARNING("\nIt looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
+			extra_description += SPAN_DANGER("\nIt looks heavily damaged.")
 	if(silicate)
-		if (silicate < 30)
-			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
-		else if (silicate < 70)
-			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
+		if(silicate < 30)
+			extra_description += SPAN_NOTICE("\nIt has a thin layer of silicate.")
+		else if(silicate < 70)
+			extra_description += SPAN_NOTICE("\nIt is covered in silicate.")
 		else
-			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
-
+			extra_description += SPAN_NOTICE("\nThere is a thick layer of silicate covering it.")
+	..(user, extra_description)
 
 //Subtracts resistance from damage then applies it
 //Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes
-/obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1, var/ignore_resistance = FALSE)
+/obj/structure/window/take_damage(damage = 0)
 	var/initialhealth = health
+	. = health - (damage * (1 - silicate / 200) - resistance) < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
+	damage = damage * (1 - silicate / 200) // up to 50% damage resistance
+	damage -= resistance // then flat resistance from material
 
-	if (!ignore_resistance)
-		damage = damage * (1 - silicate / 200) // up to 50% damage resistance
-		damage -= resistance // then flat resistance from material
 	if (damage <= 0)
 		return 0
 
-	health = max(0, health - damage)
+	health -= damage
 
 	if(health <= 0)
-		if (prob(damage*2))//Heavy hits are more likely to send shards flying
+		if(health < -100)
 			shatter(FALSE, TRUE)
 		else
-			//To break it safely, use a lighter hit to deal the finishing touch, or throw things from afar
 			shatter()
 	else
-		if(sound_effect)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
-		if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
+		playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
+		if(health < maxHealth / 4 && initialhealth >= maxHealth / 4)
 			visible_message("[src] looks like it's about to shatter!" )
-		else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
+		else if(health < maxHealth / 2 && initialhealth >= maxHealth / 2)
 			visible_message("[src] looks seriously damaged!" )
-		else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
+		else if(health < maxHealth * 3/4 && initialhealth >= maxHealth * 3/4)
 			visible_message("Cracks begin to appear in [src]!" )
-	return damage
+	return
 
 /obj/structure/window/proc/apply_silicate(var/amount)
-	if(health < maxhealth) // Mend the damage
-		health = min(health + amount * 3, maxhealth)
-		if(health == maxhealth)
+	if(health < maxHealth) // Mend the damage
+		health = min(health + amount * 3, maxHealth)
+		if(health == maxHealth)
 			visible_message("[src] looks fully repaired." )
 	else // Reinforce
 		silicate = min(silicate + amount, 100)
@@ -134,8 +127,8 @@
 			var/obj/item/material/shard/S = new shardtype(loc)
 			if (nearby.len > 0)
 				var/turf/target = pick(nearby)
-				spawn()
-					S.throw_at(target,40,3)
+				//spawn()
+				S.throw_at(target,40,3)
 			index++
 	else
 		new shardtype(loc) //todo pooling?
@@ -166,18 +159,6 @@
 
 	return TRUE
 
-
-/obj/structure/window/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			shatter(0,TRUE)
-		if(3)
-			shatter(0,TRUE)
-		if(4)
-			if(prob(50))
-				shatter(0,TRUE)
 
 //TODO: Make full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
@@ -287,7 +268,7 @@
 			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
 			// having ass of concrete divides damage by 3
 			// max damage can be 30 without armor, and gets mitigated by having 15 melee armor
-			target.damage_through_armor(round(10 * skillRatio * (health/maxhealth) / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
+			target.damage_through_armor(round(10 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
 			if(!toughTarget)
 				target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 8 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * (toughTarget ? 2 : 1 ) / windowResistance))
@@ -299,12 +280,12 @@
 				target.Weaken(1)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, toughTarget ? 6 SECONDS : 12 SECONDS, "window_smash")
 			// at most 60 without armor , 23 with 15 melee armor
-			target.damage_through_armor(round(20 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
+			target.damage_through_armor(round(20 * skillRatio * health/maxHealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
 			hit(round(target.mob_size * skillRatio * 1.5 * (toughTarget ? 2 : 1) / windowResistance))
 		if(GRAB_NECK)
 			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
 			// at most 90 damage without armor, 40 with 15 melee armor
-			target.damage_through_armor(round(30 * skillRatio * health/maxhealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.3)
+			target.damage_through_armor(round(30 * skillRatio * health/maxHealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.3)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 2, toughTarget ? 10 SECONDS : 20 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * 2 * ((toughTarget ? 2 : 1)) / windowResistance))
 	admin_attack_log(user, target,
@@ -331,7 +312,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		var/victimToughness = M.stats.getStat(STAT_TGH, FALSE)
 		victimToughness = victimToughness ? victimToughness : 1
 		var/windowResistance = resistance ? resistance : 1
-		var/healthRatio = health/maxhealth
+		var/healthRatio = health/maxHealth
 		// you shall suffer for being negative on toughness , it becomes negative so it cancels the negative toughness
 		var/toughnessDivisor = victimToughness > 0 ? STAT_VALUE_MAXIMUM : -(STAT_VALUE_MAXIMUM - victimToughness)
 		// if you less tougher and less sized than the window itself and its health , you are more likely to suffer more
@@ -365,18 +346,18 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		usable_qualities.Add(QUALITY_SCREW_DRIVING)
 	if(reinf && state <= 1)
 		usable_qualities.Add(QUALITY_PRYING)
-	if (health < maxhealth)
+	if (health < maxHealth)
 		usable_qualities.Add(QUALITY_SEALING)
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
-	if (usr.a_intent != I_HURT)
+	if (user.a_intent != I_HURT)
 		var/tool_type = I.get_tool_type(user, usable_qualities, src)
 		switch(tool_type)
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
-				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+				if (I.use_tool(user, src, 60 + ((maxHealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
 					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
-					health = maxhealth
+					health = maxHealth
 			if(QUALITY_BOLT_TURNING)
 				if(!anchored && (!state || !reinf))
 					if(!glasstype)
@@ -384,11 +365,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-						var/obj/glass
-						if(is_fulltile())
-							glass = new glasstype(loc, 6)
-						else
-							glass = new glasstype(loc, 1)
+						var/obj/glass = new glasstype(loc, 1)
 						glass.add_fingerprint(user)
 
 						qdel(src)
@@ -493,7 +470,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	if (start_dir)
 		set_dir(start_dir)
 
-	health = maxhealth
+	health = maxHealth
 
 	ini_dir = dir
 
@@ -522,12 +499,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	update_nearby_tiles(need_rebuild=1)
 	mount_check()
 
-//checks if this window is full-tile one
-/obj/structure/window/proc/is_fulltile()
-	if(dir & (dir - 1))
-		return 1
-	return 0
-
 /obj/structure/window/set_anchored(new_anchored)
 	. = ..()
 	if(!.)
@@ -550,67 +521,19 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		verbs += /obj/structure/window/proc/rotate
 		verbs += /obj/structure/window/proc/revrotate
 
-//merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
-/obj/structure/window/update_icon()
-	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
-	//this way it will only update full-tile ones
-	overlays.Cut()
-	if(!is_fulltile())
-		icon_state = "[basestate]"
-		return
-	/*
-	var/list/dirs = list()
-	if(anchored)
-		for(var/obj/structure/window/W in orange(src,1))
-			if(W.anchored && W.density && W.type == src.type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
-				dirs += get_dir(src, W)
-
-	for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
-		var/T_dir = get_dir(src, T)
-		dirs |= T_dir
-		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
-	*/
-	//Since fulltile windows can't exist without an underlying wall, we will just copy connections from our wall
-	var/list/connections = list("0", "0", "0", "0")
-	var/obj/structure/low_wall/LW = (locate(/obj/structure/low_wall) in loc)
-	if (istype(LW))
-		connections = LW.connections
-
-	icon_state = ""
-	for(var/i = 1 to 4)
-		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
-		overlays += I
-
-	return
-
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > maximal_heat)
 		hit(damage_per_fire_tick, TRUE, TRUE)
 	..()
 
-
-
 /obj/structure/window/basic
 	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."
 	icon_state = "window"
-	basestate = "window"
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
 	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
-	maxhealth = 15
+	maxHealth = 15
 	resistance = RESISTANCE_FLIMSY
-
-/obj/structure/window/basic/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	icon_state = "fwindow"
-	alpha = 120
-	maxhealth = 40
-	resistance = RESISTANCE_FLIMSY
-	flags = null
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
@@ -621,30 +544,20 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	glasstype = /obj/item/stack/material/glass/plasmaglass
 	maximal_heat = T0C + 5227  // Safe use temperature at 5500 kelvin. Easy to remember.
 	damage_per_fire_tick = 1.5 // Lowest per-tick damage so overheated supermatter chambers have some time to respond to it. Will still shatter before a delam.
-	maxhealth = 150
+	maxHealth = 150
 	resistance = RESISTANCE_AVERAGE
 
-/obj/structure/window/plasmabasic/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	basestate = "pwindow"
-	icon_state = "plasmawindow_mask"
-	alpha = 150
-	maxhealth = 200
-	resistance = RESISTANCE_AVERAGE
-	flags = null
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "rwindow"
-	basestate = "rwindow"
 	reinf = 1
 	maximal_heat = T0C + 750	// Fused quartz.
 	damage_per_fire_tick = 2
 	glasstype = /obj/item/stack/material/glass/reinforced
 
-	maxhealth = 50
+	maxHealth = 50
 	resistance = RESISTANCE_FRAGILE
 
 /obj/structure/window/New(Loc, constructed=0)
@@ -654,83 +567,26 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	if (constructed)
 		state = 0
 
-/obj/structure/window/reinforced/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	icon_state = "fwindow"
-	alpha = 150
-	maxhealth = 80
-	resistance = RESISTANCE_FRAGILE
-	flags = null
-
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "plasmarwindow"
 	icon_state = "plasmarwindow"
 	shardtype = /obj/item/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmarglass
 	maximal_heat = T0C + 5453 // Safe use temperature at 6000 kelvin.
 	damage_per_fire_tick = 1.5
-	maxhealth = 200
+	maxHealth = 200
 	resistance = RESISTANCE_IMPROVED
-
-/obj/structure/window/reinforced/plasma/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	basestate = "rpwindow"
-	icon_state = "plasmarwindow_mask"
-	alpha = 150
-	maxhealth = 250
-	resistance = RESISTANCE_IMPROVED
-	flags = null
-
-/obj/structure/window/reinforced/tinted
-	name = "tinted window"
-	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."
-	icon_state = "twindow"
-	basestate = "twindow"
-	opacity = 1
-
-/obj/structure/window/reinforced/tinted/frosted
-	name = "frosted window"
-	desc = "It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
-	icon_state = "fwindow"
-	basestate = "fwindow"
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon = 'icons/obj/podwindows.dmi'
-	icon_state = "window"
-	basestate = "window"
-	maxhealth = 300
+	icon_state = "window" // Probably should be "w" isnstead, verify --KIROV
+	maxHealth = 300
 	resistance = RESISTANCE_IMPROVED
 	reinf = 1
-	basestate = "w"
 	dir = 5
-
-/obj/structure/window/reinforced/polarized
-	name = "electrochromic window"
-
-	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
-	var/id
-
-/obj/structure/window/reinforced/polarized/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	icon_state = "fwindow"
-	flags = null
-
-/obj/structure/window/reinforced/polarized/proc/toggle()
-	if(opacity)
-		animate(src, color="#FFFFFF", time=5)
-		set_opacity(0)
-		alpha = initial(alpha)
-	else
-		animate(src, color="#222222", time=5)
-		set_opacity(1)
-		alpha = 255
 
 /obj/structure/window/reinforced/crescent/attack_hand()
 	return
@@ -738,8 +594,8 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 /obj/structure/window/reinforced/crescent/attackby()
 	return
 
-/obj/structure/window/reinforced/crescent/ex_act()
-	return
+/obj/structure/window/reinforced/crescent/explosion_act(target_power, explosion_handler/handler)
+	return target_power
 
 /obj/structure/window/reinforced/crescent/hitby()
 	return
@@ -749,40 +605,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 
 /obj/structure/window/reinforced/crescent/shatter()
 	return
-
-/obj/machinery/button/windowtint
-	name = "window tint control"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "light0"
-	desc = "A remote control switch for polarized windows."
-	var/range = 7
-
-/obj/machinery/button/windowtint/attack_hand(mob/user as mob)
-	if(..())
-		return 1
-
-	toggle_tint()
-
-/obj/machinery/button/windowtint/proc/toggle_tint()
-	use_power(5)
-
-	active = !active
-	update_icon()
-
-	for(var/obj/structure/window/reinforced/polarized/W in range(src,range))
-		if (W.id == src.id || !W.id)
-			spawn(0)
-				W.toggle()
-				return
-
-/obj/machinery/button/windowtint/power_change()
-	..()
-	if(active && !powered(power_channel))
-		toggle_tint()
-
-/obj/machinery/button/windowtint/update_icon()
-	icon_state = "light[active]"
-
 
 //Fulltile windows can only exist ontop of a low wall
 //If they're ever not on a wall, they will drop to the floor and smash.
@@ -794,7 +616,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		return
 
 	//If there's a wall under us, we're safe, stop here.
-	if (locate(/obj/structure/low_wall) in loc)
+	if (istype(loc, /turf/wall/low))
 		return
 
 	//This is where the fun begins
@@ -820,7 +642,5 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 //Used when the window finds itself no longer on a tile. For example if someone drags it out of the wall
 //The window will do a litle animation of falling to the floor, giving them a brief moment to regret their mistake
 /obj/structure/window/proc/shatterfall()
-	sleep(5)
 	animate(src, pixel_y = -12, time = 7, easing = QUAD_EASING)
-	spawn(8)
-		shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards
+	shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards

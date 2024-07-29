@@ -4,6 +4,8 @@
 #define MUTATION_DEAF				/datum/mutation/t0/deafness
 #define MUTATION_NEARSIGHTED		/datum/mutation/t0/myopia
 
+#define MUTATION_TGH				/datum/mutation/t1/stat_buff/toughness
+
 #define MUTATION_NO_REJECT			/datum/mutation/t1/no_reject
 
 #define MUTATION_LESSER_HEALING		/datum/mutation/t2/healing_factor

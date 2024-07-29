@@ -23,23 +23,20 @@
 	var/icon_type = "donut"
 	var/item_obj				// It can take a path or a list, the populate_contents() must be added when using item_obj in order to work.
 
-/obj/item/storage/fancy/update_icon(var/itemremoved = 0)
-	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
-	return
+/obj/item/storage/fancy/update_icon(itemremoved = 0)
+	var/total_contents = LAZYLEN(contents) - itemremoved
+	icon_state = "[icon_type]box[total_contents]"
 
-/obj/item/storage/fancy/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	if(contents.len <= 0)
-		to_chat(user, "There are no [src.icon_type]s left in the box.")
-	else if(contents.len == 1)
-		to_chat(user, "There is one [src.icon_type] left in the box.")
-	else
-		to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
-
-	return
+/obj/item/storage/fancy/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		var/content_count = LAZYLEN(contents)
+		if(!content_count)
+			extra_description += "There is no [icon_type]s left in the box."
+		else if(content_count == 1)
+			extra_description += "There is one [icon_type] left in the box."
+		else
+			extra_description += "There are [content_count] [icon_type]\s in the box."
+	..(user, extra_description)
 
 /*
  * Egg Box
@@ -82,7 +79,7 @@
 
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
-	desc = "A pack of red candles."
+	desc = "A pack of wax candles."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candlebox5"
 	icon_type = "candle"
@@ -150,6 +147,7 @@
 	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
+	spawn_tags = SPAWN_CIGARETTE
 	storage_slots = 6
 	item_obj = /obj/item/clothing/mask/smokable/cigarette
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/flame/lighter)
@@ -220,23 +218,55 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper DromedaryCo packet"
 	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
-	icon_state = "Dpacket"
-	item_state = "Dpacket"
+	icon_state = "dromedary_packet"
+	item_state = "dromedary_packet"
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/dromedaryco
 
 /obj/item/storage/fancy/cigarettes/killthroat
 	name = "\improper AcmeCo packet"
 	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
-	icon_state = "Bpacket"
-	item_state = "Bpacket" //Doesn't have an inhand state, but neither does dromedary, so, ya know..
+	icon_state = "acme_packet"
+	item_state = "acme_packet" //Doesn't have an inhand state, but neither does dromedary, so, ya know..
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/killthroat
 
 /obj/item/storage/fancy/cigarettes/homeless
 	name = "\improper Nomads packet"
 	desc = "A packet of six Nomads cigarettes. Nomads's Extra strong for when your life is more extra hard"
-	icon_state = "Cpacket"
-	item_state = "Cpacket"
+	icon_state = "nomad_packet"
+	item_state = "nomad_packet"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/homeless
+
+/obj/item/storage/fancy/cigarettes/lucky
+	name = "\improper Lucky Strikes packet"
+	desc = "A packet of six Lucky Strikes cigarettes. For some reason the Syndicate loved these things back in the war, still around as surplus today."
+	icon_state = "luck_packet"
+	item_state = "luck_packet"
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/lucky
+
+/obj/item/storage/fancy/cigarettes/robusto
+	name = "\improper Red Robusto packet"
+	desc = "A packet of six Red Robusto Cigarettes. Old Nanotrasen cigs, some say they make you more robust..."
+	icon_state = "robusto_packet"
+	item_state = "robusto_packet"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/robusto
+
+/obj/item/storage/fancy/cigarettes/buckshot
+	name = "\improper Klassika Filter packet"
+	desc = "A packet of six Klassika Filter Cigarettes. Old unknown brand, says 'Klassika Filter' on the front..."
+	icon_state = "klassika_packet"
+	item_state = "klassika_packet"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/buckshot
+
+/obj/item/storage/fancy/cigarettes/quasimorph
+	name = "\improper Kosmos packet"
+	desc = "A packet of six Kosmos Cigarettes. Old Russian brand, says 'Космос' on the front, along with a white rocket."
+	icon_state = "kosmos_packet"
+	item_state = "kosmos_packet"
+	spawn_tags = SPAWN_TAG_CIGARETTE_MAINTS
+	item_obj = /obj/item/clothing/mask/smokable/cigarette/quasimorph
 
 /obj/item/storage/fancy/cigcartons
 	name = "carton of cigarettes"

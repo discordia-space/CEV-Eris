@@ -200,7 +200,7 @@
 
 /datum/hallucination/mirage/start()
 	var/list/possible_points = list()
-	for(var/turf/simulated/floor/F in view(holder, world.view+1))
+	for(var/turf/floor/F in view(holder, world.view+1))
 		possible_points += F
 	if(possible_points.len)
 		for(var/i = 1 to number)
@@ -247,11 +247,11 @@
 
 /datum/hallucination/telepahy/start()
 	to_chat(holder,"<span class = 'notice'>You expand your mind outwards.</span>")
-	holder.verbs += /mob/living/carbon/human/proc/fakeremotesay
+	add_verb(holder, /mob/living/carbon/human/proc/fakeremotesay)
 
 /datum/hallucination/telepahy/end()
 	if(holder)
-		holder.verbs -= /mob/living/carbon/human/proc/fakeremotesay
+		remove_verb(holder, /mob/living/carbon/human/proc/fakeremotesay)
 
 /mob/living/carbon/human/proc/fakeremotesay()
 	set name = "Telepathic Message"

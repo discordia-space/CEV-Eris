@@ -1,36 +1,36 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "b" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
 /obj/structure/grille,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "d" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "e" = (
 /obj/machinery/light/built{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "f" = (
 /obj/structure/railing,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "g" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "h" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "i" = (
 /obj/structure/railing{
@@ -39,69 +39,69 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "j" = (
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "k" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "l" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "m" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "n" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "o" = (
 /obj/structure/catwalk,
 /obj/structure/ore_box,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "p" = (
 /obj/machinery/light/built,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "q" = (
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/crawler)
 "r" = (
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "s" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "t" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "u" = (
 /obj/structure/catwalk,
 /obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "v" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 
 (1,1,1) = {"

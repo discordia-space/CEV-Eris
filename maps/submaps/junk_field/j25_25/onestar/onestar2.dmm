@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ag" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ah" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "an" = (
 /obj/structure/window/reinforced{
@@ -13,71 +13,71 @@
 /obj/structure/bed/chair/office/dark,
 /obj/structure/barricade,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "ao" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "as" = (
 /obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "au" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/dirt/airless,
+/turf/floor/dirt/airless,
 /area/template_noop)
 "ax" = (
 /obj/structure/sign/faction/one_star,
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "ay" = (
 /obj/structure/railing/grey,
 /obj/machinery/light/floor,
-/turf/simulated/floor/dirt/airless,
+/turf/floor/dirt/airless,
 /area/template_noop)
 "aA" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "aJ" = (
 /obj/structure/noticeboard,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "aK" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "aN" = (
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "aQ" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aR" = (
 /obj/effect/floor_decal/industrial/loading,
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "aT" = (
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "aU" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bb" = (
 /obj/structure/sink{
@@ -88,52 +88,52 @@
 	dir = 8;
 	pixel_x = -28
 	},
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "bd" = (
 /obj/machinery/light_construct{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "bl" = (
 /obj/structure/sign/faction/one_star_old,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "bm" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bq" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "bs" = (
 /obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bt" = (
 /obj/structure/table/onestar,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "bu" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "bv" = (
 /obj/machinery/light/floor,
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "by" = (
 /obj/structure/sign/derelict3{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "bE" = (
-/turf/simulated/floor/dirt/airless,
+/turf/floor/dirt/airless,
 /area/template_noop)
 "bG" = (
 /obj/structure/window/reinforced{
@@ -142,10 +142,10 @@
 /obj/structure/table/onestar,
 /obj/item/stamp/denied,
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "bN" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "co" = (
 /obj/structure/window/reinforced{
@@ -157,11 +157,11 @@
 /obj/structure/table/onestar,
 /obj/item/remains/human,
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "cK" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "dO" = (
 /obj/structure/table/onestar,
@@ -169,15 +169,15 @@
 	dir = 8
 	},
 /obj/item/folder/red,
-/turf/simulated/floor/tiled/dark/techfloor/airless,
+/turf/floor/tiled/dark/techfloor/airless,
 /area/template_noop)
 "eD" = (
 /obj/structure/closet/secure_closet/medicine,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "fa" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "fy" = (
 /obj/structure/toilet{
@@ -186,27 +186,27 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "gK" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "ib" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/dark/techfloor/airless,
+/turf/floor/tiled/dark/techfloor/airless,
 /area/template_noop)
 "ju" = (
 /obj/structure/sign/derelict1{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "jG" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/dirt/airless,
+/turf/floor/dirt/airless,
 /area/template_noop)
 "kb" = (
 /obj/structure/window/reinforced{
@@ -214,16 +214,16 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/clothing/accessory/medal/conduct,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "ku" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "kx" = (
 /obj/spawner/junk,
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "kF" = (
 /obj/structure/window/reinforced{
@@ -233,19 +233,19 @@
 	dir = 8
 	},
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "lj" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "mJ" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "nC" = (
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "nF" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -255,13 +255,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "nI" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "nR" = (
 /obj/structure/window/reinforced{
@@ -272,11 +272,11 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/modular_computer/laptop,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "oc" = (
 /obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "pa" = (
 /obj/structure/window/reinforced{
@@ -284,19 +284,19 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/stamp/chameleon,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "pb" = (
 /obj/structure/cyberplant{
 	desc = "One of those famous OneStar holoplants! Add to your Space a bit of the comfort from old Earth, by buying this blue buddy. A nuclear battery and a rugged case guarantee that your flower will survive journey to another galaxy, and variety of plant types won't let you to get bored along the way!";
 	name = "OneStar \"Iridescent\""
 	},
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "pS" = (
 /obj/item/remains/human,
 /obj/item/clothing/accessory/blue,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "qp" = (
 /obj/structure/window/reinforced{
@@ -307,7 +307,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "qw" = (
 /obj/structure/window/reinforced{
@@ -318,15 +318,15 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "rb" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "sB" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "sD" = (
 /obj/structure/window/reinforced{
@@ -336,46 +336,46 @@
 	dir = 4
 	},
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "tl" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "up" = (
 /obj/machinery/light_construct,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "uQ" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "vG" = (
 /obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "vL" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "wg" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "wF" = (
 /obj/spawner/junk,
-/turf/simulated/floor/dirt/airless,
+/turf/floor/dirt/airless,
 /area/template_noop)
 "xc" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/item/clothing/accessory/red,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "xf" = (
 /obj/structure/table/onestar,
@@ -383,7 +383,7 @@
 	dir = 4
 	},
 /obj/item/folder/red,
-/turf/simulated/floor/tiled/dark/techfloor/airless,
+/turf/floor/tiled/dark/techfloor/airless,
 /area/template_noop)
 "yJ" = (
 /obj/structure/window/reinforced{
@@ -392,11 +392,11 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "zc" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "zj" = (
 /obj/structure/window/reinforced{
@@ -404,36 +404,36 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/device/taperecorder,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "zC" = (
 /obj/structure/medical_stand,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "Ae" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "Ax" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/dirt/airless,
+/turf/floor/dirt/airless,
 /area/template_noop)
 "Bj" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "BH" = (
 /obj/structure/largecrate,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "BI" = (
 /obj/effect/floor_decal/industrial/warning,
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "Cs" = (
 /obj/structure/window/reinforced{
@@ -443,29 +443,29 @@
 /obj/item/remains/human,
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "Dc" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "Ej" = (
 /obj/structure/table/onestar,
 /obj/item/phone,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "ES" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "Fb" = (
 /obj/machinery/light_construct{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "Fz" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "FA" = (
 /obj/structure/window/reinforced{
@@ -473,15 +473,15 @@
 	},
 /obj/structure/bed/chair/office/dark,
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "Gb" = (
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "Gt" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "GP" = (
 /obj/structure/window/reinforced{
@@ -493,7 +493,7 @@
 /obj/structure/table/onestar,
 /obj/item/stamp/denied,
 /obj/structure/barricade,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "GZ" = (
 /obj/structure/window/reinforced{
@@ -501,7 +501,7 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/stamp/denied,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "Hc" = (
 /obj/structure/window/reinforced{
@@ -510,11 +510,11 @@
 /obj/item/modular_computer/console{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "HY" = (
 /obj/item/modular_computer/console,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "It" = (
 /obj/structure/window/reinforced{
@@ -526,7 +526,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/gun/projectile/handmade_pistol,
 /obj/spawner/ammo,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "JA" = (
 /obj/structure/window/reinforced{
@@ -537,21 +537,21 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "Km" = (
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "Kw" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "KW" = (
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "KX" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "La" = (
 /obj/structure/window/reinforced{
@@ -563,64 +563,64 @@
 /obj/structure/table/onestar,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "Lz" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/dirt/airless,
+/turf/floor/dirt/airless,
 /area/template_noop)
 "LE" = (
 /obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "LY" = (
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "ME" = (
 /obj/structure/sign/department/medbay{
 	pixel_x = 32
 	},
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "NH" = (
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
+/turf/floor/tiled/derelict/white_red_edges/airless,
 /area/template_noop)
 "NQ" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "Oz" = (
 /obj/structure/sign/faction/one_star,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "OV" = (
 /obj/structure/sign/faction/one_star_old,
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "Pb" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "Pc" = (
 /obj/structure/table/onestar,
 /obj/machinery/light/floor,
 /obj/item/storage/lunchbox/rainbow,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "Qe" = (
 /obj/structure/sign/derelict2{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "Qn" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "QE" = (
 /obj/structure/window/reinforced{
@@ -631,11 +631,11 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/paper_bin,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "Rf" = (
 /obj/machinery/vending,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "Rn" = (
 /obj/structure/window/reinforced{
@@ -645,7 +645,7 @@
 	dir = 4
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "Ss" = (
 /obj/structure/toilet{
@@ -655,26 +655,26 @@
 	dir = 1
 	},
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/cafe/airless,
+/turf/floor/tiled/cafe/airless,
 /area/template_noop)
 "SV" = (
 /obj/structure/table/onestar,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "UT" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 "Vu" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "VG" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
 /obj/item/lipstick/black,
-/turf/simulated/floor/tiled/dark/brown_platform/airless,
+/turf/floor/tiled/dark/brown_platform/airless,
 /area/template_noop)
 "VK" = (
 /obj/structure/window/reinforced{
@@ -685,13 +685,13 @@
 	},
 /obj/structure/table/onestar,
 /obj/item/paper_bin,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "Xm" = (
 /obj/structure/table/onestar,
 /obj/item/pen/reagent/sleepy,
 /obj/item/newspaper,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
+/turf/floor/tiled/dark/brown_perforated/airless,
 /area/template_noop)
 "XL" = (
 /obj/structure/bed/chair/comfy/beige{
@@ -700,20 +700,20 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "Yy" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/medical,
 /obj/spawner/medical,
 /obj/machinery/light_construct,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
+/turf/floor/tiled/derelict/red_white_edges/airless,
 /area/template_noop)
 "Ze" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "Zy" = (
 /turf/template_noop,

@@ -19,10 +19,8 @@
 	var/num_fragments = 25
 	var/damage_step = 2
 
-	var/explosion_d_size = -1
-	var/explosion_h_size = 1
-	var/explosion_l_size = 2
-	var/explosion_f_size = 15
+	var/explosion_power = 250
+	var/explosion_falloff = 100
 
 	var/armed = FALSE
 	var/deployed = FALSE
@@ -51,6 +49,7 @@
 
 /obj/item/mine/old/armed
 	armed = TRUE
+	anchored = TRUE
 	deployed = TRUE
 	rarity_value = 55
 	spawn_frequency = 10
@@ -63,12 +62,12 @@
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASMA = 5)
 	prob_explode = 75
 	pulse_difficulty = FAILCHANCE_ZERO
-	explosion_h_size = 0
-	explosion_l_size = 1
-	explosion_f_size = 5
+	explosion_power = 175
+	explosion_falloff = 75
 
 /obj/item/mine/improv/armed
 	armed = TRUE
+	anchored = TRUE
 	deployed = TRUE
 	rarity_value = 44
 	spawn_frequency = 10
@@ -78,9 +77,8 @@
 	explode()
 
 /obj/item/mine/proc/explode()
-	var/turf/T = get_turf(src)
-	explosion(T,explosion_d_size,explosion_h_size,explosion_l_size,explosion_f_size)
-	fragment_explosion(T, spread_radius, fragment_type, num_fragments, null, damage_step)
+	explosion(get_turf(src), explosion_power, explosion_falloff)
+	fragment_explosion(get_turf(src), spread_radius, fragment_type, num_fragments, null, damage_step)
 	if(src)
 		qdel(src)
 
@@ -100,13 +98,13 @@
 	if(!armed)
 		user.visible_message(
 			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("you begin deploying \the [src]!")
+			SPAN_DANGER("You begin deploying \the [src]!")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
 				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("you have deployed \the [src]!")
+				SPAN_DANGER("You have deployed \the [src]!")
 				)
 
 			deployed = TRUE
@@ -201,10 +199,18 @@
 			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
 			return ..()
 		if(isliving(AM))
+
 			if(excelsior)
-				for(var/datum/antagonist/A in AM.mind.antagonist)
-					if(A.id == ROLE_EXCELSIOR_REV)
-						return
+				if(ismech(AM))
+					/// if at least one of the people inside is an excel.
+					for(var/mob/living/carbon/human/agent in AM)
+						for(var/datum/antagonist/A in agent.mind.antagonist)
+							if(A.id == ROLE_EXCELSIOR_REV)
+								return
+				else
+					for(var/datum/antagonist/A in AM.mind.antagonist)
+						if(A.id == ROLE_EXCELSIOR_REV)
+							return
 			var/true_prob_explode = prob_explode - AM.skill_to_evade_traps()
 			if(prob(true_prob_explode))
 				explode()

@@ -1,25 +1,25 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "ab" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/deepmaint)
 "ac" = (
 /obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "ad" = (
 /obj/item/modular_computer/console/preset/security/camera,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "ae" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp/green,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "af" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "ag" = (
 /obj/structure/closet/secure_closet/freezer/meat,
@@ -29,7 +29,7 @@
 /obj/spawner/rations/low_chance,
 /obj/spawner/rations/low_chance,
 /obj/spawner/rations/low_chance,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "ah" = (
 /obj/structure/table/standard,
@@ -37,16 +37,16 @@
 	pixel_x = -3;
 	pixel_y = 6
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "ai" = (
 /obj/spawner/junk,
 /obj/machinery/light,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "ak" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/deepmaint)
 "al" = (
 /obj/structure/table/rack,
@@ -55,47 +55,47 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/deepmaint)
 "am" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "an" = (
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "ao" = (
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "ap" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "aq" = (
 /obj/structure/table/woodentable,
 /obj/spawner/pack/rare,
 /obj/spawner/pack/rare,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "ar" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "as" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-21";
 	tag = "icon-plant-21"
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "at" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "au" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "av" = (
 /obj/structure/table/rack,
@@ -104,190 +104,189 @@
 /obj/spawner/booze,
 /obj/spawner/booze/low_chance,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "aw" = (
 /obj/structure/bookcase,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "ax" = (
 /obj/structure/table/woodentable,
 /obj/machinery/librarypubliccomp,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "ay" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/girder,
 /obj/structure/barricade,
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "az" = (
 /obj/machinery/deployable/barrier,
 /obj/structure/barricade,
-/turf/simulated/floor/tiled/steel/panels,
+/turf/floor/tiled/steel/panels,
 /area/deepmaint)
 "aA" = (
 /obj/structure/girder,
 /obj/machinery/deployable/barrier,
 /obj/structure/barricade,
-/turf/simulated/floor/tiled/steel/panels,
+/turf/floor/tiled/steel/panels,
 /area/deepmaint)
 "aB" = (
 /obj/structure/girder,
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aC" = (
 /obj/structure/table/standard,
 /obj/spawner/junkfood,
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "aD" = (
 /obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aE" = (
 /obj/structure/girder,
 /obj/structure/barricade,
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aF" = (
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/deepmaint)
 "aG" = (
 /obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aI" = (
 /obj/structure/girder,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aJ" = (
 /obj/machinery/door/airlock/glass,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aK" = (
 /obj/structure/barricade,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aL" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "aM" = (
 /obj/machinery/vending/snack,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aN" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-10";
 	tag = "icon-plant-10"
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "aO" = (
 /obj/structure/table/woodentable,
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "aP" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/barricade,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aQ" = (
 /obj/structure/table/woodentable,
 /obj/spawner/powercell,
 /obj/spawner/powercell,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "aR" = (
 /obj/structure/catwalk,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "aS" = (
 /obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aT" = (
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aU" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aW" = (
 /obj/machinery/libraryscanner,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aX" = (
 /obj/item/modular_computer/console/preset/civilian,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aY" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp/green,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "aZ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "ba" = (
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bb" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "bc" = (
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bd" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "be" = (
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bf" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bg" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/reinforced,
 /area/deepmaint)
 "bh" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "bi" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "bl" = (
 /obj/structure/table/standard{
@@ -296,22 +295,22 @@
 /obj/spawner/medical,
 /obj/spawner/medical,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "bm" = (
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "bn" = (
 /obj/structure/bed/chair,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "bo" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/deepmaint)
 "bp" = (
 /obj/spawner/junk,
@@ -319,76 +318,76 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/deepmaint)
 "bq" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "br" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /obj/spawner/pack/gun_loot,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bs" = (
 /obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "bt" = (
 /obj/spawner/junk,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "bu" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "bv" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "bw" = (
 /obj/spawner/pack/gun_loot,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bx" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood,
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "by" = (
 /obj/effect/decal/cleanable/blood,
 /obj/spawner/pack/gun_loot,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bz" = (
 /obj/spawner/pack/gun_loot,
 /obj/effect/decal/cleanable/blood,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "bA" = (
 /obj/effect/decal/cleanable/blood,
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bB" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "bC" = (
 /obj/spawner/junk,
@@ -396,60 +395,60 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/deepmaint)
 "bD" = (
 /obj/structure/table/woodentable,
 /obj/spawner/pack/rare,
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bE" = (
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "bF" = (
 /obj/machinery/vending/cigarette,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "bG" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "bH" = (
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bI" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/deepmaint)
 "bJ" = (
 /obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "bK" = (
 /obj/spawner/junk,
 /obj/landmark/loot_biomes/mob/roach/room{
 	range = 10
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "gY" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
 /obj/item/storage/firstaid/regular,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "iq" = (
 /obj/landmark/corpse/skeleton/maint,
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "ir" = (
 /obj/structure/table/woodentable,
@@ -461,7 +460,7 @@
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "rp" = (
 /obj/structure/table/standard,
@@ -472,28 +471,28 @@
 	pixel_x = 5
 	},
 /obj/item/material/kitchen/rollingpin,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "se" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "xV" = (
 /obj/structure/table/woodentable{
 	flipped = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 "GO" = (
 /obj/item/stool,
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "Pg" = (
 /obj/spawner/pack/gun_loot,
 /obj/landmark/corpse/skeleton/maint,
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/deepmaint)
 
 (1,1,1) = {"

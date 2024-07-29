@@ -33,7 +33,7 @@
 	if(!spawnmob)
 		for(var/mob/observer/O in world)
 			if(!spawnmob)
-				var/response = alert(O, "Are you -sure- you want to become a [spawn_faction] [spawn_role]?.","Are you sure?","Yes","Cancel",)
+				var/response = alert(O, "Are you -sure- you want to become a [spawn_faction] [spawn_role]?","Are you sure?","Yes","Cancel",)
 				if(response == "Cancel") continue  //Hit the wrong key...again.
 
 				if(!spawnmob)

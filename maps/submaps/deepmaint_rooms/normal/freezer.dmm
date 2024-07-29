@@ -1,100 +1,100 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "b" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "c" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "d" = (
 /obj/structure/kitchenspike,
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "e" = (
 /obj/machinery/gibber,
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "f" = (
 /obj/spawner/junk,
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "g" = (
 /obj/item/remains/mouse,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "h" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "i" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "j" = (
 /obj/spawner/junk,
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "k" = (
 /obj/machinery/door/airlock{
 	name = "Kitchen Freezer";
 	req_access = list(28)
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "l" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/cargo,
+/turf/floor/tiled/white/cargo,
 /area/deepmaint)
 "m" = (
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "n" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "o" = (
 /obj/landmark/corpse/skeleton,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "p" = (
-/turf/simulated/floor/tiled/white/cargo,
+/turf/floor/tiled/white/cargo,
 /area/deepmaint)
 "q" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "r" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "s" = (
 /obj/structure/table/standard,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "t" = (
 /obj/structure/table/standard,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "u" = (
-/turf/simulated/floor/tiled/white/panels,
+/turf/floor/tiled/white/panels,
 /area/deepmaint)
 "v" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/white/panels,
+/turf/floor/tiled/white/panels,
 /area/deepmaint)
 "w" = (
 /obj/item/remains/mouse,
-/turf/simulated/floor/tiled/white/panels,
+/turf/floor/tiled/white/panels,
 /area/deepmaint)
 "x" = (
 /obj/item/remains/mouse,
@@ -102,7 +102,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "y" = (
 /obj/spawner/junk,
@@ -110,13 +110,13 @@
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "z" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/cargo,
+/turf/floor/tiled/white/cargo,
 /area/deepmaint)
 
 (1,1,1) = {"

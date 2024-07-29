@@ -46,13 +46,18 @@
 					<div class="item">
 						<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:value.time}}</div>
 					</div>
+					{{if value.minimum_quality > -2}}
+					<div class="item">
+						<div style="margin-top:8px" class="itemLabelWidest"><b>Minimum quality required:</b> {{:value.minimum_quality < 0 ? value.minimum_quality : '+' + value.minimum_quality}}</div>
+					</div>
+					{{/if}}
 				</div>
 			{{/if}}
 		</div>
 		<div class="itemlabelNarrow">{{:helper.link('Print', 'plus', {'add_to_queue' : value.filename}, null, 'statusValue')}}</b></div>
 		<div class="itemlabelNarrow">{{:helper.link('Print several', 'calculator', {'add_to_queue' : value.filename, 'several' : 1}, null, 'statusValue')}}</b></div>
 		<div class="itemlabelNarrow">{{:helper.link('', 'triangle-1-' + value.filename == data.unfolded ? 'n' : 's', {'unfold' : value.filename}, null, 'statusValue')}}</b></div>
-		
+
 	</div>
 {{empty}}
 	<div class="block" style ='position: relative;'>

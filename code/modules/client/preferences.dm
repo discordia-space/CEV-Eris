@@ -88,13 +88,14 @@
 		load_and_update_character()
 
 	var/dat = "<html><body><center>"
-
 	if(path)
+		SSjob.UpdatePlayableJobs(user.client.ckey)
 		dat += "Slot - "
 		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
 		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
 		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a> - "
 		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a>"
+
 
 	else
 		dat += "Please create an account to save your preferences."

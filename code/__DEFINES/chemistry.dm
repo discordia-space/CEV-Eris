@@ -57,6 +57,8 @@
 #define CE_DYNAMICFINGERS	"dynamic fingers"
 #define CE_BONE_MEND		"bone mending"   	// Ossisine
 #define CE_ONCOCIDAL        "anticancer"
+#define CE_BRAINHEAL        "neural tissue restoration"
+#define CE_EYEHEAL          "sensory organ regeneration stimulant"
 
 // Chem effects for robotic/assisted organs
 #define CE_MECH_STABLE 		"cooling"

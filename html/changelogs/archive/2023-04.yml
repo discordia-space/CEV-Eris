@@ -155,3 +155,23 @@
 2023-04-24:
   assortedbeads:
   - rscadd: Added flags to makeshift voidsuit to allow space walking
+2023-04-29:
+  MLGTASTICa:
+  - bugfix: Fixed some internal inventory code related to dropping items , syringes
+      will no longer have overlays on the ground.
+  Mycah142:
+  - rscadd: Added pen labels for seed packets.
+  TheLeopold:
+  - code_imp: Deleted repeated ntcells designs from code
+  - tweak: all litany phrases now end with a dot. (update your macros)
+  - bugfix: fixed altar not allowing cruciform upgrades to be placed on it.
+  ValoTheValo:
+  - rscadd: New NT MK58 Frame
+  - bugfix: Gave the MK58 its 1.3 damage multiplier
+  - imageadd: edited NT MK58 Barrel color
+  - spellcheck: Changed MK58 names to be consistant with old versions
+2023-04-30:
+  Humonitarian:
+  - rscadd: Holobar
+  - rscadd: Club Artist
+  - bugfix: Some wire runtimes fixed when the floor changes types

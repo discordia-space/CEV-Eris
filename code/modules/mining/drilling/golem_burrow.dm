@@ -6,8 +6,9 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/max_health = 50
-	var/health = 50
+	maxHealth = 50
+	health = 50
+	explosion_coverage = 0.3
 	var/datum/golem_controller/controller
 
 /obj/structure/golem_burrow/New(loc, parent)
@@ -45,10 +46,13 @@
         // Bullet not really efficient against a pile of rock
 	take_damage(Proj.get_structure_damage() * 0.25)
 
-/obj/structure/golem_burrow/proc/take_damage(value)
-	health = min(max(health - value, 0), max_health)
+/obj/structure/golem_burrow/take_damage(damage)
+	. = health - damage < 0 ? damage - (damage - health) : damage
+	. *= explosion_coverage
+	health = min(max(health - damage, 0), maxHealth)
 	if(health == 0)
 		qdel(src)
+	return
 
 /obj/structure/golem_burrow/proc/stop()
 	qdel(src)  // Delete burrow

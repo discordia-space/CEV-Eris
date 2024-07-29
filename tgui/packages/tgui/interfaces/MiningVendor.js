@@ -49,7 +49,7 @@ export const MiningVendor = (props, context) => {
                       content={product.price + ' points'}
                       onClick={() =>
                         act('purchase', {
-                          'ref': product.ref,
+                          ref: product.ref,
                         })
                       }
                     />

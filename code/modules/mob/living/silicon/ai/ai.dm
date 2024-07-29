@@ -28,9 +28,9 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/multitool_mode,
 	/mob/living/silicon/ai/proc/toggle_hologram_movement,
-	/mob/living/silicon/verb/show_crew_sensors,
-	/mob/living/silicon/verb/show_email,
-	/mob/living/silicon/verb/show_alerts
+	/mob/living/silicon/proc/show_crew_sensors,
+	/mob/living/silicon/proc/show_email,
+	/mob/living/silicon/proc/show_alerts
 )
 
 //Not sure why this is necessary...
@@ -119,10 +119,10 @@ var/list/ai_verbs_default = list(
 	defaultHUD = "Eris"
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
-	verbs |= ai_verbs_default
+	add_verb(src, ai_verbs_default)
 
 /mob/living/silicon/ai/proc/remove_ai_verbs()
-	verbs -= ai_verbs_default
+	remove_verb(src, ai_verbs_default)
 
 /mob/living/silicon/ai/MiddleClickOn(var/atom/A)
 	if(!control_disabled && A.AIMiddleClick(src))
@@ -697,12 +697,11 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/is_in_chassis()
 	return istype(loc, /turf)
 
-
-/mob/living/silicon/ai/ex_act(var/severity)
-	if(severity == 1)
+/mob/living/silicon/ai/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > maxHealth)
 		qdel(src)
-		return
-	..()
+	else
+		adjustBruteLoss(target_power)
 
 /mob/living/silicon/ai/proc/multitool_mode()
 	set name = "Toggle Multitool Mode"

@@ -23,7 +23,7 @@
 
 /obj/item/device/taperecorder/New()
 	..()
-	add_hearing()
+
 	wires = new(src)
 	if(starting_drive_type)
 		mydrive = new starting_drive_type(src)
@@ -34,9 +34,14 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/device/taperecorder/examine(mob/user)
-	if(..(user, 1) && open_panel)
-		to_chat(usr, "The wire panel is open.")
+/obj/item/device/taperecorder/LateInitialize()
+	. = ..()
+	add_hearing()
+
+/obj/item/device/taperecorder/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && open_panel)
+		extra_description += "The wire panel is open."
+	..(user, extra_description)
 
 /obj/item/device/taperecorder/attackby(obj/item/I, mob/user, params)
 	if(!mydrive && istype(I, /obj/item/computer_hardware/hard_drive/portable))
@@ -117,7 +122,7 @@
 		to_chat(M, SPAN_DANGER("\The [src] explodes!"))
 	if(T)
 		T.hotspot_expose(700,125)
-		explosion(T, -1, -1, 0, 4)
+		explosion(get_turf(src), 100, 25)
 	qdel(src)
 	return
 
@@ -344,7 +349,7 @@
 	for(var/datum/computer_file/data/audio/A in mydrive.stored_files)
 		audio_list[A.filename] = A
 	if(show_message)
-		var/usr_input = input(usr, "Which audio file do you want to switch to?.", "Audio Files") in audio_list|"New File"|"Cancel"|null
+		var/usr_input = input(usr, "Which audio file do you want to switch to?", "Audio Files") in audio_list|"New File"|"Cancel"|null
 		if(isnull(usr_input))
 			return
 		if(usr_input == "New File")

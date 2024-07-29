@@ -22,7 +22,7 @@
 		return
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
-	if (!istype(loc, /turf/simulated/floor))
+	if (!istype(loc, /turf/floor))
 		to_chat(usr, SPAN_WARNING("APC cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || istype(A, /area/space))

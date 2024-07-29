@@ -7,10 +7,6 @@
 	reagents = bloodstr
 	..()
 
-/mob/living/carbon/Life()
-	. = ..()
-	handle_viruses()
-
 /mob/living/carbon/Destroy()
 	QDEL_NULL(metabolism_effects)
 	reagents = null
@@ -125,6 +121,10 @@
 	//We cache the held items before and after swapping using get active hand.
 	//This approach is future proof and will support people who possibly have >2 hands
 	var/obj/item/prev_held = get_active_hand()
+
+	if(prev_held)
+		if(prev_held.wielded)
+			prev_held.unwield(src)
 
 	//Now we do the hand swapping
 	src.hand = !( src.hand )
@@ -241,6 +241,9 @@
 /mob/living/carbon/proc/eyecheck()
 	return 0
 
+/mob/living/carbon/proc/earcheck()
+	return 0
+
 /mob/living/carbon/flash(duration = 0, drop_items = FALSE, doblind = FALSE, doblurry = FALSE)
 	if(blinded)
 		return
@@ -288,7 +291,7 @@
 
 	//Grab processing has a chance of returning null
 	if(item)
-		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
+		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/open))
 			var/obj/item/I = item
 			var/robust = stats.getStat(STAT_ROB)
 			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)
@@ -309,7 +312,6 @@
 
 		unEquip(item, loc)
 		item.throw_at(target, item.throw_range, item.throw_speed, src)
-		item.throwing = FALSE
 
 /mob/living/carbon/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	..()
@@ -357,8 +359,6 @@
 	if(now_pushing || !yes)
 		return
 	..()
-	if(iscarbon(AM) && prob(10))
-		src.spread_disease_to(AM, "Contact")
 
 /mob/living/carbon/cannot_use_vents()
 	return

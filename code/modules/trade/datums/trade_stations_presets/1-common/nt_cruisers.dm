@@ -103,6 +103,7 @@
 		/obj/item/cruciform_upgrade = offer_data("cruciform upgrade", 1600, 0),
 		/obj/item/book/ritual/cruciform = offer_data("Neotheology ritual book", 1800, 1),
 		/obj/item/implant/core_implant/cruciform = offer_data("cruciform", 2500, 3),
+		/obj/item/grenade/explosive/nt = offer_data("Holy Hand Grenade", 5000, 1),
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/medicii = offer_data("NeoTheology Armory - \"Medicii Supplies\"", 2000, 1),
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/nt_lightfall = offer_data("NeoTheology Armory - Lightfall Laser Gun", 2500, 1),
 		/obj/item/computer_hardware/hard_drive/portable/design/nt/grenades = offer_data("NeoTheology Armory - Grenades Pack", 2500, 1),

@@ -96,9 +96,9 @@
 
 	return
 
-/obj/machinery/pipelayer/examine(mob/user)
-	..()
-	to_chat(user, "\The [src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated.")
+/obj/machinery/pipelayer/examine(mob/user, extra_description = "")
+	extra_description += "\The [src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated."
+	..(user, extra_description)
 
 /obj/machinery/pipelayer/proc/reset()
 	on=0
@@ -125,8 +125,8 @@
 	return 1
 
 /obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)
-	if(istype(new_turf, /turf/simulated/floor))
-		var/turf/simulated/floor/T = new_turf
+	if(istype(new_turf, /turf/floor))
+		var/turf/floor/T = new_turf
 		if(!T.is_plating())
 			T.make_plating(!(T.broken || T.burnt))
 	return new_turf.is_plating()

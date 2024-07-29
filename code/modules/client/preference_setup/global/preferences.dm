@@ -118,6 +118,12 @@ var/list/_client_preferences_by_type
 	description ="Play jukebox music"
 	key = "SOUND_JUKEBOX"
 
+/datum/client_preference/play_jukebox/changed(var/mob/preference_mob, var/new_value)
+	if(new_value == GLOB.PREF_NO)
+		preference_mob.stop_all_music()
+	else
+		preference_mob.update_music()
+
 /datum/client_preference/play_local_tts
 	description ="Play local text-to-speech"
 	key = "TTS_VOLUME_LOCAL"
@@ -129,10 +135,6 @@ var/list/_client_preferences_by_type
 	key = "TTS_VOLUME_RADIO"
 	options = list(GLOB.PREF_0, GLOB.PREF_25, GLOB.PREF_50, GLOB.PREF_75, GLOB.PREF_100, GLOB.PREF_125, GLOB.PREF_150, GLOB.PREF_175, GLOB.PREF_200)
 	default_value = GLOB.PREF_75
-
-/datum/client_preference/change_to_examine_tab
-	description = "Switch to examine tab upon examining a object"
-	key = "SWITCHEXAMINE"
 
 /datum/client_preference/play_ambiance/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_NO)
@@ -241,17 +243,6 @@ var/list/_client_preferences_by_type
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
 
-/datum/client_preference/play_jukebox/changed(var/mob/preference_mob, var/new_value)
-	if(new_value == GLOB.PREF_NO)
-		preference_mob.stop_all_music()
-	else
-		preference_mob.update_music()
-
-/datum/client_preference/stay_in_hotkey_mode
-	description = "Keep hotkeys on mob change"
-	key = "KEEP_HOTKEY_MODE"
-	default_value = GLOB.PREF_YES
-
 /datum/client_preference/tgui_fancy
 	description ="Enable/Disable tgui fancy mode"
 	key = "tgui_fancy"
@@ -269,6 +260,11 @@ var/list/_client_preferences_by_type
 	for (var/datum/tgui/tgui as anything in preference_mob?.tgui_open_uis)
 		// Force it to reload either way
 		tgui.update_static_data(preference_mob)
+
+/datum/client_preference/equip_open_inventory
+	description = "Quick-equip stores items into open inventories"
+	key = "EQUIP_OPEN_INVENTORY"
+	default_value = GLOB.PREF_NO
 
 /********************
 * General Staff Preferences *

@@ -61,7 +61,7 @@ export const TramControl = (props, context) => {
   const [transitIndex, setTransitIndex] = useLocalState(
     context,
     'transit-index',
-    1
+    1,
   );
   const MovingTramDimmer = () => {
     return (
@@ -97,7 +97,8 @@ export const TramControl = (props, context) => {
             width={5}
             tooltipPosition="top"
             tooltip={COLOR2BLURB[getDestColor(dest)]}
-            onClick={() => setTransitIndex(destinations.indexOf(dest))}>
+            onClick={() => setTransitIndex(destinations.indexOf(dest))}
+          >
             <Icon ml={-2.1} mt={0.55} fontSize="60px" name="circle-o" />
           </Button>
           {(destinations.length - 1 !== destinations.indexOf(dest) && (
@@ -116,7 +117,7 @@ export const TramControl = (props, context) => {
                     tooltip={dep}
                     style={{
                       'border-radius': '5em',
-                      'border': '2px solid white',
+                      border: '2px solid white',
                     }}
                   />
                 </Stack.Item>

@@ -160,8 +160,8 @@ FLOOR SAFES
 			return
 
 
-obj/structure/safe/ex_act(severity)
-	return
+/obj/structure/safe/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 //FLOOR SAFES
 /obj/structure/safe/floor

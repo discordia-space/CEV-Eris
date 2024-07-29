@@ -294,7 +294,8 @@
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	slot_flags = SLOT_EARS
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -464,9 +465,6 @@ BLIND     // can't see anything
 	if(usr.put_in_hands(holding))
 		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
-		if (ishuman(usr))
-			var/mob/living/carbon/human/stylish = usr
-			stylish.regen_slickness()
 	else
 		to_chat(usr, SPAN_WARNING("You need an empty, unbroken hand to do that."))
 		holding.forceMove(src)
@@ -520,9 +518,6 @@ BLIND     // can't see anything
 			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
 			verbs |= /obj/item/clothing/shoes/proc/draw_knife
 			update_icon()
-			if (ishuman(user))
-				var/mob/living/carbon/human/depleted = user
-				depleted.regen_slickness(-1)
 	else
 		return ..()
 
@@ -590,6 +585,8 @@ BLIND     // can't see anything
 	style = STYLE_LOW
 	valid_accessory_slots = list("armor","armband","decor")
 	restricted_accessory_slots = list("armor","armband")
+	maxHealth = 300
+	health = 300
 
 /obj/item/clothing/suit/Initialize(mapload, ...)
 	.=..()
@@ -638,17 +635,17 @@ BLIND     // can't see anything
 	..()
 	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
 
-/obj/item/clothing/under/examine(mob/user)
-	..(user)
-	switch(src.sensor_mode)
+/obj/item/clothing/under/examine(mob/user, extra_description = "")
+	switch(sensor_mode)
 		if(0)
-			to_chat(user, "Its sensors appear to be disabled.")
+			extra_description += "Its sensors appear to be disabled."
 		if(1)
-			to_chat(user, "Its binary life sensors appear to be enabled.")
+			extra_description += "Its binary life sensors appear to be enabled."
 		if(2)
-			to_chat(user, "Its vital tracker appears to be enabled.")
+			extra_description += "Its vital tracker appears to be enabled."
 		if(3)
-			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
+			extra_description += "Its vital tracker and tracking beacon appear to be enabled."
+	..(user, extra_description)
 
 /obj/item/clothing/under/proc/set_sensors(mob/M)
 	if(has_sensor >= 2)

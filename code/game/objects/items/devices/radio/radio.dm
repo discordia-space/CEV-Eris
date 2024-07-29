@@ -51,6 +51,7 @@ var/global/list/default_medbay_channels = list(
 	var/subspace_transmission = 0
 	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
 	var/merc = FALSE  //Holder to see if it's a mercenary encrypted radio
+	var/pirate = FALSE  //Holder to see if it's a pirate encrypted radio
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -69,7 +70,6 @@ var/global/list/default_medbay_channels = list(
 	internal_channels = default_internal_channels.Copy()
 	if(syndie)
 		internal_channels += unique_internal_channels.Copy()
-	add_hearing()
 
 /obj/item/device/radio/Destroy()
 	remove_hearing()
@@ -80,10 +80,12 @@ var/global/list/default_medbay_channels = list(
 
 	return ..()
 
+/obj/item/device/radio/LateInitialize()
+	. = ..()
+	add_hearing()
 
 /obj/item/device/radio/Initialize()
 	. = ..()
-
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
 	set_frequency(frequency)
@@ -514,7 +516,7 @@ var/global/list/default_medbay_channels = list(
 			return -1
 
 	if(freq in ANTAG_FREQS)
-		if(!syndie && !merc)//Checks to see if it's allowed on that frequency, based on the encryption keys
+		if(!syndie && !merc && !pirate)//Checks to see if it's allowed on that frequency, based on the encryption keys
 			return -1
 
 	var/can_recieve = (freq == frequency)
@@ -537,14 +539,10 @@ var/global/list/default_medbay_channels = list(
 		return get_mobs_or_objects_in_view(canhear_range, src)
 
 
-/obj/item/device/radio/examine(mob/user)
-	. = ..()
-	if ((in_range(src, user) || loc == user))
-		if (b_stat)
-			user.show_message(SPAN_NOTICE("\The [src] can be attached and modified!"))
-		else
-			user.show_message(SPAN_NOTICE("\The [src] can not be modified or attached!"))
-	return
+/obj/item/device/radio/examine(mob/user, extra_description = "")
+	if((in_range(src, user) || loc == user))
+		extra_description += SPAN_NOTICE("\The [src] can [b_stat ? "" : "not "]be attached and modified!")
+	..(user, extra_description)
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()

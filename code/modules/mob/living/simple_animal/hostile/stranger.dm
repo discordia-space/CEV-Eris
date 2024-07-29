@@ -133,8 +133,8 @@
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
-		list(mode_name="XhddhrdJkJ", mode_desc="uDsfMdPQkm", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, move_delay=null, charge_cost=9, icon="destroy", projectile_color = "#FFFFFF"),
-		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF")
+		list(mode_name="XhddhrdJkJ", mode_desc="uDsfMdPQkm", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, charge_cost=9, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF")
 	)
 
 /obj/item/gun/energy/plasma/stranger/update_icon(ignore_inhands)
@@ -160,19 +160,19 @@
 		wielded_item_state = "_doble" + "-[item_modifystate]"
 	update_wear_icon()
 
-/obj/item/gun/energy/plasma/stranger/examine(user, distance)
-	. = ..()
+/obj/item/gun/energy/plasma/stranger/examine(mob/user, extra_description = "")
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			to_chat(user, SPAN_NOTICE("It's fading out."))
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			to_chat(user, SPAN_NOTICE("It's occasionally pulsing with energy."))
-	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		to_chat(user, SPAN_NOTICE("It glows with an inner radiance."))
-	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		to_chat(user, SPAN_NOTICE("The energy surrounding it is overwhelming to the point of feeling warm in your hands."))
 
+	if(my_area.bluespace_entropy < (my_area.bluespace_hazard_threshold * 0.3))
+		extra_description += SPAN_NOTICE("\nIt's fading out.")
+	else
+		extra_description += SPAN_NOTICE("\nIt's occasionally pulsing with energy.")
+
+	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
+		extra_description += SPAN_NOTICE("\nIt glows with an inner radiance.")
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
+		extra_description += SPAN_NOTICE("\nThe energy surrounding it is overwhelming to the point of feeling warm in your hands.")
+	..(user, extra_description)
 
 
 /obj/item/gun/energy/plasma/stranger/proc/chaos()

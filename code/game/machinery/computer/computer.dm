@@ -33,27 +33,15 @@
 	if(prob(20/severity)) set_broken()
 	..()
 
-
-/obj/machinery/computer/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(25))
-				qdel(src)
-				return
-			if (prob(50))
-				for(var/x in verbs)
-					verbs -= x
-				set_broken()
-		if(3)
-			if (prob(25))
-				for(var/x in verbs)
-					verbs -= x
-				set_broken()
-		else
-	return
+/obj/machinery/computer/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	if(amount > maxHealth * 0.33)
+		for(var/x in verbs)
+			verbs -= x
+		set_broken()
+	return 0
 
 /obj/machinery/computer/bullet_act(var/obj/item/projectile/Proj)
 	if(prob(Proj.get_structure_damage()))

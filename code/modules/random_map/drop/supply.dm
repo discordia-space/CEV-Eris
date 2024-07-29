@@ -3,8 +3,8 @@
 	limit_x = 5
 	limit_y = 5
 
-	placement_explosion_light = 7
-	placement_explosion_flash = 5
+	explosion_power = 300
+	explosion_falloff = 30
 
 // UNLIKE THE DROP POD, this map deals ENTIRELY with strings and types.
 // Drop type is a string representing a mode rather than an atom or path.
@@ -38,8 +38,6 @@
 	else
 		error("Unhandled drop type: [drop_type]")
 
-
-ADMIN_VERB_ADD(/datum/admins/proc/call_supply_drop, R_FUN, FALSE)
 /datum/admins/proc/call_supply_drop()
 	set category = "Fun"
 	set desc = "Call an immediate supply drop on your location."

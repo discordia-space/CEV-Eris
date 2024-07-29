@@ -8,7 +8,7 @@
 	if(owner && istype(owner))
 		owner.hardware = src
 		if(driver)
-			owner.verbs += driver
+			add_verb(owner, driver)
 
 /datum/malf_hardware/proc/get_examine_desc()
 	return "It has some sort of hardware attached to its core"
@@ -61,7 +61,7 @@
 /datum/malf_hardware/strong_turrets/install()
 	..()
 	for(var/obj/machinery/porta_turret/T in GLOB.machines)
-		T.maxhealth = round(initial(T.maxhealth) * 1.4)
+		T.maxHealth = round(initial(T.maxHealth) * 1.4)
 		T.shot_delay = round(initial(T.shot_delay) / 2)
 		T.auto_repair = 1
 		T.active_power_usage = round(initial(T.active_power_usage) * 5)

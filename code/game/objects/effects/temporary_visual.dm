@@ -24,8 +24,8 @@
 /obj/effect/temp_visual/singularity_pull()
 	return
 
-/obj/effect/temp_visual/ex_act()
-	return
+/obj/effect/temp_visual/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 /obj/effect/temp_visual/dir_setting
 	randomdir = FALSE

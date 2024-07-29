@@ -19,8 +19,8 @@ There are important things regarding this file:
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
-	style_damage = 20
 	recoil = 3
+	matter = list(MATERIAL_STEEL = 0.05)
 
 /obj/item/projectile/bullet/pistol/hv
 	armor_divisor = 1.5
@@ -32,6 +32,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
+	matter = list(MATERIAL_STEEL = 0.01)
 
 /obj/item/projectile/bullet/pistol/rubber
 	icon_state = "rubber"
@@ -40,6 +41,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	wounding_mult = WOUNDING_SMALL
+	matter = list(MATERIAL_PLASTIC = 0.05)
 
 /obj/item/projectile/bullet/pistol/scrap
 	armor_divisor = 0.8
@@ -57,6 +59,7 @@ There are important things regarding this file:
 	can_ricochet = TRUE
 	recoil = 3
 	wounding_mult = WOUNDING_INTERMEDIATE
+	matter = list(MATERIAL_STEEL = 0.1)
 
 /obj/item/projectile/bullet/srifle/nomuzzle
 	muzzle_type = null
@@ -67,6 +70,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
+	matter = list(MATERIAL_STEEL = 0.02)
 
 /obj/item/projectile/bullet/srifle/hv
 	armor_divisor = 2
@@ -79,6 +83,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	wounding_mult = WOUNDING_SMALL
+	matter = list(MATERIAL_PLASTIC = 0.1)
 
 /obj/item/projectile/bullet/srifle/scrap
 	armor_divisor = 1.2
@@ -94,6 +99,7 @@ There are important things regarding this file:
 	can_ricochet = FALSE //to reduce collateral damage and FF, since IH use it in their primary firearm
 	recoil = 3.5
 	step_delay = 0.9 //intermediate between .20 and .30, but easy to use
+	matter = list(MATERIAL_STEEL = 0.2) // as the casing costs nothing, the bullet costs twice as much.
 
 /obj/item/projectile/bullet/clrifle/practice
 	name = "practice bullet"
@@ -101,6 +107,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
+	matter = list(MATERIAL_STEEL = 0.02)
 
 /obj/item/projectile/bullet/clrifle/hv
 	armor_divisor = 2
@@ -115,6 +122,7 @@ There are important things regarding this file:
 	sharp = FALSE
 	can_ricochet = TRUE
 	wounding_mult = WOUNDING_SMALL
+	matter = list(MATERIAL_PLASTIC = 0.2)
 
 /obj/item/projectile/bullet/clrifle/scrap
 	armor_divisor = 1.2
@@ -130,6 +138,7 @@ There are important things regarding this file:
 	can_ricochet = TRUE
 	recoil = 4.5
 	wounding_mult = WOUNDING_WIDE
+	matter = list(MATERIAL_STEEL = 0.15)
 
 /obj/item/projectile/bullet/lrifle/practice
 	name = "practice bullet"
@@ -137,6 +146,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
+	matter = list(MATERIAL_STEEL = 0.03)
 
 /obj/item/projectile/bullet/lrifle/hv
 	armor_divisor = 2
@@ -149,6 +159,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	wounding_mult = WOUNDING_NORMAL
+	matter = list(MATERIAL_PLASTIC = 0.15)
 
 /obj/item/projectile/bullet/lrifle/scrap
 	armor_divisor = 1.2
@@ -161,9 +172,9 @@ There are important things regarding this file:
 	armor_divisor = 1
 	can_ricochet = TRUE
 	penetrating = 2
-	style_damage = 40
 	recoil = 6
 	wounding_mult = WOUNDING_WIDE
+	matter = list(MATERIAL_STEEL = 0.1)
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
@@ -171,6 +182,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	can_ricochet = FALSE
+	matter = list(MATERIAL_STEEL = 0.02)
 
 /obj/item/projectile/bullet/magnum/hv
 	armor_divisor = 1.5
@@ -183,6 +195,7 @@ There are important things regarding this file:
 	embed = FALSE
 	sharp = FALSE
 	wounding_mult = WOUNDING_NORMAL
+	matter = list(MATERIAL_PLASTIC = 0.1)
 
 /obj/item/projectile/bullet/magnum/scrap
 	armor_divisor = 0.8
@@ -195,22 +208,26 @@ There are important things regarding this file:
 	armor_divisor = 3
 	penetrating = 2
 	step_delay = 0.8
-	style_damage = 70
 	recoil = 15 // Good luck shooting these from a revolver
 	wounding_mult = WOUNDING_EXTREME
+	matter = list(MATERIAL_PLASTEEL = 1)
 
 /obj/item/projectile/bullet/antim/emp
 	damage_types = list(BRUTE = 16)
 	armor_divisor = 2
+	matter = list(MATERIAL_STEEL = 1, MATERIAL_IRON = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/projectile/bullet/antim/emp/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	empulse(target, 0, 0)
+	matter [MATERIAL_IRON] = 0
+	matter [MATERIAL_URANIUM] = 0
 
 /obj/item/projectile/bullet/antim/uranium
 	damage_types = list(BRUTE = 16)
 	armor_divisor = 5
 	irradiate = 200
+	matter = list(MATERIAL_PLASTEEL = 1, MATERIAL_URANIUM = 1)
 
 /obj/item/projectile/bullet/antim/breach
 	damage_types = list(BRUTE = 16, HALLOSS = 20)
@@ -218,6 +235,7 @@ There are important things regarding this file:
 	penetrating = -5
 	nocap_structures = TRUE
 	kill_count = 30
+	matter = list(MATERIAL_PLASTEEL = 2)
 
 /obj/item/projectile/bullet/antim/breach/proc/get_tiles_passed(var/distance)
 	var/tiles_passed = distance
@@ -237,6 +255,7 @@ There are important things regarding this file:
 
 
 /obj/item/projectile/bullet/antim/scrap
+	matter = list(MATERIAL_STEEL = 1) // cheap bullets don't contain plasteel
 	armor_divisor = 2
 	recoil = 20
 
@@ -247,10 +266,10 @@ There are important things regarding this file:
 	damage_types = list(BRUTE = 25)
 	armor_divisor = 1
 	knockback = 1
-	step_delay = 1.1
-	style_damage = 25
+	step_delay = 1
 	recoil = 8
 	wounding_mult = WOUNDING_EXTREME
+	matter = list(MATERIAL_STEEL = 0.5)
 
 /obj/item/projectile/bullet/shotgun/scrap
 	armor_divisor = 0.8
@@ -280,8 +299,10 @@ There are important things regarding this file:
 	knockback = 0
 
 	var/fire_stacks = 4
+	matter = list(MATERIAL_STEEL = 0.5, MATERIAL_PLASMA = 0.5)
 
 /obj/item/projectile/bullet/shotgun/incendiary/on_hit(atom/target, blocked = FALSE)
+	matter[MATERIAL_PLASMA] = 0
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
@@ -300,6 +321,7 @@ There are important things regarding this file:
 	spread_step = 10
 	pellet_to_knockback_ratio = 2
 	recoil = 5
+	matter = list(MATERIAL_STEEL = 0.6)
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
@@ -331,8 +353,8 @@ There are important things regarding this file:
 	embed = FALSE
 	can_ricochet = TRUE
 	recoil = 3
-	style_damage = 40
 	wounding_mult = WOUNDING_EXTREME
+	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/projectile/bullet/bolt/on_hit(mob/living/target, def_zone = BP_CHEST)
     if(istype(target))

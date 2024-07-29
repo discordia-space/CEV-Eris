@@ -1,17 +1,9 @@
 // Uniform slot
 /datum/gear/uniform
-	display_name = "blazer, blue"
-	path = /obj/item/clothing/under/blazer
-	slot = slot_w_uniform
-	sort_category = "Uniforms and Casual Dress"
-
-/datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
-
-/datum/gear/uniform/crewman
-	display_name = "jumpsuit, crewman"
-	path = /obj/item/clothing/under/rank/crewman
+	slot = slot_w_uniform
+	sort_category = "Uniforms and Casual Dress"
 
 /datum/gear/uniform/jumpsuit/rainbow
 	display_name = "jumpsuit, rainbow"
@@ -19,31 +11,21 @@
 
 /datum/gear/uniform/jumpsuit/color_presets
 	display_name = "jumpsuit, color presets"
-	path = /obj/item/clothing/under/aqua
-	cost = 2
+	path = /obj/item/clothing/under/color/grey
+	cost = 1
 
 /datum/gear/uniform/jumpsuit/color_presets/New()
 	..()
 	var/jumpsuit = list(
 		"Black"			=	/obj/item/clothing/under/color/black,
 		"White"			=	/obj/item/clothing/under/color/white,
-		"Blue"			=	/obj/item/clothing/under/color/blue,
-		"Green"			=	/obj/item/clothing/under/color/green,
 		"Grey"			=	/obj/item/clothing/under/color/grey,
-		"Pink"			=	/obj/item/clothing/under/color/pink,
-		"Yellow"		=	/obj/item/clothing/under/color/yellow,
-		"Light-Blue"	=	/obj/item/clothing/under/lightblue,
+		"Orange"		=	/obj/item/clothing/under/color/orange,
+		"Blue"			=	/obj/item/clothing/under/color/blue,
+		"Yellow"		= 	/obj/item/clothing/under/color/yellow,
 		"Red"			=	/obj/item/clothing/under/color/red,
-		"Aqua"			=	/obj/item/clothing/under/aqua,
-		"Purple"		=	/obj/item/clothing/under/purple,
-		"Light-Purple"	=	/obj/item/clothing/under/lightpurple,
-		"Light-Green"	=	/obj/item/clothing/under/lightgreen,
-		"Light-Brown"	=	/obj/item/clothing/under/lightbrown,
-		"Brown"			=	/obj/item/clothing/under/brown,
-		"Yellow-Green"	=	/obj/item/clothing/under/yellowgreen,
-		"Dark-Blue"		=	/obj/item/clothing/under/darkblue,
-		"Light-Red"		=	/obj/item/clothing/under/lightred,
-		"Dark-Red"		=	/obj/item/clothing/under/darkred,
+		"Janitor"		=	/obj/item/clothing/under/rank/janitor,
+		"Crewman"		= 	/obj/item/clothing/under/rank/crewman
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jumpsuit)
 
@@ -51,6 +33,14 @@
 	display_name = "jumpsuit, colorable"
 	flags = GEAR_HAS_COLOR_SELECTION
 	path = /obj/item/clothing/under/color/white
+
+/datum/gear/uniform/hydroponics
+	display_name = "hydroponist uniform"
+	path = /obj/item/clothing/under/rank/hydroponics
+
+/datum/gear/uniform/virology
+	display_name = "virologist uniform"
+	path = /obj/item/clothing/under/rank/virologist
 
 /datum/gear/uniform/leisure
 	display_name = "leisure suits"
@@ -61,7 +51,9 @@
 	var/leisure = list(
 		"Brown Jacket" 			=	 /obj/item/clothing/under/leisure,
 		"White Blazer" 			=	 /obj/item/clothing/under/leisure/white,
-		"Patterned Pullover" 	=	 /obj/item/clothing/under/leisure/pullover
+		"Patterned Pullover" 	=	 /obj/item/clothing/under/leisure/pullover,
+		"Business Casual, blue"	=	 /obj/item/clothing/under/leisure/casual/blue,
+		"Business Casual, red"	=	 /obj/item/clothing/under/leisure/joe
 	)
 	gear_tweaks += new /datum/gear_tweak/path(leisure)
 
@@ -166,7 +158,7 @@
 
 /datum/gear/uniform/punk
 	display_name = "punk outfit, selection"
-	path = /obj/item/clothing/under/genericb
+	path = /obj/item/clothing/under/johnny
 
 /datum/gear/uniform/punk/New()
 	..()
@@ -192,6 +184,7 @@
 		"ash" 			=	 /obj/item/clothing/under/grey,
 		"charcoal" 		=	 /obj/item/clothing/under/black,
 		"black formal" 	=	 /obj/item/clothing/under/tuxedo,
+		"tailcoat"		=	 /obj/item/clothing/under/blazer,
 		"tuxedo" 		=	 /obj/item/clothing/under/assistantformal
 	)
 	gear_tweaks += new /datum/gear_tweak/path(suits)
@@ -204,6 +197,10 @@
 /datum/gear/uniform/camopants
 	display_name = "turtleneck and camo pants"
 	path = /obj/item/clothing/under/camopants
+
+/datum/gear/uniform/syndicate
+	display_name = "Syndicate turtleneck"
+	path = /obj/item/clothing/under/syndicate
 
 /*/datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"

@@ -55,7 +55,7 @@
 					switch(to_remove)
 						if("cell")
 							if(cell)
-								to_chat(user, "You detatch \the [cell] from \the [src]'s battery mount.")
+								to_chat(user, "You detach \the [cell] from \the [src]'s battery mount.")
 								for(var/obj/item/rig_module/module in installed_modules)
 									module.deactivate()
 								user.put_in_hands(cell)
@@ -240,3 +240,14 @@
 		subverted = 1
 		to_chat(user, SPAN_DANGER("You short out the access protocol for the suit."))
 		return 1
+
+/obj/item/rig/proc/block_explosion(mob/user, power) // Returns damage to block
+	if(!active || !ablative_armor)
+		return FALSE
+
+	var/ablative_stack = max((ablative_armor * 8) - power, 0) // Used to determine damage to RIG
+	power = ablative_armor * 8
+
+	ablative_armor -= max(-(ablative_stack - ablative_armor * 8) / ablation, 0) // Damage blocked (not halloss) reduces ablative armor
+
+	return power

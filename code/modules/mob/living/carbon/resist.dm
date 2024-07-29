@@ -14,6 +14,17 @@
 		escape_inventory(src.loc)
 		return
 
+	if(istype(loc, /obj/item/mech_equipment/forklifting_system))
+		var/obj/item/mech_equipment/forklifting_system/fork = loc
+		fork.ejectLifting(get_turf(fork))
+		return
+
+	if(istype(loc, /mob/living/exosuit))
+		var/mob/living/exosuit/mech = loc
+		if(src in mech.pilots)
+			mech.eject(src, FALSE)
+			return
+
 	//unbuckling yourself
 	if(buckled)
 		if (buckled.resist_buckle(src))
@@ -83,11 +94,6 @@
 			SPAN_DANGER("[src] rolls on the floor, trying to put themselves out!"),
 			SPAN_NOTICE("You stop, drop, and roll!")
 			)
-		if (ishuman(src))
-			var/mob/living/carbon/human/depleted = src
-			depleted.regen_slickness(-1)
-			depleted.confidence = FALSE
-			depleted.dodge_time = get_game_time()
 		sleep(30)
 		if(fire_stacks <= 0)
 			visible_message(

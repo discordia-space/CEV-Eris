@@ -268,7 +268,7 @@
 	name = "comet ice"
 	icon_state = "comet_tail"
 	hits = 1
-	hitpwr = 3
+	explosion_power = 3
 	dropamt = 1
 
 /datum/event/meteor_wave/overmap/space_comet/get_meteors()
@@ -313,7 +313,7 @@
 	density = TRUE
 	anchored = TRUE
 	var/hits = 4
-	var/hitpwr = 2 //Level of ex_act to be called on hit.
+	var/explosion_power = 2 //Level of ex_act to be called on hit.
 	var/dest
 	pass_flags = PASSTABLE
 	var/heavy = 0
@@ -326,7 +326,7 @@
 	var/turf/hit_location //used for reporting hit locations. The meteor may be deleted and its location nulled by report time
 
 /obj/effect/meteor/proc/get_shield_damage()
-	return max(((max(hits, 2)) * (heavy + 1) * rand(100, 140)) / hitpwr , 0)
+	return max(((max(hits, 2)) * (heavy + 1) * rand(100, 140)) / explosion_power , 0)
 
 /obj/effect/meteor/New()
 	..()
@@ -365,11 +365,11 @@
 	//first bust whatever is in the turf
 	for(var/atom/A in T)
 		if(A != src && !A.CanPass(src, src.loc, 0.5, 0)) //only ram stuff that would actually block us
-			A.ex_act(hitpwr)
+			A.explosion_act(explosion_power, null)
 
 	//then, ram the turf if it still exists
 	if(T && !T.CanPass(src, src.loc, 0.5, 0))
-		T.ex_act(hitpwr)
+		T.explosion_act(explosion_power, null)
 
 //process getting 'hit' by colliding with a dense object
 //or randomly when ramming turfs
@@ -380,8 +380,8 @@
 		meteor_effect()
 		qdel(src)
 
-/obj/effect/meteor/ex_act()
-	return
+/obj/effect/meteor/explosion_act(target_power, explosion_handler/handler)
+	return 0
 
 /obj/effect/meteor/attackby(obj/item/W as obj, mob/user as mob, params)
 	var/tool_type = W.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src)
@@ -425,7 +425,7 @@
 	icon_state = "dust"
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
-	hitpwr = 3
+	explosion_power = 3
 	dropamt = 1
 	meteordrop = /obj/item/ore/glass
 
@@ -448,7 +448,7 @@
 
 /obj/effect/meteor/medium/meteor_effect()
 	..()
-	explosion(src.loc, 0, 1, 2, 3, 0)
+	explosion(get_turf(src), 200, 50)
 
 //Large-sized
 /obj/effect/meteor/big
@@ -460,7 +460,7 @@
 
 /obj/effect/meteor/big/meteor_effect()
 	..()
-	explosion(src.loc, 1, 2, 3, 4, 0)
+	explosion(get_turf(src), 1000, 200)
 
 //Flaming meteor
 /obj/effect/meteor/flaming
@@ -472,7 +472,7 @@
 
 /obj/effect/meteor/flaming/meteor_effect()
 	..()
-	explosion(src.loc, 1, 2, 3, 4, 0, 0, 5)
+	explosion(get_turf(src), 500, 50)
 
 //Radiation meteor
 /obj/effect/meteor/irradiated
@@ -483,7 +483,7 @@
 
 /obj/effect/meteor/irradiated/meteor_effect()
 	..()
-	explosion(src.loc, 0, 0, 4, 3, 0)
+	explosion(get_turf(src), 100, 20)
 	new /obj/effect/decal/cleanable/greenglow(get_turf(src))
 	//SSradiation.radiate(src, 50) //TODO: Port bay radiation system
 
@@ -521,13 +521,13 @@
 	icon_state = "flaming"
 	desc = "Your life briefly passes before your eyes the moment you lay them on this monstrosity."
 	hits = 10
-	hitpwr = 1
+	explosion_power = 1
 	heavy = 1
 	meteordrop = /obj/item/ore/diamond	// Probably means why it penetrates the hull so easily before exploding.
 
 /obj/effect/meteor/tunguska/meteor_effect()
 	..()
-	explosion(src.loc, 3, 6, 9, 20, 0)
+	explosion(get_turf(src), 2000, 100)
 
 // This is the final solution against shields - a single impact can bring down most shield generators.
 /obj/effect/meteor/supermatter
@@ -538,7 +538,7 @@
 
 /obj/effect/meteor/supermatter/meteor_effect()
 	..()
-	explosion(src.loc, 1, 2, 3, 4, 0)
+	explosion(get_turf(src), 1000, 200)
 	for(var/obj/machinery/power/apc/A in range(rand(12, 20), src))
 		A.energy_fail(round(10 * rand(8, 12)))
 

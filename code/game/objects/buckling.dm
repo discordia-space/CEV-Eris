@@ -1,12 +1,3 @@
-/atom
-	var/can_buckle = FALSE
-	var/buckle_movable = 0
-	var/buckle_dir = 0
-	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
-	var/buckle_pixel_shift = "x=0;y=0" //where the buckled mob should be pixel shifted to, or null for no pixel shift control
-	var/buckle_require_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
-	var/mob/living/buckled_mob = null
-
 /atom/attack_hand(mob/living/user)
 	. = ..()
 	if(can_buckle && buckled_mob)
@@ -16,11 +7,6 @@
 	. = ..()
 	if(can_buckle && istype(M))
 		user_buckle_mob(M, user)
-
-/atom/Destroy()
-	unbuckle_mob()
-	return ..()
-
 
 /atom/proc/buckle_mob(mob/living/M)
 	if(buckled_mob) //unless buckled_mob becomes a list this can cause problems

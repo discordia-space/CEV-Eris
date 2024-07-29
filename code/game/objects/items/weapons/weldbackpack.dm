@@ -35,17 +35,10 @@
 		to_chat(user, SPAN_WARNING("The pack is already full!"))
 		return
 
-/obj/item/weldpack/examine(mob/user)
-	..(user)
-	to_chat(user, text("\icon[] [] units of fuel left!", src, src.reagents.total_volume))
-	return
+/obj/item/weldpack/examine(mob/user, extra_description = "")
+	extra_description += "\icon[src] [reagents.total_volume] units of fuel left!"
+	..(user, extra_description)
 
 /obj/item/weldpack/proc/explode()
-	if (reagents.total_volume > 150)
-		explosion(src.loc,1,2,4)
-	else if (reagents.total_volume > 50)
-		explosion(src.loc,0,1,3)
-	else if (reagents.total_volume > 0)
-		explosion(src.loc,-1,1,2)
-	if(src)
-		qdel(src)
+	explosion(get_turf(src), reagents.total_volume/2, 50)
+	qdel(src)

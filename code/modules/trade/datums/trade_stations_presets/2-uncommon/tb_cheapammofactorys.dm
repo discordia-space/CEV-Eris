@@ -76,7 +76,7 @@
 			/obj/item/ammo_magazine/ammobox/lrifle_small/rubber = custom_good_name("ammunition packet (.30 Rifle rubber)")
 		),
 		"Shotgun shells" = list(
-			/obj/item/ammo_magazine/ammobox/shotgun = custom_good_name("ammunition box (.50 shells)"),
+			/obj/item/ammo_magazine/ammobox/shotgun = custom_good_name("ammunition box (.50 slug)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/buckshot = custom_good_name("ammunition box (.50 pellet)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/beanbag = custom_good_name("ammunition box (.50 beanbag)"),
 			/obj/item/ammo_magazine/ammobox/shotgun/blanks = custom_good_name("ammunition box (.50 blank)"),
@@ -93,10 +93,10 @@
 		/obj/item/gun/projectile/automatic/modular/wintermute = offer_data("Wintermute frame", 2000, 1),
 		/obj/item/part/gun/frame/kadmin = offer_data("Kadmin frame", 2000, 1),
 		/obj/item/part/gun/frame/bull = offer_data("Bull frame", 2000, 1),
-		/obj/item/part/gun/frame/gladstone = offer_data("Gladstone frame", 2000, 1),
+		/obj/item/part/gun/frame/gladstone = offer_data("Gladstone frame", 1000, 1),
 		/obj/item/part/gun/frame/tk = offer_data("Takeshi frame", 2000, 1),
 		/obj/item/part/gun/frame/lamia = offer_data("Lamia frame", 2000, 1),
-		/obj/item/part/gun/frame/molly = offer_data("Molly frame", 2000, 1),
+		/obj/item/part/gun/frame/molly = offer_data("Molly frame", 500, 1),
 		/obj/item/part/gun/frame/consul = offer_data("Consul frame", 2000, 1),
 		/obj/item/part/gun/frame/deckard = offer_data("Deckard frame", 2000, 1),
 		/obj/item/part/gun/frame/mateba = offer_data("Mateba frame", 2000, 1)

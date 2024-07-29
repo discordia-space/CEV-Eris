@@ -1,4 +1,4 @@
-/obj/item/organ/internal/brain
+/obj/item/organ/internal/vital/brain
 	name = "brain"
 	desc = "A piece of juicy meat found in a person's head."
 	organ_efficiency = list(BP_BRAIN = 100)
@@ -22,12 +22,15 @@
 	health = 50		// Must be depleted before normal wounds can be applied
 	var/mob/living/carbon/brain/brainmob = null
 	var/timer_id
+	max_damage = IORGAN_VITAL_HEALTH + 2 // We want this to be very tanky
+	min_bruised_damage = IORGAN_VITAL_BRUISE
+	min_broken_damage = IORGAN_VITAL_BREAK
 
-/obj/item/organ/internal/brain/New()
+/obj/item/organ/internal/vital/brain/New()
 	..()
 	timer_id = addtimer(CALLBACK(src, PROC_REF(clear_hud)), 5, TIMER_STOPPABLE)
 
-/obj/item/organ/internal/brain/Destroy()
+/obj/item/organ/internal/vital/brain/Destroy()
 	if(timer_id)
 		deltimer(timer_id)
 	if(brainmob)
@@ -35,7 +38,7 @@
 		brainmob = null
 	. = ..()
 
-/obj/item/organ/internal/brain/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
+/obj/item/organ/internal/vital/brain/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)
 	if(!damage_type || status & ORGAN_DEAD)
 		return
 
@@ -46,8 +49,54 @@
 		health = 0
 		..(wound_damage, damage_type, wounding_multiplier, sharp, edge, silent)
 
+/obj/item/organ/internal/vital/brain/get_possible_wounds(damage_type, sharp, edge)
+	var/list/possible_wounds = list()
+
+	// Determine possible wounds based on nature and damage type
+	var/is_robotic = BP_IS_ROBOTIC(src)
+	var/is_organic = BP_IS_ORGANIC(src) || BP_IS_ASSISTED(src)
+
+	switch(damage_type)
+		if(BRUTE)
+			if(!edge)
+				if(sharp) // dont even fucking ask whats the difference between this and eyes get_possible_wounds. I dont know, I wont tell you. 
+					if(is_organic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_sharp))
+					if(is_robotic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_sharp))
+				else
+					if(is_organic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_blunt))
+					if(is_robotic)
+						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_blunt))
+			else
+				if(is_organic)
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_edge))
+				if(is_robotic)
+					LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_edge))
+		if(BURN)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_burn))
+			if(is_robotic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/brain_emp_burn))
+		if(TOX)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/poisoning))
+			//if(is_robotic)
+			//	LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/poisoning))
+		if(CLONE)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/radiation))
+		if(PSY)
+			if(is_organic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/sanity))
+			if(is_robotic)
+				LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/robotic/sanity))
+
+	return possible_wounds
+
 /// Brain blood oxygenation is handled via oxyloss
-/obj/item/organ/internal/brain/handle_blood()
+/obj/item/organ/internal/vital/brain/handle_blood()
 	if(BP_IS_ROBOTIC(src) || !owner)
 		return
 	if(!blood_req)
@@ -55,12 +104,12 @@
 
 	current_blood = max_blood_storage
 
-/obj/item/organ/internal/brain/proc/clear_hud()
+/obj/item/organ/internal/vital/brain/proc/clear_hud()
 	if(brainmob && brainmob.client)
 		brainmob.client.screen.len = null //clear the hud
 	timer_id = null
 
-/obj/item/organ/internal/brain/proc/transfer_identity(mob/living/carbon/H)
+/obj/item/organ/internal/vital/brain/proc/transfer_identity(mob/living/carbon/H)
 	name = "\the [H]'s [initial(src.name)]"
 	brainmob = new(src)
 	brainmob.name = H.real_name
@@ -75,20 +124,20 @@
 	to_chat(brainmob, SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)]."))
 	callHook("debrain", list(brainmob))
 
-/obj/item/organ/internal/brain/examine(mob/user) // -- TLE
-	..(user)
+/obj/item/organ/internal/vital/brain/examine(mob/user, extra_description = "")
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		to_chat(user, "You can feel the small spark of life still left in this one.")
+		extra_description += "\nYou can feel the small spark of life still left in this one."
 	else
-		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
+		extra_description += "\nThis one seems particularly lifeless. Perhaps it will regain some of its luster later.."
+	..(user, extra_description)
 
-/obj/item/organ/internal/brain/removed_mob(mob/living/user)
+/obj/item/organ/internal/vital/brain/removed_mob(mob/living/user)
 	name = "[owner.real_name]'s brain"
 
 	if(!(owner.status_flags & REBUILDING_ORGANS))
 		var/mob/living/simple_animal/borer/borer = owner.get_brain_worms()
 		if(borer)
-			borer.detatch() //Should remove borer if the brain is removed - RR
+			borer.detach() //Should remove borer if the brain is removed - RR
 
 		var/obj/item/organ/internal/carrion/core/C = owner.random_organ_by_process(BP_SPCORE)
 		if(C)
@@ -100,7 +149,7 @@
 
 	..()
 
-/obj/item/organ/internal/brain/replaced_mob(mob/living/carbon/target)
+/obj/item/organ/internal/vital/brain/replaced_mob(mob/living/carbon/target)
 	..()
 	if(owner.key && !(owner.status_flags & REBUILDING_ORGANS))
 		owner.ghostize()
@@ -111,13 +160,13 @@
 		else
 			owner.key = brainmob.key
 
-/obj/item/organ/internal/brain/slime
+/obj/item/organ/internal/vital/brain/slime
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "green slime extract"
 
-/obj/item/organ/internal/brain/golem
+/obj/item/organ/internal/vital/brain/golem
 	name = "chem"
 	desc = "A tightly furled roll of paper, covered with indecipherable runes."
 	icon = 'icons/obj/wizard.dmi'

@@ -13,6 +13,7 @@
 		/datum/design/bioprinter/leather/holster/baton,
 		/datum/design/bioprinter/leather/holster/belt,
 		/datum/design/bioprinter/leather/holster/sheath,
+		/datum/design/bioprinter/leather/holster/accessory/scabbard,
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
@@ -74,6 +75,7 @@
 	license = 16
 	designs = list(
 		/datum/design/bioprinter/leather/holster/sheath = 0,
+		/datum/design/autolathe/nt/staff/nt_staff,
 		/datum/design/autolathe/nt/sword/nt_longsword,
 		/datum/design/autolathe/nt/shield/nt_shield,
 		/datum/design/autolathe/clothing/NTvoid = 2,
@@ -86,7 +88,9 @@
 	license = 12
 	designs = list(
 		/datum/design/autolathe/firstaid/nt,
-		/datum/design/autolathe/cruciform_upgrade/natures_blessing
+		/datum/design/autolathe/cruciform_upgrade/natures_blessing,
+		/datum/design/bioprinter/nt/spacehelmet/medicus,
+		/datum/design/bioprinter/nt/spacesuit/medicus
 	)
 
 // Plasma assault rifle
@@ -159,6 +163,7 @@
 	designs = list(
 		/datum/design/bioprinter/meat,
 		/datum/design/bioprinter/milk,
+		/datum/design/bioprinter/butter,
 		/datum/design/bioprinter/soap,
 
 		/datum/design/bioprinter/ez,
@@ -218,6 +223,17 @@
 		/datum/design/bioprinter/belt/medical/emt,
 
    		/datum/design/autolathe/device/headset_church
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/nt_ritual
+	disk_name = "NeoTheology Supplies - \"Ritualis Supplies\""
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/nt_clothes/ritual_robe,
+		/datum/design/bioprinter/candles
 	)
 
 // Basic melee

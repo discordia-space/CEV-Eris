@@ -1,18 +1,26 @@
 import { classes } from 'common/react';
 import { multiline } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, ColorBox, LabeledList, Section, Stack, Tabs } from '../components';
+import {
+  Box,
+  Button,
+  ColorBox,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
+} from '../components';
 import { Window } from '../layouts';
 
 const ROOT_CATEGORIES = ['Atmospherics', 'Disposals', 'Transit Tubes'];
 
 export const ICON_BY_CATEGORY_NAME = {
-  'Atmospherics': 'wrench',
-  'Disposals': 'trash-alt',
+  Atmospherics: 'wrench',
+  Disposals: 'trash-alt',
   'Transit Tubes': 'bus',
-  'Pipes': 'grip-lines',
+  Pipes: 'grip-lines',
   'Disposal Pipes': 'grip-lines',
-  'Devices': 'microchip',
+  Devices: 'microchip',
   'Heat Exchange': 'thermometer-half',
   'Station Equipment': 'microchip',
 };
@@ -96,7 +104,8 @@ const CategoryItem = (props, context) => {
           selected={rootCategoryIndex === i}
           icon={ICON_BY_CATEGORY_NAME[categoryName]}
           color="transparent"
-          onClick={() => act('category', { category: i })}>
+          onClick={() => act('category', { category: i })}
+        >
           {categoryName}
         </Button>
       ))}
@@ -161,7 +170,8 @@ const PreviewSelect = (props, context) => {
               dir: preview.dir,
               flipped: preview.flipped,
             })
-          }>
+          }
+        >
           <Box
             className={classes([
               'pipes32x32',
@@ -194,7 +204,7 @@ const PipeTypeSection = (props, context) => {
   const { categories = [] } = data;
   const [categoryName, setCategoryName] = useLocalState(
     context,
-    'categoryName'
+    'categoryName',
   );
   const shownCategory =
     categories.find((category) => category.cat_name === categoryName) ||
@@ -208,7 +218,8 @@ const PipeTypeSection = (props, context) => {
             key={category.cat_name}
             icon={ICON_BY_CATEGORY_NAME[category.cat_name]}
             selected={category.cat_name === shownCategory.cat_name}
-            onClick={() => setCategoryName(category.cat_name)}>
+            onClick={() => setCategoryName(category.cat_name)}
+          >
             {category.cat_name}
           </Tabs.Tab>
         ))}

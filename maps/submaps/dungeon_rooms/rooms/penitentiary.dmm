@@ -1,143 +1,142 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "d" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "e" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/crawler)
 "f" = (
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "g" = (
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "h" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "i" = (
 /obj/structure/table/onestar,
 /obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "j" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "k" = (
 /obj/structure/railing/grey,
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "l" = (
 /obj/structure/salvageable/os/computer{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "m" = (
 /obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "n" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "o" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "p" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "q" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "r" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "s" = (
 /obj/structure/sign/faction/one_star,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "t" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "u" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "v" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "y" = (
 /obj/structure/bed,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "z" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "B" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/door/window{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "C" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/wall/low/onestar,
 /area/crawler)
 "H" = (
 /obj/structure/table/onestar,
 /obj/item/handcuffs,
 /obj/item/gun/energy/retro,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "J" = (
 /obj/landmark/corpse/one_star/void,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "N" = (
 /obj/item/remains,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 
 (1,1,1) = {"

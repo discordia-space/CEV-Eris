@@ -21,14 +21,13 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	init_recoil = LMG_RECOIL(0.5)
+	init_recoil = LMG_RECOIL(1)
 	damage_multiplier = 1.3
 	penetration_multiplier = -0.1
 	twohanded = TRUE
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	slowdown_hold = 0.5
-	init_offset = 10 // Countered by bracing it
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 
 	init_firemodes = list(
@@ -123,9 +122,9 @@
 	icon_base = "tk"
 	icon_state = "tkclosed-empty"
 	item_state = "tkclosedmag"
-	init_recoil = LMG_RECOIL(0.3)
+	init_recoil = LMG_RECOIL(1)
 	damage_multiplier = 1.2
-	penetration_multiplier = 0.3
+	penetration_multiplier = -0.1
 
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/part/gun/frame/tk = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/machinegun = 1, /obj/item/part/gun/modular/barrel/clrifle = 1)

@@ -373,9 +373,10 @@
 
 		return
 
-/obj/item/toy/waterflower/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, text("\icon[] [] units of water left!", src, src.reagents.total_volume))
+/obj/item/toy/waterflower/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "\icon[src] [reagents.total_volume] units of water left!"
+	..(user, extra_description)
 
 /*
  * Bosun's whistle
@@ -647,7 +648,7 @@
 
 /obj/item/toy/plushie/fumo
 	name = "fumo"
-	desc = "A plushie of a....?."
+	desc = "A plushie of a....?"
 	icon_state = "fumoplushie_marisa"
 	spawn_blacklisted = TRUE
 
@@ -656,6 +657,9 @@
 
 /obj/item/toy/plushie/fumo/cirno
 	icon_state = "fumoplushie_cirno"
+
+/obj/item/toy/plushie/fumo/bocchi
+	icon_state = "fumoplushie_bocchi"
 
 //Toy cult sword
 /obj/item/toy/cultsword

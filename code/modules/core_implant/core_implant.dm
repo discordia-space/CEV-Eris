@@ -42,6 +42,7 @@
 	START_PROCESSING(SSobj, src)
 	add_hearing()
 
+
 /obj/item/implant/core_implant/deactivate()
 	if(!active)
 		return
@@ -64,7 +65,7 @@
 	for(var/r in known_rituals)
 		if(ispath(r,/datum/ritual/mind))
 			var/datum/ritual/mind/m = r
-			wearer.verbs |= initial(m.activator_verb)
+			add_verb(wearer, initial(m.activator_verb))
 
 /obj/item/implant/core_implant/proc/remove_ritual_verbs()
 	if(!wearer || !active)

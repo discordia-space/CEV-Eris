@@ -3,7 +3,7 @@
 	icon = 'icons/obj/doors/showcase.dmi'
 	icon_state = "closed"
 	health = 100
-	maxhealth = 100
+	maxHealth = 100
 	resistance = RESISTANCE_NONE
 	opacity = 0
 	layer = 4.2
@@ -26,9 +26,9 @@
 					return
 			else
 				if(user.a_intent == I_HELP)
-					if(health < maxhealth)
+					if(health < maxHealth)
 						if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-							health = maxhealth
+							health = maxHealth
 							update_icon()
 					return
 		else if(istype(I,/obj/item/stack/material/glass/reinforced))
@@ -39,7 +39,7 @@
 					to_chat(user, SPAN_NOTICE("You start to put the glass into [src]..."))
 					if(do_after(user, 10, src))
 						if (density && G.use(2))
-							health = maxhealth
+							health = maxHealth
 							stat &= ~BROKEN
 							have_glass = TRUE
 							update_icon()
@@ -80,8 +80,8 @@
 			icon_state += "_empty"
 		else if(stat&BROKEN)
 			icon_state += "-broken"
-		else if(health < maxhealth)
-			var/ratio = health / maxhealth
+		else if(health < maxHealth)
+			var/ratio = health / maxHealth
 			ratio = CEILING(ratio * 4, 1) * 25
 			overlays += "damage[ratio]"
 	else
@@ -99,7 +99,7 @@
 		flick("opening-broken", src)
 
 	else
-		var/ratio = health / maxhealth
+		var/ratio = health / maxHealth
 		ratio = CEILING(ratio * 4, 1) * 25
 		overlays.Cut()
 		flick("opening[ratio]", src)
@@ -124,7 +124,7 @@
 		icon_state = "closed-broken"
 
 	else
-		var/ratio = health / maxhealth
+		var/ratio = health / maxHealth
 		ratio = CEILING(ratio * 4, 1) * 25
 		flick("closing[ratio]", src)
 

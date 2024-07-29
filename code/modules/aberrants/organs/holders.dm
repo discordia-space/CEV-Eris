@@ -6,14 +6,19 @@
 	description_info = "A functionless organ with three slots for organ mods or organoids. Best used with an input, process, and output organoid to create a modular organ."
 	price_tag = 100
 	organ_efficiency = list()
-	specific_organ_size = 0.4
+	specific_organ_size = 0.2
 	origin_tech = list(TECH_BIO = 3)	// One level higher than regular organs
 	rarity_value = 60
 	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN
+	spawn_blacklisted = TRUE	// No point in having these spawn in junk
+
+	var/list/organ_dna_data = list()		// For changing organ DNA
 
 	var/use_generated_name = TRUE
 	var/use_generated_icon = TRUE
 	var/organ_type = null
+	var/num_variants = 8		// Number of sprite variants in the dmi
+	var/num_colors = 5			// Number of colored sprites in the dmi
 	var/use_generated_color = TRUE
 	var/generated_color = null
 
@@ -26,12 +31,21 @@
 	var/ruined_description_info = "A functionless organ with three slots for organ mods or organoids. Best used with an input, process, and output organoid to create a modular organ."
 	var/ruined_color = null
 
-/obj/item/organ/internal/scaffold/New()
-	..()
+/obj/item/organ/internal/scaffold/Initialize()
+	. = ..()
 	RegisterSignal(src, COMSIG_ABERRANT_COOLDOWN, PROC_REF(start_cooldown))
+
 	if(use_generated_icon)
-		organ_type = "-[rand(1,8)]"
+		if(organ_type)
+			organ_type = "-[organ_type]"
+		else if(num_variants)
+			organ_type = "-[rand(1,num_variants)]"
+
 	update_icon()
+
+	if(reagents && LAZYLEN(organ_dna_data))
+		reagents.maximum_volume += 5
+		reagents.add_reagent("blood", 5, organ_dna_data)
 
 /obj/item/organ/internal/scaffold/Destroy()
 	UnregisterSignal(src, COMSIG_ABERRANT_COOLDOWN)
@@ -43,11 +57,11 @@
 
 /obj/item/organ/internal/scaffold/Process()
 	..()
-	if(owner && !on_cooldown && damage < min_broken_damage)
-		SEND_SIGNAL_OLD(src, COMSIG_ABERRANT_INPUT, src, owner)
 
-/obj/item/organ/internal/scaffold/examine(mob/user)
-	. = ..()
+	if(owner && !on_cooldown && damage < min_broken_damage)
+		SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT, owner)
+
+/obj/item/organ/internal/scaffold/examine(mob/user, extra_description = "")
 	var/using_sci_goggles = FALSE
 	var/details_unlocked = FALSE
 
@@ -66,37 +80,39 @@
 
 	if(using_sci_goggles || details_unlocked)
 		var/function_info
-		var/input_info
-		var/process_info
-		var/output_info
+		var/input_info = SPAN_WARNING("Input organoid absent.")
+		var/process_info = SPAN_WARNING("Process organoid absent.")
+		var/output_info = SPAN_WARNING("Output organoid absent.")
 		var/secondary_info
 
 		for(var/mod in contents)
 			var/obj/item/modification/organ/internal/holder = mod
 			var/datum/component/modification/organ/organ_mod = holder.GetComponent(/datum/component/modification/organ)
 			if(istype(mod, /obj/item/modification/organ/internal/input))
-				input_info += organ_mod.get_function_info()
-			if(istype(mod, /obj/item/modification/organ/internal/process))
-				process_info += organ_mod.get_function_info()
-			if(istype(mod, /obj/item/modification/organ/internal/output))
-				output_info += organ_mod.get_function_info()
-			if(istype(mod, /obj/item/modification/organ/internal/special))
-				secondary_info += organ_mod.get_function_info()
+				input_info = organ_mod.get_function_info()
+			else if(istype(mod, /obj/item/modification/organ/internal/process))
+				process_info = organ_mod.get_function_info()
+			else if(istype(mod, /obj/item/modification/organ/internal/output))
+				output_info = organ_mod.get_function_info()
+			else if(istype(mod, /obj/item/modification/organ/internal))
+				secondary_info = organ_mod.get_function_info()
 
-		function_info = input_info + (input_info && process_info ? "\n" : null) +\
-						process_info + (process_info && output_info ? "\n" : null) +\
-						output_info + (output_info && secondary_info ? "\n" : null) +\
+		function_info = input_info + "\n" +\
+						process_info + "\n" +\
+						output_info + "\n" +\
 						secondary_info
 
 		if(aberrant_cooldown_time > 0)
-			to_chat(user, SPAN_NOTICE("Average organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds"))
+			extra_description += SPAN_NOTICE("\nAverage organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds")
 
 		if(function_info)
-			to_chat(user, SPAN_NOTICE(function_info))
+			extra_description += SPAN_NOTICE(function_info)
 	else
-		to_chat(user, SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions."))
+		extra_description += SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions.")
 
-/obj/item/organ/internal/scaffold/refresh_upgrades()
+	..(user, extra_description)
+
+/obj/item/organ/internal/scaffold/refresh_organ_stats()
 	name = initial(name)
 	color = initial(color)
 	max_upgrades = max_upgrades ? initial(max_upgrades) : 0		// If no max upgrades, it must be a ruined teratoma. So, leave it at 0.
@@ -110,16 +126,23 @@
 	unique_tag = initial(unique_tag)
 	specific_organ_size = initial(specific_organ_size)
 	max_blood_storage = initial(max_blood_storage)
-	current_blood = initial(current_blood)
 	blood_req = initial(blood_req)
 	nutriment_req = initial(nutriment_req)
 	oxygen_req = initial(oxygen_req)
+	aberrant_cooldown_time = initial(aberrant_cooldown_time)
+	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_REMOVE)
 
-	update_color()
-
+/obj/item/organ/internal/scaffold/apply_modifiers()
 	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
+	SEND_SIGNAL(src, COMSIG_IWOUND_LIMB_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_APPVAL)
+	SEND_SIGNAL(src, COMSIG_APPVAL_MULT)
+	SEND_SIGNAL(src, COMSIG_APPVAL_FLAT)
+	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
+	refresh_damage()
+	
+	update_color()
 	update_name()
 	update_icon()
 
@@ -129,20 +152,29 @@
 	else
 		icon_state = initial(icon_state)
 
+/obj/item/organ/internal/scaffold/ui_action_click(mob/living/user, action_name)
+	if(on_cooldown)
+		to_chat(user, SPAN_NOTICE("\The [src] is not ready to be activated."))
+		return
+	
+	SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT_VERB, owner)
+
 /obj/item/organ/internal/scaffold/proc/update_color()
+	if(!num_colors)
+		return
 	if(!use_generated_color || !item_upgrades.len)
 		color = ruined ? ruined_color : color
 		generated_color = null
 		return
 
 	if(!generated_color)
-		generated_color = "-[rand(1,5)]"
+		generated_color = "-[rand(1,num_colors)]"
 
 /obj/item/organ/internal/scaffold/proc/update_name()
 	if(use_generated_name)
 		name = generate_name_from_eff()
 	else
-		name = ruined ? ruined_name : name		
+		name = ruined ? ruined_name : name
 
 	for(var/prefix in prefixes)
 		name = "[prefix] [name]"
@@ -170,7 +202,6 @@
 	var/list/name_chunk
 	var/new_name
 	var/prefix
-	var/total_eff
 
 	for(var/organ in organ_efficiency)
 		switch(organ)
@@ -204,10 +235,8 @@
 		middle += name_chunk[2]
 		end = name_chunk[3]
 
-		total_eff += organ_efficiency[organ]
-
 	if(middle.len == 1)
-		prefix = pick("little", "small", "pygmy", "tiny") + " "
+		prefix = pick("little ", "small ", "pygmy ", "tiny ")
 
 	if(middle.len > 2)
 		middle.Cut(middle.len)
@@ -228,20 +257,23 @@
 
 /obj/item/organ/internal/scaffold/proc/end_cooldown()
 	on_cooldown = FALSE
+	if(action_button_name && owner)
+		to_chat(owner, SPAN_NOTICE("Your [name] twitches. It is ready to be used again."))
 
-/obj/item/organ/internal/scaffold/rare
+/obj/item/organ/internal/scaffold/large
 	name = "large organ scaffold"
+	ruined_name = null
 	desc = "A collagen-based biostructure. This one has room for an extra organoid."
-	ruined_desc = "A collagen-based biostructure. This one has room for an extra organoid."
+	ruined_desc = null
 	description_info = "A functionless organ with four slots for organ mods or organoids. Generally, you'll want to save the fourth upgrade slot for a membrane."
-	ruined_description_info = "A functionless organ with four slots for organ mods or organoids. Generally, you'll want to save the fourth upgrade slot for a membrane."
+	ruined_description_info = null
 	rarity_value = 80
-	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN_RARE
+	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN
 	max_upgrades = 4
+	specific_organ_size = 0.2
 
 /obj/item/organ/internal/scaffold/aberrant
 	name = "aberrant organ"
-	spawn_tags = SPAWN_TAG_ABERRANT_ORGAN_NORMAL
 	bad_type = /obj/item/organ/internal/scaffold/aberrant
 
 	var/input_mod_path
@@ -257,17 +289,17 @@
 	var/input_mode = null
 	var/input_threshold = 0
 	var/list/process_info = list()
-	var/should_process_have_organ_stats = TRUE
+	var/should_process_have_organ_stats = FALSE
 	var/list/output_pool = list()
 	var/list/output_info = list()
 	var/list/special_info = list()
 
-/obj/item/organ/internal/scaffold/aberrant/New()
-	..()
+/obj/item/organ/internal/scaffold/aberrant/Initialize()
+	. = ..()
 	if(!input_mod_path && !process_mod_path && !output_mod_path && !special_mod_path)
 		return
 	if(input_mod_path)
-		if(!input_mode || (!base_input_type && !specific_input_type_pool.len))
+		if(!input_mode && (!base_input_type && !specific_input_type_pool.len))
 			return
 	if(output_mod_path)
 		if(!output_pool.len || !output_info.len)
@@ -276,11 +308,13 @@
 		if((specific_input_type_pool.len < req_num_inputs && !base_input_type) || output_pool.len < req_num_outputs || output_info.len < req_num_outputs)
 			return
 
+	var/list/input_args = list()
 	var/list/input_info = list()
 	var/list/additional_input_info = list()
+	var/list/output_args = list()
 	var/list/output_types = list()
 	var/list/additional_output_info = list()
-	
+
 	if(req_num_inputs)
 		var/list/inputs_sans_blacklist = list()
 		var/list/input_pool = list()
@@ -295,27 +329,37 @@
 
 		for(var/i in 1 to req_num_inputs)
 			input_info += pick_n_take(input_pool)
+		
+		input_args += list(input_info)
+		if(input_mode)
+			input_args += input_mode
+		if(input_threshold)
+			input_args += input_threshold
+		input_args += list(additional_input_info)
 
 	if(req_num_outputs)
 		additional_output_info = output_pool.Copy()
 		for(var/i in 1 to req_num_outputs)
 			output_types += list(pick_n_take(output_pool) = output_info[i])
+		
+		output_args += list(output_types)
+		output_args += list(additional_output_info)
 
 	var/obj/item/modification/organ/internal/input/I
 	if(ispath(input_mod_path, /obj/item/modification/organ/internal/input))
-		I = new input_mod_path(src, FALSE, null, input_info, input_mode, input_threshold, additional_input_info)
+		I = new input_mod_path(src, FALSE, null, 0, input_args)
 
 	var/obj/item/modification/organ/internal/process/P
 	if(ispath(process_mod_path, /obj/item/modification/organ/internal/process))
-		P = new process_mod_path(src, should_process_have_organ_stats, null, process_info)
+		P = new process_mod_path(src, should_process_have_organ_stats, null, 0, process_info)
 
 	var/obj/item/modification/organ/internal/output/O
 	if(ispath(output_mod_path, /obj/item/modification/organ/internal/output))
-		O = new output_mod_path(src, FALSE, null, output_types, additional_output_info)
+		O = new output_mod_path(src, FALSE, null, 0, output_args)
 
-	var/obj/item/modification/organ/internal/special/S
-	if(ispath(special_mod_path, /obj/item/modification/organ/internal/special))
-		S = new special_mod_path(src, FALSE, null, special_info)
+	var/obj/item/modification/organ/internal/S
+	if(ispath(special_mod_path, /obj/item/modification/organ/internal))
+		S = new special_mod_path(src, FALSE, null, 0, special_info)
 
 	if(I)
 		SEND_SIGNAL_OLD(I, COMSIG_IATTACK, src)

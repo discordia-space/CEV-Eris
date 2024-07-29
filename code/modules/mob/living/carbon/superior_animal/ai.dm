@@ -9,7 +9,8 @@
 	var/turf/T = get_turf(src)
 	if(!T)
 		return //We're contained inside something, a locker perhaps.
-	return hearers(src, viewRange)
+	return getMobsInRangeChunked(src, viewRange, FALSE, TRUE)
+	//return hearers(src, viewRange)
 
 
 	/* There was an attempt at optimization, but it was unsanitized, and was more expensive than just checking hearers.
@@ -101,6 +102,6 @@
 					return
 
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))
-			if (istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
+			if (istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille) || istype(obstacle, /obj/item/modular_computer/) || istype (obstacle, /obj/structure/table/))
 				obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),pick(attacktext))
 

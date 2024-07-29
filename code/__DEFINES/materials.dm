@@ -2,9 +2,9 @@
 
 #define MATERIAL_STEEL "steel"
 #define MATERIAL_GLASS "glass"
-#define MATERIAL_RGLASS "rglass"
-#define MATERIAL_PLASMAGLASS "borosilicate glass"
-#define MATERIAL_RPLASMAGLASS "reinforced borosilicate glass"
+#define MATERIAL_RGLASS "reinf_glass"
+#define MATERIAL_PLASMAGLASS "plasma_glass"
+#define MATERIAL_RPLASMAGLASS "plasma_reinf_glass"
 #define MATERIAL_SILVER "silver"
 #define MATERIAL_GOLD "gold"
 #define MATERIAL_PLASMA "plasma"
@@ -24,7 +24,6 @@
 #define MATERIAL_SANDSTONE "sandstone"
 #define MATERIAL_TRITIUM "tritium"
 #define MATERIAL_WOOD "wood"
-#define MATERIAL_XENOCHITIN "chitin"
 #define MATERIAL_VOXALLOY "voxalloy"
 #define MATERIAL_CARPET "carpet"
 #define MATERIAL_BIOMATTER "biomatter"
@@ -55,7 +54,6 @@
 	MATERIAL_SANDSTONE,\
 	MATERIAL_TRITIUM,\
 	MATERIAL_WOOD,\
-	MATERIAL_XENOCHITIN,\
 	MATERIAL_VOXALLOY,\
 	MATERIAL_CARPET,\
 	MATERIAL_BIOMATTER,\

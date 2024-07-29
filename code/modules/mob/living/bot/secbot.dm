@@ -479,7 +479,7 @@
 
 /obj/item/clothing/head/armor/helmet/attackby(var/obj/item/device/assembly/signaler/S, mob/user as mob)
 	..()
-	if(!is_signaler(S))
+	if(!issignaler(S))
 		..()
 		return
 
@@ -514,7 +514,7 @@
 			overlays += image('icons/obj/aibots.dmi', "hs_hole")
 			to_chat(user, "You weld a hole in \the [src].")
 
-	else if(is_proximity_sensor(I) && (build_step == 1))
+	else if(isproxsensor(I) && (build_step == 1))
 		user.drop_item()
 		build_step = 2
 		to_chat(user, "You add \the [I] to [src].")

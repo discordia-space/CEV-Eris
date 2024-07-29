@@ -1,0 +1,111 @@
+2023-05-06:
+  Humonitarian:
+  - bugfix: fixed holobar power drain
+  MLGTASTICa:
+  - bugfix: Fixed quick-equip not supporting holsters
+  - bugfix: Fixed tripping on plating whilst having no slips.
+  - bugfix: Fixed AI Jammers not working while held(Due to checking the distance to
+      the wrong object)
+  - balance: Shrapnel removal multiplier changed from 0.1 on succes to 1 , and from
+      0.3 to 1.2 on fail
+  TheLeopold:
+  - tweak: wielding now is more fluid
+  - code_imp: Added function to drop offhand item
+  ValoTheValo:
+  - bugfix: fixed Technomancer and Moebius ambience not playing or looping
+  thevandie:
+  - rscadd: earmuffs to the style vendor
+  - rscadd: earmuffs to the asters misc pack disk for autolathe use
+  - rscadd: earmuff item sprite (the mob sprite was already added with my other pr,
+      I just couldn't find where the item sprite was stored back then. It's from asset-storage).
+  - tweak: earmuffs only require one ear to equip
+2023-05-13:
+  Humonitarian:
+  - bugfix: modular guns now accept mods
+  - bugfix: modular gun wield sprites fixed
+  - bugfix: modular gun suit sprites fixed
+  - bugfix: wrenches destroying modular guns fixed
+  - bugfix: modular guns now spawn with the right type of ammo
+  Hyperio:
+  - rscadd: Give artists some starting money and starting materials
+  - rscadd: Artist office now has two buttons to control independently the west/east
+      hatches
+  Kurgis:
+  - bugfix: Gibbers no longer stall and become stuck processing forever when a skeleton
+      is inserted.
+  Rexdyer1:
+  - tweak: overall turf dig speed
+  - balance: Mech drill effectiveness
+  TheShown911:
+  - rscadd: Pulsar engine
+2023-05-16:
+  MLGTASTICa:
+  - rscadd: Added playtime tracking.
+2023-05-19:
+  TheShown911:
+  - tweak: tweaked pulsar portals
+2023-05-20:
+  AltHit:
+  - rscadd: Armor values for prosthetics returned to their rightful place
+  - balance: Indirectly changes balance by making prosthetics playable (probably)
+  - bugfix: Limbs now melt from burn weapons again
+  - bugfix: Prosthetics now do not delimb after ridiculously low damage
+  Firefox13:
+  - tweak: Everyone can select *truly* any prosthetic now in character setup.
+  - bugfix: Fixed chat spam ("This body-mod does not match your chosen department").
+  - bugfix: Peridaxon doesn't heal brain or bones anymore. It's also slower at it.
+  - bugfix: Peridaxon doesn't damage bones on OD too (brain is also spared).
+  - rscdel: Nomad cigarette packet is removed from loadout but can still be obtained
+      in-game
+  - balance: Instead of removing paralysis/weakened Adrenaline now has weak painkiller
+      effect (same as inaprovaline).
+  - bugfix: Removed un/whitelist player button from non-admins
+  - tweak: Edited engine room to make it prettier and more compact
+  - rscadd: Added trap and roach/spider spawners to pulsar
+  Humonitarian:
+  - bugfix: fixes catwalks being indeconstructable
+  - tweak: nuka cola irradiates you
+  - balance: nuka cola, hyperzine nerfed
+  - balance: augmenting your leg with more muscle gives diminishing returns
+  MLGTASTICa:
+  - rscdel: Removed all ties of style with combat
+  - rscadd: Style now influences your insight gain , having max style will buff it
+      by 30% , and falling below will debuff to a maximum of 15%
+  Penwin0:
+  - bugfix: You can't spawn infinite mice by spamming "respawn as mouse" as a ghost.
+  Skyfire:
+  - tweak: Replaced the .60 ammo box sprites with new ones that are different from
+      the shotguns
+  WeNeedMorePhoron:
+  - bugfix: When game spawn in toxin, it no longer spawn in tar. Maint food, incompatible
+      blood etc. are 40x less deadly now.
+2023-05-21:
+  MLGTASTICa:
+  - bugfix: Fixed everyone having the same DNA.
+2023-05-27:
+  MLGTASTICa:
+  - bugfix: Fixed playtime tracking resetting itself for any round-start joiner.
+  - bugfix: Fixed inactivity runtimes that caused everyone on the manifest to go inactive.
+  - bugfix: Fixed latejoins not having playtime restrictions enacted.
+  - bugfix: Fixed lacking a failsafe config for playtimes
+  - rscadd: Added a verb to show your playtimes.
+  MemedHams:
+  - rscadd: Adds lots of new station offers and sales.
+  - rscdel: The ninjasuit trade station offer is no more.
+  - tweak: Adds some fully-stacked variants of uncraftable floor tiles.
+  - tweak: Uncomments the onestar officer uniform offers.
+  - balance: Nerfs slime trade station offers.
+  - balance: reduces the sell value of the Gladstone and Molly.
+  - balance: Onestar parts now sell for more.
+  - balance: merc hardsuit's market cost has increased.
+2023-05-30:
+  MLGTASTICa:
+  - refactor: Refactored how all AI-mobs lookup for their targets, to cut down on
+      lag.
+  - refactor: Refactor how all visible message, said messages search for hearers ,
+      to cut down on lag.
+  vode-code:
+  - rscdel: Removed Pathology
+  - admin: Removed some outdated transformations
+  - code_imp: deleted some inaccessible code
+  - code_imp: removed custom items

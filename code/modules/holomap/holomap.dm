@@ -291,19 +291,12 @@
 
 	return ..()
 
-/obj/machinery/holomap/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				qdel(src)
-			else
-				set_broken()
-		if(3)
-			if (prob(25))
-				set_broken()
-
+/obj/machinery/holomap/take_damage(damage)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	if(health < maxHealth * 0.5)
+		set_broken()
 /obj/item/frame/holomap
 	name = "\improper holomap frame"
 	desc = "Used for building a holomap."

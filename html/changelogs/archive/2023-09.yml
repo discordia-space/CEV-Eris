@@ -1,0 +1,133 @@
+2023-09-02:
+  Firefox13:
+  - admin: Admin-forced events, no matter successful or not, are now logged.
+  - tweak: Punk jacket (from style vendor) is now a subtype of leather_jacket instead
+      of greatcoat.
+  - balance: because punk jacket is now a subtype of leather_jacket instead of greatcoat
+      it lost a lot of protection and no longer covers legs (for some reason)
+  Mycah142:
+  - balance: Removed Double Tact from the Energy Armblade cybernetic.
+  SirRichardFrancis:
+  - bugfix: Intercoms being added to player inventory on exiting a cryopod
+  intercepti0n:
+  - refactor: converted Disposal Unit from browser to TGUI.
+2023-09-03:
+  intercepti0n:
+  - refactor: converted stats Ui to TGUI.
+2023-09-04:
+  Firefox13:
+  - bugfix: fixed people not hearing local things
+  - bugfix: chat broke fixed again
+  - bugfix: fixed chat bug (again)
+2023-09-09:
+  Firefox13:
+  - bugfix: Spriteless swimsuit parent item shouldn't appear anymore
+  - spellcheck: Fixed multiple uppercases where there should be lowercases across
+      some items and prompts
+  - spellcheck: Fixed extra punctuation (?.) in some decriptions
+  - bugfix: Roundstart mines can no longer be pulled around.
+  - spellcheck: Fixed a typo in mine deployment message.
+  - balance: Robotech Deluxe now only has one 1000L large cell instead of twelve 5000L
+  LenSkozzy:
+  - rscadd: Added comments to deepmaint/proc/makeNiche, findNicheTurfs, and checkForWalls.
+  MLGTASTICa:
+  - tweak: Playtime requirements work off total playtime now instead of departament
+      based.
+  Mycah142:
+  - rscadd: Added Exosuit Drill message to report ore deposited into Clamp's ore box.
+  - tweak: NT Agrolyte's Pain Relief for others is now also a reagent, more powerful
+      than the personal pain relief.
+  - rscadd: Added Mining Satchel and Ore Crate to Asters' trade ship.
+2023-09-10:
+  Hyperio:
+  - tweak: Shifted pulsar satellite position to avoid issues with pulsar overmap
+2023-09-11:
+  Hyperio:
+  - rscadd: Added "(1-6)" to the seimic activity display to indicate the possible
+      range
+  - rscadd: The remaining cooldown time is now displayed when trying to regenerate
+      a cavern
+  - tweak: Tweaked the cavern cleaning mechanism
+  - rscadd: Cavern collapse has now a countdown instead of being instantaneous, with
+      a warning displayed to all people inside the cavern so that they have time to
+      leave it
+  - bugfix: Fixed cavern wall layering
+  - bugfix: Fix access to caverns
+2023-09-16:
+  Firefox13:
+  - balance: nuka cola now has lower speedboost, lower NSA, doesn't instantly wake
+      you up, irradiates you more and increases heartbeat
+  - tweak: adrenaline increases heartbeat (does this even do anything? a mystery)
+  - tweak: energy drinks now contain adrenaline instead of nuka cola
+  - rscdel: Paint removed, reduced to ashes, no longer existing.
+  Humonitarian:
+  - rscadd: new insanity lines
+  - tweak: blitz speaks language
+  Iglpigl:
+  - bugfix: pack of dice is no longer a pill bottle
+  Mycah142:
+  - bugfix: Fixed exploitative Overdrive gun upgrade not reducing pain along with
+      damage.
+  TheLeopold:
+  - balance: Increased Custodian slots 2->4; Decreased Acolyte slots 4->2.
+  - bugfix: fixed missing downward pipes near guild
+  Twomoon:
+  - tweak: tweaked the roachsign code
+  null-Aurelian:
+  - tweak: randomizes body creation for various spawns
+  - code_imp: adds the randomize_appearance() proc in appearances.dm for humans
+  - refactor: refactor location of commune(), psychic_whisper(), morph(), phaze_trough(),
+      forcespeak(), remotesay(), remoteobserve(), roach_pheromones(), spider_pheromones()
+      and inner_fuhrer()
+  - tweak: added a check to creating an order from the trade beacon so that orders
+      containing an SM shard are crated on spawn.
+2023-09-17:
+  Firefox13:
+  - bugfix: Harmonic feedback surge anomaly weather event no longer physically deletes
+      the shield generator, now instead properly damages it
+  - rscadd: special shield damage type reserved for harmonic feedback anomaly event
+      used in shield generator logs
+  - balance: added caps to pacmans explosion power
+2023-09-23:
+  Chasu:
+  - bugfix: Fixes the emergency shutter closing animation
+  Firefox13:
+  - balance: Resuscitator now needs to be injected to work
+  - balance: Resuscitator no longer revives people with robotic hearts
+  - tweak: oldificator now hides chemical bottles names and changes desc to obfuscate
+      their contents
+  - tweak: all bottles, beakers and vials with preloaded reagents are now spawned
+      with lid on and a label on sprite
+  - tweak: chemmaster bottles now spawn with labels if they have contents
+  - tweak: most prespawned bottles now have identical to chemmaster naming names
+  - bugfix: fixed broken vape vial icons
+  - rscadd: You now leave fingerprints on objects you (try to) pull.
+  Humonitarian:
+  - imageadd: new fumo skin
+  - rscadd: New Blitzshell items
+  - balance: Reworked blitzshell uplink
+  - balance: Blitzshell starts with basic plasma firemode, can purchase new ones
+  - bugfix: Blitz can no longer order the broken BS harpoon and BSDMs
+  Mycah142:
+  - tweak: tweaked Club Showcase to allow whole food items as well as drinks.
+  - tweak: Minor reorganization of the Church to allow "public" visitors.
+  TheLeopold:
+  - rscadd: Added Club, Tool storage and Dormitories to the list of possible mail
+      recipients. Added trash bin to the Preacher Office.
+  - bugfix: fixed disposal mail delivery
+  null-Aurelian:
+  - balance: FBPs can no longer be turned into grey slimes. Cruciformed humans are
+      gibbed but not transformed.
+  - bugfix: Implants and prosthetics are not deleted by transforming into a grey slime
+      or a slimeperson. They will instead be dropped on the ground.
+  - code_imp: added a dropped() implementation for prosthetic limbs
+2023-09-24:
+  TheLeopold:
+  - rscdel: Removed airlock floating in space
+2023-09-29:
+  ValoTheValo:
+  - bugfix: fixed walls looking damaged roundstart
+2023-09-30:
+  Hyperio:
+  - rscadd: Added a TGUI interface for the ore box
+  - rscadd: Caverns are now radshielded

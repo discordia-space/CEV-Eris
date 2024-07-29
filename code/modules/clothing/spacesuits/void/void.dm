@@ -55,14 +55,14 @@
 	if(tank && ispath(tank))
 		tank = new tank(src)
 
-/obj/item/clothing/suit/space/void/examine(user)
-	..(user)
+/obj/item/clothing/suit/space/void/examine(mob/user, extra_description = "")
 	var/list/part_list = new
 	for(var/obj/item/I in list(helmet,boots,tank))
 		part_list += "\a [I]"
-	to_chat(user, "\The [src] has [english_list(part_list)] installed.")
-	if(tank && in_range(src,user))
-		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
+	extra_description += "\The [src] has [english_list(part_list)] installed."
+	if(tank && (get_dist(user, src) < 2))
+		extra_description += SPAN_NOTICE("\nThe wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank].")
+	..(user, extra_description)
 
 /obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
 	if(..())
@@ -241,7 +241,7 @@
 				tank.forceMove(get_turf(src))
 				src.tank = null
 			else if(choice == boots)
-				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
+				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
 				src.boots = null
 		else

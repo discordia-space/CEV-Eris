@@ -8,21 +8,21 @@
 /area/template_noop)
 "ac" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ad" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ae" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "ag" = (
 /obj/machinery/door/airlock/command,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ah" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ai" = (
 /obj/structure/lattice,
@@ -30,104 +30,104 @@
 /turf/template_noop,
 /area/template_noop)
 "aj" = (
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "al" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2
 	},
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "am" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "an" = (
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "ao" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "ap" = (
 /obj/item/remains/human,
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aq" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "ar" = (
 /obj/structure/computerframe{
 	anchored = 1;
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "as" = (
 /obj/machinery/disposal,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "at" = (
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "au" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "av" = (
 /obj/item/remains/human,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aw" = (
 /obj/machinery/light_construct{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ax" = (
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ay" = (
 /obj/item/modular_computer/console{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "az" = (
 /obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aA" = (
 /obj/machinery/light_construct{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aB" = (
 /obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aD" = (
 /obj/machinery/light_construct,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aE" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aF" = (
 /obj/structure/lattice,
@@ -137,220 +137,218 @@
 /turf/template_noop,
 /area/template_noop)
 "aG" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/under/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "aH" = (
 /obj/machinery/telecomms/relay,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aI" = (
 /obj/machinery/light_construct,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aK" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aL" = (
 /obj/machinery/door/airlock/command,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aM" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_parts,
 /obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aN" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aO" = (
 /obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aP" = (
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aQ" = (
 /obj/spawner/structures/common/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aR" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aS" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/template_noop,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "aT" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aU" = (
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aV" = (
 /obj/spawner/structures/common,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aW" = (
 /obj/spawner/structures/common/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aX" = (
 /obj/structure/table/rack,
 /obj/spawner/firstaid,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aY" = (
 /obj/structure/table/rack,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "aZ" = (
 /obj/structure/noticeboard,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "ba" = (
 /obj/item/paper,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bb" = (
 /obj/structure/bed/chair/comfy/blue,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bc" = (
 /obj/structure/table/reinforced,
 /obj/item/pen,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bd" = (
 /obj/structure/table/reinforced,
 /obj/item/paper,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "be" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/item/paper,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bf" = (
 /obj/structure/table/reinforced,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bg" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bh" = (
 /obj/structure/table/reinforced,
 /obj/item/pen,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bi" = (
 /obj/item/remains/human,
 /obj/spawner/structures/common/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bj" = (
 /obj/structure/bed/chair/comfy/blue{
 	dir = 1;
 	icon_state = "comfychair_preview"
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bk" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_upgrade,
 /obj/spawner/firstaid,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bl" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_upgrade,
 /obj/spawner/gun/normal,
 /obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bm" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_upgrade,
 /obj/spawner/gun_upgrade/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bn" = (
 /obj/structure/bed/chair/office/light,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bo" = (
 /obj/item/remains,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bp" = (
 /obj/structure/table/rack,
 /obj/spawner/ammo/ihs,
 /obj/spawner/ammo/ihs,
 /obj/spawner/ammo/ihs,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bq" = (
 /obj/spawner/junk,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "br" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bs" = (
 /obj/item/gun/projectile/paco,
 /obj/item/ammo_casing/pistol,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bt" = (
 /obj/structure/table/rack,
 /obj/item/clothing/mask/gas/ihs,
 /obj/item/clothing/mask/gas/ihs,
 /obj/item/clothing/gloves/security,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "bw" = (
 /obj/structure/table/rack,
 /obj/spawner/ammo/shotgun,
 /obj/spawner/rig_module/low_chance,
 /obj/spawner/rig_module/rare/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "qx" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
+/turf/floor/tiled/steel/bluecorner/airless,
 /area/template_noop)
 "Qv" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "Uz" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 
 (1,1,1) = {"

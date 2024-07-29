@@ -40,15 +40,15 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/hide = 0				// Is it a hidden machine?
 	var/list/listening_levels = list() // 0 = auto set in Initialize() - this is the z level that the machine is listening to.
 
-/obj/machinery/telecomms/examine(mob/user)
-	..()
+/obj/machinery/telecomms/examine(mob/user, extra_description = "")
 	switch(integrity)
 		if(0 to 20)
-			to_chat(user, SPAN_WARNING("There is little life left in it."))
+			extra_description += SPAN_WARNING("There is little life left in it.")
 		if(21 to 49)
-			to_chat(user, SPAN_WARNING("It is glitching incoherently."))
+			extra_description += SPAN_WARNING("It is glitching incoherently.")
 		if(50 to 80)
-			to_chat(user, SPAN_WARNING("It is sparking and humming."))
+			extra_description += SPAN_WARNING("It is sparking and humming.")
+	..(user, extra_description)
 
 /obj/machinery/telecomms/proc/relay_information(datum/signal/signal, filter, copysig, amount = 20)
 	// relay signal to all linked machinery that are of type [filter]. If signal has been sent [amount] times, stop sending
@@ -145,6 +145,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		else
 			for(var/obj/machinery/telecomms/T in telecomms_list)
 				add_link(T)
+		
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/telecomms/Destroy()
 	telecomms_list -= src
@@ -191,6 +193,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 			if(T.autolinkers.Find(x))
 				if(src != T)
 					links |= T
+					T.links |= src
 
 /obj/machinery/telecomms/update_icon()
 	if(on)
@@ -262,7 +265,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return
 
 	if(!(stat & (NOPOWER|BROKEN)))
-		var/turf/simulated/L = loc
+		var/turf/L = loc
 		if(istype(L))
 			var/datum/gas_mixture/env = L.return_air()
 

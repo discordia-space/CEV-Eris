@@ -2,7 +2,7 @@
 "ad" = (
 /obj/structure/table/rack,
 /obj/item/tool/knife,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "ah" = (
 /obj/machinery/door/firedoor,
@@ -10,10 +10,10 @@
 	name = "Airlock";
 	req_access = list(1)
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "bi" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/food)
 "bD" = (
 /obj/machinery/power/apc{
@@ -22,7 +22,7 @@
 	pixel_x = -28
 	},
 /obj/machinery/power/port_gen/pacman,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "bU" = (
 /obj/machinery/door/airlock/glass_medical{
@@ -30,23 +30,23 @@
 	name = "Chemistry Lab";
 	req_access = list(33)
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "ca" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "ck" = (
 /obj/structure/table/standard,
 /obj/item/book/manual/wiki/security_ironparagraphs,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "ek" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/outpost/prisonhulk/security)
 "el" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/tape_roll,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "ep" = (
 /obj/structure/lattice,
@@ -55,24 +55,24 @@
 /area/outpost/prisonhulk/security)
 "ex" = (
 /obj/structure/inflatable/door,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "eX" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "fw" = (
 /obj/item/modular_computer/console,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "fN" = (
 /obj/spawner/material/resources/rare/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "fO" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/space)
 "gf" = (
 /obj/structure/table/woodentable,
@@ -80,73 +80,73 @@
 /obj/item/device/eftpos{
 	eftpos_name = "Ironhammer EFTPOS scanner"
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "gy" = (
 /obj/machinery/computer/teleporter,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "gE" = (
 /obj/structure/closet/secure_closet/medicine,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "gF" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/prisonhulk/security)
 "gI" = (
 /obj/structure/inflatable/wall,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "gO" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/junkfood,
 /obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "gR" = (
 /obj/item/gun/projectile/paco,
 /obj/item/ammo_casing/pistol,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "hd" = (
 /obj/structure/empty_sleeper{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/outpost/prisonhulk)
 "hj" = (
 /obj/structure/table/rack,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "hw" = (
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "hK" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "ie" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/material/building,
 /obj/spawner/ammo/lowcost/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "ik" = (
 /obj/item/modular_computer/console{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "il" = (
 /obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "iP" = (
 /obj/structure/table/rack,
 /obj/spawner/firstaid,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "jS" = (
 /turf/space,
@@ -157,7 +157,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "kz" = (
 /turf/space,
@@ -166,17 +166,17 @@
 /obj/structure/table/rack,
 /obj/spawner/gun/normal/low_chance,
 /obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "kF" = (
 /obj/structure/table/woodentable,
 /obj/spawner/knife,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "kZ" = (
 /obj/structure/catwalk,
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/prisonhulk)
 "lu" = (
 /obj/structure/table/rack,
@@ -185,33 +185,33 @@
 /obj/spawner/gun_parts,
 /obj/spawner/gun/normal/low_chance,
 /obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "lI" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/prisonhulk)
 "mz" = (
 /obj/effect/mob_spawn/human/prisoner_transport{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/outpost/prisonhulk)
 "mC" = (
 /obj/structure/table/standard,
 /obj/machinery/electrolyzer,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "ny" = (
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/prisonhulk)
 "nO" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp/green,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "oc" = (
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "oV" = (
 /obj/structure/table/woodentable,
@@ -229,60 +229,58 @@
 /obj/item/device/camera_film,
 /obj/item/device/camera_film,
 /obj/item/device/camera_film,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "oY" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/o2,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "oZ" = (
 /obj/structure/bed/chair/comfy/black,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "pd" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "py" = (
-/obj/structure/low_wall,
-/turf/simulated/floor/plating,
+/turf/wall/low,
 /area/outpost/prisonhulk/security)
 "pV" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/toxin,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "qT" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "ro" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/space,
+/turf/wall/low/with_glass/reinforced,
 /area/outpost/prisonhulk)
 "ru" = (
 /obj/item/device/radio/beacon,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "ry" = (
 /obj/structure/inflatable/wall,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "rO" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "rX" = (
 /obj/structure/table/rack,
 /obj/item/stack/material/plasma,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "sf" = (
 /obj/machinery/door/firedoor,
@@ -293,42 +291,42 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/prisonhulk/security)
 "si" = (
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "sC" = (
 /obj/machinery/light_construct,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/prisonhulk/security)
 "sF" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "sM" = (
 /obj/machinery/door/airlock/glass,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "sO" = (
 /obj/machinery/chem_master,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "sS" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "te" = (
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "tg" = (
 /obj/structure/table/woodentable,
 /obj/item/device/radio/off,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "ts" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -338,11 +336,11 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "uH" = (
 /obj/item/device/radio/beacon,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "uR" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -350,26 +348,26 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "uS" = (
 /obj/structure/table/rack,
 /obj/spawner/rations,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "uV" = (
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "vj" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/ammo/lowcost,
 /obj/spawner/ammo/lowcost,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "vu" = (
 /obj/structure/table/standard,
 /obj/item/folder/blue,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "vv" = (
 /obj/map_data/prisonhulk,
@@ -379,12 +377,12 @@
 "wc" = (
 /obj/structure/catwalk,
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/prisonhulk/cells)
 "wM" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/gun_parts,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "wW" = (
 /obj/structure/lattice,
@@ -394,11 +392,11 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "xw" = (
 /obj/machinery/door/airlock/maintenance_common,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/prisonhulk/cells)
 "xA" = (
 /mob/living/simple_animal/hostile/hivebot/range,
@@ -415,7 +413,7 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "yc" = (
 /obj/structure/lattice,
@@ -427,7 +425,7 @@
 /area/space)
 "yG" = (
 /obj/structure/bed/chair,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "zI" = (
 /obj/structure/table/woodentable,
@@ -435,21 +433,21 @@
 /obj/structure/noticeboard{
 	pixel_x = 30
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "zM" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "Ae" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/credits,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Ag" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/fire,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "Ar" = (
 /obj/machinery/door/airlock/multi_tile/metal{
@@ -462,7 +460,7 @@
 	name = "Airlock";
 	req_access = list(1)
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "AB" = (
 /obj/structure/inflatable/door,
@@ -472,41 +470,41 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Cg" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/knife,
 /obj/spawner/ammo/lowcost/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Cm" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/contraband,
 /obj/spawner/ammo/lowcost/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Cq" = (
 /obj/machinery/door/airlock/multi_tile/metal,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "Cu" = (
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "CA" = (
 /obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "CE" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "CH" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "CM" = (
 /obj/machinery/door/airlock/glass_medical{
@@ -514,7 +512,7 @@
 	name = "Medical Bay";
 	req_access = list(5)
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "Dm" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -524,37 +522,37 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "Do" = (
 /obj/structure/bed/chair,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "DG" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "Ek" = (
 /obj/machinery/teleport/hub,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "Ex" = (
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "EM" = (
 /obj/item/storage/briefcase/inflatable,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "EX" = (
 /obj/effect/mob_spawn/human/prisoner_transport{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/outpost/prisonhulk)
 "Fj" = (
 /obj/machinery/door/airlock/multi_tile/metal,
@@ -564,33 +562,33 @@
 /obj/structure/empty_sleeper{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/outpost/prisonhulk)
 "Gk" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "Gn" = (
 /obj/item/tool/crowbar/improvised,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "GI" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/donut,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "GS" = (
 /obj/item/device/radio/beacon,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "GV" = (
 /obj/structure/filingcabinet/filingcabinet,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "HH" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/security)
 "HV" = (
 /obj/structure/closet/emcloset,
@@ -601,63 +599,62 @@
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "Ii" = (
 /obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "Io" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "Ir" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/detflask,
 /obj/item/reagent_containers/food/drinks/flask/detflask,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "II" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "IS" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/prisonhulk/security)
 "Je" = (
 /obj/item/modular_computer/console/preset/security/camera{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "Jf" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "Jq" = (
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "Jt" = (
 /obj/item/device/radio/beacon,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "Jx" = (
 /obj/structure/table/woodentable,
 /obj/machinery/recharger,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "Ka" = (
 /obj/machinery/sleeper{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/outpost/prisonhulk/medical)
 "Kn" = (
 /obj/structure/inflatable/wall,
@@ -668,47 +665,47 @@
 /turf/space,
 /area/space)
 "KA" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/cells)
 "KM" = (
 /obj/structure/table/standard,
 /obj/item/storage/firstaid/regular,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "Le" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/spawner/junk,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "Lf" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/item/device/assembly/igniter,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Lu" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/gun_parts,
 /obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "LG" = (
 /obj/structure/dispenser/oxygen,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "LU" = (
 /obj/structure/sign/chemistry,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/medical)
 "Mi" = (
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "MB" = (
 /obj/machinery/sleeper{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/outpost/prisonhulk/medical)
 "NC" = (
 /obj/machinery/door/firedoor,
@@ -716,7 +713,7 @@
 /area/outpost/prisonhulk/security)
 "NE" = (
 /obj/structure/table/standard,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "NW" = (
 /obj/structure/inflatable/wall,
@@ -724,52 +721,51 @@
 /area/space)
 "OQ" = (
 /obj/item/storage/briefcase/inflatable/empty,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk)
 "OV" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/ammo,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "OZ" = (
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "Pd" = (
 /obj/machinery/door/airlock/maintenance_medical{
 	name = "Chemistry Storage";
 	req_access = list(33)
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "Pw" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "PA" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/tiled/steel,
+/turf/wall/low/with_glass/reinforced,
 /area/outpost/prisonhulk/cells)
 "PE" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "PM" = (
 /obj/structure/closet/wall_mounted/emcloset,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/food)
 "Qr" = (
 /obj/machinery/door/airlock/maintenance_interior{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/prisonhulk/food)
 "QB" = (
 /obj/structure/table/rack,
 /obj/item/storage/box/donkpockets,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "QE" = (
 /turf/space,
@@ -778,27 +774,27 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "Rc" = (
 /obj/item/modular_computer/console,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "Rf" = (
 /obj/machinery/chemical_dispenser,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "Rm" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "RL" = (
 /obj/structure/table/woodentable,
 /obj/item/handcuffs,
 /obj/item/handcuffs,
 /obj/item/device/flash,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "RQ" = (
 /obj/structure/bed/chair/wood{
@@ -809,24 +805,24 @@
 "RT" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Sc" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/material/building,
 /obj/spawner/gun_parts/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Sf" = (
 /obj/structure/table/woodentable,
 /obj/item/folder/blue,
 /obj/item/stamp/hos,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "St" = (
 /obj/structure/table/standard,
 /obj/machinery/centrifuge,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "SC" = (
 /obj/structure/inflatable/door,
@@ -835,7 +831,7 @@
 "SS" = (
 /obj/structure/table/rack,
 /obj/item/tool/knife/butch,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "Tb" = (
 /obj/effect/shuttle_landmark/prisonhulk/nav2,
@@ -843,7 +839,7 @@
 /area/space)
 "Tt" = (
 /obj/structure/sign/atmos_plasma,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/security)
 "Tu" = (
 /obj/effect/shuttle_landmark/prisonhulk/nav1,
@@ -853,11 +849,11 @@
 /obj/structure/table/woodentable,
 /obj/item/paper_bin,
 /obj/item/folder/red,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "Un" = (
 /obj/structure/sign/department/medbay,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/medical)
 "Uq" = (
 /obj/machinery/firealarm{
@@ -865,62 +861,62 @@
 	pixel_y = -28
 	},
 /obj/machinery/light,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "Ut" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "UX" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_parts,
 /obj/spawner/gun/normal/low_chance,
 /obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "Vy" = (
 /obj/machinery/teleport/station,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/prisonhulk/security)
 "VD" = (
 /obj/machinery/door/airlock/glass_security{
 	name = "Airlock";
 	req_access = list(1)
 	},
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "VE" = (
 /obj/machinery/door/airlock/maintenance_common,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/prisonhulk)
 "VP" = (
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "VR" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/ammo/lowcost,
 /obj/spawner/ammo/lowcost,
 /obj/spawner/gun_parts/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "VX" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk)
 "Wh" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "Wp" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/prisonhulk/security)
 "WK" = (
 /mob/living/simple_animal/hostile/hivebot,
@@ -928,65 +924,64 @@
 /area/space)
 "WM" = (
 /obj/machinery/door/firedoor,
-/obj/structure/low_wall,
-/turf/simulated/floor/plating,
+/turf/wall/low,
 /area/outpost/prisonhulk/security)
 "WT" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk)
 "WX" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/medical)
 "Xb" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Xj" = (
 /obj/structure/table/woodentable,
 /obj/item/material/ashtray,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "Xz" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/prisonhulk/cells)
 "XJ" = (
 /obj/structure/table/standard,
 /obj/machinery/chem_heater,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/prisonhulk/medical)
 "XR" = (
 /obj/structure/closet/oldstyle,
 /obj/spawner/booze,
 /obj/spawner/gun_parts,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "Yg" = (
 /obj/structure/filingcabinet,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "Yi" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/briefcase,
 /obj/item/storage/briefcase,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/outpost/prisonhulk/security)
 "Ym" = (
 /obj/structure/toilet{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/cells)
 "YB" = (
 /obj/item/remains,
-/turf/simulated/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bluecorner,
 /area/outpost/prisonhulk/security)
 "YC" = (
 /obj/machinery/photocopier,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "YK" = (
 /obj/machinery/door/firedoor,
@@ -994,33 +989,33 @@
 	name = "Airlock";
 	req_access = list(1)
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/outpost/prisonhulk/security)
 "Zl" = (
 /obj/structure/bed/chair,
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 "Zt" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/prisonhulk/security)
 "Zw" = (
 /obj/structure/table/standard,
 /obj/machinery/microwave,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/prisonhulk/food)
 "ZE" = (
 /obj/structure/sign/department/prison,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/prisonhulk/cells)
 "ZU" = (
 /obj/item/modular_computer/console{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/prisonhulk/security)
 
 (1,1,1) = {"

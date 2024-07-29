@@ -42,26 +42,26 @@
 	QDEL_NULL(body)
 	. = ..()
 
-/obj/structure/heavy_vehicle_frame/examine(var/mob/user)
-	. = ..()
+/obj/structure/heavy_vehicle_frame/examine(mob/user, extra_description = "")
 	if(!arms)
-		to_chat(user, SPAN_WARNING("It is missing manipulators."))
+		extra_description += SPAN_WARNING("It is missing manipulators.")
 	if(!legs)
-		to_chat(user, SPAN_WARNING("It is missing propulsion."))
+		extra_description += SPAN_WARNING("It is missing propulsion.")
 	if(!head)
-		to_chat(user, SPAN_WARNING("It is missing sensors."))
+		extra_description += SPAN_WARNING("It is missing sensors.")
 	if(!body)
-		to_chat(user, SPAN_WARNING("It is missing a chassis."))
+		extra_description += SPAN_WARNING("It is missing a chassis.")
 	if(is_wired == FRAME_WIRED)
-		to_chat(user, SPAN_WARNING("It has not had its wiring adjusted."))
+		extra_description += SPAN_WARNING("It has not had its wiring adjusted.")
 	else if(!is_wired)
-		to_chat(user, SPAN_WARNING("It has not yet been wired."))
+		extra_description += SPAN_WARNING("It has not yet been wired.")
 	if(is_reinforced == FRAME_REINFORCED)
-		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement secured."))
+		extra_description += SPAN_WARNING("It has not had its internal reinforcement secured.")
 	else if(is_reinforced == FRAME_REINFORCED_SECURE)
-		to_chat(user, SPAN_WARNING("It has not had its internal reinforcement welded in."))
+		extra_description += SPAN_WARNING("It has not had its internal reinforcement welded in.")
 	else if(!is_reinforced)
-		to_chat(user, SPAN_WARNING("It does not have any internal reinforcement."))
+		extra_description += SPAN_WARNING("It does not have any internal reinforcement.")
+	..(user, extra_description)
 
 /obj/structure/heavy_vehicle_frame/update_icon()
 	. = ..()
@@ -92,13 +92,14 @@
 	if(is_reinforced == FRAME_REINFORCED_SECURE || is_reinforced == FRAME_REINFORCED_WELDED)
 		usable_qualities += QUALITY_WELDING
 
-	if(is_reinforced == FRAME_REINFORCED || arms || legs || head || body)
-		usable_qualities += QUALITY_PRYING
+	if(!istype(I, /obj/item/mech_component/manipulators))
+		if((is_reinforced == FRAME_REINFORCED || arms || legs || head || body))
+			usable_qualities += QUALITY_PRYING
 
 	if(is_wired)
 		usable_qualities += QUALITY_WIRE_CUTTING
 
-	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && arms && legs && head && body)
+	if(is_wired == FRAME_WIRED_ADJUSTED && is_reinforced == FRAME_REINFORCED_WELDED && legs && body)
 		usable_qualities += QUALITY_SCREW_DRIVING
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
@@ -225,7 +226,7 @@
 		// Final construction step
 		if(QUALITY_SCREW_DRIVING)
 			// Check for basic components.
-			if(!(arms && legs && head && body))
+			if(!(legs && body))
 				to_chat(user,  SPAN_WARNING("There are still parts missing from \the [src]."))
 				return
 
@@ -251,7 +252,7 @@
 			if(!I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_ZERO))
 				return
 
-			if(is_reinforced < FRAME_REINFORCED_WELDED || is_wired < FRAME_WIRED_ADJUSTED || !(arms && legs && head && body))
+			if(is_reinforced < FRAME_REINFORCED_WELDED || is_wired < FRAME_WIRED_ADJUSTED || !(legs && body))
 				return
 
 			// We're all done. Finalize the exosuit and pass the frame to the new system.
@@ -318,6 +319,12 @@
 
 	// Installing basic components.
 	if(istype(I, /obj/item/mech_component/manipulators))
+		if(body.strict_arm_type == TRUE)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			return
+		else if(body.strict_arm_type && !istype(I, body.strict_arm_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_arm_type:name)]"))
+			return
 		if(arms)
 			to_chat(user, SPAN_WARNING("\The [src] already has manipulators installed."))
 			return
@@ -327,8 +334,16 @@
 				return
 			arms = I
 	else if(istype(I, /obj/item/mech_component/propulsion))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
 		if(legs)
 			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
+			return
+		if(body.strict_leg_type == TRUE)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			return
+		else if(body.strict_leg_type && !istype(I, body.strict_leg_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_leg_type:name)]"))
 			return
 		if(install_component(I, user))
 			if(legs)
@@ -336,6 +351,14 @@
 				return
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
+		if(!body)
+			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
+		if(body.strict_sensor_type == TRUE)
+			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
+			return
+		else if(body.strict_sensor_type && !istype(I, body.strict_sensor_type))
+			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_sensor_type:name)]"))
+			return
 		if(head)
 			to_chat(user, SPAN_WARNING("\The [src] already has a sensor array installed."))
 			return
@@ -369,6 +392,16 @@
 		if(!user.unEquip(I))
 			return
 	I.forceMove(src)
+	if(istype(MC, /obj/item/mech_component/chassis/forklift))
+		if(arms)
+			arms.forceMove(get_turf(src))
+			arms = null
+		if(head)
+			head.forceMove(get_turf(src))
+			head = null
+		if(legs && !istype(legs, /obj/item/mech_component/propulsion/wheels))
+			legs.forceMove(get_turf(src))
+			legs = null
 	visible_message(SPAN_NOTICE("\The [user] installs \the [I] into \the [src]."))
 	playsound(user.loc, 'sound/machines/click.ogg', 50, 1)
 	return 1

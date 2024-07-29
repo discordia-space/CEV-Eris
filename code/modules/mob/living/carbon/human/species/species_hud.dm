@@ -4,7 +4,7 @@
 	var/list/ProcessHUD = list(
 		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
 		"throw","pull","resist","drop","look up","rest", "wield", "block",//"jump",
-		"move intent","intent","damage zone","craft menu",
+		"move intent","intent","damage zone","craft menu","look down","language menu","examine",
 		"equip","swap hand","left arm bionics","right arm bionics","toggle inventory"
 	)
 	var/icon              // If set, overrides ui_style.

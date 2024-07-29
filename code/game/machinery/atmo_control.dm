@@ -11,7 +11,7 @@
 
 	var/on = TRUE
 	var/output = 3
-	//Flags:
+	//Flags: (For multiple readings, add outputs. Example: Air with Pressure and Temp would be output = 7)
 	// 1 for pressure
 	// 2 for temperature
 	// Output >= 4 includes gas composition
@@ -19,7 +19,8 @@
 	// 8 for plasma concentration
 	// 16 for nitrogen concentration
 	// 32 for carbon dioxide concentration
-
+	// 63 for All The Above
+	// N2O currently doesn't have a flag, or I don't know it, so mixing it with others ends up with Gas Comp different from analyzer -Mycah
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/air_sensor/update_icon()
@@ -122,7 +123,7 @@ obj/machinery/computer/general_air_control/Destroy()
 					sensor_part += "   <B>Pressure:</B> [data["pressure"]] kPa<BR>"
 				if(data["temperature"])
 					sensor_part += "   <B>Temperature:</B> [data["temperature"]] K<BR>"
-				if(data["oxygen"]||data["plasma"]||data["nitrogen"]||data["carbon_dioxide"])
+				if(data["oxygen"] || data["plasma"] || data["nitrogen"] || data["carbon_dioxide"])
 					sensor_part += "   <B>Gas Composition :</B>"
 					if(data["oxygen"])
 						sensor_part += "[data["oxygen"]]% O2; "

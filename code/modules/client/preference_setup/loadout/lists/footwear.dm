@@ -14,7 +14,9 @@
 	var/jackboots = list(
 		"Standard"			=	/obj/item/clothing/shoes/jackboots,
 		"Duty"				=	/obj/item/clothing/shoes/jackboots/duty,
-		"Duty, long"		=	/obj/item/clothing/shoes/jackboots/duty/long
+		"Duty, long"		=	/obj/item/clothing/shoes/jackboots/duty/long,
+		"Service"			= 	/obj/item/clothing/shoes/jackboots/ironhammer,
+		"Oberth"			= 	/obj/item/clothing/shoes/jackboots/german
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jackboots)
 
@@ -31,15 +33,26 @@
 	display_name = "shoes, classy"
 	path = /obj/item/clothing/shoes/reinforced
 
+/datum/gear/shoes/lacey
+	display_name = "classy shoes, selection"
+	path = /obj/item/clothing/shoes/reinforced
+
+/datum/gear/shoes/lacey/New()
+	..()
+	var/lacey = list(
+		"Standard"			=	/obj/item/clothing/shoes/reinforced,
+		"Leather"			=	/obj/item/clothing/shoes/leather,
+		"Service"			=	/obj/item/clothing/shoes/reinforced/ironhammer
+	)
+	gear_tweaks += new /datum/gear_tweak/path(lacey)
+
+
+
 /*//Same with /datum/gear/shoes/lacey
 
 /datum/gear/shoes/dress
 	display_name = "shoes, dress"
 	path = /obj/item/clothing/shoes/reinforced*/
-
-/datum/gear/shoes/leather
-	display_name = "shoes, leather"
-	path = /obj/item/clothing/shoes/leather
 
 /datum/gear/shoes/rainbow
 	display_name = "shoes, rainbow"
@@ -57,8 +70,9 @@
 /datum/gear/shoes/color_presets/New()
 	..()
 	var/shoes = list(
-		"White"			=	/obj/item/clothing/shoes/color/white,
 		"Black"			=	/obj/item/clothing/shoes/color/black,
+		"White"			=	/obj/item/clothing/shoes/color/white,
+		"Grey"			= 	/obj/item/clothing/shoes/color/grey,
 		"Brown"			=	/obj/item/clothing/shoes/color/brown,
 		"Red"			=	/obj/item/clothing/shoes/color/red,
 		"Orange"		=	/obj/item/clothing/shoes/color/orange,

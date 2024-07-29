@@ -12,7 +12,7 @@
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_CLERGY
 	cruciform_access = list(
-		access_morgue, access_chapel_office, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels
+		access_morgue, access_chapel_office, access_nt_acolyte, access_crematorium, access_hydroponics, access_janitor, access_maint_tunnels
 	)
 
 	access = list(
@@ -74,13 +74,13 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_COMMON
-	cruciform_access = list(access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics)
+	cruciform_access = list(access_nt_acolyte, access_morgue, access_crematorium, access_maint_tunnels, access_hydroponics, access_nt_custodian)
 	wage = WAGE_PROFESSIONAL // The money of the soul is faith, and cold hard cash
 	outfit_type = /decl/hierarchy/outfit/job/church/acolyte
 
@@ -165,14 +165,14 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 4
+	spawn_positions = 4
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Custodian","Sanitation Technician")
 	also_known_languages = list(LANGUAGE_LATIN = 100)
 	security_clearance = CLEARANCE_COMMON
-	cruciform_access = list(access_janitor, access_maint_tunnels, access_morgue, access_crematorium)
+	cruciform_access = list(access_nt_custodian, access_janitor, access_maint_tunnels, access_morgue, access_crematorium)
 	wage = WAGE_LABOUR_HAZARD // The money of the soul is faith, and cold hard cash
 	outfit_type = /decl/hierarchy/outfit/job/church/janitor
 

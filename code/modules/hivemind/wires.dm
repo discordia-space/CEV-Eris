@@ -144,7 +144,7 @@
 /obj/effect/plant/hivemind/refresh_icon()
 	overlays.Cut()
 	var/image/I
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if((locate(/obj/structure/burrow) in loc) && F.flooring.is_plating)
 		icon_state = "wires_burrow"
 	else
@@ -176,7 +176,7 @@
 
 
 /obj/effect/plant/hivemind/proc/is_wall(turf/target)
-	if((locate(/obj/structure/window) in target) || istype(target, /turf/simulated/wall))
+	if((locate(/obj/structure/window) in target) || istype(target, /turf/wall))
 		return TRUE
 	return FALSE
 

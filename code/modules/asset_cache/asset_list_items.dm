@@ -230,7 +230,7 @@
 // 		"ketchup" = 'icons/ui_icons/condiments/ketchup.png',
 // 		"capsaicin" = 'icons/ui_icons/condiments/hotsauce.png',
 // 		"frostoil" = 'icons/ui_icons/condiments/coldsauce.png',
-// 		"bbqsauce" = 'icons/ui_icons/condiments/bbqsauce.png',
+// 		"bbqsauce" = 'icons/ui_icons/condiments/bbqsauce.png', //Currently doesn't exist
 // 		"cornoil" = 'icons/ui_icons/condiments/oliveoil.png',
 // 	)
 
@@ -390,15 +390,6 @@
 // 	assets = list(
 // 		"view_variables.css" = 'html/admin/view_variables.css'
 // 	)
-
-/datum/asset/spritesheet/sheetmaterials
-	name = "sheetmaterials"
-
-/datum/asset/spritesheet/sheetmaterials/register()
-	InsertAll("", 'icons/obj/stack/material.dmi')
-	// Special case on RCD objects
-	Insert("rcd", 'icons/obj/ammo.dmi', "rcd")
-	..()
 
 /* === ERIS STUFF === */
 /datum/asset/simple/design_icons/register()

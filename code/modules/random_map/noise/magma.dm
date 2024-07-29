@@ -3,7 +3,7 @@
 /datum/random_map/noise/volcanism
 	descriptor = "volcanism"
 	smoothing_iterations = 6
-	target_turf_type = /turf/simulated
+	target_turf_type = /turf
 
 // Get rid of those dumb little single-tile volcanic areas.
 /datum/random_map/noise/volcanism/cleanup()
@@ -37,8 +37,8 @@
 
 /datum/random_map/noise/volcanism/get_additional_spawns(var/value, var/turf/T)
 	if(value>=178)
-		if(istype(T,/turf/simulated/floor/asteroid))
-			T.ChangeTurf(/turf/simulated/floor/airless/lava)
-		else if(istype(T,/turf/simulated/mineral))
-			var/turf/simulated/mineral/M = T
-			M.mined_turf = /turf/simulated/floor/airless/lava
+		if(istype(T,/turf/floor/asteroid))
+			T.ChangeTurf(/turf/floor/airless/lava)
+		else if(istype(T,/turf/mineral))
+			var/turf/mineral/M = T
+			M.mined_turf = /turf/floor/airless/lava

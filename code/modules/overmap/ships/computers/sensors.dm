@@ -35,7 +35,7 @@
 		data["on"] = sensors.use_power
 		data["range"] = sensors.range
 		data["health"] = sensors.health
-		data["max_health"] = sensors.max_health
+		data["maxHealth"] = sensors.maxHealth
 		data["heat"] = sensors.current_heat
 		data["critical_heat"] = sensors.critical_heat
 		if(sensors.health == 0)
@@ -121,8 +121,8 @@
 	desc = "Long range gravity scanner with various other sensors, used to detect irregularities in surrounding space. Can only run in vacuum to protect delicate quantum BS elements."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "sensors"
-	var/max_health = 200
-	var/health = 200
+	maxHealth = 200
+	health = 200
 	var/critical_heat = 50 // sparks and takes damage when active & above this heat
 	var/heat_reduction = 1.5 // mitigates this much heat per tick
 	var/current_heat = 0
@@ -130,7 +130,7 @@
 	idle_power_usage = 5000
 
 /obj/machinery/shipsensors/attackby(obj/item/W, mob/user)
-	var/damage = max_health - health
+	var/damage = maxHealth - health
 	if(damage && (QUALITY_WELDING in W.tool_qualities))
 		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
 		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
@@ -155,16 +155,16 @@
 	else
 		icon_state = "sensors_off"
 
-/obj/machinery/shipsensors/examine(mob/user)
-	. = ..()
+/obj/machinery/shipsensors/examine(mob/user, extra_description = "")
 	if(health <= 0)
-		to_chat(user, "\The [src] is wrecked.")
-	else if(health < max_health * 0.25)
-		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
-	else if(health < max_health * 0.5)
-		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
-	else if(health < max_health * 0.75)
-		to_chat(user, "\The [src] shows signs of damage!")
+		extra_description += "\n\The [src] is wrecked."
+	else if(health < maxHealth * 0.25)
+		extra_description += SPAN_DANGER("\n\The [src] looks like it's about to break!")
+	else if(health < maxHealth * 0.5)
+		extra_description += SPAN_DANGER("\n\The [src] looks seriously damaged!")
+	else if(health < maxHealth * 0.75)
+		extra_description += "\nThe [src] shows signs of damage!"
+	..(user, extra_description)
 
 /obj/machinery/shipsensors/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
@@ -210,7 +210,7 @@
 	take_damage(20/severity)
 	toggle()
 
-/obj/machinery/shipsensors/proc/take_damage(value)
-	health = min(max(health - value, 0),max_health)
+/obj/machinery/shipsensors/take_damage(value)
+	health = min(max(health - value, 0),maxHealth)
 	if(use_power && health == 0)
 		toggle()

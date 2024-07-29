@@ -107,13 +107,14 @@
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
+	var/health = 100
+	var/maxHealth = 100
 
 	var/current_power_usage = 0 // How much power are we currently using, dont change by hand, change power_usage vars and then use set_power_use
 	var/area/current_power_area // What area are we powering currently
 
-	var/machine_integrity = 360
-
 	var/hacked = FALSE // If this machine has had its access requirements hacked or not
+	var/shipside_only = FALSE // Does this mechanism need to be on the ship? Used for excel
 
 
 /obj/machinery/Initialize(mapload, d=0)
@@ -150,16 +151,15 @@
 		new /obj/effect/overlay/pulse(loc)
 	..()
 
-/obj/machinery/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				qdel(src)
-		if(3)
-			if(prob(25))
-				qdel(src)
+/obj/machinery/proc/take_damage(amount)
+	. = health - amount < 0 ? amount - (amount - health) : amount
+	health -= amount
+	if(health <= 0)
+		qdel(src)
+
+/obj/machinery/explosion_act(target_power, explosion_handler/handler)
+	take_damage(target_power)
+	return 0
 
 /proc/is_operable(obj/machinery/M, mob/user)
 	return istype(M) && M.operable()
@@ -169,6 +169,9 @@
 
 /obj/machinery/proc/inoperable(var/additional_flags = 0)
 	return (stat & (NOPOWER|BROKEN|additional_flags))
+
+/obj/machinery/ui_state(mob/user)
+	return GLOB.machinery_state
 
 /obj/machinery/CanUseTopic(mob/user)
 	if(stat & BROKEN)

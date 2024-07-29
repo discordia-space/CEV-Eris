@@ -54,7 +54,7 @@
 		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
 		user.Weaken(2)
 	if(volume > 100 && prob(1))
-		var/obj/item/organ/internal/heart/user_heart = user.random_organ_by_process(OP_HEART)
+		var/obj/item/organ/internal/vital/heart/user_heart = user.random_organ_by_process(OP_HEART)
 		if(!user_heart || BP_IS_ROBOTIC(user_heart))
 			return FALSE
 		to_chat(user, span_danger("You feel like your heart just exploded!"))
@@ -279,6 +279,12 @@
 	if(prob(3 - (2 * M.stats.getMult(STAT_TGH))))
 		M.Stun(3)
 
+/datum/reagent/medicine/tramadol/holy
+	id = "deusblessing"
+	overdose = REAGENTS_OVERDOSE * 3
+	scannable = 0
+	nerve_system_accumulations = 0
+
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
 	id = "oxycodone"
@@ -340,8 +346,12 @@
 	scannable = 1
 
 /datum/reagent/medicine/alkysine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.adjustBrainLoss(-(3 + (M.getBrainLoss() * 0.05)) * effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 10)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/vital/brain/B = H.internal_organs_by_efficiency[BP_BRAIN]
+		if(!BP_IS_ROBOTIC(B) && prob(75))
+			M.add_chemical_effect(CE_PAINKILLER, 10)
+			M.add_chemical_effect(CE_BRAINHEAL, 1)
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
@@ -361,8 +371,8 @@
 		var/obj/item/organ/internal/E = H.random_organ_by_process(OP_EYES)
 		if(E && istype(E))
 			var/list/current_wounds = E.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && prob(10))
-				SEND_SIGNAL_OLD(E, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+			if(LAZYLEN(current_wounds) && prob(75))
+				M.add_chemical_effect(CE_EYEHEAL, 1)
 
 /datum/reagent/medicine/imidazoline/overdose(mob/living/carbon/M, alien)
 	. = ..()
@@ -385,18 +395,21 @@
 /datum/reagent/medicine/peridaxon/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/obj/item/organ/I in H.internal_organs)
+		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Peridaxon shouldn't heal brain or bones
+		for(var/obj/item/organ/I in organs_sans_brain_and_bones)
 			var/list/current_wounds = I.GetComponents(/datum/component/internal_wound)
-			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I)) //Peridaxon heals only non-robotic organs
-				SEND_SIGNAL_OLD(I, COMSIG_IORGAN_REMOVE_WOUND, pick(current_wounds))
+			if(LAZYLEN(current_wounds) && !BP_IS_ROBOTIC(I) && prob(75)) //Peridaxon heals only non-robotic organs
+				M.add_chemical_effect(CE_ONCOCIDAL, 1)
+				M.add_chemical_effect(CE_BLOODCLOT, 1)
+				M.add_chemical_effect(CE_ANTITOX, 2)
 
 /datum/reagent/medicine/peridaxon/overdose(mob/living/carbon/M, alien)
 	. = ..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/list/organs_sans_brain = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN]
-		if(LAZYLEN(organs_sans_brain))
-			create_overdose_wound(pick(organs_sans_brain), H, /datum/component/internal_wound/organic/heavy_poisoning)
+		var/list/organs_sans_brain_and_bones = H.internal_organs - H.internal_organs_by_efficiency[BP_BRAIN] - H.internal_organs_by_efficiency[OP_BONE] // Since it doesn't heal brain/bones it shouldn't damage them too
+		if(LAZYLEN(organs_sans_brain_and_bones))
+			create_overdose_wound(pick(organs_sans_brain_and_bones), H, /datum/component/internal_wound/organic/heavy_poisoning)
 
 /datum/reagent/medicine/ryetalyn
 	name = "Ryetalyn"

@@ -27,6 +27,7 @@
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.8 // 80 vig
 	serial_type = "SA"
+	move_delay = 5
 
 /obj/item/gun/projectile/rpg/update_icon()
 	. = ..()

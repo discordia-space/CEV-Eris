@@ -28,7 +28,7 @@
 
 /obj/singularity_act()
 	if(simulated)
-		ex_act(1)
+		explosion_act(1000, null)
 		if(src)
 			qdel(src)
 		return 2
@@ -84,28 +84,28 @@
 	return
 
 /obj/item/storage/backpack/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
-	explosion(src.loc,(dist),(dist*2),(dist*4))
+	var/power = max(current_size,1) * 500
+	explosion(get_turf(src), power, 250)
 	return 1000
 
 /obj/item/storage/pouch/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
-	explosion(src.loc,(dist),(dist*2),(dist*4))
+	var/power =	max(current_size,1) * 500
+	explosion(get_turf(src), power, 250)
 	return 1000
 
 /obj/item/storage/belt/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
-	explosion(src.loc,(dist),(dist*2),(dist*4))
+	var/power = max(current_size,1) * 500
+	explosion(get_turf(src), power, 250)
 	return 1000
 
 /obj/item/storage/bag/trash/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
-	explosion(src.loc,(dist),(dist*2),(dist*4))
+	var/power = max(current_size,1) * 500
+	explosion(get_turf(src), power, 250)
 	return 1000
 
 /obj/item/storage/bag/ore/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
-	explosion(src.loc,(dist),(dist*2),(dist*4))
+	var/power = max(current_size,1) * 500
+	explosion(get_turf(src), power, 250)
 	return 1000
 
 /turf/singularity_act(S, current_size)

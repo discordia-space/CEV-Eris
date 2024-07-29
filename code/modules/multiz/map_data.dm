@@ -48,7 +48,6 @@ GLOBAL_DATUM_INIT(maps_data, /datum/maps_data, new)
 		return TRUE
 	return FALSE
 
-ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 /client/proc/test_MD()
 	set name = "Check level data"
 	set category = "Debug"
@@ -106,6 +105,9 @@ ADMIN_VERB_ADD(/client/proc/test_MD, R_DEBUG, null)
 						/datum/job/assistant
 
 						)
+	var/pulsar_z
+	var/pulsar_size = 20  //Should be an even number, to place the pulsar in the middle
+	var/obj/effect/pulsar/pulsar_star
 
 	var/overmap_z
 	var/overmap_size = 50 * 4

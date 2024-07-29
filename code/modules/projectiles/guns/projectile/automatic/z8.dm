@@ -28,7 +28,7 @@
 	init_firemodes = list(
 		SEMI_AUTO_300,
 		BURST_3_ROUND,
-		list(mode_name="fire grenades", mode_desc="Unlocks the underbarrel grenade launcher", burst=null, fire_delay=null, move_delay=null,  icon="grenade", use_launcher=1)
+		list(mode_name="fire grenades", mode_desc="Unlocks the underbarrel grenade launcher", burst=null, fire_delay=null, icon="grenade", use_launcher=1)
 		)
 
 	var/obj/item/gun/projectile/shotgun/pump/grenade/underslung/launcher
@@ -77,12 +77,12 @@
 	. = ..()
 	update_icon()
 
-/obj/item/gun/projectile/automatic/z8/examine(mob/user)
-	..()
+/obj/item/gun/projectile/automatic/z8/examine(mob/user, extra_description = "")
 	if(launcher.chambered)
-		to_chat(user, "\The [launcher] has \a [launcher.chambered] loaded.")
+		extra_description += "\n\The [launcher] has \a [launcher.chambered] loaded."
 	else
-		to_chat(user, "\The [launcher] is empty.")
+		extra_description += "\n\The [launcher] is empty."
+	..(user, extra_description)
 
 /obj/item/part/gun/frame/z8
 	name = "Z8 Bulldog frame"
@@ -90,5 +90,5 @@
 	icon_state = "frame_pug"
 	resultvars = list(/obj/item/gun/projectile/automatic/z8)
 	gripvars = list(/obj/item/part/gun/modular/grip/black)
-	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/heavy
 	barrelvars = list(/obj/item/part/gun/modular/barrel/srifle)

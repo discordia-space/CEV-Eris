@@ -57,10 +57,10 @@ var/global/list/plant_seed_sprites = list()
 		src.name = "sample of [seed.seed_name] [seed.seed_noun]"
 		src.desc = "It's labelled as coming from [seed.display_name]."
 
-/obj/item/seeds/examine(mob/user)
-	..(user)
+/obj/item/seeds/examine(mob/user, extra_description = "")
 	if(seed && !seed.roundstart)
-		to_chat(user, "It's tagged as variety #[seed.uid].")
+		extra_description += "It's tagged as variety #[seed.uid]."
+	..(user, extra_description)
 
 /obj/item/seeds/cutting
 	name = "cuttings"
@@ -170,7 +170,7 @@ var/global/list/plant_seed_sprites = list()
 	seed_type = "libertycap"
 
 /obj/item/seeds/chantermycelium
-	seed_type = "mushrooms"
+	seed_type = "mushroom"
 
 /obj/item/seeds/towermycelium
 	seed_type = "towercap"
@@ -282,3 +282,18 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/thaadra
 	seed_type = "thaadra"
+
+/obj/item/seeds/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/pen))
+		var/new_name = input(user, "What would you like to label the seed packet?", "Tape labeling") as null|text
+		if(isnull(new_name)) return
+		new_name = sanitizeSafe(new_name)
+		if(new_name)
+			SetName("[initial(name)] - '[new_name]'")
+			to_chat(user, SPAN_NOTICE("You label the seed packet '[new_name]'."))
+		else
+			SetName("[initial(name)]")
+			to_chat(user, SPAN_NOTICE("You wipe off the label."))
+		return
+
+	..()

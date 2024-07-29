@@ -7,11 +7,12 @@
 		melee = 15,
 		bullet = 16,
 		energy = 14,
-		bomb = 75,
+		bomb = 150,
 		bio = 100,
 		rad = 30
 	)
 	siemens_coefficient = 0.35
+	max_heat_protection_temperature = 15000 //Halfway between Space Suit 5000 and Firesuit 30000
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green"
@@ -26,11 +27,12 @@
 		melee = 15,
 		bullet = 16,
 		energy = 14,
-		bomb = 75,
+		bomb = 150,
 		bio = 100,
 		rad = 30
 	)
 	siemens_coefficient = 0.35
+	max_heat_protection_temperature = 15000 //Halfway between Space Suit 5000 and Firesuit 30000
 	breach_threshold = 10
 	resilience = 0.07
 	species_restricted = list(SPECIES_HUMAN)
@@ -50,7 +52,7 @@
 		melee = 13,
 		bullet = 13,
 		energy = 13,
-		bomb = 50,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)
@@ -76,7 +78,7 @@
 		melee = 13,
 		bullet = 13,
 		energy = 13,
-		bomb = 50,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)

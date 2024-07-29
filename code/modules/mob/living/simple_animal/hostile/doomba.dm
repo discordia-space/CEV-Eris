@@ -60,7 +60,12 @@
 	melee_damage_lower = 12
 	melee_damage_upper = 17
 	rarity_value = 39.66
+	attacktext = "stabbed"
 
+/mob/living/simple_animal/hostile/roomba/slayer/AttackTarget()
+	. = ..()
+	if(.)
+		playsound(src, pick('sound/weapons/melee/heavystab.ogg', 'sound/weapons/melee/lightstab.ogg', 'sound/weapons/melee/sharphit.ogg'), 50, 1)
 
 /mob/living/simple_animal/hostile/roomba/boomba
 	name = "One Star RMB-A unit"
@@ -77,7 +82,7 @@
 	. = ..()
 	if(.) // If we succeeded in hitting.
 		src.visible_message(SPAN_DANGER("\The [src] makes an odd warbling noise, fizzles, and explodes!"))
-		explosion(get_turf(loc), -1, -1, 2, 3)
+		explosion(get_turf(src), 250, 75)
 		death()
 
 /mob/living/simple_animal/hostile/roomba/gun_ba

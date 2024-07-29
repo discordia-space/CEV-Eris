@@ -129,7 +129,7 @@ var/global/list/image/splatter_cache=list()
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)
-		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
+		add_verb(user, /mob/living/carbon/human/proc/bloody_doodle)
 
 /obj/effect/decal/cleanable/blood/splatter
     random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
@@ -166,10 +166,9 @@ var/global/list/image/splatter_cache=list()
 	else
 		icon_state = "writing1"
 
-/obj/effect/decal/cleanable/blood/writing/examine(mob/user)
-	..(user)
-	to_chat(user, "It reads: <font color='[basecolor]'>\"[message]\"</font>")
-
+/obj/effect/decal/cleanable/blood/writing/examine(mob/user, extra_description = "")
+	extra_description += "It reads: <font color='[basecolor]'>\"[message]\"</font>"
+	..(user, extra_description)
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
 	desc = "They look bloody and gruesome."
@@ -213,19 +212,15 @@ var/global/list/image/splatter_cache=list()
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/obj/effect/decal/cleanable/blood/gibs/proc/streak(var/list/directions)
-	spawn (0)
-		var/direction = pick(directions)
-		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-			sleep(3)
-			if (i > 0)
-				var/obj/effect/decal/cleanable/blood/splatter/b = new(loc)
-				b.basecolor = src.basecolor
-				b.update_icon()
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
+	var/direction = pick(directions)
+	for (var/i = 0, i < pick(1,3), i++)
+		var/obj/effect/decal/cleanable/blood/splatter/b = new(loc)
+		b.basecolor = src.basecolor
+		b.update_icon()
 
-			if (step_to(src, get_step(src, direction), 0))
-				break
-
+		if (step_to(src, get_step(src, direction), 0))
+			break
 
 /obj/effect/decal/cleanable/mucus
 	name = "mucus"
@@ -246,10 +241,10 @@ var/global/list/image/splatter_cache=list()
 
 //This proc prevents blood on openspace tiles, by causing them to fall down until they hit the ground
 /obj/effect/decal/cleanable/blood/proc/fall_to_floor()
-	if (istype(loc, /turf/simulated/open))
+	if (istype(loc, /turf/open))
 		anchored = FALSE //Anchored things can't fall
-		while (istype(loc, /turf/simulated/open))
-			var/turf/simulated/open/T = loc
+		while (istype(loc, /turf/open))
+			var/turf/open/T = loc
 			T.fallThrough(src)
 
 			//A failsafe. If falling through the floor somehow fails to send us anywhere new, we break out to avoid an infinite loop

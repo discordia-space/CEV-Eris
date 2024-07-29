@@ -17,7 +17,8 @@
 	recommendations_needed = 1
 	inventory = list(
 		"Assorted Goods" = list(
-			/obj/item/storage/deferred/disks = custom_good_price(5000),
+			/obj/item/storage/deferred/toolmod = custom_good_price(6000),
+			/obj/item/storage/deferred/disks = custom_good_price(3000),
 			/obj/item/storage/deferred/gun_parts = custom_good_price(3000),
 			/obj/item/storage/deferred/powercells = custom_good_price(2000),
 			/obj/item/storage/deferred/electronics = custom_good_price(1000)
@@ -32,7 +33,7 @@
 		/obj/item/oddity/common/teddy = offer_data("teddy bear", 500, 1),
 		/obj/item/oddity/common/paper_crumpled = offer_data("turn-out page", 500, 1),
 		/obj/item/oddity/common/paper_bundle = offer_data("paper bundle", 500, 1),
-		/obj/item/music_tape = offer_data("music tape", 600, 4),
+		/obj/item/music_tape = offer_data("music tape", 1000, 4),
 		/obj/item/oddity/artwork = offer_data("artistic oddity", 1600, 1),
 		/obj/item/coin = offer_data("metal coin", 4000, 1)						// From what I can tell, these are pretty rare
 	)

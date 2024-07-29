@@ -242,8 +242,8 @@ mob/living/carbon/human/airflow_hit(atom/A)
 
 zone/proc/movables()
 	. = list()
-	for(var/turf/T in contents)
-		for(var/atom/movable/A in T)
+	for(var/turf/turf as anything in contents)
+		for(var/atom/movable/A in turf)
 			if(!A.simulated || A.anchored || istype(A, /obj/effect) || isobserver(A))
 				continue
 			. += A

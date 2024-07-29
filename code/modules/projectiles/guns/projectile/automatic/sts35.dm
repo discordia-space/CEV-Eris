@@ -60,5 +60,5 @@
 	icon_state = "frame_orrifle"
 	resultvars = list(/obj/item/gun/projectile/automatic/sts35)
 	gripvars = list(/obj/item/part/gun/modular/grip/black)
-	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/determined
 	barrelvars = list(/obj/item/part/gun/modular/barrel/lrifle)

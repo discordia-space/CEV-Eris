@@ -2,7 +2,7 @@
 /obj/item/device/scanner/health
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
-	icon_state = "health"
+	icon_state = "health0"
 	item_state = "analyzer"
 	throw_speed = 5
 	throw_range = 10
@@ -171,11 +171,6 @@
 					++unknown
 			if(unknown)
 				dat += SPAN_WARNING("Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.")
-		if(C.virus2.len)
-			for (var/ID in C.virus2)
-				if (ID in virusDB)
-					var/datum/data/record/V = virusDB[ID]
-					dat += SPAN_WARNING("Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]")
 	if (M.getCloneLoss())
 		dat += SPAN_WARNING("Subject appears to have been imperfectly cloned.")
 	if (M.has_brain_worms())
@@ -201,3 +196,21 @@
 				dat += span("highlight", "Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
 		dat += "<span class='highlight'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "#0080ff"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>"
 	. = jointext(dat, "<br>")
+
+/obj/item/device/scanner/health/cell_use_check(charge, mob/user)
+	. = TRUE
+	icon_state = "health"
+	if(!cell || !cell.checked_use(charge))
+		if(user)
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		. = FALSE
+		icon_state = "health0"
+
+/obj/item/device/scanner/health/cell_check(charge, mob/user)
+	. = TRUE
+	icon_state = "health"
+	if(!cell || !cell.check_charge(charge))
+		if(user)
+			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		. = FALSE
+		icon_state = "health0"
