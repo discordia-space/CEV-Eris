@@ -21,6 +21,7 @@
 	icon_state = "tank_platform"
 	layer = LOW_OBJ_LAYER
 	idle_power_usage = 120
+	active_power_usage = 360
 	pixel_y = -4
 	var/obj/structure/biomatter_tank/biotank
 	var/obj/canister
@@ -62,8 +63,11 @@
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Process()
 	if(!MS)
+		use_power(idle_power_usage)
 		return
+	use_power(idle_power_usage)
 	if(biotank.canister)
+		use_power(active_power_usage)
 		biotank.reagents.trans_to_holder(biotank.canister.reagents, 100)
 
 
