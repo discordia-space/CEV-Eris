@@ -916,7 +916,7 @@ obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 	matter = list()
 	cell_type = /obj/item/cell/medium/mech
 
-#define CROSSBOW_MAX_AMOUNT 3
+#define CROSSBOW_MAX_AMOUNT 7
 #define CROSSBOW_AMOUNT_OF_MATERIAL_PER_SHOT 5
 
 /obj/item/mech_equipment/mounted_system/crossbow
