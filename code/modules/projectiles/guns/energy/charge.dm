@@ -139,7 +139,8 @@
 	var/overcharge_add = overcharge_level_to_mult()
 	damage_multiplier += overcharge_add
 	penetration_multiplier += overcharge_add
-	if(overcharge_level > 2 && cell.checked_use(overcharge_level))
+	// minimum overcharge is based on overcharge max. initial is used so that upgrades don't also raise min. possibly move to separate variable?
+	if(overcharge_level > initial(overcharge_max) / 2 && cell.checked_use(overcharge_level))
 		Fire(target, user)
 	else
 		visible_message(SPAN_WARNING("\The [src] sputters."))
