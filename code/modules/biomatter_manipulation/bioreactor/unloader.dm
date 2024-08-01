@@ -10,9 +10,9 @@
 
 /obj/machinery/multistructure/bioreactor_part/unloader/Process()
 	if(!MS)
-		use_power(idle_power_usage)
+		use_power(1)
 		return
-	use_power(active_power_usage)
+	use_power(2)
 	if(contents.len)
 		var/obj/item/misc = locate() in contents
 		if(misc)

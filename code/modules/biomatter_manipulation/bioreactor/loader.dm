@@ -27,9 +27,9 @@
 
 /obj/machinery/multistructure/bioreactor_part/loader/Process()
 	if(!MS || !MS_bioreactor.is_operational() || !MS_bioreactor.chamber_solution)
-		use_power(idle_power_usage)
+		use_power(1)
 		return
-	use_power(active_power_usage)
+	use_power(2)
 	if(contents.len)
 		for(var/atom/movable/A in contents)
 			var/obj/machinery/multistructure/bioreactor_part/platform/empty_platform = MS_bioreactor.get_unoccupied_platform()

@@ -444,6 +444,12 @@ var/list/ship_scanners = list()
 		return
 	//If we're extending them
 	if (target_state == TRUE)
+		if(!anchored)
+			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it needs to be properly anchored to deploy"))
+			playsound(src.loc, "/sound/machines/buzz-two", 100, 1, 5)
+			tendrils_deployed = FALSE
+			update_icon()
+			return FALSE
 		for (var/D in tendril_dirs)
 			var/turf/T = get_step(src, D)
 			var/obj/machinery/scanner_conduit/SC = locate(/obj/machinery/scanner_conduit) in T
