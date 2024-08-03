@@ -620,8 +620,6 @@
 	)
 	siemens_coefficient = 1
 	species_restricted = list(SPECIES_HUMAN)
-	light_overlay = "helmet_light_green"
-	var/obj/item/clothing/glasses/hud/excelsior/hud
 	price_tag = 150
 
 /obj/item/clothing/head/armor/faceshield/paramedic
