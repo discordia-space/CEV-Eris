@@ -212,7 +212,7 @@
 
 /obj/item/clothing/suit/armor/flak/excelsior
 	name = "Excelsior Flakvest"
-	desc = "The first layer of defense for every Haven conscript"
+	desc = "The first layer of defense for every Haven conscript."
 	icon_state = "flakvest_excelsior"
 	matter = list(
 		MATERIAL_STEEL = 8,
