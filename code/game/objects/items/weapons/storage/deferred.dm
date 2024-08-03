@@ -347,7 +347,7 @@
 
 /obj/item/storage/deferred/crate/excel_conscript
 	name = "Excelsior conscript crate"
-	desc = "A supply kit for the aspiring conscript."
+	desc = "A supply kit for an aspiring conscript."
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
