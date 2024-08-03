@@ -87,6 +87,7 @@
 		/datum/design/autolathe/clothing/excelsior_shock,
 		/datum/design/autolathe/clothing/excel_shock_helmet,
 		/datum/design/autolathe/clothing/excelsior_armor,
+		/datum/design/autolathe/clothing/excel_beret,
 		/datum/design/autolathe/device/excelbaton,					//security
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,

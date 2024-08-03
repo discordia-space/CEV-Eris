@@ -252,16 +252,16 @@
 
 /obj/item/clothing/suit/armor/excelshock
 	name = "Excelsior Shock Trooper Armor"
-	desc = "Fresh from the design labs of Haven, the Excelsior Mk.1 Shock trooper armor combines speed and protection for its planetary assaults."
+	desc = "Fresh from the design labs of Haven and based off of stolen ablative armor designs, the Excelsior Mk.1 Shock trooper armor combines speed and protection for its planetary assaults."
 	icon_state = "shock_ex"
 	item_state = "shock_ex"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 8,
+		melee = 9,
 		bullet = 14,
-		energy = 10,
+		energy = 11,
 		bomb = 35,
 		bio = 0,
 		rad = 0

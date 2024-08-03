@@ -14,6 +14,10 @@
 /datum/design/autolathe/clothing/excel_shock_helmet
 	name = "Shock Helmet"
 	build_path = /obj/item/clothing/head/armor/excel_shock
+
+/datum/design/autolathe/clothing/excel_beret
+	name = "Excelsior Beret"
+	build_path = /obj/item/clothing/head/armor/excel_beret
 // Standard
 
 /datum/design/autolathe/clothing/generic_helmet_basic

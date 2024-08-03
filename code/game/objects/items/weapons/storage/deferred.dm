@@ -348,22 +348,26 @@
 /obj/item/storage/deferred/crate/excel_conscript
 	name = "Excelsior Conscript Crate"
 	desc = "A supply kit for the aspiring conscript."
-	icon_state = "germancrate_deferred"
+	icon_state = "Excel_crate"
 	initial_contents = list(
-	/obj/item/clothing/gloves/security = 1,
-	/obj/item/clothing/head/beret/german = 1,
+	/obj/item/clothing/gloves/thick = 1,
+	/obj/item/clothing/head/armor/excel_beret = 1,
 	/obj/item/clothing/mask/gas = 1,
-	/obj/item/clothing/shoes/jackboots/german = 1,
-	/obj/item/clothing/suit/armor/flak/excelsior = 1)
+	/obj/item/clothing/suit/armor/flak/excelsior = 1,
+	/obj/item/gun/projectile/boltgun = 1,
+	/obj/item/ammo_magazine/ammobox/lrifle_small = 1,
+	/obj/item/ammo_magazine/sllrifle = 7
+	)
 
 /obj/item/storage/deferred/crate/Excel_shock_kit
-	name = "Excelsior Shock Trooper Kit"
+	name = "Excelsior Shock army Kit"
 	desc = "Everything needed for an aspiring shock trooper."
-	icon_state = "germancrate_deferred"
+	icon_state = "Excel_crate"
 	initial_contents = list(
-	/obj/item/clothing/gloves/security = 1,
+	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/clothing/head/armor/excel_shock = 1,
 	/obj/item/ammo_magazine/msmg = 4,
+	/obj/item/ammo_magazine/ammobox/magnum = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/gun/projectile/automatic/drozd = 1,
 	/obj/item/clothing/suit/armor/excelshock = 1,
@@ -372,38 +376,44 @@
 
 
 /obj/item/storage/deferred/crate/Excel_Eva
-	name = "Excelsior Eva Trooper kit"
+	name = "Excelsior EVA trooper kit"
 	desc = "The start of a revolutionary career in Haven's space corps."
-	icon_state = "germancrate_deferred"
+	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/gun/projectile/automatic/modular/ak/excelsior = 1,
+	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/ammo_magazine/lrifle = 4,
-	/obj/item/clothing/gloves/security = 1,
 	/obj/item/clothing/mask/gas = 1,
-	/obj/item/clothing/suit/space/void/excelsior = 1)
+	/obj/item/ammo_magazine/ammobox/lrifle_small = 1,
+	/obj/item/clothing/suit/space/void/excelsior = 1,
+	/obj/item/tank/emergency_oxygen/double = 1
+	)
 
 /obj/item/storage/deferred/crate/Excel_Scout
 	name = "Excelsior Scout Trooper kit"
 	desc = "A kit for comrades engaging at a distance."
-	icon_state = "germancrate_deferred"
+	icon_state = "Excel_crate"
 	initial_contents = list(
-	/obj/item/clothing/gloves/security = 1,
+	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/gun/projectile/automatic/vintorez = 1,
-	/obj/item/ammo_magazine/srifle = 4,
+	/obj/item/ammo_magazine/srifle = 5,
 	/obj/item/clothing/suit/armor/excelshock = 1,
 	/obj/item/clothing/mask/gas = 1,
-	/obj/item/clothing/head/armor/excel_shock = 1)
+	/obj/item/ammo_magazine/ammobox/srifle_small = 1,
+	/obj/item/clothing/head/armor/excel_shock = 1
+	)
 
 /obj/item/storage/deferred/crate/Excel_heavy
 	name = "Excelsior Heavy Trooper kit"
-	desc = "The Starting point for Excelsiors Heavy Infantry."
-	icon_state = "germancrate_deferred"
+	desc = "Equipment of Excelsior's heavy infantry."
+	icon_state = "Excel_crate"
 	initial_contents = list(
-	/obj/item/clothing/gloves/security = 1,
+	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/clothing/suit/space/void/excelsior = 1,//a holding point up until we get excel rig suits
 	/obj/item/ammo_magazine/maxim = 4,
 	/obj/item/gun/projectile/automatic/maxim =1,
+	/obj/item/tank/emergency_oxygen/double = 1
 	)
 
 /obj/item/storage/deferred/crate/clown_crime

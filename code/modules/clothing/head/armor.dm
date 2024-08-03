@@ -581,9 +581,27 @@
 	name = "gray tanker helmet"
 	icon_state = "tanker_helmet_gray"
 
+/obj/item/clothing/head/armor/excel_beret
+	name = "Excelsior Beret"
+	desc = "An armored white and orange beret, issued out to haven's many conscripts"
+	icon_state = "excel_beret"
+	item_state = "excel_beret"
+	armor = list(
+		melee = 5,
+		bullet = 4,
+		energy = 5,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_BIOMATTER = 2,
+		MATERIAL_PLASTIC = 1,
+		MATERIAL_STEEL = 1
+	)
 /obj/item/clothing/head/armor/excel_shock
 	name = "Excelsior Shock Trooper Helmet"
-	desc = "Reminisciant of earlier ablative designs, this shock helmet is at the forefront of haven's battles."
+	desc = "Reminiscent of earlier ablative designs, this helmet is at the forefront of Haven's battles."
 	icon_state = "shock_helm"
 	item_state = "shock_helm"
 	armor = list(
