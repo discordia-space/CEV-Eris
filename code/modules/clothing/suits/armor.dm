@@ -211,7 +211,7 @@
 	icon_state = "flakvest_green"
 
 /obj/item/clothing/suit/armor/flak/excelsior
-	name = "Excelsior Flakvest"
+	name = "Excelsior flak vest"
 	desc = "The first layer of defense for every Haven conscript."
 	icon_state = "flakvest_excelsior"
 	matter = list(
