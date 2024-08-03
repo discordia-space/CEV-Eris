@@ -1,12 +1,5 @@
 import { useBackend, useSharedState } from '../backend';
-import {
-  Box,
-  Button,
-  LabeledList,
-  NoticeBox,
-  Section,
-  Tabs,
-} from '../components';
+import { Box, Button, LabeledList, NoticeBox, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 
 export const RoboticsControlConsole = (props, context) => {
@@ -21,16 +14,14 @@ export const RoboticsControlConsole = (props, context) => {
             icon="list"
             lineHeight="23px"
             selected={tab === 1}
-            onClick={() => setTab(1)}
-          >
+            onClick={() => setTab(1)}>
             Cyborgs ({cyborgs.length})
           </Tabs.Tab>
           <Tabs.Tab
             icon="list"
             lineHeight="23px"
             selected={tab === 2}
-            onClick={() => setTab(2)}
-          >
+            onClick={() => setTab(2)}>
             Drones ({drones.length})
           </Tabs.Tab>
         </Tabs>
@@ -97,15 +88,13 @@ const Cyborgs = (props, context) => {
               />
             )}
           </>
-        }
-      >
+        }>
         <LabeledList>
           <LabeledList.Item label="Status">
             <Box
               color={
                 cyborg.status ? 'bad' : cyborg.locked_down ? 'average' : 'good'
-              }
-            >
+              }>
               {cyborg.status
                 ? 'Not Responding'
                 : cyborg.locked_down
@@ -121,8 +110,7 @@ const Cyborgs = (props, context) => {
                   : cyborg.charge <= 70
                     ? 'average'
                     : 'good'
-              }
-            >
+              }>
               {typeof cyborg.charge === 'number'
                 ? cyborg.charge + '%'
                 : 'Not Found'}
@@ -166,8 +154,7 @@ const Drones = (props, context) => {
               })
             }
           />
-        }
-      >
+        }>
         <LabeledList>
           <LabeledList.Item label="Status">
             <Box color={drone.status ? 'bad' : 'good'}>

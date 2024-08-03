@@ -31,15 +31,14 @@ const PuzzgridButton: SFC<{
     <Button
       verticalAlignContent="middle"
       style={{
-        width: '100%',
-        height: '100%',
+        'width': '100%',
+        'height': '100%',
 
         'text-align': 'center',
         'vertical-align': 'middle',
         'white-space': 'normal',
       }}
-      {...props}
-    >
+      {...props}>
       <FitText maxFontSize={17} maxWidth={CELL_WIDTH}>
         {props.children}
       </FitText>
@@ -52,15 +51,14 @@ export const Puzzgrid = (props, context) => {
 
   const answersLeft = data.answers.filter(
     (answer) =>
-      !data.solved_groups.find((group) => group.answers.indexOf(answer) !== -1),
+      !data.solved_groups.find((group) => group.answers.indexOf(answer) !== -1)
   );
 
   return (
     <Window
       title={data.host}
       width={CELL_WIDTH * CELLS_PER_GROUP}
-      height={CELL_HEIGHT * CELLS_PER_GROUP}
-    >
+      height={CELL_HEIGHT * CELLS_PER_GROUP}>
       <Window.Content>
         <Stack vertical fill>
           {data.solved_groups.map((group, groupIndex) => (
@@ -93,8 +91,7 @@ export const Puzzgrid = (props, context) => {
                           act(selected ? 'unselect' : 'select', {
                             answer,
                           })
-                        }
-                      >
+                        }>
                         {answer}
                       </PuzzgridButton>
                     </Stack.Item>
@@ -114,8 +111,7 @@ export const Puzzgrid = (props, context) => {
               position: 'absolute',
               top: 0,
               left: '10px',
-            }}
-          >
+            }}>
             {range(0, data.lives).map((live) => (
               <span key={live}>♥</span>
             ))}
@@ -132,8 +128,7 @@ export const Puzzgrid = (props, context) => {
               position: 'absolute',
               top: 0,
               right: '10px',
-            }}
-          >
+            }}>
             {Math.ceil(data.time_left)}s
           </Box>
         )}

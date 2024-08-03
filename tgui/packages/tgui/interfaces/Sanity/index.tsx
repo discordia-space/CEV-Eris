@@ -1,20 +1,8 @@
 import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
-import {
-  BlockQuote,
-  Box,
-  LabeledList,
-  ProgressBar,
-  Section,
-  Stack,
-} from '../../components';
+import { BlockQuote, Box, LabeledList, ProgressBar, Section, Stack } from '../../components';
 import { Window } from '../../layouts';
-import {
-  TRAIT_ASSET,
-  TRAIT_DESCRIPTION,
-  TRAIT_LABEL,
-  TRAIT_NAME,
-} from './constants';
+import { TRAIT_ASSET, TRAIT_DESCRIPTION, TRAIT_LABEL, TRAIT_NAME } from './constants';
 
 export const TraitBar = (props: TraitBarProps) => {
   const { maxValue, minValue, value, label } = props;
@@ -44,11 +32,10 @@ export const TraitFluff = (props: TraitFluffProps) => {
       <Stack.Item
         grow
         style={{
-          overflow: 'hidden',
+          'overflow': 'hidden',
           'white-space': 'wrap',
           'text-overflow': 'ellipsis',
-        }}
-      >
+        }}>
         <BlockQuote>{desc}</BlockQuote>
       </Stack.Item>
       <Stack.Item>{bar}</Stack.Item>
@@ -63,11 +50,10 @@ export const DesiresTraitFluff = (props: DesiresTraitFluffProps) => {
       <Stack.Item
         grow
         style={{
-          overflow: 'hidden',
+          'overflow': 'hidden',
           'white-space': 'wrap',
           'text-overflow': 'ellipsis',
-        }}
-      >
+        }}>
         <BlockQuote>{desc}</BlockQuote>
       </Stack.Item>
       <Stack.Item />

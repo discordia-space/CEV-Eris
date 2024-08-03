@@ -34,9 +34,9 @@ export const Fax = (props, context) => {
     data.syndicate_network
       ? data.faxes.filter((filterFax: FaxInfo) => filterFax.visible)
       : data.faxes.filter(
-          (filterFax: FaxInfo) =>
-            filterFax.visible && !filterFax.syndicate_network,
-        ),
+        (filterFax: FaxInfo) =>
+          filterFax.visible && !filterFax.syndicate_network
+      )
   );
   return (
     <Window width={340} height={540}>
@@ -55,12 +55,10 @@ export const Fax = (props, context) => {
           buttons={
             <Button
               onClick={() => act('remove')}
-              disabled={data.has_paper ? false : true}
-            >
+              disabled={data.has_paper ? false : true}>
               Remove
             </Button>
-          }
-        >
+          }>
           <LabeledList.Item label="Paper">
             {data.has_paper ? (
               <Box color="green">Paper in tray</Box>
@@ -82,8 +80,7 @@ export const Fax = (props, context) => {
                     id: fax.fax_id,
                     name: fax.fax_name,
                   })
-                }
-              >
+                }>
                 {fax.fax_name}
               </Button>
             ))}
@@ -94,29 +91,26 @@ export const Fax = (props, context) => {
           buttons={
             <Button
               onClick={() => act('history_clear')}
-              disabled={data.fax_history ? false : true}
-            >
+              disabled={data.fax_history ? false : true}>
               Clear
             </Button>
-          }
-        >
+          }>
           <Table>
             <Table.Cell>
               {data.fax_history !== null
                 ? data.fax_history.map((history: FaxHistory) => (
-                    <Table.Row key={history.history_type}>
-                      {
-                        <Box
-                          color={
-                            history.history_type === 'Send' ? 'Green' : 'Red'
-                          }
-                        >
-                          {history.history_type}
-                        </Box>
-                      }
-                      {history.history_fax_name} - {history.history_time}
-                    </Table.Row>
-                  ))
+                  <Table.Row key={history.history_type}>
+                    {
+                      <Box
+                        color={
+                          history.history_type === 'Send' ? 'Green' : 'Red'
+                        }>
+                        {history.history_type}
+                      </Box>
+                    }
+                    {history.history_fax_name} - {history.history_time}
+                  </Table.Row>
+                ))
                 : null}
             </Table.Cell>
           </Table>

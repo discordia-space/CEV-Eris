@@ -1,14 +1,9 @@
 import { classes } from 'common/react';
-import {
-  FeatureChoiced,
-  FeatureChoicedServerData,
-  FeatureValueProps,
-  sortChoices,
-} from '../base';
+import { FeatureChoiced, FeatureChoicedServerData, FeatureValueProps, sortChoices } from '../base';
 import { Box, Dropdown, Stack } from '../../../../../components';
 
 const UIStyleInput = (
-  props: FeatureValueProps<string, string, FeatureChoicedServerData>,
+  props: FeatureValueProps<string, string, FeatureChoicedServerData>
 ) => {
   const { serverData, value } = props;
   if (!serverData) {
@@ -30,7 +25,7 @@ const UIStyleInput = (
             <Box
               className={classes(['preferences64x32', icon])}
               style={{
-                transform: 'scale(0.8)',
+                'transform': 'scale(0.8)',
               }}
             />
           </Stack.Item>
@@ -38,7 +33,7 @@ const UIStyleInput = (
           <Stack.Item grow>{name}</Stack.Item>
         </Stack>,
       ];
-    }),
+    })
   );
 
   return (
@@ -54,7 +49,7 @@ const UIStyleInput = (
             displayText: label,
             value: dataValue,
           };
-        },
+        }
       )}
     />
   );

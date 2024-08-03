@@ -74,7 +74,6 @@
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
-	if(user && user.hud_used)
 		user.hud_used.updatePlaneMasters(user)
 
 

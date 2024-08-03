@@ -1,10 +1,5 @@
 import { clamp } from 'common/math';
-import {
-  randomInteger,
-  randomNumber,
-  randomPick,
-  randomProb,
-} from 'common/random';
+import { randomInteger, randomNumber, randomPick, randomProb } from 'common/random';
 import { useDispatch } from 'common/redux';
 import { Component } from 'inferno';
 import { resolveAsset } from '../assets';
@@ -161,7 +156,7 @@ class FishingMinigame extends Component<
   moveFish(
     currentState: FishingMinigameState,
     delta: number,
-    timestamp: DOMHighResTimeStamp,
+    timestamp: DOMHighResTimeStamp
   ): FishingMinigameState {
     const seconds = delta / 1000;
     const { fish: currentFishState } = this.state;
@@ -250,7 +245,7 @@ class FishingMinigame extends Component<
     nextFishState.velocity = clamp(
       nextFishState.velocity + this.idleVelocity,
       -this.currentVelocityLimit,
-      this.currentVelocityLimit,
+      this.currentVelocityLimit
     );
 
     nextFishState.position =
@@ -274,7 +269,7 @@ class FishingMinigame extends Component<
 
   moveBait(
     currentState: FishingMinigameState,
-    delta: number,
+    delta: number
   ): FishingMinigameState {
     const seconds = delta / 1000;
     const { fish, bait } = this.state;
@@ -332,7 +327,7 @@ class FishingMinigame extends Component<
 
   updateCompletion(
     currentState: FishingMinigameState,
-    delta: number,
+    delta: number
   ): FishingMinigameState {
     const seconds = delta / 1000;
     const completion_gain_per_second = 5;
@@ -394,8 +389,7 @@ class FishingMinigame extends Component<
         <div class="main">
           <div
             class="background"
-            style={{ 'background-image': `url("${background_image}")` }}
-          >
+            style={{ 'background-image': `url("${background_image}")` }}>
             <div
               class="bait"
               style={{
@@ -408,8 +402,7 @@ class FishingMinigame extends Component<
               style={{
                 top: `${posToStyle(fish.position)}%`,
                 height: `${posToStyle(fish.height)}%`,
-              }}
-            >
+              }}>
               <Icon name="fish" />
             </div>
           </div>

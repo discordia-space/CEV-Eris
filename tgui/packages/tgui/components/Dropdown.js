@@ -66,8 +66,7 @@ export class Dropdown extends Component {
           className="Dropdown__menuentry"
           onClick={() => {
             this.setSelected(value);
-          }}
-        >
+          }}>
           {displayText}
         </Box>
       );
@@ -107,13 +106,12 @@ export class Dropdown extends Component {
         }}
         tabIndex="-1"
         style={{
-          width: openWidth,
+          'width': openWidth,
         }}
         className={classes([
           (noscroll && 'Dropdown__menu-noscroll') || 'Dropdown__menu',
           over && 'Dropdown__over',
-        ])}
-      >
+        ])}>
         {this.buildMenu()}
       </div>
     ) : null;
@@ -139,17 +137,15 @@ export class Dropdown extends Component {
             if (props.onOpen) {
               props.onOpen(event);
             }
-          }}
-        >
+          }}>
           {icon && (
             <Icon name={icon} rotation={iconRotation} spin={iconSpin} mr={1} />
           )}
           <span
             className="Dropdown__selected-text"
             style={{
-              overflow: clipSelectedText ? 'hidden' : 'visible',
-            }}
-          >
+              'overflow': clipSelectedText ? 'hidden' : 'visible',
+            }}>
             {displayText ? displayText : this.state.selected}
           </span>
           {!!nochevron || (

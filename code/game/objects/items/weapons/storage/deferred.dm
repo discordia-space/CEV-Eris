@@ -346,8 +346,8 @@
 
 
 /obj/item/storage/deferred/crate/excel_conscript
-	name = "Excelsior conscript crate"
-	desc = "A supply kit for an aspiring conscript."
+	name = "Excelsior Conscript Crate"
+	desc = "A supply kit for the aspiring conscript."
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
@@ -389,9 +389,9 @@
 	/obj/item/tank/emergency_oxygen/double = 1
 	)
 
-/obj/item/storage/deferred/crate/excel_spetznatz
-	name = "Excelsior special operative kit"
-	desc = "A kit for comrades quietly engaging at a distance."
+/obj/item/storage/deferred/crate/excel_scout
+	name = "Excelsior scout trooper kit"
+	desc = "A kit for comrades engaging at a distance."
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
@@ -404,7 +404,7 @@
 	)
 
 /obj/item/storage/deferred/crate/excel_heavy
-	name = "Excelsior heavy trooper kit"
+	name = "Excelsior Heavy Trooper kit"
 	desc = "Equipment of Excelsior's heavy infantry."
 	icon_state = "Excel_crate"
 	initial_contents = list(

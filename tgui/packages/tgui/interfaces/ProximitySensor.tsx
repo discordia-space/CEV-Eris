@@ -35,8 +35,7 @@ const ProximitySensorContent = (props: any, context: any) => {
             selected={isScanning}
             onClick={() => act('sense')}
           />
-        }
-      >
+        }>
         <RangeContent />
       </Section>
       <Section
@@ -49,8 +48,7 @@ const ProximitySensorContent = (props: any, context: any) => {
             disabled={isScanning}
             onClick={() => act('time')}
           />
-        }
-      >
+        }>
         <TimeContent />
       </Section>
     </>

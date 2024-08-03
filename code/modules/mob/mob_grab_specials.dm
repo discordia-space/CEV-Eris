@@ -7,29 +7,20 @@
 		to_chat(user, SPAN_NOTICE("[H] is missing that bodypart."))
 		return
 
-
-
 	user.visible_message(SPAN_NOTICE("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_mob(user,H, 10))
 		to_chat(user, SPAN_NOTICE("You must stand still to inspect [E] for wounds."))
 	else
 		var/wound_found = FALSE
 
-
-		if (target_zone == BP_HEAD)
-			if ((H.sanity.level >= 0) && (H.sanity.level < 5))
-				to_chat(user, SPAN_WARNING("[H] appears to be in acute shock, presenting dilated pupils, pale, clammy skin and a tense jaw."))
-			else if((H.sanity.level >= 5) && (H.sanity.level < 30))
-				to_chat(user, SPAN_WARNING("[H] appears to be in a state of heavy 	shock, presenting dilated pupils and clammy skin."))
-			else if(H.sanity.level <= 50)
-				to_chat(user, SPAN_NOTICE("[H] is visibly stressed, shivering slightly and grinding their teeth."))
-
 		if(E.wounds.len)
 			to_chat(user, SPAN_WARNING("You find [E.get_wounds_desc()]"))
 			wound_found = TRUE
+
 		if(E.number_internal_wounds)
 			to_chat(user, SPAN_WARNING("You find evidence of one or more internal injuries."))
 			wound_found = TRUE
+
 		if(!wound_found)
 			to_chat(user, SPAN_NOTICE("You find no visible wounds."))
 	if(locate(/obj/item/material/shard/shrapnel) in E.implants)

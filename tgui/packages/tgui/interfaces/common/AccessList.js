@@ -19,7 +19,7 @@ export const AccessList = (props, context) => {
   const [wildcardTab, setWildcardTab] = useSharedState(
     context,
     'wildcardSelected',
-    showBasic ? 'None' : Object.keys(wildcardSlots)[0],
+    showBasic ? 'None' : Object.keys(wildcardSlots)[0]
   );
 
   let selectedWildcard;
@@ -136,7 +136,7 @@ export const FormatWildcards = (props, context) => {
   const [wildcardTab, setWildcardTab] = useSharedState(
     context,
     'wildcardSelected',
-    showBasic ? 'None' : Object.keys(wildcardSlots)[0],
+    showBasic ? 'None' : Object.keys(wildcardSlots)[0]
   );
 
   let selectedWildcard;
@@ -153,8 +153,7 @@ export const FormatWildcards = (props, context) => {
       {showBasic && (
         <Tabs.Tab
           selected={selectedWildcard === 'None'}
-          onClick={() => setWildcardTab('None')}
-        >
+          onClick={() => setWildcardTab('None')}>
           Trim:
           <br />
           {basicUsed + '/' + basicMax}
@@ -174,8 +173,7 @@ export const FormatWildcards = (props, context) => {
           <Tabs.Tab
             key={wildcard}
             selected={selectedWildcard === wildcard}
-            onClick={() => setWildcardTab(wildcard)}
-          >
+            onClick={() => setWildcardTab(wildcard)}>
             {wildcard + ':'}
             <br />
             {wcLeftStr}
@@ -192,7 +190,7 @@ const RegionTabList = (props, context) => {
   const [selectedAccessName, setSelectedAccessName] = useSharedState(
     context,
     'accessName',
-    accesses[0]?.name,
+    accesses[0]?.name
   );
 
   return (
@@ -209,8 +207,7 @@ const RegionTabList = (props, context) => {
             minWidth={'100%'}
             altSelection
             selected={access.name === selectedAccessName}
-            onClick={() => setSelectedAccessName(access.name)}
-          >
+            onClick={() => setSelectedAccessName(access.name)}>
             {access.name}
           </Tabs.Tab>
         );
@@ -234,7 +231,7 @@ const RegionAccessList = (props, context) => {
   const [wildcardTab, setWildcardTab] = useSharedState(
     context,
     'wildcardSelected',
-    showBasic ? 'None' : Object.keys(wildcardSlots)[0],
+    showBasic ? 'None' : Object.keys(wildcardSlots)[0]
   );
 
   let selWildcard;
@@ -249,14 +246,14 @@ const RegionAccessList = (props, context) => {
   const [selectedAccessName] = useSharedState(
     context,
     'accessName',
-    accesses[0]?.name,
+    accesses[0]?.name
   );
 
   const selectedAccess = accesses.find(
-    (access) => access.name === selectedAccessName,
+    (access) => access.name === selectedAccessName
   );
   const selectedAccessEntries = sortBy((entry) => entry.desc)(
-    selectedAccess?.accesses || [],
+    selectedAccess?.accesses || []
   );
 
   const allWildcards = Object.keys(wildcardSlots);

@@ -42,29 +42,25 @@ const TabDisplay = (props, context) => {
       <Tabs.Tab
         icon="list"
         onClick={() => setTab(TAB.System)}
-        selected={tab === TAB.System}
-      >
+        selected={tab === TAB.System}>
         System
       </Tabs.Tab>
       <Tabs.Tab
         icon="list"
         onClick={() => setTab(TAB.Directive)}
-        selected={tab === TAB.Directive}
-      >
+        selected={tab === TAB.Directive}>
         Directives
       </Tabs.Tab>
       <Tabs.Tab
         icon="list"
         onClick={() => setTab(TAB.Installed)}
-        selected={tab === TAB.Installed}
-      >
+        selected={tab === TAB.Installed}>
         Installed
       </Tabs.Tab>
       <Tabs.Tab
         icon="list"
         onClick={() => setTab(TAB.Available)}
-        selected={tab === TAB.Available}
-      >
+        selected={tab === TAB.Available}>
         Download
       </Tabs.Tab>
     </Tabs>
