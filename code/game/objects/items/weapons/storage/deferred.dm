@@ -390,7 +390,7 @@
 	)
 
 /obj/item/storage/deferred/crate/excel_scout
-	name = "Excelsior Scout Trooper kit"
+	name = "Excelsior scout trooper kit"
 	desc = "A kit for comrades engaging at a distance."
 	icon_state = "Excel_crate"
 	initial_contents = list(
