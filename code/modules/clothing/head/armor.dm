@@ -588,7 +588,7 @@
 	item_state = "excel_beret"
 	armor = list(
 		melee = 5,
-		bullet = 4,
+		bullet = 5,
 		energy = 5,
 		bomb = 5,
 		bio = 0,
