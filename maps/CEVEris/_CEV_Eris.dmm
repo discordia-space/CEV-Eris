@@ -2276,10 +2276,6 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/contraband/poster/placed{
-	icon_state = "ironhammer";
-	pixel_x = 32
-	},
 /turf/floor/wood,
 /area/eris/command/commander)
 "afJ" = (
@@ -3354,10 +3350,6 @@
 /area/eris/crew_quarters/sleep)
 "aih" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/item/contraband/poster/placed{
-	icon_state = "ironhammer2";
-	pixel_x = 32
-	},
 /turf/floor/tiled/dark,
 /area/eris/security/exerooms)
 "aii" = (
@@ -23213,10 +23205,6 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/item/contraband/poster/placed{
-	icon_state = "chrome";
-	pixel_x = -32
-	},
 /turf/floor/plating,
 /area/eris/maintenance/substation/section2)
 "bfd" = (
@@ -25663,10 +25651,6 @@
 "bkM" = (
 /obj/structure/table/standard,
 /obj/item/storage/box/bodybags,
-/obj/item/contraband/poster/placed{
-	icon_state = "chrome";
-	pixel_x = 32
-	},
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/rnd/lab)
 "bkN" = (
@@ -32190,10 +32174,6 @@
 /obj/spawner/pack/gun_loot,
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/pack/rare/low_chance,
-/obj/item/contraband/poster/placed{
-	icon_state = "stonks";
-	pixel_x = 32
-	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck1central)
 "bAP" = (
@@ -44074,10 +44054,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/blue{
 	dir = 6
 	},
-/obj/item/contraband/poster/placed{
-	icon_state = "chrome";
-	pixel_y = 32
-	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "cdG" = (
@@ -48708,10 +48684,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/item/contraband/poster/placed{
-	icon_state = "roachburger";
-	pixel_x = -32
-	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4central)
 "coO" = (
@@ -51947,10 +51919,6 @@
 /area/eris/maintenance/section4deck3port)
 "cxy" = (
 /obj/spawner/material/resources/rare/low_chance,
-/obj/item/contraband/poster/placed{
-	icon_state = "founders";
-	pixel_x = -32
-	},
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/oldtele)
 "cxz" = (
@@ -97723,16 +97691,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/floor/tiled/dark/golden,
 /area/eris/neotheology/churchcorridor)
-"grn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/spawner/junk/low_chance,
-/obj/spawner/junk/low_chance,
-/obj/item/contraband/poster/placed{
-	icon_state = "founders";
-	pixel_y = 32
-	},
-/turf/floor/plating/under,
-/area/eris/maintenance/section4deck1central)
 "grN" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
@@ -102209,13 +102167,6 @@
 	},
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/section3starboard)
-"oYo" = (
-/obj/item/contraband/poster/placed{
-	icon_state = "paramedic";
-	pixel_y = -32
-	},
-/turf/floor/tiled/white/techfloor,
-/area/eris/medical/medeva)
 "oYV" = (
 /obj/spawner/junk/low_chance,
 /obj/spawner/pack/machine,
@@ -103539,15 +103490,6 @@
 /obj/machinery/shield_diffuser,
 /turf/floor/hull,
 /area/eris/engineering/wastingroom)
-"rKX" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet/blue,
-/obj/item/contraband/poster/placed{
-	icon_state = "ironhammer";
-	pixel_y = 32
-	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/barracks)
 "rLq" = (
 /obj/structure/table/standard,
 /obj/machinery/cooking_with_jane/grill,
@@ -103819,14 +103761,6 @@
 /obj/machinery/disposal,
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
-"seZ" = (
-/obj/spawner/junk/low_chance,
-/obj/item/contraband/poster/placed{
-	icon_state = "excel2";
-	pixel_y = 32
-	},
-/turf/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck1port)
 "sfs" = (
 /obj/machinery/power/nt_obelisk,
 /turf/floor/grass,
@@ -105509,17 +105443,6 @@
 	},
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/engine_room)
-"vaH" = (
-/obj/spawner/scrap/dense/low_chance,
-/obj/spawner/scrap/dense/low_chance,
-/obj/spawner/scrap/dense/low_chance,
-/obj/spawner/scrap/dense/low_chance,
-/obj/item/contraband/poster/placed{
-	icon_state = "excel1";
-	pixel_x = 32
-	},
-/turf/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck1port)
 "vci" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -171574,7 +171497,7 @@ aad
 aaa
 aaa
 aaf
-rKX
+aRP
 aSE
 aSQ
 aTr
@@ -241929,7 +241852,7 @@ eFc
 eCf
 doo
 dpt
-oYo
+dpt
 dvi
 abF
 abF
@@ -283944,7 +283867,7 @@ anQ
 anQ
 anQ
 anQ
-seZ
+aof
 ezf
 dQZ
 dNZ
@@ -284345,7 +284268,7 @@ anQ
 anQ
 anQ
 anQ
-vaH
+dAJ
 dAJ
 anQ
 dWy
@@ -289242,7 +289165,7 @@ ekg
 ekW
 elw
 elE
-grn
+elG
 elG
 elG
 elG

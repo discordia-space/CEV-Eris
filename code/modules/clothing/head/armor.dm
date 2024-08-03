@@ -600,7 +600,7 @@
 		MATERIAL_STEEL = 1
 	)
 /obj/item/clothing/head/armor/excel_shock
-	name = "Excelsior shock trooper helmet"
+	name = "Excelsior Shock Trooper Helmet"
 	desc = "Reminiscent of earlier ablative designs, this helmet is at the forefront of Haven's battles."
 	icon_state = "shock_helm"
 	item_state = "shock_helm"
@@ -615,11 +615,13 @@
 	matter = list(
 	MATERIAL_PLASTIC = 2,
 	MATERIAL_GLASS = 2,
-	MATERIAL_STEEL = 3,
-	MATERIAL_PLASTEEL = 2
+	MATERIAL_STEEL =3,
+	MATERIAL_PLASTEEL
 	)
 	siemens_coefficient = 1
 	species_restricted = list(SPECIES_HUMAN)
+	light_overlay = "helmet_light_green"
+	var/obj/item/clothing/glasses/hud/excelsior/hud
 	price_tag = 150
 
 /obj/item/clothing/head/armor/faceshield/paramedic

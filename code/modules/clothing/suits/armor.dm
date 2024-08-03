@@ -211,8 +211,8 @@
 	icon_state = "flakvest_green"
 
 /obj/item/clothing/suit/armor/flak/excelsior
-	name = "Excelsior flak vest"
-	desc = "The first layer of defense for every Haven conscript."
+	name = "Excelsior Flakvest"
+	desc = "The first layer of defense for every Haven conscript"
 	icon_state = "flakvest_excelsior"
 	matter = list(
 		MATERIAL_STEEL = 8,
@@ -256,10 +256,10 @@
 	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/armor/excelshock
-	name = "Excelsior shock trooper armor"
+	name = "Excelsior Shock Trooper Armor"
 	desc = "Fresh from the design labs of Haven and based off of stolen ablative armor designs, the Excelsior Mk.1 Shock trooper armor combines speed and protection for its planetary assaults."
-	icon_state = "shock_excelsior"
-	item_state = "shock_excelsior"
+	icon_state = "shock_ex"
+	item_state = "shock_ex"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
