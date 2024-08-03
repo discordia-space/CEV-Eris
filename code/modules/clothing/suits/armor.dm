@@ -256,7 +256,7 @@
 	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/armor/excelshock
-	name = "Excelsior Shock Trooper Armor"
+	name = "Excelsior shock trooper armor"
 	desc = "Fresh from the design labs of Haven and based off of stolen ablative armor designs, the Excelsior Mk.1 Shock trooper armor combines speed and protection for its planetary assaults."
 	icon_state = "shock_ex"
 	item_state = "shock_ex"
