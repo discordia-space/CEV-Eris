@@ -616,7 +616,7 @@
 	MATERIAL_PLASTIC = 2,
 	MATERIAL_GLASS = 2,
 	MATERIAL_STEEL = 3,
-	MATERIAL_PLASTEEL
+	MATERIAL_PLASTEEL = 2
 	)
 	siemens_coefficient = 1
 	species_restricted = list(SPECIES_HUMAN)
