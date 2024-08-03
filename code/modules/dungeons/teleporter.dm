@@ -30,9 +30,18 @@
 /obj/rogue/teleporter/New()
 	for(var/turf/T in orange(7, src))
 		turfs_around += T
+	var/order = 1
+	while(charge <= 0)
+		playsound(src, ('sound/machines/onestar/teleporter1.ogg'), 100, 1, 4, use_pressure = FALSE)
+		order++
+		if(order == 3)
+			order = 1
+		sleep(10 SECONDS) 
+		
 
 /obj/rogue/teleporter/attack_hand(mob/user)
 	if(!charge)
+		charge++
 		dungeon_generator = locate(/obj/crawler/map_maker)
 		if(dungeon_generator)
 			to_chat(user, "You activate the teleporter. A strange rumbling fills the area around you.")
@@ -62,6 +71,7 @@
 	while(charge < charge_max)
 		update_icon()
 		sleep(15)
+		playsound(src, pick("sound/machines/Teleport_charging_1.ogg", "sound/machines/Teleport_charging_2", "sound/machines/Teleport_charging_3"), 500, 1, use_pressure = FALSE)
 		charge++
 		if(ticks_before_next_summon)
 			ticks_before_next_summon--
@@ -139,6 +149,7 @@
 
 	for(var/mob/living/M in victims_to_teleport)
 		go_to_bluespace(get_turf(src), 3, FALSE, M, get_turf(target))
+		M.playsound_local(get_turf(M), "sound/machines/Teleport.ogg", 100)
 
 	destroy_teleporter()
 

@@ -79,7 +79,8 @@ export const SparringContract = (props, context) => {
                         signatures will erase and the new terms must be
                         re-agreed upon.
                         `}
-                        icon="info">
+                        icon="info"
+                      >
                         Contract?
                       </Button>
                     </Stack.Item>
@@ -92,7 +93,7 @@ export const SparringContract = (props, context) => {
                     options={weaponlist}
                     onSelected={(value) =>
                       setWeapon(
-                        weaponlist.findIndex((title) => title === value) + 1
+                        weaponlist.findIndex((title) => title === value) + 1,
                       )
                     }
                   />
@@ -131,7 +132,7 @@ export const SparringContract = (props, context) => {
                     options={stakelist}
                     onSelected={(value) =>
                       setStakes(
-                        stakelist.findIndex((title) => title === value) + 1
+                        stakelist.findIndex((title) => title === value) + 1,
                       )
                     }
                   />
@@ -149,12 +150,13 @@ export const SparringContract = (props, context) => {
                       icon="pen"
                       onClick={() =>
                         act('sign', {
-                          'weapon': weapon,
-                          'area': area,
-                          'stakes': stakes,
-                          'sign_position': 'left',
+                          weapon: weapon,
+                          area: area,
+                          stakes: stakes,
+                          sign_position: 'left',
                         })
-                      }>
+                      }
+                    >
                       Sign Here
                     </Button>
                   )) ||
@@ -167,11 +169,12 @@ export const SparringContract = (props, context) => {
                       icon="pen"
                       onClick={() =>
                         act('sign', {
-                          'weapon': weapon,
-                          'area': area,
-                          'stakes': stakes,
+                          weapon: weapon,
+                          area: area,
+                          stakes: stakes,
                         })
-                      }>
+                      }
+                    >
                       Sign Here
                     </Button>
                   )) ||
@@ -188,7 +191,8 @@ export const SparringContract = (props, context) => {
                       (no_chaplains && set_stakes === STAKES_HOLY_MATCH)
                     }
                     icon="fist-raised"
-                    onClick={() => act('fight')}>
+                    onClick={() => act('fight')}
+                  >
                     FIGHT!
                   </Button>
                   <Button
@@ -198,7 +202,8 @@ export const SparringContract = (props, context) => {
                       this button.
                     `}
                     icon="door-open"
-                    onClick={() => act('clear')}>
+                    onClick={() => act('clear')}
+                  >
                     Clear
                   </Button>
                 </Stack.Item>
@@ -210,7 +215,8 @@ export const SparringContract = (props, context) => {
                       'Both participants need to be in the arena!'
                     }
                     color={(in_area && 'green') || 'red'}
-                    icon="ring">
+                    icon="ring"
+                  >
                     Arena
                   </Button>
                   <Button
@@ -226,7 +232,8 @@ export const SparringContract = (props, context) => {
                         'green') ||
                       'red'
                     }
-                    icon="file-signature">
+                    icon="file-signature"
+                  >
                     Signatures
                   </Button>
                   <Button
@@ -236,7 +243,8 @@ export const SparringContract = (props, context) => {
                       'No chaplain present for this fight. No Holy Matches!'
                     }
                     color={(!no_chaplains && 'green') || 'yellow'}
-                    icon="cross">
+                    icon="cross"
+                  >
                     Chaplain
                   </Button>
                 </Stack.Item>

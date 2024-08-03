@@ -1,5 +1,18 @@
 import { useBackend, useSharedState } from '../backend';
-import { Box, Button, Flex, Icon, Modal, RoundGauge, Section, Slider, Stack, NoticeBox, Tabs, LabeledList } from '../components';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  Modal,
+  RoundGauge,
+  Section,
+  Slider,
+  Stack,
+  NoticeBox,
+  Tabs,
+  LabeledList,
+} from '../components';
 import { Window } from '../layouts';
 import { GasmixParser } from './common/GasmixParser';
 
@@ -24,16 +37,16 @@ const TankCompressorContent = (props, context) => {
       {currentTab === 2 && <TankCompressorRecords />}
       <Stack.Item>
         <Section
-          title={disk ? disk + ' (' + storage + ')' : 'No Disk Inserted'}>
+          title={disk ? disk + ' (' + storage + ')' : 'No Disk Inserted'}
+        >
           <Stack>
             <Stack.Item grow>
               <Button
                 textAlign="center"
                 fluid
                 icon={currentTab === 1 ? 'clipboard-list' : 'times'}
-                onClick={() =>
-                  currentTab === 1 ? changeTab(2) : changeTab(1)
-                }>
+                onClick={() => (currentTab === 1 ? changeTab(2) : changeTab(1))}
+              >
                 {currentTab === 1 ? 'Open Records' : 'Close Records'}
               </Button>
             </Stack.Item>
@@ -62,7 +75,8 @@ const AlertBoxes = (props, context) => {
       bold
       height="100%"
       fontSize={1.25}
-      backgroundColor={active ? color : '#999999'}>
+      backgroundColor={active ? color : '#999999'}
+    >
       <Flex height="100%" width="100%" justify="center" direction="column">
         <Flex.Item>
           <Icon name={icon_name} width={2} />
@@ -102,10 +116,12 @@ const TankCompressorControls = (props, context) => {
             <Button
               icon="eject"
               disabled={!tankPresent || tankPressure > ejectPressure}
-              onClick={() => act('eject_tank')}>
+              onClick={() => act('eject_tank')}
+            >
               {'Eject Tank'}
             </Button>
-          }>
+          }
+        >
           {!pressure && <Modal>{'No Pressure Detected'}</Modal>}
           {usingLastData && (
             <NoticeBox warning>
@@ -120,9 +136,9 @@ const TankCompressorControls = (props, context) => {
                 maxValue={fragmentPressure * 1.15}
                 alertAfter={leakPressure}
                 ranges={{
-                  'good': [0, leakPressure],
-                  'average': [leakPressure, fragmentPressure],
-                  'bad': [fragmentPressure, fragmentPressure * 1.15],
+                  good: [0, leakPressure],
+                  average: [leakPressure, fragmentPressure],
+                  bad: [fragmentPressure, fragmentPressure * 1.15],
                 }}
                 size={5}
                 textAlign="center"
@@ -197,7 +213,8 @@ const TankCompressorControls = (props, context) => {
                 }
                 selected={active}
                 icon={active ? 'power-off' : 'times'}
-                onClick={() => act('toggle_injection')}>
+                onClick={() => act('toggle_injection')}
+              >
                 {active ? 'On' : 'Off'}
               </Button>
             </Stack.Item>
@@ -228,7 +245,8 @@ const TankCompressorControls = (props, context) => {
                   icon="exclamation"
                   tooltip="The buffer gas mixture will be recorded when a tank is destroyed or ejected. The printed records will refer to this port for it's experimental data."
                 />
-              }>
+              }
+            >
               {!bufferData.total_moles && <Modal>{'No Gas Present'}</Modal>}
               <GasmixParser gasmix={bufferData} />
             </Section>
@@ -245,7 +263,7 @@ const TankCompressorRecords = (props, context) => {
   const [activeRecordRef, setActiveRecordRef] = useSharedState(
     context,
     'recordRef',
-    records[0]?.ref
+    records[0]?.ref,
   );
   const activeRecord =
     !!activeRecordRef &&
@@ -267,7 +285,8 @@ const TankCompressorRecords = (props, context) => {
                   icon="file"
                   key={record.name}
                   selected={record.ref === activeRecordRef}
-                  onClick={() => setActiveRecordRef(record.ref)}>
+                  onClick={() => setActiveRecordRef(record.ref)}
+                >
                   {record.name}
                 </Tabs.Tab>
               ))}
@@ -285,7 +304,7 @@ const TankCompressorRecords = (props, context) => {
                     color="bad"
                     onClick={() => {
                       act('delete_record', {
-                        'ref': activeRecord.ref,
+                        ref: activeRecord.ref,
                       });
                     }}
                   />,
@@ -298,11 +317,12 @@ const TankCompressorRecords = (props, context) => {
                     tooltipPosition="bottom"
                     onClick={() => {
                       act('print_record', {
-                        'ref': activeRecord.ref,
+                        ref: activeRecord.ref,
                       });
                     }}
                   />,
-                ]}>
+                ]}
+              >
                 <LabeledList>
                   <LabeledList.Item label="Timestamp">
                     {activeRecord.timestamp}

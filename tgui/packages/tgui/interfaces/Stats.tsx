@@ -35,12 +35,14 @@ const perk = (perk: PerkData) => {
       <Tooltip position="bottom" content={desc}>
         <Stack position="relative" fill>
           <Stack.Item
-            className={classes(['Stats__box--icon', 'Stats__content'])}>
+            className={classes(['Stats__box--icon', 'Stats__content'])}
+          >
             <Box className={classes(['perks32x32', icon])} />
           </Stack.Item>
           <Stack.Item
             grow
-            className={classes(['Stats__box--text', 'Stats__content'])}>
+            className={classes(['Stats__box--text', 'Stats__content'])}
+          >
             {capitalize(name)}
           </Stack.Item>
         </Stack>
@@ -68,12 +70,14 @@ const stat = (stat: StatData) => {
       <Stack fill>
         <Stack.Item
           grow={2}
-          className={classes(['Stats__box--skill', 'Stats__content'])}>
+          className={classes(['Stats__box--skill', 'Stats__content'])}
+        >
           {capitalize(name)}
         </Stack.Item>
         <Stack.Item
           grow={1}
-          className={classes(['Stats__box--text', 'Stats__content'])}>
+          className={classes(['Stats__box--text', 'Stats__content'])}
+        >
           {value}
         </Stack.Item>
       </Stack>
@@ -99,7 +103,7 @@ export const Stats = (props: any, context: any) => {
   const [currentTab, setCurrentTab] = useLocalState(
     context,
     'stats_tab',
-    TABS.stats
+    TABS.stats,
   );
 
   return (
@@ -111,12 +115,14 @@ export const Stats = (props: any, context: any) => {
               <Tabs fluid>
                 <Tabs.Tab
                   selected={currentTab === TABS.stats}
-                  onClick={() => setCurrentTab(TABS.stats)}>
+                  onClick={() => setCurrentTab(TABS.stats)}
+                >
                   Stats
                 </Tabs.Tab>
                 <Tabs.Tab
                   selected={currentTab === TABS.perks}
-                  onClick={() => setCurrentTab(TABS.perks)}>
+                  onClick={() => setCurrentTab(TABS.perks)}
+                >
                   Perks
                 </Tabs.Tab>
               </Tabs>

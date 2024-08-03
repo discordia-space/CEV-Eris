@@ -903,7 +903,7 @@
 	platform.forceMove(src)
 
 /obj/item/mech_equipment/forklifting_system/Destroy()
-	if(currentlyLifting)
+	if(!QDELETED(currentlyLifting))
 		ejectLifting(get_turf(src))
 	if(platform)
 		QDEL_NULL(platform)
