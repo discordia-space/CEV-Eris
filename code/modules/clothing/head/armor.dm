@@ -615,7 +615,7 @@
 	matter = list(
 	MATERIAL_PLASTIC = 2,
 	MATERIAL_GLASS = 2,
-	MATERIAL_STEEL =3,
+	MATERIAL_STEEL = 3,
 	MATERIAL_PLASTEEL
 	)
 	siemens_coefficient = 1
