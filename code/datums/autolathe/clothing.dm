@@ -12,7 +12,7 @@
 	build_path = /obj/item/clothing/suit/armor/excelshock
 
 /datum/design/autolathe/clothing/excel_shock_helmet
-	name = "Shock Helmet"
+	name = "excelsior shock trooper helmet"
 	build_path = /obj/item/clothing/head/armor/excel_shock
 
 /datum/design/autolathe/clothing/excel_beret
