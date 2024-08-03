@@ -375,7 +375,7 @@
 
 
 
-/obj/item/storage/deferred/crate/Excel_Eva
+/obj/item/storage/deferred/crate/excel_eva
 	name = "Excelsior EVA trooper kit"
 	desc = "The start of a revolutionary career in Haven's space corps."
 	icon_state = "Excel_crate"
