@@ -70,7 +70,7 @@ var/global/excelsior_last_draft = 0
 		/obj/item/storage/deferred/crate/excel_conscript = 75,
 		/obj/item/storage/deferred/crate/excel_shock_kit = 250,
 		/obj/item/storage/deferred/crate/excel_eva = 300,
-		/obj/item/storage/deferred/crate/excel_scout = 350,
+		/obj/item/storage/deferred/crate/excel_spetznatz = 350,
 		/obj/item/storage/deferred/crate/excel_heavy = 450,
 		)
 	var/list/IKEA_list = list(
