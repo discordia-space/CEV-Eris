@@ -389,7 +389,7 @@
 	/obj/item/tank/emergency_oxygen/double = 1
 	)
 
-/obj/item/storage/deferred/crate/Excel_Scout
+/obj/item/storage/deferred/crate/excel_scout
 	name = "Excelsior Scout Trooper kit"
 	desc = "A kit for comrades engaging at a distance."
 	icon_state = "Excel_crate"
