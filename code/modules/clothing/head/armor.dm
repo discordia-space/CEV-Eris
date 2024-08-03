@@ -600,7 +600,7 @@
 		MATERIAL_STEEL = 1
 	)
 /obj/item/clothing/head/armor/excel_shock
-	name = "Excelsior Shock Trooper Helmet"
+	name = "Excelsior shock trooper helmet"
 	desc = "Reminiscent of earlier ablative designs, this helmet is at the forefront of Haven's battles."
 	icon_state = "shock_helm"
 	item_state = "shock_helm"
