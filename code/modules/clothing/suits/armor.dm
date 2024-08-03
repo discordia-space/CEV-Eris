@@ -214,6 +214,11 @@
 	name = "Excelsior Flakvest"
 	desc = "The first layer of defense for every Haven conscript"
 	icon_state = "flakvest_excelsior"
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTIC = 3
+	)
 
 /obj/item/clothing/suit/armor/flak/full
 	name = "full flakvest vest"
