@@ -389,9 +389,9 @@
 	/obj/item/tank/emergency_oxygen/double = 1
 	)
 
-/obj/item/storage/deferred/crate/excel_scout
-	name = "Excelsior scout trooper kit"
-	desc = "A kit for comrades engaging at a distance."
+/obj/item/storage/deferred/crate/excel_spetznatz
+	name = "Excelsior special operative kit"
+	desc = "A kit for comrades quietly engaging at a distance."
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
