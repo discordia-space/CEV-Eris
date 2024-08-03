@@ -48,7 +48,7 @@
 		return 0
 
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant/OpenFire()
-	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
+//	anger_modifier = CLAMP(((maxHealth - health)/50),0,20)
 	ranged_cooldown = world.time + 120
 	walk(src, 0)
 	telegraph()

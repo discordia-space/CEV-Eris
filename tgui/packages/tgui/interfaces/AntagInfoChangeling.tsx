@@ -1,6 +1,13 @@
 import { multiline } from 'common/string';
 import { useBackend, useSharedState } from '../backend';
-import { Button, Dimmer, Dropdown, Section, Stack, NoticeBox } from '../components';
+import {
+  Button,
+  Dimmer,
+  Dropdown,
+  Section,
+  Stack,
+  NoticeBox,
+} from '../components';
 import { Window } from '../layouts';
 
 const hivestyle = {
@@ -62,8 +69,9 @@ export const AntagInfoChangeling = (props, context) => {
     <Window width={720} height={720}>
       <Window.Content
         style={{
-          'backgroundImage': 'none',
-        }}>
+          backgroundImage: 'none',
+        }}
+      >
         <Stack vertical fill>
           <Stack.Item maxHeight={13.2}>
             <IntroductionSection />
@@ -143,7 +151,8 @@ const IntroductionSection = (props, context) => {
     <Section
       fill
       title="Intro"
-      scrollable={!!objectives && objectives.length > 4}>
+      scrollable={!!objectives && objectives.length > 4}
+    >
       <Stack vertical fill>
         <Stack.Item fontSize="25px">
           You are {true_name} from the
@@ -213,7 +222,7 @@ const MemoriesSection = (props, context) => {
   const [selectedMemory, setSelectedMemory] = useSharedState(
     context,
     'memory',
-    (!!memories && memories[0]) || null
+    (!!memories && memories[0]) || null,
   );
   const memoryMap = {};
   for (const index in memories) {
@@ -235,7 +244,8 @@ const MemoriesSection = (props, context) => {
             help you impersonate your target!
           `}
         />
-      }>
+      }
+    >
       {(!!memories && !memories.length && (
         <Dimmer fontSize="20px">Absorb a victim first!</Dimmer>
       )) || (
@@ -264,7 +274,8 @@ const VictimPatternsSection = (props, context) => {
     <Section
       fill
       scrollable={!!stolen_antag_info}
-      title="Additional Stolen Information">
+      title="Additional Stolen Information"
+    >
       {(!!stolen_antag_info && stolen_antag_info) || (
         <Dimmer fontSize="20px">Absorb a victim first!</Dimmer>
       )}

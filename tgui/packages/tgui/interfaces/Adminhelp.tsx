@@ -21,17 +21,17 @@ export const Adminhelp = (props, context) => {
   const [requestForAdmin, setRequestForAdmin] = useLocalState(
     context,
     'request_for_admin',
-    false
+    false,
   );
   const [currentlyInputting, setCurrentlyInputting] = useLocalState(
     context,
     'confirm_request',
-    false
+    false,
   );
   const [ahelpMessage, setAhelpMessage] = useLocalState(
     context,
     'ahelp_message',
-    ''
+    '',
   );
 
   const confirmationText = 'alert admins';
@@ -40,7 +40,8 @@ export const Adminhelp = (props, context) => {
       <Window.Content
         style={{
           'background-image': 'none',
-        }}>
+        }}
+      >
         <Stack vertical fill>
           <Stack.Item grow>
             <TextArea
@@ -63,7 +64,8 @@ export const Adminhelp = (props, context) => {
                     backgroundColor="grey"
                     style={{
                       'font-style': 'normal',
-                    }}>
+                    }}
+                  >
                     Input &apos;{confirmationText}&apos; to proceed.
                     <Input
                       placeholder="Confirmation Prompt"

@@ -4,11 +4,11 @@
 	build_path = /obj/item/clothing/suit/space/void/excelsior
 
 /datum/design/autolathe/clothing/excelsior_flak
-	name = "excelsior flak"
+	name = "excelsior flak vest"
 	build_path = /obj/item/clothing/suit/armor/flak/excelsior
 
 /datum/design/autolathe/clothing/excelsior_shock
-	name = "excelsior shock"
+	name = "excelsior shock trooper vest"
 	build_path = /obj/item/clothing/suit/armor/excelshock
 
 /datum/design/autolathe/clothing/excel_shock_helmet

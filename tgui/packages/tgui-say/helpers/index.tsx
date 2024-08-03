@@ -107,7 +107,7 @@ export const storeChat = (message: string): void => {
 export const getCss = (
   element: string,
   theme?: string,
-  options?: string | number
+  options?: string | number,
 ): string =>
   classes([
     element,
@@ -128,7 +128,7 @@ export const getCss = (
 export const getTheme = (
   lightMode: boolean,
   radioPrefix: string,
-  channel: number
+  channel: number,
 ): string => {
   return (
     (lightMode && 'lightMode') ||
@@ -147,7 +147,7 @@ export const timers = {
   forceDebounce: debounce(
     (entry) => Byond.sendMessage('force', entry),
     1000,
-    true
+    true,
   ),
   typingThrottle: throttle(() => Byond.sendMessage('typing'), 4000),
 };
