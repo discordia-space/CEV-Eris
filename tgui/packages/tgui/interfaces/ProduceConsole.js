@@ -1,6 +1,15 @@
 import { multiline } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Dimmer, Divider, Icon, NumberInput, Section, Stack } from '../components';
+import {
+  Box,
+  Button,
+  Dimmer,
+  Divider,
+  Icon,
+  NumberInput,
+  Section,
+  Stack,
+} from '../components';
 import { Window } from '../layouts';
 
 const buttonWidth = 2;
@@ -19,7 +28,7 @@ const ShoppingTab = (props, context) => {
   const { order_datums } = data;
   const [shopIndex, setShopIndex] = useLocalState(context, 'shop-index', 1);
   const mapped_food = order_datums.filter(
-    (food) => food && food.cat === shopIndex
+    (food) => food && food.cat === shopIndex,
   );
   return (
     <Stack fill vertical>

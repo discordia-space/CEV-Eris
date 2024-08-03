@@ -118,6 +118,10 @@
 /turf/wall/low/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(window_type) // Full-tile glass blocks everything
 		return FALSE
+	if(isnull(mover)) // Air, fire, and flamethorower spread
+		if(blocks_air || (target && target.blocks_air))
+			return FALSE
+		return TRUE
 	if(istype(mover.loc, /turf/wall/low)) // Mover is located on a connected low wall
 		return TRUE
 	if(istype(mover, /obj/item/projectile))
@@ -129,17 +133,21 @@
 		if(mover.checkpass(PASSTABLE) && mover.layer > layer)
 			return TRUE
 		return FALSE
-	else
-		if(target.blocks_air || blocks_air)
+
+	if(blocks_air || (target && target.blocks_air))
+		return FALSE
+	for(var/obj/obstacle in src)
+		if(!obstacle.CanPass(mover, target, height, air_group))
 			return FALSE
-		for(var/obj/obstacle in src)
-			if(!obstacle.CanPass(mover, target, height, air_group))
+	if(target != src)
+		for(var/obj/obstacle in target)
+			if(!obstacle.CanPass(mover, src, height, air_group))
 				return FALSE
-		if(target != src)
-			for(var/obj/obstacle in target)
-				if(!obstacle.CanPass(mover, src, height, air_group))
-					return FALSE
-		return TRUE
+	if(target != src)
+		for(var/obj/obstacle in target)
+			if(!obstacle.CanPass(mover, src, height, air_group))
+				return FALSE
+	return TRUE
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /turf/wall/low/proc/check_cover(obj/item/projectile/P, turf/from)

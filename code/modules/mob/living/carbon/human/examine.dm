@@ -40,6 +40,9 @@
 	msg += "<EM>[src.name]</EM>"
 	msg += "!\n"
 
+
+
+
 	//uniform
 	if(w_uniform && !skipjumpsuit)
 		//Ties
@@ -171,6 +174,22 @@
 			msg += "<span class='warning'>[T.He] [T.is] extremely jittery.</span>\n"
 		else if(jitteriness >= 100)
 			msg += "<span class='warning'>[T.He] [T.is] twitching ever so slightly.</span>\n"
+
+	//Noble or lowborn
+	if(ishuman(user) && !wear_mask)
+		var/mob/living/carbon/human/H = user
+		if(H.stats.getPerk(PERK_NOBLE))
+			msg += "[T.He] [T.has] a noble demeanour.\n"
+		if(H.stats.getPerk(PERK_LOWBORN))
+			msg += "[T.He] [T.has] a lowborn demeanour.\n"
+
+	//crazy
+	if(ishuman(user) && !wear_mask)
+		var/mob/living/carbon/human/H = user
+		if(H.sanity.level <=33 && H.sanity.level > 5)
+			msg += "<span class='warning'><B>[T.He] [T.has] a weird look on [T.his] face.</B></span>\n"
+		else if(H.sanity.level <= 5)
+			msg += "<span class='warning'><B>[T.He] [T.has] a crazed look on [T.his] face.</B></span>\n"
 
 	//splints
 	for(var/organ in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG, BP_GROIN, BP_HEAD, BP_CHEST))

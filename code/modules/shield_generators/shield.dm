@@ -279,7 +279,7 @@ Like for example singulo act and whatever.
 	return ..()
 
 // If moved (usually by a shuttle), the field ceases to exist
-/obj/effect/shield/forceMove()
+/obj/effect/shield/forceMove(atom/destination, special_event, glide_size_override)
 	. = ..()
 	// qdel() also calls forceMove() to nullspace the object - no recursive qdel calls allowed, no thanks
 	if(. && !QDELETED(src))
