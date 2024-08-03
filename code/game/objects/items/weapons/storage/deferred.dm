@@ -359,7 +359,7 @@
 	/obj/item/ammo_magazine/sllrifle = 7
 	)
 
-/obj/item/storage/deferred/crate/Excel_shock_kit
+/obj/item/storage/deferred/crate/excel_shock_kit
 	name = "Excelsior Shock army Kit"
 	desc = "Everything needed for an aspiring shock trooper."
 	icon_state = "Excel_crate"
