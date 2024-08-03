@@ -403,7 +403,7 @@
 	/obj/item/clothing/head/armor/excel_shock = 1
 	)
 
-/obj/item/storage/deferred/crate/Excel_heavy
+/obj/item/storage/deferred/crate/excel_heavy
 	name = "Excelsior Heavy Trooper kit"
 	desc = "Equipment of Excelsior's heavy infantry."
 	icon_state = "Excel_crate"
