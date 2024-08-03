@@ -12,7 +12,7 @@ const PlaytimeSection = (props) => {
   const { playtimes } = props;
 
   const sortedPlaytimes = sortByPlaytime(Object.entries(playtimes)).filter(
-    (entry) => entry[1],
+    (entry) => entry[1]
   );
 
   if (!sortedPlaytimes.length) {
@@ -31,8 +31,7 @@ const PlaytimeSection = (props) => {
               p={0.5}
               style={{
                 'vertical-align': 'middle',
-              }}
-            >
+              }}>
               <Box align="right">{jobName}</Box>
             </Table.Cell>
             <Table.Cell>
@@ -41,8 +40,8 @@ const PlaytimeSection = (props) => {
                   <Flex.Item width={`${ratio * 100}%`} />
                   <Flex.Item>
                     {(playtime / 60).toLocaleString(undefined, {
-                      minimumFractionDigits: 1,
-                      maximumFractionDigits: 1,
+                      'minimumFractionDigits': 1,
+                      'maximumFractionDigits': 1,
                     })}
                     h
                   </Flex.Item>
@@ -82,9 +81,9 @@ export const TrackedPlaytime = (props, context) => {
             <Section title="Total">
               <PlaytimeSection
                 playtimes={{
-                  Ghost: ghostTime,
-                  Living: livingTime,
-                  Admin: adminTime,
+                  'Ghost': ghostTime,
+                  'Living': livingTime,
+                  'Admin': adminTime,
                 }}
               />
             </Section>
@@ -94,13 +93,11 @@ export const TrackedPlaytime = (props, context) => {
                 !!isAdmin && (
                   <Button.Checkbox
                     checked={!!exemptStatus}
-                    onClick={() => act('toggle_exempt')}
-                  >
+                    onClick={() => act('toggle_exempt')}>
                     Job Playtime Exempt
                   </Button.Checkbox>
                 )
-              }
-            >
+              }>
               <PlaytimeSection playtimes={jobPlaytimes} />
             </Section>
             <Section title="Special">

@@ -20,16 +20,15 @@ const HoloposterContent = (props: any, context: any) => {
       <Stack.Item
         grow
         style={{
-          display: 'flex',
+          'display': 'flex',
           'align-items': 'center',
           'justify-content': 'center',
-        }}
-      >
+        }}>
         <GameIcon
           html={icon}
           style={{
-            height: 'auto',
-            width: '100%',
+            'height': 'auto',
+            'width': '100%',
           }}
         />
       </Stack.Item>
@@ -44,8 +43,7 @@ const HoloposterContent = (props: any, context: any) => {
               tooltip={'Toggle poster rotation.'}
               onClick={() => act('random')}
             />
-          }
-        >
+          }>
           {Object.keys(posterTypes).map((value) => (
             <Button
               key={value}

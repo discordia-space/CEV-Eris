@@ -95,8 +95,7 @@ export const CTFPanel = (props, context) => {
                   } else {
                     act('vote');
                   }
-                }}
-              >
+                }}>
                 {data.voted ? 'Unvote for CTF' : 'Vote for CTF'}
               </Button>
             </Stack.Item>

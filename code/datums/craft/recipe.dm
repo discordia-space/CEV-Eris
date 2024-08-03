@@ -135,7 +135,7 @@
 			CS.craft_items[CO] = CS.req_amount - 1
 		CO.update()
 	if(flags & CRAFT_ON_FLOOR)
-		CR.forceMove(destination = user.loc, special_event = TRUE)
+		CR.forceMove(user.loc, MOVED_DROP)
 	else
 		user.put_in_hands(CR)
 	return CR

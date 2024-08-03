@@ -243,6 +243,15 @@ var/list/_client_preferences_by_type
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
 
+/datum/client_preference/fullscreen
+	description = "Enable fullscreen"
+	key = "FULLSCREEN"
+	default_value = GLOB.PREF_YES
+
+/datum/client_preference/fullscreen/changed(mob/preference_mob, new_value)
+	if(preference_mob.client)
+		preference_mob.client.fullscreen_check()
+
 /datum/client_preference/tgui_fancy
 	description ="Enable/Disable tgui fancy mode"
 	key = "tgui_fancy"

@@ -1,14 +1,5 @@
 import { useBackend, useSharedState } from '../backend';
-import {
-  Box,
-  Button,
-  Flex,
-  LabeledList,
-  NoticeBox,
-  Section,
-  Stack,
-  Tabs,
-} from '../components';
+import { Box, Button, Flex, LabeledList, NoticeBox, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 export const DopplerArray = (props, context) => {
@@ -28,7 +19,7 @@ const DopplerArrayContent = (props, context) => {
   const [activeRecordName, setActiveRecordName] = useSharedState(
     context,
     'activeRecordrecord',
-    records[0]?.name,
+    records[0]?.name
   );
   const activeRecord = records.find((record) => {
     return record.name === activeRecordName;
@@ -55,8 +46,7 @@ const DopplerArrayContent = (props, context) => {
                 icon="file"
                 key={record.name}
                 selected={record.name === activeRecordName}
-                onClick={() => setActiveRecordName(record.name)}
-              >
+                onClick={() => setActiveRecordName(record.name)}>
                 {record.name}
               </Tabs.Tab>
             ))}
@@ -74,7 +64,7 @@ const DopplerArrayContent = (props, context) => {
                     color="bad"
                     onClick={() =>
                       act('delete_record', {
-                        ref: activeRecord.ref,
+                        'ref': activeRecord.ref,
                       })
                     }
                   />
@@ -86,13 +76,12 @@ const DopplerArrayContent = (props, context) => {
                     tooltipPosition="bottom"
                     onClick={() =>
                       act('print_record', {
-                        ref: activeRecord.ref,
+                        'ref': activeRecord.ref,
                       })
                     }
                   />
                 </>
-              }
-            >
+              }>
               <LabeledList>
                 <LabeledList.Item label="Timestamp">
                   {activeRecord.timestamp}
@@ -125,8 +114,8 @@ const DopplerArrayContent = (props, context) => {
                 <LabeledList.Item label="Possible Cause(s)">
                   {activeRecord.reaction_results.length
                     ? activeRecord.reaction_results.map((reaction_name) => (
-                        <Box key={reaction_name}>{reaction_name}</Box>
-                      ))
+                      <Box key={reaction_name}>{reaction_name}</Box>
+                    ))
                     : 'No information available'}
                 </LabeledList.Item>
               </LabeledList>

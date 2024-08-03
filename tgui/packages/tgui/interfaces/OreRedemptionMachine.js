@@ -1,13 +1,6 @@
 import { toTitleCase } from 'common/string';
 import { useBackend, useLocalState } from '../backend';
-import {
-  BlockQuote,
-  Box,
-  Button,
-  NumberInput,
-  Section,
-  Table,
-} from '../components';
+import { BlockQuote, Box, Button, NumberInput, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const OreRedemptionMachine = (props, context) => {
@@ -117,7 +110,7 @@ const MaterialRow = (props, context) => {
   const [amount, setAmount] = useLocalState(
     context,
     'amount' + material.name,
-    1,
+    1
   );
 
   const amountAvailable = Math.floor(material.amount);

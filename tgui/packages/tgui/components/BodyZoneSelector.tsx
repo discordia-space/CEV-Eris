@@ -83,8 +83,7 @@ export class BodyZoneSelector extends Component<
           width: `${32 * scale}px`,
           height: `${32 * scale}px`,
           position: 'relative',
-        }}
-      >
+        }}>
         <Box
           as="img"
           src={resolveAsset('body_zones.base.png')}
@@ -113,9 +112,9 @@ export class BodyZoneSelector extends Component<
           }}
           style={{
             '-ms-interpolation-mode': 'nearest-neighbor',
-            position: 'absolute',
-            width: `${32 * scale}px`,
-            height: `${32 * scale}px`,
+            'position': 'absolute',
+            'width': `${32 * scale}px`,
+            'height': `${32 * scale}px`,
           }}
         />
 
@@ -126,9 +125,9 @@ export class BodyZoneSelector extends Component<
             style={{
               '-ms-interpolation-mode': 'nearest-neighbor',
               'pointer-events': 'none',
-              position: 'absolute',
-              width: `${32 * scale}px`,
-              height: `${32 * scale}px`,
+              'position': 'absolute',
+              'width': `${32 * scale}px`,
+              'height': `${32 * scale}px`,
             }}
           />
         )}
@@ -139,11 +138,11 @@ export class BodyZoneSelector extends Component<
             src={resolveAsset(`body_zones.${hoverZone}.png`)}
             style={{
               '-ms-interpolation-mode': 'nearest-neighbor',
-              opacity: 0.5,
+              'opacity': 0.5,
               'pointer-events': 'none',
-              position: 'absolute',
-              width: `${32 * scale}px`,
-              height: `${32 * scale}px`,
+              'position': 'absolute',
+              'width': `${32 * scale}px`,
+              'height': `${32 * scale}px`,
             }}
           />
         )}

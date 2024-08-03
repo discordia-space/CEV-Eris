@@ -28,9 +28,9 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/multitool_mode,
 	/mob/living/silicon/ai/proc/toggle_hologram_movement,
-	/mob/living/silicon/proc/show_crew_sensors,
-	/mob/living/silicon/proc/show_email,
-	/mob/living/silicon/proc/show_alerts
+	/mob/living/silicon/verb/show_crew_sensors,
+	/mob/living/silicon/verb/show_email,
+	/mob/living/silicon/verb/show_alerts
 )
 
 //Not sure why this is necessary...

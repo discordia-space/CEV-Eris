@@ -849,7 +849,7 @@
 #include "code\game\objects\effects\decals\Cleanable\robots.dm"
 #include "code\game\objects\effects\decals\Cleanable\tracks.dm"
 #include "code\game\objects\effects\decals\posters\asters.dm"
-#include "code\game\objects\effects\decals\posters\erisposters.dm"
+#include "code\game\objects\effects\decals\posters\bs12.dm"
 #include "code\game\objects\effects\decals\posters\tgposters.dm"
 #include "code\game\objects\effects\map_effects\portals.dm"
 #include "code\game\objects\effects\map_effects\simple_portals.dm"

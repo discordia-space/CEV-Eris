@@ -168,7 +168,7 @@
 		var/obj/item/frame/F = I
 		F.try_build(src)
 
-	else if(is_low_wall && !window_type && ispath(I.type, /obj/item/stack/material/glass))
+	else if(is_low_wall && !window_type && istype(I, /obj/item/stack/material/glass))
 		var/obj/item/stack/material/glass/glass_stack = I
 		if(glass_stack.get_amount() < 6)
 			to_chat(user, SPAN_NOTICE("There isn't enough glass sheets, you need at least six."))

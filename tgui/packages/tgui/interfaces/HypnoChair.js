@@ -27,8 +27,7 @@ export const HypnoChair = (props, context) => {
                     : data.occupant.stat === 1
                       ? 'average'
                       : 'bad'
-                }
-              >
+                }>
                 {data.occupant.stat === 0
                   ? 'Conscious'
                   : data.occupant.stat === 1

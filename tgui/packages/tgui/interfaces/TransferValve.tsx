@@ -49,8 +49,7 @@ const TransferValveContent = (props: any, context: any) => {
               disabled={!attachment}
               onClick={() => act('device')}
             />
-          }
-        >
+          }>
           <LabeledList>
             <LabeledList.Item label="Attachment">
               {attachment ? (

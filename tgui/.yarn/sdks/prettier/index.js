@@ -11,10 +11,10 @@ const absRequire = (createRequire || createRequireFromPath)(absPnpApiPath);
 
 if (existsSync(absPnpApiPath)) {
   if (!process.versions.pnp) {
-    // Setup the environment to be able to require prettier
+    // Setup the environment to be able to require prettier/index.js
     require(absPnpApiPath).setup();
   }
 }
 
-// Defer to the real prettier your application uses
-module.exports = absRequire(`prettier`);
+// Defer to the real prettier/index.js your application uses
+module.exports = absRequire(`prettier/index.js`);

@@ -24,8 +24,7 @@ export const Timer = (props: any, context: any) => {
               selected={isTiming}
               onClick={() => act('time')}
             />
-          }
-        >
+          }>
           <TimerContent />
         </Section>
       </Window.Content>

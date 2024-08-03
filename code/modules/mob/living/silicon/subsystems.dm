@@ -64,24 +64,24 @@
 	SSS.Click(given)
 	return TRUE
 
-/mob/living/silicon/proc/show_crew_sensors()
+/mob/living/silicon/verb/show_crew_sensors()
 	set name = "Show Crew Sensors"
 	set desc = "Track crew gps beacons"
 
 	open_subsystem(/datum/nano_module/crew_monitor)
 
-/mob/living/silicon/proc/show_email()
+/mob/living/silicon/verb/show_email()
 	set name = "Show Emails"
 	set desc = "Open email subsystem"
 
 	open_subsystem(/datum/nano_module/email_client)
 
-/mob/living/silicon/proc/show_alerts()
+/mob/living/silicon/verb/show_alerts()
 	set name = "Show Alerts"
 	set desc = "Open alerts monitor system"
 	open_subsystem(/datum/nano_module/alarm_monitor/all)
 
-/mob/living/silicon/proc/activate_subsystem()
+/mob/living/silicon/verb/activate_subsystem()
 	set name = "Subsystems"
 	set desc = "Activates the given subsystem"
 	set category = "Silicon Commands"

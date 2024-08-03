@@ -10,7 +10,7 @@ export const Log = (props, context) => {
   const [, setModal] = useLocalState(context, 'modal');
   // We only kvpify logs so that the return values are kvpified.
   const mappedLog = stateLog.map(({ value }) =>
-    Object.fromEntries(value.map(({ key, value }) => [key, value])),
+    Object.fromEntries(value.map(({ key, value }) => [key, value]))
   );
   return mappedLog.map((element, i) => {
     const { name, status, param, chunk, repeats } = element;
@@ -111,8 +111,7 @@ export const Log = (props, context) => {
             onClick={() => {
               setViewedChunk(chunk);
               setModal('viewChunk');
-            }}
-          >
+            }}>
             View Source
           </Button>
         </>
@@ -132,8 +131,7 @@ export const Log = (props, context) => {
             style={{
               'border-radius': '0.5em',
             }}
-            backgroundColor={messageColor}
-          >
+            backgroundColor={messageColor}>
             x{repeats + 1}
           </Box>
         )}

@@ -106,10 +106,7 @@ element identifiers are used to manage different hud parts for clients, f.e. the
 /HUD_element/Click(location,control,params)
 	if (_clickProc)
 		if(_holder)
-			if(_procArguments)
-				call(_holder, _clickProc)(arglist(_procArguments))
-			else
-				call(_holder, _clickProc)(arglist(list(src, usr, location, control, params)))
+			call(_holder, _clickProc)(arglist(_procArguments))
 		else
 			call(_clickProc)(src, usr, location, control, params)
 

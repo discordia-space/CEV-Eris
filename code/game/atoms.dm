@@ -736,9 +736,13 @@ its easier to just keep the beam vertical.
 		for(var/A in AM.light_sources) // Cycle through the light sources on this atom and tell them to update.
 			var/datum/light_source/L = A
 			L.source_atom.update_light()
-	if(loc && special_event)
-		AM.forceMove(destination = loc, special_event = TRUE)
-		return CANCEL_MOVE_EVENT
+	if(loc)
+		for(var/i in AM.contents)
+			var/atom/movable/A = i
+			A.entered_with_container(old_loc)
+		if(MOVED_DROP == special_event)
+			AM.forceMove(loc, MOVED_DROP)
+			return CANCEL_MOVE_EVENT
 
 /atom/Exited(atom/movable/Obj, atom/newloc)
 	GLOB.exited_event.raise_event(src, Obj, newloc)

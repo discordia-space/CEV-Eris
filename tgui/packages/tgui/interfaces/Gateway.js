@@ -1,12 +1,5 @@
 import { useBackend } from '../backend';
-import {
-  Box,
-  Button,
-  ByondUi,
-  NoticeBox,
-  ProgressBar,
-  Section,
-} from '../components';
+import { Box, Button, ByondUi, NoticeBox, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 export const Gateway = () => {
@@ -52,8 +45,7 @@ const GatewayContent = (props, context) => {
           mt="2px"
           textAlign="center"
           fluid
-          onClick={() => act('deactivate')}
-        >
+          onClick={() => act('deactivate')}>
           Deactivate
         </Button>
       </Section>
@@ -74,8 +66,7 @@ const GatewayContent = (props, context) => {
                 act('activate', {
                   destination: dest.ref,
                 })
-              }
-            >
+              }>
               Activate
             </Button>
           )) || (

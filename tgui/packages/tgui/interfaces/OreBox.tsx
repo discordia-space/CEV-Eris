@@ -29,8 +29,7 @@ export const OreBox = (props, context) => {
               content="Eject All Ores"
               onClick={() => act('ejectallores')}
             />
-          }
-        >
+          }>
           <Stack direction="column">
             <Stack.Item>
               <Section>
@@ -78,7 +77,7 @@ const OreRow = (props, context) => {
   const [amount, setAmount] = useLocalState(
     context,
     'amount' + material.name,
-    1,
+    1
   );
 
   const amountAvailable = Math.floor(material.amount);

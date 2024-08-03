@@ -23,8 +23,7 @@ export const ProbingConsole = (props, context) => {
               content={open ? 'Close' : 'Open'}
               onClick={() => act('door')}
             />
-          }
-        >
+          }>
           {(occupant && (
             <LabeledList>
               <LabeledList.Item label="Name">{occupant_name}</LabeledList.Item>
@@ -36,8 +35,7 @@ export const ProbingConsole = (props, context) => {
                     : occupant_status === 2
                       ? 'average'
                       : 'good'
-                }
-              >
+                }>
                 {occupant_status === 3
                   ? 'Deceased'
                   : occupant_status === 2
