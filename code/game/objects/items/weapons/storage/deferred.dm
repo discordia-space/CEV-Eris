@@ -404,7 +404,7 @@
 	)
 
 /obj/item/storage/deferred/crate/excel_heavy
-	name = "Excelsior Heavy Trooper kit"
+	name = "Excelsior heavy trooper kit"
 	desc = "Equipment of Excelsior's heavy infantry."
 	icon_state = "Excel_crate"
 	initial_contents = list(
