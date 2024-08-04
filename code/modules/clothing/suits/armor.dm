@@ -257,7 +257,7 @@
 
 /obj/item/clothing/suit/armor/excelshock
 	name = "Excelsior shock trooper armor"
-	desc = "Fresh from the design labs of Haven and based off of stolen ablative armor designs, the Excelsior Mk.1 Shock trooper armor combines speed and protection for its planetary assaults."
+	desc = "Fresh from the labs of Haven, this armor was developed to equip the troops of Excelsiors elite shock armies in their planetary operations."
 	icon_state = "shockexcelsior"
 	item_state = "shockexcelsior"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
