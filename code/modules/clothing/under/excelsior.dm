@@ -5,6 +5,14 @@
 	item_state = "bl_suit"
 	has_sensor = 0
 	spawn_blacklisted = TRUE
+	armor = list(
+		melee = 2,
+		bullet = 2,
+		energy = 4,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/under/excelsior/Initialize(mapload, ...)
 	. = ..()

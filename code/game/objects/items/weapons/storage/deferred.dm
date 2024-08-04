@@ -351,6 +351,7 @@
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
+	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/clothing/head/armor/excel_beret = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/clothing/suit/armor/flak/excelsior = 1,
@@ -365,6 +366,7 @@
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
+	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/clothing/head/armor/excel_shock = 1,
 	/obj/item/ammo_magazine/msmg = 4,
 	/obj/item/ammo_magazine/ammobox/magnum = 1,
@@ -381,6 +383,7 @@
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/gun/projectile/automatic/modular/ak/excelsior = 1,
+	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/ammo_magazine/lrifle = 4,
 	/obj/item/clothing/mask/gas = 1,
@@ -395,6 +398,7 @@
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
+	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/gun/projectile/automatic/vintorez = 1,
 	/obj/item/ammo_magazine/srifle = 5,
 	/obj/item/clothing/suit/armor/excelshock = 1,
@@ -409,6 +413,7 @@
 	icon_state = "Excel_crate"
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
+	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/clothing/suit/space/void/excelsior = 1,//a holding point up until we get excel rig suits
 	/obj/item/ammo_magazine/maxim = 4,
