@@ -30,6 +30,7 @@
 	var/stat_buff
 	var/buff_value = 3
 	var/aditional_value = 2
+	var/stat_message = "You feel like you're getting better."
 
 /datum/group_ritual_effect/cruciform/stat/trigger_success(var/mob/starter, var/list/participants)
 	. = ..()
@@ -43,6 +44,7 @@
 		return FALSE
 	if(!get_active_mutation(M, MUTATION_ATHEIST))
 		M.stats.changeStat(stat_buff, buff_value + cnt * aditional_value)
+		to_chat(M, SPAN_NOTICE(stat_message))
 
 /datum/ritual/group/cruciform/stat/mechanical
 	name = "Pounding Whisper"
@@ -64,6 +66,7 @@
 
 /datum/group_ritual_effect/cruciform/stat/mechanical
 	stat_buff = STAT_MEC
+	stat_message = "You feel like you're getting smarter."
 
 
 /datum/ritual/group/cruciform/stat/cognition
@@ -83,6 +86,7 @@
 
 /datum/group_ritual_effect/cruciform/stat/cognition
 	stat_buff = STAT_COG
+	stat_message = "You feel like you're getting smarter."
 
 
 
@@ -103,6 +107,7 @@
 
 /datum/group_ritual_effect/cruciform/stat/biology
 	stat_buff = STAT_BIO
+	stat_message = "You feel like you're getting smarter."
 
 
 /datum/ritual/group/cruciform/stat/robustness
@@ -122,6 +127,7 @@
 
 /datum/group_ritual_effect/cruciform/stat/robustness
 	stat_buff = STAT_ROB
+	stat_message = "You feel like you're getting stronger."
 
 /datum/ritual/group/cruciform/stat/vigilance
 	name = "Canto of Courage"
@@ -140,6 +146,7 @@
 
 /datum/group_ritual_effect/cruciform/stat/vigilance
 	stat_buff = STAT_VIG
+	stat_message = "You feel like you're getting more vigilant."
 
 
 /datum/ritual/group/cruciform/stat/toughness
@@ -160,6 +167,7 @@
 
 /datum/group_ritual_effect/cruciform/stat/toughness
 	stat_buff = STAT_TGH
+	stat_message = "You feel like you're getting sturdier."
 
 
 /datum/ritual/group/cruciform/crusade
