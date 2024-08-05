@@ -124,7 +124,7 @@
 	stat_buff = STAT_ROB
 
 /datum/ritual/group/cruciform/stat/vigilance
-	name = "Canto of Courage"
+	name = "Chant of Observance"
 	desc = "Boosts Vigilance stat to 3 + 2 for each participant."
 	phrase = "Vigilia exemplum imitari debemus."
 	phrases = list(
