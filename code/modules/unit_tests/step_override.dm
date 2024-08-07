@@ -12,9 +12,8 @@
 	var/atom/movable/AM = allocate(type_to_test) // alloc spawns them at 20,20,1||20,21,1
 	var/turf/T = get_turf(AM)
 	var/turf/D = locate(T.x, T.y + 1, T.z)
-	T.ChangeTurf(/turf/simulated/floor)
-	D.ChangeTurf(/turf/simulated/floor)
-	a
+	T.ChangeTurf(/turf/floor)
+	D.ChangeTurf(/turf/floor)
 
 	. = step(AM, NORTH)
 	. = . && T.x == AM.x
