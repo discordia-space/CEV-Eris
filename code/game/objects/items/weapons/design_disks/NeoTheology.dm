@@ -6,7 +6,7 @@
 	license = -1
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/pouches
-	disk_name = "NeoTheology Armory - Pouches Pack"
+	disk_name = "NeoTheology Armory - Caravana Pouches Pack"
 	license = -1
 	designs = list(
 		/datum/design/bioprinter/leather/holster,
@@ -14,22 +14,14 @@
 		/datum/design/bioprinter/leather/holster/belt,
 		/datum/design/bioprinter/leather/holster/sheath,
 		/datum/design/bioprinter/leather/holster/accessory/scabbard,
-		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
-		/datum/design/bioprinter/medical_supply,
-		/datum/design/bioprinter/engineering_tools,
-		/datum/design/bioprinter/engineering_supply,
-		/datum/design/bioprinter/engineering_material,
-		/datum/design/bioprinter/ammo,
-		/datum/design/bioprinter/tubular,
-		/datum/design/bioprinter/tubular/vial,
-		/datum/design/bioprinter/part
+		/datum/design/bioprinter/ammo
 	)
 
 // Batteries that printed fully charged, at the cost of some biomatter or plasma being non-refundable
 /obj/item/computer_hardware/hard_drive/portable/design/nt/cells
-	disk_name = "NeoTheology Armory - Power Cells Pack"
+	disk_name = "NeoTheology Armory - Solaris Power Cells Pack"
 	license = -1
 	designs = list(
 		/datum/design/bioprinter/nt_cells/large,
@@ -224,6 +216,15 @@
 		/datum/design/bioprinter/belt/medical/emt,
 
    		/datum/design/autolathe/device/headset_church
+
+		/datum/design/bioprinter/small_generic,
+		/datum/design/bioprinter/engineering_tools,
+		/datum/design/bioprinter/engineering_supply,
+		/datum/design/bioprinter/engineering_material,
+		/datum/design/bioprinter/medical_supply,
+		/datum/design/bioprinter/tubular,
+		/datum/design/bioprinter/tubular/vial,
+		/datum/design/bioprinter/part
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt_ritual
