@@ -215,8 +215,6 @@
 		/datum/design/bioprinter/belt/medical,
 		/datum/design/bioprinter/belt/medical/emt,
 
-   		/datum/design/autolathe/device/headset_church
-
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
@@ -224,7 +222,9 @@
 		/datum/design/bioprinter/medical_supply,
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
-		/datum/design/bioprinter/part
+		/datum/design/bioprinter/part,
+
+   		/datum/design/autolathe/device/headset_church
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt_ritual
