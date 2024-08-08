@@ -46,7 +46,7 @@
 	if(!proximity)
 		return
 
-	var/turf/simulated/floor/F = A
+	var/turf/floor/F = A
 	if(!istype(F))
 		to_chat(user, SPAN_WARNING("\The [src] can only be used on ship flooring."))
 		return
@@ -112,9 +112,9 @@
 	else if(choice == "Colour")
 		choose_colour()
 
-/obj/item/device/floor_painter/examine(mob/user)
-	..(user)
-	to_chat(user, "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint.")
+/obj/item/device/floor_painter/examine(mob/user, extra_description = "")
+	extra_description += "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint."
+	..(user, extra_description)
 
 /obj/item/device/floor_painter/verb/choose_colour()
 	set name = "Choose Colour"

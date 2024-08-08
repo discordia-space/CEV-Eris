@@ -75,11 +75,10 @@
 			use_power = IDLE_POWER_USE
 			update_icon()
 
-/obj/machinery/washing_machine/examine(mob/user)
-	..()
-	if(tick > 0 && (state ==WASHSTATE_RUNNING))
-		to_chat(user, SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle."))
-
+/obj/machinery/washing_machine/examine(mob/user, extra_description = "")
+	if(tick > 0 && (state == WASHSTATE_RUNNING))
+		extra_description += SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle.")
+	..(user, extra_description)
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"

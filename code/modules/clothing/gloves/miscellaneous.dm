@@ -112,7 +112,7 @@
 		bullet = 0,
 		energy = 0,
 		bomb = 0,
-		bio = 0,
+		bio = 75,
 		rad = 0
 	)
 	siemens_coefficient = 1 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)

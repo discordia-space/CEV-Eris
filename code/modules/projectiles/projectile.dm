@@ -254,7 +254,11 @@
 					height = HEIGHT_HIGH // We are shooting from below, this protects resting players at the expense of windows
 					original = get_turf(original) // Aim at turfs instead of mobs, to ensure we don't hit players
 
-	firer = user
+	// Special case for mechs, in a ideal world this should always go for the top-most atom.
+	if(istype(launcher.loc, /obj/item/mech_equipment))
+		firer = launcher.loc.loc
+	else
+		firer = user
 	shot_from = launcher.name
 	silenced = launcher.item_flags & SILENT
 
@@ -295,30 +299,6 @@
 
 	def_zone = ran_zone(def_zone, 100 - (distance + recoil) * 10)
 
-/obj/item/projectile/proc/check_miss_chance(mob/target_mob)
-
-	var/hit_mod = 0
-	switch(target_mob.mob_size)
-		if(120 to INFINITY)
-			hit_mod = -6
-		if(80 to 120)
-			hit_mod = -4
-		if(40 to 80)
-			hit_mod = -2
-		if(20 to 40)
-			hit_mod = 0
-		if(10 to 20)
-			hit_mod = 2
-		if(5 to 10)
-			hit_mod = 4
-		else
-			hit_mod = 6
-
-	if(target_mob == original)
-		var/acc_mod = leftmost_bit(projectile_accuracy)
-		hit_mod -= acc_mod //LOG2 on the projectile accuracy
-	return prob((base_miss_chance[def_zone] + hit_mod) * 10)
-
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(mob/living/target_mob, miss_modifier=0)
 	if(!istype(target_mob))
@@ -336,7 +316,7 @@
 	if(target_mob != original) // If mob was not clicked on / is not an NPC's target, checks if the mob is concealed by cover
 		var/turf/cover_loc = get_step(get_turf(target_mob), get_dir(get_turf(target_mob), starting))
 		for(var/obj/O in cover_loc)
-			if(istype(O,/obj/structure/low_wall) || istype(O,/obj/machinery/deployable/barrier) || istype(O,/obj/structure/barricade) || istype(O,/obj/structure/table))
+			if(istype(O,/turf/wall/low) || istype(O,/obj/machinery/deployable/barrier) || istype(O,/obj/structure/barricade) || istype(O,/obj/structure/table))
 				if(!silenced)
 					visible_message(SPAN_NOTICE("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
 				return FALSE
@@ -364,10 +344,7 @@
 //			qdel(src)
 //			return TRUE
 
-	if(check_miss_chance(target_mob))
-		result = PROJECTILE_FORCE_MISS
-	else
-		result = target_mob.bullet_act(src, def_zone)
+	result = target_mob.bullet_act(src, def_zone)
 
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
@@ -433,6 +410,7 @@
 		loc = A.loc
 		return FALSE //go fuck yourself in another place pls
 
+
 	if((bumped && !forced) || (A in permutated))
 		return FALSE
 
@@ -448,8 +426,12 @@
 			trajectory.loc_z = loc.z
 			bumped = FALSE
 			return FALSE
-
 	if(ismob(A))
+		// Mobs inside containers shouldnt get bumped(such as mechs or closets)
+		if(!isturf(A.loc))
+			bumped = FALSE
+			return FALSE
+
 		var/mob/M = A
 		if(isliving(A))
 			//if they have a neck grab on someone, that person gets hit instead
@@ -464,9 +446,13 @@
 	else
 		passthrough = (A.bullet_act(src, def_zone) == PROJECTILE_CONTINUE) //backwards compatibility
 		if(isturf(A))
-			for(var/obj/O in A)
+			if(QDELETED(src)) // we don't want bombs to explode once for every time bullet_act is called
+				on_impact(A)
+				invisibility = 101
+				return TRUE // see that next line? it can overload the server.
+			for(var/obj/O in A) // if src's bullet act spawns more objs, the list will increase,
 				if(O.density)
-					O.bullet_act(src)
+					O.bullet_act(src) // causing exponential growth due to the spawned obj spawning itself
 			for(var/mob/living/M in A)
 				attack_mob(M)
 
@@ -475,7 +461,6 @@
 		if(check_penetrate(A))
 			passthrough = TRUE
 		penetrating--
-
 	//the bullet passes through a dense object!
 	if(passthrough)
 		//move ourselves onto A so we can continue on our way
@@ -533,7 +518,8 @@
 		pixel_y = location.pixel_y
 
 		if(!bumped && !QDELETED(original) && !isturf(original))
-			if(loc == get_turf(original))
+			// this used to be loc == get_turf(original) , but this would break incase the original was inside something and hit them without hitting the outside
+			if(loc == original.loc)
 				if(!(original in permutated))
 					if(Bump(original))
 						return
@@ -664,6 +650,17 @@
 		qdel(src)
 
 	return dmg_total > 0 ? (dmg_remaining / dmg_total) : 0
+
+/obj/item/projectile/get_matter()
+	. = matter?.Copy()
+	if(isnull(.)) // empty bullets have no need for matter handling
+		return
+	if(istype(loc, /obj/item/ammo_casing)) // if this is part of a stack
+		var/obj/item/ammo_casing/case = loc
+		if(case.amount > 1) // if there is only one, there is no need to multiply
+			for(var/mattertype in .)
+				.[mattertype] *= case.amount
+
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.

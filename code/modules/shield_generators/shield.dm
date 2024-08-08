@@ -96,7 +96,6 @@ Like for example singulo act and whatever.
 	set_invisibility(INVISIBILITY_MAXIMUM)
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
 
 
 // Regenerates this shield segment.
@@ -112,7 +111,6 @@ Like for example singulo act and whatever.
 		set_invisibility(0)
 		update_nearby_tiles()
 		update_icon()
-		update_explosion_resistance()
 		gen.damaged_segments -= src
 
 		//When we regenerate, affect any mobs that happen to be standing in our spot
@@ -132,7 +130,6 @@ Like for example singulo act and whatever.
 	set_invisibility(INVISIBILITY_MAXIMUM)
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
 
 /obj/effect/shield/attack_generic(var/source, var/damage, var/emote)
 	take_damage(damage, SHIELD_DAMTYPE_PHYSICAL, src)
@@ -282,7 +279,7 @@ Like for example singulo act and whatever.
 	return ..()
 
 // If moved (usually by a shuttle), the field ceases to exist
-/obj/effect/shield/forceMove()
+/obj/effect/shield/forceMove(atom/destination, special_event, glide_size_override)
 	. = ..()
 	// qdel() also calls forceMove() to nullspace the object - no recursive qdel calls allowed, no thanks
 	if(. && !QDELETED(src))
@@ -305,13 +302,6 @@ Like for example singulo act and whatever.
 	// Update airflow
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
-
-/obj/effect/shield/proc/update_explosion_resistance()
-	if(gen && gen.check_flag(MODEFLAG_HYPERKINETIC))
-		explosion_resistance = INFINITY
-	else
-		explosion_resistance = 0
 
 ///obj/effect/shield/get_explosion_resistance() //Part of recursive explosions, probably unimplemented
 	//return explosion_resistance

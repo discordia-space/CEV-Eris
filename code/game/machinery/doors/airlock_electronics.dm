@@ -14,6 +14,8 @@
 	var/last_configurator = null
 	var/locked = TRUE
 	var/lockable = TRUE
+	/// Used for blast doors and shutters
+	var/wifi_id = null
 
 /obj/item/electronics/airlock/attack_self(mob/user)
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))

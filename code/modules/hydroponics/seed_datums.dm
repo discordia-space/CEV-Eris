@@ -342,7 +342,7 @@
 
 //Mushrooms/varieties.
 /datum/seed/mushroom
-	name = "mushrooms"
+	name = "mushroom"
 	seed_name = "chanterelle"
 	seed_noun = "spores"
 	display_name = "chanterelle mushrooms"

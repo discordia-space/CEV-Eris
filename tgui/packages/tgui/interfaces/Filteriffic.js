@@ -2,7 +2,18 @@ import { map } from 'common/collections';
 import { toFixed } from 'common/math';
 import { numberOfDecimalDigits } from '../../common/math';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Collapsible, ColorBox, Dropdown, Input, LabeledList, NoticeBox, NumberInput, Section } from '../components';
+import {
+  Box,
+  Button,
+  Collapsible,
+  ColorBox,
+  Dropdown,
+  Input,
+  LabeledList,
+  NoticeBox,
+  NumberInput,
+  Section,
+} from '../components';
 import { Window } from '../layouts';
 
 const FilterIntegerEntry = (props, context) => {
@@ -205,7 +216,7 @@ const FilterEntry = (props, context) => {
   const filterDefaults = data['filter_info'];
 
   const targetFilterPossibleKeys = Object.keys(
-    filterDefaults[type]['defaults']
+    filterDefaults[type]['defaults'],
   );
 
   return (
@@ -240,7 +251,8 @@ const FilterEntry = (props, context) => {
             onClick={() => act('remove_filter', { name: name })}
           />
         </>
-      }>
+      }
+    >
       <Section level={2}>
         <LabeledList>
           {targetFilterPossibleKeys.map((entryName) => {
@@ -273,12 +285,12 @@ export const Filteriffic = (props, context) => {
   const [massApplyPath, setMassApplyPath] = useLocalState(
     context,
     'massApplyPath',
-    ''
+    '',
   );
   const [hiddenSecret, setHiddenSecret] = useLocalState(
     context,
     'hidden',
-    false
+    false,
   );
   return (
     <Window title="Filteriffic" width={500} height={500}>
@@ -325,7 +337,8 @@ export const Filteriffic = (props, context) => {
                 })
               }
             />
-          }>
+          }
+        >
           {!hasFilters ? (
             <Box>No filters</Box>
           ) : (

@@ -31,14 +31,13 @@
 /area/space)
 "aB" = (
 /obj/cave_generator,
-/turf/simulated/impassable_rock,
+/turf/impassable_rock,
 /area/asteroid/cave)
 "aR" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/pulsar/maintenance)
 "aS" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "aT" = (
 /obj/structure/table/standard,
@@ -47,37 +46,37 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "be" = (
 /obj/structure/table/standard,
 /obj/spawner/booze,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "bm" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "by" = (
 /obj/structure/computerframe{
 	anchored = 1;
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "bJ" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "bP" = (
 /obj/structure/computerframe{
 	anchored = 1;
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "bV" = (
 /obj/structure/lattice,
@@ -88,38 +87,38 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "cs" = (
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "cG" = (
 /obj/spawner/pizza,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "cQ" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/outpost/pulsar/maintenance)
 "cR" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "de" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "dj" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "dk" = (
 /obj/spawner/closet/maintloot,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "do" = (
 /obj/structure/table/standard,
@@ -128,27 +127,27 @@
 /obj/spawner/medical_lowcost,
 /obj/spawner/medical_lowcost/low_chance,
 /obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "dA" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "dK" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "dV" = (
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "dW" = (
 /obj/structure/sign/atmos_o2{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "dX" = (
 /obj/structure/catwalk,
@@ -156,17 +155,17 @@
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "ee" = (
 /obj/spawner/scrap,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "eA" = (
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "eJ" = (
 /obj/structure/railing{
@@ -175,38 +174,38 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "eM" = (
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "fo" = (
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/structure/table/rack,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "fG" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "fR" = (
 /obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "fT" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "fW" = (
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "gN" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "gZ" = (
 /obj/structure/railing{
@@ -215,11 +214,11 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "hn" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "hp" = (
 /obj/machinery/atmospherics/unary/engine,
@@ -228,153 +227,152 @@
 "hM" = (
 /obj/structure/catwalk,
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "hS" = (
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "hT" = (
 /obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "hY" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/electronics,
 /obj/spawner/electronics/low_chance,
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "ic" = (
 /obj/structure/table/rack,
 /obj/spawner/material/resources/rare/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "ii" = (
 /obj/spawner/mob/roaches/cluster,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "iI" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "iL" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "iR" = (
 /obj/structure/railing,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "jg" = (
 /obj/structure/railing,
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "jt" = (
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
 /obj/spawner/knife/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "jA" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/structure/railing,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "jV" = (
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "jZ" = (
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "ks" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "lf" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "lh" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "lk" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "lv" = (
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "lB" = (
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "lQ" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar)
 "lS" = (
 /obj/spawner/junk/low_chance,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "mk" = (
 /obj/structure/bed/padded,
 /obj/spawner/pizza/low_chance,
 /obj/item/bedsheet/yellow,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "nD" = (
 /obj/machinery/computer/arcade,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "nE" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "nK" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "or" = (
 /obj/item/stool/padded,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "oO" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/shaker,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "oR" = (
 /obj/structure/sign/atmos_o2{
 	pixel_y = -32
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "oV" = (
 /obj/spawner/closet/maintloot/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "oW" = (
 /obj/structure/table/woodentable,
@@ -390,7 +388,7 @@
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "pc" = (
 /obj/machinery/door/airlock/maintenance_engineering{
@@ -399,33 +397,33 @@
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/outpost/pulsar/maintenance)
 "py" = (
 /obj/structure/table/rack,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/pulsar/maintenance)
 "pD" = (
 /obj/structure/table/rack,
 /obj/spawner/powercell/low_chance,
 /obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/pulsar/maintenance)
 "pL" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/pulsar/maintenance)
 "pT" = (
 /obj/structure/table/standard,
 /obj/spawner/booze,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "qx" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/outpost/pulsar)
 "qL" = (
 /obj/machinery/holoposter{
@@ -434,7 +432,7 @@
 /obj/machinery/vending/cigarette{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "qP" = (
 /obj/structure/table/woodentable,
@@ -449,11 +447,10 @@
 /obj/machinery/holoposter{
 	pixel_x = 32
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "qW" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar)
 "rp" = (
 /obj/machinery/door/window/eastright{
@@ -462,56 +459,56 @@
 	name = "Shower"
 	},
 /obj/item/bikehorn/rubberducky,
-/turf/simulated/floor/tiled/steel/airless,
+/turf/floor/tiled/steel/airless,
 /area/outpost/pulsar/maintenance)
 "rs" = (
-/turf/simulated/floor/tiled/dark/techfloor_grid/airless,
+/turf/floor/tiled/dark/techfloor_grid/airless,
 /area/outpost/pulsar/maintenance)
 "rK" = (
-/turf/simulated/floor/tiled/dark/gray_platform/airless,
+/turf/floor/tiled/dark/gray_platform/airless,
 /area/outpost/pulsar/maintenance)
 "rP" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/outpost/pulsar/maintenance)
 "rR" = (
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "st" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "sx" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "sN" = (
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/outpost/pulsar)
 "sZ" = (
 /obj/structure/filingcabinet,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "th" = (
 /obj/machinery/photocopier,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "to" = (
 /obj/structure/cyberplant,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/outpost/pulsar)
 "tq" = (
 /obj/structure/jtb_pillar,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/pulsar)
 "ty" = (
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/pulsar)
 "tV" = (
 /obj/machinery/shower{
@@ -522,85 +519,85 @@
 	},
 /obj/item/remains/human,
 /obj/spawner/oddities/low_chance,
-/turf/simulated/floor/tiled/steel/airless,
+/turf/floor/tiled/steel/airless,
 /area/outpost/pulsar/maintenance)
 "uB" = (
 /obj/structure/table/standard,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/dark/gray_platform/airless,
+/turf/floor/tiled/dark/gray_platform/airless,
 /area/outpost/pulsar/maintenance)
 "vi" = (
 /obj/spawner/closet/maintloot,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/pulsar/maintenance)
 "vw" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "vG" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "vH" = (
 /obj/structure/computerframe{
 	anchored = 1;
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/outpost/pulsar)
 "vQ" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/outpost/pulsar)
 "vW" = (
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "wr" = (
 /obj/structure/sign/faction/technomancers{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "wu" = (
 /obj/structure/sign/faction/technomancers{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "wJ" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "wU" = (
 /obj/machinery/pulsar,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/outpost/pulsar)
 "wX" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Access";
 	req_access = list(11)
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "xh" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Access";
 	req_access = list(11)
 	},
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/pulsar)
 "xj" = (
 /obj/effect/map_effect/simple_portal{
 	portal_tag = "pulsar"
 	},
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/outpost/pulsar)
 "xo" = (
 /obj/structure/table/standard,
@@ -611,28 +608,28 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "xr" = (
 /obj/structure/computerframe,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "xB" = (
 /obj/structure/table/standard,
 /obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "xH" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "xR" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "ya" = (
 /obj/structure/table/standard,
@@ -641,7 +638,7 @@
 	pixel_x = 3;
 	pixel_y = 14
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "yh" = (
 /obj/structure/bed/chair{
@@ -655,23 +652,23 @@
 	pixel_x = -14;
 	pixel_y = -4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "yj" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "yl" = (
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "yo" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "yO" = (
 /obj/machinery/atmospherics/unary/engine{
@@ -681,32 +678,32 @@
 /area/space)
 "yT" = (
 /obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "zq" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/regular,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/outpost/pulsar)
 "zu" = (
 /obj/machinery/light,
 /obj/structure/dispenser/plasma,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "zv" = (
 /obj/structure/pulsar_fuel_tank/filled,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/outpost/pulsar)
 "zB" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "zI" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "zM" = (
 /obj/structure/table/standard,
@@ -715,25 +712,25 @@
 	pixel_x = -3;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "Ad" = (
 /obj/structure/filingcabinet/filingcabinet,
-/turf/simulated/floor/tiled/steel/gray_perforated,
+/turf/floor/tiled/steel/gray_perforated,
 /area/outpost/pulsar/maintenance)
 "Af" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "Aq" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Access";
 	req_access = list(11)
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar)
 "Av" = (
 /obj/structure/table/standard,
@@ -741,20 +738,20 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/lathe_disk/low_chance,
 /obj/spawner/lathe_disk/low_chance,
-/turf/simulated/floor/tiled/techmaint_perforated,
+/turf/floor/tiled/techmaint_perforated,
 /area/outpost/pulsar/maintenance)
 "AD" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Ba" = (
 /obj/structure/table/standard,
 /obj/spawner/boxes,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "Bj" = (
 /obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar)
 "By" = (
 /obj/structure/table/standard,
@@ -763,12 +760,12 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "BG" = (
 /obj/structure/table/standard,
 /obj/spawner/boxes,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "BK" = (
 /obj/machinery/atmospherics/unary/engine{
@@ -780,13 +777,13 @@
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/techmaint_perforated,
+/turf/floor/tiled/techmaint_perforated,
 /area/outpost/pulsar/maintenance)
 "Cf" = (
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "Cp" = (
 /obj/structure/lattice,
@@ -794,7 +791,7 @@
 /area/space)
 "Cx" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar)
 "Cz" = (
 /obj/structure/table/standard,
@@ -804,91 +801,91 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "CL" = (
 /obj/spawner/flora/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "CN" = (
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar)
 "Df" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Di" = (
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "Dr" = (
 /obj/spawner/flora/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "Dv" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "Dy" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "DT" = (
 /obj/spawner/junkfood/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "Ef" = (
 /obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "EF" = (
 /obj/spawner/contraband/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "EK" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "EM" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "ET" = (
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "EX" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "Fk" = (
 /obj/structure/catwalk,
 /obj/spawner/oddities/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Fu" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Access";
 	req_access = list(11)
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "FC" = (
 /obj/structure/railing{
 	dir = 4
 	},
 /obj/structure/railing,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "FD" = (
 /obj/structure/catwalk,
@@ -898,7 +895,7 @@
 /obj/structure/sign/faction/technomancers{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Ge" = (
 /obj/machinery/access_button{
@@ -910,7 +907,7 @@
 	pixel_y = 25
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Gi" = (
 /obj/machinery/door/airlock/external{
@@ -920,7 +917,7 @@
 	locked = 1;
 	name = "Internal Satellite Airlock"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "Gt" = (
 /obj/machinery/airlock_sensor{
@@ -940,7 +937,7 @@
 	tag_exterior_door = "satellite_airlock_door_ext";
 	tag_interior_door = "satellite_airlock_door_int"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
 "GR" = (
 /obj/machinery/door/airlock/external{
@@ -950,7 +947,7 @@
 	locked = 1;
 	name = "External Satellite Airlock"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "GZ" = (
 /obj/machinery/access_button{
@@ -966,13 +963,13 @@
 /area/space)
 "Ht" = (
 /obj/structure/grille,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/outpost/pulsar/maintenance)
 "Hu" = (
 /obj/structure/sign/atmos_o2{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Hw" = (
 /obj/structure/railing{
@@ -981,21 +978,21 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "HC" = (
 /obj/structure/catwalk,
 /obj/structure/sign/faction/technomancers{
 	pixel_x = -32
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "HD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "HL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -1008,7 +1005,7 @@
 	locked = 1;
 	name = "Internal Satellite Airlock"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "HO" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -1016,20 +1013,20 @@
 	frequency = 1420;
 	id_tag = "satellite_airlock_pump"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/outpost/pulsar/maintenance)
 "HY" = (
 /obj/structure/table/standard,
 /obj/spawner/toolbox,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Ij" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Il" = (
 /obj/structure/bed/chair,
@@ -1041,38 +1038,37 @@
 	pixel_x = -14;
 	pixel_y = -4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Ip" = (
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Iq" = (
 /obj/structure/reagent_dispensers/fueltank/huge,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Ir" = (
 /obj/machinery/portable_atmospherics/powered/pump,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Iu" = (
 /obj/machinery/space_heater,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "IV" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "Jq" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "JO" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "Kh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -1083,7 +1079,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Kw" = (
 /obj/structure/catwalk,
@@ -1094,7 +1090,7 @@
 /area/space)
 "KB" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "KC" = (
 /obj/structure/table/standard,
@@ -1103,11 +1099,11 @@
 	pixel_x = 3;
 	pixel_y = 14
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "KR" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Lp" = (
 /obj/structure/reagent_dispensers/fueltank/huge,
@@ -1115,102 +1111,100 @@
 	name = "EXPLOSION HAZARD";
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Lv" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "LD" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "LN" = (
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/outpost/pulsar/maintenance)
 "LP" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/outpost/pulsar/maintenance)
 "LR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "LT" = (
 /obj/machinery/atmospherics/pipe/tank/air{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "Mj" = (
 /obj/spawner/junkfood/low_chance,
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Mm" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/under,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "Nc" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/wall/low/with_glass/smart,
 /area/outpost/pulsar/maintenance)
 "Nh" = (
 /obj/structure/reagent_dispensers/fueltank/huge,
 /obj/structure/sign/nosmoking_2{
 	pixel_y = -32
 	},
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Ny" = (
 /obj/structure/catwalk,
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "NN" = (
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "NZ" = (
 /obj/structure/dispenser/oxygen,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "Om" = (
 /obj/spawner/junkfood/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Ow" = (
 /obj/structure/railing,
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "OO" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "OX" = (
 /obj/machinery/suit_storage_unit/standard_unit,
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/outpost/pulsar/maintenance)
 "Pc" = (
 /obj/structure/table/standard,
 /obj/spawner/powercell,
 /obj/spawner/powercell,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "Pd" = (
 /obj/structure/table/standard,
@@ -1218,42 +1212,42 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "Pj" = (
 /obj/structure/table/standard,
 /obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "Pq" = (
 /obj/spawner/junk/low_chance,
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Px" = (
 /obj/structure/railing,
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "PF" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/pulsar/maintenance)
 "PH" = (
-/turf/unsimulated/wall,
+/turf/wall/dummy,
 /area/asteroid/cave)
 "PQ" = (
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/outpost/pulsar/maintenance)
 "QC" = (
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "QF" = (
 /obj/structure/closet,
@@ -1261,7 +1255,7 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "QK" = (
 /obj/structure/toilet,
@@ -1269,40 +1263,40 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/pulsar/maintenance)
 "QN" = (
 /obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/outpost/pulsar/maintenance)
 "QS" = (
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/outpost/pulsar/maintenance)
 "QY" = (
 /obj/machinery/portable_atmospherics/canister,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "Rg" = (
 /obj/structure/table/standard,
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "Rv" = (
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/outpost/pulsar/maintenance)
 "RS" = (
 /obj/structure/catwalk,
 /obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Sk" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/pulsar/maintenance)
 "So" = (
 /obj/structure/sink{
@@ -1310,27 +1304,27 @@
 	pixel_x = 12;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/outpost/pulsar/maintenance)
 "Sx" = (
 /obj/structure/table/standard,
 /obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/ammo/lowcost/low_chance,
 /obj/spawner/ammo/lowcost/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "SY" = (
 /obj/structure/table/standard,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
 /obj/spawner/gun_parts/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "TS" = (
 /obj/structure/table/standard,
 /obj/spawner/boxes/low_chance,
 /obj/spawner/boxes/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "Uy" = (
 /obj/structure/railing{
@@ -1339,16 +1333,16 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "Uz" = (
 /obj/spawner/pack/tech_loot,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "UF" = (
 /obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "UI" = (
 /obj/structure/bed/padded,
@@ -1357,28 +1351,28 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "UW" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner,
+/turf/floor/tiled/steel/orangecorner,
 /area/outpost/pulsar/maintenance)
 "Vb" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/outpost/pulsar/maintenance)
 "VO" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "Wj" = (
 /obj/machinery/door/airlock/maintenance_engineering{
 	name = "Engineering Maintenance";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "Wp" = (
 /obj/structure/table/rack,
@@ -1387,7 +1381,7 @@
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "WC" = (
 /obj/structure/table/rack,
@@ -1397,7 +1391,7 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "WQ" = (
 /obj/machinery/atmospherics/unary/engine{
@@ -1407,13 +1401,13 @@
 /area/space)
 "Xq" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Xw" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/outpost/pulsar/maintenance)
 "XB" = (
 /obj/structure/table/rack,
@@ -1421,64 +1415,64 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/outpost/pulsar/maintenance)
 "XI" = (
 /obj/machinery/vending/assist,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "XP" = (
 /obj/spawner/scrap,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Ys" = (
 /obj/machinery/telecomms/relay/preset/pulsar,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "YD" = (
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "YE" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "YJ" = (
 /obj/structure/computerframe{
 	anchored = 1;
 	dir = 8
 	},
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "YP" = (
 /obj/structure/table/rack,
 /obj/spawner/boxes,
 /obj/spawner/boxes,
 /obj/spawner/boxes,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "YX" = (
 /obj/structure/table/rack,
 /obj/spawner/toolbox,
 /obj/spawner/toolbox,
 /obj/spawner/toolbox,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/outpost/pulsar/maintenance)
 "YY" = (
 /obj/spawner/closet/maintloot,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/outpost/pulsar/maintenance)
 "Zi" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "Zq" = (
-/turf/simulated/impassable_rock,
+/turf/impassable_rock,
 /area/asteroid/cave)
 "Zv" = (
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "ZD" = (
 /obj/structure/table/standard,
@@ -1487,17 +1481,17 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "ZE" = (
 /obj/structure/table/standard,
 /obj/spawner/booze,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 "ZZ" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/outpost/pulsar/maintenance)
 
 (1,1,1) = {"

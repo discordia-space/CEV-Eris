@@ -120,17 +120,17 @@ var/const/NO_EMAG_ACT = -50
 	var/formal_name_prefix
 	var/formal_name_suffix
 
-/obj/item/card/id/examine(mob/user)
-	set src in oview(1)
-	if(in_range(usr, src))
-		show(usr)
-		to_chat(usr, desc)
-		to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
-		to_chat(usr, "The blood type on the card is [blood_type].")
-		to_chat(usr, "The DNA hash on the card is [dna_hash].")
-		to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
+/obj/item/card/id/examine(mob/user, extra_description = "")
+	set src in oview(1) // TODO: See if this could be safely removed --KIROV
+	if(get_dist(user, src) < 2)
+		show(user)
+		extra_description += desc
+		extra_description += text("\n\icon[src] [name]: The current assignment on the card is [assignment].")
+		extra_description += "\nThe blood type on the card is [blood_type]."
+		extra_description += "\nThe DNA hash on the card is [dna_hash]."
+		extra_description += "\nThe fingerprint hash on the card is [fingerprint_hash]."
 	else
-		to_chat(usr, SPAN_WARNING("It is too far away."))
+		extra_description += SPAN_WARNING("It is too far away.")
 
 /obj/item/card/id/proc/prevent_tracking()
 	return 0
@@ -329,3 +329,18 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/card/id/blankwhite
 	icon_state = "id_blankwhite"
+
+/obj/item/card/id/randomassistant
+
+/obj/item/card/id/randomassistant/Initialize()
+	. = ..()
+	age = num2text(rand(18, 100))
+	var/datum/job_flavor/flavortype = pick(subtypesof(/datum/job_flavor/assistant))
+	assignment = initial(flavortype.title)
+	access = list(access_maint_tunnels)
+	sex = capitalize(pick(MALE, FEMALE))
+	registered_name = addtext(random_first_name(sex), " ", random_last_name()) // Is this faster than two concats? Probably!
+	dna_hash = sha1("A"+registered_name) // Something is subtly wrong with these IDs
+	fingerprint_hash = md5("A"+registered_name)
+	blood_type = pick(GLOB.blood_types)
+	update_name()

@@ -2,26 +2,75 @@
 #define MAIN_STAGE 2
 #define WIND_DOWN_STAGE 3
 #define END_STAGE 4
-//weather defines
 
-// Areas.dm
-
-// ===
 /area
-	var/global/global_uid = 0
-	var/uid
-	var/tmp/camera_id = 0 // For automatic c_tag setting
-	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
-	plane = BLACKNESS_PLANE
+	name = "Unknown"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "unknown"
+	plane = BLACKNESS_PLANE // Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE
 	layer = AREA_LAYER
+	level = null
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	luminosity = TRUE
+	var/dynamic_lighting = TRUE
+	var/lightswitch = TRUE
+	var/fire
+	var/atmos = TRUE
+	var/atmosalm = FALSE
+	var/poweralm = TRUE
+	var/party
+	var/eject
+	var/is_maintenance = FALSE
+	var/debug = 0
+	var/area_light_color		//Used by lights to create different light on different departments and locations
+	var/has_gravity = 1
+	var/cached_gravity = 1		//stores updated has_gravity even if it's blocked
+	var/no_air
+	var/air_doors_activated = 0
+	var/sound_env = STANDARD_STATION
+	var/holomap_color // Color of this area on station holomap
+	var/vessel = "CEV Eris" // Consoles can only control shields on the same vessel as them
 	var/ship_area = FALSE
+
+	var/requires_power = TRUE
+	var/always_unpowered = FALSE
+	var/power_light = TRUE
+	var/power_equip = TRUE
+	var/power_environ = TRUE
 
 	var/used_equip = 0
 	var/used_light = 0
 	var/used_environ = 0
+
 	var/static_equip
 	var/static_light = 0
 	var/static_environ
+
+	var/bluespace_entropy = 0
+	var/bluespace_hazard_threshold = 100
+
+	var/uid
+	var/global/global_uid = 0
+	var/tmp/camera_id = 0 // For automatic c_tag setting
+
+	var/list/air_vent_names = list()
+	var/list/air_scrub_names = list()
+	var/list/air_vent_info = list()
+	var/list/air_scrub_info = list()
+	var/list/turret_controls = list() // Turrets use this list to see if individual power/lethal settings are allowed
+	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/list/ambience = list('sound/ambience/ambigen1.ogg','sound/ambience/ambigen3.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambigen5.ogg','sound/ambience/ambigen6.ogg','sound/ambience/ambigen7.ogg','sound/ambience/ambigen8.ogg','sound/ambience/ambigen9.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen11.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambigen14.ogg')
+	var/list/forced_ambience
+
+	// Each area may have at most one media source that plays songs into that area.
+	// We keep track of that source so any mob entering the area can lookup what to play.
+	var/atom/gravity_blocker	//ref to antigrav
+	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
+	var/obj/machinery/media/media_source = null
+	var/obj/machinery/power/apc/apc
+	var/obj/machinery/alarm/master_air_alarm
+	var/datum/turf_initializer/turf_initializer = null
+	var/datum/area_sanity/sanity
 
 /**
  * Called when an area loads
@@ -29,18 +78,21 @@
 /area/New()
 	uid = ++global_uid
 	all_areas += src
-	if (ship_area)
+	if(ship_area)
 		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
 	// Some atoms would like to use power in Initialize()
 	if(!requires_power)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
+		power_light = FALSE
+		power_equip = FALSE
+		power_environ = FALSE
 
 	sanity = new(src)
 
-	return ..()
+	if(dynamic_lighting)
+		luminosity = FALSE
+
+	. = ..()
 
 /*
  * Initalize this area
@@ -51,12 +103,15 @@
 	icon_state = ""
 
 	if(!requires_power || !apc)
-		power_light = 0
-		power_equip = 0
-		power_environ = 0
+		power_light = FALSE
+		power_equip = FALSE
+		power_environ = FALSE
 
-	. = ..()
+	for(var/turf/T in src)
+		if(turf_initializer)
+			turf_initializer.Initialize(T)
 
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /**
@@ -353,8 +408,8 @@ var/list/mob/living/forced_ambiance_list = new
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
 
-	if(istype(get_turf(mob), /turf/simulated/open))
-		var/turf/simulated/open/O = get_turf(mob)
+	if(istype(get_turf(mob), /turf/open))
+		var/turf/open/O = get_turf(mob)
 		O.fallThrough(mob)
 		return
 

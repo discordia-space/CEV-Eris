@@ -53,8 +53,8 @@
 	GLOB.all_doors -= src
 	..()
 
-/obj/machinery/door/can_prevent_fall()
-	return density
+/obj/machinery/door/can_prevent_fall(above)
+	return above ? density : null
 
 /obj/machinery/door/attack_generic(mob/user, var/damage)
 	if(damage >= resistance)
@@ -68,14 +68,7 @@
 
 /obj/machinery/door/New()
 	. = ..()
-	if(density)
-		layer = closed_layer
-		explosion_resistance = initial(explosion_resistance)
-		update_heat_protection(get_turf(src))
-	else
-		layer = open_layer
-		explosion_resistance = 0
-
+	layer = density ? closed_layer : open_layer
 
 	if(width > 1)
 		if(dir in list(EAST, WEST))
@@ -101,13 +94,19 @@
 
 /obj/machinery/door/proc/can_open()
 	if(!density || operating)
-		return 0
-	return 1
+		return FALSE
+	var/obj/machinery/door/blast/overlayed_door = locate(/obj/machinery/door/blast/regular) in get_turf(src)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	overlayed_door = locate(/obj/machinery/door/blast/shutters) in get_turf(src)
+	if(overlayed_door && overlayed_door.density)
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/proc/can_close()
 	if(density || operating)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/door/Bumped(atom/AM)
 	if(operating) return
@@ -378,16 +377,15 @@
 		S.set_up(smoke_amount, 0, src)
 		S.start()
 
+/obj/machinery/door/examine(mob/user, extra_description = "")
+	if(health < maxHealth / 4)
+		extra_description += "\The [src] looks like it's about to break!"
+	else if(health < maxHealth / 2)
+		extra_description += "\The [src] looks seriously damaged!"
+	else if(health < maxHealth * 3/4)
+		extra_description += "\The [src] shows signs of damage!"
 
-/obj/machinery/door/examine(mob/user)
-	. = ..()
-	if(src.health < src.maxHealth / 4)
-		to_chat(user, "\The [src] looks like it's about to break!")
-	else if(src.health < src.maxHealth / 2)
-		to_chat(user, "\The [src] looks seriously damaged!")
-	else if(src.health < src.maxHealth * 3/4)
-		to_chat(user, "\The [src] shows signs of damage!")
-
+	..(user, extra_description)
 
 /obj/machinery/door/proc/set_broken()
 	stat |= BROKEN
@@ -445,10 +443,10 @@
 	icon_state = "door0"
 	//sleep(3)
 	src.density = FALSE
+	SEND_SIGNAL(src, COMSIG_DOOR_OPENED, forced)
 	update_nearby_tiles()
 	//sleep(7)
 	src.layer = open_layer
-	explosion_resistance = 0
 	update_icon()
 	update_nearby_tiles()
 	operating = FALSE
@@ -466,10 +464,10 @@
 	do_animate("closing")
 	//sleep(3)
 	src.density = TRUE
+	SEND_SIGNAL(src, COMSIG_DOOR_CLOSED, forced)
 	update_nearby_tiles()
 	//sleep(7)
 	src.layer = closed_layer
-	explosion_resistance = initial(explosion_resistance)
 	update_icon()
 	update_nearby_tiles()
 
@@ -496,13 +494,12 @@
 	return ..(M)
 
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
-	for(var/turf/simulated/turf in locs)
-		update_heat_protection(turf)
-		SSair.mark_for_update(turf)
+	for(var/turf/turf in locs)
+		if(turf.is_simulated)
+			SSair.mark_for_update(turf)
+	return TRUE
 
-	return 1
-
-/obj/machinery/door/proc/update_heat_protection(var/turf/simulated/source)
+/obj/machinery/door/proc/update_heat_protection(turf/source)
 	if(istype(source))
 		if(src.density && (src.opacity || src.heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT

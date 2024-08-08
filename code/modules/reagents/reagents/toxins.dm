@@ -113,7 +113,7 @@
 	if(prob(50))
 		M.pl_effects()
 
-/datum/reagent/toxin/plasma/touch_turf(turf/simulated/T)
+/datum/reagent/toxin/plasma/touch_turf(turf/T)
 	if(!istype(T))
 		return
 	T.assume_gas("plasma", volume, T20C)
@@ -128,12 +128,25 @@
 	reagent_state = LIQUID
 	color = "#CF3600"
 	strength = 2
-	metabolism = REM * 2
+	metabolism = REM/4 //0.05 Cyanide lasts within one day but duh...
 
 /datum/reagent/toxin/cyanide/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.adjustOxyLoss(2 * effect_multiplier)
-	M.AdjustSleeping(1)
+	if(!ishuman(M))
+		return
+	var/mob/living/carbon/human/H = M
+	var/obj/item/organ/internal/vital/heart/S = H.random_organ_by_process(OP_HEART)
+	var/obj/item/organ/internal/vital/lungs/O = H.random_organ_by_process(OP_LUNGS)
+	if(prob(20))
+		M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
+		M.AdjustSleeping(20)
+	if(istype(O)) //STAGE 1: CRUSH LUNGS
+		create_overdose_wound(O, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		M.adjustOxyLoss(5)
+	if(istype(S) && (!istype(O) || (O.status & ORGAN_DEAD))) //STAGE 2: NO LUNGS? FUCK YOUR HEART
+		create_overdose_wound(S, M, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+		M.adjustHalLoss(20)
+		M.vomit()
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -236,8 +249,8 @@
 	strength = 0.4
 
 /datum/reagent/toxin/plantbgone/touch_turf(turf/T)
-	if(istype(T, /turf/simulated/wall))
-		var/turf/simulated/wall/W = T
+	if(istype(T, /turf/wall))
+		var/turf/wall/W = T
 		if(locate(/obj/effect/overlay/wallrot) in W)
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)
@@ -532,9 +545,15 @@
 /datum/reagent/toxin/slimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name != SPECIES_SLIME)
-			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-			H.set_species(SPECIES_SLIME)
+		if(H.species.name != SPECIES_SLIME && !H.isSynthetic()) //cannot transform if already a slime perosn or lack flesh to transform
+			if(istype(H.get_core_implant(), /obj/item/implant/core_implant/cruciform))
+				H.gib() //Deus saves
+			else
+				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+				for(var/obj/item/W in H) //Check all items on the person
+					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now.
+						W.dropped()
+				H.set_species(SPECIES_SLIME)
 
 /datum/reagent/toxin/aslimetoxin
 	name = "Advanced Mutation Toxin"
@@ -545,29 +564,43 @@
 	color = "#13BC5E"
 
 /datum/reagent/toxin/aslimetoxin/affect_blood(mob/living/carbon/M, alien, effect_multiplier) // TODO: check if there's similar code anywhere else
+	var/cruciformed = FALSE
+	var/prosthetic = FALSE
+	var/mob/living/carbon/human/MH
+	if(istype(M, /mob/living/carbon/human)) //If it is human cast to human type for human procs
+		MH = M
+		prosthetic = MH.isSynthetic()
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
-	to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-	ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
-	M.canmove = 0
-	M.icon = null
-	M.overlays.Cut()
-	M.invisibility = 101
-	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/implant)) //TODO: Carn. give implants a dropped() or something
-			qdel(W)
-			continue
-		W.layer = initial(W.layer)
-		W.loc = M.loc
-		W.dropped(M)
-	var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
-	new_mob.a_intent = "hurt"
-	new_mob.universal_speak = 1
-	if(M.mind)
-		M.mind.transfer_to(new_mob)
+	if(!prosthetic) //Check if is not FBP
+		to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+		ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
+		M.canmove = 0
+		M.icon = null
+		M.overlays.Cut()
+		M.invisibility = 101
+		for(var/obj/item/W in M) //for every item in a entity including internal components and inventory
+			if(istype(W, /obj/item/implant) || istype(W, /obj/item/organ/external/robotic))  //Check if item is implant or prosthetic
+				if(istype(W, /obj/item/implant/core_implant/cruciform)) //If cruciform is present victim is gibbed instead of transformed
+					cruciformed = TRUE
+				W.dropped() //use the baseline dropped()
+				continue
+			W.layer = initial(W.layer)
+			W.loc = M.loc
+			W.dropped(M)
+		if(!cruciformed) //If not cruciformed, get slimed
+			var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
+			new_mob.a_intent = "hurt"
+			new_mob.universal_speak = 1
+			if(M.mind)
+				M.mind.transfer_to(new_mob)
+			else
+				new_mob.key = M.key
+			qdel(M)
+		else //if victim was cruciformed, gib the body instead of creating a slime. Deus saves
+			M.gib()
 	else
-		new_mob.key = M.key
-	qdel(M)
+		MH.vomit() //Otherwise the toxin spams as the body attempts to process it. Gets it out of the system quickly and we can stop trying to process this.
 
 /datum/reagent/other/xenomicrobes
 	name = "Xenomicrobes"

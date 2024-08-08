@@ -94,24 +94,29 @@
 /obj/structure/MouseDrop_T(mob/target, mob/user)
 
 	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
+	if(istype(H) && can_climb(H) && (target == user || ismech(user.loc)))
 		do_climb(target)
 	else
 		return ..()
 
-/obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
+/obj/structure/proc/can_climb(mob/living/user, post_climb_check=0)
 	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
-		return 0
+		return FALSE
 
-	if (!user.Adjacent(src))
+	if(ismech(user.loc))
+		var/mob/living/mech = user.loc
+		if(!mech.Adjacent(src))
+			to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
+			return FALSE
+	else if (!user.Adjacent(src))
 		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
-		return 0
+		return FALSE
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
 		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
@@ -147,7 +152,7 @@
 	user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
-	var/delay = (issmall(user) ? 20 : 34) * user.mod_climb_delay
+	var/delay = (issmall(user) ? 20 : 34) * (user.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
 	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration, src))
 		climbers -= user
@@ -213,7 +218,8 @@
 		return 0
 	if(!Adjacent(user))
 		return 0
-	if (user.restrained() || user.buckled)
+
+	if (!ismech(user) && (user.restrained() || user.buckled))
 		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
 		return 0
 	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)

@@ -29,6 +29,9 @@
 	pass_flags = PASSTABLE
 	universal_understand = 1
 	faction = "borers"
+	can_pull_size = ITEM_SIZE_TINY
+	can_pull_mobs = MOB_PULL_NONE
+	density = FALSE
 
 	var/borer_level = 0
 	var/borer_exp = 0
@@ -43,6 +46,7 @@
 	var/docile = FALSE                      // Sugar can stop borers from acting.
 	var/has_reproduced
 	var/roundstart
+	var/invisibility_cost = 5
 
 	// Abilities borer can use when outside the host
 	var/list/abilities_standalone = list(
@@ -87,7 +91,7 @@
 		var/obj/item/organ/external/head = H.get_organ(BP_HEAD)
 		head.implants.Remove(src) // This should be safe.
 	if(controlling)
-		detatch()
+		detach()
 	return ..()
 
 /mob/living/simple_animal/borer/Login()
@@ -95,6 +99,8 @@
 	if(!roundstart && mind && !mind.antagonist.len)
 		var/datum/antagonist/A = create_antag_instance(ROLE_BORER_REPRODUCED)
 		A.create_antagonist(mind,update = FALSE)
+	if(client)
+		client.init_verbs()
 
 /mob/living/simple_animal/borer/New()
 	..()
@@ -126,20 +132,19 @@
 
 /mob/living/simple_animal/borer/proc/update_abilities(force_host=FALSE)
 	// Remove all abilities
-	verbs -= abilities_standalone
-	verbs -= abilities_in_host
-	host?.verbs -= abilities_in_control
+	remove_verb(src, abilities_standalone)
+	remove_verb(src, abilities_in_host)
+	if(host)
+		remove_verb(host, abilities_in_control)
 
 	// Re-grant some of the abilities, depending on the situation
 	if(!host)
-		verbs += abilities_standalone
+		add_verb(src, abilities_standalone)
 	else if(!controlling)
-		verbs += abilities_in_host
-		Stat()
+		add_verb(src, abilities_in_host)
 		return
 	else
-		host.verbs += abilities_in_control
-	Stat()
+		add_verb(host, abilities_in_control)
 
 // If borer is controlling a host directly, send messages to host instead of borer
 /mob/living/simple_animal/borer/proc/get_borer_control()
@@ -150,9 +155,11 @@
 		chemicals++
 
 /mob/living/simple_animal/borer/proc/process_invisibility()
-	if(invisibility == TRUE)
-		chemicals -= 1
-		if(chemicals <= 2)
+	if(invisibility)
+		chemicals -= invisibility_cost
+		if(chemicals <= max_chemicals/2 && (max_chemicals/2) - invisibility_cost <= chemicals)
+			to_chat(src, to_chat(src, "\red <B>Your invisibility will run out soon!</B>"))
+		if(chemicals <= invisibility_cost + 1)
 			invisible() // Disable invisibility
 			chemicals = 0
 
@@ -160,7 +167,7 @@
 	to_chat(host, SPAN_DANGER("You feel your control over your host suddenly stop."))
 	update_abilities()
 	spawn(1)
-		detatch()
+		detach()
 
 /mob/living/simple_animal/borer/proc/process_host()
 	if(host && !stat)
@@ -201,23 +208,15 @@
 	// Keep at the end
 	process_host()
 
-/mob/living/simple_animal/borer/Stat()
+/mob/living/simple_animal/borer/get_status_tab_items()
 	. = ..()
-	statpanel("Status")
+	. += list(list("Evolution Level: borer_level"))
+	. += list(list("Chemicals [host ? (chemicals/max_chemicals_inhost) : (chemicals/max_chemicals)]"))
+	if(host)
+		. += list(list("Host health [host.stat == DEAD ? "Deceased" : host.health]"))
+		. += list(list("Host brain damage: [host.getBrainLoss()]"))
 
-	if(evacuation_controller)
-		var/eta_status = evacuation_controller.get_status_panel_eta()
-		if(eta_status)
-			stat(null, eta_status)
-
-	if (client?.statpanel == "Status")
-		stat("Evolution Level", borer_level)
-		stat("Chemicals", host ? "[chemicals] / [max_chemicals_inhost]" : "[chemicals] / [max_chemicals]")
-		if(host)
-			stat("Host health", host.stat == DEAD ? "Deceased" : host.health)
-			stat("Host brain damage", host.getBrainLoss())
-
-/mob/living/simple_animal/borer/proc/detatch()
+/mob/living/simple_animal/borer/proc/detach()
 
 	if(!host || !controlling) return
 
@@ -357,7 +356,7 @@
 		alpha = 255
 		invisibility = 0
 	if(controlling || host)
-		detatch()
+		detach()
 		leave_host()
 
 /mob/living/simple_animal/borer/update_sight()

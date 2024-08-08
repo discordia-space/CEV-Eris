@@ -52,6 +52,7 @@
 #define ROLE_MERCENARY "mercenary"
 #define ROLE_PARAMOUNT "paramount"
 #define ROLE_THRALL "thrall"
+#define ROLE_PIRATE "pirate"
 #define ROLE_CARRION "carrion"
 #define ROLE_MONKEY "monkey"
 #define ROLE_MALFUNCTION "malf"
@@ -70,9 +71,10 @@
 #define FACTION_BORERS "borers"
 #define FACTION_SERBS	"serbians"
 #define FACTION_FOUNDERS "founders"
+#define FACTION_PIRATES	"pirates"
 #define FACTION_NEOTHEOLOGY	"neotheologists"
 
-#define ROLES_CONTRACT_COMPLETE list(ROLE_CONTRACTOR,ROLE_CARRION,ROLE_BLITZ)
+#define ROLES_CONTRACT_COMPLETE list(ROLE_CONTRACTOR,ROLE_CARRION) // Blitz not included
 #define ROLES_CONTRACT_VIEW list(ROLE_CONTRACTOR,ROLE_CARRION,ROLE_BLITZ,ROLE_MARSHAL)
 #define ROLES_UPLINK_BASE list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY)
 

@@ -316,7 +316,7 @@
 	rarity_value = 18
 
 /obj/item/oddity/common/old_newspaper/attack_self(mob/user)
-	zoom(8, 8)
+	zoom(user,8, 8)
 	..()
 
 /obj/item/oddity/common/paper_omega
@@ -364,21 +364,20 @@
 	GLOB.bluespace_gift++
 	GLOB.bluespace_entropy -= rand(30, 50)
 
-/obj/item/oddity/broken_necklace/examine(user, distance)
-	. = ..()
+/obj/item/oddity/broken_necklace/examine(mob/user, extra_description = "")
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			to_chat(user, SPAN_NOTICE("This feels cold to the touch."))
-
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			to_chat(user, SPAN_NOTICE("This feels warm to the touch."))
+	if(my_area.bluespace_entropy < (my_area.bluespace_hazard_threshold * 0.75))
+		extra_description += SPAN_NOTICE("This feels cold to the touch.")
+	else
+		extra_description += SPAN_NOTICE("This feels warm to the touch.")
 
 	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		to_chat(user, SPAN_NOTICE("Has it always shone so brightly?"))
+		extra_description += SPAN_NOTICE("\nHas it always shone so brightly?")
 
 	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		to_chat(user, SPAN_NOTICE("You can see an inscription in some language unknown to you."))
+		extra_description += SPAN_NOTICE("\nYou can see an inscription in some language unknown to you.")
+
+	..(user, extra_description)
 
 /obj/item/oddity/broken_necklace/Destroy()
 	var/turf/T = get_turf(src)

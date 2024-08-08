@@ -30,12 +30,13 @@ var opts = {
 	'scrollSnapTolerance': 10, //If within x pixels of bottom
 	'clickTolerance': 10, //Keep focus if outside x pixels of mousedown position on mouseup
 	'imageRetryDelay': 50, //how long between attempts to reload images (in ms)
-	'imageRetryLimit': 50, //how many attempts should we make? 
+	'imageRetryLimit': 50, //how many attempts should we make?
 	'popups': 0, //Amount of popups opened ever
 	'wasd': false, //Is the user in wasd mode?
 	'priorChatHeight': 0, //Thing for height-resizing detection
 	'restarting': false, //Is the round restarting?
 	'darkmode':false, //Are we using darkmode? If not WHY ARE YOU LIVING IN 2009???
+	'fullscreen':false, //Is fullscreen mode enabled?
 
 	//Options menu
 	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub menu
@@ -68,7 +69,7 @@ var opts = {
 	'updatedVolume': 0, //The volume level that is sent to the server
 	'musicStartAt': 0, //The position the music starts playing
 	'musicEndAt': 0, //The position the music... stops playing... if null, doesn't apply (so the music runs through)
-	
+
 	'defaultMusicVolume': 25,
 
 	'messageCombining': true,
@@ -157,7 +158,7 @@ function byondDecode(message) {
 	// The replace for + is because FOR SOME REASON, BYOND replaces spaces with a + instead of %20, and a plus with %2b.
 	// Marvelous.
 	message = message.replace(/\+/g, "%20");
-	try { 
+	try {
 		// This is a workaround for the above not always working when BYOND's shitty url encoding breaks. (byond bug id:2399401)
 		if (decodeURIComponent) {
 			message = decodeURIComponent(message);
@@ -493,6 +494,17 @@ function swap() { //Swap to darkmode
 	setCookie('darkmode', (opts.darkmode ? 'true' : 'false'), 365);
 }
 
+function fullscreen_check() {
+	if (opts.fullscreen){
+		opts.fullscreen = false;
+		runByond('?_src_=chat&proc=disable_fullscreen');
+	} else {
+		opts.fullscreen = true;
+		runByond('?_src_=chat&proc=enable_fullscreen');
+	}
+	setCookie('fullscreen', (opts.fullscreen ? 'true' : 'false'), 365);
+}
+
 function handleClientData(ckey, ip, compid) {
 	//byond sends player info to here
 	var currentData = {'ckey': ckey, 'ip': ip, 'compid': compid};
@@ -746,6 +758,7 @@ $(function() {
 		'smusicVolume': getCookie('musicVolume'),
 		'smessagecombining': getCookie('messagecombining'),
 		'sdarkmode': getCookie('darkmode'),
+		'sfullscreen': getCookie('fullscreen'),
 	};
 
 	if (savedConfig.sfontSize) {
@@ -758,6 +771,9 @@ $(function() {
 	}
 	if(savedConfig.sdarkmode == 'true'){
 		swap();
+	}
+	if(savedConfig.sfullscreen == 'true'){
+		fullscreen_check();
 	}
 	if (savedConfig.spingDisabled) {
 		if (savedConfig.spingDisabled == 'true') {
@@ -791,7 +807,7 @@ $(function() {
 	else{
 		$('#adminMusic').prop('volume', opts.defaultMusicVolume / 100);
 	}
-	
+
 	if (savedConfig.smessagecombining) {
 		if (savedConfig.smessagecombining == 'false') {
 			opts.messageCombining = false;
@@ -968,6 +984,9 @@ $(function() {
 	$('#darkmodetoggle').click(function(e) {
 		swap();
 	});
+	$('#fullscreentoggle').click(function(e) {
+		fullscreen_check();
+	});
 	$('#toggleAudio').click(function(e) {
 		handleToggleClick($subAudio, $(this));
 	});
@@ -1109,7 +1128,7 @@ $(function() {
 		$messages.empty();
 		opts.messageCount = 0;
 	});
-	
+
 	$('#musicVolumeSpan').hover(function() {
 		$('#musicVolumeText').addClass('hidden');
 		$('#musicVolume').removeClass('hidden');
@@ -1136,9 +1155,6 @@ $(function() {
 	});
 
 	$('img.icon').error(iconError);
-	
-	
-		
 
 	/*****************************************
 	*

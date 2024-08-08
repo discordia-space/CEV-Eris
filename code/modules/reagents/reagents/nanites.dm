@@ -163,15 +163,15 @@
 	description = "Microscopic construction robots programmed to heal body cells."
 
 /datum/reagent/nanites/nanosymbiotes/will_occur(mob/living/carbon/M, alien, var/location)
-	if(..() && (M.getBruteLoss() || M.getFireLoss() || M.getToxLoss() || M.getCloneLoss() || M.getBrainLoss()))
+	if(..() && (M.getBruteLoss() || M.getFireLoss() || M.getOxyLoss()))
 		return TRUE
 
 /datum/reagent/nanites/nanosymbiotes/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(..())
-		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier, 3 * effect_multiplier, 3 * effect_multiplier)
-		M.add_chemical_effect(CE_TOXIN, -((1 + (M.chem_effects[CE_TOXIN] * 0.03)) * effect_multiplier))
-		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.03)) * effect_multiplier)
-		M.adjustBrainLoss(-(1 + (M.getBrainLoss() * 0.03)) * effect_multiplier)
+		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.adjustOxyLoss(-(1 + (M.getOxyLoss() * 0.03)) * effect_multiplier) 
+		M.adjustFireLoss(-(1 + (M.getFireLoss() * 0.03)) * effect_multiplier)
+		M.adjustBruteLoss(-(1 + (M.getBruteLoss() * 0.03)) * effect_multiplier)
 
 /datum/reagent/nanites/oxyrush
 	name = "Oxyrush"
@@ -196,17 +196,17 @@
 	if(..() && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/organ in H.organs) //Grab the organ holding the implant.
-			if(organ.damage > 0 && !BP_IS_ROBOTIC(organ))
+			if(organ.status & ORGAN_WOUNDED && !BP_IS_ROBOTIC(organ))
 				return TRUE
 
 /datum/reagent/nanites/trauma_control_system/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	if(..() && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		for(var/obj/item/organ/organ in H.organs) //Grab the organ holding the implant.
-			if (istype(organ, /obj/item/organ/external) && organ.damage > 0 && !BP_IS_ROBOTIC(organ))
-				organ.heal_damage((2 + organ.damage * 0.03)* effect_multiplier, (2 + organ.damage * 0.03)* effect_multiplier)
-			else if (istype(organ, /obj/item/organ/internal) && organ.damage > 0 && !BP_IS_ROBOTIC(organ))
-				organ.heal_damage((2 + organ.damage * 0.03)* effect_multiplier)
+	if(..())
+		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_BLOODCLOT, 1)
+		M.add_chemical_effect(CE_ANTITOX, 2)
+		M.add_chemical_effect(CE_STABLE, 1)
+		M.add_chemical_effect(CE_BRAINHEAL, 1)
+		M.add_chemical_effect(CE_EYEHEAL, 1)
 
 /datum/reagent/nanites/purgers
 	name = "Purgers"

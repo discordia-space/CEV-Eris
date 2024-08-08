@@ -133,10 +133,10 @@
 	return
 
 /mob/living/simple_animal/space_worm/proc/AttemptToEat(var/atom/target)
-	if(istype(target,/turf/simulated/wall))
-		var/turf/simulated/wall/W = target
-		if((!W.reinf_material && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
-			W.dismantle_wall()
+	if(istype(target,/turf/wall))
+		var/turf/wall/W = target
+		if(((W.hardness < 100) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
+			W.dismantle_wall(src)
 			return 1
 	else if(istype(target,/atom/movable))
 		if(ismob(target) || eatingDuration >= 50) //5 ticks to eat stuff like airlocks

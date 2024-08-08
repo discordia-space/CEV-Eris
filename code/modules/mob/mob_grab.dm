@@ -46,7 +46,7 @@
 	if(ismob(A))
 		return ..()
 	var/obj/O = A
-	if(!istype(O) || get_dist(O, affecting) > 1)
+	if((!istype(O) && !istype(O, /turf/wall/low)) || get_dist(O, affecting) > 1)
 		return TRUE
 	if(O.affect_grab(assailant, affecting, state))
 		qdel(src)

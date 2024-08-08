@@ -303,6 +303,7 @@
 		fail("Soul transfer failed.", user, C)
 		return FALSE
 	set_personal_cooldown(user)
+	lost_cruciforms -= CI
 
 
 	return TRUE
@@ -396,7 +397,6 @@
 		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
 		E.take_damage(15)
 		H.custom_pain("You feel the cruciform ripping out of your chest!",1)
-		CI.name = "[M]'s Cruciform"
 		CI.uninstall()
 		return TRUE
 

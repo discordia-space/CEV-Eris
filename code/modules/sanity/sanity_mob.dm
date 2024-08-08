@@ -218,15 +218,15 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		spook_time = world.time + rand(1 MINUTES, 8 MINUTES) - (40 - level) * 1 SECONDS //Each missing sanity point below 40 decreases cooldown by a second
 
 		var/static/list/effects_40 = list(
-			PROC_REF(effect_emote = 25),
-			PROC_REF(effect_quote = 50)
+			PROC_REF(effect_emote) = 25,
+			PROC_REF(effect_quote) = 50
 		)
 		var/static/list/effects_30 = effects_40 + list(
-			PROC_REF(effect_sound = 1),
-			PROC_REF(effect_whisper = 25)
+			PROC_REF(effect_sound) = 1,
+			PROC_REF(effect_whisper) = 25
 		)
 		var/static/list/effects_20 = effects_30 + list(
-			PROC_REF(effect_hallucination = 30)
+			PROC_REF(effect_hallucination) = 30
 		)
 
 		call(src, pickweight(level < 30 ? level < 20 ? effects_20 : effects_30 : effects_40))()

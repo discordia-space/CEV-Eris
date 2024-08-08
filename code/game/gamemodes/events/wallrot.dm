@@ -26,12 +26,12 @@
 /datum/event/wallrot/start()
 	set waitfor = FALSE
 
-	var/turf/simulated/wall/center = null
+	var/turf/wall/center = null
 
 	// 100 attempts
 	for(var/i=0, i<100, i++)
 		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), pick(GLOB.maps_data.station_levels))
-		if(istype(candidate, /turf/simulated/wall))
+		if(istype(candidate, /turf/wall))
 			center = candidate //If necessary we'll settle for any wall
 			var/area/A = get_area(center)
 			if (!istype(A, /area/eris/maintenance)) //But ideally we want a wall that's not in maintenance, so players are likely to see it
@@ -45,7 +45,7 @@
 		// Have a chance to rot lots of other walls.
 		var/rotcount = 0
 		var/actual_severity = rand(30, 60)
-		for(var/turf/simulated/wall/W in RANGE_TURFS(14, center))
+		for(var/turf/wall/W in RANGE_TURFS(14, center))
 			if(prob(25))
 				W.rot()
 				rotcount++
@@ -63,7 +63,7 @@
 
 
 // Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
+/turf/wall/proc/rot()
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return
 	var/number_rots = rand(2,3)

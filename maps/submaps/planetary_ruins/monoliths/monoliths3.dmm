@@ -3,14 +3,14 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/unsimulated/beach/sand,
+/turf/beach/sand,
 /area/template_noop)
 "c" = (
 /obj/structure/monolith,
-/turf/unsimulated/beach/sand,
+/turf/beach/sand,
 /area/template_noop)
 "d" = (
-/turf/simulated/floor/alium/ruin,
+/turf/floor/alium/ruin,
 /area/template_noop)
 "Q" = (
 /obj/machinery/artifact,
@@ -24,7 +24,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/plasma,
-/turf/simulated/floor/alium/ruin,
+/turf/floor/alium/ruin,
 /area/template_noop)
 
 (1,1,1) = {"

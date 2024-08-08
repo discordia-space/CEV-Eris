@@ -1,51 +1,50 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "b" = (
-/turf/simulated/wall/iron,
+/turf/wall/iron,
 /area/template_noop)
 "c" = (
 /obj/machinery/door/unpowered/simple/uranium,
 /turf/template_noop,
 /area/template_noop)
 "d" = (
-/turf/simulated/wall/uranium,
+/turf/wall,
 /area/template_noop)
 "e" = (
 /obj/structure/bed/chair/wood,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "f" = (
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "g" = (
 /obj/item/trash/candle,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "h" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "i" = (
 /obj/machinery/artifact,
-/turf/simulated/floor/reinforced,
+/turf/floor/reinforced,
 /area/template_noop)
 "q" = (
 /obj/structure/bed/chair/wood,
 /obj/spawner/credits/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "E" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "I" = (
 /obj/structure/bed/chair/wood,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "R" = (
 /obj/structure/bed/chair/wood,
 /obj/spawner/credits/c1000,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 
 (1,1,1) = {"

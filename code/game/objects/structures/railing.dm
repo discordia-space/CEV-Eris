@@ -62,18 +62,17 @@
 		return 1
 //32 and 4 - in the same turf
 
-/obj/structure/railing/examine(mob/user)
-	. = ..()
+/obj/structure/railing/examine(mob/user, extra_description = "")
 	if(health < maxHealth)
 		switch(health / maxHealth)
 			if(0 to 0.25)
-				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
+				extra_description += SPAN_WARNING("\nIt looks severely damaged!")
 			if(0.25 to 0.5)
-				to_chat(user, SPAN_WARNING("It looks damaged!"))
+				extra_description += SPAN_WARNING("\nIt looks damaged!")
 			if(0.5 to 1)
-				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
+				extra_description += SPAN_NOTICE("\nIt has a few scrapes and dents.")
 	if(reinforced)
-		var/reinforcement_text = "It is reinforced with rods"
+		var/reinforcement_text = "\nIt is reinforced with rods"
 		switch(reinforcement_security)
 			if (0 to 1)
 				reinforcement_text += ", which are barely hanging on"
@@ -81,7 +80,8 @@
 				reinforcement_text += ", which are loosely attached"
 			if (20 to 30)
 				reinforcement_text += ", which are a bit loose"
-		to_chat(user, SPAN_NOTICE("[reinforcement_text].")) // MY rods(?) were a bit loose while writing this
+		extra_description += SPAN_NOTICE("[reinforcement_text].")
+	..(user, extra_description)
 
 /obj/structure/railing/take_damage(amount)
 	. = health - amount < 0 ? amount - health : amount
@@ -344,7 +344,7 @@
 	else
 		attack_hand(M)
 
-/obj/structure/railing/do_climb(var/mob/living/user)
+/obj/structure/railing/do_climb(mob/living/user)
 	if(!can_climb(user))
 		return
 
@@ -367,11 +367,11 @@
 		return
 
 	if(get_turf(user) == get_turf(src))
-		usr.forceMove(get_step(src, src.dir))
+		user.forceMove(get_step(src, src.dir))
 	else
-		usr.forceMove(get_turf(src))
+		user.forceMove(get_turf(src))
 
-	usr.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
+	user.visible_message(SPAN_WARNING("[user] climbed over \the [src]!"))
 	if(!anchored)	take_damage(maxHealth) // Fatboy
 	climbers -= user
 

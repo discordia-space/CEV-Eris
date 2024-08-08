@@ -26,6 +26,7 @@
 	var/area_uid
 	var/id_tag
 
+	var/hibernate = 0 //Do we even process?
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 	var/expanded_range = FALSE
 
@@ -62,12 +63,12 @@
 	icon_state = "map_vent_in"
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos
-	use_power = IDLE_POWER_USE
 	icon_state = "map_vent_in"
+	frequency = 1441
 	external_pressure_bound = 0
 	external_pressure_bound_default = 0
-	internal_pressure_bound = 2000
-	internal_pressure_bound_default = 2000
+	internal_pressure_bound = 3000 //3000kPa seems to be the sweet spot where it visually engages the display meters, but doesn't keep running after round start unless disrupted
+	internal_pressure_bound_default = 3000
 	pressure_checks = 2
 	pressure_checks_default = 2
 
@@ -135,12 +136,27 @@
 	update_icon()
 	update_underlays()
 
+/obj/machinery/atmospherics/unary/vent_pump/proc/can_pump() //What would stop the pump from working
+	if(inoperable())
+		return 0
+	if(!use_power)
+		return 0
+	if(welded)
+		return 0
+	return 1
+
 /obj/machinery/atmospherics/unary/vent_pump/Process()
 	..()
+
+	if (hibernate > world.time)
+		return 1
 
 	if (!node1)
 		use_power = NO_POWER_USE
 		return
+
+	if(!can_pump())
+		return 0
 
 	if(!use_power)
 		return 0
@@ -148,15 +164,11 @@
 	if(stat & (NOPOWER|BROKEN))
 		return 0
 
-	if(welded)
-		return 0
-
 	var/list/environments = get_target_environments(src, expanded_range)
 	if(!length(environments))
 		return 0
 
 	var/power_draw = 0
-	var/transfer_happened = FALSE
 
 	for(var/e in environments)
 		var/datum/gas_mixture/environment = e
@@ -170,19 +182,22 @@
 		var/pressure_delta = get_pressure_delta(environment)
 		//src.visible_message("DEBUG >>> [src]: pressure_delta = [pressure_delta]")
 
-		if(pressure_delta > 0.5)
+		if((environment.temperature || air_contents.temperature) && pressure_delta > 0.5)
 			if(pump_direction) //internal -> external
 				var/transfer_moles = calculate_transfer_moles(air_contents, environment, pressure_delta)
-				power_draw += pump_gas(src, air_contents, environment, transfer_moles, power_rating)
+				power_draw = pump_gas(src, air_contents, environment, transfer_moles, power_rating)
 			else //external -> internal
 				var/transfer_moles = calculate_transfer_moles(environment, air_contents, pressure_delta, (network)? network.volume : 0)
 
 				//limit flow rate from turfs
 				transfer_moles = min(transfer_moles, environment.total_moles*air_contents.volume/environment.volume)	//group_multiplier gets divided out here
-				power_draw += pump_gas(src, environment, air_contents, transfer_moles, power_rating)
-			transfer_happened = TRUE
+				power_draw = pump_gas(src, environment, air_contents, transfer_moles, power_rating)
+		else
+			if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL) //99% of all vents
+				hibernate = world.time + (rand(100,200))
 
-	if(transfer_happened)
+
+	if(power_draw > 0)
 		last_power_draw = power_draw
 		use_power(power_draw)
 		if(network)
@@ -392,13 +407,14 @@
 
 	return
 
-/obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+/obj/machinery/atmospherics/unary/vent_pump/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
 	else
-		to_chat(user, "You are too far away to read the gauge.")
+		extra_description += "You are too far away to read the gauge."
 	if(welded)
-		to_chat(user, "It seems welded shut.")
+		extra_description += "\nIt seems welded shut."
+	..(user, extra_description)
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	var/old_stat = stat

@@ -28,9 +28,10 @@
 	var/emagged = 0
 	var/open = 0
 
-/obj/item/storage/secure/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, text("The service panel is [src.open ? "open" : "closed"]."))
+/obj/item/storage/secure/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "The service panel is [open ? "open" : "closed"]."
+	..(user, extra_description)
 
 /obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)

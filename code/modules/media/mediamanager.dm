@@ -94,16 +94,6 @@
 	return
 
 //
-// ### Define media source to areas ###
-// Each area may have at most one media source that plays songs into that area.
-// We keep track of that source so any mob entering the area can lookup what to play.
-//
-/area
-	// For now, only one media source per area allowed
-	// Possible Future: turn into a list, then only play the first one that's playing.
-	var/obj/machinery/media/media_source = null
-
-//
 // ### Media Manager Datum
 //
 
@@ -116,7 +106,7 @@
 	var/client/owner			// Client this is actually running in
 	var/forced=0				// If true, current url overrides area media sources
 	var/playerstyle				// Choice of which player plugin to use
-	var/const/WINDOW_ID = "rpane.mediapanel"	// Which elem in skin.dmf to use
+	var/const/WINDOW_ID = "outputwindow.mediapanel"	// Which elem in skin.dmf to use
 
 /datum/media_manager/New(var/client/C)
 	ASSERT(istype(C))

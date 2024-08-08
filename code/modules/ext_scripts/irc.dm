@@ -12,7 +12,7 @@
 					nudge_lib = "lib/nudge.so"
 
 				spawn(0)
-					call(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[msg]")
+					LIBCALL(nudge_lib, "nudge")("[config.comms_password]","[config.irc_bot_host]","[channel]","[msg]")
 			else
 				spawn(0)
 					ext_python("ircbot_message.py", "[config.comms_password] [config.irc_bot_host] [channel] [msg]")

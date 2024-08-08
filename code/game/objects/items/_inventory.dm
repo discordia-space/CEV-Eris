@@ -53,7 +53,7 @@
 			equipped.forceMove(src)
 	return FALSE
 
-/obj/item/proc/equipped(var/mob/user, var/slot)
+/obj/item/proc/equipped(mob/user, slot)
 	equip_slot = slot
 	if(user.pulling == src)
 		user.stop_pulling()
@@ -65,18 +65,25 @@
 		user.r_hand.update_twohanding()
 	if(wielded)
 		unwield(user)
+	GLOB.mob_equipped_event.raise_event(user, src, slot)
+	GLOB.item_equipped_event.raise_event(src, user, slot)
 	SEND_SIGNAL_OLD(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
 	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_EQUIPPED, user)
-	//SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, user.getContainingMovable())
+	update_light()
+	if(flags & MOVE_NOTIFY)
+		user.update_on_move |= src
 
 /obj/item/proc/dropped(mob/user)
+	GLOB.mob_unequipped_event.raise_event(user, src)
+	GLOB.item_unequipped_event.raise_event(src, user)
+	SEND_SIGNAL_OLD(src, COMSIG_ITEM_DROPPED, src)
+	update_light()
 	if(zoom) //binoculars, scope, etc
-		zoom()
+		zoom(user)
 	remove_hud_actions(user)
 	if(overslot && is_held())
 		remove_overslot_contents(user)
-
-
+	user.update_on_move -= src
 
 /obj/item/proc/remove_overslot_contents(mob/user)
 	if(overslot_contents)
@@ -167,5 +174,5 @@
 		if(H.get_holding_hand(src))
 			add_hud_actions(H)
 		return TRUE
-	
+
 

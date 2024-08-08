@@ -34,16 +34,16 @@
 		return FALSE
 	return ..()
 
-/obj/item/projectile/bullet/check_penetrate(var/atom/A)
-	if((!A || !A.density) && !istype(A, /obj/item/shield)) return 1 //if whatever it was got destroyed when we hit it, then I guess we can just keep going
+/obj/item/projectile/bullet/check_penetrate(atom/A)
+	ASSERT(A)
 
 	if(istype(A, /mob/living/exosuit))
-		return 1 //exosuits have their own penetration handling
+		return TRUE //exosuits have their own penetration handling
 
 	var/blocked_damage = 0
-	if(istype(A, /turf/simulated/wall)) // TODO: refactor this from functional into OOP
-		var/turf/simulated/wall/W = A
-		blocked_damage = round(W.material.integrity / 8)
+	if(istype(A, /turf/wall)) // TODO: refactor this from functional into OOP
+		var/turf/wall/W = A
+		blocked_damage = round(W.max_health / 8)
 	else if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
 		blocked_damage = round(S.shield_integrity / 8)
@@ -52,15 +52,28 @@
 		blocked_damage = round(D.maxHealth / 8)
 		if(D.glass) blocked_damage /= 2
 	else if(istype(A, /obj/structure/girder))
+		if(armor_divisor < 2)
+			return FALSE
+		blocked_damage = 10
 		return TRUE
-	else if(istype(A, /obj/structure/low_wall))
-		blocked_damage = 20 // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
 		blocked_damage = round(T.maxHealth / 8)
 	else if(istype(A, /obj/structure/barricade))
 		var/obj/structure/barricade/B = A
 		blocked_damage = round(B.material.integrity / 8)
+
+/*
+	else if(istype(A, /obj/structure/barrier/ballistic))
+		// Okay, so to stop every single bullet from damaging, and then phazing right trough the barricade, we must come here and do this shit
+		// You'd think that checking 'penetration' variable would do the thing, yet it's the same for almost everything,
+		// from measly pistol to anti-materiel rounds. But 'armor_divisor', on the other hand, actually represents penetration potential
+		if(armor_divisor < 2)
+			return FALSE // Anything but anti-materiel, high-velocity, and few other projectiles with great penetration will bounce
+		blocked_damage = 20
+*/
+// Ballistic barriers are temporarily disabled // TODO: Fix later --KIROV
+
 	else if(istype(A, /obj/machinery) || istype(A, /obj/structure))
 		blocked_damage = 20
 
@@ -74,9 +87,7 @@
 			//display a message so that people on the other side aren't so confused
 			A.visible_message(SPAN_WARNING("\The [src] pierces through \the [A]!"))
 			playsound(A.loc, 'sound/weapons/shield/shieldpen.ogg', 50, 1)
-		return 1
-
-	return 0
+		return TRUE
 
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
@@ -89,6 +100,12 @@
 	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
 	var/pellet_to_knockback_ratio = 0
 	wounding_mult = WOUNDING_SMALL
+	matter = list(MATERIAL_STEEL = 0.4)
+
+/obj/item/projectile/bullet/pellet/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
+	for(var/entry in matter) // this allows for the projectile in the casing having the correct matter
+		matter[entry] /= pellets // yet disallows for pellet shrapnel created on impact multiplying the matter count
+	. = ..()
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()

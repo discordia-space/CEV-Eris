@@ -22,6 +22,6 @@
 			T = locate(gen_turf.x + x_offset, gen_turf.y + y_offset, gen_turf.z)
 			if (istype(T, /turf/space))
 				//check neighbors of T
-				if (locate(/turf/simulated/) in orange(1, T))
+				if (locate(/turf/) in orange(1, T))
 					out += T
 	return out

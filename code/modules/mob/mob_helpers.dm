@@ -301,22 +301,13 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
 			if("left")
 				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
-//		if(hud_used && hud_used.action_intent)
-//			hud_used.action_intent.icon_state = "intent_[a_intent]"
 
 	else if(isrobot(src))
-		switch(input)
-			if(I_HELP)
-				a_intent = I_HELP
-			if(I_HURT)
-				a_intent = I_HURT
-			if("right","left")
-				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-/*		if(hud_used && hud_used.action_intent)
-			if(a_intent == I_HURT)
-				hud_used.action_intent.icon_state = I_HURT
-			else
-				hud_used.action_intent.icon_state = I_HELP*/
+		if(a_intent == I_HELP)
+			a_intent = I_HURT
+		else
+			a_intent = I_HELP
+
 	if (HUDneed.Find("intent"))
 		var/obj/screen/intent/I = HUDneed["intent"]
 		I.update_icon()
@@ -619,6 +610,7 @@ proc/is_blind(A)
 	if(max_w_class > ITEM_SIZE_TINY)
 		return max_w_class/(ITEM_SIZE_TITANIC)
 
+/*
 /mob/proc/get_accumulated_vision_handlers()
 	var/result[2]
 	var/asight = 0
@@ -626,11 +618,12 @@ proc/is_blind(A)
 	for(var/atom/vision_handler in additional_vision_handlers)
 		//Grab their flags
 		asight |= vision_handler.additional_sight_flags()
-		ainvis = max(ainvis, vision_handler.additional_see_invisible())
+		ainvis = min(ainvis, vision_handler.additional_see_invisible())
 	result[1] = asight
 	result[2] = ainvis
 
 	return result
+*/
 
 /mob/proc/set_faction(target_faction)
 	faction = target_faction ? target_faction : initial(faction)

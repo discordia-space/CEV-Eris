@@ -31,6 +31,10 @@ GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs targ
 GLOBAL_LIST_EMPTY(all_burrows)				//list of all burrows
 GLOBAL_LIST_EMPTY(all_maintshrooms)			//list of all maintshrooms
 
+// Associated list where key is shared between /obj/structure/barrier/four_way and /obj/item/device/assembly/signaler, linking them together
+// Value is a list of 'code' and 'frequency' variables which are assigned to both linked objects on Initialize()
+GLOBAL_LIST_EMPTY(roundstart_barrier_groups)
+
 //Machinery lists
 GLOBAL_LIST_EMPTY(alarm_list) //List of fire alarms
 GLOBAL_LIST_EMPTY(ai_status_display_list) //List of AI status displays
@@ -102,6 +106,26 @@ GLOBAL_LIST_EMPTY(global_ritual_cooldowns) // internal lists. Use ritual's coold
 GLOBAL_LIST_EMPTY(hair_styles_list)        //stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_LIST_EMPTY(facial_hair_styles_list) //stores /datum/sprite_accessory/facial_hair indexed by name
 
+//Cooking
+//A dictionary of unique step ids that point to other step IDs that should be EXCLUDED if it is present in a recipe_pointer's list of possible steps.
+GLOBAL_LIST_EMPTY(cwj_optional_step_exclusion_dictionary)
+
+//A dictionary of all recipes by the basic ingredient
+//Format: {base_ingedient_type:{unique_id:recipe}}
+GLOBAL_LIST_EMPTY(cwj_recipe_dictionary)
+
+//A dictionary of all recipes full_stop. Used later for assembling the HTML list.
+//Format: {recipe_type:{unique_id:recipe}}
+GLOBAL_LIST_EMPTY(cwj_recipe_list)
+
+//A dictionary of all steps held within all recipes
+//Format: {unique_id:step}
+GLOBAL_LIST_EMPTY(cwj_step_dictionary)
+
+//An organized heap of recipes by class and grouping.
+//Format: {class_of_step:{step_group_identifier:{unique_id:step}}}
+GLOBAL_LIST_EMPTY(cwj_step_dictionary_ordered)
+
 GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
 
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
@@ -123,7 +147,8 @@ var/global/list/organ_tag_to_name = list(
 	groin = "groin",l_leg = "left leg",
 	chest2= "back", heart = "heart",
 	lungs  = "lungs", liver = "liver",
-	"left kidney" = "left kidney", "right kidney" = "right kidney",
+	"left kidney" = "left kidney",
+	"right kidney" = "right kidney",
 	stomach = "stomach", brain = "brain"
 	)
 

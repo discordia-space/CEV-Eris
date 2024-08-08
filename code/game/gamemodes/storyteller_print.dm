@@ -248,7 +248,7 @@
 			if(href_list["ev_spawn"])
 				//When in debug mode, we pass in the user.
 					//If antag spawning fails, they will be spammed with text explaining why
-				if (!evt.can_trigger(href_list["severity"], debug_mode? usr : null))
+				if (!evt.can_trigger(href_list["severity"], debug_mode? usr : null, TRUE))
 					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger.\n\
 					To find out why, turn on debug mode in the storyteller panel and try again. \n\
 					You can also try to bypass the requirement and force it anyway, but this is unlikely to work\n \

@@ -1,6 +1,16 @@
-import { capitalize } from 'common/string';
+import { capitalize } from '../../common/string';
 import { useBackend } from '../backend';
-import { BlockQuote, Box, Button, Icon, LabeledList, Modal, NoticeBox, Section, Stack } from '../components';
+import {
+  BlockQuote,
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  Modal,
+  NoticeBox,
+  Section,
+  Stack,
+} from '../components';
 import { GameIcon } from '../components/GameIcon';
 import { Window } from '../layouts';
 
@@ -53,9 +63,10 @@ const managing = (managingData: ErrorData, context: any) => {
         {managingData.message.length > 0 && (
           <NoticeBox
             style={{
-              'overflow': 'hidden',
+              overflow: 'hidden',
               'word-break': 'break-all',
-            }}>
+            }}
+          >
             {managingData.message}
           </NoticeBox>
         )}
@@ -138,28 +149,40 @@ const product = (product: ProductData, context: any) => {
         <Stack.Item grow>
           <Button
             fluid
-            ellipsis
-            onClick={() => act('vend', { key: product.key })}>
-            <Stack fill align="center">
-              <Stack.Item>
-                <GameIcon html={product.icon} className="Vending--game-icon" />
-              </Stack.Item>
-              <Stack.Item grow={4} textAlign="left" className="Vending--text">
-                {product.name}
-              </Stack.Item>
-              <Stack.Item grow textAlign="right" className="Vending--text">
-                {product.amount}
-                <Icon name="box" pl="0.6em" />
-              </Stack.Item>
-              {(product.price > 0 && (
-                <Stack.Item grow textAlign="right" className="Vending--text">
-                  {product.price}
-                  <Icon name="money-bill" pl="0.6em" />
+            height="100%"
+            verticalAlignContent="middle"
+            content={
+              <Stack fill align="center">
+                <Stack.Item
+                  style={{
+                    display: 'flex',
+                    'align-items': 'center',
+                    'justify-content': 'center',
+                  }}
+                >
+                  <GameIcon
+                    html={product.icon}
+                    className="Vending--game-icon"
+                  />
                 </Stack.Item>
-              )) ||
-                null}
-            </Stack>
-          </Button>
+                <Stack.Item grow={4} textAlign="left" className="Vending--text">
+                  {product.name}
+                </Stack.Item>
+                <Stack.Item grow textAlign="right" className="Vending--text">
+                  {product.amount}
+                  <Icon name="box" pl="0.6em" />
+                </Stack.Item>
+                {(product.price > 0 && (
+                  <Stack.Item grow textAlign="right" className="Vending--text">
+                    {product.price}
+                    <Icon name="money-bill" pl="0.6em" />
+                  </Stack.Item>
+                )) ||
+                  null}
+              </Stack>
+            }
+            onClick={() => act('vend', { key: product.key })}
+          />
         </Stack.Item>
         {(data.isManaging && (
           <>

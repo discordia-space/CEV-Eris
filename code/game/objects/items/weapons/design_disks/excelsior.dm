@@ -28,6 +28,7 @@
 		/datum/design/research/item/part/subspace_transmitter,
 		/datum/design/autolathe/part/igniter,						//regular parts
 		/datum/design/autolathe/part/signaler,
+		/datum/design/autolathe/part/door_signaler,
 		/datum/design/autolathe/part/sensor_prox,
 		/datum/design/autolathe/part/consolescreen,
 		/datum/design/autolathe/cell/large/excelsior,				//power cells

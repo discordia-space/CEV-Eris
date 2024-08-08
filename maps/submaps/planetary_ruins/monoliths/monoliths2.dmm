@@ -3,7 +3,7 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/template_noop)
 "c" = (
 /obj/machinery/artifact,
@@ -17,10 +17,10 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/plasma,
-/turf/simulated/floor/alium/ruin,
+/turf/floor/alium/ruin,
 /area/template_noop)
 "d" = (
-/turf/simulated/floor/alium/ruin,
+/turf/floor/alium/ruin,
 /area/template_noop)
 "Q" = (
 /obj/structure/monolith,

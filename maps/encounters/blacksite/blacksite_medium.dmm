@@ -8,7 +8,7 @@
 /turf/space,
 /area/space)
 "cb" = (
-/turf/simulated/mineral,
+/turf/mineral,
 /area/space)
 "gV" = (
 /obj/effect/shuttle_landmark/blacksite/medium/nav2,

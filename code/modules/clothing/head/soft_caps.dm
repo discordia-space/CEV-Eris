@@ -60,6 +60,7 @@
 	name = "black cap"
 	initial_name = "black cap"
 	desc = "A simple baseball cap in a tasteful black color."
+	icon_state = "blacksoft"
 
 /obj/item/clothing/head/soft/orange
 	name = "orange cap"

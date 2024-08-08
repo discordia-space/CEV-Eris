@@ -7,80 +7,80 @@
 /turf/template_noop,
 /area/template_noop)
 "ac" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ad" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "ae" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "af" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "ag" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "ah" = (
 /obj/spawner/junk,
 /obj/structure/sign/derelict2{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "ai" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aj" = (
 /obj/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "ak" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "al" = (
 /obj/machinery/bodyscanner,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "am" = (
 /obj/machinery/body_scanconsole,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "an" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "ao" = (
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "ap" = (
 /obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "aq" = (
 /obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "ar" = (
 /obj/structure/salvageable/os/implant_container,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "as" = (
 /obj/structure/table/onestar,
 /obj/structure/window/basic,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "at" = (
 /obj/structure/table/onestar,
 /obj/machinery/door/window/southright,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "au" = (
 /obj/structure/railing,
@@ -88,7 +88,7 @@
 /area/template_noop)
 "av" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "aw" = (
 /obj/structure/catwalk,
@@ -107,56 +107,56 @@
 /area/template_noop)
 "az" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "aA" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aB" = (
 /obj/structure/sign/derelict2,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/template_noop)
 "aC" = (
 /obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "aD" = (
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "aE" = (
 /obj/machinery/optable,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aF" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "aG" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "aH" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aI" = (
 /obj/structure/window/basic,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aJ" = (
 /obj/structure/window/basic,
 /obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aK" = (
 /obj/structure/closet/onestar/tier1/medical,
 /obj/item/reagent_containers/blood/empty,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aL" = (
 /obj/structure/closet/onestar/tier1/medical,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aM" = (
 /obj/structure/sink{
@@ -165,11 +165,11 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aN" = (
 /obj/structure/medical_stand,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aO" = (
 /obj/structure/table/onestar,
@@ -178,76 +178,76 @@
 /obj/spawner/surgery_tool,
 /obj/spawner/surgery_tool/low_chance,
 /obj/item/reagent_containers/blood/OMinus,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aP" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "aQ" = (
 /obj/spawner/soda,
 /obj/spawner/soda,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "aR" = (
 /obj/machinery/vending/cigarette,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "aS" = (
 /obj/structure/sign/examroom,
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "aT" = (
 /obj/structure/sign/directions/evac{
 	dir = 8;
 	icon_state = "direction_evac"
 	},
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "aU" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "aW" = (
 /obj/structure/noticeboard,
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/template_noop)
 "aX" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "aY" = (
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "aZ" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "ba" = (
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "bb" = (
 /obj/item/reagent_containers/blood/OMinus,
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "bc" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bd" = (
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "be" = (
 /obj/item/reagent_containers/blood/OMinus,
 /obj/spawner/medical/low_chance,
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "bf" = (
 /obj/structure/table/onestar,
@@ -258,7 +258,7 @@
 /obj/spawner/surgery_tool/low_chance,
 /obj/item/reagent_containers/blood/OMinus,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "bg" = (
 /obj/structure/table/onestar,
@@ -267,14 +267,14 @@
 /obj/spawner/prothesis_one_star,
 /obj/spawner/prothesis_one_star,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
+/turf/floor/tiled/derelict/white_big_edges/airless,
 /area/template_noop)
 "bh" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bi" = (
 /obj/item/bodybag,
@@ -291,7 +291,7 @@
 /obj/item/reagent_containers/syringe/spaceacillin,
 /obj/structure/table/onestar,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "bj" = (
 /obj/item/roller{
@@ -302,28 +302,28 @@
 /obj/item/reagent_containers/syringe/spaceacillin,
 /obj/structure/table/onestar,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "bk" = (
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "bl" = (
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "bm" = (
 /obj/spawner/junkfood,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bn" = (
 /obj/structure/lattice,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bo" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bp" = (
 /obj/structure/railing,
@@ -332,11 +332,11 @@
 /area/template_noop)
 "bq" = (
 /obj/spawner/soda,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "br" = (
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "bs" = (
 /obj/structure/railing{
@@ -347,28 +347,28 @@
 /area/template_noop)
 "bK" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "rh" = (
 /obj/spawner/junk,
 /obj/structure/sign/derelict3{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "uc" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
+/turf/floor/tiled/derelict/white_small_edges/airless,
 /area/template_noop)
 "EA" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 "Lk" = (
 /obj/structure/sign/derelict1{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/airless,
+/turf/floor/tiled/derelict/airless,
 /area/template_noop)
 
 (1,1,1) = {"

@@ -38,16 +38,16 @@
 
 /obj/structure/closet/chefcloset/populate_contents()
 	new /obj/item/clothing/under/waiter(src)
-	new /obj/item/clothing/under/waiter(src)
 	new /obj/item/clothing/under/waiter/skirt(src)
 	new /obj/item/device/radio/headset/headset_service(src)
-	new /obj/item/device/radio/headset/headset_service(src)
-	new /obj/item/storage/box/mousetraps(src)
 	new /obj/item/storage/box/mousetraps(src)
 	new /obj/item/clothing/under/rank/chef(src)
 	new /obj/item/reagent_containers/drywet(src)
-	new /obj/item/reagent_containers/drywet(src)
 	new /obj/item/clothing/head/chefhat(src)
+	new /obj/item/material/kitchen/rollingpin(src)
+	new /obj/item/tool/knife(src)
+	new /obj/item/tool/shovel/spatula(src)
+	new /obj/item/book/manual/chef_recipes(src)
 
 /*
  * Janitor

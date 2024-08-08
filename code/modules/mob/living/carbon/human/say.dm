@@ -19,30 +19,6 @@
 	)
 	return SPAN_WARNING(pick(messages))
 
-/mob/living/carbon/human/say_wrapper()
-	if(suppress_communication)
-		to_chat(src, get_suppressed_message())
-		return
-	..()
-
-/mob/living/carbon/human/say_verb(message as text)
-	if(suppress_communication)
-		to_chat(src, get_suppressed_message())
-		return
-	..()
-
-/mob/living/carbon/human/me_wrapper()
-	if(suppress_communication)
-		to_chat(src, get_suppressed_message())
-		return
-	..()
-
-/mob/living/carbon/human/me_verb(message as text)
-	if(suppress_communication)
-		to_chat(src, get_suppressed_message())
-		return
-	..()
-
 /mob/living/carbon/human/say(message, datum/language/speaking)
 	if(language_blackout)
 		to_chat(src, get_language_blackout_message())

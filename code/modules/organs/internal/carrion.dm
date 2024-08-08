@@ -61,7 +61,7 @@
 		/obj/item/organ/internal/carrion/core/proc/carrion_transform,
 		/obj/item/organ/internal/carrion/core/proc/EvolutionMenu,
 		/obj/item/organ/internal/carrion/core/proc/carrion_fakedeath,
-		/obj/item/organ/internal/carrion/core/proc/detatch,
+		/obj/item/organ/internal/carrion/core/proc/detach,
 		/obj/item/organ/internal/carrion/core/proc/make_spider,
 		/obj/item/organ/internal/carrion/core/proc/spider_menu
 	)
@@ -78,6 +78,13 @@
 /obj/item/organ/internal/carrion/core/proc/make_spider()
 	set category = "Carrion"
 	set name = "Spawn a spider"
+
+	// Organ procs given to a mob will have that mob as both 'src' and 'usr'
+	var/obj/item/organ/internal/carrion/core/core = locate() in src
+	if(!core)
+		return
+	src = core // Now, this might be cursed, but if it works, it works ¯\_(ツ)_/¯
+	// What else are we gonna do, rework all of the "organs have procs that are verbs and belong to a mob" business?
 
 	var/list/options = list()
 	var/obj/item/implant/carrion_spider/S
@@ -213,9 +220,14 @@
 		EvolutionMenu()
 	..()
 
-/obj/item/organ/internal/carrion/core/proc/detatch()
+/obj/item/organ/internal/carrion/core/proc/detach()
 	set category = "Carrion"
-	set name = "Detatch"
+	set name = "Detach"
+
+	var/obj/item/organ/internal/carrion/core/core = locate() in src
+	if(!core)
+		return
+	src = core
 
 	if(owner.status_flags & FAKEDEATH)
 		to_chat(owner, SPAN_WARNING("We are regenerating our body!"))
@@ -232,6 +244,10 @@
 	set category = "Carrion"
 	set name = "Open spider menu"
 
+	var/obj/item/organ/internal/carrion/core/core = locate() in src
+	if(!core)
+		return
+	src = core
 	nano_ui_interact(owner)
 
 /obj/item/organ/internal/carrion/core/removed(mob/living/user)
@@ -248,6 +264,11 @@
 /obj/item/organ/internal/carrion/core/proc/carrion_transform()
 	set category = "Carrion"
 	set name = "Transform(5)"
+
+	var/obj/item/organ/internal/carrion/core/core = locate() in src
+	if(!core)
+		return
+	src = core
 
 	if (owner.transforming)
 		return
@@ -283,6 +304,11 @@
 /obj/item/organ/internal/carrion/core/proc/carrion_fakedeath()
 	set category = "Carrion"
 	set name = "Regenerative Stasis (20)"
+
+	var/obj/item/organ/internal/carrion/core/core = locate() in src
+	if(!core)
+		return
+	src = core
 
 	if(!owner.stat && alert("Are we sure we wish to fake our death?",,"Yes","No") == "No")
 		return
@@ -338,6 +364,11 @@
 /obj/item/organ/internal/carrion/maw/proc/consume_flesh()
 	set category = "Carrion"
 	set name = "Consume the flesh"
+
+	var/obj/item/organ/internal/carrion/maw/maw = locate() in src
+	if(!maw)
+		return
+	src = maw
 
 	var/food = owner.get_active_hand()
 
@@ -459,6 +490,11 @@
 	set category = "Carrion"
 	set name = "Spider call (30)"
 
+	var/obj/item/organ/internal/carrion/maw/maw = locate() in src
+	if(!maw)
+		return
+	src = maw
+
 	if(last_call + 5 MINUTES > world.time)
 		to_chat(owner, SPAN_WARNING("Your maw is tired, you can only call for help every 5 minutes."))
 		return
@@ -481,6 +517,11 @@
 /obj/item/organ/internal/carrion/maw/proc/toxic_puddle()
 	set category = "Carrion"
 	set name = "Toxic puddle (10)"
+
+	var/obj/item/organ/internal/carrion/maw/maw = locate() in src
+	if(!maw)
+		return
+	src = maw
 
 	var/turf/T = get_turf(owner)
 	if(locate(/obj/effect/decal/cleanable/carrion_puddle) in T)
@@ -536,6 +577,11 @@
 	set category = "Carrion"
 	set name = "Make a web (5)"
 
+	var/obj/item/organ/internal/carrion/spinneret/spinneret = locate() in src
+	if(!spinneret)
+		return
+	src = spinneret
+
 	if(locate(/obj/effect/spider/stickyweb) in get_turf(src))
 		to_chat(owner, SPAN_WARNING("There is alredy web on the floor!"))
 		return
@@ -549,6 +595,11 @@
 	set category = "Carrion"
 	set name = "Blood Purge (25)"
 
+	var/obj/item/organ/internal/carrion/spinneret/spinneret = locate() in src
+	if(!spinneret)
+		return
+	src = spinneret
+
 	if(owner.check_ability(25))
 		to_chat(owner, SPAN_NOTICE("You cleanse your blood of all chemicals and poisons."))
 		owner.radiation = 0
@@ -558,6 +609,11 @@
 /obj/item/organ/internal/carrion/spinneret/proc/make_nest()
 	set category = "Carrion"
 	set name = "Make a spider nest (30, 1)"
+
+	var/obj/item/organ/internal/carrion/spinneret/spinneret = locate() in src
+	if(!spinneret)
+		return
+	src = spinneret
 
 	if (owner.check_ability(30,TRUE, 1))
 		new /obj/structure/spider_nest(owner.loc)

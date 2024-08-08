@@ -26,13 +26,12 @@
 		"Chemical Surplus" = list(
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = custom_good_amount_range(list(2, 3)),
 			/obj/item/reagent_containers/glass/bottle/antitoxin = custom_good_amount_range(list(2, 3)),
-			/obj/item/reagent_containers/glass/bottle/trade/clonexadone = custom_good_amount_range(list(2, 3))
+			/obj/item/reagent_containers/glass/bottle/trade/clonexadone = good_data("clonexadone bottle", list(1, 3), 500)
 		)
 	)
 	hidden_inventory = list(
 		"Back Alley Organs" = list(
-			/obj/item/computer_hardware/hard_drive/portable/design/surgery = good_data("back alley organs disk", list(1, 2), 2000),
-			/obj/item/organ/internal/scaffold/aberrant/teratoma/random = good_data("strange growth", list(2, 5), 1500),
+			/obj/item/computer_hardware/hard_drive/portable/design/surgery = good_data("back alley organs disk", list(1, 2), 2000)
 		),
 		"Autoinjectors" = list(
 			// Autoinjectors defined in hypospray.dm

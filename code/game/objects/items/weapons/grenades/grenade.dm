@@ -28,15 +28,13 @@
 */
 	return TRUE
 
-/obj/item/grenade/examine(mob/user)
-	if(..(user, 0))
+/obj/item/grenade/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 		if(det_time > 1)
-			to_chat(user, "The timer is set to [det_time/10] seconds.")
-			return
-		if(det_time == null)
-			return
-		to_chat(user, "\The [src] is set for instant detonation.")
-
+			extra_description += "The timer is set to [det_time/10] seconds."
+		else
+			extra_description += "The timer is set for instant detonation."
+	..(user, extra_description)
 
 /obj/item/grenade/attack_self(mob/user as mob)
 	if(!active)
@@ -76,6 +74,7 @@
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
+	if(user && user.hud_used)
 		user.hud_used.updatePlaneMasters(user)
 
 

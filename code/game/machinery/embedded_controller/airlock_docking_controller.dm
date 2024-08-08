@@ -87,8 +87,10 @@
 /datum/computer/file/embedded_program/docking/airlock/ready_for_docking()
 	//Unsimulated turfs have no atmos simulation so don't bother trying to cycle anything
 	//just short circuit this and be always ready
-	if (istype(master.loc, /turf/unsimulated))
-		return TRUE
+	if(istype(master.loc, /turf))
+		var/turf/turf = master.loc
+		if(!turf.is_simulated)
+			return TRUE
 
 	return airlock_program.done_cycling()
 

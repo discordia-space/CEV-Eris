@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/simulated/shuttle/wall{
+/turf/shuttle/wall{
 	icon_state = "wall3"
 	},
 /area/map_template/oldpod)
@@ -8,21 +8,21 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "ad" = (
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "ae" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "ag" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 1;
 	icon_state = "heater"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "ah" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -31,12 +31,12 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "ai" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aj" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -44,32 +44,32 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "ak" = (
 /obj/structure/bed,
 /obj/landmark/corpse/doctor,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "al" = (
 /obj/structure/bed,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "am" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "an" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "ao" = (
 /obj/structure/bed/chair/shuttle{
@@ -80,7 +80,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "ap" = (
 /obj/structure/bed/chair/shuttle{
@@ -91,7 +91,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aq" = (
 /obj/structure/closet/wall_mounted/firecloset{
@@ -102,7 +102,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "ar" = (
 /obj/machinery/light/small{
@@ -110,14 +110,14 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "at" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aw" = (
 /obj/machinery/light/small{
@@ -126,26 +126,26 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "ax" = (
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "ay" = (
 /obj/item/frame/air_alarm,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/electronics/airalarm,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "az" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aA" = (
 /obj/spawner/firstaid,
@@ -153,7 +153,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aB" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -162,14 +162,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aC" = (
 /obj/item/clothing/suit/space,
 /obj/item/clothing/head/space,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aD" = (
 /obj/structure/window/reinforced{
@@ -185,7 +185,7 @@
 /obj/spawner/pack/tech_loot,
 /obj/item/tool/pickaxe,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aE" = (
 /obj/structure/window/reinforced{
@@ -193,32 +193,32 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aG" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aH" = (
 /obj/item/frame/apc,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/cell/small,
 /obj/item/gun_upgrade/mechanism/battery_shunt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aJ" = (
 /obj/landmark/corpse/pirate,
 /obj/item/gun/energy/retro,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aK" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aL" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -227,7 +227,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aM" = (
 /obj/landmark/corpse/scientist,
@@ -235,7 +235,7 @@
 /obj/item/material/shard,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aN" = (
 /obj/machinery/door/firedoor,
@@ -248,13 +248,13 @@
 /obj/item/material/shard,
 /obj/item/material/shard,
 /obj/item/material/shard,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "aO" = (
 /obj/machinery/door/airlock/external{
 	name = "escape pod airlock"
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "aP" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -266,11 +266,11 @@
 	icon_state = "warning"
 	},
 /obj/machinery/power/smes/buildable,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "aQ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "aR" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -288,7 +288,7 @@
 	},
 /obj/item/storage/firstaid/surgery,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "aS" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -297,7 +297,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "aT" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -312,13 +312,13 @@
 /obj/item/gun/projectile/shotgun/doublebarrel/sawn,
 /obj/item/clothing/glasses/eyepatch,
 /obj/item/melee/energy/sword/pirate,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "aU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "aV" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -328,7 +328,7 @@
 	dir = 4
 	},
 /obj/item/clothing/head/space,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "aW" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -336,7 +336,7 @@
 	},
 /obj/structure/closet/crate,
 /obj/item/tank/oxygen,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "aX" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -349,14 +349,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "aY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "aZ" = (
 /obj/machinery/sleeper{
@@ -369,32 +369,32 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "ba" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
 /obj/item/clothing/suit/space,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "bb" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "bc" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 "bd" = (
 /obj/landmark/corpse/bridgeofficer,
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/oldpod)
 "be" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -410,14 +410,14 @@
 /obj/spawner/firstaid,
 /obj/spawner/firstaid,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "bf" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "bg" = (
 /obj/machinery/sleeper{
@@ -430,11 +430,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
+/turf/floor/tiled/white/techfloor,
 /area/map_template/oldpod)
 "jX" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/oldpod)
 
 (1,1,1) = {"

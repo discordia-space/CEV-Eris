@@ -1,3 +1,5 @@
+import { Box } from './Box';
+
 type GameIconProps = {
   html: string;
   className?: string;
@@ -11,7 +13,8 @@ export const GameIcon = (props: GameIconProps) => {
   const iconSrc = html.match('src=["\'](.*)["\']')![1];
 
   return (
-    <img
+    <Box
+      as="img"
       key={key}
       {...props}
       className={`game-icon ${className || ''}`}

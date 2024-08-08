@@ -14,6 +14,17 @@
 		escape_inventory(src.loc)
 		return
 
+	if(istype(loc, /obj/item/mech_equipment/forklifting_system))
+		var/obj/item/mech_equipment/forklifting_system/fork = loc
+		fork.ejectLifting(get_turf(fork))
+		return
+
+	if(istype(loc, /mob/living/exosuit))
+		var/mob/living/exosuit/mech = loc
+		if(src in mech.pilots)
+			mech.eject(src, FALSE)
+			return
+
 	//unbuckling yourself
 	if(buckled)
 		if (buckled.resist_buckle(src))

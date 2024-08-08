@@ -60,7 +60,12 @@
 	melee_damage_lower = 12
 	melee_damage_upper = 17
 	rarity_value = 39.66
+	attacktext = "stabbed"
 
+/mob/living/simple_animal/hostile/roomba/slayer/AttackTarget()
+	. = ..()
+	if(.)
+		playsound(src, pick('sound/weapons/melee/heavystab.ogg', 'sound/weapons/melee/lightstab.ogg', 'sound/weapons/melee/sharphit.ogg'), 50, 1)
 
 /mob/living/simple_animal/hostile/roomba/boomba
 	name = "One Star RMB-A unit"

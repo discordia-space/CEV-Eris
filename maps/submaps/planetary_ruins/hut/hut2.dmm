@@ -5,17 +5,17 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall/silver,
+/turf/wall,
 /area/template_noop)
 "c" = (
 /obj/structure/inflatable/door,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "d" = (
 /obj/structure/closet/crate/freezer,
 /obj/spawner/junkfood,
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "f" = (
 /obj/structure/closet,
@@ -31,69 +31,68 @@
 /obj/item/stack/material/glass/reinforced{
 	amount = 10
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "h" = (
 /obj/structure/bed,
 /obj/item/bedsheet/rainbow,
 /obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "i" = (
 /obj/spawner/junk,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "m" = (
 /obj/structure/table/marble,
 /obj/item/board,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "n" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /turf/template_noop,
 /area/template_noop)
 "p" = (
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "r" = (
 /obj/spawner/lowkeyrandom,
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "t" = (
 /mob/living/bot/medbot,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "C" = (
 /obj/structure/table/rack,
 /obj/spawner/voidsuit,
 /obj/spawner/gun/energy_cheap/low_chance,
 /obj/spawner/gun/energy_cheap,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "G" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "I" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 "K" = (
 /obj/structure/curtain/black,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/template_noop)
 "U" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 "Z" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
 	},
 /obj/spawner/booze,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/template_noop)
 
 (1,1,1) = {"

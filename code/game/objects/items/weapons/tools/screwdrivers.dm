@@ -54,7 +54,7 @@
 /obj/item/tool/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
-	if(user.targeted_organ != BP_EYES && user.targeted_organ != BP_HEAD)
+	if(user.targeted_organ != BP_EYES)
 		return ..()
 /*	if((CLUMSY in user.mutations) && prob(50))
 		M = user	*/

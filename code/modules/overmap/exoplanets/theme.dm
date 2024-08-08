@@ -22,7 +22,7 @@
 /datum/random_map/automata/cave_system/mountains
 	iterations = 2
 	descriptor = "space mountains"
-	wall_type =  /turf/simulated/mineral
+	wall_type =  /turf/mineral
 	cell_threshold = 6
 	var/area/planetary_area
 	var/rock_color
@@ -35,7 +35,7 @@
 	planetary_area = _planetary_area
 	..()
 
-/datum/random_map/automata/cave_system/mountains/get_additional_spawns(value, var/turf/simulated/mineral/T)
+/datum/random_map/automata/cave_system/mountains/get_additional_spawns(value, var/turf/mineral/T)
 	T.color = rock_color
 	if(planetary_area)
 		ChangeArea(T, planetary_area)

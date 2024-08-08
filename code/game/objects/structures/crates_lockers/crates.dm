@@ -309,3 +309,21 @@
 	name = "Secure metallic crate"
 	icon_state = "germancrate"
 
+/obj/structure/closet/crate/kitchentools
+	name = "Cookware crate"
+	desc = "Everything a thriving kitchen needs to start cooking (Food not included)."
+	icon_door = "plasticcrate"
+
+/obj/structure/closet/crate/kitchentools/populate_contents()
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/board(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/board(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/oven(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/oven(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pan(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pan(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pot(src)
+	new /obj/item/reagent_containers/cooking_with_jane/cooking_container/pot(src)

@@ -1,46 +1,43 @@
-/mob/living/silicon/robot/examine(mob/user)
-	var/custom_infix = custom_name ? ", [modtype] [braintype]" : ""
-	..(user, infix = custom_infix)
-
-	var/msg = ""
-	msg += "<span class='warning'>"
-	if (src.getBruteLoss())
-		if (src.getBruteLoss() < 75)
-			msg += "It looks slightly dented.\n"
+/mob/living/silicon/robot/examine(mob/user, extra_description = "")
+	extra_description += "<span class='warning'>"
+	if(getBruteLoss())
+		if(getBruteLoss() < 75)
+			extra_description += "It looks slightly dented.\n"
 		else
-			msg += "<B>It looks severely dented!</B>\n"
-	if (src.getFireLoss())
-		if (src.getFireLoss() < 75)
-			msg += "It looks slightly charred.\n"
+			extra_description += "<B>It looks severely dented!</B>\n"
+	if(getFireLoss())
+		if(getFireLoss() < 75)
+			extra_description += "It looks slightly charred.\n"
 		else
-			msg += "<B>It looks severely burnt and heat-warped!</B>\n"
-	msg += "</span>"
+			extra_description += "<B>It looks severely burnt and heat-warped!</B>\n"
+	extra_description += "</span>"
 
 	if(opened)
-		msg += "<span class='warning'>Its cover is open and the power cell is [cell ? "installed" : "missing"].</span>\n"
+		extra_description += "<span class='warning'>Its cover is open and the power cell is [cell ? "installed" : "missing"].</span>\n"
 	else
-		msg += "Its cover is closed.\n"
+		extra_description += "Its cover is closed.\n"
 
 	if(!has_power)
-		msg += "<span class='warning'>It appears to be running on backup power.</span>\n"
+		extra_description += "<span class='warning'>It appears to be running on backup power.</span>\n"
 
-	switch(src.stat)
+	switch(stat)
 		if(CONSCIOUS)
-			if(!src.client)	msg += "It appears to be in stand-by mode.\n" //afk
-		if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responding.</span>\n"
-		if(DEAD)			msg += "<span class='deadsay'>It's completely broken, but looks repairable.</span>\n" //TODO: add no_soul status or flag
-		//msg += "<span class='deadsay'>It looks completely unsalvageable.</span>\n"
+			if(!client)
+				extra_description += "It appears to be in stand-by mode.\n" //afk
+		if(UNCONSCIOUS)
+			extra_description += "<span class='warning'>It doesn't seem to be responding.</span>\n"
+		if(DEAD)
+			extra_description += "<span class='deadsay'>It's completely broken, but looks repairable.</span>\n" //TODO: add no_soul status or flag
 	if(module_active)
-		msg += "It is wielding \icon[module_active] [module_active].\n"
-	msg += "*---------*"
+		extra_description += "It is wielding \icon[module_active] [module_active].\n"
+	extra_description += "*---------*"
 
-	if(print_flavor_text()) msg += "\n[print_flavor_text()]\n"
+	if(print_flavor_text()) extra_description += "\n[print_flavor_text()]\n"
 
-	if (pose)
+	if(pose)
 		if( findtext(pose,".",length(pose)) == 0 && findtext(pose,"!",length(pose)) == 0 && findtext(pose,"?",length(pose)) == 0 )
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
-		msg += "\nIt is [pose]"
+		extra_description += "\nIt is [pose]"
 
-	to_chat(user, msg)
+	..(user, extra_description)
 	user.showLaws(src)
-	return

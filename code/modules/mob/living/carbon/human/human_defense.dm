@@ -36,6 +36,9 @@ meteor_act
 			SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
 			SP.desc = "[SP.desc] It looks like it was fired from [P.shot_from]."
 			SP.loc = organ
+			if(length(P.matter))
+				SP.material = P.matter[1]
+				SP.amount = P.matter[SP.material] // amount no longer randomized
 			organ.embed(SP)
 
 
@@ -343,7 +346,7 @@ meteor_act
 				if("bloodstains")
 					if(blood_color)
 						var/turf/location = loc
-						if(istype(location, /turf/simulated))
+						if(istype(location, /turf))
 							location.add_blood(src)
 						if(ishuman(user))
 							var/mob/living/carbon/human/H = user

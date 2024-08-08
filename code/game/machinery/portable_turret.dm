@@ -902,7 +902,7 @@ var/list/turret_icons
 			//attack_hand() removes the gun
 
 		if(4)
-			if(is_proximity_sensor(I))
+			if(isproxsensor(I))
 				build_step = 5
 				if(!user.unEquip(I))
 					to_chat(user, SPAN_NOTICE("\the [I] is stuck to your hand, you cannot put it in \the [src]"))
