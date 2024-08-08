@@ -3,8 +3,8 @@
 	role_text_plural = "Thralls"
 	welcome_text = "Your mind is no longer solely your own..."
 	id = ROLE_THRALL
-	flags = ANTAG_IMPLANT_IMMUNE
 	antaghud_indicator = "hudmalai"
+	restricted_jobs = list("AI", "Robot")
 
 	var/list/thrall_controllers = list()
 

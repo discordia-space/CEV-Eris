@@ -31,6 +31,16 @@
 	// if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
 	. = _try_interact(user)
 
+
+/**
+ * Called when a mob attempts to use an empty hand on itself.
+ *
+ * **Parameters**:
+ * - `bp_hand` (string, `BP_R_HAND` or `BP_L_HAND`) - The targeted and used hand's bodypart slot.
+ */
+/mob/proc/attack_empty_hand(bp_hand)
+	return
+
 //Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
 /atom/proc/_try_interact(mob/user)
 	if(is_admin(user) && isghost(user)) //admin abuse
@@ -134,6 +144,8 @@
 		if(stats.getPerk(PERK_ABSOLUTE_GRAB) && a_intent == I_GRAB)
 			leap(A)
 			return
+
+	. = ..() // living/RangedAttack -> psi powers
 
 //	if((LASER in mutations) && a_intent == I_HURT)
 //		LaserEyes(A) // moved into a proc below

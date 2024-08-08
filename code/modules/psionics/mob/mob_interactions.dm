@@ -19,19 +19,23 @@
 	. = ..()
 	if(. && psi)
 		INVOKE_PSI_POWERS(src, psi.get_melee_powers(SSpsi.faculties_by_intent[a_intent]), A, FALSE)
+		src.visible_message(SPAN_NOTICE("Holder is [src]. Target is [A].")) // TODO: REMOVE LINE
 
 /mob/living/RangedAttack(atom/A, params)
 	if(psi)
 		INVOKE_PSI_POWERS(src, psi.get_ranged_powers(SSpsi.faculties_by_intent[a_intent]), A, TRUE)
+		src.visible_message(SPAN_NOTICE("Holder is [src]. Target is [A].")) // TODO: REMOVE LINE
 	. = ..()
 
 /mob/living/proc/check_psi_grab(obj/item/grab/grab)
+	src.visible_message(SPAN_NOTICE("Holder is [src]. Target is [grab.affecting].")) // TODO: REMOVE LINE
 	if(psi && ismob(grab.affecting))
 		INVOKE_PSI_POWERS(src, psi.get_grab_powers(SSpsi.faculties_by_intent[a_intent]), grab.affecting, FALSE)
 
-/mob/living/UnarmedAttack(bp_hand)
+/mob/living/attack_empty_hand(bp_hand)
 	if(psi)
 		INVOKE_PSI_POWERS(src, psi.get_manifestations(), src, FALSE)
+		src.visible_message(SPAN_NOTICE("Holder is [src]. Target is [src].")) // TODO: REMOVE LINE
 	. = ..()
 
 #undef INVOKE_PSI_POWERS

@@ -153,7 +153,7 @@
 		else
 			H.set_psi_rank(faculty, unboosted_rank, take_larger = TRUE, temporary = TRUE)
 	if(H.psi)
-		H.psi.max_stamina = boosted_psipower
+		H.psi.max_stamina = boosted_psipower // TODO: look at this - humon
 		H.psi.stamina = H.psi.max_stamina
 		H.psi.update(force = TRUE)
 

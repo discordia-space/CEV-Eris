@@ -51,7 +51,8 @@
 	if(isnull(check_incapacitated))
 		check_incapacitated = (INCAPACITATION_STUNNED|INCAPACITATION_UNCONSCIOUS)
 	if(can_use(check_incapacitated))
-		value = max(1, ceil(value * cost_modifier))
+		//value = max(1, ceil(value * cost_modifier))
+		value = max(1,ceil(value))
 		if(value <= stamina)
 			stamina -= value
 			ui.update_icon()
@@ -75,29 +76,41 @@
 		for(var/image/I in SSpsi.all_aura_images)
 			owner.client.images |= I
 
-/datum/psi_complexus/proc/backblast(value)
+/datum/psi_complexus/proc/backblast(var/value)
 
 	// Can't backblast if you're controlling your power.
 	if(!owner || suppressed)
 		return FALSE
 
+	// NSA effect
+	heat_buildup += value
+
+	// Apply armor from cognition
+	value = max(value - CLAMP(owner.stats.getStat(STAT_COG) / 40, 0, 2) - 2, 0)
+	if(!value)
+		to_chat(owner, SPAN_WARNING("You feel energistic dissipate across your psyche."))
+		set_cooldown(100 / power_level)
+		return FALSE // Completely blocked
+
 	sound_to(owner, sound('sound/effects/psi/power_feedback.ogg'))
 	to_chat(owner, SPAN_DANGER("Wild energistic feedback blasts across your psyche!"))
 	stunned(value * 2)
-	set_cooldown(value * 100)
+	set_cooldown(value * 100 / power_level)
 
 	if(prob(value*10)) owner.emote("scream")
 
+
 	// Your head asplode.
-	owner.adjustBrainLoss(value)
+	owner.adjustBrainLoss(value * 3 - CLAMP(owner.stats.getStat(STAT_TGH) / 8, 0, 10)) // Most blasts will cause around 24 brainloss at most, reduced by both cognition and toughness (max 6 by cognition, max 10 by toughness)
+
 	if(ishuman(owner))
 		var/mob/living/carbon/human/pop = owner
 		if(pop.random_organ_by_process(BP_BRAIN))
 			var/obj/item/organ/internal/vital/brain/sponge = pop.random_organ_by_process(BP_BRAIN)
-			if(sponge && sponge.damage >= sponge.max_damage)
+			if(sponge && sponge.is_broken())
 				var/obj/item/organ/external/affecting = pop.get_organ(sponge.parent)
 				if(affecting && !affecting.is_stump())
-					affecting.droplimb(0, DROPLIMB_BLUNT)
+					affecting.droplimb(FALSE, DROPLIMB_BLUNT)
 					if(sponge) qdel(sponge)
 
 /datum/psi_complexus/proc/reset()

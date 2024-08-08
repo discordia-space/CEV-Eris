@@ -73,6 +73,7 @@
 	icon_state = "psychic_heavylaser"
 	var/obj/item/gun/energy/psychic/holder
 	var/contractor = FALSE //Check if it's a contractor psychic beam
+	var/mob/living/psionic_user
 	damage_types = list(PSY = 30)
 	armor_divisor = ARMOR_PEN_MAX
 	recoil = 2
@@ -82,21 +83,23 @@
 	impact_type = /obj/effect/projectile/psychic_laser_heavy/impact
 
 /obj/item/projectile/beam/psychic/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
-	holder = launcher
-	if(holder && holder.contractor)
-		contractor = holder.contractor
+	if(!launcher && user)
+		psionic_user = user
+	else
+		holder = launcher
+		if(holder && holder.contractor)
+			contractor = holder.contractor
 	..()
 
-/obj/item/projectile/beam/psychic/heavylaser
+/obj/item/projectile/beam/psychic/heavy
 	name = "psychic heavy laser"
-	icon_state = "psychic_heavylaser"
 	damage_types = list(PSY = 40)
 	contractor = TRUE
 	recoil = 3
 
-	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
-	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
-	impact_type = /obj/effect/projectile/psychic_laser_heavy/impact
+/obj/item/projectile/beam/psychic/light
+	name = "psychic light laser"
+	damage_types = list(PSY = 20)
 
 /obj/item/projectile/beam/xray
 	name = "xray beam"
@@ -208,3 +211,23 @@
 	muzzle_type = /obj/effect/projectile/stun/muzzle
 	tracer_type = /obj/effect/projectile/stun/tracer
 	impact_type = /obj/effect/projectile/stun/impact
+
+/obj/item/projectile/beam/energistic
+	name = "low intensity energy beam"
+	damage_types = list(BURN = 25)
+	armor_divisor = 0.4 // Basic operative armor reduces damage to 0
+
+/obj/item/projectile/beam/energistic/master
+	name = "energy beam"
+	damage_types = list(BURN = 30)
+	armor_divisor = 0.8 // A combat RIG reduces damage to 0 while at max durability
+
+/obj/item/projectile/beam/energistic/grandmaster
+	name = "high intensity energy beam"
+	damage_types = list(BURN = 35)
+	armor_divisor = 1.2
+
+/obj/item/projectile/beam/energistic/paramount
+	name = "hyper energy beam"
+	damage_types = list(BURN = 50)
+	armor_divisor = 1.2 // Inquisitors beware

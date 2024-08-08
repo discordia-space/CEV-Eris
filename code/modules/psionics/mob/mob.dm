@@ -28,7 +28,7 @@
 		return
 	if(!psi)
 		psi = new(src)
-	psi.set_rank(amount, additive, defer_update)
+	psi.set_power(amount, additive, defer_update)
 
 /mob/living/proc/deflect_psionic_attack(attacker)
 
@@ -41,3 +41,33 @@
 		return TRUE
 */
 	return FALSE
+
+// TODO: design objective for breaking X amount of people's minds. Until then this just reports to admins.
+/mob/living/proc/reg_break(mob/living/carbon/human/victim)
+	log_admin("LOG: [src] ([src.ckey]) broke the mind of [victim] using psionic powers.")
+	message_admins("LOG: [src] ([src.ckey]) broke the mind of [victim] using psionic powers.")
+/*
+	if(victim.get_species() != SPECIES_HUMAN)
+		return
+
+	if(!contract)
+		return
+
+	if(victim == src)
+		return
+
+	// Give a signal that the break was registred and counted towards objective
+	to_chat(src, SPAN_DANGER("[src] you feel you've succeeded in your goal."))
+
+	victims |= victim
+
+	if(contract.completed)
+		to_chat(owner.current, SPAN_DANGER("Somebody all ready have comleted targeted contract."))
+		contract = null
+		START_PROCESSING(SSobj, src)
+
+	else if(victims.len >= contract.count)
+		contract.report(src)
+		contract = null
+		START_PROCESSING(SSobj, src)
+*/

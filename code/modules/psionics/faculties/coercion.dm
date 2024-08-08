@@ -94,7 +94,7 @@
 	cost =          8
 	cooldown =      50
 	use_melee =     TRUE
-	min_rank =      PSI_RANK_MASTER
+	min_rank =      PSI_RANK_OPERANT
 	use_description = "Target the chest or groin on disarm intent to use a melee attack equivalent to a strike from a stun baton."
 
 /decl/psionic_power/coercion/agony/invoke(mob/living/user, mob/living/target)
@@ -105,9 +105,51 @@
 	. = ..()
 	if(.)
 		user.visible_message(SPAN_DANGER("\The [target] has been struck by \the [user]!"))
+		message_admins("\The [target] has been struck by \the [user]!")
 		playsound(user.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
-		target.stun_effect_act(0, 60, user.targeted_organ)
+		target.stun_effect_act(0, 20 * user.psi.get_rank(PSI_COERCION), user.targeted_organ) // 40 agony damage by default - same as stunbaton. +20 for each rank above operant.
 		return TRUE
+
+/decl/psionic_power/coercion/psiblast
+	name =             "Psiblast"
+	cost =             20
+	cooldown =         20
+	use_ranged =       TRUE
+	min_rank =         PSI_RANK_MASTER
+	use_description = "Use this ranged psi attack while on disarm intent, targeting the chest or groin. Your mastery of Coercion will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
+
+/decl/psionic_power/coercion/psiblast/invoke(mob/living/user, mob/living/target)
+	if(!istype(target))
+		return FALSE
+	if(user.targeted_organ != BP_CHEST && user.targeted_organ != BP_GROIN)
+		return FALSE
+	. = ..()
+	if(.)
+		user.visible_message(SPAN_DANGER("\The [user]'s eyes flare with light!"))
+
+		var/user_rank = user.psi.get_rank(faculty)
+		var/obj/item/projectile/pew
+		var/pew_sound
+
+		switch(user_rank)
+			if(PSI_RANK_PARAMOUNT)
+				pew = new /obj/item/projectile/beam/psychic/heavy(get_turf(user))
+				pew_sound = 'sound/effects/psiblast.ogg'
+			if(PSI_RANK_GRANDMASTER)
+				pew = new /obj/item/projectile/beam/psychic(get_turf(user))
+				pew_sound = 'sound/effects/psiblast.ogg'
+			if(PSI_RANK_MASTER)
+				pew = new /obj/item/projectile/beam/psychic/light(get_turf(user))
+				pew_sound = 'sound/effects/psiblast.ogg'
+
+		if(istype(pew))
+			playsound(pew.loc, pew_sound, 25, 1)
+			pew.original = target
+			pew.current = target
+			pew.starting = get_turf(user)
+			pew.shot_from = user
+			pew.launch(target, user.targeted_organ, (target.x-user.x), (target.y-user.y))
+			return TRUE
 
 /decl/psionic_power/coercion/spasm
 	name =           "Spasm"
@@ -132,9 +174,14 @@
 		to_chat(target, SPAN_DANGER("The muscles in your arms cramp horrendously!"))
 		if(prob(75))
 			target.emote("scream")
-		for (var/obj/item/item as anything in list(target.r_hand, target.l_hand))
-			if (item.simulated && prob(75) && target.unEquip(item))
-				target.visible_message(SPAN_DANGER("\The [target] drops \the [item] as their hand spasms!"))
+
+		for(var/obj/item/I in list(target.get_active_hand(), target.get_inactive_hand()))
+			if(istype(I, /obj/item/grab)) //did they grab someone?
+				target.break_all_grabs(user) //See about breaking grips or pulls
+			else
+				target.unEquip(I)
+				target.visible_message(SPAN_DANGER("\The [target] drops \the [I] as their hand spasms!"))
+				return
 		return TRUE
 
 /decl/psionic_power/coercion/mindslave
@@ -218,10 +265,23 @@
 		to_chat(target, SPAN_WARNING("Your mind is cleared of ailments."))
 
 		var/coercion_rank = user.psi.get_rank(PSI_COERCION)
+
 		if(coercion_rank >= PSI_RANK_GRANDMASTER)
 			target.AdjustParalysis(-1)
+
 		target.drowsyness = 0
+
 		if(istype(target, /mob/living/carbon))
-			var/mob/living/carbon/M = target
-			M.adjust_hallucination(-30)
+			var/mob/living/carbon/C = target
+			C.adjust_hallucination(-30)
+
+			if(istype(target, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = target
+				var/datum/sanity/S = H.sanity
+
+				if(coercion_rank >= PSI_RANK_MASTER)
+					S.restoreLevel(coercion_rank * 15 - 35) // 10 for master, 40 for paramount
+				if(coercion_rank >= PSI_RANK_GRANDMASTER && S.breakdowns.len)
+					S.fix_breakdowns()
+
 		return TRUE

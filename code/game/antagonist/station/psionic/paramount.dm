@@ -2,14 +2,18 @@
 	id = ROLE_PARAMOUNT
 	role_text = "Paramount"
 	role_text_plural = "Paramounts"
+	protected_jobs = list(JOBS_SECURITY, JOBS_COMMAND, "Moebius Bio-Engineer", JOBS_CHURCH)
+	restricted_jobs = list("AI", "Robot")
 	bantype = ROLE_BANTYPE_PARAMOUNT
-	welcome_text = ""
 	antaghud_indicator = "hudmalai"
-	id_type = /obj/item/card/id/syndicate
+
+	welcome_text = "Awake our Paramount almighty. Let the prison of your thoughts break open and enter our service again. <br>\
+	The Founders see the open vastness of the Null Sector as a treasure cove of knowledge and entropic phenomena, gored open by the fleets of ignorants and barbarians. <br>\
+	Let no seeds of hatred take root over this profanity, and cherish such an occasion! In their foolishness, they expose their inferior minds to us! <br>\
+	Go through the visions not meant for these mere mortals, and collect her gifts for us to plunder."
 
 	possible_objectives = list(
 		/datum/objective/assassinate = 30,
-		/datum/objective/brig = 15,
 		/datum/objective/harm = 15,
 		/datum/objective/steal = 30
 	)
@@ -41,11 +45,11 @@
 		return FALSE
 
 //	owner.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/psi_amp(owner), slot_head)
-	H.set_psi_rank(PSI_REDACTION, 3,     defer_update = TRUE)
-	H.set_psi_rank(PSI_COERCION, 3,      defer_update = TRUE)
-	H.set_psi_rank(PSI_PSYCHOKINESIS, 3, defer_update = TRUE)
-	H.set_psi_rank(PSI_ENERGISTICS, 3,   defer_update = TRUE)
-	H.set_psi_power(3, FALSE, defer_update = TRUE)
+	H.set_psi_rank(PSI_REDACTION, 5,     defer_update = TRUE) // TODO: set these to 3 if this is ever made a real antag
+	H.set_psi_rank(PSI_COERCION, 5,      defer_update = TRUE)
+	H.set_psi_rank(PSI_PSYCHOKINESIS, 5, defer_update = TRUE)
+	H.set_psi_rank(PSI_ENERGISTICS, 5,   defer_update = TRUE)
+	H.set_psi_power(2, FALSE, defer_update = TRUE)
 	if(!get_active_mutation(H, MUTATION_PSI_HIGH))
 		var/datum/mutation/M = new MUTATION_PSI_HIGH
 		M.imprint(H)
@@ -69,18 +73,14 @@
 	var/mob/player = owner.current
 
 	// Basic intro text.
-	to_chat(player, "<span class='danger'><font size=3>You are a [role_text]!</font></span>")
+	to_chat(player, SPAN_DANGER("<font size=3>You are a [role_text]!</font>"))
 
-	to_chat(player, "Inquisitor is a higher ranking officer in the Church of NeoTheology.<br>\
-	You are here to promote the Church's interests and protect disciples, but more importantly, you are also here to \
-	track down criminals, spies and saboteurs within the church's ranks. Interrogate NT followers, and deal with those \
-	who would tarnish the public image of the Church or betray its principles.<br>\
-	<br>\
-	Any local Church staff are your subordinates and should obey your commands. With other disciples, things are less clear, \
-	people may put their shipboard duties above loyalty to the church. You should be discreet in your interactions with the ship command staff \
-	Revealing your role may tarnish the Church's image, it's often best to deal with internal problems quietly")
+	to_chat(player, "Awake our Paramount almighty. Let the prison of your thoughts break open and enter our service again. <br>\
+	The Founders see the open vastness of the Null Sector as a treasure cove of knowledge and entropic phenomena, gored open by the fleets of ignorants and barbarians. <br>\
+	Let no seeds of hatred take root over this profanity, and cherish such an occasion! In their foolishness, they expose their inferior minds to us! <br>\
+	Go through the visions not meant for these mere mortals, and collect her gifts for us to plunder.")
 
-	to_chat(player, "You have been working undercover here, until a signal from NT command calls you to action. You may wish to make your presence known to the local preacher, if there is one.")
+	to_chat(player, SPAN_NOTICE("Shift + left click the Psionic HUD icon to get started."))
 
 	show_objectives()
 	printTip()

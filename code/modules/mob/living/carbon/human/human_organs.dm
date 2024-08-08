@@ -242,3 +242,9 @@
 		return E.limb_efficiency
 	return 0
 
+/mob/living/carbon/human/proc/unmutate(var/amount = -1) // -1 means all of them
+	var/list/IOlist = internal_organs
+	while(IOlist.len && amount)
+		var/obj/item/organ/internal/I = pick_n_take(IOlist)
+		I.unmutate()
+		amount--

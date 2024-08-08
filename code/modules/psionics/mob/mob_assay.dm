@@ -59,7 +59,7 @@
 		if(!istype(machine))
 
 			dat += "They are currently <b>[psi.suppressed ? "suppressing" : "not suppressing"]</b> your psychic operancy.<br>"
-			dat += "They have <b>[psi.stamina]/[psi.max_stamina]</b> psi stamina remaining.<br>"
+			dat += "They have <b>[psi.stamina / psi.max_stamina * 100]%</b> psi stamina remaining.<br>"
 			dat += "<hr>"
 
 			for(var/faculty_id in psi.ranks)

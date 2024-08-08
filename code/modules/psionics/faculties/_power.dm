@@ -16,6 +16,8 @@
 
 /decl/psionic_power/proc/invoke(mob/living/user, atom/target)
 
+	message_admins("User is [user], target is [target], power is [src.type]")
+
 	if(!user.psi)
 		return FALSE
 

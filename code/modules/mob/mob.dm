@@ -91,8 +91,8 @@
 
 		messageturfs += turf
 
-	
-	
+
+
 	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
 		if(!M.client)
 			continue
@@ -368,7 +368,8 @@
 	var/obj/item/W = get_active_hand()
 	if (W)
 		W.attack_self(src)
-
+	else
+		attack_empty_hand()
 /*
 /mob/verb/dump_source()
 

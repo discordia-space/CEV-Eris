@@ -6,12 +6,13 @@
 	var/rebuild_power_cache = TRUE    // Whether or not we need to rebuild our cache of psi powers.
 
 	var/rating = 0                    // Overall psi rating.
-	var/cost_modifier = 1             // Multiplier for power use stamina costs.
+	//var/cost_modifier = 1             // Multiplier for power use stamina costs.
 	var/stun = 0                      // Number of process ticks we are stunned for.
 	var/next_power_use = 0            // world.time minimum before next power use.
 	var/stamina = 50                  // Current psi pool.
 	var/max_stamina = 50              // Max psi pool.
 	var/armor_cost = 0                // Amount of power to substract this tick from psi armor blocking damage.
+	var/heat_buildup = 0			// Amount of heat building up - translates to NSA
 
 	var/power_level = 0				// Psi Power Level determined by Genetics, and similar factors.
 	var/power_bonus = 0				// Not normally measurable Psi Power obtained from external means. As a result of coding method, lost permanently if all ranks are set to 0 or lower.

@@ -38,7 +38,7 @@
 /decl/psionic_power/energistics/electrocute/invoke(mob/living/user, mob/living/target)
 	if(user.targeted_organ != BP_CHEST && user.targeted_organ != BP_GROIN)
 		return FALSE
-	if(istype(target, /turf))
+	if(!isliving(target))
 		return FALSE
 	. = ..()
 	if(.)
@@ -46,18 +46,13 @@
 		if(istype(target))
 			target.electrocute_act(rand(15,45), user, 1, user.targeted_organ)
 			return TRUE
-		else if(isatom(target))
-			var/obj/item/cell/charging_cell = target.get_cell()
-			if(istype(charging_cell))
-				charging_cell.give(rand(15,45))
-			return TRUE
 
 /decl/psionic_power/energistics/zorch
 	name =             "Zorch"
-	cost =             20
-	cooldown =         20
+	cost =             10
+	cooldown =         10
 	use_ranged =       TRUE
-	min_rank =         PSI_RANK_MASTER
+	min_rank =         PSI_RANK_OPERANT
 	use_description = "Use this ranged laser attack while on harm intent. Your mastery of Energistics will determine how powerful the laser is. Be wary of overuse, and try not to fry your own brain."
 
 /decl/psionic_power/energistics/zorch/invoke(mob/living/user, mob/living/target)
@@ -71,16 +66,16 @@
 
 		switch(user_rank)
 			if(PSI_RANK_PARAMOUNT)
-				pew = new /obj/item/projectile/beam/heavylaser(get_turf(user))
-				pew.name = "gigawatt mental laser"
+				pew = new /obj/item/projectile/beam/energistic/paramount(get_turf(user))
 				pew_sound = 'sound/weapons/lasercannonfire.ogg'
 			if(PSI_RANK_GRANDMASTER)
-				pew = new /obj/item/projectile/beam/midlaser(get_turf(user))
-				pew.name = "megawatt mental laser"
+				pew = new /obj/item/projectile/beam/energistic/grandmaster(get_turf(user))
 				pew_sound = 'sound/weapons/Laser.ogg'
 			if(PSI_RANK_MASTER)
-				pew = new /obj/item/projectile/beam/stun(get_turf(user))
-				pew.name = "mental laser"
+				pew = new /obj/item/projectile/beam/energistic/master(get_turf(user))
+				pew_sound = 'sound/weapons/Laser.ogg'
+			if(PSI_RANK_OPERANT)
+				pew = new /obj/item/projectile/beam/energistic(get_turf(user))
 				pew_sound = 'sound/weapons/Taser.ogg'
 
 		if(istype(pew))
@@ -108,6 +103,11 @@
 			var/obj/item/clothing/mask/smokable/cigarette/S = target
 			S.light("[user] snaps \his fingers and \the [S.name] lights up.")
 			playsound(S.loc, "sparks", 50, 1)
+		else if(istype(target,/obj/item/cell) && user.psi.get_rank(PSI_ENERGISTICS) >= PSI_RANK_MASTER)
+			var/obj/item/cell/charging_cell = target.get_cell()
+			if(istype(charging_cell))
+				charging_cell.give(rand(15,45))
+				user.visible_message(SPAN_DANGER("\The [user] sends a jolt of electricity arcing into \the [target]!"))
 		else
 			var/datum/effect/effect/system/spark_spread/sparks = new ()
 			sparks.set_up(3, 0, get_turf(target))

@@ -51,7 +51,7 @@
 /decl/psionic_power/psychokinesis/telekinesis
 	name =            "Telekinesis"
 	cost =            5
-	cooldown =        10
+	cooldown =        6
 	use_ranged =      TRUE
 	use_manifest =    FALSE
 	min_rank =        PSI_RANK_GRANDMASTER
