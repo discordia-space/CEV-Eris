@@ -68,6 +68,7 @@ var/global/obj/machinery/power/eotp/eotp
 			extra_description += SPAN_NOTICE("\nPower level: [power]/[max_power].")
 			extra_description += SPAN_NOTICE("\nObservation level: [observation]/[max_observation].")
 			extra_description += SPAN_NOTICE("\nArmement level: [armaments_points]/[max_armaments_points]")
+			extra_description += SPAN_NOTICE("\nMiracles: [GLOB.miracle_points]")
 	..(user, extra_description)
 
 /obj/machinery/power/eotp/Process()
