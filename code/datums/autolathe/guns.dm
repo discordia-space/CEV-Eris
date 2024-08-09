@@ -250,6 +250,7 @@
 /datum/design/autolathe/gun/nt_svalinn
 	name = "NT LP \"Svalinn\""
 	build_path = /obj/item/gun/energy/nt_svalinn
+	materials = list(MATERIAL_BIOMATTER = 5)
 	factions = list(FACTION_NEOTHEOLOGY)
 
 // Energy general
