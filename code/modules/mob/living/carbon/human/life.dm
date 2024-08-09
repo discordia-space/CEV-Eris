@@ -813,6 +813,8 @@
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if(getOxyLoss() > (species.total_health/2))
+			if(stat == CONSCIOUS)
+				to_chat(src, SPAN_DANGER("You feel your consciousness become increasingly distant from the physical world."))
 			Paralyse(3)
 
 		if(hallucination_power)
