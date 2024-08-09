@@ -80,6 +80,10 @@
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
 
+/mob/living/exosuit/show_message(msg, type, alt, alt_type)
+	for(var/mob/i in pilots)
+		i.show_message(msg, type, alt, alt_type)
+
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
 		to_chat(i, msg)

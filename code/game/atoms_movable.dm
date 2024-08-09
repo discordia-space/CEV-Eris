@@ -338,7 +338,11 @@
 		var/atom/oldloc = src.loc
 		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
 
+		// Movement has either failed by Bump(), or we get moved to a new Turf after entering
+		// Either way , both should count as failures, the move is not on the aimed turf after all -SPCR 2024
 		. = ..()
+		if(!. || loc != NewLoc)
+			return FALSE
 
 		if(Dir != olddir)
 			dir = olddir
