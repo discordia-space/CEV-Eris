@@ -291,15 +291,36 @@
 	icon_state = _icon_state
 	parentmob = _parentmob
 
+// BIG RISK CHANGE in PSIONICS - could potentially break fullauto like any change to clicks, as usual
 /obj/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
-	if(!usr.can_click()) return TRUE
-	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened) return TRUE
+	if(!usr.can_click())
+		return TRUE
+	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+		return TRUE
 	switch(name)
-		if("hand") usr:swap_hand()
+		if("r_hand")
+			if(iscarbon(usr))
+				var/mob/living/carbon/C = usr
+				if(C.hand)
+					C.activate_hand("r")
+				else
+					C.attack_empty_hand(slot_r_hand)
+		if("l_hand")
+			if(iscarbon(usr))
+				var/mob/living/carbon/C = usr
+				if(!C.hand)
+					C.activate_hand("l")
+				else
+					C.attack_empty_hand(slot_l_hand)
+		if("swap")
+			usr:swap_hand()
+		if("hand")
+			usr:swap_hand()
 		else usr.attack_ui(slot_id)
 	return TRUE
+
 
 /obj/screen/inventory/hand
 	name = "nonamehand"
