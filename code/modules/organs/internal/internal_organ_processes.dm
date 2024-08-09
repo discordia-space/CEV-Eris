@@ -159,6 +159,8 @@
 		adjustOxyLoss(20)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]."))
+	else if(blood_volume < total_blood_req)
+		adjustOxyLoss(max(20, ROUND_PROB(2 + total_blood_req / blood_volume)))
 	else if(blood_volume < blood_bad)
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(2)
