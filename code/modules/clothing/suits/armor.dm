@@ -210,10 +210,19 @@
 	name = "green flakvest vest"
 	icon_state = "flakvest_green"
 
-/obj/item/clothing/suit/armor/flak/excelsior
-	name = "Excelsior flak vest"
+/obj/item/clothing/suit/armor/ghezelm
+	name = "Excelsior ghezel-m vest"
 	desc = "The first layer of defense for every Haven conscript."
-	icon_state = "flakvest_excelsior"
+	icon_state = "ghezel_m"
+	item_state = "ghezel_m"
+	armor = list(
+		melee = 8,
+		bullet = 13,
+		energy = 8,
+		bomb = 30,
+		bio = 0,
+		rad = 0
+	)
 	matter = list(
 		MATERIAL_STEEL = 8,
 		MATERIAL_PLASTEEL = 1,
@@ -255,26 +264,30 @@
 	)
 	slowdown = LIGHT_SLOWDOWN
 
-/obj/item/clothing/suit/armor/excelshock
-	name = "Excelsior shock trooper armor"
-	desc = "Fresh from the labs of Haven, this armor was developed to equip the troops of Excelsiors elite shock armies in their planetary operations."
-	icon_state = "shockexcelsior"
-	item_state = "shockexcelsior"
+/obj/item/clothing/suit/armor/korund
+	name = "excelsior korund exoskeleton"
+	desc = "Fresh from the design labs of Haven, the Korund exoskeleton is the heaviest armor available to the revolution's many cells."
+	icon_state = "korund_armor"
+	item_state = "korund_armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	slowdown = LIGHT_SLOWDOWN
+	slowdown = MEDIUM_SLOWDOWN
+	item_flags = THICKMATERIAL|DRAG_AND_DROP_UNEQUIP|COVER_PREVENT_MANIPULATION|EQUIP_SOUNDS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	armor = list(
-		melee = 9,
-		bullet = 14,
-		energy = 11,
-		bomb = 35,
+		melee = 16,
+		bullet = 15,
+		energy = 16,
+		bomb = 100, //basically an EOD suit
 		bio = 0,
 		rad = 0
 	)
 	matter = list(
-		MATERIAL_STEEL = 8,
-		MATERIAL_PLASTIC = 4,
-		MATERIAL_PLASTEEL = 3,
+		MATERIAL_STEEL = 35,
+		MATERIAL_PLASTIC = 45,
+		MATERIAL_PLASTEEL = 25,
 	)
 
 /obj/item/clothing/suit/armor/bulletproof/full

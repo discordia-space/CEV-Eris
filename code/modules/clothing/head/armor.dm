@@ -582,7 +582,7 @@
 	icon_state = "tanker_helmet_gray"
 
 /obj/item/clothing/head/armor/excel_beret
-	name = "Excelsior Beret"
+	name = "excelsior Beret"
 	desc = "An armored white and orange beret, issued out to haven's many conscripts"
 	icon_state = "excel_beret"
 	item_state = "excel_beret"
@@ -599,14 +599,14 @@
 		MATERIAL_PLASTIC = 1,
 		MATERIAL_STEEL = 1
 	)
-/obj/item/clothing/head/armor/excel_shock
-	name = "Excelsior shock trooper helmet"
-	desc = "Reminiscent of earlier ablative designs, this helmet is at the forefront of Haven's battles."
-	icon_state = "shock_helm"
-	item_state = "shock_helm"
+/obj/item/clothing/head/armor/excel_sphere
+	name = "Excelsior sphere-r helmet"
+	desc = "A common sight amongst Haven's land battles, a friend to every conscript."
+	icon_state = "spherer_helm"
+	item_state = "spherer_helm"
 	armor = list(
 		melee = 8,
-		bullet = 13,
+		bullet = 12,
 		energy = 10,
 		bomb = 25,
 		bio = 0,
@@ -617,6 +617,29 @@
 	MATERIAL_GLASS = 2,
 	MATERIAL_STEEL = 3,
 	MATERIAL_PLASTEEL = 2
+	)
+	siemens_coefficient = 1
+	species_restricted = list(SPECIES_HUMAN)
+	price_tag = 150
+
+/obj/item/clothing/head/armor/korund_helm
+	name = "excelsior korund-sp-h helmet "
+	desc = "The heaviest armor provided from the labs in haven, perfect for the aspiring heavy weapons specialist."
+	icon_state = "korund_helm"
+	item_state = "korund_helm"
+	armor = list(
+		melee = 16,
+		bullet = 14,
+		energy = 16,
+		bomb = 95,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+	MATERIAL_PLASTIC = 40,
+	MATERIAL_GLASS = 10,
+	MATERIAL_STEEL = 25,
+	MATERIAL_PLASTEEL = 10
 	)
 	siemens_coefficient = 1
 	species_restricted = list(SPECIES_HUMAN)

@@ -173,6 +173,20 @@
 		rad = 0
 	)
 
+/obj/item/clothing/gloves/korund
+	name = "Kilak gauntlet"
+	desc = "A pair of gloves with just enough manuverability to pull a maxim trigger"
+	icon_state = "kilak_glove"
+	item_state = "kilak_glove"
+	armor = list(
+		melee = 4,
+		bullet = 4,
+		energy = 5,
+		bomb = 15, //basically an EOD suit
+		bio = 0,
+		rad = 0
+	)
+
 /obj/item/clothing/gloves/knuckles
 	name = "knuckle gloves"
 	desc = "Gloves with additional reinforcment on the knuckles."

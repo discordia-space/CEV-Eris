@@ -352,12 +352,13 @@
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/clothing/under/excelsior = 1,
-	/obj/item/clothing/head/armor/excel_beret = 1,
+	/obj/item/clothing/head/armor/excel_sphere = 1,
 	/obj/item/clothing/mask/gas = 1,
-	/obj/item/clothing/suit/armor/flak/excelsior = 1,
+	/obj/item/clothing/suit/armor/ghezelm = 1,
 	/obj/item/gun/projectile/boltgun = 1,
 	/obj/item/ammo_magazine/ammobox/lrifle_small = 1,
-	/obj/item/ammo_magazine/sllrifle = 7
+	/obj/item/ammo_magazine/sllrifle = 7,
+	/obj/item/clothing/shoes/workboots/proloteriat = 1
 	)
 
 /obj/item/storage/deferred/crate/excel_shock_kit
@@ -367,14 +368,14 @@
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/clothing/under/excelsior = 1,
-	/obj/item/clothing/head/armor/excel_shock = 1,
+	/obj/item/clothing/head/armor/excel_sphere = 1,
 	/obj/item/ammo_magazine/msmg = 4,
 	/obj/item/ammo_magazine/ammobox/magnum = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/gun/projectile/automatic/drozd = 1,
-	/obj/item/clothing/suit/armor/excelshock = 1,
+	/obj/item/clothing/suit/armor/ghezelm = 1,
+	/obj/item/clothing/shoes/workboots/proloteriat = 1
 	)
-
 
 
 /obj/item/storage/deferred/crate/excel_eva
@@ -389,7 +390,8 @@
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/ammo_magazine/ammobox/lrifle_small = 1,
 	/obj/item/clothing/suit/space/void/excelsior = 1,
-	/obj/item/tank/emergency_oxygen/double = 1
+	/obj/item/tank/emergency_oxygen/double = 1,
+	/obj/item/clothing/shoes/workboots/proloteriat = 1
 	)
 
 /obj/item/storage/deferred/crate/excel_spetznatz
@@ -401,10 +403,11 @@
 	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/gun/projectile/automatic/vintorez = 1,
 	/obj/item/ammo_magazine/srifle = 5,
-	/obj/item/clothing/suit/armor/excelshock = 1,
+	/obj/item/clothing/suit/armor/ghezelm = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/ammo_magazine/ammobox/srifle_small = 1,
-	/obj/item/clothing/head/armor/excel_shock = 1
+	/obj/item/clothing/head/armor/excel_sphere = 1,
+	/obj/item/clothing/shoes/workboots/proloteriat = 1
 	)
 
 /obj/item/storage/deferred/crate/excel_heavy
@@ -412,13 +415,15 @@
 	desc = "Equipment of Excelsior's heavy infantry."
 	icon_state = "Excel_crate"
 	initial_contents = list(
-	/obj/item/clothing/gloves/thick = 1,
+	/obj/item/clothing/gloves/korund = 1,
 	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/clothing/mask/gas = 1,
-	/obj/item/clothing/suit/space/void/excelsior = 1,//a holding point up until we get excel rig suits
 	/obj/item/ammo_magazine/maxim = 4,
 	/obj/item/gun/projectile/automatic/maxim =1,
-	/obj/item/tank/emergency_oxygen/double = 1
+	/obj/item/tank/emergency_oxygen/double = 1,
+	/obj/item/clothing/suit/armor/korund = 1,
+	/obj/item/clothing/head/armor/korund_helm = 1,
+	/obj/item/clothing/shoes/korund = 1
 	)
 
 /obj/item/storage/deferred/crate/clown_crime

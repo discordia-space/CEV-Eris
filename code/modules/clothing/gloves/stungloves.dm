@@ -121,3 +121,17 @@
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 		update_icon()
+
+/obj/item/clothing/gloves/stungloves/excel
+	name = "Kilak Power glove"
+	desc = "Haven's newest recruitment technology, POWER TO THE PEOPLE!"
+	icon_state = "kilak_glove"
+	item_state = "kilak_glove"
+	armor = list(
+		melee = 4,
+		bullet = 4,
+		energy = 5,
+		bomb = 15, //basically an EOD suit
+		bio = 0,
+		rad = 0
+	)
