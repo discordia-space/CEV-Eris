@@ -106,6 +106,11 @@
 
 	fire_stacks = TRUE
 
+/obj/item/projectile/plasma/aoe/heat/strong/mech
+	damage_types = list(BURN = 34)
+	heat_damage = 40
+	icon_state = "mech_plasma"
+
 /obj/item/projectile/plasma/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
