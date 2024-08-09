@@ -581,6 +581,47 @@
 	name = "gray tanker helmet"
 	icon_state = "tanker_helmet_gray"
 
+/obj/item/clothing/head/armor/excel_beret
+	name = "Excelsior Beret"
+	desc = "An armored white and orange beret, issued out to haven's many conscripts"
+	icon_state = "excel_beret"
+	item_state = "excel_beret"
+	armor = list(
+		melee = 5,
+		bullet = 4,
+		energy = 5,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_BIOMATTER = 2,
+		MATERIAL_PLASTIC = 1,
+		MATERIAL_STEEL = 1
+	)
+/obj/item/clothing/head/armor/excel_shock
+	name = "Excelsior shock trooper helmet"
+	desc = "Reminiscent of earlier ablative designs, this helmet is at the forefront of Haven's battles."
+	icon_state = "shock_helm"
+	item_state = "shock_helm"
+	armor = list(
+		melee = 8,
+		bullet = 13,
+		energy = 10,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+	MATERIAL_PLASTIC = 2,
+	MATERIAL_GLASS = 2,
+	MATERIAL_STEEL = 3,
+	MATERIAL_PLASTEEL = 2
+	)
+	siemens_coefficient = 1
+	species_restricted = list(SPECIES_HUMAN)
+	price_tag = 150
+
 /obj/item/clothing/head/armor/faceshield/paramedic
 	name = "Moebius paramedic helmet"
 	desc = "Seven minutes or a refund."

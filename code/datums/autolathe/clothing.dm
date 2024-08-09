@@ -3,6 +3,21 @@
 	name = "excelsior armor"
 	build_path = /obj/item/clothing/suit/space/void/excelsior
 
+/datum/design/autolathe/clothing/excelsior_flak
+	name = "excelsior flak vest"
+	build_path = /obj/item/clothing/suit/armor/flak/excelsior
+
+/datum/design/autolathe/clothing/excelsior_shock
+	name = "excelsior shock trooper vest"
+	build_path = /obj/item/clothing/suit/armor/excelshock
+
+/datum/design/autolathe/clothing/excel_shock_helmet
+	name = "excelsior shock trooper helmet"
+	build_path = /obj/item/clothing/head/armor/excel_shock
+
+/datum/design/autolathe/clothing/excel_beret
+	name = "Excelsior Beret"
+	build_path = /obj/item/clothing/head/armor/excel_beret
 // Standard
 
 /datum/design/autolathe/clothing/generic_helmet_basic
@@ -32,6 +47,7 @@
 /datum/design/autolathe/clothing/generic_vest_webbing
 	name = "webbed armor vest"
 	build_path = /obj/item/clothing/suit/storage/vest
+
 
 /datum/design/autolathe/clothing/riot_helmet
 	name = "riot helmet"

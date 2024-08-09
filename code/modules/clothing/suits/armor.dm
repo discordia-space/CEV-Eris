@@ -210,6 +210,16 @@
 	name = "green flakvest vest"
 	icon_state = "flakvest_green"
 
+/obj/item/clothing/suit/armor/flak/excelsior
+	name = "Excelsior flak vest"
+	desc = "The first layer of defense for every Haven conscript."
+	icon_state = "flakvest_excelsior"
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTIC = 3
+	)
+
 /obj/item/clothing/suit/armor/flak/full
 	name = "full flakvest vest"
 	desc = "An armored vest built for protection against high-velocity solid projectiles. This set has had kneepads and shoulderpads attached for more protection."
@@ -217,6 +227,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // shoulderpads and kneepads
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
+
 
 /obj/item/clothing/suit/armor/flak/full/green
 	name = "full green flakvest vest"
@@ -243,6 +254,28 @@
 		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
 	)
 	slowdown = LIGHT_SLOWDOWN
+
+/obj/item/clothing/suit/armor/excelshock
+	name = "Excelsior shock trooper armor"
+	desc = "Fresh from the labs of Haven, this armor was developed to equip the troops of Excelsiors elite shock armies in their planetary operations."
+	icon_state = "shockexcelsior"
+	item_state = "shockexcelsior"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	slowdown = LIGHT_SLOWDOWN
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
+	armor = list(
+		melee = 9,
+		bullet = 14,
+		energy = 11,
+		bomb = 35,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTIC = 4,
+		MATERIAL_PLASTEEL = 3,
+	)
 
 /obj/item/clothing/suit/armor/bulletproof/full
 	name = "full bulletproof vest"
