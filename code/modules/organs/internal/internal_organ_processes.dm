@@ -148,7 +148,6 @@
 
 	if(blood_volume < total_blood_req)
 		status_flags |= BLEEDOUT
-		adjustOxyLoss(ROUND_PROB(2.5))
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy."))
 	else
