@@ -1,6 +1,5 @@
-author: Cheesepizza2, Doster-D
-delete-after: true
-changes:
+2024-08-10:
+  Cheesepizza2, Doster-D:
   - rscadd: 'Added a new mech weapon: the NT \"Warhead\" mace! In its mace mode, it
       will absolutely obliterate structures and people. Using it in hand will convert
       it to a flail that does less damage but has a longer range and weakens + knocks
@@ -11,3 +10,10 @@ changes:
   - rscadd: 'Added a new mech weapon: the mounted crossbow! Insert in materials to
       load as crossbow bolts - the harder and heavier the material, the more armor
       penetration and damage it has respectively.'
+  MLGTASTICa:
+  - bugfix: Fixed movement_signals being duplicated when a atom that falls/moves is
+      re-located by other atoms.
+  TheLeopold:
+  - bugfix: group litany for robustness now properly shows up in the book
+  - tweak: group litanies show message when stats are increased
+  - tweak: EOTP displays miracle points

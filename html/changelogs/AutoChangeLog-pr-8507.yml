@@ -1,4 +1,0 @@
-author: TheLeopold
-delete-after: true
-changes:
-  - bugfix: group litany for robustness now properly shows up in the book

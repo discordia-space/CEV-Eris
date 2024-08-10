@@ -1,5 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed movement_signals being duplicated when a atom that falls/moves is
-      re-located by other atoms.
