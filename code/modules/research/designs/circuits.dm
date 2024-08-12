@@ -385,16 +385,16 @@
 	category = CAT_MISC
 
 /datum/design/research/circuit/shield/hull
-	name = "hull"
+	name = "hull shield generator"
+	desc = "Allows for the construction of a shield conduit circuit board."
 	build_path = /obj/item/electronics/circuitboard/shield_generator
 	sort_string = "VAAAB"
-/*
-/datum/design/research/circuit/shield/capacitor
-	name = "capacitor"
-	desc = "Allows for the construction of a shield capacitor circuit board."
-	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
-	build_path = /obj/item/electronics/circuitboard/shield_cap
-	sort_string = "VAAAC"*/
+
+/datum/design/research/circuit/shield/conduit
+	name = "shield conduit"
+	desc = "Allows for the construction of a shield conduit circuit board."
+	build_path = /obj/item/electronics/circuitboard/shield_conduit
+	sort_string = "VAAAC"
 
 // Long range scanner
 /datum/design/research/circuit/lrange_scanner
@@ -404,19 +404,24 @@
 /datum/design/research/circuit/lrange_scanner/hull
 	name = "long range scanner"
 	build_path = /obj/item/electronics/circuitboard/long_range_scanner
-	sort_string = "VAAAC"
+	sort_string = "VAAAD"
+
+/datum/design/research/circuit/lrange_scanner/conduit
+	name = "long range scanner conduit"
+	build_path = /obj/item/electronics/circuitboard/scanner_conduit
+	sort_string = "VAAAE"
 
 //BS
 /datum/design/research/circuit/telesci/console
 	name = "TeleSci Console"
 	build_path = /obj/item/electronics/circuitboard/telesci_console
-	sort_string = "VAAAD"
+	sort_string = "VAAAF"
 	category = CAT_BLUE
 
 /datum/design/research/circuit/telesci/hub
 	name = "TeleSci Pad"
 	build_path = /obj/item/electronics/circuitboard/telesci_pad
-	sort_string = "VAAAE"
+	sort_string = "VAAAG"
 	category = CAT_BLUE
 
 /datum/design/research/circuit/bssilk/console
@@ -428,7 +433,7 @@
 /datum/design/research/circuit/bssilk/hub
 	name = "Bluespace Snare Hub"
 	build_path = /obj/item/electronics/circuitboard/bssilk_hub
-	sort_string = "VAAAG"
+	sort_string = "VAAAH"
 	category = CAT_BLUE
 
 /datum/design/research/circuit/teleporter/station
