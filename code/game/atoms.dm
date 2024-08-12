@@ -369,7 +369,7 @@ its easier to just keep the beam vertical.
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
-			if(LAZYLEN(reagents.reagent_list) > 1)
+			if(LAZYLEN(reagents.reagent_list))
 				if(user.can_see_reagents())
 					output += SPAN_NOTICE("\nIt contains:")
 					for(var/datum/reagent/R in reagents.reagent_list)
@@ -377,7 +377,7 @@ its easier to just keep the beam vertical.
 				else
 					output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of various reagents.")
 			else
-				output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
+				output += SPAN_NOTICE("\nIt's empty.")
 		else if(reagent_flags & AMOUNT_VISIBLE)
 			output += SPAN_NOTICE("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
 
