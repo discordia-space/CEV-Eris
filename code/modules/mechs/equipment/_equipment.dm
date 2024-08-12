@@ -31,6 +31,9 @@
 /obj/item/mech_equipment/proc/pretick()
 	return FALSE
 
+/obj/item/mech_equipment/proc/get_overlay_state()
+	return icon_state
+
 /obj/item/mech_equipment/attack() //Generally it's not desired to be able to attack with items
 	return 0
 
