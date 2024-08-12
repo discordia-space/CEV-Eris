@@ -107,15 +107,16 @@
 
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
-	
+
 	SEND_SIGNAL(src, COMSIG_ADDVAL)
 
 /obj/item/organ/internal/proc/handle_organ_eff()
-	for(var/process in organ_efficiency)
-		if(is_usable())
-			owner.internal_organs_by_efficiency[process] |= src
-		else
-			owner.internal_organs_by_efficiency[process] -= src
+	if(src)
+		for(var/process in organ_efficiency)
+			if(is_usable())
+				owner.internal_organs_by_efficiency[process] |= src
+			else
+				owner.internal_organs_by_efficiency[process] -= src
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	var/organ_eff = organ_efficiency[process_define]
