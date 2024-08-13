@@ -135,7 +135,6 @@
 	item_state = "red_pyjamas"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
-
 /obj/item/clothing/suit/xenos
 	name = "xenos suit"
 	desc = "A suit made out of chitinous alien hide."
@@ -144,6 +143,14 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
+	armor = list(
+		melee = 7,
+		bullet = 2,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 //swimsuit
 /obj/item/clothing/under/swimsuit
@@ -309,7 +316,7 @@
 		accessories += logo
 		logo.has_suit = src
 		loc = src
-		switch(logo_type) // All of the following names associated with some group of people, thus capitalized 
+		switch(logo_type) // All of the following names associated with some group of people, thus capitalized
 			if("punk_over_valentinos")
 				name = "Valentinos jacket"
 			if("punk_over_samurai")

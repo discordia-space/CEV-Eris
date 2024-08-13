@@ -29,6 +29,14 @@
 		)
 	body_parts_covered = HEAD|FACE|EYES
 	style_coverage = COVERS_WHOLE_HEAD
+	armor = list(
+		melee = 7,
+		bullet = 2,
+		energy = 0,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 /obj/item/clothing/head/collectable/chef
 	name = "collectable chef's hat"
