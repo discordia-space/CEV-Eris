@@ -77,7 +77,7 @@
     playsound(src.loc, 'sound/weapons/guns/interact/rifle_boltback.ogg', 75, 1)
     bolt_open = !bolt_open
     if(bolt_open)
-        if(contents.len)
+        if(loaded.len)
             if(chambered)
                 to_chat(user, SPAN_NOTICE("You work the [message] open, ejecting [chambered]!"))
                 chambered.forceMove(get_turf(src))
