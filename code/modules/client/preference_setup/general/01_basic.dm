@@ -116,9 +116,7 @@
 					seeds += i
 			if(!LAZYLEN(seeds))
 				seeds = tts_seeds
-			// [CELADON-DELETE] Отключено из-за отсутствия актуальности.
-			// pref.tts_seed = pick(seeds)
-			// [/CELADON-DELETE]
+			pref.tts_seed = pick(seeds)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["age"])
