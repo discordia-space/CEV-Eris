@@ -43,7 +43,8 @@
 
 /obj/item/organ/internal/die()
 	..()
-	handle_organ_eff()
+	if(owner)
+		handle_organ_eff()
 
 /obj/item/organ/internal/Destroy()
 	QDEL_LIST(item_upgrades)
@@ -111,12 +112,11 @@
 	SEND_SIGNAL(src, COMSIG_ADDVAL)
 
 /obj/item/organ/internal/proc/handle_organ_eff()
-	if(src)
-		for(var/process in organ_efficiency)
-			if(is_usable())
-				owner.internal_organs_by_efficiency[process] |= src
-			else
-				owner.internal_organs_by_efficiency[process] -= src
+	for(var/process in organ_efficiency)
+		if(is_usable())
+			owner.internal_organs_by_efficiency[process] |= src
+		else
+			owner.internal_organs_by_efficiency[process] -= src
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	var/organ_eff = organ_efficiency[process_define]

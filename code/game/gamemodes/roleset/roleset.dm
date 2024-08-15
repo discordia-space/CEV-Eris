@@ -61,6 +61,8 @@
 
 /datum/storyevent/roleset/proc/candidates_list(var/antag, var/act_test = TRUE, var/report)
 	var/datum/antagonist/temp = GLOB.all_antag_types[antag]
+	if(!temp)
+		return FALSE
 	if(!istype(temp))
 		if(report)
 			to_chat(report, SPAN_NOTICE("Failure: Unable to locate antag datum: -[temp]-[temp.type]- for antag [antag]"))
@@ -244,7 +246,7 @@
 		if (success_quantity > 1)
 			success_percent = success_quantity / target_quantity
 		cancel(severity, success_percent)
-			
+
 		if ( success_quantity > 0 )
 			// At least one antag has spawned
 			return TRUE
@@ -254,6 +256,8 @@
 //Tests if its possible for us to trigger, by compiling candidate lists but doing nothing with them
 /datum/storyevent/roleset/can_trigger(var/severity = EVENT_LEVEL_ROLESET, var/report)
 	var/list/possible_candidates = list()
+	if(!possible_candidates)
+		return FALSE
 	if(GLOB.outer_antag_types[role_id])
 		possible_candidates = ghost_candidates_list(role_id, FALSE, report) //We set act check to false so it doesn't ask ghosts
 	else
