@@ -254,8 +254,7 @@ meteor_act
 
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
-		to_chat(user, SPAN_DANGER("They are missing that limb!"))
-		return null
+		hit_zone = BP_CHEST
 
 	return hit_zone
 
