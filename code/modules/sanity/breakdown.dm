@@ -49,6 +49,11 @@
 	flick(icon_state, img)
 
 /datum/breakdown/proc/occur()
+	if(!holder)
+		return FALSE
+	if(!holder.owner)
+		return FALSE
+
 	occur_animation()
 	holder.owner.playsound_local(get_turf(holder.owner), breakdown_sound, 100)
 	if(holder.owner.head && istype(holder.owner.head, /obj/item/clothing/head/mindreader))
