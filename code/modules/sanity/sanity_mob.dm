@@ -147,7 +147,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	changeLevel(max(affect  * life_tick_modifier, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
 	handle_Insight()
 	handle_level()
-	if(rest_timer_active)
+	if(rest_timer_active && owner.client)
 		if(rest_timer_time > 0)
 			rest_timer_time -= 2 SECONDS //since OnLife() procs every 2 seconds
 		else
