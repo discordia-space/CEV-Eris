@@ -52,9 +52,7 @@
 	. += "<b>Gender:</b> <a href='?src=\ref[src];gender=1'><b>[gender2text(pref.gender)]</b></a><br>"
 	. += "<b>Age:</b> <a href='?src=\ref[src];age=1'>[pref.age]</a><br>"
 	. += "<b>Spawn Point</b>: <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
-// [CELADON-DELETE] Отключено из-за отсутствия актуальности.
-//	. += "<b>Text-to-speech seed</b>: <a href='?src=\ref[src];tts_seed=1'>[pref.tts_seed]</a><br>"
-// [/CELADON-DELETE]
+	. += "<b>Text-to-speech seed</b>: <a href='?src=\ref[src];tts_seed=1'>[pref.tts_seed]</a><br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/physical/basic/OnTopic(href, href_list, mob/user)
