@@ -108,6 +108,9 @@
 		return
 	to_chat(user, SPAN_NOTICE("You start rebooting \the [src] with new information. Your hands start moving by themselves like they're remotely guided to input new information."))
 	if(do_after(user, 15 SECONDS, src))
+		if(!rebootTimer)
+			to_chat(user, SPAN_NOTICE("\The [src] was already rebooted!"))
+			return
 		to_chat(user, SPAN_NOTICE("You succesfully reboot \the [src]. Your hands are no longer moving on their own."))
 		deltimer(rebootTimer)
 		var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
@@ -126,6 +129,9 @@
 	for (var/datum/antagonist/A in commies.members)
 		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("The [src]'s antenna is being bent by someone! Stop them."))
 	if(do_after(user, 1 MINUTE, src))
+		if(antennaBent)
+			to_chat(user, SPAN_NOTICE("\The [src]'s antenna is already bent!"))
+			return
 		stopRedirecting()
 		antennaBent = TRUE
 		icon_state = "redirector_bent"
