@@ -17,3 +17,8 @@
   - bugfix: group litany for robustness now properly shows up in the book
   - tweak: group litanies show message when stats are increased
   - tweak: EOTP displays miracle points
+2024-08-17:
+  MLGTASTICa:
+  - bugfix: Fixed rebooting the excelsior redirector multiple-times.
+  ceuvi:
+  - imageadd: breaching hammer resprite
