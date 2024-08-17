@@ -20,10 +20,10 @@
 
 /obj/machinery/multistructure/bioreactor_part/platform/Process()
 	if(!MS)
-		use_power(1)
+		use_power(idle_power_usage)
 		return
 	if((!is_breached() || MS_bioreactor.is_operational()) && MS_bioreactor.chamber_solution)
-		use_power(2)
+		use_power(active_power_usage)
 		for(var/atom/movable/M in loc)
 
 			//mob processing
@@ -77,7 +77,7 @@
 					target.forceMove(MS_bioreactor.misc_output)
 	else
 		//if our machine is non operational, let's go idle powermode and pump out solution
-		use_power(1)
+		use_power(idle_power_usage)
 		if(MS_bioreactor.chamber_solution)
 			MS_bioreactor.pump_solution()
 

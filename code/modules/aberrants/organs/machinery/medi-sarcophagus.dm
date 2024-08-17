@@ -50,7 +50,7 @@
 		horror_occupant = null
 		accompanying_loot = null
 
-		update_use_power(1)
+		set_power_use(IDLE_POWER_USE)
 		update_icon()
 		toggle_filter()
 

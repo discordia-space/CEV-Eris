@@ -7,6 +7,8 @@
 	anchored = TRUE
 	density = TRUE
 	use_power = IDLE_POWER_USE
+	idle_power_usage = 211	//same as softdrinks vendor
+	var/vend_power_usage = 500
 
 	var/obj/machinery/amesilo/silo
 	var/list/saleworthy_items = list()
@@ -232,6 +234,7 @@
 	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 50, 1)
 	silo.addmaterial(combinedmats)
 	spawn_money(combinedvalue, loc)
+	use_power(vend_power_usage)
 	silo.updatesubsidy()
 	flick("recycle_vend", src)
 	update_icon()
@@ -452,6 +455,7 @@
 	anchored = TRUE
 	density = TRUE
 	use_power = IDLE_POWER_USE
+	idle_power_usage = 1000	//same as bluespace relay
 	var/prime = FALSE
 
 	// Can't use subtypeof(), since we have lots of useless materials

@@ -815,7 +815,7 @@
 		working = FALSE
 		next_file()
 
-	use_power = working ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	set_power_use(working ? ACTIVE_POWER_USE : IDLE_POWER_USE)
 
 	special_process()
 	update_icon()

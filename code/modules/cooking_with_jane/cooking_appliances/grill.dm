@@ -17,7 +17,7 @@
 	var/list/cooking_timestamp = list(0, 0) //Timestamp of when cooking initialized so we know if the prep was disturbed at any point.
 	var/list/items[2]
 
-	use_power = 0
+	use_power = NO_POWER_USE
 	interact_offline = TRUE
 
 	var/stored_wood = 0

@@ -52,6 +52,7 @@
 				container.reagents.trans_id_to(src, MATERIAL_BIOMATTER, quantity, TRUE)
 		if(reagents.get_reagent_amount(MATERIAL_BIOMATTER) >= BIOMATTER_PER_SHEET)
 			process_biomatter()
+			use_power(active_power_usage)
 		else
 			abort("Insufficient amount of biomatter.")
 

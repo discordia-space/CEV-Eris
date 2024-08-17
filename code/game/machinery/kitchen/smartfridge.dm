@@ -9,7 +9,7 @@
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
-	active_power_usage = 100
+	active_power_usage = 250
 	reagent_flags = NO_REACT
 	var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
 	var/icon_on = "smartfridge"
@@ -292,6 +292,10 @@
 /obj/machinery/smartfridge/power_change()
 	var/old_stat = stat
 	..()
+	if(powered())
+		set_power_use(ACTIVE_POWER_USE)
+	else
+		set_power_use(IDLE_POWER_USE)
 	if(old_stat != stat)
 		update_icon()
 
