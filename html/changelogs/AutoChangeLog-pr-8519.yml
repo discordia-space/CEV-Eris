@@ -1,0 +1,4 @@
+author: MLGTASTICa
+delete-after: true
+changes:
+  - bugfix: Fixed excelsior redirector not getting rid of reboot timers properly.
