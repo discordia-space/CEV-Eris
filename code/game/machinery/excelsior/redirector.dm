@@ -24,7 +24,7 @@
 
 /obj/machinery/excelsior_redirector/attackby(obj/item/I, mob/living/user)
 	if(istool(I))
-		if(rebootTimer)
+		if(redirectTimer)
 			to_chat(user, SPAN_NOTICE("You can't unanchor \the [src] whilst it's running!"))
 			return
 		if(I.get_tool_quality(QUALITY_BOLT_TURNING))
