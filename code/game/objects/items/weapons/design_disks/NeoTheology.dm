@@ -14,10 +14,10 @@
 		/datum/design/bioprinter/leather/holster/belt,
 		/datum/design/bioprinter/leather/holster/sheath,
 		/datum/design/bioprinter/leather/holster/accessory/scabbard,
+		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
 		/datum/design/bioprinter/ammo,
-		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
 		/datum/design/bioprinter/engineering_material,
@@ -25,7 +25,6 @@
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
 		/datum/design/bioprinter/part
-
 	)
 
 // Batteries that printed fully charged, at the cost of some biomatter or plasma being non-refundable
