@@ -557,7 +557,7 @@
 /obj/item/rig/update_icon(var/update_mob_icon)
 	if(offline_icon)
 		item_state = active ? initial(icon_state) : offline_icon
-		wearer.update_inv_back()
+		wearer?.update_inv_back()
 
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
