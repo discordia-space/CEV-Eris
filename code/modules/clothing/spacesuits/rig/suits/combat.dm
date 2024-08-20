@@ -66,6 +66,7 @@
 	suit_type = "hazard hardsuit"
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"
+	offline_icon = "hazard_rig_off"
 	armor = list(
 		melee = 12,
 		bullet = 9,

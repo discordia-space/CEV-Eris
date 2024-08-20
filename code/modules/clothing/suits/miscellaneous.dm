@@ -135,6 +135,7 @@
 	item_state = "red_pyjamas"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
+
 /obj/item/clothing/suit/xenos
 	name = "xenos suit"
 	desc = "A suit made out of chitinous alien hide."
@@ -143,14 +144,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 2
-	armor = list(
-		melee = 7,
-		bullet = 2,
-		energy = 0,
-		bomb = 0,
-		bio = 0,
-		rad = 0
-	)
 
 //swimsuit
 /obj/item/clothing/under/swimsuit

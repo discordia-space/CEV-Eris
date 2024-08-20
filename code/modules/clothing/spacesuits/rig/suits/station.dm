@@ -30,6 +30,7 @@
 	suit_type = "industrial hardsuit"
 	desc = "A heavy, powerful rig used by construction crews and mining corporations. The soft plating can protect the wearer from unexpected hazards, but is not reliable in prolonged combat."
 	icon_state = "engineering_rig"
+	offline_icon = "engineering_rig_off"
 	price_tag = 350
 	armor = list(
 		melee = 10,
@@ -78,6 +79,7 @@
 	suit_type = "EVA hardsuit"
 	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
 	icon_state = "eva_rig"
+	offline_icon = "eva_rig_off"
 	armor = list(
 		melee = 9,
 		bullet = 3,
@@ -238,6 +240,7 @@ Technomancer RIG
 	suit_type = "hazmat hardsuit"
 	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
+	offline_icon = "science_rig_off"
 	spawn_tags = SPAWN_TAG_RIG_HAZMAT
 	rarity_value = 25
 	price_tag = 350

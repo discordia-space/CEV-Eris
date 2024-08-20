@@ -68,6 +68,8 @@
 	var/glove_type = /obj/item/clothing/gloves/rig
 	var/cell_type =  /obj/item/cell/large/high
 	var/air_type =   /obj/item/tank/oxygen
+	///What the worn icon state should be when the RIG is offline; not at all suits have one, so it's optional
+	var/offline_icon = ""
 
 	//Component/device holders.
 	var/obj/item/tank/air_supply                       // Air tank, if any.
@@ -553,6 +555,10 @@
 	return 'icons/mob/rig_back.dmi'
 
 /obj/item/rig/update_icon(var/update_mob_icon)
+	if(offline_icon)
+		item_state = active ? initial(icon_state) : offline_icon
+		wearer.update_inv_back()
+
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay && !module.suit_overlay_mob_only)
