@@ -22,6 +22,7 @@
 	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 	var/is_tray_hidden = FALSE //hides from even t-rays
+	var/pickup_amount = 0 
 	var/prespawned_content_amount // Number of items storage should initially contain
 	var/prespawned_content_type // Type of items storage should contain, takes effect if variable above is at least 1
 	health = 500
@@ -473,10 +474,14 @@
 /obj/item/storage/proc/collectItems(turf/target, mob/user)
 	ASSERT(istype(target))
 	. = FALSE
-	var/limiter = 15
+	var/limiter
+	if(pickup_amount > 0)
+		limiter = pickup_amount
+
 	for(var/obj/item/I in target)
-		if(--limiter < 0)
-			break
+		if(pickup_amount > 0)
+			if(--limiter < 0)
+				break
 		if(can_be_inserted(I, TRUE))
 			. |= TRUE
 			handle_item_insertion(I, TRUE)
