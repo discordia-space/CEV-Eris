@@ -22,3 +22,6 @@
   - bugfix: Fixed rebooting the excelsior redirector multiple-times.
   ceuvi:
   - imageadd: breaching hammer resprite
+2024-08-19:
+  MLGTASTICa:
+  - bugfix: Fixed excelsior redirector not getting rid of reboot timers properly.
