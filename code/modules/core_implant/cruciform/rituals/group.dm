@@ -44,7 +44,7 @@
 		return FALSE
 	if(!get_active_mutation(M, MUTATION_ATHEIST))
 		if(M.stats.getPerk(PERK_CHANNELING))
-			M.stats.changeStat(stat_buff, buff_value+ cnt + (cnt * aditional_value))
+			M.stats.changeStat(stat_buff, buff_value + cnt + (cnt * aditional_value))
 		else
 			M.stats.changeStat(stat_buff, buff_value + (cnt * aditional_value))
 		to_chat(M, SPAN_NOTICE(stat_message))
