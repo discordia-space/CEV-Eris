@@ -394,7 +394,7 @@
 	/obj/item/clothing/shoes/workboots/proloteriat = 1
 	)
 
-/obj/item/storage/deferred/crate/excel_spetznatz
+/obj/item/storage/deferred/crate/excel_spetsnaz
 	name = "Excelsior special operative kit"
 	desc = "A kit for comrades quietly engaging at a distance."
 	icon_state = "Excel_crate"
