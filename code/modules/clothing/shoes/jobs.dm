@@ -106,8 +106,8 @@
 	style = STYLE_HIGH
 
 /obj/item/clothing/shoes/korund
-	name = "korund heavy greaves"
-	desc = "the forefront of haven's footwear research, heavily armored for the worst battlefronts."
+	name = "Excelsior assault boots"
+	desc = "Heavily reinforced ankle boots for combat scenarios."
 	icon_state = "korund_boots"
 	item_state = "korund_boots"
 	siemens_coefficient = 0
