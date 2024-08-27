@@ -373,8 +373,8 @@
 	/obj/item/ammo_magazine/ammobox/magnum = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/gun/projectile/automatic/drozd = 1,
-	/obj/item/clothing/suit/armor/ghezelm = 1,
-	/obj/item/clothing/shoes/workboots/proloteriat = 1
+	/obj/item/clothing/suit/armor/gzhel = 1,
+	/obj/item/clothing/shoes/workboots/proletariat = 1
 	)
 
 
