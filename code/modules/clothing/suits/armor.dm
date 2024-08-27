@@ -210,9 +210,9 @@
 	name = "green flakvest vest"
 	icon_state = "flakvest_green"
 
-/obj/item/clothing/suit/armor/ghezelm
-	name = "Excelsior ghezel-m vest"
-	desc = "The first layer of defense for every Haven conscript."
+/obj/item/clothing/suit/armor/gzhel
+	name = "Excelsior gzhel-m vest"
+	desc = "Standard-issue Excelsior bullet-resistant vest with great balance of cost, weight, and protection."
 	icon_state = "ghezel_m"
 	item_state = "ghezel_m"
 	armor = list(
