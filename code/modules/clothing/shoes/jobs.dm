@@ -103,7 +103,7 @@
 		rad = 0
 	)
 	can_hold_knife = TRUE
-	style = STYLE_NEG_HIGH
+	style = STYLE_HIGH
 
 /obj/item/clothing/shoes/korund
 	name = "korund heavy greaves"
