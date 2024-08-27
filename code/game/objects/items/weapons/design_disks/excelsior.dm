@@ -83,9 +83,9 @@
 		/datum/design/autolathe/ammo/shotgun_beanbag,
 		/datum/design/autolathe/ammo/shotgun_pellet,
 		/datum/design/autolathe/sec/silencer,						//misc
-		/datum/design/autolathe/clothing/excelsior_ghezel,
-		/datum/design/autolathe/clothing/shoes/workboots/proloteriat,
-		/datum/design/autolathe/clothing/excel_spherer_helm,
+		/datum/design/autolathe/clothing/excel_armor,
+		/datum/design/autolathe/clothing/excel_boots,
+		/datum/design/autolathe/clothing/excel_helmet,
 		/datum/design/autolathe/clothing/excelsior_armor,
 		/datum/design/autolathe/clothing/excel_beret,
 		/datum/design/autolathe/device/excelbaton,					//security
