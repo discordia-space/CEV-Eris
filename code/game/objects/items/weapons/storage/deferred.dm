@@ -358,7 +358,7 @@
 	/obj/item/gun/projectile/boltgun = 1,
 	/obj/item/ammo_magazine/ammobox/lrifle_small = 1,
 	/obj/item/ammo_magazine/sllrifle = 7,
-	/obj/item/clothing/shoes/workboots/proloteriat = 1
+	/obj/item/clothing/shoes/workboots/proletariat = 1
 	)
 
 /obj/item/storage/deferred/crate/excel_shock_kit
