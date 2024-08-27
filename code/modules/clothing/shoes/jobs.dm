@@ -88,9 +88,9 @@
 	can_hold_knife = TRUE
 	style = STYLE_NEG_HIGH
 
-/obj/item/clothing/shoes/workboots/proloteriat
-	name = "Armored work boots"
-	desc = "A pair of reinforced shoes, perfect for work in factories and war zones, for the proloteriat!."
+/obj/item/clothing/shoes/workboots/proletariat
+	name = "Excelsior boots"
+	desc = "Robust, yet surprisingly posh boots; one and only design worn by comrades everywhere from Haven to null sector."
 	icon_state = "prolo_boots"
 	item_state = "prolo_boots"
 	siemens_coefficient = 0
