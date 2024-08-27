@@ -3,20 +3,20 @@
 	name = "excelsior armor"
 	build_path = /obj/item/clothing/suit/space/void/excelsior
 
-/datum/design/autolathe/clothing/excelsior_ghezel
-	name = "excelsior ghezel-m armor"
-	build_path = /obj/item/clothing/suit/armor/ghezelm
+/datum/design/autolathe/clothing/excel_armor
+	name = "Excelsior gzhel-m vest"
+	build_path = /obj/item/clothing/suit/armor/gzhel
 
-/datum/design/autolathe/clothing/shoes/workboots/proloteriat
-	name = "excelsior worker boots"
-	build_path = /obj/item/clothing/shoes/workboots/proloteriat
+/datum/design/autolathe/clothing/excel_boots
+	name = "Excelsior boots"
+	build_path = /obj/item/clothing/shoes/workboots/proletariat
 
-/datum/design/autolathe/clothing/excel_spherer_helm
-	name = "excelsior sphere-R helmet"
-	build_path = /obj/item/clothing/head/armor/excel_sphere
+/datum/design/autolathe/clothing/excel_helmet
+	name = "Excelsior sfera-9 helmet"
+	build_path = /obj/item/clothing/head/armor/excel_sfera
 
 /datum/design/autolathe/clothing/excel_beret
-	name = "Excelsior Beret"
+	name = "Excelsior beret"
 	build_path = /obj/item/clothing/head/armor/excel_beret
 // Standard
 
