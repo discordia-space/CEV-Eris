@@ -174,8 +174,8 @@
 	)
 
 /obj/item/clothing/gloves/korund
-	name = "Kilak gauntlet"
-	desc = "A pair of gloves with just enough manuverability to pull a maxim trigger"
+	name = "KULAK power gauntlet"
+	desc = "A pair of heavy gloves with left one dedicated to offensive use of electric shock. Requires external power supply from korund-sh-p carapace, and is just flexible enough to pull Maxim's trigger."
 	icon_state = "kilak_glove"
 	item_state = "kilak_glove"
 	armor = list(
