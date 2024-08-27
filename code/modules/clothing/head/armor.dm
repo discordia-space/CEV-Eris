@@ -623,7 +623,7 @@
 	price_tag = 150
 
 /obj/item/clothing/head/armor/korund_helm
-	name = "excelsior korund-sp-h helmet "
+	name = "Excelsior sfera-45 helmet"
 	desc = "The heaviest armor provided from the labs in haven, perfect for the aspiring heavy weapons specialist."
 	icon_state = "korund_helm"
 	item_state = "korund_helm"
