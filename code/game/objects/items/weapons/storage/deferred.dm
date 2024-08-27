@@ -407,7 +407,7 @@
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/ammo_magazine/ammobox/srifle_small = 1,
 	/obj/item/clothing/head/armor/excel_sphere = 1,
-	/obj/item/clothing/shoes/workboots/proloteriat = 1
+	/obj/item/clothing/shoes/workboots/proletariat = 1
 	)
 
 /obj/item/storage/deferred/crate/excel_heavy
