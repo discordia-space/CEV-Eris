@@ -352,7 +352,7 @@
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/clothing/under/excelsior = 1,
-	/obj/item/clothing/head/armor/excel_sphere = 1,
+	/obj/item/clothing/head/armor/excel_sfera = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/clothing/suit/armor/gzhel = 1,
 	/obj/item/gun/projectile/boltgun = 1,
@@ -368,7 +368,7 @@
 	initial_contents = list(
 	/obj/item/clothing/gloves/thick = 1,
 	/obj/item/clothing/under/excelsior = 1,
-	/obj/item/clothing/head/armor/excel_sphere = 1,
+	/obj/item/clothing/head/armor/excel_sfera = 1,
 	/obj/item/ammo_magazine/msmg = 4,
 	/obj/item/ammo_magazine/ammobox/magnum = 1,
 	/obj/item/clothing/mask/gas = 1,
@@ -406,7 +406,7 @@
 	/obj/item/clothing/suit/armor/gzhel = 1,
 	/obj/item/clothing/mask/gas = 1,
 	/obj/item/ammo_magazine/ammobox/srifle_small = 1,
-	/obj/item/clothing/head/armor/excel_sphere = 1,
+	/obj/item/clothing/head/armor/excel_sfera = 1,
 	/obj/item/clothing/shoes/workboots/proletariat = 1
 	)
 
