@@ -599,9 +599,9 @@
 		MATERIAL_PLASTIC = 1,
 		MATERIAL_STEEL = 1
 	)
-/obj/item/clothing/head/armor/excel_sphere
-	name = "Excelsior sphere-r helmet"
-	desc = "A common sight amongst Haven's land battles, a friend to every conscript."
+/obj/item/clothing/head/armor/excel_sfera
+	name = "Excelsior sfera-9 helmet"
+	desc = "The most common Excelsior combat helmet, offers decent enough protection for relative ease of production."
 	icon_state = "spherer_helm"
 	item_state = "spherer_helm"
 	armor = list(
