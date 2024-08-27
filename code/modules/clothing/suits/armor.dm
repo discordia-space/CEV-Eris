@@ -265,8 +265,8 @@
 	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/armor/korund
-	name = "excelsior korund exoskeleton"
-	desc = "Fresh from the design labs of Haven, the Korund exoskeleton is the heaviest armor available to the revolution's many cells."
+	name = "Excelsior korund-sh-p carapace"
+	desc = "Super heavy, powered suit of communard armor. Can house a Zarya power cell to supply KULAK power gauntlet."
 	icon_state = "korund_armor"
 	item_state = "korund_armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
