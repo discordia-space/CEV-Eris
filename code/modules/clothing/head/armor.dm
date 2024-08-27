@@ -624,7 +624,7 @@
 
 /obj/item/clothing/head/armor/korund_helm
 	name = "Excelsior sfera-45 helmet"
-	desc = "The heaviest armor provided from the labs in haven, perfect for the aspiring heavy weapons specialist."
+	desc = "The most durable and heavy Excelsior helmet to date, for Haven's hardest battles."
 	icon_state = "korund_helm"
 	item_state = "korund_helm"
 	armor = list(
