@@ -391,7 +391,7 @@
 	/obj/item/ammo_magazine/ammobox/lrifle_small = 1,
 	/obj/item/clothing/suit/space/void/excelsior = 1,
 	/obj/item/tank/emergency_oxygen/double = 1,
-	/obj/item/clothing/shoes/workboots/proloteriat = 1
+	/obj/item/clothing/shoes/workboots/proletariat = 1
 	)
 
 /obj/item/storage/deferred/crate/excel_spetsnaz
