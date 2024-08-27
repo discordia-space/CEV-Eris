@@ -582,8 +582,8 @@
 	icon_state = "tanker_helmet_gray"
 
 /obj/item/clothing/head/armor/excel_beret
-	name = "excelsior Beret"
-	desc = "An armored white and orange beret, issued out to haven's many conscripts"
+	name = "Excelsior beret"
+	desc = "An armored white and orange beret, issued out to Haven's many conscripts"
 	icon_state = "excel_beret"
 	item_state = "excel_beret"
 	armor = list(
