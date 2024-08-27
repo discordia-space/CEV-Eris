@@ -354,7 +354,7 @@
 	/obj/item/clothing/under/excelsior = 1,
 	/obj/item/clothing/head/armor/excel_sphere = 1,
 	/obj/item/clothing/mask/gas = 1,
-	/obj/item/clothing/suit/armor/ghezelm = 1,
+	/obj/item/clothing/suit/armor/gzhel = 1,
 	/obj/item/gun/projectile/boltgun = 1,
 	/obj/item/ammo_magazine/ammobox/lrifle_small = 1,
 	/obj/item/ammo_magazine/sllrifle = 7,
