@@ -30,7 +30,7 @@
 		set_power_use(NO_POWER_USE)
 		return
 	lit = !lit
-	set_power_use(lit ? 2 : 1)
+	set_power_use(lit ? ACTIVE_POWER_USE : IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/holosign/update_icon()

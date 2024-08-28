@@ -264,12 +264,12 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	if(new_state) // If we turned on
 		if(!gravity_is_on)
 			grav_on()
-		set_power_use(2)
+		set_power_use(ACTIVE_POWER_USE)
 	else
 		if(gravity_is_on)
 			grav_off()
 		set_light(0)
-		set_power_use(1)
+		set_power_use(IDLE_POWER_USE)
 	update_icon()
 	src.updateUsrDialog()
 
