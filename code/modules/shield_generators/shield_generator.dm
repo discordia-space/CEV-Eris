@@ -460,7 +460,7 @@
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shipside/shield_generator/proc/take_shield_damage(var/damage, var/shield_damtype, var/atom/damager = null)
+/obj/machinery/power/shipside/shield_generator/proc/take_shield_damage(damage, shield_damtype, atom/damager = null)
 	var/energy_to_use = damage * ENERGY_PER_HP
 
 	// Even if the shield isn't currently modulating, it can still use old modulation buildup to reduce damage
@@ -520,11 +520,11 @@
 
 
 // Checks whether specific flags are enabled
-/obj/machinery/power/shipside/shield_generator/proc/check_flag(var/flag)
+/obj/machinery/power/shipside/shield_generator/proc/check_flag(flag)
 	return (shield_modes & flag)
 
 
-/obj/machinery/power/shipside/shield_generator/proc/toggle_flag(var/flag)
+/obj/machinery/power/shipside/shield_generator/proc/toggle_flag(flag)
 	shield_modes ^= flag
 	update_upkeep_multiplier()
 	for(var/obj/effect/shield/S in field_segments)

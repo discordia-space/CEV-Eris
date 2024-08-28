@@ -64,7 +64,7 @@
 	build_tendril_dirs()
 	update_icon()
 
-/obj/machinery/power/shipside/proc/log_event(var/event_type, var/atom/origin_atom)
+/obj/machinery/power/shipside/proc/log_event(event_type, atom/origin_atom)
 	return
 
 /obj/machinery/power/shipside/verb/toggle_tendrils_verb()
@@ -130,7 +130,7 @@
 		to_chat(usr, SPAN_NOTICE("You retracted [src] conduits."))
 		return FALSE
 
-/obj/machinery/power/shipside/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/power/shipside/attackby(obj/item/O, mob/user)
 	// Prevents dismantle-rebuild tactics to reset the emergency shutdown timer.
 	if(running)
 		to_chat(user, "Turn off \the [src] first!")
@@ -233,7 +233,7 @@
 	if(base)
 		base.RefreshParts()
 
-/obj/machinery/power/conduit/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/power/conduit/attackby(obj/item/O, mob/user)
 	// Prevents whatever unholy things can happen if you touch conduits mid-work.
 	if(base)
 		if(base.running)
