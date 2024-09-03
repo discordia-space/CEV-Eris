@@ -212,5 +212,19 @@
 		to_chat(user, SPAN_DANGER("The wall crumbles under your touch!"))
 		dismantle_wall(user)
 		return
+	if(window_type)
+		if(user.a_intent == I_HURT)
+			playsound(src, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
+			user.do_attack_animation(src)
+			user.visible_message(SPAN_DANGER("\The [user] bangs against \the [src]!"),
+								SPAN_DANGER("You bang against \the [src]!"),
+								"You hear a banging sound.")
+		else
+			playsound(src, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
+			user.visible_message("[user.name] knocks on the [name].",
+								"You knock on the [name].",
+								"You hear a knocking sound.")
+		return
+
 	to_chat(user, SPAN_NOTICE("You push the wall, but nothing happens."))
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)

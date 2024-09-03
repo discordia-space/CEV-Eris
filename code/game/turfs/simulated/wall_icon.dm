@@ -92,7 +92,7 @@
 		if(right_angle_override)
 			sprite_state = "[wall_type]_[connection_type]_right_angle"
 
-		var/sprite_id = "[sprite_state]_[overlay_direction]"
+		var/sprite_id = "[ref(icon)]_[sprite_state]_[overlay_direction]"
 		if(appearance_cache[sprite_id] != null)
 			add_overlay(appearance_cache[sprite_id])
 		else
@@ -103,12 +103,12 @@
 		// WINDOW SPRITE //
 		if(window_type) // Glass on top of the low wall, if any
 			sprite_state = "[window_type]_[connection_type]"
-			sprite_id = "[sprite_state]_[overlay_direction]"
+			sprite_id = "[ref(icon)]_[sprite_state]_[overlay_direction]"
 			if(appearance_cache[sprite_id] != null)
 				add_overlay(appearance_cache[sprite_id])
 			else
 				var/image/image = image(icon, icon_state = sprite_state, dir = overlay_direction, layer = ABOVE_OBJ_LAYER)
-				image.alpha = 180
+				image.alpha = window_alpha
 				appearance_cache[sprite_id] = image.appearance
 				add_overlay(appearance_cache[sprite_id])
 
@@ -128,7 +128,7 @@
 					sprite_state = "[wall_type]_over_[full_wall_connection_type]"
 
 			if(add_extra_overlay)
-				sprite_id = "[sprite_state]_[overlay_direction]"
+				sprite_id = "[ref(icon)]_[sprite_state]_[overlay_direction]"
 				if(appearance_cache[sprite_id] != null)
 					add_overlay(appearance_cache[sprite_id])
 				else
