@@ -1,6 +1,6 @@
 /obj/machinery/autolathe
 	name = "autolathe"
-	desc = "A general purpose fabricator capable of producing nearly any item you need, provided you have the necessary materials and design disk."
+	desc = "A general purpose fabricator capable of producing nearly any item you need, provided you have the necessary materials and design disks."
 	icon = 'icons/obj/machines/autolathe.dmi'
 	description_info = "Can be upgraded to print faster, cheaper or hold more material. Can recycle items by trying to insert them as material"
 	icon_state = "autolathe"
