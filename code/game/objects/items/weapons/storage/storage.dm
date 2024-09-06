@@ -473,10 +473,8 @@
 /obj/item/storage/proc/collectItems(turf/target, mob/user)
 	ASSERT(istype(target))
 	. = FALSE
-	var/limiter = 15
+
 	for(var/obj/item/I in target)
-		if(--limiter < 0)
-			break
 		if(can_be_inserted(I, TRUE))
 			. |= TRUE
 			handle_item_insertion(I, TRUE)
