@@ -1,0 +1,4 @@
+author: AltHit
+delete-after: true
+changes:
+  - bugfix: repair nanites for FBP now work correctly and heal
