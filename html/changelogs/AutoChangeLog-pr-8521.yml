@@ -1,5 +1,0 @@
-author: Wrill
-delete-after: true
-changes:
-  - tweak: satchels will gather as many items as they can store, instead of up to
-      15.
