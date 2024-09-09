@@ -7,6 +7,9 @@
 	var/list/accepted_inputs = list()
 	var/list/input_qualities = list()
 
+// =================================================
+// ================     ORGANIC     ================
+// =================================================
 /datum/component/modification/organ/input/reagents
 	adjustable = TRUE
 
@@ -29,7 +32,7 @@
 
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
-	var/description = "<span style='color:green'>Functional information (input):</span> metabolizes reagents"
+	var/description = "\n<span style='color:green'>Functional information (input):</span> metabolizes reagents"
 	description += "\n<span style='color:green'>Source:</span> [source]"
 	description += "\n<span style='color:green'>Reagents metabolized:</span> [inputs]"
 
@@ -100,7 +103,7 @@
 			input |= reagent_path
 			input[reagent_path] |= threshold_met
 
-	SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_PROCESS, holder, owner, input)
+	SEND_SIGNAL(holder, COMSIG_ABERRANT_PROCESS, owner, input)
 
 
 /datum/component/modification/organ/input/damage
@@ -129,7 +132,7 @@
 		
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
-	var/description = "<span style='color:green'>Functional information (input):</span> injury response"
+	var/description = "\n<span style='color:green'>Functional information (input):</span> injury response"
 	description += "\n<span style='color:green'>Damage types (threshold):</span> [inputs]"
 
 	return description
@@ -187,8 +190,113 @@
 		input += desired_damage_type
 		input[desired_damage_type] = threshold_met
 
-	SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_PROCESS, holder, owner, input)
+	SEND_SIGNAL(holder, COMSIG_ABERRANT_PROCESS, owner, input)
 
+/datum/component/modification/organ/input/consume
+	adjustable = TRUE
+	somatic = TRUE
+
+/datum/component/modification/organ/input/consume/get_function_info()
+	var/inputs
+	for(var/input in accepted_inputs)
+		var/atom/movable/AM = input
+		inputs += initial(AM.name) + ", "
+
+	inputs = copytext(inputs, 1, length(inputs) - 1)
+
+	var/description = "\n<span style='color:green'>Functional information (input):</span> consumes held object"
+	description += "\n<span style='color:green'>Digestable materials:</span> [inputs]"
+
+	return description
+
+/datum/component/modification/organ/input/consume/modify(obj/item/I, mob/living/user)
+	if(!LAZYLEN(input_qualities))
+		return
+
+	for(var/input in accepted_inputs)
+		var/list/possibilities = input_qualities.Copy()
+		
+		if(LAZYLEN(accepted_inputs) > 1)
+			for(var/source in possibilities)
+				var/source_type = possibilities[source]
+				if(input != source_type && accepted_inputs.Find(source_type))
+					possibilities.Remove(source)
+
+		var/atom/movable/AM = input
+
+		var/decision = input("Choose a digestable material (current: [AM ? initial(AM.name) : "unknown"])","Adjusting Organoid") as null|anything in possibilities
+		if(!decision)
+			continue
+
+		accepted_inputs[accepted_inputs.Find(input)] = input_qualities[decision]
+
+/datum/component/modification/organ/input/consume/trigger(atom/movable/holder, mob/living/carbon/human/owner)
+	if(!holder || !owner)
+		return
+	if(owner.check_mouth_coverage())
+		return
+	if(!istype(holder, /obj/item/organ/internal/scaffold))
+		return
+
+	var/obj/item/organ/internal/scaffold/S = holder
+	var/organ_multiplier = ((S.max_damage - S.damage) / S.max_damage)
+
+	var/list/input = list()
+	var/active_hand_held = owner.get_active_hand()
+	var/inactive_hand_held = owner.get_inactive_hand()
+
+	for(var/digestable in accepted_inputs)
+		var/obj/O
+		if(istype(inactive_hand_held, digestable) && isobj(inactive_hand_held))
+			O = inactive_hand_held
+		if(istype(active_hand_held, digestable) && isobj(active_hand_held))
+			O = active_hand_held
+
+		if(!O)
+			to_chat(owner, SPAN_WARNING("You attempt to consume something, but you have nothing edible in your hand."))
+			return
+
+		var/nutrition_supplied = 0
+
+		if(LAZYLEN(O.matter))
+			var/datum/reagents/contained_reagents = O.reagents
+			if(contained_reagents)
+				contained_reagents.trans_to_holder(owner.ingested, contained_reagents.total_volume)
+
+			for(var/material in O.matter)
+				nutrition_supplied += O.matter[material]
+				owner.adjustNutrition(nutrition_supplied * organ_multiplier)
+
+			// Same message as carrion sans taste description
+			playsound(owner.loc, 'sound/items/eatfood.ogg', 70, TRUE, 0)
+			owner.visible_message(SPAN_DANGER("[owner] devours \the [O]!"), SPAN_NOTICE("You consume \the [O]."))
+			qdel(O)
+		
+		if(nutrition_supplied > threshold)
+			var/magnitude = 0
+
+			if(nutrition_supplied > 40)
+				magnitude = 8 * organ_multiplier
+			else if(nutrition_supplied > 20)
+				magnitude = 6 * organ_multiplier
+			else if(nutrition_supplied > 10)
+				magnitude = 4 * organ_multiplier
+				
+			if(magnitude)
+				if(prob(2))
+					to_chat(owner, SPAN_NOTICE("A warm sensation fills your belly. You feel satiated."))
+				owner.stats.addTempStat(STAT_VIG, magnitude, S.aberrant_cooldown_time + 2 SECONDS, "[parent]")
+				owner.sanity.changeLevel(magnitude)
+
+		input += digestable
+		input[digestable] = (nutrition_supplied > 0) ? TRUE : FALSE
+
+	SEND_SIGNAL(holder, COMSIG_ABERRANT_PROCESS, owner, input)
+
+
+// =================================================
+// ================     ASSISTED     ===============
+// =================================================
 
 /datum/component/modification/organ/input/power_source
 	adjustable = TRUE
@@ -209,7 +317,7 @@
 
 	inputs = copytext(inputs, 1, length(inputs) - 1)
 
-	var/description = "<span style='color:green'>Functional information (input):</span> drains held power sources"
+	var/description = "\n<span style='color:green'>Functional information (input):</span> drains held power sources"
 	description += "\n<span style='color:green'>Sources accepted:</span> [inputs]"
 
 	return description
@@ -227,9 +335,7 @@
 				if(input != source_type && accepted_inputs.Find(source_type))
 					possibilities.Remove(source)
 
-		var/atom/movable/AM = input_qualities[input]
-
-		var/decision = input("Choose a power source (current: [AM ? initial(AM.name) : "unknown"])","Adjusting Organoid") as null|anything in possibilities
+		var/decision = input("Choose a power source (current: [input])","Adjusting Organoid") as null|anything in possibilities
 		if(!decision)
 			continue
 
@@ -238,13 +344,15 @@
 /datum/component/modification/organ/input/power_source/trigger(atom/movable/holder, mob/living/carbon/human/owner)
 	if(!holder || !owner)
 		return
-	if(!owner.get_siemens_coefficient_organ(owner.get_organ(check_zone(BP_L_ARM))) && !owner.get_siemens_coefficient_organ(owner.get_organ(check_zone(BP_R_ARM))))
-		return
 	if(!istype(holder, /obj/item/organ/internal/scaffold))
 		return
 
 	var/obj/item/organ/internal/scaffold/S = holder
 	var/organ_multiplier = ((S.max_damage - S.damage) / S.max_damage)
+	var/siemens_coefficient = min((owner.get_siemens_coefficient_organ(owner.get_organ(check_zone(BP_L_ARM))) + owner.get_siemens_coefficient_organ(owner.get_organ(check_zone(BP_R_ARM)))) / 2, 1)
+
+	if(siemens_coefficient < 0.5)
+		return
 
 	var/list/input = list()
 	var/active_hand_held = owner.get_active_hand()
@@ -263,7 +371,7 @@
 		if(istype(AM, /obj/item/cell))
 			var/obj/item/cell/C = AM
 			if(C.charge)
-				energy_supplied = C.use(C.charge) / CELLRATE		// Using a rigged cell will make it explode, which is funny
+				energy_supplied = C.use(C.charge) * siemens_coefficient / CELLRATE		// Using a rigged cell will make it explode, which is funny
 
 		// 1 plasma sheet = 192 kJ, 1 uranium sheet = 1152 kJ, 1 tritium sheet = 1440 kJ
 		if(istype(AM, /obj/item/stack/material))
@@ -288,19 +396,22 @@
 
 			if(energy_supplied > 4999999)
 				magnitude = 5 * organ_multiplier
-			if(energy_supplied > 999999)
+			else if(energy_supplied > 999999)
 				magnitude = 3 * organ_multiplier
-			if(energy_supplied > 99999)
+			else if(energy_supplied > 99999)
 				magnitude = 2 * organ_multiplier
 				
-			if(magnitude && ishuman(owner))
+			if(magnitude)
 				if(prob(2))
 					to_chat(owner, SPAN_NOTICE("A pleasant chill runs down your spine. You feel more focused."))
-				var/mob/living/carbon/human/H = owner
-				H.stats.addTempStat(STAT_COG, magnitude * 2, S.aberrant_cooldown_time + 2 SECONDS, "[parent]")
-				H.sanity.changeLevel(magnitude - 2)
+				owner.stats.addTempStat(STAT_COG, magnitude * 2, S.aberrant_cooldown_time + 2 SECONDS, "[parent]")
+				owner.sanity.changeLevel(magnitude - 2)
 
 		input += power_source
 		input[power_source] = energy_supplied ? TRUE : FALSE
 
-	SEND_SIGNAL_OLD(holder, COMSIG_ABERRANT_PROCESS, holder, owner, input)
+	SEND_SIGNAL(holder, COMSIG_ABERRANT_PROCESS, owner, input)
+
+// =================================================
+// ================     ROBOTIC     ================
+// =================================================

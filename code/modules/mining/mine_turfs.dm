@@ -1,13 +1,16 @@
 /**********************Mineral deposits**************************/
-/turf/unsimulated/mineral
+/turf/mineral_unsimulated
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
 	blocks_air = 1
 	density = TRUE
 	layer = EDGED_TURF_LAYER
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	is_simulated = FALSE
 
-/turf/simulated/mineral //wall piece
+/turf/mineral //wall piece
 	name = "Rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
@@ -18,7 +21,7 @@
 	layer = EDGED_TURF_LAYER
 	blocks_air = 1
 	temperature = T0C
-	var/mined_turf = /turf/simulated/floor/asteroid
+	var/mined_turf = /turf/floor/asteroid
 	var/ore/mineral
 	var/mined_ore = 0
 	var/last_act = 0
@@ -34,24 +37,24 @@
 
 	has_resources = 1
 
-/turf/simulated/mineral/Initialize()
+/turf/mineral/Initialize()
 	.=..()
 	icon_state = "rock[rand(0,4)]"
 	spawn(0)
 		MineralSpread()
 
-/turf/simulated/mineral/can_build_cable()
+/turf/mineral/can_build_cable()
 	return !density
 
-/turf/simulated/mineral/is_plating()
+/turf/mineral/is_plating()
 	return TRUE
-/turf/simulated/mineral/explosion_act(target_power, explosion_handler/handler)
+/turf/mineral/explosion_act(target_power, explosion_handler/handler)
 	. = ..()
 	if(src && target_power > 75)
 		mined_ore = 1
 		GetDrilled()
 
-/turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj)
+/turf/mineral/bullet_act(var/obj/item/projectile/Proj)
 
 	// Emitter blasts
 	if(istype(Proj, /obj/item/projectile/beam/emitter))
@@ -62,7 +65,7 @@
 			GetDrilled()
 	else ..()
 
-/turf/simulated/mineral/Bumped(AM)
+/turf/mineral/Bumped(AM)
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
@@ -83,23 +86,23 @@
 				attackby(I,R)
 
 	else if(istype(AM,/mob/living/exosuit))
-		var/mob/living/exosuit/M = AM
-		if(istype(M.selected_hardpoint, /obj/item/mech_equipment/drill))
-			var/obj/item/mech_equipment/drill/D = M.selected_hardpoint
-			D.afterattack(src)
+		var/mob/living/exosuit/mech = AM
+		if(LAZYLEN(mech.pilots) && istype(mech.selected_system, /obj/item/mech_equipment/drill))
+			var/obj/item/mech_equipment/drill/drill = mech.selected_system
+			drill.mine(src, mech.pilots[1], mech.Adjacent(src))
 
-/turf/simulated/mineral/proc/MineralSpread()
+/turf/mineral/proc/MineralSpread()
 	if(mineral && mineral.spread)
 		for(var/trydir in cardinal)
 			if(prob(mineral.spread_chance))
-				var/turf/simulated/mineral/target_turf = get_step(src, trydir)
+				var/turf/mineral/target_turf = get_step(src, trydir)
 				if(istype(target_turf) && !target_turf.mineral)
 					target_turf.mineral = mineral
 					target_turf.UpdateMineral()
 					target_turf.MineralSpread()
 
 
-/turf/simulated/mineral/proc/UpdateMineral()
+/turf/mineral/proc/UpdateMineral()
 	clear_ore_effects()
 	if(!mineral)
 		name = "\improper Rock"
@@ -111,7 +114,7 @@
 		M.color = color
 
 //Not even going to touch this pile of spaghetti
-/turf/simulated/mineral/attackby(obj/item/I, mob/living/user)
+/turf/mineral/attackby(obj/item/I, mob/living/user)
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src, CB = CALLBACK(src, PROC_REF(check_radial_dig)))
 	switch(tool_type)
@@ -138,18 +141,18 @@
 		else
 			return ..()
 
-/turf/simulated/mineral/proc/clear_ore_effects()
+/turf/mineral/proc/clear_ore_effects()
 	for(var/obj/effect/mineral/M in contents)
 		qdel(M)
 
-/turf/simulated/mineral/proc/DropMineral()
+/turf/mineral/proc/DropMineral()
 	if(!mineral)
 		return
 	clear_ore_effects()
 	var/obj/item/ore/O = new mineral.ore (src)
 	return O
 
-/turf/simulated/mineral/proc/GetDrilled(var/artifact_fail = 0)
+/turf/mineral/proc/GetDrilled(var/artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
 	if (mineral && mineral.result_amount)
 
@@ -159,19 +162,19 @@
 
 	//Add some rubble,  you did just clear out a big chunk of rock.
 
-	var/turf/simulated/floor/asteroid/N = ChangeTurf(mined_turf)
+	var/turf/floor/asteroid/N = ChangeTurf(mined_turf)
 
 	if(istype(N))
 		N.overlay_detail = "asteroid[rand(0,9)]"
 		N.updateMineralOverlays(1)
 
 
-/turf/simulated/mineral/random
+/turf/mineral/random
 	name = "Mineral deposit"
 	var/mineralSpawnChanceList = list(ORE_URANIUM = 5, ORE_PLATINUM = 5, ORE_IRON = 35, ORE_CARBON = 35, ORE_DIAMOND = 1, ORE_GOLD = 5, ORE_SILVER = 5, ORE_PLASMA = 10, ORE_HYDROGEN = 1)
 	var/mineralChance = 100 //10 //means 10% chance of this plot changing to a mineral deposit
 
-/turf/simulated/mineral/random/New()
+/turf/mineral/random/New()
 	if (prob(mineralChance) && !mineral)
 		var/mineral_name = pickweight(mineralSpawnChanceList) //temp mineral name
 		mineral_name = lowertext(mineral_name)
@@ -181,10 +184,10 @@
 
 	. = ..()
 
-/turf/simulated/mineral/proc/check_radial_dig()
+/turf/mineral/proc/check_radial_dig()
 	return TRUE
 
-/turf/simulated/mineral/random/high_chance
+/turf/mineral/random/high_chance
 	mineralChance = 100 //25
 	mineralSpawnChanceList = list(ORE_URANIUM = 10, ORE_PLATINUM = 10, ORE_IRON = 20, ORE_CARBON = 20, ORE_DIAMOND = 2, ORE_GOLD = 10, ORE_SILVER = 10, ORE_PLASMA = 20, ORE_HYDROGEN = 1)
 
@@ -193,7 +196,7 @@
 
 // Setting icon/icon_state initially will use these values when the turf is built on/replaced.
 // This means you can put grass on the asteroid etc.
-/turf/simulated/floor/asteroid
+/turf/floor/asteroid
 	name = "sand"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
@@ -206,22 +209,22 @@
 	var/overlay_detail
 	has_resources = 1
 
-/turf/simulated/floor/asteroid/New()
+/turf/floor/asteroid/New()
 	..()
 	icon_state = "asteroid[rand(0,2)]"
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,8)]"
 		updateMineralOverlays(1)
 
-/turf/simulated/floor/asteroid/explosion_act(target_power, explosion_handler/handler)
+/turf/floor/asteroid/explosion_act(target_power, explosion_handler/handler)
 	. = ..()
 	if(src && target_power > 50)
 		gets_dug()
 
-/turf/simulated/floor/asteroid/is_plating()
+/turf/floor/asteroid/is_plating()
 	return !density
 
-/turf/simulated/floor/asteroid/attackby(obj/item/I, mob/user)
+/turf/floor/asteroid/attackby(obj/item/I, mob/user)
 
 	if(QUALITY_DIGGING in I.tool_qualities)
 		if (dug)
@@ -234,7 +237,7 @@
 	else
 		..(I,user)
 
-/turf/simulated/floor/asteroid/proc/gets_dug()
+/turf/floor/asteroid/proc/gets_dug()
 
 	if(dug)
 		return
@@ -246,7 +249,7 @@
 	icon_state = "asteroid_dug"
 	return
 
-/turf/simulated/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
+/turf/floor/asteroid/proc/updateMineralOverlays(var/update_neighbors)
 
 	overlays.Cut()
 
@@ -262,12 +265,12 @@
 	if(update_neighbors)
 		var/list/all_step_directions = list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST)
 		for(var/direction in all_step_directions)
-			var/turf/simulated/floor/asteroid/A
-			if(istype(get_step(src, direction), /turf/simulated/floor/asteroid))
+			var/turf/floor/asteroid/A
+			if(istype(get_step(src, direction), /turf/floor/asteroid))
 				A = get_step(src, direction)
 				A.updateMineralOverlays()
 
-/turf/simulated/floor/asteroid/Entered(atom/movable/M as mob|obj)
+/turf/floor/asteroid/Entered(atom/movable/M as mob|obj)
 	..()
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
@@ -281,9 +284,9 @@
 			else
 				return
 
-/turf/simulated/floor/asteroid/proc/check_radial_dig()
+/turf/floor/asteroid/proc/check_radial_dig()
 	return FALSE
 
-/turf/simulated/floor/asteroid/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+/turf/floor/asteroid/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
 	// Asteroid turfs are indestructible, otherwise they can be destroyed at some point and expose metal plating
 	return

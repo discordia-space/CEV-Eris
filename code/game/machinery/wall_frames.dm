@@ -37,7 +37,7 @@
 
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
-	if (!istype(loc, /turf/simulated/floor))
+	if (!istype(loc, /turf/floor))
 		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || A.name == "Space")
@@ -72,7 +72,7 @@
 
 	var/turf/loc = get_turf(on_floor)
 	//var/area/A = loc.loc
-	/*if (!istype(loc, /turf/simulated/floor)) //TODO rework this
+	/*if (!istype(loc, /turf/floor)) //TODO rework this
 		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || A.name == "Space")

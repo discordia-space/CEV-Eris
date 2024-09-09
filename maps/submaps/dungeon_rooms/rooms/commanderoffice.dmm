@@ -1,72 +1,72 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "d" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "e" = (
 /obj/structure/filingcabinet,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "f" = (
 /obj/structure/closet/onestar/tier3,
 /obj/spawner/cloth/onestar,
 /obj/spawner/cloth/onestar/low_chance,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "g" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "h" = (
 /obj/machinery/door/blast/shutters{
 	id = 2;
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "i" = (
 /obj/crawler/crawler_wallbreaker,
 /obj/machinery/status_display,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "j" = (
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "k" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "l" = (
 /obj/machinery/shieldwallgen{
 	anchored = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "m" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "n" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "o" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "p" = (
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "q" = (
 /obj/structure/table/rack,
@@ -77,7 +77,7 @@
 	dir = 8
 	},
 /obj/spawner/gun/onestar,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "r" = (
 /obj/structure/table/rack,
@@ -88,50 +88,49 @@
 	dir = 4
 	},
 /obj/spawner/gun/onestar/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "s" = (
 /obj/structure/table/onestar,
 /obj/item/clothing/head/onestar,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "t" = (
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "u" = (
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "v" = (
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "x" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "y" = (
 /obj/structure/table/onestar,
 /obj/item/device/lighting/toggleable/lamp/green,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "z" = (
 /obj/machinery/door/blast/shutters{
 	id = 2
 	},
-/obj/structure/low_wall,
-/turf/simulated/floor/tiled/techmaint,
+/turf/wall/low,
 /area/crawler)
 "A" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "B" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "C" = (
 /obj/structure/table/onestar,
@@ -139,38 +138,38 @@
 	id = 2;
 	name = "Shutters"
 	},
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "D" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "E" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "F" = (
 /obj/structure/toilet,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "G" = (
 /obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "H" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "J" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "Y" = (
 /obj/structure/table/rack,
@@ -181,7 +180,7 @@
 	dir = 8
 	},
 /obj/spawner/gun/onestar/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 
 (1,1,1) = {"

@@ -10,7 +10,7 @@
 	var/precision = FALSE
 
 /obj/item/device/scanner/mining/is_valid_scan_target(atom/O)
-	return istype(O, /turf/simulated)
+	return istype(O, /turf)
 
 
 /obj/item/device/scanner/mining/scan(turf/T, mob/user)
@@ -32,7 +32,7 @@
 		)
 	var/list/lines = list("Ore deposits found at [source.x], [source.y]:")
 
-	for(var/turf/simulated/T in RANGE_TURFS(2, source))
+	for(var/turf/T in RANGE_TURFS(2, source))
 		if(!T.has_resources)
 			continue
 
@@ -62,8 +62,8 @@
 
 		lines += "- [result] of [ore_type]."
 
-	if(istype(source, /turf/simulated))
-		var/turf/simulated/source_simulated = source
+	if(istype(source, /turf))
+		var/turf/source_simulated = source
 		lines += "Seismic activity (from 1 up to 6): [source_simulated.seismic_activity]"
 	else
 		lines += "Seismic activity: 1"
@@ -73,7 +73,7 @@
 /proc/mining_scan_action_precise(turf/source, mob/user)
 	var/list/lines = list("Ore deposits found at [source.x], [source.y]:")
 	var/list/metals = list()
-	for(var/turf/simulated/T in RANGE_TURFS(2, source))
+	for(var/turf/T in RANGE_TURFS(2, source))
 		if(!T.has_resources)
 			continue
 

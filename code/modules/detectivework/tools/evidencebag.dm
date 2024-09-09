@@ -94,6 +94,8 @@
 		icon_state = "evidenceobj"
 	return
 
-/obj/item/evidencebag/examine(mob/user)
-	..(user)
-	if (stored_item) user.examinate(stored_item)
+/obj/item/evidencebag/examine(mob/user, extra_description = "")
+	..(user, extra_description)
+
+	if(stored_item)
+		user.examinate(stored_item)

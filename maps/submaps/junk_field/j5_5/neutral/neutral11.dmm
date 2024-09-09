@@ -1,13 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "b" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 "c" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/template_noop)
 "d" = (
 /obj/structure/lattice,
@@ -17,42 +16,42 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "f" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "g" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom,
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "h" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "i" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "j" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
+/turf/floor/tiled/techmaint_cargo/airless,
 /area/template_noop)
 "k" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "l" = (
 /turf/template_noop,
 /area/template_noop)
 "m" = (
 /obj/spawner/traps,
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 
 (1,1,1) = {"

@@ -158,6 +158,11 @@
 		adjustOxyLoss(20)
 		if(prob(15))
 			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]."))
+	else if(blood_volume < total_blood_req)
+		eye_blurry = max(eye_blurry,6)
+		adjustOxyLoss(4.5) // this damage threshold kills people with good airflow
+		if(prob(15))
+			to_chat(src, SPAN_WARNING("You feel highly [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < blood_bad)
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(2)

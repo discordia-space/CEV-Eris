@@ -71,7 +71,7 @@ SUBSYSTEM_DEF(air)
 	msg += "ZTU:[zones_to_update.len]|"
 	msg += "E:[edges.len]|"
 	msg += "Z:[zones.len]|"
-	..(msg)
+	return ..()
 
 
 /datum/controller/subsystem/air/Initialize(timeofday)
@@ -209,14 +209,13 @@ SUBSYSTEM_DEF(air)
 			continue
 
 		T.update_air_properties()
-		T.post_update_air_properties()
+		if(T.connections)
+			T.connections.update_all()
 		T.needs_air_update = FALSE
-
 		#ifdef ZASDBG
-		T.cut_overlay(mark)
+		T.update_icon() // Getting rid of 'mark' overlay
 		#endif
-
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/air/proc/process_tiles_deferred(resumed = 0)
@@ -225,14 +224,13 @@ SUBSYSTEM_DEF(air)
 		deferred_tiles.len--
 
 		T.update_air_properties()
-		T.post_update_air_properties()
+		if(T.connections)
+			T.connections.update_all()
 		T.needs_air_update = FALSE
-
 		#ifdef ZASDBG
-		T.cut_overlay(mark)
+		T.update_icon() // Getting rid of 'mark' overlay
 		#endif
-
-		if (MC_TICK_CHECK)
+		if(MC_TICK_CHECK)
 			return
 
 /datum/controller/subsystem/air/proc/process_edges(resumed = 0)
@@ -287,9 +285,10 @@ SUBSYSTEM_DEF(air)
 
 	map_init_levels = world.maxz // we simply set current max Z level (later on this value will be increased by maploading process).
 
-	for(var/turf/simulated/T in turfs_to_init)
-		T.update_air_properties()
-		CHECK_TICK
+	for(var/turf/turf as anything in turfs_to_init)
+		if(turf.is_simulated)
+			turf.update_air_properties()
+			CHECK_TICK
 
 /datum/controller/subsystem/air/proc/setup_atmos_machinery()
 	for (var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
@@ -337,9 +336,9 @@ SUBSYSTEM_DEF(air)
 		return BLOCKED
 	return ablock | B.c_airblock(A)
 
-/datum/controller/subsystem/air/proc/has_valid_zone(turf/simulated/T)
+/datum/controller/subsystem/air/proc/has_valid_zone(turf/T)
 	#ifdef ZASDBG
-	ASSERT(istype(T))
+	ASSERT(T.is_simulated)
 	#endif
 
 	return istype(T) && T.zone && !T.zone.invalid
@@ -360,10 +359,10 @@ SUBSYSTEM_DEF(air)
 		B.c_merge(A)
 		mark_zone_update(A)
 
-/datum/controller/subsystem/air/proc/connect(turf/simulated/A, turf/simulated/B)
+/datum/controller/subsystem/air/proc/connect(turf/A, turf/B)
 	#ifdef ZASDBG
-	ASSERT(istype(A))
-	ASSERT(isturf(B))
+	ASSERT(A.is_simulated)
+	ASSERT(istype(B))
 	ASSERT(A.zone)
 	ASSERT(!A.zone.invalid)
 	//ASSERT(B.zone)
@@ -375,9 +374,8 @@ SUBSYSTEM_DEF(air)
 		return
 
 	var/direct = !(block & ZONE_BLOCKED)
-	var/space = !istype(B)
 
-	if(!space)
+	if(!istype(B, /turf/space) && B.is_simulated && A.is_simulated)
 		if(min(A.zone.contents.len, B.zone.contents.len) < ZONE_MIN_SIZE || (direct && (equivalent_pressure(A.zone, B.zone) || times_fired == 0)))
 			merge(A.zone, B.zone)
 			return
@@ -395,10 +393,9 @@ SUBSYSTEM_DEF(air)
 	if(B.connections.get(b_to_a))
 		return
 
-	if(!space)
+	if(!istype(B, /turf/space))
 		if(A.zone == B.zone)
 			return
-
 
 	var/connection/c = new /connection(A,B)
 
@@ -408,9 +405,9 @@ SUBSYSTEM_DEF(air)
 	if(direct)
 		c.mark_direct()
 
-/datum/controller/subsystem/air/proc/mark_for_update(turf/simulated/T)
+/datum/controller/subsystem/air/proc/mark_for_update(turf/T)
 	#ifdef ZASDBG
-	ASSERT(isturf(T))
+	ASSERT(T.is_simulated)
 	#endif
 
 	if(T.needs_air_update)
@@ -421,11 +418,10 @@ SUBSYSTEM_DEF(air)
 			queued_for_update[T] = T
 	else
 		tiles_to_update += T
-		#ifdef ZASDBG
-		T.add_overlay(mark)
-		#endif
-
 		T.needs_air_update = TRUE
+		#ifdef ZASDBG
+		T.add_ZAS_debug_overlay(ZAS_DEBUG_OVERLAY_MARKED_FOR_UPDATE)
+		#endif
 
 /datum/controller/subsystem/air/StartLoadingMap()
 	LAZYINITLIST(queued_for_update)

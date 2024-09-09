@@ -1021,7 +1021,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/phaser/proc/is_can_jump_on(turf/target)
-	if(!target || target.density || istype(target, /turf/space) || istype(target, /turf/simulated/open))
+	if(!target || target.density || istype(target, /turf/space) || istype(target, /turf/open))
 		return FALSE
 
 	//to prevent reflection's stacking
@@ -1105,7 +1105,7 @@
 		if(reflection.is_can_jump_on(new_position))
 			spawn(1) //ugh, i know, i know, it's bad. Animation
 				reflection.forceMove(new_position)
-		addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), reflection), 60 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), reflection), 60 SECONDS)
 	loc = get_step(spawn_point, possible_directions[1]) //there must left last direction
 	special_ability_cooldown = world.time + ability_cooldown
 	playsound(spawn_point, 'sound/effects/cascade.ogg', 100, 1)

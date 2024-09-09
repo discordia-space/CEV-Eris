@@ -1,30 +1,30 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/deepmaint)
 "b" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "c" = (
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "d" = (
 /obj/machinery/artifact_analyser,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/deepmaint)
 "e" = (
 /obj/machinery/artifact_scanpad,
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/deepmaint)
 "f" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/deepmaint)
 "g" = (
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/deepmaint)
 "h" = (
-/turf/simulated/floor/tiled/dark/techfloor_grid,
+/turf/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
 "i" = (
 /obj/machinery/power/emitter/anchored{
@@ -32,18 +32,18 @@
 	icon_state = "emitter";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/deepmaint)
 "j" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "k" = (
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/floor/tiled/dark/gray_platform,
 /area/deepmaint)
 "l" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "m" = (
 /obj/structure/table/standard,
@@ -51,44 +51,44 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "o" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/rare,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "p" = (
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "q" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "r" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/deepmaint)
 "s" = (
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/deepmaint)
 "t" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/techfloor_grid,
+/turf/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
 "H" = (
 /obj/item/stool,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 
 (1,1,1) = {"

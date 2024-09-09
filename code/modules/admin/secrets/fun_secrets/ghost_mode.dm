@@ -35,10 +35,10 @@
 
 	affected_mobs |= user
 	for(var/area/AffectedArea in affected_areas)
-		AffectedArea.power_light = 0
+		AffectedArea.power_light = FALSE
 		AffectedArea.power_change()
 		spawn(rand(25,50))
-			AffectedArea.power_light = 1
+			AffectedArea.power_light = TRUE
 			AffectedArea.power_change()
 
 	sleep(100)

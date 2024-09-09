@@ -168,8 +168,8 @@
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
 //This proc is only called if we have grip, ie magboots
 /mob/proc/check_solid_ground()
-	if (istype(loc, /turf/simulated))
-		if(istype(loc, /turf/simulated/open))
+	if (istype(loc, /turf))
+		if(istype(loc, /turf/open))
 			return FALSE //open spess was fogotten
 		return TRUE //We're standing on a simulated floor
 	else
@@ -185,7 +185,7 @@
 //It checks all the adjacent tiles
 /mob/proc/check_dense_object()
 
-	for(var/turf/simulated/T in RANGE_TURFS(1,src)) //we only care for non-space turfs
+	for(var/turf/T in RANGE_TURFS(1,src)) //we only care for non-space turfs
 		if(T.density)	//walls work when you're adjacent
 			return TRUE
 
@@ -208,24 +208,16 @@
 
 #define DO_MOVE(this_dir) var/final_dir = turn(this_dir, -dir2angle(dir)); Move(get_step(mob, final_dir), final_dir);
 
-/client/verb/moveup()
-	set name = ".moveup"
-	set instant = 1
+/client/proc/moveup()
 	DO_MOVE(NORTH)
 
-/client/verb/movedown()
-	set name = ".movedown"
-	set instant = 1
+/client/proc/movedown()
 	DO_MOVE(SOUTH)
 
-/client/verb/moveright()
-	set name = ".moveright"
-	set instant = 1
+/client/proc/moveright()
 	DO_MOVE(EAST)
 
-/client/verb/moveleft()
-	set name = ".moveleft"
-	set instant = 1
+/client/proc/moveleft()
 	DO_MOVE(WEST)
 
 #undef DO_MOVE

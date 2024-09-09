@@ -65,6 +65,12 @@
 			"organ" = "\ref[src]",
 			"step" = /datum/surgery_step/robotic/connect_organ
 		)))
+	else if(BP_IS_ASSISTED(src))
+		actions_list.Add(list(list(
+			"name" = (status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",
+			"organ" = "\ref[src]",
+			"step" = (status & ORGAN_CUT_AWAY) ? /datum/surgery_step/assisted/attach_organ : /datum/surgery_step/assisted/detach_organ
+		)))
 	else
 		actions_list.Add(list(list(
 			"name" = (status & ORGAN_CUT_AWAY) ? "Attach" : "Separate",

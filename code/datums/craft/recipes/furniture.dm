@@ -211,13 +211,13 @@
 	name = "green comfy chair"
 	result = /obj/structure/bed/chair/comfy/green
 
-/datum/craft_recipe/furniture/campfire
-	name = "burn barrel"
-	result = /obj/machinery/microwave/campfire
-	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
-		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD),
-	)
+///datum/craft_recipe/furniture/campfire
+//	name = "burn barrel"
+//	result = /obj/machinery/microwave/campfire
+//	steps = list(
+//		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+//		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD),
+//	)
 
 /datum/craft_recipe/furniture/drying_rack
 	name = "drying rack"

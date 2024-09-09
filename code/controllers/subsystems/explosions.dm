@@ -132,7 +132,7 @@ SUBSYSTEM_DEF(explosions)
 				target_power -= EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD
 				if(target_power > EXPLOSION_ZTRANSFER_MINIMUM_THRESHOLD)
 					var/turf/checking = GetAbove(target)
-					if(!QDELETED(checking) && istype(checking, /turf/simulated/open))
+					if(!QDELETED(checking) && istype(checking, /turf/open))
 						// Startup for first time, kind of ineefficient , but better than distributing the lists willy nilly
 						if(explodey.hashed_visited[checking.z] == null)
 							explodey.hashed_visited[checking.z] = SSexplosions.retrieveHashList()
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(explosions)
 							explodey.hashed_visited[checking.z][turf_key] = TRUE
 							explodey.hashed_power[checking.z][turf_key] = target_power
 							explodey.turf_queue += checking
-					if(istype(target, /turf/simulated/open))
+					if(istype(target, /turf/open))
 						checking = GetBelow(target)
 						if(!QDELETED(checking))
 							// Startup for first time

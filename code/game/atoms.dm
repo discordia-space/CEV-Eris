@@ -2,14 +2,10 @@
 	layer = TURF_LAYER
 	plane = GAME_PLANE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	var/original_plane = null
 	var/level = ABOVE_PLATING_LEVEL
-	var/flags = 0
-	var/list/fingerprints
-	var/list/fingerprintshidden
-	var/fingerprintslast
-	var/list/blood_DNA
-	var/was_bloodied
-	var/blood_color
+	var/flags = NONE
+	var/reagent_flags = NONE
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
@@ -17,28 +13,36 @@
 	var/fluorescent // Shows up under a UV light.
 	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
-
-	///Chemistry.
-	var/reagent_flags = NONE
-	var/datum/reagents/reagents
-
-	//Detective Work, used for the duplicate data points kept in the scanners
-	var/list/original_atom
-
 	var/auto_init = TRUE
-
 	var/initialized = FALSE
-
-	var/list/preloaded_reagents
-
 	var/sanity_damage = 0
 
-		/**
-	  * used to store the different colors on an atom
-	  *
-	  * its inherent color, the colored paint applied on it, special color effect etc...
-	  */
-	var/list/atom_colours
+	var/light_power = 1 // Intensity of the light.
+	var/light_range = 0 // Range in tiles of the light.
+	var/light_color     // Hexadecimal RGB string representing the colour of the light.
+
+	var/can_buckle = FALSE
+	var/buckle_movable = 0
+	var/buckle_dir = 0
+	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
+	var/buckle_pixel_shift = "x=0;y=0" //where the buckled mob should be pixel shifted to, or null for no pixel shift control
+	var/buckle_require_restraints = 0 //require people to be handcuffed before being able to buckle. eg: pipes
+	var/mob/living/buckled_mob = null
+
+	var/was_bloodied
+	var/blood_color
+	var/fingerprintslast
+	var/list/fingerprints
+	var/list/fingerprintshidden
+	var/list/blood_DNA
+	var/list/original_atom // Detective Work, used for the duplicate data points kept in the scanners
+	var/list/statverbs
+	var/list/atom_colours // Inherent color, the colored paint applied on it, special color effect etc...
+	var/list/preloaded_reagents
+	var/datum/reagents/reagents
+	var/tmp/list/light_sources       // Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
+	var/tmp/datum/light_source/light // Our light source. Don't fuck with this directly unless you have a good reason!
+
 
 /atom/proc/update_icon()
 	return
@@ -121,7 +125,6 @@
 		for(var/reagent in preloaded_reagents)
 			reagents.add_reagent(reagent, preloaded_reagents[reagent])
 
-
 	return INITIALIZE_HINT_NORMAL
 
 /**
@@ -150,6 +153,13 @@
  * * clears the light object
  */
 /atom/Destroy()
+	if(buckled_mob)
+		unbuckle_mob()
+	if(light)
+		light.destroy()
+		light = null
+	if(statverbs)
+		statverbs.Cut()
 	if(reagents)
 		QDEL_NULL(reagents)
 
@@ -224,7 +234,7 @@
 	P.on_hit(src, def_zone)
 	. = FALSE
 
-/atom/proc/block_bullet(mob/user, var/obj/item/projectile/damage_source, def_zone)
+/atom/proc/block_bullet(mob/user, obj/item/projectile/damage_source, def_zone)
 	return 0
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
@@ -336,64 +346,69 @@ its easier to just keep the beam vertical.
 
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, extra_description = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
-	var/full_name = "\a [src][infix]."
-	if(src.blood_DNA && !istype(src, /obj/effect/decal))
+	var/full_name = "\a [src]."
+	var/output = ""
+	if(blood_DNA && !istype(src, /obj/effect/decal))
 		if(gender == PLURAL)
 			full_name = "some "
 		else
 			full_name = "a "
 		if(blood_color != "#030303")
-			full_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			full_name += "<span class='danger'>blood-stained</span> [name]!"
 		else
-			full_name += "oil-stained [name][infix]."
+			full_name += "oil-stained [name]."
 
-	if(isobserver(user))
-		to_chat(user, "\icon[src] This is [full_name] [suffix]")
-	else
-		user.visible_message("<font size=1>[user.name] looks at [src].</font>", "\icon[src] This is [full_name] [suffix]")
-
-	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
-
+	output += "<div id='examine'>"
+	output += "\icon[src] This is [full_name]"
 	if(desc)
-		to_chat(user, desc)
-		var/pref = user.get_preference_value("SWITCHEXAMINE")
-		if(pref == GLOB.PREF_YES)
-			user.client.statpanel = "Examine"
-
+		output += "\n[desc]"
+	if(extra_description)
+		output += "\n[extra_description]"
 
 	if(reagents)
 		if(reagent_flags & TRANSPARENT)
-			to_chat(user, SPAN_NOTICE("It contains:"))
-			var/return_value = user.can_see_reagents()
-			if(return_value == TRUE) //Show each individual reagent
-				for(var/datum/reagent/R in reagents.reagent_list)
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			/* Uncomment to check for consumer reagents also in can_see_reagents
-			else if(return_value == 2) // Check for consumer reagents
-				for(var/datum/reagent/R in reagents.reagent_list)
-					if(!(istype(R,/datum/reagent/ethanol) || istype(R,/datum/reagent/drink) || istype(R, /datum/reagent/water)))
-						//to_chat(user, SPAN_NOTICE("[R.volume] units of an unfamiliar substance")) For balance concers , don't let them know
-						continue
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
-			*/
-			else if(reagents && reagents.reagent_list.len)
-				to_chat(user, SPAN_NOTICE("[reagents.total_volume] units of various reagents."))
-		else
-			if(reagent_flags & AMOUNT_VISIBLE)
-				if(reagents.total_volume)
-					to_chat(user, SPAN_NOTICE("It has [reagents.total_volume] unit\s left."))
+			if(LAZYLEN(reagents.reagent_list) > 1)
+				if(user.can_see_reagents())
+					output += SPAN_NOTICE("\nIt contains:")
+					for(var/datum/reagent/R in reagents.reagent_list)
+						output += SPAN_NOTICE("\n[R.volume] units of [R.name]")
 				else
-					to_chat(user, SPAN_DANGER("It's empty."))
+					output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of various reagents.")
+			else
+				output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
+		else if(reagent_flags & AMOUNT_VISIBLE)
+			output += SPAN_NOTICE("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
+
+	var/desc_info = get_description_info()
+	if(desc_info)
+		output += "\n<font color='#084b8a'><b>[desc_info]</b></font>"
+
+	var/desc_fluff = get_description_fluff()
+	if(desc_fluff)
+		output += "\n<font color='#298a08'><b>[desc_fluff]</b></font>"
+
+	var/desc_antag = (isghost(user) || player_is_antag(user.mind)) ? get_description_antag() : null
+	if(desc_antag)
+		output += "\n<font color='#8a0808'><b>[desc_antag]</b></font>"
+
+	output += "</div>"
+
+	if(isobserver(user))
+		to_chat(user, output)
+	else
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", output)
+
+	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
 
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
 
-	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user, distance)
+	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user)
 
-	return distance == -1 || (get_dist(src, user) <= distance) || isobserver(user)
+	return (get_dist(src, user) <= world.view) || isobserver(user)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -420,7 +435,7 @@ its easier to just keep the beam vertical.
 /atom/proc/explosion_act(target_power, explosion_handler/handler)
 	return 0
 
-/atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
+/atom/proc/emag_act(remaining_charges, mob/user, emag_source)
 	return NO_EMAG_ACT
 
 /atom/proc/fire_act()
@@ -560,7 +575,7 @@ its easier to just keep the beam vertical.
 	return
 
 
-/atom/proc/transfer_fingerprints_to(var/atom/A)
+/atom/proc/transfer_fingerprints_to(atom/A)
 
 	if(!istype(A.fingerprints,/list))
 		A.fingerprints = list()
@@ -599,8 +614,8 @@ its easier to just keep the beam vertical.
 				return FALSE
 	return TRUE
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = FALSE)
-	if( istype(src, /turf/simulated) )
+/atom/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = FALSE)
+	if( istype(src, /turf) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
 		// Make toxins vomit look different
@@ -656,7 +671,7 @@ its easier to just keep the beam vertical.
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message, var/range = world.view)
+/atom/proc/visible_message(message, blind_message, range = world.view)
 	var/turf/T = get_turf(src)
 	var/list/mobs = list()
 	var/list/objs = list()
@@ -679,7 +694,7 @@ its easier to just keep the beam vertical.
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance)
+/atom/proc/audible_message(message, deaf_message, hearing_distance)
 
 	var/range = world.view
 	if(hearing_distance)
@@ -696,7 +711,7 @@ its easier to just keep the beam vertical.
 		var/obj/O = o
 		O.show_message(message,2,deaf_message,1)
 
-/atom/movable/proc/dropInto(var/atom/destination)
+/atom/movable/proc/dropInto(atom/destination)
 	while(istype(destination))
 		var/atom/drop_destination = destination.onDropInto(src)
 		if(!istype(drop_destination) || drop_destination == destination)
@@ -704,36 +719,45 @@ its easier to just keep the beam vertical.
 		destination = drop_destination
 	return forceMove(null)
 
-/atom/proc/onDropInto(var/atom/movable/AM)
+/atom/proc/onDropInto(atom/movable/AM)
 	return // If onDropInto returns null, then dropInto will forceMove AM into us.
 
-/atom/movable/onDropInto(var/atom/movable/AM)
+/atom/movable/onDropInto(atom/movable/AM)
 	return loc // If onDropInto returns something, then dropInto will attempt to drop AM there.
 
 
-/atom/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
-	if(loc)
-		for(var/i in AM.contents)
-			var/atom/movable/A = i
-			A.entered_with_container(old_loc)
-		if(MOVED_DROP == special_event)
-			AM.forceMove(loc, MOVED_DROP)
-			return CANCEL_MOVE_EVENT
-	return ..()
+/atom/Entered(atom/movable/AM, atom/old_loc, special_event)
+	GLOB.moved_event.raise_event(AM, old_loc, AM.loc)
+	GLOB.entered_event.raise_event(src, AM, old_loc)
 
-/turf/Entered(var/atom/movable/AM, var/atom/old_loc, var/special_event)
-	return ..(AM, old_loc, 0)
+	// This code makes the light be queued for update when it is moved.
+	// Entered() should handle it, however Exited() can do it if it is being moved to nullspace (as there would be no Entered() call in that situation).
+	if(AM && old_loc != src)
+		for(var/A in AM.light_sources) // Cycle through the light sources on this atom and tell them to update.
+			var/datum/light_source/L = A
+			L.source_atom.update_light()
+	if(loc && special_event)
+		AM.forceMove(destination = loc, special_event = TRUE)
+		return CANCEL_MOVE_EVENT
+
+/atom/Exited(atom/movable/Obj, atom/newloc)
+	GLOB.exited_event.raise_event(src, Obj, newloc)
+
+	if(!newloc && Obj && newloc != src) // Incase the atom is being moved to nullspace, we handle queuing for a lighting update here.
+		for(var/A in Obj.light_sources) // Cycle through the light sources on this atom and tell them to update.
+			var/datum/light_source/L = A
+			L.source_atom.update_light()
 
 /atom/proc/get_footstep_sound()
 	return
 
-/atom/proc/set_density(var/new_density)
+/atom/proc/set_density(new_density)
 	if(density != new_density)
 		density = !!new_density
 
 //This proc is called when objects are created during the round by players.
 //This allows them to behave differently from objects that are mapped in, adminspawned, or purchased
-/atom/proc/Created(var/mob/user)
+/atom/proc/Created(mob/user)
 	return
 	//Should be called when:
 		//An item is printed at an autolathe or protolathe **COMPLETE**
@@ -755,11 +779,11 @@ its easier to just keep the beam vertical.
 	if (T)
 		return new /datum/coords(T)
 
-/atom/proc/change_area(var/area/old_area, var/area/new_area)
+/atom/proc/change_area(area/old_area, area/new_area)
 	return
 
 //Bullethole shit.
-/atom/proc/create_bullethole(var/obj/item/projectile/Proj)
+/atom/proc/create_bullethole(obj/item/projectile/Proj)
 	var/p_x = Proj.p_x + rand(-8,8) // really ugly way of coding "sometimes offset Proj.p_x!"
 	var/p_y = Proj.p_y + rand(-8,8) // Used for bulletholes
 	var/obj/effect/overlay/bmark/BM = new(src)
@@ -802,33 +826,6 @@ its easier to just keep the beam vertical.
 		return null
 	return L.AllowDrop() ? L : L.drop_location()
 
-///Adds an instance of colour_type to the atom's atom_colours list
-/atom/proc/add_atom_colour(coloration, colour_priority)
-	if(!atom_colours || !atom_colours.len)
-		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
-	if(!coloration)
-		return
-	if(colour_priority > atom_colours.len)
-		return
-	atom_colours[colour_priority] = coloration
-	update_atom_colour()
-
-///Resets the atom's color to null, and then sets it to the highest priority colour available
-/atom/proc/update_atom_colour()
-	color = null
-	if(!atom_colours)
-		return
-	for(var/C in atom_colours)
-		if(islist(C))
-			var/list/L = C
-			if(L.len)
-				color = L
-				return
-		else if(C)
-			color = C
-			return
-
 //Return flags that may be added as part of a mobs sight
 /atom/proc/additional_sight_flags()
 	return 0
@@ -843,6 +840,23 @@ its easier to just keep the beam vertical.
 		M.death(FALSE, FALSE)
 	qdel(src)
 	. = TRUE
+
+// Passes Stat Panel clicks to the game and calls client click on an atom
+/atom/Topic(href, list/href_list)
+	. = ..()
+	if(!usr?.client)
+		return
+	var/client/usr_client = usr.client
+	var/list/paramslist = list()
+	if(href_list["statpanel_item_shiftclick"])
+		paramslist["shift"] = "1"
+	if(href_list["statpanel_item_ctrlclick"])
+		paramslist["ctrl"] = "1"
+	if(href_list["statpanel_item_altclick"])
+		paramslist["alt"] = "1"
+	if(href_list["statpanel_item_click"])
+		var/mouseparams = list2params(paramslist)
+		usr_client.Click(src, loc, null, mouseparams)
 
 // Called after we wrench/unwrench this object
 /obj/proc/wrenched_change()

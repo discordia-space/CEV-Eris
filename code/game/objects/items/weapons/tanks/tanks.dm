@@ -30,6 +30,7 @@ var/list/global/tank_gauge_cache = list()
 	spawn_tags = SPAWN_TAG_TANK_GAS
 
 	price_tag = 50
+	matter = list(MATERIAL_STEEL = 8)
 
 	var/datum/gas_mixture/air_contents
 	var/distribute_pressure = ONE_ATMOSPHERE
@@ -69,9 +70,8 @@ var/list/global/tank_gauge_cache = list()
 	if(default_gas)
 		air_contents.adjust_gas(default_gas, default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
-/obj/item/tank/examine(mob/user)
-	. = ..(user, 0)
-	if(.)
+/obj/item/tank/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 		var/celsius_temperature = air_contents.temperature - T0C
 		var/descriptive
 		switch(celsius_temperature)
@@ -87,7 +87,8 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "room temperature"
 			else
 				descriptive = "cold"
-		to_chat(user, SPAN_NOTICE("\The [src] feels [descriptive]."))
+		extra_description += SPAN_NOTICE("\The [src] feels [descriptive].")
+	..(user, extra_description)
 
 /obj/item/tank/attackby(obj/item/W, mob/living/user)
 	..()
@@ -294,7 +295,7 @@ var/list/global/tank_gauge_cache = list()
 		#endif
 
 		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/T = get_turf(src)
 			if(!T)
 				return
 			T.assume_air(air_contents)
@@ -309,7 +310,7 @@ var/list/global/tank_gauge_cache = list()
 		#endif
 
 		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/T = get_turf(src)
 			if(!T)
 				return
 			var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)

@@ -57,14 +57,14 @@ It will also bring a hoard of roaches with it.
 		new R(enter_burrow)
 
 	var/list/floors = list()
-	for(var/turf/simulated/floor/F in dview(2, exit_burrow.loc))
+	for(var/turf/floor/F in dview(2, exit_burrow.loc))
 		if(!F.is_wall && !F.is_hole)
 			floors.Add(F)
 
 	var/i = floors.len
 	for(i, i>0, i--)
 		var/obj/structure/scrap_spawner/scrap = pick(reward)
-		var/turf/simulated/floor/floor = pick(floors)
+		var/turf/floor/floor = pick(floors)
 		new scrap(floor)
 		floors.Remove(floor) // To avoid multiple scrap piles on one tile
 

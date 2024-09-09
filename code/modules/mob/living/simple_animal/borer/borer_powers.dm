@@ -151,12 +151,12 @@
 	H.add_language(LANGUAGE_CORTICAL)
 
 	// Remove the usual "host control" abilities
-	H.verbs -= abilities_in_control
+	remove_verb(H, abilities_in_control)
 
-	H.verbs |= /mob/living/carbon/human/proc/commune
-	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
-	H.verbs |= /mob/living/carbon/proc/spawn_larvae
-	H.verbs |= /mob/living/carbon/proc/talk_host
+	add_verb(H, /mob/living/carbon/human/proc/commune)
+	add_verb(H, /mob/living/carbon/human/proc/psychic_whisper)
+	add_verb(H, /mob/living/carbon/proc/spawn_larvae)
+	add_verb(H, /mob/living/carbon/proc/talk_host)
 
 	if(H.client)
 		H.daemonize()

@@ -1,0 +1,33 @@
+2024-06-01:
+  Chickenish:
+  - bugfix: this might even fix changelogs!
+  - balance: storyteller works differently now.
+2024-06-05:
+  Chickenish:
+  - balance: The AME is now subsidized by Command where necessary in exchange for
+      paying taxes.
+  - bugfix: fixed a few things wrong with Silo.
+2024-06-15:
+  SirRichardFrancis:
+  - tweak: Changed reinforced wall deconstruction steps.
+  - refactor: Refactored part of turf code, including wall.
+  - code_imp: Changed how wall sprites are generated.
+2024-06-22:
+  Buttcrack Berry Picker:
+  - rscadd: Added visible poorness, nobility, low sanity.
+  SirRichardFrancis:
+  - bugfix: Fixed runtime error caused by deletion of a mech with empty forklifting
+      bars
+  - bugfix: Fixed runtime error caused by flamethrower fuel trying to pass trough
+      a windowless low wall
+  - bugfix: Fixed unsimulated walls being affected by explosions
+  - bugfix: Fixed full-tile windows not being buildable with sybtypes of glass
+  - bugfix: Fixed light sources not following the mob properly
+  - bugfix: Fixed hopefully the last case of 515 incompatibility, related to proc
+      reference changes
+  - rscadd: Fullscreen button in the goonchat
+  - refactor: Fullscreen implementation
+2024-06-29:
+  Twomoon-Github:
+  - rscadd: Added Nigiris and Makis
+  - imageadd: added nigiri, maki roll and maki sprites

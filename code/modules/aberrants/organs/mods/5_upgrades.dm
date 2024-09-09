@@ -1,120 +1,128 @@
 /obj/item/modification/organ/internal/stromal
 	name = "stromal organoid"
 	icon = 'icons/obj/organ_mods.dmi'
-	spawn_blacklisted = FALSE	// No RNG stats, no teratoma needed. Helps illustrate the gradual increase of weirdness from regular organs to the more bizarre aberrant organs.
 	bad_type = /obj/item/modification/organ/internal/stromal
+	use_generated_icon = FALSE
+	organ_size = 0
 
-/obj/item/modification/organ/internal/stromal/update_icon()
-	return
+// Printable mods
 
-// Improvement mods add a beneficial multiplier or additive modifier to organ stats.
-/obj/item/modification/organ/internal/stromal/improvement
-	name = "improvement organoid"
-	bad_type = /obj/item/modification/organ/internal/stromal/improvement
-
-/obj/item/modification/organ/internal/stromal/improvement/requirements
+/obj/item/modification/organ/internal/stromal/requirements
 	name = "improved capillaries"
-	desc = "Modified capillaries that improve substance transfer within an organ."
+	desc = "A set of modified capillaries that improve substance transfer within an organ."
 	icon_state = "capillary"
 
-/obj/item/modification/organ/internal/stromal/improvement/requirements/New()
+/obj/item/modification/organ/internal/stromal/requirements/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.blood_req_multiplier = 0.10
-	M.nutriment_req_multiplier = 0.10
-	M.oxygen_req_multiplier = 0.10
-	M.prefix = "efficient"
+	M.modifications = list(
+		ORGAN_BLOOD_REQ_MULT = -0.50,
+		ORGAN_NUTRIMENT_REQ_MULT = -0.50,
+		ORGAN_OXYGEN_REQ_MULT = -0.50,
+		ATOM_PREFIX = "efficient"
+	)
 	..()
 
-/obj/item/modification/organ/internal/stromal/improvement/durability
+/obj/item/modification/organ/internal/stromal/durability
 	name = "durable membrane"
 	desc = "A stronger membrane that allows an organ to sustain greater injury before its functions are diminished."
-	icon_state = "mucous_membrane"
+	icon_state = "thick_membrane"
 
-/obj/item/modification/organ/internal/stromal/improvement/durability/New()
+/obj/item/modification/organ/internal/stromal/durability/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.specific_organ_size_mod = 0.25
-	M.min_bruised_damage_multiplier = 0.20
-	M.min_broken_damage_multiplier = 0.20
-	M.max_damage_multiplier = 0.20
-	M.prefix = "durable"
+	M.modifications = list(
+		ORGAN_SPECIFIC_SIZE_MULT = 0.20,
+		ORGAN_MIN_BRUISED_DAMAGE_MULT = 0.20,
+		ORGAN_MIN_BROKEN_DAMAGE_MULT = 0.20,
+		ORGAN_MAX_DAMAGE_MULT = 0.20,
+		ATOM_PREFIX = "durable"
+	)
 	..()
 
-/obj/item/modification/organ/internal/stromal/improvement/efficiency
+/obj/item/modification/organ/internal/stromal/efficiency
 	name = "stem cell application"
-	desc = "A clump of stem cells that increases the functional efficiency of an organ when applied to parenchymal tissue."
+	desc = "A clump of stem cells that permanently increases the functional efficiency of an organ."
 	icon_state = "stem_cells"
 
-/obj/item/modification/organ/internal/stromal/improvement/efficiency/New()
+/obj/item/modification/organ/internal/stromal/efficiency/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.organ_efficiency_multiplier = 0.10
 	M.removable = FALSE		// Stem cells don't go back to being undifferentiated
-	M.prefix = "enhanced"
+
+	M.modifications = list(
+		ORGAN_EFFICIENCY_MULT = 0.10,
+		ATOM_PREFIX = "enhanced"
+	)
 	..()
 
-// Augments modify organ efficiencies or other behaviors.
-/obj/item/modification/organ/internal/stromal/augment
-	name = "augment organoid"
-	desc = ""
-	bad_type = /obj/item/modification/organ/internal/stromal/augment
-
-/obj/item/modification/organ/internal/stromal/augment/overclock
+/obj/item/modification/organ/internal/stromal/overclock
 	name = "visceral symbiont"
 	desc = "A leech-like creature that attaches itself to the viscera of an orgnanism. It mimics the function of the parent organ in exchange for blood, oxygen, and nutrients."
 	icon_state = "symbiont"
 
-/obj/item/modification/organ/internal/stromal/augment/overclock/New()
+/obj/item/modification/organ/internal/stromal/overclock/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.organ_efficiency_multiplier = 0.20
-	M.blood_req_multiplier = -0.20
-	M.nutriment_req_multiplier = -0.20
-	M.oxygen_req_multiplier = -0.20
-	M.prefix = "symbiotic"
+	M.modifications = list(
+		ORGAN_EFFICIENCY_MULT = 0.20,
+		ORGAN_BLOOD_REQ_MULT = 0.20,
+		ORGAN_NUTRIMENT_REQ_MULT = 0.20,
+		ORGAN_OXYGEN_REQ_MULT = 0.20,
+		ORGAN_SPECIFIC_SIZE_MULT = 0.20,
+		ATOM_PREFIX = "symbiotic"
+	)
 	..()
 
-/obj/item/modification/organ/internal/stromal/augment/underclock
+/obj/item/modification/organ/internal/stromal/underclock
 	name = "bypass tubules"
 	desc = "A series of tubules that siphon blood away from an organ, reducing its effectiveness, to be used elsewhere in the body."
 	icon_state = "tubules"
 
-/obj/item/modification/organ/internal/stromal/augment/underclock/New()
+/obj/item/modification/organ/internal/stromal/underclock/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.organ_efficiency_multiplier = -0.20		// Brings a standard organ just above the efficiency where the body is negatively impacted
-	M.blood_req_multiplier = 0.20
-	M.nutriment_req_multiplier = 0.20
-	M.oxygen_req_multiplier = 0.20
-	M.prefix = "bypassed"
+	M.modifications = list(
+		ORGAN_EFFICIENCY_MULT = -0.20,
+		ORGAN_BLOOD_REQ_MULT = -0.20,
+		ORGAN_NUTRIMENT_REQ_MULT = -0.20,
+		ORGAN_OXYGEN_REQ_MULT = -0.20,
+		ORGAN_SPECIFIC_SIZE_MULT = -0.20,
+		ATOM_PREFIX = "bypassed"
+	)
 	..()
 
-/obj/item/modification/organ/internal/stromal/augment/expander
+/obj/item/modification/organ/internal/stromal/expander
 	name = "biostructure gel"
-	desc = "A gel that will solidify as structural tissue of the organ it is applied to."
+	desc = "A gel that will permanently solidify as structural tissue of the organ it is applied to."
 	icon_state = "advanced_collagen"
 
-/obj/item/modification/organ/internal/stromal/augment/expander/New()
+/obj/item/modification/organ/internal/stromal/expander/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.specific_organ_size_mod = 0.25
-	M.max_upgrade_mod = 2
 	M.removable = FALSE		// Not feasible to remove
-	M.prefix = "expanded"
+
+	M.modifications = list(
+		ORGAN_SPECIFIC_SIZE_BASE = 0.20,
+		UPGRADE_MAXUPGRADES = 2,
+		ATOM_PREFIX = "expanded"
+	)
 	..()
 
-/obj/item/modification/organ/internal/stromal/augment/silencer
+/obj/item/modification/organ/internal/stromal/silencer
 	name = "masked membrane"
-	desc = "An outer membrane that absorbs typical medical scanning wavelengths. Slightly impedes organ functions."
+	desc = "An outer membrane that absorbs typical medical scanning wavelengths. Slightly impedes organ functions and reduces organ size."
 	icon_state = "stealth_composites"
 
-/obj/item/modification/organ/internal/stromal/augment/silencer/New()
+/obj/item/modification/organ/internal/stromal/silencer/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
-	M.organ_efficiency_multiplier = -0.10
-	M.scanner_hidden = TRUE
-	M.prefix = "scanner-masked"
+	M.modifications = list(
+		ORGAN_EFFICIENCY_MULT = -0.10,
+		ORGAN_SPECIFIC_SIZE_MULT = -0.10,
+		ORGAN_SCANNER_HIDDEN = TRUE,
+		ATOM_PREFIX = "scanner-masked"
+	)
 	..()
 
 /obj/item/modification/organ/internal/parenchymal
@@ -122,22 +130,28 @@
 	desc = "A graftable membrane for organ tissues. Contains functional tissue from one or more organs."
 	description_info = "Adds/increases organ efficiencies. Size, blood, oxygen, and nutrition requirements are based on the added efficiencies."
 	icon_state = "membrane"
-	var/organ_eff_mod = 0.2
+	var/organ_eff_mod = 0.20
 
-/obj/item/modification/organ/internal/parenchymal/New(loc, generate_organ_stats = TRUE, predefined_modifier = organ_eff_mod)
+/obj/item/modification/organ/internal/parenchymal/Initialize(loc, generate_organ_stats = TRUE, predefined_modifier = organ_eff_mod, num_eff = 1)
 	var/datum/component/modification/organ/parenchymal/M = AddComponent(/datum/component/modification/organ/parenchymal)
 
-	M.prefix = "multi-functional"
+	//M.multiples_allowed = TRUE	// Stacking these causes UI issues. Not important enough to make a fix right now.
+
+	M.modifications = list(
+		ATOM_PREFIX = "grafted"
+	)
 	..()
 
 /obj/item/modification/organ/internal/parenchymal/large
 	name = "parenchymal membrane"
-	organ_eff_mod = 0.4
+	organ_eff_mod = 0.40
 
 // Junk loot or craftables
+
 /obj/item/modification/organ/internal/electromechanical
 	bad_type = /obj/item/modification/organ/internal/electromechanical
 	spawn_blacklisted = FALSE
+	use_generated_icon = FALSE
 
 /obj/item/modification/organ/internal/electromechanical/bone_braces
 	name = "bone braces"
@@ -146,17 +160,21 @@
 	icon_state = "bone_braces"
 	matter = list(MATERIAL_PLASTEEL = 3)
 	price_tag = 90
+	organ_size = 0
 
-/obj/item/modification/organ/internal/electromechanical/bone_braces/update_icon()
-	return
-
-/obj/item/modification/organ/internal/electromechanical/bone_braces/New()
+/obj/item/modification/organ/internal/electromechanical/bone_braces/Initialize()
 	var/datum/component/modification/organ/stromal/M = AddComponent(/datum/component/modification/organ/stromal)
 
 	M.apply_to_types = list(/obj/item/organ/internal/bone)
+	M.install_stat = STAT_MEC
+	M.install_difficulty = FAILCHANCE_VERY_EASY - 10
+	M.removal_stat = STAT_MEC
+	M.removal_difficulty = FAILCHANCE_VERY_EASY - 10
 	M.examine_msg = "Can be attached to bones."
 	M.examine_difficulty = STAT_LEVEL_BASIC
-	M.prefix = "reinforced"
 
-	M.organ_efficiency_mod = list(OP_BONE = 0.33)
+	M.modifications = list(
+		ORGAN_EFFICIENCY_NEW_MOD = list(OP_BONE = 0.33),
+		ATOM_PREFIX = "reinforced"
+	)
 	..()

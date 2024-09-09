@@ -9,6 +9,8 @@
 	anchored = TRUE
 	icon = 'icons/obj/stairs.dmi'
 	bad_type = /obj/structure/multiz
+	health = 5000
+	maxHealth = 5000
 	var/istop = TRUE
 	var/obj/structure/multiz/target
 	var/obj/structure/multiz/targeted_by
@@ -159,7 +161,7 @@
 		return
 	if(isliving(M))
 		var/mob/living/L = M
-		delay *= L.mod_climb_delay
+		delay *= (L.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
 	var/turf/T = target.loc
 	var/mob/tempMob
 	for(var/atom/A in T)

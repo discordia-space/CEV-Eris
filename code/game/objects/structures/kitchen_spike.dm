@@ -49,6 +49,8 @@
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		meat_type = H.species.meat_type
+		if(victim.stats.getPerk(PERK_SURVIVOR))
+			meat_type = /obj/item/reagent_containers/food/snacks/meat/pork
 		icon_state = "spike_[H.species.name]"
 	else
 		return FALSE
@@ -117,8 +119,7 @@
 	else
 		return ..()
 
-/obj/structure/kitchenspike/examine(mob/user, distance, infix, suffix)
-	if(distance < 4)
-		to_chat(user, SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]"))
-	..()
-
+/obj/structure/kitchenspike/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 4)
+		extra_description += SPAN_NOTICE("\a [victim_name] is hooked onto \the [src]")
+	..(user, extra_description)

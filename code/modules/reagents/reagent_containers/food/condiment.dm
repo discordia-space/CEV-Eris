@@ -126,6 +126,21 @@
 /obj/item/reagent_containers/food/condiment/sugar
 	preloaded_reagents = list("sugar" = 50)
 
+/obj/item/reagent_containers/food/condiment/ketchup
+	preloaded_reagents = list("ketchup" = 50)
+
+/obj/item/reagent_containers/food/condiment/hotsauce
+	preloaded_reagents = list("capsaicin" = 50)
+
+/obj/item/reagent_containers/food/condiment/soysauce
+	preloaded_reagents = list("soysauce" = 50)
+
+/obj/item/reagent_containers/food/condiment/coldsauce
+	preloaded_reagents = list("frostoil" = 50)
+
+/obj/item/reagent_containers/food/condiment/cornoil
+	preloaded_reagents = list("cornoil" = 50)
+
 //Seperate from above since it's a small shaker rather then a large one.
 /obj/item/reagent_containers/food/condiment/saltshaker
 	name = "salt shaker"

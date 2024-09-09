@@ -56,7 +56,7 @@
 	var/mob/M = src
 	if(isturf(M.loc))
 		var/turf/T = GetAbove(src)
-		while(T && T.isTransparent)
+		while(T && T.is_transparent)
 			if(!M.shadow)
 				M.shadow = new(M)
 			M.shadow.forceMove(T)

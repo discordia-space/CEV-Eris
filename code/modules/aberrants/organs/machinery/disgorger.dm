@@ -1,6 +1,6 @@
 /obj/machinery/reagentgrinder/industrial/disgorger
 	name = "disgorger"
-	desc = "An abomination of meat and metal. Consumes organs and various reagents."
+	desc = "An abomination of meat and metal. Consumes organs and various reagent-filled objects."
 	description_info = "Requires a retracting tool to open the panel and a clamping tool to disassemble.\n\n\
 						Can be upgraded by re-assembling with organs of higher efficiency and using different organ types. Try using organs related to chewing, digestion, and filtration."
 	density = TRUE
@@ -13,10 +13,9 @@
 	nano_template = "disgorger.tmpl"
 	sheet_reagents = list()
 	var/biomatter_counter = 0				// We don't want this to actually produce biomatter
+	var/research_counter = 0				// How many points towards the next unlock
 	var/list/accepted_reagents = list(
 		/datum/reagent/organic/nutriment = 1
-	)
-	var/list/blacklisted_reagents = list(
 	)
 	var/list/accepted_objects = list(
 		/obj/item/organ,
@@ -25,59 +24,16 @@
 	var/spit_target
 	var/spit_range = 2		// For var-edits
 	var/has_brain = FALSE
-	var/grind_rate = 8						// How many ticks between each processed item
-	var/current_tick = 0
-	var/substrate_conversion_factor = 1		// Multiplier for converting reagents/biomatter into substrate
 
-	// Lazy research placeholder
-	var/spits_until_unlock = 4
-	var/current_spit = 0
+	// Production
+	var/grind_rate = 8				// How many ticks between each processed item
+	var/current_tick = 0
+	var/production_denominator = 2	// Affects the multiplier for converting reagents/biomatter into substrate
+
+	// Placeholder research
+	var/research_denominator = 2	// Affects the multiplier for researching new designs
 	var/datum/research/knowledge
-	var/list/designs_to_unlock = list(
-		/datum/design/organ/teratoma/special/chemical_effect,
-		/datum/design/organ/teratoma/special/stat_boost,
-		/datum/design/organ/teratoma/output/reagents_blood_medicine_simple,
-		/datum/design/organ/teratoma/output/chemical_effects_type_2,
-		/datum/design/organ/teratoma/input/uncommon/reagents_roach,
-		/datum/design/organ/teratoma/input/uncommon/reagents_spider,
-		/datum/design/organ/teratoma/input/uncommon/reagents_toxin,
-		/datum/design/organ/teratoma/input/uncommon/reagents_edible,
-		/datum/design/organ/teratoma/input/uncommon/reagents_alcohol,
-		/datum/design/organ/teratoma/input/uncommon/reagents_drugs,
-		/datum/design/organ/teratoma/input/uncommon/reagents_dispenser,
-		/datum/design/organ/teratoma/input/uncommon/damage,
-		/datum/design/organ/teratoma/input/uncommon/power_source,
-		/datum/design/organ/organ_mod/parenchymal_large,
-		/datum/design/organ/teratoma/process/boost,
-		/datum/design/organ/teratoma/output/uncommon/reagents_blood_roach,
-		/datum/design/organ/teratoma/output/uncommon/reagents_blood_drugs,
-		/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_simple,
-		/datum/design/organ/teratoma/output/uncommon/reagents_ingest_edible,
-		/datum/design/organ/teratoma/output/uncommon/reagents_ingest_alcohol,
-		/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_1,
-		/datum/design/organ/teratoma/output/uncommon/chemical_effects_type_2,
-		/datum/design/organ/teratoma/output/uncommon/stat_boost,
-		/datum/design/organ/scaffold/rare,
-		/datum/design/organ/teratoma/output/reagents_blood_medicine_intermediate,
-		/datum/design/organ/teratoma/output/uncommon/reagents_blood_medicine_intermediate,
-		/datum/design/organ/teratoma/input/rare/reagents_roach,
-		//datum/design/organ/teratoma/input/rare/reagents_spider,		// Not enough spider chems in the pool
-		/datum/design/organ/teratoma/input/rare/reagents_toxin,
-		/datum/design/organ/teratoma/input/rare/reagents_edible,
-		/datum/design/organ/teratoma/input/rare/reagents_alcohol,
-		/datum/design/organ/teratoma/input/rare/reagents_drugs,
-		/datum/design/organ/teratoma/input/rare/reagents_dispenser,
-		/datum/design/organ/teratoma/input/rare/damage,
-		/datum/design/organ/teratoma/input/rare/power_source,
-		/datum/design/organ/teratoma/output/rare/reagents_blood_roach,
-		/datum/design/organ/teratoma/output/rare/reagents_blood_drugs,
-		/datum/design/organ/teratoma/output/rare/reagents_blood_medicine_intermediate,
-		/datum/design/organ/teratoma/output/rare/reagents_ingest_edible,
-		/datum/design/organ/teratoma/output/rare/reagents_ingest_alcohol,
-		/datum/design/organ/teratoma/output/rare/chemical_effects_type_1,
-		/datum/design/organ/teratoma/output/rare/chemical_effects_type_2,
-		/datum/design/organ/teratoma/output/rare/stat_boost
-	)
+	var/list/designs_to_unlock = DISGORGER_RESEARCH_LIST
 
 /obj/machinery/reagentgrinder/industrial/disgorger/Initialize()
 	. = ..()
@@ -99,15 +55,16 @@
 
 	component_parts += new /obj/item/organ/internal/vital/brain
 	component_parts += new /obj/item/organ/internal/bone/head		// Doesn't do anything
+	component_parts += new /obj/item/organ/internal/bone/chest		// Doesn't do anything
+	component_parts += new /obj/item/organ/internal/bone/groin		// Doesn't do anything
 	component_parts += new /obj/item/organ/internal/nerve			// Doesn't do anything
-	component_parts += new /obj/item/organ/internal/blood_vessel	// Doesn't do anything
+	component_parts += new /obj/item/organ/internal/nerve			// Doesn't do anything
 
 	RefreshParts()
 
-/obj/machinery/reagentgrinder/industrial/disgorger/examine(mob/user)
+/obj/machinery/reagentgrinder/industrial/disgorger/examine(mob/user, extra_description = "")
 	..()
 	var/accepted
-	var/blacklisted
 
 	if(accepted_objects?.len)
 		for(var/object in accepted_objects)
@@ -122,18 +79,9 @@
 			var/datum/reagent/R = reagent
 			accepted += initial(R.name) + ", "
 
-	if(blacklisted_reagents?.len)
-		for(var/reagent in blacklisted_reagents)
-			var/datum/reagent/R = reagent
-			blacklisted += initial(R.name) + ", "
-
 	if(accepted)
 		accepted = copytext(accepted, 1, length(accepted) - 1)
-		to_chat(user, SPAN_NOTICE("<i>Accepts [accepted].</i>"))
-
-	if(blacklisted)
-		blacklisted = copytext(blacklisted, 1, length(blacklisted) - 1)
-		to_chat(user, SPAN_WARNING("Rejects objects with the following reagents: [blacklisted]."))
+		extra_description += SPAN_NOTICE("\n<i>Accepts [accepted].</i>")
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
@@ -142,8 +90,6 @@
 		var/datum/reagent/R = reagent
 		if(is_type_in_list(R, accepted_reagents))
 			. = TRUE		// If the container has any amount of an accepted reagent, the proc will return true
-		if(is_type_in_list(R, blacklisted_reagents))
-			return FALSE	// If the container has any amount of a blacklisted reagent, the proc will immediately return false
 
 /obj/machinery/reagentgrinder/industrial/disgorger/insert(obj/item/I, mob/user)
 	if(!istype(I))
@@ -172,12 +118,12 @@
 	// Check reagents first
 	if(I.reagents)
 		holdingitems -= I
-		for(var/reagent in I.reagents.reagent_list)
-			var/datum/reagent/R = reagent
-			if(!is_type_in_list(R, blacklisted_reagents))
-				for(var/reagent_type in accepted_reagents)
-					if(istype(R, reagent_type))
-						biomatter_counter += round(R.volume * accepted_reagents[reagent_type] * substrate_conversion_factor, 0.01)
+		for(var/datum/reagent/R in I.reagents.reagent_list)
+			for(var/reagent_path in accepted_reagents)
+				if(!istype(R, reagent_path))
+					continue
+				biomatter_counter += round(R.volume * (accepted_reagents[reagent_path] / production_denominator), 0.01)
+				research_counter += round(R.volume * (accepted_reagents[reagent_path] / research_denominator), 0.01)
 
 	// Check biomatter content and contained objects (depth of 2, include self)
 	for(var/path in accepted_objects)
@@ -189,12 +135,14 @@
 		var/amount_to_take
 
 		for(var/obj/item/O in I.GetAllContents(2, TRUE))
-			if(O.matter.Find(MATERIAL_BIOMATTER))
-				amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER])
+			amount_to_take += max(0, O.matter[MATERIAL_BIOMATTER])
+			var/obj/item/organ/organ = O
+			var/is_valid_organ = (organ && LAZYLEN(organ.transplant_data))
 			qdel(O)
-		if(amount_to_take)
-			biomatter_counter += round(amount_to_take * substrate_conversion_factor, 0.01)
-		break
+			if(amount_to_take)
+				biomatter_counter += round(amount_to_take / production_denominator, 0.01)
+				research_counter += is_valid_organ ? round(amount_to_take / research_denominator) : 0
+				break
 
 	// Make sure the object is qdel'd
 	if(!QDELETED(I))
@@ -217,33 +165,36 @@
 
 	current_tick += 1
 
-	while(biomatter_counter > 59.99)
+	while(biomatter_counter > 59)
 		bottle()
-		if(current_spit >= spits_until_unlock && designs_to_unlock.len)
-			unlock_design()
+
+	while(research_counter > 59)
+		try_unlock_tech()
 
 	SSnano.update_uis(src)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/bottle()
 	biomatter_counter = max(biomatter_counter - 60, 0)		// Flesh cubes have 60 biomatter
 	addtimer(CALLBACK(src, PROC_REF(spit)), 1 SECONDS, TIMER_STOPPABLE)
-	if(has_brain)
-		++current_spit
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/spit()
 	flick("[initial(icon_state)]_spit", src)
 	var/obj/item/fleshcube/new_cube = new(get_turf(src))
 	new_cube.throw_at(spit_target, 3, 1)
 
-/obj/machinery/reagentgrinder/industrial/disgorger/proc/unlock_design()
-	current_spit = 0
+/obj/machinery/reagentgrinder/industrial/disgorger/proc/try_unlock_tech()
+	research_counter = max(research_counter - 60, 0)
+
+	if(!LAZYLEN(designs_to_unlock))
+		return
+
 	var/datum/design/D = SSresearch.get_design(designs_to_unlock[1])
 	designs_to_unlock.Remove(D.type)
 	knowledge.AddDesign2Known(D)
 
 	var/message = pickweight(list(
 		"When you study and object from a distance, only its principle may be seen." = 1,									// Children of Dune
-		"Knowledge is an unending adventure at the edge of uncertainty." = 1,												//
+		"Knowledge is an unending adventure at the edge of uncertainty." = 1,												// 
 		"To know a thing well, know its limits; Only when pushed beyond its tolerance will its true nature be seen." = 1,	//
 		"You do not take from this universe. It grants what it will." = 1,							// Dune Messiah
 		"Belief can be manipulated. Only knowledge is dangerous." = 1,								//
@@ -293,20 +244,23 @@
 	var/carrion_chem_eff = 0
 	var/stomach_eff = 0
 	var/muscle_eff = 0
+	var/blood_vessel_eff = 0
+	var/heart_eff = 0
 	var/carrion_maw_eff = 0
 	var/brain_eff = 0
 
 	var/capacity_mod = 0
 	var/tick_reduction = 0
-	var/conversion_mod = 0
+	var/production_mod = 0
 	var/research_mod = 0
+	var/throughput_mult = 0
 
 	has_brain = FALSE
 
 	for(var/component in component_parts)
 		if(istype(component, /obj/item/electronics/circuitboard/disgorger))
 			var/obj/item/electronics/circuitboard/disgorger/C = component
-			if(C.designs_to_unlock.len)
+			if(LAZYLEN(C.designs_to_unlock))
 				designs_to_unlock = C.designs_to_unlock.Copy()
 		if(!istype(component, /obj/item/organ/internal))
 			continue
@@ -325,48 +279,67 @@
 					stomach_eff += O.organ_efficiency[eff]
 				if(OP_MUSCLE)
 					muscle_eff += O.organ_efficiency[eff]
+				if(OP_BLOOD_VESSEL)
+					blood_vessel_eff += O.organ_efficiency[eff]
+				if(OP_HEART)
+					heart_eff += O.organ_efficiency[eff]
 				if(BP_BRAIN)
 					has_brain = TRUE
 					brain_eff += O.organ_efficiency[eff]
 
 	if(liver_eff > 99)
 		LAZYADD(accepted_reagents, list(
-			/datum/reagent/toxin/diplopterum = 0.25
-		))
-	if(liver_eff > 124)
-		LAZYADD(accepted_reagents, list(
-			/datum/reagent/toxin/seligitillin = 0.75,
-			/datum/reagent/toxin/starkellin = 0.75,
-			/datum/reagent/toxin/gewaltine = 0.75,
-			/datum/reagent/toxin/blattedin = 0.5
+			/datum/reagent/toxin/diplopterum = 1.25,
+			/datum/reagent/alcohol = 0.05
 		))
 	if(liver_eff > 149)
 		LAZYADD(accepted_reagents, list(
-			/datum/reagent/toxin/fuhrerole = 1,
+			/datum/reagent/toxin/seligitillin = 2,
+			/datum/reagent/toxin/starkellin = 2,
+			/datum/reagent/toxin/gewaltine = 2,
+			/datum/reagent/toxin/blattedin = 2
+		))
+	if(liver_eff > 199)
+		LAZYADD(accepted_reagents, list(
+			/datum/reagent/toxin/fuhrerole = 5,
 			/datum/reagent/toxin/kaiseraurum = 10
 		))
 
 	if(kidney_eff > 49)
 		LAZYADD(accepted_reagents, list(
-			/datum/reagent/organic/blood = 0.1,		// Internet says blood plasma is 10% solids, 90% water
-			/datum/reagent/drink/milk = 0.13		// Internet says milk is 13% solids, 87% water
+			/datum/reagent/drug/nicotine = 0.1,
+			/datum/reagent/drug/mindbreaker = 0.25
+		))
+	if(kidney_eff > 79)
+		LAZYADD(accepted_reagents, list(
+			/datum/reagent/stim = 0.5,
+			/datum/reagent/drug/psilocybin = 2
+		))
+	if(kidney_eff > 199)
+		LAZYADD(accepted_reagents, list(
+			/datum/reagent/medicine/suppressital = 1,
+			/datum/reagent/medicine/methylphenidate = 1,
+			/datum/reagent/medicine/citalopram = 1,
+			/datum/reagent/medicine/paroxetine = 1
 		))
 
 	if(carrion_chem_eff > 99)
 		LAZYADD(accepted_reagents, list(
-			/datum/reagent/toxin/pararein = 1,
-			/datum/reagent/toxin/aranecolmin = 2
+			/datum/reagent/toxin/pararein = 5,
+			/datum/reagent/toxin/aranecolmin = 10
 		))
 
-	capacity_mod = round(stomach_eff / 15, 1)
-	tick_reduction = round(muscle_eff / 20, 1)
-	conversion_mod = round((stomach_eff + (liver_eff * 0.25) + (kidney_eff * 0.25) + (carrion_maw_eff * 4)) / 100, 0.01)
-	research_mod = clamp(round(brain_eff / 65, 1) - 1, 0, spits_until_unlock - 1)
+	throughput_mult = (heart_eff > 79) ? round((heart_eff + blood_vessel_eff) / 650, 0.05) : 0.05
+
+	capacity_mod = round((stomach_eff / 15) + carrion_chem_eff) 
+	tick_reduction = round((muscle_eff / 20) + carrion_maw_eff) 
+	production_mod = round(throughput_mult * ((stomach_eff / 2) + (liver_eff / 4) + (kidney_eff / 4) + (carrion_maw_eff)) / 100, 0.01)
+	research_mod = round(throughput_mult * (brain_eff / 65), 0.01)
 
 	limit = initial(limit) + capacity_mod
 	grind_rate = initial(grind_rate) - tick_reduction
-	substrate_conversion_factor = initial(substrate_conversion_factor) + conversion_mod
-	spits_until_unlock = initial(spits_until_unlock) - research_mod
+	production_denominator = max(initial(production_denominator) - production_mod, 0.5)
+	research_denominator = max(initial(research_denominator) - research_mod, 0.5)
 
 /obj/machinery/reagentgrinder/industrial/disgorger/on_deconstruction()
 	..()
@@ -378,6 +351,17 @@
 	. = ..()
 
 	.["biomatter_counter"] = biomatter_counter
+	.["research_counter"] = research_counter
+	.["research_rate"] = round(100 / research_denominator, 1)
+	.["production_rate"] = round(100 / production_denominator, 1)
+
+	var/current_thought = "none"
+	if(has_brain && LAZYLEN(designs_to_unlock))
+		var/datum/design/next_design = designs_to_unlock[1]
+		var/atom/movable/next_path = initial(next_design.build_path)
+		current_thought = initial(next_path.name)
+
+	.["current_thought"] = current_thought
 
 /obj/machinery/reagentgrinder/industrial/disgorger/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(!nano_template)
@@ -387,7 +371,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, nano_template, name, 400, 250)
+		ui = new(user, src, ui_key, nano_template, name, 400, 300)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -398,7 +382,7 @@
 	build_path = /obj/machinery/reagentgrinder/industrial/disgorger
 	origin_tech = list(TECH_BIO = 3)
 	req_components = list(
-		/obj/item/organ/internal = 4			// Build with any organ, but certain efficiencies will have different effects.
+		/obj/item/organ/internal = 6			// Build with any organ, but certain efficiencies will have different effects.
 	)
 	var/list/designs_to_unlock = list()
 
@@ -407,19 +391,6 @@
 	name = "flesh cube"
 	desc = "A three-dimensional solid object bounded by six square faces, with three meeting at each vertex. This one is covered in several layers of ectodermal tissue."
 	description_info = "Recycle this in the organ fabricator to add 60 biotic substrate, which is used in lieu of biomatter to print organs."
-	// Source: https://en.wikipedia.org/wiki/Cube and https://en.wikipedia.org/wiki/Ectoderm
-	description_fluff = "Its shape is that of a regular hexahedron and is one of the five Platonic solids. It has 6 faces, 12 edges, and 8 vertices. \
-						It is also a square parallelepiped, an equilateral cuboid and a right rhombohedron a 3-zonohedron. \
-						It is a regular square prism in three orientations, and a trigonal trapezohedron in four orientations. \
-						It is dual to the octahedron. It has cubical or octahedral symmetry. \
-						It is the only convex polyhedron whose faces are all squares.\n\n\
-						The ectoderm is one of the three primary germ layers formed in early embryonic development. \
-						It is the outermost layer, and is superficial to the mesoderm (the middle layer) and endoderm (the innermost layer). \
-						It emerges and originates from the outer layer of germ cells. \
-						The word ectoderm comes from the Greek ektos meaning \"outside\", and derma meaning \"skin\". \
-						Generally speaking, the ectoderm differentiates to form epithelial and neural tissues (spinal cord, peripheral nerves and brain). \
-						This includes the skin, linings of the mouth, anus, nostrils, sweat glands, hair and nails, and tooth enamel. \
-						Other types of epithelium are derived from the endoderm."
 	icon = 'icons/obj/machines/disgorger.dmi'
 	icon_state = "carne_cansada"
 	w_class = ITEM_SIZE_SMALL

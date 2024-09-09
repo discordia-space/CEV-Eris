@@ -7,7 +7,7 @@ see multiz/movement.dm for some info.
 	else
 		return !density
 
-/turf/simulated/open/CanZPass(atom/A, direction)
+/turf/open/CanZPass(atom/A, direction)
 	var/obj/effect/shield/turf_shield = getEffectShield()
 	if(locate(/obj/structure/catwalk, src) || (turf_shield && !turf_shield.CanPass(A)))
 		if(z == A.z)
@@ -27,17 +27,16 @@ see multiz/movement.dm for some info.
 			return 0
 	return 1
 
-/turf/simulated/floor/CanZPass(atom/A, direction)
+/turf/floor/CanZPass(atom/A, direction)
 	return direction != DOWN
 /////////////////////////////////////
 
-/turf/simulated/open
+/turf/open
 	name = "open space"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "black"
 	density = FALSE
 	plane = OPENSPACE_PLANE
-	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 
 	var/open = FALSE
 	var/turf/below
@@ -50,39 +49,39 @@ see multiz/movement.dm for some info.
 
 	var/tmp/list/climbers = list()
 
-/turf/simulated/open/New()
+/turf/open/New()
 	icon_state = "transparentclickable"
 	..()
 
-/turf/simulated/open/LateInitialize()
+/turf/open/LateInitialize()
 	. = ..()
 	below = GetBelow(src)
 	ASSERT(HasBelow(z))
 	update_icon()
 
-/turf/simulated/open/is_plating()
+/turf/open/is_plating()
 	return TRUE
 
-/turf/simulated/open/is_space()
+/turf/open/is_space()
 	var/turf/below = GetBelow(src)
 	return !below || below.is_space()
 
-/turf/simulated/open/Entered(var/atom/movable/mover)
+/turf/open/Entered(var/atom/movable/mover)
 	. = ..()
 	if(open)
 		fallThrough(mover)
 
-/turf/simulated/open/proc/updateFallability(var/obj/structure/catwalk/catwalk)
+/turf/open/proc/updateFallability(var/obj/structure/catwalk/catwalk)
 	var/wasOpen = open
 	open = isOpen(catwalk)
 	if(open && open != wasOpen)
 		for(var/atom/A in src)
 			fallThrough(A)
 
-/turf/simulated/open/is_solid_structure()
+/turf/open/is_solid_structure()
 	return !isOpen()
 
-/turf/simulated/open/proc/isOpen(var/obj/structure/catwalk/catwalk)
+/turf/open/proc/isOpen(var/obj/structure/catwalk/catwalk)
 	. = FALSE
 	// only fall down in defined areas (read: areas with artificial gravitiy)
 	if(!istype(below)) //make sure that there is actually something below
@@ -105,12 +104,12 @@ see multiz/movement.dm for some info.
 /turf/proc/fallThrough(var/atom/movable/mover)
 	return
 
-/turf/simulated/open/fallThrough(var/atom/movable/mover)
+/turf/open/fallThrough(var/atom/movable/mover)
 
 	// If the target is open space or a shadow, the projectile traverses down
 	if( config.z_level_shooting && istype(mover,/obj/item/projectile) )
 		var/obj/item/projectile/P = mover
-		if(isnull(P.height) && ( istype(P.original, /turf/simulated/open) || (istype(mover, /mob/shadow)) ) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
+		if(isnull(P.height) && ( istype(P.original, /turf/open) || (istype(mover, /mob/shadow)) ) && get_dist(P.starting, P.original) <= get_dist(P.starting, src))
 			P.Move(below) // We want proc/Enter to get called on the turf, so we can't use forcemove()
 			P.trajectory.loc_z = below.z
 			P.bumped = FALSE
@@ -149,7 +148,7 @@ see multiz/movement.dm for some info.
 	if(!soft)
 
 		if(!isliving(mover))
-			if(istype(below, /turf/simulated/open))
+			if(istype(below, /turf/open))
 				mover.visible_message(
 					"\The [mover] falls from the deck above through \the [below]!",
 					"You hear a whoosh of displaced air."
@@ -161,7 +160,7 @@ see multiz/movement.dm for some info.
 				)
 		else
 			var/mob/M = mover
-			if(istype(below, /turf/simulated/open))
+			if(istype(below, /turf/open))
 				below.visible_message(
 					"\The [mover] falls from the deck above through \the [below]!",
 					"You hear a soft whoosh.[M.stat ? "" : ".. and some screaming."]"
@@ -214,13 +213,13 @@ see multiz/movement.dm for some info.
 
 
 // override to make sure nothing is hidden
-/turf/simulated/open/levelupdate()
+/turf/open/levelupdate()
 	for(var/obj/O in src)
 		O.hide(FALSE)
 		SEND_SIGNAL_OLD(O, COMSIG_TURF_LEVELUPDATE, FALSE)
 
 // Straight copy from space.
-/turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)
+/turf/open/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
@@ -245,7 +244,7 @@ see multiz/movement.dm for some info.
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
 				M.use(1)
-				ChangeTurf(/turf/simulated/floor/plating/under)
+				ChangeTurf(/turf/floor/plating/under)
 			return
 		else
 			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
@@ -259,19 +258,17 @@ see multiz/movement.dm for some info.
 
 //Add tracks is called when a mob with bloody feet walks across the tile.
 //Since there's no floor to walk on, this will simply not happen. Return without doing anything
-/turf/simulated/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	return
 
 
 //Since walking around on openspaces wasn't possible before i fixed jetpacks, nobody thought to fix this
-/turf/simulated/open/get_footstep_sound(var/mobtype)
+/turf/open/get_footstep_sound()
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
 	if(catwalk)
 		return footstep_sound("catwalk")
-	else
-		return null
 
-/turf/simulated/open/MouseDrop_T(mob/target, mob/user)
+/turf/open/MouseDrop_T(mob/target, mob/user)
 	var/mob/living/H = user
 	for(var/obj/structure/S in GetBelow(src))
 		if(istype(H) && can_descend(H, S) && target == user)
@@ -279,7 +276,7 @@ see multiz/movement.dm for some info.
 			return
 	return ..()
 
-/turf/simulated/open/proc/can_descend(var/mob/living/user, var/obj/structure/structure, post_descent_check = 0)
+/turf/open/proc/can_descend(var/mob/living/user, var/obj/structure/structure, post_descent_check = 0)
 	if(!structure || !structure.climbable || (!post_descent_check && (user in climbers)))
 		return
 
@@ -294,7 +291,7 @@ see multiz/movement.dm for some info.
 
 	return 1
 
-/turf/simulated/open/proc/do_descend(var/mob/living/user, var/obj/structure/structure)
+/turf/open/proc/do_descend(var/mob/living/user, var/obj/structure/structure)
 	if(!can_descend(user, structure))
 		return
 
@@ -302,7 +299,7 @@ see multiz/movement.dm for some info.
 	structure.visible_message(SPAN_WARNING("Someone starts descending onto [structure]!"))
 	climbers |= user
 
-	var/delay = (issmall(user) ? 32 : 60) * user.mod_climb_delay
+	var/delay = (issmall(user) ? 32 : 60) * (user.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
 	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration, src) || !can_descend(user, structure, post_descent_check = 1))
 		climbers -= user

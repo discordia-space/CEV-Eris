@@ -176,7 +176,7 @@
 	return src
 
 /client/verb/fix_chat()
-	set name = "Fix chat"
+	set name = "Fix Chat"
 	set category = "OOC"
 
 	if(!chatOutput || !istype(chatOutput))
@@ -199,7 +199,6 @@
 					winset(src, "output", "is-visible=true;is-disabled=false")
 					winset(src, "browseroutput", "is-visible=false")
 				log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window after recreating the chatOutput and forcing a load()")
-
 	else if(chatOutput.loaded)
 		var/action = alert(src, "Do you want to force a reload, wiping the chat log or just refresh the chat window?", "", "Force Reload", "Refresh", "Cancel")
 		switch (action)
@@ -239,7 +238,6 @@
 							winset(src, "browseroutput", "is-visible=false")
 						log_game("GOONCHAT: [key_name(src)] Failed to fix their goonchat window forcing a show() and forcing a load()")
 		return
-
 	else
 		chatOutput.start()
 		var/action = alert(src, "Manually loading Chat.\nWait a bit and see if it\'s fixed.", "", "Fixed", "Nope")

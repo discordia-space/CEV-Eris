@@ -1,15 +1,15 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/tiled/white/brown_platform,
+/turf/floor/tiled/white/brown_platform,
 /area/deepmaint)
 "b" = (
-/turf/simulated/floor/tiled/white/cargo,
+/turf/floor/tiled/white/cargo,
 /area/deepmaint)
 "c" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "d" = (
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "e" = (
 /obj/machinery/atmospherics/unary/freezer{
@@ -17,24 +17,24 @@
 	dir = 2;
 	set_temperature = 73
 	},
-/turf/simulated/floor/tiled/white/cargo,
+/turf/floor/tiled/white/cargo,
 /area/deepmaint)
 "f" = (
-/turf/simulated/floor/tiled/white/panels,
+/turf/floor/tiled/white/panels,
 /area/deepmaint)
 "g" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "h" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "i" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
@@ -42,30 +42,30 @@
 	},
 /obj/structure/catwalk,
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "j" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "l" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/cargo,
+/turf/floor/tiled/white/cargo,
 /area/deepmaint)
 "m" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "n" = (
 /obj/machinery/atmospherics/unary/cryo_cell,
-/turf/simulated/floor/tiled/white/cargo,
+/turf/floor/tiled/white/cargo,
 /area/deepmaint)
 "o" = (
 /obj/structure/catwalk,
@@ -74,17 +74,17 @@
 	icon_state = "intact";
 	tag = "icon-intact (NORTHEAST)"
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "p" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/visible,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "q" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "r" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -93,17 +93,17 @@
 	tag = "icon-intact (NORTHWEST)"
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "s" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/rare,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "t" = (
-/turf/simulated/floor/tiled/white/brown_perforated,
+/turf/floor/tiled/white/brown_perforated,
 /area/deepmaint)
 "u" = (
 /obj/structure/table/standard,
@@ -111,38 +111,38 @@
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/rare,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "v" = (
 /obj/machinery/sleeper/sarcophagus/random{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "w" = (
 /obj/machinery/sleeper/sarcophagus/random{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 "x" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "y" = (
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/deepmaint)
 "z" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/panels,
+/turf/floor/tiled/white/panels,
 /area/deepmaint)
 "J" = (
 /obj/structure/table/standard,
@@ -155,7 +155,7 @@
 	pixel_y = 0
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/deepmaint)
 
 (1,1,1) = {"

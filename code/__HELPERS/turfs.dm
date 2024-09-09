@@ -7,10 +7,10 @@
 	return mloc
 
 /proc/iswall(turf/T)
-	return (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall) || istype(T, /turf/simulated/shuttle/wall))
+	return (istype(T, /turf/wall) || istype(T, /turf/shuttle/wall))
 
 /proc/isfloor(turf/T)
-	return (istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
+	return (istype(T, /turf/floor) || istype(T, /turf/shuttle/floor))
 
 //Edit by Nanako
 //This proc is used in only two places, ive changed it to make more sense
@@ -122,7 +122,7 @@
 		if (A.flags & AREA_FLAG_EXTERNAL)
 			return TRUE
 
-		else if (istype(U, /turf/space) || istype(U, /turf/simulated/floor/hull))
+		else if (istype(U, /turf/space) || istype(U, /turf/floor/hull))
 			return TRUE
 
 	return FALSE

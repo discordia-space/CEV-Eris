@@ -9,7 +9,7 @@
 
 	var/next_teleportation
 	var/teleportation_timer
-	var/list/turf/simulated/floor/destination_candidates = list()
+	var/list/turf/floor/destination_candidates = list()
 
 	var/teleportation_range = 16  // Maximum range that crystal can teleport mobs and items it's been hit with.
 	var/crystal_amount = 3
@@ -29,7 +29,7 @@
 
 /obj/structure/bs_crystal_structure/New()
 	..()
-	for(var/turf/simulated/floor/F in range(2, src.loc))
+	for(var/turf/floor/F in range(2, src.loc))
 		if(!F.is_wall && !F.is_hole)
 			destination_candidates.Add(F)
 
@@ -86,9 +86,9 @@
 		go_to_bluespace(get_turf(src), entropy_value, TRUE, AM, src, aprecision=teleportation_range)
 
 /obj/structure/bs_crystal_structure/proc/teleport_random_item()
-	var/turf/simulated/floor/teleport_destination = pick(destination_candidates)
+	var/turf/floor/teleport_destination = pick(destination_candidates)
 	var/area/target_area = random_ship_area()
-	var/turf/simulated/floor/target_turf = target_area.random_space()
+	var/turf/floor/target_turf = target_area.random_space()
 	if(target_turf)
 		var/list/target_turf_contents = target_turf.contents
 

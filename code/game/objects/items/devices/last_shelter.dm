@@ -1,5 +1,14 @@
 GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 
+//can't get cruciform from inside one of these
+var/list/shelter_blacklist = list(
+	/mob,
+	/obj/machinery/neotheology/reader,
+	/obj/item/storage/bsdm,
+	/obj/machinery/amerecycler,
+	/obj/machinery/r_n_d/destructive_analyzer
+	)
+
 /obj/item/device/last_shelter
 	name = "Last Shelter"
 	desc = "Powerful scanner that can teleport a cruciforms of pilgrims lost in this sector of space."
@@ -64,12 +73,12 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 			scan = FALSE
 			if(istype(src.loc, /mob/living/carbon/human))
 				user.put_in_hands(cruciform)
-				to_chat(user, SPAN_NOTICE("The [src] has found the lost cruciform in a deep space. Now this fate of the disciple rests in your hands."))
+				to_chat(user, SPAN_NOTICE("The [src] has found the lost cruciform. Now this fate of the disciple rests in your hands."))
 			else
 				visible_message(SPAN_NOTICE("[src] drops [cruciform]."))
 				cruciform.forceMove(get_turf(src))
 		else
-			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms in deep space. You can try to use [src] again later."))
+			to_chat(user, SPAN_WARNING("The [src] can't find any working cruciforms. You can try to use [src] again later."))
 			scan = FALSE
 
 		if(alert)
@@ -91,8 +100,23 @@ GLOBAL_DATUM(last_shelter, /obj/item/device/last_shelter)
 
 /obj/item/device/last_shelter/proc/get_cruciform()
 	var/datum/mind/MN = request_player()
+
 	if(!MN)
+		var/list/cruciforms_temporary = lost_cruciforms.Copy()
+		while(cruciforms_temporary.len)
+			var/obj/item/implant/core_implant/picked = pick_n_take(cruciforms_temporary)
+			var/container = picked.is_inside(shelter_blacklist)
+			if(container)
+				if(ishuman(container))
+					var/mob/living/carbon/human/body = container
+					if((body.stat == DEAD) && (world.time >= (body.timeofdeath + NECROZTIME)))
+						picked.uninstall()
+						return picked
+				continue
+			else
+				return picked
 		return FALSE
+
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src)
 	H.randomize_appearance()
 	for(var/stat in ALL_STATS)

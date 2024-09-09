@@ -37,21 +37,19 @@
 	var/shield_difficulty = 60
 	style = STYLE_NEG_HIGH
 
-/obj/item/shield/examine(var/mob/user)
-	. = ..()
+/obj/item/shield/examine(mob/user, extra_description = "")
 	switch(get_block_chance(user))
 		if(0 to 30)
-			to_chat(user, "So heavy... You feel doubtful in your ability to parry with this shield using only one hand until you grow stronger.")
+			extra_description += "So heavy... You feel doubtful in your ability to parry with this shield using only one hand until you grow stronger."
 		if(31 to 45)
-			to_chat(user, "Holding this feels a little clumsy. Perhaps if you were a bit stronger...")
+			extra_description += "Holding this feels a little clumsy. Perhaps if you were a bit stronger..."
 		if(46 to 55)
-			to_chat(user, "A bit hefty, but you feel confident in your ability to parry with this shield.")
+			extra_description += "A bit hefty, but you feel confident in your ability to parry with this shield."
 		if(56 to 70)
-			to_chat(user, "The weight of this shield feels comfortable and maneuverable.")
+			extra_description += "The weight of this shield feels comfortable and maneuverable."
 		if(71 to INFINITY)
-			to_chat(user, "You feel ready for a gladiator duel! Bring it on, roaches!")
-
-
+			extra_description += "You feel ready for a gladiator duel! Bring it on, roaches!"
+	..(user, extra_description)
 
 /obj/item/shield/proc/get_wielder_skill(mob/user, stat_type)
 	if(user && user.stats)

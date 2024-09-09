@@ -24,7 +24,7 @@
 	if(!enabled)
 		return
 	for(var/direction in cardinal)
-		var/turf/simulated/shielded_tile = get_step(get_turf(src), direction)
+		var/turf/shielded_tile = get_step(get_turf(src), direction)
 		for(var/obj/effect/shield/S in shielded_tile)
 			// 10kJ per pulse, but gap in the shield lasts for longer than regular diffusers.
 			if(istype(S) && !S.diffused_for && !S.disabled_for && cell.checked_use(active_power_use))
@@ -58,7 +58,7 @@
 	to_chat(user, "\the [src] clicks [enabled ? "on" : "off"].")
 	playsound(loc, 'sound/machines/button.ogg', 50, 1)
 
-/obj/item/device/shield_diffuser/examine()
-	. = ..()
-	to_chat(usr, "It is [enabled ? "enabled" : "disabled"].")
-	to_chat(usr, "It has enough charge for [cell ? round(cell.charge / active_power_use) : 0] more uses.")
+/obj/item/device/shield_diffuser/examine(mob/user, extra_description = "")
+	extra_description += "\nIt is [enabled ? "enabled" : "disabled"]."
+	extra_description += "\nIt has enough charge for [cell ? round(cell.charge / active_power_use) : 0] more uses."
+	..(user, extra_description)

@@ -61,27 +61,6 @@ SUBSYSTEM_DEF(statverbs)
 
 /datum/statverb/proc/action(mob/user, atom/target)
 
-
-
-// Atom part //
-/atom
-	var/list/statverbs
-
-/atom/Initialize()
-	. = ..()
-	initalize_statverbs()
-
-/atom/Destroy()
-	. = ..()
-	if(statverbs)
-		statverbs.Cut()
-
-/atom/proc/initalize_statverbs()
-	var/list/paths = statverbs
-	statverbs = new
-	for(var/path in paths)
-		add_statverb(path)
-
 /atom/proc/add_statverb(path)
 	if(!statverbs)
 		statverbs = new
@@ -90,8 +69,6 @@ SUBSYSTEM_DEF(statverbs)
 
 /atom/proc/remove_statverb(path)
 	statverbs -= path
-
-
 
 /atom/proc/show_stat_verbs()
 	if(statverbs && statverbs.len)
@@ -106,19 +83,12 @@ SUBSYSTEM_DEF(statverbs)
 	if(href_list["statverb"])
 		SSstatverbs.call_verb(usr, src, src.statverbs[href_list["statverb"]], href_list["obj_name"])
 
-
-// Example
-
-/turf/simulated/floor/initalize_statverbs()
-	if(flooring && (flooring.flags & TURF_REMOVE_CROWBAR))
-		add_statverb(/datum/statverb/remove_plating)
-
 /datum/statverb/remove_plating
 	name = "Remove plating"
 	required_stat = STAT_ROB
 	minimal_stat  = STAT_LEVEL_ADEPT
 
-/datum/statverb/remove_plating/action(mob/user, turf/simulated/floor/target)
+/datum/statverb/remove_plating/action(mob/user, turf/floor/target)
 	if(target.flooring && target.flooring.flags & TURF_REMOVE_CROWBAR)
 		user.visible_message(
 			SPAN_DANGER("[user] grabbed the edges of [target] with their hands!"),
@@ -136,10 +106,6 @@ SUBSYSTEM_DEF(statverbs)
 				SPAN_DANGER("[user] stopped tearing the plating off from [target_name]!"),
 				"You stop tearing plating off from [target_name]"
 			)
-
-/obj/machinery/computer/rdconsole/initalize_statverbs()
-	if(access_research_equipment in req_access)
-		add_statverb(/datum/statverb/hack_console)
 
 /datum/statverb/hack_console
 	name = "Hack console"
@@ -180,10 +146,6 @@ SUBSYSTEM_DEF(statverbs)
 				SPAN_DANGER("[user] stopped hacking into [target_name]!"),
 				"You stop hacking into [target_name]."
 			)
-
-/obj/item/modular_computer/initalize_statverbs()
-	if(enabled == 0)
-		add_statverb(/datum/statverb/fix_computer)
 
 /datum/statverb/fix_computer
 	name = "Fix computer"

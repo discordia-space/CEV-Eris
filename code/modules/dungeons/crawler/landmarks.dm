@@ -14,7 +14,7 @@
 			spawnwall = FALSE
 			break
 	if(spawnwall)
-		new /turf/simulated/wall(src.loc)
+		new /turf/wall(src.loc)
 
 /obj/crawler/crawler_wallmaker/west
 	icon_state = "radial_left"
@@ -50,7 +50,7 @@
 		walls_to_break += get_step(T, NORTH)
 		walls_to_break += get_step(T, SOUTH)
 	for(var/turf/W in walls_to_break)
-		var/turf/simulated/floor/tiled/derelict/red_white_edges/newfloor = new /turf/simulated/floor/tiled/derelict/red_white_edges(W)
+		var/turf/floor/tiled/derelict/red_white_edges/newfloor = new /turf/floor/tiled/derelict/red_white_edges(W)
 		spawn(20)
 			newfloor.lighting_build_overlay()
 

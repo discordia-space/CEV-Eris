@@ -12,6 +12,10 @@
 	name = "Milk"
 	build_path = /obj/item/reagent_containers/food/drinks/milk
 
+/datum/design/bioprinter/butter
+	name = "Stick of Butter"
+	build_path = /obj/item/reagent_containers/food/snacks/sliceable/butterstick
+
 /datum/design/bioprinter/soap
 	name = "Soap"
 	build_path = /obj/item/soap/nanotrasen
@@ -20,7 +24,7 @@
 	name = "Box of Candles"
 	build_path = /obj/item/storage/fancy/candle_box
 	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_CARDBOARD = 1)
-	
+
 
 //[NUTRIMENTS]
 /datum/design/bioprinter/ez
@@ -157,7 +161,7 @@
 	build_path = /obj/item/clothing/accessory/holster
 
 /datum/design/bioprinter/leather/holster/accessory/scabbard
-	name = "scabbard"
+	name = "uniform scabbard"
 	build_path = /obj/item/clothing/accessory/holster/scabbard
 
 /datum/design/bioprinter/leather/holster/accessory/knife
