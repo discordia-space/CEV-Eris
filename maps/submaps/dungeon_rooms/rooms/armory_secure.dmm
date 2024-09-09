@@ -1,41 +1,41 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
 /obj/structure/grille,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "d" = (
 /obj/machinery/power/os_turret/laser,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "e" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "f" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "g" = (
 /obj/spawner/contraband,
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "h" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/crawler)
 "i" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "j" = (
 /obj/effect/floor_decal/industrial/danger{
@@ -44,32 +44,32 @@
 /obj/machinery/light/built{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "k" = (
 /obj/spawner/mob/roomba,
 /obj/spawner/firstaid,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "l" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "m" = (
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/crawler)
 "n" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "o" = (
 /obj/structure/table/onestar,
 /obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/energy_cheap,
 /obj/spawner/gun/shotgun,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "p" = (
 /obj/structure/table/onestar,
@@ -77,7 +77,7 @@
 /obj/spawner/gun/shotgun,
 /obj/spawner/contraband,
 /obj/spawner/gun/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "q" = (
 /obj/structure/table/rack,
@@ -86,16 +86,16 @@
 /obj/spawner/gun/shotgun,
 /obj/spawner/gun/onestar,
 /obj/spawner/gun/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "s" = (
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "A" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "F" = (
 /obj/effect/floor_decal/industrial/danger{
@@ -105,7 +105,7 @@
 	dir = 4
 	},
 /mob/living/carbon/superior_animal/stalker/dual,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 
 (1,1,1) = {"

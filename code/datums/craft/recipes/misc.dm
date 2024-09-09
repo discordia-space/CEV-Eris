@@ -8,14 +8,56 @@
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	related_stats = list(STAT_MEC)
 
-/datum/craft_recipe/wall_girders/low
-	name = "low wall girder"
-	result = /obj/structure/girder/low
-	time = WORKTIME_FAST
+/datum/craft_recipe/bollards
+	name = "bollards"
+	result = /obj/structure/barrier
+	time = WORKTIME_NORMAL
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL)
 	)
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/four_way
+	name = "4-way barrier"
+	result = /obj/structure/barrier/four_way
+	time = WORKTIME_NORMAL
+	steps = list(
+		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTEEL)
+	)
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/hedgehog
+	name = "hedgehog barrier"
+	result = /obj/structure/barrier/hedgehog
+	time = WORKTIME_NORMAL
+	steps = list(
+		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL)
+	)
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/barbed_wire
+	name = "barbed wire"
+	result = /obj/structure/barrier/barbed_wire
+	time = WORKTIME_NORMAL
+	steps = list(
+		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL)
+	)
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	related_stats = list(STAT_MEC)
+/*
+/datum/craft_recipe/ballistic_barrier
+	name = "ballistic barrier"
+	result = /obj/structure/barrier/ballistic
+	time = WORKTIME_NORMAL
+	steps = list(
+		list(CRAFT_MATERIAL, 20, MATERIAL_PLASTEEL)
+	)
+	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
+	related_stats = list(STAT_MEC)
+*/ // TODO --KIROV
 
 /datum/craft_recipe/kitchen_spike
 	name = "Meat spike"

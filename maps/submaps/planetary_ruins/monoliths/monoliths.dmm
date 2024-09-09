@@ -7,7 +7,7 @@
 /turf/template_noop,
 /area/template_noop)
 "c" = (
-/turf/simulated/floor/alium/ruin,
+/turf/floor/alium/ruin,
 /area/template_noop)
 "d" = (
 /obj/machinery/artifact,
@@ -21,7 +21,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/plasma,
-/turf/simulated/floor/alium/ruin,
+/turf/floor/alium/ruin,
 /area/template_noop)
 
 (1,1,1) = {"

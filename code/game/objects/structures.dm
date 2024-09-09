@@ -152,7 +152,7 @@
 	user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
 	climbers |= user
 
-	var/delay = (issmall(user) ? 20 : 34) * user.mod_climb_delay
+	var/delay = (issmall(user) ? 20 : 34) * (user.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
 	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration, src))
 		climbers -= user

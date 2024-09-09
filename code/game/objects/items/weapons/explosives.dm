@@ -44,7 +44,11 @@
 /obj/item/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if (!flag)
 		return
-	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/under))
+	if(isturf(target))
+		var/turf/turf = target
+		if(!turf.is_simulated)
+			return
+	if (ismob(target) || istype(target, /turf/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/under))
 		return
 	to_chat(user, "Planting the explosive charge...")
 	user.do_attack_animation(target)
@@ -83,8 +87,8 @@
 	explosion(cur_turf, 400, 180)
 	/*
 	if(target)
-		if (istype(target, /turf/simulated/wall))
-			var/turf/simulated/wall/W = target
+		if (istype(target, /turf/wall))
+			var/turf/wall/W = target
 			W.dismantle_wall(no_product = TRUE)
 		else if(isliving(target))
 			target.explosion_act(1000) // c4 can't gib mobs anymore.

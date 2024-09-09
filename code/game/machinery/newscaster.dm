@@ -813,6 +813,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	w_class = ITEM_SIZE_SMALL	//Let's make it fit in trashbags!
 	attack_verb = list("bapped")
 	spawn_tags = SPAWN_TAG_JUNK
+	matter = list(MATERIAL_BIOMATTER = 4)
 	rarity_value = 10
 	var/screen = 0
 	var/pages = 0

@@ -57,7 +57,15 @@ GLOBAL_LIST_INIT(mech_weapon_overlays,			icon_states(MECH_WEAPON_OVERLAYS_ICON))
 #define MECH_POWER_TRANSITION 1
 #define MECH_POWER_ON 2
 
+/// Strafing types
+#define MECH_STRAFING_NONE 0
+/// Can only strafe backwards
+#define MECH_STRAFING_BACK 1
+/// Can strafe in all directions
+#define MECH_STRAFING_OMNI 2
 /// It will make update_icon be called on the equipment after every move
 #define EQUIPFLAG_UPDTMOVE 1
 /// It will have pretick() called on it before the mech checks wheter or not is powered
 #define EQUIPFLAG_PRETICK 2
+///Any module with this flag will have their Process() called via exosuit/Life()
+#define EQUIPFLAG_PROCESS 4

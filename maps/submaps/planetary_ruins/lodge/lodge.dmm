@@ -3,46 +3,45 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/map_template/lodge)
 "c" = (
 /obj/machinery/power/port_gen/pacman,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "d" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/color/black,
 /obj/spawner/cloth/shoes,
 /obj/item/clothing/mask/breath,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "e" = (
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "f" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "g" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/map_template/lodge)
 "h" = (
 /obj/structure/table/woodentable,
 /obj/item/board,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "i" = (
 /obj/item/device/lighting/toggleable/lamp/green,
 /obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "j" = (
 /obj/structure/table/woodentable,
 /obj/item/clothing/mask/smokable/pipe/cobpipe,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "k" = (
 /obj/structure/table/woodentable,
@@ -53,7 +52,7 @@
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "l" = (
 /obj/structure/table/woodentable,
@@ -63,7 +62,7 @@
 	icon_state = "spline_fancy";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "m" = (
 /obj/structure/closet/crate/freezer,
@@ -71,7 +70,7 @@
 	icon_state = "spline_fancy";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "n" = (
 /obj/structure/table/woodentable,
@@ -82,10 +81,10 @@
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "o" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "p" = (
 /obj/structure/bed/chair/wood{
@@ -93,20 +92,20 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/spline/fancy/wood/corner,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "q" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin,
 /obj/item/deck/cards,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "r" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	icon_state = "spline_fancy";
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "s" = (
 /obj/structure/table/woodentable,
@@ -114,55 +113,55 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/tool/knife/butch,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "t" = (
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "u" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "v" = (
 /obj/machinery/r_n_d/server/robotics{
 	desc = "A jury-rigged server setup.";
 	name = "low-tech server"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "w" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "x" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp,
 /obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "y" = (
 /obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "z" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "A" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "B" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "C" = (
 /obj/structure/table/woodentable,
@@ -170,7 +169,7 @@
 	desc = "A cheap, beat-up old laptop.";
 	name = "old laptop"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "D" = (
 /obj/structure/bed/chair/wood{
@@ -180,32 +179,32 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "E" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "F" = (
 /obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "G" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "H" = (
 /obj/machinery/door/unpowered/simple/wood,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "I" = (
 /obj/structure/table/rack,
 /obj/item/gun/projectile/shotgun/doublebarrel/sawn,
 /obj/spawner/ammo/shotgun,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "J" = (
 /obj/structure/closet,
@@ -224,7 +223,7 @@
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "L" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
@@ -238,7 +237,7 @@
 /area/template_noop)
 "N" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "O" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
@@ -252,28 +251,27 @@
 /area/template_noop)
 "Q" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "S" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /obj/effect/floor_decal/spline/fancy/wood/corner,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "U" = (
 /obj/structure/window/reinforced/full,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/map_template/lodge)
 "V" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "Y" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 
 (1,1,1) = {"

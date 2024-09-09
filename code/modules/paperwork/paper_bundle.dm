@@ -92,12 +92,12 @@
 			else
 				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
 
-/obj/item/paper_bundle/examine(mob/user)
-	if(..(user, 1))
-		src.show_content(user)
+/obj/item/paper_bundle/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		show_content(user)
 	else
-		to_chat(user, SPAN_NOTICE("It is too far away."))
-	return
+		extra_description += SPAN_NOTICE("It is too far away.")
+	..(user, extra_description)
 
 /obj/item/paper_bundle/proc/show_content(mob/user as mob)
 	var/dat

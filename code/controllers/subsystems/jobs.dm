@@ -49,8 +49,6 @@ SUBSYSTEM_DEF(job)
 		else
 			ckey_to_job_to_can_play[ckey][occupation] = CanHaveJob(ckey, occupation)
 
-
-ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, R_ADMIN, FALSE)
 /client/verb/whitelistPlayerForJobs()
 	set category = "Admin"
 	set name = "Allow client to bypass all job requirement playtimes"
@@ -63,7 +61,6 @@ ADMIN_VERB_ADD(/client/verb/whitelistPlayerForJobs, R_ADMIN, FALSE)
 		return
 	SSjob.WhitelistPlayer(the_chosen_one.ckey)
 
-ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 /client/verb/unwhitelistPlayerForJobs()
 	set category = "Admin"
 	set name = "Unwhitelist a client from all job requirement playtimes"
@@ -385,22 +382,16 @@ ADMIN_VERB_ADD(/client/verb/unwhitelistPlayerForJobs, R_ADMIN, FALSE)
 
 				if(age < job.minimum_character_age) // Nope.
 					continue
-
-				switch(age)
-					if(job.minimum_character_age to (job.minimum_character_age+10))
-						weightedCandidates[V] = 3 // Still a bit young.
-					if((job.minimum_character_age+10) to (job.ideal_character_age-10))
-						weightedCandidates[V] = 6 // Better.
-					if((job.ideal_character_age-10) to (job.ideal_character_age+10))
-						weightedCandidates[V] = 10 // Great.
-					if((job.ideal_character_age+10) to (job.ideal_character_age+20))
-						weightedCandidates[V] = 6 // Still good.
-					if((job.ideal_character_age+20) to INFINITY)
-						weightedCandidates[V] = 3 // Geezer.
-					else
-						// If there's ABSOLUTELY NOBODY ELSE
-						if(candidates.len == 1) weightedCandidates[V] = 1
-
+				else if(age <= (job.minimum_character_age + 10))
+					weightedCandidates[V] = 3 // Still a bit young.
+				else if(age <= (job.ideal_character_age - 10))
+					weightedCandidates[V] = 6 // Better.
+				else if(age <= (job.ideal_character_age + 10))
+					weightedCandidates[V] = 10 // Great.
+				else if(age <= (job.ideal_character_age + 20))
+					weightedCandidates[V] = 6 // Still good.
+				else
+					weightedCandidates[V] = 3 // Geezer.
 
 			var/mob/new_player/candidate = pickweight(weightedCandidates)
 			if(AssignRole(candidate, command_position))

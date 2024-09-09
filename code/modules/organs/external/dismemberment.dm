@@ -70,6 +70,7 @@
 			for(var/obj/item/organ/I in internal_organs)
 				I.removed()
 				I.forceMove(get_turf(src))
+				I.status |= ORGAN_CUT_AWAY
 
 			for(var/obj/item/I in src)
 				if(I.w_class > ITEM_SIZE_SMALL)
@@ -88,6 +89,7 @@
 				I.removed()
 				I.forceMove(get_turf(src))
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+				I.status |= ORGAN_CUT_AWAY
 
 			for(var/mob/living/I in src) // check for mobs inside you... yeah
 				if(istype(I, /mob/living/simple_animal/borer/))

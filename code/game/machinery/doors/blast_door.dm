@@ -37,7 +37,6 @@
 	var/last_message = 0
 
 	dir = 1
-	explosion_resistance = 25
 
 	//Most blast doors are infrequently toggled and sometimes used with regular doors anyways,
 	//turning this off prevents awkward zone geometry in places like medbay lobby, for example.
@@ -196,34 +195,32 @@
 	anchored = FALSE
 	update_icon()
 
-/obj/machinery/door/blast/examine(mob/user)
-	. = ..()
-	if(!.)
-		return
-	to_chat(user, SPAN_NOTICE("You can try to open this by using a crowbar on disarm intent."))
+/obj/machinery/door/blast/examine(mob/user, extra_description = "")
+	extra_description += SPAN_NOTICE("You can try to open this by using a crowbar on disarm intent.")
 	if(screws_welded)
-		to_chat(user, SPAN_NOTICE("The screws on \the [src] can be welded off."))
+		extra_description += SPAN_NOTICE("\nThe screws on \the [src] can be welded off.")
 	else if(!screws_welded && !panel_open)
-		to_chat(user, SPAN_NOTICE("The panel on \the [src] can be opened by screwing, or sealed by welding."))
+		extra_description += SPAN_NOTICE("\nThe panel on \the [src] can be opened by screwing, or sealed by welding.")
 	else if(panel_open)
-		to_chat(user, SPAN_NOTICE("The panel on \the [src] can be closed by screwing."))
+		extra_description += SPAN_NOTICE("\nThe panel on \the [src] can be closed by screwing.")
 
 		switch(assembly_step)
 			if(0)
-				to_chat(user, SPAN_NOTICE("You can weaken the hydraulic connections on \the [src] by wrenching."))
+				extra_description += SPAN_NOTICE("\nYou can weaken the hydraulic connections on \the [src] by wrenching.")
 			if(-1)
-				to_chat(user, SPAN_NOTICE("You can cut off the hydraulics of \the [src], or tighten them again by wrenching."))
+				extra_description += SPAN_NOTICE("\nYou can cut off the hydraulics of \the [src], or tighten them again by wrenching.")
 			if(-2)
-				to_chat(user, SPAN_NOTICE("You can pry off the metal coverings of \the [src], or reconnect the hydraulics by using a wirecutter."))
+				extra_description += SPAN_NOTICE("\nYou can pry off the metal coverings of \the [src], or reconnect the hydraulics by using a wirecutter.")
 			if(-3)
-				to_chat(user, SPAN_NOTICE("You can remove securing bolts of \the [src] by wrenching, or pry back in the metal coverings."))
+				extra_description += SPAN_NOTICE("\nYou can remove securing bolts of \the [src] by wrenching, or pry back in the metal coverings.")
 			if(-4)
-				to_chat(user, SPAN_NOTICE("You can cut the wirings of \the [src], or secure its bolts back in by wrenching."))
+				extra_description += SPAN_NOTICE("\nYou can cut the wirings of \the [src], or secure its bolts back in by wrenching.")
 			if(-5)
-				to_chat(user, SPAN_NOTICE("You can now unscrew the door circuit of \the [src], or wire it back."))
+				extra_description += SPAN_NOTICE("\nYou can now unscrew the door circuit of \the [src], or wire it back.")
 			if(-6)
-				to_chat(user, SPAN_NOTICE("You can now fully dismantle \the [src], or insert in a new door circuit."))
+				extra_description += SPAN_NOTICE("\nYou can now fully dismantle \the [src], or insert in a new door circuit.")
 
+	..(user, extra_description)
 
 // Proc: attackby()
 // Parameters: 2 (C - Item this object was clicked with, user - Mob which clicked this object)

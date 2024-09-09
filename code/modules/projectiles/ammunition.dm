@@ -63,7 +63,6 @@
 		if(!C.BB)
 			projectile_type = FALSE // this prevents spent projectiles resetting their status- this is safe because it typechecks for path, and this is not path
 		C.update_icon()
-		update_icon()
 	. = ..()
 
 
@@ -143,11 +142,11 @@
 		temp_image.transform = temp_image_matrix
 		src.overlays += temp_image
 
-/obj/item/ammo_casing/examine(mob/user)
-	..()
-	to_chat(user, "There [(amount == 1)? "is" : "are"] [amount] round\s left!")
-	if (!BB)
-		to_chat(user, "[(amount == 1)? "This one is" : "These ones are"] spent.")
+/obj/item/ammo_casing/examine(mob/user, extra_description = "")
+	extra_description += "There [(amount == 1)? "is" : "are"] [amount] round\s left!"
+	if(!BB)
+		extra_description += "\n[(amount == 1)? "This one is" : "These ones are"] spent."
+	..(user, extra_description)
 
 /obj/item/ammo_casing/get_item_cost(export)
 	. = round(..() * amount)
@@ -318,6 +317,7 @@
 		C.amount -= 1
 
 		var/obj/item/ammo_casing/inserted_casing = new C.type(C)
+		inserted_casing.forceMove(src)
 		stored_ammo.Insert(1, inserted_casing)
 	else
 		if(ismob(C.loc))
@@ -410,9 +410,9 @@
 
 	icon_state = "[initial(icon_state)][ammo_label_string]-[ammo_count]"
 
-/obj/item/ammo_magazine/examine(mob/user)
-	..()
-	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
+/obj/item/ammo_magazine/examine(mob/user, extra_description = "")
+	extra_description += "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!"
+	..(user, extra_description)
 
 /obj/item/ammo_magazine/get_item_cost(export)
 	. = ..()

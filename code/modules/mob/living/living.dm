@@ -578,7 +578,7 @@ default behaviour is:
 								//this is the gay blood on floor shit -- Added back -- Skie
 								if(M.lying && (prob(M.getBruteLoss() / 6)))
 									var/turf/location = M.loc
-									if(istype(location, /turf/simulated))
+									if(istype(location, /turf))
 										location.add_blood(M)
 								//pull damage with injured people
 									if(prob(25))
@@ -589,7 +589,7 @@ default behaviour is:
 										M.adjustBruteLoss(2)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 										var/turf/location = M.loc
-										if(istype(location, /turf/simulated))
+										if(istype(location, /turf))
 											if(ishuman(M))
 												var/mob/living/carbon/human/H = M
 												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
@@ -677,7 +677,7 @@ default behaviour is:
 		// Diving
 		to_chat(src, SPAN_NOTICE("You dive onwards!"))
 		allow_spin = FALSE
-		if(istype(get_step(src, _dir), /turf/simulated/open))
+		if(istype(get_step(src, _dir), /turf/open))
 			range++
 		if(momentum_speed > 4)
 			range++
@@ -770,25 +770,6 @@ default behaviour is:
 	if (HUDneed.Find("throw"))
 		var/obj/screen/HUDthrow/HUD = HUDneed["throw"]
 		HUD.update_icon()
-
-	/*if (var/obj/screen/HUDthrow/HUD in src.client.screen)
-		if(HUD.name == "throw") //in case we don't have the HUD and we use the hotkey
-			HUD.toggle_throw_mode()
-			break*/
-
-/mob/living/stop_pulling()
-
-	set name = "Stop Pulling"
-	set category = "IC"
-
-	if(pulling)
-		pulling.pulledby = null
-		pulling = null
-/*		if(pullin)
-			pullin.icon_state = "pull0"*/
-		if (HUDneed.Find("pull"))
-			var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
-			HUD.update_icon()
 
 /mob/living/start_pulling(var/atom/movable/AM)
 

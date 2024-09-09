@@ -41,10 +41,11 @@
 /obj/item/grab/resolve_attackby(obj/O, mob/user, var/click_params)
 	if(ismob(O))
 		return ..()
-	if(!istype(O) || get_dist(O, affecting) > 1)
+	if(get_dist(O, affecting) > 1)
 		return TRUE
-	if(O.affect_grab(assailant, affecting, state))
-		qdel(src)
+	if(istype(O, /obj) || istype(O, /turf/wall/low))
+		if(O.affect_grab(assailant, affecting, state))
+			qdel(src)
 	return TRUE
 
 /obj/item/grab/New(mob/user, mob/victim)

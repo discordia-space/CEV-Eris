@@ -160,19 +160,19 @@
 		wielded_item_state = "_doble" + "-[item_modifystate]"
 	update_wear_icon()
 
-/obj/item/gun/energy/plasma/stranger/examine(user, distance)
-	. = ..()
+/obj/item/gun/energy/plasma/stranger/examine(mob/user, extra_description = "")
 	var/area/my_area = get_area(src)
-	switch(my_area.bluespace_entropy)
-		if(0 to my_area.bluespace_hazard_threshold*0.3)
-			to_chat(user, SPAN_NOTICE("It's fading out."))
-		if(my_area.bluespace_hazard_threshold*0.7 to INFINITY)
-			to_chat(user, SPAN_NOTICE("It's occasionally pulsing with energy."))
-	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
-		to_chat(user, SPAN_NOTICE("It glows with an inner radiance."))
-	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
-		to_chat(user, SPAN_NOTICE("The energy surrounding it is overwhelming to the point of feeling warm in your hands."))
 
+	if(my_area.bluespace_entropy < (my_area.bluespace_hazard_threshold * 0.3))
+		extra_description += SPAN_NOTICE("\nIt's fading out.")
+	else
+		extra_description += SPAN_NOTICE("\nIt's occasionally pulsing with energy.")
+
+	if(GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.7)
+		extra_description += SPAN_NOTICE("\nIt glows with an inner radiance.")
+	if(my_area.bluespace_entropy > my_area.bluespace_hazard_threshold*0.95 || GLOB.bluespace_entropy > GLOB.bluespace_hazard_threshold*0.95)
+		extra_description += SPAN_NOTICE("\nThe energy surrounding it is overwhelming to the point of feeling warm in your hands.")
+	..(user, extra_description)
 
 
 /obj/item/gun/energy/plasma/stranger/proc/chaos()

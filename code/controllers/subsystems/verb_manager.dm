@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(verb_manager)
 #ifdef UNIT_TESTS
 	if(QDELETED(usr) && ismob(incoming_callback.object))
 		incoming_callback.user = WEAKREF(incoming_callback.object)
-		var/datum/callback/new_us = CALLBACK(arglist(list(GLOBAL_PROC, /proc/_queue_verb) + args.Copy()))
+		var/datum/callback/new_us = CALLBACK(arglist(list(GLOBAL_PROC, GLOBAL_PROC_REF(_queue_verb)) + args.Copy()))
 		return world.push_usr(incoming_callback.object, new_us)
 #endif
 
@@ -145,6 +145,6 @@ SUBSYSTEM_DEF(verb_manager)
 	//note that wait SECONDS is incorrect if this is called outside of fire() but because byond is garbage i need to add a timer to rustg to find a valid solution
 
 /datum/controller/subsystem/verb_manager/stat_entry(msg)
-	// . = ..()
 	if(use_default_stats)
-		..("V/S: [round(verbs_executed_per_second, 0.01)]")
+		msg += "V/S: [round(verbs_executed_per_second, 0.01)]"
+	return ..()

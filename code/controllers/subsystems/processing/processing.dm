@@ -10,12 +10,13 @@ SUBSYSTEM_DEF(processing)
 	var/list/currentrun = list()
 
 	/// Eris-specific process debugger
-	var/process_proc = /datum/proc/Process
+	var/process_proc = TYPE_PROC_REF(/datum, Process)
 	var/debug_last_thing
 	var/debug_original_process_proc // initial() does not work with procs
 
-/datum/controller/subsystem/processing/stat_entry()
-	..("P:[length(processing)]")
+/datum/controller/subsystem/processing/stat_entry(msg)
+	msg = "P:[LAZYLEN(processing)]"
+	return ..()
 
 /datum/controller/subsystem/processing/fire(resumed = FALSE)
 	if (!resumed)
@@ -65,7 +66,7 @@ SUBSYSTEM_DEF(processing)
 		debug_original_process_proc = null
 	else
 		debug_original_process_proc	= process_proc
-		process_proc = /datum/proc/DebugSubsystemProcess
+		process_proc = TYPE_PROC_REF(/datum, DebugSubsystemProcess)
 
 	to_chat(usr, "[name] - Debug mode [debug_original_process_proc ? "en" : "dis"]abled")
 	log_world("[usr] [debug_original_process_proc ? "en" : "dis"]abled [name] debug mode")

@@ -1,171 +1,169 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "d" = (
 /obj/machinery/optable,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "e" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/wall/low/onestar,
 /obj/structure/curtain/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "f" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "g" = (
 /obj/machinery/light/floor,
 /obj/effect/floor_decal/industrial/danger{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "h" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "i" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "j" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "k" = (
 /obj/structure/window/reinforced,
 /obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "l" = (
 /obj/machinery/door/window/southright,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "m" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "n" = (
 /obj/machinery/door/window/southleft,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "o" = (
 /obj/structure/window/reinforced,
 /obj/structure/salvageable/os/console_broken{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "p" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/structure/medical_stand,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "q" = (
 /obj/machinery/light/floor,
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "r" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "s" = (
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "t" = (
 /obj/machinery/door/airlock/freezer,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "u" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 8
 	},
 /obj/effect/floor_decal/sign,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "v" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
 	},
 /obj/effect/floor_decal/sign/two,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/structure/table/rack,
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "x" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "y" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/wall/low/onestar,
 /area/crawler)
 "z" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "A" = (
 /obj/machinery/door/window/northright,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "B" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "D" = (
 /obj/machinery/door/window/northleft,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "F" = (
 /obj/structure/table/onestar,
 /obj/item/tool/medmultitool,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "G" = (
 /obj/structure/table/onestar,
 /obj/spawner/surgery_tool,
 /obj/spawner/surgery_tool,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 "I" = (
 /obj/effect/floor_decal/industrial/outline,
 /obj/structure/table/rack,
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "R" = (
 /obj/structure/window/reinforced,
 /obj/structure/table/onestar,
 /obj/spawner/prothesis_one_star,
-/turf/simulated/floor/tiled/cafe,
+/turf/floor/tiled/cafe,
 /area/crawler)
 
 (1,1,1) = {"

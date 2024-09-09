@@ -90,7 +90,7 @@
 
 /area/proc/random_space()
 	var/list/turfs = list()
-	for(var/turf/simulated/floor/F in src.contents)
+	for(var/turf/floor/F in src.contents)
 		if(turf_clear(F))
 			turfs += F
 	if (turfs.len)
@@ -100,7 +100,7 @@
 
 /area/proc/random_hideable_turf()
 	var/list/turfs = list()
-	for(var/turf/simulated/floor/F in src.contents)
+	for(var/turf/floor/F in src.contents)
 		if(turf_clear(F))
 			if (F.flooring && (F.flooring.flags & TURF_HIDES_THINGS))
 				turfs += F

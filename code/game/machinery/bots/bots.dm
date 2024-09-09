@@ -45,14 +45,13 @@
 		log_and_message_admins("emagged [src]'s inner circuits")
 		return 1
 
-/obj/machinery/bot/examine(mob/user)
-	..(user)
-	if (src.health < maxHealth)
-		if (src.health > maxHealth/3)
-			to_chat(user, SPAN_WARNING("[src]'s parts look loose."))
+/obj/machinery/bot/examine(mob/user, extra_description = "")
+	if(health < maxHealth)
+		if(health > maxHealth / 3)
+			extra_description += SPAN_WARNING("[src]'s parts look loose.")
 		else
-			to_chat(user, SPAN_DANGER("[src]'s parts look very loose!"))
-	return
+			extra_description += SPAN_DANGER("[src]'s parts look very loose!")
+	..(user, extra_description)
 
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/screwdriver))
@@ -134,10 +133,10 @@
 /turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
-	//	for(var/turf/simulated/t in oview(src,1))
+	//	for(var/turf/t in oview(src,1))
 
 	for(var/d in cardinal)
-		var/turf/simulated/T = get_step(src, d)
+		var/turf/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, ID))
 				L.Add(T)

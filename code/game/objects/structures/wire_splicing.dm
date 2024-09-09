@@ -26,7 +26,7 @@
 		//We will give each turf a score to determine its suitability
 		var/best_score = -INFINITY
 		for (var/obj/structure/cable/C in range(3, loc))
-			var/turf/simulated/floor/T = get_turf(C)
+			var/turf/floor/T = get_turf(C)
 
 			//Wire inside a wall? can't splice there
 			if (!istype(T))
@@ -74,9 +74,9 @@
 	if (messiness > 2)
 		layer = LOW_OBJ_LAYER  // I wont do such stuff on splicing "reinforcement". Take it as nasty feature
 
-/obj/structure/wire_splicing/examine(mob/user)
-	..()
-	to_chat(user, "It has [messiness] wire[messiness > 1?"s":""] dangling around")
+/obj/structure/wire_splicing/examine(mob/user, extra_description = "")
+	extra_description += "\nIt has [messiness] wire[messiness > 1?"s":""] dangling around"
+	..(user, extra_description)
 
 /obj/structure/wire_splicing/Crossed(AM as mob|obj)
 	if(isliving(AM))

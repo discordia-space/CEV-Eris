@@ -65,15 +65,6 @@
 	desc = "You cling to railings and low walls, climb faster, and get up after diving or sliding sooner."
 	icon_state = "parkour" //https://game-icons.net/1x1/delapouite/jump-across.html
 
-/datum/perk/oddity/parkour/assign(mob/living/carbon/human/H)
-	if(..())
-		holder.mod_climb_delay -= 0.5
-
-/datum/perk/oddity/parkour/remove()
-	if(holder)
-		holder.mod_climb_delay += 0.5
-	..()
-
 /datum/perk/oddity/charming_personality
 	name = "Charming Personality"
 	desc = "A little wink and a confident smile goes far in this place. People are more comfortable with your company. \
@@ -442,7 +433,7 @@
 		return
 	var/datum/money_account/KROMER = holder.mind.initial_account
 	if(holder.get_equipped_item(slot_wear_mask) != my_mask)
-		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT VERY BIG SHOT OF YOU", station_name(), 1997))
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT VERY BIG SHOT OF YOU", station_name, 1997))
 			holder.adjustCloneLoss(rand(19, 97))
 			to_chat(src, SPAN_DANGER("You feel like you didn't have enough KROMERS."))
 		holder.stats.removePerk(type)
@@ -454,7 +445,7 @@
 	my_mask.style = rand(-2, 2)//EXCLUSIVE OFFICIAL SPAMTON
 	var/KROMER_GOOD = TRUE
 	if(KROMER)
-		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name(), rand(1, 4)))
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "BIG SHOT", station_name, rand(1, 4)))
 			KROMER_GOOD = FALSE
 	else
 		KROMER_GOOD = FALSE

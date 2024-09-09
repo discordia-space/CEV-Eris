@@ -310,6 +310,5 @@
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
 
-/obj/machinery/atmospherics/valve/examine(mob/user)
-	..()
-	to_chat(user, "It is [open ? "open" : "closed"].")
+/obj/machinery/atmospherics/valve/examine(mob/user, extra_description = "")
+	..(user, "It is [open ? "open" : "closed"].")

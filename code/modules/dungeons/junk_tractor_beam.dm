@@ -539,7 +539,7 @@
 			else  // Humans just win an express ticket to deep space
 				go_to_bluespace(M.loc, 0, FALSE, M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
 		if(T.x <= JTB_OFFSET || T.y <= JTB_OFFSET || T.x >= maxx+JTB_OFFSET+1 || T.y >= maxy+JTB_OFFSET+1)  // To let a 1-wide ribbon of clean space
-			T.ChangeTurf(/turf/simulated/jtb_edge)
+			T.ChangeTurf(/turf/jtb_edge)
 
 	// Second pass to delete glass shards and stuff like that which is created depending on the qdel order (low wall before window for instance)
 	for(var/turf/T in edges)
@@ -566,8 +566,8 @@
 // Template of portal chunk
 /datum/rogue/asteroid/predef/portal
 	width = 5
-	type_wall	= /turf/simulated/wall/r_wall
-	type_under	= /turf/simulated/floor/asteroid
+	type_wall	= /turf/wall/reinforced
+	type_under	= /turf/floor/asteroid
 
 	New()
 		..()  // The joy of not being able to use a for in the declaration
@@ -841,10 +841,10 @@
 
 //////////////////////////////
 // Wrapping at the edge of junk field
-// Mainly a copy paste of /turf/simulated/planet_edge
+// Mainly a copy paste of /turf/planet_edge
 //////////////////////////////
 
-/turf/simulated/jtb_edge
+/turf/jtb_edge
 	name = "junk field edge"
 	desc = "A blue wall of energy that stabilizes the junk field."
 	density = FALSE
@@ -854,23 +854,23 @@
 	icon_state = "shield_normal"
 	var/list/victims = list()
 
-/turf/simulated/jtb_edge/proc/MineralSpread()
+/turf/jtb_edge/proc/MineralSpread()
 	return
 
-/turf/simulated/jtb_edge/Destroy()
+/turf/jtb_edge/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/turf/simulated/jtb_edge/Exited(atom/movable/AM)
+/turf/jtb_edge/Exited(atom/movable/AM)
 	. = ..()
 	LAZYREMOVE(victims, WEAKREF(AM))
 
-/turf/simulated/jtb_edge/Entered(atom/movable/AM)
+/turf/jtb_edge/Entered(atom/movable/AM)
 	..()
 	LAZYADD(victims, WEAKREF(AM))
 	START_PROCESSING(SSobj, src)
 
-/turf/simulated/jtb_edge/Process()
+/turf/jtb_edge/Process()
 	. = ..()
 
 	for(var/datum/weakref/W in victims)

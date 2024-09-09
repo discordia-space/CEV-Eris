@@ -136,10 +136,6 @@ var/list/_client_preferences_by_type
 	options = list(GLOB.PREF_0, GLOB.PREF_25, GLOB.PREF_50, GLOB.PREF_75, GLOB.PREF_100, GLOB.PREF_125, GLOB.PREF_150, GLOB.PREF_175, GLOB.PREF_200)
 	default_value = GLOB.PREF_75
 
-/datum/client_preference/change_to_examine_tab
-	description = "Switch to examine tab upon examining a object"
-	key = "SWITCHEXAMINE"
-
 /datum/client_preference/play_ambiance/changed(var/mob/preference_mob, var/new_value)
 	if(new_value == GLOB.PREF_NO)
 		sound_to(preference_mob, sound(null, repeat = 0, wait = 0, volume = 0, channel = GLOB.ambience_sound_channel))
@@ -246,11 +242,6 @@ var/list/_client_preferences_by_type
 /datum/client_preference/gun_cursor
 	description = "Enable gun crosshair"
 	key = "GUN_CURSOR"
-
-/datum/client_preference/stay_in_hotkey_mode
-	description = "Keep hotkeys on mob change"
-	key = "KEEP_HOTKEY_MODE"
-	default_value = GLOB.PREF_YES
 
 /datum/client_preference/tgui_fancy
 	description ="Enable/Disable tgui fancy mode"

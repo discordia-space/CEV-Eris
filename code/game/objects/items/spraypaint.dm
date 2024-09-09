@@ -12,7 +12,7 @@
 /obj/item/spraypaint/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return
 	if(istype(target,/turf))
-		var/graffititype = input("Choose what you'd like to paint") in list("Kot","Onestar","Doodle","Piss","Clown","Skull","Heart","Excelsior","Ironhammer","Moebius","Neotheology","Technomancer","Aster","Ancap yes","Ancap no")
+		var/graffititype = input("Choose what you'd like to paint") in list("Kot","Onestar","Carrion","Doodle","Piss","Clown","Skull","Heart","Excelsior","Ironhammer","Moebius","Neotheology","Technomancer","Aster","Ancap yes","Ancap no")
 		if(uses <= 0)
 			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
 			to_chat(user, SPAN_NOTICE("The spray can is empty."))
@@ -29,6 +29,8 @@
 				new /obj/effect/decal/cleanable/graffiti/graffiti_kot(target)
 			if("Onestar")
 				new /obj/effect/decal/cleanable/graffiti/graffiti_onestar(target)
+			if("Carrion")
+				new /obj/effect/decal/cleanable/graffiti/graffiti_carrion(target)
 			if("Doodle")
 				new /obj/effect/decal/cleanable/graffiti/graffiti_doodle(target)
 			if("Piss")

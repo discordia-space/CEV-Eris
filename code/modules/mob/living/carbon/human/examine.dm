@@ -1,4 +1,4 @@
-/mob/living/carbon/human/examine(mob/user)
+/mob/living/carbon/human/examine(mob/user, extra_description = "")
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
 	var/skipjumpsuit = 0
@@ -24,7 +24,7 @@
 	if(wear_mask)
 		skipface |= wear_mask.flags_inv & HIDEFACE
 
-	var/msg = "<span class='info'>*---------*\nThis is "
+	var/msg = "<div id='examine'><span class='info'>This is "
 
 	var/datum/gender/T = gender_datums[gender]
 	if(skipjumpsuit && skipface) //big suits/masks/helmets make it hard to tell their gender
@@ -39,6 +39,9 @@
 
 	msg += "<EM>[src.name]</EM>"
 	msg += "!\n"
+
+
+
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
@@ -172,6 +175,22 @@
 		else if(jitteriness >= 100)
 			msg += "<span class='warning'>[T.He] [T.is] twitching ever so slightly.</span>\n"
 
+	//Noble or lowborn
+	if(ishuman(user) && !wear_mask)
+		var/mob/living/carbon/human/H = user
+		if(H.stats.getPerk(PERK_NOBLE))
+			msg += "[T.He] [T.has] a noble demeanour.\n"
+		if(H.stats.getPerk(PERK_LOWBORN))
+			msg += "[T.He] [T.has] a lowborn demeanour.\n"
+
+	//crazy
+	if(ishuman(user) && !wear_mask)
+		var/mob/living/carbon/human/H = user
+		if(H.sanity.level <=33 && H.sanity.level > 5)
+			msg += "<span class='warning'><B>[T.He] [T.has] a weird look on [T.his] face.</B></span>\n"
+		else if(H.sanity.level <= 5)
+			msg += "<span class='warning'><B>[T.He] [T.has] a crazed look on [T.his] face.</B></span>\n"
+
 	//splints
 	for(var/organ in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG, BP_GROIN, BP_HEAD, BP_CHEST))
 		var/obj/item/organ/external/o = get_organ(organ)
@@ -185,22 +204,22 @@
 //	if(mSmallsize in mutations)
 //		msg += "[T.He] [T.is] small halfling!\n"
 
-	var/distance = get_dist(usr,src)
-	if(isghost(usr) || usr?.stat == DEAD) // ghosts can see anything
+	var/distance = get_dist(user, src)
+	if(isghost(user) || user.stat == DEAD) // ghosts can see anything
 		distance = 1
-	if(src.stat || (status_flags & FAKEDEATH))
+	if(stat || (status_flags & FAKEDEATH))
 		msg += "<span class='warning'>[T.He] [T.is]n't responding to anything around [T.him] and seems to be asleep.</span>\n"
-		if((stat == DEAD || src.losebreath || (status_flags & FAKEDEATH)) && distance <= 3)
+		if((stat == DEAD || losebreath || (status_flags & FAKEDEATH)) && distance <= 3)
 			msg += "<span class='warning'>[T.He] [T.does] not appear to be breathing.</span>\n"
-		if(ishuman(usr) && !usr?.stat && Adjacent(usr))
-			usr?.visible_message("<b>[usr]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
-		if(distance<=1 && do_mob(usr,src,15,progress=0))
+		if(ishuman(user) && !user?.stat && Adjacent(user))
+			user?.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.")
+		if(distance <= 1 && do_mob(user, src, 15, progress = 0))
 			if(status_flags & FAKEDEATH)
-				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] no pulse and [T.his] soul has departed...</span>")
+				extra_description += "\n<span class='deadsay'>[T.He] [T.has] no pulse and [T.his] soul has departed...</span>"
 			else if(pulse() == PULSE_NONE)
-				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>")
+				extra_description += "\n<span class='deadsay'>[T.He] [T.has] no pulse[src.client ? "" : " and [T.his] soul has departed"]...</span>"
 			else
-				to_chat(usr, "<span class='deadsay'>[T.He] [T.has] a pulse!</span>")
+				extra_description += "\n<span class='deadsay'>[T.He] [T.has] a pulse!</span>"
 
 	if(fire_stacks)
 		msg += "[T.He] [T.is] covered in some liquid.\n"
@@ -256,71 +275,6 @@
 		if(((temp.status & ORGAN_BROKEN) && temp.brute_dam > temp.min_broken_damage) || (temp.status & ORGAN_MUTATED))
 			wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span><br>"
 
-	//Handles the text strings being added to the actual description.
-	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.
-
-	// ***********************************************************************************
-	// THIS NEEDS TO BE ENTIRELY REWRITTEN. Commenting out for now, BADLY NEEDS REWRITING.
-	// ***********************************************************************************
-
-	/*
-	var/display_chest = 0
-	var/display_shoes = 0
-	var/display_gloves = 0
-
-	if(wound_flavor_text["head"] && (is_destroyed["head"] || (!skipmask && !(wear_mask && istype(wear_mask, /obj/item/clothing/mask/gas)))))
-		msg += wound_flavor_text["head"]
-	else if(is_bleeding["head"])
-		msg += "<span class='warning'>[src] [T.has] blood running down [T.his] face!</span>\n"
-
-	if(wound_flavor_text["upper body"] && !w_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
-		msg += wound_flavor_text["upper body"]
-	else if(is_bleeding["upper body"])
-		display_chest = 1
-
-	if(wound_flavor_text["left arm"] && (is_destroyed["left arm"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["left arm"]
-	else if(is_bleeding["left arm"])
-		display_chest = 1
-
-	if(wound_flavor_text["left hand"] && (is_destroyed["left hand"] || (!gloves && !skipgloves)))
-		msg += wound_flavor_text["left hand"]
-	else if(is_bleeding["left hand"])
-		display_gloves = 1
-
-	if(wound_flavor_text["right arm"] && (is_destroyed["right arm"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["right arm"]
-	else if(is_bleeding["right arm"])
-		display_chest = 1
-
-	if(wound_flavor_text["right hand"] && (is_destroyed["right hand"] || (!gloves && !skipgloves)))
-		msg += wound_flavor_text["right hand"]
-	else if(is_bleeding["right hand"])
-		display_gloves = 1
-
-	if(wound_flavor_text["lower body"] && (is_destroyed["lower body"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["lower body"]
-	else if(is_bleeding["lower body"])
-		display_chest = 1
-
-	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["left leg"]
-	else if(is_bleeding["left leg"])
-		display_chest = 1
-
-	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)))
-		msg += wound_flavor_text["right leg"]
-	else if(is_bleeding["right leg"])
-		display_chest = 1
-
-	if(display_chest)
-		msg += "<span class='danger'>[src] [T.has] blood soaking through from under [T.his] clothing!</span>\n"
-	if(display_shoes)
-		msg += "<span class='danger'>[src] [T.has] blood running from [T.his] shoes!</span>\n"
-	if(display_gloves)
-		msg += "<span class='danger'>[src] [T.has] blood running from under [T.his] gloves!</span>\n"
-	*/
-
 	for(var/limb in wound_flavor_text)
 		msg += wound_flavor_text[limb]
 		is_bleeding[limb] = null
@@ -331,7 +285,7 @@
 	if(digitalcamo)
 		msg += "[T.He] [T.is] repulsively uncanny!\n"
 
-	if(hasHUD(usr,"security"))
+	if(hasHUD(user, "security"))
 		var/perpname = get_id_name(name)
 		var/criminal = "None"
 
@@ -342,7 +296,7 @@
 			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
 			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
 
-	if(hasHUD(usr,"medical"))
+	if(hasHUD(user, "medical"))
 		var/perpname = "wot"
 		var/medical = "None"
 
@@ -373,8 +327,10 @@
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[T.He] [T.is] [pose]"
 
-	to_chat(user, msg)
-	. = msg
+	if(isobserver(user))
+		to_chat(user, msg)
+	else
+		user.visible_message("<font size=1>[user.name] looks at [src].</font>", msg)
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M as mob, hudtype)

@@ -7,13 +7,13 @@
 	icon_state = "scorched1"
 
 /obj/effect/damagedfloor/Initialize()
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if(istype(F))
 		F.break_tile(1)
 	qdel(src)
 
 /obj/effect/damagedfloor/fire/Initialize()
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if(istype(F))
 		F.burn_tile()
 	qdel(src)

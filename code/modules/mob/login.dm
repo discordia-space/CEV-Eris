@@ -77,11 +77,8 @@
 		client.eye = src
 		client.perspective = MOB_PERSPECTIVE
 
-	//set macro to normal incase it was overriden (like cyborg currently does)
-	if(client.get_preference_value(/datum/client_preference/stay_in_hotkey_mode) == GLOB.PREF_YES)
-		winset(client, null, "mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0")
-	else
-		winset(client, null, "mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5")
+	// This is located here instead of under /mob/living/silicon/robot/Login() to make sure that player looses "robot" macro in all cases when they stop being a robot
+	winset(src, null, "mainwindow.macro=[isrobot(src) ? "robot" : "default"]")
 
 	if(client)
 		if(client.UI)

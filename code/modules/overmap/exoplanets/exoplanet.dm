@@ -101,7 +101,7 @@
 	generate_landing(2)
 	update_biome()
 	generate_planet_image()
-	for(var/turf/simulated/floor/exoplanet/T in block(locate(1,1, map_z[map_z.len]), locate(maxx, maxy, map_z[map_z.len])))
+	for(var/turf/floor/exoplanet/T in block(locate(1,1, map_z[map_z.len]), locate(maxx, maxy, map_z[map_z.len])))
 		planet_turfs += T
 	START_PROCESSING(SSobj, src)
 	update_lighting()
@@ -128,7 +128,7 @@
 		if(repopulating)
 			for(var/i = 1 to round(max_animal_count - animals.len))
 				if(prob(10))
-					var/turf/simulated/T = pick_area_turf(planetary_area, list(/proc/not_turf_contains_dense_objects))
+					var/turf/T = pick_area_turf(planetary_area, list(/proc/not_turf_contains_dense_objects))
 					var/mob_type = pick(repopulate_types)
 					var/mob/S = new mob_type(T)
 					animals += S
@@ -142,7 +142,7 @@
 			continue
 		var/zone/Z
 		for(var/i = 1 to maxx)
-			var/turf/simulated/T = locate(i, 2, zlevel)
+			var/turf/T = locate(i, 2, zlevel)
 			if(istype(T) && T.zone && T.zone.contents.len > (maxx*maxy*0.25)) //if it's a zone quarter of zlevel, good enough odds it's planetary main one
 				Z = T.zone
 				break
@@ -174,7 +174,7 @@
 		edges |= block(locate(1, 1, zlevel), locate(maxx, TRANSITIONEDGE, zlevel))
 		edges |= block(locate(1, maxy-TRANSITIONEDGE, zlevel),locate(maxx, maxy, zlevel))
 		for(var/turf/T in edges)
-			T.ChangeTurf(/turf/simulated/planet_edge)
+			T.ChangeTurf(/turf/planet_edge)
 		var/padding = TRANSITIONEDGE
 		for(var/map_type in map_generators)
 			if(ispath(map_type, /datum/random_map/noise/exoplanet))
@@ -278,7 +278,7 @@
 		if(istype(A,species_type))
 			A.SetName(newname)
 			A.real_name = newname
-			A.verbs -= /mob/living/simple_animal/proc/name_species
+			remove_verb(A, /mob/living/simple_animal/proc/name_species)
 	return TRUE
 
 //Tries to generate num landmarks, but avoids repeats.
@@ -438,7 +438,7 @@
 	var/lum_g = new_brightness * GetGreenPart(new_color) / 255
 	var/lum_b = new_brightness * GetBluePart (new_color) / 255
 	var/static/update_gen = -1 // Used to prevent double-processing corners. Otherwise would happen when looping over adjacent turfs.
-	for(var/turf/simulated/floor/exoplanet/T in planet_turfs)
+	for(var/turf/floor/exoplanet/T in planet_turfs)
 		if(!T.lighting_corners_initialised)
 			T.generate_missing_corners()
 		for(var/C in T.get_corners())
@@ -457,4 +457,4 @@
 /area/exoplanet
 	name = "\improper Planetary surface"
 	ambience = list('sound/effects/wind/wind_2_1.ogg','sound/effects/wind/wind_2_2.ogg','sound/effects/wind/wind_3_1.ogg','sound/effects/wind/wind_4_1.ogg','sound/effects/wind/wind_4_2.ogg','sound/effects/wind/wind_5_1.ogg')
-	always_unpowered = 1
+	always_unpowered = TRUE

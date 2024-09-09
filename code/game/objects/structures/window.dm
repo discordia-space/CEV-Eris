@@ -2,7 +2,6 @@
 	name = "window"
 	desc = "A window."
 	icon = 'icons/obj/structures.dmi'
-
 	density = TRUE
 	layer = ABOVE_OBJ_LAYER //Just above doors
 	anchored = TRUE
@@ -16,16 +15,12 @@
 	var/ini_dir = null
 	var/state = 2
 	var/reinf = 0
-	var/basestate
 	var/shardtype = /obj/item/material/shard
 	var/glasstype = null // Set this in subtypes. Null is assumed strange or otherwise impossible to dismantle, such as for shuttle glass.
 	var/silicate = 0 // number of units of silicate
 	var/no_color = FALSE //If true, don't apply a color to the base
 
 	atmos_canpass = CANPASS_PROC
-
-/obj/structure/window/can_prevent_fall(above)
-	return above ? !is_fulltile() : FALSE
 
 /obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
 	var/damage = health * 0.4 * get_health_ratio()
@@ -35,29 +30,27 @@
 
 	return damage
 
-/obj/structure/window/examine(mob/user)
-	. = ..(user)
-
+/obj/structure/window/examine(mob/user, extra_description = "")
 	if(health == maxHealth)
-		to_chat(user, SPAN_NOTICE("It looks fully intact."))
+		extra_description += SPAN_NOTICE("\nIt looks fully intact.")
 	else
 		var/perc = health / maxHealth
 		if(perc > 0.75)
-			to_chat(user, SPAN_NOTICE("It has a few cracks."))
+			extra_description += SPAN_NOTICE("\nIt has a few cracks.")
 		else if(perc > 0.5)
-			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
+			extra_description += SPAN_WARNING("\nIt looks slightly damaged.")
 		else if(perc > 0.25)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			extra_description += SPAN_WARNING("\nIt looks moderately damaged.")
 		else
-			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
+			extra_description += SPAN_DANGER("\nIt looks heavily damaged.")
 	if(silicate)
-		if (silicate < 30)
-			to_chat(user, SPAN_NOTICE("It has a thin layer of silicate."))
-		else if (silicate < 70)
-			to_chat(user, SPAN_NOTICE("It is covered in silicate."))
+		if(silicate < 30)
+			extra_description += SPAN_NOTICE("\nIt has a thin layer of silicate.")
+		else if(silicate < 70)
+			extra_description += SPAN_NOTICE("\nIt is covered in silicate.")
 		else
-			to_chat(user, SPAN_NOTICE("There is a thick layer of silicate covering it."))
-
+			extra_description += SPAN_NOTICE("\nThere is a thick layer of silicate covering it.")
+	..(user, extra_description)
 
 //Subtracts resistance from damage then applies it
 //Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes
@@ -372,11 +365,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
-						var/obj/glass
-						if(is_fulltile())
-							glass = new glasstype(loc, 6)
-						else
-							glass = new glasstype(loc, 1)
+						var/obj/glass = new glasstype(loc, 1)
 						glass.add_fingerprint(user)
 
 						qdel(src)
@@ -510,12 +499,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	update_nearby_tiles(need_rebuild=1)
 	mount_check()
 
-//checks if this window is full-tile one
-/obj/structure/window/proc/is_fulltile()
-	if(dir & (dir - 1))
-		return 1
-	return 0
-
 /obj/structure/window/set_anchored(new_anchored)
 	. = ..()
 	if(!.)
@@ -538,67 +521,19 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		verbs += /obj/structure/window/proc/rotate
 		verbs += /obj/structure/window/proc/revrotate
 
-//merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
-/obj/structure/window/update_icon()
-	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
-	//this way it will only update full-tile ones
-	overlays.Cut()
-	if(!is_fulltile())
-		icon_state = "[basestate]"
-		return
-	/*
-	var/list/dirs = list()
-	if(anchored)
-		for(var/obj/structure/window/W in orange(src,1))
-			if(W.anchored && W.density && W.type == src.type && W.is_fulltile()) //Only counts anchored, not-destroyed fill-tile windows.
-				dirs += get_dir(src, W)
-
-	for(var/turf/simulated/wall/T in RANGE_TURFS(1, src) - src)
-		var/T_dir = get_dir(src, T)
-		dirs |= T_dir
-		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
-	*/
-	//Since fulltile windows can't exist without an underlying wall, we will just copy connections from our wall
-	var/list/connections = list("0", "0", "0", "0")
-	var/obj/structure/low_wall/LW = (locate(/obj/structure/low_wall) in loc)
-	if (istype(LW))
-		connections = LW.connections
-
-	icon_state = ""
-	for(var/i = 1 to 4)
-		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
-		overlays += I
-
-	return
-
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > maximal_heat)
 		hit(damage_per_fire_tick, TRUE, TRUE)
 	..()
 
-
-
 /obj/structure/window/basic
 	desc = "It looks thin and flimsy. A few knocks with... anything, really should shatter it."
 	icon_state = "window"
-	basestate = "window"
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
 	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
 	maxHealth = 15
 	resistance = RESISTANCE_FLIMSY
-
-/obj/structure/window/basic/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	icon_state = "fwindow"
-	alpha = 120
-	maxHealth = 40
-	resistance = RESISTANCE_FLIMSY
-	flags = null
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
@@ -612,21 +547,11 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	maxHealth = 150
 	resistance = RESISTANCE_AVERAGE
 
-/obj/structure/window/plasmabasic/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	basestate = "pwindow"
-	icon_state = "plasmawindow_mask"
-	alpha = 150
-	maxHealth = 200
-	resistance = RESISTANCE_AVERAGE
-	flags = null
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon_state = "rwindow"
-	basestate = "rwindow"
 	reinf = 1
 	maximal_heat = T0C + 750	// Fused quartz.
 	damage_per_fire_tick = 2
@@ -642,19 +567,9 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	if (constructed)
 		state = 0
 
-/obj/structure/window/reinforced/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	icon_state = "fwindow"
-	alpha = 150
-	maxHealth = 80
-	resistance = RESISTANCE_FRAGILE
-	flags = null
-
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
 	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
-	basestate = "plasmarwindow"
 	icon_state = "plasmarwindow"
 	shardtype = /obj/item/material/shard/plasma
 	glasstype = /obj/item/stack/material/glass/plasmarglass
@@ -663,62 +578,15 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 	maxHealth = 200
 	resistance = RESISTANCE_IMPROVED
 
-/obj/structure/window/reinforced/plasma/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	basestate = "rpwindow"
-	icon_state = "plasmarwindow_mask"
-	alpha = 150
-	maxHealth = 250
-	resistance = RESISTANCE_IMPROVED
-	flags = null
-
-/obj/structure/window/reinforced/tinted
-	name = "tinted window"
-	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."
-	icon_state = "twindow"
-	basestate = "twindow"
-	opacity = 1
-
-/obj/structure/window/reinforced/tinted/frosted
-	name = "frosted window"
-	desc = "It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
-	icon_state = "fwindow"
-	basestate = "fwindow"
-
 /obj/structure/window/shuttle
 	name = "shuttle window"
 	desc = "It looks rather strong. Might take a few good hits to shatter it."
 	icon = 'icons/obj/podwindows.dmi'
-	icon_state = "window"
-	basestate = "window"
+	icon_state = "window" // Probably should be "w" isnstead, verify --KIROV
 	maxHealth = 300
 	resistance = RESISTANCE_IMPROVED
 	reinf = 1
-	basestate = "w"
 	dir = 5
-
-/obj/structure/window/reinforced/polarized
-	name = "electrochromic window"
-
-	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
-	var/id
-
-/obj/structure/window/reinforced/polarized/full
-	dir = SOUTH|EAST
-	icon = 'icons/obj/structures/windows.dmi'
-	icon_state = "fwindow"
-	flags = null
-
-/obj/structure/window/reinforced/polarized/proc/toggle()
-	if(opacity)
-		animate(src, color="#FFFFFF", time=5)
-		set_opacity(0)
-		alpha = initial(alpha)
-	else
-		animate(src, color="#222222", time=5)
-		set_opacity(1)
-		alpha = 255
 
 /obj/structure/window/reinforced/crescent/attack_hand()
 	return
@@ -738,39 +606,6 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 /obj/structure/window/reinforced/crescent/shatter()
 	return
 
-/obj/machinery/button/windowtint
-	name = "window tint control"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "light0"
-	desc = "A remote control switch for polarized windows."
-	var/range = 7
-
-/obj/machinery/button/windowtint/attack_hand(mob/user as mob)
-	if(..())
-		return 1
-
-	toggle_tint()
-
-/obj/machinery/button/windowtint/proc/toggle_tint()
-	use_power(5)
-
-	active = !active
-	update_icon()
-
-	for(var/obj/structure/window/reinforced/polarized/W in range(src,range))
-		if (W.id == src.id || !W.id)
-			W.toggle()
-			return
-
-/obj/machinery/button/windowtint/power_change()
-	..()
-	if(active && !powered(power_channel))
-		toggle_tint()
-
-/obj/machinery/button/windowtint/update_icon()
-	icon_state = "light[active]"
-
-
 //Fulltile windows can only exist ontop of a low wall
 //If they're ever not on a wall, they will drop to the floor and smash.
 /obj/structure/window/proc/mount_check()
@@ -781,7 +616,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		return
 
 	//If there's a wall under us, we're safe, stop here.
-	if (locate(/obj/structure/low_wall) in loc)
+	if (istype(loc, /turf/wall/low))
 		return
 
 	//This is where the fun begins

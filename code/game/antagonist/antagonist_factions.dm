@@ -17,7 +17,7 @@
 	var/list/members = list()
 	var/list/leaders = list()
 
-	var/list/verbs = list()	//List of verbs, used by this faction members
+	var/list/faction_datum_verbs = list()	//List of verbs, used by this faction members
 	var/list/leader_verbs = list()
 
 /datum/faction/New()
@@ -39,7 +39,7 @@
 	if(objectives.len)
 		member.set_objectives(objectives)
 
-	member.owner.current.verbs |= verbs
+	add_verb(member.owner.current, faction_datum_verbs)
 	add_icons(member)
 	update_members()
 	return TRUE
@@ -52,7 +52,7 @@
 		add_member(member,FALSE)
 
 	leaders.Add(member)
-	member.owner.current.verbs |= leader_verbs
+	add_verb(member.owner.current, leader_verbs)
 	if(announce)
 		to_chat(member.owner.current, SPAN_NOTICE("You became a <b>leader</b> of the [name]."))
 	update_members()
@@ -102,7 +102,7 @@
 		to_chat(member.owner.current, SPAN_WARNING("You are no longer a member of the [name]."))
 
 	if(member.owner && member.owner.current)
-		member.owner.current.verbs.Remove(verbs)
+		member.owner.current.verbs.Remove(faction_datum_verbs)
 
 	update_members()
 	return TRUE

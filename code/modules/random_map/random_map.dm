@@ -20,8 +20,8 @@ var/global/list/map_count = list()
 	var/preserve_map = 1
 
 	// Turf paths.
-	var/wall_type =  /turf/simulated/wall
-	var/floor_type = /turf/simulated/floor
+	var/wall_type =  /turf/wall
+	var/floor_type = /turf/floor
 	var/target_turf_type
 
 	// Storage for the final iteration of the map.

@@ -11,6 +11,7 @@
 	flash_protection = FLASH_PROTECTION_REDUCED
 	price_tag = 1000
 	tick_cost = 0.5
+	off_state = "thermal_off"
 
 
 /obj/item/clothing/glasses/powered/thermal/emp_act(severity)

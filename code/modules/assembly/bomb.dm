@@ -12,9 +12,11 @@
 	var/obj/item/device/assembly_holder/bombassembly   //The first part of the bomb is an assembly holder, holding an igniter+some device
 	var/obj/item/tank/bombtank //the second part of the bomb is a plasma tank
 
-/obj/item/device/onetankbomb/examine(mob/user)
-	..(user)
-	user.examinate(bombtank)
+/obj/item/device/onetankbomb/examine(mob/user, extra_description = "")
+	if(bombtank) // Neither tank, nor the assembly come with any meaningful description, but we have to show something
+		user.examine(bombtank)
+	else
+		..(user, extra_description)
 
 /obj/item/device/onetankbomb/update_icon()
 	if(bombtank)
@@ -133,7 +135,7 @@
 
 /obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
 	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles)
-	var/turf/simulated/T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(!T)
 		return
 	T.assume_air(removed)

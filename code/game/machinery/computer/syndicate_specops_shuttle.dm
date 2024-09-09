@@ -135,7 +135,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 /*
 	var/obj/explosionmarker = locate("Syndicate Breach Area")
 	if(explosionmarker)
-		var/turf/simulated/T = explosionmarker.loc
+		var/turf/T = explosionmarker.loc
 		if(T)
 			explosion(T,4,6,8,10,0)
 
@@ -161,7 +161,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 					//var/turf/E = get_step(D, SOUTH)
 		for(var/atom/movable/AM as mob|obj in T)
 			AM.Move(D)
-		if(istype(T, /turf/simulated))
+		if(istype(T, /turf))
 			qdel(T)
 
 	for(var/mob/living/carbon/bug in end_location) // If someone somehow is still in the shuttle's docking area...

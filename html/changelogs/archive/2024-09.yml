@@ -1,0 +1,10 @@
+2024-09-07:
+  AltHit:
+  - bugfix: repair nanites for FBP now work correctly and heal
+  SirRichardFrancis:
+  - bugfix: Fixed several interactions with windows.
+  SirRichardFrancis, MLGTASTICa:
+  - bugfix: Fixed clothing-related case of 515 incompatibility.
+  Wrill:
+  - tweak: satchels will gather as many items as they can store, instead of up to
+      15.

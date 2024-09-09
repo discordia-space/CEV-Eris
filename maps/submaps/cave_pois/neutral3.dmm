@@ -2,36 +2,35 @@
 "a" = (
 /obj/structure/lattice,
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "b" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "c" = (
 /obj/structure/lattice,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "d" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/asteroid/cave)
 "e" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "f" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "g" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/asteroid/cave)
 "l" = (
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/asteroid/cave)
 "N" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/asteroid/cave)
 
 (1,1,1) = {"

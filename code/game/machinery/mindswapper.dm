@@ -45,11 +45,10 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
 				anchored = anchored ? FALSE : TRUE
 
-/obj/machinery/mindswapper/examine()
-	..()
-	to_chat(usr, "The safety is [emagged ? SPAN_DANGER("disabled") : "enabled"].")
+/obj/machinery/mindswapper/examine(mob/user, extra_description = "")
+	..(user, "The safety is [emagged ? SPAN_DANGER("disabled") : "enabled"].")
 
-/obj/machinery/mindswapper/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/mindswapper/emag_act(remaining_charges, mob/user)
 	emagged = !emagged
 	to_chat(user, SPAN_DANGER("You [emagged ? "disable" : "enable"] the mind swapper safety."))
 	if(emagged)

@@ -23,7 +23,6 @@
 	var/working = 0
 	var/mode = 1
 	var/list/modes = list("Floor & Walls","Low wall", "Airlock","Deconstruct")
-	var/canRwall = 1
 	var/disabled = 0
 
 /obj/item/rcd/attack()
@@ -32,10 +31,10 @@
 /obj/item/rcd/proc/can_use(var/mob/user,var/turf/T)
 	return (user.Adjacent(T) && user.get_active_hand() == src && !user.stat && !user.restrained())
 
-/obj/item/rcd/examine()
-	..()
-	if(src.type == /obj/item/rcd && loc == usr)
-		to_chat(usr, "It currently holds [stored_matter]/30 matter-units.")
+/obj/item/rcd/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "It holds [stored_matter] out of [max_stored_matter] charges."
+	..(user, extra_description)
 
 /obj/item/rcd/New()
 	..()
@@ -97,36 +96,31 @@
 	var/turf/local_turf = T
 	if(!T)
 		local_turf = get_turf(T)
-	var/gotFloor = istype(local_turf,/turf/simulated/floor)
+	var/gotFloor = istype(local_turf,/turf/floor)
 	var/gotSpace = (istype(local_turf,/turf/space) || istype(local_turf,get_base_turf(local_turf.z)))
-	var/gotBlocked = (istype(T, /obj/machinery/door/airlock) || istype(T, /obj/structure/low_wall))
+	var/gotBlocked = (istype(T, /obj/machinery/door/airlock))
 
 	switch(mode)
 		if(1)
 			if(gotSpace)
 				build_cost =  1
 				build_type =  "floor"
-				build_turf =  /turf/simulated/floor/airless
+				build_turf =  /turf/floor/airless
 			if(gotFloor)
 				build_delay = 40
 				build_cost =  3
 				build_type =  "wall"
-				build_turf =  /turf/simulated/wall
+				build_turf =  /turf/wall
 		if(2)
-			if(gotBlocked)
-				return 0
 			if(gotSpace)
-				build_type = "low wall"
-				build_delay = 30
-				build_cost = 3
-				build_turf = /turf/simulated/floor/airless //there is always floor under low wall
-				build_object = /obj/structure/low_wall
+				build_cost =  1
+				build_type =  "floor"
+				build_turf =  /turf/floor/airless
 			if(gotFloor)
-				build_type = "low wall"
-				build_object = /obj/structure/low_wall
-				build_delay = 30
-				build_cost =  2
-
+				build_delay = 40
+				build_cost =  3
+				build_type =  "low wall"
+				build_turf =  /turf/wall/low
 		if(3)
 			if(gotBlocked)
 				return 0
@@ -134,7 +128,7 @@
 				build_type = "airlock"
 				build_cost =  7
 				build_delay = 50
-				build_turf =  /turf/simulated/floor/airless
+				build_turf =  /turf/floor/airless
 				build_object = /obj/machinery/door/airlock
 			if(gotFloor)
 				build_type = "airlock"
@@ -148,15 +142,11 @@
 				build_cost =  5
 				build_delay = 50
 				build_turf = get_base_turf(local_turf.z)
-			else if(istype(T,/obj/structure/low_wall))
+			else if(istype(T,/turf/wall))
+				var/turf/wall/W = T
 				build_delay = 40
-				build_cost =  5
-			else if(istype(T,/turf/simulated/wall))
-				var/turf/simulated/wall/W = T
-				build_delay = 40
-				build_cost =  (W.reinf_material) ? 10 : 5
-				build_type =  (!canRwall && W.reinf_material) ? null : "deconstruct"
-				build_turf =  /turf/simulated/floor
+				build_cost =  W.is_reinforced
+				build_turf =  /turf/floor
 			else if(istype(T,/obj/machinery/door/airlock))
 				build_cost =  10
 				build_delay = 50
@@ -211,7 +201,6 @@
 	overlays += "[icon_state]-[ratio]"
 
 /obj/item/rcd/borg
-	canRwall = 1
 	spawn_tags = null
 
 /obj/item/rcd/borg/useResource(var/amount, mob/user, var/checkOnly)
@@ -236,14 +225,24 @@
 
 /obj/item/rcd/mounted/useResource(var/amount, mob/user, var/checkOnly)
 	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
+	/// RIG MOUNTED
 	if(istype(loc,/obj/item/rig_module))
 		var/obj/item/rig_module/module = loc
 		if(module.holder && module.holder.cell)
 			if(module.holder.cell.charge >= cost)
 				if (!checkOnly)
 					module.holder.cell.use(cost)
-				return 1
-	return 0
+				return TRUE
+	/// MECH MOUNTED
+	if(istype(loc, /obj/item/mech_equipment/mounted_system/rcd))
+		var/mob/living/exosuit/mech = loc.loc
+		if(!mech || !istype(mech))
+			return FALSE
+		var/obj/item/cell/power = mech.get_cell()
+		if(power && power.charge >= cost)
+			power.use(cost)
+			return TRUE
+	return FALSE
 
 /obj/item/rcd/mounted/attackby()
 	return

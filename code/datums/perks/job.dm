@@ -296,12 +296,12 @@
 
 /datum/perk/codespeak/assign(mob/living/carbon/human/H)
 	if(..())
-		holder.verbs += codespeak_procs
+		add_verb(holder, codespeak_procs)
 
 
 /datum/perk/codespeak/remove()
 	if(holder)
-		holder.verbs -= codespeak_procs
+		remove_verb(holder, codespeak_procs)
 	..()
 
 /datum/perk/codespeak/serbian

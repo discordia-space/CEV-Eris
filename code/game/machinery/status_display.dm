@@ -131,10 +131,10 @@
 			return 1
 	return 0
 
-/obj/machinery/status_display/examine(mob/user)
-	. = ..(user)
+/obj/machinery/status_display/examine(mob/user, extra_description = "")
 	if(mode != STATUS_DISPLAY_BLANK && mode != STATUS_DISPLAY_ALERT)
-		to_chat(user, "The display says:<br>\t[sanitize(message1)]<br>\t[sanitize(message2)]")
+		extra_description += "The display says:<br>\t[sanitize(message1)]<br>\t[sanitize(message2)]"
+	..(user, extra_description)
 
 /obj/machinery/status_display/proc/set_message(m1, m2)
 	if(m1)
@@ -168,18 +168,6 @@
 	if(timeleft < 0)
 		return ""
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
-
-/obj/machinery/status_display/proc/get_supply_shuttle_timer()
-	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
-	if (!shuttle)
-		return "Error"
-
-	if(shuttle.has_arrive_time())
-		var/timeleft = round((shuttle.arrive_time - world.time) / 10,1)
-		if(timeleft < 0)
-			return "Late"
-		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
-	return ""
 
 /obj/machinery/status_display/proc/remove_display()
 	if(overlays.len)

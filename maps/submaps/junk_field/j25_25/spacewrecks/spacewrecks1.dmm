@@ -4,58 +4,58 @@
 	dir = 1
 	},
 /obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "aH" = (
 /obj/item/modular_computer/console{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "aJ" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
 /obj/spawner/gun/cheap/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "aK" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "bi" = (
 /turf/template_noop,
 /area/template_noop)
 "by" = (
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "bB" = (
 /obj/item/modular_computer/console,
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "bG" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet/medical,
 /obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "cW" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/rare/low_chance,
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "dI" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
 /obj/spawner/junkfood/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "dN" = (
 /obj/structure/bed/chair/shuttle,
 /obj/spawner/gun/cheap/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "dU" = (
 /obj/structure/bed/chair/shuttle{
@@ -65,29 +65,29 @@
 	pixel_y = 32
 	},
 /obj/spawner/junkfood/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "eg" = (
 /obj/structure/sign/department/eng,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "eo" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "fb" = (
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "gN" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "gQ" = (
 /obj/structure/shuttle/engine/propulsion,
@@ -95,21 +95,21 @@
 /area/template_noop)
 "ip" = (
 /obj/structure/sign/faction/ironhammer,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "iY" = (
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "kc" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "lA" = (
 /obj/structure/table/standard,
@@ -118,7 +118,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
@@ -129,22 +129,22 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "ow" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "oL" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
 /obj/spawner/ammo/low_cost,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "oX" = (
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
@@ -153,36 +153,36 @@
 	dir = 1
 	},
 /obj/spawner/ammo/lowcost,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "qL" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "qX" = (
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "rd" = (
 /obj/structure/bed/chair/shuttle,
 /obj/spawner/ammo/low_cost,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "sN" = (
 /obj/structure/table/standard,
 /obj/spawner/tank,
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
 "vt" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "vz" = (
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "wn" = (
 /obj/structure/bed/chair/comfy/black{
@@ -192,11 +192,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "wU" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
@@ -206,11 +206,11 @@
 	name = "Engineering";
 	req_access = list(10)
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
+/turf/floor/tiled/steel/cargo/airless,
 /area/template_noop)
 "zJ" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
@@ -218,12 +218,12 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "Bq" = (
 /obj/structure/table/standard,
 /obj/spawner/firstaid,
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "BQ" = (
 /obj/machinery/door/firedoor,
@@ -235,28 +235,28 @@
 	name = "Shuttle Hatch";
 	req_access = list(13)
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
+/turf/floor/tiled/steel/cargo/airless,
 /area/template_noop)
 "Ee" = (
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "Eg" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
 /obj/spawner/credits/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "EG" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
 "EL" = (
 /obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "FF" = (
 /obj/structure/bed/chair/shuttle{
@@ -265,59 +265,58 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "FH" = (
 /obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
 "Ga" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "Hn" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating/airless,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 "IG" = (
 /obj/spawner/tool,
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "Jp" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "Km" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
 	req_access = list(1)
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
+/turf/floor/tiled/steel/cargo/airless,
 /area/template_noop)
 "La" = (
 /mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "LU" = (
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "Mb" = (
 /obj/machinery/mech_recharger,
 /obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "Pp" = (
 /obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/steel/techfloor/airless,
+/turf/floor/tiled/steel/techfloor/airless,
 /area/template_noop)
 "PO" = (
 /obj/machinery/door/firedoor,
@@ -326,18 +325,18 @@
 	name = "Medical Bay";
 	req_access = list(5)
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
+/turf/floor/tiled/steel/cargo/airless,
 /area/template_noop)
 "Rh" = (
 /obj/structure/sign/department/medbay,
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "RS" = (
 /obj/spawner/junk/low_chance,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
@@ -349,13 +348,13 @@
 /area/template_noop)
 "Sy" = (
 /mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "Vq" = (
 /obj/machinery/sleeper{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "Vt" = (
 /obj/machinery/door/firedoor,
@@ -363,7 +362,7 @@
 	name = "Bridge";
 	req_access = list(19)
 	},
-/turf/simulated/floor/tiled/dark/cargo/airless,
+/turf/floor/tiled/dark/cargo/airless,
 /area/template_noop)
 "VJ" = (
 /obj/structure/bed/chair/comfy/black{
@@ -372,22 +371,22 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated/airless,
+/turf/floor/tiled/dark/gray_perforated/airless,
 /area/template_noop)
 "WC" = (
 /obj/spawner/medical,
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "WH" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "Xm" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 "Xv" = (
-/turf/simulated/floor/tiled/steel/monofloor/airless,
+/turf/floor/tiled/steel/monofloor/airless,
 	dir = 4
 	},
 /area/template_noop)
@@ -395,36 +394,35 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "Yp" = (
 /obj/structure/medical_stand,
-/turf/simulated/floor/tiled/white/airless,
+/turf/floor/tiled/white/airless,
 /area/template_noop)
 "YW" = (
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "YZ" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "Zt" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
 /obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
+/turf/floor/tiled/steel/orangecorner/airless,
 /area/template_noop)
 "Zy" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced/crescent{
 	dir = 1
 	},
-/turf/simulated/floor/airless,
+/turf/floor/airless,
 /area/template_noop)
 "ZY" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 
 (1,1,1) = {"

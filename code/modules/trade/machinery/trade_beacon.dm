@@ -63,14 +63,14 @@
 
 /obj/machinery/trade_beacon/receiving/proc/drop(drop_type)
 	var/list/floor = list()
-	for(var/turf/simulated/floor/F in block(locate(x - 2, y - 2, z), locate(x + 2, y + 2, z)))
+	for(var/turf/floor/F in block(locate(x - 2, y - 2, z), locate(x + 2, y + 2, z)))
 		if(F.contains_dense_objects(TRUE))
 			continue
 		floor += F
 	if(!length(floor))
 		return FALSE
 	activate()
-	var/turf/simulated/floor/pickfloor = pick(floor)
+	var/turf/floor/pickfloor = pick(floor)
 	if(ispath(drop_type, /obj/structure/closet))
 		var/mob/living/carbon/human/dude = locate(/mob/living/carbon/human) in pickfloor
 		if(dude)

@@ -13,6 +13,7 @@
 		/datum/design/bioprinter/leather/holster/baton,
 		/datum/design/bioprinter/leather/holster/belt,
 		/datum/design/bioprinter/leather/holster/sheath,
+		/datum/design/bioprinter/leather/holster/accessory/scabbard,
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
@@ -163,6 +164,7 @@
 	designs = list(
 		/datum/design/bioprinter/meat,
 		/datum/design/bioprinter/milk,
+		/datum/design/bioprinter/butter,
 		/datum/design/bioprinter/soap,
 
 		/datum/design/bioprinter/ez,
@@ -228,7 +230,7 @@
 	disk_name = "NeoTheology Supplies - \"Ritualis Supplies\""
 	icon_state = "neotheology"
 	spawn_blacklisted = TRUE
-	
+
 	license = -1
 	designs = list(
 		/datum/design/bioprinter/nt_clothes/ritual_robe,

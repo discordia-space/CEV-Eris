@@ -624,17 +624,16 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	else
 		w_class = ITEM_SIZE_SMALL
 
-/obj/item/stack/cable_coil/examine(mob/user)
-	if(get_dist(src, user) > 1)
-		return
-
-	if(get_amount() == 1)
-		to_chat(user, "A short piece of power cable.")
-	else if(get_amount() == 2)
-		to_chat(user, "A piece of power cable.")
-	else
-		to_chat(user, "A coil of power cable. There are [get_amount()] lengths of cable in the coil.")
-
+/obj/item/stack/cable_coil/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		switch(get_amount())
+			if(1)
+				extra_description += "\nA short piece of power cable."
+			if(2)
+				extra_description += "\nA piece of power cable."
+			else
+				extra_description += "\nA coil of power cable. There are [get_amount()] lengths of cable in the coil."
+	..(user, extra_description)
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
@@ -691,8 +690,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 // Cable laying procedures
 //////////////////////////////////////////////
 
-// called when cable_coil is clicked on a turf/simulated/floor
-/obj/item/stack/cable_coil/proc/turf_place(turf/simulated/F, mob/user)
+// called when cable_coil is clicked on a turf/floor
+/obj/item/stack/cable_coil/proc/turf_place(turf/F, mob/user)
 	if(!isturf(user.loc))
 		return
 
@@ -716,7 +715,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		dirn = get_dir(F, user)
 
 	var/end_dir = 0
-	if(istype(F, /turf/simulated/open))
+	if(istype(F, /turf/open))
 		if(!can_use(2))
 			to_chat(user, SPAN_WARNING("You don't have enough cable to do this!"))
 			return
@@ -733,7 +732,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		to_chat(user, "You slide some cable downward.")
 
 
-/obj/item/stack/cable_coil/proc/put_cable(turf/simulated/F, mob/user, d1, d2)
+/obj/item/stack/cable_coil/proc/put_cable(turf/F, mob/user, d1, d2)
 	if(!istype(F))
 		return
 

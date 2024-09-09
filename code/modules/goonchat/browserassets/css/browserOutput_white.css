@@ -19,6 +19,13 @@ body {
 	word-wrap: break-word;
 }
 
+#examine {
+	margin: 1px;
+	border: 2px solid #f0f0f0;
+	padding: 5px;
+	background-color:#e5e5e5;
+}
+
 em {
 	font-style: normal;
 	font-weight: bold;
@@ -101,7 +108,7 @@ a.popt {text-decoration: none;}
 #ping {
 	position: fixed;
 	top: 0;
-	right: 135px;
+	right: 180px;
 	width: 45px;
 	background: #ddd;
 	height: 30px;

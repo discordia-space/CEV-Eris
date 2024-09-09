@@ -5,7 +5,7 @@
 	self-explanatory but the various object types may have their own documentation. ~Z
 
 	PATHS THAT USE DATUMS
-		turf/simulated/wall
+		turf/wall
 		obj/item/material
 		obj/structure/barricade
 		obj/item/stack/material
@@ -111,7 +111,6 @@ var/list/name_to_material
 	var/heat_resistance = 1 	 // divisor, walls resist thermite and welding based on this
 	var/integrity = 150          // General-use HP value for products.
 	var/opacity = 1              // Is the material transparent? 0.5< makes transparent walls/doors.
-	var/explosion_resistance = 5 // Only used by walls currently.
 	var/conductive = 1           // Objects with this var add CONDUCTS to flags on spawn.
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 	/// Armor values for this material whenever its applied on something.
@@ -126,7 +125,6 @@ var/list/name_to_material
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
-	var/created_window_full
 	var/rod_product
 	var/wire_product
 	var/list/window_options = list()
@@ -143,8 +141,6 @@ var/list/name_to_material
 	var/hitsound = 'sound/weapons/genhit.ogg'
 	// Path to resulting stacktype. Todo remove need for this.
 	var/stack_type
-	// Wallrot crumble message.
-	var/rotting_touch_message = "crumbles under your touch"
 
 // Placeholders for light tiles and rglass.
 /material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
@@ -203,28 +199,10 @@ var/list/name_to_material
 		temp_matter[name] = 1
 	return temp_matter
 
-// As above.
-/material/proc/get_edge_damage()
-	return hardness //todo
-
-// Snowflakey, only checked for alien doors at the moment.
-/material/proc/can_open_material_door(var/mob/living/user)
-	return 1
-
 // Currently used for weapons and objects made of uranium to irradiate things.
 /material/proc/products_need_process()
 	return (radioactivity>0) //todo
 
-// Used by walls when qdel()ing to avoid neighbor merging.
-/material/placeholder
-	name = "placeholder"
-
-// Places a girder object when a wall is dismantled, also applies reinforced material.
-/material/proc/place_dismantled_girder(target, material/reinf_material)
-	var/obj/structure/girder/G = new(target)
-	if(reinf_material)
-		G.reinf_material = reinf_material
-		G.reinforce_girder()
 
 // Use this to drop a given amount of material.
 /material/proc/place_material(target, amount=1, mob/living/user = null)
@@ -382,7 +360,7 @@ var/list/name_to_material
 	if(temperature < ignition_point)
 		return 0
 	var/totalPlasma = 0
-	for(var/turf/simulated/floor/target_tile in RANGE_TURFS(2, T))
+	for(var/turf/floor/target_tile in RANGE_TURFS(2, T))
 		var/plasmaToDeduce = (temperature/30) * effect_multiplier
 		totalPlasma += plasmaToDeduce
 		target_tile.assume_gas("plasma", plasmaToDeduce, 200+T0C)
@@ -465,7 +443,6 @@ var/list/name_to_material
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = PLASTEEL_COLOUR//"#777777"
-	explosion_resistance = 25
 	heat_resistance = 3
 	hardness = 80
 	weight = 23
@@ -514,9 +491,8 @@ var/list/name_to_material
 	weight = 15
 	door_icon_base = "stone"
 	destruction_desc = "shatters"
-	window_options = list("One Direction" = 1, "Full Window" = 6)
+	window_options = list("One Direction" = 1)
 	created_window = /obj/structure/window/basic
-	created_window_full = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
 	conductive = FALSE
 	hitsound = 'sound/effects/Glasshit.ogg'
@@ -529,8 +505,7 @@ var/list/name_to_material
 		rad = 0
 	)
 
-/material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
-
+/material/glass/build_windows(mob/living/user, obj/item/stack/used_stack)
 	if(!user || !used_stack || !created_window || !window_options.len)
 		return 0
 
@@ -551,65 +526,39 @@ var/list/name_to_material
 
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
-	if(choice in list("One Direction","Windoor"))
-		// Get data for building windows here.
-		var/list/possible_directions = cardinal.Copy()
-		var/window_count = 0
-		for (var/obj/structure/window/check_window in user.loc)
-			window_count++
-			possible_directions  -= check_window.dir
+	// Get data for building windows here.
+	var/list/possible_directions = cardinal.Copy()
+	var/window_count = 0
+	for(var/obj/structure/window/check_window in user.loc)
+		window_count++
+		possible_directions  -= check_window.dir
 
-
-		var/failed_to_build
-
-		if(window_count >= 4)
-			failed_to_build = 1
-		else
-			if(possible_directions.len)
-				for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
-					if(direction in possible_directions)
-						build_dir = direction
-						break
-			else
-				failed_to_build = 1
-			if(!failed_to_build && choice == "Windoor")
-				if(!is_reinforced())
-					to_chat(user, SPAN_WARNING("This material is not reinforced enough to use for a door."))
-					return
-				if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
-					failed_to_build = 1
-
-		if(failed_to_build)
-			to_chat(user, SPAN_WARNING("There is no room in this location."))
-			return 1
-
+	var/failed_to_build
+	if(window_count >= 4)
+		failed_to_build = 1
 	else
-		build_dir = SOUTHWEST
-		//We're attempting to build a full window.
-		//We need to find a suitable low wall to build ontop of
-		var/obj/structure/low_wall/mount = null
-		//We will check the tile infront of the user
-		var/turf/t = get_step(T, user.dir)
-		mount = locate(/obj/structure/low_wall) in t
+		if(possible_directions.len)
+			for(var/direction in list(user.dir, turn(user.dir,90), turn(user.dir,180), turn(user.dir,270) ))
+				if(direction in possible_directions)
+					build_dir = direction
+					break
+		else
+			failed_to_build = 1
+		if(!failed_to_build && choice == "Windoor")
+			if(!is_reinforced())
+				to_chat(user, SPAN_WARNING("This material is not reinforced enough to use for a door."))
+				return
+			if((locate(/obj/structure/windoor_assembly) in T.contents) || (locate(/obj/machinery/door/window) in T.contents))
+				failed_to_build = 1
 
-
-		if (!mount)
-			to_chat(user, SPAN_WARNING("Full windows must be mounted on a low wall infront of you."))
-			return 1
-
-		if (locate(/obj/structure/window) in t)
-			to_chat(user, SPAN_WARNING("The target tile must be clear of other windows"))
-			return 1
-
-		//building will be successful, lets set the build location
-		T = t
+	if(failed_to_build)
+		to_chat(user, SPAN_WARNING("There is no room in this location."))
+		return 1
 
 	var/build_path = /obj/structure/windoor_assembly
 	var/sheets_needed = window_options[choice]
 	if(choice == "Windoor")
 		build_dir = user.dir
-	else if (choice == "Full Window")
-		build_path = created_window_full
 	else
 		build_path = created_window
 
@@ -640,9 +589,8 @@ var/list/name_to_material
 	weight = 30
 	stack_origin_tech = "materials=2"
 	composite_material = list(MATERIAL_STEEL = 2,MATERIAL_GLASS = 3)
-	window_options = list("One Direction" = 1, "Full Window" = 6, "Windoor" = 5)
+	window_options = list("One Direction" = 1, "Windoor" = 5)
 	created_window = /obj/structure/window/reinforced
-	created_window_full = /obj/structure/window/reinforced/full
 	conductive = FALSE
 	wire_product = null
 	rod_product = null
@@ -666,7 +614,6 @@ var/list/name_to_material
 	weight = 40
 	hardness = 50
 	created_window = /obj/structure/window/plasmabasic
-	created_window_full = /obj/structure/window/plasmabasic/full
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plasmarglass
 	conductive = FALSE
@@ -686,7 +633,6 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list() //todo
 	created_window = /obj/structure/window/reinforced/plasma
-	created_window_full = /obj/structure/window/reinforced/plasma/full
 	hardness = 60
 	weight = 50
 	conductive = FALSE
@@ -839,7 +785,6 @@ var/list/name_to_material
 	icon_colour = "#6C7364"
 	integrity = 1200
 	melting_point = 6000       // Hull plating.
-	explosion_resistance = 200 // Hull plating.
 	hardness = 500
 	weight = 500
 	armor = list(
@@ -857,7 +802,6 @@ var/list/name_to_material
 	icon_colour = "#824B28"
 	integrity = 50
 	icon_base = "solid"
-	explosion_resistance = 2
 	shard_type = SHARD_SPLINTER
 	shard_can_repair = 0 // you can't weld splinters back into planks
 	hardness = 15

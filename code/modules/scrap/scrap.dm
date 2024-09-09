@@ -50,13 +50,13 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	. = ..()
 	update_icon(TRUE)
 
-/obj/structure/scrap_spawner/examine(mob/user)
-	.=..()
+/obj/structure/scrap_spawner/examine(mob/user, extra_description = "")
 	if(isliving(user))
 		try_make_loot() //Make the loot when examined so the big item check below will work
-	to_chat(user, SPAN_NOTICE("You could sift through it with a shoveling tool to uncover more contents"))
+	extra_description += SPAN_NOTICE("\nYou could sift through it with a shoveling tool to uncover more contents")
 	if(big_item && big_item.loc == src)
-		to_chat(user, SPAN_DANGER("You can make out the corners of something large buried in here. Keep digging and removing things to uncover it"))
+		extra_description += SPAN_DANGER("\nYou can make out the corners of something large buried in here. Keep digging and removing things to uncover it")
+	..(user, extra_description)
 
 /obj/effect/scrapshot
 	name = "This thing shoots scrap everywhere with a delay"
@@ -413,6 +413,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		SPAWN_BOOZE,
 		SPAWN_JUNK, SPAWN_CLEANABLE,
 		SPAWN_MATERIAL_JUNK,
+		SPAWN_CIGARETTE_MAINTS,
 		SPAWN_PART_ARMOR = 0.1
 	)
 

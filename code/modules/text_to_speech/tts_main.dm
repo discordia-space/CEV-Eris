@@ -54,8 +54,8 @@ var/list/tts_seeds = list()
 		tts_seeds += seed_name
 		tts_seeds[seed_name] = list("value" = seed_value, "category" = seed_category, "gender" = seed_gender_restriction)
 
-		call(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
-		call(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
+		LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
+		LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
 
 
 /proc/get_tts(message, seed = TTS_SEED_DEFAULT_MALE)
@@ -86,7 +86,7 @@ var/list/tts_seeds = list()
 	GLOB.tts_request_succeeded++
 	if(!config.tts_cache)
 		GLOB.tts_death_row += .
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/cleanup_tts_file, .), 20 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cleanup_tts_file), .), 20 SECONDS)
 
 
 /proc/get_tts_scrambled(message, seed = TTS_SEED_DEFAULT_MALE, datum/language/language)
@@ -126,7 +126,7 @@ var/list/tts_seeds = list()
 	GLOB.tts_request_succeeded++
 	if(!config.tts_cache)
 		GLOB.tts_death_row += .
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/cleanup_tts_file, .), 20 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cleanup_tts_file), .), 20 SECONDS)
 
 
 /proc/tts_cast(mob/listener, message, seed)

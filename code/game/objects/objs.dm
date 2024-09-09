@@ -18,7 +18,7 @@
 /obj/proc/is_hot()
 	return heat
 
-/obj/get_fall_damage()
+/obj/get_fall_damage(turf/from, turf/dest)
 	return w_class * 2
 
 /obj/Destroy()
@@ -216,13 +216,16 @@
 
 //Returns the list of matter in this object
 //You can override it to customise exactly what is returned.
-/obj/proc/get_matter()
-	return matter ? matter : list()
+/atom/proc/get_matter()
+	return list()
+
+/obj/get_matter()
+	return matter ? matter.Copy() : list()
 
 //Drops the materials in matter list on into target location
 //Use for deconstrction
 // Dropper is whoever is handling these materials if any , causes them to leave fingerprints on the sheets.
-/obj/proc/drop_materials(target_loc, mob/living/dropper)
+/atom/proc/drop_materials(target_loc, mob/living/dropper)
 	var/list/materials = get_matter()
 
 	for(var/mat_name in materials)

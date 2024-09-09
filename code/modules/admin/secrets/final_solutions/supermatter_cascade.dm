@@ -9,6 +9,6 @@
 	if(choice == "NO TIME TO EXPLAIN")
 		// Lord have mercy
 		explosion(get_turf(src), 5000, 250)
-		new /turf/unsimulated/wall/supermatter(get_turf(user))
+		new /turf/wall/dummy/supermatter(get_turf(user))
 		SetUniversalState(/datum/universal_state/supermatter_cascade)
 		message_admins("[key_name_admin(user)] has managed to destroy the universe with a supermatter cascade. Good job, [key_name_admin(user)]")
