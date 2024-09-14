@@ -176,6 +176,7 @@
 
 /obj/machinery/autolathe_disk_cloner/proc/copy()
 	copying = TRUE
+	set_power_use(ACTIVE_POWER_USE)
 	SSnano.update_uis(src)
 	update_icon()
 	if(original && copy && !copy.used_capacity)
@@ -226,6 +227,7 @@
 			sleep(copying_delay)
 
 	copying = FALSE
+	set_power_use(IDLE_POWER_USE)
 	SSnano.update_uis(src)
 	update_icon()
 

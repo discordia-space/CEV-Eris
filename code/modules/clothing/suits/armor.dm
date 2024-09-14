@@ -210,6 +210,25 @@
 	name = "green flakvest vest"
 	icon_state = "flakvest_green"
 
+/obj/item/clothing/suit/armor/gzhel
+	name = "Excelsior gzhel-m vest"
+	desc = "Standard-issue Excelsior bullet-resistant vest with great balance of cost, weight, and protection."
+	icon_state = "ghezel_m"
+	item_state = "ghezel_m"
+	armor = list(
+		melee = 8,
+		bullet = 13,
+		energy = 8,
+		bomb = 30,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTIC = 3
+	)
+
 /obj/item/clothing/suit/armor/flak/full
 	name = "full flakvest vest"
 	desc = "An armored vest built for protection against high-velocity solid projectiles. This set has had kneepads and shoulderpads attached for more protection."
@@ -217,6 +236,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // shoulderpads and kneepads
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
+
 
 /obj/item/clothing/suit/armor/flak/full/green
 	name = "full green flakvest vest"
@@ -243,6 +263,32 @@
 		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
 	)
 	slowdown = LIGHT_SLOWDOWN
+
+/obj/item/clothing/suit/armor/korund
+	name = "Excelsior korund-sh-p carapace"
+	desc = "Super heavy, powered suit of communard armor. Can house a Zarya power cell to supply KULAK power gauntlet."
+	icon_state = "korund_armor"
+	item_state = "korund_armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	slowdown = MEDIUM_SLOWDOWN
+	item_flags = THICKMATERIAL|DRAG_AND_DROP_UNEQUIP|COVER_PREVENT_MANIPULATION|EQUIP_SOUNDS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
+	armor = list(
+		melee = 16,
+		bullet = 15,
+		energy = 16,
+		bomb = 100, //basically an EOD suit
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 35,
+		MATERIAL_PLASTIC = 45,
+		MATERIAL_PLASTEEL = 25,
+	)
 
 /obj/item/clothing/suit/armor/bulletproof/full
 	name = "full bulletproof vest"

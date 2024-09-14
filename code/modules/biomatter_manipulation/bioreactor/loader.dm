@@ -27,9 +27,9 @@
 
 /obj/machinery/multistructure/bioreactor_part/loader/Process()
 	if(!MS || !MS_bioreactor.is_operational() || !MS_bioreactor.chamber_solution)
-		use_power(1)
+		use_power(idle_power_usage)	//not very optimised. Can be done better
 		return
-	use_power(2)
+	use_power(active_power_usage)
 	if(contents.len)
 		for(var/atom/movable/A in contents)
 			var/obj/machinery/multistructure/bioreactor_part/platform/empty_platform = MS_bioreactor.get_unoccupied_platform()

@@ -50,6 +50,7 @@
 #define PERK_CODESPEAK_SERB /datum/perk/codespeak/serbian
 #define PERK_TECHNOMANCER /datum/perk/inspiration
 #define PERK_CLUB /datum/perk/job/club
+#define PERK_CHANNELING /datum/perk/channeling
 
 //cooldown perks
 #define PERK_COOLDOWN_REASON /datum/perk/cooldown/reason

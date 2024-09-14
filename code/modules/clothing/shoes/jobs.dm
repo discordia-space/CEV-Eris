@@ -88,6 +88,40 @@
 	can_hold_knife = TRUE
 	style = STYLE_NEG_HIGH
 
+/obj/item/clothing/shoes/workboots/proletariat
+	name = "Excelsior boots"
+	desc = "Robust, yet surprisingly posh boots; one and only design worn by comrades everywhere from Haven to null sector."
+	icon_state = "prolo_boots"
+	item_state = "prolo_boots"
+	siemens_coefficient = 0
+	armor = list(
+		melee = 3,
+		bullet = 2,
+		energy = 2,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
+	can_hold_knife = TRUE
+	style = STYLE_HIGH
+
+/obj/item/clothing/shoes/korund
+	name = "Excelsior assault boots"
+	desc = "Heavily reinforced ankle boots for combat scenarios."
+	icon_state = "korund_boots"
+	item_state = "korund_boots"
+	siemens_coefficient = 0
+	armor = list(
+		melee = 5,
+		bullet = 7,
+		energy = 5,
+		bomb = 35,
+		bio = 0,
+		rad = 0
+	)
+	can_hold_knife = TRUE
+	style = STYLE_NEG_HIGH
+
 /obj/item/clothing/shoes/artist_shoes
 	name = "Pointy Shoes"
 	desc = "They're actually quite comfortable."

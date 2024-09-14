@@ -326,20 +326,23 @@
 					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
 					explode()
-			else if( prob( min(60, switchcount*switchcount*0.01) ) )
+			else if( prob( min(60, switchcount*switchcount*0.1) ) )
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
 					on = FALSE
-					set_light(0)
+					set_light(0, 0)
+					active_power_usage = 0 //burnt => no power flow => no power consumption
+					idle_power_usage = 0
 			else
-				use_power = ACTIVE_POWER_USE
 				set_light(brightness_range, brightness_power, brightness_color)
+				active_power_usage = light_power * light_range * 10
+				set_power_use(ACTIVE_POWER_USE)
 	else
-		use_power = IDLE_POWER_USE
 		set_light(0)
+		idle_power_usage = (light_power + light_range) * 0.1
+		set_power_use(IDLE_POWER_USE)
 
-	active_power_usage = ((light_range + light_power) * 10)
 	if(on != on_gs)
 		on_gs = on
 
@@ -582,6 +585,7 @@
 	L.update()
 
 	status = LIGHT_EMPTY
+	set_light(0, 0)
 	update()
 
 	// If the target is a mob, try to put the bulb in mob's hand
@@ -604,6 +608,7 @@
 			s.set_up(3, 1, src)
 			s.start()
 	status = LIGHT_BROKEN
+	set_light(0, 0)
 	update()
 
 /obj/machinery/light/proc/fix()

@@ -128,7 +128,7 @@
 			GLOB.moved_event.register(watching_mob, src, /obj/machinery/holomap/proc/checkPosition)
 			GLOB.dir_set_event.register(watching_mob, src, /obj/machinery/holomap/proc/checkPosition)
 			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/holomap/proc/stopWatching)
-			update_use_power(ACTIVE_POWER_USE)
+			set_power_use(ACTIVE_POWER_USE)
 			if(bogus)
 				to_chat(user, SPAN_WARNING("The holomap has failed to initialize. This area of space cannot be mapped."))
 			else
@@ -157,7 +157,7 @@
 		GLOB.dir_set_event.unregister(watching_mob, src)
 		GLOB.destroyed_event.unregister(watching_mob, src)
 	watching_mob = null
-	update_use_power(IDLE_POWER_USE)
+	set_power_use(IDLE_POWER_USE)
 
 /obj/machinery/holomap/power_change()
 	. = ..()

@@ -121,9 +121,9 @@
 
 	if(cell && !cell.fully_charged())
 		cell.give((active_power_usage*CELLRATE)*efficiency)
-		update_use_power(ACTIVE_POWER_USE)
+		set_power_use(ACTIVE_POWER_USE)
 	else
-		update_use_power(IDLE_POWER_USE)
+		set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/recharger/emp_act(severity)

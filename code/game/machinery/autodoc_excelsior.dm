@@ -105,7 +105,7 @@
 	occupant.unset_machine()
 	occupant = null
 	autodoc_processor.set_patient(null)
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/excelsior_autodoc/proc/set_occupant(mob/living/user)
@@ -116,7 +116,7 @@
 	user.forceMove(src)
 	occupant = user
 	autodoc_processor.set_patient(user)
-	update_use_power(2)
+	set_power_use(ACTIVE_POWER_USE)
 	user.set_machine(src)
 	cover_state = image(icon, "opened")
 	cover_state.layer = 4.5
