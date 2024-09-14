@@ -1,0 +1,11 @@
+author: AltHit
+delete-after: true
+changes:
+  - tweak: Tweaked light power consumption
+  - bugfix: 'Fixed everything not consuming power when it should have consumed it
+      (notably: sleepers, AI, operating table and many others)'
+  - bugfix: Fixed Excelsior boombox working without power
+  - bugfix: Fixed gym machines not updating their sprites when powered back up
+  - bugfix: Fixed Pulsar power bridge incorrectly showing status of Pulsar portal
+  - bugfix: Rewrote some gravity generator code to show it's status correctly, pulse-glow
+      more consistently and consume power
