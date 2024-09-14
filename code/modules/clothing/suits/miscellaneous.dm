@@ -309,7 +309,7 @@
 		accessories += logo
 		logo.has_suit = src
 		loc = src
-		switch(logo_type) // All of the following names associated with some group of people, thus capitalized 
+		switch(logo_type) // All of the following names associated with some group of people, thus capitalized
 			if("punk_over_valentinos")
 				name = "Valentinos jacket"
 			if("punk_over_samurai")
