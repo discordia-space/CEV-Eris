@@ -1,0 +1,5 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - bugfix: channeling perk boosts the effect of rituals
+  - refactor: defined channeling perk
