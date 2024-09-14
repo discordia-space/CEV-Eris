@@ -123,6 +123,8 @@
 		set_dir(d)
 	GLOB.machines += src
 	InitCircuit()
+	power_change()
+	update_power_use()
 	START_PROCESSING(SSmachines, src)
 
 	return INITIALIZE_HINT_LATELOAD
@@ -142,7 +144,8 @@
 	return ..()
 
 /obj/machinery/Process()//If you dont use process or power why are you here
-	return PROCESS_KILL
+	if(!(use_power || idle_power_usage || active_power_usage))
+		return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
 	if(use_power && !stat)

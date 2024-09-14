@@ -44,6 +44,7 @@
 /obj/machinery/optable/unbuckle_mob()
 	. = ..()
 	check_victim()
+	set_power_use(IDLE_POWER_USE)
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
@@ -83,6 +84,7 @@
 		O.loc = loc
 	add_fingerprint(user)
 	buckle_mob(C)
+	set_power_use(ACTIVE_POWER_USE)
 
 
 /obj/machinery/optable/MouseDrop_T(mob/target, mob/user)

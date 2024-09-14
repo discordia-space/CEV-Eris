@@ -72,7 +72,7 @@
 				qdel(HH)
 
 			state = WASHSTATE_FULLCLOSEDDOOR
-			use_power = IDLE_POWER_USE
+			set_power_use(IDLE_POWER_USE)
 			update_icon()
 
 /obj/machinery/washing_machine/examine(mob/user, extra_description = "")
@@ -97,7 +97,7 @@
 	tick = WASH_BASETIME
 	for(var/atom/A in contents)
 		tick += WASH_ADDTIME
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 
 /obj/machinery/washing_machine/verb/climb_out()

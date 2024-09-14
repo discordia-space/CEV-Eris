@@ -7,7 +7,7 @@
 	icon_state = "boombox_off"
 	idle_power_usage = 10
 	active_power_usage = 60
-	use_power = TRUE
+	use_power = IDLE_POWER_USE
 	circuit = /obj/item/electronics/circuitboard/excelsior_boombox
 	var/active = FALSE
 	var/update_time = 0 // Made so callbacks can't be spamed
@@ -31,14 +31,27 @@
 	else
 		icon_state = "boombox_on"
 
+/obj/machinery/excelsior_boombox/power_change()
+	..()
+	if(active && !powered())
+		toggle_active()
+	update_icon()
+
 /obj/machinery/excelsior_boombox/proc/toggle_active()
-    if (active || (stat & (BROKEN|NOPOWER)))
-        active = FALSE
-    else
-        active = TRUE
-        if (world.time >= update_time + 30 SECONDS)
-            send_propaganda()
-            update_time = world.time
+	if (stat & (BROKEN|NOPOWER))
+		active = FALSE
+		set_power_use(NO_POWER_USE)
+		return FALSE
+	else if (active)
+		active = FALSE
+		set_power_use(IDLE_POWER_USE)
+		return FALSE
+	else
+		active = TRUE
+		set_power_use(ACTIVE_POWER_USE)
+		if (world.time >= update_time + 30 SECONDS)
+			send_propaganda()
+			update_time = world.time
 
 /obj/machinery/excelsior_boombox/proc/send_propaganda()
     if (active)

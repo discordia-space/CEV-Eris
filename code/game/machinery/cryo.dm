@@ -280,7 +280,7 @@
 //	occupant.metabslow = 0
 	occupant = null
 	current_heat_capacity = initial(current_heat_capacity)
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 	return
 
@@ -310,7 +310,7 @@
 		to_chat(M, SPAN_NOTICE("<b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"))
 	occupant = M
 	current_heat_capacity = HEAT_CAPACITY_HUMAN
-	update_use_power(2)
+	set_power_use(ACTIVE_POWER_USE)
 //	M.metabslow = 1
 	add_fingerprint(usr)
 	update_icon()

@@ -237,6 +237,7 @@
 
 	playsound(loc, 'sound/machines/blender.ogg', 50, 1)
 	inuse = 1
+	use_power(active_power_usage)
 
 	// Reset the machine.
 	spawn(60)

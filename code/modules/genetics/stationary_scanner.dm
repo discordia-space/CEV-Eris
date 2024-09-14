@@ -66,7 +66,7 @@
 	han_solo.reset_view()
 	han_solo.unset_machine()
 	han_solo = null
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 
@@ -76,7 +76,7 @@
 	add_fingerprint(user)
 	user.forceMove(src)
 	han_solo = user
-	update_use_power(2)
+	set_power_use(ACTIVE_POWER_USE)
 	user.set_machine(src)
 	update_icon()
 
