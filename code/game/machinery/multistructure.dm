@@ -112,14 +112,16 @@
 /obj/machinery/multistructure/attackby(obj/item/I, mob/user)
 	check_MS()
 	if(default_deconstruction(I, user))
-		if(MS)
-			MS.Destroy()
 		return
 
 	if(default_part_replacement(I, user))
 		return
 	return
 
+/obj/machinery/multistructure/on_deconstruction() //destroy multistructure if element is deconstructed with crowbar or in a simular way
+	if(MS)
+		MS.Destroy()
+	
 
 //	This proc will check and attpemt to create MS
 //	first it tries to find any element mentioned in MS structure and if finds any it will pass coords of where top-left element of a structure matrix should be to createMultistructure()

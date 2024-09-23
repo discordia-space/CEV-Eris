@@ -120,7 +120,8 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(/datum/design/research/circuit/shield/hull)
+	unlocks_designs = list( /datum/design/research/circuit/shield/hull,
+							/datum/design/research/circuit/shield/conduit)
 
 /datum/technology/teleportation
 	name = "Teleportation"
@@ -135,8 +136,7 @@
 	required_tech_levels = list()
 	cost = 1500
 
-	unlocks_designs = list(/datum/design/research/circuit/teleconsole,
-	                       /datum/design/research/circuit/lrange_scanner/hull)
+	unlocks_designs = list( /datum/design/research/circuit/teleconsole)
 
 /datum/technology/adv_spatial_scan
 	name = "Advanced Spatial Analyzing"
@@ -157,7 +157,9 @@
 							/datum/design/research/circuit/bssilk/console,
 							/datum/design/research/item/bs_snare,
 							/datum/design/research/circuit/teleporter/station,
-							/datum/design/research/circuit/teleporter/hub
+							/datum/design/research/circuit/teleporter/hub,
+							/datum/design/research/circuit/lrange_scanner/hull,
+							/datum/design/research/circuit/lrange_scanner/conduit
 							)
 
 /datum/technology/bluespace_tools

@@ -103,6 +103,9 @@
 	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
+		//0 - panel closed
+		//1 - panel opened
+		//-1 - panel never should be opened (used for NT buildings)
 	var/global/gl_uid = 1
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/electronics/circuitboard/circuit
@@ -303,6 +306,10 @@
 
 //Tool qualities are stored in \code\__defines\tools_and_qualities.dm
 /obj/machinery/proc/default_deconstruction(obj/item/I, mob/user)
+
+	if(panel_open == -1)
+		to_chat(user, SPAN_NOTICE("There are no panels to open on \the [src]."))
+		return FALSE
 
 	var/qualities = list(QUALITY_SCREW_DRIVING)
 

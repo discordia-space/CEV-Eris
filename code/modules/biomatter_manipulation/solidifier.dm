@@ -17,6 +17,7 @@
 	idle_power_usage = 5
 	active_power_usage = 300
 	reagent_flags = TRANSPARENT
+	panel_open = -1
 
 	var/active = FALSE
 	var/port_dir = SOUTH

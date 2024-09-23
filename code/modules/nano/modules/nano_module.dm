@@ -174,8 +174,9 @@
 
 //Allows computer programs to play sounds from the console
 /datum/nano_module/proc/playsound_host(soundin, vol as num, vary, extrarange as num, falloff, var/is_global, var/use_pressure = TRUE)
-	if (!host)
-		return
+	var/atom/nhost = nano_host()
+	if (!nhost)
+		return FALSE
 
-	var/turf/T = get_turf(host)
+	var/turf/T = get_turf(nhost)
 	playsound(T, soundin, vol, vary, extrarange, falloff, is_global,use_pressure)

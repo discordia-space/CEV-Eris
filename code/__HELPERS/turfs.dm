@@ -28,6 +28,15 @@
 			return FALSE
 	return TRUE
 
+//A coppy of a proc above because sometimes you actually need to check if turf is clear no matter if it has wires or pipes
+/proc/turf_clear_ignore_cables(turf/T)
+	if (T.density)
+		return FALSE
+	for(var/atom/A in T)
+		if(A.density)
+			return FALSE
+	return TRUE
+
 /proc/clear_interior(var/turf/T)
 	if (turf_clear(T))
 		if (!turf_is_external(T))

@@ -105,9 +105,10 @@
 	chamber_closed = !chamber_closed
 
 
-/datum/multistructure/bioreactor/proc/pump_solution()
-	if(!chamber_closed || !is_operational())
-		return
+/datum/multistructure/bioreactor/proc/pump_solution(forced)
+	if(!forced)
+		if(!chamber_closed || !is_operational())
+			return
 	if(chamber_solution)
 		solution.icon_state = ""
 		flick("solution_pump_out", solution)
@@ -128,6 +129,7 @@
 	icon_state = "biomassconsole1"
 	anchored = TRUE
 	density = TRUE
+	panel_open = -1
 	MS_type = /datum/multistructure/bioreactor
 	var/datum/multistructure/bioreactor/MS_bioreactor
 

@@ -5,13 +5,14 @@
 #define PASSIVE_SCAN_PERIOD     3 SECONDS
 #define PULSE_PROGRESS_TIME    30  // in decisecond
 #define ACTIVE_SCAN_RANGE      10
-#define ACTIVE_SCAN_DURATION   30 SECONDS
+#define ACTIVE_SCAN_DURATION   10 SECONDS
 
 var/list/ship_scanners = list()
 
-/obj/machinery/power/long_range_scanner
+/obj/machinery/power/shipside/long_range_scanner
 	name = "long range scanner"
 	desc = "An advanced long range scanner with heavy-duty capacitor, capable of scanning celestial anomalies at large distances."
+	description_info = "Can be moved by retracting the power conduits with the appropiate right-click verb"
 	icon = 'icons/obj/machines/conduit_of_soul.dmi'
 	icon_state = "core_inactive"
 	density = TRUE
@@ -19,78 +20,64 @@ var/list/ship_scanners = list()
 
 	circuit = /obj/item/electronics/circuitboard/long_range_scanner
 
-
-
-	var/needs_update = FALSE //If true, will update in process
-
 	var/datum/wires/long_range_scanner/wires
-	var/list/event_log = list()			// List of relevant events for this shield
-	var/max_log_entries = 200			// A safety to prevent players generating endless logs and maybe endangering server memory
+	list/event_log = list()			// List of relevant events for this scanner
+	max_log_entries = 200			// A safety to prevent players generating endless logs and maybe endangering server memory
 
-	var/scanner_modes = 0				// Enabled scanner mode flags
 	var/as_duration_multiplier = 1.0    // Active scan duration multiplier (improve internal components)
 	var/as_energy_multiplier = 1.0      // Active scan energy cost multiplier (improve internal components)
 
-	var/max_energy = 0					// Maximal stored energy. In joules. Depends on the type of used SMES coil when constructing this scanner.
-	var/current_energy = 0				// Current stored energy.
-	var/running = SCANNER_OFF			// Whether the scanner is enabled or not.
-	var/input_cap = 1 MEGAWATTS			// Currently set input limit. Set to 0 to disable limits altogether. The shield will try to input this value per tick at most
-	var/upkeep_power_usage = 0			// Upkeep power usage last tick.
-	var/power_usage = 0					// Total power usage last tick.
-	var/overloaded = 0					// Whether the field has overloaded and shut down to regenerate.
-	var/offline_for = 0					// The scanner will be inoperable for this duration in ticks.
-	var/input_cut = 0					// Whether the input wire is cut.
-	var/mode_changes_locked = 0			// Whether the control wire is cut, locking out changes.
-	var/ai_control_disabled = 0			// Whether the AI control is disabled.
-	var/emergency_shutdown = FALSE		// Whether the scanner is currently recovering from an emergency shutdown
-	var/list/default_modes = list()
-	var/generatingShield = FALSE //true when shield tiles are in process of being generated
+	max_energy = 0					// Maximal stored energy. In joules. Depends on the type of used SMES coil when constructing this scanner.
+	var/input_maxcap = 0			// Maximal level of input by the scanner. Set by RefreshParts()
+	current_energy = 0				// Current stored energy.
+	running = SCANNER_OFF			// Whether the scanner is enabled or not.
+	input_cap = 1 MEGAWATTS			// Currently set input limit. Set to 0 to disable limits altogether. The scanner will try to input this value per tick at most
+	upkeep_power_usage = 0			// Upkeep power usage last tick.
+	power_usage = 0					// Total power usage last tick.
+	offline_for = 0					// The scanner will be inoperable for this duration in ticks.
+	input_cut = 0					// Whether the input wire is cut.
+	mode_changes_locked = 0			// Whether the control wire is cut, locking out changes.
+	ai_control_disabled = 0			// Whether the AI control is disabled.
+	emergency_shutdown = FALSE		// Whether the scanner is currently recovering from an emergency shutdown
 
-	var/obj/effect/overmap/ship/linked_ship = null // To access position of Eris on the overmap
+	obj/effect/overmap/ship/linked_ship = null // To access position of Eris on the overmap
 
-	var/list/tendrils = list()
-	var/list/tendril_dirs = list(NORTH, EAST, WEST)
-	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
+	list/tendrils = list()
+	list/tendril_dirs = list()
+	tendrils_deployed = FALSE				// Whether the capacitors are currently extended
 
 
-/obj/machinery/power/long_range_scanner/update_icon()
-	cut_overlays()
+/obj/machinery/power/shipside/long_range_scanner/update_icon()
 	if(running)
 		set_light(1, 1, "#82C2D8")
-		icon_state = "core_warmup"
-		spawn(20)
+		flick("core_warmup", src)
+		icon_state = "core_active"
+		spawn(6)
 			set_light(2, 2, "#82C2D8")
-			icon_state = "core_active"
 	else
 		set_light(1, 1, "#82C2D8")
-		icon_state = "core_shutdown"
-		spawn(20)
+		flick("core_shutdown", src)
+		icon_state = "core_inactive"
+		spawn(5)
 			set_light(0)
-			icon_state = "core_inactive"
 
-	for (var/obj/machinery/scanner_conduit/S in tendrils)
+	for (var/obj/machinery/power/conduit/scanner_conduit/S in tendrils)
 		if (running)
 			S.dim_light()
-			S.icon_state = "warmup"
-			S.update_icon()
-			spawn(20)
+			flick("warmup", S)
+			S.icon_state = "speen"
+			spawn(19)
 				S.bright_light()
-				S.icon_state = "speen"
-				S.update_icon()
-
 		else
 			S.dim_light()
-			S.icon_state = "shutdown"
-			S.update_icon()
-			spawn(20)
+			flick("shutdown", S)
+			S.icon_state = "inactive"
+			spawn(5)
 				S.no_light()
-				S.icon_state = "inactive"
-				S.update_icon()
 
 
-/obj/machinery/power/long_range_scanner/Initialize()
+/obj/machinery/power/shipside/long_range_scanner/Initialize()
 	. = ..()
-	connect_to_network()
 	wires = new(src)
 	ship_scanners += src
 	var/obj/effect/overmap/ship/S = map_sectors["[z]"]
@@ -100,8 +87,7 @@ var/list/ship_scanners = list()
 	// Link to Eris object on the overmap
 	linked_ship = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
 
-/obj/machinery/power/long_range_scanner/Destroy()
-	toggle_tendrils(FALSE)
+/obj/machinery/power/shipside/long_range_scanner/Destroy()
 	QDEL_NULL(wires)
 	ship_scanners -= src
 	var/obj/effect/overmap/ship/S = map_sectors["[z]"]
@@ -110,28 +96,49 @@ var/list/ship_scanners = list()
 	. = ..()
 
 
-/obj/machinery/power/long_range_scanner/RefreshParts()
+/obj/machinery/power/shipside/long_range_scanner/RefreshParts()
 	max_energy = 0
-	for(var/obj/item/stock_parts/smes_coil/S in component_parts)
-		max_energy += (S.ChargeCapacity / CELLRATE)
-	current_energy = between(0, current_energy, max_energy)
+	input_maxcap = 0
+	for(var/obj/machinery/power/conduit/scanner_conduit/SC in tendrils)
+		for(var/obj/item/stock_parts/smes_coil/S in SC.component_parts)
+			max_energy += (S.ChargeCapacity / CELLRATE) / 3					//Divide by 3 because three default conduits
+			input_maxcap += S.IOCapacity									//Around 2.25 MEGAWATTS with default parts
+	current_energy = between(0, current_energy, max_energy)					//Yes, same as the shieldgen.
+	input_cap = between(0, input_cap, input_maxcap)
 
-	// Better micro lasers increase the duration of the active scan mode
-	as_duration_multiplier = 1.0 + 0.5 * max_part_rating(/obj/item/stock_parts/micro_laser)
-	as_duration_multiplier = between(initial(as_duration_multiplier), as_duration_multiplier, 10.0)
+	// Better scanners increase the duration of the active scan mode
+	var/scan_rating = 0
+	as_duration_multiplier = max(1, 1.0 * tendrils.len)
+	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
+		scan_rating += S.rating
+	as_duration_multiplier *= scan_rating / 2
+	for(var/obj/item/bluespace_crystal/artificial/A in component_parts)
+		as_duration_multiplier /= 2											//Halves duration if you use cheep crystal. Miser pays twice!
 
 	// Better capacitors diminish the energy consumption of the active scan mode
-	as_energy_multiplier = 1.0 - 0.1 * max_part_rating(/obj/item/stock_parts/capacitor)
-	as_energy_multiplier = between(0.0, as_energy_multiplier, initial(as_energy_multiplier))
-
+	as_energy_multiplier = 1.15
+	for(var/obj/machinery/power/conduit/scanner_conduit/SC in tendrils)
+		as_energy_multiplier -= 0.05 * SC.rating
 
 // Shuts down the long range scanner
-/obj/machinery/power/long_range_scanner/proc/shutdown_scanner()
+/obj/machinery/power/shipside/long_range_scanner/shutdown_machine()
 	running = SCANNER_OFF
 	update_icon()
 
+/obj/machinery/power/shipside/long_range_scanner/spawn_tendrils(dirs = list(NORTH, EAST, WEST))
+	for (var/D in dirs)
+		var/turf/T = get_step(src, D)
+		var/obj/machinery/power/conduit/scanner_conduit/tendril = locate(T)
+		if(!tendril)
+			tendril = new(T)
+		tendril.connect(src)
+		tendril.face_atom(src)
+		tendril.anchored = TRUE
+		tendrils_deployed = TRUE
+	build_tendril_dirs()
+	update_icon()
 
-/obj/machinery/power/long_range_scanner/Process()
+/obj/machinery/power/shipside/long_range_scanner/Process()
 	upkeep_power_usage = 0
 	power_usage = 0
 
@@ -145,77 +152,39 @@ var/list/ship_scanners = list()
 	// We are shutting down, therefore our stored energy disperses faster than usual.
 	else if(running == SCANNER_DISCHARGING)
 		if (offline_for <= 0)
-			shutdown_scanner() //We've finished the winding down period and now turn off
+			shutdown_machine() //We've finished the winding down period and now turn off
 			offline_for += 30 //Another minute before it can be turned back on again
 		return
 
-	upkeep_power_usage = ENERGY_UPKEEP_SCANNER
+	if(running == SCANNER_RUNNING)
+		upkeep_power_usage = ENERGY_UPKEEP_SCANNER
 
-	if(powernet && !input_cut && (running == SCANNER_RUNNING || running == SCANNER_OFF))
+	if(tendrils_deployed && !input_cut && (running == SCANNER_RUNNING || running == SCANNER_OFF))
 		var/energy_buffer = 0
-		energy_buffer = draw_power(min(upkeep_power_usage, input_cap))
+		for(var/obj/machinery/power/conduit/scanner_conduit/SC in tendrils)
+			energy_buffer += SC.draw_power(input_cap / tendrils.len)
 		power_usage += round(energy_buffer)
-
-		if(energy_buffer < upkeep_power_usage)
-			current_energy -= round(upkeep_power_usage - energy_buffer)	// If we don't have enough energy from the grid, take it from the internal battery instead.
-
-		// Now try to recharge our internal energy.
-		var/energy_to_demand
-		if(input_cap)
-			energy_to_demand = between(0, max_energy - current_energy, input_cap - upkeep_power_usage)
-		else
-			energy_to_demand = max(0, max_energy - current_energy)
-		energy_buffer = draw_power(energy_to_demand)
-		power_usage += energy_buffer
-		current_energy += round(energy_buffer)
+		current_energy += energy_buffer - upkeep_power_usage //if grid energy is lower than upkeep - negative number will be added
 	else
 		current_energy -= round(upkeep_power_usage)	// We are shutting down, or we lack external power connection. Use energy from internal source instead.
 
 	if(current_energy <= 0)
 		energy_failure()
 
-	if (charge_level() > 5)
-		overloaded = 0
+
+/obj/machinery/power/shipside/long_range_scanner/proc/energy_failure()
+	offline_for += 150
+	shutdown_machine()
+	emergency_shutdown = TRUE
+	if (current_energy < 0)
+		current_energy = 0
 
 
-/obj/machinery/power/long_range_scanner/attackby(obj/item/O as obj, mob/user as mob)
-	// Prevents dismantle-rebuild tactics to reset the emergency shutdown timer.
-	if(running)
-		to_chat(user, "Turn off \the [src] first!")
-		return
-	if(offline_for)
-		to_chat(user, "Wait until \the [src] cools down from emergency shutdown first!")
-		return
-
-	if(default_deconstruction(O, user))
-		return
-	if(default_part_replacement(O, user))
-		return
-
-	//TODO: Implement unwrenching in a proper centralised location. Having to copypaste this around sucks
-	if(QUALITY_BOLT_TURNING in O.tool_qualities)
-		wrench(user, O)
-		return
-
-	if(istool(O))
-		return src.attack_hand(user)
-
-
-/obj/machinery/power/long_range_scanner/proc/energy_failure()
-	if(running == SCANNER_DISCHARGING)
-		shutdown_scanner()
-	else
-		if (current_energy < 0)
-			current_energy = 0
-		overloaded = 1
-
-
-/obj/machinery/power/long_range_scanner/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/shipside/long_range_scanner/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 
 	data["running"] = running
 	data["logs"] = get_logs()
-	data["overloaded"] = overloaded
 	data["max_energy"] = round(max_energy / 1000000, 0.1)
 	data["current_energy"] = round(current_energy / 1000000, 0.1)
 	data["input_cap_kw"] = round(input_cap / 1000)
@@ -233,19 +202,19 @@ var/list/ship_scanners = list()
 		ui.set_auto_update(1)
 
 
-/obj/machinery/power/long_range_scanner/attack_hand(var/mob/user)
+/obj/machinery/power/shipside/long_range_scanner/attack_hand(var/mob/user)
 	nano_ui_interact(user)
 	if(panel_open)
 		wires.Interact(user)
 
 
-/obj/machinery/power/long_range_scanner/CanUseTopic(var/mob/user)
+/obj/machinery/power/shipside/long_range_scanner/CanUseTopic(var/mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return STATUS_UPDATE
 	return ..()
 
 
-/obj/machinery/power/long_range_scanner/Topic(href, href_list)
+/obj/machinery/power/shipside/long_range_scanner/Topic(href, href_list)
 	if(..())
 		return 1
 	if(!anchored)
@@ -263,13 +232,17 @@ var/list/ship_scanners = list()
 		log_event(EVENT_DISABLED, src)
 
 	if(href_list["start_generator"])
+		if(tendrils_deployed == FALSE)
+			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it needs to have it's conduits deployed first to operate"))
+			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 100, 1, 5)
+			return
 		running = SCANNER_RUNNING
 		update_icon()
 		log_event(EVENT_ENABLED, src)
-		offline_for = 3 //This is to prevent cases where you startup the shield and then turn it off again immediately while spamclicking
+		offline_for = 3 //This is to prevent cases where you startup the scanner and then turn it off again immediately while spamclicking
 		. = 1
 
-	// Instantly drops the shield, but causes a cooldown before it may be started again. Also carries a risk of EMP at high charge.
+	// Instantly drops the scanner, but causes a cooldown before it may be started again. Also carries a risk of EMP at high charge.
 	if(href_list["emergency_shutdown"])
 		if(!running)
 			return
@@ -281,7 +254,7 @@ var/list/ship_scanners = list()
 		var/temp_integrity = charge_level()
 
 		offline_for += 300 //5 minutes, given that procs happen every 2 seconds
-		shutdown_scanner()
+		shutdown_machine()
 		emergency_shutdown = TRUE
 		log_event(EVENT_DISABLED, src)
 		if(prob(temp_integrity - 50) * 1.75)
@@ -293,28 +266,23 @@ var/list/ship_scanners = list()
 		return 1
 
 	if(href_list["set_input_cap"])
-		var/new_cap = round(input(usr, "Enter new input cap (in kW). Enter 0 or nothing to disable input cap.", "Generator Power Control", round(input_cap / 1000)) as num)
+		var/new_cap = round(input(usr, "Enter new input cap (in kW). Current maximal input cap is [input_maxcap / 1000] kW", "Scanner Power Control", round(input_cap / 1000)) as num)
 		if(!new_cap)
-			input_cap = 0
 			return
-		input_cap = max(0, new_cap) * 1000
+		input_cap = between(1, new_cap, input_maxcap / 1000) * 1000
 		log_event(EVENT_RECONFIGURED, src)
 		. = 1
 
 	nano_ui_interact(usr)
 
-/obj/machinery/power/long_range_scanner/proc/charge_level()
+/obj/machinery/power/shipside/long_range_scanner/proc/charge_level()
 	if(max_energy)
 		return (current_energy / max_energy) * 100
 	return 0
 
 
-// Checks whether specific flags are enabled
-/obj/machinery/power/long_range_scanner/proc/check_flag(var/flag)
-	return (scanner_modes & flag)
 
-
-/obj/machinery/power/long_range_scanner/proc/get_logs()
+/obj/machinery/power/shipside/long_range_scanner/proc/get_logs()
 	var/list/all_logs = list()
 	for(var/i = event_log.len; i > 1; i--)
 		all_logs.Add(list(list(
@@ -322,30 +290,17 @@ var/list/ship_scanners = list()
 		)))
 	return all_logs
 
-
-/obj/machinery/power/long_range_scanner/proc/wrench(var/user, var/obj/item/O)
-	if(O.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-		if(anchored)
-			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
-			anchored = FALSE
-		else
-			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
-			anchored = TRUE
-		return
-
-//This proc keeps an internal log of shield impacts, activations, deactivations, and a vague log of config changes
-/obj/machinery/power/long_range_scanner/proc/log_event(var/event_type, var/atom/origin_atom)
+//This proc keeps an internal log of scanner activations, deactivations, and a vague log of config changes
+/obj/machinery/power/shipside/long_range_scanner/log_event(var/event_type, var/atom/origin_atom)
 	var/logstring = "[stationtime2text()]: "
 	switch (event_type)
 
 		if (EVENT_ENABLED to EVENT_RECONFIGURED)
 			switch (event_type)
 				if (EVENT_ENABLED)
-					logstring += "Shield powered up"
+					logstring += "Scanner powered up"
 				if (EVENT_DISABLED)
-					logstring += "Shield powered down"
+					logstring += "Scanner powered down"
 				if (EVENT_RECONFIGURED)
 					logstring += "Configuration altered"
 				else
@@ -373,119 +328,54 @@ var/list/ship_scanners = list()
 		if (event_log.len > max_log_entries)
 			event_log.Cut(1,2)
 
-/obj/machinery/scanner_conduit
-	name = "scanner conduit"
-	icon = 'icons/obj/machines/conduit_of_soul.dmi'
-	icon_state = "inactive"
-	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy."
-	density = TRUE
-	anchored = FALSE //Will be set true just after deploying
-	var/obj/machinery/power/long_range_scanner/scanner
-
-/obj/machinery/scanner_conduit/proc/connect(sca)
-	scanner = sca
-
-/obj/machinery/scanner_conduit/proc/no_light()
-	set_light(0)
-
-/obj/machinery/scanner_conduit/proc/dim_light()
-	set_light(1, 1, "#82C2D8")
-
-/obj/machinery/scanner_conduit/proc/bright_light()
-	set_light(2, 2, "#82C2D8")
-
-/obj/machinery/scanner_conduit/Destroy()
-	if(scanner)
-		scanner.toggle_tendrils(FALSE)
-		if(scanner.running != SCANNER_OFF && !scanner.emergency_shutdown)
-			scanner.offline_for += 300
-			scanner.shutdown_scanner()
-			scanner.emergency_shutdown = TRUE
-			scanner.log_event(EVENT_DISABLED, scanner)
-	. = ..()
-
-/obj/machinery/power/long_range_scanner/wrench(user, obj/item/I)
-	if(running != SCANNER_OFF)
-		to_chat(usr, SPAN_NOTICE("Scanner has to be toggled off first!"))
-		return
-	if(tendrils_deployed)
-		to_chat(usr, SPAN_NOTICE("Retract conduits first!"))
-		return
-	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
-		if(anchored)
-			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
-			toggle_tendrils(FALSE)
-			anchored = FALSE
-		else
-			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
-			anchored = TRUE
-		return
-
-/obj/machinery/power/long_range_scanner/verb/toggle_tendrils_verb()
-	set category = "Object"
-	set name = "Toggle conduits"
-	set src in view(1)
-
-	if(running != SCANNER_OFF)
-		to_chat(usr, SPAN_NOTICE("Scanner has to be toggled off first!"))
-		return
-	toggle_tendrils()
-
-/obj/machinery/power/long_range_scanner/proc/toggle_tendrils(on = null)
-	var/target_state
-	if (!isnull(on))
-		target_state = on
-	else
-		target_state = tendrils_deployed ? FALSE : TRUE //Otherwise we're toggling
-
-	if (target_state == tendrils_deployed)
-		return
-	//If we're extending them
-	if (target_state == TRUE)
-		for (var/D in tendril_dirs)
-			var/turf/T = get_step(src, D)
-			var/obj/machinery/scanner_conduit/SC = locate(/obj/machinery/scanner_conduit) in T
-			if(SC)
-				continue
-			if (!turf_clear(T))
-				visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it lacks the space to deploy"))
-				playsound(src.loc, "/sound/machines/buzz-two", 100, 1, 5)
-				tendrils_deployed = FALSE
-				update_icon()
-				return FALSE
-
-		//Now deploy
-		for (var/D in tendril_dirs)
-			var/turf/T = get_step(src, D)
-			var/obj/machinery/scanner_conduit/SC = locate(/obj/machinery/scanner_conduit) in T
-			if(!SC) SC = new(T)
-			SC.connect(src)
-			tendrils.Add(SC)
-			SC.face_atom(src)
-			SC.anchored = TRUE
-		tendrils_deployed = TRUE
-		update_icon()
-
-		to_chat(usr, SPAN_NOTICE("You deployed [src] conduits."))
-		return TRUE
-
-	else if (target_state == FALSE)
-		for (var/obj/machinery/scanner_conduit/SC in tendrils)
-			tendrils.Remove(SC)
-			qdel(SC)
-		tendrils_deployed = FALSE
-		update_icon()
-
-		to_chat(usr, SPAN_NOTICE("You retracted [src] conduits."))
-		return FALSE
-
-/obj/machinery/power/long_range_scanner/proc/consume_energy_scan()
+/obj/machinery/power/shipside/long_range_scanner/proc/consume_energy_scan()
 	if(current_energy > round(ENERGY_PER_SCAN * as_energy_multiplier))
 		current_energy -= round(ENERGY_PER_SCAN * as_energy_multiplier)
 		return TRUE
 	return FALSE
+
+
+/obj/machinery/power/conduit/scanner_conduit
+	name = "scanner conduit"
+	icon = 'icons/obj/machines/conduit_of_soul.dmi'
+	icon_state = "inactive"
+	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy while also increasing the efficiency of connected long range scanner."
+	density = TRUE
+	anchored = FALSE //Will be set true just after deploying
+	circuit = /obj/item/electronics/circuitboard/scanner_conduit
+	var/rating //average rating of all capacitors
+	
+/obj/machinery/power/conduit/scanner_conduit/no_light()
+	set_light(0)
+
+/obj/machinery/power/conduit/scanner_conduit/proc/dim_light()
+	set_light(1, 1, "#82C2D8")
+
+/obj/machinery/power/conduit/scanner_conduit/bright_light()
+	set_light(2, 2, "#82C2D8")
+
+/obj/machinery/power/conduit/scanner_conduit/RefreshParts()
+	rating = 0
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
+		rating += C.rating
+	rating /= 2
+	. = ..()
+
+/obj/machinery/power/conduit/scanner_conduit/disconnect()
+	if(!base)
+		return FALSE
+	if(base.running != 0 && !base.emergency_shutdown)
+		base.offline_for += 300
+		base.shutdown_machine()
+		base.emergency_shutdown = TRUE
+		base.log_event(EVENT_DISABLED, base)
+	base.tendrils.Remove(src)
+	base.build_tendril_dirs()
+	base.RefreshParts()
+	base.update_icon()
+	base = null
+	no_light()
+	disconnect_from_network()
 
 #undef EVENT_ENABLED
 #undef EVENT_DISABLED
