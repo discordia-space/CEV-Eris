@@ -1,0 +1,6 @@
+author: TheLeopold
+delete-after: true
+changes:
+  - tweak: removed cell from svalinn disk
+  - balance: now svalinn is disposable
+  - balance: reduced the price of NT energy pack crate
