@@ -45,8 +45,7 @@
 	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/nt_svalinn,
-		/datum/design/bioprinter/nt_cells/small
+		/datum/design/autolathe/gun/nt_svalinn
 	)
 
 // Javelins & bucklers, speed upgrade TODO: light armor
