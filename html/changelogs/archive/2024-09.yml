@@ -44,3 +44,8 @@
   - bugfix: Cahors wine now actually cures poisoning
   - refactor: Now Shield generator and Long range scanner have shared parent object
   - config: Changed long range scanner power consumption
+2024-09-25:
+  TheLeopold:
+  - tweak: removed cell from svalinn disk
+  - balance: now svalinn is disposable
+  - balance: reduced the price of NT energy pack crate
