@@ -73,12 +73,6 @@
 			)
 
 
-/mob/living/carbon/superior_animal/roach/New()
-	. = ..()
-	var/newhat = pick(hats4roaches)
-	var/obj/item/hatobj = new newhat(loc)
-	wear_hat(hatobj)
-
 	// Armor related variables
 	armor = list(
 		melee = 0,
@@ -88,6 +82,12 @@
 		bio = 25,
 		rad = 50
 	)
+
+/mob/living/carbon/superior_animal/roach/New()
+	. = ..()
+	var/newhat = pick(hats4roaches)
+	var/obj/item/hatobj = new newhat(loc)
+	wear_hat(hatobj)
 
 /mob/living/carbon/superior_animal/roach/Destroy()
 	clearEatTarget()
