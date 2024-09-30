@@ -363,7 +363,7 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.tool_upgrades = list(
-		UPGRADE_ITEMFLAGPLUS = HONKING
+		UPGRADE_ITEMFLAGPLUS = DUCKING
 	)
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_DUCK = TRUE
