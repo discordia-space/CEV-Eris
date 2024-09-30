@@ -359,6 +359,8 @@
 		G.proj_damage_adjust[PSY] += weapon_upgrades[GUN_UPGRADE_DAMAGE_PSY]
 	if(weapon_upgrades[GUN_UPGRADE_HONK])
 		G.fire_sound = 'sound/items/bikehorn.ogg'
+	if(weapon_upgrades[GUN_UPGRADE_DUCK])
+		G.fire_sound = 'sound/items/duck.ogg'
 	if(weapon_upgrades[GUN_UPGRADE_RIGGED])
 		G.rigged = TRUE
 	if(weapon_upgrades[GUN_UPGRADE_FOREGRIP])
@@ -635,6 +637,9 @@
 
 		if(weapon_upgrades[GUN_UPGRADE_HONK])
 			reference.Add(SPAN_WARNING("Cheers up the firing sound of the weapon."))
+
+		if(weapon_upgrades[GUN_UPGRADE_DUCK])
+			reference.Add(SPAN_WARNING("Blesses the firing sound of the weapon with duck magic."))
 
 		if(weapon_upgrades[GUN_UPGRADE_RIGGED])
 			reference.Add(SPAN_WARNING("Rigs the weapon to fire back on its user."))

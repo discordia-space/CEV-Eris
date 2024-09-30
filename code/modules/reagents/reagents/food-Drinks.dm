@@ -590,6 +590,7 @@
 /datum/reagent/drink/milk/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.heal_organ_damage(0.05 * effect_multiplier, 0)
+	M.add_chemical_effect(CE_BONE_MEND, 2 * effect_multiplier)	//Very good for your bones!
 	holder.remove_reagent("capsaicin", 1 * effect_multiplier)
 
 /datum/reagent/drink/milk/cream

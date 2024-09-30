@@ -21,5 +21,5 @@
 
 /mob/living/carbon/human/skeleton/Initialize(new_loc)
 	. = ..(new_loc, SPECIES_SKELETON)
-	death(FALSE)
-	GLOB.human_mob_list -= src
+//	death(FALSE)
+//	GLOB.human_mob_list -= src

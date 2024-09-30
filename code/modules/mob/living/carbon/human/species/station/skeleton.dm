@@ -30,7 +30,7 @@
 	single_gib_type = /obj/effect/decal/cleanable/ash
 	remains_type = /obj/item/remains/human
 
-	lower_sanity_process = FALSE
+//	lower_sanity_process = FALSE
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -58,7 +58,7 @@
 		BP_R_LEG =  new /datum/organ_description/leg/right/skeletal
 		)
 
-	spawn_flags = IS_RESTRICTED
+//	spawn_flags = IS_RESTRICTED
 
 /datum/species/skeleton/get_random_name()
 	return "skeletal remains"

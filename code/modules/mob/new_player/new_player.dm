@@ -426,6 +426,7 @@
 	new_character.regenerate_icons()
 	new_character.key = key//Manually transfer the key to log them in
 	new_character.client.init_verbs()
+	new_character.set_species(SPECIES_SKELETON)
 
 	return new_character
 

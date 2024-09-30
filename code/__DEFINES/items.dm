@@ -94,6 +94,7 @@
 #define GUN_UPGRADE_SILENCER "silencable"
 #define GUN_UPGRADE_FORCESAFETY "safety force"
 #define GUN_UPGRADE_HONK "why"
+#define GUN_UPGRADE_DUCK "bonus duck"
 #define GUN_UPGRADE_FULLAUTO "full auto"
 #define GUN_UPGRADE_EXPLODE "self destruct"
 #define GUN_UPGRADE_RIGGED "rigged"
