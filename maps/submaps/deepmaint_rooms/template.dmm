@@ -1,15 +1,15 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/deepmaint)
 "b" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/deepmaint)
 "c" = (
-/turf/simulated/floor/tiled/techmaint_panels,
+/turf/floor/tiled/techmaint_panels,
 /area/deepmaint)
 "d" = (
-/turf/simulated/floor/tiled/techmaint_perforated,
+/turf/floor/tiled/techmaint_perforated,
 /area/deepmaint)
 
 (1,1,1) = {"

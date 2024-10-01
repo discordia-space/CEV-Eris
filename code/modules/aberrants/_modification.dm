@@ -40,36 +40,36 @@ COMSIG_ABERRANT_SECONDARY
 	var/mod_stat = STAT_COG
 	var/mod_sound = WORKSOUND_HONK
 
+	var/examine_msg = null	// Examine message for the mod, not the item it is attached to
+	var/examine_stat = STAT_COG
+	var/examine_difficulty = STAT_LEVEL_BASIC
+	var/examine_stat_secondary = null
+	var/examine_difficulty_secondary = STAT_LEVEL_BASIC
+
+	// These should be flags used by a single var
 	var/adjustable = FALSE
 	var/destroy_on_removal = FALSE 
 	var/removable = TRUE
 	var/breakable = FALSE //Some mods are meant to be tamper-resistant and should be removed only in a hard way
 
 	var/list/apply_to_types = list()  		// The mod can be applied to an item of these types
-	var/list/blacklisted_types = list()		// The mod can not be applied to an item of these types
 	var/exclusive_type						// Use if children of a mod path should be checked
-
-	var/examine_msg = null	// Examine message for the mod, not the item it is attached to
-
-	// Stat-gated details
-	var/examine_stat = STAT_COG
-	var/examine_difficulty = STAT_LEVEL_BASIC
-	var/examine_stat_secondary = null
-	var/examine_difficulty_secondary = STAT_LEVEL_BASIC
+	/// Replaces required_qualities in item_upgrades
+	var/list/apply_to_qualities = list()	// The mod can be applied to items of these qualities (for organs: organic, assisted, silicon). Must be used in a child proc.
+	/// Replaces negative_qualities in item_upgrades
+	var/list/blacklisted_qualities = list()	// The mod can NOT be applied to items of these qualities (for organs: organic, assisted, silicon). Must be used in a child proc.
+	var/multiples_allowed = FALSE
 
 	// Trigger
 	var/trigger_signal
 
 	// Applied to holder object
-	var/prefix
-	var/new_name
-	var/new_desc
-	var/new_color
+	var/list/modifications = list()
 
 /datum/component/modification/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_IATTACK, PROC_REF(attempt_install))
 	RegisterSignal(parent, COMSIG_ATTACKBY, PROC_REF(try_modify))
-	RegisterSignal(parent, COMSIG_EXAMINE, PROC_REF(on_examine))
+	//RegisterSignal(parent, COMSIG_EXTRA_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_REMOVE, PROC_REF(uninstall))
 
 /datum/component/modification/proc/attempt_install(atom/A, mob/living/user, params)
@@ -78,26 +78,26 @@ COMSIG_ABERRANT_SECONDARY
 
 /datum/component/modification/proc/can_apply(atom/A, mob/living/user)
 	if(isitem(A))
-		var/obj/item/I = A
-		//No using multiples of the same upgrade
-		for (var/obj/item/item in I.item_upgrades)
-			if(item.type == parent.type || (exclusive_type && istype(item, exclusive_type)))
-				if(user)
-					to_chat(user, SPAN_WARNING("A modification of this type is already attached!"))
-				return FALSE
+		if(!multiples_allowed)
+			var/obj/item/I = A
+			//No using multiples of the same upgrade
+			for (var/obj/item/item in I.item_upgrades)
+				if(item.type == parent.type || (exclusive_type && istype(item, exclusive_type)))
+					if(user)
+						to_chat(user, SPAN_WARNING("A modification of this type is already attached!"))
+					return FALSE
 
-	if(istype(A, /obj/item))
 		return check_item(A, user)
 
 	return FALSE
 
 /datum/component/modification/proc/check_item(obj/item/I, mob/living/user)
-	if(I.item_upgrades.len >= I.max_upgrades)
+	if(LAZYLEN(I.item_upgrades) >= I.max_upgrades)
 		if(user)
 			to_chat(user, SPAN_WARNING("\The [I] can not fit anymore modifications!"))
 		return FALSE
 
-	if(apply_to_types.len)
+	if(LAZYLEN(apply_to_types))
 		var/type_match = FALSE
 		for(var/path in apply_to_types)
 			if(istype(I, path))
@@ -108,13 +108,6 @@ COMSIG_ABERRANT_SECONDARY
 			if(user)
 				to_chat(user, SPAN_WARNING("\The [I] can not accept \the [parent]!"))
 			return FALSE
-
-	if(blacklisted_types.len)
-		for(var/path in blacklisted_types)
-			if(istype(I, path))
-				if(user)
-					to_chat(user, SPAN_WARNING("\The [I] can not accept \the [parent]!"))
-				return FALSE
 	
 	return TRUE
 
@@ -131,7 +124,10 @@ COMSIG_ABERRANT_SECONDARY
 	I.forceMove(A)	// May want to change this to I.loc = A or something similar. forceMove() calls all Crossed() procs between the src and the target.
 	A.item_upgrades.Add(I)
 	RegisterSignal(A, trigger_signal, PROC_REF(trigger))
-	RegisterSignal(A, COMSIG_APPVAL, PROC_REF(apply_values))
+	RegisterSignal(A, COMSIG_APPVAL, PROC_REF(apply_base_values))
+	RegisterSignal(A, COMSIG_APPVAL_MULT, PROC_REF(apply_mult_values))
+	RegisterSignal(A, COMSIG_APPVAL_FLAT, PROC_REF(apply_mod_values))
+	RegisterSignal(A, COMSIG_ADDVAL, PROC_REF(add_values))
 
 	var/datum/component/modification_removal/MR = A.AddComponent(/datum/component/modification_removal)
 	MR.removal_tool_quality = removal_tool_quality
@@ -147,14 +143,21 @@ COMSIG_ABERRANT_SECONDARY
 		modify(I, user)
 
 /datum/component/modification/proc/modify(obj/item/I, mob/living/user)
+	to_chat(user, SPAN_NOTICE("There is nothing to adjust in \the [parent]."))
 	return TRUE
 
 /datum/component/modification/proc/trigger(obj/item/I, mob/living/user)
 	return TRUE
 
-/datum/component/modification/proc/apply_values(atom/holder)
+/datum/component/modification/proc/apply_base_values(atom/holder)
 	SIGNAL_HANDLER
 	ASSERT(holder)
+
+	var/new_name = modifications[ATOM_NAME]
+	var/prefix = modifications[ATOM_PREFIX]
+	var/new_desc = modifications[ATOM_DESC]
+	var/new_color = modifications[ATOM_COLOR]
+
 	if(new_name)
 		holder.name = new_name
 	if(prefix)
@@ -163,9 +166,22 @@ COMSIG_ABERRANT_SECONDARY
 		holder.desc = new_desc
 	if(new_color)
 		holder.color = new_color
+
 	return TRUE
 
-/datum/component/modification/proc/on_examine(mob/user)
+/datum/component/modification/proc/apply_mult_values(atom/holder)
+	ASSERT(holder)
+	return TRUE
+
+/datum/component/modification/proc/apply_mod_values(atom/holder)
+	ASSERT(holder)
+	return TRUE
+
+/datum/component/modification/proc/add_values(atom/holder)
+	ASSERT(holder)
+	return TRUE
+
+/datum/component/modification/proc/on_examine(mob/user, list/reference)
 	SIGNAL_HANDLER
 	var/details_unlocked = FALSE
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
@@ -173,11 +189,11 @@ COMSIG_ABERRANT_SECONDARY
 		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
 	
 	if(examine_msg)
-		to_chat(user, SPAN_WARNING(examine_msg))
+		reference.Add(SPAN_WARNING(examine_msg))
 	if(details_unlocked)
 		var/function_info = get_function_info()
 		if(function_info)
-			to_chat(user, SPAN_NOTICE(function_info))
+			reference.Add(SPAN_NOTICE(function_info))
 
 /datum/component/modification/proc/get_function_info()
 	return
@@ -189,11 +205,17 @@ COMSIG_ABERRANT_SECONDARY
 	if(destroy_on_removal)
 		UnregisterSignal(I, trigger_signal)
 		UnregisterSignal(I, COMSIG_APPVAL)
+		UnregisterSignal(I, COMSIG_APPVAL_MULT)
+		UnregisterSignal(I, COMSIG_APPVAL_FLAT)
+		UnregisterSignal(I, COMSIG_ADDVAL)
 		qdel(P)
 		return
 	P.forceMove(get_turf(I))
 	UnregisterSignal(I, trigger_signal)
 	UnregisterSignal(I, COMSIG_APPVAL)
+	UnregisterSignal(I, COMSIG_APPVAL_MULT)
+	UnregisterSignal(I, COMSIG_APPVAL_FLAT)
+	UnregisterSignal(I, COMSIG_ADDVAL)
 
 /datum/component/modification/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_IATTACK)
@@ -243,6 +265,7 @@ COMSIG_ABERRANT_SECONDARY
 					to_chat(user, SPAN_NOTICE("You successfully extract \the [toremove] while leaving it intact."))
 				SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
+				user.update_action_buttons()
 				return TRUE
 			else
 				//You failed the check, lets see what happens
@@ -264,10 +287,8 @@ COMSIG_ABERRANT_SECONDARY
 
 /obj/item/modification
 	name = "modification"
-	//icon = 'icons/obj/mod_cores.dmi'
 	force = WEAPON_FORCE_HARMLESS
 	w_class = ITEM_SIZE_SMALL
-	//spawn_tags = SPAWN_TAG_MODIFICATION
 	price_tag = 0
 	rarity_value = 50
 	bad_type = /obj/item/modification

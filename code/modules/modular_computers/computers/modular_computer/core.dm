@@ -68,6 +68,8 @@
 		install_default_programs()
 	if(scanner)
 		scanner.do_after_install(null, src)
+	if(enabled == 0)
+		add_statverb(/datum/statverb/fix_computer)
 	update_icon()
 	update_verbs()
 	update_name()
@@ -199,7 +201,7 @@
 		return FALSE
 	return ntnet_global.add_log(text, network_card)
 
-/obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
+/obj/item/modular_computer/proc/shutdown_computer(loud = FALSE)
 	QDEL_LIST(terminals)
 
 	kill_program(forced=TRUE)

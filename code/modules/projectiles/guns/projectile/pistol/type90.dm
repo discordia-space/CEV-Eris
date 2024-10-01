@@ -1,4 +1,4 @@
-/obj/item/gun/projectile/pistol/type_90
+/obj/item/gun/projectile/type_90
 	name = "OS Type 90 HG .35 Auto \"Mozhu\"" //last emperor
 	desc = "Highly advanced gauss pistol manufactured by One Star right before it\'s collapse. Uses both standard and high capacity .35 Auto magazines."
 	icon = 'icons/obj/guns/projectile/os/type_90.dmi'
@@ -33,7 +33,7 @@
 	serial_type = "OS"
 
 
-/obj/item/gun/projectile/pistol/type_90/update_icon()
+/obj/item/gun/projectile/type_90/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -42,10 +42,13 @@
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state = "doble" + "_mag"
+	else
+		wielded_item_state = "doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/gun/projectile/pistol/type_90/Initialize()
+/obj/item/gun/projectile/type_90/Initialize()
 	. = ..()
 	update_icon()

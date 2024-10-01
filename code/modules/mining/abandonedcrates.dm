@@ -90,7 +90,7 @@
 		if(88)
 			new/obj/item/xenos_claw(src)
 		if(90)
-			new/obj/item/organ/internal/heart(src)
+			new/obj/item/organ/internal/vital/heart(src)
 		if(91)
 			new/obj/item/tool/sword/katana(src)
 		if(92)
@@ -140,8 +140,7 @@
 		attempts--
 		if (attempts == 0)
 			to_chat(user, SPAN_DANGER("The crate's anti-tamper system activates!"))
-			var/turf/T = get_turf(src.loc)
-			explosion(T, 0, 0, 1, 2)
+			explosion(get_turf(src), 300, 50)
 			qdel(src)
 
 /obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)

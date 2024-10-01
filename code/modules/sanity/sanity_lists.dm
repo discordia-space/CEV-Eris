@@ -81,7 +81,13 @@
 		"But they know, they always know. Accept this.",
 		"Something inside your skull cracks. You feel no pain.",
 		"Curiosity is your greatest sin.",
-		"A burger would be good. Anything edible, really."
+		"A burger would be good. Anything edible, really.",
+		"What can possibly be gained by upsetting the current order?",
+		"You have chosen your answer. Now see it through.",
+		"No one cared who I was until I put on the scarf.",
+		"Pills. Vape. Inject.",
+		"The cold. It calls to me... but the warm holds me tightly.",
+		"Can we wear drugs?"
 	)
 	return pick(sanity_quotes_40)
 
@@ -169,7 +175,16 @@
 			"The rules are written in blood. The very old blood of generations of idiots.",
 			"You are coming home.",
 			"The writings are here, behind your skull.",
-			"YOU HAVE NO CHOICE"
+			"YOU HAVE NO CHOICE",
+			"Everything is twisted... you... this world... all of it.",
+			"Welcome to the Abyss.",
+			"Human arrogance will eventually usher in our downfall.",
+			"Millions will die. Exciting, don't you think?",
+			"The price we all must pay will be great; atonement shall not be easy. The blame lies with all of us.",
+			"This is the end of the road for you. I think you understand why.",
+			"We all make mistakes, don't you think? We humans need strict supervision.",
+			"The relics of the past... they will never bring mankind prosperity.",
+			"A ship is a station that moves, but what is an unmoving ship?"
 		)
 		for(var/i in 0 to 9)
 			sanity_quotes_20 += "[i] is the number."

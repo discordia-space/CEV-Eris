@@ -115,7 +115,7 @@
 
 	objectsInView = new
 
-	verbs -= /mob/verb/observe
+	remove_verb(src, /mob/verb/observe)
 	pixel_x = RAND_DECIMAL(-randpixel, randpixel)
 	pixel_y = RAND_DECIMAL(-randpixel, randpixel)
 
@@ -136,7 +136,7 @@
 
 /mob/living/carbon/superior_animal/Destroy()
 	GLOB.superior_animal_list -= src
-	target_mob = null
+	clearTarget()
 	LAZYCLEARLIST(objectsInView)
 	LAZYCLEARLIST(friends)
 	return ..()

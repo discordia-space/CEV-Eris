@@ -12,7 +12,7 @@
 //Cloning
 /datum/ritual/cruciform/machines/resurrection
 	name = "Resurrection"
-	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
+	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum."
 	desc = "A ritual of formation of a new body in a specially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
 	var/clone_damage = 60
 
@@ -78,7 +78,7 @@
 
 /datum/ritual/cruciform/machines/lock_door
 	name = "Activate door"
-	phrase = "Inlaqueatus"
+	phrase = "Inlaqueatus."
 	desc = "Commands nearby door to be locked or unlocked."
 
 /datum/ritual/cruciform/machines/lock_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -99,7 +99,7 @@
 
 /datum/ritual/cruciform/machines/repair_door
 	name = "Repair door"
-	phrase = "Redde quod periit"
+	phrase = "Redde quod periit."
 	desc = "Repairs nearby door at the cost of biomatter."
 
 /datum/ritual/cruciform/machines/repair_door/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -112,7 +112,7 @@
 		fail("You fail to find a compatible door here.", user, C)
 		return FALSE
 
-	if(door.health == door.maxhealth)
+	if(door.health == door.maxHealth)
 		fail("This door doesn\'t need repair.", user, C)
 		return FALSE
 
@@ -135,7 +135,7 @@
 		var/obj/effect/overlay/nt_construction/effect = new(target_turf, 50)
 		sleep(50)
 		door.stat -= BROKEN
-		door.health = door.maxhealth
+		door.health = door.maxHealth
 		door.unlock()
 		door.close()
 		effect.success()
@@ -219,10 +219,15 @@
 /datum/ritual/cruciform/machines/bioreactor/chamber_doors
 	name = "Bioreactor chamber's words"
 	phrase = "Constituit quoque ianitores in portis domus Domini ut non ingrederetur eam inmundus in omni."
-	desc = "This ritual opens or closes the bioreactor chamber. You should stay nearby its screen."
+	desc = "This ritual opens, closes and checks if the bioreactor chamber is sealed properly. You should stay nearby its screen."
 
 
 /datum/ritual/cruciform/machines/bioreactor/chamber_doors/perform_command(datum/multistructure/bioreactor/bioreactor)
+	if(bioreactor.chamber_breached)
+		for(var/obj/machinery/multistructure/bioreactor_part/platform/platform in bioreactor.elements)
+			if(platform.is_breached())
+				return FALSE
+		bioreactor.chamber_breached = FALSE
 	if(bioreactor.chamber_solution)
 		return FALSE
 	bioreactor.toggle_platform_door()

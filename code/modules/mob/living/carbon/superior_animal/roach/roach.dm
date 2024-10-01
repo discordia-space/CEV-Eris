@@ -13,7 +13,7 @@
 	turns_per_move = 4
 	turns_since_move = 0
 
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/kampfer
 	meat_amount = 2
 
 	maxHealth = 10
@@ -58,7 +58,7 @@
 	)
 
 /mob/living/carbon/superior_animal/roach/Destroy()
-	eat_target = null
+	clearEatTarget()
 	return ..()
 
 //When roaches die near a leader, the leader may call for reinforcements

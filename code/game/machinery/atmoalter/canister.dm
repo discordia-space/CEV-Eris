@@ -3,7 +3,8 @@
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
 	density = TRUE
-	var/health = 100
+	health = 100
+	maxHealth = 100
 	flags = CONDUCT
 	w_class = ITEM_SIZE_HUGE
 
@@ -421,7 +422,7 @@ update_flag
 	..()
 	air_contents.gas["sleeping_agent"] = 9*4000
 	spawn(10)
-		var/turf/simulated/location = src.loc
+		var/turf/location = src.loc
 		if (istype(src.loc))
 			while (!location.air)
 				sleep(10)

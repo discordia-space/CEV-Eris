@@ -69,18 +69,18 @@
 /obj/machinery/door/firedoor/get_material()
 	return get_material_by_name(MATERIAL_STEEL)
 
-/obj/machinery/door/firedoor/examine(mob/user)
+/obj/machinery/door/firedoor/examine(mob/user, extra_description = "")
 	if(!density || !..(user, 1))
 		return FALSE
 
-	to_chat(user, "<b> EMERGENCY SENSOR READINGS </b>")
+	extra_description += "<b> EMERGENCY SENSOR READINGS </b>"
 	for(var/possible_cardinal in cardinal)
-		var/turf/simulated/turf_sim = get_step(src, possible_cardinal)
+		var/turf/turf_sim = get_step(src, possible_cardinal)
 		var/text_to_say = "&nbsp;&nbsp" // Magic bullshit im not even gonna question from the old proc
 		text_to_say += "[uppertext(dir2text(possible_cardinal))] : "
 		if(!istype(turf_sim) || turf_sim.is_wall || !turf_sim.zone)
 			text_to_say += SPAN_NOTICE("NO DATA")
-			to_chat(user, text_to_say)
+			extra_description += text_to_say
 			continue
 		var/dangerous = FALSE
 		var/datum/gas_mixture/air_data = turf_sim.zone.air
@@ -94,10 +94,10 @@
 			text_to_say += SPAN_DANGER("LOW TEMPERATURE ")
 			dangerous = TRUE
 		if(dangerous)
-			to_chat(user, text_to_say)
+			extra_description += text_to_say
 			continue
 		text_to_say += span_green("SAFE")
-		to_chat(user, text_to_say)
+		extra_description += text_to_say
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
 	if(p_open || operating)
@@ -150,11 +150,9 @@
 		if(alarmed)
 			// Accountability!
 			users_to_open |= user.name
-		spawn()
-			open()
+		open()
 	else
-		spawn()
-			close()
+		close()
 
 /obj/machinery/door/firedoor/attackby(obj/item/I, mob/user)
 	add_fingerprint(user)
@@ -216,11 +214,9 @@
 					"You force \the [src] [density ? "open" : "closed"] with \the [I]!",\
 					"You hear metal strain, and a door [density ? "open" : "close"].")
 					if(density)
-						spawn()
-							open(1)
+						open(1)
 					else
-						spawn()
-							close(1)
+						close(1)
 					return
 				return
 			return
@@ -271,7 +267,7 @@
 			flick("door_opening", src)
 			playsound(src, 'sound/machines/airlock_ext_open.ogg', 37, 1)
 		if("closing")
-			flick("door_opening", src)
+			flick("door_closing", src)
 			playsound(src, 'sound/machines/airlock_ext_close.ogg', 37, 1)
 	return
 

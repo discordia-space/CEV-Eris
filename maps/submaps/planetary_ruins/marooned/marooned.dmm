@@ -32,11 +32,11 @@
 /turf/template_noop,
 /area/template_noop)
 "g" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/map_template/marooned)
 "h" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/wall,
+/turf/wall,
 /area/map_template/marooned)
 "i" = (
 /obj/effect/damagedfloor,
@@ -52,7 +52,7 @@
 "k" = (
 /obj/machinery/computer,
 /obj/effect/floor_decal/industrial/warning/full,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "l" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -60,7 +60,7 @@
 	icon_state = "corner_white"
 	},
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "m" = (
 /obj/landmark/corpse/marooned_officer,
@@ -69,7 +69,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/item/gun/projectile/revolver/medium,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "n" = (
 /obj/item/clothing/accessory/medal/silver/marooned_medal{
@@ -82,7 +82,7 @@
 	icon_state = "corner_white"
 	},
 /obj/item/paper/marooned/note09,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "o" = (
 /obj/structure/lattice,
@@ -103,12 +103,12 @@
 	dir = 9;
 	icon_state = "corner_white"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "q" = (
 /obj/machinery/space_heater,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "r" = (
 /obj/item/paper/marooned/note03{
@@ -120,11 +120,11 @@
 	dir = 6;
 	icon_state = "corner_white"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "s" = (
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "t" = (
 /obj/structure/closet/crate/freezer,
@@ -133,28 +133,28 @@
 	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "u" = (
 /obj/structure/closet/crate/freezer,
 /obj/structure/railing,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "v" = (
 /obj/item/paper/marooned/note06,
 /obj/spawner/junk,
 /obj/item/paper/marooned/note08,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "w" = (
 /obj/machinery/space_heater,
 /obj/structure/railing,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "x" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "y" = (
 /obj/structure/closet/crate/freezer,
@@ -168,17 +168,17 @@
 	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "z" = (
 /obj/item/trash/liquidfood,
 /obj/item/trash/liquidfood,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "A" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "B" = (
 /obj/item/paper/marooned/note07{
@@ -187,7 +187,7 @@
 /obj/spawner/junk,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/bed,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "C" = (
 /obj/structure/shuttle/engine/propulsion,
@@ -206,19 +206,19 @@
 /obj/item/trash/liquidfood,
 /obj/item/trash/liquidfood,
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "E" = (
 /obj/item/trash/liquidfood,
 /obj/item/trash/liquidfood,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "F" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "G" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "H" = (
 /obj/structure/railing{
@@ -230,17 +230,17 @@
 	icon_state = "chair_preview"
 	},
 /obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "I" = (
 /obj/item/tool/wirecutters,
 /obj/item/stack/cable_coil,
 /obj/machinery/power/port_gen/pacman/super,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "J" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "L" = (
 /obj/structure/inflatable/wall,
@@ -249,12 +249,12 @@
 	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/marooned)
 "M" = (
 /obj/structure/inflatable/door,
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "N" = (
 /obj/structure/inflatable/wall,
@@ -263,18 +263,18 @@
 	icon_state = "handrail"
 	},
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/marooned)
 "O" = (
 /obj/structure/inflatable/door,
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/marooned)
 "P" = (
 /obj/structure/fuel_port,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/wall,
+/turf/wall,
 /area/map_template/marooned)
 "R" = (
 /obj/structure/inflatable/door,
@@ -287,11 +287,11 @@
 /turf/template_noop,
 /area/template_noop)
 "U" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/template_noop)
 "V" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/wall,
+/turf/wall,
 /area/template_noop)
 "W" = (
 /obj/spawner/techpart,

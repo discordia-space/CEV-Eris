@@ -50,7 +50,7 @@
 		horror_occupant = null
 		accompanying_loot = null
 
-		update_use_power(1)
+		set_power_use(IDLE_POWER_USE)
 		update_icon()
 		toggle_filter()
 
@@ -81,7 +81,6 @@
 
 /obj/machinery/sleeper/sarcophagus/hive
 	rarity_value = 60
-	accompanying_loot = /obj/item/storage/freezer/medical/contains_teratomas
 
 /obj/machinery/sleeper/sarcophagus/hive/Initialize()
 	. = ..()
@@ -99,7 +98,6 @@
 	. = ..()
 	if(prob(50))
 		horror_occupant = pick(subtypesof(/mob/living/simple_animal/hostile/hivemind))
-		accompanying_loot = /obj/item/storage/freezer/medical/contains_teratomas
 	else
 		horror_occupant = null
 		desc = "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."

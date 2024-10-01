@@ -39,6 +39,8 @@
 	number_of_shots = 3
 	time_between_shots = 0.3 SECONDS
 	cooldown_time = 2 SECONDS
+	health = 360
+	maxHealth = 360
 
 /obj/machinery/power/os_turret/Initialize()
 	. = ..()
@@ -53,14 +55,14 @@
 			do_sparks(1, TRUE, src)
 		return
 
-	if(machine_integrity <= 0)
+	if(health <= 0)
 		stat |= BROKEN
 		return
 
 	if(!on_cooldown)
-		use_power = IDLE_POWER_USE
+		set_power_use(IDLE_POWER_USE)
 	else
-		use_power = ACTIVE_POWER_USE
+		set_power_use(ACTIVE_POWER_USE)
 		return
 
 	update_icon()
@@ -117,12 +119,12 @@
 			deltimer(id)
 	..()
 
-/obj/machinery/power/os_turret/examine(mob/user)
-	..()
+/obj/machinery/power/os_turret/examine(mob/user, extra_description = "")
 	if(should_target_players)
-		to_chat(user, SPAN_NOTICE("It is set to target humans, androids, and cyborgs."))
+		extra_description += SPAN_NOTICE("It is set to target humans, androids, and cyborgs.")
 	else
-		to_chat(user, SPAN_NOTICE("It is set to target golems and large bugs."))
+		extra_description += SPAN_NOTICE("It is set to target golems and large bugs.")
+	..(user, extra_description)
 
 /obj/machinery/power/os_turret/update_icon()
 	underlays.Cut()
@@ -203,9 +205,9 @@
 	var/obj/item/electronics/circuitboard/os_turret/C = circuit
 	C.target_superior_mobs = TRUE
 
-/obj/machinery/power/os_turret/proc/take_damage(amount)
-	machine_integrity = max(machine_integrity - amount, 0)
-	if(!machine_integrity)
+/obj/machinery/power/os_turret/take_damage(amount)
+	health = max(health - amount, 0)
+	if(!health)
 		stat |= BROKEN
 	else if(prob(50))
 		do_sparks(1, 0, loc)
@@ -280,10 +282,10 @@
 	)
 	var/target_superior_mobs = FALSE
 
-/obj/item/electronics/circuitboard/os_turret/examine(user, distance)
-	. = ..()
+/obj/item/electronics/circuitboard/os_turret/examine(mob/user, extra_description = "")
 	if(target_superior_mobs)
-		to_chat(user, SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems."))
+		extra_description += SPAN_NOTICE("When constructed, this turret will target roaches, spiders, and golems.")
+	..(user, extra_description)
 
 /obj/item/electronics/circuitboard/os_turret/laser
 	name = T_BOARD("One Star laser turret")
@@ -304,7 +306,6 @@
 	damage_types = list(BRUTE = 15)
 	armor_divisor = 3
 	penetrating = 2
-	style_damage = 15
 	recoil = 30
 	step_delay = 0.4
 	sharp = TRUE	// Until all bullets are turned sharp by default
@@ -316,7 +317,6 @@
 	damage_types = list(BURN = 20)
 	armor_divisor = 2
 	stutter = 3
-	style_damage = 25
 	recoil = 10
 	wounding_mult = WOUNDING_WIDE
 

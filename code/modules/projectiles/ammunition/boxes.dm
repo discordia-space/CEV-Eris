@@ -41,7 +41,7 @@
 /obj/item/ammo_magazine/ammobox/pistol
 	name = "ammunition packet (.35 Auto)"
 	icon_state = "pistol"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 1)
+	matter = list(MATERIAL_CARDBOARD = 1) // the autofill increases the cost depending on the contents
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	max_ammo = 70
@@ -68,7 +68,7 @@
 /obj/item/ammo_magazine/ammobox/magnum
 	name = "ammunition packet (.40 Magnum)"
 	icon_state = "magnum"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 1)
+	matter = list(MATERIAL_CARDBOARD = 1)
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	max_ammo = 50
@@ -94,7 +94,7 @@
 /obj/item/ammo_magazine/ammobox/srifle
 	name = "ammunition box (.20 Rifle)"
 	icon_state = "box_srifle"
-	matter = list(MATERIAL_STEEL = 60)
+	matter = list(MATERIAL_STEEL = 5) // the autofill increases the cost further depending on the contents
 	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
@@ -107,7 +107,7 @@
 /obj/item/ammo_magazine/ammobox/srifle_small
 	name = "ammunition packet (.20 Rifle)"
 	icon_state = "srifle"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 1)
+	matter = list(MATERIAL_CARDBOARD = 1)
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 50
@@ -132,7 +132,7 @@
 /obj/item/ammo_magazine/ammobox/clrifle
 	name = "ammunition box (.25 Caseless Rifle)"
 	icon_state = "box_clrifle"
-	matter = list(MATERIAL_STEEL = 60)
+	matter = list(MATERIAL_STEEL = 5) // the autofill increases the cost further depending on the contents
 	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
@@ -148,7 +148,7 @@
 /obj/item/ammo_magazine/ammobox/clrifle_small
 	name = "ammunition packet (.25 Caseless Rifle)"
 	icon_state = "clrifle"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 1)
+	matter = list(MATERIAL_CARDBOARD = 1)
 	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 60
@@ -172,7 +172,7 @@
 /obj/item/ammo_magazine/ammobox/lrifle
 	name = "ammunition box (.30 Rifle)"
 	icon_state = "box_lrifle"
-	matter = list(MATERIAL_STEEL = 60)
+	matter = list(MATERIAL_STEEL = 5) // the autofill increases the cost further depending on the contents
 	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_LRIFLE
 	ammo_type = /obj/item/ammo_casing/lrifle
@@ -186,7 +186,7 @@
 /obj/item/ammo_magazine/ammobox/lrifle_small
 	name = "ammunition packet (.30 Rifle)"
 	icon_state = "lrifle"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_CARDBOARD = 1)
+	matter = list(MATERIAL_CARDBOARD = 1)
 	caliber = CAL_LRIFLE
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 60
@@ -211,7 +211,7 @@
 /obj/item/ammo_magazine/ammobox/antim
 	name = "ammunition box (.60 Anti Material)"
 	icon_state = "antim"
-	matter = list(MATERIAL_STEEL = 24)
+	matter = list(MATERIAL_STEEL = 5) // the autofill increases the cost further depending on the contents
 	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_ANTIM
 	ammo_type = /obj/item/ammo_casing/antim
@@ -227,15 +227,15 @@
 
 /obj/item/ammo_magazine/ammobox/shotgun
 	name = "ammunition box (.50)"
-	icon_state = "shot"
-	matter = list(MATERIAL_STEEL = 24)
-	w_class = ITEM_SIZE_NORMAL
+	icon_state = "box_shot"
+	matter = list(MATERIAL_STEEL = 10)
+	w_class = ITEM_SIZE_BULKY
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
-	max_ammo = 30
+	max_ammo = 160
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
-	ammo_states = list(30)
+	ammo_states = list(160)
 	ammo_names = list(
 		"hv" = "slug",
 		"r" = "beanbag",
@@ -253,7 +253,7 @@
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
 
-/obj/item/ammo_magazine/ammobox/shotgun/beanbags
+/obj/item/ammo_magazine/ammobox/shotgun/beanbag
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	rarity_value = 10
 
@@ -284,5 +284,67 @@
 	rarity_value = 50
 
 /obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
+	ammo_type = /obj/item/ammo_casing/shotgun/incendiary
+	rarity_value = 100
+
+/obj/item/ammo_magazine/ammobox/shotgun_small
+	name = "ammunition packet (.50)"
+	icon_state = "shot"
+	matter = list(MATERIAL_STEEL = 5)
+	w_class = ITEM_SIZE_SMALL
+	caliber = CAL_SHOTGUN
+	ammo_type = /obj/item/ammo_casing/shotgun
+	max_ammo = 40
+	rarity_value = 20
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+	ammo_states = list(40)
+	ammo_names = list(
+		"hv" = "slug",
+		"r" = "beanbag",
+		"l" = "pellet",
+		"p" = "practice",
+		"f" = "flash",
+		"i" = "incendiary",
+		"b" = "blank",
+		"scrap" = "scrap slug",
+		"scrap_r" = "scrap beanbag",
+		"scrap_s" = "scrap pellet")
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/scrap
+	ammo_type = /obj/item/ammo_casing/shotgun/scrap
+	rarity_value = 10
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/beanbag
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	rarity_value = 10
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/beanbag/scrap
+	ammo_type = /obj/item/ammo_casing/shotgun/beanbag/scrap
+	rarity_value = 5
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/buckshot
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet
+	rarity_value = 13.33
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/pellet/scrap
+	ammo_type = /obj/item/ammo_casing/shotgun/pellet/scrap
+	rarity_value = 6.66
+	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/blanks
+	ammo_type = /obj/item/ammo_casing/shotgun/blank
+	rarity_value = 50
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/flashshells
+	ammo_type = /obj/item/ammo_casing/shotgun/flash
+	rarity_value = 40
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/practiceshells
+	ammo_type = /obj/item/ammo_casing/shotgun/practice
+	rarity_value = 50
+
+/obj/item/ammo_magazine/ammobox/shotgun_small/incendiaryshells
 	ammo_type = /obj/item/ammo_casing/shotgun/incendiary
 	rarity_value = 100

@@ -257,7 +257,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/findname(msg)
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		if (M.real_name == text("[msg]"))
 			return 1
 	return 0
@@ -301,22 +301,13 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				a_intent = intent_numeric((intent_numeric(a_intent)+1) % 4)
 			if("left")
 				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
-//		if(hud_used && hud_used.action_intent)
-//			hud_used.action_intent.icon_state = "intent_[a_intent]"
 
 	else if(isrobot(src))
-		switch(input)
-			if(I_HELP)
-				a_intent = I_HELP
-			if(I_HURT)
-				a_intent = I_HURT
-			if("right","left")
-				a_intent = intent_numeric(intent_numeric(a_intent) - 3)
-/*		if(hud_used && hud_used.action_intent)
-			if(a_intent == I_HURT)
-				hud_used.action_intent.icon_state = I_HURT
-			else
-				hud_used.action_intent.icon_state = I_HELP*/
+		if(a_intent == I_HELP)
+			a_intent = I_HURT
+		else
+			a_intent = I_HELP
+
 	if (HUDneed.Find("intent"))
 		var/obj/screen/intent/I = HUDneed["intent"]
 		I.update_icon()
@@ -344,7 +335,7 @@ proc/is_blind(A)
 
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
-	for(var/mob/living/M in SSmobs.mob_list)
+	for(var/mob/living/M in SSmobs.mob_list | SShumans.mob_list)
 		if(get_area(M) == A)
 			mobs += M
 	return mobs
@@ -619,6 +610,7 @@ proc/is_blind(A)
 	if(max_w_class > ITEM_SIZE_TINY)
 		return max_w_class/(ITEM_SIZE_TITANIC)
 
+/*
 /mob/proc/get_accumulated_vision_handlers()
 	var/result[2]
 	var/asight = 0
@@ -626,11 +618,96 @@ proc/is_blind(A)
 	for(var/atom/vision_handler in additional_vision_handlers)
 		//Grab their flags
 		asight |= vision_handler.additional_sight_flags()
-		ainvis = max(ainvis, vision_handler.additional_see_invisible())
+		ainvis = min(ainvis, vision_handler.additional_see_invisible())
 	result[1] = asight
 	result[2] = ainvis
 
 	return result
+*/
 
 /mob/proc/set_faction(target_faction)
 	faction = target_faction ? target_faction : initial(faction)
+
+
+// Steps used to modify wounding multiplier. Should be used alongside edge/sharp when determining final damage of BRUTE-type attacks.
+/proc/step_wounding(var/wounding, var/is_increase = FALSE) // Usually mobs are the ones attacking (no), so this should be okay here? If it gets lucky a macro would be slightly faster
+	if(is_increase)
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_TINY
+			if(WOUNDING_TINY)
+				return WOUNDING_SMALL
+			if(WOUNDING_SMALL)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_NORMAL
+			if(WOUNDING_NORMAL)
+				return WOUNDING_WIDE
+			if(WOUNDING_WIDE)
+				return WOUNDING_EXTREME
+			if(WOUNDING_EXTREME)
+				return WOUNDING_EXTREME
+	else
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_TINY)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_SMALL)
+				return WOUNDING_TINY
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_SMALL
+			if(WOUNDING_NORMAL)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_WIDE)
+				return WOUNDING_NORMAL
+			if(WOUNDING_EXTREME)
+				return WOUNDING_WIDE
+
+/proc/step_wounding_double(var/wounding, var/is_increase = FALSE)
+	if(is_increase)
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_SMALL
+			if(WOUNDING_TINY)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_SMALL)
+				return WOUNDING_NORMAL
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_WIDE
+			if(WOUNDING_NORMAL)
+				return WOUNDING_EXTREME
+			if(WOUNDING_WIDE)
+				return WOUNDING_EXTREME
+			if(WOUNDING_EXTREME)
+				return WOUNDING_EXTREME
+	else
+		switch(wounding)
+			if(WOUNDING_TRIVIAL)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_TINY)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_SMALL)
+				return WOUNDING_TRIVIAL
+			if(WOUNDING_INTERMEDIATE)
+				return WOUNDING_TINY
+			if(WOUNDING_NORMAL)
+				return WOUNDING_SMALL
+			if(WOUNDING_WIDE)
+				return WOUNDING_INTERMEDIATE
+			if(WOUNDING_EXTREME)
+				return WOUNDING_NORMAL
+
+// Determine wounding level. If var/wounding is provided, the attack should come from a projectile. This isn't the case yet, as we default to var/wounding = 1 until melee rework.
+/proc/wound_check(var/injurytype, var/wounding, var/edge, var/sharp)
+	if(sharp && (!edge)) // impaling/piercing, 2x damage, affected by injurytype
+		switch(injurytype)
+			if(INJURY_TYPE_HOMOGENOUS)
+				return wounding ? step_wounding_double(wounding) : 1
+			if(INJURY_TYPE_UNLIVING)
+				return wounding ? step_wounding(wounding) : 1.5
+			else
+				return wounding ? wounding : 2
+	if(sharp && edge) // cutting, 1.5x damage
+		return wounding ? wounding : 1.5
+	return wounding ? wounding : 1 // crushing, 1x damage

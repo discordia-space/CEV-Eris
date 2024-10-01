@@ -14,7 +14,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -29,7 +29,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -64,7 +64,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -103,7 +103,7 @@
 		melee = 8,
 		bullet = 7,
 		energy = 7,
-		bomb = 40,
+		bomb = 60,
 		bio = 100,
 		rad = 100
 	)
@@ -137,7 +137,7 @@
 		melee = 13,
 		bullet = 10,
 		energy = 7,
-		bomb = 25,
+		bomb = 50,
 		bio = 100,
 		rad = 75
 	)
@@ -152,7 +152,7 @@
 		melee = 13,
 		bullet = 10,
 		energy = 7,
-		bomb = 25,
+		bomb = 50,
 		bio = 100,
 		rad = 75
 	)
@@ -220,7 +220,7 @@
 		melee = 8,
 		bullet = 13,
 		energy = 10,
-		bomb = 25,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)
@@ -236,7 +236,7 @@
 		melee = 8,
 		bullet = 13,
 		energy = 10,
-		bomb = 25,
+		bomb = 75,
 		bio = 100,
 		rad = 75
 	)
@@ -307,7 +307,7 @@
 		melee = 10,
 		bullet = 13,
 		energy = 15,
-		bomb = 40,
+		bomb = 50,
 		bio = 100,
 		rad = 75
 	)
@@ -357,7 +357,7 @@
 		melee = 10,
 		bullet = 13,
 		energy = 15,
-		bomb = 40, //platinum price justifies bloated stats
+		bomb = 50, //platinum price justifies bloated stats
 		bio = 100,
 		rad = 75
 	)
@@ -422,6 +422,38 @@
 	siemens_coefficient = 0.8
 	helmet = /obj/item/clothing/head/space/void/riggedvoidsuit
 	spawn_blacklisted = TRUE
+	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS|STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
+	var/obj/item/storage/internal/pockets
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/New()
+	..()
+	pockets = new/obj/item/storage/internal(src)
+	pockets.storage_slots = 3	//three slots
+	pockets.max_w_class = ITEM_SIZE_SMALL		//fit only pocket sized items
+	pockets.max_storage_space = 4
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/Destroy()
+	QDEL_NULL(pockets)
+	. = ..()
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/attack_hand(mob/user)
+	if ((is_worn() || is_held()) && !pockets.handle_attack_hand(user))
+		return TRUE
+	..(user)
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/MouseDrop(obj/over_object)
+	if(pockets.handle_mousedrop(usr, over_object))
+		return TRUE
+	..(over_object)
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/attackby(obj/item/W, mob/user)
+	if(!istype(W, /obj/item/clothing/accessory)) // Do not put accessories into pockets
+		pockets.attackby(W, user)
+	..()
+
+/obj/item/clothing/suit/space/void/riggedvoidsuit/emp_act(severity)
+	pockets.emp_act(severity)
+	..()
 
 //NT
 
@@ -436,7 +468,7 @@
 		melee = 13,
 		bullet = 11,
 		energy = 12,
-		bomb = 30,
+		bomb = 50,
 		bio = 100,
 		rad = 50
 	)
@@ -456,7 +488,7 @@
 	    melee = 12,
 		bullet = 11,
 		energy = 12,
-		bomb = 30,
+		bomb = 50,
 		bio = 100,
 		rad = 50
 	)

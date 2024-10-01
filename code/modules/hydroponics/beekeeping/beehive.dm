@@ -30,10 +30,10 @@
 			if(81 to 100)
 				overlays += "bees3"
 
-/obj/machinery/beehive/examine(var/mob/user)
-	..()
+/obj/machinery/beehive/examine(mob/user, extra_description = "")
 	if(!closed)
-		to_chat(user, "The lid is open.")
+		extra_description += "The lid is open."
+	..(user, extra_description)
 
 /obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/tool/crowbar))
@@ -231,8 +231,9 @@
 	name = "wax"
 	singular_name = "wax piece"
 	desc = "Soft substance produced by bees. Used to make candles."
-	icon = 'icons/obj/beekeeping.dmi'
-	icon_state = "wax"
+	icon = 'icons/obj/stack/material.dmi'
+	icon_state = "sheet-wax"
+	novariants = FALSE
 
 /obj/item/stack/wax/New()
 	..()

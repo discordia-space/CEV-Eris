@@ -22,7 +22,6 @@
 			query_string += "&from=[url_encode(sender)]"
 		world.Export("[config.webhook_url]?[query_string]")
 
-ADMIN_VERB_ADD(/client/proc/discord_msg, R_ADMIN, TRUE)
 /client/proc/discord_msg()
 	set name = "Message Lobby"
 	set category = "Admin"

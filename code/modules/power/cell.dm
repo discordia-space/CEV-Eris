@@ -135,22 +135,19 @@
 		explode()
 		return FALSE
 
-	if(maxcharge < amount)	return FALSE
 	var/amount_used = min(maxcharge-charge,amount)
 	charge += amount_used
 	update_icon()
 	return amount_used
 
 
-/obj/item/cell/examine(mob/user)
-	if(!..(user,2))
-		return
-
-	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
-	to_chat(user, "The charge meter reads [round(percent() )]%.")
-
-	if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
-		to_chat(user, SPAN_WARNING("This cell is ready to short circuit!"))
+/obj/item/cell/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "\nThe manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it."
+		extra_description += "\nThe charge meter reads [round(percent() )]%."
+		if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
+			extra_description += SPAN_WARNING("\nThis cell is ready to short circuit!")
+	..(user, extra_description)
 
 
 /obj/item/cell/attackby(obj/item/W, mob/user)
@@ -184,11 +181,9 @@
  * */
 	if(is_empty())
 		return
-	var/devastation_range = -1 //round(charge/11000)
-	var/heavy_impact_range = round(sqrt(charge)/60)
-	var/light_impact_range = round(sqrt(charge)/30)
-	var/flash_range = light_impact_range
-	if (light_impact_range==0)
+	var/explosion_power = round(sqrt(charge))
+	var/explosion_falloff = 50
+	if (explosion_power ==0)
 		rigged = FALSE
 		corrupt()
 		return
@@ -199,7 +194,7 @@
 
 	qdel(src)
 
-	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+	explosion(T, explosion_power, explosion_falloff)
 
 /obj/item/cell/proc/corrupt()
 	charge /= 2
@@ -218,29 +213,15 @@
 	if (charge < 0)
 		charge = 0
 	..()
+/obj/item/cell/explosion_act(target_power, explosion_handler/handle)
+	take_damage(target_power)
+	return 0
 
-/obj/item/cell/ex_act(severity)
+/obj/item/cell/take_damage(amount)
+	. = ..()
+	if(src && health / maxHealth < 0.5)
+		corrupt()
 
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				qdel(src)
-				return
-			if (prob(50))
-				corrupt()
-		if(3)
-			if (prob(25))
-				qdel(src)
-				return
-			if (prob(25))
-				corrupt()
-		if(4)
-			if (prob(25))
-				corrupt()
-	return
 
 // Calculation of cell shock damage
 // Keep in mind that airlocks, the most common source of electrocution, have siemens_coefficent of 0.7, dealing only 70% of electrocution damage

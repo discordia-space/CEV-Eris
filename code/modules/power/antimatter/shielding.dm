@@ -88,20 +88,10 @@
 /obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
 	return FALSE
 
-
-/obj/machinery/am_shielding/ex_act(severity)
-	switch(severity)
-		if(1)
-			stability -= 80
-		if(2)
-			stability -= 40
-		if(3)
-			stability -= 20
-		if(4)
-			stability -= 10
+/obj/machinery/am_shielding/explosion_act(target_power, explosion_handler/handler)
+	stability -= target_power / 10
 	check_stability()
-	return
-
+	return  0
 
 /obj/machinery/am_shielding/bullet_act(obj/item/projectile/Proj)
 	if(Proj.check_armour != ARMOR_BULLET)

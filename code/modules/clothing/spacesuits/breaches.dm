@@ -235,10 +235,8 @@ var/global/list/breach_burn_descriptors = list(
 
 	..()
 
-/obj/item/clothing/suit/space/examine(mob/user)
-	..(user)
-	if(can_breach && breaches && breaches.len)
+/obj/item/clothing/suit/space/examine(mob/user, extra_description = "")
+	if(can_breach && breaches && LAZYLEN(breaches))
 		for(var/datum/breach/B in breaches)
-			to_chat(user, "\red <B>It has \a [B.descriptor].</B>")
-
-
+			extra_description += SPAN_DANGER("\nIt has \a [B.descriptor].")
+	..(user, extra_description)

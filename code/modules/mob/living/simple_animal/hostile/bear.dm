@@ -79,6 +79,8 @@
 						var/action = pick( list( "growls at [target_mob].", "stares angrily at [target_mob].", "prepares to attack [target_mob]!", "closely watches [target_mob]." ) )
 						if(action)
 							visible_emote(action)
+						if(prob(33))
+							playsound(src, 'sound/voice/bear_growl.ogg', 100, 1)
 			if(!found_mob)
 				stance_step--
 
@@ -90,6 +92,8 @@
 		if(HOSTILE_STANCE_ATTACKING)
 			if(stance_step >= 20)	//attacks for 20 ticks, then it gets tired and needs to rest
 				visible_emote("is worn out and needs to rest.")
+				if(prob(33))
+					playsound(src, 'sound/voice/bear_aww.ogg', 100, 1)
 				stance = HOSTILE_STANCE_TIRED
 				stance_step = 0
 				walk(src, 0) //This stops the bear's walking
@@ -126,6 +130,11 @@
 	if(!Adjacent(target_mob))
 		return
 	visible_emote(list("slashes at [target_mob]!", "bites [target_mob]!"))
+	if(prob(66))
+		if(prob(50))
+			playsound(src, 'sound/voice/bear_roar.ogg', 100, 1)
+		else
+			playsound(src, 'sound/voice/bear_growl.ogg', 100, 1)
 
 	var/damage = rand(20,30)
 

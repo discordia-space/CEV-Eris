@@ -279,6 +279,20 @@
 		rad = 0
 	)
 
+/obj/item/clothing/head/beret/merc
+	name = "Serbian Commander beret"
+	desc = "A green beret that strikes discipline into even mercenaries."
+	icon_state = "beret_mercenary"
+	spawn_blacklisted = TRUE
+
+/obj/item/clothing/head/beret/syndicate
+	name = "ancient Syndicate beret"
+	desc = "An old beret, styled after one used by the Syndicate. Veterans and patriots love these."
+	icon_state = "syndberet"
+
+/obj/item/clothing/head/beret/syndicate/brown
+	icon_state = "syndberet2"
+
 /obj/item/clothing/head/beret/oldsec
 	name = "old security beret"
 	desc = "A washed out and dusty corporate security beret from the long defunct \"Securitech\" company."
@@ -297,7 +311,7 @@
 		melee = 2,
 		bullet = 10,
 		energy = 10,
-		bomb = 10,
+		bomb = 50,
 		bio = 5,
 		rad = 5
 	)

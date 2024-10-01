@@ -5,6 +5,9 @@
 		tally += species.slowdown
 	if (istype(loc, /turf/space)) // It's hard to be slowed down in space by... anything
 		return tally
+	/// No slowdown for mech pilots , mech already handles movement.
+	if(ismech(loc))
+		return 0
 
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
@@ -21,6 +24,23 @@
 		tally -= 0.5
 	if(blocking)
 		tally += 1
+
+	if(recoil)
+		var/obj/item/gun/GA = get_active_hand()
+		var/obj/item/gun/GI = get_inactive_hand()
+
+		var/brace_recoil = 0
+		if(istype(GA))
+			var/datum/recoil/R = GA.recoil
+			brace_recoil = R.getRating(RECOIL_TWOHAND)
+		if(istype(GI))
+			var/datum/recoil/R = GI.recoil
+			brace_recoil = max(brace_recoil, R.getRating(RECOIL_TWOHAND))
+
+		if(brace_recoil)
+			tally += CLAMP(round(recoil) / (60 / brace_recoil), 0, 8) // Scales with the size of the gun - bigger guns slow you more
+		else
+			tally += CLAMP(round(recoil) / 20, 0, 8) // Lowest possible while holding a gun
 
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C && C.active)

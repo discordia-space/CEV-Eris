@@ -4,8 +4,8 @@
 	bad_type = /obj/item/organ/internal
 	spawn_tags = SPAWN_TAG_ORGAN_INTERNAL
 	max_damage = IORGAN_STANDARD_HEALTH
-	min_bruised_damage = 3
-	min_broken_damage = 5
+	min_bruised_damage = IORGAN_STANDARD_BRUISE
+	min_broken_damage = IORGAN_STANDARD_BREAK
 	desc = "A vital organ."
 	var/list/owner_verbs = list()
 	var/list/initial_owner_verbs = list()
@@ -29,11 +29,21 @@
 	RegisterSignal(src, COMSIG_IORGAN_ADD_WOUND, PROC_REF(add_wound))
 	RegisterSignal(src, COMSIG_IORGAN_REMOVE_WOUND, PROC_REF(remove_wound))
 	RegisterSignal(src, COMSIG_IORGAN_REFRESH_SELF, PROC_REF(refresh_upgrades))
+	spawn(10)
+		PostInit()
+
+/obj/item/organ/internal/proc/PostInit()
+	if(!get_limb())
+		status |= ORGAN_CUT_AWAY
 
 /obj/item/organ/internal/Process()
 	refresh_damage()	// Death check is in the parent proc
 	..()
 	handle_blood()
+
+/obj/item/organ/internal/die()
+	..()
+	handle_organ_eff()
 
 /obj/item/organ/internal/Destroy()
 	QDEL_LIST(item_upgrades)
@@ -52,6 +62,10 @@
 	..()
 
 /obj/item/organ/internal/removed_mob()
+	action_button_name = initial(action_button_name)
+	action_button_proc = initial(action_button_proc)
+	action_button_is_hands_free = initial(action_button_is_hands_free)
+
 	for(var/process in organ_efficiency)
 		owner.internal_organs_by_efficiency[process] -= src
 
@@ -63,13 +77,16 @@
 		if(I.type == type)
 			skipverbs = TRUE
 	if(!skipverbs)
-		for(var/verb_path in owner_verbs)
-			verbs -= verb_path
+		remove_verb(owner, owner_verbs)
+
+	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
+		owner.mutation_index--
 	..()
 
 /obj/item/organ/internal/replaced(obj/item/organ/external/affected)
 	..()
 	parent.internal_organs |= src
+	parent.internal_organs[src] = specific_organ_size // Larger organs have greater pick weight for organ damage
 	RegisterSignal(parent, COMSIG_IORGAN_WOUND_COUNT, PROC_REF(wound_count), TRUE)
 	RegisterSignal(parent, COMSIG_IORGAN_REFRESH_PARENT, PROC_REF(refresh_organ_stats), TRUE)
 	RegisterSignal(parent, COMSIG_IORGAN_APPLY, PROC_REF(apply_modifiers), TRUE)
@@ -81,20 +98,34 @@
 	for(var/process in organ_efficiency)
 		if(!islist(owner.internal_organs_by_efficiency[process]))
 			owner.internal_organs_by_efficiency[process] = list()
-		owner.internal_organs_by_efficiency[process] += src
+		if(is_usable())
+			owner.internal_organs_by_efficiency[process] |= src
+		else
+			owner.internal_organs_by_efficiency[process] -= src
 
-	for(var/proc_path in owner_verbs)
-		verbs |= proc_path
+	add_verb(owner, owner_verbs)
+
+	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
+		owner.mutation_index++
+
+	SEND_SIGNAL(src, COMSIG_ADDVAL)
+
+/obj/item/organ/internal/proc/handle_organ_eff()
+	for(var/process in organ_efficiency)
+		if(is_usable())
+			owner.internal_organs_by_efficiency[process] |= src
+		else
+			owner.internal_organs_by_efficiency[process] -= src
 
 /obj/item/organ/internal/proc/get_process_efficiency(process_define)
 	var/organ_eff = organ_efficiency[process_define]
 	return organ_eff - (organ_eff * (damage / max_damage))
 
-/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, sharp = FALSE, edge = FALSE, silent = FALSE)	//Deals damage to the organ itself
+/obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
 
-	var/wound_count = max(0, round((amount * wounding_multiplier) / 8))	// At base values, every 8 points of damage is 1 wound
+	var/wound_count = max(0, round(amount / (damage_type == BRUTE || damage_type == BURN ? 4 : 8)))	// At base values, every 8 points of damage is 1 wound, or 4 if brute or burn.
 
 	if(!wound_count)
 		return FALSE
@@ -105,7 +136,7 @@
 		for(var/i in 1 to wound_count)
 			var/choice = pick(possible_wounds)
 			add_wound(choice)
-			LAZYREMOVE(possible_wounds, choice)
+			//LAZYREMOVE(possible_wounds, choice) // If this is commented out, we can get a higher severity of a single wound
 			if(!LAZYLEN(possible_wounds))
 				break
 
@@ -180,7 +211,8 @@
 					break
 			if(BV)
 				BV.current_blood = max(BV.current_blood - blood_req, 0)
-			if(!damage && BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
+			var/datum/component/internal_wound/currentcomponent = GetExactComponent(/datum/component/internal_wound/organic/oxy/blood_loss)
+			if(!(BV?.current_blood) && !(currentcomponent?.name == "blood loss"))
 				add_wound(/datum/component/internal_wound/organic/oxy/blood_loss)
 
 		return
@@ -191,21 +223,21 @@
 
 	current_blood = min(current_blood + blood_req, max_blood_storage)
 
-/obj/item/organ/internal/examine(mob/user)
-	. = ..()
+/obj/item/organ/internal/examine(mob/user, extra_description = "")
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
-		to_chat(user, SPAN_NOTICE("Organ size: [specific_organ_size]"))
+		extra_description += SPAN_NOTICE("\nOrgan size: [specific_organ_size]")
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT - 5)
 		var/organs
 		for(var/organ in organ_efficiency)
 			organs += organ + " ([organ_efficiency[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 
-		to_chat(user, SPAN_NOTICE("Requirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>"))
-		to_chat(user, SPAN_NOTICE("Organ tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>"))
+		extra_description += SPAN_NOTICE("\nRequirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>")
+		extra_description += SPAN_NOTICE("\nOrgan tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>")
 
 		if(item_upgrades.len)
-			to_chat(user, SPAN_NOTICE("Organ grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove."))
+			extra_description += SPAN_NOTICE("\nOrgan grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove.")
+	..(user, extra_description)
 
 /obj/item/organ/internal/is_usable()
 	return ..() && !is_broken()
@@ -294,6 +326,17 @@
 					"organ" = "\ref[src]",
 					"step" = /datum/surgery_step/robotic/fix_bone
 				)))
+		else if(BP_IS_ASSISTED(src))
+			actions_list.Add(list(list(
+				"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
+				"organ" = "\ref[src]",
+				"step" = (parent.status & ORGAN_BROKEN) ? /datum/surgery_step/assisted/mend_bone : /datum/surgery_step/assisted/break_bone
+			)))
+			actions_list.Add(list(list(
+					"name" = "Replace",
+					"organ" = "\ref[src]",
+					"step" = /datum/surgery_step/assisted/replace_bone
+				)))
 		else
 			actions_list.Add(list(list(
 				"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
@@ -357,10 +400,9 @@
 	return mod_data
 
 /obj/item/organ/internal/rejuvenate()
-	refresh_organ_stats()
+	status = null
 	for(var/datum/component/comp as anything in GetComponents(/datum/component))
 		istype(comp, /datum/component/internal_wound) ? remove_wound(comp) : qdel(comp)
-	apply_modifiers()
 
 // Store these so we can properly restore them when installing/removing mods
 /obj/item/organ/internal/proc/initialize_organ_efficiencies()
@@ -381,7 +423,11 @@
 	min_bruised_damage = initial(min_bruised_damage)
 	min_broken_damage = initial(min_broken_damage)
 	max_damage = initial(max_damage)
-	owner_verbs = initial(owner_verbs)
+	if(owner)
+		remove_verb(owner, owner_verbs)
+	owner_verbs = initial_owner_verbs.Copy()
+	if(owner)
+		add_verb(owner, owner_verbs)
 	organ_efficiency = initial_organ_efficiency.Copy()
 	scanner_hidden = initial(scanner_hidden)
 	unique_tag = initial(unique_tag)
@@ -397,6 +443,8 @@
 	SEND_SIGNAL(src, COMSIG_IWOUND_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_IWOUND_LIMB_EFFECTS)
 	SEND_SIGNAL(src, COMSIG_APPVAL)
+	SEND_SIGNAL(src, COMSIG_APPVAL_MULT)
+	SEND_SIGNAL(src, COMSIG_APPVAL_FLAT)
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 	refresh_damage()

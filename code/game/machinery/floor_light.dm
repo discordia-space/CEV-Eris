@@ -95,7 +95,8 @@ var/list/floor_light_cache = list()
 			return
 
 		on = !on
-		if(on) use_power = ACTIVE_POWER_USE
+		if(on)
+			set_power_use(ACTIVE_POWER_USE)
 		visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>")
 		update_brightness()
 		return
@@ -104,11 +105,11 @@ var/list/floor_light_cache = list()
 	..()
 	var/need_update
 	if((!anchored || broken()) && on)
-		use_power = NO_POWER_USE
+		set_power_use(NO_POWER_USE)
 		on = FALSE
 		need_update = 1
 	else if(use_power && !on)
-		use_power = NO_POWER_USE
+		set_power_use(NO_POWER_USE)
 		need_update = 1
 	if(need_update)
 		update_brightness()
@@ -118,7 +119,7 @@ var/list/floor_light_cache = list()
 		if(light_range != default_light_range || light_power != default_light_power || light_color != default_light_colour)
 			set_light(default_light_range, default_light_power, default_light_colour)
 	else
-		use_power = NO_POWER_USE
+		set_power_use(NO_POWER_USE)
 		if(light_range || light_power)
 			set_light(0)
 
@@ -150,24 +151,15 @@ var/list/floor_light_cache = list()
 /obj/machinery/floor_light/proc/broken()
 	return (stat & (BROKEN|NOPOWER))
 
-/obj/machinery/floor_light/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if (prob(50))
-				qdel(src)
-			else if(prob(20))
-				stat |= BROKEN
-			else
-				if(isnull(damaged))
-					damaged = 0
-		if(3)
-			if (prob(5))
-				qdel(src)
-			else if(isnull(damaged))
-				damaged = 0
-	return
+/obj/machinery/floor_light/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	if(health/maxHealth < 0.5)
+		stat |= BROKEN
+	if(isnull(damaged))
+		damaged = 0
+	return 0
 
 /obj/machinery/floor_light/Destroy()
 	var/area/A = get_area(src)

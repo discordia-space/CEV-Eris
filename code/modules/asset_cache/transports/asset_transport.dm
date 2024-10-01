@@ -86,8 +86,8 @@
 				client = M.client
 			else //no stacktrace because this will mainly happen because the client went away
 				return
-		else
-			CRASH("Invalid argument: client: `[client]`")
+		else // No stack trace, happens when client changes mobs
+			return
 	if (!islist(asset_list))
 		asset_list = list(asset_list)
 	var/list/unreceived = list()
@@ -134,7 +134,7 @@
 
 			client.sent_assets[new_asset_name] = ACI.hash
 
-		addtimer(CALLBACK(client, /client/proc/asset_cache_update_json), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(client, TYPE_PROC_REF(/client, asset_cache_update_json)), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		return TRUE
 	return FALSE
 

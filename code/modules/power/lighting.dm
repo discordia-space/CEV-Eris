@@ -29,20 +29,16 @@
 	else if (istype(src, /obj/machinery/light_construct/floor))
 		icon_state = "floortube-construct-stage1"
 
-/obj/machinery/light_construct/examine(mob/user)
-	if(!..(user, 2))
-		return
-
-	switch(src.stage)
-		if(1)
-			to_chat(user, "It's an empty frame.")
-			return
-		if(2)
-			to_chat(user, "It's wired.")
-			return
-		if(3)
-			to_chat(user, "The casing is closed.")
-			return
+/obj/machinery/light_construct/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		switch(stage)
+			if(1)
+				extra_description += "\nIt's an empty frame."
+			if(2)
+				extra_description += "\nIt's wired."
+			if(3)
+				extra_description += "\nThe casing is closed."
+	..(user, extra_description)
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user)
 
@@ -330,20 +326,23 @@
 					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
 
 					explode()
-			else if( prob( min(60, switchcount*switchcount*0.01) ) )
+			else if( prob( min(60, switchcount*switchcount*0.1) ) )
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
 					on = FALSE
-					set_light(0)
+					set_light(0, 0)
+					active_power_usage = 0 //burnt => no power flow => no power consumption
+					idle_power_usage = 0
 			else
-				use_power = ACTIVE_POWER_USE
 				set_light(brightness_range, brightness_power, brightness_color)
+				active_power_usage = light_power * light_range * 10
+				set_power_use(ACTIVE_POWER_USE)
 	else
-		use_power = IDLE_POWER_USE
 		set_light(0)
+		idle_power_usage = (light_power + light_range) * 0.1
+		set_power_use(IDLE_POWER_USE)
 
-	active_power_usage = ((light_range + light_power) * 10)
 	if(on != on_gs)
 		on_gs = on
 
@@ -367,22 +366,19 @@
 	update()
 
 // examine verb
-/obj/machinery/light/examine(mob/user)
-	..()
+/obj/machinery/light/examine(mob/user, extra_description = "")
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [on? "on" : "off"].")
+			extra_description += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			extra_description += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			extra_description += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
-
-
+			extra_description += "The [fitting] has been smashed."
+	..(user, extra_description)
 
 // attack with item - insert light (if right type), otherwise try to break the light
-
 /obj/machinery/light/attackby(obj/item/I, mob/user)
 
 	//Light replacer code
@@ -589,6 +585,7 @@
 	L.update()
 
 	status = LIGHT_EMPTY
+	set_light(0, 0)
 	update()
 
 	// If the target is a mob, try to put the bulb in mob's hand
@@ -611,6 +608,7 @@
 			s.set_up(3, 1, src)
 			s.start()
 	status = LIGHT_BROKEN
+	set_light(0, 0)
 	update()
 
 /obj/machinery/light/proc/fix()
@@ -623,23 +621,15 @@
 // explosion effect
 // destroy the whole light fixture or just shatter it
 
-/obj/machinery/light/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			if (prob(75))
-				broken()
-		if(3)
-			if (prob(50))
-				broken()
-	return
+/obj/machinery/light/take_damage(amount)
+	. = ..()
+	if(QDELETED(src))
+		return 0
+	broken()
 
 // called when area power state changes
 /obj/machinery/light/power_change()
-	spawn(10)
-		seton(has_power())
+	seton(has_power())
 
 // called when on fire
 
@@ -650,13 +640,11 @@
 // explode the light
 
 /obj/machinery/light/proc/explode()
-	var/turf/T = get_turf(src.loc)
-	spawn(0)
-		broken()	// break it first to give a warning
-		sleep(2)
-		explosion(T, 0, 0, 2, 2)
-		sleep(1)
-		qdel(src)
+	broken()	// break it first to give a warning
+	sleep(2)
+	explosion(get_turf(src), 60, 20)
+	sleep(1)
+	qdel(src)
 
 // the light item
 // can be tube or bulb subtypes
@@ -788,7 +776,7 @@
 
 /atom/proc/auto_turn_destructive()
 	//Automatically turns based on nearby walls, destroys if not found.
-	var/turf/simulated/wall/T = null
+	var/turf/wall/T = null
 	var/gotdir = 0
 	for(var/i = 1, i <= 8; i += i)
 		T = get_ranged_target_turf(src, i, 1)

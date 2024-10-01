@@ -27,7 +27,8 @@
 	var/hack_stage = 0
 	var/max_mob_size = 2
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
-	var/health = 100
+	health = 500
+	maxHealth = 500
 	var/breakout = FALSE //if someone is currently breaking out. mutex
 	var/storage_capacity = 2 * MOB_MEDIUM //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
@@ -41,8 +42,8 @@
 	var/store_mobs = 1
 	var/old_chance = 0 //Chance to have rusted closet content in it, from 0 to 100. Keep in mind that chance increases in maints
 
-/obj/structure/closet/can_prevent_fall()
-	return TRUE
+/obj/structure/closet/can_prevent_fall(above)
+	return above ? TRUE : FALSE
 
 /obj/structure/closet/Initialize(mapload)
 	..()
@@ -83,22 +84,23 @@
 	dump_contents()
 	. = ..()
 
-/obj/structure/closet/examine(mob/user)
-	if(..(user, 1) && !opened && !istype(src, /obj/structure/closet/body_bag))
+/obj/structure/closet/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && !opened && !istype(src, /obj/structure/closet/body_bag))
 		var/content_size = 0
-		for(var/obj/item/I in src.contents)
+		for(var/obj/item/I in contents)
 			if(!I.anchored)
 				content_size += CEILING(I.w_class * 0.5, 1)
 		if(!content_size)
-			to_chat(user, "It is empty.")
+			extra_description += "\nIt is empty."
 		else if(storage_capacity > content_size*4)
-			to_chat(user, "It is barely filled.")
+			extra_description += "\nIt is barely filled."
 		else if(storage_capacity > content_size*2)
-			to_chat(user, "It is less than half full.")
+			extra_description += "\nIt is less than half full."
 		else if(storage_capacity > content_size)
-			to_chat(user, "There is still some free space.")
+			extra_description += "\nThere is still some free space."
 		else
-			to_chat(user, "It is full.")
+			extra_description += "\nIt is full."
+	..(user, extra_description)
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0 || wall_mounted)) return 1
@@ -163,6 +165,9 @@
 		return
 
 	AM.forceMove(src)
+	// This could submit Src as the containing moveable , but in the future someone
+	// might as well add vehicles and not adjust this.
+	//SEND_SIGNAL(AM, COMSIG_ATOM_CONTAINERED, getContainingMovable())
 	if(AM.pulledby)
 		AM.pulledby.stop_pulling()
 
@@ -306,20 +311,14 @@
 	return added_units
 
 // this should probably use dump_contents()
-/obj/structure/closet/ex_act(severity)
-	switch(severity)
-		if(1)
-			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.ex_act(severity + 1)
-			qdel(src)
-		if(2)
-			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.ex_act(severity + 1)
-				qdel(src)
-		if(3)
-			if(prob(5))
-				qdel(src)
+
+/obj/structure/closet/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > health)
+		for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
+			A.explosion_act(target_power - health, handler)
+		dump_contents()
+	// Counts as protection
+	. = ..()
 
 /obj/structure/closet/proc/populate_contents()
 	return
@@ -350,6 +349,10 @@
 
 	if(istype(I, /obj/item/gripper))
 		//Empty gripper attacks will call attack_AI
+		return FALSE
+
+	/// So mechs dont open these when attacking.
+	if(istype(I, /obj/item/mech_equipment/forklifting_system))
 		return FALSE
 
 	var/list/usable_qualities = list(QUALITY_WELDING)

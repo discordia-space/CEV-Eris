@@ -26,7 +26,7 @@
 
 /obj/machinery/teleport/station
 	name = "Teleporter Station"
-	desc = "It's the teleporter engagement/testfire station." 
+	desc = "It's the teleporter engagement/testfire station."
 	icon_state = "controller"
 	var/active = 0
 	var/engaged = 0
@@ -110,7 +110,7 @@
 		mconsole.mhub = null
 	underlays.Cut()
 	. = ..()
-	
+
 
 /obj/machinery/teleport/station/on_deconstruction()
 	if(engaged)
@@ -129,7 +129,7 @@
 	if(mhub)
 		mhub.mconsole = null
 	. = ..()
-		
+
 
 /obj/machinery/teleport/hub/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction(I, user))
@@ -280,10 +280,9 @@
 	underlays += "tele-wires"
 
 /obj/machinery/teleport/hub/Bumped(M as mob|obj)
-	spawn()
-		if (src.icon_state == "tele1")
-			teleport(M)
-			use_power(5000)
+	if (src.icon_state == "tele1")
+		teleport(M)
+		use_power(5000)
 	return
 
 /obj/machinery/teleport/hub/proc/teleport(atom/movable/M as mob|obj)
@@ -335,12 +334,12 @@
 		src.engaged = 1
 		mhub.icon_state = "tele1"
 		use_power(5000)
-		update_use_power(2)
-		mhub.update_use_power(2)
+		set_power_use(ACTIVE_POWER_USE)
+		mhub.set_power_use(ACTIVE_POWER_USE)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter engaged!"), 2)
 	src.add_fingerprint(usr)
-	
+
 	return
 
 /obj/machinery/teleport/station/proc/disengage()
@@ -351,12 +350,12 @@
 		src.engaged = 0
 		mhub.icon_state = "tele0"
 		mhub.accurate = 0
-		mhub.update_use_power(1)
-		update_use_power(1)
+		mhub.set_power_use(IDLE_POWER_USE)
+		set_power_use(IDLE_POWER_USE)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter disengaged!"), 2)
 	src.add_fingerprint(usr)
-	
+
 	return
 
 /obj/machinery/teleport/station/verb/testfire()

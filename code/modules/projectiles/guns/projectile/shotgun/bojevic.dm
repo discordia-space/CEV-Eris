@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_well = MAG_WELL_RIFLE|MAG_WELL_RIFLE_D
 	magazine_type = /obj/item/ammo_magazine/m12
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 10)
 	price_tag = 4000
@@ -28,7 +28,8 @@
 		FULL_AUTO_400,
 		SEMI_AUTO_300
 		)
-	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	// Watch out when modularizing, autorifle/light cannot support shotgun barrels natively.
+	gun_parts = list(/obj/item/part/gun/frame/bojevic = 1, /obj/item/part/gun/modular/grip/serb = 1, /obj/item/part/gun/modular/mechanism/autorifle/light = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "SA"
 
 /obj/item/gun/projectile/shotgun/bojevic/update_icon()
@@ -40,7 +41,7 @@
 		itemstring += "_doble"
 
 	if(ammo_magazine)
-		overlays += "m12[ammo_magazine.ammo_label_string]"
+		overlays += "m12_[ammo_magazine.mag_well][ammo_magazine.ammo_label_string]"
 		itemstring += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
@@ -57,6 +58,6 @@
 	desc = "A Bojevic shotgun frame. Specially designed to sweep streets and spaceship halls."
 	icon_state = "frame_bojevic"
 	resultvars = list(/obj/item/gun/projectile/shotgun/bojevic)
-	gripvars = list(/obj/item/part/gun/grip/serb)
-	mechanismvar = /obj/item/part/gun/mechanism/autorifle // listen, its semi and full auto, not pump. makes sense
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/serb)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/autorifle/light // listen, its semi and full auto, not pump. makes sense
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

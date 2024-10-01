@@ -351,8 +351,6 @@
 	slot_flags = SLOT_BACK
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
 	allow_spin = FALSE
-	style_damage = 20
-
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_KNIFE
 
@@ -368,7 +366,6 @@
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3)
 	structure_damage_factor = STRUCTURE_DAMAGE_WEAK
-	style_damage = 30
 
 	rarity_value = 60
 
@@ -384,7 +381,6 @@
 	tool_qualities = list(QUALITY_CUTTING = 15,  QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 10)
 	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 2)
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
-	style_damage = 50
 
 /obj/item/tool/spear/uranium
 	name = "uranium spear"
@@ -397,7 +393,6 @@
 	armor_divisor = ARMOR_PEN_DEEP
 	tool_qualities = list(QUALITY_CUTTING = 10,  QUALITY_WIRE_CUTTING = 5, QUALITY_SCREW_DRIVING = 5)
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_URANIUM = 1)
-	style_damage = 50
 
 /obj/item/tool/spear/uranium/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, hit_zone)
 	..()

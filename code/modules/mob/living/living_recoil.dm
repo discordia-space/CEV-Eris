@@ -7,9 +7,6 @@
 	deltimer(recoil_reduction_timer)
 	add_recoil(recoil_buildup)
 
-mob/proc/handle_movement_recoil() // Used in movement/mob.dm
-	return // Ghosts and roaches have no movement recoil
-
 /mob/living/proc/add_recoil(var/recoil_buildup)
 	if(recoil_buildup)
 		recoil += recoil_buildup
@@ -32,6 +29,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 		offset += recoil
 	offset = round(offset)
 	offset = CLAMP(offset, 0, MAX_ACCURACY_OFFSET)
+
 	return offset
 
 //Called after setting recoil
@@ -45,13 +43,18 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 	else
 		deltimer(recoil_reduction_timer)
 
-/mob/living/proc/update_cursor(var/obj/item/gun/G)
-	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES || !(istype(get_active_hand(), /obj/item/gun) || recoil > 0))
+//This doesn't really belong here, but it doesn't belong anywhere else either
+/mob/proc/update_cursor()
+	return
+
+/mob/living/update_cursor()
+	var/obj/item/gun/G = get_active_hand()
+	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES || (!istype(G, /obj/item/gun) || G.safety))
 		remove_cursor()
 		return
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		var/offset = round(calculate_offset(G.init_offset_with_brace()) * 0.8)
+		var/offset = round(calculate_offset(G.init_offset_with_brace(src)) * 0.8)
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
 		ASSERT(isicon(base))
 		client.mouse_pointer_icon = base

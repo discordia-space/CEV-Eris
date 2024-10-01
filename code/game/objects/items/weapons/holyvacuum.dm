@@ -26,9 +26,9 @@
 	refill()
 	update_icon()
 
-/obj/item/holyvacuum/examine(mob/user)
-	..()
-	to_chat(user, "\The [src]'s tank contains [amount] units of compressed filth.")
+/obj/item/holyvacuum/examine(mob/user, extra_description = "")
+	extra_description += "\The [src]'s tank contains [amount] units of compressed filth."
+	..(user, extra_description)
 
 /obj/item/holyvacuum/update_icon()
 	.=..()

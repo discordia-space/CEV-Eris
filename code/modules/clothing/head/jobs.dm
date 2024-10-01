@@ -38,6 +38,13 @@
 	icon_state = "hopcap"
 	spawn_blacklisted = TRUE
 
+//IHC Peaked Cap
+/obj/item/clothing/head/caphat/ihc
+	name = "lieutenant's hat"
+	desc = "A stylish peaked cap for the Lieutenant stationed onboard the Eris. Lucky bastard."
+	icon_state = "hoscap"
+	spawn_blacklisted = TRUE
+
 //NeoTheology
 /obj/item/clothing/head/chaplain_hood
 	name = "preacher's hood"
@@ -108,11 +115,17 @@
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/artist
-	name = "feathered beret"
+	name = "red feathered beret"
 	desc = "Fit for artists, frenchmen, and eccentric military officers across the cosmos."
 	icon_state = "beret_artist"
 	item_state = "beret_artist"
 	spawn_frequency = 0
+
+/obj/item/clothing/head/beret/artist/lime
+	name = "lime feathered beret"
+	desc = "A lime colored artist's beret, smells of citrus and pomp."
+	icon_state = "beret_artist_lime"
+	item_state = "beret_artist_lime"
 
 //Moebius
 /obj/item/clothing/head/beret/moebius

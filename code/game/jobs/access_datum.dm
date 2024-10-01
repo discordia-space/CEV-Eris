@@ -273,8 +273,8 @@
 /var/const/access_artist = 44
 /datum/access/artist_office
 	id = access_artist
-	desc = "Guild Artist"
-	region = ACCESS_REGION_SUPPLY
+	desc = "Club Artist"
+	region = ACCESS_REGION_CLUB
 
 /var/const/access_surgery = 45
 /datum/access/surgery
@@ -559,6 +559,10 @@
 	id = access_mercenary
 	access_type = ACCESS_TYPE_SYNDICATE
 
+/var/const/access_pirate = 145 //Pirate ship and base
+/datum/access/pirate
+	id = access_pirate
+	access_type = ACCESS_TYPE_SYNDICATE
 
 /var/const/access_syndicate = 140//General Syndicate Access
 /datum/access/syndicate

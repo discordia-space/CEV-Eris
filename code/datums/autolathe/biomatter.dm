@@ -12,9 +12,19 @@
 	name = "Milk"
 	build_path = /obj/item/reagent_containers/food/drinks/milk
 
+/datum/design/bioprinter/butter
+	name = "Stick of Butter"
+	build_path = /obj/item/reagent_containers/food/snacks/sliceable/butterstick
+
 /datum/design/bioprinter/soap
 	name = "Soap"
 	build_path = /obj/item/soap/nanotrasen
+
+/datum/design/bioprinter/candles
+	name = "Box of Candles"
+	build_path = /obj/item/storage/fancy/candle_box
+	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_CARDBOARD = 1)
+
 
 //[NUTRIMENTS]
 /datum/design/bioprinter/ez
@@ -85,6 +95,18 @@
 	name = "NT Church Garment"
 	build_path = /obj/item/clothing/under/rank/church
 
+/datum/design/bioprinter/nt_clothes/ritual_robe
+	name = "NT Ritual Robe"
+	build_path = /obj/item/clothing/suit/storage/toggle/robe/ritual_robe
+
+/datum/design/bioprinter/nt/spacehelmet/medicus
+	name = "NT Medicus Helmet"
+	build_path = /obj/item/clothing/head/space/medicus
+
+/datum/design/bioprinter/nt/spacesuit/medicus
+	name = "NT Medicus Robes"
+	build_path = /obj/item/clothing/suit/space/medicus
+
 /datum/design/bioprinter/jackboots
 	name = "Custodian's jackboots"
 	build_path = /obj/item/clothing/shoes/jackboots/neotheology
@@ -139,7 +161,7 @@
 	build_path = /obj/item/clothing/accessory/holster
 
 /datum/design/bioprinter/leather/holster/accessory/scabbard
-	name = "scabbard"
+	name = "uniform scabbard"
 	build_path = /obj/item/clothing/accessory/holster/scabbard
 
 /datum/design/bioprinter/leather/holster/accessory/knife
@@ -256,37 +278,6 @@
 	build_path = /obj/item/cell/small/neotheology/plasma
 	materials = list(MATERIAL_PLASMA = 1)
 
-//[CELLS]
-/datum/design/bioprinter/nt_cells/large
-	name = "NT \"Spark 13000L\""
-	build_path = /obj/item/cell/large/neotheology
-	materials = list(MATERIAL_BIOMATTER = 15)
-
-/datum/design/bioprinter/nt_cells/large/plasma
-	name = "NT \"Radiance 20000L\""
-	build_path = /obj/item/cell/large/neotheology/plasma
-	materials = list(MATERIAL_PLASMA = 3)
-
-/datum/design/bioprinter/nt_cells/medium
-	name = "NT \"Spark 1000M\""
-	build_path = /obj/item/cell/medium/neotheology/
-	materials = list(MATERIAL_BIOMATTER = 10)
-
-/datum/design/bioprinter/nt_cells/medium/plasma
-	name = "NT \"Radiance 1500M\""
-	build_path = /obj/item/cell/medium/neotheology/plasma
-	materials = list(MATERIAL_PLASMA = 2)
-
-/datum/design/bioprinter/nt_cells/small
-	name = "NT \"Spark 300S\""
-	build_path = /obj/item/cell/small/neotheology/
-	materials = list(MATERIAL_BIOMATTER = 5)
-
-/datum/design/bioprinter/nt_cells/small/plasma
-	name = "NT \"Radiance 500S\""
-	build_path = /obj/item/cell/small/neotheology/plasma
-	materials = list(MATERIAL_PLASMA = 1)
-
 //[/THINGS]
 /datum/design/autolathe/nt
 	factions = list(FACTION_NEOTHEOLOGY)
@@ -369,6 +360,10 @@
 /datum/design/autolathe/nt/tool_upgrade/sanctifier
 	name = "sanctifier"
 	build_path = /obj/item/tool_upgrade/augment/sanctifier
+
+/datum/design/autolathe/nt/staff/nt_staff
+	name = "NT Crosier"
+	build_path = /obj/item/tool/hammer/staff/nt
 
 //[GRENADES]
 /datum/design/autolathe/nt/grenade/nt_smokebomb

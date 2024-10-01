@@ -1,11 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aw" = (
 /obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aH" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "aJ" = (
 /obj/structure/closet,
@@ -18,7 +18,7 @@
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -26,7 +26,7 @@
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	req_access = list(150)
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -37,19 +37,19 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
 "bB" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "bG" = (
 /obj/spawner/lowkeyrandom,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -63,7 +63,7 @@
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/shoes/magboots/merc,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -72,7 +72,7 @@
 	dir = 1
 	},
 /obj/structure/curtain/open/shower,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -80,21 +80,21 @@
 "dI" = (
 /obj/structure/table/standard,
 /obj/item/deck/cards,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "dN" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "dU" = (
 /obj/spawner/junkfood/rotten,
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -104,14 +104,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "eo" = (
 /obj/item/stool,
 /obj/effect/decal/cleanable/vomit,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -133,7 +133,7 @@
 	pixel_x = -5;
 	pixel_y = 15
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -146,7 +146,7 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 3
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -158,14 +158,14 @@
 /area/template_noop)
 "ip" = (
 /obj/spawner/scrap/dense,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "iw" = (
 /obj/machinery/light,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -178,7 +178,7 @@
 /obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -186,21 +186,21 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
 /obj/spawner/booze/low_chance,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
 "jP" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/crate/tools,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "kc" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -212,7 +212,7 @@
 	dir = 8
 	},
 /obj/structure/curtain/open/shower,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -220,7 +220,7 @@
 "kx" = (
 /obj/structure/table/rack,
 /obj/spawner/junk,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -231,12 +231,12 @@
 	pixel_x = 1;
 	pixel_y = 4
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "kW" = (
-/turf/simulated/floor/tiled/white/techfloor_grid/airless,
+/turf/floor/tiled/white/techfloor_grid/airless,
 /area/template_noop)
 "lA" = (
 /obj/machinery/microwave{
@@ -247,19 +247,19 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "lO" = (
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
 /area/template_noop)
 "mZ" = (
 /obj/structure/closet/emcloset,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -270,7 +270,7 @@
 	dir = 1
 	},
 /obj/spawner/gun/cheap,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -280,7 +280,7 @@
 /obj/item/tool/pickaxe/diamonddrill,
 /obj/item/tool/pickaxe/diamonddrill,
 /obj/item/storage/backpack/military,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -290,7 +290,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -303,7 +303,7 @@
 	dir = 1
 	},
 /obj/structure/curtain/open/shower,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -313,18 +313,18 @@
 /obj/item/clothing/mask/balaclava/tactical,
 /obj/item/clothing/mask/balaclava/tactical,
 /obj/item/clothing/mask/balaclava/tactical,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "qL" = (
 /obj/item/modular_computer/console,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "qX" = (
 /obj/machinery/door/airlock/maintenance_interior,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -333,7 +333,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
 /obj/item/clothing/head/ushanka,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -342,7 +342,7 @@
 /obj/structure/window/reinforced/crescent{
 	dir = 1
 	},
-/turf/simulated/floor/airless,
+/turf/floor/airless,
 /area/template_noop)
 "rL" = (
 /obj/item/reagent_containers/food/drinks/bottle/vodka{
@@ -354,7 +354,7 @@
 	pixel_y = 8
 	},
 /obj/structure/table/standard,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -366,7 +366,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -374,7 +374,7 @@
 "ss" = (
 /obj/structure/table/rack,
 /obj/item/storage/deferred/meds,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -383,7 +383,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -391,7 +391,7 @@
 "tv" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun/low_chance,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -401,20 +401,20 @@
 /obj/item/clothing/shoes/magboots/merc,
 /obj/item/clothing/under/turtleneck,
 /obj/item/clothing/head/ushanka,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "um" = (
 /obj/item/stool,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "vt" = (
 /obj/machinery/portable_atmospherics/canister/plasma,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -429,7 +429,7 @@
 	},
 /obj/machinery/light,
 /obj/item/material/kitchen/rollingpin,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -437,7 +437,7 @@
 /obj/structure/table/rack,
 /obj/item/storage/belt/tactical,
 /obj/item/storage/pouch/medium_generic,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -447,7 +447,7 @@
 	icon_state = "door_locked";
 	locked = 1
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -455,28 +455,28 @@
 "wX" = (
 /obj/structure/table/standard,
 /obj/item/folder/cyan,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "xN" = (
 /obj/spawner/soda/low_chance,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "yJ" = (
 /obj/item/stool,
 /obj/spawner/booze/low_chance,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "zg" = (
 /obj/structure/table/standard,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -484,7 +484,7 @@
 "zJ" = (
 /obj/item/stool,
 /obj/spawner/junkfood/rotten,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -492,7 +492,7 @@
 "zM" = (
 /obj/structure/table/standard,
 /obj/spawner/booze/low_chance,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -503,7 +503,7 @@
 /area/template_noop)
 "As" = (
 /obj/item/stool,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -511,7 +511,7 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -520,31 +520,31 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
 /obj/item/clothing/under/serbiansuit/brown,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
 "Bz" = (
 /obj/item/stool,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "BQ" = (
 /obj/structure/table/standard,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "CY" = (
 /obj/machinery/light,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "Di" = (
 /obj/structure/closet/firecloset,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -552,7 +552,7 @@
 "DP" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -560,14 +560,14 @@
 /obj/structure/table/standard,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "Eg" = (
 /obj/machinery/door/airlock/maintenance_interior,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -576,27 +576,26 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
 /obj/item/clothing/under/serbiansuit,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
 "EL" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating/airless,
+/turf/wall/low/with_glass/reinforced,
 /area/template_noop)
 "Fj" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "FH" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/simulated/floor/tiled/white/techfloor_grid/airless,
+/turf/floor/tiled/white/techfloor_grid/airless,
 /area/template_noop)
 "FS" = (
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -606,7 +605,7 @@
 	},
 /obj/item/soap/deluxe,
 /obj/structure/curtain/open/shower,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -617,29 +616,29 @@
 /area/template_noop)
 "Ib" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "IG" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "Jp" = (
 /obj/spawner/junkfood/rotten,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "Km" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "La" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -647,7 +646,7 @@
 "Mb" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
@@ -655,14 +654,14 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 26
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "Ou" = (
 /obj/structure/table/standard,
 /obj/machinery/reagentgrinder/portable,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -672,13 +671,13 @@
 	pixel_x = 2;
 	pixel_y = 6
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
 "Pp" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -688,7 +687,7 @@
 	pixel_y = 32
 	},
 /obj/structure/curtain/open/shower,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -696,13 +695,13 @@
 "PN" = (
 /obj/structure/table/standard,
 /obj/item/deck/cards,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
 "PO" = (
 /obj/spawner/junk,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -717,7 +716,7 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -727,7 +726,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -736,7 +735,7 @@
 /obj/structure/urinal{
 	pixel_y = 32
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
@@ -745,7 +744,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -754,23 +753,23 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid/airless,
+/turf/floor/tiled/white/techfloor_grid/airless,
 /area/template_noop)
 "Vt" = (
 /obj/spawner/junk,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "VJ" = (
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
 "Wj" = (
 /obj/spawner/junk,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "white"
 	},
 /area/template_noop)
@@ -778,12 +777,12 @@
 /obj/machinery/light_construct{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "WH" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -796,13 +795,13 @@
 /area/template_noop)
 "Xv" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "Yj" = (
 /obj/structure/table/standard,
 /obj/item/storage/deferred/rations,
 /obj/machinery/light,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
@@ -810,30 +809,30 @@
 "Yp" = (
 /obj/item/stool,
 /obj/spawner/junkfood/rotten,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "lino"
 	},
 /area/template_noop)
 "YW" = (
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "YZ" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "Zt" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/cheap,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},
 /area/template_noop)
 "ZY" = (
 /mob/living/simple_animal/hostile/bear,
-/turf/unsimulated/floor/airless{
+/turf/floor/dummy/airless{
 	icon_state = "cult";
 	name = "plating"
 	},

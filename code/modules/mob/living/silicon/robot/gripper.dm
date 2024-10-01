@@ -33,13 +33,12 @@
 	var/force_holder //
 	var/justdropped = 0//When set to 1, the gripper has just dropped its item, and should not attempt to trigger anything
 
-/obj/item/gripper/examine(var/mob/user)
-	..()
-	if (wrapped)
-		to_chat(user, span("notice", "It is holding \the [wrapped]"))
+/obj/item/gripper/examine(mob/user, extra_description = "")
+	if(wrapped)
+		extra_description += "\nIt is holding \the [wrapped]"
 	else
-		to_chat(user, "It is empty.")
-
+		extra_description += "\nIt is empty."
+	..(user, extra_description)
 
 /proc/grippersafety(var/obj/item/gripper/G)
 	if (!G || !G.wrapped)//The object must have been lost
@@ -223,9 +222,15 @@
 		/obj/item/clipboard,
 		/obj/item/paper,
 		/obj/item/paper_bundle,
+		/obj/item/paper_bin,
 		/obj/item/card/id,
 		/obj/item/book,
-		/obj/item/newspaper
+		/obj/item/newspaper,
+		/obj/item/pen,
+		/obj/item/stamp,
+		/obj/item/packageWrap,
+		/obj/item/device/destTagger,
+		/obj/item/smallDelivery
 		)
 
 /obj/item/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
@@ -240,7 +245,7 @@
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
 		/obj/item/device/flash, //to build borgs,
-		/obj/item/organ/internal/brain, //to insert into MMIs,
+		/obj/item/organ/internal/vital/brain, //to insert into MMIs,
 		/obj/item/stack/cable_coil, //again, for borg building,
 		/obj/item/electronics/circuitboard,
 		/obj/item/slime_extract,
@@ -298,7 +303,9 @@
 		/obj/item/newspaper,
 		/obj/item/electronics/circuitboard/broken,
 		/obj/item/clothing/mask/smokable/cigarette,
-		///obj/item/reagent_containers/cooking_container //PArt of cooking overhaul, not yet ported
+		/obj/item/spacecash,
+		/obj/item/device/eftpos,
+		///obj/item/reagent_containers/cooking_container //Part of cooking overhaul, not yet ported
 		)
 
 /obj/item/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item

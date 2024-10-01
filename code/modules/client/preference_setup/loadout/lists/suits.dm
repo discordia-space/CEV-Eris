@@ -4,33 +4,41 @@
 	path = /obj/item/clothing/suit/apron
 	slot = slot_wear_suit
 	sort_category = "Suits and Overwear"
-	cost = 1
 
 /datum/gear/suit/jacket
 	display_name = "jacket"
 	path = /obj/item/clothing/suit/storage/toggle/bomber
-	cost = 2 //higher price because it has some armor value or style
+	cost = 1 //higher price because it has some armor value or style (old)
+	//I'm dropping the price because the style is the same either way
+	//and a few extra points in armor roundstart is useless 5 minutes into the round anyways
 
 /datum/gear/suit/jacket/New()
 	..()
 	var/jacket = list(
-		"Bomber"				=	/obj/item/clothing/suit/storage/toggle/bomber,
-		"Bomber, furred"		=	/obj/item/clothing/suit/storage/toggle/bomber/furred,
-		"Service"				=	/obj/item/clothing/suit/storage/toggle/service,
-		"Tactful"		=	/obj/item/clothing/suit/storage/khaki,
-		"Leather"		=	/obj/item/clothing/suit/storage/leather_jacket,
-		"White"			=	/obj/item/clothing/suit/storage/drive_jacket,
-		"Violet"		=	/obj/item/clothing/suit/storage/violet_jacket,
-		"Tunnelsnake"	=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake,
-		"Sleek"			=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake,
-		"Jaeger"		=	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
-		"Boxer"			=	/obj/item/clothing/suit/storage/boxer_jacket
+		"Bomber" 			= 	/obj/item/clothing/suit/storage/toggle/bomber,
+		"Bomber, furred" 	= 	/obj/item/clothing/suit/storage/toggle/bomber/furred,
+		"Service" 			= 	/obj/item/clothing/suit/storage/toggle/service,
+		"Tactful" 			= 	/obj/item/clothing/suit/storage/khaki,
+		"Leather" 			= 	/obj/item/clothing/suit/storage/leather_jacket,
+		"White" 			= 	/obj/item/clothing/suit/storage/drive_jacket,
+		"Violet" 			= 	/obj/item/clothing/suit/storage/violet_jacket,
+		"Windbreaker" 		=	/obj/item/clothing/suit/storage/toggle/windbreaker,
+		"Boxer" 			= 	/obj/item/clothing/suit/storage/boxer_jacket
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jacket)
 
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest"
 	path = /obj/item/clothing/suit/storage/hazardvest
+
+/datum/gear/suit/hazard_vest/New()
+	..()
+	var/hazard_vest = list(
+		"Orange"		=	/obj/item/clothing/suit/storage/hazardvest,
+		"Dark Orange"	=	/obj/item/clothing/suit/storage/hazardvest/orange,
+		"Grey" 			=	/obj/item/clothing/suit/storage/hazardvest/black
+	)
+	gear_tweaks += new /datum/gear_tweak/path(hazard_vest)
 
 /datum/gear/suit/hoodie
 	display_name = "hoodie"
@@ -40,7 +48,7 @@
 	..()
 	var/jacket = list(
 		"Black"		=	/obj/item/clothing/suit/storage/toggle/hoodie/black,
-		"Grey"		=	/obj/item/clothing/suit/storage/toggle/hoodie,
+		"Grey"		=	/obj/item/clothing/suit/storage/toggle/hoodie
 	)
 	gear_tweaks += new /datum/gear_tweak/path(jacket)
 
@@ -49,19 +57,20 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
 
 /datum/gear/suit/poncho
-	display_name = "poncho, tan"
+	display_name = "poncho, color selection"
 	path = /obj/item/clothing/suit/poncho
-	cost = 1
 
-/datum/gear/suit/poncho/tactical
-	display_name = "poncho, blue"
-	path = /obj/item/clothing/suit/poncho/tactical
-	cost = 1
+/datum/gear/suit/poncho/New()
+	..()
+	var/poncho = list(
+		"Tan"		=	/obj/item/clothing/suit/poncho,
+		"Blue"		=	/obj/item/clothing/suit/poncho/tactical
+	)
+	gear_tweaks += new /datum/gear_tweak/path(poncho)
 
 /datum/gear/suit/coat
 	display_name = "Modern overcoat"
 	path = /obj/item/clothing/suit/storage/cyberpunksleek
-	cost = 2
 
 /datum/gear/suit/coat/New()
 	..()
@@ -76,7 +85,6 @@
 /datum/gear/suit/longcoat
 	display_name = "Modern long overcoat"
 	path = /obj/item/clothing/suit/storage/cyberpunksleek_long
-	cost = 2
 
 /datum/gear/suit/longcoat/New()
 	..()
@@ -91,12 +99,6 @@
 /datum/gear/suit/bladerunner
 	display_name = "old leather coat"
 	path = /obj/item/clothing/suit/storage/bladerunner
-	cost = 2
-
-/datum/gear/suit/bomj
-	display_name = "bomj coat"
-	path = /obj/item/clothing/suit/storage/bomj
-	cost = 2
 
 /datum/gear/suit/punkvest
 	display_name = "punk vest"
@@ -106,21 +108,39 @@
 /datum/gear/suit/punkvest/New()
 	..()
 	var/punkvest = list(
-		"Punk"			=	/obj/item/clothing/suit/punkvest,
-		"Cyberpunk"			=	/obj/item/clothing/suit/punkvest/cyber,
-		"Windbreaker"			=	/obj/item/clothing/suit/storage/toggle/windbreaker,
+		"Punk" 			=	/obj/item/clothing/suit/punkvest,
+		"Cyberpunk" 	=	/obj/item/clothing/suit/punkvest/cyber,
+		"Sleek" 		= 	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake,
+		"Tunnelsnake" 	= 	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake,
+		"Jaeger" 		= 	/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
 	)
 	gear_tweaks += new /datum/gear_tweak/path(punkvest)
 
-/datum/gear/suit/puffypurple
-	display_name = "purple puffy coat"
-	path = /obj/item/clothing/suit/storage/puffypurple
-	cost = 1
-/datum/gear/suit/puffyblue
-	display_name = "blue puffy coat"
-	path = /obj/item/clothing/suit/storage/puffyblue
-	cost = 1
-/datum/gear/suit/puffyred
-	display_name = "crimson puffy coat"
+/datum/gear/suit/puffy
+	display_name = "puffy coat"
 	path = /obj/item/clothing/suit/storage/puffyred
 	cost = 1
+
+/datum/gear/suit/puffy/New()
+	..()
+	var/puffy = list(
+		"Red Puffy" 		=	 /obj/item/clothing/suit/storage/puffyred,
+		"Blue Puffy" 		=	 /obj/item/clothing/suit/storage/puffyblue,
+		"Purple Puffy"	 	=	 /obj/item/clothing/suit/storage/puffypurple
+	)
+	gear_tweaks += new /datum/gear_tweak/path(puffy)
+
+/datum/gear/suit/bomj
+	display_name = "bomj coat"
+	path = /obj/item/clothing/suit/storage/bomj
+
+/datum/gear/suit/guild/black
+	display_name = "black guild coat"
+	path = /obj/item/clothing/suit/storage/cargo_jacket/black
+	allowed_roles = list(JOBS_CARGO)
+
+/datum/gear/suit/guild/black/old
+	display_name = "old black guild coat"
+	path = /obj/item/clothing/suit/storage/cargo_jacket/black/old
+	allowed_roles = list(JOBS_CARGO)
+

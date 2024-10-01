@@ -29,23 +29,6 @@
 //	spawn(100) //Wont the MC just call this process() before and at the 10 second mark anyway?
 //		Process()
 
-/obj/machinery/optable/ex_act(severity)
-
-	switch(severity)
-		if(1)
-			//SN src = null
-			qdel(src)
-			return
-		if(2)
-			if (prob(50))
-				//SN src = null
-				qdel(src)
-				return
-		if(3)
-			if (prob(25))
-				density = FALSE
-		else
-	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if (user.incapacitated(INCAPACITATION_DEFAULT))
@@ -61,6 +44,7 @@
 /obj/machinery/optable/unbuckle_mob()
 	. = ..()
 	check_victim()
+	set_power_use(IDLE_POWER_USE)
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
@@ -100,6 +84,7 @@
 		O.loc = loc
 	add_fingerprint(user)
 	buckle_mob(C)
+	set_power_use(ACTIVE_POWER_USE)
 
 
 /obj/machinery/optable/MouseDrop_T(mob/target, mob/user)

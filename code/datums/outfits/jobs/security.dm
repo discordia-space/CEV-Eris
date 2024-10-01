@@ -23,7 +23,7 @@
 	id_type = /obj/item/card/id/hos
 	head = /obj/item/clothing/head/HoS
 	pda_type = /obj/item/modular_computer/pda/heads/hos
-	backpack_contents = list(/obj/item/handcuffs = 1,/obj/item/ammo_magazine/magnum/rubber = 1,/obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/cell/small/high = 2, /obj/item/gun/energy/gun/martin = 1, /obj/item/clothing/accessory/cross = 1)
+	backpack_contents = list(/obj/item/handcuffs = 1,/obj/item/ammo_magazine/magnum/rubber = 1,/obj/item/device/lighting/toggleable/flashlight/seclite = 1, /obj/item/cell/small/high = 2, /obj/item/gun/energy/gun/martin = 1, /obj/item/flame/lighter/zippo/syndicate = 1, /obj/item/storage/fancy/cigarettes/lucky = 1, /obj/item/clothing/accessory/cross = 1)
 
 /decl/hierarchy/outfit/job/security/gunserg
 	name = OUTFIT_JOB_NAME("Ironhammer Gunnery Sergeant")

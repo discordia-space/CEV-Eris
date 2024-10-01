@@ -1,5 +1,3 @@
-#define SEISMIC_MIN 1
-#define SEISMIC_MAX 6
 GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
                                    /datum/golem_wave/negligible,
                                    /datum/golem_wave/typical,

@@ -17,7 +17,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
@@ -31,7 +31,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
@@ -45,7 +45,7 @@
 		return FALSE	//godmode
 
 	if(species && species.has_process[BP_BRAIN])
-		var/obj/item/organ/internal/brain/sponge = random_organ_by_process(BP_BRAIN)
+		var/obj/item/organ/internal/vital/brain/sponge = random_organ_by_process(BP_BRAIN)
 		if(sponge)
 			brainloss = (sponge.damage / sponge.max_damage) * 200
 		else
@@ -340,7 +340,6 @@ This function restores all organs.
 				damage = damage*species.brute_mod
 			if(BURN)
 				damage = damage*species.burn_mod
-
 	var/obj/item/organ/external/organ
 	if(isorgan(def_zone))
 		organ = def_zone
@@ -352,6 +351,7 @@ This function restores all organs.
 	if(!organ)
 		return FALSE
 
+	//Wounding multiplier is handled in the organ itself
 	damageoverlaytemp = 20
 	if(organ.take_damage(damage, damagetype, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
 		UpdateDamageIcon()

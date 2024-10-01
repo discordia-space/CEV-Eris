@@ -19,6 +19,7 @@
 	var/serial_number = 0
 	var/ruined = 0
 	var/datum/poster/design
+	matter = list(MATERIAL_PLASTIC = 1)
 
 /obj/item/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
 	switch(poster_datum)
@@ -103,7 +104,7 @@
 
 
 //Places the poster on a wall
-/obj/item/contraband/poster/afterattack(var/turf/simulated/wall/W, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/contraband/poster/afterattack(var/turf/wall/W, var/mob/user, var/adjacent, var/clickparams)
 	if (!adjacent)
 		return
 

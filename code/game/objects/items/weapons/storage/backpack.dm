@@ -324,10 +324,8 @@
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
-	desc = "A fancy satchel made with fine leather. While fancy, it has less storage space than most other satchels."
+	desc = "A fancy satchel made with fine leather."
 	icon_state = "satchel_leather"
-	max_storage_space = DEFAULT_HUGE_STORAGE * 0.5 // 20 instead of 28
-	style = STYLE_LOW // Sacrificing storage space is stylish
 
 /obj/item/storage/backpack/satchel/leather/withwallet
 	rarity_value = 4.16

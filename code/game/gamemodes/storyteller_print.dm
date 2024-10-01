@@ -248,19 +248,19 @@
 			if(href_list["ev_spawn"])
 				//When in debug mode, we pass in the user.
 					//If antag spawning fails, they will be spammed with text explaining why
-				if (!evt.can_trigger(href_list["severity"], debug_mode? usr : null))
+				if (!evt.can_trigger(href_list["severity"], debug_mode? usr : null, TRUE))
 					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger.\n\
 					To find out why, turn on debug mode in the storyteller panel and try again. \n\
 					You can also try to bypass the requirement and force it anyway, but this is unlikely to work\n \
-					 Would you like to force it anyway?.", "Force Event? ", "yes", "no")
+					 Would you like to force it anyway?", "Force Event? ", "yes", "no")
 					if (answer == "no")
 						return
 
 				var/result = evt.create(href_list["severity"])
 				if (result)
-					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
+					log_and_message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
 				else
-					message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")
+					log_and_message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")
 			if(href_list["ev_debug"] && usr && usr.client)
 				usr.client.debug_variables(evt)
 			if(href_list["ev_set_weight"])

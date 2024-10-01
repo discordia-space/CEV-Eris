@@ -17,7 +17,8 @@
 		return FALSE
 
 	if(limb && C)
-		var/organ_size_delta = (organ.specific_organ_size * (1 - C.specific_organ_size_multiplier) + C.specific_organ_size_mod) - organ.specific_organ_size
+		var/organ_size_delta = ((organ.specific_organ_size + C.modifications[ORGAN_SPECIFIC_SIZE_BASE]) * (1 + C.modifications[ORGAN_SPECIFIC_SIZE_MULT])\
+								+ C.modifications[ORGAN_SPECIFIC_SIZE_MOD]) - organ.specific_organ_size
 		if(limb.get_total_occupied_volume() + organ_size_delta > limb.max_volume)
 			to_chat(user, SPAN_WARNING("There isn't enough space in \the [limb] to apply \the [mod]."))
 			return FALSE
@@ -37,7 +38,7 @@
 		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [mod]!"),
 		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [mod]!")
 	)
-	organ.take_damage(5, 0)
+	organ.take_damage(rand(24, 32), BRUTE, edge = TRUE)
 
 /datum/surgery_step/remove_mod
 	required_tool_quality = QUALITY_LASER_CUTTING
@@ -61,7 +62,7 @@
 		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
 		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
-	organ.take_damage(5, 0)
+	organ.take_damage(rand(24, 32), BRUTE, sharp = TRUE)
 
 /datum/surgery_step/examine
 	required_tool_quality = null

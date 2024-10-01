@@ -1,5 +1,8 @@
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	STOP_PROCESSING(SSmobs, src)
+	if(ishuman(src))
+		STOP_PROCESSING(SShumans, src)
+	else
+		STOP_PROCESSING(SSmobs, src)
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.mob_list -= src
@@ -28,13 +31,17 @@
 	return
 
 /mob/Initialize()
-	START_PROCESSING(SSmobs, src)
+	if(ishuman(src))
+		START_PROCESSING(SShumans, src)
+	else
+		START_PROCESSING(SSmobs, src)
 	if(stat == DEAD)
 		GLOB.dead_mob_list += src
 	else
 		GLOB.living_mob_list += src
 	GLOB.mob_list += src
 	move_intent = decls_repository.get_decl(move_intent)
+	SEND_SIGNAL(SSdcs, COMSIG_MOB_INITIALIZED, src)
 	. = ..()
 
 /**
@@ -84,15 +91,16 @@
 
 		messageturfs += turf
 
-	for(var/A in GLOB.player_list)
-		var/mob/M = A
-		if (QDELETED(M))
-			GLOB.player_list -= M
+
+
+	for(var/mob/M in getMobsInRangeChunked(get_turf(src), range, FALSE, TRUE))
+		if(!M.client)
 			continue
-		if (!M.client || istype(M, /mob/new_player))
-			continue
-		if(get_turf(M) in messageturfs)
-			messagemobs += M
+		messagemobs += M
+
+	for(var/mob/ghosty in GLOB.player_ghost_list)
+		if(ghosty.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_EMOTES)
+			messagemobs |= ghosty
 
 	for(var/A in messagemobs)
 		var/mob/M = A
@@ -146,7 +154,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in SSmobs.mob_list)
+	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -250,9 +258,8 @@
 	DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(run_examinate), examinify))
 
 /mob/proc/run_examinate(atom/examinify)
-
-	if((is_blind(src) || usr.stat) && !isobserver(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+	if((is_blind(src) || stat) && !isobserver(src))
+		to_chat(src, SPAN_NOTICE("Something is there but you can't see it."))
 		return
 	if(!istype(examinify, /obj/screen))
 		face_atom(examinify)
@@ -360,6 +367,27 @@
 	var/obj/item/W = get_active_hand()
 	if (W)
 		W.attack_self(src)
+
+
+/mob/verb/toggle_flashlight()
+	set name = "Toggle Flashlight"
+	set category = "Object"
+
+	if(incapacitated())
+		return
+
+	var/obj/item/item = get_active_hand()
+	if(!item)
+		return
+
+	if(isgun(item))
+		var/obj/item/gun/gun = item
+		if(gun.flashlight_attachment)
+			item = gun.flashlight_attachment
+
+	if(istype(item, /obj/item/device/lighting/toggleable/flashlight))
+		var/obj/item/device/lighting/toggleable/flashlight/flashlight = item
+		flashlight.attack_self(src)
 
 /*
 /mob/verb/dump_source()
@@ -482,7 +510,7 @@
 			creatures[name] = O
 
 
-	for(var/mob/M in sortNames(SSmobs.mob_list))
+	for(var/mob/M in sortNames(SSmobs.mob_list | SShumans.mob_list))
 		var/name = M.name
 		if (names.Find(name))
 			namecounts[name]++
@@ -562,15 +590,16 @@
 
 
 /mob/verb/stop_pulling()
-
 	set name = "Stop Pulling"
 	set category = "IC"
 
 	if(pulling)
 		pulling.pulledby = null
 		pulling = null
-		/*if(pullin)
-			pullin.icon_state = "pull0"*/
+		if(HUDneed.Find("pull"))
+			var/obj/screen/HUDthrow/HUD = HUDneed["pull"]
+			HUD.update_icon()
+
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
@@ -580,6 +609,11 @@
 	if (AM.anchored)
 		to_chat(src, "<span class='warning'>It won't budge!</span>")
 		return
+
+	if(SEND_SIGNAL(AM, COMSIG_ATTEMPT_PULLING) == COMSIG_PULL_CANCEL)
+		to_chat(src, SPAN_WARNING("It won't budge!"))
+		return
+
 
 	var/mob/M = AM
 	if(ismob(AM))
@@ -668,55 +702,9 @@
 	for(var/mob/M in viewers())
 		M.see(message)
 
-/mob/Stat()
-	..()
-	. = (is_client_active(10 MINUTES))
-
-	if(.)
-		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
-			stat("Storyteller", "[master_storyteller]")
-			stat("Ship Time", stationtime2text())
-			stat("Round Duration", roundduration2text())
-
-		if(client.holder)
-			if(statpanel("Status"))
-				stat("Location:", "([x], [y], [z]) [loc]")
-			if(statpanel("MC"))
-				stat("CPU:","[world.cpu]")
-				stat("Instances:","[world.contents.len]")
-				stat(null)
-				if(Master)
-					Master.stat_entry()
-				else
-					stat("Master Controller:", "ERROR")
-				if(Failsafe)
-					Failsafe.stat_entry()
-				else
-					stat("Failsafe Controller:", "ERROR")
-				if(GLOB)
-					GLOB.stat_entry()
-				else
-					stat("Globals:", "ERROR")
-				if(Master)
-					stat(null)
-					for(var/datum/controller/subsystem/SS in Master.subsystems)
-						SS.stat_entry()
-
-		if(listed_turf && client)
-			if(!TurfAdjacent(listed_turf))
-				listed_turf = null
-			else
-				if(statpanel("Turf"))
-					stat(listed_turf)
-					for(var/atom/A in listed_turf)
-						if(!A.mouse_opacity)
-							continue
-						if(A.invisibility > see_invisible)
-							continue
-						if(is_type_in_list(A, shouldnt_see))
-							continue
-						stat(A)
-
+/// Adds this list to the output to the stat browser
+/mob/proc/get_status_tab_items()
+	. = list()
 
 // facing verbs
 /mob/proc/canface()
@@ -990,7 +978,7 @@ mob/proc/yank_out_object()
 		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
 	valid_objects = get_visible_implants()
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
-		src.verbs -= /mob/proc/yank_out_object
+		remove_verb(src, /mob/proc/yank_out_object)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -1110,65 +1098,15 @@ mob/proc/yank_out_object()
 		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
 
 /mob/verb/browse_mine_stats()
-	set name		= "Show stats and perks"
-	set desc		= "Browse your character stats and perks."
-	set category	= "IC"
-	set src			= usr
+	set name = "Show stats and perks"
+	set desc = "Browse your character stats and perks."
+	set category = "IC"
+	set src = usr
 
-	browse_src_stats(src)
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		return
 
-/mob/proc/browse_src_stats(mob/user)
-	var/additionalcss = {"
-		<style>
-			table {
-				float: left;
-			}
-			table, th, td {
-				border: #3333aa solid 1px;
-				border-radius: 5px;
-				padding: 5px;
-				text-align: center;
-			}
-			th{
-				background:#633;
-			}
-		</style>
-	"}
-	var/table_header = "<th>Stat Name<th>Stat Value"
-	var/list/S = list()
-	for(var/TS in ALL_STATS)
-		S += "<td>[TS]<td>[getStatStats(TS)]"
-	var/data = {"
-		[additionalcss]
-		[user == src ? "Your stats:" : "[name]'s stats"]<br>
-		<table width=20%>
-			<tr>[table_header]
-			<tr>[S.Join("<tr>")]
-		</table>
-	"}
-	// Perks
-	var/list/Plist = list()
-	if (stats) // Check if mob has stats. Otherwise we cannot read null.perks
-		for(var/perk in stats.perks)
-			var/datum/perk/P = perk
-			Plist += "<td valign='middle'><img src=[SSassets.transport.get_asset_url(P.type)]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
-	data += {"
-		<table width=80%>
-			<th colspan=2>Perks</th>
-			<tr>[Plist.Join("</tr><tr>")]</tr>
-		</table>
-	"}
-
-	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 1000, 345)
-	B.set_content(data)
-	B.set_window_options("can_minimize=0")
-	B.open()
-
-/mob/proc/getStatStats(typeOfStat)
-	if (SSticker.current_state != GAME_STATE_PREGAME)
-		if(stats)
-			return stats.getStat(typeOfStat)
-		return 0
+	stats?.ui_interact(usr)
 
 /mob/proc/set_face_dir(var/newdir)
 	if(!isnull(facing_dir) && newdir == facing_dir)
@@ -1302,13 +1240,11 @@ mob/proc/yank_out_object()
 /client/verb/body_toggle_head()
 	set name = "body-toggle-head"
 	set hidden = TRUE
-	set category = "OOC"
 	toggle_zone_sel(list(BP_HEAD,BP_EYES,BP_MOUTH))
 
 /client/verb/body_r_arm()
 	set name = "body-r-arm"
 	set hidden = TRUE
-	set category = "OOC"
 	toggle_zone_sel(list(BP_R_ARM))
 
 /client/verb/body_l_arm()

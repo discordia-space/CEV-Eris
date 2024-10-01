@@ -10,7 +10,7 @@ export const ForbiddenLore = (props, context) => {
   const to_know = flow([
     sortBy(
       (to_know) => to_know.state !== 'Research',
-      (to_know) => to_know.path === 'Side'
+      (to_know) => to_know.path === 'Side',
     ),
   ])(data.to_know || []);
   return (

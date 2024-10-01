@@ -15,7 +15,6 @@
 	slot_flags = SLOT_BACK
 	caliber = CAL_SHOTGUN
 	init_recoil = RIFLE_RECOIL(1.7)
-	style_damage_multiplier = 2
 	damage_multiplier = 1
 	penetration_multiplier = 0.1
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
@@ -33,7 +32,7 @@
 		)
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/doublebarrel/sawn
-	gun_parts = list(/obj/item/part/gun/frame/doublebarrel = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
+	gun_parts = list(/obj/item/part/gun/frame/doublebarrel = 1, /obj/item/part/gun/modular/grip/wood = 1, /obj/item/part/gun/modular/mechanism/shotgun = 1, /obj/item/part/gun/modular/barrel/shotgun = 1)
 	serial_type = "AGM" // asters guild manufacturing
 
 /obj/item/gun/projectile/shotgun/doublebarrel/pellet
@@ -80,9 +79,6 @@
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
 		return
 	. = ..()
-	if (. && ishuman(user)) // if it actually loaded and the user is human
-		var/mob/living/carbon/human/stylish = user
-		stylish.regen_slickness()
 
 
 /obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, var/allow_dump=1)
@@ -95,6 +91,6 @@
 	desc = "A double-barreled shotgun frame. An immortal classic of cowboys and bartenders alike."
 	icon_state = "frame_dshotgun"
 	resultvars = list(/obj/item/gun/projectile/shotgun/doublebarrel)
-	gripvars = list(/obj/item/part/gun/grip/wood)
-	mechanismvar = /obj/item/part/gun/mechanism/shotgun
-	barrelvars = list(/obj/item/part/gun/barrel/shotgun)
+	gripvars = list(/obj/item/part/gun/modular/grip/wood)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/shotgun
+	barrelvars = list(/obj/item/part/gun/modular/barrel/shotgun)

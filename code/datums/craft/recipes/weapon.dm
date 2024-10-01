@@ -139,7 +139,7 @@
 	steps = list (
 		list(CRAFT_MATERIAL, 6, MATERIAL_STEEL), //frame
 		list(QUALITY_WELDING, 10, 20), //weld to shape of locker
-		list(/obj/item/part/armor, 2), //place armor 
+		list(/obj/item/part/armor, 2), //place armor
 		list(QUALITY_WELDING, 10, 20), //cut apart and spread across frame
 		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTEEL), //place plasteel in thick layers
 		list(QUALITY_WELDING, 10, 20)) // weld together
@@ -218,6 +218,18 @@
 		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
 		list(QUALITY_HAMMERING, 10, "time" = 10),
 		list(QUALITY_ADHESIVE, 10, "time" = 5)
+	)
+
+/datum/craft_recipe/weapon/wristshank
+	name = "wristshank"
+	result = /obj/item/organ_module/active/simple/wristshank
+	steps = list(
+		list(CRAFT_MATERIAL, 8, MATERIAL_STEEL, "time" = 10),
+		list(QUALITY_WELDING, 10, "time" = 30),
+		list(QUALITY_HAMMERING, 5, 10),
+		list(/obj/item/stack/cable_coil, 2, "time" = 10),
+		list(QUALITY_SCREW_DRIVING, 10),
+		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/weapon/glass_spear
@@ -358,5 +370,15 @@
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 30),
 		list(/obj/item/stack/cable_coil, 5),
 		list(QUALITY_WIRE_CUTTING, 10, "time" = 20),
+	)
+
+/datum/craft_recipe/weapon/mech_blade_assembly
+	name = "mech blade assembly"
+	result = /obj/item/mech_blade_assembly
+	steps = list(
+		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTEEL),
+		list(QUALITY_WELDING, 10, "time" = 3 SECONDS),
+		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
+		list(QUALITY_WELDING, 10, "time" = 2 SECONDS)
 	)
 

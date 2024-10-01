@@ -160,10 +160,10 @@
 	else
 		handle_rejection()
 
-/obj/item/organ/examine(mob/user)
-	..(user)
+/obj/item/organ/examine(mob/user, extra_description = "")
 	if(status & ORGAN_DEAD)
-		to_chat(user, SPAN_NOTICE("The decay has set in."))
+		extra_description += SPAN_NOTICE("The decay has set in.")
+	..(user, extra_description)
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
@@ -204,7 +204,7 @@
 	W.time_inflicted = world.time
 
 //Note: external organs have their own version of this proc
-/obj/item/organ/proc/take_damage(amount, damage_type, wounding_multiplier = 1, silent)
+/obj/item/organ/take_damage(amount, damage_type, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)
 	if(!BP_IS_ROBOTIC(src))
 		//only show this if the organ is not robotic
 		if(owner && parent && amount > 0 && !silent)

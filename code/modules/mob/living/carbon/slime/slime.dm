@@ -65,9 +65,11 @@
 
 	var/core_removal_stage = 0 //For removing cores.
 
+	injury_type = INJURY_TYPE_HOMOGENOUS
+
 /mob/living/carbon/slime/New(var/location, var/colour="grey")
 
-	verbs += /mob/living/proc/ventcrawl
+	add_verb(src, /mob/living/proc/ventcrawl)
 
 	src.colour = colour
 	number = rand(1, 1000)
@@ -156,22 +158,14 @@
 /mob/living/carbon/slime/allow_spacemove()
 	return -1
 
-/mob/living/carbon/slime/Stat()
+/mob/living/carbon/slime/get_status_tab_items()
 	. = ..()
-
-	statpanel("Status")
-	stat(null, "Health: [round((health / maxHealth) * 100)]%")
-	stat(null, "Intent: [a_intent]")
-
-	if (client.statpanel == "Status")
-		stat(null, "Nutrition: [nutrition]/[get_max_nutrition()]")
-		if(amount_grown >= 10)
-			if(is_adult)
-				stat(null, "You can reproduce!")
-			else
-				stat(null, "You can evolve!")
-
-		stat(null,"Power Level: [powerlevel]")
+	. += list(list("Health: [round((health / maxHealth) * 100)]%"))
+	. += list(list("Intent: [a_intent]"))
+	. += list(list("Nutrition: [nutrition]/[get_max_nutrition()]"))
+	if(amount_grown >= 10)
+		. += list(list(is_adult ? "You can reproduce!" : "You can evolve!"))
+		. += list(list("Power Level: [powerlevel]"))
 
 /mob/living/carbon/slime/adjustFireLoss(amount)
 	..(-abs(amount)) // Heals them
@@ -186,30 +180,11 @@
 	powerlevel = 0 // oh no, the power!
 	..()
 
-/mob/living/carbon/slime/ex_act(severity)
-	..()
-
-	var/b_loss = null
-	var/f_loss = null
-	switch (severity)
-		if (1)
-			qdel(src)
-			return
-
-		if (2)
-
-			b_loss += 60
-			f_loss += 60
-
-
-		if(3)
-			b_loss += 30
-
-	adjustBruteLoss(b_loss)
-	adjustFireLoss(f_loss)
-
+/mob/living/carbon/slime/explosion_act(target_power, explosion_handler/handler)
+	adjustBruteLoss(round(target_power))
+	adjustFireLoss(round(target_power))
 	updatehealth()
-
+	return 0
 
 /mob/living/carbon/slime/u_equip(obj/item/W as obj)
 	return

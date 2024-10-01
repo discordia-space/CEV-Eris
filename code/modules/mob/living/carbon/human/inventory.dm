@@ -11,10 +11,23 @@ This saves us from having to call add_fingerprint() any time something is put in
 	if(!I)
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
 		return
+
+
+	var/target_slot = get_quick_slot(I)
+	if(I.pre_equip(usr, target_slot))
+		return
+
+	if((get_preference_value(/datum/client_preference/equip_open_inventory) == GLOB.PREF_YES) && s_active)
+		s_active.attackby(I, src)
+
+	if(!I.try_transfer(target_slot, usr))
+		quick_equip_storage(I)
+	/*
 	if(!equip_to_appropriate_slot(I))
 		to_chat(src, SPAN_WARNING("You are unable to equip that to your person."))
 		if(quick_equip_storage(I))
 			return
+	*/
 
 /mob/living/carbon/human/verb/belt_equip()
 	set name = "belt-equip"
@@ -42,6 +55,11 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
 	return
+
+/mob/living/carbon/human/proc/get_quick_slot(obj/item/I)
+	for(var/slot in slot_equipment_priority)
+		if(can_equip(I, slot, TRUE, FALSE, FALSE))
+			return slot
 
 
 /mob/living/carbon/human/verb/bag_equip()
@@ -235,7 +253,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_hand)
 			return BP_R_ARM
 
-/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1)
+/mob/living/carbon/human/equip_to_slot(obj/item/W, slot, redraw_mob = 1, domove = TRUE)
 	SEND_SIGNAL_OLD(src, COMSING_HUMAN_EQUITP, W)
 	switch(slot)
 		if(slot_in_backpack)
@@ -250,7 +268,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 		else
 			legacy_equip_to_slot(W, slot, redraw_mob)
 
-			W.forceMove(src)
+			if(domove)
+				W.forceMove(src)
 			W.equipped(src, slot)
 			W.update_wear_icon(redraw_mob)
 			W.screen_loc = find_inv_position(slot)
@@ -337,11 +356,15 @@ This saves us from having to call add_fingerprint() any time something is put in
 			src.r_store = W
 		if(slot_s_store)
 			src.s_store = W
+		if(slot_accessory_buffer)
+			if(src.wear_suit)
+				src.wear_suit.attackby(W, src)
+			return FALSE
 		else
 			to_chat(src, SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]"))
 			return
 
-	return 1
+	return TRUE
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user)

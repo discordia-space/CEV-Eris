@@ -200,6 +200,7 @@
 	var/list/target_procs = (procs[target] ||= list())
 	var/list/lookup = (target.comp_lookup ||= list())
 
+
 	if(!override && target_procs[signal_type])
 		var/override_message = "[signal_type] overridden. Use override = TRUE to suppress this warning.\nTarget: [target] ([target.type]) Proc: [proctype]"
 		//log_signal(override_message)
@@ -221,6 +222,24 @@
 /datum/proc/RegisterSignals(datum/target, list/signal_types, proctype, override = FALSE)
 	for (var/signal_type in signal_types)
 		RegisterSignal(target, signal_type, proctype, override)
+
+/// Checks if we already are registered onto the object with said proc on said signal
+/datum/proc/IsRegistered(datum/target, signal_type, proc_type)
+	// Could just not exist
+	if(length(target.comp_lookup))
+		// Could be stored as a reference directly
+		if(islist(target.comp_lookup[signal_type]))
+			// Could be a empty length list thats been leftover
+			if(length(target.comp_lookup[signal_type]))
+				var/list/listRef = target.comp_lookup[signal_type]
+				if(listRef.Find(src))
+					if(signal_procs[target][signal_type] == proc_type)
+						return TRUE
+		// If not a list , must be a single reference or null
+		else if(target.comp_lookup[signal_type] == src)
+			if(signal_procs[target][signal_type] == proc_type)
+				return TRUE
+	return FALSE
 
 /**
  * Stop listening to a given signal from target

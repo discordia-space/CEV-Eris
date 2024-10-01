@@ -17,6 +17,8 @@
 	siemens_coefficient = 3 //conductive
 	darksight = 3
 
+	injury_type =  INJURY_TYPE_HOMOGENOUS
+
 	blood_color = "#05FF9B"
 	flesh_color = "#05FFFB"
 
@@ -24,7 +26,7 @@
 	death_message = "rapidly loses cohesion, splattering across the ground..."
 
 	has_process = list(
-		BP_BRAIN = /obj/item/organ/internal/brain/slime
+		BP_BRAIN = /obj/item/organ/internal/vital/brain/slime
 		)
 
 	breath_type = null
@@ -67,14 +69,18 @@
 	if(!missing_limb_tag)
 		to_chat(user, "You don't have any limbs to replace!")
 		return
+	if(nutrition < 100)
+		to_chat(user, "You do not have enough nutrition to regenerate a limb")
+		return
+
 	if(user.species.has_limbs.Find(missing_limb_tag))
 		var/stump_to_delete = organs_by_name[missing_limb_tag]
 		if(stump_to_delete)
 			qdel(stump_to_delete)
-		user.adjustNutrition(-50)
+		user.adjustNutrition(-100)
 		var/datum/organ_description/OD = species.has_limbs[missing_limb_tag]
 		OD.create_organ(src)
-		to_chat(user, "You regenerate your [missing_limb_tag]")
+		to_chat(user, "You regenerate your [OD.name]")
 
 /datum/species/slime/tainted
 	name = SPECIES_TAINTED

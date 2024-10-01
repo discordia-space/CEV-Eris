@@ -11,7 +11,6 @@
 	var/frequency = 1
 	hitscan = 1
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
-	style_damage = 30 //hitscan, light speed projectiles? Be glad its easier to dodge than a revolver.
 	recoil = 1 // Even less than self-propelled bullets
 
 	muzzle_type = /obj/effect/projectile/laser/muzzle
@@ -30,22 +29,39 @@
 		return 1
 	return 0
 
+
+/// Only used by the mech plasmacutter ofr now
 /obj/item/projectile/beam/cutter
 	name = "cutting beam"
 	icon_state = "plasmablaster"
 	damage_types = list(BRUTE = 25)
 	armor_divisor = 1.2
 	pass_flags = PASSTABLE
+	penetrating = 5
+	/// start with 1 extra since somehow 5 becomes 6
+	var/rocks_pierced = 1
+	var/pierce_max = 5
 
 	muzzle_type = /obj/effect/projectile/laser/plasmacutter/muzzle
 	tracer_type = /obj/effect/projectile/laser/plasmacutter/tracer
 	impact_type = /obj/effect/projectile/laser/plasmacutter/impact
 
 /obj/item/projectile/beam/cutter/on_impact(var/atom/A)
-	if(istype(A, /turf/simulated/mineral))
-		var/turf/simulated/mineral/M = A
-		M.GetDrilled(1)
+	if(istype(A, /turf/mineral))
+		var/turf/mineral/M = A
+		M.GetDrilled(5)
 	.=..()
+
+/obj/item/projectile/beam/cutter/check_penetrate(atom/A)
+	. = ..()
+	if(.)
+		return .
+	if(istype(A, /turf/mineral) && rocks_pierced < pierce_max)
+		on_impact(A)
+		rocks_pierced++
+		return TRUE
+	else
+		return FALSE
 
 /obj/item/projectile/beam/practice
 	name = "laser"
@@ -63,7 +79,6 @@
 	icon_state = "heavylaser"
 	damage_types = list(BURN = 50)
 	armor_divisor = 1
-	style_damage = 60 //it's a slow firing beam weapon, this is probably fair.
 	recoil = 3
 
 	muzzle_type = /obj/effect/projectile/laser_heavy/muzzle
@@ -77,7 +92,6 @@
 	var/contractor = FALSE //Check if it's a contractor psychic beam
 	damage_types = list(PSY = 30)
 	armor_divisor = ARMOR_PEN_MAX
-	style_damage = 60 //It's magic brain beams, deal with it.
 	recoil = 2
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
@@ -124,7 +138,7 @@
 
 /obj/item/projectile/beam/pulse/on_hit(atom/target)
 	if(isturf(target))
-		target.ex_act(2)
+		target.explosion_act(100, null)
 	..()
 
 /obj/item/projectile/beam/emitter
@@ -195,7 +209,6 @@
 	damage_types = list(BURN = 60)
 	armor_divisor = 2
 	stutter = 3
-	style_damage = 70 //it's the laser AMR.
 	recoil = 10
 
 	muzzle_type = /obj/effect/projectile/xray/muzzle

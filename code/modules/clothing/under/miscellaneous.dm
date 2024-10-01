@@ -143,8 +143,8 @@
 
 
 /obj/item/clothing/under/assistantformal
-	name = "assistant's formal uniform"
-	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
+	name = "formal tuxedo"
+	desc = "A spiffy tuxedo. Perfect for a ball, or just a fancy night out with the boys."
 	icon_state = "assistant_formal"
 	item_state = "gy_suit"
 
@@ -157,8 +157,8 @@
 
 
 /obj/item/clothing/under/blazer
-	name = "blue blazer"
-	desc = "A bold but yet conservative outfit, red corduroys, navy blazer and a tie."
+	name = "black tailcoat"
+	desc = "A bold, yet conservative outfit; red slacks and almost Victorian style tailcoat."
 	icon_state = "blue_blazer"
 	item_state = "blue_blazer"
 
@@ -203,6 +203,18 @@ obj/item/clothing/under/leisure/pullover
 	desc = "Brown pullover with indeterminable pattern."
 	icon_state = "pullover"
 	item_state = "pullover"
+
+/obj/item/clothing/under/leisure/joe
+	name = "red casual suit"
+	desc = "A salmon colored casual suit for office workers."
+	icon_state = "joe"
+	item_state = "joe"
+
+/obj/item/clothing/under/leisure/casual/blue
+	name = "blue casual suit"
+	desc = "An qqua colored casual suit for office workers."
+	icon_state = "business_blue"
+	item_state = "business_blue"
 
 obj/item/clothing/under/neon
 	name = "green neon tracksuit"
@@ -271,11 +283,11 @@ obj/item/clothing/under/genericr
 	item_state = "gnome"
 
 /obj/item/clothing/under/tuxedo
-	name = "tuxedo"
-	desc = "A very stylish black tuxedo with a necktie. Must have for all crime-boys."
+	name = "formal suit"
+	desc = "A very stylish black suit with a necktie. Must have for all crime-boys."
 	icon_state = "tuxedo"
 
-//stylish vendor clothes
+//stylish vendor clothes (old)
 /obj/item/clothing/under/white
 	name = "ivory white outfit"
 	desc = "White suit, white pants and a white tie."
@@ -431,7 +443,7 @@ obj/item/clothing/under/genericr
 		melee = 15,
 		bullet = 18,
 		energy = 15,
-		bomb = 75,
+		bomb = 300,
 		bio = 100,
 		rad = 30
 	)

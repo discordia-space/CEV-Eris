@@ -69,9 +69,13 @@
 	//	return 1
 
 	var/area/A = get_area(src)
+
 	if(A)
+		if(src.shipside_only && !(A in ship_areas))			// some machinery is only destined to work on Eris (excelsior)
+			return FALSE
 		return A.powered(chan)			// return power status of the area
-	return 0
+	return FALSE
+
 
 // increment the power usage stats for an area
 /obj/machinery/proc/use_power(var/amount, var/chan = power_channel) // defaults to power_channel
@@ -96,8 +100,8 @@
 	if(powered(power_channel))
 		stat &= ~NOPOWER
 	else
-
 		stat |= NOPOWER
+	update_power_use()
 	return
 
 // connect the machine to a powernet if a node cable is present on the turf
@@ -130,7 +134,7 @@
 
 		var/turf/T = user.loc
 
-		if(!T.is_plating() || !istype(T, /turf/simulated/floor))
+		if(!T.is_plating() || !istype(T, /turf/floor))
 			return
 
 		if(get_dist(src, user) > 1)

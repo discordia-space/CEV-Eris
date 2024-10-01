@@ -86,6 +86,8 @@
 
 #define isgun(A) istype(A, /obj/item/gun)
 
+#define ismodulargun(A) istype(A, /obj/item/gun/projectile/automatic/modular)
+
 #define istool(A) istype(A, /obj/item/tool)
 
 #define isCoil(A) istype(A, /obj/item/stack/cable_coil)
@@ -95,3 +97,16 @@
 #define ismachinery(A) (istype(A, /obj/machinery))
 
 #define isProjectile(A) (istype(A, /obj/item/projectile))
+
+// Assembly specific checks
+#define isassembly(A) (istype(A, /obj/item/device/assembly))
+
+#define isigniter(A) (istype(A, /obj/item/device/assembly/igniter))
+
+#define isinfrared(A) (istype(A, /obj/item/device/assembly/infra))
+
+#define isproxsensor(A) (istype(A, /obj/item/device/assembly/prox_sensor))
+
+#define issignaler(A) (istype(A, /obj/item/device/assembly/signaler))
+
+#define istimer(A) (istype(A, /obj/item/device/assembly/timer))

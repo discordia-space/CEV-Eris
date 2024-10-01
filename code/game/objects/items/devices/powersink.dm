@@ -26,12 +26,9 @@
 	var/datum/powernet/PN			// Our powernet
 	var/obj/structure/cable/attached		// the attached cable
 
-/*
-/obj/item/device/powersink/Destroy()
-	if(mode == 2)
-		STOP_PROCESSING_POWER_OBJECT(src)
+/obj/item/device/powersink/Initialize(mapload)
 	. = ..()
-*/
+
 /obj/item/device/powersink/attackby(obj/item/I, mob/user)
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
@@ -123,7 +120,7 @@
 	if(power_drained > max_power * 0.95)
 		playsound(src, 'sound/effects/screech.ogg', 100, 1, 1)
 	if(power_drained >= max_power)
-		explosion(src.loc, 3,6,9,12)
+		explosion(get_turf(src), 1500, 100)
 		qdel(src)
 		return
 	if(attached && attached.powernet)

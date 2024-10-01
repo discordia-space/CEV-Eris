@@ -72,14 +72,13 @@
 				qdel(HH)
 
 			state = WASHSTATE_FULLCLOSEDDOOR
-			use_power = IDLE_POWER_USE
+			set_power_use(IDLE_POWER_USE)
 			update_icon()
 
-/obj/machinery/washing_machine/examine(mob/user)
-	..()
-	if(tick > 0 && (state ==WASHSTATE_RUNNING))
-		to_chat(user, SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle."))
-
+/obj/machinery/washing_machine/examine(mob/user, extra_description = "")
+	if(tick > 0 && (state == WASHSTATE_RUNNING))
+		extra_description += SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle.")
+	..(user, extra_description)
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
@@ -98,7 +97,7 @@
 	tick = WASH_BASETIME
 	for(var/atom/A in contents)
 		tick += WASH_ADDTIME
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 
 /obj/machinery/washing_machine/verb/climb_out()

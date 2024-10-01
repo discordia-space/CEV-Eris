@@ -97,20 +97,10 @@
 		if(isUV || issuperUV)
 			add_overlay("working")
 
-/obj/machinery/suit_storage_unit/ex_act(severity)
-	switch(severity)
-		if(1)
-			if(prob(50))
-				dump_everything() //So suits dont survive all the time
-			qdel(src)
-			return
-		if(2)
-			if(prob(50))
-				dump_everything()
-				qdel(src)
-			return
-		else
-			return
+/obj/machinery/suit_storage_unit/take_damage(amount)
+	if(amount > health && amount - health < 100)
+		dump_everything()
+	. = ..()
 
 /obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
 	var/dat
@@ -268,7 +258,7 @@
 	if(OCCUPANT && !locked)
 		locked = TRUE //Let's lock it for good measure
 
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 
 	update_icon()
 	updateUsrDialog()
@@ -299,7 +289,7 @@
 		locked = FALSE
 		eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
 
-	use_power = IDLE_POWER_USE
+	set_power_use(IDLE_POWER_USE)
 	isUV = FALSE //Cycle ends
 	update_icon()
 	updateUsrDialog()

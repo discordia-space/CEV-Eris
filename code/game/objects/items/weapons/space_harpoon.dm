@@ -5,6 +5,7 @@
 	name = "NT BSD \"Harpoon\""
 	desc = "One of the last things developed by old Nanotrasen, this harpoon serves as a tool for short and accurate teleportation of cargo and personnel through bluespace."
 	icon_state = "harpoon-1"
+	item_state = "harpoon-1"
 	icon = 'icons/obj/items.dmi'
 	w_class = ITEM_SIZE_NORMAL
 	throw_speed = 4
@@ -121,9 +122,9 @@
 /obj/item/bluespace_harpoon/update_icon()
 	icon_state = "harpoon-[mode]"
 
-/obj/item/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
-	..(user, dist)
-	to_chat(user, SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"]."))
+/obj/item/bluespace_harpoon/examine(mob/user, extra_description = "")
+	extra_description += SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"].")
+	..(user, extra_description)
 
 /obj/item/bluespace_harpoon/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))

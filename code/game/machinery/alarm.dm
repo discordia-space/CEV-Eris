@@ -1,11 +1,3 @@
-//all air alarms in area are connected via magic
-/area
-	var/obj/machinery/alarm/master_air_alarm
-	var/list/air_vent_names = list()
-	var/list/air_scrub_names = list()
-	var/list/air_vent_info = list()
-	var/list/air_scrub_info = list()
-
 /obj/machinery/alarm
 	name = "alarm"
 	icon = 'icons/obj/monitors.dmi'
@@ -131,7 +123,7 @@
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
 		return
 
-	var/turf/simulated/location = loc
+	var/turf/location = loc
 	if(!istype(location))
 		return//returns if loc is not simulated
 
@@ -173,14 +165,14 @@
 	if (!regulating_temperature)
 		//check for when we should start adjusting temperature
 		if(get_danger_level(environment.temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) > 2)
-			update_use_power(2)
+			set_power_use(ACTIVE_POWER_USE)
 			regulating_temperature = 1
 			visible_message("\The [src] clicks as it starts up.",\
 			"You hear a click and a faint electronic hum.")
 	else
 		//check for when we should stop adjusting temperature
 		if (!get_danger_level(environment.temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) <= 0.5)
-			update_use_power(1)
+			set_power_use(IDLE_POWER_USE)
 			regulating_temperature = 0
 			visible_message("\The [src] clicks quietly.",\
 			"You hear a click as a faint electronic humming stops.")
@@ -234,7 +226,7 @@
 
 // Returns whether this air alarm thinks there is a breach, given the sensors that are available to it.
 /obj/machinery/alarm/proc/breach_detected()
-	var/turf/simulated/location = loc
+	var/turf/location = loc
 
 	if(!istype(location))
 		return 0
@@ -876,12 +868,12 @@
 	spawn(rand(0,15))
 		update_icon()
 
-/obj/machinery/alarm/examine(mob/user)
-	..(user)
-	if (buildstage < 2)
-		to_chat(user, "It is not wired.")
-	if (buildstage < 1)
-		to_chat(user, "The circuit is missing.")
+/obj/machinery/alarm/examine(mob/user, extra_description = "")
+	if(buildstage < 2)
+		extra_description += "It is not wired."
+	if(buildstage < 1)
+		extra_description += "The circuit is missing."
+	..(user, extra_description)
 
 /obj/machinery/alarm/proc/toggle_lock(mob/user)
 	if(stat & (NOPOWER|BROKEN))

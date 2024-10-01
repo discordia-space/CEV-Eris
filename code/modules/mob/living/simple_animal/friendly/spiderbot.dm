@@ -46,8 +46,8 @@
 	..()
 	add_language(LANGUAGE_COMMON)
 	default_language = all_languages[LANGUAGE_COMMON]
-	verbs |= /mob/living/proc/ventcrawl
-	verbs |= /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
 /mob/living/simple_animal/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
@@ -149,7 +149,7 @@
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	src.visible_message(SPAN_DANGER("\The [src] makes an odd warbling noise, fizzles, and explodes!"))
-	explosion(get_turf(loc), -1, -1, 3, 5)
+	explosion(get_turf(src), 300, 60)
 	eject_brain()
 	death()
 
@@ -273,10 +273,10 @@
 	to_chat(src, SPAN_WARNING("There is nothing of interest to take."))
 	return 0
 
-/mob/living/simple_animal/spiderbot/examine(mob/user)
-	..(user)
-	if(src.held_item)
-		to_chat(user, "It is carrying \icon[src.held_item] \a [src.held_item].")
+/mob/living/simple_animal/spiderbot/examine(mob/user, extra_description = "")
+	if(held_item)
+		extra_description += "\nIt is carrying \icon[src.held_item] \a [src.held_item]."
+	..(user, extra_description)
 
 /mob/living/simple_animal/spiderbot/cannot_use_vents()
 	return

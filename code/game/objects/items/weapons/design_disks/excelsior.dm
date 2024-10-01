@@ -28,6 +28,7 @@
 		/datum/design/research/item/part/subspace_transmitter,
 		/datum/design/autolathe/part/igniter,						//regular parts
 		/datum/design/autolathe/part/signaler,
+		/datum/design/autolathe/part/door_signaler,
 		/datum/design/autolathe/part/sensor_prox,
 		/datum/design/autolathe/part/consolescreen,
 		/datum/design/autolathe/cell/large/excelsior,				//power cells
@@ -57,6 +58,7 @@
 		/datum/design/autolathe/gun/boltgun,
 		/datum/design/autolathe/gun/ak47,
 		/datum/design/autolathe/gun/hmg_maxim,
+		/datum/design/autolathe/gun/ks23,
 		/datum/design/autolathe/ammo/magazine_pistol,				//makarov ammo
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/pistol_ammobox,
@@ -77,8 +79,15 @@
 		/datum/design/autolathe/ammo/maxim,							//Maxim ammo
 		/datum/design/autolathe/ammo/maxim/rubber,
 		/datum/design/autolathe/ammo/lrifle_ammobox,
+		/datum/design/autolathe/ammo/shotgun,
+		/datum/design/autolathe/ammo/shotgun_beanbag,
+		/datum/design/autolathe/ammo/shotgun_pellet,
 		/datum/design/autolathe/sec/silencer,						//misc
+		/datum/design/autolathe/clothing/excel_armor,
+		/datum/design/autolathe/clothing/excel_boots,
+		/datum/design/autolathe/clothing/excel_helmet,
 		/datum/design/autolathe/clothing/excelsior_armor,
+		/datum/design/autolathe/clothing/excel_beret,
 		/datum/design/autolathe/device/excelbaton,					//security
 		/datum/design/autolathe/device/excelsiormine,
 		/datum/design/autolathe/sec/beartrap,
@@ -177,4 +186,18 @@
 		/datum/design/autolathe/gun/hmg_maxim,
 		/datum/design/autolathe/ammo/maxim,							//Maxim ammo
 		/datum/design/autolathe/ammo/maxim/rubber,
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/excelsior/ks
+	disk_name = "Excelsior - KS-23 SG"
+	desc = "The back has a machine etching: \"Riot Control!.\""
+	icon_state = "excelsior"
+	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
+	rarity_value = 90
+	license = -1
+	designs = list(
+		/datum/design/autolathe/gun/ks23,
+		/datum/design/autolathe/ammo/shotgun,
+		/datum/design/autolathe/ammo/shotgun_beanbag,
+		/datum/design/autolathe/ammo/shotgun_pellet
 	)

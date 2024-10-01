@@ -33,7 +33,8 @@
 	var/tray_light = 1         // Supplied lighting.
 
 	// Mechanical concerns.
-	var/health = 0             // Plant health.
+	health = 0             // Plant health.
+	maxHealth = 0
 	var/lastproduce = 0        // Last time tray was harvested
 	var/lastcycle = 0          // Cycle timing/tracking var.
 	var/cycledelay = 150       // Delay per cycle.
@@ -57,7 +58,8 @@
 		"pacid" =           3,
 		"plantbgone" =      3,
 		"cryoxadone" =     -3,
-		"radium" =          2
+		"radium" =          2,
+		"biomatter" =      -1
 		)
 	var/global/list/nutrient_reagents = list(
 		"milk" =            0.1,
@@ -87,7 +89,8 @@
 	var/global/list/pestkiller_reagents = list(
 		"sugar" =           2,
 		"diethylamine" =   -2,
-		"adminordrazine" = -5
+		"adminordrazine" = -5,
+		"biomatter" =      -1
 		)
 	var/global/list/water_reagents = list(
 		"water" =           1,
@@ -98,6 +101,7 @@
 		"phosphorus" =     -0.5,
 		"water" =           1,
 		"sodawater" =       1,
+		"biomatter" =		0.5
 		)
 
 	// Beneficial reagents also have values for modifying yield_mod and mut_mod (in that order).
@@ -117,18 +121,21 @@
 		"radium" =         list( -1.5,  0,   0.2),
 		"adminordrazine" = list(  1,    1,   1  ),
 		"robustharvest" =  list(  0,    0.2, 0  ),
-		"left4zed" =       list(  0,    0,   0.2)
+		"left4zed" =       list(  0,    0,   0.2),
+		"biomatter" =      list(  0.1,  0.1, 0.1)
 		)
 
 	// Mutagen list specifies minimum value for the mutation to take place, rather
 	// than a bound as the lists above specify.
 	var/global/list/mutagenic_reagents = list(
-		"radium" =  8,
-		"mutagen" = 15
+		"radium" =    8,
+		"mutagen" =   15,
+		"biomatter" = 4
 		)
 
 	var/global/list/potency_reagents = list(
-		"diethylamine" =    1
+		"diethylamine" =    1,
+		"biomatter" =       0.5
 	)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick()
@@ -574,53 +581,52 @@
 	else if(dead)
 		remove_dead(user)
 
-/obj/machinery/portable_atmospherics/hydroponics/examine()
-	..()
-	if(!seed)
-		to_chat(usr, "[src] is empty.")
-		return
+/obj/machinery/portable_atmospherics/hydroponics/examine(mob/user, extra_description = "")
+	if(seed)
+		extra_description += SPAN_NOTICE("[seed.display_name] are growing here.")
 
-	to_chat(usr, SPAN_NOTICE("[seed.display_name] are growing here."))
+		if(get_dist(user, src) < 2)
+			extra_description += "Water: [round(waterlevel,0.1)]/100"
+			extra_description += "Nutrient: [round(nutrilevel,0.1)]/10"
 
-	if(!Adjacent(usr))
-		return
+		if(weedlevel >= 5)
+			extra_description += "\The [src] is <span class='danger'>infested with weeds</span>!"
+		if(pestlevel >= 5)
+			extra_description += "\The [src] is <span class='danger'>infested with tiny worms</span>!"
 
-	to_chat(usr, "Water: [round(waterlevel,0.1)]/100")
-	to_chat(usr, "Nutrient: [round(nutrilevel,0.1)]/10")
+		if(dead)
+			extra_description += SPAN_DANGER("The plant is dead.")
+		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
+			extra_description += "\nThe plant looks [SPAN_DANGER("unhealthy")]."
 
-	if(weedlevel >= 5)
-		to_chat(usr, "\The [src] is <span class='danger'>infested with weeds</span>!")
-	if(pestlevel >= 5)
-		to_chat(usr, "\The [src] is <span class='danger'>infested with tiny worms</span>!")
+		if(mechanical)
+			var/turf/T = loc
+			var/datum/gas_mixture/environment
 
-	if(dead)
-		to_chat(usr, SPAN_DANGER("The plant is dead."))
-	else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
-		to_chat(usr, "The plant looks <span class='danger'>unhealthy</span>.")
+			if(closed_system && (connected_port || holding))
+				environment = air_contents
 
-	if(mechanical)
-		var/turf/T = loc
-		var/datum/gas_mixture/environment
+			if(!environment)
+				if(istype(T))
+					environment = T.return_air()
 
-		if(closed_system && (connected_port || holding))
-			environment = air_contents
+			if(!environment) //We're in a crate or nullspace, bail out.
+				return
 
-		if(!environment)
-			if(istype(T))
-				environment = T.return_air()
+			var/light_string
+			if(closed_system && mechanical)
+				light_string = "that the internal lights are set to [tray_light] lumens"
+			else
+				var/light_available
+				light_available = round((T.get_lumcount()*10)-5)
+				light_string = "a light level of [light_available] lumens"
 
-		if(!environment) //We're in a crate or nullspace, bail out.
-			return
+			extra_description += "\nThe tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K."
+	else
+		extra_description += "[src] is empty."
+	
+	..(user, extra_description)
 
-		var/light_string
-		if(closed_system && mechanical)
-			light_string = "that the internal lights are set to [tray_light] lumens"
-		else
-			var/light_available
-			light_available = round((T.get_lumcount()*10)-5)
-			light_string = "a light level of [light_available] lumens"
-
-		to_chat(usr, "The tray's sensor suite is reporting [light_string] and a temperature of [environment.temperature]K.")
 
 /obj/machinery/portable_atmospherics/hydroponics/verb/close_lid_verb()
 	set name = "Toggle Tray Lid"

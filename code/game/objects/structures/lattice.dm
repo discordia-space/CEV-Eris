@@ -13,7 +13,7 @@
 /obj/structure/lattice/Initialize()
 	. = ..()
 ///// Z-Level Stuff
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/floor/hull) ||  istype(src.loc, /turf/simulated/floor/exoplanet))) // || istype(src.loc, /turf/simulated/floor/open)
+	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/open) || istype(src.loc, /turf/floor/hull) ||  istype(src.loc, /turf/floor/exoplanet))) // || istype(src.loc, /turf/floor/open)
 ///// Z-Level Stuff
 		return INITIALIZE_HINT_QDEL
 	for(var/obj/structure/lattice/LAT in src.loc)
@@ -35,19 +35,6 @@
 			L = locate(/obj/structure/lattice, get_step(src, dir))
 			L.updateOverlays(src.loc)
 	. = ..()
-
-/obj/structure/lattice/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-			return
-		if(2)
-			qdel(src)
-			return
-		if(3)
-			return
-		else
-	return
 
 /obj/structure/lattice/attackby(obj/item/I, mob/user)
 	if(I.get_tool_type(user, list(QUALITY_WELDING), src))
@@ -87,12 +74,12 @@
 			T = get_step(src, direction)
 			if(locate(/obj/structure/lattice, T) || locate(/obj/structure/catwalk, T))
 				dir_sum += direction
-			else if(!istype(T, /turf/space) && !istype(T, /turf/simulated/open))
+			else if(!istype(T, /turf/space) && !istype(T, /turf/open))
 				dir_sum += direction
 
 		icon_state = "lattice[dir_sum]"
 		return
 
 
-/obj/structure/lattice/can_prevent_fall()
-	return TRUE
+/obj/structure/lattice/can_prevent_fall(above)
+	return above ? FALSE : TRUE

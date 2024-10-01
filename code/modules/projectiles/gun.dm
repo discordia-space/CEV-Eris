@@ -12,7 +12,7 @@
 		slot_back_str   = "back",
 		slot_s_store_str= "onsuit",
 		)
-	flags = CONDUCT
+	flags = CONDUCT|MOVE_NOTIFY
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_NORMAL
@@ -29,16 +29,19 @@
 	rarity_value = 5
 	spawn_frequency = 10
 
+	health = 600
+	maxHealth = 600
+
 	var/list/custom_default = list() // used to preserve changes to stats past refresh_upgrades proccing
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
-	var/style_damage_multiplier = 1 // multiplies style damage of projectiles fired from this gun
+	var/halloss_multiplier = 1 //Multiplies agony damage of projectiles fired from this gun
 	var/penetration_multiplier = 0 //Sum of armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
 	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
-	var/move_delay = 1
+	var/move_delay = 0
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/rigged = FALSE
 	var/fire_sound_text = "gunshot"
@@ -46,8 +49,7 @@
 	var/datum/recoil/recoil // Reference to the recoil datum in datum/recoil.dm
 	var/list/init_recoil = list(0, 0, 0) // For updating weapon mods
 
-	var/braced = FALSE //for gun_brace proc.
-	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
+	var/braceable = 1 // Offset reduction based on whether the gun is braced
 
 	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
 
@@ -93,7 +95,6 @@
 	var/twohanded = FALSE //If TRUE, gun can only be fired when wileded
 	var/recentwield = 0 // to prevent spammage
 	var/proj_step_multiplier = 1
-	var/proj_agony_multiplier = 1
 	var/list/proj_damage_adjust = list() //What additional damage do we give to the bullet. Type(string) -> Amount(int), damage is divided for pellets
 	var/darkness_view = 0
 	var/vision_flags = 0
@@ -104,6 +105,8 @@
 	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
 	var/serial_type = "" // If there is a serial type, the gun will add a number that will show on examine
 
+	var/obj/item/device/lighting/toggleable/flashlight/flashlight_attachment
+
 
 /obj/item/gun/wield(mob/user)
 	if(!wield_delay)
@@ -112,12 +115,13 @@
 	var/calculated_delay = wield_delay
 	if(ishuman(user))
 		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
-	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
+	if(calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
 		..()
-	else if (calculated_delay <= 0)
+	else if(calculated_delay <= 0)
 		..()
 
 
+// Modular guns overwrite this
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
@@ -147,6 +151,24 @@
 						amount--
 				qdel(src)
 
+	if(flashlight_attachment)
+		if(istype(I, flashlight_attachment.suitable_cell))
+			if(flashlight_attachment.cell) // Replace existing power cell
+				if(replace_item(flashlight_attachment.cell, I, user))
+					flashlight_attachment.cell = I
+			else if(flashlight_attachment.insert_item(I, user)) // Add a missing power cell
+				flashlight_attachment.cell = I
+
+	else if(istype(I, /obj/item/device/lighting/toggleable/flashlight/seclite))
+		if(!user.unEquip(I))
+			return
+		flashlight_attachment = I
+		I.forceMove(src)
+		playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
+		to_chat(user, SPAN_NOTICE("You attach \the [I] to \the [src]."))
+		verbs += /obj/item/gun/proc/remove_flashlight
+		verbs += /obj/item/gun/proc/toggle_flashlight
+
 
 /obj/item/gun/get_item_cost(export)
 	if(export)
@@ -163,13 +185,14 @@
 	initial_zoom_factors = zoom_factors.Copy()
 	. = ..()
 	initialize_firemodes()
+	initialize_firemode_actions()
 	initialize_scope()
 	//Properly initialize the default firing mode
-	if (firemodes.len)
+	if(LAZYLEN(firemodes))
 		set_firemode(sel_mode)
 
 	if(!restrict_safety)
-		verbs += /obj/item/gun/proc/toggle_safety_verb//addint it to all guns
+		verbs += /obj/item/gun/proc/toggle_safety_verb  //addint it to all guns
 
 		var/obj/screen/item_action/action = new /obj/screen/item_action/top_bar/gun/safety
 		action.owner = src
@@ -201,9 +224,15 @@
 		if(!islist(i))
 			qdel(i)
 	firemodes = null
-	return ..()
+	if(isliving(loc))
+		var/mob/living/L = loc
+		L.remove_cursor()
+	if(flashlight_attachment)
+		flashlight_attachment.forceMove(get_turf(src))
+		flashlight_attachment = null
+	..()
 
-/obj/item/gun/proc/set_item_state(state, hands = FALSE, back = FALSE, onsuit = FALSE)
+/obj/item/gun/proc/set_item_state(state, hands = TRUE, back = FALSE, onsuit = FALSE)
 	var/wield_state
 	if(wielded_item_state)
 		wield_state = wielded_item_state
@@ -213,6 +242,7 @@
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
+
 		else
 			item_state_slots[slot_l_hand_str] = "lefthand"  + state
 			item_state_slots[slot_r_hand_str] = "righthand" + state
@@ -220,13 +250,13 @@
 
 	var/carry_state = inversed_carry
 	if(back && !carry_state)
-		item_state_slots[slot_back_str]   = "back"      + state
+		item_state_slots[slot_back_str]   = "back"		+ state
 	if(back && carry_state)
-		item_state_slots[slot_back_str]   = "onsuit"      + state
+		item_state_slots[slot_back_str]   = "onsuit"	+ state
 	if(onsuit && !carry_state)
 		item_state_slots[slot_s_store_str]= "onsuit"    + state
 	if(onsuit && carry_state)
-		item_state_slots[slot_s_store_str]= "back"    + state
+		item_state_slots[slot_s_store_str]= "back"		+ state
 
 /obj/item/gun/update_icon()
 	if(wielded_item_state)
@@ -238,7 +268,7 @@
 				item_state_slots[slot_l_hand_str] = "lefthand"
 				item_state_slots[slot_r_hand_str] = "righthand"
 		else//Otherwise we can just pull from the generic left and right hand icons.
-			if(wielded)
+			if(wielded_icon)
 				item_state_slots[slot_l_hand_str] = wielded_item_state
 				item_state_slots[slot_r_hand_str] = wielded_item_state
 			else
@@ -299,7 +329,7 @@
 					)
 				user.drop_item()
 			if(rigged > TRUE)
-				explosion(get_turf(src), 1, 2, 3, 3)
+				explosion(get_turf(src), 250, 100)
 				qdel(src)
 			return FALSE
 	return TRUE
@@ -307,7 +337,7 @@
 /obj/item/gun/proc/twohanded_check(user)
 	if(twohanded)
 		if(!wielded)
-			if (world.time >= recentwield + 1 SECONDS)
+			if(world.time >= recentwield + 1 SECONDS)
 				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
 				recentwield = world.time
 			return FALSE
@@ -325,7 +355,15 @@
 		O.emp_act(severity)
 
 /obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
-	if(adjacent) return //A is adjacent, is the user, or is on the user's person
+	if(adjacent)
+		return //A is adjacent, is the user, or is on the user's person
+
+	if(flashlight_attachment)
+		flashlight_attachment.afterattack(A, user)
+
+	if(!is_held())
+		user.remove_cursor()
+		check_safety_cursor(user)
 
 	var/obj/item/gun/off_hand   //DUAL WIELDING
 	if(ishuman(user) && user.a_intent == "harm")
@@ -352,7 +390,7 @@
 	Fire(A,user,params) //Otherwise, fire normally.
 
 /obj/item/gun/attack(atom/A, mob/living/user, def_zone)
-	if (A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)
+	if(A == user && user.targeted_organ == BP_MOUTH && !mouthshoot)
 		handle_suicide(user)
 	else if(user.a_intent == I_HURT) //point blank shooting
 		Fire(A, user, pointblank=1)
@@ -360,13 +398,12 @@
 		return ..() //Pistolwhippin'
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
-	if(!user || !target) return
-
+	if(!user || !target)
+		return
 	if(world.time < next_fire_time)
-		if (!suppress_delay_warning && world.time % 3) //to prevent spam
+		if(!suppress_delay_warning && world.time % 3) //to prevent spam
 			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
 		return
-
 
 	add_fingerprint(user)
 
@@ -391,8 +428,6 @@
 
 		projectile.multiply_projectile_damage(damage_multiplier)
 
-		projectile.multiply_projectile_style_damage(style_damage_multiplier)
-
 		projectile.add_projectile_penetration(penetration_multiplier)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
@@ -401,7 +436,7 @@
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
-		projectile.multiply_projectile_agony(proj_agony_multiplier)
+		projectile.multiply_projectile_halloss(halloss_multiplier)
 
 		if(istype(projectile, /obj/item/projectile))
 			var/obj/item/projectile/P = projectile
@@ -414,7 +449,7 @@
 			process_point_blank(projectile, user, target)
 
 		//being grabbed reduces accuracy
-		if(user.grabbed_by.len)
+		if(LAZYLEN(user.grabbed_by))
 			grabbed_inaccuracy(projectile, user)
 
 		if(projectile_color)
@@ -440,7 +475,7 @@
 		next_fire_time = world.time + fire_delay < GUN_MINIMUM_FIRETIME ? GUN_MINIMUM_FIRETIME : fire_delay
 		user.setClickCooldown(fire_delay)
 
-	user.set_move_cooldown(move_delay)
+	user.set_move_cooldown(abs(move_delay))
 	if(muzzle_flash)
 		set_light(0)
 
@@ -460,7 +495,7 @@
 
 //called if there was no projectile to shoot
 /obj/item/gun/proc/handle_click_empty(mob/user)
-	if (user)
+	if(user)
 		user.visible_message("*click click*", SPAN_DANGER("*click*"))
 	else
 		src.visible_message("*click click*")
@@ -474,7 +509,7 @@
 		playsound(user, fire_sound_silenced, 15, 1, -5)
 	else
 		playsound(user, fire_sound, 60, 1)
-
+		/*
 		if(reflex)
 			user.visible_message(
 				"<span class='reflex_shoot'><b>\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""] by reflex!</b></span>",
@@ -487,6 +522,7 @@
 				SPAN_WARNING("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
+		*/
 
 		if(muzzle_flash)
 			set_light(muzzle_flash)
@@ -496,13 +532,7 @@
 
 /obj/item/gun/proc/kickback(mob/living/user, obj/item/projectile/P)
 	var/base_recoil = recoil.getRating(RECOIL_BASE)
-	var/brace_recoil = 0
 	var/unwielded_recoil = 0
-
-	if(!braced)
-		brace_recoil = recoil.getRating(RECOIL_TWOHAND)
-	else if(braceable > 1)
-		base_recoil /= 4 // With a bipod, you can negate most of your recoil
 
 	if(!wielded)
 		unwielded_recoil = recoil.getRating(RECOIL_ONEHAND)
@@ -520,20 +550,7 @@
 			if(1.5 to INFINITY)
 				to_chat(user, SPAN_WARNING("You struggle to keep \the [src] on target with just one hand!"))
 
-	else if(brace_recoil)
-		switch(recoil.getRating(RECOIL_BRACE_LEVEL))
-			if(0.6 to 0.8)
-				if(prob(25))
-					to_chat(user, SPAN_WARNING("Your aim wavers slightly."))
-			if(0.8 to 1)
-				if(prob(50))
-					to_chat(user, SPAN_WARNING("Your aim wavers as you fire \the [src] while carrying it."))
-			if(1 to 1.2)
-				to_chat(user, SPAN_WARNING("You have trouble keeping \the [src] on target while carrying it!"))
-			if(1.2 to INFINITY)
-				to_chat(user, SPAN_WARNING("You struggle to keep \the [src] on target while carrying it!"))
-
-	user.handle_recoil(src, (base_recoil + brace_recoil + unwielded_recoil) * P.recoil)
+	user.handle_recoil(src, (base_recoil + unwielded_recoil) * P.recoil)
 
 /obj/item/gun/proc/process_point_blank(obj/item/projectile/P, mob/user, atom/target)
 	if(!istype(P))
@@ -548,7 +565,7 @@
 	//determine multiplier due to the target being grabbed
 	if(ismob(target))
 		var/mob/M = target
-		if(M.grabbed_by.len)
+		if(LAZYLEN(M.grabbed_by))
 			var/grabstate = 0
 			for(var/obj/item/grab/G in M.grabbed_by)
 				grabstate = max(grabstate, G.state)
@@ -577,13 +594,13 @@
 	P.multiply_projectile_accuracy(accuracy_mult)
 
 //does the actual launching of the projectile
-/obj/item/gun/proc/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, var/target_zone, var/params=null)
+/obj/item/gun/proc/process_projectile(obj/item/projectile/P, mob/living/user, atom/target, target_zone, params=null)
 	if(!istype(P))
 		return FALSE //default behaviour only applies to true projectiles
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = user.calculate_offset(init_offset_with_brace())
+	var/offset = user.calculate_offset(init_offset_with_brace(user))
 /*
 	var/remainder = offset % 4
 	offset /= 4
@@ -605,10 +622,15 @@
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
 
 //Support proc for calculate_offset
-/obj/item/gun/proc/init_offset_with_brace()
+/obj/item/gun/proc/init_offset_with_brace(mob/living/user)
 	var/offset = init_offset
-	if(braced)
-		offset -= braceable * 3 // Bipod doubles effect
+
+	var/datum/movement_handler/mob/delay/delay = user.GetMovementHandler(/datum/movement_handler/mob/delay)
+	if(delay && (world.time < delay.next_move))
+		offset += recoil.getRating(RECOIL_TWOHAND)
+	else if(braceable)
+		offset -= braceable // With a bipod, you can negate most of your recoil
+
 	return offset
 
 //Suicide handling.
@@ -629,7 +651,7 @@
 		mouthshoot = FALSE
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
-	if (istype(in_chamber))
+	if(istype(in_chamber))
 		user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
 		if(silenced)
 			playsound(user, fire_sound, 10, 1)
@@ -641,7 +663,7 @@
 			return
 
 		in_chamber.on_hit(M)
-		if (!in_chamber.is_halloss())
+		if(!in_chamber.is_halloss())
 			log_and_message_admins("[key_name(user)] commited suicide using \a [src]")
 			for(var/damage_type in in_chamber.damage_types)
 				var/damage = in_chamber.damage_types[damage_type]*2.5
@@ -658,25 +680,6 @@
 		mouthshoot = FALSE
 		return
 
-/obj/item/gun/proc/gun_brace(mob/living/user, atom/target)
-	if(braceable && !user.is_busy)
-		var/atom/original_loc = user.loc
-		var/brace_direction = get_dir(user, target)
-		user.is_busy = TRUE
-		user.facing_dir = null
-		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
-		braced = TRUE
-		while(user.loc == original_loc && user.dir == brace_direction)
-			sleep(2)
-		to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
-		braced = FALSE
-		user.is_busy = FALSE
-	else
-		if(user.is_busy)
-			to_chat(user, SPAN_NOTICE("You are already bracing your weapon!"))
-		else
-			to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
-
 /obj/item/gun/proc/toggle_scope(mob/living/user, switchzoom = FALSE)
 	//looking through a scope limits your periphereal vision
 	//still, increase the view size by a tiny amount so that sniping isn't too restricted to NSEW
@@ -687,56 +690,56 @@
 	var/zoom_offset = round(world.view * tozoom)
 	var/view_size = round(world.view + tozoom)
 
-	zoom(zoom_offset, view_size, switchzoom)
+	zoom(user, zoom_offset, view_size, switchzoom)
 	check_safety_cursor(user)
 	update_hud_actions()
 
 /obj/item/gun/proc/switch_zoom(mob/living/user)
 	if(!zoom_factors)
 		return null
-	if(zoom_factors.len <= 1)
+	if(LAZYLEN(zoom_factors) <= 1)
 		return null
 //	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
 	active_zoom_factor++
-	if(active_zoom_factor > zoom_factors.len)
+	if(active_zoom_factor > LAZYLEN(zoom_factors))
 		active_zoom_factor = 1
 	refresh_upgrades()
 	toggle_scope(user, TRUE)
 
 
-
-/obj/item/gun/examine(mob/user)
-	..()
-	if(firemodes.len > 1)
+/obj/item/gun/examine(mob/user, extra_description = "")
+	if(LAZYLEN(firemodes) > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		to_chat(user, SPAN_NOTICE("The fire selector is set to [current_mode.name]."))
+		extra_description += SPAN_NOTICE("\nThe fire selector is set to [current_mode.name].")
 
 	if(safety)
-		to_chat(user, SPAN_NOTICE("The safety is on."))
+		extra_description += SPAN_NOTICE("\nThe safety is on.")
 	else
-		to_chat(user, SPAN_NOTICE("The safety is off."))
+		extra_description += SPAN_NOTICE("\nThe safety is off.")
 
 	if(recoil.getRating(RECOIL_TWOHAND) > 0.4)
-		to_chat(user, SPAN_WARNING("This gun needs to be braced against something to be used effectively."))
+		extra_description += SPAN_WARNING("\nThis gun needs to be braced against something to be used effectively.")
 	else if(recoil.getRating(RECOIL_ONEHAND) > 0.6)
-		to_chat(user, SPAN_WARNING("This gun needs to be wielded in both hands to be used most effectively."))
+		extra_description += SPAN_WARNING("\nThis gun needs to be wielded in both hands to be used most effectively.")
 
 	if(in_range(user, src) || isghost(user))
 		if(serial_type)
-			to_chat(user, SPAN_WARNING("There is a serial number on this gun, it reads [serial_type]."))
+			extra_description += SPAN_WARNING("\nThere is a serial number on this gun, it reads [serial_type].")
 		else if(isnull(serial_type))
-			to_chat(user, SPAN_DANGER("The serial is scribbled away."))
-
+			extra_description += SPAN_DANGER("\nThe serial is scribbled away.")
+	..(user, extra_description)
 
 /obj/item/gun/proc/initialize_firemodes()
 	QDEL_LIST(firemodes)
 
-	for(var/i in 1 to init_firemodes.len)
+	for(var/i in 1 to LAZYLEN(init_firemodes))
 		var/list/L = init_firemodes[i]
 		add_firemode(L)
 
+
+/obj/item/gun/proc/initialize_firemode_actions()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/fire_mode) in hud_actions
-	if(firemodes.len > 1)
+	if(LAZYLEN(firemodes) > 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/fire_mode
 			action.owner = src
@@ -747,7 +750,7 @@
 
 /obj/item/gun/proc/initialize_scope()
 	var/obj/screen/item_action/action = locate(/obj/screen/item_action/top_bar/gun/scope) in hud_actions
-	if(zoom_factors.len >= 1)
+	if(LAZYLEN(zoom_factors) >= 1)
 		if(!action)
 			action = new /obj/screen/item_action/top_bar/gun/scope
 			action.owner = src
@@ -764,24 +767,24 @@
 
 /obj/item/gun/proc/add_firemode(list/firemode)
 	//If this var is set, it means spawn a specific subclass of firemode
-	if (firemode["mode_type"])
+	if(firemode["mode_type"])
 		var/newtype = firemode["mode_type"]
 		firemodes.Add(new newtype(src, firemode))
 	else
 		firemodes.Add(new /datum/firemode(src, firemode))
 
 /obj/item/gun/proc/switch_firemodes()
-	if(firemodes.len <= 1)
+	if(LAZYLEN(firemodes) <= 1)
 		return null
 	update_firemode(FALSE) //Disable the old firing mode before we switch away from it
 	sel_mode++
-	if(sel_mode > firemodes.len)
+	if(sel_mode > LAZYLEN(firemodes))
 		sel_mode = 1
 	return set_firemode(sel_mode)
 
 /obj/item/gun/proc/set_firemode(index)
 	refresh_upgrades()
-	if(index > firemodes.len)
+	if(index > LAZYLEN(firemodes))
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.update()
@@ -790,7 +793,7 @@
 
 /// Set firemode , but without a refresh_upgrades at the start
 /obj/item/gun/proc/very_unsafe_set_firemode(index)
-	if(index > firemodes.len)
+	if(index > LAZYLEN(firemodes))
 		index = 1
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
@@ -829,7 +832,7 @@
 	if(safety)
 		user.remove_cursor()
 	else
-		user.update_cursor(src)
+		user.update_cursor()
 
 /obj/item/gun/proc/toggle_carry_state(mob/living/user)
 	inversed_carry = !inversed_carry
@@ -849,7 +852,7 @@
 //When gun is picked up
 //When gun is readied
 /obj/item/gun/proc/update_firemode(force_state = null)
-	if (sel_mode && firemodes && firemodes.len)
+	if(sel_mode && firemodes && LAZYLEN(firemodes))
 		var/datum/firemode/new_mode = firemodes[sel_mode]
 		new_mode.update(force_state)
 
@@ -863,24 +866,20 @@
 
 //Updating firing modes at appropriate times
 /obj/item/gun/pickup(mob/user)
-	.=..()
+	..()
 	update_firemode()
 
-/obj/item/gun/dropped(mob/user)
-	// I really fucking hate this but this is how this is going to work.
-	var/mob/living/carbon/human/H = user
-	if (istype(H) && H.using_scope)
-		toggle_scope(H)
-	update_firemode(FALSE)
-	.=..()
-
-/obj/item/gun/swapped_from()
-	.=..()
-	update_firemode(FALSE)
-
-/obj/item/gun/swapped_to()
-	.=..()
+/obj/item/gun/swapped_from(mob/user)
+	remove_hud_actions(user)
 	update_firemode()
+	if(isliving(loc))
+		check_safety_cursor(loc)
+
+/obj/item/gun/swapped_to(mob/user)
+	add_hud_actions(user)
+	update_firemode()
+	if(isliving(loc))
+		check_safety_cursor(loc)
 
 /obj/item/gun/proc/toggle_safety_verb()
 	set name = "Toggle gun's safety"
@@ -915,7 +914,7 @@
 
 	var/total_recoil = 0
 	var/list/recoilList = recoil.getFancyList()
-	if(recoilList.len)
+	if(LAZYLEN(recoilList))
 		var/list/recoil_vals = list()
 		for(var/i in recoilList)
 			if(recoilList[i])
@@ -923,16 +922,16 @@
 					"name" = i,
 					"value" = recoilList[i]
 					))
-				total_recoil += recoilList[i]
+				total_recoil += i == "Movement Penalty" ? recoilList[i] / 10 : recoilList[i] / 10
 		data["recoil_info"] = recoil_vals
 
 	data["total_recoil"] = total_recoil
 
 	data += ui_data_projectile(get_dud_projectile())
 
-	if(firemodes.len)
+	if(LAZYLEN(firemodes))
 		var/list/firemodes_info = list()
-		for(var/i = 1 to firemodes.len)
+		for(var/i = 1 to LAZYLEN(firemodes))
 			data["firemode_count"] += 1
 			var/datum/firemode/F = firemodes[i]
 			var/list/firemode_info = list(
@@ -952,7 +951,7 @@
 			firemodes_info += list(firemode_info)
 		data["firemode_info"] = firemodes_info
 
-	if(item_upgrades.len)
+	if(LAZYLEN(item_upgrades))
 		data["attachments"] = list()
 		for(var/atom/A in item_upgrades)
 			data["attachments"] += list(list("name" = A.name, "icon" = SSassets.transport.get_asset_url(A)))
@@ -972,7 +971,7 @@
 /obj/item/gun/proc/get_dud_projectile()
 	return null
 
-/obj/item/gun/proc/ui_data_projectile(var/obj/item/projectile/P)
+/obj/item/gun/proc/ui_data_projectile(obj/item/projectile/P)
 	if(!P)
 		return list()
 	var/list/data = list()
@@ -991,11 +990,11 @@
 /obj/item/gun/refresh_upgrades()
 	//First of all, lets reset any var that could possibly be altered by an upgrade
 	damage_multiplier = initial(damage_multiplier)
+	halloss_multiplier = initial(halloss_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
 	ricochet_multiplier = initial(ricochet_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
-	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)
 	burst_delay = initial(burst_delay)
 	move_delay = initial(move_delay)
@@ -1015,11 +1014,11 @@
 	force = initial(force)
 	armor_divisor = initial(armor_divisor)
 	sharp = initial(sharp)
-	braced = initial(braced)
+	braceable = initial(braceable)
 	recoil = getRecoil(init_recoil[1], init_recoil[2], init_recoil[3])
 
 	attack_verb = list()
-	if (custom_default.len) // this override is used by the artwork_revolver for RNG gun stats
+	if(LAZYLEN(custom_default)) // this override is used by the artwork_revolver for RNG gun stats
 		for(var/propname in custom_default) // taken from gun_firemode.dm
 			if(propname in vars)
 				vars[propname] = custom_default[propname]
@@ -1030,7 +1029,9 @@
 	SEND_SIGNAL_OLD(src, COMSIG_ADDVAL, src)
 	SEND_SIGNAL_OLD(src, COMSIG_APPVAL, src)
 
-	if(firemodes.len)
+	initialize_firemode_actions()
+
+	if(LAZYLEN(firemodes))
 		very_unsafe_set_firemode(sel_mode) // Reset the firemode so it gets the new changes
 
 	update_icon()
@@ -1041,7 +1042,7 @@
 /obj/item/gun/proc/generate_guntags()
 	if(recoil.getRating(RECOIL_BASE) < recoil.getRating(RECOIL_TWOHAND))
 		gun_tags |= GUN_GRIP
-	if(zoom_factors.len < 1 && !(slot_flags & SLOT_HOLSTER))
+	if(LAZYLEN(zoom_factors) < 1 && !(slot_flags & SLOT_HOLSTER))
 		gun_tags |= GUN_SCOPE
 	if(!sharp)
 		gun_tags |= SLOT_BAYONET
@@ -1052,4 +1053,64 @@
 		init_offset -= scoped_offset_reduction
 	else
 		refresh_upgrades()
+
+/obj/item/gun/container_dir_changed(new_dir)
+	if(flashlight_attachment)
+		flashlight_attachment.container_dir_changed(new_dir)
+
+/obj/item/gun/moved(mob/user, old_loc)
+	if(flashlight_attachment)
+		flashlight_attachment.moved(user, old_loc)
+
+/obj/item/gun/entered_with_container()
+	if(flashlight_attachment)
+		flashlight_attachment.entered_with_container()
+
+/obj/item/gun/pre_pickup(mob/user)
+	update_light()
+	if(flashlight_attachment)
+		flashlight_attachment.pre_pickup(user)
+	return TRUE
+
+/obj/item/gun/dropped(mob/user)
+	..()
+	update_firemode(force_state = FALSE)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.using_scope)
+			toggle_scope(H)
+	if(flashlight_attachment)
+		flashlight_attachment.dropped(user)
+
+/obj/item/gun/equipped(mob/living/H)
+	. = ..()
+	update_light()
+	if(is_held() && !safety)
+		H.update_cursor()
+	else
+		H.remove_cursor()
+
+/obj/item/gun/try_transfer(target, mob/living/user)
+	. = ..()
+	user.remove_cursor()
+
+/obj/item/gun/proc/toggle_flashlight()
+	set name = "Toggle flashlight"
+	set category = "Object"
+
+	if(flashlight_attachment && ishuman(usr))
+		flashlight_attachment.attack_self(usr)
+
+/obj/item/gun/proc/remove_flashlight()
+	set name = "Remove flashlight"
+	set category = "Object"
+
+	if(flashlight_attachment && ishuman(usr))
+		verbs -= /obj/item/gun/proc/remove_flashlight
+		verbs -= /obj/item/gun/proc/toggle_flashlight
+		var/mob/living/carbon/human/user = usr
+		flashlight_attachment.forceMove(get_turf(user))
+		playsound(loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
+		to_chat(user, SPAN_NOTICE("You detach \the [flashlight_attachment] from \the [src]."))
+		flashlight_attachment = null
 

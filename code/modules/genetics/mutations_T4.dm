@@ -3,6 +3,19 @@
 	tier_string = "Aurelien"
 	NSA_load = 0
 
+/datum/mutation/t4/remoteobserve
+	name = "Remote observation"
+	desc = "Allows you to look through the eyes of other people."
+	NSA_load = 20
+
+/datum/mutation/t4/remoteobserve/imprint(mob/living/carbon/user)
+	if(..())
+		add_verb(user, /mob/living/carbon/human/proc/remoteobserve)
+
+/datum/mutation/t4/remoteobserve/cleanse(mob/living/carbon/user)
+	if(..())
+		remove_verb(user, /mob/living/carbon/human/proc/remoteobserve)
+
 /datum/mutation/t4/godblood
 	name = "God Blood"
 	desc = "Suppresses cruciform, allowing to have any implant or organ, as well as mutations."
@@ -19,11 +32,11 @@
 
 /datum/mutation/t4/phazing/imprint(mob/living/carbon/user)
 	if(..())
-		user.verbs += /mob/living/carbon/human/proc/phaze_trough
+		add_verb(user, /mob/living/carbon/human/proc/phaze_trough)
 
 /datum/mutation/t4/phazing/cleanse(mob/living/carbon/user)
 	if(..())
-		user.verbs -= /mob/living/carbon/human/proc/phaze_trough
+		remove_verb(user, /mob/living/carbon/human/proc/phaze_trough)
 
 /datum/mutation/t4/morph
 	name = "Morph body"
@@ -32,8 +45,8 @@
 
 /datum/mutation/t4/morph/imprint(mob/living/carbon/user)
 	if(..())
-		user.verbs += /mob/living/carbon/human/proc/morph
+		add_verb(user, /mob/living/carbon/human/proc/morph)
 
 /datum/mutation/t4/morph/cleanse(mob/living/carbon/user)
 	if(..())
-		user.verbs -= /mob/living/carbon/human/proc/morph
+		remove_verb(user, /mob/living/carbon/human/proc/morph)

@@ -37,7 +37,7 @@
 	price_tag = 1000
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	wield_delay = 0 // pistols don't get delays. X Doubt
-	gun_parts = list(/obj/item/part/gun/frame/molly = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/pistol = 1)
+	gun_parts = list(/obj/item/part/gun/frame/molly = 1, /obj/item/part/gun/modular/grip/rubber = 1, /obj/item/part/gun/modular/mechanism/pistol = 1, /obj/item/part/gun/modular/barrel/pistol = 1)
 	serial_type = "FS"
 
 /obj/item/gun/projectile/automatic/molly/update_icon()
@@ -55,9 +55,10 @@
 	if (silenced)
 		iconstring += "_s"
 		itemstring += "_s"
+		wielded_item_state = "_doble_s"
+	else
+		wielded_item_state = "_doble"
 
-	if (wielded)
-		itemstring += "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
@@ -71,6 +72,6 @@
 	desc = "A Molly machine pistol frame. Toeing the line between pistol and SMG."
 	icon_state = "frame_autopistol"
 	resultvars = list(/obj/item/gun/projectile/automatic/molly)
-	gripvars = list(/obj/item/part/gun/grip/rubber)
-	mechanismvar = /obj/item/part/gun/mechanism/pistol
-	barrelvars = list(/obj/item/part/gun/barrel/pistol)
+	gripvars = list(/obj/item/part/gun/modular/grip/rubber)
+	mechanismvar = /obj/item/part/gun/modular/mechanism/pistol
+	barrelvars = list(/obj/item/part/gun/modular/barrel/pistol)

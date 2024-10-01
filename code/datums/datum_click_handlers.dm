@@ -1,6 +1,4 @@
 /datum/click_handler
-//	var/mob_type
-	var/species
 	var/handler_name
 	var/one_use_flag = 1//drop client.CH after succes ability use
 	var/client/owner
@@ -95,7 +93,7 @@
 	reciever.afterattack(target, owner.mob, FALSE)
 
 /datum/click_handler/fullauto/MouseDown(object, location, control, params)
-	if(!isturf(owner.mob.loc)) // This stops from firing full auto weapons inside closets or in /obj/effect/dummy/chameleon chameleon projector
+	if(!isturf(owner.mob.loc) && !ismech(owner.mob.loc)) // This stops from firing full auto weapons inside closets, in /obj/effect/dummy/chameleon chameleon projector or in a mech
 		return FALSE
 	if(time_since_last_init > world.time)
 		return FALSE
@@ -112,6 +110,12 @@
 
 	if(!owner || !owner.mob || owner.mob.resting)
 		return FALSE
+	if(ismech(owner.mob.loc))
+		var/mob/exosuit = owner.mob.loc
+		// If we are in a mech and we do not share any straight-foward angles in a 45 degree cone , then stop firing so mechs cant fire backwards
+		// Aka N-facing mech can do NE, NW, N ,  S facing mech can do S , SW,  SE , E facing mech can do SE, E, NE.
+		if(!(exosuit.dir & get_dir(reciever, target)))
+			return FALSE
 	if(target)
 		owner.mob.face_atom(target)
 
@@ -137,11 +141,40 @@
 	stop_firing() //Without this it keeps firing in an infinite loop when deleted
 	.=..()
 
-/datum/click_handler/human/mob_check(mob/living/carbon/human/user)
-	if(ishuman(user))
-		if(user.species.name == src.species)
-			return 1
-	return 0
+/***********
+ * AI Control
+ */
 
-/datum/click_handler/human/use_ability(mob/living/carbon/human/user,atom/target)
-	return
+/datum/click_handler/ai
+
+/datum/click_handler/ai/Click(atom/target, location, control, params)
+	var/modifiers = params2list(params)
+	if(isHUDobj(target) || istype(target, /HUD_element) || istype(target, /obj/effect))
+		return TRUE
+	if(!isatom(target))
+		return TRUE
+	if (mob_check(owner.mob) && use_ability(owner.mob, target, params))
+		return TRUE
+	else if(modifiers["shift"])
+		owner.mob.examinate(target)
+		return FALSE
+	if(ismachinery(target))
+		to_chat(usr, SPAN_NOTICE("ERROR: No response from targeted device"))
+	return FALSE
+
+/datum/click_handler/ai/mob_check(mob/living/silicon/ai/user) //Check can mob use a ability
+	return TRUE
+
+/datum/click_handler/ai/use_ability(mob/living/silicon/ai/user,atom/target, params)
+	var/signalStrength
+	var/turf/targetTurf = get_turf(target)
+	if(!targetTurf)
+		return TRUE
+	if(DIST_EUCLIDIAN(owner.mob.x , owner.mob.y, targetTurf.x , targetTurf.y) < 24)
+		// Can't block at such close distance
+		signalStrength = 1000
+	else
+		signalStrength = 10
+	if(SSjamming.IsPositionJammed(get_turf(target),  signalStrength))
+		return FALSE
+	return TRUE

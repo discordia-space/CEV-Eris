@@ -76,6 +76,19 @@
 	else if(M.species.min_age && M.species.max_age)
 		M.age = rand(M.species.min_age, M.species.max_age)
 
+	corpseuniform = islist(corpseuniform) ? safepick(corpseuniform) : corpseuniform
+	corpsesuit = islist(corpsesuit) ? safepick(corpsesuit) : corpsesuit
+	corpseshoes = islist(corpseshoes) ? safepick(corpseshoes) : corpseshoes
+	corpsegloves = islist(corpsegloves) ? safepick(corpsegloves) : corpsegloves
+	corpseradio = islist(corpseradio) ? safepick(corpseradio) : corpseradio
+	corpseglasses = islist(corpseglasses) ? safepick(corpseglasses) : corpseglasses
+	corpsemask = islist(corpsemask) ? safepick(corpsemask) : corpsemask
+	corpsehelmet = islist(corpsehelmet) ? safepick(corpsehelmet) : corpsehelmet
+	corpsebelt = islist(corpsebelt) ? safepick(corpsebelt) : corpsebelt
+	corpsepocket1 = islist(corpsepocket1) ? safepick(corpsepocket1) : corpsepocket1
+	corpsepocket2 = islist(corpsepocket2) ? safepick(corpsepocket2) : corpsepocket2
+	corpseback = islist(corpseback) ? safepick(corpseback) : corpseback
+
 	if(corpseuniform)
 		M.equip_to_slot_or_del(new corpseuniform(M), slot_w_uniform)
 	if(corpsesuit)
@@ -102,8 +115,9 @@
 		M.equip_to_slot_or_del(new corpseback(M), slot_back)
 
 	var/datum/job/jobdatum = corpseidjob ? SSjob.GetJob(corpseidjob) : null
-	if(jobdatum)
-		jobdatum.equip(M)
+//	if(jobdatum)
+//		jobdatum.equip(M)
+//commented out so i can make realistic faction corpses and not have extra loot spawn
 
 	if(corpseid)
 		var/datum/money_account/MA = create_account(M.real_name, rand(500,2000))
@@ -123,15 +137,13 @@
 // Eris corpses
 /obj/landmark/corpse/hobo
 	name = "Hobo"
-	corpseuniform = /obj/item/clothing/under/turtleneck
-	corpsesuit = /obj/item/clothing/suit/storage/leather_jacket
-	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseuniform = /obj/item/clothing/under/rank/assistant
+	corpsesuit = /obj/item/clothing/suit/storage/ass_jacket
+	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseradio = /obj/item/device/radio/headset
-	corpsemask = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	corpsepocket1 = /obj/item/modular_computer/pda
-	corpsepocket2 = /obj/item/oddity/common/old_id
-	corpseid = TRUE
-	corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
+	//corpseid = TRUE
+	//corpseidjob = list() find a way to pull from vagabond job titles
 	injury_level = 4
 
 /obj/landmark/corpse/excelsior
@@ -142,6 +154,104 @@
 	corpsegloves = /obj/item/clothing/gloves/security
 	injury_level = 8
 
+/obj/landmark/corpse/skeleton
+	name = "skeletal corpse"
+	species = SPECIES_SKELETON
+	min_age = 35
+	max_age = 250
+
+/obj/landmark/corpse/skeleton/maint //They look like human remains. Some poor soul expired here, a million miles from home.
+	name = "Eris Crewmember"
+	corpseuniform = list(
+		/obj/item/clothing/under/oldsec,
+		/obj/item/clothing/under/rank/assistant,
+		/obj/item/clothing/under/rank/assistant,
+		/obj/item/clothing/under/rank/crewman,
+		/obj/item/clothing/under/rank/crewman,
+		/obj/item/clothing/under/genericw,
+		/obj/item/clothing/under/genericb,
+		/obj/item/clothing/under/genericr,
+		/obj/item/clothing/under/black,
+		/obj/item/clothing/under/leisure,
+		/obj/item/clothing/under/color/grey,
+		/obj/item/clothing/under/color/black
+						)
+	corpsesuit = list(
+		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/armor/vest/warden,
+		/obj/item/clothing/suit/armor/vest/toggle,
+		/obj/item/clothing/suit/armor/vest/detective,
+		/obj/item/clothing/suit/armor/platecarrier,
+		/obj/item/clothing/suit/armor/vest/handmade,
+		/obj/item/clothing/suit/armor/vest/handmade/full,
+		/obj/item/clothing/suit/armor/flak,
+		/obj/item/clothing/suit/storage/vest,
+		null,//null is chance of not spawning
+		null,
+		null,
+		null,
+		null,
+		null,
+		/obj/item/clothing/suit/punkvest/cyber,
+		/obj/item/clothing/suit/punkvest,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/suit/storage/hazardvest/orange,
+		/obj/item/clothing/suit/storage/hazardvest/black,
+		/obj/item/clothing/suit/storage/cargo_jacket/black/old,
+		/obj/item/clothing/suit/storage/cargo_jacket/black,
+		/obj/item/clothing/suit/storage/toggle/bomber,
+		/obj/item/clothing/suit/storage/toggle/hoodie/black,
+		/obj/item/clothing/suit/storage/toggle/windbreaker,
+		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/ass_jacket,
+		/obj/item/clothing/suit/storage/ass_jacket, //increased chance of assistant jacket
+		/obj/item/clothing/suit/storage/cyberpunksleek,
+		/obj/item/clothing/suit/storage/bladerunner,
+		/obj/item/clothing/suit/storage/bomj,
+		/obj/item/clothing/suit/storage/leather_jacket,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager,
+		/obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_snake,
+		/obj/item/clothing/suit/fire,
+		/obj/item/clothing/suit/poncho,
+		/obj/item/clothing/suit/poncho/tactical,
+		/obj/item/clothing/suit/space/emergency
+					)
+	corpseshoes = list(/obj/item/clothing/shoes/jackboots, /obj/item/clothing/shoes/color/black, null, /obj/item/clothing/shoes/workboots, /obj/item/clothing/shoes/reinforced)
+	corpsegloves = list(/obj/item/clothing/gloves/thick, null, /obj/item/clothing/gloves/fingerless, null, /obj/item/clothing/gloves/security, null, /obj/item/clothing/gloves/insulated/cheap, null)//50% chance to not spawn gloves
+	corpsehelmet = list(
+		/obj/item/clothing/head/armor/helmet/tanker,
+		/obj/item/clothing/head/armor/helmet/handmade,
+		/obj/item/clothing/head/armor/helmet,
+		/obj/item/clothing/head/armor/helmet/visor,
+		/obj/item/clothing/head/armor/faceshield/riot,
+		null,
+		null,
+		null, //20% chance to spawn no helmet/hat
+		null,
+		/obj/item/clothing/head/welding,
+		/obj/item/clothing/head/hardhat,
+		/obj/item/clothing/head/hardhat/visor,
+		/obj/item/clothing/head/soft/sec/corp,
+		/obj/item/clothing/head/soft/sec,
+		/obj/item/clothing/head/bandana/green,
+		/obj/item/clothing/head/ushanka,
+		/obj/item/clothing/head/beret/oldsec,
+		/obj/item/clothing/head/soft/green2soft,
+		/obj/item/clothing/head/soft/tan2soft,
+		/obj/item/clothing/head/space/emergency
+		)
+	min_age = 40
+	max_age = 250
+	//corpseid = TRUE
+	//corpseidjob = list() find a way to pull from vagabond job titles. i have 0 clue how to do that but i will
+	injury_level = 1
+
+/obj/landmark/corpse/skeleton/fortress
+	name = "skeletal corpse"
+	corpsesuit = list(/obj/item/clothing/suit/armor/vest, null, /obj/item/clothing/suit/armor/vest/toggle, null, /obj/item/clothing/suit/storage/vest)
+	corpsehelmet = list(/obj/item/clothing/head/armor/helmet, null, /obj/item/clothing/head/armor/helmet/visor, null, /obj/item/clothing/head/armor/faceshield/riot)
+
 /obj/landmark/corpse/one_star
 	name = "twisted skeletal remains"
 	species = SPECIES_SKELETON
@@ -149,22 +259,38 @@
 	max_age = 499	// Oldest skeleton is of a person of 140 years. Implies OS managed to extend life expectancy. Revise according to lore.
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/storage/greatcoat/onestar
-	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseshoes = /obj/item/clothing/shoes/jackboots/ironhammer
 	corpseradio = /obj/item/device/radio/headset
 	corpsehelmet = /obj/item/clothing/head/onestar
 	//corpseid = TRUE
-	//corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
+	//corpseidjob = list("General", "Commisar", "Commander", "Captain", "Admiral", "Leiutennant")
 
 /obj/landmark/corpse/one_star/void
 	name = "warped skeletal remains"
 	corpseuniform = /obj/item/clothing/under/onestar
 	corpsesuit = /obj/item/clothing/suit/space/void/onestar		// Helmet won't spawn pre-equipped, but it's there
-	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpseshoes = /obj/item/clothing/shoes/workboots
+	corpsehelmet = null
 	corpseradio = /obj/item/device/radio/headset
-	//corpseid = TRUE
-	//corpseidjob = list("Therapist", "Private Security", "Master Chef", "Researcher", "Market Analyst", "Colonist")
 
-// Legacy corpses
+//Faction Corpses//
+/obj/landmark/corpse/operative
+	name = "Ironhammer Operative"
+	corpseuniform = list(/obj/item/clothing/under/rank/security, /obj/item/clothing/under/rank/security/turtleneck)
+	corpseshoes = /obj/item/clothing/shoes/jackboots/ironhammer
+	corpsegloves = list(/obj/item/clothing/gloves/security/ironhammer, /obj/item/clothing/gloves/stungloves)
+	corpseradio = /obj/item/device/radio/headset/headset_sec
+	corpsesuit = list(/obj/item/clothing/suit/armor/vest/ironhammer, /obj/item/clothing/suit/armor/vest/full/ironhammer, /obj/item/clothing/suit/storage/vest/ironhammer)
+	corpsehelmet = list(/obj/item/clothing/head/armor/helmet/ironhammer, /obj/item/clothing/head/soft/sec2soft, /obj/item/clothing/head/beret/sec/navy/officer, /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg)
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud/tactical
+	corpsemask = /obj/item/clothing/mask/balaclava/tactical
+	corpsebelt = /obj/item/storage/belt/tactical/ironhammer
+	corpseid = 1
+	corpseidjob = "Ironhammer Operative"
+	corpseidaccess = "ihoper"
+	injury_level = 9
+
+////LEGACY CORPSES////REPLACE WITH NEW CORPSES IF FOUND IN MAP////
 /obj/landmark/corpse/syndicatesoldier
 	name = "Syndicate Operative"
 	corpseuniform = /obj/item/clothing/under/syndicate
@@ -198,8 +324,6 @@
 /obj/landmark/corpse/hobo
 	name = "Hobo"
 	corpseuniform = /obj/item/clothing/under/rank/assistant
-
-///////////Civilians//////////////////////
 
 /obj/landmark/corpse/chef
 	name = "Chef"
@@ -275,8 +399,6 @@
 	name = "Prison Guard"
 	corpsehelmet = null
 
-/////////////////Officers//////////////////////
-
 /obj/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
 	corpseradio = /obj/item/device/radio/headset
@@ -319,8 +441,6 @@
 	name = "Pirate Gunner"
 	corpsesuit = /obj/item/clothing/suit/pirate
 	corpsehelmet = /obj/item/clothing/head/pirate
-
-
 
 /obj/landmark/corpse/russian
 	name = "Russian"

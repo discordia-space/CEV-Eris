@@ -3,6 +3,7 @@
 	dir = WEST
 	suitable_cell = /obj/item/cell/small
 	rarity_value = 5
+	flags = CONDUCT|MOVE_NOTIFY
 	var/tick_cost = 0.4
 
 	var/obj/effect/effect/light/light_spot
@@ -30,6 +31,11 @@
 	if(istype(src.loc,/mob/living))
 		var/mob/living/L = src.loc
 		set_dir(L.dir)
+	if(istype(src.loc,/obj/item/gun))
+		var/obj/item/gun/G = src.loc
+		if(istype(G.loc,/mob/living))
+			var/mob/living/L = G.loc
+			set_dir(L.dir)
 	else if(pulledby && old_loc)
 		var/x_diff = src.x - old_loc.x
 		var/y_diff = src.y - old_loc.y
@@ -98,6 +104,10 @@
 
 	if(!istype(src.loc,/mob/living))
 		dir = new_dir
+	if(istype(src.loc,/obj/item/gun))
+		var/obj/item/gun/G = src.loc
+		if(!istype(G.loc,/mob/living))
+			dir = new_dir
 
 /obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T, var/angle = null)
 	if(light_spot && on && !T.is_space())

@@ -158,7 +158,7 @@
 	name = "Initiate Bluespace Jump"
 	question = "Do you want to initiate a bluespace jump and restart the round?"
 	time = 120
-	minimum_win_percentage = 0.6
+	minimum_win_percentage = 0.55
 	cooldown = 20 MINUTES
 	next_vote = 90 MINUTES //Minimum round length before it can be called for the first time
 	choice_types = list()
@@ -166,12 +166,12 @@
 
 /*To prevent abuse and rule-by-salt, the evac vote weights each player's vote based on a few parameters
 	If you are alive and have been for a while, then you have the normal 1 vote
-	If you are dead, or just spawned, you get only 0.3 votes
-	If you are an antag or a head of staff, you get 2 votes
+	If you are dead, or just spawned, you get only 0.5 votes
+	If you are an antag or a head of staff, you get 1.5 votes
 */
-#define VOTE_WEIGHT_LOW	0.3
+#define VOTE_WEIGHT_LOW	0.5
 #define VOTE_WEIGHT_NORMAL	1
-#define VOTE_WEIGHT_HIGH	2
+#define VOTE_WEIGHT_HIGH	1.5
 #define MINIMUM_VOTE_LIFETIME	15 MINUTES
 /datum/poll/evac
 	choice_types = list(/datum/vote_choice/evac, /datum/vote_choice/noevac)
@@ -185,7 +185,7 @@
 		return 0 //Shouldnt be possible, but safety
 
 	var/mob/M = C.mob
-	if (!M || isghost(M) || isnewplayer(M) || ismouse(M) || isdrone(M))
+	if (!M || isghost(M) || isnewplayer(M) || ismouse(M) || isdrone(M) || M.is_dead())
 		return VOTE_WEIGHT_LOW
 
 	var/datum/mind/mind = M.mind
@@ -251,7 +251,7 @@
 
 /datum/vote_choice/yes_chaos_level/on_win()
 	GLOB.chaos_level += 1
-	for (var/mob/M as mob in SSmobs.mob_list)
+	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
 		to_chat(M, "<br><center><span class='danger'><b><font size=4>Chaos Level Increased</font></b><br></span></center><br>")
 
 /datum/vote_choice/no_chaos_level

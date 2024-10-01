@@ -5,9 +5,8 @@
 // Anchor check
 /datum/movement_handler/anchored/MayMove()
 	return host.anchored ? MOVEMENT_STOP : MOVEMENT_PROCEED
-
-// Movement relay
-/datum/movement_handler/move_relay/DoMove(var/direction, var/mover)
+/*
+/datum/movement_handler/move_relay/MayMove(mob/mover, is_external)
 	var/atom/movable/AM = host.loc
 	if(!istype(AM))
 		return
@@ -15,6 +14,22 @@
 	if(!(. & MOVEMENT_HANDLED))
 		. = MOVEMENT_HANDLED
 		AM.relaymove(mover, direction)
+*/
+// Movement relay
+/datum/movement_handler/move_relay/DoMove(var/direction, var/mover)
+	var/atom/movable/AM = host.loc
+	if(!istype(AM))
+		return
+	. = AM.DoMove(direction, mover, FALSE)
+	/*
+	AM.relaymove(mover, direction)
+	return MOVEMENT_HANDLED
+	*/
+	if(!(. & MOVEMENT_HANDLED))
+		. = MOVEMENT_HANDLED
+		AM.relaymove(mover, direction)
+
+
 
 // Movement delay
 /datum/movement_handler/delay

@@ -10,8 +10,8 @@
 
 /obj/structure/catwalk/New()
 	..()
-	if (istype(loc, /turf/simulated/open))
-		var/turf/simulated/open/T = loc
+	if (istype(loc, /turf/open))
+		var/turf/open/T = loc
 		T.updateFallability()
 	spawn(4)
 		if(src)
@@ -31,8 +31,8 @@
 	redraw_nearby_catwalks()
 
 /obj/structure/catwalk/Destroy()
-	if (istype(loc, /turf/simulated/open))
-		var/turf/simulated/open/T = loc
+	if (istype(loc, /turf/open))
+		var/turf/open/T = loc
 		T.updateFallability(src)
 	redraw_nearby_catwalks()
 	. = ..()
@@ -48,9 +48,9 @@
 		return TRUE
 	if(T && T.is_wall)
 		return TRUE
-	if(istype(T, /turf/simulated/floor))
-		var/turf/simulated/floor/F = T
-		if(!F.flooring?.is_plating || istype(F.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
+	if(istype(T, /turf/floor))
+		var/turf/floor/F = T
+		if(!F.flooring?.is_plating || istype(F.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating
 			return TRUE
 
 /obj/structure/catwalk/update_icon()
@@ -80,15 +80,6 @@
 
 	icon_state = "catwalk[connectdir]-[diagonalconnect]"
 
-
-/obj/structure/catwalk/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			qdel(src)
-	return
-
 /obj/structure/catwalk/attackby(obj/item/I, mob/user)
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
@@ -100,5 +91,5 @@
 	return
 
 
-/obj/structure/catwalk/can_prevent_fall()
-	return FALSE
+/obj/structure/catwalk/can_prevent_fall(above)
+	return above ? FALSE : TRUE

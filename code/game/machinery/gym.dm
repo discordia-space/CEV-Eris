@@ -33,8 +33,7 @@
 
 /obj/machinery/gym/power_change()
 	..()
-	if(stat & BROKEN || stat & NOPOWER)
-		update_icon()
+	update_icon()
 
 /obj/machinery/gym/emag_act(remaining_charges, mob/user, emag_source)
 	emagged = TRUE
@@ -42,7 +41,6 @@
 /obj/machinery/gym/Destroy()
 	if(occupant)
 		go_out(FALSE)
-	sleep(1) //we need to be sure occupant is not going to nullspace
 	return ..()
 
 /obj/machinery/gym/relaymove(mob/occupant)
@@ -54,7 +52,7 @@
 		spawn(1.5 SECONDS)
 			state("Thank you for using club services! Please come back soon.")
 			playsound(loc, "robot_talk_light", 100, 0, 0)
-		
+
 		if(occupant.rest_points > 0)
 			to_chat(occupant, SPAN_NOTICE("You feel yourself become stronger..."))
 			occupant.playsound_local(get_turf(occupant), 'sound/sanity/rest.ogg', 100)
@@ -73,7 +71,7 @@
 	occupant.unset_machine()
 	occupant = null
 
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/gym/attack_hand(mob/user)
@@ -101,13 +99,13 @@
 
 	user.forceMove(src)
 	occupant = user
-	update_use_power(2)
+	set_power_use(ACTIVE_POWER_USE)
 	user.set_machine(src)
 
 	add_fingerprint(user)
 	update_icon()
 	sleep(15 SECONDS)
-	
+
 	if(occupant)//is user still using our machine?
 		go_out(TRUE)
 		update_icon()

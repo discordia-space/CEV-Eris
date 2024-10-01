@@ -30,6 +30,7 @@
 /obj/item/stock_parts/smes_coil/super_capacity
 	name = "capacitance SMES coil"
 	desc = "Specialised version of standard superconductive magnetic coil. This one has significantly stronger containment field, allowing for significantly larger power storage. It's IO rating is much lower, however."
+	icon_state = "smes_coil_hicap"
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_URANIUM = 4)
 	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4, TECH_MATERIAL = 3)
 	ChargeCapacity = 100000000
@@ -40,6 +41,7 @@
 /obj/item/stock_parts/smes_coil/super_io
 	name = "transmission SMES coil"
 	desc = "Specialised version of standard superconductive magnetic coil. While this one won't store almost any power, it rapidly transfers power, making it useful in systems which require large throughput."
+	icon_state = "smes_coil_hidischarge"
 	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_GOLD = 4)
 	origin_tech = list(TECH_MAGNET = 3, TECH_POWER = 4, TECH_MATERIAL = 3)
 	ChargeCapacity = 1000000
@@ -244,7 +246,7 @@
 						src.ping("Magnetic containment stabilised.")
 						return
 					src.ping("DANGER! Magnetic containment field failure in 3 ... 2 ... 1 ...")
-					explosion(src.loc,1,2,4,8)
+					explosion(get_turf(src), charge/100, 250)
 					// Not sure if this is necessary, but just in case the SMES *somehow* survived..
 					qdel(src)
 

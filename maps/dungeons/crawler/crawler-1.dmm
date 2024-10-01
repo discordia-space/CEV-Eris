@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall,
+/turf/wall/dummy,
 /area/crawler)
 "b" = (
 /turf/space,
@@ -10,7 +10,7 @@
 /area/space)
 "d" = (
 /obj/map_data/crawler,
-/turf/unsimulated/wall,
+/turf/wall/dummy,
 /area/crawler)
 "e" = (
 /obj/crawler/map_maker,

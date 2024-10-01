@@ -246,9 +246,9 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 /mob/living/simple_animal/hostile/proc/DestroySurroundings()
 	if(istype(src, /mob/living/simple_animal/hostile/megafauna))
 		set_dir(get_dir(src,target_mob))
-		for(var/turf/simulated/wall/obstacle in get_step(src, dir))
+		for(var/turf/wall/obstacle in get_step(src, dir))
 			if(prob(35))
-				obstacle.dismantle_wall(1)
+				obstacle.dismantle_wall(src)
 		for(var/obj/machinery/obstacle in get_step(src, dir))
 			if(prob(65))
 				obstacle.Destroy()
@@ -262,12 +262,12 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 				if((obstacle.dir == reverse_dir[dir])) // So that windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
-			for(var/turf/simulated/wall/obstacle in get_step(src, dir))
+			for(var/turf/wall/obstacle in get_step(src, dir))
 				if((obstacle.dir == reverse_dir[dir])) // So that windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			for(var/obj/structure/window/obstacle in get_step(src, dir))
-				if((obstacle.dir == reverse_dir[dir]) || obstacle.is_fulltile()) // So that windows get smashed in the right order
+				if(obstacle.dir == reverse_dir[dir]) // So that windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))

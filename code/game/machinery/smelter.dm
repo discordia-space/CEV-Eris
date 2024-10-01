@@ -62,18 +62,18 @@
 /obj/machinery/smelter/Process()
 	if(stat & BROKEN || stat & NOPOWER)
 		progress = 0
-		use_power(0)
+		set_power_use(NO_POWER_USE)
 		update_icon()
 		return
 
 	if(current_item)
-		use_power(2)
+		set_power_use(ACTIVE_POWER_USE)
 		progress += speed
 		progress += item_speed_bonus(current_item)
 		if(progress >= 100)
 			smelt()
 			grab()
-			use_power(1)
+			set_power_use(IDLE_POWER_USE)
 		update_icon()
 	else
 		grab()
@@ -190,8 +190,14 @@
 		CRASH("Attempted to drop an invalid material: [material]")
 
 	var/ejected_amount = min(initial(stack_type.max_amount), round(stored_material[material]), storage_capacity)
-	var/obj/item/stack/material/S = new stack_type(src, ejected_amount)
+	var/remainder = ejected_amount - round(ejected_amount)
+	var/obj/item/stack/material/S = new stack_type(src, round(ejected_amount))
+	var/shard
+	if(remainder)
+		shard = new /obj/item/material/shard(src, material, _amount = remainder)
 	eject(S, output_side)
+	if(shard)
+		eject(shard, output_side)
 	stored_material[material] -= ejected_amount
 
 

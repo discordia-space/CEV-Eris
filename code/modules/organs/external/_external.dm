@@ -319,14 +319,13 @@
 		return //no eating the limb until everything's been removed
 	return ..()
 
-/obj/item/organ/external/examine()
-	..()
-	if(in_range(usr, src) || isghost(usr))
+/obj/item/organ/external/examine(mob/user, extra_description = "")
+	if(in_range(user, src) || isghost(user))
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
-			to_chat(usr, SPAN_DANGER("There is \a [I] sticking out of it."))
-	return
+			extra_description += SPAN_DANGER("\nThere is \a [I] sticking out of it.")
+	..(user, extra_description)
 
 #define MAX_MUSCLE_SPEED -0.5
 
@@ -351,11 +350,11 @@
 	if(status & ORGAN_SPLINTED)
 		. += 0.5
 
-	var/muscle_eff = owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag)
-	var/nerve_eff = max(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag),1)
+	var/muscle_eff = max(owner.get_specific_organ_efficiency(OP_MUSCLE, organ_tag), 50)
+	var/nerve_eff = max(owner.get_specific_organ_efficiency(OP_NERVE, organ_tag), 100)
 	muscle_eff = (muscle_eff/100) - (muscle_eff/nerve_eff) //Need more nerves to control those new muscles
-	. += max(-(muscle_eff), MAX_MUSCLE_SPEED)
-
+	if(muscle_eff)
+		. -= 0.6 * muscle_eff / (muscle_eff + 0.4) // Diminishing returns with a hard cap of 0.6 and soft cap of 0.5
 	. += tally
 
 /obj/item/organ/external/proc/is_nerve_struck()
@@ -794,7 +793,7 @@ This function completely restores a damaged organ to perfect condition.
 
 	if(!istype(W, /obj/item/material/shard/shrapnel))
 		embedded += W
-		owner.verbs += /mob/proc/yank_out_object
+		add_verb(owner, /mob/proc/yank_out_object)
 
 	owner.embedded_flag = 1
 	W.on_embed(owner)

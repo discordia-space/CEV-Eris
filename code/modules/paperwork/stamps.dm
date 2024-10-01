@@ -47,6 +47,14 @@
 	name = "guild merchant's stamp"
 	icon_state = "stamp-qm"
 
+/obj/item/stamp/nt
+	name = "neotheology preacher's stamp"
+	icon_state = "stamp-nt"
+
+/obj/item/stamp/lus
+	name = "luscent official's stamp"
+	icon_state = "stamp-lus"
+
 // Syndicate stamp to forge documents.
 /obj/item/stamp/chameleon/attack_self(mob/user as mob)
 

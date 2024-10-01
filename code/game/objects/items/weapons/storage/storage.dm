@@ -24,6 +24,17 @@
 	var/is_tray_hidden = FALSE //hides from even t-rays
 	var/prespawned_content_amount // Number of items storage should initially contain
 	var/prespawned_content_type // Type of items storage should contain, takes effect if variable above is at least 1
+	health = 500
+	maxHealth = 500
+
+/obj/item/storage/Initialize(mapload, ...)
+	. = ..()
+	RegisterSignal(src, COMSIG_ATOM_CONTAINERED, PROC_REF(RelayContainerization))
+
+/obj/item/storage/proc/RelayContainerization(atom/source, highestContainer, oldContainer)
+	SIGNAL_HANDLER
+	for(var/atom/thing as anything in contents)
+		SEND_SIGNAL(thing, COMSIG_ATOM_CONTAINERED, highestContainer, oldContainer)
 
 /obj/item/storage/New()
 	can_hold |= can_hold_extra
@@ -60,7 +71,7 @@
 		S.close(clientMob)
 
 /obj/item/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
-	itemBackground.setClickProc(PROC_REF(itemBackgroundClick))
+	itemBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, itemBackgroundClick), src)
 	itemBackground.setData("item", item)
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
@@ -90,7 +101,7 @@
 	closeButton.setName("HUD Storage Close Button")
 	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 	closeButton.setHideParentOnClick(TRUE)
-	closeButton.setClickProc(PROC_REF(closeButtonClick))
+	closeButton.setClickProc(TYPE_PROC_REF(/obj/item/storage, closeButtonClick), src)
 	closeButton.setData("item", src)
 
 	//storage space based items
@@ -104,7 +115,7 @@
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
-		storageBackground.setClickProc(PROC_REF(storageBackgroundClick))
+		storageBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, storageBackgroundClick), src)
 		storageBackground.setData("item", src)
 
 		var/paddingSides = 2 //in pixels
@@ -188,7 +199,7 @@
 
 				currentItemNumber++
 			else //empty slots
-				itemBackground.setClickProc(PROC_REF(storageBackgroundClick))
+				itemBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, storageBackgroundClick), src)
 				itemBackground.setData("item", src)
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
@@ -202,7 +213,7 @@
 				totalHeight = (currentSlot/maxColumnCount) * (itemBackground.getHeight() + spacingBetweenSlots)
 
 	main.setPosition(data.StorageData["Xspace"],data.StorageData["Yspace"])
-	return main
+	. = main
 
 /obj/item/storage/Destroy()
 	close_all()
@@ -211,7 +222,7 @@
 /obj/item/storage/MouseDrop(obj/over_object)
 	if(ishuman(usr) && usr == over_object && !usr.incapacitated() && Adjacent(usr))
 		return src.open(usr)
-	return ..()
+	. = ..()
 
 /obj/item/storage/proc/return_inv()
 	var/list/L = list()
@@ -224,7 +235,7 @@
 		L += G.gift
 		if (istype(G.gift, /obj/item/storage))
 			L += G.gift:return_inv()
-	return L
+	. = L
 
 /obj/item/storage/proc/show_to(mob/user)
 	if(!user.client)
@@ -291,38 +302,38 @@
 	if(!istype(W)) return //Not an item
 
 	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
-		return 0
+		return FALSE
 
 	if(src.loc == W)
-		return 0 //Means the item is already in the storage item
+		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
-		return 0 //Storage item is full
+		return FALSE //Storage item is full
 
 	if(W.anchored)
-		return 0
+		return FALSE
 
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
 			if(!stop_messages && ! istype(W, /obj/item/hand_labeler))
 				to_chat(usr, SPAN_NOTICE("[src] cannot hold \the [W]."))
-			return 0
+			return FALSE
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
 			if(!stop_messages && !istype(W, /obj/item/hand_labeler))
 				to_chat(usr, SPAN_NOTICE("[src] has no more space specifically for \the [W]."))
-			return 0
+			return FALSE
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
-		return 0
+		return FALSE
 
 	if (max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
-		return 0
+		return FALSE
 
 	//Slot based storage overrides space-based storage
 	if(storage_slots == null)
@@ -333,14 +344,14 @@
 		if(total_storage_space > max_storage_space)
 			if(!stop_messages)
 				to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
-			return 0
+			return FALSE
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
 		if(!stop_messages)
 			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
-		return 0 //To prevent the stacking of same sized storage items.
+		return FALSE //To prevent the stacking of same sized storage items.
 
-	return 1
+	. = TRUE
 
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
@@ -351,7 +362,8 @@
 		usr.prepare_for_slotmove(W)
 		usr.update_icons() //update our overlays
 
-	W.loc = src
+	//W.loc = src
+	W.forceMove(src)
 	W.on_enter_storage(src)
 
 	if(usr)
@@ -372,7 +384,7 @@
 	refresh_all()
 
 	update_icon()
-	return 1
+	. = TRUE
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/W, atom/new_location)
@@ -406,7 +418,7 @@
 		var/amt_inserted = 0
 		var/turf/T = get_turf(user)
 		for(var/obj/item/light/L in src.contents)
-			if(L.status == 0)
+			if(L.status == 0) // LIGHT_OK, don't try using it though as it is undefined earlier in the dme
 				if(LP.uses < LP.max_uses)
 					LP.AddUses(1)
 					amt_inserted++
@@ -433,32 +445,19 @@
 				to_chat(user, SPAN_WARNING("God damnit!"))
 
 	W.add_fingerprint(user)
-	return handle_item_insertion(W)
+	. = handle_item_insertion(W)
 
 /obj/item/storage/dropped(mob/user)
 	return
 
 /obj/item/storage/attack_hand(mob/user)
-	// v Why does that exist? ~Luduk
-	/*if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
-			H.put_in_hands(src)
-			H.l_store = null
-			return
-		if(H.r_store == src && !H.get_active_hand())
-			H.put_in_hands(src)
-			H.r_store = null
-			return*/
-
 	if(loc == user)
 		open(user)
 	else
 		close_all()
 		..()
 
-	src.add_fingerprint(user)
-	return
+	add_fingerprint(user)
 
 /obj/item/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
@@ -474,10 +473,8 @@
 /obj/item/storage/proc/collectItems(turf/target, mob/user)
 	ASSERT(istype(target))
 	. = FALSE
-	var/limiter = 15
+
 	for(var/obj/item/I in target)
-		if(--limiter < 0)
-			break
 		if(can_be_inserted(I, TRUE))
 			. |= TRUE
 			handle_item_insertion(I, TRUE)
@@ -501,7 +498,7 @@
 		if(isturf(A) && !A.density)
 			dump_it(A)
 			return TRUE
-	return ..()
+	. = ..()
 
 /obj/item/storage/verb/quick_empty()
 	set name = "Empty Contents"
@@ -565,7 +562,7 @@
 	if(user.get_active_hand() == src && user.get_inactive_hand() == null)
 		if(user.swap_hand())
 			open(user)
-			return TRUE
+			. = TRUE
 
 /obj/item/storage/proc/make_exact_fit()
 	storage_slots = contents.len
@@ -612,7 +609,7 @@
 	if (!cur_atom)
 		return -1	//inside something with a null loc.
 
-	return depth
+	. = depth
 
 //Like storage depth, but returns the depth to the nearest turf
 //Returns -1 if no top level turf (a loc was null somewhere, or a non-turf atom's loc was an area somehow).
@@ -630,10 +627,10 @@
 	if (!cur_atom)
 		return -1	//inside something with a null loc.
 
-	return depth
+	. = depth
 
 /obj/item/proc/get_storage_cost()
-	return BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use max_w_class
+	. = BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use max_w_class
 
 
 //Useful for spilling the contents of containers all over the floor
@@ -646,4 +643,4 @@
 		O.tumble(2)
 
 /obj/item/storage/AllowDrop()
-	return TRUE
+	. = TRUE

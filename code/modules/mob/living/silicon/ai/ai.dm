@@ -28,9 +28,9 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/multitool_mode,
 	/mob/living/silicon/ai/proc/toggle_hologram_movement,
-	/mob/living/silicon/verb/show_crew_sensors,
-	/mob/living/silicon/verb/show_email,
-	/mob/living/silicon/verb/show_alerts
+	/mob/living/silicon/proc/show_crew_sensors,
+	/mob/living/silicon/proc/show_email,
+	/mob/living/silicon/proc/show_alerts
 )
 
 //Not sure why this is necessary...
@@ -113,13 +113,16 @@ var/list/ai_verbs_default = list(
 	var/drone_cooldown_time = 30 MINUTES  // Cooldown before creating a new drone
 	var/time_destroyed = 0.0
 
+	// Stored when on login and used for custom login out behaviur. Needed for proper removal of click handlers.
+	var/client/old_client
+
 	defaultHUD = "Eris"
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
-	verbs |= ai_verbs_default
+	add_verb(src, ai_verbs_default)
 
 /mob/living/silicon/ai/proc/remove_ai_verbs()
-	verbs -= ai_verbs_default
+	remove_verb(src, ai_verbs_default)
 
 /mob/living/silicon/ai/MiddleClickOn(var/atom/A)
 	if(!control_disabled && A.AIMiddleClick(src))
@@ -301,9 +304,10 @@ var/list/ai_verbs_default = list(
 	powered_ai = ai
 	powered_ai.psupply = src
 	forceMove(powered_ai.loc)
+	anchored = TRUE	//keep anchored! If unachored for any reason - it can't take power with set_power_use()
 
 	..()
-	use_power(1) // Just incase we need to wake up the power system.
+	use_power(IDLE_POWER_USE) // Just incase we need to wake up the power system.
 
 /obj/machinery/ai_powersupply/Destroy()
 	. = ..()
@@ -317,14 +321,14 @@ var/list/ai_verbs_default = list(
 		qdel(src)
 		return
 	if(powered_ai.APU_power)
-		use_power = NO_POWER_USE
+		set_power_use(NO_POWER_USE)
 		return
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
-		use_power = NO_POWER_USE
+		set_power_use(NO_POWER_USE)
 		use_power(50000) // Less optimalised but only called if AI is unwrenched. This prevents usage of wrenching as method to keep AI operational without power. Intellicard is for that.
 	if(powered_ai.anchored)
-		use_power = ACTIVE_POWER_USE
+		set_power_use(ACTIVE_POWER_USE)
 
 /mob/living/silicon/ai/proc/ai_movement_up()
 	set category = "Silicon Commands"
@@ -437,7 +441,7 @@ var/list/ai_verbs_default = list(
 			else
 				to_chat(src, SPAN_NOTICE("Unable to locate the holopad."))
 	if (href_list["track"])
-		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list
+		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list | SShumans.mob_list
 		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
 			ai_actual_track(target)
 		else
@@ -694,12 +698,11 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/is_in_chassis()
 	return istype(loc, /turf)
 
-
-/mob/living/silicon/ai/ex_act(var/severity)
-	if(severity == 1)
+/mob/living/silicon/ai/explosion_act(target_power, explosion_handler/handler)
+	if(target_power > maxHealth)
 		qdel(src)
-		return
-	..()
+	else
+		adjustBruteLoss(target_power)
 
 /mob/living/silicon/ai/proc/multitool_mode()
 	set name = "Toggle Multitool Mode"

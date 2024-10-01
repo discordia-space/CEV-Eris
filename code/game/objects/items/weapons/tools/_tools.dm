@@ -20,6 +20,9 @@
 
 	price_tag = 20
 
+	health = 600
+	maxHealth = 600
+
 	var/tool_in_use = FALSE
 
 	var/force_upgrade_mults = 1
@@ -51,7 +54,7 @@
 
 	//Variables used for tool degradation
 	health = 0		// Health of a tool.
-	max_health = 1000
+	maxHealth = 1000
 	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this amount after each tool operation
 	var/health_threshold  = 40 // threshold in percent on which tool health stops dropping
 	var/lastNearBreakMessage = 0 // used to show messages that tool is about to break
@@ -90,8 +93,8 @@
 	if(use_stock_cost)
 		stock = max_stock
 
-	if(max_health)
-		health = max_health
+	if(maxHealth)
+		health = maxHealth
 
 	update_icon()
 	return
@@ -116,7 +119,7 @@
 	return ..()
 
 /obj/item/tool/proc/adjustToolHealth(amount, user)
-	health = min(max_health, max(max_health * (health_threshold/100), health + amount))
+	health = min(maxHealth, max(maxHealth * (health_threshold/100), health + amount))
 	if(!isBroken && health == 0)
 		breakTool()
 		isBroken = TRUE
@@ -217,7 +220,7 @@
 		data["use_fuel_cost_max"] = initial(use_fuel_cost) * 10
 
 	data["health"] = health
-	data["health_max"] = max_health
+	data["health_max"] = maxHealth
 	data["health_threshold"] = health_threshold
 
 	data["force"] = force
@@ -277,7 +280,7 @@
 	var/list/tm = matter.Copy()
 	//Every point of damage reduces matter by 2% of total
 	for(var/mat in tm)
-		tm[mat] *= health / max_health
+		tm[mat] *= health / maxHealth
 
 	return tm
 
@@ -357,7 +360,7 @@
 		// the worse tool condition - the more time required
 		if(T && T.degradation)
 			// so basically we adding time based on percent of missing health multiplied by ADDITIONAL_TIME_LOWHEALTH for easier balancing
-			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * (1 -(T.health/T.max_health))))
+			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * (1 -(T.health/T.maxHealth))))
 
 	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
 		time_to_finish = 0
@@ -437,17 +440,17 @@
 		T.breakTool(user)
 		return TOOL_USE_FAIL
 	else if(T && !T.health_threshold)
-		if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_BASIC && T.health < T.max_health/100 * 5)// tool health is < 5%
+		if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_BASIC && T.health < T.maxHealth/100 * 5)// tool health is < 5%
 			if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
 				T.lastNearBreakMessage = world.time
 				to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
-		else if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT && T.health < T.max_health/100 * 15) // tool health is < 15%
+		else if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT && T.health < T.maxHealth/100 * 15) // tool health is < 15%
 			if(T.lastNearBreakMessage > world.time + 300 SECONDS) // once in 5 minutes
 				T.lastNearBreakMessage = world.time
 				to_chat(user, SPAN_WARNING("Some parts in your [src.name] are reeling."))
 		else
 			//lets give peasants a chance
-			if(T.health < T.max_health/100 * 5 && prob(10))// tool health is < 5% and chance a 10% to notice
+			if(T.health < T.maxHealth/100 * 5 && prob(10))// tool health is < 5% and chance a 10% to notice
 				if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
 					T.lastNearBreakMessage = world.time
 					to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
@@ -525,7 +528,8 @@
 		if(T && T.degradation)
 			failtypes["damage"] = 2.5
 
-	if(user)
+	// You can only fail with tools you are holding
+	if(user && T.loc == user)
 		failtypes["slip"] = 2
 		failtypes["swing"] = 1
 		if(ishuman(user))
@@ -841,49 +845,50 @@
 	SSnano.update_uis(src)
 
 
-/obj/item/tool/examine(mob/user)
-	if(!..(user,2))
-		return
+/obj/item/tool/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 
-	if(use_power_cost)
-		if(!cell)
-			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
-		else
-			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
+		if(use_power_cost)
+			if(!cell)
+				extra_description += SPAN_WARNING("There is no cell inside to power the tool")
+			else
+				extra_description += "The charge meter reads [round(cell.percent())]%."
 
-	if(use_fuel_cost)
-		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+		if(use_fuel_cost)
+			extra_description += "\nContains [get_fuel()] / [max_fuel] units of fuel!"
 
-	if(use_stock_cost)
-		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
+		if(use_stock_cost)
+			extra_description += SPAN_NOTICE("\nIt has [stock] / [max_stock] units remaining.")
 
-	//Display a bunch of stats but only if they're nondefault values
-	if(precision != 0)
-		to_chat(user, "Precision: [SPAN_NOTICE("[precision]")]")
+		//Display a bunch of stats but only if they're nondefault values
+		if(precision != 0)
+			extra_description += "\nPrecision: [SPAN_NOTICE("[precision]")]"
 
-	if(workspeed != 1)
-		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
+		if(workspeed != 1)
+			extra_description += "\nWork Speed: [SPAN_NOTICE("[workspeed*100]%")]"
 
-	if(item_upgrades.len)
-		to_chat(user, "It has the following upgrades installed:")
-		for(var/obj/item/TU in item_upgrades)
-			to_chat(user, SPAN_NOTICE(TU.name))
+		if(item_upgrades.len)
+			extra_description += "\nIt has the following upgrades installed:"
+			for(var/obj/item/TU in item_upgrades)
+				extra_description += SPAN_NOTICE("\n[TU.name]")
 
-	if(health)
-		if(health > max_health * 0.95)
-			return
-		else if(health > max_health * 0.80)
-			to_chat(user, "It has a few light scratches.")
-		else if(health > max_health * 0.40)
-			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
-		else if(health > max_health * 0.20)
-			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
-		else if(health > max_health * 0.10)
-			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
-		else if(health > max_health * 0.05)
-			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
-		else
-			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
+		if(health)
+			if(health > maxHealth * 0.95)
+				extra_description += "\nIt looks pristine."
+			else if(health > maxHealth * 0.80)
+				extra_description += "\nIt has a few light scratches."
+			else if(health > maxHealth * 0.40)
+				extra_description += SPAN_NOTICE("\nIt shows minor signs of stress and wear.")
+			else if(health > maxHealth * 0.20)
+				extra_description += SPAN_WARNING("\nIt looks a bit cracked and worn.")
+			else if(health > maxHealth * 0.10)
+				extra_description += SPAN_WARNING("\nWhatever use this tool once had is fading fast.")
+			else if(health > maxHealth * 0.05)
+				extra_description += SPAN_WARNING("\nAttempting to use this thing as a tool is probably not going to work out well.")
+			else
+				extra_description += SPAN_DANGER("\nIt's falling apart. This is one slip away from just being a pile of assorted trash.")
+
+	..(user, extra_description)
 
 //Recharge the fuel at fueltank, also explode if switched on
 /obj/item/tool/afterattack(obj/O, mob/user, proximity)
@@ -938,7 +943,7 @@
 				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
 				//Toolception!
 				if(use_tool(user, T, 60, QUALITY_ADHESIVE, FAILCHANCE_EASY, STAT_MEC))
-					T.adjustToolHealth(T.max_health * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
+					T.adjustToolHealth(T.maxHealth * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
 					if(user.stats.getStat(STAT_MEC) > STAT_LEVEL_BASIC/2)
 						to_chat(user, SPAN_NOTICE("You knowledge in tools helped you repair it better."))
 					refresh_upgrades()
@@ -978,23 +983,23 @@
 		switch(safety)
 			if(FLASH_PROTECTION_MODERATE)
 				to_chat(H, SPAN_WARNING("Your eyes sting a little."))
-				E.damage += rand(1, 2)
+				E.take_damage(3, BURN)
 				if(E.damage > 12)
 					H.eye_blurry += rand(3,6)
 			if(FLASH_PROTECTION_MINOR)
 				to_chat(H, SPAN_WARNING("The searing light burns your eyes through your insufficient protection."))
-				E.damage += rand(2, 3)
+				E.take_damage(rand(6, 9), BURN)
 				if(E.damage > 11)
-					E.damage += rand(4,8)
+					E.take_damage(rand(4, 6), BURN)
 			if(FLASH_PROTECTION_NONE)
 				to_chat(H, SPAN_WARNING("Your eyes burn."))
-				E.damage += rand(2, 4)
+				E.take_damage(rand(8, 12), BURN)
 				if(E.damage > 10)
-					E.damage += rand(4,10)
+					E.take_damage(rand(4, 12))
 			if(FLASH_PROTECTION_REDUCED)
 				to_chat(H, SPAN_DANGER("Your equipment intensify the welder's glow. Your eyes itch and burn severely."))
 				H.eye_blurry += rand(12,20)
-				E.damage += rand(12, 16)
+				E.take_damage(rand(16, 20))
 		if(safety<FLASH_PROTECTION_MAJOR)
 			if(E.damage > 10)
 				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))

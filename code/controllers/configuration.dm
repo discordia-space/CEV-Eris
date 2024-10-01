@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/welder_vision = 1
 	var/generate_asteroid = 0
 	var/no_click_cooldown = 0
-	var/z_level_shooting = FALSE
+	var/z_level_shooting = TRUE
 
 	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
 	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
@@ -538,9 +538,6 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("popup_admin_pm")
 					config.popup_admin_pm = 1
 
-				if("allow_holidays")
-					Holiday = 1
-
 				if("use_irc_bot")
 					use_irc_bot = 1
 
@@ -852,7 +849,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		else //probably windows, if not this should work anyway
 			config.python_path = "python"
 
-	world.name = station_name()
+	world.name = station_name
 
 
 /datum/configuration/proc/LoadChatFilter()

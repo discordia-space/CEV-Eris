@@ -17,7 +17,7 @@
 	status_flags = 0 //No pushing, no stunning, no paralyze and no weaken.
 	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
 	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
-	var/anger_modifier = 0
+	//var/anger_modifier = 0
 	var/recovery_time = 0
 	var/chosen_attack = 1 // chosen attack num
 	var/list/attack_action_types = list()
@@ -36,22 +36,22 @@
 
 /mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
 	..()
-	qdel(src)
 
 /mob/living/simple_animal/hostile/megafauna/gib()
 	qdel(src)
 
 /mob/living/simple_animal/hostile/megafauna/dust(just_ash, drop_items, force)
+	..()
 	qdel(src)
 
 /mob/living/simple_animal/hostile/megafauna/AttackingTarget()
 	if(recovery_time >= world.time)
 		return
 	. = ..()
-	if(. && isliving(target))
+	if(isliving(target))
 		var/mob/living/L = target
 		if(L.stat != DEAD)
-			if(!client && ranged && ranged_cooldown <= world.time)
+			if(!client && ranged && ranged_cooldown <= world.time && src.stat != DEAD)
 				OpenFire()
 		else
 			devour(L)
@@ -67,18 +67,9 @@
 	L.gib()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/ex_act(severity, target)
-	switch (severity)
-		if (1)
-			adjustBruteLoss(250)
-
-		if (2)
-			adjustBruteLoss(100)
-
-		if(3)
-			adjustBruteLoss(50)
-		if(4)
-			adjustBruteLoss(25)
+/mob/living/simple_animal/hostile/megafauna/explosion_act(target_power, explosion_handler/handle)
+	adjustBruteLoss(target_power / 3)
+	return health
 
 /mob/living/simple_animal/hostile/megafauna/proc/SetRecoveryTime(buffer_time)
 	recovery_time = world.time + buffer_time

@@ -17,7 +17,7 @@
 	else
 		show_message(msg1, 1)
 
-/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier = 1, list/dmg_types = list(), return_continuation = FALSE)
+/mob/living/proc/damage_through_armor(damage = 0, damagetype = BRUTE, def_zone, attack_flag = ARMOR_MELEE, armor_divisor = 1, used_weapon, sharp = FALSE, edge = FALSE, wounding_multiplier, list/dmg_types = list(), return_continuation = FALSE, dir_mult = 1)
 	if(damage) // If damage is defined, we add it to the list
 		if(!dmg_types[damagetype])
 			dmg_types += damagetype
@@ -37,7 +37,7 @@
 		return FALSE
 
 	// Determine DR and ADR, armour divisor reduces it
-	var/armor = getarmor(def_zone, attack_flag) / armor_divisor
+	var/armor = getarmor(def_zone, attack_flag)*dir_mult / armor_divisor
 	if(!(attack_flag in list(ARMOR_MELEE, ARMOR_BULLET, ARMOR_ENERGY))) // Making sure BIO and other armor types are handled correctly
 		armor /= 5
 	var/ablative_armor = getarmorablative(def_zone, attack_flag) / armor_divisor
@@ -68,20 +68,25 @@
 				dmg = max(dmg - remaining_armor - remaining_ablative, 0)
 
 			if(!(dmg_type == HALLOSS)) // Determine pain from impact
-				adjustHalLoss(used_armor * wounding_multiplier * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
+				adjustHalLoss(used_armor * (wounding_multiplier ? wounding_multiplier : 1) * ARMOR_HALLOS_COEFFICIENT * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 
 			dmg_types[dmg_type] = dmg // Finally, we adjust the damage passing through
 			if(dmg)
 				dealt_damage += dmg
-				dmg *= dmg_type == HALLOSS ? 1 : wounding_multiplier
 
 				if(dmg_type == HALLOSS)
 					dmg = round(dmg * max(0.5, (get_specific_organ_efficiency(OP_NERVE, def_zone) / 100)))
 				if(dmg_type == BRUTE)
 
-					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks
+					if ( (sharp || edge) && prob ( (1 - dmg / dmg_types[dmg_type]) * 100 ) ) // If enough of the brute damage is blocked, sharpness is lost from all followup attacks, this converts damage into crushing as well
+						if(wounding_multiplier)
+							wounding_multiplier = step_wounding_double(wounding_multiplier) // Implied piercing damage, degrade by two steps (prevents damage duping from <1 multiplier)
+						else
+							wounding_multiplier = 1 // Crushing multiplier forced
 						sharp = FALSE
 						edge = FALSE
+						armor_message(SPAN_NOTICE("[src] armor deflected the strike!"), // No cut (strike), only bash
+										SPAN_NOTICE("Your armor deflects the strike!"))
 
 					if(ishuman(src) && isitem(used_weapon))
 						var/mob/living/carbon/human/H = src
@@ -97,25 +102,26 @@
 						visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
 								SPAN_WARNING("Your splints break off after being hit!"))
 						o.status &= ~ORGAN_SPLINTED
-	var/effective_armor = (1 - dealt_damage / total_dmg) * 100
+	var/effective_armor = round((1 - dealt_damage / total_dmg) * 100)
 
 
 	//Feedback
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
 	//Goon/tg chat should take care of spam issue on this one
 	switch(effective_armor)
-		if(INFINITY to 90)
-			armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"),
-							SPAN_NOTICE("Your armor absorbed the impact!"))
-		if(90 to 74)
-			armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
-							SPAN_NOTICE("Your armor reduced the impact greatly!"))
-		if(74 to 49)
-			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
-							SPAN_NOTICE("Your armor protects you from the impact!"))
-		if(24 to -INFINITY)
+		if(24 to 49)
 			armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."),
 							SPAN_NOTICE("Your armor reduced the impact a little."))
+		if(50 to 74)
+			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
+							SPAN_NOTICE("Your armor protects you from the impact!"))
+		if(75 to 89)
+			armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
+							SPAN_NOTICE("Your armor reduced the impact greatly!"))
+		if(90 to INFINITY)
+			armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"),
+							SPAN_NOTICE("Your armor absorbed the impact!"))
+
 
 	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
 	if(ablative_armor)
@@ -248,7 +254,7 @@
 	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
 
 	if(I.damtype == BRUTE && prob(33)) // Added blood for whacking non-humans too
-		var/turf/simulated/location = get_turf(src)
+		var/turf/location = get_turf(src)
 		if(istype(location)) location.add_blood_floor(src)
 
 	return
@@ -274,15 +280,6 @@
 		var/obj/O = AM
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
-
-		if (prob(miss_chance))
-			visible_message("\blue \The [O] misses [src] narrowly!")
-			playsound(src, "miss_sound", 50, 1, -6)
-			return
 
 		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 			IgniteMob()
@@ -339,7 +336,7 @@
 	O.forceMove(src)
 	src.embedded += O
 	src.visible_message(SPAN_DANGER("\The [O] embeds in the [src]!"))
-	src.verbs += /mob/proc/yank_out_object
+	add_verb(src, /mob/proc/yank_out_object)
 	O.on_embed(src)
 
 //This is called when the mob is thrown into a dense turf
@@ -411,9 +408,6 @@
 
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(fire_burn_temperature(), 50, 1)
-	if (ishuman(src))
-		var/mob/living/carbon/human/stylish = src
-		stylish.regen_slickness() // being on fire is cool, but don't try this at home
 
 /mob/living/fire_act()
 	adjust_fire_stacks(2)

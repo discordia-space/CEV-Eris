@@ -390,7 +390,7 @@
 	var/inverse_tough_mult = 1 - M.stats.getMult(STAT_TGH)
 	if(ishuman(M) && prob(80 - (60 * inverse_tough_mult)))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
+		var/obj/item/organ/internal/vital/heart/L = H.random_organ_by_process(OP_HEART)
 		create_overdose_wound(L, M, /datum/component/internal_wound/organic/necrosis_start, "rot")
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
 	if(prob(5 - (2 * inverse_tough_mult)))

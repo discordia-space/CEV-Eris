@@ -151,7 +151,7 @@ var/list/tape_roll_applications = list()
 					possible_dirs += dir
 				else
 					for(var/obj/structure/window/W in T)
-						if(W.is_fulltile() || W.dir == reverse_dir[dir])
+						if(W.dir == reverse_dir[dir])
 							possible_dirs += dir
 			if(!possible_dirs)
 				start = null
@@ -213,14 +213,14 @@ var/list/tape_roll_applications = list()
 				if(T && !T.density)
 					tape_dir = orientation
 					for(var/obj/structure/window/W in T)
-						if(W.is_fulltile() || W.dir == orientation)
+						if(W.dir == orientation)
 							tape_dir = dir
 			else if(cur == end)
 				var/turf/T = get_step(end, orientation)
 				if(T && !T.density)
 					tape_dir = reverse_dir[orientation]
 					for(var/obj/structure/window/W in T)
-						if(W.is_fulltile() || W.dir == reverse_dir[orientation])
+						if(W.dir == reverse_dir[orientation])
 							tape_dir = dir
 			for(var/obj/item/tape/T in cur)
 				if((T.tape_dir == tape_dir) && (T.icon_base == icon_base))
@@ -254,7 +254,7 @@ var/list/tape_roll_applications = list()
 		P.update_plane()
 		to_chat(user, SPAN_NOTICE("You finish placing \the [src]."))
 
-	if (istype(A, /turf/simulated/floor) ||istype(A, /turf/unsimulated/floor))
+	if (istype(A, /turf/floor) ||istype(A, /turf/floor/dummy))
 		var/turf/F = A
 		var/direction = user.loc == F ? user.dir : turn(user.dir, 180)
 		var/icon/hazard_overlay = hazard_overlays["[direction]"]

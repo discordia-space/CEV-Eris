@@ -24,10 +24,11 @@
 		/obj/item/gun/projectile/handmade_pistol,
 		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/type_62,
+		/obj/item/gun/projectile/type_90,
+		/obj/item/gun/projectile/automatic/modular/mk58,
 		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
@@ -52,6 +53,10 @@
 		/obj/item/gun/energy/nuclear,
 		/obj/item/gun/energy/nt_svalinn,
 		/obj/item/gun/energy/crossbow,
+		/obj/item/gun/energy/toxgun,
+		/obj/item/gun/energy/decloner,
+		/obj/item/gun/energy/floragun,
+		/obj/item/gun/energy/laser/makeshift_pistol,
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
@@ -176,10 +181,11 @@
 		/obj/item/gun/projectile/handmade_pistol,
 		/obj/item/gun/projectile/flare_gun,
 		/obj/item/gun/projectile/lamia,
-		/obj/item/gun/projectile/mk58,
+		/obj/item/gun/projectile/automatic/modular/mk58,
 		/obj/item/gun/projectile/olivaw,
 		/obj/item/gun/projectile/mandella,
-		/obj/item/gun/projectile/pistol,
+		/obj/item/gun/projectile/type_90,
+		/obj/item/gun/projectile/type_62,
 		/obj/item/gun/projectile/shotgun/type_21,
 		/obj/item/gun/energy/gun,
 		/obj/item/gun/energy/chameleon,
@@ -204,6 +210,10 @@
 		/obj/item/gun/energy/nuclear,
 		/obj/item/gun/energy/nt_svalinn,
 		/obj/item/gun/energy/crossbow,
+		/obj/item/gun/energy/toxgun,
+		/obj/item/gun/energy/decloner,
+		/obj/item/gun/energy/floragun,
+		/obj/item/gun/energy/laser/makeshift_pistol,
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice,
@@ -222,7 +232,7 @@
 		)
 
 /obj/item/clothing/accessory/holster/scabbard
-	name = "scabbard"
+	name = "uniform scabbard"
 	desc = "A sturdy brown leather scabbard with a gold trim, made to house a variety of swords. Needs to be attached to your uniform to be properly held in place."
 	icon_state = "sheath"
 	overlay_state = "sword"
@@ -234,7 +244,7 @@
 		/obj/item/tool/sword/nt/halberd,
 		/obj/item/tool/sword/nt/spear
 		)
-	
+
 	price_tag = 300
 	sound_in = 'sound/effects/sheathin.ogg'
 	sound_out = 'sound/effects/sheathout.ogg'
@@ -332,7 +342,7 @@
 				holster.attack_hand(H)
 				holster_handled = TRUE
 				break
-	
+
 	if(!holster_handled)
 		to_chat(H, SPAN_NOTICE(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
 		return FALSE

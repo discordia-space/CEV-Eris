@@ -1,4 +1,4 @@
-/obj/item/gun/projectile/pistol/type_62
+/obj/item/gun/projectile/type_62
 	name = "OS Type 62 PDW .40 \"Nezha\"" //god forgive me i dont know chineese, Name = Protection Deity
 	desc = "A compact and powerful prototype PDW typically issued to high ranking officials and spies. Unwieldy, but extremely deadly, this is the perfect gun for self defense and urban warfare. Takes both pistol and SMG .40 magazines."
 	icon = 'icons/obj/guns/projectile/os/type_62.dmi'
@@ -31,7 +31,7 @@
 
 	serial_type = "OS"
 
-/obj/item/gun/projectile/pistol/type_62/update_icon()
+/obj/item/gun/projectile/type_62/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -40,14 +40,18 @@
 	if(ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"
+		wielded_item_state = "_doble" + "_mag"
 		if(ammo_magazine.mag_well == MAG_WELL_SMG) //thank you to kirov for the code help -Valo
 			iconstring += "_smg"
 		if(!LAZYLEN(ammo_magazine.stored_ammo))
 			iconstring += "_empty"
+		wielded_item_state = "_doble" + "_mag"
+	else
+		wielded_item_state = "_doble"
 
 	icon_state = iconstring
 	set_item_state(itemstring)
 
-/obj/item/gun/projectile/pistol/type_62/Initialize()
+/obj/item/gun/projectile/type_62/Initialize()
 	. = ..()
 	update_icon()

@@ -1,6 +1,7 @@
 /obj/item/modification/organ/internal/input
 	name = "organoid (input)"
 	icon_state = "input_organoid"
+	bad_type = /obj/item/modification/organ/internal/input
 
 /obj/item/modification/organ/internal/input/reagents
 	name = "metabolic organoid"
@@ -11,23 +12,24 @@
 						Use a laser cutting tool to change the metabolism source or reagent type.\n\
 						Reagents can only be swapped for like reagents."
 
-/obj/item/modification/organ/internal/input/reagents/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/chosen_input_info, chosen_mode, threshold, list/additional_input_info)
+/obj/item/modification/organ/internal/input/reagents/Initialize(loc, generate_organ_stats = FALSE, predefined_modifier = null, num_eff = 0, list/input_args)
 	var/datum/component/modification/organ/input/reagents/I = AddComponent(/datum/component/modification/organ/input/reagents)
 
-	for(var/input in chosen_input_info)
-		I.accepted_inputs += input
-	I.check_mode = chosen_mode
-	I.threshold = threshold
-
+	var/list/inputs = input_args[1]
+	var/list/input_selection = input_args[3]
 	var/list/new_input_qualities = list()
 
-	for(var/quality in additional_input_info)
+	for(var/input in inputs)
+		I.accepted_inputs += input
+	I.check_mode = input_args[2]
+
+	for(var/quality in input_selection)
 		if(ispath(quality, /datum/reagent))
 			var/datum/reagent/R = quality
 			var/reagent_name = initial(R.name)
 			new_input_qualities |= reagent_name
 			new_input_qualities[reagent_name] = quality
-	
+
 	I.input_qualities = new_input_qualities
 	..()
 
@@ -38,16 +40,18 @@
 						(can be inflicted before attaching the organ), but no damage is healed.\n\n\
 						Use a laser cutting tool to change the damage type."
 
-/obj/item/modification/organ/internal/input/damage/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/chosen_input_info, chosen_mode, threshold, list/additional_input_info)
+/obj/item/modification/organ/internal/input/damage/Initialize(loc, generate_organ_stats = FALSE, predefined_modifier = null, num_eff = 0, list/input_args)
 	var/datum/component/modification/organ/input/damage/I = AddComponent(/datum/component/modification/organ/input/damage)
 
-	for(var/input in chosen_input_info)
-		I.accepted_inputs += input
-	I.threshold = threshold
-
+	var/list/inputs = input_args[1]
+	var/list/input_selection = input_args[3]
 	var/list/new_input_qualities = list()
 
-	for(var/quality in additional_input_info)
+	for(var/input in inputs)
+		I.accepted_inputs += input
+	I.threshold = input_args[2]
+
+	for(var/quality in input_selection)
 		if(istext(quality))
 			var/dmg_name
 			switch(quality)
@@ -55,12 +59,8 @@
 					dmg_name = "brute"
 				if(BURN)
 					dmg_name = "burn"
-				if(TOX)
-					dmg_name = "toxin"
 				if(OXY)
 					dmg_name = "suffocation"
-				if(CLONE)
-					dmg_name = "DNA degredation"
 				if(HALLOSS)
 					dmg_name = "pain"
 				else
@@ -68,8 +68,38 @@
 
 			new_input_qualities |= dmg_name
 			new_input_qualities[dmg_name] = quality
-	
+
 	I.input_qualities = new_input_qualities
+	..()
+
+/obj/item/modification/organ/internal/input/consume
+	name = "mandibular organoid"
+	desc = "Functional tissue of one or more organs in graftable form. Consumes objects."
+	description_info = "On use, consumes a held object and ingests any contained reagents.\n\n\
+						Use a laser cutting tool to change the consumable object type."
+
+/obj/item/modification/organ/internal/input/consume/Initialize(loc, generate_organ_stats = FALSE, predefined_modifier = null, num_eff = 0, list/input_args)
+	var/datum/component/modification/organ/input/consume/I = AddComponent(/datum/component/modification/organ/input/consume)
+
+	var/list/inputs = input_args[1]
+	var/list/input_selection = input_args[2]
+	var/list/new_input_qualities = list()
+
+	for(var/input in inputs)
+		if(!ispath(input))
+			continue
+		I.accepted_inputs += input
+
+	for(var/quality in input_selection)
+		if(ispath(quality))
+			var/atom/movable/AM = quality
+			var/object_name = initial(AM.name)
+			new_input_qualities |= object_name
+			new_input_qualities[object_name] = quality
+
+	I.input_qualities = new_input_qualities
+
+	I.modifications[ITEM_VERB_NAME] = "Consume held object"
 	..()
 
 /obj/item/modification/organ/internal/input/power_source
@@ -79,19 +109,22 @@
 						in a stack will trigger the process, but larger cells and rarer materials will provide a slight cognition and sanity boost.\n\n\
 						Use a laser cutting tool to change the power source type."
 	icon_state = "input_organoid-hive"
+	use_generated_icon = FALSE
 
-/obj/item/modification/organ/internal/input/power_source/New(loc, generate_organ_stats = FALSE, predefined_modifier = null, list/chosen_input_info, chosen_mode, threshold, list/additional_input_info)
+/obj/item/modification/organ/internal/input/power_source/Initialize(loc, generate_organ_stats = FALSE, predefined_modifier = null, num_eff = 0, list/input_args)
 	var/datum/component/modification/organ/input/power_source/I = AddComponent(/datum/component/modification/organ/input/power_source)
 
-	for(var/input in chosen_input_info)
+	var/list/inputs = input_args[1]
+	var/list/input_selection = input_args[3]
+	var/list/new_input_qualities = list()
+
+	for(var/input in inputs)
 		if(!ispath(input))
 			continue
 		I.accepted_inputs += input
-	I.threshold = threshold
+	I.threshold = input_args[2]
 
-	var/list/new_input_qualities = list()
-
-	for(var/quality in additional_input_info)
+	for(var/quality in input_selection)
 		if(ispath(quality))
 			var/atom/movable/AM = quality
 			var/source_name
@@ -107,9 +140,6 @@
 
 			new_input_qualities |= source_name
 			new_input_qualities[source_name] = quality
-	
+
 	I.input_qualities = new_input_qualities
 	..()
-
-/obj/item/modification/organ/internal/input/power_source/update_icon()
-	return

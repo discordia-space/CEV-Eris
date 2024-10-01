@@ -459,8 +459,8 @@
 /datum/reagents/proc/touch_turf(turf/target)
 	if(!target || !istype(target) || !target.simulated)
 		return
-	if(istype(target, /turf/simulated/open))
-		var/turf/simulated/open/T = target
+	if(istype(target, /turf/open))
+		var/turf/open/T = target
 		if(T.isOpen())
 			return TRUE // halt powder pile/smears creation without wasting reagents
 

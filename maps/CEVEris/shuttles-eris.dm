@@ -302,17 +302,6 @@
 	icon_state = "shuttle-red"
 	landmark_tag = "nav_merc_sec3east5"
 
-//Cargo shuttle
-
-/datum/shuttle/autodock/ferry/supply/drone
-	name = "Supply Shuttle"
-	location = 1
-	warmup_time = 10
-	shuttle_area = /area/supply/dock
-	waypoint_offsite = "nav_cargo_start"
-	waypoint_station = "nav_cargo_vessel"
-	default_docking_controller = "supply_shuttle"
-
 /obj/effect/shuttle_landmark/supply/centcom
 	name = "Centcom"
 	landmark_tag = "nav_cargo_start"
@@ -321,3 +310,124 @@
 	name = "Dock"
 	landmark_tag = "nav_cargo_vessel"
 	dock_target = "cargo_bay"
+
+// Pirate shuttle
+// Docking controller chooses which of our airlocks should open onto the target location.
+// Pirate ship has two airlock but let's not bother having them automatically controlled
+
+/datum/shuttle/autodock/multi/antag/pirate
+	name = "Pirate"
+	warmup_time = 0
+	move_time = 100
+	cloaked = 0
+	destination_tags = list(
+		"nav_pirate_start",
+		"nav_pirate_deck5_brig",
+		"nav_pirate_deck5_dorms",
+	 	"nav_pirate_deck5_moebius",
+		"nav_pirate_deck5_cargo",
+	 	"nav_pirate_deck5_engine",
+		"nav_pirate_deck3_cargo",
+	 	"nav_pirate_deck3_engine",
+		"nav_pirate_deck2_medical",
+ 		"nav_pirate_deck2_bar",
+	)
+	shuttle_area = /area/shuttle/pirate
+	// default_docking_controller = "pirate_shuttle"  // No need for docking controller (no two-stages airlock)
+	current_location = "nav_pirate_start"
+	landmark_transition = "nav_pirate_transition"
+	announcer = "CEV Eris Sensor Array"
+	home_waypoint = "nav_pirate_start"
+	arrival_message = "Attention, unidentified vessel detected on long range sensors. \nVessel is approaching on an intercept course. \nHailing frequencies open."
+	departure_message = "Attention, unknown vessel has departed."
+
+	var/locked_shuttle = FALSE
+
+//This fires, and the mission timer starts ticking, as soon as they leave Eris on course to the pirate base
+/datum/shuttle/autodock/multi/antag/pirate/announce_departure()
+	.=..()
+	var/datum/faction/F = get_faction_by_id(FACTION_PIRATES)
+	var/datum/objective/timed/pirate/MO = (locate(/datum/objective/timed/pirate) in F.objectives)
+	if (MO)
+		MO.end_mission()
+
+//This fires, and the mission timer starts ticking, as soon as they leave base
+/datum/shuttle/autodock/multi/antag/pirate/announce_arrival()
+	.=..()
+	var/datum/faction/F = get_faction_by_id(FACTION_PIRATES)
+	var/datum/objective/timed/pirate/MO = (locate(/datum/objective/timed/pirate) in F.objectives)
+	if (MO)
+		MO.start_mission()
+
+// Cannot go back to the base with an alive outsider
+/datum/shuttle/autodock/multi/antag/pirate/proc/check_back_to_base()
+	if(next_location == home_waypoint)
+		var/datum/faction/F = get_faction_by_id(FACTION_PIRATES)
+		for(var/mob/living/carbon/human/H in get_area_contents(/area/shuttle/pirate))
+			if(!(H.stat == DEAD) && !F.is_member(H))
+				return TRUE
+	return FALSE
+
+// Once the mission is over you cannot go back to Eris
+/datum/shuttle/autodock/multi/antag/pirate/proc/lock_shuttle()
+	locked_shuttle = TRUE
+
+/datum/shuttle/autodock/multi/antag/pirate/can_launch()
+	if (locked_shuttle || check_back_to_base())
+		return FALSE
+	else
+		return ..()
+
+/datum/shuttle/autodock/multi/antag/pirate/can_force()
+	if(locked_shuttle || check_back_to_base())
+		return FALSE
+	else
+		return ..()
+
+// Navigation landmarks
+/obj/effect/shuttle_landmark/pirate
+	icon_state = "shuttle-green"
+
+/obj/effect/shuttle_landmark/pirate/start
+	name = "Pirate Base"
+	landmark_tag = "nav_pirate_start"
+
+/obj/effect/shuttle_landmark/pirate/internim
+	name = "In transit"
+	landmark_tag = "nav_pirate_transition"
+
+/obj/effect/shuttle_landmark/pirate/deck5_brig
+	name = "Section I of the Vessel Deck 5"
+	landmark_tag = "nav_pirate_deck5_brig"
+
+/obj/effect/shuttle_landmark/pirate/deck5_dorms
+	name = "Section I of the Vessel Deck 5"
+	landmark_tag = "nav_pirate_deck5_dorms"
+
+/obj/effect/shuttle_landmark/pirate/deck5_moebius
+	name = "Section II of the Vessel Deck 5"
+	landmark_tag = "nav_pirate_deck5_moebius"
+
+/obj/effect/shuttle_landmark/pirate/deck5_cargo
+	name = "Section III of the Vessel Deck 5"
+	landmark_tag = "nav_pirate_deck5_cargo"
+
+/obj/effect/shuttle_landmark/pirate/deck5_engine
+	name = "Section IV of the Vessel Deck 5"
+	landmark_tag = "nav_pirate_deck5_engine"
+
+/obj/effect/shuttle_landmark/pirate/deck3_cargo
+	name = "Section III of the Vessel Deck 3"
+	landmark_tag = "nav_pirate_deck3_cargo"
+
+/obj/effect/shuttle_landmark/pirate/deck3_engine
+	name = "Section IV of the Vessel Deck 3"
+	landmark_tag = "nav_pirate_deck3_engine"
+
+/obj/effect/shuttle_landmark/pirate/deck2_medical
+	name = "Section II of the Vessel Deck 2"
+	landmark_tag = "nav_pirate_deck2_medical"
+
+/obj/effect/shuttle_landmark/pirate/deck2_bar
+	name = "Section III of the Vessel Deck 2"
+	landmark_tag = "nav_pirate_deck2_bar"

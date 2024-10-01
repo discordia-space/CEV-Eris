@@ -7,6 +7,7 @@
 	kill_count = 15 //shorter range
 	muzzle_type = null
 	var/reagent_amount = 15
+	matter = list(MATERIAL_GLASS = 0.2)
 
 /obj/item/projectile/bullet/chemdart/New()
 	create_reagents(reagent_amount)
@@ -23,10 +24,9 @@
 	desc = "A small hardened, hollow dart."
 	icon_state = "dart"
 	caliber = CAL_DART
+	is_caseless = TRUE
 	projectile_type = /obj/item/projectile/bullet/chemdart
 
-/obj/item/ammo_casing/chemdart/expend()
-	qdel(src)
 
 /obj/item/ammo_magazine/chemdart
 	name = "dart cartridge"
@@ -89,17 +89,14 @@
 	if(istype(dart))
 		fill_dart(dart)
 
-/obj/item/gun/projectile/dartgun/examine(mob/user)
-	//update_icon()
-	//if (!..(user, 2))
-	//	return
-	..()
-	if(beakers.len)
-		to_chat(user, SPAN_NOTICE("[src] contains:"))
+/obj/item/gun/projectile/dartgun/examine(mob/user, extra_description = "")
+	if(LAZYLEN(beakers))
+		extra_description += SPAN_NOTICE("\n[src] contains:")
 		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
-			if(B.reagents && B.reagents.reagent_list.len)
+			if(B.reagents && LAZYLEN(B.reagents.reagent_list))
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					to_chat(user, SPAN_NOTICE("[R.volume] units of [R.name]"))
+					extra_description += SPAN_NOTICE("\n[R.volume] units of [R.name]")
+	..(user, extra_description)
 
 /obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/glass))
