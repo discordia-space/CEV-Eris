@@ -357,6 +357,17 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 	item_state = "rubberducky"
+	attack_verb = list("QUACKED")
+
+/obj/item/bikehorn/rubberducky/New()
+	..()
+	var/datum/component/item_upgrade/I = GetComponent(/datum/component/item_upgrade)
+	I.tool_upgrades[UPGRADE_ITEMFLAGPLUS] = DUCKING
+	I.weapon_upgrades[GUN_UPGRADE_DUCK] = TRUE
+
+/obj/item/bikehorn/rubberducky/attack_self(mob/user)
+	playsound(loc, 'sound/items/duck.ogg', 50, 1)
+	add_fingerprint(user)
 
 
 

@@ -385,6 +385,8 @@
 		var/soundfile
 		if(T && T.item_flags & HONKING)
 			soundfile = WORKSOUND_HONK
+		else if (istype(T) && T.item_flags & DUCKING)
+			soundfile = 'sound/items/duck.ogg'
 		else if(forced_sound)
 			soundfile = forced_sound
 		else

@@ -247,6 +247,8 @@
 		var/obj/item/tool/T = forced
 		if (istype(T) && T.item_flags & HONKING)
 			playsound(loc, WORKSOUND_HONK, 70, 1, -2)
+		else if (istype(T) && T.item_flags & DUCKING)
+			playsound(loc, 'sound/items/duck.ogg', 70, 1, -2)
 		else if (istype(T) && T.item_flags & SILENT)
 			playsound(loc, open_sound_unpowered, 3, 1, -5)
 		else if (istype(T) && T.item_flags & LOUD)
@@ -308,6 +310,8 @@
 		var/obj/item/tool/T = forced
 		if (istype(T) && T.item_flags & HONKING)
 			playsound(loc, WORKSOUND_HONK, 70, 1, -2)
+		else if (istype(T) && T.item_flags & DUCKING)
+			playsound(loc, 'sound/items/duck.ogg', 70, 1, -2)
 		else if (istype(T) && T.item_flags & SILENT)
 			playsound(loc, open_sound_unpowered, 3, 1, -5)
 		else if (istype(T) && T.item_flags & LOUD)

@@ -70,6 +70,7 @@
 #define LOUD					0x80 	// Loud as hell tools
 #define HONKING					0x100 	// Honking tools
 #define MOVE_NOTIFY				0x200 	// Call entered_with_container() on this item when mob containing it moves
+#define DUCKING                 0x400   // Quacking tools
 
 //Flags for items (equipment)
 #define THICKMATERIAL              0x1  // Prevents syringes, parapens and hyposprays if equiped to slot_suit or slot_head.

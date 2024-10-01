@@ -138,6 +138,7 @@ var/list/outfits_decls_by_type_
 		H.put_in_l_hand(new l_hand(H))
 	if(r_hand)
 		H.put_in_r_hand(new r_hand(H))
+	H.equip_to_slot_or_store_or_drop(new /obj/item/bikehorn/rubberducky(H))
 
 	if((flags & OUTFIT_HAS_BACKPACK) && !(OUTFIT_ADJUSTMENT_SKIP_BACKPACK & equip_adjustments))
 		var/decl/backpack_outfit/bo
