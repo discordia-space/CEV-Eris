@@ -27,6 +27,9 @@
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
 	var/retreat_calls = 1 //Can call for retreat once too
 
+	hats4roaches = list(/obj/item/clothing/head/collectable/captain,
+			/obj/item/clothing/head/collectable/tophat)
+
 	// Armor related variables
 	armor = list(
 		melee = 10,
