@@ -91,23 +91,35 @@ var/list/lost_cruciforms = list()
 	s.set_up(3, 1, src)
 	s.start()
 
+/obj/item/implant/core_implant/cruciform/taint(mob/living/target)
+	var/mob/living/carbon/human/H = target
+	if(istype(H, /mob/living/carbon/human/dummy/mannequin))
+		var/datum/mutation/U = new MUTATION_GODBLOOD
+		U.imprint(H)
+	else
+		if(H.species.name != SPECIES_TAINTED)
+			H.set_species(SPECIES_TAINTED)
+
 /obj/item/implant/core_implant/cruciform/activate()
 	var/observation_points = 200
 	if(!wearer || active)
 		return
-	if(get_active_mutation(wearer, MUTATION_GODBLOOD))
+	var/delayed_gib = FALSE
+	if(get_active_mutation(wearer, MUTATION_GODBLOOD) && !istype(wearer, /mob/living/carbon/human/dummy/mannequin))
 		spawn(2 MINUTES)
 		for(var/mob/living/carbon/human/H in (disciples - wearer))
 			to_chat(H, SPAN_WARNING("A distant scream pierced your mind. You feel that a vile mutant sneaked among the faithful."))
 			playsound(wearer.loc, 'sound/hallucinations/veryfar_noise.ogg', 55, 1)
-	else if(wearer.get_species() != SPECIES_HUMAN || is_carrion(wearer))
+	else if(wearer.get_species() != SPECIES_TAINTED || is_carrion(wearer))
 		if(wearer.get_species() == SPECIES_MONKEY)
 			observation_points /= 20
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
-		wearer.gib()
-		if(eotp)  // le mutants reward
-			eotp.addObservation(observation_points)
-		return
+		if(is_carrion(wearer))
+			wearer.gib()
+			if(eotp)  // le mutants reward
+				eotp.addObservation(observation_points)
+			return
+		delayed_gib = TRUE
 	..()
 	add_module(new CRUCIFORM_COMMON)
 	update_data()
@@ -116,6 +128,8 @@ var/list/lost_cruciforms = list()
 	var/datum/core_module/cruciform/cloning/M = get_module(CRUCIFORM_CLONING)
 	if(M)
 		M.write_wearer(wearer) //writes all needed data to cloning module
+	if(delayed_gib) // Allows cloning
+		wearer.gib()
 	if(eotp)
 		eotp.addObservation(observation_points*0.25)
 	return TRUE

@@ -199,7 +199,7 @@
 			occupant.dna_trace = R.dna_trace
 			occupant.dormant_mutations = R.dormant_mutations
 			occupant.active_mutations = R.active_mutations
-			occupant.set_species()
+			occupant.set_species(SPECIES_TAINTED)
 			occupant.real_name = R.real_name
 			occupant.b_type = R.b_type
 			occupant.age = R.age

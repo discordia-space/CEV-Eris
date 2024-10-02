@@ -219,3 +219,6 @@
 
 /obj/item/implant/core_implant/proc/get_rituals()
 	return known_rituals
+
+/obj/item/implant/core_implant/proc/taint()
+	return
