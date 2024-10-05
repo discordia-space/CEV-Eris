@@ -2,7 +2,9 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 
 /obj/machinery/power/nt_obelisk
 	name = "NeoTheology's obelisk"
-	desc = "The obelisk."
+	desc = "An obelisk of the Church which grants protection and strength to those who bear cruciforms."
+	description_info = "Obelisks help provide observation for the Eye, alongside granting faster sanity regeneration to NeoTheology faithful. In addition, when \"active\", they will repel weeds and damage hostile fauna such as roaches within range."
+	description_antag = "Obelisks weaken carrions and mutants within range. They also dampen the effects of certain artifacts such as the Von-Krabin Stimulator."
 	icon = 'icons/obj/neotheology_machinery.dmi'
 	icon_state = "nt_obelisk"
 	//TODO:
@@ -76,9 +78,9 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 	update_icon()
 
 	if(!active)
-		use_power = IDLE_POWER_USE
+		set_power_use(IDLE_POWER_USE)
 	else
-		use_power = ACTIVE_POWER_USE
+		set_power_use(ACTIVE_POWER_USE)
 
 	if(ticks_to_next_process > 0)
 		ticks_to_next_process--

@@ -180,7 +180,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	if(smes_count == 0)
 		GLOB.all_smes_powered = FALSE
 
-	for(var/obj/machinery/power/shield_generator/S in GLOB.machines)
+	for(var/obj/machinery/power/shipside/shield_generator/S in GLOB.machines)
 		if(!isStationLevel(S.z)) continue
 		smes_count++
 		if(!S.running) continue

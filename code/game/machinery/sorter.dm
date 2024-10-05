@@ -98,7 +98,7 @@
 /obj/machinery/sorter/Process()
 	if(stat & BROKEN || stat & NOPOWER)
 		progress = 0
-		use_power(0)
+		set_power_use(NO_POWER_USE)
 		update_icon()
 		return
 
@@ -106,12 +106,12 @@
 		return
 
 	if(current_item)
-		use_power(2)
+		set_power_use(ACTIVE_POWER_USE)
 		progress += speed
 		if(progress >= 100)
 			sort(current_item)
 			grab()
-			use_power(1)
+			set_power_use(IDLE_POWER_USE)
 		update_icon()
 	else
 		grab()

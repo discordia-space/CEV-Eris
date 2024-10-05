@@ -581,6 +581,70 @@
 	name = "gray tanker helmet"
 	icon_state = "tanker_helmet_gray"
 
+/obj/item/clothing/head/armor/excel_beret
+	name = "Excelsior beret"
+	desc = "An armored white and orange beret, issued out to Haven's many conscripts"
+	icon_state = "excel_beret"
+	item_state = "excel_beret"
+	armor = list(
+		melee = 5,
+		bullet = 4,
+		energy = 5,
+		bomb = 5,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_BIOMATTER = 2,
+		MATERIAL_PLASTIC = 1,
+		MATERIAL_STEEL = 1
+	)
+/obj/item/clothing/head/armor/excel_sfera
+	name = "Excelsior sfera-9 helmet"
+	desc = "The most common Excelsior combat helmet, offers decent enough protection for relative ease of production."
+	icon_state = "spherer_helm"
+	item_state = "spherer_helm"
+	armor = list(
+		melee = 8,
+		bullet = 12,
+		energy = 10,
+		bomb = 25,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+	MATERIAL_PLASTIC = 2,
+	MATERIAL_GLASS = 2,
+	MATERIAL_STEEL = 3,
+	MATERIAL_PLASTEEL = 2
+	)
+	siemens_coefficient = 1
+	species_restricted = list(SPECIES_HUMAN)
+	price_tag = 150
+
+/obj/item/clothing/head/armor/korund_helm
+	name = "Excelsior sfera-45 helmet"
+	desc = "The most durable and heavy Excelsior helmet to date, for Haven's hardest battles."
+	icon_state = "korund_helm"
+	item_state = "korund_helm"
+	armor = list(
+		melee = 16,
+		bullet = 14,
+		energy = 16,
+		bomb = 95,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+	MATERIAL_PLASTIC = 40,
+	MATERIAL_GLASS = 10,
+	MATERIAL_STEEL = 25,
+	MATERIAL_PLASTEEL = 10
+	)
+	siemens_coefficient = 1
+	species_restricted = list(SPECIES_HUMAN)
+	price_tag = 150
+
 /obj/item/clothing/head/armor/faceshield/paramedic
 	name = "Moebius paramedic helmet"
 	desc = "Seven minutes or a refund."

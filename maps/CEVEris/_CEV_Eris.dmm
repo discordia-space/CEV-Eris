@@ -47729,9 +47729,15 @@
 /area/eris/command/mbo)
 "cmk" = (
 /obj/structure/table/rack,
-/obj/item/electronics/circuitboard/communications,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
+	},
+/obj/item/electronics/circuitboard/shield_conduit{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/electronics/circuitboard/communications{
+	pixel_y = -2
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -79651,6 +79657,10 @@
 /turf/wall/low/with_glass/smart,
 /area/eris/engineering/gravity_generator)
 "dPl" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/shield_generator)
 "dPm" = (
@@ -79728,11 +79738,22 @@
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/shield_generator)
 "dPx" = (
+/obj/machinery/power/shipside/shield_generator/hull/installed,
 /obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/obj/machinery/power/shield_generator/hull/installed,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/shield_generator)
 "dPy" = (
@@ -99727,11 +99748,22 @@
 /turf/floor/reinforced/almost_airless,
 /area/eris/engineering/propulsion/left)
 "kaS" = (
+/obj/machinery/power/shipside/long_range_scanner/hull/installed,
 /obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/obj/machinery/power/long_range_scanner/hull/installed,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
 "kaZ" = (
@@ -100029,6 +100061,13 @@
 /obj/structure/kitchenspike,
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/kitchen_freezer)
+"kFz" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/tiled/steel/gray_platform,
+/area/eris/engineering/long_range_scanner)
 "kFA" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/smart,
@@ -101791,6 +101830,13 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/floor/plating/under,
 /area/eris/maintenance/section4deck5port)
+"orh" = (
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/floor/tiled/steel/gray_platform,
+/area/eris/engineering/shield_generator)
 "orM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
@@ -104704,6 +104750,10 @@
 /area/eris/crew_quarters/kitchen_storage)
 "tCG" = (
 /obj/machinery/camera/network/engineering,
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/engineering/long_range_scanner)
 "tEu" = (
@@ -105426,6 +105476,13 @@
 	},
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/engineering/long_range_scanner)
+"uQK" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/floor/tiled/steel/gray_platform,
+/area/eris/engineering/shield_generator)
 "uUD" = (
 /obj/machinery/atmospherics/valve/open{
 	dir = 4;
@@ -106853,6 +106910,13 @@
 /obj/structure/disposalpipe/up,
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4port)
+"xDD" = (
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/floor/tiled/steel/gray_platform,
+/area/eris/engineering/long_range_scanner)
 "xDO" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -292259,7 +292323,7 @@ dXi
 abF
 dKs
 dKs
-dPl
+uQK
 ezX
 dOT
 eQb
@@ -292460,7 +292524,7 @@ dXi
 dXi
 abF
 dKs
-dPl
+orh
 dPx
 dPA
 dPG
@@ -293677,7 +293741,7 @@ abF
 abF
 abF
 peB
-xoq
+xDD
 kaS
 sbX
 oAL
@@ -293880,7 +293944,7 @@ abF
 abF
 peB
 peB
-xoq
+kFz
 uPp
 sBN
 oUD

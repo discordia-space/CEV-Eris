@@ -20,12 +20,12 @@
 
 /obj/machinery/botany/proc/start_task()
 	// UI is updated by "return 1" in Topic()
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 
 	addtimer(CALLBACK(src, PROC_REF(finish_task)), action_time)
 
 /obj/machinery/botany/proc/finish_task()
-	use_power = IDLE_POWER_USE
+	set_power_use(IDLE_POWER_USE)
 	SSnano.update_uis(src)
 	if(failed_task)
 		failed_task = FALSE

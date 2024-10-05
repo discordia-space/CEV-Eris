@@ -97,14 +97,14 @@
 
 	to_chat(R, SPAN_NOTICE("Commencing repairs. Please stand by."))
 	repairing = R
-	update_use_power(ACTIVE_POWER_USE)
+	set_power_use(ACTIVE_POWER_USE)
 
 /obj/machinery/repair_station/proc/stop_repairing()
 	if(!repairing)
 		return
 
 	repairing = null
-	update_use_power(IDLE_POWER_USE)
+	set_power_use(IDLE_POWER_USE)
 
 /obj/machinery/repair_station/attackby(var/obj/item/O, var/mob/user)
 	.=..()

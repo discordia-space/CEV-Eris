@@ -13,8 +13,8 @@
 	var/variants = list("Diamond", "Heart", "Cherry","Bar","Lemon", "Watermelon", "Seven")
 	var/weights = list("Diamond" = 10, "Heart" = 8, "Cherry" = 8,"Bar" = 6,"Lemon" = 4, "Watermelon" = 2, "Seven" = 1)
 	var/icon_type
-	use_power = TRUE
-	idle_power_usage = 10
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 250
 
 /obj/machinery/slotmachine/New()
 	..()

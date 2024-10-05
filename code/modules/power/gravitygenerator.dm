@@ -26,7 +26,6 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	health = 800
 	maxHealth = 800
 	unacidable = 1
-	var/sprite_number = 0
 
 /obj/machinery/gravity_generator/update_icon()
 	..()
@@ -101,7 +100,6 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	idle_power_usage = 0
 	active_power_usage = 3000
 	power_channel = STATIC_ENVIRON
-	sprite_number = 8
 	use_power = IDLE_POWER_USE
 	interact_offline = 1
 	var/on = TRUE
@@ -123,9 +121,8 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	middle.cut_overlays()
 	charge_count = 0
 	breaker = 0
-	grav_off()
-	set_power()
 	set_state(0)
+	set_power()	//this should go after set_state(0) to for proper power consuption settings
 	investigate_log("has broken down.", "gravity")
 
 /obj/machinery/gravity_generator/main/set_fix()
@@ -250,10 +247,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 // Set the charging state based on power/breaker.
 /obj/machinery/gravity_generator/main/proc/set_power()
 	var/new_state = 0
-	if(stat & (NOPOWER|BROKEN) || !breaker)
+	if(stat & (NOPOWER|BROKEN))
 		new_state = 0
-	else if(breaker)
-		new_state = 1
+		set_power_use(NO_POWER_USE)
+	else
+		new_state = breaker
 
 	charging_state = new_state ? POWER_UP : POWER_DOWN // Startup sequence animation.
 	investigate_log("is now [charging_state == POWER_UP ? "charging" : "discharging"].", "gravity")
@@ -261,18 +259,17 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 // Set the state of the gravity.
 /obj/machinery/gravity_generator/main/proc/set_state(var/new_state)
-	if(new_state == on)
-		var/pulse = 0.5 * sin(2 * M_PI * PULSE_FREQ * world.time) + 0.5
-		set_light(3+pulse, 3+pulse, "#8AD55D")
-		return
-	on = new_state
 	charging_state = POWER_IDLE
-	use_power = on ? 2 : 1
+	on = new_state
 	if(new_state) // If we turned on
-		grav_on()
+		if(!gravity_is_on)
+			grav_on()
+		set_power_use(ACTIVE_POWER_USE)
 	else
-		grav_off()
+		if(gravity_is_on)
+			grav_off()
 		set_light(0)
+		set_power_use(IDLE_POWER_USE)
 	update_icon()
 	src.updateUsrDialog()
 
@@ -311,6 +308,9 @@ var/const/GRAV_NEEDS_WRENCH = 3
 /obj/machinery/gravity_generator/main/Process()
 	if(stat & BROKEN)
 		return
+	if(charge_count >= 1)
+		var/pulse = 0.5 * sin(2 * M_PI * PULSE_FREQ * world.time) + 0.5
+		set_light(3+pulse, 3+pulse, "#8AD55D")
 	if(charging_state != POWER_IDLE)
 		if(charging_state == POWER_UP && charge_count >= 100)
 			set_state(1)
@@ -318,6 +318,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 			set_state(0)
 		else
 			if(charging_state == POWER_UP)
+				use_power(active_power_usage * 3)
 				charge_count += 2
 
 			else if(charging_state == POWER_DOWN)
