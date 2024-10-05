@@ -1,4 +1,4 @@
-FROM mysql:latest
+FROM mysql:8.0
 
 COPY migrate/* /docker-entrypoint-initdb.d/
 

@@ -19,19 +19,29 @@ CREATE DATABASE IF NOT EXISTS `ceveris` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `ceveris`;
 
 --
--- Table structure for table `ar_internal_metadata`
+-- Table structure for table `players`
 --
 
-DROP TABLE IF EXISTS `ar_internal_metadata`;
+DROP TABLE IF EXISTS `players`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ar_internal_metadata` (
-  `key` varchar(255) NOT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `players` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ckey` varchar(255) NOT NULL,
+  `registered` date DEFAULT NULL,
+  `first_seen` datetime NOT NULL,
+  `last_seen` datetime NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `cid` varchar(255) NOT NULL,
+  `rank` varchar(255) NOT NULL DEFAULT 'player',
+  `flags` int(11) NOT NULL DEFAULT '0',
+  `byond_version` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `VPN_check_white` tinyint(4) NOT NULL DEFAULT '0',
+  `ip_related_ids` tinytext,
+  `cid_related_ids` tinytext,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,32 +98,6 @@ CREATE TABLE `books` (
   KEY `index_books_on_author_id` (`author_id`),
   CONSTRAINT `fk_rails_53d51ce16a` FOREIGN KEY (`author_id`) REFERENCES `players` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `players`
---
-
-DROP TABLE IF EXISTS `players`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `players` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ckey` varchar(255) NOT NULL,
-  `registered` date DEFAULT NULL,
-  `first_seen` datetime NOT NULL,
-  `last_seen` datetime NOT NULL,
-  `ip` varchar(255) NOT NULL,
-  `cid` varchar(255) NOT NULL,
-  `rank` varchar(255) NOT NULL DEFAULT 'player',
-  `flags` int(11) NOT NULL DEFAULT '0',
-  `byond_version` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `VPN_check_white` tinyint(4) NOT NULL DEFAULT '0',
-  `ip_related_ids` tinytext,
-  `cid_related_ids` tinytext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
