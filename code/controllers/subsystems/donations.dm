@@ -91,9 +91,6 @@ SUBSYSTEM_DEF(donations)
 	if(PV.patreon_tier != VAULT_PATRON_0)
 		PV.donator = TRUE
 
-	// if(!was_donator)
-	// 	PV.on_patreon_tier_loaded(player)
-
 	return TRUE
 
 /datum/controller/subsystem/donations/proc/update_donator_items(client/player)

@@ -65,6 +65,14 @@ export const VaultReward = (props, context) => {
 
   const totalPages = Math.ceil(searchedItems.length / MAX_PER_PAGE);
 
+  const handleItemClick = (type_to_check: string) => {
+    if (equipped_items.some((item) => item.item_type === type_to_check)) {
+      act('deselect_type', { type: type_to_check });
+    } else if (items.some((item) => item.item_type === type_to_check)) {
+      act('select_type', { type: type_to_check });
+    }
+  };
+
   return (
     <Window width={600} height={700}>
       <Window.Content scrollable>
@@ -104,14 +112,6 @@ export const VaultReward = (props, context) => {
       </Window.Content>
     </Window>
   );
-
-  function handleItemClick(type_to_check: string) {
-    if (equipped_items.some((item) => item.item_type === type_to_check)) {
-      act('deselect_type', { type: type_to_check });
-    } else if (items.some((item) => item.item_type === type_to_check)) {
-      act('select_type', { type: type_to_check });
-    }
-  }
 };
 
 const UserInfoSection = ({ ckey, balance }) => (
