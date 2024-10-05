@@ -1093,9 +1093,6 @@ There are 9 wires.
 	if (istype(T) && T.item_flags & HONKING)
 		playsound(loc, WORKSOUND_HONK, 70, 1, -2)
 
-	if (istype(T) && T.item_flags & DUCKING)
-		playsound(loc, 'sound/items/duck.ogg', 70, 1, -2)
-
 	if(closeOther != null && istype(closeOther, /obj/machinery/door/airlock/) && !closeOther.density)
 		closeOther.close()
 	return ..()
@@ -1235,10 +1232,6 @@ There are 9 wires.
 	var/obj/item/tool/T = forced
 	if (istype(T) && T.item_flags & HONKING)
 		playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
-	
-	else if (istype(T) && T.item_flags & DUCKING)
-		playsound(loc, 'sound/items/duck.ogg', 70, 1, -2)
-
 
 	..()
 
