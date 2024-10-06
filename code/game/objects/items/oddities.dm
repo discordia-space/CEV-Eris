@@ -745,7 +745,7 @@
 	oddity_stats = list(
 		STAT_ROB = 7,
 		STAT_TGH = 7,
-		STAT_VIG = 7,
+		STAT_VIG = 7
 	)
 
 	rarity_value = 50
