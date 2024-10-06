@@ -368,6 +368,9 @@ var/list/gear_datums = list()
 	src.path = path
 	src.location = location
 
+/datum/gear/proc/on_spawn_on_real_mob()
+	return
+
 /datum/gear/proc/spawn_item(var/location, var/metadata)
 	var/datum/gear_data/gd = new(path, location)
 	for(var/datum/gear_tweak/gt in gear_tweaks)

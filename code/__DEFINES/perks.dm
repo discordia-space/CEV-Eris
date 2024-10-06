@@ -36,6 +36,9 @@
 #define PERK_SURE_STEP /datum/perk/oddity/sure_step
 #define PERK_MARKET_PROF /datum/perk/oddity/market_prof
 
+// iriski perks
+#define PERK_FREELANCERPLUS /datum/perk/iriski/freelancerplus
+
 // NT perks
 #define PERK_HOLY_LIGHT /datum/perk/nt_oddity/holy_light
 

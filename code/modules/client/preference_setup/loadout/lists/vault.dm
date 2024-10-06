@@ -19,13 +19,11 @@
 	display_name = initial(item.name)
 	description = initial(item.desc)
 
-/datum/gear/vault_item/spawn_item(location, metadata)
-	// remove from player storage
+/datum/gear/vault_item/on_spawn_on_real_mob()
 	var/datum/player_vault/PV = player_vault?.resolve()
 	if(!isnull(PV))
 		PV.remove_item(src)
 	expired = TRUE
-	return ..()
 
 /datum/gear/vault_item/is_allowed_to_display(mob/user)
 	if(expired)

@@ -457,6 +457,7 @@
 #include "code\datums\outfits\jobs\security.dm"
 #include "code\datums\perks\cooldown.dm"
 #include "code\datums\perks\fate.dm"
+#include "code\datums\perks\iriski.dm"
 #include "code\datums\perks\job.dm"
 #include "code\datums\perks\oddity.dm"
 #include "code\datums\perks\perk.dm"

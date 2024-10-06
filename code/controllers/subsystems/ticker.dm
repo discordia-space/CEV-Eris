@@ -234,6 +234,7 @@ SUBSYSTEM_DEF(ticker)
 	collect_minds()
 	move_characters_to_spawnpoints()
 	equip_characters()
+	expired_vault_item_removal()
 
 	CHECK_TICK
 
@@ -456,6 +457,18 @@ SUBSYSTEM_DEF(ticker)
 	generate_excel_contracts(1)
 	addtimer(CALLBACK(src, PROC_REF(contract_tick)), 15 MINUTES)
 
+/datum/controller/subsystem/ticker/proc/expired_vault_item_removal()
+	for(var/client/C in clients)
+		if(!C.prefs.Gear())
+			continue
+		for(var/gear in C.prefs.Gear())
+			var/datum/gear/vault_item/G = gear_datums[gear]
+			if(!G)
+				continue
+			if(G.expired && G.player_vault)
+				var/datum/player_vault/PV = G.player_vault?.resolve()
+				if(PV)
+					PV.remove_item(G)
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
 	var/captainless = TRUE
