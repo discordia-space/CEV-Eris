@@ -765,7 +765,7 @@
 				var/list/limbs_to_remove = list()
 				while(tries > 0)
 					var/obj/item/organ/external/E = user.get_organ(pick(list(BP_L_ARM, BP_L_LEG, BP_R_ARM, BP_R_LEG)))
-					if(E && !(E in limbs_to_remove) && !E.is_stump)
+					if(E && !(E in limbs_to_remove) && !E.is_stump())
 						limbs_to_remove += E
 						found_limbs++
 					tries--
@@ -780,7 +780,7 @@
 
 				else //nice try, asshole
 					var/obj/item/organ/external/head/head = user.get_organ(BP_HEAD)
-					if(head && !head.is_stump)
+					if(head && !head.is_stump())
 						head.droplimb(TRUE, DROPLIMB_BLUNT)
 					else
 						user.gib()
