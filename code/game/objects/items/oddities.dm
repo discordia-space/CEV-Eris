@@ -156,12 +156,6 @@
 	)
 
 
-/obj/item/oddity/common/mouthwash/Initialize()
-    . = ..()
-    src.transform *= 0.7 //The bottle is comedically huge otherwise
-
-
-
 //Double stat, mixed
 /obj/item/oddity/common/photo_crime
 	name = "crime scene photo"
