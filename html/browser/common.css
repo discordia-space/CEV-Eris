@@ -63,6 +63,15 @@ a.white:hover, a.red:hover
 	border-color: #24722e;
 }
 
+a.gold,
+a.gold:link,
+a.gold:visited,
+a.gold:active {
+  color: #ffa600;
+  background: #000000;
+  border-color: #ffa600;
+}
+
 .linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover
 {
 	color: #ffffff;
