@@ -81,11 +81,3 @@
 		var/datum/organ_description/OD = species.has_limbs[missing_limb_tag]
 		OD.create_organ(src)
 		to_chat(user, "You regenerate your [OD.name]")
-
-/datum/species/slime/tainted
-	name = SPECIES_TAINTED
-	name_plural = "tainteds"
-	blood_color = "#deff05"
-	flesh_color = "#babd19"
-	icobase = 'icons/mob/human_races/r_tainted.dmi'
-	deform = 'icons/mob/human_races/r_tainted.dmi'
