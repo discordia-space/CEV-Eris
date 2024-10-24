@@ -20,7 +20,7 @@
  					 "Schmerzen", "gebrochen", "brechen", "alle", "Musik", "also", "Interesse", "Pruegel", "Alkohol", "Getraenk", \
  					 "dynamisch", "Dynamik", "Organisation", "hauptsache", "Radio", "ueberhaupt", "weil", "deshalb", "mir", "dir", \
  					 "dein", "mein", "ihr", "eure", "seine", "meine", "Granate", "Katze", "Hund", "Fisch", "Ziege", "aber", "dennoch", "weshalb", "deshalb", \
-					 "doch", "wieso", "denn", "ja", "halt", "auch", "schon", "denn", "etwa", "nur", "bloß", "eben", "mal", "gar", "ruhig", "eigentlich", \
+					 "doch", "wieso", "denn", "ja", "halt", "auch", "schon", "denn", "etwa", "nur", "bloss", "eben", "mal", "gar", "ruhig", "eigentlich", \
 					 "eh", "nun", "erstmal", "gleich", "zumindest", "wohl", "durchaus", "sicher", "anscheinend", "eigentlich", "folgendermaßen", \
 					 "ausnahmslos", "bisschen", "fortwaehrend", "augenscheinlich", "einfach", "fraglos", "ausdruecklich", "einigermaßen", "freilich", \
-					 "weitem", "einmal", "ganz", "gewiss", "besonders", "endlich", "Hund", "Katze", "Rüde", "Pleite", "Schreckschraube", "Klammer", "Fuß")
+					 "weitem", "einmal", "ganz", "gewiss", "besonders", "endlich", "Hund", "Katze", "Ruede", "Pleite", "Schreckschraube", "Klammer", "Fuss")
