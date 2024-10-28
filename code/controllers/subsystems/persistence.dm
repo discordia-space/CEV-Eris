@@ -72,6 +72,8 @@ SUBSYSTEM_DEF(persistence)
 		var/datum/player_vault/PV = vault_accounts[player_ckey]
 		player_data[player_ckey] = PV.save_to_list()
 
+	if(fexists(VAULT_FILE))
+		fdel(VAULT_FILE)
 	text2file(json_encode(player_data), VAULT_FILE)
 
 #undef VAULT_FILE

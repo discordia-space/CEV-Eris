@@ -143,11 +143,11 @@ const EquippedItemsSection = ({ items, onItemClick }) => (
       {items.map((item, i) => (
         <Table.Row key={i} className="candystripe">
           <Table.Cell>
+            <GameIcon html={item.icon} />
             <Button
               content={item.name}
               onClick={() => onItemClick(item.item_type)}
             />
-            <GameIcon html={item.icon} />
           </Table.Cell>
           <Table.Cell textAlign="center">{item.cost}</Table.Cell>
         </Table.Row>
@@ -214,11 +214,11 @@ const AvailableItemsSection = ({ items, onItemClick }) => (
       {items.map((item, i) => (
         <Table.Row key={i} className="candystripe">
           <Table.Cell>
+            <GameIcon html={item.icon} />
             <Button
               content={item.name}
               onClick={() => onItemClick(item.item_type)}
             />
-            <GameIcon html={item.icon} />
           </Table.Cell>
           <Table.Cell textAlign="center" className="Reward--cost">
             {item.cost}
