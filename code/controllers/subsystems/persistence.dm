@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(persistence)
 	if(!fexists(VAULT_FILE))
 		log_and_message_admins("Vault Information file doesn't exist, can't load Vault information")
 		return
-	var/raw_data = file2text(VAULT_FILE)
+	var/raw_data = rustg_file_read(VAULT_FILE)
 	var/list/vault_data = json_decode(raw_data)
 	if(!vault_data)
 		CRASH("Something terribly wrong with the Vault Information file (incorrect json data)!")
@@ -72,8 +72,6 @@ SUBSYSTEM_DEF(persistence)
 		var/datum/player_vault/PV = vault_accounts[player_ckey]
 		player_data[player_ckey] = PV.save_to_list()
 
-	if(fexists(VAULT_FILE))
-		fdel(VAULT_FILE)
-	text2file(json_encode(player_data), VAULT_FILE)
+	rustg_file_write(json_encode(player_data), VAULT_FILE)
 
 #undef VAULT_FILE
