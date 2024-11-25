@@ -227,7 +227,7 @@
 		switch(rand(1,3))
 			if(1) //random broadcasts
 				var/message = pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
-				message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ")
+				message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ", "dying out here...", "dying!", )
 				message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
 				global_announcer.autosay(message, "Emergency Broadcast")
@@ -240,7 +240,31 @@
 					"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
 					"TO ANYONE STILL LOYAL LEFT, WE MAKE OUR FINAL STAND IN THE CONTROL ROOM.",
 					"Weld the vents. Weld The vents! WELD THE VENTS!!",
-					"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
+					"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause.",
+					"It's growing larger! Bring the flamethrowers here NOW!",
+					"Turn the power back on. We can still recover from this.",
+					"Where are you going?",
+					"Hello?",
+					"Hello? Is anyone there?",
+					"We NEED your help!",
+					"WE are DYING out here! PLEASE, HELP!",
+					"HELP ME!",
+					"IT'S CHASING ME!",
+					"RUN. NOW.",
+					"It doesn't sound like a human.",
+					"I think it heard me...",
+					"This monster can mimick our voices... With intent. It can make sentences as a normal human would. It could be anyone!",
+					"Captain Flintlock is NOT dead yet! STAND AND FIGHT!",
+					"The suspect is armed with a [pick(list("bomb detonator", "rifle", "chainsaw", "knife", "laser rifle", "sniper rifle", "banana peel", "shotgun"))]!",
+					"We had to leave those bodies... Infection is spreading. We will die, but in this case it won't reach outwards.",
+					"I've stopped working on a cure. I know it's impossible to fight this thing now. But at least that's the last thing I tried to do in my pity life...",
+					"I am surrounded by brilliant computers and equipment. Yet none of these can save us from a gang of hungry madmen breaching through lab's airlock. Ironic...",
+					"We've been mobilized to fight against unknown amount of targets. These stupid labcoats can't even define what these \"creatures\" are...",
+					"What do you mean it killed all [rand(20, 100)] crewmen?!",
+					"This thing... You won't even have time to blink, you'll be a goner.",
+					"I-it can't be that effective at killing... To think this was made by nature?! What if alien race made it..?",
+					"The testing is OUT OF CONTROL! INITIATE THE SHUTDOWN! QUARANTINE IT NO-"
+
 				)
 
 				global_announcer.autosay(pick(message_list), "Emergency Broadcast")
