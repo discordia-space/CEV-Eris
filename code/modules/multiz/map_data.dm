@@ -357,3 +357,9 @@ GLOBAL_DATUM_INIT(maps_data, /datum/maps_data, new)
 
 /obj/map_data/asteroid/custom_z_name(z_level)
 	return "Asteroid [z_level]"
+
+/obj/map_data/eris/smol
+	height = 4
+	holomap_legend_x = 150	// x position of the holomap legend for this z
+	holomap_legend_y = 150	// y position of the holomap legend for this z
+	holomap_smoosh = list(list(1,2,3,4))
