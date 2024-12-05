@@ -186,6 +186,7 @@
 		bio = 0,
 		rad = 0
 	)
+	spawn_frequency = 1
 
 /obj/item/clothing/gloves/knuckles
 	name = "knuckle gloves"

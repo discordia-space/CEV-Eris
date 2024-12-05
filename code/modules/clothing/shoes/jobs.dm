@@ -121,6 +121,7 @@
 	)
 	can_hold_knife = TRUE
 	style = STYLE_NEG_HIGH
+	spawn_frequency = 1
 
 /obj/item/clothing/shoes/artist_shoes
 	name = "Pointy Shoes"
