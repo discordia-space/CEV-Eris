@@ -60,7 +60,11 @@ DBConnection/proc/Connect(dbi_handler=src.dbi, user_handler=src.user, password_h
 	cursor_handler = src.default_cursor
 	if(!cursor_handler)
 		cursor_handler = Default_Cursor
-	return _dm_db_connect(_db_con, dbi_handler, user_handler, password_handler, cursor_handler, null)
+	. = _dm_db_connect(_db_con,dbi_handler,user_handler,password_handler,cursor_handler,null)
+	if(.)
+		// some encodings fix
+		var/DBQuery/qr = NewQuery("SET NAMES utf8")
+		qr.Execute()
 
 DBConnection/proc/Disconnect()
 	return _dm_db_close(_db_con)
@@ -110,6 +114,11 @@ DBQuery/proc/Connect(DBConnection/connection_handler)
 DBQuery/proc/Execute(sql_query = src.sql, cursor_handler = default_cursor)
 	Close()
 	return _dm_db_execute(_db_query, sql_query, db_connection._db_con, cursor_handler, null)
+
+// it's just CRASH on error, not safe enough, but allow to debug things.
+DBQuery/proc/Execute_safe(sql_query = src.sql, cursor_handler = default_cursor)
+	if(!Execute(sql_query, cursor_handler))
+		CRASH("\[DB QUERY ERROR] query: '[sql_query]', error: '[ErrorMsg()]'")
 
 DBQuery/proc/NextRow()
 	return _dm_db_next_row(_db_query, item, conversions)
