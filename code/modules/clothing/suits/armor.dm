@@ -289,7 +289,7 @@
 		MATERIAL_PLASTIC = 45,
 		MATERIAL_PLASTEEL = 25,
 	)
-	spawn_frequency = 1
+	spawn_frequency = 3
 
 /obj/item/clothing/suit/armor/bulletproof/full
 	name = "full bulletproof vest"
