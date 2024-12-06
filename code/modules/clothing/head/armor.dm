@@ -644,7 +644,7 @@
 	siemens_coefficient = 1
 	species_restricted = list(SPECIES_HUMAN)
 	price_tag = 150
-	spawn_frequency = 3
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/armor/faceshield/paramedic
 	name = "Moebius paramedic helmet"
