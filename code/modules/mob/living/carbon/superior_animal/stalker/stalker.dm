@@ -55,7 +55,7 @@
 	ranged = 1 //will it shoot?
 	rapid = 0 //will it shoot fast?
 	projectiletype = /obj/item/projectile/bullet/srifle/nomuzzle
-	projectilesound = 'sound/weapons/Gunshot.ogg'
+	projectilesound = 'sound/weapons/guns/fire/lmg_fire.ogg'
 	casingtype = null
 	ranged_cooldown = 1 SECOND
 	fire_verb = "fires"
