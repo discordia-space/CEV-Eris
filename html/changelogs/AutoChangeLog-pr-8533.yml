@@ -1,0 +1,4 @@
+author: Nyxical17
+delete-after: true
+changes:
+  - bugfix: Excelsior's heavy armor's pieces are blacklisted.
