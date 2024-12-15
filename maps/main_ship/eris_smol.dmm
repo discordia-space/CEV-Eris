@@ -11099,9 +11099,6 @@
 /turf/floor/tiled/white,
 /area/eris/medical/reception)
 "aAi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
@@ -11109,6 +11106,10 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/sortjunction/flipped{
+	dir = 8;
+	sortType = list("Moebius Desk","Guild Desk","Artist Desk","Church Desk")
 	},
 /turf/floor/tiled/white,
 /area/eris/medical/reception)
@@ -15106,20 +15107,20 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/structure/disposalpipe/sortjunction/flipped{
-	sortType = list("Artist Deck")
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	tag = "icon-pipe-j1 (NORTH)"
 	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
 "aKo" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
-/obj/structure/catwalk,
-/turf/floor/plating/under,
-/area/eris/maintenance/section2deck4port)
+/turf/floor/tiled/steel/brown_perforated,
+/area/eris/quartermaster/office)
 "aKp" = (
 /turf/floor/carpet/bcarpet,
 /area/eris/neotheology/chapel)
@@ -15721,16 +15722,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/floor/tiled/steel/monofloor,
-/area/eris/hallway/main/section2)
-"aLP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/turf/floor/tiled/steel/monofloor,
+/area/eris/hallway/main/section2)
+"aLP" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 1
 	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
@@ -18613,6 +18617,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/floor/tiled/techmaint,
 /area/eris/neotheology/chapel)
 "aSz" = (
@@ -25806,6 +25811,9 @@
 /area/eris/security/main)
 "bkq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/sortjunction/flipped{
+	sortType = list("Moebius Desk")
+	},
 /turf/floor/tiled/white/gray_perforated,
 /area/eris/rnd/lab)
 "bkr" = (
@@ -26915,9 +26923,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/segment{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 1;
-	icon_state = "pipe-c"
+	sortType = list("Artist Desk")
 	},
 /turf/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
@@ -31484,7 +31492,7 @@
 "bxp" = (
 /obj/structure/disposalpipe/sortjunction{
 	dir = 2;
-	sortType = list("Medbay")
+	sortType = list("Medbay","Moebius Desk","Guild Desk","Artist Desk","Church Desk")
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
@@ -65349,7 +65357,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk,
-/obj/spawner/traps/wire_splicing/low_chance,
 /turf/floor/plating/under,
 /area/eris/command/meo)
 "daT" = (
@@ -66982,6 +66989,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/floor/tiled/white,
 /area/eris/medical/reception)
 "deO" = (
@@ -73154,6 +73162,7 @@
 	name = "Research and Development";
 	req_access = list(5)
 	},
+/obj/structure/disposalpipe/segment,
 /turf/floor/tiled/white/cargo,
 /area/eris/rnd/lab)
 "dtE" = (
@@ -75396,6 +75405,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/floor/tiled/white,
 /area/eris/medical/reception)
 "dyo" = (
@@ -79595,10 +79605,21 @@
 	},
 /turf/floor/tiled/steel/airless,
 /area/eris/maintenance/section2deck2starboard)
+"dJM" = (
+/obj/machinery/atm{
+	pixel_x = -32
+	},
+/turf/floor/tiled/dark,
+/area/eris/neotheology/chapel)
 "dPm" = (
 /obj/machinery/hologram/holopad,
 /turf/floor/tiled/steel,
 /area/eris/quartermaster/office)
+"dPB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/white,
+/area/eris/medical/reception)
 "dQN" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 28
@@ -79789,6 +79810,14 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
+"ekY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	sortType = list("Church Desk")
+	},
+/turf/floor/tiled/steel/monofloor,
+/area/eris/hallway/main/section2)
 "enn" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4;
@@ -79800,6 +79829,14 @@
 "eoa" = (
 /turf/floor/tiled/steel/techfloor,
 /area/eris/crew_quarters/fitness)
+"eqn" = (
+/obj/structure/table/rack,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
+/turf/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/artistoffice)
 "era" = (
 /turf/wall/reinforced,
 /area/eris/hallway/side/eschangarb)
@@ -79920,6 +79957,13 @@
 	},
 /turf/floor/tiled/dark,
 /area/eris/security/brig)
+"eIk" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/floor/tiled/white/gray_perforated,
+/area/eris/rnd/lab)
 "eJj" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -80031,14 +80075,6 @@
 	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/engineering/foyer)
-"eXX" = (
-/obj/structure/closet/crate,
-/obj/item/packageWrap,
-/obj/item/packageWrap,
-/obj/item/packageWrap,
-/obj/item/device/destTagger,
-/turf/floor/carpet/bcarpet,
-/area/eris/neotheology/chapel)
 "fbF" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 1;
@@ -80064,13 +80100,6 @@
 	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
-"feV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/floor/tiled/steel,
-/area/eris/hallway/main/section2)
 "fgc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -80081,13 +80110,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/cyan,
 /turf/open,
 /area/eris/engineering/engine_room)
-"fhO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/floor/tiled/white/gray_perforated,
-/area/eris/rnd/lab)
 "fhY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -80509,12 +80531,6 @@
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/plating,
 /area/eris/maintenance/sciweapondeck)
-"gpW" = (
-/obj/machinery/atm{
-	pixel_x = -32
-	},
-/turf/floor/tiled/dark,
-/area/eris/neotheology/chapel)
 "grk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/catwalk,
@@ -80664,6 +80680,15 @@
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
+"gGn" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/catwalk,
+/turf/floor/plating/under,
+/area/eris/maintenance/section2deck4port)
 "gKi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -80736,15 +80761,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/medicalward)
-"gSV" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atm{
-	pixel_y = -32
-	},
-/turf/floor/tiled/steel/bar_dance,
-/area/eris/crew_quarters/bar)
 "gWz" = (
 /obj/structure/table/reinforced,
 /obj/spawner/toy/figure,
@@ -80784,23 +80800,18 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
-"hby" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/table/standard,
-/obj/item/grenade/frag/pipebomb,
-/turf/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/office)
 "hco" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
+"hcC" = (
+/obj/item/modular_computer/console/preset/trade{
+	dir = 1
+	},
+/turf/floor/tiled/steel/brown_platform,
+/area/eris/quartermaster/office)
 "hfZ" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/plasma,
@@ -81043,6 +81054,13 @@
 	},
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
+"hHB" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 4;
+	sortType = list("Guild Desk")
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "hHE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -81134,13 +81152,6 @@
 	},
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/left)
-"hLT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/sortjunction{
-	sortType = list("Moebius Deck")
-	},
-/turf/floor/tiled/steel/monofloor,
-/area/eris/hallway/main/section2)
 "hMc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -81170,13 +81181,6 @@
 "hWp" = (
 /turf/floor/tiled/white/techfloor_grid,
 /area/eris/rnd/lab)
-"hZk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/tiled/steel/monofloor,
-/area/eris/hallway/main/section2)
 "hZr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -81209,11 +81213,6 @@
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
-"ict" = (
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal,
-/turf/floor/tiled/white/gray_perforated,
-/area/eris/rnd/lab)
 "idN" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/reinforced,
@@ -81388,10 +81387,18 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
-"iAd" = (
-/obj/structure/disposalpipe/segment,
-/turf/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/artistoffice)
+"izc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "iAv" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -81449,14 +81456,6 @@
 	},
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/crew_quarters/sleep/cryo)
-"iEb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/floor/tiled/steel/brown_perforated,
-/area/eris/quartermaster/office)
 "iGi" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass,
@@ -81499,13 +81498,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2starboard)
-"iQn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/sortjunction{
-	sortType = list("Guild Deck")
-	},
-/turf/floor/tiled/steel/monofloor,
-/area/eris/hallway/main/section2)
 "iQI" = (
 /obj/machinery/hologram/holopad,
 /turf/floor/tiled/steel/bar_dance,
@@ -81703,6 +81695,13 @@
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
+"jAM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "jBo" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/shuttle/floor{
@@ -81851,6 +81850,13 @@
 	},
 /turf/floor/tiled/dark,
 /area/eris/engineering/gravity_generator)
+"jSI" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/floor/tiled/white/gray_perforated,
+/area/eris/rnd/lab)
 "jUf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -81960,12 +81966,6 @@
 	},
 /turf/floor/tiled/white,
 /area/eris/crew_quarters/fitness)
-"kjy" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/tiled/steel,
-/area/eris/hallway/main/section2)
 "kjS" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -82132,13 +82132,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/eris/crew_quarters/fitness)
-"kMw" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/floor/tiled/white/gray_perforated,
-/area/eris/rnd/lab)
 "kOm" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small,
@@ -82391,18 +82384,6 @@
 /obj/machinery/hologram/holopad,
 /turf/floor/tiled/dark,
 /area/eris/engineering/drone_fabrication)
-"lCe" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/tiled/steel,
-/area/eris/hallway/main/section2)
 "lFa" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/pack/gun_loot/low_chance,
@@ -82415,13 +82396,6 @@
 	},
 /turf/floor/tiled/steel/cargo,
 /area/eris/crew_quarters/fitness)
-"lFy" = (
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -23
-	},
-/turf/floor/tiled/steel,
-/area/eris/hallway/main/section2)
 "lGX" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/plasma_reinforced,
@@ -82567,16 +82541,6 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/plasma,
 /area/eris/engineering/propulsion/left)
-"mdF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/turf/floor/tiled/white/gray_perforated,
-/area/eris/rnd/lab)
 "mdV" = (
 /obj/machinery/status_display,
 /turf/wall,
@@ -82609,6 +82573,14 @@
 	},
 /turf/floor/tiled/white,
 /area/eris/medical/reception)
+"mkM" = (
+/obj/structure/closet/crate,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
+/turf/floor/carpet/bcarpet,
+/area/eris/neotheology/chapel)
 "mlV" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
@@ -82653,6 +82625,20 @@
 /obj/machinery/vending/cola,
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
+"muh" = (
+/obj/machinery/door/firedoor,
+/obj/structure/plasticflaps,
+/obj/machinery/door/window/northleft{
+	name = "Cargo Desk"
+	},
+/obj/machinery/door/window/westleft{
+	dir = 2;
+	name = "Cargo Desk";
+	req_access = list(31)
+	},
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/steel/techfloor_grid,
+/area/eris/quartermaster/office)
 "muA" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -82739,12 +82725,6 @@
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck3central)
-"mDj" = (
-/obj/item/modular_computer/console/preset/trade{
-	dir = 1
-	},
-/turf/floor/tiled/steel/brown_platform,
-/area/eris/quartermaster/office)
 "mDu" = (
 /obj/machinery/light{
 	dir = 4
@@ -82993,6 +82973,13 @@
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section2deck2starboard)
+"nmO" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -23
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "nog" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -83014,6 +83001,12 @@
 	},
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck4starboard)
+"nqa" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "nrq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -83115,6 +83108,21 @@
 	},
 /turf/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck2starboard)
+"nKw" = (
+/obj/machinery/door/firedoor,
+/obj/structure/plasticflaps,
+/obj/machinery/door/window/westleft{
+	dir = 1;
+	name = "Moebius Desk";
+	req_access = list(5)
+	},
+/obj/machinery/door/window/westleft{
+	dir = 2;
+	name = "Moebius Desk"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/steel/techfloor_grid,
+/area/eris/rnd/lab)
 "nKH" = (
 /obj/machinery/amerecycler,
 /obj/machinery/light{
@@ -83288,6 +83296,10 @@
 	},
 /turf/floor/carpet/bcarpet,
 /area/eris/command/meeting_room)
+"ogd" = (
+/obj/structure/disposalpipe/segment,
+/turf/floor/carpet/bcarpet,
+/area/eris/neotheology/chapel)
 "ogI" = (
 /obj/structure/reagent_dispensers/cahorsbarrel,
 /turf/floor/tiled/dark/gray_platform,
@@ -83509,10 +83521,6 @@
 	},
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
-"oEI" = (
-/obj/structure/disposalpipe/segment,
-/turf/floor/carpet/bcarpet,
-/area/eris/neotheology/chapel)
 "oGj" = (
 /obj/machinery/gym/toughness,
 /obj/machinery/light{
@@ -83593,21 +83601,6 @@
 	},
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
-"oRT" = (
-/obj/machinery/door/firedoor,
-/obj/structure/plasticflaps,
-/obj/machinery/door/window/westleft{
-	dir = 1;
-	name = "Moebius Desk";
-	req_access = list(5)
-	},
-/obj/machinery/door/window/westleft{
-	dir = 2;
-	name = "Moebius Desk"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/floor/tiled/steel/techfloor_grid,
-/area/eris/rnd/lab)
 "oTj" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/reinforced,
@@ -83765,6 +83758,16 @@
 	},
 /turf/open,
 /area/eris/neotheology/chapelritualroom)
+"pxx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/white/gray_perforated,
+/area/eris/rnd/lab)
 "pxF" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -83813,6 +83816,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/medicalward)
+"pDV" = (
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "pFU" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint,
@@ -84480,13 +84487,6 @@
 /obj/structure/catwalk,
 /turf/floor/plating/under,
 /area/eris/neotheology/biogenerator)
-"rAo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/sortjunction/flipped{
-	sortType = list("Church Deck")
-	},
-/turf/floor/tiled/steel/monofloor,
-/area/eris/hallway/main/section2)
 "rAI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -84553,19 +84553,6 @@
 	},
 /turf/floor/tiled/white/gray_platform,
 /area/eris/medical/reception)
-"rGo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/floor/carpet/gaycarpet,
-/area/eris/crew_quarters/artistoffice)
 "rGs" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -84593,6 +84580,11 @@
 	},
 /turf/floor/wood,
 /area/eris/command/courtroom)
+"rGS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/steel/monofloor,
+/area/eris/hallway/main/section2)
 "rIj" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -84916,6 +84908,17 @@
 /obj/item/pen/multi,
 /turf/floor/tiled/dark/gray_perforated,
 /area/eris/command/meeting_room)
+"sGP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/item/grenade/frag/pipebomb,
+/turf/floor/tiled/steel/brown_platform,
+/area/eris/quartermaster/office)
 "sIg" = (
 /obj/structure/closet/wardrobe/medic_white,
 /turf/floor/tiled/dark,
@@ -84936,6 +84939,13 @@
 /obj/structure/catwalk,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
+"sJQ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "sJS" = (
 /obj/effect/floor_decal/industrial/danger,
 /turf/floor/tiled/dark/techfloor,
@@ -85060,6 +85070,10 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /turf/floor/tiled/white/gray_perforated,
 /area/eris/rnd/lab)
+"sYi" = (
+/obj/structure/disposalpipe/segment,
+/turf/floor/carpet/gaycarpet,
+/area/eris/crew_quarters/artistoffice)
 "sYT" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/steel,
@@ -85097,6 +85111,13 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/reinforced,
 /area/eris/crew_quarters/fitness)
+"tcX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "teg" = (
 /obj/machinery/gym,
 /turf/floor/tiled/steel/techfloor,
@@ -85429,9 +85450,9 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	sortType = list("Artist Desk","Church Desk")
 	},
 /turf/floor/carpet/bcarpet,
 /area/eris/neotheology/chapel)
@@ -85579,6 +85600,14 @@
 	},
 /turf/floor/tiled/dark/panels,
 /area/eris/crew_quarters/firing_range)
+"uou" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/floor/tiled/steel/monofloor,
+/area/eris/hallway/main/section2)
 "uoI" = (
 /obj/spawner/flora/low_chance,
 /turf/floor/plating/under,
@@ -85643,14 +85672,6 @@
 /obj/item/folder/blue,
 /turf/floor/wood,
 /area/eris/command/courtroom)
-"uzz" = (
-/obj/structure/table/rack,
-/obj/item/packageWrap,
-/obj/item/packageWrap,
-/obj/item/packageWrap,
-/obj/item/device/destTagger,
-/turf/floor/tiled/steel/bar_flat,
-/area/eris/crew_quarters/artistoffice)
 "uBj" = (
 /obj/structure/table/standard,
 /turf/floor/reinforced,
@@ -85676,6 +85697,15 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
+"uEw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_y = -32
+	},
+/turf/floor/tiled/steel/bar_dance,
+/area/eris/crew_quarters/bar)
 "uFk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/floor/tiled/techmaint_perforated,
@@ -85702,6 +85732,14 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section1deck1central)
+"uHb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/floor/tiled/white/gray_perforated,
+/area/eris/rnd/lab)
 "uHz" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -85709,13 +85747,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/left)
-"uIY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/turf/floor/carpet/bcarpet,
-/area/eris/neotheology/chapel)
 "uMm" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -86454,20 +86485,6 @@
 /obj/machinery/door/firedoor,
 /turf/floor/plating,
 /area/eris/command/courtroom)
-"wwJ" = (
-/obj/machinery/door/firedoor,
-/obj/structure/plasticflaps,
-/obj/machinery/door/window/northleft{
-	name = "Cargo Desk"
-	},
-/obj/machinery/door/window/westleft{
-	dir = 2;
-	name = "Cargo Desk";
-	req_access = list(31)
-	},
-/obj/structure/disposalpipe/segment,
-/turf/floor/tiled/steel/techfloor_grid,
-/area/eris/quartermaster/office)
 "wxv" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint_perforated,
@@ -86693,6 +86710,13 @@
 /obj/item/book/manual/wiki/security_ironparagraphs,
 /turf/floor/wood,
 /area/eris/command/courtroom)
+"wVI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/floor/carpet/bcarpet,
+/area/eris/neotheology/chapel)
 "wYv" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -86700,6 +86724,19 @@
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4port)
+"wYZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/floor/carpet/gaycarpet,
+/area/eris/crew_quarters/artistoffice)
 "wZM" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -86875,13 +86912,6 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
-"xrL" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/floor/tiled/steel,
-/area/eris/hallway/main/section2)
 "xtI" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -87031,6 +87061,11 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
+"xKX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/steel/monofloor,
+/area/eris/hallway/main/section2)
 "xLL" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -87060,6 +87095,12 @@
 	},
 /turf/floor/tiled/techmaint,
 /area/eris/hallway/main/section2)
+"xQx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/floor/tiled/white/gray_perforated,
+/area/eris/rnd/lab)
 "xRk" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -95817,7 +95858,7 @@ adX
 cvr
 cvy
 cvy
-aKo
+gGn
 arA
 apz
 adX
@@ -143529,11 +143570,11 @@ apW
 azz
 aAi
 dyn
-aAQ
+dPB
 deN
 dtD
 bkq
-bkq
+uHb
 dtG
 cxk
 aaV
@@ -143685,8 +143726,8 @@ amM
 wlX
 amM
 abi
-ict
-fhO
+jSI
+xQx
 sYf
 cxk
 aaV
@@ -143694,7 +143735,7 @@ aaV
 aaV
 dtF
 aIt
-iEb
+aKo
 dVP
 aKD
 aKH
@@ -143839,16 +143880,16 @@ aIU
 aIU
 cxk
 ard
-kMw
-mdF
-oRT
-xrL
-aaV
-feV
-wwJ
+eIk
+pxx
+nKw
+jAM
+tcX
+pDV
+muh
 aJE
 aeO
-hby
+sGP
 aKD
 axJ
 xiU
@@ -143995,12 +144036,12 @@ pWG
 aHt
 cyF
 dlu
-kjy
+hHB
+sJQ
 aaV
-kjy
 dAd
 dFM
-mDj
+hcC
 dwu
 aKD
 aRL
@@ -144148,9 +144189,9 @@ cxk
 cwz
 cpU
 aDO
-kjy
+nqa
 aaV
-kjy
+aaV
 dtF
 dtF
 dtF
@@ -144301,16 +144342,16 @@ cqU
 cqU
 aoU
 aaV
-kjy
+nqa
 aaV
-kjy
+aaV
 aaV
 aaV
 aaV
 aoU
 dlt
 aaV
-lFy
+nmO
 aaM
 aaM
 aaM
@@ -144454,12 +144495,12 @@ apL
 apL
 cpL
 aqf
-hZk
-aqf
-hZk
-aqf
-aqf
-aqf
+uou
+xKX
+xKX
+xKX
+xKX
+xKX
 aLO
 aqf
 aqf
@@ -144607,12 +144648,12 @@ aEh
 aEh
 aKm
 aCD
-hLT
+rGS
 aCD
-iQn
+rGS
 aCD
-rAo
-aCD
+ekY
+rGS
 aLP
 aqh
 aqh
@@ -144758,13 +144799,13 @@ aaM
 dtE
 ayI
 ayI
-lCe
+izc
 aaV
 aaV
 dwr
 aaV
 aaV
-kjy
+nqa
 aaV
 aLQ
 aaV
@@ -145064,13 +145105,13 @@ dxf
 arn
 aCW
 dzy
-rGo
-iAd
+wYZ
+sYi
 bmU
 aSy
 tWu
-oEI
-uIY
+ogd
+wVI
 aIX
 aLS
 cYO
@@ -145223,7 +145264,7 @@ bwN
 aBR
 dCa
 aKp
-eXX
+mkM
 aIX
 dwv
 dtT
@@ -145676,7 +145717,7 @@ aaG
 aDa
 aCX
 dzy
-uzz
+eqn
 cpN
 bKN
 aIX
@@ -145826,7 +145867,7 @@ ciN
 aaG
 aaG
 aaG
-gSV
+uEw
 cpN
 cpN
 cpN
@@ -145987,7 +146028,7 @@ aBb
 aBb
 dBX
 aJM
-gpW
+dJM
 aKK
 aKK
 aLX
