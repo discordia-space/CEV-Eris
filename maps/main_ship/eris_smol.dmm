@@ -4098,9 +4098,6 @@
 	tag_door = "escape_pod_1_hatch"
 	},
 /obj/structure/table/rack,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare/low_chance,
 /obj/effect/decal/cleanable/dirt,
 /turf/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -4119,37 +4116,29 @@
 /turf/floor/tiled/dark,
 /area/eris/engineering/gravity_generator)
 "ajm" = (
-/obj/structure/table/rack,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare/low_chance,
-/obj/effect/decal/cleanable/dirt,
-/turf/shuttle/floor{
-	icon_state = "cargofloor1"
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
-/area/eris/hallway/side/eschangarb)
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "ajn" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/structure/table/rack,
-/obj/spawner/gun,
 /obj/effect/decal/cleanable/dirt,
 /turf/shuttle/floor{
 	icon_state = "cargofloor1"
 	},
 /area/eris/hallway/side/eschangarb)
 "ajo" = (
-/obj/structure/table/rack,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze/low_chance,
-/obj/spawner/booze/low_chance,
-/obj/effect/decal/cleanable/dirt,
-/turf/shuttle/floor{
-	icon_state = "cargofloor1"
+/obj/machinery/nuclearbomb{
+	eris_ship_bomb = 1;
+	r_code = "LOLNO"
 	},
-/area/eris/hallway/side/eschangarb)
+/turf/floor/wood,
+/area/eris/command/commander)
 "ajp" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -4314,10 +4303,6 @@
 /obj/structure/closet/wall_mounted/emcloset/escape_pods{
 	pixel_y = 32
 	},
-/obj/machinery/nuclearbomb{
-	eris_ship_bomb = 1;
-	r_code = "LOLNO"
-	},
 /obj/effect/decal/cleanable/dirt,
 /turf/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -4378,9 +4363,6 @@
 	pixel_x = -22
 	},
 /obj/structure/table/rack,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare/low_chance,
 /obj/effect/decal/cleanable/dirt,
 /turf/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -4389,7 +4371,6 @@
 "ajW" = (
 /obj/machinery/light,
 /obj/structure/table/rack,
-/obj/spawner/gun,
 /obj/effect/decal/cleanable/dirt,
 /turf/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -4397,11 +4378,6 @@
 /area/eris/hallway/side/eschangarb)
 "ajX" = (
 /obj/structure/table/rack,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze/low_chance,
-/obj/spawner/booze/low_chance,
 /obj/effect/decal/cleanable/dirt,
 /turf/shuttle/floor{
 	icon_state = "cargofloor1"
@@ -15122,7 +15098,9 @@
 /area/eris/hallway/main/section2)
 "aKo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
 "aKp" = (
@@ -15726,10 +15704,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
 "aLP" = (
@@ -15737,20 +15711,18 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/disposalpipe/junction/yjunction{
-	dir = 1
-	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
 "aLQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/floor/tiled/steel,
 /area/eris/hallway/main/section2)
@@ -30576,14 +30548,13 @@
 /turf/floor/tiled/white/cargo,
 /area/eris/rnd/storage)
 "buZ" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/obj/machinery/atmospherics/unary/vent_pump{
 	dir = 8;
-	expanded_range = 1;
 	external_pressure_bound = 0;
 	external_pressure_bound_default = 0;
-	icon_state = "map_vent_out";
-	pressure_checks = 2;
-	pressure_checks_default = 2;
+	icon_state = "map_vent_in";
+	internal_pressure_bound = 100;
+	internal_pressure_bound_default = 100;
 	use_power = 1
 	},
 /turf/floor/hull{
@@ -56265,7 +56236,7 @@
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck3port)
 "cDV" = (
-/obj/machinery/autolathe/loaded,
+/obj/machinery/constructable_frame/machine_frame,
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck3port)
 "cDW" = (
@@ -66134,7 +66105,10 @@
 "dcL" = (
 /obj/machinery/atmospherics/binary/passive_gate{
 	dir = 4;
-	name = "Core to Wasting"
+	name = "Core to Wasting";
+	unlocked = 1;
+	target_pressure = 5000;
+	regulate_mode = 1
 	},
 /turf/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
@@ -73679,6 +73653,7 @@
 /obj/item/device/radio/intercom{
 	pixel_y = 24
 	},
+/obj/landmark/join/late/dormitory,
 /turf/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "duP" = (
@@ -73687,6 +73662,7 @@
 /obj/item/device/radio/intercom{
 	pixel_y = 24
 	},
+/obj/landmark/join/late/dormitory,
 /turf/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "duQ" = (
@@ -81220,6 +81196,12 @@
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
+"ibL" = (
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/turf/floor/tiled/steel,
+/area/eris/hallway/main/section2)
 "idN" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/reinforced,
@@ -82143,7 +82125,8 @@
 	name = "Vent Core";
 	pixel_x = 24;
 	pixel_y = 24;
-	req_access = null
+	req_access = null;
+	_wifi_id = "vent_core_to_space"
 	},
 /turf/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
@@ -82234,10 +82217,10 @@
 /turf/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
 "ler" = (
-/obj/structure/grille,
 /obj/machinery/door/blast/regular{
 	id = "vent_core_to_space";
-	name = "Core Venting"
+	name = "Core Venting";
+	_wifi_id = "vent_core_to_space"
 	},
 /turf/floor/reinforced,
 /area/eris/engineering/engine_room)
@@ -82597,10 +82580,17 @@
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "mid" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/turf/floor/tiled/steel/monofloor,
-/area/eris/hallway/main/section2)
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8;
+	external_pressure_bound = 0;
+	external_pressure_bound_default = 0;
+	icon_state = "map_vent_in";
+	internal_pressure_bound = 100;
+	internal_pressure_bound_default = 100;
+	use_power = 1
+	},
+/turf/floor/hull,
+/area/space)
 "miO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -85887,13 +85877,9 @@
 /turf/floor/tiled/dark,
 /area/eris/security/brig)
 "vfr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/floor/tiled/steel/monofloor,
-/area/eris/hallway/main/section2)
+/obj/machinery/amesilo,
+/turf/floor/tiled/steel,
+/area/eris/quartermaster/office)
 "vft" = (
 /obj/machinery/atmospherics/valve/digital/open,
 /obj/machinery/light{
@@ -86987,8 +86973,7 @@
 "xyg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+	dir = 4
 	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
@@ -141491,7 +141476,7 @@ vUx
 aHt
 aLi
 abi
-aPz
+vfr
 aPz
 aPX
 dFO
@@ -144391,11 +144376,11 @@ cqU
 cqU
 aoU
 aaV
-vNt
-aaV
-aaV
-aaV
-aaV
+ajm
+mrz
+mrz
+mrz
+jZb
 aaV
 aoU
 dlt
@@ -144544,12 +144529,12 @@ apL
 apL
 cpL
 aqf
-vfr
+aqf
+aqf
+aqf
+aqf
 aKo
-aKo
-aKo
-aKo
-aKo
+aqf
 aLO
 aqf
 aqf
@@ -144702,7 +144687,7 @@ aqh
 aqh
 aqh
 xyg
-mid
+aqh
 aLP
 aqh
 aqh
@@ -144854,8 +144839,8 @@ aaV
 dwr
 aaV
 aaV
-vNt
-aaV
+ibL
+mrz
 aLQ
 aaV
 aaV
@@ -147113,9 +147098,9 @@ bKE
 bQs
 bGw
 aio
-ajm
+ajX
 ajK
-ajm
+ajX
 akc
 aav
 aav
@@ -147419,7 +147404,7 @@ ary
 bGw
 bGw
 aiH
-ajo
+ajX
 jBo
 ajX
 ake
@@ -167456,7 +167441,7 @@ bBR
 bDg
 bGX
 bYH
-bYX
+ajo
 bZF
 bZW
 caq
@@ -171357,7 +171342,7 @@ aav
 aav
 aav
 aav
-aav
+mid
 aav
 pQa
 pQa
