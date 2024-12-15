@@ -209,6 +209,11 @@
 /area/eris/maintenance/sciweapondeck
 	name = "Moebius Maintenance"
 
+/area/eris/maintenance/substation/port
+	name = "Port Substation"
+
+/area/eris/maintenance/substation/starboard
+	name = "Starboard Substation"
 
 //Hallway
 
