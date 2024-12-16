@@ -171,7 +171,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/one_star.dmi'
 	model = "one_star"
 	armor = list(melee = 10, bullet = 10, energy = 10, bomb = 50, bio = 100, rad = 100)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
+	matter = list(MATERIAL_PLASTEEL = 6, MATERIAL_PLATINUM = 4, MATERIAL_GOLD = 4)
 	max_damage = 70
 	min_broken_damage = 45
 	spawn_blacklisted = TRUE
