@@ -227,7 +227,7 @@
 /obj/item/projectile/coin
 	name = "coin"
 	desc = "Keep the change, ya filthy animal."
-	damage_types = list(BRUTE = 5)
+	damage_types = list(BRUTE = 5, HALLOSS = 15)
 	embed = 0
 
 /obj/item/projectile/bullet/flare

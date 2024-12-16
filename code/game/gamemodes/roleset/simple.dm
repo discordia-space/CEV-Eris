@@ -62,7 +62,7 @@
 
 //Requires at least one antag to serve as a target
 //Also requires the candidate to have a cruciform, that is handled seperately in antagonist/station/inquisitor.dm
-/datum/storyevent/roleset/inquisitor/can_trigger(var/severity, var/report)
+/datum/storyevent/roleset/inquisitor/can_trigger(var/severity, var/report, var/manual)
 
 
 	var/a_count = 0
@@ -99,7 +99,7 @@
 	req_crew = 10
 	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
 
-/datum/storyevent/roleset/marshal/can_trigger(var/severity, var/report)
+/datum/storyevent/roleset/marshal/can_trigger(var/severity, var/report, var/manual)
 	var/a_count = 0
 	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!A.is_dead())

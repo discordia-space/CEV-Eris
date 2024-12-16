@@ -1,5 +1,5 @@
 /*
-	Meteors damage the station and the shields
+	Meteors damage the ship and the shields
 */
 /datum/storyevent/meteor
 	id = "meteor"

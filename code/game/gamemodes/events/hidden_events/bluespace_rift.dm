@@ -7,11 +7,11 @@ They are unstable and be used only few times, and after that they die out on bot
 	id = "bluespace_rift"
 	name = "bluespace_rift"
 
-	weight = 1
+	weight = 0.3
 
 	event_type = /datum/event/bluespace_rift
 	event_pools = list(
-		EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE * 1.2
+		EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE * 1
 	)
 	tags = list(TAG_POSITIVE)
 
@@ -23,7 +23,7 @@ They are unstable and be used only few times, and after that they die out on bot
 	var/rift_number
 
 /datum/event/bluespace_rift/setup()
-	pair_number = rand(1, 5)
+	pair_number = rand(3, 8)
 	rift_number = pair_number * 2
 	prepare_event_areas(rift_number)
 

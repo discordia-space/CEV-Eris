@@ -8,7 +8,7 @@
 	name = "rogue drone"
 
 	event_type =/datum/event/rogue_drone
-	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE/1.5)
 	tags = list(TAG_COMMUNAL, TAG_COMBAT, TAG_DESTRUCTIVE, TAG_SCARY, TAG_EXTERNAL)
 
 //////////////////////////////////////////////////////////

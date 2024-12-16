@@ -9,16 +9,17 @@
 	gain_mult_moderate = 0.8
 	gain_mult_major = 0.8
 	gain_mult_roleset = 1.5
+	gain_mult_weather = 0.75
 
 	//Less combat-oriented events, so that we'll not be fighting NPC monsters much
 	tag_weight_mults = list(TAG_COMBAT = 0.5)
 
-	repetition_multiplier = 1.9
 
 	//Very large starting roleset. Will spawn an antag immediately, and another very soon
 	points = list(
-	EVENT_LEVEL_MUNDANE = 0, //Mundane
-	EVENT_LEVEL_MODERATE = 0, //Moderate
-	EVENT_LEVEL_MAJOR = 0, //Major
-	EVENT_LEVEL_ROLESET = 220 //Roleset
+	EVENT_LEVEL_MUNDANE = 0,   //Mundane
+	EVENT_LEVEL_MODERATE = 0,  //Moderate
+	EVENT_LEVEL_MAJOR = 0,     //Major
+	EVENT_LEVEL_ROLESET = 220, //Roleset
+	EVENT_LEVEL_WEATHER = 0    //Space weather
 	)

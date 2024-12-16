@@ -9,11 +9,11 @@ Additionally, not harvested nest will periodically teleport items and people to 
 	id = "bluespace_crystal_infestation"
 	name = "bluespace_crystal_infestation"
 
-	weight = 1
+	weight = 0.3
 
 	event_type = /datum/event/bluespace_crystal_infestation
 	event_pools = list(
-		EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE * 1.2
+		EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE * 0.5
 	)
 	tags = list(TAG_POSITIVE)
 

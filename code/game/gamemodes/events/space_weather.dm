@@ -1,12 +1,14 @@
 /datum/storyevent/bluespace_storm
 	id = "bluespace_storm"
 	name = "Bluespace storm"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/bluespace_storm
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/bluespace_storm/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/bluespace_storm
 	startWhen = 1
@@ -34,12 +36,14 @@
 /datum/storyevent/ion_blizzard
 	id = "ion_blizzard"
 	name = "Ion blizzard"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/ion_blizzard
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/ion_blizzard/get_special_weight()
+	return weight / 1 + occurrences
 
 /datum/event/ion_blizzard
 	startWhen = 1
@@ -72,12 +76,14 @@
 /datum/storyevent/photon_vortex
 	id = "photon_vortex"
 	name = "Photon vortex"
-	weight = 0.05
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/photon_vortex
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WAETHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/photon_vortex/get_special_weight()
+	return weight / 1 + occurrences
 
 /datum/event/photon_vortex
 	startWhen = 1
@@ -123,12 +129,14 @@
 /datum/storyevent/harmonic_feedback
 	id = "harmonic_feedback_surge"
 	name = "Harmonic feedback surge anomaly"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/harmonic_feedback
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
+
+/datum/storyevent/harmonic_feedback/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/harmonic_feedback
 	startWhen = 1
@@ -156,12 +164,14 @@
 /datum/storyevent/micro_debris
 	id = "micro_debris"
 	name = "micro debris field"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	parallel = FALSE
 	event_type = /datum/event/micro_debris
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
+
+/datum/storyevent/micro_debris/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/micro_debris
 	startWhen	= 1
@@ -200,12 +210,14 @@
 /datum/storyevent/graveyard
 	id = "graveyard"
 	name = "Space Graveryard"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	parallel = FALSE
 	event_type = /datum/event/graveyard
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/graveyard/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/graveyard
 	startWhen = 1
@@ -280,12 +292,14 @@
 /datum/storyevent/nebula
 	id = "nebula"
 	name = "Dark matter nebula"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	parallel = FALSE
 	event_type = /datum/event/nebula
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/nebula/get_special_weight() 
+	return weight / 1 + occurrences
 
 /datum/event/nebula
 	startWhen = 1
@@ -310,12 +324,14 @@
 /datum/storyevent/interphase
 	id = "bluespace_interphase"
 	name = "Bluespace Interphase"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 0.25
 	parallel = FALSE
 	event_type = /datum/event/interphase
-	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE, EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/interphase/get_special_weight() 
+	return weight / 1 + occurrences
 
 /datum/event/interphase
 	startWhen = 1
