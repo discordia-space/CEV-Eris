@@ -20,7 +20,7 @@ Storyteller will get points for each event pool and bring total mayhem after a s
 *  Surges Handling
 ********************/
 
-/datum/storyteller/guide/handle_surge()
+/datum/storyteller/guide/handle_surge(forced)
 	if (world.time < next_surge && !forced)
 		//It's not time yet
 		return FALSE
