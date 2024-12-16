@@ -34,10 +34,11 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 	//Set values here for starting points
 	var/list/points = list(
-	EVENT_LEVEL_MUNDANE = 0, //Mundane
-	EVENT_LEVEL_MODERATE = 0, //Moderate
-	EVENT_LEVEL_MAJOR = 0, //Major
-	EVENT_LEVEL_ROLESET = 110 //Roleset
+	EVENT_LEVEL_MUNDANE = 0,   //Mundane
+	EVENT_LEVEL_MODERATE = 0,  //Moderate
+	EVENT_LEVEL_MAJOR = 0,     //Major
+	EVENT_LEVEL_ROLESET = 110, //Roleset
+	EVENT_LEVEL_WEATHER = 30   //Space weather
 	)
 
 	//Lists of events. These are built dynamically at runtime
@@ -45,6 +46,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	var/list/event_pool_moderate = list()
 	var/list/event_pool_major = list()
 	var/list/event_pool_roleset = list()
+	var/list/event_pool_weather = list()
 
 	//Configuration:
 	//Things you can set to make a new storyteller
@@ -52,14 +54,14 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	var/gain_mult_moderate = 1
 	var/gain_mult_major = 1
 	var/gain_mult_roleset = 1
+	var/gain_mult_weather = 1
 
 	var/list/tag_weight_mults = list()
 	var/list/tag_cost_mults = list()
 
-	var/variance = 0.15 //15% How much point gains are allowed to vary up or down per tick. This helps to keep event triggering times unpredictable
-	var/repetition_multiplier = 1.85 //Weights of events are multiplied by this value after they happen, to reduce the chance of multiple instances in short time
+	var/variance = 15 //15% How much point gains are allowed to vary up or down per tick. This helps to keep event triggering times unpredictable
 
-	var/event_schedule_delay = 5 MINUTES
+	var/event_schedule_delay = 3 MINUTES
 	//Once selected, events are not fired immediately, but are scheduled for some random time in the near future
 	//This mostly helps to prevent them syncing up and announcements overlapping each other
 	//The maximum time between scheduling and firing an event
@@ -67,6 +69,10 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 	var/votable = TRUE
 	//whether or not the players can vote for it. If this is set to false, it can only be activated by being forced by admins.
+
+	var/cooloff = 0 MINUTES
+	var/cooloff_variance = 0	//how much time between surges is randomised
+	var/next_surge = 0	//time when the next surge will happen. Set in set_up()
 
 
 /********************************
@@ -109,6 +115,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	to_chat(world, "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>")
 
 /datum/storyteller/proc/set_up()
+	next_surge = world.time + cooloff * rand(cooloff_variance, 100+cooloff_variance)/100
 	build_event_pools()
 	set_timer()
 	set_up_events()
@@ -122,6 +129,9 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 *********************************/
 /datum/storyteller/Process()
 	if(can_tick())
+
+		//handle surges before everything so storyteller can immediatly spend points from it
+		handle_surge()
 
 		//Update these things so we can accurately select events
 		update_crew_count()
@@ -206,6 +216,13 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 
 
 /*******************
+*  Surges Handling
+********************/
+
+/datum/storyteller/proc/handle_surge(var/forced = FALSE) //all of the surge code is handed for each storyteller
+	return
+
+/*******************
 *  Points Handling
 ********************/
 
@@ -222,29 +239,33 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 			points[a] += delta
 
 /datum/storyteller/proc/handle_points()
-	points[EVENT_LEVEL_MUNDANE] += GLOB.chaos_level * (gain_mult_mundane) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_MODERATE] += GLOB.chaos_level * (gain_mult_moderate) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_MAJOR] += GLOB.chaos_level * (gain_mult_major) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_ROLESET] += GLOB.chaos_level * (gain_mult_roleset) * (RAND_DECIMAL(1-variance, 1+variance))
+	points[EVENT_LEVEL_MUNDANE] += GLOB.chaos_level * (gain_mult_mundane) * rand(100-variance, 100+variance)/100
+	points[EVENT_LEVEL_MODERATE] += GLOB.chaos_level * (gain_mult_moderate) * rand(100-variance, 100+variance)/100
+	points[EVENT_LEVEL_MAJOR] += GLOB.chaos_level * (gain_mult_major) * rand(100-variance, 100+variance)/100
+	points[EVENT_LEVEL_ROLESET] += GLOB.chaos_level * (gain_mult_roleset) * rand(100-variance, 100+variance)/100
+	points[EVENT_LEVEL_WEATHER] += GLOB.chaos_level * (gain_mult_weather) * rand(100-variance, 100+variance)/100
 	check_thresholds()
 
 /datum/storyteller/proc/check_thresholds()
 	while (points[EVENT_LEVEL_MUNDANE] >= POOL_THRESHOLD_MUNDANE)
-		if (!handle_event(EVENT_LEVEL_MUNDANE))
-			//This returns false if no viable events
-			break
+		while (handle_event(EVENT_LEVEL_MUNDANE))
+			continue
 
 	while (points[EVENT_LEVEL_MODERATE] >= POOL_THRESHOLD_MODERATE)
-		if (!handle_event(EVENT_LEVEL_MODERATE))
-			break
+		while (handle_event(EVENT_LEVEL_MODERATE))
+			continue
 
 	while (points[EVENT_LEVEL_MAJOR] >= POOL_THRESHOLD_MAJOR)
-		if (!handle_event(EVENT_LEVEL_MAJOR))
-			break
+		while (handle_event(EVENT_LEVEL_MAJOR))
+			continue
 
 	//No loop for roleset events to prevent possible wierdness like the same player being picked twice
 	if(points[EVENT_LEVEL_ROLESET] >= POOL_THRESHOLD_ROLESET)
 		handle_event(EVENT_LEVEL_ROLESET)
+
+	//No loop for weather events to prevent possible attempts of weather overlapping
+	if(points[EVENT_LEVEL_WEATHER] >= POOL_THRESHOLD_WEATHER)
+		handle_event(EVENT_LEVEL_WEATHER)
 
 
 
@@ -268,6 +289,8 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 			temp_pool = event_pool_major.Copy()
 		if (EVENT_LEVEL_ROLESET)
 			temp_pool = event_pool_roleset.Copy()
+		if (EVENT_LEVEL_WEATHER)
+			temp_pool = event_pool_weather.Copy()
 
 	if (!temp_pool || !temp_pool.len)
 		return FALSE
@@ -294,7 +317,9 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 	//If it is allowed to run, we'll deduct its cost from our appropriate point score, and schedule it for triggering
 	var/cost = calculate_event_cost(choice, event_type)
 	points[event_type] -= cost
+	to_chat(world, "<b><font color='red'>Spending [cost] points!</font></b>")
 	schedule_event(choice, event_type)
+	to_chat(world, "<b><font color='green'>Bought [event_type] choosing [choice] for [cost] points.</font></b>")
 
 	return TRUE
 	//When its trigger time comes, the event will once again check if it can run
@@ -306,7 +331,7 @@ GLOBAL_VAR_INIT(chaos_level, 1) //Works as global multiplier for all storyteller
 The actual fire event proc is located in storyteller_meta*/
 /datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
 	var/delay
-	if (event_type == EVENT_LEVEL_ROLESET)
+	if (event_type == EVENT_LEVEL_ROLESET || event_type == EVENT_LEVEL_WEATHER)
 		delay = 1 //Basically no delay on these to reduce bugginess
 	else
 		delay = rand(1, event_schedule_delay)
@@ -324,6 +349,7 @@ The actual fire event proc is located in storyteller_meta*/
 	event_pool_moderate.Cut()
 	event_pool_major.Cut()
 	event_pool_roleset.Cut()
+	event_pool_weather.Cut()
 	for (var/datum/storyevent/a in storyevents)
 
 
@@ -343,6 +369,8 @@ The actual fire event proc is located in storyteller_meta*/
 			event_pool_major[a] = new_weight
 		if (EVENT_LEVEL_ROLESET in a.event_pools)
 			event_pool_roleset[a] = new_weight
+		if (EVENT_LEVEL_WEATHER in a.event_pools)
+			event_pool_weather[a] = new_weight
 
 
 /datum/storyteller/proc/update_event_weights()
@@ -350,6 +378,7 @@ The actual fire event proc is located in storyteller_meta*/
 	event_pool_moderate = update_pool_weights(event_pool_moderate)
 	event_pool_major = update_pool_weights(event_pool_major)
 	event_pool_roleset = update_pool_weights(event_pool_roleset)
+	event_pool_weather = update_pool_weights(event_pool_weather)
 
 /datum/storyteller/proc/update_pool_weights(var/list/pool)
 	for(var/datum/storyevent/a in pool)

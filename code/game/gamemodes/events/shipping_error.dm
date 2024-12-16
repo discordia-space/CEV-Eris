@@ -7,7 +7,7 @@
 	name = "shipping error"
 
 	event_type = /datum/event/shipping_error
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE*0.3) //Low cost since its a really minor thing
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE*0.25) //Low cost since its a really minor thing
 
 	tags = list(TAG_TARGETED, TAG_POSITIVE)
 

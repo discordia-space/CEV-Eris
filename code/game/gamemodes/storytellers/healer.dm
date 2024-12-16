@@ -8,14 +8,15 @@
 	gain_mult_moderate = 0.8
 	gain_mult_major = 0.8
 	gain_mult_roleset = 0.8
+	gain_mult_weather = 0.5
 
-	repetition_multiplier = 1.95
 	tag_weight_mults = list(TAG_COMBAT = 0.75, TAG_NEGATIVE = 0.5, TAG_POSITIVE = 2)
 
 	//Healer gives you half an hour to setup before any antags
 	points = list(
-	EVENT_LEVEL_MUNDANE = 0, //Mundane
+	EVENT_LEVEL_MUNDANE = 0,  //Mundane
 	EVENT_LEVEL_MODERATE = 0, //Moderate
-	EVENT_LEVEL_MAJOR = 0, //Major
-	EVENT_LEVEL_ROLESET = 90 //Roleset
+	EVENT_LEVEL_MAJOR = 0,    //Major
+	EVENT_LEVEL_ROLESET = 90, //Roleset
+	EVENT_LEVEL_WEATHER = 0   //Space weather
 	)

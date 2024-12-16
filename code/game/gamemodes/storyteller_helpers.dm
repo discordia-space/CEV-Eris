@@ -117,6 +117,8 @@
 			return EVENT_LEVEL_MAJOR
 		if (EVENT_LEVEL_MAJOR)
 			return EVENT_LEVEL_ROLESET
+		if (EVENT_LEVEL_ROLESET)
+			return EVENT_LEVEL_WEATHER
 	return input
 
 

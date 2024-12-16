@@ -7,7 +7,7 @@
 	name = "APC damage"
 
 	event_type =/datum/event/apc_damage
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE)
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE/2)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
 
 //////////////////////////////////////////////////////////

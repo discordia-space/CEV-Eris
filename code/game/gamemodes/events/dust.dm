@@ -13,7 +13,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	name = "belt of space dust"
 
 	event_type =/datum/event/dust
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE/3, EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR/3)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
 
 
@@ -37,7 +37,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 		if(EVENT_LEVEL_MUNDANE)
 			return "weak"
 		if(EVENT_LEVEL_MODERATE)
-			return prob(80) ? "norm" : "strong"
+			return prob(75) ? "norm" : "strong"
 		if(EVENT_LEVEL_MAJOR)
 			return "super"
 	return "weak"
