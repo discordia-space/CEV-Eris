@@ -11583,7 +11583,6 @@
 /turf/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section3deck4starboard)
 "aBw" = (
-/obj/structure/catwalk,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -12728,13 +12727,13 @@
 /turf/floor/tiled/white/cargo,
 /area/eris/rnd/anomal)
 "aEv" = (
-/obj/structure/table/standard,
 /obj/machinery/button/remote/blast_door/id_card{
 	id = "Von-Krabin";
 	name = "Von-Krabin Stimulator id lock";
 	pixel_x = 28;
 	req_access = list(5)
 	},
+/obj/structure/closet/secure_closet/anesthetics,
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/rnd/lab)
 "aEw" = (
@@ -15046,18 +15045,20 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/floor/tiled/white/techfloor_grid,
+/obj/machinery/chem_master,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aKf" = (
 /obj/structure/table/standard,
+/obj/item/hand_labeler,
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aKg" = (
-/obj/structure/table/standard,
-/obj/machinery/chem_heater,
+/obj/machinery/reagentgrinder/industrial,
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aKh" = (
+/obj/machinery/chemical_dispenser,
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aKi" = (
@@ -15149,10 +15150,6 @@
 	},
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section2deck4port)
-"aKx" = (
-/obj/machinery/chemical_dispenser,
-/turf/floor/tiled/white/gray_perforated,
-/area/eris/rnd/lab)
 "aKy" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -15160,13 +15157,8 @@
 /turf/floor/tiled/white/gray_perforated,
 /area/eris/rnd/lab)
 "aKz" = (
-/obj/structure/table/standard,
-/obj/machinery/electrolyzer,
+/obj/machinery/smartfridge/chemistry,
 /turf/floor/tiled/white/gray_platform,
-/area/eris/rnd/lab)
-"aKA" = (
-/obj/machinery/reagentgrinder/industrial,
-/turf/floor/tiled/white/gray_perforated,
 /area/eris/rnd/lab)
 "aKB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -15312,9 +15304,19 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "aKY" = (
-/obj/machinery/chem_master,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/syringes{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /turf/floor/tiled/white/gray_perforated,
 /area/eris/rnd/lab)
@@ -15323,12 +15325,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/dropper{
-	pixel_y = -4
-	},
-/obj/item/book/manual/wiki/medical_chemistry,
-/turf/floor/tiled/white/gray_perforated,
+/obj/machinery/chem_heater,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLa" = (
 /obj/machinery/camera/network/research{
@@ -15337,23 +15335,22 @@
 /turf/floor/tiled/white,
 /area/eris/maintenance/sciweapondeck)
 "aLb" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/dropper{
-	pixel_y = -4
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/floor/tiled/white/gray_perforated,
+/obj/structure/table/standard,
+/obj/item/book/manual/wiki/medical_chemistry,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLc" = (
 /obj/machinery/light/small,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3port)
 "aLd" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/belt/utility,
-/obj/item/storage/belt/utility,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLe" = (
@@ -15363,20 +15360,7 @@
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "aLf" = (
-/obj/structure/table/standard,
-/obj/item/cell/large/high,
-/obj/item/cell/large/high,
-/obj/item/cell/large/high,
-/obj/item/storage/box/beakers,
-/obj/item/storage/box/beakers,
-/obj/item/storage/box/syringes{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/syringes{
-	pixel_x = 3;
-	pixel_y = 3
-	},
+/obj/machinery/chem_master,
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLg" = (
@@ -15396,7 +15380,7 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/tool/knife/butch,
 /obj/structure/table/standard,
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLi" = (
 /obj/structure/table/standard,
@@ -15417,7 +15401,7 @@
 /obj/item/computer_hardware/hard_drive/portable/design/misc,
 /obj/item/computer_hardware/hard_drive/portable/design/components,
 /obj/item/computer_hardware/hard_drive/portable/design/medical,
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLj" = (
 /obj/structure/table/rack,
@@ -15439,7 +15423,7 @@
 /obj/item/cell/large/high,
 /obj/item/cell/large/high,
 /obj/item/cell/large/high,
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLl" = (
 /obj/structure/table/standard,
@@ -15461,7 +15445,7 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aLm" = (
 /obj/machinery/light/small,
@@ -20692,7 +20676,7 @@
 /turf/floor/tiled/dark/techfloor,
 /area/eris/engineering/atmos)
 "aXz" = (
-/obj/machinery/chem_master,
+/obj/machinery/constructable_frame/machine_frame,
 /turf/floor/tiled/white/gray_platform,
 /area/eris/quartermaster/office)
 "aXA" = (
@@ -23751,16 +23735,15 @@
 /area/eris/maintenance/substation/starboard)
 "bfh" = (
 /obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
 	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "1-2"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "East APC";
-	pixel_x = 28
-	},
-/obj/structure/catwalk,
-/obj/structure/cable/green,
 /turf/floor/plating/under,
 /area/eris/maintenance/substation/starboard)
 "bfi" = (
@@ -32311,16 +32294,19 @@
 /area/eris/medical/reception)
 "bzu" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/catwalk,
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "East APC";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/floor/plating/under,
 /area/eris/maintenance/substation/starboard)
 "bzv" = (
@@ -32407,22 +32393,6 @@
 	},
 /turf/floor/tiled/dark,
 /area/eris/crew_quarters/janitor)
-"bzD" = (
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable/green{
-	d1 = 16;
-	d2 = 0;
-	icon_state = "16-0"
-	},
-/obj/structure/railing{
-	dir = 8;
-	tag = "icon-railing0 (WEST)"
-	},
-/turf/floor/plating/under,
-/area/eris/maintenance/substation/starboard)
 "bzE" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -34148,7 +34118,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/autolathe,
+/obj/machinery/constructable_frame/machine_frame,
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "bDL" = (
@@ -48386,9 +48356,16 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "cld" = (
-/obj/machinery/chem_master,
 /obj/machinery/light,
-/turf/floor/tiled/white/gray_perforated,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper{
+	pixel_y = -4
+	},
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "cle" = (
 /obj/spawner/junk/low_chance,
@@ -48875,10 +48852,9 @@
 	},
 /obj/item/stack/material/plasma,
 /obj/item/packageWrap,
-/obj/item/hand_labeler,
 /obj/structure/table/standard,
 /obj/machinery/light,
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "cmi" = (
 /obj/structure/table/steel_reinforced,
@@ -48995,7 +48971,7 @@
 "cmy" = (
 /obj/machinery/chemical_dispenser/industrial,
 /obj/machinery/light,
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "cmz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -55136,7 +55112,6 @@
 /turf/floor/tiled/dark/techfloor,
 /area/eris/neotheology/bioreactor)
 "cBE" = (
-/obj/structure/closet/secure_closet/anesthetics,
 /obj/machinery/button/remote/blast_door{
 	id = "maint_hatch_robot_oper";
 	name = "Maintenance Hatch Control";
@@ -55144,6 +55119,11 @@
 	pixel_y = -6;
 	req_access = null
 	},
+/obj/structure/table/standard,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/rnd/lab)
 "cBF" = (
@@ -63332,13 +63312,14 @@
 /turf/floor/tiled/steel,
 /area/eris/maintenance/section2deck3port)
 "cWw" = (
-/obj/machinery/atm{
-	pixel_y = -32
-	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
 /obj/machinery/door/window/southleft,
+/obj/machinery/atm{
+	pixel_x = null;
+	pixel_y = 28
+	},
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/hallway/side/docks)
 "cWx" = (
@@ -73220,7 +73201,7 @@
 	dir = 8;
 	pixel_x = 22
 	},
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "dtP" = (
 /obj/structure/closet/crate,
@@ -77414,20 +77395,24 @@
 /turf/open,
 /area/eris/neotheology/chapelritualroom)
 "dCf" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
 /obj/machinery/camera/network/research{
 	dir = 1
 	},
-/turf/floor/tiled/white/gray_perforated,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/machinery/electrolyzer,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "dCg" = (
-/obj/structure/table/standard,
-/obj/machinery/recharger,
 /obj/machinery/camera/network/research{
 	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper{
+	pixel_y = -4
 	},
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
@@ -77448,7 +77433,7 @@
 /obj/machinery/camera/network/research{
 	dir = 1
 	},
-/turf/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "dCi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -82580,17 +82565,21 @@
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "mid" = (
-/obj/machinery/atmospherics/unary/vent_pump{
+/obj/structure/railing{
 	dir = 8;
-	external_pressure_bound = 0;
-	external_pressure_bound_default = 0;
-	icon_state = "map_vent_in";
-	internal_pressure_bound = 100;
-	internal_pressure_bound_default = 100;
-	use_power = 1
+	tag = "icon-railing0 (WEST)"
 	},
-/turf/floor/hull,
-/area/space)
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
+/turf/floor/plating/under,
+/area/eris/maintenance/substation/starboard)
 "miO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -99696,10 +99685,10 @@ baO
 tLn
 tLn
 tLn
+mid
 tLn
-bzD
 tLn
-cjl
+aNi
 cjC
 bbr
 aMx
@@ -99848,11 +99837,11 @@ baY
 bbp
 aan
 bcr
-bcr
 tLn
 tLn
 tLn
-aNi
+abd
+cjl
 cjC
 bbr
 adb
@@ -139943,7 +139932,7 @@ aGa
 aIN
 aJq
 hWp
-aKx
+aHt
 aKY
 abi
 aMn
@@ -140096,7 +140085,7 @@ aGa
 aIN
 aJq
 hWp
-aKy
+aHt
 aKZ
 abi
 aMo
@@ -140402,7 +140391,7 @@ aGl
 cYJ
 aJr
 aKe
-aIW
+aKh
 aLb
 abi
 aMq
@@ -140554,8 +140543,8 @@ hWp
 aGm
 aIO
 aJs
-aKf
-aKx
+aHt
+aKy
 cld
 abi
 aKD
@@ -140707,8 +140696,8 @@ aEI
 aGn
 aIP
 aJu
-aKg
 aKz
+aKg
 aLd
 abi
 aPz
@@ -140860,8 +140849,8 @@ wCe
 aGo
 aIQ
 aJu
-aKh
-aKh
+aHt
+aIW
 dCg
 abi
 aPz
@@ -141013,9 +141002,9 @@ aEK
 aGA
 cwy
 crU
-aKg
-aKz
 aLf
+aKh
+aKf
 abi
 aPz
 aPz
@@ -141166,8 +141155,8 @@ abi
 bIv
 aIR
 dyp
-aKf
-aKA
+hWp
+aHt
 cmh
 abi
 aPz
@@ -171342,7 +171331,7 @@ aav
 aav
 aav
 aav
-mid
+aav
 aav
 pQa
 pQa
