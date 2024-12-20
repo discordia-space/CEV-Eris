@@ -97,13 +97,14 @@ Class Procs:
 	return !(state & CONNECTION_INVALID)
 
 /connection/proc/erase()
-	edge.remove_connection(src)
+	if(edge)
+		edge.remove_connection(src)
 	state |= CONNECTION_INVALID
 	//world << "Connection Erased: [state]"
 
 /connection/proc/update()
 	//world << "Updated, \..."
-	if(!istype(A,/turf))
+	if(!A.is_simulated)
 		//world << "Invalid A."
 		erase()
 		return
@@ -118,10 +119,8 @@ Class Procs:
 	else
 		mark_direct()
 
-	var/b_is_space = !istype(B,/turf)
-
 	if(state & CONNECTION_SPACE)
-		if(!b_is_space)
+		if(B.is_simulated)
 			//world << "Invalid B."
 			erase()
 			return
@@ -131,16 +130,16 @@ Class Procs:
 				erase()
 				//world << "erased."
 				return
-			else
+			if(edge)
 				edge.remove_connection(src)
 				edge = SSair.get_edge(A.zone, B)
 				edge.add_connection(src)
-				zoneA = A.zone
+			zoneA = A.zone
 
 		//world << "valid."
 		return
 
-	else if(b_is_space)
+	else if(!B.is_simulated)
 		//world << "Invalid B."
 		erase()
 		return
