@@ -1,0 +1,5 @@
+author: AltHit
+delete-after: true
+changes:
+  - rscadd: Torn with ROB tiles now drop shards of material
+  - tweak: Shards now can be hammered, welded or glued depending on the material type
