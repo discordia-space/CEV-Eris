@@ -109,6 +109,10 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4port)
 "aat" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/floor/tiled/dark/danger,
 /area/eris/engineering/shield_generator)
 "aau" = (
@@ -794,11 +798,26 @@
 /turf/floor/tiled/dark/panels,
 /area/eris/crew_quarters/firing_range)
 "acc" = (
-/obj/machinery/power/shipside/shield_generator,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/power/shipside/shield_generator/hull/installed,
 /turf/floor/tiled/dark/danger,
 /area/eris/engineering/shield_generator)
 "acd" = (
@@ -1057,9 +1076,7 @@
 /area/eris/maintenance/section1deck4central)
 "acM" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/floor/tiled/techmaint_cargo,
 /area/eris/neotheology/bioreactor)
 "acN" = (
@@ -2056,6 +2073,7 @@
 "aeT" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/plating/under,
 /area/eris/neotheology/biogenerator)
 "aeU" = (
@@ -4535,15 +4553,7 @@
 /turf/wall/low/with_glass/reinforced,
 /area/eris/crew_quarters/bar)
 "akv" = (
-/obj/machinery/shield_diffuser,
-/obj/machinery/door/airlock/external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "medbayeva_airlock_door_ext";
-	locked = 1;
-	name = "External Medbay Airlock"
-	},
-/turf/floor/tiled/white/cargo,
+/turf/floor/tiled/white/techfloor_grid,
 /area/eris/medical/medeva)
 "akw" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
@@ -5231,21 +5241,27 @@
 /turf/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck2starboard)
 "ami" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -11
-	},
-/obj/structure/mirror{
-	pixel_y = 32
-	},
+/obj/structure/bed/chair/custom/bar_special,
 /turf/floor/tiled/steel/bar_flat,
-/area/eris/crew_quarters/bar)
+/area/eris/crew_quarters/hydroponics)
 "amj" = (
-/obj/structure/mirror{
-	pixel_y = 32
+/obj/machinery/door/airlock/external{
+	frequency = 1331;
+	icon_state = "door_locked";
+	id_tag = "second_sec_1_airlock_door_ext";
+	locked = 1;
+	name = "External Second Section Airlock - 1"
 	},
-/turf/floor/tiled/steel/bar_flat,
-/area/eris/crew_quarters/bar)
+/obj/machinery/shield_diffuser,
+/obj/machinery/airlock_sensor/shuttle_exterior{
+	frequency = 1331;
+	id_tag = "second_sec_1_airlock_sensor_external";
+	name = "external second section dock sensor";
+	pixel_y = 24;
+	sensor_dir = 8
+	},
+/turf/floor/tiled/steel/cargo,
+/area/eris/quartermaster/miningdock)
 "amk" = (
 /turf/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -5354,6 +5370,9 @@
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -11
+	},
+/obj/structure/mirror{
+	pixel_x = -28
 	},
 /turf/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
@@ -7496,16 +7515,17 @@
 /turf/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section1deck4central)
 "arF" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
+/obj/machinery/door/airlock/external{
 	frequency = 1379;
-	master_tag = "engeve_access_console";
-	name = "Engineering E.V.A. External Access Button";
-	pixel_x = -25;
-	pixel_y = 25
+	icon_state = "door_locked";
+	id_tag = "engeve_airlock_door_ext";
+	locked = 1;
+	name = "External Engineering E.V.A. Atmospherics Airlock"
 	},
-/turf/floor/hull,
-/area/space)
+/obj/machinery/door/firedoor,
+/obj/machinery/shield_diffuser,
+/turf/floor/tiled/dark/cargo,
+/area/eris/engineering/engeva)
 "arG" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/shutters,
@@ -8444,7 +8464,6 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/supply{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aua" = (
@@ -12084,13 +12103,9 @@
 /turf/floor/tiled/white/cargo,
 /area/eris/rnd/lab)
 "aCT" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Church";
-	req_access = list(27)
-	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/neotheology/storage)
+/obj/machinery/light,
+/turf/space,
+/area/space)
 "aCU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -12285,10 +12300,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock{
-	name = "Church";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
 "aDs" = (
@@ -12308,6 +12320,9 @@
 "aDt" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 24
+	},
+/obj/machinery/light/small{
+	dir = 4
 	},
 /turf/floor/tiled/white,
 /area/eris/rnd/lab)
@@ -12518,10 +12533,7 @@
 /area/eris/maintenance/section2deck2port)
 "aEa" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Church";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
 "aEb" = (
@@ -14318,16 +14330,13 @@
 /area/eris/maintenance/section1deck3central)
 "aIo" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_access = list(35)
-	},
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/holy,
 /turf/floor/tiled/dark/panels,
 /area/eris/crew_quarters/hydroponics)
 "aIp" = (
@@ -14658,9 +14667,11 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/chapelritualroom)
 "aJf" = (
-/obj/machinery/door/firedoor,
-/turf/wall/low/with_glass/smart,
-/area/eris/neotheology/chapelritualroom)
+/obj/machinery/conveyor/southeast/ccw{
+	id = "bioreactor_intake"
+	},
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/neotheology/bioreactor)
 "aJg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -14949,6 +14960,7 @@
 /area/eris/neotheology/chapelritualroom)
 "aJS" = (
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
 "aJT" = (
@@ -15382,11 +15394,8 @@
 	icon_state = "2-4"
 	},
 /obj/structure/catwalk,
-/obj/machinery/light/small{
-	dir = 1
-	},
 /turf/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/area/eris/quartermaster/storage)
 "aLh" = (
 /obj/item/device/scanner/mass_spectrometer/adv,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -15462,7 +15471,7 @@
 "aLm" = (
 /obj/machinery/light/small,
 /turf/floor/tiled/steel,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/reception)
 "aLn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -15819,6 +15828,7 @@
 /area/eris/neotheology/chapel)
 "aMa" = (
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "aMb" = (
@@ -16239,10 +16249,6 @@
 /area/eris/neotheology/chapelritualroom)
 "aMU" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Church";
-	req_access = list(27)
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -16257,6 +16263,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/holy,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
 "aMV" = (
@@ -20267,7 +20274,7 @@
 /area/eris/quartermaster/office)
 "aWy" = (
 /obj/machinery/door/airlock/command{
-	name = "Union Merchant";
+	name = "Guild Merchant";
 	req_access = list(41)
 	},
 /obj/machinery/door/firedoor,
@@ -20359,6 +20366,11 @@
 "aWG" = (
 /obj/structure/table/standard,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/window/westleft{
+	dir = 4;
+	name = "kitchen windoor";
+	req_access = list(35)
+	},
 /turf/floor/tiled/white/brown_platform,
 /area/eris/crew_quarters/kitchen)
 "aWH" = (
@@ -26474,11 +26486,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_access = list(35)
-	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/holy,
 /turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "blV" = (
@@ -30480,16 +30489,10 @@
 /turf/floor/tiled/white/cargo,
 /area/eris/command/meo)
 "buT" = (
-/obj/structure/railing{
-	dir = 1;
-	tag = "icon-railing0 (NORTH)"
-	},
-/obj/structure/railing{
-	dir = 4;
-	tag = "icon-railing0 (EAST)"
-	},
-/turf/open,
-/area/eris/maintenance/section2deck1starboard)
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/floor/tiled/techmaint,
+/area/eris/maintenance/section1deck4central)
 "buU" = (
 /obj/structure/catwalk,
 /obj/structure/bed/chair/comfy/brown{
@@ -30666,16 +30669,23 @@
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/medical/patients_rooms)
 "bvi" = (
-/obj/structure/railing{
-	dir = 8;
-	tag = "icon-railing0 (WEST)"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/structure/railing{
-	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/turf/open,
-/area/eris/maintenance/section2deck1starboard)
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/floor/plating/under,
+/area/eris/maintenance/section1deck4central)
 "bvj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/plating/under,
@@ -31783,24 +31793,18 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/medical/chemstor)
 "byi" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
-/area/eris/maintenance/section2deck1starboard)
+/area/eris/neotheology/chapelritualroom)
 "byj" = (
 /turf/wall/reinforced,
 /area/eris/neotheology/office)
 "byk" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Chapel Office";
-	req_access = list(22)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/holy/preacher,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/office)
 "byl" = (
@@ -31880,12 +31884,9 @@
 /area/eris/crew_quarters/janitor)
 "byw" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access = list(26)
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/janitor)
 "byx" = (
@@ -32192,8 +32193,11 @@
 	icon_state = "4-8"
 	},
 /obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/reception)
 "bzj" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
@@ -33485,7 +33489,7 @@
 	icon_state = "4-8"
 	},
 /turf/floor/tiled/techmaint_cargo,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/reception)
 "bCq" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -33580,6 +33584,16 @@
 /obj/structure/plasticflaps,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/window/westleft{
+	dir = 2;
+	name = "hydroponics windoor";
+	req_access = list(35)
+	},
+/obj/machinery/door/window/westleft{
+	dir = 1;
+	name = "kitchen windoor";
+	req_access = list(35)
+	},
 /turf/floor/tiled/white/cargo,
 /area/eris/crew_quarters/kitchen)
 "bCC" = (
@@ -38432,7 +38446,7 @@
 	pixel_x = -11
 	},
 /obj/structure/mirror{
-	pixel_y = 32
+	pixel_x = -28
 	},
 /turf/floor/tiled/dark/techfloor_grid,
 /area/eris/security/barracks)
@@ -38442,7 +38456,7 @@
 	pixel_x = 11
 	},
 /obj/structure/mirror{
-	pixel_y = 32
+	pixel_x = 28
 	},
 /turf/floor/tiled/dark/techfloor_grid,
 /area/eris/security/barracks)
@@ -41907,8 +41921,6 @@
 /turf/wall/low/with_glass,
 /area/eris/maintenance/section1deck1central)
 "bVw" = (
-/obj/structure/table/rack,
-/obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -41920,11 +41932,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot,
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 2;
+	icon_state = "pipe-c"
 	},
+/obj/structure/catwalk,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "bVx" = (
@@ -43352,7 +43364,7 @@
 /area/eris/command/commander)
 "bYG" = (
 /obj/machinery/door/airlock/glass_command{
-	name = "Aegis Commander";
+	name = "IronHammer Commander";
 	req_access = list(58)
 	},
 /obj/structure/disposalpipe/segment,
@@ -43371,7 +43383,7 @@
 /area/eris/command/commander)
 "bYI" = (
 /obj/machinery/door/airlock/glass_command{
-	name = "Aegis Commander";
+	name = "IronHammer Commander";
 	req_access = list(58)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -43715,7 +43727,7 @@
 "bZz" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
-	name = "Aegis Commander";
+	name = "IronHammer Commander";
 	req_access = list(58)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -46360,14 +46372,11 @@
 /turf/floor/tiled/steel/bar_dance,
 /area/turret_protected/ai)
 "cgf" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/obj/structure/disposaloutlet{
-	dir = 4
-	},
-/turf/floor/hull,
-/area/space)
+/obj/structure/table/rack,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot/low_chance,
+/turf/floor/tiled/techmaint,
+/area/eris/maintenance/section1deck4central)
 "cgg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -47597,16 +47606,8 @@
 /turf/floor/tiled/dark/techfloor,
 /area/eris/engineering/engeva)
 "ciW" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/external{
-	frequency = 1379;
-	icon_state = "door_locked";
-	id_tag = "engeve_airlock_door_ext";
-	locked = 1;
-	name = "External Engineering E.V.A. Atmospherics Airlock"
-	},
-/obj/machinery/shield_diffuser,
-/turf/floor/tiled/dark/cargo,
+/obj/machinery/light/small,
+/turf/floor/tiled/dark/techfloor,
 /area/eris/engineering/engeva)
 "ciX" = (
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -48236,7 +48237,7 @@
 	req_access = list(12)
 	},
 /turf/floor/tiled/steel/cargo,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/reception)
 "ckP" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -50212,8 +50213,11 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/floor/plating/under,
-/area/eris/maintenance/section2deck3port)
+/area/eris/quartermaster/storage)
 "cpB" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/external{
@@ -50271,17 +50275,22 @@
 /turf/floor/wood,
 /area/eris/crew_quarters/artistoffice)
 "cpG" = (
-/obj/structure/multiz/stairs/active{
-	dir = 8
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/open,
-/area/eris/maintenance/section2deck3port)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/holy/public,
+/turf/floor/tiled/dark/cargo,
+/area/eris/neotheology/storage)
 "cpH" = (
 /obj/structure/multiz/stairs/enter{
 	dir = 8
 	},
 /turf/floor/tiled/steel/cargo,
-/area/eris/maintenance/section2deck3port)
+/area/eris/medical/reception)
 "cpI" = (
 /obj/structure/table/standard,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -50792,10 +50801,7 @@
 /area/shuttle/mining/station)
 "cre" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_access = list(35)
-	},
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics)
 "crf" = (
@@ -51652,7 +51658,6 @@
 /turf/wall/low/with_glass,
 /area/eris/neotheology/bioreactor)
 "csX" = (
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -51663,6 +51668,8 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/structure/table/rack,
+/obj/spawner/lowkeyrandom/low_chance,
 /turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "cta" = (
@@ -52139,11 +52146,12 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/structure/table/rack,
+/obj/spawner/medical_lowcost/low_chance,
 /turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "cuj" = (
@@ -52238,6 +52246,7 @@
 	dir = 4
 	},
 /obj/structure/table/rack/shelf,
+/obj/spawner/junk/low_chance,
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/neotheology/bioreactor)
 "cuq" = (
@@ -52971,23 +52980,17 @@
 /area/eris/maintenance/section2deck4port)
 "cwo" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_access = list(35)
-	},
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
 "cwp" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass{
-	name = "Hydroponics";
-	req_access = list(35)
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
 "cwq" = (
@@ -53247,6 +53250,7 @@
 	pixel_y = 24
 	},
 /obj/structure/catwalk,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/plating/under,
 /area/eris/neotheology/biogenerator)
 "cxd" = (
@@ -54979,19 +54983,20 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/quartermaster/disposaldrop)
 "cBj" = (
-/obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
+/obj/structure/catwalk,
 /turf/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "cBk" = (
-/obj/structure/disposaloutlet,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
-/turf/floor/tiled/dark/techfloor_grid,
+/obj/structure/catwalk,
+/turf/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "cBl" = (
 /obj/structure/disposalpipe/segment,
@@ -55229,11 +55234,23 @@
 /turf/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "cBQ" = (
-/obj/machinery/conveyor/south{
-	id = "bioreactor_intake"
+/obj/machinery/door/airlock/external{
+	frequency = 1331;
+	icon_state = "door_locked";
+	id_tag = "second_sec_1_airlock_door_ext";
+	locked = 1;
+	name = "External Second Section Airlock - 1"
 	},
-/turf/floor/tiled/dark/techfloor_grid,
-/area/eris/neotheology/bioreactor)
+/obj/machinery/shield_diffuser,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1331;
+	master_tag = "second_sec_1_access_console";
+	name = "Second Section External Access Button - 1";
+	pixel_y = -25
+	},
+/turf/floor/tiled/steel/cargo,
+/area/eris/quartermaster/miningdock)
 "cBR" = (
 /obj/machinery/multistructure/bioreactor_part/biotank_platform,
 /turf/floor/tiled/dark/gray_platform,
@@ -55341,9 +55358,6 @@
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck3port)
 "cCe" = (
-/obj/machinery/conveyor/southeast/ccw{
-	id = "bioreactor_intake"
-	},
 /turf/floor/tiled/dark/techfloor_grid,
 /area/eris/neotheology/bioreactor)
 "cCf" = (
@@ -56636,6 +56650,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/device/scanner/mining,
+/obj/item/tool/karl,
 /turf/shuttle/floor/mining{
 	icon_state = "2,21"
 	},
@@ -57093,14 +57108,17 @@
 /turf/floor/tiled/dark/techfloor_grid,
 /area/eris/crew_quarters/sleep/cryo)
 "cGh" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	name = "Church";
-	req_access = list(27)
+/obj/structure/catwalk,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1379;
+	master_tag = "engeve_access_console";
+	name = "Engineering E.V.A. External Access Button";
+	pixel_x = -25;
+	pixel_y = 25
 	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapelritualroom)
+/turf/space,
+/area/space)
 "cGi" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -57727,7 +57745,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/structure/table/rack,
 /turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "cHG" = (
@@ -57884,19 +57902,23 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/medical/morgue)
 "cHX" = (
-/obj/structure/bed/chair/office/light,
-/turf/floor/plating,
-/area/eris/medical/morgue)
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_common{
+	name = "Service Maintenance";
+	req_access = list(12)
+	},
+/turf/floor/tiled/techmaint_cargo,
+/area/eris/maintenance/section2deck1starboard)
 "cHY" = (
-/obj/structure/table/standard,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
-/obj/item/flame/lighter/zippo,
-/turf/floor/plating,
-/area/eris/medical/morgue)
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/floor/tiled/dark/danger,
+/area/eris/engineering/shield_generator)
 "cHZ" = (
-/turf/floor/plating,
-/area/eris/medical/morgue)
+/turf/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/hydroponics)
 "cIa" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -59050,6 +59072,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/device/scanner/mining,
+/obj/item/tool/karl,
 /turf/shuttle/floor/mining{
 	icon_state = "2,20"
 	},
@@ -59379,6 +59402,7 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/device/scanner/mining,
+/obj/item/tool/karl,
 /turf/shuttle/floor/mining{
 	icon_state = "2,19"
 	},
@@ -60151,11 +60175,13 @@
 	},
 /area/shuttle/mining/station)
 "cNC" = (
+/obj/machinery/porta_turret/mining,
 /turf/shuttle/floor/mining{
 	icon_state = "13,17"
 	},
 /area/shuttle/mining/station)
 "cND" = (
+/obj/machinery/porta_turret/mining,
 /turf/shuttle/floor/mining{
 	icon_state = "14,17"
 	},
@@ -64591,11 +64617,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	name = "Church";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "cZh" = (
@@ -70524,7 +70546,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "dmG" = (
@@ -71094,8 +71115,6 @@
 /area/eris/hallway/side/eschangarb)
 "dnT" = (
 /obj/structure/cyberplant{
-	pixel_x = 16;
-	pixel_y = -4;
 	possible_plants = list("emagged2-blue","emagged2-orange")
 	},
 /obj/machinery/camera/network/second_section,
@@ -75276,10 +75295,10 @@
 /turf/floor/tiled/steel/panels,
 /area/eris/engineering/engine_room)
 "dyc" = (
-/obj/machinery/atm{
-	pixel_x = 32
+/obj/structure/disposalpipe/trunk{
+	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
+/obj/machinery/disposal,
 /turf/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "dyd" = (
@@ -75828,11 +75847,10 @@
 /turf/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/bar)
 "dze" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
+/obj/machinery/atm{
+	pixel_x = 32
 	},
-/turf/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "dzf" = (
 /obj/machinery/door/firedoor,
@@ -76921,11 +76939,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	name = "Church";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy/public,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapelritualroom)
 "dBf" = (
@@ -79824,22 +79838,10 @@
 	name = "Emergency Power Substation"
 	})
 "esq" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1331;
-	icon_state = "door_locked";
-	id_tag = "second_sec_1_airlock_door_ext";
-	locked = 1;
-	name = "External Second Section Airlock - 1"
+/obj/machinery/light/small{
+	dir = 1
 	},
-/obj/machinery/airlock_sensor/shuttle_exterior{
-	frequency = 1331;
-	id_tag = "second_sec_1_airlock_sensor_external";
-	name = "external second section dock sensor";
-	pixel_y = 24;
-	sensor_dir = 8
-	},
-/obj/machinery/shield_diffuser,
-/turf/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/eris/quartermaster/miningdock)
 "etq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -80274,30 +80276,14 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "fEr" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1331;
-	icon_state = "door_locked";
-	id_tag = "second_sec_1_airlock_door_ext";
-	locked = 1;
-	name = "External Second Section Airlock - 1"
+/obj/structure/cyberplant{
+	possible_plants = list("emagged2-blue","emagged2-orange")
 	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1331;
-	master_tag = "second_sec_1_access_console";
-	name = "Second Section External Access Button - 1";
-	pixel_y = -25
-	},
-/obj/machinery/shield_diffuser,
-/turf/floor/tiled/steel/cargo,
-/area/eris/quartermaster/miningdock)
+/turf/floor/tiled/steel/bar_light,
+/area/eris/crew_quarters/hydroponics)
 "fEw" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -80753,6 +80739,17 @@
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
+"gSr" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "medbayeva_airlock_door_ext";
+	locked = 1;
+	name = "External Medbay Airlock"
+	},
+/obj/machinery/shield_diffuser,
+/turf/floor/tiled/white/cargo,
+/area/eris/medical/medeva)
 "gSv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -80947,6 +80944,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
+"hwB" = (
+/obj/structure/table/bar_special,
+/turf/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/hydroponics)
 "hwN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -81496,6 +81497,12 @@
 	},
 /turf/floor/tiled/steel,
 /area/eris/maintenance/section2deck3starboard)
+"iMI" = (
+/obj/structure/bed/chair/custom/bar_special{
+	dir = 4
+	},
+/turf/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/hydroponics)
 "iOs" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/tiled/white,
@@ -82335,6 +82342,11 @@
 	},
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/left)
+"lsS" = (
+/obj/structure/catwalk,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/floor/plating/under,
+/area/eris/neotheology/biogenerator)
 "ltb" = (
 /obj/structure/catwalk,
 /obj/structure/sign{
@@ -82835,6 +82847,15 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
+"mMf" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/turf/floor/plating/under,
+/area/eris/quartermaster/storage)
 "mNt" = (
 /turf/wall,
 /area/eris/maintenance/substation/section1{
@@ -83060,14 +83081,17 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2port)
-"ntW" = (
-/obj/structure/table/bar_special,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/peppermill{
-	pixel_x = 5
+"nry" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Kitchen";
+	req_access = ssssss
 	},
+/turf/floor/tiled/white/cargo,
+/area/eris/crew_quarters/kitchen)
+"ntW" = (
 /obj/item/material/ashtray,
-/turf/floor/tiled/steel/bar_flat,
+/turf/floor/tiled/steel/bar_dance,
 /area/eris/crew_quarters/bar)
 "nuu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -83219,6 +83243,17 @@
 	},
 /turf/floor/tiled/white/techfloor,
 /area/eris/medical/medeva)
+"nRl" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/floor/hull{
+	flooring_override = "hullcenter18";
+	icon_state = "hullcenter18";
+	tag = "icon-hullcenter18"
+	},
+/area/space)
 "nRu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -83398,10 +83433,7 @@
 /area/eris/maintenance/section2deck3port)
 "ovG" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Church";
-	req_access = list(27)
-	},
+/obj/machinery/door/holy,
 /turf/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section2deck3port)
 "ovS" = (
@@ -84158,6 +84190,13 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
+"qva" = (
+/obj/structure/disposaloutlet,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/neotheology/bioreactor)
 "qwo" = (
 /obj/structure/closet/emcloset,
 /turf/floor/tiled/steel/techfloor,
@@ -84389,6 +84428,12 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
+"rch" = (
+/obj/machinery/conveyor/south{
+	id = "bioreactor_intake"
+	},
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/neotheology/bioreactor)
 "rcr" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -84572,6 +84617,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/catwalk,
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 /turf/floor/plating/under,
 /area/eris/neotheology/biogenerator)
 "rAI" = (
@@ -84604,6 +84650,15 @@
 	},
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3starboard)
+"rEO" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/catwalk,
+/turf/floor/plating/under,
+/area/eris/medical/reception)
 "rES" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/floor/tiled/techmaint,
@@ -85213,6 +85268,13 @@
 	},
 /turf/floor/tiled/steel/brown_platform,
 /area/eris/crew_quarters/hydroponics/garden)
+"teC" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/floor/tiled/dark/danger,
+/area/eris/engineering/shield_generator)
 "tfu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -86186,6 +86248,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section2deck1starboard)
+"vDN" = (
+/obj/machinery/door/firedoor,
+/obj/structure/disposalpipe/segment,
+/turf/wall/low/with_glass/reinforced,
+/area/eris/maintenance/section1deck4central)
 "vEi" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -86217,6 +86284,9 @@
 	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
+"vGm" = (
+/turf/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/hydroponics)
 "vGF" = (
 /obj/machinery/alarm{
 	pixel_y = 26
@@ -86242,8 +86312,16 @@
 /turf/floor/tiled/steel,
 /area/eris/security/lobby)
 "vLS" = (
-/turf/space,
-/area/eris/maintenance/junk)
+/obj/structure/railing{
+	dir = 4;
+	tag = "icon-railing0 (EAST)"
+	},
+/obj/structure/railing{
+	dir = 1;
+	tag = "icon-railing0 (NORTH)"
+	},
+/turf/open,
+/area/eris/maintenance/section2deck1starboard)
 "vNh" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -86320,16 +86398,18 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2starboard)
 "vQO" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/disposaloutlet{
+	dir = 4
 	},
 /turf/floor/hull{
 	flooring_override = "hullcenter18";
 	icon_state = "hullcenter18";
 	tag = "icon-hullcenter18"
 	},
-/area/eris/crew_quarters/fitness)
+/area/space)
 "vRp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/cobweb2,
@@ -86454,6 +86534,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -24
 	},
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/floor/tiled/white,
 /area/eris/rnd/lab)
 "wgw" = (
@@ -86511,19 +86594,19 @@
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/left)
 "wpu" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/turf/floor/tiled/steel/cargo,
-/area/eris/quartermaster/storage)
+/obj/machinery/door/window/westleft{
+	dir = 2;
+	name = "kitchen windoor";
+	req_access = list(35)
+	},
+/turf/floor/tiled/cafe,
+/area/eris/crew_quarters/kitchen)
 "wqh" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
 	frequency = 1331;
 	id_tag = "second_sec_1_airlock_pump";
 	name = "Second Section Airlock Pump - 1"
-	},
-/obj/machinery/light/small{
-	dir = 1
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
 	frequency = 1331;
@@ -95156,7 +95239,7 @@ aaf
 ahj
 aaf
 aaf
-lwY
+doA
 aaf
 aaf
 pQa
@@ -95307,12 +95390,12 @@ aaW
 aaW
 aaW
 sgK
-aaW
+cgf
 bRX
 bVw
-aaf
-pQa
-pQa
+vDN
+aaZ
+nRl
 tci
 iiT
 eCX
@@ -95462,10 +95545,10 @@ adB
 auQ
 bBC
 aeb
-aeJ
+bvi
 aaf
-pQa
-pQa
+aId
+vQO
 tci
 mFg
 ePR
@@ -95613,12 +95696,12 @@ aRQ
 aek
 adB
 aaW
-asY
-bRX
-bVw
+buT
+buT
+bvi
 aaf
 aav
-aav
+aIf
 tci
 mFg
 auL
@@ -95771,7 +95854,7 @@ acX
 doA
 aaf
 aaf
-agt
+aCT
 abT
 aTU
 auL
@@ -95923,8 +96006,8 @@ bBT
 abX
 fEd
 atZ
-aeC
-vQO
+aaf
+dps
 abT
 abT
 tci
@@ -96077,7 +96160,7 @@ abX
 atr
 aua
 aaf
-cgf
+pQa
 syw
 agn
 awa
@@ -102257,7 +102340,7 @@ acq
 aan
 pQa
 aac
-aat
+cHY
 acc
 aez
 afg
@@ -102411,7 +102494,7 @@ aan
 pQa
 aac
 afh
-aat
+teC
 aZv
 aeA
 aac
@@ -117648,7 +117731,7 @@ xwA
 avi
 pQa
 pQa
-pQa
+aav
 aav
 aYR
 aYW
@@ -117999,7 +118082,7 @@ czv
 czv
 csM
 czJ
-wpu
+aFV
 bLk
 cAf
 cAf
@@ -118611,7 +118694,7 @@ czv
 czv
 csN
 czK
-czu
+aFV
 aFV
 cAf
 cAf
@@ -118923,7 +119006,7 @@ czu
 cAj
 cAj
 cAj
-czu
+aFV
 aFV
 aOV
 cCI
@@ -119359,7 +119442,7 @@ cHr
 clN
 clN
 clN
-cHX
+clN
 ark
 asD
 atA
@@ -119512,7 +119595,7 @@ cHr
 ctS
 ctS
 ctS
-cHY
+ctS
 ark
 vGF
 atB
@@ -119665,7 +119748,7 @@ cHr
 ctM
 ctM
 ctM
-cHZ
+ctM
 ark
 aog
 atB
@@ -120288,7 +120371,7 @@ cty
 bCg
 aLg
 cpA
-cpA
+mMf
 czt
 czz
 czv
@@ -120296,11 +120379,11 @@ czG
 czG
 cAa
 dmE
-czu
+aFV
 cAp
 cAp
 cAp
-czu
+aFV
 aFV
 pFU
 cCI
@@ -120440,8 +120523,8 @@ cpo
 ctH
 bCg
 bzi
-aNY
-aNY
+amM
+amM
 aFV
 bYS
 czv
@@ -120592,9 +120675,9 @@ cFB
 cps
 bXC
 bCg
-bzi
-aNY
-cpG
+rEO
+amM
+apj
 aFV
 caa
 czv
@@ -120746,7 +120829,7 @@ cpx
 bCg
 bCg
 bCp
-aNY
+amM
 cpH
 aFV
 cHA
@@ -122285,9 +122368,9 @@ csX
 cui
 cHF
 dmF
-cwx
+cBj
 cBk
-cBQ
+cCe
 cCe
 abI
 abI
@@ -122438,11 +122521,11 @@ viR
 cun
 cwx
 cwx
+qva
+rch
+aJf
 cwx
-cBz
-cBz
-cCf
-cwx
+bRt
 abI
 atn
 cHL
@@ -122591,18 +122674,18 @@ abI
 cuo
 cwx
 cwx
+cBz
+cBz
+cCf
 cwx
-cBz
-cBz
-cCg
-cCs
+cwx
 bYK
 rfz
 cHL
 aSI
 aem
 cxc
-agO
+lsS
 ahY
 mXX
 mXX
@@ -122744,10 +122827,10 @@ abI
 cup
 cwx
 cwx
-cwx
-cBA
-cBR
-cCh
+cBz
+cBz
+cCg
+cCs
 cwx
 abI
 eau
@@ -122895,13 +122978,13 @@ cpN
 dmw
 abI
 cuq
-cwS
-cwS
-cwS
-cwS
-uoU
-cwS
-cwS
+cwx
+cwx
+cBA
+cBR
+cCh
+cwx
+cwx
 aEa
 atn
 cJe
@@ -123051,7 +123134,7 @@ clQ
 cwS
 cwS
 cwS
-cwS
+uoU
 cwS
 cwS
 cwS
@@ -123203,8 +123286,8 @@ cti
 crT
 cwS
 cwS
-cwS
 tqt
+cwS
 cwS
 cwS
 cwS
@@ -123645,7 +123728,7 @@ aTO
 aVU
 aVJ
 aXp
-aVJ
+wpu
 bAb
 aTO
 bqF
@@ -123946,7 +124029,7 @@ awS
 awU
 awT
 awU
-aPM
+nry
 aVJ
 aVJ
 bLM
@@ -125822,8 +125905,8 @@ lAO
 cDl
 lAO
 cDl
-pQa
-pQa
+aav
+aav
 aav
 aav
 aav
@@ -125985,12 +126068,12 @@ aav
 aav
 aav
 aav
-aav
-aav
-aav
-aav
-aav
-aav
+pQa
+pQa
+pQa
+pQa
+pQa
+pQa
 pQa
 pQa
 pQa
@@ -126111,7 +126194,7 @@ cqj
 cqj
 cqj
 cqj
-aDr
+cpG
 cqj
 cqj
 cqj
@@ -126128,22 +126211,22 @@ chz
 cDl
 chz
 cDl
-pQa
-pQa
 aav
-pQa
 aav
-pQa
-pQa
 aav
-pQa
 aav
-pQa
-pQa
-pQa
-pQa
-pQa
-pQa
+aav
+aav
+aav
+aav
+aav
+aav
+aav
+aav
+aav
+aav
+aav
+aav
 pQa
 pQa
 pQa
@@ -126260,7 +126343,7 @@ cIF
 cpn
 cIX
 cJd
-aCT
+cwo
 cwL
 cWG
 cwL
@@ -126268,7 +126351,7 @@ cBK
 cBZ
 cwL
 cwL
-aCT
+cwo
 tTh
 cJk
 cNQ
@@ -126283,14 +126366,14 @@ cDl
 cDl
 pQa
 pQa
+aav
+pQa
+aav
 pQa
 pQa
+aav
 pQa
-pQa
-pQa
-pQa
-pQa
-pQa
+aav
 pQa
 pQa
 pQa
@@ -126412,7 +126495,7 @@ aho
 cqj
 cqj
 cqj
-aCT
+cwo
 cqj
 cWD
 cwL
@@ -140306,8 +140389,8 @@ bCI
 bCI
 bAe
 aav
-aav
-aav
+ayJ
+ajd
 akM
 alY
 axz
@@ -140459,8 +140542,8 @@ iGi
 iGi
 bAe
 bAe
-dsW
-ajd
+akk
+gSr
 akM
 akM
 akM
@@ -146144,10 +146227,10 @@ aaG
 aaG
 aDa
 aaG
-aDP
-akt
-aBb
-aBb
+aaG
+arn
+cHZ
+cHZ
 dBX
 aJM
 iSY
@@ -146298,9 +146381,9 @@ ayO
 aDa
 aaG
 ntW
-akt
-aBb
-aBb
+arn
+fEr
+cHZ
 dBX
 aJN
 aKq
@@ -146450,10 +146533,10 @@ aqi
 aCu
 aDa
 aaG
-aDR
-akt
-aBb
-aBb
+aaG
+arn
+cHZ
+cHZ
 dBX
 deH
 dCd
@@ -146604,9 +146687,9 @@ dxo
 aJa
 dyc
 dze
-akt
-aBb
-aBb
+amk
+vGm
+iMI
 aIX
 aIX
 aIX
@@ -146635,9 +146718,9 @@ aav
 dqz
 bTy
 bUj
-dqz
+chv
 arF
-ccW
+chv
 ccW
 coQ
 cqt
@@ -146756,10 +146839,10 @@ dFE
 bhz
 anQ
 aaC
-aaC
-aaC
-aBb
-aBb
+bhz
+bhz
+ami
+hwB
 aIz
 aJP
 aJP
@@ -146789,7 +146872,7 @@ dqz
 bTy
 bUj
 dqz
-aYW
+cGh
 pQa
 ccW
 coQ
@@ -146910,7 +146993,7 @@ bhz
 wmo
 aaC
 dzx
-aZa
+bUR
 aYw
 aYw
 aIz
@@ -147220,8 +147303,8 @@ aBb
 aBb
 aBb
 aIz
-aJS
-cGh
+byi
+byi
 aIz
 dCk
 aKN
@@ -147229,7 +147312,7 @@ aMP
 aNz
 aIz
 aJS
-cGh
+aJS
 aIz
 dtV
 aZT
@@ -147806,7 +147889,7 @@ aav
 aav
 aav
 aaC
-ami
+amC
 amC
 bhz
 akF
@@ -147959,7 +148042,7 @@ aav
 aav
 aav
 aaC
-amj
+amk
 aKS
 bhz
 akF
@@ -148532,7 +148615,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+aav
 aav
 aav
 aav
@@ -148685,7 +148768,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+aav
 aav
 aav
 aav
@@ -151015,7 +151098,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+aav
 aav
 aYR
 aav
@@ -160083,10 +160166,10 @@ pQa
 pQa
 pQa
 pQa
-pQa
-pQa
-pQa
-pQa
+bBl
+amj
+cBQ
+bBl
 pQa
 pQa
 pQa
@@ -160238,7 +160321,7 @@ pQa
 pQa
 bBl
 esq
-fEr
+cdS
 bBl
 pQa
 pQa
@@ -163257,7 +163340,7 @@ tKp
 cgi
 bVg
 bVg
-aYW
+aYR
 aav
 aav
 bkY
@@ -163311,20 +163394,20 @@ pQa
 pQa
 pQa
 pQa
-vLS
-vLS
-vLS
-vLS
-vLS
-vLS
-vLS
-vLS
-vLS
-vLS
-vLS
-vLS
-pQa
-pQa
+cNH
+cNH
+cNH
+cNH
+cNH
+cNH
+cNH
+cNH
+cNH
+cNH
+cNH
+cNH
+aav
+aav
 pQa
 pQa
 pQa
@@ -163410,7 +163493,7 @@ tKp
 bVF
 ccv
 bVg
-aYR
+aav
 aav
 aav
 bfZ
@@ -168028,7 +168111,7 @@ aYH
 duM
 duM
 aMh
-duM
+duZ
 ptM
 ptM
 byj
@@ -169099,7 +169182,7 @@ bmD
 bqp
 aNd
 aNT
-aJf
+fix
 aJR
 bxY
 byw
@@ -169253,7 +169336,7 @@ bqp
 aNd
 aNT
 duZ
-aJS
+byi
 dBe
 byv
 dzm
@@ -169405,7 +169488,7 @@ dox
 bqp
 aNd
 aNT
-aJf
+fix
 aKr
 bya
 byv
@@ -169558,7 +169641,7 @@ aMi
 bqp
 aNd
 aNT
-aJf
+fix
 bxH
 byb
 byv
@@ -170168,8 +170251,8 @@ bse
 aaC
 aMi
 bqp
-buT
-bxl
+aNd
+duM
 duM
 drK
 drK
@@ -170321,9 +170404,9 @@ aKS
 bhz
 drD
 bqp
-bqp
-bqp
-aMh
+vLS
+duM
+aMi
 aMi
 aMi
 aMh
@@ -170474,10 +170557,10 @@ dEc
 bhz
 bhz
 bqp
-bvi
-aNQ
-duM
-dox
+bqp
+cHX
+aMi
+djp
 aMi
 duM
 bmC
@@ -170627,8 +170710,8 @@ dtj
 amk
 bmZ
 bqp
-aNd
-aNT
+aNc
+duM
 duM
 duM
 aMh
@@ -170781,9 +170864,9 @@ bhz
 bhz
 aNQ
 aNT
-aNT
 duM
 bmD
+aYH
 aMi
 aMi
 aMi
@@ -170934,9 +171017,9 @@ aNd
 duM
 aNT
 aNT
-aNT
 duM
 bmD
+aYH
 aMi
 lgg
 sKR
