@@ -83081,14 +83081,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2port)
-"nry" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Kitchen";
-	req_access = ssssss
-	},
-/turf/floor/tiled/white/cargo,
-/area/eris/crew_quarters/kitchen)
 "ntW" = (
 /obj/item/material/ashtray,
 /turf/floor/tiled/steel/bar_dance,
@@ -86593,14 +86585,6 @@
 	},
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/left)
-"wpu" = (
-/obj/machinery/door/window/westleft{
-	dir = 2;
-	name = "kitchen windoor";
-	req_access = list(35)
-	},
-/turf/floor/tiled/cafe,
-/area/eris/crew_quarters/kitchen)
 "wqh" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
@@ -123728,7 +123712,7 @@ aTO
 aVU
 aVJ
 aXp
-wpu
+aVJ
 bAb
 aTO
 bqF
@@ -124029,7 +124013,7 @@ awS
 awU
 awT
 awU
-nry
+aPM
 aVJ
 aVJ
 bLM
