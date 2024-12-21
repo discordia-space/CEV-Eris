@@ -241,18 +241,6 @@
 							step(M, M.dir)
 							sleep(1)
 
-		// TODO: Contamination is ancient and utterly useless mechanic, remove in a separate PR --KIROV
-		else if(isitem(Obj) && vsc.plc.CLOTH_CONTAMINATION)
-			var/obj/item/I = Obj
-			if(I.can_contaminate())
-				var/datum/gas_mixture/env = return_air(1)
-				if(!env)
-					return
-				for(var/g in env.gas)
-					if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && env.gas[g] > gas_data.overlay_limit[g] + 1)
-						I.contaminate()
-						break
-
 	// If an opaque movable atom moves around we need to potentially update visibility.
 		if(Obj && Obj.opacity)
 			has_opaque_atom = TRUE // Make sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
