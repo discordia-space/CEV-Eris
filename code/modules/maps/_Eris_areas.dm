@@ -206,8 +206,14 @@
 /area/eris/maintenance/substation/bridge
 	name = "Bridge Substation"
 
+/area/eris/maintenance/sciweapondeck
+	name = "Moebius Maintenance"
 
+/area/eris/maintenance/substation/port
+	name = "Port Substation"
 
+/area/eris/maintenance/substation/starboard
+	name = "Starboard Substation"
 
 //Hallway
 
@@ -277,7 +283,10 @@
 	icon_state = "erisred"
 	holomap_color = HOLOMAP_AREACOLOR_ESCAPE
 
-
+/area/eris/hallway/side/docks
+	name = "Dock Hallway"
+	icon_state = "erisred"
+	holomap_color = HOLOMAP_AREACOLOR_ESCAPE
 
 
 //Command
@@ -545,6 +554,14 @@
 /area/eris/crew_quarters/artistoffice
 	name = "\improper Club Artist Office"
 	icon_state = "erisyellow"
+
+/area/eris/crew_quarters/firing_range
+	name = "\improper Firing Range"
+	icon_state = "erisyellow"
+
+/area/eris/maintenance/medicalward
+	name = "Medbay Maintenance"
+	icon_state = "erisblue"
 
 // NeoTheology
 

@@ -244,7 +244,7 @@
 	only_admin = FALSE
 	can_revote = TRUE
 	can_unvote = TRUE
-	
+
 
 /datum/vote_choice/yes_chaos_level
 	text = "Increase the chaos level!"
@@ -310,3 +310,35 @@
 
 /datum/vote_choice/custom
 	text = "Vote choice"
+
+/*
+/*********************
+		Map
+**********************/
+/datum/poll/map
+	name = "Map"
+	question = "Choose map"
+	time = 120
+	choice_types = list()
+	minimum_voters = 0
+	only_admin = FALSE
+	multiple_votes = FALSE
+	can_revote = TRUE
+	can_unvote = TRUE
+	cooldown = 30 MINUTES
+	see_votes = TRUE
+
+/datum/poll/map/init_choices()
+	choices = list()
+	for(var/list/map in SSmapping.maplist)
+		var/datum/vote_choice/map/candidate = new
+		candidate.text = map["map_name"]
+		candidate.desc = map["map_desc"]
+		candidate.file = map["map_file"]
+		choices.Add(candidate)
+
+/datum/vote_choice/map
+	var/file
+
+/datum/vote_choice/map/on_win()
+*/

@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(mapping)
 	world.incrementMaxZ()
 	GLOB.maps_data.pulsar_z = world.maxz
 	add_z_level(GLOB.maps_data.pulsar_z, GLOB.maps_data.pulsar_z, 1)
-	maploader.load_map(file("maps/pulsar/pulsar.dmm"), z_offset = GLOB.maps_data.pulsar_z)
+	maploader.load_map(file("maps/submaps/pulsar.dmm"), z_offset = GLOB.maps_data.pulsar_z)
 	var/list/turfs = list()
 	for(var/square in block(locate(1, 1, GLOB.maps_data.pulsar_z), locate(GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_size, GLOB.maps_data.pulsar_z)))
 		// Switch to space turf with green grid overlay
