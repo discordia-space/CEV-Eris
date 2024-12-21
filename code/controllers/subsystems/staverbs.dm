@@ -94,12 +94,12 @@ SUBSYSTEM_DEF(statverbs)
 			SPAN_DANGER("[user] grabbed the edges of [target] with their hands!"),
 			"You grab the edges of [target] with your hands"
 		)
-		if(do_mob(user, target, target.flooring.removal_time * 3))
+		if(do_mob(user, target, target.flooring.removal_time * 3) && target.flooring.flags & TURF_REMOVE_CROWBAR)
 			user.visible_message(
 				SPAN_DANGER("[user] roughly tore plating off from [target]!"),
 				"You tore the plating off from [target]"
 			)
-			target.make_plating(FALSE)
+			target.make_plating(TRUE, null, TRUE)
 		else
 			var/target_name = target ? "[target]" : "the floor"
 			user.visible_message(
