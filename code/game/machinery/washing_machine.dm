@@ -42,14 +42,10 @@
 
 //A washing machine cleans away most of the bad effects of old clothes
 //Armor penalties and name/desc changes are left
-/obj/machinery/washing_machine/proc/wash(atom/A)
-	A.clean_blood()
-	if(isobj(A))
-		var/obj/O = A
-		if(istype(A, /obj/item))
-			var/obj/item/I = A
-			I.decontaminate()
-		O.make_young()
+/obj/machinery/washing_machine/proc/wash(obj/laundry)
+	laundry.clean_blood()
+	if(istype(laundry))
+		laundry.make_young()
 
 /obj/machinery/washing_machine/Process()
 	if(tick > 0 && (state == WASHSTATE_RUNNING))
