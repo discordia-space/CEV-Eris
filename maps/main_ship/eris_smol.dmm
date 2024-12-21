@@ -74719,7 +74719,7 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
-/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
 "dwW" = (
@@ -77906,7 +77906,7 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
 "dDe" = (
@@ -78049,7 +78049,7 @@
 /obj/machinery/camera/network/engineering{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/plasma,
+/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
 /turf/floor/tiled/steel/danger,
 /area/eris/engineering/engine_room)
 "dDn" = (
@@ -143346,7 +143346,7 @@ cnR
 cYy
 cYP
 dDm
-cYB
+lAw
 dnX
 cZO
 dab
@@ -143651,8 +143651,8 @@ ccW
 dDb
 cYA
 cYP
-gdC
-gdC
+tCe
+tCe
 cZA
 cZQ
 dad
@@ -144108,7 +144108,7 @@ cnB
 coz
 ccW
 dDd
-lAw
+cYB
 dDj
 cZm
 cZm
@@ -144414,7 +144414,7 @@ ccW
 ccW
 ccW
 dwV
-tCe
+gdC
 cYS
 cZo
 cZo
