@@ -1,5 +1,6 @@
 /client
 	var/list/HUD_elements //stores all elements shown to client, association list with index being element identifier
+	var/datum/player_vault/player_vault
 
 /client/proc/hide_HUD_element(var/identifier)
 	if (!HUD_elements)
