@@ -80,12 +80,9 @@
 		handle_disabilities() // eye, ear, brain damages
 		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
 
-	handle_actions()
-
 	update_lying_buckled_and_verb_status()
 
 	handle_regular_hud_updates()
-
 
 
 /mob/living/proc/Life_Check_Light()

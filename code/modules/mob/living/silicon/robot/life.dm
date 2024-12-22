@@ -8,7 +8,6 @@
 	//Status updates, death etc.
 	clamp_values()
 	handle_regular_status_updates()
-	handle_actions()
 
 	if(client)
 		handle_regular_hud_updates()

@@ -431,52 +431,51 @@
 /mob/living/proc/reagent_permeability()
 	return 1
 
-/mob/living/proc/handle_actions()
-	//Pretty bad, i'd use picked/dropped instead but the parent calls in these are nonexistent
-	for(var/datum/action/A in actions)
-		if(A.CheckRemoval(src))
-			A.Remove(src)
-	for(var/obj/item/I in src)
-		if(I.action_button_name)
-			if(!I.action)
-				if(I.action_button_is_hands_free)
-					I.action = new/datum/action/item_action/hands_free
-				else
-					I.action = new/datum/action/item_action
-				I.action.name = I.action_button_name
-				I.action.target = I
-				if(I.action_button_proc)
-					I.action.action_type = AB_ITEM_PROC
-					I.action.procname = I.action_button_proc
-					if(I.action_button_arguments)
-						I.action.arguments = I.action_button_arguments
-			I.action.Grant(src)
+/mob/proc/action_button_add(obj/item/item)
 	return
+
+/mob/living/action_button_add(obj/item/item)
+	ASSERT(item)
+	if(!item.action_button_name)
+		return
+
+	if(!item.action)
+		if(item.action_button_is_hands_free)
+			item.action = new/datum/action/item_action/hands_free
+		else
+			item.action = new/datum/action/item_action
+		item.action.name = item.action_button_name
+		item.action.target = item
+		if(item.action_button_proc)
+			item.action.action_type = AB_ITEM_PROC
+			item.action.procname = item.action_button_proc
+			if(item.action_button_arguments)
+				item.action.arguments = item.action_button_arguments
+	item.action.Grant(src)
+
+
+/mob/proc/action_button_remove(obj/item/item)
+	return
+
+/mob/living/action_button_remove(obj/item/item)
+	ASSERT(item)
+	ASSERT(istype(item))
+	if(item.action)
+		item.action.Remove(src)
+	else
+		for(var/datum/action/action in actions)
+			if(action.target == item)
+				action.Remove(src)
+
 
 /mob/living/update_action_buttons()
 	if(!hud_used) return
 	if(!client) return
 
-	//if(hud_used.hud_shown != 1)	//Hud toggled to minimal
-	//	return
-
-	//client.screen -= hud_used.hide_actions_toggle
 	for(var/datum/action/A in actions)
 		if(A.button)
 			client.screen -= A.button
 
-	/*if(hud_used.action_buttons_hidden)
-		if(!hud_used.hide_actions_toggle)
-			hud_used.hide_actions_toggle = new(hud_used)
-			hud_used.hide_actions_toggle.UpdateIcon()
-
-		if(!hud_used.hide_actions_toggle.moved)
-			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(1)
-			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,1)
-
-		client.screen += hud_used.hide_actions_toggle
-		return
-*/
 	var/button_number = 0
 	for(var/datum/action/A in actions)
 		button_number++
@@ -495,13 +494,3 @@
 
 		if(!B.moved)
 			B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
-			//hud_used.SetButtonCoords(B,button_number)
-
-//	if(button_number > 0)
-		/*if(!hud_used.hide_actions_toggle)
-			hud_used.hide_actions_toggle = new(hud_used)
-			hud_used.hide_actions_toggle.InitialiseIcon(src)
-		if(!hud_used.hide_actions_toggle.moved)
-			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
-			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,button_number+1)
-		client.screen += hud_used.hide_actions_toggle*/
