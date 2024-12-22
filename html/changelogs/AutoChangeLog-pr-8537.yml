@@ -1,4 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - bugfix: Fixed atmos not working a lot of the time.
