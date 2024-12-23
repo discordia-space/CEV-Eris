@@ -24,7 +24,7 @@ var/global/list/scheduled_events = list()
 
 //This is a global thing so that scheduled events won't get lost in a storyteller change
 /proc/fire_event(var/datum/storyevent/C, event_type)
-	if(!C.can_trigger(event_type))
+	if(!C.can_trigger(event_type, manual = TRUE))	//manual setting set ture because it's for some reason called AFTER points were spent
 		//Something has changed, it was valid before but not now
 		//This shouldnt happen often
 		//We will refund its cost and abort

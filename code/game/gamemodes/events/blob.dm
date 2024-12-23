@@ -12,10 +12,10 @@
 /datum/storyevent/blob
 	id = "blob"
 	name = "Blob"
-
+	req_crew = 10
 
 	event_type = /datum/event/blob
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.35)
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
 	tags = list(TAG_COMBAT, TAG_DESTRUCTIVE, TAG_NEGATIVE)
 //============================================
 
@@ -33,6 +33,7 @@
 	if(!T)
 		log_and_message_admins("Blob failed to find a viable turf.")
 		kill()
+		storyevent.cancel(severity)
 		return
 
 	log_and_message_admins("Blob spawned at \the [get_area(T)]", location = T)
