@@ -11623,8 +11623,12 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/substation/starboard)
 "aBx" = (
+/obj/machinery/door/airlock/glass_security{
+	name = "Armory";
+	req_access = list(1)
+	},
 /obj/machinery/door/firedoor,
-/turf/wall/low/with_glass/reinforced,
+/turf/floor/plating,
 /area/eris/security/armory)
 "aBy" = (
 /obj/machinery/computer/operating{
@@ -14925,7 +14929,8 @@
 	},
 /obj/machinery/holomap{
 	dir = 8;
-	pixel_x = 32
+	pixel_x = 32;
+	pixel_y = 1
 	},
 /turf/floor/tiled/steel,
 /area/eris/hallway/main/section2)
@@ -29143,7 +29148,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/showcase,
+/obj/structure/cyberplant,
 /turf/floor/tiled/dark/cargo,
 /area/eris/command/courtroom)
 "brG" = (
@@ -35013,8 +35018,11 @@
 /turf/floor/tiled/dark/gray_perforated,
 /area/eris/security/warden)
 "bFP" = (
-/obj/structure/multiz/stairs/enter/bottom,
-/turf/floor/tiled/dark,
+/obj/machinery/vending/weapon_machine,
+/obj/structure/sign/faction/frozenstar{
+	pixel_y = 32
+	},
+/turf/floor/tiled/steel/gray_platform,
 /area/eris/security/brig)
 "bFQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -35728,21 +35736,10 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/brig)
 "bHz" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
 /turf/floor/tiled/dark,
-/area/eris/security/brig)
-"bHA" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
-	name = "Security";
-	req_access = list(1)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/floor/tiled/dark/cargo,
 /area/eris/security/brig)
 "bHB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -35848,28 +35845,18 @@
 /turf/floor/plating/under,
 /area/eris/security/brig)
 "bHN" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
 /turf/floor/tiled/dark,
 /area/eris/security/brig)
 "bHO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/floor/tiled/dark,
-/area/eris/security/brig)
-"bHP" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
-	name = "Security";
-	req_access = list(1)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/floor/tiled/dark/cargo,
+/obj/structure/table/rack/shelf,
+/obj/spawner/powercell,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/turf/floor/tiled/techmaint_panels,
 /area/eris/security/brig)
 "bHQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -35994,6 +35981,7 @@
 /area/eris/rnd/anomal)
 "bIi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
 /turf/floor/tiled/dark,
 /area/eris/security/brig)
 "bIj" = (
@@ -36376,8 +36364,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
 	},
 /turf/floor/tiled/dark,
 /area/eris/security/brig)
@@ -36872,6 +36860,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/multi_tile/glass,
+/obj/structure/disposalpipe/segment,
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/brig)
 "bKh" = (
@@ -37478,10 +37467,11 @@
 /turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "bLB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/junction{
+	dir = 4;
+	icon_state = "pipe-j2"
+	},
 /turf/floor/tiled/steel/monofloor,
 /area/eris/security/lobby)
 "bLC" = (
@@ -42236,12 +42226,8 @@
 /turf/wall/low/with_glass,
 /area/eris/command/courtroom)
 "bWj" = (
-/obj/structure/multiz/stairs/active,
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/structure/railing/grey,
-/turf/open,
+/obj/machinery/hologram/holopad,
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "bWk" = (
 /obj/machinery/door/firedoor,
@@ -42259,20 +42245,11 @@
 /turf/wall/low/with_glass,
 /area/eris/command/courtroom)
 "bWl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/structure/multiz/stairs/active/bottom{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor,
-/turf/wall/low/with_glass,
-/area/eris/command/courtroom)
+/turf/floor/tiled/steel/monofloor,
+/area/eris/security/brig)
 "bWm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -42376,43 +42353,16 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/brig)
 "bWv" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/floor/wood,
+/obj/machinery/light,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/command/courtroom)
 "bWw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
-"bWx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/wood,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/floor/carpet,
 /area/eris/command/courtroom)
 "bWy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -42433,28 +42383,37 @@
 /turf/wall/low/with_glass,
 /area/eris/maintenance/section1deck3central)
 "bWz" = (
-/obj/structure/disposalpipe/segment{
+/obj/structure/window/reinforced{
 	dir = 4
 	},
 /turf/floor/wood,
 /area/eris/command/courtroom)
 "bWA" = (
-/obj/structure/cyberplant,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/showcase,
 /turf/floor/tiled/dark/cargo,
 /area/eris/command/courtroom)
 "bWB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/floor/tiled/steel/bluecorner,
+/obj/structure/table/woodentable,
+/obj/item/folder/blue,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "bWC" = (
-/obj/structure/bed/chair/wood,
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25
+/obj/structure/bed/chair/wood{
+	dir = 1
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/light,
 /turf/floor/wood,
 /area/eris/command/courtroom)
 "bWD" = (
@@ -72931,32 +72890,9 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "dtf" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/floor/wood,
-/area/eris/command/courtroom)
-"dtg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/wood,
-/area/eris/command/courtroom)
+/obj/structure/sign/faction/ironhammer,
+/turf/wall/reinforced,
+/area/eris/security/armory)
 "dth" = (
 /obj/machinery/ai_status_display,
 /turf/wall/reinforced,
@@ -74043,9 +73979,6 @@
 	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/warden)
-"dvK" = (
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/armory)
 "dvL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -79675,18 +79608,15 @@
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/engine_room)
 "egF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/floor/wood,
-/area/eris/command/courtroom)
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
+/turf/floor/tiled/steel/gray_platform,
+/area/eris/security/brig)
 "ehs" = (
-/obj/structure/bed/chair{
+/obj/structure/multiz/stairs/enter{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/bar_dance,
 /area/eris/command/courtroom)
 "ehS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -79770,12 +79700,8 @@
 /turf/floor/tiled/white,
 /area/eris/medical/medbay/organs)
 "ewj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "exb" = (
@@ -79840,6 +79766,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/floor/tiled/dark,
 /area/eris/security/brig)
 "eJj" = (
@@ -80064,9 +79991,12 @@
 /turf/wall/reinforced,
 /area/eris/maintenance/sciweapondeck)
 "fox" = (
-/obj/structure/table/rack/shelf,
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/armory)
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/dark,
+/area/eris/security/brig)
 "foz" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -80143,20 +80073,12 @@
 /turf/wall/low/with_glass/reinforced,
 /area/eris/engineering/propulsion/left)
 "fwP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/holomap{
+	dir = 8;
+	pixel_x = 32
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/light,
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
+/turf/floor/tiled/dark,
+/area/eris/security/brig)
 "fBN" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable/green{
@@ -80404,20 +80326,6 @@
 /obj/machinery/meter,
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
-"goN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
 "goT" = (
 /obj/machinery/hologram/holopad,
 /obj/structure/cable/green{
@@ -80510,6 +80418,13 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -24
 	},
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/security/armory)
@@ -80771,15 +80686,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section2deck3port)
-"hkM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/wood,
-/area/eris/command/courtroom)
 "hkU" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -80802,16 +80708,10 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck2port)
 "hoj" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "BrigFoyer";
-	layer = 2.8;
-	name = "Courtroom"
+/obj/structure/bed/chair{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/turf/floor/tiled/steel/bluecorner,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/command/courtroom)
 "hpb" = (
 /obj/spawner/junk/low_chance,
@@ -80842,17 +80742,12 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck1starboard)
 "hvK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/floor/tiled/dark,
+/area/eris/security/brig)
 "hwB" = (
 /obj/structure/table/bar_special,
 /turf/floor/tiled/steel/bar_flat,
@@ -80883,13 +80778,12 @@
 /turf/open,
 /area/eris/security/brig)
 "hzD" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 25
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
 	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/command/courtroom)
@@ -80905,9 +80799,12 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "hAP" = (
-/obj/machinery/alarm{
+/obj/item/device/radio/intercom{
 	dir = 8;
-	pixel_x = 25
+	pixel_x = 22
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
@@ -81227,10 +81124,6 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section2deck4starboard)
-"iqe" = (
-/obj/machinery/hologram/holopad,
-/turf/floor/carpet,
-/area/eris/command/courtroom)
 "iqm" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -81528,16 +81421,6 @@
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
-"jir" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = 28
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/floor/wood,
-/area/eris/command/courtroom)
 "jiS" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -81549,7 +81432,16 @@
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/fitness)
 "jjX" = (
-/obj/structure/bed/chair/wood,
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -28
+	},
+/obj/machinery/camera/network/security{
+	dir = 1
+	},
 /turf/floor/wood,
 /area/eris/command/courtroom)
 "jmp" = (
@@ -81619,11 +81511,8 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "jzj" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/floor/tiled/steel/gray_perforated,
+/obj/machinery/vending/cola,
+/turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "jAp" = (
 /obj/structure/catwalk,
@@ -81745,11 +81634,14 @@
 /turf/open,
 /area/eris/security/warden)
 "jKA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_security{
+	id_tag = "BrigFoyer";
+	layer = 2.8;
+	name = "Courtroom"
 	},
-/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "jMu" = (
@@ -81807,8 +81699,10 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
 "jVM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/floor/tiled/steel/bluecorner,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "jWc" = (
 /obj/structure/cable/green{
@@ -81827,11 +81721,13 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "jYm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+/obj/structure/railing{
+	dir = 8;
+	tag = "icon-railing0 (WEST)"
 	},
-/turf/floor/tiled/steel/gray_perforated,
-/area/eris/command/courtroom)
+/obj/structure/railing,
+/turf/open,
+/area/eris/security/brig)
 "jYE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -81857,14 +81753,13 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "kam" = (
-/obj/machinery/light{
-	dir = 8
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 8;
+	tag = "icon-railing0 (WEST)"
 	},
-/obj/item/modular_computer/console/preset/security/records{
-	dir = 4
-	},
-/turf/floor/wood,
-/area/eris/command/courtroom)
+/turf/open,
+/area/eris/security/brig)
 "kaV" = (
 /obj/structure/closet/secure_closet/chemical,
 /obj/item/storage/fancy/vials,
@@ -81963,8 +81858,10 @@
 /turf/floor/plating,
 /area/eris/maintenance/sciweapondeck)
 "kuN" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/structure/cyberplant,
+/obj/structure/bed/chair/wood{
+	dir = 8;
+	tag = "icon-wooden_chair (WEST)"
+	},
 /turf/floor/wood,
 /area/eris/command/courtroom)
 "kvN" = (
@@ -82082,13 +81979,7 @@
 /turf/floor/plating/under,
 /area/eris/engineering/breakroom)
 "kPb" = (
-/obj/structure/bed/chair/wood,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/floor/wood,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/command/courtroom)
 "kPx" = (
 /turf/floor/tiled/steel/techfloor,
@@ -82237,12 +82128,9 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "lsA" = (
-/obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/wall/low/with_glass,
-/area/eris/command/courtroom)
+/obj/machinery/vending/serbomat,
+/turf/floor/tiled/steel/gray_platform,
+/area/eris/security/brig)
 "lsK" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -82296,8 +82184,9 @@
 /turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section1deck4central)
 "lxa" = (
+/obj/structure/cyberplant,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/floor/tiled/dark/cargo,
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "lAw" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -82374,15 +82263,9 @@
 /turf/floor/plating/under,
 /area/eris/quartermaster/miningdock)
 "lIE" = (
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -24
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/floor/tiled/steel/gray_perforated,
-/area/eris/security/armory)
+/obj/spawner/pack/machine,
+/turf/floor/tiled/techmaint_panels,
+/area/eris/security/brig)
 "lJG" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -82434,10 +82317,10 @@
 /turf/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck4port)
 "lSs" = (
-/obj/structure/bed/chair{
+/obj/structure/multiz/stairs/active{
 	dir = 8
 	},
-/turf/floor/wood,
+/turf/open,
 /area/eris/command/courtroom)
 "lSu" = (
 /obj/structure/disposalpipe/segment,
@@ -82511,14 +82394,12 @@
 /turf/wall,
 /area/eris/engineering/propulsion/left)
 "mgC" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/glass,
-/turf/floor/tiled/dark/cargo,
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/dark,
 /area/eris/security/brig)
 "mgG" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
@@ -82876,10 +82757,8 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/biogenerator)
 "mYh" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/floor/tiled/dark/cargo,
+/obj/item/modular_computer/console/preset/security/records,
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "mZu" = (
 /obj/structure/table/standard,
@@ -83066,7 +82945,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "nJt" = (
@@ -83086,19 +82965,12 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/hallway/main/section2)
 "nKT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+	dir = 6
 	},
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/floor/tiled/dark,
+/area/eris/security/brig)
 "nKX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -83244,11 +83116,11 @@
 /turf/floor/plating/under,
 /area/eris/hallway/side/docks)
 "oez" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
 	},
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
+/turf/floor/tiled/dark,
+/area/eris/security/brig)
 "ofS" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -83392,18 +83264,11 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
 "oxU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/floor/tiled/steel/bluecorner,
+/obj/structure/cyberplant,
+/turf/floor/tiled/dark/cargo,
 /area/eris/command/courtroom)
 "oyd" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -83484,21 +83349,10 @@
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/medical/patients_rooms)
 "oCP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+/obj/structure/bed/chair/wood{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/floor/tiled/steel/bluecorner,
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "oGj" = (
 /obj/machinery/gym/toughness,
@@ -84055,24 +83909,11 @@
 /turf/floor/tiled/steel/techfloor,
 /area/eris/engineering/propulsion/left)
 "quh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
+/obj/structure/table/rack,
+/obj/spawner/medical,
+/obj/spawner/medical,
+/turf/floor/tiled/techmaint_panels,
+/area/eris/security/brig)
 "quu" = (
 /obj/structure/catwalk,
 /turf/floor/plating/under,
@@ -84469,12 +84310,9 @@
 /turf/floor/tiled,
 /area/eris/maintenance/section2deck3port)
 "rwf" = (
-/obj/structure/multiz/stairs/active,
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/structure/railing/grey,
-/turf/open,
+/obj/structure/table/woodentable,
+/obj/machinery/hologram/holopad,
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "rxy" = (
 /obj/structure/disposalpipe/segment{
@@ -84569,12 +84407,6 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/floor/bluegrid,
 /area/eris/command/tcommsat/chamber)
-"rFM" = (
-/obj/structure/bed/chair/wood{
-	dir = 1
-	},
-/turf/floor/wood,
-/area/eris/command/courtroom)
 "rGn" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -84604,18 +84436,13 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3port)
 "rGD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 4;
+	tag = "icon-railing0 (EAST)"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = -22
-	},
-/turf/floor/wood,
-/area/eris/command/courtroom)
+/turf/open,
+/area/eris/security/brig)
 "rIj" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -84856,15 +84683,6 @@
 /obj/structure/catwalk,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
-"sxb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/floor/tiled/steel/gray_perforated,
-/area/eris/command/courtroom)
 "syf" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/floor/tiled/dark/danger,
@@ -84921,15 +84739,15 @@
 /area/eris/maintenance/section2deck3port)
 "sFC" = (
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
 	},
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
@@ -85026,15 +84844,13 @@
 /turf/wall,
 /area/eris/maintenance/section2deck4port)
 "sPs" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/alarm{
-	pixel_y = 26
-	},
-/turf/floor/tiled/steel/gray_perforated,
-/area/eris/command/courtroom)
+/obj/structure/table/rack/shelf,
+/obj/spawner/powercell,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/obj/spawner/powercell/low_chance,
+/turf/floor/tiled/techmaint_panels,
+/area/eris/maintenance/section1deck3central)
 "sQe" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -85084,12 +84900,11 @@
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/maintenance/section2deck2port)
 "sWI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
@@ -85273,8 +85088,20 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "tud" = (
-/obj/machinery/newscaster/directional/north,
-/turf/floor/tiled/steel/bluecorner,
+/obj/structure/bed/chair/wood{
+	dir = 8;
+	tag = "icon-wooden_chair (WEST)"
+	},
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "tvu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -85526,21 +85353,27 @@
 /turf/floor/reinforced,
 /area/eris/engineering/breakroom)
 "tZJ" = (
-/obj/structure/table/rack/shelf,
-/obj/machinery/light,
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/armory)
-"udE" = (
 /obj/machinery/door/firedoor,
-/turf/floor/tiled/dark/cargo,
+/obj/machinery/door/airlock/glass_security{
+	id_tag = "BrigFoyer";
+	layer = 2.8;
+	name = "Brig";
+	req_access = list(63)
+	},
+/turf/floor/plating,
+/area/eris/security/brig)
+"udE" = (
+/obj/structure/multiz/stairs/enter/bottom{
+	dir = 8
+	},
+/turf/floor/tiled/steel/monofloor,
 /area/eris/security/brig)
 "udK" = (
-/obj/machinery/door/airlock/glass_security{
-	name = "Armory";
-	req_access = list(1)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/turf/floor/plating,
+/obj/structure/disposalpipe/segment,
+/turf/floor/tiled/dark,
 /area/eris/security/brig)
 "uee" = (
 /obj/structure/disposalpipe/segment,
@@ -85566,20 +85399,13 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/propulsion/left)
 "ufe" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "BrigFoyer";
-	layer = 2.8;
-	name = "Courtroom"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
-/turf/floor/tiled/steel/bluecorner,
+/turf/floor/carpet,
 /area/eris/command/courtroom)
 "ufG" = (
 /obj/machinery/door/firedoor,
@@ -85713,11 +85539,6 @@
 	},
 /turf/floor/plating,
 /area/eris/engineering/breakroom)
-"uwK" = (
-/obj/structure/table/woodentable,
-/obj/item/folder/blue,
-/turf/floor/wood,
-/area/eris/command/courtroom)
 "uBj" = (
 /obj/structure/table/standard,
 /turf/floor/reinforced,
@@ -85795,16 +85616,12 @@
 /turf/floor/tiled/dark,
 /area/eris/medical/reception)
 "uQA" = (
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
+/obj/structure/table/woodentable,
+/obj/item/book/manual/wiki/security_ironparagraphs,
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "North APC";
-	pixel_y = 28
-	},
-/turf/floor/tiled/steel/bluecorner,
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "uSt" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -85827,7 +85644,7 @@
 /area/eris/maintenance/section2deck3port)
 "uUq" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/floor/tiled/dark/cargo,
+/turf/floor/wood,
 /area/eris/command/courtroom)
 "uUK" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -85887,10 +85704,6 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass,
 /area/eris/crew_quarters/sleep)
-"vfo" = (
-/obj/structure/multiz/stairs/active/bottom,
-/turf/floor/tiled/dark,
-/area/eris/security/brig)
 "vfr" = (
 /obj/machinery/amesilo,
 /turf/floor/tiled/steel,
@@ -86258,8 +86071,15 @@
 /turf/floor/tiled/steel/cargo,
 /area/eris/hallway/side/docks)
 "vPI" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/cyberplant,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
 /turf/floor/wood,
 /area/eris/command/courtroom)
 "vPN" = (
@@ -86515,20 +86335,22 @@
 /turf/floor/plating/under,
 /area/eris/engineering/breakroom)
 "wqJ" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "BrigFoyer";
-	layer = 2.8;
-	name = "Brig";
-	req_access = list(63)
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "East APC";
+	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 10
 	},
-/turf/floor/plating,
+/turf/floor/tiled/steel/bluecorner,
 /area/eris/command/courtroom)
 "wrx" = (
 /obj/machinery/firealarm{
@@ -86551,22 +86373,6 @@
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/oldbridge)
-"wup" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "BrigFoyer";
-	layer = 2.8;
-	name = "Courtroom"
-	},
-/obj/machinery/door/firedoor,
-/turf/floor/plating,
-/area/eris/command/courtroom)
 "wxv" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint_perforated,
@@ -86606,18 +86412,6 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/reinforced,
 /area/eris/hallway/side/eschangarb)
-"wBM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/floor/tiled/steel/bluecorner,
-/area/eris/command/courtroom)
 "wCe" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -86737,10 +86531,6 @@
 	},
 /turf/wall,
 /area/eris/maintenance/medicalward)
-"wLp" = (
-/obj/structure/multiz/stairs/enter,
-/turf/floor/tiled/techmaint,
-/area/eris/command/courtroom)
 "wLI" = (
 /obj/machinery/light/small,
 /turf/floor/wood,
@@ -86792,10 +86582,15 @@
 /turf/floor/wood,
 /area/eris/command/meeting_room)
 "wTF" = (
-/obj/structure/table/woodentable,
-/obj/item/book/manual/wiki/security_ironparagraphs,
-/turf/floor/wood,
-/area/eris/command/courtroom)
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_security{
+	name = "Security";
+	req_access = list(1)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/floor/tiled/dark/cargo,
+/area/eris/security/brig)
 "wTH" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering{
@@ -86812,12 +86607,6 @@
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4port)
-"wZM" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/floor/wood,
-/area/eris/command/courtroom)
 "xbq" = (
 /turf/floor/tiled/white,
 /area/eris/crew_quarters/fitness)
@@ -118373,7 +118162,7 @@ ayG
 aGp
 axh
 awy
-dsA
+sPs
 dsA
 avE
 avE
@@ -144533,19 +144322,19 @@ bBR
 bBF
 nEb
 kjS
+lIE
 bBx
-vfo
-bFP
-bCN
-bCN
+egF
 mgC
-bHB
+mgC
+mgC
+udK
 bHN
 bIi
 eHs
 bIi
 bIi
-bXU
+fox
 bKg
 bLB
 bNW
@@ -144686,14 +144475,14 @@ bBR
 bBF
 rES
 kDx
+bHO
 bBx
-vfo
 bFP
 bCN
 bCN
-udE
+bCN
 bHz
-bHO
+naH
 naH
 bIj
 naH
@@ -144839,14 +144628,14 @@ bBR
 bBx
 bBx
 cgH
+quh
 bBx
-bBx
-bBx
-udK
-bIC
-bKf
-bHB
-bHQ
+lsA
+bCN
+fwP
+bCN
+bCN
+bCN
 cfj
 bIB
 bIy
@@ -144993,13 +144782,13 @@ bBR
 bBF
 cgH
 axa
-fox
-lIE
-bGu
-tZJ
 axa
-bHy
-bWu
+axa
+axa
+axa
+dtf
+udE
+udE
 bBx
 bIC
 bIC
@@ -145148,11 +144937,11 @@ flX
 ovU
 bDK
 gym
-bGu
-dvK
-bGJ
-qSB
-bHM
+bHa
+bHb
+axa
+bWl
+bWl
 bBx
 dBA
 bJc
@@ -145303,9 +145092,9 @@ bDO
 bGa
 bGH
 bHa
-aBx
-qSB
-bHM
+axa
+bBx
+bBx
 bBx
 bIE
 bJd
@@ -145455,12 +145244,12 @@ axa
 dlh
 bGq
 bGI
-bHa
+bGu
 aBx
-qSB
-bHM
-bIC
-bIF
+oez
+nKT
+wTF
+hvK
 bJe
 bJs
 bJR
@@ -145608,10 +145397,10 @@ axa
 dBu
 bFY
 bGu
-bHb
+bGu
 aBx
-qSB
-bHM
+bHB
+bHQ
 bIC
 bIJ
 dvM
@@ -145763,8 +145552,8 @@ bFU
 bGJ
 axa
 axa
-bHA
-bHP
+bHB
+bHQ
 bBx
 bBx
 bBx
@@ -166571,10 +166360,10 @@ bVY
 jKi
 bVY
 bVY
-bVz
-dBG
-gcF
-bVz
+bBx
+bIC
+tZJ
+bBx
 bHS
 bXV
 bYh
@@ -166724,10 +166513,10 @@ bVY
 jKi
 bVY
 bVY
-bVz
-jzj
-jYm
-bVz
+bBx
+bDH
+bBR
+bBx
 bXl
 bCN
 bYh
@@ -166877,10 +166666,10 @@ bVY
 jKi
 bVY
 bVY
-bVz
-sPs
-sxb
-bVz
+bBx
+bDH
+bBR
+bBx
 bXm
 bCN
 bYj
@@ -167026,14 +166815,14 @@ kRn
 bBF
 bVz
 bVz
-bVz
+bVZ
 bWi
+bVz
 bVZ
 bVz
-bVz
-dBG
-wqJ
-bVz
+rGD
+bBR
+bBx
 dBI
 bCN
 bYk
@@ -167177,17 +166966,17 @@ lGX
 qyw
 xRk
 bBF
-cgI
+mYh
 oCP
-wup
-dtf
-bWv
+cgK
+cgK
+gcF
 kPb
-wZM
-egF
-rGD
-bVz
-bVz
+gcF
+bBR
+bBR
+bBx
+bBx
 bXW
 bCd
 bBx
@@ -167331,16 +167120,16 @@ kRn
 bBx
 bBx
 uQA
-quh
-bVZ
-vPI
-bWx
-jjX
-uwK
-cgK
 bJM
-kam
-bVZ
+fSM
+cgK
+dBG
+bWv
+bVz
+jYm
+bBR
+bBR
+bCd
 bBR
 bDg
 bGX
@@ -167484,16 +167273,16 @@ kRn
 bBF
 uUq
 jVM
-wBM
-wLp
+dXf
+dXf
 bWj
-dtg
-dXf
-iqe
-dXf
-fSM
-rFM
-bVZ
+dBG
+hoj
+bVz
+bGX
+kam
+bBR
+bCd
 bBR
 bDg
 bGX
@@ -167637,16 +167426,16 @@ kRn
 bBF
 lxa
 bWB
-hvK
-wLp
+dXf
+dXf
 rwf
-dtg
-dXf
-dXf
-dXf
-wTF
-cgK
-gcF
+dBG
+dBG
+bVz
+bGX
+bDH
+bBR
+tZJ
 bBR
 bDg
 bGX
@@ -167790,16 +167579,16 @@ kRn
 bBx
 bBx
 tud
-goN
-bVZ
+dXf
+dXf
 kuN
-hkM
+cgK
 jjX
-bJM
-cgK
-cgK
-jir
-bVZ
+bVz
+bVz
+bVz
+bVz
+bCd
 bBR
 bDg
 bGX
@@ -167942,17 +167731,17 @@ lGX
 qiy
 hyj
 bBF
-cgI
+vPI
 bWw
 ufe
-cgK
+bWz
 bWz
 bWC
-bJM
-cgK
+bVz
+lSs
 lSs
 bVz
-bVz
+bBx
 bXW
 bCd
 bBx
@@ -168095,13 +167884,13 @@ bBx
 bBx
 kRn
 bBF
-cgI
-fwP
+xAW
+xAW
+sWI
+xAW
+xAW
+xAW
 bVz
-bWl
-lsA
-bVz
-ehs
 ehs
 ehs
 bVZ
@@ -168248,15 +168037,15 @@ pQa
 lGX
 kRn
 bBF
-cgI
-nKT
+xAW
+xAW
 sWI
-oxU
-oez
+xAW
+xAW
+xAW
 bVZ
-xAW
-xAW
-xAW
+cgI
+cgI
 bVZ
 bXp
 bCN
@@ -168401,12 +168190,12 @@ aav
 lGX
 kRn
 bBF
-cgI
+jzj
 hAP
-cgI
+wqJ
 sFC
 ewj
-hoj
+ewj
 jKA
 nHp
 mgG
@@ -168559,8 +168348,8 @@ bVz
 bVz
 brF
 bWA
+oxU
 bVZ
-mYh
 vAB
 hzD
 bVZ
