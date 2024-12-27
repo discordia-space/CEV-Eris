@@ -12862,9 +12862,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/cyberplant{
-	emagged = 1
-	},
 /turf/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
 "aEK" = (
@@ -15247,6 +15244,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
@@ -26914,10 +26915,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/sortjunction{
-	dir = 1;
-	sortType = list("Artist Desk")
-	},
+/obj/structure/disposalpipe/segment,
 /turf/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
 "bmV" = (
@@ -29441,6 +29439,9 @@
 /turf/floor/reinforced/carbon_dioxide,
 /area/eris/engineering/atmos)
 "bsu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/floor/tiled/steel/bar_flat,
 /area/eris/crew_quarters/artistoffice)
 "bsv" = (
@@ -31255,10 +31256,9 @@
 /obj/machinery/camera/network/second_section{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
+/obj/structure/cyberplant{
+	emagged = 1
 	},
-/obj/machinery/disposal,
 /turf/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
 "bwO" = (
@@ -36910,6 +36910,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
@@ -83170,7 +83173,10 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
 "oom" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	sortType = list("Artist Desk")
+	},
 /turf/floor/carpet/gaycarpet,
 /area/eris/crew_quarters/artistoffice)
 "osK" = (
@@ -83490,6 +83496,13 @@
 	},
 /turf/floor/tiled/white/cargo,
 /area/eris/medical/patients_rooms)
+"pdP" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/floor/tiled/steel/bar_flat,
+/area/eris/crew_quarters/artistoffice)
 "peW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -86643,6 +86656,13 @@
 "xbq" = (
 /turf/floor/tiled/white,
 /area/eris/crew_quarters/fitness)
+"xbx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/floor/carpet/gaycarpet,
+/area/eris/crew_quarters/artistoffice)
 "xbY" = (
 /mob/living/simple_animal/corgi/Ian,
 /turf/floor/carpet/blucarpet,
@@ -145188,7 +145208,7 @@ arn
 aCW
 mTr
 aKI
-cpE
+xbx
 bwN
 aBR
 dCa
@@ -145645,8 +145665,8 @@ aaG
 aaG
 aDa
 aCX
-dzy
 ghs
+pdP
 cpN
 bKN
 aIX
