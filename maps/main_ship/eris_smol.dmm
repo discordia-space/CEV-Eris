@@ -10495,7 +10495,7 @@
 /turf/floor/tiled/dark,
 /area/eris/security/prison)
 "azk" = (
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "azl" = (
@@ -10801,7 +10801,7 @@
 /area/eris/maintenance/section2deck2starboard)
 "azT" = (
 /obj/machinery/shield_diffuser,
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "azU" = (
@@ -28669,7 +28669,7 @@
 /turf/floor/carpet/bcarpet,
 /area/eris/neotheology/chapelritualroom)
 "bqV" = (
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck1starboard)
 "bqW" = (
@@ -28678,7 +28678,7 @@
 /area/eris/maintenance/section2deck1starboard)
 "bqX" = (
 /obj/machinery/shield_diffuser,
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck1starboard)
 "bqY" = (
@@ -46563,7 +46563,7 @@
 /turf/space,
 /area/shuttle/research/station)
 "chq" = (
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "chr" = (
@@ -50486,7 +50486,7 @@
 /area/eris/maintenance/section2deck4starboard)
 "crq" = (
 /obj/machinery/shield_diffuser,
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck4port)
 "crr" = (
@@ -50526,7 +50526,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/section2deck4port)
 "crw" = (
@@ -50786,20 +50786,7 @@
 	},
 /area/shuttle/mining/station)
 "csc" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "mining_shuttle_outer";
-	locked = 1;
-	name = "Hulk External Access"
-	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "hulk_shuttle";
-	name = "exterior access button";
-	pixel_x = -25
-	},
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/mining{
 	icon_state = "8,23"
 	},
@@ -50812,6 +50799,7 @@
 /area/eris/maintenance/section2deck1port)
 "cse" = (
 /obj/effect/shuttle_landmark/eris/dock/hulk,
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/mining{
 	icon_state = "9,23"
 	},
@@ -50967,7 +50955,7 @@
 /turf/floor/plating/under,
 /area/eris/neotheology/storage)
 "csw" = (
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
 "csx" = (
@@ -50995,7 +50983,7 @@
 /area/eris/neotheology/storage)
 "csC" = (
 /obj/machinery/shield_diffuser,
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
 "csD" = (
@@ -51041,7 +51029,7 @@
 /area/eris/quartermaster/office)
 "csJ" = (
 /obj/effect/decal/warning_stripes,
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "csK" = (
@@ -51841,24 +51829,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/techfloor_grid,
-/area/eris/rnd/docking)
-"cuJ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	tag = "icon-manifold-f (NORTH)"
-	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "research_dock_airlock";
-	pixel_y = 25;
-	req_one_access = list(13,65);
-	tag_airpump = "research_dock_pump";
-	tag_chamber_sensor = "research_dock_sensor";
-	tag_exterior_door = "research_dock_outer";
-	tag_interior_door = "research_dock_inner"
-	},
-/turf/floor/tiled/white/techfloor,
 /area/eris/rnd/docking)
 "cuK" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
@@ -51880,10 +51852,6 @@
 /obj/structure/railing,
 /turf/open,
 /area/eris/maintenance/section2deck3starboard)
-"cuM" = (
-/obj/machinery/shield_diffuser,
-/turf/floor/tiled/steel/techfloor_grid,
-/area/eris/rnd/docking)
 "cuN" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/lowkeyrandom/low_chance,
@@ -51891,29 +51859,12 @@
 /turf/floor/tiled/steel/brown_platform,
 /area/eris/maintenance/section2deck3starboard)
 "cuO" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "vasiliy_dokuchaev_shuttle";
-	name = "exterior access button";
-	pixel_y = 25;
-	req_one_access = list(13,65)
-	},
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/science{
 	icon_state = "4,12"
 	},
 /area/shuttle/research/station)
 "cuP" = (
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "vasiliy_dokuchaev_shuttle";
-	pixel_y = 28;
-	req_one_access = list(13,48);
-	tag_airpump = "research_shuttle_pump";
-	tag_chamber_sensor = "research_shuttle_sensor";
-	tag_exterior_door = "research_shuttle_outer";
-	tag_interior_door = "research_shuttle_inner"
-	},
 /turf/shuttle/floor/science{
 	icon_state = "5,12"
 	},
@@ -51924,11 +51875,6 @@
 	frequency = 1380;
 	id_tag = "research_shuttle_pump";
 	power_rating = 30000
-	},
-/obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "research_shuttle_sensor";
-	pixel_y = 25
 	},
 /turf/shuttle/floor/science{
 	icon_state = "6,12"
@@ -51965,14 +51911,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "vasiliy_dokuchaev_shuttle";
-	name = "interior access button";
-	pixel_y = 25;
-	req_one_access = list(13,65)
-	},
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/science{
 	icon_state = "7,12"
 	},
@@ -52087,6 +52026,7 @@
 	id_tag = "mining_shuttle_pump";
 	power_rating = 20000
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/shuttle/floor/mining{
 	icon_state = "7,22"
 	},
@@ -52143,27 +52083,13 @@
 /turf/open,
 /area/eris/maintenance/section2deck1starboard)
 "cvw" = (
-/obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "mining_shuttle_sensor";
-	pixel_y = 25
-	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
 	frequency = 1380;
 	id_tag = "mining_shuttle_pump";
 	power_rating = 20000
 	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "hulk_shuttle";
-	pixel_x = 27;
-	req_one_access = list(13,48);
-	tag_airpump = "mining_shuttle_pump";
-	tag_chamber_sensor = "mining_shuttle_sensor";
-	tag_exterior_door = "mining_shuttle_outer";
-	tag_interior_door = "mining_shuttle_inner"
-	},
+/obj/item/storage/briefcase/inflatable,
 /turf/shuttle/floor/mining{
 	icon_state = "10,22"
 	},
@@ -52489,7 +52415,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck3central)
 "cwu" = (
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/monofloor,
 /area/eris/quartermaster/hangarsupply)
 "cwv" = (
@@ -52951,38 +52877,8 @@
 /turf/floor/tiled/steel,
 /area/eris/rnd/docking)
 "cxC" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_dock_inner";
-	locked = 1;
-	name = "Shuttle Airlock";
-	req_access = list(13);
-	tag = "icon-door_closed"
-	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "research_dock_airlock";
-	name = "interior access button";
-	pixel_y = -28;
-	req_one_access = list(13,65)
-	},
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/techfloor_grid,
-/area/eris/rnd/docking)
-"cxD" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = "research_dock_pump"
-	},
-/obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "research_dock_sensor";
-	pixel_y = -25
-	},
-/turf/floor/tiled/white/techfloor,
 /area/eris/rnd/docking)
 "cxE" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -53471,37 +53367,12 @@
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/substation)
 "cyH" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "research_dock_airlock";
-	name = "exterior access button";
-	pixel_y = -28;
-	req_one_access = list(13,65)
-	},
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_dock_outer";
-	locked = 1;
-	name = "Shuttle Airlock";
-	req_access = list(13);
-	tag = "icon-door_closed"
-	},
 /obj/machinery/shield_diffuser,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/rnd/docking)
 "cyI" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_shuttle_outer";
-	locked = 1;
-	name = "Vasiliy Dokuchaev External Access";
-	req_access = list(13)
-	},
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/science{
 	icon_state = "4,11"
 	},
@@ -54751,7 +54622,7 @@
 /area/eris/neotheology/bioreactor)
 "cBQ" = (
 /obj/machinery/shield_diffuser,
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "cBR" = (
@@ -54919,15 +54790,7 @@
 /area/eris/neotheology/storage)
 "cCo" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "research_shuttle_inner";
-	locked = 1;
-	name = "Vasiliy Dokuchaev Internal Access";
-	req_access = list(13)
-	},
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/science{
 	icon_state = "7,11"
 	},
@@ -58164,6 +58027,7 @@
 	id_tag = "mining_shuttle_pump";
 	power_rating = 20000
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/shuttle/floor/mining{
 	icon_state = "7,21"
 	},
@@ -58295,7 +58159,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/steel/cargo,
 /area/eris/maintenance/junk)
 "cJP" = (
@@ -58605,26 +58469,14 @@
 	},
 /area/shuttle/mining/station)
 "cKE" = (
-/obj/machinery/door/airlock/multi_tile/metal{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "mining_shuttle_inner";
-	locked = 1;
-	name = "Hulk External Access"
-	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "hulk_shuttle";
-	name = "interior access button";
-	pixel_x = -25
-	},
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/mining{
 	icon_state = "8,20"
 	},
 /area/shuttle/mining/station)
 "cKF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/external,
 /turf/shuttle/floor/mining{
 	icon_state = "9,20"
 	},
@@ -58810,12 +58662,14 @@
 	},
 /area/shuttle/research/station)
 "cLi" = (
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/shuttle/floor/science{
 	icon_state = "5,9"
 	},
 /area/shuttle/research/station)
 "cLj" = (
 /obj/machinery/camera/network/research_outpost,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/shuttle/floor/science{
 	icon_state = "6,9"
 	},
@@ -59429,7 +59283,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/inflatable/door,
+/obj/machinery/door/airlock/external,
 /turf/floor/tiled/dark/cargo,
 /area/eris/maintenance/junk)
 "cMO" = (
@@ -59518,6 +59372,7 @@
 	},
 /area/shuttle/research/station)
 "cNf" = (
+/obj/item/storage/briefcase/inflatable,
 /turf/shuttle/floor/science{
 	icon_state = "6,7"
 	},
@@ -172265,8 +172120,8 @@ aav
 aav
 aav
 cqG
-cuJ
-cxD
+cuK
+cxE
 cqG
 pQa
 pQa
@@ -172724,7 +172579,7 @@ aav
 aav
 aav
 cqG
-cuM
+cyH
 cyH
 cqG
 cLg
