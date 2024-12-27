@@ -65,8 +65,8 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
 	faction = "CEV Eris"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
@@ -124,8 +124,8 @@ Your second loyalty is to moebius corp. In order to ensure it can continue its m
 	department = DEPARTMENT_SCIENCE
 	department_flag = SCIENCE
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#bdb1bb"
 	wage = WAGE_PROFESSIONAL
