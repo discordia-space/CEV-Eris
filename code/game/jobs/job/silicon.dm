@@ -35,7 +35,7 @@
 	flag = CYBORG
 	department_flag = MISC
 	faction = "CEV Eris"
-	total_positions = 2
+	total_positions = 0
 	spawn_positions = 2
 	alt_titles = list("Drone", "Cyborg")
 	supervisors = "your laws and the AI"

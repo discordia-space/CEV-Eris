@@ -71,8 +71,8 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
 	also_known_languages = list(LANGUAGE_JIVE = 100)
@@ -124,8 +124,8 @@ Your main duties are to keep the local guild branch operational and profitable. 
 	department = DEPARTMENT_GUILD
 	department_flag = GUILD
 	faction = "CEV Eris"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Guild Merchant"
 	selection_color = "#c3b9a6"
 	wage = WAGE_LABOUR_HAZARD //The miners union is stubborn

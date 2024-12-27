@@ -74,8 +74,8 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	also_known_languages = list(LANGUAGE_LATIN = 100)
@@ -118,8 +118,8 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Hydroponicist")
@@ -165,8 +165,8 @@
 	department = DEPARTMENT_CHURCH
 	department_flag = CHURCH
 	faction = "CEV Eris"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the NeoTheology Preacher"
 	selection_color = "#ecd37d"
 	//alt_titles = list("Custodian","Sanitation Technician")
