@@ -29421,8 +29421,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/maintenance_medical{
-	name = "Medbay Maintenance";
-	req_access = list(45)
+	name = "Medbay Maintenance"
 	},
 /obj/machinery/door/firedoor,
 /turf/floor/tiled/white/cargo,
@@ -31248,13 +31247,6 @@
 "bxk" = (
 /turf/floor/tiled/white/danger,
 /area/eris/command/meo)
-"bxl" = (
-/obj/structure/railing{
-	dir = 4;
-	tag = "icon-railing0 (EAST)"
-	},
-/turf/open,
-/area/eris/maintenance/section2deck1starboard)
 "bxm" = (
 /obj/machinery/smartfridge/seeds,
 /turf/floor/tiled/steel/brown_perforated,
@@ -33339,10 +33331,6 @@
 	dir = 8
 	},
 /turf/floor/tiled/dark/cargo,
-/area/eris/crew_quarters/janitor)
-"bCy" = (
-/obj/machinery/door/firedoor,
-/turf/wall/low/with_glass,
 /area/eris/crew_quarters/janitor)
 "bCz" = (
 /obj/machinery/door/airlock/freezer{
@@ -40870,8 +40858,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance_medical{
-	name = "Medbay Maintenance";
-	req_access = list(45)
+	name = "Medbay Maintenance"
 	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/medical/reception)
@@ -54374,7 +54361,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining{
 	name = "Delivery and Disposal";
-	req_access = list(50)
+	req_one_access = list(50,27)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -54384,7 +54371,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining{
 	name = "Delivery and Disposal";
-	req_access = list(50)
+	req_one_access = list(50,27)
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -85580,7 +85567,7 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck3starboard)
 "vCm" = (
-/obj/machinery/light/small{
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/floor/tiled/dark/panels,
@@ -86234,7 +86221,8 @@
 /area/eris/maintenance/medicalward)
 "wLI" = (
 /obj/machinery/door/airlock/glass{
-	name = "Bar"
+	name = "Bar";
+	req_access = list(28)
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/artistoffice)
@@ -169355,9 +169343,9 @@ bxJ
 bxI
 byv
 byv
-bCy
-bCy
-bCy
+byv
+byv
+byv
 byv
 byv
 djI
@@ -169507,10 +169495,10 @@ aIz
 aIz
 aIz
 aIz
-aNT
-aNT
-aNT
-aNT
+bmD
+bmD
+bmD
+bmD
 duM
 djx
 bxK
@@ -169660,10 +169648,10 @@ duM
 drK
 drK
 duM
-bxl
-bxl
-bxl
-bxl
+aYH
+aYH
+aYH
+aYH
 duM
 djx
 djJ
