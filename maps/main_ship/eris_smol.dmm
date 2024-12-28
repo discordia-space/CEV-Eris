@@ -3913,8 +3913,6 @@
 /area/eris/rnd/anomalisolone)
 "aiR" = (
 /obj/structure/table/rack,
-/obj/item/gun/projectile/shotgun/pump/grenade,
-/obj/item/gun/projectile/shotgun/pump/grenade,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
@@ -3923,6 +3921,9 @@
 /obj/item/storage/box/sting_rounds,
 /obj/item/storage/box/sting_rounds,
 /obj/item/storage/box/sting_rounds,
+/obj/item/storage/box/frag_rounds,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar,
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "aiS" = (
@@ -35291,15 +35292,33 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "bHc" = (
+/obj/structure/table/rack,
+/obj/item/storage/box/teargas,
+/obj/item/storage/box/teargas,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/stinger,
+/obj/item/storage/box/stinger,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/storage/box/teargas_rounds,
+/obj/item/storage/box/teargas_rounds,
+/obj/item/storage/box/flash_rounds,
+/obj/item/storage/box/flash_rounds,
+/obj/item/storage/box/smoke,
+/obj/item/storage/box/smoke,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/structure/table/rack,
-/obj/item/gun/energy/laser,
-/obj/item/gun/energy/laser,
-/obj/item/gun/energy/laser,
-/obj/item/gun/energy/laser,
+/obj/item/tool/hammer/sledgehammer/ironhammer,
+/obj/item/tool/hammer/sledgehammer/ironhammer,
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "bHd" = (
@@ -35327,7 +35346,6 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/gun/energy/plasma/cassad,
 /obj/item/gun/energy/plasma/cassad,
 /obj/item/gun/energy/plasma/cassad,
 /obj/item/gun/energy/plasma/cassad,
@@ -45525,24 +45543,20 @@
 /area/eris/maintenance/section1deck2central)
 "cfc" = (
 /obj/structure/table/rack,
-/obj/item/storage/box/teargas,
-/obj/item/storage/box/teargas,
-/obj/item/storage/box/smokes,
-/obj/item/storage/box/smokes,
-/obj/item/storage/box/flashbangs,
-/obj/item/storage/box/flashbangs,
+/obj/item/gun/projectile/boltgun/fs,
+/obj/item/gun/projectile/boltgun/fs,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/item/ammo_magazine/slsrifle,
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
-	},
-/obj/item/grenade/frag,
-/obj/item/grenade/frag,
-/obj/item/grenade/frag,
-/obj/item/grenade/frag,
-/obj/item/grenade/frag,
-/obj/item/grenade/frag,
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
@@ -63202,17 +63216,61 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/side/docks)
 "cXz" = (
-/obj/structure/table/rack,
-/obj/item/storage/box/shotgunammo/slug,
-/obj/item/storage/box/shotgunammo/slug,
-/obj/item/storage/box/shotgunammo/slug,
-/obj/item/storage/box/shotgunammo/slug,
+/obj/structure/closet/crate/secure/gear{
+	name = "ammo crate";
+	req_access = list(63)
+	},
+/obj/item/ammo_magazine/ammobox/clrifle,
+/obj/item/ammo_magazine/ammobox/clrifle,
+/obj/item/ammo_magazine/ammobox/pistol,
+/obj/item/ammo_magazine/ammobox/pistol,
+/obj/item/ammo_magazine/ammobox/magnum,
+/obj/item/ammo_magazine/ammobox/magnum,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/ammo_magazine/pistol,
+/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo,
+/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/ammobox/srifle,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/magnum,
+/obj/item/ammo_magazine/ammobox/lrifle,
+/obj/item/ammo_magazine/ammobox/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/lrifle,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ammobox/shotgun,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/ammo_magazine/ihclmg,
+/obj/item/device/radio/intercom{
+	pixel_y = 24
+	},
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
-	},
-/obj/item/device/radio/intercom{
-	pixel_y = 24
 	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
@@ -69268,7 +69326,6 @@
 	id = "Armoury";
 	name = "Armoury showcase"
 	},
-/obj/item/gun/projectile/shotgun/bull,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
@@ -72995,7 +73052,6 @@
 /obj/item/gun/projectile/automatic/straylight,
 /obj/item/gun/projectile/automatic/straylight,
 /obj/item/gun/projectile/automatic/straylight,
-/obj/item/gun/projectile/automatic/straylight,
 /obj/structure/sign/department/armory{
 	pixel_y = 32
 	},
@@ -73327,16 +73383,15 @@
 /area/eris/security/brig)
 "dvH" = (
 /obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/sol,
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
+/obj/item/gun/projectile/automatic/modular/ak/ironhammer_securities,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
-	},
-/obj/item/gun/projectile/automatic/sol,
-/obj/item/gun/projectile/automatic/sol,
-/obj/item/gun/projectile/automatic/sol,
-/obj/machinery/alarm{
-	pixel_y = 26
 	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
@@ -76353,14 +76408,10 @@
 /obj/structure/table/rack,
 /obj/item/gun/projectile/automatic/modular/wintermute/finished,
 /obj/item/gun/projectile/automatic/modular/wintermute/finished,
+/obj/machinery/camera/network/security,
 /obj/machinery/door/blast/shutters/glass{
 	id = "Armoury";
 	name = "Armoury showcase"
-	},
-/obj/item/gun/projectile/automatic/modular/wintermute/finished,
-/obj/item/gun/projectile/automatic/modular/wintermute/finished,
-/obj/machinery/camera/network/security{
-	dir = 8
 	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
@@ -83140,6 +83191,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/medicalward)
+"pBV" = (
+/obj/structure/table/rack,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/security/armory)
 "pFU" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint,
@@ -146326,7 +146387,7 @@ dGx
 bAh
 bCT
 axa
-axa
+pBV
 cfc
 aiR
 bGw
@@ -146478,7 +146539,7 @@ bAt
 bAh
 bAh
 bCT
-bAh
+axa
 axa
 bGw
 bGw
