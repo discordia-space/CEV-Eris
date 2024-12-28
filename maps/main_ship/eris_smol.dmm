@@ -65532,13 +65532,12 @@
 /turf/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
 "dcO" = (
-/obj/machinery/power/emitter/anchored{
-	id = "EngineEmitter";
-	active = 1
-	},
 /obj/structure/cable/cyan{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/machinery/power/emitter/anchored{
+	id = "EngineEmitter"
 	},
 /turf/floor/tiled/steel/cargo,
 /area/eris/engineering/engine_room)
@@ -84470,6 +84469,13 @@
 /obj/spawner/powercell/low_chance,
 /turf/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck3central)
+"sPx" = (
+/obj/machinery/power/emitter/anchored{
+	id = "EngineEmitter";
+	active = 1
+	},
+/turf/wall/reinforced,
+/area/eris/engineering/engine_room)
 "sQe" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -167461,7 +167467,7 @@ ccW
 ddf
 ccW
 dBn
-ccW
+sPx
 ccW
 ccW
 ccW
