@@ -35791,15 +35791,14 @@
 	},
 /area/eris/command/tcommsat/chamber)
 "bIm" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Armoury";
-	name = "Armoury showcase"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/armory)
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/floor/tiled/dark/panels,
+/area/eris/neotheology/bioreactor)
 "bIn" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -51788,12 +51787,12 @@
 /area/eris/rnd/docking)
 "cuA" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/smartfridge,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_clothes,
 /obj/item/computer_hardware/hard_drive/portable/design/nt_melee,
+/obj/machinery/smartfridge/disks,
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
 "cuB" = (
@@ -53768,14 +53767,15 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "czI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/structure/table/rack,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/turf/floor/tiled/dark/panels,
-/area/eris/neotheology/bioreactor)
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/security/armory)
 "czJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -122121,7 +122121,7 @@ cpN
 abI
 abI
 cuo
-czI
+bIm
 ciT
 qva
 rch
@@ -122427,7 +122427,7 @@ cpN
 dmw
 abI
 cuo
-czI
+bIm
 ciT
 cBz
 cBz
@@ -146392,7 +146392,7 @@ dGx
 bAh
 bCT
 axa
-bIm
+czI
 cfc
 aiR
 bGw
