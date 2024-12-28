@@ -21159,7 +21159,7 @@
 	req_access = null;
 	pixel_y = -24
 	},
-/turf/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "aZe" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -35791,11 +35791,15 @@
 	},
 /area/eris/command/tcommsat/chamber)
 "bIm" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/structure/table/rack,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
 	},
-/turf/floor/tiled/dark/techfloor,
-/area/eris/neotheology/bioreactor)
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/security/armory)
 "bIn" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -47238,7 +47242,9 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/engineering/engeva)
 "ciT" = (
-/obj/structure/table/rack/shelf,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "ciU" = (
@@ -53762,10 +53768,13 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "czI" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/floor/tiled/dark/techfloor,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/floor/tiled/dark/panels,
 /area/eris/neotheology/bioreactor)
 "czJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -69934,8 +69943,11 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "dmJ" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/floor/tiled/dark/panels,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/floor/plating/under,
 /area/eris/neotheology/bioreactor)
 "dmK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -84541,16 +84553,6 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
-"sZQ" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Armoury";
-	name = "Armoury showcase"
-	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/armory)
 "tai" = (
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/hallway/side/eschangara)
@@ -84690,7 +84692,6 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "tqt" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
@@ -84704,6 +84705,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
 /turf/floor/tiled/dark/techfloor,
 /area/eris/neotheology/bioreactor)
 "trS" = (
@@ -121815,7 +121819,7 @@ cHF
 dmF
 cBj
 cBk
-aWG
+cCe
 cCe
 abI
 abI
@@ -121966,9 +121970,9 @@ viR
 cun
 xea
 cwx
-qva
-rch
-aJf
+dmJ
+aWG
+cCe
 cwx
 bRt
 abI
@@ -122117,11 +122121,11 @@ cpN
 abI
 abI
 cuo
-oOb
+czI
 ciT
-cBz
-cBz
-cCf
+qva
+rch
+aJf
 cwx
 cwx
 bYK
@@ -122274,8 +122278,8 @@ oOb
 cwx
 cBz
 cBz
-cCg
-cCs
+cCf
+cwx
 mQY
 abI
 eau
@@ -122423,12 +122427,12 @@ cpN
 dmw
 abI
 cuo
-oOb
-cwx
-cBA
-cBR
-cCh
-cwx
+czI
+ciT
+cBz
+cBz
+cCg
+cCs
 cwx
 aEa
 atn
@@ -122577,11 +122581,11 @@ aEa
 abI
 cuo
 oOb
-dmJ
-czI
-bIm
-cwS
-cwS
+cwx
+cBA
+cBR
+cCh
+cwx
 aZd
 abI
 atn
@@ -146388,7 +146392,7 @@ dGx
 bAh
 bCT
 axa
-sZQ
+bIm
 cfc
 aiR
 bGw
