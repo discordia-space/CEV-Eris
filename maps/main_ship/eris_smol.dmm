@@ -84469,6 +84469,12 @@
 /obj/spawner/powercell/low_chance,
 /turf/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section1deck3central)
+"sPx" = (
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/floor/tiled/dark,
+/area/eris/security/brig)
 "sQe" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -144418,7 +144424,7 @@ cgH
 quh
 bBx
 lsA
-bCN
+sPx
 fwP
 bCN
 bCN
