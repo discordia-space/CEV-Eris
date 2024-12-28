@@ -25935,7 +25935,7 @@
 "bkU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
-	name = "Secuity Access";
+	name = "Security Access";
 	req_access = list(1)
 	},
 /obj/structure/disposalpipe/segment{
