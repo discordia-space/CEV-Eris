@@ -4117,12 +4117,10 @@
 	},
 /area/eris/hallway/side/eschangarb)
 "ajo" = (
-/obj/machinery/nuclearbomb{
-	eris_ship_bomb = 1;
-	r_code = "LOLNO"
-	},
-/turf/floor/wood,
-/area/eris/command/commander)
+/obj/structure/catwalk,
+/obj/structure/catwalk,
+/turf/open,
+/area/eris/security/armory)
 "ajp" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -11746,7 +11744,8 @@
 /turf/open,
 /area/eris/command/meeting_room)
 "aCk" = (
-/turf/floor/tiled/dark/cargo,
+/obj/machinery/door/firedoor,
+/turf/wall/low/with_glass/reinforced,
 /area/eris/security/armory)
 "aCl" = (
 /obj/machinery/door/firedoor,
@@ -13592,6 +13591,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "aGI" = (
@@ -13602,9 +13604,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "aGK" = (
@@ -13842,7 +13842,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "aHn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -13879,6 +13879,13 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "aHs" = (
+/obj/structure/table/rack,
+/obj/item/cell/medium/high,
+/obj/item/cell/medium/high,
+/obj/item/cell/medium/high,
+/obj/item/cell/medium/high,
+/obj/item/cell/medium/high,
+/obj/item/cell/medium/high,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
@@ -17246,14 +17253,14 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "aPG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/security/armory)
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/floor/tiled/dark/panels,
+/area/eris/neotheology/bioreactor)
 "aPH" = (
 /obj/machinery/door/airlock/maintenance_medical,
 /turf/floor/tiled/white/cargo,
@@ -17268,8 +17275,11 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "aPJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/floor/tiled/dark/cargo,
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open,
 /area/eris/security/armory)
 "aPK" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -18022,7 +18032,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "aRz" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
@@ -18083,10 +18093,15 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "aRH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/rack,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/item/device/flash,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "aRI" = (
@@ -23605,6 +23620,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "bff" = (
@@ -23657,8 +23673,12 @@
 /turf/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
 "bfm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/floor/tiled/dark/bluecorner,
+/obj/structure/catwalk,
+/obj/machinery/nuclearbomb{
+	eris_ship_bomb = 1;
+	r_code = "LOLNO"
+	},
+/turf/open,
 /area/eris/security/armory)
 "bfn" = (
 /turf/floor/tiled/steel/techfloor_grid,
@@ -23681,7 +23701,8 @@
 /turf/wall/low/with_glass,
 /area/eris/maintenance/section3deck4starboard)
 "bfr" = (
-/turf/floor/tiled/dark/techfloor_grid,
+/obj/structure/catwalk,
+/turf/open,
 /area/eris/security/armory)
 "bfs" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -24127,7 +24148,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "bgG" = (
 /obj/machinery/sparker{
@@ -24180,14 +24201,8 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/armory)
 "bgM" = (
-/obj/structure/table/rack,
-/obj/item/cell/medium/high,
-/obj/item/cell/medium/high,
-/obj/item/cell/medium/high,
-/obj/item/cell/medium/high,
-/obj/item/cell/medium/high,
-/obj/item/cell/medium/high,
-/turf/floor/tiled/dark/cargo,
+/obj/structure/railing,
+/turf/open,
 /area/eris/security/armory)
 "bgN" = (
 /turf/floor/tiled/white,
@@ -24704,7 +24719,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/turf/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
 "bhZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -24736,14 +24751,6 @@
 /obj/machinery/shield_diffuser,
 /turf/floor/reinforced/airless,
 /area/eris/rnd/mixing)
-"bid" = (
-/obj/structure/table/rack,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/turf/floor/tiled/dark/cargo,
-/area/eris/security/armory)
 "bie" = (
 /obj/machinery/flasher/portable,
 /turf/floor/tiled/dark/cargo,
@@ -25592,22 +25599,23 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/floor/tiled/dark/bluecorner,
-/area/eris/security/armory)
-"bkh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
 /turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
+"bkh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/floor/plating/under,
+/area/eris/neotheology/bioreactor)
 "bki" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_security{
@@ -25895,6 +25903,9 @@
 "bkR" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/reagent_dispensers/peppertank{
+	pixel_y = 28
 	},
 /turf/floor/tiled/dark/bluecorner,
 /area/eris/security/armory)
@@ -35791,14 +35802,14 @@
 	},
 /area/eris/command/tcommsat/chamber)
 "bIm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/structure/railing{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+/obj/structure/railing{
 	dir = 1
 	},
-/turf/floor/tiled/dark/panels,
-/area/eris/neotheology/bioreactor)
+/turf/open,
+/area/eris/security/armory)
 "bIn" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -42424,11 +42435,13 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/brig)
 "bXn" = (
-/obj/machinery/flasher/portable,
+/obj/structure/railing{
+	dir = 1
+	},
 /obj/machinery/camera/network/security{
 	dir = 1
 	},
-/turf/floor/tiled/dark/cargo,
+/turf/open,
 /area/eris/security/armory)
 "bXo" = (
 /obj/structure/disposalpipe/segment{
@@ -43783,10 +43796,7 @@
 /turf/floor/carpet/bcarpet,
 /area/eris/command/commander)
 "cas" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/floor/tiled/dark,
+/turf/open,
 /area/eris/security/armory)
 "cat" = (
 /obj/structure/disposalpipe/segment{
@@ -53767,14 +53777,13 @@
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/storage)
 "czI" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Armoury";
-	name = "Armoury showcase"
+/obj/structure/railing{
+	dir = 8
 	},
-/turf/floor/tiled/dark/gray_platform,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open,
 /area/eris/security/armory)
 "czJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -69943,12 +69952,13 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "dmJ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_security{
+	name = "Nuke Lookout";
+	req_access = list(1)
 	},
-/obj/structure/catwalk,
-/turf/floor/plating/under,
-/area/eris/neotheology/bioreactor)
+/turf/floor/tiled/steel/cargo,
+/area/eris/security/armory)
 "dmK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -78878,10 +78888,14 @@
 /turf/floor/tiled/steel,
 /area/eris/quartermaster/office)
 "dQN" = (
-/obj/structure/reagent_dispensers/peppertank{
-	pixel_y = 28
+/obj/structure/table/rack,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
 	},
-/turf/floor/tiled/dark/bluecorner,
+/turf/floor/tiled/dark/gray_platform,
 /area/eris/security/armory)
 "dQR" = (
 /obj/structure/disposalpipe/segment{
@@ -121970,7 +121984,7 @@ viR
 cun
 xea
 cwx
-dmJ
+bkh
 aWG
 cCe
 cwx
@@ -122121,7 +122135,7 @@ cpN
 abI
 abI
 cuo
-bIm
+aPG
 ciT
 qva
 rch
@@ -122427,7 +122441,7 @@ cpN
 dmw
 abI
 cuo
-bIm
+aPG
 ciT
 cBz
 cBz
@@ -122523,13 +122537,13 @@ avx
 agp
 asm
 agp
-dQN
+aUq
 aiP
 aRv
-aGG
-bgz
+aQE
+aUr
 bhf
-bXg
+bgz
 axa
 blj
 bll
@@ -122682,7 +122696,7 @@ aRw
 aGG
 bgD
 bhm
-aGG
+bXg
 axa
 bEH
 bll
@@ -123748,11 +123762,11 @@ ayZ
 aDF
 aFH
 aGH
-aPG
-aPG
 bfe
-aPG
-aPG
+bfe
+bfe
+bfe
+bfe
 bkg
 bkF
 blr
@@ -123901,12 +123915,12 @@ aza
 aDN
 aFI
 aGJ
-aPJ
-aPJ
-bfm
-aPJ
-aPJ
-bkh
+bfv
+bfv
+bfv
+aGG
+aRf
+bie
 bkF
 bls
 blK
@@ -124054,12 +124068,12 @@ azf
 axa
 aFK
 aGL
-aQE
-aUq
+bfv
+bfv
+bfv
 aGG
-bgM
-bid
-aGG
+bie
+bie
 bkF
 blt
 blL
@@ -124207,12 +124221,12 @@ axa
 axa
 bkB
 aGL
-aRf
-aUr
-aGG
+axa
 aCk
 aCk
-cev
+dmJ
+aCk
+aCk
 bkE
 blu
 blJ
@@ -124360,11 +124374,11 @@ azg
 aED
 aFN
 aGM
-axX
-axX
+aCk
+bgM
 bfr
-bfv
-bie
+ajo
+bfr
 bXn
 bkE
 blv
@@ -124513,12 +124527,12 @@ azi
 axa
 axX
 axX
-axX
+aCk
 cas
-bfv
-bfv
-bie
-bie
+aPJ
+bfm
+bIm
+cas
 bkE
 bEQ
 blM
@@ -124665,13 +124679,13 @@ dvt
 bDJ
 axa
 aFQ
-aFQ
 aRg
-axa
-bfv
-bfv
-bie
-bie
+aCk
+cas
+cas
+czI
+cas
+cas
 bkE
 blv
 cfV
@@ -146392,7 +146406,7 @@ dGx
 bAh
 bCT
 axa
-czI
+dQN
 cfc
 aiR
 bGw
@@ -167061,7 +167075,7 @@ bBR
 bDg
 bGX
 bYH
-ajo
+bYX
 bZF
 bZW
 caq
