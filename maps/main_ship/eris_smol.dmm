@@ -15147,7 +15147,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright{
 	dir = 1;
-	name = "Bioengineering Desk"
+	name = "Bioengineering Desk";
+	req_one_access = list(5)
 	},
 /obj/machinery/door/blast/shutters{
 	density = 0;
@@ -79216,16 +79217,6 @@
 	},
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
-"eLd" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Armoury";
-	name = "Armoury showcase"
-	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/armory)
 "eNu" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -84550,6 +84541,16 @@
 /obj/spawner/traps/wire_splicing/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
+"sZQ" = (
+/obj/structure/table/rack,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/security/armory)
 "tai" = (
 /turf/floor/tiled/steel/brown_perforated,
 /area/eris/hallway/side/eschangara)
@@ -146387,7 +146388,7 @@ dGx
 bAh
 bCT
 axa
-eLd
+sZQ
 cfc
 aiR
 bGw
