@@ -30681,7 +30681,7 @@
 /area/eris/rnd/storage)
 "bvE" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_perforated,
 /area/eris/quartermaster/office)
 "bvF" = (
 /obj/machinery/camera/network/medbay{
@@ -79216,6 +79216,16 @@
 	},
 /turf/floor/tiled/steel/gray_perforated,
 /area/eris/crew_quarters/fitness)
+"eLd" = (
+/obj/structure/table/rack,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/item/gun/projectile/automatic/lmg/tk,
+/obj/machinery/door/blast/shutters/glass{
+	id = "Armoury";
+	name = "Armoury showcase"
+	},
+/turf/floor/tiled/dark/gray_platform,
+/area/eris/security/armory)
 "eNu" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -83191,16 +83201,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/maintenance/medicalward)
-"pBV" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/item/gun/projectile/automatic/lmg/tk,
-/obj/machinery/door/blast/shutters/glass{
-	id = "Armoury";
-	name = "Armoury showcase"
-	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/security/armory)
 "pFU" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint,
@@ -146387,7 +146387,7 @@ dGx
 bAh
 bCT
 axa
-pBV
+eLd
 cfc
 aiR
 bGw
