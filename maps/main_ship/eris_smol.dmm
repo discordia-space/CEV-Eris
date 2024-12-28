@@ -86198,8 +86198,8 @@
 /area/eris/maintenance/medicalward)
 "wLI" = (
 /obj/machinery/door/airlock/glass{
-	name = "Bar";
-	req_access = list(28)
+	name = "Artist's office";
+	req_access = list(44)
 	},
 /turf/floor/wood,
 /area/eris/crew_quarters/artistoffice)
