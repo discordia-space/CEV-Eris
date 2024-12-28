@@ -81858,6 +81858,16 @@
 	},
 /turf/floor/tiled/white,
 /area/eris/medical/medbay/organs)
+"mni" = (
+/obj/machinery/button/remote/blast_door{
+	id = "Armoury";
+	name = "Armoury Access";
+	pixel_x = -25;
+	pixel_y = -25;
+	req_access = list(3)
+	},
+/turf/floor/tiled/steel/gray_perforated,
+/area/eris/security/armory)
 "moz" = (
 /obj/machinery/telecomms/server/presets/nt,
 /turf/floor/bluegrid,
@@ -145400,7 +145410,7 @@ bBx
 axa
 cXz
 bFY
-bGu
+mni
 bHc
 bHo
 bHB
