@@ -373,10 +373,6 @@
 	},
 /turf/wall/low/with_glass,
 /area/eris/maintenance/section2deck3starboard)
-"abh" = (
-/obj/structure/disposalpipe/segment,
-/turf/wall,
-/area/eris/maintenance/section2deck4starboard)
 "abi" = (
 /turf/wall/reinforced,
 /area/eris/rnd/lab)
@@ -861,7 +857,7 @@
 /turf/floor/tiled/techmaint_panels,
 /area/eris/neotheology/bioreactor)
 "ach" = (
-/obj/structure/disposalpipe/segment,
+/obj/spawner/scrap/sparse,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "aci" = (
@@ -3215,12 +3211,16 @@
 /turf/floor/tiled/techmaint_cargo,
 /area/eris/maintenance/section1deck4central)
 "ahf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/floor/plating/under,
-/area/eris/maintenance/section2deck4starboard)
+/obj/machinery/power/apc{
+	name = "South APC";
+	pixel_y = -28
+	},
+/turf/floor/wood,
+/area/eris/command/meeting_room)
 "ahg" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
@@ -4310,13 +4310,6 @@
 "ajP" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
 /turf/floor/tiled/techmaint_perforated,
-/area/eris/maintenance/section2deck4starboard)
-"ajQ" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "ajR" = (
 /obj/structure/table/standard,
@@ -6131,13 +6124,12 @@
 /turf/floor/tiled/steel/monofloor,
 /area/eris/hallway/main/section2)
 "aou" = (
-/obj/structure/table/marble,
-/obj/item/soap/nanotrasen,
-/obj/item/device/radio/intercom{
-	pixel_y = 24
+/obj/spawner/junk/low_chance,
+/obj/machinery/light/small{
+	dir = 1
 	},
-/turf/floor/tiled/dark/gray_perforated,
-/area/eris/command/meeting_room)
+/turf/floor/tiled/techmaint,
+/area/eris/maintenance/section1deck4central)
 "aov" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -6926,23 +6918,6 @@
 /obj/machinery/light,
 /turf/floor/tiled/white/techfloor,
 /area/eris/medical/medeva)
-"aqx" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/floor/wood,
-/area/eris/command/meeting_room)
 "aqy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6953,10 +6928,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/wood,
 /area/eris/command/meeting_room)
 "aqz" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/railing,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
@@ -7036,12 +7015,22 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/wood,
 /area/eris/command/meeting_room)
 "aqL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/floor/wood,
 /area/eris/command/meeting_room)
@@ -7181,16 +7170,10 @@
 "aqZ" = (
 /obj/machinery/door/airlock/command{
 	name = "V.I.P. Restrooms";
-	req_access = list(19)
+	req_access = list(19);
+	id_tag = "vip_restroom"
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/command/meeting_room)
 "ara" = (
@@ -7247,16 +7230,10 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "arg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/machinery/holoposter{
+	pixel_x = -32
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "West APC";
-	pixel_x = -28
-	},
-/obj/structure/cable/green,
+/obj/machinery/light,
 /turf/floor/tiled/dark,
 /area/eris/command/meeting_room)
 "arh" = (
@@ -7284,11 +7261,16 @@
 /turf/floor/wood,
 /area/eris/command/captain)
 "arj" = (
-/obj/structure/urinal{
-	pixel_y = 25
+/obj/structure/toilet{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/item/soap/nanotrasen,
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch.";
+	id = "vip_restroom";
+	name = "Privacy Button";
+	pixel_y = -22;
+	specialfunctions = 4
 	},
 /turf/floor/tiled/dark,
 /area/eris/command/meeting_room)
@@ -7350,12 +7332,6 @@
 	},
 /turf/floor/tiled/dark/danger,
 /area/eris/engineering/gravity_generator)
-"aru" = (
-/obj/structure/urinal{
-	pixel_y = 25
-	},
-/turf/floor/tiled/dark,
-/area/eris/command/meeting_room)
 "arv" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -7407,15 +7383,19 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "arC" = (
-/obj/structure/toilet,
-/obj/machinery/button/remote/airlock{
-	id = "BridgeToilet1";
-	name = "Door Lock";
-	pixel_x = -28;
-	specialfunctions = 4
-	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/command/meeting_room)
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/obj/spawner/lowkeyrandom/low_chance,
+/turf/floor/tiled/techmaint_perforated,
+/area/eris/maintenance/section1deck4central)
 "arD" = (
 /obj/spawner/scrap/sparse/low_chance,
 /obj/spawner/junk/low_chance,
@@ -7627,15 +7607,6 @@
 /obj/structure/table/glass,
 /turf/floor/tiled/white/brown_platform,
 /area/eris/medical/surgery)
-"asi" = (
-/obj/machinery/holoposter{
-	pixel_x = -32
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/floor/tiled/dark,
-/area/eris/command/meeting_room)
 "asj" = (
 /obj/structure/railing{
 	dir = 8;
@@ -7777,13 +7748,10 @@
 /turf/open,
 /area/eris/security/prison)
 "asA" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	id_tag = "BridgeToilet1";
-	name = "Toilet"
-	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/command/meeting_room)
+/obj/item/stool,
+/obj/spawner/booze,
+/turf/floor/tiled/techmaint_perforated,
+/area/eris/maintenance/section1deck4central)
 "asB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -7954,23 +7922,13 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "asX" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/command/meeting_room)
+/obj/spawner/traps/low_chance,
+/turf/floor/tiled/techmaint_perforated,
+/area/eris/maintenance/section1deck4central)
 "asY" = (
 /obj/spawner/junk/low_chance,
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section1deck4central)
-"asZ" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	id_tag = "BridgeShower1";
-	name = "Showers"
-	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/command/meeting_room)
 "ata" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack,
@@ -8058,9 +8016,10 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck3starboard)
 "ato" = (
-/obj/structure/railing,
-/obj/structure/disposalpipe/segment,
-/turf/floor/plating/under,
+/obj/machinery/holoposter{
+	pixel_y = 32
+	},
+/turf/floor/tiled/steel,
 /area/eris/maintenance/section2deck4starboard)
 "atp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -8303,15 +8262,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
-"atR" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/shower{
-	dir = 4
-	},
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/command/meeting_room)
 "atS" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/floor/tiled/steel/gray_perforated,
@@ -8344,16 +8294,8 @@
 /turf/floor/tiled/white/cargo,
 /area/eris/medical/reception)
 "atW" = (
-/obj/machinery/button/remote/blast_door{
-	id = "silk_road_shutters";
-	name = "Silk Road Shutters Control";
-	pixel_y = 24
-	},
-/obj/machinery/conveyor_switch/oneway{
-	id = "silk_road";
-	name = "conveyor switch (Silk Road)"
-	},
-/turf/floor/tiled/techmaint,
+/obj/spawner/scrap/dense,
+/turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "atX" = (
 /turf/floor/tiled/dark,
@@ -8454,18 +8396,6 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
-"auj" = (
-/obj/machinery/door/window/eastleft,
-/turf/floor/tiled/dark/gray_platform,
-/area/eris/command/meeting_room)
-"auk" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_command{
-	name = "Bridge Maintenance";
-	req_access = list(19)
-	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/command/meeting_room)
 "aul" = (
 /obj/structure/bed/chair/custom/bar_special,
 /turf/floor/tiled/steel/bar_light,
@@ -8556,16 +8486,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
-	},
-/turf/floor/plating/under,
-/area/eris/maintenance/section1deck4central)
-"auy" = (
-/obj/machinery/disposal/deliveryChute{
-	dir = 1;
-	name = "Delivery chute (Silk Road)"
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
@@ -8715,8 +8635,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -8728,6 +8646,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/catwalk,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "auL" = (
@@ -12189,9 +12108,8 @@
 /turf/floor/tiled/white,
 /area/eris/rnd/lab)
 "aDu" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/turf/floor/plating/under,
+/obj/spawner/mob/roaches/cluster/low_chance,
+/turf/floor/tiled/steel,
 /area/eris/maintenance/section2deck4starboard)
 "aDv" = (
 /obj/machinery/door/firedoor,
@@ -16691,11 +16609,6 @@
 	},
 /turf/floor/tiled/dark/danger,
 /area/eris/engineering/atmos)
-"aOr" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor,
-/turf/wall/low/with_glass,
-/area/eris/maintenance/section2deck4starboard)
 "aOs" = (
 /obj/spawner/closet,
 /turf/floor/tiled/techmaint_panels,
@@ -18272,9 +18185,7 @@
 /turf/floor/tiled/steel,
 /area/eris/rnd/anomalisoltwo)
 "aSa" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
+/obj/spawner/scrap/sparse/low_chance,
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aSb" = (
@@ -18544,13 +18455,9 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
 "aSD" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/railing{
-	dir = 1;
-	tag = "icon-railing0 (NORTH)"
-	},
+/obj/structure/barricade,
 /turf/floor/plating/under,
-/area/eris/maintenance/section2deck4starboard)
+/area/eris/maintenance/section1deck4central)
 "aSE" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -19224,20 +19131,6 @@
 /area/eris/maintenance/section2deck3starboard)
 "aUf" = (
 /obj/spawner/scrap/sparse/low_chance,
-/turf/floor/plating/under,
-/area/eris/maintenance/section2deck4starboard)
-"aUg" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/turf/floor/plating/under,
-/area/eris/maintenance/section2deck4starboard)
-"aUh" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "aUi" = (
@@ -21386,8 +21279,8 @@
 /turf/floor/tiled/white,
 /area/eris/rnd/anomal)
 "aZH" = (
-/obj/structure/disposalpipe/segment,
-/turf/wall/low/with_glass,
+/obj/spawner/flora/low_chance,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "aZI" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -25813,6 +25706,11 @@
 /obj/machinery/camera/network/command{
 	dir = 1
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/floor/wood,
 /area/eris/command/meeting_room)
 "bkK" = (
@@ -29910,14 +29808,8 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/main)
 "btX" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/machinery/camera/network/command{
-	dir = 1
-	},
-/turf/floor/tiled/dark,
-/area/eris/command/meeting_room)
+/turf/floor/tiled/steel/gray_perforated,
+/area/eris/maintenance/section2deck4starboard)
 "btY" = (
 /obj/machinery/camera/network/second_section{
 	dir = 1
@@ -35116,9 +35008,11 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck2central)
 "bGy" = (
-/obj/spawner/junk/low_chance,
-/obj/machinery/conveyor/east{
-	id = "silk_road"
+/obj/structure/table/standard,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
+/obj/item/clothing/mask/smokable/cigarette/dromedaryco{
+	pixel_x = 3;
+	pixel_y = 14
 	},
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
@@ -35749,11 +35643,11 @@
 /turf/space,
 /area/space)
 "bId" = (
-/obj/spawner/scrap/sparse/low_chance,
-/obj/machinery/conveyor/east{
-	id = "silk_road"
-	},
-/turf/floor/plating/under,
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bIe" = (
 /obj/machinery/door_timer{
@@ -36087,16 +35981,9 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck4starboard)
 "bIV" = (
-/obj/machinery/door/blast/shutters{
-	dir = 8;
-	id = "silk_road_shutters";
-	layer = 3.3;
-	name = "Silk Road Shutters"
-	},
-/obj/machinery/conveyor/east{
-	id = "silk_road"
-	},
-/turf/floor/plating/under,
+/obj/structure/table/standard,
+/obj/landmark/storyevent/potential_unique_oddity_spawn,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "bIW" = (
 /obj/landmark/join/start/triai,
@@ -39603,13 +39490,12 @@
 /turf/wall/reinforced,
 /area/eris/security/lobby)
 "bQx" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 4
+/obj/structure/reagent_dispensers/fueltank/huge,
+/obj/structure/sign/securearea{
+	name = "EXPLOSION HAZARD";
+	pixel_y = 32
 	},
-/obj/machinery/disposal/deliveryChute{
-	dir = 8
-	},
-/turf/floor/plating/under,
+/turf/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck4starboard)
 "bQy" = (
 /obj/structure/disposalpipe/segment{
@@ -39837,8 +39723,8 @@
 /turf/space,
 /area/space)
 "bRb" = (
-/obj/structure/barricade,
-/turf/floor/plating/under,
+/obj/structure/reagent_dispensers/fueltank/huge,
+/turf/floor/tiled/techmaint_panels,
 /area/eris/maintenance/section2deck4starboard)
 "bRc" = (
 /obj/structure/girder,
@@ -46228,9 +46114,9 @@
 /turf/floor/tiled/dark/techfloor_grid,
 /area/eris/security/prison)
 "cgv" = (
-/obj/machinery/light,
-/turf/floor/tiled/dark,
-/area/eris/command/meeting_room)
+/obj/structure/bed/chair,
+/turf/floor/tiled/steel/gray_perforated,
+/area/eris/maintenance/section2deck4starboard)
 "cgw" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -46243,9 +46129,9 @@
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/prison)
 "cgy" = (
-/obj/machinery/light/small,
-/turf/floor/tiled/dark/gray_perforated,
-/area/eris/command/meeting_room)
+/obj/structure/barricade,
+/turf/floor/tiled/techmaint_panels,
+/area/eris/maintenance/section2deck4starboard)
 "cgz" = (
 /obj/machinery/light{
 	dir = 4
@@ -46415,18 +46301,9 @@
 /turf/floor/grass,
 /area/eris/crew_quarters/hydroponics/garden)
 "cgT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/wall,
-/area/eris/maintenance/section2deck4starboard)
-"cgU" = (
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2";
-	tag = "icon-pipe-j2 (NORTH)"
-	},
-/turf/floor/plating/under,
+/obj/structure/table/standard,
+/obj/spawner/toolbox,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "cgV" = (
 /obj/machinery/button/remote/blast_door{
@@ -48061,34 +47938,25 @@
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "cle" = (
-/obj/spawner/junk/low_chance,
-/obj/spawner/mob/spiders/cluster,
-/obj/machinery/conveyor/east{
-	id = "silk_road"
-	},
+/obj/structure/closet/oldstyle,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/pack/tech_loot,
+/obj/spawner/lowkeyrandom,
 /turf/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck4starboard)
+/area/eris/maintenance/section1deck4central)
 "clf" = (
-/obj/spawner/scrap/sparse/low_chance,
-/obj/spawner/junk/low_chance,
-/obj/machinery/conveyor/east{
-	id = "silk_road"
-	},
-/turf/floor/plating/under,
+/obj/structure/table/standard,
+/obj/spawner/contraband/low_chance,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "clg" = (
-/obj/spawner/junk/low_chance,
-/obj/machinery/door/blast/shutters{
-	dir = 8;
-	id = "silk_road_shutters";
-	layer = 3.3;
-	name = "Silk Road Shutters"
-	},
-/obj/machinery/conveyor/east{
-	id = "silk_road"
-	},
 /obj/spawner/scrap/sparse/low_chance,
-/turf/floor/plating/under,
+/obj/spawner/junk/low_chance,
+/obj/spawner/junk/low_chance,
+/obj/structure/sign/nosmoking_2{
+	pixel_x = -32
+	},
+/turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "clh" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -48119,18 +47987,6 @@
 	dir = 1
 	},
 /turf/floor/tiled/steel/cargo,
-/area/eris/maintenance/section2deck4starboard)
-"clm" = (
-/obj/spawner/scrap/sparse/low_chance,
-/obj/spawner/junk/low_chance,
-/obj/spawner/junk/low_chance,
-/obj/machinery/button/remote/blast_door{
-	id = "silk_road_shutters";
-	name = "Silk Road Shutters Control";
-	pixel_x = 24;
-	pixel_y = 5
-	},
-/turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "cln" = (
 /obj/structure/cable{
@@ -49063,13 +48919,6 @@
 /obj/structure/closet/emcloset,
 /turf/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4port)
-"cnD" = (
-/obj/spawner/scrap/sparse/low_chance,
-/obj/machinery/conveyor/east{
-	id = "silk_road"
-	},
-/turf/floor/tiled/techmaint,
-/area/eris/maintenance/section2deck4starboard)
 "cnE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
 	dir = 8
@@ -52018,13 +51867,6 @@
 "cvg" = (
 /obj/spawner/junk/low_chance,
 /turf/floor/reinforced,
-/area/eris/maintenance/section2deck4starboard)
-"cvh" = (
-/obj/structure/catwalk,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "cvi" = (
 /turf/shuttle/wall/mining{
@@ -66186,11 +66028,13 @@
 /turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4port)
 "dep" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/floor/plating/under,
+/obj/structure/table/standard,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/lowkeyrandom,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/obj/spawner/boxes/low_chance,
+/turf/floor/tiled/steel/gray_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "deq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -66973,13 +66817,18 @@
 /turf/floor/tiled/techmaint_perforated,
 /area/eris/maintenance/section2deck4starboard)
 "dgn" = (
-/obj/structure/disposalpipe/segment{
+/obj/item/trash/cigbutt{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/trash/cigbutt{
+	pixel_x = -14;
+	pixel_y = -4
+	},
+/obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/floor/plating/under,
+/turf/floor/tiled/techmaint,
 /area/eris/maintenance/section2deck4starboard)
 "dgo" = (
 /obj/structure/table/standard,
@@ -67269,24 +67118,12 @@
 /obj/spawner/mob/spiders/cluster/low_chance,
 /turf/floor/plating,
 /area/eris/maintenance/sciweapondeck)
-"dhl" = (
-/obj/structure/disposalpipe/segment,
-/obj/spawner/junk/low_chance,
-/turf/floor/plating/under,
-/area/eris/maintenance/section2deck4starboard)
 "dhm" = (
 /obj/structure/table/rack/shelf,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /turf/floor/tiled/techmaint_panels,
-/area/eris/maintenance/section2deck4starboard)
-"dhn" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/spawner/junk/low_chance,
-/turf/floor/plating/under,
 /area/eris/maintenance/section2deck4starboard)
 "dho" = (
 /obj/structure/table/standard,
@@ -73274,15 +73111,10 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck1starboard)
 "dvq" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/machinery/alarm{
-	pixel_y = 26
-	},
-/turf/floor/tiled/dark,
-/area/eris/command/meeting_room)
+/obj/structure/table/standard,
+/obj/item/device/lighting/toggleable/lamp,
+/turf/floor/tiled/techmaint_perforated,
+/area/eris/maintenance/section1deck4central)
 "dvr" = (
 /obj/machinery/computer/arcade,
 /obj/machinery/alarm{
@@ -80985,11 +80817,9 @@
 /turf/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "jwY" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/floor/plating/under,
-/area/eris/maintenance/section2deck4starboard)
+/obj/spawner/closet/tech/low_chance,
+/turf/floor/tiled/techmaint_panels,
+/area/eris/maintenance/section1deck4central)
 "jzj" = (
 /obj/machinery/vending/cola,
 /turf/floor/tiled/steel/bluecorner,
@@ -100214,7 +100044,7 @@ aqo
 agp
 arf
 arf
-agp
+aaf
 bVB
 aaW
 asY
@@ -100367,7 +100197,7 @@ cgo
 agp
 agp
 agp
-agp
+aaf
 bVB
 aaW
 cfQ
@@ -100516,14 +100346,14 @@ ahq
 ahq
 ahq
 wSb
-aqx
+aqy
 aqZ
 arg
-asi
 agp
-agp
-agp
-agp
+aaf
+aaf
+aaf
+aaf
 bVU
 aaf
 aYW
@@ -100672,11 +100502,11 @@ ofX
 aqy
 agp
 arj
-btX
 agp
-atR
-auj
-agp
+jwY
+aaW
+adF
+aaf
 agF
 aaf
 aYW
@@ -100824,12 +100654,12 @@ apq
 ams
 aqK
 agp
-aru
-cgv
 agp
+agp
+aaf
 aou
-cgy
-agp
+aaW
+ahe
 agF
 aaf
 aYW
@@ -100978,11 +100808,11 @@ apF
 aqL
 agp
 dvq
-asm
-asZ
-ahB
-ahB
-agp
+aag
+aaf
+aaW
+aSa
+aaf
 agF
 aaf
 aaf
@@ -101130,12 +100960,12 @@ alB
 apJ
 bkJ
 agp
-agp
+arC
 asA
-agp
-agp
-auk
-agp
+aaf
+arf
+aSa
+aaf
 auI
 auJ
 aaf
@@ -101281,13 +101111,13 @@ alD
 alB
 aps
 apK
-ahq
+ahf
 agp
 arC
 asX
-agp
+aSD
 atW
-aaW
+arf
 aaf
 aaf
 bfR
@@ -101437,11 +101267,11 @@ apQ
 ahq
 agp
 agp
-agp
-agp
-acj
+aaf
+aaf
+arf
 aSa
-auy
+aaW
 aaf
 agF
 aaf
@@ -101591,19 +101421,19 @@ cgp
 ara
 agp
 adF
-agp
 aaf
 aaf
-agL
-aeC
+aaf
+cle
+aaf
 auK
-aeC
-aaZ
-abh
+aaf
+aId
+aan
 ach
-ach
-ach
-ahf
+dfT
+abd
+dfT
 aan
 aZi
 auc
@@ -101753,10 +101583,10 @@ agF
 aaf
 aav
 aan
-abd
+ach
 abd
 aan
-aie
+abd
 aan
 kBn
 npJ
@@ -101767,18 +101597,18 @@ aPH
 aan
 gvb
 aan
-aUg
-ach
-ach
-ach
-aZH
-ach
-ach
-ach
-ach
-ach
-aDu
-ahf
+abd
+abd
+abd
+abd
+aZg
+aTX
+abd
+dfT
+abd
+abd
+abf
+abd
 aan
 bbN
 bcA
@@ -101909,18 +101739,18 @@ aan
 arK
 arT
 aan
-ajQ
+abd
 aqz
-aDu
-aDu
-aOr
-ach
-ato
-jwY
-aSD
-ach
-ach
-aUh
+abf
+abf
+gvb
+dfT
+aqz
+dgp
+aSF
+abd
+dfT
+abd
 aan
 aan
 aan
@@ -101931,7 +101761,7 @@ aan
 aan
 aan
 abf
-aie
+abd
 aan
 bbP
 bcA
@@ -102084,29 +101914,29 @@ ded
 aZL
 aan
 abf
-aie
+abd
 aan
 bbN
 bcD
 bcD
 bcD
 aan
-bGy
+ckS
 cjq
-cle
-clm
-cle
-bGg
-bGy
-bGg
-cnD
+bAU
+bcD
+bcD
+aan
+aan
+aan
+aan
 aan
 crc
 acq
 bbr
 crD
 bbr
-dhn
+dfT
 adb
 bbr
 dhp
@@ -102237,21 +102067,21 @@ cvg
 aZM
 aan
 abf
-aie
+abd
 aan
 bbN
 aan
 aan
 aan
 aan
-bId
 aan
-clf
 aan
-clf
 aan
-clf
 aan
+aan
+aan
+aTh
+dep
 bId
 aan
 crc
@@ -102259,7 +102089,7 @@ akw
 bbr
 bbr
 bbr
-aie
+abd
 adb
 aan
 aan
@@ -102390,21 +102220,21 @@ aZf
 aZM
 aan
 abf
-aie
+abd
 aan
 aan
 aan
 aTX
 aTX
 aan
-bIV
-aan
+bRb
+bRb
 clg
-aan
-clg
-aan
-bIV
-aan
+dgn
+cgy
+bbr
+aDu
+cgv
 bIV
 aan
 crc
@@ -102412,7 +102242,7 @@ acq
 bbD
 adb
 bbr
-aie
+abd
 adb
 aan
 pQa
@@ -102543,29 +102373,29 @@ aZt
 aZN
 aan
 abf
-ajQ
-aZH
-ach
-ach
-ach
-ahf
+abd
+aZg
+dfT
+abd
+abd
+abd
 aan
 bQx
+adb
+bAU
+bGy
 aan
-bQx
 aan
-bQx
-aan
-bQx
-aan
-bQx
+ato
+btX
+cgT
 aan
 add
 acq
 bbr
 adb
 bbr
-aie
+dfT
 adb
 aan
 pQa
@@ -102701,24 +102531,24 @@ bbr
 apG
 apG
 bbr
-aie
+abd
 aan
 bRb
+ckS
+adb
+adb
+add
 aan
-ask
-aan
-ask
-aan
-ask
-aan
-bRb
+aTh
+aZH
+clf
 aan
 bbr
 bbr
 bbr
 dee
 bbr
-dgn
+afX
 adb
 aan
 pQa
@@ -102854,24 +102684,24 @@ bbr
 adb
 adb
 apG
-aie
+dfT
 aan
-cgT
 aan
-cgT
 aan
-cgT
 aan
-cgT
+bbD
 aan
-cgT
+aan
+aan
+aan
+aan
 aan
 adb
 adb
 adb
 adb
 adb
-cvh
+abf
 adb
 aan
 pQa
@@ -103007,24 +102837,24 @@ bbD
 adb
 adL
 apG
-ajQ
-dep
-cgU
-aZH
-cgU
-dep
-cgU
-ach
-cgU
-dep
-cgU
-aZH
-aDu
-ach
-ach
-dhl
-ach
-aUh
+abd
+aOt
+abd
+aZg
+abd
+auc
+aOt
+dfT
+aTX
+aOt
+abd
+aZg
+abf
+abd
+abd
+dfT
+abd
+abd
 adb
 aan
 aan
@@ -103307,7 +103137,7 @@ dgV
 aPv
 aPv
 aan
-abd
+dfT
 abd
 bbr
 dhJ
@@ -103461,7 +103291,7 @@ dgV
 dgV
 aan
 abd
-abd
+dfT
 bbr
 aSm
 adb
@@ -103473,7 +103303,7 @@ aan
 aUf
 aUf
 aTX
-aTX
+abd
 aTX
 arK
 aTX
