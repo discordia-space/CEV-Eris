@@ -12692,7 +12692,14 @@
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck4central)
 "aEF" = (
-/obj/machinery/constructable_frame/machine_frame,
+/obj/structure/table/standard,
+/obj/item/stack/material/plasteel{
+	amount = 10
+	},
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
 /turf/floor/tiled/white/gray_platform,
 /area/eris/rnd/lab)
 "aEG" = (
@@ -15153,7 +15160,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright{
-	dir = 1;
+	dir = 2;
 	name = "Bioengineering Desk";
 	req_one_access = list(5)
 	},
@@ -17768,7 +17775,7 @@
 /obj/machinery/door/window/westleft{
 	dir = 1;
 	name = "kitchen windoor";
-	req_access = list(35)
+	req_access = list(28)
 	},
 /turf/floor/tiled/white/cargo,
 /area/eris/crew_quarters/kitchen)
@@ -29679,7 +29686,7 @@
 /obj/machinery/door/window/westleft{
 	dir = 2;
 	name = "kitchen windoor";
-	req_access = list(35)
+	req_access = list(28)
 	},
 /turf/floor/tiled/white/brown_platform,
 /area/eris/crew_quarters/kitchen)
@@ -82282,14 +82289,7 @@
 /turf/floor/tiled/steel/cargo,
 /area/eris/crew_quarters/fitness)
 "mZS" = (
-/obj/structure/table/standard,
-/obj/item/stack/material/plasteel{
-	amount = 10
-	},
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
+/obj/machinery/constructable_frame/machine_frame,
 /obj/machinery/button/remote/blast_door{
 	desc = "It controls the blast door to the main RND entrance.";
 	id = "RDDoorLockdown";
