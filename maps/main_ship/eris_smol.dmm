@@ -77360,7 +77360,7 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
+/obj/machinery/portable_atmospherics/canister/plasma,
 /turf/floor/tiled/steel/techfloor_grid,
 /area/eris/engineering/engine_room)
 "dDr" = (
@@ -80307,12 +80307,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/floor/plating/under,
 /area/eris/maintenance/section2deck2port)
-"hAN" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/green{
-	dir = 8
-	},
-/turf/floor/plating/under,
-/area/eris/engineering/engine_room)
 "hAP" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -82209,11 +82203,11 @@
 /turf/floor/tiled/steel/danger,
 /area/eris/engineering/propulsion/left)
 "mBN" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/visible/green{
+	dir = 10;
+	tag = "icon-intact (NORTHWEST)"
 	},
-/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
-/turf/floor/tiled/steel/techfloor_grid,
+/turf/floor/plating/under,
 /area/eris/engineering/engine_room)
 "mBQ" = (
 /obj/spawner/mob/roaches/cluster/low_chance,
@@ -83915,13 +83909,6 @@
 /obj/machinery/door/window/southright,
 /turf/open,
 /area/eris/security/prison)
-"qNo" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/nitrogen/prechilled,
-/turf/floor/tiled/steel/techfloor_grid,
-/area/eris/engineering/engine_room)
 "qNx" = (
 /obj/spawner/mob/spiders/cluster/low_chance,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -143965,8 +143952,8 @@ cZQ
 cZQ
 csA
 csA
-mBN
-mBN
+lAw
+lAw
 ccW
 daB
 daH
@@ -144271,7 +144258,7 @@ dNl
 cZS
 dqE
 sVh
-qNo
+gdC
 dDq
 ccW
 daB
@@ -168597,8 +168584,8 @@ daK
 daK
 dbJ
 dbJ
-gvE
-hAN
+mBN
+cpZ
 dbR
 dBo
 ccW
@@ -168750,8 +168737,8 @@ daK
 kJZ
 dbJ
 dbJ
-dBU
-dBU
+cnR
+cnR
 dBU
 aET
 ccW
@@ -168903,9 +168890,9 @@ daK
 daK
 dbJ
 dbJ
-cYp
-cZu
-dBV
+cnR
+cnR
+daJ
 dBS
 ccW
 aav
