@@ -1,0 +1,6 @@
+author: intercepti0n
+delete-after: true
+changes:
+  - rscadd: unified sanity button interaction between Liberty and Eris HUDs, both
+      list desires now.
+  - bugfix: fixed Liberty HUD sanity button not opening sanity UI.
