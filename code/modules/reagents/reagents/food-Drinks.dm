@@ -1587,6 +1587,11 @@
 	glass_center_of_mass = list("x"=17, "y"=8)
 	taste_tag = list(TASTE_SWEET,TASTE_SLIMEY)
 
+/datum/reagent/alcohol/aloe/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
+	if(H.getFireLoss() > 0)
+		effect_multiplier *= 2
+	..()
+
 /datum/reagent/alcohol/amasec
 	name = "Amasec"
 	id = "amasec"
@@ -1603,6 +1608,11 @@
 	glass_desc = "Always handy before COMBAT!!!"
 	glass_center_of_mass = list("x"=16, "y"=9)
 	taste_tag = list(TASTE_SALTY,TASTE_DRY)
+
+/datum/reagent/alcohol/amasec/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_GUNSLINGER))
+		M.stats.addTempStat(STAT_TGH, STAT_LEVEL_BASIC, STIM_TIME, "Amasec") //Improves Toughness by ~15 if Gunslinger
 
 /datum/reagent/alcohol/andalusia
 	name = "Andalusia"
@@ -1742,7 +1752,10 @@
 
 /datum/reagent/alcohol/beepsky_smash/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	..()
-	M.Stun(2)
+	if(M.stats.getPerk(PERK_SURVIVOR))
+		M.stats.addTempStat(STAT_ROB, STAT_LEVEL_BASIC, STIM_TIME, "BEEPSKY SMASH") //SMASH
+	else
+		M.Stun(2) //Or get smashed
 
 /datum/reagent/alcohol/bilk
 	name = "Bilk"
@@ -1887,6 +1900,11 @@
 	glass_center_of_mass = list("x"=16, "y"=2)
 	taste_tag = list(TASTE_SPICY,TASTE_DRY)
 
+/datum/reagent/alcohol/demonsblood/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.bodytemperature > 311) //Temperature for uncomfortable body temperature
+		M.species.burn_mod += 0.1
+
 /datum/reagent/alcohol/devilskiss
 	name = "Devils Kiss"
 	id = "devilskiss"
@@ -1902,6 +1920,11 @@
 	glass_desc = "Creepy time!"
 	glass_center_of_mass = list("x"=16, "y"=8)
 	taste_tag = list(TASTE_BITTER,TASTE_DRY,TASTE_SLIMEY)
+
+/datum/reagent/alcohol/devilskiss/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.on_fire) //On fire because devil
+		M.add_chemical_effect(CE_SPEEDBOOST, 0.1) //No actual downsides outside massive body temp so the effect is weak, 1/6 of hyperzine
 
 /datum/reagent/alcohol/driestmartini
 	name = "Driest Martini"
@@ -2078,6 +2101,11 @@
 	glass_name = "Hooch"
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 	taste_tag = list(TASTE_BITTER,TASTE_DRY)
+
+/datum/reagent/alcohol/hooch/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_ALCOHOLIC))
+		M.adjustOxyLoss(-0.3 * effect_multiplier)
 
 /datum/reagent/alcohol/iced_beer
 	name = "Iced Beer"
@@ -2259,6 +2287,11 @@
 	glass_desc = "You've really hit rock bottom now... your liver packed its bags and left last night."
 	taste_tag = list(TASTE_BITTER,TASTE_STRONG)
 
+/datum/reagent/alcohol/moonshine/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_ALCOHOLIC))
+		M.heal_organ_damage(0.3 * effect_multiplier, 0.3 * effect_multiplier) 
+
 /datum/reagent/alcohol/neurotoxin
 	name = "Neurotoxin"
 	id = "neurotoxin"
@@ -2410,6 +2443,13 @@
 	glass_desc = "A blue-space beverage."
 	glass_center_of_mass = list("x"=17, "y"=4)
 	taste_tag = list(TASTE_BITTER,TASTE_STRONG)
+
+/datum/reagent/alcohol/singulo/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
+	. = ..()
+	if(M.stats.getPerk(PERK_TECHNOMANCER))
+		M.AdjustWeakened(-1) 
+	else
+		M.AdjustWeakened(1) 
 
 /datum/reagent/alcohol/snowwhite
 	name = "Snow White"
