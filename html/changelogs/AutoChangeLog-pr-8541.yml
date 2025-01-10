@@ -1,0 +1,4 @@
+author: BigHatLogan-dev
+delete-after: true
+changes:
+  - bugfix: Added missing ishuman() checks to overdose procs
