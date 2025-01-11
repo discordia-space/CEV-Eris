@@ -1,6 +1,9 @@
-author: intercepti0n
-delete-after: true
-changes:
+2025-01-11:
+  BigHatLogan-dev:
+  - bugfix: Added missing ishuman() checks to overdose procs
+  SirRichardFrancis:
+  - code_imp: Optimized action buttons
+  intercepti0n:
   - rscadd: unified sanity button interaction between Liberty and Eris HUDs, both
       list desires now.
   - bugfix: fixed Liberty HUD sanity button not opening sanity UI.
