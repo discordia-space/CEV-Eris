@@ -113,6 +113,7 @@ var/list/gear_datums = list()
 		user << browse_rsc(pref.preview_south, "new_previewicon[SOUTH].png")
 		user << browse_rsc(pref.preview_west, "new_previewicon[WEST].png")
 	. = list()
+	var/datum/player_vault/player_vault = SSpersistence.get_vault_account(user.ckey)
 	var/total_cost = 0
 	var/list/gears = pref.gear_list[pref.gear_slot]
 	for(var/i = 1; i <= gears.len; i++)
@@ -131,7 +132,11 @@ var/list/gear_datums = list()
 		. += "<b><font color = '[fcolor]'>[total_cost]/[config.max_gear_cost]</font> loadout points spent.</b>"
 
 	. += "<a href='?src=\ref[src];clear_loadout=1'>Clear Loadout</a>"
-	. += "<a href='?src=\ref[src];toggle_hiding=1'>[hide_unavailable_gear ? "Show all" : "Hide unavailable"]</a></center></td></tr>"
+	. += "<a href='?src=\ref[src];toggle_hiding=1'>[hide_unavailable_gear ? "Show all" : "Hide unavailable"]</a>"
+
+	. += "<br><b>Iriski balance: [player_vault.iriska_balance] || "
+	. += "<b>Patreon status: [player_vault.patreon_tier]</b>"
+	. += "</center></td></tr>"
 
 	. += "<tr><td colspan=3><center><b>"
 	var/firstcat = 1
@@ -175,6 +180,11 @@ var/list/gear_datums = list()
 		var/list/entry = list()
 		var/datum/gear/G = LC.gear[gear_name]
 		var/ticked = (G.display_name in pref.gear_list[pref.gear_slot])
+		if(ticked && !gear_allowed_to_equip(G, user))
+			pref.gear_list[pref.gear_slot] -= G.display_name
+			ticked = FALSE
+		if(!G.is_allowed_to_display(user))
+			continue
 		entry += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='?src=\ref[src];toggle_gear=[G.display_name]'>[G.display_name]</a></td>"
 		entry += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
 		entry += "<td><font size=2>[G.get_description(get_gear_metadata(G,1))]</font>"
@@ -226,10 +236,14 @@ var/list/gear_datums = list()
 	var/list/metadata = get_gear_metadata(G)
 	metadata["[tweak]"] = new_metadata
 
-/datum/category_item/player_setup_item/loadout/OnTopic(href, href_list, user)
+/datum/category_item/player_setup_item/loadout/proc/gear_allowed_to_equip(datum/gear/G, mob/user)
+	ASSERT(G)
+	return G.is_allowed_to_equip(user)
+
+/datum/category_item/player_setup_item/loadout/OnTopic(href, href_list, mob/user)
 	if(href_list["toggle_gear"])
 		var/datum/gear/TG = gear_datums[href_list["toggle_gear"]]
-		if(!TG)
+		if(!istype(TG))
 			return TOPIC_REFRESH
 		if(TG.display_name in pref.gear_list[pref.gear_slot])
 			pref.gear_list[pref.gear_slot] -= TG.display_name
@@ -306,6 +320,7 @@ var/list/gear_datums = list()
 	var/list/allowed_branches //Service branches that can spawn with it.
 	var/whitelisted        //Term to check the whitelist for..
 	var/sort_category = "General"
+	var/sort_category_description // Popullate description if required
 	var/flags              //Special tweaks in new
 	var/category
 	var/list/gear_tweaks = list() //List of datums which will alter the item after it has been spawned.
@@ -323,6 +338,23 @@ var/list/gear_datums = list()
 	if(flags & GEAR_HAS_SUBTYPE_SELECTION)
 		gear_tweaks += new/datum/gear_tweak/path/subtype(path)
 
+/datum/gear/Destroy()
+	. = ..()
+	if(!loadout_categories[sort_category])
+		loadout_categories[sort_category] = new /datum/loadout_category(sort_category)
+	var/datum/loadout_category/LC = loadout_categories[sort_category]
+	gear_datums.Remove(display_name)
+	LC.gear.Remove(display_name)
+
+/datum/gear/proc/is_allowed_to_equip(mob/user)
+	if(!is_allowed_to_display(user))
+		return FALSE
+	return TRUE
+
+// used when we forbid seeing gear in menu without any messages.
+/datum/gear/proc/is_allowed_to_display(mob/user)
+	return TRUE
+
 /datum/gear/proc/get_description(var/metadata)
 	. = description
 	for(var/datum/gear_tweak/gt in gear_tweaks)
@@ -335,6 +367,9 @@ var/list/gear_datums = list()
 /datum/gear_data/New(var/path, var/location)
 	src.path = path
 	src.location = location
+
+/datum/gear/proc/on_spawn_on_real_mob()
+	return
 
 /datum/gear/proc/spawn_item(var/location, var/metadata)
 	var/datum/gear_data/gd = new(path, location)
