@@ -13306,6 +13306,10 @@
 	dir = 4;
 	tag = "icon-intact (EAST)"
 	},
+/obj/machinery/atmospherics/binary/pump{
+	dir = 8;
+	name = "Biogenerator to Waste"
+	},
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/biogenerator)
 "aFT" = (
@@ -21137,6 +21141,17 @@
 /obj/structure/catwalk,
 /turf/space,
 /area/space)
+"aYX" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/machinery/atmospherics/binary/pump{
+	dir = 8;
+	name = "Oxygen to Biogenerator"
+	},
+/turf/floor/tiled/dark/cargo,
+/area/eris/neotheology/biogenerator)
 "aYY" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/standard,
@@ -123430,7 +123445,7 @@ aSI
 aem
 afy
 gvB
-ahD
+aYX
 aem
 aem
 aem
