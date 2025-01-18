@@ -10104,8 +10104,7 @@
 /turf/floor/tiled/white,
 /area/eris/maintenance/medicalward)
 "ayn" = (
-/obj/structure/filingcabinet/chestdrawer{
-	icon_state = "filingcabinet";
+/obj/structure/filingcabinet/filingcabinet{
 	name = "Patient Scans"
 	},
 /turf/floor/tiled/white/brown_platform,
