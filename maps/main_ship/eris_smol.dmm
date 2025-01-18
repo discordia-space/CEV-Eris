@@ -45013,13 +45013,17 @@
 /turf/floor/carpet,
 /area/eris/crew_quarters/sleep)
 "cdL" = (
-/obj/machinery/door/airlock/mining,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/mining{
+	req_access = list(48)
+	},
 /turf/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "cdM" = (
-/obj/machinery/door/airlock/mining,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/mining{
+	req_access = list(48)
+	},
 /turf/floor/tiled/steel/cargo,
 /area/eris/quartermaster/miningdock)
 "cdN" = (
