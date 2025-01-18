@@ -22562,7 +22562,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_hydroponics";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -26097,7 +26097,7 @@
 /turf/wall/low/with_glass,
 /area/eris/security/main)
 "blj" = (
-/obj/machinery/surveillance_pod{
+/obj/structure/cryofeed{
 	dir = 4
 	},
 /turf/floor/tiled/dark/gray_platform,
@@ -26106,7 +26106,7 @@
 /turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section2deck4port)
 "bll" = (
-/obj/structure/cryofeed{
+/obj/machinery/surveillance_pod{
 	dir = 4
 	},
 /turf/floor/tiled/dark/gray_platform,
@@ -29305,7 +29305,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_hydroponics";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -49899,7 +49899,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_chapelreactornorth";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -51189,7 +51189,7 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_chapelreactorwest";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -86452,7 +86452,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/blast/shutters{
-	dir = 2;
+	dir = 4;
 	id = "maint_hatch_chapelreactornorth";
 	layer = 3.3;
 	name = "Maintenance Hatch"
@@ -122908,8 +122908,8 @@ aUr
 bhf
 bgz
 axa
-bll
-bll
+blj
+blj
 bhd
 bnM
 bhd
@@ -123062,7 +123062,7 @@ bhm
 bXg
 axa
 bEH
-blj
+bll
 bhd
 bnN
 bhd
