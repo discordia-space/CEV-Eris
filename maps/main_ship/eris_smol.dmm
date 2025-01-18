@@ -21138,12 +21138,6 @@
 /obj/structure/catwalk,
 /turf/space,
 /area/space)
-"aYX" = (
-/obj/machinery/door/airlock/glass{
-	name = "Bar"
-	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/neotheology/chapelritualroom)
 "aYY" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/standard,
@@ -169002,7 +168996,7 @@ bmD
 bqp
 duM
 aXo
-aYX
+byi
 aJR
 bxY
 byw
