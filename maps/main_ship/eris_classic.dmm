@@ -82525,9 +82525,6 @@
 /turf/floor/wood,
 /area/eris/crew_quarters/kitchen)
 "dXa" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
