@@ -26097,13 +26097,18 @@
 /turf/wall/low/with_glass,
 /area/eris/security/main)
 "blj" = (
-/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/surveillance_pod{
+	dir = 4
+	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/main)
 "blk" = (
 /turf/wall/low/with_glass/reinforced,
 /area/eris/maintenance/section2deck4port)
 "bll" = (
+/obj/structure/cryofeed{
+	dir = 4
+	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/main)
 "blm" = (
@@ -34345,6 +34350,9 @@
 	departmentType = 3;
 	name = "Security Requests Console";
 	pixel_y = 30
+	},
+/obj/machinery/surveillance_pod{
+	dir = 4
 	},
 /turf/floor/tiled/dark/gray_platform,
 /area/eris/security/main)
@@ -50325,6 +50333,7 @@
 /obj/machinery/camera/network/command{
 	dir = 8
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/floor/tiled/dark/cargo,
 /area/eris/security/main)
 "cqJ" = (
@@ -122899,7 +122908,7 @@ aUr
 bhf
 bgz
 axa
-blj
+bll
 bll
 bhd
 bnM
@@ -123053,7 +123062,7 @@ bhm
 bXg
 axa
 bEH
-bll
+blj
 bhd
 bnN
 bhd
