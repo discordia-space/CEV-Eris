@@ -30935,7 +30935,6 @@
 /area/eris/hallway/main/section2)
 "bxR" = (
 /obj/machinery/light,
-/obj/machinery/amerecycler,
 /turf/floor/tiled/steel,
 /area/eris/hallway/main/section2)
 "bxS" = (
