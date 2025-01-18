@@ -21142,16 +21142,14 @@
 /turf/space,
 /area/space)
 "aYX" = (
-/obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 4;
-	tag = "icon-intact (EAST)"
+/obj/structure/table/woodentable,
+/obj/item/packageWrap,
+/obj/item/device/destTagger,
+/obj/item/device/eftpos{
+	eftpos_name = "Neotheology EFTPOS scanner"
 	},
-/obj/machinery/atmospherics/binary/pump{
-	dir = 8;
-	name = "Oxygen to Biogenerator"
-	},
-/turf/floor/tiled/dark/cargo,
-/area/eris/neotheology/biogenerator)
+/turf/floor/carpet/bcarpet,
+/area/eris/neotheology/office)
 "aYY" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/standard,
@@ -32080,6 +32078,10 @@
 	departmentType = 7;
 	name = "Chapel Office RC";
 	pixel_y = 32
+	},
+/obj/item/reagent_containers/food/drinks/mug/gold{
+	pixel_x = -6;
+	pixel_y = -2
 	},
 /turf/floor/carpet/bcarpet,
 /area/eris/neotheology/office)
@@ -53551,10 +53553,16 @@
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/bioreactor)
 "cyX" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/mug/gold,
-/turf/floor/carpet/bcarpet,
-/area/eris/neotheology/office)
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 4;
+	tag = "icon-intact (EAST)"
+	},
+/obj/machinery/atmospherics/binary/pump{
+	dir = 8;
+	name = "Oxygen to Biogenerator"
+	},
+/turf/floor/tiled/dark/cargo,
+/area/eris/neotheology/biogenerator)
 "cyY" = (
 /turf/floor/tiled/dark/cargo,
 /area/eris/neotheology/storage)
@@ -123445,7 +123453,7 @@ aSI
 aem
 afy
 gvB
-aYX
+cyX
 aem
 aem
 aem
@@ -168263,8 +168271,8 @@ dvd
 bxV
 byj
 bzp
-cyX
 bBr
+aYX
 cgV
 bzl
 aWd
