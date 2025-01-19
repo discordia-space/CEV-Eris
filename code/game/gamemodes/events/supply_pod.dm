@@ -14,7 +14,7 @@
 	name = "supply pod"
 	weight = 0.75
 	event_type = /datum/event/supply_pod
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2) //Slightly higher cost than other major events
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.75)
 
 	tags = list(TAG_DESTRUCTIVE, TAG_POSITIVE, TAG_COMBAT, TAG_EXTERNAL)
 

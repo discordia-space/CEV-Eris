@@ -9,7 +9,7 @@
 	name = "camera damage"
 
 	event_type = /datum/event/camera_damage
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE)
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE/4)
 	tags = list(TAG_TARGETED, TAG_DESTRUCTIVE, TAG_NEGATIVE)
 
 /////////.//////////////////////////////////////

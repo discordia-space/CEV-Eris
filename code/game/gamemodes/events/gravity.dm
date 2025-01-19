@@ -8,7 +8,7 @@
 	name = "gravity failure"
 
 	event_type =/datum/event/gravity
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE*0.8)
+	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE)
 	tags = list(TAG_COMMUNAL)
 	weight = 0.4 //This is a pain, make it less common
 

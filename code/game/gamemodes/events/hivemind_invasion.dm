@@ -11,7 +11,7 @@
 	req_crew = 14
 
 	event_type = /datum/event/hivemind
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*0.9) //bit more common
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
 	tags = list(TAG_COMMUNAL, TAG_DESTRUCTIVE, TAG_NEGATIVE, TAG_SCARY)
 //============================================
 
@@ -31,6 +31,7 @@
 		if(!start_location && i == 100)
 			log_and_message_admins("Hivemind failed to find a viable turf.")
 			kill()
+			storyevent.cancel(severity)
 			return
 		if(start_location)
 			break
