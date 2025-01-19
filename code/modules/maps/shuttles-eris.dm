@@ -343,6 +343,25 @@
 
 	var/locked_shuttle = FALSE
 
+// Change the destination tags if we are on smol eris map
+/datum/shuttle/autodock/multi/antag/pirate/New()
+	// First zlevels are always Eris ones
+	testing("=== LEVEL [get_level_name(1)]")
+	if (dd_hasprefix(get_level_name(1), "Eris Smol"))
+		testing("=== UPDATE DESTINATION PIRATE")
+		destination_tags = list(
+			"nav_pirate_start",
+			"nav_pirate_smol_deck1_docking",
+			"nav_pirate_smol_deck1_dorms",
+			"nav_pirate_smol_deck2_moebius",
+			"nav_pirate_smol_deck3_church",
+			"nav_pirate_smol_deck4_vip",
+			"nav_pirate_smol_deck4_gym",
+		)
+
+	.=..()
+
+
 //This fires, and the mission timer starts ticking, as soon as they leave Eris on course to the pirate base
 /datum/shuttle/autodock/multi/antag/pirate/announce_departure()
 	.=..()
@@ -431,3 +450,28 @@
 /obj/effect/shuttle_landmark/pirate/deck2_bar
 	name = "Section III of the Vessel Deck 2"
 	landmark_tag = "nav_pirate_deck2_bar"
+
+/obj/effect/shuttle_landmark/pirate/smol/deck1_docking
+	name = "Section III of the Vessel Deck 1"
+	landmark_tag = "nav_pirate_smol_deck1_docking"
+
+/obj/effect/shuttle_landmark/pirate/smol/deck1_dorms
+	name = "Section I of the Vessel Deck 1"
+	landmark_tag = "nav_pirate_smol_deck1_dorms"
+
+/obj/effect/shuttle_landmark/pirate/smol/deck2_moebius
+	name = "Section II of the Vessel Deck 2"
+	landmark_tag = "nav_pirate_smol_deck2_moebius"
+
+/obj/effect/shuttle_landmark/pirate/smol/deck3_church
+	name = "Section II of the Vessel Deck 3"
+	landmark_tag = "nav_pirate_smol_deck3_church"
+
+/obj/effect/shuttle_landmark/pirate/smol/deck4_vip
+	name = "Section I of the Vessel Deck 4"
+	landmark_tag = "nav_pirate_smol_deck4_vip"
+
+/obj/effect/shuttle_landmark/pirate/smol/deck4_gym
+	name = "Section II of the Vessel Deck 4"
+	landmark_tag = "nav_pirate_smol_deck4_gym"
+

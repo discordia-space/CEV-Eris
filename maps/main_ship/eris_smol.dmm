@@ -79210,6 +79210,10 @@
 	},
 /turf/floor/plating/under,
 /area/eris/maintenance/section1deck1central)
+"eAw" = (
+/obj/effect/shuttle_landmark/pirate/smol/deck1_dorms,
+/turf/space,
+/area/space)
 "eBA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/plating/under,
@@ -79673,6 +79677,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/wall,
 /area/eris/maintenance/substation/bridge)
+"fNJ" = (
+/obj/effect/shuttle_landmark/pirate/smol/deck4_gym,
+/turf/space,
+/area/space)
 "fPT" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass,
@@ -84906,6 +84914,10 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/reinforced,
 /area/eris/crew_quarters/fitness)
+"tcE" = (
+/obj/effect/shuttle_landmark/pirate/smol/deck3_church,
+/turf/space,
+/area/space)
 "tdl" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -84997,6 +85009,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/floor/tiled/white,
 /area/eris/medical/reception)
+"tnk" = (
+/obj/effect/shuttle_landmark/pirate/smol/deck2_moebius,
+/turf/space,
+/area/space)
 "tno" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/chef_recipes,
@@ -85218,6 +85234,10 @@
 "tLn" = (
 /turf/wall/reinforced,
 /area/eris/maintenance/substation/starboard)
+"tMn" = (
+/obj/effect/shuttle_landmark/pirate/smol/deck4_vip,
+/turf/space,
+/area/space)
 "tMv" = (
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass/plasma_reinforced,
@@ -85704,6 +85724,10 @@
 /obj/machinery/door/firedoor,
 /turf/wall/low/with_glass,
 /area/eris/rnd/xenobiology)
+"vaz" = (
+/obj/effect/shuttle_landmark/pirate/smol/deck1_docking,
+/turf/space,
+/area/space)
 "vdS" = (
 /turf/floor/tiled/dark/techfloor,
 /area/eris/crew_quarters/firing_range)
@@ -93092,7 +93116,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+fNJ
 pQa
 pQa
 pQa
@@ -103485,7 +103509,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+tMn
 pQa
 pQa
 pQa
@@ -129213,7 +129237,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+tcE
 pQa
 pQa
 pQa
@@ -136733,7 +136757,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+tnk
 pQa
 pQa
 pQa
@@ -159239,7 +159263,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+vaz
 pQa
 pQa
 pQa
@@ -172965,7 +172989,7 @@ pQa
 pQa
 pQa
 pQa
-pQa
+afl
 pQa
 pQa
 pQa
@@ -173885,9 +173909,9 @@ pQa
 pQa
 pQa
 pQa
+eAw
 pQa
 pQa
-afl
 pQa
 pQa
 pQa
