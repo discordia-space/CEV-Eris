@@ -346,9 +346,7 @@
 // Change the destination tags if we are on smol eris map
 /datum/shuttle/autodock/multi/antag/pirate/New()
 	// First zlevels are always Eris ones
-	testing("=== LEVEL [get_level_name(1)]")
 	if (dd_hasprefix(get_level_name(1), "Eris Smol"))
-		testing("=== UPDATE DESTINATION PIRATE")
 		destination_tags = list(
 			"nav_pirate_start",
 			"nav_pirate_smol_deck1_docking",
