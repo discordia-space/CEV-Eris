@@ -159,3 +159,6 @@
 /datum/design/autolathe/tool/rpd
 	name = "rapid piping device"
 	build_path = /obj/item/rpd
+
+/datum/design/autolathe/tool/superglue
+	build_path = /obj/item/tool/tape_roll/glue
