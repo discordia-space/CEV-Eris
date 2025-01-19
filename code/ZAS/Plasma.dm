@@ -5,13 +5,9 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/PLASMA_DMG_NAME = "Plasma Damage Amount"
 	var/PLASMA_DMG_DESC = "Self Descriptive"
 
-	var/CLOTH_CONTAMINATION = 1
-	var/CLOTH_CONTAMINATION_NAME = "Cloth Contamination"
-	var/CLOTH_CONTAMINATION_DESC = "If this is on, plasma does damage by getting into cloth."
-
 	var/PLASMAGUARD_ONLY = 0
 	var/PLASMAGUARD_ONLY_NAME = "\"PlasmaGuard Only\""
-	var/PLASMAGUARD_ONLY_DESC = "If this is on, only biosuits and spacesuits protect against contamination and ill effects."
+	var/PLASMAGUARD_ONLY_DESC = "If this is on, only biosuits and spacesuits protect against ill effects."
 
 	var/GENETIC_CORRUPTION = 0
 	var/GENETIC_CORRUPTION_NAME = "Genetic Corruption Chance"
@@ -25,10 +21,6 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/EYE_BURNS_NAME = "Eye Burns"
 	var/EYE_BURNS_DESC = "Plasma burns the eyes of anyone not wearing eye protection."
 
-	var/CONTAMINATION_LOSS = 0.02
-	var/CONTAMINATION_LOSS_NAME = "Contamination Loss"
-	var/CONTAMINATION_LOSS_DESC = "How much toxin damage is dealt from contaminated clothing" //Per tick?  ASK ARYN
-
 	var/PLASMA_HALLUCINATION = 0
 	var/PLASMA_HALLUCINATION_NAME = "Plasma Hallucination"
 	var/PLASMA_HALLUCINATION_DESC = "Does being in plasma cause you to hallucinate?"
@@ -38,50 +30,11 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/N2O_HALLUCINATION_DESC = "Does being in sleeping gas cause you to hallucinate?"
 
 
-obj/var/contaminated = 0
-
-
-/obj/item/proc/can_contaminate()
-	//Clothing and backpacks can be contaminated.
-	if(flags & PLASMAGUARD) return 0
-	else if(istype(src,/obj/item/storage/backpack)) return 0 //Cannot be washed :(
-	else if(istype(src,/obj/item/clothing)) return 1
-
-/obj/item/proc/contaminate()
-	//Do a contamination overlay? Temporary measure to keep contamination less deadly than it was.
-	if(!contaminated)
-		contaminated = 1
-		overlays += contamination_overlay
-
-/obj/item/proc/decontaminate()
-	contaminated = 0
-	overlays -= contamination_overlay
-
-/mob/proc/contaminate()
-
-/mob/living/carbon/human/contaminate()
-	//See if anything can be contaminated.
-
-	if(!pl_suit_protected())
-		suit_contamination()
-
-	if(!pl_head_protected())
-		if(prob(1)) suit_contamination() //Plasma can sometimes get through such an open suit.
-
-//Cannot wash backpacks currently.
-//	if(istype(back,/obj/item/storage/backpack))
-//		back.contaminate()
-
 /mob/proc/pl_effects()
 
 /mob/living/carbon/human/pl_effects()
 	//Handles all the bad things plasma can do.
-
-	//Contamination
-	if(vsc.plc.CLOTH_CONTAMINATION) contaminate()
-
-	//Anything else requires them to not be dead.
-	if(stat >= 2)
+	if(stat >= DEAD)
 		return
 
 	//Burn skin if exposed.
@@ -123,12 +76,8 @@ obj/var/contaminated = 0
 
 /mob/living/carbon/human/proc/pl_head_protected()
 	//Checks if the head is adequately sealed.
-	if(head)
-		if(vsc.plc.PLASMAGUARD_ONLY)
-			if(head.flags & PLASMAGUARD)
-				return 1
-		else if(head.body_parts_covered & EYES)
-			return 1
+	if(head && (head.body_parts_covered & EYES))
+		return 1
 	return 0
 
 /mob/living/carbon/human/proc/pl_suit_protected()
@@ -137,17 +86,9 @@ obj/var/contaminated = 0
 	for(var/obj/item/protection in list(wear_suit, gloves, shoes))
 		if(!protection)
 			continue
-		if(vsc.plc.PLASMAGUARD_ONLY && !(protection.flags & PLASMAGUARD))
-			return 0
 		coverage |= protection.body_parts_covered
 
 	if(vsc.plc.PLASMAGUARD_ONLY)
 		return 1
 
 	return BIT_TEST_ALL(coverage, UPPER_TORSO|LOWER_TORSO|LEGS|ARMS)
-
-/mob/living/carbon/human/proc/suit_contamination()
-	//Runs over the things that can be contaminated and does so.
-	if(w_uniform) w_uniform.contaminate()
-	if(shoes) shoes.contaminate()
-	if(gloves) gloves.contaminate()

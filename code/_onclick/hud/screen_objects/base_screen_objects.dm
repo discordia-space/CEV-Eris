@@ -452,7 +452,8 @@
 	if(!ishuman(parentmob))
 		return FALSE
 	var/mob/living/carbon/human/H = parentmob
-	H?.sanity?.ui_interact(H)
+	H.sanity.ui_interact(H)
+	H.sanity.print_desires()
 	return TRUE
 
 /obj/screen/sanity_alt
@@ -527,7 +528,7 @@
 	if(!ishuman(parentmob))
 		return FALSE
 	var/mob/living/carbon/human/H = parentmob
-	H.nano_ui_interact(H)
+	H.sanity.ui_interact(H)
 	H.sanity.print_desires()
 	return	TRUE
 

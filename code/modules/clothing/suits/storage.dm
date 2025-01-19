@@ -79,11 +79,6 @@
 
 	return ..()
 
-/obj/item/clothing/suit/storage/toggle/robe/decontaminate()
-	if(hood) hood.decontaminate()
-
-	return ..()
-
 /obj/item/clothing/suit/storage/toggle/robe/make_young()
 	..()
 	if(hood) hood.make_young()
@@ -126,7 +121,7 @@
 	set name = "Toggle Hood"
 	set category = "Object"
 	set src in usr
-		
+
 	if(!isliving(loc))
 		return
 
