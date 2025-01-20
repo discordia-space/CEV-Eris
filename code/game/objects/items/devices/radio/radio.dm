@@ -93,6 +93,8 @@ var/global/list/default_medbay_channels = list(
 	for (var/ch_name in channels)
 		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
+	return INITIALIZE_HINT_LATELOAD
+
 /obj/item/device/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
 	add_fingerprint(user)
