@@ -78,10 +78,6 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	var/ore
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
-	if(controller) // Unlink from controller
-		controller.golems -= src
-		controller = null
-
 	. = ..()
 
 	// Spawn ores

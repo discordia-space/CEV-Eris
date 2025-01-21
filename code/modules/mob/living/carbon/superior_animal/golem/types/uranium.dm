@@ -1,3 +1,5 @@
+#define GOLEM_URANIUM_HEAL_RANGE 7
+
 /mob/living/carbon/superior_animal/golem/uranium
 	name = "uranium golem"
 	desc = "A moving pile of rocks with uranium specks in it."
@@ -42,8 +44,7 @@
 
 // Special capacity of uranium golem: quickly repair all nearby golems.
 /mob/living/carbon/superior_animal/golem/uranium/handle_ai()
-	if(controller)
-		for(var/mob/living/carbon/superior_animal/golem/GO in controller.golems)
-			if(!istype(GO, /mob/living/carbon/superior_animal/golem/uranium))  // Uraniums do not regen
-				GO.adjustBruteLoss(-GOLEM_REGENERATION) // Regeneration
+	for(var/mob/living/carbon/superior_animal/golem/GO in range(GOLEM_URANIUM_HEAL_RANGE))
+		if(!istype(GO, /mob/living/carbon/superior_animal/golem/uranium))  // Uraniums do not regen
+			GO.adjustBruteLoss(-GOLEM_REGENERATION) // Regeneration
 	. = ..()

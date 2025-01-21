@@ -1,3 +1,5 @@
+#define ANSIBLE_TELEPORT_RANGE 7 //range from the ansible golem that the target can be teleported to, not the total distance the target can teleport
+
 /mob/living/carbon/superior_animal/golem/ansible
 	name = "ansible golem"
 	desc = "A moving pile of rocks with ansible crystals in it."
@@ -55,8 +57,8 @@
 /mob/living/carbon/superior_animal/golem/ansible/proc/teleport_target()
 
 	// Teleport target near random golem
-	if(target_mob && controller)
-		go_to_bluespace(target_mob.loc, 1, TRUE, target_mob, get_step(pick(controller.golems), pick(cardinal)), \
+	if(target_mob)
+		go_to_bluespace(target_mob.loc, 1, TRUE, target_mob, get_step(pick(/mob/living/carbon/superior_animal/golem in range(ANSIBLE_TELEPORT_RANGE)), pick(cardinal)), \
 						0, TRUE, null, null, 'sound/effects/teleport.ogg', 'sound/effects/teleport.ogg')
 
 /mob/living/carbon/superior_animal/golem/ansible/proc/focus_target()
@@ -75,3 +77,5 @@
 		teleport_cooldown = world.time
 		focus_target()
 	. = ..()
+
+#undef ANSIBLE_TELEPORT_RANGE
