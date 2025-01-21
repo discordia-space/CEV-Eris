@@ -43,7 +43,7 @@
 	// Cooldown of special ability
 	var/teleport_cooldown = 0
 
-/mob/living/carbon/superior_animal/golem/ansible/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
+/mob/living/carbon/superior_animal/golem/ansible/New()
 	..()
 	set_light(3, 3, "#82C2D8")
 

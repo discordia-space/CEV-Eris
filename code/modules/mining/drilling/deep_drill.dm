@@ -42,12 +42,6 @@
 		MATERIAL_PLASTIC = /obj/item/ore/coal
 		)
 
-	//Upgrades
-	var/harvest_speed
-	var/capacity
-	var/charge_use
-	var/radius
-
 /obj/machinery/mining/deep_drill/Initialize()
 	. = ..()
 	cave_gen = locate(/obj/cave_generator)
@@ -134,12 +128,13 @@
 		if(cave_connected)
 			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
 			return
+
 		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			var/repair_amount = ((health + DRILL_REPAIR_AMOUNT) < maxHealth) ? DRILL_REPAIR_AMOUNT : ((health + DRILL_REPAIR_AMOUNT) - maxHealth) //heal by the drill repair amount defined, unless that would go over max health, in which case do some math to avoid going over maxhealth
-				take_damage(-(repair_amount))  // Repair the drill to 33 percents
+			health = ((health + DRILL_REPAIR_AMOUNT) < maxHealth ? health + DRILL_REPAIR_AMOUNT : maxHealth) // increase health by the defined repair amount unless it would go over maxHealth, in which case just set heal to maxHealth instead.
+
 		return
 
 	if(!panel_open || cave_connected)
@@ -179,7 +174,7 @@
 	update_icon()
 
 /obj/machinery/mining/deep_drill/update_icon()
-	if(anchored && (check_surroundings() || !istype(get_turf(src), /turf/floor/asteroid))
+	if(anchored && (check_surroundings() || !istype(get_turf(src), /turf/floor/asteroid)))
 		icon_state = "mining_drill_error"
 	else if(cave_connected)
 		icon_state = "mining_drill_active"

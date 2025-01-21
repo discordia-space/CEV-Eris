@@ -32,7 +32,7 @@
 	// Uranium golem does not attack
 	viewRange = 0  // Cannot attack if it cannot see
 
-/mob/living/carbon/superior_animal/golem/uranium/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
+/mob/living/carbon/superior_animal/golem/uranium/New()
 	..()
 	set_light(3, 3, "#8AD55D")
 
