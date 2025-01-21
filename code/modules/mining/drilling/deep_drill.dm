@@ -1,5 +1,12 @@
-#define RADIUS 4
-#define DRILL_COOLDOWN 1 MINUTE
+#define DRILL_REPAIR_AMOUNT 500
+
+//these are defined because a few of them are used in multiple places and this makes it easier to work with them all at once
+#define DRILL_SHUTDOWN_TEXT_BROKEN "ERROR HP00: CRITICAL DAMAGE"
+#define DRILL_SHUTDOWN_TEXT_OBSTACLE "ERROR W411: OBSTACLE DETECTED"
+
+#define DRILL_SHUTDOWN_LOG_BROKEN "A cave system was collapsed because its associated drill was destroyed."
+#define DRILL_SHUTDOWN_LOG_OBSTACLE "A cave system was collapsed because its associated drill was too close to an obstacle."
+#define DRILL_SHUTDOWN_LOG_MANUAL "[key_name(user)] has collapsed an active cave system."
 
 /obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
@@ -49,9 +56,7 @@
 /obj/machinery/mining/deep_drill/Destroy()
 	if(cave_connected)
 		// In case the drill gets destroyed with an active cave system
-		log_and_message_admins("Collapsing active cave system as its associated drill got destroyed.")
-		cave_gen.initiate_collapse()
-		cave_connected = FALSE
+		shutdown_drill(DRILL_SHUTDOWN_TEXT_BROKEN,DRILL_SHUTDOWN_LOG_OBSTACLE)
 	if(cave_gen)
 		cave_gen = null
 	. = ..()
@@ -61,11 +66,11 @@
 		return
 
 	if(check_surroundings())
-		system_error("ERROR W411: OBSTACLE DETECTED")
+		shutdown_drill(DRILL_SHUTDOWN_TEXT_OBSTACLE,DRILL_SHUTDOWN_LOG_OBSTACLE)
 		return
 
 	if(health == 0)
-		system_error("ERROR HP00: CRITICAL DAMAGE")
+		shutdown_drill(DRILL_SHUTDOWN_TEXT_BROKEN,DRILL_SHUTDOWN_LOG_OBSTACLE)
 
 	//Drill through the flooring, if any.
 	if(istype(get_turf(src), /turf/floor/asteroid))
@@ -112,10 +117,10 @@
 		else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
 			to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
 			return
-		else if (check_surroundings())
+		else if (!anchored && check_surroundings()) // we only care about the terrain when anchoring, not the other way around, otherwise the drill gets stuck if the terrain under it changes (like if someone RCDs the asteroid tile under it)
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 			return
-		else if(!(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
+		else if(!anchored && !(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
 			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
 			return
 
@@ -125,8 +130,7 @@
 		return
 
 	// Repair the drill if it is damaged
-	var/damage = maxHealth - health
-	if(damage && (QUALITY_WELDING in I.tool_qualities))
+	if((health < maxHealth) && (QUALITY_WELDING in I.tool_qualities))
 		if(cave_connected)
 			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
 			return
@@ -134,12 +138,8 @@
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			if(damage < 0.33 * maxHealth)
-				take_damage(-damage)  // Completely repair the drill
-			else if(damage < 0.66 * maxHealth)
-				take_damage(-(0.66 * maxHealth - health))  // Repair the drill to 66 percents
-			else
-				take_damage(-(0.33 * maxHealth - health))  // Repair the drill to 33 percents
+			var/repair_amount = ((health + DRILL_REPAIR_AMOUNT) < maxHealth) ? DRILL_REPAIR_AMOUNT : ((health + DRILL_REPAIR_AMOUNT) - maxHealth) //heal by the drill repair amount defined, unless that would go over max health, in which case do some math to avoid going over maxhealth
+				take_damage(-(repair_amount))  // Repair the drill to 33 percents
 		return
 
 	if(!panel_open || cave_connected)
@@ -171,32 +171,15 @@
 				cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
 				update_icon()
 		else
-			if(!cave_gen.is_closed())  // If cave is already closed, something went wrong
-				log_and_message_admins("[key_name(user)] has collapsed an active cave system.")
-				cave_gen.initiate_collapse()
-			cave_connected = FALSE
-			update_icon()
+			shutdown_drill(null,DRILL_SHUTDOWN_LOG_MANUAL)
 
-		/* // Only if on mother load
-		active = !active
-		if(active)
-			var/turf/T = get_turf(loc)
-			GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
-			visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
-			last_use = world.time
-			need_update_field = TRUE
-		else
-			GC.stop()
-			GC = null
-			visible_message(SPAN_NOTICE("\The [src] shudders to a grinding halt."))
-		*/
 	else
 		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery with wires exposed is a bad idea."))
 
 	update_icon()
 
 /obj/machinery/mining/deep_drill/update_icon()
-	if(anchored && check_surroundings())
+	if(anchored && (check_surroundings() || !istype(get_turf(src), /turf/floor/asteroid))
 		icon_state = "mining_drill_error"
 	else if(cave_connected)
 		icon_state = "mining_drill_active"
@@ -204,30 +187,14 @@
 		icon_state = "mining_drill"
 	return
 
+/obj/machinery/mining/deep_drill/proc/shutdown_drill(displaytext,log)
 
-/obj/machinery/mining/deep_drill/RefreshParts()
-	..()
-	harvest_speed = 0
-	capacity = 0
-	charge_use = 37
-	radius = RADIUS
+	if(cave_gen.is_closed()) //easy sanity check
+		return
 
-	for(var/obj/item/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/stock_parts/micro_laser))
-			harvest_speed = P.rating
-		if(istype(P, /obj/item/stock_parts/matter_bin))
-			capacity = 200 * P.rating
-		if(istype(P, /obj/item/stock_parts/capacitor))
-			charge_use -= 8 * (P.rating - harvest_speed)
-			charge_use = max(charge_use, 0)
-		if(istype(P, /obj/item/stock_parts/scanning_module))
-			radius = RADIUS + P.rating
-
-/obj/machinery/mining/deep_drill/proc/system_error(error)
-
-	if(error)
-		visible_message(SPAN_NOTICE("\The [src] flashes with '[error]' and shuts down!"))
-	log_and_message_admins("An active cave system was collapsed.")
+	if(displaytext)
+		visible_message(SPAN_NOTICE("\The [src] flashes with '[displaytext]' and shuts down!"))
+		log_and_message_admins(log)
 	cave_gen.initiate_collapse()
 	cave_connected = FALSE
 	update_icon()
@@ -253,7 +220,7 @@
 /obj/machinery/mining/deep_drill/take_damage(value)
 	health = min(max(health - value, 0), maxHealth)
 	if(health == 0)
-		system_error("critical damage")
+		shutdown_drill("critical damage")
 		if(prob(10)) // Some chance that the drill completely blows up
 			var/turf/O = get_turf(src)
 			if(!O) return
@@ -274,5 +241,12 @@
 
 	..(user, extra_description)
 
-#undef RADIUS
-#undef DRILL_COOLDOWN
+#undef DRILL_REPAIR_AMOUNT
+
+#undef DRILL_SHUTDOWN_TEXT_BROKEN
+#undef DRILL_SHUTDOWN_TEXT_OBSTACLE
+
+#undef DRILL_SHUTDOWN_LOG_BROKEN
+#undef DRILL_SHUTDOWN_LOG_OBSTACLE
+#undef DRILL_SHUTDOWN_LOG_MANUAL
+
