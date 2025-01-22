@@ -169,7 +169,7 @@
 				var/turf/T = get_turf(loc)
 				cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
 	else
-		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery with wires exposed seems like a bad idea."))
+		to_chat(user, SPAN_NOTICE("Operating a piece of industrial machinery with wires exposed seems like a bad idea."))
 
 	update_icon()
 

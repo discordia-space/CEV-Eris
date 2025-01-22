@@ -44,8 +44,8 @@
 
 // Special capacity of uranium golem: quickly repair all nearby golems.
 /mob/living/carbon/superior_animal/golem/uranium/handle_ai()
-	for(var/mob/living/carbon/superior_animal/golem/GO in range(GOLEM_URANIUM_HEAL_RANGE))
-		if(!istype(GO, /mob/living/carbon/superior_animal/golem/uranium))  // Uraniums do not regen
-			GO.adjustBruteLoss(-GOLEM_REGENERATION) // Brute Regeneration
-			GO.adjustFireLoss(-GOLEM_REGENERATION) // Burn Regeneration
+	for(var/mob/living/carbon/superior_animal/golem/G in range(GOLEM_URANIUM_HEAL_RANGE,get_turf(src)))
+		if(!istype(G, /mob/living/carbon/superior_animal/golem/uranium))  // Uraniums do not regen
+			G.adjustBruteLoss(-GOLEM_REGENERATION) // Brute Regeneration
+			G.adjustFireLoss(-GOLEM_REGENERATION) // Burn Regeneration
 	. = ..()
