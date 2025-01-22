@@ -197,7 +197,7 @@
 /obj/machinery/mining/deep_drill/proc/check_surroundings()
 	// Check if there are no walls around the drill
 	for(var/turf/F in block(locate(x - 1, y - 1, z), locate(x + 1, y + 1, z)))
-		if(!istype(F,/turf/floor))
+		if(!istype(F,/turf/floor) && !istype(F,/turf/space)) //if it's not a floor and not space it's probably an obstacle.
 			return TRUE
 	return FALSE
 
