@@ -73,7 +73,9 @@
 			T.gets_dug()
 	else if(istype(get_turf(src), /turf/floor))
 		var/turf/floor/T = get_turf(src)
-		T.explosion_act(200, null)
+		visible_message(SPAN_NOTICE("\The [src] drills straight through the [T]!"))
+		T.ChangeTurf(/turf/floor/asteroid) //turn it back into an asteroid, otherwise things like platings become underplatings which makes no sense
+
 
 /obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user as mob)
 
