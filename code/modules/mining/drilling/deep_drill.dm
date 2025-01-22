@@ -73,7 +73,7 @@
 			T.gets_dug()
 	else if(istype(get_turf(src), /turf/floor))
 		var/turf/floor/T = get_turf(src)
-		visible_message(SPAN_NOTICE("\The [src] drills straight through the [T]!"))
+		visible_message(SPAN_NOTICE("\The [src] drills straight through the [T], exposing the asteroid underneath!"))
 		T.ChangeTurf(/turf/floor/asteroid) //turn it back into an asteroid, otherwise things like platings become underplatings which makes no sense
 
 
@@ -147,15 +147,17 @@
 /obj/machinery/mining/deep_drill/attack_hand(mob/user as mob)
 
 	if(!panel_open)
-		if(health == 0)
-			to_chat(user, SPAN_NOTICE("The drill is too damaged to be turned on."))
-		else if(!anchored)
-			to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
-		else if(!cave_connected && check_surroundings())
-			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
-
-		if(!cave_connected)
-			if(cave_gen.is_generating())
+		if(cave_connected) //there are no restrictions on turning off the drill besides the panel being shut.
+			shutdown_drill(null,DRILL_SHUTDOWN_LOG_MANUAL)
+			to_chat(user, SPAN_NOTICE("You turn off \the [src], collapsing the attached cave system."))
+		else
+			if(health == 0)
+				to_chat(user, SPAN_NOTICE("\The [src] is too damaged to turn on!"))
+			else if(!anchored)
+				to_chat(user, SPAN_NOTICE("\The [src] needs to be anchored to be turned on."))
+			else if(check_surroundings())
+				to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+			else if(cave_gen.is_generating())
 				to_chat(user, SPAN_WARNING("A cave system is already being dug."))
 			else if(cave_gen.is_opened())
 				to_chat(user, SPAN_WARNING("A cave system is already being explored."))
@@ -163,15 +165,11 @@
 				to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
 			else if(!cave_gen.check_cooldown())
 				to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
-			else
+			else //if we've gotten this far all the checks have succeeded so we can turn it on and gen a cave
 				var/turf/T = get_turf(loc)
 				cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
-				update_icon()
-		else
-			shutdown_drill(null,DRILL_SHUTDOWN_LOG_MANUAL)
-
 	else
-		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery with wires exposed is a bad idea."))
+		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery with wires exposed seems like a bad idea."))
 
 	update_icon()
 
