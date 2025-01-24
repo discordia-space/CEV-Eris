@@ -138,7 +138,6 @@
 	. = ..()
 	radio_conn = SSradio.add_object(src, BLAST_DOOR_FREQ, RADIO_BLASTDOORS)
 	AddComponent(/datum/component/overlay_manager)
-	return INITIALIZE_HINT_LATELOAD
 
 /// Update status at initialization!
 /obj/machinery/button/remote/blast_door/LateInitialize()
