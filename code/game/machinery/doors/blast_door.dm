@@ -88,7 +88,7 @@
 	if(stat & NOPOWER)
 		return
 	/// prevent command spam
-	if(last_message > world.timeofday)
+	if(last_message > world.time)
 		return
 	switch(signal.data["message"])
 		if("DATA_DOOR_OPENED")
@@ -109,7 +109,7 @@
 			broadcast_status()
 		if("CMD_DOOR_STATE")
 			broadcast_status()
-	last_message = world.timeofday + 1 SECONDS
+	last_message = world.time + 1 SECONDS
 
 // Proc: Bumped()
 // Parameters: 1 (AM - Atom that tried to walk through this object)
