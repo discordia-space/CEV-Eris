@@ -1,4 +1,0 @@
-author: MLGTASTICa
-delete-after: true
-changes:
-  - bugfix: Fixed Blast Doors refusing to work past 24:00 GMT
