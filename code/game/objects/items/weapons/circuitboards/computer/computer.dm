@@ -18,9 +18,6 @@
 	build_path = /obj/machinery/computer/borgupload
 	origin_tech = list(TECH_DATA = 4)
 
-/obj/item/electronics/circuitboard/med_data
-	name = T_BOARD("medical records console")
-	build_path = /obj/machinery/computer/med_data
 
 /obj/item/electronics/circuitboard/communications
 	name = T_BOARD("command and communications console")
@@ -33,9 +30,6 @@
 	build_path = /obj/machinery/computer/teleporter
 	origin_tech = list(TECH_DATA = 2, TECH_BLUESPACE = 2)
 
-/obj/item/electronics/circuitboard/secure_data
-	name = T_BOARD("security records console")
-	build_path = /obj/machinery/computer/secure_data
 
 /obj/item/electronics/circuitboard/atmos_alert
 	rarity_value = 13.3

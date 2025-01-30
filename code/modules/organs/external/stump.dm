@@ -1,6 +1,7 @@
 /obj/item/organ/external/stump
 	name = "limb stump"
 	nerve_struck = -1
+	nature = MODIFICATION_ORGANIC | MODIFICATION_REMOVED
 
 /obj/item/organ/external/stump/New(var/mob/living/carbon/holder, var/OD, var/obj/item/organ/external/limb)
 	if(istype(limb))
@@ -14,7 +15,7 @@
 	if(istype(limb))
 		max_damage = limb.max_damage
 		if(BP_IS_ROBOTIC(limb) && (!parent || BP_IS_ROBOTIC(parent)))
-			nature = MODIFICATION_SILICON
+			nature = MODIFICATION_SILICON | MODIFICATION_REMOVED
 
 
 /obj/item/organ/external/stump/get_tally()

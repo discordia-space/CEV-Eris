@@ -241,7 +241,6 @@ SUBSYSTEM_DEF(ticker)
 		if(!H.mind || player_is_antag(H.mind, only_offstation_roles = 1) || !SSjob.ShouldCreateRecords(H.mind.assigned_role))
 			continue
 		CreateModularRecord(H)
-	data_core.manifest()
 
 	CHECK_TICK
 

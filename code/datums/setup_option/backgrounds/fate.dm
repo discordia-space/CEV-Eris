@@ -26,7 +26,7 @@
 			You were always on the move, looking for a brighter future on the other side. \
 			And because of that you never specialised as much as you should, but have broader array of other skills."
 
-	perks = list(PERK_FREELACER)
+	perks = list(PERK_FREELANCER)
 
 /datum/category_item/setup_option/background/fate/nihilist
 	name = "Nihilist"

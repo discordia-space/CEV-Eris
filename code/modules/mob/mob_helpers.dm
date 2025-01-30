@@ -490,11 +490,11 @@ proc/is_blind(A)
 		if(id)
 			perpname = id.registered_name
 
-		var/datum/data/record/R = find_security_record("name", perpname)
-		if(check_records && !R)
+		var/datum/computer_file/report/crew_record/CR = get_crewmember_record(perpname)
+		if(check_records && (!CR || !CR.get_linkage_secRecord()))
 			threatcount += 4
 
-		if(check_arrest && R && (R.fields["criminal"] == "*Arrest*"))
+		if(check_arrest && CR && (CR?.get_criminalStatus() == "*Arrest*")) // why is paperwork's folly being translated to electronic format?
 			threatcount += 4
 
 	return threatcount

@@ -62,7 +62,7 @@
 	data["security_jobs"] = format_jobs(security_positions)
 	//data["exploration_jobs"] = format_jobs(exploration_positions)
 	data["service_jobs"] = format_jobs(civilian_positions)
-	data["supply_jobs"] = format_jobs(cargo_positions)
+	data["supply_jobs"] = format_jobs(guild_positions)
 	data["church_jobs"] = format_jobs(church_positions)
 	//data["civilian_jobs"] = format_jobs(civilian_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())

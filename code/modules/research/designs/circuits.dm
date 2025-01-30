@@ -36,11 +36,6 @@
 	sort_string = "MABBA"
 	category = CAT_MISC
 
-/datum/design/research/circuit/secdata
-	name = "security records console"
-	build_path = /obj/item/electronics/circuitboard/secure_data
-	sort_string = "DABAA"
-	category = CAT_COMP
 
 /datum/design/research/circuit/prisonmanage
 	name = "prisoner management console"
@@ -48,11 +43,6 @@
 	sort_string = "DACAA"
 	category = CAT_COMP
 
-/datum/design/research/circuit/med_data
-	name = "medical records console"
-	build_path = /obj/item/electronics/circuitboard/med_data
-	sort_string = "FAAAA"
-	category = CAT_COMP
 
 /datum/design/research/circuit/operating
 	name = "patient monitoring console"
