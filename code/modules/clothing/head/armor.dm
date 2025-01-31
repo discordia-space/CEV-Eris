@@ -107,7 +107,7 @@
 
 /obj/item/clothing/head/armor/helmet/technomancer/attackby(obj/item/W, mob/user)
 	if(QUALITY_BOLT_TURNING in W.tool_qualities)
-		if (icon_state == "technohelmet_visor")
+		if(icon_state == "technohelmet_visor")
 			icon_state = "technohelmet_googles"
 			to_chat(usr, "You reconfigure the [src]'s visor to look like a pair of goggles.")
 			return
