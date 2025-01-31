@@ -80,7 +80,8 @@
 
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "insulated technomancer helmet"
-	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight. The appearance of the visor can be changed with a wrench."
+	desc = "A piece of armor used in hostile work conditions to protect the head. Comes with a built-in flashlight."
+	description_info = "The appearance of the visor can be changed with a wrench."
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
 	flags_inv = BLOCKHEADHAIR|HIDEEARS|HIDEEYES|HIDEFACE
@@ -106,11 +107,11 @@
 
 /obj/item/clothing/head/armor/helmet/technomancer/attackby(obj/item/W, mob/user)
 	if(QUALITY_BOLT_TURNING in W.tool_qualities)
-		if(icon_state == "technohelmet_visor")
+		if (icon_state == "technohelmet_visor")
 			icon_state = "technohelmet_googles"
 			to_chat(usr, "You reconfigure the [src]'s visor to look like a pair of goggles.")
 			return
-		else if(icon_state == "technohelmet_googles")
+		else
 			icon_state = "technohelmet_visor"
 			to_chat(usr, "You reconfigure the [src]'s goggles to look like a visor.")
 			return
