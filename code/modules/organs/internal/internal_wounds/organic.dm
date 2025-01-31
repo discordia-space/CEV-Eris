@@ -258,14 +258,14 @@
 	severity_max = 1
 	organ_efficiency_multiplier = -0.10
 
-/datum/component/internal_wound/organic/debuff_tumor
+/datum/component/internal_wound/organic/debuff_tumor/default
 	name = "tumor"
 
-/datum/component/internal_wound/organic/debuff_tumor_15
+/datum/component/internal_wound/organic/debuff_tumor/t15
 	name = "tumor"
 	organ_efficiency_multiplier = -0.15
 
-/datum/component/internal_wound/organic/debuff_tumor_5
+/datum/component/internal_wound/organic/debuff_tumor/t5
 	name = "tumor"
 	organ_efficiency_multiplier = -0.05
 
