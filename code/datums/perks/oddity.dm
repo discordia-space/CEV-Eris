@@ -65,15 +65,6 @@
 	desc = "You cling to railings and low walls, climb faster, and get up after diving or sliding sooner."
 	icon_state = "parkour" //https://game-icons.net/1x1/delapouite/jump-across.html
 
-/datum/perk/oddity/parkour/assign(mob/living/carbon/human/H)
-	if(..())
-		holder.mod_climb_delay -= 0.5
-
-/datum/perk/oddity/parkour/remove()
-	if(holder)
-		holder.mod_climb_delay += 0.5
-	..()
-
 /datum/perk/oddity/charming_personality
 	name = "Charming Personality"
 	desc = "A little wink and a confident smile goes far in this place. People are more comfortable with your company. \

@@ -161,9 +161,9 @@ var/intercom_range_display_status = 0
 	if(!check_rights(R_DEBUG)) return
 	testZAScolors_remove()
 
-	var/turf/simulated/location = get_turf(usr)
+	var/turf/location = get_turf(usr)
 
-	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
+	if(!istype(location, /turf)) // We're in space, let's not cause runtimes.
 		to_chat(usr, "\red this debug tool cannot be used from space")
 		return
 

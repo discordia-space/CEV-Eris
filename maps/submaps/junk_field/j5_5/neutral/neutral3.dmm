@@ -5,33 +5,32 @@
 /turf/template_noop,
 /area/template_noop)
 "b" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "c" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 "d" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "e" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "f" = (
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "g" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "l" = (
 /turf/template_noop,
 /area/template_noop)
 "N" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
+/turf/wall/low/with_glass/smart,
 /area/template_noop)
 
 (1,1,1) = {"

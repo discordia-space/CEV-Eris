@@ -64,7 +64,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 	var/list/possible_turfs = list()
 	//Now lets look at all the floors
-	for (var/turf/simulated/floor/F in viewlist)
+	for (var/turf/floor/F in viewlist)
 
 
 		//No being under a low wall
@@ -388,7 +388,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	while (i < plantspread_burrows_num && sorted.len)
 		var/obj/structure/burrow/C = sorted[1] //Grab the first element
 		sorted.Cut(1,2)//And remove it from the list
-		var/turf/simulated/T = get_turf(C)
+		var/turf/T = get_turf(C)
 
 
 		//It already has plants, no good

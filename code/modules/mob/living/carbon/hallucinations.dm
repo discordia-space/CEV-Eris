@@ -200,7 +200,7 @@
 
 /datum/hallucination/mirage/start()
 	var/list/possible_points = list()
-	for(var/turf/simulated/floor/F in view(holder, world.view+1))
+	for(var/turf/floor/F in view(holder, world.view+1))
 		possible_points += F
 	if(possible_points.len)
 		for(var/i = 1 to number)

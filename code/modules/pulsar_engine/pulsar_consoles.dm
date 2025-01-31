@@ -193,6 +193,8 @@
 		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.
 
 	portal = locate() in get_area(src)
+	if(portal)
+		portal_active = TRUE
 
 /obj/machinery/power/pulsar_power_bridge/Process()
 	if(powernet && pulsar_console)
@@ -302,7 +304,7 @@
 			icon_state = "pulsar_tank"
 
 		if(round(air_contents.get_total_moles()) >= 125)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/T = get_turf(src)
 			if(!T)
 				return
 			visible_message(SPAN_DANGER("[src] explodes violently and all of the gas starts pouring out!"))

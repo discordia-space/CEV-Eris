@@ -37,7 +37,7 @@
 /datum/random_map/noise/exoplanet/desert
 	descriptor = "desert exoplanet"
 	smoothing_iterations = 4
-	land_type = /turf/simulated/floor/exoplanet/desert
+	land_type = /turf/floor/exoplanet/desert
 
 	flora_prob = 5
 	large_flora_prob = 0
@@ -57,18 +57,17 @@
 
 /area/exoplanet/desert
 	ambience = list('sound/effects/wind/desert0.ogg','sound/effects/wind/desert1.ogg','sound/effects/wind/desert2.ogg','sound/effects/wind/desert3.ogg','sound/effects/wind/desert4.ogg','sound/effects/wind/desert5.ogg')
-	base_turf = /turf/simulated/floor/exoplanet/desert
+	base_turf = /turf/floor/exoplanet/desert
 
-/turf/simulated/floor/exoplanet/desert
+/turf/floor/exoplanet/desert
 	name = "sand"
 	dirt_color = "#ae9e66"
-	footstep_type = /decl/footsteps/sand
 
-/turf/simulated/floor/exoplanet/desert/New()
+/turf/floor/exoplanet/desert/New()
 	icon_state = "desert[rand(0,4)]"
 	..()
 
-/turf/simulated/floor/exoplanet/desert/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/turf/floor/exoplanet/desert/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if((temperature > T0C + 1700 && prob(5)) || temperature > T0C + 3000)
 		SetName("molten silica")
 		icon_state = "sandglass"

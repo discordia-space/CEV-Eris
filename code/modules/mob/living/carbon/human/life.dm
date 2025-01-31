@@ -750,13 +750,6 @@
 			if(stats.getPerk(PERK_ALCOHOLIC))
 				stats.removePerk(PERK_ALCOHOLIC_ACTIVE)
 
-		var/total_plasmaloss = 0
-		for(var/obj/item/I in src)
-			if(I.contaminated)
-				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
-		if(!(status_flags & GODMODE))
-			bloodstr.add_reagent("plasma", total_plasmaloss)
-
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 
@@ -813,6 +806,8 @@
 
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if(getOxyLoss() > (species.total_health/2))
+			if(stat == CONSCIOUS)
+				to_chat(src, SPAN_DANGER("You feel your consciousness become increasingly distant from the physical world."))
 			Paralyse(3)
 
 		if(hallucination_power)

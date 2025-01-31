@@ -95,7 +95,7 @@
 	color = "#FFFFFF"
 	taste_tag = list(TASTE_SLIMEY)
 
-/datum/reagent/organic/nutriment/flour/touch_turf(turf/simulated/T)
+/datum/reagent/organic/nutriment/flour/touch_turf(turf/T)
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 	return TRUE
@@ -167,7 +167,7 @@
 	color = "#302000"
 	taste_tag = list(TASTE_SLIMEY)
 
-/datum/reagent/organic/nutriment/cornoil/touch_turf(turf/simulated/T)
+/datum/reagent/organic/nutriment/cornoil/touch_turf(turf/T)
 	if(!istype(T))
 		return TRUE
 
@@ -1534,6 +1534,7 @@
 	..()
 	M.adjust_hallucination(-0.9 * effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, -2.5 * effect_multiplier)
+	M.add_chemical_effect(CE_ANTITOX, 4) //two times as good as dylo
 
 // Cocktails
 /datum/reagent/alcohol/acid_spit

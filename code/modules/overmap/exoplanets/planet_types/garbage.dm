@@ -39,7 +39,7 @@
 /datum/random_map/noise/exoplanet/garbage
 	descriptor = "garbage exoplanet"
 	smoothing_iterations = 4
-	land_type = /turf/simulated/floor/exoplanet/desert
+	land_type = /turf/floor/exoplanet/desert
 	flora_prob = 0.5
 	large_flora_prob = 0
 	flora_diversity = 2
@@ -83,18 +83,18 @@
 /datum/random_map/noise/exoplanet/garbage/get_appropriate_path(var/value)
 	var/v = noise2value(value)
 	if(v > 6)
-		return /turf/simulated/floor/exoplanet/concrete
+		return /turf/floor/exoplanet/concrete
 	return land_type
 
 /area/exoplanet/garbage
 	ambience = list('sound/effects/wind/desert0.ogg','sound/effects/wind/desert1.ogg','sound/effects/wind/desert2.ogg','sound/effects/wind/desert3.ogg','sound/effects/wind/desert4.ogg','sound/effects/wind/desert5.ogg')
-	base_turf = /turf/simulated/floor/exoplanet/desert
+	base_turf = /turf/floor/exoplanet/desert
 
-/turf/simulated/floor/exoplanet/concrete
+/turf/floor/exoplanet/concrete
 	name = "concrete"
 	desc = "Stone-like artificial material."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_state = "concrete"
 
-/turf/simulated/floor/exoplanet/concrete/update_icon()
+/turf/floor/exoplanet/concrete/update_icon()
 	return

@@ -60,9 +60,9 @@
 		return
 
 	if(!on_cooldown)
-		use_power = IDLE_POWER_USE
+		set_power_use(IDLE_POWER_USE)
 	else
-		use_power = ACTIVE_POWER_USE
+		set_power_use(ACTIVE_POWER_USE)
 		return
 
 	update_icon()

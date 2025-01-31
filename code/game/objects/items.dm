@@ -502,7 +502,7 @@ var/global/list/items_blood_overlay_by_type = list()
 					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and break
 					for(moves, moves<=3, ++moves)
 						//low damage for walls, medium for windows, fall over for railings
-						if(istype(get_step(grabbed, whip_dir), /turf/simulated/wall))
+						if(istype(get_step(grabbed, whip_dir), /turf/wall))
 							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
 							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
 							break

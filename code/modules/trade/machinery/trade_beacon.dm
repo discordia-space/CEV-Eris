@@ -4,6 +4,9 @@
 	anchored = TRUE
 	density = TRUE
 	var/entropy_value = 2
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 500
+	active_power_usage = 5000
 
 /obj/machinery/trade_beacon/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
@@ -19,6 +22,7 @@
 	do_sparks(5, 0, loc)
 	bluespace_entropy(entropy_value, get_turf(src))
 	playsound(loc, "sparks", 50, 1)
+	use_power(active_power_usage)
 
 /obj/machinery/trade_beacon/sending
 	name = "sending trade beacon"
@@ -63,14 +67,14 @@
 
 /obj/machinery/trade_beacon/receiving/proc/drop(drop_type)
 	var/list/floor = list()
-	for(var/turf/simulated/floor/F in block(locate(x - 2, y - 2, z), locate(x + 2, y + 2, z)))
+	for(var/turf/floor/F in block(locate(x - 2, y - 2, z), locate(x + 2, y + 2, z)))
 		if(F.contains_dense_objects(TRUE))
 			continue
 		floor += F
 	if(!length(floor))
 		return FALSE
 	activate()
-	var/turf/simulated/floor/pickfloor = pick(floor)
+	var/turf/floor/pickfloor = pick(floor)
 	if(ispath(drop_type, /obj/structure/closet))
 		var/mob/living/carbon/human/dude = locate(/mob/living/carbon/human) in pickfloor
 		if(dude)

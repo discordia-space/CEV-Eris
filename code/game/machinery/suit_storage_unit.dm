@@ -258,7 +258,7 @@
 	if(OCCUPANT && !locked)
 		locked = TRUE //Let's lock it for good measure
 
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 
 	update_icon()
 	updateUsrDialog()
@@ -289,7 +289,7 @@
 		locked = FALSE
 		eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
 
-	use_power = IDLE_POWER_USE
+	set_power_use(IDLE_POWER_USE)
 	isUV = FALSE //Cycle ends
 	update_icon()
 	updateUsrDialog()

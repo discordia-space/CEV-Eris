@@ -540,7 +540,7 @@
 					return
 
 
-				if(istype( next, /turf/simulated))
+				if(istype( next, /turf))
 					//world << "at ([x],[y]) moving to ([next.x],[next.y])"
 
 

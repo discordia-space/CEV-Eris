@@ -1,6 +1,16 @@
 import { scale, toFixed } from 'common/math';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Stack, Icon, LabeledList, NoticeBox, ProgressBar, Section, Tabs } from '../components';
+import {
+  Box,
+  Button,
+  Stack,
+  Icon,
+  LabeledList,
+  NoticeBox,
+  ProgressBar,
+  Section,
+  Tabs,
+} from '../components';
 import { flow } from 'common/fp';
 import { filter, sortBy } from 'common/collections';
 import { NtosWindow } from '../layouts';
@@ -22,12 +32,12 @@ export const NtosNetDownloader = (props, context) => {
   } = data;
   const all_categories = ['All'].concat(categories);
   const downloadpercentage = toFixed(
-    scale(downloadcompletion, 0, downloadsize) * 100
+    scale(downloadcompletion, 0, downloadsize) * 100,
   );
   const [selectedCategory, setSelectedCategory] = useLocalState(
     context,
     'category',
-    all_categories[0]
+    all_categories[0],
   );
   const items = flow([
     // This filters the list to only contain programs with category
@@ -40,7 +50,7 @@ export const NtosNetDownloader = (props, context) => {
     // This sorts all programs in the lists by name and compatibility
     sortBy(
       (program) => -program.compatible,
-      (program) => program.filedesc
+      (program) => program.filedesc,
     ),
   ])(programs);
   const disk_free_space = downloading
@@ -79,11 +89,13 @@ export const NtosNetDownloader = (props, context) => {
                     tooltip={`${downloadname}.prg downloaded`}
                   />
                 ))
-              }>
+              }
+            >
               <ProgressBar
                 value={downloading ? disk_used + downloadcompletion : disk_used}
                 minValue={0}
-                maxValue={disk_size}>
+                maxValue={disk_size}
+              >
                 <Box textAlign="left">
                   {`${disk_free_space} GQ free of ${disk_size} GQ`}
                 </Box>
@@ -98,7 +110,8 @@ export const NtosNetDownloader = (props, context) => {
                 <Tabs.Tab
                   key={category}
                   selected={category === selectedCategory}
-                  onClick={() => setSelectedCategory(category)}>
+                  onClick={() => setSelectedCategory(category)}
+                >
                   {category}
                 </Tabs.Tab>
               ))}
@@ -139,7 +152,8 @@ const Program = (props, context) => {
           width="48px"
           textAlign="right"
           color="label"
-          nowrap>
+          nowrap
+        >
           {program.size} GQ
         </Stack.Item>
         <Stack.Item shrink={0} width="134px" textAlign="right">

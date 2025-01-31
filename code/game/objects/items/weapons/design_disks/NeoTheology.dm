@@ -17,11 +17,11 @@
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
-		/datum/design/bioprinter/medical_supply,
+		/datum/design/bioprinter/ammo,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
 		/datum/design/bioprinter/engineering_material,
-		/datum/design/bioprinter/ammo,
+		/datum/design/bioprinter/medical_supply,
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
 		/datum/design/bioprinter/part
@@ -45,8 +45,7 @@
 	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/nt_svalinn,
-		/datum/design/bioprinter/nt_cells/small
+		/datum/design/autolathe/gun/nt_svalinn
 	)
 
 // Javelins & bucklers, speed upgrade TODO: light armor

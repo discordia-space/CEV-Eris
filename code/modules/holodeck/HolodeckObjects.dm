@@ -3,147 +3,147 @@
 // Holographic tables are in code/modules/tables/presets.dm
 // Holographic racks are in code/modules/tables/rack.dm
 
-/turf/simulated/floor/holofloor
+/turf/floor/holofloor
 	thermal_conductivity = 0
 
-/turf/simulated/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
+/turf/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
-/turf/simulated/floor/holofloor/explosion_act(target_power, explosion_handler/handler)
+/turf/floor/holofloor/explosion_act(target_power, explosion_handler/handler)
 	if(target_power > 800) //No fucks otherwise
 		take_damage(target_power / 2, BLAST)
 	return 0
 
-/turf/simulated/floor/holofloor/set_flooring()
+/turf/floor/holofloor/set_flooring()
 	return
 
-/turf/simulated/floor/holofloor/plating
+/turf/floor/holofloor/plating
 	icon = 'icons/turf/flooring/plating.dmi'
 	name = "plating"
 	icon_state = "plating"
 	initial_flooring = /decl/flooring/reinforced/plating
 
-/turf/simulated/floor/holofloor/plating/under
+/turf/floor/holofloor/plating/under
 	name = "underplating"
 	icon_state = "under"
 	icon = 'icons/turf/flooring/plating.dmi'
 	initial_flooring = /decl/flooring/reinforced/plating/under
 
-/turf/simulated/floor/holofloor/carpet
+/turf/floor/holofloor/carpet
 	name = "carpet"
 	icon = 'icons/turf/flooring/carpet.dmi'
 	icon_state = "carpet"
 	initial_flooring = /decl/flooring/carpet
 
-/turf/simulated/floor/holofloor/tiled
+/turf/floor/holofloor/tiled
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles_steel.dmi'
 	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/steel
 
-/turf/simulated/floor/holofloor/tiled/bar_dance
+/turf/floor/holofloor/tiled/bar_dance
 	icon_state = "bar_dance"
 	initial_flooring = /decl/flooring/tiling/steel/bar_light
 
-/turf/simulated/floor/holofloor/tiled/bar_flat
+/turf/floor/holofloor/tiled/bar_flat
 	icon_state = "bar_flat"
 	initial_flooring = /decl/flooring/tiling/steel/bar_flat
 
-/turf/simulated/floor/holofloor/tiled/bar_light
+/turf/floor/holofloor/tiled/bar_light
 	icon_state = "bar_light"
 	initial_flooring = /decl/flooring/tiling/steel/bar_light
 
-/turf/simulated/floor/holofloor/tiled/dark
+/turf/floor/holofloor/tiled/dark
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles_dark.dmi'
 	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/dark
 
-/turf/simulated/floor/holofloor/tiled/steel
+/turf/floor/holofloor/tiled/steel
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles_steel.dmi'
 	icon_state = "tiles"
 	initial_flooring = /decl/flooring/tiling/steel
 
-/turf/simulated/floor/holofloor/tiled/steel/gray_perforated
+/turf/floor/holofloor/tiled/steel/gray_perforated
 	icon_state = "gray_perforated"
 	initial_flooring = /decl/flooring/tiling/steel/gray_perforated
 
-/turf/simulated/floor/holofloor/wood
+/turf/floor/holofloor/wood
 	name = "wooden floor"
 	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "wood"
 	initial_flooring = /decl/flooring/wood
 
-/turf/simulated/floor/holofloor/grass
+/turf/floor/holofloor/grass
 	name = "lush grass"
 	icon = 'icons/turf/flooring/grass.dmi'
 	icon_state = "grass0"
 	initial_flooring = /decl/flooring/grass
 
-/turf/simulated/floor/holofloor/snow
+/turf/floor/holofloor/snow
 	name = "snow"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "snow"
 
-/turf/simulated/floor/holofloor/space
+/turf/floor/holofloor/space
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = "0"
 
-/turf/simulated/floor/holofloor/reinforced
+/turf/floor/holofloor/reinforced
 	icon = 'icons/turf/flooring/tiles.dmi'
 	initial_flooring = /decl/flooring/reinforced
 	name = "reinforced holofloor"
 	icon_state = "reinforced"
 
-/turf/simulated/floor/holofloor/space/New()
+/turf/floor/holofloor/space/New()
 	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 
-/turf/simulated/floor/holofloor/beach
+/turf/floor/holofloor/beach
 	desc = "Uncomfortably gritty for a hologram."
 	icon = 'icons/misc/beach.dmi'
 	initial_flooring = null
 
-/turf/simulated/floor/holofloor/beach/sand
+/turf/floor/holofloor/beach/sand
 	name = "sand"
 	icon_state = "desert"
 
-/turf/simulated/floor/holofloor/beach/coastline
+/turf/floor/holofloor/beach/coastline
 	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
 
-/turf/simulated/floor/holofloor/beach/water
+/turf/floor/holofloor/beach/water
 	name = "water"
 	icon_state = "seashallow"
 
-/turf/simulated/floor/holofloor/desert
+/turf/floor/holofloor/desert
 	name = "desert sand"
 	desc = "Uncomfortably gritty for a hologram."
 	icon_state = "asteroid"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	initial_flooring = null
 
-/turf/simulated/floor/holofloor/desert/New()
+/turf/floor/holofloor/desert/New()
 	..()
 	if(prob(10))
 		overlays += "asteroid[rand(0,9)]"
 
-/turf/simulated/open/holonofloor // Simulated nothingness
+/turf/open/holonofloor // Simulated nothingness
 
-/turf/simulated/open/holonofloor/attackby(obj/item/W as obj, mob/user as mob)
+/turf/open/holonofloor/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
-/turf/simulated/open/holonofloor/ChangeTurf(var/turf/N, var/tell_universe=1, var/force_lighting_update = 0)
-	if(N == /turf/space) // If we want to become space,
+/turf/open/holonofloor/ChangeTurf(new_turf_type, force_lighting_update)
+	if(new_turf_type == /turf/space) // If we want to become space,
 		var/area/A = get_area(src)
 		if(istype(A, /area/holodeck/source)) // Check if we are a holodeck source,
 			return // And return to prevent becoming space
 	..()
 
-/turf/simulated/open/holonofloor/update_air_properties()
+/turf/open/holonofloor/update_air_properties()
 	var/area/A = get_area(src)
 	if(istype(A, /area/holodeck/source)) // Check if we are a holodeck source,
 		return // deny air updates

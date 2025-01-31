@@ -1,18 +1,17 @@
 
-/turf/simulated/floor/exoplanet
+/turf/floor/exoplanet
 	name = "space land"
 	icon = 'icons/turf/desert.dmi'
 	icon_state = "desert"
 	has_resources = 1
-	footstep_type = /decl/footsteps/asteroid
 	var/diggable = 1
 	var/dirt_color = "#7c5e42"
 	initial_flooring = null
 /*
-/turf/simulated/floor/exoplanet/can_engrave()
+/turf/floor/exoplanet/can_engrave()
 	return FALSE
 */
-/turf/simulated/floor/exoplanet/New()
+/turf/floor/exoplanet/New()
 	if(config.use_overmap)
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E))
@@ -27,7 +26,7 @@
 				ChangeArea(src, E.planetary_area)
 	..()
 
-/turf/simulated/floor/exoplanet/attackby(obj/item/C, mob/user)
+/turf/floor/exoplanet/attackby(obj/item/C, mob/user)
 	/*if(diggable && istype(C,/obj/item/shovel))
 		visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
 		if(do_after(user, 50))
@@ -40,28 +39,26 @@
 		var/obj/item/stack/tile/T = C
 		if(T.use(1))
 			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-			ChangeTurf(/turf/simulated/floor, FALSE, FALSE, TRUE)
+			ChangeTurf(/turf/floor, FALSE, FALSE, TRUE)
 	else
 		..()*/
 
-/turf/simulated/floor/exoplanet/explosion_act(target_power, explosion_handler/handler)
+/turf/floor/exoplanet/explosion_act(target_power, explosion_handler/handler)
 	if(target_power > health)
 		ChangeTurf(get_base_turf_by_area(src))
 	. = ..()
 
 /*
-/turf/simulated/floor/exoplanet/water/is_flooded(lying_mob, absolute)
+/turf/floor/exoplanet/water/is_flooded(lying_mob, absolute)
 	. = absolute ? ..() : lying_mob*/
 
-/turf/simulated/floor/exoplanet/water/shallow
+/turf/floor/exoplanet/water/shallow
 	name = "shallow water"
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "seashallow"
-	movement_delay = 2
-	footstep_type = /decl/footsteps/water
 	var/reagent_type = /datum/reagent/water
 
-/turf/simulated/floor/exoplanet/water/shallow/attackby(obj/item/O, var/mob/living/user)
+/turf/floor/exoplanet/water/shallow/attackby(obj/item/O, var/mob/living/user)
 	var/obj/item/reagent_containers/RG = O
 	if (reagent_type && istype(RG) && RG.is_open_container() && RG.reagents)
 		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
@@ -69,14 +66,14 @@
 	else
 		return ..()
 /*
-/turf/simulated/floor/exoplanet/water/update_dirt()
+/turf/floor/exoplanet/water/update_dirt()
 	return	// Water doesn't become dirty
 */
-/turf/simulated/floor/exoplanet/Initialize()
+/turf/floor/exoplanet/Initialize()
 	. = ..()
 	update_icon(1)
 
-/turf/simulated/floor/exoplanet/update_icon(var/update_neighbors)
+/turf/floor/exoplanet/update_icon(var/update_neighbors)
 	cut_overlays()
 	if(LAZYLEN(decals))
 		overlays += decals
@@ -98,10 +95,10 @@
 		else if(update_neighbors)
 			turf_to_check.update_icon()
 
-/turf/simulated/floor/exoplanet/water/update_icon()
+/turf/floor/exoplanet/water/update_icon()
 	return
 
-/turf/simulated/planet_edge
+/turf/planet_edge
 	name = "world's edge"
 	desc = "Government didn't want you to see this!"
 	density = TRUE
@@ -110,10 +107,10 @@
 	icon = null
 	icon_state = null
 
-/turf/simulated/planet_edge/proc/MineralSpread()
+/turf/planet_edge/proc/MineralSpread()
 	return
 
-/turf/simulated/planet_edge/Initialize()
+/turf/planet_edge/Initialize()
 	. = ..()
 	var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 	if(!istype(E))
@@ -140,7 +137,7 @@
 	O.name = "distant terrain"
 	O.desc = "You need to come over there to take a better look."
 
-/turf/simulated/planet_edge/Bumped(atom/movable/A)
+/turf/planet_edge/Bumped(atom/movable/A)
 	. = ..()
 	var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 	if(!istype(E))
@@ -169,7 +166,7 @@
 
 
 // Straight copy from space.
-/turf/simulated/floor/exoplanet/attackby(obj/item/C as obj, mob/user as mob)
+/turf/floor/exoplanet/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
@@ -194,7 +191,7 @@
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
 				M.use(1)
-				ChangeTurf(/turf/simulated/floor/plating/under)
+				ChangeTurf(/turf/floor/plating/under)
 			return
 		else
 			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
@@ -207,6 +204,6 @@
 	else
 		..(C,user)
 
-/turf/simulated/floor/exoplanet/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
+/turf/floor/exoplanet/take_damage(var/damage, var/damage_type = BRUTE, var/ignore_resistance = FALSE)
 	// Exoplanet turfs are indestructible, otherwise they can be destroyed at some point and expose metal plating
 	return

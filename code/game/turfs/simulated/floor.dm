@@ -1,4 +1,4 @@
-/turf/simulated/floor
+/turf/floor
 	name = "plating"
 	icon = 'icons/turf/flooring/plating.dmi'
 	icon_state = "plating"
@@ -23,19 +23,19 @@
 	var/maxHealth = 100
 
 
-/turf/simulated/floor/Entered(atom/movable/AM, atom/old_loc)
+/turf/floor/Entered(atom/movable/AM, atom/old_loc)
 	..(AM, old_loc)
 	if (flooring)
 		flooring.Entered(AM, old_loc)
 
-/turf/simulated/floor/is_plating()
+/turf/floor/is_plating()
 	if (flooring)
 		return flooring.is_plating
 	else
 		//TODO: FIND OUT WHY ANYTHING COULD HAVE NULL FLOORING
 		return TRUE
 
-/turf/simulated/floor/New(newloc, floortype)
+/turf/floor/New(newloc, floortype)
 	if(!floortype && initial_flooring)
 		floortype = initial_flooring
 	if(floortype)
@@ -43,14 +43,12 @@
 	..(newloc)
 
 
-/turf/simulated/floor/Initialize()
-	turfs += src
+/turf/floor/Initialize()
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
 //Floors no longer update their icon in New, but instead update it here, after everything else is setup
-/turf/simulated/floor/LateInitialize(list/mapload_arg)
-	..()
+/turf/floor/LateInitialize(list/mapload_arg)
 	//At roundstart, we call update icon with update_neighbors set to false.
 	//So each floor tile will only work once
 	if (mapload_arg)
@@ -59,9 +57,11 @@
 		//If its not roundstart, then we call update icon with update_neighbors set to true.
 		//That will update surroundings for any floors that are created or destroyed during runtime
 		update_icon(TRUE)
+	if(flooring && (flooring.flags & TURF_REMOVE_CROWBAR))
+		add_statverb(/datum/statverb/remove_plating)
 
 //If the update var is false we don't call update icons
-/turf/simulated/floor/proc/set_flooring(var/decl/flooring/newflooring, var/update = TRUE)
+/turf/floor/proc/set_flooring(var/decl/flooring/newflooring, var/update = TRUE)
 	flooring = newflooring
 	name = flooring.name
 	maxHealth = flooring.health
@@ -75,7 +75,7 @@
 
 	levelupdate()
 
-/turf/simulated/floor/examine(mob/user, extra_description = "")
+/turf/floor/examine(mob/user, extra_description = "")
 	if(health < maxHealth)
 		if(health < (0.25 * maxHealth))
 			extra_description += SPAN_DANGER("It looks like it's about to collapse!")
@@ -87,10 +87,9 @@
 			extra_description += SPAN_WARNING("It has a few scuffs and scrapes")
 	..(user, extra_description)
 
-
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
-/turf/simulated/floor/proc/make_plating(var/place_product, var/defer_icon_update)
+/turf/floor/proc/make_plating(var/place_product, var/defer_icon_update, var/scraped)
 
 	overlays.Cut()
 	if(islist(decals))
@@ -105,7 +104,16 @@
 
 	if(flooring)
 		if(flooring.build_type && place_product)
-			new flooring.build_type(src)
+			var/obj/temp_tile = new flooring.build_type(src)
+			if(scraped && temp_tile)
+				var/materials = temp_tile.get_matter()
+				for(var/mat_name in materials)
+					var/material/material = get_material_by_name(mat_name)
+					if(!material)
+						continue
+
+					material.place_shard(src, materials[mat_name])
+				qdel(temp_tile)
 
 	//We attempt to get whatever should be under this floor
 	if(flooring)
@@ -116,14 +124,14 @@
 	ReplaceWithLattice() //IF there's nothing underneath, turn ourselves into an openspace
 
 
-/turf/simulated/floor/levelupdate()
+/turf/floor/levelupdate()
 	if (flooring)
 		for(var/obj/O in src)
 			O.hide(O.hides_under_flooring() && (flooring.flags & TURF_HIDES_THINGS))
 			SEND_SIGNAL_OLD(O, COMSIG_TURF_LEVELUPDATE, (flooring.flags & TURF_HIDES_THINGS))
 
 
-/turf/simulated/floor/proc/is_damaged()
+/turf/floor/proc/is_damaged()
 	if (broken || burnt || health < maxHealth)
 		return TRUE
 	return FALSE

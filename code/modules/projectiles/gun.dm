@@ -12,7 +12,7 @@
 		slot_back_str   = "back",
 		slot_s_store_str= "onsuit",
 		)
-	flags = CONDUCT
+	flags = CONDUCT|MOVE_NOTIFY
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	matter = list(MATERIAL_STEEL = 6)
 	w_class = ITEM_SIZE_NORMAL

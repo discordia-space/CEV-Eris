@@ -126,7 +126,7 @@
 		if(!target && targetdirection) // Building a bridge
 			var/turf/T = get_step(src, targetdirection)
 			while(T in range(src))
-				if(istype(T, /turf/space) || (istype(T, /turf/simulated/open) && locate(/obj/structure/lattice) in T))
+				if(istype(T, /turf/space) || (istype(T, /turf/open) && locate(/obj/structure/lattice) in T))
 					target = T
 					break
 				T = get_step(T, targetdirection)
@@ -137,16 +137,16 @@
 					continue
 				if(T in ignorelist)
 					continue
-				if(istype(T, /turf/space) || (istype(T, /turf/simulated/open) && locate(/obj/structure/lattice) in T))
+				if(istype(T, /turf/space) || (istype(T, /turf/open) && locate(/obj/structure/lattice) in T))
 					if(get_turf(T) == loc || prob(40)) // So they target the same tile all the time
 						target = T
-				if(improvefloors && istype(T, /turf/simulated/floor))
-					var/turf/simulated/floor/F = T
+				if(improvefloors && istype(T, /turf/floor))
+					var/turf/floor/F = T
 					if(!F.flooring && (get_turf(T) == loc || prob(40)))
 						target = T
 
 	if(emagged) // Time to griff
-		for(var/turf/simulated/floor/D in view(src))
+		for(var/turf/floor/D in view(src))
 			if(D.loc.name == "Space" || D.loc.name == "open space")
 				continue
 			if(D in ignorelist)
@@ -194,10 +194,10 @@
 	if(get_turf(A) != loc)
 		return
 
-	if(emagged && istype(A, /turf/simulated/floor)) // Emaged floor destroy
+	if(emagged && istype(A, /turf/floor)) // Emaged floor destroy
 		repairing = 1
 		update_icons()
-		var/turf/simulated/floor/F = A
+		var/turf/floor/F = A
 		var/obj/structure/catwalk/C = A
 		if(F.flooring)
 			visible_message(SPAN_WARNING("[src] begins to tear the floor tile from the floor!"))
@@ -213,7 +213,7 @@
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			if(do_after(src, 50, C))
-				if(istype(A, /turf/space) || istype(A, /turf/simulated/open))
+				if(istype(A, /turf/space) || istype(A, /turf/open))
 					new /obj/structure/lattice(locate(A.x, A.y, A.z)) // Spawning lattice under floorbot to allow it destroy more and more!
 				else
 					addTiles(1)
@@ -230,7 +230,7 @@
 		repairing = 0
 		update_icons()
 
-	else if(emagged && (istype(A, /turf/space) || istype(A, /turf/simulated/open)))  // Emaged nekowalk destroy
+	else if(emagged && (istype(A, /turf/space) || istype(A, /turf/open)))  // Emaged nekowalk destroy
 		if(locate(/obj/structure/catwalk, A))
 			var/obj/structure/catwalk/C = A
 			visible_message(SPAN_WARNING("[src] begins to dismatle \the [C.name]!"))
@@ -238,7 +238,7 @@
 			say(message)
 			playsound(loc, "robot_talk_heavy", 100, 0, 0)
 			if(do_after(src, 50, C))
-				if(istype(A, /turf/space) || istype(A, /turf/simulated/open))
+				if(istype(A, /turf/space) || istype(A, /turf/open))
 					new /obj/structure/lattice(locate(A.x, A.y, A.z)) // Spawning lattice under floorbot to allow it destroy more and more!
 				else
 					addTiles(1)
@@ -247,7 +247,7 @@
 			repairing = 0
 			update_icons()
 
-	else if(istype(A, /turf/space) || (istype(A, /turf/simulated/open) && locate(/obj/structure/lattice) in A))
+	else if(istype(A, /turf/space) || (istype(A, /turf/open) && locate(/obj/structure/lattice) in A))
 		var/building = 2
 		if(locate(/obj/structure/lattice, A) || locate(/obj/structure/catwalk, A))
 			building = 1
@@ -271,8 +271,8 @@
 		target = null
 		repairing = 0
 		update_icons()
-	else if(istype(A, /turf/simulated/floor))
-		var/turf/simulated/floor/F = A
+	else if(istype(A, /turf/floor))
+		var/turf/floor/F = A
 		if(!F.flooring && amount)
 			repairing = 1
 			update_icons()

@@ -107,7 +107,7 @@
 
 	if(GetComponent(/datum/component/internal_wound/organic/parenchyma))
 		owner.mutation_index++
-	
+
 	SEND_SIGNAL(src, COMSIG_ADDVAL)
 
 /obj/item/organ/internal/proc/handle_organ_eff()
@@ -125,7 +125,7 @@
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
 
-	var/wound_count = max(0, round(amount / (damage_type == BRUTE || damage_type == BURN ? 4 : 8)))	// At base values, every 8 points of damage is 1 wound, or 4 if brute or burn.
+	var/wound_count = max(0, ROUND_PROB(amount / (damage_type == BRUTE || damage_type == BURN ? 4 : 8)))	// At base values, every 8 points of damage is 1 wound, or 4 if brute or burn.
 
 	if(!wound_count)
 		return FALSE
@@ -211,7 +211,8 @@
 					break
 			if(BV)
 				BV.current_blood = max(BV.current_blood - blood_req, 0)
-			if(!damage && BV?.current_blood == 0)	//When all blood from the organ and blood vessel is lost,
+			var/datum/component/internal_wound/currentcomponent = GetExactComponent(/datum/component/internal_wound/organic/oxy/blood_loss)
+			if(!(BV?.current_blood) && !(currentcomponent?.name == "blood loss"))
 				add_wound(/datum/component/internal_wound/organic/oxy/blood_loss)
 
 		return

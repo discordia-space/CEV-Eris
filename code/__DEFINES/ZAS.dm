@@ -21,7 +21,7 @@
 #define SOUTHDOWN (SOUTH|DOWN)
 #define WESTDOWN (WEST|DOWN)
 
-#define TURF_HAS_VALID_ZONE(T) (istype(T, /turf/simulated) && T:zone && !T:zone:invalid)
+#define TURF_HAS_VALID_ZONE(T) (istype(T, /turf) && T:zone && !T:zone:invalid)
 
 #ifdef MULTIZAS
 
@@ -60,10 +60,10 @@ GLOBAL_LIST_INIT(csrfz_check, list(
 	} \
 	else if (B.z != A.z) { \
 		if (B.z < A.z) { \
-			ret = istype(A, /turf/simulated/open) ? ZONE_BLOCKED : BLOCKED; \
+			ret = istype(A, /turf/open) ? ZONE_BLOCKED : BLOCKED; \
 		} \
 		else { \
-			ret = istype(B, /turf/simulated/open) ? ZONE_BLOCKED : BLOCKED; \
+			ret = istype(B, /turf/open) ? ZONE_BLOCKED : BLOCKED; \
 		} \
 	} \
 	else if (A.blocks_air & ZONE_BLOCKED || B.blocks_air & ZONE_BLOCKED) { \
@@ -144,3 +144,12 @@ GLOBAL_LIST_INIT(gzn_check, list(
 	}
 
 #endif
+
+// Numbers are indexes in add_ZAS_debug_overlay()'s appearance_cache list, text is associated icon_state
+#define ZAS_DEBUG_OVERLAY_ZONE_ASSIGNED			1 // "assigned"
+#define ZAS_DEBUG_OVERLAY_ZONE_CREATED			2 // "created"
+#define ZAS_DEBUG_OVERLAY_ZONE_MERGED			3 // "merged"
+#define ZAS_DEBUG_OVERLAY_ZONE_INVALID			4 // "invalid"
+#define ZAS_DEBUG_OVERLAY_MARKED_FOR_UPDATE		5 // "mark"
+#define ZAS_DEBUG_OVERLAY_AIR_FULLY_BLOCKED		6 // "fullblock"
+#define ZAS_DEBUG_OVERLAY_AIR_DIRECTION_BLOCKED	7 // "block"

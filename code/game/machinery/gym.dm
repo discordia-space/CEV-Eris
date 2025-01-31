@@ -33,8 +33,7 @@
 
 /obj/machinery/gym/power_change()
 	..()
-	if(stat & BROKEN || stat & NOPOWER)
-		update_icon()
+	update_icon()
 
 /obj/machinery/gym/emag_act(remaining_charges, mob/user, emag_source)
 	emagged = TRUE
@@ -72,7 +71,7 @@
 	occupant.unset_machine()
 	occupant = null
 
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/gym/attack_hand(mob/user)
@@ -100,7 +99,7 @@
 
 	user.forceMove(src)
 	occupant = user
-	update_use_power(2)
+	set_power_use(ACTIVE_POWER_USE)
 	user.set_machine(src)
 
 	add_fingerprint(user)

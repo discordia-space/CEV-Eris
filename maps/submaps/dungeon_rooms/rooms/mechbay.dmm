@@ -1,68 +1,66 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
 /obj/machinery/conveyor/northeast{
 	id = 3
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "d" = (
 /obj/machinery/conveyor/east{
 	id = 3
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "e" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "f" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "g" = (
 /obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "h" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "i" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "j" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/crawler)
 "k" = (
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/crawler)
 "l" = (
 /obj/machinery/conveyor/north{
 	id = 3
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "m" = (
-/obj/structure/low_wall,
-/obj/effect/window_lwall_spawn,
-/turf/simulated/floor/tiled/techmaint,
+/turf/wall/low/with_glass,
 /area/crawler)
 "n" = (
 /obj/structure/table/onestar,
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "o" = (
 /obj/structure/railing/grey{
@@ -73,38 +71,38 @@
 	},
 /obj/item/storage/toolbox/mechanical,
 /obj/structure/table/rack,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "p" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/crawler)
 "q" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "r" = (
 /obj/machinery/mech_recharger,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "s" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/liquid_fuel,
 /obj/structure/reagent_dispensers/fueltank/huge/derelict,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/crawler)
 "t" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "u" = (
 /obj/machinery/conveyor/north{
 	id = 3
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "v" = (
 /obj/structure/railing/grey{
@@ -113,54 +111,54 @@
 /obj/machinery/conveyor_switch/oneway{
 	id = 3
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/crawler)
 "x" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "y" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "z" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "A" = (
 /obj/effect/floor_decal/industrial/loading,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "B" = (
 /obj/structure/largecrate,
 /obj/effect/floor_decal/industrial/loading{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "C" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "D" = (
 /obj/machinery/conveyor/north{
 	id = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "E" = (
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "F" = (
 /obj/structure/railing/grey{
@@ -169,95 +167,95 @@
 /obj/machinery/conveyor_switch/oneway{
 	id = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "G" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "H" = (
 /obj/machinery/conveyor/north{
 	id = 4
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "I" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "J" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "K" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "L" = (
 /obj/structure/salvageable/os/implant_container,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "M" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/crawler)
 "N" = (
 /obj/machinery/conveyor/northwest{
 	id = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "O" = (
 /obj/machinery/conveyor/west{
 	id = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "P" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "Q" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "R" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/item/storage/toolbox/electrical,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/crawler)
 "S" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "T" = (
 /mob/living/carbon/superior_animal/stalker/dual,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "U" = (
 /obj/spawner/tool/advanced/onestar/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "V" = (
 /obj/structure/table/onestar,
 /obj/spawner/pack/tech_loot/onestar,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "X" = (
 /obj/structure/table/onestar,
 /obj/spawner/tool_upgrade/rare/onestar,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "Y" = (
 /obj/structure/table/onestar,
 /obj/spawner/tool/advanced/onestar/low_chance,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 
 (1,1,1) = {"

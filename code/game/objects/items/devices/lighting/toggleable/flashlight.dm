@@ -3,6 +3,7 @@
 	dir = WEST
 	suitable_cell = /obj/item/cell/small
 	rarity_value = 5
+	flags = CONDUCT|MOVE_NOTIFY
 	var/tick_cost = 0.4
 
 	var/obj/effect/effect/light/light_spot
@@ -175,6 +176,7 @@
 /obj/item/device/lighting/toggleable/flashlight/dropped(mob/user as mob)
 	if(light_direction)
 		set_dir(light_direction)
+	..()
 
 /obj/item/device/lighting/toggleable/flashlight/afterattack(atom/A, mob/user)
 	var/turf/T = get_turf(A)

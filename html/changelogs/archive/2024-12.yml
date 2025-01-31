@@ -1,0 +1,12 @@
+2024-12-07:
+  Nyxical17:
+  - bugfix: Excelsior's heavy armor's pieces are blacklisted.
+2024-12-22:
+  AltHit:
+  - rscadd: Torn with ROB tiles now drop shards of material
+  - tweak: Shards now can be hammered, welded or glued depending on the material type
+  Nyxical17:
+  - bugfix: Fixed the missing sprite of the flashshell packet.
+  SirRichardFrancis:
+  - rscdel: Removed plasma contamination mechanic
+  - bugfix: Fixed atmos not working a lot of the time.

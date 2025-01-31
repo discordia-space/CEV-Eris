@@ -77,7 +77,6 @@
 	var/recoil_reduction_timer
 	var/falls_mod = 1
 	var/mob_bomb_defense = 0	// protection from explosives
-	var/mod_climb_delay = 1 // delay for climb
 	var/noise_coeff = 1 //noise coefficient
 
 	var/can_multiz_pb = FALSE

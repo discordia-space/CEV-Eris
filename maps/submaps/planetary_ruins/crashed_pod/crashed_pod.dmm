@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/crashed_pod)
 "ab" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/map_template/crashed_pod)
 "ac" = (
 /obj/machinery/atmospherics/unary/engine,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/crashed_pod)
 "ad" = (
 /obj/structure/shuttle/engine/heater{
@@ -16,8 +16,7 @@
 	icon_state = "heater"
 	},
 /obj/structure/girder,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/plasma_reinforced,
 /area/map_template/crashed_pod)
 "ah" = (
 /obj/machinery/alarm{
@@ -27,18 +26,18 @@
 	pixel_y = 0
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "ai" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/raisins,
 /obj/spawner/booze,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "ak" = (
 /obj/machinery/light/small{
@@ -46,7 +45,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "al" = (
 /obj/structure/sign/kiddieplaque{
@@ -55,13 +54,13 @@
 	pixel_y = 30
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "ao" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/tastybread,
 /obj/spawner/booze,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "ap" = (
 /obj/effect/decal/cleanable/dirt,
@@ -76,20 +75,20 @@
 	pixel_x = 27
 	},
 /obj/item/electronics/circuitboard/solar_control,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aq" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/wall_mounted/firecloset{
 	pixel_x = -27
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "ar" = (
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/space_heater,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "as" = (
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -103,7 +102,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "at" = (
 /obj/effect/decal/cleanable/dirt,
@@ -112,36 +111,36 @@
 	inputting = 1;
 	outputting = 1
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "au" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aw" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "ax" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/map_template/crashed_pod)
 "ay" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/map_template/crashed_pod)
 "aB" = (
 /obj/machinery/sleeper{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aC" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aE" = (
 /obj/machinery/sleeper{
@@ -149,14 +148,14 @@
 	},
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aF" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aG" = (
 /obj/structure/closet/crate,
@@ -208,18 +207,18 @@
 	amount = 50
 	},
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aH" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aI" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/effect/decal/cleanable/generic,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -229,7 +228,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aK" = (
 /obj/machinery/light/small{
@@ -240,28 +239,28 @@
 /obj/spawner/junkfood,
 /obj/item/trash/liquidfood,
 /obj/spawner/cloth/head,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aL" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aM" = (
 /obj/machinery/pipedispenser,
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/effect/decal/cleanable/generic,
 /obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aN" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aP" = (
 /obj/effect/decal/cleanable/dirt,
@@ -270,22 +269,22 @@
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
 /obj/item/solar_assembly,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aR" = (
 /obj/machinery/autolathe,
 /obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "aS" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/trash/tastybread,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aU" = (
 /obj/machinery/light/small{
@@ -293,25 +292,25 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aW" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aX" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aY" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "aZ" = (
 /obj/landmark/corpse/doctor,
@@ -323,13 +322,13 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/map_template/crashed_pod)
 "bc" = (
 /obj/landmark/corpse/engineer,
 /obj/structure/bed/chair/comfy/black,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/map_template/crashed_pod)
 "bd" = (
 /obj/structure/table/steel_reinforced,
@@ -340,7 +339,7 @@
 /obj/item/device/radio,
 /obj/spawner/toy/plushie,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/map_template/crashed_pod)
 "be" = (
 /obj/machinery/light/small{
@@ -351,7 +350,7 @@
 	pixel_x = -27
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bf" = (
 /obj/landmark/corpse/chef,
@@ -363,7 +362,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/map_template/crashed_pod)
 "bh" = (
 /obj/structure/window/reinforced{
@@ -371,32 +370,32 @@
 	},
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bi" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bj" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
 /obj/effect/decal/cleanable/dirt,
 /obj/spawner/booze,
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/map_template/crashed_pod)
 "bk" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bm" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
 /obj/spawner/junkfood,
 /obj/item/trash/liquidfood,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bn" = (
 /obj/structure/window/reinforced{
@@ -404,7 +403,7 @@
 	},
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bq" = (
 /obj/structure/closet/emcloset,
@@ -413,12 +412,12 @@
 	},
 /obj/item/tool/crowbar,
 /obj/item/tool/crowbar,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "br" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/microwave,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bu" = (
 /obj/structure/table/steel_reinforced,
@@ -428,7 +427,7 @@
 /obj/spawner/junkfood,
 /obj/machinery/reagentgrinder,
 /obj/item/reagent_containers/food/condiment/sugar,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bx" = (
 /obj/machinery/alarm{
@@ -441,38 +440,38 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bA" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bB" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bD" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bF" = (
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bH" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bI" = (
 /obj/structure/closet/crate,
@@ -481,13 +480,13 @@
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
 /obj/item/storage/briefcase/inflatable,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bJ" = (
 /obj/machinery/door/airlock/external{
 	name = "escape pod airlock"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bK" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -495,13 +494,13 @@
 /obj/effect/decal/cleanable/ash,
 /obj/item/trash/cigbutt/cigarbutt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bL" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "bM" = (
 /obj/structure/closet,
@@ -526,11 +525,11 @@
 /obj/spawner/cloth/under,
 /obj/spawner/cloth/under/low_chance,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bN" = (
 /obj/machinery/seed_extractor,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bO" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -540,11 +539,11 @@
 /obj/spawner/junkfood,
 /obj/spawner/booze/low_chance,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bP" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bQ" = (
 /obj/structure/closet,
@@ -568,7 +567,7 @@
 /obj/spawner/cloth/under,
 /obj/spawner/cloth/under/low_chance,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bR" = (
 /obj/structure/table/steel_reinforced,
@@ -577,7 +576,7 @@
 /obj/spawner/techpart/low_chance,
 /obj/spawner/techpart/low_chance,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bS" = (
 /obj/effect/floor_decal/industrial/danger,
@@ -588,14 +587,14 @@
 /obj/item/clothing/suit/space/emergency,
 /obj/item/tank/emergency_oxygen/double,
 /obj/item/tank/emergency_oxygen/double,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bT" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/light/small,
 /obj/item/tool/crowbar,
 /obj/item/tool/crowbar,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bU" = (
 /obj/structure/closet,
@@ -616,7 +615,7 @@
 /obj/spawner/cloth/under,
 /obj/spawner/cloth/under/low_chance,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "bV" = (
 /obj/structure/table/rack,
@@ -629,7 +628,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bW" = (
 /obj/structure/closet/crate/medical,
@@ -647,7 +646,7 @@
 /obj/item/reagent_containers/syringe,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/pill_bottle/antitox,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bX" = (
 /obj/structure/closet/crate,
@@ -684,7 +683,7 @@
 /obj/spawner/toolbox,
 /obj/spawner/toolbox,
 /obj/spawner/toolbox,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bY" = (
 /obj/structure/closet/crate/freezer/rations,
@@ -712,12 +711,12 @@
 /obj/item/reagent_containers/food/snacks/liquidfood,
 /obj/item/reagent_containers/food/snacks/liquidfood,
 /obj/item/reagent_containers/food/snacks/liquidfood,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "bZ" = (
 /obj/machinery/power/port_gen/pacman/super,
 /obj/machinery/light/small,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "ca" = (
 /obj/structure/table/steel_reinforced,
@@ -726,7 +725,7 @@
 /obj/spawner/booze,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/pen,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/map_template/crashed_pod)
 "cb" = (
 /obj/spawner/techpart,
@@ -738,7 +737,7 @@
 /obj/spawner/techpart/low_chance,
 /obj/structure/closet/crate,
 /obj/machinery/light/small,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 "cc" = (
 /obj/structure/table/steel_reinforced,
@@ -758,7 +757,7 @@
 /obj/item/pen/blue,
 /obj/item/pen,
 /obj/item/pen/red,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "cd" = (
 /obj/structure/closet/crate/hydroponics,
@@ -782,11 +781,11 @@
 /obj/item/seeds/whitebeetseed,
 /obj/item/storage/bag/produce,
 /obj/item/seeds/bananaseed,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/map_template/crashed_pod)
 "zb" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/crashed_pod)
 
 (1,1,1) = {"

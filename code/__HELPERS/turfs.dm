@@ -7,10 +7,10 @@
 	return mloc
 
 /proc/iswall(turf/T)
-	return (istype(T, /turf/simulated/wall) || istype(T, /turf/unsimulated/wall) || istype(T, /turf/simulated/shuttle/wall))
+	return (istype(T, /turf/wall) || istype(T, /turf/shuttle/wall))
 
 /proc/isfloor(turf/T)
-	return (istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
+	return (istype(T, /turf/floor) || istype(T, /turf/shuttle/floor))
 
 //Edit by Nanako
 //This proc is used in only two places, ive changed it to make more sense
@@ -24,6 +24,15 @@
 	for(var/atom/A in T)
 		if(istype(A, /obj/structure/cable) || istype(A, /obj/machinery/atmospherics/pipe))
 			return FALSE
+		if(A.density)
+			return FALSE
+	return TRUE
+
+//A coppy of a proc above because sometimes you actually need to check if turf is clear no matter if it has wires or pipes
+/proc/turf_clear_ignore_cables(turf/T)
+	if (T.density)
+		return FALSE
+	for(var/atom/A in T)
 		if(A.density)
 			return FALSE
 	return TRUE
@@ -122,7 +131,7 @@
 		if (A.flags & AREA_FLAG_EXTERNAL)
 			return TRUE
 
-		else if (istype(U, /turf/space) || istype(U, /turf/simulated/floor/hull))
+		else if (istype(U, /turf/space) || istype(U, /turf/floor/hull))
 			return TRUE
 
 	return FALSE

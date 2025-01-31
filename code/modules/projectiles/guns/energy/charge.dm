@@ -11,8 +11,14 @@
 
 /datum/firemode/charge/update(var/force_state = null)
 	var/mob/living/L
-	if (gun && gun.is_held())
-		L = gun.loc
+	if (gun)
+		// bit of a hack here, but we want mounted systems to work properly
+		if (istype(gun.loc, /obj/item/mech_equipment/mounted_system))
+			var/obj/item/mech_equipment/mounted_system/MS = gun.loc
+			if(MS.owner)
+				L = MS.owner.get_mob() // this will only work for one pilot but the only fix is to rewrite everything AHHHHH I HATE THIS
+		else if (gun.is_held())
+			L = gun.loc
 
 	var/enable = FALSE
 	//Force state is used for forcing it to be disabled in circumstances where it'd normally be valid
@@ -22,9 +28,17 @@
 
 		//First of all, lets determine whether we're enabling or disabling the click handler
 
+		// Mech systems skip hand check
+		var/skip_hand_check = FALSE
+		if(istype(gun.loc, /obj/item/mech_equipment/mounted_system))
+			var/obj/item/mech_equipment/mounted_system/MS = gun.loc
+			if(MS.owner)
+				var/mob/living/exosuit/ES = MS.owner
+				if(ES.selected_system == MS)
+					skip_hand_check = TRUE
 
 		//We enable it if the gun is held in the user's active hand and the safety is off
-		if (L.get_active_hand() == gun)
+		if (skip_hand_check || L.get_active_hand() == gun)
 			//Lets also make sure it can fire
 			var/can_fire = TRUE
 
@@ -105,7 +119,7 @@
 
 /obj/item/gun/energy/proc/add_charge(var/mob/living/user)
 	deltimer(overcharge_timer)
-	if(get_holding_mob() == user && get_cell() && cell.checked_use(1))
+	if((get_holding_mob() == user || istype(loc, /obj/item/mech_equipment/mounted_system)) && get_cell() && cell.checked_use(1))
 		overcharge_level = min(overcharge_max, overcharge_level + get_overcharge_add(user))
 		set_light(2, overcharge_level/2, "#ff0d00")
 		if(overcharge_level < overcharge_max)
@@ -125,7 +139,8 @@
 	var/overcharge_add = overcharge_level_to_mult()
 	damage_multiplier += overcharge_add
 	penetration_multiplier += overcharge_add
-	if(overcharge_level > 2 && cell.checked_use(overcharge_level))
+	// minimum overcharge is based on overcharge max. initial is used so that upgrades don't also raise min. possibly move to separate variable?
+	if(overcharge_level > initial(overcharge_max) / 2 && cell.checked_use(overcharge_level))
 		Fire(target, user)
 	else
 		visible_message(SPAN_WARNING("\The [src] sputters."))
