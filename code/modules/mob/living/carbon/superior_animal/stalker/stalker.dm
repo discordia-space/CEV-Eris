@@ -67,7 +67,7 @@
 /mob/living/carbon/superior_animal/stalker/Move()
 	..()
 	if(!isinspace())
-		playsound(src, 'sound/mechs/Mech_Step.ogg', 50, 1) // DEAL UNTESTED
+		playsound(src, 'sound/mechs/Mech_Step.ogg', 50, 1)
 
 /mob/living/carbon/superior_animal/stalker/death()
 	. = ..()
