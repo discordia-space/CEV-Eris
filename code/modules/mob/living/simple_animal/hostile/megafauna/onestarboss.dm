@@ -1,5 +1,4 @@
 
-*/
 #define OS_BOSS_SHOTGUN		1
 #define OS_BOSS_SNIPER		2
 #define OS_BOSS_ROCKET		3
@@ -23,6 +22,7 @@
 	var/is_jittery = 0
 	var/jitteriness
 	var/doing_something = FALSE // mech should not multitask like I do
+	var/hologram_exists = FALSE
 	var/mobstospawn = list(
 		/mob/living/simple_animal/hostile/onestar_custodian/engineer,
 		/mob/living/simple_animal/hostile/onestar_custodian,
@@ -34,7 +34,7 @@
 		/mob/living/carbon/superior_animal/stalker/,
 		)
 	var/static/list/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MINIGUN, OS_BOSS_SPAWN_BOTS) // Shotgun, sniper, rockets, you get the drill
-	var/action = OS_BOSS_SHOTGUN //action has to be some kind of default before it will be changed at the start of first attack
+	var/action = OS_BOSS_SHOTGUN
 
 	health = 1700
 	maxHealth = 1700
@@ -50,13 +50,6 @@
 
 	wander = FALSE //No more sleepwalking
 
-/*/particles/mecha_smoke/
-	icon = 'icons/effects/smoke.dmi'
-	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
-	width = 100
-	height = 200
-	count = 1000
-	spawning = 3
 /mob/living/simple_animal/hostile/megafauna/one_star/Move()
 	..()
 	if(!isinspace())
