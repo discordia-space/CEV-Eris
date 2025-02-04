@@ -7,3 +7,9 @@
 	name = "low chance random techpart"
 	icon_state = "tech-orange-low"
 	spawn_nothing_percentage = 60
+
+/obj/spawner/techpart/onestar
+	name = "random techpart"
+	icon_state = "tech-orange"
+	allow_blacklist = TRUE
+	tags_to_spawn = list("stock_parts_os")
