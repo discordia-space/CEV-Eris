@@ -9,7 +9,7 @@
 	spawn_nothing_percentage = 60
 
 /obj/spawner/techpart/onestar
-	name = "random techpart"
+	name = "random onestar techpart"
 	icon_state = "tech-orange"
 	allow_blacklist = TRUE
-	tags_to_spawn = list("stock_parts_os")
+	tags_to_spawn = list(SPAWN_STOCK_PARTS_OS)
