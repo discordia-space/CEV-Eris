@@ -1994,6 +1994,7 @@
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\ansible.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\coal.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\diamond.dm"
+#include "code\modules\mob\living\carbon\superior_animal\golem\types\gold.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\iron.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\plasma.dm"
 #include "code\modules\mob\living\carbon\superior_animal\golem\types\platinum.dm"

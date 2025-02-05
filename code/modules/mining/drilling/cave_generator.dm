@@ -28,6 +28,8 @@
 #define CAVE_GOLD 9
 #define CAVE_PLATINUM 10
 
+#define GOLEM_SPAWN_FACTOR 0.1 // multiplier for the chance for a golem cluster to spawn on each tile
+
 //////////////////////////////
 // Generator used to handle underground caves
 //////////////////////////////
@@ -588,16 +590,55 @@
 // Spawn golems on free turfs depending on seismic level
 /obj/cave_generator/proc/place_golems(seismic_lvl)
 
-	var/golem_type
+	var/list/mob/living/carbon/superior_animal/golem/golems_to_spawn = list()
 	for(var/i = 1 to CAVE_SIZE)
 		for(var/j = 1 to CAVE_SIZE)
-			if(map[i][j] == CAVE_FREE && prob(2 + seismic_lvl))
-				if(prob(4 * seismic_lvl)) // Probability of special golem
-					golem_type = pick(GLOB.golems_special)
-				else
-					golem_type = pick(GLOB.golems_normal)
+			if(map[i][j] == CAVE_FREE && prob((2 + seismic_lvl) * GOLEM_SPAWN_FACTOR))
+				switch(seismic_lvl)
+					if(1,2) //easy: pick 5 random golems
+						var/weights = list(
+							/mob/living/carbon/superior_animal/golem/iron = 3,
+							/mob/living/carbon/superior_animal/golem/coal = 2,
+							/mob/living/carbon/superior_animal/golem/silver = (seismic_lvl == 2) ? 2 : 0)  //0 weight on seismic 1, 2 weight on seismic 2.
+
+						golems_to_spawn += pickweight_mult(weights, 5)
+
+					if(3,4) //medium: guarantee 1 melee, 1 ranged/special and then pick 3 random
+						var/melee_weights = list(
+							/mob/living/carbon/superior_animal/golem/iron = 4,
+							/mob/living/carbon/superior_animal/golem/coal = 2,
+							/mob/living/carbon/superior_animal/golem/platinum = 3,
+							/mob/living/carbon/superior_animal/golem/plasma = (seismic_lvl == 4) ? 2 : 0)
+
+						var/ranged_weights = list(
+							/mob/living/carbon/superior_animal/golem/silver = 3,
+							/mob/living/carbon/superior_animal/golem/uranium = 1)
+
+						golems_to_spawn += pickweight(melee_weights)
+						golems_to_spawn += pickweight(ranged_weights)
+						golems_to_spawn += pickweight_mult(melee_weights + ranged_weights, 3)
+
+					if(5,6) // HELL: guarantee 2 melee, 2 ranged/special and then pick 1 random golem
+						var/melee_weights = list(
+								/mob/living/carbon/superior_animal/golem/iron = 3,
+								/mob/living/carbon/superior_animal/golem/coal = 2,
+								/mob/living/carbon/superior_animal/golem/platinum = 3,
+								/mob/living/carbon/superior_animal/golem/plasma = 2,
+								/mob/living/carbon/superior_animal/golem/diamond = (seismic_lvl == 6) ? 2 : 0)
+
+						var/ranged_weights = list(
+								/mob/living/carbon/superior_animal/golem/silver = 3,
+								/mob/living/carbon/superior_animal/golem/gold = 3,
+								/mob/living/carbon/superior_animal/golem/uranium = 2,
+								/mob/living/carbon/superior_animal/golem/ansible = (seismic_lvl == 6) ? 2 : 0)
+
+						golems_to_spawn += pickweight_mult(melee_weights, 2)
+						golems_to_spawn += pickweight_mult(ranged_weights, 2)
+						golems_to_spawn += pickweight(ranged_weights + melee_weights)
+
 				// Spawn golem at free location
-				new golem_type(get_turf(locate(x + i, y + j, z)))
+				for(var/mob/living/carbon/superior_animal/golem/g in golems_to_spawn)
+					new g(get_turf(locate(x + i, y + j, z)))
 
 //////////////////////////////
 // Mineral veins for the cave generator
@@ -715,3 +756,5 @@
 #undef CAVE_SILVER
 #undef CAVE_GOLD
 #undef CAVE_PLATINUM
+
+#undef GOLEM_SPAWN_FACTOR
