@@ -28,7 +28,11 @@
 #define CAVE_GOLD 9
 #define CAVE_PLATINUM 10
 
-#define GOLEM_SPAWN_FACTOR 0.1 // multiplier for the chance for a golem cluster to spawn on each tile
+//minimum distance between spawned clusters. the spawn is canceled if it's lower than this.
+#define GOLEM_SPAWN_SPACING 7.5 //
+//chance for a cluster of 5 golems to spawn per tile, calculated as "GOLEM_SPAWN_CHANCE_BASE + (GOLEM_SPAWN_CHANCE_SCALING * seismic level)"
+#define GOLEM_SPAWN_CHANCE_BASE 1.6
+#define GOLEM_SPAWN_CHANCE_SCALING 0.4 // 2% on level 1, 4% on level 6.
 
 //////////////////////////////
 // Generator used to handle underground caves
@@ -590,10 +594,20 @@
 // Spawn golems on free turfs depending on seismic level
 /obj/cave_generator/proc/place_golems(seismic_lvl)
 
-	var/list/mob/living/carbon/superior_animal/golem/golems_to_spawn = list()
+	var/list/turf/golem_spawn_points = list()
+
 	for(var/i = 1 to CAVE_SIZE)
 		for(var/j = 1 to CAVE_SIZE)
-			if(map[i][j] == CAVE_FREE && prob((2 + seismic_lvl) * GOLEM_SPAWN_FACTOR))
+			if(map[i][j] == CAVE_FREE && prob(GOLEM_SPAWN_CHANCE_BASE + seismic_lvl * GOLEM_SPAWN_CHANCE_SCALING) && check_spawn_overlap(get_turf(locate(x + i, y + j, z)), golem_spawn_points))
+
+				var/turf/turf = get_turf(locate(x + i, y + j, z))
+
+				golem_spawn_points += turf
+
+				//var/list/mob/golems_to_spawn = list()
+
+				var/list/mob/living/carbon/superior_animal/golem/golems_to_spawn = list()
+
 				switch(seismic_lvl)
 					if(1,2) //easy: pick 5 random golems
 						var/weights = list(
@@ -601,7 +615,8 @@
 							/mob/living/carbon/superior_animal/golem/coal = 2,
 							/mob/living/carbon/superior_animal/golem/silver = (seismic_lvl == 2) ? 2 : 0)  //0 weight on seismic 1, 2 weight on seismic 2.
 
-						golems_to_spawn += pickweight_mult(weights, 5)
+						for(var/c = 0, c < 5, c++) // I couldn't get pickweight_mult to work, so running pickweight 5 times is a more reliable solution
+							golems_to_spawn += pickweight(weights)
 
 					if(3,4) //medium: guarantee 1 melee, 1 ranged/special and then pick 3 random
 						var/melee_weights = list(
@@ -616,7 +631,9 @@
 
 						golems_to_spawn += pickweight(melee_weights)
 						golems_to_spawn += pickweight(ranged_weights)
-						golems_to_spawn += pickweight_mult(melee_weights + ranged_weights, 3)
+
+						for(var/c = 0, c < 3, c++)
+							golems_to_spawn += pickweight(melee_weights + ranged_weights)
 
 					if(5,6) // HELL: guarantee 2 melee, 2 ranged/special and then pick 1 random golem
 						var/melee_weights = list(
@@ -632,13 +649,33 @@
 								/mob/living/carbon/superior_animal/golem/uranium = 2,
 								/mob/living/carbon/superior_animal/golem/ansible = (seismic_lvl == 6) ? 2 : 0)
 
-						golems_to_spawn += pickweight_mult(melee_weights, 2)
-						golems_to_spawn += pickweight_mult(ranged_weights, 2)
+						for(var/c = 0, c < 2, c++)
+							golems_to_spawn += pickweight(melee_weights)
+							golems_to_spawn += pickweight(ranged_weights)
 						golems_to_spawn += pickweight(ranged_weights + melee_weights)
 
 				// Spawn golem at free location
-				for(var/mob/living/carbon/superior_animal/golem/g in golems_to_spawn)
-					new g(get_turf(locate(x + i, y + j, z)))
+				for(var/golem in golems_to_spawn)
+					var/spawnturf = get_turf(locate(turf.x + rand(-1,1), turf.y + rand(-1,1), turf.z)) // slightly randomize the spawn turfs so golems don't spawn in a doomstack
+					new golem(spawnturf)
+
+		for(var/c = 1 to golem_spawn_points.len)
+			log_world(golem_spawn_points[c])
+
+/obj/cave_generator/proc/check_spawn_overlap(target_turf,list/pointlist)
+	if(!(target_turf && pointlist))
+		return FALSE
+
+	var/lowest_distance = 500
+
+	for(var/turf/t in pointlist)
+		if(get_dist_euclidian(target_turf, t) < GOLEM_SPAWN_SPACING)
+			log_world("skipping a coordinate with distance [get_dist_euclidian(target_turf, t)]")
+			lowest_distance = get_dist_euclidian(target_turf, t) < lowest_distance ? get_dist_euclidian(target_turf, t) : lowest_distance
+			return FALSE
+
+	log_world("spawning on a coordinate with lowest distance [lowest_distance]")
+	return TRUE
 
 //////////////////////////////
 // Mineral veins for the cave generator
@@ -757,4 +794,6 @@
 #undef CAVE_GOLD
 #undef CAVE_PLATINUM
 
-#undef GOLEM_SPAWN_FACTOR
+#undef GOLEM_SPAWN_CHANCE_BASE
+#undef GOLEM_SPAWN_CHANCE_SCALING
+#undef GOLEM_SPAWN_SPACING

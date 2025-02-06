@@ -56,6 +56,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	meat_type = null
 	meat_amount = 0
 	stop_automated_movement_when_pulled = 0
+	wander = FALSE
 
 	destroy_surroundings = TRUE
 
