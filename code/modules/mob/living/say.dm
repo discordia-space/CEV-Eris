@@ -270,22 +270,17 @@ var/list/channel_to_radio_key = new
 		var/list/hear = hear(message_range, T)
 		var/list/hear_falloff = hear(falloff, T)
 
-		for(var/X in SSmobs.mob_list | SShumans.mob_list)
-			if(!ismob(X))
-				continue
-			var/mob/M = X
+		for(var/mob/M as anything in getMobsInRangeChunked(T, max(message_range, falloff), FALSE, TRUE) | GLOB.player_ghost_list)
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 				continue
-			if(M.locs.len && (M.locs[1] in hear))
+			var/turf/listenerTurf = get_turf(M)
+			if(DIST_EUCLIDIAN(T.x , T.y, listenerTurf.x, listenerTurf.y) <= message_range)
 				listening |= M
-				continue //To avoid seeing BOTH normal message and quiet message
-			else if(M.locs.len && (M.locs[1] in hear_falloff))
+			else
 				listening_falloff |= M
 
-			for(var/obj in GLOB.hearing_objects)
-				if(get_turf(obj) in hear)
-					listening_obj |= obj
+		listening_obj |= getHearersInRangeChunked(T, message_range)
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")

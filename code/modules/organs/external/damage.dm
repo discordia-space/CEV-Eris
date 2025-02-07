@@ -28,9 +28,9 @@
 		var/transferred_damage_amount
 		switch(damage_type)
 			if(BRUTE)
-				transferred_damage_amount = amount - (max_damage - brute_dam) / armor_divisor / 2
+				transferred_damage_amount = amount - (max(max_damage - brute_dam, 0) / (1 + ((armor_divisor-1) / 2)))
 			if(BURN)
-				transferred_damage_amount = amount - (max_damage - burn_dam) / armor_divisor / 2
+				transferred_damage_amount = amount - max(max_damage - burn_dam, 0) / (armor_divisor > 1 ? 1 + abs(armor_divisor-1) / 2: 1 - abs(armor_divisor-1) / 2)
 			if(HALLOSS)
 				transferred_damage_amount = 0
 			else

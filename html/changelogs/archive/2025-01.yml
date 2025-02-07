@@ -7,3 +7,6 @@
   - rscadd: unified sanity button interaction between Liberty and Eris HUDs, both
       list desires now.
   - bugfix: fixed Liberty HUD sanity button not opening sanity UI.
+2025-01-25:
+  MLGTASTICa:
+  - bugfix: Fixed Blast Doors refusing to work past 24:00 GMT
