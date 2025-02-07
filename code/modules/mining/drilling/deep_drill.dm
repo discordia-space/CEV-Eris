@@ -1,10 +1,17 @@
-#define RADIUS 4
-#define DRILL_COOLDOWN 1 MINUTE
+#define DRILL_REPAIR_AMOUNT 500
+
+//these are defined because a few of them are used in multiple places and this makes it easier to work with them all at once
+#define DRILL_SHUTDOWN_TEXT_BROKEN "ERROR HP00: CRITICAL DAMAGE"
+#define DRILL_SHUTDOWN_TEXT_OBSTACLE "ERROR W411: OBSTACLE DETECTED"
+
+#define DRILL_SHUTDOWN_LOG_BROKEN "A cave system was collapsed because its associated drill was destroyed."
+#define DRILL_SHUTDOWN_LOG_OBSTACLE "A cave system was collapsed because its associated drill was too close to an obstacle."
+#define DRILL_SHUTDOWN_LOG_MANUAL "[key_name(user)] has collapsed an active cave system."
 
 /obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
 	anchored = FALSE
-	use_power = NO_POWER_USE //The drill takes power directly from a cell.
+	use_power = NO_POWER_USE //The drill doesn't need power
 	density = TRUE
 	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
@@ -19,15 +26,8 @@
 	maxHealth = 2000
 	health = 2000
 
-	var/last_update = 0
-	var/list/stored_ore = list()
-
-	var/active = FALSE
-	var/list/resource_field = list()
-	var/datum/golem_controller/GC
 	var/obj/cave_generator/cave_gen
 	var/cave_connected = FALSE
-	var/last_use = 0.0
 
 	var/ore_types = list(
 		MATERIAL_IRON = /obj/item/ore/iron,
@@ -42,52 +42,29 @@
 		MATERIAL_PLASTIC = /obj/item/ore/coal
 		)
 
-	//Upgrades
-	var/harvest_speed
-	var/capacity
-	var/charge_use
-	var/radius
-	var/obj/item/cell/large/cell
-
-	//Flags
-	var/need_update_field = FALSE
-	var/need_player_check = FALSE
-
 /obj/machinery/mining/deep_drill/Initialize()
 	. = ..()
 	cave_gen = locate(/obj/cave_generator)
-	var/obj/item/cell/large/high/C = new(src)
-	component_parts += C
-	cell = C
 	update_icon()
 
 /obj/machinery/mining/deep_drill/Destroy()
 	if(cave_connected)
 		// In case the drill gets destroyed with an active cave system
-		log_and_message_admins("Collapsing active cave system as its associated drill got destroyed.")
-		cave_gen.initiate_collapse()
-		cave_connected = FALSE
+		shutdown_drill(DRILL_SHUTDOWN_TEXT_BROKEN,DRILL_SHUTDOWN_LOG_OBSTACLE)
 	if(cave_gen)
 		cave_gen = null
 	. = ..()
 
 /obj/machinery/mining/deep_drill/Process()
-	if(!active)
-		return
-
-	if(!anchored || !use_cell_power())
-		system_error("system configuration or charge error")
+	if(!cave_connected)
 		return
 
 	if(check_surroundings())
-		system_error("obstacle detected near the drill")
+		shutdown_drill(DRILL_SHUTDOWN_TEXT_OBSTACLE,DRILL_SHUTDOWN_LOG_OBSTACLE)
 		return
 
 	if(health == 0)
-		system_error("critical damage")
-
-	if(need_update_field)
-		get_resource_field()
+		shutdown_drill(DRILL_SHUTDOWN_TEXT_BROKEN,DRILL_SHUTDOWN_LOG_OBSTACLE)
 
 	//Drill through the flooring, if any.
 	if(istype(get_turf(src), /turf/floor/asteroid))
@@ -96,70 +73,13 @@
 			T.gets_dug()
 	else if(istype(get_turf(src), /turf/floor))
 		var/turf/floor/T = get_turf(src)
-		T.explosion_act(200, null)
+		visible_message(SPAN_NOTICE("\The [src] drills straight through the [T], exposing the asteroid underneath!"))
+		T.ChangeTurf(/turf/floor/asteroid) //turn it back into an asteroid, otherwise things like platings become underplatings which makes no sense
 
-	dig_ore()
-
-/obj/machinery/mining/deep_drill/proc/dig_ore()
-	//Dig out the tasty ores.
-	if(!resource_field.len)
-		system_error("resources depleted")
-		return
-
-	var/turf/harvesting = pick(resource_field)
-
-	//remove emty trufs
-	while(resource_field.len && !harvesting.resources)
-		harvesting.has_resources = FALSE
-		harvesting.resources = null
-		resource_field -= harvesting
-		if(resource_field.len)
-			harvesting = pick(resource_field)
-
-	if(!harvesting)
-		system_error("resources depleted")
-		return
-
-	var/total_harvest = harvest_speed //Ore harvest-per-tick.
-	var/found_resource = FALSE
-
-	for(var/metal in shuffle(ore_types))
-
-		if(contents.len >= capacity)
-			system_error("insufficient storage space")
-
-		if(contents.len + total_harvest >= capacity)
-			total_harvest = capacity - contents.len
-
-		if(total_harvest <= 0)
-			break
-
-		if(harvesting.resources[metal])
-
-			found_resource = TRUE
-
-			var/create_ore = 0
-			if(harvesting.resources[metal] >= total_harvest)
-				harvesting.resources[metal] -= total_harvest
-				create_ore = total_harvest * GC.GW.mineral_multiplier
-				total_harvest = 0
-			else
-				total_harvest -= harvesting.resources[metal]
-				create_ore = harvesting.resources[metal] * GC.GW.mineral_multiplier
-				harvesting.resources[metal] = 0
-
-			for(var/i = 1, i <= create_ore, i++)
-				var/oretype = ore_types[metal]
-				new oretype(src)
-
-	if(!found_resource)
-		harvesting.has_resources = FALSE
-		harvesting.resources = null
-		resource_field -= harvesting
 
 /obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user as mob)
 
-	if(!active)
+	if(!cave_connected)
 		var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING), src)
 		if(tool_type == QUALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
@@ -193,10 +113,10 @@
 		else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
 			to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
 			return
-		else if (check_surroundings())
+		else if (!anchored && check_surroundings()) // we only care about the terrain when anchoring, not the other way around, otherwise the drill gets stuck if the terrain under it changes (like if someone RCDs the asteroid tile under it)
 			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
 			return
-		else if(!(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
+		else if(!anchored && !(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
 			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
 			return
 
@@ -206,176 +126,79 @@
 		return
 
 	// Repair the drill if it is damaged
-	var/damage = maxHealth - health
-	if(damage && (QUALITY_WELDING in I.tool_qualities))
-		if(active)
+	if((health < maxHealth) && (QUALITY_WELDING in I.tool_qualities))
+		if(cave_connected)
 			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
 			return
+
 		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			if(damage < 0.33 * maxHealth)
-				take_damage(-damage)  // Completely repair the drill
-			else if(damage < 0.66 * maxHealth)
-				take_damage(-(0.66 * maxHealth - health))  // Repair the drill to 66 percents
-			else
-				take_damage(-(0.33 * maxHealth - health))  // Repair the drill to 33 percents
+			health = ((health + DRILL_REPAIR_AMOUNT) < maxHealth ? health + DRILL_REPAIR_AMOUNT : maxHealth) // increase health by the defined repair amount unless it would go over maxHealth, in which case just set heal to maxHealth instead.
+
 		return
 
-	if(!panel_open || active)
+	if(!panel_open || cave_connected)
 		return ..()
-
-	if(istype(I, /obj/item/cell/large))
-		if(cell)
-			to_chat(user, "The drill already has a cell installed.")
-		else
-			user.drop_item()
-			I.loc = src
-			cell = I
-			component_parts += I
-			to_chat(user, "You install \the [I].")
-		return
 
 	..()
 
 /obj/machinery/mining/deep_drill/attack_hand(mob/user as mob)
 
-	if (panel_open && cell)
-		to_chat(user, "You take out \the [cell].")
-		cell.loc = get_turf(user)
-		component_parts -= cell
-		cell = null
-		return
-	else if(need_player_check)
-		to_chat(user, "You hit the manual override and reset the drill's error checking.")
-		need_player_check = FALSE
-		if(anchored)
-			get_resource_field()
-		update_icon()
-		return
-	else if(!panel_open)
-		if(health == 0)
-			to_chat(user, SPAN_NOTICE("The drill is too damaged to be turned on."))
-		else if(!anchored)
-			to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
-		else if(!active && check_surroundings())
-			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
-		else if(world.time - last_use < DRILL_COOLDOWN)
-			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
-		else if(use_cell_power())
-			
-			if(!cave_connected)
-				if(cave_gen.is_generating())
-					to_chat(user, SPAN_WARNING("A cave system is already being dug."))
-				else if(cave_gen.is_opened())
-					to_chat(user, SPAN_WARNING("A cave system is already being explored."))
-				else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
-					to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
-				else if(!cave_gen.check_cooldown())
-					to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
-				else
-					var/turf/T = get_turf(loc)
-					cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
-					update_icon()
-			else
-				if(!cave_gen.is_closed())  // If cave is already closed, something went wrong
-					log_and_message_admins("[key_name(user)] has collapsed an active cave system.")
-					cave_gen.initiate_collapse()
-				cave_connected = FALSE
-				update_icon()
-
-			/* // Only if on mother load
-			active = !active
-			if(active)
-				var/turf/T = get_turf(loc)
-				GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
-				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
-				last_use = world.time
-				need_update_field = TRUE
-			else
-				GC.stop()
-				GC = null
-				visible_message(SPAN_NOTICE("\The [src] shudders to a grinding halt."))
-			*/
+	if(!panel_open)
+		if(cave_connected) //there are no restrictions on turning off the drill besides the panel being shut.
+			shutdown_drill(null,DRILL_SHUTDOWN_LOG_MANUAL)
+			to_chat(user, SPAN_NOTICE("You turn off \the [src], collapsing the attached cave system."))
 		else
-			to_chat(user, SPAN_NOTICE("The drill is unpowered."))
+			if(health == 0)
+				to_chat(user, SPAN_NOTICE("\The [src] is too damaged to turn on!"))
+			else if(!anchored)
+				to_chat(user, SPAN_NOTICE("\The [src] needs to be anchored to be turned on."))
+			else if(check_surroundings())
+				to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+			else if(cave_gen.is_generating())
+				to_chat(user, SPAN_WARNING("A cave system is already being dug."))
+			else if(cave_gen.is_opened())
+				to_chat(user, SPAN_WARNING("A cave system is already being explored."))
+			else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
+				to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
+			else if(!cave_gen.check_cooldown())
+				to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
+			else //if we've gotten this far all the checks have succeeded so we can turn it on and gen a cave
+				var/turf/T = get_turf(loc)
+				cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
 	else
-		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery with wires exposed is a bad idea."))
+		to_chat(user, SPAN_NOTICE("Operating a piece of industrial machinery with wires exposed seems like a bad idea."))
 
 	update_icon()
 
 /obj/machinery/mining/deep_drill/update_icon()
-	if(need_player_check)
+	if(anchored && (check_surroundings() || !istype(get_turf(src), /turf/floor/asteroid)))
 		icon_state = "mining_drill_error"
-	else if(active || cave_connected)
+	else if(cave_connected)
 		icon_state = "mining_drill_active"
 	else
 		icon_state = "mining_drill"
 	return
 
+/obj/machinery/mining/deep_drill/proc/shutdown_drill(displaytext,log)
 
-/obj/machinery/mining/deep_drill/RefreshParts()
-	..()
-	harvest_speed = 0
-	capacity = 0
-	charge_use = 37
-	radius = RADIUS
-
-	for(var/obj/item/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/stock_parts/micro_laser))
-			harvest_speed = P.rating
-		if(istype(P, /obj/item/stock_parts/matter_bin))
-			capacity = 200 * P.rating
-		if(istype(P, /obj/item/stock_parts/capacitor))
-			charge_use -= 8 * (P.rating - harvest_speed)
-			charge_use = max(charge_use, 0)
-		if(istype(P, /obj/item/stock_parts/scanning_module))
-			radius = RADIUS + P.rating
-	cell = locate(/obj/item/cell/large) in component_parts
-
-/obj/machinery/mining/deep_drill/proc/system_error(error)
-
-	if(error)
-		visible_message(SPAN_NOTICE("\The [src] flashes a '[error]' warning."))
-	need_player_check = TRUE
-	active = FALSE
-	if(GC)
-		GC.stop()
-		GC = null
-	update_icon()
-
-/obj/machinery/mining/deep_drill/proc/get_resource_field()
-	resource_field = list()
-	need_update_field = FALSE
-
-	var/turf/T = get_turf(src)
-	if(!istype(T))
+	if(cave_gen.is_closed()) //easy sanity check
 		return
 
-	for(var/turf/mine_trufs in range(T, radius))
-		if(mine_trufs.has_resources)
-			resource_field += mine_trufs
-
-	if(!resource_field.len)
-		system_error("resources depleted")
-
-/obj/machinery/mining/deep_drill/proc/use_cell_power()
-	if(!cell)
-		return FALSE
-	if(cell.checked_use(charge_use))
-		return TRUE
-	return FALSE
+	if(displaytext)
+		visible_message(SPAN_NOTICE("\The [src] flashes with '[displaytext]' and shuts down!"))
+		log_and_message_admins(log)
+	cave_gen.initiate_collapse()
+	cave_connected = FALSE
+	update_icon()
 
 /obj/machinery/mining/deep_drill/proc/check_surroundings()
-	// Check if there is no dense obstacles around the drill to avoid blocking access to it
+	// Check if there are no walls around the drill
 	for(var/turf/F in block(locate(x - 1, y - 1, z), locate(x + 1, y + 1, z)))
-		if(F != loc)
-			if(F.density)
-				return TRUE
-			for(var/atom/A in F)
-				if(A.density && !(A.flags & ON_BORDER) && !ismob(A))
-					return TRUE
+		if(!istype(F,/turf/floor) && !istype(F,/turf/space)) //if it's not a floor and not space it's probably an obstacle.
+			return TRUE
 	return FALSE
 
 /obj/machinery/mining/deep_drill/attack_generic(mob/user, damage)
@@ -392,20 +215,12 @@
 /obj/machinery/mining/deep_drill/take_damage(value)
 	health = min(max(health - value, 0), maxHealth)
 	if(health == 0)
-		system_error("critical damage")
+		shutdown_drill("critical damage")
 		if(prob(10)) // Some chance that the drill completely blows up
 			var/turf/O = get_turf(src)
 			if(!O) return
 			explosion(get_turf(src), 800, 50)
 			qdel(src)
-
-/obj/machinery/mining/deep_drill/proc/update_ore_count()
-	stored_ore = list()
-	for(var/obj/item/ore/O in contents)
-		if(stored_ore[O.name])
-			stored_ore[O.name]++
-		else
-			stored_ore[O.name] = 1
 
 /obj/machinery/mining/deep_drill/examine(mob/user, extra_description = "")
 	if(health <= 0)
@@ -419,31 +234,14 @@
 	else
 		extra_description += "\n\The [src] is in pristine condition."
 
-	if(world.time > last_update + 1 SECONDS)
-		update_ore_count()
-		last_update = world.time
-
-	extra_description += "\nIt holds:"
-	for(var/obj/item/ore/O in contents)
-		extra_description += "\n- [stored_ore[O]] [O]"
 	..(user, extra_description)
 
-/obj/machinery/mining/deep_drill/verb/unload()
-	set name = "Unload Drill"
-	set category = "Object"
-	set src in oview(1)
+#undef DRILL_REPAIR_AMOUNT
 
-	var/mob/M = usr
-	if(ismob(M) && M.incapacitated())
-		return
+#undef DRILL_SHUTDOWN_TEXT_BROKEN
+#undef DRILL_SHUTDOWN_TEXT_OBSTACLE
 
-	var/obj/structure/ore_box/B = locate() in orange(1)
-	if(B)
-		for(var/obj/item/ore/O in contents)
-			O.loc = B
-		to_chat(usr, SPAN_NOTICE("You unload the drill's storage cache into the ore box."))
-	else
-		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))
+#undef DRILL_SHUTDOWN_LOG_BROKEN
+#undef DRILL_SHUTDOWN_LOG_OBSTACLE
+#undef DRILL_SHUTDOWN_LOG_MANUAL
 
-#undef RADIUS
-#undef DRILL_COOLDOWN

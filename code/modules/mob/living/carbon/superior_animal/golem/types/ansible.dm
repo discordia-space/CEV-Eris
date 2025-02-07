@@ -1,3 +1,5 @@
+#define ANSIBLE_TELEPORT_RANGE 7 //range from the ansible golem that the target can be teleported to, not the total distance the target can teleport
+
 /mob/living/carbon/superior_animal/golem/ansible
 	name = "ansible golem"
 	desc = "A moving pile of rocks with ansible crystals in it."
@@ -41,9 +43,9 @@
 	kept_distance = 3
 
 	// Cooldown of special ability
-	var/teleport_cooldown = 0
+	var/teleport_cooldown = -90 SECONDS // negative so that it isn't on cooldown at round start
 
-/mob/living/carbon/superior_animal/golem/ansible/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
+/mob/living/carbon/superior_animal/golem/ansible/New()
 	..()
 	set_light(3, 3, "#82C2D8")
 
@@ -54,10 +56,14 @@
 // Special capacity of ansible golem: it will focus and teleport a miner near other golems
 /mob/living/carbon/superior_animal/golem/ansible/proc/teleport_target()
 
-	// Teleport target near random golem
-	if(target_mob && controller)
-		go_to_bluespace(target_mob.loc, 1, TRUE, target_mob, get_step(pick(controller.golems), pick(cardinal)), \
-						0, TRUE, null, null, 'sound/effects/teleport.ogg', 'sound/effects/teleport.ogg')
+	// Teleport target to a random golem near the ansible golem
+	if(target_mob)
+		var/list/teleport_destinations = list()
+
+		for(var/mob/living/carbon/superior_animal/golem/td in range(ANSIBLE_TELEPORT_RANGE, get_turf(src)))
+			teleport_destinations += td
+
+		go_to_bluespace(get_turf(src), 1, TRUE, target_mob,pick(teleport_destinations))
 
 /mob/living/carbon/superior_animal/golem/ansible/proc/focus_target()
 

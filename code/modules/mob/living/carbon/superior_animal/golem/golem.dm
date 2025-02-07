@@ -77,32 +77,7 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 	// Type of ore to spawn when the golem dies
 	var/ore
 
-	// The ennemy of all golemkind
-	var/obj/machinery/mining/deep_drill/DD
-
-	// Controller that spawned the golem
-	var/datum/golem_controller/controller
-
-/mob/living/carbon/superior_animal/golem/New(loc, obj/machinery/mining/deep_drill/drill, datum/golem_controller/parent)
-	..()
-	if(parent)
-		controller = parent  // Link golem with golem controller
-		controller.golems += src
-	if(drill)
-		DD = drill
-		if(prob(50))
-			target_mob = drill
-			stance = HOSTILE_STANCE_ATTACK
-
-/mob/living/carbon/superior_animal/golem/Destroy()
-	DD = null
-	..()
-
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
-	if(controller) // Unlink from controller
-		controller.golems -= src
-		controller = null
-
 	. = ..()
 
 	// Spawn ores
@@ -129,15 +104,5 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 		T.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), pick(attacktext), TRUE)
 	else
 		var/obj/structure/obstacle = locate(/obj/structure) in T
-		if(obstacle && !istype(obstacle, /obj/structure/golem_burrow))
+		if(obstacle)
 			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), pick(attacktext), TRUE)
-
-/mob/living/carbon/superior_animal/golem/handle_ai()
-	// Chance to re-aggro the drill if doing nothing
-	if((stance == HOSTILE_STANCE_IDLE) && prob(10))
-		if(!busy) // if not busy with a special task
-			stop_automated_movement = FALSE
-		target_mob = DD
-		if(target_mob)
-			stance = HOSTILE_STANCE_ATTACK
-	. = ..()
