@@ -2,7 +2,7 @@
 
 /mob/living/carbon/superior_animal/golem/ansible
 	name = "ansible golem"
-	desc = "A moving pile of rocks with ansible crystals in it."
+	desc = "A moving pile of rocks dotted with ansible crystals, each bursting with energy."
 	icon_state = "golem_ansible_idle"
 	icon_living = "golem_ansible_idle"
 

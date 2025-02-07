@@ -59,6 +59,7 @@
 	var/list/blacklist = list(/mob/observer,
 							/obj/machinery/nuclearbomb,
 							/obj/item/disk/nuclear)
+	var/list/generated_golems = list() //golems use this for targeting allies
 
 /obj/cave_generator/Initialize()
 	// Initialize and not New to ensure SSmapping.maploader has been created
@@ -666,15 +667,10 @@
 	if(!(target_turf && pointlist))
 		return FALSE
 
-	var/lowest_distance = 500
-
 	for(var/turf/t in pointlist)
 		if(get_dist_euclidian(target_turf, t) < GOLEM_SPAWN_SPACING)
-			log_world("skipping a coordinate with distance [get_dist_euclidian(target_turf, t)]")
-			lowest_distance = get_dist_euclidian(target_turf, t) < lowest_distance ? get_dist_euclidian(target_turf, t) : lowest_distance
 			return FALSE
 
-	log_world("spawning on a coordinate with lowest distance [lowest_distance]")
 	return TRUE
 
 //////////////////////////////

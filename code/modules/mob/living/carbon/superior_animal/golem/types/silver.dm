@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/golem/silver
 	name = "silver golem"
-	desc = "A moving pile of rocks with silver specks in it."
+	desc = "A moving pile of rocks lined with menacing silver spikes."
 	icon_state = "golem_silver"
 	icon_living = "golem_silver"
 
@@ -30,9 +30,25 @@
 	// Loot related variables
 	ore = /obj/item/ore/silver
 
-// Special capacity of silver golem: when attacked in melee, it reflects part of the damage to the attacker.
-// Called when the mob is hit with an item in combat.
-/mob/living/carbon/superior_animal/golem/silver/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
+	// Ranged attack related variables
+	ranged = TRUE // Will it shoot?
+	rapid = FALSE // Will it shoot fast?
+	projectiletype = /obj/item/projectile/plasma/stun/golem
+	projectilesound = 'sound/weapons/energy/burn.ogg'
+	casingtype = null
+	ranged_cooldown = 3 SECOND
+	fire_verb = "fires"
+	acceptableTargetDistance = 6
+	kept_distance = 5
+
+/obj/item/projectile/plasma/stun/golem //special projectile that passes straight through golems
+	name = "stun plasma bolt"
+	taser_effect = 1
+	damage_types = list(HALLOSS = 30, BURN = 5)
+	impact_type = /obj/effect/projectile/stun/golem
+
+/obj/item/projectile/plasma/stun/golem/bump(atom/A as mob|obj|turf|area, forced = FALSE)
+	if(istype(A, /mob/living/carbon/superior_animal/golem))
+		return FALSE
 	. = ..()
-	visible_message(SPAN_DANGER("\The [src] reflects \the [I.name]!"))
-	user.hit_with_weapon(I, user, effective_force * 0.2, pick(BP_ALL_LIMBS))
+

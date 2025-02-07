@@ -21,17 +21,7 @@
 
 #define GOLEM_REGENERATION 10  // Healing by special ability of uranium golems
 
-// Normal types of golems
-GLOBAL_LIST_INIT(golems_normal, list(/mob/living/carbon/superior_animal/golem/coal,
-                                     /mob/living/carbon/superior_animal/golem/iron))
-
-// Special types of golems
-GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/silver,
-									  /mob/living/carbon/superior_animal/golem/plasma,
-									  /mob/living/carbon/superior_animal/golem/platinum,
-									  /mob/living/carbon/superior_animal/golem/diamond,
-									  /mob/living/carbon/superior_animal/golem/ansible,
-									  /mob/living/carbon/superior_animal/golem/uranium))
+GLOBAL_LIST_EMPTY(all_golems) // golems check this list to target allies
 
 // OneStar patrol borg that defends OneStar facilities
 /mob/living/carbon/superior_animal/golem
@@ -77,6 +67,14 @@ GLOBAL_LIST_INIT(golems_special, list(/mob/living/carbon/superior_animal/golem/s
 
 	// Type of ore to spawn when the golem dies
 	var/ore
+
+/mob/living/carbon/superior_animal/golem/Initialize(var/mapload)
+	GLOB.all_golems += src
+	.=..()
+
+/mob/living/carbon/superior_animal/golem/Destroy()
+	GLOB.all_golems -= src
+	..()
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
 	. = ..()

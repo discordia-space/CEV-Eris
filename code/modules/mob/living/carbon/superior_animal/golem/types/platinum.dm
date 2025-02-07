@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/golem/platinum
 	name = "platinum golem"
-	desc = "A moving pile of rocks with platinum specks in it."
+	desc = "A hulking pile of rocks with platinum rings running through it."
 	icon_state = "golem_platinum"
 	icon_living = "golem_platinum"
 
@@ -28,14 +28,3 @@
 
 	// Loot related variables
 	ore = /obj/item/ore/osmium
-
-	// Ranged attack related variables
-	ranged = TRUE // Will it shoot?
-	rapid = FALSE // Will it shoot fast?
-	projectiletype = /obj/item/projectile/plasma/stun/heavy
-	projectilesound = 'sound/weapons/energy/burn.ogg'
-	casingtype = null
-	ranged_cooldown = 3 SECOND
-	fire_verb = "fires"
-	acceptableTargetDistance = 6
-	kept_distance = 3

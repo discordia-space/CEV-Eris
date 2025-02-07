@@ -2,7 +2,7 @@
 
 /mob/living/carbon/superior_animal/golem/uranium
 	name = "uranium golem"
-	desc = "A moving pile of rocks with uranium specks in it."
+	desc = "A moving pile of rocks with uranium branches growing of it."
 	icon_state = "golem_uranium_idle"
 	icon_living = "golem_uranium_idle"
 
