@@ -45,9 +45,9 @@
 	name = "stun plasma bolt"
 	taser_effect = 1
 	damage_types = list(HALLOSS = 30, BURN = 5)
-	impact_type = /obj/effect/projectile/stun/golem
+	impact_type = /obj/effect/projectile/stun/impact
 
-/obj/item/projectile/plasma/stun/golem/bump(atom/A as mob|obj|turf|area, forced = FALSE)
+/obj/item/projectile/plasma/stun/golem/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
 	if(istype(A, /mob/living/carbon/superior_animal/golem))
 		return FALSE
 	. = ..()

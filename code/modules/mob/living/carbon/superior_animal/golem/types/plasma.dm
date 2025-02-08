@@ -50,9 +50,9 @@
 				spawn (0) target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code
 			. = ..()
 
-/mob/living/carbon/superior_animal/giant_spider/UnarmedAttack(atom/A, proximity)
+/mob/living/carbon/superior_animal/golem/plasma/UnarmedAttack(atom/A, proximity)
 	if(det_status == DET_STABLE)
-		src.death(false, false)
+		src.death(FALSE, FALSE)
 
 
 #undef DET_STABLE
