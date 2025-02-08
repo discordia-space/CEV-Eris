@@ -58,6 +58,7 @@
 	data += "[src.name] (<A href='?src=\ref[src];c_mode=1'>Change</A>)"
 	data += "<br>Round duration: <b>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</b>"
 	data += "<br>Debug mode: <b><a href='?src=\ref[src];toggle_debug=1'>\[[debug_mode?"ON":"OFF"]\]</a></b>"
+	data += "<br>Next surge: <b>[round(next_surge / 36000)]:[add_zero(next_surge / 600 % 60, 2)]:[next_surge / 100 % 6][next_surge / 100 % 10]</b>"
 	data += "<br>One role per player: <b><a href='?src=\ref[src];toggle_orpp=1'>\[[one_role_per_player?"YES":"NO"]\]</a></b>"
 	data += "<br>Chaos Level: <a href='?src=\ref[src];edit_chaos=1'>\[[GLOB.chaos_level]\]</a>"
 	data += "</td><td style=\"padding-left: 40px\">"
@@ -89,6 +90,7 @@
 	data += "<br>Moderate: [round(points[EVENT_LEVEL_MODERATE], 0.1)] / [POOL_THRESHOLD_MODERATE]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MODERATE]'>\[ADD\]</a>"
 	data += "<br>Major: [round(points[EVENT_LEVEL_MAJOR], 0.1)] / [POOL_THRESHOLD_MAJOR]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MAJOR]'>\[ADD\]</a>"
 	data += "<br>Roleset: [round(points[EVENT_LEVEL_ROLESET], 0.1)] / [POOL_THRESHOLD_ROLESET]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_ROLESET]'>\[ADD\]</a>"
+	data += "<br>Weather: [round(points[EVENT_LEVEL_WEATHER], 0.1)] / [POOL_THRESHOLD_WEATHER]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_WEATHER]'>\[ADD\]</a>"
 
 	data += "</td></tr></table>"
 	data += "<hr>"
@@ -131,12 +133,12 @@
 
 	//This complex block will print out all the events with various info
 	var/severity = EVENT_LEVEL_MUNDANE
-	for(var/list/L in list(event_pool_mundane, event_pool_moderate, event_pool_major, event_pool_roleset))
+	for(var/list/L in list(event_pool_mundane, event_pool_moderate, event_pool_major, event_pool_roleset, event_pool_weather))
 		data += "|[severity_to_string[severity]] events:"
 		data += "|Points: [points[severity]]"
 		data += "<ul>"
 		for (var/datum/storyevent/S in L)
-			data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
+			data += "<li>[S.id] - weight: [L[S]] price:[GLOB.storyteller.calculate_event_cost(S, severity)] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
 			if(!calculate_weights)
 				data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
 			data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.enabled?"ALLOWED":"FORBIDDEN"]\]</a>"

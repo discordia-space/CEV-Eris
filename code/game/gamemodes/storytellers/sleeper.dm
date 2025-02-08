@@ -8,3 +8,4 @@
 	gain_mult_moderate = 0.5
 	gain_mult_major = 0.5
 	gain_mult_roleset = 0.5
+	gain_mult_weather = 0.5

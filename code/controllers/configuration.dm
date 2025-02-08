@@ -175,6 +175,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_MODERATE = null,
 		EVENT_LEVEL_MAJOR = list("lower" = 48000, "upper" = 60000),
 		EVENT_LEVEL_ROLESET = null,
+		EVENT_LEVEL_WEATHER = null,
 		EVENT_LEVEL_ECONOMY = list("lower" = 16000, "upper" = 20000),
 	)
 	// The lowest delay until next event
@@ -184,6 +185,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_MODERATE = 18000,
 		EVENT_LEVEL_MAJOR = 30000,
 		EVENT_LEVEL_ROLESET = null,
+		EVENT_LEVEL_WEATHER = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 	// The upper delay until next event
@@ -193,6 +195,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_MODERATE = 27000,
 		EVENT_LEVEL_MAJOR = 42000,
 		EVENT_LEVEL_ROLESET = null,
+		EVENT_LEVEL_WEATHER = null,
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 

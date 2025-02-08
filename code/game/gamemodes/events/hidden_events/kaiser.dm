@@ -13,7 +13,7 @@ It will also bring a hoard of roaches with it.
 
 	event_type = /datum/event/kaiser
 	event_pools = list(
-		EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR * 1.2)
+		EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
 	tags = list(TAG_COMBAT, TAG_NEGATIVE)
 
 /datum/event/kaiser

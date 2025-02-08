@@ -1,12 +1,14 @@
 /datum/storyevent/bluespace_storm
 	id = "bluespace_storm"
 	name = "Bluespace storm"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/bluespace_storm
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/bluespace_storm/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/bluespace_storm
 	startWhen = 1
@@ -34,12 +36,14 @@
 /datum/storyevent/ion_blizzard
 	id = "ion_blizzard"
 	name = "Ion blizzard"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/ion_blizzard
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/ion_blizzard/get_special_weight()
+	return weight / 1 + occurrences
 
 /datum/event/ion_blizzard
 	startWhen = 1
@@ -72,12 +76,14 @@
 /datum/storyevent/photon_vortex
 	id = "photon_vortex"
 	name = "Photon vortex"
-	weight = 0.05
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/photon_vortex
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WAETHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/photon_vortex/get_special_weight()
+	return weight / 1 + occurrences
 
 /datum/event/photon_vortex
 	startWhen = 1
@@ -123,12 +129,14 @@
 /datum/storyevent/harmonic_feedback
 	id = "harmonic_feedback_surge"
 	name = "Harmonic feedback surge anomaly"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	event_type = /datum/event/harmonic_feedback
 	parallel = FALSE
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
+
+/datum/storyevent/harmonic_feedback/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/harmonic_feedback
 	startWhen = 1
@@ -156,12 +164,14 @@
 /datum/storyevent/micro_debris
 	id = "micro_debris"
 	name = "micro debris field"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	parallel = FALSE
 	event_type = /datum/event/micro_debris
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_DESTRUCTIVE, TAG_NEGATIVE)
+
+/datum/storyevent/micro_debris/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/micro_debris
 	startWhen	= 1
@@ -200,12 +210,14 @@
 /datum/storyevent/graveyard
 	id = "graveyard"
 	name = "Space Graveryard"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	parallel = FALSE
 	event_type = /datum/event/graveyard
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/graveyard/get_special_weight() //primitive rotation system
+	return weight / 1 + occurrences
 
 /datum/event/graveyard
 	startWhen = 1
@@ -227,7 +239,7 @@
 		switch(rand(1,3))
 			if(1) //random broadcasts
 				var/message = pick("They are ", "He is ", "All of them are ", "I'm ", "We are ")
-				message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ")
+				message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ", "dying out here...", "dying!", )
 				message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
 				global_announcer.autosay(message, "Emergency Broadcast")
@@ -240,7 +252,31 @@
 					"Our food and water supplies are going to run out soon. We have money. Just help us, anyone, please...",
 					"TO ANYONE STILL LOYAL LEFT, WE MAKE OUR FINAL STAND IN THE CONTROL ROOM.",
 					"Weld the vents. Weld The vents! WELD THE VENTS!!",
-					"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
+					"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause.",
+					"It's growing larger! Bring the flamethrowers here NOW!",
+					"Turn the power back on. We can still recover from this.",
+					"Where are you going?",
+					"Hello?",
+					"Hello? Is anyone there?",
+					"We NEED your help!",
+					"WE are DYING out here! PLEASE, HELP!",
+					"HELP ME!",
+					"IT'S CHASING ME!",
+					"RUN. NOW.",
+					"It doesn't sound like a human.",
+					"I think it heard me...",
+					"This monster can mimick our voices... With intent. It can make sentences as a normal human would. It could be anyone!",
+					"Captain Flintlock is NOT dead yet! STAND AND FIGHT!",
+					"The suspect is armed with a [pick(list("bomb detonator", "rifle", "chainsaw", "knife", "laser rifle", "sniper rifle", "banana peel", "shotgun"))]!",
+					"We had to leave those bodies... Infection is spreading. We will die, but in this case it won't reach outwards.",
+					"I've stopped working on a cure. I know it's impossible to fight this thing now. But at least that's the last thing I tried to do in my pity life...",
+					"I am surrounded by brilliant computers and equipment. Yet none of these can save us from a gang of hungry madmen breaching through lab's airlock. Ironic...",
+					"We've been mobilized to fight against unknown amount of targets. These stupid labcoats can't even define what these \"creatures\" are...",
+					"What do you mean it killed all [rand(20, 100)] crewmen?!",
+					"This thing... You won't even have time to blink, you'll be a goner.",
+					"I-it can't be that effective at killing... To think this was made by nature?! What if alien race made it..?",
+					"The testing is OUT OF CONTROL! INITIATE THE SHUTDOWN! QUARANTINE IT NO-"
+
 				)
 
 				global_announcer.autosay(pick(message_list), "Emergency Broadcast")
@@ -256,12 +292,14 @@
 /datum/storyevent/nebula
 	id = "nebula"
 	name = "Dark matter nebula"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 1
 	parallel = FALSE
 	event_type = /datum/event/nebula
-	event_pools = list(EVENT_LEVEL_MUNDANE = POOL_THRESHOLD_MUNDANE, EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/nebula/get_special_weight() 
+	return weight / 1 + occurrences
 
 /datum/event/nebula
 	startWhen = 1
@@ -286,12 +324,14 @@
 /datum/storyevent/interphase
 	id = "bluespace_interphase"
 	name = "Bluespace Interphase"
-	weight = 0.1
-	occurrences_max = 1
+	weight = 0.25
 	parallel = FALSE
 	event_type = /datum/event/interphase
-	event_pools = list(EVENT_LEVEL_MODERATE = POOL_THRESHOLD_MODERATE, EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
+	event_pools = list(EVENT_LEVEL_WEATHER = POOL_THRESHOLD_WEATHER)
 	tags = list(TAG_SCARY, TAG_NEGATIVE)
+
+/datum/storyevent/interphase/get_special_weight() 
+	return weight / 1 + occurrences
 
 /datum/event/interphase
 	startWhen = 1

@@ -3,13 +3,15 @@
 #define EVENT_LEVEL_MODERATE "moderate"
 #define EVENT_LEVEL_MAJOR    "major"
 #define EVENT_LEVEL_ROLESET  "roleset"
+#define EVENT_LEVEL_WEATHER  "weather"
 #define EVENT_LEVEL_ECONOMY  "economy"
 
 
 //The threshold of points that we need before attempting to purchase things
-#define POOL_THRESHOLD_MUNDANE	25
-#define POOL_THRESHOLD_MODERATE	50
+#define POOL_THRESHOLD_MUNDANE	20
+#define POOL_THRESHOLD_MODERATE	45
 #define POOL_THRESHOLD_MAJOR	90
+#define POOL_THRESHOLD_WEATHER  60
 #define POOL_THRESHOLD_ROLESET	120
 
 
