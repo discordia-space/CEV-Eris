@@ -101,6 +101,8 @@
 	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
 	var/ticks_processed = 0
 
+	var/mob/living/grabbing // the currently grabbed mob
+
 	// Armor related datum
 	var/datum/armor/armor
 
@@ -229,6 +231,8 @@
 	else
 		canmove = TRUE
 		set_density(initial(density))
+	if(!lying && grabbing)
+		canmove = FALSE // don't move if we're grabbing someone
 
 /mob/living/carbon/superior_animal/proc/handle_ai()
 
@@ -346,6 +350,8 @@
 		handle_cheap_environment(environment)
 		updateicon()
 		ticks_processed = 0
+	if(grabbing && !Adjacent(grabbing))
+		breakgrab()
 	if(handle_cheap_regular_status_updates()) // They have died after all of this, do not scan or do not handle AI anymore.
 		return PROCESS_KILL
 
@@ -377,3 +383,27 @@
 	if(istype(mover, /obj/item/projectile))
 		return stat ? TRUE : FALSE
 	. = ..()
+
+/mob/living/carbon/superior_animal/death()
+	breakgrab()
+	. = ..()
+
+/mob/living/carbon/superior_animal/proc/simplegrab(var/mob/living/target) // superior animals won't do this naturally, but this proc makes it easy to implement such behaviour in specific mobs
+	if(!target && target_mob)
+		target = target_mob // if no target was specified, but we have a target, default to them
+	else if(!target || !Adjacent(target))
+		return
+
+	visible_message("<span class='warning'>[src] has grabs [target]!</span>")
+	target.grabbed_by += src
+	grabbing = target
+	cheap_update_lying_buckled_and_verb_status_()
+
+
+/mob/living/carbon/superior_animal/proc/breakgrab()
+	if(grabbing)
+		grabbing.grabbed_by -= src
+		grabbing = null
+		cheap_update_lying_buckled_and_verb_status_()
+
+

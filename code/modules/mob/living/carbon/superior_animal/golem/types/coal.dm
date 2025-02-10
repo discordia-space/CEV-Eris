@@ -40,7 +40,7 @@
 	if(istype(A, /mob/living/carbon))
 		visible_message(SPAN_DANGER("<b>[src]</b> grabs at [target_mob]!"), 1)
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-		A.Stun(COAL_STUN_DURATION)
+		simplegrab(target_mob)
 	else // if they're not a carbon just attack them normally. this includes things like simple animals
 		. = ..()
 

@@ -622,7 +622,8 @@
 					if(3,4) //medium: guarantee 1 melee, 1 ranged/special and then pick 3 random
 						var/melee_weights = list(
 							/mob/living/carbon/superior_animal/golem/iron = 4,
-							/mob/living/carbon/superior_animal/golem/coal = 2,
+							/mob/living/carbon/superior_animal/golem/coal = (seismic_lvl == 3) ? 2 : 0,
+							/mob/living/carbon/superior_animal/golem/coal/enhanced = (seismic_lvl == 4) ? 2 : 0,
 							/mob/living/carbon/superior_animal/golem/platinum = 3,
 							/mob/living/carbon/superior_animal/golem/plasma = (seismic_lvl == 4) ? 2 : 0)
 
@@ -639,7 +640,7 @@
 					if(5,6) // HELL: guarantee 2 melee, 2 ranged/special and then pick 1 random golem
 						var/melee_weights = list(
 								/mob/living/carbon/superior_animal/golem/iron = 3,
-								/mob/living/carbon/superior_animal/golem/coal = 2,
+								/mob/living/carbon/superior_animal/golem/coal/enhanced = 2,
 								/mob/living/carbon/superior_animal/golem/platinum = 3,
 								/mob/living/carbon/superior_animal/golem/plasma = 2,
 								/mob/living/carbon/superior_animal/golem/diamond = (seismic_lvl == 6) ? 2 : 0)
