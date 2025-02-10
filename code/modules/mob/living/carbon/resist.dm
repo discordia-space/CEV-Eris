@@ -76,9 +76,9 @@
 				if(prob(conditionsapply * (5 + max((stats?.getStat(STAT_ROB)) - G.assailant.stats?.getStat(STAT_ROB), 1) ** 0.8))) // 4% minimal chance
 					visible_message("<span class='warning'>[src] has broken free of [G.assailant]'s headlock!</span>")
 					qdel(G)
-	for(var/mob/living/carbon/superior_animal/G_mob in grabbed_by) //grabs by non-humans work differently, as they do not have stats nor hands
+	for(var/mob/living/carbon/superior_animal/G_mob in grabbed_by) //grabs by non-humans work differently, as they have neither stats nor hands
 		resisting++
-		if(prob(((5 * stats?.getStat(STAT_ROB)) ** 0.75) / max(grabbed_by.len / 1.5, 1)))
+		if(prob(max(((stats?.getStat(STAT_ROB) ** 0.9) / grabbed_by.len),20)))
 			G_mob.breakgrab()
 			visible_message("<span class='warning'>[src] has broken free of [G_mob]'s grip!</span>")
 

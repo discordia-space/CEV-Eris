@@ -1,5 +1,3 @@
-#define COAL_STUN_DURATION 10
-
 /mob/living/carbon/superior_animal/golem/coal
 	name = "coal golem"
 	desc = "A moving pile of rocks with coal clumps in it."
@@ -31,7 +29,7 @@
 	// Loot related variables
 	ore = /obj/item/ore/coal
 
-// enhanced coal golems will "grab" (stun) players, leaving them vulnerable to very high damage golems like gold and platinum
+// enhanced coal golems will grab players, leaving them vulnerable to very high damage golems like gold and platinum
 /mob/living/carbon/superior_animal/golem/coal/enhanced
 	name = "graphite golem"
 	desc = "A moving pile of rocks with unusually large hands and graphite chunks in it."
