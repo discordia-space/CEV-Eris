@@ -1,3 +1,5 @@
+#define COAL_STUN_DURATION 10
+
 /mob/living/carbon/superior_animal/golem/coal
 	name = "coal golem"
 	desc = "A moving pile of rocks with coal clumps in it."
@@ -29,12 +31,16 @@
 	// Loot related variables
 	ore = /obj/item/ore/coal
 
-// Special capacity of coal golem: when set on fire, it turns into a diamond golem
-// Especially dangerous since uranium golem can explode into a fireball
-/mob/living/carbon/superior_animal/golem/coal/handle_ai()
-	if(on_fire)
-		visible_message(SPAN_DANGER("\The [src] is engulfed by fire and turns into diamond!"))
-		new /mob/living/carbon/superior_animal/golem/diamond(loc)  // Spawn diamond golem at location
-		ore = null  // So that the golem does not drop coal ores
-		death(FALSE, "no message")
-	. = ..()
+// enhanced coal golems will "grab" (stun) players, leaving them vulnerable to very high damage golems like gold and platinum
+/mob/living/carbon/superior_animal/golem/coal/enhanced
+	name = "graphite golem"
+	desc = "A moving pile of rocks with unusually large hands and graphite chunks in it."
+
+/mob/living/carbon/superior_animal/golem/coal/enhanced/UnarmedAttack(atom/A, proximity)
+	if(istype(A, /mob/living/carbon))
+		visible_message(SPAN_DANGER("<b>[src]</b> grabs at [target_mob]!"), 1)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		A.Stun(COAL_STUN_DURATION)
+	else // if they're not a carbon just attack them normally. this includes things like simple animals
+		. = ..()
+

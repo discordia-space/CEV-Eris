@@ -96,6 +96,7 @@
 	var/ranged_cooldown
 	var/fire_verb //what does it do when it shoots?
 	var/kept_distance //how far away will it be before it stops moving closer
+	var/retreat_on_too_close = FALSE // if this is enabled avoid using very high kept_distance values, byond's pathfinding can get very upset if it can't get far enough away
 
 	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
 	var/ticks_processed = 0
@@ -255,7 +256,9 @@
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 			if(!kept_distance)
 				walk_to(src, target_mob, 1, move_to_delay)
-			else
+			else if (kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
+				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
+			else if(kept_distance)
 				step_to(src, target_mob, kept_distance)
 
 		if(HOSTILE_STANCE_ATTACKING)

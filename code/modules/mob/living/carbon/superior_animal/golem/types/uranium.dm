@@ -31,8 +31,8 @@
 	// Loot related variables
 	ore = /obj/item/ore/uranium
 
-	// Uranium golem does not attack
-	viewRange = 0  // Cannot attack if it cannot see
+	kept_distance = 3
+	retreat_on_too_close = TRUE
 
 /mob/living/carbon/superior_animal/golem/uranium/New()
 	..()
@@ -42,10 +42,3 @@
 	set_light(0)
 	. = ..()
 
-// Special capacity of uranium golem: quickly repair all nearby golems.
-/mob/living/carbon/superior_animal/golem/uranium/handle_ai()
-	for(var/mob/living/carbon/superior_animal/golem/G in range(GOLEM_URANIUM_HEAL_RANGE,get_turf(src)))
-		if(!istype(G, /mob/living/carbon/superior_animal/golem/uranium))  // Uraniums do not regen
-			G.adjustBruteLoss(-GOLEM_REGENERATION) // Brute Regeneration
-			G.adjustFireLoss(-GOLEM_REGENERATION) // Burn Regeneration
-	. = ..()

@@ -645,7 +645,7 @@
 								/mob/living/carbon/superior_animal/golem/diamond = (seismic_lvl == 6) ? 2 : 0)
 
 						var/ranged_weights = list(
-								/mob/living/carbon/superior_animal/golem/silver = 3,
+								/mob/living/carbon/superior_animal/golem/silver/enhanced = 3,
 								/mob/living/carbon/superior_animal/golem/gold = 3,
 								/mob/living/carbon/superior_animal/golem/uranium = 2,
 								/mob/living/carbon/superior_animal/golem/ansible = (seismic_lvl == 6) ? 2 : 0)

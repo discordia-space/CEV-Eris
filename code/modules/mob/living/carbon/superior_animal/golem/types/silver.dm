@@ -37,9 +37,9 @@
 	projectilesound = 'sound/weapons/energy/burn.ogg'
 	casingtype = null
 	ranged_cooldown = 3 SECOND
-	fire_verb = "fires"
+	fire_verb = "hurls a spike"
 	acceptableTargetDistance = 6
-	kept_distance = 5
+	kept_distance = 4
 
 /obj/item/projectile/plasma/stun/golem //special projectile that passes straight through golems
 	name = "stun plasma bolt"
@@ -51,4 +51,9 @@
 	if(istype(A, /mob/living/carbon/superior_animal/golem))
 		return FALSE
 	. = ..()
+
+/mob/living/carbon/superior_animal/golem/silver/enhanced
+	name = "ancient silver golem"
+	desc = "A moving pile of rocks lined with menacing silver spikes and keen self preservation instincts."
+	retreat_on_too_close = TRUE //originally I also intended to increase their kept_distance, but walk_away acts really strangely when it's too high
 

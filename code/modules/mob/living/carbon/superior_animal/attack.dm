@@ -7,7 +7,7 @@
 
 	var/damage
 
-	if(attackdamage) // this allows damage to be overridden, for special cases like the platinum golem's charge
+	if(attackdamage) // this allows damage to be overridden, for special cases like the end of the platinum golem's charge
 		damage = attackdamage
 	else
 		damage = rand(melee_damage_lower, melee_damage_upper)

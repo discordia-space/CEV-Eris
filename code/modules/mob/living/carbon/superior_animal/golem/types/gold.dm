@@ -1,3 +1,7 @@
+#define GOLD_SPIKE_COOLDOWN 50 // 5 seconds
+#define GOLD_SPIKE_WINDUP 20
+#define GOLD_SPIKE_DAMAGE 40 //equivalent to GOLEM_DMG_HIGH
+
 /mob/living/carbon/superior_animal/golem/gold
 	name = "gold golem"
 	desc = "A moving pile of rocks with hyper-malleable gold flowing through its cracks."
@@ -26,5 +30,51 @@
 		rad = 0
 	)
 
+	kept_distance = 4
+	retreat_on_too_close = TRUE
+
 	// Loot related variables
-	ore = /obj/item/ore/gold
+	ore = /obj/item/ore/
+
+	var/spike_cooldown = 0
+
+/mob/living/carbon/superior_animal/golem/gold/handle_ai()
+	if(isliving(target_mob) && ((spike_cooldown + GOLD_SPIKE_COOLDOWN) < world.time))
+		spike_cooldown = world.time
+		spike_attack()
+	. = ..()
+
+/mob/living/carbon/superior_animal/golem/gold/proc/spike_attack()
+	var/list/turfstoattack = list()
+	turfstoattack += get_turf(target_mob) // always attack the turf with the target
+	for(var/turf/potentialturf in range(1,target_mob))
+		if(prob(50) && !(/obj/golem_spike in potentialturf.contents)) // don't stack golem spikes
+			turfstoattack += potentialturf
+
+	for(var/turf/targetturf in turfstoattack)
+		new /obj/golem_spike(targetturf)
+
+/obj/golem_spike
+	icon = 'icons/mob/golems.dmi'
+	icon_state = "goldspike_tip"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/golem_spike/Initialize()
+	. = ..()
+	playsound(src, pick(crumble_sound), 20)
+	spawn(GOLD_SPIKE_WINDUP)
+		icon_state = "goldspike_full"
+		var/turf/turf = get_turf(src)
+		for(var/mob/living/victim in turf.contents)
+			if(!istype(victim, /mob/living/carbon/superior_animal/golem))
+				victim.adjustBruteLoss(GOLD_SPIKE_DAMAGE)
+				playsound(src, 'sound/weapons/slice.ogg', 30)
+				victim.shake_animation(4)
+		animate(src, alpha = 0, time = 20, easing = BACK_EASING|EASE_IN)
+		QDEL_IN(src, 20)
+
+
+
+
+
+
