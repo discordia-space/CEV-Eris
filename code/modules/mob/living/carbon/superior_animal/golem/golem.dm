@@ -136,7 +136,7 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 						ally.stance = HOSTILE_STANCE_ATTACK
 						ally.target_mob = target_mob
 						ally.targetrecievedtime = world.time
-						try_activate_ai() // otherwise we attack alone even if a target is set
+						ally.try_activate_ai() // otherwise we attack alone even if a target is set
 
 		if(HOSTILE_STANCE_ATTACK)
 			if(destroy_surroundings)
