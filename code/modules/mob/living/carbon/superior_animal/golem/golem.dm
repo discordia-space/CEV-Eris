@@ -48,7 +48,6 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 	stop_automated_movement_when_pulled = 0
 	wander = FALSE
 	viewRange = 8
-	kept_distance
 
 	destroy_surroundings = TRUE
 
