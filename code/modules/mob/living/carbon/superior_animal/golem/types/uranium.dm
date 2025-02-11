@@ -47,7 +47,6 @@
 	if(target_mob)
 		for(var/mob/living/carbon/superior_animal/golem/ally in GLOB.active_golems)
 			if((ally != src) && (get_dist(src, ally) < GOLEM_URANIUM_HEAL_RANGE))
-				log_world("[src] trying to heal [ally]")
 				ally.adjustBruteLoss(-GOLEM_REGENERATION)
 				ally.adjustFireLoss(-GOLEM_REGENERATION)
 
