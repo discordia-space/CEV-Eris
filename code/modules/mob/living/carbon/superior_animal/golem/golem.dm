@@ -143,17 +143,15 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 
 			stop_automated_movement = TRUE
 			stance = HOSTILE_STANCE_ATTACKING
-			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-			if(!kept_distance)
-				walk_to(src, target_mob, 1, move_to_delay)
-			else if (kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
-				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
-			else
-				step_to(src, target_mob, kept_distance)
+
+			updatePathFinding()
 
 		if(HOSTILE_STANCE_ATTACKING)
 			if(destroy_surroundings)
 				destroySurroundings()
+
+			if(retreat_on_too_close)
+				updatePathFinding() //retreating enemies need to update their pathfinding way more often
 
 			if((targetrecievedtime - world.time) < 50) // golems will disregard target validity temporarily after another golem gives them a target, so that they don't immediately lose their target
 				attemptAttackOnTarget()
@@ -190,4 +188,10 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 
 	attemptAttackOnTarget()
 
+/mob/living/carbon/superior_animal/golem/proc/updatePathFinding() // moved to a separate proc to avoid code repeats
+	set_glide_size(DELAY2GLIDESIZE(move_to_delay))
+	if(!retreat_on_too_close || (get_dist(loc, target_mob.loc) > kept_distance)) // if this AI doesn't retreat or the target is further than our retreat distance, walk to them.
+		walk_to(src, target_mob, kept_distance + 1, move_to_delay)
+	else
+		walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough awaye)
 

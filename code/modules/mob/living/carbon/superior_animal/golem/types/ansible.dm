@@ -41,6 +41,7 @@
 	fire_verb = "fires"
 	acceptableTargetDistance = 6
 	kept_distance = 5
+	retreat_on_too_close = TRUE
 
 	// Cooldown of special ability
 	var/teleport_cooldown = -90 SECONDS // negative so that it isn't on cooldown at round start

@@ -39,7 +39,7 @@
 	ranged_cooldown = 3 SECOND
 	fire_verb = "hurls a spike"
 	acceptableTargetDistance = 6
-	kept_distance = 3
+	kept_distance = 4
 
 /obj/item/projectile/plasma/stun/golem //special projectile that passes straight through golems
 	name = "stun plasma bolt"

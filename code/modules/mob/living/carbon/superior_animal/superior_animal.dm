@@ -269,6 +269,11 @@
 			if(destroy_surroundings)
 				destroySurroundings()
 
+			if(kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
+				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
+			else if(kept_distance)
+				step_to(src, target_mob, kept_distance)
+
 			prepareAttackOnTarget()
 
 	//random movement
