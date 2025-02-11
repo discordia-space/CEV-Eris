@@ -52,12 +52,18 @@
 			turfstoattack += potentialturf
 
 	for(var/turf/targetturf in turfstoattack)
-		new /obj/golem_spike(targetturf)
+		var/obj/golem_spike/spike = new /obj/golem_spike(targetturf)
+		spike.parent = src
 
 /obj/golem_spike
 	icon = 'icons/mob/golems.dmi'
 	icon_state = "goldspike_tip"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/parent
+	var/attacktext = list(
+				"skewered",
+				"impaled,",
+				"punctured")
 
 /obj/golem_spike/Initialize()
 	. = ..()
@@ -67,7 +73,7 @@
 		var/turf/turf = get_turf(src)
 		for(var/mob/living/victim in turf.contents)
 			if(!istype(victim, /mob/living/carbon/superior_animal/golem))
-				victim.adjustBruteLoss(GOLD_SPIKE_DAMAGE)
+				victim.attack_generic(parent, GOLD_SPIKE_DAMAGE, pick(attacktext), FALSE, TRUE, FALSE, 1)
 				playsound(src, 'sound/weapons/slice.ogg', 30)
 				victim.shake_animation(4)
 		animate(src, alpha = 0, time = 20, easing = BACK_EASING|EASE_IN)

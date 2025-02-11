@@ -21,9 +21,9 @@
 
 #define GOLEM_REGENERATION 10  // Healing by special ability of uranium golems
 
-GLOBAL_LIST_EMPTY(all_golems) // golems check this list to target allies
+GLOBAL_LIST_EMPTY(all_golems) // golems check this list to loop over allies
+GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with a current target mob
 
-// OneStar patrol borg that defends OneStar facilities
 /mob/living/carbon/superior_animal/golem
 	icon = 'icons/mob/golems.dmi'
 
@@ -47,6 +47,8 @@ GLOBAL_LIST_EMPTY(all_golems) // golems check this list to target allies
 	meat_amount = 0
 	stop_automated_movement_when_pulled = 0
 	wander = FALSE
+	viewRange = 8
+	kept_distance
 
 	destroy_surroundings = TRUE
 
@@ -68,12 +70,16 @@ GLOBAL_LIST_EMPTY(all_golems) // golems check this list to target allies
 	// Type of ore to spawn when the golem dies
 	var/ore
 
+	var/aiticks = 0
+	var/targetrecievedtime = -250
+
 /mob/living/carbon/superior_animal/golem/Initialize(var/mapload)
 	GLOB.all_golems += src
 	.=..()
 
 /mob/living/carbon/superior_animal/golem/Destroy()
 	GLOB.all_golems -= src
+	GLOB.active_golems -= src
 	..()
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
@@ -105,3 +111,71 @@ GLOBAL_LIST_EMPTY(all_golems) // golems check this list to target allies
 		var/obj/structure/obstacle = locate(/obj/structure) in T
 		if(obstacle)
 			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), pick(attacktext), TRUE)
+
+/mob/living/carbon/superior_animal/golem/loseTarget()
+	GLOB.active_golems -= src
+	. = ..()
+
+/mob/living/carbon/superior_animal/golem/handle_ai()
+
+	objectsInView = null
+
+	//CONSCIOUS UNCONSCIOUS DEAD
+
+	if (!check_AI_act())
+		return FALSE
+
+	switch(stance)
+		if(HOSTILE_STANCE_IDLE)
+			if (!busy) // if not busy with a special task
+				stop_automated_movement = FALSE
+			target_mob = findTarget()
+			if (target_mob)
+				stance = HOSTILE_STANCE_ATTACK
+				for(var/mob/living/carbon/superior_animal/golem/ally in GLOB.all_golems)
+					if(!ally.target_mob && (get_dist(ally, src) < 5))
+						ally.stance = HOSTILE_STANCE_ATTACK
+						ally.target_mob = target_mob
+						ally.targetrecievedtime = world.time
+
+		if(HOSTILE_STANCE_ATTACK)
+			if(destroy_surroundings)
+				destroySurroundings()
+
+			stop_automated_movement = TRUE
+			stance = HOSTILE_STANCE_ATTACKING
+			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
+			if(!kept_distance)
+				walk_to(src, target_mob, 1, move_to_delay)
+			else if (kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
+				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
+			else if(kept_distance)
+				step_to(src, target_mob, kept_distance)
+
+		if(HOSTILE_STANCE_ATTACKING)
+			if(destroy_surroundings)
+				destroySurroundings()
+
+			if((targetrecievedtime - world.time) < 50) // golems will disregard target validity temporarily after another golem gives them a target, so that they don't immediately lose their target
+				attemptAttackOnTarget()
+			else
+				prepareAttackOnTarget()
+
+	//random movement
+	if(wander && !stop_automated_movement && !anchored)
+		if(isturf(loc) && !resting && !buckled && canmove)
+			turns_since_move++
+			if(turns_since_move >= turns_per_move)
+				if(!(stop_automated_movement_when_pulled && pulledby))
+					var/moving_to = pick(cardinal)
+					set_dir(moving_to)
+					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+					turns_since_move = 0
+
+	//Speaking
+	if(speak_chance && prob(speak_chance))
+		visible_emote(emote_see)
+
+	return TRUE
+
+

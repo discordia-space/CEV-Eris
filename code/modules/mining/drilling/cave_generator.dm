@@ -31,8 +31,8 @@
 //minimum distance between spawned clusters. the spawn is canceled if it's lower than this.
 #define GOLEM_SPAWN_SPACING 7.5 //
 //chance for a cluster of 5 golems to spawn per tile, calculated as "GOLEM_SPAWN_CHANCE_BASE + (GOLEM_SPAWN_CHANCE_SCALING * seismic level)"
-#define GOLEM_SPAWN_CHANCE_BASE 1.6
-#define GOLEM_SPAWN_CHANCE_SCALING 0.4 // 2% on level 1, 4% on level 6.
+#define GOLEM_SPAWN_CHANCE_BASE 2.8
+#define GOLEM_SPAWN_CHANCE_SCALING 0.2 // 3% on level 1, 4% on level 6.
 
 //////////////////////////////
 // Generator used to handle underground caves
@@ -610,16 +610,16 @@
 				var/list/mob/living/carbon/superior_animal/golem/golems_to_spawn = list()
 
 				switch(seismic_lvl)
-					if(1,2) //easy: pick 5 random golems
+					if(1,2) //easy: pick 3 random golems
 						var/weights = list(
 							/mob/living/carbon/superior_animal/golem/iron = 3,
 							/mob/living/carbon/superior_animal/golem/coal = 2,
 							/mob/living/carbon/superior_animal/golem/silver = (seismic_lvl == 2) ? 2 : 0)  //0 weight on seismic 1, 2 weight on seismic 2.
 
-						for(var/c = 0, c < 5, c++) // I couldn't get pickweight_mult to work, so running pickweight 5 times is a more reliable solution
+						for(var/c = 0, c < 3, c++) // I couldn't get pickweight_mult to work, so running pickweight 5 times is a more reliable solution
 							golems_to_spawn += pickweight(weights)
 
-					if(3,4) //medium: guarantee 1 melee, 1 ranged/special and then pick 3 random
+					if(3,4) //medium: guarantee 1 melee, 1 ranged/special and then pick 2 random
 						var/melee_weights = list(
 							/mob/living/carbon/superior_animal/golem/iron = 4,
 							/mob/living/carbon/superior_animal/golem/coal = (seismic_lvl == 3) ? 2 : 0,
@@ -634,7 +634,7 @@
 						golems_to_spawn += pickweight(melee_weights)
 						golems_to_spawn += pickweight(ranged_weights)
 
-						for(var/c = 0, c < 3, c++)
+						for(var/c = 0, c < 2, c++)
 							golems_to_spawn += pickweight(melee_weights + ranged_weights)
 
 					if(5,6) // HELL: guarantee 2 melee, 2 ranged/special and then pick 1 random golem

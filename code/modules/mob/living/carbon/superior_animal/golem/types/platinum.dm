@@ -36,6 +36,7 @@
 	ore = /obj/item/ore/osmium
 
 	var/charge_verbs = list("launches itself", "charges", "rams")
+	var/charge_hit_verbs = list("crashes into", "smashes", "slams into")
 	var/charge_cooldown = 0
 
 /mob/living/carbon/superior_animal/golem/platinum/handle_ai() // half of this proc is just the visuals. the visuals are irritatingly difficult with this method of actually charging
@@ -52,8 +53,7 @@
 			var/turf/lastvalidturf // I am not even going to pretend I understand how this proc works
 			passedturfs -= passedturfs[(passedturfs.len)] // cut off the end of the line so we stop right before the target
 			var/vfxindex = passedturfs.len - 1
-			var/vfxfalloff = 250 / (passedturfs.len - 1)
-
+			var/vfxfalloff = 250 / max((passedturfs.len - 1),1)
 
 			for(var/turf/targetturf in passedturfs)
 				if(turf_clear_ignore_cables_and_mobs(targetturf))
@@ -62,7 +62,7 @@
 
 					new /obj/effect/decal/cleanable/rubble(targetturf)
 
-					if(vfxindex >= 0) //every turf except the one we end on.
+					if((vfxindex >= 0) && (passedturfs.len >= 1)) //every turf except the one we end on.
 						var/obj/effect/temp_visual/long/charge_effect = new /obj/effect/temp_visual/long(targetturf)
 						charge_effect.icon = icon
 						charge_effect.icon_state = icon_state // copy over the icon and direction
@@ -82,7 +82,7 @@
 			forceMove(lastvalidturf)
 
 			if(Adjacent(target_mob))
-				UnarmedAttack(target_mob, 1, PLATINUM_CHARGE_DAMAGE_TARGET)
+				target_mob.attack_generic(src, PLATINUM_CHARGE_DAMAGE_TARGET, pick(charge_hit_verbs), FALSE, FALSE, FALSE, 1)
 
 			playsound(loc, 'sound/weapons/melee/blunthit.ogg', attack_sound_volume, 1)
 			walk_to(src, target_mob, 1, move_to_delay) // continue moving towards the target once the charge is finished
