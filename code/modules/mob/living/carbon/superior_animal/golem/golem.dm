@@ -48,6 +48,7 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 	stop_automated_movement_when_pulled = 0
 	wander = FALSE
 	viewRange = 8
+	kept_Distance = 0
 
 	destroy_surroundings = TRUE
 
@@ -69,7 +70,6 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 	// Type of ore to spawn when the golem dies
 	var/ore
 
-	var/aiticks = 0
 	var/targetrecievedtime = -250
 
 /mob/living/carbon/superior_animal/golem/Initialize(var/mapload)
@@ -126,10 +126,10 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
-			if (!busy) // if not busy with a special task
+			if(!busy) // if not busy with a special task
 				stop_automated_movement = FALSE
 			target_mob = findTarget()
-			if (target_mob)
+			if(target_mob)
 				stance = HOSTILE_STANCE_ATTACK
 				for(var/mob/living/carbon/superior_animal/golem/ally in GLOB.all_golems)
 					if(!ally.target_mob && (get_dist(ally, src) < 5))
@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 				walk_to(src, target_mob, 1, move_to_delay)
 			else if (kept_distance && retreat_on_too_close && (get_dist(loc, target_mob.loc) < kept_distance))
 				walk_away(src,target_mob,kept_distance,move_to_delay) // warning: mobs will strafe nonstop if they can't get far enough away
-			else if(kept_distance)
+			else
 				step_to(src, target_mob, kept_distance)
 
 		if(HOSTILE_STANCE_ATTACKING)
@@ -176,5 +176,18 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 		visible_emote(emote_see)
 
 	return TRUE
+
+/mob/living/carbon/superior_animal/golem/prepareAttackOnTarget()
+	stop_automated_movement = 1
+
+	if (!target_mob || !isValidAttackTarget(target_mob))
+		loseTarget()
+		return
+
+	if ((get_dist(src, target_mob) >= (viewRange + kept_distance)) || src.z != target_mob.z) //golems with a kept distance need to be further away to lose their gargets, to avoid losing targets by trying to keep distance
+		loseTarget()
+		return
+
+	attemptAttackOnTarget()
 
 

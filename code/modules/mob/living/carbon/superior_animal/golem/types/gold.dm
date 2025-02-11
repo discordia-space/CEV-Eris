@@ -30,7 +30,7 @@
 		rad = 0
 	)
 
-	kept_distance = 4
+	kept_distance = 3
 	retreat_on_too_close = TRUE
 
 	// Loot related variables
