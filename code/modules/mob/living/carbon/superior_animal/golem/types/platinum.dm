@@ -50,8 +50,11 @@
 		var/list/passedturfs = getline(src, target_mob) // do this at the start of the windup, so that the golem's charge doesn't track the target (and it can be dodged)
 
 		spawn(PLATINUM_CHARGE_WINDUP)
-			var/turf/lastvalidturf // I am not even going to pretend I understand how this proc works
-			passedturfs -= passedturfs[(passedturfs.len)] // cut off the end of the line so we stop right before the target
+			var/turf/lastvalidturf
+			var/turf/lineend = passedturfs[(passedturfs.len)]
+			if(target_mob in lineend.contents) //if the target hasn't moved, cut off the end of the line so we don't end up on top of them
+				passedturfs -= lineend
+
 			var/vfxindex = passedturfs.len - 1
 			var/vfxfalloff = 250 / max((passedturfs.len - 1),1)
 

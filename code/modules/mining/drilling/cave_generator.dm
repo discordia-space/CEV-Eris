@@ -656,10 +656,12 @@
 							golems_to_spawn += pickweight(ranged_weights)
 						golems_to_spawn += pickweight(ranged_weights + melee_weights)
 
-				// Spawn golem at free location
+				var/potentialturfs = list()
+				for(var/turf/floor/asteroid/cave/potential_turf in range(1, turf))
+					potentialturfs += potential_turf
+
 				for(var/golem in golems_to_spawn)
-					var/spawnturf = get_turf(locate(turf.x + rand(-1,1), turf.y + rand(-1,1), turf.z)) // slightly randomize the spawn turfs so golems don't spawn in a doomstack
-					new golem(spawnturf)
+					new golem(pick_mobless_turf_if_exists(potentialturfs))
 
 		for(var/c = 1 to golem_spawn_points.len)
 			log_world(golem_spawn_points[c])
