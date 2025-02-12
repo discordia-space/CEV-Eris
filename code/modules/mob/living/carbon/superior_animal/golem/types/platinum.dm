@@ -11,16 +11,16 @@
 	icon_living = "golem_platinum"
 
 	// Health related variables
-	maxHealth = GOLEM_HEALTH_MED
-	health = GOLEM_HEALTH_MED
+	maxHealth = GOLEM_HEALTH_HIGH
+	health = GOLEM_HEALTH_HIGH
 
 	// Movement related variables
 	move_to_delay = GOLEM_SPEED_SLUG
 	turns_per_move = 5
 
 	// Damage related variables
-	melee_damage_lower = GOLEM_DMG_FEEBLE
-	melee_damage_upper = GOLEM_DMG_LOW
+	melee_damage_lower = GOLEM_DMG_LOW
+	melee_damage_upper = GOLEM_DMG_MED
 
 	// Armor related variables
 	armor = list(
