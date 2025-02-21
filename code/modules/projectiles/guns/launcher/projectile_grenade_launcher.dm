@@ -15,7 +15,7 @@
 	ammo_type = /obj/item/ammo_casing/grenade
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
 	fire_sound_text = "a metallic thunk"
-	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'	//Placeholder, could use a new sound
+	bulletinsert_sound = 'sound/weapons/guns/interact/grenadelauncher_magin.ogg'
 	saw_off = FALSE
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
