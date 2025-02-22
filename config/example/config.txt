@@ -300,7 +300,7 @@ REVIVAL_BRAIN_LIFE -1
 JOIN_UNASSIGNED
 
 ## Uncomment to use overmap system for zlevel travel
-#USE_OVERMAP
+USE_OVERMAP
 
 ##Clients will be unable to connect unless their version is equal to or higher than this (a number, e.g. 511)
 #MINIMUM_BYOND_VERSION

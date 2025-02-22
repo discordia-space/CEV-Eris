@@ -156,6 +156,21 @@ var/list/flooring_types
 	build_type = null
 	footstep_sound = "asteroid"
 
+//==========Snow==============\\
+
+/decl/flooring/snow
+	name = "snow"
+	desc = "You could do lines of this all day."
+	icon = 'icons/turf/snow.dmi'
+	icon_base = "snow"
+	has_base_range = 3
+	damage_temperature = T0C+30
+	flags = TURF_REMOVE_SHOVEL | TURF_EDGES_EXTERNAL | TURF_HAS_CORNERS | TURF_HIDES_THINGS
+	plating_type = /decl/flooring/snow
+	footstep_sound = "snow"
+	floor_smooth = SMOOTH_NONE
+	space_smooth = SMOOTH_NONE
+
 //=========PLATING==========\\
 
 /decl/flooring/reinforced/plating
@@ -707,3 +722,4 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "derelict4"
 	build_type = /obj/item/stack/tile/derelict/white_big_edges
+

@@ -59,6 +59,12 @@
 	icon_state = "dirt"
 	initial_flooring = /decl/flooring/dirt
 
+/turf/floor/snow
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snow"
+	initial_flooring = /decl/flooring/snow
+
 /turf/floor/dirt/airless
 	oxygen = 0
 	nitrogen = 0
