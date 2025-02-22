@@ -168,6 +168,7 @@ var/list/flooring_types
 	footstep_sound = "snow"
 	floor_smooth = SMOOTH_NONE
 	space_smooth = SMOOTH_NONE
+	dirt_color = "#e3e7e8"
 
 //=========PLATING==========\\
 
