@@ -2,7 +2,7 @@
 
 /mob/living/carbon/superior_animal/golem/ansible
 	name = "ansible golem"
-	desc = "A moving pile of rocks with ansible crystals in it."
+	desc = "A moving pile of rocks dotted with ansible crystals, each bursting with energy."
 	icon_state = "golem_ansible_idle"
 	icon_living = "golem_ansible_idle"
 
@@ -40,7 +40,8 @@
 	ranged_cooldown = 3 SECOND
 	fire_verb = "fires"
 	acceptableTargetDistance = 6
-	kept_distance = 3
+	kept_distance = 5
+	retreat_on_too_close = TRUE
 
 	// Cooldown of special ability
 	var/teleport_cooldown = -90 SECONDS // negative so that it isn't on cooldown at round start
