@@ -27,3 +27,6 @@
   - bugfix: fixed Jester Collapse from extremely long rounds
   VmpOS2NHSkhkejA9:
   - bugfix: one star tech loot spawners spawn one star tech loot.
+2025-02-22:
+  koghs:
+  - soundadd: added a new sound for reloading grenade launchers
