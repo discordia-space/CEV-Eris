@@ -306,7 +306,7 @@ var/list/floor_decals = list()
 
 
 
-//Terrains
+//Grass for ship garden
 
 /obj/effect/floor_decal/grass_edge
 	name = "grass edge"
@@ -315,15 +315,3 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/grass_edge/corner
 	name = "grass edge"
 	icon_state = "grass_edge_corner"
-
-
-
-//Snow & Ice
-
-/obj/effect/floor_decal/snow_edge
-	name = "snow edge"
-	icon_state = "snow_edge"
-
-/obj/effect/floor_decal/grass_edge/corner
-	name = "snow edge"
-	icon_state = "snow_edge_corner"

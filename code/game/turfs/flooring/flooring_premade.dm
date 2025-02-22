@@ -356,25 +356,12 @@
 	icon_state = "techmaint_cargo"
 	initial_flooring = /decl/flooring/tiling/techmaint_cargo
 
+
 /turf/floor/reinforced
 	name = "reinforced floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "reinforced"
 	initial_flooring = /decl/flooring/reinforced
-
-
-
-/turf/floor/terrain/snow
-	name = "snow"
-	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow"
-	temperature = 233.15
-	oxygen = MOLES_O2STANDARD * 1.14 //the multiplier is to compensate the lower pressure, to keep it breathable
-	nitrogen = MOLES_N2STANDARD *1.14
-	initial_flooring = /decl/flooring/snow
-	dirt_color = "#e3e7e8"
-
-
 
 /turf/floor/reinforced/almost_airless //Shields detect zero atmosphere next to walls, which empty chambers with airless tiles technically count, and diffusers don't allow gasses through injectors
 	oxygen = 0
@@ -768,3 +755,4 @@
 /turf/floor/beach/water/New()
 	..()
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+
