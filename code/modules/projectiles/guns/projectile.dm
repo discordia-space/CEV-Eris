@@ -219,6 +219,7 @@
 			C.amount -= 1
 			var/obj/item/ammo_casing/inserted_casing = new C.type(C)	//Couldn't make it seperate, so it must be cloned
 			loaded.Insert(1, inserted_casing)
+			inserted_casing.forceMove(src)
 		else
 			user.remove_from_mob(C)
 			C.forceMove(src)
