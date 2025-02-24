@@ -49,7 +49,7 @@
 				new /mob/living/simple_animal/crab(T)
 		if(6)
 			if(prob(60))
-				var/grass_path = pick(typesof(/obj/structure/flora/grass)-/obj/structure/flora/grass)
+				var/grass_path = pick(typesof(/obj/structure/flora/snow_grass)-/obj/structure/flora/snow_grass)
 				new grass_path(T)
 			if(prob(5))
 				var/mob_type = pick(list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse))

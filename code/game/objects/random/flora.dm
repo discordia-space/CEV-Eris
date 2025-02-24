@@ -8,3 +8,4 @@
 	name = "low chance random flora"
 	icon_state = "nature-purple-low"
 	spawn_nothing_percentage = 83
+
