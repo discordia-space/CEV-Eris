@@ -1,40 +1,70 @@
-//trees
-/obj/structure/tree
-	name = "tree"
+//flora
+//Example piece of flora.
+/obj/structure/flora
+	name = "bush"
+	icon = 'icons/obj/flora/ausflora.dmi'
+	icon_state = "sunnybush_1"
 	anchored = TRUE
-	density = TRUE
-	pixel_x = -16
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/tree/dead
+
+
+//trees
+/obj/structure/flora/tree
+	name = "tree"
+	desc = "<i>&quot;Two trees alone<br>\ danced throughout the years<br>\ never touching each other.&quot;</i>"
+	icon = 'icons/obj/flora/jungletrees.dmi'
+	icon_state = "tree_0"
+	anchored = TRUE
+	density = TRUE
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/flora/tree/New()
+	..()
+	icon_state = "temperate_tree_[pick(1,5)]"
+	pixel_x = pick(-20, -12)
+	pixel_y = pick(-4, 4)
+
+/obj/structure/flora/tree/jungle
+	desc = "A lush tree. Vines hang off of it's broad-leaved branches."
+
+/obj/structure/flora/tree/jungle/New()
+	..()
+	icon_state = "tree_[pick(1,5)]"
+
+/obj/structure/flora/tree/dead
+	name = "dead tree"
+	desc = "It's dead, Jim."
 	icon = 'icons/obj/flora/deadtrees.dmi'
-	icon_state = "tree_1"
+
+/obj/structure/flora/tree/dead/New()
+	..()
+	icon_state = "tree_[pick(1,6)]"
+
 
 
 //cold weather trees
-/obj/structure/cold_tree
-	name = "tree"
+/obj/structure/flora/tree/pine
+	name = "pine tree"
+	desc = "A conifer similar to those found in Terran forests. It's dark and thin leaves rustle in the cold wind."
+	icon = 'icons/obj/flora/pinetrees.dmi'
+	icon_state = "pine_0"
 	anchored = TRUE
 	density = TRUE
-	pixel_x = -16
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/cold_tree/pine
-	name = "pine tree"
-	icon = 'icons/obj/flora/pinetrees.dmi'
-	icon_state = "pine_1"
-
-/obj/structure/cold_tree/pine/New()
+/obj/structure/flora/tree/pine/New()
 	..()
-	icon_state = "pine_[rand(1, 3)]"
+	icon_state = "pine_[pick(1,4)]"
+	pixel_x = pick(-20, -12)
+	pixel_y = pick(-4, 4)
 
-/obj/structure/cold_tree/dead
-	icon = 'icons/obj/flora/deadtrees.dmi'
-	icon_state = "tree_1"
+/obj/structure/flora/tree/pine/snowless
+	desc = "No snow bears down on this one."
 
-/obj/structure/cold_tree/dead/New()
+/obj/structure/flora/tree/pine/snowless/New()
 	..()
-	icon_state = "tree_[rand(1, 6)]"
+	icon_state = "snowless_pine_[pick(1,4)]"
 
 
 //grass
@@ -66,6 +96,7 @@
 	icon_state = "snowgrassall[rand(1, 3)]"
 
 
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"
@@ -89,6 +120,8 @@
 	if(new_icon < 10)
 		new_icon = "0[new_icon]"
 	icon_state = "plant-[new_icon]"
+
+
 
 //newbushes
 /obj/structure/flora/ausbushes

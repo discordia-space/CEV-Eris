@@ -117,7 +117,6 @@
 /area/eris/security/range)
 "aav" = (
 /obj/structure/multiz/ladder/up,
-/obj/spawner/cold_tree,
 /turf/floor/tiled/dark/techfloor_grid,
 /area/eris/security/main)
 "aaw" = (
@@ -506,7 +505,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/spawner/cold_tree/low_chance,
 /turf/floor/tiled/dark/danger,
 /area/eris/security/range)
 "abA" = (
@@ -89140,7 +89138,6 @@
 /area/eris/hallway/side/section3deck2port)
 "enY" = (
 /obj/machinery/light,
-/obj/spawner/cold_tree/low_chance,
 /turf/floor/tiled/dark/danger,
 /area/eris/security/range)
 "enZ" = (
@@ -99127,10 +99124,6 @@
 /obj/structure/railing,
 /turf/floor/plating/under,
 /area/eris/maintenance/section3deck5starboard)
-"iSE" = (
-/obj/spawner/cold_tree/low_chance,
-/turf/floor/tiled/dark/gray_perforated,
-/area/eris/security/range)
 "iTh" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment,
@@ -99620,10 +99613,6 @@
 	},
 /turf/floor/tiled/white/brown_perforated,
 /area/eris/crew_quarters/kitchen_freezer)
-"jMN" = (
-/obj/spawner/cold_tree,
-/turf/floor/tiled/dark/techfloor_grid,
-/area/eris/security/main)
 "jNn" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -102250,10 +102239,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/floor/tiled/steel/bar_dance,
 /area/holodeck/alphadeck)
-"oXD" = (
-/obj/spawner/cold_tree/low_chance,
-/turf/floor/tiled/dark/danger,
-/area/eris/security/range)
 "oXE" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -126202,9 +126187,9 @@ aaa
 aad
 aaa
 aaG
-iSE
+aar
 aaC
-iSE
+aar
 aaG
 aaa
 abH
@@ -126802,9 +126787,9 @@ aaa
 aaa
 aaa
 aac
-jMN
 aaj
-jMN
+aaj
+aaj
 aab
 aaa
 aaG
@@ -127010,9 +126995,9 @@ aaz
 aab
 aaa
 aaG
-oXD
+aat
 aar
-oXD
+aat
 aaG
 aaa
 abH
@@ -127206,9 +127191,9 @@ aaa
 aaa
 aaa
 aac
-jMN
 aaj
-jMN
+aaj
+aaj
 aab
 aaq
 aaG
