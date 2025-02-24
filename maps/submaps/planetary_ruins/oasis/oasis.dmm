@@ -11,11 +11,11 @@
 /turf/template_noop,
 /area/template_noop)
 "e" = (
-/obj/structure/flora/grass/green,
+/obj/structure/flora/snow_grass/green,
 /turf/floor/exoplanet/grass,
 /area/template_noop)
 "f" = (
-/obj/structure/flora/grass/both,
+/obj/structure/flora/snow_grass/both,
 /turf/floor/exoplanet/grass,
 /area/template_noop)
 "g" = (
@@ -37,7 +37,7 @@
 /turf/floor/exoplanet/grass,
 /area/template_noop)
 "l" = (
-/obj/structure/flora/grass/brown,
+/obj/structure/flora/snow_grass/brown,
 /turf/floor/exoplanet/grass,
 /area/template_noop)
 "m" = (
