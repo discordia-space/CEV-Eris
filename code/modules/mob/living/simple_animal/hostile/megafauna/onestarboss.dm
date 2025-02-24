@@ -1,15 +1,4 @@
-/* DEAL notes:
-If you want to figure out this shitcode and actually add this in for some reason, I will leave this here before I leave. If I won't finish it, here you go:
 
-AttackingTarget() has nothing except OpenFire() cuz otherwise Mech would melee target_mob standing nearby, and I wanted to make a attack-pattern-based mob
-Minigun Behaviors: 1 is one target, that means mech can't choose two targets and shoot in completely different directions with its 2 miniguns, trying to get both mobs.
-
-Behavior one was supposed to be like closing scissors, coming together on a target, cutting (get it?) away ways to dodge with bullets.
-Behavior two - shoot two completely different targets, locking on with precision.
-
-Effects demand parent code, so ..()
-
-*/
 #define OS_BOSS_SHOTGUN		1
 #define OS_BOSS_SNIPER		2
 #define OS_BOSS_ROCKET		3
@@ -33,6 +22,7 @@ Effects demand parent code, so ..()
 	var/is_jittery = 0
 	var/jitteriness
 	var/doing_something = FALSE // mech should not multitask like I do
+	var/hologram_exists = FALSE
 	var/mobstospawn = list(
 		/mob/living/simple_animal/hostile/onestar_custodian/engineer,
 		/mob/living/simple_animal/hostile/onestar_custodian,
@@ -44,7 +34,7 @@ Effects demand parent code, so ..()
 		/mob/living/carbon/superior_animal/stalker/,
 		)
 	var/static/list/move_list = list(OS_BOSS_SHOTGUN, OS_BOSS_SNIPER, OS_BOSS_ROCKET, OS_BOSS_MINIGUN, OS_BOSS_SPAWN_BOTS) // Shotgun, sniper, rockets, you get the drill
-	var/action = OS_BOSS_SHOTGUN //action has to be some kind of default before it will be changed at the start of first attack
+	var/action = OS_BOSS_SHOTGUN
 
 	health = 1700
 	maxHealth = 1700
@@ -60,29 +50,6 @@ Effects demand parent code, so ..()
 
 	wander = FALSE //No more sleepwalking
 
-/*/particles/mecha_smoke/
-	icon = 'icons/effects/smoke.dmi'
-	icon_state = list("smoke_1" = 1, "smoke_2" = 1, "smoke_3" = 2)
-	width = 100
-	height = 200
-	count = 1000
-	spawning = 3
-	lifespan = 1.5 SECONDS
-	fade = 1 SECONDS
-	velocity = list(0, 0.3, 0)
-	position = list(5, 32, 0)
-	drift = generator("sphere", 0, 1, NORMAL_RAND)
-	friction = 0.2
-	gravity = list(0, 0.95)
-	grow = 0.05
-
-/mob/living/simple_animal/hostile/megafauna/one_star/Initialize()
-	//holder_left = new(src, /particles/mecha_smoke)
-	//holder_left.layer = layer+0.001
-	var/particles/mecha_smoke/smok = new /particles/mecha_smoke(src)
-	. = ..()
-	!!!!!!!!!!!!!!FUCKING PAIN IN THE ASS!!!!!!!!!!!!!!!!! WILL SURELY DO LATER - Deal
-*/
 /mob/living/simple_animal/hostile/megafauna/one_star/Move()
 	..()
 	if(!isinspace())
@@ -92,7 +59,7 @@ Effects demand parent code, so ..()
 
 	if(ismob(target))
 		var/kick_dir = get_dir(src, target)
-		UnarmedAttack(target, rand(50,100)) // DEAL LOOK
+		UnarmedAttack(target, rand(50,100))
 		target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
 
 /mob/living/simple_animal/hostile/megafauna/one_star/UnarmedAttack(atom/A, proximity)
@@ -124,8 +91,6 @@ Effects demand parent code, so ..()
 /obj/effect/effect/minigun_aim
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "spin"
-	//flick("stupid_circle.dmi", src)
-	//mouse_opacity = 0
 	anchored = TRUE
 	alpha = 200
 	layer = FLY_LAYER
@@ -136,7 +101,6 @@ Effects demand parent code, so ..()
 	flick("wind_up", src)
 
 /obj/effect/effect/minigun_aim/proc/StayOn(mob/living/target)
-	loc = target.loc
 	var/prev_position = get_turf(target)
 	var/timer = 50
 	var/walk_direction
@@ -157,7 +121,7 @@ Effects demand parent code, so ..()
 		return
 	var/turf/startloc = get_turf(src)
 	var/obj/item/projectile/P = new /obj/item/projectile/bullet/rocket/one_star(startloc)
-	playsound(src, 'sound/effects/bang.ogg', 100, 1) // this is a fucking tile fall sound
+	playsound(src, 'sound/effects/bang.ogg', 100, 1)
 	P.firer = src
 	if(target)
 		P.original = target
@@ -201,8 +165,6 @@ Effects demand parent code, so ..()
 /obj/effect/effect/mech_aiming/New()
 	..()
 	icon = 'icons/effects/alerts64x64.dmi'
-	//icon_state = "aiming_flick"
-	//flick("mech_aiming", src)
 	icon_state = "aiming_flick"
 	flick("mech_aiming", src)
 
@@ -222,8 +184,6 @@ Effects demand parent code, so ..()
 			organ_rel_size[BP_R_LEG]; BP_R_LEG,
 		)
 
-	//if(QDELETED(target))
-	//	return
 	set_dir(get_dir(src, target))
 	var/obj/item/projectile/P = new /obj/item/projectile/beam/sniper(loc)
 	P.launch(target, def_zone)
@@ -232,13 +192,10 @@ Effects demand parent code, so ..()
 /obj/effect/effect/crosshair
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "aiming_crosshair"
-	//var/atom/target = null
 	anchored = 1
 	alpha = 200
 	layer = 5
 	unacidable = 1
-
-///obj/effect/effect/crosshair/New(var/mob/living/M)
 
 /obj/effect/effect/crosshair/proc/StayOn(mob/living/M)
 	loc = M.loc
@@ -266,13 +223,11 @@ Effects demand parent code, so ..()
 			organ_rel_size[BP_R_LEG]; BP_R_LEG,
 		)
 
-	//if(QDELETED(target))
-	//	return
-	set_dir(get_dir(src, target))
+	set_dir(get_dir(src, get_cardinal_dir(src, target)))
 	var/pellets = 2
 	for(pellets, pellets > 0, pellets--)
 		var/obj/item/projectile/P = new /obj/item/projectile/bullet/pellet/shotgun(loc)
-		P.launch(target, def_zone)
+		P.launch(get_step(src, src.dir), def_zone)
 	playsound(src, "sound/weapons/guns/fire/shotgunp_fire.ogg", 100, 1)
 
 
@@ -281,13 +236,15 @@ Effects demand parent code, so ..()
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "telegraph"
 	flick("telegraph_flick", src)
-	spawn(100) qdel(src)
+	spawn(10 SECONDS)
+		qdel(src)
 
 /obj/effect/effect/telegraph/Crossed(mob/living/simple_animal/hostile/megafauna/one_star/boss)
 	if(istype(boss) && boss.target_mob)
 		boss.shoot_shotgun(boss.target_mob)
 		boss.doing_something = FALSE
 		boss.move_lock = FALSE
+		boss.hologram_exists = FALSE
 		qdel(src)
 
 
@@ -352,16 +309,16 @@ Effects demand parent code, so ..()
 	stop_automated_movement = 1
 	walk(src, 0)
 	LoseTarget()
-	stance = initial(stance) // he is standing
+	stance = initial(stance) 
 	icon_state = initial(icon_state)
 	make_jittery(500)
 	target_mob = null
-	playsound(src, "sound/machines/onestar/boss/Boss_Death.ogg", 100) // "YOU THINK YOU CAN KILL ME?"
+	playsound(src, "sound/machines/onestar/boss/Boss_Death.ogg", 100)
 	spawn(60) dying()
 
-/mob/living/simple_animal/hostile/megafauna/one_star/proc/dying() // part 2
-	icon_state = icon_dead // he falls with epic sounds
-	playsound(src, "sound/effects/Explosion1.ogg", 100, 1) // OHHH FUCK YOU CAN *dead*
+/mob/living/simple_animal/hostile/megafauna/one_star/proc/dying()
+	icon_state = icon_dead 
+	playsound(src, "sound/effects/Explosion1.ogg", 100, 1)
 	explosion(src, 350, 75, 0)
 	stasis = TRUE
 	layer = LYING_MOB_LAYER
@@ -375,31 +332,7 @@ Effects demand parent code, so ..()
 		stance = HOSTILE_STANCE_IDLE
 	if(target_mob in ListTargets(10))
 		OpenFire(target_mob)
-// Is this just a complicated fucking D6 throw? All this to get a mob to fucking shoot.
-//		if(get_dist(src, target_mob) <= 6)
-//			OpenFire(target_mob)
-//		else
-//				set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-//				walk_to(src, target_mob, 1, move_to_delay)
-//			if(ranged)
-//				if(prob(rand(15,25)))
-//					stance = HOSTILE_STANCE_ATTACKING
-//					set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-//					walk_to(src, target_mob, 1, move_to_delay)
-//				else
-//					OpenFire(target_mob)
-//			else
-//				if(prob(45))
-//					stance = HOSTILE_STANCE_ATTACKING
-//					set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-//					walk_to(src, target_mob, 1, move_to_delay)
-//				else
-//					OpenFire(target_mob)
-//		else
-//			stance = HOSTILE_STANCE_ATTACKING
-//			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-//			walk_to(src, target_mob, 1, move_to_delay)
-//	return 0
+
 
 /mob/living/simple_animal/hostile/megafauna/one_star/LoseTarget()
 	..()
@@ -425,20 +358,6 @@ Effects demand parent code, so ..()
 
 /mob/living/simple_animal/hostile/megafauna/one_star/AttackingTarget() // overwriting the thing because mech loves to bite people like roaches do. Erased for the pattern-based combat.
 	OpenFire()
-//	if(!Adjacent(target_mob))
-	//	return
-	//if(isliving(target_mob))
-//		var/mob/living/L = target_mob
-	//	L.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-	//	return L
-	//if(istype(target_mob, /mob/living/exosuit))
-	//	var/mob/living/exosuit/M = target_mob
-	//	M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-	//	return M
-//	if(istype(target_mob,/obj/machinery/bot))
-	//	var/obj/machinery/bot/B = target_mob
-//		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-//		return B
 
 /mob/living/simple_animal/hostile/megafauna/one_star/OpenFire()
 	if(!doing_something)
@@ -447,16 +366,19 @@ Effects demand parent code, so ..()
 				action = pick(move_list)
 			switch(action)
 				if(OS_BOSS_SHOTGUN)
-					var/obj/effect/effect/telegraph/F = new /obj/effect/effect/telegraph(target_mob.loc)
+					var/obj/effect/effect/telegraph/F
+					if(hologram_exists == FALSE)
+						F = new /obj/effect/effect/telegraph(target_mob.loc)
+						hologram_exists = TRUE
+						spawn(10 SECONDS)
+							hologram_exists = FALSE
 					move_lock = TRUE
 					for(F in orange(src, 30))
 						if(F in orange(1, src)) // this is fucking stupid, but if you remove this and stand on the hologram it will not be able to kick you for some reason, see Bump()
 							for(var/mob/living/targ in orange(1, src))
 								if(F.loc == targ.loc)
 									qdel(F)
-									//targ.gib() // I havent come for a better solution due to laziness and inability to fix.
 									targ.Weaken(3)
-									//playsound(targ.loc, 'sound/mechs/obliteration.ogg', 100) DEAL LOOK
 									var/kick_dir = get_dir(src, targ)
 									UnarmedAttack(targ, rand(50,100))
 									targ.throw_at(get_edge_target_turf(targ, kick_dir), 3, 1)
@@ -478,12 +400,6 @@ Effects demand parent code, so ..()
 						shoot_sniper(target_mob)
 						qdel(C)
 						doing_something = FALSE
-					//var/obj/effect/effect/crosshair/C = new /obj/effect/effect/crosshair(target_mob.loc)
-					//C.target = target_mob
-					//C.StayOn(target_mob)
-					//for(C in orange(src, 30))
-					//	spawn(20) shoot_sniper()
-					//insert sniper roifle sound here boy
 				if(OS_BOSS_ROCKET)
 					doing_something = TRUE
 					var/obj/effect/effect/mech_aiming/S = new /obj/effect/effect/mech_aiming(target_mob.loc)
@@ -541,13 +457,13 @@ Effects demand parent code, so ..()
 									step(B, SOUTH)
 									step(A, NORTH)
 									step(B, SOUTH)
-							spawn(80 MILLISECONDS)
+							spawn(6 SECONDS)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
-							spawn(120 MILLISECONDS)
+							spawn(10 SECONDS)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
-							spawn(160 MILLISECONDS)
+							spawn(1400 MILLISECONDS)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
 							var/i = 15
@@ -557,7 +473,7 @@ Effects demand parent code, so ..()
 								i--
 								shoot_minigun(A)
 								shoot_minigun(B)
-								sleep(500 MILLISECONDS)
+								sleep(100 MILLISECONDS)
 							qdel(A)
 							qdel(B)
 							doing_something = FALSE
@@ -600,6 +516,7 @@ Effects demand parent code, so ..()
 						sparks.set_up(3, 0, get_turf(newmob.loc))
 						sparks.start()
 						mobs_to_spawn--
+					playsound(src.loc, 'sound/effects/EMPulse.ogg', 50, 1)
 			if(!move_lock && stat != DEAD) // I fucking hate what I am doing with this code
 				target_mob = FindTarget()
 						
