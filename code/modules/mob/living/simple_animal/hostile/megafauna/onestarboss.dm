@@ -236,7 +236,8 @@
 	icon = 'icons/effects/alerts.dmi'
 	icon_state = "telegraph"
 	flick("telegraph_flick", src)
-	spawn(10 SECONDS) qdel(src)
+	spawn(10 SECONDS)
+		qdel(src)
 
 /obj/effect/effect/telegraph/Crossed(mob/living/simple_animal/hostile/megafauna/one_star/boss)
 	if(istype(boss) && boss.target_mob)
@@ -456,10 +457,10 @@
 									step(B, SOUTH)
 									step(A, NORTH)
 									step(B, SOUTH)
-							spawn(600 MILLISECONDS)
+							spawn(6 SECONDS)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
-							spawn(1000 MILLISECONDS)
+							spawn(10 SECONDS)
 								step_towards(A, target_location)
 								step_towards(B, target_location)
 							spawn(1400 MILLISECONDS)

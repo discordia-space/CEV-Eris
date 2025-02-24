@@ -121,18 +121,13 @@
 /mob/living/carbon/superior_animal/stalker/OpenFire(target_mob)
 	if(already_shooting)
 		return
-	var/target = get_turf(target_mob)
 	visible_message(SPAN_DANGER("<b>[src]</b> [fire_verb] at [target]!"), 1)
 	already_shooting++
 	walk(src, 0)
-	var/i = 20
-	if(rapid)
-		i = 20
-	else
-		i = 5
-	while(i != 0)
+	var/i = rapid ? 20 : 5
+	while(i > 0)
 		i--
-		Shoot(target, loc, src)
+		Shoot(get_turf(target_mob), loc, src)
 		if(casingtype)
 			new casingtype(get_turf(src))
 		sleep(1)
@@ -145,10 +140,7 @@
 	return
 
 /mob/living/carbon/superior_animal/stalker/proc/evasive_maneuvers()
-	var/turfs_around = list()
-	for(var/turf/T in orange(6, src))
-		turfs_around += T
-	var/destination = pick(turfs_around)
+	var/turf/destination = pick(RANGE_TURFS(6, src))
 	walk_to(src, destination, 1, move_to_delay)
 	spawn(5 SECONDS)
 		Life()
