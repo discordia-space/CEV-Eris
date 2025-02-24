@@ -593,9 +593,13 @@
 
 //EFFECTS
 #define SPAWN_FLORA "flora"
-
 #define SPAWN_TAG_FLORA "effect;"+SPAWN_FLORA
 
+#define SPAWN_TREE "tree"
+#define SPAWN_TAG_TREE "effect;"+SPAWN_TREE
+
+#define SPAWN_COLD_TREE "cold_tree"
+#define SPAWN_TAG__COLD_TREE "effect;"+SPAWN_TREE
 
 //JUNK
 #define SPAWN_JUNK "junk"

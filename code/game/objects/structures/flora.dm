@@ -1,34 +1,38 @@
 //trees
-/obj/structure/flora/tree
+/obj/structure/tree
 	name = "tree"
 	anchored = TRUE
 	density = TRUE
 	pixel_x = -16
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/flora/tree/pine
+/obj/structure/tree/dead
+	icon = 'icons/obj/flora/deadtrees.dmi'
+	icon_state = "tree_1"
+
+
+//cold weather trees
+/obj/structure/cold_tree
+	name = "tree"
+	anchored = TRUE
+	density = TRUE
+	pixel_x = -16
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/cold_tree/pine
 	name = "pine tree"
 	icon = 'icons/obj/flora/pinetrees.dmi'
 	icon_state = "pine_1"
 
-/obj/structure/flora/tree/pine/New()
+/obj/structure/cold_tree/pine/New()
 	..()
 	icon_state = "pine_[rand(1, 3)]"
 
-/obj/structure/flora/tree/pine/xmas
-	name = "xmas tree"
-	icon = 'icons/obj/flora/pinetrees.dmi'
-	icon_state = "pine_c"
-
-/obj/structure/flora/tree/pine/xmas/New()
-	..()
-	icon_state = "pine_c"
-
-/obj/structure/flora/tree/dead
+/obj/structure/cold_tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_1"
 
-/obj/structure/flora/tree/dead/New()
+/obj/structure/cold_tree/dead/New()
 	..()
 	icon_state = "tree_[rand(1, 6)]"
 

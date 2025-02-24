@@ -2,7 +2,6 @@
 	name = "pine tree"
 	desc = "A pissed off tree-like alien. It seems annoyed with the festivities..."
 	icon = 'icons/obj/flora/pinetrees.dmi'
-	icon_state = "pine_1"
 	icon_dead = "pine_1"
 	icon_gib = "pine_1"
 	speak_chance = 0
@@ -35,6 +34,9 @@
 	minbodytemp = 0
 
 	faction = "carp"
+
+/mob/living/simple_animal/hostile/tree/New()
+	icon_state = "pine_[pick(1,3)]"
 
 /mob/living/simple_animal/hostile/tree/FindTarget()
 	. = ..()
