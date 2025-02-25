@@ -32,6 +32,30 @@
 	var/window_damage_resistance
 	var/window_prespawned_material
 
+// 25.05.25 - CFW - Porting dependencies for soj walls
+	/*
+		If set, these vars will be used instead of the icon base taken from the material.
+		These should be set at authortime
+		Currently, they can only be set at authortime, on specially coded wall variants
+
+		In future we should add some way to create walls of specific styles. Possibly during the construction process
+	*/
+	var/icon_base_override = ""
+	var/icon_base_reinf_override = ""
+	var/base_color_override = ""
+	var/reinf_color_override = ""
+
+	//These will be set from the set_material function. It just caches which base we're going to use, to simplify icon updating logic.
+	//These should not be set at compiletime, they will be overwritten
+	var/icon_base = ""
+	var/icon_base_reinf = ""
+	var/base_color = ""
+	var/reinf_color = ""
+
+	var/static/list/damage_overlays
+	is_wall = TRUE
+// Port end
+
 /turf/wall/Initialize(mapload, ...)
 	. = ..() // Calls /turf/Initialize()
 	if(mapload) // We defer icon updates to late initialize at roundstart
