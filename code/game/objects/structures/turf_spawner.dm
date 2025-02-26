@@ -119,11 +119,6 @@
 	change_floor_to_path = /turf/wall/wood_old
 	icon_state = "old_plank_spawner"
 
-/obj/effect/flooring_type_spawner/wood_wall_barrel
-	name = "fancy wood wall"
-	change_floor_to_path = /turf/wall/wood_barrel
-	icon_state = "wood_barrel_spawner"
-
 //Mining wall Spawners (Used for SLAB)
 /obj/effect/flooring_type_spawner/mining_wall_oreful
 	name = "mineral spawner - always give ores"

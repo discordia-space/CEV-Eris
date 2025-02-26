@@ -2,7 +2,7 @@
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
 	description_antag = "Deconstruction with tools will leave fingerprints. Explosives, RCD and thermite leave none."
-	icon = 'icons/walls.dmi'
+	icon = 'icons/turf/walls.dmi'
 	icon_state = "eris_wall"
 	layer = CLOSED_TURF_LAYER
 	opacity = TRUE

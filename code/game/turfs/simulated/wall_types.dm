@@ -104,22 +104,16 @@
 	wall_type = "onestar_reinf_wall"
 
 /turf/wall/wood
-	icon_state = "wood"
-	icon_base_override = "wood"
-	base_color_override = "#FFFFFF"
-	reinf_color_override = "#FFFFFF"
+	name = "wooden wall"
+	icon_state = "wood_wall"
+	wall_style = "minimalistic"
+	wall_type = "wood_wall"
 
 /turf/wall/wood_old
-	icon_state = "oldwood"
-	icon_base_override = "oldwood"
-	base_color_override = "#FFFFFF"
-	reinf_color_override = "#FFFFFF"
-
-/turf/wall/wood_barrel
-	icon_state = "woodenwall"
-	icon_base_override = "woodenwall"
-	base_color_override = "#FFFFFF"
-	reinf_color_override = "#FFFFFF"
+	name = "old wooden wall"
+	icon_state = "wood_wall_old"
+	wall_style = "minimalistic"
+	wall_type = "wood_wall_old"
 
 // 25.05.25 - CFW - Disabling these for now to expedite porting. TODO: Actually port the newloc method
 /*
