@@ -278,9 +278,6 @@
 	holder.stats.changeStat(STAT_ROB, -10)
 	holder.stats.changeStat(STAT_TGH, -10)
 	holder.stats.changeStat(STAT_VIG, -10)
-	if(isliving(holder))
-		var/mob/living/H = holder
-		H.learnt_tasks.attempt_add_task_mastery(/datum/task_master/task/poors, "POORS", skill_gained = 0.5, learner = H)
 
 /datum/perk/rezsickness/remove()
 	holder.brute_mod_perk /= 1.10
