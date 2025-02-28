@@ -395,12 +395,24 @@
 /turf/floor/terrain/snow
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow"
+	icon_state = "snowwhite"
 	temperature = 233.15
 	oxygen = MOLES_O2STANDARD * 1.14 //the multiplier is to compensate the lower pressure, to keep it breathable
 	nitrogen = MOLES_N2STANDARD *1.14
 	initial_flooring = /decl/flooring/snow
 
+/turf/floor/terrain/snow/random
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snowwhite"
+	temperature = 233.15
+	oxygen = MOLES_O2STANDARD * 1.14 //the multiplier is to compensate the lower pressure, to keep it breathable
+	nitrogen = MOLES_N2STANDARD *1.14
+	initial_flooring = /decl/flooring/snow
+
+/turf/floor/terrain/snow/random/New()
+	icon_state = pick("snow[rand(1,12)]","snow0")
+	..()
 
 
 /turf/floor/reinforced/almost_airless //Shields detect zero atmosphere next to walls, which empty chambers with airless tiles technically count, and diffusers don't allow gasses through injectors
