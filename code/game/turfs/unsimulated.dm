@@ -88,6 +88,10 @@
 	opacity = 1
 	layer = BELOW_MOB_LAYER
 
+/turf/unsimulated/mineral/volcanic
+	name = "impassable rock"
+	color = COLOR_DARK_GRAY
+
 /turf/unsimulated/mineral/transition
 	name = "path elsewhere"
 	desc = "Looks like this leads to a whole new area."
