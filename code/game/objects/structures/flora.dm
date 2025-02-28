@@ -14,7 +14,7 @@
 	name = "tree"
 	desc = "<i>&quot;Two trees alone<br>\ danced throughout the years<br>\ never touching each other.&quot;</i>"
 	icon = 'icons/obj/flora/jungletrees.dmi'
-	icon_state = "tree_0"
+	icon_state = "tree_1"
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -60,7 +60,7 @@
 	name = "pine tree"
 	desc = "A conifer similar to those found in Terran forests. It's dark and thin leaves rustle in the cold wind."
 	icon = 'icons/obj/flora/pinetrees.dmi'
-	icon_state = "pine_0"
+	icon_state = "pine_1"
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
@@ -143,7 +143,7 @@
 /obj/structure/flora/sojourn/grass
 	name = "grass"
 	icon = 'icons/obj/flora/jungleflora.dmi'
-	icon_state = "bush_0"
+	icon_state = "bush_1"
 	anchored = TRUE
 
 /obj/structure/flora/sojourn/bush/New()
@@ -340,7 +340,7 @@
 /obj/structure/flora/sojourn/bush
 	name = "bush"
 	icon = 'icons/obj/flora/jungleflora.dmi'
-	icon_state = "bush_0"
+	icon_state = "bush_1"
 	anchored = TRUE
 
 /obj/structure/flora/sojourn/bush/New()
