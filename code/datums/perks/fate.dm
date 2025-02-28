@@ -287,7 +287,6 @@
 	holder.stats.changeStat(STAT_ROB, 10)
 	holder.stats.changeStat(STAT_TGH, 10)
 	holder.stats.changeStat(STAT_VIG, 10)
-
 	..()
 
 /datum/perk/rezsickness/on_process()

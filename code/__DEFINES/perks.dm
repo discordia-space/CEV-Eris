@@ -56,3 +56,6 @@
 #define PERK_COOLDOWN_REASON /datum/perk/cooldown/reason
 #define PERK_COOLDOWN_EXERTION /datum/perk/cooldown/exertion
 #define PERK_NJOY /datum/perk/njoy
+
+//rez-sickness
+#define PERK_REZ_SICKNESS /datum/perk/rezsickness
