@@ -255,3 +255,51 @@
 	if(holder)
 		holder.sanity.max_level -= 10
 	..()
+
+//SOJ-ERIS perks
+
+/datum/perk/rezsickness
+	name = "Revival Sickness"
+	desc = "You've recently died and have been brought back to life, the experience leaving you weakened and thus unfit for fighting for a while. You better find a bed or chair to rest into until you've fully recuperated."
+	icon_state = "revivalsickness"
+	gain_text = "Your body aches from the pain of returning from death, you better find a chair or bed to rest in so you can heal properly."
+	lose_text = "You finally feel like you recovered from the ravages of your body."
+	var/initial_time
+
+
+/datum/perk/rezsickness/assign(mob/living/L)
+	..()
+	initial_time = world.time
+	cooldown_time = world.time + 30 MINUTES
+	holder.brute_mod_perk *= 1.10
+	holder.burn_mod_perk *= 1.10
+	holder.oxy_mod_perk *= 1.10
+	holder.toxin_mod_perk *= 1.10
+	holder.stats.changeStat(STAT_ROB, -10)
+	holder.stats.changeStat(STAT_TGH, -10)
+	holder.stats.changeStat(STAT_VIG, -10)
+	if(isliving(holder))
+		var/mob/living/H = holder
+		H.learnt_tasks.attempt_add_task_mastery(/datum/task_master/task/poors, "POORS", skill_gained = 0.5, learner = H)
+
+/datum/perk/rezsickness/remove()
+	holder.brute_mod_perk /= 1.10
+	holder.burn_mod_perk /= 1.10
+	holder.oxy_mod_perk /= 1.10
+	holder.toxin_mod_perk /= 1.10
+	holder.stats.changeStat(STAT_ROB, 10)
+	holder.stats.changeStat(STAT_TGH, 10)
+	holder.stats.changeStat(STAT_VIG, 10)
+
+	..()
+
+/datum/perk/rezsickness/on_process()
+	if(!..())
+		return
+	if(cooldown_time <= world.time)
+		holder.stats.removePerk(type)
+		to_chat(holder, SPAN_NOTICE("[lose_text]"))
+		return
+	if(holder.buckled)
+		cooldown_time -= 2 SECONDS
+
