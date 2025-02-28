@@ -1,0 +1,5 @@
+author: VmpOS2NHSkhkejA9
+delete-after: true
+changes:
+  - tweak: Things that affect your screen color no longer affect your HUD
+  - balance: Oborin syndrome no longer affects your HUD
