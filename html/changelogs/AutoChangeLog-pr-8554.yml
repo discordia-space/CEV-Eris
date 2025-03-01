@@ -1,4 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - bugfix: loading guns by hand from ammo groups now works again.

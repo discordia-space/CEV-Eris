@@ -1,5 +1,6 @@
-author: VmpOS2NHSkhkejA9
-delete-after: true
-changes:
+2025-03-01:
+  Chickenish:
+  - bugfix: loading guns by hand from ammo groups now works again.
+  VmpOS2NHSkhkejA9:
   - tweak: Things that affect your screen color no longer affect your HUD
   - balance: Oborin syndrome no longer affects your HUD
