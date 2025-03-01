@@ -270,7 +270,7 @@
 /datum/perk/rezsickness/assign(mob/living/L)
 	..()
 	initial_time = world.time
-	cooldown_time = world.time + 30 MINUTES
+	src.cooldown_time = world.time + 30 MINUTES
 	holder.brute_mod_perk *= 1.10
 	holder.burn_mod_perk *= 1.10
 	holder.oxy_mod_perk *= 1.10
@@ -292,12 +292,12 @@
 /datum/perk/rezsickness/on_process()
 	if(!..())
 		return
-	if(cooldown_time <= world.time)
+	if(src.cooldown_time <= world.time)
 		holder.stats.removePerk(type)
 		to_chat(holder, SPAN_NOTICE("[lose_text]"))
 		return
 	if(holder.buckled)
-		cooldown_time -= 2 SECONDS
+		src.cooldown_time -= 2 SECONDS
 
 
 
@@ -309,7 +309,9 @@
 	name = "Indomitable Spirit"
 	desc = "The unbreakable human will has carried your kind to the stars. It will keep carrying you onwards."
 	icon_state = "willtosurvive"
-	var/list/human_perks = list(/mob/living/carbon/human/proc/willtosurvive) //The active racial ability procs that are associated with the perk datum.
+	var/list/human_perks = list(
+		/mob/living/carbon/human/proc/willtosurvive,
+		/mob/living/carbon/human/proc/battlecry) //The active racial ability procs that are associated with the perk datum.
 
 /datum/perk/racial/human/assign(mob/living/carbon/human/H) //Assigns the perk datum to a mob.
 	if(..())
@@ -324,36 +326,29 @@
 	set category = "Human Perks"
 	set name = "Indomitable Spirit"
 	var/mob/living/carbon/human/user = usr
-	var/cooldown_time = 5 MINUTES
+	perk_cooldown = 15 MINUTES
 	if(!istype(user))
 		return 
-	if(world.time < cooldown_time)
+	if(world.time < user.perk_cooldown_expire)
 		to_chat(usr, SPAN_NOTICE("The human body can only take so much, you'll need more time before you've recovered enough to use this again."))
 		return FALSE
-	cooldown_time = world.time + 10 MINUTES
+	user.perk_cooldown_expire = perk_cooldown += world.time//TODO: Figure out a way to make cooldowns work properly.
 	user.visible_message("[user] grits their teeth and begins breathing slowly.", "You grit your teeth and remind yourself you ain't got time to bleed!")
-	log_and_message_admins("used their [src] perk.")
+	log_and_message_admins("([src]) used their [name] perk.")
 	user.reagents.add_reagent("adrenol", 5)
 	return
 
-/*
-/datum/perk/battlecry
-	name = "Inspiring Battlecry"
-	desc = "Life has taught you that beyond sheer force of will, what made your kind conquer the stars was also a sense of camaraderie and cooperation among your battle brothers and sisters. Your heroic warcry can inspire yourself and others to better performance in combat."
-	icon_state = "inspiringbattlecry"
-	active = FALSE
-	passivePerk = FALSE
-
-/datum/perk/battlecry/activate()
+/mob/living/carbon/human/proc/battlecry()
 	var/mob/living/carbon/human/user = usr
 	var/list/people_around = list()
+	perk_cooldown = 20 MINUTES
 	if(!istype(user))
-		return ..()
-	if(world.time < cooldown_time)
+		return
+	if(world.time < user.perk_cooldown_expire)
 		to_chat(usr, SPAN_NOTICE("You cannot muster the willpower to have a heroic moment just yet."))
 		return FALSE
-	cooldown_time = world.time + 30 MINUTES
-	log_and_message_admins("used their [src] perk.")
+	user.perk_cooldown_expire = perk_cooldown += world.time	
+	log_and_message_admins("([src]) used their [name] perk.")
 	for(var/mob/living/carbon/human/H in view(user))
 		if(H != user && !isdeaf(H))
 			people_around.Add(H)
@@ -363,9 +358,9 @@
 			give_boost(participant)
 	give_boost(usr)
 	usr.emote("urah")
-	return ..()
+	return
 
-/datum/perk/battlecry/proc/give_boost(mob/living/carbon/human/participant)
+/mob/living/carbon/human/proc/give_boost(mob/living/carbon/human/participant)
 	var/effect_time = 2 MINUTES
 	var/amount = 10
 	var/list/stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10, STAT_VIG = 10)
@@ -373,48 +368,5 @@
 		participant.stats.changeStat(stat, amount)
 		addtimer(CALLBACK(src, PROC_REF(take_boost), participant, stat, amount), effect_time)
 
-/datum/perk/battlecry/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
+/mob/living/carbon/human/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	participant.stats.changeStat(stat, -amount)
-
-/datum/perk/tenacity
-	name = "Tenacity"
-	desc = "Humans were always resilient, not letting anything or anyone to get in way of their goals. Due to this your body is way more adapted to anything thrown it's way letting you push onward for just a little bit longer than others."
-	icon_state = "tenacity"
-
-/datum/perk/linguist_for_humans
-	name = "Diverse Culture"
-	desc = "Sol Fed conquering the stars led to almost every human having diverse knowledge of different languages."
-	icon_state = "diverseculture"
-	active = FALSE
-	passivePerk = FALSE
-	var/anti_cheat = FALSE
-
-/datum/perk/linguist_for_humans/activate()
-	..()
-	if(anti_cheat)
-		to_chat(holder, "Recalling more languages is not as easy for someone unskilled as you.")
-		return FALSE
-	anti_cheat = TRUE
-	var/mob/M = usr
-	var/list/options = list()
-	options["Eurolang"] = LANGUAGE_EURO
-	options["Jive"] = LANGUAGE_JIVE
-	options["Jana"] = LANGUAGE_JANA
-	options["Illyrian"] = LANGUAGE_ILLYRIAN
-	options["Interslavic"] = LANGUAGE_CYRILLIC
-	options["Lingua Romana"] = LANGUAGE_ROMANA
-	options["Yassari"] = LANGUAGE_YASSARI
-	options["Latin"] = LANGUAGE_LATIN
-	options["Kriosan"] = LANGUAGE_KRIOSAN
-	options["Akula"] = LANGUAGE_AKULA
-	options["Narad Pidgin"] = LANGUAGE_MERP
-	var/choice = input(M,"Which language do you know?","Linguist Choice") as null|anything in options
-	if(src && choice)
-		M.add_language(choice)
-		M.stats.removePerk(PERK_DIVERSE_CULTURE)
-	anti_cheat = FALSE
-	return TRUE
-
-/datum/perk/linguist_for_humans/remove()
-	..()
-*/
