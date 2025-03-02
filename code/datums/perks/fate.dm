@@ -403,15 +403,16 @@
 	var/perk_id = "cautiousbrilliance"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("You are mentally exhausted, you'll need more rest before you can attempt greater thought."))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 45 
-	user.visible_message("[user] suddenly looks lost in thought, their focus elsewhere for a moment.", "You clear your mind and feel your thoughts focusing into a single stream of brilliance.", "You hear the calming silence, as if someone nearby is thinking deeply.")
-	log_and_message_admins("[src] used their cautious brilliance perk.")
-	user.reagents.add_reagent("marquatol", 10)
-	return ..()
+	else
+		perk_cooldown_list[perk_id] = world.time + 45 
+		user.visible_message("[user] suddenly looks lost in thought, their focus elsewhere for a moment.", "You clear your mind and feel your thoughts focusing into a single stream of brilliance.", "You hear the calming silence, as if someone nearby is thinking deeply.")
+		log_and_message_admins("[src] used their cautious brilliance perk.")
+		user.reagents.add_reagent("marquatol", 10)
+		return 
 
 /datum/perk/alien_nerves
 	name = "Adapted Nervous System"
@@ -456,15 +457,16 @@
 	var/perk_id = "laststand"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return 
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("Your nerves are shot, you'll need to recover before you can withstand greater pain again."))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 45 
-	user.visible_message("<b><font color='red'>[user] begins growling as their muscles tighten!</font><b>", "<b><font color='red'>You feel a comfortable warmth as your body steels itself against all pain.</font><b>", "<b><font color='red'>You hear something growling!</font><b>")
-	log_and_message_admins("[src] used their last stand perk.")
-	user.reagents.add_reagent("sabledone", 10)
-	return ..()
+	else
+		perk_cooldown_list[perk_id] = world.time + 45 
+		user.visible_message("<b><font color='red'>[user] begins growling as their muscles tighten!</font><b>", "<b><font color='red'>You feel a comfortable warmth as your body steels itself against all pain.</font><b>", "<b><font color='red'>You hear something growling!</font><b>")
+		log_and_message_admins("[src] used their last stand perk.")
+		user.reagents.add_reagent("sabledone", 10)
+	return 
 
 
 
@@ -493,16 +495,16 @@
 	var/perk_id = "enhancedsenses"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("You haven't quite recovered yet, your senses need more time before you may do this again."))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 45 
-	user.visible_message("<b><font color='red'>[user] sneers lightly as their pupils dilate and tension builds in their body!</font><b>", "<b><font color='red'>You feel your senses focusing, sound becomes crystal clear and your reflexes as fluid as water.</font><b>")
-	log_and_message_admins("[src] used their enhanced senses perk.")
-	user.reagents.add_reagent("kriotol", 5)
-	return ..()
-
+	else
+		perk_cooldown_list[perk_id] = world.time + 45 
+		user.visible_message("<b><font color='red'>[user] sneers lightly as their pupils dilate and tension builds in their body!</font><b>", "<b><font color='red'>You feel your senses focusing, sound becomes crystal clear and your reflexes as fluid as water.</font><b>")
+		log_and_message_admins("[src] used their enhanced senses perk.")
+		user.reagents.add_reagent("kriotol", 5)
+	return
 
 
 ///////////////////AKULA PERK
@@ -529,16 +531,17 @@
 	var/perk_id = "recklessness"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return 
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("Your body has been taxed to its limits, you need more time to recover before doing this again."))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 45 
-	user.visible_message("<b><font color='red'>[user] lets out deep guttural growl as their eyes glaze over!</font><b>", "<b><font size='3px'><font color='red'>You abandon all reason as your sink into a blood thirsty frenzy!</font><b>", "<b><font color='red'>You hear a terrifying roar!</font><b>")
-	//TODO: add noise
-	log_and_message_admins("[src] used their recklessness perk.")
-	user.reagents.add_reagent("robustitol", 5)
-	return ..()
+	else
+		perk_cooldown_list[perk_id] = world.time + 45 
+		user.visible_message("<b><font color='red'>[user] lets out deep guttural growl as their eyes glaze over!</font><b>", "<b><font size='3px'><font color='red'>You abandon all reason as your sink into a blood thirsty frenzy!</font><b>", "<b><font color='red'>You hear a terrifying roar!</font><b>")
+		//TODO: add noise
+		log_and_message_admins("[src] used their recklessness perk.")
+		user.reagents.add_reagent("robustitol", 5)
+	return
 
 
 
@@ -567,16 +570,17 @@
 	var/perk_id = "recklessness"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return 
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("Your legs ache, you'll need more time to recover before doing this again."))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 45 
-	user.visible_message("[user] begins breathing much quicker!", "You feel your heart rate increasing rapidly as everything seems to slow down around you!")
-	//TODO: add noise
-	log_and_message_admins("[src] used their adrenal burst perk.")
-	user.reagents.add_reagent("naratonin", 5)
-	return ..()
+	else
+		perk_cooldown_list[perk_id] = world.time + 45 
+		user.visible_message("[user] begins breathing much quicker!", "You feel your heart rate increasing rapidly as everything seems to slow down around you!")
+		//TODO: add noise
+		log_and_message_admins("[src] used their adrenal burst perk.")
+		user.reagents.add_reagent("naratonin", 5)
+	return 
 
 
 
@@ -607,16 +611,17 @@
 	var/perk_id = "toxicity"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return 
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("Your body aches with the pain of its recent purge, you'll need more rest before doing this again."))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 45 
-	user.visible_message("[user] shivers slightly as they begin to slow down.", "You start to feel quite chilly and tired as your body begins purging toxins within your blood.")
-	//TODO: add noise
-	log_and_message_admins("[src] used their toxin purge perk.")
-	user.reagents.add_reagent("cindpetamol", 5)
-	return ..()
+	else
+		perk_cooldown_list[perk_id] = world.time + 45 
+		user.visible_message("[user] shivers slightly as they begin to slow down.", "You start to feel quite chilly and tired as your body begins purging toxins within your blood.")
+		//TODO: add noise
+		log_and_message_admins("[src] used their toxin purge perk.")
+		user.reagents.add_reagent("cindpetamol", 5)
+	return 
 
 /mob/living/carbon/human/proc/purge_infections()
 	var/mob/living/carbon/human/user = usr
@@ -625,16 +630,17 @@
 	var/perk_id = "deinfect"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return 
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("Your chemical sacks have not refilled yet, you'll need more rest before doing this again."))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 45 
-	user.visible_message("[user] shivers slightly before taking a deep breath.", "You shiver slightly and take a deep breath before willing your bodies chemical sacks to open and begin purging infections.")
-	//TODO: add noise
-	log_and_message_admins("[src] used their infection purge perk.")
-	user.reagents.add_reagent("cindicillin", 5)
-	return ..()
+	else
+		perk_cooldown_list[perk_id] = world.time + 45 
+		user.visible_message("[user] shivers slightly before taking a deep breath.", "You shiver slightly and take a deep breath before willing your bodies chemical sacks to open and begin purging infections.")
+		//TODO: add noise
+		log_and_message_admins("[src] used their infection purge perk.")
+		user.reagents.add_reagent("cindicillin", 5)
+	return 
 
 
 
@@ -663,15 +669,16 @@
 	var/perk_id = "handibird"
 	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
-		return ..()
+		return 
 	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("You've already retrieved your set of back up tools. You didn't lose them, did you?"))
 		return FALSE
-	perk_cooldown_list[perk_id] = world.time + 12 HOURS
-	to_chat(usr, SPAN_NOTICE("You discreetly and stealthily slip your back-up tools out from their hiding place, the belt unfolds as it quietly flops to the floor."))
-	//TODO: add noise
-	log_and_message_admins("[src] used their smuggled tool perk.")
-	new /obj/item/storage/belt/utility/full(usr.loc)
-	return ..()
+	else
+		perk_cooldown_list[perk_id] = world.time + 12 HOURS
+		to_chat(usr, SPAN_NOTICE("You discreetly and stealthily slip your back-up tools out from their hiding place, the belt unfolds as it quietly flops to the floor."))
+		//TODO: add noise
+		log_and_message_admins("[src] used their smuggled tool perk.")
+		new /obj/item/storage/belt/utility/full(usr.loc)
+		return 
 
 //TODO: add other, NON-OP  and ORIGINAL kits.

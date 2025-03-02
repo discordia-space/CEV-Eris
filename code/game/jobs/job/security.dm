@@ -30,8 +30,7 @@
 	)
 
 	perks = list(PERK_SURVIVOR,
-				 PERK_CODESPEAK_COP,
-				 PERK_RACIAL_HUMAN)
+				 PERK_CODESPEAK_COP)
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/digitalwarrant,
