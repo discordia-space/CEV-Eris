@@ -48,8 +48,7 @@ proc/setup_codespeak()
 
 /mob/living/carbon/human/
 	var/codespeak_cooldown
-	var/perk_cooldown_expire
-	var/perk_cooldown
+	var/perk_cooldown_list = list()
 
 /mob/living/carbon/human/proc/codesay(message, state_location, say_localy, faction = "IH")
 	var/prefix = get_prefix_key(/decl/prefix/radio_channel_selection)

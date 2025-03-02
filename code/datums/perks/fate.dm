@@ -326,29 +326,33 @@
 	set category = "Human Perks"
 	set name = "Indomitable Spirit"
 	var/mob/living/carbon/human/user = usr
-	perk_cooldown = 15 MINUTES
+	var/perk_id = "spirit"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
 		return 
-	if(world.time < user.perk_cooldown_expire)
+	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("The human body can only take so much, you'll need more time before you've recovered enough to use this again."))
 		return FALSE
-	user.perk_cooldown_expire = perk_cooldown += world.time//TODO: Figure out a way to make cooldowns work properly.
-	user.visible_message("[user] grits their teeth and begins breathing slowly.", "You grit your teeth and remind yourself you ain't got time to bleed!")
-	log_and_message_admins("([src]) used their [name] perk.")
-	user.reagents.add_reagent("adrenol", 5)
-	return
+	else 
+		perk_cooldown_list[perk_id] = world.time + 25 //25 ticks, swap to 15 MINUTES after testing. //TODO: Figure out a way to make cooldowns work properly.
+		user.visible_message("[user] grits their teeth and begins breathing slowly.", "You grit your teeth and remind yourself you ain't got time to bleed!")
+		log_and_message_admins("([src]) used their indomitable spirit perk.")
+		user.reagents.add_reagent("adrenol", 5)
+		return
 
 /mob/living/carbon/human/proc/battlecry()
+	set category = "Human Perks"
+	set name = "Inspiring Battlecry"
 	var/mob/living/carbon/human/user = usr
 	var/list/people_around = list()
-	perk_cooldown = 20 MINUTES
+	var/perk_id = "battlecry"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
 	if(!istype(user))
 		return
-	if(world.time < user.perk_cooldown_expire)
+	if(world.time < cooldown_end)
 		to_chat(usr, SPAN_NOTICE("You cannot muster the willpower to have a heroic moment just yet."))
 		return FALSE
-	user.perk_cooldown_expire = perk_cooldown += world.time	
-	log_and_message_admins("([src]) used their [name] perk.")
+	log_and_message_admins("([src]) used their battlecry perk.")
 	for(var/mob/living/carbon/human/H in view(user))
 		if(H != user && !isdeaf(H))
 			people_around.Add(H)
@@ -357,7 +361,8 @@
 			to_chat(participant, SPAN_NOTICE("You feel inspired by a heroic shout!"))
 			give_boost(participant)
 	give_boost(usr)
-	usr.emote("urah")
+	usr.emote("yell")
+	perk_cooldown_list[perk_id] = world.time + 45 //45 ticks, swap to 15 MINUTES after testing. //TODO: Figure out a way to make cooldowns work properly.
 	return
 
 /mob/living/carbon/human/proc/give_boost(mob/living/carbon/human/participant)
