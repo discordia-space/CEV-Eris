@@ -361,7 +361,7 @@
 			to_chat(participant, SPAN_NOTICE("You feel inspired by a heroic shout!"))
 			give_boost(participant)
 	give_boost(usr)
-	usr.emote("yell")
+	user.visible_message("[user] lets out a guttural scream of inspiration!", "You yell with all your suppressed primality, your heart beats drums of war.")
 	perk_cooldown_list[perk_id] = world.time + 45 //45 ticks, swap to 15 MINUTES after testing. //TODO: Figure out a way to make cooldowns work properly.
 	return
 
@@ -375,3 +375,303 @@
 
 /mob/living/carbon/human/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	participant.stats.changeStat(stat, -amount)
+
+
+
+
+//////////////MAR'QUA PERKS
+
+/datum/perk/racial/marqua 
+	name = "Cautious Curiosity"
+	desc = "Curiosity is an innate trait of your species, and you prefer to approach things cautiously."
+	var/list/marqua_perks = list(
+		/mob/living/carbon/human/proc/cautiousbrilliance) 
+
+/datum/perk/racial/marqua/assign(mob/living/carbon/human/H) 
+	if(..())
+		add_verb(holder, marqua_perks)
+
+/datum/perk/racial/marqua/remove() 
+	if(holder)
+		remove_verb(holder, marqua_perks)
+	..()
+
+/mob/living/carbon/human/proc/cautiousbrilliance()
+	var/mob/living/carbon/human/user = usr
+	set category = "Mar'Qua Perks"
+	set name = "Cautious Brilliance"
+	var/perk_id = "cautiousbrilliance"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("You are mentally exhausted, you'll need more rest before you can attempt greater thought."))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 45 
+	user.visible_message("[user] suddenly looks lost in thought, their focus elsewhere for a moment.", "You clear your mind and feel your thoughts focusing into a single stream of brilliance.", "You hear the calming silence, as if someone nearby is thinking deeply.")
+	log_and_message_admins("[src] used their cautious brilliance perk.")
+	user.reagents.add_reagent("marquatol", 10)
+	return ..()
+
+/datum/perk/alien_nerves
+	name = "Adapted Nervous System"
+	desc = "The Mar'Quaran nervous system has long since adapted to the use of stimulants, chemicals, and different toxins. Unlike lesser races, you can handle a wide variety of chemicals before showing any side effects and you'll never become addicted."
+
+/datum/perk/alien_nerves/assign(mob/living/L)
+	..()
+	if(ishuman(holder))
+		var/mob/living/carbon/human/H = holder
+		H.metabolism_effects.addiction_chance_multiplier = -1
+
+/datum/perk/alien_nerves/remove()
+	if(ishuman(holder))
+		var/mob/living/carbon/human/H = holder
+		H.metabolism_effects.addiction_chance_multiplier = 1
+	..()
+
+
+
+
+//////////////SABLEKYNE PERKS
+
+/datum/perk/racial/sablekyne
+	name = "Last Stand"
+	desc = "As a sablekyne, your body is a living tank. Through a combination of willpower and biology alone you can ignore pain entirely for a short amount of time."
+	var/list/sablekyne_perks = list(
+		/mob/living/carbon/human/proc/laststand) 
+
+/datum/perk/racial/sablekyne/assign(mob/living/carbon/human/H)
+	if(..())
+		add_verb(holder, sablekyne_perks)
+
+/datum/perk/racial/sablekyne/remove() 
+	if(holder)
+		remove_verb(holder, sablekyne_perks)
+	..()
+
+/mob/living/carbon/human/proc/laststand()
+	var/mob/living/carbon/human/user = usr
+	set category = "Sablekyne Perks"
+	set name = "Last Stand"
+	var/perk_id = "laststand"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("Your nerves are shot, you'll need to recover before you can withstand greater pain again."))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 45 
+	user.visible_message("<b><font color='red'>[user] begins growling as their muscles tighten!</font><b>", "<b><font color='red'>You feel a comfortable warmth as your body steels itself against all pain.</font><b>", "<b><font color='red'>You hear something growling!</font><b>")
+	log_and_message_admins("[src] used their last stand perk.")
+	user.reagents.add_reagent("sabledone", 10)
+	return ..()
+
+
+
+
+/////////////////KRIOSAN PERKS
+
+/datum/perk/racial/kriosan
+	name = "Predatory Sense"
+	desc = "You're a predator at heart and have the senses to match, for a short time your body toughens and your aim improves drastically as your senses enhance."
+	var/list/kriosan_perks = list(
+		/mob/living/carbon/human/proc/enhancedsenses) 
+
+/datum/perk/racial/kriosan/assign(mob/living/carbon/human/H)
+	if(..())
+		add_verb(holder, kriosan_perks)
+
+/datum/perk/racial/kriosan/remove() 
+	if(holder)
+		remove_verb(holder, kriosan_perks)
+	..()
+
+/mob/living/carbon/human/proc/enhancedsenses()
+	var/mob/living/carbon/human/user = usr
+	set category = "Kriosan Perks"
+	set name = "Eyes on Prey"
+	var/perk_id = "enhancedsenses"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("You haven't quite recovered yet, your senses need more time before you may do this again."))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 45 
+	user.visible_message("<b><font color='red'>[user] sneers lightly as their pupils dilate and tension builds in their body!</font><b>", "<b><font color='red'>You feel your senses focusing, sound becomes crystal clear and your reflexes as fluid as water.</font><b>")
+	log_and_message_admins("[src] used their enhanced senses perk.")
+	user.reagents.add_reagent("kriotol", 5)
+	return ..()
+
+
+
+///////////////////AKULA PERK
+
+/datum/perk/racial/akula
+	name = "Reckless Abandon"
+	desc = "You're a predator at heart and have the senses to match, for a short time your body toughens and your aim improves drastically as your senses enhance."
+	var/list/akula_perks = list(
+		/mob/living/carbon/human/proc/recklessness) 
+
+/datum/perk/racial/akula/assign(mob/living/carbon/human/H)
+	if(..())
+		add_verb(holder, akula_perks)
+
+/datum/perk/racial/akula/remove() 
+	if(holder)
+		remove_verb(holder, akula_perks)
+	..()
+
+/mob/living/carbon/human/proc/recklessness()
+	var/mob/living/carbon/human/user = usr
+	set category = "Akula Perks"
+	set name = "Recklessness"
+	var/perk_id = "recklessness"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("Your body has been taxed to its limits, you need more time to recover before doing this again."))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 45 
+	user.visible_message("<b><font color='red'>[user] lets out deep guttural growl as their eyes glaze over!</font><b>", "<b><font size='3px'><font color='red'>You abandon all reason as your sink into a blood thirsty frenzy!</font><b>", "<b><font color='red'>You hear a terrifying roar!</font><b>")
+	//TODO: add noise
+	log_and_message_admins("[src] used their recklessness perk.")
+	user.reagents.add_reagent("robustitol", 5)
+	return ..()
+
+
+
+
+///////////////////NARAMAD PERKS
+
+/datum/perk/racial/naramad
+	name = "Naramadism"
+	desc = "Naramads are built for extreme speed, be it for bravely charging forth or running away at break-neck velocities."
+	var/list/naramad_perks = list(
+		/mob/living/carbon/human/proc/adrenalburst) 
+
+/datum/perk/racial/naramad/assign(mob/living/carbon/human/H)
+	if(..())
+		add_verb(holder, naramad_perks)
+
+/datum/perk/racial/naramad/remove() 
+	if(holder)
+		remove_verb(holder, naramad_perks)
+	..()
+
+/mob/living/carbon/human/proc/adrenalburst()
+	var/mob/living/carbon/human/user = usr
+	set category = "Naramad Perks"
+	set name = "Breakneck Velocity"
+	var/perk_id = "recklessness"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("Your legs ache, you'll need more time to recover before doing this again."))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 45 
+	user.visible_message("[user] begins breathing much quicker!", "You feel your heart rate increasing rapidly as everything seems to slow down around you!")
+	//TODO: add noise
+	log_and_message_admins("[src] used their adrenal burst perk.")
+	user.reagents.add_reagent("naratonin", 5)
+	return ..()
+
+
+
+
+
+///////////////////CINDARITE PERKS
+
+/datum/perk/racial/cindarite
+	name = "Canny Resilience"
+	desc = "The Cindarite body is extremely adept at countering and preventing toxins from doing damage to it."
+	var/list/cindarite_perks = list(
+		/mob/living/carbon/human/proc/purge_toxins,
+		/mob/living/carbon/human/proc/purge_infections) 
+
+/datum/perk/racial/cindarite/assign(mob/living/carbon/human/H)
+	if(..())
+		add_verb(holder, cindarite_perks)
+
+/datum/perk/racial/cindarite/remove() 
+	if(holder)
+		remove_verb(holder, cindarite_perks)
+	..()
+
+/mob/living/carbon/human/proc/purge_toxins()
+	var/mob/living/carbon/human/user = usr
+	set category = "Cindarite Perks"
+	set name = "Toxin-core"
+	var/perk_id = "toxicity"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("Your body aches with the pain of its recent purge, you'll need more rest before doing this again."))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 45 
+	user.visible_message("[user] shivers slightly as they begin to slow down.", "You start to feel quite chilly and tired as your body begins purging toxins within your blood.")
+	//TODO: add noise
+	log_and_message_admins("[src] used their toxin purge perk.")
+	user.reagents.add_reagent("cindpetamol", 5)
+	return ..()
+
+/mob/living/carbon/human/proc/purge_infections()
+	var/mob/living/carbon/human/user = usr
+	set category = "Cindarite Perks"
+	set name = "Canny Resilience"
+	var/perk_id = "deinfect"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("Your chemical sacks have not refilled yet, you'll need more rest before doing this again."))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 45 
+	user.visible_message("[user] shivers slightly before taking a deep breath.", "You shiver slightly and take a deep breath before willing your bodies chemical sacks to open and begin purging infections.")
+	//TODO: add noise
+	log_and_message_admins("[src] used their infection purge perk.")
+	user.reagents.add_reagent("cindicillin", 5)
+	return ..()
+
+
+
+
+///////////////////OPIFEX PERKS
+
+/datum/perk/racial/opifex
+	name = "Technocracy"
+	desc = "You retrieve your smuggled tools hidden on your person somewhere, along with the opifex-made webbing vest that holds them."
+	var/list/opifex_perks = list(
+		/mob/living/carbon/human/proc/smuggled_tools) 
+
+/datum/perk/racial/opifex/assign(mob/living/carbon/human/H)
+	if(..())
+		add_verb(holder, opifex_perks)
+
+/datum/perk/racial/opifex/remove() 
+	if(holder)
+		remove_verb(holder, opifex_perks)
+	..()
+
+/mob/living/carbon/human/proc/smuggled_tools()
+	var/mob/living/carbon/human/user = usr
+	set category = "Opifex Perks"
+	set name = "Handi-bird"
+	var/perk_id = "handibird"
+	var/cooldown_end = perk_cooldown_list[perk_id] || 0
+	if(!istype(user))
+		return ..()
+	if(world.time < cooldown_end)
+		to_chat(usr, SPAN_NOTICE("You've already retrieved your set of back up tools. You didn't lose them, did you?"))
+		return FALSE
+	perk_cooldown_list[perk_id] = world.time + 12 HOURS
+	to_chat(usr, SPAN_NOTICE("You discreetly and stealthily slip your back-up tools out from their hiding place, the belt unfolds as it quietly flops to the floor."))
+	//TODO: add noise
+	log_and_message_admins("[src] used their smuggled tool perk.")
+	new /obj/item/storage/belt/utility/full(usr.loc)
+	return ..()
+
+//TODO: add other, NON-OP  and ORIGINAL kits.

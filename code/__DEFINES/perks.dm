@@ -61,5 +61,10 @@
 #define PERK_REZ_SICKNESS /datum/perk/rezsickness
 
 //racial perks
+#define PERK_RACIAL /datum/perk/racial
+
 //human
 #define PERK_RACIAL_HUMAN /datum/perk/racial/human
+
+//mar'qua
+#define PERK_RACIAL_HUMAN /datum/perk/racial/marqua
