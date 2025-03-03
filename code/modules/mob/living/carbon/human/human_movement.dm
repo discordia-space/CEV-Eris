@@ -71,6 +71,9 @@
 	if(slowdown)
 		tally += 1
 
+	if(stats.getPerk(PERK_REZ_SICKNESS))//If mob has res sickness, then they move slower.
+		tally += 0.5
+
 	tally += (r_hand?.slowdown_hold + l_hand?.slowdown_hold)
 
 	return tally

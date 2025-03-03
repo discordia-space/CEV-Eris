@@ -56,3 +56,18 @@
 #define PERK_COOLDOWN_REASON /datum/perk/cooldown/reason
 #define PERK_COOLDOWN_EXERTION /datum/perk/cooldown/exertion
 #define PERK_NJOY /datum/perk/njoy
+
+//rez-sickness
+#define PERK_REZ_SICKNESS /datum/perk/rezsickness
+
+//racial perks
+#define PERK_RACIAL /datum/perk/racial
+
+
+#define PERK_RACIAL_HUMAN /datum/perk/racial/human
+#define PERK_RACIAL_MARQUA /datum/perk/racial/marqua
+#define PERK_RACIAL_SABLEKYNE /datum/perk/racial/sablekyne
+#define PERK_RACIAL_KRIOSAN /datum/perk/racial/kriosan
+#define PERK_RACIAL_AKULA /datum/perk/racial/akula
+#define PERK_RACIAL_NARAMAD /datum/perk/racial/naramad
+#define PERK_RACIAL_OPIFEX /datum/perk/racial/opifex
