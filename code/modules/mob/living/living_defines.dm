@@ -82,5 +82,12 @@
 	var/can_multiz_pb = FALSE
 	var/is_watching = FALSE
 
+	//SOJ-ERIS defines
+	var/brute_mod_perk = 1 //this and the ones below adjust various damages via perks
+	var/burn_mod_perk = 1 //Please make any and all adjustments multiplicative only for all damage mods
+	var/toxin_mod_perk = 1
+	var/oxy_mod_perk = 1
+
+
 	spawn_frequency = 10
 	bad_type = /mob/living

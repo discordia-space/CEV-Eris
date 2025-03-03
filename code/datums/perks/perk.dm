@@ -16,6 +16,7 @@
 	var/gain_text
 	var/lose_text
 	var/perk_shared_ability
+	var/cooldown_time = 0 //SOJ-ERIS perks. Self explanatory.
 
 /datum/perk/Destroy()
 	if(holder)
