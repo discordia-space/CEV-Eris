@@ -46,10 +46,16 @@
 /turf/floor/exoplanet/snow
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow"
+	icon_state = "snowwhite"
 	dirt_color = "#e3e7e8"
 
-/turf/floor/exoplanet/snow/New()
+/turf/floor/exoplanet/snow/random
+	name = "snow"
+	icon = 'icons/turf/snow.dmi'
+	icon_state = "snowwhite"
+	dirt_color = "#e3e7e8"
+
+/turf/floor/exoplanet/snow/random/New()
 	icon_state = pick("snow[rand(1,12)]","snow0")
 	..()
 

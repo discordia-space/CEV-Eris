@@ -85,7 +85,7 @@
 /turf/floor/holofloor/snow
 	name = "snow"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "snow"
+	icon_state = "snowwhite"
 
 /turf/floor/holofloor/space
 	icon = 'icons/turf/space.dmi'
