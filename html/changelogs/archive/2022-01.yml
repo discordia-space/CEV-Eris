@@ -21,7 +21,7 @@
   - balance: rebalanced plasma weapon firemodes and projectiles
   Iglpigl:
   - spellcheck: RPG shell cost now shown on examining crafting station
-  Pink-Chink:
+  Pink-chunk:
   - code_imp: added new functionality for trade stations, trade subsystem, and trade
       program to allow multiple offers per station, secret inventories, a reputation-like
       system for unlocking secret inventories, and stock replenishment
@@ -100,7 +100,7 @@
   - rscadd: resting hotkey - C
   - tweak: parkour perk reduces the time it takes to stand up
   - tweak: can't stack resting action anymore
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: 'two new trade stations: the Armitage and the Garbaj'
   - rscadd: added new dept-focused and loot-focused offers
   - code_imp: created a check for item contents (reagents, reagent containers, and

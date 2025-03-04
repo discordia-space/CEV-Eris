@@ -41,7 +41,7 @@
   - imageadd: Winchester and lever shotgun and their sawn-off variants
   - tweak: armor hallos coefficient changed from 0.4 to 0.1, armor more effective
       now
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: fixed canister exploit in trade beacons
   - rscadd: antag opt-out prompt
   - tweak: excel and serb minimum candidate requirements added (3 and 2, respectively)
@@ -118,7 +118,7 @@
   - balance: LMGs now slow you down, gain a recoil penalty if not braced, gain more
       recoil by default
   - tweak: stabilizing grip can be used as a foregrip on guns
-  Pink-Chink:
+  Pink-chunk:
   - tweak: players can opt in and out of antag candidate pools
   Trilbyspaceclone:
   - bugfix: Fixes swapping fire modes well shooting.
@@ -135,7 +135,7 @@
   - bugfix: Now lanar with 6 grenades has a normal full sprite instead of a sprite
       without grenades.
 2022-02-21:
-  Pink-Chink:
+  Pink-chunk:
   - rscdel: removed trash station
 2022-02-25:
   garrulousTeamotei:

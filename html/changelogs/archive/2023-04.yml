@@ -3,7 +3,7 @@
   - soundadd: new sound effect for metal rods falling
   Mycah142:
   - rscadd: Added new Smelter function
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: HUD elements clear their reference to the owning mob
   - code_imp: Human revive() doesn't use the rebuild_organs() logic anymore
   - code_imp: Added limb rebuilding logic to human rejuvenate()
@@ -25,7 +25,7 @@
   - bugfix: Dallas no longer has a delay on wielding, dallas now gives gun parts correctly
   - balance: Purger gun no longar has a delay on wielding
 2023-04-02:
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Fixes an issue where an image reference was being deleted when it should
       have been nulled
 2023-04-08:
@@ -37,7 +37,7 @@
   - code_imp: Fixed linters , once for all.
   Mycah142:
   - rscadd: Added biomatter reagent to plant tray reagent lists
-  Pink-Chink:
+  Pink-chunk:
   - tweak: Added logic to table Initialize() that allows flipped tables through var
       editing
   - rscdel: Removed a qdel() from Stalker death()
