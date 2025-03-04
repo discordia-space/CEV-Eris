@@ -89,7 +89,7 @@
 		add_click_catcher()
 		update_action_buttons()
 
-		client.CAN_MOVE_DIAGONALLY = FALSE
+		client.CAN_MOVE_DIAGONALLY = TRUE
 
 	update_client_colour(0)
 
