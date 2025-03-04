@@ -1,6 +1,5 @@
 /turf
-	name = "colony"
-	var/wet = 0
+	name = "ship"
 	icon = 'icons/turf/floors.dmi'
 	level = BELOW_PLATING_LEVEL
 	luminosity = 1
@@ -47,12 +46,6 @@
 	#ifdef ZASDBG
 	var/list/ZAS_debug_overlays
 	#endif
-
-
-// 25.05.25 - CFW - Porting Soj slowdown based on tile, experimental
-	//USE THIS WITH NON FLOOR
-	//if its /floor then use a /decl/flooring and have it attached in that!
-	var/tally_addition = 0
 
 /turf/New()
 	..()

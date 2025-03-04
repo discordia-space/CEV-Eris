@@ -62,7 +62,7 @@
 /turf/floor/snow
 	name = "snow"
 	icon = 'icons/turf/snow.dmi'
-	icon_state = "snowwhite"
+	icon_state = "snow"
 	initial_flooring = /decl/flooring/snow
 
 /turf/floor/dirt/airless
