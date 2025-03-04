@@ -265,6 +265,8 @@ var/list/flooring_types
 				T.alpha = 0
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(T)
 				T.contents += CT
+// 04.03.25 - CFW deleting cement bag parts due to instability
+/*
 	if (istype(I, /obj/item/cement_bag))
 		var/obj/item/cement_bag/CB = I
 		if(CB.inuse)
@@ -281,7 +283,7 @@ var/list/flooring_types
 		else
 			to_chat(user, SPAN_NOTICE("You must stand still to finish the job!"))
 			CB.inuse = FALSE
-
+*/
 
 /decl/flooring/reinforced/plating/under/get_plating_type(turf/location)
 	if (turf_is_lower_hull(location)) //Hull plating is only on the lowest level of the ship
@@ -1081,6 +1083,8 @@ var/list/flooring_types
 	var/can_repair = FALSE
 	var/repair_into = /obj/effect/flooring_type_spawner/concrete
 
+// 04.03.25 - CFW - Deleting Cement Bag procs due to instability
+/*
 /decl/flooring/industrial/attackby(var/obj/item/I, var/mob/user, var/turf/T)
 	if(can_repair)
 		if(istype(I, /obj/item/cement_bag))
@@ -1099,6 +1103,7 @@ var/list/flooring_types
 			else
 				to_chat(user, SPAN_NOTICE("You must stand still to finish the job!"))
 				CB.inuse = FALSE
+*/
 
 //concrete
 
