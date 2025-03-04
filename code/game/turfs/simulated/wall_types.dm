@@ -102,27 +102,3 @@
 	is_reinforced = TRUE
 	wall_style = "minimalistic"
 	wall_type = "onestar_reinf_wall"
-
-/turf/wall/wood
-	name = "wooden wall"
-	icon_state = "wood_wall"
-	wall_style = "minimalistic"
-	wall_type = "wood_wall"
-
-/turf/wall/wood_old
-	name = "old wooden wall"
-	icon_state = "wood_wall_old"
-	wall_style = "minimalistic"
-	wall_type = "wood_wall_old"
-
-// 25.05.25 - CFW - Disabling these for now to expedite porting. TODO: Actually port the newloc method
-/*
-/turf/wall/wood_barrel/New(var/newloc)
-	..(newloc, MATERIAL_WOOD)
-
-/turf/wall/wood/New(var/newloc)
-	..(newloc, MATERIAL_WOOD)
-
-/turf/wall/wood_old/New(var/newloc)
-	..(newloc, MATERIAL_WOOD)
-*/

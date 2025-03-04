@@ -1,7 +1,6 @@
 /**********************Mineral deposits**************************/
-// 25.05.25 - CFW - Eris Unsimulated Turf. Being kept here for compatibility purposes only. Use the ones in game/turfs/unsimulated instead.
 /turf/mineral_unsimulated
-	name = "ancient impassable rock"
+	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
 	blocks_air = 1

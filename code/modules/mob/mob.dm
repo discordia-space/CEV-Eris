@@ -166,16 +166,6 @@
 		. += 6
 	if(lying) //Crawling, it's slower
 		. += 14 + (weakened)
-
-// 25.05.25 - CFW - Porting Soj slowdown based on tile, experimental, remove if lagging
-	var/turf/T = get_turf(src)
-	if(T)
-		if(istype(T, /turf/floor))
-			var/turf/floor/TF = T
-			if(TF.flooring)
-				. += TF.flooring.tally_addition_decl
-		. += T.tally_addition
-
 	. += move_intent.move_delay
 
 

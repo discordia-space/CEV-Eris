@@ -3,7 +3,7 @@
 /turf/wall/low
 	name = "low wall"
 	desc = "A waist-height wall, provides decent enough cover."
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/walls.dmi'
 	icon_state = "eris_low"
 	opacity = FALSE
 	layer = LOW_WALL_LAYER
