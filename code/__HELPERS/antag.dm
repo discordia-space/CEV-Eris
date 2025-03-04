@@ -16,7 +16,7 @@
 		if(role_text)
 			spawn()
 				O << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
-				if(alert(O,"Do you want to become the [role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
+				if(alert(O,"Do you want to become the [role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","OH YES","No.") == "OH YES")
 					if(!agree_time_out)
 						candidates.Add(O)
 		else

@@ -1478,7 +1478,7 @@ var/list/rank_prefix = list(\
 	if(mind)
 		for(var/mob/observer/ghost/G in GLOB.player_list)
 			if(G.can_reenter_corpse && G.mind == mind)
-				if(alert("Do you want to enter your body?","Resuscitate","OH YES","No, I'm autist") == "OH YES")
+				if(alert("Do you want to enter your body?","Resuscitate","OH YES","No.") == "OH YES")
 					G.reenter_corpse()
 					break
 				else

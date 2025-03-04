@@ -5,7 +5,7 @@
 	var/initialized = FALSE
 	var/uid 						// Needed for unlocking via recommendations since names are selected from a pool
 
-	var/tree_x = 0.1				// Position on the trade tree map, 0 - left, 1 - right                 
+	var/tree_x = 0.1				// Position on the trade tree map, 0 - left, 1 - right
 	var/tree_y = 0.1				// 0 - down, 1 - top
 
 	var/update_time = 0				// For displaying the time remaining on the UI
@@ -53,7 +53,7 @@
 
 /datum/trade_station/proc/init_src(var/turf/station_loc = null, var/force_discovered = FALSE)
 	if(name)
-		CRASH("Some retard gived trade station a name before init_src, overriding name_pool. ([type])")
+		CRASH("Somebody gived trade station a name before init_src, overriding name_pool. ([type])")
 	for(var/datum/trade_station/S in SStrade.all_stations)
 		name_pool.Remove(S.name)
 		if(!length(name_pool))
@@ -196,7 +196,7 @@
 
 	if(!recommendation_unlocked)
 		try_recommendation()
-	
+
 /datum/trade_station/proc/try_unlock_hidden_inv()
 	if(favor >= hidden_inv_threshold)
 		hidden_inv_unlocked = TRUE
