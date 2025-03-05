@@ -48,7 +48,7 @@
 /obj/item/blueprints/interact()
 	var/area/A = get_area(usr)
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
-<h2>[station_name()] blueprints</h2>
+<h2>[station_name] blueprints</h2>
 <small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
@@ -113,22 +113,11 @@ move an amendment</a> to the drawing.</p>
 		return
 	var/area/A = new
 	A.name = str
-	//var/ma
-	//ma = A.master ? "[A.master]" : "(null)"
-	//world << "DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
-	A.power_equip = 0
-	A.power_light = 0
-	A.power_environ = 0
-	A.always_unpowered = 0
+	A.power_equip = FALSE
+	A.power_light = FALSE
+	A.power_environ = FALSE
 	move_turfs_to_area(turfs, A)
-
-	A.always_unpowered = 0
-
-	spawn(5)
-		//ma = A.master ? "[A.master]" : "(null)"
-		//world << "DEBUG: create_area(5): <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
-		interact()
-	return
+	interact()
 
 
 /obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
@@ -174,13 +163,13 @@ move an amendment</a> to the drawing.</p>
 /obj/item/blueprints/proc/check_tile_is_border(var/turf/T2,var/dir)
 	if (istype(T2, /turf/space))
 		return BORDER_SPACE //omg hull breach we all going to die here
-	if (istype(T2, /turf/simulated/shuttle))
+	if (istype(T2, /turf/shuttle))
 		return BORDER_SPACE
 	if (get_area_type(T2.loc)!=AREA_SPACE)
 		return BORDER_BETWEEN
-	if (istype(T2, /turf/simulated/wall))
+	if (istype(T2, /turf/wall))
 		return BORDER_2NDTILE
-	if (!istype(T2, /turf/simulated))
+	if (!istype(T2, /turf))
 		return BORDER_BETWEEN
 
 	for (var/obj/structure/window/W in T2)

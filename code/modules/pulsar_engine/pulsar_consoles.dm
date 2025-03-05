@@ -17,7 +17,7 @@
 	linked = GLOB.maps_data.pulsar_star
 	ship = locate(/obj/effect/pulsar_ship) in get_area(linked)
 	if(ship)
-		RegisterSignal(ship, COMSIG_MOVABLE_MOVED, .proc/onShipMoved)
+		RegisterSignal(ship, COMSIG_MOVABLE_MOVED, PROC_REF(onShipMoved))
 	..()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -159,8 +159,9 @@
 		ship.stop_rad_storm()
 		return
 	}
-	ship.block_events = FALSE
-	ship.try_move(0) //Recalc if the pulsar is in a beam
+	if(ship)
+		ship.block_events = FALSE
+		ship.try_move(0) //Recalc if the pulsar is in a beam
 }
 
 /obj/machinery/power/pulsar_power_bridge //Only holds ref to the console and its area, used to get power from it, or disconnect the ship.
@@ -192,6 +193,8 @@
 		console_area = get_area(pulsar_console) //Area stored so reconnections are cheaper.
 
 	portal = locate() in get_area(src)
+	if(portal)
+		portal_active = TRUE
 
 /obj/machinery/power/pulsar_power_bridge/Process()
 	if(powernet && pulsar_console)
@@ -301,7 +304,7 @@
 			icon_state = "pulsar_tank"
 
 		if(round(air_contents.get_total_moles()) >= 125)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/T = get_turf(src)
 			if(!T)
 				return
 			visible_message(SPAN_DANGER("[src] explodes violently and all of the gas starts pouring out!"))
@@ -315,11 +318,11 @@
 	to_chat(user, SPAN_NOTICE("[src] can only be refiled with portable fuel tanks"))
 	. = ..()
 
-/obj/structure/pulsar_fuel_tank/examine(mob/user, distance, infix, suffix)
-	. = ..()
-	to_chat(user, "Fuel: [round(air_contents.get_total_moles())]/100")
+/obj/structure/pulsar_fuel_tank/examine(mob/user, extra_description = "")
+	extra_description += "\nFuel: [round(air_contents.get_total_moles())]/100"
 	if(round(air_contents.get_total_moles()) >= 100)
-		to_chat(user, SPAN_DANGER("It looks like its about to burst!"))
+		extra_description += SPAN_DANGER("\nIt looks like its about to burst!")
+	..(user, extra_description)
 
 /obj/structure/pulsar_fuel_tank/filled/Initialize()
 	. = ..()

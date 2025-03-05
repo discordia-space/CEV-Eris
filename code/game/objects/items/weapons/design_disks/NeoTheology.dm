@@ -13,14 +13,15 @@
 		/datum/design/bioprinter/leather/holster/baton,
 		/datum/design/bioprinter/leather/holster/belt,
 		/datum/design/bioprinter/leather/holster/sheath,
+		/datum/design/bioprinter/leather/holster/accessory/scabbard,
 		/datum/design/bioprinter/small_generic,
 		/datum/design/bioprinter/medium_generic,
 		/datum/design/bioprinter/large_generic,
-		/datum/design/bioprinter/medical_supply,
+		/datum/design/bioprinter/ammo,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
 		/datum/design/bioprinter/engineering_material,
-		/datum/design/bioprinter/ammo,
+		/datum/design/bioprinter/medical_supply,
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
 		/datum/design/bioprinter/part
@@ -44,8 +45,7 @@
 	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
 	license = -1
 	designs = list(
-		/datum/design/autolathe/gun/nt_svalinn,
-		/datum/design/bioprinter/nt_cells/small
+		/datum/design/autolathe/gun/nt_svalinn
 	)
 
 // Javelins & bucklers, speed upgrade TODO: light armor
@@ -163,6 +163,7 @@
 	designs = list(
 		/datum/design/bioprinter/meat,
 		/datum/design/bioprinter/milk,
+		/datum/design/bioprinter/butter,
 		/datum/design/bioprinter/soap,
 
 		/datum/design/bioprinter/ez,
@@ -222,6 +223,17 @@
 		/datum/design/bioprinter/belt/medical/emt,
 
    		/datum/design/autolathe/device/headset_church
+	)
+
+/obj/item/computer_hardware/hard_drive/portable/design/nt_ritual
+	disk_name = "NeoTheology Supplies - \"Ritualis Supplies\""
+	icon_state = "neotheology"
+	spawn_blacklisted = TRUE
+
+	license = -1
+	designs = list(
+		/datum/design/bioprinter/nt_clothes/ritual_robe,
+		/datum/design/bioprinter/candles
 	)
 
 // Basic melee

@@ -118,64 +118,19 @@ var/intercom_range_display_status = 0
 					qdel(F)
 
 
-var/list/debug_verbs = list (
-	/client/proc/do_not_use_these
-	,/client/proc/camera_view
-	,/client/proc/sec_camera_report
-	,/client/proc/intercom_view
-	,/client/proc/Cell
-	,/client/proc/atmosscan
-	,/client/proc/powerdebug
-	,/client/proc/count_objects_on_z_level
-	,/client/proc/count_objects_all
-	,/client/proc/cmd_assume_direct_control
-//	,/client/proc/jump_to_dead_group
-	,/client/proc/startSinglo
-	,/client/proc/set_server_fps
-	,/client/proc/cmd_admin_grantfullaccess
-//	,/client/proc/kaboom
-	,/client/proc/cmd_admin_areatest
-	,/client/proc/cmd_admin_rejuvenate
-	,/datum/admins/proc/show_contractor_panel
-	,/client/proc/print_jobban_old
-	,/client/proc/print_jobban_old_filter
-	//,/client/proc/forceEvent //Todo: Replace
-	,/client/proc/break_all_air_groups
-	,/client/proc/regroup_all_air_groups
-	,/client/proc/kill_pipe_processing
-	,/client/proc/kill_air_processing
-	,/client/proc/disable_communication
-	,/client/proc/disable_movement
-	,/client/proc/Zone_Info
-	,/client/proc/Test_ZAS_Connection
-	,/client/proc/hide_debug_verbs
-	,/client/proc/testZAScolors
-	,/client/proc/testZAScolors_remove
-	,/client/proc/atmos_toggle_debug
-	,/client/proc/spawn_tanktransferbomb
-	,/client/proc/debug_human_sprite
-)
-
-
-ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
 	set name = "Debug verbs"
 
-	if(!check_rights(R_DEBUG)) return
-
-	verbs += debug_verbs
-
+	if(check_rights(R_DEBUG))
+		add_verb(src, GLOB.admin_verbs_debug_extra)
 
 
 /client/proc/hide_debug_verbs()
 	set category = "Debug"
 	set name = "Hide Debug verbs"
 
-	if(!check_rights(R_DEBUG)) return
-
-	verbs -= debug_verbs
-
+	remove_verb(src, GLOB.admin_verbs_debug_extra)
 
 /client
 	var/list/testZAScolors_turfs = list()
@@ -206,9 +161,9 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 	if(!check_rights(R_DEBUG)) return
 	testZAScolors_remove()
 
-	var/turf/simulated/location = get_turf(usr)
+	var/turf/location = get_turf(usr)
 
-	if(!istype(location, /turf/simulated)) // We're in space, let's not cause runtimes.
+	if(!istype(location, /turf)) // We're in space, let's not cause runtimes.
 		to_chat(usr, "\red this debug tool cannot be used from space")
 		return
 

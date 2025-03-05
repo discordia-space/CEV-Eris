@@ -13,7 +13,7 @@
 	turns_per_move = 4
 	turns_since_move = 0
 
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/kampfer
 	meat_amount = 2
 
 	maxHealth = 10
@@ -47,6 +47,32 @@
 	var/busy_time // how long it will take to eat/lay egg
 	var/busy_start_time // when it started eating/laying egg
 
+	var/obj/item/hat
+	var/hat_x_offset = 6
+	var/hat_y_offset = 8
+
+	var/list/hats4roaches = list(/obj/item/clothing/head/collectable/chef,
+			/obj/item/clothing/head/collectable/paper,
+			/obj/item/clothing/head/collectable/beret,
+			/obj/item/clothing/head/collectable/welding,
+			/obj/item/clothing/head/collectable/flatcap,
+			/obj/item/clothing/head/collectable/pirate,
+			/obj/item/clothing/head/collectable/thunderdome,
+			/obj/item/clothing/head/collectable/swat,
+			/obj/item/clothing/head/collectable/police,
+			/obj/item/clothing/head/collectable/xenom,
+			/obj/item/clothing/head/collectable/petehat,
+			/obj/item/clothing/head/collectable/wizard,
+			/obj/item/clothing/head/collectable/hardhat,
+			/obj/item/clothing/head/fedora,
+			/obj/item/clothing/head/hasturhood,
+			/obj/item/clothing/head/hgpiratecap,
+			/obj/item/clothing/head/nursehat,
+			/obj/item/clothing/head/soft/rainbow,
+			/obj/item/clothing/head/soft/grey
+			)
+
+
 	// Armor related variables
 	armor = list(
 		melee = 0,
@@ -56,6 +82,12 @@
 		bio = 25,
 		rad = 50
 	)
+
+/mob/living/carbon/superior_animal/roach/New()
+	. = ..()
+	var/newhat = pick(hats4roaches)
+	var/obj/item/hatobj = new newhat(loc)
+	wear_hat(hatobj)
 
 /mob/living/carbon/superior_animal/roach/Destroy()
 	clearEatTarget()
@@ -74,3 +106,42 @@
 		if(prob(3))
 			visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
 			new /obj/item/music_tape(get_turf(src))
+
+	else if(prob(10))
+		visible_message(SPAN_DANGER("\the [src] drops behind a gift basket!"))
+		new /obj/item/storage/box/halloween_basket(get_turf(src))
+
+	if(hat)
+		hat.loc = get_turf(src)
+		hat.update_plane()
+		hat = null
+		update_hat()
+
+
+
+/mob/living/carbon/superior_animal/roach/proc/wear_hat(var/obj/item/new_hat)
+	if(hat)
+		return
+	hat = new_hat
+	new_hat.forceMove(src)
+	update_hat()
+
+/mob/living/carbon/superior_animal/roach/proc/update_hat()
+	overlays.Cut()
+	if(hat)
+		var/offset_x = hat_x_offset
+		var/offset_y = hat_y_offset
+		switch(dir)
+			if(EAST)
+				offset_y = -hat_y_offset
+				offset_x = hat_x_offset
+			if(WEST)
+				offset_y = -hat_y_offset
+				offset_x = -hat_x_offset
+			if(NORTH)
+				offset_y = -2
+				offset_x = 0
+			if(SOUTH)
+				offset_y = -16
+				offset_x = 0
+		overlays |= get_hat_icon(hat, offset_x, offset_y)

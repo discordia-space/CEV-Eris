@@ -20,10 +20,10 @@
 
 /obj/machinery/multistructure/bioreactor_part/platform/Process()
 	if(!MS)
-		use_power(1)
+		use_power(idle_power_usage)
 		return
 	if((!is_breached() || MS_bioreactor.is_operational()) && MS_bioreactor.chamber_solution)
-		use_power(2)
+		use_power(active_power_usage)
 		for(var/atom/movable/M in loc)
 
 			//mob processing
@@ -36,7 +36,7 @@
 				//if our target has hazard protection, apply damage based on the protection percentage.
 				var/hazard_protection = victim.getarmor(null, ARMOR_BIO)
 				var/damage = BIOREACTOR_DAMAGE_PER_TICK - (BIOREACTOR_DAMAGE_PER_TICK * (hazard_protection/100))
-				victim.apply_damage(damage, BRUTE, used_weapon = "Biological")
+				victim.apply_damage(damage, BURN, used_weapon = "Biological") // Before ErisMed 4 damage type was CLONE until some CLOWN changed it to simply BRUTE for no reason. TODO: change to better damage type when possible
 				victim.adjustOxyLoss(BIOREACTOR_DAMAGE_PER_TICK / 2)	// Snowflake shit, but we need the mob to die within a reasonable time frame
 
 				if(prob(10))
@@ -77,9 +77,9 @@
 					target.forceMove(MS_bioreactor.misc_output)
 	else
 		//if our machine is non operational, let's go idle powermode and pump out solution
-		use_power(1)
+		use_power(idle_power_usage)
 		if(MS_bioreactor.chamber_solution)
-			MS_bioreactor.pump_solution()
+			MS_bioreactor.pump_solution(forced = 1)
 
 
 /obj/machinery/multistructure/bioreactor_part/platform/attackby(var/obj/item/I, var/mob/user)
@@ -159,10 +159,8 @@
 //There we apply sprites and directions to created glass
 /obj/machinery/multistructure/bioreactor_part/platform/proc/apply_window(obj/structure/window/reinforced/glass, var/direction)
 	if(MS_bioreactor.platform_enter_side == direction)
-		glass.basestate = "platform_door"
 		glass.icon_state = "platform_door"
 	else
-		glass.basestate = "[icon_state]-glass_[direction]"
 		glass.icon_state = "[icon_state]-glass_[direction]"
 	glass.dir = direction
 	glass.update_icon()
@@ -171,13 +169,12 @@
 //Here we go through our windows and check it for breach. If somewhere glass will be missing, we return TRUE and turn our bioreactor var
 /obj/machinery/multistructure/bioreactor_part/platform/proc/is_breached()
 	var/list/glass_dirs = get_opened_dirs()
-	for(var/obj/structure/window/reinforced/glass in loc)
+	for(var/obj/structure/window/reinforced/bioreactor/glass in loc)
 		if(glass.dir in glass_dirs)
 			glass_dirs -= glass.dir
 	if(glass_dirs.len)
 		MS_bioreactor.chamber_breached = TRUE
 		return TRUE
-	MS_bioreactor.chamber_breached = FALSE
 	return FALSE
 
 
@@ -192,22 +189,21 @@
 	var/max_contamination_lvl = 5
 
 
-/obj/structure/window/reinforced/bioreactor/examine(mob/user)
-	..()
+/obj/structure/window/reinforced/bioreactor/examine(mob/user, extra_description = "")
 	switch(contamination_level)
 		if(1)
-			to_chat(user, SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean."))
+			extra_description += SPAN_NOTICE("There are a few stains on it. Except this, [src] looks pretty clean.")
 		if(2)
-			to_chat(user, SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up."))
+			extra_description += SPAN_NOTICE("You see a sign of biomatter on this [src]. Better to clean it up.")
 		if(3)
-			to_chat(user, SPAN_WARNING("This [src] has clear signs and stains of biomatter."))
+			extra_description += SPAN_WARNING("This [src] has clear signs and stains of biomatter.")
 		if(4)
-			to_chat(user, SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell."))
+			extra_description += SPAN_WARNING("You see a high amount of biomatter on \the [src]. It's dirty as hell.")
 		if(5)
-			to_chat(user, SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src]."))
+			extra_description += SPAN_WARNING("Now it's hard to see what's inside. Better to clean this [src].")
 		else
-			to_chat(user, SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?"))
-
+			extra_description += SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?")
+	..(user, extra_description)
 
 /obj/structure/window/reinforced/bioreactor/update_icon()
 	overlays.Cut()
@@ -226,10 +222,10 @@
 	contamination_level += amount
 	if(contamination_level >= max_contamination_lvl)
 		contamination_level = max_contamination_lvl
-		opacity = FALSE
+		opacity = TRUE
 	if(contamination_level <= 0)
 		contamination_level = 0
-		opacity = TRUE
+		opacity = FALSE
 	update_icon()
 
 

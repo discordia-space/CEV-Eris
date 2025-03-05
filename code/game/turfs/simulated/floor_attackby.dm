@@ -1,12 +1,14 @@
-/turf/simulated/floor/attackby(obj/item/I, mob/user)
+/turf/floor/attackby(obj/item/I, mob/user)
+	if(!is_simulated)
+		return FALSE
 
-	if(!I || !user)
-		return 0
+	ASSERT(I)
+	ASSERT(user)
 
-	if(istype(src, /turf/simulated/floor/plating/under) && (istype(I, /obj/item/stack/material/cyborg/steel) || istype(I, /obj/item/stack/material/steel)))
+	if(istype(src, /turf/floor/plating/under) && (istype(I, /obj/item/stack/material/cyborg/steel) || istype(I, /obj/item/stack/material/steel)))
 		if(do_after(user, (30 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 			if(I:use(1))
-				ChangeTurf(/turf/simulated/floor/plating)
+				ChangeTurf(/turf/floor/plating)
 
 	var/obj/effect/shield/turf_shield = getEffectShield()
 
@@ -38,7 +40,7 @@
 				take_damage(I.force*I.structure_damage_factor, I.damtype)
 			else
 				visible_message(SPAN_DANGER("[user] ineffectually hits [src] with [I]"))
-			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) 
+			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			return TRUE
 
 	for(var/atom/movable/A in src)
@@ -194,11 +196,11 @@
 	return ..()
 
 
-/turf/simulated/floor/can_build_cable(var/mob/user)
+/turf/floor/can_build_cable(mob/user)
 	if(flooring && (flooring.flags & TURF_HIDES_THINGS))
 		to_chat(user, SPAN_WARNING("You must remove the [flooring.descriptor] first."))
-		return 0
+		return FALSE
 	if(is_damaged())
 		to_chat(user, SPAN_WARNING("This section is too damaged to support anything. Use a welder to fix the damage."))
-		return 0
-	return 1
+		return FALSE
+	return TRUE

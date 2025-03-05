@@ -20,7 +20,7 @@ export const EventSearch = (props, context) => {
   const [searchQuery, setSearchQuery] = useLocalState(
     context,
     'searchQuery',
-    ''
+    '',
   );
 
   return (
@@ -52,7 +52,8 @@ export const EventOptionsPanel = (props, context) => {
     <Button.Checkbox
       fluid
       checked={announce}
-      onClick={() => setAnnounce(!announce)}>
+      onClick={() => setAnnounce(!announce)}
+    >
       Announce event to the crew
     </Button.Checkbox>
   );
@@ -77,7 +78,7 @@ export const EventList = (props, context) => {
 
   const filtered_events = flow([
     filter((event) =>
-      event.name?.toLowerCase().includes(searchQuery.toLowerCase())
+      event.name?.toLowerCase().includes(searchQuery.toLowerCase()),
     ),
     sortBy((event) => event.name),
   ])(category.events || []);

@@ -45,18 +45,18 @@
 		icon_state = initial(icon_state)
 
 
-/obj/machinery/hivemind_machine/examine(mob/user)
-	..()
-	if (health < maxHealth * 0.1)
-		to_chat(user, SPAN_DANGER("It's almost nothing but scrap!"))
-	else if (health < maxHealth * 0.25)
-		to_chat(user, SPAN_DANGER("It's seriously fucked up!"))
-	else if (health < maxHealth * 0.50)
-		to_chat(user, SPAN_DANGER("It's very damaged; you can almost see the components inside!"))
-	else if (health < maxHealth * 0.75)
-		to_chat(user, SPAN_WARNING("It has numerous dents and deep scratches."))
-	else if (health < maxHealth)
-		to_chat(user, SPAN_WARNING("It's a bit scratched and dented."))
+/obj/machinery/hivemind_machine/examine(mob/user, extra_description = "")
+	if(health < maxHealth * 0.1)
+		extra_description += SPAN_DANGER("It's almost nothing but scrap!")
+	else if(health < maxHealth * 0.25)
+		extra_description += SPAN_DANGER("It's seriously fucked up!")
+	else if(health < maxHealth * 0.50)
+		extra_description += SPAN_DANGER("It's very damaged; you can almost see the components inside!")
+	else if(health < maxHealth * 0.75)
+		extra_description += SPAN_WARNING("It has numerous dents and deep scratches.")
+	else if(health < maxHealth)
+		extra_description += SPAN_WARNING("It's a bit scratched and dented.")
+	..(user, extra_description)
 
 
 /obj/machinery/hivemind_machine/Process()
@@ -157,7 +157,7 @@
 	rebuild_anim.anchored = TRUE
 	rebuild_anim.density = FALSE
 	addtimer(CALLBACK(src, PROC_REF(finish_rebuild), new_machine_path), time_in_seconds SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), rebuild_anim), time_in_seconds SECONDS)
 
 
 /obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)

@@ -291,7 +291,7 @@
 
 	//Grab processing has a chance of returning null
 	if(item)
-		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/simulated/open))
+		if((target.z > src.z) && istype(get_turf(GetAbove(src)), /turf/open))
 			var/obj/item/I = item
 			var/robust = stats.getStat(STAT_ROB)
 			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)

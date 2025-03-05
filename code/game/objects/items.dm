@@ -29,6 +29,7 @@
 	var/extended_reach = FALSE		//Wielded spears can hit alive things one tile further.
 	var/ready = FALSE				//All weapons that are ITEM_SIZE_BULKY or bigger have double tact, meaning you have to click twice.
 	var/no_double_tact = FALSE		//for when you,  for some inconceivable reason, want a bulky item to not have double tact
+	var/no_swing = FALSE            //for when you do not want an item to swing-attack
 	var/push_attack = FALSE			//Hammers and spears can push the victim away on hit when you aim groin.
 	//Why are we using vars instead of defines or anything else?
 	//Because we need them to be shown in the tool info UI.
@@ -167,8 +168,7 @@
 
 	loc = T
 
-/obj/item/examine(user, distance = -1)
-	var/message
+/obj/item/examine(mob/user, extra_description = "")
 	var/size
 	switch(w_class)
 		if(ITEM_SIZE_TINY)
@@ -187,18 +187,22 @@
 			size = "colossal"
 		if(ITEM_SIZE_TITANIC)
 			size = "titanic"
-	message += "\nIt is a [size] item."
+	extra_description += "\nIt is a [size] item."
 
 	for(var/Q in tool_qualities)
-		message += "\n<blue>It possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
+		extra_description += "\nIt possesses [tool_qualities[Q]] tier of [Q] quality.<blue>"
 
-	. = ..(user, distance, "", message)
+	var/list/listReference = list()
+	SEND_SIGNAL(src, COMSIG_EXTRA_EXAMINE, listReference)
+	if(LAZYLEN(listReference))
+		extra_description += "\n"
+	for(var/text in listReference)
+		extra_description += "\n[text]"
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.stats.getPerk(PERK_MARKET_PROF))
-			to_chat(user,SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]"))
-
+			extra_description += SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]")
 			var/offer_message = "This item is requested at: "
 			var/has_offers = FALSE
 			for(var/datum/trade_station/TS in SStrade.discovered_stations)
@@ -212,10 +216,11 @@
 							offer_message += "[TS.name] ([round(offer_price / offer_amount, 1)][CREDITS] each, [offer_amount] requested), "
 						else
 							offer_message += "[TS.name] (offer fulfilled, awaiting new contract), "
-
 			if(has_offers)
 				offer_message = copytext(offer_message, 1, LAZYLEN(offer_message) - 1)
-				to_chat(user, SPAN_NOTICE(offer_message))
+				extra_description += offer_message
+
+	..(user, extra_description)
 
 /obj/item/attack_hand(mob/user as mob)
 	if(pre_pickup(user))
@@ -497,7 +502,7 @@ var/global/list/items_blood_overlay_by_type = list()
 					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and break
 					for(moves, moves<=3, ++moves)
 						//low damage for walls, medium for windows, fall over for railings
-						if(istype(get_step(grabbed, whip_dir), /turf/simulated/wall))
+						if(istype(get_step(grabbed, whip_dir), /turf/wall))
 							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
 							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
 							break
@@ -553,10 +558,11 @@ var/global/list/items_blood_overlay_by_type = list()
 For zooming with scope or binoculars. This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
+mech zooming.
 */
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
-/obj/item/proc/zoom(tileoffset = 14,viewsize = 9, stayzoomed = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-	if(!usr)
+/obj/item/proc/zoom(mob/living/carbon/targetMob,tileoffset = 14,viewsize = 9, stayzoomed = FALSE) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	if(!targetMob.client)
 		return
 
 	var/devicename
@@ -568,56 +574,57 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	var/cannotzoom
 
-	if(usr.stat || !(ishuman(usr)))
-		to_chat(usr, "You are unable to focus through the [devicename]")
+	if(targetMob.stat || !(ishuman(targetMob)))
+		to_chat(targetMob, "You are unable to focus through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
-		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
+		to_chat(targetMob, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
-	else if(!zoom && usr.get_active_hand() != src)
-		to_chat(usr, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
+	else if(!zoom && targetMob.get_active_hand() != src && !ismech(targetMob.loc))
+		to_chat(targetMob, "You are too distracted to look through the [devicename]. Perhaps if it was in your active hand you could look through it.")
 		cannotzoom = 1
 
 	if((!zoom && !cannotzoom)|stayzoomed)
 		//if(usr.hud_used.hud_shown)
 			//usr.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
-		usr.client.view = viewsize
-		zoom = 1
+		targetMob.client.view = viewsize
+		zoom = TRUE
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
-
-		switch(usr.dir)
+		if(ismech(targetMob.loc))
+			targetMob.dir = targetMob.loc.dir
+		switch(targetMob.dir)
 			if(NORTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = viewoffset
+				targetMob.client.pixel_x = 0
+				targetMob.client.pixel_y = viewoffset
 			if(SOUTH)
-				usr.client.pixel_x = 0
-				usr.client.pixel_y = -viewoffset
+				targetMob.client.pixel_x = 0
+				targetMob.client.pixel_y = -viewoffset
 			if(EAST)
-				usr.client.pixel_x = viewoffset
-				usr.client.pixel_y = 0
+				targetMob.client.pixel_x = viewoffset
+				targetMob.client.pixel_y = 0
 			if(WEST)
-				usr.client.pixel_x = -viewoffset
-				usr.client.pixel_y = 0
+				targetMob.client.pixel_x = -viewoffset
+				targetMob.client.pixel_y = 0
 		if(!stayzoomed)
-			usr.visible_message("[usr] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
-		var/mob/living/carbon/human/H = usr
+			targetMob.visible_message("[targetMob] peers through the [zoomdevicename ? "[zoomdevicename] of the [name]" : "[name]"].")
+		var/mob/living/carbon/human/H = targetMob
 		H.using_scope = src
 	else
-		usr.client.view = world.view
+		targetMob.client.view = world.view
 		//if(!usr.hud_used.hud_shown)
 			//usr.toggle_zoom_hud()
-		zoom = 0
+		zoom = FALSE
 
-		usr.client.pixel_x = 0
-		usr.client.pixel_y = 0
+		targetMob.client.pixel_x = 0
+		targetMob.client.pixel_y = 0
 
 		if(!cannotzoom)
-			usr.visible_message("[zoomdevicename ? "[usr] looks up from the [name]" : "[usr] lowers the [name]"].")
-		var/mob/living/carbon/human/H = usr
+			targetMob.visible_message("[zoomdevicename ? "[targetMob] looks up from the [name]" : "[targetMob] lowers the [name]"].")
+		var/mob/living/carbon/human/H = targetMob
 		H.using_scope = null
-	usr.parallax.update()
+	targetMob.parallax.update()
 	return
 
 /obj/item/proc/pwr_drain()

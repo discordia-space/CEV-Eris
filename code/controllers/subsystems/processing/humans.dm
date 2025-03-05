@@ -5,7 +5,7 @@ PROCESSING_SUBSYSTEM_DEF(humans)
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	wait = 2 SECONDS
 
-	process_proc = /mob/proc/Life
+	process_proc = TYPE_PROC_REF(/mob, Life)
 
 	var/list/mob_list
 

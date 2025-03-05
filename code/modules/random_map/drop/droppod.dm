@@ -11,8 +11,8 @@
 	limit_y = 3
 	preserve_map = 0
 
-	wall_type = /turf/simulated/wall/untinted/onestar_reinforced
-	floor_type = /turf/simulated/floor/reinforced
+	wall_type = /turf/wall/untinted/onestar_reinforced
+	floor_type = /turf/floor/reinforced
 	var/list/supplied_drop_types = list()
 	var/door_type = /obj/structure/droppod_door
 	var/drop_type = /mob/living/simple_animal/parrot
@@ -152,8 +152,6 @@
 				drop.buckled = null
 			drop.forceMove(T)
 
-
-ADMIN_VERB_ADD(/datum/admins/proc/call_drop_pod, R_FUN, FALSE)
 /datum/admins/proc/call_drop_pod()
 	set category = "Fun"
 	set desc = "Call an immediate drop pod on your location."

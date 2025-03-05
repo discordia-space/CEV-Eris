@@ -55,14 +55,48 @@
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
-/obj/item/clothing/suit/armor/vest/full/security
+
+//This has specifically been bodged so that I can give the flak vest toggle-able buttons -VaNdU Jr
+/obj/item/clothing/suit/armor/vest/toggle/full
 	name = "full security armor"
 	desc = "A tactical armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
 	icon_state = "armor_security_fullbody"
+	icon_open = "armor_security_fullbody_open"
+	icon_closed = "armor_security_fullbody"
+	blood_overlay_type = "armor"
+	slowdown = 0.1
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
+	matter = list(
+		MATERIAL_STEEL = 10, // contains a lil bit more steel because of arm+leg prot
+		MATERIAL_PLASTEEL = 1
+	)
+	slowdown = LIGHT_SLOWDOWN
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
-/obj/item/clothing/suit/armor/vest/security
+/obj/item/clothing/suit/armor/vest/toggle
 	name = "security armor"
 	icon_state = "armor_security"
+	var/icon_open = "armor_security_open"
+	var/icon_closed = "armor_security"
+
+/obj/item/clothing/suit/armor/vest/toggle/verb/toggle()
+	set name = "Toggle Vest Buttons"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return
+
+	if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		icon_state = icon_closed
+		to_chat(usr, "You button up the vest.")
+	else if(icon_state == icon_closed)
+		icon_state = icon_open
+		to_chat(usr, "You unbutton the vest.")
+	else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
+		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+		return
+	update_wear_icon()	//so our overlays update
+
 
 /obj/item/clothing/suit/armor/vest/detective
 	name = "armor"
@@ -176,6 +210,25 @@
 	name = "green flakvest vest"
 	icon_state = "flakvest_green"
 
+/obj/item/clothing/suit/armor/gzhel
+	name = "Excelsior gzhel-m vest"
+	desc = "Standard-issue Excelsior bullet-resistant vest with great balance of cost, weight, and protection."
+	icon_state = "ghezel_m"
+	item_state = "ghezel_m"
+	armor = list(
+		melee = 8,
+		bullet = 13,
+		energy = 8,
+		bomb = 30,
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 8,
+		MATERIAL_PLASTEEL = 1,
+		MATERIAL_PLASTIC = 3
+	)
+
 /obj/item/clothing/suit/armor/flak/full
 	name = "full flakvest vest"
 	desc = "An armored vest built for protection against high-velocity solid projectiles. This set has had kneepads and shoulderpads attached for more protection."
@@ -183,6 +236,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // shoulderpads and kneepads
 	slowdown = LIGHT_SLOWDOWN
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
+
 
 /obj/item/clothing/suit/armor/flak/full/green
 	name = "full green flakvest vest"
@@ -209,6 +263,33 @@
 		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
 	)
 	slowdown = LIGHT_SLOWDOWN
+
+/obj/item/clothing/suit/armor/korund
+	name = "Excelsior korund-sh-p carapace"
+	desc = "Super heavy, powered suit of communard armor. Can house a Zarya power cell to supply KULAK power gauntlet."
+	icon_state = "korund_armor"
+	item_state = "korund_armor"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	slowdown = MEDIUM_SLOWDOWN
+	item_flags = THICKMATERIAL|DRAG_AND_DROP_UNEQUIP|COVER_PREVENT_MANIPULATION|EQUIP_SOUNDS
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
+	armor = list(
+		melee = 16,
+		bullet = 15,
+		energy = 16,
+		bomb = 100, //basically an EOD suit
+		bio = 0,
+		rad = 0
+	)
+	matter = list(
+		MATERIAL_STEEL = 35,
+		MATERIAL_PLASTIC = 45,
+		MATERIAL_PLASTEEL = 25,
+	)
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/suit/armor/bulletproof/full
 	name = "full bulletproof vest"
@@ -415,6 +496,11 @@
 	icon_state = "riot"
 	item_state = "swat_suit"
 	flags_inv = NONE
+	matter = list(
+		MATERIAL_STEEL = 10,
+		MATERIAL_PLASTIC = 8,
+		MATERIAL_PLASTEEL = 3
+	)
 	armor = list(
 		melee = 20,
 		bullet = 7,

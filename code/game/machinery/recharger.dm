@@ -19,11 +19,12 @@
 	)
 	var/portable = TRUE
 
-/obj/machinery/recharger/examine(user)
-	..()
-	var/obj/item/cell/cell = charging?.get_cell()
-	if(cell)
-		to_chat(user, "The charge meter reads [round(cell.percent())]%.")
+/obj/machinery/recharger/examine(mob/user, extra_description = "")
+	if(charging)
+		var/obj/item/cell/cell = charging.get_cell()
+		if(cell)
+			extra_description += "The charge meter reads [round(cell.percent())]%."
+	..(user, extra_description)
 
 /obj/machinery/recharger/attackby(obj/item/I, mob/user)
 	if(default_deconstruction(I, user))
@@ -120,9 +121,9 @@
 
 	if(cell && !cell.fully_charged())
 		cell.give((active_power_usage*CELLRATE)*efficiency)
-		update_use_power(ACTIVE_POWER_USE)
+		set_power_use(ACTIVE_POWER_USE)
 	else
-		update_use_power(IDLE_POWER_USE)
+		set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/recharger/emp_act(severity)

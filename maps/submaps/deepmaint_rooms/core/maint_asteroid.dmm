@@ -1,73 +1,73 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/deepmaint)
 "ab" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/deepmaint)
 "ac" = (
 /obj/spawner/junk,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "ad" = (
 /obj/spawner/material/ore,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "ae" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "af" = (
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "ag" = (
 /obj/spawner/junk,
 /obj/spawner/material/ore,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "ah" = (
-/turf/simulated/mineral,
+/turf/mineral,
 /area/deepmaint)
 "ai" = (
 /obj/spawner/material/ore,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/deepmaint)
 "aj" = (
 /obj/spawner/junk,
 /obj/spawner/junk,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/deepmaint)
 "ak" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "al" = (
 /obj/spawner/junk,
 /obj/spawner/material/ore,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/deepmaint)
 "am" = (
 /obj/spawner/pack/gun_loot,
 /obj/spawner/pack/gun_loot,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "an" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "ao" = (
 /obj/spawner/pack/gun_loot,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "ap" = (
 /obj/spawner/pack/gun_loot,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "aq" = (
 /obj/structure/ore_box,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "ar" = (
 /obj/machinery/door/blast/shutters{
@@ -76,16 +76,15 @@
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "at" = (
 /obj/spawner/material/ore,
 /obj/spawner/material/ore,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "av" = (
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "aw" = (
 /obj/machinery/button/remote/blast_door{
@@ -95,22 +94,22 @@
 	pixel_y = 24;
 	req_access = null
 	},
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "ax" = (
 /obj/machinery/mining/deep_drill,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "ay" = (
 /obj/machinery/floodlight,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "az" = (
 /obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "aA" = (
-/turf/simulated/floor/tiled/steel/brown_perforated,
+/turf/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
 "aB" = (
 /obj/structure/table/standard,
@@ -118,40 +117,40 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
+/turf/floor/tiled/steel/brown_platform,
 /area/deepmaint)
 "aC" = (
 /obj/spawner/structures/common,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "aD" = (
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "aE" = (
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aF" = (
 /obj/structure/table/standard,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "aG" = (
 /obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "aH" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aI" = (
 /obj/spawner/junk,
 /obj/spawner/material/ore,
 /obj/spawner/material/ore,
-/turf/simulated/floor/plating,
+/turf/floor/plating,
 /area/deepmaint)
 "aJ" = (
 /obj/structure/table/standard,
@@ -161,67 +160,67 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "aK" = (
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "aL" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "aM" = (
 /obj/structure/table/standard,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
 /obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "aN" = (
 /obj/structure/table/standard,
 /obj/spawner/material/resources/rare,
 /obj/spawner/material/resources/rare,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "aO" = (
 /obj/structure/table/standard,
 /obj/spawner/material/resources,
 /obj/spawner/material/resources,
-/turf/simulated/floor/tiled/steel/gray_platform,
+/turf/floor/tiled/steel/gray_platform,
 /area/deepmaint)
 "aP" = (
 /obj/structure/reagent_dispensers/watertank/huge,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "aQ" = (
 /obj/structure/table/woodentable,
 /obj/item/seeds/ambrosiavulgarisseed,
 /obj/item/seeds/ambrosiavulgarisseed,
 /obj/item/seeds/ambrosiavulgarisseed,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "aR" = (
 /obj/spawner/material/ore,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "aS" = (
 /obj/machinery/door/airlock/multi_tile/glass,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "aT" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "aU" = (
 /obj/spawner/junk,
 /obj/spawner/material/ore,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "aV" = (
 /obj/structure/closet/cabinet,
@@ -229,89 +228,88 @@
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/deepmaint)
 "aW" = (
 /obj/structure/closet/cabinet,
 /obj/spawner/pack/rare,
 /obj/spawner/pack/rare,
 /obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/deepmaint)
 "aX" = (
 /obj/structure/table/woodentable,
 /obj/spawner/pack/gun_loot,
 /obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/deepmaint)
 "aY" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/deepmaint)
 "aZ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "ba" = (
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/deepmaint)
 "bb" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel/cargo,
+/turf/floor/tiled/steel/cargo,
 /area/deepmaint)
 "bc" = (
 /obj/structure/table/woodentable,
 /obj/item/device/lighting/toggleable/lamp/green,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/deepmaint)
 "be" = (
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/deepmaint)
 "bf" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
+/turf/floor/tiled/steel/techfloor_grid,
 /area/deepmaint)
 "bg" = (
 /obj/spawner/junk,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/deepmaint)
 "bh" = (
 /obj/spawner/junk,
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/deepmaint)
 "bi" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/deepmaint)
 "bj" = (
 /obj/landmark/loot_biomes/mob/roach{
 	range = 10
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/floor/tiled/steel,
 /area/deepmaint)
 "dq" = (
 /obj/item/tool/pickaxe,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 "ni" = (
 /obj/structure/bed/padded,
 /obj/item/bedsheet,
-/turf/simulated/floor/carpet,
+/turf/floor/carpet,
 /area/deepmaint)
 "oH" = (
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/simulated/floor/tiled/steel/brown_perforated,
+/turf/floor/tiled/steel/brown_perforated,
 /area/deepmaint)
 "Yi" = (
 /obj/machinery/vending/plant_gene,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/deepmaint)
 
 (1,1,1) = {"

@@ -1,143 +1,143 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/structure/noticeboard,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "d" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "e" = (
 /obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "f" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 4;
 	id = 10
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "g" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "h" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 8;
 	id = 11
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "i" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/light/floor,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "j" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "k" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "l" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "m" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "n" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "o" = (
 /obj/effect/floor_decal/plaque{
 	desc = a plauque with an insignia you cant make out and text in chineese.
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "p" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "q" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 4;
 	id = 10
 	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	id = 10
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "r" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 8;
 	id = 11
 	},
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	id = 11
 	},
 /obj/item/storage/briefcase{
 	pixel_x = 6
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "s" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 4;
 	id = 10
 	},
 /obj/structure/sign/faction/one_star{
 	pixel_y = 32
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "t" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "u" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 4;
 	id = 10
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "v" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 8;
 	id = 11
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "w" = (
 /obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "x" = (
 /obj/structure/table/rack,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "y" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 4;
 	id = 10
 	},
@@ -145,13 +145,13 @@
 /obj/machinery/button/switch{
 	id = 10
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "z" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "A" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 8;
 	id = 11
 	},
@@ -159,15 +159,15 @@
 /obj/machinery/button/switch{
 	id = 11
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "B" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "C" = (
 /obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "K" = (
 /obj/structure/table/rack,
@@ -176,17 +176,17 @@
 	},
 /obj/spawner/contraband/low_chance,
 /obj/spawner/lathe_disk/advanced/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "L" = (
 /obj/structure/table/onestar,
 /obj/spawner/gun/onestar/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "N" = (
 /obj/structure/table/onestar,
 /obj/item/oddity/common/old_newspaper,
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "Q" = (
 /obj/structure/table/rack,
@@ -194,17 +194,17 @@
 	pixel_y = -32
 	},
 /obj/spawner/science/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 "X" = (
-/obj/structure/window/reinforced/polarized{
+/obj/structure/window/reinforced{
 	dir = 8;
 	id = 11
 	},
 /obj/structure/sign/faction/one_star{
 	pixel_y = 32
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/crawler)
 
 (1,1,1) = {"

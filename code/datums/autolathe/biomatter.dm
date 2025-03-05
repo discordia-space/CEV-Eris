@@ -12,9 +12,19 @@
 	name = "Milk"
 	build_path = /obj/item/reagent_containers/food/drinks/milk
 
+/datum/design/bioprinter/butter
+	name = "Stick of Butter"
+	build_path = /obj/item/reagent_containers/food/snacks/sliceable/butterstick
+
 /datum/design/bioprinter/soap
 	name = "Soap"
 	build_path = /obj/item/soap/nanotrasen
+
+/datum/design/bioprinter/candles
+	name = "Box of Candles"
+	build_path = /obj/item/storage/fancy/candle_box
+	materials = list(MATERIAL_BIOMATTER = 15, MATERIAL_CARDBOARD = 1)
+
 
 //[NUTRIMENTS]
 /datum/design/bioprinter/ez
@@ -85,6 +95,10 @@
 	name = "NT Church Garment"
 	build_path = /obj/item/clothing/under/rank/church
 
+/datum/design/bioprinter/nt_clothes/ritual_robe
+	name = "NT Ritual Robe"
+	build_path = /obj/item/clothing/suit/storage/toggle/robe/ritual_robe
+
 /datum/design/bioprinter/nt/spacehelmet/medicus
 	name = "NT Medicus Helmet"
 	build_path = /obj/item/clothing/head/space/medicus
@@ -147,7 +161,7 @@
 	build_path = /obj/item/clothing/accessory/holster
 
 /datum/design/bioprinter/leather/holster/accessory/scabbard
-	name = "scabbard"
+	name = "uniform scabbard"
 	build_path = /obj/item/clothing/accessory/holster/scabbard
 
 /datum/design/bioprinter/leather/holster/accessory/knife

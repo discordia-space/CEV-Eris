@@ -1,6 +1,7 @@
 #define OBELISK_UPDATE_TIME 5 SECONDS
 
 var/list/disciples = list()
+var/list/lost_cruciforms = list()
 
 /obj/item/implant/core_implant/cruciform
 	name = "cruciform"
@@ -29,7 +30,7 @@ var/list/disciples = list()
 	var/true_power_regen = power_regen
 	true_power_regen += max(round(wearer.stats.getStat(STAT_COG) / 4), 0) * power_regen * 0.05
 	true_power_regen += power_regen * 1.5 * righteous_life / max_righteous_life
-	if(wearer && wearer.stats?.getPerk(/datum/perk/channeling))
+	if(wearer && wearer.stats?.getPerk(PERK_CHANNELING))
 		true_power_regen += power_regen * disciples.len / 5 // Proportional to the number of cruciformed people on board
 
 	restore_power(true_power_regen)
@@ -64,6 +65,11 @@ var/list/disciples = list()
 	unregister_wearer()
 	wearer.stats.removePerk(/datum/perk/sanityboost)
 	wearer.stats.removePerk(/datum/perk/active_sanityboost)
+	lost_cruciforms |= src
+	return ..()
+
+/obj/item/implant/core_implant/cruciform/Destroy()
+	lost_cruciforms -= src
 	return ..()
 
 /obj/item/implant/core_implant/cruciform/get_mob_overlay(gender)
@@ -114,21 +120,18 @@ var/list/disciples = list()
 		eotp.addObservation(observation_points*0.25)
 	return TRUE
 
-/obj/item/implant/core_implant/cruciform/examine(mob/user)
-	..()
+/obj/item/implant/core_implant/cruciform/examine(mob/user, extra_description = "")
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
-	if(data?.mind) // if there is cloning data and it has a mind
-		to_chat(user, SPAN_NOTICE("This cruciform has been activated."))
+	if(data && data.mind) // if there is cloning data and it has a mind
+		extra_description += SPAN_NOTICE("This cruciform has been activated.")
 		if(isghost(user) || (user in disciples))
-			var/datum/mind/MN = data.mind
-			if(MN.name) // if there is a mind and it also has a name
-				to_chat(user, SPAN_NOTICE("It contains <b>[MN.name]</b>'s soul."))
+			if(data.mind.name) // if there is a mind and it also has a name
+				extra_description += SPAN_NOTICE("It contains <b>[data.mind.name]</b>'s soul.")
 			else
-				to_chat(user, SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge."))
+				extra_description += SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge.")
 	else // no cloning data
-		to_chat(user, "This cruciform has not yet been activated.")
-
-
+		extra_description += "This cruciform has not yet been activated."
+	..(user, extra_description)
 
 /obj/item/implant/core_implant/cruciform/deactivate()
 	if(!active || !wearer)
@@ -219,7 +222,6 @@ var/list/disciples = list()
 		return
 
 	add_module(new CRUCIFORM_CLONING)
-
 
 //////////////////////////
 //////////////////////////

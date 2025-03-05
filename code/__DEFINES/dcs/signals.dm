@@ -81,7 +81,7 @@
 
 // /mob/living signals
 #define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()
-#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs o ethanol in blood
+#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs or ethanol in blood
 
 // /mob/living/carbon signals
 #define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"	   //mob/living/carbon/electrocute_act()
@@ -109,6 +109,7 @@
 #define COMSIG_OBJ_TECHNO_TRIBALISM "techno_tribalism"
 #define COMSIG_OBJ_FACTION_ITEM_DESTROY "faction_item_destroy"
 #define SWORD_OF_TRUTH_OF_DESTRUCTION "sword_of_truth"
+#define COMSIG_EXTRA_EXAMINE "send_extra_examine"
 
 //machinery
 #define COMSIG_AREA_APC_OPERATING "area_operating"  //from apc process()
@@ -123,6 +124,8 @@
 #define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack
 #define COMSIG_ATTACKBY "attack_by"										//from /mob/ClickOn():
 #define COMSIG_APPVAL "apply_values"									//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values
+#define COMSIG_APPVAL_MULT "apply_values_mult"							//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values, multiplicative
+#define COMSIG_APPVAL_FLAT "apply_values_flat"						   	//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values, for values not affected by multiplicative modifiers
 #define COMSIG_ADDVAL "add_values" 										//from /atom/refresh_upgrades(): (/src) Called to add specific things to the /src, called before COMSIG_APPVAL
 #define COMSIG_REMOVE "uninstall"
 #define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
@@ -160,6 +163,7 @@
 
 // Aberrant signals
 #define COMSIG_ABERRANT_INPUT "aberrant_input"
+#define COMSIG_ABERRANT_INPUT_VERB "aberrant_input_verb"
 #define COMSIG_ABERRANT_PROCESS "aberrant_process"
 #define COMSIG_ABERRANT_OUTPUT "aberrant_output"
 #define COMSIG_ABERRANT_SECONDARY "aberrant_secondary"

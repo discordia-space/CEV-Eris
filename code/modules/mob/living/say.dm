@@ -270,22 +270,17 @@ var/list/channel_to_radio_key = new
 		var/list/hear = hear(message_range, T)
 		var/list/hear_falloff = hear(falloff, T)
 
-		for(var/X in SSmobs.mob_list | SShumans.mob_list)
-			if(!ismob(X))
-				continue
-			var/mob/M = X
+		for(var/mob/M as anything in getMobsInRangeChunked(T, max(message_range, falloff), FALSE, TRUE) | GLOB.player_ghost_list)
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
 				listening |= M
 				continue
-			if(M.locs.len && (M.locs[1] in hear))
+			var/turf/listenerTurf = get_turf(M)
+			if(DIST_EUCLIDIAN(T.x , T.y, listenerTurf.x, listenerTurf.y) <= message_range)
 				listening |= M
-				continue //To avoid seeing BOTH normal message and quiet message
-			else if(M.locs.len && (M.locs[1] in hear_falloff))
+			else
 				listening_falloff |= M
 
-			for(var/obj in GLOB.hearing_objects)
-				if(get_turf(obj) in hear)
-					listening_obj |= obj
+		listening_obj |= getHearersInRangeChunked(T, message_range)
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")
@@ -303,8 +298,8 @@ var/list/channel_to_radio_key = new
 			speech_bubble_recipients += M.client
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol, 1)
 
-	INVOKE_ASYNC(GLOBAL_PROC, PROC_REF(animate_speechbubble), speech_bubble, speech_bubble_recipients, 30)
-	INVOKE_ASYNC(src, /atom/movable/proc/animate_chat, message, speaking, italics, speech_bubble_recipients, 40, verb)
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(animate_speechbubble), speech_bubble, speech_bubble_recipients, 30)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, animate_chat), message, speaking, italics, speech_bubble_recipients, 40, verb)
 	if(config.tts_enabled && !message_mode && (!client || !BITTEST(client.prefs.muted, MUTE_TTS)) && (tts_seed || ishuman(src)))
 		//TO DO: Remove need for that damn copypasta
 		var/seed = tts_seed
@@ -320,7 +315,7 @@ var/list/channel_to_radio_key = new
 				var/obj/item/voice_changer/changer = locate() in gear
 				if(changer && changer.active && changer.voice_tts)
 					seed = changer.voice_tts
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/tts_broadcast, src, message, seed, speaking)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(tts_broadcast), src, message, seed, speaking)
 
 	for(var/obj/O in listening_obj)
 		if(!QDELETED(O)) //It's possible that it could be deleted in the meantime.
@@ -339,7 +334,7 @@ var/list/channel_to_radio_key = new
 	for(var/client/C in show_to)
 		C.images += I
 	animate(I, transform = 0, alpha = 255, time = 5, easing = ELASTIC_EASING)
-	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(fade_speechbubble), I), duration-5)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_speechbubble), I), duration-5)
 
 /proc/fade_speechbubble(image/I)
 	animate(I, alpha = 0, time = 5, easing = EASE_IN)

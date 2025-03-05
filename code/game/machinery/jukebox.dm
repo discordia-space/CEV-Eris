@@ -318,7 +318,7 @@
 
 /obj/machinery/media/jukebox/proc/StopPlaying()
 	playing = 0
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 	var/datum/component/atom_sanity/S = GetComponent(/datum/component/atom_sanity)
 	S.affect = 0
@@ -330,7 +330,7 @@
 	playing = 1
 	var/datum/component/atom_sanity/S = GetComponent(/datum/component/atom_sanity)
 	S.affect = sanity_value
-	update_use_power(2)
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 	start_stop_song()
 	updateDialog()

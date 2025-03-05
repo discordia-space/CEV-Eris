@@ -93,13 +93,13 @@
 	STOP_PROCESSING(SSobj, src)
 
 
-/obj/item/device/assembly/examine(mob/user)
-	..(user)
-	if(in_range(src, user) || loc == user)
+/obj/item/device/assembly/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
 		if(secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			extra_description += SPAN_NOTICE("\The [src] is ready!")
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			extra_description += SPAN_NOTICE("\The [src] can be attached!")
+	..(user, extra_description)
 
 /obj/item/device/assembly/attack_self(mob/user)
 	if(!user)

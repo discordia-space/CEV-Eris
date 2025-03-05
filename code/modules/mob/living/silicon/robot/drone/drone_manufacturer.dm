@@ -52,10 +52,10 @@
 	if(drone_progress >= 100)
 		visible_message("\The [src] voices a strident beep, indicating a drone chassis is prepared.")
 
-/obj/machinery/drone_fabricator/examine(mob/user)
-	..(user)
+/obj/machinery/drone_fabricator/examine(mob/user, extra_description = "")
 	if(produce_drones && drone_progress >= 100 && isghost(user) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
-		to_chat(user, "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>")
+		extra_description += "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
+	..(user, extra_description)
 
 /obj/machinery/drone_fabricator/proc/create_drone(var/client/player, var/aibound = FALSE)
 
@@ -135,5 +135,6 @@
 
 	if(user && fabricator && !((fabricator.stat & NOPOWER) || !fabricator.produce_drones || fabricator.drone_progress < 100))
 		fabricator.create_drone(user.client, aibound)
+		fabricator.use_power(fabricator.active_power_usage)
 		return 1
 	return

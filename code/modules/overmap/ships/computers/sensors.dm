@@ -155,16 +155,16 @@
 	else
 		icon_state = "sensors_off"
 
-/obj/machinery/shipsensors/examine(mob/user)
-	. = ..()
+/obj/machinery/shipsensors/examine(mob/user, extra_description = "")
 	if(health <= 0)
-		to_chat(user, "\The [src] is wrecked.")
+		extra_description += "\n\The [src] is wrecked."
 	else if(health < maxHealth * 0.25)
-		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
+		extra_description += SPAN_DANGER("\n\The [src] looks like it's about to break!")
 	else if(health < maxHealth * 0.5)
-		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
+		extra_description += SPAN_DANGER("\n\The [src] looks seriously damaged!")
 	else if(health < maxHealth * 0.75)
-		to_chat(user, "\The [src] shows signs of damage!")
+		extra_description += "\nThe [src] shows signs of damage!"
+	..(user, extra_description)
 
 /obj/machinery/shipsensors/bullet_act(var/obj/item/projectile/Proj)
 	take_damage(Proj.get_structure_damage())
@@ -175,7 +175,7 @@
 		return
 	if(!use_power) //need some juice to kickstart
 		use_power(idle_power_usage*5)
-	use_power = !use_power
+	set_power_use(use_power ? IDLE_POWER_USE : NO_POWER_USE)
 	update_icon()
 
 /obj/machinery/shipsensors/Process()

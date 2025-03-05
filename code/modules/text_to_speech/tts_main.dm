@@ -18,22 +18,7 @@ var/list/tts_seeds = list()
 	if(!config.tts_key)
 		return
 
-	var/datum/http_request/request = new()
-	var/payload = json_encode(list("key" = "[config.tts_key]"))
-	var/header = list("content-type" = "application/json; charset=utf-8", "content-length" = "223")
-	request.prepare(RUSTG_HTTP_METHOD_POST, "https://api.novelai.net/user/login", payload, header)
-	request.begin_async()
-	UNTIL(request.is_complete())
-	var/datum/http_response/response = request.into_response()
-	if(response.errored)
-		NOTICE("TTS failed to recieve authentication token. [response.error]")
-	else
-		var/list/decoded_body = json_decode(response.body)
-		if(decoded_body["accessToken"])
-			GLOB.tts_bearer = "Bearer [decoded_body["accessToken"]]"
-			NOTICE("TTS recieved authentication token.")
-		else
-			NOTICE("TTS failed to recieve authentication token. [response.error]")
+	GLOB.tts_bearer = "Bearer [config.tts_key]"
 
 	if(!fexists("config/tts_seeds.txt"))
 		return
@@ -54,8 +39,8 @@ var/list/tts_seeds = list()
 		tts_seeds += seed_name
 		tts_seeds[seed_name] = list("value" = seed_value, "category" = seed_category, "gender" = seed_gender_restriction)
 
-		call(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
-		call(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
+		LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_cache/[seed_name]/seed.txt")
+		LIBCALL(RUST_G, "file_write")("[seed_value]", "sound/tts_scrambled/[seed_name]/seed.txt")
 
 
 /proc/get_tts(message, seed = TTS_SEED_DEFAULT_MALE)
@@ -86,7 +71,7 @@ var/list/tts_seeds = list()
 	GLOB.tts_request_succeeded++
 	if(!config.tts_cache)
 		GLOB.tts_death_row += .
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/cleanup_tts_file, .), 20 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cleanup_tts_file), .), 20 SECONDS)
 
 
 /proc/get_tts_scrambled(message, seed = TTS_SEED_DEFAULT_MALE, datum/language/language)
@@ -126,7 +111,7 @@ var/list/tts_seeds = list()
 	GLOB.tts_request_succeeded++
 	if(!config.tts_cache)
 		GLOB.tts_death_row += .
-		addtimer(CALLBACK(GLOBAL_PROC, /proc/cleanup_tts_file, .), 20 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(cleanup_tts_file), .), 20 SECONDS)
 
 
 /proc/tts_cast(mob/listener, message, seed)

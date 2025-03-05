@@ -117,16 +117,6 @@ Quick adjacency (to turf):
 		return density
 	return FALSE
 
-/obj/structure/window/is_block_dir(target_dir, border_only, atom/target)
-	if(!is_fulltile())
-		var/obj/structure/window/W = target
-		if(istype(W))
-			//exception for breaking full tile windows on top of single pane windows
-			if(W.is_fulltile())
-				return FALSE
-	return ..()
-
-
 /*
 	This checks if you there is uninterrupted airspace between that turf and this one.
 	This is defined as any dense ON_BORDER object, or any dense object without throwpass.

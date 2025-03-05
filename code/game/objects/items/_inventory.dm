@@ -53,6 +53,7 @@
 			equipped.forceMove(src)
 	return FALSE
 
+
 /obj/item/proc/equipped(mob/user, slot)
 	equip_slot = slot
 	if(user.pulling == src)
@@ -70,6 +71,11 @@
 	SEND_SIGNAL_OLD(user, COMSIG_CLOTH_EQUIPPED, src) // Theres instances in which its usefull to keep track of it both on the user and individually
 	SEND_SIGNAL_OLD(src, COMSIG_CLOTH_EQUIPPED, user)
 	update_light()
+	if(flags & MOVE_NOTIFY)
+		user.update_on_move |= src
+	if(action_button_name)
+		user.action_button_add(src)
+
 
 /obj/item/proc/dropped(mob/user)
 	GLOB.mob_unequipped_event.raise_event(user, src)
@@ -77,17 +83,20 @@
 	SEND_SIGNAL_OLD(src, COMSIG_ITEM_DROPPED, src)
 	update_light()
 	if(zoom) //binoculars, scope, etc
-		zoom()
+		zoom(user)
 	remove_hud_actions(user)
 	if(overslot && is_held())
 		remove_overslot_contents(user)
+	user.update_on_move -= src
+	if(action_button_name)
+		user.action_button_remove(src)
+
 
 /obj/item/proc/remove_overslot_contents(mob/user)
 	if(overslot_contents)
 		if(!user.equip_to_appropriate_slot(overslot_contents))
 			overslot_contents.forceMove(get_turf(src))
 		overslot_contents = null
-
 
 
 /obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = FALSE)
@@ -171,5 +180,5 @@
 		if(H.get_holding_hand(src))
 			add_hud_actions(H)
 		return TRUE
-	
+
 

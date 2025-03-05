@@ -178,6 +178,15 @@
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
 		reagents.add_reagent("mold", rand(0, actual_volume - reagents.total_volume))
 
+//makes old cigarettes rank
+/obj/item/clothing/mask/smokable/cigarette/make_old(low_quality_oldification)
+	.=..()
+	if(. && (!low_quality_oldification))
+		var/actual_volume = reagents.total_volume
+		for(var/datum/reagent/R in reagents.reagent_list)
+			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
+		reagents.add_reagent("mold", rand(0, actual_volume - reagents.total_volume))
+
 //Old chemical bottles also hide their reagents
 /obj/item/reagent_containers/glass/bottle/make_old(low_quality_oldification)
 	.=..()
@@ -288,8 +297,6 @@
 			cold_protection = rand(0, round(cold_protection * 0.5))
 
 		if(!low_quality_oldification)
-			if(prob(20))
-				contaminate()
 			if(prob(15))
 				add_blood()
 		if(prob(60)) // I mean, the thing is ew gross.
@@ -426,7 +433,7 @@
 			else
 				qdel(src)
 		else
-			expend() 
+			expend()
 
 /obj/item/projectile/make_old(low_quality_oldification)
 	return // why would the bullet being old change anything?

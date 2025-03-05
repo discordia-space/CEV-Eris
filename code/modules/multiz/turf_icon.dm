@@ -1,16 +1,10 @@
-/turf
-	var/_initialized_transparency = FALSE //used only for roundstard update_icon
-	var/isTransparent = FALSE
-
-	var/image/DARKOVER = null
-
-/turf/simulated/open
-	isTransparent = TRUE
+/turf/open
+	is_transparent = TRUE
 
 /turf/space
-	isTransparent = TRUE
+	is_transparent = TRUE
 
-/turf/simulated/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
+/turf/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
 	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
@@ -18,7 +12,7 @@
 		if (_initialized_transparency)
 			return
 		var/turf/testBelow = GetBelow(src)
-		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+		if (testBelow && testBelow.is_transparent && !testBelow._initialized_transparency)
 			return //turf below will update this one
 
 	var/turf/below = GetBelow(src)
@@ -43,13 +37,13 @@
 		if (_initialized_transparency)
 			return
 		var/turf/testBelow = GetBelow(src)
-		if (testBelow && testBelow.isTransparent && !testBelow._initialized_transparency)
+		if (testBelow && testBelow.is_transparent && !testBelow._initialized_transparency)
 			return //turf below will update this one
 
 	overlays.Cut()
 	var/turf/below = GetBelow(src)
-	if (istype(below, /turf/simulated/open))
-		ChangeTurf(/turf/simulated/open)
+	if (istype(below, /turf/open))
+		ChangeTurf(/turf/open)
 		return
 
 	vis_contents.Cut()
@@ -61,19 +55,11 @@
 
 /hook/roundstart/proc/init_openspace()
 	for (var/turf/T in turfs)
-		if (T.isTransparent)
+		if (T.is_transparent)
 			T.update_icon(null, TRUE)
 	return TRUE
 
 /atom/proc/update_openspace()
 	var/turf/T = GetAbove(src)
-	if (T && T.isTransparent)
+	if (T && T.is_transparent)
 		T.update_icon()
-
-/turf/Entered(atom/movable/Obj, atom/OldLoc)
-	. = ..()
-	update_openspace()
-
-/turf/Exited(atom/movable/Obj, atom/OldLoc)
-	. = ..()
-	update_openspace()

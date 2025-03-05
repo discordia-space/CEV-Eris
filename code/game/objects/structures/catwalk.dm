@@ -10,8 +10,8 @@
 
 /obj/structure/catwalk/New()
 	..()
-	if (istype(loc, /turf/simulated/open))
-		var/turf/simulated/open/T = loc
+	if (istype(loc, /turf/open))
+		var/turf/open/T = loc
 		T.updateFallability()
 	spawn(4)
 		if(src)
@@ -31,8 +31,8 @@
 	redraw_nearby_catwalks()
 
 /obj/structure/catwalk/Destroy()
-	if (istype(loc, /turf/simulated/open))
-		var/turf/simulated/open/T = loc
+	if (istype(loc, /turf/open))
+		var/turf/open/T = loc
 		T.updateFallability(src)
 	redraw_nearby_catwalks()
 	. = ..()
@@ -48,8 +48,8 @@
 		return TRUE
 	if(T && T.is_wall)
 		return TRUE
-	if(istype(T, /turf/simulated/floor))
-		var/turf/simulated/floor/F = T
+	if(istype(T, /turf/floor))
+		var/turf/floor/F = T
 		if(!F.flooring?.is_plating || istype(F.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating
 			return TRUE
 

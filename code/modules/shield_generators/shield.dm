@@ -27,7 +27,7 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	invisibility = 0
-	var/obj/machinery/power/shield_generator/gen = null
+	var/obj/machinery/power/shipside/shield_generator/gen = null
 	var/disabled_for = 0
 	var/diffused_for = 0
 	var/floorOnly = FALSE
@@ -96,7 +96,6 @@ Like for example singulo act and whatever.
 	set_invisibility(INVISIBILITY_MAXIMUM)
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
 
 
 // Regenerates this shield segment.
@@ -112,7 +111,6 @@ Like for example singulo act and whatever.
 		set_invisibility(0)
 		update_nearby_tiles()
 		update_icon()
-		update_explosion_resistance()
 		gen.damaged_segments -= src
 
 		//When we regenerate, affect any mobs that happen to be standing in our spot
@@ -132,7 +130,6 @@ Like for example singulo act and whatever.
 	set_invisibility(INVISIBILITY_MAXIMUM)
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
 
 /obj/effect/shield/attack_generic(var/source, var/damage, var/emote)
 	take_damage(damage, SHIELD_DAMTYPE_PHYSICAL, src)
@@ -282,7 +279,7 @@ Like for example singulo act and whatever.
 	return ..()
 
 // If moved (usually by a shuttle), the field ceases to exist
-/obj/effect/shield/forceMove()
+/obj/effect/shield/forceMove(atom/destination, special_event, glide_size_override)
 	. = ..()
 	// qdel() also calls forceMove() to nullspace the object - no recursive qdel calls allowed, no thanks
 	if(. && !QDELETED(src))
@@ -305,44 +302,37 @@ Like for example singulo act and whatever.
 	// Update airflow
 	update_nearby_tiles()
 	update_icon()
-	update_explosion_resistance()
-
-/obj/effect/shield/proc/update_explosion_resistance()
-	if(gen && gen.check_flag(MODEFLAG_HYPERKINETIC))
-		explosion_resistance = INFINITY
-	else
-		explosion_resistance = 0
 
 ///obj/effect/shield/get_explosion_resistance() //Part of recursive explosions, probably unimplemented
 	//return explosion_resistance
 
 // Shield collision checks below
 
-/atom/movable/proc/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/atom/movable/proc/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return 1
 
 
 // Other mobs
-/mob/living/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/mob/living/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_NONHUMANS)
 
 // Human mobs
-/mob/living/carbon/human/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/mob/living/carbon/human/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	if(isSynthetic())
 		return !gen.check_flag(MODEFLAG_ANORGANIC)
 	return !gen.check_flag(MODEFLAG_HUMANOIDS)
 
 // Silicon mobs
-/mob/living/silicon/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/mob/living/silicon/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_ANORGANIC)
 
 
 // Generic objects. Also applies to bullets and meteors.
-/obj/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/obj/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_HYPERKINETIC)
 
 // Beams
-/obj/item/projectile/beam/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
+/obj/item/projectile/beam/can_pass_shield(var/obj/machinery/power/shipside/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_PHOTONIC)
 
 

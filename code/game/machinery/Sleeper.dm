@@ -189,7 +189,7 @@
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 		M.forceMove(src)
-		update_use_power(2)
+		set_power_use(ACTIVE_POWER_USE)
 		occupant = M
 		update_icon()
 
@@ -205,7 +205,7 @@
 		if(A == beaker)
 			continue
 		A.forceMove(loc)
-	update_use_power(1)
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 	toggle_filter()
 

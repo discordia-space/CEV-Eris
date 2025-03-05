@@ -1,16 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "b" = (
 /obj/structure/lattice,
 /turf/template_noop,
 /area/template_noop)
 "d" = (
-/turf/simulated/wall/r_wall,
+/turf/wall/reinforced,
 /area/template_noop)
 "e" = (
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "f" = (
 /obj/structure/railing{
@@ -18,7 +18,7 @@
 	tag = "icon-railing0 (NORTH)"
 	},
 /obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "g" = (
 /obj/structure/railing{
@@ -26,7 +26,7 @@
 	tag = "icon-railing0 (NORTH)"
 	},
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "h" = (
 /obj/structure/railing{
@@ -34,30 +34,30 @@
 	tag = "icon-railing0 (NORTH)"
 	},
 /obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "i" = (
 /obj/structure/railing{
 	dir = 1;
 	tag = "icon-railing0 (NORTH)"
 	},
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "j" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "k" = (
 /obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
+/turf/floor/plating/under/airless,
 /area/template_noop)
 "l" = (
 /mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "m" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/techmaint/airless,
+/turf/floor/tiled/techmaint/airless,
 /area/template_noop)
 "Q" = (
 /turf/template_noop,

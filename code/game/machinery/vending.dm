@@ -1532,7 +1532,7 @@
 
 	if(bingo)
 		return TRUE
-	to_chat(user, SPAN_WARNING("[src] flashes a message: Unauthorized Access."))
+	to_chat(user, SPAN_WARNING("[src] flashes a message: The unfaithful shall not be served."))
 	return FALSE
 
 /obj/machinery/vending/theomat/attackby(obj/item/I, mob/user)

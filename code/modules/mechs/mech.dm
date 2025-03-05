@@ -80,6 +80,10 @@
 	// Strafing - Is the mech currently strafing?
 	var/strafing = FALSE
 
+/mob/living/exosuit/show_message(msg, type, alt, alt_type)
+	for(var/mob/i in pilots)
+		i.show_message(msg, type, alt, alt_type)
+
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
 		to_chat(i, msg)
@@ -109,16 +113,6 @@
 /*
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
-*/
-/*
-/mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
-	if(islist(body.armor))
-		body.armor = getArmor(arglist(body.armor))
-	else if(!body.armor)
-		body.armor = getArmor()
-	else if(!istype(body.armor, /datum/armor))
-		error("Invalid type [body.armor.type] found in .armor during /obj Initialize()")
-	. = ..()
 */
 
 /mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
@@ -177,8 +171,11 @@
 	selected_system = null
 
 	for(var/mob/living/Pilot in pilots)
-		eject(Pilot)
+		eject(Pilot, TRUE, TRUE)
+
 	pilots = null
+	var/obj/item/mech_equipment/forklifting_system/lifter = locate() in contents
+	QDEL_NULL(lifter)
 
 	for(var/thing in HUDneed)
 		qdel(HUDneed[thing])
@@ -201,53 +198,51 @@
 /mob/living/exosuit/IsAdvancedToolUser()
 	return TRUE
 
-/mob/living/exosuit/examine(mob/user)
-	. = ..()
-	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
-		to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
+/mob/living/exosuit/examine(mob/user, extra_description = "")
+	if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin || (body && !body.has_hatch)))
+		extra_description += "\nIt is being piloted by [english_list(pilots, nothing_text = "nobody")]."
 	if(body && LAZYLEN(body.pilot_positions))
-		to_chat(user, "It can seat [body.pilot_positions.len] pilot\s total.")
+		extra_description += "\nIt can seat [body.pilot_positions.len] pilot\s total."
 	if(hardpoints.len)
-		to_chat(user, "It has the following hardpoints:")
+		extra_description += "\nIt has the following hardpoints:"
 		for(var/hardpoint in hardpoints)
 			var/obj/item/I = hardpoints[hardpoint]
-			to_chat(user, "- [hardpoint]: [istype(I) ? "[I]" : "nothing"].")
+			extra_description += "\n- [hardpoint]: [istype(I) ? "[I]" : "nothing"]."
 	else
-		to_chat(user, "It has no visible hardpoints.")
+		extra_description += "\nIt has no visible hardpoints."
 
 	for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
 		if(!thing)
 			continue
-
 		var/damage_string = thing.get_damage_string()
-		to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
-
-	to_chat(user, "It menaces with reinforcements of [material].")
-	to_chat(user, SPAN_NOTICE("You can remove people inside by HARM intent clicking with your hand. The hatch must be opened."))
-	to_chat(user, SPAN_NOTICE("You can eject any module from its UI by CtrlClicking the hardpoint button."))
+		extra_description += "\nIts [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string]."
+	extra_description += "\nIt menaces with reinforcements of [material]."
+	extra_description += SPAN_NOTICE("\nYou can remove people inside by HARM intent clicking with your hand. The hatch must be opened.")
+	extra_description += SPAN_NOTICE("\nYou can eject any module from its UI by CtrlClicking the hardpoint button.")
+	extra_description += SPAN_NOTICE("\nA multitool can be used on HELP intent to remove module from hardpoints, or on any other intent to start unlocking the mech through hacking.")
 	if(body.storage_compartment)
-		to_chat(user, SPAN_NOTICE("You can acces its internal storage by click-dragging onto your character."))
+		extra_description += SPAN_NOTICE("\nYou can acces its internal storage by click-dragging onto your character.")
 	if(body && body.cell_charge_rate)
-		to_chat(user, SPAN_NOTICE("This mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate]."))
+		extra_description += SPAN_NOTICE("\nThis mech can recharge any cell storaged in its internal storage at a rate of [body.cell_charge_rate].")
 	if(arms && arms.can_force_doors)
-		to_chat(user, SPAN_NOTICE("The arms on this mech can force open any unbolted door."))
+		extra_description += SPAN_NOTICE("\nThe arms on this mech can force open any unbolted door.")
 	if(locate(/obj/item/mech_equipment/mounted_system/ballistic) in contents)
-		to_chat(user, SPAN_NOTICE("You can insert ammo into any ballistic weapon by attacking this with ammunition."))
+		extra_description += SPAN_NOTICE("\nYou can insert ammo into any ballistic weapon by attacking this with ammunition.")
 	if(locate(/obj/item/mech_equipment/auto_mender) in contents)
-		to_chat(user, SPAN_NOTICE("You can refill its auto mender by attacking the mech with trauma kits."))
+		extra_description += SPAN_NOTICE("\nYou can refill its auto mender by attacking the mech with trauma kits.")
 	if(locate(/obj/item/mech_equipment/forklifting_system) in contents)
-		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's forklifting system by using grab intent."))
+		extra_description += SPAN_NOTICE("\nYou can remove objects from this mech's forklifting system by using grab intent.")
 	if(locate(/obj/item/mech_equipment/towing_hook) in contents)
-		to_chat(user, SPAN_NOTICE("You can remove objects from this mech's towing system by using grab intent."))
+		extra_description += SPAN_NOTICE("\nYou can remove objects from this mech's towing system by using grab intent.")
 	if(locate(/obj/item/mech_equipment/power_generator/fueled) in contents)
-		to_chat(user, SPAN_NOTICE("You can refill the mounted power generators by attacking \the [src] with the fuel they use."))
+		extra_description += SPAN_NOTICE("\nYou can refill the mounted power generators by attacking \the [src] with the fuel they use.")
 	if(locate(/obj/item/mech_equipment/power_generator/fueled/welding) in contents)
-		to_chat(user, SPAN_NOTICE("You can drain from the mounted fuel welding fuel generator by attacking with a beaker on GRAB intent"))
-
+		extra_description += SPAN_NOTICE("\nYou can drain from the mounted fuel welding fuel generator by attacking with a beaker on GRAB intent")
+	..(user, extra_description)
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
-		if(ispath(body) || !hatch_closed || body.pilot_coverage < 100)
+		if(ispath(body) || !hatch_closed || (body && !body.has_hatch) || body.pilot_coverage < 100)
 			var/turf/current_loc = get_turf(src)
 			return current_loc.return_air()
 		if(body.pilot_coverage >= 100 && hatch_closed)

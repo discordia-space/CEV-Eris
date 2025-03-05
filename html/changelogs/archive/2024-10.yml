@@ -1,0 +1,19 @@
+2024-10-02:
+  AltHit:
+  - rscadd: Bonus ducks!
+  - tweak: Now CEV Eris has a real skeleton crew
+  drexample:
+  - rscadd: Added back roach hats
+  - rscadd: Halloween baskets that drop from roaches with sweets inside. Happy Halloween
+      everyone!
+2024-10-03:
+  Humonitarian:
+  - rscadd: Biomatter taint
+2024-10-27:
+  drexample:
+  - rscadd: Anomazon dismembership card oddity - interactive oddity
+  - rscadd: Expired mouthwash bottle oddity - eugh
+  - rscadd: Seven-sided coin - interactive oddity
+2024-10-28:
+  SirRichardFrancis:
+  - config: Config for TTS now expects a persistent API token.

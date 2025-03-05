@@ -42,7 +42,7 @@
 			S.set_trait(TRAIT_SPREAD,1)
 
 /area/exoplanet/grass
-	base_turf = /turf/simulated/floor/exoplanet/grass
+	base_turf = /turf/floor/exoplanet/grass
 	ambience = list('sound/effects/wind/wind_2_1.ogg','sound/effects/wind/wind_2_2.ogg','sound/effects/wind/wind_3_1.ogg','sound/effects/wind/wind_4_1.ogg','sound/ambience/eeriejungle2.ogg','sound/ambience/eeriejungle1.ogg')
 
 /area/exoplanet/grass/play_ambience(var/mob/living/L)
@@ -54,8 +54,8 @@
 /datum/random_map/noise/exoplanet/grass
 	descriptor = "grass exoplanet"
 	smoothing_iterations = 2
-	land_type = /turf/simulated/floor/exoplanet/grass
-	water_type = /turf/simulated/floor/exoplanet/water/shallow
+	land_type = /turf/floor/exoplanet/grass
+	water_type = /turf/floor/exoplanet/water/shallow
 
 	flora_prob = 10
 	large_flora_prob = 30
@@ -63,23 +63,21 @@
 	//fauna_types = list(/mob/living/simple_animal/yithian, /mob/living/simple_animal/tindalos, /mob/living/simple_animal/hostile/retaliate/jelly)
 	//megafauna_types = list(/mob/living/simple_animal/hostile/retaliate/parrot/space/megafauna)
 
-/turf/simulated/floor/exoplanet/grass
+/turf/floor/exoplanet/grass
 	name = "grass"
 	icon = 'icons/turf/jungle.dmi'
 	icon_state = "greygrass"
 	color = "#799c4b"
-	footstep_type = /decl/footsteps/grass
 
-/turf/simulated/floor/exoplanet/grass/Initialize()
+/turf/floor/exoplanet/grass/Initialize()
 	. = ..()
 	if(config.use_overmap)
 		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
 		if(istype(E) && E.grass_color)
 			color = E.grass_color
 
-/turf/simulated/floor/exoplanet/grass/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/turf/floor/exoplanet/grass/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if((temperature > T0C + 200 && prob(5)) || temperature > T0C + 1000)
 		SetName("scorched ground")
 		icon_state = "scorched"
-		footstep_type = /decl/footsteps/asteroid
 		color = null

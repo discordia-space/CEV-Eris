@@ -1,20 +1,35 @@
-var/image/assigned = image('icons/Testing/Zone.dmi', icon_state = "assigned")
-var/image/created = image('icons/Testing/Zone.dmi', icon_state = "created")
-var/image/merged = image('icons/Testing/Zone.dmi', icon_state = "merged")
-var/image/invalid_zone = image('icons/Testing/Zone.dmi', icon_state = "invalid")
-var/image/air_blocked = image('icons/Testing/Zone.dmi', icon_state = "block")
-var/image/zone_blocked = image('icons/Testing/Zone.dmi', icon_state = "zoneblock")
-var/image/blocked = image('icons/Testing/Zone.dmi', icon_state = "fullblock")
-var/image/mark = image('icons/Testing/Zone.dmi', icon_state = "mark")
+#ifdef ZASDBG
+/turf/proc/add_ZAS_debug_overlay(overlay_type, overlay_direction)
+	var/static/list/appearance_cache
+	if(!appearance_cache)
+		appearance_cache = new
+		var/image/image
+		for(var/overlay_icon_state in list(
+			"assigned", // Index 1 (aka ZAS_DEBUG_OVERLAY_ZONE_ASSIGNED) in appearance_cache
+			"created", // Index 2 (aka ZAS_DEBUG_OVERLAY_ZONE_CREATED), et cetera
+			"merged",
+			"invalid",
+			"mark",
+			"fullblock")) // Index 6
+			image = image(icon = 'icons/Testing/Zone.dmi', icon_state = overlay_icon_state)
+			appearance_cache.Add(image.appearance)
 
-/connection_edge/var/dbg_out = 0
+		for(var/block_direction in list(NORTH, SOUTH, WEST, EAST))
+			image = image(icon = 'icons/Testing/Zone.dmi', icon_state = "block", dir = block_direction)
+			appearance_cache.Add(image.appearance) // Indexes 7 (NORTH) to 10 (EAST)
 
-/turf/var/tmp/dbg_img
-/turf/proc/dbg(image/img, d = 0)
-	if(d > 0) img.dir = d
-	overlays -= dbg_img
-	overlays += img
-	dbg_img = img
+	ZAS_debug_overlays = list()
+	switch(overlay_direction) // If there is a direction, then type must be "block"
+		if(null)
+			ZAS_debug_overlays += appearance_cache[overlay_type]
+		if(NORTH)
+			ZAS_debug_overlays += appearance_cache[7]
+		if(SOUTH)
+			ZAS_debug_overlays += appearance_cache[8]
+		if(WEST)
+			ZAS_debug_overlays += appearance_cache[9]
+		if(EAST)
+			ZAS_debug_overlays += appearance_cache[10]
 
-proc/soft_assert(thing,fail)
-	if(!thing) message_admins(fail)
+	update_icon()
+#endif

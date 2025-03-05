@@ -78,11 +78,11 @@
 	return checking
 
 
-/atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/atom/movable/proc/forceMove(atom/destination, special_event, glide_size_override)
 	if(loc == destination)
 		return FALSE
 
-	if (glide_size_override)
+	if(glide_size_override)
 		set_glide_size(glide_size_override)
 
 	var/is_origin_turf = isturf(loc)
@@ -136,14 +136,8 @@
 
 		if(newContainer != oldContainer)
 			SEND_SIGNAL(src, COMSIG_ATOM_CONTAINERED, newContainer , oldContainer)
-	/*
-	// Only update plane if we're located on map
-	if(is_destination_turf)
-		// if we wasn't on map OR our Z coord was changed
-		if(!is_origin_turf || (get_z(loc) != get_z(origin)) )
-			update_plane()
-	*/
 
+	GLOB.moved_event.raise_event(src, origin, null)
 	return TRUE
 
 
@@ -344,7 +338,11 @@
 		var/atom/oldloc = src.loc
 		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
 
+		// Movement has either failed by Bump(), or we get moved to a new Turf after entering
+		// Either way , both should count as failures, the move is not on the aimed turf after all -SPCR 2024
 		. = ..()
+		if(!. || loc != NewLoc)
+			return FALSE
 
 		if(Dir != olddir)
 			dir = olddir

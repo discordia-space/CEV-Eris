@@ -48,17 +48,17 @@
 		return TRUE
 	return FALSE
 
-/obj/item/electronics/circuitboard/examine(user, distance)
-	. = ..()
+/obj/item/electronics/circuitboard/examine(mob/user, extra_description = "")
 	// gets the required components and displays it in a list to the user when examined.
-	if(length(req_components))
+	if(LAZYLEN(req_components))
 		var/list/listed_components = list()
 		for(var/requirement in req_components)
 			var/atom/placeholder = requirement
 			if(!ispath(placeholder))
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
-		to_chat(user, SPAN_NOTICE("Required components: [english_list(listed_components)]."))
+		extra_description += SPAN_NOTICE("Required components: [english_list(listed_components)].")
+	..(user, extra_description)
 
 /obj/item/electronics/circuitboard/get_item_cost(export)
 	. = ..()

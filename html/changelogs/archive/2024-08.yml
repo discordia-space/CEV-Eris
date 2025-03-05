@@ -1,0 +1,27 @@
+2024-08-10:
+  Cheesepizza2, Doster-D:
+  - rscadd: 'Added a new mech weapon: the NT \"Warhead\" mace! In its mace mode, it
+      will absolutely obliterate structures and people. Using it in hand will convert
+      it to a flail that does less damage but has a longer range and weakens + knocks
+      back targets.'
+  - rscadd: 'Added a new mech weapon: the BFG! After a lengthy charging period, this
+      massive cannon shoots a massive bolt of plasma energy that does loads of damage
+      in a wide radius.'
+  - rscadd: 'Added a new mech weapon: the mounted crossbow! Insert in materials to
+      load as crossbow bolts - the harder and heavier the material, the more armor
+      penetration and damage it has respectively.'
+  MLGTASTICa:
+  - bugfix: Fixed movement_signals being duplicated when a atom that falls/moves is
+      re-located by other atoms.
+  TheLeopold:
+  - bugfix: group litany for robustness now properly shows up in the book
+  - tweak: group litanies show message when stats are increased
+  - tweak: EOTP displays miracle points
+2024-08-17:
+  MLGTASTICa:
+  - bugfix: Fixed rebooting the excelsior redirector multiple-times.
+  ceuvi:
+  - imageadd: breaching hammer resprite
+2024-08-19:
+  MLGTASTICa:
+  - bugfix: Fixed excelsior redirector not getting rid of reboot timers properly.

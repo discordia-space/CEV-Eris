@@ -179,7 +179,7 @@
 	corpsesuit = list(
 		/obj/item/clothing/suit/armor/vest,
 		/obj/item/clothing/suit/armor/vest/warden,
-		/obj/item/clothing/suit/armor/vest/security,
+		/obj/item/clothing/suit/armor/vest/toggle,
 		/obj/item/clothing/suit/armor/vest/detective,
 		/obj/item/clothing/suit/armor/platecarrier,
 		/obj/item/clothing/suit/armor/vest/handmade,
@@ -249,7 +249,7 @@
 
 /obj/landmark/corpse/skeleton/fortress
 	name = "skeletal corpse"
-	corpsesuit = list(/obj/item/clothing/suit/armor/vest, null, /obj/item/clothing/suit/armor/vest/security, null, /obj/item/clothing/suit/storage/vest)
+	corpsesuit = list(/obj/item/clothing/suit/armor/vest, null, /obj/item/clothing/suit/armor/vest/toggle, null, /obj/item/clothing/suit/storage/vest)
 	corpsehelmet = list(/obj/item/clothing/head/armor/helmet, null, /obj/item/clothing/head/armor/helmet/visor, null, /obj/item/clothing/head/armor/faceshield/riot)
 
 /obj/landmark/corpse/one_star

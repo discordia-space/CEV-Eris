@@ -307,14 +307,7 @@
 	overdose = REAGENTS_OVERDOSE / 6
 
 /datum/reagent/nanites/fbp/repair/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
-	if(!..())
-		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.25)
-
-/datum/reagent/nanites/fbp/repair/overdose(mob/living/carbon/M, alien)
-	if(!..())
-		return
-	M.add_chemical_effect(CE_MECH_REPAIR, 0.75)
+	M.add_chemical_effect(CE_MECH_REPAIR, 0.75)	//This plus two other metals will be enough to heal wounds
 
 /* Uncomment when CE_MECH_REPLENISH has a use
 // "Blood" restore

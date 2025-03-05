@@ -3,6 +3,21 @@
 	name = "excelsior armor"
 	build_path = /obj/item/clothing/suit/space/void/excelsior
 
+/datum/design/autolathe/clothing/excel_armor
+	name = "Excelsior gzhel-m vest"
+	build_path = /obj/item/clothing/suit/armor/gzhel
+
+/datum/design/autolathe/clothing/excel_boots
+	name = "Excelsior boots"
+	build_path = /obj/item/clothing/shoes/workboots/proletariat
+
+/datum/design/autolathe/clothing/excel_helmet
+	name = "Excelsior sfera-9 helmet"
+	build_path = /obj/item/clothing/head/armor/excel_sfera
+
+/datum/design/autolathe/clothing/excel_beret
+	name = "Excelsior beret"
+	build_path = /obj/item/clothing/head/armor/excel_beret
 // Standard
 
 /datum/design/autolathe/clothing/generic_helmet_basic
@@ -23,15 +38,16 @@
 
 /datum/design/autolathe/clothing/generic_vest_security
 	name = "security armor"
-	build_path = /obj/item/clothing/suit/armor/vest/security
+	build_path = /obj/item/clothing/suit/armor/vest/toggle
 
 /datum/design/autolathe/clothing/generic_vest_security_full
 	name = "fullbody security armor"
-	build_path = /obj/item/clothing/suit/armor/vest/full/security
+	build_path = /obj/item/clothing/suit/armor/vest/toggle/full
 
 /datum/design/autolathe/clothing/generic_vest_webbing
 	name = "webbed armor vest"
 	build_path = /obj/item/clothing/suit/storage/vest
+
 
 /datum/design/autolathe/clothing/riot_helmet
 	name = "riot helmet"

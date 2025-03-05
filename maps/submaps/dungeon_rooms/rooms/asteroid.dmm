@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall,
+/turf/wall,
 /area/crawler)
 "c" = (
 /turf/space,
@@ -14,29 +14,29 @@
 /turf/space,
 /area/crawler)
 "e" = (
-/turf/simulated/mineral,
+/turf/mineral,
 /area/crawler)
 "f" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "g" = (
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/crawler)
 "h" = (
 /obj/structure/salvageable/os/console_broken,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "i" = (
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/crawler)
 "j" = (
 /obj/effect/floor_decal/asteroid,
 /obj/machinery/floodlight,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/crawler)
 "k" = (
 /obj/structure/inflatable/wall,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/crawler)
 "l" = (
 /obj/structure/railing,
@@ -51,15 +51,15 @@
 /area/crawler)
 "n" = (
 /obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "o" = (
 /obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/crawler)
 "p" = (
 /obj/structure/inflatable/door,
-/turf/simulated/floor/asteroid,
+/turf/floor/asteroid,
 /area/crawler)
 "q" = (
 /obj/structure/catwalk,
@@ -72,7 +72,7 @@
 /area/crawler)
 "s" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall,
+/turf/wall,
 /area/crawler)
 "t" = (
 /obj/structure/railing{

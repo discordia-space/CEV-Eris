@@ -22,7 +22,7 @@
 		return
 
 	turfcount = 0
-	for (var/turf/simulated/S in area)
+	for (var/turf/S in area)
 		turfcount++
 
 	active_power_usage = 4000 + (turfcount * power_usage_per_tile)
@@ -34,13 +34,13 @@
 		start_anim()
 
 	on = TRUE
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 
-/obj/machinery/antigrav/examine(var/mob/user)
-	.=..()
-	if (on)
-		to_chat(user, SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power"))
+/obj/machinery/antigrav/examine(mob/user, extra_description = "")
+	if(on)
+		extra_description += SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power")
+	..(user, extra_description)
 
 /obj/machinery/antigrav/proc/stop()
 	if(area)
@@ -53,7 +53,7 @@
 		stop_anim()
 
 	on = FALSE
-	use_power = IDLE_POWER_USE
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/antigrav/Process()

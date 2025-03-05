@@ -1,8 +1,5 @@
 GLOBAL_LIST_EMPTY(loot_biomes)
 
-/turf
-	var/obj/landmark/loot_biomes/biome
-
 /turf/proc/new_biome(obj/landmark/loot_biomes/new_biome)
 	if(!new_biome)
 		return

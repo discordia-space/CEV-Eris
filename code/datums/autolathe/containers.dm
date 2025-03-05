@@ -77,13 +77,37 @@
 	build_path = /obj/item/storage/hcases/parts
 
 /datum/design/autolathe/container/hcase_med
-	name = "Parts Hardcase"
+	name = "Medical Hardcase"
 	build_path = /obj/item/storage/hcases/med
 
 /datum/design/autolathe/container/hcase_engi
-	name = "Parts Hardcase"
+	name = "Tool Hardcase"
 	build_path = /obj/item/storage/hcases/engi
 
 /datum/design/autolathe/bodybag/cryobag
 	name = "Stasis Bag"
 	build_path = /obj/item/bodybag/cryobag
+
+/datum/design/autolathe/container/cooking_with_jane/board
+	name = "cutting board"
+	build_path = /obj/item/reagent_containers/cooking_with_jane/cooking_container/board
+
+/datum/design/autolathe/container/cooking_with_jane/oven
+	name = "oven tray"
+	build_path = /obj/item/reagent_containers/cooking_with_jane/cooking_container/oven
+
+/datum/design/autolathe/container/cooking_with_jane/pan
+	name = "pan"
+	build_path = /obj/item/reagent_containers/cooking_with_jane/cooking_container/pan
+
+/datum/design/autolathe/container/cooking_with_jane/pot
+	name = "pot"
+	build_path = /obj/item/reagent_containers/cooking_with_jane/cooking_container/pot
+
+/datum/design/autolathe/container/cooking_with_jane/grill_grate
+	name = "grill grate"
+	build_path = /obj/item/reagent_containers/cooking_with_jane/cooking_container/grill_grate
+
+/datum/design/autolathe/container/cooking_with_jane/bowl
+	name = "prep bowl"
+	build_path = /obj/item/reagent_containers/cooking_with_jane/cooking_container/bowl

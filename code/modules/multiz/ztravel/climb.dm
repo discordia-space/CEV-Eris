@@ -4,7 +4,7 @@
 	Requires a nearby wall which runs both zlevels
 **********************************************************/
 /datum/vertical_travel_method/climb
-	var/turf/simulated/wall/surface = null
+	var/turf/wall/surface = null
 	start_verb_visible = "%m starts climbing %d the %s"
 	start_verb_personal = "You start climbing %d the %s"
 	base_time = 110
@@ -33,14 +33,14 @@
 
 
 		//Climbing in 0G requires a continuous wall to ascend or descend
-		var/turf/simulated/wall/W = null
+		var/turf/wall/W = null
 
 		//Lets examine the walls around us
 		for (var/d in cardinal)
-			var/turf/simulated/wall/WA = get_step(origin, d)
+			var/turf/wall/WA = get_step(origin, d)
 			if (istype(WA))
 				//We've found a wall, now lets look at the destination floor
-				var/turf/simulated/wall/WB = get_step(destination, d)
+				var/turf/wall/WB = get_step(destination, d)
 				if (istype(WB))
 					//We've successfully located a smooth wall that spans both floors, we can climb it
 					W = WA

@@ -24,21 +24,15 @@
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 // Admin permissions.
-#define R_FUN           0x1
-#define R_SERVER        0x2
-#define R_DEBUG         0x4
-#define R_PERMISSIONS   0x8
-#define R_MENTOR        0x10
-#define R_MOD           0x20
-#define R_ADMIN         0x40
+#define R_FUN           (1<<0)
+#define R_SERVER        (1<<1)
+#define R_DEBUG         (1<<2)
+#define R_PERMISSIONS   (1<<3)
+#define R_MENTOR        (1<<4)
+#define R_MOD           (1<<5)
+#define R_ADMIN         (1<<6)
 
-// Host permission (sum of all permissions above) is equal to 127 or 0x7F
-#define R_HOST 0x7F // Used for debug/mock only
-
-#define R_MAXPERMISSION 0x40 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
-
-#define ADMIN_VERB_ADD(path, rights, keep)\
-	world/registrate_verbs() {..(); cmd_registrate_verb(path, rights, keep);}
+#define R_HOST 127 // All of the permissions above
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;adminmoreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;adminplayerobservefollow=[REF(user)]'>FLW</a>)"

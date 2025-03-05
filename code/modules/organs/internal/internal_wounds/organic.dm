@@ -138,7 +138,7 @@
 	treatments_tool = list(QUALITY_CUTTING = FAILCHANCE_NORMAL)
 	treatments_chem = list(CE_ANTITOX = 2)
 	severity = 0
-	severity_max = 3
+	severity_max = 4
 	hal_damage = IWOUND_LIGHT_DAMAGE
 
 /// Cheap hack, but prevents unbalanced toxins from killing someone immediately
@@ -258,14 +258,14 @@
 	severity_max = 1
 	organ_efficiency_multiplier = -0.10
 
-/datum/component/internal_wound/organic/debuff_tumor
+/datum/component/internal_wound/organic/debuff_tumor/default
 	name = "tumor"
 
-/datum/component/internal_wound/organic/debuff_tumor_15
+/datum/component/internal_wound/organic/debuff_tumor/t15
 	name = "tumor"
 	organ_efficiency_multiplier = -0.15
 
-/datum/component/internal_wound/organic/debuff_tumor_5
+/datum/component/internal_wound/organic/debuff_tumor/t5
 	name = "tumor"
 	organ_efficiency_multiplier = -0.05
 

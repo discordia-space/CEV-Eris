@@ -4,7 +4,7 @@
 
 /obj/machinery/porta_turret/excelsior
 	icon = 'icons/obj/machines/excelsior/turret.dmi'
-	desc = "A fully automated anti infantry platform. Fires 7.62mm rounds"
+	desc = "A fully automated anti infantry platform. Fires .30 caliber rounds"
 	icon_state = "turret_legs"
 	density = TRUE
 	lethal = TRUE
@@ -26,12 +26,12 @@
 			return TRUE
 	return FALSE
 
-/obj/machinery/porta_turret/excelsior/examine(mob/user)
-	if(!..(user, 2))
-		return
-	to_chat(user, "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!")
-	if(!has_power_source_nearby())
-		to_chat(user, "Seems to be powered down. No excelsior teleporter found nearby.")
+/obj/machinery/porta_turret/excelsior/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		extra_description += "There [(ammo == 1) ? "is" : "are"] [ammo] round\s left!"
+		if(!has_power_source_nearby())
+			extra_description += "\nSeems to be powered down. No excelsior teleporter found nearby."
+	..(user, extra_description)
 
 /obj/machinery/porta_turret/excelsior/Initialize()
 	. = ..()

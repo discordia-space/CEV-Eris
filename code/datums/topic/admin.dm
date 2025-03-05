@@ -196,7 +196,7 @@
 		if(!D)
 			return
 		var/list/permissionlist = list()
-		for(var/i=1, i<=R_MAXPERMISSION, i<<=1)		//that <<= is shorthand for i = i << 1. Which is a left bitshift
+		for(var/i = R_FUN, i <= R_ADMIN, i = (i<<1)) // Here 'i' matches one of admin permissions on each cycle, from R_FUN(1<<0) to R_ADMIN(1<<6)
 			permissionlist[rights2text(i)] = i
 		var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
 		if(!new_permission)
@@ -1021,7 +1021,7 @@
 	S.loc = M.loc
 	QDEL_IN(S, 20)
 
-	var/turf/simulated/floor/T = get_turf(M)
+	var/turf/floor/T = get_turf(M)
 	if(istype(T))
 		if(prob(80))
 			T.break_tile_to_plating()
@@ -1079,46 +1079,6 @@
 	else if (istype(bundle.pages[page], /obj/item/photo))
 		var/obj/item/photo/H = bundle.pages[page]
 		H.show(source.owner)
-
-
-/datum/admin_topic/centcomfaxreply
-	keyword = "CentcomFaxReply"
-
-/datum/admin_topic/centcomfaxreply/Run(list/input)
-	var/mob/sender = locate(input["CentcomFaxReply"])
-	var/obj/machinery/photocopier/faxmachine/fax = locate(input["originfax"])
-
-	//todo: sanitize
-	var/msg = input(source.owner, "Please enter a message to reply to [key_name(sender)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Centcom", "") as message|null
-	if(!msg)
-		return
-
-	var/customname = input(source.owner, "Pick a title for the report", "Title") as text|null
-
-	// Create the reply message
-	var/obj/item/paper/P = new /obj/item/paper( null ) //hopefully the null loc won't cause trouble for us
-	P.name = "[command_name()]- [customname]"
-	P.info = msg
-	P.update_icon()
-
-	// Stamps
-	var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
-	stampoverlay.icon_state = "paper_stamp-cent"
-	if(!P.stamped)
-		P.stamped = new
-	P.stamped += /obj/item/stamp
-	P.overlays += stampoverlay
-	P.stamps += "<HR><i>This paper has been stamped by the [boss_name] Quantum Relay.</i>"
-
-	if(fax.recievefax(P))
-		to_chat(source.owner, "\blue Message reply to transmitted successfully.")
-		log_admin("[key_name(source.owner)] replied to a fax message from [key_name(sender)]: [msg]")
-		message_admins("[key_name_admin(source.owner)] replied to a fax message from [key_name_admin(sender)]", 1)
-	else
-		to_chat(source.owner, "\red Message reply failed.")
-
-	QDEL_IN(P, 100)
-
 
 /datum/admin_topic/jumpto
 	keyword = "jumpto"

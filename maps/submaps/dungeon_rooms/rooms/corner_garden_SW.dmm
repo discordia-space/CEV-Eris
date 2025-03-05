@@ -1,87 +1,87 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "d" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "e" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "f" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "g" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "h" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "i" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "j" = (
 /obj,
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/stalkybush,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "k" = (
 /obj,
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "l" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "m" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "n" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "o" = (
 /obj/structure/railing/grey,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "p" = (
 /obj/structure/railing/grey,
 /obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "q" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "r" = (
 /obj/structure/railing/grey{
@@ -91,7 +91,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "s" = (
 /obj/structure/railing/grey{
@@ -101,54 +101,54 @@
 	dir = 4
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "t" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 8
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "u" = (
 /obj/effect/floor_decal/grass_edge{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "v" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/crawler)
 "w" = (
 /obj/structure/railing/grey{
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "x" = (
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "y" = (
 /obj/effect/floor_decal/grass_edge,
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "z" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/grass,
+/turf/floor/grass,
 /area/crawler)
 "A" = (
 /obj/effect/floor_decal/grass_edge,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "C" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 
 (1,1,1) = {"

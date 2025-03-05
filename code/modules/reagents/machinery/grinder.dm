@@ -237,6 +237,7 @@
 
 	playsound(loc, 'sound/machines/blender.ogg', 50, 1)
 	inuse = 1
+	use_power(active_power_usage)
 
 	// Reset the machine.
 	spawn(60)
@@ -336,6 +337,7 @@
 	desc = "Mortar and pestle to grind ingridients."
 	icon = 'icons/obj/machines/chemistry.dmi'
 	icon_state = "mortar"
+	matter = list(MATERIAL_STEEL = 3)
 	storage_slots = 3
 	unacidable = 1
 	rarity_value = 25
@@ -451,14 +453,13 @@
 	if(N)
 		amount_per_transfer_from_this = N
 
-/obj/item/storage/makeshift_grinder/examine(mob/user)
-	if(!..(user, 2))
-		return
-	if(contents.len)
-		to_chat(user, SPAN_NOTICE("It has something inside."))
-	if(reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("It's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents."))
-
+/obj/item/storage/makeshift_grinder/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2)
+		if(LAZYLEN(contents))
+			extra_description += SPAN_NOTICE("\nIt has something inside.")
+		if(reagents.total_volume)
+			extra_description += SPAN_NOTICE("\nIt's filled with [reagents.total_volume]/[reagents.maximum_volume] units of reagents.")
+	..(user, extra_description)
 
 /obj/item/storage/makeshift_grinder/update_icon()
 	. = ..()

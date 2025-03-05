@@ -132,6 +132,11 @@ var/list/datum/power/carrion/powerinstances = list()
 	set category = "Carrion"
 	set desc = "Level up!"
 
+	var/obj/item/organ/internal/carrion/core/core = locate() in src
+	if(!core)
+		return
+	src = core
+
 	if(!powerinstances.len)
 		for(var/P in powers)
 			powerinstances += new P()

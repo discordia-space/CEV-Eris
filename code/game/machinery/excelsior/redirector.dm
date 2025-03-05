@@ -17,15 +17,16 @@
 	var/redirectTimer = null
 	var/antennaBent = FALSE
 
-/obj/machinery/excelsior_redirector/examine(mob/user, distance, infix, suffix)
-	. = ..()
+/obj/machinery/excelsior_redirector/examine(mob/user, extra_description = "")
 	if(is_excelsior(user))
-		to_chat(user, SPAN_DANGER("Do not build any walls around this as it will interfere with the mechanism and cause it to instantly fail."))
+		extra_description += SPAN_DANGER("Do not build any walls around this as it will interfere with the mechanism and cause it to instantly fail.")
+	..(user, extra_description)
 
 /obj/machinery/excelsior_redirector/attackby(obj/item/I, mob/living/user)
 	if(istool(I))
-		if(rebootTimer)
+		if(redirectTimer)
 			to_chat(user, SPAN_NOTICE("You can't unanchor \the [src] whilst it's running!"))
+			return
 		if(I.get_tool_quality(QUALITY_BOLT_TURNING))
 			if(!anchored)
 				var/area/ar = get_area(src)
@@ -108,8 +109,12 @@
 		return
 	to_chat(user, SPAN_NOTICE("You start rebooting \the [src] with new information. Your hands start moving by themselves like they're remotely guided to input new information."))
 	if(do_after(user, 15 SECONDS, src))
+		if(!rebootTimer)
+			to_chat(user, SPAN_NOTICE("\The [src] was already rebooted!"))
+			return
 		to_chat(user, SPAN_NOTICE("You succesfully reboot \the [src]. Your hands are no longer moving on their own."))
 		deltimer(rebootTimer)
+		rebootTimer = null
 		var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 		for (var/datum/antagonist/A in commies.members)
 			to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src] has been rebooted by [user]. It will need another reboot in 3 minutes."))
@@ -126,6 +131,9 @@
 	for (var/datum/antagonist/A in commies.members)
 		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("The [src]'s antenna is being bent by someone! Stop them."))
 	if(do_after(user, 1 MINUTE, src))
+		if(antennaBent)
+			to_chat(user, SPAN_NOTICE("\The [src]'s antenna is already bent!"))
+			return
 		stopRedirecting()
 		antennaBent = TRUE
 		icon_state = "redirector_bent"
@@ -145,8 +153,10 @@
 
 /obj/machinery/excelsior_redirector/proc/stopRedirecting()
 	deltimer(redirectTimer)
+	redirectTimer = null
 	if(rebootTimer)
 		deltimer(rebootTimer)
+		rebootTimer = null
 	SSticker.excelsior_hijacking = 0
 	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
 	security_state.set_security_level(oldSecurityLevel, force_change = TRUE)

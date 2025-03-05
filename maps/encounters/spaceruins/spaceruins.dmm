@@ -35,60 +35,60 @@
 /turf/space,
 /area/space)
 "j" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges,
+/turf/floor/tiled/derelict/red_white_edges,
 /area/asteroid/rogue)
 "k" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/asteroid/rogue)
 "l" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "m" = (
 /obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "n" = (
 /obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "o" = (
 /obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "p" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "q" = (
 /obj/structure/table/onestar,
 /obj/spawner/pack/tech_loot/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "r" = (
 /obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "s" = (
 /obj/structure/bed/chair/custom/onestar/red,
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "t" = (
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "u" = (
 /obj/structure/table/onestar,
 /obj/spawner/pack/gun_loot,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "v" = (
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 "w" = (
 /obj/spawner/pack/tech_loot/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
+/turf/floor/tiled/derelict/white_big_edges,
 /area/asteroid/rogue)
 
 (1,1,1) = {"

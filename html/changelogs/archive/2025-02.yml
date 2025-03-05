@@ -1,0 +1,32 @@
+2025-02-01:
+  Chickenish:
+  - bugfix: increased danger of radiation and war
+  MLGTASTICa:
+  - bugfix: Fixed MMI's and Radios not working
+  VmpOS2NHSkhkejA9:
+  - tweak: insulated technomancer helmet's appearance can be changed with a wrench.
+  - balance: Superglue can now be printed with an advanced tool disk
+  - balance: Superglue is now made of 20 plastic instead of 30 biomatter
+  - balance: Superglue now has 50 adhesive stat instead of 40.
+2025-02-08:
+  VmpOS2NHSkhkejA9:
+  - rscdel: Golem waves and burrows
+  - tweak: Welding the deep drill now heals it by 500 health, instead of jumping to
+      the next 1/3rd of its health
+  - tweak: The deep drill no longer accepts power cells, as it doesn't require power
+      anyway
+  - tweak: Structures and machinery no longer block the deep drill's operation; It
+      can be activated with ore boxes adjacent to it
+  - balance: diamond golems are now hostile
+  - balance: Uranium golems now also heal burn damage to nearby golems
+  - bugfix: Deep drill can now be unanchored from undrillable tiles
+  - bugfix: Deep drill properly shuts down when non-floor tiles are too close
+  - bugfix: Ansible golems can now teleport targets to nearby golems as intended
+2025-02-15:
+  Chickenish:
+  - bugfix: fixed Jester Collapse from extremely long rounds
+  VmpOS2NHSkhkejA9:
+  - bugfix: one star tech loot spawners spawn one star tech loot.
+2025-02-22:
+  koghs:
+  - soundadd: added a new sound for reloading grenade launchers

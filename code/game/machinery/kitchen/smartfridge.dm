@@ -9,7 +9,7 @@
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
-	active_power_usage = 100
+	active_power_usage = 250
 	reagent_flags = NO_REACT
 	var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
 	var/icon_on = "smartfridge"
@@ -67,10 +67,53 @@
 
 /obj/machinery/smartfridge/kitchen
 	name = "\improper Agro-Club Fridge"
-	desc = "The panel says it won't allow anyone without access to the kitchen or hydroponics."
+	desc = "The panel says it won't allow anyone without access to the kitchen or hydroponics. Holds your seeds, produce, and basic ingredients."
 	req_one_access = list(access_hydroponics,access_kitchen)
-
-
+//Going to be a mess till I make different type paths between produce, ingredients, and finished meals. Or rebuild how smartfridges create an accept list like vendors. -Mycah
+/obj/machinery/smartfridge/kitchen/accept_check(var/obj/item/O as obj)
+	if(istype(O,/obj/item/seeds/))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/cheesewedge))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/sliceable/cheesewheel))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/meatball))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/rawmeatball))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/bacon))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/rawbacon))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/cutlet))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/rawcutlet))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/dough))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/doughslice))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/sliceable/flatdough))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/flatdoughslice))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/bun))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/tortilla))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/spaghetti))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/rawsticks))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/patty))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/patty_raw))
+		return 1
+	if(istype(O,/obj/item/reagent_containers/food/snacks/meat/))
+		return 1
+	return 0
 
 /*******************
 *   Xenobio Slime Fridge
@@ -249,6 +292,10 @@
 /obj/machinery/smartfridge/power_change()
 	var/old_stat = stat
 	..()
+	if(powered())
+		set_power_use(ACTIVE_POWER_USE)
+	else
+		set_power_use(IDLE_POWER_USE)
 	if(old_stat != stat)
 		update_icon()
 

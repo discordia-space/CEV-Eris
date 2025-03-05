@@ -40,9 +40,9 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		var/mob/living/carbon/human/H = user
 		if(H.blocking)
 			H.stop_blocking()
-	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/simulated/wall) && A.loc != user)
+	if(ishuman(user) && !(user == A) && !(user.loc == A) && (w_class >=  ITEM_SIZE_NORMAL) && wielded && user.a_intent == I_HURT && !istype(src, /obj/item/gun) && !istype(A, /obj/structure) && !istype(A, /turf/wall) && A.loc != user && !no_swing)
 		swing_attack(A, user, params)
-		if(istype(A, /turf/simulated/floor)) // shitty hack so you can attack floors while wielding a large weapon
+		if(istype(A, /turf/floor)) // shitty hack so you can attack floors while wielding a large weapon
 			return A.attackby(src, user, params)
 		return 1 //Swinging calls its own attacks
 	return A.attackby(src, user, params)
@@ -231,8 +231,8 @@ avoid code duplication. This includes items that may sometimes act as a standard
 
 //Area of effect attacks (swinging), return remaining damage
 /obj/item/proc/tileattack(mob/living/user, turf/targetarea, var/modifier = 1, var/swing_degradation = 0.2, var/original_target)
-	if(istype(targetarea, /turf/simulated/wall))
-		var/turf/simulated/W = targetarea
+	if(istype(targetarea, /turf/wall))
+		var/turf/W = targetarea
 		if(attack_with_multiplier(user, W, modifier))
 			return (modifier - swing_degradation) // We hit a static object, prevents hitting anything underneath
 	var/successful_hit = FALSE

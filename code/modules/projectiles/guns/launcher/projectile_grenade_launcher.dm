@@ -15,7 +15,7 @@
 	ammo_type = /obj/item/ammo_casing/grenade
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher_fire.ogg'
 	fire_sound_text = "a metallic thunk"
-	bulletinsert_sound = 'sound/weapons/guns/interact/batrifle_magin.ogg'	//Placeholder, could use a new sound
+	bulletinsert_sound = 'sound/weapons/guns/interact/grenadelauncher_magin.ogg'
 	saw_off = FALSE
 	matter = list(MATERIAL_PLASTEEL = 30, MATERIAL_WOOD = 10)
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
@@ -27,10 +27,10 @@
 /obj/item/gun/projectile/shotgun/pump/grenade/update_icon()
 	wielded_item_state = "_doble"
 
-/obj/item/gun/projectile/shotgun/pump/grenade/examine(mob/user)
-	if(..(user, 2))
-		if(chambered)
-			to_chat(user, "\A [chambered] is chambered.")
+/obj/item/gun/projectile/shotgun/pump/grenade/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && chambered)
+		extra_description += "\n\A [chambered] is chambered."
+	..(user, extra_description)
 
 /obj/item/gun/projectile/shotgun/pump/grenade/handle_post_fire(mob/user)
 	log_and_message_admins("fired a grenade ([chambered]) from ([src]).")
@@ -63,6 +63,7 @@
 	max_shells = 0
 	safety = FALSE
 	twohanded = FALSE
+	bad_type = /obj/item/gun/projectile/shotgun/pump/grenade/underslung
 
 /obj/item/gun/projectile/shotgun/pump/grenade/lenar
 	name = "FS GL \"Lenar\""

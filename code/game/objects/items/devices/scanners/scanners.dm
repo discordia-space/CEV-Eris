@@ -52,8 +52,9 @@
 		return
 	if (!user.IsAdvancedToolUser())
 		return
-	if(!cell_use_check(charge_per_use, user))
-		return
+	if(!is_virtual)
+		if(!cell_use_check(charge_per_use, user))
+			return
 	return TRUE
 
 /obj/item/device/scanner/proc/is_valid_scan_target(atom/O)
@@ -115,6 +116,7 @@
 	user.put_in_hands(P)
 	user.visible_message("\The [src] spits out a piece of paper.")
 
-/obj/item/device/scanner/examine(mob/user)
-	if(..(user, 2) && scan_data)
+/obj/item/device/scanner/examine(mob/user, extra_description = "")
+	if(get_dist(user, src) < 2 && scan_data)
 		show_results(user)
+	..(user, extra_description)

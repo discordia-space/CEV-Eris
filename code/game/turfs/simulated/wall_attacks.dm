@@ -1,256 +1,230 @@
-//Interactions
-/turf/simulated/wall/proc/toggle_open(var/mob/user)
-
-	if(can_open == WALL_OPENING)
+/turf/wall/attack_generic(mob/user, damage, attack_message)
+	if(!is_simulated)
 		return
-
-	if(density)
-		can_open = WALL_OPENING
-		//flick("[material.icon_base]fwall_opening", src)
-		sleep(15)
-		density = FALSE
-		set_opacity(FALSE)
-		update_icon()
-		set_light(0)
-	else
-		can_open = WALL_OPENING
-		//flick("[material.icon_base]fwall_closing", src)
-		density = TRUE
-		set_opacity(TRUE)
-		update_icon()
-		sleep(15)
-		set_light(1)
-
-	can_open = WALL_CAN_OPEN
-	update_icon()
-
-/turf/simulated/wall/proc/fail_smash(var/mob/user)
-	playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
-	to_chat(user, SPAN_DANGER("You smash against the wall!"))
-	user.do_attack_animation(src)
-	take_damage(rand(15,45))
-
-/turf/simulated/wall/proc/success_smash(var/mob/user)
-	to_chat(user, SPAN_DANGER("You smash through the wall!"))
-	user.do_attack_animation(src)
-	spawn(1)
-		dismantle_wall(1)
-
-/turf/simulated/wall/proc/try_touch(var/mob/user, var/rotting)
-
-	if(rotting)
-		if(reinf_material)
-			to_chat(user, SPAN_DANGER("\The [reinf_material.display_name] feels porous and crumbly."))
-		else
-			to_chat(user, SPAN_DANGER("\The [material.display_name] crumbles under your touch!"))
-			dismantle_wall()
-			return 1
-
-	if(!can_open)
-		to_chat(user, SPAN_NOTICE("You push the wall, but nothing happens."))
-		playsound(src, hitsound, 25, 1)
-		user.do_attack_animation(src)
-	else
-		toggle_open(user)
-	return 0
-
-/turf/simulated/wall/attack_hand(var/mob/user)
-
-	radiate()
-	add_fingerprint(user)
+	ASSERT(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
-/*	if (HULK in user.mutations)
-		if (rotting || !prob(material.hardness))
-			success_smash(user)
-		else
-			fail_smash(user)
-			return 1
-*/
-	try_touch(user, rotting)
-
-
-
-/turf/simulated/wall/attack_generic(mob/M, damage, attack_message)
-	M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-
-	radiate()
-	if(!istype(M))
-		return
-
-	var/rot = locate(/obj/effect/overlay/wallrot) in src
-	var/hardness = reinf_material ? max(material.hardness, reinf_material.hardness) : material.hardness
-
 	if(!damage)
-		try_touch(M, rot)
-
+		attack_hand(user)
 	else if(damage >= hardness)
-		return success_smash(M)
+		to_chat(user, SPAN_DANGER("You smash through the wall!"))
+		user.do_attack_animation(src)
+		dismantle_wall(user)
 	else
-		fail_smash(M)
+		playsound(src, pick(WALLHIT_SOUNDS), 50, 1)
+		to_chat(user, SPAN_DANGER("You smash against the wall!"))
+		user.do_attack_animation(src)
+		take_damage(rand(15,45))
 
-/turf/simulated/wall/attackby(obj/item/I, mob/user)
-
+/turf/wall/attackby(obj/item/I, mob/user, params)
+	if(!is_simulated)
+		return
+	ASSERT(I)
+	ASSERT(user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if (!user.IsAdvancedToolUser())
+	if(!user.IsAdvancedToolUser())
 		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
 		return
-
-	//get the user's location
+	// If user is not on turf, not in a mech, and holds a mech kit - do nothing?
+	// Bruh. Makes little sense, but surely SPCR knew what he was doing
 	if(!istype(user.loc, /turf))
 		if(!(ismech(user.loc) && istype(I, /obj/item/tool/mech_kit)))
 			return
 
+	// In case player wants to just drop a sheet of glass on a low wall, or smack it with an RCD
+	if(user.a_intent == I_HURT)
+		attackby_harm(I, user)
+		return
 
-	if(I)
-		radiate()
-		if(is_hot(I))
-			burn(is_hot(I))
+	if((user.a_intent == I_GRAB) && is_low_wall && !window_type && user.unEquip(I, src))
+		set_pixel_click_offset(I, params)
+		return
 
-	var/list/usable_qualities = list()
-	if(construction_stage == 2)
-		usable_qualities.Add(QUALITY_BOLT_TURNING)
-	if((locate(/obj/effect/overlay/wallrot) in src) || thermite || (health < maxHealth) || isnull(construction_stage) || !reinf_material || construction_stage == 4 || construction_stage == 1)
-		usable_qualities.Add(QUALITY_WELDING)
-	if(construction_stage == 3 || construction_stage == 0)
-		usable_qualities.Add(QUALITY_PRYING)
-	if(construction_stage == 5)
-		usable_qualities.Add(QUALITY_SCREW_DRIVING)
-	if(construction_stage == 6)
-		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+	if(istype(I,/obj/item/rcd) || istype(I, /obj/item/reagent_containers))
+		return
+
+	if(isnull(deconstruction_steps_left))
+		deconstruction_steps_left = is_reinforced ? 5 : 1
+
+	// Most qualities available to try at all times
+	var/list/usable_qualities = list(QUALITY_WELDING, QUALITY_HAMMERING, QUALITY_WIRE_CUTTING, QUALITY_PRYING, QUALITY_BOLT_TURNING)
+	if(thermite)
+		usable_qualities.Add(QUALITY_CAUTERIZING) // Can ignite thermite with a cigarette and such
+
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
-
-		if(QUALITY_BOLT_TURNING)
-			if(construction_stage == 2)
-				to_chat(user, SPAN_NOTICE("You begin removing the bolts anchoring the support rods..."))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					construction_stage = 1
+		if(QUALITY_BOLT_TURNING) // deconstruction_steps_left == 5
+			if(isnull(deconstruction_steps_left) || deconstruction_steps_left == 5) // Starting deconstruction
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					deconstruction_steps_left = 4 // Non-null value indicates that special overlay should be added on update_icon()
 					update_icon()
-					to_chat(user, SPAN_NOTICE("You remove the bolts anchoring the support rods."))
-					return
+					to_chat(user, SPAN_NOTICE("You remove the bolts that hold armor plates in place."))
+			else if(deconstruction_steps_left == 4) // Reversing deconstruction
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					deconstruction_steps_left = null
+					update_icon()
+					to_chat(user, SPAN_NOTICE("You bolt the armor plates to the wall."))
+			else
+				to_chat(user, SPAN_NOTICE("There doesn't seem to be anything [tool_type] can acomplish."))
 			return
 
-		if(QUALITY_WELDING)
-			if(locate(/obj/effect/overlay/wallrot) in src)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [I]."))
-					for(var/obj/effect/overlay/wallrot/WR in src)
-						qdel(WR)
-					return
+		if(QUALITY_PRYING) // deconstruction_steps_left == 4
+			if(window_type)
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					var/material/glass/window_material = get_material_by_name(window_type)
+					window_material.place_sheet(src, 6)
+					window_type = null
+					window_health = null
+					window_max_health = null
+					window_heat_resistance = null
+					window_damage_resistance = null
+					blocks_air = FALSE
+					update_icon()
+					SSair.mark_for_update(src)
+					to_chat(user, SPAN_NOTICE("You pry the glass out of the frame."))
+			else if(deconstruction_steps_left == 4) // Progressing deconstruction
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					deconstruction_steps_left = 3
+					to_chat(user, SPAN_NOTICE("You pry off the armor plates."))
+			else if(deconstruction_steps_left == 3) // Reversing deconstruction
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					deconstruction_steps_left = 4
+					to_chat(user, SPAN_NOTICE("You lift the armor plates back in place."))
+			else
+				to_chat(user, SPAN_NOTICE("There doesn't seem to be anything [tool_type] can acomplish."))
+			return
+
+		if(QUALITY_WIRE_CUTTING) // deconstruction_steps_left == 3
+			if(deconstruction_steps_left == 3) // Progressing deconstruction
+				var/cutting_speed = WORKTIME_NORMAL
+				if(I.get_tool_quality(QUALITY_HAMMERING) < 30)
+					cutting_speed = WORKTIME_LONG
+				else if(I.get_tool_quality(QUALITY_HAMMERING) > 30)
+					cutting_speed = WORKTIME_FAST
+				if(I.use_tool(user, src, cutting_speed, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
+					deconstruction_steps_left = 2
+					to_chat(user, SPAN_NOTICE("You cut the support beams."))
+			else if(deconstruction_steps_left == 2) // Need a different tool to reverse this step
+				to_chat(user, SPAN_NOTICE("You can't fix the cut support beams with more cutting, try welding instead."))
+			else
+				to_chat(user, SPAN_NOTICE("There doesn't seem to be anything [tool_type] can acomplish."))
+			return
+
+		if(QUALITY_HAMMERING) // deconstruction_steps_left == 2
+			if(deconstruction_steps_left == 2) // Progressing deconstruction
+				if(I.get_tool_quality(QUALITY_HAMMERING) < 15)
+					to_chat(user, SPAN_NOTICE("This doesn't seem to be enough, you need a real hammer."))
+				else if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					deconstruction_steps_left = 1
+					to_chat(user, SPAN_NOTICE("You hammer the fragments of support beams out."))
+			else if((deconstruction_steps_left == 1) && is_reinforced) // Reversing deconstruction for walls that require multiple steps
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					deconstruction_steps_left = 2
+					to_chat(user, SPAN_NOTICE("You hammer the cut support beams back in place."))
+			else
+				to_chat(user, SPAN_NOTICE("There doesn't seem to be anything [tool_type] can acomplish."))
+			return
+
+		if(QUALITY_WELDING) // deconstruction_steps_left == 1
 			if(thermite)
-				if(I.use_tool(user, src, WORKTIME_INSTANT,tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You ignite the thermite with the [I]!"))
+				if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+					to_chat(user, SPAN_NOTICE("You ignite the thermite!"))
 					thermitemelt(user)
-					return
-			if(health < maxHealth)
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You repair the damage to [src]."))
-					clear_bulletholes()
-					take_damage(-health)
-					return
-			if(isnull(construction_stage) || !reinf_material)
-				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
-				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You remove the outer plating."))
+
+			else if(locate(/obj/effect/overlay/wallrot) in src)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					to_chat(user, SPAN_NOTICE("You burn away the fungi."))
+					for(var/obj/effect/overlay/wallrot/wallrot in src)
+						qdel(wallrot)
+
+			else if(deconstruction_steps_left == 1) // Finishing deconstruction
+				if(I.use_tool(user, src, WORKTIME_SLOW, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+					to_chat(user, SPAN_NOTICE("You dismantle the [src]."))
 					dismantle_wall()
-					user.visible_message(SPAN_WARNING("The wall was torn open by [user]!"))
-					return
-			if(construction_stage == 4)
-				to_chat(user, SPAN_NOTICE("You begin removing the outer plating..."))
+
+			else if(deconstruction_steps_left == 2) // Reversing the wire cutting step
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					deconstruction_steps_left = 3
+					to_chat(user, SPAN_NOTICE("You weld the cut pieces of support beams together."))
+
+			else if(health < max_health)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					construction_stage = 3
+					health = max_health
+					deconstruction_steps_left = is_reinforced ? 5 : 1
+					to_chat(user, SPAN_NOTICE("You repair the [src]."))
+					clear_bulletholes()
 					update_icon()
-					to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
-					return
-			if(construction_stage == 1)
-				to_chat(user, SPAN_NOTICE("You begin removing the support rods..."))
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					construction_stage = 0
-					update_icon()
-					new /obj/item/stack/rods(user.loc)
-					to_chat(user, SPAN_NOTICE("The support rods drop out as you cut them loose from the frame."))
-					return
+			else
+				to_chat(user, SPAN_NOTICE("There doesn't seem to be anything [tool_type] can acomplish."))
 			return
 
-		if(QUALITY_PRYING)
-			if(construction_stage == 3)
-				to_chat(user, SPAN_NOTICE("You begin to prying off the cover..."))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					construction_stage = 2
-					update_icon()
-					to_chat(user, SPAN_NOTICE("You pry off the cover."))
-					return
-			if(construction_stage == 0)
-				to_chat(user, SPAN_NOTICE("You struggle to pry off the outer sheath..."))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You pry off the outer sheath."))
-					dismantle_wall(user)
-					return
+		if(QUALITY_CAUTERIZING)
+			if(I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				to_chat(user, SPAN_NOTICE("You ignite the thermite!"))
+				thermitemelt(user)
 			return
 
-		if(QUALITY_WIRE_CUTTING)
-			if(construction_stage == 6)
-				to_chat(user, SPAN_NOTICE("You begin removing the outer grille..."))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					construction_stage = 5
-					new /obj/item/stack/rods(user.loc)
-					to_chat(user, SPAN_NOTICE("You removing the outer grille."))
-					update_icon()
-					return
-			return
-
-		if(QUALITY_SCREW_DRIVING)
-			if(construction_stage == 5)
-				to_chat(user, SPAN_NOTICE("You begin removing the support lines..."))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					construction_stage = 4
-					update_icon()
-					to_chat(user, SPAN_NOTICE("You remove the support lines."))
-					return
-			return
-
-		if(ABORT_CHECK)
-			return
-
-	if(istype(I, /obj/item/stack/rods))
-		if(construction_stage == 5)
-			var/obj/item/stack/O = I
-			if(O.get_amount()>0)
-				O.use(1)
-				construction_stage = 6
-				update_icon()
-				to_chat(user, SPAN_NOTICE("You replace the outer grille."))
-				return
-
-	if(istype(I,/obj/item/frame))
+	if(!is_low_wall && istype(I, /obj/item/frame))
 		var/obj/item/frame/F = I
 		F.try_build(src)
-		return
 
-	else if(!istype(I,/obj/item/rcd) && !istype(I, /obj/item/reagent_containers))
-		if(!I.force)
-			return attack_hand(user)
-		var/attackforce = I.force*I.structure_damage_factor
-		var/dam_threshhold = material.integrity
-		if(reinf_material)
-			dam_threshhold = CEILING(max(dam_threshhold,reinf_material.integrity) * 0.5, 1)
-		var/dam_prob = material.hardness * 1.4
-		if (locate(/obj/effect/overlay/wallrot) in src)
-			dam_prob *= 0.5 //Rot makes reinforced walls breakable
-		if(ishuman(user))
-			var/mob/living/carbon/human/attacker = user
-			dam_prob -= attacker.stats.getStat(STAT_ROB)
-		if(dam_prob < 100 && attackforce > (dam_threshhold/10))
-			playsound(src, hitsound, 80, 1)
-			if(!prob(dam_prob))
-				visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
-				playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
-				take_damage(attackforce)
+	else if(is_low_wall && !window_type && ispath(I.type, /obj/item/stack/material/glass))
+		var/obj/item/stack/material/glass/glass_stack = I
+		if(glass_stack.get_amount() < 6)
+			to_chat(user, SPAN_NOTICE("There isn't enough glass sheets, you need at least six."))
+		else if(do_after(user, 40, src) && glass_stack.use(6))
+			create_window(glass_stack.material.name)
+
+	else if(is_low_wall && !window_type && user.unEquip(I, src))
+		set_pixel_click_offset(I, params) // Place something on a low wall
+	else
+		attackby_harm(I, user)
+
+// This exists to avoid code duplication in /turf/wall/attackby()
+/turf/wall/proc/attackby_harm(obj/item/I, mob/user)
+	if(I.force)
+		var/attackforce = I.force * I.structure_damage_factor
+		if(window_type)
+			if(attackforce > (window_max_health / 20))
+				take_damage(attackforce) // Playsound is included here
+				visible_message(SPAN_DANGER("\The [user] hits the window with \the [I]!"))
 			else
-				visible_message(SPAN_WARNING("\The [user] attacks \the [src] with \the [I]!"))
+				visible_message(SPAN_DANGER("\The [user] hits the window with \the [I], but it bounces off!"))
+		else if(attackforce > (max_health / 20))
+			playsound(src, pick(WALLHIT_SOUNDS), 100, 5)
+			take_damage(attackforce)
+			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I]!"))
 		else
 			visible_message(SPAN_DANGER("\The [user] attacks \the [src] with \the [I], but it bounces off!"))
 		user.do_attack_animation(src)
+	else
+		attack_hand(user)
 
+
+/turf/wall/attack_hand(mob/user)
+	if(!is_simulated)
+		return
+	ASSERT(user)
+	add_fingerprint(user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.do_attack_animation(src)
+	if(locate(/obj/effect/overlay/wallrot) in src)
+		to_chat(user, SPAN_DANGER("The wall crumbles under your touch!"))
+		dismantle_wall(user)
+		return
+	if(window_type)
+		if(user.a_intent == I_HURT)
+			playsound(src, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
+			user.do_attack_animation(src)
+			user.visible_message(SPAN_DANGER("\The [user] bangs against \the [src]!"),
+								SPAN_DANGER("You bang against \the [src]!"),
+								"You hear a banging sound.")
+		else
+			playsound(src, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
+			user.visible_message("[user.name] knocks on the [name].",
+								"You knock on the [name].",
+								"You hear a knocking sound.")
+		return
+
+	to_chat(user, SPAN_NOTICE("You push the wall, but nothing happens."))
+	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)

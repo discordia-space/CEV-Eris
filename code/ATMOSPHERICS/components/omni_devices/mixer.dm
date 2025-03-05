@@ -298,3 +298,10 @@
 	for(var/datum/omni_port/P in inputs)
 		if(P.dir == port)
 			P.con_lock = !P.con_lock
+
+/obj/machinery/atmospherics/omni/mixer/thrusterfuel
+	name = "Fuel Mixer"
+	desc = "Looks like North connects to Oxygen, and West to Plasma, with South going into the chamber. Just gotta find the perfect mix."
+	tag_north = 1
+	tag_west = 1
+	tag_south = 2

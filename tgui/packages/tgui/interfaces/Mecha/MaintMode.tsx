@@ -21,7 +21,7 @@ export const MaintMode = (props, context) => {
   const [screen, setPanel] = useLocalState(
     context,
     'screen',
-    MECHA_MAINT_PANELS.main
+    MECHA_MAINT_PANELS.main,
   );
   const Component = screen.component();
   return (
@@ -52,7 +52,7 @@ const MainPanel = (props, context) => {
   const [screen, setPanel] = useLocalState(
     context,
     'screen',
-    MECHA_MAINT_PANELS.main
+    MECHA_MAINT_PANELS.main,
   );
   const { mecha_flags, mechflag_keys } = data;
   return (
@@ -83,7 +83,7 @@ const MaintEnabled = (props, context) => {
   const [screen, setPanel] = useLocalState(
     context,
     'screen',
-    MECHA_MAINT_PANELS.main
+    MECHA_MAINT_PANELS.main,
   );
   return (
     <>

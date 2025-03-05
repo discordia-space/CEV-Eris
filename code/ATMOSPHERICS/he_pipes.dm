@@ -57,7 +57,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/Process()
 	else
 		var/datum/gas_mixture/pipe_air = return_air()
 		var/turf/current_loc = loc
-		if(istype(current_loc, /turf/simulated/))
+		if(istype(current_loc, /turf/))
 			var/environment_temperature = 0
 			if(current_loc.blocks_air)
 				environment_temperature = current_loc.temperature

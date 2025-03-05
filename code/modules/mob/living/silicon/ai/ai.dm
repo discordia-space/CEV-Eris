@@ -28,9 +28,9 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/multitool_mode,
 	/mob/living/silicon/ai/proc/toggle_hologram_movement,
-	/mob/living/silicon/verb/show_crew_sensors,
-	/mob/living/silicon/verb/show_email,
-	/mob/living/silicon/verb/show_alerts
+	/mob/living/silicon/proc/show_crew_sensors,
+	/mob/living/silicon/proc/show_email,
+	/mob/living/silicon/proc/show_alerts
 )
 
 //Not sure why this is necessary...
@@ -119,10 +119,10 @@ var/list/ai_verbs_default = list(
 	defaultHUD = "Eris"
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
-	verbs |= ai_verbs_default
+	add_verb(src, ai_verbs_default)
 
 /mob/living/silicon/ai/proc/remove_ai_verbs()
-	verbs -= ai_verbs_default
+	remove_verb(src, ai_verbs_default)
 
 /mob/living/silicon/ai/MiddleClickOn(var/atom/A)
 	if(!control_disabled && A.AIMiddleClick(src))
@@ -304,9 +304,10 @@ var/list/ai_verbs_default = list(
 	powered_ai = ai
 	powered_ai.psupply = src
 	forceMove(powered_ai.loc)
+	anchored = TRUE	//keep anchored! If unachored for any reason - it can't take power with set_power_use()
 
 	..()
-	use_power(1) // Just incase we need to wake up the power system.
+	use_power(IDLE_POWER_USE) // Just incase we need to wake up the power system.
 
 /obj/machinery/ai_powersupply/Destroy()
 	. = ..()
@@ -320,14 +321,14 @@ var/list/ai_verbs_default = list(
 		qdel(src)
 		return
 	if(powered_ai.APU_power)
-		use_power = NO_POWER_USE
+		set_power_use(NO_POWER_USE)
 		return
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
-		use_power = NO_POWER_USE
+		set_power_use(NO_POWER_USE)
 		use_power(50000) // Less optimalised but only called if AI is unwrenched. This prevents usage of wrenching as method to keep AI operational without power. Intellicard is for that.
 	if(powered_ai.anchored)
-		use_power = ACTIVE_POWER_USE
+		set_power_use(ACTIVE_POWER_USE)
 
 /mob/living/silicon/ai/proc/ai_movement_up()
 	set category = "Silicon Commands"

@@ -4,7 +4,7 @@
 /obj/effect/plant/proc/get_cardinal_neighbors()
 	var/list/cardinal_neighbors = list()
 	for(var/check_dir in cardinal)
-		var/turf/simulated/T = get_step(get_turf(src), check_dir)
+		var/turf/T = get_step(get_turf(src), check_dir)
 		if(istype(T))
 			cardinal_neighbors |= T
 	return cardinal_neighbors
@@ -13,7 +13,7 @@
 	// Update our list of valid neighboring turfs.
 	neighbors = list()
 	var/list/tocheck = get_cardinal_neighbors()
-	for(var/turf/simulated/floor in tocheck)
+	for(var/turf/floor in tocheck)
 		var/turf/zdest = get_connecting_turf(floor, loc)//Handling zlevels
 		if(get_dist(parent, floor) > spread_distance)
 			continue
@@ -67,7 +67,7 @@
 		neighbor.neighbors -= T
 
 
-/obj/effect/plant/proc/door_interaction(obj/machinery/door/door, turf/simulated/floor)
+/obj/effect/plant/proc/door_interaction(obj/machinery/door/door, turf/floor)
 	//We have to make sure that nothing ELSE aside from the door is blocking us
 	var/blocked = FALSE
 	for (var/obj/O in floor)
@@ -146,7 +146,7 @@
 
 
 /obj/effect/plant/proc/life()
-	var/turf/simulated/T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(istype(T))
 		health -= seed.handle_environment(T,T.return_air(),null,1)
 
@@ -269,7 +269,7 @@
 				P.check_health()
 
 	// This turf is clear now, let our buddies know.
-	for(var/turf/simulated/check_turf in get_cardinal_neighbors())
+	for(var/turf/check_turf in get_cardinal_neighbors())
 		if(!istype(check_turf))
 			continue
 		for(var/obj/effect/plant/neighbor in check_turf.contents)

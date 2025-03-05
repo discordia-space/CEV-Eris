@@ -37,7 +37,7 @@
 /obj/item/mech_component/sensors/proc/get_sight(powered)
 	var/flags = 0
 	var/mob/living/exosuit/mech = loc
-	if(total_damage >= 0.8 * max_damage || (!powered && mech.hatch_closed))
+	if(total_damage >= 0.8 * max_damage || (!powered && mech.hatch_closed && (mech.body && mech.body.has_hatch)))
 		flags |= BLIND
 	else if(active_sensors)
 		flags |= vision_flags
@@ -88,6 +88,8 @@
 	desc = "A primitive set of sensors designed to provide basic visual information to the pilot."
 	max_damage = 125
 	power_use = 0
+	armor = list(melee = 20, bullet = 10, energy = 5, bomb = 60, bio = 100, rad = 0)
+	shielding = 5
 
 /obj/item/mech_component/sensors/light
 	name = "light sensors"
@@ -99,7 +101,12 @@
 	vision_flags = SEE_TURFS
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	power_use = 50
+	emp_shielded = TRUE
 	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 5, MATERIAL_SILVER = 2) //NVG takes uranium, but mecha NVGs are bugged & it's mecha-sized so let's not
+	armor = list(melee = 16, bullet = 8, energy = 4, bomb = 40, bio = 100, rad = 100)
+
+	front_mult = 0.5
+
 
 /obj/item/mech_component/sensors/combat
 	name = "combat sensors"
@@ -111,7 +118,11 @@
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	max_damage = 75 //the sensors are delicate, the value of this part is in the SEE_MOBS flag anyway
 	power_use = 200
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 5, MATERIAL_GOLD = 7, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 7)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 6, MATERIAL_GOLD = 8, MATERIAL_SILVER = 8, MATERIAL_URANIUM = 8)
+	armor = list(melee = 26, bullet = 22, energy = 16, bomb = 100, bio = 100, rad = 100)
+	shielding = 10
+
+	front_mult = 0.75
 
 /obj/item/mech_component/sensors/heavy
 	name = "heavy sensors"
@@ -121,3 +132,5 @@
 	max_damage = 200
 	power_use = 0
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTEEL = 8, MATERIAL_URANIUM = 6)
+	armor = list(melee = 32, bullet = 24, energy = 20, bomb = 160, bio = 100, rad = 100)
+	shielding = 15

@@ -60,7 +60,7 @@
 	if(!M || !Adjacent(M) || !iscarbon(M))
 		return
 
-	if(ishuman(M) && (!M.mind || !M.client))
+	if((ishuman(M) && !M.isMonkey()) && (!M.mind || !M.client))
 		to_chat(src, SPAN_WARNING("Host's body is in a state of hibernation, you are afraid to be crushed when they roll over in their sleep!"))
 		return
 	if(M.has_brain_worms())
@@ -151,12 +151,12 @@
 	H.add_language(LANGUAGE_CORTICAL)
 
 	// Remove the usual "host control" abilities
-	H.verbs -= abilities_in_control
+	remove_verb(H, abilities_in_control)
 
-	H.verbs |= /mob/living/carbon/human/proc/commune
-	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
-	H.verbs |= /mob/living/carbon/proc/spawn_larvae
-	H.verbs |= /mob/living/carbon/proc/talk_host
+	add_verb(H, /mob/living/carbon/human/proc/commune)
+	add_verb(H, /mob/living/carbon/human/proc/psychic_whisper)
+	add_verb(H, /mob/living/carbon/proc/spawn_larvae)
+	add_verb(H, /mob/living/carbon/proc/talk_host)
 
 	if(H.client)
 		H.daemonize()

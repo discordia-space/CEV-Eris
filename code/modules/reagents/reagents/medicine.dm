@@ -41,24 +41,26 @@
 	M.heal_organ_damage(0.6 * effect_multiplier, 0, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.15)
 
-/datum/reagent/medicine/bicaridine/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/muscle/user_muscle = user.random_organ_by_process(OP_MUSCLE)
-	var/obj/item/organ/internal/nerve/user_nerve = user.random_organ_by_process(OP_NERVE)
-	if(!user_muscle)
-		return FALSE
-	user_muscle.take_damage(dose/3, FALSE, TOX)
-	if(!user_nerve)
-		return FALSE
-	user_nerve.take_damage(dose/3, FALSE, TOX)
-	if(prob(3))
-		to_chat(user, span_danger("Your muscles ache with agonizing pain!"))
-		user.Weaken(2)
-	if(volume > 100 && prob(1))
-		var/obj/item/organ/internal/vital/heart/user_heart = user.random_organ_by_process(OP_HEART)
-		if(!user_heart || BP_IS_ROBOTIC(user_heart))
+/datum/reagent/medicine/bicaridine/overdose(mob/living/carbon/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/muscle/user_muscle = H.random_organ_by_process(OP_MUSCLE)
+		var/obj/item/organ/internal/nerve/user_nerve = H.random_organ_by_process(OP_NERVE)
+		if(!user_muscle)
 			return FALSE
-		to_chat(user, span_danger("You feel like your heart just exploded!"))
-		user_heart.take_damage(15, FALSE, TOX)
+		user_muscle.take_damage(dose/3, FALSE, TOX)
+		if(!user_nerve)
+			return FALSE
+		user_nerve.take_damage(dose/3, FALSE, TOX)
+		if(prob(3))
+			to_chat(H, span_danger("Your muscles ache with agonizing pain!"))
+			H.Weaken(2)
+		if(volume > 100 && prob(1))
+			var/obj/item/organ/internal/vital/heart/user_heart = H.random_organ_by_process(OP_HEART)
+			if(!user_heart || BP_IS_ROBOTIC(user_heart))
+				return FALSE
+			to_chat(H, span_danger("You feel like your heart just exploded!"))
+			user_heart.take_damage(15, FALSE, TOX)
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
@@ -117,9 +119,11 @@
 	holder.remove_reagent("pararein", 0.2)
 	holder.remove_reagent("blattedin", 0.2)
 
-/datum/reagent/medicine/dylovene/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
-	create_overdose_wound(user_vessel, user, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
+/datum/reagent/medicine/dylovene/overdose(mob/living/carbon/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/blood_vessel/user_vessel = H.random_organ_by_process(OP_BLOOD_VESSEL)
+		create_overdose_wound(user_vessel, H, /datum/component/internal_wound/organic/heavy_poisoning, "accumulation")
 
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
@@ -174,19 +178,21 @@
 	M.add_chemical_effect(CE_ANTITOX, 1)
 	M.add_chemical_effect(CE_BLOODCLOT, 0.1)
 
-/datum/reagent/medicine/tricordrazine/overdose(mob/living/carbon/human/user, alien)
-	var/obj/item/organ/internal/liver/user_liver = user.random_organ_by_process(OP_LIVER)
-	if(!user_liver)
-		return FALSE
-	user_liver.take_damage(dose/3, FALSE, TOX)
-	// For those special people
-	if(volume > 300 && prob(10))
-		var/obj/item/organ/internal/blood_vessel/user_vessel = user.random_organ_by_process(OP_BLOOD_VESSEL)
-		if(!user_vessel)
+/datum/reagent/medicine/tricordrazine/overdose(mob/living/carbon/M, alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/liver/user_liver = H.random_organ_by_process(OP_LIVER)
+		if(!user_liver)
 			return FALSE
-		to_chat(user, "You feel intense swelling in your [user_vessel.loc?.name], and you notice it going numb and red!")
-		user.AdjustParalysis(5)
-		user_vessel.take_damage(15, FALSE, TOX)
+		user_liver.take_damage(dose/3, FALSE, TOX)
+		// For those special people
+		if(volume > 300 && prob(10))
+			var/obj/item/organ/internal/blood_vessel/user_vessel = H.random_organ_by_process(OP_BLOOD_VESSEL)
+			if(!user_vessel)
+				return FALSE
+			to_chat(H, "You feel intense swelling in your [user_vessel.loc?.name], and you notice it going numb and red!")
+			H.AdjustParalysis(5)
+			user_vessel.take_damage(15, FALSE, TOX)
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"

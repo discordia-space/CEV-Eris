@@ -63,6 +63,14 @@
 	name = "mounted blade framework"
 	build_path = /obj/item/mech_blade_assembly
 
+/datum/design/research/item/exosuit/weapon/sprayer
+	name = "mech-mounted chemical sprayer"
+	build_path = /obj/item/mech_equipment/mounted_system/sprayer
+
+/datum/design/research/item/exosuit/weapon/stunbaton
+	name = "mech-mounted stunbaton"
+	build_path = /obj/item/mech_equipment/mounted_system/baton
+
 //UTILITY
 /datum/design/research/item/exosuit/hydraulic_clamp
 	name = "hydraulic clamp"
@@ -75,6 +83,10 @@
 /datum/design/research/item/exosuit/floodlight
 	name = "floodlight"
 	build_path = /obj/item/mech_equipment/light
+
+/datum/design/research/item/exosuit/binoculars
+	name = "mech-mounted binoculars"
+	build_path = /obj/item/mech_equipment/mounted_system/binoculars
 
 /datum/design/research/item/exosuit/extinguisher
 	name = "mounted extinguisher"
