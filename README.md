@@ -7,3 +7,7 @@
 ## CONTRIBUTING
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md)
+
+### DB guide
+
+Please see [DB.md](docs/db.md)
