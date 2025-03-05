@@ -60,7 +60,7 @@
   - bugfix: chemical reagent smoke should be much more reliable now.
   - tweak: weaken() makes you drop items again
   - rscadd: The "Old newspaper" oddity can now be used to zoom out a couple tiles.
-  Autisem:
+  REDACTED:
   - rscadd: priests may use new litany to summon items from the EOTP
   - tweak: Only 1 High Inquisitor's Seal may be recieved from the EOTP
   Humonitarian:
@@ -81,7 +81,7 @@
   - bugfix: Attempting to construct a bioreactor platform now gives the correct result,
       instead of a tank platform.
 2022-03-21:
-  Autisem:
+  REDACTED:
   - bugfix: dielthymine did not process properly in trays.
   - bugfix: eotp quick fix
   - rscadd: priests may use new litany to summon items from the EOTP

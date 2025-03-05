@@ -12,7 +12,7 @@
   - bugfix: Maintshrooms now check if the other end of a burrow is too bright for
       it to grow before spreading
 2023-03-11:
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: Adds organ wounding mechanic
   - tweak: Reworks damage system to one focused on vital organ health, replaces bay-style
       damage tracking and deaths
@@ -36,7 +36,7 @@
   - rscadd: Add tech level to bonsai tree
   Kurgis:
   - bugfix: Cyborg Service Fabricators use the correct icon file.
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Randomizes parallax again
   - rscadd: Added Destroy() cleanup to /datum/nano_module/appearance_changer
   - code_imp: Made some text compliant with Github's TOS
@@ -108,7 +108,7 @@
   - rscadd: autolathe recipe for handheld mirror
   - tweak: handheld mirror has materials
 2023-03-21:
-  Pink-Chink:
+  Pink-chunk:
   - code_imp: Ported TG components and elements
   - code_imp: Adds macros for proc reference compatibility with byond 515
 2023-03-25:
@@ -119,7 +119,7 @@
   - tweak: Swings can hit multiple roaches in a single tile
   Mycah142:
   - tweak: tweaked trade ship to encourage more player material trading
-  Pink-Chink:
+  Pink-chunk:
   - rscdel: Removes tox damage from radiation
   - bugfix: Removed "no damage" flag from Demolecularisor
   - bugfix: Fixed sprite flags so mutated limbs don't appear missing

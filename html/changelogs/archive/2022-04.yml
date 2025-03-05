@@ -2,7 +2,7 @@
   Humonitarian:
   - tweak: Many HomeMadeTM guns renamed
   - bugfix: throwing knives will be thrown when thrown
-  Pink-Chink:
+  Pink-chunk:
   - tweak: added mind check to living Life() sleep check logic
   - balance: slightly extends the generate_body() timer to 66 seconds from 60
   TGCMbetcher:
@@ -108,7 +108,7 @@
   - balance: Cover now only works if the target is adjacent to it
   - bugfix: Bullets now hit mechs where you aimed them
   - bugfix: Mechs no longer magically soak up bullets
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: added check for existing invisible soil when planting a seed with TRAIT_SPREAD
       > 0
   SirRichardFrancis:
@@ -138,7 +138,7 @@
   MLGTASTICa:
   - balance: Duct taping a camera now costs 10.5 units of duct tape.
   - balance: Burrows can no longer spawn ontop of cables / pipes
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: added trade catalog app
   - rscadd: added style and smoke stations
   - rscadd: added export function to beacons

@@ -16,7 +16,7 @@
   - bugfix: Fixed C4 not deleting girders properly
   - balance: Reduced C4 minimum time from 5 seconds to 2
   - balance: Reduced planting time for C4 from 5 seconds to 2.
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: Added aberrant organs
   - rscadd: Added organ lab to medbay
   - rscadd: Added medi-sarcophagus, organ vendor, organ fabricator, regurgitator,
@@ -46,14 +46,14 @@
   - code_imp: Removed a debug message from the von-krabin.
   - bugfix: Fixed techno-radio broadcasting
   - balance: Made eyes take double the damage to be broken,
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Fixed items getting stuck in the regurgitator
   - bugfix: Fixed situation where regurgitator biotic substrate count would go negative
   - bugfix: Fixed potential issue with swapping parts on the regurgitator
   maikilangiolo:
   - bugfix: fixed improper .40 bullet pile size
 2022-09-05:
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Turns off sprite generation logging due it being a source of significant
       lag
   - bugfix: Removed worldwide check for deprecated object type
@@ -93,7 +93,7 @@
   - rscadd: MRB reference in loadout
   MLGTASTICa:
   - bugfix: Fixed guild radio bluespace item spawning.
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: Adds Moebius Bio-Engineer, a new MoeMed role for genetics + viscera
   - rscadd: Added mod attach/remove buttons to organs in the surgery window
   - rscadd: Added examine button to aberrant organs in the surgery window
@@ -167,7 +167,7 @@
   - bugfix: Fixed terminals
   MatejaTadic03:
   - balance: adds deprivation lithany to all NT occupations
-  Pink-Chink:
+  Pink-chunk:
   - tweak: Allows coolant to cool reagent containers
   - rscadd: Added refrigerant as a coolant subtype
   - code_imp: Commented out unused coolant proc
@@ -238,7 +238,7 @@
   - balance: rebalanced ammo hardcase steel cost 20 -> 15
   - balance: reduced flare shotgun steel cost
 2022-09-20:
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: Added a placeholder sprite for tool mods
 2022-09-24:
   Alliostra:
@@ -258,7 +258,7 @@
   - rscadd: spurs that jingle-jangle-jingle(jingle-jangle)
   Mycah142:
   - tweak: Added id_scan check to the NeoTheology vendor before it checks for cruciform.
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: Fixed an issue with organ species not being set
   - balance: Organ mod installation has 100% success rate at 35 BIO
   - balance: intracrinal organoids increase a given stat by 5, intracrinal membranes
@@ -343,7 +343,7 @@
   - rscadd: Added .25 clips
   Kurgis:
   - tweak: Tau Cross Necklace is now a small item.
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: Added placeholder aberrant organ research
   - bugfix: Fixes incorrect description in durable membrane
   - bugfix: Fixes bone bracing buff being overwritten by mods

@@ -120,7 +120,7 @@
   - bugfix: Fixed armament disks runtiming
   - bugfix: Fixed autodoc shrapnel removal not working properly.
   - bugfix: Fixed inactivity kicking everyone.
-  Pink-Chink:
+  Pink-chunk:
   - bugfix: re-enables low pressure damage
   Shazbot194:
   - rscadd: Dynamic sprites for speedloaders
@@ -190,7 +190,7 @@
   - bugfix: Fixed fire-rate limits being bypassable by spam clicking(again)
   - balance: Robots now climb ladders 50% faster than before.
   - rscadd: Added new plasma and nitrous oxide sprites.
-  Pink-Chink:
+  Pink-chunk:
   - rscadd: Added selection tree, viewable carts, cart save slots, an ordering system,
       and a function for fulfilling all offers to the trade program
   - rscadd: Added trade logging app
