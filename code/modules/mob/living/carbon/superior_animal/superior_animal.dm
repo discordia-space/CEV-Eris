@@ -376,7 +376,7 @@
 	. = ..()
 
 /mob/living/carbon/superior_animal/proc/commandchain(mob/potentialally)
-	if(faction != potentialally.faction) // it isn't an ally?
+	if(faction != potentialally?.faction) // it isn't an ally?
 		if(isValidAttackTarget(potentialally)) // is it an enemy?
 			target_mob = potentialally // THEN KILL IT!
 			stance = HOSTILE_STANCE_ATTACK
