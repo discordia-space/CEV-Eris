@@ -63,3 +63,12 @@
 	if (isroach(target_mob))
 		return FALSE // so these pass through roaches
 	..()
+
+/mob/living/carbon/superior_animal/roach/toxic/joinOvermind(datum/overmind/roachmind/jointhis)
+	jointhis.addRanged(src) // Gestrahlte is Ranged
+	overseer = jointhis
+
+/mob/living/carbon/superior_animal/roach/toxic/leaveOvermind()
+	overseer?.removeRanged(src) // Ranged Gestrahlte
+	overseer?.casualties.Remove(src)
+	overseer = null

@@ -70,8 +70,8 @@ Has ability of every roach.
 	if(can_call_reinforcements())
 		distress_call()
 
-	gas_sac.add_reagent("blattedin", 1)
-	if(prob(7))
+	gas_sac.add_reagent("blattedin", 2)
+	if(prob(7) && !(/obj/effect/effect/smoke/chem/roach in loc)) // even kaiser shouldn't overdo it passively
 		gas_attack()
 
 
@@ -94,7 +94,7 @@ Has ability of every roach.
 		return
 
 	var/location = get_turf(src)
-	var/datum/effect/effect/system/smoke_spread/chem/S = new
+	var/datum/effect/effect/system/smoke_spread/chem/roach/S = new
 
 	S.attach(location)
 	S.set_up(gas_sac, gas_sac.total_volume, 0, location)
@@ -110,6 +110,8 @@ Has ability of every roach.
 	. = ..()
 	if(. && gas_attack())
 		visible_emote("charges at [.] in clouds of poison!")
+	if(overseer && .)
+		overseer.targetEnemy(.)
 
 // FUHRER ABILITIES
 /mob/living/carbon/superior_animal/roach/kaiser/proc/distress_call()
@@ -127,7 +129,7 @@ Has ability of every roach.
 			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
 		for (var/obj/structure/burrow/B in find_nearby_burrows(src))
-			B.distress(TRUE)
+			B.distress(TRUE, src)
 
 
 /mob/living/carbon/superior_animal/roach/kaiser/proc/can_call_reinforcements()
@@ -138,6 +140,17 @@ Has ability of every roach.
 	if(health_marker_3 >= health && health > 0 && distress_call_stage == 1)
 		return TRUE
 	return FALSE
+
+/mob/living/carbon/superior_animal/roach/kaiser/updatehealth()
+	. = ..()
+	if(health < maxHealth/2)
+		if(overseer)
+			overseer.casualties |= src
+			overseer.updateHealing()
+	else if(health >= maxHealth * 0.75)
+		if(overseer)
+			overseer.casualties.Remove(src)
+
 
 /mob/living/carbon/superior_animal/roach/kaiser/slip(var/slipped_on)
 	return FALSE

@@ -29,6 +29,17 @@
 		rad = 50
 	)
 
+/mob/living/carbon/superior_animal/roach/tank/updatehealth()
+	. = ..()
+	if(health < maxHealth/2)
+		if(overseer)
+			overseer.casualties |= src
+			overseer.updateHealing()
+	else if(health >= maxHealth * 0.75)
+		if(overseer)
+			overseer.casualties.Remove(src)
+
+
 // Panzers won't slip over on water or soap.
 /mob/living/carbon/superior_animal/roach/tank/slip(var/slipped_on,stun_duration=8)
 	return FALSE
