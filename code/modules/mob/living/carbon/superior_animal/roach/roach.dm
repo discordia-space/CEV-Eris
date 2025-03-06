@@ -153,20 +153,20 @@
 					else if(istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser))
 						if(overseer && comrade.overseer)
 							overseer.rearrangeOverminds(comrade.overseer)
-						else if(comrade.overseer && comrade.overseer.leader == comrade) // replace the leader
-							joinOvermind(comrade.overseer)
-							comrade.overseer.leader = src
-						else if(!comrade.overseer && overseer) // or if we have an overmind and they don't, they join
+						else if(overseer && overseer.leader == src) // replace the leader
 							comrade.joinOvermind(overseer)
+							overseer.leader = comrade
+						else if(!overseer && comrade.overseer) // or if they have an overmind and we don't, we join
+							joinOvermind(overseer)
 				if(/mob/living/carbon/superior_animal/roach/kaiser) // only one possibility requires code with kaiser
 					if(istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer))
 						if(overseer && comrade.overseer)
 							overseer.rearrangeOverminds(comrade.overseer)
-						else if(overseer && overseer.leader == src) // replace the leader
-							comrade.joinOvermind(overseer)
-							overseer.leader = comrade
-						else if(!overseer && comrade.overseer)
+						else if(comrade.overseer && comrade.overseer.leader == comrade) // replace the leader
 							joinOvermind(comrade.overseer)
+							comrade.overseer.leader = src
+						else if(overseer && !comrade.overseer)
+							comrade.joinOvermind(overseer)
 				else
 					if(!overseer && istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer) || istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser) && comrade.overseer)
 						joinOvermind(comrade.overseer)
