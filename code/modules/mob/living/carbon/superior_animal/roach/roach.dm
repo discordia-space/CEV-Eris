@@ -73,6 +73,8 @@
 			)
 
 
+	var/datum/overmind/roachmind/overseer
+
 	// Armor related variables
 	armor = list(
 		melee = 0,
@@ -88,9 +90,11 @@
 	var/newhat = pick(hats4roaches)
 	var/obj/item/hatobj = new newhat(loc)
 	wear_hat(hatobj)
+	findOverseer()
 
 /mob/living/carbon/superior_animal/roach/Destroy()
 	clearEatTarget()
+	leaveOvermind()
 	return ..()
 
 //When roaches die near a leader, the leader may call for reinforcements
@@ -118,6 +122,55 @@
 		update_hat()
 
 
+	if(!blattedin_revives_left)
+		leaveOvermind()
+	else
+		overseer?.casualties |= src
+
+/mob/living/carbon/superior_animal/roach/updatehealth()
+	. = ..()
+	if(overseer)
+		overseer.awaken()
+
+
+/mob/living/carbon/superior_animal/roach/commandchain(mob/potentialally) // this proc bypasses the 33 roach limit.
+	. = ..()
+	if(.)
+		if(istype(potentialally, /mob/living/carbon/superior_animal/roach/))
+			var/mob/living/carbon/superior_animal/roach/comrade = potentialally
+			switch(type)
+				if(/mob/living/carbon/superior_animal/roach/fuhrer) // two possibilities that matter with fuhrer
+					if(istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer))
+						if(!overseer && comrade.overseer) // if one of us was abandoned, join up.
+							joinOvermind(comrade.overseer)
+						else if(overseer && !comrade.overseer)
+							comrade.joinOvermind(overseer)
+						else if(!overseer && !comrade.overseer)
+							var/datum/overmind/roachmind/newmind = new() // team up to make a two fuhrer overmind, with the caller being the leader
+							newmind.leader = comrade
+							comrade.joinOvermind(newmind)
+							joinOvermind(newmind)
+					else if(istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser))
+						if(overseer && comrade.overseer)
+							overseer.rearrangeOverminds(comrade.overseer)
+						else if(comrade.overseer && comrade.overseer.leader == comrade) // replace the leader
+							joinOvermind(comrade.overseer)
+							comrade.overseer.leader = src
+						else if(!comrade.overseer && overseer) // or if we have an overmind and they don't, they join
+							comrade.joinOvermind(overseer)
+				if(/mob/living/carbon/superior_animal/roach/kaiser) // only one possibility requires code with kaiser
+					if(istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer))
+						if(overseer && comrade.overseer)
+							overseer.rearrangeOverminds(comrade.overseer)
+						else if(overseer && overseer.leader == src) // replace the leader
+							comrade.joinOvermind(overseer)
+							overseer.leader = comrade
+						else if(!overseer && comrade.overseer)
+							joinOvermind(comrade.overseer)
+				else
+					if(!overseer && istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer) || istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser) && comrade.overseer)
+						joinOvermind(comrade.overseer)
+			
 
 /mob/living/carbon/superior_animal/roach/proc/wear_hat(var/obj/item/new_hat)
 	if(hat)
