@@ -100,11 +100,7 @@
 	severity_max = 3
 	hal_damage = IWOUND_LIGHT_DAMAGE
 	diagnosis_difficulty = STAT_LEVEL_EXPERT
-
-/// Cheap hack, but prevents unbalanced toxins from killing someone immediately
-/datum/component/internal_wound/organic/eyes_poisoning/InheritComponent()
-	if(prob(5))
-		progress()
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_AGGRAVATION
 
 /datum/component/internal_wound/organic/eyes_poisoning/pustule
 	name = "vitreous pustule"
