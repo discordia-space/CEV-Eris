@@ -16,6 +16,7 @@
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
 	unacidable = 1
+	//appearance_flags = NO_CLIENT_COLOR
 	var/obj/master = null //A reference to the object in the slot. Grabs or items, generally.
 	var/mob/living/parentmob
 	var/process_flag = FALSE
@@ -186,6 +187,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = ui_zonesel
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/zone_sel/Click(location, control, params)
 	var/list/PL = params2list(params)
@@ -282,6 +284,7 @@
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/inventory/New(_name = "unnamed", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)//(_name = "unnamed", _screen_loc = "7,7", _slot_id = null, _icon = null, _icon_state = null, _parentmob = null)
 	name = _name
@@ -334,6 +337,7 @@
 	icon_state = "health0"
 	screen_loc = "15,7"
 	process_flag = TRUE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/health/New()
 	..()
@@ -387,6 +391,7 @@
 	soothed by taking drugs, drinking, eating decent food and talking, preferably in a clean place with fellow humans around.\
 	<br>Sanity damage scales with your Vigilance. Left-click eye icon to see your current sanity, insight and style."
 	icon_state = "blank"
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/sanity/New()
 	..()
@@ -541,6 +546,7 @@
 	<br>It is increased by chemicals and mutations.\
 	<br>Going beyond your body's limits has negative consequences. NSA limit scales with your Cognition."
 	icon_state = "blank"
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/nsa/New()
 	..()
@@ -599,6 +605,7 @@
 	icon_state = "blank"
 	screen_loc = "15,6"
 	process_flag = TRUE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/nutrition/New()
 	..()
@@ -639,6 +646,7 @@
 	icon_state = "blank"
 	screen_loc = "15,8"
 	process_flag = TRUE
+	appearance_flags = NO_CLIENT_COLOR
 
 
 /obj/screen/bodytemp/New()
@@ -710,6 +718,7 @@
 	icon_state = "blank"
 	screen_loc = "15,13"
 	process_flag = TRUE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/pressure/New()
 	..()
@@ -742,6 +751,7 @@
 	icon_state = "tox0"
 	screen_loc = "15,10"
 	process_flag = 1
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/toxin/New()
 	..()
@@ -773,6 +783,7 @@
 	icon_state = "oxy0"
 	screen_loc = "15,12"
 	process_flag = TRUE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/oxygen/New()
 	..()
@@ -804,6 +815,7 @@
 	icon_state = "blank"
 	screen_loc = "15,9"
 	process_flag = TRUE
+	appearance_flags = NO_CLIENT_COLOR
 
 
 /obj/screen/fire/New()
@@ -836,6 +848,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "blank"
 	screen_loc = "15,14"
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/internal/New()
 	..()
@@ -969,6 +982,7 @@ obj/screen/fire/DEADelize()
 	icon_state = "look_up"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/look_up/Click()
 	var/mob/living/carbon/human/H = parentmob
@@ -981,6 +995,7 @@ obj/screen/fire/DEADelize()
 	icon_state = "look_down"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/look_down/New()
 	..()
@@ -998,6 +1013,7 @@ obj/screen/fire/DEADelize()
 	icon_state = "wield"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/wield/Click()
 	var/mob/living/carbon/human/H = parentmob
@@ -1024,6 +1040,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "pull0"
 	screen_loc = "14,2"
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/pull/New()
 	..()
@@ -1047,6 +1064,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "act_throw_off"
 	screen_loc = "15,2"
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/HUDthrow/New()
 	/*if(usr)
@@ -1076,6 +1094,7 @@ obj/screen/fire/DEADelize()
 	screen_loc = "15:-16,3"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/block/New()
 	..()
@@ -1103,6 +1122,7 @@ obj/screen/fire/DEADelize()
 	screen_loc = "15:-16,2"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/drop/Click()
 	if(usr.client)
@@ -1117,6 +1137,7 @@ obj/screen/fire/DEADelize()
 	screen_loc = "14:16,2"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/resist/Click()
 	if(isliving(parentmob))
@@ -1131,6 +1152,7 @@ obj/screen/fire/DEADelize()
 	icon_state = "rest"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/rest/Click()
 	parentmob.lay_down()
@@ -1141,6 +1163,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "running"
 	screen_loc = "14,1"
+	appearance_flags = NO_CLIENT_COLOR
 
 
 /obj/screen/mov_intent/Click()
@@ -1166,6 +1189,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "act_equip"
 	screen_loc = "8,2"
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/equip/Click()
 	if(ishuman(parentmob))
@@ -1178,6 +1202,7 @@ obj/screen/fire/DEADelize()
 	icon_state = "swap-l"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/swap/New()
 	..()
@@ -1205,6 +1230,7 @@ obj/screen/fire/DEADelize()
 	layer = HUD_LAYER
 	plane = HUD_PLANE
 	var/target_organ
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/bionics/New()
 	..()
@@ -1236,6 +1262,7 @@ obj/screen/fire/DEADelize()
 	icon_state = "bionics_implant"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 //-----------------------bionics END------------------------------
 //-----------------------language------------------------------
 /obj/screen/language
@@ -1274,6 +1301,7 @@ obj/screen/fire/DEADelize()
 	icon_state = "craft_menu"
 	layer = HUD_LAYER
 	plane = HUD_PLANE
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/craft_menu/Click()
 	parentmob.open_craft_menu()
@@ -1284,6 +1312,7 @@ obj/screen/fire/DEADelize()
 	icon = 'icons/mob/screen/ErisStyle.dmi'
 	icon_state = "full"
 	screen_loc = "8,2"
+	appearance_flags = NO_CLIENT_COLOR
 
 /obj/screen/intent/New()
 	..()
