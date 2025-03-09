@@ -28,8 +28,9 @@
 #define CAVE_GOLD 9
 #define CAVE_PLATINUM 10
 
-//minimum distance between spawned clusters. the spawn is canceled if it's lower than this.
-#define GOLEM_SPAWN_SPACING 7.5 //
+#define GOLEM_SPAWN_INTERVAL 15 // the spacing along each corridor that each golem squad will spawn
+#define GOLEM_SPAWN_SPACING 10 //squads WILL NOT spawn closer than this no matter what, even if corridors intersect or run too close.area
+
 //chance for a cluster of 5 golems to spawn per tile, calculated as "GOLEM_SPAWN_CHANCE_BASE + (GOLEM_SPAWN_CHANCE_SCALING * seismic level)"
 #define GOLEM_SPAWN_CHANCE_BASE 2.8
 #define GOLEM_SPAWN_CHANCE_SCALING 0.2 // 3% on level 1, 4% on level 6.
@@ -59,7 +60,15 @@
 	var/list/blacklist = list(/mob/observer,
 							/obj/machinery/nuclearbomb,
 							/obj/item/disk/nuclear)
-	var/list/generated_golems = list() //golems use this for targeting allies
+	var/list/golem_spawn_nodes = list()
+	var/list/datum/cave_difficulty_level/difficulties = list(
+		new /datum/cave_difficulty_level/beginner,
+		new /datum/cave_difficulty_level/novice,
+		new /datum/cave_difficulty_level/adept,
+		new /datum/cave_difficulty_level/experienced,
+		new /datum/cave_difficulty_level/expert,
+		new /datum/cave_difficulty_level/nightmare
+	)
 
 /obj/cave_generator/Initialize()
 	// Initialize and not New to ensure SSmapping.maploader has been created
@@ -124,8 +133,12 @@
 
 	// Draw a 2-wide corridor
 	for(var/i = x0 to x1 + 1)
+		if((y0 == y1) && ((i % GOLEM_SPAWN_SPACING) == 0) && check_spawn_overlap(locate(x + i,y + y0,z), golem_spawn_nodes))
+			golem_spawn_nodes |= locate(x + i,y + y0,z) //i would use lists of x,y (like the rest of the generation code) but neither the | or the in operators work with nested lists so turfs it is
 		for(var/j = y0 to y1 + 1)
 			map[i][j] = CAVE_FREE
+			if((x0 == x1) && ((j % GOLEM_SPAWN_SPACING) == 0) && check_spawn_overlap(locate(x + x0,y + j,z), golem_spawn_nodes))
+				golem_spawn_nodes |= locate(x + x0,y + j,z)
 
 	// If this is the last corridor
 	if(N == 0)
@@ -595,77 +608,22 @@
 // Spawn golems on free turfs depending on seismic level
 /obj/cave_generator/proc/place_golems(seismic_lvl)
 
-	var/list/turf/golem_spawn_points = list()
+	var/list/datum/cave_difficulty_level/current_difficulty = difficulties[seismic_lvl]
 
-	for(var/i = 1 to CAVE_SIZE)
-		for(var/j = 1 to CAVE_SIZE)
-			if(map[i][j] == CAVE_FREE && prob(GOLEM_SPAWN_CHANCE_BASE + seismic_lvl * GOLEM_SPAWN_CHANCE_SCALING) && check_spawn_overlap(get_turf(locate(x + i, y + j, z)), golem_spawn_points))
+	for(var/turf/floor/asteroid/cave/spawnloc in golem_spawn_nodes) //filtering to only asteroid turfs avoids headaches with POIs and null locs that come from god knows where
 
-				var/turf/turf = get_turf(locate(x + i, y + j, z))
+		var/list/mob/living/carbon/superior_animal/golem/golems_to_spawn = current_difficulty.get_golem_spawns()
 
-				golem_spawn_points += turf
+		var/potentialturfs = list()
 
-				//var/list/mob/golems_to_spawn = list()
+		for(var/turf/floor/asteroid/cave/potential_turf in range(1, spawnloc))
+			potentialturfs += potential_turf
 
-				var/list/mob/living/carbon/superior_animal/golem/golems_to_spawn = list()
+		if(potentialturfs)
+			for(var/golem in golems_to_spawn)
+				new golem(pick_mobless_turf_if_exists(potentialturfs))
 
-				switch(seismic_lvl)
-					if(1,2) //easy: pick 3 random golems
-						var/weights = list(
-							/mob/living/carbon/superior_animal/golem/iron = 3,
-							/mob/living/carbon/superior_animal/golem/coal = 2,
-							/mob/living/carbon/superior_animal/golem/silver = (seismic_lvl == 2) ? 2 : 0)  //0 weight on seismic 1, 2 weight on seismic 2.
-
-						for(var/c = 0, c < 3, c++) // I couldn't get pickweight_mult to work, so running pickweight 5 times is a more reliable solution
-							golems_to_spawn += pickweight(weights)
-
-					if(3,4) //medium: guarantee 1 melee, 1 ranged/special and then pick 2 random
-						var/melee_weights = list(
-							/mob/living/carbon/superior_animal/golem/iron = 4,
-							/mob/living/carbon/superior_animal/golem/coal = (seismic_lvl == 3) ? 2 : 0,
-							/mob/living/carbon/superior_animal/golem/coal/enhanced = (seismic_lvl == 4) ? 2 : 0,
-							/mob/living/carbon/superior_animal/golem/platinum = 3,
-							/mob/living/carbon/superior_animal/golem/plasma = (seismic_lvl == 4) ? 2 : 0)
-
-						var/ranged_weights = list(
-							/mob/living/carbon/superior_animal/golem/silver = 3,
-							/mob/living/carbon/superior_animal/golem/uranium = 1)
-
-						golems_to_spawn += pickweight(melee_weights)
-						golems_to_spawn += pickweight(ranged_weights)
-
-						for(var/c = 0, c < 2, c++)
-							golems_to_spawn += pickweight(melee_weights + ranged_weights)
-
-					if(5,6) // HELL: guarantee 2 melee, 2 ranged/special and then pick 1 random golem
-						var/melee_weights = list(
-								/mob/living/carbon/superior_animal/golem/iron = 3,
-								/mob/living/carbon/superior_animal/golem/coal/enhanced = 2,
-								/mob/living/carbon/superior_animal/golem/platinum = 3,
-								/mob/living/carbon/superior_animal/golem/plasma = 2,
-								/mob/living/carbon/superior_animal/golem/diamond = (seismic_lvl == 6) ? 2 : 0)
-
-						var/ranged_weights = list(
-								/mob/living/carbon/superior_animal/golem/silver/enhanced = 3,
-								/mob/living/carbon/superior_animal/golem/gold = 3,
-								/mob/living/carbon/superior_animal/golem/uranium = 2,
-								/mob/living/carbon/superior_animal/golem/ansible = (seismic_lvl == 6) ? 2 : 0)
-
-						for(var/c = 0, c < 2, c++)
-							golems_to_spawn += pickweight(melee_weights)
-							golems_to_spawn += pickweight(ranged_weights)
-						golems_to_spawn += pickweight(ranged_weights + melee_weights)
-
-				var/potentialturfs = list()
-				for(var/turf/floor/asteroid/cave/potential_turf in range(1, turf))
-					potentialturfs += potential_turf
-
-				for(var/golem in golems_to_spawn)
-					new golem(pick_mobless_turf_if_exists(potentialturfs))
-
-		for(var/c = 1 to golem_spawn_points.len)
-			log_world(golem_spawn_points[c])
-
+//crude check if a point is within a given distance of any point in the given list
 /obj/cave_generator/proc/check_spawn_overlap(target_turf,list/pointlist)
 	if(!(target_turf && pointlist))
 		return FALSE
@@ -673,7 +631,6 @@
 	for(var/turf/t in pointlist)
 		if(get_dist_euclidian(target_turf, t) < GOLEM_SPAWN_SPACING)
 			return FALSE
-
 	return TRUE
 
 //////////////////////////////
