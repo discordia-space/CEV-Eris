@@ -1,7 +1,11 @@
+//Cave difficulty levels store most stats that affect cavegen based on seismic level.area
+//Golems also store a reference to the current difficulty, currently used only for golem_ore_mult
+
 /datum/cave_difficulty_level //using a datum here lets me simplify the spawn pool logic and declutter cave_generator.dm in the process
 	var/level //number value is easier to work with in some situations
 
 	var/golem_ore_mult = 1
+	var/vein_ore_mult = 1
 
 	//number of golems to spawn *per squad*
 	var/golem_count_melee = 0
@@ -45,6 +49,7 @@
 /datum/cave_difficulty_level/novice
 	level = 2
 
+	vein_ore_mult = 1.5
 	golem_ore_mult = 1.75
 
 	golem_count_mixed = 3
@@ -61,6 +66,7 @@
 /datum/cave_difficulty_level/adept
 	level = 3
 
+	vein_ore_mult = 2
 	golem_ore_mult = 2.5
 
 	golem_count_melee = 1
@@ -81,6 +87,7 @@
 /datum/cave_difficulty_level/experienced
 	level = 4
 
+	vein_ore_mult = 2.5
 	golem_ore_mult = 3.25
 
 	golem_count_melee = 1
@@ -102,6 +109,7 @@
 /datum/cave_difficulty_level/expert
 	level = 5
 
+	vein_ore_mult = 3
 	golem_ore_mult = 4
 
 	golem_count_melee = 2
@@ -123,6 +131,7 @@
 /datum/cave_difficulty_level/nightmare
 	level = 6
 
+	vein_ore_mult = 4
 	golem_ore_mult = 4
 
 	golem_count_melee = 2

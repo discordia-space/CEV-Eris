@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 			if(retreat_on_too_close)
 				updatePathFinding() //retreating enemies need to update their pathfinding way more often
 
-			if((targetrecievedtime - world.time) < 50) // golems will disregard target validity temporarily after another golem gives them a target, so that they don't immediately lose their target
+			if(((targetrecievedtime + 5 SECONDS) > world.time) && (target_mob.z == z)) // golems will disregard target validity temporarily after another golem gives them a target, so that they don't immediately lose their target
 				attemptAttackOnTarget()
 			else
 				prepareAttackOnTarget()
