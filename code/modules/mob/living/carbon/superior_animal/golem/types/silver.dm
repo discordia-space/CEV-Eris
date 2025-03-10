@@ -28,7 +28,7 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/silver
+	mineral_name = ORE_SILVER
 
 	// Ranged attack related variables
 	ranged = TRUE // Will it shoot?

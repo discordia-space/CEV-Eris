@@ -621,7 +621,7 @@
 
 		if(potentialturfs)
 			for(var/golem in golems_to_spawn)
-				new golem(pick_mobless_turf_if_exists(potentialturfs))
+				new golem(pick_mobless_turf_if_exists(potentialturfs), current_difficulty)
 
 //crude check if a point is within a given distance of any point in the given list
 /obj/cave_generator/proc/check_spawn_overlap(target_turf,list/pointlist)

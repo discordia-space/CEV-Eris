@@ -28,9 +28,6 @@
 		rad = 0
 	)
 
-	// Loot related variables
-	ore = /obj/item/stock_parts/subspace/crystal
-
 	// Ranged attack related variables
 	ranged = TRUE // Will it shoot?
 	rapid = FALSE // Will it shoot fast?
@@ -53,6 +50,12 @@
 /mob/living/carbon/superior_animal/golem/ansible/Destroy()
 	set_light(0)
 	. = ..()
+
+/mob/living/carbon/superior_animal/golem/ansible/death()
+	if(prob(10)) //10% chance to drop a bs crystal. since ansible golems are only present on max difficulty this seems like a fair reward.
+		var/crystal = new /obj/item/bluespace_crystal(loc)
+		visible_message(SPAN_NOTICE("A [crystal] falls out of [src] as it disintegrates."), 1)
+	..()
 
 // Special capacity of ansible golem: it will focus and teleport a miner near other golems
 /mob/living/carbon/superior_animal/golem/ansible/proc/teleport_target()

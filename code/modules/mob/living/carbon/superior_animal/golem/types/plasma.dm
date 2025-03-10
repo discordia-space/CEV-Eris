@@ -30,7 +30,7 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/plasma
+	mineral_name = ORE_PLASMA
 
 	// How much time before detonation
 	var/det_time = 2.5 SECONDS

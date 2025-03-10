@@ -27,7 +27,7 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/coal
+	mineral_name = ORE_CARBON
 
 // enhanced coal golems will grab players, leaving them vulnerable to very high damage golems like gold and platinum
 /mob/living/carbon/superior_animal/golem/coal/enhanced

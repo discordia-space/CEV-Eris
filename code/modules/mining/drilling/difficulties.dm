@@ -1,4 +1,6 @@
 /datum/cave_difficulty_level //using a datum here lets me simplify the spawn pool logic and declutter cave_generator.dm in the process
+	var/level //number value is easier to work with in some situations
+
 	var/golem_ore_mult = 1
 
 	//number of golems to spawn *per squad*
@@ -30,6 +32,8 @@
 //Seismic Level 1
 //Easy enough to figure out the basics, but not very rewarding.
 /datum/cave_difficulty_level/beginner
+	level = 1
+
 	golem_count_mixed = 3
 
 	golem_weights_melee = list(
@@ -39,6 +43,8 @@
 //Seismic Level 2
 //Tougher, more rewarding.
 /datum/cave_difficulty_level/novice
+	level = 2
+
 	golem_ore_mult = 1.75
 
 	golem_count_mixed = 3
@@ -53,6 +59,8 @@
 //Seismic Level 3
 //Ever harder. The golems introduced here are hard to fight alone. This is the limit for a solo miner on their roundstart gear.
 /datum/cave_difficulty_level/adept
+	level = 3
+
 	golem_ore_mult = 2.5
 
 	golem_count_melee = 1
@@ -71,6 +79,8 @@
 //Seismic Level 4
 //Teams should start to have trouble here; graphite golems make plasma and platinum golems very dangerous.
 /datum/cave_difficulty_level/experienced
+	level = 4
+
 	golem_ore_mult = 3.25
 
 	golem_count_melee = 1
@@ -90,6 +100,8 @@
 //Seismic Level 5
 //All the lethal golems are out now. A lot of prep or a lot of manpower is necessary to survive this.
 /datum/cave_difficulty_level/expert
+	level = 5
+
 	golem_ore_mult = 4
 
 	golem_count_melee = 2
@@ -109,6 +121,8 @@
 //Seismic Level 6
 //Hell. Ansibles will rip teams apart and diamonds are walking tanks unless you've invested in ballistics.
 /datum/cave_difficulty_level/nightmare
+	level = 6
+
 	golem_ore_mult = 4
 
 	golem_count_melee = 2

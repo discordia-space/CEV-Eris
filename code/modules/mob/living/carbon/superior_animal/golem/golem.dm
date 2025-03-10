@@ -67,14 +67,20 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 	// Damage multiplier when destroying surroundings
 	var/surrounds_mult = 0.5
 
-	// Type of ore to spawn when the golem dies
-	var/ore
+	// Ore datum the golem holds.
+	var/ore/mineral
+	var/mineral_name
 
 	var/targetrecievedtime = -250
 
-/mob/living/carbon/superior_animal/golem/Initialize(var/mapload)
+	var/datum/cave_difficulty_level/difficultylevel //currently this is only used for multiplying ore drops
+
+/mob/living/carbon/superior_animal/golem/Initialize(var/mapload, difficulty)
 	GLOB.all_golems += src
-	.=..()
+	if(mineral_name && (mineral_name in ore_data))
+		mineral = ore_data[mineral_name]
+	difficultylevel = difficulty
+	. = ..()
 
 /mob/living/carbon/superior_animal/golem/Destroy()
 	GLOB.all_golems -= src
@@ -85,13 +91,12 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 	. = ..()
 
 	// Spawn ores
-	if(ore)
-		var/nb_ores = rand(8, 13)
+	if(mineral)
+		var/nb_ores =  ceil((mineral.result_amount + rand(-3, 3)) * (difficultylevel ? difficultylevel.golem_ore_mult : 1))
 		for(var/i in 1 to nb_ores)
-			new ore(loc)
+			new mineral.ore(loc)
 
-		// Specials have a small chance to also drop a golem core
-		if(prob(30) && !istype(src, /mob/living/carbon/superior_animal/golem/coal) && !istype(src, /mob/living/carbon/superior_animal/golem/iron))
+		if(prob(20))
 			new /obj/item/golem_core(loc)
 
 	// Poof

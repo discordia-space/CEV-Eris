@@ -34,7 +34,7 @@
 	retreat_on_too_close = TRUE
 
 	// Loot related variables
-	ore = /obj/item/ore/
+	mineral_name = ORE_GOLD
 
 	var/spike_cooldown = 0
 

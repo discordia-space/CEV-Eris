@@ -33,7 +33,7 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/osmium
+	mineral_name = ORE_PLATINUM
 
 	var/charge_verbs = list("launches itself", "charges", "rams")
 	var/charge_hit_verbs = list("crashes into", "smashes", "slams into")

@@ -29,7 +29,7 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/uranium
+	mineral_name = ORE_URANIUM
 
 	kept_distance = 3
 	retreat_on_too_close = TRUE
