@@ -15,8 +15,8 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		if(copytext(line,1,2) == "#")
 			continue
 
-		//Split the line at every "-"
-		var/list/List = splittext(line, "-")
+		//Split the line at every "="
+		var/list/List = splittext(line, "=")
 		if(!List.len)
 			continue
 
@@ -123,7 +123,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			config.admin_legacy_system = 1
 			load_admins_legacy()
 			return FALSE
-	
+
 	return TRUE
 
 /proc/load_admins()
