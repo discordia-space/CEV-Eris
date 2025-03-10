@@ -29,7 +29,7 @@ var/list/cached_space = list()
 			return 0
 	return 1
 
-proc/get_deepspace(x,y)
+/proc/get_deepspace(x,y)
 	var/obj/effect/overmap/sector/temporary/res = locate(x, y, GLOB.maps_data.overmap_z)
 	if(istype(res))
 		return res
@@ -51,7 +51,7 @@ proc/get_deepspace(x,y)
 /mob/lost_in_space()
 	return isnull(client)
 
-proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
+/proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 	if (!T || !A)
 		return
 

@@ -186,19 +186,19 @@
 	icon_state = "summerdress3"
 	item_state = "summerdress3"
 
-obj/item/clothing/under/leisure
+/obj/item/clothing/under/leisure
 	name = "leisure outfit"
 	desc = "A leisure outfit with brown jacket. Sometimes you just want to wear what is comfortable."
 	icon_state = "leisureoutfit"
 	item_state = "leisureoutfit"
 
-obj/item/clothing/under/leisure/white
+/obj/item/clothing/under/leisure/white
 	name = "white blouse"
 	desc = "A white blouse with a red shirt underneath. You look like a hallway ornament with this."
 	icon_state = "shirtsuit"
 	item_state = "shirtsuit"
 
-obj/item/clothing/under/leisure/pullover
+/obj/item/clothing/under/leisure/pullover
 	name = "patterned pullover"
 	desc = "Brown pullover with indeterminable pattern."
 	icon_state = "pullover"
@@ -216,61 +216,61 @@ obj/item/clothing/under/leisure/pullover
 	icon_state = "business_blue"
 	item_state = "business_blue"
 
-obj/item/clothing/under/neon
+/obj/item/clothing/under/neon
 	name = "green neon tracksuit"
 	desc = "A tracksuit lined with green neon fibers. Slightly luminescent."
 	icon_state = "neon"
 	item_state = "bl_suit"
 
-obj/item/clothing/under/neon/yellow
+/obj/item/clothing/under/neon/yellow
 	name = "yellow neon tracksuit"
 	desc = "A tracksuit lined with yellow neon fibers. Slightly luminescent."
 	icon_state = "neony"
 	item_state = "bl_suit"
 
-obj/item/clothing/under/neon/blue
+/obj/item/clothing/under/neon/blue
 	name = "blue neon tracksuit"
 	desc = "A tracksuit lined with blue neon fibers. Slightly luminescent."
 	icon_state = "neonb"
 	item_state = "bl_suit"
 
-obj/item/clothing/under/neon/red
+/obj/item/clothing/under/neon/red
 	name = "red neon tracksuit"
 	desc = "A tracksuit lined with red neon fibers. Slightly luminescent."
 	icon_state = "neonr"
 	item_state = "bl_suit"
 
-obj/item/clothing/under/jersey
+/obj/item/clothing/under/jersey
 	name = "revealing jersey"
 	desc = "For showing your devotion to god, or the opposite for that matter"
 	icon_state = "jersey"
 	item_state = "jersey"
 
-obj/item/clothing/under/cyber
+/obj/item/clothing/under/cyber
 	name = "augmented jumpsuit"
 	desc = "I wanted a jumpsuit. It gave me THIS."
 	icon_state = "cyber"
 	item_state = "cyber"
 
-obj/item/clothing/under/netrunner
+/obj/item/clothing/under/netrunner
 	name = "cybersuit"
 	desc = "Jumpsuit favored by surveillance officers and VR gamers alike."
 	icon_state = "jensen"
 	item_state = "jensen"
 
-obj/item/clothing/under/genericb
+/obj/item/clothing/under/genericb
 	name = "blue generic outfit"
 	desc = "A simple blue shirt with brown pants."
 	icon_state = "genericb"
 	item_state = "genericb"
 
-obj/item/clothing/under/genericw
+/obj/item/clothing/under/genericw
 	name = "white generic outfit"
 	desc = "A simple white shirt with grey pants."
 	icon_state = "genericw"
 	item_state = "genericw"
 
-obj/item/clothing/under/genericr
+/obj/item/clothing/under/genericr
 	name = "red generic outfit"
 	desc = "A simple red shirt with black pants."
 	icon_state = "genericr"

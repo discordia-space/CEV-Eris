@@ -90,7 +90,7 @@ var/datum/uplink/uplink = new()
 
 	U.purchase_log[src] = U.purchase_log[src] + 1
 
-datum/uplink_item/dd_SortValue()
+/datum/uplink_item/dd_SortValue()
 	return cost(INFINITY)
 
 /********************************

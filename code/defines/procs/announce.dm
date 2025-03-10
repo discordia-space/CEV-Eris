@@ -49,22 +49,22 @@
 			sound_to(M, message_sound)
 	Log(message, message_title)
 
-datum/announcement/proc/Message(message as text, message_title as text, use_text_to_speech)
+/datum/announcement/proc/Message(message as text, message_title as text, use_text_to_speech)
 	global_announcer.autosay("<span class='warning'>[title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
-datum/announcement/minor/Message(message as text, message_title as text, use_text_to_speech)
+/datum/announcement/minor/Message(message as text, message_title as text, use_text_to_speech)
 	global_announcer.autosay(message, ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
-datum/announcement/priority/Message(message as text, message_title as text, use_text_to_speech)
+/datum/announcement/priority/Message(message as text, message_title as text, use_text_to_speech)
 	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
-datum/announcement/priority/command/Message(message as text, message_title as text, use_text_to_speech)
+/datum/announcement/priority/command/Message(message as text, message_title as text, use_text_to_speech)
 	global_announcer.autosay("<span class='warning'>[message_title]:</span> [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
-datum/announcement/priority/security/Message(message as text, message_title as text, use_text_to_speech)
+/datum/announcement/priority/security/Message(message as text, message_title as text, use_text_to_speech)
 	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
-datum/announcement/proc/NewsCast(message as text, message_title as text)
+/datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)
 		return
 
@@ -76,24 +76,24 @@ datum/announcement/proc/NewsCast(message as text, message_title as text)
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-datum/announcement/proc/PlaySound(var/message_sound)
+/datum/announcement/proc/PlaySound(var/message_sound)
 	if(!message_sound)
 		return
 	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && !isdeaf(M))
 			M << message_sound
 
-datum/announcement/proc/Sound(var/message_sound)
+/datum/announcement/proc/Sound(var/message_sound)
 	PlaySound(message_sound)
 
-datum/announcement/priority/Sound(var/message_sound)
+/datum/announcement/priority/Sound(var/message_sound)
 	if(message_sound)
 		world << message_sound
 
-datum/announcement/priority/command/Sound(var/message_sound)
+/datum/announcement/priority/command/Sound(var/message_sound)
 	PlaySound(message_sound)
 
-datum/announcement/proc/Log(message as text, message_title as text)
+/datum/announcement/proc/Log(message as text, message_title as text)
 	if(log)
 		log_say("[key_name(usr)] has made \a [announcement_type]: [message_title] - [message] - [announcer]")
 		message_admins("[key_name_admin(usr)] has made \a [announcement_type].", 1)

@@ -93,7 +93,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 
 
 /proc/clear_admin_datums()
-	admin_datums.Cut()
+	GLOB.admin_datums.Cut()
 	for(var/client/C in admins)
 		C.remove_admin_verbs()
 		C.holder = null
@@ -117,7 +117,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 	else
 		load_admins()
 
-		if(!LAZYLEN(admin_datums))
+		if(!LAZYLEN(GLOB.admin_datums))
 			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			config.admin_legacy_system = 1

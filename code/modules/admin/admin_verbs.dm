@@ -163,7 +163,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/rename_silicon,
 	/client/proc/manage_silicon_laws,
 	/client/proc/change_human_appearance_admin,
-	/client/proc/change_human_appearance_self,
 	/client/proc/change_security_level,
 	/client/proc/free_slot,
 	/client/proc/toggledrones,
@@ -437,7 +436,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	if(!warned_ckey || !istext(warned_ckey))
 		return
 
-	if(warned_ckey in admin_datums)
+	if(warned_ckey in GLOB.admin_datums)
 		to_chat(usr, "<font color='red'>Error: warn(): You can't warn admins.</font>")
 		return
 
@@ -646,32 +645,32 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 		return
 
 	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = GLOB.admin_state)
+	H.change_appearance(APPEARANCE_ALL, usr, usr, state = GLOB.admin_state)
 
 // Allows the human-based mob itself change its basic appearance
-/client/proc/change_human_appearance_self()
-	set name = "Change Mob Appearance - Self"
-	set desc = "Allows the mob to change its appearance"
-	set category = "Fun"
+// /client/proc/change_human_appearance_self()
+// 	set name = "Change Mob Appearance - Self"
+// 	set desc = "Allows the mob to change its appearance"
+// 	set category = "Fun"
 
-	if(!check_rights(R_FUN))
-		return
+// 	if(!check_rights(R_FUN))
+// 		return
 
-	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in GLOB.human_mob_list
-	if(!H)
-		return
+// 	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in GLOB.human_mob_list
+// 	if(!H)
+// 		return
 
-	if(!H.client)
-		to_chat(usr, "Only mobs with clients can alter their own appearance.")
-		return
+// 	if(!H.client)
+// 		to_chat(usr, "Only mobs with clients can alter their own appearance.")
+// 		return
 
-	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
-		if("Yes")
-			log_and_message_admins("has allowed [H] to change \his appearance, including races that requires whitelisting")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 0)
-		if("No")
-			log_and_message_admins("has allowed [H] to change \his appearance, excluding races that requires whitelisting.")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+// 	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
+// 		if("Yes")
+// 			log_and_message_admins("has allowed [H] to change \his appearance, including races that requires whitelisting")
+// 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 0)
+// 		if("No")
+// 			log_and_message_admins("has allowed [H] to change \his appearance, excluding races that requires whitelisting.")
+// 			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
 
 /client/proc/change_security_level()
 	set name = "Set security level"

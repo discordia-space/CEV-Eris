@@ -560,7 +560,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return max(min(middle, high), low)
 
 //returns random gauss number
-proc/GaussRand(var/sigma)
+/proc/GaussRand(var/sigma)
   var/x, y, rsq
   do
     x=2*rand()-1
@@ -570,7 +570,7 @@ proc/GaussRand(var/sigma)
   return sigma*y*sqrt(-2*log(rsq)/rsq)
 
 //returns random gauss number, rounded to 'roundto'
-proc/GaussRandRound(var/sigma, var/roundto)
+/proc/GaussRandRound(var/sigma, var/roundto)
 	return round(GaussRand(sigma), roundto)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
@@ -1047,7 +1047,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 /proc/get_turf_or_move(turf/location)
 	return get_turf(location)
 
-proc/is_hot(obj/item/W)
+/proc/is_hot(obj/item/W)
 	if(QUALITY_WELDING in W.tool_qualities)
 		return 3800
 	switch(W.type)
@@ -1222,7 +1222,7 @@ var/list/FLOORITEMS = list(
 		colour = pick(list("FF0000", "FF7F00", "FFFF00", "00FF00", "0000FF", "4B0082", "8F00FF"))
 	else
 		for(var/i=1;i<=3;i++)
-			var/temp_col = "[num2hex(rand(lower, upper))]"
+			var/temp_col = "[num2hex(rand(lower, upper), 3)]"
 			if(length(temp_col )<2)
 				temp_col  = "0[temp_col]"
 			colour += temp_col

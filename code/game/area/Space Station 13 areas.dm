@@ -26,7 +26,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	ambience = list('sound/ambience/ambispace.ogg','sound/ambience/spaceambient1.ogg','sound/ambience/spaceambient2.ogg','sound/ambience/spaceambient3.ogg','sound/ambience/spaceambient4.ogg','sound/ambience/spaceambient5.ogg','sound/ambience/spaceambient6.ogg')
 	vessel = null
 
-area/space/atmosalert()
+/area/space/atmosalert()
 	return
 
 /area/space/fire_alert()

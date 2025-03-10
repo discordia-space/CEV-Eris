@@ -46,7 +46,7 @@
 		return A && is_environment(A.sound_env) ? A.sound_env : sound.environment
 
 
-datum/sound_token/instrument/add_listener(var/atom/listener)
+/datum/sound_token/instrument/add_listener(var/atom/listener)
 	var/mob/m = listener
 	if(istype(m))
 		if(m.get_preference_value(/datum/client_preference/play_instruments) != GLOB.PREF_YES)

@@ -833,7 +833,7 @@
 	src.cut_overlays()
 	overlays += ovrls["fire[H.fire_alert == 1]"]
 
-obj/screen/fire/DEADelize()
+/obj/screen/fire/DEADelize()
 	cut_overlays()
 	overlays += ovrls["fire0"]
 //--------------------------------------------------fire end---------------------------------------------------------

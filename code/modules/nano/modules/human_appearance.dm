@@ -7,18 +7,10 @@
 	var/list/valid_hairstyles = list()
 	var/list/valid_facial_hairstyles = list()
 
-	var/check_whitelist
-	var/list/whitelist
-	var/list/blacklist
 
-
-
-/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H, var/check_species_whitelist = 1, var/list/species_whitelist = list("human"), var/list/species_blacklist = list())
+/datum/nano_module/appearance_changer/New(var/location, var/mob/living/carbon/human/H)
 	..()
 	owner = H
-	src.check_whitelist = check_species_whitelist
-	src.whitelist = species_whitelist
-	src.blacklist = species_blacklist
 
 /datum/nano_module/appearance_changer/Destroy()
 	owner = null
@@ -91,7 +83,7 @@
 	if(!owner || !owner.species)
 		return
 
-	generate_data(check_whitelist, whitelist, blacklist)
+	generate_data()
 	var/list/data = host.initial_data()
 
 	data["change_name"] = can_change(APPEARANCE_NAME)
@@ -160,7 +152,7 @@
 	if(!owner)
 		return
 	if(!valid_species.len)
-		valid_species = owner.generate_valid_species(check_whitelist, whitelist, blacklist)
+		valid_species = owner.generate_valid_species()
 	if(!valid_hairstyles.len || !valid_facial_hairstyles.len)
 		valid_hairstyles = owner.generate_valid_hairstyles(check_gender = 0)
 		valid_facial_hairstyles = owner.generate_valid_facial_hairstyles()

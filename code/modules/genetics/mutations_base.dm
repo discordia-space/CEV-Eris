@@ -78,7 +78,7 @@ var/global/default_dna_machinery_style
 
 
 /datum/mutation/New()
-	hex = num2hex(rand(21845, 65535))
+	hex = num2hex(rand(21845, 65535), 5)
 
 /datum/mutation/proc/imprint(mob/living/carbon/user)
 	if(!istype(user)) // Simplemob ate moecube

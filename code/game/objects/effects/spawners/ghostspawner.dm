@@ -179,6 +179,6 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 
-obj/effect/mob_spawn/human/Destroy()
+/obj/effect/mob_spawn/human/Destroy()
 	new/obj/structure/empty_sleeper(get_turf(src))
 	return ..()

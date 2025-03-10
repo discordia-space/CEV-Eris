@@ -296,7 +296,7 @@
 	end_grab_onto(user, target)
 	return TRUE
 
-proc/end_grab_onto(mob/living/user, mob/living/target)
+/proc/end_grab_onto(mob/living/user, mob/living/target)
 	for(var/obj/item/grab/G in list(user.l_hand, user.r_hand))
 		if(G.affecting == target)
 			qdel(G)

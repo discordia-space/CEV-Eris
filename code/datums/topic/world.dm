@@ -133,8 +133,8 @@
 	keyword = "revision"
 
 /datum/world_topic/revision/Run(list/input)
-	if(revdata.revision)
-		return list(branch = revdata.branch, date = revdata.date, revision = revdata.revision)
+	if(revdata.commit)
+		return list(commit = revdata.commit, originmastercommit = revdata.originmastercommit, date = revdata.date, testmerge = revdata.testmerge)
 	else
 		return "unknown"
 

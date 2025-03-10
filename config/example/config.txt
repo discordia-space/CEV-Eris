@@ -38,7 +38,7 @@ JOBS_HAVE_MINIMAL_ACCESS
 ## log OOC channel
 LOG_OOC
 
-## log client Say 
+## log client Say
 LOG_SAY
 
 ## log admin actions
@@ -90,7 +90,7 @@ SQL_ENABLED
 
 
 ## probablities for game modes chosen in "secret" and "random" modes
-## 
+##
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY EXTENDED 1
@@ -203,7 +203,7 @@ GITHUBURL https://github.com/Endless-Horizon/CEV-Eris
 ##Remove the # mark infront of this to forbid admins from posssessing the singularity.
 #FORBID_SINGULO_POSSESSION
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
+## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
 #POPUP_ADMIN_PM
 
@@ -239,6 +239,8 @@ GHOST_INTERACTION
 
 ## Password used for authorizing ircbot and other external tools.
 #COMMS_PASSWORD
+
+#FORBID_ADMIN_PROFILING
 
 ## Uncomment to enable sending data to the IRC bot.
 #USE_IRC_BOT
@@ -308,7 +310,7 @@ JOIN_UNASSIGNED
 ## Clients will be unable to connect unless their build is equal to or higher than this (a number, e.g. 1000)
 #MINIMUM_BYOND_BUILD
 
-## Time in minutes before empty server will restart	
+## Time in minutes before empty server will restart
 EMPTY_SERVER_RESTART_TIME 30
 
 ## EMOJI ###
@@ -316,7 +318,7 @@ EMPTY_SERVER_RESTART_TIME 30
 EMOJIS
 
 ## MOB AI SLEEPING ###
-## Uncomment this out if you want to disable mob AI sleeping 
+## Uncomment this out if you want to disable mob AI sleeping
 #ENABLE_MOB_SLEEP
 
 WEBHOOK_URL http://localhost:44303/webhook/en

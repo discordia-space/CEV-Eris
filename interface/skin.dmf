@@ -48,6 +48,12 @@ macro "robot"
 		name = "S+UP"
 		command = "MoveKey 2 0"
 	elem
+		name = "U"
+		command = "looc"
+	elem
+		name = "O"
+		command = "ooc"
+	elem
 		name = "TAB"
 		command = ".winset \"input.focus=true ? input.focus=false mapwindow.map.focus=true : mapwindow.map.focus=false input.focus=true""
 	elem
@@ -311,6 +317,12 @@ macro "default"
 		name = "S+UP"
 		command = "MoveKey 2 0"
 	elem
+		name = "U"
+		command = "looc"
+	elem
+		name = "O"
+		command = "ooc"
+	elem
 		name = "SHIFT+X"
 		command = ".wield"
 	elem
@@ -518,9 +530,6 @@ macro "default"
 		name = "CTRL+SHIFT+F1+REP"
 		command = ".options"
 	elem
-		name = "F2"
-		command = "ooc"
-	elem
 		name = "F2+REP"
 		command = ".screenshot auto"
 	elem
@@ -685,7 +694,7 @@ window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
 		pos = 281,0
-		size = 640x440
+		size = 640x480
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		is-default = true
@@ -698,7 +707,7 @@ window "mainwindow"
 	elem "split"
 		type = CHILD
 		pos = 3,0
-		size = 634x440
+		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
 		saved-params = "splitter"

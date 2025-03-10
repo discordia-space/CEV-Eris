@@ -820,7 +820,7 @@
 	var/obj/item/tool/hammer/mace/mech/holdin = holding
 	holdin.wielded = TRUE
 
-obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
+/obj/item/mech_equipment/mounted_system/mace/get_overlay_state()
 	var/obj/item/tool/hammer/mace/mech/mace = holding
 	if(mace.flail_mode)
 		icon_state = "mech_mace_flail"

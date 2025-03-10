@@ -222,12 +222,12 @@
 // )
 
 // Round up
-proc/n_ceil(var/num)
+/proc/n_ceil(var/num)
 	if(isnum(num))
 		return round(num)+1
 
 // Find leftmost bit using bitshifting
-proc/leftmost_bit(num)
+/proc/leftmost_bit(num)
 	var/pos = 0
 	if(num)
 		while(num > 0)
@@ -235,7 +235,7 @@ proc/leftmost_bit(num)
 			pos++
 	return pos
 
-proc/get_vector(dir) // Accepts a directional string and returns a list containing an actual vector
+/proc/get_vector(dir) // Accepts a directional string and returns a list containing an actual vector
     switch(dir)
         if(NORTH)
             return list(0, 1)
@@ -256,7 +256,7 @@ proc/get_vector(dir) // Accepts a directional string and returns a list containi
         else if(!dir)
             return list(1, 0)
 
-proc/get_vector_angle(vec1, vec2) // Calculates the angle between two vectors, then returns the angle. Uses degrees instead of radians because BYOND expects trig functions to be called with degrees.
+/proc/get_vector_angle(vec1, vec2) // Calculates the angle between two vectors, then returns the angle. Uses degrees instead of radians because BYOND expects trig functions to be called with degrees.
     var/dot = vec1[1] * vec2[1] + vec1[2] * vec2[2] // Calculate the dot product
     var/mag1 = sqrt((vec1[1] ** 2) + (vec1[2] ** 2)) // Calculate the magnitudes of the vectors
     var/mag2 = sqrt((vec2[1] ** 2) + (vec2[2] ** 2))

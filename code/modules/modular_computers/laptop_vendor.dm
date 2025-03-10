@@ -264,7 +264,7 @@
 		ui.set_auto_update(1)
 
 
-obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
 	if(inoperable())
 		to_chat(user, SPAN_WARNING("[src] is not responding."))
 		return

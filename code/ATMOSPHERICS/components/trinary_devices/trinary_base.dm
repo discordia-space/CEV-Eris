@@ -1,4 +1,4 @@
-obj/machinery/atmospherics/trinary
+/obj/machinery/atmospherics/trinary
 	dir = SOUTH
 	layer = GAS_FILTER_LAYER
 	initialize_directions = SOUTH|NORTH|WEST

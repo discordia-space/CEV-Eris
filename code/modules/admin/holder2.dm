@@ -1,4 +1,4 @@
-var/list/admin_datums = list()
+GLOBAL_LIST_EMPTY(admin_datums)
 
 /datum/admins
 	var/rank			= "Temporary Admin"
@@ -13,6 +13,8 @@ var/list/admin_datums = list()
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
 	var/admincaster_signature	//What you'll sign the newsfeeds as
 
+	var/given_profiling = FALSE
+
 /datum/admins/proc/marked_datum()
 	if(marked_datum_weak)
 		return marked_datum_weak.resolve()
@@ -25,7 +27,7 @@ var/list/admin_datums = list()
 	admincaster_signature = "[company_name] Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rank = initial_rank
 	rights = initial_rights
-	admin_datums[ckey] = src
+	GLOB.admin_datums[ckey] = src
 
 /datum/admins/proc/associate(client/C)
 	if(istype(C))
@@ -33,6 +35,8 @@ var/list/admin_datums = list()
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
 		admins |= C
+		try_give_devtools()
+		try_give_profiling()
 
 /datum/admins/proc/disassociate()
 	if(owner)
@@ -48,6 +52,25 @@ var/list/admin_datums = list()
 		owner.deadmin_holder = null
 		owner.add_admin_verbs()
 
+/datum/admins/proc/try_give_devtools()
+	if(!check_rights(R_DEBUG) || owner.byond_version < 516)
+		return
+	to_chat(usr, span_warning("516 notice: Attempting to give you devtools, may or may not work."))
+	winset(owner, null, "browser-options=byondstorage,find,refresh,devtools")
+
+/datum/admins/proc/try_give_profiling()
+	if (config.forbid_admin_profiling)
+		return
+
+	if (given_profiling)
+		return
+
+	if (!check_rights(R_DEBUG))
+		return
+
+	given_profiling = TRUE
+	world.SetConfig("APP/admin", owner.ckey, "role=admin")
+
 
 /*
 checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)
@@ -55,7 +78,7 @@ if rights_required == 0, then it simply checks if they are an admin.
 if it doesn't return 1 and show_msg=1 it will prints a message explaining why the check has failed
 generally it would be used like so:
 
-proc/admin_proc()
+/proc/admin_proc()
 	if(!check_rights(R_ADMIN)) return
 	to_chat(world, "you have enough rights!")
 

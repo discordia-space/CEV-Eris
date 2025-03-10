@@ -38,7 +38,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 		updateallghostimages()
 	. = ..()
 
-mob/observer/check_airflow_movable()
+/mob/observer/check_airflow_movable()
 	return FALSE
 
 /mob/observer/CanPass()

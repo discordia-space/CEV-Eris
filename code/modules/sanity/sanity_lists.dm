@@ -207,7 +207,7 @@
 	)
 	return pick(emotes)
 
-datum/sanity/proc/pick_sound()
+/datum/sanity/proc/pick_sound()
 	var/static/list/sanity_sounds_without_text = list(
 		'sound/sanity/waterdrop.ogg',
 		'sound/sanity/piano.ogg',

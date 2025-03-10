@@ -106,7 +106,7 @@
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
-obj/item/storage/hcases/attackby(obj/item/W, mob/user)
+/obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 	if(closed)
 		to_chat(user, SPAN_NOTICE("You try to access \the [src] but its lid is closed!"))
 		return

@@ -4,14 +4,14 @@ These are the default click code call sequences used when clicking on stuff with
 
 Atoms:
 
-mob/ClickOn() calls the item's resolve_attackby() proc.
+/mob/ClickOn() calls the item's resolve_attackby() proc.
 item/resolve_attackby() calls the target atom's attackby() proc.
 
 Mobs:
 
-mob/living/attackby() after checking for surgery, calls the item's attack() proc.
+/mob/living/attackby() after checking for surgery, calls the item's attack() proc.
 item/attack() generates attack logs, sets click cooldown and calls the mob's attacked_with_item() proc. If you override this, consider whether you need to set a click cooldown, play attack animations, and generate logs yourself.
-mob/attacked_with_item() should then do mob-type specific stuff (like determining hit/miss, handling shields, etc) and then possibly call the item's apply_hit_effect() proc to actually apply the effects of being hit.
+/mob/attacked_with_item() should then do mob-type specific stuff (like determining hit/miss, handling shields, etc) and then possibly call the item's apply_hit_effect() proc to actually apply the effects of being hit.
 
 Item Hit Effects:
 

@@ -246,7 +246,7 @@
 			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
 			dispensable_reagents -= hacked_reagents
 
-obj/machinery/chemical_dispenser/soda/update_icon()
+/obj/machinery/chemical_dispenser/soda/update_icon()
 	cut_overlays()
 	if(stat & (BROKEN|NOPOWER))
 		icon_state = icon_on+"_off"

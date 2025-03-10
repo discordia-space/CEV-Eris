@@ -23,7 +23,7 @@
 /mob/living/carbon/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
-proc/isdeaf(A)
+/proc/isdeaf(A)
 //	if(isliving(A))
 //		var/mob/living/M = A
 //		return (M.sdisabilities & DEAF) || M.ear_deaf
@@ -313,7 +313,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		I.update_icon()
 
 
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
 		if(C.sdisabilities & BLIND || C.blinded)

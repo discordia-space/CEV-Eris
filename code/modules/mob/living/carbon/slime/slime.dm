@@ -359,7 +359,7 @@
 /mob/living/carbon/slime/var/co2overloadtime
 /mob/living/carbon/slime/var/temperature_resistance = T0C+75
 
-mob/living/carbon/slime/toggle_throw_mode()
+/mob/living/carbon/slime/toggle_throw_mode()
 	return
 
 /mob/living/carbon/slime/proc/gain_nutrition(amount)

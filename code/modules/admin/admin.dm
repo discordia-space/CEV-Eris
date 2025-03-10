@@ -51,7 +51,7 @@ var/global/floorIsLava = 0
 			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
 				sound_to(C, 'sound/effects/adminhelp.ogg')
 
-proc/admin_notice(message, rights)
+/proc/admin_notice(message, rights)
 	var/list/mob_list = SSmobs.mob_list | SShumans.mob_list
 	for(var/mob/M in mob_list)
 		if(check_rights(rights, 0, M))

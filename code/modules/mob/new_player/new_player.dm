@@ -194,10 +194,6 @@
 
 		if(!check_rights(R_ADMIN, 0))
 			var/datum/species/S = all_species[client.prefs.species]
-			if((S.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(src, client.prefs.species))
-				src << alert("You are currently not whitelisted to play [client.prefs.species].")
-				return 0
-
 			if(!(S.spawn_flags & CAN_JOIN))
 				src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
 				return 0
@@ -217,9 +213,6 @@
 			return
 
 		var/datum/species/S = all_species[client.prefs.species]
-		if((S.spawn_flags & IS_WHITELISTED) && !is_alien_whitelisted(src, client.prefs.species))
-			src << alert("You are currently not whitelisted to play [client.prefs.species].")
-			return 0
 
 		if(!(S.spawn_flags & CAN_JOIN))
 			src << alert("Your current species, [client.prefs.species], is not available for play on the station.")
@@ -374,9 +367,7 @@
 		use_species_name = chosen_species.get_station_variant() //Only used by pariahs atm.
 
 	if(chosen_species && use_species_name)
-		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-		if(is_species_whitelisted(chosen_species) || has_admin_rights())
-			new_character = new(NULLSPACE, use_species_name)
+		new_character = new(NULLSPACE, use_species_name)
 
 	if(!new_character)
 		new_character = new(NULLSPACE)
@@ -386,7 +377,7 @@
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = all_languages[lang]
 		if(chosen_language)
-			if(!(chosen_language.flags & WHITELISTED) || is_alien_whitelisted(src, lang) || has_admin_rights() \
+			if(!(chosen_language.flags & WHITELISTED) || has_admin_rights() \
 				|| (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
 
@@ -436,10 +427,6 @@
 	src << browse(null, "window=latechoices") //closes late choices window
 	panel.close()
 
-/mob/new_player/proc/is_species_whitelisted(datum/species/S)
-	if(!S) return 1
-	return is_alien_whitelisted(src, S.name) || !(S.spawn_flags & IS_WHITELISTED)
-
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
@@ -448,10 +435,7 @@
 	if(!chosen_species)
 		return SPECIES_HUMAN
 
-	if(is_species_whitelisted(chosen_species) || has_admin_rights())
-		return chosen_species.name
-
-	return SPECIES_HUMAN
+	return chosen_species.name
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()

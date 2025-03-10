@@ -1,11 +1,46 @@
 #ifndef OVERRIDE_BAN_SYSTEM
 //Blocks an attempt to connect before even creating our client datum thing.
 world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
+	if (!key || (!real_bans_only && (!address || !computer_id)))
+		if(real_bans_only)
+			return FALSE
+		log_access("Failed Login (invalid data): [key] [address]-[computer_id]")
+		return list("reason"="invalid login data", "desc"="Error: Could not check ban status, Please try again. Error message: Your computer provided invalid or blank information to the server on connection (byond username, IP, and Computer ID.) Provided information for reference: Username:'[key]' IP:'[address]' Computer ID:'[computer_id]'. (If you continue to get this error, please restart byond or contact byond support.)")
+
 	if(real_bans_only && !key)
 		return FALSE
 
-	if(ckey(key) in admin_datums)
-		return ..()
+	var/ckey = ckey(key)
+
+	var/admin = FALSE
+	var/mentor = FALSE
+
+	var/client/C = directory[ckey]
+	if (C && ckey == C.ckey && computer_id == C.computer_id && address == C.address)
+		return //don't recheck connected clients.
+
+	//IsBanned can get re-called on a user in certain situations, this prevents that leading to repeated messages to admins.
+	var/static/list/checkedckeys = list()
+	//magic voodo to check for a key in a list while also adding that key to the list without having to do two associated lookups
+	var/message = !checkedckeys[ckey]++
+
+	if (GLOB.admin_datums[ckey] || C.deadmin_holder)
+		admin = TRUE
+
+	if (is_mentor(C))
+		mentor = TRUE
+
+	//Whitelist
+	if(!real_bans_only && !C && config.usewhitelist)
+		if(!check_whitelist(ckey))
+			if (admin || mentor)
+				log_admin("The admin/mentor [ckey] has been allowed to bypass the whitelist")
+				if (message)
+					message_admins(span_adminnotice("The admin/mentor [ckey] has been allowed to bypass the whitelist"))
+					addclientmessage(ckey,span_adminnotice("You have been allowed to bypass the whitelist"))
+			else
+				log_access("Failed Login: [ckey] - Not on whitelist")
+				return list("reason"="whitelist", "desc" = "\nReason: You are not on the white list for this server")
 
 	//Guest Checking
 	if(!real_bans_only && !config.guests_allowed && IsGuestKey(key))
@@ -35,15 +70,13 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 
 	else
 
-		var/ckeytext = ckey(key)
-
 		if(!establish_db_connection())
-			error("Ban database connection failure. Key [ckeytext] not checked")
-			log_misc("Ban database connection failure. Key [ckeytext] not checked")
+			error("Ban database connection failure. Key [ckey] not checked")
+			log_misc("Ban database connection failure. Key [ckey] not checked")
 			return
 
 		var/id
-		var/DBQuery/get_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[ckeytext]'")
+		var/DBQuery/get_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[ckey]'")
 		get_id.Execute()
 		if(get_id.NextRow())
 			id = get_id.item[1]
@@ -76,7 +109,7 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 			)")
 
 		if(!query.Execute())
-			log_world("Trying to fetch ban record for [ckeytext] but got error: [query.ErrorMsg()].")
+			log_world("Trying to fetch ban record for [ckey] but got error: [query.ErrorMsg()].")
 			return
 
 		while(query.NextRow())

@@ -28,7 +28,7 @@
 	else
 		src.examine(M)
 
-obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/board/attackby(obj/item/I as obj, mob/user as mob)
 	if(!addPiece(I,user))
 		..()
 

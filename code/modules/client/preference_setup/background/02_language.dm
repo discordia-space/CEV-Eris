@@ -73,7 +73,7 @@
 /datum/category_item/player_setup_item/background/languages/proc/is_allowed_language(var/mob/user, var/datum/language/lang)
 	if(isnull(allowed_languages) || isnull(free_languages))
 		rebuild_language_cache(user)
-	if(!user || ((lang.flags & RESTRICTED) && is_alien_whitelisted(user, lang)))
+	if(!user || ((lang.flags & RESTRICTED)))
 		return TRUE
 	return allowed_languages[lang.name]
 

@@ -381,7 +381,7 @@
 	else
 		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
 
-obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
+/obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	if(!open)
 		to_chat(user, SPAN_NOTICE("You try to access \the [src] but it\'s closed!"))
 		return

@@ -71,7 +71,7 @@
 	.=..()
 
 //Pickup paperbins with drag n drop
-obj/item/paper_bin/MouseDrop(over_object)
+/obj/item/paper_bin/MouseDrop(over_object)
 	if (usr == over_object && usr.Adjacent(src))
 		if(pre_pickup(usr))
 			pickup(usr)

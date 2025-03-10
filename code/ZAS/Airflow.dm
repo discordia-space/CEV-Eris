@@ -2,8 +2,8 @@
 Contains helper procs for airflow, handled in /connection_group.
 */
 
-mob/var/tmp/last_airflow_stun = 0
-mob/proc/airflow_stun()
+/mob/var/tmp/last_airflow_stun = 0
+/mob/proc/airflow_stun()
 	if(stat == 2)
 		return 0
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)	return 0
@@ -19,18 +19,18 @@ mob/proc/airflow_stun()
 	Weaken(3) // Nerfed from 5
 	last_airflow_stun = world.time
 
-mob/living/silicon/airflow_stun()
+/mob/living/silicon/airflow_stun()
 	return
 
-mob/living/carbon/slime/airflow_stun()
+/mob/living/carbon/slime/airflow_stun()
 	return
 
-mob/living/carbon/human/airflow_stun()
+/mob/living/carbon/human/airflow_stun()
 	if(shoes)
 		if(shoes.item_flags & NOSLIP) return 0
 	..()
 
-atom/movable/proc/check_airflow_movable(n)
+/atom/movable/proc/check_airflow_movable(n)
 
 	if(anchored && !ismob(src)) return 0
 
@@ -38,16 +38,16 @@ atom/movable/proc/check_airflow_movable(n)
 
 	return 1
 
-mob/check_airflow_movable(n)
+/mob/check_airflow_movable(n)
 	if(n < vsc.airflow_heavy_pressure)
 		return 0
 	return 1
 
-mob/living/silicon/check_airflow_movable()
+/mob/living/silicon/check_airflow_movable()
 	return 0
 
 
-obj/item/check_airflow_movable(n)
+/obj/item/check_airflow_movable(n)
 	. = ..()
 	switch(w_class)
 		if(2)
@@ -196,11 +196,11 @@ obj/item/check_airflow_movable(n)
 		airflow_time = 0
 		. = ..()
 
-atom/movable/proc/airflow_hit(atom/A)
+/atom/movable/proc/airflow_hit(atom/A)
 	airflow_speed = 0
 	airflow_dest = null
 
-mob/airflow_hit(atom/A)
+/mob/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
 		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
@@ -208,17 +208,17 @@ mob/airflow_hit(atom/A)
 	Weaken(weak_amt)
 	. = ..()
 
-obj/airflow_hit(atom/A)
+/obj/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
 		M.show_message(SPAN_DANGER("\The [src] slams into \a [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "smash.ogg", 25, 1, -1)
 	. = ..()
 
-obj/item/airflow_hit(atom/A)
+/obj/item/airflow_hit(atom/A)
 	airflow_speed = 0
 	airflow_dest = null
 
-mob/living/carbon/human/airflow_hit(atom/A)
+/mob/living/carbon/human/airflow_hit(atom/A)
 //	for(var/mob/M in hearers(src))
 //		M.show_message(SPAN_DANGER("[src] slams into [A]!"),1,SPAN_DANGER("You hear a loud slam!"),2)
 	playsound(src.loc, "punch", 25, 1, -1)

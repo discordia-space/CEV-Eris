@@ -154,7 +154,7 @@
 	return TRUE
 
 
-proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+/proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
 	if(!istype(M))
 		return FALSE
 	if(user.a_intent != I_HELP)	//check for Hippocratic Oath

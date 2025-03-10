@@ -4,12 +4,12 @@
 
 #define NOTESFILE "data/player_notes.sav"	//where the player notes are saved
 
-datum/admins/proc/notes_show(var/ckey)
+/datum/admins/proc/notes_show(var/ckey)
 	var/datum/browser/panel = new(usr, "player_notes", "Player Notes", 700, 400)
 	panel.set_content(notes_gethtml(ckey))
 	panel.open()
 
-datum/admins/proc/notes_gethtml(var/ckey)
+/datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/notesfile = new(NOTESFILE)
 	if(!notesfile)	return "<font color='red'>Error: Cannot access [NOTESFILE]</font>"
 	if(ckey)

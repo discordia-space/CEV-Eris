@@ -201,7 +201,7 @@ mob
 				getFlatIcon(src)
 			Browse_Icon()
 
-obj/effect/overlayTest
+/obj/effect/overlayTest
 	icon = 'old_or_unused.dmi'
 	icon_state = "blue"
 	pixel_x = -24
@@ -329,7 +329,7 @@ icon
 		Higher value means brighter color
  */
 
-proc/ReadRGB(rgb)
+/proc/ReadRGB(rgb)
 	if(!rgb)
 		return list(0xFF, 0xFF, 0xFF)
 
@@ -380,7 +380,7 @@ proc/ReadRGB(rgb)
 	. = list(r, g, b)
 	if(usealpha) . += alpha
 
-proc/ReadHSV(hsv)
+/proc/ReadHSV(hsv)
 	if(!hsv) return
 
 	// interpret the HSV or HSVA value
@@ -419,7 +419,7 @@ proc/ReadHSV(hsv)
 	. = list(hue, sat, val)
 	if(usealpha) . += alpha
 
-proc/HSVtoRGB(hsv)
+/proc/HSVtoRGB(hsv)
 	if(!hsv) return "#000000"
 	var/list/HSV = ReadHSV(hsv)
 	if(!HSV) return "#000000"
@@ -447,7 +447,7 @@ proc/HSVtoRGB(hsv)
 
 	return (HSV.len > 3) ? rgb(r, g, b, HSV[4]) : rgb(r, g, b)
 
-proc/RGBtoHSV(rgb)
+/proc/RGBtoHSV(rgb)
 	if(!rgb) return "#0000000"
 	var/list/RGB = ReadRGB(rgb)
 	if(!RGB) return "#0000000"
@@ -478,7 +478,7 @@ proc/RGBtoHSV(rgb)
 
 	return hsv(hue, sat, val, (RGB.len>3 ? RGB[4] : null))
 
-proc/hsv(hue, sat, val, alpha)
+/proc/hsv(hue, sat, val, alpha)
 	if(hue < 0 || hue >= 1536) hue %= 1536
 	if(hue < 0) hue += 1536
 	if((hue & 0xFF) == 0xFF)
@@ -511,7 +511,7 @@ proc/hsv(hue, sat, val, alpha)
 
 	amount<0 or amount>1 are allowed
  */
-proc/BlendHSV(hsv1, hsv2, amount)
+/proc/BlendHSV(hsv1, hsv2, amount)
 	var/list/HSV1 = ReadHSV(hsv1)
 	var/list/HSV2 = ReadHSV(hsv2)
 
@@ -565,7 +565,7 @@ proc/BlendHSV(hsv1, hsv2, amount)
 
 	amount<0 or amount>1 are allowed
  */
-proc/BlendRGB(rgb1, rgb2, amount)
+/proc/BlendRGB(rgb1, rgb2, amount)
 	var/list/RGB1 = ReadRGB(rgb1)
 	var/list/RGB2 = ReadRGB(rgb2)
 
@@ -581,10 +581,10 @@ proc/BlendRGB(rgb1, rgb2, amount)
 
 	return isnull(alpha) ? rgb(r, g, b) : rgb(r, g, b, alpha)
 
-proc/BlendRGBasHSV(rgb1, rgb2, amount)
+/proc/BlendRGBasHSV(rgb1, rgb2, amount)
 	return HSVtoRGB(RGBtoHSV(rgb1), RGBtoHSV(rgb2), amount)
 
-proc/HueToAngle(hue)
+/proc/HueToAngle(hue)
 	// normalize hsv in case anything is screwy
 	if(hue < 0 || hue >= 1536) hue %= 1536
 	if(hue < 0) hue += 1536
@@ -592,7 +592,7 @@ proc/HueToAngle(hue)
 	hue -= hue >> 8
 	return hue / (1530/360)
 
-proc/AngleToHue(angle)
+/proc/AngleToHue(angle)
 	// normalize hsv in case anything is screwy
 	if(angle < 0 || angle >= 360) angle -= 360 * round(angle / 360)
 	var/hue = angle * (1530/360)
@@ -602,7 +602,7 @@ proc/AngleToHue(angle)
 
 
 // positive angle rotates forward through red->green->blue
-proc/RotateHue(hsv, angle)
+/proc/RotateHue(hsv, angle)
 	var/list/HSV = ReadHSV(hsv)
 
 	// normalize hsv in case anything is screwy
@@ -624,13 +624,13 @@ proc/RotateHue(hsv, angle)
 	return hsv(HSV[1], HSV[2], HSV[3], (HSV.len > 3 ? HSV[4] : null))
 
 // Convert an rgb color to grayscale
-proc/GrayScale(rgb)
+/proc/GrayScale(rgb)
 	var/list/RGB = ReadRGB(rgb)
 	var/gray = RGB[1]*0.3 + RGB[2]*0.59 + RGB[3]*0.11
 	return (RGB.len > 3) ? rgb(gray, gray, gray, RGB[4]) : rgb(gray, gray, gray)
 
 // Change grayscale color to black->tone->white range
-proc/ColorTone(rgb, tone)
+/proc/ColorTone(rgb, tone)
 	var/list/RGB = ReadRGB(rgb)
 	var/list/TONE = ReadRGB(tone)
 
@@ -886,7 +886,7 @@ The _flatIcons list is a cache for generated icon files.
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
 
-proc/adjust_brightness(var/color, var/value)
+/proc/adjust_brightness(var/color, var/value)
 	if (!color) return "#FFFFFF"
 	if (!value) return color
 
@@ -898,7 +898,7 @@ proc/adjust_brightness(var/color, var/value)
 
 
 //Adds a list of values to the HSV of a color
-proc/adjust_HSV(var/color, var/list/values)
+/proc/adjust_HSV(var/color, var/list/values)
 	if (!color) return "#FFFFFF"
 	if (!values || !values.len) return color
 
@@ -911,7 +911,7 @@ proc/adjust_HSV(var/color, var/list/values)
 
 //Uses a list of values to overwrite HSV components of a color
 //A null entry won't overwrite anything
-proc/set_HSV(var/color, var/list/values)
+/proc/set_HSV(var/color, var/list/values)
 	if (!color) return "#FFFFFF"
 	if (!values || !values.len) return color
 
@@ -925,7 +925,7 @@ proc/set_HSV(var/color, var/list/values)
 		HSV[3] = CLAMP(values[3], 0, 255)
 	return HSVtoRGB(hsv(HSV[1],HSV[2],HSV[3], null))
 
-proc/sort_atoms_by_layer(var/list/atoms)
+/proc/sort_atoms_by_layer(var/list/atoms)
 	// Comb sort icons based on levels
 	var/list/result = atoms.Copy()
 	var/gap = result.len
@@ -950,7 +950,7 @@ cap_mode is capturing mode (optional), user is capturing mob (requred only wehen
 lighting determines lighting capturing (optional), suppress_errors suppreses errors and continues to capture (optional).
 non_blocking var, if true, will allow sleeping to prevent server freeze, at the cost of taking longer
 */
-proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1, var/non_blocking = FALSE)
+/proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as num, var/cap_mode = CAPTURE_MODE_PARTIAL, var/mob/living/user, var/suppress_errors = 1, var/non_blocking = FALSE)
 	var/list/turfstocapture = list()
 	//Lines below determine what tiles will be rendered
 	for(var/xoff = 0 to range)
@@ -1004,7 +1004,7 @@ proc/generate_image(var/tx as num, var/ty as num, var/tz as num, var/range as nu
 //Sets the atom's pixel offset so it is visually about the same spot as where the user clicked
 //Can optionally animate the offsetting. This should be used when the object is moving between turfs,
 //but not when being dropped from a mob
-proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
+/proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 	var/list/click_params = params2list(params)
 	//Center the icon where the user clicked.
 	if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
@@ -1031,7 +1031,7 @@ proc/set_pixel_click_offset(var/atom/A, var/params, var/animate = FALSE)
 		A.pixel_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 
 //Calculate average color of an icon and store it in global list for future use
-proc/get_average_color(var/icon, var/icon_state, var/image_dir)
+/proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 	var/icon/I = icon(icon, icon_state, image_dir)
 	if (!istype(I))
 		return

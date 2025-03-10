@@ -27,8 +27,8 @@
 		</tr>
 		"}
 
-	for(var/admin_ckey in admin_datums)
-		var/datum/admins/D = admin_datums[admin_ckey]
+	for(var/admin_ckey in GLOB.admin_datums)
+		var/datum/admins/D = GLOB.admin_datums[admin_ckey]
 		if(!D)
 			continue
 		var/rank = D.rank ? D.rank : "*none*"

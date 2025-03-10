@@ -1,6 +1,6 @@
 //TODO: Flash range does nothing currently
 
-proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
+/proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
 	if(falloff == 0)
 		falloff = power / 10
 	var/max_range = round(power / falloff)
@@ -143,11 +143,11 @@ proc/explosion(turf/epicenter, power, falloff, explosion_flags, adminlog = TRUE)
 
 
 
-proc/secondaryexplosion(turf/epicenter, range)
+/proc/secondaryexplosion(turf/epicenter, range)
 	for(var/turf/tile in range(range, epicenter))
 		tile.explosion_act(500, null)
 
-proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2, var/same_turf_hit_chance = 20)
+/proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount = 100, var/f_damage = null, var/f_step = 2, var/same_turf_hit_chance = 20)
 	if(!isturf(epicenter))
 		epicenter = get_turf(epicenter)
 
@@ -176,7 +176,7 @@ proc/fragment_explosion(var/turf/epicenter, var/range, var/f_type, var/f_amount 
 
 
 // This is made to mimic the explosion that would happen when something gets pierced by a bullet ( a tank by a anti-armor shell , a armoured car by an .60 AMR,  etc, creates flying shrapnel on the other side!)
-proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, projectile_amount)
+/proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, projectile_amount)
 	var/turf/turf_t = get_turf_away_from_target_complex(get_turf(epicenter), origin, 3)
 	var/list/hittable_turfs  = RANGE_TURFS(1, turf_t)
 	var/proj_amount = projectile_amount
@@ -187,7 +187,7 @@ proc/fragment_explosion_angled(atom/epicenter, turf/origin , projectile_type, pr
 		pew_thingie.launch(pick(hittable_turfs))
 
 //Generic proc for spread of any projectile type.
-proc/projectile_explosion(turf/epicenter, range, p_type, p_amount = 10, list/p_damage = list())
+/proc/projectile_explosion(turf/epicenter, range, p_type, p_amount = 10, list/p_damage = list())
     if(!istype(epicenter))
         epicenter = get_turf(epicenter)
 

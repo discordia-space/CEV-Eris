@@ -1,6 +1,6 @@
 //var/global/list/datum/pipe_network/pipe_networks = list()
 
-datum/pipe_network
+/datum/pipe_network
 	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
 	var/volume = 0	//caches the total volume for atmos machines to use in gas calculations
 

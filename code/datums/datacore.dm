@@ -226,7 +226,7 @@ var/global/ManifestJSON
 	return
 
 /proc/generate_record_id()
-	return add_zero(num2hex(rand(1, 65535)), 4)	//no point generating higher numbers because of the limitations of num2hex
+	return add_zero(num2hex(rand(1, 65535), 5), 4)	//no point generating higher numbers because of the limitations of num2hex
 
 /proc/get_id_photo(var/mob/living/carbon/human/H, var/assigned_role)
 
@@ -276,7 +276,7 @@ var/global/ManifestJSON
 		side = new(get_id_photo(dummy), dir = WEST)
 		qdel(dummy)
 
-	if(!id) id = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
+	if(!id) id = text("[]", add_zero(num2hex(rand(1, 1.6777215E7), 8), 6))
 	var/datum/data/record/G = new /datum/data/record()
 	G.name = "Employee Record #[id]"
 	G.fields["name"] = "New Record"

@@ -4,7 +4,7 @@ Created by Loduwijk
 June 2005
 */
 
-proc/keycode2char(N)
+/proc/keycode2char(N)
 	switch(N)
 		if(9)return "	"
 		if(13)return ascii2text(13)

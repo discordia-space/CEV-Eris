@@ -148,6 +148,8 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/comms_password = ""
 
+	var/forbid_admin_profiling = FALSE
+
 	var/list/forbidden_versions = list() // Clients with these byond versions will be autobanned. Format: string "byond_version.byond_build"; separate with ; in config, e.g. 512.1234;512.1235
 	var/minimum_byond_version
 	var/minimum_byond_build

@@ -197,13 +197,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	clients += src
 	directory[ckey] = src
 
+	if(byond_version >= 516)
+		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+
 	// Instantiate ~~tgui~~ goonchat panel
 	// tgui_panel = new(src)
 	chatOutput = new /datum/chatOutput(src)
 
 	var/connecting_admin = FALSE //because de-admined admins connecting should be treated like admins.
 	//Admin Authorisation
-	var/datum/admins/admin_datum = admin_datums[ckey]
+	var/datum/admins/admin_datum = GLOB.admin_datums[ckey]
 	if (!isnull(admin_datum))
 		admin_datum.associate(src)
 		connecting_admin = TRUE
@@ -304,6 +307,11 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	log_client_to_db()
 
 	send_resources()
+
+	if(ckey in GLOB.clientmessages)
+		for(var/message in GLOB.clientmessages[ckey])
+			to_chat(src, message)
+		GLOB.clientmessages.Remove(ckey)
 
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, span_info("You have unread updates in the changelog."))

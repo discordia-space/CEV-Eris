@@ -201,7 +201,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	. = ..()
 
 // Sanitize inputs to avoid SQL injection attacks
-proc/sql_sanitize_text(var/text)
+/proc/sql_sanitize_text(var/text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
 	text = replacetext(text, "&", "")

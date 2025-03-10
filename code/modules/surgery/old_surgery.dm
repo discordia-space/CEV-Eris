@@ -79,7 +79,7 @@
 	return null
 
 
-proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
+/proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	// Old surgery steps all require tools
 	if(!tool)
 		return FALSE
@@ -141,7 +141,7 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 	return 0
 
-proc/sort_surgeries()
+/proc/sort_surgeries()
 	var/gap = GLOB.old_surgery_steps.len
 	var/swapped = 1
 	while (gap > 1 || swapped)
