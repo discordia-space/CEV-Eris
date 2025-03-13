@@ -382,7 +382,7 @@
 		return ..()
 
 /obj/item/stack/get_fall_damage()
-	return min(5, amount * fall_damage_per_amount)
+	return amount * fall_damage_per_amount
 
 //Verb to split stacks
 /obj/item/stack/verb/split_verb()
