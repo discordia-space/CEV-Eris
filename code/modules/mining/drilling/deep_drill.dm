@@ -18,6 +18,7 @@
 /obj/machinery/mining/deep_drill
 	name = "deep mining drill head"
 	desc = "An enormous drill to dig out deep ores."
+	description_info = "Can be used to open caves on asteroid surfaces, with difficulty and ore level depending on the seismic level of the tile it's activated on.\nThe seismic level of a tile can be found with a subsurface ore detector."
 	icon_state = "mining_drill"
 	pixel_x = -16
 

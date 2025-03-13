@@ -2545,7 +2545,6 @@
 #include "code\modules\random_map\noise\desert.dm"
 #include "code\modules\random_map\noise\magma.dm"
 #include "code\modules\random_map\noise\noise.dm"
-#include "code\modules\random_map\noise\ore.dm"
 #include "code\modules\random_map\noise\tundra.dm"
 #include "code\modules\reagents\atomic_distillery.dm"
 #include "code\modules\reagents\bonsai.dm"

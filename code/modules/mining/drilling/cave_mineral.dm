@@ -37,8 +37,6 @@
 	var/seismic_multiplier = 1
 	var/obj/cave_generator/cave_gen
 
-	has_resources = 1
-
 /turf/cave_mineral/Initialize()
 	.=..()
 	if (mineral_name && (mineral_name in ore_data))

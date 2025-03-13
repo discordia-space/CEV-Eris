@@ -1,6 +1,7 @@
 /obj/item/tool/karl
 	name = "K.A.R.L"
 	desc = "Kinetic Acceleration Reconfigurable Lodebreaker. Rock and stone to the bone, miner!"
+	description_info = "It can be recharged by applying a golem core to it, mining with the energy blade powered off, or by using it in-hand in gun mode."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	icon = 'icons/obj/karl_mining.dmi'
@@ -27,7 +28,7 @@
 
 	// Turn on-off related
 	toggleable = TRUE
-	tool_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10, QUALITY_CUTTING = 5) // So it still shares its switch off quality despite not yet being used.
+	tool_qualities = list(QUALITY_DIGGING = 30, QUALITY_PRYING = 10, QUALITY_CUTTING = 5) // So it still shares its switch off quality despite not yet being used.
 	switched_off_qualities = list(QUALITY_DIGGING = 30, QUALITY_PRYING = 10, QUALITY_CUTTING = 5)
 	switched_on_qualities = list(QUALITY_DIGGING = 45, QUALITY_WELDING = 10)
 	suitable_cell = /obj/item/cell/medium/high
@@ -101,7 +102,7 @@
 				isPumping = TRUE
 				if(do_after(user, pumping_time))
 					if(cell)  // Check the cell is still there in case big brain player chose to remove it during pumping
-						cell.give(use_power_cost * pumping_time)
+						cell.give(initial(use_power_cost) * pumping_time)
 						to_chat(user, SPAN_NOTICE("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
 						// Continue pumping till user cancels the pumping
 						isPumping = FALSE

@@ -35,8 +35,6 @@
 	var/obj/item/last_find
 	var/datum/artifact_find/artifact_find
 
-	has_resources = 1
-
 /turf/mineral/Initialize()
 	.=..()
 	icon_state = "rock[rand(0,4)]"
@@ -207,7 +205,6 @@
 	temperature = TCMB
 	var/dug = 0       //0 = has not yet been dug, 1 = has already been dug
 	var/overlay_detail
-	has_resources = 1
 
 /turf/floor/asteroid/New()
 	..()
@@ -215,6 +212,7 @@
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,8)]"
 		updateMineralOverlays(1)
+	seismic_activity = rand(1,6)
 
 /turf/floor/asteroid/explosion_act(target_power, explosion_handler/handler)
 	. = ..()
