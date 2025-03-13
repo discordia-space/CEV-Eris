@@ -28,8 +28,8 @@
 	// Turn on-off related
 	toggleable = TRUE
 	tool_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10, QUALITY_CUTTING = 5) // So it still shares its switch off quality despite not yet being used.
-	switched_off_qualities = list(QUALITY_DIGGING = 10, QUALITY_PRYING = 10, QUALITY_CUTTING = 5)
-	switched_on_qualities = list(QUALITY_DIGGING = 30, QUALITY_WELDING = 10)
+	switched_off_qualities = list(QUALITY_DIGGING = 30, QUALITY_PRYING = 10, QUALITY_CUTTING = 5)
+	switched_on_qualities = list(QUALITY_DIGGING = 45, QUALITY_WELDING = 10)
 	suitable_cell = /obj/item/cell/medium/high
 	use_power_cost = 1.5
 	passive_power_cost = 0.01
@@ -120,11 +120,13 @@
 	if(.)
 		to_chat(user, SPAN_NOTICE("A dangerous energy blade now covers the edges of the tool."))
 		update_force()
+		update_use_cost()
 
 /obj/item/tool/karl/turn_off(mob/user)
 	..()
 	to_chat(user, SPAN_NOTICE("The energy blade swiftly retracts."))
 	update_force()
+	update_use_cost()
 
 /obj/item/tool/karl/proc/update_force()
 	if(gunmode)
@@ -134,27 +136,40 @@
 	else
 		force = initial(force)  // Back to standard damage when KARL is turned off
 
+/obj/item/tool/karl/proc/update_use_cost()
+	if(gunmode || !switched_on)
+		use_power_cost = 0
+	else
+		use_power_cost = initial(use_power_cost)
+
+
 // Same values than /obj/item/proc/use_tool
 /obj/item/tool/karl/use_tool(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 	. = ..()  // That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 
 	// Recharge upon successfull use when switched off
-	if(. && !switched_on && cell)
-		cell.give(use_power_cost * 25)
+	if(. && !switched_on && cell && (istype(target, /turf/cave_mineral) || istype(target, /turf/mineral)))
+		cell.give(initial(use_power_cost) * 25)
 
 /obj/item/tool/karl/proc/toggle_mode_verb()
 	set name = "Unique Action"
 	set category = "Object"
 	set src in view(1)
 
+	if(usr.incapacitated() || !Adjacent(usr))
+		to_chat(usr, "<span class='warning'>You can't do that.</span>")
+		return FALSE
+
 	toggle_karl_mode(usr)
 
 /obj/item/tool/karl/proc/toggle_karl_mode(mob/user)
+
 	gunmode = !gunmode
 	to_chat(user, SPAN_NOTICE("\The [src] switches to [gunmode ? "gun" : "tool"] mode."))
 	no_double_tact = gunmode ? TRUE : FALSE  // No double tact in gunmode
 	no_swing = gunmode ? TRUE : FALSE  // No swinging in gunmode
 	update_force()
+	update_use_cost()
 	update_icon()
 	update_wear_icon()
 
