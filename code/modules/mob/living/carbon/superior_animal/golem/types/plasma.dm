@@ -38,21 +38,22 @@
 
 /mob/living/carbon/superior_animal/golem/plasma/death(gibbed, message = deathmessage)
 	if(det_status == DET_STABLE)
-		Stun(10) // Prevents movement. Not actually sure if this is necessary for a dead mob.
+		walk(src,0)
+		anchored = TRUE // Prevents movement.
 		det_status = DET_BLOWING
 		visible_message(SPAN_DANGER("\The [src] starts glowing!"))
 		icon_state = "golem_plasma_explosion"
 		spawn(det_time)
 			// Plasma ball on location
-			visible_message(SPAN_DANGER("\The [src] explodes into a ball of burning palsma!"))
+			visible_message(SPAN_DANGER("\The [src] explodes into a ball of burning plasma!"))
 			for(var/turf/floor/target_tile as anything in RANGE_TURFS(2, loc))
 				new /obj/effect/decal/cleanable/liquid_fuel(target_tile, 2, 1)
-				spawn (0) target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code
+				target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code
 			. = ..()
 
 /mob/living/carbon/superior_animal/golem/plasma/UnarmedAttack(atom/A, proximity)
 	if(det_status == DET_STABLE)
-		death(FALSE, FALSE)
+		death(FALSE)
 
 
 #undef DET_STABLE
