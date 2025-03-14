@@ -1485,7 +1485,6 @@
 #include "code\modules\client\client_procs.dm"
 #include "code\modules\client\darkmode.dm"
 #include "code\modules\client\message.dm"
-#include "code\modules\client\message.dm"
 #include "code\modules\client\preferences.dm"
 #include "code\modules\client\preferences_options.dm"
 #include "code\modules\client\preferences_savefile.dm"

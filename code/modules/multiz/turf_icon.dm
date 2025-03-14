@@ -57,6 +57,8 @@
 	for (var/turf/T in turfs)
 		if (T.is_transparent)
 			T.update_icon(null, TRUE)
+
+		CHECK_TICK
 	return TRUE
 
 /atom/proc/update_openspace()

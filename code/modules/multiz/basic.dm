@@ -2,16 +2,16 @@ var/list/z_levels = list()	//Each item represents connection between index z-lay
 
 // The storage of connections between adjacent levels means some bitwise magic is needed.
 /proc/HasAbove(var/z)
-	if(z >= world.maxz || z > z_levels.len-1 || z < 1)
+	if(z >= world.maxz || z > length(z_levels)-1 || z < 1)
 		return FALSE
 	var/datum/level_data/LD = z_levels[z]
-	return LD != null && LD.height + LD.original_level - 1 > z
+	return !isnull(LD) && LD.height + LD.original_level - 1 > z
 
 /proc/HasBelow(var/z)
-	if(z > world.maxz || z > z_levels.len || z < 2)
+	if(z > world.maxz || z > length(z_levels) || z < 2)
 		return FALSE
 	var/datum/level_data/LD = z_levels[z]
-	return LD != null && LD.original_level < z
+	return !isnull(LD) && LD.original_level < z
 
 // Thankfully, no bitwise magic is needed here.
 /proc/GetAbove(var/atom/atom)
