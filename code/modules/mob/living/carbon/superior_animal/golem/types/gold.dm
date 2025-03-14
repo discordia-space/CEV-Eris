@@ -80,7 +80,7 @@
 		QDEL_IN(src, 20)
 
 
-
-
-
+#undef GOLD_SPIKE_COOLDOWN
+#undef GOLD_SPIKE_WINDUP
+#undef GOLD_SPIKE_DAMAGE
 

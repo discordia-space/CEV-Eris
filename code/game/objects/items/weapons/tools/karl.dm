@@ -158,7 +158,7 @@
 	set src in view(1)
 
 	if(usr.incapacitated() || !Adjacent(usr))
-		to_chat(usr, "<span class='warning'>You can't do that.</span>")
+		to_chat(usr, SPAN_WARNING("You can't do that."))
 		return FALSE
 
 	toggle_karl_mode(usr)
@@ -223,7 +223,7 @@
 		else
 			toggle_karl_mode(user)
 
-/obj/item/tool/karl/attackby(var/obj/item/I, var/mob/user)
+/obj/item/tool/karl/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/golem_core))
 		if(cell)
 			if(!cell.fully_charged())

@@ -249,7 +249,7 @@
 			to_chat(mob, "<span class='notice'>You're pinned down by \a [mob.pinned[1]]!</span>")
 		return MOVEMENT_STOP
 
-	if(mob.grabbed_by.len)
+	if(length(mob.grabbed_by))
 		return MOVEMENT_STOP
 		/* TODO: Bay grab system
 		if(G.stop_move())

@@ -393,7 +393,7 @@
 	breakgrab()
 	. = ..()
 
-/mob/living/carbon/superior_animal/proc/simplegrab(var/mob/living/target) // superior animals won't do this naturally, but this proc makes it easy to implement such behaviour in specific mobs
+/mob/living/carbon/superior_animal/proc/simplegrab(mob/living/target) // superior animals won't do this naturally, but this proc makes it easy to implement such behaviour in specific mobs
 	if(!target && target_mob)
 		target = target_mob // if no target was specified, but we have a target, default to them
 	else if(!target || !Adjacent(target))
