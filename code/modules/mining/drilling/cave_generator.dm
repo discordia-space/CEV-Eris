@@ -87,7 +87,7 @@
 
 	current_difficulty = difficulties[seismic_lvl]
 	golem_spawn_nodes = list()
-	orecount = 0
+	SSmapping.cave_ore_count = 0
 
 	// Fill the map with random noise
 	random_fill_map()
@@ -517,7 +517,7 @@
 	veins_to_guarantee -= vein_path
 
 	// Place mineral vein at the available spot in a recursive manner
-	place_recursive_mineral(x_start, y_start, CV.p_spread, CEILING(CV.size_max * sizemult), FLOOR(CV.size_min * sizemult), CV.mineral)
+	place_recursive_mineral(x_start, y_start, CV.p_spread, CEILING(CV.size_max * sizemult, 1), FLOOR(CV.size_min * sizemult, 1), CV.mineral)
 	return 1
 
 // Place a mineral vein in a recursive manner
@@ -617,8 +617,7 @@
 			if(istype(T, /turf/cave_mineral))
 				var/turf/cave_mineral/CM = T
 				CM.seismic_multiplier = current_difficulty.vein_ore_mult
-				CM.cave_gen = src
-				orecount++
+				SSmapping.cave_ore_count++
 
 // Spawn points of interest at their respective position
 /obj/cave_generator/proc/place_pois()

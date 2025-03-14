@@ -19,16 +19,16 @@
 /datum/cave_difficulty_level/proc/get_golem_spawns()
 	var/list/golems_to_spawn = list() //list of golem types to spawn
 	if(golem_count_melee)
-		for(var/c = 0, c < golem_count_melee, c++)
+		for(var/c in 0 to golem_count_melee)
 			golems_to_spawn += pickweight(golem_weights_melee)
 
 	if(golem_count_ranged)
-		for(var/c = 0, c < golem_count_ranged, c++)
+		for(var/c in 0 to golem_count_ranged)
 			golems_to_spawn += pickweight(golem_weights_ranged)
 
 	if(golem_count_mixed)
 		var/list/golem_weights_mixed = golem_weights_melee + golem_weights_ranged
-		for(var/c = 0, c < golem_count_mixed, c++)
+		for(var/c in 0 to golem_count_mixed)
 			golems_to_spawn += pickweight(golem_weights_mixed)
 
 	return golems_to_spawn

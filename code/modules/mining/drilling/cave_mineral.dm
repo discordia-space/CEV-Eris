@@ -35,7 +35,6 @@
 	var/mineral_name
 	var/mined_ore = 0
 	var/seismic_multiplier = 1
-	var/obj/cave_generator/cave_gen
 
 /turf/cave_mineral/Initialize()
 	.=..()
@@ -96,8 +95,7 @@
 //Not even going to touch this pile of spaghetti
 /turf/cave_mineral/attackby(obj/item/I, mob/living/user)
 
-	if(cave_gen)
-		cave_gen.orecount--
+	SSmapping.cave_ore_count--
 
 	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING), src, CB = CALLBACK(src, PROC_REF(check_radial_dig)))
 	switch(tool_type)

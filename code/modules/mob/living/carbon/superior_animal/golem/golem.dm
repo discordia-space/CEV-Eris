@@ -21,9 +21,6 @@
 
 #define GOLEM_REGENERATION 10  // Healing by special ability of uranium golems
 
-GLOBAL_LIST_EMPTY(all_golems) // golems check this list to loop over allies
-GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with a current target mob
-
 /mob/living/carbon/superior_animal/golem
 	icon = 'icons/mob/golems.dmi'
 
@@ -76,15 +73,17 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 	var/datum/cave_difficulty_level/difficultylevel //currently this is only used for multiplying ore drops
 
 /mob/living/carbon/superior_animal/golem/Initialize(var/mapload, difficulty)
-	GLOB.all_golems += src
+	SSmobs.golem_list += src
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
 	difficultylevel = difficulty
 	. = ..()
 
 /mob/living/carbon/superior_animal/golem/Destroy()
-	GLOB.all_golems -= src
-	GLOB.active_golems -= src
+	SSmobs.golem_list -= src
+	SSmobs.golem_active_list -= src
+	difficultylevel = null
+	mineral = null
 	..()
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
@@ -92,7 +91,7 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 
 	// Spawn ores
 	if(mineral)
-		var/nb_ores =  ceil((mineral.result_amount + rand(-3, 3)) * (difficultylevel ? difficultylevel.golem_ore_mult : 1))
+		var/nb_ores =  CEILING((mineral.result_amount + rand(-3, 3)) * (difficultylevel ? difficultylevel.golem_ore_mult : 1), 1)
 		for(var/i in 1 to nb_ores)
 			new mineral.ore(loc)
 
@@ -117,7 +116,7 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), pick(attacktext), TRUE)
 
 /mob/living/carbon/superior_animal/golem/loseTarget()
-	GLOB.active_golems -= src
+	SSmobs.golem_active_list -= src
 	. = ..()
 
 /mob/living/carbon/superior_animal/golem/handle_ai()
@@ -136,8 +135,10 @@ GLOBAL_LIST_EMPTY(active_golems) // smaller list that only contains golems with 
 			target_mob = findTarget()
 			if(target_mob)
 				stance = HOSTILE_STANCE_ATTACK
-				for(var/mob/living/carbon/superior_animal/golem/ally in GLOB.all_golems)
+				SSmobs.golem_active_list += src
+				for(var/mob/living/carbon/superior_animal/golem/ally in SSmobs.golem_list)
 					if(!ally.target_mob && (get_dist(ally, src) < 5))
+						SSmobs.golem_active_list += ally
 						ally.stance = HOSTILE_STANCE_ATTACK
 						ally.target_mob = target_mob
 						ally.targetrecievedtime = world.time
