@@ -52,7 +52,7 @@
 
 /mob/living/carbon/superior_animal/golem/plasma/UnarmedAttack(atom/A, proximity)
 	if(det_status == DET_STABLE)
-		src.death(FALSE, FALSE)
+		death(FALSE, FALSE)
 
 
 #undef DET_STABLE
