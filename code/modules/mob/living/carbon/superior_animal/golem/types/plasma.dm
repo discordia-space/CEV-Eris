@@ -38,7 +38,7 @@
 
 /mob/living/carbon/superior_animal/golem/plasma/death(gibbed, message = deathmessage)
 	if(det_status == DET_STABLE)
-		src.Stun(10) //prevent any movement. not actually sure if this is necessary for a dead mob.
+		Stun(10) // Prevents movement. Not actually sure if this is necessary for a dead mob.
 		det_status = DET_BLOWING
 		visible_message(SPAN_DANGER("\The [src] starts glowing!"))
 		icon_state = "golem_plasma_explosion"
