@@ -50,6 +50,10 @@
 		amount = rand(rand_min, rand_max)
 		amount = round(amount, 1) //Just in case
 	update_icon()
+
+//do this a little later because trying to merge with uninitialized stacks is an easy way to cause runtimes
+/obj/item/stack/LateInitialize()
+	. = ..()
 	if(automerge)
 		merge_loc_stacks()
 
