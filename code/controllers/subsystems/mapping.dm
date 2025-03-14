@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(mapping)
 	var/dmm_suite/maploader = null
 	var/list/teleportlocs = list()
 	var/list/ghostteleportlocs = list()
-	var/list/cave_ore_count
+	var/cave_ore_count = 0
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 	if(config.generate_asteroid)
