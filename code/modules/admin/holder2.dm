@@ -35,8 +35,8 @@ GLOBAL_LIST_EMPTY(admin_datums)
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
 		admins |= C
-		try_give_devtools()
-		try_give_profiling()
+		try_give_devtools(C)
+		try_give_profiling(C)
 
 /datum/admins/proc/disassociate()
 	if(owner)
@@ -52,20 +52,20 @@ GLOBAL_LIST_EMPTY(admin_datums)
 		owner.deadmin_holder = null
 		owner.add_admin_verbs()
 
-/datum/admins/proc/try_give_devtools()
-	if(!check_rights(R_DEBUG) || owner.byond_version < 516)
+/datum/admins/proc/try_give_devtools(client/C = usr)
+	if(!check_rights(R_DEBUG, C = C) || owner.byond_version < 516)
 		return
-	to_chat(usr, span_warning("516 notice: Attempting to give you devtools, may or may not work."))
-	winset(owner, null, "browser-options=byondstorage,find,refresh,devtools")
+	to_chat(C, span_warning("516 notice: Attempting to give you devtools, may or may not work."))
+	winset(C, null, "browser-options=byondstorage,find,refresh,devtools")
 
-/datum/admins/proc/try_give_profiling()
+/datum/admins/proc/try_give_profiling(client/C = usr)
 	if (config.forbid_admin_profiling)
 		return
 
 	if (given_profiling)
 		return
 
-	if (!check_rights(R_DEBUG))
+	if (!check_rights(R_DEBUG, C = C))
 		return
 
 	given_profiling = TRUE
