@@ -517,7 +517,7 @@
 	veins_to_guarantee -= vein_path
 
 	// Place mineral vein at the available spot in a recursive manner
-	place_recursive_mineral(x_start, y_start, CV.p_spread, ceil(CV.size_max * sizemult), floor(CV.size_min * sizemult), CV.mineral)
+	place_recursive_mineral(x_start, y_start, CV.p_spread, CEILING(CV.size_max * sizemult), FLOOR(CV.size_min * sizemult), CV.mineral)
 	return 1
 
 // Place a mineral vein in a recursive manner
