@@ -73,15 +73,12 @@
 	var/datum/cave_difficulty_level/difficultylevel //currently this is only used for multiplying ore drops
 
 /mob/living/carbon/superior_animal/golem/Initialize(var/mapload, difficulty)
-	SSmobs.golem_list += src
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
 	difficultylevel = difficulty
 	. = ..()
 
 /mob/living/carbon/superior_animal/golem/Destroy()
-	SSmobs.golem_list -= src
-	SSmobs.golem_active_list -= src
 	difficultylevel = null
 	mineral = null
 	..()
@@ -115,10 +112,6 @@
 		if(obstacle)
 			obstacle.attack_generic(src, rand(surrounds_mult * melee_damage_lower, surrounds_mult * melee_damage_upper), pick(attacktext), TRUE)
 
-/mob/living/carbon/superior_animal/golem/loseTarget()
-	SSmobs.golem_active_list -= src
-	. = ..()
-
 /mob/living/carbon/superior_animal/golem/handle_ai()
 
 	objectsInView = null
@@ -135,10 +128,8 @@
 			target_mob = findTarget()
 			if(target_mob)
 				stance = HOSTILE_STANCE_ATTACK
-				SSmobs.golem_active_list += src
-				for(var/mob/living/carbon/superior_animal/golem/ally in SSmobs.golem_list)
-					if(!ally.target_mob && (get_dist(ally, src) < 5))
-						SSmobs.golem_active_list += ally
+				for(var/mob/living/carbon/superior_animal/golem/ally in getMobsInRangeChunked(src, 5, TRUE))
+					if(!ally.target_mob)
 						ally.stance = HOSTILE_STANCE_ATTACK
 						ally.target_mob = target_mob
 						ally.targetrecievedtime = world.time

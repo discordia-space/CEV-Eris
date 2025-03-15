@@ -45,8 +45,7 @@
 /mob/living/carbon/superior_animal/golem/uranium/handle_ai()
 	. = ..()
 	if(target_mob)
-		for(var/mob/living/carbon/superior_animal/golem/ally in SSmobs.golem_active_list)
-			if((ally != src) && (get_dist(src, ally) < GOLEM_URANIUM_HEAL_RANGE))
+		for(var/mob/living/carbon/superior_animal/golem/ally in getMobsInRangeChunked(src, GOLEM_URANIUM_HEAL_RANGE, TRUE))
+			if((ally != src))
 				ally.adjustBruteLoss(-GOLEM_REGENERATION)
 				ally.adjustFireLoss(-GOLEM_REGENERATION)
-

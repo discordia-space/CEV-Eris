@@ -62,12 +62,7 @@
 
 	// Teleport target to a random golem near the ansible golem
 	if(target_mob)
-		var/list/teleport_destinations = list()
-
-		for(var/mob/living/carbon/superior_animal/golem/td in range(ANSIBLE_TELEPORT_RANGE, get_turf(src)))
-			teleport_destinations += td
-
-		go_to_bluespace(get_turf(src), 1, TRUE, target_mob,pick(teleport_destinations))
+		go_to_bluespace(get_turf(src), 1, TRUE, target_mob, pick(getMobsInRangeChunked(src, ANSIBLE_TELEPORT_RANGE, TRUE)))
 
 /mob/living/carbon/superior_animal/golem/ansible/proc/focus_target()
 
