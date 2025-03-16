@@ -370,18 +370,18 @@
 		return
 	to_chat(usr, SPAN_NOTICE("You take out ammo from [src]."))
 
-	while(stored_ammo.len)
+	while(LAZYLEN(stored_ammo))
 
 		var/obj/item/ammo_casing/stack = removeCasing()
 		stack.forceMove(target)
 		stack.set_dir(pick(cardinal))
 
-		if(stored_ammo.len)
+		if(LAZYLEN(stored_ammo))
 			// We end on -1 since we already removed one
 			for(var/i = 1, i <= stack.maxamount - 1, i++)
-				if(!stored_ammo.len)
-					break
+				if(!LAZYLEN(stored_ammo))
 					stack.update_icon()
+					break
 				var/obj/item/ammo_casing/AC = removeCasing()
 				if(!stack.mergeCasing(AC, null, null, TRUE, TRUE))
 					insertCasing(AC)
