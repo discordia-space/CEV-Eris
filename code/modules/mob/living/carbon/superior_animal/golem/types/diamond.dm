@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/golem/diamond
 	name = "diamond golem"
-	desc = "A moving pile of rocks with diamond specks in it."
+	desc = "A moving pile of rocks covered in glistening diamonds."
 	icon_state = "golem_diamond"
 	icon_living = "golem_diamond"
 
@@ -30,4 +30,4 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/diamond
+	mineral_name = ORE_DIAMOND

@@ -47,6 +47,34 @@
 	var/busy_time // how long it will take to eat/lay egg
 	var/busy_start_time // when it started eating/laying egg
 
+	var/obj/item/hat
+	var/hat_x_offset = 6
+	var/hat_y_offset = 8
+
+	var/list/hats4roaches = list(/obj/item/clothing/head/collectable/chef,
+			/obj/item/clothing/head/collectable/paper,
+			/obj/item/clothing/head/collectable/beret,
+			/obj/item/clothing/head/collectable/welding,
+			/obj/item/clothing/head/collectable/flatcap,
+			/obj/item/clothing/head/collectable/pirate,
+			/obj/item/clothing/head/collectable/thunderdome,
+			/obj/item/clothing/head/collectable/swat,
+			/obj/item/clothing/head/collectable/police,
+			/obj/item/clothing/head/collectable/xenom,
+			/obj/item/clothing/head/collectable/petehat,
+			/obj/item/clothing/head/collectable/wizard,
+			/obj/item/clothing/head/collectable/hardhat,
+			/obj/item/clothing/head/fedora,
+			/obj/item/clothing/head/hasturhood,
+			/obj/item/clothing/head/hgpiratecap,
+			/obj/item/clothing/head/nursehat,
+			/obj/item/clothing/head/soft/rainbow,
+			/obj/item/clothing/head/soft/grey
+			)
+
+
+	var/datum/overmind/roachmind/overseer
+
 	// Armor related variables
 	armor = list(
 		melee = 0,
@@ -57,8 +85,16 @@
 		rad = 50
 	)
 
+/mob/living/carbon/superior_animal/roach/New()
+	. = ..()
+	var/newhat = pick(hats4roaches)
+	var/obj/item/hatobj = new newhat(loc)
+	wear_hat(hatobj)
+	findOverseer()
+
 /mob/living/carbon/superior_animal/roach/Destroy()
 	clearEatTarget()
+	leaveOvermind()
 	return ..()
 
 //When roaches die near a leader, the leader may call for reinforcements
@@ -74,3 +110,91 @@
 		if(prob(3))
 			visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
 			new /obj/item/music_tape(get_turf(src))
+
+	else if(prob(10))
+		visible_message(SPAN_DANGER("\the [src] drops behind a gift basket!"))
+		new /obj/item/storage/box/halloween_basket(get_turf(src))
+
+	if(hat)
+		hat.loc = get_turf(src)
+		hat.update_plane()
+		hat = null
+		update_hat()
+
+
+	if(!blattedin_revives_left)
+		leaveOvermind()
+	else
+		overseer?.casualties |= src
+
+/mob/living/carbon/superior_animal/roach/updatehealth()
+	. = ..()
+	if(overseer)
+		overseer.awaken()
+
+
+/mob/living/carbon/superior_animal/roach/commandchain(mob/potentialally) // this proc bypasses the 33 roach limit.
+	. = ..()
+	if(.)
+		if(istype(potentialally, /mob/living/carbon/superior_animal/roach/))
+			var/mob/living/carbon/superior_animal/roach/comrade = potentialally
+			switch(type)
+				if(/mob/living/carbon/superior_animal/roach/fuhrer) // two possibilities that matter with fuhrer
+					if(istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer))
+						if(!overseer && comrade.overseer) // if one of us was abandoned, join up.
+							joinOvermind(comrade.overseer)
+						else if(overseer && !comrade.overseer)
+							comrade.joinOvermind(overseer)
+						else if(!overseer && !comrade.overseer)
+							var/datum/overmind/roachmind/newmind = new() // team up to make a two fuhrer overmind, with the caller being the leader
+							newmind.leader = comrade
+							comrade.joinOvermind(newmind)
+							joinOvermind(newmind)
+					else if(istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser))
+						if(overseer && comrade.overseer)
+							overseer.rearrangeOverminds(comrade.overseer)
+						else if(overseer && overseer.leader == src) // replace the leader
+							comrade.joinOvermind(overseer)
+							overseer.leader = comrade
+						else if(!overseer && comrade.overseer) // or if they have an overmind and we don't, we join
+							joinOvermind(overseer)
+				if(/mob/living/carbon/superior_animal/roach/kaiser) // only one possibility requires code with kaiser
+					if(istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer))
+						if(overseer && comrade.overseer)
+							overseer.rearrangeOverminds(comrade.overseer)
+						else if(comrade.overseer && comrade.overseer.leader == comrade) // replace the leader
+							joinOvermind(comrade.overseer)
+							comrade.overseer.leader = src
+						else if(overseer && !comrade.overseer)
+							comrade.joinOvermind(overseer)
+				else
+					if(!overseer && istype(comrade, /mob/living/carbon/superior_animal/roach/fuhrer) || istype(comrade, /mob/living/carbon/superior_animal/roach/kaiser) && comrade.overseer)
+						joinOvermind(comrade.overseer)
+			
+
+/mob/living/carbon/superior_animal/roach/proc/wear_hat(var/obj/item/new_hat)
+	if(hat)
+		return
+	hat = new_hat
+	new_hat.forceMove(src)
+	update_hat()
+
+/mob/living/carbon/superior_animal/roach/proc/update_hat()
+	overlays.Cut()
+	if(hat)
+		var/offset_x = hat_x_offset
+		var/offset_y = hat_y_offset
+		switch(dir)
+			if(EAST)
+				offset_y = -hat_y_offset
+				offset_x = hat_x_offset
+			if(WEST)
+				offset_y = -hat_y_offset
+				offset_x = -hat_x_offset
+			if(NORTH)
+				offset_y = -2
+				offset_x = 0
+			if(SOUTH)
+				offset_y = -16
+				offset_x = 0
+		overlays |= get_hat_icon(hat, offset_x, offset_y)

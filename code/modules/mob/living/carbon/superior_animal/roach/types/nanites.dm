@@ -63,6 +63,14 @@
 		NS.death()
 	.=..()
 
+/mob/living/carbon/superior_animal/roach/nanite/joinOvermind(datum/overmind/roachmind/jointhis)
+	jointhis.addRanged(src) // Kraftwerk is Ranged
+	overseer = jointhis
+
+/mob/living/carbon/superior_animal/roach/nanite/leaveOvermind()
+	overseer?.removeRanged(src) // Ranged Kraftwerk
+	overseer?.casualties.Remove(src)
+	overseer = null
 
 /mob/living/simple_animal/hostile/naniteswarm
 	name = "nanite infested miniroach cluster"

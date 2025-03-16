@@ -91436,6 +91436,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/landmark/join/start/mining,
 /turf/floor/tiled/steel/panels,
 /area/eris/quartermaster/miningdock)
 "etI" = (
@@ -91443,6 +91444,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/landmark/join/start/mining,
 /turf/floor/tiled/steel/gray_platform,
 /area/eris/quartermaster/miningdock)
 "etJ" = (
@@ -95057,8 +95059,8 @@
 /area/eris/medical/medeva)
 "eCg" = (
 /obj/landmark/join/start/mining,
-/turf/floor/carpet,
-/area/eris/quartermaster/misc)
+/turf/floor/tiled/steel/panels,
+/area/eris/quartermaster/miningdock)
 "eCh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering{
@@ -212127,8 +212129,8 @@ ewW
 cHz
 ewZ
 dII
-euJ
-euJ
+eCg
+eCg
 etH
 cHz
 cHz
@@ -255136,10 +255138,10 @@ edM
 eou
 enR
 ehh
-eCg
+eCl
 edL
 egq
-eCg
+eCl
 ehh
 enR
 efW
@@ -255338,10 +255340,10 @@ eFf
 ebN
 ebN
 eys
-eCg
+eCl
 edL
 egq
-eCg
+eCl
 ehh
 enR
 exT
