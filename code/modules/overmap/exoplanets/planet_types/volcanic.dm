@@ -6,7 +6,7 @@
 	rock_colors = list(COLOR_DARK_GRAY)
 	plant_colors = list("#a23c05","#3f1f0d","#662929","#ba6222","#7a5b3a","#120309")
 	possible_themes = list()
-	map_generators = list(/datum/random_map/automata/cave_system/mountains/volcanic, /datum/random_map/noise/exoplanet/volcanic, /datum/random_map/noise/ore/filthy_rich)
+	map_generators = list(/datum/random_map/automata/cave_system/mountains/volcanic, /datum/random_map/noise/exoplanet/volcanic)
 	ruin_tags_blacklist = RUIN_HABITAT|RUIN_WATER
 	planet_colors = list("#8e3900", COLOR_RED)
 	surface_color = "#261e19"
