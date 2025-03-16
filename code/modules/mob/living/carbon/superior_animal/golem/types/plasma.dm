@@ -1,10 +1,9 @@
 #define DET_STABLE 0
 #define DET_BLOWING 1
-#define DET_DEFUSED 2
 
-/mob/living/carbon/superior_animal/golem/plasma
+/mob/living/carbon/superior_animal/golem/plasma // plasma golems detonate instead of hitting targets, or prematurely when they're killed.
 	name = "plasma golem"
-	desc = "A moving pile of rocks with plasma specks in it."
+	desc = "A moving pile of rocks with spikes of highly volatile plasma jutting out."
 	icon_state = "golem_plasma"
 	icon_living = "golem_plasma"
 
@@ -31,49 +30,31 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/plasma
-
-	// Ranged attack related variables
-	ranged = TRUE // Will it shoot?
-	rapid = FALSE // Will it shoot fast?
-	projectiletype = /obj/item/projectile/plasma
-	projectilesound = 'sound/weapons/energy/burn.ogg'
-	casingtype = null
-	ranged_cooldown = 1 SECOND
-	fire_verb = "fires"
-	acceptableTargetDistance = 6
-	kept_distance = 3
+	mineral_name = ORE_PLASMA
 
 	// How much time before detonation
-	var/det_time = 5 SECONDS
+	var/det_time = 2.5 SECONDS
 	var/det_status = DET_STABLE
 
-// Special capacity of plasma golem: blow up upon death except if hit with melee weapon
 /mob/living/carbon/superior_animal/golem/plasma/death(gibbed, message = deathmessage)
 	if(det_status == DET_STABLE)
+		walk(src,0)
+		anchored = TRUE // Prevents movement.
 		det_status = DET_BLOWING
-		icon_state = "golem_plasma_idle"
 		visible_message(SPAN_DANGER("\The [src] starts glowing!"))
+		icon_state = "golem_plasma_explosion"
 		spawn(det_time)
-			if(det_status == DET_BLOWING)  // Blowing up since no one defused it
-				icon_state = "golem_plasma_explosion"
-				spawn(1.5 SECONDS)
-					// Plasma ball on location
-					visible_message(SPAN_DANGER("\The [src] explodes into a ball of burning palsma!"))
-					for(var/turf/floor/target_tile in range(2, loc))
-						new /obj/effect/decal/cleanable/liquid_fuel(target_tile, 2, 1)
-						spawn (0) target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code
-					. = ..()
-	else if(det_status == DET_DEFUSED)  // Will triger when hit by melee while blowing
-		. = ..()
+			// Plasma ball on location
+			visible_message(SPAN_DANGER("\The [src] explodes into a ball of burning plasma!"))
+			for(var/turf/floor/target_tile as anything in RANGE_TURFS(2, loc))
+				new /obj/effect/decal/cleanable/liquid_fuel(target_tile, 2, 1)
+				target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code
+			. = ..()
 
-// Called when the mob is hit with an item in combat.
-/mob/living/carbon/superior_animal/golem/plasma/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	if(det_status == DET_BLOWING)
-		det_status = DET_DEFUSED
-		icon_state = "golem_plasma"
-	. = ..()
+/mob/living/carbon/superior_animal/golem/plasma/UnarmedAttack(atom/A, proximity)
+	if(det_status == DET_STABLE)
+		death(FALSE)
+
 
 #undef DET_STABLE
 #undef DET_BLOWING
-#undef DET_DEFUSED

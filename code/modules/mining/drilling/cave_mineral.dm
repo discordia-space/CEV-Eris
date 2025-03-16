@@ -36,8 +36,6 @@
 	var/mined_ore = 0
 	var/seismic_multiplier = 1
 
-	has_resources = 1
-
 /turf/cave_mineral/Initialize()
 	.=..()
 	if (mineral_name && (mineral_name in ore_data))
@@ -97,6 +95,8 @@
 //Not even going to touch this pile of spaghetti
 /turf/cave_mineral/attackby(obj/item/I, mob/living/user)
 
+	SSmapping.cave_ore_count--
+
 	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING), src, CB = CALLBACK(src, PROC_REF(check_radial_dig)))
 	switch(tool_type)
 		if(QUALITY_DIGGING)
@@ -121,6 +121,8 @@
 		new mineral.ore(src)
 
 /turf/cave_mineral/proc/GetDrilled()
+
+
 
 	if (mineral && mineral.result_amount)
 		// If the turf has already been excavated, some of it's ore has been removed
@@ -162,3 +164,6 @@
 
 /turf/cave_mineral/platinum
 	mineral_name = ORE_PLATINUM
+
+/turf/cave_mineral/hydrogen
+	mineral_name = ORE_HYDROGEN
