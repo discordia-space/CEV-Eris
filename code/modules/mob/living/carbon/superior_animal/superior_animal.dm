@@ -399,7 +399,7 @@
 	else if(!target || !Adjacent(target))
 		return
 
-	visible_message("<span class='warning'>[src] grabs [target]!</span>")
+	visible_message(SPAN_WARNING("[src] grabs [target]!"))
 	target.grabbed_by += src
 	grabbing = target
 	cheap_update_lying_buckled_and_verb_status_()
