@@ -42,7 +42,7 @@
 		src.amount = amount
 
 /obj/item/stack/Initialize()
-	.=..()
+	. = ..()
 	if (!stacktype)
 		stacktype = type
 
@@ -50,6 +50,8 @@
 		amount = rand(rand_min, rand_max)
 		amount = round(amount, 1) //Just in case
 	update_icon()
+	if(automerge)
+		return INITIALIZE_HINT_LATELOAD
 
 //do this a little later because trying to merge with uninitialized stacks is an easy way to cause runtimes
 /obj/item/stack/LateInitialize()
