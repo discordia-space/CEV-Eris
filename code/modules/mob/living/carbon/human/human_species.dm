@@ -15,6 +15,7 @@
 	GLOB.player_list -= src
 	qdel(sanity) //Sanity datum onLife() proc is its own set of timers independant from /mob/proc/Life(), this removes references that might try to ping it
 	sanity = null
+	delete_inventory()
 
 /mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname, var/newname)
 	..(newname = "[newname] (mannequin)")
