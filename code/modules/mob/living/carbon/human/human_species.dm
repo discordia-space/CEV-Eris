@@ -11,10 +11,16 @@
 /mob/living/carbon/human/dummy/mannequin/Initialize()
 	. = ..()
 	GLOB.human_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.player_list -= src
+	sanity = null //Sanity datum onLife() proc is its own set of timers independant from /mob/proc/Life(), making it Null was the simpliest way to stop it from processing
 	delete_inventory()
 
 /mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname, var/newname)
 	..(newname = "[newname] (mannequin)")
+
+/mob/living/carbon/human/dummy/mannequin/Life()		//Disables mannequin from doing more than processing this one Life(), stops organ processing
+	return
 
 /mob/living/carbon/human/skeleton
 	icon_state = "skeleton"
