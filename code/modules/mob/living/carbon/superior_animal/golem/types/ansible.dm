@@ -54,7 +54,7 @@
 /mob/living/carbon/superior_animal/golem/ansible/death()
 	if(prob(10)) //10% chance to drop a bs crystal. since ansible golems are only present on max difficulty this seems like a fair reward.
 		var/obj/item/bluespace_crystal/crystal = new /obj/item/bluespace_crystal(loc)
-		visible_message(SPAN_NOTICE("A [crystal.name] falls out of [src] as it disintegrates."), 1)
+		visible_message(SPAN_NOTICE("A [crystal.name] falls out of [src] as it disintegrates."))
 	..()
 
 // Special capacity of ansible golem: it will focus and teleport a miner near other golems

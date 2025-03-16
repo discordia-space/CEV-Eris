@@ -36,7 +36,7 @@
 
 /mob/living/carbon/superior_animal/golem/coal/enhanced/UnarmedAttack(atom/A, proximity)
 	if(istype(A, /mob/living/carbon))
-		visible_message(SPAN_DANGER("<b>[src]</b> grabs at [target_mob]!"), 1)
+		visible_message(SPAN_DANGER("<b>[src]</b> grabs at [target_mob]!"))
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		simplegrab(target_mob)
 	else // if they're not a carbon just attack them normally. this includes things like simple animals
