@@ -33,7 +33,7 @@
 
 
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/examine(var/mob/user, extra_description = "")
-	if(!..(user, 1))
+	if(!..(user, extra_description))
 		return FALSE
 	if(contents)
 		to_chat(user, get_content_info())
