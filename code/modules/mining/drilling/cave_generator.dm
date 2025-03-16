@@ -511,7 +511,7 @@
 											/datum/cave_vein/uranium = CAVE_VWEIGHT,
 											/datum/cave_vein/diamond = CAVE_VWEIGHT * 0.75,
 											/datum/cave_vein/platinum = CAVE_VWEIGHT * 0.75,
-											/datum/cave_vein/hydrogen = CAVE_VWEIGHT * ((seismic_lvl == 6) ? (CAVE_VWEIGHT * 0.5) : 0))//only generate on max difficulty. super duper valuable.
+											/datum/cave_vein/hydrogen = (seismic_lvl == 6) ? (CAVE_VWEIGHT * 0.5) : 0)//only generate on max difficulty. super duper valuable.
 	vein_path ||= pickweight(cave_veins)
 	var/datum/cave_vein/CV = new vein_path()
 	veins_to_guarantee -= vein_path
