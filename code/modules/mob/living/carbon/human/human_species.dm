@@ -13,8 +13,8 @@
 	GLOB.human_mob_list -= src
 	GLOB.living_mob_list -= src
 	GLOB.player_list -= src
-	sanity = null //Sanity datum onLife() proc is its own set of timers independant from /mob/proc/Life(), making it Null was the simpliest way to stop it from processing
-	delete_inventory()
+	qdel(sanity) //Sanity datum onLife() proc is its own set of timers independant from /mob/proc/Life(), this removes references that might try to ping it
+	sanity = null
 
 /mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname, var/newname)
 	..(newname = "[newname] (mannequin)")
