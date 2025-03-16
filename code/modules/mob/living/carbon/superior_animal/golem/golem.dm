@@ -67,19 +67,19 @@
 	// Ore datum the golem holds.
 	var/ore/mineral
 	var/mineral_name
+	var/oremult = 1
 
 	var/targetrecievedtime = -250
 
-	var/datum/cave_difficulty_level/difficultylevel //currently this is only used for multiplying ore drops
-
-/mob/living/carbon/superior_animal/golem/Initialize(var/mapload, difficulty)
+/mob/living/carbon/superior_animal/golem/Initialize(mapload, var/datum/cave_difficulty_level/difficulty)
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
-	difficultylevel = difficulty
+
+	if(difficulty)
+		oremult = difficulty.golem_ore_mult
 	. = ..()
 
 /mob/living/carbon/superior_animal/golem/Destroy()
-	difficultylevel = null
 	mineral = null
 	..()
 
@@ -88,7 +88,7 @@
 
 	// Spawn ores
 	if(mineral)
-		var/nb_ores =  CEILING((mineral.result_amount + rand(-3, 3)) * (difficultylevel ? difficultylevel.golem_ore_mult : 1), 1)
+		var/nb_ores =  CEILING((mineral.result_amount + rand(-3, 3)) * oremult, 1)
 		for(var/i in 1 to nb_ores)
 			new mineral.ore(loc)
 
