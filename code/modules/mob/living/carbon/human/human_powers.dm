@@ -447,5 +447,5 @@
 			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		visible_message(SPAN_DANGER("[src] emits a frightening screech as you feel the ground tramble!"))
 		for(var/obj/structure/burrow/B in find_nearby_burrows(src))
-			B.distress(TRUE)
+			B.distress(TRUE, src)
 
