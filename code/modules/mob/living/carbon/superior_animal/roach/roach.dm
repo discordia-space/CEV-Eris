@@ -84,7 +84,6 @@
 
 	else if(prob(10))
 		visible_message(SPAN_DANGER("\the [src] drops behind a gift basket!"))
-		new /obj/item/storage/box/halloween_basket(get_turf(src))
 
 	if(!blattedin_revives_left)
 		leaveOvermind()
