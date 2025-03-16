@@ -80,7 +80,7 @@
 		resisting++
 		if(prob(max(((stats?.getStat(STAT_ROB) ** 0.9) / grabbed_by.len),20)))
 			G_mob.breakgrab()
-			visible_message("<span class='warning'>[src] has broken free of [G_mob]'s grip!</span>")
+			visible_message(SPAN_WARNING("[src] has broken free of [G_mob]'s grip!"))
 
 	if(resisting)
 		setClickCooldown(20)
