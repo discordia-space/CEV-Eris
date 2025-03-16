@@ -128,9 +128,9 @@
 	spawn_tags = SPAWN_TAG_TOY_WEAPON
 	var/bullets = 5
 
-	examine(mob/user)
-		if(..(user, 2) && bullets)
-			to_chat(user, SPAN_NOTICE("It is loaded with [bullets] foam darts!"))
+	examine(mob/user, extra_description = "")
+		if(..(user) && bullets)
+			extra_description += SPAN_NOTICE("It is loaded with [bullets] foam darts!")
 
 	attackby(obj/item/I as obj, mob/user)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
