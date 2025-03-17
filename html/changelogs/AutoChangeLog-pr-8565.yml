@@ -1,5 +1,0 @@
-author: Mycah142
-delete-after: true
-changes:
-  - bugfix: Mannequins no longer process Life() or sanity, nor appear on Baptismal
-      record

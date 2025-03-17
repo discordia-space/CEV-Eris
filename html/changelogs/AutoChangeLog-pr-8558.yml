@@ -1,6 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - rscadd: Improved Roach AI
-  - balance: Kaiser now smokes more often
-  - bugfix: Sleeping Creatures should now wake up when they take damage.

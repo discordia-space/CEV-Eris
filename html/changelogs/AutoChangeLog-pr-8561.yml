@@ -1,9 +1,0 @@
-author: VmpOS2NHSkhkejA9
-delete-after: true
-changes:
-  - tweak: Ammo is compressed into stacks when dumped from boxes and magazines.
-  - tweak: Material stacks merge when moving over each other and when created.
-  - balance: Ammo piles deal no fall damage unless there's 10 or more casings in the
-      pile.
-  - balance: Stacks deal fall damage based on the number of sheets in the stack.
-  - balance: Osmium deals 2.5x more fall damage than other stack types.
