@@ -259,6 +259,23 @@
 	initialized = TRUE
 	// SEND_SIGNAL_OLD(src, COMSIG_SUBSYSTEM_POST_INITIALIZE)
 
+	#ifndef OPENDREAM
+	var/static/no_memstat = FALSE
+	if(no_memstat)
+		return
+	try
+		if(!rustg_file_exists(MEMORYSTATS_DLL_PATH))
+			no_memstat = TRUE
+			return
+		var/memory_summary = trimtext(replacetext(call_ext(MEMORYSTATS_DLL_PATH, "memory_stats")(), "Server mem usage:", ""))
+		if(memory_summary)
+			rustg_file_append("=== [src.name] ===\n[memory_summary]\n", "[GLOB.log_directory]/profiler/memstat-init.txt")
+		else
+			no_memstat = TRUE
+	catch
+		no_memstat = TRUE
+	#endif
+
 	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)
 	var/seconds = round(time / 1000, 0.01)
 

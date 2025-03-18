@@ -245,6 +245,7 @@
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\machines.dm"
 #include "code\controllers\subsystems\mapping.dm"
+#include "code\controllers\subsystems\memory_stats.dm"
 #include "code\controllers\subsystems\migration.dm"
 #include "code\controllers\subsystems\misc.dm"
 #include "code\controllers\subsystems\pai.dm"
