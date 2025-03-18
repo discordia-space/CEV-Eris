@@ -57,13 +57,14 @@
 	var/emagged = 0
 	var/failmsg = ""
 	var/charge = 0
+	var/
 
 /obj/item/device/lightreplacer/New()
 	failmsg = "The [name]'s refill light blinks red."
 	..()
 
 /obj/item/device/lightreplacer/examine(mob/user, extra_description = "")
-	if(..(user, 2))
+	if(..(user, extra_description))
 		to_chat(user, "It has [uses] lights remaining.")
 
 /obj/item/device/lightreplacer/attackby(obj/item/W, mob/user)

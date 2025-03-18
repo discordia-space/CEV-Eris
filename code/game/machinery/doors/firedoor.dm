@@ -70,7 +70,7 @@
 	return get_material_by_name(MATERIAL_STEEL)
 
 /obj/machinery/door/firedoor/examine(mob/user, extra_description = "")
-	if(!density || !..(user, 1))
+	if(!density || !..(user, extra_description))
 		return FALSE
 
 	extra_description += "<b> EMERGENCY SENSOR READINGS </b>"
