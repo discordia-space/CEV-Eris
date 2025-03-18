@@ -31,6 +31,10 @@ jobs:
             ${{ runner.os }}-build-${{ secrets.CACHE_PURGE_KEY }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
       - name: Install Tools
         run: |
           pip3 install setuptools
