@@ -15,6 +15,10 @@ jobs:
       group: run_linters-${{ github.ref }}
       cancel-in-progress: true
     steps:
+      - name: Update apt and install libc6
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libc6
       - uses: actions/checkout@v3
       - name: Restore SpacemanDMM cache
         uses: actions/cache@v3
