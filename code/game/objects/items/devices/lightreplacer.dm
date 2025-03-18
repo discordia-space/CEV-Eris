@@ -63,7 +63,7 @@
 	..()
 
 /obj/item/device/lightreplacer/examine(mob/user, extra_description = "")
-	if(..(user, 2))
+	if(..(user, extra_description))
 		to_chat(user, "It has [uses] lights remaining.")
 
 /obj/item/device/lightreplacer/attackby(obj/item/W, mob/user)
