@@ -57,7 +57,6 @@
 	var/emagged = 0
 	var/failmsg = ""
 	var/charge = 0
-	var/
 
 /obj/item/device/lightreplacer/New()
 	failmsg = "The [name]'s refill light blinks red."
