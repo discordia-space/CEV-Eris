@@ -10,8 +10,7 @@ jobs:
   run_linters:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Run Linters
-    runs-on: ubuntu-22.04
-    timeout-minutes: 5
+    runs-on: ubuntu-20.04
     concurrency:
       group: run_linters-${{ github.ref }}
       cancel-in-progress: true
@@ -31,10 +30,6 @@ jobs:
             ${{ runner.os }}-build-${{ secrets.CACHE_PURGE_KEY }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
       - name: Install Tools
         run: |
           pip3 install setuptools
@@ -61,7 +56,7 @@ jobs:
   compile_all_maps:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Compile Maps
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     concurrency:
       group: compile_all_maps-${{ github.ref }}
       cancel-in-progress: true
@@ -81,7 +76,7 @@ jobs:
   run_all_tests:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     name: Integration Tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     services:
       mysql:
         image: mysql:latest
@@ -132,7 +127,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[ci skip]') && always()"
     needs: [run_all_tests]
     name: Compare Screenshot Tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       # If we ever add more artifacts, this is going to break, but it'll be obvious.
