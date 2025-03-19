@@ -345,7 +345,8 @@ This function restores all organs.
 		organ = def_zone
 	else
 		if(!def_zone)
-			def_zone = ran_zone(def_zone)
+			if(!damagetype == TOX) // global application
+				def_zone = ran_zone(def_zone)
 		organ = get_organ(check_zone(def_zone))
 
 	if(!organ)
@@ -353,7 +354,11 @@ This function restores all organs.
 
 	//Wounding multiplier is handled in the organ itself
 	damageoverlaytemp = 20
-	if(organ.take_damage(damage, damagetype, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
+	if(!def_zone) // only Tox should be able to do this
+		for(var/obj/item/organ/internal/tohit in internal_organs)
+			tohit.take_damage(damage, damagetype, armor_divisor, wounding_multiplier, sharp, edge, used_weapon)
+		UpdateDamageIcon()
+	else if(organ.take_damage(damage, damagetype, armor_divisor, wounding_multiplier, sharp, edge, used_weapon))
 		UpdateDamageIcon()
 	sanity.onDamage(damage)
 
