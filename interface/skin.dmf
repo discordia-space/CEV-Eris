@@ -225,7 +225,7 @@ macro "robot"
 		name = "F3"
 		command = "Say"
 	elem
-		name = "F4"
+		name = "M"
 		command = "Emote"
 	elem
 		name = "F5"
@@ -539,7 +539,7 @@ macro "default"
 		name = "F3"
 		command = "Say"
 	elem
-		name = "F4"
+		name = "M"
 		command = "Emote"
 	elem
 		name = "F5"
