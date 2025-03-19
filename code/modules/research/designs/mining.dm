@@ -14,7 +14,7 @@
 	category = CAT_MINING
 
 /datum/design/research/item/weapon/mining/scanner
-	build_path = /obj/item/device/scanner/mining/advanced
+	build_path = /obj/item/device/scanner/mining
 	sort_string = "KAAAD"
 	category = CAT_MINING
 

@@ -18,6 +18,7 @@
 /obj/machinery/mining/deep_drill
 	name = "deep mining drill head"
 	desc = "An enormous drill to dig out deep ores."
+	description_info = "Can be used to open caves on asteroid surfaces, with difficulty and ore level depending on the seismic level of the tile it's activated on.\nThe seismic level of a tile can be found with a subsurface ore detector."
 	icon_state = "mining_drill"
 	pixel_x = -16
 
@@ -135,7 +136,7 @@
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
-			health = ((health + DRILL_REPAIR_AMOUNT) < maxHealth ? health + DRILL_REPAIR_AMOUNT : maxHealth) // increase health by the defined repair amount unless it would go over maxHealth, in which case just set heal to maxHealth instead.
+			health = min(maxHealth, health + DRILL_REPAIR_AMOUNT)
 
 		return
 
@@ -223,14 +224,28 @@
 			qdel(src)
 
 /obj/machinery/mining/deep_drill/examine(mob/user, extra_description = "")
-	if(health <= 0)
-		extra_description += "\n\The [src] is wrecked."
-	else if(health < maxHealth * 0.33)
-		extra_description += SPAN_DANGER("\n\The [src] looks like it's about to break!")
-	else if(health < maxHealth * 0.66)
-		extra_description += SPAN_DANGER("\n\The [src] looks seriously damaged!")
-	else if(health < maxHealth)
-		extra_description += "\n\The [src] shows signs of damage!"
+	if(cave_connected)
+		switch(cave_gen.orecount)
+			if(-INFINITY to 3)
+				extra_description += SPAN_NOTICE("\nThe integrated ore scanner can't detect any ore in the attached cave.")
+			if(3 to 10)
+				extra_description += SPAN_NOTICE("\nThe integrated ore scanner barely detects any ore in the attached cave.")
+			if(10 to 50)
+				extra_description += SPAN_NOTICE("\nThe integrated ore scanner still detects plenty of ore in the attached cave.")
+			if(50 to INFINITY)
+				extra_description += SPAN_NOTICE("\nThe integrated ore scanner detects an abundance of ore in the attached cave.")
+			else //something has gone wrong
+				extra_description += SPAN_WARNING("\nThe integrated ore scanner seems to be malfunctioning.")
+	if(health < maxHealth)
+		switch(health)
+			if(-INFINITY to 0)
+				extra_description += "\n\The [src] is wrecked."
+			if(0 to 600)
+				extra_description += SPAN_DANGER("\n\The [src] looks like it's about to break!")
+			if(600 to 1200)
+				extra_description += SPAN_DANGER("\n\The [src] looks seriously damaged!")
+			else
+				extra_description += "\n\The [src] shows signs of damage!"
 	else
 		extra_description += "\n\The [src] is in pristine condition."
 

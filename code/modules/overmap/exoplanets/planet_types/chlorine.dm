@@ -5,7 +5,7 @@
 	planetary_area = /area/exoplanet/chlorine
 	rock_colors = list(COLOR_GRAY80, COLOR_PALE_GREEN_GRAY, COLOR_PALE_BTL_GREEN)
 	plant_colors = list("#eba487", "#ceeb87", "#eb879c", "#ebd687", "#f6d6c9", "#f2b3e0")
-	map_generators = list(/datum/random_map/noise/exoplanet/chlorine, /datum/random_map/noise/ore/poor)
+	map_generators = list(/datum/random_map/noise/exoplanet/chlorine)
 	ruin_tags_blacklist = RUIN_HABITAT|RUIN_WATER
 	surface_color = "#a3b879"
 	water_color = COLOR_BOTTLE_GREEN

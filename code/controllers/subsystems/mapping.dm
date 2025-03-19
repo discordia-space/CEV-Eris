@@ -7,6 +7,7 @@ SUBSYSTEM_DEF(mapping)
 	var/dmm_suite/maploader = null
 	var/list/teleportlocs = list()
 	var/list/ghostteleportlocs = list()
+	var/cave_ore_count = 0
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 	if(config.generate_asteroid)
@@ -19,8 +20,6 @@ SUBSYSTEM_DEF(mapping)
 					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
 				// Now for the actual map generating.  This occurs for every z-level defined in the config.
 				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
-				// Let's add ore too.
-				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
 		else
 			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
 
