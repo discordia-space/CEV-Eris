@@ -38,7 +38,8 @@
 /datum/lobbyscreen/onestar
 	image_file = 'icons/title_screens/onestar.png'
 	possibleMusic = list(
-		'sound/music/lobby/Duke_Gneiss-Downtown_2.ogg'
+		'sound/music/lobby/Duke_Gneiss-Downtown_2.ogg',
+		'sound/music/lobby/Flleeppyy-Chokehold_draft1.ogg'
 		)
 
 /datum/lobbyscreen/neotheology
