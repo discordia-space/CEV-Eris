@@ -15,6 +15,14 @@ jobs:
       group: run_linters-${{ github.ref }}
       cancel-in-progress: true
     steps:
+      - name: Add Ubuntu security repository
+        run: |
+          sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu jammy-security main" -y
+
+      - name: Update apt and install libc6
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libc6
       - uses: actions/checkout@v3
       - name: Restore SpacemanDMM cache
         uses: actions/cache@v3
@@ -61,6 +69,14 @@ jobs:
       group: compile_all_maps-${{ github.ref }}
       cancel-in-progress: true
     steps:
+      - name: Add Ubuntu security repository
+        run: |
+          sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu jammy-security main" -y
+
+      - name: Update apt and install libc6
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libc6
       - uses: actions/checkout@v3
       - name: Restore BYOND cache
         uses: actions/cache@v3
@@ -89,6 +105,14 @@ jobs:
       group: run_all_tests-${{ github.ref }}
       cancel-in-progress: true
     steps:
+      - name: Add Ubuntu security repository
+        run: |
+          sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu jammy-security main" -y
+
+      - name: Update apt and install libc6
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libc6
       - uses: actions/checkout@v3
       - name: Restore BYOND cache
         uses: actions/cache@v3

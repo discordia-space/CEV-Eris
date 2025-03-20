@@ -367,3 +367,7 @@
 #define TTS_SEED_DEFAULT_MALE "Male_1"
 #define TTS_SEED_ANNOUNCER "Robot_2"
 
+/// Path for the byond-memorystats dll
+
+#define MEMORYSTATS_DLL_PATH (world.system_type == MS_WINDOWS ? "memorystats.dll" : "./libmemorystats.so")
+
