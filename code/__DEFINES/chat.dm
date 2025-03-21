@@ -26,7 +26,7 @@
 #define MESSAGE_TYPE_ATTACKLOG "attacklog"
 #define MESSAGE_TYPE_DEBUG "debug"
 
-#define EXTERNALREPLYCOUNT 2 // monkestation edit
+#define EXTERNALREPLYCOUNT 2
 /// Max length of chat message in characters
 #define CHAT_MESSAGE_MAX_LENGTH 110
 

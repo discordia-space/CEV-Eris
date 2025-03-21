@@ -26,7 +26,7 @@ var/global/datum/getrev/revdata = new()
 
 /datum/getrev/proc/get_log_message()
 	var/list/msg = list()
-	msg += "Running Monkestation revision: [date]"
+	msg += "Running Eris revision: [date]"
 	if(originmastercommit)
 		msg += "origin/master: [originmastercommit]"
 

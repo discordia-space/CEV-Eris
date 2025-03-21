@@ -133,6 +133,8 @@
 				to_chat(user, SPAN_WARNING("The holomap has failed to initialize. This area of space cannot be mapped."))
 			else
 				to_chat(user, SPAN_NOTICE("A hologram of CEV \"Eris\" appears before your eyes."))
+				playsound(src, 'code/modules/holomap/sounds/holomap_open.ogg', 125)
+
 
 /obj/machinery/holomap/attack_ai(mob/living/silicon/robot/user)
 	return // TODO
@@ -148,6 +150,7 @@
 
 /obj/machinery/holomap/proc/stopWatching()
 	if(watching_mob)
+		playsound(src, 'code/modules/holomap/sounds/holomap_close.ogg', 125)
 		if(watching_mob.client)
 			animate(holomap_datum.station_map, alpha = 0, time = 5, easing = LINEAR_EASING)
 			var/mob/M = watching_mob
