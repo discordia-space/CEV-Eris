@@ -20,9 +20,9 @@
 	name = "One Star medmultitool"
 	desc = "A compact One Star medical multitool. It has all surgery tools."
 	icon_state = "medmulti"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 2, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASMA = 2, MATERIAL_PLATINUM = 3)
 	flags = CONDUCT
-	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_ONESTAR = 2)
 	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 25)
 
 	max_upgrades = 2

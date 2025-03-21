@@ -201,14 +201,15 @@
 	spawn_blacklisted = TRUE
 
 //one star stock parts (rating 5)
+//these parts are more expensive to make due to their advanced technologies, and to make it less of a viable money cheat for guild
 
 /obj/item/stock_parts/capacitor/one_star
 	name = "one star capacitor"
 	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
 	icon_state = "one_capacitor"
-	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4, TECH_ONESTAR = 2)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 2, MATERIAL_PLATINUM = 2, MATERIAL_PLASMA = 1)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -216,9 +217,9 @@
 	name = "one star scanning module"
 	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
 	icon_state = "one_scan_module"
-	origin_tech = list(TECH_MAGNET = 5)
+	origin_tech = list(TECH_MAGNET = 5, TECH_ONESTAR = 2)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 2, MATERIAL_PLASMA = 2)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -226,9 +227,9 @@
 	name = "one star manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "one_mani"
-	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
+	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2, TECH_ONESTAR = 2)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 2)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -236,9 +237,9 @@
 	name = "one star micro-laser"
 	icon_state = "one_laser"
 	desc = "A tiny laser used in certain devices."
-	origin_tech = list(TECH_MAGNET = 5)
+	origin_tech = list(TECH_MAGNET = 5, TECH_ONESTAR = 2)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 2, MATERIAL_PLASMA = 2)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -246,9 +247,9 @@
 	name = "one star matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "one_matter"
-	origin_tech = list(TECH_MATERIAL = 5)
+	origin_tech = list(TECH_MATERIAL = 5, TECH_ONESTAR = 2)
 	rating = 5
-	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLATINUM = 3, MATERIAL_PLASMA = 2)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
