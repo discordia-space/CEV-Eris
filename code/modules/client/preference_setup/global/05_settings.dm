@@ -78,7 +78,7 @@
 		var/selected_option = pref_mob.get_preference_value(client_pref.key)
 		for(var/option in client_pref.options)
 			var/is_selected = selected_option == option
-			. += "<td><a class='[is_selected ? "linkOn" : ""]' href='?src=\ref[src];pref=[client_pref.key];value=[option]'><b>[option]</b></a>"
+			. += "<td><a class='[is_selected ? "linkOn" : ""]' href='byond://?src=\ref[src];pref=[client_pref.key];value=[option]'><b>[option]</b></a>"
 
 		. += "</tr>"
 

@@ -24,7 +24,7 @@
 	. += "<b>Buffer Memory:</b><br>"
 	var/buffer_name = multitool.get_buffer_name()
 	if(buffer_name)
-		. += "[buffer_name] <a href='?src=\ref[src];send=\ref[multitool.buffer_object]'>Send</a> <a href='?src=\ref[src];purge=1'>Purge</a><br>"
+		. += "[buffer_name] <a href='byond://?src=\ref[src];send=\ref[multitool.buffer_object]'>Send</a> <a href='byond://?src=\ref[src];purge=1'>Purge</a><br>"
 	else
 		. += "No connection stored in the buffer."
 

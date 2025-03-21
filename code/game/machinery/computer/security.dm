@@ -60,15 +60,15 @@
 
 	var/dat
 	if (temp)
-		dat = text("<TT>[]</TT><BR><BR><A href='?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
+		dat = text("<TT>[]</TT><BR><BR><A href='byond://?src=\ref[];choice=Clear Screen'>Clear Screen</A>", temp, src)
 	else
-		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
+		dat = text("Confirm Identity: <A href='byond://?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
 		if (authenticated)
 			switch(screen)
 				if(1)
 					dat += {"<p style='text-align:center;'>"}
-					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
-					dat += text("<A href='?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
+					dat += text("<A href='byond://?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
+					dat += text("<A href='byond://?src=\ref[];choice=New Record (General)'>New Record</A><BR>", src)
 					dat += {"
 </p>
 <table style="text-align:center;" cellspacing="0" width="100%">
@@ -78,10 +78,10 @@
 </table>
 <table style="text-align:center;" border="1" cellspacing="0" width="100%">
 <tr>
-<th><A href='?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
-<th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=name'>Name</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=id'>ID</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=rank'>Rank</A></th>
+<th><A href='byond://?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
 <th>Criminal Status</th>
 </tr>"}
 					if(!isnull(data_core.general))
@@ -105,17 +105,17 @@
 								if("")
 									background = "'background-color:#FFFFFF;'"
 									crimstat = "No Record."
-							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
+							dat += text("<tr style=[]><td><A href='byond://?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
 							dat += text("<td>[]</td>", R.fields["id"])
 							dat += text("<td>[]</td>", R.fields["rank"])
 							dat += text("<td>[]</td>", R.fields["fingerprint"])
 							dat += text("<td>[]</td></tr>", crimstat)
 						dat += "</table><hr width='75%' />"
-					dat += text("<A href='?src=\ref[];choice=Record Maintenance'>Record Maintenance</A><br><br>", src)
-					dat += text("<A href='?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
+					dat += text("<A href='byond://?src=\ref[];choice=Record Maintenance'>Record Maintenance</A><br><br>", src)
+					dat += text("<A href='byond://?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
 				if(2)
 					dat += "<B>Records Maintenance</B><HR>"
-					dat += "<BR><A href='?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='?src=\ref[src];choice=Return'>Back</A>"
+					dat += "<BR><A href='byond://?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='byond://?src=\ref[src];choice=Return'>Back</A>"
 				if(3)
 					dat += "<CENTER><B>Security Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && data_core.general.Find(active1)))
@@ -123,48 +123,48 @@
 						user << browse_rsc(active1.fields["photo_side"], "side.png")
 						dat += {"
 							<table><tr><td>
-							Name: <A href='?src=\ref[src];choice=Edit;field=name'>[active1.fields["name"]]</A><BR>
-							ID: <A href='?src=\ref[src];choice=Edit;field=id'>[active1.fields["id"]]</A><BR>
-							Sex: <A href='?src=\ref[src];choice=Edit;field=sex'>[active1.fields["sex"]]</A><BR>
-							Age: <A href='?src=\ref[src];choice=Edit;field=age'>[active1.fields["age"]]</A><BR>
-							Rank: <A href='?src=\ref[src];choice=Edit;field=rank'>[active1.fields["rank"]]</A><BR>
-							Fingerprint: <A href='?src=\ref[src];choice=Edit;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>
+							Name: <A href='byond://?src=\ref[src];choice=Edit;field=name'>[active1.fields["name"]]</A><BR>
+							ID: <A href='byond://?src=\ref[src];choice=Edit;field=id'>[active1.fields["id"]]</A><BR>
+							Sex: <A href='byond://?src=\ref[src];choice=Edit;field=sex'>[active1.fields["sex"]]</A><BR>
+							Age: <A href='byond://?src=\ref[src];choice=Edit;field=age'>[active1.fields["age"]]</A><BR>
+							Rank: <A href='byond://?src=\ref[src];choice=Edit;field=rank'>[active1.fields["rank"]]</A><BR>
+							Fingerprint: <A href='byond://?src=\ref[src];choice=Edit;field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>
 							Physical Status: [active1.fields["p_stat"]]<BR>
 							Mental Status: [active1.fields["m_stat"]]<BR></td>
 							<td align = center valign = top>Photo:<br>
 							<table><td align = center><img src=front.png height=80 width=80 border=4><BR>
-							<A href='?src=\ref[src];choice=Edit;field=photo front'>Update front photo</A></td>
+							<A href='byond://?src=\ref[src];choice=Edit;field=photo front'>Update front photo</A></td>
 							<td align = center><img src=side.png height=80 width=80 border=4><BR>
-							<A href='?src=\ref[src];choice=Edit;field=photo side'>Update side photo</A></td></table>
+							<A href='byond://?src=\ref[src];choice=Edit;field=photo side'>Update side photo</A></td></table>
 							</td></tr></table>
 						"}
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if ((istype(active2, /datum/data/record) && data_core.security.Find(active2)))
 						dat += "<BR>\n<CENTER><B>Security Data</B></CENTER><BR>\nCriminal Status: \
-								<A href='?src=\ref[src];choice=Edit;field=criminal'>[active2.fields["criminal"]]</A><BR>\n<BR>\n \
-								Minor Crimes: <A href='?src=\ref[src];choice=Edit;field=mi_crim'>[active2.fields["mi_crim"]]</A><BR>\n \
-								Details: <A href='?src=\ref[src];choice=Edit;field=mi_crim_d'>[active2.fields["mi_crim_d"]]</A><BR>\n<BR>\n\
-								Major Crimes: <A href='?src=\ref[src];choice=Edit;field=ma_crim'>[active2.fields["ma_crim"]]</A><BR>\n \
-								Details: <A href='?src=\ref[src];choice=Edit;field=ma_crim_d'>[active2.fields["ma_crim_d"]]</A><BR>\n<BR>\n \
-								Important Notes:<BR>\n\t<A href='?src=\ref[src];choice=Edit;field=notes'>[decode(active2.fields["notes"])]</A><BR>\n<BR>\n\
+								<A href='byond://?src=\ref[src];choice=Edit;field=criminal'>[active2.fields["criminal"]]</A><BR>\n<BR>\n \
+								Minor Crimes: <A href='byond://?src=\ref[src];choice=Edit;field=mi_crim'>[active2.fields["mi_crim"]]</A><BR>\n \
+								Details: <A href='byond://?src=\ref[src];choice=Edit;field=mi_crim_d'>[active2.fields["mi_crim_d"]]</A><BR>\n<BR>\n\
+								Major Crimes: <A href='byond://?src=\ref[src];choice=Edit;field=ma_crim'>[active2.fields["ma_crim"]]</A><BR>\n \
+								Details: <A href='byond://?src=\ref[src];choice=Edit;field=ma_crim_d'>[active2.fields["ma_crim_d"]]</A><BR>\n<BR>\n \
+								Important Notes:<BR>\n\t<A href='byond://?src=\ref[src];choice=Edit;field=notes'>[decode(active2.fields["notes"])]</A><BR>\n<BR>\n\
 								<CENTER><B>Comments/Log</B></CENTER><BR>"
 						var/counter = 1
 						while(active2.fields["com_[counter]"])
-							dat += text("[]<BR><A href='?src=\ref[];choice=Delete Entry;del_c=[]'>Delete Entry</A><BR><BR>", active2.fields["com_[counter]"], src, counter)
+							dat += text("[]<BR><A href='byond://?src=\ref[];choice=Delete Entry;del_c=[]'>Delete Entry</A><BR><BR>", active2.fields["com_[counter]"], src, counter)
 							counter++
-						dat += "<A href='?src=\ref[src];choice=Add Entry'>Add Entry</A><BR><BR>"
-						dat += "<A href='?src=\ref[src];choice=Delete Record (Security)'>Delete Record (Security Only)</A><BR><BR>"
+						dat += "<A href='byond://?src=\ref[src];choice=Add Entry'>Add Entry</A><BR><BR>"
+						dat += "<A href='byond://?src=\ref[src];choice=Delete Record (Security)'>Delete Record (Security Only)</A><BR><BR>"
 					else
 						dat += "<B>Security Record Lost!</B><BR>"
-						dat += "<A href='?src=\ref[src];choice=New Record (Security)'>New Security Record</A><BR><BR>"
-					dat += "<A href='?src=\ref[src];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR> \
-							<A href='?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
-							<A href='?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
-							<A href='?src=\ref[src];choice=Return'>Back</A><BR>"
+						dat += "<A href='byond://?src=\ref[src];choice=New Record (Security)'>New Security Record</A><BR><BR>"
+					dat += "<A href='byond://?src=\ref[src];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR> \
+							<A href='byond://?src=\ref[src];choice=Print Record'>Print Record</A><BR> \
+							<A href='byond://?src=\ref[src];choice=Print Poster'>Print Wanted Poster</A><BR> \
+							<A href='byond://?src=\ref[src];choice=Return'>Back</A><BR>"
 				if(4)
 					if(!Perp.len)
-						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
+						dat += text("ERROR.  String could not be located.<br><br><A href='byond://?src=\ref[];choice=Return'>Back</A>", src)
 					else
 						dat += {"
 							<table style="text-align:center;" cellspacing="0" width="100%">
@@ -199,17 +199,17 @@
 								if("")
 									background = "'background-color:#FFFFFF;'"
 									crimstat = "No Record."
-							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
+							dat += text("<tr style=[]><td><A href='byond://?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
 							dat += text("<td>[]</td>", R.fields["id"])
 							dat += text("<td>[]</td>", R.fields["rank"])
 							dat += text("<td>[]</td>", R.fields["fingerprint"])
 							dat += text("<td>[]</td></tr>", crimstat)
 						dat += "</table><hr width='75%' />"
-						dat += text("<br><A href='?src=\ref[];choice=Return'>Return to index.</A>", src)
+						dat += text("<br><A href='byond://?src=\ref[];choice=Return'>Return to index.</A>", src)
 				else
 		else
-			dat += text("<A href='?src=\ref[];choice=Log In'>{Log In}</A>", src)
-	user << browse(text("<HEAD><TITLE>Security Records</TITLE></HEAD><TT>[]</TT>", dat), "window=secure_rec;size=600x400")
+			dat += text("<A href='byond://?src=\ref[];choice=Log In'>{Log In}</A>", src)
+	user << browse(HTML_SKELETON_TITLE("Security Records", "<TT>[dat]</TT>"), "window=secure_rec;size=600x400")
 	onclose(user, "secure_rec")
 	return
 
@@ -415,8 +415,8 @@ What a mess.*/
 			if ("Delete All Records")
 				temp = ""
 				temp += "Are you sure you wish to delete all Security records?<br>"
-				temp += "<a href='?src=\ref[src];choice=Purge All Records'>Yes</a><br>"
-				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
+				temp += "<a href='byond://?src=\ref[src];choice=Purge All Records'>Yes</a><br>"
+				temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Purge All Records")
 				for(var/datum/data/record/R in data_core.security)
@@ -438,14 +438,14 @@ What a mess.*/
 			if ("Delete Record (ALL)")
 				if (active1)
 					temp = "<h5>Are you sure you wish to delete the record (ALL)?</h5>"
-					temp += "<a href='?src=\ref[src];choice=Delete Record (ALL) Execute'>Yes</a><br>"
-					temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
+					temp += "<a href='byond://?src=\ref[src];choice=Delete Record (ALL) Execute'>Yes</a><br>"
+					temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Delete Record (Security)")
 				if (active2)
 					temp = "<h5>Are you sure you wish to delete the record (Security Portion Only)?</h5>"
-					temp += "<a href='?src=\ref[src];choice=Delete Record (Security) Execute'>Yes</a><br>"
-					temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
+					temp += "<a href='byond://?src=\ref[src];choice=Delete Record (Security) Execute'>Yes</a><br>"
+					temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
 
 			if ("Delete Entry")
 				if ((istype(active2, /datum/data/record) && active2.fields[text("com_[]", href_list["del_c"])]))
@@ -531,11 +531,11 @@ What a mess.*/
 						if (istype(active2, /datum/data/record))
 							temp = "<h5>Criminal Status:</h5>"
 							temp += "<ul>"
-							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=none'>None</a></li>"
-							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=arrest'>*Arrest*</a></li>"
-							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
-							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=parolled'>Parolled</a></li>"
-							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=none'>None</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=arrest'>*Arrest*</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=parolled'>Parolled</a></li>"
+							temp += "<li><a href='byond://?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
 							temp += "</ul>"
 					if("rank")
 						var/list/L = list( "First Officer", "Captain", "AI" )
@@ -544,7 +544,7 @@ What a mess.*/
 							temp = "<h5>Rank:</h5>"
 							temp += "<ul>"
 							for(var/rank in GLOB.joblist)
-								temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
+								temp += "<li><a href='byond://?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
 							temp += "</ul>"
 						else
 							alert(usr, "You do not have the required rank to do this!")

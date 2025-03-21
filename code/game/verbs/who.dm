@@ -39,7 +39,7 @@
 			if(C.is_afk())
 				entry += " (AFK - [C.inactivity2text()])"
 
-			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+			entry += " (<A href='byond://?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			Lines += entry
 	else
 		for(var/client/C in clients)

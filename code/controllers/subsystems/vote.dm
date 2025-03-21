@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(vote)
 
 	var/text = "[poll.name] vote started by [poll.initiator]."
 	log_vote(text)
-	to_chat(world, {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"})
+	to_chat(world, {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='byond://?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"})
 	sound_to(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = GLOB.vote_sound_channel))
 
 	return TRUE
@@ -112,16 +112,16 @@ SUBSYSTEM_DEF(vote)
 			var/c_votes = (active_vote.see_votes || admin) ? choice.total_votes() : "*"
 			data += "<tr><td>"
 			if(C.key in choice.voters)
-				data += "<b><a href='?src=\ref[src];vote=\ref[choice]'>[choice.text]</a></b>"
+				data += "<b><a href='byond://?src=\ref[src];vote=\ref[choice]'>[choice.text]</a></b>"
 			else
-				data += "<a href='?src=\ref[src];vote=\ref[choice]'>[choice.text]</a>"
+				data += "<a href='byond://?src=\ref[src];vote=\ref[choice]'>[choice.text]</a>"
 			if(choice.desc)
 				data += "<br>\t<i>[choice.desc]</i>"
 			data += "</td><td align = 'center'>[c_votes]</td></tr>"
 
 		data += "</table><hr>"
 		if(admin)
-			data += "(<a href='?src=\ref[src];cancel=1'>Cancel Vote</a>) "
+			data += "(<a href='byond://?src=\ref[src];cancel=1'>Cancel Vote</a>) "
 	else
 		var/any_votes = FALSE
 		data += "<h2>Start a vote:</h2><hr><ul>"
@@ -132,21 +132,21 @@ SUBSYSTEM_DEF(vote)
 			any_votes = TRUE
 
 			if(poll.can_start() && (!poll.only_admin || admin))
-				data += "<a href='?src=\ref[src];start_vote=\ref[poll]'>[poll.name]</a>"
+				data += "<a href='byond://?src=\ref[src];start_vote=\ref[poll]'>[poll.name]</a>"
 			else
 				data += "<s>[poll.name]</s>"
 				if (admin)
-					data += " <a href='?src=\ref[src];start_vote=\ref[poll]'>force</a> "
+					data += " <a href='byond://?src=\ref[src];start_vote=\ref[poll]'>force</a> "
 
 			if(admin)
-				data += "\t(<a href='?src=\ref[src];toggle_admin=\ref[poll]'>[poll.only_admin?"Only admin":"Allowed"]</a>)"
+				data += "\t(<a href='byond://?src=\ref[src];toggle_admin=\ref[poll]'>[poll.only_admin?"Only admin":"Allowed"]</a>)"
 			data += "</li>"
 
 		if(!any_votes)
 			data += "<li><i>There is no available votes here now.</i></li>"
 
 		data += "</ul><hr>"
-	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
+	data += "<a href='byond://?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
 	return data
 
 

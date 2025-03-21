@@ -52,7 +52,7 @@
 				else
 					output += "&nbsp;&nbsp;&nbsp;&nbsp;[device]<br>"
 
-	usr << browse(output,"window=radioreport")
+	usr << browse(HTML_SKELETON_TITLE("Radio Report", output),"window=radioreport")
 
 /client/proc/reload_admins()
 	set name = "Reload Admins"

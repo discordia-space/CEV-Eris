@@ -12,7 +12,7 @@
 		if(cable_coil.color == possible_cable_coil_colours[cable_color])
 			. += "<td>Selected</td>"
 		else
-			. += "<td><a href='?src=\ref[src];select_color=[cable_color]'>Select</a></td>"
+			. += "<td><a href='byond://?src=\ref[src];select_color=[cable_color]'>Select</a></td>"
 		. += "</tr>"
 	. += "</table>"
 

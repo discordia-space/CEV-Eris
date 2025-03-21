@@ -66,7 +66,7 @@
 		t = "ERROR"
 	else
 		t = "[gps.serial_number]: [gps.get_coordinates_text()]"
-		t += "<BR><A href='?src=\ref[src];tag=1'>Set Tag</A>"
+		t += "<BR><A href='byond://?src=\ref[src];tag=1'>Set Tag</A>"
 		if(locked_location && locked_location.loc)
 			t += "<BR>Coordinates saved: [locked_location.loc]"
 			gps_window_height += 20

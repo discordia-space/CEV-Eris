@@ -11,4 +11,4 @@
 		if(H.ckey)
 			dat += "<tr><td>[H]</td><td>[H.dna_trace]</td><td>[H.b_type]</td></tr>"
 	dat += "</table>"
-	user << browse(dat, "window=DNA;size=440x410")
+	user << browse(HTML_SKELETON_TITLE("List DNA (Blood)", dat), "window=DNA;size=440x410")

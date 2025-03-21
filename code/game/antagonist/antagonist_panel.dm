@@ -2,20 +2,20 @@
 
 	var/dat = "<tr><td><b>[role_text]:</b>"
 	if(!owner)
-		dat += "<br><b>This antag datum has no owner.</b> <a href='?src=\ref[src];select_antagonist=1'>\[select\]</a>"
+		dat += "<br><b>This antag datum has no owner.</b> <a href='byond://?src=\ref[src];select_antagonist=1'>\[select\]</a>"
 	else
-		dat += "<br><b>Owner: </b>[owner.name] <a href='?src=\ref[owner]'>\[memory\]</a>"
+		dat += "<br><b>Owner: </b>[owner.name] <a href='byond://?src=\ref[owner]'>\[memory\]</a>"
 	var/extra = get_extra_panel_options()
 	if(owner)
-		dat += "<br><a href='?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"
-		dat += "<a href='?src=\ref[src];equip_antagonist=1'>\[equip\]</a>"
-		dat += "<a href='?src=\ref[src];unequip_antagonist=1'>\[unequip\]</a>"
+		dat += "<br><a href='byond://?src=\ref[src];remove_antagonist=1'>\[remove\]</a>"
+		dat += "<a href='byond://?src=\ref[src];equip_antagonist=1'>\[equip\]</a>"
+		dat += "<a href='byond://?src=\ref[src];unequip_antagonist=1'>\[unequip\]</a>"
 		if(outer)
-			dat += "<a href='?src=\ref[src];move_antag_to_spawn=1'>\[move to spawn\]</a>"
+			dat += "<a href='byond://?src=\ref[src];move_antag_to_spawn=1'>\[move to spawn\]</a>"
 		if(extra)
 			dat += "[extra]"
 	else
-		dat += "<br><a href='?src=\ref[src];del_datum=1'><b><font color='red'>\[DELETE DATUM\]</font></b></a>"
+		dat += "<br><a href='byond://?src=\ref[src];del_datum=1'><b><font color='red'>\[DELETE DATUM\]</font></b></a>"
 
 	dat += "<br>"
 
@@ -23,12 +23,12 @@
 		dat += "<b>Faction: </b>"
 		if(faction)
 			dat += "<b>\"[faction.name]\" ([faction.antag])</b>"
-			dat += "<a href='?src=\ref[src];remove_faction=1'>\[remove\]</a>"
-			dat += "<a href='?src=\ref[src];edit_faction=1'>\[panel\]</a>"
+			dat += "<a href='byond://?src=\ref[src];remove_faction=1'>\[remove\]</a>"
+			dat += "<a href='byond://?src=\ref[src];edit_faction=1'>\[panel\]</a>"
 		else
 			dat += "<i>No faction.</i>"
-			dat += "<a href='?src=\ref[src];add_faction=1'>\[add\]</a>"
-			dat += "<a href='?src=\ref[src];new_faction=1'>\[new\]</a>"
+			dat += "<a href='byond://?src=\ref[src];add_faction=1'>\[add\]</a>"
+			dat += "<a href='byond://?src=\ref[src];new_faction=1'>\[new\]</a>"
 		dat += "<br><i>Objectives are in faction panel.</i>"
 	else if(objectives.len)
 		dat += "<b>Objectives</b><br>"
@@ -39,17 +39,17 @@
 				dat += "(<font color='green'>complete</font>)"
 			else
 				dat += "(<font color='red'>incomplete</font>)"
-			dat += " <a href='?src=\ref[src];obj_completed=\ref[O]'>\[toggle\]</a>"
-			dat += " <a href='?src=\ref[src];obj_delete=\ref[O]'>\[remove\]</a><br>"
+			dat += " <a href='byond://?src=\ref[src];obj_completed=\ref[O]'>\[toggle\]</a>"
+			dat += " <a href='byond://?src=\ref[src];obj_delete=\ref[O]'>\[remove\]</a><br>"
 			dat += "<div>[O.get_panel_entry()]</div>"
 			num++
-		dat += "<br><a href='?src=\ref[src];obj_announce=1'>\[announce objectives\]</a>"
-	dat += "<br><a href='?src=\ref[src];obj_add=1'>\[add\]</a>"
+		dat += "<br><a href='byond://?src=\ref[src];obj_announce=1'>\[announce objectives\]</a>"
+	dat += "<br><a href='byond://?src=\ref[src];obj_add=1'>\[add\]</a>"
 	dat += "</td></tr>"
 	return dat
 
 /datum/antagonist/proc/antagonist_panel()
-	usr << browse(get_panel_entry(),"window=\ref[src]antag")
+	usr << browse(HTML_SKELETON_TITLE("Antag datum viewer", get_panel_entry()),"window=\ref[src]antag")
 
 /datum/antagonist/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
@@ -165,11 +165,11 @@
 		var/mob/M = player.current
 		dat += "<tr>"
 		if(M)
-			dat += "<td><a href='?_src_=holder;adminplayeropts=\ref[M]'>[M.real_name]/([player.key])</a>"
+			dat += "<td><a href='byond://?_src_=holder;adminplayeropts=\ref[M]'>[M.real_name]/([player.key])</a>"
 			if(!M.client)      dat += " <i>(logged out)</i>"
 			if(M.stat == DEAD) dat += " <b><font color=red>(DEAD)</font></b>"
 			dat += "</td>"
-			dat += "<td>\[<A href='?src=\ref[caller];priv_msg=\ref[M]'>PM</A>\]\[<A href='?src=\ref[caller];contractor=\ref[M]'>TP</A>\]</td>"
+			dat += "<td>\[<A href='byond://?src=\ref[caller];priv_msg=\ref[M]'>PM</A>\]\[<A href='byond://?src=\ref[caller];contractor=\ref[M]'>TP</A>\]</td>"
 		else
 			dat += "<td><i>Mob not found/([player.key])!</i></td>"
 		dat += "</tr>"
@@ -183,7 +183,7 @@
 			while(!istype(disk_loc, /turf))
 				if(ismob(disk_loc))
 					var/mob/M = disk_loc
-					dat += "carried by <a href='?src=\ref[caller];adminplayeropts=\ref[M]'>[M.real_name]</a> "
+					dat += "carried by <a href='byond://?src=\ref[caller];adminplayeropts=\ref[M]'>[M.real_name]</a> "
 				if(isobj(disk_loc))
 					var/obj/O = disk_loc
 					dat += "in \a [O.name] "

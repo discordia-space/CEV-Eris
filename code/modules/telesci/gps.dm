@@ -48,7 +48,7 @@ GLOBAL_LIST_EMPTY(gps_by_type)
 	if(emped)
 		t += "ERROR"
 	else
-		t += "<BR><A href='?src=\ref[src];tag=1'>Set Tag</A> "
+		t += "<BR><A href='byond://?src=\ref[src];tag=1'>Set Tag</A> "
 		t += "<BR>Tag: [gpstag]"
 		if(locked_location && locked_location.loc)
 			t += "<BR>Bluespace coordinates saved: [locked_location.loc]"

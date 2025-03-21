@@ -161,16 +161,16 @@
 	if (src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing
 		src.delete = src.delete
 	else if (!src.delete && src.temphtml) //Window in buffer - its a menu, dont add clear message
-		dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Main Menu</A>", src.temphtml, src)
+		dat = text("[]<BR><BR><A href='byond://?src=\ref[];clear=1'>Main Menu</A>", src.temphtml, src)
 	else
 		if (src.connected) //Is something connected?
 			dat = format_occupant_data(src.connected.get_occupant_data())
-			dat += "<HR><A href='?src=\ref[src];print=1'>Print</A><BR>"
+			dat += "<HR><A href='byond://?src=\ref[src];print=1'>Print</A><BR>"
 		else
 			dat = SPAN_WARNING("Error: No Body Scanner connected.")
 
-	dat += text("<BR><A href='?src=\ref[];mach_close=scanconsole'>Close</A>", user)
-	user << browse(dat, "window=scanconsole;size=430x600")
+	dat += text("<BR><A href='byond://?src=\ref[];mach_close=scanconsole'>Close</A>", user)
+	user << browse(HTML_SKELETON_TITLE("Body Scanner Console", dat), "window=scanconsole;size=430x600")
 	return
 
 

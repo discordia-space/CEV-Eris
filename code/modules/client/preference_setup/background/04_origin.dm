@@ -19,7 +19,7 @@
 	. = list()
 	. += "<b>Background</b><br>"
 	for(var/datum/category_group/setup_option_category/background/BG in SScharacter_setup.setup_options.categories)
-		. += "[BG]: <a href='?src=\ref[src];options_popup=[BG]'>[pref.setup_options[BG.name]]</a><br>"
+		. += "[BG]: <a href='byond://?src=\ref[src];options_popup=[BG]'>[pref.setup_options[BG.name]]</a><br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/background/origin/get_title()

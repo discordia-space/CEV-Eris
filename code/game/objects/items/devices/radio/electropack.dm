@@ -110,7 +110,7 @@
 		return
 	user.set_machine(src)
 	var/dat = {"<TT>
-<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+<A href='byond://?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
 Frequency:
 <A href='byond://?src=\ref[src];freq=-10'>-</A>
@@ -124,6 +124,6 @@ Code:
 <A href='byond://?src=\ref[src];code=1'>+</A>
 <A href='byond://?src=\ref[src];code=5'>+</A><BR>
 </TT>"}
-	user << browse(dat, "window=radio")
+	user << browse(HTML_SKELETON_TITLE("Electropack",dat), "window=radio")
 	onclose(user, "radio")
 	return

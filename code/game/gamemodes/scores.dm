@@ -366,7 +366,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	dat += "<br><hr>"
 	dat += "<b><u>Your total score is:</u></b> [get_color_score(final_score, final_score, max_personal_score)] Points<br>"
 
-	src << browse(dat, "window=roundstats;size=500x600")
+	src << browse(HTML_SKELETON(dat), "window=roundstats;size=500x600")
 
 /mob/proc/get_faction_score()
 	if(mind && mind.assigned_job && mind.assigned_job.department)

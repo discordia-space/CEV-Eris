@@ -128,9 +128,9 @@
 
 /datum/storyteller/erida/storyteller_panel_extra()
 	var/data = ""
-	var/ehref = "<a href='?src=\ref[src]:edit_deck=1'>\[SET\]</a>"
-	data += "<br>Deck size: <b>[deck_size]</b>[calculate_deck?"":" [ehref]"] <b><a href='?src=\ref[src];toggle_deck=1'>[calculate_deck?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
-	data +=	"<br>Mad mode: [mad?"[mad] stages":"no"] <b><a href='?src=\ref[src];edit_mad=1'>\[SET\]</a></b>"
+	var/ehref = "<a href='byond://?src=\ref[src]:edit_deck=1'>\[SET\]</a>"
+	data += "<br>Deck size: <b>[deck_size]</b>[calculate_deck?"":" [ehref]"] <b><a href='byond://?src=\ref[src];toggle_deck=1'>[calculate_deck?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
+	data +=	"<br>Mad mode: [mad?"[mad] stages":"no"] <b><a href='byond://?src=\ref[src];edit_mad=1'>\[SET\]</a></b>"
 
 	return data
 

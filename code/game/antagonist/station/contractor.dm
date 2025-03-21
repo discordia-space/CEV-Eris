@@ -19,7 +19,7 @@
 
 /datum/antagonist/contractor/get_extra_panel_options()
 	if(owner && owner.current)
-		return "<a href='?src=\ref[owner];common=crystals'>\[set crystals\]</a><a href='?src=\ref[src];spawn_uplink=\ref[owner.current]'>\[spawn uplink\]</a>"
+		return "<a href='byond://?src=\ref[owner];common=crystals'>\[set crystals\]</a><a href='byond://?src=\ref[src];spawn_uplink=\ref[owner.current]'>\[spawn uplink\]</a>"
 
 /datum/antagonist/contractor/Topic(href, href_list)
 	if (..())

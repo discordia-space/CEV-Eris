@@ -185,16 +185,16 @@
 	user.set_machine(src)
 
 	// dat
-	var/dat = "<HTML><BODY><TT>"
+	var/dat = "<TT>"
 
 	dat += "<HR>Timer System:</hr>"
 	dat += " <b>Door [src.id] controls</b><br/>"
 
 	// Start/Stop timer
 	if (src.timing)
-		dat += "<a href='?src=\ref[src];timing=0'>Stop Timer and open door</a><br/>"
+		dat += "<a href='byond://?src=\ref[src];timing=0'>Stop Timer and open door</a><br/>"
 	else
-		dat += "<a href='?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
+		dat += "<a href='byond://?src=\ref[src];timing=1'>Activate Timer and close door</a><br/>"
 
 	// Time Left display (uses releasetime)
 	dat += "Time Left: [(minute ? text("[minute]:") : null)][second] <br/>"
@@ -202,33 +202,33 @@
 
 	// Set Timer display (uses timetoset)
 	if(src.timing)
-		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]  <a href='?src=\ref[src];change=1'>Set</a><br/>"
+		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]  <a href='byond://?src=\ref[src];change=1'>Set</a><br/>"
 	else
 		dat += "Set Timer: [(setminute ? text("[setminute]:") : null)][setsecond]<br/>"
 
 	// Controls
-	dat += "<a href='?src=\ref[src];tp=-60'>-</a> <a href='?src=\ref[src];tp=-1'>-</a> <a href='?src=\ref[src];tp=1'>+</a> <A href='?src=\ref[src];tp=60'>+</a><br/>"
+	dat += "<a href='byond://?src=\ref[src];tp=-60'>-</a> <a href='byond://?src=\ref[src];tp=-1'>-</a> <a href='byond://?src=\ref[src];tp=1'>+</a> <A href='byond://?src=\ref[src];tp=60'>+</a><br/>"
 
 	// Mounted flash controls
 	for(var/obj/machinery/flasher/F in targets)
 		if(F.last_flash && (F.last_flash + 150) > world.time)
-			dat += "<br/><A href='?src=\ref[src];fc=1'>Flash Charging</A>"
+			dat += "<br/><A href='byond://?src=\ref[src];fc=1'>Flash Charging</A>"
 		else
-			dat += "<br/><A href='?src=\ref[src];fc=1'>Activate Flash</A>"
+			dat += "<br/><A href='byond://?src=\ref[src];fc=1'>Activate Flash</A>"
 
 	for(var/obj/machinery/cellshower/S in targets)
-		dat += "<br/>Shower: <A href='?src=\ref[src];se=1'>[S.on ? "On" : "Off"]</A>"
+		dat += "<br/>Shower: <A href='byond://?src=\ref[src];se=1'>[S.on ? "On" : "Off"]</A>"
 		dat += "<br/><b>WARNING: Changing shower temperature is EXTREMELY dangerous!</b>"
-		dat += "<br/>Temperature: <A href='?src=\ref[src];st=1'>[S.watertemp]</A>"
+		dat += "<br/>Temperature: <A href='byond://?src=\ref[src];st=1'>[S.watertemp]</A>"
 		if(S.last_spray && (S.last_spray + 3000) > world.time)
-			dat += "<br/><A href='?src=\ref[src];sp=1'>Spray Charging</A><br/>"
+			dat += "<br/><A href='byond://?src=\ref[src];sp=1'>Spray Charging</A><br/>"
 		else
-			dat += "<br/><A href='?src=\ref[src];sp=1'>Activate Spray</A><br/>"
+			dat += "<br/><A href='byond://?src=\ref[src];sp=1'>Activate Spray</A><br/>"
 
-	dat += "<br/><br/><a href='?src=\ref[user];mach_close=computer'>Close</a>"
-	dat += "</TT></BODY></HTML>"
+	dat += "<br/><br/><a href='byond://?src=\ref[user];mach_close=computer'>Close</a>"
+	dat += "</TT>"
 
-	user << browse(dat, "window=computer;size=400x500")
+	user << browse(HTML_SKELETON_TITLE("Door timer", dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

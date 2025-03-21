@@ -97,9 +97,9 @@
 	else
 		dat += "<font color='green'>Engines ready.</font><br>"
 
-	dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
-	dat += "<b><A href='?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
-	dat += "<b><A href='?src=\ref[src];start=[1]'>Return to base</A></b></center>"
+	dat += "<br><b><A href='byond://?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
+	dat += "<b><A href='byond://?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
+	dat += "<b><A href='byond://?src=\ref[src];start=[1]'>Return to base</A></b></center>"
 
 	//Docking
 	dat += "<center><br><br>"
@@ -122,16 +122,16 @@
 
 		if(override_en) dat += " <font color='red'>(Override Enabled)</font>"
 
-		dat += ". <A href='?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
+		dat += ". <A href='byond://?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
 
 		switch(docking_status)
 			if("undocked")
-				dat += "<b><A href='?src=\ref[src];dock_command=[1]'>Dock</A></b>"
+				dat += "<b><A href='byond://?src=\ref[src];dock_command=[1]'>Dock</A></b>"
 			if("docked")
-				dat += "<b><A href='?src=\ref[src];undock_command=[1]'>Undock</A></b>"
+				dat += "<b><A href='byond://?src=\ref[src];undock_command=[1]'>Undock</A></b>"
 	dat += "</center>"
 
-	user << browse("[dat]", "window=[shuttle_tag]shuttlecontrol;size=300x600")
+	user << browse(HTML_SKELETON_TITLE("Shuttle Control", dat), "window=[shuttle_tag]shuttlecontrol;size=300x600")
 
 //check if we're undocked, give option to force launch
 /obj/machinery/computer/shuttle_control/proc/check_docking(datum/shuttle/multi_shuttle/MS)

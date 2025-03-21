@@ -3,12 +3,12 @@
 		bantype = title
 	var/red = jobban_isbanned(mob, bantype)
 	return \
-		"<a href='?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>\
+		"<a href='byond://?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>\
 		[red ? "<font color=red>" : null][replacetext(title, " ", "&nbsp")][red ? "</font>" : null]\
 		</a> "
 
 /datum/admins/proc/formatJobGroup(var/mob/mob, var/title, var/color, var/bantype, var/list/joblist)
-	. += "<tr bgcolor='[color]'><th><a href='?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>[title]</a></th></tr><tr><td class='jobs'>"
+	. += "<tr bgcolor='[color]'><th><a href='byond://?src=\ref[src];jobban3=[bantype];jobban4=\ref[mob]'>[title]</a></th></tr><tr><td class='jobs'>"
 	for(var/jobPos in joblist)
 		. += formatJob(mob, jobPos, GLOB.joblist[jobPos])
 	. += "</td></tr>"
@@ -83,11 +83,11 @@
 
 /mob/extra_admin_link(var/source)
 	if(client && eyeobj)
-		return "|<A HREF='?[source];adminobservejump=\ref[eyeobj]'>EYE</A>"
+		return "|<A href='byond://?[source];adminobservejump=\ref[eyeobj]'>EYE</A>"
 
 /mob/observer/ghost/extra_admin_link(var/source)
 	if(mind && mind.current)
-		return "|<A HREF='?[source];adminobservejump=\ref[mind.current]'>BDY</A>"
+		return "|<A href='byond://?[source];adminobservejump=\ref[mind.current]'>BDY</A>"
 
 /proc/admin_jump_link(var/atom/target, var/source)
 	if(!target) return
@@ -97,5 +97,5 @@
 	else
 		source = "_src_=holder"
 
-	. = "<A HREF='?[source];adminobservejump=\ref[target]'>JMP</A>"
+	. = "<A href='byond://?[source];adminobservejump=\ref[target]'>JMP</A>"
 	. += target.extra_admin_link(source)

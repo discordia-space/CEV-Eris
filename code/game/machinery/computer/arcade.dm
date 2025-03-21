@@ -122,7 +122,7 @@
 
 	dat += "</b></center>"
 
-	user << browse(dat, "window=arcade")
+	user << browse(HTML_SKELETON_TITLE(src.name, dat), "window=arcade")
 	onclose(user, "arcade")
 	return
 

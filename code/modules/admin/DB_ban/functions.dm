@@ -542,4 +542,4 @@
 
 			output += "</table></div>"
 
-	usr << browse(output,"window=lookupbans;size=900x700")
+	usr << browse(HTML_SKELETON_TITLE("DB Ban Panel", output),"window=lookupbans;size=900x700")

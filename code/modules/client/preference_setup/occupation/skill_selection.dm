@@ -165,7 +165,7 @@
 			var/level = min + (allocation[S] || 0)				//the current skill level
 			var/cap = pref.get_max_affordable(job, S) //if selecting the skill would make you overspend, it won't be shown
 			dat += "<tr style='text-align:left;'>"
-			dat += "<th><a href='?src=\ref[src];skillinfo=\ref[S]'>[S.name] ([pref.get_spent_points(job, S)])</a></th>"
+			dat += "<th><a href='byond://?src=\ref[src];skillinfo=\ref[S]'>[S.name] ([pref.get_spent_points(job, S)])</a></th>"
 			for(var/i = SKILL_MIN, i <= SKILL_MAX, i++)
 				dat += skill_to_button(S, job, level, i, min, cap)
 			dat += "</tr>"
@@ -184,11 +184,11 @@
 	if(selection_level < min)
 		return "<th><span class='Unavailable'>[button_label]</span></th>"
 	else if(selection_level < current_level)
-		return "<th><a class='Current' href='?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
+		return "<th><a class='Current' href='byond://?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
 	else if(selection_level == current_level)
 		return "<th><span class='Current'>[button_label]</span></th>"
 	else if(selection_level <= max)
-		return "<th><a class='Selectable' href='?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
+		return "<th><a class='Selectable' href='byond://?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
 	else
 		return "<th><span class='Toohigh'>[button_label]</span></th>"
 */

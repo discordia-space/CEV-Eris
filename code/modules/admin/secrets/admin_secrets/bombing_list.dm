@@ -9,4 +9,4 @@
 	var/dat = "<B>Bombing List</B>"
 	for(var/l in bombers)
 		dat += text("[l]<BR>")
-	user << browse(dat, "window=bombers")
+	user << browse(HTML_SKELETON_TITLE("Bombing List", dat), "window=bombers")

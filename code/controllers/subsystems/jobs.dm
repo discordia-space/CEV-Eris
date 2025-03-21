@@ -85,13 +85,7 @@ SUBSYSTEM_DEF(job)
 
 	if(!client_key) return
 
-	var/htmlContent = {"<html>
-	<head>
-		<title>Registered playtimes onboard CEV ERIS</title>
-	</head>
-	<body>
-		<ul>
-	"}
+	var/htmlContent = {"<ul>"}
 
 	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
 		SSjob.LoadPlaytimes(ckey)
@@ -108,11 +102,9 @@ SUBSYSTEM_DEF(job)
 			value = 0
 		htmlContent += "<li> [occupation] : [value] Minutes</li>"
 	htmlContent += {"
-		</ul>
-	</body>
-	</html>"}
+		</ul>"}
 
-	usr << browse(htmlContent, "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
+	usr << browse(HTML_SKELETON_TITLE("Registered playtimes onboard CEV ERIS", htmlContent), "window=playtimes;file=playtimes;display=1; size=300x300;border=0;can_close=1; can_resize=1;can_minimize=1;titlebar=1" )
 
 /datum/controller/subsystem/job/proc/WhitelistPlayer(ckey)
 	var/savefile/save_data = new("data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/playtimes.sav")

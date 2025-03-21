@@ -54,7 +54,7 @@
 			dat += "The implant casing is empty."
 	else
 		dat += "Please insert an implant casing!"
-	user << browse(dat, "window=implantpad")
+	user << browse(HTML_SKELETON_TITLE("Implant Pad", dat), "window=implantpad")
 	onclose(user, "implantpad")
 	return
 

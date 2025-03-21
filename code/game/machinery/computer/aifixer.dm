@@ -83,9 +83,9 @@
 			dat += {"<br><br><A href='byond://?src=\ref[src];fix=1'>Begin Reconstruction</A>"}
 		else
 			dat += "<br><br>Reconstruction in process, please wait.<br>"
-	dat += {" <A href='?src=\ref[user];mach_close=computer'>Close</A>"}
+	dat += {" <A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
-	user << browse(dat, "window=computer;size=400x500")
+	user << browse(HTML_SKELETON_TITLE("AI System Integrity Restorer", dat), "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
 

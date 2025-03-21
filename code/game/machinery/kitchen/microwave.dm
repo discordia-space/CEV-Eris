@@ -247,11 +247,11 @@
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
 		dat += {"<HR><BR>\
-<A href='?src=\ref[src];action=cook'>Turn on!<BR>\
-<A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
+<A href='byond://?src=\ref[src];action=cook'>Turn on!<BR>\
+<A href='byond://?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
-	user << browse("<HEAD><TITLE>[src] Controls</TITLE></HEAD><TT>[dat]</TT>", "window=[src]")
+	user << browse(HTML_SKELETON_TITLE("[src] Controls", "<TT>[dat]</TT>"), "window=[src]")
 	onclose(user, "[src]")
 	return
 

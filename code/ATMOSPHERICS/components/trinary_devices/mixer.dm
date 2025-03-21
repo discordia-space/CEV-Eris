@@ -129,28 +129,28 @@
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	usr.set_machine(src)
-	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
+	var/dat = {"<b>Power: </b><a href='byond://?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
 				<b>Set Flow Rate Limit: </b>
-				[set_flow_rate]L/s | <a href='?src=\ref[src];set_press=1'>Change</a>
+				[set_flow_rate]L/s | <a href='byond://?src=\ref[src];set_press=1'>Change</a>
 				<br>
 				<b>Flow Rate: </b>[round(last_flow_rate, 0.1)]L/s
 				<br><hr>
 				<b>Node 1 Concentration:</b>
-				<a href='?src=\ref[src];node1_c=-0.1'><b>-</b></a>
-				<a href='?src=\ref[src];node1_c=-0.01'>-</a>
+				<a href='byond://?src=\ref[src];node1_c=-0.1'><b>-</b></a>
+				<a href='byond://?src=\ref[src];node1_c=-0.01'>-</a>
 				[mixing_inputs[air1]]([mixing_inputs[air1]*100]%)
-				<a href='?src=\ref[src];node1_c=0.01'><b>+</b></a>
-				<a href='?src=\ref[src];node1_c=0.1'>+</a>
+				<a href='byond://?src=\ref[src];node1_c=0.01'><b>+</b></a>
+				<a href='byond://?src=\ref[src];node1_c=0.1'>+</a>
 				<br>
 				<b>Node 2 Concentration:</b>
-				<a href='?src=\ref[src];node2_c=-0.1'><b>-</b></a>
-				<a href='?src=\ref[src];node2_c=-0.01'>-</a>
+				<a href='byond://?src=\ref[src];node2_c=-0.1'><b>-</b></a>
+				<a href='byond://?src=\ref[src];node2_c=-0.01'>-</a>
 				[mixing_inputs[air2]]([mixing_inputs[air2]*100]%)
-				<a href='?src=\ref[src];node2_c=0.01'><b>+</b></a>
-				<a href='?src=\ref[src];node2_c=0.1'>+</a>
+				<a href='byond://?src=\ref[src];node2_c=0.01'><b>+</b></a>
+				<a href='byond://?src=\ref[src];node2_c=0.1'>+</a>
 				"}
 
-	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
+	user << browse(HTML_SKELETON_TITLE("[src.name] control", "<TT>[dat]</TT>"), "window=atmo_mixer")
 	onclose(user, "atmo_mixer")
 	return
 

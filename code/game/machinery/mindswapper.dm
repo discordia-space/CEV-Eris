@@ -67,7 +67,7 @@
 	update_icon()
 
 	user.attack_log += "\[[time_stamp()]\] Triggered the mind swapper</b>"
-	msg_admin_attack("[user.name] ([user.ckey]) triggered the mind swapper (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	msg_admin_attack("[user.name] ([user.ckey]) triggered the mind swapper (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 	addtimer(CALLBACK(src, PROC_REF(performswapping)), swap_time, TIMER_STOPPABLE)
 

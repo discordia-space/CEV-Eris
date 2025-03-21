@@ -268,19 +268,7 @@
 			if(!(L.flags & NONGLOBAL))
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
-
-
-
-
-
-
-
-
-
-
-
-
+	src << browse(HTML_SKELETON_TITLE("Known Languages", dat), "window=checklanguage")
 
 
 /mob/living/check_languages()
@@ -296,7 +284,7 @@
 			else
 				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
 
-	src << browse(dat, "window=checklanguage")
+	src << browse(HTML_SKELETON_TITLE("Known Languages", dat), "window=checklanguage")
 
 /mob/living/Topic(href, href_list)
 	if(href_list["default_lang"])

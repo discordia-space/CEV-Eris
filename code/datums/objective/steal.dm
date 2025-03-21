@@ -121,7 +121,7 @@
 	return FALSE
 
 /datum/objective/steal/get_panel_entry()
-	return "Steal <a href='?src=\ref[src];switch_item=1'>[target_name]</a>."
+	return "Steal <a href='byond://?src=\ref[src];switch_item=1'>[target_name]</a>."
 
 /datum/objective/steal/update_explanation()
 	explanation_text = "Steal [target_name]."

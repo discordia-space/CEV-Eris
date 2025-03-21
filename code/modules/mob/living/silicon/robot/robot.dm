@@ -399,7 +399,7 @@
 	if(!is_component_functioning("diagnosis unit"))
 		return null
 
-	var/dat = "<HEAD><TITLE>[name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
+	var/dat = ""
 	for (var/V in components)
 		var/datum/robot_component/C = components[V]
 		dat += {"
@@ -411,7 +411,7 @@
 			</table><br>
 		"}
 
-	return dat
+	return HTML_SKELETON_TITLE("Self-Diagnosis Report", dat)
 
 /mob/living/silicon/robot/verb/toggle_panel_lock()
 	set name = "Toggle Panel Lock"
@@ -868,7 +868,7 @@
 	if(!module)
 		pick_module()
 		return
-	var/dat = "<HEAD><TITLE>Modules</TITLE></HEAD><BODY>\n"
+	var/dat = ""
 	dat += {"
 	<B>Activated Modules</B>
 	<BR>
@@ -897,7 +897,7 @@
 		else
 			dat += text("[obj]: \[<A HREF=?src=\ref[src];act=\ref[obj]>Activate</A> | <B>Deactivated</B>\]<BR>")
 */
-	src << browse(dat, "window=robotmod")
+	src << browse(HTML_SKELETON_TITLE("Modules", dat), "window=robotmod")
 
 
 /mob/living/silicon/robot/Topic(href, href_list)

@@ -110,34 +110,34 @@
 		t += "<i>Swipe your ID card to begin.</i>"
 	else
 		t += "[owned_capacitor ? "<font color=green>Charge capacitor connected.</font>" : "<font color=red>Unable to locate charge capacitor!</font>"]<br>"
-		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
+		t += "This generator is: [active ? "<font color=green>Online</font>" : "<font color=red>Offline</font>" ] <a href='byond://?src=\ref[src];toggle=1'>[active ? "\[Deactivate\]" : "\[Activate\]"]</a><br>"
 		t += "Field Status: [time_since_fail > 2 ? "<font color=green>Stable</font>" : "<font color=red>Unstable</font>"]<br>"
 		t += "Coverage Radius (restart required): \
-		<a href='?src=\ref[src];change_radius=-50'>---</a> \
-		<a href='?src=\ref[src];change_radius=-5'>--</a> \
-		<a href='?src=\ref[src];change_radius=-1'>-</a> \
+		<a href='byond://?src=\ref[src];change_radius=-50'>---</a> \
+		<a href='byond://?src=\ref[src];change_radius=-5'>--</a> \
+		<a href='byond://?src=\ref[src];change_radius=-1'>-</a> \
 		[field_radius] m \
-		<a href='?src=\ref[src];change_radius=1'>+</a> \
-		<a href='?src=\ref[src];change_radius=5'>++</a> \
-		<a href='?src=\ref[src];change_radius=50'>+++</a><br>"
+		<a href='byond://?src=\ref[src];change_radius=1'>+</a> \
+		<a href='byond://?src=\ref[src];change_radius=5'>++</a> \
+		<a href='byond://?src=\ref[src];change_radius=50'>+++</a><br>"
 		t += "Overall Field Strength: [round(average_field_strength, 0.01)] Renwick ([target_field_strength ? round(100 * average_field_strength / target_field_strength, 0.1) : "NA"]%)<br>"
 		t += "Upkeep Power: [round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate)] W<br>"
-		t += "Charge Rate: <a href='?src=\ref[src];strengthen_rate=-0.1'>--</a> \
+		t += "Charge Rate: <a href='byond://?src=\ref[src];strengthen_rate=-0.1'>--</a> \
 		[strengthen_rate] Renwick/s \
-		<a href='?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
+		<a href='byond://?src=\ref[src];strengthen_rate=0.1'>++</a><br>"
 		t += "Shield Generation Power: [round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)] W<br>"
 		t += "Maximum Field Strength: \
-		<a href='?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
-		<a href='?src=\ref[src];target_field_strength=-5'>--</a> \
-		<a href='?src=\ref[src];target_field_strength=-1'>-</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-10'>\[min\]</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-5'>--</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=-1'>-</a> \
 		[target_field_strength] Renwick \
-		<a href='?src=\ref[src];target_field_strength=1'>+</a> \
-		<a href='?src=\ref[src];target_field_strength=5'>++</a> \
-		<a href='?src=\ref[src];target_field_strength=10'>\[max\]</a><br>"
+		<a href='byond://?src=\ref[src];target_field_strength=1'>+</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=5'>++</a> \
+		<a href='byond://?src=\ref[src];target_field_strength=10'>\[max\]</a><br>"
 	t += "<hr>"
-	t += "<A href='?src=\ref[src]'>Refresh</A> "
-	t += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
-	user << browse(t, "window=shield_generator;size=500x400")
+	t += "<A href='byond://?src=\ref[src]'>Refresh</A> "
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
+	user << browse(HTML_SKELETON_TITLE("Shield Generator", t), "window=shield_generator;size=500x400")
 	user.set_machine(src)
 
 /obj/machinery/shield_gen/Process()

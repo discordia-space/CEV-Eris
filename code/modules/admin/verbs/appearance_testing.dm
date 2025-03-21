@@ -20,25 +20,22 @@ var/datum/appearance_test/appearance_test = new
 
 /datum/appearance_test/proc/interact(var/mob/user)
 	var/list/dat = list()
-	dat += "<html><head><title>Appearance</title><body>"
-	dat += "Build body from organs sprite - <a href='?src=\ref[src];build=1'>[TOGGLE(build_body)]</a><br>"
-	dat += "Get species sprite for organs - <a href='?src=\ref[src];species=1'>[TOGGLE(get_species_sprite)]</a><br>"
-	dat += "Colorize organ sprite - <a href='?src=\ref[src];color=1'>[TOGGLE(colorize_organ)]</a><br>"
-	dat += "Use simple icon_state build - <a href='?src=\ref[src];simple=1'>[TOGGLE(simple_setup)]</a><br>"
-	dat += "Cache human body sprite - <a href='?src=\ref[src];cache=1'>[TOGGLE(cache_sprites)]</a><br>"
-	dat += "Log cache key generation - <a href='?src=\ref[src];log_cache=1'>[TOGGLE(log_sprite_gen)]</a>"
-	dat += " (<a href='?src=\ref[src];view_generation_log=1'>View</a>)<br>"
-	dat += "Log cache key generation to world - <a href='?src=\ref[src];log_cache_world=1'>[TOGGLE(log_sprite_gen_to_world)]</a><br>"
-	dat += "Head sprite has special update_icon  - <a href='?src=\ref[src];special=1'>[TOGGLE(special_update)]</a><br>"
-	dat += "<br><a href='?src=\ref[src];test_cache=1'>Test cache</a>"
-	dat += " (<a href='?src=\ref[src];test_cache=1;draw_icons=1'>Output icons</a>)<br>."
-	dat += "</body></html>"
+	dat += "Build body from organs sprite - <a href='byond://?src=\ref[src];build=1'>[TOGGLE(build_body)]</a><br>"
+	dat += "Get species sprite for organs - <a href='byond://?src=\ref[src];species=1'>[TOGGLE(get_species_sprite)]</a><br>"
+	dat += "Colorize organ sprite - <a href='byond://?src=\ref[src];color=1'>[TOGGLE(colorize_organ)]</a><br>"
+	dat += "Use simple icon_state build - <a href='byond://?src=\ref[src];simple=1'>[TOGGLE(simple_setup)]</a><br>"
+	dat += "Cache human body sprite - <a href='byond://?src=\ref[src];cache=1'>[TOGGLE(cache_sprites)]</a><br>"
+	dat += "Log cache key generation - <a href='byond://?src=\ref[src];log_cache=1'>[TOGGLE(log_sprite_gen)]</a>"
+	dat += " (<a href='byond://?src=\ref[src];view_generation_log=1'>View</a>)<br>"
+	dat += "Log cache key generation to world - <a href='byond://?src=\ref[src];log_cache_world=1'>[TOGGLE(log_sprite_gen_to_world)]</a><br>"
+	dat += "Head sprite has special update_icon  - <a href='byond://?src=\ref[src];special=1'>[TOGGLE(special_update)]</a><br>"
+	dat += "<br><a href='byond://?src=\ref[src];test_cache=1'>Test cache</a>"
+	dat += " (<a href='byond://?src=\ref[src];test_cache=1;draw_icons=1'>Output icons</a>)<br>."
 
-	user << browse(jointext(dat, null), "window=test_sprite;size=330x220")
+	user << browse(HTML_SKELETON_TITLE("Appearance", jointext(dat, null)), "window=test_sprite;size=330x220")
 
 /datum/appearance_test/proc/output_cachelist(var/mob/user, var/draw_icons = FALSE)
 	var/list/dat = list()
-	dat += "<html><head><title>Cache list contents</title><body>"
 	for(var/elem in human_icon_cache)
 		dat += "KEY: [elem]<br>"
 		var/icon/c_icon = human_icon_cache[elem]
@@ -46,9 +43,8 @@ var/datum/appearance_test/appearance_test = new
 		if(draw_icons)
 			user << browse_rsc(c_icon, "[elem].png")
 			dat += "<img src = \"[elem].png\"><br>"
-	dat += "</body></html>"
 
-	user << browse(jointext(dat, null), "window=cache_list;size=1270x770")
+	user << browse(HTML_SKELETON_TITLE("Cache list contents", jointext(dat, null)), "window=cache_list;size=1270x770")
 
 /datum/appearance_test/proc/Log(string)
 	if(log_sprite_gen)
@@ -57,7 +53,7 @@ var/datum/appearance_test/appearance_test = new
 			to_chat(world, string)
 
 /datum/appearance_test/proc/show_log(var/mob/user)
-	user << browse(cache_generation_log, "window=cache_log;size=1270x770")
+	user << browse(HTML_SKELETON(cache_generation_log), "window=cache_log;size=1270x770")
 
 /client/proc/debug_human_sprite()
 	set name = "Debug human sprites"
