@@ -1,5 +1,5 @@
-#define PLATINUM_CHARGE_DAMAGE_OBSTACLES 50
-#define PLATINUM_CHARGE_DAMAGE_TARGET 50
+#define PLATINUM_CHARGE_DAMAGE_OBSTACLES 25
+#define PLATINUM_CHARGE_DAMAGE_TARGET 35
 #define PLATINUM_CHARGE_CD 30 SECONDS
 #define PLATINUM_CHARGE_WINDUP 1.5 SECONDS
 #define PLATINUM_CHARGE_RANGE 5
@@ -70,15 +70,16 @@
 						charge_effect.icon = icon
 						charge_effect.icon_state = icon_state // copy over the icon and direction
 						charge_effect.dir = dir
-						charge_effect.alpha = 250 - (vfxfalloff * vfxindex) // todo: linear interpolation math so that this looks consistent at all distances
+						charge_effect.alpha = 250 - (vfxfalloff * vfxindex)
 						animate(charge_effect, time = 25 - ((vfxfalloff * vfxindex) / 10), alpha = 0)
 
 					for(var/mob/living/victim in targetturf.contents)
 						if(victim != src)
-							victim.adjustBruteLoss(PLATINUM_CHARGE_DAMAGE_OBSTACLES)
+							victim.attack_generic(src, PLATINUM_CHARGE_DAMAGE_OBSTACLES, pick(charge_hit_verbs), FALSE, FALSE, FALSE, 1)
 				else
 					for(var/atom/victim in targetturf.contents)
-						victim.explosion_act(PLATINUM_CHARGE_DAMAGE_OBSTACLES * 4) //TEAR THROUGH ALL THAT IMPEDES YOU
+						if(victim.density)
+							victim.attack_generic(src, PLATINUM_CHARGE_DAMAGE_OBSTACLES, pick(charge_hit_verbs), FALSE, FALSE, FALSE, 1)
 					break // if the turf is blocked (ie a wall/door/window), stop charging here
 
 			visible_message(SPAN_DANGER("<b>[src]</b> [pick(charge_verbs)] at [target_mob]!"))

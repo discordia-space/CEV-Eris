@@ -22,7 +22,7 @@
 	armor = list(
 		melee = 0,
 		bullet = GOLEM_ARMOR_MED,
-		energy = GOLEM_ARMOR_ULTRA,
+		energy = GOLEM_ARMOR_HIGH,
 		bomb = 0,
 		bio = 0,
 		rad = 0
