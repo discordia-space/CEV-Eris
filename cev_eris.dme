@@ -1793,7 +1793,7 @@
 #include "code\modules\long_range_scanner\long_range_scanner.dm"
 #include "code\modules\maps\dmm_suite.dm"
 #include "code\modules\maps\swapmaps.dm"
-#include "code\modules\maps\map_template.dm"
+#include "code\modules\maps\tg\map_template.dm"
 #include "code\modules\maps\writer.dm"
 #include "code\modules\maps\tg\reader.dm"
 #include "code\modules\materials\material_sheets.dm"
