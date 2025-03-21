@@ -155,6 +155,7 @@ SUBSYSTEM_DEF(ticker)
 					if(!delay_end)
 						sleep(restart_timeout)
 						if(!delay_end)
+							world.flush_byond_tracy()
 							world.Reboot()
 						else
 							to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
@@ -186,6 +187,7 @@ SUBSYSTEM_DEF(ticker)
 				else if (world.time >= last_player_left_timestamp + (config.empty_server_restart_time MINUTES))
 					last_player_left_timestamp = 0
 					log_game("\[Server\] No players were on a server last [config.empty_server_restart_time] minutes, restarting server...")
+					world.flush_byond_tracy()
 					world.Reboot()
 					return FALSE
 		if(GAME_STATE_PREGAME)
@@ -280,6 +282,7 @@ SUBSYSTEM_DEF(ticker)
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
+	INVOKE_ASYNC(world, TYPE_PROC_REF(/world, flush_byond_tracy))
 	return TRUE
 
 //These callbacks will fire after roundstart key transfer
@@ -477,6 +480,7 @@ SUBSYSTEM_DEF(ticker)
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
+	INVOKE_ASYNC(world, TYPE_PROC_REF(/world, flush_byond_tracy))
 	to_chat(world, "<br><br><br><H1>A round has ended!</H1>")
 	for(var/mob/Player in GLOB.player_list)
 		if(Player.mind && !isnewplayer(Player))

@@ -223,3 +223,8 @@ aux*.pdb
 # Screenshot tests
 /artifacts
 yarn.lock
+
+# byond-tracy, we intentionally do not ship this and do not want to maintain it
+# https://github.com/mafemergency/byond-tracy or https://github.com/ParadiseSS13/byond-tracy
+prof.*
+libprof.so

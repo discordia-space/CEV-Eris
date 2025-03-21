@@ -54,6 +54,21 @@ var/game_id
 
 #define RECOMMENDED_VERSION 512
 
+#define USE_TRACY_PARAMETER "tracy"
+
+GLOBAL_VAR(tracy_log)
+GLOBAL_PROTECT(tracy_log)
+GLOBAL_VAR(tracy_initialized)
+GLOBAL_PROTECT(tracy_initialized)
+GLOBAL_VAR(tracy_init_error)
+GLOBAL_PROTECT(tracy_init_error)
+GLOBAL_VAR(tracy_init_reason)
+GLOBAL_PROTECT(tracy_init_reason)
+
+
+// something something port genesis
+// something something long ass rant about initialization
+
 /**
  * World creation
  *
@@ -80,6 +95,28 @@ var/game_id
  * All atoms in both compiled and uncompiled maps are initialized()
  */
 /world/New()
+
+#ifndef OPENDREAM
+	if(!GLOB.tracy_initialized)
+#ifdef USE_BYOND_TRACY
+#warn USE_BYOND_TRACY is enabled
+		var/should_init_tracy = TRUE
+		GLOB.tracy_init_reason = "USE_BYOND_TRACY defined"
+#else
+		var/should_init_tracy = FALSE
+		if(USE_TRACY_PARAMETER in params)
+			should_init_tracy = TRUE
+			GLOB.tracy_init_reason = "world.params"
+		if(fexists(TRACY_ENABLE_PATH))
+			GLOB.tracy_init_reason ||= "enabled for round"
+			SEND_TEXT(world.log, "[TRACY_ENABLE_PATH] exists, initializing byond-tracy!")
+			should_init_tracy = TRUE
+			fdel(TRACY_ENABLE_PATH)
+#endif
+		if(should_init_tracy)
+			init_byond_tracy()
+#endif
+
 	//logs
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")
 	href_logfile = file("data/logs/[date_string] hrefs.htm")
@@ -211,6 +248,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	qdel(src) //shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
+	world.flush_byond_tracy()
 	if(!config.tts_cache)
 		for(var/i in GLOB.tts_death_row)
 			fdel(i)
@@ -424,3 +462,45 @@ var/failed_old_db_connections = 0
 		return //No change required.
 
 	fps = new_value
+
+/** For initializing and starting byond-tracy when USE_BYOND_TRACY is defined
+ *	byond-tracy is a useful profiling tool that allows the user to view the CPU usage and execution time of procs as they run.
+*/
+/world/proc/init_byond_tracy()
+	if(!fexists(TRACY_DLL_PATH))
+		SEND_TEXT(world.log, "Error initializing byond-tracy: [TRACY_DLL_PATH] not found!")
+		CRASH("Error initializing byond-tracy: [TRACY_DLL_PATH] not found!")
+
+	var/init_result = call_ext(TRACY_DLL_PATH, "init")("block")
+	if(length(init_result) != 0 && init_result[1] == ".") // if first character is ., then it returned the output filename
+		SEND_TEXT(world.log, "byond-tracy initialized (logfile: [init_result])")
+		GLOB.tracy_initialized = TRUE
+		return GLOB.tracy_log = init_result
+	else if(init_result == "already initialized")
+		GLOB.tracy_initialized = TRUE
+		SEND_TEXT(world.log, "byond-tracy already initialized ([GLOB.tracy_log ? "logfile: [GLOB.tracy_log]" : "no logfile"])")
+	else if(init_result != "0")
+		GLOB.tracy_init_error = init_result // monkestation edit: log tracy errors
+		SEND_TEXT(world.log, "Error initializing byond-tracy: [init_result]")
+		CRASH("Error initializing byond-tracy: [init_result]")
+	else
+		GLOB.tracy_initialized = TRUE
+		SEND_TEXT(world.log, "byond-tracy initialized (no logfile)")
+
+/world/proc/shutdown_byond_tracy()
+	if(GLOB.tracy_initialized)
+		SEND_TEXT(world.log, "Shutting down byond-tracy")
+		GLOB.tracy_initialized = FALSE
+		call_ext(TRACY_DLL_PATH, "destroy")()
+
+/world/proc/flush_byond_tracy()
+	// if GLOB.tracy_log is set, that means we're using para-tracy, which should have this.
+	if(GLOB.tracy_initialized && GLOB.tracy_log)
+		SEND_TEXT(world.log, "Flushing byond-tracy log")
+		var/flush_result = call_ext(TRACY_DLL_PATH, "flush")()
+		if(flush_result != "0")
+			SEND_TEXT(world.log, "Error flushing byond-tracy log: [flush_result]")
+			CRASH("Error flushing byond-tracy log: [flush_result]")
+		SEND_TEXT(world.log, "Flushed byond-tracy log")
+
+#undef USE_TRACY_PARAMETER

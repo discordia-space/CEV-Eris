@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/server_name				// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
+	var/loaded = FALSE                  // If the config is loaded or not
 	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
 
 	var/log_ooc = 0						// log OOC channel
@@ -775,16 +776,11 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.bones_can_break = value
 				if("limbs_can_break")
 					config.limbs_can_break = value
-
-
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
-
-
-
-
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
+	loaded = TRUE
 	LoadChatFilter()
 
 /datum/configuration/proc/loadsql(filename)  // -- TLE

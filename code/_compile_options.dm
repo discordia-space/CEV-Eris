@@ -29,6 +29,10 @@
 
 #endif //ifdef REFERENCE_TRACKING
 
+// If this is uncommented, will attempt to load prof.dll (windows) or libprof.so (unix)
+// byond-tracy is not shipped with CM code. Build it yourself here: https://github.com/mafemergency/byond-tracy/
+//#define USE_BYOND_TRACY
+
 /*
 * Enables debug messages for every single reaction step. This is 1 message per 0.5s for a SINGLE reaction. Useful for tracking down bugs/asking me for help in the main reaction handiler (equilibrium.dm).
 *

@@ -33,6 +33,22 @@ SUBSYSTEM_DEF(statpanels)
 			list("Failsafe Controller:", Failsafe ? "Defcon: [Failsafe.defcon_pretty()] (Interval: [Failsafe.processing_interval] | Iteration: [Failsafe.master_iteration])" : "ERROR", "\ref[Failsafe]"),
 			list("","")
 		)
+		var/static/tracy_dll
+		var/static/tracy_present
+		if(isnull(tracy_dll))
+			tracy_dll = TRACY_DLL_PATH
+			tracy_present = fexists(tracy_dll)
+		if(tracy_present)
+			if(GLOB.tracy_initialized)
+				mc_data.Insert(2, list(list("byond-tracy:", "Active (reason: [GLOB.tracy_init_reason || "N/A"])")))
+			else if(GLOB.tracy_init_error)
+				mc_data.Insert(2, list(list("byond-tracy:", "Errored ([GLOB.tracy_init_error])")))
+			else if(fexists(TRACY_ENABLE_PATH))
+				mc_data.Insert(2, list(list("byond-tracy:", "Queued for next round")))
+			else
+				mc_data.Insert(2, list(list("byond-tracy:", "Inactive")))
+		else
+			mc_data.Insert(2, list(list("byond-tracy:", "[tracy_dll] not present")))
 		for(var/ss in Master.subsystems)
 			var/datum/controller/subsystem/sub_system = ss
 			mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")

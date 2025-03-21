@@ -82,7 +82,9 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/apply_random_map,
 	/client/proc/overlay_random_map,
 	/client/proc/ZASSettings,
-	/client/proc/enable_debug_verbs))
+	/client/proc/enable_debug_verbs,
+	/client/proc/tracy_next_round,
+	/client/proc/start_tracy))
 
 GLOBAL_LIST_INIT(admin_verbs_debug_extra, list(
 	/client/proc/hide_debug_verbs,
