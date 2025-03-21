@@ -17,6 +17,9 @@
 	var/lose_text
 	var/perk_shared_ability
 
+	// perk conflict handling
+	var/list/conflicting_perks_types = list()
+
 /datum/perk/Destroy()
 	if(holder)
 		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
@@ -41,7 +44,27 @@
 		holder = H
 		RegisterSignal(holder, COMSIG_MOB_LIFE, PROC_REF(on_process))
 		to_chat(holder, SPAN_NOTICE("[gain_text]"))
+		handle_conflicts(check_conflicts())
 		return TRUE
+
+// Proc called to check if there are any conflicts with other perks
+/datum/perk/proc/check_conflicts()
+	if(!istype(holder))
+		return
+	var/list/conflicting_perks = list()
+	for(var/datum/perk/other_perk in holder.stats.perks)
+		if(other_perk.type in conflicting_perks_types)
+			conflicting_perks += other_perk
+	if(length(conflicting_perks) > 0)
+		return conflicting_perks
+	return null
+
+// Proc called to handle conflicts with other perks via deletion of the conflicting perks
+/datum/perk/proc/handle_conflicts(list/conflicting_perks)
+	if(!istype(holder) || !length(conflicting_perks))
+		return
+	for(var/datum/perk/conflicting_perk in conflicting_perks)
+		holder.stats.removePerk(conflicting_perk.type)
 
 /// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
 /datum/perk/proc/remove()
