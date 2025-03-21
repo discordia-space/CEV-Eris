@@ -354,3 +354,19 @@
 
 /datum/component/internal_wound/organic/permanent/nopain
 	hal_damage = 0
+
+/datum/component/internal_wound/organic/genedamage
+	name = "genetic damage"
+	treatments_chem = list(CE_GENEHEAL = 1)
+	characteristic_flag = IWOUND_AGGRAVATION // this wound is hidden
+	next_wound = /datum/component/internal_wound/organic/catastrophicgenedamage
+
+/datum/component/internal_wound/organic/catastrophicgenedamage
+	name = "catastrophic genetic damage"
+	severity_max = IORGAN_STANDARD_HEALTH
+	characteristic_flag = IWOUND_AGGRAVATION | IWOUND_CAN_DAMAGE
+	hal_damage = IWOUND_HEAVY_DAMAGE
+	treatments_chem = list(CE_GENEHEAL = 2)
+
+/datum/component/internal_wound/organic/catastrophicgenedamage/failure
+	name = "tissue failure"
