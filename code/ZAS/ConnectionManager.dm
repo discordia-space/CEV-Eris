@@ -15,7 +15,7 @@ Class Procs:
 		Returns the connection (if any) in this direction.
 		Preferable to accessing the connection directly because it checks validity.
 
-	place(connection/c, d)
+	place(datum/connection/c, d)
 		Called by SSair.connect(). Sets the connection in the specified direction to c.
 
 	update_all()
@@ -24,25 +24,26 @@ Class Procs:
 	erase_all()
 		Called when the turf is changed with ChangeTurf(). Erases all existing connections.
 
-	check(connection/c)
+	check(datum/connection/c)
 		Checks for connection validity. It's possible to have a reference to a connection that has been erased.
 
 
 */
 
-/turf/var/tmp/connection_manager/connections
+/turf/var/tmp/datum/connection_manager/connections
 
-/connection_manager/var/connection/N
-/connection_manager/var/connection/S
-/connection_manager/var/connection/E
-/connection_manager/var/connection/W
+/datum/connection_manager/
+	var/datum/connection/N
+	var/datum/connection/S
+	var/datum/connection/E
+	var/datum/connection/W
 
 #ifdef ZLEVELS
-/connection_manager/var/connection/U
-/connection_manager/var/connection/D
+	var/datum/connection/U
+	var/datum/connection/D
 #endif
 
-/connection_manager/proc/get(d)
+/datum/connection_manager/proc/get(d)
 	switch(d)
 		if(NORTH)
 			if(check(N)) return N
@@ -66,7 +67,7 @@ Class Procs:
 			else return null
 		#endif
 
-/connection_manager/proc/place(connection/c, d)
+/datum/connection_manager/proc/place(datum/connection/c, d)
 	switch(d)
 		if(NORTH) N = c
 		if(SOUTH) S = c
@@ -78,7 +79,7 @@ Class Procs:
 		if(DOWN) D = c
 		#endif
 
-/connection_manager/proc/update_all()
+/datum/connection_manager/proc/update_all()
 	if(check(N)) N.update()
 	if(check(S)) S.update()
 	if(check(E)) E.update()
@@ -88,7 +89,7 @@ Class Procs:
 	if(check(D)) D.update()
 	#endif
 
-/connection_manager/proc/erase_all()
+/datum/connection_manager/proc/erase_all()
 	if(check(N)) N.erase()
 	if(check(S)) S.erase()
 	if(check(E)) E.erase()
@@ -98,5 +99,5 @@ Class Procs:
 	if(check(D)) D.erase()
 	#endif
 
-/connection_manager/proc/check(connection/c)
+/datum/connection_manager/proc/check(datum/connection/c)
 	return c && c.valid()

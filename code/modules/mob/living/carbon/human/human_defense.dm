@@ -419,7 +419,7 @@ meteor_act
 
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
-		var/zone
+		var/datum/zone
 		if (isliving(O.thrower))
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.targeted_organ)

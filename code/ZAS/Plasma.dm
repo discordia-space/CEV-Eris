@@ -1,6 +1,6 @@
 var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
-/pl_control
+/datum/pl_control
 	var/PLASMA_DMG = 3
 	var/PLASMA_DMG_NAME = "Plasma Damage Amount"
 	var/PLASMA_DMG_DESC = "Self Descriptive"

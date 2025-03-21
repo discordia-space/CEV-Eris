@@ -73,25 +73,26 @@ Depreciated recipes that had special functions with a microwave I'm trying to re
 		/obj/item/paper,
 	)
 	result = /obj/item/reagent_containers/food/snacks/fortunecookie
-	make_food(var/obj/container as obj)
+
+/datum/recipe/fortunecookie/make_food(var/obj/container as obj)
+	var/obj/item/paper/paper = locate() in container
+	paper.loc = null //prevent deletion
+	var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
+	paper.loc = being_cooked
+	being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
+	return being_cooked
+/datum/recipe/fortunecookie/check_items(var/obj/container as obj)
+	. = ..()
+	if (.)
 		var/obj/item/paper/paper = locate() in container
-		paper.loc = null //prevent deletion
-		var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
-		paper.loc = being_cooked
-		being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
-		return being_cooked
-	check_items(var/obj/container as obj)
-		. = ..()
-		if (.)
-			var/obj/item/paper/paper = locate() in container
-			if (!paper || !paper.info)
-				return 0
-		return .
+		if (!paper || !paper.info)
+			return 0
+	return .
 
 /datum/recipe/spacylibertyduff
 	reagents = list("water" = 5, "vodka" = 5, "psilocybin" = 5)
 	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
-	
+
 /datum/recipe/enchiladas
 	fruit = list("chili" = 2, "corn" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/cutlet)

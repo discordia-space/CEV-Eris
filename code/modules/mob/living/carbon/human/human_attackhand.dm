@@ -370,14 +370,14 @@
 		if(lgrab.affecting)
 			visible_message(SPAN_DANGER("[user] has broken [src]'s grip on [lgrab.affecting]!"))
 			success = 1
-		spawn(1)
-			qdel(lgrab)
+		QDEL_IN(lgrab, 1)
+
 	if(istype(r_hand, /obj/item/grab))
 		var/obj/item/grab/rgrab = r_hand
 		if(rgrab.affecting)
 			visible_message(SPAN_DANGER("[user] has broken [src]'s grip on [rgrab.affecting]!"))
 			success = 1
-		spawn(1)
-			qdel(rgrab)
+		QDEL_IN(rgrab, 1)
+
 	return success
 

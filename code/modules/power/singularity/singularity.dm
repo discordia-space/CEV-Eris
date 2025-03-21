@@ -474,6 +474,5 @@
 		var/gain = (energy/2)
 		var/power = max(current_size,1) * 500
 		explosion(get_turf(src), power, 250)
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 		return gain

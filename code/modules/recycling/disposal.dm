@@ -666,10 +666,10 @@
 	var/sortType = list()
 	var/subtype = SORT_TYPE_NORMAL
 	// new pipe, set the icon_state as on map
-	New()
-		..()
-		base_icon_state = icon_state
-		return
+/obj/structure/disposalpipe/New()
+	..()
+	base_icon_state = icon_state
+	return
 
 
 	// pipe is deleted
@@ -938,15 +938,15 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-	New()
-		..()
-		if(icon_state == "pipe-s")
-			pipe_dir = dir | turn(dir, 180)
-		else
-			pipe_dir = dir | turn(dir, -90)
+/obj/structure/disposalpipe/segment/New()
+	..()
+	if(icon_state == "pipe-s")
+		pipe_dir = dir | turn(dir, 180)
+	else
+		pipe_dir = dir | turn(dir, -90)
 
-		update()
-		return
+	update()
+	return
 
 ///// Z-Level stuff
 /obj/structure/disposalpipe/up
@@ -1250,7 +1250,7 @@
 	name = "wildcard sorting junction"
 	desc = "An underfloor disposal pipe which filters all wrapped and tagged items."
 	subtype = 1
-	divert_check(var/checkTag)
+/obj/structure/disposalpipe/sortjunction/wildcard/divert_check(var/checkTag)
 		return checkTag != ""
 
 //junction that filters all untagged items
@@ -1258,7 +1258,8 @@
 	name = "untagged sorting junction"
 	desc = "An underfloor disposal pipe which filters all untagged items."
 	subtype = 2
-	divert_check(var/checkTag)
+
+/obj/structure/disposalpipe/sortjunction/untagged/divert_check(var/checkTag)
 		return checkTag == ""
 
 /obj/structure/disposalpipe/sortjunction/flipped //for easier and cleaner mapping
@@ -1371,18 +1372,17 @@
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-	New()
-		..()
-		update()
-		return
-
+/obj/structure/disposalpipe/broken/New()
+	..()
+	update()
+	return
 	// called when welded
 	// for broken pipe, remove and turn into scrap
 
-	welded()
-//		var/obj/item/scrap/S = new(src.loc)
-//		S.set_components(200,0,0)
-		qdel(src)
+/obj/structure/disposalpipe/broken/welded()
+//	var/obj/item/scrap/S = new(src.loc)
+//	S.set_components(200,0,0)
+	qdel(src)
 
 // the disposal outlet machine
 
@@ -1398,19 +1398,20 @@
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/mode = DISPOSALS_OFF
 
-	New()
-		..()
+/obj/structure/disposaloutlet/New()
+	..()
 
-		spawn(1)
-			target = get_ranged_target_turf(src, dir, 10)
+	spawn(1)
+		target = get_ranged_target_turf(src, dir, 10)
 
 
-			var/obj/structure/disposalpipe/trunk/trunk = locate() in src.loc
-			if(trunk)
-				trunk.linked = src	// link the pipe trunk to self
+		var/obj/structure/disposalpipe/trunk/trunk = locate() in src.loc
+		if(trunk)
+			trunk.linked = src	// link the pipe trunk to self
 
 	// expel the contents of the holder object, then delete it
 	// called when the holder exits the outlet
+
 /obj/structure/disposaloutlet/proc/expel(var/obj/structure/disposalholder/H)
 
 	flick("outlet-open", src)

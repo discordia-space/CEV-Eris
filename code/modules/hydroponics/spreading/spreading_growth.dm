@@ -276,8 +276,7 @@
 			neighbor.neighbors |= check_turf
 			plant_controller.add_plant(neighbor)
 
-	spawn(1)
-		qdel(src)
+	QDEL_IN(src, 1)
 
 #undef MIN_LIGHT_LIMIT
 #undef NEIGHBOR_REFRESH_TIME

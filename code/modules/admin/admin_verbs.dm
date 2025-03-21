@@ -374,7 +374,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 		if(turf.air)
 			turf.reset_air()
 
-	for(var/zone/zone in SSair.zones)
+	for(var/datum/zone/zone in SSair.zones)
 		// Often zone's air ends up with more gas than was put in,
 		// probably due to rounding errors or bad volume/temperature math
 		// If left alone, extra gas will leak to the individual turfs

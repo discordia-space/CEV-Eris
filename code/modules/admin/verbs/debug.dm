@@ -292,8 +292,8 @@
 		for(var/obj/machinery/the_singularitygen/G in world)
 			if(G.anchored)
 				var/obj/singularity/S = new /obj/singularity(get_turf(G), 50)
-				spawn(0)
-					qdel(G)
+				QDEL_IN(G, 0)
+
 				S.energy = 1750
 				S.current_size = 7
 				S.icon = 'icons/effects/224x224.dmi'

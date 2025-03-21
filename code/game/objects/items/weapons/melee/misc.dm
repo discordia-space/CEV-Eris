@@ -12,16 +12,16 @@
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	var/reinforced = FALSE
 	var/obj/item/storage/toolbox/toolbox
-	New()
-		..()
-		if(!toolbox)
-			src.name = "unfinished [src.name]"
-			src.desc = "Wired mop. You need toolbox to finish this."
-			icon_state = "hm_hammer_unfinished"
-			item_state = ""
-			force = WEAPON_FORCE_WEAK
-			throwforce = WEAPON_FORCE_WEAK
-			origin_tech = list(TECH_COMBAT = 1)
+/obj/item/melee/toolbox_maul/New()
+	..()
+	if(!toolbox)
+		src.name = "unfinished [src.name]"
+		src.desc = "Wired mop. You need toolbox to finish this."
+		icon_state = "hm_hammer_unfinished"
+		item_state = ""
+		force = WEAPON_FORCE_WEAK
+		throwforce = WEAPON_FORCE_WEAK
+		origin_tech = list(TECH_COMBAT = 1)
 
 
 /obj/item/melee/toolbox_maul/update_icon()

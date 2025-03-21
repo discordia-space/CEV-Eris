@@ -137,8 +137,7 @@
 		nloc.hotspot_expose(1000,125)
 		set_light(5, 2)
 	set_dir(ndir)
-	spawn(20)
-		qdel(src)
+	QDEL_IN(src, 20)
 
 /obj/item/electronics/circuitboard/unary_atmos/engine
 	name = T_BOARD("gas thruster")

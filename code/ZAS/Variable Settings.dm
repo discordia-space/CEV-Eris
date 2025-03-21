@@ -1,6 +1,6 @@
-var/global/vs_control/vsc = new
+var/global/datum/vs_control/vsc = new
 
-/vs_control
+/datum/vs_control
 	var/fire_consuption_rate = 0.25
 	var/fire_consuption_rate_NAME = "Fire - Air Consumption Ratio"
 	var/fire_consuption_rate_DESC = "Ratio of air removed and combusted per tick."
@@ -75,11 +75,11 @@ var/global/vs_control/vsc = new
 	var/connection_temperature_delta_DESC = "The smallest temperature difference which will cause heat to travel through doors."
 
 
-/vs_control/var/list/settings = list()
-/vs_control/var/list/bitflags = list("1","2","4","8","16","32","64","128","256","512","1024")
-/vs_control/var/pl_control/plc = new()
+	var/list/settings = list()
+	var/list/bitflags = list("1","2","4","8","16","32","64","128","256","512","1024")
+	var/datum/pl_control/plc = new()
 
-/vs_control/New()
+/datum/vs_control/New()
 	. = ..()
 	settings = vars.Copy()
 
@@ -95,7 +95,7 @@ var/global/vs_control/vsc = new
 	settings -= "bitflags"
 	settings -= "plc"
 
-/vs_control/proc/ChangeSettingsDialog(mob/user,list/L)
+/datum/vs_control/proc/ChangeSettingsDialog(mob/user,list/L)
 	//var/which = input(user,"Choose a setting:") in L
 	var/dat = ""
 	for(var/ch in L)
@@ -115,11 +115,11 @@ var/global/vs_control/vsc = new
 		dat += "<i>[vw_desc]</i><br><br>"
 	user << browse(dat,"window=settings")
 
-/vs_control/Topic(href,href_list)
+/datum/vs_control/Topic(href,href_list)
 	if("changevar" in href_list)
 		ChangeSetting(usr,href_list["changevar"])
 
-/vs_control/proc/ChangeSetting(mob/user,ch)
+/datum/vs_control/proc/ChangeSetting(mob/user,ch)
 	var/vw
 	var/how = "Text"
 	var/display_description = ch
@@ -175,7 +175,7 @@ var/global/vs_control/vsc = new
 	else
 		ChangeSettingsDialog(user,settings)
 
-/vs_control/proc/RandomizeWithProbability()
+/datum/vs_control/proc/RandomizeWithProbability()
 	for(var/V in settings)
 		var/newvalue
 		if("[V]_RANDOM" in vars)
@@ -187,11 +187,11 @@ var/global/vs_control/vsc = new
 				newvalue = vars[V]
 		V = newvalue
 
-/vs_control/proc/ChangePlasma()
+/datum/vs_control/proc/ChangePlasma()
 	for(var/V in plc.settings)
 		plc.Randomize(V)
 
-/vs_control/proc/SetDefault(var/mob/user)
+/datum/vs_control/proc/SetDefault(var/mob/user)
 	var/list/setting_choices = list("Plasma - Standard", "Plasma - Low Hazard", "Plasma - High Hazard", "Plasma - Oh Shit!",\
 	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish", "ZAS/Plasma - Initial")
 	var/def = input(user, "Which of these presets should be used?") as null|anything in setting_choices
@@ -314,9 +314,10 @@ var/global/vs_control/vsc = new
 
 	to_chat(world, "<span class='notice'><b>[key_name(user)] changed the global plasma/ZAS settings to \"[def]\"</b></span>")
 
-/pl_control/var/list/settings = list()
+/datum/pl_control
+	var/list/settings = list()
 
-/pl_control/New()
+/datum/pl_control/New()
 	. = ..()
 	settings = vars.Copy()
 
@@ -330,7 +331,7 @@ var/global/vs_control/vsc = new
 
 	settings -= "settings"
 
-/pl_control/proc/Randomize(V)
+/datum/pl_control/proc/Randomize(V)
 	var/newvalue
 	if("[V]_RANDOM" in vars)
 		if(isnum(vars["[V]_RANDOM"]))

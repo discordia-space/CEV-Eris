@@ -20,8 +20,7 @@
 /obj/effect/overlay/nt_construction/proc/cleanup()
 	spawn(5)
 		light.destroy()
-	spawn(20)
-		qdel(src)
+	QDEL_IN(src, 20)
 
 /obj/effect/overlay/nt_construction/New(loc, lifetime)
 	..(loc)

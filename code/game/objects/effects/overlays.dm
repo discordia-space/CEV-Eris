@@ -4,14 +4,14 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/i_attached  // Added for possible image attachments to objects. For hallucinations and the like.
 
-/obj/effect/overlay/beam//Not actually a projectile, just an effect.
+/obj/effect/overlay/beam //Not actually a projectile, just an effect.
 	name="beam"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 	var/tmp/atom/BeamSource
-	New()
-		..()
-		spawn(10) qdel(src)
+/obj/effect/overlay/beam/New()
+	..()
+	QDEL_IN(src, 10)
 
 /obj/effect/overlay/pulse
 	icon = 'icons/effects/effects.dmi'
@@ -24,8 +24,7 @@
 /obj/effect/overlay/pulse/New(loc, var/lifetime = 10)
 	..(loc)
 	set_dir(pick(cardinal))
-	spawn(lifetime)
-		qdel(src)
+	QDEL_IN(src, lifetime)
 
 /obj/effect/overlay/pulse/heatwave
 	icon_state = "sparks"
@@ -79,8 +78,7 @@
 	flick("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
 
 	..()
-	spawn(duration)
-		qdel(src)
+	QDEL_IN(src, duration)
 
 
 /obj/effect/overlay/temp/dir_setting/bloodsplatter

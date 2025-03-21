@@ -16,7 +16,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	return null
 
 
-turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
+/turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 
 /turf/hotspot_expose(exposed_temperature, exposed_volume, soh)
@@ -37,7 +37,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 		create_fire(exposed_temperature)
 	return igniting
 
-/zone/proc/process_fire()
+/datum/zone/proc/process_fire()
 	var/datum/gas_mixture/burn_gas = air.remove_ratio(vsc.fire_consuption_rate, fire_tiles.len)
 
 	var/firelevel = burn_gas.zburn(src, fire_tiles, force_burn = 1, no_check = 1)
@@ -63,7 +63,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	if(!fire_tiles.len)
 		SSair.active_fire_zones.Remove(src)
 
-/zone/proc/remove_liquidfuel(var/used_liquid_fuel, var/remove_fire=0)
+/datum/zone/proc/remove_liquidfuel(var/used_liquid_fuel, var/remove_fire=0)
 	if(!fuel_objs.len)
 		return
 
@@ -228,7 +228,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 	fire_protection = world.time
 
 //Returns the firelevel
-/datum/gas_mixture/proc/zburn(zone/zone, force_burn, no_check = 0)
+/datum/gas_mixture/proc/zburn(datum/zone/zone, force_burn, no_check = 0)
 	. = 0
 	if((temperature > PLASMA_MINIMUM_BURN_TEMPERATURE || force_burn) && (no_check ||check_recombustability(zone? zone.fuel_objs : null)))
 

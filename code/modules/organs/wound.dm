@@ -47,138 +47,138 @@
 	var/tmp/list/desc_list = list()
 	var/tmp/list/damage_list = list()
 
-	New(var/damage)
+/datum/wound/New(var/damage)
 
-		created = world.time
+	created = world.time
 
-		// reading from a list("stage" = damage) is pretty difficult, so build two separate
-		// lists from them instead
-		for(var/V in stages)
-			desc_list += V
-			damage_list += stages[V]
+	// reading from a list("stage" = damage) is pretty difficult, so build two separate
+	// lists from them instead
+	for(var/V in stages)
+		desc_list += V
+		damage_list += stages[V]
 
-		src.damage = damage
+	src.damage = damage
 
-		// initialize with the appropriate stage
-		src.init_stage(damage)
+	// initialize with the appropriate stage
+	src.init_stage(damage)
 
-		bleed_timer += damage
+	bleed_timer += damage
 
-	// returns 1 if there's a next stage, 0 otherwise
-	proc/init_stage(var/initial_damage)
-		current_stage = stages.len
+// returns 1 if there's a next stage, 0 otherwise
+/datum/wound/proc/init_stage(var/initial_damage)
+	current_stage = stages.len
 
-		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= initial_damage / src.amount)
-			src.current_stage--
+	while(src.current_stage > 1 && src.damage_list[current_stage-1] <= initial_damage / src.amount)
+		src.current_stage--
 
-		src.min_damage = damage_list[current_stage]
-		src.desc = desc_list[current_stage]
+	src.min_damage = damage_list[current_stage]
+	src.desc = desc_list[current_stage]
 
-	// the amount of damage per wound
-	proc/wound_damage()
-		return src.damage / src.amount
+// the amount of damage per wound
+/datum/wound/proc/wound_damage()
+	return src.damage / src.amount
 
-	proc/can_autoheal()
-		if(src.wound_damage() <= autoheal_cutoff)
-			return 1
-
-		return is_treated()
-
-	// checks whether the wound has been appropriately treated
-	proc/is_treated()
-		if(damage_type == BRUISE || damage_type == CUT)
-			return bandaged
-		else if(damage_type == BURN)
-			return salved
-
-	proc/damtype_sanitize()
-		if(damage_type == BURN)
-			return BURN
-		return BRUTE
-
-	// Checks whether other other can be merged into src.
-	proc/can_merge(var/datum/wound/other)
-		if (other.type != src.type) return 0
-		if (other.current_stage != src.current_stage) return 0
-		if (other.damage_type != src.damage_type) return 0
-		if (!(other.can_autoheal()) != !(src.can_autoheal())) return 0
-		if (!(other.bandaged) != !(src.bandaged)) return 0
-		if (!(other.clamped) != !(src.clamped)) return 0
-		if (!(other.salved) != !(src.salved)) return 0
+/datum/wound/proc/can_autoheal()
+	if(src.wound_damage() <= autoheal_cutoff)
 		return 1
 
-	proc/merge_wound(var/datum/wound/other)
-		src.damage += other.damage
-		src.amount += other.amount
-		src.bleed_timer += other.bleed_timer
-		src.created = max(src.created, other.created)	//take the newer created time
+	return is_treated()
 
-	proc/bandage()
-		bandaged = 1
+// checks whether the wound has been appropriately treated
+/datum/wound/proc/is_treated()
+	if(damage_type == BRUISE || damage_type == CUT)
+		return bandaged
+	else if(damage_type == BURN)
+		return salved
 
-	proc/salve()
-		salved = 1
+/datum/wound/proc/damtype_sanitize()
+	if(damage_type == BURN)
+		return BURN
+	return BRUTE
 
-	// heal the given amount of damage, and if the given amount of damage was more
-	// than what needed to be healed, return how much heal was left
-	// set @heals_internal to also heal internal organ damage
-	proc/heal_damage(amount, heals_internal = 0)
-		if(src.internal && !heals_internal)
-			// heal nothing
-			return amount
+// Checks whether other other can be merged into src.
+/datum/wound/proc/can_merge(var/datum/wound/other)
+	if (other.type != src.type) return 0
+	if (other.current_stage != src.current_stage) return 0
+	if (other.damage_type != src.damage_type) return 0
+	if (!(other.can_autoheal()) != !(src.can_autoheal())) return 0
+	if (!(other.bandaged) != !(src.bandaged)) return 0
+	if (!(other.clamped) != !(src.clamped)) return 0
+	if (!(other.salved) != !(src.salved)) return 0
+	return 1
 
-		var/healed_damage = min(src.damage, amount)
-		amount -= healed_damage
-		src.damage -= healed_damage
+/datum/wound/proc/merge_wound(var/datum/wound/other)
+	src.damage += other.damage
+	src.amount += other.amount
+	src.bleed_timer += other.bleed_timer
+	src.created = max(src.created, other.created)	//take the newer created time
 
-		while(src.wound_damage() < damage_list[current_stage] && current_stage < src.desc_list.len)
-			current_stage++
-		desc = desc_list[current_stage]
-		src.min_damage = damage_list[current_stage]
+/datum/wound/proc/bandage()
+	bandaged = 1
 
-		// return amount of healing still leftover, can be used for other wounds
+/datum/wound/proc/salve()
+	salved = 1
+
+// heal the given amount of damage, and if the given amount of damage was more
+// than what needed to be healed, return how much heal was left
+// set @heals_internal to also heal internal organ damage
+/datum/wound/proc/heal_damage(amount, heals_internal = 0)
+	if(src.internal && !heals_internal)
+		// heal nothing
 		return amount
 
-	// opens the wound again
-	proc/open_wound(damage)
-		src.damage += damage
-		bleed_timer += damage
+	var/healed_damage = min(src.damage, amount)
+	amount -= healed_damage
+	src.damage -= healed_damage
 
-		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= src.damage / src.amount)
-			src.current_stage--
+	while(src.wound_damage() < damage_list[current_stage] && current_stage < src.desc_list.len)
+		current_stage++
+	desc = desc_list[current_stage]
+	src.min_damage = damage_list[current_stage]
 
-		src.desc = desc_list[current_stage]
-		src.min_damage = damage_list[current_stage]
+	// return amount of healing still leftover, can be used for other wounds
+	return amount
 
-	// returns whether this wound can absorb the given amount of damage.
-	// this will prevent large amounts of damage being trapped in less severe wound types
-	proc/can_worsen(damage_type, damage)
-		if (src.damage_type != damage_type)
-			return 0	//incompatible damage types
+// opens the wound again
+/datum/wound/proc/open_wound(damage)
+	src.damage += damage
+	bleed_timer += damage
 
-		if (src.amount > 1)
-			return 0
+	while(src.current_stage > 1 && src.damage_list[current_stage-1] <= src.damage / src.amount)
+		src.current_stage--
 
-		//with 1.5*, a shallow cut will be able to carry at most 30 damage,
-		//37.5 for a deep cut
-		//52.5 for a flesh wound, etc.
-		var/max_wound_damage = 1.5*src.damage_list[1]
-		if (src.damage + damage > max_wound_damage)
-			return 0
+	src.desc = desc_list[current_stage]
+	src.min_damage = damage_list[current_stage]
 
-		return 1
+// returns whether this wound can absorb the given amount of damage.
+// this will prevent large amounts of damage being trapped in less severe wound types
+/datum/wound/proc/can_worsen(damage_type, damage)
+	if (src.damage_type != damage_type)
+		return 0	//incompatible damage types
 
-	proc/bleeding()
-		if (current_stage > max_bleeding_stage)
-			return 0
+	if (src.amount > 1)
+		return 0
 
-		if (bandaged||clamped)
-			return 0
+	//with 1.5*, a shallow cut will be able to carry at most 30 damage,
+	//37.5 for a deep cut
+	//52.5 for a flesh wound, etc.
+	var/max_wound_damage = 1.5*src.damage_list[1]
+	if (src.damage + damage > max_wound_damage)
+		return 0
 
-		if (wound_damage() <= 30 && bleed_timer <= 0)
-			return 0	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
+	return 1
 
-		return 1
+/datum/wound/proc/bleeding()
+	if (current_stage > max_bleeding_stage)
+		return 0
+
+	if (bandaged||clamped)
+		return 0
+
+	if (wound_damage() <= 30 && bleed_timer <= 0)
+		return 0	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
+
+	return 1
 
 /** WOUND DEFINITIONS **/
 

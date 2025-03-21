@@ -846,7 +846,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					refined_trg -= B
 					continue moving
 
-	for(var/zone/Z in zones_trg) // rebuilding zones
+	for(var/datum/zone/Z in zones_trg) // rebuilding zones
 		Z.rebuild()
 
 //Vars that will not be copied when using /DuplicateObject //from tg

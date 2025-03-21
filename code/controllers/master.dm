@@ -174,25 +174,25 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					msg += "\t [varname] = [varval]\n"
 	log_world(msg)
 
-	var/datum/controller/subsystem/BadBoy = Master.last_type_processed
+	var/datum/controller/subsystem/lastSS = Master.last_type_processed
 	var/FireHim = FALSE
-	if(istype(BadBoy))
+	if(istype(lastSS))
 		msg = null
-		LAZYINITLIST(BadBoy.failure_strikes)
-		switch(++BadBoy.failure_strikes[BadBoy.type])
+		LAZYINITLIST(lastSS.failure_strikes)
+		switch(++lastSS.failure_strikes[lastSS.type])
 			if(2)
-				msg = "The [BadBoy.name] subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
+				msg = "The [lastSS.name] subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
 				FireHim = TRUE
 			if(3)
-				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be offlined."
-				BadBoy.flags |= SS_NO_FIRE
+				msg = "The [lastSS.name] subsystem seems to be destabilizing the MC and will be offlined."
+				lastSS.flags |= SS_NO_FIRE
 		if(msg)
 			to_chat(admins, span_boldannounce("[msg]"))
 			log_world(msg)
 
 	if (istype(Master.subsystems))
 		if(FireHim)
-			Master.subsystems += new BadBoy.type //NEW_SS_GLOBAL will remove the old one
+			Master.subsystems += new lastSS.type //NEW_SS_GLOBAL will remove the old one
 		subsystems = Master.subsystems
 		current_runlevel = Master.current_runlevel
 		StartProcessing(10)

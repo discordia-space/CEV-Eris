@@ -23,7 +23,7 @@
 	var/nitrogen = MOLES_N2STANDARD
 	var/plasma = 0
 	// ZAS stuff
-	var/zone/zone
+	var/datum/zone/zone
 	var/open_directions
 	var/needs_air_update = FALSE
 	var/datum/gas_mixture/air

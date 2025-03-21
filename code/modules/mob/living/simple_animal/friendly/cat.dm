@@ -306,8 +306,7 @@ var/cat_number = 0
 	stats.addPerk(PERK_TERRIBLE_FATE)
 	cat_number += 1
 	playsound(loc, 'sound/effects/teleport.ogg', 50, 1)
-	spawn(cat_life_duration)
-		qdel(src)
+	QDEL_IN(src, cat_life_duration)
 
 /mob/living/simple_animal/cat/runtime/Destroy()
 	// We teleport Dusty in the corner of one of the ship zlevel for stylish disparition

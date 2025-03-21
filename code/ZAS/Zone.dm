@@ -19,7 +19,7 @@ Class Procs:
 		Removes a turf, sets its zone to null and erases any gas graphics.
 		Invalidates the zone if it has no more tiles.
 
-	c_merge(zone/into)
+	c_merge(datum/zone/into)
 		Invalidates this zone and adds all its former contents to into.
 
 	c_invalidate()
@@ -39,7 +39,7 @@ Class Procs:
 
 */
 
-/zone
+/datum/zone
 	var/name
 	var/invalid = FALSE
 	var/needs_update = FALSE
@@ -51,13 +51,13 @@ Class Procs:
 	var/list/graphic_remove = list()
 	var/datum/gas_mixture/air = new
 
-/zone/New()
+/datum/zone/New()
 	SSair.add_zone(src)
 	air.temperature = TCMB
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 
-/zone/proc/add(turf/T)
+/datum/zone/proc/add(turf/T)
 #ifdef ZASDBG
 	ASSERT(!invalid)
 	ASSERT(T.is_simulated)
@@ -74,7 +74,7 @@ Class Procs:
 		if(fuel) fuel_objs += fuel
 	T.update_graphic(air.graphic)
 
-/zone/proc/remove(turf/T)
+/datum/zone/proc/remove(turf/T)
 #ifdef ZASDBG
 	ASSERT(!invalid)
 	ASSERT(T.is_simulated)
@@ -92,7 +92,7 @@ Class Procs:
 	else
 		c_invalidate()
 
-/zone/proc/c_merge(zone/into)
+/datum/zone/proc/c_merge(datum/zone/into)
 #ifdef ZASDBG
 	ASSERT(!invalid)
 	ASSERT(istype(into))
@@ -109,14 +109,14 @@ Class Procs:
 			#endif
 
 	//rebuild the old zone's edges so that they will be possessed by the new zone
-	for(var/connection_edge/E in edges)
+	for(var/datum/connection_edge/E in edges)
 		if(E.contains_zone(into))
 			continue //don't need to rebuild this edge
 		for(var/turf/T in E.connecting_turfs)
 			if(T.is_simulated)
 				SSair.mark_for_update(T)
 
-/zone/proc/c_invalidate()
+/datum/zone/proc/c_invalidate()
 	invalid = TRUE
 	SSair.remove_zone(src)
 	#ifdef ZASDBG
@@ -125,7 +125,7 @@ Class Procs:
 			turf.add_ZAS_debug_overlay(ZAS_DEBUG_OVERLAY_ZONE_INVALID)
 	#endif
 
-/zone/proc/rebuild()
+/datum/zone/proc/rebuild()
 	if(invalid) return //Short circuit for explosions where rebuild is called many times over.
 	c_invalidate()
 	for(var/turf/turf as anything in contents)
@@ -137,7 +137,7 @@ Class Procs:
 			turf.add_ZAS_debug_overlay(ZAS_DEBUG_OVERLAY_ZONE_INVALID)
 			#endif
 
-/zone/proc/add_tile_air(datum/gas_mixture/tile_air)
+/datum/zone/proc/add_tile_air(datum/gas_mixture/tile_air)
 	//air.volume += CELL_VOLUME
 	air.group_multiplier = 1
 	air.multiply(contents.len)
@@ -145,7 +145,7 @@ Class Procs:
 	air.divide(contents.len+1)
 	air.group_multiplier = contents.len+1
 
-/zone/proc/tick()
+/datum/zone/proc/tick()
 	if(air.temperature >= PLASMA_FLASHPOINT && !(src in SSair.active_fire_zones) && air.check_combustability() && contents.len)
 		var/turf/T = pick(contents)
 		if(istype(T))
@@ -158,11 +158,11 @@ Class Procs:
 		graphic_add.len = 0
 		graphic_remove.len = 0
 
-	for(var/connection_edge/E in edges)
+	for(var/datum/connection_edge/E in edges)
 		if(E.sleeping)
 			E.recheck()
 
-/zone/proc/dbg_data(mob/M)
+/datum/zone/proc/dbg_data(mob/M)
 	to_chat(M, name)
 	for(var/g in air.gas)
 		to_chat(M, "[gas_data.name[g]]: [air.gas[g]]")
@@ -172,11 +172,11 @@ Class Procs:
 	//M << "Unsimulated: [unsimulated_contents.len]"
 	//M << "Edges: [edges.len]"
 	if(invalid) to_chat(M, "Invalid!")
-	var/zone_edges = 0
+	var/datum/zone_edges = 0
 	var/space_edges = 0
 	var/space_coefficient = 0
-	for(var/connection_edge/E in edges)
-		if(E.type == /connection_edge/zone) zone_edges++
+	for(var/datum/connection_edge/E in edges)
+		if(E.type == /datum/connection_edge/zone) zone_edges++
 		else
 			space_edges++
 			space_coefficient += E.coefficient

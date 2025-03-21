@@ -147,8 +147,8 @@
 		if(right_assembly)
 			right_assembly:holder = null
 			right_assembly.loc = T
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
+
 	return
 
 

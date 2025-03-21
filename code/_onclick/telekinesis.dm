@@ -78,16 +78,13 @@ var/const/tk_maxrange = 15
 		if(focus.Adjacent(loc))
 			focus.loc = loc
 	loc = null
-	spawn(1)
-		qdel(src)
-	return
+	QDEL_IN(src, 1)
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, var/slot)
 	..()
 	if( (slot == slot_l_hand) || (slot== slot_r_hand) )	return
 	qdel(src)
-	return
 
 /obj/item/tk_grab/attack_self(mob/user)
 	if(focus)
@@ -133,11 +130,9 @@ var/const/tk_maxrange = 15
 		apply_focus_overlay()
 		focus.throw_at(target, 10, 1, user)
 		last_throw = world.time
-	return
 
 /obj/item/tk_grab/attack(mob/living/M, mob/living/user, def_zone)
 	return
-
 
 /obj/item/tk_grab/proc/focus_object(obj/target, mob/living/user)
 	if(!isobj(target))

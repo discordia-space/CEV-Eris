@@ -10,10 +10,10 @@
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_MEDICAL
 
-	attack_self(mob/user)
-		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
-		R.add_fingerprint(user)
-		qdel(src)
+/obj/item/bodybag/attack_self(mob/user)
+	var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
+	R.add_fingerprint(user)
+	qdel(src)
 
 
 /obj/structure/closet/body_bag
@@ -69,8 +69,7 @@
 		if(contents.len)	return 0
 		visible_message("[usr] folds up the [src.name]")
 		new item_path(get_turf(src))
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 		return
 
 /obj/structure/closet/body_bag/update_icon()

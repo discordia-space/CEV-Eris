@@ -174,7 +174,7 @@
 		return
 	var/obj/item/organ/external/checking
 	if(!affecting || (affecting && affecting.is_bandaged()))
-		for(var/zone in BP_ALL_LIMBS)
+		for(var/datum/zone in BP_ALL_LIMBS)
 			checking = mending_target.organs_by_name[zone]
 			if(checking.is_bandaged() && checking.damage < 1)
 				continue

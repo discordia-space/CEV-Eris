@@ -140,7 +140,7 @@
 
 		if(!atmosphere)
 			continue
-		var/zone/Z
+		var/datum/zone/Z
 		for(var/i = 1 to maxx)
 			var/turf/T = locate(i, 2, zlevel)
 			if(istype(T) && T.zone && T.zone.contents.len > (maxx*maxy*0.25)) //if it's a zone quarter of zlevel, good enough odds it's planetary main one

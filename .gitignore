@@ -25,6 +25,7 @@
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 
+
 #Ignore compiled files and other files generated during compilation.
 *.mdme
 *.mdme.*
@@ -215,6 +216,9 @@ Temporary Items
 # Built auxtools libraries and intermediate files
 aux*.dll
 libaux*.so
+!librust_g.so
+!libprof.so
+!libmariadb.so
 aux*.pdb
 
 # JavaScript tools

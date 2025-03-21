@@ -160,7 +160,7 @@
 	if(user.a_intent != I_HELP)	//check for Hippocratic Oath
 		return FALSE
 
-	var/zone = user.targeted_organ
+	var/datum/zone = user.targeted_organ
 	var/obj/item/organ/external/affected
 
 	if(ishuman(M))

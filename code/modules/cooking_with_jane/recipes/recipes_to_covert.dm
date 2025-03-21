@@ -18,12 +18,13 @@
 		/obj/item/reagent_containers/food/snacks/meatball
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
-	proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
-		being_cooked.heat()
-	make_food(var/obj/container as obj)
-		var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = ..(container)
-		warm_up(being_cooked)
-		return being_cooked
+
+/datum/recipe/donkpocket/proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
+	being_cooked.heat()
+/datum/recipe/donkpocket/make_food(var/obj/container as obj)
+	var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = ..(container)
+	warm_up(being_cooked)
+	return being_cooked
 
 /datum/recipe/donkpocket/warm
 	reagents = list() //This is necessary since this is a child object of the above recipe and we don't want donk pockets to need flour
@@ -31,11 +32,12 @@
 		/obj/item/reagent_containers/food/snacks/donkpocket
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
-	make_food(var/obj/container as obj)
-		var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = locate() in container
-		if(being_cooked && !being_cooked.warm)
-			warm_up(being_cooked)
-		return being_cooked
+
+/datum/recipe/donkpocket/warm/make_food(var/obj/container as obj)
+	var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = locate() in container
+	if(being_cooked && !being_cooked.warm)
+		warm_up(being_cooked)
+	return being_cooked
 
 /datum/recipe/soylenviridians
 	fruit = list("soybeans" = 1)
@@ -72,20 +74,21 @@
 		/obj/item/paper,
 	)
 	result = /obj/item/reagent_containers/food/snacks/fortunecookie
-	make_food(var/obj/container as obj)
+/datum/recipe/fortunecookie/make_food(var/obj/container as obj)
+	var/obj/item/paper/paper = locate() in container
+	paper.loc = null //prevent deletion
+	var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
+	paper.loc = being_cooked
+	being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
+	return being_cooked
+
+/datum/recipe/fortunecookie/check_items(var/obj/container as obj)
+	. = ..()
+	if (.)
 		var/obj/item/paper/paper = locate() in container
-		paper.loc = null //prevent deletion
-		var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
-		paper.loc = being_cooked
-		being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
-		return being_cooked
-	check_items(var/obj/container as obj)
-		. = ..()
-		if (.)
-			var/obj/item/paper/paper = locate() in container
-			if (!paper || !paper.info)
-				return 0
-		return .
+		if (!paper || !paper.info)
+			return 0
+	return .
 
 /datum/recipe/friedchicken
 	reagents = list("cornoil" = 5, "sodiumchloride" = 1, "blackpepper" = 1, "flour" = 5)

@@ -49,7 +49,7 @@
 
 
 
-turf/c_airblock(turf/other)
+/turf/c_airblock(turf/other)
 	#ifdef ZASDBG
 	ASSERT(isturf(other))
 	#endif

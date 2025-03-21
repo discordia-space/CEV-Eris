@@ -47,10 +47,10 @@
 	icon_state = "stickyweb1"
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_CLEANABLE
-	New()
-		if(prob(50))
-			icon_state = "stickyweb2"
-		..()
+/obj/effect/spider/stickyweb/New()
+	if(prob(50))
+		icon_state = "stickyweb2"
+	..()
 
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1

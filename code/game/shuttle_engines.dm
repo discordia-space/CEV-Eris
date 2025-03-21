@@ -10,9 +10,9 @@
 	opacity = 0
 	anchored = TRUE
 
-	CanPass(atom/movable/mover, turf/target, height, air_group)
-		if(!height || air_group) return 0
-		else return ..()
+/obj/structure/signpost/CanPass(atom/movable/mover, turf/target, height, air_group)
+	if(!height || air_group) return 0
+	else return ..()
 
 /obj/structure/shuttle/engine
 	name = "engine"

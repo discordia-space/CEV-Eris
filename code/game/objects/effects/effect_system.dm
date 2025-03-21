@@ -39,18 +39,18 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/atom/holder
 	var/setup = 0
 
-	proc/set_up(n = 3, c = 0, turf/loc)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loc
-		setup = 1
+/datum/effect/effect/system/proc/set_up(n = 3, c = 0, turf/loc)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	location = loc
+	setup = 1
 
-	proc/attach(atom/atom)
-		holder = atom
+/datum/effect/effect/system/proc/attach(atom/atom)
+	holder = atom
 
-	proc/start()
+/datum/effect/effect/system/proc/start()
 
 
 /////////////////////////////////////////////
@@ -76,30 +76,29 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/steam_spread
 
-	set_up(n = 3, c = 0, turf/loc)
-		if(n > 10)
-			n = 10
-		number = n
-		cardinals = c
-		location = loc
+/datum/effect/effect/system/steam_spread/set_up(n = 3, c = 0, turf/loc)
+	if(n > 10)
+		n = 10
+	number = n
+	cardinals = c
+	location = loc
 
-	start()
-		var/i = 0
-		for(i=0, i<src.number, i++)
-			spawn(0)
-				if(holder)
-					src.location = get_turf(holder)
-				var/obj/effect/effect/steam/steam = new(location)
-				var/direction
-				if(src.cardinals)
-					direction = pick(cardinal)
-				else
-					direction = pick(alldirs)
-				for(var/j=0, j<pick(1,2,3), j++)
-					sleep(5)
-					step(steam,direction)
-				spawn(20)
-					qdel(steam)
+/datum/effect/effect/system/steam_spread/start()
+	var/i = 0
+	for(i=0, i<src.number, i++)
+		spawn(0)
+			if(holder)
+				src.location = get_turf(holder)
+			var/obj/effect/effect/steam/steam = new(location)
+			var/direction
+			if(src.cardinals)
+				direction = pick(cardinal)
+			else
+				direction = pick(alldirs)
+			for(var/j=0, j<pick(1,2,3), j++)
+				sleep(5)
+				step(steam,direction)
+			QDEL_IN(steam, 20)
 
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)
@@ -288,8 +287,7 @@ steam.start() -- spawns the effect
 	set_light(radius,brightness,color)
 
 	if(selfdestruct_timer)
-		spawn(selfdestruct_timer)
-		qdel(src)
+		QDEL_IN(src, selfdestruct_timer)
 
 /obj/effect/effect/light/set_light(l_range, l_power, l_color)
 	..()
@@ -447,34 +445,34 @@ steam.start() -- spawns the effect
 	var/flashing = 0			// does explosion creates flash effect?
 	var/flashing_factor = 0		// factor of how powerful the flash effect relatively to the explosion
 
-	set_up (amt, loc, flash = 0, flash_fact = 0)
-		amount = amt
-		if(istype(loc, /turf/))
-			location = loc
-		else
-			location = get_turf(loc)
+/datum/effect/effect/system/reagents_explosion/set_up (amt, loc, flash = 0, flash_fact = 0)
+	amount = amt
+	if(istype(loc, /turf/))
+		location = loc
+	else
+		location = get_turf(loc)
 
-		flashing = flash
-		flashing_factor = flash_fact
+	flashing = flash
+	flashing_factor = flash_fact
 
+	return
+
+/datum/effect/effect/system/reagents_explosion/start()
+	if (amount <= 2)
+		var/datum/effect/effect/system/spark_spread/s = new
+		s.set_up(2, 1, location)
+		s.start()
+
+		for(var/mob/M in viewers(5, location))
+			to_chat(M, SPAN_WARNING("The solution violently explodes."))
+		for(var/mob/M in viewers(1, location))
+			if (prob (50 * amount))
+				to_chat(M, SPAN_WARNING("The explosion knocks you down."))
+				M.Weaken(rand(1,5))
 		return
+	else
+		var/explosion_power = amount
+		for(var/mob/M in viewers(8, location))
+			to_chat(M, SPAN_WARNING("The solution violently explodes."))
 
-	start()
-		if (amount <= 2)
-			var/datum/effect/effect/system/spark_spread/s = new
-			s.set_up(2, 1, location)
-			s.start()
-
-			for(var/mob/M in viewers(5, location))
-				to_chat(M, SPAN_WARNING("The solution violently explodes."))
-			for(var/mob/M in viewers(1, location))
-				if (prob (50 * amount))
-					to_chat(M, SPAN_WARNING("The explosion knocks you down."))
-					M.Weaken(rand(1,5))
-			return
-		else
-			var/explosion_power = amount
-			for(var/mob/M in viewers(8, location))
-				to_chat(M, SPAN_WARNING("The solution violently explodes."))
-
-			explosion(get_turf(location), explosion_power, explosion_power / 10)
+		explosion(get_turf(location), explosion_power, explosion_power / 10)

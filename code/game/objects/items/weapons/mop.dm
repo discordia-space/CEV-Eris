@@ -92,8 +92,7 @@
 		mopimage.forceMove(target, glide_size_override=DELAY2GLIDESIZE(sweep_step))
 		sleep(sweep_step)
 		mopimage.forceMove(end, glide_size_override=DELAY2GLIDESIZE(sweep_step))
-	spawn(sweep_time+1)
-		qdel(mopimage)
+	QDEL_IN(mopimage, sweep_time+1)
 
 	if(!do_after(user, sweep_time,target))
 		to_chat(user, SPAN_DANGER("Mopping cancelled"))

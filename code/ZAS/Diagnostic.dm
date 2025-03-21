@@ -11,7 +11,7 @@
 				to_chat(mob, "[g]: [mix.gas[g]]\n")
 	else
 		if(zone_debug_images)
-			for(var/zone in  zone_debug_images)
+			for(var/datum/zone in  zone_debug_images)
 				images -= zone_debug_images[zone]
 			zone_debug_images = null
 

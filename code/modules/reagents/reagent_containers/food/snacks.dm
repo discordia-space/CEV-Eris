@@ -939,23 +939,23 @@
 
 	var/warm = 0
 	var/list/heated_reagents = list("tricordrazine" = 5)
-	proc/heat()
-		warm = 1
-		for(var/reagent in heated_reagents)
-			reagents?.add_reagent(reagent, heated_reagents[reagent])
-		bitesize = 6
-		name = "warm " + name
-		cooltime()
+/obj/item/reagent_containers/food/snacks/donkpocket/proc/heat()
+	warm = 1
+	for(var/reagent in heated_reagents)
+		reagents?.add_reagent(reagent, heated_reagents[reagent])
+	bitesize = 6
+	name = "warm " + name
+	cooltime()
 
-	proc/cooltime()
-		if (src.warm)
-			spawn(4200)
-				if(src)
-					src.warm = 0
-					src.name = initial(name)
-					if(src.reagents)
-						for(var/reagent in heated_reagents)
-							src.reagents.del_reagent(reagent)
+/obj/item/reagent_containers/food/snacks/donkpocket/proc/cooltime()
+	if (src.warm)
+		spawn(4200)
+			if(src)
+				src.warm = 0
+				src.name = initial(name)
+				if(src.reagents)
+					for(var/reagent in heated_reagents)
+						src.reagents.del_reagent(reagent)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/attack_self(mob/user)
 	if(has_been_heated)

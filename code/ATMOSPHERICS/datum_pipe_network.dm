@@ -11,84 +11,83 @@
 	var/update = 1
 	//var/datum/gas_mixture/air_transient = null
 
-	New()
-		//air_transient = new()
+/datum/pipe_network/New()
+	//air_transient = new()
+	..()
 
-		..()
+/datum/pipe_network/Destroy()
+	STOP_PROCESSING(SSmachines, src)
 
-	Destroy()
-		STOP_PROCESSING(SSmachines, src)
+	for(var/obj/machinery/atmospherics/normal_member in normal_members)
+		normal_member.reassign_network(src,null)
 
-		for(var/obj/machinery/atmospherics/normal_member in normal_members)
-			normal_member.reassign_network(src,null)
+	for(var/datum/pipeline/line_member in line_members)
+		line_member.network = null
 
-		for(var/datum/pipeline/line_member in line_members)
-			line_member.network = null
+	gases.Cut()
+	normal_members.Cut()
+	line_members.Cut()
 
-		gases.Cut()
-		normal_members.Cut()
-		line_members.Cut()
+	. = ..()
 
-		. = ..()
+/datum/pipe_network/Process()
+	//Equalize gases amongst pipe if called for
+	if(update)
+		update = 0
+		reconcile_air() //equalize_gases(gases)
 
-	Process()
-		//Equalize gases amongst pipe if called for
-		if(update)
-			update = 0
-			reconcile_air() //equalize_gases(gases)
+	//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
+	//for(var/datum/pipeline/line_member in line_members)
+	//	line_member.Process()
 
-		//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
-		//for(var/datum/pipeline/line_member in line_members)
-		//	line_member.Process()
+/datum/pipe_network/proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
+	//Purpose: Generate membership roster
+	//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
 
-	proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
-		//Purpose: Generate membership roster
-		//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
+	if(!start_normal)
+		qdel(src)
+		return
 
-		if(!start_normal)
-			qdel(src)
-			return
+	start_normal.network_expand(src, reference)
 
-		start_normal.network_expand(src, reference)
+	update_network_gases()
 
-		update_network_gases()
+	if((normal_members.len>0)||(line_members.len>0))
+		START_PROCESSING(SSmachines, src)
+	else
+		qdel(src)
 
-		if((normal_members.len>0)||(line_members.len>0))
-			START_PROCESSING(SSmachines, src)
-		else
-			qdel(src)
+/datum/pipe_network/proc/merge(datum/pipe_network/giver)
+	if(giver==src) return 0
 
-	proc/merge(datum/pipe_network/giver)
-		if(giver==src) return 0
+	normal_members |= giver.normal_members
 
-		normal_members |= giver.normal_members
+	line_members |= giver.line_members
 
-		line_members |= giver.line_members
+	for(var/obj/machinery/atmospherics/normal_member in giver.normal_members)
+		normal_member.reassign_network(giver, src)
 
-		for(var/obj/machinery/atmospherics/normal_member in giver.normal_members)
-			normal_member.reassign_network(giver, src)
+	for(var/datum/pipeline/line_member in giver.line_members)
+		line_member.network = src
 
-		for(var/datum/pipeline/line_member in giver.line_members)
-			line_member.network = src
+	update_network_gases()
+	return 1
 
-		update_network_gases()
-		return 1
+/datum/pipe_network/proc/update_network_gases()
+	//Go through membership roster and make sure gases is up to date
 
-	proc/update_network_gases()
-		//Go through membership roster and make sure gases is up to date
+	gases = list()
+	volume = 0
 
-		gases = list()
-		volume = 0
+	for(var/obj/machinery/atmospherics/normal_member in normal_members)
+		var/result = normal_member.return_network_air(src)
+		if(result) gases += result
 
-		for(var/obj/machinery/atmospherics/normal_member in normal_members)
-			var/result = normal_member.return_network_air(src)
-			if(result) gases += result
+	for(var/datum/pipeline/line_member in line_members)
+		gases += line_member.air
 
-		for(var/datum/pipeline/line_member in line_members)
-			gases += line_member.air
+	for(var/datum/gas_mixture/air in gases)
+		volume += air.volume
 
-		for(var/datum/gas_mixture/air in gases)
-			volume += air.volume
-
-	proc/reconcile_air()
-		equalize_gases(gases)
+/datum/pipe_network/proc/reconcile_air()
+	equalize_gases(gases)

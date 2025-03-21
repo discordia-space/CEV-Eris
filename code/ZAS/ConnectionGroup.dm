@@ -4,7 +4,7 @@ Overview:
 	These are what handle gas transfers between zones and into space.
 	They are found in a zone's edges list and in SSair.edges.
 	Each edge updates every air tick due to their role in gas transfer.
-	They come in two flavors, /connection_edge/zone and /connection_edge/unsimulated.
+	They come in two flavors, /datum/connection_edge/zone and /datum/connection_edge/unsimulated.
 	As the type names might suggest, they handle inter-zone and spacelike connections respectively.
 
 Class Vars:
@@ -30,14 +30,14 @@ Class Vars:
 
 Class Procs:
 
-	add_connection(connection/c)
+	add_connection(datum/connection/c)
 		Adds a connection to this edge. Usually increments the coefficient and adds a turf to connecting_turfs.
 
-	remove_connection(connection/c)
+	remove_connection(datum/connection/c)
 		Removes a connection from this edge. This works even if c is not in the edge, so be careful.
 		If the coefficient reaches zero as a result, the edge is erased.
 
-	contains_zone(zone/Z)
+	contains_zone(datum/zone/Z)
 		Returns true if either A or B is equal to Z. Unsimulated connections return true only on A.
 
 	erase()
@@ -51,47 +51,48 @@ Class Procs:
 		If repelled is true, the objects move away from any turf in connecting_turfs, otherwise they approach.
 		A check against vsc.lightest_airflow_pressure should generally be performed before calling this.
 
-	get_connected_zone(zone/from)
+	get_connected_zone(datum/zone/from)
 		Helper proc that allows getting the other zone of an edge given one of them.
-		Only on /connection_edge/zone, otherwise use A.
+		Only on /datum/connection_edge/zone, otherwise use A.
 
 */
 
 
-/connection_edge/var/zone/A
+/datum/connection_edge
+	var/datum/zone/A
 
-/connection_edge/var/list/connecting_turfs = list()
-/connection_edge/var/direct = 0
-/connection_edge/var/sleeping = 1
+	var/list/connecting_turfs = list()
+	var/direct = 0
+	var/sleeping = 1
 
-/connection_edge/var/coefficient = 0
+	var/coefficient = 0
 
-/connection_edge/New()
+/datum/connection_edge/New()
 	CRASH("Cannot make connection edge without specifications.")
 
-/connection_edge/proc/add_connection(connection/c)
+/datum/connection_edge/proc/add_connection(datum/connection/c)
 	coefficient++
 	if(c.direct()) direct++
 	//world << "Connection added: [type] Coefficient: [coefficient]"
 
-/connection_edge/proc/remove_connection(connection/c)
+/datum/connection_edge/proc/remove_connection(datum/connection/c)
 	//world << "Connection removed: [type] Coefficient: [coefficient-1]"
 	coefficient--
 	if(coefficient <= 0)
 		erase()
 	if(c.direct()) direct--
 
-/connection_edge/proc/contains_zone(zone/Z)
+/datum/connection_edge/proc/contains_zone(datum/zone/Z)
 
-/connection_edge/proc/erase()
+/datum/connection_edge/proc/erase()
 	SSair.remove_edge(src)
 	//world << "[type] Erased."
 
-/connection_edge/proc/tick()
+/datum/connection_edge/proc/tick()
 
-/connection_edge/proc/recheck()
+/datum/connection_edge/proc/recheck()
 
-/connection_edge/proc/flow(list/movable, differential, repelled)
+/datum/connection_edge/proc/flow(list/movable, differential, repelled)
 	for(var/i = 1; i <= movable.len; i++)
 		var/atom/movable/M = movable[i]
 
@@ -119,9 +120,9 @@ Class Procs:
 
 
 
-/connection_edge/zone/var/zone/B
+/datum/connection_edge/zone/var/datum/zone/B
 
-/connection_edge/zone/New(zone/A, zone/B)
+/datum/connection_edge/zone/New(datum/zone/A, datum/zone/B)
 
 	src.A = A
 	src.B = B
@@ -130,23 +131,23 @@ Class Procs:
 	//id = edge_id(A,B)
 	//world << "New edge between [A] and [B]"
 
-/connection_edge/zone/add_connection(connection/c)
+/datum/connection_edge/zone/add_connection(datum/connection/c)
 	. = ..()
 	connecting_turfs.Add(c.A)
 
-/connection_edge/zone/remove_connection(connection/c)
+/datum/connection_edge/zone/remove_connection(datum/connection/c)
 	connecting_turfs.Remove(c.A)
 	. = ..()
 
-/connection_edge/zone/contains_zone(zone/Z)
+/datum/connection_edge/zone/contains_zone(datum/zone/Z)
 	return A == Z || B == Z
 
-/connection_edge/zone/erase()
+/datum/connection_edge/zone/erase()
 	A.edges.Remove(src)
 	B.edges.Remove(src)
 	. = ..()
 
-/connection_edge/zone/tick()
+/datum/connection_edge/zone/tick()
 	if(A.invalid || B.invalid)
 		erase()
 		return
@@ -179,19 +180,19 @@ Class Procs:
 	SSair.mark_zone_update(A)
 	SSair.mark_zone_update(B)
 
-/connection_edge/zone/recheck()
+/datum/connection_edge/zone/recheck()
 	if(!A.air.compare(B.air))
 		SSair.mark_edge_active(src)
 
 //Helper proc to get connections for a zone.
-/connection_edge/zone/proc/get_connected_zone(zone/from)
+/datum/connection_edge/zone/proc/get_connected_zone(datum/zone/from)
 	if(A == from) return B
 	else return A
 
-/connection_edge/unsimulated/var/turf/B
-/connection_edge/unsimulated/var/datum/gas_mixture/air
+/datum/connection_edge/unsimulated/var/turf/B
+/datum/connection_edge/unsimulated/var/datum/gas_mixture/air
 
-/connection_edge/unsimulated/New(zone/A, turf/B)
+/datum/connection_edge/unsimulated/New(datum/zone/A, turf/B)
 	src.A = A
 	src.B = B
 	A.edges.Add(src)
@@ -199,24 +200,24 @@ Class Procs:
 	//id = 52*A.id
 	//world << "New edge from [A] to [B]."
 
-/connection_edge/unsimulated/add_connection(connection/c)
+/datum/connection_edge/unsimulated/add_connection(datum/connection/c)
 	. = ..()
 	connecting_turfs.Add(c.B)
 	air.group_multiplier = coefficient
 
-/connection_edge/unsimulated/remove_connection(connection/c)
+/datum/connection_edge/unsimulated/remove_connection(datum/connection/c)
 	connecting_turfs.Remove(c.B)
 	air.group_multiplier = coefficient
 	. = ..()
 
-/connection_edge/unsimulated/erase()
+/datum/connection_edge/unsimulated/erase()
 	A.edges.Remove(src)
 	. = ..()
 
-/connection_edge/unsimulated/contains_zone(zone/Z)
+/datum/connection_edge/unsimulated/contains_zone(datum/zone/Z)
 	return A == Z
 
-/connection_edge/unsimulated/tick()
+/datum/connection_edge/unsimulated/tick()
 	if(A.invalid)
 		erase()
 		return
@@ -234,7 +235,7 @@ Class Procs:
 
 	SSair.mark_zone_update(A)
 
-/connection_edge/unsimulated/recheck()
+/datum/connection_edge/unsimulated/recheck()
 	if(!A.air.compare(air))
 		SSair.mark_edge_active(src)
 

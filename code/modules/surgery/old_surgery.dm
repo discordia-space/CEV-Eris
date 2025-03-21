@@ -84,7 +84,7 @@
 	if(!tool)
 		return FALSE
 
-	var/zone = user.targeted_organ
+	var/datum/zone = user.targeted_organ
 
 	var/datum/old_surgery_step/selectedStep = null
 	var/list/possibleSteps = list()

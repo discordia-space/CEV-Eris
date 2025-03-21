@@ -342,8 +342,7 @@
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()
-			spawn(10)
-				qdel(spark_system)
+			QDEL_IN(spark_system, 10 )
 		. += 2
 	if(is_nerve_struck())
 		. += 1

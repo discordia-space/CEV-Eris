@@ -240,7 +240,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		Stun(round(airflow_speed * vsc.airflow_stun/2))
 	. = ..()
 
-zone/proc/movables()
+/datum/zone/proc/movables()
 	. = list()
 	for(var/turf/turf as anything in contents)
 		for(var/atom/movable/A in turf)

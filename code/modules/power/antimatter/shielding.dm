@@ -40,8 +40,7 @@
 		return
 	for(var/obj/machinery/am_shielding/AMS in loc.contents)
 		if(AMS == src) continue
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 		return
 
 	//Search for shielding first
@@ -60,8 +59,7 @@
 			spawn(20)
 				controllerscan(1)//Last chance
 			return
-		spawn(0)
-			qdel(src)
+		QDEL_IN(src, 0)
 	return
 
 

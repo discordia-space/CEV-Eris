@@ -73,6 +73,9 @@
 	anim1.pixel_z = 32
 
 	update_icon()
+	QDEL_IN(src, 20)
+
+	// I don't know a good alternative that would be the equivalent of QDEL_NULL_IN. so. pls fix?
 	spawn(20)
 		qdel(anim0)
 		qdel(anim1)
@@ -93,6 +96,7 @@
 	anim1.pixel_z = 32
 
 	update_icon()
+	// previous comment applies here
 	spawn(20)
 		qdel(anim0)
 		qdel(anim1)

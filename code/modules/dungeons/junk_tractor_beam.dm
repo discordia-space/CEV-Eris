@@ -569,13 +569,13 @@
 	type_wall	= /turf/wall/reinforced
 	type_under	= /turf/floor/asteroid
 
-	New()
-		..()  // The joy of not being able to use a for in the declaration
-		for(var/i = 2 to 4)
-			for(var/j = 2 to 4)
-				spot_add(i,j,type_under)
-				if(i==3 && j==3)
-					spot_add(3,3,/obj/effect/portal/jtb)
+/datum/rogue/asteroid/predef/portal/New()
+	..()  // The joy of not being able to use a for in the declaration
+	for(var/i = 2 to 4)
+		for(var/j = 2 to 4)
+			spot_add(i,j,type_under)
+			if(i==3 && j==3)
+				spot_add(3,3,/obj/effect/portal/jtb)
 
 /proc/load_chunk(turf/corner_turf, datum/map_template/template, var/ori)
 	if(!template)

@@ -23,51 +23,53 @@
 
 /datum/old_surgery_step/cavity/make_space
 	required_tool_quality = QUALITY_DRILLING
-
 	duration = 70
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
-			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && !affected.cavity
-
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/cavity/make_space/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message("[user] starts making some space inside [target]'s [affected.cavity_name] with \the [tool].", \
-		"You start making some space inside [target]'s [affected.cavity_name] with \the [tool]." )
-		target.custom_pain("The pain in your chest is living hell!",1)
-		affected.cavity = 1
-		..()
+		return affected && !affected.cavity
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-		user.visible_message("\blue [user] makes some space inside [target]'s [affected.cavity_name] with \the [tool].", \
-		"\blue You make some space inside [target]'s [affected.cavity_name] with \the [tool]." )
+/datum/old_surgery_step/cavity/make_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message( \
+		"[user] starts making some space inside [target]'s [affected.cavity_name] with \the [tool].", \
+		"You start making some space inside [target]'s [affected.cavity_name] with \the [tool]." \
+	)
+	target.custom_pain("The pain in your chest is living hell!", 1)
+	affected.cavity = 1
+	..()
+
+/datum/old_surgery_step/cavity/make_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
+	user.visible_message(
+		"\blue [user] makes some space inside [target]'s [affected.cavity_name] with \the [tool].",
+		"\blue You make some space inside [target]'s [affected.cavity_name] with \the [tool]."
+	)
 
 /datum/old_surgery_step/cavity/close_space
 	priority = 2
 	required_tool_quality = QUALITY_CAUTERIZING
-
 	duration = 70
 
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		if(..())
-			var/obj/item/organ/external/affected = target.get_organ(target_zone)
-			return affected && affected.cavity
-
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/cavity/close_space/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		user.visible_message(
-			"[user] starts mending [target]'s [affected.cavity_name] wall with \the [tool].",
-			"You start mending [target]'s [affected.cavity_name] wall with \the [tool]."
-		)
-		target.custom_pain("The pain in your chest is living hell!",1)
-		affected.cavity = 0
-		..()
+		return affected && affected.cavity
 
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-		user.visible_message(
-			"\blue [user] mends [target]'s [affected.cavity_name] walls with \the [tool].", \
-			"\blue You mend [target]'s [affected.cavity_name] walls with \the [tool]."
-		)
+/datum/old_surgery_step/cavity/close_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(
+		"[user] starts mending [target]'s [affected.cavity_name] wall with \the [tool].",
+		"You start mending [target]'s [affected.cavity_name] wall with \the [tool]."
+	)
+	target.custom_pain("The pain in your chest is living hell!", 1)
+	affected.cavity = 0
+	..()
+
+/datum/old_surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
+	user.visible_message(
+		"\blue [user] mends [target]'s [affected.cavity_name] walls with \the [tool].",
+		"\blue You mend [target]'s [affected.cavity_name] walls with \the [tool]."
+	)

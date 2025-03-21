@@ -51,9 +51,7 @@
 		to_chat(H, SPAN_DANGER("Some of \the [src] gets in your eyes!"))
 		H.eye_blind += 5
 		H.eye_blurry += 10
-		spawn(1)
-			if(istype(loc, /turf/)) qdel(src)
-
+		if(istype(loc, /turf/)) QDEL_IN(src, 1)
 
 /obj/item/ore/plasma
 	name = "plasma crystals"

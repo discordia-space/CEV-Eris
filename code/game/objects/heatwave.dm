@@ -10,8 +10,7 @@
 
 	if(heavy_range > 1)
 		var/obj/effect/overlay/pulse/heatwave/HW = new(epicenter)
-		spawn(20)
-			qdel(HW)
+		QDEL_IN(HW, 20)
 
 	if(heavy_range > light_range)
 		light_range = heavy_range

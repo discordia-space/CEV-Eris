@@ -9,10 +9,11 @@ SUBSYSTEM_DEF(memory_stats)
 /datum/controller/subsystem/memory_stats/Initialize()
 	if(!rustg_file_exists(MEMORYSTATS_DLL_PATH))
 		flags |= SS_NO_FIRE
-		return
+		return ..()
 	fire()
 	return ..()
 
+// TODO: Figure out why this still being fired even if it doesnt exist. onlinx
 /datum/controller/subsystem/memory_stats/fire(resumed)
 	var/memory_summary = get_memory_stats()
 	if(memory_summary)

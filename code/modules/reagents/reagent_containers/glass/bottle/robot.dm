@@ -13,9 +13,9 @@
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	reagent = "inaprovaline"
 
-	New()
-		..()
-		reagents.add_reagent("inaprovaline", 60)
+/obj/item/reagent_containers/glass/bottle/robot/inaprovaline/New()
+	..()
+	reagents.add_reagent("inaprovaline", 60)
 
 
 /obj/item/reagent_containers/glass/bottle/robot/antitoxin
@@ -23,6 +23,6 @@
 	desc = "A small bottle of Anti-toxins. Counters poisons, and repairs damage, a wonder drug."
 	reagent = "anti_toxin"
 
-	New()
-		..()
-		reagents.add_reagent("anti_toxin", 60)
+/obj/item/reagent_containers/glass/bottle/robot/antitoxin/New()
+	..()
+	reagents.add_reagent("anti_toxin", 60)

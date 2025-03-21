@@ -219,8 +219,7 @@ var/list/possible_cable_coil_colours = list(
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	spark_system.start()
-	spawn(10)
-		qdel(spark_system)
+	QDEL_IN(spark_system, 10)
 
 /obj/structure/cable/proc/cutting(mob/user)
 

@@ -243,9 +243,9 @@
 	destroyed = 1
 	icon_state = "grille-b"
 	density = FALSE
-	New()
-		..()
-		take_damage(rand(5,1))
+/obj/structure/grille/broken/New()
+	..()
+	take_damage(rand(5,1))
 
 /obj/structure/grille/cult
 	name = "cult grille"

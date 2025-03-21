@@ -26,9 +26,9 @@ var/intercom_range_display_status = 0
 	icon = 'icons/480x480.dmi'
 	icon_state = "25percent"
 
-	New()
-		src.pixel_x = -224
-		src.pixel_y = -224
+/obj/effect/debugging/camera_range/New()
+	src.pixel_x = -224
+	src.pixel_y = -224
 
 /obj/effect/debugging/marker
 	icon = 'icons/turf/areas.dmi'
@@ -138,7 +138,7 @@ var/intercom_range_display_status = 0
 	var/usedZAScolors = 0
 	var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
+/client/proc/recurse_zone(var/datum/zone/Z, var/recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
 		return
@@ -147,8 +147,8 @@ var/intercom_range_display_status = 0
 	for(var/turf/T in Z.contents)
 		images += image(yellow, T, "zasdebug", LIGHTING_LAYER)
 		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in Z.edges)
-		var/zone/connected = edge.get_connected_zone(Z)
+	for(var/datum/connection_edge/zone/edge in Z.edges)
+		var/datum/zone/connected = edge.get_connected_zone(Z)
 		if(connected in testZAScolors_zones)
 			continue
 		recurse_zone(connected,recurse_level+1)
@@ -183,14 +183,14 @@ var/intercom_range_display_status = 0
 	for(var/turf/T in location.zone.contents)
 		images += image(green, T, "zasdebug", LIGHTING_LAYER)
 		testZAScolors_turfs += T
-	for(var/connection_edge/zone/edge in location.zone.edges)
-		var/zone/Z = edge.get_connected_zone(location.zone)
+	for(var/datum/connection_edge/zone/edge in location.zone.edges)
+		var/datum/zone/Z = edge.get_connected_zone(location.zone)
 		testZAScolors_zones += Z
 		for(var/turf/T in Z.contents)
 			images += image(blue, T, "zasdebug", LIGHTING_LAYER)
 			testZAScolors_turfs += T
-		for(var/connection_edge/zone/z_edge in Z.edges)
-			var/zone/connected = z_edge.get_connected_zone(Z)
+		for(var/datum/connection_edge/zone/z_edge in Z.edges)
+			var/datum/zone/connected = z_edge.get_connected_zone(Z)
 			if(connected in testZAScolors_zones)
 				continue
 			recurse_zone(connected,1)

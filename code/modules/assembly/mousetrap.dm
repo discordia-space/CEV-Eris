@@ -9,18 +9,18 @@
 	var/prob_catch = 100
 
 
-	examine(mob/user)
-		..(user)
-		if(armed)
-			to_chat(user, "It looks like it's armed.")
+/obj/item/device/assembly/mousetrap/examine(mob/user)
+	..(user)
+	if(armed)
+		to_chat(user, "It looks like it's armed.")
 
-	update_icon()
-		if(armed)
-			icon_state = "mousetraparmed"
-		else
-			icon_state = "mousetrap"
-		if(holder)
-			holder.update_icon()
+/obj/item/device/assembly/mousetrap/update_icon()
+	if(armed)
+		icon_state = "mousetraparmed"
+	else
+		icon_state = "mousetrap"
+	if(holder)
+		holder.update_icon()
 
 /obj/item/device/assembly/mousetrap/proc/triggered(var/mob/living/target, var/type = "feet")
 	if(!armed || !istype(target))
@@ -32,7 +32,7 @@
 		visible_message("<span class='danger'>SPLAT!</span>")
 		M.splat()
 	else
-		var/zone = "chest"
+		var/datum/zone = "chest"
 		if(ishuman(target) && target.mob_size)
 			var/mob/living/carbon/human/H = target
 			switch(type)

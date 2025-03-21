@@ -44,7 +44,7 @@
 			add_ZAS_debug_overlay(ZAS_DEBUG_OVERLAY_AIR_FULLY_BLOCKED)
 			#endif
 			if(zone)
-				var/zone/z = zone
+				var/datum/zone/z = zone
 				if(can_safely_remove_from_zone()) //Helps normal airlocks avoid rebuilding zones all the time
 					c_copy_air()
 					z.remove(src)
@@ -110,7 +110,7 @@
 				postponed.Add(neighbour_turf)
 
 		if(!TURF_HAS_VALID_ZONE(src)) //Still no zone, make a new one.
-			var/zone/newzone = new/zone()
+			var/datum/zone/newzone = new/datum/zone()
 			newzone.add(src)
 
 		#ifdef ZASDBG

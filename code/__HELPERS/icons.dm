@@ -217,94 +217,94 @@ world
 
 #define TO_HEX_DIGIT(n) ascii2text((n&15) + ((n&15)<10 ? 48 : 87))
 
-icon
-	proc/MakeLying()
-		var/icon/I = new(src, dir=SOUTH)
-		I.BecomeLying()
-		return I
 
-	proc/BecomeLying()
-		Turn(90)
-		Shift(SOUTH, 6)
-		Shift(EAST, 1)
+/icon/proc/MakeLying()
+	var/icon/I = new(src, dir=SOUTH)
+	I.BecomeLying()
+	return I
 
-	// Multiply all alpha values by this float
-	proc/ChangeOpacity(opacity = 1)
-		MapColors(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, opacity, 0, 0, 0, 0)
+/icon/proc/BecomeLying()
+	Turn(90)
+	Shift(SOUTH, 6)
+	Shift(EAST, 1)
 
-	// Convert to grayscale
-	proc/GrayScale()
-		MapColors(0.3, 0.3, 0.3, 0.59, 0.59, 0.59, 0.11, 0.11, 0.11, 0, 0, 0)
+// Multiply all alpha values by this float
+/icon/proc/ChangeOpacity(opacity = 1)
+	MapColors(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, opacity, 0, 0, 0, 0)
 
-	proc/ColorTone(tone)
-		GrayScale()
+// Convert to grayscale
+/icon/proc/GrayScale()
+	MapColors(0.3, 0.3, 0.3, 0.59, 0.59, 0.59, 0.11, 0.11, 0.11, 0, 0, 0)
 
-		var/list/TONE = ReadRGB(tone)
-		var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
+/icon/proc/ColorTone(tone)
+	GrayScale()
 
-		var/icon/upper = (255-gray) ? new(src) : null
+	var/list/TONE = ReadRGB(tone)
+	var/gray = round(TONE[1]*0.3 + TONE[2]*0.59 + TONE[3]*0.11, 1)
 
-		if(gray)
-			MapColors(255/gray, 0, 0, 0, 255/gray, 0, 0, 0, 255/gray, 0, 0, 0)
-			Blend(tone, ICON_MULTIPLY)
-		else SetIntensity(0)
-		if(255-gray)
-			upper.Blend(rgb(gray, gray, gray), ICON_SUBTRACT)
-			upper.MapColors((255-TONE[1])/(255-gray), 0, 0, 0, 0, (255-TONE[2])/(255-gray), 0, 0, 0, 0, (255-TONE[3])/(255-gray), 0, 0, 0, 0, 0, 0, 0, 0, 1)
-			Blend(upper, ICON_ADD)
+	var/icon/upper = (255-gray) ? new(src) : null
 
-	// Take the minimum color of two icons; combine transparency as if blending with ICON_ADD
-	proc/MinColors(icon)
-		var/icon/I = new(src)
-		I.Opaque()
-		I.Blend(icon, ICON_SUBTRACT)
-		Blend(I, ICON_SUBTRACT)
+	if(gray)
+		MapColors(255/gray, 0, 0, 0, 255/gray, 0, 0, 0, 255/gray, 0, 0, 0)
+		Blend(tone, ICON_MULTIPLY)
+	else SetIntensity(0)
+	if(255-gray)
+		upper.Blend(rgb(gray, gray, gray), ICON_SUBTRACT)
+		upper.MapColors((255-TONE[1])/(255-gray), 0, 0, 0, 0, (255-TONE[2])/(255-gray), 0, 0, 0, 0, (255-TONE[3])/(255-gray), 0, 0, 0, 0, 0, 0, 0, 0, 1)
+		Blend(upper, ICON_ADD)
 
-	// Take the maximum color of two icons; combine opacity as if blending with ICON_OR
-	proc/MaxColors(icon)
-		var/icon/I
-		if(isicon(icon))
-			I = new(icon)
-		else
-			// solid color
-			I = new(src)
-			I.Blend("#000000", ICON_OVERLAY)
-			I.SwapColor("#000000", null)
-			I.Blend(icon, ICON_OVERLAY)
-		var/icon/J = new(src)
-		J.Opaque()
-		I.Blend(J, ICON_SUBTRACT)
-		Blend(I, ICON_OR)
+// Take the minimum color of two icons; combine transparency as if blending with ICON_ADD
+/icon/proc/MinColors(icon)
+	var/icon/I = new(src)
+	I.Opaque()
+	I.Blend(icon, ICON_SUBTRACT)
+	Blend(I, ICON_SUBTRACT)
 
-	// make this icon fully opaque--transparent pixels become black
-	proc/Opaque(background = "#000000")
-		SwapColor(null, background)
-		MapColors(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+// Take the maximum color of two icons; combine opacity as if blending with ICON_OR
+/icon/proc/MaxColors(icon)
+	var/icon/I
+	if(isicon(icon))
+		I = new(icon)
+	else
+		// solid color
+		I = new(src)
+		I.Blend("#000000", ICON_OVERLAY)
+		I.SwapColor("#000000", null)
+		I.Blend(icon, ICON_OVERLAY)
+	var/icon/J = new(src)
+	J.Opaque()
+	I.Blend(J, ICON_SUBTRACT)
+	Blend(I, ICON_OR)
 
-	// Change a grayscale icon into a white icon where the original color becomes the alpha
-	// I.e., black -> transparent, gray -> translucent white, white -> solid white
-	proc/BecomeAlphaMask()
-		SwapColor(null, "#000000ff")	// don't let transparent become gray
-		MapColors(0, 0, 0, 0.3, 0, 0, 0, 0.59, 0, 0, 0, 0.11, 0, 0, 0, 0, 1, 1, 1, 0)
+// make this icon fully opaque--transparent pixels become black
+/icon/proc/Opaque(background = "#000000")
+	SwapColor(null, background)
+	MapColors(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
 
-	proc/UseAlphaMask(mask)
-		Opaque()
-		AddAlphaMask(mask)
+// Change a grayscale icon into a white icon where the original color becomes the alpha
+// I.e., black -> transparent, gray -> translucent white, white -> solid white
+/icon/proc/BecomeAlphaMask()
+	SwapColor(null, "#000000ff")	// don't let transparent become gray
+	MapColors(0, 0, 0, 0.3, 0, 0, 0, 0.59, 0, 0, 0, 0.11, 0, 0, 0, 0, 1, 1, 1, 0)
 
-	proc/AddAlphaMask(mask)
-		var/icon/M = new(mask)
-		M.Blend("#ffffff", ICON_SUBTRACT)
-		// apply mask
-		Blend(M, ICON_ADD)
+/icon/proc/UseAlphaMask(mask)
+	Opaque()
+	AddAlphaMask(mask)
 
-	//	paints all non transparent pixels into color
-	proc/PlainPaint(var/color)
-		var/list/rgb = ReadRGB(color)
-		MapColors(0,	0,	0,	0, //-\  Ignore
-				0,	0,	0,	0, //--> The
-				0,	0,	0,	0, //-/  Colors
-				rgb[1]/255,rgb[2]/255,rgb[3]/1,255, //Keep alpha channel, any pixel with non-zero alpha gets the color
-				0,	0,	0,	0)
+/icon/proc/AddAlphaMask(mask)
+	var/icon/M = new(mask)
+	M.Blend("#ffffff", ICON_SUBTRACT)
+	// apply mask
+	Blend(M, ICON_ADD)
+
+//	paints all non transparent pixels into color
+/icon/proc/PlainPaint(var/color)
+	var/list/rgb = ReadRGB(color)
+	MapColors(0,	0,	0,	0, //-\  Ignore
+			0,	0,	0,	0, //--> The
+			0,	0,	0,	0, //-/  Colors
+			rgb[1]/255,rgb[2]/255,rgb[3]/1,255, //Keep alpha channel, any pixel with non-zero alpha gets the color
+			0,	0,	0,	0)
 
 
 /*

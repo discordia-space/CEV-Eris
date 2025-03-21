@@ -244,9 +244,10 @@ var/const/NO_EMAG_ACT = -50
 	icon_state = "centcom"
 	registered_name = "Central Command"
 	assignment = "General"
-	New()
-		access = get_all_centcom_access()
-		..()
+
+/obj/item/card/id/centcom/New()
+	access = get_all_centcom_access()
+	..()
 
 /obj/item/card/id/gold
 	icon_state = MATERIAL_GOLD

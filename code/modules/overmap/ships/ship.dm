@@ -22,21 +22,21 @@
 	var/scan_range = PASSIVE_SCAN_RANGE
 	var/pulsing = FALSE
 
-	Crossed(var/obj/effect/overmap_event/movable/ME)
-		..()
-		if(ME)
-			if(istype(ME, /obj/effect/overmap_event/movable))
-				if(ME.OE)
-					if(istype(src, /obj/effect/overmap/ship))
-						ME.OE:enter(src)
+/obj/effect/overmap/ship/Crossed(var/obj/effect/overmap_event/movable/ME)
+	..()
+	if(ME)
+		if(istype(ME, /obj/effect/overmap_event/movable))
+			if(ME.OE)
+				if(istype(src, /obj/effect/overmap/ship))
+					ME.OE:enter(src)
 
-	Uncrossed(var/obj/effect/overmap_event/movable/ME)
-		..()
-		if(ME)
-			if(istype(ME, /obj/effect/overmap_event/movable))
-				if(ME.OE)
-					if(istype(src, /obj/effect/overmap/ship))
-						ME.OE:leave(src)
+/obj/effect/overmap/ship/Uncrossed(var/obj/effect/overmap_event/movable/ME)
+	..()
+	if(ME)
+		if(istype(ME, /obj/effect/overmap_event/movable))
+			if(ME.OE)
+				if(istype(src, /obj/effect/overmap/ship))
+					ME.OE:leave(src)
 
 /obj/effect/overmap/ship/New()
 	GLOB.ships += src

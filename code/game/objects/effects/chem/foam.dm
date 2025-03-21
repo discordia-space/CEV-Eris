@@ -71,9 +71,7 @@
 /obj/effect/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
 		flick("[icon_state]-disolve", src)
-
-		spawn(5)
-			qdel(src)
+		QDEL_IN(src, 5)
 
 /obj/effect/effect/foam/Crossed(var/atom/movable/AM)
 	if(metal)

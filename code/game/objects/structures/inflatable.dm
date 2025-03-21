@@ -229,9 +229,9 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_wall_torn"
 
-	attack_self(mob/user)
-		to_chat(user, SPAN_NOTICE("The inflatable wall is too torn to be inflated!"))
-		add_fingerprint(user)
+/obj/item/inflatable/torn/attack_self(mob/user)
+	to_chat(user, SPAN_NOTICE("The inflatable wall is too torn to be inflated!"))
+	add_fingerprint(user)
 
 /obj/item/inflatable/door/torn
 	name = "torn inflatable door"
@@ -239,9 +239,9 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_door_torn"
 
-	attack_self(mob/user)
-		to_chat(user, SPAN_NOTICE("The inflatable door is too torn to be inflated!"))
-		add_fingerprint(user)
+/obj/item/inflatable/door/torn/attack_self(mob/user)
+	to_chat(user, SPAN_NOTICE("The inflatable door is too torn to be inflated!"))
+	add_fingerprint(user)
 
 /obj/item/storage/briefcase/inflatable
 	name = "inflatable barrier box"
@@ -253,13 +253,13 @@
 	can_hold = list(/obj/item/inflatable)
 	var/init_inflatable_count = 4
 
-	New()
-		..()
-		while(init_inflatable_count)
-			new /obj/item/inflatable/door(src)
-			new /obj/item/inflatable/wall(src)
-			init_inflatable_count -= 1
-		init_inflatable_count = initial(init_inflatable_count)
+/obj/item/storage/briefcase/inflatable/New()
+	..()
+	while(init_inflatable_count)
+		new /obj/item/inflatable/door(src)
+		new /obj/item/inflatable/wall(src)
+		init_inflatable_count -= 1
+	init_inflatable_count = initial(init_inflatable_count)
 
 /obj/item/storage/briefcase/inflatable/empty/init_inflatable_count = 0
 
