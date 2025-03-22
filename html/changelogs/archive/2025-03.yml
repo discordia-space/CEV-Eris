@@ -33,3 +33,9 @@
       pile.
   - balance: Stacks deal fall damage based on the number of sheets in the stack.
   - balance: Osmium deals 2.5x more fall damage than other stack types.
+2025-03-22:
+  Chickenish:
+  - balance: eating toxic mushrooms is now a bad idea.
+  - bugfix: fixed damage, probably.
+  Mycah142:
+  - rscdel: Removed roach hats
