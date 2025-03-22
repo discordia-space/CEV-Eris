@@ -9,7 +9,7 @@
 	health = GOLEM_HEALTH_LOW
 
 	// Movement related variables
-	move_to_delay = GOLEM_SPEED_HIGH
+	move_to_delay = GOLEM_SPEED_MED
 	turns_per_move = 5
 
 	// Damage related variables
@@ -44,7 +44,7 @@
 /obj/item/projectile/plasma/stun/golem //special projectile that passes straight through golems
 	name = "stun plasma bolt"
 	taser_effect = 1
-	damage_types = list(HALLOSS = 20, BURN = 10)
+	damage_types = list(HALLOSS = 15, BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
 
 /obj/item/projectile/plasma/stun/golem/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
