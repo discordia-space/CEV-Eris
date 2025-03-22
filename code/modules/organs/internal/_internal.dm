@@ -124,8 +124,8 @@
 /obj/item/organ/internal/take_damage(amount, damage_type = BRUTE, wounding_multiplier = 1, silent = FALSE, sharp = FALSE, edge = FALSE)	//Deals damage to the organ itself
 	if(!damage_type || status & ORGAN_DEAD)
 		return FALSE
-
-	var/wound_count = max(0, ROUND_PROB(amount / (damage_type == BRUTE || damage_type == BURN ? 4 : 8)))	// At base values, every 8 points of damage is 1 wound, or 4 if brute or burn.
+	var/fixed = amount / (damage_type == BRUTE || damage_type == BURN ? 4 : 8)
+	var/wound_count = max(0, ROUND_PROB(fixed))	// At base values, every 8 points of damage is 1 wound, or 4 if brute or burn.
 
 	if(!wound_count)
 		return FALSE
@@ -139,8 +139,6 @@
 			//LAZYREMOVE(possible_wounds, choice) // If this is commented out, we can get a higher severity of a single wound
 			if(!LAZYLEN(possible_wounds))
 				break
-
-		owner.custom_pain("Something inside your [parent.name] hurts a lot.", 0)		// Let em know they're hurting
 
 		return TRUE
 	return FALSE

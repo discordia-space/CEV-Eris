@@ -1,0 +1,5 @@
+author: Chickenish
+delete-after: true
+changes:
+  - balance: eating toxic mushrooms is now a bad idea.
+  - bugfix: fixed damage, probably.

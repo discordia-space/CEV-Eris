@@ -207,6 +207,7 @@
 /datum/reagent/medicine/cryoxadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_GENEHEAL, 1)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
@@ -228,6 +229,7 @@
 /datum/reagent/medicine/clonexadone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.bodytemperature < 170)
 		M.add_chemical_effect(CE_ONCOCIDAL, 1)
+		M.add_chemical_effect(CE_GENEHEAL, 2)
 		M.add_chemical_effect(CE_OXYGENATED, 1)
 		M.add_chemical_effect(CE_BLOODCLOT, 0.50)
 		M.add_chemical_effect(CE_ANTITOX, 2)
@@ -428,6 +430,7 @@
 
 /datum/reagent/medicine/ryetalyn/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.add_chemical_effect(CE_ONCOCIDAL, 2)
+	M.add_chemical_effect(CE_GENEHEAL, 1)
 /*
 	var/needs_update = M.mutations.len > 0
 
@@ -658,6 +661,7 @@
 	M.heal_organ_damage(2 * effect_multiplier, 2 * effect_multiplier, 5 * effect_multiplier, 5 * effect_multiplier)
 	M.add_chemical_effect(CE_TOXIN, -(2 + (M.chem_effects[CE_TOXIN] * 0.05)) * effect_multiplier)
 	M.add_chemical_effect(CE_ONCOCIDAL, 2)
+	M.add_chemical_effect(CE_GENEHEAL, 2)
 	if(dose > 3)
 		M.status_flags &= ~DISFIGURED
 	if(dose > 10)
