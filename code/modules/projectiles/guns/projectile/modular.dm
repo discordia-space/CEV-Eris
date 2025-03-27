@@ -51,6 +51,8 @@
 
 	max_upgrades = 6
 
+	var/datum/gunoverrides/overridedatum
+
 /obj/item/gun/projectile/automatic/modular/Initialize()
 
 	gun_tags += GUN_MODULAR
@@ -59,6 +61,7 @@
 			var/obj/item/part/gun/modular/new_part = new partPath(quality = gun_parts[partPath])
 			if(!new_part.I.rapid_apply(src))
 				visible_message(SPAN_WARNING("Something seems wrong... Maybe you should ask a professional for help?"))
+	overridedatum = new()
 	refresh_upgrades()
 	. = ..()
 	update_icon()
@@ -80,7 +83,10 @@
 	verbs -= MODULAR_VERBS // Removes all modularized verbs
 	grip_type = initial(grip_type)
 	good_calibers = list() // Won't ever be redefined, mechanism determines this, and when no mechanism is installed, we don't want anything here anyways
+	no_internal_mag = initial(no_internal_mag)
+	overridedatum?.reset() // clear first
 	..()
+	overridedatum?.cycle() // then use an assignment sort
 	name = get_initial_name()
 
 /obj/item/gun/projectile/automatic/modular/update_icon() // V2
@@ -157,6 +163,63 @@
 
 // Interactions
 
+/datum/gunoverrides
+	var/list/priorities = list()
+
+/datum/gunoverrides/proc/reset()
+	for(var/list/wiped in priorities)
+		wiped.Cut()
+	priorities.Cut()
+
+/datum/gunoverrides/proc/call_Flag(obj/item/load, user, flag)
+	for(var/key in priorities)
+		var/list/priority = priorities[key]
+		var/done = FALSE
+		for(var/datum/guninteraction/tocheck in priority) // highest numbers first.
+			if(tocheck.interactionflags & flag)
+				switch(flag)
+					if(GI_ATTACKSELF)
+						if(tocheck.attack_self(user))
+							done = TRUE
+					if(GI_LOAD)
+						if(tocheck.load_ammo(load, user))
+							done = TRUE
+					if(GI_UNLOAD)
+						if(tocheck.unload_ammo(user))
+							done = TRUE
+					if(GI_SPECIAL)
+						if(tocheck.special_check(user))
+							done = TRUE
+		if(done)
+			return TRUE
+
+/datum/gunoverrides/proc/cycle()
+	var/list/slate = list()
+	for(var/number = 4, number >= 0, number -= 1)
+		slate["[number]"] = priorities["[number]"] ? priorities["[number]"] : null
+	priorities = slate.Copy()
+
+/obj/item/gun/projectile/automatic/modular/attack_self(mob/user)
+	if(!overridedatum.call_Flag(user = user, flag = GI_ATTACKSELF))
+		. = ..()
+
+/obj/item/gun/projectile/automatic/modular/load_ammo(obj/item/A, mob/user)
+	if(!overridedatum.call_Flag(load = A, user = user, flag = GI_LOAD))
+		. = ..()
+	
+
+/obj/item/gun/projectile/automatic/modular/unload_ammo(mob/user, allow_dump)
+	if(!overridedatum.call_Flag(user = user, flag = GI_UNLOAD))
+		. = ..()
+
+/obj/item/gun/projectile/automatic/modular/special_check(mob/user)
+	if(!overridedatum.call_Flag(user = user, flag = GI_SPECIAL))
+		. = ..()
+
+/obj/item/gun/projectile/automatic/modular/hand_spin(mob/living/carbon/caller)
+	overridedatum.call_Flag(user = caller, flag = GI_SPIN)
+	
+
 /obj/item/gun/projectile/automatic/modular/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
 		return 1
@@ -194,16 +257,16 @@
 /obj/item/gun/projectile/automatic/modular/proc/fold(user)
 
 	if(PARTMOD_FOLDING_STOCK & spriteTags)
+		refresh_upgrades()
 		if(PARTMOD_FOLDING_STOCK & statusTags)
 			to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
 			statusTags -= PARTMOD_FOLDING_STOCK
-			w_class = initial(w_class)
+			w_class --
 		else
 			to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
 			statusTags |= PARTMOD_FOLDING_STOCK
-			w_class = initial(w_class) + 1
 
-		refresh_upgrades()
+
 		playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		update_icon()
 
