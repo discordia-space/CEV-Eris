@@ -470,6 +470,10 @@
 		var/datum/guninteraction/interaction = weapon_upgrades[GUN_UPGRADE_REPLACE_INTERACTIONS]
 		if(istype(interaction))
 			interaction.parentgun = null
+	if(weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS])
+		if(istype(parent, /obj/item/part/gun/modular/stock))
+			var/obj/item/part/gun/modular/stock/base = parent
+			weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = base.wclassmod
 
 
 /datum/component/item_upgrade/proc/apply_values_firemode(datum/firemode/F)

@@ -814,6 +814,7 @@ semi accepts weird caliber - +1 points
 	var/recoilbuildup
 	var/movementcost
 	var/onehandpenalty
+	var/wclassmod = 1
 
 /obj/item/part/gun/modular/stock/New(location, var/quality = 0)
 	..() // No stat change, so no need for price change either
@@ -826,7 +827,7 @@ semi accepts weird caliber - +1 points
 		I.weapon_upgrades[GUN_UPGRADE_RECOILBUILDUP] = recoilbuildup
 	if(onehandpenalty)
 		I.weapon_upgrades[GUN_UPGRADE_ONEHANDPENALTY] = onehandpenalty
-	I.weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = 1
+	I.weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = wclassmod
 
 /obj/item/part/gun/modular/stock/heavy
 	recoilbuildup = 0.7

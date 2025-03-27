@@ -257,15 +257,18 @@
 /obj/item/gun/projectile/automatic/modular/proc/fold(user)
 
 	if(PARTMOD_FOLDING_STOCK & spriteTags)
+		for(var/obj/item/part/gun/modular/stock/toedit in gun_parts) // only gonna edit one, doing this to find it
+			if(PARTMOD_FOLDING_STOCK & statusTags)
+				to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
+				statusTags -= PARTMOD_FOLDING_STOCK
+				toedit.I.weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = 0
+			else
+				to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
+				statusTags |= PARTMOD_FOLDING_STOCK
+				toedit.I.weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS] = toedit.wclassmod
+			break
+			
 		refresh_upgrades()
-		if(PARTMOD_FOLDING_STOCK & statusTags)
-			to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
-			statusTags -= PARTMOD_FOLDING_STOCK
-			w_class --
-		else
-			to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
-			statusTags |= PARTMOD_FOLDING_STOCK
-
 
 		playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 		update_icon()
