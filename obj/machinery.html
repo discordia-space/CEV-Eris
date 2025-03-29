@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>machinery <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/machinery/machinery.dm#L87">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;machinery.dm 87"/></a></h1>
+
+<p>Machines in the world, such as computers, pipes, and airlocks.</p>
+<p>Overview:
+Used to create objects that need a per step proc call.  Default definition of 'Initialize()'
+stores a reference to src machine in global 'machines list'.  Default definition
+of 'Destroy' removes reference to src machine in global 'machines list'.</p>
+<p>Class Variables:
+use_power (num)
+current state of auto power use.
+Possible Values:
+NO_POWER_USE -- no auto power use
+IDLE_POWER_USE -- machine is using power at its idle power level
+ACTIVE_POWER_USE -- machine is using power at its active power level</p>
+<p>active_power_usage (num)
+Value for the amount of power to use when in active power mode</p>
+<p>idle_power_usage (num)
+Value for the amount of power to use when in idle power mode</p>
+<p>power_channel (num)
+What channel to draw from when drawing power for power mode
+Possible Values:
+AREA_USAGE_EQUIP:1 -- Equipment Channel
+AREA_USAGE_LIGHT:2 -- Lighting Channel
+AREA_USAGE_ENVIRON:3 -- Environment Channel</p>
+<p>component_parts (list)
+A list of component parts of machine used by frame based machines.</p>
+<p>stat (bitflag)
+Machine status bit flags.
+Possible bit flags:
+BROKEN -- Machine is broken
+NOPOWER -- No power is being supplied to machine.
+MAINT -- machine is currently under going maintenance.
+EMPED -- temporary broken by EMP pulse</p>
+<p>Class Procs:
+Initialize()</p>
+<p>Destroy()</p>
+<pre><code>update_mode_power_usage()
+	updates the static_power_usage var of this machine and makes its static power usage from its area accurate.
+	called after the idle or active power usage has been changed.
+
+update_power_channel()
+	updates the static_power_usage var of this machine and makes its static power usage from its area accurate.
+	called after the power_channel var has been changed or called to change the var itself.
+
+unset_static_power()
+	completely removes the current static power usage of this machine from its area.
+	used in the other power updating procs to then readd the correct power usage.
+
+
+ Default definition uses 'use_power', 'power_channel', 'active_power_usage',
+ 'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
+</code></pre>
+<p>powered(chan = -1)         'modules/power/power.dm'
+Checks to see if area that contains the object has power available for power
+channel given in 'chan'. -1 defaults to power_channel</p>
+<p>use_power(amount, chan=-1)   'modules/power/power.dm'
+Deducts 'amount' from the power channel 'chan' of the area that contains the object.</p>
+<p>power_change()               'modules/power/power.dm'
+Called by the area that contains the object when ever that area under goes a
+power state change (area runs out of power, or area channel is turned off).</p>
+<p>RefreshParts()               'game/machinery/machine.dm'
+Called to refresh the variables in the machine that are contributed to by parts
+contained in the component_parts list. (example: glass and material amounts for
+the autolathe)</p>
+<pre><code> Default definition does nothing.
+</code></pre>
+<p>process()                  'game/machinery/machine.dm'
+Called by the 'machinery subsystem' once per machinery tick for each machine that is listed in its 'machines' list.</p>
+<p>process_atmos()
+Called by the 'air subsystem' once per atmos tick for each machine that is listed in its 'atmos_machines' list.
+Compiled by Aygar</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;atom - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="atom.html#proc">Proc Details</a></header>
+<main>
+<h1>atom <aside>/<a href="atom.html">atom</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/atoms.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="atom.html#proc/Destroy">Destroy</a></th><td>Top level of the destroy chain for most atoms</td></tr>
+            <tr><th><a href="atom.html#proc/GenerateTag">GenerateTag</a></th><td>Generate a tag for this atom</td></tr>
+            <tr><th><a href="atom.html#proc/Initialize">Initialize</a></th><td>The primary method that objects are setup in SS13 with</td></tr>
+            <tr><th><a href="atom.html#proc/LateInitialize">LateInitialize</a></th><td>Late Intialization, for code that should run after all atoms have run Intialization</td></tr>
+            <tr><th><a href="atom.html#proc/New">New</a></th><td>Called when an atom is created in byond (built in engine proc)</td></tr>
+            <tr><th><a href="atom.html#proc/SetName">SetName</a></th><td>Name Set Handling</td></tr>
+            <tr><th><a href="atom.html#proc/get_alarm_z">get_alarm_z</a></th><td>Assisting procs</td></tr>
+            <tr><th><a href="atom.html#proc/set_density">set_density</a></th><td>Density Handling</td></tr>
+            <tr><th><a href="atom.html#proc/set_dir">set_dir</a></th><td>Direction Handling</td></tr>
+            <tr><th><a href="atom.html#proc/set_invisibility">set_invisibility</a></th><td>Invisibility Set Handling</td></tr>
+            <tr><th><a href="atom.html#proc/set_opacity">set_opacity</a></th><td>Opacity Handling</td></tr>
+            <tr><th><a href="atom.html#proc/singuloCanEat">singuloCanEat</a></th><td>Nar-Sie Act/Pull</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/Destroy">Destroy<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/atoms.dm#L155">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 155"/></a></aside>
+        </h3>
+        <p>Top level of the destroy chain for most atoms</p>
+<p>Cleans up the following:</p>
+<ul>
+<li>Removes alternate apperances from huds that see them</li>
+<li>qdels the reagent holder from atoms if it exists</li>
+<li>Clears itself from any targeting-related vars that hold a reference to it</li>
+<li>clears the orbiters list</li>
+<li>clears overlays and priority overlays</li>
+<li>clears the light object</li>
+</ul><h3 id="proc/GenerateTag"><aside class="declaration">proc </aside>GenerateTag<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/atoms.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 173"/></a></aside>
+        </h3>
+        <p>Generate a tag for this atom</p><h3 id="proc/Initialize"><aside class="declaration">proc </aside>Initialize<aside>(mapload, ...) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/atoms.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 109"/></a></aside>
+        </h3>
+        <p>The primary method that objects are setup in SS13 with</p>
+<p>we don't use New as we have better control over when this is called and we can choose
+to delay calls or hook other logic in and so forth</p>
+<p>During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
+After the map has loaded, then Initalize is called on all atoms one by one. NB: this
+is also true for loading map templates as well, so they don't Initalize until all objects
+in the map file are parsed and present in the world</p>
+<p>If you're creating an object at any point after SSInit has run then this proc will be
+immediately be called from New.</p>
+<p>mapload: This parameter is true if the atom being loaded is either being intialized during
+the Atom subsystem intialization, or if the atom is being loaded from the map template.
+If the item is being created at runtime any time after the Atom subsystem is intialized then
+it's false.</p>
+<p>You must always call the parent of this proc, otherwise failures will occur as the item
+will not be seen as initalized (this can lead to all sorts of strange behaviour, like
+the item being completely unclickable)</p>
+<p>You must not sleep in this proc, or any subprocs</p>
+<p>Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
+there are no other arguments</p>
+<p>Must return an <a href="code/__DEFINES/subsystems.html#define/INITIALIZE_HINT_NORMAL" title="INITIALIZE_HINT_NORMAL">initialization hint</a> or a runtime will occur.</p>
+<p>Note: the following functions don't call the base for optimization and must copypasta handling:</p>
+<ul>
+<li>[/turf/proc/Initialize]</li>
+<li>[/turf/open/space/proc/Initialize]</li>
+</ul><h3 id="proc/LateInitialize"><aside class="declaration">proc </aside>LateInitialize<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/atoms.dm#L141">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 141"/></a></aside>
+        </h3>
+        <p>Late Intialization, for code that should run after all atoms have run Intialization</p>
+<p>To have your LateIntialize proc be called, your atoms <a href="atom.html#proc/Initialize" title="/atom">Initalization</a>
+proc must return the hint
+<a href="code/__DEFINES/subsystems.html#define/INITIALIZE_HINT_LATELOAD" title="INITIALIZE_HINT_LATELOAD">INITIALIZE_HINT_LATELOAD</a> otherwise you will never be called.</p>
+<p>useful for doing things like finding other machines on GLOB.machines because you can guarantee
+that all atoms will actually exist in the &quot;WORLD&quot; at this time and that all their Intialization
+code has been run</p><h3 id="proc/New">New<aside>(loc, ...) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/atoms.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;atoms.dm 60"/></a></aside>
+        </h3>
+        <p>Called when an atom is created in byond (built in engine proc)</p>
+<p>Not a lot happens here in SS13 code, as we offload most of the work to the
+<a href="atom.html#proc/Initialize" title="/atom">Intialization</a> proc, mostly we run the preloader
+if the preloader is being used and then call <a href="datum/controller/subsystem/atoms.html#proc/InitAtom" title="/datum/controller/subsystem/atoms">InitAtom</a> of which the ultimate
+result is that the Intialize proc is called.</p>
+<p>We also generate a tag here if the DF_USE_TAG flag is set on the atom</p><h3 id="proc/SetName"><aside class="declaration">proc </aside>SetName<aside>(new_name) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/name_set.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;name_set.dm 21"/></a></aside>
+        </h3>
+        <p>Name Set Handling</p><h3 id="proc/get_alarm_z"><aside class="declaration">proc </aside>get_alarm_z<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/alarm/alarm.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;alarm&#x2F;alarm.dm 109"/></a></aside>
+        </h3>
+        <p>Assisting procs</p><h3 id="proc/set_density"><aside class="declaration">proc </aside>set_density<aside>(new_density) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/density_set.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;density_set.dm 20"/></a></aside>
+        </h3>
+        <p>Density Handling</p><h3 id="proc/set_dir"><aside class="declaration">proc </aside>set_dir<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/dir_set.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;dir_set.dm 28"/></a></aside>
+        </h3>
+        <p>Direction Handling</p><h3 id="proc/set_invisibility"><aside class="declaration">proc </aside>set_invisibility<aside>(new_invisibility) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/set_invisibility.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;set_invisibility.dm 21"/></a></aside>
+        </h3>
+        <p>Invisibility Set Handling</p><h3 id="proc/set_opacity"><aside class="declaration">proc </aside>set_opacity<aside>(new_opacity) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/opacity_set.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;opacity_set.dm 21"/></a></aside>
+        </h3>
+        <p>Opacity Handling</p><h3 id="proc/singuloCanEat"><aside class="declaration">proc </aside>singuloCanEat<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/power/singularity/act.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;singularity&#x2F;act.dm 127"/></a></aside>
+        </h3>
+        <p>Nar-Sie Act/Pull</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;client - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="client.html#var">Var Details</a> - <a href="client.html#proc">Proc Details</a></header>
+<main>
+<h1>client <aside>/<a href="client.html">client</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/client_macros.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;client_macros.dm 1"/></a></h1>
+
+<p>Client datum</p>
+<p>A datum that is created whenever a user joins a BYOND world, one will exist for every active connected
+player</p>
+<p>when they first connect, this client object is created and [/client/New] is called</p>
+<p>When they disconnect, this client object is deleted and [/client/Del] is called</p>
+<p>All client topic calls go through [/client/Topic] first, so a lot of our specialised
+topic handling starts here</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="client.html#var/completed_asset_jobs">completed_asset_jobs</a></th><td>List of all completed blocking send jobs awaiting acknowledgement by send_asset</td></tr>
+            <tr><th><a href="client.html#var/externalreplyamount">externalreplyamount</a></th><td>Internal counter for clients sending external (IRC/Discord) relay messages via ahelp to prevent spamming. Set to a number every time an admin reply is sent, decremented for every client send.</td></tr>
+            <tr><th><a href="client.html#var/holder">holder</a></th><td>Contains admin info. Null if client is not an admin.</td></tr>
+            <tr><th><a href="client.html#var/last_asset_job">last_asset_job</a></th><td>Last asset send job id.</td></tr>
+            <tr><th><a href="client.html#var/last_message">last_message</a></th><td>Contains the last message sent by this client - used to protect against copy-paste spamming.</td></tr>
+            <tr><th><a href="client.html#var/last_message_count">last_message_count</a></th><td>contins a number of how many times a message identical to last_message was sent.</td></tr>
+            <tr><th><a href="client.html#var/parent_type">parent_type</a></th><td>This line makes clients parent type be a datum</td></tr>
+            <tr><th><a href="client.html#var/script">script</a></th><td>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!HEY LISTEN!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</td></tr>
+            <tr><th><a href="client.html#var/show_verb_panel">show_verb_panel</a></th><td>Disables default BYOND verb panel in favor of Stat Panelâ¢</td></tr>
+            <tr><th><a href="client.html#var/tgui_cache_reloaded">tgui_cache_reloaded</a></th><td>global</td></tr>
+            <tr><th><a href="client.html#var/tgui_windows">tgui_windows</a></th><td>global</td></tr>
+            <tr><th><a href="client.html#var/tooltips">tooltips</a></th><td>datum that controls the displaying and hiding of tooltips</td></tr>
+            <tr><th><a href="client.html#var/total_count_reset">total_count_reset</a></th><td>Next tick to reset the total message counter</td></tr>
+            <tr><th><a href="client.html#var/total_message_count">total_message_count</a></th><td>How many messages sent in the last 10 seconds</td></tr>
+            <tr><th><a href="client.html#var/verb_tabs">verb_tabs</a></th><td>List of Stat Panel tabs</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="client.html#proc/Process_Grab">Process_Grab</a></th><td>Process_Grab()
+Called by client/Move()
+Checks to see if you are grabbing anything and if moving will affect your grab.</td></tr>
+            <tr><th><a href="client.html#proc/_Topic">_Topic</a></th><td>dumb workaround because byond doesnt seem to recognize the PROC_REF(Topic) typepath for /datum/proc/Topic() from the client Topic,
+so we cant queue it without this</td></tr>
+            <tr><th><a href="client.html#proc/asset_cache_confirm_arrival">asset_cache_confirm_arrival</a></th><td>Process asset cache client topic calls for <code>&quot;asset_cache_confirm_arrival=[INT]&quot;</code></td></tr>
+            <tr><th><a href="client.html#proc/asset_cache_preload_data">asset_cache_preload_data</a></th><td>Process asset cache client topic calls for <code>&quot;asset_cache_preload_data=[HTML+JSON_STRING]&quot;</code></td></tr>
+            <tr><th><a href="client.html#proc/asset_cache_update_json">asset_cache_update_json</a></th><td>Updates the client side stored json file used to keep track of what assets the client has between restarts/reconnects.</td></tr>
+            <tr><th><a href="client.html#proc/browse_queue_flush">browse_queue_flush</a></th><td>Blocks until all currently sending browse and browse_rsc assets have been sent.
+Due to byond limitations, this proc will sleep for 1 client round trip even if the client has no pending asset sends.
+This proc will return an untrue value if it had to return before confirming the send, such as timeout or the client going away.</td></tr>
+            <tr><th><a href="client.html#proc/init_verbs">init_verbs</a></th><td>Compiles a full list of verbs and sends it to the browser</td></tr>
+            <tr><th><a href="client.html#proc/nanoclose">nanoclose</a></th><td>Called when a Nano UI window is closed
+This is how Nano handles closed windows
+It must be a verb so that it can be called using winset</td></tr>
+            <tr><th><a href="client.html#proc/resetnano">resetnano</a></th><td>A &quot;panic button&quot; verb to close all UIs on current mob.
+Use it when the bug with UI not opening (because the server still considers it open despite it being closed on client) pops up.
+Feel free to remove it once the bug is confirmed to be fixed.</td></tr>
+            <tr><th><a href="client.html#proc/uiclose">uiclose</a></th><td>verb</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/completed_asset_jobs"><aside class="declaration">var </aside>completed_asset_jobs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 125"/></a></h3>
+        <p>List of all completed blocking send jobs awaiting acknowledgement by send_asset</p><h3 id="var/externalreplyamount"><aside class="declaration">var </aside>externalreplyamount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 53"/></a></h3>
+        <p>Internal counter for clients sending external (IRC/Discord) relay messages via ahelp to prevent spamming. Set to a number every time an admin reply is sent, decremented for every client send.</p><h3 id="var/holder"><aside class="declaration">var </aside>holder
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/admins.html">admins</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 40"/></a></h3>
+        <p>Contains admin info. Null if client is not an admin.</p><h3 id="var/last_asset_job"><aside class="declaration">var </aside>last_asset_job
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L127">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 127"/></a></h3>
+        <p>Last asset send job id.</p><h3 id="var/last_message"><aside class="declaration">var </aside>last_message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 45"/></a></h3>
+        <p>Contains the last message sent by this client - used to protect against copy-paste spamming.</p><h3 id="var/last_message_count"><aside class="declaration">var </aside>last_message_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 47"/></a></h3>
+        <p>contins a number of how many times a message identical to last_message was sent.</p><h3 id="var/parent_type"><aside class="declaration">var </aside>parent_type
+            <aside>&ndash; /const</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 35"/></a></h3>
+        <p>This line makes clients parent type be a datum</p>
+<p>By default in byond if you define a proc on datums, that proc will exist on nearly every single type
+from icons to images to atoms to mobs to objs to turfs to areas, it won't however, appear on client</p>
+<p>instead by default they act like their own independent type so while you can do isdatum(icon)
+and have it return true, you can't do isdatum(client), it will always return false.</p>
+<p>This makes writing oo code hard, when you have to consider this extra special case</p>
+<p>This line prevents that, and has never appeared to cause any ill effects, while saving us an extra
+pain to think about</p>
+<p>This line is widely considered black fucking magic, and the fact it works is a puzzle to everyone
+involved, including the current engine developer, lummox</p>
+<p>If you are a future developer and the engine source is now available and you can explain why this
+is the way it is, please do update this comment</p><h3 id="var/script"><aside class="declaration">var </aside>script
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/interface/stylesheet.dm#L9">
+        <img src="git.png" width="16" height="16" title="interface&#x2F;stylesheet.dm 9"/></a></h3>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!HEY LISTEN!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p><h3 id="var/show_verb_panel"><aside class="declaration">var </aside>show_verb_panel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L69">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 69"/></a></h3>
+        <p>Disables default BYOND verb panel in favor of Stat Panelâ¢</p><h3 id="var/tgui_cache_reloaded"><aside class="declaration">var </aside>tgui_cache_reloaded
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/external.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 151"/></a></h3>
+        <p>global</p>
+<p>TRUE if cache was reloaded by tgui dev server at least once.</p><h3 id="var/tgui_windows"><aside class="declaration">var </aside>tgui_windows
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/external.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 144"/></a></h3>
+        <p>global</p>
+<p>Tracks open windows for a user.</p><h3 id="var/tooltips"><aside class="declaration">var </aside>tooltips
+            <aside>&ndash; /<a href="datum.html">datum</a>/tooltip</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 110"/></a></h3>
+        <p>datum that controls the displaying and hiding of tooltips</p><h3 id="var/total_count_reset"><aside class="declaration">var </aside>total_count_reset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 51"/></a></h3>
+        <p>Next tick to reset the total message counter</p><h3 id="var/total_message_count"><aside class="declaration">var </aside>total_message_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 49"/></a></h3>
+        <p>How many messages sent in the last 10 seconds</p><h3 id="var/verb_tabs"><aside class="declaration">var </aside>verb_tabs
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_defines.dm#L66">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_defines.dm 66"/></a></h3>
+        <p>List of Stat Panel tabs</p><h2 id="proc">Proc Details</h2><h3 id="proc/Process_Grab"><aside class="declaration">proc </aside>Process_Grab<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob_grab.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_grab.dm 7"/></a></aside>
+        </h3>
+        <p>Process_Grab()
+Called by client/Move()
+Checks to see if you are grabbing anything and if moving will affect your grab.</p><h3 id="proc/_Topic"><aside class="declaration">proc </aside>_Topic<aside>(/<a href="datum.html">datum</a>/hsrc, href, /list/href_list) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_procs.dm#L119">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 119"/></a></aside>
+        </h3>
+        <p>dumb workaround because byond doesnt seem to recognize the PROC_REF(Topic) typepath for /datum/proc/Topic() from the client Topic,
+so we cant queue it without this</p><h3 id="proc/asset_cache_confirm_arrival"><aside class="declaration">proc </aside>asset_cache_confirm_arrival<aside>(job_id) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/asset_cache/asset_cache_client.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 3"/></a></aside>
+        </h3>
+        <p>Process asset cache client topic calls for <code>&quot;asset_cache_confirm_arrival=[INT]&quot;</code></p><h3 id="proc/asset_cache_preload_data"><aside class="declaration">proc </aside>asset_cache_preload_data<aside>(data) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/asset_cache/asset_cache_client.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 14"/></a></aside>
+        </h3>
+        <p>Process asset cache client topic calls for <code>&quot;asset_cache_preload_data=[HTML+JSON_STRING]&quot;</code></p><h3 id="proc/asset_cache_update_json"><aside class="declaration">proc </aside>asset_cache_update_json<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/asset_cache/asset_cache_client.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 26"/></a></aside>
+        </h3>
+        <p>Updates the client side stored json file used to keep track of what assets the client has between restarts/reconnects.</p><h3 id="proc/browse_queue_flush"><aside class="declaration">proc </aside>browse_queue_flush<aside>(timeout) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/asset_cache/asset_cache_client.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;asset_cache&#x2F;asset_cache_client.dm 35"/></a></aside>
+        </h3>
+        <p>Blocks until all currently sending browse and browse_rsc assets have been sent.
+Due to byond limitations, this proc will sleep for 1 client round trip even if the client has no pending asset sends.
+This proc will return an untrue value if it had to return before confirming the send, such as timeout or the client going away.</p><h3 id="proc/init_verbs"><aside class="declaration">proc </aside>init_verbs<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/client/client_procs.dm#L749">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;client&#x2F;client_procs.dm 749"/></a></aside>
+        </h3>
+        <p>Compiles a full list of verbs and sends it to the browser</p><h3 id="proc/nanoclose"><aside class="declaration">verb </aside>nanoclose<aside>(uiref) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/nano/nanoexternal.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;nano&#x2F;nanoexternal.dm 26"/></a></aside>
+        </h3>
+        <p>Called when a Nano UI window is closed
+This is how Nano handles closed windows
+It must be a verb so that it can be called using winset</p>
+<p>@return nothing</p><h3 id="proc/resetnano"><aside class="declaration">verb </aside>resetnano<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/nano/nanoexternal.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;nano&#x2F;nanoexternal.dm 10"/></a></aside>
+        </h3>
+        <p>A &quot;panic button&quot; verb to close all UIs on current mob.
+Use it when the bug with UI not opening (because the server still considers it open despite it being closed on client) pops up.
+Feel free to remove it once the bug is confirmed to be fixed.</p>
+<p>@return nothing</p><h3 id="proc/uiclose"><aside class="declaration">verb </aside>uiclose<aside>(window_id) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/external.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 170"/></a></aside>
+        </h3>
+        <p>verb</p>
+<p>Called by UIs when they are closed.
+Must be a verb so winset() can call it.</p>
+<p>required uiref ref The UI that was closed.</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

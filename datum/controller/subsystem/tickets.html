@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;tickets - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/tickets.html#var">Var Details</a> - <a href="datum/controller/subsystem/tickets.html#proc">Proc Details</a></header>
+<main>
+<h1>tickets <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/tickets.html">tickets</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tickets/tickets.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tickets&#x2F;tickets.dm 16"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/tickets.html#var/anchor_link_extra">anchor_link_extra</a></th><td>Text that will be added to the anchor link</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tickets.html#var/other_ticket_name">other_ticket_name</a></th><td>The name of the other ticket type to convert to</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tickets.html#var/other_ticket_permission">other_ticket_permission</a></th><td>Which permission to look for when seeing if there is staff available for the other ticket type</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/tickets.html#proc/makeUrlMessage">makeUrlMessage</a></th><td>Will add the URLs usable by staff to the message and return it
+Arguments:
+C - The client who send the message
+msg - The raw message
+ticketNum - Which ticket number the ticket has</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tickets.html#proc/message_staff">message_staff</a></th><td></td></tr>
+            <tr><th><a href="datum/controller/subsystem/tickets.html#proc/newHelpRequest">newHelpRequest</a></th><td>Will either make a new ticket using the given text or will add the text to an existing ticket.
+Staff will get a message
+Arguments:
+C - The client who requests help
+text - The text the client send</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/anchor_link_extra"><aside class="declaration">var </aside>anchor_link_extra
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tickets/tickets.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tickets&#x2F;tickets.dm 30"/></a></h3>
+        <p>Text that will be added to the anchor link</p><h3 id="var/other_ticket_name"><aside class="declaration">var </aside>other_ticket_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tickets/tickets.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tickets&#x2F;tickets.dm 35"/></a></h3>
+        <p>The name of the other ticket type to convert to</p><h3 id="var/other_ticket_permission"><aside class="declaration">var </aside>other_ticket_permission
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tickets/tickets.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tickets&#x2F;tickets.dm 37"/></a></h3>
+        <p>Which permission to look for when seeing if there is staff available for the other ticket type</p><h2 id="proc">Proc Details</h2><h3 id="proc/makeUrlMessage"><aside class="declaration">proc </aside>makeUrlMessage<aside>(/<a href="client.html">client</a>/C, msg, ticketNum) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tickets/tickets.dm#L122">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tickets&#x2F;tickets.dm 122"/></a></aside>
+        </h3>
+        <p>Will add the URLs usable by staff to the message and return it
+Arguments:
+C - The client who send the message
+msg - The raw message
+ticketNum - Which ticket number the ticket has</p><h3 id="proc/message_staff"><aside class="declaration">proc </aside>message_staff<aside>(msg, prefix_type, important) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tickets/tickets.dm#L525">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tickets&#x2F;tickets.dm 525"/></a></aside>
+        </h3>
+        <ul>
+<li>Sends a message to the designated staff</li>
+<li>Arguments:</li>
+<li>msg - The message being send</li>
+<li>alt - If an alternative prefix should be used or not. Defaults to TICKET_STAFF_MESSAGE_PREFIX</li>
+<li>important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+send a sound and flash the window. Defaults to FALSE</li>
+</ul><h3 id="proc/newHelpRequest"><aside class="declaration">proc </aside>newHelpRequest<aside>(/<a href="client.html">client</a>/C, text) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tickets/tickets.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tickets&#x2F;tickets.dm 96"/></a></aside>
+        </h3>
+        <p>Will either make a new ticket using the given text or will add the text to an existing ticket.
+Staff will get a message
+Arguments:
+C - The client who requests help
+text - The text the client send</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

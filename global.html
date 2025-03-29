@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>(global) - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="global.html#var">Var Details</a> - <a href="global.html#proc">Proc Details</a></header>
+<main>
+<h1>(global)
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/(unknown)">
+        <img src="git.png" width="16" height="16" title="(unknown)"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="global.html#var/Debugger">Debugger</a></th><td>StonedMC</td></tr>
+            <tr><th><a href="global.html#var/Failsafe">Failsafe</a></th><td>Failsafe</td></tr>
+            <tr><th><a href="global.html#var/SStgui">SStgui</a></th><td>tgui subsystem</td></tr>
+            <tr><th><a href="global.html#var/SStimer">SStimer</a></th><td></td></tr>
+            <tr><th><a href="global.html#var/SSverb_manager">SSverb_manager</a></th><td>SSverb_manager, a subsystem that runs every tick and runs through its entire queue without yielding like SSinput.
+this exists because of how the byond tick works and where user inputted verbs are put within it.</td></tr>
+            <tr><th><a href="global.html#var/SSweather">SSweather</a></th><td></td></tr>
+            <tr><th><a href="global.html#var/access_cent_general">access_cent_general</a></th><td>Central Command</td></tr>
+            <tr><th><a href="global.html#var/access_change_medbay">access_change_medbay</a></th><td>Access Change</td></tr>
+            <tr><th><a href="global.html#var/access_mercenary">access_mercenary</a></th><td>Antag access</td></tr>
+            <tr><th><a href="global.html#var/access_nt_disciple">access_nt_disciple</a></th><td>NeoTheology</td></tr>
+            <tr><th><a href="global.html#var/access_security">access_security</a></th><td>Station access</td></tr>
+            <tr><th><a href="global.html#var/access_synth">access_synth</a></th><td>Misc</td></tr>
+            <tr><th><a href="global.html#var/comet_hardcore">comet_hardcore</a></th><td>........::::::%%%SPACE_COMET</td></tr>
+            <tr><th><a href="global.html#var/default_abstract_uplink_icon">default_abstract_uplink_icon</a></th><td>Abstract Uplink Entries</td></tr>
+            <tr><th><a href="global.html#var/photo_count">photo_count</a></th><td>photo</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="global.html#proc/Broadcast_Message">Broadcast_Message</a></th><td>Here is the big, bad function that broadcasts a message given the appropriate
+parameters.</td></tr>
+            <tr><th><a href="global.html#proc/CreateBans">CreateBans</a></th><td>DEBUG</td></tr>
+            <tr><th><a href="global.html#proc/REF">REF</a></th><td>\ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+If it ever becomes necesary to get a more performant REF(), this lies here in wait
+#define REF(thing) (thing &amp;&amp; isdatum(thing) &amp;&amp; (thing:datum_flags &amp; DF_USE_TAG) &amp;&amp; thing:tag ? &quot;[thing:tag]&quot; : &quot;\ref[thing]&quot;)</td></tr>
+            <tr><th><a href="global.html#proc/WEAKREF">WEAKREF</a></th><td>Creates a weakref to the given input.
+See /datum/weakref's documentation for more information.</td></tr>
+            <tr><th><a href="global.html#proc/______qdel_list_wrapper">______qdel_list_wrapper</a></th><td>the underscores are to encourage people not to use this directly.</td></tr>
+            <tr><th><a href="global.html#proc/_addtimer">_addtimer</a></th><td>Create a new timer and insert it in the queue.
+You should not call this directly, and should instead use the addtimer macro, which includes source information.</td></tr>
+            <tr><th><a href="global.html#proc/_queue_verb">_queue_verb</a></th><td>queue a callback for the given verb/verblike proc and any given arguments to the specified verb subsystem, so that they process in the next tick.
+intended to only work with verbs or verblike procs called directly from client input, use as part of TRY_QUEUE_VERB() and co.</td></tr>
+            <tr><th><a href="global.html#proc/add_verb">add_verb</a></th><td>handles adding verbs and updating the stat panel browser</td></tr>
+            <tr><th><a href="global.html#proc/bitfield_to_list">bitfield_to_list</a></th><td>Converts a bitfield to a list of numbers (or words if a wordlist is provided)</td></tr>
+            <tr><th><a href="global.html#proc/callHook">callHook</a></th><td>@file hooks.dm
+Implements hooks, a simple way to run code on pre-defined events.</td></tr>
+            <tr><th><a href="global.html#proc/callback_select">callback_select</a></th><td>Runs a list of callbacks asyncronously, returning only when all have finished</td></tr>
+            <tr><th><a href="global.html#proc/default_ui_state">default_ui_state</a></th><td>The sane defaults for a UI such as a computer or a machine.</td></tr>
+            <tr><th><a href="global.html#proc/delete_all_SS_and_recreate_master">delete_all_SS_and_recreate_master</a></th><td>Delete all existing SS to basically start over</td></tr>
+            <tr><th><a href="global.html#proc/deltimer">deltimer</a></th><td>Delete a timer</td></tr>
+            <tr><th><a href="global.html#proc/find_nearby_burrow">find_nearby_burrow</a></th><td>Burrow Finding and Sorting</td></tr>
+            <tr><th><a href="global.html#proc/generate_asset_name">generate_asset_name</a></th><td>Generate a filename for this asset
+The same asset will always lead to the same asset name
+(Generated names do not include file extention.)</td></tr>
+            <tr><th><a href="global.html#proc/getFlatIcon">getFlatIcon</a></th><td>Create a single [/icon] from a given <a href="atom.html" title="/atom">/atom</a> or <a href="https://secure.byond.com/docs/ref/#/image" title="/image">/image</a>.</td></tr>
+            <tr><th><a href="global.html#proc/getFlatTypeIcon">getFlatTypeIcon</a></th><td>always_use_defdir IS DEPRICATED</td></tr>
+            <tr><th><a href="global.html#proc/getOPressureDifferential">getOPressureDifferential</a></th><td>Gets the highest and lowest pressures from the tiles in cardinal directions
+around us, then checks the difference.</td></tr>
+            <tr><th><a href="global.html#proc/get_default_outfit_backpack">get_default_outfit_backpack</a></th><td>Helpers</td></tr>
+            <tr><th><a href="global.html#proc/get_random_uplink_items">get_random_uplink_items</a></th><td>Support procs</td></tr>
+            <tr><th><a href="global.html#proc/get_wound_type">get_wound_type</a></th><td>WOUND DEFINITIONS</td></tr>
+            <tr><th><a href="global.html#proc/icon2base64">icon2base64</a></th><td>Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
+exporting it as text, and then parsing the base64 from that.
+(This relies on byond automatically storing icons in savefiles as base64)</td></tr>
+            <tr><th><a href="global.html#proc/is_special_character">is_special_character</a></th><td>ADMIN HELPER PROCS</td></tr>
+            <tr><th><a href="global.html#proc/log_mapping">log_mapping</a></th><td>Logging for mapping errors</td></tr>
+            <tr><th><a href="global.html#proc/log_tgui">log_tgui</a></th><td>Appends a tgui-related log entry. All arguments are optional.</td></tr>
+            <tr><th><a href="global.html#proc/makeDatumRefLists">makeDatumRefLists</a></th><td>Initial Building</td></tr>
+            <tr><th><a href="global.html#proc/md5asfile">md5asfile</a></th><td>Save file as an external file then md5 it.
+Used because md5ing files stored in the rsc sometimes gives incorrect md5 results.</td></tr>
+            <tr><th><a href="global.html#proc/md5filepath">md5filepath</a></th><td>Returns the md5 of a file at a given path.</td></tr>
+            <tr><th><a href="global.html#proc/message_adminTicket">message_adminTicket</a></th><td></td></tr>
+            <tr><th><a href="global.html#proc/message_mentorTicket">message_mentorTicket</a></th><td></td></tr>
+            <tr><th><a href="global.html#proc/number_of_issues">number_of_issues</a></th><td>USED BY UNIT TEST: uniqueness.dm</td></tr>
+            <tr><th><a href="global.html#proc/qdel">qdel</a></th><td>Should be treated as a replacement for the 'del' keyword.</td></tr>
+            <tr><th><a href="global.html#proc/recover_all_SS_and_recreate_master">recover_all_SS_and_recreate_master</a></th><td>Recreate all SSs which will still cause data survive due to Recover(), the new Master will then find and take them from global.vars</td></tr>
+            <tr><th><a href="global.html#proc/remove_verb">remove_verb</a></th><td>handles removing verb and sending it to browser to update, use this for removing verbs</td></tr>
+            <tr><th><a href="global.html#proc/rustg_get_version">rustg_get_version</a></th><td>Gets the version of rust_g</td></tr>
+            <tr><th><a href="global.html#proc/storyteller_button">storyteller_button</a></th><td>datum/storyteller/proc/trigger_event()</td></tr>
+            <tr><th><a href="global.html#proc/strip_improper">strip_improper</a></th><td>Strip out the special beyond characters for \proper and \improper
+from text that will be sent to the browser.</td></tr>
+            <tr><th><a href="global.html#proc/tgui_Topic">tgui_Topic</a></th><td>Middleware for /client/Topic.</td></tr>
+            <tr><th><a href="global.html#proc/timeleft">timeleft</a></th><td>Get the remaining deciseconds on a timer</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_only_living">ui_status_only_living</a></th><td>Returns a UI status such that the dead will be able to watch, but not interact.</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_silicon_has_access">ui_status_silicon_has_access</a></th><td>Returns a UI status such that silicons will be able to interact with whatever
+they would have access to if this was a machine. For example, AIs can
+interact if there's cameras with wireless control is enabled.</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_user_has_free_hands">ui_status_user_has_free_hands</a></th><td>Returns a UI status such that those without blocked hands will be able to interact,
+but everyone else can only watch.</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_user_is_abled">ui_status_user_is_abled</a></th><td>Returns a UI status such that users with debilitating conditions, such as
+being dead or not having power for silicons, will not be able to interact.
+Being dead will disable UI, being incapacitated will continue updating it,
+and anything else will make it interactive.</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_user_is_adjacent">ui_status_user_is_adjacent</a></th><td>Returns a UI status such that users adjacent to source will be able to interact,
+far away users will be able to see, and anyone farther won't see anything.
+Dead users will receive updates no matter what, though you likely want to add
+a [<code>ui_status_only_living</code>] check for finer observer interactions.</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_user_is_advanced_tool_user">ui_status_user_is_advanced_tool_user</a></th><td>Returns a UI status such that advanced tool users will be able to interact,
+but everyone else can only watch.</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_user_is_conscious_and_lying_down">ui_status_user_is_conscious_and_lying_down</a></th><td>Returns UI_INTERACTIVE if the user is conscious and lying down.
+Returns UI_UPDATE otherwise.</td></tr>
+            <tr><th><a href="global.html#proc/ui_status_user_strictly_adjacent">ui_status_user_strictly_adjacent</a></th><td>Return UI_INTERACTIVE if the user is strictly adjacent to the target atom, whether they can see it or not.
+Return UI_CLOSE otherwise.</td></tr>
+            <tr><th><a href="global.html#proc/url2htmlloader">url2htmlloader</a></th><td>Return html to load a url.
+for use inside of browse() calls to html assets that might be loaded on a cdn.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/Debugger"><aside class="declaration">var </aside>Debugger
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/debugger</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/master.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;master.dm 14"/></a></h3>
+        <p>StonedMC</p>
+<p>Designed to properly split up a given tick among subsystems
+Note: if you read parts of this code and think &quot;why is it doing it that way&quot;
+Odds are, there is a reason</p><h3 id="var/Failsafe"><aside class="declaration">var </aside>Failsafe
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/controller/failsafe</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/failsafe.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;failsafe.dm 7"/></a></h3>
+        <p>Failsafe</p>
+<p>Pretty much pokes the MC to make sure it's still alive.</p><h3 id="var/SStgui"><aside class="declaration">var </aside>SStgui
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/tgui.html">tgui</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/tgui.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;tgui.dm 13"/></a></h3>
+        <p>tgui subsystem</p>
+<p>Contains all tgui state and subsystem code.</p><h3 id="var/SStimer"><aside class="declaration">var </aside>SStimer
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/timer.html">timer</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/timer.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;timer.dm 19"/></a></h3>
+        <h1 id="timer-subsystem">Timer Subsystem</h1>
+<p>Handles creation, callbacks, and destruction of timed events.</p>
+<p>It is important to understand the buckets used in the timer subsystem are just a series of doubly-linked
+lists. The object at a given index in bucket_list is a /datum/timedevent, the head of a list, which has prev
+and next references for the respective elements in that bucket's list.</p><h3 id="var/SSverb_manager"><aside class="declaration">var </aside>SSverb_manager
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/verb_manager.html">verb_manager</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/verb_manager.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;verb_manager.dm 22"/></a></h3>
+        <p>SSverb_manager, a subsystem that runs every tick and runs through its entire queue without yielding like SSinput.
+this exists because of how the byond tick works and where user inputted verbs are put within it.</p>
+<p>see TICK_ORDER.md for more info on how the byond tick is structured.</p>
+<p>The way the MC allots its time is via TICK_LIMIT_RUNNING, it simply subtracts the cost of SendMaps (MAPTICK_LAST_INTERNAL_TICK_USAGE)
+plus TICK_BYOND_RESERVE from the tick and uses up to that amount of time (minus the percentage of the tick used by the time it executes subsystems)
+on subsystems running cool things like atmospherics or Life or SSInput or whatever.</p>
+<p>Without this subsystem, verbs are likely to cause overtime if the MC uses all of the time it has alloted for itself in the tick, and SendMaps
+uses as much as its expected to, and an expensive verb ends up executing that tick. This is because the MC is completely blind to the cost of
+verbs, it can't account for it at all. The only chance for verbs to not cause overtime in a tick where the MC used as much of the tick
+as it alloted itself and where SendMaps costed as much as it was expected to is if the verb(s) take less than TICK_BYOND_RESERVE percent of
+the tick, which isnt much. Not to mention if SendMaps takes more than 30% of the tick and the MC forces itself to take at least 70% of the
+normal tick duration which causes ticks to naturally overrun even in the absence of verbs.</p>
+<p>With this subsystem, the MC can account for the cost of verbs and thus stop major overruns of ticks. This means that the most important subsystems
+like SSinput can start at the same time they were supposed to, leading to a smoother experience for the player since ticks arent riddled with
+minor hangs over and over again.</p><h3 id="var/SSweather"><aside class="declaration">var </aside>SSweather
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/weather</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/gamemodes/events/weather.dm#L145">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;events&#x2F;weather.dm 145"/></a></h3>
+        <pre><code>                                      |WEATHER SUBSYSTEM|
+</code></pre>
+<p>/////////                                 |SUBSYSTEM WEATHER|
+////////////////////                      -------------------</p><h3 id="var/access_cent_general"><aside class="declaration">var </aside>access_cent_general
+            <aside>&ndash; /const</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/jobs/access_datum.dm#L496">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;jobs&#x2F;access_datum.dm 496"/></a></h3>
+        <p>Central Command</p><h3 id="var/access_change_medbay"><aside class="declaration">var </aside>access_change_medbay
+            <aside>&ndash; /const</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/jobs/access_datum.dm#L451">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;jobs&#x2F;access_datum.dm 451"/></a></h3>
+        <p>Access Change</p><h3 id="var/access_mercenary"><aside class="declaration">var </aside>access_mercenary
+            <aside>&ndash; /const</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/jobs/access_datum.dm#L557">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;jobs&#x2F;access_datum.dm 557"/></a></h3>
+        <p>Antag access</p><h3 id="var/access_nt_disciple"><aside class="declaration">var </aside>access_nt_disciple
+            <aside>&ndash; /const</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/jobs/access_datum.dm#L412">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;jobs&#x2F;access_datum.dm 412"/></a></h3>
+        <p>NeoTheology</p><h3 id="var/access_security"><aside class="declaration">var </aside>access_security
+            <aside>&ndash; /const</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/jobs/access_datum.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;jobs&#x2F;access_datum.dm 13"/></a></h3>
+        <p>Station access</p><h3 id="var/access_synth"><aside class="declaration">var </aside>access_synth
+            <aside>&ndash; /const</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/jobs/access_datum.dm#L574">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;jobs&#x2F;access_datum.dm 574"/></a></h3>
+        <p>Misc</p><h3 id="var/comet_hardcore"><aside class="declaration">var </aside>comet_hardcore
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/gamemodes/events/meteors.dm#L237">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;events&#x2F;meteors.dm 237"/></a></h3>
+        <p>........::::::%%%SPACE_COMET</p><h3 id="var/default_abstract_uplink_icon"><aside class="declaration">var </aside>default_abstract_uplink_icon
+            <aside>&ndash; /image</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/uplink/uplink_items.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;uplink&#x2F;uplink_items.dm 138"/></a></h3>
+        <p>Abstract Uplink Entries</p><h3 id="var/photo_count"><aside class="declaration">var </aside>photo_count
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/paperwork/photography.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;paperwork&#x2F;photography.dm 26"/></a></h3>
+        <p>photo</p><h2 id="proc">Proc Details</h2><h3 id="proc/Broadcast_Message"><aside class="declaration">proc </aside>Broadcast_Message<aside>(/<a href="datum.html">datum</a>/radio_frequency/connection, /<a href="mob.html">mob</a>/M, vmask, vmessage, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/device/radio/radio, message, name, job, realname, vname, data, compression, /list/level, freq, verbage, /<a href="datum.html">datum</a>/language/speaking, text_size, use_text_to_speech) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/machinery/telecomms/broadcaster.dm#L218">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;telecomms&#x2F;broadcaster.dm 218"/></a></aside>
+        </h3>
+        <p>Here is the big, bad function that broadcasts a message given the appropriate
+parameters.</p>
+<p>@param connection:
+The datum generated in radio.dm, stored in signal.data[&quot;connection&quot;].</p>
+<p>@param M:
+Reference to the mob/speaker, stored in signal.data[&quot;mob&quot;]</p>
+<p>@param vmask:
+Boolean value if the mob is &quot;hiding&quot; its identity via voice mask, stored in
+signal.data[&quot;vmask&quot;]</p>
+<p>@param vmessage:
+If specified, will display this as the message; such as &quot;chimpering&quot;
+for monkies if the mob is not understood. Stored in signal.data[&quot;vmessage&quot;].</p>
+<p>@param radio:
+Reference to the radio broadcasting the message, stored in signal.data[&quot;radio&quot;]</p>
+<p>@param message:
+The actual string message to display to mobs who understood mob M. Stored in
+signal.data[&quot;message&quot;]</p>
+<p>@param name:
+The name to display when a mob receives the message. signal.data[&quot;name&quot;]</p>
+<p>@param job:
+The name job to display for the AI when it receives the message. signal.data[&quot;job&quot;]</p>
+<p>@param realname:
+The &quot;real&quot; name associated with the mob. signal.data[&quot;realname&quot;]</p>
+<p>@param vname:
+If specified, will use this name when mob M is not understood. signal.data[&quot;vname&quot;]</p>
+<p>@param data:
+If specified:
+1 -- Will only broadcast to intercoms
+2 -- Will only broadcast to intercoms and station-bounced radios
+3 -- Broadcast to syndicate frequency
+4 -- AI can't track down this person. Useful for imitation broadcasts where you can't find the actual mob</p>
+<p>@param compression:
+If 0, the signal is audible
+If nonzero, the signal may be partially inaudible or just complete gibberish.</p>
+<p>@param level:
+The list of Z levels that the sending radio is broadcasting to. Having 0 in the list broadcasts on all levels</p>
+<p>@param freq
+The frequency of the signal</p><h3 id="proc/CreateBans"><aside class="declaration">proc </aside>CreateBans<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/admin/NewBan.dm#L203">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;NewBan.dm 203"/></a></aside>
+        </h3>
+        <p>DEBUG</p><h3 id="proc/REF"><aside class="declaration">proc </aside>REF<aside>(input) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/unsorted.dm#L1290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;unsorted.dm 1290"/></a></aside>
+        </h3>
+        <p>\ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+If it ever becomes necesary to get a more performant REF(), this lies here in wait
+#define REF(thing) (thing &amp;&amp; isdatum(thing) &amp;&amp; (thing:datum_flags &amp; DF_USE_TAG) &amp;&amp; thing:tag ? &quot;[thing:tag]&quot; : &quot;\ref[thing]&quot;)</p><h3 id="proc/WEAKREF"><aside class="declaration">proc </aside>WEAKREF<aside>(/<a href="datum.html">datum</a>/input) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/weakref.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;weakref.dm 3"/></a></aside>
+        </h3>
+        <p>Creates a weakref to the given input.
+See /datum/weakref's documentation for more information.</p><h3 id="proc/______qdel_list_wrapper"><aside class="declaration">proc </aside>______qdel_list_wrapper<aside>(/list/L) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/qdel.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;qdel.dm 59"/></a></aside>
+        </h3>
+        <p>the underscores are to encourage people not to use this directly.</p><h3 id="proc/_addtimer"><aside class="declaration">proc </aside>_addtimer<aside>(/<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a>/callback, wait, flags, /<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/timer.html">timer</a>/timer_subsystem, file, line) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/timer.dm#L574">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;timer.dm 574"/></a></aside>
+        </h3>
+        <p>Create a new timer and insert it in the queue.
+You should not call this directly, and should instead use the addtimer macro, which includes source information.</p>
+<p>Arguments:</p>
+<ul>
+<li>callback the callback to call on timer finish</li>
+<li>wait deciseconds to run the timer for</li>
+<li>flags flags for this timer, see: code__DEFINES\subsystems.dm</li>
+<li>timer_subsystem the subsystem to insert this timer into</li>
+</ul><h3 id="proc/_queue_verb"><aside class="declaration">proc </aside>_queue_verb<aside>(/<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a>/<a href="datum/callback/verb_callback.html">verb_callback</a>/incoming_callback, tick_check, /<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/verb_manager.html">verb_manager</a>/subsystem_to_use, ...) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/verb_manager.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;verb_manager.dm 58"/></a></aside>
+        </h3>
+        <p>queue a callback for the given verb/verblike proc and any given arguments to the specified verb subsystem, so that they process in the next tick.
+intended to only work with verbs or verblike procs called directly from client input, use as part of TRY_QUEUE_VERB() and co.</p>
+<p>returns TRUE if the queuing was successful, FALSE otherwise.</p><h3 id="proc/add_verb"><aside class="declaration">proc </aside>add_verb<aside>(/<a href="client.html">client</a>/target, verb_or_list_to_add) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/verbs.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;verbs.dm 36"/></a></aside>
+        </h3>
+        <p>handles adding verbs and updating the stat panel browser</p>
+<p>pass the verb type path to this instead of adding it directly to verbs so the statpanel can update
+Arguments:</p>
+<ul>
+<li>target - Who the verb is being added to, client or mob typepath</li>
+<li>verb - typepath to a verb, or a list of verbs, supports lists of lists</li>
+</ul><h3 id="proc/bitfield_to_list"><aside class="declaration">proc </aside>bitfield_to_list<aside>(bitfield, /list/wordlist) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/_lists.dm#L990">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_lists.dm 990"/></a></aside>
+        </h3>
+        <p>Converts a bitfield to a list of numbers (or words if a wordlist is provided)</p><h3 id="proc/callHook"><aside class="declaration">proc </aside>callHook<aside>(hook, /list/args) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/hooks.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;hooks.dm 26"/></a></aside>
+        </h3>
+        <p>@file hooks.dm
+Implements hooks, a simple way to run code on pre-defined events.</p>
+<ul>
+<li>
+<p>@page hooks Code hooks</p>
+</li>
+<li>
+<p>@section hooks Hooks</p>
+</li>
+<li>
+<p>A hook is defined under /hook in the type tree.</p>
+</li>
+<li>
+<p>To add some code to be called by the hook, define a proc under the type, as so:</p>
+</li>
+<li>
+<p>@code
+hook/foo/proc/bar()
+if(1)
+return 1 //Sucessful
+else
+return 0 //Error, or runtime.</p>
+</li>
+<li>
+<p>@endcode</p>
+</li>
+<li>
+<p>All hooks must return nonzero on success, as runtimes will force return null.</p>
+</li>
+</ul>
+<p>Calls a hook, executing every piece of code that's attached to it.
+@param hook	Identifier of the hook to call.
+@returns		1 if all hooked code runs successfully, 0 otherwise.</p><h3 id="proc/callback_select"><aside class="declaration">proc </aside>callback_select<aside>(/list/callbacks, /list/callback_args, savereturns, resolution) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/callback.dm#L205">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;callback.dm 205"/></a></aside>
+        </h3>
+        <p>Runs a list of callbacks asyncronously, returning only when all have finished</p>
+<p>Callbacks can be repeated, to call it multiple times</p>
+<p>Arguments:</p>
+<ul>
+<li>list/callbacks the list of callbacks to be called</li>
+<li>list/callback_args the list of lists of arguments to pass into each callback</li>
+<li>savereturns Optionally save and return the list of returned values from each of the callbacks</li>
+<li>resolution The number of byond ticks between each time you check if all callbacks are complete</li>
+</ul><h3 id="proc/default_ui_state"><aside class="declaration">proc </aside>default_ui_state<aside>(/<a href="mob.html">mob</a>/user, /<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 2"/></a></aside>
+        </h3>
+        <p>The sane defaults for a UI such as a computer or a machine.</p><h3 id="proc/delete_all_SS_and_recreate_master"><aside class="declaration">proc </aside>delete_all_SS_and_recreate_master<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/failsafe.dm#L166">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;failsafe.dm 166"/></a></aside>
+        </h3>
+        <p>Delete all existing SS to basically start over</p><h3 id="proc/deltimer"><aside class="declaration">proc </aside>deltimer<aside>(id, /<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/timer.html">timer</a>/timer_subsystem) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/timer.dm#L628">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;timer.dm 628"/></a></aside>
+        </h3>
+        <p>Delete a timer</p>
+<p>Arguments:</p>
+<ul>
+<li>id a timerid or a /datum/timedevent</li>
+</ul><h3 id="proc/find_nearby_burrow"><aside class="declaration">proc </aside>find_nearby_burrow<aside>(/<a href="atom.html">atom</a>/target, dist) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/migration.dm#L424">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;migration.dm 424"/></a></aside>
+        </h3>
+        <p>Burrow Finding and Sorting</p><h3 id="proc/generate_asset_name"><aside class="declaration">proc </aside>generate_asset_name<aside>(file) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/icons.dm#L1066">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;icons.dm 1066"/></a></aside>
+        </h3>
+        <p>Generate a filename for this asset
+The same asset will always lead to the same asset name
+(Generated names do not include file extention.)</p><h3 id="proc/getFlatIcon"><aside class="declaration">proc </aside>getFlatIcon<aside>(/image/appearance, defdir, deficon, defstate, defblend, start, no_anim) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/icons.dm#L667">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;icons.dm 667"/></a></aside>
+        </h3>
+        <p>Create a single [/icon] from a given <a href="atom.html" title="/atom">/atom</a> or <a href="https://secure.byond.com/docs/ref/#/image" title="/image">/image</a>.</p>
+<p>Very low-performance. Should usually only be used for HTML, where BYOND's
+appearance system (overlays/underlays, etc.) is not available.</p>
+<p>Only the first argument is required.</p><h3 id="proc/getFlatTypeIcon"><aside class="declaration">proc </aside>getFlatTypeIcon<aside>(path, defdir, deficon, defstate, defblend, always_use_defdir) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/icons.dm#L651">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;icons.dm 651"/></a></aside>
+        </h3>
+        <p>always_use_defdir IS DEPRICATED</p><h3 id="proc/getOPressureDifferential"><aside class="declaration">proc </aside>getOPressureDifferential<aside>(/<a href="turf.html">turf</a>/loc) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/game.dm#L437">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;game.dm 437"/></a></aside>
+        </h3>
+        <p>Gets the highest and lowest pressures from the tiles in cardinal directions
+around us, then checks the difference.</p><h3 id="proc/get_default_outfit_backpack"><aside class="declaration">proc </aside>get_default_outfit_backpack<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/outfits/equipment/backpacks.dm#L245">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;outfits&#x2F;equipment&#x2F;backpacks.dm 245"/></a></aside>
+        </h3>
+        <p>Helpers</p><h3 id="proc/get_random_uplink_items"><aside class="declaration">proc </aside>get_random_uplink_items<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/device/uplink/U, remaining_TC, loc) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/uplink/uplink_items.dm#L148">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;uplink&#x2F;uplink_items.dm 148"/></a></aside>
+        </h3>
+        <p>Support procs</p><h3 id="proc/get_wound_type"><aside class="declaration">proc </aside>get_wound_type<aside>(type, damage) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/organs/wound.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;organs&#x2F;wound.dm 189"/></a></aside>
+        </h3>
+        <p>WOUND DEFINITIONS</p><h3 id="proc/icon2base64"><aside class="declaration">proc </aside>icon2base64<aside>(/icon/icon) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/icons.dm#L1078">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;icons.dm 1078"/></a></aside>
+        </h3>
+        <p>Converts an icon to base64. Operates by putting the icon in the iconCache savefile,
+exporting it as text, and then parsing the base64 from that.
+(This relies on byond automatically storing icons in savefiles as base64)</p><h3 id="proc/is_special_character"><aside class="declaration">proc </aside>is_special_character<aside>(/<a href="mob.html">mob</a>/M) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/admin/admin.dm#L750">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;admin.dm 750"/></a></aside>
+        </h3>
+        <p>ADMIN HELPER PROCS</p><h3 id="proc/log_mapping"><aside class="declaration">proc </aside>log_mapping<aside>(text, skip_world_log) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/_logging.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_logging.dm 173"/></a></aside>
+        </h3>
+        <p>Logging for mapping errors</p><h3 id="proc/log_tgui"><aside class="declaration">proc </aside>log_tgui<aside>(user, message, context, /<a href="datum.html">datum</a>/<a href="datum/tgui_window.html">tgui_window</a>/window, /<a href="datum.html">datum</a>/src_object) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/_logging.dm#L123">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;_logging.dm 123"/></a></aside>
+        </h3>
+        <p>Appends a tgui-related log entry. All arguments are optional.</p><h3 id="proc/makeDatumRefLists"><aside class="declaration">proc </aside>makeDatumRefLists<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/global_lists.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;global_lists.dm 171"/></a></aside>
+        </h3>
+        <p>Initial Building</p><h3 id="proc/md5asfile"><aside class="declaration">proc </aside>md5asfile<aside>(file) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/files.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;files.dm 68"/></a></aside>
+        </h3>
+        <p>Save file as an external file then md5 it.
+Used because md5ing files stored in the rsc sometimes gives incorrect md5 results.</p><h3 id="proc/md5filepath"><aside class="declaration">proc </aside>md5filepath<aside>(path) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/files.dm#L63">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;files.dm 63"/></a></aside>
+        </h3>
+        <p>Returns the md5 of a file at a given path.</p><h3 id="proc/message_adminTicket"><aside class="declaration">proc </aside>message_adminTicket<aside>(msg, important) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/admin/admin.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;admin.dm 33"/></a></aside>
+        </h3>
+        <ul>
+<li>Sends a message to the staff able to see admin tickets</li>
+<li>Arguments:</li>
+<li>msg - The message being send</li>
+<li>important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+send a sound and flash the window. Defaults to FALSE</li>
+</ul><h3 id="proc/message_mentorTicket"><aside class="declaration">proc </aside>message_mentorTicket<aside>(msg, important) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/admin/admin.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;admin&#x2F;admin.dm 47"/></a></aside>
+        </h3>
+        <ul>
+<li>Sends a message to the staff able to see mentor tickets</li>
+<li>Arguments:</li>
+<li>msg - The message being send</li>
+<li>important - If the message is important. If TRUE it will ignore the PREF_HEAR preferences,
+send a sound and flash the window. Defaults to FALSE</li>
+</ul><h3 id="proc/number_of_issues"><aside class="declaration">proc </aside>number_of_issues<aside>(/list/entries, type) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/unit_tests/uniqueness.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;uniqueness.dm 26"/></a></aside>
+        </h3>
+        <p>USED BY UNIT TEST: uniqueness.dm</p><h3 id="proc/qdel"><aside class="declaration">proc </aside>qdel<aside>(/<a href="datum.html">datum</a>/D, force, ...) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/garbage.dm#L322">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;garbage.dm 322"/></a></aside>
+        </h3>
+        <p>Should be treated as a replacement for the 'del' keyword.</p>
+<p>Datums passed to this will be given a chance to clean up references to allow the GC to collect them.</p><h3 id="proc/recover_all_SS_and_recreate_master"><aside class="declaration">proc </aside>recover_all_SS_and_recreate_master<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/failsafe.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;failsafe.dm 151"/></a></aside>
+        </h3>
+        <p>Recreate all SSs which will still cause data survive due to Recover(), the new Master will then find and take them from global.vars</p><h3 id="proc/remove_verb"><aside class="declaration">proc </aside>remove_verb<aside>(/<a href="client.html">client</a>/target, verb_or_list_to_remove) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/verbs.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;verbs.dm 84"/></a></aside>
+        </h3>
+        <p>handles removing verb and sending it to browser to update, use this for removing verbs</p>
+<p>pass the verb type path to this instead of removing it from verbs so the statpanel can update
+Arguments:</p>
+<ul>
+<li>target - Who the verb is being removed from, client or mob typepath</li>
+<li>verb - typepath to a verb, or a list of verbs, supports lists of lists</li>
+</ul><h3 id="proc/rustg_get_version"><aside class="declaration">proc </aside>rustg_get_version<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/rust_g.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;rust_g.dm 42"/></a></aside>
+        </h3>
+        <p>Gets the version of rust_g</p><h3 id="proc/storyteller_button"><aside class="declaration">proc </aside>storyteller_button<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/gamemodes/storyteller.dm#L201">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;gamemodes&#x2F;storyteller.dm 201"/></a></aside>
+        </h3>
+        <p>datum/storyteller/proc/trigger_event()</p><h3 id="proc/strip_improper"><aside class="declaration">proc </aside>strip_improper<aside>(text) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/text.dm#L419">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;text.dm 419"/></a></aside>
+        </h3>
+        <p>Strip out the special beyond characters for \proper and \improper
+from text that will be sent to the browser.</p><h3 id="proc/tgui_Topic"><aside class="declaration">proc </aside>tgui_Topic<aside>(href_list) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/external.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 185"/></a></aside>
+        </h3>
+        <p>Middleware for /client/Topic.</p>
+<p>return bool If TRUE, prevents propagation of the topic call.</p><h3 id="proc/timeleft"><aside class="declaration">proc </aside>timeleft<aside>(id, /<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/timer.html">timer</a>/timer_subsystem) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/timer.dm#L650">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;timer.dm 650"/></a></aside>
+        </h3>
+        <p>Get the remaining deciseconds on a timer</p>
+<p>Arguments:</p>
+<ul>
+<li>id a timerid or a /datum/timedevent</li>
+</ul><h3 id="proc/ui_status_only_living"><aside class="declaration">proc </aside>ui_status_only_living<aside>(/<a href="mob.html">mob</a>/user, source) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 26"/></a></aside>
+        </h3>
+        <p>Returns a UI status such that the dead will be able to watch, but not interact.</p><h3 id="proc/ui_status_silicon_has_access"><aside class="declaration">proc </aside>ui_status_silicon_has_access<aside>(/<a href="mob.html">mob</a>/user, /<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 65"/></a></aside>
+        </h3>
+        <p>Returns a UI status such that silicons will be able to interact with whatever
+they would have access to if this was a machine. For example, AIs can
+interact if there's cameras with wireless control is enabled.</p><h3 id="proc/ui_status_user_has_free_hands"><aside class="declaration">proc </aside>ui_status_user_has_free_hands<aside>(/<a href="mob.html">mob</a>/user, /<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 53"/></a></aside>
+        </h3>
+        <p>Returns a UI status such that those without blocked hands will be able to interact,
+but everyone else can only watch.</p><h3 id="proc/ui_status_user_is_abled"><aside class="declaration">proc </aside>ui_status_user_is_abled<aside>(/<a href="mob.html">mob</a>/user, /<a href="atom.html">atom</a>/source) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 48"/></a></aside>
+        </h3>
+        <p>Returns a UI status such that users with debilitating conditions, such as
+being dead or not having power for silicons, will not be able to interact.
+Being dead will disable UI, being incapacitated will continue updating it,
+and anything else will make it interactive.</p><h3 id="proc/ui_status_user_is_adjacent"><aside class="declaration">proc </aside>ui_status_user_is_adjacent<aside>(/<a href="mob.html">mob</a>/user, /<a href="atom.html">atom</a>/source, allow_tk) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L18">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 18"/></a></aside>
+        </h3>
+        <p>Returns a UI status such that users adjacent to source will be able to interact,
+far away users will be able to see, and anyone farther won't see anything.
+Dead users will receive updates no matter what, though you likely want to add
+a [<code>ui_status_only_living</code>] check for finer observer interactions.</p><h3 id="proc/ui_status_user_is_advanced_tool_user"><aside class="declaration">proc </aside>ui_status_user_is_advanced_tool_user<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 59"/></a></aside>
+        </h3>
+        <p>Returns a UI status such that advanced tool users will be able to interact,
+but everyone else can only watch.</p><h3 id="proc/ui_status_user_is_conscious_and_lying_down"><aside class="declaration">proc </aside>ui_status_user_is_conscious_and_lying_down<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 98"/></a></aside>
+        </h3>
+        <p>Returns UI_INTERACTIVE if the user is conscious and lying down.
+Returns UI_UPDATE otherwise.</p><h3 id="proc/ui_status_user_strictly_adjacent"><aside class="declaration">proc </aside>ui_status_user_strictly_adjacent<aside>(/<a href="mob.html">mob</a>/user, /<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/status_composers.dm#L109">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;status_composers.dm 109"/></a></aside>
+        </h3>
+        <p>Return UI_INTERACTIVE if the user is strictly adjacent to the target atom, whether they can see it or not.
+Return UI_CLOSE otherwise.</p><h3 id="proc/url2htmlloader"><aside class="declaration">proc </aside>url2htmlloader<aside>(url) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/type2type.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;type2type.dm 288"/></a></aside>
+        </h3>
+        <p>Return html to load a url.
+for use inside of browse() calls to html assets that might be loaded on a cdn.</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

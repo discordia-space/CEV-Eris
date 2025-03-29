@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;item&#x2F;mech_equipment&#x2F;shield_generator - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/item/mech_equipment/shield_generator.html#var">Var Details</a> - <a href="obj/item/mech_equipment/shield_generator.html#proc">Proc Details</a></header>
+<main>
+<h1>shield_generator <aside>/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/mech_equipment/shield_generator.html">mech_equipment/shield_generator</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1005">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1005"/></a></h1>
+
+<p>Yes this also drains power from blocking halloss
+Yes i justify it cause it stops by kinetic power and not by lethality / material hardness</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#var/absorption_ratio">absorption_ratio</a></th><td>What portion of damage is absorbed by the shield; should be a number from 1 to 0, where 1 is 100% absorption and 0 is 0% absorption</td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#var/current_capacitor_charge">current_capacitor_charge</a></th><td>Internal charge of the shield</td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#var/last_toggle">last_toggle</a></th><td>last time we toggled ,. stores world.time</td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#var/max_capacitor_charge">max_capacitor_charge</a></th><td>The max amount of charge the capacitor can hold</td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#var/on">on</a></th><td>Are we toggled on ?</td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#var/power_cost">power_cost</a></th><td>How much power the shield uses every time Process() is called; using active_power_use would result in some double dipping</td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#var/visual_bluff">visual_bluff</a></th><td>A object used to show the shield effects</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#proc/power_failure">power_failure</a></th><td>Proc that plays an alarm and then toggle the shield</td></tr>
+            <tr><th><a href="obj/item/mech_equipment/shield_generator.html#proc/toggle_shield">toggle_shield</a></th><td>Toggle the shield between on and off</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/absorption_ratio"><aside class="declaration">var </aside>absorption_ratio
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1021">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1021"/></a></h3>
+        <p>What portion of damage is absorbed by the shield; should be a number from 1 to 0, where 1 is 100% absorption and 0 is 0% absorption</p><h3 id="var/current_capacitor_charge"><aside class="declaration">var </aside>current_capacitor_charge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1019">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1019"/></a></h3>
+        <p>Internal charge of the shield</p><h3 id="var/last_toggle"><aside class="declaration">var </aside>last_toggle
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1025">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1025"/></a></h3>
+        <p>last time we toggled ,. stores world.time</p><h3 id="var/max_capacitor_charge"><aside class="declaration">var </aside>max_capacitor_charge
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1017">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1017"/></a></h3>
+        <p>The max amount of charge the capacitor can hold</p><h3 id="var/on"><aside class="declaration">var </aside>on
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1023">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1023"/></a></h3>
+        <p>Are we toggled on ?</p><h3 id="var/power_cost"><aside class="declaration">var </aside>power_cost
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1015">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1015"/></a></h3>
+        <p>How much power the shield uses every time Process() is called; using active_power_use would result in some double dipping</p><h3 id="var/visual_bluff"><aside class="declaration">var </aside>visual_bluff
+            <aside>&ndash; /<a href="obj.html">obj</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1027">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1027"/></a></h3>
+        <p>A object used to show the shield effects</p><h2 id="proc">Proc Details</h2><h3 id="proc/power_failure"><aside class="declaration">proc </aside>power_failure<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1074">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1074"/></a></aside>
+        </h3>
+        <p>Proc that plays an alarm and then toggle the shield</p><h3 id="proc/toggle_shield"><aside class="declaration">proc </aside>toggle_shield<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mechs/equipment/combat.dm#L1066">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mechs&#x2F;equipment&#x2F;combat.dm 1066"/></a></aside>
+        </h3>
+        <p>Toggle the shield between on and off</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

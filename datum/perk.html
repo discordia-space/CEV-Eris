@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;perk - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/perk.html#proc">Proc Details</a></header>
+<main>
+<h1>perk <aside>/<a href="datum.html">datum</a>/<a href="datum/perk.html">perk</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/perks/perk.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perks&#x2F;perk.dm 10"/></a></h1>
+
+<p>The root perk datum. All perks inherit properties from this one.</p>
+<p>A perk is basically a talent that livings may have. This talent could be something like damage reduction, or some other passive benefit.
+Some jobs have perks that are assigned to the human during role assignment.
+Perks can be assigned or removed. To handle this, use the mob stats datum, with the helper procs addPerk, removePerk and getPerk.
+The static effects are given in assign, and removed in remove.
+Perks are stored in a list within a stat_holder datum.</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/perk.html#proc/assign">assign</a></th><td>Proc called when the perk is assigned to a human. Should be the first thing to be called.</td></tr>
+            <tr><th><a href="datum/perk.html#proc/check_shared_ability">check_shared_ability</a></th><td>Proc called , a bitflag is always expected.</td></tr>
+            <tr><th><a href="datum/perk.html#proc/on_process">on_process</a></th><td>Proc called in human life. Should be the first thing to be called.</td></tr>
+            <tr><th><a href="datum/perk.html#proc/remove">remove</a></th><td>Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/assign"><aside class="declaration">proc </aside>assign<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/<a href="mob/living/carbon/human.html">human</a>/H) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/perks/perk.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perks&#x2F;perk.dm 38"/></a></aside>
+        </h3>
+        <p>Proc called when the perk is assigned to a human. Should be the first thing to be called.</p><h3 id="proc/check_shared_ability"><aside class="declaration">proc </aside>check_shared_ability<aside>(ability_bitflag) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/perks/perk.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perks&#x2F;perk.dm 53"/></a></aside>
+        </h3>
+        <p>Proc called , a bitflag is always expected.</p><h3 id="proc/on_process"><aside class="declaration">proc </aside>on_process<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/perks/perk.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perks&#x2F;perk.dm 28"/></a></aside>
+        </h3>
+        <p>Proc called in human life. Should be the first thing to be called.</p><h3 id="proc/remove"><aside class="declaration">proc </aside>remove<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/perks/perk.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;perks&#x2F;perk.dm 47"/></a></aside>
+        </h3>
+        <p>Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

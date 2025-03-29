@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;mob - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="mob.html#var">Var Details</a> - <a href="mob.html#proc">Proc Details</a></header>
+<main>
+<h1>mob <aside>/<a href="mob.html">mob</a></aside><aside> inherits /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/_onclick/hud/parallax.dm#L68">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;parallax.dm 68"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="mob.html#var/registered_z">registered_z</a></th><td>The z level this mob is currently registered in</td></tr>
+            <tr><th><a href="mob.html#var/tgui_open_uis">tgui_open_uis</a></th><td>global</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="mob.html#proc/CanAvoidGravity">CanAvoidGravity</a></th><td>Used to determine whether or not a given mob can override gravity when
+attempting to Z-move UP.</td></tr>
+            <tr><th><a href="mob.html#proc/GenerateTag">GenerateTag</a></th><td>Generate the tag for this mob</td></tr>
+            <tr><th><a href="mob.html#proc/_pointed">_pointed</a></th><td>possibly delayed verb that finishes the pointing process starting in [/mob/verb/pointed()].
+either called immediately or in the tick after pointed() was called, as per the [DEFAULT_QUEUE_OR_CALL_VERB()] macro</td></tr>
+            <tr><th><a href="mob.html#proc/can_ztravel">can_ztravel</a></th><td>An initial check for Z-level travel. Called relatively early in mob/proc/zMove.</td></tr>
+            <tr><th><a href="mob.html#proc/chunkOnMove">chunkOnMove</a></th><td>Mob tracking and handling</td></tr>
+            <tr><th><a href="mob.html#proc/down">down</a></th><td>Verb for the mob to move down a z-level if possible.</td></tr>
+            <tr><th><a href="mob.html#proc/examinate">examinate</a></th><td>Examine a mob</td></tr>
+            <tr><th><a href="mob.html#proc/execute_mode">execute_mode</a></th><td>proc version to finish /mob/verb/mode() execution. used in case the proc needs to be queued for the tick after its first called</td></tr>
+            <tr><th><a href="mob.html#proc/get_status_tab_items">get_status_tab_items</a></th><td>Adds this list to the output to the stat browser</td></tr>
+            <tr><th><a href="mob.html#proc/mode">mode</a></th><td>Verb to activate the object in your held hand</td></tr>
+            <tr><th><a href="mob.html#proc/pointed">pointed</a></th><td>Point at an atom</td></tr>
+            <tr><th><a href="mob.html#proc/set_see_in_dark">set_see_in_dark</a></th><td>See In Dark Set Handling</td></tr>
+            <tr><th><a href="mob.html#proc/set_see_invisible">set_see_invisible</a></th><td>See Invisible Set Handling</td></tr>
+            <tr><th><a href="mob.html#proc/set_sight">set_sight</a></th><td>Sight Set Handling</td></tr>
+            <tr><th><a href="mob.html#proc/shared_ui_interaction">shared_ui_interaction</a></th><td>public</td></tr>
+            <tr><th><a href="mob.html#proc/up">up</a></th><td>Verb for the mob to move up a z-level if possible.</td></tr>
+            <tr><th><a href="mob.html#proc/zMove">zMove</a></th><td>Used to check if a mob can move up or down a Z-level and to then actually do the move.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/registered_z"><aside class="declaration">var </aside>registered_z
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob_defines.dm#L209">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob_defines.dm 209"/></a></h3>
+        <p>The z level this mob is currently registered in</p><h3 id="var/tgui_open_uis"><aside class="declaration">var </aside>tgui_open_uis
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/external.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;external.dm 137"/></a></h3>
+        <p>global</p>
+<p>Tracks open UIs for a user.</p><h2 id="proc">Proc Details</h2><h3 id="proc/CanAvoidGravity"><aside class="declaration">proc </aside>CanAvoidGravity<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/multiz/movement.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;movement.dm 189"/></a></aside>
+        </h3>
+        <p>Used to determine whether or not a given mob can override gravity when
+attempting to Z-move UP.</p>
+<p>Returns FALSE in standard mob cases. Exists for carbon/human and other child overrides.</p>
+<p>@return	TRUE if the mob can Z-move up despite gravity.
+FALSE otherwise.</p><h3 id="proc/GenerateTag"><aside class="parent"><a title="/atom" href="atom.html#proc/GenerateTag">&uarr;</a></aside>GenerateTag<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 52"/></a></aside>
+        </h3>
+        <p>Generate the tag for this mob</p>
+<p>This is simply &quot;mob_&quot;+ a global incrementing counter that goes up for every mob</p><h3 id="proc/_pointed"><aside class="declaration">proc </aside>_pointed<aside>(/<a href="atom.html">atom</a>/pointing_at) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob.dm#L295">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 295"/></a></aside>
+        </h3>
+        <p>possibly delayed verb that finishes the pointing process starting in [/mob/verb/pointed()].
+either called immediately or in the tick after pointed() was called, as per the [DEFAULT_QUEUE_OR_CALL_VERB()] macro</p><h3 id="proc/can_ztravel"><aside class="declaration">proc </aside>can_ztravel<aside>(direction) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/multiz/movement.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;movement.dm 151"/></a></aside>
+        </h3>
+        <p>An initial check for Z-level travel. Called relatively early in mob/proc/zMove.</p>
+<p>Useful for overwriting and special conditions for STOPPING z-level transit.</p>
+<p>@return	TRUE if the mob can move a Z-level of its own volition.
+FALSE otherwise.</p><h3 id="proc/chunkOnMove"><aside class="declaration">proc </aside>chunkOnMove<aside>(/<a href="atom.html">atom</a>/source, /<a href="atom.html">atom</a>/oldLocation, /<a href="atom.html">atom</a>/newLocation) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/chunks.dm#L120">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;chunks.dm 120"/></a></aside>
+        </h3>
+        <p>Mob tracking and handling</p><h3 id="proc/down"><aside class="declaration">verb </aside>down<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/multiz/movement.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;movement.dm 24"/></a></aside>
+        </h3>
+        <p>Verb for the mob to move down a z-level if possible.</p><h3 id="proc/examinate"><aside class="declaration">verb </aside>examinate<aside>(/<a href="atom.html">atom</a>/examinify) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob.dm#L254">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 254"/></a></aside>
+        </h3>
+        <p>Examine a mob</p>
+<p>mob verbs are faster than object verbs. See
+<a href="https://secure.byond.com/forum/?post=1326139&amp;page=2#comment8198716">this byond forum post</a>
+for why this isn't atom/verb/examine()</p><h3 id="proc/execute_mode"><aside class="declaration">proc </aside>execute_mode<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob.dm#L363">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 363"/></a></aside>
+        </h3>
+        <p>proc version to finish /mob/verb/mode() execution. used in case the proc needs to be queued for the tick after its first called</p><h3 id="proc/get_status_tab_items"><aside class="declaration">proc </aside>get_status_tab_items<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob.dm#L706">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 706"/></a></aside>
+        </h3>
+        <p>Adds this list to the output to the stat browser</p><h3 id="proc/mode"><aside class="declaration">verb </aside>mode<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob.dm#L355">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 355"/></a></aside>
+        </h3>
+        <p>Verb to activate the object in your held hand</p>
+<p>Calls attack self on the item and updates the inventory hud for hands</p><h3 id="proc/pointed"><aside class="declaration">verb </aside>pointed<aside>(/<a href="atom.html">atom</a>/A) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/mob/mob.dm#L284">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;mob.dm 284"/></a></aside>
+        </h3>
+        <p>Point at an atom</p>
+<p>mob verbs are faster than object verbs. See
+<a href="https://secure.byond.com/forum/?post=1326139&amp;page=2#comment8198716">this byond forum post</a>
+for why this isn't atom/verb/pointed()</p>
+<p>note: ghosts can point, this is intended</p>
+<p>visible_message will handle invisibility properly</p>
+<p>overridden here and in /mob/dead/observer for different point span classes and sanity checks</p><h3 id="proc/set_see_in_dark"><aside class="declaration">proc </aside>set_see_in_dark<aside>(new_see_in_dark) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/see_in_dark_set.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;see_in_dark_set.dm 21"/></a></aside>
+        </h3>
+        <p>See In Dark Set Handling</p><h3 id="proc/set_see_invisible"><aside class="declaration">proc </aside>set_see_invisible<aside>(new_see_invisible) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/see_invisible_set.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;see_invisible_set.dm 21"/></a></aside>
+        </h3>
+        <p>See Invisible Set Handling</p><h3 id="proc/set_sight"><aside class="declaration">proc </aside>set_sight<aside>(new_sight) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/sight_set.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;sight_set.dm 21"/></a></aside>
+        </h3>
+        <p>Sight Set Handling</p><h3 id="proc/shared_ui_interaction"><aside class="declaration">proc </aside>shared_ui_interaction<aside>(src_object) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/states.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states.dm 62"/></a></aside>
+        </h3>
+        <p>public</p>
+<p>Standard interaction/sanity checks. Different mob types may have overrides.</p>
+<p>return UI_state The state of the UI.</p><h3 id="proc/up"><aside class="declaration">verb </aside>up<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/multiz/movement.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;movement.dm 14"/></a></aside>
+        </h3>
+        <p>Verb for the mob to move up a z-level if possible.</p><h3 id="proc/zMove"><aside class="declaration">proc </aside>zMove<aside>(direction, method) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/multiz/movement.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;multiz&#x2F;movement.dm 39"/></a></aside>
+        </h3>
+        <p>Used to check if a mob can move up or down a Z-level and to then actually do the move.</p>
+<p>@param	direction The direction in which we're moving. Expects defines UP or DOWN.</p>
+<p>@return	TRUE if the mob has been successfully moved a Z-level.
+FALSE otherwise.</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

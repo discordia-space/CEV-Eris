@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;global_vars - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/global_vars.html#var">Var Details</a></header>
+<main>
+<h1>global_vars <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/global_vars.html">controller/global_vars</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/globals.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;globals.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/always_state">always_state</a></th><td>tgui state: always_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/current_test">current_test</a></th><td>IMPORTANT !!! IF YOU ARE CHANGING CC CHANGE THIS TOO</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/density_set_event">density_set_event</a></th><td>Death Handling</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/goonchatbasehtml">goonchatbasehtml</a></th><td>For the main html chat area</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/hands_state">hands_state</a></th><td>tgui state: hands_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/logged_in_event">logged_in_event</a></th><td>Life Handling</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/notcontained_state">notcontained_state</a></th><td>tgui state: notcontained_state</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/sight_set_event">sight_set_event</a></th><td>Shuttle Moved Handling</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/turf_changed_event">turf_changed_event</a></th><td>Stat Handling</td></tr>
+            <tr><th><a href="datum/controller/global_vars.html#var/unit_test_mapping_logs">unit_test_mapping_logs</a></th><td>When unit testing, all logs sent to log_mapping are stored here and retrieved in log_mapping unit test.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/always_state"><aside class="declaration">var </aside>always_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/always_state</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/states/always.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;always.dm 12"/></a></h3>
+        <p>tgui state: always_state</p>
+<p>Always grants the user UI_INTERACTIVE. Period.</p><h3 id="var/current_test"><aside class="declaration">var </aside>current_test
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/unit_test.html">unit_test</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/unit_tests/unit_test.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;unit_test.dm 16"/></a></h3>
+        <p>IMPORTANT !!! IF YOU ARE CHANGING CC CHANGE THIS TOO</p><h3 id="var/density_set_event"><aside class="declaration">var </aside>density_set_event
+            <aside>&ndash; /static/decl/observ/density_set</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/density_set.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;density_set.dm 11"/></a></h3>
+        <p>Death Handling</p><h3 id="var/goonchatbasehtml"><aside class="declaration">var </aside>goonchatbasehtml
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/goonchat/browserOutput.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;goonchat&#x2F;browserOutput.dm 4"/></a></h3>
+        <p>For the main html chat area</p><h3 id="var/hands_state"><aside class="declaration">var </aside>hands_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/hands_state</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/states/hands.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;hands.dm 12"/></a></h3>
+        <p>tgui state: hands_state</p>
+<p>Checks that the src_object is in the user's hands.</p><h3 id="var/logged_in_event"><aside class="declaration">var </aside>logged_in_event
+            <aside>&ndash; /static/decl/observ/logged_in</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/logged_in.dm#L9">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;logged_in.dm 9"/></a></h3>
+        <p>Life Handling</p><h3 id="var/notcontained_state"><aside class="declaration">var </aside>notcontained_state
+            <aside>&ndash; /static/<a href="datum.html">datum</a>/<a href="datum/ui_state.html">ui_state</a>/notcontained_state</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/tgui/states/notcontained.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;tgui&#x2F;states&#x2F;notcontained.dm 13"/></a></h3>
+        <p>tgui state: notcontained_state</p>
+<p>Checks that the user is not inside src_object, and then makes the
+default checks.</p><h3 id="var/sight_set_event"><aside class="declaration">var </aside>sight_set_event
+            <aside>&ndash; /static/decl/observ/sight_set</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/sight_set.dm#L11">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;sight_set.dm 11"/></a></h3>
+        <p>Shuttle Moved Handling</p><h3 id="var/turf_changed_event"><aside class="declaration">var </aside>turf_changed_event
+            <aside>&ndash; /static/decl/observ/turf_changed</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/observation/turf_changed.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;observation&#x2F;turf_changed.dm 13"/></a></h3>
+        <p>Stat Handling</p><h3 id="var/unit_test_mapping_logs"><aside class="declaration">var </aside>unit_test_mapping_logs
+            <aside>&ndash; /static/list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/unit_tests/unit_test.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;unit_tests&#x2F;unit_test.dm 20"/></a></h3>
+        <p>When unit testing, all logs sent to log_mapping are stored here and retrieved in log_mapping unit test.</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

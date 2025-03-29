@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;cryopod - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/cryopod.html#proc">Proc Details</a></header>
+<main>
+<h1>cryopod <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/cryopod.html">cryopod</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/machinery/cryopod.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cryopod.dm 149"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/cryopod.html#proc/affect_grab">affect_grab</a></th><td>Local pod code</td></tr>
+            <tr><th><a href="obj/machinery/cryopod.html#proc/go_out">go_out</a></th><td>Why isn't it just eject ? because it somehow breaks SSchunks. ForceMoving out of these does not get registered properly
+The mob does NOT have a LOC when it gets done by eject() , but this way it does for its forceMove() when we call go_out() from here
+I dont know why it is this way , blame Byond ? - SPCR 2023
+I figured it out... its because it used to remove the mob to eject from its contents before actually ejecting them , causing their loc to be null..</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/affect_grab">affect_grab<aside>(/<a href="mob.html">mob</a>/user, /<a href="mob.html">mob</a>/target) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/machinery/cryopod.dm#L377">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cryopod.dm 377"/></a></aside>
+        </h3>
+        <p>Local pod code</p><h3 id="proc/go_out"><aside class="declaration">proc </aside>go_out<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/machinery/cryopod.dm#L512">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;machinery&#x2F;cryopod.dm 512"/></a></aside>
+        </h3>
+        <p>Why isn't it just eject ? because it somehow breaks SSchunks. ForceMoving out of these does not get registered properly
+The mob does NOT have a LOC when it gets done by eject() , but this way it does for its forceMove() when we call go_out() from here
+I dont know why it is this way , blame Byond ? - SPCR 2023
+I figured it out... its because it used to remove the mob to eject from its contents before actually ejecting them , causing their loc to be null..</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

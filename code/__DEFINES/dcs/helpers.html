@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/dcs/helpers.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/dcs/helpers.dm 
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/dcs/helpers.html#define/SEND_SIGNAL">SEND_SIGNAL</a></th><td>Used to trigger signals and call procs registered for that signal
+The datum hosting the signal is automaticaly added as the first argument
+Returns a bitfield gathered from all registered procs
+Arguments given here are packaged in a list and given to _SendSignal</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/helpers.html#define/SEND_SIGNAL_OLD">SEND_SIGNAL_OLD</a></th><td>Old method of sending signals, anything using this should be updated to work with SEND_SIGNAL()</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/helpers.html#define/SIGNAL_HANDLER">SIGNAL_HANDLER</a></th><td>Signifies that this proc is used to handle signals.
+Every proc you pass to RegisterSignal must have this.</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/helpers.html#define/AddElement">AddElement</a></th><td>A wrapper for _AddElement that allows us to pretend we're using normal named arguments</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/helpers.html#define/RemoveElement">RemoveElement</a></th><td>A wrapper for _RemoveElement that allows us to pretend we're using normal named arguments</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/helpers.html#define/AddComponent">AddComponent</a></th><td>A wrapper for _AddComponent that allows us to pretend we're using normal named arguments</td></tr>
+        <tr><th><a href="code/__DEFINES/dcs/helpers.html#define/LoadComponent">LoadComponent</a></th><td>A wrapper for _LoadComponent that allows us to pretend we're using normal named arguments</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/AddComponent"><aside class="declaration">#define </aside>AddComponent
+            <aside>(arguments ...)</aside>
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm 25"/></a>
+    </h3>
+    <p>A wrapper for _AddComponent that allows us to pretend we're using normal named arguments</p><h3 id="define/AddElement"><aside class="declaration">#define </aside>AddElement
+            <aside>(arguments ...)</aside>
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm 20"/></a>
+    </h3>
+    <p>A wrapper for _AddElement that allows us to pretend we're using normal named arguments</p><h3 id="define/LoadComponent"><aside class="declaration">#define </aside>LoadComponent
+            <aside>(arguments ...)</aside>
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm 28"/></a>
+    </h3>
+    <p>A wrapper for _LoadComponent that allows us to pretend we're using normal named arguments</p><h3 id="define/RemoveElement"><aside class="declaration">#define </aside>RemoveElement
+            <aside>(arguments ...)</aside>
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm 22"/></a>
+    </h3>
+    <p>A wrapper for _RemoveElement that allows us to pretend we're using normal named arguments</p><h3 id="define/SEND_SIGNAL"><aside class="declaration">#define </aside>SEND_SIGNAL
+            <aside>(target, sigtype, arguments ...)</aside>
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm#L5">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm 5"/></a>
+    </h3>
+    <p>Used to trigger signals and call procs registered for that signal
+The datum hosting the signal is automaticaly added as the first argument
+Returns a bitfield gathered from all registered procs
+Arguments given here are packaged in a list and given to _SendSignal</p><h3 id="define/SEND_SIGNAL_OLD"><aside class="declaration">#define </aside>SEND_SIGNAL_OLD
+            <aside>(target, sigtype, arguments ...)</aside>
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm 7"/></a>
+    </h3>
+    <p>Old method of sending signals, anything using this should be updated to work with SEND_SIGNAL()</p><h3 id="define/SIGNAL_HANDLER"><aside class="declaration">#define </aside>SIGNAL_HANDLER
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__DEFINES/dcs/helpers.dm#L13">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;dcs&#x2F;helpers.dm 13"/></a>
+    </h3>
+    <p>Signifies that this proc is used to handle signals.
+Every proc you pass to RegisterSignal must have this.</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

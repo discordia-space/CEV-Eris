@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;dmm_suite - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="dmm_suite.html#proc">Proc Details</a></header>
+<main>
+<h1>dmm_suite <aside>/<a href="dmm_suite.html">dmm_suite</a></aside><aside> inherits /<a href="datum.html">datum</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/maps/dmm_suite.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;maps&#x2F;dmm_suite.dm 3"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="dmm_suite.html#proc/load_map">load_map</a></th><td>Construct the model map and control the loading process</td></tr>
+            <tr><th><a href="dmm_suite.html#proc/parse_grid">parse_grid</a></th><td>Fill a given tile with its area/turf/objects/mobs
+Variable model is one full map line (e.g /turf/wall/dummy{icon_state = &quot;rock&quot;}, /area/mine/explored)</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/load_map"><aside class="declaration">verb </aside>load_map<aside>(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/maps/tg/reader.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;maps&#x2F;tg&#x2F;reader.dm 38"/></a></aside>
+        </h3>
+        <p>Construct the model map and control the loading process</p>
+<p>WORKING :</p>
+<ol>
+<li>Makes an associative mapping of model_keys with model
+e.g aa = /turf/wall/dummy{icon_state = &quot;rock&quot;}</li>
+<li>Read the map line by line, parsing the result (using parse_grid)</li>
+</ol><h3 id="proc/parse_grid"><aside class="declaration">proc </aside>parse_grid<aside>(model, model_key, xcrd, ycrd, zcrd, no_changeturf, orientation) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/maps/tg/reader.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;maps&#x2F;tg&#x2F;reader.dm 266"/></a></aside>
+        </h3>
+        <p>Fill a given tile with its area/turf/objects/mobs
+Variable model is one full map line (e.g /turf/wall/dummy{icon_state = &quot;rock&quot;}, /area/mine/explored)</p>
+<p>WORKING :</p>
+<ol>
+<li>
+<p>Read the model string, member by member (delimiter is ',')</p>
+</li>
+<li>
+<p>Get the path of the atom and store it into a list</p>
+</li>
+<li>
+<p>a) Check if the member has variables (text within '{' and '}')</p>
+</li>
+<li>
+<p>b) Construct an associative list with found variables, if any (the atom index in members is the same as its variables in members_attributes)</p>
+</li>
+<li>
+<p>Instanciates the atom with its variables</p>
+</li>
+</ol></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

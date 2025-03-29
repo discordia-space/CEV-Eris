@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;world - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="world.html#proc">Proc Details</a></header>
+<main>
+<h1>World <aside>/<a href="world.html">world</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/hub.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;hub.dm 2"/></a></h1>
+
+<p>Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying. ~ Arthur C. Clarke</p>
+<p>The byond world object stores some basic byond level config, and has a few hub specific procs for managing hub visiblity</p>
+<p>The world /New() is the root of where a round itself begins</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="world.html#proc/ImmediateInvokeAsync">ImmediateInvokeAsync</a></th><td>Immediately Invoke proctocall on thingtocall, with waitfor set to false</td></tr>
+            <tr><th><a href="world.html#proc/New">New</a></th><td>World creation</td></tr>
+            <tr><th><a href="world.html#proc/push_usr">push_usr</a></th><td>Makes a call in the context of a different usr. Use sparingly</td></tr></table><h2 id="proc">Proc Details</h2><h3 id="proc/ImmediateInvokeAsync"><aside class="declaration">proc </aside>ImmediateInvokeAsync<aside>(thingtocall, proctocall, ...) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/datums/callback.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;callback.dm 86"/></a></aside>
+        </h3>
+        <p>Immediately Invoke proctocall on thingtocall, with waitfor set to false</p>
+<p>Arguments:</p>
+<ul>
+<li>thingtocall Object to call on</li>
+<li>proctocall Proc to call on that object</li>
+<li>... optional list of arguments to pass as arguments to the proc being called</li>
+</ul><h3 id="proc/New"><aside class="declaration">proc </aside>New<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/game/world.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;world.dm 82"/></a></aside>
+        </h3>
+        <p>World creation</p>
+<p>Here is where a round itself is actually begun and setup.</p>
+<ul>
+<li>db connection setup</li>
+<li>config loaded from files</li>
+<li>loads admins</li>
+<li>and most importantly, calls initialize on the master subsystem, starting the game loop that causes the rest of the game to begin processing and setting up</li>
+</ul>
+<p>Nothing happens until something moves. ~Albert Einstein</p>
+<p>For clarity, this proc gets triggered later in the initialization pipeline, it is not the first thing to happen, as it might seem.</p>
+<p>Initialization Pipeline:
+Global vars are new()'ed, (including config, glob, and the master controller will also new and preinit all subsystems when it gets new()ed)
+Compiled in maps are loaded (mainly centcom). all areas/turfs/objs/mobs(ATOMs) in these maps will be new()ed
+world/New() (You are here)
+Once world/New() returns, client's can connect.
+1 second sleep
+Master Controller initialization.
+Subsystem initialization.
+Non-compiled-in maps are maploaded, all atoms are new()ed
+All atoms in both compiled and uncompiled maps are initialized()</p><h3 id="proc/push_usr"><aside class="declaration">proc </aside>push_usr<aside>(/<a href="mob.html">mob</a>/user_mob, /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a>/invoked_callback, ...) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/__HELPERS/mobs.dm#L445">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__HELPERS&#x2F;mobs.dm 445"/></a></aside>
+        </h3>
+        <p>Makes a call in the context of a different usr. Use sparingly</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

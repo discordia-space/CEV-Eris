@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;New_Hud_Manual_en.txt - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/New_Hud_Manual_en.txt 
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/New_Hud_Manual_en.txt">
+        <img src="git.png" width="16" height="16" title="code&#x2F;New_Hud_Manual_en.txt"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><pre><code>//existing overlays: flash, pain, blind, damageoverlay, blurry, druggy, nvg, thermal, meson, science
+Used global variables:
+GLOB.HUDdatums - here datums with subtype /datum/hud are contained, using association datum's name = datum itself
+
+________________________________________________________________________________________________________________________
+Datum /datum/hud
+This datum contains information about HUD: name, elements etc.
+
+
+name - datum's name
+list/HUDneed - a list of necessary elements (e.g. healthbar). Using this list mob's HUDneed and HUDprocess is filling
+list/slot_data - a list of inventory elements. Using this list mob's HUDinventory is filling
+icon/icon - used dmi file
+HUDfrippery - a list of HUD frippery. Using this list mob's HUDfrippery is filling
+HUDoverlays - a list of &quot;technical&quot; elements. Using this list mob's HUDtech is filling and mob's HUDprocess is complemented
+ConteinerData - information for functions /obj/item/storage/proc/space_orient_objs and /obj/item/storage/proc/slot_orient_objs.
+IconUnderlays - a list of underlays for HUD's elements via &quot;max&quot; version. May be empty.
+MinStyleFlag - a flag, which denotes if a HUD's type has &quot;min&quot; version. Take the values 1 or 0
+
+An example of element in HUDneed list:
+&quot;health&quot;      = list(&quot;type&quot; = /obj/screen/health, &quot;loc&quot; = &quot;16,6&quot;, &quot;minloc&quot; = &quot;15,7&quot;, &quot;background&quot; = &quot;back1&quot;),
+
+Description of the entered data:
+&quot;health&quot; - HUD's name and ID
+&quot;type&quot; - HUD's type, needed in order that system know what to create exactly
+&quot;loc&quot; - position on a screen in a &quot;max&quot; version
+&quot;minloc&quot; - position on a screen in a &quot;min&quot;. Optional. used if MinStyleFlag = 1
+&quot;background&quot; - underlay used in the &quot;max&quot; version. Name is taken from IconUnderlays. Optional.
+
+An example of element in HUDoverlays list:
+&quot;damageoverlay&quot; = list(&quot;type&quot; = /obj/screen/damageoverlay, &quot;loc&quot; = &quot;1,1&quot;, &quot;icon&quot; =  'icons/mob/screen1_full.dmi'),
+
+Description of the entered data:
+&quot;damageoverlay&quot; - HUD's name and ID
+&quot;type&quot; - HUD's type, needed in order that system know what to create exactly
+&quot;loc&quot; - position on a screen
+&quot;icon&quot; - used dmi file, rewrites icon of a datum. Optional.
+
+An example of element in slot_data list:
+&quot;Uniform&quot; =   list(&quot;loc&quot; = &quot;2,1&quot;,&quot;minloc&quot; = &quot;1,2&quot;, &quot;state&quot; = &quot;center&quot;,  &quot;hideflag&quot; = TOGGLE_INVENTORY_FLAG, &quot;background&quot; = &quot;back1&quot;),
+
+Description of entered data:
+&quot;Uniform&quot; - slot's name
+&quot;loc&quot; - position on a screen in a &quot;max&quot; version
+&quot;minloc&quot; position on a screen in a &quot;min&quot;. Optional. used if MinStyleFlag = 1
+&quot;hideflag&quot; - used for functions that hides HUD's elements, such as /obj/screen/toggle_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (does not work). Optional.
+&quot;background&quot; - underlay used in the &quot;max&quot; version. Name is taken from IconUnderlays. Optional.
+
+An example of element in HUDfrippery list
+list(&quot;loc&quot; = &quot;1,1&quot;, &quot;icon_state&quot; = &quot;frame2-2&quot;,  &quot;hideflag&quot; = TOGGLE_INVENTORY_FLAG),
+
+Description of entered data:
+&quot;loc&quot; - position on a screen in a &quot;max&quot; version
+&quot;icon_state&quot; - icon, which is taken from dmi file
+&quot;hideflag&quot; - used for functions that hides HUD's elements, such as /obj/screen/toggle_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (does not work). Optional.
+
+________________________________________________________________________________________________________________________
+Description of objects for HUD
+
+General type: /obj/screen
+
+Used unique variables:
+	var/mob/living/parentmob - mob to which HUD is tied
+	var/process_flag = 0 - flag of necessity call subprogram process()
+
+Used subprograms:
+/Click() - for elements which works by clicking on them
+/process() - for elements that do something constantly (generally on call mob's life).
+
+________________________________________________________________________________________________________________________
+Datum /datum/species
+
+Used unique variables:
+var/datum/hud_data/hud - here contains a link for datum with subtype /datum/hud_data
+var/hud_type - here contains datum type /datum/hud_data for race
+
+________________________________________________________________________________________________________________________
+Datum /datum/hud_data
+
+Used unique variables:
+	var/list/ProcessHUD - in this list &quot;names&quot; of HUD elements are introducted for initialization.
+	Example: &quot;health&quot;
+
+	var/list/gear - a list for HUD elements of inventory, slot's &quot;name&quot; is used with association.
+	Example: &quot;i_clothing&quot; =   slot_w_uniform,
+________________________________________________________________________________________________________________________
+Used variables at mob's level
+/mob/living
+	var/list/HUDneed - a list of HUD elements for displaying on screen
+	var/list/HUDinventory -  a list of HUD elements, which are the &quot;inventory&quot; of a mob, for displaying on screen
+	var/list/HUDfrippery - a list of all the frippery (e.g. frame)
+	var/list/HUDprocess -  a list of HUD elements, which process() is needed to be called
+	var/list/HUDtech - a list of HUD elements, which are &quot;technical&quot; (e.g. layer for mob's blindness), for displaying on screen
+	var/defaultHUD - default HUD name which is used by mob
+
+________________________________________________________________________________________________________________________
+Used subprograms at mob's level
+/mob/proc/create_HUD() - subprogram for creating HUD elements
+/mob/living/proc/destroy_HUD() - subprogram for destroying HUD elements
+/mob/living/proc/show_HUD() - subprogram for displaying HUD elements at client's
+
+/mob/living/proc/check_HUD() - basic subprogram which analyzes &quot;correctness&quot; of a HUD, and create/display elements on screen
+/mob/living/proc/check_HUDdatum() - checks current mob's datum for correctness, returns 1, if all is correct, or 0 in any other case
+/mob/living/proc/check_HUDinventory() - checks mob's variable HUDinventory for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
+/mob/living/proc/check_HUDneed() - checks mob's variable HUDneed for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
+/mob/living/proc/check_HUDfrippery() - checks mob's variable HUDfrippery for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
+/mob/living/proc/check_HUDprocess() - checks mob's variable HUDprocess for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
+/mob/living/proc/check_HUDtech() - checks mob's variable HUDtech for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
+
+The following subprograms creates elements in the corresponding arrays
+/mob/living/proc/create_HUDinventory() - in mob's HUDinventory
+/mob/living/proc/create_HUDneed() - in mob's HUDneed
+/mob/living/proc/create_HUDfrippery() - in mob's HUDfrippery
+/mob/living/proc/create_HUDprocess() - in mob's HUDprocess
+/mob/living/proc/create_HUDtech() - in mob's HUDtech
+
+________________________________________________________________________________________________________________________
+How does this work
+
+
+
+________________________________________________________________________________________________________________________
+An agreement for single style
+
+1) By rewriting the code for mob's suptype features, create new file with the naming &quot;[type_name]_hud&quot;. E.g. human_hud.dm, robot_hud.dm.
+2) By creating new subprogram for work with the system, write its naming ang add in the end _HUD. E.g. create_HUD(), show_HUD().
+2.1) By working with variables, add variable's naming. E.g. check_HUDfrippery()
+3) By rewriting the code for features of subtype /obj/screen, create new file with the naming &quot;[HUDname]_screen_object&quot;,
+if you are creating elements for &quot;race&quot;, create file with naming &quot;[species_name]_[HUDname]_screen_object&quot;.
+NOTE: &quot;screen_object.dmi&quot; contains &quot;base&quot; code.
+4)All subprograms which are responsible for checking smth (check_HUDdatum(), check_HUDinventory() etc.) should not contain code which does not related with checking,
+e.g warning output. Subprograms which are responsible for checking must give the check result.```
+</code></pre></td></tr></table></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

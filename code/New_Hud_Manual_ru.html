@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;New_Hud_Manual_ru.txt - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/New_Hud_Manual_ru.txt 
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/New_Hud_Manual_ru.txt">
+        <img src="git.png" width="16" height="16" title="code&#x2F;New_Hud_Manual_ru.txt"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><td colspan="2"><pre><code>//существующие оверлеи: flash, pain, blind, damageoverlay, blurry, druggy, nvg, thermal, meson, science
+Используемые глобальные переменные:
+GLOB.HUDdatums - тут хранятся датумы с подтипом /datum/hud, используется ассоциация name датума = сам датум
+
+________________________________________________________________________________________________________________________
+Датум /datum/hud
+В данном датуме находится информация о ХУДе: имя, элементы и тд.
+
+
+name - Имя датума
+list/HUDneed - список необходимых элементов (например, хелсбар). С помощью данного списка заполняются HUDneed и HUDprocess у моба
+list/slot_data - список элементов инвентаря. С помощью данного списка заполняются HUDinventory у моба
+icon/icon -испольхуемый файл dmi
+HUDfrippery - Список элементов украшения ХУДа. С помощью данного списка заполняются HUDfrippery у моба
+HUDoverlays - Список &quot;технических&quot; элементов. С помощью данного списка заполняются HUDtech и дополняется HUDprocess у моба
+ConteinerData - Информация для функции /obj/item/storage/proc/space_orient_objs и /obj/item/storage/proc/slot_orient_objs.
+IconUnderlays - Список андерлеев для элемнтов ХУДа при &quot;максимализированной&quot; версии. Может быть пустым.
+MinStyleFlag - Флаг, обозначающий имеет ли данный тип ХУДа &quot;минимализированную&quot; версию. Принимает значение 1 или 0
+
+Пример элемента в списке HUDneed
+&quot;health&quot;      = list(&quot;type&quot; = /obj/screen/health, &quot;loc&quot; = &quot;16,6&quot;, &quot;minloc&quot; = &quot;15,7&quot;, &quot;background&quot; = &quot;back1&quot;),
+
+Описание вводимых данных:
+&quot;health&quot; - имя и ИД ХУДА
+&quot;type&quot; - тип ХУДа, нужно чтобы система знала что именно создавать
+&quot;loc&quot; - положение на экране в &quot;максимализированной&quot; версии
+&quot;minloc&quot; положение на экране в &quot;минимализированной&quot; версии. Опционален. Используется если MinStyleFlag = 1
+&quot;background&quot; - какой андерлей используется в &quot;максимализированной&quot; версии. Название берется из IconUnderlays. Опционален.
+
+Пример элемента в списке HUDoverlays
+&quot;damageoverlay&quot; = list(&quot;type&quot; = /obj/screen/damageoverlay, &quot;loc&quot; = &quot;1,1&quot;, &quot;icon&quot; =  'icons/mob/screen1_full.dmi'),
+
+Описание вводимых данных:
+&quot;damageoverlay&quot; - имя и ИД ХУДА
+&quot;type&quot; - тип ХУДа, нужно чтобы система знала что именно создавать
+&quot;loc&quot; - положение на экране
+&quot;icon&quot; - используемый dmi файл, перезаписывает icon самого датума. Опционален.
+
+Пример элемента в списке slot_data
+&quot;Uniform&quot; =   list(&quot;loc&quot; = &quot;2,1&quot;,&quot;minloc&quot; = &quot;1,2&quot;, &quot;state&quot; = &quot;center&quot;,  &quot;hideflag&quot; = TOGGLE_INVENTORY_FLAG, &quot;background&quot; = &quot;back1&quot;),
+
+Описание вводимых данных:
+&quot;Uniform&quot; - имя Слота
+&quot;loc&quot; - положение на экране в &quot;максимализированной&quot; версии
+&quot;minloc&quot; положение на экране в &quot;минимализированной&quot; версии. Опционально и если MinStyleFlag = 1
+&quot;hideflag&quot; - используется для функций по скрыванию элементов ХУДа, такие как /obj/screen/toggle_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (не работает). Опционален.
+&quot;background&quot; - какой андерлей используется в &quot;максимализированной&quot; версии. Название берется из IconUnderlays. Опционален.
+
+Пример элемента в списке HUDfrippery
+list(&quot;loc&quot; = &quot;1,1&quot;, &quot;icon_state&quot; = &quot;frame2-2&quot;,  &quot;hideflag&quot; = TOGGLE_INVENTORY_FLAG),
+
+Описание вводимых данных:
+&quot;loc&quot; - положение на экране в &quot;максимализированной&quot; версии
+&quot;icon_state&quot; - какая иконка берется из dmi файла
+&quot;hideflag&quot; - используется для функций по скрыванию элементов ХУДа, такие как /obj/screen/toggle_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (не работает). Опционален.
+
+________________________________________________________________________________________________________________________
+Описание объектов для ХУДа
+
+Общий тип:/obj/screen
+
+Используемые уникальные переменные
+	var/mob/living/parentmob - Моб, к которому привязан ХУД
+	var/process_flag = 0 - флаг необходимости вызова подпрограммы process()
+
+Используемые подпрограммы
+/Click() - для элементов, которые работают при клике на них
+/process() - для элементов, делающие что-то постоянно (в основном при вызове life у моба).
+
+________________________________________________________________________________________________________________________
+Датум /datum/species
+
+Используемые уникальные переменные:
+var/datum/hud_data/hud - сдесь находится ссылка на датум с подтипом /datum/hud_data
+var/hud_type - находится тип датума /datum/hud_data для рассы
+
+________________________________________________________________________________________________________________________
+Датум /datum/hud_data
+
+Используемые уникальные переменные:
+	var/list/ProcessHUD - В данный список вносятся &quot;имена&quot; элементов худа, для инициализации.
+	Пример: &quot;health&quot;
+
+	var/list/gear - список для элементов ХУДа инвентаря, используется &quot;имя&quot; слота с ассоциацией
+	Пример: &quot;i_clothing&quot; =   slot_w_uniform,
+________________________________________________________________________________________________________________________
+Используемые переменные на уровне моба
+/mob/living
+	var/list/HUDneed - Список элементов Худа для отображения на экране
+	var/list/HUDinventory - Список элементов Худа, которые являются &quot;инвентарем&quot; моба, для отображения на экране
+	var/list/HUDfrippery - Всякие украшения (например, рамка)
+	var/list/HUDprocess - Список Элементов Худа, у которых нужно вызывать process()
+	var/list/HUDtech - Список элементов Худа, которые являются &quot;техническими&quot; (например, слой для слепоты моба), для отображения на экране
+	var/defaultHUD - Дефолтное имя ХУДа, которое использует моб
+
+________________________________________________________________________________________________________________________
+Используемые подпрограммы на уровне моба
+/mob/proc/create_HUD() - Подпрограмма, для создания элементов ХУДа
+/mob/living/proc/destroy_HUD() - Подпрограмма, для уничтожения элементов ХУДа
+/mob/living/proc/show_HUD() - Подпрограмма, для отображения элементов ХУДа у клиента
+
+/mob/living/proc/check_HUD() - Основная подпрограмма, в ней анализируется &quot;правильность&quot; ХУДа, и через неё идет создание\вывод элементов на экран
+/mob/living/proc/check_HUDdatum() - Проверяет текущий датум у моба на правильность, возвращает 1, если все правильно, или 0, если иначе
+/mob/living/proc/check_HUDinventory() - Проверяет переменную HUDinventory у моба на правильность, возвращает 1, если все правильно, или 0, если иначе.(не используется, но существует)
+/mob/living/proc/check_HUDneed() - Проверяет переменную HUDneed у моба на правильность, возвращает 1, если все правильно, или 0, если иначе.(не используется, но существует)
+/mob/living/proc/check_HUDfrippery() - Проверяет переменную HUDfrippery у моба на правильность, возвращает 1, если все правильно, или 0, если иначе.(не используется, но существует)
+/mob/living/proc/check_HUDprocess() - Проверяет переменную HUDprocess у моба на правильность, возвращает 1, если все правильно, или 0, если иначе.(не используется, но существует)
+/mob/living/proc/check_HUDtech() - Проверяет переменную HUDtech у моба на правильность, возвращает 1, если все правильно, или 0, если иначе.(не используется, но существует)
+
+Следующие подпрограммы создают элементы в соотвествующих массивов
+/mob/living/proc/create_HUDinventory() - в HUDinventory моба
+/mob/living/proc/create_HUDneed() - в HUDneed моба
+/mob/living/proc/create_HUDfrippery() - в HUDfrippery моба
+/mob/living/proc/create_HUDprocess() - в HUDprocess моба
+/mob/living/proc/create_HUDtech() - в HUDtech моба
+
+________________________________________________________________________________________________________________________
+Как это работает
+
+
+
+________________________________________________________________________________________________________________________
+ДОГОВОР О ЕДИНОМ СТИЛЕ
+
+1) При переписывании кода под особенности подтипа моба, создавайте новый файл с названием &quot;[type_name]_hud&quot;. Пример: human_hud.dm, robot_hud.dm.
+2) При создании новой подпрограммы для работы с ситемой, пишите её &quot;название&quot; и приписывайте в конце _HUD. Пример: create_HUD(), show_HUD().
+2.1) При работе с переменными, дописывайте название переменной. Пример: check_HUDfrippery()
+3) При переписывания кода под особенности подтипа /obj/screen, создайте новый файл с названием &quot;[HUDname]_screen_object&quot;,
+если вы создаете элементы для &quot;расы&quot;, то создайте файл с названием &quot;[species_name]_[HUDname]_screen_object&quot;.
+ПРИМЕЧАНИЕ: в файле &quot;screen_object.dmi&quot;, находится &quot;базовый&quot; код.
+4)Все подпрограммы, отвечающие за проверку чего либо (check_HUDdatum(), check_HUDinventory() и т.д) не должны иметь внутри себя код, не относящийся к проверке,
+например, вывод предупреждения. Подпрограммы, отвечающие за проверку, должны выдавать результат проверки.```
+</code></pre></td></tr></table></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

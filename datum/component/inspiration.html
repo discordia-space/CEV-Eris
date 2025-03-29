@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;component&#x2F;inspiration - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/component/inspiration.html#var">Var Details</a> - <a href="datum/component/inspiration.html#proc">Proc Details</a></header>
+<main>
+<h1>inspiration <aside>/<a href="datum.html">datum</a>/<a href="datum/component.html">component</a>/<a href="datum/component/inspiration.html">inspiration</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/sanity/inspiration_component.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;sanity&#x2F;inspiration_component.dm 10"/></a></h1>
+
+<p>Simple data container component containing level up statistics.
+This does NOT make something a valid inspiration. It simply holds the data in case it gets used as one!
+To actually use it, the typepath of the object has to be contained within the sanity datum valid_inspiration list.
+Assign this component to an item specifying which statistics should be levelled up, and the item will be able to be used as an inspiration.
+The format of statistics is list(STAT_DEFINE = number) or a proc that returns such a list.
+(This would've been better as an element instead of a component, but currently elements don't exist on cev eris. F)</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/component/inspiration.html#var/get_stats">get_stats</a></th><td>Callback used for dynamic calculation of the stats to level up, used if stats is null. It must accept NO arguments, and it needs to return a list shaped like stats.</td></tr>
+            <tr><th><a href="datum/component/inspiration.html#var/stats">stats</a></th><td>Simple list defined as list(STAT_DEFINE = number).</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/component/inspiration.html#proc/Initialize">Initialize</a></th><td>Statistics can be a list (static) or a callback to a proc that returns a list (of the same format)</td></tr>
+            <tr><th><a href="datum/component/inspiration.html#proc/calculate_statistics">calculate_statistics</a></th><td>Returns stats if defined, otherwise it returns the return value of get_stats</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/get_stats"><aside class="declaration">var </aside>get_stats
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/callback.html">callback</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/sanity/inspiration_component.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;sanity&#x2F;inspiration_component.dm 14"/></a></h3>
+        <p>Callback used for dynamic calculation of the stats to level up, used if stats is null. It must accept NO arguments, and it needs to return a list shaped like stats.</p><h3 id="var/stats"><aside class="declaration">var </aside>stats
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/sanity/inspiration_component.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;sanity&#x2F;inspiration_component.dm 12"/></a></h3>
+        <p>Simple list defined as list(STAT_DEFINE = number).</p><h2 id="proc">Proc Details</h2><h3 id="proc/Initialize"><aside class="parent"><a title="/datum/component" href="datum/component.html#proc/Initialize">&uarr;</a></aside>Initialize<aside>(statistics, /<a href="datum.html">datum</a>/<a href="datum/perk.html">perk</a>/new_perk) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/sanity/inspiration_component.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;sanity&#x2F;inspiration_component.dm 19"/></a></aside>
+        </h3>
+        <p>Statistics can be a list (static) or a callback to a proc that returns a list (of the same format)</p><h3 id="proc/calculate_statistics"><aside class="declaration">proc </aside>calculate_statistics<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/modules/sanity/inspiration_component.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;sanity&#x2F;inspiration_component.dm 54"/></a></aside>
+        </h3>
+        <p>Returns stats if defined, otherwise it returns the return value of get_stats</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>

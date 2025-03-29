@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;job - Space Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">Space Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/job.html#var">Var Details</a> - <a href="datum/controller/subsystem/job.html#proc">Proc Details</a></header>
+<main>
+<h1>job <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/job.html">job</a></aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 8"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/ckey_to_total_playtime">ckey_to_total_playtime</a></th><td>Eris specific stuff , playtimes are based off overall hours , and not on hours in said departament.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#var/queries_by_key">queries_by_key</a></th><td>DOS Attack prevention by locking off file-reads.</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/CheckHeadPositions">CheckHeadPositions</a></th><td>This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/CreateConfigFile">CreateConfigFile</a></th><td>No playtimes registered
+return to last dir</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/DivideOccupations">DivideOccupations</a></th><td></td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/FillHeadPosition">FillHeadPosition</a></th><td>This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/LoadPlaytimeRequirements">LoadPlaytimeRequirements</a></th><td>Blame linters!!!!</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/LoadPlaytimes">LoadPlaytimes</a></th><td>failsafe for non-existant config folders.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/job.html#proc/get_spawnpoint_for">get_spawnpoint_for</a></th><td>Return appropriate /datum/spawnpoint for given client and rank</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/ckey_to_total_playtime"><aside class="declaration">var </aside>ckey_to_total_playtime
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L20">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 20"/></a></h3>
+        <p>Eris specific stuff , playtimes are based off overall hours , and not on hours in said departament.</p><h3 id="var/queries_by_key"><aside class="declaration">var </aside>queries_by_key
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 24"/></a></h3>
+        <p>DOS Attack prevention by locking off file-reads.</p><h2 id="proc">Proc Details</h2><h3 id="proc/CheckHeadPositions"><aside class="declaration">proc </aside>CheckHeadPositions<aside>(level) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L403">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 403"/></a></aside>
+        </h3>
+        <p>This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level</p><h3 id="proc/CreateConfigFile"><aside class="declaration">proc </aside>CreateConfigFile<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L233">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 233"/></a></aside>
+        </h3>
+        <p>No playtimes registered
+return to last dir</p><h3 id="proc/DivideOccupations"><aside class="declaration">proc </aside>DivideOccupations<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L419">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 419"/></a></aside>
+        </h3>
+        <ul>
+<li>Proc DivideOccupations</li>
+<li>fills var &quot;assigned_role&quot; for all ready players.</li>
+<li>This proc must not have any side effect besides of modifying &quot;assigned_role&quot;.</li>
+</ul><h3 id="proc/FillHeadPosition"><aside class="declaration">proc </aside>FillHeadPosition<aside>() 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L365">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 365"/></a></aside>
+        </h3>
+        <p>This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check</p><h3 id="proc/LoadPlaytimeRequirements"><aside class="declaration">proc </aside>LoadPlaytimeRequirements<aside>(folderPath) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L162">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 162"/></a></aside>
+        </h3>
+        <p>Blame linters!!!!</p><h3 id="proc/LoadPlaytimes"><aside class="declaration">proc </aside>LoadPlaytimes<aside>(ckey) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 191"/></a></aside>
+        </h3>
+        <p>failsafe for non-existant config folders.</p><h3 id="proc/get_spawnpoint_for"><aside class="declaration">proc </aside>get_spawnpoint_for<aside>(/<a href="client.html">client</a>/C, rank, late) 
+        
+    
+            <a href="https://github.com/discordia-space/CEV-Eris/blob/569ce32563fe6b320c7772ea0071845e05d4e058/code/controllers/subsystems/jobs.dm#L743">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystems&#x2F;jobs.dm 743"/></a></aside>
+        </h3>
+        <p>Return appropriate /datum/spawnpoint for given client and rank</p>
+<p>Spawnpoint will be the one set in preferences for the client, unless the
+preference is not set, or the preference is not appropriate for the rank, in
+which case a fallback will be selected.</p></main>
+<footer>
+    cev_eris.dme
+    <a href="https://github.com/discordia-space/CEV-Eris/tree/569ce32563fe6b320c7772ea0071845e05d4e058">569ce32</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
+</body>
+</html>
