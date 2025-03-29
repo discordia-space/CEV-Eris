@@ -51,6 +51,7 @@
 
 	max_upgrades = 6
 
+	var/list/scope_damage_adds = list()
 	var/datum/gunoverrides/overridedatum
 
 /obj/item/gun/projectile/automatic/modular/Initialize()
@@ -84,8 +85,10 @@
 	grip_type = initial(grip_type)
 	good_calibers = list() // Won't ever be redefined, mechanism determines this, and when no mechanism is installed, we don't want anything here anyways
 	no_internal_mag = initial(no_internal_mag)
+	scope_damage_adds = list()
 	overridedatum?.reset() // clear first
 	..()
+	reset_action_buttons()
 	overridedatum?.cycle() // then use an assignment sort
 	name = get_initial_name()
 
@@ -219,6 +222,18 @@
 /obj/item/gun/projectile/automatic/modular/hand_spin(mob/living/carbon/caller)
 	overridedatum.call_Flag(user = caller, flag = GI_SPIN)
 	
+/obj/item/gun/projectile/automatic/modular/proc/reset_action_buttons()
+	for(var/key in overridedatum.priorities)
+		var/list/priority = overridedatum.priorities[key]
+		for(var/datum/guninteraction/tocheck in priority) // highest numbers first.
+			if(tocheck.action_button_name && tocheck.action_button_proc)
+				action_button_name = tocheck.action_button_name
+				action_button_proc = tocheck.action_button_proc
+				return TRUE // can only have one button
+	// if we didn't override them
+	action_button_name = initial(action_button_name)
+	action_button_proc = initial(action_button_proc)
+	qdel(action)
 
 /obj/item/gun/projectile/automatic/modular/can_interact(mob/user)
 	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
@@ -284,3 +299,14 @@
 				return FALSE
 	load_ammo(I, user)
 	update_held_icon()
+
+/obj/item/gun/projectile/automatic/modular/zoom(tileoffset, viewsize, stayzoomed)
+	..()
+	refresh_upgrades()
+	if(zoom)
+		var/currentzoom = zoom_factors.Find(active_zoom_factor)
+		var/extra_damage
+		if(scope_damage_adds[currentzoom])
+			extra_damage = scope_damage_adds[currentzoom]
+		damage_multiplier += extra_damage
+

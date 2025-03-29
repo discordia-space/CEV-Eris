@@ -80,4 +80,4 @@
 
 /obj/item/gun/projectile/automatic/modular/bolt/sniper/finished
 	gun_parts = list(/obj/item/part/gun/modular/grip/serb = 0, /obj/item/part/gun/modular/mechanism/boltgun/heavy = 0, /obj/item/part/gun/modular/barrel/antim/long = 0,\
-	 /obj/item/part/gun/modular/stock/heavy = 0, /obj/item/part/gun/modular/sights/scopeheavy = 0)
+	 /obj/item/part/gun/modular/stock/heavy = 0, /obj/item/part/gun/modular/sights/customizable/scopeheavy = 0)

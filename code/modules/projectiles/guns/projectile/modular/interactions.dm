@@ -3,6 +3,8 @@
 	var/obj/item/part/gun/modular/parentpart
 	var/priority = 0
 	var/interactionflags
+	var/action_button_name = ""
+	var/action_button_proc = ""
 
 /datum/guninteraction/proc/attack_self(mob/user)
 
@@ -91,3 +93,7 @@
 	if(parentgun?.zoom)
 		parentgun.toggle_scope(user)
 		return TRUE
+
+/datum/guninteraction/zoomed/multizoom
+	action_button_name = "Switch zoom level"
+	action_button_proc = "switch_zoom"

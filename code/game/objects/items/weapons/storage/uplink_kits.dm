@@ -250,7 +250,7 @@
 	new /obj/item/part/gun/modular/mechanism/boltgun/heavy(src)
 	new /obj/item/part/gun/modular/barrel/antim/long(src)
 	new /obj/item/part/gun/modular/stock/heavy(src)
-	new /obj/item/part/gun/modular/sights/scopeheavy(src)
+	new /obj/item/part/gun/modular/sights/customizable/scopeheavy(src)
 
 /obj/item/storage/box/syndie_kit/toxin
 	name = "toxin kit"

@@ -844,10 +844,23 @@ semi accepts weird caliber - +1 points
 	desc = "A set of sights for aiming through."
 	var/list/scopes = list()
 	interactions = /datum/guninteraction/zoomed
+	var/scopeaccuracy
+	var/scopeseeinvis
+	var/darksight
+	var/list/powerboost
 
 /obj/item/part/gun/modular/sights/New(location, var/quality = 0)
 	..(quality)
 	I.weapon_upgrades[GUN_UPGRADE_ZOOM] = scopes
+	if(scopeseeinvis)
+		I.weapon_upgrades[GUN_UPGRADE_SCOPEVISION] = scopeseeinvis
+	if(scopeaccuracy)
+		I.weapon_upgrades[GUN_UPGRADE_SCOPECORRECTION] = scopeaccuracy
+	if(darksight)
+		I.weapon_upgrades[GUN_UPGRADE_DARKSCOPE] = darksight
+	if(powerboost)
+		I.weapon_upgrades[GUN_UPGRADE_SCOPE_POWER] = powerboost
+	I.gun_loc_tag = GUN_SCOPE
 
 /obj/item/part/gun/modular/sights/scopesmall // Arasaka boltgun
 	name = "small scope"
@@ -863,12 +876,37 @@ semi accepts weird caliber - +1 points
 	scopes = list(0.8)
 	part_overlay = "scope_big"
 
-/obj/item/part/gun/modular/sights/scopeheavy // AMR
-	name = "large scope"
-	desc = "An adjustable sight for aiming through. This one is on the larger side."
+/obj/item/part/gun/modular/sights/customizable
+
+/obj/item/part/gun/modular/sights/customizable/attackby(obj/item/Item, mob/living/user)
+	if(istype(Item, /obj/item/clothing/glasses/powered/thermal))
+		user.visible_message(SPAN_NOTICE("[user] inserts \a [Item] into [src]."), SPAN_NOTICE("You insert [Item] into \the [src]."), "You hear a faint click.", 5)
+		I.weapon_upgrades[GUN_UPGRADE_THERMAL] = TRUE
+		user.drop_from_inventory(Item, src)
+	else if(Item.has_quality(QUALITY_SCREW_DRIVING))
+		var/list/choices = contents.Copy()
+		choices += "Cancel"
+		var/obj/toremove = input("Which upgrade would you like to try to remove?","Removing Upgrades") in choices
+		if(toremove == "Cancel")
+			return TRUE
+		else if(!isnull(toremove))
+			toremove.forceMove(get_turf(src))
+			if(istype(toremove, /obj/item/clothing/glasses/powered/thermal))
+				I.weapon_upgrades[GUN_UPGRADE_THERMAL] = FALSE
+			to_chat(user, SPAN_NOTICE("You successfully remove [toremove] from \the [src]!"))
+
+
+/obj/item/part/gun/modular/sights/customizable/scopeheavy // AMR
+	name = "sniper scope"
+	desc = "A large adjustable sight for aiming through. Provides night vision. Can add advanced lenses to improve vision."
 	icon_state = "scope_heavy"
 	scopes = list(1,2)
 	part_overlay = "scope_heavy"
+	darksight = 7
+	scopeseeinvis = SEE_INVISIBLE_NOLIGHTING
+	scopeaccuracy = 8
+	powerboost = list(0.2, 0.4)
+	interactions = /datum/guninteraction/zoomed/multizoom
 
 /obj/item/part/gun/modular/bayonet
 	name = "integrated bayonet"

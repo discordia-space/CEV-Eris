@@ -84,6 +84,9 @@
 
 #define GUN_UPGRADE_OFFSET "offset" //Constant offset, in degrees
 #define GUN_UPGRADE_ZOOM "zoom"
+#define GUN_UPGRADE_SCOPEVISION "scopeseeinvis"
+#define GUN_UPGRADE_SCOPECORRECTION "scopeoffset"
+#define GUN_UPGRADE_DARKSCOPE "scopedarksight"
 
 //Type configuration
 #define GUN_UPGRADE_REPLACE_INTERACTIONS "interactions"
@@ -96,6 +99,7 @@
 #define GUN_UPGRADE_DEFINE_LOADER "loadtype"
 #define GUN_UPGRADE_DENY_MAG "no_mag"
 #define GUN_UPGRADE_DEFINE_WCLASS "add_wclass"
+#define GUN_UPGRADE_SCOPE_POWER "scope_power"
 
 //Gun Interaction flags
 #define GI_ATTACKSELF 1

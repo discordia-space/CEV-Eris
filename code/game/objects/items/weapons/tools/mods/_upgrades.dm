@@ -376,6 +376,12 @@
 		if(ismob(G.loc))
 			var/mob/user = G.loc
 			user.update_action_buttons()
+	if(weapon_upgrades[GUN_UPGRADE_SCOPEVISION])
+		G.see_invisible_gun = max(G.see_invisible_gun, weapon_upgrades[GUN_UPGRADE_SCOPEVISION]) // scope stats should take best of class
+	if(weapon_upgrades[GUN_UPGRADE_SCOPECORRECTION])
+		G.scoped_offset_reduction = max(G.scoped_offset_reduction, weapon_upgrades[GUN_UPGRADE_SCOPECORRECTION])
+	if(weapon_upgrades[GUN_UPGRADE_DARKSCOPE])
+		G.darkness_view = max(G.darkness_view, weapon_upgrades[GUN_UPGRADE_DARKSCOPE])
 	if(weapon_upgrades[GUN_UPGRADE_THERMAL])
 		G.vision_flags = SEE_MOBS
 	if(weapon_upgrades[GUN_UPGRADE_GILDED])
@@ -442,6 +448,8 @@
 				M.no_internal_mag = TRUE
 			if(weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS])
 				M.w_class += weapon_upgrades[GUN_UPGRADE_DEFINE_WCLASS]
+			if(weapon_upgrades[GUN_UPGRADE_SCOPE_POWER])
+				M.scope_damage_adds.Add(weapon_upgrades[GUN_UPGRADE_SCOPE_POWER])
 
 	for(var/datum/firemode/F in G.firemodes)
 		apply_values_firemode(F)
