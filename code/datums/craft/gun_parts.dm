@@ -607,6 +607,7 @@ semi accepts weird caliber - +1 points
 	part_overlay = "big_" // the full entry is handled by the guninteraction
 	loader = SINGLE_CASING
 	max_shells = 1
+	divisor_bonus = 0
 	damage_bonus = 1
 
 /obj/item/part/gun/modular/mechanism/boltgun/junk
