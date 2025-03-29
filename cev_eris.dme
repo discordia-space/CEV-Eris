@@ -998,6 +998,7 @@
 #include "code\game\objects\items\weapons\RPD.dm"
 #include "code\game\objects\items\weapons\RSF.dm"
 #include "code\game\objects\items\weapons\secdocs.dm"
+#include "code\game\objects\items\weapons\setupdisk.dm"
 #include "code\game\objects\items\weapons\shields.dm"
 #include "code\game\objects\items\weapons\space_harpoon.dm"
 #include "code\game\objects\items\weapons\staff.dm"
