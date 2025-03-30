@@ -44,11 +44,13 @@
 	start_icon = icon("icons/HUD/storage_start.png")
 	middle_icon = icon("icons/HUD/storage_middle.png")
 	end_icon = icon("icons/HUD/storage_end.png")
+	appearance_flags = NO_CLIENT_COLOR
 
 /HUD_element/threePartBox/storedItemBackground
 	start_icon = icon("icons/HUD/stored_start.png")
 	middle_icon = icon("icons/HUD/stored_middle.png")
 	end_icon = icon("icons/HUD/stored_end.png")
+	appearance_flags = NO_CLIENT_COLOR
 
 /HUD_element/slottedItemBackground
 	icon = 'icons/HUD/block.png'
@@ -71,7 +73,7 @@
 		S.close(clientMob)
 
 /obj/item/storage/proc/setupItemBackground(var/HUD_element/itemBackground, atom/item, itemCount)
-	itemBackground.setClickProc(PROC_REF(itemBackgroundClick))
+	itemBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, itemBackgroundClick), src)
 	itemBackground.setData("item", item)
 
 	var/HUD_element/itemIcon = itemBackground.add(new/HUD_element())
@@ -101,8 +103,9 @@
 	closeButton.setName("HUD Storage Close Button")
 	closeButton.setIcon(icon("icons/mob/screen1.dmi","x"))
 	closeButton.setHideParentOnClick(TRUE)
-	closeButton.setClickProc(PROC_REF(closeButtonClick))
+	closeButton.setClickProc(TYPE_PROC_REF(/obj/item/storage, closeButtonClick), src)
 	closeButton.setData("item", src)
+	closeButton.appearance_flags = NO_CLIENT_COLOR
 
 	//storage space based items
 	if((storage_slots == null) && !display_contents_with_number)
@@ -115,7 +118,7 @@
 		storageBackground.setName("HUD Storage Background")
 		storageBackground.setHideParentOnHide(TRUE)
 
-		storageBackground.setClickProc(PROC_REF(storageBackgroundClick))
+		storageBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, storageBackgroundClick), src)
 		storageBackground.setData("item", src)
 
 		var/paddingSides = 2 //in pixels
@@ -199,7 +202,7 @@
 
 				currentItemNumber++
 			else //empty slots
-				itemBackground.setClickProc(PROC_REF(storageBackgroundClick))
+				itemBackground.setClickProc(TYPE_PROC_REF(/obj/item/storage, storageBackgroundClick), src)
 				itemBackground.setData("item", src)
 
 			totalWidth += itemBackground.getWidth() + spacingBetweenSlots
@@ -473,10 +476,8 @@
 /obj/item/storage/proc/collectItems(turf/target, mob/user)
 	ASSERT(istype(target))
 	. = FALSE
-	var/limiter = 15
+
 	for(var/obj/item/I in target)
-		if(--limiter < 0)
-			break
 		if(can_be_inserted(I, TRUE))
 			. |= TRUE
 			handle_item_insertion(I, TRUE)

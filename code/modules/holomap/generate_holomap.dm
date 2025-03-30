@@ -6,20 +6,20 @@
 // Define what criteria makes a turf a path or not
 
 // Turfs that will be colored as HOLOMAP_ROCK
-#define IS_ROCK(tile) (istype(tile, /turf/simulated/mineral) && tile.density)
+#define IS_ROCK(tile) (istype(tile, /turf/mineral) && tile.density)
 
 // Turfs that will be colored as HOLOMAP_OBSTACLE
 #define IS_OBSTACLE(tile) ((!istype(tile, /turf/space) && istype(tile.loc, /area/mine/unexplored)) \
-					|| istype(tile, /turf/simulated/wall) \
-					|| istype(tile, /turf/unsimulated/mineral) \
-					|| istype(tile, /turf/unsimulated/wall) \
-					|| istype(tile, /turf/simulated/shuttle/wall) \
+					|| istype(tile, /turf/wall) \
+					|| istype(tile, /turf/mineral_unsimulated) \
+					|| istype(tile, /turf/wall/dummy) \
+					|| istype(tile, /turf/shuttle/wall) \
 					|| (locate(/obj/structure/grille) in tile))
 
 // Turfs that will be colored as HOLOMAP_PATH
-#define IS_PATH(tile) (istype(tile, /turf/simulated/floor) \
-					|| istype(tile, /turf/unsimulated/floor) \
-					|| istype(tile, /turf/simulated/shuttle/floor) \
+#define IS_PATH(tile) (istype(tile, /turf/floor) \
+					|| istype(tile, /turf/floor/dummy) \
+					|| istype(tile, /turf/shuttle/floor) \
 					|| (locate(/obj/structure/catwalk) in tile))
 
 /// Generates all the holo minimaps, initializing it all nicely, probably.

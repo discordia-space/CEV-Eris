@@ -2,29 +2,29 @@
 "ah" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "bF" = (
 /obj/structure/toilet{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "ce" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/color/black,
 /obj/spawner/cloth/shoes,
 /obj/item/clothing/mask/breath,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "dO" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "fz" = (
 /obj/structure/table/standard,
 /obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "im" = (
 /obj/structure/table/woodentable,
@@ -35,10 +35,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "iR" = (
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "lg" = (
 /obj/structure/closet/crate/freezer,
@@ -47,11 +47,11 @@
 	},
 /obj/spawner/junkfood,
 /obj/spawner/junkfood,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "lX" = (
 /obj/machinery/door/unpowered/simple/wood,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "mc" = (
 /obj/structure/table/woodentable,
@@ -59,24 +59,24 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "mn" = (
 /obj/structure/table/rack,
 /obj/item/gun/projectile/shotgun/doublebarrel/sawn,
 /obj/spawner/ammo/shotgun,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "ny" = (
 /obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "qb" = (
 /obj/structure/computerframe{
 	anchored = 1;
 	dir = 4
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "qq" = (
 /obj/structure/table/woodentable,
@@ -88,7 +88,7 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "qK" = (
 /obj/structure/sink{
@@ -99,13 +99,13 @@
 	dir = 8;
 	pixel_x = 28
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "sB" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin,
 /obj/item/pen,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "uE" = (
 /obj/structure/closet,
@@ -121,7 +121,7 @@
 /obj/item/stack/material/glass/reinforced{
 	amount = 10
 	},
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "uX" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
@@ -138,38 +138,38 @@
 	},
 /obj/item/bikehorn/rubberducky,
 /obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "wU" = (
 /mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "xm" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "Ag" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 5
 	},
 /obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "Bi" = (
 /obj/spawner/junk/low_chance,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "Cp" = (
-/turf/simulated/floor/tiled/white/techfloor_grid,
+/turf/floor/tiled/white/techfloor_grid,
 /area/map_template/lodge)
 "Fh" = (
 /obj/structure/table/woodentable,
 /obj/item/folder/blue,
 /obj/machinery/light,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "FX" = (
 /obj/structure/table/standard,
@@ -177,34 +177,33 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "HH" = (
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "Iz" = (
 /obj/structure/bed,
 /obj/item/bedsheet,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "Jv" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 1
 	},
 /obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "JF" = (
 /obj/machinery/power/port_gen/pacman,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "Nr" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
+/turf/wall/low/with_glass/reinforced,
 /area/map_template/lodge)
 "NT" = (
 /obj/structure/filingcabinet,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "NU" = (
 /obj/structure/table/woodentable,
@@ -213,45 +212,45 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/tool/knife/butch,
 /obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor,
+/turf/floor/tiled/steel/techfloor,
 /area/map_template/lodge)
 "Om" = (
 /turf/template_noop,
 /area/template_noop)
 "OA" = (
 /mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/map_template/lodge)
 "OH" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "OW" = (
 /obj/item/device/lighting/toggleable/lamp/green,
 /obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "PB" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "Qu" = (
 /mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "RF" = (
 /obj/machinery/door/unpowered/simple/wood,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "RM" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "Sf" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "Si" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
@@ -261,7 +260,7 @@
 "Uy" = (
 /obj/structure/table/woodentable,
 /obj/item/board,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "VI" = (
 /obj/structure/table/woodentable,
@@ -269,7 +268,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/floor/carpet/turcarpet,
 /area/map_template/lodge)
 "WX" = (
 /obj/structure/table/rack,
@@ -277,10 +276,10 @@
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
 /obj/spawner/pack/tech_loot,
-/turf/simulated/floor/wood,
+/turf/floor/wood,
 /area/map_template/lodge)
 "Yu" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/map_template/lodge)
 
 (1,1,1) = {"

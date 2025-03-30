@@ -53,13 +53,18 @@ They generally give more random result and can provide more divercity in spawn.
 	icon_state = "tool-red-low"
 	spawn_nothing_percentage = 70
 
-
 /obj/spawner/pack/tech_loot/onestar
 	name = "Random technical One Star loot"
 	icon_state = "tool-red"
 	desc = "This is a random technical loot."
-	allow_blacklist = TRUE
-	tags_to_spawn = list(SPAWN_TECH_OS)
+
+/obj/spawner/pack/tech_loot/onestar/item_to_spawn()
+	return pickweight(list(
+					/obj/spawner/tool_upgrade/rare/onestar = 10,
+					/obj/spawner/tool/advanced/onestar = 5,
+					/obj/spawner/techpart/onestar = 10
+				))
+
 
 //This will be spawned in rare closets
 /obj/spawner/pack/gun_loot

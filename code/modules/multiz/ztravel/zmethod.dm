@@ -296,7 +296,7 @@
 
 	if (!spaces.len)
 		//Welp we didn't find one. lets loop again, all floors are allowed now
-		for (var/turf/simulated/floor/T in orange(1, M))
+		for (var/turf/floor/T in orange(1, M))
 			spaces.Add(T)
 
 	if (!spaces.len)

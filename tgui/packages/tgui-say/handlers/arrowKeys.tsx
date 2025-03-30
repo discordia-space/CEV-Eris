@@ -6,7 +6,7 @@ import { Modal } from '../types';
 export const handleArrowKeys = function (
   this: Modal,
   direction: number,
-  value: string
+  value: string,
 ) {
   const { historyCounter } = this.fields;
   if (direction === KEY_UP && historyCounter < getHistoryLength()) {

@@ -27,14 +27,18 @@
 	)
 
 	// Loot related variables
-	ore = /obj/item/ore/coal
+	mineral_name = ORE_CARBON
 
-// Special capacity of coal golem: when set on fire, it turns into a diamond golem
-// Especially dangerous since uranium golem can explode into a fireball
-/mob/living/carbon/superior_animal/golem/coal/handle_ai()
-	if(on_fire)
-		visible_message(SPAN_DANGER("\The [src] is engulfed by fire and turns into diamond!"))
-		new /mob/living/carbon/superior_animal/golem/diamond(loc, drill=DD, parent=controller)  // Spawn diamond golem at location
-		ore = null  // So that the golem does not drop coal ores
-		death(FALSE, "no message")
-	. = ..()
+// enhanced coal golems will grab players, leaving them vulnerable to very high damage golems like gold and platinum
+/mob/living/carbon/superior_animal/golem/coal/enhanced
+	name = "graphite golem"
+	desc = "A moving pile of rocks with unusually large hands and graphite chunks in it."
+
+/mob/living/carbon/superior_animal/golem/coal/enhanced/UnarmedAttack(atom/A, proximity)
+	if(istype(A, /mob/living/carbon))
+		visible_message(SPAN_DANGER("<b>[src]</b> grabs at [target_mob]!"))
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		simplegrab(target_mob)
+	else // if they're not a carbon just attack them normally. this includes things like simple animals
+		. = ..()
+

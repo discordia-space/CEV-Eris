@@ -5,7 +5,7 @@
 	planetary_area = /area/exoplanet/shrouded
 	rock_colors = list(COLOR_INDIGO, COLOR_DARK_BLUE_GRAY, COLOR_NAVY_BLUE)
 	plant_colors = list("#3c5434", "#2f6655", "#0e703f", "#495139", "#394c66", "#1a3b77", "#3e3166", "#52457c", "#402d56", "#580d6d")
-	map_generators = list(/datum/random_map/noise/exoplanet/shrouded, /datum/random_map/noise/ore/poor)
+	map_generators = list(/datum/random_map/noise/exoplanet/shrouded)
 	ruin_tags_blacklist = RUIN_HABITAT
 	planet_colors = list(COLOR_DEEP_SKY_BLUE, COLOR_PURPLE)
 	surface_color = "#3e3960"
@@ -29,8 +29,8 @@
 	flora_diversity = 3
 	water_level_max = 3
 	water_level_min = 2
-	land_type = /turf/simulated/floor/exoplanet/shrouded
-	water_type = /turf/simulated/floor/exoplanet/water/shallow/tar
+	land_type = /turf/floor/exoplanet/shrouded
+	water_type = /turf/floor/exoplanet/water/shallow/tar
 	/*fauna_types = list(/mob/living/simple_animal/hostile/retaliate/royalcrab,
 					   /mob/living/simple_animal/hostile/retaliate/jelly/alt,
 					   /mob/living/simple_animal/hostile/retaliate/beast/shantak/alt,
@@ -39,28 +39,23 @@
 
 /area/exoplanet/shrouded
 //	forced_ambience = list("sound/ambience/spookyspace1.ogg", "sound/ambience/spookyspace2.ogg")
-	base_turf = /turf/simulated/floor/exoplanet/shrouded
+	base_turf = /turf/floor/exoplanet/shrouded
 
-/turf/simulated/floor/exoplanet/water/shallow/tar
+/turf/floor/exoplanet/water/shallow/tar
 	name = "tar"
 	icon = 'icons/turf/shrouded.dmi'
 	icon_state = "shrouded_tar"
 	desc = "A pool of viscous and sticky tar."
-	movement_delay = 12
 	reagent_type = /datum/reagent/toxin/tar
 	dirt_color = "#3e3960"
 
-/turf/simulated/floor/exoplanet/water/shallow/tar/get_footstep_sound(var/mob/caller)
-	return get_footstep(/decl/footsteps/water, caller)
-
-
-/turf/simulated/floor/exoplanet/shrouded
+/turf/floor/exoplanet/shrouded
 	name = "packed sand"
 	icon = 'icons/turf/shrouded.dmi'
 	icon_state = "shrouded"
 	desc = "Sand that has been packed in to solid earth."
 	dirt_color = "#3e3960"
 
-/turf/simulated/floor/exoplanet/shrouded/New()
+/turf/floor/exoplanet/shrouded/New()
 	icon_state = "shrouded[rand(0,8)]"
 	..()

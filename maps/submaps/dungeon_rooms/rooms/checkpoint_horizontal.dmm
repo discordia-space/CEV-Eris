@@ -1,39 +1,39 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "d" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "e" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "f" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "g" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "h" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "i" = (
 /obj/machinery/light/floor,
@@ -41,18 +41,18 @@
 	dir = 4
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "j" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "k" = (
 /obj/structure/table/onestar,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "l" = (
 /obj/machinery/light/floor,
@@ -60,62 +60,61 @@
 	dir = 8
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "m" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "n" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "o" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "p" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/wall/low/onestar,
 /area/crawler)
 "q" = (
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "r" = (
 /obj/structure/bed/chair/custom/onestar/red{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "s" = (
 /obj/structure/table/rack,
 /obj/spawner/gun_parts,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "t" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "u" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "v" = (
 /obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "w" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4;
 	icon_state = "warningcorner"
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "x" = (
 /obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "y" = (
 /obj/machinery/light/floor,
@@ -125,14 +124,14 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "z" = (
 /obj/structure/table/onestar,
 /obj/structure/window/reinforced{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
+/turf/floor/tiled/dark/brown_perforated,
 /area/crawler)
 "A" = (
 /obj/machinery/light/floor,
@@ -142,38 +141,38 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "B" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "C" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/crawler)
 "D" = (
 /obj/structure/closet/onestar/tier3,
 /obj/spawner/gun/onestar/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "N" = (
 /obj/structure/table/rack,
 /obj/spawner/gun/shotgun/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "Q" = (
 /obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
+/turf/floor/tiled/dark/brown_platform,
 /area/crawler)
 "T" = (
 /obj/structure/sign/derelict2{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 
 (1,1,1) = {"

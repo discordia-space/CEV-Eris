@@ -739,11 +739,9 @@ proc/GaussRandRound(var/sigma, var/roundto)
 	var/list/zones_trg = new/list() // Let's add zones from a target destination for rebuilding after.
 	var/list/refined_trg = new/list()
 	for(var/turf/T in turfs_trg)
-		if(istype(T, /turf/simulated))
-			var/turf/simulated/TZ = T
-			if(TZ.zone)
-				zones_trg |= TZ.zone
-			qdel(TZ) // Prevents lighting bugs. Don't ask.
+		if(T.zone)
+			zones_trg |= T.zone
+		qdel(T) // Prevents lighting bugs. Don't ask.
 		refined_trg += T
 		refined_trg[T] = new/datum/coords
 		var/datum/coords/C = refined_trg[T]
@@ -777,16 +775,14 @@ proc/GaussRandRound(var/sigma, var/roundto)
 					X.decals = old_decals
 					X.opacity = old_opacity
 
-					if(istype(T, /turf/simulated/open) || istype(T, /turf/space) || istype(T, /turf/simulated/floor/asteroid))
+					if(istype(T, /turf/open) || istype(T, /turf/space) || istype(T, /turf/floor/asteroid))
 						X.ChangeTurf(get_base_turf_by_area(B))
 
-					var/turf/simulated/ST = T
-					if(istype(ST) && ST.zone)
-						var/turf/simulated/SX = X
-						if(!SX.air)
-							SX.make_air()
-						SX.air.copy_from(ST.zone.air)
-						ST.zone.remove(ST)
+					if(T.zone)
+						if(!X.air)
+							X.make_air()
+						X.air.copy_from(T.zone.air)
+						T.zone.remove(T)
 
 					/* Quick visual fix for some weird shuttle corner artefacts when on transit space tiles */
 					if(direction && findtext(X.icon_state, "swall_s"))
@@ -1001,12 +997,10 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 					refined_trg -= B
 					continue moving
 
-
-
-
 	if(toupdate.len)
-		for(var/turf/simulated/T1 in toupdate)
-			SSair.mark_for_update(T1)
+		for(var/turf/T1 in toupdate)
+			if(T1.is_simulated)
+				SSair.mark_for_update(T1)
 
 	return copiedobjs
 

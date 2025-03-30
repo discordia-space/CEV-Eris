@@ -59,14 +59,14 @@
 		active_power_usage = min(max_power_usage, (cell.maxcharge*cell.max_chargerate)/CELLRATE)
 
 		cell.give(active_power_usage*CELLRATE*efficiency)
-		update_use_power(ACTIVE_POWER_USE)
+		set_power_use(ACTIVE_POWER_USE)
 
 		if(cell.fully_charged())
 			charging.occupant_message(SPAN_NOTICE("Fully charged."))
 		else
 			done = FALSE
 	else
-		update_use_power(IDLE_POWER_USE)
+		set_power_use(IDLE_POWER_USE)
 
 	if(repair && charging.health < initial(charging.health))
 		charging.health = min(charging.health + repair, initial(charging.health))
@@ -101,4 +101,4 @@
 		return
 
 	charging = null
-	update_use_power(IDLE_POWER_USE)
+	set_power_use(IDLE_POWER_USE)

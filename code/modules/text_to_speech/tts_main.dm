@@ -18,22 +18,7 @@ var/list/tts_seeds = list()
 	if(!config.tts_key)
 		return
 
-	var/datum/http_request/request = new()
-	var/payload = json_encode(list("key" = "[config.tts_key]"))
-	var/header = list("content-type" = "application/json; charset=utf-8", "content-length" = "223")
-	request.prepare(RUSTG_HTTP_METHOD_POST, "https://api.novelai.net/user/login", payload, header)
-	request.begin_async()
-	UNTIL(request.is_complete())
-	var/datum/http_response/response = request.into_response()
-	if(response.errored)
-		NOTICE("TTS failed to recieve authentication token. [response.error]")
-	else
-		var/list/decoded_body = json_decode(response.body)
-		if(decoded_body["accessToken"])
-			GLOB.tts_bearer = "Bearer [decoded_body["accessToken"]]"
-			NOTICE("TTS recieved authentication token.")
-		else
-			NOTICE("TTS failed to recieve authentication token. [response.error]")
+	GLOB.tts_bearer = "Bearer [config.tts_key]"
 
 	if(!fexists("config/tts_seeds.txt"))
 		return

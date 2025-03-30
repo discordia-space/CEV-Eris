@@ -5,7 +5,7 @@
 	planetary_area = /area/exoplanet/barren
 	rock_colors = list(COLOR_BEIGE, COLOR_GRAY80, COLOR_BROWN)
 	possible_themes = list(/datum/exoplanet_theme/mountains)
-	map_generators = list(/datum/random_map/noise/exoplanet/barren, /datum/random_map/noise/ore/rich)
+	map_generators = list(/datum/random_map/noise/exoplanet/barren)
 	ruin_tags_blacklist = RUIN_HABITAT|RUIN_WATER
 	features_budget = 6
 	surface_color = "#847c6f"
@@ -21,7 +21,7 @@
 /datum/random_map/noise/exoplanet/barren
 	descriptor = "barren exoplanet"
 	smoothing_iterations = 4
-	land_type = /turf/simulated/floor/exoplanet/barren
+	land_type = /turf/floor/exoplanet/barren
 	flora_prob = 0.1
 	large_flora_prob = 0
 	flora_diversity = 0
@@ -32,21 +32,21 @@
 		flora_diversity = 1
 	..()
 
-/turf/simulated/floor/exoplanet/barren
+/turf/floor/exoplanet/barren
 	name = "ground"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
 
-/turf/simulated/floor/exoplanet/barren/update_icon()
+/turf/floor/exoplanet/barren/update_icon()
 	cut_overlays()
 	if(prob(20))
 		overlays += image('icons/turf/flooring/decals.dmi', "asteroid[rand(0,9)]")
 
-/turf/simulated/floor/exoplanet/barren/Initialize()
+/turf/floor/exoplanet/barren/Initialize()
 	. = ..()
 	update_icon()
 
 /area/exoplanet/barren
 	name = "\improper Planetary surface"
 	ambience = list('sound/effects/wind/wind_2_1.ogg','sound/effects/wind/wind_2_2.ogg','sound/effects/wind/wind_3_1.ogg','sound/effects/wind/wind_4_1.ogg','sound/effects/wind/wind_4_2.ogg','sound/effects/wind/wind_5_1.ogg')
-	base_turf = /turf/simulated/floor/exoplanet/barren
+	base_turf = /turf/floor/exoplanet/barren

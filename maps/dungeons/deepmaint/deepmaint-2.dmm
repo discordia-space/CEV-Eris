@@ -1,17 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/unsimulated/wall,
+/turf/wall/dummy,
 /area/deepmaint)
 "b" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "c" = (
 /obj/map_data/deepmaint/lvl2,
-/turf/unsimulated/wall,
+/turf/wall/dummy,
 /area/deepmaint)
 "d" = (
 /obj/procedural/dungenerator/deepmaint,
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 
 (1,1,1) = {"

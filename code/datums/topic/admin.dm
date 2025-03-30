@@ -1021,7 +1021,7 @@
 	S.loc = M.loc
 	QDEL_IN(S, 20)
 
-	var/turf/simulated/floor/T = get_turf(M)
+	var/turf/floor/T = get_turf(M)
 	if(istype(T))
 		if(prob(80))
 			T.break_tile_to_plating()

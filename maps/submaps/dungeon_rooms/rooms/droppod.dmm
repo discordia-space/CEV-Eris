@@ -1,28 +1,27 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "d" = (
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "e" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "f" = (
 /obj/structure/lattice,
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/plating/under,
+/turf/wall/low/onestar,
 /area/crawler)
 "g" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "h" = (
 /turf/space,
@@ -34,11 +33,11 @@
 "j" = (
 /obj/machinery/light/floor,
 /obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "k" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/floor/bluegrid,
+/turf/floor/bluegrid,
 /area/crawler)
 "l" = (
 /obj/structure/catwalk,
@@ -59,14 +58,14 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
+/turf/floor/tiled/dark/techfloor,
 /area/crawler)
 "p" = (
 /obj/structure/railing/grey{
 	dir = 4
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "q" = (
 /obj/structure/railing/grey{
@@ -75,14 +74,14 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
+/turf/floor/plating/under,
 /area/crawler)
 "r" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "u" = (
 /obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "v" = (
 /obj/structure/sign/directions/evac{
@@ -90,17 +89,16 @@
 	pixel_x = -32
 	},
 /obj/item/tank/onestar_regenerator,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "x" = (
 /obj/structure/bed/chair/custom/onestar{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "y" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/plating/under,
+/turf/wall/low/onestar,
 /area/crawler)
 "D" = (
 /obj/structure/sign/directions/evac{
@@ -110,29 +108,29 @@
 /obj/structure/salvageable/os/console_broken{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "G" = (
 /obj/structure/bed/chair/custom/onestar,
 /obj/structure/sign/derelict3{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "R" = (
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "T" = (
 /obj/spawner/toy,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 "Z" = (
 /obj/machinery/light/floor,
 /obj/structure/bed/chair/custom/onestar{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/floor/tiled/derelict/white_small_edges,
 /area/crawler)
 
 (1,1,1) = {"

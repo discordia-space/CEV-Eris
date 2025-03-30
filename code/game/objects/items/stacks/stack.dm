@@ -26,14 +26,15 @@
 	var/consumable = TRUE	// Will the stack disappear entirely once the amount is used up?
 	var/splittable = TRUE	// Is the stack capable of being splitted?
 	var/novariants = TRUE //Determines whether the item should update it's sprites based on amount.
+	var/automerge = FALSE // Automatically merge with stacks on the same tile?
 
 	//If either of these two are set to nonzero values, the stack will have randomised quantity on spawn
 	//Used for the /random subtypes of material stacks. any stack works
 	var/rand_min = 0
 	var/rand_max = 0
-
-
-
+	//Damage dealt to something when falling on it, per amount in the stack.
+	//IE, if this is 0.2 a stack of 120 will deal 24 base damage when falling on a mob
+	var/fall_damage_per_amount = 0.2
 
 /obj/item/stack/New(var/loc, var/amount=null)
 	.=..()
@@ -41,7 +42,7 @@
 		src.amount = amount
 
 /obj/item/stack/Initialize()
-	.=..()
+	. = ..()
 	if (!stacktype)
 		stacktype = type
 
@@ -49,6 +50,14 @@
 		amount = rand(rand_min, rand_max)
 		amount = round(amount, 1) //Just in case
 	update_icon()
+	if(automerge)
+		return INITIALIZE_HINT_LATELOAD
+
+//do this a little later because trying to merge with uninitialized stacks is an easy way to cause runtimes
+/obj/item/stack/LateInitialize()
+	. = ..()
+	if(automerge)
+		merge_loc_stacks()
 
 /obj/item/stack/update_icon()
 	if(novariants)
@@ -378,6 +387,9 @@
 	else
 		return ..()
 
+/obj/item/stack/get_fall_damage()
+	return amount * fall_damage_per_amount
+
 //Verb to split stacks
 /obj/item/stack/verb/split_verb()
 	set src in view(1)
@@ -412,6 +424,16 @@
 
 /obj/item/stack/get_item_cost(export)
 	return amount * ..()
+
+/obj/item/stack/Crossed(O)
+	. = ..()
+	if(automerge && (O != src) && istype(O, /obj/item/stack))
+		transfer_to(O)
+
+/obj/item/stack/proc/merge_loc_stacks()
+	for(var/obj/item/stack/material/loc_stack in loc)
+		if(loc_stack != src)
+			transfer_to(loc_stack)
 
 /*
  * Recipe datum

@@ -16,6 +16,7 @@
 	// IWOUND_PROGRESS_DEATH - Allows the wound to progress after organ death
 	// IWOUND_SPREAD - Allows the wound to spread to another organ
 	// IWOUND_HALLUCINATE - Causes hallucinations
+	// IWOUND_AGGRAVATION - inheritance increases severity gradually if progress IW flag is not present
 	var/characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_PROGRESS
 
 	var/severity = 0					// How much the wound contributes to internal organ damage
@@ -63,6 +64,12 @@
 
 	START_PROCESSING(SSinternal_wounds, src)
 
+	var/obj/item/organ/O = parent
+	var/obj/item/organ/external/E = O.parent
+	var/mob/living/carbon/human/H = O.owner
+	if(((characteristic_flag & IWOUND_CAN_DAMAGE) || hal_damage) && H)
+		H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
+
 /datum/component/internal_wound/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_IWOUND_EFFECTS)
 	UnregisterSignal(parent, COMSIG_IWOUND_LIMB_EFFECTS)
@@ -93,8 +100,6 @@
 		if(current_progression_tick >= progression_threshold)
 			current_progression_tick = 0
 			progress()
-			if(H)
-				H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
 
 	if(!H)
 		return
@@ -136,9 +141,13 @@
 			current_hallucination_tick = 0
 
 /datum/component/internal_wound/proc/progress()
-	if(!(characteristic_flag & IWOUND_PROGRESS))
+	if(!((characteristic_flag & IWOUND_PROGRESS) || (characteristic_flag & IWOUND_AGGRAVATION)))
 		return
-
+	var/obj/item/organ/O = parent
+	var/obj/item/organ/external/E = parent ? O.parent : null
+	var/mob/living/carbon/human/H = parent ? O.owner : null
+	if(((characteristic_flag & IWOUND_CAN_DAMAGE) || hal_damage) && H)
+		H.custom_pain("Something inside your [E.name] hurts a lot.", 0)
 	if(severity < severity_max)
 		++severity
 	else

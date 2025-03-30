@@ -140,11 +140,7 @@
 	severity = 0
 	severity_max = 4
 	hal_damage = IWOUND_LIGHT_DAMAGE
-
-/// Cheap hack, but prevents unbalanced toxins from killing someone immediately
-/datum/component/internal_wound/organic/poisoning/InheritComponent()
-	if(prob(5))
-		progress()
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_AGGRAVATION
 
 /datum/component/internal_wound/organic/poisoning/pustule
 	name = "pustule"
@@ -175,6 +171,7 @@
 	blood_req_multiplier = 0.50
 	nutriment_req_multiplier = 0.50
 	oxygen_req_multiplier = 0.50
+	characteristic_flag = IWOUND_CAN_DAMAGE|IWOUND_AGGRAVATION
 
 /datum/component/internal_wound/organic/heavy_poisoning/toxin
 	name = "toxin accumulation"
@@ -258,14 +255,14 @@
 	severity_max = 1
 	organ_efficiency_multiplier = -0.10
 
-/datum/component/internal_wound/organic/debuff_tumor
+/datum/component/internal_wound/organic/debuff_tumor/default
 	name = "tumor"
 
-/datum/component/internal_wound/organic/debuff_tumor_15
+/datum/component/internal_wound/organic/debuff_tumor/t15
 	name = "tumor"
 	organ_efficiency_multiplier = -0.15
 
-/datum/component/internal_wound/organic/debuff_tumor_5
+/datum/component/internal_wound/organic/debuff_tumor/t5
 	name = "tumor"
 	organ_efficiency_multiplier = -0.05
 
@@ -357,3 +354,19 @@
 
 /datum/component/internal_wound/organic/permanent/nopain
 	hal_damage = 0
+
+/datum/component/internal_wound/organic/genedamage
+	name = "genetic damage"
+	treatments_chem = list(CE_GENEHEAL = 1)
+	characteristic_flag = IWOUND_AGGRAVATION // this wound is hidden
+	next_wound = /datum/component/internal_wound/organic/catastrophicgenedamage
+
+/datum/component/internal_wound/organic/catastrophicgenedamage
+	name = "catastrophic genetic damage"
+	severity_max = IORGAN_STANDARD_HEALTH
+	characteristic_flag = IWOUND_AGGRAVATION | IWOUND_CAN_DAMAGE
+	hal_damage = IWOUND_HEAVY_DAMAGE
+	treatments_chem = list(CE_GENEHEAL = 2)
+
+/datum/component/internal_wound/organic/catastrophicgenedamage/failure
+	name = "tissue failure"

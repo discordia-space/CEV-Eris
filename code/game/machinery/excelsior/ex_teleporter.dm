@@ -66,9 +66,13 @@ var/global/excelsior_last_draft = 0
 		/obj/item/electronics/circuitboard/excelsior_autodoc = 150,
 		/// its expensive so they need to do a few mandates before they manage to get it
 		/obj/item/electronics/circuitboard/excelsior_navigation_cracker = 3000,
-		/obj/item/electronics/circuitboard/diesel = 150
+		/obj/item/electronics/circuitboard/diesel = 150,
+		/obj/item/storage/deferred/crate/excel_conscript = 75,
+		/obj/item/storage/deferred/crate/excel_shock_kit = 250,
+		/obj/item/storage/deferred/crate/excel_eva = 300,
+		/obj/item/storage/deferred/crate/excel_spetsnaz = 350,
+		/obj/item/storage/deferred/crate/excel_heavy = 450,
 		)
-
 	var/list/IKEA_list = list(
 		/obj/item/machinery_crate/excelsior/shield = 500,
 		/obj/item/machinery_crate/excelsior/autolathe = 300,

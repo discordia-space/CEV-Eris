@@ -149,7 +149,7 @@
 	SSevent.change_parallax(GLOB.random_parallax)
 
 /datum/event/harmonic_feedback/tick() //around two seconds
-	for(var/obj/machinery/power/shield_generator/G in GLOB.machines)
+	for(var/obj/machinery/power/shipside/shield_generator/G in GLOB.machines)
 		if(G.running != SHIELD_OFF)
 			G.take_shield_damage(250, SHIELD_DAMTYPE_SPECIAL, "UNKNOWN") // ALRIGHT LISTEN WEATHER CAN LAST AT MAXIMUM 450 TICKS, AVERAGE AT 375 SHIELD HITS
 														 	// BY DEFAULT 1000 DAMAGE EQUALS 1 PERCENT, SO 0.25% * 375 = 93.75%, THIS WILL KNOCK SHIELDS OUT IF THEY'RE NOT AT FULL CAPACITY OR NOT CHARGING WELL

@@ -52,6 +52,7 @@
 #define PERK_NEAT /datum/perk/neat
 #define PERK_GREEN_THUMB  /datum/perk/greenthumb
 #define PERK_CLUB /datum/perk/job/club
+#define PERK_CHANNELING /datum/perk/channeling
 
 //cooldown perks
 #define PERK_COOLDOWN_REASON /datum/perk/cooldown/reason

@@ -100,8 +100,8 @@
 	if(powered(power_channel))
 		stat &= ~NOPOWER
 	else
-
 		stat |= NOPOWER
+	update_power_use()
 	return
 
 // connect the machine to a powernet if a node cable is present on the turf
@@ -134,7 +134,7 @@
 
 		var/turf/T = user.loc
 
-		if(!T.is_plating() || !istype(T, /turf/simulated/floor))
+		if(!T.is_plating() || !istype(T, /turf/floor))
 			return
 
 		if(get_dist(src, user) > 1)

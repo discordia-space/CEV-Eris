@@ -161,7 +161,7 @@
 		return
 	if(isliving(M))
 		var/mob/living/L = M
-		delay *= L.mod_climb_delay
+		delay *= (L.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
 	var/turf/T = target.loc
 	var/mob/tempMob
 	for(var/atom/A in T)

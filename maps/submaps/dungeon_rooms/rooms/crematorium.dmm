@@ -1,65 +1,64 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "d" = (
 /obj/machinery/light/floor,
 /obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "e" = (
 /obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "f" = (
-/turf/simulated/floor/tiled/dark/golden,
+/turf/floor/tiled/dark/golden,
 /area/crawler)
 "g" = (
 /obj/structure/crematorium,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/floor/tiled/dark/golden,
 /area/crawler)
 "h" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "i" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "j" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
+/turf/wall/low/onestar,
 /area/crawler)
 "k" = (
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "l" = (
 /obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/floor/tiled/dark/golden,
 /area/crawler)
 "m" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "n" = (
 /obj/structure/morgue,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "o" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "p" = (
 /obj/structure/morgue{
@@ -68,54 +67,54 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "q" = (
 /obj/structure/morgue,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "r" = (
 /obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "s" = (
 /obj/machinery/light/floor,
 /obj/structure/closet/body_bag,
 /obj/item/remains/human,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "t" = (
 /obj/structure/morgue{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "v" = (
 /obj/effect/floor_decal/fact_plaque,
-/turf/simulated/floor/tiled/derelict,
+/turf/floor/tiled/derelict,
 /area/crawler)
 "w" = (
 /obj/structure/closet/cabinet,
 /obj/spawner/prothesis_one_star,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "x" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "y" = (
 /obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "z" = (
 /obj/structure/table/onestar,
 /obj/structure/window/reinforced,
 /obj/spawner/surgery_tool/low_chance,
-/turf/simulated/floor/tiled/white,
+/turf/floor/tiled/white,
 /area/crawler)
 "B" = (
 /obj/effect/decal/cleanable/ash,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/floor/tiled/dark/golden,
 /area/crawler)
 
 (1,1,1) = {"

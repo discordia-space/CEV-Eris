@@ -1,13 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/deepmaint)
 "b" = (
 /obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/deepmaint)
 "c" = (
-/turf/simulated/wall,
+/turf/wall,
 /area/deepmaint)
 "d" = (
 /obj/structure/table/rack,
@@ -15,13 +15,13 @@
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
 /obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "e" = (
 /obj/structure/table/rack,
 /obj/spawner/pack/gun_loot/low_chance,
 /obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "f" = (
 /obj/structure/table/rack/shelf,
@@ -30,15 +30,14 @@
 /obj/spawner/pack/cloth,
 /obj/spawner/pack/cloth/low_chance,
 /obj/spawner/pack/cloth/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "g" = (
-/turf/simulated/floor/tiled/dark/techfloor_grid,
+/turf/floor/tiled/dark/techfloor_grid,
 /area/deepmaint)
 "h" = (
 /obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
+/turf/wall/low/with_glass/smart,
 /area/deepmaint)
 "i" = (
 /obj/machinery/light/small{
@@ -46,68 +45,68 @@
 	},
 /obj/landmark/corpse/skeleton,
 /obj/item/bodybag,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "j" = (
 /obj/structure/morgue{
 	dir = 8;
 	icon_state = "morgue1"
 	},
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "k" = (
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "l" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/deepmaint)
 "n" = (
 /obj/machinery/optable,
 /obj/landmark/corpse/skeleton/maint,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "o" = (
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/deepmaint)
 "p" = (
 /obj/machinery/door/airlock/maintenance_common{
 	name = "Service Maintenance";
 	req_access = list(12)
 	},
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/deepmaint)
 "q" = (
 /obj/machinery/bodyscanner,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "r" = (
 /obj/machinery/body_scanconsole,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "s" = (
 /obj/structure/table/rack,
 /obj/spawner/medical,
 /obj/spawner/medical/low_chance,
 /obj/spawner/medical/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/deepmaint)
 "t" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/floor/tiled/dark,
 /area/deepmaint)
 "w" = (
 /obj/landmark/corpse/skeleton,
 /obj/item/bodybag,
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 "S" = (
 /obj/structure/table/standard,
@@ -119,7 +118,7 @@
 /obj/item/tool/cautery{
 	pixel_y = 4
 	},
-/turf/simulated/floor/tiled/dark/panels,
+/turf/floor/tiled/dark/panels,
 /area/deepmaint)
 
 (1,1,1) = {"

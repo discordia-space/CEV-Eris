@@ -408,7 +408,7 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "barrelfire"
 	desc = "A fire in an old barrel. Perfect for campouts in the far corners of the ship."
-	use_power = FALSE
+	use_power = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 	dinger = FALSE

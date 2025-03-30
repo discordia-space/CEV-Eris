@@ -30,7 +30,7 @@ var/list/lost_cruciforms = list()
 	var/true_power_regen = power_regen
 	true_power_regen += max(round(wearer.stats.getStat(STAT_COG) / 4), 0) * power_regen * 0.05
 	true_power_regen += power_regen * 1.5 * righteous_life / max_righteous_life
-	if(wearer && wearer.stats?.getPerk(/datum/perk/channeling))
+	if(wearer && wearer.stats?.getPerk(PERK_CHANNELING))
 		true_power_regen += power_regen * disciples.len / 5 // Proportional to the number of cruciformed people on board
 
 	restore_power(true_power_regen)

@@ -22,7 +22,7 @@
 		return
 
 	turfcount = 0
-	for (var/turf/simulated/S in area)
+	for (var/turf/S in area)
 		turfcount++
 
 	active_power_usage = 4000 + (turfcount * power_usage_per_tile)
@@ -34,7 +34,7 @@
 		start_anim()
 
 	on = TRUE
-	use_power = ACTIVE_POWER_USE
+	set_power_use(ACTIVE_POWER_USE)
 	update_icon()
 
 /obj/machinery/antigrav/examine(mob/user, extra_description = "")
@@ -53,7 +53,7 @@
 		stop_anim()
 
 	on = FALSE
-	use_power = IDLE_POWER_USE
+	set_power_use(IDLE_POWER_USE)
 	update_icon()
 
 /obj/machinery/antigrav/Process()

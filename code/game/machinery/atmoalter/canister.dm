@@ -422,7 +422,7 @@ update_flag
 	..()
 	air_contents.gas["sleeping_agent"] = 9*4000
 	spawn(10)
-		var/turf/simulated/location = src.loc
+		var/turf/location = src.loc
 		if (istype(src.loc))
 			while (!location.air)
 				sleep(10)

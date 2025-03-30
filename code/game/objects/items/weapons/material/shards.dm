@@ -86,7 +86,7 @@
 	transform = M
 
 /obj/item/material/shard/attackby(obj/item/I, mob/user)
-	if(QUALITY_WELDING in I.tool_qualities)
+	if(I.tool_qualities)
 		merge_shards(I, user)
 		return
 	return ..()
@@ -118,7 +118,18 @@
 
 	//Do a tool operation for each shard
 	for (var/obj/item/material/shard/S in shards)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		var/quality
+		switch(S.material.name)
+			if(MATERIAL_STEEL, MATERIAL_PLASTEEL)
+				quality = QUALITY_HAMMERING
+			if(MATERIAL_GLASS, MATERIAL_RGLASS, MATERIAL_PLASMAGLASS, MATERIAL_RPLASMAGLASS)
+				quality = QUALITY_WELDING
+			if(MATERIAL_PLASTIC)
+				quality = QUALITY_ADHESIVE
+			else
+				quality = QUALITY_WELDING
+
+		if(I.use_tool(user, src, WORKTIME_NORMAL, quality, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			//We meld each shard with ourselves
 			amount += S.amount
 			qdel(S)
@@ -135,6 +146,7 @@
 			update_icon()
 		else
 			//If we fail any of the operations, we abort it all
+			to_chat(user, SPAN_WARNING("You failed to merge [name]s! You might try using a better tool."))
 			break
 
 

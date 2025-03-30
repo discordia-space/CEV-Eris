@@ -4,20 +4,20 @@
 	Wetness and slipping
 */
 
-/turf/simulated/proc/wet_floor(var/wet_val = 1, var/force_wet = FALSE)
-	if(wet_val < wet && !force_wet)
+/turf/proc/wet_floor(wet_value = 1, force_wet = FALSE)
+	if(wet_value < is_wet && !force_wet)
 		return
 
-	if(force_wet || !wet)
-		wet = wet_val
+	if(force_wet || !is_wet)
+		is_wet = wet_value
 	if(!wet_overlay)
 		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 
 	addtimer(CALLBACK(src, PROC_REF(unwet_floor), TRUE), rand(1 MINUTES, 1.5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE)
 
-/turf/simulated/proc/unwet_floor(var/check_very_wet)
-	wet = 0
+/turf/proc/unwet_floor(check_very_wet)
+	is_wet = 0
 	if(wet_overlay)
 		overlays -= wet_overlay
 		wet_overlay = null
@@ -27,7 +27,7 @@
 	Cleaning
 */
 
-/turf/simulated/clean_blood()
+/turf/clean_blood()
 	for(var/obj/effect/decal/cleanable/blood/B in contents)
 		B.clean_blood()
 	..()
@@ -96,7 +96,7 @@
 
 
 
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
 		tracks = new typepath(src)
@@ -104,7 +104,7 @@
 
 
 //returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+/turf/add_blood(mob/living/carbon/human/M as mob)
 	if (!..())
 		return 0
 
@@ -120,6 +120,6 @@
 	return 0
 
 // Only adds blood on the floor -- Skie
-/turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
+/turf/proc/add_blood_floor(mob/living/carbon/M as mob)
 	if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)

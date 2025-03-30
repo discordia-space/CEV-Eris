@@ -346,7 +346,7 @@ meteor_act
 				if("bloodstains")
 					if(blood_color)
 						var/turf/location = loc
-						if(istype(location, /turf/simulated))
+						if(istype(location, /turf))
 							location.add_blood(src)
 						if(ishuman(user))
 							var/mob/living/carbon/human/H = user

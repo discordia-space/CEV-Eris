@@ -321,7 +321,7 @@
 	testing("finished dungeon initialization!")
 
 	sleep(1)
-	for(var/turf/simulated/wall/W in block(locate(1, 1, z), locate(210, 146, z)))
+	for(var/turf/wall/W in block(locate(1, 1, z), locate(210, 146, z)))
 		W.update_connections(1)
 
 

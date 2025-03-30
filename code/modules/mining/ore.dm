@@ -2,6 +2,7 @@
 	name = "rock"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
+	layer = OBJ_LAYER - 0.05 //slightly below other items so that ore piles don't bury anything on the same tile
 	w_class = ITEM_SIZE_SMALL
 	rarity_value = 25
 	bad_type = /obj/item/ore

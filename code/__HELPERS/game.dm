@@ -160,21 +160,14 @@
 			hearturfs[AM.locs[1]] = TRUE
 
 
-	for(var/m in GLOB.player_list)
-		var/mob/M = m
-		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && !isnewplayer(M) && (M.client && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
-			if (!mobs[M])
-				mobs[M] = TRUE
-			continue
-		if(M.loc && hearturfs[M.locs[1]])
-			if (!mobs[M])
-				mobs[M] = TRUE
+	for(var/mob/M as anything in getMobsInRangeChunked(T, range, FALSE, TRUE))
+		mobs[M] = TRUE
+	for(var/mob/M as anything in GLOB.player_ghost_list)
+		if(checkghosts == GHOSTS_ALL_HEAR && M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+			mobs[M] = TRUE
 
-	
-	for(var/obj in GLOB.hearing_objects)
-		if(get_turf(obj) in hearturfs)
-			objs |= obj
-		
+	objs |= getHearersInRangeChunked(T, range)
+
 
 
 /proc/get_mobs_in_radio_ranges(list/obj/item/device/radio/radios)
@@ -445,14 +438,13 @@
 	var/minp=16777216;
 	var/maxp=0;
 	for(var/dir in cardinal)
-		var/turf/simulated/T=get_turf(get_step(loc, dir))
+		var/turf/T=get_turf(get_step(loc, dir))
 		var/cp=0
 		if(T && istype(T) && T.zone)
 			var/datum/gas_mixture/environment = T.return_air()
 			cp = environment.return_pressure()
 		else
-			if(istype(T,/turf/simulated))
-				continue
+			continue
 		if(cp<minp)minp=cp
 		if(cp>maxp)maxp=cp
 	return abs(minp-maxp)
@@ -476,7 +468,7 @@
 				direction = 3
 			if(WEST)
 				direction = 4
-		var/turf/simulated/T=get_turf(get_step(loc, dir))
+		var/turf/T=get_turf(get_step(loc, dir))
 		var/list/rstats = new /list(stats.len)
 		if(T && istype(T) && T.zone)
 			var/datum/gas_mixture/environment = T.return_air()
@@ -485,8 +477,6 @@
 					rstats[i] = environment.return_pressure()
 				else
 					rstats[i] = environment.vars[stats[i]]
-		else if(istype(T, /turf/simulated))
-			rstats = null // Exclude zone (wall, door, etc).
 		else if(istype(T, /turf))
 			// Should still work.  (/turf/return_air())
 			var/datum/gas_mixture/environment = T.return_air()

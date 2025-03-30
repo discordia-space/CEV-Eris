@@ -1,147 +1,146 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "b" = (
 /obj/crawler/crawler_wallbreaker,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "c" = (
 /obj/structure/table/rack,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/crawler)
 "d" = (
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/crawler)
 "e" = (
 /obj/machinery/light/built{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/crawler)
 "f" = (
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/crawler)
 "g" = (
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "h" = (
 /obj/machinery/autolathe,
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/crawler)
 "i" = (
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/crawler)
 "j" = (
-/turf/simulated/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_perforated,
 /area/crawler)
 "k" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
+/turf/floor/tiled/techmaint_cargo,
 /area/crawler)
 "l" = (
-/turf/simulated/wall/untinted/onestar,
+/turf/wall/untinted/onestar,
 /area/crawler)
 "m" = (
 /obj/structure/table/onestar,
 /obj/spawner/tool_upgrade/rare/onestar,
-/turf/simulated/floor/tiled/dark/danger,
+/turf/floor/tiled/dark/danger,
 /area/crawler)
 "n" = (
 /obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_perforated,
 /area/crawler)
 "o" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/crawler)
 "p" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/floor/tiled/dark/gray_platform,
 /area/crawler)
 "q" = (
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/floor/tiled/dark/gray_platform,
 /area/crawler)
 "r" = (
 /obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/floor/tiled/dark/gray_platform,
 /area/crawler)
 "s" = (
 /obj/structure/salvageable/os/console{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/floor/tiled/dark/gray_platform,
 /area/crawler)
 "t" = (
 /obj/structure/closet/cabinet,
 /obj/spawner/cloth/onestar/low_chance,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "u" = (
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "v" = (
 /obj/structure/table/onestar,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "w" = (
 /obj/item/bedsheet/brown,
 /obj/structure/bed,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "x" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/white/gray_perforated,
+/turf/floor/tiled/white/gray_perforated,
 /area/crawler)
 "y" = (
-/turf/simulated/floor/tiled/techmaint,
+/turf/floor/tiled/techmaint,
 /area/crawler)
 "z" = (
 /obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/wall/untinted/onestar_reinforced,
+/turf/wall/untinted/onestar_reinforced,
 /area/crawler)
 "A" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/techmaint,
+/turf/wall/low/onestar,
 /area/crawler)
 "B" = (
 /obj/machinery/light/built{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "C" = (
 /obj/machinery/light/built,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "D" = (
 /obj/machinery/light/built,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "E" = (
 /obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/dark/cargo,
+/turf/floor/tiled/dark/cargo,
 /area/crawler)
 "F" = (
 /obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/crawler)
 "G" = (
 /obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/dark/gray_perforated,
+/turf/floor/tiled/dark/gray_perforated,
 /area/crawler)
 "H" = (
 /obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/floor/carpet/bcarpet,
 /area/crawler)
 "L" = (
 /obj/structure/table/reinforced,
 /obj/spawner/lathe_disk/advanced/low_chance,
-/turf/simulated/floor/tiled/dark/gray_platform,
+/turf/floor/tiled/dark/gray_platform,
 /area/crawler)
 "P" = (
 /obj/structure/table/rack,
 /obj/spawner/lathe_disk/advanced,
-/turf/simulated/floor/tiled/white/gray_platform,
+/turf/floor/tiled/white/gray_platform,
 /area/crawler)
 
 (1,1,1) = {"

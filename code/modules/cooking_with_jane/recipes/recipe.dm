@@ -366,6 +366,33 @@
 		list(CWJ_USE_GRILL, J_MED, 20 SECONDS)
 	)
 
+/datum/cooking_with_jane/recipe/nigiri
+	cooking_container = CUTTING_BOARD
+	product_type = /obj/item/reagent_containers/food/snacks/nigiri
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledrice, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/carp, qmod=0.5),
+	)
+
+/datum/cooking_with_jane/recipe/makiroll
+	cooking_container = CUTTING_BOARD
+	product_type = /obj/item/reagent_containers/food/snacks/makiroll
+	step_builder = list(
+		list(CWJ_ADD_PRODUCE, "ambrosia", qmod=0.2),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/boiledrice, qmod=0.5),
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/meat/carp, qmod=0.5),
+		list(CWJ_ADD_REAGENT, "soysauce", 5),
+	)
+
+/datum/cooking_with_jane/recipe/maki
+	cooking_container = CUTTING_BOARD
+	product_type = /obj/item/reagent_containers/food/snacks/maki
+	product_count = 4
+	step_builder = list(
+		list(CWJ_ADD_ITEM, /obj/item/reagent_containers/food/snacks/makiroll, qmod=0.5),
+		list(CWJ_USE_TOOL, QUALITY_CUTTING, 15)
+	)
+
 //**Cereals and Grains**//
 //missing: poppyprezel
 /datum/cooking_with_jane/recipe/bread

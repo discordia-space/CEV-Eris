@@ -38,9 +38,9 @@
 
 /obj/machinery/ntnet_relay/Process()
 	if(operable())
-		use_power = ACTIVE_POWER_USE
+		set_power_use(ACTIVE_POWER_USE)
 	else
-		use_power = IDLE_POWER_USE
+		set_power_use(IDLE_POWER_USE)
 
 	if(dos_overload)
 		dos_overload = max(0, dos_overload - dos_dissipate)

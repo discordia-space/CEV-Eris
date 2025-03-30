@@ -334,8 +334,8 @@
 		src.engaged = 1
 		mhub.icon_state = "tele1"
 		use_power(5000)
-		update_use_power(2)
-		mhub.update_use_power(2)
+		set_power_use(ACTIVE_POWER_USE)
+		mhub.set_power_use(ACTIVE_POWER_USE)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter engaged!"), 2)
 	src.add_fingerprint(usr)
@@ -350,8 +350,8 @@
 		src.engaged = 0
 		mhub.icon_state = "tele0"
 		mhub.accurate = 0
-		mhub.update_use_power(1)
-		update_use_power(1)
+		mhub.set_power_use(IDLE_POWER_USE)
+		set_power_use(IDLE_POWER_USE)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_NOTICE("Teleporter disengaged!"), 2)
 	src.add_fingerprint(usr)

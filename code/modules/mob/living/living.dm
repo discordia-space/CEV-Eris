@@ -569,7 +569,7 @@ default behaviour is:
 								//this is the gay blood on floor shit -- Added back -- Skie
 								if(M.lying && (prob(M.getBruteLoss() / 6)))
 									var/turf/location = M.loc
-									if(istype(location, /turf/simulated))
+									if(istype(location, /turf))
 										location.add_blood(M)
 								//pull damage with injured people
 									if(prob(25))
@@ -580,7 +580,7 @@ default behaviour is:
 										M.adjustBruteLoss(2)
 										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
 										var/turf/location = M.loc
-										if(istype(location, /turf/simulated))
+										if(istype(location, /turf))
 											if(ishuman(M))
 												var/mob/living/carbon/human/H = M
 												var/blood_volume = round(H.vessel.get_reagent_amount("blood"))
@@ -626,8 +626,15 @@ default behaviour is:
 
 	if(resting)
 		is_busy = TRUE
+		var/groinmult = 1
+		if(H)
+			var/obj/item/organ/external/groin = H.get_organ(BP_GROIN)
+			if(groin.limb_efficiency <= 0)
+				to_chat(src, SPAN_WARNING("You are too damaged to be able to get up."))
+				return FALSE
+			groinmult =  100 / groin.limb_efficiency // smaller mult the bigger the efficiency
 
-		if(do_after(src, (stats.getPerk(PERK_PARKOUR) ? 0.2 SECONDS : 0.4 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
+		if(do_after(src, min((stats.getPerk(PERK_PARKOUR) ? 0.2 SECONDS : 0.4 SECONDS) * groinmult, 2 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
 			to_chat(src, SPAN_NOTICE("You are now getting up."))
 			update_lying_buckled_and_verb_status()
@@ -668,7 +675,7 @@ default behaviour is:
 		// Diving
 		to_chat(src, SPAN_NOTICE("You dive onwards!"))
 		allow_spin = FALSE
-		if(istype(get_step(src, _dir), /turf/simulated/open))
+		if(istype(get_step(src, _dir), /turf/open))
 			range++
 		if(momentum_speed > 4)
 			range++

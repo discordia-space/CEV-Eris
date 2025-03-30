@@ -98,6 +98,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	. = ..()
 	files = new /datum/research(src) //Setup the research data holder.
 	SyncRDevices()
+	if(access_research_equipment in req_access)
+		add_statverb(/datum/statverb/hack_console)
 
 /obj/machinery/computer/rdconsole/Destroy()
 	files = null

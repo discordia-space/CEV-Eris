@@ -36,6 +36,7 @@
 	var/processing = FALSE
 	var/obj/structure/burrow/target //Burrow we're currently sending mobs to
 	var/obj/structure/burrow/recieving	//Burrow currently sending mobs to us
+	var/datum/weakref/lastleader // for mob AI
 
 	var/list/sending_mobs = list()
 	var/migration_initiated //When a migration started
@@ -69,7 +70,7 @@
 		offset_to(anchor, 8)
 
 	//Hide burrows under floors
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if (istype(F))
 		F.levelupdate()
 
@@ -310,7 +311,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		//Do a shake animation each second that gets more intense the closer we are to emergence
 		// We shake florring only if burrow is still a cracks
 		if (!isRevealed)
-			var/turf/simulated/floor/F = loc
+			var/turf/floor/F = loc
 			if (istype(F) && F.flooring)
 				//This should never be false
 				if (prob(25)) //Occasional impact sound of something trying to force its way through
@@ -342,7 +343,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		audio("crumble", 120) //And a loud sound as mobs emerge
 		//Next get a list of floors to move them to
 		var/list/floors = list()
-		for (var/turf/simulated/floor/F in dview(2, loc))
+		for (var/turf/floor/F in dview(2, loc))
 			if (F.is_wall)
 				continue
 
@@ -359,6 +360,16 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 			//We'll move all the mobs briefly onto our own turf, then shortly after, onto a surrounding one
 			for (var/mob/M in contents)
 				M.forceMove(loc)
+				if(lastleader) // then we resolve the overseer
+					if(issuperioranimal(M))
+						var/mob/living/carbon/superior_animal/tochain = M
+						tochain.commandchain(lastleader.resolve())
+					// don't bother with non-superior mobs
+				else
+					if(issuperioranimal(M))
+						if(isroach(M))
+							var/mob/living/carbon/superior_animal/roach/toalert = M
+							toalert.findOverseer()
 				spawn(rand(1,5))
 					var/turf/T = pick(floors)
 					M.forceMove(T)
@@ -366,6 +377,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 					//Emerging from a burrow will create rubble and mess
 					if(spawn_rubble(loc, 2, 80))
 						spawn_rubble(loc, 3, 30)
+			lastleader = null // only summon once, then don't let automatic migrations count
 
 
 	//Lets reset all these vars that we used during migration
@@ -387,6 +399,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	processing = FALSE
 	target = null
 	recieving = null
+	lastleader = null
 
 	sending_mobs = list()
 	migration_initiated = 0
@@ -420,7 +433,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		migrate_to(btarget, 10 SECONDS, 1)
 
 
-/obj/structure/burrow/proc/distress(immediate = FALSE)
+/obj/structure/burrow/proc/distress(immediate = FALSE, atom/caller)
 	//This burrow requests reinforcements from elsewhere
 	if (reinforcements <= 0)
 		return
@@ -428,6 +441,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	distressed_burrows |= src //Add ourselves to a global list.
 	//The migration subsystem will look at it and send things.
 	//It may take up to 30 seconds to tick and notice our request
+	if(ismob(caller))
+		lastleader = WEAKREF(caller)
 
 	if (immediate)
 		//Alternatively, we can demand things be sent right now
@@ -448,7 +463,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		icon_state = "hole"
 		name = "burrow"
 		desc = "Some sort of hole that leads inside a wall. It's full of hardened resin and secretions. Collapsing this would require some heavy digging tools"
-		var/turf/simulated/floor/F = loc
+		var/turf/floor/F = loc
 		if (istype(F) && F.flooring)
 			//This should never be false
 			//Play a sound
@@ -460,7 +475,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	if(!isRevealed)
 		isRevealed = TRUE
 		level = ABOVE_PLATING_LEVEL
-	var/turf/simulated/floor/F = loc
+	var/turf/floor/F = loc
 	if (istype(F))
 		F.levelupdate()
 
@@ -581,7 +596,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		return FALSE
 
 	var/list/floors = list()
-	for (var/turf/simulated/floor/F in dview(spread, T))
+	for (var/turf/floor/F in dview(spread, T))
 		if (F.is_wall)
 			continue
 		if (locate(/obj/effect/decal/cleanable/rubble) in F)

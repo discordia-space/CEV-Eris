@@ -123,7 +123,7 @@ const remapData = (rawData: RawData): Data => {
     }
 
     throw new Error(
-      `Invalid entry in 'crafting_recipes', neither '{ has_subcats: 1 }' nor 'Recipe[]'`
+      `Invalid entry in 'crafting_recipes', neither '{ has_subcats: 1 }' nor 'Recipe[]'`,
     );
   }
 
@@ -153,7 +153,7 @@ export const PersonalCrafting = (props, context) => {
         // Show selected category only
         isCategorySelected(data, recipe) &&
         // If craftable only is selected, then filter by craftability
-        (!display_craftable_only || recipe.craftable)
+        (!display_craftable_only || recipe.craftable),
     ),
     sortBy<Recipe>((recipe) => [-recipe.craftable, recipe.name]),
   ])(recipes);
@@ -177,7 +177,8 @@ export const PersonalCrafting = (props, context) => {
                           category: category.dm_category,
                           subcategory: category.dm_subcategory,
                         })
-                      }>
+                      }
+                    >
                       {category.name}
                     </Button>
                   ))}
@@ -202,7 +203,8 @@ export const PersonalCrafting = (props, context) => {
                     onClick={() => act('toggle_recipes')}
                   />
                 </>
-              }>
+              }
+            >
               <Section fill scrollable>
                 {busy ? (
                   <Dimmer fontSize="32px">
@@ -251,7 +253,8 @@ const CraftingList = (props: CraftingListProps, context) => {
             recipe: recipe.ref,
           });
         }
-      }}>
+      }}
+    >
       <div className="PersonalCraftingGridItem__content">
         <div className="PersonalCraftingGridItem__name">{recipe.name}</div>
         {!!recipe.req_text &&
