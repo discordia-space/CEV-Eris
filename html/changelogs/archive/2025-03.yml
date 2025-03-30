@@ -39,3 +39,10 @@
   - bugfix: fixed damage, probably.
   Mycah142:
   - rscdel: Removed roach hats
+2025-03-30:
+  Chickenish:
+  - rscadd: Added setup disks, the hot old thing!
+  - tweak: Techno Storage no longer contains setup boards for the medical or security
+      records. These have been replaced with appropriate setup disks.
+  - balance: Groin efficiency now affects your getting up speed. If you have none,
+      you can't do it!

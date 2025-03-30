@@ -1,6 +1,0 @@
-author: Chickenish
-delete-after: true
-changes:
-  - rscadd: Added setup disks, the hot old thing!
-  - tweak: Techno Storage no longer contains setup boards for the medical or security
-      records. These have been replaced with appropriate setup disks.
