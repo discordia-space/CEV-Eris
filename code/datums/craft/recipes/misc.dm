@@ -210,6 +210,18 @@
 	)
 	related_stats = list(STAT_COG)
 
+/datum/craft_recipe/splint
+	name = "splint"
+	result = /obj/item/stack/medical/splint/makeshift
+	steps = list(
+		list(/obj/item/stack/rods, 1),
+		list(QUALITY_WIRE_CUTTING, 20, 40),
+		list(/obj/item/stack/medical/bruise_pack, 2, "time" = 50),
+		list(QUALITY_ADHESIVE, 20, "time" = 30)
+	)
+	related_stats = list(STAT_BIO, STAT_MEC)
+
+
 /datum/craft_recipe/handmade_handtele
 	name = "cheap hand-tele"
 	result = /obj/item/hand_tele/handmade
@@ -380,5 +392,14 @@
 	steps = list(
 		list(CRAFT_MATERIAL, 3, MATERIAL_GLASS),
 		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTIC)
+	)
+	related_stats = list(STAT_MEC)
+
+/datum/craft_recipe/makedo_inflatable
+	name = "makeshift inflatable"
+	result = /obj/item/inflatable/wall/makeshift
+	steps = list(
+		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTIC),
+		list(QUALITY_SEALING, 30, 60)
 	)
 	related_stats = list(STAT_MEC)

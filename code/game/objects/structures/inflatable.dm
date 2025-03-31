@@ -5,6 +5,7 @@
 	price_tag = 40
 	health = 20
 	var/deploy_path = null
+	matter = list(MATERIAL_PLASTIC = 6) // a full cube
 
 /obj/item/inflatable/attack_self(mob/user)
 	if(!deploy_path)
@@ -15,12 +16,17 @@
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
 	qdel(src)
+
 /obj/item/inflatable/wall
 	name = "inflatable wall"
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
 	icon_state = "folded_wall"
 	atmos_canpass = CANPASS_NEVER
 	deploy_path = /obj/structure/inflatable/wall
+
+/obj/item/inflatable/wall/makeshift
+	name = "makeshift inflatable wall"
+	desc = "A folded mass of tape and plastic which rapidly expands into a large cubical shape on activation."
 
 /obj/item/inflatable/door/
 	name = "inflatable door"
@@ -42,6 +48,9 @@
 	var/undeploy_path = null
 	health = 30
 	explosion_coverage = 1
+
+/obj/structure/inflatable/get_matter()
+	return list(MATERIAL_PLASTIC = 6)
 
 /obj/structure/inflatable/wall
 	name = "inflatable wall"
