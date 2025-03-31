@@ -463,7 +463,7 @@
 	else
 		to_chat(user, SPAN_NOTICE("No bleeding wounds are present on [organ.get_surgery_name()]!"))
 
-/datum/surgery_step/seal_wounds/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
+/datum/surgery_step/seal_wound/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
 		SPAN_WARNING("[user]'s fumbles with \the [tool], making no progress on sealing [organ.get_surgery_name()]!"),
 		SPAN_WARNING("Your hand slips, wasting all \the [tool] you were trying to seal [organ.get_surgery_name()] with!")
