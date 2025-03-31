@@ -396,6 +396,7 @@
 			stance = HOSTILE_STANCE_ATTACK
 	else
 		return TRUE
+
 /mob/living/carbon/superior_animal/death()
 	breakgrab()
 	. = ..()
