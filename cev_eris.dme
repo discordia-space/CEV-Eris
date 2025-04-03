@@ -2016,6 +2016,7 @@
 #include "code\modules\mob\living\carbon\superior_animal\roach\life.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\riding.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\roach.dm"
+#include "code\modules\mob\living\carbon\superior_animal\roach\roachmind.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\types\benzin.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\types\bluespace.dm"
 #include "code\modules\mob\living\carbon\superior_animal\roach\types\fuhrer.dm"
