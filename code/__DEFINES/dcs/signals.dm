@@ -35,6 +35,27 @@
 #define COMSIG_NULL_TARGET "null_target"		// Used to null references created by targeting logic (mob targeting)
 #define COMSIG_NULL_SECONDARY_TARGET "null_secondary_target"
 
+///From base of datum/controller/subsystem/Initialize
+#define COMSIG_SUBSYSTEM_POST_INITIALIZE "subsystem_post_initialize"
+
+///Called when the ticker enters the pre-game phase
+#define COMSIG_TICKER_ENTER_PREGAME "comsig_ticker_enter_pregame"
+
+///Called when the ticker sets up the game for start
+#define COMSIG_TICKER_ENTER_SETTING_UP "comsig_ticker_enter_setting_up"
+
+///Called when the ticker fails to set up the game for start
+#define COMSIG_TICKER_ERROR_SETTING_UP "comsig_ticker_error_setting_up"
+
+/// Called when the round has started, but before GAME_STATE_PLAYING.
+#define COMSIG_TICKER_ROUND_STARTING "comsig_ticker_round_starting"
+
+// Point of interest signals
+/// Sent from base of /datum/controller/subsystem/points_of_interest/proc/on_poi_element_added : (atom/new_poi)
+#define COMSIG_ADDED_POINT_OF_INTEREST "added_point_of_interest"
+/// Sent from base of /datum/controller/subsystem/points_of_interest/proc/on_poi_element_removed : (atom/old_poi)
+#define COMSIG_REMOVED_POINT_OF_INTEREST "removed_point_of_interest"
+
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
 /// handler for vv_do_topic (usr, href_list)

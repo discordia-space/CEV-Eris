@@ -13,6 +13,9 @@
 
 #define JETPACK_MOVE_COST	0.005
 
+/// Compensating for time dilation
+GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
+
 
 #define HAS_TRANSFORMATION_MOVEMENT_HANDLER(X) X.HasMovementHandler(/datum/movement_handler/mob/transformation)
 #define ADD_TRANSFORMATION_MOVEMENT_HANDLER(X) X.AddMovementHandler(/datum/movement_handler/mob/transformation)

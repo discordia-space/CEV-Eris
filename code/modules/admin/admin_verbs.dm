@@ -31,8 +31,10 @@ GLOBAL_LIST_INIT(admin_verbs_server, list(
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/restart,
 	/datum/admins/proc/startnow,
+	/datum/admins/proc/end_round,
 	/datum/admins/proc/toggleRespawn,
 	/datum/admins/proc/delay,
+	/datum/admins/proc/delay_round_end,
 	/datum/admins/proc/immreboot,
 	/datum/admins/proc/toggle_tts,
 	/datum/admins/proc/toggle_tts_cache,
@@ -84,7 +86,8 @@ GLOBAL_LIST_INIT(admin_verbs_debug, list(
 	/client/proc/ZASSettings,
 	/client/proc/enable_debug_verbs,
 	/client/proc/tracy_next_round,
-	/client/proc/start_tracy))
+	/client/proc/start_tracy,
+	/client/proc/server_memory_stats))
 
 GLOBAL_LIST_INIT(admin_verbs_debug_extra, list(
 	/client/proc/hide_debug_verbs,

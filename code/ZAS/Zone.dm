@@ -172,7 +172,7 @@ Class Procs:
 	//M << "Unsimulated: [unsimulated_contents.len]"
 	//M << "Edges: [edges.len]"
 	if(invalid) to_chat(M, "Invalid!")
-	var/datum/zone_edges = 0
+	var/zone_edges = 0
 	var/space_edges = 0
 	var/space_coefficient = 0
 	for(var/datum/connection_edge/E in edges)

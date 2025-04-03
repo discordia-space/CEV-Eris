@@ -77,6 +77,150 @@
       // Callbacks for asynchronous calls
       Byond.__callbacks__ = [];
 
+      // Error handling
+      // ------------------------------------------------------
+
+      window.onerror = function (msg, url, line, col, error) {
+        window.onerror.errorCount = (window.onerror.errorCount || 0) + 1;
+        // Proper stacktrace
+        var stack = error && error.stack;
+        // Ghetto stacktrace
+        if (!stack) {
+          stack = msg + '\n   at ' + url + ':' + line;
+          if (col) {
+            stack += ':' + col;
+          }
+        }
+        // Augment the stack
+        stack = window.__augmentStack__(stack, error);
+        // Print error to the page
+        if (Byond.strictMode) {
+          var errorRoot = document.getElementById('FatalError');
+          var errorStack = document.getElementById('FatalError__stack');
+          if (errorRoot) {
+            errorRoot.className = 'FatalError FatalError--visible';
+            if (window.onerror.__stack__) {
+              window.onerror.__stack__ += '\n\n' + stack;
+            }
+            else {
+              window.onerror.__stack__ = stack;
+            }
+            var textProp = 'textContent';
+            errorStack[textProp] = window.onerror.__stack__;
+          }
+          // Set window geometry
+          var setFatalErrorGeometry = function () {
+            Byond.winset(Byond.windowId, {
+              titlebar: true,
+              'is-visible': true,
+              'can-resize': true,
+            });
+          };
+          setFatalErrorGeometry();
+          setInterval(setFatalErrorGeometry, 1000);
+        }
+        // Send logs to the game server
+        if (Byond.strictMode) {
+          Byond.sendMessage({
+            type: 'log',
+            fatal: 1,
+            message: stack,
+          });
+        }
+        else if (window.onerror.errorCount <= 1) {
+          stack += '\nWindow is in non-strict mode, future errors are suppressed.';
+          Byond.sendMessage({
+            type: 'log',
+            message: stack,
+          });
+        }
+        // Short-circuit further updates
+        if (Byond.strictMode) {
+          window.update = function () { };
+          window.update.queue = [];
+        }
+        // Prevent default action
+        return true;
+      };
+
+      // Catch unhandled promise rejections
+      window.onunhandledrejection = function (e) {
+        var msg = 'UnhandledRejection';
+        if (e.reason) {
+          msg += ': ' + (e.reason.message || e.reason.description || e.reason);
+          if (e.reason.stack) {
+            e.reason.stack = 'UnhandledRejection: ' + e.reason.stack;
+          }
+        }
+        window.onerror(msg, null, null, null, e.reason);
+      };
+
+      // Helper for augmenting stack traces on fatal errors
+      window.__augmentStack__ = function (stack, error) {
+        return stack + '\nUser Agent: ' + navigator.userAgent;
+      };
+
+      // Incoming message handling
+      // ------------------------------------------------------
+
+      // Message handler
+      window.update = function (rawMessage) {
+        // Push onto the queue (active during initialization)
+        if (window.update.queueActive) {
+          window.update.queue.push(rawMessage);
+          return;
+        }
+        // Parse the message
+        var message = Byond.parseJson(rawMessage);
+        // Notify listeners
+        var listeners = window.update.listeners;
+        for (var i = 0; i < listeners.length; i++) {
+          listeners[i](message.type, message.payload);
+        }
+      };
+
+      // Properties and variables of this specific handler
+      window.update.listeners = [];
+      window.update.queue = [];
+      window.update.queueActive = true;
+      window.update.flushQueue = function (listener) {
+        // Disable and clear the queue permanently on short delay
+        if (window.update.queueActive) {
+          window.update.queueActive = false;
+          if (window.setTimeout) {
+            window.setTimeout(function () {
+              window.update.queue = [];
+            }, 0);
+          }
+        }
+        // Process queued messages on provided listener
+        var queue = window.update.queue;
+        for (var i = 0; i < queue.length; i++) {
+          var message = Byond.parseJson(queue[i]);
+          listener(message.type, message.payload);
+        }
+      };
+
+      window.replaceHtml = function (inline_html) {
+        var children = document.body.childNodes;
+
+        for (var i = 0; i < children.length; i++) {
+          if (children[i].nodeValue == " tgui:inline-html-start ") {
+            while (children[i].nodeValue != " tgui:inline-html-end ") {
+              children[i].remove();
+            }
+            children[i].remove();
+          }
+        }
+
+        document.body.insertAdjacentHTML(
+          "afterbegin",
+          "<!-- tgui:inline-html-start -->"
+          + inline_html
+          + "<!-- tgui:inline-html-end -->"
+        );
+      };
+
       // Reviver for BYOND JSON
       var byondJsonReviver = function (key, value) {
         if (typeof value === 'object' && value !== null && value.__number__) {
@@ -254,7 +398,7 @@
             listener(payload);
           }
         };
-        window.update.flushQueue(_listener);
+        window.update.flushQueue(_licstener);
         window.update.listeners.push(_listener);
       };
 
@@ -414,149 +558,7 @@
       Byond.iconRefMap = {};
     })();
 
-    // Error handling
-    // ------------------------------------------------------
 
-    window.onerror = function (msg, url, line, col, error) {
-      window.onerror.errorCount = (window.onerror.errorCount || 0) + 1;
-      // Proper stacktrace
-      var stack = error && error.stack;
-      // Ghetto stacktrace
-      if (!stack) {
-        stack = msg + '\n   at ' + url + ':' + line;
-        if (col) {
-          stack += ':' + col;
-        }
-      }
-      // Augment the stack
-      stack = window.__augmentStack__(stack, error);
-      // Print error to the page
-      if (Byond.strictMode) {
-        var errorRoot = document.getElementById('FatalError');
-        var errorStack = document.getElementById('FatalError__stack');
-        if (errorRoot) {
-          errorRoot.className = 'FatalError FatalError--visible';
-          if (window.onerror.__stack__) {
-            window.onerror.__stack__ += '\n\n' + stack;
-          }
-          else {
-            window.onerror.__stack__ = stack;
-          }
-          var textProp = 'textContent';
-          errorStack[textProp] = window.onerror.__stack__;
-        }
-        // Set window geometry
-        var setFatalErrorGeometry = function () {
-          Byond.winset(Byond.windowId, {
-            titlebar: true,
-            'is-visible': true,
-            'can-resize': true,
-          });
-        };
-        setFatalErrorGeometry();
-        setInterval(setFatalErrorGeometry, 1000);
-      }
-      // Send logs to the game server
-      if (Byond.strictMode) {
-        Byond.sendMessage({
-          type: 'log',
-          fatal: 1,
-          message: stack,
-        });
-      }
-      else if (window.onerror.errorCount <= 1) {
-        stack += '\nWindow is in non-strict mode, future errors are suppressed.';
-        Byond.sendMessage({
-          type: 'log',
-          message: stack,
-        });
-      }
-      // Short-circuit further updates
-      if (Byond.strictMode) {
-        window.update = function () { };
-        window.update.queue = [];
-      }
-      // Prevent default action
-      return true;
-    };
-
-    // Catch unhandled promise rejections
-    window.onunhandledrejection = function (e) {
-      var msg = 'UnhandledRejection';
-      if (e.reason) {
-        msg += ': ' + (e.reason.message || e.reason.description || e.reason);
-        if (e.reason.stack) {
-          e.reason.stack = 'UnhandledRejection: ' + e.reason.stack;
-        }
-      }
-      window.onerror(msg, null, null, null, e.reason);
-    };
-
-    // Helper for augmenting stack traces on fatal errors
-    window.__augmentStack__ = function (stack, error) {
-      return stack + '\nUser Agent: ' + navigator.userAgent;
-    };
-
-    // Incoming message handling
-    // ------------------------------------------------------
-
-    // Message handler
-    window.update = function (rawMessage) {
-      // Push onto the queue (active during initialization)
-      if (window.update.queueActive) {
-        window.update.queue.push(rawMessage);
-        return;
-      }
-      // Parse the message
-      var message = Byond.parseJson(rawMessage);
-      // Notify listeners
-      var listeners = window.update.listeners;
-      for (var i = 0; i < listeners.length; i++) {
-        listeners[i](message.type, message.payload);
-      }
-    };
-
-    // Properties and variables of this specific handler
-    window.update.listeners = [];
-    window.update.queue = [];
-    window.update.queueActive = true;
-    window.update.flushQueue = function (listener) {
-      // Disable and clear the queue permanently on short delay
-      if (window.update.queueActive) {
-        window.update.queueActive = false;
-        if (window.setTimeout) {
-          window.setTimeout(function () {
-            window.update.queue = [];
-          }, 0);
-        }
-      }
-      // Process queued messages on provided listener
-      var queue = window.update.queue;
-      for (var i = 0; i < queue.length; i++) {
-        var message = Byond.parseJson(queue[i]);
-        listener(message.type, message.payload);
-      }
-    };
-
-    window.replaceHtml = function (inline_html) {
-      var children = document.body.childNodes;
-
-      for (var i = 0; i < children.length; i++) {
-        if (children[i].nodeValue == " tgui:inline-html-start ") {
-          while (children[i].nodeValue != " tgui:inline-html-end ") {
-            children[i].remove();
-          }
-          children[i].remove();
-        }
-      }
-
-      document.body.insertAdjacentHTML(
-        "afterbegin",
-        "<!-- tgui:inline-html-start -->"
-        + inline_html
-        + "<!-- tgui:inline-html-end -->"
-      );
-    };
   </script>
 
   <style>

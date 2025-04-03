@@ -515,20 +515,30 @@ function init_verbs(c, v) {
 	}
 }
 
-function update(global_data, personal_data) {
+function update(...dataArrays) {
 	status_tab_parts = [];
-	var parsed = JSON.parse(global_data);
-	for(var i = 0; i < parsed.length; i++)
-		if(parsed[i] != null)
-			status_tab_parts.push(parsed[i]);
-	parsed = JSON.parse(personal_data);
-	for(var i = 0; i < parsed.length; i++)
-		if(parsed[i] != null)
-			status_tab_parts.push(parsed[i]);
-	if(current_tab == "Status")
+	let failedParsing = false
+	for (const dataArray of dataArrays) {
+		try {
+			const parsed = JSON.parse(dataArray);
+			for (const item of parsed) {
+				if (item != null) {
+					status_tab_parts.push(item)
+				};
+			}
+		} catch (e) {
+			failedParsing = true;
+			console.error(`failed to parse incoming update. Likely invalid data`, e)
+		}
+	}
+	if (failedParsing) {
+		status_tab_parts.push([`\n\nFailed to parse some incoming data from the server.`])
+	}
+	if (current_tab === "Status") {
 		draw_status();
-	else if(current_tab == "Debug Stat Panel")
+	} else if (current_tab === "Debug Stat Panel") {
 		draw_debug();
+	}
 }
 
 function update_mc(global_mc_data, coords_entry, ht) {

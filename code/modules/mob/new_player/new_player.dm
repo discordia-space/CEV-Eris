@@ -73,27 +73,7 @@
 
 /mob/new_player/get_status_tab_items()
 	. = ..()
-	if(SSticker.current_state == GAME_STATE_PREGAME)
-		. += list(list("Time To Start: [SSticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]"))
-		. += list(list("Players: [totalPlayers]"))
-		. += list(list("Players Ready: [totalPlayersReady]"))
-		totalPlayers = 0
-		totalPlayersReady = 0
-		// This list shouldn't be compiled separately for each player
-		// TODO: Move this under 'global_data' in statpanel subsystem --KIROV
-		for(var/mob/new_player/player in GLOB.player_list)
-			totalPlayers++
-			if(player.ready)
-				totalPlayersReady++
-				var/job_of_choice = "Unknown"
-				// Player chose to be a vagabond, that takes priority over all other settings,
-				// and is in a low priority job list for some reason
-				if(ASSISTANT_TITLE in player.client.prefs.job_low)
-					job_of_choice = ASSISTANT_TITLE
-				// Only take top priority job into account, no use divining what lower priority job player could get
-				else if(player.client.prefs.job_high)
-					job_of_choice = player.client.prefs.job_high
-				. += list(list("[player.client.prefs.real_name] : [job_of_choice]"))
+	// Leaving here for future use.
 
 /mob/new_player/Topic(href, href_list[])
 	if(src != usr || !client)
@@ -328,7 +308,7 @@
 
 	var/dat = ""
 	dat += "<b>Welcome, [name].<br></b>"
-	dat += "Round Duration: [roundduration2text()]<br>"
+	dat += "Round Duration: [gameTimestamp()]<br>"
 
 	if(evacuation_controller.has_evacuated()) //In case Nanotrasen decides reposess CentCom's shuttles.
 		dat += "<font color='red'><b>The vessel has been evacuated.</b></font><br>"

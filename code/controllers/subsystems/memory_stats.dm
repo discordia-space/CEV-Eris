@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(memory_stats)
 	set category = "Debug"
 	set desc = "Print various statistics about the server's current memory usage (does not work on OpenDream)"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(src, R_DEBUG))
 		return
 	var/box_color = "red"
 #ifndef OPENDREAM

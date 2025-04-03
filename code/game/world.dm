@@ -248,7 +248,6 @@ var/world_topic_spam_protect_time = world.timeofday
 	qdel(src) //shut it down
 
 /world/Reboot(reason = 0, fast_track = FALSE)
-	world.flush_byond_tracy()
 	if(!config.tts_cache)
 		for(var/i in GLOB.tts_death_row)
 			fdel(i)

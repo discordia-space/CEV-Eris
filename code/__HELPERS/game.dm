@@ -545,3 +545,12 @@
 		if(!(get_dist(starting_point, potential_attacker) <= distance))
 			continue
 		potential_attacker.try_activate_ai()
+
+// TODO: Implement preferences for this
+///Flash the window of a player
+/proc/window_flash(client/flashed_client)
+	if(ismob(flashed_client))
+		var/mob/player_mob = flashed_client
+		if(player_mob.client)
+			flashed_client = player_mob.client
+	winset(flashed_client, "mainwindow", "flash=5")

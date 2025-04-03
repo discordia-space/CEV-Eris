@@ -87,13 +87,13 @@
 		to_chat(world, "<b>Voting aborted due to game start.</b>")
 	return
 
+/* Pre-game is already 5 minutes, don't need it to stall. */
 
-
-/datum/poll/storyteller/on_start()
-	if (SSticker.current_state == GAME_STATE_PREGAME)
-		pregame = TRUE
-		round_progressing = FALSE
-		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
+// /datum/poll/storyteller/on_start()
+// 	if (SSticker.current_state == GAME_STATE_PREGAME)
+// 		pregame = TRUE
+// 		round_progressing = FALSE
+// 		to_chat(world, "<b>Game start has been delayed due to voting.</b>")
 
 //If one wins, on_end is called after on_win, so the new storyteller will be set in master_storyteller
 /datum/poll/storyteller/on_end()
@@ -109,7 +109,7 @@
 	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
 	if (pregame)
 		round_progressing = TRUE
-		to_chat(world, "<b>The game will start in [SSticker.pregame_timeleft] seconds.</b>")
+		to_chat(world, "<b>The game will start in [DisplayTimeText(SSticker.GetTimeLeft())].</b>")
 		spawn(10 SECONDS)
 			var/tipsAndTricks/T = SStips.getRandomTip()
 			if(T)
@@ -244,7 +244,6 @@
 	only_admin = FALSE
 	can_revote = TRUE
 	can_unvote = TRUE
-	
 
 /datum/vote_choice/yes_chaos_level
 	text = "Increase the chaos level!"

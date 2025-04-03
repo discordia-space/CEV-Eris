@@ -7,6 +7,9 @@ SUBSYSTEM_DEF(ticker)
 
 	var/const/restart_timeout = 600
 	var/current_state = GAME_STATE_STARTUP
+	/// Boolean to track if round should be forcibly ended next ticker tick.
+	/// Set by admin intervention ([ADMIN_FORCE_END_ROUND])
+	var/force_ending = END_ROUND_AS_NORMAL
 	// If true, there is no lobby phase, the game starts immediately.
 	var/start_immediately = FALSE
 
@@ -25,16 +28,30 @@ SUBSYSTEM_DEF(ticker)
 	var/list/factions = list()			  // list of all factions
 	var/list/availablefactions = list()	  // list of factions with openings
 
-	var/pregame_timeleft = 180
+	var/pregame_timeleft = 5 MINUTES
+	var/start_at
 	var/last_player_left_timestamp = 0
 
-	var/delay_end = 0	//if set to nonzero, the round will not restart on it's own
+
+	/// Num of players, used for pregame stats on statpanel
+	var/totalPlayers = 0
+	/// Num of ready players, used for pregame stats on statpanel (only viewable by admins)
+	var/totalPlayersReady = 0
+	/// Num of ready admins, used for pregame stats on statpanel (only viewable by admins)
+	var/total_admins_ready = 0
+
+	var/delay_end = FALSE //if set true, the round will not restart on it's own
+	var/admin_delay_notice = "" //a message to display to anyone who tries to restart the world after a delay
+	var/ready_for_reboot = FALSE //all roundend preparation done with, all that's left is reboot
 
 	var/triai = 0//Global holder for Triumvirate
 
 	var/quoted = FALSE
-
+	var/round_start_time = 0
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
+
+	/// ID of round reboot timer, if it exists
+	var/reboot_timer = null
 
 	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
 	var/ship_nuke_code = "NO CODE"       // Heads will get parts of this code.
@@ -60,6 +77,9 @@ SUBSYSTEM_DEF(ticker)
 	setup_objects()
 	setup_huds()
 
+	// TODO: make this a config option
+	start_at = world.time + (5 MINUTES)
+
 	return ..()
 
 /datum/controller/subsystem/ticker/proc/setup_objects()
@@ -82,17 +102,16 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
 		if(GAME_STATE_STARTUP)
-			if(first_start_trying)
-				pregame_timeleft = initial(pregame_timeleft)
-				to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
-			else
-				pregame_timeleft = 40
-
+			if(Master.initializations_finished_with_no_players_logged_in || first_start_trying)
+				start_at = world.time + (5 MINUTES)
+			pregame_timeleft = initial(pregame_timeleft)
+			for(var/client/C in clients)
+				window_flash(C) //let them know lobby has opened up.
 			if(!start_immediately)
-				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
+				to_chat(world, "Please, setup your character and select ready. Game will start in [DisplayTimeText(SSticker.GetTimeLeft())].")
 			current_state = GAME_STATE_PREGAME
+			SEND_SIGNAL(src, COMSIG_TICKER_ENTER_PREGAME)
 			fire()
-
 		if(GAME_STATE_PREGAME)
 			if(start_immediately)
 				SSvote.stop_vote()
@@ -101,10 +120,24 @@ SUBSYSTEM_DEF(ticker)
 			if(!process_empty_server())
 				return
 
-			if(round_progressing)
-				pregame_timeleft--
+			//lobby stats for statpanels
+			if(isnull(pregame_timeleft))
+				pregame_timeleft = max(0,start_at - world.time)
+			totalPlayers = LAZYLEN(GLOB.player_list)
+			totalPlayersReady = 0
+			total_admins_ready = 0
+			for(var/mob/new_player/player as anything in GLOB.player_list)
+				if(player.ready)
+					++totalPlayersReady
+					if(player.client?.holder)
+						++total_admins_ready
 
-			if(!quoted)
+			//countdown
+			if(pregame_timeleft < 0)
+				return
+			pregame_timeleft -= wait
+
+			if(pregame_timeleft <= 30 SECONDS && !quoted)
 				send_quote_of_the_round()
 				quoted = TRUE
 
@@ -113,6 +146,7 @@ SUBSYSTEM_DEF(ticker)
 					SSvote.autostoryteller()	//Quit calling this over and over and over and over.
 
 			if(pregame_timeleft <= 0)
+				SEND_SIGNAL(src, COMSIG_TICKER_ENTER_SETTING_UP)
 				current_state = GAME_STATE_SETTING_UP
 				Master.SetRunLevel(RUNLEVEL_SETUP)
 				if(start_immediately)
@@ -123,7 +157,10 @@ SUBSYSTEM_DEF(ticker)
 			if(!setup())
 				//setup failed
 				current_state = GAME_STATE_STARTUP
+				start_at = world.time + (5 MINUTES)
+				pregame_timeleft = null
 				Master.SetRunLevel(RUNLEVEL_LOBBY)
+				SEND_SIGNAL(src, COMSIG_TICKER_ERROR_SETTING_UP)
 
 		if(GAME_STATE_PLAYING)
 			GLOB.storyteller.Process()
@@ -132,7 +169,7 @@ SUBSYSTEM_DEF(ticker)
 			if(!process_empty_server())
 				return
 
-			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked || universe_has_ended || excelsior_hijacking == 2)
+			var/game_finished = (evacuation_controller.round_over() || ship_was_nuked || universe_has_ended || excelsior_hijacking == 2 || force_ending)
 
 			if(!nuke_in_progress && game_finished)
 				current_state = GAME_STATE_FINISHED
@@ -140,27 +177,6 @@ SUBSYSTEM_DEF(ticker)
 				for(var/client_key in SSinactivity_and_job_tracking.current_playtimes)
 					SSjob.SavePlaytimes(client_key)
 				declare_completion()
-
-				spawn(50)
-					callHook("roundend")
-
-					if(universe_has_ended)
-						if(!delay_end)
-							to_chat(world, SPAN_NOTICE("<b>Rebooting due to destruction of ship in [restart_timeout/10] seconds</b>"))
-					else
-						if(!delay_end)
-							to_chat(world, SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>"))
-
-
-					if(!delay_end)
-						sleep(restart_timeout)
-						if(!delay_end)
-							world.flush_byond_tracy()
-							world.Reboot()
-						else
-							to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
-					else
-						to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
 
 // This proc will scan for player and if the game is in progress and...
 // there is no player for certain minutes (see config.empty_server_restart_time) it will restart the server and return FALSE
@@ -282,6 +298,8 @@ SUBSYSTEM_DEF(ticker)
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
+	round_start_time = world.time //otherwise round_start_time would be 0 for the signals
+
 	INVOKE_ASYNC(world, TYPE_PROC_REF(/world, flush_byond_tracy))
 	return TRUE
 
@@ -291,6 +309,17 @@ SUBSYSTEM_DEF(ticker)
 		LAZYADD(round_start_events, cb)
 	else
 		cb.InvokeAsync()
+
+/datum/controller/subsystem/ticker/proc/GetTimeLeft()
+	if(isnull(SSticker.pregame_timeleft))
+		return max(0, start_at - world.time)
+	return pregame_timeleft
+
+/datum/controller/subsystem/ticker/proc/SetTimeLeft(newtime)
+	if(newtime >= 0 && isnull(pregame_timeleft)) //remember, negative means delayed
+		start_at = world.time + newtime
+	else
+		pregame_timeleft = newtime
 
 // Provides an easy way to make cinematics for other events. Just use this as a template :)
 /datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/ship_missed = 0)
@@ -549,14 +578,78 @@ SUBSYSTEM_DEF(ticker)
 				total_antagonists.Add(temprole)
 			total_antagonists[temprole] += ", [antag.owner.name]([antag.owner.key])"
 
-
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")
 	for(var/i in total_antagonists)
 		log_game("[i]s[total_antagonists[i]].")
 
+	sleep(5 SECONDS)
+	callHook("roundend")
+	ready_for_reboot = TRUE
+	standard_reboot()
+
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
+
+/datum/controller/subsystem/ticker/proc/standard_reboot()
+	world.flush_byond_tracy()
+	if(ready_for_reboot)
+		if(universe_has_ended)
+			Reboot("Station destroyed", "nuke")
+		else
+			Reboot("Round ended.", "proper completion")
+	else
+		CRASH("Attempted standard reboot without ticker roundend completion")
+
+/datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
+	set waitfor = FALSE
+	if(usr && !check_rights(R_SERVER, TRUE))
+		return
+
+	if(!delay)
+		// TOOD: Move to a config
+		delay = 1 MINUTE + 30 SECONDS
+
+	var/skip_delay = check_rights()
+	if(delay_end && !skip_delay)
+		to_chat(world, span_boldannounce("An admin has delayed the round end."))
+		return
+
+	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
+
+	var/start_wait = world.time
+	// UNTIL((world.time - start_wait) > (delay * 2)) //don't wait forever
+	reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason, end_string), delay, TIMER_STOPPABLE)
+
+/datum/controller/subsystem/ticker/proc/reboot_callback(reason, end_string)
+	// if(end_string)
+	// 	end_state = end_string
+
+	// var/statspage = CONFIG_GET(string/roundstatsurl)
+	// var/gamelogloc = CONFIG_GET(string/gamelogurl)
+	// if(statspage)
+	// 	to_chat(world, span_info("Round statistics and logs can be viewed <a href=\"[statspage][GLOB.round_id]\">at this website!</a>"))
+	// else if(gamelogloc)
+	// 	to_chat(world, span_info("Round logs can be located <a href=\"[gamelogloc]\">at this website!</a>"))
+
+	log_game(span_boldannounce("Rebooting World. [reason]"))
+
+	world.Reboot()
+
+/**
+ * Deletes the current reboot timer and nulls the var
+ *
+ * Arguments:
+ * * user - the user that cancelled the reboot, may be null
+ */
+/datum/controller/subsystem/ticker/proc/cancel_reboot(mob/user)
+	if(!reboot_timer)
+		to_chat(user, span_warning("There is no pending reboot!"))
+		return FALSE
+	to_chat(world, span_boldannounce("An admin has delayed the round end."))
+	deltimer(reboot_timer)
+	reboot_timer = null
+	return TRUE
 
 // /datum/controller/subsystem/ticker/proc/IsRoundInProgress()
 // 	return current_state == GAME_STATE_PLAYING
@@ -577,3 +670,23 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_PLAYING)
 			Master.SetRunLevel(RUNLEVEL_GAME)
 		if(GAME_STATE_FINISHED)
+			current_state = SSticker.current_state
+
+	quoted = SSticker.quoted
+
+	pregame_timeleft = SSticker.pregame_timeleft
+
+	totalPlayers = SSticker.totalPlayers
+	totalPlayersReady = SSticker.totalPlayersReady
+	total_admins_ready = SSticker.total_admins_ready
+
+	round_start_time = SSticker.round_start_time
+
+	if (Master) //Set Masters run level if it exists
+		switch (current_state)
+			if(GAME_STATE_SETTING_UP)
+				Master.SetRunLevel(RUNLEVEL_SETUP)
+			if(GAME_STATE_PLAYING)
+				Master.SetRunLevel(RUNLEVEL_GAME)
+			if(GAME_STATE_FINISHED)
+				Master.SetRunLevel(RUNLEVEL_POSTGAME)

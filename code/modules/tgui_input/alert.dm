@@ -24,7 +24,7 @@
 		log_tgui(user, "Error: TGUI Alert initiated with too many buttons. Use a list.", "TguiAlert")
 		return tgui_input_list(user, message, title, buttons, timeout, autofocus)
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+	if(!user.client.get_preference_value(/datum/client_preference/tgui_fancy) == GLOB.PREF_YES)
 		if(length(buttons) == 2)
 			return alert(user, message, title, buttons[1], buttons[2])
 		if(length(buttons) == 3)
@@ -101,8 +101,10 @@
 	data["autofocus"] = autofocus
 	data["buttons"] = buttons
 	data["message"] = message
-	data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
-	data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped)
+	/* data["large_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_large)
+	data["swapped_buttons"] = user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_swapped) */
+	data["large_buttons"] = FALSE
+	data["swapped_buttons"] = FALSE
 	data["title"] = title
 	return data
 

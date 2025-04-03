@@ -574,6 +574,7 @@ var/global/floorIsLava = 0
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
 		to_chat(world, "<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>")
 		log_admin("Announce: [key_name(usr)] : [message]")
+		SEND_SOUND(world, sound('sound/misc/notice2.ogg'))
 
 /datum/admins/proc/set_respawn_timer()
 	set name = "Set Respawn Timer"
@@ -587,6 +588,24 @@ var/global/floorIsLava = 0
 		delay = CLAMP(delay, 0, INFINITY)
 		config.respawn_delay = delay
 		log_and_message_admins("changed respawn delay to [delay] minutes.")
+
+/datum/admins/proc/end_round()
+	set category = "Server"
+	set name = "End Round"
+	set desc = "Attempts to produce a round end report and then restart the server organically."
+
+	if (!check_rights(R_ADMIN))
+		return
+	if(SSticker.current_state == GAME_STATE_FINISHED)
+		return to_chat(usr, span_adminnotice("The round has already ended!"))
+	if(SSticker.current_state <= GAME_STATE_SETTING_UP)
+		return to_chat(usr, span_adminnotice("The game hasnt started yet!"))
+
+	var/confirm = tgui_alert(usr, "End the round forcibly?", "End Round", list("Yes", "Cancel"))
+	if(confirm == "Cancel")
+		return
+	if(confirm == "Yes")
+		SSticker.force_ending = ADMIN_FORCE_END_ROUND
 
 //toggles ooc on/off for everyone
 /datum/admins/proc/toggleooc()
@@ -655,16 +674,25 @@ var/global/floorIsLava = 0
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
-		SSticker.start_immediately = TRUE
-		log_admin("[usr.key] has started the game.")
-		var/msg = ""
-		if(SSticker.current_state == GAME_STATE_STARTUP)
-			msg = " (The server is still setting up, but the round will be \
-				started as soon as possible.)"
-		message_admins("<font color='blue'>\
-			[usr.key] has started the game.[msg]</font>")
+		if(!SSticker.start_immediately)
+			if(tgui_alert(usr, "Are you sure you want to start the round?","Start Now",list("Start Now","Cancel")) != "Start Now")
+				return FALSE
+			SSticker.start_immediately = TRUE
+			log_admin("[usr.key] has started the game.")
+			var/msg = ""
+			if(SSticker.current_state == GAME_STATE_STARTUP)
+				msg = " (The server is still setting up, but the round will be started as soon as possible.)"
+			message_admins(span_blue("[usr.key] has started the game.[msg]"))
+			return TRUE
+		SSticker.start_immediately = FALSE
+		SSticker.SetTimeLeft(1800)
+		to_chat(world, span_infoplain("<b>The game will start in [DisplayTimeText(SSticker.GetTimeLeft())].</b>"))
+		SEND_SOUND(world, sound('sound/misc/notice2.ogg'))
+		message_admins(span_blue("[usr.key] has cancelled immediate game start. Game will start in [DisplayTimeText(SSticker.GetTimeLeft())]."))
+		log_admin("[usr.key] has cancelled immediate game start.")
 	else
-		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
+		to_chat(usr, span_warning(span_red("Error: Start Now: Game has already started.")))
+	return FALSE
 
 //toggles whether people can join the current game
 /datum/admins/proc/toggleenter()
@@ -712,23 +740,55 @@ var/global/floorIsLava = 0
 
 /datum/admins/proc/delay()
 	set category = "Server"
-	set desc="Delay the game start/end"
-	set name="Delay"
+	set desc="Delay the game start"
+	set name="Delay Pre-game"
 
 	if(!check_rights(R_SERVER))
 		return
-	if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
-		SSticker.delay_end = !SSticker.delay_end
-		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+
+	var/newtime = input("Set a new time in seconds. Set -1 for indefinite delay.","Set Delay",round(SSticker.GetTimeLeft()/10)) as num|null
+	if(SSticker.current_state > GAME_STATE_PREGAME)
+		return to_chat(usr, span_adminnotice("Too late... The game has already started!"))
+	if(newtime)
+		newtime = newtime*10
+		SSticker.SetTimeLeft(newtime)
+		SSticker.start_immediately = FALSE
+		if(newtime < 0)
+			to_chat(world, span_infoplain("<b>The game start has been delayed.</b>"))
+			log_admin("[key_name(usr)] delayed the round start.")
+		else
+			to_chat(world, span_infoplain("<b>The game will start in [DisplayTimeText(newtime)].</b>"))
+			SEND_SOUND(world, sound('sound/effects/compbeep2.ogg'))
+			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
+
+/datum/admins/proc/delay_round_end()
+	set category = "Server"
+	set desc = "Prevent the server from restarting"
+	set name = "Delay Round End"
+
+	if(!check_rights(R_SERVER))
 		return
-	round_progressing = !round_progressing
-	if (!round_progressing)
-		to_chat(world, "<b>The game start has been delayed.</b>")
-		log_admin("[key_name(usr)] delayed the game.")
-	else
-		to_chat(world, "<b>The game will start soon.</b>")
-		log_admin("[key_name(usr)] removed the delay.")
+
+	if(SSticker.delay_end)
+		to_chat(usr, "The round end is already delayed. The reason for the current delay is: \"[SSticker.admin_delay_notice]\"")
+		return
+
+	var/delay_reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
+
+	if(isnull(delay_reason))
+		return
+
+	if(SSticker.delay_end)
+		to_chat(usr, "The round end is already delayed. The reason for the current delay is: \"[SSticker.admin_delay_notice]\"")
+		return
+
+	SSticker.delay_end = TRUE
+	SSticker.admin_delay_notice = delay_reason
+	SSticker.cancel_reboot(usr)
+
+	log_admin("[key_name(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
+	message_admins("[key_name_admin(usr)] delayed the round end for reason: [SSticker.admin_delay_notice]")
+
 
 /datum/admins/proc/immreboot()
 	set category = "Server"
