@@ -35,7 +35,7 @@
 
 /obj/screen/examine(mob/user, extra_description = "")
 	if(desc)
-		to_chat(user, SPAN_NOTICE("<div id='examine'>[desc]</div>"))
+		to_chat(user, span_notice("<div id='examine'>[desc]</div>"))
 
 /obj/screen/Process()
 	return
@@ -863,7 +863,7 @@
 		if(!C.stat && !C.stunned && !C.paralysis && !C.restrained())
 			if(C.internal)
 				C.internal = null
-				to_chat(C, SPAN_NOTICE("No longer running on internals."))
+				to_chat(C, span_notice("No longer running on internals."))
 				update_icon()
 			else
 
@@ -874,7 +874,7 @@
 						no_mask = 1
 
 				if(no_mask)
-					to_chat(C, SPAN_NOTICE("You are not wearing a suitable mask or helmet."))
+					to_chat(C, span_notice("You are not wearing a suitable mask or helmet."))
 					return TRUE
 				else
 					var/list/nicename = null
@@ -950,12 +950,12 @@
 					//We've determined the best container now we set it as our internals
 
 					if(best)
-						to_chat(C, SPAN_NOTICE("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]]."))
+						to_chat(C, span_notice("You are now running on internals from [tankcheck[best]] [from] your [nicename[best]]."))
 						playsound(usr, 'sound/effects/Custom_internals.ogg', 50, -5)
 						C.internal = tankcheck[best]
 
 					if(!C.internal)
-						to_chat(C, "<span class='notice'>You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank.</span>")
+						to_chat(C, span_notice("You don't have a[breathes=="oxygen" ? "n oxygen" : addtext(" ", breathes)] tank."))
 					update_icon()
 
 /obj/screen/internal/update_icon()

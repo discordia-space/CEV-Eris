@@ -58,7 +58,7 @@ meteor_act
 	if(hit_zone == BP_R_LEG || hit_zone == BP_L_LEG)
 		if(prob(60 - stats.getStat(STAT_TGH)))
 			step(src, pick(cardinal - hit_dirs))
-			visible_message(SPAN_WARNING("[src] stumbles around."))
+			visible_message(span_warning("[src] stumbles around."))
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 
@@ -222,7 +222,7 @@ meteor_act
 
 /mob/living/carbon/human/proc/grab_redirect_attack(var/mob/living/carbon/human/attacker, var/obj/item/grab/G, var/obj/item/I)
 	var/mob/living/carbon/human/grabbed = G.affecting
-	visible_message(SPAN_DANGER("[src] redirects the blow at [grabbed]!"), SPAN_DANGER("You redirect the blow at [grabbed]!"))
+	visible_message(span_danger("[src] redirects the blow at [grabbed]!"), span_danger("You redirect the blow at [grabbed]!"))
 	//check what we are being hit with, a hand(I is null), or an item?
 	//quickly turn blocking off and on to prevent looping(since we are attacking again)
 	blocking = FALSE
@@ -254,7 +254,7 @@ meteor_act
 
 	var/obj/item/organ/external/affecting = get_organ(hit_zone)
 	if (!affecting || affecting.is_stump())
-		to_chat(user, SPAN_DANGER("They are missing that limb!"))
+		to_chat(user, span_danger("They are missing that limb!"))
 		return null
 
 	return hit_zone
@@ -269,7 +269,7 @@ meteor_act
 		var/mob/living/carbon/human/H = user
 		H.stop_blocking()
 
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
+	visible_message(span_danger("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!"))
 
 	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
 
@@ -289,10 +289,10 @@ meteor_act
 			stop_blocking()
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Blocked attack of [user.name] ([user.ckey])</font>")
 			user.attack_log += text("\[[time_stamp()]\] <font color='orange'>Attack has been blocked by [src.name] ([src.ckey])</font>")
-			visible_message(SPAN_WARNING("[src] blocks the blow!"), SPAN_WARNING("You block the blow!"))
+			visible_message(span_warning("[src] blocks the blow!"), span_warning("You block the blow!"))
 			effective_force = handle_blocking(effective_force)
 			if(effective_force == 0)
-				visible_message(SPAN_DANGER("The attack has been completely negated!"))
+				visible_message(span_danger("The attack has been completely negated!"))
 				return FALSE
 
 	//If not blocked, handle broad strike attacks
@@ -308,7 +308,7 @@ meteor_act
 	//Push attacks
 	if(hit_zone == BP_GROIN && I.push_attack && user.a_intent == I_DISARM)
 		step_glide(src, get_dir(user, src), DELAY2GLIDESIZE(0.4 SECONDS))
-		visible_message(SPAN_WARNING("[src] is pushed away by the attack!"))
+		visible_message(span_warning("[src] is pushed away by the attack!"))
 	else if(!..())
 		return FALSE
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
@@ -337,7 +337,7 @@ meteor_act
 			//See if we have any guns that might go off,
 			for(var/obj/item/gun/W in get_both_hands())
 				if(W && prob(40))
-					visible_message(SPAN_DANGER("[src]'s [W] goes off during the struggle!"))
+					visible_message(span_danger("[src]'s [W] goes off during the struggle!"))
 					W.Fire(target_location, src)
 					return TRUE
 			//else do other types of intervention attacks
@@ -366,17 +366,17 @@ meteor_act
 									update_inv_glasses(0)
 							else
 								bloody_body(src)
-						visible_message(SPAN_WARNING("Blood stains [src]'s clothes!"), SPAN_DANGER("Blood seeps through your clothes and your heart skips a beat!"))
+						visible_message(span_warning("Blood stains [src]'s clothes!"), span_danger("Blood seeps through your clothes and your heart skips a beat!"))
 						sanity.changeLevel(-5)
 
 				if("out of breath")
 					if(!stat)
-						visible_message(SPAN_WARNING("[src] gasps in pain!"), SPAN_DANGER("Pain jolts through your nerves!"))
+						visible_message(span_warning("[src] gasps in pain!"), span_danger("Pain jolts through your nerves!"))
 						adjustOxyLoss(10)
 						adjustHalLoss(5)
 
 				if("winded")
-					visible_message(SPAN_WARNING("[src] is winded!"), SPAN_DANGER("You feel disoriented!"))
+					visible_message(span_warning("[src] is winded!"), span_danger("You feel disoriented!"))
 					confused = max(confused, 2)
 					external_recoil(40)
 					var/obj/item/item_in_active_hand = get_active_hand()
@@ -389,7 +389,7 @@ meteor_act
 							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 							return TRUE
 						unEquip(item_in_active_hand)
-						visible_message(SPAN_DANGER("[user] has disarmed [src]!"))
+						visible_message(span_danger("[user] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return TRUE
 	return TRUE
@@ -399,7 +399,7 @@ meteor_act
 		return FALSE
 	//There was blocked var, removed now. For the sake of game balance, it was just replaced by 2
 	if(prob(W.force / 2))
-		visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
+		visible_message(span_danger("[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!"))
 		organ.nerve_strike_add(1)
 		return TRUE
 	return FALSE
@@ -413,7 +413,7 @@ meteor_act
 			if(canmove && !restrained())
 				if(isturf(O.loc))
 					put_in_active_hand(O)
-					visible_message(SPAN_WARNING("[src] catches [O]!"))
+					visible_message(span_warning("[src] catches [O]!"))
 					throw_mode_off()
 					return
 
@@ -433,7 +433,7 @@ meteor_act
 				return
 
 		if(!zone)
-			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
+			visible_message(span_notice("\The [O] misses [src] narrowly!"))
 			return
 
 
@@ -496,7 +496,7 @@ meteor_act
 
 				if(T)
 					src.loc = T
-					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
+					visible_message(span_warning("[src] is pinned to the wall by [O]!"),span_warning("You are pinned to the wall by [O]!"))
 					src.anchored = TRUE
 					src.pinned += O
 

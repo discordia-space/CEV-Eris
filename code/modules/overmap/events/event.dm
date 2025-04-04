@@ -229,13 +229,13 @@
 /datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
 //	world << "Ship [victim] encountered [name]"
 	if(!SSevent)
-		admin_notice("<span class='danger'>Event manager not setup.</span>")
+		admin_notice(span_danger("Event manager not setup."))
 		return
 	if(victim in victims)
 		if(!istype(src, /datum/overmap_event/meteor/comet_tail_core) && \
 		!istype(src, /datum/overmap_event/meteor/comet_tail_medium)  && \
 		!istype(src, /datum/overmap_event/meteor/comet_tail))
-			admin_notice("<span class='danger'>Multiple attempts to trigger the same event by [victim] detected.</span>")
+			admin_notice(span_danger("Multiple attempts to trigger the same event by [victim] detected."))
 			return
 	LAZYADD(victims, victim)
 	//var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)

@@ -161,7 +161,7 @@ are technically visible but obscured, for example by catwalks or trash sitting o
 	get_power_cost()
 	data["wattage"] = (get_power_cost()/CELLRATE)
 	data["lifeTime"] = get_lifetime()
-	data["cellPercent"] = cell ? round(cell.percent(),0.1) : SPAN_DANGER("---")
+	data["cellPercent"] = cell ? round(cell.percent(),0.1) : span_danger("---")
 	data["powerSetting"] = scan_range
 
 	// update the ui if it exists, returns null if no ui is passed/found

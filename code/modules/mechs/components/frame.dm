@@ -44,23 +44,23 @@
 
 /obj/structure/heavy_vehicle_frame/examine(mob/user, extra_description = "")
 	if(!arms)
-		extra_description += SPAN_WARNING("It is missing manipulators.")
+		extra_description += span_warning("It is missing manipulators.")
 	if(!legs)
-		extra_description += SPAN_WARNING("It is missing propulsion.")
+		extra_description += span_warning("It is missing propulsion.")
 	if(!head)
-		extra_description += SPAN_WARNING("It is missing sensors.")
+		extra_description += span_warning("It is missing sensors.")
 	if(!body)
-		extra_description += SPAN_WARNING("It is missing a chassis.")
+		extra_description += span_warning("It is missing a chassis.")
 	if(is_wired == FRAME_WIRED)
-		extra_description += SPAN_WARNING("It has not had its wiring adjusted.")
+		extra_description += span_warning("It has not had its wiring adjusted.")
 	else if(!is_wired)
-		extra_description += SPAN_WARNING("It has not yet been wired.")
+		extra_description += span_warning("It has not yet been wired.")
 	if(is_reinforced == FRAME_REINFORCED)
-		extra_description += SPAN_WARNING("It has not had its internal reinforcement secured.")
+		extra_description += span_warning("It has not had its internal reinforcement secured.")
 	else if(is_reinforced == FRAME_REINFORCED_SECURE)
-		extra_description += SPAN_WARNING("It has not had its internal reinforcement welded in.")
+		extra_description += span_warning("It has not had its internal reinforcement welded in.")
 	else if(!is_reinforced)
-		extra_description += SPAN_WARNING("It does not have any internal reinforcement.")
+		extra_description += span_warning("It does not have any internal reinforcement.")
 	..(user, extra_description)
 
 /obj/structure/heavy_vehicle_frame/update_icon()
@@ -123,10 +123,10 @@
 
 
 			if(!is_reinforced)
-				to_chat(user, SPAN_WARNING("There are no reinforcements inside \the [src]."))
+				to_chat(user, span_warning("There are no reinforcements inside \the [src]."))
 				return
 			if(is_reinforced == FRAME_REINFORCED_WELDED)
-				to_chat(user, SPAN_WARNING("\The [src]'s internal reinforcments has been welded in."))
+				to_chat(user, span_warning("\The [src]'s internal reinforcments has been welded in."))
 				return
 
 			visible_message("\The [user] begins adjusting the reinforcements inside \the [src].")
@@ -143,10 +143,10 @@
 		// Welding/unwelding reinforcements
 		if(QUALITY_WELDING)
 			if(!is_reinforced)
-				to_chat(user, SPAN_WARNING("There are no reinforcements to secure inside \the [src]."))
+				to_chat(user, span_warning("There are no reinforcements to secure inside \the [src]."))
 				return
 			if(is_reinforced == FRAME_REINFORCED)
-				to_chat(user, SPAN_WARNING("The reinforcements inside \the [src] has not been secured."))
+				to_chat(user, span_warning("The reinforcements inside \the [src] has not been secured."))
 				return
 
 			visible_message("\The [user] begins welding the reinforcements inside \the [src].")
@@ -165,9 +165,9 @@
 		if(QUALITY_PRYING)
 			// Removing reinforcements
 			if(is_reinforced == FRAME_REINFORCED)
-				user.visible_message(SPAN_NOTICE("\The [user] starts prying the reinforcements off \the [src]."))
+				user.visible_message(span_notice("\The [user] starts prying the reinforcements off \the [src]."))
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC) && is_reinforced == FRAME_REINFORCED)
-					user.visible_message(SPAN_NOTICE("\The [user] pries the reinforcements off \the [src]."))
+					user.visible_message(span_notice("\The [user] pries the reinforcements off \the [src]."))
 					material.place_sheet(drop_location(), 10)
 					material = null
 					is_reinforced = NONE
@@ -175,7 +175,7 @@
 
 			// Removing components
 			if(!arms && !body && !legs && !head)
-				to_chat(user, SPAN_WARNING("There are no components to remove."))
+				to_chat(user, span_warning("There are no components to remove."))
 				return
 
 			var/to_remove = input("Which component would you like to remove") as null|anything in list(arms, body, legs, head)
@@ -227,28 +227,28 @@
 		if(QUALITY_SCREW_DRIVING)
 			// Check for basic components.
 			if(!(legs && body))
-				to_chat(user,  SPAN_WARNING("There are still parts missing from \the [src]."))
+				to_chat(user,  span_warning("There are still parts missing from \the [src]."))
 				return
 
 			// Check for wiring.
 			if(is_wired < FRAME_WIRED_ADJUSTED)
 				if(is_wired == FRAME_WIRED)
-					to_chat(user, SPAN_WARNING("\The [src]'s wiring has not been adjusted!"))
+					to_chat(user, span_warning("\The [src]'s wiring has not been adjusted!"))
 				else
-					to_chat(user, SPAN_WARNING("\The [src] is not wired!"))
+					to_chat(user, span_warning("\The [src] is not wired!"))
 				return
 
 			// Check for basing metal internal plating.
 			if(is_reinforced < FRAME_REINFORCED_WELDED)
 				if(is_reinforced == FRAME_REINFORCED)
-					to_chat(user, SPAN_WARNING("\The [src]'s internal reinforcement has not been secured!"))
+					to_chat(user, span_warning("\The [src]'s internal reinforcement has not been secured!"))
 				else if(is_reinforced == FRAME_REINFORCED_SECURE)
-					to_chat(user, SPAN_WARNING("\The [src]'s internal reinforcement has not been welded down!"))
+					to_chat(user, span_warning("\The [src]'s internal reinforcement has not been welded down!"))
 				else
-					to_chat(user, SPAN_WARNING("\The [src] has no internal reinforcement!"))
+					to_chat(user, span_warning("\The [src] has no internal reinforcement!"))
 				return
 
-			visible_message(SPAN_NOTICE("\The [user] begins tightening screws, flipping connectors and finishing off \the [src]."))
+			visible_message(span_notice("\The [user] begins tightening screws, flipping connectors and finishing off \the [src]."))
 			if(!I.use_tool(user, src, WORKTIME_INSTANT, tool_type, FAILCHANCE_ZERO))
 				return
 
@@ -257,7 +257,7 @@
 
 			// We're all done. Finalize the exosuit and pass the frame to the new system.
 			var/mob/living/exosuit/M = new(get_turf(src), src)
-			visible_message(SPAN_NOTICE("\The [user] finishes off \the [M]."))
+			visible_message(span_notice("\The [user] finishes off \the [M]."))
 			playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
 
 			arms = null
@@ -274,12 +274,12 @@
 	// Installing wiring.
 	if(isCoil(I))
 		if(is_wired)
-			to_chat(user, SPAN_WARNING("\The [src] has already been wired."))
+			to_chat(user, span_warning("\The [src] has already been wired."))
 			return
 
 		var/obj/item/stack/cable_coil/CC = I
 		if(CC.get_amount() < 10)
-			to_chat(user, SPAN_WARNING("You need at least ten units of cable to complete the exosuit."))
+			to_chat(user, span_warning("You need at least ten units of cable to complete the exosuit."))
 			return
 
 		user.visible_message("\The [user] begins wiring \the [src]...")
@@ -299,10 +299,10 @@
 		var/obj/item/stack/material/M = I
 		if(M.material)
 			if(is_reinforced)
-				to_chat(user, SPAN_WARNING("There are already reinforcements installed in \the [src]."))
+				to_chat(user, span_warning("There are already reinforcements installed in \the [src]."))
 				return
 			if(M.get_amount() < 10)
-				to_chat(user, SPAN_WARNING("You need at least ten sheets to reinforce \the [src]."))
+				to_chat(user, span_warning("You need at least ten sheets to reinforce \the [src]."))
 				return
 
 			visible_message("\The [user] begins layering the interior of the \the [src] with \the [M].")
@@ -320,13 +320,13 @@
 	// Installing basic components.
 	if(istype(I, /obj/item/mech_component/manipulators))
 		if(body.strict_arm_type == TRUE)
-			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			to_chat(user, span_warning("\The [src]'s chassis can not support propulsion systems!"))
 			return
 		else if(body.strict_arm_type && !istype(I, body.strict_arm_type))
-			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_arm_type:name)]"))
+			to_chat(user, span_notice("\The [src]'s chassis only accepts [initial(body.strict_arm_type:name)]"))
 			return
 		if(arms)
-			to_chat(user, SPAN_WARNING("\The [src] already has manipulators installed."))
+			to_chat(user, span_warning("\The [src] already has manipulators installed."))
 			return
 		if(install_component(I, user))
 			if(arms)
@@ -335,15 +335,15 @@
 			arms = I
 	else if(istype(I, /obj/item/mech_component/propulsion))
 		if(!body)
-			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
+			to_chat(user, span_warning("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
 		if(legs)
-			to_chat(user, SPAN_WARNING("\The [src] already has a propulsion system installed."))
+			to_chat(user, span_warning("\The [src] already has a propulsion system installed."))
 			return
 		if(body.strict_leg_type == TRUE)
-			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support propulsion systems!"))
+			to_chat(user, span_warning("\The [src]'s chassis can not support propulsion systems!"))
 			return
 		else if(body.strict_leg_type && !istype(I, body.strict_leg_type))
-			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_leg_type:name)]"))
+			to_chat(user, span_notice("\The [src]'s chassis only accepts [initial(body.strict_leg_type:name)]"))
 			return
 		if(install_component(I, user))
 			if(legs)
@@ -352,15 +352,15 @@
 			legs = I
 	else if(istype(I, /obj/item/mech_component/sensors))
 		if(!body)
-			to_chat(user, SPAN_WARNING("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
+			to_chat(user, span_warning("\The [I] requires a chassis to be installed onto \the [src] for mounting."))
 		if(body.strict_sensor_type == TRUE)
-			to_chat(user, SPAN_WARNING("\The [src]'s chassis can not support sensors!"))
+			to_chat(user, span_warning("\The [src]'s chassis can not support sensors!"))
 			return
 		else if(body.strict_sensor_type && !istype(I, body.strict_sensor_type))
-			to_chat(user, SPAN_NOTICE("\The [src]'s chassis only accepts [initial(body.strict_sensor_type:name)]"))
+			to_chat(user, span_notice("\The [src]'s chassis only accepts [initial(body.strict_sensor_type:name)]"))
 			return
 		if(head)
-			to_chat(user, SPAN_WARNING("\The [src] already has a sensor array installed."))
+			to_chat(user, span_warning("\The [src] already has a sensor array installed."))
 			return
 		if(install_component(I, user))
 			if(head)
@@ -369,7 +369,7 @@
 			head = I
 	else if(istype(I, /obj/item/mech_component/chassis))
 		if(body)
-			to_chat(user, SPAN_WARNING("\The [src] already has an outer chassis installed."))
+			to_chat(user, span_warning("\The [src] already has an outer chassis installed."))
 			return
 		if(install_component(I, user))
 			if(body)
@@ -383,10 +383,10 @@
 /obj/structure/heavy_vehicle_frame/proc/install_component(obj/item/I, mob/living/user)
 	var/obj/item/mech_component/MC = I
 	if(istype(MC) && !MC.ready_to_install())
-		to_chat(user, SPAN_WARNING("\The [MC] [MC.gender == PLURAL ? "are" : "is"] not ready to install."))
+		to_chat(user, span_warning("\The [MC] [MC.gender == PLURAL ? "are" : "is"] not ready to install."))
 		return 0
 	if(user)
-		visible_message(SPAN_NOTICE("\The [user] begins installing \the [I] into \the [src]."))
+		visible_message(span_notice("\The [user] begins installing \the [I] into \the [src]."))
 		if(!user.canUnEquip(I) || !do_after(user, 30) || user.get_active_hand() != I)
 			return
 		if(!user.unEquip(I))
@@ -402,7 +402,7 @@
 		if(legs && !istype(legs, /obj/item/mech_component/propulsion/wheels))
 			legs.forceMove(get_turf(src))
 			legs = null
-	visible_message(SPAN_NOTICE("\The [user] installs \the [I] into \the [src]."))
+	visible_message(span_notice("\The [user] installs \the [I] into \the [src]."))
 	playsound(user.loc, 'sound/machines/click.ogg', 50, 1)
 	return 1
 
@@ -411,7 +411,7 @@
 		return FALSE
 	if(!do_after(user, 40) || I.loc != src)
 		return FALSE
-	user.visible_message(SPAN_NOTICE("\The [user] crowbars \the [I] off \the [src]."))
+	user.visible_message(span_notice("\The [user] crowbars \the [I] off \the [src]."))
 	I.forceMove(get_turf(src))
 	user.put_in_hands(I)
 	playsound(user.loc, 'sound/items/Deconstruct.ogg', 50, 1)

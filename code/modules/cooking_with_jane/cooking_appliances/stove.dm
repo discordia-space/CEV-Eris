@@ -138,7 +138,7 @@
 		container.process_item(used_item, params)
 
 	else if(istype(used_item, /obj/item/reagent_containers/cooking_with_jane/cooking_container))
-		to_chat(usr, SPAN_NOTICE("You put a [used_item] on the stove."))
+		to_chat(usr, span_notice("You put a [used_item] on the stove."))
 		if(usr.canUnEquip(used_item))
 			usr.unEquip(used_item, src)
 		else
@@ -162,7 +162,7 @@
 							burn_victim.adjustFireLoss(5)
 						if("Medium")
 							burn_victim.adjustFireLoss(2)
-					to_chat(burn_victim, SPAN_DANGER("You burn your hand a little taking the [items[input]] off of the stove."))
+					to_chat(burn_victim, span_danger("You burn your hand a little taking the [items[input]] off of the stove."))
 		user.put_in_hands(items[input])
 		items[input] = null
 		update_icon()

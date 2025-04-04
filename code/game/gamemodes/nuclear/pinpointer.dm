@@ -23,11 +23,11 @@
 			workdisk()
 		else
 			worknuclear()
-		to_chat(usr, SPAN_NOTICE("You activate the pinpointer"))
+		to_chat(usr, span_notice("You activate the pinpointer"))
 	else
 		active = FALSE
 		icon_state = "pinoff"
-		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
+		to_chat(usr, span_notice("You deactivate the pinpointer"))
 
 /obj/item/pinpointer/attackby(obj/item/I, mob/user, params)
 	if (!slot && istype(I, /obj/item/disk/nuclear))
@@ -106,7 +106,7 @@
 		extra_description += "Nuclear disk is loaded inside [src]."
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
-			extra_description += SPAN_WARNING("Extreme danger. Arming signal detected. Time remaining: [bomb.timeleft]")
+			extra_description += span_warning("Extreme danger. Arming signal detected. Time remaining: [bomb.timeleft]")
 	..(user, extra_description)
 
 /obj/item/pinpointer/Destroy()
@@ -130,11 +130,11 @@
 			worklocation()
 		if(mode == 2)
 			workobj()
-		to_chat(usr, SPAN_NOTICE("You activate the pinpointer"))
+		to_chat(usr, span_notice("You activate the pinpointer"))
 	else
 		active = 0
 		icon_state = "pinoff"
-		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
+		to_chat(usr, span_notice("You deactivate the pinpointer"))
 
 /obj/item/pinpointer/advpinpointer/proc/worklocation()
 	if(!active)
@@ -218,9 +218,9 @@
 						return
 					target=locate(itemlist.possible_items[targetitem])
 					if(!target)
-						to_chat(usr, SPAN_WARNING("Failed to locate [targetitem]!"))
+						to_chat(usr, span_warning("Failed to locate [targetitem]!"))
 						return
-					to_chat(usr, SPAN_NOTICE("You set the pinpointer to locate [targetitem]"))
+					to_chat(usr, span_notice("You set the pinpointer to locate [targetitem]"))
 				if("DNA")
 					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
@@ -247,14 +247,14 @@
 		active = TRUE
 		if(!mode)
 			workdisk()
-			to_chat(user, SPAN_NOTICE("Authentication Disk Locator active."))
+			to_chat(user, span_notice("Authentication Disk Locator active."))
 		else
 			worklocation()
-			to_chat(user, SPAN_NOTICE("Shuttle Locator active."))
+			to_chat(user, span_notice("Shuttle Locator active."))
 	else
 		active = 0
 		icon_state = "pinoff"
-		to_chat(user, SPAN_NOTICE("You deactivate the pinpointer."))
+		to_chat(user, span_notice("You deactivate the pinpointer."))
 
 
 /obj/item/pinpointer/nukeop/workdisk()
@@ -299,7 +299,7 @@
 		mode = 0
 		workdisk()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-		visible_message(SPAN_NOTICE("Authentication Disk Locator active."))
+		visible_message(span_notice("Authentication Disk Locator active."))
 		return
 	if(!home)
 		home = locate()

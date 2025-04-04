@@ -5,12 +5,12 @@
 	..()
 	arming_controller = locate(dock_target_station)
 	if(!istype(arming_controller))
-		world << SPAN_DANGER("warning: escape pod with station dock tag [dock_target_station] could not find it's dock target!")
+		world << span_danger("warning: escape pod with station dock tag [dock_target_station] could not find it's dock target!")
 
 	if(docking_controller)
 		var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/controller_master = docking_controller.master
 		if(!istype(controller_master))
-			world << SPAN_DANGER("warning: escape pod with docking tag [docking_controller_tag] could not find it's controller master!")
+			world << span_danger("warning: escape pod with docking tag [docking_controller_tag] could not find it's controller master!")
 		else
 			controller_master.pod = src
 
@@ -108,7 +108,7 @@
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/emag_act(var/remaining_charges, var/mob/user)
 	if (!emagged)
-		user << SPAN_NOTICE("You emag the [src], arming the escape pod!")
+		user << span_notice("You emag the [src], arming the escape pod!")
 		emagged = TRUE
 		if (istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
 			var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program

@@ -64,7 +64,7 @@
 	var/trans = our_item.reagents.trans_to_obj(container, our_item.amount_per_transfer_from_this)
 
 	playsound(usr,'sound/effects/Liquid_transfer_mono.ogg',50,1)
-	to_chat(usr, SPAN_NOTICE("You transfer [trans] units to \the [container]."))
+	to_chat(usr, span_notice("You transfer [trans] units to \the [container]."))
 
 	return CWJ_SUCCESS
 

@@ -28,8 +28,8 @@
 /obj/item/device/lighting/glowstick/flare/attack_self(mob/user)
 	if(turn_on(user))
 		user.visible_message(
-			SPAN_NOTICE("\The [user] activates \the [src]."),
-			SPAN_NOTICE("You pull the cord on the flare, activating it!")
+			span_notice("\The [user] activates \the [src]."),
+			span_notice("You pull the cord on the flare, activating it!")
 		)
 
 /obj/item/device/lighting/glowstick/flare/turn_on(var/mob/user)

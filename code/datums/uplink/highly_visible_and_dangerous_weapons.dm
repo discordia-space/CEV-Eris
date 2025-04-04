@@ -219,7 +219,7 @@
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules)
-			to_chat(BS, SPAN_WARNING("You already have a laser system installed."))
+			to_chat(BS, span_warning("You already have a laser system installed."))
 			return 0
 		BS.module.modules += new /obj/item/gun/energy/laser/mounted/blitz(BS.module)
 		U.blacklist += name
@@ -282,7 +282,7 @@
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/gun/energy/shrapnel/mounted) in BS.module.modules)
-			to_chat(BS, SPAN_WARNING("You already have a shrapnel cannon installed."))
+			to_chat(BS, span_warning("You already have a shrapnel cannon installed."))
 			return FALSE
 		BS.module.modules += new /obj/item/gun/energy/shrapnel/mounted(BS.module)
 		U.blacklist += name

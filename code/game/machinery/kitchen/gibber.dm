@@ -73,7 +73,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, SPAN_DANGER("The gibber is locked and running, wait for it to finish."))
+		to_chat(user, span_danger("The gibber is locked and running, wait for it to finish."))
 		return
 	else
 		startgibbing(user)
@@ -82,33 +82,33 @@
 	..()
 	if(QUALITY_PULSING in I.tool_qualities)
 		user.visible_message(
-		SPAN_WARNING("[user] picks in wires of the [name] with a multitool"), \
-		SPAN_WARNING("[pick("Picking wires in [name] lock", "Hacking [name] security systems", "Pulsing in locker controller")].")
+		span_warning("[user] picks in wires of the [name] with a multitool"), \
+		span_warning("[pick("Picking wires in [name] lock", "Hacking [name] security systems", "Pulsing in locker controller")].")
 		)
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
 			if(hack_stage < hack_require)
 				playsound(loc, 'sound/items/glitch.ogg', 60, 1, -3)
 				hack_stage++
-				to_chat(user, SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
+				to_chat(user, span_notice("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
 			else if(hack_stage >= hack_require)
 				emagged = !emagged
 				update_icon()
 				user.visible_message(
-				SPAN_WARNING("[user] [emagged?"disable":"enable"] the safety guard of [name] with a multitool,"), \
-				SPAN_WARNING("You [emagged? "disable" : "enable"] the safety guard of [name] with multitool")
+				span_warning("[user] [emagged?"disable":"enable"] the safety guard of [name] with a multitool,"), \
+				span_warning("You [emagged? "disable" : "enable"] the safety guard of [name] with multitool")
 				)
 
 /obj/machinery/gibber/examine(mob/user, extra_description = "")
-	..(user, "The safety guard is [emagged ? SPAN_DANGER("disabled") : "enabled"].")
+	..(user, "The safety guard is [emagged ? span_danger("disabled") : "enabled"].")
 
 /obj/machinery/gibber/emag_act(remaining_charges, mob/user)
 	emagged = !emagged
-	to_chat(user, SPAN_DANGER("You [emagged ? "disable" : "enable"] the gibber safety guard."))
+	to_chat(user, span_danger("You [emagged ? "disable" : "enable"] the gibber safety guard."))
 	return TRUE
 
 /obj/machinery/gibber/affect_grab(mob/user, mob/target, state)
 	if(state < GRAB_NECK)
-		to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
+		to_chat(user, span_danger("You need a better grip to do that!"))
 		return FALSE
 	move_into_gibber(user, target)
 	return TRUE
@@ -120,33 +120,33 @@
 
 /obj/machinery/gibber/proc/move_into_gibber(mob/user, mob/living/victim)
 	if(occupant)
-		to_chat(user, SPAN_DANGER("The gibber is full, empty it first!"))
+		to_chat(user, span_danger("The gibber is full, empty it first!"))
 		return
 
 	if(operating)
-		to_chat(user, SPAN_DANGER("The gibber is locked and running, wait for it to finish."))
+		to_chat(user, span_danger("The gibber is locked and running, wait for it to finish."))
 		return
 
 	if(!(iscarbon(victim)) && !(isanimal(victim)) )
-		to_chat(user, SPAN_DANGER("This is not suitable for the gibber!"))
+		to_chat(user, span_danger("This is not suitable for the gibber!"))
 		return
 
 	if(ishuman(victim))
 		if(!emagged)
-			to_chat(user, SPAN_DANGER("The gibber safety guard is engaged!"))
+			to_chat(user, span_danger("The gibber safety guard is engaged!"))
 			return
 		var/mob/living/carbon/human/H = victim
 		if(H.isSynthetic())
-			to_chat(user, SPAN_DANGER("Subject is not suitable for the gibber!"))
+			to_chat(user, span_danger("Subject is not suitable for the gibber!"))
 			return
 	if(victim.abiotic(1))
-		to_chat(user, SPAN_DANGER("Subject may not have abiotic items on."))
+		to_chat(user, span_danger("Subject may not have abiotic items on."))
 		return
 
-	user.visible_message(SPAN_DANGER("[user] starts to put [victim] into the gibber!"))
+	user.visible_message(span_danger("[user] starts to put [victim] into the gibber!"))
 	add_fingerprint(user)
 	if(do_after(user, 30, src) && victim.Adjacent(src) && user.Adjacent(src) && victim.Adjacent(user) && !occupant)
-		user.visible_message(SPAN_DANGER("\The [user] stuffs \the [victim] into the gibber!"))
+		user.visible_message(span_danger("\The [user] stuffs \the [victim] into the gibber!"))
 		victim.forceMove(src)
 		victim.reset_view(src)
 		occupant = victim
@@ -177,10 +177,10 @@
 	if(operating)
 		return
 	if(!occupant)
-		visible_message(SPAN_DANGER("You hear a loud metallic grinding sound."))
+		visible_message(span_danger("You hear a loud metallic grinding sound."))
 		return
 	use_power(1000)
-	visible_message(SPAN_DANGER("You hear a loud squelchy grinding sound."))
+	visible_message(span_danger("You hear a loud squelchy grinding sound."))
 	operating = TRUE
 	update_icon()
 

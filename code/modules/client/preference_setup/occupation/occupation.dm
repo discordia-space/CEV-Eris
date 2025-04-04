@@ -185,7 +185,7 @@
 
 	. += "<a href='byond://?src=\ref[src];reset_jobs=1'>\[Reset\]</a></center>"
 	. += "</tt><br>"
-	//. += "Jobs that <span class='Points'>look like this</span> have unspent skill points remaining."
+	//. += "Jobs that [span_Points("look like this")] have unspent skill points remaining."
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/occupation/OnTopic(href, href_list, user)

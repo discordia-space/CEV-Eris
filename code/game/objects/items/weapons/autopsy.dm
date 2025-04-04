@@ -152,7 +152,7 @@
 			scan_data += "<br>"
 
 	for(var/mob/O in viewers(usr))
-		O.show_message(SPAN_NOTICE("\The [src] rattles and prints out a sheet of paper."), 1)
+		O.show_message(span_notice("\The [src] rattles and prints out a sheet of paper."), 1)
 
 	sleep(10)
 
@@ -176,7 +176,7 @@
 		return
 
 	if(!can_operate(M, user) == CAN_OPERATE_ALL)
-		to_chat(user, SPAN_WARNING("You need to lay the cadaver down on a table first!"))
+		to_chat(user, span_warning("You need to lay the cadaver down on a table first!"))
 		return
 
 	if(target_name != M.name)
@@ -184,19 +184,19 @@
 		src.wdata = list()
 		src.chemtraces = list()
 		src.timeofdeath = null
-		to_chat(user, SPAN_NOTICE("A new patient has been registered. Purging data for previous patient."))
+		to_chat(user, span_notice("A new patient has been registered. Purging data for previous patient."))
 
 	src.timeofdeath = M.timeofdeath
 
 	var/obj/item/organ/external/S = M.get_organ(user.targeted_organ)
 	if(!S)
-		to_chat(usr, SPAN_WARNING("You can't scan this body part."))
+		to_chat(usr, span_warning("You can't scan this body part."))
 		return
 	if(!S.open)
-		to_chat(usr, SPAN_WARNING("You have to cut the limb open first!"))
+		to_chat(usr, span_warning("You have to cut the limb open first!"))
 		return
 	for(var/mob/O in viewers(M))
-		O.show_message(SPAN_NOTICE("\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]"), 1)
+		O.show_message(span_notice("\The [user] scans the wounds on [M.name]'s [S.name] with \the [src]"), 1)
 	SEND_SIGNAL_OLD(user, COMSING_AUTOPSY, M)
 	if(user.mind && user.mind.assigned_job && (user.mind.assigned_job.department in GLOB.department_moebius))
 		GLOB.moebius_autopsies_mobs |= M

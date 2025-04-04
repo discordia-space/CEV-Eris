@@ -19,7 +19,7 @@
 
 /obj/effect/gibspawner/proc/Gib(atom/location, mob/M = null)
 	if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
-		to_chat(world, SPAN_WARNING("Gib list length mismatch!"))
+		to_chat(world, span_warning("Gib list length mismatch!"))
 		return
 
 	if(sparks)

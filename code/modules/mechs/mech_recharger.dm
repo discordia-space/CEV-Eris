@@ -62,7 +62,7 @@
 		set_power_use(ACTIVE_POWER_USE)
 
 		if(cell.fully_charged())
-			charging.occupant_message(SPAN_NOTICE("Fully charged."))
+			charging.occupant_message(span_notice("Fully charged."))
 		else
 			done = FALSE
 	else
@@ -71,7 +71,7 @@
 	if(repair && charging.health < initial(charging.health))
 		charging.health = min(charging.health + repair, initial(charging.health))
 		if(charging.health == initial(charging.health))
-			charging.occupant_message(SPAN_NOTICE("Fully repaired."))
+			charging.occupant_message(span_notice("Fully repaired."))
 
 		else
 			done = FALSE
@@ -89,11 +89,11 @@
 
 /obj/machinery/mech_recharger/proc/start_charging(var/mob/living/exosuit/M)
 	if(stat & (NOPOWER | BROKEN))
-		M.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
+		M.occupant_message(span_warning("Power port not responding. Terminating."))
 		return
 
 	if(M.get_cell())
-		M.occupant_message(SPAN_NOTICE("Now charging..."))
+		M.occupant_message(span_notice("Now charging..."))
 		charging = M
 
 /obj/machinery/mech_recharger/proc/stop_charging()

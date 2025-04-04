@@ -161,22 +161,22 @@
 	var/issynth = issilicon(user) // Robots and AIs get different activation messages.
 	if(damage > broken_damage)
 		if(issynth)
-			to_chat(user, SPAN_WARNING("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
+			to_chat(user, span_warning("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
 		else
-			to_chat(user, SPAN_WARNING("You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again."))
+			to_chat(user, span_warning("You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again."))
 		return
 	if(processor_unit && try_use_power(0)) // Battery-run and charged or non-battery but powered by APC.
 		if(issynth)
-			to_chat(user, SPAN_NOTICE("You send an activation signal to \the [src], turning it on"))
+			to_chat(user, span_notice("You send an activation signal to \the [src], turning it on"))
 		else
-			to_chat(user, SPAN_NOTICE("You press the power button and start up \the [src]."))
+			to_chat(user, span_notice("You press the power button and start up \the [src]."))
 		enable_computer(user)
 
 	else // Unpowered
 		if(issynth)
-			to_chat(user, SPAN_WARNING("You send an activation signal to \the [src] but it does not respond."))
+			to_chat(user, span_warning("You send an activation signal to \the [src] but it does not respond."))
 		else
-			to_chat(user, SPAN_WARNING("You press the power button but \the [src] does not respond."))
+			to_chat(user, span_warning("You press the power button but \the [src] does not respond."))
 
 // Relays kill program request to currently active program. Use this to quit current program.
 /obj/item/modular_computer/proc/kill_program(forced = FALSE)
@@ -260,7 +260,7 @@
 		P = getFileByName(prog_name)
 
 	if(!istype(P)) // Program not found or it's not executable program.
-		to_chat(user, SPAN_WARNING("I/O ERROR - Unable to run [prog_name]"))
+		to_chat(user, span_warning("I/O ERROR - Unable to run [prog_name]"))
 		return
 
 	P.computer = src
@@ -274,11 +274,11 @@
 		return
 
 	if(all_threads.len >= processor_unit.max_programs)
-		to_chat(user, SPAN_WARNING("Maximal CPU load reached. Unable to run another program."))
+		to_chat(user, span_warning("Maximal CPU load reached. Unable to run another program."))
 		return
 
 	if(P.requires_ntnet && !get_ntnet_status(P.requires_ntnet_feature)) // The program requires NTNet connection, but we are not connected to NTNet.
-		to_chat(user, SPAN_WARNING("NETWORK ERROR - Unable to connect to network. Please retry. If problem persists, contact your system administrator."))
+		to_chat(user, span_warning("NETWORK ERROR - Unable to connect to network. Please retry. If problem persists, contact your system administrator."))
 		return
 
 	if(active_program)

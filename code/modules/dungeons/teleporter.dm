@@ -36,8 +36,8 @@
 		order++
 		if(order == 3)
 			order = 1
-		sleep(10 SECONDS) 
-		
+		sleep(10 SECONDS)
+
 
 /obj/rogue/teleporter/attack_hand(mob/user)
 	if(!charge)
@@ -87,7 +87,7 @@
 	if(!dungeon_is_generated || !target)
 		// Something wrong happened and dungeon was not properly generated
 		admin_notice("Failed to generate the OneStar dungeon - Warn coders.")
-		visible_message(SPAN_WARNING("The teleporter malfunctions and explodes in a shower of sparks!"))
+		visible_message(span_warning("The teleporter malfunctions and explodes in a shower of sparks!"))
 		destroy_teleporter()
 	else
 		end_teleporter_event()

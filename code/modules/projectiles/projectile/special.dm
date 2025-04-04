@@ -251,7 +251,7 @@
 	sharp = FALSE
 	embed = FALSE	// plasma is not directly destroyed as projectile does not survive impact
 	recoil = 4
-	matter = list(MATERIAL_PLASTIC = 0.5, MATERIAL_PLASMA = 1) 
+	matter = list(MATERIAL_PLASTIC = 0.5, MATERIAL_PLASMA = 1)
 
 /obj/item/projectile/bullet/flare/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -260,7 +260,7 @@
 		playsound(src, 'sound/effects/flare.ogg', 100, 1)
 		M.adjust_fire_stacks(fire_stacks)
 		M.IgniteMob()
-		src.visible_message(SPAN_WARNING("\The [src] sets [target] on fire!"))
+		src.visible_message(span_warning("\The [src] sets [target] on fire!"))
 
 /obj/item/projectile/bullet/flare/on_impact(var/atom/A)
 	var/turf/T = flash_range? src.loc : get_turf(A)
@@ -271,7 +271,7 @@
 		if(M.eyecheck() < FLASH_PROTECTION_NONE)
 			M.flash(0, FALSE , FALSE , FALSE)
 
-	src.visible_message(SPAN_WARNING("\The [src] explodes in a bright light!"))
+	src.visible_message(span_warning("\The [src] explodes in a bright light!"))
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)

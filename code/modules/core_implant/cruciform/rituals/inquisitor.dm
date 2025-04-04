@@ -50,7 +50,7 @@
 	var/mob/living/M = CI.wearer
 
 	log_and_message_admins(" inflicted pain on [CI.wearer] with penance litany")
-	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
+	to_chat(M, span_danger("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
 
 
 	var/datum/effect/effect/system/spark_spread/s = new
@@ -161,7 +161,7 @@
 	//Checking turfs allows this to be done in unusual circumstances
 	var/turf/T = get_turf(user)
 	if (!(T.Adjacent(get_turf(H))))
-		to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
+		to_chat(user, span_danger("[H] is beyond your reach.."))
 		return
 
 
@@ -169,10 +169,10 @@
 	if (do_after(user, 40, H, TRUE))
 		T = get_turf(user)
 		if (!(T.Adjacent(get_turf(H))))
-			to_chat(user, SPAN_DANGER("[H] is beyond your reach.."))
+			to_chat(user, span_danger("[H] is beyond your reach.."))
 			return
 		log_and_message_admins(" healed [CI.wearer] with Succour litany")
-		to_chat(H, "<span class='info'>A sensation of relief bathes you, washing away your pain</span>")
+		to_chat(H, span_info("A sensation of relief bathes you, washing away your pain"))
 		H.add_chemical_effect(CE_PAINKILLER, 20)
 		H.adjustBruteLoss(-20)
 		H.adjustFireLoss(-20)
@@ -205,7 +205,7 @@
 		fail("You feel stupid.",user,C,targets)
 		return FALSE
 	log_and_message_admins("looks through the eyes of [C] with scrying litany")
-	to_chat(M, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
+	to_chat(M, span_notice("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
 
 	var/mob/observer/eye/god/eye = new/mob/observer/eye/god(M)
 	eye.target = M
@@ -249,7 +249,7 @@
 	if (!text)
 		return
 	log_and_message_admins("sent a message to [H] with text \"[text]\"")
-	to_chat(H, SPAN_NOTICE("A voice speaks in your mind: \"[text]\""))
+	to_chat(H, span_notice("A voice speaks in your mind: \"[text]\""))
 
 
 

@@ -35,7 +35,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
-				to_chat(user, SPAN_NOTICE("You disassemble [src]."))
+				to_chat(user, span_notice("You disassemble [src]."))
 
 				bombassembly.loc = user.loc
 				bombassembly.master = null
@@ -54,12 +54,12 @@
 					welded = TRUE
 					bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
 					message_admins("[key_name_admin(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]")
-					to_chat(user, SPAN_NOTICE("A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited."))
+					to_chat(user, span_notice("A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited."))
 					return
 				else
 					welded = FALSE
 					bombers += "[key_name(user)] unwelded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
-					to_chat(user, SPAN_NOTICE("The hole has been closed."))
+					to_chat(user, span_notice("The hole has been closed."))
 					return
 			return
 

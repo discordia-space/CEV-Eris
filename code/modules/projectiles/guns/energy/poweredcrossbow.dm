@@ -36,7 +36,7 @@
 			B.update_icon()
 		else
 			qdel(B)
-		to_chat(user, SPAN_NOTICE("You load a bolt into the powered crossbow!"))
+		to_chat(user, span_notice("You load a bolt into the powered crossbow!"))
 	else
 		..()
 
@@ -44,7 +44,7 @@
 	if(bolt && is_held())
 		user.put_in_active_hand(bolt)
 		bolt = null
-		to_chat(user, SPAN_NOTICE("You unload a bolt from the powered crossbow!"))
+		to_chat(user, span_notice("You unload a bolt from the powered crossbow!"))
 	else
 		..()
 

@@ -203,7 +203,7 @@ var/global/list/breach_burn_descriptors = list(
 			return
 
 		if(isliving(loc))
-			to_chat(user, SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?"))
+			to_chat(user, span_warning("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return
 
 		if(!brute_damage && !burn_damage)
@@ -219,16 +219,16 @@ var/global/list/breach_burn_descriptors = list(
 	else if(QUALITY_WELDING in I.tool_qualities)
 
 		if(isliving(loc))
-			to_chat(user, SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?"))
+			to_chat(user, span_warning("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return
 
 		if (!damage && ! brute_damage)
-			to_chat(user, SPAN_WARNING("There is no structural damage on \the [src] to repair."))
+			to_chat(user, span_warning("There is no structural damage on \the [src] to repair."))
 			return
 
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			repair_breaches(BRUTE, 3, user)
-			to_chat(user, SPAN_NOTICE("You repair the damage on the [src]."))
+			to_chat(user, span_notice("You repair the damage on the [src]."))
 			return
 
 		return
@@ -238,5 +238,5 @@ var/global/list/breach_burn_descriptors = list(
 /obj/item/clothing/suit/space/examine(mob/user, extra_description = "")
 	if(can_breach && breaches && LAZYLEN(breaches))
 		for(var/datum/breach/B in breaches)
-			extra_description += SPAN_DANGER("\nIt has \a [B.descriptor].")
+			extra_description += span_danger("\nIt has \a [B.descriptor].")
 	..(user, extra_description)

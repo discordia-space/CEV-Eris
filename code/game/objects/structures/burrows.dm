@@ -550,9 +550,9 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 				spawn_rubble(loc, 1, 100)
 
 				if (I.get_tool_quality(QUALITY_DIGGING) > 30)
-					to_chat(user, SPAN_NOTICE("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
+					to_chat(user, span_notice("The [src] crumbles a bit. Keep trying and you'll collapse it eventually"))
 				else
-					to_chat(user, SPAN_NOTICE("This isn't working very well. Perhaps you should get a better digging tool?"))
+					to_chat(user, span_notice("This isn't working very well. Perhaps you should get a better digging tool?"))
 
 				//On failure, the hole takes some damage based on the digging quality of the tool.
 				//This will make things much easier next time
@@ -694,7 +694,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 
 /obj/structure/burrow/examine(mob/user, extra_description = "")
 	if(isSealed && recieving)
-		extra_description += SPAN_WARNING("You can see something move behind the cracks. You should weld them shut before it breaks through.")
+		extra_description += span_warning("You can see something move behind the cracks. You should weld them shut before it breaks through.")
 	..(user, extra_description)
 
 /obj/structure/burrow/explosion_act(target_power, explosion_handler/handler)

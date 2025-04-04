@@ -552,7 +552,7 @@ var/global/floorIsLava = 0
 	if(confirm == "Cancel")
 		return
 	if(confirm == "Yes")
-		to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>")
+		to_chat(world, span_danger("Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!"))
 		log_admin("[key_name(usr)] initiated a reboot.")
 
 
@@ -572,7 +572,7 @@ var/global/floorIsLava = 0
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		to_chat(world, "<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>")
+		to_chat(world, span_notice("<b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p>"))
 		log_admin("Announce: [key_name(usr)] : [message]")
 		SEND_SOUND(world, sound('sound/misc/notice2.ogg'))
 
@@ -1121,7 +1121,7 @@ var/global/floorIsLava = 0
 		return TRUE
 	if(tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name]."))
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 
 	tomob.ckey = frommob.ckey

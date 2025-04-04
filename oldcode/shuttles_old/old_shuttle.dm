@@ -16,7 +16,7 @@
 	if(docking_controller_tag)
 		docking_controller = locate(docking_controller_tag)
 		if(!istype(docking_controller))
-			world << SPAN_DANGER("warning: shuttle with docking tag [docking_controller_tag] could not find it's controller!")
+			world << span_danger("warning: shuttle with docking tag [docking_controller_tag] could not find it's controller!")
 
 /datum/shuttle/proc/short_jump(var/area/origin,var/area/destination)
 	if(moving_status != SHUTTLE_IDLE) return

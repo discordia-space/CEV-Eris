@@ -1,7 +1,7 @@
 /obj/item/rig/proc/can_install(var/obj/item/rig_module/mod, var/mob/user, var/feedback = FALSE)
 	if(is_worn())
 		if (user && feedback)
-			to_chat(user, SPAN_DANGER("You can't install a hardsuit module while the suit is being worn."))
+			to_chat(user, span_danger("You can't install a hardsuit module while the suit is being worn."))
 		return FALSE
 
 	if(installed_modules.len)

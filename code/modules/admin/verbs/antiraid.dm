@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 		return
 
 	if (!config.sql_enabled)
-		to_chat(usr, "<span class='adminnotice'>The Database is not enabled!</span>")
+		to_chat(usr, span_adminnotice("The Database is not enabled!"))
 		return
 
 	config.panic_bunker = (!config.panic_bunker)
@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 	set name = "Add PB Bypass"
 	set desc = "Allows a given ckey to connect despite the panic bunker for a given round."
 	if(!dbcon.IsConnected())
-		to_chat(usr, "<span class='adminnotice'>The Database is not enabled or not working!</span>")
+		to_chat(usr, span_adminnotice("The Database is not enabled or not working!"))
 		return
 
 	GLOB.PB_bypass |= ckey(ckeytobypass)
@@ -34,7 +34,7 @@ GLOBAL_LIST_EMPTY(PB_bypass) //Handles ckey
 	set name = "Revoke PB Bypass"
 	set desc = "Revoke's a ckey's permission to bypass the panic bunker for a given round."
 	if(!dbcon.IsConnected())
-		to_chat(usr, "<span class='adminnotice'>The Database is not enabled or not working!</span>")
+		to_chat(usr, span_adminnotice("The Database is not enabled or not working!"))
 		return
 
 	GLOB.PB_bypass -= ckey(ckeytobypass)

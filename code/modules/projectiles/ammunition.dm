@@ -80,7 +80,7 @@
 		var/obj/item/ammo_casing/merging_casing = I
 		if(isturf(src.loc))
 			if(merging_casing.amount == merging_casing.maxamount)
-				to_chat(user, SPAN_WARNING("[merging_casing] is fully stacked!"))
+				to_chat(user, span_warning("[merging_casing] is fully stacked!"))
 				return FALSE
 			if(merging_casing.mergeCasing(src, null, user))
 				return TRUE
@@ -94,15 +94,15 @@
 		error("Passed no user to mergeCasing() when output messages is active.")
 	if(src.type != AC.type)
 		if(!noMessage)
-			to_chat(user, SPAN_WARNING("Ammo are different types."))
+			to_chat(user, span_warning("Ammo are different types."))
 		return FALSE
 	if(src.amount == src.maxamount)
 		if(!noMessage)
-			to_chat(user, SPAN_WARNING("[src] is fully stacked!"))
+			to_chat(user, span_warning("[src] is fully stacked!"))
 		return FALSE
 	if((!src.BB && AC.BB) || (src.BB && !AC.BB))
 		if(!noMessage)
-			to_chat(user, SPAN_WARNING("Fired and non-fired ammo wont stack."))
+			to_chat(user, span_warning("Fired and non-fired ammo wont stack."))
 		return FALSE
 
 	var/mergedAmount
@@ -229,19 +229,19 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, SPAN_WARNING("\The [src] is full!"))
+			to_chat(user, span_warning("\The [src] is full!"))
 			return
 		if(C.caliber != caliber)
-			to_chat(user, SPAN_WARNING("\The [C] does not fit into \the [src]."))
+			to_chat(user, span_warning("\The [C] does not fit into \the [src]."))
 			return
 		insertCasing(C)
 	else if(istype(W, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/other = W
 		if(!src.stored_ammo.len)
-			to_chat(user, SPAN_WARNING("There is no ammo in \the [src]!"))
+			to_chat(user, span_warning("There is no ammo in \the [src]!"))
 			return
 		if(other.stored_ammo.len >= other.max_ammo)
-			to_chat(user, SPAN_NOTICE("\The [other] is already full."))
+			to_chat(user, span_notice("\The [other] is already full."))
 			return
 		var/diff = FALSE
 		for(var/obj/item/ammo in src.stored_ammo)
@@ -250,13 +250,13 @@
 				continue
 			break
 		if(diff)
-			to_chat(user, SPAN_NOTICE("You finish loading \the [other]. It now contains [other.stored_ammo.len] rounds, and \the [src] now contains [stored_ammo.len] rounds."))
+			to_chat(user, span_notice("You finish loading \the [other]. It now contains [other.stored_ammo.len] rounds, and \the [src] now contains [stored_ammo.len] rounds."))
 		else
-			to_chat(user, SPAN_WARNING("You fail to load anything into \the [other]"))
+			to_chat(user, span_warning("You fail to load anything into \the [other]"))
 	if(istype(W, /obj/item/gun/projectile))
 		var/obj/item/gun/projectile/gun_to_load = W
 		if(istype(W, /obj/item/gun/projectile/revolver))
-			to_chat(user, SPAN_WARNING("You can\'t reload [W] that way!"))
+			to_chat(user, span_warning("You can\'t reload [W] that way!"))
 			return
 		if(gun_to_load.can_dual && !gun_to_load.ammo_magazine)
 			if(!do_after(user, 0.5 SECONDS, src))
@@ -267,7 +267,7 @@
 				S.refresh_all()
 			else
 				gun_to_load.load_ammo(src, user)
-			to_chat(user, SPAN_NOTICE("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
+			to_chat(user, span_notice("It takes a bit of time for you to reload your [W] with [src] using only one hand!"))
 			visible_message("[user] tactically reloads [W] using only one hand!")
 
 /obj/item/ammo_magazine/attack_hand(mob/user)
@@ -293,10 +293,10 @@
 	if(istype(W, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = W
 		if(stored_ammo.len >= max_ammo)
-			to_chat(user, SPAN_WARNING("[src] is full!"))
+			to_chat(user, span_warning("[src] is full!"))
 			return
 		if(C.caliber != caliber)
-			to_chat(user, SPAN_WARNING("[C] does not fit into [src]."))
+			to_chat(user, span_warning("[C] does not fit into [src]."))
 			return
 		if(stored_ammo.len)
 			var/obj/item/ammo_casing/T = removeCasing()
@@ -366,9 +366,9 @@
 	if(!Adjacent(usr))
 		return
 	if(!stored_ammo.len)
-		to_chat(usr, SPAN_NOTICE("[src] is already empty!"))
+		to_chat(usr, span_notice("[src] is already empty!"))
 		return
-	to_chat(usr, SPAN_NOTICE("You take out ammo from [src]."))
+	to_chat(usr, span_notice("You take out ammo from [src]."))
 
 	while(LAZYLEN(stored_ammo))
 

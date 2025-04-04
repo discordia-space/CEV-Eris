@@ -49,7 +49,7 @@
 	..()
 	if(bottle_thrower_intent != I_HELP)
 		if(reagents)
-			hit_atom.visible_message(SPAN_NOTICE("The contents of \the [src] splash all over [hit_atom]!"))
+			hit_atom.visible_message(span_notice("The contents of \the [src] splash all over [hit_atom]!"))
 			reagents.splash(hit_atom, reagents.total_volume)
 		src.smash(loc, hit_atom)
 
@@ -104,7 +104,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/reagent_containers/glass/rag/R, mob/user)
 	if(!isGlass || rag) return
 	if(user.unEquip(R))
-		to_chat(user, SPAN_NOTICE("You stuff [R] into [src]."))
+		to_chat(user, span_notice("You stuff [R] into [src]."))
 		rag = R
 		rag.forceMove(src)
 		reagent_flags &= ~OPENCONTAINER
@@ -152,15 +152,15 @@
 	var/mob/living/carbon/human/H = target
 	if(istype(H) && H.headcheck(hit_zone))
 		var/obj/item/organ/affecting = H.get_organ(hit_zone) //headcheck should ensure that affecting is not null
-		user.visible_message(SPAN_DANGER("[user] smashes [src] into [H]'s [affecting.name]!"))
+		user.visible_message(span_danger("[user] smashes [src] into [H]'s [affecting.name]!"))
 		if(weaken_duration)
 			target.apply_effect(min(weaken_duration, 5), WEAKEN, armor_value = target.getarmor(hit_zone, ARMOR_MELEE)) // Never weaken more than a flash!
 	else
-		user.visible_message(SPAN_DANGER("\The [user] smashes [src] into [target]!"))
+		user.visible_message(span_danger("\The [user] smashes [src] into [target]!"))
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(reagents)
-		user.visible_message(SPAN_NOTICE("The contents of \the [src] splash all over [target]!"))
+		user.visible_message(span_notice("The contents of \the [src] splash all over [target]!"))
 		reagents.splash(target, reagents.total_volume)
 
 	//Finally, smash the bottle. This kills (qdel) the bottle.

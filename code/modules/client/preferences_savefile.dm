@@ -10,7 +10,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to load your preferences a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to load your preferences a little too fast. Wait half a second, then try again."))
 		return 0
 	if(!fexists(path))		return 0
 	var/savefile/S = new /savefile(path)
@@ -26,7 +26,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to save your preferences a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to save your preferences a little too fast. Wait half a second, then try again."))
 		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0
@@ -41,7 +41,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to load your character a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to load your character a little too fast. Wait half a second, then try again."))
 		return 0
 
 	if(!fexists(path))		return 0
@@ -74,7 +74,7 @@
 	if(!path)				return 0
 	if(!check_cooldown())
 		if(istype(client))
-			to_chat(client, SPAN_WARNING("You're attempting to save your character a little too fast. Wait half a second, then try again."))
+			to_chat(client, span_warning("You're attempting to save your character a little too fast. Wait half a second, then try again."))
 		return 0
 	var/savefile/S = new /savefile(path)
 	if(!S)					return 0

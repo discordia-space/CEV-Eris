@@ -52,7 +52,7 @@
 					G.reenter_corpse()
 					break
 			if(!BM.client)
-				to_chat(user, SPAN_WARNING("\The [src] indicates that \the [B] is unresponsive."))
+				to_chat(user, span_warning("\The [src] indicates that \the [B] is unresponsive."))
 				return
 
 		for(var/mob/V in viewers(src, null))

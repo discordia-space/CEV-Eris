@@ -66,7 +66,7 @@
 
 		if(ishuman(wearer))
 			if(part)
-				wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
+				wearer.visible_message(span_warning("Something beeps inside [wearer][part ? "'s [part.name]" : ""]!"))
 				playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 				sleep(25)
 				if (part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
@@ -92,17 +92,17 @@
 	if(!istype(wearer) || !wearer.mind)
 		return
 	if(removal_authorized)
-		wearer.visible_message(SPAN_DANGER("\The [src] rips through \the [wearer]'s [part.name]!"))
+		wearer.visible_message(span_danger("\The [src] rips through \the [wearer]'s [part.name]!"))
 		part.take_damage(rand(20,40))
 		removal_authorized = FALSE
 	else
-		wearer.visible_message(SPAN_DANGER("As \the [src] is removed from \the [wearer]..."))
+		wearer.visible_message(span_danger("As \the [src] is removed from \the [wearer]..."))
 		if(prob(66))
-			wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
+			wearer.visible_message(span_danger("\The [wearer]'s [part.name] violently explodes from within!"))
 			wearer.adjustBrainLoss(200)
 			part.droplimb(FALSE, DROPLIMB_BLUNT)
 		else
-			wearer.visible_message(SPAN_NOTICE("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
+			wearer.visible_message(span_notice("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
 
 /obj/item/implant/explosive/proc/configure()
 	death_react = alert("Should implant be activated on user's death?", "Implant Intent", "Safe Hand", "Dead Hand")

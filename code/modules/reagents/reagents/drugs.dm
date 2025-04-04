@@ -149,7 +149,7 @@
 		var/mob/living/carbon/human/affected = M
 		for(var/datum/breakdown/B in affected.sanity.breakdowns)
 			B.finished = TRUE
-			to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
+			to_chat(M, span_notice("You feel that something eases the strain on your sanity. But at which price?"))
 
 /datum/reagent/drug/psilocybin
 	name = "Psilocybin"

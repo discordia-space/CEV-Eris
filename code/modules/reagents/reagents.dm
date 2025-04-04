@@ -207,7 +207,7 @@
 	var/wound_name = "[name] [wound_descriptor]"
 	I.add_wound(wound_path, wound_name)
 	if(!silent && BP_IS_ORGANIC(I))
-		to_chat(user, SPAN_WARNING("You feel a sharp pain in your [I.parent.name]."))
+		to_chat(user, span_warning("You feel a sharp pain in your [I.parent.name]."))
 
 /datum/reagent/proc/initialize_data(newdata) // Called when the reagent is created.
 	if(!isnull(newdata))
@@ -230,24 +230,24 @@
 // Addiction
 /datum/reagent/proc/addiction_act_stage1(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_NOTICE("You feel like having some [name] right about now."))
+		to_chat(M, span_notice("You feel like having some [name] right about now."))
 
 /datum/reagent/proc/addiction_act_stage2(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_NOTICE("You feel like you need [name]. You just can't get enough."))
+		to_chat(M, span_notice("You feel like you need [name]. You just can't get enough."))
 
 /datum/reagent/proc/addiction_act_stage3(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_DANGER("You have an intense craving for [name]."))
+		to_chat(M, span_danger("You have an intense craving for [name]."))
 		M.sanity.changeLevel(-5)
 
 /datum/reagent/proc/addiction_act_stage4(mob/living/carbon/human/M)
 	if(prob(30))
-		to_chat(M, SPAN_DANGER("You're not feeling good at all! You really need some [name]."))
+		to_chat(M, span_danger("You're not feeling good at all! You really need some [name]."))
 		M.sanity.changeLevel(-10)
 
 /datum/reagent/proc/addiction_end(mob/living/carbon/human/M)
-	to_chat(M, SPAN_NOTICE("You feel like you've gotten over your need for [name]."))
+	to_chat(M, span_notice("You feel like you've gotten over your need for [name]."))
 	M.sanity.changeLevel(15)
 
 // Withdrawal

@@ -84,9 +84,9 @@
 	return ..()
 
 /obj/item/tank/jetpack/examine(mob/user, extra_description = "")
-	extra_description += "The pressure gauge reads: [SPAN_NOTICE(get_gas().return_pressure())] kPa"
+	extra_description += "The pressure gauge reads: [span_notice(get_gas().return_pressure())] kPa"
 	if(air_contents.total_moles < 5)
-		extra_description += SPAN_DANGER("\nThe gauge on \the [src] indicates you are almost out of gas!")
+		extra_description += span_danger("\nThe gauge on \the [src] indicates you are almost out of gas!")
 		playsound(user, 'sound/effects/alert.ogg', 50, 1)
 	..(user, extra_description)
 
@@ -112,9 +112,9 @@
 		return TRUE
 	else
 		if (!on)
-			to_chat(usr, SPAN_WARNING("The [src] must be enabled first!"))
+			to_chat(usr, span_warning("The [src] must be enabled first!"))
 		else
-			to_chat(usr, SPAN_WARNING("The [src] doesnt have enough gas to enable the stabiliser."))
+			to_chat(usr, span_warning("The [src] doesnt have enough gas to enable the stabiliser."))
 		return FALSE
 
 /obj/item/tank/jetpack/proc/disable_stabilizer()
@@ -399,7 +399,7 @@
 	//We now start compressing.
 	if (!compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-		to_chat(R, SPAN_NOTICE("Your [src] clicks as it starts drawing and compressing air to refill the tank"))
+		to_chat(R, span_notice("Your [src] clicks as it starts drawing and compressing air to refill the tank"))
 
 	compressing = TRUE
 	//Setting this compressing var to true will cause the component to draw power
@@ -417,7 +417,7 @@
 	if (compressing)
 		playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		var/mob/living/silicon/robot/R = get_holding_mob()
-		to_chat(R, SPAN_NOTICE("Your [src] clicks as its internal compressor shuts off"))
+		to_chat(R, span_notice("Your [src] clicks as its internal compressor shuts off"))
 	compressing = FALSE
 
 	if (complete)

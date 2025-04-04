@@ -16,6 +16,6 @@
 			spawn(2 SECONDS)
 				on_cooldown = FALSE
 		else
-			to_chat(owner_mob, SPAN_WARNING("[src] is not ready to speak yet"))
+			to_chat(owner_mob, span_warning("[src] is not ready to speak yet"))
 	else
-		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
+		to_chat(owner_mob, span_warning("[src] doesn't have a host"))

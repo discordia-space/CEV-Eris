@@ -72,7 +72,7 @@
 			break
 
 	if (!a_count)
-		if (report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
+		if (report) to_chat(report, span_notice("Failure: No antags which can serve as target"))
 		return FALSE //Can't spawn without at least one antag
 
 
@@ -107,7 +107,7 @@
 			break
 
 	if (a_count == 0)
-		if (report) to_chat(report, SPAN_NOTICE("Failure: No antags which can serve as target"))
+		if (report) to_chat(report, span_notice("Failure: No antags which can serve as target"))
 		return FALSE //Can't spawn without at least one antag
 
 	return ..()

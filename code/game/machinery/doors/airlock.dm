@@ -53,13 +53,13 @@ GLOBAL_LIST_EMPTY(wedge_icon_cache)
 	if(stat & (BROKEN|NOPOWER))
 		if(damage >= 10)
 			if(src.density)
-				visible_message(SPAN_DANGER("\The [user] forces \the [src] open!"))
+				visible_message(span_danger("\The [user] forces \the [src] open!"))
 				open(1)
 			else
-				visible_message(SPAN_DANGER("\The [user] forces \the [src] closed!"))
+				visible_message(span_danger("\The [user] forces \the [src] closed!"))
 				close(1)
 		else
-			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			visible_message(span_notice("\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"]."))
 		return
 	..()
 
@@ -572,16 +572,16 @@ There are 9 wires.
 	set src in view(1)
 
 	if(!isliving(usr))
-		to_chat(usr, SPAN_WARNING("You can't do this."))
+		to_chat(usr, span_warning("You can't do this."))
 		return
 	var/obj/item/tool/T = usr.get_active_hand()
 	if(istype(T) && T.w_class >= ITEM_SIZE_NORMAL) // We do the checks before proc call, because see "proc overhead".
 		if(!density)
 			usr.drop_item()
 			force_wedge_item(T)
-			to_chat(usr, SPAN_NOTICE("You wedge [T] into [src]."))
+			to_chat(usr, span_notice("You wedge [T] into [src]."))
 		else
-			to_chat(usr, SPAN_NOTICE("[T] can't be wedged into [src], while [src] is closed."))
+			to_chat(usr, span_notice("[T] can't be wedged into [src], while [src] is closed."))
 
 /obj/machinery/door/airlock/proc/take_out_wedged_item()
 	set name = "Remove Blockage"
@@ -595,7 +595,7 @@ There are 9 wires.
 		wedged_item.forceMove(drop_location())
 		if(usr)
 			usr.put_in_hands(wedged_item)
-			to_chat(usr, SPAN_NOTICE("You took [wedged_item] out of [src]."))
+			to_chat(usr, span_notice("You took [wedged_item] out of [src]."))
 		wedged_item = null
 		verbs -= /obj/machinery/door/airlock/proc/take_out_wedged_item
 		verbs += /obj/machinery/door/airlock/proc/try_wedge_item
@@ -838,13 +838,13 @@ There are 9 wires.
 		if(H.getBrainLoss() >= 60)
 			playsound(loc, 'sound/effects/bang.ogg', 25, 1)
 			if(!istype(H.head, /obj/item/clothing/head/armor/helmet))
-				visible_message(SPAN_WARNING("[user] headbutts the airlock."))
+				visible_message(span_warning("[user] headbutts the airlock."))
 				var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 				H.Weaken(5)
 				if(affecting.take_damage(10, 0))
 					H.UpdateDamageIcon()
 			else
-				visible_message(SPAN_WARNING("[user] headbutts the airlock. Good thing they're wearing a helmet."))
+				visible_message(span_warning("[user] headbutts the airlock. Good thing they're wearing a helmet."))
 			return
 
 
@@ -861,16 +861,16 @@ There are 9 wires.
 
 /obj/machinery/door/airlock/CanUseTopic(var/mob/user)
 	if(operating < 0) //emagged
-		to_chat(user, SPAN_WARNING("Unable to interface: Internal error."))
+		to_chat(user, span_warning("Unable to interface: Internal error."))
 		return STATUS_CLOSE
 	if(issilicon(user) && !canAIControl())
 		if(canAIHack(user))
 			hack(user)
 		else
 			if (isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
-				to_chat(user, SPAN_WARNING("Unable to interface: Connection timed out."))
+				to_chat(user, span_warning("Unable to interface: Connection timed out."))
 			else
-				to_chat(user, SPAN_WARNING("Unable to interface: Connection refused."))
+				to_chat(user, span_warning("Unable to interface: Connection refused."))
 		return STATUS_CLOSE
 
 	return ..()
@@ -953,7 +953,7 @@ There are 9 wires.
 			if(!repairing)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY,  required_stat = list(STAT_MEC, STAT_ROB)))
 					if(p_open && (operating < 0 || (!operating && welded && !arePowerSystemsOn() && density && (!locked || (stat & BROKEN)))) )
-						to_chat(user, SPAN_NOTICE("You removed the airlock electronics!"))
+						to_chat(user, span_notice("You removed the airlock electronics!"))
 
 						var/obj/structure/door_assembly/da = new assembly_type(loc)
 						if (istype(da, /obj/structure/door_assembly/multi_tile))
@@ -980,9 +980,9 @@ There are 9 wires.
 						qdel(src)
 						return
 					else if(arePowerSystemsOn())
-						to_chat(user, SPAN_NOTICE("The airlock's motors resist your efforts to force it."))
+						to_chat(user, span_notice("The airlock's motors resist your efforts to force it."))
 					else if(locked)
-						to_chat(user, SPAN_NOTICE("The airlock's bolts prevent it from being forced."))
+						to_chat(user, span_notice("The airlock's bolts prevent it from being forced."))
 					else
 						if(density)
 							spawn(0)	open(I)
@@ -997,7 +997,7 @@ There are 9 wires.
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				if (p_open)
 					if (stat & BROKEN)
-						to_chat(usr, SPAN_WARNING("The panel is broken and cannot be closed."))
+						to_chat(usr, span_warning("The panel is broken and cannot be closed."))
 					else
 						p_open = 0
 				else
@@ -1019,13 +1019,13 @@ There are 9 wires.
 
 		if(QUALITY_HAMMERING)
 			if(stat & NOPOWER && locked)
-				to_chat(user, SPAN_NOTICE("You start hammering the bolts into the unlocked position"))
+				to_chat(user, span_notice("You start hammering the bolts into the unlocked position"))
 				// long time and high chance to fail.
 				if(I.use_tool(user, src, WORKTIME_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You unbolt the door."))
+					to_chat(user, span_notice("You unbolt the door."))
 					locked = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("You can\'t hammer away the bolts if the door is powered or not bolted."))
+				to_chat(user, span_notice("You can\'t hammer away the bolts if the door is powered or not bolted."))
 				return
 
 
@@ -1379,10 +1379,10 @@ There are 9 wires.
 	calc_damage -= resistance
 	user.do_attack_animation(src)
 	if(calc_damage <= 0)
-		user.visible_message(SPAN_DANGER("\The [user] hits \the [src] with \the [W] with no visible effect."))
+		user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
 		quiet ? null : playsound(src.loc, hitsound, 20, 1)
 	else
-		user.visible_message(SPAN_DANGER("\The [user] forcefully strikes \the [src] with \the [W]!"))
+		user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
 		playsound(src.loc, hitsound, quiet? 3: calc_damage*2, 1, 3,quiet?-5 :2)
 		take_damage(W.force)
 

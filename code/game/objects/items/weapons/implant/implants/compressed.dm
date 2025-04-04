@@ -51,7 +51,7 @@
 	if(istype(A,/obj/item) && implant)
 		var/obj/item/implant/compressed/c = implant
 		if (c.scanned)
-			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))
+			to_chat(user, span_warning("Something is already scanned inside the implant!"))
 			return
 		if(ismob(A.loc))
 			var/mob/M = A.loc

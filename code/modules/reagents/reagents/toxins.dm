@@ -272,7 +272,7 @@
 		if(locate(/obj/effect/overlay/wallrot) in W)
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)
-			W.visible_message(SPAN_NOTICE("The fungi are completely dissolved by the solution!"))
+			W.visible_message(span_notice("The fungi are completely dissolved by the solution!"))
 	return TRUE
 
 /datum/reagent/toxin/plantbgone/touch_obj(obj/O, var/volume)
@@ -397,7 +397,7 @@
 			if("species")
 				var/datum/species/S = gene_value
 				H.set_species(S.name)
-		to_chat(H, SPAN_DANGER("Some part of you feels wrong, like it's not you anymore."))
+		to_chat(H, span_danger("Some part of you feels wrong, like it's not you anymore."))
 	else
 		var/datum/mutation/U = gene_value ? gene_value : (H.active_mutations.len ? pick(H.active_mutations) : null)
 		U?.cleanse(H)
@@ -408,7 +408,7 @@
 
 /datum/reagent/toxin/mutagen/moeball/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(15))
-		to_chat(M, SPAN_DANGER("You feel your veins crackling and sending chills all over your skin!"))
+		to_chat(M, span_danger("You feel your veins crackling and sending chills all over your skin!"))
 		M.add_chemical_effect(CE_TOXIN, rand(4, 8) * effect_multiplier)
 		M.adjustOxyLoss(rand(5, 20))
 	if(dose > 3 && ishuman(M))
@@ -419,7 +419,7 @@
 
 /datum/reagent/toxin/mutagen/moeball/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(10))
-		to_chat(M, SPAN_DANGER("Your insides are burning!"))
+		to_chat(M, span_danger("Your insides are burning!"))
 		M.add_chemical_effect(CE_TOXIN, rand(2, 6) * effect_multiplier)
 	if(dose > 4 && ishuman(M))
 		mutate(M, alien, effect_multiplier)
@@ -441,7 +441,7 @@
 		M.heal_organ_damage(1 * effect_multiplier, 1 * effect_multiplier)
 		return
 	if(prob(10))
-		to_chat(M, SPAN_DANGER("Your insides are burning!"))
+		to_chat(M, span_danger("Your insides are burning!"))
 		M.add_chemical_effect(CE_TOXIN, rand(10, 30) * effect_multiplier)
 	else if(prob(40))
 		M.heal_organ_damage(2.5 * effect_multiplier, 0)
@@ -567,7 +567,7 @@
 			if(istype(H.get_core_implant(), /obj/item/implant/core_implant/cruciform))
 				H.gib() //Deus saves
 			else
-				to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+				to_chat(M, span_danger("Your flesh rapidly mutates!"))
 				for(var/obj/item/W in H) //Check all items on the person
 					if(istype(W, /obj/item/organ/external/robotic) || istype(W, /obj/item/implant)) //drop prosthetic limbs and implants, you are a slime now.
 						W.dropped()
@@ -591,7 +591,7 @@
 	if(HAS_TRANSFORMATION_MOVEMENT_HANDLER(M))
 		return
 	if(!prosthetic) //Check if is not FBP
-		to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+		to_chat(M, span_danger("Your flesh rapidly mutates!"))
 		ADD_TRANSFORMATION_MOVEMENT_HANDLER(M)
 		M.canmove = 0
 		M.icon = null
@@ -651,7 +651,7 @@
 	M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "pararein")
 	sanity_gain = 1.2
 	if(prob(10))
-		to_chat(M, SPAN_WARNING ("You feel like your mind is boiling and the blood in your veins is coming alive!"))
+		to_chat(M, span_warning ("You feel like your mind is boiling and the blood in your veins is coming alive!"))
 
 /datum/reagent/toxin/aranecolmin
 	name = "Aranecolmin"

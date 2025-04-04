@@ -28,7 +28,7 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_panel = !open_panel
-			to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
+			to_chat(user, span_notice("You [open_panel ? "open" : "close"] the wire panel."))
 	else if(istool(I))
 		wires.Interact(user)
 	else
@@ -60,7 +60,7 @@
 
 		if (ismob(target))
 			add_logs(user, target, "planted [name] on")
-			user.visible_message(SPAN_DANGER("[user.name] finished planting the explosive on [target.name]!"))
+			user.visible_message(span_danger("[user.name] finished planting the explosive on [target.name]!"))
 			message_admins("[key_name(user, user.client)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [key_name(target)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [key_name(target)] with [timer] second fuse")
 

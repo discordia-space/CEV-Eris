@@ -37,6 +37,6 @@
 /mob/living/silicon/robot/drone/fall_impact(var/turf/from, var/turf/dest)
 	take_overall_damage(get_fall_damage(from, dest))
 	playsound(src, 'sound/weapons/slice.ogg', 100, 1, 10)
-	visible_message(SPAN_NOTICE("[src] lands from above and rolls nimbly along the floor."), SPAN_NOTICE("You roll on impact, minimising damage!"))
+	visible_message(span_notice("[src] lands from above and rolls nimbly along the floor."), span_notice("You roll on impact, minimising damage!"))
 	SpinAnimation(4, 2)
 	updatehealth()

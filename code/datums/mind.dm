@@ -198,7 +198,7 @@
 				if(antag.create_antagonist(src))
 					log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
 				else
-					to_chat(usr, SPAN_WARNING("[src] could not be made into a [antag.role_text]!"))
+					to_chat(usr, span_warning("[src] could not be made into a [antag.role_text]!"))
 
 	else if(href_list["role_edit"])
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in GLOB.joblist

@@ -160,7 +160,7 @@
 	if(affected.internal_organs && affected.internal_organs.len)
 		if(prob(40))
 			var/obj/item/organ/O = pick(affected.internal_organs) //TODO weight by organ size
-			user.visible_message(SPAN_DANGER("A wayward piece of [target]'s [affected.encased] pierces \his [O.name]!"))
+			user.visible_message(span_danger("A wayward piece of [target]'s [affected.encased] pierces \his [O.name]!"))
 			O.bruise()
 
 /datum/old_surgery_step/open_encased/mend

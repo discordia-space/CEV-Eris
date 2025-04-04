@@ -1,6 +1,6 @@
 /obj/item/modular_computer/examine(mob/user, extra_description = "")
 	if(damage > broken_damage)
-		extra_description += SPAN_DANGER("It is heavily damaged!")
+		extra_description += span_danger("It is heavily damaged!")
 	else if(damage)
 		extra_description += "It is damaged."
 	..(user, extra_description)

@@ -110,13 +110,13 @@
 
 	if(istype(I, /obj/item/stack/material) && I.get_material_name() == src.get_material_name())
 		if(stat & BROKEN)
-			to_chat(user, SPAN_NOTICE("It looks like \the [src] is pretty busted. It's going to need more than just patching up now."))
+			to_chat(user, span_notice("It looks like \the [src] is pretty busted. It's going to need more than just patching up now."))
 			return
 		if(health >= maxHealth)
-			to_chat(user, SPAN_NOTICE("Nothing to fix!"))
+			to_chat(user, span_notice("Nothing to fix!"))
 			return
 		if(!density)
-			to_chat(user, SPAN_WARNING("\The [src] must be closed before you can repair it."))
+			to_chat(user, span_warning("\The [src] must be closed before you can repair it."))
 			return
 
 		//figure out how much metal we need
@@ -124,7 +124,7 @@
 		var/amount_needed = CEILING((maxHealth - health)/DOOR_REPAIR_AMOUNT, 1)
 		var/used = min(amount_needed,stack.amount)
 		if (used)
-			to_chat(user, SPAN_NOTICE("You fit [used] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
+			to_chat(user, span_notice("You fit [used] [stack.singular_name]\s to damaged and broken parts on \the [src]."))
 			stack.use(used)
 			health = between(health, health + used*DOOR_REPAIR_AMOUNT, maxHealth)
 		return

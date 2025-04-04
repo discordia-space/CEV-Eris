@@ -197,19 +197,19 @@
 				custom_pain("Your head feels numb and painful.")
 		if(getBrainLoss() >= 15)
 			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
-				to_chat(src, SPAN_WARNING("It becomes hard to see for some reason."))
+				to_chat(src, span_warning("It becomes hard to see for some reason."))
 				eye_blurry = 10
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9) if(get_active_hand())
-				to_chat(src, SPAN_DANGER("Your hand won't respond properly, you drop what you're holding!"))
+				to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding!"))
 				drop_item()
 		if(getBrainLoss() >= 45)
 			if(10 <= rn && rn <= 12)
 				if(prob(50))
-					to_chat(src, SPAN_DANGER("You suddenly black out!"))
+					to_chat(src, span_danger("You suddenly black out!"))
 					Paralyse(10)
 				else if(!lying)
-					to_chat(src, SPAN_DANGER("Your legs won't respond properly, you fall down!"))
+					to_chat(src, span_danger("Your legs won't respond properly, you fall down!"))
 					Weaken(10)
 
 
@@ -229,12 +229,12 @@
 					else
 						limb.remove_item(thing)
 					limb.take_damage(rand(15, 30))
-					visible_message(SPAN_DANGER("[thing.name] rips through [src]'s [limb.name]."),\
-					SPAN_DANGER("[thing.name] rips through your [limb.name]."))
+					visible_message(span_danger("[thing.name] rips through [src]'s [limb.name]."),\
+					span_danger("[thing.name] rips through your [limb.name]."))
 
 				if(BP_IS_ROBOTIC(limb))
-					visible_message(SPAN_DANGER("[src]'s [limb.name] tears off."),
-					SPAN_DANGER("Your [limb.name] tears off."))
+					visible_message(span_danger("[src]'s [limb.name] tears off."),
+					span_danger("Your [limb.name] tears off."))
 					limb.droplimb()
 					update_implants()
 
@@ -262,13 +262,13 @@
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
 				radiation -= 5 * RADIATION_SPEED_COEFFICIENT
-				to_chat(src, SPAN_WARNING("You feel weak."))
+				to_chat(src, span_warning("You feel weak."))
 				Weaken(3, FALSE)
 				if(!lying)
 					emote("collapse")
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT) && species.get_bodytype() == SPECIES_HUMAN) //apes go bald
 				if((h_style != "Bald" || f_style != "Shaved" ))
-					to_chat(src, SPAN_WARNING("Your hair falls out."))
+					to_chat(src, span_warning("Your hair falls out."))
 					h_style = "Bald"
 					f_style = "Shaved"
 					update_hair()
@@ -278,7 +278,7 @@
 			if(prob(5))
 				take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
 			if(prob(1))
-				to_chat(src, SPAN_WARNING("You feel strange!"))
+				to_chat(src, span_warning("You feel strange!"))
 				var/obj/item/organ/external/E = pick(organs)
 				E.mutate()
 				emote("gasp")
@@ -423,7 +423,7 @@
 			co2_alert = 0
 
 		if(!co2_alert && word && prob(warn_prob))
-			to_chat(src, SPAN_WARNING("You feel [word]."))
+			to_chat(src, span_warning("You feel [word]."))
 			adjustOxyLoss(oxyloss)
 			co2_alert = alert
 
@@ -468,7 +468,7 @@
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
-				to_chat(src, SPAN_DANGER("You feel your face freezing and icicles forming in your lungs!"))
+				to_chat(src, span_danger("You feel your face freezing and icicles forming in your lungs!"))
 
 			// cold_level_1 is the highest number here and COLD_GAS_DAMAGE_LEVEL_1 implies the least severe damage
 			if(breath.temperature < species.cold_level_3)
@@ -482,7 +482,7 @@
 			fire_alert = FIRE_ALERT_COLD
 		else if(breath.temperature >= species.heat_level_1)
 			if(prob(20))
-				to_chat(src, SPAN_DANGER("You feel your face burning and a searing heat in your lungs!"))
+				to_chat(src, span_danger("You feel your face burning and a searing heat in your lungs!"))
 
 			// heat_level_3 is the highest number here and HEAT_GAS_DAMAGE_LEVEL_3 implies the highest damage
 			if(breath.temperature > species.heat_level_3)
@@ -807,7 +807,7 @@
 		//UNCONSCIOUS. NO-ONE IS HOME
 		if(getOxyLoss() > (species.total_health/2))
 			if(stat == CONSCIOUS)
-				to_chat(src, SPAN_DANGER("You feel your consciousness become increasingly distant from the physical world."))
+				to_chat(src, span_danger("You feel your consciousness become increasingly distant from the physical world."))
 			Paralyse(3)
 
 		if(hallucination_power)

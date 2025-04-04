@@ -51,4 +51,4 @@
 		output += "[A.print_objectives(FALSE)]"
 
 	new /obj/item/paper(drop_location(), output, "[H.real_name]'s Memory")
-	H.visible_message(SPAN_NOTICE("[src] printed a paper with writed [H] memory."))
+	H.visible_message(span_notice("[src] printed a paper with writed [H] memory."))

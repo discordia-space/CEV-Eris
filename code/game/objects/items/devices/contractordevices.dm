@@ -32,7 +32,7 @@ effective or pretty fucking useless.
 /obj/item/device/batterer/attack_self(mob/living/carbon/user, flag = 0, emp = 0)
 	if(!user) 	return
 	if(times_used >= max_uses)
-		to_chat(user, SPAN_WARNING("The mind batterer has been burnt out!"))
+		to_chat(user, span_warning("The mind batterer has been burnt out!"))
 		return
 
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used [src] to knock down people in the area.</font>")
@@ -44,13 +44,13 @@ effective or pretty fucking useless.
 				M.Weaken(rand(10,20))
 				if(prob(25))
 					M.Stun(rand(5,10))
-				to_chat(M, SPAN_DANGER("You feel a tremendous, paralyzing wave flood your mind."))
+				to_chat(M, span_danger("You feel a tremendous, paralyzing wave flood your mind."))
 
 			else
-				to_chat(M, SPAN_DANGER("You feel a sudden, electric jolt travel through your head."))
+				to_chat(M, span_danger("You feel a sudden, electric jolt travel through your head."))
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 50, 1)
-	to_chat(user, SPAN_NOTICE("You trigger [src]."))
+	to_chat(user, span_notice("You trigger [src]."))
 	times_used += 1
 	if(times_used >= max_uses)
 		icon_state = "battererburnt"

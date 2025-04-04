@@ -693,14 +693,14 @@
 			has_been_init = TRUE
 	if(!jtb_gen)
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'"))
+		audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'"))
 		return
 	nano_ui_interact(user)
 
 /obj/machinery/computer/jtb_console/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!jtb_gen)
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'"))
+		audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Critical error. No tractor beam detected.'"))
 		return
 
 	var/data[0]
@@ -736,7 +736,7 @@
 	if(href_list["release"])
 		// field_release()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-		audible_message(SPAN_WARNING("The junk tractor beam console beeps: \'WARNING: Malfunction of the release system. \
+		audible_message(span_warning("The junk tractor beam console beeps: \'WARNING: Malfunction of the release system. \
 		                              The nearest maintenance vessel has been noticed. Estimated time until arrival: 2 years.\'"))
 
 	if(href_list["pick"])
@@ -746,7 +746,7 @@
 			JF = input("Choose Junk Field", "Junk Field") as null|anything in possible_fields
 		else
 			playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-			audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: No junk field in range.'"))
+			audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: No junk field in range.'"))
 		possible_fields = get_possible_fields()
 		if(CanInteract(usr,GLOB.default_state) && (JF in possible_fields))
 			set_field(possible_fields[JF])
@@ -783,24 +783,24 @@
 /obj/machinery/computer/jtb_console/proc/field_capture()
 	playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 	if(check_pillars())
-		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Starting capture of targeted junk field.'"))
+		audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Starting capture of targeted junk field.'"))
 		jtb_gen.field_capture(get_turf(locate(x+5, y, z)))
 	else
-		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Interference dampening pillars not detected.'"))
+		audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Interference dampening pillars not detected.'"))
 	return
 
 /obj/machinery/computer/jtb_console/proc/field_cancel()
 	playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
-	audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Canceling capture of junk field.'"))
+	audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Canceling capture of junk field.'"))
 	jtb_gen.field_cancel()
 	return
 
 /obj/machinery/computer/jtb_console/proc/field_release()
 	playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
 	if(check_biosignature())
-		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Sentient signature detected in junk field. Release blocked by security protocols.'"))
+		audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Sentient signature detected in junk field. Release blocked by security protocols.'"))
 	else
-		audible_message(SPAN_WARNING("The junk tractor beam console beeps: 'NOTICE: Releasing captured junk field.'"))
+		audible_message(span_warning("The junk tractor beam console beeps: 'NOTICE: Releasing captured junk field.'"))
 		jtb_gen.field_release()
 	return
 

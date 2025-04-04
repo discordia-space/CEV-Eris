@@ -35,7 +35,7 @@
 
 	if(portable && I.has_quality(QUALITY_BOLT_TURNING))
 		if(charging)
-			to_chat(user, SPAN_WARNING("Remove [charging] first!"))
+			to_chat(user, span_warning("Remove [charging] first!"))
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] [src].")
@@ -49,10 +49,10 @@
 				charging = null
 				update_icon()
 			else
-				to_chat(user, "<span class='danger'>Your gripper cannot hold \the [charging].</span>")
+				to_chat(user, span_danger("Your gripper cannot hold \the [charging]."))
 
 	if(!anchored)
-		to_chat(user, SPAN_WARNING("Attach [src] first!"))
+		to_chat(user, span_warning("Attach [src] first!"))
 		return
 
 	if(!user.canUnEquip(I))
@@ -60,20 +60,20 @@
 
 	if(is_type_in_list(I, allowed_devices))
 		if(charging)
-			to_chat(user, SPAN_WARNING("\A [charging] is already charging here."))
+			to_chat(user, span_warning("\A [charging] is already charging here."))
 			return
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		if(!powered())
-			to_chat(user, SPAN_WARNING("[src] blinks red as you try to insert the item!"))
+			to_chat(user, span_warning("[src] blinks red as you try to insert the item!"))
 			return
 
 		if (istype(I, /obj/item/gun/energy))
 			var/obj/item/gun/energy/W = I
 			if (W.disposable)
-				to_chat(user, SPAN_NOTICE("Your gun is disposable, it cannot be charged."))
+				to_chat(user, span_notice("Your gun is disposable, it cannot be charged."))
 				return
 		if(istype(I, /obj/item/gun/energy/nuclear) || istype(I, /obj/item/gun/energy/crossbow))
-			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
+			to_chat(user, span_notice("Your gun's recharge port was removed to make room for a miniaturized reactor."))
 			return
 		var/obj/item/cell/cell = I.get_cell()
 
@@ -83,11 +83,11 @@
 			if(!T.suitable_cell)
 				return
 
-			to_chat(user, SPAN_WARNING("This tool does not have a battery installed."))
+			to_chat(user, span_warning("This tool does not have a battery installed."))
 			return
 
 		if(!cell)
-			to_chat(user, SPAN_WARNING("This device does not have a battery installed."))
+			to_chat(user, span_warning("This device does not have a battery installed."))
 			return //We don't want to go any farther if we failed to find a cell
 
 		active_power_usage = min(max_power_usage, (cell.maxcharge*cell.max_chargerate)/CELLRATE)

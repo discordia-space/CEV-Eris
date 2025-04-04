@@ -117,16 +117,16 @@
 				if(!helper)
 					return
 
-			visible_message(SPAN_WARNING("[src] starts climbing onto \the [A]!"))
-			shadow.visible_message(SPAN_WARNING("[shadow] starts climbing onto \the [A]!"))
+			visible_message(span_warning("[src] starts climbing onto \the [A]!"))
+			shadow.visible_message(span_warning("[shadow] starts climbing onto \the [A]!"))
 			var/delay = 50
 			if(do_after(src, max(delay * src.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), helper))
-				visible_message(SPAN_WARNING("[src] climbs onto \the [A]!"))
-				shadow.visible_message(SPAN_WARNING("[shadow] climbs onto \the [A]!"))
+				visible_message(span_warning("[src] climbs onto \the [A]!"))
+				shadow.visible_message(span_warning("[shadow] climbs onto \the [A]!"))
 				src.Move(T)
 			else
-				visible_message(SPAN_WARNING("[src] gives up on trying to climb onto \the [A]!"))
-				shadow.visible_message(SPAN_WARNING("[shadow] gives up on trying to climb onto \the [A]!"))
+				visible_message(span_warning("[src] gives up on trying to climb onto \the [A]!"))
+				shadow.visible_message(span_warning("[shadow] gives up on trying to climb onto \the [A]!"))
 			return
 
 	//PERK_ABSOLUTE_GRAB
@@ -167,7 +167,7 @@
 
 		switch(src.a_intent)
 			if (I_HELP) // We just poke the other
-				M.visible_message(SPAN_NOTICE("[src] gently pokes [M]!"), SPAN_NOTICE("[src] gently pokes you!"))
+				M.visible_message(span_notice("[src] gently pokes [M]!"), span_notice("[src] gently pokes you!"))
 			if (I_DISARM) // We stun the target, with the intention to feed
 				var/stunprob = 1
 				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
@@ -188,7 +188,7 @@
 
 				if(prob(stunprob))
 					powerlevel = max(0, powerlevel-3)
-					M.visible_message(SPAN_DANGER("[src] has shocked [M]!"), SPAN_DANGER("[src] has shocked you!"))
+					M.visible_message(span_danger("[src] has shocked [M]!"), span_danger("[src] has shocked you!"))
 					M.Weaken(power)
 					M.Stun(power)
 					M.stuttering = max(M.stuttering, power)
@@ -200,10 +200,10 @@
 					if(prob(stunprob) && powerlevel >= 8)
 						M.adjustFireLoss(powerlevel * rand(6, 10))
 				else if(prob(40))
-					M.visible_message(SPAN_DANGER("[src] has pounced at [M]!"), SPAN_DANGER("[src] has pounced at you!"))
+					M.visible_message(span_danger("[src] has pounced at [M]!"), span_danger("[src] has pounced at you!"))
 					M.Weaken(power)
 				else
-					M.visible_message(SPAN_DANGER("[src] has tried to pounce at [M]!"), SPAN_DANGER("[src] has tried to pounce at you!"))
+					M.visible_message(span_danger("[src] has tried to pounce at [M]!"), span_danger("[src] has tried to pounce at you!"))
 				M.updatehealth()
 			if (I_GRAB) // We feed
 				Wrap(M)

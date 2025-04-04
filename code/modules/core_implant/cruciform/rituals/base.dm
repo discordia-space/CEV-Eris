@@ -57,7 +57,7 @@
 		var/area/t = get_area(H)
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
-			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
+			to_chat(target, span_danger("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
 	set_personal_cooldown(H)
 	return TRUE
 
@@ -81,10 +81,10 @@
 				else
 					limb.remove_item(thing)
 				limb.take_damage(rand(15, 30))
-				to_chat(H, SPAN_DANGER("[thing.name] rips through your [limb.name]."))
+				to_chat(H, span_danger("[thing.name] rips through your [limb.name]."))
 
 		if(BP_IS_ROBOTIC(limb))
-			to_chat(H, SPAN_DANGER("Your [limb.name] tears off."))
+			to_chat(H, span_danger("Your [limb.name] tears off."))
 			limb.droplimb()
 			H.update_implants()
 	return TRUE
@@ -99,25 +99,25 @@
 	var/was_triggired = FALSE
 	log_and_message_admins("performed reveal litany")
 	if(prob(20)) //Aditional fail chance that hidded from user
-		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
+		to_chat(H, span_notice("There is nothing there. You feel safe."))
 		return TRUE
 	for (var/mob/living/carbon/superior_animal/S in range(14, H))
 		if (S.stat != DEAD)
-			to_chat(H, SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile."))
+			to_chat(H, span_warning("Adversaries are near. You can feel something nasty and hostile."))
 			was_triggired = TRUE
 			break
 
 	if (!was_triggired)
 		for (var/mob/living/simple_animal/hostile/S in range(14, H))
 			if (S.stat != DEAD)
-				to_chat(H, SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile."))
+				to_chat(H, span_warning("Adversaries are near. You can feel something nasty and hostile."))
 				was_triggired = TRUE
 				break
 	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
-		to_chat(H, SPAN_WARNING("Something is wrong with this area. Tread carefully."))
+		to_chat(H, span_warning("Something is wrong with this area. Tread carefully."))
 		was_triggired = TRUE
 	if (!was_triggired)
-		to_chat(H, SPAN_NOTICE("There is nothing there. You feel safe."))
+		to_chat(H, span_notice("There is nothing there. You feel safe."))
 
 	set_personal_cooldown(H)
 	return TRUE
@@ -137,7 +137,7 @@
 			continue
 		var/obj/item/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(CI)
-			to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
+			to_chat(H, span_rose("[T] has a cruciform installed."))
 			cruciforms++
 		humans.Add(T)
 	if(!humans.len)

@@ -161,7 +161,7 @@
 				var/diag_time = 70 * usr.stats.getMult(target_stat, STAT_LEVEL_EXPERT)
 				var/target = get_surgery_target()
 
-				to_chat(user, SPAN_NOTICE("You start examining [get_surgery_name()] for issues."))
+				to_chat(user, span_notice("You start examining [get_surgery_name()] for issues."))
 
 				var/wait
 				if(ismob(target))
@@ -173,7 +173,7 @@
 					if(prob(100 - FAILCHANCE_VERY_EASY + usr.stats.getStat(target_stat)))
 						diagnosed = TRUE
 					else
-						to_chat(user, SPAN_WARNING("You failed to diagnose [get_surgery_name()]!"))
+						to_chat(user, span_warning("You failed to diagnose [get_surgery_name()]!"))
 
 			return TRUE
 
@@ -198,10 +198,10 @@
 				var/obj/item/I = user.get_active_hand()
 
 				if(!I || !(QUALITY_CLAMPING in I.tool_qualities))
-					to_chat(user, SPAN_WARNING("You need a tool with [QUALITY_CLAMPING] quality"))
+					to_chat(user, span_warning("You need a tool with [QUALITY_CLAMPING] quality"))
 					return FALSE
 
-				to_chat(user, SPAN_NOTICE("You start removing shrapnel from [get_surgery_name()]."))
+				to_chat(user, span_notice("You start removing shrapnel from [get_surgery_name()]."))
 
 				var/wait
 				if(ismob(target))
@@ -214,9 +214,9 @@
 						for(var/obj/item/material/shard/shrapnel/shrapnel in src.implants)
 							implants -= shrapnel
 							shrapnel.loc = get_turf(src)
-						to_chat(user, SPAN_WARNING("You have removed shrapnel from [get_surgery_name()]."))
+						to_chat(user, span_warning("You have removed shrapnel from [get_surgery_name()]."))
 					else
-						to_chat(user, SPAN_WARNING("You failed to remove any shrapnel from [get_surgery_name()]!"))
+						to_chat(user, span_warning("You failed to remove any shrapnel from [get_surgery_name()]!"))
 
 			return TRUE
 

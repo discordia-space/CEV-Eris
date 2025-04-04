@@ -30,7 +30,7 @@
 		if(prob(egg_inject_chance))
 			var/obj/item/organ/external/O = safepick(H.organs)
 			if(O && !BP_IS_ROBOTIC(O))
-				src.visible_message(SPAN_DANGER("[src] injects something into the [O] of [H]!"))
+				src.visible_message(span_danger("[src] injects something into the [O] of [H]!"))
 				var/obj/effect/spider/eggcluster/minor/S = new()
 				S.loc = O
 				O.implants += S
@@ -66,7 +66,7 @@
 				//second, spin a sticky spiderweb on this tile
 			if(!(locate(/obj/effect/spider/stickyweb) in get_turf(src)))
 				busy = SPINNING_WEB
-				src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance."))
+				src.visible_message(span_notice("\The [src] begins to secrete a sticky substance."))
 				stop_automated_movement = 1
 				spawn(40)
 					if(busy == SPINNING_WEB)
@@ -79,7 +79,7 @@
 				//third, lay an egg cluster there
 				if((fed > 0) && !(locate(/obj/effect/spider/eggcluster) in get_turf(src)))
 					busy = LAYING_EGGS
-					src.visible_message(SPAN_NOTICE("\The [src] begins to lay a cluster of eggs."))
+					src.visible_message(span_notice("\The [src] begins to lay a cluster of eggs."))
 					stop_automated_movement = 1
 					spawn(50)
 						if(busy == LAYING_EGGS)
@@ -109,7 +109,7 @@
 		else if(busy == MOVING_TO_TARGET && cocoon_target)
 			if(get_dist(src, cocoon_target) <= 1)
 				busy = SPINNING_COCOON
-				src.visible_message(SPAN_NOTICE("\The [src] begins to secrete a sticky substance around \the [cocoon_target]."))
+				src.visible_message(span_notice("\The [src] begins to secrete a sticky substance around \the [cocoon_target]."))
 				stop_automated_movement = 1
 				walk(src,0)
 				addtimer(CALLBACK(src, PROC_REF(finish_coocoon)), 5 SECONDS)
@@ -140,7 +140,7 @@
 								if (istype(M, /mob/living/carbon/human))
 									var/mob/living/carbon/human/H = M
 									if (H.get_blood_volume() >= 1)
-										src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
+										src.visible_message(span_warning("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
 										H.drip_blood(H.species.blood_volume)
 										fed++
 
@@ -186,7 +186,7 @@
 				if (istype(M, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = M
 					if (H.get_blood_volume() >= 1)
-						src.visible_message(SPAN_WARNING("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
+						src.visible_message(span_warning("\The [src] sticks a proboscis into \the [cocoon_target] and sucks a viscous substance out."))
 						H.drip_blood(H.species.blood_volume)
 						fed++
 

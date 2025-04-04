@@ -43,7 +43,7 @@ SUBSYSTEM_DEF(tickets)
 /datum/controller/subsystem/tickets/Initialize()
 	if(!close_messages)
 		close_messages = list("<font color='red' size='4'><b>- [ticket_name] Rejected! -</b></font>",
-				"<span class='boldmessage'>Please try to be calm, clear, and descriptive in admin helps, do not assume the staff member has seen any related events, and clearly state the names of anybody you are reporting. If you asked a question, please ensure it was clear what you were asking.</span>",
+				span_boldnotice("Please try to be calm, clear, and descriptive in admin helps, do not assume the staff member has seen any related events, and clearly state the names of anybody you are reporting. If you asked a question, please ensure it was clear what you were asking."),
 				"<span class='[span_class]'>Your [ticket_name] has now been closed.</span>")
 	return ..()
 
@@ -181,7 +181,7 @@ SUBSYSTEM_DEF(tickets)
 		return
 	var/datum/ticket/T = allTickets[ticketId]
 	if(T.ticket_converted)
-		to_chat(usr, "<span class='warning'>This ticket has already been converted!</span>")
+		to_chat(usr, span_warning("This ticket has already been converted!"))
 		return
 	convert_ticket(T)
 
@@ -252,9 +252,9 @@ SUBSYSTEM_DEF(tickets)
 		if("Skill Issue")
 			C.skill_issue(returnClient(N))
 		else
-			to_chat_safe(returnClient(N), "<span class='[span_class]'>[C] is autoresponding with: <span/> <span class='adminticketalt'>[response_phrases[message_key]]</span>")//for this we want the full value of whatever key this is to tell the player so we do response_phrases[message_key]
+			to_chat_safe(returnClient(N), "<span class='[span_class]'>[C] is autoresponding with: <span/> [span_adminticketalt("[response_phrases[message_key]]")]")//for this we want the full value of whatever key this is to tell the player so we do response_phrases[message_key]
 	sound_to(returnClient(N), "sound/effects/adminhelp.ogg")
-	log_admin("[C] has auto responded to [ticket_owner]\'s adminhelp with:<span class='adminticketalt'> [message_key] </span>") //we want to use the short named keys for this instead of the full sentence which is why we just do message_key
+	log_admin("[C] has auto responded to [ticket_owner]\'s adminhelp with:[span_adminticketalt(" [message_key] ")]") //we want to use the short named keys for this instead of the full sentence which is why we just do message_key
 	T.lastStaffResponse = "Autoresponse: [message_key]"
 	resolveTicket(N)
 
@@ -527,7 +527,7 @@ UI STUFF
 		if(TICKET_STAFF_MESSAGE_ADMIN_CHANNEL)
 			msg = "<span class='admin_channel'>ADMIN TICKET: [msg]</span>"
 		if(TICKET_STAFF_MESSAGE_PREFIX)
-			msg = "<span class='adminticket'><span class='prefix'>ADMIN TICKET:</span> [msg]</span>"
+			msg = span_adminticket("[span_prefix("ADMIN TICKET:")] [msg]")
 	message_adminTicket(msg, important)
 
 /datum/controller/subsystem/tickets/Topic(href, href_list)
@@ -569,7 +569,7 @@ UI STUFF
 	if(href_list["detailclose"])
 		var/indexNum = text2num(href_list["detailclose"])
 		if(!check_rights(close_rights))
-			to_chat(usr, "<span class='warning'>Not enough rights to close this ticket.</span>")
+			to_chat(usr, span_warning("Not enough rights to close this ticket."))
 			return
 		if(alert("Are you sure? This will send a negative message.",,"Yes","No") != "Yes")
 			return

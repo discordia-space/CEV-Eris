@@ -74,7 +74,7 @@
 			T.gets_dug()
 	else if(istype(get_turf(src), /turf/floor))
 		var/turf/floor/T = get_turf(src)
-		visible_message(SPAN_NOTICE("\The [src] drills straight through the [T], exposing the asteroid underneath!"))
+		visible_message(span_notice("\The [src] drills straight through the [T], exposing the asteroid underneath!"))
 		T.ChangeTurf(/turf/floor/asteroid) //turn it back into an asteroid, otherwise things like platings become underplatings which makes no sense
 
 
@@ -87,7 +87,7 @@
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				updateUsrDialog()
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 			return
 
@@ -102,40 +102,40 @@
 			var/volume =  min(damage * 3.5, 15)
 			if (I.hitsound)
 				playsound(src, I.hitsound, volume, 1, -1)
-			visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+			visible_message(span_danger("[src] has been hit by [user] with [I]."))
 			take_damage(damage)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 
 	// Wrench / Unwrench the drill
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(cave_connected)
-			to_chat(user, SPAN_WARNING("You have to collapse the cave first!"))
+			to_chat(user, span_warning("You have to collapse the cave first!"))
 			return
 		else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
-			to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
+			to_chat(user, span_warning("The cave system is being collapsed!"))
 			return
 		else if (!anchored && check_surroundings()) // we only care about the terrain when anchoring, not the other way around, otherwise the drill gets stuck if the terrain under it changes (like if someone RCDs the asteroid tile under it)
-			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+			to_chat(user, span_warning("The space around \the [src] has to be clear of obstacles!"))
 			return
 		else if(!anchored && !(istype(loc, /turf/floor/asteroid) || istype(loc, /turf/floor/exoplanet)))
-			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
+			to_chat(user, span_warning("\The [src] cannot dig that kind of ground!"))
 			return
 
 		anchored = !anchored
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 		return
 
 	// Repair the drill if it is damaged
 	if((health < maxHealth) && (QUALITY_WELDING in I.tool_qualities))
 		if(cave_connected)
-			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+			to_chat(user, span_warning("Turn \the [src] off first!"))
 			return
 
-		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
+		to_chat(user, span_notice("You start repairing the damage to [src]."))
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
+			to_chat(user, span_notice("You finish repairing the damage to [src]."))
 			health = min(maxHealth, health + DRILL_REPAIR_AMOUNT)
 
 		return
@@ -150,27 +150,27 @@
 	if(!panel_open)
 		if(cave_connected) //there are no restrictions on turning off the drill besides the panel being shut.
 			shutdown_drill(null,DRILL_SHUTDOWN_LOG_MANUAL)
-			to_chat(user, SPAN_NOTICE("You turn off \the [src], collapsing the attached cave system."))
+			to_chat(user, span_notice("You turn off \the [src], collapsing the attached cave system."))
 		else
 			if(health == 0)
-				to_chat(user, SPAN_NOTICE("\The [src] is too damaged to turn on!"))
+				to_chat(user, span_notice("\The [src] is too damaged to turn on!"))
 			else if(!anchored)
-				to_chat(user, SPAN_NOTICE("\The [src] needs to be anchored to be turned on."))
+				to_chat(user, span_notice("\The [src] needs to be anchored to be turned on."))
 			else if(check_surroundings())
-				to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+				to_chat(user, span_warning("The space around \the [src] has to be clear of obstacles!"))
 			else if(cave_gen.is_generating())
-				to_chat(user, SPAN_WARNING("A cave system is already being dug."))
+				to_chat(user, span_warning("A cave system is already being dug."))
 			else if(cave_gen.is_opened())
-				to_chat(user, SPAN_WARNING("A cave system is already being explored."))
+				to_chat(user, span_warning("A cave system is already being explored."))
 			else if(cave_gen.is_collapsing() || cave_gen.is_cleaning())
-				to_chat(user, SPAN_WARNING("The cave system is being collapsed!"))
+				to_chat(user, span_warning("The cave system is being collapsed!"))
 			else if(!cave_gen.check_cooldown())
-				to_chat(user, SPAN_WARNING("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
+				to_chat(user, span_warning("The asteroid structure is too unstable for now to open a new cave system. Best to take your current haul to the ship, miner!\nYou have to wait [cave_gen.remaining_cooldown()] minutes."))
 			else //if we've gotten this far all the checks have succeeded so we can turn it on and gen a cave
 				var/turf/T = get_turf(loc)
 				cave_connected = cave_gen.place_ladders(loc.x, loc.y, loc.z, T.seismic_activity)
 	else
-		to_chat(user, SPAN_NOTICE("Operating a piece of industrial machinery with wires exposed seems like a bad idea."))
+		to_chat(user, span_notice("Operating a piece of industrial machinery with wires exposed seems like a bad idea."))
 
 	update_icon()
 
@@ -189,7 +189,7 @@
 		return
 
 	if(displaytext)
-		visible_message(SPAN_NOTICE("\The [src] flashes with '[displaytext]' and shuts down!"))
+		visible_message(span_notice("\The [src] flashes with '[displaytext]' and shuts down!"))
 		log_and_message_admins(log)
 	cave_gen.initiate_collapse()
 	cave_connected = FALSE
@@ -204,7 +204,7 @@
 
 /obj/machinery/mining/deep_drill/attack_generic(mob/user, damage)
 	user.do_attack_animation(src)
-	visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
+	visible_message(span_danger("\The [user] smashes into \the [src]!"))
 	take_damage(damage)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 
@@ -227,23 +227,23 @@
 	if(cave_connected)
 		switch(cave_gen.orecount)
 			if(-INFINITY to 3)
-				extra_description += SPAN_NOTICE("\nThe integrated ore scanner can't detect any ore in the attached cave.")
+				extra_description += span_notice("\nThe integrated ore scanner can't detect any ore in the attached cave.")
 			if(3 to 10)
-				extra_description += SPAN_NOTICE("\nThe integrated ore scanner barely detects any ore in the attached cave.")
+				extra_description += span_notice("\nThe integrated ore scanner barely detects any ore in the attached cave.")
 			if(10 to 50)
-				extra_description += SPAN_NOTICE("\nThe integrated ore scanner still detects plenty of ore in the attached cave.")
+				extra_description += span_notice("\nThe integrated ore scanner still detects plenty of ore in the attached cave.")
 			if(50 to INFINITY)
-				extra_description += SPAN_NOTICE("\nThe integrated ore scanner detects an abundance of ore in the attached cave.")
+				extra_description += span_notice("\nThe integrated ore scanner detects an abundance of ore in the attached cave.")
 			else //something has gone wrong
-				extra_description += SPAN_WARNING("\nThe integrated ore scanner seems to be malfunctioning.")
+				extra_description += span_warning("\nThe integrated ore scanner seems to be malfunctioning.")
 	if(health < maxHealth)
 		switch(health)
 			if(-INFINITY to 0)
 				extra_description += "\n\The [src] is wrecked."
 			if(0 to 600)
-				extra_description += SPAN_DANGER("\n\The [src] looks like it's about to break!")
+				extra_description += span_danger("\n\The [src] looks like it's about to break!")
 			if(600 to 1200)
-				extra_description += SPAN_DANGER("\n\The [src] looks seriously damaged!")
+				extra_description += span_danger("\n\The [src] looks seriously damaged!")
 			else
 				extra_description += "\n\The [src] shows signs of damage!"
 	else

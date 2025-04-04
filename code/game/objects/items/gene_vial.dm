@@ -12,7 +12,7 @@
 		return ..()
 
 	if(empty)
-		to_chat(user, SPAN_WARNING("\The [src] is empty."))
+		to_chat(user, span_warning("\The [src] is empty."))
 		return
 
 	var/mob/living/carbon/human/H = user
@@ -21,10 +21,10 @@
 		C = H.random_organ_by_process(BP_SPCORE)
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
-			to_chat(user, SPAN_WARNING("\The [blocked] is in the way!"))
+			to_chat(user, span_warning("\The [blocked] is in the way!"))
 			return
 
-	to_chat(user, SPAN_NOTICE("You swallow the contents of \the [src]."))
+	to_chat(user, span_notice("You swallow the contents of \the [src]."))
 
 	if(C)
 		C.geneticpoints += 5

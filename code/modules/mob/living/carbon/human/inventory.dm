@@ -9,7 +9,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		to_chat(src, span_notice("You are not holding anything to equip."))
 		return
 
 
@@ -24,7 +24,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		quick_equip_storage(I)
 	/*
 	if(!equip_to_appropriate_slot(I))
-		to_chat(src, SPAN_WARNING("You are unable to equip that to your person."))
+		to_chat(src, span_warning("You are unable to equip that to your person."))
 		if(quick_equip_storage(I))
 			return
 	*/
@@ -35,7 +35,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		to_chat(src, span_notice("You are not holding anything to equip."))
 		return
 	if(quick_equip_belt(I))
 		return
@@ -46,14 +46,14 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/obj/item/I = get_active_hand()
 	if(I)
 		if(src.s_store)
-			to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
+			to_chat(src, span_notice("You have no room to equip or draw."))
 			return
 		else
 			equip_to_from_suit_storage(I)
 	else if ( src.s_store )
 		equip_to_from_suit_storage(src.s_store)
 	else
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
+		to_chat(src, span_notice("You are not holding anything to equip or draw."))
 	return
 
 /mob/living/carbon/human/proc/get_quick_slot(obj/item/I)
@@ -361,7 +361,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 				src.wear_suit.attackby(W, src)
 			return FALSE
 		else
-			to_chat(src, SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]"))
+			to_chat(src, span_danger("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]"))
 			return
 
 	return TRUE
@@ -384,7 +384,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.wear_suit
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
-		to_chat(user, SPAN_WARNING("\The [covering] is in the way."))
+		to_chat(user, span_warning("\The [covering] is in the way."))
 		return FALSE
 
 	return 1

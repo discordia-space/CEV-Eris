@@ -38,17 +38,17 @@
 			if(10 to INFINITY)
 				aspect = "an <span style='color:#d0b050;'>overwhelming</span>"
 			if(6 to 10)
-				aspect = "a <span class='green'>strong</span>"
+				aspect = "a [span_green("strong")]"
 			if(3 to 6)
-				aspect = "a <span class='yellow'>medium</span>"
+				aspect = "a [span_yellow("medium")]"
 			if(1 to 3)
-				aspect = "a <span class='red'>weak</span>"
+				aspect = "a [span_red("weak")]"
 			else
 				continue
-		reference.Add(SPAN_NOTICE("This item has [aspect] aspect of [stat]"))
+		reference.Add(span_notice("This item has [aspect] aspect of [stat]"))
 	if(perk)
 		var/datum/perk/oddity/OD = GLOB.all_perks[perk]
-		reference.Add(SPAN_NOTICE("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
+		reference.Add(span_notice("Strange words echo in your head: <span style='color:orange'>[OD]. [OD.desc]</span>"))
 
 /// Returns stats if defined, otherwise it returns the return value of get_stats
 /datum/component/inspiration/proc/calculate_statistics()

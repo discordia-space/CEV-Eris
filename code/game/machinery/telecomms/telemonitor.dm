@@ -113,6 +113,6 @@
 	if(!emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
-		to_chat(user, SPAN_NOTICE("You disable the security protocols"))
+		to_chat(user, span_notice("You disable the security protocols"))
 		src.updateUsrDialog()
 		return 1

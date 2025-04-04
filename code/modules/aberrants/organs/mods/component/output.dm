@@ -364,7 +364,7 @@
 	switch(decision_adjust)
 		if("reagent source")
 			if(LAZYLEN(modes) < 2)
-				to_chat(user, SPAN_NOTICE("\The [parent] does not have any other reagent sources."))
+				to_chat(user, span_notice("\The [parent] does not have any other reagent sources."))
 				return
 
 			adjustable_qualities = modes
@@ -376,7 +376,7 @@
 			current_mode = adjustable_qualities[decision]
 		if("reagent")
 			if(!LAZYLEN(output_qualities))
-				to_chat(user, SPAN_NOTICE("\The [parent] does not have any reagents to select."))
+				to_chat(user, span_notice("\The [parent] does not have any reagents to select."))
 				return
 
 			for(var/reagent in output_qualities)
@@ -436,7 +436,7 @@
 					var/location = get_turf(owner)
 					gas_cloud.attach(location)
 					gas_cloud.set_up(gas_sac, gas_cloud_volume, 0, location)
-					owner.visible_message(SPAN_DANGER("\the [owner] exhales strange vapors!"))
+					owner.visible_message(span_danger("\the [owner] exhales strange vapors!"))
 					addtimer(CALLBACK(src, .proc/smoke_trigger), 1, TIMER_STOPPABLE)
 					triggered = TRUE
 

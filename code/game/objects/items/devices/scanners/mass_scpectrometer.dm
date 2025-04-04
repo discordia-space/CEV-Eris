@@ -23,7 +23,7 @@
 
 /obj/item/device/scanner/mass_spectrometer/scan(atom/A, mob/user)
 	if(A != src)
-		to_chat(user, SPAN_NOTICE("\The [src] takes a sample out of \the [A]"))
+		to_chat(user, span_notice("\The [src] takes a sample out of \the [A]"))
 		reagents.clear_reagents()
 		A.reagents.trans_to(src, 5)
 	scan_title = "Spectrometer scan - [A]"
@@ -51,13 +51,13 @@
 
 /proc/mass_spectrometer_scan(var/datum/reagents/reagents, mob/user, var/details)
 	if(!reagents || !reagents.total_volume)
-		return SPAN_WARNING("No sample to scan.</span>")
+		return span_warning("No sample to scan.</span>")
 	else
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id != "blood")
 				reagents.clear_reagents()
-				return SPAN_WARNING("The sample was contaminated! Please insert another sample")
+				return span_warning("The sample was contaminated! Please insert another sample")
 
 			else
 				blood_traces = params2list(R.data["trace_chem"])

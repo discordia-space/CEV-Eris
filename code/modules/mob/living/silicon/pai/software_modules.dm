@@ -68,7 +68,7 @@
 		if(answer == "Yes")
 			var/turf/T = get_turf_or_move(P.loc)
 			for (var/mob/v in viewers(T))
-				v.show_message(SPAN_NOTICE("[M] presses \his thumb against [P]."), 3, SPAN_NOTICE("[P] makes a sharp clicking sound as it extracts DNA material from [M]."), 2)
+				v.show_message(span_notice("[M] presses \his thumb against [P]."), 3, span_notice("[P] makes a sharp clicking sound as it extracts DNA material from [M]."), 2)
 			to_chat(P, "<font color = red><h3>[M]'s UE string : [M.dna_trace]</h3></font>")
 			if(M.dna_trace == P.master_dna)
 				to_chat(P, "<b>DNA is a match to stored Master DNA.</b>")
@@ -294,8 +294,8 @@
 		P.hack_aborted = 0
 		P.cable = new /obj/item/pai_cable(T)
 		for(var/mob/M in viewers(T))
-			M.show_message(SPAN_WARNING("A port on [P] opens to reveal [P.cable], which promptly falls to the floor."), 3,
-							SPAN_WARNING("You hear the soft click of something light and hard falling to the ground."), 2)
+			M.show_message(span_warning("A port on [P] opens to reveal [P.cable], which promptly falls to the floor."), 3,
+							span_warning("You hear the soft click of something light and hard falling to the ground."), 2)
 		return 1
 
 /mob/living/silicon/pai/proc/hackloop()

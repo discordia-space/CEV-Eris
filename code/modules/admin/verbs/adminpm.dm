@@ -81,7 +81,7 @@
 	var/recieve_message
 
 	if(holder && !C.holder)
-		recieve_message = "<span class='pm'><span class='howto'><b>-- Click the [recieve_pm_type]'s name to reply --</b></span></span>\n"
+		recieve_message = "[span_pm("<span class='howto'><b>-- Click the [recieve_pm_type]'s name to reply --</b>")]</span>\n"
 		if(C.adminhelped)
 			to_chat(C, recieve_message)
 			C.adminhelped = 0
@@ -99,8 +99,8 @@
 						adminhelp(reply)													//sender has left, adminhelp instead
 				return
 
-	to_chat(C, "<span class='pm'><span class='in'>" + create_text_tag("pm_in", "", C) + " <b>\[[recieve_pm_type] PM\]</b> <span class='name'>[key_name(src, TRUE, C.holder ? 1 : 0)]</span>: <span class='message linkify'>[msg]</span></span></span>")
-	to_chat(src, "<span class='pm'><span class='out'>" + create_text_tag("pm_out_alt", "PM", src) + " to <span class='name'>[get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]</span>: <span class='message linkify'>[msg]</span></span></span>")
+	to_chat(C, "[span_pm("<span class='in'>" + create_text_tag("pm_in", "", C) + " <b>\[[recieve_pm_type] PM\]</b> <span class='name'>[key_name(src, TRUE, C.holder ? 1 : 0)]")]: <span class='message linkify'>[msg]</span></span></span>")
+	to_chat(src, "[span_pm("<span class='out'>" + create_text_tag("pm_out_alt", "PM", src) + " to <span class='name'>[get_options_bar(C, holder ? 1 : 0, holder ? 1 : 0, 1)]")]: <span class='message linkify'>[msg]</span></span></span>")
 
 	//play the recieving admin the adminhelp sound (if they have them enabled)
 	//non-admins shouldn't be able to disable this
@@ -118,7 +118,7 @@
 		if(X == C || X == src)
 			continue
 		if(X.key != key && X.key != C.key && (X.holder.rights & R_ADMIN|R_MOD|R_MENTOR))
-			to_chat(X, "<span class='pm'><span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]</span> to <span class='name'>[key_name(C, X, 0)]</span>: <span class='message linkify'>[msg]</span></span></span>")
+			to_chat(X, "[span_pm("<span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]")] to [span_name("[key_name(C, X, 0)]")]: <span class='message linkify'>[msg]</span></span></span>")
 
 	//Check if the mob being PM'd has any open admin tickets.
 	var/tickets = list()
@@ -157,17 +157,17 @@
 
 	// Handled on Bot32's end, unsure about other bots
 //	if(length(msg) > 400) // TODO: if message length is over 400, divide it up into seperate messages, the message length restriction is based on IRC limitations.  Probably easier to do this on the bots ends.
-//		src << SPAN_WARNING("Your message was not sent because it was more then 400 characters find your message below for ease of copy/pasting")
-//		src << SPAN_NOTICE("[msg]")
+//		src << span_warning("Your message was not sent because it was more then 400 characters find your message below for ease of copy/pasting")
+//		src << span_notice("[msg]")
 //		return
 
 
 
-	to_chat(src, "<span class='pm'><span class='out'>" + create_text_tag("pm_out_alt", "", src) + " to <span class='name'>IRC-[sender]</span>: <span class='message'>[msg]</span></span></span>")
+	to_chat(src, "[span_pm("<span class='out'>" + create_text_tag("pm_out_alt", "", src) + " to <span class='name'>IRC-[sender]")]: [span_message("[msg]")]</span></span>")
 
 	log_admin("PM: [key_name(src)]->IRC-[sender]: [msg]")
 	for(var/client/X in admins)
 		if(X == src)
 			continue
 		if(X.holder.rights & R_ADMIN|R_MOD)
-			to_chat(X, "<span class='pm'><span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]</span> to <span class='name'>IRC-[sender]</span>: <span class='message'>[msg]</span></span></span>")
+			to_chat(X, "[span_pm("<span class='other'>" + create_text_tag("pm_other", "PM:", X) + " <span class='name'>[key_name(src, X, 0)]")] to [span_name("IRC-[sender]")]: [span_message("[msg]")]</span></span>")

@@ -24,13 +24,13 @@
 	standard_feed_mob(user, M)
 
 /obj/item/reagent_containers/pill/self_feed_message(var/mob/user)
-	to_chat(user, SPAN_NOTICE("You swallow \the [src]."))
+	to_chat(user, span_notice("You swallow \the [src]."))
 
 /obj/item/reagent_containers/pill/other_feed_message_start(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] attempts to force [target] to swallow \the [src].</span>")
+	user.visible_message(span_warning("[user] attempts to force [target] to swallow \the [src]."))
 
 /obj/item/reagent_containers/pill/other_feed_message_finish(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] forces [target] to swallow \the [src].</span>")
+	user.visible_message(span_warning("[user] forces [target] to swallow \the [src]."))
 
 /obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return
@@ -39,9 +39,9 @@
 
 	if(target.is_refillable())
 		if(!target.reagents.total_volume)
-			to_chat(user, SPAN_NOTICE("[target] is empty. Can't dissolve \the [src]."))
+			to_chat(user, span_notice("[target] is empty. Can't dissolve \the [src]."))
 			return
-		to_chat(user, SPAN_NOTICE("You dissolve \the [src] in [target]."))
+		to_chat(user, span_notice("You dissolve \the [src] in [target]."))
 
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [reagents.log_list()]</font>")
 		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -49,7 +49,7 @@
 		reagents.trans_to(target, reagents.total_volume)
 		for(var/mob/O in viewers(2, user))
 			if(!user.stats.getPerk(PERK_FAST_FINGERS))
-				O.show_message(SPAN_WARNING("[user] puts something in \the [target]."), 1)
+				O.show_message(span_warning("[user] puts something in \the [target]."), 1)
 
 		qdel(src)
 

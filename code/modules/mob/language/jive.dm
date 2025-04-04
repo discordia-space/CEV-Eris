@@ -9,7 +9,7 @@
 
 //To maintain an air of informality, jive does not force capitalization
 /datum/language/jive/format_message(message, verb)
-	return "[verb], <span class='message'><span class='[colour]'>\"[message]\"</span></span>"
+	return "[verb], [span_message("<span class='[colour]'>\"[message]\"")]</span>"
 
 /datum/language/jive/format_message_plain(message, verb)
 	return "[verb], \"[message]\""

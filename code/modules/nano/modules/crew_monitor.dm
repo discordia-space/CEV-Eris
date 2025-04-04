@@ -6,7 +6,7 @@
 		return 1
 	// TODO: Allow setting any config.contact_levels from the interface.
 	if(!isOnPlayerLevel(nano_host()))
-		usr << "<span class='warning'>Unable to establish a connection</span>: You're too far away from the station!"
+		usr << "[span_warning("Unable to establish a connection")]: You're too far away from the station!"
 		return 0
 	if(href_list["track"])
 		if(isAI(usr))

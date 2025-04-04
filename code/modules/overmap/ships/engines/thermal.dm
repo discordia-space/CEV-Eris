@@ -92,7 +92,7 @@
 	if (!is_on())
 		return 0
 	if(!check_fuel())
-		audible_message(src,"<span class='warning'>[src] coughs once and goes silent!</span>")
+		audible_message(src,span_warning("[src] coughs once and goes silent!"))
 		on = !on
 		return 0
 	var/datum/gas_mixture/removed = air_contents.remove(moles_per_burn * thrust_limit)

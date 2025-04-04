@@ -436,11 +436,11 @@
 		return
 
 	if(!have_disk)
-		to_chat(user, SPAN_WARNING("[src] has no slot for a data disk."))
+		to_chat(user, span_warning("[src] has no slot for a data disk."))
 		return
 
 	if(disk)
-		to_chat(user, SPAN_NOTICE("There's already \a [disk] inside [src]."))
+		to_chat(user, span_notice("There's already \a [disk] inside [src]."))
 		return
 
 	if(istype(user) && (inserted_disk in user))
@@ -448,7 +448,7 @@
 
 	inserted_disk.forceMove(src)
 	disk = inserted_disk
-	to_chat(user, SPAN_NOTICE("You insert \the [inserted_disk] into [src]."))
+	to_chat(user, span_notice("You insert \the [inserted_disk] into [src]."))
 	SSnano.update_uis(src)
 
 
@@ -463,11 +463,11 @@
 		return
 
 	if(!have_reagents)
-		to_chat(user, SPAN_WARNING("[src] has no slot for a beaker."))
+		to_chat(user, span_warning("[src] has no slot for a beaker."))
 		return
 
 	if(container)
-		to_chat(user, SPAN_WARNING("There's already \a [container] inside [src]."))
+		to_chat(user, span_warning("There's already \a [container] inside [src]."))
 		return
 
 	if(istype(user) && (beaker in user))
@@ -475,7 +475,7 @@
 
 	beaker.forceMove(src)
 	container = beaker
-	to_chat(user, SPAN_NOTICE("You put \the [beaker] into [src]."))
+	to_chat(user, span_notice("You put \the [beaker] into [src]."))
 	SSnano.update_uis(src)
 
 
@@ -487,7 +487,7 @@
 		return
 
 	container.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [container] from \the [src]."))
+	to_chat(usr, span_notice("You remove \the [container] from \the [src]."))
 
 	if(istype(user) && Adjacent(user))
 		user.put_in_active_hand(container)
@@ -516,7 +516,7 @@
 	//Digital Rights have been successfully managed. The corporations win again.
 	//Now they will graciously allow you to eject the disk
 	disk.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [disk] from \the [src]."))
+	to_chat(usr, span_notice("You remove \the [disk] from \the [src]."))
 
 	if(istype(user) && Adjacent(user))
 		user.put_in_active_hand(disk)
@@ -525,7 +525,7 @@
 
 /obj/machinery/autolathe/AltClick(mob/living/user)
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(!in_range(src, user))
 		return
@@ -548,7 +548,7 @@
 		return FALSE
 
 	if(!have_recycling && !(istype(eating, /obj/item/stack) || can_recycle(eating)))
-		to_chat(user, SPAN_WARNING("[src] does not support material recycling."))
+		to_chat(user, span_warning("[src] does not support material recycling."))
 		return FALSE
 
 	if(!length(eating.get_matter()))
@@ -558,13 +558,13 @@
 				matterless = FALSE
 				break
 		if(matterless)
-			to_chat(user, SPAN_WARNING("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
+			to_chat(user, span_warning("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
 			return FALSE
 
 	if(istype(eating, /obj/item/computer_hardware/hard_drive/portable))
 		var/obj/item/computer_hardware/hard_drive/portable/DISK = eating
 		if(DISK.license)
-			to_chat(user, SPAN_WARNING("\The [src] refuses to accept \the [eating] as it has non-null license."))
+			to_chat(user, span_warning("\The [src] refuses to accept \the [eating] as it has non-null license."))
 			return FALSE
 
 	var/filltype = 0       // Used to determine message.
@@ -620,7 +620,7 @@
 			O.reagents.trans_to(container, O.reagents.total_volume)
 
 	if(!filltype && !reagents_filltype)
-		to_chat(user, SPAN_NOTICE("\The [src] is full or this thing isn't suitable for this autolathe type. Try remove material from [src] in order to insert more."))
+		to_chat(user, span_notice("\The [src] is full or this thing isn't suitable for this autolathe type. Try remove material from [src] in order to insert more."))
 		return
 
 	// Determine what was the main material
@@ -637,19 +637,19 @@
 		var/obj/item/stack/stack = eating
 		var/used_sheets = min(stack.get_amount(), round(total_used))
 
-		to_chat(user, SPAN_NOTICE("You add [used_sheets] [main_material] [stack.singular_name]\s to \the [src]."))
+		to_chat(user, span_notice("You add [used_sheets] [main_material] [stack.singular_name]\s to \the [src]."))
 
 		if(!stack.use(used_sheets))
 			qdel(stack)	// Protects against weirdness
 	else
 		res_load() // Play insertion animation.
-		to_chat(user, SPAN_NOTICE("You recycle \the [eating] in \the [src]."))
+		to_chat(user, span_notice("You recycle \the [eating] in \the [src]."))
 		qdel(eating)
 
 	if(reagents_filltype == 1)
-		to_chat(user, SPAN_NOTICE("Some liquid flowed to \the [container]."))
+		to_chat(user, span_notice("Some liquid flowed to \the [container]."))
 	else if(reagents_filltype == 2)
-		to_chat(user, SPAN_NOTICE("Some liquid flowed to the floor from \the [src]."))
+		to_chat(user, span_notice("Some liquid flowed to the floor from \the [src]."))
 
 
 /obj/machinery/autolathe/proc/can_recycle(obj/O)
@@ -970,7 +970,7 @@
 
 /obj/machinery/autolathe/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/oddity/inserted_oddity
 	if(oddity)
-		to_chat(user, SPAN_NOTICE("There's already \a [oddity] inside [src]."))
+		to_chat(user, span_notice("There's already \a [oddity] inside [src]."))
 		return
 
 	if(!inserted_oddity && istype(user))
@@ -992,7 +992,7 @@
 	inserted_oddity.forceMove(src)
 	oddity = inserted_oddity
 	inspiration = C
-	to_chat(user, SPAN_NOTICE("You insert [oddity] in [src]."))
+	to_chat(user, span_notice("You insert [oddity] in [src]."))
 	SSnano.update_uis(src)
 
 /obj/machinery/autolathe/proc/remove_oddity(mob/living/user, use_perk = FALSE)
@@ -1002,9 +1002,9 @@
 	oddity.forceMove(drop_location())
 	if(user)
 		if(!use_perk)
-			to_chat(user, SPAN_NOTICE("You remove [oddity] from [src]."))
+			to_chat(user, span_notice("You remove [oddity] from [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] consumes the perk of [oddity]"))
+			to_chat(user, span_notice("[src] consumes the perk of [oddity]"))
 			inspiration.perk = null
 
 		if(istype(user) && Adjacent(user))

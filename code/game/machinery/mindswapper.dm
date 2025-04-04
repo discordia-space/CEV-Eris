@@ -32,7 +32,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, SPAN_DANGER("The mind swapping process has been launched, there is no going back now."))
+		to_chat(user, span_danger("The mind swapping process has been launched, there is no going back now."))
 		return
 	else
 		startswapping(user)
@@ -46,11 +46,11 @@
 				anchored = anchored ? FALSE : TRUE
 
 /obj/machinery/mindswapper/examine(mob/user, extra_description = "")
-	..(user, "The safety is [emagged ? SPAN_DANGER("disabled") : "enabled"].")
+	..(user, "The safety is [emagged ? span_danger("disabled") : "enabled"].")
 
 /obj/machinery/mindswapper/emag_act(remaining_charges, mob/user)
 	emagged = !emagged
-	to_chat(user, SPAN_DANGER("You [emagged ? "disable" : "enable"] the mind swapper safety."))
+	to_chat(user, span_danger("You [emagged ? "disable" : "enable"] the mind swapper safety."))
 	if(emagged)
 		swap_time = 50
 	else
@@ -62,7 +62,7 @@
 		return
 
 	use_power(1000)
-	visible_message(SPAN_DANGER("You hear an increasingly loud humming coming from the mind swapper."))
+	visible_message(span_danger("You hear an increasingly loud humming coming from the mind swapper."))
 	operating = TRUE
 	update_icon()
 
@@ -102,5 +102,5 @@
 		M.Stun(2)
 		M.Weaken(10)
 
-	visible_message(SPAN_DANGER("You hear a loud electrical crack before the mind swapper shuts down."))
+	visible_message(span_danger("You hear a loud electrical crack before the mind swapper shuts down."))
 	update_icon()

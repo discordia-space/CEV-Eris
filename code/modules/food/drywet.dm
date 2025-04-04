@@ -45,11 +45,11 @@
 			return TRUE
 		if(is_drainable() && (reagents.total_volume || solids.len))
 			if(istype(A, /obj/structure/sink))
-				to_chat(user, SPAN_NOTICE("You pour the solution into [A]."))
+				to_chat(user, span_notice("You pour the solution into [A]."))
 				reagents.remove_any(reagents.total_volume)
 			else
 				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				to_chat(user, SPAN_NOTICE("You splash the contents of [src] onto [A]."))
+				to_chat(user, span_notice("You splash the contents of [src] onto [A]."))
 				reagents.splash(A, reagents.total_volume)
 				for(var/obj/throwit in solids)
 					remove_from_storage(throwit)
@@ -78,12 +78,12 @@
 	return FALSE
 
 /obj/item/reagent_containers/drywet/self_feed_message(mob/user)
-	to_chat(user, SPAN_NOTICE("You drink from \the [src]"))
+	to_chat(user, span_notice("You drink from \the [src]"))
 /obj/item/reagent_containers/drywet/other_feed_message_start(mob/user, mob/target)
-	user.visible_message(SPAN_WARNING("[user] is trying to make [target] drink from \the [src]!"))
+	user.visible_message(span_warning("[user] is trying to make [target] drink from \the [src]!"))
 
 /obj/item/reagent_containers/drywet/other_feed_message_finish(mob/user, mob/target)
-	user.visible_message(SPAN_WARNING("[user] has made [target] drink from \the [src]!"))
+	user.visible_message(span_warning("[user] has made [target] drink from \the [src]!"))
 
 //copied from obj/item/storage
 /obj/item/reagent_containers/drywet/proc/handle_item_insertion(obj/item/W, prevent_warning = 0)
@@ -107,11 +107,11 @@
 		if (!prevent_warning)
 			for (var/mob/M in viewers(usr, null))
 				if (M == usr)
-					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
+					to_chat(usr, span_notice("You put \the [W] into [src]."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(span_notice("\The [usr] puts [W] into [src]."))
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(span_notice("\The [usr] puts [W] into [src]."))
 
 
 	update_icon()
@@ -120,17 +120,17 @@
 // custom for drywet
 /obj/item/reagent_containers/drywet/proc/drywet_poured_into(obj/item/reagent_containers/W, mob/user)
 	if(untaken_capacity == 0)
-		to_chat(user, SPAN_NOTICE("[src] is full."))
+		to_chat(user, span_notice("[src] is full."))
 		return TRUE
 
 	if(!W.reagents.total_volume)
-		to_chat(user, SPAN_NOTICE("[W] is empty."))
+		to_chat(user, span_notice("[W] is empty."))
 		return TRUE // if it returns false, it drains from its target when empty
 
 	var/cantrans = min(W.amount_per_transfer_from_this, untaken_capacity)
 	var/trans = W.reagents.trans_to(src, cantrans)
 	untaken_capacity -= cantrans
-	to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution to [src]."))
+	to_chat(user, span_notice("You transfer [trans] units of the solution to [src]."))
 	playsound(src,'sound/effects/Liquid_transfer_mono.ogg',50,1)
 	user.investigate_log("transfered [trans] units from [W]([reagents.log_list()]) to [src]([reagents.log_list()])", "chemistry")
 
@@ -150,17 +150,17 @@
 
 	if (largestdimension != null && W.w_class > largestdimension)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[W] is too large for this [src]."))
+			to_chat(usr, span_notice("[W] is too large for this [src]."))
 		return FALSE
 
 	if((untaken_capacity  -  (W.get_storage_cost() ** 2)) < 0)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
+			to_chat(usr, span_notice("[src] is too full, make some space."))
 		return FALSE
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)||istype(W, /obj/item/reagent_containers/drywet)))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
+			to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
 		return FALSE //To prevent the stacking of same sized storage items.
 
 

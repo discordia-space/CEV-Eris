@@ -597,11 +597,11 @@
 /datum/reagent/medicine/methylphenidate/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		to_chat(M, SPAN_WARNING("You lose focus..."))
+		to_chat(M, span_warning("You lose focus..."))
 	else
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			to_chat(M, SPAN_NOTICE("Your mind feels focused and undivided."))
+			to_chat(M, span_notice("Your mind feels focused and undivided."))
 
 /datum/reagent/medicine/citalopram
 	name = "Citalopram"
@@ -616,12 +616,12 @@
 /datum/reagent/medicine/citalopram/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		to_chat(M, SPAN_WARNING("Your mind feels a little less stable..."))
+		to_chat(M, span_warning("Your mind feels a little less stable..."))
 	else
 		M.add_chemical_effect(CE_MIND, 1)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
-			to_chat(M, SPAN_NOTICE("Your mind feels stable... a little stable."))
+			to_chat(M, span_notice("Your mind feels stable... a little stable."))
 
 /datum/reagent/medicine/paroxetine
 	name = "Paroxetine"
@@ -635,15 +635,15 @@
 /datum/reagent/medicine/paroxetine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(volume <= 0.1 && data != -1)
 		data = -1
-		to_chat(M, SPAN_WARNING("Your mind feels much less stable..."))
+		to_chat(M, span_warning("Your mind feels much less stable..."))
 	else
 		M.add_chemical_effect(CE_MIND, 2)
 		if(world.time > data + ANTIDEPRESSANT_MESSAGE_DELAY)
 			data = world.time
 			if(prob(90))
-				to_chat(M, SPAN_NOTICE("Your mind feels much more stable."))
+				to_chat(M, span_notice("Your mind feels much more stable."))
 			else
-				to_chat(M, SPAN_WARNING("Your mind breaks apart..."))
+				to_chat(M, span_warning("Your mind breaks apart..."))
 				M.hallucination(200, 100)
 
 /datum/reagent/medicine/rezadone
@@ -823,7 +823,7 @@
 	if(istype(C) && C.metabolism_effects.addiction_list.len)
 		if(prob(5 * effect_multiplier + dose))
 			var/datum/reagent/R = pick(C.metabolism_effects.addiction_list)
-			to_chat(C, SPAN_NOTICE("You dont crave [R.name] anymore."))
+			to_chat(C, span_notice("You dont crave [R.name] anymore."))
 			C.metabolism_effects.addiction_list.Remove(R)
 			qdel(R)
 	M.add_chemical_effect(CE_PURGER, 2)

@@ -22,11 +22,11 @@
 
 	if(reagents.total_volume)
 		if(!target.reagents.get_free_space())
-			to_chat(user, SPAN_NOTICE("[target] is full."))
+			to_chat(user, span_notice("[target] is full."))
 			return
 
 		if(!ismob(target) && !target.is_injectable()) //You can inject humans and food but you cant remove the shit.
-			to_chat(user, SPAN_NOTICE("You cannot directly fill this object."))
+			to_chat(user, span_notice("You cannot directly fill this object."))
 			return
 
 		var/trans = 0
@@ -35,7 +35,7 @@
 			var/time = 20 //2/3rds the time of a syringe
 
 			if(target != user)
-				user.visible_message(SPAN_WARNING("[user] is trying to squirt something into [target]'s eyes!"))
+				user.visible_message(span_warning("[user] is trying to squirt something into [target]'s eyes!"))
 
 				if(!do_mob(user, target, time))
 					return
@@ -57,8 +57,8 @@
 				if(safe_thing)
 					trans = reagents.trans_to_obj(safe_thing, amount_per_transfer_from_this)
 					user.visible_message(
-						SPAN_WARNING("[user] tries to squirt something into [target]'s eyes, but fails!"),
-						SPAN_NOTICE("You transfer [trans] units of the solution.")
+						span_warning("[user] tries to squirt something into [target]'s eyes, but fails!"),
+						span_notice("You transfer [trans] units of the solution.")
 					)
 					return
 
@@ -70,8 +70,8 @@
 
 			trans = reagents.trans_to_mob(target, reagents.total_volume, CHEM_BLOOD)
 			user.visible_message(
-				SPAN_WARNING("[user] squirts something into [target]'s eyes!"),
-				SPAN_NOTICE("You transfer [trans] units of the solution.")
+				span_warning("[user] squirts something into [target]'s eyes!"),
+				span_notice("You transfer [trans] units of the solution.")
 			)
 
 			return
@@ -79,20 +79,20 @@
 		else
 			//sprinkling reagents on generic non-mobs
 			trans = reagents.trans_to(target, amount_per_transfer_from_this)
-			to_chat(user, SPAN_NOTICE("You transfer [trans] units of the solution."))
+			to_chat(user, span_notice("You transfer [trans] units of the solution."))
 
 	else // Taking from something
 		if(!target.is_drainable())
-			to_chat(user, SPAN_NOTICE("You cannot directly remove reagents from [target]."))
+			to_chat(user, span_notice("You cannot directly remove reagents from [target]."))
 			return
 
 		if(!target.reagents.total_volume)
-			to_chat(user, SPAN_NOTICE("[target] is empty."))
+			to_chat(user, span_notice("[target] is empty."))
 			return
 
 		var/trans = target.reagents.trans_to_obj(src, amount_per_transfer_from_this)
 
-		to_chat(user, SPAN_NOTICE("You fill the dropper with [trans] units of the solution."))
+		to_chat(user, span_notice("You fill the dropper with [trans] units of the solution."))
 
 	return
 

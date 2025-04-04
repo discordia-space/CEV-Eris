@@ -105,7 +105,7 @@
 		return 1
 
 	if(usr == occupant)
-		to_chat(usr, SPAN_WARNING("You can't reach the controls from the inside."))
+		to_chat(usr, span_warning("You can't reach the controls from the inside."))
 		return
 
 	add_fingerprint(usr)
@@ -132,9 +132,9 @@
 			beaker = I
 			user.drop_item()
 			I.loc = src
-			user.visible_message(SPAN_NOTICE("\The [user] adds \a [I] to \the [src]."), SPAN_NOTICE("You add \a [I] to \the [src]."))
+			user.visible_message(span_notice("\The [user] adds \a [I] to \the [src]."), span_notice("You add \a [I] to \the [src]."))
 		else
-			to_chat(user, SPAN_WARNING("\The [src] has a beaker already."))
+			to_chat(user, span_warning("\The [src] has a beaker already."))
 		return
 
 /obj/machinery/sleeper/affect_grab(var/mob/user, var/mob/target)
@@ -172,7 +172,7 @@
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(occupant)
-		to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
+		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
 
 	if(M == user)
@@ -182,7 +182,7 @@
 
 	if(do_after(user, 20, src))
 		if(occupant)
-			to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
+			to_chat(user, span_warning("\The [src] is already occupied."))
 			return
 		M.stop_pulling()
 		if(M.client)

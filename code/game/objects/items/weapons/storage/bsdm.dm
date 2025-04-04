@@ -65,7 +65,7 @@
 		QDEL_LIST(contents)
 		if(del_on_send)
 			if(ismob(loc))
-				to_chat(loc, SPAN_NOTICE("[src] flickers away in a brief flash of light."))
+				to_chat(loc, span_notice("[src] flickers away in a brief flash of light."))
 			qdel(src)
 
 	else if(href_list["owner"])
@@ -87,5 +87,5 @@
 			var/trans
 			var/obj/item/reagent_containers/glass/beaker/vial/vial_blitzshell = new /obj/item/reagent_containers/glass/beaker/vial(src)
 			trans = syringe_blitzshell.reagents.trans_to(vial_blitzshell, syringe_blitzshell.reagents.total_volume)
-			to_chat(user ,SPAN_NOTICE("You transfer [trans] units of the solution from [syringe_blitzshell] to [src]"))
+			to_chat(user ,span_notice("You transfer [trans] units of the solution from [syringe_blitzshell] to [src]"))
 			return handle_item_insertion(vial_blitzshell)

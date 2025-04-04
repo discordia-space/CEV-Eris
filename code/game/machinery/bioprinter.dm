@@ -54,17 +54,17 @@
 			O.icon_state = "[O.icon_state]_robotic"
 			O.name = "robotic [O.name]"
 		else if(loaded_dna)
-			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
+			visible_message("[span_notice("The printer injects the stored DNA into the biomass.")].")
 			O.transplant_data = list()
 			var/mob/living/carbon/C = loaded_dna["donor"]
 			O.transplant_data["species"] =    C.species.name
 			O.transplant_data["blood_type"] = loaded_dna["blood_type"]
 			O.transplant_data["blood_DNA"] =  loaded_dna["blood_DNA"]
 
-		visible_message("<span class='info'>The bioprinter spits out a new organ.</span>")
+		visible_message(span_info("The bioprinter spits out a new organ."))
 
 	else
-		to_chat(user, SPAN_WARNING("There is not enough matter in the printer."))
+		to_chat(user, span_warning("There is not enough matter in the printer."))
 
 /obj/machinery/bioprinter/attackby(obj/item/W, mob/user)
 
@@ -74,7 +74,7 @@
 		var/datum/reagent/organic/blood/injected = locate() in S.reagents.reagent_list //Grab some blood
 		if(injected && injected.data)
 			loaded_dna = injected.data
-			to_chat(user, "<span class='info'>You inject the blood sample into the bioprinter.</span>")
+			to_chat(user, span_info("You inject the blood sample into the bioprinter."))
 		return
 	// Meat for biomass.
 	if(!prints_prosthetics)
@@ -82,7 +82,7 @@
 			if(istype(W,type))
 				stored_matter += BIOMASS_TYPES[type]
 				user.drop_item()
-				to_chat(user, "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>")
+				to_chat(user, span_info("\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]"))
 				qdel(W)
 				return
 	// Steel for matter.
@@ -90,7 +90,7 @@
 		var/obj/item/stack/S = W
 		stored_matter += S.amount * 10
 		user.drop_item()
-		to_chat(user, "<span class='info'>\The [src] processes \the [W]. Levels of stored matter now: [stored_matter]</span>")
+		to_chat(user, span_info("\The [src] processes \the [W]. Levels of stored matter now: [stored_matter]"))
 		qdel(W)
 		return
 

@@ -16,7 +16,7 @@
 	set src in usr
 
 	changer.active = !changer.active
-	to_chat(usr, "<span class='notice'>You [changer.active ? "enable" : "disable"] the voice-changing module in \the [src].</span>")
+	to_chat(usr, span_notice("You [changer.active ? "enable" : "disable"] the voice-changing module in \the [src]."))
 
 /obj/item/clothing/mask/chameleon/voice/verb/Set_Name(_name as text)
 	set category = "Object"
@@ -25,7 +25,7 @@
 	var/voice_name = sanitize(_name, MAX_NAME_LEN)
 	if(voice_name)
 		changer.voice_name = voice_name
-		to_chat(usr, SPAN_NOTICE("You are now mimicking <B>[changer.voice_name]</B>."))
+		to_chat(usr, span_notice("You are now mimicking <B>[changer.voice_name]</B>."))
 		var/mob/living/carbon/human/matching_mob
 		for(var/mob/living/carbon/human/H as anything in GLOB.human_mob_list)
 			if(H.real_name == voice_name)

@@ -504,7 +504,7 @@ Effects demand parent code, so ..()
 					switch(LAZYLEN(minigun_target))
 						if(0)
 							sleep(500 MILLISECONDS)
-							error(SPAN_DANGER("[src] is fucking up, tell c*ders!"))
+							error(span_danger("[src] is fucking up, tell c*ders!"))
 							doing_something = FALSE
 						if(1)
 							var/mob/target1 = pick(minigun_target)

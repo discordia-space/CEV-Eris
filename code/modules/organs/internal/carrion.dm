@@ -1,10 +1,10 @@
 /mob/living/carbon/human/proc/check_ability(var/chem_cost = 0, var/needs_foundation, var/gene_cost = 0)
 	if(stat == DEAD || (status_flags & FAKEDEATH))
-		to_chat(src, SPAN_WARNING("You are dead"))
+		to_chat(src, span_warning("You are dead"))
 		return FALSE
 
 	if(carrion_stored_chemicals < chem_cost)
-		to_chat(src, SPAN_WARNING("You don't have enough chemicals stored to do that."))
+		to_chat(src, span_warning("You don't have enough chemicals stored to do that."))
 		return FALSE
 
 	if(needs_foundation)
@@ -15,13 +15,13 @@
 				has_foundation = TRUE
 
 		if(!has_foundation)
-			to_chat(src, SPAN_WARNING("You need a solid foundation to do that on."))
+			to_chat(src, span_warning("You need a solid foundation to do that on."))
 			return FALSE
 
 	if(gene_cost)
 		var/obj/item/organ/internal/carrion/core/core = random_organ_by_process(BP_SPCORE)
 		if(core?.geneticpoints < gene_cost)
-			to_chat(src, SPAN_WARNING("You don't have enough genetic points stored to do that."))
+			to_chat(src, span_warning("You don't have enough genetic points stored to do that."))
 			return FALSE
 		else
 			core.geneticpoints -= gene_cost
@@ -89,7 +89,7 @@
 	var/list/options = list()
 	var/obj/item/implant/carrion_spider/S
 	if (!spiderlist.len)
-		to_chat(owner, SPAN_WARNING("You dont have any spiders evolved!"))
+		to_chat(owner, span_warning("You dont have any spiders evolved!"))
 		return
 
 	for(var/item in spiderlist)
@@ -230,14 +230,14 @@
 	src = core
 
 	if(owner.status_flags & FAKEDEATH)
-		to_chat(owner, SPAN_WARNING("We are regenerating our body!"))
+		to_chat(owner, span_warning("We are regenerating our body!"))
 		return
 
 	if(alert("Are you sure you want to detach? You will lose your old body and half of your evolved abilities and gene points.",,"Yes","No") == "No")
 		return
 
 	gibs(owner.loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
-	visible_message(SPAN_DANGER("Something bursts out of [owner]'s chest!"))
+	visible_message(span_danger("Something bursts out of [owner]'s chest!"))
 	removed() //removed() does all of the work
 
 /obj/item/organ/internal/carrion/core/proc/spider_menu()
@@ -277,7 +277,7 @@
 		return
 
 	if(!absorbed_dna.len)
-		to_chat(owner, SPAN_WARNING("You have no DNA absorbed!"))
+		to_chat(owner, span_warning("You have no DNA absorbed!"))
 		return
 
 	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in absorbed_dna
@@ -293,7 +293,7 @@
 //		if(istype(owner))
 //			owner.update_body(0)
 
-	owner.visible_message(SPAN_WARNING("[owner] transforms!"))
+	owner.visible_message(span_warning("[owner] transforms!"))
 	owner.real_name = S
 	owner.dna_trace = sha1(S)
 	owner.fingers_trace = md5(S)
@@ -316,7 +316,7 @@
 	if(!(owner.check_ability(20)))
 		return
 
-	to_chat(owner, SPAN_NOTICE("We will attempt to regenerate our form."))
+	to_chat(owner, span_notice("We will attempt to regenerate our form."))
 
 	owner.status_flags |= FAKEDEATH
 	owner.update_lying_buckled_and_verb_status()
@@ -340,7 +340,7 @@
 	owner.update_lying_buckled_and_verb_status()
 	owner.update_body()
 	owner.update_icons()
-	to_chat(owner, SPAN_NOTICE("You have regenerated."))
+	to_chat(owner, span_notice("You have regenerated."))
 
 /obj/item/organ/internal/carrion/core/proc/add_to_associated_organs(obj/item/organ/internal/carrion/I)
 	if(istype(I))
@@ -373,27 +373,27 @@
 	var/food = owner.get_active_hand()
 
 	if(!food)
-		to_chat(owner, SPAN_WARNING("You can't eat nothing."))
+		to_chat(owner, span_warning("You can't eat nothing."))
 		return
 
 	if(istype(food, /obj/item/grab))
 		var/obj/item/grab/grab = food
 		var/mob/living/carbon/human/H = grab.affecting
 		if (grab.state < GRAB_AGGRESSIVE)
-			to_chat(owner, SPAN_WARNING("Your grip upon [H.name] is too weak."))
+			to_chat(owner, span_warning("Your grip upon [H.name] is too weak."))
 			return
 		if(istype(H))
 			var/obj/item/organ/external/E = H.get_organ(owner.targeted_organ)
 			if (tearing) // one at a time, thank you.
-				to_chat(owner, SPAN_WARNING("Your maw is already focused on something."))
+				to_chat(owner, span_warning("Your maw is already focused on something."))
 				return
 
 			if(E.is_stump())
-				to_chat(owner, SPAN_WARNING("There is nothing there!"))
+				to_chat(owner, span_warning("There is nothing there!"))
 				return
 			tearing = TRUE
 
-			visible_message(SPAN_DANGER("[owner] bites into [H.name]'s [E.name] and starts tearing it apart!"))
+			visible_message(span_danger("[owner] bites into [H.name]'s [E.name] and starts tearing it apart!"))
 			if(do_after(owner, 5 SECONDS, H))
 				tearing = FALSE
 				E.take_damage(30, BRUTE)
@@ -406,17 +406,17 @@
 						blacklist += to_blacklist// removing bones from a valid_organs list based on
 				var/list/valid_organs = E.internal_organs - blacklist// E.internal_organs gibs the victim.
 				if (!valid_organs.len)
-					visible_message(SPAN_DANGER("[owner] tears up [H]'s [E.name]!"))
+					visible_message(span_danger("[owner] tears up [H]'s [E.name]!"))
 					return
 				var/obj/item/organ/internal/organ_to_remove = pick(valid_organs)
 				organ_to_remove.removed(owner)
-				visible_message(SPAN_DANGER("[owner] tears \a [organ_to_remove] out of [H.name]'s [E.name]!"))
+				visible_message(span_danger("[owner] tears \a [organ_to_remove] out of [H.name]'s [E.name]!"))
 				playsound(loc, 'sound/voice/shriek1.ogg', 50)
 				return
 			else
 				tearing = FALSE
 		else
-			to_chat(owner, SPAN_WARNING("You can only tear flesh out of humanoids!"))
+			to_chat(owner, span_warning("You can only tear flesh out of humanoids!"))
 			return
 
 	if(istype(food, /obj/item/organ) || istype(food, /obj/item/reagent_containers/food/snacks/meat))
@@ -425,13 +425,13 @@
 		var/taste_description = ""
 
 		if(owner.carrion_hunger < 1)
-			to_chat(owner, SPAN_WARNING("You are not hungry."))
+			to_chat(owner, span_warning("You are not hungry."))
 			return
 
 		var/obj/item/organ/O = food
 		if(istype(O))
 			if(BP_IS_ROBOTIC(O))
-				to_chat(owner, SPAN_WARNING("This organ is robotic, you can't eat it."))
+				to_chat(owner, span_warning("This organ is robotic, you can't eat it."))
 				return
 			else if(istype(O, /obj/item/organ/internal/carrion))
 				var/obj/item/organ/internal/carrion/core/G = owner.random_organ_by_process(BP_SPCORE)
@@ -479,12 +479,12 @@
 		if(chemvessel_efficiency > 1)
 			owner.carrion_stored_chemicals = min(owner.carrion_stored_chemicals + 0.01 * chemvessel_efficiency , 0.5 * chemvessel_efficiency)
 
-		to_chat(owner, SPAN_NOTICE("You consume \the [food], [taste_description]."))
-		visible_message(SPAN_DANGER("[owner] devours \the [food]!"))
+		to_chat(owner, span_notice("You consume \the [food], [taste_description]."))
+		visible_message(span_danger("[owner] devours \the [food]!"))
 		qdel(food)
 
 	else
-		to_chat(owner, SPAN_WARNING("You can't eat this!"))
+		to_chat(owner, span_warning("You can't eat this!"))
 
 /obj/item/organ/internal/carrion/maw/proc/spider_call()
 	set category = "Carrion"
@@ -496,14 +496,14 @@
 	src = maw
 
 	if(last_call + 5 MINUTES > world.time)
-		to_chat(owner, SPAN_WARNING("Your maw is tired, you can only call for help every 5 minutes."))
+		to_chat(owner, span_warning("Your maw is tired, you can only call for help every 5 minutes."))
 		return
 
 	if(owner.check_ability(30))
 		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
 			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8) //Same trick as with the fuhrer
-		visible_message(SPAN_DANGER("[owner] emits a frightening screech as you feel the ground tramble!"))
+		visible_message(span_danger("[owner] emits a frightening screech as you feel the ground tramble!"))
 		for (var/obj/structure/burrow/B in find_nearby_burrows())
 			for(var/i = 1, i <= 4 ,i++) //4 per burrow
 				var/obj/structure/burrow/origin = SSmigration.choose_burrow_target(null, TRUE, 100)
@@ -525,13 +525,13 @@
 
 	var/turf/T = get_turf(owner)
 	if(locate(/obj/effect/decal/cleanable/carrion_puddle) in T)
-		to_chat(owner, SPAN_WARNING("There is already a toxic puddle here."))
+		to_chat(owner, span_warning("There is already a toxic puddle here."))
 		return
 
 	if(owner.check_ability(10, TRUE))
 		playsound(src, 'sound/effects/blobattack.ogg', 50, 1)
 		new /obj/effect/decal/cleanable/carrion_puddle(T)
-		to_chat(owner, SPAN_NOTICE("You vomit a toxic puddle"))
+		to_chat(owner, span_notice("You vomit a toxic puddle"))
 
 /obj/effect/decal/cleanable/carrion_puddle
 	name = "toxic puddle"
@@ -557,9 +557,9 @@
 
 /obj/effect/decal/cleanable/solid_biomass/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
-		to_chat(user, SPAN_NOTICE("You started cleaning this [src]."))
+		to_chat(user, span_notice("You started cleaning this [src]."))
 		if(do_after(user, 3 SECONDS, src))
-			to_chat(user, SPAN_NOTICE("You clean \The [src]."))
+			to_chat(user, span_notice("You clean \The [src]."))
 			qdel(src)
 
 /obj/item/organ/internal/carrion/spinneret
@@ -583,11 +583,11 @@
 	src = spinneret
 
 	if(locate(/obj/effect/spider/stickyweb) in get_turf(src))
-		to_chat(owner, SPAN_WARNING("There is alredy web on the floor!"))
+		to_chat(owner, span_warning("There is alredy web on the floor!"))
 		return
 
 	if(owner.check_ability(5,TRUE))
-		visible_message(SPAN_NOTICE("\The [owner] begins to secrete a sticky substance."))
+		visible_message(span_notice("\The [owner] begins to secrete a sticky substance."))
 		new /obj/effect/spider/stickyweb(get_turf(src))
 		update_openspace()
 
@@ -601,7 +601,7 @@
 	src = spinneret
 
 	if(owner.check_ability(25))
-		to_chat(owner, SPAN_NOTICE("You cleanse your blood of all chemicals and poisons."))
+		to_chat(owner, span_notice("You cleanse your blood of all chemicals and poisons."))
 		owner.radiation = 0
 		owner.reagents.update_total()
 		owner.reagents.trans_to_turf(owner.loc, owner.reagents.total_volume)
@@ -638,13 +638,13 @@
 		playsound(loc, 'sound/voice/shriek1.ogg', 85, 1, 8, 8)
 		spawn_spider()
 		attack_animation(user)
-		visible_message(SPAN_WARNING("\The [src] bursts open!"))
+		visible_message(span_warning("\The [src] bursts open!"))
 		qdel(src)
 
 /obj/structure/spider_nest/bullet_act(obj/item/projectile/P, def_zone)
 	playsound(loc, 'sound/voice/shriek1.ogg', 85, 1, 8, 8)
 	spawn_spider()
-	visible_message(SPAN_WARNING("[src] bursts open!"))
+	visible_message(span_warning("[src] bursts open!"))
 	qdel(src)
 	..()
 
@@ -653,7 +653,7 @@
 		/mob/living/carbon/superior_animal/giant_spider/nurse = 2,\
 		/mob/living/carbon/superior_animal/giant_spider/hunter = 2))
 	new spider_to_spawn(loc)
-	visible_message(SPAN_WARNING("A spider spews out of \The [src]"))
+	visible_message(span_warning("A spider spews out of \The [src]"))
 	spider_spawns--
 	if(spider_spawns)
 		addtimer(CALLBACK(src, PROC_REF(spawn_spider)), 1 MINUTES)

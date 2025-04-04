@@ -55,10 +55,10 @@
 		return
 
 	if(prob(I.force * 2))
-		visible_message(SPAN_WARNING("[user] smashes [src] with [I]!"))
+		visible_message(span_warning("[user] smashes [src] with [I]!"))
 		shatter()
 	else
-		visible_message(SPAN_WARNING("[user] hits [src] with [I]!"))
+		visible_message(span_warning("[user] hits [src] with [I]!"))
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
 
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
@@ -68,10 +68,10 @@
 		return 0
 
 	if(damage)
-		user.visible_message(SPAN_DANGER("[user] smashes [src]!"))
+		user.visible_message(span_danger("[user] smashes [src]!"))
 		shatter()
 	else
-		user.visible_message(SPAN_DANGER("[user] hits [src] and bounces off!"))
+		user.visible_message(span_danger("[user] hits [src] and bounces off!"))
 	return 1
 
 /obj/structure/mirror/Destroy()

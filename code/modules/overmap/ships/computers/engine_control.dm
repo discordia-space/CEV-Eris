@@ -25,7 +25,7 @@
 
 /obj/machinery/computer/engines/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
-		to_chat(user, "<span class='warning'>Unable to connect to ship control systems.</span>")
+		to_chat(user, span_warning("Unable to connect to ship control systems."))
 		return
 
 	var/data[0]

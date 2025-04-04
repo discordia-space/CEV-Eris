@@ -119,7 +119,7 @@
 /turf/Enter(atom/movable/O, atom/oldloc)
 	ASSERT(O)
 	if(movement_disabled && ismob(usr) && usr.ckey != movement_disabled_exception)
-		to_chat(usr, SPAN_WARNING("Movement is admin-disabled.")) //This is to identify lag problems
+		to_chat(usr, span_warning("Movement is admin-disabled.")) //This is to identify lag problems
 		return
 
 //	..()
@@ -229,10 +229,10 @@
 							slip_stun = 4
 
 					if(locate(/obj/structure/multiz/ladder) in get_turf(M.loc))  // Avoid slipping on ladder tiles
-						visible_message(SPAN_DANGER("\The [M] supports themself with the ladder to avoid slipping."))
+						visible_message(span_danger("\The [M] supports themself with the ladder to avoid slipping."))
 
 					else if(locate(/obj/structure/multiz/stairs) in get_turf(M.loc))  // Avoid slipping on stairs tiles
-						visible_message(SPAN_DANGER("\The [M] supports themself with the handrail to avoid slipping."))
+						visible_message(span_danger("\The [M] supports themself with the handrail to avoid slipping."))
 
 					else if(M.slip("the [floor_type] floor",slip_stun))
 						for(var/i = 0;i<slip_dist;i++)

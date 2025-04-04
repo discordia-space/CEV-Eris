@@ -29,7 +29,7 @@
 /obj/item/organ_module/attackby(obj/item/I, mob/user)
 	..()
 	if(istype(I, /obj/item/implanter/installer/disposable))
-		to_chat(user, SPAN_NOTICE("You cannot refill a single-use applicator."))
+		to_chat(user, span_notice("You cannot refill a single-use applicator."))
 		return
 
 	if(istype(I, /obj/item/implanter/installer))
@@ -40,5 +40,5 @@
 		return TRUE
 
 	if(istype(I, /obj/item/implanter))
-		to_chat(user, SPAN_NOTICE("You cannot insert cybernetics into an implant applicator."))
+		to_chat(user, span_notice("You cannot insert cybernetics into an implant applicator."))
 		return

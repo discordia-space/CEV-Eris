@@ -202,7 +202,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.stats.getPerk(PERK_MARKET_PROF))
-			extra_description += SPAN_NOTICE("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]")
+			extra_description += span_notice("Export value: [get_item_cost() * SStrade.get_export_price_multiplier(src)][CREDITS]")
 			var/offer_message = "This item is requested at: "
 			var/has_offers = FALSE
 			for(var/datum/trade_station/TS in SStrade.discovered_stations)
@@ -300,22 +300,22 @@
 	if(!usr.canmove || usr.stat || usr.restrained() || !Adjacent(usr))
 		return
 	if(!iscarbon(usr) || isbrain(usr))//Is humanoid, and is not a brain
-		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
+		to_chat(usr, span_warning("You can't pick things up!"))
 		return
 	if( usr.stat || usr.restrained() )//Is not asleep/dead and is not restrained
-		to_chat(usr, SPAN_WARNING("You can't pick things up!"))
+		to_chat(usr, span_warning("You can't pick things up!"))
 		return
 	if(anchored) //Object isn't anchored
-		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
+		to_chat(usr, span_warning("You can't pick that up!"))
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
-		to_chat(usr, SPAN_WARNING("Your right hand is full."))
+		to_chat(usr, span_warning("Your right hand is full."))
 		return
 	if(usr.hand && usr.l_hand) //Left hand is not full
-		to_chat(usr, SPAN_WARNING("Your left hand is full."))
+		to_chat(usr, span_warning("Your left hand is full."))
 		return
 	if(!istype(loc, /turf)) //Object is on a turf
-		to_chat(usr, SPAN_WARNING("You can't pick that up!"))
+		to_chat(usr, span_warning("You can't pick that up!"))
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
@@ -348,11 +348,11 @@
 		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
 			if(protection && (protection.body_parts_covered & EYES))
 				// you can't stab someone in the eyes wearing a mask!
-				to_chat(user, SPAN_WARNING("You're going to need to remove the eye covering first."))
+				to_chat(user, span_warning("You're going to need to remove the eye covering first."))
 				return
 
 	if(!M.has_eyes())
-		to_chat(user, SPAN_WARNING("You cannot locate any eyes on [M]!"))
+		to_chat(user, span_warning("You cannot locate any eyes on [M]!"))
 		return
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>"
@@ -373,13 +373,13 @@
 
 		if(H != user)
 			for(var/mob/O in (viewers(M) - user - M))
-				O.show_message(SPAN_DANGER("[M] has been stabbed in the eye with [src] by [user]."), 1)
-			to_chat(M, SPAN_DANGER("[user] stabs you in the eye with [src]!"))
-			to_chat(user, SPAN_DANGER("You stab [M] in the eye with [src]!"))
+				O.show_message(span_danger("[M] has been stabbed in the eye with [src] by [user]."), 1)
+			to_chat(M, span_danger("[user] stabs you in the eye with [src]!"))
+			to_chat(user, span_danger("You stab [M] in the eye with [src]!"))
 		else
 			user.visible_message( \
-				SPAN_DANGER("[user] has stabbed themself with [src]!"), \
-				SPAN_DANGER("You stab yourself in the eyes with [src]!") \
+				span_danger("[user] has stabbed themself with [src]!"), \
+				span_danger("You stab yourself in the eyes with [src]!") \
 			)
 
 		playsound(loc, 'sound/weapons/melee/lightstab.ogg', 50, 1, -1)
@@ -387,17 +387,17 @@
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != DEAD)
 				if(BP_IS_ORGANIC(eyes) || BP_IS_ASSISTED(eyes)) //robot eyes bleeding might be a bit silly
-					to_chat(M, SPAN_DANGER("Your eyes start to bleed profusely!"))
+					to_chat(M, span_danger("Your eyes start to bleed profusely!"))
 			if(prob(50))
 				if(M.stat != DEAD)
-					to_chat(M, SPAN_WARNING("You drop what you're holding and clutch at your eyes!"))
+					to_chat(M, span_warning("You drop what you're holding and clutch at your eyes!"))
 					M.drop_item()
 				M.eye_blurry += 10
 				M.Paralyse(1)
 				M.Weaken(4)
 			if(eyes.damage >= eyes.min_broken_damage)
 				if(M.stat != 2)
-					to_chat(M, SPAN_WARNING("You go blind!"))
+					to_chat(M, span_warning("You go blind!"))
 		var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 		if(affecting.take_damage(7))
 			M:UpdateDamageIcon()
@@ -485,7 +485,7 @@ var/global/list/items_blood_overlay_by_type = list()
 		var/mob/living/grabbed = inhand_grab.throw_held()
 		if (grabbed)
 			if (grabbed.stats.getPerk(PERK_ASS_OF_CONCRETE))
-				visible_message(SPAN_WARNING("[src] tries to pick up [grabbed], and fails!"))
+				visible_message(span_warning("[src] tries to pick up [grabbed], and fails!"))
 
 			else
 				if(ishuman(grabbed)) // irish whip if human(grab special), else spin and force rest
@@ -496,32 +496,32 @@ var/global/list/items_blood_overlay_by_type = list()
 					grabbed.loc = src.loc
 					//yeet
 					src.set_dir(whip_dir)
-					visible_message(SPAN_WARNING("[src] spins and hurls [grabbed] away!"), SPAN_WARNING("You spin and hurl [grabbed] away!"))
+					visible_message(span_warning("[src] spins and hurls [grabbed] away!"), span_warning("You spin and hurl [grabbed] away!"))
 					grabbed.update_lying_buckled_and_verb_status()
 					unEquip(inhand_grab)
 					//move grabbed for three tiles, if glass window/wall/railing encountered, proc interactions and break
 					for(moves, moves<=3, ++moves)
 						//low damage for walls, medium for windows, fall over for railings
 						if(istype(get_step(grabbed, whip_dir), /turf/wall))
-							visible_message(SPAN_WARNING("[grabbed] slams into the wall!"))
+							visible_message(span_warning("[grabbed] slams into the wall!"))
 							grabbed.damage_through_armor(15, BRUTE, BP_CHEST, ARMOR_MELEE)
 							break
 
 						for(var/obj/structure/S in get_step(grabbed, whip_dir))
 							if(istype(S, /obj/structure/window))
-								visible_message(SPAN_WARNING("[grabbed] slams into \the [S]!"))
+								visible_message(span_warning("[grabbed] slams into \the [S]!"))
 								grabbed.damage_through_armor(25, BRUTE, BP_CHEST, ARMOR_MELEE)
 
 								moves = 3
 								break
 							if(istype(S, /obj/structure/railing))
-								visible_message(SPAN_WARNING("[grabbed] falls over \the [S]!"))
+								visible_message(span_warning("[grabbed] falls over \the [S]!"))
 								grabbed.forceMove(get_step(grabbed, whip_dir))
 
 								moves = 3
 								break
 							if(istype(S, /obj/structure/table))
-								visible_message(SPAN_WARNING("[grabbed] falls on \the [S]!"))
+								visible_message(span_warning("[grabbed] falls on \the [S]!"))
 								grabbed.forceMove(get_step(grabbed, whip_dir))
 								grabbed.Weaken(5)
 
@@ -533,20 +533,20 @@ var/global/list/items_blood_overlay_by_type = list()
 					src.attack_log += text("\[[time_stamp()]\] <font color='red'>Irish-whipped [grabbed.name] ([grabbed.ckey])</font>")
 					grabbed.attack_log += text("\[[time_stamp()]\] <font color='orange'>Irish-whipped by [src.name] ([src.ckey])</font>")
 				else
-					visible_message(SPAN_WARNING("[src] picks up, spins, and drops [grabbed]."), SPAN_WARNING("You pick up, spin, and drop [grabbed]."))
+					visible_message(span_warning("[src] picks up, spins, and drops [grabbed]."), span_warning("You pick up, spin, and drop [grabbed]."))
 					grabbed.Weaken(1)
 					grabbed.resting = TRUE
 					grabbed.update_lying_buckled_and_verb_status()
 					unEquip(inhand_grab)
 		else
-			to_chat(src, SPAN_WARNING("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
+			to_chat(src, span_warning("You do not have a firm enough grip to forcibly spin [inhand_grab.affecting]."))
 
 	else if (I && !I.abstract && I.mob_can_unequip(src, get_active_hand_slot())) // being unable to unequip normally means
 		I.SpinAnimation(5,1) // that the item is stuck on or in, and so cannot spin
 		external_recoil(50)
 		visible_message("[src] spins [I.name] in \his hand.") // had to mess with the macros a bit to get
 		if (recoil > 60) // the text to work, which is why "a" is not included
-			visible_message(SPAN_WARNING("[I] flies out of [src]\'s hand!"))
+			visible_message(span_warning("[I] flies out of [src]\'s hand!"))
 			unEquip(I)
 			return
 		I.hand_spin(src)

@@ -114,25 +114,25 @@
 	/// Added to handle with the case of ballistic shields (and probably other ones in the future.)
 	var/text = exosuit.moveBlocked()
 	if(length(text))
-		to_chat(mover, SPAN_NOTICE(text))
+		to_chat(mover, span_notice(text))
 		return MOVEMENT_STOP
 	if((!(mover in exosuit.pilots) && mover != exosuit) || exosuit.incapacitated() || mover.incapacitated())
 		return MOVEMENT_STOP
 	if(!exosuit.legs)
-		to_chat(mover, SPAN_WARNING("\The [exosuit] has no means of propulsion!"))
+		to_chat(mover, span_warning("\The [exosuit] has no means of propulsion!"))
 		next_move = world.time + 3 // Just to stop them from getting spammed with messages.
 		return MOVEMENT_STOP
 	if(!exosuit.legs.motivator || !exosuit.legs.motivator.is_functional())
-		to_chat(mover, SPAN_WARNING("Your motivators are damaged! You can't move!"))
+		to_chat(mover, span_warning("Your motivators are damaged! You can't move!"))
 		next_move = world.time + 15
 		return MOVEMENT_STOP
 	if(exosuit.maintenance_protocols)
-		to_chat(mover, SPAN_WARNING("Maintenance protocols are in effect."))
+		to_chat(mover, span_warning("Maintenance protocols are in effect."))
 		next_move = world.time + 3 // Just to stop them from getting spammed with messages.
 		return MOVEMENT_STOP
 	var/obj/item/cell/C = exosuit.get_cell()
 	if(!C || !C.check_charge(exosuit.legs.power_use * CELLRATE))
-		to_chat(mover, SPAN_WARNING("The power indicator flashes briefly."))
+		to_chat(mover, span_warning("The power indicator flashes briefly."))
 		next_move = world.time + 3 //On fast exosuits this got annoying fast
 		return MOVEMENT_STOP
 

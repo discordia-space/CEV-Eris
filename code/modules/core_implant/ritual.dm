@@ -38,17 +38,17 @@
 	if(!pre_check(H,C,targets))
 		return
 	if(!force && !check_success(C))
-		to_chat(H, SPAN_DANGER("[fail_message]"))
+		to_chat(H, span_danger("[fail_message]"))
 		failed(H, C, targets, TRUE)
 	else
 		if(perform(H, C, targets))
 			C.use_power(src.power)
-			to_chat(H, SPAN_NOTICE("[success_message]"))
+			to_chat(H, span_notice("[success_message]"))
 
 /datum/ritual/proc/fail(var/message, mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	if(!message)
 		message = fail_message
-	to_chat(H, SPAN_DANGER("[message]"))
+	to_chat(H, span_danger("[message]"))
 	failed(H, C, targets)
 
 /datum/ritual/proc/check_success(obj/item/implant/core_implant/C)

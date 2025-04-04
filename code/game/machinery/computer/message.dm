@@ -12,15 +12,15 @@
 	//Sparks effect - For emag
 	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 	//Messages - Saves me time if I want to change something.
-	var/noserver = "<span class='alert'>ALERT: No server detected.</span>"
-	var/incorrectkey = "<span class='warning'>ALERT: Incorrect decryption key!</span>"
-	var/defaultmsg = "<span class='notice'>Welcome. Please select an option.</span>"
-	var/rebootmsg = "<span class='warning'>%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!</span>"
+	var/noserver = span_alert("ALERT: No server detected.")
+	var/incorrectkey = span_warning("ALERT: Incorrect decryption key!")
+	var/defaultmsg = span_notice("Welcome. Please select an option.")
+	var/rebootmsg = span_warning("%$&(£: Critical %$$@ Error // !RestArting! <lOadiNg backUp iNput ouTput> - ?pLeaSe wAit!")
 	//Computer properties
 	var/screen = 0 		// 0 = Main menu, 1 = Message Logs, 2 = Hacked screen, 3 = Custom Message
 	var/hacking = 0		// Is it being hacked into by the AI/Cyborg
 	var/emag = 0		// When it is emagged.
-	var/message = "<span class='notice'>System bootup complete. Please select an option.</span>"	// The message that shows on the main menu.
+	var/message = span_notice("System bootup complete. Please select an option.")	// The message that shows on the main menu.
 	var/auth = 0 // Are they authenticated?
 	var/optioncount = 8
 
@@ -33,7 +33,7 @@
 		return
 	if(O.get_tool_type(user, list(QUALITY_SCREW_DRIVING), src) && emag)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
-		to_chat(user, SPAN_WARNING("It is too hot to mess with!"))
+		to_chat(user, span_warning("It is too hot to mess with!"))
 		return
 
 	..()
@@ -57,7 +57,7 @@
 			update_icon()
 			return 1
 		else
-			to_chat(user, SPAN_NOTICE("A no server error appears on the screen."))
+			to_chat(user, span_notice("A no server error appears on the screen."))
 
 /obj/machinery/computer/message_monitor/update_icon()
 	if(emag || hacking)
@@ -123,9 +123,9 @@
 
 			//Bottom message
 			if(!auth)
-				dat += "<br><hr><dd><span class='notice'>Please authenticate with the server in order to show additional options.</span>"
+				dat += "<br><hr><dd>[span_notice("Please authenticate with the server in order to show additional options.")]"
 			else
-				dat += "<br><hr><dd><span class='warning'>Reg, #514 forbids sending messages to a Head of Staff containing Erotic Rendering Properties.</span>"
+				dat += "<br><hr><dd>[span_warning("Reg, #514 forbids sending messages to a Head of Staff containing Erotic Rendering Properties.")]"
 
 		//Hacking screen.
 		if(2)
@@ -204,10 +204,10 @@
 
 /obj/machinery/computer/message_monitor/proc/BruteForce(mob/user as mob)
 	if(isnull(linkedServer))
-		to_chat(user, SPAN_WARNING("Could not complete brute-force: Linked Server Disconnected!"))
+		to_chat(user, span_warning("Could not complete brute-force: Linked Server Disconnected!"))
 	else
 		var/currentKey = src.linkedServer.decryptkey
-		to_chat(user, SPAN_WARNING("Brute-force completed! The key is '[currentKey]'."))
+		to_chat(user, span_warning("Brute-force completed! The key is '[currentKey]'."))
 	src.hacking = 0
 	update_icon()
 	src.screen = 0 // Return the screen back to normal
@@ -244,10 +244,10 @@
 		if (href_list["find"])
 			if(message_servers && message_servers.len > 1)
 				src.linkedServer = input(usr,"Please select a server.", "Select a server.", null) as null|anything in message_servers
-				message = "<span class='alert'>NOTICE: Server selected.</span>"
+				message = span_alert("NOTICE: Server selected.")
 			else if(message_servers && message_servers.len > 0)
 				linkedServer = message_servers[1]
-				message =  SPAN_NOTICE("NOTICE: Only Single Server Detected - Server selected.")
+				message =  span_notice("NOTICE: Only Single Server Detected - Server selected.")
 			else
 				message = noserver
 
@@ -258,7 +258,7 @@
 			else
 				if(auth)
 					src.linkedServer.rc_msgs = list()
-					message = SPAN_NOTICE("NOTICE: Logs cleared.")
+					message = span_notice("NOTICE: Logs cleared.")
 		//Change the password - KEY REQUIRED
 		if (href_list["pass"])
 			if(!linkedServer || (src.linkedServer.stat & (NOPOWER|BROKEN)))
@@ -270,12 +270,12 @@
 						if(src.linkedServer.decryptkey == dkey)
 							var/newkey = trim(input(usr,"Please enter the new key (3 - 16 characters max):"))
 							if(length(newkey) <= 3)
-								message = SPAN_NOTICE("NOTICE: Decryption key too short!")
+								message = span_notice("NOTICE: Decryption key too short!")
 							else if(length(newkey) > 16)
-								message = SPAN_NOTICE("NOTICE: Decryption key too long!")
+								message = span_notice("NOTICE: Decryption key too long!")
 							else if(newkey && newkey != "")
 								src.linkedServer.decryptkey = newkey
-							message = SPAN_NOTICE("NOTICE: Decryption key set.")
+							message = span_notice("NOTICE: Decryption key set.")
 						else
 							message = incorrectkey
 
@@ -297,7 +297,7 @@
 					message = noserver
 				else //if(istype(href_list["delete"], /datum/data_pda_msg))
 					src.linkedServer.rc_msgs -= locate(href_list["deleter"])
-					message = SPAN_NOTICE("NOTICE: Log Deleted!")
+					message = span_notice("NOTICE: Log Deleted!")
 
 		//Request Console Logs - KEY REQUIRED
 		if(href_list["viewr"])

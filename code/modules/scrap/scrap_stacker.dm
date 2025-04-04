@@ -34,7 +34,7 @@
 	if(scrap_amount < 1)
 		return 1
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	visible_message(SPAN_NOTICE("\The [src] was forced to release everything inside."))
+	visible_message(span_notice("\The [src] was forced to release everything inside."))
 	new /obj/item/stack/refined_scrap(loc, scrap_amount)
 	scrap_amount = 0
 

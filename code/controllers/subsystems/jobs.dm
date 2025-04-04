@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(job)
 
 	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in clients
 	if(!the_chosen_one)
-		to_chat(usr, SPAN_DANGER("No client selected to whitelist"))
+		to_chat(usr, span_danger("No client selected to whitelist"))
 		return
 	SSjob.WhitelistPlayer(the_chosen_one.ckey)
 
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(job)
 
 	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in clients
 	if(!the_disavowed_one)
-		to_chat(usr, SPAN_DANGER("No client selected to unwhitelist"))
+		to_chat(usr, span_danger("No client selected to unwhitelist"))
 		return
 	SSjob.UnwhitelistPlayer(the_disavowed_one.ckey)
 
@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(job)
 	set name = "Show playtimes"
 
 	if(!SSjob.initialized)
-		to_chat(mob, SPAN_NOTICE("The Jobs subsystem is not initialized yet, please wait."))
+		to_chat(mob, span_notice("The Jobs subsystem is not initialized yet, please wait."))
 		return
 
 	var/client_key = ckey
@@ -90,7 +90,7 @@ SUBSYSTEM_DEF(job)
 	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
 		SSjob.LoadPlaytimes(ckey)
 	if(!length(SSjob.ckey_to_job_to_playtime[ckey]))
-		to_chat(mob, SPAN_NOTICE("SSjobs was unable to load your playtimes."))
+		to_chat(mob, span_notice("SSjobs was unable to load your playtimes."))
 	for(var/occupation in SSjob.occupations_by_name)
 		var/value = round(SSjob.ckey_to_job_to_playtime[client_key][occupation]/600)
 		if(length(SSinactivity_and_job_tracking.current_playtimes))
@@ -241,7 +241,7 @@ SUBSYSTEM_DEF(job)
 		occupations_by_name[job.title] = job
 
 	if(!occupations.len)
-		to_chat(world, SPAN_WARNING("Error setting up jobs, no job datums found!"))
+		to_chat(world, span_warning("Error setting up jobs, no job datums found!"))
 		return FALSE
 
 	return TRUE
@@ -654,7 +654,7 @@ SUBSYSTEM_DEF(job)
 					permitted = 0
 
 				if(!permitted)
-					to_chat(H, "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>")
+					to_chat(H, span_warning("Your current job or whitelist status does not permit you to spawn with [thing]!"))
 					continue
 
 				if(!G.slot || G.slot == slot_accessory_buffer || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
@@ -750,7 +750,7 @@ SUBSYSTEM_DEF(job)
 			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
 			SP = get_spawn_point(GLOB.maps_data.default_spawn, late = TRUE)
-			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference menu."))
+			to_chat(H, span_warning("You have not selected spawnpoint in preference menu."))
 	else
 		SP = get_spawn_point(rank)
 
@@ -777,11 +777,11 @@ SUBSYSTEM_DEF(job)
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
-				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name].")) // you will be assigned default one which is \"[SP.display_name]\"."
+				to_chat(H, span_warning("Unable to spawn you at [SP.name].")) // you will be assigned default one which is \"[SP.display_name]\"."
 
 	// No spawn point? Something is fucked.
 	// Pick the default one.
-	to_chat(H, SPAN_WARNING("Unable to locate any safe spawn point. Have fun!"))
+	to_chat(H, span_warning("Unable to locate any safe spawn point. Have fun!"))
 	SP = get_spawn_point("Aft Cryogenic Storage")
 
 	// Still no spawn point? Return the first spawn point on the list.

@@ -165,7 +165,7 @@
 	medicalActive2 = null
 	medical_cannotfind = 0
 	SSnano.update_uis(src)
-	to_chat(usr, SPAN_NOTICE("You reset your record-viewing software."))
+	to_chat(usr, span_notice("You reset your record-viewing software."))
 
 /mob/living/silicon/pai/cancel_camera()
 	set category = "pAI Commands"
@@ -201,7 +201,7 @@
 				if(card in affecting.implants)
 					affecting.take_damage(rand(30,50))
 					affecting.implants -= card
-					H.visible_message(SPAN_DANGER("\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!"))
+					H.visible_message(span_danger("\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!"))
 					break
 		holder.drop_from_inventory(card)
 
@@ -278,24 +278,24 @@
 		else if (!resting)
 			resting = TRUE
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
-		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+		to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]"))
 
 	canmove = !resting
 
 //Overriding this will stop a number of headaches down the track.
 /mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
-		visible_message(SPAN_DANGER("[user.name] attacks [src] with [W]!"))
+		visible_message(span_danger("[user.name] attacks [src] with [W]!"))
 		src.adjustBruteLoss(W.force)
 		src.updatehealth()
 	else
-		visible_message(SPAN_WARNING("[user.name] bonks [src] harmlessly with [W]."))
+		visible_message(span_warning("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
 		if(stat != 2) close_up()
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
-	visible_message(SPAN_DANGER("[user.name] boops [src] on the head."))
+	visible_message(span_danger("[user.name] boops [src] on the head."))
 	close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.

@@ -20,7 +20,7 @@
 		user.set_machine(src)
 		interact(user)
 	else
-		to_chat(user, SPAN_WARNING("The radio is too damaged to function."))
+		to_chat(user, span_warning("The radio is too damaged to function."))
 
 /obj/item/device/radio/exosuit/CanUseTopic()
 	. = ..()

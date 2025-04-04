@@ -164,10 +164,10 @@
 				if(M.client)
 					spawn(0)
 						if(M.buckled)
-							to_chat(M, "<span class='warning'>Sudden acceleration presses you into your chair!</span>")
+							to_chat(M, span_warning("Sudden acceleration presses you into your chair!"))
 							shake_camera(M, 3, 1)
 						else
-							to_chat(M, "<span class='warning'>The floor lurches beneath you!</span>")
+							to_chat(M, span_warning("The floor lurches beneath you!"))
 							shake_camera(M, 10, 1)
 				if(istype(M, /mob/living/carbon))
 					if(!M.buckled)

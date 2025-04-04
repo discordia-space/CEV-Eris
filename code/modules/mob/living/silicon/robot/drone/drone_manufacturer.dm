@@ -102,15 +102,15 @@
 /proc/try_drone_spawn(var/mob/user, var/obj/machinery/drone_fabricator/fabricator, var/aibound = FALSE)
 
 	if(SSticker.current_state < GAME_STATE_PLAYING)
-		to_chat(user, SPAN_DANGER("The game hasn't started yet!"))
+		to_chat(user, span_danger("The game hasn't started yet!"))
 		return
 
 	if(!(config.allow_drone_spawn))
-		to_chat(user, SPAN_DANGER("That verb is not currently permitted."))
+		to_chat(user, span_danger("That verb is not currently permitted."))
 		return
 
 	if(jobban_isbanned(user,"Robot"))
-		to_chat(user, SPAN_DANGER("You are banned from playing synthetics and cannot spawn as a drone."))
+		to_chat(user, span_danger("You are banned from playing synthetics and cannot spawn as a drone."))
 		return
 
 	if(!user.MayRespawn(1, MINISYNTH) && !aibound)
@@ -125,7 +125,7 @@
 			all_fabricators[DF.fabricator_tag] = DF
 
 		if(!all_fabricators.len)
-			to_chat(user, SPAN_DANGER("There are no available drone spawn points, sorry."))
+			to_chat(user, span_danger("There are no available drone spawn points, sorry."))
 			return
 
 		var/choice = input(user,"Spawning as a drone will not affect your crew or mouse respawn timers. Which fabricator do you wish to use?") as null|anything in all_fabricators

@@ -129,10 +129,10 @@
 				ture_message = message_pre_problems
 			if(R.compare(ture_message))
 				if(R.power > src.power)
-					to_chat(H, SPAN_DANGER("Not enough energy for the [R.name]."))
+					to_chat(H, span_danger("Not enough energy for the [R.name]."))
 					return
 				if(!R.is_allowed(src))
-					to_chat(H, SPAN_DANGER("You are not allowed to perform [R.name]."))
+					to_chat(H, span_danger("You are not allowed to perform [R.name]."))
 					return
 				R.activate(H, src, R.get_targets(ture_message))
 				return

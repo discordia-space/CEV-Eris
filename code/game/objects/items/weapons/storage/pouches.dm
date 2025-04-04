@@ -26,7 +26,7 @@
 	set category = "Object"
 
 	sliding_behavior = !sliding_behavior
-	to_chat(usr, SPAN_NOTICE("Items will now [sliding_behavior ? "" : "not"] slide out of [src]"))
+	to_chat(usr, span_notice("Items will now [sliding_behavior ? "" : "not"] slide out of [src]"))
 
 /obj/item/storage/pouch/attack_hand(mob/living/carbon/human/user)
 	if(sliding_behavior && contents.len && (src in user))
@@ -86,7 +86,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 33
 
-	storage_slots = null 
+	storage_slots = null
 	max_storage_space = DEFAULT_SMALL_STORAGE //Medkits typically hold 5 items in them, this is pocket medkit
 	max_w_class = ITEM_SIZE_NORMAL
 
@@ -115,7 +115,7 @@
 	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
 	rarity_value = 20
 
-	storage_slots = 4 
+	storage_slots = 4
 	max_w_class = ITEM_SIZE_NORMAL
 
 	can_hold = list(

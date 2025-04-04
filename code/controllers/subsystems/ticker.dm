@@ -219,7 +219,7 @@ SUBSYSTEM_DEF(ticker)
 	return TRUE
 
 /datum/controller/subsystem/ticker/proc/setup()
-	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
+	to_chat(world, span_boldannounce("Starting game..."))
 	var/init_start = world.timeofday
 	//Create and announce mode
 
@@ -227,7 +227,7 @@ SUBSYSTEM_DEF(ticker)
 		set_storyteller(announce = FALSE)
 
 	if(!GLOB.storyteller)
-		to_chat(world, "<span class='danger'>Serious error storyteller system!</span> Reverting to pre-game lobby.")
+		to_chat(world, "[span_danger("Serious error storyteller system!")] Reverting to pre-game lobby.")
 		return FALSE
 
 	SSjob.ResetOccupations()
@@ -409,7 +409,7 @@ SUBSYSTEM_DEF(ticker)
 	if(quotes.len)
 		message = pick(quotes)
 	if(message)
-		to_chat(world, SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>"))
+		to_chat(world, span_notice("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>"))
 
 /datum/controller/subsystem/ticker/proc/create_characters()
 	for(var/mob/new_player/player in GLOB.player_list)

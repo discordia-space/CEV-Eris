@@ -31,11 +31,11 @@
 		var/datum/relation/R = T
 		. += "<b>[initial(R.name)]</b>\t"
 		if(initial(R.name) in pref.relations)
-			. += "<span class='linkOn'>On</span>"
+			. += span_linkOn("On")
 			. += "<a href='byond://?src=\ref[src];relation=[initial(R.name)]'>Off</a>"
 		else
 			. += "<a href='byond://?src=\ref[src];relation=[initial(R.name)]'>On</a>"
-			. += "<span class='linkOn'>Off</span>"
+			. += span_linkOn("Off")
 		. += "<br><i>[initial(R.desc)]</i>"
 		. += "<br><b>What do they know about you?</b><a href='byond://?src=\ref[src];relation_info=[initial(R.name)]'>Edit</a>"
 		. += "<br><i>[pref.relations_info[initial(R.name)] ? pref.relations_info[initial(R.name)] : "Nothing specific."]</i>"

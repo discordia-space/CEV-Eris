@@ -24,7 +24,7 @@ COMSIG_ABERRANT_SECONDARY
 	var/install_start_action = "attaching"
 	var/install_success_action = "attached"
 	var/install_time = WORKTIME_FAST
-	//var/install_tool_quality = null				
+	//var/install_tool_quality = null
 	var/install_difficulty = FAILCHANCE_ZERO
 	var/install_stat = STAT_COG
 	var/install_sound = WORKSOUND_HONK
@@ -35,7 +35,7 @@ COMSIG_ABERRANT_SECONDARY
 	var/removal_stat = STAT_COG
 
 	var/mod_time = WORKTIME_FAST
-	var/mod_tool_quality = null				
+	var/mod_tool_quality = null
 	var/mod_difficulty = FAILCHANCE_ZERO
 	var/mod_stat = STAT_COG
 	var/mod_sound = WORKSOUND_HONK
@@ -48,7 +48,7 @@ COMSIG_ABERRANT_SECONDARY
 
 	// These should be flags used by a single var
 	var/adjustable = FALSE
-	var/destroy_on_removal = FALSE 
+	var/destroy_on_removal = FALSE
 	var/removable = TRUE
 	var/breakable = FALSE //Some mods are meant to be tamper-resistant and should be removed only in a hard way
 
@@ -84,7 +84,7 @@ COMSIG_ABERRANT_SECONDARY
 			for (var/obj/item/item in I.item_upgrades)
 				if(item.type == parent.type || (exclusive_type && istype(item, exclusive_type)))
 					if(user)
-						to_chat(user, SPAN_WARNING("A modification of this type is already attached!"))
+						to_chat(user, span_warning("A modification of this type is already attached!"))
 					return FALSE
 
 		return check_item(A, user)
@@ -94,7 +94,7 @@ COMSIG_ABERRANT_SECONDARY
 /datum/component/modification/proc/check_item(obj/item/I, mob/living/user)
 	if(LAZYLEN(I.item_upgrades) >= I.max_upgrades)
 		if(user)
-			to_chat(user, SPAN_WARNING("\The [I] can not fit anymore modifications!"))
+			to_chat(user, span_warning("\The [I] can not fit anymore modifications!"))
 		return FALSE
 
 	if(LAZYLEN(apply_to_types))
@@ -106,18 +106,18 @@ COMSIG_ABERRANT_SECONDARY
 
 		if(!type_match)
 			if(user)
-				to_chat(user, SPAN_WARNING("\The [I] can not accept \the [parent]!"))
+				to_chat(user, span_warning("\The [I] can not accept \the [parent]!"))
 			return FALSE
-	
+
 	return TRUE
 
 /datum/component/modification/proc/apply(obj/item/A, mob/living/user)
 	if(user)
-		user.visible_message(SPAN_NOTICE("[user] starts [install_start_action] \the [parent] to \the [A]"), SPAN_NOTICE("You start [install_start_action] \the [parent] to \the [A]"))
+		user.visible_message(span_notice("[user] starts [install_start_action] \the [parent] to \the [A]"), span_notice("You start [install_start_action] \the [parent] to \the [A]"))
 		var/obj/item/I = parent
 		if(!I.use_tool(user = user, target =  A, base_time = install_time, required_quality = null, fail_chance = install_difficulty, required_stat = install_stat, forced_sound = install_sound))
 			return FALSE
-		to_chat(user, SPAN_NOTICE("You have successfully [install_success_action] \the [parent] to \the [A]"))
+		to_chat(user, span_notice("You have successfully [install_success_action] \the [parent] to \the [A]"))
 		user.drop_from_inventory(parent)
 	//If we get here, we succeeded in the applying
 	var/obj/item/I = parent
@@ -143,7 +143,7 @@ COMSIG_ABERRANT_SECONDARY
 		modify(I, user)
 
 /datum/component/modification/proc/modify(obj/item/I, mob/living/user)
-	to_chat(user, SPAN_NOTICE("There is nothing to adjust in \the [parent]."))
+	to_chat(user, span_notice("There is nothing to adjust in \the [parent]."))
 	return TRUE
 
 /datum/component/modification/proc/trigger(obj/item/I, mob/living/user)
@@ -187,13 +187,13 @@ COMSIG_ABERRANT_SECONDARY
 	details_unlocked = (user.stats.getStat(examine_stat) >= examine_difficulty) ? TRUE : FALSE
 	if(examine_stat_secondary)
 		details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
-	
+
 	if(examine_msg)
-		reference.Add(SPAN_WARNING(examine_msg))
+		reference.Add(span_warning(examine_msg))
 	if(details_unlocked)
 		var/function_info = get_function_info()
 		if(function_info)
-			reference.Add(SPAN_NOTICE(function_info))
+			reference.Add(span_notice(function_info))
 
 /datum/component/modification/proc/get_function_info()
 	return
@@ -257,12 +257,12 @@ COMSIG_ABERRANT_SECONDARY
 				return TRUE
 		var/datum/component/modification/M = toremove.GetComponent(/datum/component/modification)
 		if(M.removable == FALSE)
-			to_chat(user, SPAN_DANGER("\The [toremove] seems to be permanently attached to the [upgrade_loc]"))
+			to_chat(user, span_danger("\The [toremove] seems to be permanently attached to the [upgrade_loc]"))
 		else
 			if(C.use_tool(user = user, target =  upgrade_loc, base_time = M.removal_time, required_quality = removal_tool_quality, fail_chance = M.removal_difficulty, required_stat = M.removal_stat))
 				// If you pass the check, then you manage to remove the upgrade intact
 				if(!M.destroy_on_removal && user)
-					to_chat(user, SPAN_NOTICE("You successfully extract \the [toremove] while leaving it intact."))
+					to_chat(user, span_notice("You successfully extract \the [toremove] while leaving it intact."))
 				SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, upgrade_loc)
 				upgrade_loc.refresh_upgrades()
 				user.update_action_buttons()
@@ -270,12 +270,12 @@ COMSIG_ABERRANT_SECONDARY
 			else
 				//You failed the check, lets see what happens
 				if(M.breakable == FALSE)
-					to_chat(user, SPAN_DANGER("You failed to extract \the [toremove]."))
+					to_chat(user, span_danger("You failed to extract \the [toremove]."))
 					upgrade_loc.refresh_upgrades()
 					user.update_action_buttons()
 				else if(prob(50))
 					//50% chance to break the upgrade and remove it
-					to_chat(user, SPAN_DANGER("You successfully extract \the [toremove], but destroy it in the process."))
+					to_chat(user, span_danger("You successfully extract \the [toremove], but destroy it in the process."))
 					SEND_SIGNAL_OLD(toremove, COMSIG_REMOVE, parent)
 					//do_sparks(5, 0, toremove.loc)
 					QDEL_NULL(toremove)

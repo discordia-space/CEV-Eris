@@ -223,7 +223,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggle_open(mob/user)
 	if(locked || isUV)
-		to_chat(user, SPAN_WARNING("Unable to open unit."))
+		to_chat(user, span_warning("Unable to open unit."))
 		return
 	if(OCCUPANT)
 		eject_occupant(user)
@@ -236,7 +236,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user)
 	if(OCCUPANT && safeties)
-		to_chat(user, SPAN_WARNING("Suit storage unit's safety protocols disallow locking when a biological form is detected inside its compartments."))
+		to_chat(user, span_warning("Suit storage unit's safety protocols disallow locking when a biological form is detected inside its compartments."))
 		return
 	if(isopen)
 		return
@@ -253,7 +253,7 @@
 	if(!HELMET && !MASK && !SUIT && !OCCUPANT) //shit's empty yo
 		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
 		return
-	to_chat(user, SPAN_NOTICE("You start the cauterisation cycle."))
+	to_chat(user, span_notice("You start the cauterisation cycle."))
 	src.isUV = 1
 	if(OCCUPANT && !locked)
 		locked = TRUE //Let's lock it for good measure
@@ -284,7 +284,7 @@
 		QDEL_NULL(HELMET)
 		QDEL_NULL(SUIT)
 		QDEL_NULL(MASK)
-		visible_message(SPAN_WARNING("With a loud whining noise, the suit storage unit's door grinds open. Puffs of ashen smoke come out of its chamber."), 3)
+		visible_message(span_warning("With a loud whining noise, the suit storage unit's door grinds open. Puffs of ashen smoke come out of its chamber."), 3)
 		isopen = TRUE
 		locked = FALSE
 		eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
@@ -340,13 +340,13 @@
 	if(usr.stat)
 		return
 	if(!isopen)
-		to_chat(usr, SPAN_WARNING("The unit's doors are shut."))
+		to_chat(usr, span_warning("The unit's doors are shut."))
 		return
 	if(stat & NOPOWER)
-		to_chat(usr, SPAN_WARNING("The unit is not operational."))
+		to_chat(usr, span_warning("The unit is not operational."))
 		return
 	if(OCCUPANT || HELMET || SUIT)
-		to_chat(usr, SPAN_WARNING("It's too cluttered inside for you to fit in!"))
+		to_chat(usr, span_warning("It's too cluttered inside for you to fit in!"))
 		return
 	visible_message("\The [usr] starts squeezing into the suit storage unit!", 3)
 	if(do_after(usr, 10, src))
@@ -371,13 +371,13 @@
 
 /obj/machinery/suit_storage_unit/affect_grab(var/mob/user, var/mob/target)
 	if(!isopen)
-		to_chat(user, SPAN_WARNING("The unit's doors are shut."))
+		to_chat(user, span_warning("The unit's doors are shut."))
 		return
 	if(stat & NOPOWER)
-		to_chat(user, SPAN_WARNING("The unit is not operational."))
+		to_chat(user, span_warning("The unit is not operational."))
 		return
 	if(OCCUPANT || HELMET || SUIT) //Unit needs to be absolutely empty
-		to_chat(user, SPAN_WARNING("The unit's storage area is too cluttered."))
+		to_chat(user, span_warning("The unit's storage area is too cluttered."))
 		return
 	visible_message("[user] starts putting [target] into [src].")
 	if(do_after(user, 20, src) && Adjacent(target))
@@ -388,10 +388,10 @@
 
 		if(!safeties)
 			// Automatically lock the unit so the victim can't escape deep frying easily
-			to_chat(user, SPAN_NOTICE("You put [target] into [src] and lock the unit."))
+			to_chat(user, span_notice("You put [target] into [src] and lock the unit."))
 			locked = TRUE
 		else
-			to_chat(user, SPAN_NOTICE("You put [target] into [src]."))
+			to_chat(user, span_notice("You put [target] into [src]."))
 
 		add_fingerprint(user)
 		updateUsrDialog()
@@ -411,10 +411,10 @@
 			check = SUIT
 
 	if(check)
-		to_chat(user, SPAN_WARNING("The unit already contains a [slot]."))
+		to_chat(user, span_warning("The unit already contains a [slot]."))
 		return
 
-	to_chat(user, SPAN_NOTICE("You load the [I.name] into the storage compartment."))
+	to_chat(user, span_notice("You load the [I.name] into the storage compartment."))
 	user.drop_from_inventory(I, src)
 
 	switch(slot)

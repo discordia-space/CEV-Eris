@@ -128,7 +128,7 @@
 	if (computer.card_slot)
 		id_card = computer.card_slot.stored_card
 	if (!user_id_card || !authorized(user_id_card))
-		to_chat(user, SPAN_WARNING("Access denied"))
+		to_chat(user, span_warning("Access denied"))
 		return
 
 	var/datum/nano_module/program/card_mod/module = NM
@@ -145,7 +145,7 @@
 				module.show_assignments = 1
 		if("print")
 			if(!authorized(user_id_card))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && computer.printer) //This option should never be called if there is no printer
 				if(module.mod_mode)
@@ -168,20 +168,20 @@
 								contents += "  [get_access_desc(A)]"
 
 						if(!computer.printer.print_text(contents,"access report"))
-							to_chat(user, SPAN_NOTICE("Hardware error: Printer was unable to print the file. It may be out of paper."))
+							to_chat(user, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 							return
 						else
-							computer.visible_message(SPAN_NOTICE("\The [computer] prints out paper."))
+							computer.visible_message(span_notice("\The [computer] prints out paper."))
 				else
 					var/contents = {"<h4>Crew Manifest</h4>
 									<br>
 									[html_crew_manifest()]
 									"}
 					if(!computer.printer.print_text(contents,text("crew manifest ([])", stationtime2text())))
-						to_chat(user, SPAN_NOTICE("Hardware error: Printer was unable to print the file. It may be out of paper."))
+						to_chat(user, span_notice("Hardware error: Printer was unable to print the file. It may be out of paper."))
 						return
 					else
-						computer.visible_message(SPAN_NOTICE("\The [computer] prints out paper."))
+						computer.visible_message(span_notice("\The [computer] prints out paper."))
 		if("eject")
 			if(computer)
 				if(computer.card_slot && computer.card_slot.stored_card)
@@ -190,7 +190,7 @@
 					computer.attackby(user.get_active_hand(), user)
 		if("terminate")
 			if(!authorized(user_id_card, ACCESS_REGION_COMMAND))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && can_run(user, 1))
 				id_card.assignment = "Terminated"
@@ -198,7 +198,7 @@
 				callHook("terminate_employee", list(id_card))
 		if("edit")
 			if(!authorized(user_id_card))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && can_run(user, 1))
 				if(href_list["name"])
@@ -208,7 +208,7 @@
 						id_card.formal_name_suffix = initial(id_card.formal_name_suffix)
 						id_card.formal_name_prefix = initial(id_card.formal_name_prefix)
 					else
-						computer.visible_message(SPAN_NOTICE("[computer] buzzes rudely."))
+						computer.visible_message(span_notice("[computer] buzzes rudely."))
 				else if(href_list["account"])
 					var/account_num = text2num(input("Enter account number.", "Account", id_card.associated_account_number))
 					id_card.associated_account_number = account_num
@@ -220,7 +220,7 @@
 					id_card.associated_email_login["password"] = email_password
 		if("assign")
 			if(!authorized(user_id_card))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, span_warning("Access denied."))
 				return
 			if(computer && can_run(user, 1) && id_card)
 				var/t1 = href_list["assign_target"]
@@ -241,12 +241,12 @@
 								jobdatum = J
 								break
 						if(!jobdatum)
-							to_chat(user, SPAN_WARNING("No log exists for this job: [t1]"))
+							to_chat(user, span_warning("No log exists for this job: [t1]"))
 							return
 						access = jobdatum.get_access()
 						for(var/A in access)
 							if(!check_modify(user_id_card, A))
-								to_chat(user, SPAN_WARNING("Access denied"))
+								to_chat(user, span_warning("Access denied"))
 								return
 
 					remove_nt_access(id_card)
@@ -265,7 +265,7 @@
 						if(!access_allowed)
 							id_card.access += access_type
 					else
-						to_chat(user, SPAN_WARNING("Access denied"))
+						to_chat(user, span_warning("Access denied"))
 
 	if(id_card)
 		id_card.SetName(text("[id_card.registered_name]'s ID Card ([id_card.assignment])"))

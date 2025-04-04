@@ -71,7 +71,7 @@
 		return
 	health -= amount
 	if(health <= 0)
-		visible_message(SPAN_WARNING("\The [src] breaks apart!"))
+		visible_message(span_warning("\The [src] breaks apart!"))
 		var/turf/turf = get_turf(src)
 		var/obj/item/trash/material/metal/slug = new(turf)
 		slug.matter = matter
@@ -102,7 +102,7 @@
 	if(tool_type == QUALITY_WELDING)
 		if(health < maxHealth)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
-				user.visible_message(SPAN_NOTICE("\The [user] repairs \the [src]."), SPAN_NOTICE("You repair \the [src]."))
+				user.visible_message(span_notice("\The [user] repairs \the [src]."), span_notice("You repair \the [src]."))
 				health = maxHealth
 				is_damaged = FALSE
 				update_icon()
@@ -112,14 +112,14 @@
 			for(var/material_name in matter)
 				var/material/material_datum = get_material_by_name(material_name)
 				material_datum.place_sheet(loc, amount = matter[material_name])
-			user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
+			user.visible_message(span_notice("\The [user] dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 			qdel(src)
 			return
 
 	user.do_attack_animation(src)
 	if(I.hitsound)
 		playsound(loc, I.hitsound, 50, 1, -1)
-	visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+	visible_message(span_danger("[src] has been hit by [user] with [I]."))
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	take_damage(I.force * I.structure_damage_factor)
 
@@ -194,7 +194,7 @@
 		if(QUALITY_WELDING)
 			if(health < maxHealth)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
-					user.visible_message(SPAN_NOTICE("\The [user] repairs \the [src]."), SPAN_NOTICE("You repair \the [src]."))
+					user.visible_message(span_notice("\The [user] repairs \the [src]."), span_notice("You repair \the [src]."))
 					health = maxHealth
 					is_damaged = FALSE
 					update_icon()
@@ -204,7 +204,7 @@
 				for(var/material_name in matter)
 					var/material/material_datum = get_material_by_name(material_name)
 					material_datum.place_sheet(loc, amount = matter[material_name])
-				user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
+				user.visible_message(span_notice("\The [user] dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 				qdel(src)
 				return
 		if(QUALITY_PULSING)
@@ -215,7 +215,7 @@
 	user.do_attack_animation(src)
 	if(I.hitsound)
 		playsound(loc, I.hitsound, 50, 1, -1)
-	visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+	visible_message(span_danger("[src] has been hit by [user] with [I]."))
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	take_damage(I.force * I.structure_damage_factor)
 
@@ -267,7 +267,7 @@
 	if(tool_type == QUALITY_CLAMPING) // Pliers
 		if(health < maxHealth)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
-				user.visible_message(SPAN_NOTICE("\The [user] repairs \the [src]."), SPAN_NOTICE("You repair \the [src]."))
+				user.visible_message(span_notice("\The [user] repairs \the [src]."), span_notice("You repair \the [src]."))
 				health = maxHealth
 				is_damaged = FALSE
 				update_icon()
@@ -277,14 +277,14 @@
 			for(var/material_name in matter)
 				var/material/material_datum = get_material_by_name(material_name)
 				material_datum.place_sheet(loc, amount = matter[material_name])
-			user.visible_message(SPAN_NOTICE("\The [user] cuts \the [src]."), SPAN_NOTICE("You cut \the [src]."))
+			user.visible_message(span_notice("\The [user] cuts \the [src]."), span_notice("You cut \the [src]."))
 			qdel(src)
 			return
 
 	user.do_attack_animation(src)
 	if(I.hitsound)
 		playsound(loc, I.hitsound, 50, 1, -1)
-	visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+	visible_message(span_danger("[src] has been hit by [user] with [I]."))
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	take_damage(I.force * I.structure_damage_factor)
 	get_barb_wired(user)
@@ -312,7 +312,7 @@
 			var/damage_dealt = human.damage_through_armor(tresspass_damage, BRUTE, damage_zone, ARMOR_MELEE, sharp = TRUE, edge = TRUE, wounding_multiplier = 1)
 			human.updatehealth()
 			if(damage_dealt > 5) // If damage is even noticeable after armor reduced it
-				to_chat(human, SPAN_DANGER("You have been cut by the barbed wire!"))
+				to_chat(human, span_danger("You have been cut by the barbed wire!"))
 	else if(issuperioranimal(user))
 		var/mob/living/carbon/superior_animal/superior_animal = user
 		// Only damage roaches and such when they're pursuing someone, not when they just walk around

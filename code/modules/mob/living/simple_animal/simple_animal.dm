@@ -158,19 +158,19 @@
 /mob/living/simple_animal/examine(mob/user, extra_description = "")
 	if(hunger_enabled)
 		if(!nutrition)
-			extra_description += SPAN_DANGER("\nIt looks starving!")
+			extra_description += span_danger("\nIt looks starving!")
 		else if(nutrition < max_nutrition *0.5)
-			extra_description += SPAN_NOTICE("\nIt looks hungry.")
+			extra_description += span_notice("\nIt looks hungry.")
 		else if((reagents.total_volume > 0 && nutrition > max_nutrition *0.75) || nutrition > max_nutrition *0.9)
 			extra_description += "\nIt looks full and contented."
 	if(health < maxHealth * 0.25)
-		extra_description += SPAN_DANGER("\nIt's grievously wounded!")
+		extra_description += span_danger("\nIt's grievously wounded!")
 	else if(health < maxHealth * 0.50)
-		extra_description += SPAN_DANGER("\nIt's badly wounded!")
+		extra_description += span_danger("\nIt's badly wounded!")
 	else if(health < maxHealth * 0.75)
-		extra_description += SPAN_WARNING("\nIt's wounded.")
+		extra_description += span_warning("\nIt's wounded.")
 	else if(health < maxHealth)
-		extra_description += SPAN_WARNING("\nIt's a bit wounded.")
+		extra_description += span_warning("\nIt's a bit wounded.")
 	..(user, extra_description)
 
 /mob/living/simple_animal/Life()
@@ -277,7 +277,7 @@
 	if(islist(message))
 		message = safepick(message)
 	if(message)
-		visible_message("<span class='name'>[src]</span> [message]")
+		visible_message("[span_name("[src]")] [message]")
 
 /mob/living/simple_animal/proc/handle_supernatural()
 	if(purge)
@@ -401,7 +401,7 @@
 /mob/living/simple_animal/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
 
 	if(effective_force <= resistance)
-		to_chat(user, SPAN_DANGER("This weapon is ineffective, it does no damage."))
+		to_chat(user, span_danger("This weapon is ineffective, it does no damage."))
 		return 2
 	effective_force -= resistance
 	.=..(O, user, effective_force, hit_zone)
@@ -473,11 +473,11 @@
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
+			user.visible_message(span_danger("[user] chops up \the [src]!"))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(src)
 		else
-			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
+			user.visible_message(span_danger("[user] butchers \the [src] messily!"))
 			gib()
 
 //Code to handle finding and nomming nearby food items

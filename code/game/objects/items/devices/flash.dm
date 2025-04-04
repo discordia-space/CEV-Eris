@@ -20,7 +20,7 @@
 
 /obj/item/device/flash/proc/clown_check(var/mob/user)
 //	if(user && (CLUMSY in user.mutations) && prob(50))
-//		to_chat(user, SPAN_WARNING("\The [src] slips out of your hand."))
+//		to_chat(user, span_warning("\The [src] slips out of your hand."))
 //		user.drop_item()
 //		return 0
 	return 1
@@ -48,7 +48,7 @@
 
 	if(!clown_check(user))	return
 	if(broken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
 	flash_recharge()
@@ -60,12 +60,12 @@
 			last_used = world.time
 			if(prob(times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
 				broken = 1
-				to_chat(user, SPAN_WARNING("The bulb has burnt out!"))
+				to_chat(user, span_warning("The bulb has burnt out!"))
 				icon_state = "flashburnt"
 				return
 			times_used++
 		else	//can only use it  5 times a minute
-			to_chat(user, SPAN_WARNING("*click* *click*"))
+			to_chat(user, span_warning("*click* *click*"))
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
@@ -108,13 +108,13 @@
 		flick("flash2", src)
 		if(!issilicon(M))
 
-			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
+			user.visible_message(span_disarm("[user] blinds [M] with the flash!"))
 		else
 
-			user.visible_message(SPAN_NOTICE("[user] overloads [M]'s sensors with the flash!"))
+			user.visible_message(span_notice("[user] overloads [M]'s sensors with the flash!"))
 	else
 
-		user.visible_message(SPAN_NOTICE("[user] fails to blind [M] with the flash!"))
+		user.visible_message(span_notice("[user] fails to blind [M] with the flash!"))
 
 	return
 
@@ -127,7 +127,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	if(broken)
-		user.show_message(SPAN_WARNING("The [src.name] is broken"), 2)
+		user.show_message(span_warning("The [src.name] is broken"), 2)
 		return
 
 	flash_recharge()
@@ -138,12 +138,12 @@
 		if(0 to 5)
 			if(prob(2*times_used))	//if you use it 5 times in a minute it has a 10% chance to break!
 				broken = 1
-				to_chat(user, SPAN_WARNING("The bulb has burnt out!"))
+				to_chat(user, span_warning("The bulb has burnt out!"))
 				icon_state = "flashburnt"
 				return
 			times_used++
 		else	//can only use it  5 times a minute
-			user.show_message(SPAN_WARNING("*click* *click*"), 2)
+			user.show_message(span_warning("*click* *click*"), 2)
 			return
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
@@ -181,5 +181,5 @@
 				if(safety < FLASH_PROTECTION_MODERATE)
 					M.flash(10-(10*safety), FALSE, FALSE, TRUE)
 					for(var/mob/O in viewers(M, null))
-						O.show_message("<span class='disarm'>[M] is blinded by the flash!</span>")
+						O.show_message(span_disarm("[M] is blinded by the flash!"))
 	..()

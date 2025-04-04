@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 					mob.adjustFireLoss(mutation_damage * 2)
 					mob.sanity.changeLevel(-1)
 				if(prob(10))
-					to_chat(mob, SPAN_WARNING("You feel uncomfortable being around [src]."))
+					to_chat(mob, span_warning("You feel uncomfortable being around [src]."))
 			else if(is_carrion(mob))
 				eotp.removeObservation(20)
 			else

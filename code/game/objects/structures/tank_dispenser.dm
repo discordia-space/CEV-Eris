@@ -59,11 +59,11 @@
 			I.forceMove(src)
 			oxytanks.Add(I)
 			oxygentanks++
-			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+			to_chat(user, span_notice("You put [I] in [src]."))
 			if(oxygentanks < 5)
 				update_icon()
 		else
-			to_chat(user, SPAN_NOTICE("[src] is full."))
+			to_chat(user, span_notice("[src] is full."))
 		updateUsrDialog()
 		return
 	if(istype(I, /obj/item/tank/plasma))
@@ -72,20 +72,20 @@
 			I.forceMove(src)
 			platanks.Add(I)
 			plasmatanks++
-			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+			to_chat(user, span_notice("You put [I] in [src]."))
 			if(plasmatanks < 6)
 				update_icon()
 		else
-			to_chat(user, SPAN_NOTICE("[src] is full."))
+			to_chat(user, span_notice("[src] is full."))
 		updateUsrDialog()
 		return
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(anchored)
-				to_chat(user, SPAN_NOTICE("You lean down and unwrench [src]."))
+				to_chat(user, span_notice("You lean down and unwrench [src]."))
 				anchored = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("You wrench [src] into place."))
+				to_chat(user, span_notice("You wrench [src] into place."))
 				anchored = TRUE
 			return
 
@@ -113,7 +113,7 @@
 
 	if(tank)
 		tank.forceMove(drop_location())
-		to_chat(usr, SPAN_NOTICE("You take [tank] out of [src]."))
+		to_chat(usr, span_notice("You take [tank] out of [src]."))
 		update_icon()
 
 	playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)

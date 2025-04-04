@@ -363,7 +363,7 @@
 		var/removed_heat = between(0, volume * COOLANT_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
 		if (prob(5) && environment && environment.temperature > T100C)
-			T.visible_message("<span class='warning'>\The [src] sizzles as it lands on \the [T]!</span>")
+			T.visible_message(span_warning("\The [src] sizzles as it lands on \the [T]!"))
 */
 
 /datum/reagent/other/coolant/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
@@ -493,7 +493,7 @@
 				return
 			heart.take_damage(64, TOX)
 			if(prob(30))
-				to_chat(H, SPAN_DANGER("Your heart feels like it's going to tear itself out of you!"))
+				to_chat(H, span_danger("Your heart feels like it's going to tear itself out of you!"))
 			if(H.stat == DEAD)
 				H.resuscitate()
 				remove_self(60)

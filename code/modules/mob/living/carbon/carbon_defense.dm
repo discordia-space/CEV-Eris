@@ -64,7 +64,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
-	user.visible_message(SPAN_DANGER("\The [user] begins to slit [src]'s throat with \the [W]!"))
+	user.visible_message(span_danger("\The [user] begins to slit [src]'s throat with \the [W]!"))
 
 	user.next_move = world.time + 50 //also should prevent user from triggering this repeatedly
 	if(!do_mob(user, src, 50, progress = 1))
@@ -73,7 +73,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 
 		damage_through_armor(W.force, W.damtype, BP_HEAD, wounding_multiplier = 2, sharp = W.sharp, edge = W.edge, used_weapon = W)
 		
-		user.visible_message(SPAN_DANGER("\The [user] cuts [src]'s neck with \the [W]!"), SPAN_DANGER("You cut [src]'s neck with \the [W]!"))
+		user.visible_message(span_danger("\The [user] cuts [src]'s neck with \the [W]!"), span_danger("You cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
 			playsound(loc, W.hitsound, 50, 1, -1)

@@ -46,7 +46,7 @@
 			if(H.sanity)
 				H.sanity.changeLevel(0.5)
 	else
-		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
+		to_chat(user, span_warning("\The [source] is too dry to wash that."))
 	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 	return amt
 
@@ -69,7 +69,7 @@
 	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
 		source.reagents.trans_to_turf(src, 1, 10)
 	else
-		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
+		to_chat(user, span_warning("\The [source] is too dry to wash that."))
 		return
 
 	for (count;count > 0;count--)

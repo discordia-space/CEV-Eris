@@ -137,10 +137,10 @@
 	if(istype(get_area(A),/area/shuttle)||istype(get_area(A),/turf/space/transit))
 		return 0
 	if(!useCharge(user))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		to_chat(user, span_warning("[src] battery is dead or missing."))
 		return 0
 	if(deletePipe(A))
-		to_chat(user, SPAN_NOTICE("You put [A] back to [src]."))
+		to_chat(user, span_notice("You put [A] back to [src]."))
 		return
 	if(!p_dir == 0) //If direction is 0, the pipe is pipe_meter, otherwise it's one of the pipes.
 		if(!wait)

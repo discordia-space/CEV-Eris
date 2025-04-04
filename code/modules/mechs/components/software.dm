@@ -16,7 +16,7 @@
 	name = initial(name)
 
 /obj/item/robot_parts/robot_component/exosuit_control/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software].")
+	extra_description += span_notice("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software].")
 	..(user, extra_description)
 
 /obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/I, mob/living/user)
@@ -34,13 +34,13 @@
 /obj/item/robot_parts/robot_component/exosuit_control/proc/install_software(obj/item/electronics/circuitboard/exosystem/software, mob/living/user)
 	if(installed_software.len >= max_installed_software)
 		if(user)
-			to_chat(user, SPAN_WARNING("\The [src] can only hold [max_installed_software] software modules."))
+			to_chat(user, span_warning("\The [src] can only hold [max_installed_software] software modules."))
 		return
 	if(user && !user.unEquip(software))
 		return
 
 	if(user)
-		to_chat(user, SPAN_NOTICE("You load \the [software] into \the [src]'s memory."))
+		to_chat(user, span_notice("You load \the [software] into \the [src]'s memory."))
 
 	software.forceMove(src)
 	update_software()

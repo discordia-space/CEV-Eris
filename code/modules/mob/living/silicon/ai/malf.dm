@@ -90,7 +90,7 @@
 		return
 	if(hardware_integrity() < 50)
 		if(!shutup)
-			to_chat(src, SPAN_NOTICE("Starting APU... <b>FAULT</b>(System Damaged)"))
+			to_chat(src, span_notice("Starting APU... <b>FAULT</b>(System Damaged)"))
 		return
 	if(!shutup)
 		to_chat(src, "Starting APU... ONLINE")

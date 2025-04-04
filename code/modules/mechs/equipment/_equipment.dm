@@ -55,7 +55,7 @@
 		if(!C && active_power_use == 0)
 			return TRUE
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
-			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
+			to_chat(user, span_warning("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return FALSE
 		return TRUE
 	else
@@ -74,7 +74,7 @@
 		if(C && active_power_use == 0)
 			return TRUE
 		if(!(C && C.check_charge(active_power_use * CELLRATE)))
-			to_chat(user, SPAN_WARNING("The power indicator flashes briefly as you attempt to use \the [src]"))
+			to_chat(user, span_warning("The power indicator flashes briefly as you attempt to use \the [src]"))
 			return FALSE
 		return TRUE
 	else

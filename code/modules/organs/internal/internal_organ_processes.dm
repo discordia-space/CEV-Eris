@@ -149,7 +149,7 @@
 	if(blood_volume < total_blood_req)
 		status_flags |= BLEEDOUT
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("Your organs feel extremely heavy."))
+			to_chat(src, span_warning("Your organs feel extremely heavy."))
 	else
 		status_flags &= ~BLEEDOUT
 
@@ -157,26 +157,26 @@
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(20)
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]."))
+			to_chat(src, span_warning("You feel extremely [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < total_blood_req)
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(4.5) // this damage threshold kills people with good airflow
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("You feel highly [pick("dizzy","woosey","faint")]."))
+			to_chat(src, span_warning("You feel highly [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < blood_bad)
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(2)
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]."))
+			to_chat(src, span_warning("You feel very [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < blood_okay)
 		eye_blurry = max(eye_blurry,6)
 		adjustOxyLoss(1.5)
 		if(prob(15))
 			Weaken(rand(1,3))
-			to_chat(src, SPAN_WARNING("You feel very [pick("dizzy","woosey","faint")]."))
+			to_chat(src, span_warning("You feel very [pick("dizzy","woosey","faint")]."))
 	else if(blood_volume < blood_safe)
 		if(prob(1))
-			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]."))
+			to_chat(src, span_warning("You feel [pick("dizzy","woosey","faint")]."))
 		if(getOxyLoss() < 10)
 			adjustOxyLoss(1)
 
@@ -197,7 +197,7 @@
 	if(internal_oxygen < total_oxygen_req)
 		if(prob(1))
 			Weaken(1.5 SECONDS)
-			visible_message(SPAN_WARNING("[src] falls to the ground and starts hyperventilating!"), SPAN_DANGER("AIR! I NEED MORE AIR!"))
+			visible_message(span_warning("[src] falls to the ground and starts hyperventilating!"), span_danger("AIR! I NEED MORE AIR!"))
 			var/i
 			for(i = 1; i <= 5; i++)	//gasps 5 times
 				spawn(i)
@@ -213,7 +213,7 @@
 
 		if(prob(15))
 			var/heavy_spot = pick("chest", "skin", "brain")
-			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body."))
+			to_chat(src, span_warning("Your [heavy_spot] feels too heavy for your body."))
 
 	if(lung_efficiency < BROKEN_2_EFFICIENCY)
 		adjustOxyLoss(1)
@@ -248,7 +248,7 @@
 		if(carrion_hunger < max_hunger)
 			carrion_hunger = min(carrion_hunger + (round(1* (maw_efficiency / 100))), max_hunger)
 		else
-			to_chat(src, SPAN_WARNING("Your hunger is restless!"))
+			to_chat(src, span_warning("Your hunger is restless!"))
 		carrion_last_hunger = world.time
 
 #undef BRUISED_2_EFFICIENCY

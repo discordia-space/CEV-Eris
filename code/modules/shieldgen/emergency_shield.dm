@@ -23,7 +23,7 @@
 
 /obj/machinery/shield/proc/check_failure()
 	if (shieldHealth <= 0)
-		visible_message(SPAN_NOTICE("\The [src] dissipates!"))
+		visible_message(span_notice("\The [src] dissipates!"))
 		qdel(src)
 		return
 
@@ -82,7 +82,7 @@
 
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
-	visible_message(SPAN_NOTICE("<B>The\ [src] was hit by [AM].</B>"))
+	visible_message(span_notice("<B>The\ [src] was hit by [AM].</B>"))
 
 	//Super realistic, resource-intensive, real-time damage calculations.
 	var/tforce = 0
@@ -262,25 +262,25 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(locked)
-				to_chat(user, SPAN_NOTICE("The bolts are covered, unlocking this would retract the covers."))
+				to_chat(user, span_notice("The bolts are covered, unlocking this would retract the covers."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 				if(anchored)
-					to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
+					to_chat(user, span_notice("You unsecure the [src] from the floor!"))
 					if(active)
-						to_chat(user, SPAN_NOTICE("The [src] shuts off!"))
+						to_chat(user, span_notice("The [src] shuts off!"))
 						src.shields_down()
 					anchored = FALSE
 				else
 					if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-					to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
+					to_chat(user, span_notice("You secure the [src] to the floor!"))
 					anchored = TRUE
 			return
 
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, instant_finish_tier = 30))
 				is_open = !is_open
-				to_chat(user, SPAN_NOTICE("You [is_open ? "open" : "close"] the panel of \the [src] with [I]."))
+				to_chat(user, span_notice("You [is_open ? "open" : "close"] the panel of \the [src] with [I]."))
 			return
 
 		if(ABORT_CHECK)
@@ -288,12 +288,12 @@
 
 	if(istype(I, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = I
-		to_chat(user, SPAN_NOTICE("You begin to replace the wires."))
+		to_chat(user, span_notice("You begin to replace the wires."))
 		if(do_after(user, 30,src))
 			if (coil.use(1))
 				shieldHealth = maxShieldHealth
 				malfunction = 0
-				to_chat(user, SPAN_NOTICE("You repair the [src]!"))
+				to_chat(user, span_notice("You repair the [src]!"))
 				update_icon()
 
 	else if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
@@ -301,7 +301,7 @@
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, SPAN_WARNING("Access denied."))
+			to_chat(user, span_warning("Access denied."))
 
 	else
 		..()

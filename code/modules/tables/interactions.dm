@@ -57,10 +57,10 @@
 		var/pierce = P.check_penetrate(src)
 		health -= P.get_structure_damage()/2
 		if (health > 0)
-			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+			visible_message(span_warning("[P] hits \the [src]!"))
 			return pierce
 		else
-			visible_message(SPAN_WARNING("[src] breaks down!"))
+			visible_message(span_warning("[src] breaks down!"))
 			break_to_parts()
 			return TRUE
 	return TRUE
@@ -101,7 +101,7 @@
 				set_pixel_click_offset(O, params, animate = TRUE)
 				return
 			else
-				to_chat(user, SPAN_WARNING("[O] is too heavy for you to move!"))
+				to_chat(user, span_warning("[O] is too heavy for you to move!"))
 				return
 
 	return ..()
@@ -110,14 +110,14 @@
 /obj/structure/table/affect_grab(mob/living/user, mob/living/target, state)
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		to_chat(user, span_danger("There's \a [occupied] in the way."))
 		return
 	if(state < GRAB_AGGRESSIVE || target.loc==src.loc)
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
-			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
+			visible_message(span_danger("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>Slammed [target.name] ([target.ckey] against over \the [src])</font>"
 			msg_admin_attack("[user] slammed a [target] against \the [src].")
@@ -130,19 +130,19 @@
 			for(var/obj/item/material/shard/S in L)
 				if(prob(50))
 					target.visible_message(
-						SPAN_DANGER("\The [S] slices [target]'s face messily!"),
-						SPAN_DANGER("\The [S] slices your face messily!")
+						span_danger("\The [S] slices [target]'s face messily!"),
+						span_danger("\The [S] slices your face messily!")
 					)
 					target.damage_through_armor(10, BRUTE, BP_HEAD, ARMOR_MELEE)
 					if(prob(2))
 						target.embed(S, def_zone = BP_HEAD)
 		else
-			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
+			to_chat(user, span_danger("You need a better grip to do that!"))
 			return
 	else
 		target.forceMove(loc)
 		target.Weaken(5)
-		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))
+		visible_message(span_danger("[user] puts [target] on \the [src]."))
 		target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been put on \the [src] by [user.name] ([user.ckey])</font>"
 		user.attack_log += "\[[time_stamp()]\] <font color='red'>Puts [target.name] ([target.ckey] on \the [src])</font>"
 		msg_admin_attack("[user] puts a [target] on \the [src].")
@@ -160,12 +160,12 @@
 		spark_system.start()
 		playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
 		playsound(src.loc, "sparks", 50, 1)
-		user.visible_message(SPAN_DANGER("\The [src] was sliced apart by [user]!"))
+		user.visible_message(span_danger("\The [src] was sliced apart by [user]!"))
 		break_to_parts()
 		return
 
 	if(can_plate && !material)
-		to_chat(user, SPAN_WARNING("There's nothing to put \the [W] on! Try adding plating to \the [src] first."))
+		to_chat(user, span_warning("There's nothing to put \the [W] on! Try adding plating to \the [src] first."))
 		return
 
 	if (user.unEquip(W, loc))

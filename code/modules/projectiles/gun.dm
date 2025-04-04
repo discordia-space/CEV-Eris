@@ -126,20 +126,20 @@
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
 		if(QUALITY_HAMMERING)
-			user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
+			user.visible_message(span_notice("[user] begins scribbling \the [name]'s gun serial number away."), span_notice("You begin removing the serial number from \the [name]."))
 			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
+				user.visible_message(span_danger("[user] removes \the [name]'s gun serial number."), span_notice("You successfully remove the serial number from \the [name]."))
 				serial_type = null
 				return FALSE
 
 		if(QUALITY_BOLT_TURNING)
 			if(!gun_parts)
-				to_chat(user, SPAN_NOTICE("You can't dismantle [src] as it has no gun parts! How strange..."))
+				to_chat(user, span_notice("You can't dismantle [src] as it has no gun parts! How strange..."))
 				return FALSE
 
-			user.visible_message(SPAN_NOTICE("[user] begins breaking apart [src]."), SPAN_WARNING("You begin breaking apart [src] for gun parts."))
+			user.visible_message(span_notice("[user] begins breaking apart [src]."), span_warning("You begin breaking apart [src] for gun parts."))
 			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_NOTICE("[user] breaks [src] apart for gun parts!"), SPAN_NOTICE("You break [src] apart for gun parts."))
+				user.visible_message(span_notice("[user] breaks [src] apart for gun parts!"), span_notice("You break [src] apart for gun parts."))
 				for(var/target_item in gun_parts)
 					var/amount = gun_parts[target_item]
 					while(amount)
@@ -165,7 +165,7 @@
 		flashlight_attachment = I
 		I.forceMove(src)
 		playsound(loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You attach \the [I] to \the [src]."))
+		to_chat(user, span_notice("You attach \the [I] to \the [src]."))
 		verbs += /obj/item/gun/proc/remove_flashlight
 		verbs += /obj/item/gun/proc/toggle_flashlight
 
@@ -288,11 +288,11 @@
 
 	var/mob/living/M = user
 //	if(HULK in M.mutations)
-//		to_chat(user, SPAN_DANGER("Your fingers are much too large for the trigger guard!"))
+//		to_chat(user, span_danger("Your fingers are much too large for the trigger guard!"))
 //		return FALSE
 	if(!restrict_safety)
 		if(safety)
-			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
+			to_chat(user, span_danger("The gun's safety is on!"))
 			handle_click_empty(user)
 			return FALSE
 
@@ -300,7 +300,7 @@
 		return FALSE
 
 	if(!dna_check(M))
-		to_chat(user, SPAN_DANGER("The gun's biometric scanner prevents you from firing!"))
+		to_chat(user, span_danger("The gun's biometric scanner prevents you from firing!"))
 		handle_click_empty(user)
 		return FALSE
 
@@ -310,8 +310,8 @@
 			if(process_projectile(P, user, user, pick(BP_L_LEG, BP_R_LEG)))
 				handle_post_fire(user, user)
 				user.visible_message(
-					SPAN_DANGER("\The [user] shoots \himself in the foot with \the [src]!"),
-					SPAN_DANGER("You shoot yourself in the foot with \the [src]!")
+					span_danger("\The [user] shoots \himself in the foot with \the [src]!"),
+					span_danger("You shoot yourself in the foot with \the [src]!")
 					)
 				M.drop_item()
 		else
@@ -324,8 +324,8 @@
 			if(process_projectile(P, user, user, BP_HEAD))
 				handle_post_fire(user, user)
 				user.visible_message(
-					SPAN_DANGER("As \the [user] pulls the trigger on \the [src], a bullet fires backwards out of it"),
-					SPAN_DANGER("Your \the [src] fires backwards, shooting you in the face!")
+					span_danger("As \the [user] pulls the trigger on \the [src], a bullet fires backwards out of it"),
+					span_danger("Your \the [src] fires backwards, shooting you in the face!")
 					)
 				user.drop_item()
 			if(rigged > TRUE)
@@ -338,7 +338,7 @@
 	if(twohanded)
 		if(!wielded)
 			if(world.time >= recentwield + 1 SECONDS)
-				to_chat(user, SPAN_DANGER("The gun is too heavy to shoot in one hand!"))
+				to_chat(user, span_danger("The gun is too heavy to shoot in one hand!"))
 				recentwield = world.time
 			return FALSE
 	return TRUE
@@ -402,7 +402,7 @@
 		return
 	if(world.time < next_fire_time)
 		if(!suppress_delay_warning && world.time % 3) //to prevent spam
-			to_chat(user, SPAN_WARNING("[src] is not ready to fire again!"))
+			to_chat(user, span_warning("[src] is not ready to fire again!"))
 		return
 
 	add_fingerprint(user)
@@ -496,7 +496,7 @@
 //called if there was no projectile to shoot
 /obj/item/gun/proc/handle_click_empty(mob/user)
 	if(user)
-		user.visible_message("*click click*", SPAN_DANGER("*click*"))
+		user.visible_message("*click click*", span_danger("*click*"))
 	else
 		src.visible_message("*click click*")
 	playsound(src.loc, 'sound/weapons/guns/misc/gun_empty.ogg', 100, 1)
@@ -518,8 +518,8 @@
 			)
 		else
 			user.visible_message(
-				SPAN_WARNING("\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!"),
-				SPAN_WARNING("You fire \the [src]!"),
+				span_warning("\The [user] fires \the [src][pointblank ? " point blank at \the [target]":""]!"),
+				span_warning("You fire \the [src]!"),
 				"You hear a [fire_sound_text]!"
 				)
 		*/
@@ -541,14 +541,14 @@
 		switch(recoil.getRating(RECOIL_ONEHAND_LEVEL))
 			if(0.6 to 0.8)
 				if(prob(25)) // Don't need to tell them every single time
-					to_chat(user, SPAN_WARNING("Your aim wavers slightly."))
+					to_chat(user, span_warning("Your aim wavers slightly."))
 			if(0.8 to 1)
 				if(prob(50))
-					to_chat(user, SPAN_WARNING("Your aim wavers as you fire \the [src] with just one hand."))
+					to_chat(user, span_warning("Your aim wavers as you fire \the [src] with just one hand."))
 			if(1 to 1.5)
-				to_chat(user, SPAN_WARNING("You have trouble keeping \the [src] on target with just one hand."))
+				to_chat(user, span_warning("You have trouble keeping \the [src] on target with just one hand."))
 			if(1.5 to INFINITY)
-				to_chat(user, SPAN_WARNING("You struggle to keep \the [src] on target with just one hand!"))
+				to_chat(user, span_warning("You struggle to keep \the [src] on target with just one hand!"))
 
 	user.handle_recoil(src, (base_recoil + unwielded_recoil) * P.recoil)
 
@@ -640,9 +640,9 @@
 	var/mob/living/carbon/human/M = user
 
 	mouthshoot = TRUE
-	M.visible_message(SPAN_DANGER("[user] points their gun at their head, ready to pull the trigger..."))
+	M.visible_message(span_danger("[user] points their gun at their head, ready to pull the trigger..."))
 	if(!do_after(user, 40, progress=0))
-		M.visible_message(SPAN_NOTICE("[user] decided life was worth living"))
+		M.visible_message(span_notice("[user] decided life was worth living"))
 		mouthshoot = FALSE
 		return
 
@@ -652,13 +652,13 @@
 		return
 	var/obj/item/projectile/in_chamber = consume_next_projectile()
 	if(istype(in_chamber))
-		user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
+		user.visible_message(span_warning("[user] pulls the trigger."))
 		if(silenced)
 			playsound(user, fire_sound, 10, 1)
 		else
 			playsound(user, fire_sound, 60, 1)
 		if(istype(in_chamber, /obj/item/projectile/beam/lastertag))
-			user.show_message(SPAN_WARNING("You feel rather silly, trying to commit suicide with a toy."))
+			user.show_message(span_warning("You feel rather silly, trying to commit suicide with a toy."))
 			mouthshoot = FALSE
 			return
 
@@ -670,7 +670,7 @@
 				user.apply_damage(damage, damage_type, BP_HEAD, used_weapon = "Point blank shot in the head with \a [in_chamber]", sharp=1)
 			user.death()
 		else
-			to_chat(user, SPAN_NOTICE("Ow..."))
+			to_chat(user, span_notice("Ow..."))
 			user.adjustHalLoss(110)
 		qdel(in_chamber)
 		mouthshoot = FALSE
@@ -710,23 +710,23 @@
 /obj/item/gun/examine(mob/user, extra_description = "")
 	if(LAZYLEN(firemodes) > 1)
 		var/datum/firemode/current_mode = firemodes[sel_mode]
-		extra_description += SPAN_NOTICE("\nThe fire selector is set to [current_mode.name].")
+		extra_description += span_notice("\nThe fire selector is set to [current_mode.name].")
 
 	if(safety)
-		extra_description += SPAN_NOTICE("\nThe safety is on.")
+		extra_description += span_notice("\nThe safety is on.")
 	else
-		extra_description += SPAN_NOTICE("\nThe safety is off.")
+		extra_description += span_notice("\nThe safety is off.")
 
 	if(recoil.getRating(RECOIL_TWOHAND) > 0.4)
-		extra_description += SPAN_WARNING("\nThis gun needs to be braced against something to be used effectively.")
+		extra_description += span_warning("\nThis gun needs to be braced against something to be used effectively.")
 	else if(recoil.getRating(RECOIL_ONEHAND) > 0.6)
-		extra_description += SPAN_WARNING("\nThis gun needs to be wielded in both hands to be used most effectively.")
+		extra_description += span_warning("\nThis gun needs to be wielded in both hands to be used most effectively.")
 
 	if(in_range(user, src) || isghost(user))
 		if(serial_type)
-			extra_description += SPAN_WARNING("\nThere is a serial number on this gun, it reads [serial_type].")
+			extra_description += span_warning("\nThere is a serial number on this gun, it reads [serial_type].")
 		else if(isnull(serial_type))
-			extra_description += SPAN_DANGER("\nThe serial is scribbled away.")
+			extra_description += span_danger("\nThe serial is scribbled away.")
 	..(user, extra_description)
 
 /obj/item/gun/proc/initialize_firemodes()
@@ -814,7 +814,7 @@
 	var/datum/firemode/new_mode = switch_firemodes()
 	if(new_mode)
 		playsound(src.loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
-		to_chat(user, SPAN_NOTICE("\The [src] is now set to [new_mode.name]."))
+		to_chat(user, span_notice("\The [src] is now set to [new_mode.name]."))
 
 /obj/item/gun/proc/toggle_safety(mob/living/user)
 	if(restrict_safety || src != user.get_active_hand())
@@ -822,7 +822,7 @@
 
 	safety = !safety
 	playsound(user, 'sound/weapons/selector.ogg', 50, 1)
-	to_chat(user, SPAN_NOTICE("You toggle the safety [safety ? "on":"off"]."))
+	to_chat(user, span_notice("You toggle the safety [safety ? "on":"off"]."))
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
@@ -836,7 +836,7 @@
 
 /obj/item/gun/proc/toggle_carry_state(mob/living/user)
 	inversed_carry = !inversed_carry
-	to_chat(user, SPAN_NOTICE("You adjust the way the gun will be worn on your back and on your suit."))
+	to_chat(user, span_notice("You adjust the way the gun will be worn on your back and on your suit."))
 	set_item_state()
 
 /obj/item/gun/proc/get_total_damage_adjust()
@@ -858,7 +858,7 @@
 
 /obj/item/gun/AltClick(mob/user)
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 
 	toggle_safety(user)
@@ -1111,6 +1111,6 @@
 		var/mob/living/carbon/human/user = usr
 		flashlight_attachment.forceMove(get_turf(user))
 		playsound(loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You detach \the [flashlight_attachment] from \the [src]."))
+		to_chat(user, span_notice("You detach \the [flashlight_attachment] from \the [src]."))
 		flashlight_attachment = null
 

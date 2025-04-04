@@ -37,7 +37,7 @@
 		user_unbuckle_mob(user)
 		return
 //	if (HULK in usr.mutations)
-//		visible_message(SPAN_DANGER("\The [usr] destroys \the [src]!"))
+//		visible_message(span_danger("\The [usr] destroys \the [src]!"))
 //		density = FALSE
 //		qdel(src)
 
@@ -73,7 +73,7 @@
 	if (C == user)
 		user.visible_message("[user] climbs on \the [src].","You climb on \the [src].")
 	else
-		visible_message(SPAN_NOTICE("\The [C] has been laid on \the [src] by [user]."), 3)
+		visible_message(span_notice("\The [C] has been laid on \the [src] by [user]."), 3)
 		if (user.pulling == C)
 			user.stop_pulling() //Lets not drag your patient off the table after you just put them there
 	if (C.client)
@@ -114,10 +114,10 @@
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	check_victim()
 	if(victim)
-		to_chat(usr, SPAN_WARNING("\The [src] is already occupied!"))
+		to_chat(usr, span_warning("\The [src] is already occupied!"))
 		return 0
 	if(patient.buckled)
-		to_chat(usr, SPAN_NOTICE("Unbuckle \the [patient] first!"))
+		to_chat(usr, span_notice("Unbuckle \the [patient] first!"))
 		return 0
 	return 1
 

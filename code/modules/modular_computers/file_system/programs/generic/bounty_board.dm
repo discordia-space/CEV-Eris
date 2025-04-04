@@ -80,7 +80,7 @@
 	if(!F)
 		return
 	if(!F.verify_access_edit(get_record_access(user)))
-		to_chat(user, SPAN_WARNING("Access Denied"))
+		to_chat(user, span_warning("Access Denied"))
 		return
 	F.ask_value(user)
 
@@ -122,7 +122,7 @@
 		if(!selectedEntry)
 			return
 		if(!selectedEntry.publish(usr))
-			to_chat(usr, SPAN_WARNING("Insufficient Data"))
+			to_chat(usr, span_warning("Insufficient Data"))
 			return
 		selectedEntry = null
 		return 1
@@ -140,12 +140,12 @@
 			if(selectedEntry.remove(H))
 				selectedEntry = null
 			else
-				to_chat(usr, SPAN_WARNING("Error occured during reward transfer"))
+				to_chat(usr, span_warning("Error occured during reward transfer"))
 		else
 			if(selectedEntry.remove())
 				selectedEntry = null
 			else
-				to_chat(usr, SPAN_WARNING("Error occured during reward transfer"))
+				to_chat(usr, span_warning("Error occured during reward transfer"))
 
 		return 1
 

@@ -68,12 +68,12 @@
 			flush = 0
 	if (href_list["radio"])
 		carded_ai.aiRadio.disabledAi = text2num(href_list["radio"])
-		to_chat(carded_ai, "<span class='warning'>Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!</span>")
-		to_chat(user, "<span class='notice'>You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver.</span>")
+		to_chat(carded_ai, span_warning("Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!"))
+		to_chat(user, span_notice("You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver."))
 	if (href_list["wireless"])
 		carded_ai.control_disabled = text2num(href_list["wireless"])
-		to_chat(carded_ai, "<span class='warning'>Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!</span>")
-		to_chat(user, "<span class='notice'>You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface.</span>")
+		to_chat(carded_ai, span_warning("Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!"))
+		to_chat(user, span_notice("You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface."))
 		update_icon()
 	return 1
 
@@ -91,15 +91,15 @@
 
 /obj/item/device/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
 	if(!ai.client)
-		to_chat(user, "<span class='danger'>ERROR:</span> AI [ai.name] is offline. Unable to download.")
+		to_chat(user, "[span_danger("ERROR:")] AI [ai.name] is offline. Unable to download.")
 		return 0
 
 	if(carded_ai)
-		to_chat(user, "<span class='danger'>Transfer failed:</span> Existing AI found on remote terminal. Remove existing AI to install a new one.")
+		to_chat(user, "[span_danger("Transfer failed:")] Existing AI found on remote terminal. Remove existing AI to install a new one.")
 		return 0
 
 	if(ai.malfunctioning)
-		to_chat(user, "<span class='danger'>ERROR:</span> Remote transfer interface disabled.")
+		to_chat(user, "[span_danger("ERROR:")] Remote transfer interface disabled.")
 		return 0
 
 	if(istype(ai.loc, /turf/))
@@ -119,7 +119,7 @@
 	if(ai.client)
 		to_chat(ai, "You have been downloaded to a mobile storage device. Remote access lost.")
 	if(user.client)
-		to_chat(user, "<span class='notice'><b>Transfer successful:</b></span> [ai.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
+		to_chat(user, "[span_notice("<b>Transfer successful:</b>")] [ai.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
 
 	ai.canmove = 1
 	update_icon()
@@ -135,13 +135,13 @@
 
 /obj/item/device/aicard/see_emote(mob/living/M, text)
 	if(carded_ai && carded_ai.client)
-		var/rendered = "<span class='message'>[text]</span>"
+		var/rendered = span_message("[text]")
 		carded_ai.show_message(rendered, 2)
 	..()
 
 /obj/item/device/aicard/show_message(msg, type, alt, alt_type)
 	if(carded_ai && carded_ai.client)
-		var/rendered = "<span class='message'>[msg]</span>"
+		var/rendered = span_message("[msg]")
 		carded_ai.show_message(rendered, type)
 	..()
 

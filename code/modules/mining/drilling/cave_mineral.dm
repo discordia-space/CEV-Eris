@@ -100,9 +100,9 @@
 	var/tool_type = I.get_tool_type(user, list(QUALITY_DIGGING), src, CB = CALLBACK(src, PROC_REF(check_radial_dig)))
 	switch(tool_type)
 		if(QUALITY_DIGGING)
-			to_chat(user, SPAN_NOTICE("You start digging the [src]."))
+			to_chat(user, span_notice("You start digging the [src]."))
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
+				to_chat(user, span_notice("You finish digging the [src]."))
 				GetDrilled()
 			return
 		if(ABORT_CHECK)

@@ -64,7 +64,7 @@
 		if(istype(B.host, /mob/living/carbon/human/) && !B.host.isMonkey())// this is a mess but host's var grabs "[human_name] (mob/living/carbon/human/)"
 			B.borer_add_exp(25)
 		else
-			to_chat(src, SPAN_WARNING("You do not have anything to learn from this host. Find a human!"))
+			to_chat(src, span_warning("You do not have anything to learn from this host. Find a human!"))
 
 
 		new /obj/effect/decal/cleanable/vomit(get_turf(src))

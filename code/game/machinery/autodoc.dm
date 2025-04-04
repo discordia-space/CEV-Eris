@@ -51,10 +51,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_WARNING("The autodoc is already occupied!"))
+		to_chat(usr, span_warning("The autodoc is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
+		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	src.add_fingerprint(usr)
@@ -64,7 +64,7 @@
 	if (!occupant || locked)
 		return
 	if(autodoc_processor.active)
-		to_chat(usr, SPAN_WARNING("Autodoc is locked down! Abort all oberations if you need to go out or wait until all operations would be done."))
+		to_chat(usr, span_warning("Autodoc is locked down! Abort all oberations if you need to go out or wait until all operations would be done."))
 		return
 	for(var/obj/O in src)
 		O.forceMove(loc)
@@ -92,13 +92,13 @@
 
 /obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
 	if (src.occupant)
-		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
+		to_chat(user, span_notice("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
@@ -108,17 +108,17 @@
 	if(!ismob(target))
 		return
 	if (src.occupant)
-		to_chat(user, SPAN_WARNING("The autodoc is already occupied!"))
+		to_chat(user, span_warning("The autodoc is already occupied!"))
 		return
 	if (target.abiotic())
-		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+		span_notice("\The [user] begins placing \the [target] into \the [src]."),
+		span_notice("You start placing \the [target] into \the [src].")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return

@@ -40,14 +40,14 @@
 
 /datum/group_ritual_effect/cruciform/stat/success(var/mob/living/M, var/cnt)
 	if(cnt < 3 || !stat_buff)
-		to_chat(M, SPAN_NOTICE("Insufficient participants."))
+		to_chat(M, span_notice("Insufficient participants."))
 		return FALSE
 	if(!get_active_mutation(M, MUTATION_ATHEIST))
 		if(M.stats.getPerk(PERK_CHANNELING))
 			M.stats.changeStat(stat_buff, buff_value + cnt + (cnt * aditional_value))
 		else
 			M.stats.changeStat(stat_buff, buff_value + (cnt * aditional_value))
-		to_chat(M, SPAN_NOTICE(stat_message))
+		to_chat(M, span_notice(stat_message))
 
 /datum/ritual/group/cruciform/stat/mechanical
 	name = "Pounding Whisper"

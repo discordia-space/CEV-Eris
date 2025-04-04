@@ -174,12 +174,12 @@
 	switch(target_zone)
 		if(BP_MOUTH)
 			if(announce)
-				user.visible_message(SPAN_WARNING("\The [user] covers [target]'s mouth!"))
+				user.visible_message(span_warning("\The [user] covers [target]'s mouth!"))
 			if(target.silent < 3)
 				target.silent = 3
 		if(BP_EYES)
 			if(announce)
-				assailant.visible_message(SPAN_WARNING("[assailant] covers [affecting]'s eyes!"))
+				assailant.visible_message(span_warning("[assailant] covers [affecting]'s eyes!"))
 			if(affecting.eye_blind < 3)
 				affecting.eye_blind = 3
 
@@ -255,7 +255,7 @@
 				hud.icon_state = hud_icon_state_after
 				state = state_after
 				return TRUE
-	to_chat(assailant, SPAN_WARNING("You failed to upgrade your grab."))
+	to_chat(assailant, span_warning("You failed to upgrade your grab."))
 
 /obj/item/grab/proc/s_click(obj/screen/S)
 	if(!confirm())
@@ -292,12 +292,12 @@
 		hud.icon_state = "reinforce_final"
 		state = GRAB_AGGRESSIVE
 		if(!affecting.lying)
-			assailant.visible_message(SPAN_WARNING("[assailant] has grabbed [affecting] aggressively!"))
+			assailant.visible_message(span_warning("[assailant] has grabbed [affecting] aggressively!"))
 			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been grabbed by [assailant.name] ([assailant.ckey])</font>"
 			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed [affecting.name] ([affecting.ckey])</font>"
 			msg_admin_attack("[assailant] grabbed a [affecting].")
 		else
-			assailant.visible_message(SPAN_WARNING("[assailant] pins [affecting] down to the ground!"))
+			assailant.visible_message(span_warning("[assailant] pins [affecting] down to the ground!"))
 			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been pinned by [assailant.name] ([assailant.ckey])</font>"
 			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Pinned [affecting.name] ([affecting.ckey])</font>"
 			msg_admin_attack("[assailant] pinned down [affecting].")
@@ -306,13 +306,13 @@
 
 	else if(state < GRAB_NECK)
 		if(isslime(affecting))
-			to_chat(assailant, SPAN_NOTICE("You squeeze [affecting], but nothing interesting happens."))
+			to_chat(assailant, span_notice("You squeeze [affecting], but nothing interesting happens."))
 			return
-		assailant.visible_message(SPAN_WARNING("[assailant] starts grabbing [affecting] by the neck!"))
+		assailant.visible_message(span_warning("[assailant] starts grabbing [affecting] by the neck!"))
 		state = GRAB_PRENECK
 		hud.icon_state = "reinforce"
 		if(upgrade_grab(total_warmup, "kill", GRAB_NECK))
-			assailant.visible_message(SPAN_WARNING("[assailant] grabs [affecting] by the neck!"))
+			assailant.visible_message(span_warning("[assailant] grabs [affecting] by the neck!"))
 			icon_state = "grabbed+1"
 			assailant.set_dir(get_dir(assailant, affecting))
 			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [assailant.name] ([assailant.ckey])</font>"
@@ -326,12 +326,12 @@
 				hud.icon_state = "reinforce_final"
 
 	else if(state < GRAB_UPGRADING)
-		assailant.visible_message(SPAN_DANGER("[assailant] starts to tighten \his grip on [affecting]'s neck!"))
+		assailant.visible_message(span_danger("[assailant] starts to tighten \his grip on [affecting]'s neck!"))
 		hud.icon_state = "kill"
 		hud.name = "Kill"
 		state = GRAB_UPGRADING
 		if(upgrade_grab(total_warmup, "kill_final", GRAB_KILL))
-			assailant.visible_message(SPAN_DANGER("[assailant] has tightened \his grip on [affecting]'s neck!"))
+			assailant.visible_message(span_danger("[assailant] has tightened \his grip on [affecting]'s neck!"))
 			affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been strangled (kill intent) by [assailant.name] ([assailant.ckey])</font>"
 			assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Strangled (kill intent) [affecting.name] ([affecting.ckey])</font>"
 			msg_admin_attack("[key_name(assailant)] strangled (kill intent) [key_name(affecting)]")
@@ -410,7 +410,7 @@
 			switch(assailant.a_intent)
 				if(I_HELP)
 					if(force_down)
-						to_chat(assailant, SPAN_WARNING("You are no longer pinning [affecting] to the ground."))
+						to_chat(assailant, span_warning("You are no longer pinning [affecting] to the ground."))
 						affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>No longer pinned down by [assailant.name] ([assailant.ckey])</font>"
 						assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Released from pin [affecting.name] ([affecting.ckey])</font>"
 						msg_admin_attack("[key_name(assailant)] Released from pin [key_name(affecting)]")
@@ -461,7 +461,7 @@
 
 /obj/item/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)
-		assailant.visible_message(SPAN_WARNING("[assailant] lost \his tight grip on [affecting]'s neck!"))
+		assailant.visible_message(span_warning("[assailant] lost \his tight grip on [affecting]'s neck!"))
 		affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>No longer gripped by [assailant.name] ([assailant.ckey] neck.)</font>"
 		assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Lost his grip on [affecting.name] ([affecting.ckey] neck.)</font>"
 		msg_admin_attack("[key_name(assailant)] lost his tight grip on [key_name(affecting)] neck.")

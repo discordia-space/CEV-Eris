@@ -65,7 +65,7 @@
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
-			user.visible_message(SPAN_NOTICE("[user] takes the glass off the tracker."))
+			user.visible_message(span_notice("[user] takes the glass off the tracker."))
 			qdel(src)
 		return
 	..()

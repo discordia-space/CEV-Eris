@@ -160,7 +160,7 @@ var/list/channel_to_radio_key = new
 
 
 			warning_message = trim(warning_message)
-			to_chat(src, SPAN_WARNING("[warning_message]&quot;"))
+			to_chat(src, span_warning("[warning_message]&quot;"))
 			//log_and_message_admins("[src] just tried to say cringe: [cringe]", src) //Uncomment this if you want to keep tabs on who's saying cringe words.
 			return
 
@@ -168,7 +168,7 @@ var/list/channel_to_radio_key = new
 //		return
 
 	if(is_muzzled())
-		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
+		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
 
 	var/prefix = copytext(message,1,2)
@@ -235,7 +235,7 @@ var/list/channel_to_radio_key = new
 			message_range = speaking.get_talkinto_msg_range(message)
 		var/msg
 		if(!speaking || !(speaking.flags&NO_TALK_MSG))
-			msg = SPAN_NOTICE("\The [src] talks into \the [used_radios[1]]")
+			msg = span_notice("\The [src] talks into \the [used_radios[1]]")
 		for(var/mob/living/M in hearers(5, src))
 			if((M != src) && msg)
 				M.show_message(msg)
@@ -358,13 +358,13 @@ var/list/channel_to_radio_key = new
 		// INNATE is the flag for audible-emote-language, so we don't want to show an "x talks but you cannot hear them" message if it's set
 		if(!language || !(language.flags & INNATE))
 			if(speaker == src)
-				to_chat(src, SPAN_WARNING("You cannot hear yourself speak!"))
+				to_chat(src, span_warning("You cannot hear yourself speak!"))
 			else
 				var/speaker_name = speaker.name
 				if(ishuman(speaker))
 					var/mob/living/carbon/human/H = speaker
 					speaker_name = H.rank_prefix_name(speaker_name)
-				to_chat(src,"<span class='name'>[speaker_name]</span>[alt_name] talks but you cannot hear \him.")
+				to_chat(src,"[span_name("[speaker_name]")][alt_name] talks but you cannot hear \him.")
 		return
 */
 	//make sure the air can transmit speech - hearer's side
@@ -410,7 +410,7 @@ var/list/channel_to_radio_key = new
 /*
 	if(sdisabilities&DEAF || ear_deaf)
 		if(prob(20))
-			to_chat(src, SPAN_WARNING("You feel your headset vibrate but can hear nothing from it!"))
+			to_chat(src, span_warning("You feel your headset vibrate but can hear nothing from it!"))
 		return
 */
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping

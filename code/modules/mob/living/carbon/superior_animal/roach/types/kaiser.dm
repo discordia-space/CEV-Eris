@@ -86,7 +86,7 @@ Has ability of every roach.
 			L.apply_effect(200, IRRADIATE) // as much as a radioactive AMR shot or five times the gestrahlte's
 			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
-			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
+			L.visible_message(span_danger("\the [src] globs up some glowing bile all over \the [L]!"))
 
 // SUPPORT ABILITIES
 /mob/living/carbon/superior_animal/roach/kaiser/proc/gas_attack()
@@ -98,7 +98,7 @@ Has ability of every roach.
 
 	S.attach(location)
 	S.set_up(gas_sac, gas_sac.total_volume, 0, location)
-	src.visible_message(SPAN_DANGER("\the [src] secretes strange vapors!"))
+	src.visible_message(span_danger("\the [src] secretes strange vapors!"))
 
 	spawn(0)
 		S.start()
@@ -127,7 +127,7 @@ Has ability of every roach.
 		playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
 			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-		visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
+		visible_message(span_danger("[src] emits a horrifying wail as nearby burrows stir to life!"))
 		for (var/obj/structure/burrow/B in find_nearby_burrows(src))
 			B.distress(TRUE, src)
 

@@ -185,7 +185,7 @@
 	if(new_cyborg_floor && !isnull(cyborg_floor[new_cyborg_floor]))
 		stacktype = cyborg_floor[new_cyborg_floor]
 		build_type = cyborg_floor[new_cyborg_floor]
-		to_chat(usr, SPAN_NOTICE("You set \the [src] floor" /*to '[decal]'.*/))
+		to_chat(usr, span_notice("You set \the [src] floor" /*to '[decal]'.*/))
 
 // Cafe
 /obj/item/stack/tile/floor/cafe
@@ -229,7 +229,7 @@
 		var/obj/item/stack/tile/floor/cyborg/C = I
 		C.stacktype = src.type
 		C.build_type = src.type
-		to_chat(usr, SPAN_NOTICE("You will now build [C.name]"))
+		to_chat(usr, span_notice("You will now build [C.name]"))
 	else
 		..()
 

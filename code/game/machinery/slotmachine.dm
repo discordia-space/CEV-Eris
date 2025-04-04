@@ -82,7 +82,7 @@
 
 		update_icon()
 
-		src.visible_message(SPAN_NOTICE("The reel stops at... \the [slots[slot]]!"))
+		src.visible_message(span_notice("The reel stops at... \the [slots[slot]]!"))
 
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
 
@@ -113,11 +113,11 @@
 
 /obj/machinery/slotmachine/attack_hand(mob/user)
 	if (spinning)
-		to_chat(user, SPAN_WARNING("It is currently spinning."))
+		to_chat(user, span_warning("It is currently spinning."))
 		return
 
 	if (bet == 0)
-		to_chat(user, SPAN_NOTICE("Today's jackpot: $[jackpot]. Insert 1-1000 Credits."))
+		to_chat(user, span_notice("Today's jackpot: $[jackpot]. Insert 1-1000 Credits."))
 	else
 		spinning = TRUE
 		plays++
@@ -126,7 +126,7 @@
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 
 		set_spin_ovarlay()
-		
+
 		set_pull_overlay()
 
 		set_slots_overlay()
@@ -148,15 +148,15 @@
 	if (istype(S, /obj/item/spacecash))
 		var/obj/item/spacecash/cash = S
 		if ((cash.worth > 0) && (bet + cash.worth <= 1000))
-			to_chat(user, SPAN_NOTICE("You insert [cash.worth] Credits into [src]."))
+			to_chat(user, span_notice("You insert [cash.worth] Credits into [src]."))
 			bet += cash.worth
 			user.drop_from_inventory(cash)
 			qdel(cash)
 		else
-			to_chat(user, SPAN_WARNING("You must bet 1-[1000 - bet] Credits! Can't insert [cash.worth], that's too much."))
+			to_chat(user, span_warning("You must bet 1-[1000 - bet] Credits! Can't insert [cash.worth], that's too much."))
 
 	else if (istype(S, /obj/item/coin))
-		to_chat(user, SPAN_NOTICE("You add the [S.name] into the [src]. It will slightly increase chance to win."))
+		to_chat(user, span_notice("You add the [S.name] into the [src]. It will slightly increase chance to win."))
 		user.drop_from_inventory(S)
 		bet = 100
 		plays += 10

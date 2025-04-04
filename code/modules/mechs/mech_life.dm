@@ -115,7 +115,7 @@
 		apply_damage(damage, BURN)
 
 		if(prob(damage))
-			visible_message(SPAN_DANGER("\The [src]'s hull bends and buckles under the intense heat!"))
+			visible_message(span_danger("\The [src]'s hull bends and buckles under the intense heat!"))
 
 //	hud_heat.Update() // Don't animate for now 'til HUDs are properly converted
 

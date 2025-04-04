@@ -44,7 +44,7 @@
 	if((user in src.stomach_contents) && istype(user))
 		if(user.last_special <= world.time)
 			user.last_special = world.time + 50
-			src.visible_message(SPAN_DANGER("You hear something rumbling inside [src]'s stomach..."))
+			src.visible_message(span_danger("You hear something rumbling inside [src]'s stomach..."))
 			var/obj/item/I = user.get_active_hand()
 			if(I && I.force)
 				var/d = rand(round(I.force / 4), I.force)
@@ -57,7 +57,7 @@
 					H.updatehealth()
 				else
 					src.take_organ_damage(d)
-				user.visible_message(SPAN_DANGER("[user] attacks [src]'s stomach wall with the [I.name]!"))
+				user.visible_message(span_danger("[user] attacks [src]'s stomach wall with the [I.name]!"))
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
 
 				if(prob(src.getBruteLoss() - 50))
@@ -164,24 +164,24 @@
 		else if (on_fire)
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if (M.on_fire)
-				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames, but to no avail!"),
-				SPAN_WARNING("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
+				M.visible_message(span_warning("[M] tries to pat out [src]'s flames, but to no avail!"),
+				span_warning("You try to pat out [src]'s flames, but to no avail! Put yourself out first!"))
 			else
-				M.visible_message(SPAN_WARNING("[M] tries to pat out [src]'s flames!"),
-				SPAN_WARNING("You try to pat out [src]'s flames! Hot!"))
+				M.visible_message(span_warning("[M] tries to pat out [src]'s flames!"),
+				span_warning("You try to pat out [src]'s flames! Hot!"))
 				if(do_mob(M, src, 15))
 					src.fire_stacks -= 0.5
 					if (prob(10) && (M.fire_stacks <= 0))
 						M.fire_stacks += 1
 					M.IgniteMob()
 					if (M.on_fire)
-						M.visible_message(SPAN_DANGER("The fire spreads from [src] to [M]!"),
-						SPAN_DANGER("The fire spreads to you as well!"))
+						M.visible_message(span_danger("The fire spreads from [src] to [M]!"),
+						span_danger("The fire spreads to you as well!"))
 					else
 						src.fire_stacks -= 0.5 //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
 						if (src.fire_stacks <= 0)
-							M.visible_message(SPAN_WARNING("[M] successfully pats out [src]'s flames."),
-							SPAN_WARNING("You successfully pat out [src]'s flames."))
+							M.visible_message(span_warning("[M] successfully pats out [src]'s flames."),
+							span_warning("You successfully pat out [src]'s flames."))
 							src.ExtinguishMob()
 							src.fire_stacks = 0
 		else
@@ -202,31 +202,31 @@
 				var/obj/item/organ/external/O = H.get_organ(M.targeted_organ)
 				target_organ_exists = (O && O.is_usable())
 			if(show_ssd && !client && !teleop)
-				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
-				SPAN_NOTICE("You shake [src], but they do not respond... Maybe they have S.S.D?"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [t_him] up!"), \
+				span_notice("You shake [src], but they do not respond... Maybe they have S.S.D?"))
 			else if(lying || src.sleeping)
 				src.sleeping = max(0,src.sleeping-5)
 				if(src.sleeping == 0)
 					src.resting = 0
-				M.visible_message(SPAN_NOTICE("[M] shakes [src] trying to wake [t_him] up!"), \
-									SPAN_NOTICE("You shake [src] trying to wake [t_him] up!"))
+				M.visible_message(span_notice("[M] shakes [src] trying to wake [t_him] up!"), \
+									span_notice("You shake [src] trying to wake [t_him] up!"))
 			else if((M.targeted_organ == BP_HEAD) && target_organ_exists)
-				M.visible_message(SPAN_NOTICE("[M] pats [src]'s head."), \
-									SPAN_NOTICE("You pat [src]'s head."))
+				M.visible_message(span_notice("[M] pats [src]'s head."), \
+									span_notice("You pat [src]'s head."))
 			else if(M.targeted_organ == BP_R_ARM || M.targeted_organ == BP_L_ARM)
 				if(target_organ_exists)
-					M.visible_message(SPAN_NOTICE("[M] shakes hands with [src]."), \
-										SPAN_NOTICE("You shake hands with [src]."))
+					M.visible_message(span_notice("[M] shakes hands with [src]."), \
+										span_notice("You shake hands with [src]."))
 				else
-					M.visible_message(SPAN_NOTICE("[M] holds out \his hand to [src]."), \
-										SPAN_NOTICE("You hold out your hand to [src]."))
+					M.visible_message(span_notice("[M] holds out \his hand to [src]."), \
+										span_notice("You hold out your hand to [src]."))
 			else
 				var/mob/living/carbon/human/hugger = M
 				if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
-					M.visible_message(SPAN_NOTICE("[M] hugs [src] to make [t_him] feel better!"), \
-								SPAN_NOTICE("You hug [src] to make [t_him] feel better!"))
+					M.visible_message(span_notice("[M] hugs [src] to make [t_him] feel better!"), \
+								span_notice("You hug [src] to make [t_him] feel better!"))
 				if(M.fire_stacks >= (src.fire_stacks + 3))
 					src.fire_stacks += 1
 					M.fire_stacks -= 1
@@ -295,15 +295,15 @@
 			var/obj/item/I = item
 			var/robust = stats.getStat(STAT_ROB)
 			var/timer = ((5 * I.w_class) - (robust * 0.1)) //(W_CLASS * 5) - (STR * 0.1)
-			visible_message(SPAN_DANGER("[src] is trying to toss \the [item] into the air!"))
+			visible_message(span_danger("[src] is trying to toss \the [item] into the air!"))
 			if((I.w_class < ITEM_SIZE_GARGANTUAN) && do_after(src, timer))
 				item.throwing = TRUE
 				unEquip(item, loc)
 				item.forceMove(get_turf(GetAbove(src)))
 			else
-				to_chat(src, SPAN_WARNING("You were interrupted!"))
+				to_chat(src, span_warning("You were interrupted!"))
 				return
-		visible_message(SPAN_DANGER("[src] has thrown [item]."))
+		visible_message(span_danger("[src] has thrown [item]."))
 		if(incorporeal_move)
 			inertia_dir = 0
 		else if(!check_gravity() && !src.allow_spacemove()) // spacemove would return one with magboots, -1 with adjacent tiles
@@ -368,7 +368,7 @@
 		return FALSE
 	stop_pulling()
 	if (slipped_on)
-		to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
+		to_chat(src, span_warning("You slipped on [slipped_on]!"))
 		playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(stun_duration)
 

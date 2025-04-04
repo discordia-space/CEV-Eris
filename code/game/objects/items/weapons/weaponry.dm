@@ -114,7 +114,7 @@
 	else
 		health -= rand(5,8)
 
-	to_chat(H, "<span class='danger'>You claw at the energy net.</span>")
+	to_chat(H, span_danger("You claw at the energy net."))
 
 	healthcheck()
 	return

@@ -82,7 +82,7 @@
 
 /obj/item/material/proc/shatter(var/consumed)
 	var/turf/T = get_turf(src)
-	T.visible_message(SPAN_DANGER("\The [src] [material.destruction_desc]!"))
+	T.visible_message(span_danger("\The [src] [material.destruction_desc]!"))
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.drop_from_inventory(src)

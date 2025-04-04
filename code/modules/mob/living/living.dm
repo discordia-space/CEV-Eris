@@ -69,12 +69,12 @@ default behaviour is:
 			for(var/mob/living/M in range(tmob, 1))
 				if(tmob.pinned.len ||  ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
 					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restrained, you cannot push past</span>")
+						to_chat(src, span_warning("[tmob] is restrained, you cannot push past"))
 					now_pushing = FALSE
 					return
 				if( tmob.pulling == M && ( M.restrained() && !( tmob.restrained() ) && tmob.stat == 0) )
 					if ( !(world.time % 5) )
-						to_chat(src, "<span class='warning'>[tmob] is restraining [M], you cannot push past</span>")
+						to_chat(src, span_warning("[tmob] is restraining [M], you cannot push past"))
 					now_pushing = FALSE
 					return
 
@@ -483,7 +483,7 @@ default behaviour is:
 		// them win or lose based on cryo is silly so we remove the objective.
 		if(O.target == src.mind)
 			if(O.owner && O.owner.current)
-				to_chat(O.owner.current, SPAN_WARNING("You get the feeling your target is no longer within your reach..."))
+				to_chat(O.owner.current, span_warning("You get the feeling your target is no longer within your reach..."))
 			qdel(O)
 
 	//Same for contract-based objectives.
@@ -583,11 +583,11 @@ default behaviour is:
 								//pull damage with injured people
 									if(prob(25))
 										M.adjustBruteLoss(1)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
+										visible_message(span_danger("\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!"))
 								if(M.pull_damage())
 									if(prob(25))
 										M.adjustBruteLoss(2)
-										visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
+										visible_message(span_danger("\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!"))
 										var/turf/location = M.loc
 										if(istype(location, /turf))
 											if(ishuman(M))
@@ -638,7 +638,7 @@ default behaviour is:
 
 		if(do_after(src, (stats.getPerk(PERK_PARKOUR) ? 0.2 SECONDS : 0.4 SECONDS), null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
 			resting = FALSE
-			to_chat(src, SPAN_NOTICE("You are now getting up."))
+			to_chat(src, span_notice("You are now getting up."))
 			update_lying_buckled_and_verb_status()
 
 		is_busy = FALSE
@@ -648,7 +648,7 @@ default behaviour is:
 
 	else
 		resting = TRUE
-		to_chat(src, SPAN_NOTICE("You are now resting."))
+		to_chat(src, span_notice("You are now resting."))
 		update_lying_buckled_and_verb_status()
 
 
@@ -675,7 +675,7 @@ default behaviour is:
 		var/range = 1 //checks for move intent; dive one tile further if on run intent
 
 		// Diving
-		to_chat(src, SPAN_NOTICE("You dive onwards!"))
+		to_chat(src, span_notice("You dive onwards!"))
 		allow_spin = FALSE
 		if(istype(get_step(src, _dir), /turf/open))
 			range++
@@ -725,10 +725,10 @@ default behaviour is:
 	if(!..())
 		return FALSE
 	if(!possession_candidate)
-		to_chat(possessor, "<span class='warning'>That animal cannot be possessed.</span>")
+		to_chat(possessor, span_warning("That animal cannot be possessed."))
 		return FALSE
 	if(jobban_isbanned(possessor, "Animal") && animal_check)
-		to_chat(possessor, "<span class='warning'>You are banned from animal roles.</span>")
+		to_chat(possessor, span_warning("You are banned from animal roles."))
 		return FALSE
 	if(!possessor.MayRespawn(0 ,ANIMAL))
 		return FALSE
@@ -740,16 +740,16 @@ default behaviour is:
 		return FALSE
 
 	if(src.ckey || src.client)
-		to_chat(possessor, "<span class='warning'>\The [src] already has a player.</span>")
+		to_chat(possessor, span_warning("\The [src] already has a player."))
 		return FALSE
 
-	message_admins("<span class='adminnotice'>[key_name_admin(possessor)] has taken control of \the [src].</span>")
+	message_admins(span_adminnotice("[key_name_admin(possessor)] has taken control of \the [src]."))
 	log_admin("[key_name(possessor)] took control of \the [src].")
 	src.ckey = possessor.ckey
 	qdel(possessor)
 
 	to_chat(src, "<b>You are now \the [src]!</b>")
-	to_chat(src, "<span class='notice'>Remember to stay in character for a mob of this type!</span>")
+	to_chat(src, span_notice("Remember to stay in character for a mob of this type!"))
 	return TRUE
 
 /mob/living/reset_layer()
@@ -780,26 +780,26 @@ default behaviour is:
 		AM.add_fingerprint(usr)
 
 	if (AM.anchored)
-		to_chat(src, "<span class='warning'>It won't budge!</span>")
+		to_chat(src, span_warning("It won't budge!"))
 		return
 
 	var/mob/M = AM
 	if(ismob(AM))
 
 		if(M.mob_size >=  MOB_GIGANTIC)
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some
@@ -814,7 +814,7 @@ default behaviour is:
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 	if(pulling)

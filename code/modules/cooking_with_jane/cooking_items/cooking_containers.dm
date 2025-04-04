@@ -170,7 +170,7 @@
 		if(tracker && removal_penalty)
 			for (var/obj/item/contained in contents)
 				contained?:food_quality -= removal_penalty
-			to_chat(user, SPAN_WARNING("The quality of ingredients in the [src] was reduced by the extra jostling."))
+			to_chat(user, span_warning("The quality of ingredients in the [src] was reduced by the extra jostling."))
 
 		//Handle quality reduction for reagents
 		if(reagents.total_volume != 0)
@@ -178,7 +178,7 @@
 			if(reagent_qual_reduction != 0)
 				for (var/obj/item/contained in contents)
 					contained?:food_quality -= reagent_qual_reduction
-				to_chat(user, SPAN_WARNING("The quality of ingredients in the [src] was reduced by the presence of reagents in the container."))
+				to_chat(user, span_warning("The quality of ingredients in the [src] was reduced by the presence of reagents in the container."))
 
 
 		for (var/contained in contents)
@@ -199,7 +199,7 @@
 	clear_cooking_data()
 
 	if(contents.len != 0)
-		to_chat(user, SPAN_NOTICE("You remove all the solid items from [src]."))
+		to_chat(user, span_notice("You remove all the solid items from [src]."))
 
 
 /obj/item/reagent_containers/cooking_with_jane/cooking_container/AltClick(var/mob/user)

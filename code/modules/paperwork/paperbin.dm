@@ -22,10 +22,10 @@
 				if (H.hand)
 					temp = H.organs_by_name[BP_L_ARM]
 				if(temp && !temp.is_usable())
-					to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
+					to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 					return
 
-				to_chat(user, SPAN_NOTICE("You pick up the [src]."))
+				to_chat(user, span_notice("You pick up the [src]."))
 				user.put_in_hands(src)
 
 	return
@@ -38,7 +38,7 @@
 			if (H.hand)
 				temp = H.organs_by_name[BP_L_ARM]
 			if(temp && !temp.is_usable())
-				to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
+				to_chat(user, span_notice("You try to move your [temp.name], but cannot!"))
 				return
 		var/response = ""
 		if(!papers.len > 0)
@@ -62,9 +62,9 @@
 					P = new /obj/item/paper/carbon
 
 			user.put_in_hands(P)
-			to_chat(user, SPAN_NOTICE("You take [P] out of the [src]."))
+			to_chat(user, span_notice("You take [P] out of the [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] is empty!"))
+			to_chat(user, span_notice("[src] is empty!"))
 
 		add_fingerprint(user)
 		return
@@ -86,7 +86,7 @@
 
 	user.drop_item()
 	i.loc = src
-	to_chat(user, SPAN_NOTICE("You put [i] in [src]."))
+	to_chat(user, span_notice("You put [i] in [src]."))
 	papers.Add(i)
 	update_icon()
 	amount++
@@ -95,11 +95,11 @@
 /obj/item/paper_bin/examine(mob/user, extra_description = "")
 	if(get_dist(src, user) <= 1)
 		if(amount)
-			extra_description += SPAN_NOTICE("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.")
+			extra_description += span_notice("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.")
 		else
-			extra_description += SPAN_NOTICE("There are no papers in the bin.")
+			extra_description += span_notice("There are no papers in the bin.")
 	else
-		extra_description += SPAN_NOTICE("If you got closer you could see how much paper is in it.")
+		extra_description += span_notice("If you got closer you could see how much paper is in it.")
 	..(user, extra_description)
 
 /obj/item/paper_bin/update_icon()

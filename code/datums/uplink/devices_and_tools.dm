@@ -248,7 +248,7 @@
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		BS.adjustMaxHealth(30)
-		to_chat(BS, SPAN_NOTICE("Your chassis armour is augmented."))
+		to_chat(BS, span_notice("Your chassis armour is augmented."))
 		return TRUE
 	return FALSE
 
@@ -264,7 +264,7 @@
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(BS)
 			BS.cell_emp_mult *= 0.5
-			to_chat(BS, SPAN_NOTICE("Your cell's EMP protection has been augmented."))
+			to_chat(BS, span_notice("Your cell's EMP protection has been augmented."))
 			U.blacklist += name
 		return TRUE
 	return FALSE
@@ -285,7 +285,7 @@
 		var/obj/item/cell/C = BS.get_cell()
 		if(C)
 			C.maxcharge *= 1.5
-			to_chat(BS, SPAN_NOTICE("Your cell's maximum charge has been augmented."))
+			to_chat(BS, span_notice("Your cell's maximum charge has been augmented."))
 		return TRUE
 	return FALSE
 
@@ -316,7 +316,7 @@
 		var/obj/item/device/nanite_container/NC = locate() in BS.module.modules
 		if(NC)
 			NC.charges += 1
-			to_chat(BS, SPAN_NOTICE("You now have [NC.charges] charges in your [NC]"))
+			to_chat(BS, span_notice("You now have [NC.charges] charges in your [NC]"))
 			return TRUE
 	return FALSE
 
@@ -331,7 +331,7 @@
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/device/smokescreen) in BS.module.modules)
-			to_chat(BS, SPAN_WARNING("You already have a smoke deployment installed."))
+			to_chat(BS, span_warning("You already have a smoke deployment installed."))
 			return FALSE
 		BS.module.modules += new /obj/item/device/smokescreen(BS.module)
 		U.blacklist += name
@@ -354,10 +354,10 @@
 		var/obj/item/device/smokescreen/SS = locate() in BS.module.modules
 		if(SS)
 			SS.charges += 1
-			to_chat(BS, SPAN_NOTICE("You now have [SS.charges] charges in your [SS]"))
+			to_chat(BS, span_notice("You now have [SS.charges] charges in your [SS]"))
 			return TRUE
 		else
-			to_chat(BS, SPAN_NOTICE("You do not have smoke deployment system unlocked"))
+			to_chat(BS, span_notice("You do not have smoke deployment system unlocked"))
 	return FALSE
 
 /datum/uplink_item/item/tools/blitz_smokescharge/can_view(obj/item/device/uplink/U)
@@ -371,7 +371,7 @@
 	antag_roles = list(ROLE_BLITZ)
 
 /datum/uplink_item/item/tools/blitz_reinforcements/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
-	to_chat(user, SPAN_NOTICE("Additional Blitzshell inbound to your position."))
+	to_chat(user, span_notice("Additional Blitzshell inbound to your position."))
 	spawn(5)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(5, 0, loc)
@@ -391,7 +391,7 @@
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/bluespace_harpoon/mounted/blitz) in BS.module.modules)
-			to_chat(BS, SPAN_WARNING("You already have a bluespace harpoon installed."))
+			to_chat(BS, span_warning("You already have a bluespace harpoon installed."))
 			return
 		BS.module.modules += new /obj/item/bluespace_harpoon/mounted/blitz(BS.module)
 		return TRUE
@@ -407,7 +407,7 @@
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(BS.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
-			to_chat(BS, SPAN_WARNING("You already have flash reflection installed."))
+			to_chat(BS, span_warning("You already have flash reflection installed."))
 			return
 		BS.AddTrait(CYBORG_TRAIT_FLASH_RESISTANT)
 		U.blacklist += name
@@ -427,7 +427,7 @@
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(BS.HasTrait(CYBORG_TRAIT_PARKOUR))
-			to_chat(BS, SPAN_WARNING("You already have embedded wall-scaling installed."))
+			to_chat(BS, span_warning("You already have embedded wall-scaling installed."))
 			return
 		BS.AddTrait(CYBORG_TRAIT_PARKOUR)
 		U.blacklist += name

@@ -53,7 +53,7 @@
 	if(!count)
 		return
 	else if(!Adjacent(user))
-		to_chat(user, SPAN_WARNING("You need to be in arm's reach for that!"))
+		to_chat(user, span_warning("You need to be in arm's reach for that!"))
 		return
 
 	amount -= count

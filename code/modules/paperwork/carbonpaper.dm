@@ -50,7 +50,7 @@
 			copy.name = "Copy - " + c.name
 			copy.fields = c.fields
 			copy.updateinfolinks()
-		to_chat(usr, SPAN_NOTICE("You tear off the carbon-copy!"))
+		to_chat(usr, span_notice("You tear off the carbon-copy!"))
 		playsound(src,'sound/effects/paper_tearingSoundBible.wav', 30, 1)
 		c.copied = 1
 		copy.iscopy = 1

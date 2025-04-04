@@ -27,13 +27,13 @@
 
 	// Display start message
 	user.visible_message(
-		SPAN_NOTICE("\The [user] starts applying \the [src] on [M]."),
-		SPAN_NOTICE("You start applying \the [src] on [M].")
+		span_notice("\The [user] starts applying \the [src] on [M]."),
+		span_notice("You start applying \the [src] on [M].")
 	)
 
 	// Should not move when applying the core
 	if(!do_mob(user, M, 2 SECOND))
-		to_chat(user, SPAN_NOTICE("You must stand still to apply \the [src]."))
+		to_chat(user, span_notice("You must stand still to apply \the [src]."))
 		return TRUE
 
 	// Heal the target
@@ -42,15 +42,15 @@
 
 	// Display end message
 	user.visible_message(
-		SPAN_NOTICE("[user] applied \the [src] on [M]."),
-		SPAN_NOTICE("You applied \the [src] on [M], which quickly crumbles into dry dust.")
+		span_notice("[user] applied \the [src] on [M]."),
+		span_notice("You applied \the [src] on [M], which quickly crumbles into dry dust.")
 	)
 
 	// Delete core
 	qdel(src)
 
 /obj/item/golem_core/proc/crumble()
-	visible_message(SPAN_NOTICE("\The [src] dims down and crumbles into dry dust."))
+	visible_message(span_notice("\The [src] dims down and crumbles into dry dust."))
 	qdel(src)  // Delete core
 
 #undef GOLEM_CORE_HEAL

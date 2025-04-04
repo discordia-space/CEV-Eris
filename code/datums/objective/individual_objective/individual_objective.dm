@@ -50,7 +50,7 @@
 	owner = new_owner
 	mind_holder = new_owner.current
 	owner.individual_objectives += src
-	to_chat(owner,  SPAN_NOTICE("You have obtained a new personal objective: [name]"))
+	to_chat(owner,  span_notice("You have obtained a new personal objective: [name]"))
 
 /datum/individual_objective/proc/completed(fail=FALSE)
 	SHOULD_CALL_PARENT(TRUE)
@@ -59,7 +59,7 @@
 	completed = TRUE
 	var/mob/living/carbon/human/H = owner.current
 	update_faction_score()
-	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
+	to_chat(owner,  span_notice("You have completed the personal objective: [name]"))
 	H.sanity.insight += 100
 
 /datum/individual_objective/proc/get_description()

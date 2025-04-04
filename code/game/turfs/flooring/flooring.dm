@@ -227,7 +227,7 @@ var/list/flooring_types
 			return
 		else
 			R.use(2)
-			to_chat(user, SPAN_NOTICE("You start connecting [R.name]s to [src.name], creating catwalk..."))
+			to_chat(user, span_notice("You start connecting [R.name]s to [src.name], creating catwalk..."))
 			if(do_after(user, (20 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT))))
 				T.alpha = 0
 				var/obj/structure/catwalk/CT = new /obj/structure/catwalk(T)
@@ -258,7 +258,7 @@ var/list/flooring_types
 		if(prob(5) && M.slip(null, 6))
 			M.adjustBruteLoss(5)
 			playsound(M, 'sound/effects/bang.ogg', 50, 1)
-			to_chat(M, SPAN_WARNING("You tripped over!"))
+			to_chat(M, span_warning("You tripped over!"))
 			return
 
 //============HULL PLATING=========\\

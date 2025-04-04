@@ -90,13 +90,13 @@ for reference:
 			return //hitting things with the wrong type of stack usually doesn't produce messages, and probably doesn't need to.
 		if(health < maxHealth)
 			if(D.get_amount() < 1)
-				to_chat(user, SPAN_WARNING("You need one sheet of [material.display_name] to repair \the [src]."))
+				to_chat(user, span_warning("You need one sheet of [material.display_name] to repair \the [src]."))
 				return
-			visible_message(SPAN_NOTICE("[user] begins to repair \the [src]."))
+			visible_message(span_notice("[user] begins to repair \the [src]."))
 			if(do_after(user,20,src) && health < maxHealth)
 				if(D.use(1))
 					health = maxHealth
-					visible_message(SPAN_NOTICE("[user] repairs \the [src]."))
+					visible_message(span_notice("[user] repairs \the [src]."))
 				return
 		return
 	else
@@ -108,7 +108,7 @@ for reference:
 				health -= W.force * 0.75
 			else
 		if(health <= 0)
-			visible_message(SPAN_DANGER("The barricade is smashed apart!"))
+			visible_message(span_danger("The barricade is smashed apart!"))
 			dismantle()
 			qdel(src)
 			return
@@ -131,7 +131,7 @@ for reference:
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage)
 	else
@@ -178,10 +178,10 @@ for reference:
 		var/pierce = P.check_penetrate(src)
 		health -= P.get_structure_damage()/2
 		if (health > 0)
-			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+			visible_message(span_warning("[P] hits \the [src]!"))
 			return pierce
 		else
-			visible_message(SPAN_WARNING("[src] breaks down!"))
+			visible_message(span_warning("[src] breaks down!"))
 			qdel(src)
 			return TRUE
 	return TRUE
@@ -228,7 +228,7 @@ for reference:
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-				visible_message(SPAN_WARNING("BZZzZZzZZzZT"))
+				visible_message(span_warning("BZZzZZzZZzZT"))
 				return
 		return
 	else if(istype(W, /obj/item/tool/wrench))
@@ -236,12 +236,12 @@ for reference:
 			health = maxHealth
 			emagged = 0
 			req_access = list(access_security)
-			visible_message(SPAN_WARNING("[user] repairs \the [src]!"))
+			visible_message(span_warning("[user] repairs \the [src]!"))
 			return
 		else if(emagged > 0)
 			emagged = 0
 			req_access = list(access_security)
-			visible_message(SPAN_WARNING("[user] repairs \the [src]!"))
+			visible_message(span_warning("[user] repairs \the [src]!"))
 			return
 		return
 	else
@@ -289,7 +289,7 @@ for reference:
 
 /obj/machinery/deployable/barrier/proc/explode()
 
-	visible_message(SPAN_DANGER("[src] blows apart!"))
+	visible_message(span_danger("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 /*	var/obj/item/stack/rods/ =*/
@@ -312,7 +312,7 @@ for reference:
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
-		visible_message(SPAN_WARNING("BZZzZZzZZzZT"))
+		visible_message(span_warning("BZZzZZzZZzZT"))
 		return 1
 	else if(emagged == 1)
 		emagged = 2
@@ -320,7 +320,7 @@ for reference:
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
-		visible_message(SPAN_WARNING("BZZzZZzZZzZT"))
+		visible_message(span_warning("BZZzZZzZZzZT"))
 		return 1
 
 /obj/machinery/deployable/barrier/proc/check_cover(obj/item/projectile/P, turf/from)
@@ -354,10 +354,10 @@ for reference:
 		var/pierce = P.check_penetrate(src)
 		health -= P.get_structure_damage()/2
 		if (health > 0)
-			visible_message(SPAN_WARNING("[P] hits \the [src]!"))
+			visible_message(span_warning("[P] hits \the [src]!"))
 			return pierce
 		else
-			visible_message(SPAN_WARNING("[src] breaks down!"))
+			visible_message(span_warning("[src] breaks down!"))
 			qdel(src)
 			return 1
 	return 1
@@ -371,7 +371,7 @@ for reference:
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage * 1.25)
 	else

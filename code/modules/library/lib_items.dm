@@ -40,13 +40,13 @@
 			name = ("bookcase ([newname])")
 	else if(istype(O,/obj/item/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		to_chat(user, (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor.")))
+		to_chat(user, (anchored ? span_notice("You unfasten \the [src] from the floor.") : span_notice("You secure \the [src] to the floor.")))
 		anchored = !anchored
 	else if(istype(O,/obj/item/tool/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You begin dismantling \the [src]."))
+		to_chat(user, span_notice("You begin dismantling \the [src]."))
 		if(do_after(user,25,src))
-			to_chat(user, SPAN_NOTICE("You dismantle \the [src]."))
+			to_chat(user, span_notice("You dismantle \the [src]."))
 			drop_materials(drop_location())
 			for(var/obj/item/book/b in contents)
 				b.loc = (get_turf(src))
@@ -59,7 +59,7 @@
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/items/Welder.ogg', 50, 1)
 		drop_materials(drop_location())
 		for(var/obj/item/book/b in contents)
@@ -158,12 +158,12 @@
 		), rand(40,80), 1)
 	if(carved)
 		if(store)
-			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
+			to_chat(user, span_notice("[store] falls out of [title]!"))
 			store.loc = get_turf(src.loc)
 			store = null
 			return
 		else
-			to_chat(user, SPAN_NOTICE("The pages of [title] have been cut out!"))
+			to_chat(user, span_notice("The pages of [title] have been cut out!"))
 			return
 	if(src.dat)
 		user << browse(HTML_SKELETON_TITLE("Book", "<TT><I>Penned by [author].</I></TT><BR>[dat]"), "window=book[window_size != null ? ";size=[window_size]" : ""]")
@@ -179,13 +179,13 @@
 				user.drop_item()
 				I.loc = src
 				store = I
-				to_chat(user, SPAN_NOTICE("You put [I] in [title]."))
+				to_chat(user, span_notice("You put [I] in [title]."))
 				return
 			else
-				to_chat(user, SPAN_NOTICE("[I] won't fit in [title]."))
+				to_chat(user, span_notice("[I] won't fit in [title]."))
 				return
 		else
-			to_chat(user, SPAN_NOTICE("There's already something in [title]!"))
+			to_chat(user, span_notice("There's already something in [title]!"))
 			return
 	if(istype(I, /obj/item/pen))
 		if(unique)
@@ -248,9 +248,9 @@
 					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
 	else if(QUALITY_CUTTING in I.tool_qualities)
 		if(carved)	return
-		to_chat(user, SPAN_NOTICE("You begin to carve out [title]."))
+		to_chat(user, span_notice("You begin to carve out [title]."))
 		if(do_after(user, 30, src))
-			to_chat(user, SPAN_NOTICE("You carve out the pages from [title]! You didn't want to read it anyway."))
+			to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))
 			carved = 1
 			return
 	else
@@ -258,8 +258,8 @@
 
 /obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.targeted_organ == BP_EYES)
-		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
-			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
+		user.visible_message(span_notice("You open up the book and show it to [M]. "), \
+			span_notice(" [user] opens up a book and shows it to [M]. "))
 		M << browse(HTML_SKELETON_TITLE("Book", "<TT><I>Penned by [author].</I></TT> <BR>[dat]"), "window=book")
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 

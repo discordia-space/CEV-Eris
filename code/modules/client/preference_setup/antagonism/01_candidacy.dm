@@ -46,11 +46,11 @@
 		bantypes += antag.bantype
 		. += "<tr><td>[antag.bantype]: </td><td>"
 		if(jobban_isbanned(preference_mob(), antag.bantype) || (antag.id == ROLE_MALFUNCTION && jobban_isbanned(preference_mob(), "AI")))
-			. += "<span class='danger'>\[BANNED\]</span><br>"
+			. += "[span_danger("\[BANNED\]")]<br>"
 		else if(antag.bantype in pref.be_special_role)
-			. += "<span class='linkOn'>Yes</span> <a href='byond://?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
+			. += "[span_linkOn("Yes")] <a href='byond://?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
 		else if(antag.bantype in pref.never_be_special_role)
-			. += "<a href='byond://?src=\ref[src];add_special=[antag.bantype]'>Yes</a> <span class='linkOn'>Never</span></br>"
+			. += "<a href='byond://?src=\ref[src];add_special=[antag.bantype]'>Yes</a> [span_linkOn("Never")]</br>"
 		else
 			. += "<a href='byond://?src=\ref[src];add_special=[antag.bantype]'>Yes</a> <a href='byond://?src=\ref[src];add_never=[antag.bantype]'>Never</a></br>"
 		. += "</td></tr>"
@@ -63,11 +63,11 @@
 
 		. += "<tr><td>[ghost_trap.ghost_trap_role]: </td><td>"
 		if(banned_from_ghost_role(preference_mob(), ghost_trap))
-			. += "<span class='danger'>\[BANNED\]</span><br>"
+			. += "[span_danger("\[BANNED\]")]<br>"
 		else if(ghost_trap.pref_check in pref.be_special_role)
-			. += "<span class='linkOn'>Yes</span>  <a href='byond://?src=\ref[src];add_never=[ghost_trap.pref_check]'>Never</a></br>"
+			. += "[span_linkOn("Yes")]  <a href='byond://?src=\ref[src];add_never=[ghost_trap.pref_check]'>Never</a></br>"
 		else if(ghost_trap.pref_check in pref.never_be_special_role)
-			. += "<a href='byond://?src=\ref[src];add_special=[ghost_trap.pref_check]'>Yes</a>  <span class='linkOn'>Never</span></br>"
+			. += "<a href='byond://?src=\ref[src];add_special=[ghost_trap.pref_check]'>Yes</a>  [span_linkOn("Never")]</br>"
 		else
 			. += "<a href='byond://?src=\ref[src];add_special=[ghost_trap.pref_check]'>Yes</a><a href='byond://?src=\ref[src];add_never=[ghost_trap.pref_check]'>Never</a></br>"
 		. += "</td></tr>"

@@ -162,7 +162,7 @@
 
 /obj/item/organ/examine(mob/user, extra_description = "")
 	if(status & ORGAN_DEAD)
-		extra_description += SPAN_NOTICE("The decay has set in.")
+		extra_description += span_notice("The decay has set in.")
 	..(user, extra_description)
 
 /obj/item/organ/proc/handle_rejection()

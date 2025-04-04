@@ -354,7 +354,7 @@
 		return
 	if(!(status == LIGHT_OK||status == LIGHT_BURNED))
 		return
-	visible_message(SPAN_DANGER("[user] smashes the light!"))
+	visible_message(span_danger("[user] smashes the light!"))
 	attack_animation(user)
 	broken()
 	return 1
@@ -392,7 +392,7 @@
 	// attempt to insert light
 	if(istype(I, /obj/item/light))
 		if(status == LIGHT_OK)
-			to_chat(user, SPAN_WARNING("There is a [fitting] already inserted."))
+			to_chat(user, span_warning("There is a [fitting] already inserted."))
 			return
 		else
 			src.add_fingerprint(user)
@@ -402,9 +402,9 @@
 
 				if(status != LIGHT_EMPTY)
 					drop_light_tube(user)
-					to_chat(user, SPAN_NOTICE("You replace [L]."))
+					to_chat(user, span_notice("You replace [L]."))
 				else
-					to_chat(user, SPAN_NOTICE("You insert [L]."))
+					to_chat(user, span_notice("You insert [L]."))
 
 				status = L.status
 				switchcount = L.switchcount
@@ -423,7 +423,7 @@
 
 					explode()
 			else
-				to_chat(user, SPAN_WARNING("This type of light requires a [fitting]."))
+				to_chat(user, span_warning("This type of light requires a [fitting]."))
 				return
 
 		// attempt to break the light
@@ -548,14 +548,14 @@
 			prot = TRUE
 
 		if(prot) // || (COLD_RESISTANCE in user.mutations)
-			to_chat(user, SPAN_NOTICE("You remove the light [fitting]"))
+			to_chat(user, span_notice("You remove the light [fitting]"))
 		else if(get_active_mutation(user, MUTATION_TELEKINESIS))
-			to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
+			to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
 		else
 			to_chat(user, "You try to remove the light [fitting], but it's too hot and you don't want to burn your hand.")
 			return				// if burned, don't remove the light
 	else
-		to_chat(user, SPAN_NOTICE("You remove the light [fitting]."))
+		to_chat(user, span_notice("You remove the light [fitting]."))
 
 	drop_light_tube(user)
 
@@ -565,7 +565,7 @@
 		to_chat(user, "There is no [fitting] in this light.")
 		return
 
-	to_chat(user, SPAN_NOTICE("You telekinetically remove the light [fitting]."))
+	to_chat(user, span_notice("You telekinetically remove the light [fitting]."))
 	drop_light_tube()
 
 

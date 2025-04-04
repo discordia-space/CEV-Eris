@@ -35,7 +35,7 @@
 		lit = FALSE
 		STOP_PROCESSING(SSobj, src)
 		var/turf/T = get_turf(src)
-		T.visible_message(SPAN_WARNING("The flame on \the [src] went out."))
+		T.visible_message(span_warning("The flame on \the [src] went out."))
 		update_icon()
 		return
 	var/turf/location = loc
@@ -58,7 +58,7 @@
 
 /obj/item/flamethrower/afterattack(atom/target, mob/user, proximity)
 	if (!lit)
-		to_chat(user, SPAN_WARNING("You press the trigger but nothing happens."))
+		to_chat(user, span_warning("You press the trigger but nothing happens."))
 	if (istype(target,/obj/item) && user == target.get_holding_mob())
 		return
 	if (get_dist(target, user) <= flamerange)
@@ -73,7 +73,7 @@
 
 	if(istype(W,/obj/item/tank/plasma))
 		if(ptank)
-			to_chat(user, SPAN_NOTICE("There appears to already be a plasma tank loaded in [src]!"))
+			to_chat(user, span_notice("There appears to already be a plasma tank loaded in [src]!"))
 			return
 		user.drop_item()
 		ptank = W
@@ -102,15 +102,15 @@
 	usr.set_machine(src)
 	if(href_list["light"])
 		if(!ptank || ptank.air_contents.gas["plasma"] < 1)
-			to_chat(usr, SPAN_WARNING("You press the ignite button but nothing happens."))
+			to_chat(usr, span_warning("You press the ignite button but nothing happens."))
 			return
 		lit = !lit
 		if (lit)
-			usr.visible_message(SPAN_WARNING("\The [usr] ignites \the [src]."), SPAN_WARNING("You ignite \the [src]."), "You hear sparking.")
+			usr.visible_message(span_warning("\The [usr] ignites \the [src]."), span_warning("You ignite \the [src]."), "You hear sparking.")
 			playsound(src.loc, 'sound/effects/sparks4.ogg', 50, 1)
 			START_PROCESSING(SSobj, src)
 		else
-			usr.visible_message(SPAN_NOTICE("\The [usr] extinguish \the [src]."), SPAN_NOTICE("You extinguish \the [src]."))
+			usr.visible_message(span_notice("\The [usr] extinguish \the [src]."), span_notice("You extinguish \the [src]."))
 			STOP_PROCESSING(SSobj, src)
 
 	if(href_list["amount"])
@@ -118,7 +118,7 @@
 		throw_amount = max(50, min(5000, throw_amount))
 	if(href_list["remove"])
 		if(!ptank)	return
-		to_chat(usr, SPAN_NOTICE("You remove \the [ptank]."))
+		to_chat(usr, span_notice("You remove \the [ptank]."))
 		usr.put_in_hands(ptank)
 		ptank = null
 		lit = 0

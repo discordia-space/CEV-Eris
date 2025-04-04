@@ -388,15 +388,15 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 	if(!is_relay_online())
-		to_chat(usr, SPAN_WARNING("No Emergency Bluespace Relay detected. Unable to transmit message."))
+		to_chat(usr, span_warning("No Emergency Bluespace Relay detected. Unable to transmit message."))
 		return
 	if(emergency_message_cooldown)
-		to_chat(usr, SPAN_WARNING("Arrays recycling. Please stand by."))
+		to_chat(usr, span_warning("Arrays recycling. Please stand by."))
 		return
 	var/input = sanitize(input(usr, "Please choose a message to transmit to [boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
-	to_chat(usr, SPAN_NOTICE("No response from the remote server. Please, contact your system administrator."))
+	to_chat(usr, span_notice("No response from the remote server. Please, contact your system administrator."))
 	log_say("[key_name(usr)] has made an IA [boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
@@ -439,7 +439,7 @@ var/list/ai_verbs_default = list(
 			if(H)
 				H.attack_ai(src) //may as well recycle
 			else
-				to_chat(src, SPAN_NOTICE("Unable to locate the holopad."))
+				to_chat(src, span_notice("Unable to locate the holopad."))
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in SSmobs.mob_list | SShumans.mob_list
 		if(target && (!ishuman(target) || target.real_name == target.get_face_name()))
@@ -523,7 +523,7 @@ var/list/ai_verbs_default = list(
 		if(network in C.network)
 			eyeobj.setLoc(get_turf(C))
 			break
-	to_chat(src, SPAN_NOTICE("Switched to [network] camera network."))
+	to_chat(src, span_notice("Switched to [network] camera network."))
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
@@ -634,19 +634,19 @@ var/list/ai_verbs_default = list(
 	var/tool_type = W.get_tool_type(user, list(QUALITY_BOLT_TURNING), src)
 	if(tool_type == QUALITY_BOLT_TURNING)
 		if(anchored)
-			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
+			user.visible_message(span_notice("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user,40, src))
-				user.visible_message(SPAN_NOTICE("\The [user] decides not to unbolt \the [src]."))
+				user.visible_message(span_notice("\The [user] decides not to unbolt \the [src]."))
 				return
-			user.visible_message(SPAN_NOTICE("\The [user] finishes unfastening \the [src]!"))
+			user.visible_message(span_notice("\The [user] finishes unfastening \the [src]!"))
 			anchored = FALSE
 			return
 		else
-			user.visible_message(SPAN_NOTICE("\The [user] starts to bolt \the [src] to the plating..."))
+			user.visible_message(span_notice("\The [user] starts to bolt \the [src] to the plating..."))
 			if(!do_after(user,40,src))
-				user.visible_message(SPAN_NOTICE("\The [user] decides not to bolt \the [src]."))
+				user.visible_message(span_notice("\The [user] decides not to bolt \the [src]."))
 				return
-			user.visible_message(SPAN_NOTICE("\The [user] finishes fastening down \the [src]!"))
+			user.visible_message(span_notice("\The [user] finishes fastening down \the [src]!"))
 			anchored = TRUE
 			return
 	else
@@ -676,22 +676,22 @@ var/list/ai_verbs_default = list(
 	set desc = "Toggles hologram movement based on moving with your virtual eye."
 
 	hologram_follow = !hologram_follow
-	to_chat(usr, "<span class='info'>Your hologram will now [hologram_follow ? "follow" : "no longer follow"] you.</span>")
+	to_chat(usr, span_info("Your hologram will now [hologram_follow ? "follow" : "no longer follow"] you."))
 
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)
 	if(stat == DEAD)
-		if(feedback) to_chat(src, SPAN_WARNING("You are dead!"))
+		if(feedback) to_chat(src, span_warning("You are dead!"))
 		return 1
 
 	if(aiRestorePowerRoutine)
-		if(feedback) to_chat(src, SPAN_WARNING("You lack power!"))
+		if(feedback) to_chat(src, span_warning("You lack power!"))
 		return 1
 
 	if((flags & AI_CHECK_WIRELESS) && src.control_disabled)
-		if(feedback) to_chat(src, SPAN_WARNING("Wireless control is disabled!"))
+		if(feedback) to_chat(src, span_warning("Wireless control is disabled!"))
 		return 1
 	if((flags & AI_CHECK_RADIO) && src.aiRadio.disabledAi)
-		if(feedback) to_chat(src, SPAN_WARNING("System Error - Transceiver Disabled!"))
+		if(feedback) to_chat(src, span_warning("System Error - Transceiver Disabled!"))
 		return 1
 	return 0
 
@@ -709,7 +709,7 @@ var/list/ai_verbs_default = list(
 	set category = "Silicon Commands"
 
 	multitool_mode = !multitool_mode
-	to_chat(src, "<span class='notice'>Multitool mode: [multitool_mode ? "E" : "Dise"]ngaged</span>")
+	to_chat(src, span_notice("Multitool mode: [multitool_mode ? "E" : "Dise"]ngaged"))
 
 /mob/living/silicon/ai/updateicon()
 	if(!selected_sprite) selected_sprite = default_ai_icon
@@ -758,7 +758,7 @@ var/list/ai_verbs_default = list(
 	set category = "Silicon Commands"
 
 	if(aiRestorePowerRoutine)  // Cannot switch if lack of power
-		to_chat(src, SPAN_WARNING("You lack power!"))
+		to_chat(src, span_warning("You lack power!"))
 	else
 		go_into_drone()
 
@@ -769,7 +769,7 @@ var/list/ai_verbs_default = list(
 	set category = "Silicon Commands"
 
 	if(aiRestorePowerRoutine)  // Cannot switch if lack of power
-		to_chat(src, SPAN_WARNING("You lack power!"))
+		to_chat(src, span_warning("You lack power!"))
 	else
 		destroy_drone()
 
@@ -786,7 +786,7 @@ var/list/ai_verbs_default = list(
 			try_drone_spawn(src, aibound = TRUE)
 		else
 			var/remaining = (drone_cooldown_time - (world.time - time_destroyed)) / 10
-			to_chat(src, SPAN_WARNING("Security routines hardcoded into your core force you to wait [remaining] seconds before creating a new AI bound drone."))
+			to_chat(src, span_warning("Security routines hardcoded into your core force you to wait [remaining] seconds before creating a new AI bound drone."))
 	else if(mind)
 		mind.active = 0 // We want to transfer the key manually
 		mind.transfer_to(bound_drone) // Transfer mind to drone
@@ -797,4 +797,4 @@ var/list/ai_verbs_default = list(
 	if(bound_drone)
 		bound_drone.death(TRUE)
 	else
-		to_chat(src, SPAN_WARNING("You have no active AI-bound maintenance drone."))
+		to_chat(src, span_warning("You have no active AI-bound maintenance drone."))

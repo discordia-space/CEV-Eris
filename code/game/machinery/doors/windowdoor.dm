@@ -157,14 +157,14 @@
 		if(user.a_intent == I_HURT)
 			if(H.species.can_shred(H))
 				playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
-				visible_message(SPAN_DANGER("[user] smashes against the [src.name]."), 1)
+				visible_message(span_danger("[user] smashes against the [src.name]."), 1)
 				take_damage(25)
 				return
 
 			playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 			user.do_attack_animation(src)
-			usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
-								SPAN_DANGER("You bang against \the [src]!"),
+			usr.visible_message(span_danger("\The [usr] bangs against \the [src]!"),
+								span_danger("You bang against \the [src]!"),
 								"You hear a banging sound.")
 		else
 			playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
@@ -201,14 +201,14 @@
 			spark_system.start()
 			playsound(src.loc, "sparks", 50, 1)
 			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
-			visible_message(SPAN_WARNING("The glass door was sliced open by [user]!"))
+			visible_message(span_warning("The glass door was sliced open by [user]!"))
 		return 1
 
 	//If it's emagged, crowbar can pry electronics out.
 	if (src.operating == -1 && (QUALITY_PRYING in I.tool_qualities))
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			to_chat(user, SPAN_NOTICE("You removed the windoor electronics!"))
+			to_chat(user, span_notice("You removed the windoor electronics!"))
 
 			var/obj/structure/windoor_assembly/wa = new/obj/structure/windoor_assembly(src.loc)
 			if (istype(src, /obj/machinery/door/window/brigdoor))
@@ -247,7 +247,7 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		var/aforce = I.force
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
-		visible_message(SPAN_DANGER("[src] was hit by [I]."))
+		visible_message(span_danger("[src] was hit by [I]."))
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return

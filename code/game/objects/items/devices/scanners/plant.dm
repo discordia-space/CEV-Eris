@@ -35,7 +35,7 @@
 	var/dat = list()
 	if(istype(target, /obj/machinery/beehive))
 		var/obj/machinery/beehive/BH = target
-		dat += SPAN_NOTICE("Scan result of \the [BH]...")
+		dat += span_notice("Scan result of \the [BH]...")
 		dat += "Beehive is [BH.bee_count ? "[round(BH.bee_count)]% full" : "empty"].[BH.bee_count > 90 ? " Colony is ready to split." : ""]"
 		if(BH.frames)
 			dat += "[BH.frames] frames installed, [round(BH.honeycombs / 100)] filled."

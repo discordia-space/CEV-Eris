@@ -81,22 +81,22 @@
 		return 0
 	var/turf/T = src.loc
 	if (level==1 && isturf(T) && !T.is_plating())
-		to_chat(user, SPAN_WARNING("You must remove the plating first."))
+		to_chat(user, span_warning("You must remove the plating first."))
 		return 1
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		var/datum/gas_mixture/int_air = return_air()
 		var/datum/gas_mixture/env_air = loc.return_air()
 		if ((int_air.return_pressure()-env_air.return_pressure()) > 4*ONE_ATMOSPHERE)
-			to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
+			to_chat(user, span_warning("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 			add_fingerprint(user)
 			return 1
 
-		to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+		to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			user.visible_message( \
-				SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-				SPAN_NOTICE("You have unfastened \the [src]."), \
+				span_notice("\The [user] unfastens \the [src]."), \
+				span_notice("You have unfastened \the [src]."), \
 				"You hear a ratchet.")
 			investigate_log("was unfastened by [key_name(user)]", "atmos")
 			new /obj/item/pipe(loc, make_from=src)
@@ -213,7 +213,7 @@
 	else return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
-	src.visible_message(SPAN_DANGER("\The [src] bursts!"));
+	src.visible_message(span_danger("\The [src] bursts!"));
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1, 0, src.loc, 0)

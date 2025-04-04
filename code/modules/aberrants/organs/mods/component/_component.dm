@@ -298,10 +298,10 @@
 			details_unlocked = (user.stats.getStat(examine_stat_secondary) >= examine_difficulty_secondary) ? TRUE : FALSE
 
 	if(examine_msg)
-		reference.Add(SPAN_WARNING(examine_msg))
+		reference.Add(span_warning(examine_msg))
 
 	if(adjustable)
-		reference.Add(SPAN_WARNING("Can be adjusted with a laser cutting tool."))
+		reference.Add(span_warning("Can be adjusted with a laser cutting tool."))
 
 	if(using_sci_goggles || details_unlocked)
 		var/info = "Organoid size: [specific_organ_size_base ? specific_organ_size_base : "0"]"
@@ -319,13 +319,13 @@
 		if(aberrant_cooldown_time_base)
 			info += "\nAverage organ process duration: [aberrant_cooldown_time_base / (1 SECOND)] seconds"
 
-		reference.Add(SPAN_NOTICE(info))
+		reference.Add(span_notice(info))
 
 		var/function_info = get_function_info()
 		if(function_info)
-			reference.Add(SPAN_NOTICE(function_info))
+			reference.Add(span_notice(function_info))
 	else
-		reference.Add(SPAN_WARNING("You lack the biological knowledge and/or mental ability  required to understand its functions."))
+		reference.Add(span_warning("You lack the biological knowledge and/or mental ability  required to understand its functions."))
 */
 
 /*	Commented out until I figure out how to make this work with the owner verb changes
@@ -342,7 +342,7 @@
 	if(istype(src, /obj/item/organ/internal/scaffold))
 		var/obj/item/organ/internal/scaffold/S = src
 		if(S.on_cooldown)
-			to_chat(usr, SPAN_NOTICE("\The [src] is not ready to be activated."))
+			to_chat(usr, span_notice("\The [src] is not ready to be activated."))
 			return
 
 	if(O && O.owner)

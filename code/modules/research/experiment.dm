@@ -241,13 +241,13 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 	if(scanneddata > 0)
 		datablocks += scanneddata
-		to_chat(user, SPAN_NOTICE("[src] received [scanneddata] data block[scanneddata>1?"s":""] from scanning [O]"))
+		to_chat(user, span_notice("[src] received [scanneddata] data block[scanneddata>1?"s":""] from scanning [O]"))
 	else if(istype(O, /obj/item))
 		var/science_value = experiments.get_object_research_value(O)
 		if(science_value > 0)
-			to_chat(user, SPAN_NOTICE("Estimated research value of [O.name] is [science_value]"))
+			to_chat(user, span_notice("Estimated research value of [O.name] is [science_value]"))
 		else
-			to_chat(user, SPAN_NOTICE("[O] has no research value"))
+			to_chat(user, span_notice("[O] has no research value"))
 
 /obj/item/device/science_tool/proc/clear_data()
 	scanned_autopsy_weapons = list()

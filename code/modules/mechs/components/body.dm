@@ -101,11 +101,11 @@
 
 /obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
 	if(!cell)
-		to_chat(user, SPAN_WARNING("It is missing a power cell."))
+		to_chat(user, span_warning("It is missing a power cell."))
 	if(!computer)
-		to_chat(user, SPAN_WARNING("It is missing a control computer."))
+		to_chat(user, span_warning("It is missing a control computer."))
 	if(!diagnostics)
-		to_chat(user, SPAN_WARNING("It is missing a diagnostic scanner."))
+		to_chat(user, span_warning("It is missing a diagnostic scanner."))
 
 /obj/item/mech_component/chassis/Initialize()
 	. = ..()
@@ -156,19 +156,19 @@
 /obj/item/mech_component/chassis/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/robot_parts/robot_component/exosuit_control))
 		if(computer)
-			to_chat(user, SPAN_WARNING("\The [src] already has a control computer installed."))
+			to_chat(user, span_warning("\The [src] already has a control computer installed."))
 			return
 		if(insert_item(I, user))
 			computer = I
 	else if(istype(I, /obj/item/cell/large))
 		if(cell)
-			to_chat(user, SPAN_WARNING("\The [src] already has a cell installed."))
+			to_chat(user, span_warning("\The [src] already has a cell installed."))
 			return
 		if(insert_item(I, user))
 			cell = I
 	else if(istype(I, /obj/item/robot_parts/robot_component/diagnosis_unit))
 		if(diagnostics)
-			to_chat(user, SPAN_WARNING("\The [src] already has a diagnosis unit installed."))
+			to_chat(user, span_warning("\The [src] already has a diagnosis unit installed."))
 			return
 		else if(insert_item(I, user))
 			diagnostics = I
@@ -180,7 +180,7 @@
 	if(istype(C) && !C.anchored && do_after(user, 5, src))
 		if(C.anchored)
 			return
-		to_chat(user, SPAN_NOTICE("You install the canister in the [src]."))
+		to_chat(user, span_notice("You install the canister in the [src]."))
 		if(air_supply)
 			air_supply.forceMove(get_turf(src))
 			air_supply = null
@@ -191,15 +191,15 @@
 /obj/item/mech_component/chassis/return_diagnostics(mob/user)
 	..()
 	if(diagnostics)
-		to_chat(user, SPAN_NOTICE(" Diagnostics Unit Integrity: <b>[round((((diagnostics.max_dam - diagnostics.total_dam) / diagnostics.max_dam)) * 100)]%</b>"))
+		to_chat(user, span_notice(" Diagnostics Unit Integrity: <b>[round((((diagnostics.max_dam - diagnostics.total_dam) / diagnostics.max_dam)) * 100)]%</b>"))
 	else
-		to_chat(user, SPAN_WARNING(" Diagnostics Unit Missing or Non-functional."))
+		to_chat(user, span_warning(" Diagnostics Unit Missing or Non-functional."))
 	if(computer)
-		to_chat(user, SPAN_NOTICE(" Installed Software"))
+		to_chat(user, span_notice(" Installed Software"))
 		for(var/exosystem_computer in computer.installed_software)
-			to_chat(user, SPAN_NOTICE(" - <b>[capitalize(exosystem_computer)]</b>"))
+			to_chat(user, span_notice(" - <b>[capitalize(exosystem_computer)]</b>"))
 	else
-		to_chat(user, SPAN_WARNING(" Control Module Missing or Non-functional."))
+		to_chat(user, span_warning(" Control Module Missing or Non-functional."))
 /obj/item/mech_component/chassis/MouseDrop(atom/over)
 	if(!usr || !over) return
 	if(!Adjacent(usr) || !over.Adjacent(usr)) return

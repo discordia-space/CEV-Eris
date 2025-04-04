@@ -156,7 +156,7 @@
 	return scrambled_text
 
 /datum/language/proc/format_message(message, verb)
-	return "[verb], <span class='message'><span class='[colour]'>\"[capitalize(message)]\"</span></span>"
+	return "[verb], [span_message("<span class='[colour]'>\"[capitalize(message)]\"")]</span>"
 
 /datum/language/proc/format_message_plain(message, verb)
 	return "[verb], \"[capitalize(message)]\""
@@ -179,7 +179,7 @@
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if((language in languages) && language.check_special_condition(src))
-		var/msg = "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>"
+		var/msg = "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] [message]</span></i>"
 		to_chat(src, msg)
 
 /mob/new_player/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
@@ -187,9 +187,9 @@
 
 /mob/observer/ghost/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if(speaker.name == speaker_name || antagHUD)
-		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]</span></i>")
+		to_chat(src, "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] ([ghost_follow_link(speaker, src)]) [message]</span></i>")
 	else
-		to_chat(src, "<i><span class='game say'>[language.name], <span class='name'>[speaker_name]</span> [message]</span></i>")
+		to_chat(src, "<i><span class='game say'>[language.name], [span_name("[speaker_name]")] [message]</span></i>")
 
 /datum/language/proc/check_special_condition(var/mob/other)
 	return 1

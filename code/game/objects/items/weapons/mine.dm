@@ -90,21 +90,21 @@
 
 /obj/item/mine/attack_self(mob/user)
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
-		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
+		to_chat(user, span_notice("You cannot place \the [src] here, there is a ladder."))
 		return
 	if(locate(/obj/structure/multiz/stairs) in get_turf(user))
-		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, it needs a flat surface."))
+		to_chat(user, span_notice("You cannot place \the [src] here, it needs a flat surface."))
 		return
 	if(!armed)
 		user.visible_message(
-			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("You begin deploying \the [src]!")
+			span_danger("[user] starts to deploy \the [src]."),
+			span_danger("You begin deploying \the [src]!")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
-				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("You have deployed \the [src]!")
+				span_danger("[user] has deployed \the [src]."),
+				span_danger("You have deployed \the [src]!")
 				)
 
 			deployed = TRUE
@@ -121,7 +121,7 @@
 		for(var/datum/antagonist/A in user.mind.antagonist)
 			if(A.id == ROLE_EXCELSIOR_REV && deployed)
 				user.visible_message(
-					SPAN_NOTICE("You summon up Excelsior's collective training and carefully deactivate the mine for transport.")
+					span_notice("You summon up Excelsior's collective training and carefully deactivate the mine for transport.")
 					)
 				deployed = FALSE
 				anchored = FALSE
@@ -131,7 +131,7 @@
 	if (deployed)
 		if(pulse_difficulty == FAILCHANCE_ZERO)
 			user.visible_message(
-					SPAN_NOTICE("You carefully disarm the [src].")
+					span_notice("You carefully disarm the [src].")
 					)
 			deployed = FALSE
 			anchored = FALSE
@@ -140,21 +140,21 @@
 			return
 		else
 			user.visible_message(
-					SPAN_DANGER("[user] extends its hand to reach \the [src]!"),
-					SPAN_DANGER("You extend your arms to pick it up, knowing that it will likely blow up when you touch it!")
+					span_danger("[user] extends its hand to reach \the [src]!"),
+					span_danger("You extend your arms to pick it up, knowing that it will likely blow up when you touch it!")
 					)
 			if (do_after(user, 5))
 				if(prob(prob_explode))
 					user.visible_message(
-						SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in \his hands!"),
-						SPAN_DANGER("You attempt to pick up \the [src] only to hear a beep as it explodes in your hands!")
+						span_danger("[user] attempts to pick up \the [src] only to hear a beep as it explodes in \his hands!"),
+						span_danger("You attempt to pick up \the [src] only to hear a beep as it explodes in your hands!")
 						)
 					explode()
 					return
 				else
 					user.visible_message(
-						SPAN_DANGER("[user] picks up \the [src], which miraculously doesn't explode!"),
-						SPAN_DANGER("You pick up \the [src], which miraculously doesn't explode!")
+						span_danger("[user] picks up \the [src], which miraculously doesn't explode!"),
+						span_danger("You pick up \the [src], which miraculously doesn't explode!")
 					)
 					deployed = FALSE
 					anchored = FALSE
@@ -168,13 +168,13 @@
 
 		if (deployed)
 			user.visible_message(
-			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
-			SPAN_DANGER("You begin to carefully disarm \the [src].")
+			span_danger("[user] starts to carefully disarm \the [src]."),
+			span_danger("You begin to carefully disarm \the [src].")
 			)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, pulse_difficulty,  required_stat = STAT_COG)) //disarming a mine with a multitool should be for smarties
 			user.visible_message(
-				SPAN_DANGER("[user] has disarmed \the [src]."),
-				SPAN_DANGER("You have disarmed \the [src]!")
+				span_danger("[user] has disarmed \the [src]."),
+				span_danger("You have disarmed \the [src]!")
 				)
 			deployed = FALSE
 			anchored = FALSE
@@ -184,8 +184,8 @@
 	else
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
 			user.visible_message(
-				SPAN_DANGER("\The [src] is hit with [I] and it explodes!"),
-				SPAN_DANGER("You hit \the [src] with [I] and it explodes!"))
+				span_danger("\The [src] is hit with [I] and it explodes!"),
+				span_danger("You hit \the [src] with [I] and it explodes!"))
 			explode()
 		return
 
@@ -193,10 +193,10 @@
 /obj/item/mine/Crossed(mob/AM)
 	if (armed)
 		if(locate(/obj/structure/multiz/ladder) in get_turf(loc))
-			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
+			visible_message(span_danger("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
 			return
 		if(locate(/obj/structure/multiz/stairs) in get_turf(loc))
-			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
+			visible_message(span_danger("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
 			return ..()
 		if(isliving(AM))
 
@@ -230,12 +230,12 @@
 
 	if (istype(I,/obj/item/device/assembly_holder))
 		if(detonator)
-			to_chat(user, SPAN_WARNING("There is another device in the way."))
+			to_chat(user, span_warning("There is another device in the way."))
 			return ..()
 
 		user.visible_message("\The [user] begins attaching [I] to \the [src].", "You begin attaching [I] to \the [src]")
 		if(do_after(user, 20, src))
-			user.visible_message("<span class='notice'>The [user] attach [I] to \the [src].", "\blue  You attach [I] to \the [src].</span>")
+			user.visible_message(span_notice("The [user] attach [I] to \the [src].", "\blue  You attach [I] to \the [src]."))
 
 			detonator = I
 			user.unEquip(I,src)

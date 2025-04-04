@@ -74,7 +74,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		to_chat(world, SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting."))
+		to_chat(world, span_danger("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
@@ -318,9 +318,9 @@ var/list/global/cutoff_plant_icons = list()
 /obj/effect/plant/examine(mob/user, extra_description = "")
 	if(seed.get_trait(TRAIT_CHEMS))
 		if(!reagents.total_volume)
-			extra_description += SPAN_NOTICE("It looks totally dried.")
+			extra_description += span_notice("It looks totally dried.")
 		else if(!reagents.get_free_space())
-			extra_description += SPAN_NOTICE("It looks juicy.")
+			extra_description += span_notice("It looks juicy.")
 		else
-			extra_description += SPAN_NOTICE("It looks a bit dry.")
+			extra_description += span_notice("It looks a bit dry.")
 	..(user, extra_description)

@@ -91,26 +91,26 @@
 
 /obj/item/gun/projectile/dartgun/examine(mob/user, extra_description = "")
 	if(LAZYLEN(beakers))
-		extra_description += SPAN_NOTICE("\n[src] contains:")
+		extra_description += span_notice("\n[src] contains:")
 		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
 			if(B.reagents && LAZYLEN(B.reagents.reagent_list))
 				for(var/datum/reagent/R in B.reagents.reagent_list)
-					extra_description += SPAN_NOTICE("\n[R.volume] units of [R.name]")
+					extra_description += span_notice("\n[R.volume] units of [R.name]")
 	..(user, extra_description)
 
 /obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!istype(I, beaker_type))
-			to_chat(user, SPAN_NOTICE("[I] doesn't seem to fit into [src]."))
+			to_chat(user, span_notice("[I] doesn't seem to fit into [src]."))
 			return
 		if(beakers.len >= max_beakers)
-			to_chat(user, SPAN_NOTICE("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
+			to_chat(user, span_notice("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
 			return
 		var/obj/item/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		B.loc = src
 		beakers += B
-		to_chat(user, SPAN_NOTICE("You slot [B] into [src]."))
+		to_chat(user, span_notice("You slot [B] into [src]."))
 		src.updateUsrDialog()
 		return 1
 	..()

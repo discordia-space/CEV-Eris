@@ -69,10 +69,10 @@
 			update_icon()
 			return TRUE
 		if (feedback)
-			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [I].</span>")
+			to_chat(user, span_danger("Your gripper cannot hold \the [I]."))
 		return FALSE
 	if (feedback)
-		to_chat(user, "<span class='danger'>Your gripper is already holding \the [wrapped].</span>")
+		to_chat(user, span_danger("Your gripper is already holding \the [wrapped]."))
 	return FALSE
 
 
@@ -163,7 +163,7 @@
 	if(istype(target, /obj/machinery/camera) && user.a_intent == I_HELP)
 		var/obj/machinery/camera/cam = target
 		if(cam.taped)
-			to_chat(user, SPAN_NOTICE("You remove the tape from \the [cam] using the edge of your magnetic gripper."))
+			to_chat(user, span_notice("You remove the tape from \the [cam] using the edge of your magnetic gripper."))
 			cam.icon_state = "camera"
 			cam.taped = 0
 			cam.set_status(1)

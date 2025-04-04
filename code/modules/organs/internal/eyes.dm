@@ -43,7 +43,7 @@
 	var/oldbroken = is_broken()
 	..()
 	if(is_broken() && !oldbroken && owner && !owner.stat)
-		to_chat(owner, SPAN_DANGER("You go blind!"))
+		to_chat(owner, span_danger("You go blind!"))
 
 /obj/item/organ/internal/eyes/proc/get_colourmatrix() //Returns a special colour matrix if the mob is colourblind, otherwise it uses the current one.
 	if(owner.stats.getPerk(PERK_OBORIN_SYNDROME) && !owner.is_dead())

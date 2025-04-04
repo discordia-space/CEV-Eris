@@ -136,7 +136,7 @@
 	if(H.wear_suit != src) return
 
 	if(H.head == hood)
-		to_chat(H, SPAN_NOTICE("You lower your hood."))
+		to_chat(H, span_notice("You lower your hood."))
 		hood.canremove = 1
 		H.drop_from_inventory(hood)
 		hood.forceMove(src)
@@ -144,11 +144,11 @@
 		playsound(src.loc, "rustle", 75, 1)
 	else
 		if(H.head)
-			to_chat(H, SPAN_DANGER("You cannot raise your hood while wearing \the [H.head]."))
+			to_chat(H, span_danger("You cannot raise your hood while wearing \the [H.head]."))
 			return
 		if(H.equip_to_slot_if_possible(hood, slot_head))
 			hood.canremove = 0
-			to_chat(H, "<span class='info'>You raise your hood, obscuring your face.</span>")
+			to_chat(H, span_info("You raise your hood, obscuring your face."))
 			icon_state = icon_up
 			playsound(src.loc, "rustle", 75, 1)
 

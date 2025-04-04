@@ -223,18 +223,18 @@
 
 /obj/item/organ/internal/examine(mob/user, extra_description = "")
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_BASIC)
-		extra_description += SPAN_NOTICE("\nOrgan size: [specific_organ_size]")
+		extra_description += span_notice("\nOrgan size: [specific_organ_size]")
 	if(user.stats?.getStat(STAT_BIO) > STAT_LEVEL_EXPERT - 5)
 		var/organs
 		for(var/organ in organ_efficiency)
 			organs += organ + " ([organ_efficiency[organ]]), "
 		organs = copytext(organs, 1, length(organs) - 1)
 
-		extra_description += SPAN_NOTICE("\nRequirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>")
-		extra_description += SPAN_NOTICE("\nOrgan tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>")
+		extra_description += span_notice("\nRequirements: <span style='color:red'>[blood_req]</span>/<span style='color:blue'>[oxygen_req]</span>/<span style='color:orange'>[nutriment_req]</span>")
+		extra_description += span_notice("\nOrgan tissues present (efficiency): <span style='color:pink'>[organs ? organs : "none"]</span>")
 
 		if(item_upgrades.len)
-			extra_description += SPAN_NOTICE("\nOrgan grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove.")
+			extra_description += span_notice("\nOrgan grafts present ([item_upgrades.len]/[max_upgrades]). Use a laser cutting tool to remove.")
 	..(user, extra_description)
 
 /obj/item/organ/internal/is_usable()
@@ -284,9 +284,9 @@
 			playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
 
 			owner.visible_message(
-				SPAN_DANGER("You hear a loud cracking sound coming from \the [owner]."),
-				SPAN_DANGER("Something feels like it shattered in your [name]"),
-				SPAN_DANGER("You hear a sickening crack.")
+				span_danger("You hear a loud cracking sound coming from \the [owner]."),
+				span_danger("Something feels like it shattered in your [name]"),
+				span_danger("You hear a sickening crack.")
 			)
 
 			if(owner.species && !(owner.species.flags & NO_PAIN))

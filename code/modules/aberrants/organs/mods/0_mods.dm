@@ -66,10 +66,10 @@
 			details_unlocked = (user.stats.getStat(M.examine_stat_secondary) >= M.examine_difficulty_secondary) ? TRUE : FALSE
 
 	if(M.examine_msg)
-		extra_description += SPAN_WARNING(M.examine_msg) + "\n"
+		extra_description += span_warning(M.examine_msg) + "\n"
 
 	if(M.adjustable)
-		extra_description += SPAN_WARNING("Can be adjusted with a laser cutting tool.") + "\n"
+		extra_description += span_warning("Can be adjusted with a laser cutting tool.") + "\n"
 
 	if(using_sci_goggles || details_unlocked)
 		var/info = "\nOrganoid size: [specific_organ_size_base ? specific_organ_size_base : "0"]"
@@ -87,13 +87,13 @@
 		if(aberrant_cooldown_time_base)
 			info += "\nAverage organ process duration: [aberrant_cooldown_time_base / (1 SECOND)] seconds"
 
-		extra_description += SPAN_NOTICE(info)  + "\n"
+		extra_description += span_notice(info)  + "\n"
 
 		var/function_info = M.get_function_info()
 		if(function_info)
-			extra_description += SPAN_NOTICE(function_info)
+			extra_description += span_notice(function_info)
 	else
-		extra_description += SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions.")
+		extra_description += span_warning("You lack the biological knowledge and/or mental ability required to understand its functions.")
 
 	..(user, extra_description)
 

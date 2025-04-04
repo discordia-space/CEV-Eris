@@ -99,9 +99,9 @@
 				if(!locked)
 					open = !open
 					update_icon()
-					to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+					to_chat(user, span_notice("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				else
-					to_chat(user, SPAN_NOTICE("You fail to unsrew the cover, looks like its locked from the inside."))
+					to_chat(user, span_notice("You fail to unsrew the cover, looks like its locked from the inside."))
 				return
 
 		if(QUALITY_WIRE_CUTTING)
@@ -109,8 +109,8 @@
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 					passenger_allowed = !passenger_allowed
 					user.visible_message(
-						SPAN_NOTICE("[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src]."),
-						SPAN_NOTICE("You [passenger_allowed ? "cut" : "mend"] the load limiter cable.")
+						span_notice("[user] [passenger_allowed ? "cuts" : "mends"] a cable in [src]."),
+						span_notice("You [passenger_allowed ? "cut" : "mend"] the load limiter cable.")
 					)
 			return
 
@@ -194,11 +194,11 @@
 		emagged = 1
 		if(locked)
 			locked = 0
-			to_chat(user, SPAN_WARNING("You bypass [src]'s controls."))
+			to_chat(user, span_warning("You bypass [src]'s controls."))
 		return 1
 
 /obj/vehicle/proc/explode()
-	src.visible_message(SPAN_DANGER("\The [src] blows apart!"))
+	src.visible_message(span_danger("\The [src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	for (var/i in 1 to 2)
@@ -253,13 +253,13 @@
 	C.forceMove(src)
 	src.cell = C
 	powercheck()
-	to_chat(usr, SPAN_NOTICE("You install [C] in [src]."))
+	to_chat(usr, span_notice("You install [C] in [src]."))
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	to_chat(usr, SPAN_NOTICE("You remove [cell] from [src]."))
+	to_chat(usr, span_notice("You remove [cell] from [src]."))
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null
@@ -362,7 +362,7 @@
 /obj/vehicle/attack_generic(var/mob/user, var/damage, var/attack_message)
 	if(!damage)
 		return
-	visible_message(SPAN_DANGER("\The [user] [attack_message] the \the [src]!"))
+	visible_message(span_danger("\The [user] [attack_message] the \the [src]!"))
 	if(istype(user))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked \the [src.name]</font>")
 		user.do_attack_animation(src)

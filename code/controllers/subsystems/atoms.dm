@@ -157,6 +157,6 @@ SUBSYSTEM_DEF(atoms)
 	set desc = "Displays a list of things that didn't handle Initialize() properly."
 
 	if(!LAZYLEN(SSatoms.BadInitializeCalls))
-		to_chat(usr, SPAN_NOTICE("BadInit list is empty."))
+		to_chat(usr, span_notice("BadInit list is empty."))
 	else
 		usr << browse(HTML_SKELETON(replacetext(SSatoms.InitLog(), "\n", "<br>")), "window=initlog")

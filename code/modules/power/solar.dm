@@ -66,7 +66,7 @@
 				S.loc = src.loc
 				S.give_glass()
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 50, TRUE)
-			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
+			user.visible_message(span_notice("[user] takes the glass off the solar panel."))
 			qdel(src)
 		return
 	else if (I)
@@ -218,14 +218,14 @@
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					new /obj/item/electronics/tracker(src.loc)
 					tracker = 0
-					user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
+					user.visible_message(span_notice("[user] takes out the electronics from the solar assembly."))
 					return
 			return
 
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				anchored = !anchored
-				user.visible_message(SPAN_NOTICE("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
+				user.visible_message(span_notice("[user] [anchored ? "un" : ""]wrenches the solar assembly into place."))
 				return
 			return
 
@@ -234,22 +234,22 @@
 
 	if(istype(I, /obj/item/stack/material/glass))
 		if(!anchored)
-			to_chat(user, SPAN_WARNING("You need to secure the assembly before you can add glass."))
+			to_chat(user, span_warning("You need to secure the assembly before you can add glass."))
 			return
 		if(locate(/obj/machinery/power/solar) in get_turf(src))
-			to_chat(user, SPAN_WARNING("A solar panel is already assembled here."))
+			to_chat(user, span_warning("A solar panel is already assembled here."))
 			return
 		var/obj/item/stack/material/S = I
 		if(S.use(2))
 			glass_type = S.type
 			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
-			user.visible_message(SPAN_NOTICE("[user] places the glass on the solar assembly."), SPAN_NOTICE("You place the glass on the solar assembly."))
+			user.visible_message(span_notice("[user] places the glass on the solar assembly."), span_notice("You place the glass on the solar assembly."))
 			if(tracker)
 				new /obj/machinery/power/tracker(get_turf(src), src)
 			else
 				new /obj/machinery/power/solar(get_turf(src), src)
 		else
-			to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel!"))
+			to_chat(user, span_warning("You need two sheets of glass to put them into a solar panel!"))
 			return
 		return TRUE
 
@@ -259,7 +259,7 @@
 			user.drop_item()
 			qdel(I)
 			playsound(loc, 'sound/machines/click.ogg', 50, TRUE)
-			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
+			user.visible_message(span_notice("[user] inserts the electronics into the solar assembly."))
 			return
 	..()
 
@@ -375,25 +375,25 @@
 
 /obj/machinery/power/solar_control/interact(mob/user)
 
-	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
-	t += "<B><span class='highlight'>Star Orientation</span></B>: [SSsun.angle]&deg ([angle2text(SSsun.angle)])<BR>"
-	t += "<B><span class='highlight'>Array Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
-	t += "<B><span class='highlight'>Tracking:</span></B><div class='statusDisplay'>"
+	var/t = "<B>[span_highlight("Generated power")]</B> : [round(lastgen)] W<BR>"
+	t += "<B>[span_highlight("Star Orientation")]</B>: [SSsun.angle]&deg ([angle2text(SSsun.angle)])<BR>"
+	t += "<B>[span_highlight("Array Orientation")]</B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
+	t += "<B>[span_highlight("Tracking:")]</B><div class='statusDisplay'>"
 	switch(track)
 		if(0)
-			t += "<span class='linkOn'>Off</span> <A href='byond://?src=\ref[src];track=1'>Timed</A> <A href='byond://?src=\ref[src];track=2'>Auto</A><BR>"
+			t += "[span_linkOn("Off")] <A href='byond://?src=\ref[src];track=1'>Timed</A> <A href='byond://?src=\ref[src];track=2'>Auto</A><BR>"
 		if(1)
-			t += "<A href='byond://?src=\ref[src];track=0'>Off</A> <span class='linkOn'>Timed</span> <A href='byond://?src=\ref[src];track=2'>Auto</A><BR>"
+			t += "<A href='byond://?src=\ref[src];track=0'>Off</A> [span_linkOn("Timed")] <A href='byond://?src=\ref[src];track=2'>Auto</A><BR>"
 		if(2)
-			t += "<A href='byond://?src=\ref[src];track=0'>Off</A> <A href='byond://?src=\ref[src];track=1'>Timed</A> <span class='linkOn'>Auto</span><BR>"
+			t += "<A href='byond://?src=\ref[src];track=0'>Off</A> <A href='byond://?src=\ref[src];track=1'>Timed</A> [span_linkOn("Auto")]<BR>"
 
 	t += "Tracking Rate: [rate_control(src,"tdir","[trackrate] deg/h ([trackrate<0 ? "CCW" : "CW"])",1,30,180)]</div><BR>"
 
-	t += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
+	t += "<B>[span_highlight("Connected devices:")]</B><div class='statusDisplay'>"
 
 	t += "<A href='byond://?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
 	t += "Solar panels : [connected_panels.len] connected<BR>"
-	t += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
+	t += "Solar tracker : [connected_tracker ? span_good("Found") : span_bad("Not found")]</div><BR>"
 
 	t += "<A href='byond://?src=\ref[src];close=1'>Close</A>"
 
@@ -407,7 +407,7 @@
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 			if (src.stat & BROKEN)
-				to_chat(user, SPAN_NOTICE("The broken glass falls out."))
+				to_chat(user, span_notice("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				new /obj/item/material/shard( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
@@ -419,7 +419,7 @@
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(user, SPAN_NOTICE("You disconnect the monitor."))
+				to_chat(user, span_notice("You disconnect the monitor."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/electronics/circuitboard/solar_control/M = new /obj/item/electronics/circuitboard/solar_control( A )
 				for (var/obj/C in src)

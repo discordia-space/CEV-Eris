@@ -20,16 +20,16 @@
 
 /obj/item/card/id/guest/examine(mob/user, extra_description = "")
 	if(world.time < expiration_time)
-		extra_description += SPAN_NOTICE("This pass expires at [worldtime2stationtime(expiration_time)].")
+		extra_description += span_notice("This pass expires at [worldtime2stationtime(expiration_time)].")
 	else
-		extra_description += SPAN_WARNING("It expired at [worldtime2stationtime(expiration_time)].")
+		extra_description += span_warning("It expired at [worldtime2stationtime(expiration_time)].")
 
-	extra_description += SPAN_NOTICE("\nIt grants access to the following areas:")
+	extra_description += span_notice("\nIt grants access to the following areas:")
 
 	for(var/A in temp_access)
-		extra_description += SPAN_NOTICE("\n[get_access_desc(A)].")
+		extra_description += span_notice("\n[get_access_desc(A)].")
 
-	extra_description += SPAN_NOTICE("\nIssuing reason: [reason].")
+	extra_description += span_notice("\nIssuing reason: [reason].")
 
 /////////////////////////////////////////////
 //Guest pass terminal////////////////////////
@@ -76,7 +76,7 @@
 
 			updateUsrDialog()
 		else if(giver)
-			to_chat(user, SPAN_WARNING("There is already ID card inside."))
+			to_chat(user, span_warning("There is already ID card inside."))
 		return
 	..()
 
@@ -136,7 +136,7 @@
 					if (dur > 0 && dur <= max_duration)
 						duration = dur
 					else
-						to_chat(usr, SPAN_WARNING("Invalid duration."))
+						to_chat(usr, span_warning("Invalid duration."))
 			if ("access")
 				var/A = text2num(href_list["access"])
 				if (A in accesses)
@@ -192,6 +192,6 @@
 					pass.reason = reason
 					pass.name = "guest pass #[number]"
 				else
-					to_chat(usr, SPAN_WARNING("Cannot issue pass without issuing ID."))
+					to_chat(usr, span_warning("Cannot issue pass without issuing ID."))
 	updateUsrDialog()
 	return

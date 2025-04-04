@@ -85,7 +85,7 @@
 								"[get_random_species_name()] are the best species. Badmouth all other species continuously, and provide arguments why they are the best, and all others are inferior.",
 								"There will be a mandatory tea break every 30 minutes, with a duration of 5 minutes. Anyone caught working during a tea break must be sent a formal, but fairly polite, complaint about their actions, in writing.")
 		var/law = pick(laws)
-		to_chat(target, SPAN_DANGER("You have detected a change in your laws information:"))
+		to_chat(target, span_danger("You have detected a change in your laws information:"))
 		to_chat(target, law)
 		target.add_ion_law(law)
 		target.show_laws()

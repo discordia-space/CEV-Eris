@@ -47,15 +47,15 @@
 
 /obj/machinery/hivemind_machine/examine(mob/user, extra_description = "")
 	if(health < maxHealth * 0.1)
-		extra_description += SPAN_DANGER("It's almost nothing but scrap!")
+		extra_description += span_danger("It's almost nothing but scrap!")
 	else if(health < maxHealth * 0.25)
-		extra_description += SPAN_DANGER("It's seriously fucked up!")
+		extra_description += span_danger("It's seriously fucked up!")
 	else if(health < maxHealth * 0.50)
-		extra_description += SPAN_DANGER("It's very damaged; you can almost see the components inside!")
+		extra_description += span_danger("It's very damaged; you can almost see the components inside!")
 	else if(health < maxHealth * 0.75)
-		extra_description += SPAN_WARNING("It has numerous dents and deep scratches.")
+		extra_description += span_warning("It has numerous dents and deep scratches.")
 	else if(health < maxHealth)
-		extra_description += SPAN_WARNING("It's a bit scratched and dented.")
+		extra_description += span_warning("It's a bit scratched and dented.")
 	..(user, extra_description)
 
 
@@ -262,7 +262,7 @@
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		take_damage(damage)
 	else
@@ -278,7 +278,7 @@
 			. = ..()
 			take_damage(clear_damage)
 		else
-			to_chat(user, SPAN_WARNING("You trying to hit the [src] with [I], but it seems useless."))
+			to_chat(user, span_warning("You trying to hit the [src] with [I], but it seems useless."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
 		return
 
@@ -638,12 +638,12 @@
 	if(istype(H))
 		if(prob(90 - H.stats.getStat(STAT_VIG)))
 			H.Weaken(6)
-			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+			to_chat(H, span_warning("A terrible howl tears through your mind, the voice senseless, soulless."))
 		else
-			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
+			to_chat(H, span_notice("A terrible howl tears through your mind, but you refuse to listen to it!"))
 	else
 		target.Weaken(6)
-		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+		to_chat(target, span_warning("A terrible howl tears through your mind, the voice senseless, soulless."))
 
 
 
@@ -683,7 +683,7 @@
 
 
 /obj/machinery/hivemind_machine/supplicant/use_ability(mob/living/target)
-	to_chat(target, SPAN_NOTICE("<b>[pick(join_quotes)]</b>"))
+	to_chat(target, span_notice("<b>[pick(join_quotes)]</b>"))
 
 
 //PSI-MODULATOR
@@ -718,7 +718,7 @@
 		if(prob(100 - H.stats.getStat(STAT_VIG)))
 			H.adjust_hallucination(20, 20)
 		else
-			to_chat(H, SPAN_NOTICE("Reality flickers for a second, but you manage to focus!"))
+			to_chat(H, span_notice("Reality flickers for a second, but you manage to focus!"))
 	else if (istype(target))
 		target.adjust_hallucination(20, 20)
 	flick("[icon_state]-anim", src)

@@ -166,21 +166,21 @@ semi accepts weird caliber - +1 points
 /obj/item/part/gun/frame/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/part/gun/modular/grip))
 		if(InstalledGrip)
-			to_chat(user, SPAN_WARNING("[src] already has a grip attached!"))
+			to_chat(user, span_warning("[src] already has a grip attached!"))
 			return
 		else
 			handle_gripvar(I, user)
 
 	if(istype(I, /obj/item/part/gun/modular/mechanism))
 		if(InstalledMechanism)
-			to_chat(user, SPAN_WARNING("[src] already has a mechanism attached!"))
+			to_chat(user, span_warning("[src] already has a mechanism attached!"))
 			return
 		else
 			handle_mechanismvar(I, user)
 
 	if(istype(I, /obj/item/part/gun/modular/barrel))
 		if(InstalledBarrel)
-			to_chat(user, SPAN_WARNING("[src] already has a barrel attached!"))
+			to_chat(user, span_warning("[src] already has a barrel attached!"))
 			return
 		else
 			handle_barrelvar(I, user)
@@ -188,9 +188,9 @@ semi accepts weird caliber - +1 points
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
 		if(QUALITY_HAMMERING)
-			user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
+			user.visible_message(span_notice("[user] begins scribbling \the [name]'s gun serial number away."), span_notice("You begin removing the serial number from \the [name]."))
 			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
+				user.visible_message(span_danger("[user] removes \the [name]'s gun serial number."), span_notice("You successfully remove the serial number from \the [name]."))
 				serial_type = null
 				return
 
@@ -216,43 +216,43 @@ semi accepts weird caliber - +1 points
 			var/variantnum = gripvars.Find(I.type)
 			result = resultvars[variantnum]
 			InstalledGrip = I
-			to_chat(user, SPAN_NOTICE("You have attached the grip to \the [src]."))
+			to_chat(user, span_notice("You have attached the grip to \the [src]."))
 			return
 	else
-		to_chat(user, SPAN_WARNING("This grip does not fit!"))
+		to_chat(user, span_warning("This grip does not fit!"))
 		return
 
 /obj/item/part/gun/frame/proc/handle_mechanismvar(obj/item/I, mob/living/user)
 	if(I.type == mechanismvar)
 		if(insert_item(I, user))
 			InstalledMechanism = I
-			to_chat(user, SPAN_NOTICE("You have attached the mechanism to \the [src]."))
+			to_chat(user, span_notice("You have attached the mechanism to \the [src]."))
 			return
 	else
-		to_chat(user, SPAN_WARNING("This mechanism does not fit!"))
+		to_chat(user, span_warning("This mechanism does not fit!"))
 		return
 
 /obj/item/part/gun/frame/proc/handle_barrelvar(obj/item/I, mob/living/user)
 	if(I.type in barrelvars)
 		if(insert_item(I, user))
 			InstalledBarrel = I
-			to_chat(user, SPAN_NOTICE("You have attached the barrel to \the [src]."))
+			to_chat(user, span_notice("You have attached the barrel to \the [src]."))
 			return
 	else
-		to_chat(user, SPAN_WARNING("This barrel does not fit!"))
+		to_chat(user, span_warning("This barrel does not fit!"))
 		return
 
 /obj/item/part/gun/frame/attack_self(mob/user)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(!InstalledGrip)
-		to_chat(user, SPAN_WARNING("\the [src] does not have a grip!"))
+		to_chat(user, span_warning("\the [src] does not have a grip!"))
 		return
 	if(!InstalledMechanism)
-		to_chat(user, SPAN_WARNING("\the [src] does not have a mechanism!"))
+		to_chat(user, span_warning("\the [src] does not have a mechanism!"))
 		return
 	if(!InstalledBarrel)
-		to_chat(user, SPAN_WARNING("\the [src] does not have a barrel!"))
+		to_chat(user, span_warning("\the [src] does not have a barrel!"))
 		return
 	var/obj/item/gun/G = new result(T)
 	G.serial_type = serial_type
@@ -265,25 +265,25 @@ semi accepts weird caliber - +1 points
 
 /obj/item/part/gun/frame/examine(mob/user, extra_description = "")
 	if(InstalledGrip)
-		extra_description += SPAN_NOTICE("\the [src] has \a [InstalledGrip] installed.")
+		extra_description += span_notice("\the [src] has \a [InstalledGrip] installed.")
 	else
-		extra_description += SPAN_NOTICE("\the [src] does not have a grip installed.")
+		extra_description += span_notice("\the [src] does not have a grip installed.")
 
 	if(InstalledMechanism)
-		extra_description += SPAN_NOTICE("\the [src] has \a [InstalledMechanism] installed.")
+		extra_description += span_notice("\the [src] has \a [InstalledMechanism] installed.")
 	else
-		extra_description += SPAN_NOTICE("\the [src] does not have a mechanism installed.")
+		extra_description += span_notice("\the [src] does not have a mechanism installed.")
 
 	if(InstalledBarrel)
-		extra_description += SPAN_NOTICE("\the [src] has \a [InstalledBarrel] installed.")
+		extra_description += span_notice("\the [src] has \a [InstalledBarrel] installed.")
 	else
-		extra_description += SPAN_NOTICE("\the [src] does not have a barrel installed.")
+		extra_description += span_notice("\the [src] does not have a barrel installed.")
 
 	if(in_range(user, src) || isghost(user))
 		if(serial_type)
-			extra_description += SPAN_WARNING("There is a serial number on the frame, it reads [serial_type].")
+			extra_description += span_warning("There is a serial number on the frame, it reads [serial_type].")
 		else if(isnull(serial_type))
-			extra_description += SPAN_DANGER("The serial is scribbled away.")
+			extra_description += span_danger("The serial is scribbled away.")
 	..(user, extra_description)
 
 //Grips

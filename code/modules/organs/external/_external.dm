@@ -315,7 +315,7 @@
 		I.loc = get_turf(user) //just in case something was embedded that is not an item
 		if(istype(I))
 			user.put_in_hands(I)
-		user.visible_message(SPAN_DANGER("\The [user] rips \the [I] out of \the [src]!"))
+		user.visible_message(span_danger("\The [user] rips \the [I] out of \the [src]!"))
 		return //no eating the limb until everything's been removed
 	return ..()
 
@@ -324,7 +324,7 @@
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
-			extra_description += SPAN_DANGER("\nThere is \a [I] sticking out of it.")
+			extra_description += span_danger("\nThere is \a [I] sticking out of it.")
 	..(user, extra_description)
 
 #define MAX_MUSCLE_SPEED -0.5
@@ -449,15 +449,15 @@ This function completely restores a damaged organ to perfect condition.
 				if(owner && prob(25))
 					if(BP_IS_ROBOTIC(src))
 						owner.visible_message(
-							SPAN_DANGER("The damage to [owner.name]'s [name] worsens."),
-							SPAN_DANGER("The damage to your [name] worsens."),
-							SPAN_DANGER("You hear the screech of abused metal.")
+							span_danger("The damage to [owner.name]'s [name] worsens."),
+							span_danger("The damage to your [name] worsens."),
+							span_danger("You hear the screech of abused metal.")
 						)
 					else
 						owner.visible_message(
-							SPAN_DANGER("The wound on [owner.name]'s [name] widens with a nasty ripping noise."),
-							SPAN_DANGER("The wound on your [name] widens with a nasty ripping noise."),
-							SPAN_DANGER("You hear a nasty ripping noise, as if flesh is being torn apart.")
+							span_danger("The wound on [owner.name]'s [name] widens with a nasty ripping noise."),
+							span_danger("The wound on your [name] widens with a nasty ripping noise."),
+							span_danger("You hear a nasty ripping noise, as if flesh is being torn apart.")
 						)
 				return
 
@@ -787,7 +787,7 @@ This function completely restores a damaged organ to perfect condition.
 		if(!H.unEquip(W))
 			return
 	if(!silent)
-		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
+		owner.visible_message(span_danger("\The [W] sticks in the wound!"))
 	implants += W
 
 	if(!istype(W, /obj/item/material/shard/shrapnel))
@@ -806,15 +806,15 @@ This function completely restores a damaged organ to perfect condition.
 	if(owner)
 		if(type == "brute")
 			owner.visible_message(
-				"<span class='danger'>You hear a sickening cracking sound coming from \the [owner]'s [name].</span>",
-				"<span class='danger'>Your [name] becomes a mangled mess!</span>",
-				"<span class='danger'>You hear a sickening crack.</span>"
+				span_danger("You hear a sickening cracking sound coming from \the [owner]'s [name]."),
+				span_danger("Your [name] becomes a mangled mess!"),
+				span_danger("You hear a sickening crack.")
 			)
 		else
 			owner.visible_message(
-				"<span class='danger'>\The [owner]'s [name] melts away, turning into mangled mess!</span>",
-				"<span class='danger'>Your [name] melts away!</span>",
-				"<span class='danger'>You hear a sickening sizzle.</span>"
+				span_danger("\The [owner]'s [name] melts away, turning into mangled mess!"),
+				span_danger("Your [name] melts away!"),
+				span_danger("You hear a sickening sizzle.")
 			)
 	disfigured = 1
 
@@ -954,7 +954,7 @@ This function completely restores a damaged organ to perfect condition.
 	if(A.has_quality(QUALITY_CUTTING))
 		if(!(user.a_intent == I_HURT))
 			return ..()
-		user.visible_message(SPAN_WARNING("[user] begins butchering \the [src]"), SPAN_WARNING("You begin butchering \the [src]"), SPAN_NOTICE("You hear meat being cut apart"), 5)
+		user.visible_message(span_warning("[user] begins butchering \the [src]"), span_warning("You begin butchering \the [src]"), span_notice("You hear meat being cut apart"), 5)
 		if(A.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_BIO))
 			on_butcher(A, user, get_turf(src))
 
@@ -966,5 +966,5 @@ This function completely restores a damaged organ to perfect condition.
 		new meat(location_meat)
 		if(user.species == species)
 			user.sanity_damage += 5*((user.nutrition ? user.nutrition : 1)/user.max_nutrition)
-			to_chat(user, SPAN_NOTICE("You feel your [species.name]ity dismantling as you butcher the [src]")) // Human-ity , Monkey-ity , Slime-Ity
+			to_chat(user, span_notice("You feel your [species.name]ity dismantling as you butcher the [src]")) // Human-ity , Monkey-ity , Slime-Ity
 	qdel(src)

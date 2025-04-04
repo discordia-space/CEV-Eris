@@ -392,12 +392,12 @@
 					tempo = 600 / text2num(copytext(lines[1],6))
 					lines.Cut(1,2)
 				if(lines.len > 200)
-					to_chat(usr, SPAN_WARNING("Too many lines!"))
+					to_chat(usr, span_warning("Too many lines!"))
 					lines.Cut(201)
 				var/linenum = 1
 				for(var/l in lines)
 					if(length(l) > 50)
-						to_chat(usr, SPAN_WARNING("Line [linenum] too long!"))
+						to_chat(usr, span_warning("Line [linenum] too long!"))
 						lines.Remove(l)
 					else
 						linenum++
@@ -415,7 +415,7 @@
 		anchored = !anchored
 		user.visible_message( \
 			"[user] [anchored ? "tightens" : "loosens"] \the [src]'s casters.", \
-			SPAN_NOTICE("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
+			span_notice("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
 			"You hear ratchet.")
 	else
 		..()

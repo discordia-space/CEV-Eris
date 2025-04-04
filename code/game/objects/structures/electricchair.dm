@@ -26,7 +26,7 @@
 	set src in oview(1)
 
 	icon_state = "echair1"
-	to_chat(usr, SPAN_NOTICE("You switch on [src]."))
+	to_chat(usr, span_notice("You switch on [src]."))
 	shock()
 
 	return
@@ -58,11 +58,11 @@
 	s.start()
 	if(buckled_mob)
 		buckled_mob.burn_skin(110)
-		to_chat(buckled_mob, SPAN_DANGER("You feel a deep shock course through your body!"))
+		to_chat(buckled_mob, span_danger("You feel a deep shock course through your body!"))
 		sleep(1)
 		buckled_mob.burn_skin(110)
 		buckled_mob.Stun(600)
-	visible_message(SPAN_DANGER("The electric chair went off!"), SPAN_DANGER("You hear a deep sharp shock!"))
+	visible_message(span_danger("The electric chair went off!"), span_danger("You hear a deep sharp shock!"))
 	icon_state = "echair0"
 
 	A.power_light = light

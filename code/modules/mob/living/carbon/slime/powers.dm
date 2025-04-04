@@ -52,7 +52,7 @@
 				Victim.adjustBruteLoss(is_adult ? rand(7, 15) : rand(4, 12))
 
 			else
-				to_chat(src, "<span class='warning'>[pick("This subject is incompatable", "This subject does not have a life energy", "This subject is empty", "I am not satisified", "I can not feed from this subject", "I do not feel nourished", "This subject is not food")]...</span>")
+				to_chat(src, span_warning("[pick("This subject is incompatable", "This subject does not have a life energy", "This subject is empty", "I am not satisified", "I can not feed from this subject", "I do not feel nourished", "This subject is not food")]..."))
 				Feedstop()
 				break
 
@@ -64,7 +64,7 @@
 				else if (iscarbon(M))
 					var/mob/living/carbon/C = M
 					if (!(C.species && (C.species.flags & NO_PAIN)))
-						to_chat(M, SPAN_DANGER("[painMes]"))
+						to_chat(M, span_danger("[painMes]"))
 
 			gain_nutrition(rand(20,25))
 
@@ -92,7 +92,7 @@
 					++Friends[Victim.LAssailant]
 
 		else
-			to_chat(src, SPAN_NOTICE("This subject does not have a strong enough life energy anymore..."))
+			to_chat(src, span_notice("This subject does not have a strong enough life energy anymore..."))
 
 	Victim = null
 
@@ -111,7 +111,7 @@
 	set desc = "This will let you evolve from baby to adult slime."
 
 	if(stat)
-		to_chat(src, SPAN_NOTICE("I must be conscious to do this..."))
+		to_chat(src, span_notice("I must be conscious to do this..."))
 		return
 
 	if(!is_adult)
@@ -122,22 +122,22 @@
 			regenerate_icons()
 			name = text("[colour] [is_adult ? "adult" : "baby"] slime ([number])")
 		else
-			to_chat(src, SPAN_NOTICE("I am not ready to evolve yet..."))
+			to_chat(src, span_notice("I am not ready to evolve yet..."))
 	else
-		to_chat(src, SPAN_NOTICE("I have already evolved..."))
+		to_chat(src, span_notice("I have already evolved..."))
 
 /mob/living/carbon/slime/verb/Reproduce()
 	set category = SPECIES_SLIME
 	set desc = "This will make you split into four Slimes."
 
 	if(stat)
-		to_chat(src, SPAN_NOTICE("I must be conscious to do this..."))
+		to_chat(src, span_notice("I must be conscious to do this..."))
 		return
 
 	if(is_adult)
 		if(amount_grown >= 10)
 			if(stat)
-				to_chat(src, SPAN_NOTICE("I must be conscious to do this..."))
+				to_chat(src, span_notice("I must be conscious to do this..."))
 				return
 
 			var/list/babies = list()
@@ -163,6 +163,6 @@
 				new_slime.key = src.key
 			qdel(src)
 		else
-			to_chat(src, SPAN_NOTICE("I am not ready to reproduce yet..."))
+			to_chat(src, span_notice("I am not ready to reproduce yet..."))
 	else
-		to_chat(src, SPAN_NOTICE("I am not old enough to reproduce yet..."))
+		to_chat(src, span_notice("I am not old enough to reproduce yet..."))

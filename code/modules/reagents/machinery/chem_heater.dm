@@ -70,7 +70,7 @@
 	if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
 		I.add_fingerprint(user)
 		replace_beaker(user, I)
-		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		to_chat(user, span_notice("You add [I] to [src]."))
 		updateUsrDialog()
 		update_icon()
 		return
@@ -90,7 +90,7 @@
 		if(!user.unEquip(B, src))
 			return
 		replace_beaker(user, B)
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		updateUsrDialog()
 		update_icon()
 		return

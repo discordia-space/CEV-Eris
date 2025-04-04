@@ -6,13 +6,13 @@
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message(SPAN_DANGER("[user] chops up \the [src]!"))
+			user.visible_message(span_danger("[user] chops up \the [src]!"))
 			var/obj/effect/decal/cleanable/blood/blood_effect = new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			blood_effect.basecolor = bloodcolor
 			blood_effect.update_icon()
 			qdel(src)
 		else
-			user.visible_message(SPAN_DANGER("[user] butchers \the [src] messily!"))
+			user.visible_message(span_danger("[user] butchers \the [src] messily!"))
 			gib()
 
 /mob/living/carbon/superior_animal/update_lying_buckled_and_verb_status()
@@ -49,12 +49,12 @@
 				return 0
 			for(var/obj/item/grab/G in src.grabbed_by)
 				if(G.assailant == M)
-					to_chat(M, SPAN_NOTICE("You already grabbed [src]."))
+					to_chat(M, span_notice("You already grabbed [src]."))
 					return
 
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
-				to_chat(M, SPAN_NOTICE("You cannot grab [src], \he is buckled in!"))
+				to_chat(M, span_notice("You cannot grab [src], \he is buckled in!"))
 			if(!G) //the grab will delete itself in New if affecting is anchored
 				return
 
@@ -66,7 +66,7 @@
 
 			M.do_attack_animation(src)
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
+			visible_message(span_warning("[M] has grabbed [src] passively!"))
 
 			return 1
 
@@ -374,7 +374,7 @@
 	damage_through_armor(damage, BRUTE, attack_flag=ARMOR_MELEE, armor_divisor=penetration)
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
+	src.visible_message(span_danger("[user] has [attack_message] [src]!"))
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
 	return TRUE

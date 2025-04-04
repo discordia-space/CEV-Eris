@@ -26,10 +26,10 @@
 			R.adjustFireLoss(-15)
 			R.updatehealth()
 			use(1)
-			user.visible_message(SPAN_NOTICE("\The [user] applied some [src] at [R]'s damaged areas."),\
-				SPAN_NOTICE("You apply some [src] at [R]'s damaged areas."))
+			user.visible_message(span_notice("\The [user] applied some [src] at [R]'s damaged areas."),\
+				span_notice("You apply some [src] at [R]'s damaged areas."))
 		else
-			to_chat(user, SPAN_NOTICE("All [R]'s systems are nominal."))
+			to_chat(user, span_notice("All [R]'s systems are nominal."))
 
 	if (ishuman(M))		//Repairing robolimbs
 		var/mob/living/carbon/human/H = M
@@ -42,16 +42,16 @@
 				if(amount <= 0)
 					break
 				if(!do_mob(user, M, W.damage/5))
-					to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+					to_chat(user, span_notice("You must stand still to repair \the [S]."))
 					break
 				if(!use(1))
-					to_chat(user, SPAN_WARNING("You have run out of \the [src]."))
+					to_chat(user, span_warning("You have run out of \the [src]."))
 					return
 				W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 20))
-				to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+				to_chat(user, span_notice("You patch some wounds on \the [S]."))
 			S.update_damages()
 			if(S.get_damage())
-				to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+				to_chat(user, span_warning("\The [S] still needs further repair."))
 				return
 		if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
 			do_surgery(H,user,src, TRUE)

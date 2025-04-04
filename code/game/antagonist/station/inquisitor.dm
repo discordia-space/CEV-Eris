@@ -24,11 +24,11 @@
 /datum/antagonist/inquisitor/can_become_antag(datum/mind/M, mob/report)
 	if(!..())
 		if (report)
-			to_chat(report, SPAN_NOTICE("Failure: Parent can_become_antag returned false"))
+			to_chat(report, span_notice("Failure: Parent can_become_antag returned false"))
 		return FALSE
 	if(!M.current.get_core_implant(/obj/item/implant/core_implant/cruciform))
 		if (report)
-			to_chat(report, SPAN_NOTICE("Failure: [M] does not have a cruciform and this antag requires it"))
+			to_chat(report, span_notice("Failure: [M] does not have a cruciform and this antag requires it"))
 		return FALSE
 	return TRUE
 
@@ -60,10 +60,10 @@
 	var/mob/player = owner.current
 
 	if (was_priest)
-		to_chat(player, "<span class='notice'>You've been promoted...</span>")
+		to_chat(player, span_notice("You've been promoted..."))
 		sleep(30)
 	// Basic intro text.
-	to_chat(player, "<span class='danger'><font size=3>You are a [role_text]!</font></span>")
+	to_chat(player, span_danger("<font size=3>You are a [role_text]!</font>"))
 
 	to_chat(player, "Inquisitor is a higher ranking officer in the Church of NeoTheology.<br>\
 	You are here to promote the Church's interests and protect disciples, but more importantly, you are also here to \

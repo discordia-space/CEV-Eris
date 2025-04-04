@@ -25,9 +25,9 @@
 		if(locking_access in ID.GetAccess())
 			toggle_lock()
 			var/isLocked = removable ? "unlocked and can be removed." : "locked and can\'t be removed."
-			to_chat(user, SPAN_NOTICE("You toggle lock of [src.name]. Now it is [isLocked]"))
+			to_chat(user, span_notice("You toggle lock of [src.name]. Now it is [isLocked]"))
 		else
-			to_chat(user, SPAN_WARNING("ERROR: Incorrect access."))*/
+			to_chat(user, span_warning("ERROR: Incorrect access."))*/
 
 /obj/item/clothing/accessory/bs_silk/examine(mob/user, extra_description = "")
 	var/s_id = silk_id != "" ? silk_id : "NOT SETTED"

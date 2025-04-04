@@ -186,7 +186,7 @@
 			squeals --
 			log_say("[key_name(src)] squeals! ")
 		else
-			to_chat(src, "<span class='warning'>Your hoarse mousey throat can't squeal just now, stop and take a breath!</span>")
+			to_chat(src, span_warning("Your hoarse mousey throat can't squeal just now, stop and take a breath!"))
 
 
 //Wrapper verbs for the squeak functions
@@ -195,7 +195,7 @@
 	set category = "Abilities"
 
 	if (usr.client.prefs.muted & MUTE_IC)
-		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
+		to_chat(usr, span_danger("You are muted from IC emotes."))
 		return
 
 	squeak_loud(1)
@@ -205,7 +205,7 @@
 	set category = "Abilities"
 
 	if (usr.client.prefs.muted & MUTE_IC)
-		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
+		to_chat(usr, span_danger("You are muted from IC emotes."))
 		return
 
 	squeak_soft(1)
@@ -215,7 +215,7 @@
 	set category = "Abilities"
 
 	if (usr.client.prefs.muted & MUTE_IC)
-		to_chat(usr, "<span class='danger'>You are muted from IC emotes.</span>")
+		to_chat(usr, span_danger("You are muted from IC emotes."))
 		return
 
 	squeak(1)
@@ -225,7 +225,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			to_chat(M, "<span class='notice'>\icon[src] Squeek!</span>")
+			to_chat(M, span_notice("\icon[src] Squeek!"))
 			poke(1) //Wake up if stepped on
 			if (prob(95))
 				squeak(0)

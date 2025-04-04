@@ -7,7 +7,7 @@
 	if(wikiurl)
 		src << link(wikiurl)
 	else
-		to_chat(src, SPAN_DANGER("The wiki URL is not set in the server configuration."))
+		to_chat(src, span_danger("The wiki URL is not set in the server configuration."))
 
 /client/verb/forum()
 	set name = "forum"
@@ -17,7 +17,7 @@
 	if(forumurl)
 		src << link(forumurl)
 	else
-		to_chat(src, SPAN_DANGER("The forum URL is not set in the server configuration."))
+		to_chat(src, span_danger("The forum URL is not set in the server configuration."))
 
 /client/verb/rules()
 	set name = "rules"
@@ -27,7 +27,7 @@
 	if(rulesurl)
 		src << link(rulesurl)
 	else
-		to_chat(src, SPAN_DANGER("The rules URL is not set in the server configuration."))
+		to_chat(src, span_danger("The rules URL is not set in the server configuration."))
 
 /client/verb/github()
 	set name = "github"
@@ -37,7 +37,7 @@
 	if(githuburl)
 		src << link(githuburl)
 	else
-		to_chat(src, SPAN_DANGER("The github URL is not set in the server configuration."))
+		to_chat(src, span_danger("The github URL is not set in the server configuration."))
 
 /client/verb/discord()
 	set name = "discord"
@@ -47,7 +47,7 @@
 	if(discordurl)
 		src << link(discordurl)
 	else
-		to_chat(src, SPAN_DANGER("The discord URL is not set in the server configuration."))
+		to_chat(src, span_danger("The discord URL is not set in the server configuration."))
 
 /client/verb/changelog()
 	set name = "Changelog"

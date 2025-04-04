@@ -118,7 +118,7 @@
 
 		H.mind.initial_account = M
 
-	to_chat(H, SPAN_NOTICE("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
+	to_chat(H, span_notice("<b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b>"))
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title, var/datum/branch, var/additional_skips)
@@ -157,11 +157,11 @@
 
 /datum/job/proc/is_restricted(datum/preferences/prefs, feedback)
 	if(is_setup_restricted(prefs.setup_options))
-		to_chat(feedback, "<span class='boldannounce'>[setup_restricted ? "The job requires you to pick a specific setup option." : "The job conflicts with one of your setup options."]</span>")
+		to_chat(feedback, span_boldannounce("[setup_restricted ? "The job requires you to pick a specific setup option." : "The job conflicts with one of your setup options."]"))
 		return TRUE
 
 	if(minimum_character_age && (prefs.age < minimum_character_age))
-		to_chat(feedback, "<span class='boldannounce'>Not old enough. Minimum character age is [minimum_character_age].</span>")
+		to_chat(feedback, span_boldannounce("Not old enough. Minimum character age is [minimum_character_age]."))
 		return TRUE
 
 	return FALSE

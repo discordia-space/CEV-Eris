@@ -46,7 +46,7 @@
 		charge_cooldown = world.time + PLATINUM_CHARGE_CD
 
 		walk(src,0) // halt movement
-		visible_message(SPAN_DANGER("<b>[src]</b> stops and prepares to charge at [target_mob]!"))
+		visible_message(span_danger("<b>[src]</b> stops and prepares to charge at [target_mob]!"))
 		var/list/passedturfs = getline(src, target_mob) // do this at the start of the windup, so that the golem's charge doesn't track the target (and it can be dodged)
 
 		spawn(PLATINUM_CHARGE_WINDUP)
@@ -81,7 +81,7 @@
 						victim.explosion_act(PLATINUM_CHARGE_DAMAGE_OBSTACLES * 4) //TEAR THROUGH ALL THAT IMPEDES YOU
 					break // if the turf is blocked (ie a wall/door/window), stop charging here
 
-			visible_message(SPAN_DANGER("<b>[src]</b> [pick(charge_verbs)] at [target_mob]!"))
+			visible_message(span_danger("<b>[src]</b> [pick(charge_verbs)] at [target_mob]!"))
 			forceMove(lastvalidturf)
 
 			if(Adjacent(target_mob))

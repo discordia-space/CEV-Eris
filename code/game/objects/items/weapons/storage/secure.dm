@@ -46,21 +46,21 @@
 		if (istype(W, /obj/item/tool/screwdriver))
 			if (do_after(user, 20, src))
 				src.open =! src.open
-				user.show_message(SPAN_NOTICE("You [src.open ? "open" : "close"] the service panel."))
+				user.show_message(span_notice("You [src.open ? "open" : "close"] the service panel."))
 			return
 		if ((istype(W, /obj/item/tool/multitool)) && (src.open == 1)&& (!src.l_hacking))
-			user.show_message(SPAN_NOTICE("Now attempting to reset internal memory, please hold."), 1)
+			user.show_message(span_notice("Now attempting to reset internal memory, please hold."), 1)
 			src.l_hacking = 1
 			if (do_after(usr, 100, src))
 				if (prob(40))
 					src.l_setshort = 1
 					src.l_set = 0
-					user.show_message(SPAN_NOTICE("Internal memory reset. Please give it a few seconds to reinitialize."), 1)
+					user.show_message(span_notice("Internal memory reset. Please give it a few seconds to reinitialize."), 1)
 					sleep(80)
 					src.l_setshort = 0
 					src.l_hacking = 0
 				else
-					user.show_message(SPAN_WARNING("Unable to reset internal memory."), 1)
+					user.show_message(span_warning("Unable to reset internal memory."), 1)
 					src.l_hacking = 0
 			else	src.l_hacking = 0
 			return
@@ -155,7 +155,7 @@
 
 /obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
 	if ((src.loc == user) && (src.locked == 1))
-		to_chat(usr, SPAN_WARNING("[src] is locked and cannot be opened!"))
+		to_chat(usr, span_warning("[src] is locked and cannot be opened!"))
 	else if ((src.loc == user) && (!src.locked))
 		src.open(usr)
 	else

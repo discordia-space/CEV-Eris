@@ -105,7 +105,7 @@
 						if(try_pin == pin_code)
 							locked = !locked
 						else
-							to_chat(usr, "\icon[src]<span class='warning'>Insufficient access.</span>")
+							to_chat(usr, "\icon[src][span_warning("Insufficient access.")]")
 				else
 					locked = !locked
 					to_chat(usr, "You lock cash register.")
@@ -118,9 +118,9 @@
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						src.visible_message("\icon[src]<span class='warning'>Account has been suspended.</span>")
+						src.visible_message("\icon[src][span_warning("Account has been suspended.")]")
 				else
-					to_chat(usr, "\icon[src]<span class='warning'>Account not found.</span>")
+					to_chat(usr, "\icon[src][span_warning("Account not found.")]")
 			if("custom_order")
 				var/t_purpose = sanitize(input("Enter purpose", "New purpose") as text)
 				if (!t_purpose || !Adjacent(usr)) return
@@ -168,7 +168,7 @@
 					price_list.Cut()
 			if("reset_log")
 				transaction_logs.Cut()
-				to_chat(usr, "\icon[src]<span class='notice'>Transaction log reset.</span>")
+				to_chat(usr, "\icon[src][span_notice("Transaction log reset.")]")
 	updateDialog()
 
 
@@ -224,14 +224,14 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][span_warning("The cash box is open.")]")
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(I))
 		return
 
 	if (!linked_account)
-		usr.visible_message("\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("\icon[src][span_warning("Unable to connect to linked account.")]")
 		return
 
 	// Access account for transaction
@@ -244,13 +244,13 @@
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!D)
-			src.visible_message("\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+			src.visible_message("\icon[src][span_warning("Unable to access account. Check security settings and try again.")]")
 		else
 			if(D.suspended)
-				src.visible_message("\icon[src]<span class='warning'>Your account has been suspended.</span>")
+				src.visible_message("\icon[src][span_warning("Your account has been suspended.")]")
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("\icon[src]<span class='warning'>Not enough funds.</span>")
+					src.visible_message("\icon[src][span_warning("Not enough funds.")]")
 				else
 					// Transfer the money
 					D.money -= transaction_amount
@@ -283,7 +283,7 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][span_warning("The cash box is open.")]")
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(E))
@@ -292,7 +292,7 @@
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("\icon[src]<span class='warning'>Not enough funds.</span>")
+			src.visible_message("\icon[src][span_warning("Not enough funds.")]")
 		else
 			// Transfer the money
 			E.worth -= transaction_amount
@@ -315,14 +315,14 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][span_warning("The cash box is open.")]")
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(SC))
 		return
 
 	if(transaction_amount > SC.worth)
-		src.visible_message("\icon[src]<span class='warning'>Not enough money.</span>")
+		src.visible_message("\icon[src][span_warning("Not enough money.")]")
 	else
 		// Insert cash into magical slot
 		SC.worth -= transaction_amount
@@ -344,17 +344,17 @@
 /obj/machinery/cash_register/proc/scan_item_price(obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
-		src.visible_message("\icon[src]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
+		src.visible_message("\icon[src][span_warning("Only up to ten different items allowed per purchase.")]")
 		return
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][span_warning("The cash box is open.")]")
 		return
 
 	// First check if item has a valid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
-		src.visible_message("\icon[src]<span class='warning'>Unable to find item in database.</span>")
+		src.visible_message("\icon[src][span_warning("Unable to find item in database.")]")
 		return
 	// Call out item cost
 	src.visible_message("\icon[src]\A [O]: [price ? "[price] Credit\s" : "free of charge"].")
@@ -425,11 +425,11 @@
 
 /obj/machinery/cash_register/proc/check_account()
 	if (!linked_account)
-		usr.visible_message("\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("\icon[src][span_warning("Unable to connect to linked account.")]")
 		return 0
 
 	if(linked_account.suspended)
-		src.visible_message("\icon[src]<span class='warning'>Connected account has been suspended.</span>")
+		src.visible_message("\icon[src][span_warning("Connected account has been suspended.")]")
 		return 0
 	return 1
 
@@ -437,7 +437,7 @@
 /obj/machinery/cash_register/proc/transaction_complete()
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
-	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
+	src.visible_message("\icon[src][span_notice("Transaction complete.")]")
 	flick("register_approve", src)
 	reset_memory()
 	updateDialog()
@@ -471,7 +471,7 @@
 		if(cash_stored)
 			overlays += "register_cash"
 	else
-		to_chat(usr, SPAN_WARNING("The cash box is locked."))
+		to_chat(usr, span_warning("The cash box is locked."))
 
 
 /obj/machinery/cash_register/proc/toggle_anchors(obj/item/tool/wrench/W, mob/user)
@@ -481,18 +481,18 @@
 		user.visible_message("\The [user] begins securing \the [src] to the floor.",
 	                         "You begin securing \the [src] to the floor.")
 	else
-		user.visible_message(SPAN_WARNING("\The [user] begins unsecuring \the [src] from the floor."),
+		user.visible_message(span_warning("\The [user] begins unsecuring \the [src] from the floor."),
 	                         "You begin unsecuring \the [src] from the floor.")
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	if(!do_after(user, 20))
 		manipulating = 0
 		return
 	if(!anchored)
-		user.visible_message(SPAN_NOTICE("\The [user] has secured \the [src] to the floor."),
-	                         SPAN_NOTICE("You have secured \the [src] to the floor."))
+		user.visible_message(span_notice("\The [user] has secured \the [src] to the floor."),
+	                         span_notice("You have secured \the [src] to the floor."))
 	else
-		user.visible_message(SPAN_WARNING("\The [user] has unsecured \the [src] from the floor."),
-	                         SPAN_NOTICE("You have unsecured \the [src] from the floor."))
+		user.visible_message(span_warning("\The [user] has unsecured \the [src] from the floor."),
+	                         span_notice("You have unsecured \the [src] from the floor."))
 	anchored = !anchored
 	manipulating = 0
 	return
@@ -501,7 +501,7 @@
 
 /obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		src.visible_message(SPAN_DANGER("The [src]'s cash box springs open as [user] swipes the card through the scanner!"))
+		src.visible_message(span_danger("The [src]'s cash box springs open as [user] swipes the card through the scanner!"))
 		playsound(src, "sparks", 50, 1)
 		req_access = list()
 		emagged = 1

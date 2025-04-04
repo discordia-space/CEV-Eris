@@ -8,7 +8,7 @@
 	if(alert(user, "Are you sure you want to send this email?","Document Email", "Yes", "No") == "No")
 		return
 	if(perform_send(subject, body, attach_report))
-		to_chat(user, "<span class='notice'>The email has been sent.</span>")
+		to_chat(user, span_notice("The email has been sent."))
 
 //Helper procs.
 /datum/report_field/people/proc/perform_send(subject, body, attach_report)
@@ -80,7 +80,7 @@
 		if(in_as_list(entry, new_value))
 			continue //ignore repeats
 		new_value += list(entry)
-	value = new_value	
+	value = new_value
 
 /datum/report_field/people/list_from_manifest/ask_value(mob/user)
 	var/alert = alert(user, "Would you like to add or remove a name?", "Form Input", "Add", "Remove")

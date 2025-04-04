@@ -344,7 +344,7 @@
 				break
 
 	if(!holster_handled)
-		to_chat(H, SPAN_NOTICE(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
+		to_chat(H, span_notice(!H.get_active_hand() ? "You don't have any occupied pouch holsters." : "All your pouch holsters are occupied."))
 		return FALSE
 	else
 		return TRUE
@@ -355,13 +355,13 @@
 		if(istype(I))
 			if(H.a_intent == I_HURT)
 				H.visible_message(
-					SPAN_DANGER("[H] draws \the [I], ready to fight!"),
-						SPAN_WARNING("You draw \the [I], ready to fight!")
+					span_danger("[H] draws \the [I], ready to fight!"),
+						span_warning("You draw \the [I], ready to fight!")
 					)
 			else
 				H.visible_message(
-					SPAN_NOTICE("[H] draws \the [I], pointing it at the ground."),
-					SPAN_NOTICE("You draw \the [I], pointing it at the ground.")
+					span_notice("[H] draws \the [I], pointing it at the ground."),
+					span_notice("You draw \the [I], pointing it at the ground.")
 					)
 			add_fingerprint(H)
 			playsound(H, "[src.sound_out]", 75, 0)

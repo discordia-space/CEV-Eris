@@ -44,20 +44,20 @@
 	if(toolbox)
 		if(istype(C, /obj/item/tool/wirecutters))
 			if(reinforced)
-				to_chat(user, SPAN_NOTICE("You cutted up the tapes from [src]."))
+				to_chat(user, span_notice("You cutted up the tapes from [src]."))
 				reinforced = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("You carefully cut cables from [src]."))
+				to_chat(user, span_notice("You carefully cut cables from [src]."))
 				break_apart(user)
 
 		if(istype(C, /obj/item/tool/tape_roll))
-			to_chat(user, SPAN_NOTICE("You begins to tie [src] with [C]..."))
+			to_chat(user, span_notice("You begins to tie [src] with [C]..."))
 			if(do_after(user, 50))
 				if(!reinforced)
-					to_chat(user, SPAN_NOTICE("You reinforce [src]."))
+					to_chat(user, span_notice("You reinforce [src]."))
 					reinforced = TRUE
 				else
-					to_chat(user, SPAN_WARNING("[src] is already reinforced."))
+					to_chat(user, span_warning("[src] is already reinforced."))
 	else
 		if(istype(C, /obj/item/storage/toolbox))
 			src.name = initial(src.name)
@@ -75,7 +75,7 @@
 			if(istype(C, /obj/item/storage/toolbox/mechanical))
 				icon_state = "hm_hammer_blue"
 				item_state = "hm_hammer_blue"
-			to_chat(user, SPAN_NOTICE("You tied [C] to [src] and finally finish it!"))
+			to_chat(user, span_notice("You tied [C] to [src] and finally finish it!"))
 	update_icon()
 
 /obj/item/melee/toolbox_maul/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
@@ -83,4 +83,4 @@
 	if(!reinforced && prob(5))
 		break_apart(user)
 		playsound(src.loc, 'sound/effects/bang.ogg', 45, 1)
-		user.visible_message(SPAN_WARNING("[src] breaks in hands of [user]!"))
+		user.visible_message(span_warning("[src] breaks in hands of [user]!"))

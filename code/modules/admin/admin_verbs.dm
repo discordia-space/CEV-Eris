@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 
 	remove_admin_verbs()
 	add_verb(src, /client/proc/show_verbs)
-	to_chat(src, "<span class='interface'>Your adminverbs have been hidden.</span>")
+	to_chat(src, span_interface("Your adminverbs have been hidden."))
 
 /client/proc/show_verbs()
 	set name = "Adminverbs - Show"
@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 
 	remove_verb(src, /client/proc/show_verbs)
 	add_admin_verbs()
-	to_chat(src, "<span class='interface'>Your adminverbs are now visible.</span>")
+	to_chat(src, span_interface("Your adminverbs are now visible."))
 
 //allows us to ghost/reenter body at will
 /client/proc/admin_ghost()
@@ -567,7 +567,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 		deadmin_holder.reassociate()
 		log_admin("[src] re-admined themself.")
 		message_admins("[src] re-admined themself.", 1)
-		to_chat(src, "<span class='interface'>You now have the keys to control the planet, or atleast a small space station</span>")
+		to_chat(src, span_interface("You now have the keys to control the planet, or atleast a small space station"))
 		remove_verb(src, /client/proc/readmin_self)
 
 //destroys our own admin datum so we can play as a regular player
@@ -581,7 +581,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 			message_admins("[src] deadmined themself.", 1)
 			if(holder)
 				holder.disassociate()
-			to_chat(src, "<span class='interface'>You are now a normal player.</span>")
+			to_chat(src, span_interface("You are now a normal player."))
 			add_verb(src, /client/proc/readmin_self)
 
 /client/proc/toggle_log_hrefs()
@@ -732,8 +732,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
 
-	to_chat(T, SPAN_NOTICE("<b><font size=3>Man up and deal with it.</font></b>"))
-	to_chat(T, SPAN_NOTICE("Move on."))
+	to_chat(T, span_notice("<b><font size=3>Man up and deal with it.</font></b>"))
+	to_chat(T, span_notice("Move on."))
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
 	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.", 1)
@@ -744,7 +744,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	set desc = "Tells everyone to man up and deal with it."
 
 	for (var/mob/T as mob in SSmobs.mob_list | SShumans.mob_list)
-		to_chat(T, "<br><center><span class='notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.</span></center><br>")
+		to_chat(T, "<br><center>[span_notice("<b><font size=4>Man up.<br> Deal with it.</font></b><br>Move on.")]</center><br>")
 		T << 'sound/voice/ManUp1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
@@ -755,8 +755,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	set name = "Skill Issue"
 	set desc = "Tells mob that it is a skill issue and to git gud."
 
-	to_chat(T, SPAN_NOTICE("<b><font size=3>Diagnosis: skill issue.</font></b>"))
-	to_chat(T, SPAN_NOTICE("Git gud."))
+	to_chat(T, span_notice("<b><font size=3>Diagnosis: skill issue.</font></b>"))
+	to_chat(T, span_notice("Git gud."))
 
 	log_admin("[key_name(usr)] told [key_name(T)] that it is a skill issue and to git gud.")
 	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] that it is a skill issue and to git gud.", 1)
@@ -849,9 +849,9 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 								GLOB.custom_kits += perfectly_descriptive_name
 								GLOB.custom_kits[perfectly_descriptive_name] = list(1)
 								GLOB.custom_kits[perfectly_descriptive_name][1] = path_of_choice
-								to_chat(user, SPAN_DANGER("Kit \"[perfectly_descriptive_name]\" created, now edit it."))
+								to_chat(user, span_danger("Kit \"[perfectly_descriptive_name]\" created, now edit it."))
 							else
-								to_chat(user, SPAN_DANGER("Invalid storage type."))
+								to_chat(user, span_danger("Invalid storage type."))
 					if("Edit")
 						var/kit_of_choice = input(user, "Choose a kit", "[header]") as null|anything in GLOB.custom_kits
 						if(kit_of_choice)
@@ -875,7 +875,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 												while(dream_within_a_dream_within_a_dream)
 													var/list/list_of_stuff = GLOB.custom_kits[kit_of_choice] - GLOB.custom_kits[kit_of_choice][1]
 													if(!LAZYLEN(list_of_stuff))
-														to_chat(user, SPAN_DANGER("There is nothing left."))
+														to_chat(user, span_danger("There is nothing left."))
 														dream_within_a_dream_within_a_dream = FALSE
 													else
 														var/item_to_remove = input(user, "Pick a path to remove", "[header]") as null|anything in list_of_stuff

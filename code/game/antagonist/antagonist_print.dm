@@ -20,7 +20,7 @@
 
 	var/mob/player = owner.current
 	// Basic intro text.
-	to_chat(player, "<span class='danger'><font size=3>You are \a [role_text]!</font></span>")
+	to_chat(player, span_danger("<font size=3>You are \a [role_text]!</font>"))
 	if(faction)
 		if(src in faction.leaders)
 			to_chat(player, "You are a leader of the [faction.name]!")

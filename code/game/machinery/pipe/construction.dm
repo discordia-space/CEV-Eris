@@ -405,11 +405,11 @@
 
 	for(var/obj/machinery/atmospherics/M in src.loc)
 		if((M.initialize_directions & pipe_dir) && M.check_connect_types_construction(M,src))	// matches at least one direction on either type of pipe & same connection type
-			to_chat(user, SPAN_WARNING("There is already a pipe of the same type at this location."))
+			to_chat(user, span_warning("There is already a pipe of the same type at this location."))
 			return 1
 	// no conflicts found
 
-	var/pipefailtext = SPAN_WARNING("There's nothing to connect this pipe section to!") //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+	var/pipefailtext = span_warning("There's nothing to connect this pipe section to!") //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
 
 	//TODO: Move all of this stuff into the various pipe constructors.
 	switch(pipe_type)
@@ -1127,7 +1127,7 @@
 	if (!tool.check_tool_effects(WORKTIME_NEAR_INSTANT))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
-		to_chat(user, SPAN_WARNING("You need to fasten it to a pipe"))
+		to_chat(user, span_warning("You need to fasten it to a pipe"))
 		return 1
 	new/obj/machinery/meter( src.loc )
 	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)

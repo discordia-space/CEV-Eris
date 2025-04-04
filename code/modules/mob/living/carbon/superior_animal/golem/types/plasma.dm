@@ -41,11 +41,11 @@
 		walk(src,0)
 		anchored = TRUE // Prevents movement.
 		det_status = DET_BLOWING
-		visible_message(SPAN_DANGER("\The [src] starts glowing!"))
+		visible_message(span_danger("\The [src] starts glowing!"))
 		icon_state = "golem_plasma_explosion"
 		spawn(det_time)
 			// Plasma ball on location
-			visible_message(SPAN_DANGER("\The [src] explodes into a ball of burning plasma!"))
+			visible_message(span_danger("\The [src] explodes into a ball of burning plasma!"))
 			for(var/turf/floor/target_tile as anything in RANGE_TURFS(2, loc))
 				new /obj/effect/decal/cleanable/liquid_fuel(target_tile, 2, 1)
 				target_tile.hotspot_expose((T20C * 2) + 380, 500)  // From flamethrower code

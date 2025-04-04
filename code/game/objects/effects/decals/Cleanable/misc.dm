@@ -16,7 +16,7 @@
 	anchored = TRUE
 
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
-	to_chat(user, SPAN_NOTICE("[src] sifts through your fingers."))
+	to_chat(user, span_notice("[src] sifts through your fingers."))
 	qdel(src)
 
 
@@ -112,7 +112,7 @@
 	. = ..()
 	for(var/mob/living/carbon/l in range(4))
 		if(prob(2))
-			to_chat(l, SPAN_WARNING("Your skin itches."))
+			to_chat(l, span_warning("Your skin itches."))
 		l.apply_effect(2, IRRADIATE)
 
 /obj/effect/decal/cleanable/greenglow/Destroy()

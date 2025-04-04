@@ -33,7 +33,7 @@
 // requests an appropriate tool
 /datum/surgery_step/proc/require_tool_message(mob/living/user)
 	if(required_tool_quality)
-		to_chat(user, SPAN_WARNING("You need a tool capable of [required_tool_quality] to complete this step."))
+		to_chat(user, span_warning("You need a tool capable of [required_tool_quality] to complete this step."))
 
 // checks whether this step can be applied to given target organ at all
 /datum/surgery_step/proc/is_valid_target(obj/item/organ/organ, target)
@@ -176,7 +176,7 @@
 			// Open or update surgery UI
 			affected.nano_ui_interact(user)
 
-			to_chat(user, SPAN_WARNING("You can't see any useful way to use [tool] on [M]."))
+			to_chat(user, span_warning("You can't see any useful way to use [tool] on [M]."))
 			return 1 //Prevents attacking the patient when trying to do surgery
 			//We check if tool qualities is populated here, so that, if it's not, we can return zero
 			//This will allow afterattack to be called for things which aren't exactly surgery tools, such as the autopsy scanner
@@ -274,7 +274,7 @@
 			return TRUE
 
 		if(user.stats?.getStat(BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO) >= STAT_LEVEL_EXPERT)
-			to_chat(user, SPAN_NOTICE("One brief look at [get_surgery_name()] is enough for you to see all the issues immediately."))
+			to_chat(user, span_notice("One brief look at [get_surgery_name()] is enough for you to see all the issues immediately."))
 			diagnosed = TRUE
 			return TRUE
 

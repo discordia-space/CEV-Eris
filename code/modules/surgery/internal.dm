@@ -13,13 +13,13 @@
 			tool = SG.wrapped // We want to install whatever the gripper is holding, not the gripper itself
 	if(istype(tool, /obj/item/organ/external))
 		user.visible_message(
-			SPAN_NOTICE("[user] starts connecting [tool] to [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You start connecting [tool] to [organ.get_surgery_name()].")
+			span_notice("[user] starts connecting [tool] to [organ.get_surgery_name()]."),
+			span_notice("You start connecting [tool] to [organ.get_surgery_name()].")
 		)
 	else
 		user.visible_message(
-			SPAN_NOTICE("[user] starts inserting [tool] into [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You start inserting [tool] into [organ.get_surgery_name()].")
+			span_notice("[user] starts inserting [tool] into [organ.get_surgery_name()]."),
+			span_notice("You start inserting [tool] into [organ.get_surgery_name()].")
 		)
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
@@ -31,13 +31,13 @@
 			SG.wrapped = null // When item successfully inserted - stop referencing it in gripper
 	if(istype(tool, /obj/item/organ/external))
 		user.visible_message(
-			SPAN_NOTICE("[user] connects [tool] to [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You connect [tool] to [organ.get_surgery_name()].")
+			span_notice("[user] connects [tool] to [organ.get_surgery_name()]."),
+			span_notice("You connect [tool] to [organ.get_surgery_name()].")
 		)
 	else
 		user.visible_message(
-			SPAN_NOTICE("[user] inserts [tool] into [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You insert [tool] into [organ.get_surgery_name()].")
+			span_notice("[user] inserts [tool] into [organ.get_surgery_name()]."),
+			span_notice("You insert [tool] into [organ.get_surgery_name()].")
 		)
 	organ.add_item(tool, user)
 	if(BP_IS_ORGANIC(organ))
@@ -49,14 +49,14 @@
 		if(SG.wrapped)
 			tool = SG.wrapped
 			user.visible_message(
-				SPAN_WARNING("[user]'s gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
-				SPAN_WARNING("Your gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!")
+				span_warning("[user]'s gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
+				span_warning("Your gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!")
 			)
 			organ.take_damage(5, BRUTE, 0)
 	else
 		user.visible_message(
-			SPAN_WARNING("[user]'s hand slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
-			SPAN_WARNING("Your hand slips, hitting [organ.get_surgery_name()] with \the [tool]!")
+			span_warning("[user]'s hand slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
+			span_warning("Your hand slips, hitting [organ.get_surgery_name()] with \the [tool]!")
 		)
 		organ.take_damage(5, BRUTE, 0)
 
@@ -93,7 +93,7 @@
 	// TODO: ditch them
 	if(istype(I, /obj/item/organ_module))
 		if(module)
-			to_chat(user, SPAN_WARNING("There is already a module installed in [get_surgery_name()]."))
+			to_chat(user, span_warning("There is already a module installed in [get_surgery_name()]."))
 			return FALSE
 
 		return TRUE
@@ -108,7 +108,7 @@
 			return FALSE
 
 		if(!(organ_tag in implant.allowed_organs))
-			to_chat(user, SPAN_WARNING("[implant] doesn't fit in [get_surgery_name()]."))
+			to_chat(user, span_warning("[implant] doesn't fit in [get_surgery_name()]."))
 			return FALSE
 
 		return TRUE
@@ -122,20 +122,20 @@
 		if(organ.unique_tag)
 			for(var/obj/item/organ/internal/existing_organ in owner.internal_organs)
 				if(existing_organ.unique_tag == organ.unique_tag)
-					to_chat(user, SPAN_WARNING("[owner] already has [o_a][organ.unique_tag]."))
+					to_chat(user, span_warning("[owner] already has [o_a][organ.unique_tag]."))
 					return FALSE
 
 		if(BP_IS_ROBOTIC(src) && !BP_IS_ROBOTIC(organ))
-			to_chat(user, SPAN_DANGER("You cannot install a naked organ into a robotic body part."))
+			to_chat(user, span_danger("You cannot install a naked organ into a robotic body part."))
 			return FALSE
 
 		if(total_volume + organ.specific_organ_size > max_volume)
-			to_chat(user, SPAN_DANGER("There isn't enough space in [get_surgery_name()]!"))
+			to_chat(user, span_danger("There isn't enough space in [get_surgery_name()]!"))
 			return FALSE
 
 		if(istype(organ,/obj/item/organ/internal/bone))
 			if(!(organ.parent_organ_base == organ_tag))
-				to_chat(user, SPAN_DANGER("You can't fit [o_a][organ] inside [src]"))
+				to_chat(user, span_danger("You can't fit [o_a][organ] inside [src]"))
 				return FALSE
 
 		return TRUE
@@ -155,17 +155,17 @@
 		var/o_a =  (limb.gender == PLURAL) ? "" : "a "
 
 		if(isnull(owner.species.has_limbs[limb.organ_tag]))
-			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][organ_tag_to_name[limb.organ_tag]]."))
+			to_chat(user, span_warning("You're pretty sure [owner.species.name_plural] don't normally have [o_a][organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
 		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
 		if(existing_limb && !existing_limb.is_stump())
-			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][organ_tag_to_name[limb.organ_tag]]."))
+			to_chat(user, span_warning("\The [owner] already has [o_a][organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
 		// You can only attach a limb to either a parent organ or a stump of the same organ
 		if(limb.parent_organ_base != organ_tag && limb.organ_tag != organ_tag)
-			to_chat(user, SPAN_WARNING("You can't attach [limb] to [get_surgery_name()]!"))
+			to_chat(user, span_warning("You can't attach [limb] to [get_surgery_name()]!"))
 			return FALSE
 
 		return TRUE
@@ -173,7 +173,7 @@
 // Cavity implants
 
 	if(total_volume + I.w_class > max_volume)
-		to_chat(user, SPAN_WARNING("There isn't enough space in [get_surgery_name()]!"))
+		to_chat(user, span_warning("There isn't enough space in [get_surgery_name()]!"))
 		return FALSE
 
 	return TRUE

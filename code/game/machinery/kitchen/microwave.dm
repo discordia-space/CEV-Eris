@@ -71,13 +71,13 @@
 			if(QUALITY_SCREW_DRIVING)
 				if(broken == 2)
 					user.visible_message( \
-						SPAN_NOTICE("\The [user] starts to fix part of the [src]."), \
-						SPAN_NOTICE("You start to fix part of the [src].") \
+						span_notice("\The [user] starts to fix part of the [src]."), \
+						span_notice("You start to fix part of the [src].") \
 					)
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user.visible_message( \
-							SPAN_NOTICE("\The [user] fixes part of the [src]."), \
-							SPAN_NOTICE("You have fixed part of the [src].") \
+							span_notice("\The [user] fixes part of the [src]."), \
+							span_notice("You have fixed part of the [src].") \
 						)
 						src.broken = 1
 						return
@@ -86,13 +86,13 @@
 			if(QUALITY_BOLT_TURNING)
 				if(broken == 1)
 					user.visible_message( \
-						SPAN_NOTICE("\The [user] starts to fix part of the [src]."), \
-						SPAN_NOTICE("You start to fix part of the [src].") \
+						span_notice("\The [user] starts to fix part of the [src]."), \
+						span_notice("You start to fix part of the [src].") \
 					)
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						user.visible_message( \
-							SPAN_NOTICE("\The [user] fixes the [src]."), \
-							SPAN_NOTICE("You have fixed the [src].") \
+							span_notice("\The [user] fixes the [src]."), \
+							span_notice("You have fixed the [src].") \
 						)
 						src.icon_state = "mw"
 						src.broken = 0 // Fix it!
@@ -105,47 +105,47 @@
 				return
 
 //If we dont fix it with code above - return
-		to_chat(user, SPAN_WARNING("It's broken!"))
+		to_chat(user, span_warning("It's broken!"))
 		return
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag)) // If they're trying to clean it then let them
 			user.visible_message( \
-				SPAN_NOTICE("\The [user] starts to clean the [src]."), \
-				SPAN_NOTICE("You start to clean the [src].") \
+				span_notice("\The [user] starts to clean the [src]."), \
+				span_notice("You start to clean the [src].") \
 			)
 			if(do_after(user, 20, src))
 				user.visible_message( \
-					SPAN_NOTICE("\The [user] has cleaned the [src]."), \
-					SPAN_NOTICE("You have cleaned the [src].") \
+					span_notice("\The [user] has cleaned the [src]."), \
+					span_notice("You have cleaned the [src].") \
 				)
 				src.dirty = 0 // It's clean!
 				src.broken = 0 // just to be sure
 				src.icon_state = "mw"
 				src.reagent_flags = OPENCONTAINER
 		else //Otherwise bad luck!!
-			to_chat(user, SPAN_WARNING("It's dirty!"))
+			to_chat(user, span_warning("It's dirty!"))
 			return 1
 
 	else if(is_type_in_list(I,acceptable_items))
 		if(length(contents) >= max_n_of_items)
-			to_chat(user, SPAN_WARNING("This [src] is full of ingredients, you cannot put more."))
+			to_chat(user, span_warning("This [src] is full of ingredients, you cannot put more."))
 			return 1
 		if(istype(I, /obj/item/stack) && I:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = I
 			new I.type (src)
 			S.use(1)
 			user.visible_message( \
-				SPAN_NOTICE("\The [user] has added one of [I] to \the [src]."), \
-				SPAN_NOTICE("You add one of [I] to \the [src]."))
+				span_notice("\The [user] has added one of [I] to \the [src]."), \
+				span_notice("You add one of [I] to \the [src]."))
 			return
 		else
 		//	user.remove_from_mob(O)	//This just causes problems so far as I can tell. -Pete
 			user.drop_item()
 			I.loc = src
 			user.visible_message( \
-				SPAN_NOTICE("\The [user] has added \the [I] to \the [src]."), \
-				SPAN_NOTICE("You add \the [I] to \the [src]."))
+				span_notice("\The [user] has added \the [I] to \the [src]."), \
+				span_notice("You add \the [I] to \the [src]."))
 			return
 
 	else if(istype(I,/obj/item/reagent_containers/glass) || \
@@ -156,29 +156,29 @@
 			return 1
 		for (var/datum/reagent/R in I.reagents.reagent_list)
 			if(!acceptable_reagents.Find(R.id))
-				to_chat(user, SPAN_WARNING("Your [I] contains components unsuitable for cookery."))
+				to_chat(user, span_warning("Your [I] contains components unsuitable for cookery."))
 				return 1
 		return
 
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		user.visible_message( \
-		"<span class='notice'>\The [user] begins [src.anchored ? "unsecuring" : "securing"] the [src].</span>", \
-		"<span class='notice'>You attempt to [src.anchored ? "unsecure" : "secure"] the [src].</span>"
+		span_notice("\The [user] begins [src.anchored ? "unsecuring" : "securing"] the [src]."), \
+		span_notice("You attempt to [src.anchored ? "unsecure" : "secure"] the [src].")
 		)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			user.visible_message( \
-			"<span class='notice'>\The [user] [src.anchored ? "unsecures" : "secures"] the [src].</span>", \
-			"<span class='notice'>You [src.anchored ? "unsecure" : "secure"] the [src].</span>"
+			span_notice("\The [user] [src.anchored ? "unsecures" : "secures"] the [src]."), \
+			span_notice("You [src.anchored ? "unsecure" : "secure"] the [src].")
 			)
 			src.anchored = !src.anchored
 
 	else
-		to_chat(user, SPAN_WARNING("You have no idea what you can cook with this [I]."))
+		to_chat(user, span_warning("You have no idea what you can cook with this [I]."))
 	..()
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/affect_grab(var/mob/user, var/mob/target)
-	to_chat(user, SPAN_WARNING("This is ridiculous. You can not fit \the [target] in this [src]."))
+	to_chat(user, span_warning("This is ridiculous. You can not fit \the [target] in this [src]."))
 	return FALSE
 
 /obj/machinery/microwave/attack_ai(mob/user as mob)
@@ -331,7 +331,7 @@
 	return 0
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message(SPAN_NOTICE("The [src] turns on."), SPAN_NOTICE("You hear a [src]."))
+	src.visible_message(span_notice("The [src] turns on."), span_notice("You hear a [src]."))
 	src.operating = 1
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
@@ -354,7 +354,7 @@
 	if(reagents.total_volume)
 		dirty++
 	reagents.clear_reagents()
-	to_chat(usr, SPAN_NOTICE("You dispose of the [src] contents."))
+	to_chat(usr, span_notice("You dispose of the [src] contents."))
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()
@@ -364,7 +364,7 @@
 /obj/machinery/microwave/proc/muck_finish()
 	if(dinger)
 		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
-	src.visible_message(SPAN_WARNING("The [src] gets covered in muck!"))
+	src.visible_message(span_warning("The [src] gets covered in muck!"))
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.reagent_flags = NONE //So you can't add condiments
 	src.icon_state = "mwbloody" // Make it look dirty too
@@ -420,7 +420,7 @@
 	set src in view(1)
 
 	if (!Adjacent(usr))
-		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
+		to_chat(usr, span_warning("You need to be in arm's reach for that!"))
 		return
 
 	if (usr.incapacitated())
@@ -428,7 +428,7 @@
 
 	if(!lit)
 		playsound(loc, 'sound/effects/flare.ogg', 50, 1)
-		visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
+		visible_message(span_notice("The fire is stoked up."), span_notice("You hear a crackling fire."))
 		icon_state = "barrelfire1"
 		set_light(3,2)
 		lit = TRUE
@@ -443,14 +443,14 @@
 	if(!lit)
 		playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 		//playsound(loc, 'sound/effects/campfirecrackle.ogg', 50, 1) // I don't  know how to loop stuff
-		visible_message(SPAN_NOTICE("The fire is stoked up."), SPAN_NOTICE("You hear a crackling fire."))
+		visible_message(span_notice("The fire is stoked up."), span_notice("You hear a crackling fire."))
 		icon_state = "barrelfire1"
 		set_light(3,2)
 		lit = TRUE
 	else
 		playsound(loc, 'sound/effects/flare.ogg', 50, 1)
 		icon_state = "barrelfire1"
-		visible_message(SPAN_NOTICE("You hear a crackling fire."))
+		visible_message(span_notice("You hear a crackling fire."))
 
 /obj/machinery/microwave/campfire/abort()
 	..()

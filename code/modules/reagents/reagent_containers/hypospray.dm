@@ -19,7 +19,7 @@
 
 /obj/item/reagent_containers/hypospray/attack(mob/living/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
-		to_chat(user, SPAN_WARNING("[src] is empty."))
+		to_chat(user, span_warning("[src] is empty."))
 		return
 	if (!istype(M))
 		return
@@ -33,7 +33,7 @@
 			injtime = 30
 			var/obj/item/organ/external/affected = H.get_organ(BP_CHEST)
 			if(BP_IS_ROBOTIC(affected))
-				to_chat(user, SPAN_WARNING("Injection port on [M]'s suit is refusing your [src]."))
+				to_chat(user, span_warning("Injection port on [M]'s suit is refusing your [src]."))
 				// I think rig is advanced enough for this, and people will learn what causes this error
 				if(RIG)
 					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 1, -3)
@@ -46,8 +46,8 @@
 			if(BP_IS_LIFELIKE(affected) && user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
 				if(M.reagents)
 					var/trans = reagents.remove_any(amount_per_transfer_from_this)
-					user.visible_message(SPAN_WARNING("[user] injects [M] with [src]!"), SPAN_WARNING("You inject [M] with [src]."))
-					to_chat(user, SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in \the [src]."))
+					user.visible_message(span_warning("[user] injects [M] with [src]!"), span_warning("You inject [M] with [src]."))
+					to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in \the [src]."))
 				return
 			else
 				// if he is not lets show him what actually happened
@@ -60,9 +60,9 @@
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 		user.do_attack_animation(M)
 		if(injtime)
-			user.visible_message(SPAN_WARNING("[user] begins hunting for an injection port on [M]'s suit!"), SPAN_WARNING("You begins hunting for an injection port on [M]'s suit!"))
+			user.visible_message(span_warning("[user] begins hunting for an injection port on [M]'s suit!"), span_warning("You begins hunting for an injection port on [M]'s suit!"))
 			if(do_mob(user, M, injtime))
-				user.visible_message(SPAN_WARNING("[user] injects [M] with [src]!"), SPAN_WARNING("You inject [M] with [src]."))
+				user.visible_message(span_warning("[user] injects [M] with [src]!"), span_warning("You inject [M] with [src]."))
 			else
 				return
 	// handling actual injection
@@ -70,7 +70,7 @@
 	var/contained = reagents.log_list()
 	var/trans = reagents.trans_to_mob(M, amount_per_transfer_from_this, CHEM_BLOOD)
 	admin_inject_log(user, M, src, contained, trans)
-	to_chat(user, SPAN_NOTICE("[trans] units injected. [reagents.total_volume] units remaining in \the [src]."))
+	to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in \the [src]."))
 	return
 
 /obj/item/reagent_containers/hypospray/verb/empty()
@@ -81,7 +81,7 @@
 	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
 		return
 	if(isturf(usr.loc))
-		to_chat(usr, SPAN_NOTICE("You empty \the [src] onto the floor."))
+		to_chat(usr, span_notice("You empty \the [src] onto the floor."))
 		reagents.splash(usr.loc, reagents.total_volume)
 
 /obj/item/reagent_containers/hypospray/autoinjector

@@ -57,10 +57,10 @@
     if (active)
         for (var/mob/living/carbon/M in range(10, src))
             if (is_excelsior(M))
-                to_chat(M, SPAN_NOTICE("You hear a motivating tune, you feel ready for a fight!"))
+                to_chat(M, span_notice("You hear a motivating tune, you feel ready for a fight!"))
                 M.stats.addTempStat(STAT_TGH, STAT_LEVEL_ADEPT, 30 SECONDS, "ex_boombox")
                 M.stats.addTempStat(STAT_VIG, STAT_LEVEL_BASIC, 30 SECONDS, "ex_boombox")
             else
-                to_chat(M, SPAN_WARNING("You hear some stupid distracting communistic propaganda."))
+                to_chat(M, span_warning("You hear some stupid distracting communistic propaganda."))
                 M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, 30 SECONDS, "ex_boombox_m")
         addtimer(CALLBACK(src, PROC_REF(send_propaganda)), 30 SECONDS)

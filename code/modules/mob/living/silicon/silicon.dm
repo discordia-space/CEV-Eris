@@ -86,8 +86,8 @@
 			confused = (min(confused + 2, 30))
 //	flick("noise", flash)
 	flash(0, FALSE , FALSE , FALSE)
-	to_chat(src, SPAN_DANGER("<B>*BZZZT*</B>"))
-	to_chat(src, SPAN_DANGER("Warning: Electromagnetic pulse detected."))
+	to_chat(src, span_danger("<B>*BZZZT*</B>"))
+	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
@@ -149,7 +149,7 @@
 //can't inject synths
 /mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
+		to_chat(user, span_alert("The armoured plating is too tough."))
 	return 0
 
 //Silicon mob language procs
@@ -180,10 +180,10 @@
 	switch(sensor_type)
 		if ("Security")
 			sensor_mode = SEC_HUD
-			to_chat(src, SPAN_NOTICE("Security records overlay enabled."))
+			to_chat(src, span_notice("Security records overlay enabled."))
 		if ("Medical")
 			sensor_mode = MED_HUD
-			to_chat(src, SPAN_NOTICE("Life signs monitor overlay enabled."))
+			to_chat(src, span_notice("Life signs monitor overlay enabled."))
 		if ("Disable")
 			sensor_mode = 0
 			to_chat(src, "Sensor augmentations disabled.")
@@ -240,7 +240,7 @@
 					alarm_raised = 1
 					if(!reported)
 						reported = 1
-						to_chat(src, SPAN_WARNING("--- [AH.category] Detected ---"))
+						to_chat(src, span_warning("--- [AH.category] Detected ---"))
 					raised_alarm(A)
 
 		for(var/datum/alarm_handler/AH in queued_alarms)
@@ -250,7 +250,7 @@
 				if(alarms[A] == -1)
 					if(!reported)
 						reported = 1
-						to_chat(src, SPAN_NOTICE("--- [AH.category] Cleared ---"))
+						to_chat(src, span_notice("--- [AH.category] Cleared ---"))
 					to_chat(src, "\The [A.alarm_name()].")
 
 		if(alarm_raised)

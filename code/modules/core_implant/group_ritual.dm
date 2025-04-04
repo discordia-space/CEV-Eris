@@ -110,7 +110,7 @@
 	first = FALSE
 	participants = correct_participants
 	correct_participants = list()
-	to_chat(implant.wearer, SPAN_NOTICE("There is [participants.len] followers continuing the ritual."))
+	to_chat(implant.wearer, span_notice("There is [participants.len] followers continuing the ritual."))
 
 
 ////////////////////////

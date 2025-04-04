@@ -69,10 +69,10 @@
 
 /obj/machinery/meter/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) > 3 && !(isAI(user) || isghost(user)))
-		extra_description += SPAN_WARNING("You are too far away to read it.")
+		extra_description += span_warning("You are too far away to read it.")
 
 	else if(stat & (NOPOWER|BROKEN))
-		extra_description += SPAN_WARNING("The display is off.")
+		extra_description += span_warning("The display is off.")
 
 	else if(target)
 		var/datum/gas_mixture/environment = target.return_air()
@@ -97,11 +97,11 @@
 	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40, src))
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			span_notice("\The [user] unfastens \the [src]."), \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		new /obj/item/pipe_meter(src.loc)
 		qdel(src)

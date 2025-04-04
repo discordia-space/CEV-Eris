@@ -18,11 +18,11 @@
 /obj/machinery/dnaforensics/attackby(var/obj/item/W, mob/user as mob)
 
 	if(bloodsamp)
-		to_chat(user, SPAN_WARNING("There is already a sample in the machine."))
+		to_chat(user, span_warning("There is already a sample in the machine."))
 		return
 
 	if(closed)
-		to_chat(user, SPAN_WARNING("Open the cover before inserting the sample."))
+		to_chat(user, span_warning("Open the cover before inserting the sample."))
 		return
 
 	var/obj/item/forensics/swab/swab = W
@@ -30,9 +30,9 @@
 		user.unEquip(W)
 		src.bloodsamp = swab
 		swab.loc = src
-		to_chat(user, SPAN_NOTICE("You insert \the [W] into \the [src]."))
+		to_chat(user, span_notice("You insert \the [W] into \the [src]."))
 	else
-		to_chat(user, SPAN_WARNING("\The [src] only accepts used swabs."))
+		to_chat(user, span_warning("\The [src] only accepts used swabs."))
 		return
 
 /obj/machinery/dnaforensics/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
@@ -67,12 +67,12 @@
 				if(closed == 1)
 					scanner_progress = 0
 					scanning = 1
-					to_chat(usr, SPAN_NOTICE("Scan initiated."))
+					to_chat(usr, span_notice("Scan initiated."))
 					update_icon()
 				else
-					to_chat(usr, SPAN_NOTICE("Please close sample lid before initiating scan."))
+					to_chat(usr, span_notice("Please close sample lid before initiating scan."))
 			else
-				to_chat(usr, SPAN_WARNING("Insert an item to scan."))
+				to_chat(usr, span_warning("Insert an item to scan."))
 
 	if(href_list["ejectItem"])
 		if(bloodsamp)
@@ -99,7 +99,7 @@
 	last_process_worldtime = world.time
 
 /obj/machinery/dnaforensics/proc/complete_scan()
-	src.visible_message(SPAN_NOTICE("\icon[src] makes an insistent chime."), 2)
+	src.visible_message(span_notice("\icon[src] makes an insistent chime."), 2)
 	update_icon()
 	if(bloodsamp)
 		var/obj/item/paper/P = new(src)
@@ -134,7 +134,7 @@
 		return
 
 	if(scanning)
-		to_chat(usr, SPAN_WARNING("You can't do that while [src] is scanning!"))
+		to_chat(usr, span_warning("You can't do that while [src] is scanning!"))
 		return
 
 	closed = !closed

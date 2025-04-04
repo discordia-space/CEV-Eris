@@ -33,7 +33,7 @@
 			return
 
 		if(template.load(T, centered = TRUE, orientation=orientation))
-			message_admins("<span class='adminnotice'>[key_name_admin(usr)] has placed a map template ([template.name]).</span>")
+			message_admins(span_adminnotice("[key_name_admin(usr)] has placed a map template ([template.name])."))
 		else
 			to_chat(usr, "Failed to place map")
 	usr.client.images -= preview
@@ -63,7 +63,7 @@
 
 	if(alert(usr,"Confirm map load.", "Template Confirm","No","Yes") == "Yes")
 		if(template.load_new_z(orientation=orientation))
-			message_admins("<span class='adminnotice'>[key_name_admin(usr)] has placed a map template ([template.name]) on Z level [world.maxz].</span>")
+			message_admins(span_adminnotice("[key_name_admin(usr)] has placed a map template ([template.name]) on Z level [world.maxz]."))
 		else
 			to_chat(usr, "Failed to place map")
 
@@ -82,6 +82,6 @@
 	if(M.preload_size(map))
 		to_chat(usr, "Map template '[map]' ready to place ([M.width]x[M.height])")
 		SSmapping.map_templates[M.name] = M
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has uploaded a map template ([map])</span>")
+		message_admins(span_adminnotice("[key_name_admin(usr)] has uploaded a map template ([map])"))
 	else
 		to_chat(usr, "Map template '[map]' failed to load properly")

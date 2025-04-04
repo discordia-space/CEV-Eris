@@ -198,7 +198,7 @@
 			Proj.damage_types[BURN] = round(Proj.damage_types[BURN] / 2 + Proj.damage_types[BURN] * ricochetchance / 200)
 			Proj.def_zone = ran_zone()
 			projectile_reflection(Proj)		// Reflect before health, runtimes occur in some cases if health happens first.
-			visible_message("<span class='danger'>\The [Proj] ricochets off the surface of wall!</span>")
+			visible_message(span_danger("\The [Proj] ricochets off the surface of wall!"))
 			take_damage(min(proj_health - healthdiff, 100))
 			new /obj/effect/sparks(get_turf(Proj))
 			return PROJECTILE_CONTINUE // complete projectile permutation
@@ -253,60 +253,60 @@
 
 /turf/wall/examine(mob/user, extra_description = "")
 	if(!is_simulated)
-		extra_description += SPAN_NOTICE("It looks very tough.")
+		extra_description += span_notice("It looks very tough.")
 		return ..(user, extra_description)
 
 	if(health == max_health)
-		extra_description += SPAN_NOTICE("It is undamaged.")
+		extra_description += span_notice("It is undamaged.")
 	else
 		var/health_ratio = health / max_health
 		if(health_ratio <= 0.3)
-			extra_description += SPAN_WARNING("It looks heavily damaged.")
+			extra_description += span_warning("It looks heavily damaged.")
 		else if(health_ratio <= 0.6)
-			extra_description += SPAN_WARNING("It looks damaged.")
+			extra_description += span_warning("It looks damaged.")
 		else
-			extra_description += SPAN_WARNING("It looks slightly damaged.")
+			extra_description += span_warning("It looks slightly damaged.")
 
 	if(is_reinforced)
 		if(isnull(deconstruction_steps_left) || deconstruction_steps_left == 5)
-			extra_description += SPAN_NOTICE("\nYou can start disassembling the wall with a bolt turning tool.")
+			extra_description += span_notice("\nYou can start disassembling the wall with a bolt turning tool.")
 		else
-			extra_description += SPAN_WARNING("\nThe wall is partually disassembled.")
+			extra_description += span_warning("\nThe wall is partually disassembled.")
 			switch(deconstruction_steps_left)
 				if(4)
-					extra_description += SPAN_NOTICE("\nYou can deconstruct it further by prying away the armor plates.")
-					extra_description += SPAN_NOTICE("\nAlternatively, armor plates could be secured with a bolt turning tool, thus returning the wall to it's original state.")
+					extra_description += span_notice("\nYou can deconstruct it further by prying away the armor plates.")
+					extra_description += span_notice("\nAlternatively, armor plates could be secured with a bolt turning tool, thus returning the wall to it's original state.")
 				if(3)
-					extra_description += SPAN_NOTICE("\nCut the support beams to advance the process, or pry armor plates in place to reverse it.")
+					extra_description += span_notice("\nCut the support beams to advance the process, or pry armor plates in place to reverse it.")
 				if(2)
-					extra_description += SPAN_NOTICE("\nYou can hammer out what's left of support beams or weld them back together.")
+					extra_description += span_notice("\nYou can hammer out what's left of support beams or weld them back together.")
 				if(1)
-					extra_description += SPAN_NOTICE("\nYou can finish the process by welding, or turn back and hammer the support beams in place.")
+					extra_description += span_notice("\nYou can finish the process by welding, or turn back and hammer the support beams in place.")
 	else
-		extra_description += SPAN_NOTICE("\nYou can dismantle this wall by welding.")
+		extra_description += span_notice("\nYou can dismantle this wall by welding.")
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		extra_description += SPAN_WARNING("\nThere is a corrosive fungus growing on it, one touch and entire wall will crumble.")
-		extra_description += SPAN_WARNING("\nDirectly applying heat will remove the fungus.")
+		extra_description += span_warning("\nThere is a corrosive fungus growing on it, one touch and entire wall will crumble.")
+		extra_description += span_warning("\nDirectly applying heat will remove the fungus.")
 
 	if(window_type)
 		var/material/glass/window_material = get_material_by_name(window_type)
 		if(window_material && window_material.display_name)
-			extra_description += SPAN_NOTICE("\nThere is a [window_material.display_name] window")
+			extra_description += span_notice("\nThere is a [window_material.display_name] window")
 
 			var/health_ratio = window_health / window_max_health
 			if(health_ratio == 1)
-				extra_description += SPAN_NOTICE(", it looks fully intact.")
+				extra_description += span_notice(", it looks fully intact.")
 			else if(health_ratio > 0.75)
-				extra_description += SPAN_NOTICE(", it is slightly cracked.")
+				extra_description += span_notice(", it is slightly cracked.")
 			else if(health_ratio > 0.50)
-				extra_description += SPAN_NOTICE(", it has a few cracks.")
+				extra_description += span_notice(", it has a few cracks.")
 			else if(health_ratio > 0.25)
-				extra_description += SPAN_NOTICE(", it is heavily cracked!")
+				extra_description += span_notice(", it is heavily cracked!")
 			else
-				extra_description += SPAN_NOTICE(", it is about to break!")
+				extra_description += span_notice(", it is about to break!")
 
-			extra_description += SPAN_NOTICE("\nYou can pry it out with a crowbar.")
+			extra_description += span_notice("\nYou can pry it out with a crowbar.")
 
 	..(user, extra_description)
 
@@ -318,7 +318,7 @@
 		return
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
-	visible_message(SPAN_DANGER("\The [src] spontaneously combusts!")) //!!OH SHIT!!
+	visible_message(span_danger("\The [src] spontaneously combusts!")) //!!OH SHIT!!
 
 /turf/wall/take_damage(damage)
 	if(!is_simulated)
@@ -365,7 +365,7 @@
 
 	thermite = FALSE
 
-	to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))
+	to_chat(user, span_warning("The thermite starts melting through the wall."))
 	var/burn_duration = (hardness > 100) ? (10 SECONDS) : (5 SECONDS)
 	QDEL_IN(burn_overlay, burn_duration)
 	QDEL_IN(src, burn_duration)

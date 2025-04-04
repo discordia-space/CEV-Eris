@@ -86,7 +86,7 @@
 
 			if(PRG.filename == prog_name && (PRG in prog_disk.stored_files))
 				PRG.kill_program(forced=TRUE)
-				to_chat(usr, SPAN_NOTICE("Program [PRG.filename].[PRG.filetype] has been killed."))
+				to_chat(usr, span_notice("Program [PRG.filename].[PRG.filetype] has been killed."))
 				. = 1
 
 	if(href_list["PC_runprogram"])

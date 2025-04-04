@@ -4,75 +4,75 @@
 	var/obj/item/organ/external/E = H.get_organ(target_zone)
 
 	if(!E || E.is_stump())
-		to_chat(user, SPAN_NOTICE("[H] is missing that bodypart."))
+		to_chat(user, span_notice("[H] is missing that bodypart."))
 		return
 
 
 
-	user.visible_message(SPAN_NOTICE("[user] starts inspecting [affecting]'s [E.name] carefully."))
+	user.visible_message(span_notice("[user] starts inspecting [affecting]'s [E.name] carefully."))
 	if(!do_mob(user,H, 10))
-		to_chat(user, SPAN_NOTICE("You must stand still to inspect [E] for wounds."))
+		to_chat(user, span_notice("You must stand still to inspect [E] for wounds."))
 	else
 		var/wound_found = FALSE
 
 
 		if (target_zone == BP_HEAD)
 			if ((H.sanity.level >= 0) && (H.sanity.level < 5))
-				to_chat(user, SPAN_WARNING("[H] appears to be in acute shock, presenting dilated pupils, pale, clammy skin and a tense jaw."))
+				to_chat(user, span_warning("[H] appears to be in acute shock, presenting dilated pupils, pale, clammy skin and a tense jaw."))
 			else if((H.sanity.level >= 5) && (H.sanity.level < 30))
-				to_chat(user, SPAN_WARNING("[H] appears to be in a state of heavy 	shock, presenting dilated pupils and clammy skin."))
+				to_chat(user, span_warning("[H] appears to be in a state of heavy 	shock, presenting dilated pupils and clammy skin."))
 			else if(H.sanity.level <= 50)
-				to_chat(user, SPAN_NOTICE("[H] is visibly stressed, shivering slightly and grinding their teeth."))
+				to_chat(user, span_notice("[H] is visibly stressed, shivering slightly and grinding their teeth."))
 
 		if(E.wounds.len)
-			to_chat(user, SPAN_WARNING("You find [E.get_wounds_desc()]"))
+			to_chat(user, span_warning("You find [E.get_wounds_desc()]"))
 			wound_found = TRUE
 		if(E.number_internal_wounds)
-			to_chat(user, SPAN_WARNING("You find evidence of one or more internal injuries."))
+			to_chat(user, span_warning("You find evidence of one or more internal injuries."))
 			wound_found = TRUE
 		if(!wound_found)
-			to_chat(user, SPAN_NOTICE("You find no visible wounds."))
+			to_chat(user, span_notice("You find no visible wounds."))
 	if(locate(/obj/item/material/shard/shrapnel) in E.implants)
-		to_chat(user, SPAN_WARNING("There is what appears to be shrapnel embedded within [affecting]'s [E.name]."))
+		to_chat(user, span_warning("There is what appears to be shrapnel embedded within [affecting]'s [E.name]."))
 
-	to_chat(user, SPAN_NOTICE("Checking bones now..."))
+	to_chat(user, span_notice("Checking bones now..."))
 	if(!do_mob(user, H, 20))
-		to_chat(user, SPAN_NOTICE("You must stand still to feel [E] for fractures."))
+		to_chat(user, span_notice("You must stand still to feel [E] for fractures."))
 	else if(E.status & ORGAN_BROKEN)
-		to_chat(user, "<span class='warning'>The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!</span>")
+		to_chat(user, span_warning("The [E.encased ? E.encased : "bone in the [E.name]"] moves slightly when you poke it!"))
 		H.custom_pain("Your [E.name] hurts where it's poked.")
 	else
-		to_chat(user, "<span class='notice'>The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine.</span>")
+		to_chat(user, span_notice("The [E.encased ? E.encased : "bones in the [E.name]"] seem to be fine."))
 
-	to_chat(user, SPAN_NOTICE("Checking skin now..."))
+	to_chat(user, span_notice("Checking skin now..."))
 	if(!do_mob(user, H, 10))
-		to_chat(user, SPAN_NOTICE("You must stand still to check [H]'s skin for abnormalities."))
+		to_chat(user, span_notice("You must stand still to check [H]'s skin for abnormalities."))
 	else
 		var/bad = 0
 		if(H.getToxLoss() >= 40)
-			to_chat(user, SPAN_WARNING("[H] has an unhealthy skin discoloration."))
+			to_chat(user, span_warning("[H] has an unhealthy skin discoloration."))
 			bad = 1
 		if(H.getOxyLoss() >= 20)
-			to_chat(user, SPAN_WARNING("[H]'s skin is unusually pale."))
+			to_chat(user, span_warning("[H]'s skin is unusually pale."))
 			bad = 1
 		if(E.status & ORGAN_DEAD)
-			to_chat(user, SPAN_WARNING("[E] is decaying!"))
+			to_chat(user, span_warning("[E] is decaying!"))
 			bad = 1
 		if(!bad)
-			to_chat(user, SPAN_NOTICE("[H]'s skin is normal."))
+			to_chat(user, span_notice("[H]'s skin is normal."))
 
 /obj/item/grab/proc/slow_bleeding(mob/living/carbon/human/H, mob/user, var/obj/item/organ/external/bodypart)
 
 	if(bodypart.is_stump() || !bodypart)
-		to_chat(user, SPAN_WARNING("They are missing that limb!"))
+		to_chat(user, span_warning("They are missing that limb!"))
 		return
 	else
-		visible_message(SPAN_WARNING("[user] starts putting pressure on [H]'s wounds to stop the wounds on \his [bodypart.name] from bleeding!"))
+		visible_message(span_warning("[user] starts putting pressure on [H]'s wounds to stop the wounds on \his [bodypart.name] from bleeding!"))
 		if(!do_mob(user, H, 50))//5 seconds
-			to_chat(user, SPAN_NOTICE("You must stand still to stop the bleeding."))
+			to_chat(user, span_notice("You must stand still to stop the bleeding."))
 			return
 		else
-			visible_message(SPAN_NOTICE("[user] finishes putting pressure on [H]'s wounds."))
+			visible_message(span_notice("[user] finishes putting pressure on [H]'s wounds."))
 			for(var/datum/wound/W in bodypart.wounds)
 				W.current_stage++
 				W.bleed_timer -= 5
@@ -84,9 +84,9 @@
 	attacker.next_move = world.time + 40 //4 seconds, also should prevent user from triggering this repeatedly
 	for(var/obj/item/protection in list(target.head, target.wear_mask, target.glasses))
 		if(protection && (protection.body_parts_covered & FACE))
-			to_chat(attacker, SPAN_DANGER("You can't induce vomiting while [target]'s mouth is covered."))
+			to_chat(attacker, span_danger("You can't induce vomiting while [target]'s mouth is covered."))
 			return
-	visible_message(SPAN_WARNING("[attacker] places a finger in [target]'s throat, trying to induce vomiting."))//ewwies
+	visible_message(span_warning("[attacker] places a finger in [target]'s throat, trying to induce vomiting."))//ewwies
 	if(do_after(attacker, 40, progress=0) && target)
 		//vomiting sets on cd for 35 secs, which means it's impossible to spam this
 		target.vomit(TRUE)
@@ -97,17 +97,17 @@
 
 /obj/item/grab/proc/jointlock(mob/living/carbon/human/target, mob/attacker, var/target_zone)
 	if(state < GRAB_AGGRESSIVE)
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
 	var/obj/item/organ/external/organ = target.get_organ(check_zone(target_zone))
 	if(!organ || organ.nerve_struck == -1)
 		return
-	visible_message(SPAN_WARNING("[attacker] tries to put [target]'s [organ.name] into a jointlock."))
+	visible_message(span_warning("[attacker] tries to put [target]'s [organ.name] into a jointlock."))
 	if(!do_after(attacker, 7 SECONDS, target))
-		to_chat(attacker, SPAN_WARNING("You must stand still to jointlock [target]!"))
+		to_chat(attacker, span_warning("You must stand still to jointlock [target]!"))
 	else
-		visible_message(SPAN_WARNING("With a forceful twist, [attacker] bents [target]'s [organ.name] into a painful jointlock!"))
-		to_chat(target, SPAN_DANGER("You feel extreme pain!"))
+		visible_message(span_warning("With a forceful twist, [attacker] bents [target]'s [organ.name] into a painful jointlock!"))
+		to_chat(target, span_danger("You feel extreme pain!"))
 		playsound(loc, 'sound/weapons/jointORbonebreak.ogg', 50, 1, -1)
 		affecting.adjustHalLoss(rand(30, 40))
 
@@ -120,14 +120,14 @@
 	if(!attack)
 		return
 	if(state < GRAB_NECK)
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
 	for(var/obj/item/protection in list(target.head, target.wear_mask, target.glasses))
 		if(protection && (protection.body_parts_covered & EYES))
-			to_chat(attacker, SPAN_DANGER("You're going to need to remove the eye covering first."))
+			to_chat(attacker, span_danger("You're going to need to remove the eye covering first."))
 			return
 	if(!target.has_eyes())
-		to_chat(attacker, SPAN_DANGER("You cannot locate any eyes on [target]!"))
+		to_chat(attacker, span_danger("You cannot locate any eyes on [target]!"))
 		return
 
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Attacked [target.name]'s eyes using grab ([target.ckey])</font>")
@@ -138,11 +138,11 @@
 
 /obj/item/grab/proc/dropkick(mob/living/carbon/target, mob/living/carbon/human/attacker)
 	if(state < GRAB_AGGRESSIVE) //blue grab check
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
 	if(target.lying)
 		return
-	visible_message(SPAN_DANGER("[attacker] dropkicks [target], pushing \him onwards!"))
+	visible_message(span_danger("[attacker] dropkicks [target], pushing \him onwards!"))
 	attacker.Weaken(2)
 	target.Weaken(6) //the target will fly over tables, railings, etc.
 	var/kick_dir = get_dir(attacker, target)
@@ -163,12 +163,12 @@
 
 /obj/item/grab/proc/suplex(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(state < GRAB_NECK) //red grab check
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
-	visible_message(SPAN_WARNING("[attacker] lifts [target] off the ground..." ))
+	visible_message(span_warning("[attacker] lifts [target] off the ground..." ))
 	attacker.next_move = world.time + 20 //2 seconds, also should prevent user from triggering this repeatedly
 	if(do_after(attacker, 20, progress=0) && target)
-		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
+		visible_message(span_danger("...And falls backwards, slamming the opponent back onto the floor!"))
 		target.SpinAnimation(5,1)
 		var/damage = min(80, attacker.stats.getStat(STAT_ROB) + 15) //WE ARE GONNA KILL YOU
 		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
@@ -186,7 +186,7 @@
 
 /obj/item/grab/proc/gut_punch(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	//no check for grab levels
-	visible_message(SPAN_DANGER("[attacker] thrusts \his fist in [target]'s guts!"))
+	visible_message(span_danger("[attacker] thrusts \his fist in [target]'s guts!"))
 	var/damage = max(1, (10 - target.stats.getStat(STAT_TGH) / 4))//40+ TGH = 1 dmg
 	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE, wounding_multiplier = 2)
 	//vomiting goes on cd for 35 secs, which means it's impossible to spam this
@@ -204,7 +204,7 @@
 		return
 	if(target.lying)
 		return
-	attacker.visible_message(SPAN_DANGER("[attacker] thrusts \his head into [target]'s skull!"))
+	attacker.visible_message(span_danger("[attacker] thrusts \his head into [target]'s skull!"))
 
 	var/damage = 20
 	var/obj/item/clothing/hat = attacker.head
@@ -218,7 +218,7 @@
 
 	if(!victim_armor && target.headcheck(BP_HEAD) && prob(damage))
 		target.apply_effect(20, PARALYZE)
-		target.visible_message(SPAN_DANGER("[target] [target.species.knockout_message]"))
+		target.visible_message(span_danger("[target] [target.species.knockout_message]"))
 
 	playsound(attacker.loc, "swing_hit", 25, 1, -1)
 	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Headbutted [target.name] ([target.ckey])</font>")
@@ -236,15 +236,15 @@
 
 /obj/item/grab/proc/pin_down(mob/target, mob/attacker)
 	if(state < GRAB_AGGRESSIVE)
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
 	if(force_down)
-		to_chat(attacker, SPAN_WARNING("You are already pinning [target] to the ground."))
+		to_chat(attacker, span_warning("You are already pinning [target] to the ground."))
 
-	attacker.visible_message(SPAN_DANGER("[attacker] starts forcing [target] to the ground!"))
+	attacker.visible_message(span_danger("[attacker] starts forcing [target] to the ground!"))
 	if(do_after(attacker, 20, progress=0) && target)
 		last_action = world.time
-		attacker.visible_message(SPAN_DANGER("[attacker] forces [target] to the ground!"))
+		attacker.visible_message(span_danger("[attacker] forces [target] to the ground!"))
 		apply_pinning(target, attacker)
 
 /obj/item/grab/proc/apply_pinning(mob/target, mob/attacker)
@@ -258,9 +258,9 @@
 
 /obj/item/grab/proc/fireman_throw(mob/living/carbon/human/target, mob/living/carbon/human/attacker)//in short, suplex + irish whip
 	if(state < GRAB_AGGRESSIVE)//blue grab check
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
-	visible_message(SPAN_DANGER("[attacker] lifts [target] over the shoulders, just to drop \him behind!" ))
+	visible_message(span_danger("[attacker] lifts [target] over the shoulders, just to drop \him behind!" ))
 	target.SpinAnimation(5,1)
 	var/fireman_dir = (get_dir(target, attacker))
 	if(attacker.loc == target.loc) // if we are on the same tile(e.g. neck grab), turn the direction to still push them away
@@ -287,10 +287,10 @@
 
 /obj/item/grab/proc/swing(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(state < GRAB_NECK) //red grab check
-		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		to_chat(attacker, span_warning("You require a better grab to do this."))
 		return
 	if(!target.lying)
-		to_chat(attacker, SPAN_WARNING("\The [target] needs to be on the ground to do this."))
+		to_chat(attacker, span_warning("\The [target] needs to be on the ground to do this."))
 		return
 	var/free_space = TRUE//if there are walls or structures around us, we can't do this.
 	for (var/turf/T in range(1, attacker.loc))
@@ -299,11 +299,11 @@
 		if(!T.Enter(attacker))
 			free_space = FALSE
 	if(!free_space)
-		to_chat(attacker, SPAN_WARNING("There is not enough space around you to do this."))
+		to_chat(attacker, span_warning("There is not enough space around you to do this."))
 		return
 	//finally, we SWING
 	target.loc = attacker.loc
-	visible_message(SPAN_DANGER("[attacker] pivots, spinning [target] around!"))
+	visible_message(span_danger("[attacker] pivots, spinning [target] around!"))
 	attacker.next_move = world.time + 30 //3 seconds
 	var/spin = 2
 	var/damage = 30
@@ -317,7 +317,7 @@
 		spin++
 		damage += 5
 		for(var/mob/living/L in get_step(target, dir))
-			visible_message(SPAN_DANGER("[target] collides with [L], pushing \him on the ground!"))
+			visible_message(span_danger("[target] collides with [L], pushing \him on the ground!"))
 			L.Weaken(4)
 		attacker.set_dir(dir)
 		sleep(1)

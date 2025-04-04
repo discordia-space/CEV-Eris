@@ -56,11 +56,11 @@
 	src.add_fingerprint(user)
 	if(armed)
 		disarm()
-		to_chat(user, SPAN_NOTICE("You disarm \the [src]"))
+		to_chat(user, span_notice("You disarm \the [src]"))
 	else
 		cooldown_timer = world.time - cooldown + 100
 		arm()
-		to_chat(user, SPAN_WARNING("You arm \the [src]! You have 10 seconds to run away."))
+		to_chat(user, span_warning("You arm \the [src]! You have 10 seconds to run away."))
 
 //Pre-armed mine
 /obj/item/emp_mine/armed/New()

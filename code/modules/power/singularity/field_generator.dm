@@ -134,12 +134,12 @@ field_generator power level display
 		if(QUALITY_WELDING)
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You weld the field generator to the floor."))
+					to_chat(user, span_notice("You weld the field generator to the floor."))
 					state = 2
 					return
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You cut the [src] free from the floor."))
+					to_chat(user, span_notice("You cut the [src] free from the floor."))
 					state = 1
 					return
 			return

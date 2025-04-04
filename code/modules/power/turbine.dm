@@ -239,7 +239,7 @@
 		\n<BR>
 		\n"}
 	else
-		dat += SPAN_DANGER("No compatible attached compressor found.")
+		dat += span_danger("No compatible attached compressor found.")
 
 	user << browse(HTML_SKELETON(dat), "window=computer;size=400x500")
 	onclose(user, "computer")

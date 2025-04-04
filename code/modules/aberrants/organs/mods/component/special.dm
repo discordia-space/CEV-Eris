@@ -287,7 +287,7 @@
 				I.replaced(active_hand)
 				H.apply_damage(10, HALLOSS, active_hand)
 				H.apply_damage(5, BRUTE, active_hand)
-				to_chat(owner, SPAN_WARNING("\The [holder] forces its way into your [active_hand.name]!"))
+				to_chat(owner, span_warning("\The [holder] forces its way into your [active_hand.name]!"))
 
 /datum/component/modification/organ/symbiotic/proc/trigger_iattack(atom/A, mob/living/user)
 	if(!A || !user)
@@ -298,9 +298,9 @@
 		var/mob/living/carbon/human/attacker = user
 		var/obj/item/organ/external/affected = target.organs_by_name[attacker.targeted_organ]
 		if(!affected)
-			user.visible_message(SPAN_NOTICE("[user.name] attempts to implant [target.name], but misses!"), SPAN_WARNING("The target limb is missing."))
+			user.visible_message(span_notice("[user.name] attempts to implant [target.name], but misses!"), span_warning("The target limb is missing."))
 		if(BP_IS_ROBOTIC(affected))
-			to_chat(user, SPAN_NOTICE("The target limb is robotic. This organ can only be implanted in organic limbs."))
+			to_chat(user, span_notice("The target limb is robotic. This organ can only be implanted in organic limbs."))
 			return
 		var/duration = max(5 SECONDS - attacker.stats.getStat(STAT_BIO), 0)		// Every point of BIO reduces the duration by a decisecond
 		if(!do_after(attacker, duration, target))
@@ -310,15 +310,15 @@
 			if(istype(AM.loc, /obj/item/organ/internal))
 				var/obj/item/organ/internal/I = AM.loc
 				if(affected.max_volume < affected.get_total_occupied_volume() + I.specific_organ_size)
-					to_chat(user, SPAN_NOTICE("The target limb does not have enough space to hold \the [I]."))
+					to_chat(user, span_notice("The target limb does not have enough space to hold \the [I]."))
 					return
 				attacker.drop_item()
 				I.replaced(affected)
 				target.apply_damage(10, HALLOSS, affected)
 				target.apply_damage(5, BRUTE, affected)
-				user.visible_message(SPAN_WARNING("[user.name] implants \the [I] into [target.name]'s [affected.name]!"), SPAN_WARNING("You implant \the [I] into [target.name]'s [affected.name]!"))
+				user.visible_message(span_warning("[user.name] implants \the [I] into [target.name]'s [affected.name]!"), span_warning("You implant \the [I] into [target.name]'s [affected.name]!"))
 		else
-			to_chat(user, SPAN_NOTICE("The target limb has too much protection."))
+			to_chat(user, span_notice("The target limb has too much protection."))
 
 /datum/component/modification/organ/deployable
 	exclusive_type = /obj/item/modification/organ/internal/deployable
@@ -349,15 +349,15 @@
 	if(stored_object.loc == parent) //item not in hands
 		if(user.put_in_active_hand(stored_object))
 			user.visible_message(
-				SPAN_WARNING("[user] extends \his [stored_object.name] from [E]."),
-				SPAN_NOTICE("You extend your [stored_object.name] from [E].")
+				span_warning("[user] extends \his [stored_object.name] from [E]."),
+				span_notice("You extend your [stored_object.name] from [E].")
 			)
 	else if(stored_object.loc == user)
 		user.drop_from_inventory(stored_object)
 		user.visible_message(
-			SPAN_WARNING("[user] retracts \his [stored_object.name] into [E]."),
-			SPAN_NOTICE("You retract your [stored_object.name] into [E].")
+			span_warning("[user] retracts \his [stored_object.name] into [E]."),
+			span_notice("You retract your [stored_object.name] into [E].")
 		)
 		stored_object.forceMove(parent)
 	else
-		to_chat(user, SPAN_WARNING("ERROR: Stored object does not exist or is in the wrong place."))
+		to_chat(user, span_warning("ERROR: Stored object does not exist or is in the wrong place."))

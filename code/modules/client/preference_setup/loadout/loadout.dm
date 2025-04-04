@@ -150,7 +150,7 @@ var/list/gear_datums = list()
 				category_cost += G.cost
 
 		if(category == current_tab)
-			. += " <span class='linkOn'>[category] - [category_cost]</span> "
+			. += " [span_linkOn("[category] - [category_cost]")] "
 		else
 			if(category_cost)
 				. += " <a href='byond://?src=\ref[src];select_category=[category]'><font color = '#e67300'>[category] - [category_cost]</font></a> "
@@ -353,7 +353,7 @@ var/list/gear_datums = list()
 			// so we need to pick them up
 			for(var/obj/item/I in get_turf(H))
 				H.equip_to_appropriate_slot(I)
-		to_chat(H, "<span class='notice'>Equipping you with \the [item]!</span>")
+		to_chat(H, span_notice("Equipping you with \the [item]!"))
 		. = item
 
 /datum/gear/proc/spawn_in_storage_or_drop(var/mob/living/carbon/human/H, var/metadata)
@@ -362,10 +362,10 @@ var/list/gear_datums = list()
 
 	var/atom/placed_in = H.equip_to_storage(item)
 	if(placed_in)
-		to_chat(H, "<span class='notice'>Placing \the [item] in your [placed_in.name]!</span>")
+		to_chat(H, span_notice("Placing \the [item] in your [placed_in.name]!"))
 	else if(H.equip_to_appropriate_slot(item))
-		to_chat(H, "<span class='notice'>Placing \the [item] in your inventory!</span>")
+		to_chat(H, span_notice("Placing \the [item] in your inventory!"))
 	else if(H.put_in_hands(item))
-		to_chat(H, "<span class='notice'>Placing \the [item] in your hands!</span>")
+		to_chat(H, span_notice("Placing \the [item] in your hands!"))
 	else
-		to_chat(H, "<span class='danger'>Dropping \the [item] on the ground!</span>")
+		to_chat(H, span_danger("Dropping \the [item] on the ground!"))

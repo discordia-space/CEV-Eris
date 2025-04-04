@@ -15,14 +15,14 @@
 		var/graffititype = input("Choose what you'd like to paint") in list("Kot","Onestar","Carrion","Doodle","Piss","Clown","Skull","Heart","Excelsior","Ironhammer","Moebius","Neotheology","Technomancer","Aster","Ancap yes","Ancap no")
 		if(uses <= 0)
 			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
-			to_chat(user, SPAN_NOTICE("The spray can is empty."))
+			to_chat(user, span_notice("The spray can is empty."))
 			return FALSE
 		else
 			playsound(loc, 'sound/effects/interaction/graffiti.ogg', 100, 1)
 		if(do_after(user, 2 SECONDS, target))
-			to_chat(user, SPAN_NOTICE("You start tagging \the [target.name]!"))
+			to_chat(user, span_notice("You start tagging \the [target.name]!"))
 		else
-			to_chat(user, SPAN_NOTICE("You must stand still while tagging \the [target.name]!"))
+			to_chat(user, span_notice("You must stand still while tagging \the [target.name]!"))
 			return FALSE
 		switch(graffititype)
 			if("Kot")
@@ -61,7 +61,7 @@
 			uses--
 		if(uses <= 0)
 			playsound(loc, 'sound/effects/interaction/graffiti_empty.ogg', 100, 1)
-			to_chat(user, SPAN_NOTICE("You have emptied the spray can."))
+			to_chat(user, span_notice("You have emptied the spray can."))
 			icon_state = "spraypaint_empty"
 			name = "empty spraycan"
 			desc = "This spraycan is empty."

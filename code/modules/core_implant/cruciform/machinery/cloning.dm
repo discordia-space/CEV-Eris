@@ -372,9 +372,9 @@
 /obj/machinery/neotheology/biomass_container/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		if(reagents.has_reagent("biomatter"))
-			extra_description += SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity].")
+			extra_description += span_notice("Filled to [reagents.total_volume]/[biomass_capacity].")
 		else
-			extra_description += SPAN_NOTICE("It is empty.")
+			extra_description += span_notice("It is empty.")
 	..(user, extra_description)
 
 /obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user)
@@ -397,18 +397,18 @@
 									)
 				ping()
 			else
-				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transfer] in [name][sheets_amount_to_transfer < 0 ? " because it is literally impossible" :""]."))
+				to_chat(user, span_warning("You can't insert [sheets_amount_to_transfer] in [name][sheets_amount_to_transfer < 0 ? " because it is literally impossible" :""]."))
 			return
 		else
-			to_chat(user, SPAN_WARNING("\The [B.name] is exhausted and can't be melted to biomatter. "))
+			to_chat(user, span_warning("\The [B.name] is exhausted and can't be melted to biomatter. "))
 
 	if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
 		var/obj/item/reagent_containers/container = I
 		if(container.reagents.get_reagent_amount("biomatter") == container.reagents.total_volume)
 			container.reagents.trans_to_holder(reagents, container.amount_per_transfer_from_this)
-			to_chat(user, SPAN_NOTICE("You transfer some of biomatter from \the [container] to \the [name]."))
+			to_chat(user, span_notice("You transfer some of biomatter from \the [container] to \the [name]."))
 		else
-			to_chat(user, SPAN_NOTICE("You need clear biomatter to fill \the [name]."))
+			to_chat(user, span_notice("You need clear biomatter to fill \the [name]."))
 
 /////////////////////
 
@@ -442,7 +442,7 @@
 		return
 
 	if(reading)
-		to_chat(user, SPAN_WARNING("You try to pull the [implant], but it does not move."))
+		to_chat(user, span_warning("You try to pull the [implant], but it does not move."))
 		return
 
 	user.put_in_active_hand(implant)

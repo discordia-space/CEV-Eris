@@ -43,11 +43,11 @@
 		if(!implant.allow_reagents)
 			return
 		if(implant.reagents.total_volume >= implant.reagents.maximum_volume)
-			to_chat(user, SPAN_WARNING("\The [src] is full."))
+			to_chat(user, span_warning("\The [src] is full."))
 		else
 			spawn(5)
 				I.reagents.trans_to_obj(implant, 5)
-				to_chat(user, SPAN_NOTICE("You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units."))
+				to_chat(user, span_notice("You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units."))
 	else if (istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
 		if(M.implant)

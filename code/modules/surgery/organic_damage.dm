@@ -10,7 +10,7 @@
 	duration = 80
 
 /datum/surgery_step/fix_organ/require_tool_message(mob/living/user)
-	to_chat(user, SPAN_WARNING("You need an advanced trauma kit, or at least some bandages, to complete this step."))
+	to_chat(user, span_warning("You need an advanced trauma kit, or at least some bandages, to complete this step."))
 
 /datum/surgery_step/fix_organ/proc/get_tool_name(obj/item/stack/tool)
 	var/tool_name = "\the [tool]"
@@ -25,8 +25,8 @@
 
 /datum/surgery_step/fix_organ/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts treating damage to [organ.get_surgery_name()] with [get_tool_name(tool)]."),
-		SPAN_NOTICE("You start treating damage to [organ.get_surgery_name()] with [get_tool_name(tool)].")
+		span_notice("[user] starts treating damage to [organ.get_surgery_name()] with [get_tool_name(tool)]."),
+		span_notice("You start treating damage to [organ.get_surgery_name()] with [get_tool_name(tool)].")
 	)
 
 	var/obj/item/organ/external/limb = organ.get_limb()
@@ -35,16 +35,16 @@
 
 /datum/surgery_step/fix_organ/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] treats damage to [organ.get_surgery_name()] with [get_tool_name(tool)]."),
-		SPAN_NOTICE("You treat damage to [organ.get_surgery_name()] with [get_tool_name(tool)].")
+		span_notice("[user] treats damage to [organ.get_surgery_name()] with [get_tool_name(tool)]."),
+		span_notice("You treat damage to [organ.get_surgery_name()] with [get_tool_name(tool)].")
 	)
 	if(tool.use(1))
 		organ.damage = 0
 
 /datum/surgery_step/fix_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(5, 0)
 
@@ -62,22 +62,22 @@
 
 /datum/surgery_step/fix_bleeding/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts clamping bleeders in [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start clamping bleeders in [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts clamping bleeders in [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start clamping bleeders in [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.owner_custom_pain("The pain in your [organ.name] is maddening!", 1)
 
 /datum/surgery_step/fix_bleeding/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] clamps bleeders in [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You clamp bleeders in [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] clamps bleeders in [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You clamp bleeders in [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.clamp_wounds()
 
 /datum/surgery_step/fix_bleeding/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, tearing blood vessels in [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, tearing blood vessels in [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("[user]'s hand slips, tearing blood vessels in [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, tearing blood vessels in [organ.get_surgery_name()] with \the [tool]!"),
 	)
 	organ.take_damage(10, 0, sharp=TRUE)
 
@@ -95,14 +95,14 @@
 
 /datum/surgery_step/fix_necrosis/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts cutting away necrotic tissue in [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start cutting away necrotic tissue in [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts cutting away necrotic tissue in [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start cutting away necrotic tissue in [organ.get_surgery_name()] with \the [tool].")
 	)
 
 /datum/surgery_step/fix_necrosis/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] has cut away necrotic tissue in [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You have cut away necrotic tissue in [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] has cut away necrotic tissue in [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You have cut away necrotic tissue in [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.status &= ~ORGAN_DEAD
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
@@ -110,8 +110,8 @@
 
 /datum/surgery_step/fix_necrosis/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, slicing an artery inside [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, slicing an artery inside [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, slicing an artery inside [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, slicing an artery inside [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(20, 0, sharp=TRUE, edge=TRUE)
 
@@ -129,29 +129,29 @@
 
 /datum/surgery_step/fix_face/begin_step(mob/living/user, obj/item/organ/external/head/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to fix facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You begin to fix facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] begins to fix facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You begin to fix facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.owner_custom_pain("You can feel your face being cut apart!", 1)
 
 /datum/surgery_step/fix_face/end_step(mob/living/user, obj/item/organ/external/head/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] fixes facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You fix facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] fixes facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You fix facial structure and vocal cords on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.disfigured = FALSE
 
 /datum/surgery_step/fix_face/fail_step(mob/living/user, obj/item/organ/external/head/organ, obj/item/tool)
 	if(organ.owner)
 		user.visible_message(
-			SPAN_WARNING("[user]'s hand slips, slicing [organ.owner]'s throat wth \the [tool]!"),
-			SPAN_WARNING("Your hand slips, slicing [organ.owner]'s throat wth \the [tool]!")
+			span_warning("[user]'s hand slips, slicing [organ.owner]'s throat wth \the [tool]!"),
+			span_warning("Your hand slips, slicing [organ.owner]'s throat wth \the [tool]!")
 		)
 		organ.owner.losebreath += 10
 	else
 		user.visible_message(
-			SPAN_WARNING("[user]'s hand slips, making a deep gash on [organ.get_surgery_name()] with \the [tool]!"),
-			SPAN_WARNING("Your hand slips, making a deep gash on [organ.get_surgery_name()] with \the [tool]!")
+			span_warning("[user]'s hand slips, making a deep gash on [organ.get_surgery_name()] with \the [tool]!"),
+			span_warning("Your hand slips, making a deep gash on [organ.get_surgery_name()] with \the [tool]!")
 		)
 	organ.take_damage(60, 0, sharp=TRUE, edge=TRUE)
 
@@ -164,7 +164,7 @@
 		duration = 100
 
 /datum/surgery_step/fix_brute/require_tool_message(mob/living/user)
-	to_chat(user, SPAN_WARNING("You need an advanced trauma kit to complete this step."))
+	to_chat(user, span_warning("You need an advanced trauma kit to complete this step."))
 
 /datum/surgery_step/fix_brute/proc/get_tool_name(obj/item/stack/tool)
 	var/tool_name = "\the regenerative membrane"
@@ -172,14 +172,14 @@
 
 /datum/surgery_step/fix_brute/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	if(organ.brute_dam <= 0)
-		to_chat(user, SPAN_NOTICE("This limb is undamaged!"))
+		to_chat(user, span_notice("This limb is undamaged!"))
 		return SURGERY_FAILURE
 	return TRUE
 
 /datum/surgery_step/fix_brute/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool]."),
-		SPAN_NOTICE("You begin to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool].")
+		span_notice("[user] begins to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool]."),
+		span_notice("You begin to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool].")
 	)
 
 /datum/surgery_step/fix_brute/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
@@ -187,17 +187,17 @@
 		var/obj/item/stack/S = tool
 		if(S.use(1))
 			user.visible_message(
-			SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
-			SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
+			span_notice("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
+			span_notice("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
 			)
 			organ.heal_damage(25, 0, TRUE)
 		else
-			to_chat(user, SPAN_NOTICE("\The [tool] is used up."))
+			to_chat(user, span_notice("\The [tool] is used up."))
 
 /datum/surgery_step/fix_brute/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(rand(5, 10), 0)
 
@@ -210,7 +210,7 @@
 		duration = 100
 
 /datum/surgery_step/fix_burn/require_tool_message(mob/living/user)
-	to_chat(user, SPAN_WARNING("You need an advanced burn kit to complete this step."))
+	to_chat(user, span_warning("You need an advanced burn kit to complete this step."))
 
 /datum/surgery_step/fix_burn/proc/get_tool_name(obj/item/stack/tool)
 	var/tool_name = "\the regenerative membrane"
@@ -218,7 +218,7 @@
 
 /datum/surgery_step/fix_burn/can_use(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	if(organ.burn_dam <= 0)
-		to_chat(user, SPAN_NOTICE("This limb is undamaged!"))
+		to_chat(user, span_notice("This limb is undamaged!"))
 		return SURGERY_FAILURE
 
 	return TRUE
@@ -226,8 +226,8 @@
 
 /datum/surgery_step/fix_burn/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool]."),
-		SPAN_NOTICE("You begin to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool].")
+		span_notice("[user] begins to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool]."),
+		span_notice("You begin to treat damage to [organ.get_surgery_name()]'s subcutaneous tissue with \the [tool].")
 	)
 
 /datum/surgery_step/fix_burn/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
@@ -235,16 +235,16 @@
 		var/obj/item/stack/S = tool
 		if(S.use(1))
 			user.visible_message(
-			SPAN_NOTICE("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
-			SPAN_NOTICE("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
+			span_notice("[user] finishes treating damage to [organ.get_surgery_name()] with \the [tool]."),
+			span_notice("You finish treating damage to [organ.get_surgery_name()] with \the [tool].")
 			)
 			organ.heal_damage(0, 25, TRUE)
-		else 
-			to_chat(user, SPAN_NOTICE("\The [tool] is used up."))
+		else
+			to_chat(user, span_notice("\The [tool] is used up."))
 
 /datum/surgery_step/fix_burn/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging the subcutaneous tissue of [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(0, rand(5, 10))

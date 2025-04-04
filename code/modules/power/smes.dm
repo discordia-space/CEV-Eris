@@ -237,7 +237,7 @@
 //Will return 1 on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if (user.loc == loc)
-		to_chat(user, SPAN_WARNING("You must not be on the same tile as the [src]."))
+		to_chat(user, span_warning("You must not be on the same tile as the [src]."))
 		return 1
 
 	//Direction the terminal will face to
@@ -249,13 +249,13 @@
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
 	if (istype(tempLoc, /turf/space))
-		to_chat(user, SPAN_WARNING("You can't build a terminal on space."))
+		to_chat(user, span_warning("You can't build a terminal on space."))
 		return 1
 	else if (istype(tempLoc))
 		if(!tempLoc.is_plating())
-			to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
+			to_chat(user, span_warning("You must remove the floor plating first."))
 			return 1
-	to_chat(user, SPAN_NOTICE("You start adding cable to the [src]."))
+	to_chat(user, span_notice("You start adding cable to the [src]."))
 	if(do_after(user, 50, src))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.set_dir(tempDir)
@@ -282,11 +282,11 @@
 	if(tool_type == QUALITY_SCREW_DRIVING)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			open_hatch = !open_hatch
-			to_chat(user, SPAN_NOTICE("You [open_hatch ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+			to_chat(user, span_notice("You [open_hatch ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 		return
 
 	if (!open_hatch)
-		to_chat(user, SPAN_WARNING("You need to open access hatch on [src] first!"))
+		to_chat(user, span_warning("You need to open access hatch on [src] first!"))
 		return 0
 
 	if(tool_type == QUALITY_WIRE_CUTTING)
@@ -294,7 +294,7 @@
 			var/turf/tempTDir = terminal.loc
 			if (istype(tempTDir))
 				if(!tempTDir.is_plating())
-					to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
+					to_chat(user, span_warning("You must remove the floor plating first."))
 					return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 				building_terminal = 1
@@ -307,8 +307,8 @@
 						return
 				new /obj/item/stack/cable_coil(loc,10)
 				user.visible_message(\
-					SPAN_NOTICE("[user.name] remove the cables and dismantled the power terminal."),\
-					SPAN_NOTICE("You remove the cables and dismantle the power terminal."))
+					span_notice("[user.name] remove the cables and dismantled the power terminal."),\
+					span_notice("You remove the cables and dismantle the power terminal."))
 				qdel(terminal)
 				building_terminal = 0
 		return
@@ -317,7 +317,7 @@
 		building_terminal = 1
 		var/obj/item/stack/cable_coil/CC = I
 		if (CC.get_amount() <= 10)
-			to_chat(user, SPAN_WARNING("You need more cables."))
+			to_chat(user, span_warning("You need more cables."))
 			building_terminal = 0
 			return 0
 		if (make_terminal(user))
@@ -326,8 +326,8 @@
 		building_terminal = 0
 		CC.use(10)
 		user.visible_message(\
-				SPAN_NOTICE("[user.name] has added cables to the [src]."),\
-				SPAN_NOTICE("You added cables to the [src]."))
+				span_notice("[user.name] has added cables to the [src]."),\
+				span_notice("You added cables to the [src]."))
 		terminal.connect_to_network()
 		stat = 0
 		return 0

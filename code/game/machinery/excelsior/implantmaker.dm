@@ -22,7 +22,7 @@
 
 /obj/machinery/complant_maker/attackby(var/obj/item/I, var/mob/user)
 	if(working)
-		to_chat(user, SPAN_WARNING("[src] is active. Wait for it to finish."))
+		to_chat(user, span_warning("[src] is active. Wait for it to finish."))
 		return
 
 	if(default_deconstruction(I, user))

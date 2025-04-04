@@ -46,7 +46,7 @@
 	for(var/mat in stored_material)
 		compressed_amt += stored_material[mat] * matter_to_compressed[mat]
 	if(compressed_amt < 1)
-		to_chat(user, SPAN_WARNING("Not enough materials."))
+		to_chat(user, span_warning("Not enough materials."))
 	else
 		if(user)
 			var/list/options = list("yes", "no")
@@ -74,11 +74,11 @@
 
 /obj/machinery/autolathe/nanoforge/proc/make_designs(mob/user)
 	if(!inspiration || !inspiration.perk)
-		to_chat(user, SPAN_WARNING("Catalyst not found."))
+		to_chat(user, span_warning("Catalyst not found."))
 		return
 	var/list/candidates = SSspawn_data.valid_candidates(tags_to_spawn, null, FALSE, null, null, TRUE, null, nano_disks, null)
 	if(!candidates.len)
-		to_chat(user, SPAN_WARNING("[src] has reached its maximum capacity."))
+		to_chat(user, span_warning("[src] has reached its maximum capacity."))
 		return
 	var/path = SSspawn_data.pick_spawn(candidates)
 	nano_disks += list(path)
@@ -96,5 +96,5 @@
 /obj/machinery/autolathe/nanoforge/check_user(mob/user)
 	if(user.stats?.getPerk(PERK_TECHNOMANCER) || user.stat_check(STAT_MEC, STAT_LEVEL_EXPERT))
 		return TRUE
-	to_chat(user, SPAN_NOTICE("You don't know how to make [src] work."))
+	to_chat(user, span_notice("You don't know how to make [src] work."))
 	return FALSE

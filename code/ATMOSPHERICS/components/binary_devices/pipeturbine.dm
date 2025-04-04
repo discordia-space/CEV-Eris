@@ -87,7 +87,7 @@
 	if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 		return ..()
 	anchored = !anchored
-	to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
+	to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 
 	if(anchored)
 		if(dir & (NORTH|SOUTH))
@@ -255,7 +255,7 @@
 		return ..()
 	anchored = !anchored
 	turbine = null
-	to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
+	to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 	updateConnection()
 
 /obj/machinery/power/turbinemotor/verb/rotate_clock()

@@ -9,10 +9,10 @@
 	if(!mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, SPAN_WARNING("You cannot send DSAY messages (muted)."))
+		to_chat(src, span_warning("You cannot send DSAY messages (muted)."))
 		return
 	if(get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_WARNING("You have deadchat muted."))
+		to_chat(src, span_warning("You have deadchat muted."))
 		return
 
 	if(handle_spam_prevention(msg,MUTE_DEADCHAT))
@@ -26,4 +26,4 @@
 	if(!msg)
 		return
 
-	say_dead_direct("<span class='name'>[stafftype]([holder.fakekey ? holder.fakekey : key])</span> says, <span class='message linkify'>\"[msg]\"</span>")
+	say_dead_direct(span_name("[stafftype]([holder.fakekey ? holder.fakekey : key])</span> says, <span class='message linkify'>\"[msg]\""))

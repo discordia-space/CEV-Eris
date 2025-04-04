@@ -24,7 +24,7 @@
 			plants_around.Add(H.seed)
 
 	if(plants_around.len > 0)
-		to_chat(user, SPAN_NOTICE("You feel the air thrum with an inaudible vibration."))
+		to_chat(user, span_notice("You feel the air thrum with an inaudible vibration."))
 		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
 		for(var/datum/seed/S in plants_around)
 			give_boost(S)
@@ -60,8 +60,8 @@
 		fail("[T.name]\'s mutated flesh rejects your will.", user, C)
 		return FALSE
 
-	to_chat(T, SPAN_NOTICE("You feel better as your pain eases, although still lightheaded."))
-	to_chat(user, SPAN_NOTICE("You ease the pain of [T.name]."))
+	to_chat(T, span_notice("You feel better as your pain eases, although still lightheaded."))
+	to_chat(user, span_notice("You ease the pain of [T.name]."))
 
 	T.reagents.add_reagent("deusblessing", 15)
 
@@ -79,8 +79,8 @@
 		fail("No target in front of you.", user, C)
 		return FALSE
 
-	to_chat(T, SPAN_NOTICE("You feel a soothing sensation in your veins."))
-	to_chat(user, SPAN_NOTICE("You stabilize [T.name]'s health."))
+	to_chat(T, span_notice("You feel a soothing sensation in your veins."))
+	to_chat(user, span_notice("You stabilize [T.name]'s health."))
 
 	var/datum/reagents/R = new /datum/reagents(20, null)
 	R.add_reagent("holyinaprovaline", 10)

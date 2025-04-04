@@ -43,7 +43,7 @@
 				user.put_in_hands(B)
 		name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 	if(stage == READY && !active && clown_check(user))
-		to_chat(user, SPAN_WARNING("You prime \the [name]!"))
+		to_chat(user, span_warning("You prime \the [name]!"))
 
 		activate()
 		add_fingerprint(user)
@@ -54,18 +54,18 @@
 /obj/item/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!can_be_modified)
-		to_chat(user, SPAN_WARNING("This grenade is sealed and can't be modified."))
+		to_chat(user, span_warning("This grenade is sealed and can't be modified."))
 		return
 	if(istype(W,/obj/item/device/assembly_holder) && stage != READY && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.left_assembly,det.right_assembly.type) || (!isigniter(det.left_assembly) && !isigniter(det.right_assembly)))
-			to_chat(user, SPAN_WARNING("Assembly must contain one igniter."))
+			to_chat(user, span_warning("Assembly must contain one igniter."))
 			return
 		if(!det.secured)
-			to_chat(user, SPAN_WARNING("Assembly must be secured with screwdriver."))
+			to_chat(user, span_warning("Assembly must be secured with screwdriver."))
 			return
 		path = 1
-		to_chat(user, SPAN_NOTICE("You add [W] to the metal casing."))
+		to_chat(user, span_notice("You add [W] to the metal casing."))
 		playsound(loc, 'sound/items/Screwdriver2.ogg', 25, -3)
 		user.remove_from_mob(det)
 		det.loc = src
@@ -83,21 +83,21 @@
 		if(stage == WIRED)
 			path = 1
 			if(beakers.len)
-				to_chat(user, SPAN_NOTICE("You lock the assembly."))
+				to_chat(user, span_notice("You lock the assembly."))
 				name = "grenade"
 			else
-				to_chat(user, SPAN_NOTICE("You lock the empty assembly."))
+				to_chat(user, span_notice("You lock the empty assembly."))
 				name = "fake grenade"
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 			icon_state = initial(icon_state) +"_locked"
 			stage = READY
 		else if(stage == READY)
 			if(active && prob(95))
-				to_chat(user, SPAN_WARNING("You trigger the assembly!"))
+				to_chat(user, span_warning("You trigger the assembly!"))
 				prime()
 				return
 			else
-				to_chat(user, SPAN_NOTICE("You unlock the assembly."))
+				to_chat(user, span_notice("You unlock the assembly."))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, -3)
 				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 				icon_state = initial(icon_state) + (detonator?"_ass":"")
@@ -106,18 +106,18 @@
 	else if(is_type_in_list(W, allowed_containers) && (stage != READY) && path != 2)
 		path = 1
 		if(beakers.len == 2)
-			to_chat(user, SPAN_WARNING("The grenade can not hold more containers."))
+			to_chat(user, span_warning("The grenade can not hold more containers."))
 			return
 		else
 			if(W.reagents.total_volume)
-				to_chat(user, SPAN_NOTICE("You add \the [W] to the assembly."))
+				to_chat(user, span_notice("You add \the [W] to the assembly."))
 				user.drop_item()
 				W.loc = src
 				beakers += W
 				stage = WIRED
 				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 			else
-				to_chat(user, SPAN_WARNING("\The [W] is empty."))
+				to_chat(user, span_warning("\The [W] is empty."))
 
 /obj/item/grenade/chem_grenade/examine(mob/user, extra_description = "")
 	if(detonator)
@@ -200,7 +200,7 @@
 	//make a special case you might as well do it explicitly. -Sayu
 /obj/item/grenade/chem_grenade/large/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/slime_extract) && stage == WIRED)
-		to_chat(user, "<span class='notice'>You add [I] to the assembly.</span>")
+		to_chat(user, span_notice("You add [I] to the assembly."))
 		user.drop_item()
 		I.loc = src
 		beakers += I

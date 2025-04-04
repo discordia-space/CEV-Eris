@@ -233,7 +233,7 @@ var/list/ship_scanners = list()
 
 	if(href_list["start_generator"])
 		if(tendrils_deployed == FALSE)
-			visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it needs to have it's conduits deployed first to operate"))
+			visible_message(span_danger("The [src] buzzes an insistent warning as it needs to have it's conduits deployed first to operate"))
 			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 100, 1, 5)
 			return
 		running = SCANNER_RUNNING

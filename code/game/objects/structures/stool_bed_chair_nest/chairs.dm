@@ -18,7 +18,7 @@
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
 		if(!SK.status)
-			to_chat(user, SPAN_NOTICE("\The [SK] is not ready to be attached!"))
+			to_chat(user, span_notice("\The [SK] is not ready to be attached!"))
 			return
 		user.drop_item()
 		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
@@ -202,7 +202,7 @@
 			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
 			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
 
-		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
+		occupant.visible_message(span_danger("[occupant] crashed into \the [A]!"))
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"

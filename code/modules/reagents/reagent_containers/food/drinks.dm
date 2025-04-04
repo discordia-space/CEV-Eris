@@ -29,7 +29,7 @@
 /obj/item/reagent_containers/food/drinks/proc/open(mob/user)
 	playsound(loc, 'sound/effects/canopen.ogg', rand(10,50), 1)
 	icon_state += "_open"
-	to_chat(user, SPAN_NOTICE("You open [src] with an audible pop!"))
+	to_chat(user, span_notice("You open [src] with an audible pop!"))
 	reagent_flags |= OPENCONTAINER
 	verbs += /obj/item/reagent_containers/food/drinks/proc/gulp_whole
 	update_icon()
@@ -53,10 +53,10 @@
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/is_closed_message(mob/user)
-	to_chat(user, SPAN_NOTICE("You need to open [src] first!"))
+	to_chat(user, span_notice("You need to open [src] first!"))
 
 /obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
-	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
+	to_chat(user, span_notice("You swallow a gulp from \the [src]."))
 
 /obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
@@ -89,18 +89,18 @@
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(!H.check_has_mouth())
-				to_chat(H, SPAN_NOTICE("Where do you intend to put \the [src]? You don't have a mouth!"))
+				to_chat(H, span_notice("Where do you intend to put \the [src]? You don't have a mouth!"))
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				to_chat(H, SPAN_NOTICE("\The [blocked] is in the way."))
+				to_chat(H, span_notice("\The [blocked] is in the way."))
 				return
 
 		if(reagents.total_volume == 0)
-			to_chat(usr, SPAN_NOTICE("\The [src] is empty."))
+			to_chat(usr, span_notice("\The [src] is empty."))
 			return
 		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
-			usr.visible_message(SPAN_NOTICE("[usr] prepares to gulp down [src]."), SPAN_NOTICE("You prepare to gulp down [src]."))
+			usr.visible_message(span_notice("[usr] prepares to gulp down [src]."), span_notice("You prepare to gulp down [src]."))
 		if(!do_after(usr, reagents.total_volume))
 			standard_splash_mob(usr, usr)
 			return
@@ -108,7 +108,7 @@
 		if(!Adjacent(usr))
 			return
 
-		usr.visible_message(SPAN_NOTICE("[usr] gulped down the whole [src]!"),SPAN_NOTICE("You gulped down the whole [src]!"))
+		usr.visible_message(span_notice("[usr] gulped down the whole [src]!"),span_notice("You gulped down the whole [src]!"))
 		reagents.trans_to_mob(usr, reagents.total_volume, CHEM_INGEST)
 		feed_sound(usr)
 	else

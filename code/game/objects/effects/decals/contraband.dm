@@ -72,7 +72,7 @@
 		if("Yes")
 			if(!Adjacent(user))
 				return
-			visible_message(SPAN_WARNING("[user] rips [src] in a single, decisive motion!") )
+			visible_message(span_warning("[user] rips [src] in a single, decisive motion!") )
 			playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
 			ruined = 1
 			icon = initial(icon)
@@ -87,11 +87,11 @@
 	if(istype(W, /obj/item/tool/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)
-			to_chat(user, SPAN_NOTICE("You remove the remnants of the poster."))
+			to_chat(user, span_notice("You remove the remnants of the poster."))
 			qdel(src)
 		else
 			roll_and_drop()
-			to_chat(user, SPAN_NOTICE("You carefully remove the poster from the wall."))
+			to_chat(user, span_notice("You carefully remove the poster from the wall."))
 		return
 
 /obj/item/contraband/poster/proc/roll_and_drop()
@@ -110,7 +110,7 @@
 
 	//must place on a wall and user must not be inside a closet/whatever
 	if (!istype(W) || !W.Adjacent(user))
-		to_chat(user, SPAN_WARNING("You can't place this here!"))
+		to_chat(user, span_warning("You can't place this here!"))
 		return
 
 	var/turf/new_loc = null
@@ -136,10 +136,10 @@
 					new_loc = user.loc
 					break
 	if(!new_loc)
-		to_chat(user, SPAN_WARNING("You can't place poster there"))
+		to_chat(user, span_warning("You can't place poster there"))
 
 	//Looks like it's uncluttered enough. Place the poster.
-	to_chat(user, SPAN_NOTICE("You start placing the poster on the wall..."))
+	to_chat(user, span_notice("You start placing the poster on the wall..."))
 	if(do_after(usr, 17, src))
 		user.drop_from_inventory(src, new_loc)
 		placement_dir = get_dir(W, new_loc)

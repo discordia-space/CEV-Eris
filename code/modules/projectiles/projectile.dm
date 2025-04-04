@@ -318,12 +318,12 @@
 		for(var/obj/O in cover_loc)
 			if(istype(O,/turf/wall/low) || istype(O,/obj/machinery/deployable/barrier) || istype(O,/obj/structure/barricade) || istype(O,/obj/structure/table))
 				if(!silenced)
-					visible_message(SPAN_NOTICE("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
+					visible_message(span_notice("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
 				return FALSE
 		for(var/obj/structure/table/O in get_turf(target_mob))
 			if(istype(O) && O.flipped && (get_dir(get_turf(target_mob), starting) == O.dir))
 				if(!silenced)
-					visible_message(SPAN_NOTICE("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
+					visible_message(span_notice("\The [target_mob] ducks behind \the [O], narrowly avoiding \the [src]!"))
 				return FALSE
 
 
@@ -348,16 +348,16 @@
 
 	if(result == PROJECTILE_FORCE_MISS || result == PROJECTILE_FORCE_MISS_SILENCED)
 		if(!silenced && result == PROJECTILE_FORCE_MISS)
-			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+			visible_message(span_notice("\The [src] misses [target_mob] narrowly!"))
 			if(isroach(target_mob))
 				bumped = FALSE // Roaches do not bump when missed, allowing the bullet to attempt to hit the rest of the roaches in a single cluster
 		return FALSE
 	/*
 	//hit messages
 	if(silenced)
-		to_chat(target_mob, SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
+		to_chat(target_mob, span_danger("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
 	else
-		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
+		visible_message(span_danger("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 	*/
 	playsound(target_mob, pick(mob_hit_sound), 40, 1)
 
@@ -435,7 +435,7 @@
 			//if they have a neck grab on someone, that person gets hit instead
 			var/obj/item/grab/G = locate() in M
 			if(G && G.state >= GRAB_NECK)
-				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
+				visible_message(span_danger("\The [M] uses [G.affecting] as a shield!"))
 				if(Bump(G.affecting, TRUE))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
 			passthrough = !attack_mob(M)

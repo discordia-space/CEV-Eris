@@ -209,7 +209,7 @@
 		var/card_check = computer?.card_slot?.stored_card?.associated_account_number == acc_num
 		var/datum/money_account/A = attempt_account_access(acc_num, acc_pin, card_check ? 2 : 1, TRUE)
 		if(!A)
-			to_chat(usr, SPAN_WARNING("Unable to link account: access denied."))
+			to_chat(usr, span_warning("Unable to link account: access denied."))
 			return
 
 		account = A
@@ -235,7 +235,7 @@
 
 	if(href_list["PRG_cart_add"] || href_list["PRG_cart_add_input"])
 		if(!account)
-			to_chat(usr, SPAN_WARNING("ERROR: No account linked."))
+			to_chat(usr, span_warning("ERROR: No account linked."))
 			return
 		var/ind
 		var/count2buy = 1
@@ -259,7 +259,7 @@
 
 	if(href_list["PRG_cart_remove"])
 		if(!account)
-			to_chat(usr, SPAN_WARNING("ERROR: No account linked."))
+			to_chat(usr, span_warning("ERROR: No account linked."))
 			return
 		var/list/category = station.inventory[chosen_category]
 		if(!islist(category))
@@ -288,7 +288,7 @@
 	if(href_list["PRG_cart_load"])
 		var/name = input("Choose a cart to load", "Load Cart", null) as null|anything in saved_shopping_lists
 		if(!name)
-			to_chat(usr, SPAN_WARNING("ERROR: Invalid cart."))
+			to_chat(usr, span_warning("ERROR: Invalid cart."))
 			return
 		shoppinglist = load_shop_list(name)
 		trade_screen = CART_SCREEN
@@ -297,7 +297,7 @@
 	if(href_list["PRG_cart_load_direct"])
 		var/name = saved_shopping_lists[text2num(href_list["PRG_cart_load_direct"])]
 		if(!name)
-			to_chat(usr, SPAN_WARNING("ERROR: Invalid cart."))
+			to_chat(usr, span_warning("ERROR: Invalid cart."))
 			return
 		shoppinglist = load_shop_list(name)
 		trade_screen = CART_SCREEN
@@ -317,7 +317,7 @@
 
 	if(href_list["PRG_build_order"])
 		if(orders_locked)
-			to_chat(usr, SPAN_WARNING("ERROR: You cannot place an order at this time. Please wait 10 seconds."))
+			to_chat(usr, span_warning("ERROR: You cannot place an order at this time. Please wait 10 seconds."))
 			return
 		var/reason = sanitizeName(input("Enter reason(s) for order", "Request Reason", ""), MAX_NAME_LEN)
 		current_order = SStrade.build_order(account, reason, shoppinglist)
@@ -341,7 +341,7 @@
 	if(href_list["PRG_save_order"])
 		var/order_id = href_list["PRG_save_order"]
 		if(!order_id || !SStrade.order_queue.Find(order_id))
-			to_chat(usr, SPAN_WARNING("ERROR: Order does not exist."))
+			to_chat(usr, span_warning("ERROR: Order does not exist."))
 			return
 		var/name = sanitizeName(input("Would you like to name the saved cart? (Not required)", "Save Cart"), MAX_NAME_LEN)
 		var/list/order_data = SStrade.order_queue[order_id]
@@ -355,7 +355,7 @@
 			var/list/log_data = SStrade.get_log_data_by_id(log_id)
 
 			if(!log_data.len)
-				to_chat(usr, SPAN_WARNING("Unable to print invoice: no log with id \"[log_id]\" found."))
+				to_chat(usr, span_warning("Unable to print invoice: no log with id \"[log_id]\" found."))
 				return
 
 			var/id_data = splittext(log_id, "-")
@@ -394,7 +394,7 @@
 
 			computer.printer.print_text(text, title)
 		else
-			to_chat(usr, SPAN_WARNING("Unable to print invoice: no printer component installed."))
+			to_chat(usr, span_warning("Unable to print invoice: no printer component installed."))
 		return TRUE
 
 	// Page navigation
@@ -508,7 +508,7 @@
 		if(account)
 			if(href_list["PRG_offer_fulfill"])
 				if(get_area(sending) != get_area(computer) && program_type != "master")
-					to_chat(usr, SPAN_WARNING("ERROR: Sending beacon is too far from \the [computer]."))
+					to_chat(usr, span_warning("ERROR: Sending beacon is too far from \the [computer]."))
 					return
 				var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_offer_fulfill"]))
 				if(!S)
@@ -520,7 +520,7 @@
 
 			if(href_list["PRG_offer_fulfill_all"])
 				if(get_area(sending) != get_area(computer) && program_type != "master")
-					to_chat(usr, SPAN_WARNING("ERROR: Sending beacon is too far from \the [computer]."))
+					to_chat(usr, span_warning("ERROR: Sending beacon is too far from \the [computer]."))
 					return
 				var/is_slaved = (program_type == "slave") ? TRUE : FALSE
 				SStrade.fulfill_all_offers(sending, account, is_slaved)
@@ -529,10 +529,10 @@
 		if(receiving)
 			if(href_list["PRG_receive"])
 				if(!account)
-					to_chat(usr, SPAN_WARNING("ERROR: no account linked."))
+					to_chat(usr, span_warning("ERROR: no account linked."))
 					return
 				if(get_area(receiving) != get_area(computer) && program_type != "master")
-					to_chat(usr, SPAN_WARNING("ERROR: Receiving beacon is too far from \the [computer]."))
+					to_chat(usr, span_warning("ERROR: Receiving beacon is too far from \the [computer]."))
 					return
 				SStrade.buy(receiving, account, shoppinglist)
 				reset_shop_list()
@@ -541,7 +541,7 @@
 		if(sending)
 			if(href_list["PRG_export"])
 				if(get_area(sending) != get_area(computer) && program_type != "master")
-					to_chat(usr, SPAN_WARNING("ERROR: Sending beacon is too far from \the [computer]."))
+					to_chat(usr, span_warning("ERROR: Sending beacon is too far from \the [computer]."))
 					return
 				SStrade.export(sending)
 				return TRUE
@@ -556,10 +556,10 @@
 			var/datum/money_account/requesting_account = order_data["requesting_acct"]
 
 			if(account.money < order_cost)
-				to_chat(usr, SPAN_WARNING("ERROR: Not enough funds in account ([account.get_name()] #[account.account_number])."))
+				to_chat(usr, span_warning("ERROR: Not enough funds in account ([account.get_name()] #[account.account_number])."))
 				return
 			if(requesting_account.money < requestor_cost)
-				to_chat(usr, SPAN_WARNING("ERROR: Not enough funds in requesting account ([requesting_account.get_name()] #[requesting_account.account_number])."))
+				to_chat(usr, span_warning("ERROR: Not enough funds in requesting account ([requesting_account.get_name()] #[requesting_account.account_number])."))
 				return
 
 			SStrade.purchase_order(receiving, order)

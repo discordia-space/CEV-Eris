@@ -146,7 +146,7 @@ var/list/possible_cable_coil_colours = list(
 				return
 		var/fail_chance = FAILCHANCE_NORMAL - user.stats.getStat(STAT_MEC)
 		if(prob(fail_chance))
-			to_chat(user, SPAN_NOTICE("Oh God, what a mess!"))
+			to_chat(user, span_notice("Oh God, what a mess!"))
 			spawnSplicing()
 		return
 
@@ -157,7 +157,7 @@ var/list/possible_cable_coil_colours = list(
 				return
 		var/fail_chance = FAILCHANCE_NORMAL - user.stats.getStat(STAT_MEC)
 		if(prob(fail_chance))
-			to_chat(user, SPAN_NOTICE("Oh God, what a mess!"))
+			to_chat(user, span_notice("Oh God, what a mess!"))
 			spawnSplicing()
 		return
 
@@ -168,14 +168,14 @@ var/list/possible_cable_coil_colours = list(
 			return
 		if(user.a_intent == I_HURT)
 			if(used_now)
-				to_chat(user, SPAN_WARNING("You are already splicing the [src.name]!")) //don't want people stacking splices on one turf
+				to_chat(user, span_warning("You are already splicing the [src.name]!")) //don't want people stacking splices on one turf
 				return
 			used_now = TRUE
 			if(locate(/obj/structure/wire_splicing) in T)
-				to_chat(user, SPAN_WARNING("There is splicing already!"))
+				to_chat(user, span_warning("There is splicing already!"))
 				used_now = FALSE
 				return
-			to_chat(user, SPAN_NOTICE("You started messsing with wires..."))
+			to_chat(user, span_notice("You started messsing with wires..."))
 			if(shock(user, 100)) //check if he got his insulation gloves
 				used_now = FALSE
 				return 		//he didn't
@@ -183,14 +183,14 @@ var/list/possible_cable_coil_colours = list(
 				var/fail_chance = FAILCHANCE_HARD - user.stats.getStat(STAT_MEC) // 72 for assistant
 				if(prob(fail_chance))
 					if(!shock(user, 100)) //why not
-						to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
+						to_chat(user, span_warning("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
 					used_now = FALSE
 					return
 
 				//all clear, update things
 				coil.use(1)
 				spawnSplicing()
-				to_chat(user, SPAN_NOTICE("You have created such a mess. Shame."))
+				to_chat(user, span_notice("You have created such a mess. Shame."))
 				used_now = FALSE
 		else
 			coil.cable_join(src, user)
@@ -198,10 +198,10 @@ var/list/possible_cable_coil_colours = list(
 	else if(istype(I, /obj/item/tool/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			to_chat(user, SPAN_WARNING("[power_to_text(powernet.avail)] in power network."))
+			to_chat(user, span_warning("[power_to_text(powernet.avail)] in power network."))
 
 		else
-			to_chat(user, SPAN_WARNING("The cable is not powered."))
+			to_chat(user, span_warning("The cable is not powered."))
 
 		shock(user, 5, 0.2)
 
@@ -226,11 +226,11 @@ var/list/possible_cable_coil_colours = list(
 	var/turf/T = src.loc
 
 	if(d1 == UP || d2 == UP)
-		to_chat(user, SPAN_WARNING("You must cut this cable from above."))
+		to_chat(user, span_warning("You must cut this cable from above."))
 		return
 
 	if(breaker_box)
-		to_chat(user, SPAN_WARNING("This cable is connected to nearby breaker box. Use breaker box to interact with it."))
+		to_chat(user, span_warning("This cable is connected to nearby breaker box. Use breaker box to interact with it."))
 		return
 
 	if(src.d1)	// 0-X cables are 1 unit, X-X cables are 2 units long
@@ -239,7 +239,7 @@ var/list/possible_cable_coil_colours = list(
 		new/obj/item/stack/cable_coil(T, 1, color)
 
 	for(var/mob/O in viewers(src, null))
-		O.show_message(SPAN_WARNING("[user] cuts the cable."), 1)
+		O.show_message(span_warning("[user] cuts the cable."), 1)
 
 	if(d1 == DOWN || d2 == DOWN)
 		var/turf/turf = GetBelow(src)
@@ -572,22 +572,22 @@ var/list/possible_cable_coil_colours = list(
 					if(W.damtype_sanitize() != BURN)
 						continue
 					if(!do_mob(user, M, W.damage/5))
-						to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+						to_chat(user, span_notice("You must stand still to repair \the [S]."))
 						break
 					if(!use(1))
-						to_chat(user, SPAN_WARNING("You have run out of \the [src]."))
+						to_chat(user, span_warning("You have run out of \the [src]."))
 						return
 					W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 15))
-					to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+					to_chat(user, span_notice("You patch some wounds on \the [S]."))
 				S.update_damages()
 				if(S.burn_dam)
-					to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+					to_chat(user, span_warning("\The [S] still needs further repair."))
 				return
 			else if(S.open != 2)
-				to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
+				to_chat(user, span_danger("The damage is far too severe to patch over externally."))
 			return 1
 		else if(S.open != 2)
-			to_chat(user, SPAN_NOTICE("Nothing to fix!"))
+			to_chat(user, span_notice("Nothing to fix!"))
 
 	else
 		return ..()
@@ -615,7 +615,7 @@ var/list/possible_cable_coil_colours = list(
 		final_color = possible_cable_coil_colours["Red"]
 		selected_color = "red"
 	color = final_color
-	to_chat(user, SPAN_NOTICE("You change \the [src]'s color to [lowertext(selected_color)]."))
+	to_chat(user, span_notice("You change \the [src]'s color to [lowertext(selected_color)]."))
 
 /obj/item/stack/cable_coil/proc/update_wclass()
 	if(amount == 1)
@@ -646,7 +646,7 @@ var/list/possible_cable_coil_colours = list(
 			return
 		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.color = color
-		to_chat(usr, SPAN_NOTICE("You wind some cable together to make some restraints."))
+		to_chat(usr, span_notice("You wind some cable together to make some restraints."))
 		src.use(15)
 	else
 		to_chat(usr, "\blue You cannot do that.")
@@ -716,13 +716,13 @@ var/list/possible_cable_coil_colours = list(
 	var/end_dir = 0
 	if(istype(F, /turf/open))
 		if(!can_use(2))
-			to_chat(user, SPAN_WARNING("You don't have enough cable to do this!"))
+			to_chat(user, span_warning("You don't have enough cable to do this!"))
 			return
 		end_dir = DOWN
 
 	for(var/obj/structure/cable/LC in F)
 		if((LC.d1 == dirn && LC.d2 == end_dir ) || ( LC.d2 == dirn && LC.d1 == end_dir))
-			to_chat(user, SPAN_WARNING("There's already a cable at that position."))
+			to_chat(user, span_warning("There's already a cable at that position."))
 			return
 
 	put_cable(F, user, end_dir, dirn)

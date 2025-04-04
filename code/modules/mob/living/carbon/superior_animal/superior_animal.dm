@@ -151,7 +151,7 @@
 	if(islist(message))
 		message = safepick(message)
 	if(message)
-		visible_message("<span class='name'>[src]</span> [message]")
+		visible_message("[span_name("[src]")] [message]")
 
 /mob/living/carbon/superior_animal/update_icons()
 	. = ..()
@@ -406,7 +406,7 @@
 	else if(!target || !Adjacent(target))
 		return
 
-	visible_message(SPAN_WARNING("[src] grabs [target]!"))
+	visible_message(span_warning("[src] grabs [target]!"))
 	target.grabbed_by += src
 	grabbing = target
 	cheap_update_lying_buckled_and_verb_status_()

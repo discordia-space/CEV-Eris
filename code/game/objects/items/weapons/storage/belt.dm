@@ -25,7 +25,7 @@
 	set category = "Object"
 
 	if(show_above_suit == -1)
-		to_chat(usr, SPAN_NOTICE("\The [src] cannot be worn above your suit!"))
+		to_chat(usr, span_notice("\The [src] cannot be worn above your suit!"))
 		return
 	show_above_suit = !show_above_suit
 	update_icon()
@@ -91,7 +91,7 @@
 	new /obj/item/tool/wirecutters/armature(src)
 	new /obj/item/tool/shovel/power(src)
 	new /obj/item/stack/cable_coil/random(src)
-	
+
 /obj/item/storage/belt/utility/roboticist
 	spawn_blacklisted = TRUE
 
@@ -103,7 +103,7 @@
 	new /obj/item/tool/wirecutters/pliers(src)
 	new /obj/item/stack/cable_coil/random(src)
 	new /obj/item/tool/multitool(src)
-	
+
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"
 	desc = "Waist-held holy items."

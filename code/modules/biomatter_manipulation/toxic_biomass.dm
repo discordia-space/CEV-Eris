@@ -57,8 +57,8 @@
 
 /obj/effect/decal/cleanable/solid_biomass/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
-		to_chat(user, SPAN_NOTICE("You started removing this [src]. U-ugh. Disgusting..."))
+		to_chat(user, span_notice("You started removing this [src]. U-ugh. Disgusting..."))
 		if(do_after(user, 3 SECONDS, src))
-			to_chat(user, SPAN_NOTICE("You removed [src]."))
+			to_chat(user, span_notice("You removed [src]."))
 			toxin_attack(user, rand(25, 40))
 			qdel(src)

@@ -47,31 +47,31 @@
 	if(bolt_open)
 		if(loaded.len)
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [chambered]!"))
+				to_chat(user, span_notice("You snap the barrel open, ejecting [chambered]!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
 				chambered = null
 			else
 				var/obj/item/ammo_casing/shell = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [shell]!"))
+				to_chat(user, span_notice("You snap the barrel open, ejecting [shell]!"))
 				shell.forceMove(get_turf(src))
 				loaded -= shell
 		else
-			to_chat(user, SPAN_NOTICE("You snap the barrel open."))
+			to_chat(user, span_notice("You snap the barrel open."))
 	else
-		to_chat(user, SPAN_NOTICE("You snap the barrel closed"))
+		to_chat(user, span_notice("You snap the barrel closed"))
 	add_fingerprint(user)
 	update_icon()
 
 /obj/item/gun/projectile/flare_gun/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the barrel is open!"))
+		to_chat(user, span_warning("You can't fire [src] while the barrel is open!"))
 		return FALSE
 	return ..()
 
 /obj/item/gun/projectile/flare_gun/load_ammo(obj/item/A, mob/user)
 	if(!bolt_open)
-		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
+		to_chat(user, span_warning("You can't load [src] while the barrel is closed!"))
 		return
 	..()
 

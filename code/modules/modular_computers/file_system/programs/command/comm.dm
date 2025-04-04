@@ -141,7 +141,7 @@
 					return 1
 				if(GLOB.in_character_filter.len) //I don't want to read announcements about sending people to brazil.
 					if(findtext(input, config.ic_filter_regex))
-						to_chat(usr, SPAN_WARNING("You think better of announcing something so foolish."))
+						to_chat(usr, span_warning("You think better of announcing something so foolish."))
 						return 1
 
 				var/affected_zlevels = GLOB.maps_data.contact_levels
@@ -160,14 +160,14 @@
 				if(program)
 					if(is_autenthicated(user) && program.computer_emagged && !issilicon(usr) && ntn_comm)
 						if(centcom_message_cooldown)
-							to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
+							to_chat(usr, span_warning("Arrays recycling. Please stand by."))
 							SSnano.update_uis(src)
 							return
 						var/input = sanitize(input(usr, "Please choose a message to transmit to \[ABNORMAL ROUTING CORDINATES\] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination. Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 						if(!input || !can_still_topic())
 							return 1
 						//Syndicate_announce(input, usr)	TODO : THIS
-						to_chat(usr, "<span class='notice'>Message transmitted.</span>")
+						to_chat(usr, span_notice("Message transmitted."))
 						log_say("[key_name(usr)] has made an illegal announcement: [input]")
 						centcom_message_cooldown = 1
 						spawn(300)//30 second cooldown
@@ -175,18 +175,18 @@
 			else if(href_list["target"] == "regular")
 				if(is_autenthicated(user) && !issilicon(usr) && ntn_comm)
 					if(centcom_message_cooldown)
-						to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
+						to_chat(usr, span_warning("Arrays recycling. Please stand by."))
 						SSnano.update_uis(src)
 						return
 					if(!is_relay_online())//Contact Centcom has a check, Syndie doesn't to allow for Contractor funs.
-						to_chat(usr, "<span class='warning'>No Emergency Bluespace Relay detected. Unable to transmit message.</span>")
+						to_chat(usr, span_warning("No Emergency Bluespace Relay detected. Unable to transmit message."))
 						return 1
 
 					var/input = sanitize(input("Please choose a message to transmit to [GLOB.maps_data.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", "") as null|text)
 					if(!input || !can_still_topic())
 						return 1
 					Centcom_announce(input, usr)
-					to_chat(usr, "<span class='notice'>Message transmitted.</span>")
+					to_chat(usr, span_notice("Message transmitted."))
 					log_say("[key_name(usr)] has made an IA [GLOB.maps_data.boss_short] announcement: [input]")
 					centcom_message_cooldown = 1
 					spawn(300) //30 second cooldown
@@ -255,9 +255,9 @@
 			if(is_autenthicated(user) && ntn_comm)
 				if(program && program.computer && program.computer.printer)
 					if(!program.computer.printer.print_text(current_viewing_message["contents"],current_viewing_message["title"]))
-						to_chat(usr, "<span class='notice'>Hardware Error: Printer was unable to print the selected file.</span>")
+						to_chat(usr, span_notice("Hardware Error: Printer was unable to print the selected file."))
 					else
-						program.computer.visible_message("<span class='notice'>\The [program.computer] prints out a paper.</span>")
+						program.computer.visible_message(span_notice("\The [program.computer] prints out a paper."))
 
 #undef STATE_DEFAULT
 #undef STATE_MESSAGELIST
@@ -344,7 +344,7 @@ var/last_message_id = 0
 		emergency = 1
 
 	if(universe.OnShuttleCall(usr))
-		to_chat(user, "<span class='notice'>Cannot establish a bluespace connection.</span>")
+		to_chat(user, span_notice("Cannot establish a bluespace connection."))
 		return
 /*
 	if(GLOB.deathsquad.deployed)

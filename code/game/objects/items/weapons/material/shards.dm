@@ -94,7 +94,7 @@
 //Allows you to weld together similar shards in a tile to create useful sheets
 /obj/item/material/shard/proc/merge_shards(obj/item/I, mob/user)
 	if (!istype(loc, /turf))
-		to_chat(user, SPAN_WARNING("You need to lay the shards down on a surface to do this!"))
+		to_chat(user, span_warning("You need to lay the shards down on a surface to do this!"))
 		return
 
 	var/list/shards = list()
@@ -108,13 +108,13 @@
 
 	//If there's less than one unit of material in total, we can't do anything
 	if (total < 1)
-		to_chat(user, SPAN_WARNING("There's not enough [material.name] in [shards.len < 2 ? "this piece" : "these [shards.len] pieces"] to make anything useful. Gather more."))
+		to_chat(user, span_warning("There's not enough [material.name] in [shards.len < 2 ? "this piece" : "these [shards.len] pieces"] to make anything useful. Gather more."))
 		return
 
 
 	//Alright, we've got enough to make at least one sheet!
 	var/obj/item/stack/output = null //This stack will contain the sheets
-	to_chat(user, SPAN_NOTICE("You start welding the [name]s into useful material sheets..."))
+	to_chat(user, span_notice("You start welding the [name]s into useful material sheets..."))
 
 	//Do a tool operation for each shard
 	for (var/obj/item/material/shard/S in shards)
@@ -146,7 +146,7 @@
 			update_icon()
 		else
 			//If we fail any of the operations, we abort it all
-			to_chat(user, SPAN_WARNING("You failed to merge [name]s! You might try using a better tool."))
+			to_chat(user, span_warning("You failed to merge [name]s! You might try using a better tool."))
 			break
 
 
@@ -168,7 +168,7 @@
 			if(H.shoes)
 				return
 
-			to_chat(M, SPAN_DANGER("You step on \the [src]!"))
+			to_chat(M, span_danger("You step on \the [src]!"))
 
 			var/list/check = list(BP_L_LEG, BP_R_LEG)
 			while(check.len)

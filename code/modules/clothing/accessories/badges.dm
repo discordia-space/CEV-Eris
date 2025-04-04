@@ -34,13 +34,13 @@
 
 	if(isliving(user))
 		if(stored_name)
-			user.visible_message(SPAN_NOTICE("[user] displays their [src.name].\nIt reads: [stored_name], [badge_string]."),SPAN_NOTICE("You display your [src.name].\nIt reads: [stored_name], [badge_string]."))
+			user.visible_message(span_notice("[user] displays their [src.name].\nIt reads: [stored_name], [badge_string]."),span_notice("You display your [src.name].\nIt reads: [stored_name], [badge_string]."))
 		else
-			user.visible_message(SPAN_NOTICE("[user] displays their [src.name].\nIt reads: [badge_string]."),SPAN_NOTICE("You display your [src.name]. It reads: [badge_string]."))
+			user.visible_message(span_notice("[user] displays their [src.name].\nIt reads: [badge_string]."),span_notice("You display your [src.name]. It reads: [badge_string]."))
 
 /obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message(SPAN_DANGER("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),SPAN_DANGER("You invade [M]'s personal space, thrusting [src] into their face insistently."))
+		user.visible_message(span_danger("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),span_danger("You invade [M]'s personal space, thrusting [src] into their face insistently."))
 
 //.Holobadges.
 /obj/item/clothing/accessory/badge/holo
@@ -63,11 +63,11 @@
 
 /obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
 	if (emagged)
-		to_chat(user, SPAN_DANGER("\The [src] is already cracked."))
+		to_chat(user, span_danger("\The [src] is already cracked."))
 		return
 	else
 		emagged = 1
-		to_chat(user, SPAN_DANGER("You crack the holobadge security checks."))
+		to_chat(user, span_danger("You crack the holobadge security checks."))
 		return 1
 
 /obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)

@@ -331,7 +331,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
-			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
+			M.show_message(span_info("\icon[icon] [message]"), 1)
 
 /proc/mobs_in_area(var/area/A)
 	var/list/mobs = new
@@ -382,8 +382,8 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 						lname = "[keyname] ([name])"
 					else										// Everyone else (dead people who didn't ghost yet, etc.)
 						lname = name
-				lname = "<span class='name'>[lname]</span> "
-			to_chat(M, "<span class='deadsay'>" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]</span>")
+				lname = "[span_name("[lname]")] "
+			to_chat(M, span_deadsay("" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]"))
 
 //Announces that a ghost has joined/left, mainly for use with wizards
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
@@ -416,9 +416,9 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		if(!name)
 			name = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
 		if(joined_ghosts)
-			say_dead_direct("The ghost of <span class='name'>[name]</span> now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
+			say_dead_direct("The ghost of [span_name("[name]")] now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
 		else
-			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
+			say_dead_direct("[span_name("[name]")] no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))

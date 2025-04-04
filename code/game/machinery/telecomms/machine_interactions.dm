@@ -34,9 +34,9 @@
 		if(integrity < 100) //Damaged, let's repair!
 			if(T.use(1))
 				integrity = between(0, integrity + rand(10,20), 100)
-				to_chat(usr, SPAN_WARNING("You apply nanopaste to [src], repairing some of the damage."))
+				to_chat(usr, span_warning("You apply nanopaste to [src], repairing some of the damage."))
 		else
-			to_chat(usr, SPAN_WARNING("This machine is already in perfect condition."))
+			to_chat(usr, span_warning("This machine is already in perfect condition."))
 		return
 
 

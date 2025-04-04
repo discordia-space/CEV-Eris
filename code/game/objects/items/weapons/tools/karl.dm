@@ -91,27 +91,27 @@
 
 /obj/item/tool/karl/attack_self(mob/user)
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 	if(gunmode)
 		if(cell)
 			if(!cell.fully_charged())
 				if(isPumping)
-					to_chat(user, SPAN_NOTICE("You are already pumping \the [src] to recharge it."))
+					to_chat(user, span_notice("You are already pumping \the [src] to recharge it."))
 					return
 				isPumping = TRUE
 				if(do_after(user, pumping_time))
 					if(cell)  // Check the cell is still there in case big brain player chose to remove it during pumping
 						cell.give(initial(use_power_cost) * pumping_time)
-						to_chat(user, SPAN_NOTICE("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
+						to_chat(user, span_notice("You recharge \the [src] by pumping it, cell charge at [round(cell.percent())]%."))
 						// Continue pumping till user cancels the pumping
 						isPumping = FALSE
 						attack_self(user)
 				isPumping = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("\The [src]'s cell is fully charged."))
+				to_chat(user, span_notice("\The [src]'s cell is fully charged."))
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] is missing a cell to recharge."))
+			to_chat(user, span_notice("\The [src] is missing a cell to recharge."))
 		return
 	..()
 	return
@@ -119,13 +119,13 @@
 /obj/item/tool/karl/turn_on(mob/user)
 	. = ..()
 	if(.)
-		to_chat(user, SPAN_NOTICE("A dangerous energy blade now covers the edges of the tool."))
+		to_chat(user, span_notice("A dangerous energy blade now covers the edges of the tool."))
 		update_force()
 		update_use_cost()
 
 /obj/item/tool/karl/turn_off(mob/user)
 	..()
-	to_chat(user, SPAN_NOTICE("The energy blade swiftly retracts."))
+	to_chat(user, span_notice("The energy blade swiftly retracts."))
 	update_force()
 	update_use_cost()
 
@@ -158,7 +158,7 @@
 	set src in view(1)
 
 	if(usr.incapacitated() || !Adjacent(usr))
-		to_chat(usr, SPAN_WARNING("You can't do that."))
+		to_chat(usr, span_warning("You can't do that."))
 		return FALSE
 
 	toggle_karl_mode(usr)
@@ -166,7 +166,7 @@
 /obj/item/tool/karl/proc/toggle_karl_mode(mob/user)
 
 	gunmode = !gunmode
-	to_chat(user, SPAN_NOTICE("\The [src] switches to [gunmode ? "gun" : "tool"] mode."))
+	to_chat(user, span_notice("\The [src] switches to [gunmode ? "gun" : "tool"] mode."))
 	no_double_tact = gunmode ? TRUE : FALSE  // No double tact in gunmode
 	no_swing = gunmode ? TRUE : FALSE  // No swinging in gunmode
 	update_force()
@@ -177,15 +177,15 @@
 /obj/item/tool/karl/afterattack(atom/target, mob/user, proximity, params)
 
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
 	if(gunmode)
 		if(!wielded)
-			to_chat(user, SPAN_WARNING("\The [src] must be wielded to shoot."))
+			to_chat(user, span_warning("\The [src] must be wielded to shoot."))
 			return
 		if(!cell?.checked_use(reqpower))
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, span_warning("[src] battery is dead or missing."))
 			return
 		shootAt(target, user.targeted_organ)
 		user.setClickCooldown(1 SECOND)
@@ -228,11 +228,11 @@
 		if(cell)
 			if(!cell.fully_charged())
 				cell.give(200)
-				to_chat(user, SPAN_NOTICE("You use the [I] to charge the [src] to [round(cell.percent())]%, destroying it in the process.")) //this makes no sense realistically, but ye olde gameplay over realism
+				to_chat(user, span_notice("You use the [I] to charge the [src] to [round(cell.percent())]%, destroying it in the process.")) //this makes no sense realistically, but ye olde gameplay over realism
 				qdel(I)
 			else
-				to_chat(user, SPAN_NOTICE("The [src] is already fully charged."))
+				to_chat(user, span_notice("The [src] is already fully charged."))
 		else
-			to_chat(user, SPAN_NOTICE("Trying to recharge the [src] without a cell installed would be pointless."))
+			to_chat(user, span_notice("Trying to recharge the [src] without a cell installed would be pointless."))
 	else
 		. = ..()

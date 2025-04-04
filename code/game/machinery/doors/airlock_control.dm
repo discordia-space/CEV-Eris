@@ -320,7 +320,7 @@
 	playsound(loc, 'sound/machines/button.ogg', 100, 1)
 	add_fingerprint(usr)
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access Denied"))
+		to_chat(user, span_warning("Access Denied"))
 
 	else if(radio_connection)
 		var/datum/signal/signal = new

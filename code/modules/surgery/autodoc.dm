@@ -52,7 +52,7 @@
 
 /datum/autodoc/proc/scan_user()
 	if(active)
-		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
+		to_chat(usr, span_warning("Autodoc already in use"))
 		return FALSE
 
 	scanned_patchnotes = new()
@@ -109,18 +109,18 @@
 
 /datum/autodoc/proc/process_note(var/datum/autodoc_patchnote/patchnote)
 	if(!patchnote.surgery_operations)
-		to_chat(patient, SPAN_NOTICE("Treatment complete."))
+		to_chat(patient, span_notice("Treatment complete."))
 		return TRUE
 	var/obj/item/organ/external/external = patchnote.organ
 	if(!patchnote.organ)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
-			to_chat(patient, SPAN_NOTICE("Administering anti-toxin to patient."))
+			to_chat(patient, span_notice("Administering anti-toxin to patient."))
 			patient.adjustToxLoss(-damage_heal_amount)
 			if(!patient.getToxLoss())
 				patchnote.surgery_operations &= ~AUTODOC_TOXIN
 
 		else if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
-			to_chat(patient, SPAN_NOTICE("Performing dialysis on patient."))
+			to_chat(patient, span_notice("Performing dialysis on patient."))
 			var/pumped = 0
 			for(var/datum/reagent/x in patient.reagents.reagent_list)
 				patient.reagents.remove_any(AUTODOC_DIALYSIS_AMOUNT)
@@ -130,25 +130,25 @@
 				patchnote.surgery_operations &= ~AUTODOC_DIALYSIS
 
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
-			to_chat(patient, SPAN_NOTICE("Administering blood IV to patient."))
+			to_chat(patient, span_notice("Administering blood IV to patient."))
 			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
 			blood.volume += damage_heal_amount
 			if(blood.volume >= patient.vessel.total_volume)
 				patchnote.surgery_operations &= ~AUTODOC_BLOOD
 
 	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
-		to_chat(patient, SPAN_NOTICE("Treating damage on the patient's [external]."))
+		to_chat(patient, span_notice("Treating damage on the patient's [external]."))
 		external.heal_damage(damage_heal_amount, damage_heal_amount)
 		if(!external.brute_dam && !external.burn_dam) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
 
 	else if(patchnote.surgery_operations & AUTODOC_EMBED_OBJECT)
-		to_chat(patient, SPAN_NOTICE("Removing embedded objects from the patient's [external]."))
+		to_chat(patient, span_notice("Removing embedded objects from the patient's [external]."))
 		for(var/obj/item/material/shard/shrapnel/shrap in external.implants)
 			external.remove_item(shrap, patient, FALSE)
 		patchnote.surgery_operations &= ~AUTODOC_EMBED_OBJECT
 
 	else if(patchnote.surgery_operations & AUTODOC_OPEN_WOUNDS)
-		to_chat(patient, SPAN_NOTICE("Closing wounds on the patient's [external]."))
+		to_chat(patient, span_notice("Closing wounds on the patient's [external]."))
 		for(var/datum/wound/wound in external.wounds)
 			wound.bandaged = TRUE
 			wound.clamped = TRUE
@@ -156,14 +156,14 @@
 		patchnote.surgery_operations &= ~AUTODOC_OPEN_WOUNDS
 
 	else if(patchnote.surgery_operations & AUTODOC_FRACTURE)
-		to_chat(patient, SPAN_NOTICE("Mending fractures in the patient's [external]."))
+		to_chat(patient, span_notice("Mending fractures in the patient's [external]."))
 		external.mend_fracture()
 		patchnote.surgery_operations &= ~AUTODOC_FRACTURE
 
 	else if(patchnote.surgery_operations & AUTODOC_INTERNAL_WOUNDS)
 		if(istype(patchnote.organ, /obj/item/organ/internal))
 			var/obj/item/organ/internal/I = patchnote.organ
-			to_chat(patient, SPAN_NOTICE("Treating internal wounds in the patient's [I.name]."))
+			to_chat(patient, span_notice("Treating internal wounds in the patient's [I.name]."))
 			SEND_SIGNAL_OLD(I, COMSIG_IWOUND_TREAT, TRUE, TRUE)
 			patchnote.surgery_operations &= ~AUTODOC_INTERNAL_WOUNDS
 
@@ -374,10 +374,10 @@
 		to_chat(patient, "Autodoc is out of service. Error code: #0x09")
 		return FALSE
 	if(!patient_account || !patient_account.is_valid())
-		to_chat(patient, SPAN_WARNING("Proper banking account is needed."))
+		to_chat(patient, span_warning("Proper banking account is needed."))
 		return
 	if(amount > patient_account.money)
-		to_chat(patient, SPAN_WARNING("Insufficient funds."))
+		to_chat(patient, span_warning("Insufficient funds."))
 		return
 	var/datum/transaction/T
 	T = new(-amount, linked_account.owner_name, "Autodoc surgery", "Autodoc")

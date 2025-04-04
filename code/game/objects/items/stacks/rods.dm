@@ -38,14 +38,14 @@
 	..()
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(get_amount() < 2)
-			to_chat(user, SPAN_WARNING("You need at least two rods to do this."))
+			to_chat(user, span_warning("You need at least two rods to do this."))
 			return
 
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 			var/obj/item/stack/material/steel/new_item = new (usr.loc)
 			new_item.add_to_stacks(usr)
 			for (var/mob/M in viewers(src))
-				M.show_message(SPAN_NOTICE("[src] is shaped into metal by [user.name] with the [I.name]."), 3, SPAN_NOTICE("You hear welding."), 2)
+				M.show_message(span_notice("[src] is shaped into metal by [user.name] with the [I.name]."), 3, span_notice("You hear welding."), 2)
 			var/obj/item/stack/rods/R = src
 			src = null
 			var/replace = (user.get_inactive_hand() == R)

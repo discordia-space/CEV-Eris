@@ -290,10 +290,10 @@ var/global/list/plant_seed_sprites = list()
 		new_name = sanitizeSafe(new_name)
 		if(new_name)
 			SetName("[initial(name)] - '[new_name]'")
-			to_chat(user, SPAN_NOTICE("You label the seed packet '[new_name]'."))
+			to_chat(user, span_notice("You label the seed packet '[new_name]'."))
 		else
 			SetName("[initial(name)]")
-			to_chat(user, SPAN_NOTICE("You wipe off the label."))
+			to_chat(user, span_notice("You wipe off the label."))
 		return
 
 	..()

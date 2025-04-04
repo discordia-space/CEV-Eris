@@ -182,13 +182,13 @@
 	var/cost = skill.get_cost(selection_level)
 	var/button_label = "[level_name] ([cost])"
 	if(selection_level < min)
-		return "<th><span class='Unavailable'>[button_label]</span></th>"
+		return "<th>[span_Unavailable("[button_label]")]</th>"
 	else if(selection_level < current_level)
 		return "<th><a class='Current' href='byond://?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
 	else if(selection_level == current_level)
-		return "<th><span class='Current'>[button_label]</span></th>"
+		return "<th>[span_Current("[button_label]")]</th>"
 	else if(selection_level <= max)
 		return "<th><a class='Selectable' href='byond://?src=\ref[src];hit_skill_button=\ref[skill];at_job=\ref[job];newvalue=[selection_level]'>[button_label]</a></th>"
 	else
-		return "<th><span class='Toohigh'>[button_label]</span></th>"
+		return "<th>[span_Toohigh("[button_label]")]</th>"
 */

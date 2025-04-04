@@ -55,7 +55,7 @@
 		if(M.use(amount) && stored_matter < max_stored_matter)
 			stored_matter += amount
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+			to_chat(user, "[span_notice("You load [amount] Compressed Matter into \the [src]")].")
 			update_icon()	//Updates the ammo counter
 	else
 		..()
@@ -63,7 +63,7 @@
 /obj/item/rcd/attack_self(mob/user)
 	//Change the mode
 	if(++mode > modes.len) mode = 1
-	to_chat(user, SPAN_NOTICE("Changed mode to '[modes[mode]]'"))
+	to_chat(user, span_notice("Changed mode to '[modes[mode]]'"))
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	if(prob(20)) src.spark_system.start()
 

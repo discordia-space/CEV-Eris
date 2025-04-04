@@ -69,7 +69,7 @@
 
 /obj/machinery/dna/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	if(hacked)
@@ -84,7 +84,7 @@
 
 	else
 		log_add("Unauthorized access attempt by [user.rank_prefix_name(FindNameFromID(user))].", TRUE)
-		to_chat(user, SPAN_WARNING("Unauthorized access."))
+		to_chat(user, span_warning("Unauthorized access."))
 
 
 /obj/machinery/dna/attackby(obj/item/I, mob/living/user)

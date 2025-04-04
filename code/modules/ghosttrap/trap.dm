@@ -46,10 +46,10 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	if(islist(ban_checks))
 		for(var/bantype in ban_checks)
 			if(jobban_isbanned(candidate, "[bantype]"))
-				to_chat(candidate, SPAN_DANGER("You are banned from one or more required roles and hence cannot enter play as \a [object]."))
+				to_chat(candidate, span_danger("You are banned from one or more required roles and hence cannot enter play as \a [object]."))
 				return 0
 	if(can_only_use_once && GLOB.ghost_trap_users[candidate.ckey] && (object in GLOB.ghost_trap_users[candidate.ckey]))
-		to_chat(candidate, SPAN_DANGER("You have already entered play as \a [object] during this round."))
+		to_chat(candidate, span_danger("You have already entered play as \a [object] during this round."))
 		return 0
 	return 1
 
@@ -132,7 +132,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	to_chat(target, "<b>Use say [target.get_language_prefix()]b to speak to other artificial intelligences.</b>")
 	var/turf/T = get_turf(target)
 	var/obj/item/device/mmi/digital/posibrain/P = target.loc
-	T.visible_message(SPAN_NOTICE("\The [P] chimes quietly."))
+	T.visible_message(span_notice("\The [P] chimes quietly."))
 	if(!istype(P)) //wat
 		return
 	P.searching = 0
@@ -163,7 +163,7 @@ GLOBAL_LIST_EMPTY(ghost_trap_users)
 	can_only_use_once = TRUE // No endless free respawns
 
 /datum/ghosttrap/borer/welcome_candidate(var/mob/target)
-	to_chat(target, "<span class='notice'>You are a cortical borer!</span> You are a brain slug that worms its way \
+	to_chat(target, "[span_notice("You are a cortical borer!")] You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
 	your host and your eventual spawn safe and warm.")
 	to_chat(target, "You can speak to your victim with <b>say</b>, to other borers with <b>say [target.get_language_prefix()]x</b>, and use your Abilities tab to access powers.")

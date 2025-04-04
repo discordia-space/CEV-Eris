@@ -159,7 +159,7 @@
 		owner.mob.examinate(target)
 		return FALSE
 	if(ismachinery(target))
-		to_chat(usr, SPAN_NOTICE("ERROR: No response from targeted device"))
+		to_chat(usr, span_notice("ERROR: No response from targeted device"))
 	return FALSE
 
 /datum/click_handler/ai/mob_check(mob/living/silicon/ai/user) //Check can mob use a ability

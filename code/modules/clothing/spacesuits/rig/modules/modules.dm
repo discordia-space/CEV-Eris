@@ -59,7 +59,7 @@
 
 	var/list/stat_rig_module/stat_modules = new()
 
-	
+
 
 /obj/item/rig_module/get_cell()
 	holder = get_rig()
@@ -181,27 +181,27 @@
 /obj/item/rig_module/proc/engage()
 
 	if(damage >= 2)
-		to_chat(usr, SPAN_WARNING("The [interface_name] is damaged beyond use!"))
+		to_chat(usr, span_warning("The [interface_name] is damaged beyond use!"))
 		return 0
 
 	if(world.time < next_use)
-		to_chat(usr, SPAN_WARNING("You cannot use the [interface_name] again so soon."))
+		to_chat(usr, span_warning("You cannot use the [interface_name] again so soon."))
 		return 0
 
 	if(!holder || holder.canremove)
-		to_chat(usr, SPAN_WARNING("The suit is not initialized."))
+		to_chat(usr, span_warning("The suit is not initialized."))
 		return 0
 
 	if(holder.wearer.lying || holder.wearer.stat || holder.wearer.stunned || holder.wearer.paralysis || holder.wearer.weakened)
-		to_chat(usr, SPAN_WARNING("You cannot use the suit in this state."))
+		to_chat(usr, span_warning("You cannot use the suit in this state."))
 		return 0
 
 	if(holder.wearer && holder.wearer.lying)
-		to_chat(usr, SPAN_WARNING("The suit cannot function while the wearer is prone."))
+		to_chat(usr, span_warning("The suit cannot function while the wearer is prone."))
 		return 0
 
 	if(holder.security_check_enabled && !holder.check_suit_access(usr))
-		to_chat(usr, SPAN_DANGER("Access denied."))
+		to_chat(usr, span_danger("Access denied."))
 		return 0
 
 	if(!holder.check_power_cost(usr, use_power_cost, 0, src, (istype(usr,/mob/living/silicon ? 1 : 0) ) ) )

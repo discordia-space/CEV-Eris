@@ -40,13 +40,13 @@
 
 /obj/item/gun/projectile/automatic/lmg/special_check(mob/user)
 	if(cover_open)
-		to_chat(user, SPAN_WARNING("[src]'s cover is open! Close it before firing!"))
+		to_chat(user, span_warning("[src]'s cover is open! Close it before firing!"))
 		return 0
 	return ..()
 
 /obj/item/gun/projectile/automatic/lmg/proc/toggle_cover(mob/user)
 	cover_open = !cover_open
-	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
+	to_chat(user, span_notice("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
 	update_held_icon()
 
@@ -76,13 +76,13 @@
 
 /obj/item/gun/projectile/automatic/lmg/load_ammo(var/obj/item/A, mob/user)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("You need to open the cover to load [src]."))
+		to_chat(user, span_warning("You need to open the cover to load [src]."))
 		return
 	..()
 
 /obj/item/gun/projectile/automatic/lmg/unload_ammo(mob/user, var/allow_dump=1)
 	if(!cover_open)
-		to_chat(user, SPAN_WARNING("You need to open the cover to unload [src]."))
+		to_chat(user, span_warning("You need to open the cover to unload [src]."))
 		return
 	..()
 

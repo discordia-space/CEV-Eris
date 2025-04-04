@@ -27,7 +27,7 @@
 
 	if(!hardware?.network_card.check_functionality() || hardware.network_card.ethernet)
 		if(loud)
-			to_chat(user, SPAN_WARNING("Hardware Error - Wireless network card required"))
+			to_chat(user, span_warning("Hardware Error - Wireless network card required"))
 		return FALSE
 
 	return TRUE
@@ -58,7 +58,7 @@
 		return 1
 
 	if(!computer?.network_card.check_functionality())
-		to_chat(usr, SPAN_WARNING("Hardware Error - Network card failure"))
+		to_chat(usr, span_warning("Hardware Error - Network card failure"))
 		return 1
 
 	if(href_list["signal"])

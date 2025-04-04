@@ -58,7 +58,7 @@
 		if(ispath(partPath))
 			var/obj/item/part/gun/modular/new_part = new partPath(quality = gun_parts[partPath])
 			if(!new_part.I.rapid_apply(src))
-				visible_message(SPAN_WARNING("Something seems wrong... Maybe you should ask a professional for help?"))
+				visible_message(span_warning("Something seems wrong... Maybe you should ask a professional for help?"))
 	refresh_upgrades()
 	. = ..()
 	update_icon()
@@ -174,7 +174,7 @@
 		return
 
 	if(able == 2)
-		to_chat(user, SPAN_NOTICE("You cannot manipulate \the [src] while it is in a container."))
+		to_chat(user, span_notice("You cannot manipulate \the [src] while it is in a container."))
 		return
 
 	// If we have a folding stock installed, attempt to fold
@@ -195,11 +195,11 @@
 
 	if(PARTMOD_FOLDING_STOCK & spriteTags)
 		if(PARTMOD_FOLDING_STOCK & statusTags)
-			to_chat(user, SPAN_NOTICE("You fold the stock on \the [src]."))
+			to_chat(user, span_notice("You fold the stock on \the [src]."))
 			statusTags -= PARTMOD_FOLDING_STOCK
 			w_class = initial(w_class)
 		else
-			to_chat(user, SPAN_NOTICE("You unfold the stock on \the [src]."))
+			to_chat(user, span_notice("You unfold the stock on \the [src]."))
 			statusTags |= PARTMOD_FOLDING_STOCK
 			w_class = initial(w_class) + 1
 
@@ -211,9 +211,9 @@
 	var/tool_type = I.get_tool_type(user, list(serial_type ? QUALITY_HAMMERING : null), src)
 	switch(tool_type)
 		if(QUALITY_HAMMERING)
-			user.visible_message(SPAN_NOTICE("[user] begins scribbling \the [name]'s gun serial number away."), SPAN_NOTICE("You begin removing the serial number from \the [name]."))
+			user.visible_message(span_notice("[user] begins scribbling \the [name]'s gun serial number away."), span_notice("You begin removing the serial number from \the [name]."))
 			if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_HAMMERING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_DANGER("[user] removes \the [name]'s gun serial number."), SPAN_NOTICE("You successfully remove the serial number from \the [name]."))
+				user.visible_message(span_danger("[user] removes \the [name]'s gun serial number."), span_notice("You successfully remove the serial number from \the [name]."))
 				serial_type = null
 				return FALSE
 	load_ammo(I, user)

@@ -30,7 +30,7 @@
 
 	//snap pop
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
-	src.visible_message(SPAN_WARNING("\The [src] explodes in a bright flash!"))
+	src.visible_message(span_warning("\The [src] explodes in a bright flash!"))
 
 	new /obj/effect/decal/cleanable/ash(src.loc) //always use src.loc so that ash doesn't end up inside windows
 	new /obj/effect/sparks(T)

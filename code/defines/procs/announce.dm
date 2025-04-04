@@ -50,16 +50,16 @@
 	Log(message, message_title)
 
 /datum/announcement/proc/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay("<span class='warning'>[title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	global_announcer.autosay("[span_warning("[title]:")] [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/minor/Message(message as text, message_title as text, use_text_to_speech)
 	global_announcer.autosay(message, ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/priority/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	global_announcer.autosay("[span_alert("[message_title]:")] [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/priority/command/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay("<span class='warning'>[message_title]:</span> [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	global_announcer.autosay("[span_warning("[message_title]:")] [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/priority/security/Message(message as text, message_title as text, use_text_to_speech)
 	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)

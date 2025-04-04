@@ -105,7 +105,7 @@
 		for(var/limb_tag in list(BP_L_ARM))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
-				visible_message(SPAN_DANGER("Lacking a functioning left hand, \the [src] drops \the [l_hand]."))
+				visible_message(span_danger("Lacking a functioning left hand, \the [src] drops \the [l_hand]."))
 				drop_from_inventory(l_hand)
 				break
 
@@ -113,7 +113,7 @@
 		for(var/limb_tag in list(BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
-				visible_message(SPAN_DANGER("Lacking a functioning right hand, \the [src] drops \the [r_hand]."))
+				visible_message(span_danger("Lacking a functioning right hand, \the [src] drops \the [r_hand]."))
 				drop_from_inventory(r_hand)
 				break
 
@@ -204,8 +204,8 @@
 			O.set_dna(src)
 			update_body()
 			if (show_message)
-				to_chat(src, SPAN_DANGER("With a shower of fresh blood, a new [O.name] forms."))
-				visible_message(SPAN_DANGER("With a shower of fresh blood, a length of biomass shoots from [src]'s [O.amputation_point], forming a new [O.name]!"))
+				to_chat(src, span_danger("With a shower of fresh blood, a new [O.name] forms."))
+				visible_message(span_danger("With a shower of fresh blood, a length of biomass shoots from [src]'s [O.amputation_point], forming a new [O.name]!"))
 			return TRUE
 		else
 			var/list/organ_data = species.has_process[organ_type]

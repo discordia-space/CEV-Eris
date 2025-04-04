@@ -41,13 +41,13 @@
 	dat += "<HR>Current Loaded Programs:<BR>"
 
 	if(!linkedholodeck)
-		dat += SPAN_DANGER("Warning: Unable to locate holodeck.<br>")
+		dat += span_danger("Warning: Unable to locate holodeck.<br>")
 		user << browse(HTML_SKELETON_TITLE("Holodeck Control", dat), "window=computer;size=400x500")
 		onclose(user, "computer")
 		return
 
 	if(!supported_programs.len)
-		dat += SPAN_DANGER("Warning: No supported holo-programs loaded.<br>")
+		dat += span_danger("Warning: No supported holo-programs loaded.<br>")
 		user << browse(HTML_SKELETON_TITLE("Holodeck Control", dat), "window=computer;size=400x500")
 		onclose(user, "computer")
 		return
@@ -131,7 +131,7 @@
 		emagged = 1
 		safety_disabled = 1
 		update_projections()
-		to_chat(user, SPAN_NOTICE("You vastly increase projector power and override the safety and security protocols."))
+		to_chat(user, span_notice("You vastly increase projector power and override the safety and security protocols."))
 		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call [company_name] maintenance and do not use the simulator.")
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 		src.updateUsrDialog()

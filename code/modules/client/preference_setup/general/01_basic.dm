@@ -71,7 +71,7 @@
 				pref.real_name = pref.real_first_name + " " + pref.real_last_name
 				return TOPIC_REFRESH
 			else
-				to_chat(user, SPAN_WARNING("Invalid first name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
+				to_chat(user, span_warning("Invalid first name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 				return TOPIC_NOACTION
 
 	if(href_list["lname"])
@@ -92,7 +92,7 @@
 					pref.real_name = pref.real_first_name + " " + pref.real_last_name
 					return TOPIC_REFRESH
 				else
-					to_chat(user, SPAN_WARNING("Invalid last name. Your name should be at least 2 and at most [last_name_max_length] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
+					to_chat(user, span_warning("Invalid last name. Your name should be at least 2 and at most [last_name_max_length] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 					return TOPIC_NOACTION
 
 	else if(href_list["random_name"])

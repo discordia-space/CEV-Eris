@@ -72,18 +72,18 @@ var/bomb_set
 					if (panel_open == 0)
 						panel_open = 1
 						overlays += image(icon, "npanel_open")
-						to_chat(user, SPAN_NOTICE("You unscrew the control panel of [src]."))
+						to_chat(user, span_notice("You unscrew the control panel of [src]."))
 					else
 						panel_open = 0
 						overlays -= image(icon, "npanel_open")
-						to_chat(user, SPAN_NOTICE("You screw the control panel of [src] back on."))
+						to_chat(user, span_notice("You screw the control panel of [src] back on."))
 				else
 					if (panel_open == 0)
-						to_chat(user, SPAN_NOTICE("\The [src] emits a buzzing noise, the panel staying locked in."))
+						to_chat(user, span_notice("\The [src] emits a buzzing noise, the panel staying locked in."))
 					if (panel_open == 1)
 						panel_open = 0
 						overlays -= image(icon, "npanel_open")
-						to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
+						to_chat(user, span_notice("You screw the control panel of \the [src] back on."))
 						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 					flick("nuclearbombc", src)
 				return
@@ -152,9 +152,9 @@ var/bomb_set
 	else if (deployable)
 		if(removal_stage < 5)
 			src.anchored = TRUE
-			visible_message(SPAN_WARNING("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
+			visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
 		else
-			visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
+			visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		extended = 1
 		if(!src.lighthack)
 			flick("nuclearbombc", src)
@@ -203,10 +203,10 @@ var/bomb_set
 		return
 
 	if (src.deployable)
-		to_chat(usr, SPAN_WARNING("You close several panels to make [src] undeployable."))
+		to_chat(usr, span_warning("You close several panels to make [src] undeployable."))
 		src.deployable = 0
 	else
-		to_chat(usr, SPAN_WARNING("You adjust some panels to make [src] deployable."))
+		to_chat(usr, span_warning("You adjust some panels to make [src] deployable."))
 		src.deployable = 1
 	return
 
@@ -267,15 +267,15 @@ var/bomb_set
 					SSnano.update_uis(src)
 					return
 				if (!anchored)
-					to_chat(usr, SPAN_WARNING("\The [src] needs to be anchored."))
+					to_chat(usr, span_warning("\The [src] needs to be anchored."))
 					SSnano.update_uis(src)
 					return
 				if (safety)
-					to_chat(usr, SPAN_WARNING("The safety is still on."))
+					to_chat(usr, span_warning("The safety is still on."))
 					SSnano.update_uis(src)
 					return
 				if (wires.IsIndexCut(NUCLEARBOMB_WIRE_TIMING))
-					to_chat(usr, SPAN_WARNING("Nothing happens, something might be wrong with the wiring."))
+					to_chat(usr, span_warning("Nothing happens, something might be wrong with the wiring."))
 					SSnano.update_uis(src)
 					return
 
@@ -292,7 +292,7 @@ var/bomb_set
 					secure_device()
 			if (href_list["safety"])
 				if (wires.IsIndexCut(NUCLEARBOMB_WIRE_SAFETY))
-					to_chat(usr, SPAN_WARNING("Nothing happens, something might be wrong with the wiring."))
+					to_chat(usr, span_warning("Nothing happens, something might be wrong with the wiring."))
 					SSnano.update_uis(src)
 					return
 				safety = !safety
@@ -301,19 +301,19 @@ var/bomb_set
 			if (href_list["anchor"])
 				if(removal_stage == 5)
 					anchored = FALSE
-					visible_message(SPAN_WARNING("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
+					visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 					SSnano.update_uis(src)
 					return
 
 				if(!isinspace())
 					anchored = !anchored
 					if(anchored)
-						visible_message(SPAN_WARNING("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
+						visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 					else
 						secure_device()
-						visible_message(SPAN_WARNING("The anchoring bolts slide back into the depths of [src]."))
+						visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
 				else
-					to_chat(usr, SPAN_WARNING("There is nothing to anchor to!"))
+					to_chat(usr, span_warning("There is nothing to anchor to!"))
 
 	SSnano.update_uis(src)
 

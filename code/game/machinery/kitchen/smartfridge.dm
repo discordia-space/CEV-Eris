@@ -335,18 +335,18 @@
 		return
 
 	if(stat & NOPOWER)
-		to_chat(user, SPAN_NOTICE("\The [src] is unpowered and useless."))
+		to_chat(user, span_notice("\The [src] is unpowered and useless."))
 		return
 
 	if(accept_check(O))
 		if(contents.len >= max_n_of_items)
-			to_chat(user, SPAN_NOTICE("\The [src] is full."))
+			to_chat(user, span_notice("\The [src] is full."))
 			return 1
 		else
 			user.remove_from_mob(O)
 			O.forceMove(src)
 			update_contents()
-			user.visible_message(SPAN_NOTICE("[user] has added \the [O] to \the [src]."), SPAN_NOTICE("You add \the [O] to \the [src]."))
+			user.visible_message(span_notice("[user] has added \the [O] to \the [src]."), span_notice("You add \the [O] to \the [src]."))
 			update_icon()
 			SSnano.update_uis(src)
 
@@ -356,7 +356,7 @@
 		for(var/obj/G in P.contents)
 			if(accept_check(G))
 				if(contents.len >= max_n_of_items)
-					to_chat(user, SPAN_NOTICE("\The [src] is full."))
+					to_chat(user, span_notice("\The [src] is full."))
 					return 1
 				else
 					P.remove_from_storage(G,src)
@@ -364,14 +364,14 @@
 		if(plants_loaded)
 			update_contents()
 			update_icon()
-			user.visible_message(SPAN_NOTICE("[user] loads \the [src] with \the [P]."), SPAN_NOTICE("You load \the [src] with \the [P]."))
+			user.visible_message(span_notice("[user] loads \the [src] with \the [P]."), span_notice("You load \the [src] with \the [P]."))
 			if(P.contents.len > 0)
-				to_chat(user, SPAN_NOTICE("Some items are refused."))
+				to_chat(user, span_notice("Some items are refused."))
 
 		SSnano.update_uis(src)
 
 	else
-		to_chat(user, SPAN_NOTICE("\The [src] smartly refuses [O]."))
+		to_chat(user, span_notice("\The [src] smartly refuses [O]."))
 		return 1
 
 /obj/machinery/smartfridge/secure/emag_act(var/remaining_charges, var/mob/user)
@@ -482,7 +482,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message(SPAN_WARNING("[src] launches [throw_item.name] at [target.name]!"))
+	src.visible_message(span_warning("[src] launches [throw_item.name] at [target.name]!"))
 	return 1
 
 /************************
@@ -493,6 +493,6 @@
 	if(stat & (NOPOWER|BROKEN)) return 0
 	if(usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf)))
 		if(!allowed(usr) && !emagged && locked != -1 && href_list["vend"])
-			to_chat(usr, SPAN_WARNING("Access denied."))
+			to_chat(usr, span_warning("Access denied."))
 			return 0
 	return ..()

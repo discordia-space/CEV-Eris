@@ -17,4 +17,4 @@
 			synced = TRUE
 
 	if(synced)
-		to_chat(src, SPAN_NOTICE("Images synced with AI. Local images will be retained in the case of loss of connection with the AI."))
+		to_chat(src, span_notice("Images synced with AI. Local images will be retained in the case of loss of connection with the AI."))

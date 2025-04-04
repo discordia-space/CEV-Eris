@@ -281,7 +281,7 @@
 
 /obj/item/storage/AltClick(mob/user)
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(!in_range(src, user))
 		return
@@ -311,7 +311,7 @@
 		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
+			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE //Storage item is full
 
 	if(W.anchored)
@@ -320,22 +320,22 @@
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
 			if(!stop_messages && ! istype(W, /obj/item/hand_labeler))
-				to_chat(usr, SPAN_NOTICE("[src] cannot hold \the [W]."))
+				to_chat(usr, span_notice("[src] cannot hold \the [W]."))
 			return FALSE
 		var/max_instances = can_hold[W.type]
 		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
 			if(!stop_messages && !istype(W, /obj/item/hand_labeler))
-				to_chat(usr, SPAN_NOTICE("[src] has no more space specifically for \the [W]."))
+				to_chat(usr, span_notice("[src] has no more space specifically for \the [W]."))
 			return FALSE
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
+			to_chat(usr, span_notice("[src] cannot hold [W]."))
 		return FALSE
 
 	if (max_w_class != null && W.w_class > max_w_class)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
+			to_chat(usr, span_notice("[W] is too long for this [src]."))
 		return FALSE
 
 	//Slot based storage overrides space-based storage
@@ -346,12 +346,12 @@
 
 		if(total_storage_space > max_storage_space)
 			if(!stop_messages)
-				to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
+				to_chat(usr, span_notice("[src] is too full, make some space."))
 			return FALSE
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
+			to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
 		return FALSE //To prevent the stacking of same sized storage items.
 
 	. = TRUE
@@ -378,11 +378,11 @@
 		if (!prevent_warning)
 			for (var/mob/M in viewers(usr, null))
 				if (M == usr)
-					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
+					to_chat(usr, span_notice("You put \the [W] into [src]."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(span_notice("\The [usr] puts [W] into [src]."))
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(span_notice("\The [usr] puts [W] into [src]."))
 
 	refresh_all()
 
@@ -438,14 +438,14 @@
 		var/obj/item/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
+				to_chat(user, span_warning("The tray won't fit in [src]."))
 				return
 			else //todo: proper drop handling
 				W.loc = user.loc
 				if (user.client)
 					user.client.screen -= W
 				W.dropped(user)
-				to_chat(user, SPAN_WARNING("God damnit!"))
+				to_chat(user, span_warning("God damnit!"))
 
 	W.add_fingerprint(user)
 	. = handle_item_insertion(W)
@@ -484,11 +484,11 @@
 
 	if(user)
 		if(.)
-			user.visible_message(SPAN_NOTICE("[user] puts some things in [src]."),SPAN_NOTICE("You put some things in [src]."),SPAN_NOTICE("You hear rustling."))
+			user.visible_message(span_notice("[user] puts some things in [src]."),span_notice("You put some things in [src]."),span_notice("You hear rustling."))
 			if (src.use_sound)
 				playsound(src.loc, src.use_sound, 50, 1, -5)
 		else
-			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
+			to_chat(user, span_notice("You fail to pick anything up with \the [src]."))
 
 
 /obj/item/storage/resolve_attackby(atom/A, mob/user)

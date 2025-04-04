@@ -258,7 +258,7 @@
 
 	// Seal toggling can be initiated by the suit AI, too
 	if(!wearer)
-		to_chat(initiator, SPAN_DANGER("Cannot toggle suit: The suit is currently not being worn by anyone."))
+		to_chat(initiator, span_danger("Cannot toggle suit: The suit is currently not being worn by anyone."))
 		return 0
 
 	if(!check_power_cost(wearer))
@@ -281,7 +281,7 @@
 	sealing = 1
 
 	if(seal_target && !suit_is_deployed())
-		wearer.visible_message(SPAN_DANGER("[wearer]'s suit flashes an error light."),SPAN_DANGER("Your suit flashes an error light. It can't function properly without being fully deployed."))
+		wearer.visible_message(span_danger("[wearer]'s suit flashes an error light."),span_danger("Your suit flashes an error light. It can't function properly without being fully deployed."))
 		failed_to_seal = 1
 
 	if(!failed_to_seal)
@@ -289,7 +289,7 @@
 		if(!instant)
 			wearer.visible_message("<font color='blue'>[wearer]'s suit emits a quiet hum as it begins to adjust its seals.</font>","<font color='blue'>With a quiet hum, the suit begins running checks and adjusting components.</font>")
 			if(seal_delay && !do_after(wearer,seal_delay, src))
-				if(wearer) to_chat(wearer, SPAN_WARNING("You must remain still while the suit is adjusting the components."))
+				if(wearer) to_chat(wearer, span_warning("You must remain still while the suit is adjusting the components."))
 				failed_to_seal = 1
 
 		if(!wearer)
@@ -306,7 +306,7 @@
 					continue
 
 				if(!istype(wearer) || !istype(piece) || !istype(compare_piece) || !msg_type)
-					if(wearer) to_chat(wearer, SPAN_WARNING("You must remain still while the suit is adjusting the components."))
+					if(wearer) to_chat(wearer, span_warning("You must remain still while the suit is adjusting the components."))
 					failed_to_seal = 1
 					break
 
@@ -402,13 +402,13 @@
 				if(istype(wearer))
 					if(!canremove)
 						if (offline_slowdown < 3)
-							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead."))
+							to_chat(wearer, span_danger("Your suit beeps stridently, and suddenly goes dead."))
 						else
-							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
+							to_chat(wearer, span_danger("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
 					if(offline_vision_restriction == 1)
-						to_chat(wearer, SPAN_DANGER("The suit optics flicker and die, leaving you with restricted vision."))
+						to_chat(wearer, span_danger("The suit optics flicker and die, leaving you with restricted vision."))
 					else if(offline_vision_restriction == 2)
-						to_chat(wearer, SPAN_DANGER("The suit optics drop out completely, drowning you in darkness."))
+						to_chat(wearer, span_danger("The suit optics drop out completely, drowning you in darkness."))
 		if(!offline)
 			offline = 1
 	else
@@ -448,17 +448,17 @@
 	if(!user_is_ai)
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && H.back != src)
-			fail_msg = SPAN_WARNING("You must be wearing \the [src] to do this.")
+			fail_msg = span_warning("You must be wearing \the [src] to do this.")
 		else if(user.incorporeal_move)
-			fail_msg = SPAN_WARNING("You must be solid to do this.")
+			fail_msg = span_warning("You must be solid to do this.")
 	if(sealing)
-		fail_msg = SPAN_WARNING("The hardsuit is in the process of adjusting seals and cannot be activated.")
+		fail_msg = span_warning("The hardsuit is in the process of adjusting seals and cannot be activated.")
 	else if(!fail_msg && ((use_unconcious && user.stat > 1) || (!use_unconcious && user.stat)))
-		fail_msg = SPAN_WARNING("You are in no fit state to do that.")
+		fail_msg = span_warning("You are in no fit state to do that.")
 	else if(!cell)
-		fail_msg = SPAN_WARNING("There is no cell installed in the suit.")
+		fail_msg = span_warning("There is no cell installed in the suit.")
 	else if(cost && cell.charge < cost * 10) //TODO: Cellrate?
-		fail_msg = SPAN_WARNING("Not enough stored power.")
+		fail_msg = span_warning("Not enough stored power.")
 
 	if(fail_msg)
 		to_chat(user, fail_msg)
@@ -568,11 +568,11 @@
 		if(user.back != src)
 			return 0
 		else if(!allowed(user))
-			to_chat(user, SPAN_DANGER("Unauthorized user. Access denied."))
+			to_chat(user, span_danger("Unauthorized user. Access denied."))
 			return 0
 
 	else if(!ai_override_enabled)
-		to_chat(user, SPAN_DANGER("Synthetic access disabled. Please consult hardware provider."))
+		to_chat(user, span_danger("Synthetic access disabled. Please consult hardware provider."))
 		return 0
 
 	return 1
@@ -646,8 +646,8 @@
 	if (slot == rig_wear_slot)
 		if(seal_delay > 0)
 			user.visible_message(
-				SPAN_NOTICE("[user] starts putting on \the [src]..."),
-				SPAN_NOTICE("You start putting on \the [src]...")
+				span_notice("[user] starts putting on \the [src]..."),
+				span_notice("You start putting on \the [src]...")
 			)
 			if(!do_after(user,seal_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
@@ -656,8 +656,8 @@
 		retract()
 		if(seal_delay > 0)
 			user.visible_message(
-				SPAN_NOTICE("[user] starts taking off \the [src]..."),
-				SPAN_NOTICE("You start taking off \the [src]...")
+				span_notice("[user] starts taking off \the [src]..."),
+				span_notice("You start taking off \the [src]...")
 			)
 			if(!do_after(user,seal_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
@@ -667,8 +667,8 @@
 	..()
 	if (slot == rig_wear_slot)
 		user.visible_message(
-			SPAN_NOTICE("<b>[user] struggles into \the [src].</b>"),
-			SPAN_NOTICE("<b>You struggle into \the [src].</b>")
+			span_notice("<b>[user] struggles into \the [src].</b>"),
+			span_notice("<b>You struggle into \the [src].</b>")
 		)
 		wearer = user
 		wearer.wearing_rig = src
@@ -714,7 +714,7 @@
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
 			if (active && !(use_obj.retract_while_active))
-				to_chat(wearer, SPAN_DANGER("The [use_obj] is locked in place while [src] is active. You must deactivate it first!"))
+				to_chat(wearer, span_danger("The [use_obj] is locked in place while [src] is active. You must deactivate it first!"))
 				return
 
 			var/mob/living/carbon/human/holder
@@ -741,10 +741,10 @@
 			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
-					to_chat(initiator, SPAN_DANGER("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way."))
+					to_chat(initiator, span_danger("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way."))
 					return
 			else
-				to_chat(wearer, SPAN_NOTICE("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly."))
+				to_chat(wearer, span_notice("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly."))
 
 	if(piece == "helmet" && helmet)
 		helmet.update_light(wearer)
@@ -896,17 +896,17 @@
 
 	if(wearer)
 		if(dam_module.damage >= 2)
-			to_chat(wearer, SPAN_DANGER("The [source] has disabled your [dam_module.interface_name]!"))
+			to_chat(wearer, span_danger("The [source] has disabled your [dam_module.interface_name]!"))
 		else
-			to_chat(wearer, SPAN_WARNING("The [source] has damaged your [dam_module.interface_name]!"))
+			to_chat(wearer, span_warning("The [source] has damaged your [dam_module.interface_name]!"))
 	dam_module.deactivate()
 
 /obj/item/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
 	if(malfunction_delay)
 		if(offline)
-			to_chat(user, SPAN_DANGER("The suit is completely unresponsive."))
+			to_chat(user, span_danger("The suit is completely unresponsive."))
 		else
-			to_chat(user, SPAN_DANGER("ERROR: Hardware fault. Rebooting interface..."))
+			to_chat(user, span_danger("ERROR: Hardware fault. Rebooting interface..."))
 		return 1
 	return 0
 
@@ -933,17 +933,17 @@
 			return 0
 		var/obj/item/rig_module/ai_container/module = user.loc.loc
 		if(!istype(module) || module.damage >= 2)
-			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
+			to_chat(user, span_warning("Your host module is unable to interface with the suit."))
 			return 0
 
 	if(offline || !cell || cell.is_empty() || locked_down)
-		if(user) user << SPAN_WARNING("Your host rig is unpowered and unresponsive.")
+		if(user) user << span_warning("Your host rig is unpowered and unresponsive.")
 		return 0
 	if(!wearer || wearer.back != src)
-		if(user) user << SPAN_WARNING("Your host rig is not being worn.")
+		if(user) user << span_warning("Your host rig is not being worn.")
 		return 0
 	if(!wearer.stat && !control_overridden && !ai_override_enabled)
-		if(user) user << SPAN_WARNING("You are locked out of the suit servo controller.")
+		if(user) user << span_warning("You are locked out of the suit servo controller.")
 		return 0
 	return 1
 
@@ -951,7 +951,7 @@
 	if(!ai_can_move_suit(user, check_user_module = 1))
 		return
 	wearer.lay_down()
-	to_chat(user, "<span class='notice'>\The [wearer] is now [wearer.resting ? "resting" : "getting up"].</span>")
+	to_chat(user, span_notice("\The [wearer] is now [wearer.resting ? "resting" : "getting up"]."))
 
 /obj/item/rig/proc/forced_move(var/direction, var/mob/user)
 	if(malfunctioning)
@@ -1064,7 +1064,7 @@
 	if(!mech?.body.armor_restrictions)
 		return FALSE
 
-	to_chat(wearer, SPAN_NOTICE("You cannot deploy your suit inside a mech."))
+	to_chat(wearer, span_notice("You cannot deploy your suit inside a mech."))
 	return TRUE
 
 #undef ONLY_DEPLOY

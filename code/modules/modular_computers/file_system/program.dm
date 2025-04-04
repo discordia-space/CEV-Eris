@@ -94,7 +94,7 @@
 /datum/computer_file/program/proc/is_supported_by_hardware(obj/item/modular_computer/hardware, mob/user, loud)
 	if(!(hardware.hardware_flag & usage_flags))
 		if(loud && computer && user)
-			to_chat(user, SPAN_WARNING("Hardware Error - Incompatible software"))
+			to_chat(user, span_warning("Hardware Error - Incompatible software"))
 		return FALSE
 	return TRUE
 
@@ -142,13 +142,13 @@
 	var/obj/item/card/id/I = user.GetIdCard()
 	if(!I)
 		if(loud)
-			to_chat(user, SPAN_WARNING("RFID Error - Unable to scan ID"))
+			to_chat(user, span_warning("RFID Error - Unable to scan ID"))
 		return 0
 
 	if(access_to_check in I.access)
 		return 1
 	else if(loud)
-		to_chat(user, SPAN_WARNING("Access Denied"))
+		to_chat(user, span_warning("Access Denied"))
 
 // This attempts to retrieve header data for NanoUIs. If implementing completely new device of different type than existing ones
 // always include the device here in this proc. This proc basically relays the request to whatever is running the program.

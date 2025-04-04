@@ -80,9 +80,9 @@
 
 	if(using_sci_goggles || details_unlocked)
 		var/function_info
-		var/input_info = SPAN_WARNING("Input organoid absent.")
-		var/process_info = SPAN_WARNING("Process organoid absent.")
-		var/output_info = SPAN_WARNING("Output organoid absent.")
+		var/input_info = span_warning("Input organoid absent.")
+		var/process_info = span_warning("Process organoid absent.")
+		var/output_info = span_warning("Output organoid absent.")
 		var/secondary_info
 
 		for(var/mod in contents)
@@ -103,12 +103,12 @@
 						secondary_info
 
 		if(aberrant_cooldown_time > 0)
-			extra_description += SPAN_NOTICE("\nAverage organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds")
+			extra_description += span_notice("\nAverage organ process duration: [aberrant_cooldown_time / (1 SECOND)] seconds")
 
 		if(function_info)
-			extra_description += SPAN_NOTICE(function_info)
+			extra_description += span_notice(function_info)
 	else
-		extra_description += SPAN_WARNING("You lack the biological knowledge and/or mental ability required to understand its functions.")
+		extra_description += span_warning("You lack the biological knowledge and/or mental ability required to understand its functions.")
 
 	..(user, extra_description)
 
@@ -141,7 +141,7 @@
 	SEND_SIGNAL(src, COMSIG_IWOUND_FLAGS_ADD)
 
 	refresh_damage()
-	
+
 	update_color()
 	update_name()
 	update_icon()
@@ -154,9 +154,9 @@
 
 /obj/item/organ/internal/scaffold/ui_action_click(mob/living/user, action_name)
 	if(on_cooldown)
-		to_chat(user, SPAN_NOTICE("\The [src] is not ready to be activated."))
+		to_chat(user, span_notice("\The [src] is not ready to be activated."))
 		return
-	
+
 	SEND_SIGNAL(src, COMSIG_ABERRANT_INPUT_VERB, owner)
 
 /obj/item/organ/internal/scaffold/proc/update_color()
@@ -258,7 +258,7 @@
 /obj/item/organ/internal/scaffold/proc/end_cooldown()
 	on_cooldown = FALSE
 	if(action_button_name && owner)
-		to_chat(owner, SPAN_NOTICE("Your [name] twitches. It is ready to be used again."))
+		to_chat(owner, span_notice("Your [name] twitches. It is ready to be used again."))
 
 /obj/item/organ/internal/scaffold/large
 	name = "large organ scaffold"
@@ -329,7 +329,7 @@
 
 		for(var/i in 1 to req_num_inputs)
 			input_info += pick_n_take(input_pool)
-		
+
 		input_args += list(input_info)
 		if(input_mode)
 			input_args += input_mode
@@ -341,7 +341,7 @@
 		additional_output_info = output_pool.Copy()
 		for(var/i in 1 to req_num_outputs)
 			output_types += list(pick_n_take(output_pool) = output_info[i])
-		
+
 		output_args += list(output_types)
 		output_args += list(additional_output_info)
 

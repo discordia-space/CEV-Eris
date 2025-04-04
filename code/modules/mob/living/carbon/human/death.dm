@@ -44,7 +44,7 @@
 
 	if(wearing_rig)
 		wearing_rig.notify_ai(
-			SPAN_DANGER("Warning: user death event. Mobility control passed to integrated intelligence system.")
+			span_danger("Warning: user death event. Mobility control passed to integrated intelligence system.")
 		)
 	var/message = species.death_message
 	if(stats.getPerk(PERK_TERRIBLE_FATE))
@@ -65,7 +65,7 @@
 		var/obj/item/cruciform_upgrade/upgrade = C.upgrade
 		if(upgrade && upgrade.active && istype(upgrade, CUPGRADE_MARTYR_GIFT))
 			var/obj/item/cruciform_upgrade/martyr_gift/martyr = upgrade
-			visible_message(SPAN_DANGER("The [C] emit a massive light!"))
+			visible_message(span_danger("The [C] emit a massive light!"))
 			var/burn_damage_done
 			for(var/mob/living/L in oviewers(6, src))
 				if(ishuman(L))
@@ -78,7 +78,7 @@
 					else
 						burn_damage_done = martyr.burn_damage / get_dist(src, H)
 						H.adjustFireLoss(burn_damage_done)
-					to_chat(H, SPAN_DANGER("You are get hurt by holy light!"))
+					to_chat(H, span_danger("You are get hurt by holy light!"))
 				else
 					burn_damage_done = martyr.burn_damage / get_dist(src, L)
 					L.damage_through_armor(burn_damage_done, BURN)

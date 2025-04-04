@@ -61,9 +61,9 @@
 			to_chat(target, "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered.")
 			target.ResetSecurityCodes()
 		else
-			message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated [target.name]!"))
+			message_admins(span_notice("[key_name_admin(usr)] detonated [target.name]!"))
 			log_game("[key_name(usr)] detonated [target.name]!")
-			to_chat(target, SPAN_DANGER("Self-destruct command received."))
+			to_chat(target, span_danger("Self-destruct command received."))
 			spawn(10)
 				target.self_destruct()
 
@@ -90,7 +90,7 @@
 		if(!target || !istype(target))
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] [target.canmove ? "locked down" : "released"] [target.name]!</span>")
+		message_admins(span_notice("[key_name_admin(usr)] [target.canmove ? "locked down" : "released"] [target.name]!"))
 		log_game("[key_name(usr)] [target.canmove ? "locked down" : "released"] [target.name]!")
 		target.canmove = !target.canmove
 		if (target.lockcharge)
@@ -122,10 +122,10 @@
 		if(!target || !istype(target))
 			return
 
-		message_admins(SPAN_NOTICE("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
+		message_admins(span_notice("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
 		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
 		target.AddTrait(CYBORG_TRAIT_EMAGGED)
-		to_chat(target, SPAN_NOTICE("Failsafe protocols overriden. New tools available."))
+		to_chat(target, span_notice("Failsafe protocols overriden. New tools available."))
 
 	// Arms the emergency self-destruct system
 	else if(href_list["arm"])
@@ -145,7 +145,7 @@
 			to_chat(user, "Self-destruct aborted - safety active")
 			return
 
-		message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated all cyborgs!"))
+		message_admins(span_notice("[key_name_admin(usr)] detonated all cyborgs!"))
 		log_game("[key_name(usr)] detonated all cyborgs!")
 
 		for(var/mob/living/silicon/robot/R in SSmobs.mob_list)
@@ -154,7 +154,7 @@
 			// Ignore antagonistic cyborgs
 			if(R.scrambledcodes)
 				continue
-			to_chat(R, SPAN_DANGER("Self-destruct command received."))
+			to_chat(R, span_danger("Self-destruct command received."))
 			spawn(10)
 				R.self_destruct()
 

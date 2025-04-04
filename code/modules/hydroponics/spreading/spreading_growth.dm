@@ -132,7 +132,7 @@
 		for(var/mob/living/A in range(1,mainloc))
 			if(A.move_speed < 12)
 				HasProximity(A)
-				A.visible_message(SPAN_WARNING("[src] sprays something on [A.name]!"), SPAN_WARNING("[src] sprays something on you!"))
+				A.visible_message(span_warning("[src] sprays something on [A.name]!"), span_warning("[src] sprays something on you!"))
 				spray_cooldown = TRUE
 				spawn(10)
 					spray_cooldown = FALSE

@@ -31,7 +31,7 @@
 
 /obj/machinery/floorlayer/attack_hand(mob/user as mob)
 	on=!on
-	user.visible_message("<span class='notice'>[user] has [!on?"de":""]activated \the [src].</span>", "<span class='notice'>You [!on?"de":""]activate \the [src].</span>")
+	user.visible_message(span_notice("[user] has [!on?"de":""]activated \the [src]."), span_notice("You [!on?"de":""]activate \the [src]."))
 	return
 
 /obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
@@ -40,22 +40,22 @@
 		var/m = input("Choose work mode", "Mode") as null|anything in mode
 		mode[m] = !mode[m]
 		var/O = mode[m]
-		user.visible_message("<span class='notice'>[usr] has set \the [src] [m] mode [!O?"off":"on"].</span>", "<span class='notice'>You set \the [src] [m] mode [!O?"off":"on"].</span>")
+		user.visible_message(span_notice("[usr] has set \the [src] [m] mode [!O?"off":"on"]."), span_notice("You set \the [src] [m] mode [!O?"off":"on"]."))
 		return
 
 	if(istype(W, /obj/item/stack/tile))
-		to_chat(user, SPAN_NOTICE("\The [W] successfully loaded."))
+		to_chat(user, span_notice("\The [W] successfully loaded."))
 		user.drop_item(T)
 		TakeTile(T)
 		return
 
 	if(istype(W, /obj/item/tool/crowbar))
 		if(!length(contents))
-			to_chat(user, SPAN_NOTICE("\The [src] is empty."))
+			to_chat(user, span_notice("\The [src] is empty."))
 		else
 			var/obj/item/stack/tile/E = input("Choose remove tile type.", "Tiles") as null|anything in contents
 			if(E)
-				to_chat(user, SPAN_NOTICE("You remove the [E] from /the [src]."))
+				to_chat(user, span_notice("You remove the [E] from /the [src]."))
 				E.loc = src.loc
 				T = null
 		return
@@ -69,7 +69,7 @@
 	var/dismantle = mode["dismantle"]
 	var/laying = mode["laying"]
 	var/collect = mode["collect"]
-	extra_description += SPAN_NOTICE("\The [src] [!T?"don't ":""]has [!T?"":"[T.get_amount()] [T] "]tile\s, dismantle is [dismantle?"on":"off"], laying is [laying?"on":"off"], collect is [collect?"on":"off"].")
+	extra_description += span_notice("\The [src] [!T?"don't ":""]has [!T?"":"[T.get_amount()] [T] "]tile\s, dismantle is [dismantle?"on":"off"], laying is [laying?"on":"off"], collect is [collect?"on":"off"].")
 	..(user, extra_description)
 
 /obj/machinery/floorlayer/proc/reset()

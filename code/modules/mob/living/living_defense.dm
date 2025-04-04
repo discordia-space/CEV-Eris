@@ -85,8 +85,8 @@
 							wounding_multiplier = 1 // Crushing multiplier forced
 						sharp = FALSE
 						edge = FALSE
-						armor_message(SPAN_NOTICE("[src] armor deflected the strike!"), // No cut (strike), only bash
-										SPAN_NOTICE("Your armor deflects the strike!"))
+						armor_message(span_notice("[src] armor deflected the strike!"), // No cut (strike), only bash
+										span_notice("Your armor deflects the strike!"))
 
 					if(ishuman(src) && isitem(used_weapon))
 						var/mob/living/carbon/human/H = src
@@ -99,8 +99,8 @@
 					var/mob/living/carbon/human/H = src
 					var/obj/item/organ/external/o = H.get_organ(def_zone)
 					if (o && o.status & ORGAN_SPLINTED)
-						visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
-								SPAN_WARNING("Your splints break off after being hit!"))
+						visible_message(span_warning("The splints break off [src] after being hit!"),
+								span_warning("Your splints break off after being hit!"))
 						o.status &= ~ORGAN_SPLINTED
 	var/effective_armor = round((1 - dealt_damage / total_dmg) * 100)
 
@@ -110,17 +110,17 @@
 	//Goon/tg chat should take care of spam issue on this one
 	switch(effective_armor)
 		if(24 to 49)
-			armor_message(SPAN_NOTICE("[src] armor reduces the impact by a little."),
-							SPAN_NOTICE("Your armor reduced the impact a little."))
+			armor_message(span_notice("[src] armor reduces the impact by a little."),
+							span_notice("Your armor reduced the impact a little."))
 		if(50 to 74)
-			armor_message(SPAN_NOTICE("[src] armor absorbs most of the damage!"),
-							SPAN_NOTICE("Your armor protects you from the impact!"))
+			armor_message(span_notice("[src] armor absorbs most of the damage!"),
+							span_notice("Your armor protects you from the impact!"))
 		if(75 to 89)
-			armor_message(SPAN_NOTICE("[src] armor easily absorbs the blow!"),
-							SPAN_NOTICE("Your armor reduced the impact greatly!"))
+			armor_message(span_notice("[src] armor easily absorbs the blow!"),
+							span_notice("Your armor reduced the impact greatly!"))
 		if(90 to INFINITY)
-			armor_message(SPAN_NOTICE("[src] armor absorbs the blow!"),
-							SPAN_NOTICE("Your armor absorbed the impact!"))
+			armor_message(span_notice("[src] armor absorbs the blow!"),
+							span_notice("Your armor absorbed the impact!"))
 
 
 	// Deal damage to ablative armour based on how much was used, we multiply armour divisor back so high AP doesn't decrease damage dealt to ADR
@@ -135,7 +135,7 @@
 
 		if(dealt_damage > 10 && prob((dealt_damage - toughness_val * (sharp && edge ? 1 : 0.5) * (I.w_class < ITEM_SIZE_BULKY ? 1 : 0.5))))
 			for(var/obj/item/grab/G in get_both_hands(H))
-				visible_message(SPAN_NOTICE("[H]'s grab has been weakened!"), SPAN_WARNING("Your grab has been weakened!"))
+				visible_message(span_notice("[H]'s grab has been weakened!"), span_warning("Your grab has been weakened!"))
 				G.state--
 
 	// Returns if a projectile should continue travelling
@@ -190,14 +190,14 @@
 		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
 		if(signaler.deadman && prob(80))
 			log_and_message_admins("has triggered a signaler deadman's switch")
-			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
+			src.visible_message(span_warning("[src] triggers their deadman's switch!"))
 			signaler.signal()
 
 	var/agony = P.damage_types[HALLOSS] ? P.damage_types[HALLOSS] : 0
 	//Stun Beams
 	if(P.taser_effect)
 		stun_effect_act(0, agony, def_zone_hit, P)
-		to_chat(src, SPAN_WARNING("You have been hit by [P]!"))
+		to_chat(src, span_warning("You have been hit by [P]!"))
 		qdel(P)
 		return TRUE
 
@@ -249,7 +249,7 @@
 
 //Called when the mob is hit with an item in combat.
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	visible_message(SPAN_DANGER("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
+	visible_message(span_danger("[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
 	standard_weapon_hit_effects(I, user, effective_force, hit_zone)
 
@@ -284,7 +284,7 @@
 		if (O.is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
 			IgniteMob()
 
-		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
+		src.visible_message(span_warning("[src] has been hit by [O]."))
 
 		damage_through_armor(throw_damage, dtype, null, ARMOR_MELEE, O.armor_divisor, used_weapon = O, sharp = is_sharp(O), edge = has_edge(O))
 
@@ -309,7 +309,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message(SPAN_WARNING("[src] staggers under the impact!"),SPAN_WARNING("You stagger under the impact!"))
+			visible_message(span_warning("[src] staggers under the impact!"),span_warning("You stagger under the impact!"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
@@ -322,7 +322,7 @@
 
 				if(T)
 					src.loc = T
-					visible_message(SPAN_WARNING("[src] is pinned to the wall by [O]!"),SPAN_WARNING("You are pinned to the wall by [O]!"))
+					visible_message(span_warning("[src] is pinned to the wall by [O]!"),span_warning("You are pinned to the wall by [O]!"))
 					src.anchored = TRUE
 					src.pinned += O
 
@@ -335,7 +335,7 @@
 			return
 	O.forceMove(src)
 	src.embedded += O
-	src.visible_message(SPAN_DANGER("\The [O] embeds in the [src]!"))
+	src.visible_message(span_danger("\The [O] embeds in the [src]!"))
 	add_verb(src, /mob/proc/yank_out_object)
 	O.on_embed(src)
 
@@ -367,7 +367,7 @@
 	adjustBruteLoss(damage)
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 	src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	src.visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
+	src.visible_message(span_danger("[user] has [attack_message] [src]!"))
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
 	return 1

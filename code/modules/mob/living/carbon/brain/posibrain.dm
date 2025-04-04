@@ -15,7 +15,7 @@
 /obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
-		to_chat(user, SPAN_NOTICE("You carefully locate the manual activation switch and start the positronic brain's boot process."))
+		to_chat(user, span_notice("You carefully locate the manual activation switch and start the positronic brain's boot process."))
 		icon_state = "posibrain-searching"
 		src.searching = 1
 		var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
@@ -30,13 +30,13 @@
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
-		M.show_message(SPAN_NOTICE("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
+		M.show_message(span_notice("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 /obj/item/device/mmi/digital/posibrain/attack_ghost(var/mob/observer/ghost/user)
 	if(src.brainmob && src.brainmob.key)
 		return
 	if(!searching)
-		to_chat(user, SPAN_WARNING("The positronic brain has to be activated before you can enter it."))
+		to_chat(user, span_warning("The positronic brain has to be activated before you can enter it."))
 		return
 	var/datum/ghosttrap/G = get_ghost_trap("positronic brain")
 	if(!G.assess_candidate(user, check_respawn_timer = FALSE))
@@ -48,7 +48,7 @@
 
 /obj/item/device/mmi/digital/posibrain/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
-		var/msg = "<span class='info'>*---------*</span>\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
+		var/msg = "[span_info("*---------*")]\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
 		msg += "<span class='warning'>"
 
 		if(brainmob && brainmob.key)
@@ -59,10 +59,10 @@
 				if(UNCONSCIOUS)
 					msg += "It doesn't seem to be responsive.\n"
 				if(DEAD)
-					msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+					msg += "[span_deadsay("It appears to be completely inactive.")]\n"
 		else
-			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-		msg += "</span><span class='info'>*---------*</span>"
+			msg += "[span_deadsay("It appears to be completely inactive.")]\n"
+		msg += "</span>[span_info("*---------*")]"
 		extra_description += msg
 	..(user, extra_description)
 

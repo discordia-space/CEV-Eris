@@ -40,7 +40,7 @@
 
 /obj/item/gun/launcher/spikethrower/special_check(user)
 	if(ishuman(user))
-		to_chat(user, SPAN_WARNING("\The [src] does not respond to you!"))
+		to_chat(user, span_warning("\The [src] does not respond to you!"))
 		return 0
 	return ..()
 

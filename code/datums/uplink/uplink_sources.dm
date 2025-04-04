@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 	if(!P.hard_drive.try_store_file(program))
 		return SETUP_FAILED	//Not enough space or other issues.
 	P.hard_drive.store_file(program)
-	to_chat(M, "<span class='notice'>A portable object teleportation relay has been installed in your [P.name]. Simply enter the code \"[pda_pass]\" in your new program to unlock its hidden features.</span>")
+	to_chat(M, span_notice("A portable object teleportation relay has been installed in your [P.name]. Simply enter the code \"[pda_pass]\" in your new program to unlock its hidden features."))
 	M.mind.store_memory("<B>Uplink passcode:</B> [pda_pass] ([P.name]).")
 
 /decl/uplink_source/radio
@@ -58,7 +58,7 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 	var/obj/item/device/uplink/hidden/T = new(R, M.mind, amount)
 	R.hidden_uplink = T
 	T.trigger_code = freq
-	to_chat(M, "<span class='notice'>A portable object teleportation relay has been installed in your [R.name]. Simply dial the frequency [format_frequency(freq)] to unlock its hidden features.</span>")
+	to_chat(M, span_notice("A portable object teleportation relay has been installed in your [R.name]. Simply dial the frequency [format_frequency(freq)] to unlock its hidden features."))
 	M.mind.store_memory("<B>Radio Freq:</B> [format_frequency(freq)] ([R.name]).")
 
 /decl/uplink_source/implant
@@ -100,12 +100,12 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 /decl/uplink_source/proc/put_on_mob(var/mob/M, var/atom/movable/AM, var/text)
 	var/obj/O = M.equip_to_storage(AM)
 	if(O)
-		to_chat(M, "<span class='notice'>[text] can be found in your [O.name].</span>")
+		to_chat(M, span_notice("[text] can be found in your [O.name]."))
 	else if(M.put_in_hands(AM))
-		to_chat(M, "<span class='notice'>[text] appear in your hands.</span>")
+		to_chat(M, span_notice("[text] appear in your hands."))
 	else
 		AM.forceMove(M.loc)
-		to_chat(M, "<span class='notice'>[text] appear at your location.</span>")
+		to_chat(M, span_notice("[text] appear at your location."))
 
 /proc/setup_uplink_source(var/mob/M, var/amount = DEFAULT_TELECRYSTAL_AMOUNT)
 	if(!istype(M) || !M.mind)
@@ -124,7 +124,7 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 		var/decl/uplink_source/US = entry
 		if(US.setup_uplink_source(M, round(amount)) != SETUP_FAILED)
 			return TRUE
-	to_chat(M, "<span class='warning'>Either by choice or circumstance you will be without an uplink.</span>")
+	to_chat(M, span_warning("Either by choice or circumstance you will be without an uplink."))
 	return FALSE
 
 #undef NO_GUARANTEE_NO_EXTRA_COST_DESC

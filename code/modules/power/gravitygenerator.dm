@@ -151,7 +151,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_BOLT_TURNING)
 			if(GRAV_NEEDS_WRENCH)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You secure the plating to the framework."))
+					to_chat(user, span_notice("You secure the plating to the framework."))
 					set_fix()
 					return
 			return
@@ -159,7 +159,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_WELDING)
 			if(GRAV_NEEDS_WELDING)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You mend the damaged framework."))
+					to_chat(user, span_notice("You mend the damaged framework."))
 					broken_state++
 					return
 			return
@@ -167,7 +167,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		if(QUALITY_SCREW_DRIVING)
 			if(GRAV_NEEDS_SCREWDRIVER)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You secure the screws of the framework."))
+					to_chat(user, span_notice("You secure the screws of the framework."))
 					broken_state++
 					return
 			return
@@ -180,11 +180,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 			var/obj/item/stack/material/plasteel/PS = I
 			if(PS.amount >= 10)
 				PS.use(10)
-				to_chat(user, SPAN_NOTICE("You add the plating to the framework."))
+				to_chat(user, span_notice("You add the plating to the framework."))
 				playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
 				broken_state++
 			else
-				to_chat(user, SPAN_WARNING("You need 10 sheets of plasteel!"))
+				to_chat(user, span_warning("You need 10 sheets of plasteel!"))
 	if(old_broken_state != broken_state)
 		update_icon()
 	else
@@ -199,9 +199,9 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		return
 	var/dat = "Gravity Generator Breaker: "
 	if(breaker)
-		dat += "<span class='linkOn'>ON</span> <A href='byond://?src=\ref[src];gentoggle=1'>OFF</A>"
+		dat += "[span_linkOn("ON")] <A href='byond://?src=\ref[src];gentoggle=1'>OFF</A>"
 	else
-		dat += "<A href='byond://?src=\ref[src];gentoggle=1'>ON</A> <span class='linkOn'>OFF</span> "
+		dat += "<A href='byond://?src=\ref[src];gentoggle=1'>ON</A> [span_linkOn("OFF")] "
 
 	dat += "<br>Generator Status:<br><div class='statusDisplay'>"
 	if(charging_state != POWER_IDLE)

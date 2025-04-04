@@ -114,7 +114,7 @@
 		mind.store_memory("Time of death: [stationtime2text()]", 0)
 	switch_from_living_to_dead_mob_list()
 	updateicon()
-	to_chat(src,"<span class='deadsay'>[show_dead_message]</span>")
+	to_chat(src,span_deadsay("[show_dead_message]"))
 	return 1
 
 

@@ -21,11 +21,11 @@
 /obj/item/mech_component/propulsion/examine(mob/user)
 	. = ..()
 	if(can_strafe != MECH_STRAFING_NONE)
-		to_chat(user, SPAN_NOTICE(can_strafe == MECH_STRAFING_BACK ? "Can only strafe foward and backwards" : "Can strafe in all directions."))
+		to_chat(user, span_notice(can_strafe == MECH_STRAFING_BACK ? "Can only strafe foward and backwards" : "Can strafe in all directions."))
 
 /obj/item/mech_component/propulsion/show_missing_parts(var/mob/user)
 	if(!motivator)
-		to_chat(user, SPAN_WARNING("It is missing an actuator."))
+		to_chat(user, span_warning("It is missing an actuator."))
 
 /obj/item/mech_component/propulsion/ready_to_install()
 	return motivator
@@ -36,7 +36,7 @@
 /obj/item/mech_component/propulsion/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/robot_parts/robot_component/actuator))
 		if(motivator)
-			to_chat(user, SPAN_WARNING("\The [src] already has an actuator installed."))
+			to_chat(user, span_warning("\The [src] already has an actuator installed."))
 			return
 		if(insert_item(I, user))
 			motivator = I
@@ -68,9 +68,9 @@
 /obj/item/mech_component/propulsion/return_diagnostics(mob/user)
 	..()
 	if(motivator)
-		to_chat(user, SPAN_NOTICE(" Actuator Integrity: <b>[round((((motivator.max_dam - motivator.total_dam) / motivator.max_dam)) * 100)]%</b>"))
+		to_chat(user, span_notice(" Actuator Integrity: <b>[round((((motivator.max_dam - motivator.total_dam) / motivator.max_dam)) * 100)]%</b>"))
 	else
-		to_chat(user, SPAN_WARNING(" Actuator Missing or Non-functional."))
+		to_chat(user, span_warning(" Actuator Missing or Non-functional."))
 
 /obj/item/mech_component/propulsion/cheap
 	name = "lifter exosuit legs"

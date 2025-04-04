@@ -6,7 +6,7 @@
 		"You have no power over your body!",
 		"The only thing under your control is your senses!"
 	)
-	return SPAN_WARNING(pick(messages))
+	return span_warning(pick(messages))
 
 /mob/living/carbon/human/proc/get_language_blackout_message()
 	var/static/list/messages = list(
@@ -17,7 +17,7 @@
 		"Your brain forgot how to speak. Have you ever spoke for real?",
 		"You try to recall what is \"language\" but you can't."
 	)
-	return SPAN_WARNING(pick(messages))
+	return span_warning(pick(messages))
 
 /mob/living/carbon/human/say(message, datum/language/speaking)
 	if(language_blackout)
@@ -162,7 +162,7 @@
 	if(silent)
 		message = ""
 		speech_problem_flag = 1
-		to_chat(src, SPAN_WARNING("You can't speak!"))
+		to_chat(src, span_warning("You can't speak!"))
 	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)

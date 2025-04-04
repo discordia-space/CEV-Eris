@@ -95,7 +95,7 @@
 		I.loc = src
 		loaded_item = I
 		for(var/mob/M in viewers())
-			M.show_message(text(SPAN_NOTICE("[user] adds the [I] to the [src].")), 1)
+			M.show_message(span_notice(text("[user] adds the [I] to the [src].")), 1)
 		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
 		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"

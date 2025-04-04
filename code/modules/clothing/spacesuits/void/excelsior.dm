@@ -47,7 +47,7 @@
 		return
 	if(hud in src)
 		if(user.glasses)
-			to_chat(user, SPAN_WARNING("You fail to enable the hud due to something being in the way."))
+			to_chat(user, span_warning("You fail to enable the hud due to something being in the way."))
 		else
 			user.equip_to_slot(hud, slot_glasses)
 			to_chat(user, "You enable the hud.")

@@ -33,13 +33,13 @@
 				else if(prob(probability_egg_laying)) // chance to lay an egg
 					var/obj/effect/spider/eggcluster/tastyobstacle = locate(/obj/effect/spider/eggcluster) in get_turf(src)
 					if(tastyobstacle)
-						visible_message(SPAN_WARNING("[src] eats [tastyobstacle]."),"", SPAN_NOTICE("You hear something eating something."))
+						visible_message(span_warning("[src] eats [tastyobstacle]."),"", span_notice("You hear something eating something."))
 						tastyobstacle.Destroy()
 						fed += rand(3, 12) // this would otherwise pop out this many big spiders
 					else if(fed <= 0)
 						return
 					busy = LAYING_EGG
-					src.visible_message(SPAN_NOTICE("\The [src] begins to lay an egg."))
+					src.visible_message(span_notice("\The [src] begins to lay an egg."))
 					stop_automated_movement = 1
 					busy_start_time = world.timeofday
 			if(MOVING_TO_TARGET)
@@ -47,7 +47,7 @@
 					if(get_dist(src, eat_target) <= 1)
 						busy = EATING_TARGET
 						stop_automated_movement = 1
-						src.visible_message(SPAN_NOTICE("\The [src] begins to eat \the [eat_target]."))
+						src.visible_message(span_notice("\The [src] begins to eat \the [eat_target]."))
 						walk(src,0)
 						busy_start_time = world.timeofday
 						if (istype(eat_target, /mob/living/carbon/superior_animal))
@@ -80,7 +80,7 @@
 								var/remainsType = /obj/item/remains/human
 								new remainsType(targetTurf)
 								// End message
-								src.visible_message(SPAN_WARNING("\The [src] finishes eating \the [eat_target], leaving only bones."))
+								src.visible_message(span_warning("\The [src] finishes eating \the [eat_target], leaving only bones."))
 								// Get fed
 								fed += rand(4,6)
 							else if (istype(M, /mob/living/carbon/superior_animal) && (M.icon)) // Eating a spider or roach
@@ -89,7 +89,7 @@
 								M.gib(null, FALSE)
 								gibs(targetTurf, null, /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
 								// End message
-								src.visible_message(SPAN_WARNING("\The [src] finishes eating \the [eat_target], leaving only bones."))
+								src.visible_message(span_warning("\The [src] finishes eating \the [eat_target], leaving only bones."))
 								// Get fed
 								fed += rand(1,tasty.meat_amount)
 								if (isroach(tasty))

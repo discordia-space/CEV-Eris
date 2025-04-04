@@ -53,7 +53,7 @@
 	damage_through_armor(damages[BRUTE], BRUTE, comp, ARMOR_MELEE, penetration, dmg_types = damages, dir_mult = dir_mult) // Removed the use of most named args here by rearranging the argument, except dmg_types, which skips used_weapon, sharp, edge and wounding_multiplier
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
 	attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [user.name] ([user.ckey])</font>")
-	visible_message(SPAN_DANGER("[user] has [attack_message] [src]!"))
+	visible_message(span_danger("[user] has [attack_message] [src]!"))
 	user.do_attack_animation(src)
 	updatehealth()
 	return TRUE
@@ -83,7 +83,7 @@
 
 /mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
 	if(!I.force)
-		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
+		user.visible_message(span_notice("\The [user] bonks \the [src] harmlessly with \the [I]."))
 		return
 	// must be in front if the hatch is opened , else we roll for any angle based on chassis coverage
 	var/roll = !prob(getPilotCoverage(get_dir(user,src)))
@@ -99,11 +99,11 @@
 	if(LAZYLEN(pilots) && ((!hatch_closed * body.has_hatch) && (get_dir(user,src) & reverse_dir[dir])) || roll)
 		var/mob/living/pilot = pick(pilots)
 		var/turf/location = get_turf(src)
-		location.visible_message(SPAN_DANGER("\The [user] attacks the pilot inside of \the [src]."),1,5)
+		location.visible_message(span_danger("\The [user] attacks the pilot inside of \the [src]."),1,5)
 		return pilot.resolve_item_attack(I, user, def_zone)
 	else if(LAZYLEN(pilots) && !roll)
 		var/turf/location = get_turf(src)
-		location.visible_message(SPAN_DANGER("\The [user] tries to attack the pilot inside of \the [src], but the chassis blocks it!"), 1, 5)
+		location.visible_message(span_danger("\The [user] tries to attack the pilot inside of \the [src], but the chassis blocks it!"), 1, 5)
 		return def_zone
 
 	return def_zone //Careful with effects, mechs shouldn't be stunned
@@ -127,7 +127,7 @@
 	var/armor_def = comp.armor.getRating(attack_flag)
 	var/deflect_chance = ((comp.shielding + armor_def)*0.5) - (armor_divisor*5)
 	if(prob(deflect_chance)) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
-		visible_message(SPAN_DANGER("\The [used_weapon] glances off of \the [src]'s [comp]!"), 1, 2, 7)
+		visible_message(span_danger("\The [used_weapon] glances off of \the [src]'s [comp]!"), 1, 2, 7)
 		playsound(src, "ricochet", 50, 1, 7)
 		return 0
 	/*
@@ -238,7 +238,7 @@
 	var/armor_def = comp.armor.getRating(P.check_armour) * dir_mult
 	var/deflect_chance = ((comp.shielding + armor_def)*0.5) - (armor_divisor*5)
 	if(prob(deflect_chance)) // Energy weapons have no physical presence, I would suggest adding a damage type check here later, not touching it for now because it affects game balance too much
-		visible_message(SPAN_DANGER("\The [P] glances off of \the [src]'s [comp]!"), 1, 2, 7)
+		visible_message(span_danger("\The [P] glances off of \the [src]'s [comp]!"), 1, 2, 7)
 		playsound(src, "ricochet", 50, 1, 7)
 		if(P.starting)
 			var/turf/sourceloc = get_turf_away_from_target_simple(src, P.starting, 6)
@@ -317,11 +317,11 @@
 
 	if(emp_resist >= 30)
 		for(var/mob/living/m in pilots)
-			to_chat(m, SPAN_NOTICE("The electromagnetic pulse fails to penetrate your Faraday shielding!"))
+			to_chat(m, span_notice("The electromagnetic pulse fails to penetrate your Faraday shielding!"))
 		return
 	else if(emp_resist < 30)
 		for(var/mob/living/m in pilots)
-			to_chat(m, SPAN_NOTICE("The electromagnetic pulse penetrates your shielding, causing damage!"))
+			to_chat(m, span_notice("The electromagnetic pulse penetrates your shielding, causing damage!"))
 
 		emp_damage += round((12 - severity) / emp_resist * 20)
 		if(severity <= 3)

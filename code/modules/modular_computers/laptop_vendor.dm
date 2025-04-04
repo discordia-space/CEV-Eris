@@ -266,7 +266,7 @@
 
 /obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
 	if(inoperable())
-		to_chat(user, SPAN_WARNING("[src] is not responding."))
+		to_chat(user, span_warning("[src] is not responding."))
 		return
 	var/obj/item/card/id/I = W.GetIdCard()
 	// Awaiting payment state
@@ -293,9 +293,9 @@
 // Simplified payment processing, returns 1 on success.
 /obj/machinery/lapvend/proc/process_payment(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
-		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [I] through \the [src]."))
 	else
-		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [ID_container] through \the [src]."))
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if (!customer_account || customer_account.suspended)
 		ping("Connection error. Unable to connect to account.")

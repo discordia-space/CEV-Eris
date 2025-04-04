@@ -44,7 +44,7 @@
 /datum/faction/excelsior/create_objectives()
 	objectives.Cut()
 	for (var/datum/antagonist/A in members)
-		to_chat(A.owner.current, SPAN_NOTICE("You may summon your required materials using the \"summon stash\" command."))
+		to_chat(A.owner.current, span_notice("You may summon your required materials using the \"summon stash\" command."))
 
 	.=..()
 
@@ -77,7 +77,7 @@
 		return
 
 	if(F.stash_holder)
-		to_chat(usr, SPAN_NOTICE("The stash has already been summoned by \"[F.stash_holder]\""))
+		to_chat(usr, span_notice("The stash has already been summoned by \"[F.stash_holder]\""))
 		return
 
 	var/mob/living/carbon/human/H = usr

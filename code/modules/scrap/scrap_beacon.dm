@@ -17,7 +17,7 @@
 /obj/structure/scrap_beacon/attack_hand(mob/user)
 	.=..()
 	if((last_summon + summon_cooldown) >= world.time)
-		to_chat(user, "<span class='notice'>[name] not charged yet.</span>")
+		to_chat(user, span_notice("[name] not charged yet."))
 		return
 	last_summon = world.time
 	if(!active)

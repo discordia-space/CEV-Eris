@@ -30,7 +30,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		to_chat(world, SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting."))
+		to_chat(world, span_danger("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
@@ -70,7 +70,7 @@
 	if(!plant_controller)
 		sleep(250) // ugly hack, should mean roundstart plants are fine.
 	if(!plant_controller)
-		to_chat(world, SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting."))
+		to_chat(world, span_danger("Plant controller does not exist and [src] requires it. Aborting."))
 		qdel(src)
 		return
 
@@ -163,7 +163,7 @@
 					return
 
 			M.stop_pulling()
-			to_chat(M, SPAN_NOTICE("You slipped on the [name]!"))
+			to_chat(M, span_notice("You slipped on the [name]!"))
 			playsound(src.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 			M.Stun(8)
 			M.Weaken(5)
@@ -183,7 +183,7 @@
 			var/obj/item/stack/cable_coil/C = W
 			if(C.use(5))
 				//TODO: generalize this.
-				to_chat(user, SPAN_NOTICE("You add some cable to the [src.name] and slide it inside the battery casing."))
+				to_chat(user, span_notice("You add some cable to the [src.name] and slide it inside the battery casing."))
 				var/obj/item/cell/large/potato/pocell = new /obj/item/cell/large/potato(get_turf(user))
 				if(src.loc == user && !(user.l_hand && user.r_hand) && ishuman(user))
 					user.put_in_hands(pocell)
@@ -193,14 +193,14 @@
 				return
 		else if(W.sharp)
 			if(seed.kitchen_tag == "pumpkin") // Ugggh these checks are awful.
-				user.show_message(SPAN_NOTICE("You carve a face into [src]!"), 1)
+				user.show_message(span_notice("You carve a face into [src]!"), 1)
 				new /obj/item/clothing/head/pumpkinhead (user.loc)
 				qdel(src)
 				return
 			else if(seed.chems)
 				if((QUALITY_CUTTING in W.tool_qualities) && !isnull(seed.chems["woodpulp"]))
 					if(W.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY,  required_stat = STAT_BIO))
-						user.show_message(SPAN_NOTICE("You make planks out of \the [src]!"), 1)
+						user.show_message(span_notice("You make planks out of \the [src]!"), 1)
 						var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)
 						if(!flesh_colour) flesh_colour = seed.get_trait(TRAIT_PRODUCT_COLOUR)
 						for(var/i=0,i<2,i++)
@@ -254,7 +254,7 @@
 			return
 		if(prob(35))
 			if(user)
-				to_chat(user, SPAN_DANGER("\The [src] has fallen to bits."))
+				to_chat(user, span_danger("\The [src] has fallen to bits."))
 				user.drop_from_inventory(src)
 			qdel(src)
 
@@ -267,14 +267,14 @@
 		return
 
 	if(user.a_intent == I_HURT)
-		user.visible_message(SPAN_DANGER("\The [user] squashes \the [src]!"))
+		user.visible_message(span_danger("\The [user] squashes \the [src]!"))
 		seed.thrown_at(src,user)
 		sleep(-1)
 		if(src) qdel(src)
 		return
 
 	if(seed.kitchen_tag == "grass")
-		user.show_message(SPAN_NOTICE("You make a grass tile out of \the [src]!"), 1)
+		user.show_message(span_notice("You make a grass tile out of \the [src]!"), 1)
 		var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)
 		if(!flesh_colour) flesh_colour = seed.get_trait(TRAIT_PRODUCT_COLOUR)
 		for(var/i=0,i<2,i++)
@@ -293,7 +293,7 @@
 	if(seed.get_trait(TRAIT_SPREAD) > 0)
 		var/turf/current_turf = get_turf(user)
 		if(!locate(/obj/machinery/portable_atmospherics/hydroponics/soil/invisible) in current_turf.contents)	// Prevents infinite plant stacking
-			to_chat(user, SPAN_NOTICE("You plant the [src]."))
+			to_chat(user, span_notice("You plant the [src]."))
 			new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(current_turf, seed)
 			qdel(src)
 

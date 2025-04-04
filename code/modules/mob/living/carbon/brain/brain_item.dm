@@ -59,7 +59,7 @@
 	switch(damage_type)
 		if(BRUTE)
 			if(!edge)
-				if(sharp) // dont even fucking ask whats the difference between this and eyes get_possible_wounds. I dont know, I wont tell you. 
+				if(sharp) // dont even fucking ask whats the difference between this and eyes get_possible_wounds. I dont know, I wont tell you.
 					if(is_organic)
 						LAZYADD(possible_wounds, subtypesof(/datum/component/internal_wound/organic/brain_sharp))
 					if(is_robotic)
@@ -121,7 +121,7 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	to_chat(brainmob, SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)]."))
+	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just a [initial(src.name)]."))
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/vital/brain/examine(mob/user, extra_description = "")

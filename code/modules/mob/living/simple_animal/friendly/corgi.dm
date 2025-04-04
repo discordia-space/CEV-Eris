@@ -47,7 +47,7 @@
 	if(!stat && !resting && !buckled)
 		if(prob(1))
 			var/msg2 = (pick("dances around","chases their tail"))
-			src.visible_message("<span class='name'>[src]</span> [msg2].")
+			src.visible_message("[span_name("[src]")] [msg2].")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
@@ -64,7 +64,7 @@
 /mob/living/simple_animal/corgi/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	if(istype(O, /obj/item/newspaper))
 		if(!stat)
-			visible_message(SPAN_NOTICE("[user] baps [name] on the nose with the rolled up [O.name]."))
+			visible_message(span_notice("[user] baps [name] on the nose with the rolled up [O.name]."))
 			scan_interval = max_scan_interval//discipline your dog to make it stop stealing food for a while
 			movement_target = null
 			foodtarget = 0
@@ -160,7 +160,7 @@
 
 		if(prob(1))
 			var/msg3 = (pick("dances around","chases her tail"))
-			src.visible_message("<span class='name'>[src]</span> [msg3].")
+			src.visible_message("[span_name("[src]")] [msg3].")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)

@@ -22,7 +22,7 @@
 
 /obj/item/tank/oxygen/examine(mob/user, extra_description = "")
 	if((get_dist(user, src) < 2) && (air_contents.gas["oxygen"] < 10))
-		extra_description += SPAN_WARNING("The meter on \the [src] indicates you are almost out of oxygen!")
+		extra_description += span_warning("The meter on \the [src] indicates you are almost out of oxygen!")
 	..(user, extra_description)
 
 /obj/item/tank/oxygen/red
@@ -128,7 +128,7 @@
 
 /obj/item/tank/emergency_oxygen/nitrogen/examine(mob/user, extra_description = "")
 	if((get_dist(user, src) < 2) && (air_contents.gas["nitrogen"] < 10))
-		extra_description += SPAN_WARNING("The meter on \the [src] indicates you are almost out of nitrogen!")
+		extra_description += span_warning("The meter on \the [src] indicates you are almost out of nitrogen!")
 	..(user, extra_description)
 
 /*
@@ -146,5 +146,5 @@
 
 /obj/item/tank/nitrogen/examine(mob/user, extra_description = "")
 	if((get_dist(user, src) < 2) && (air_contents.gas["nitrogen"] < 10))
-		extra_description += SPAN_WARNING("The meter on \the [src] indicates you are almost out of nitrogen!")
+		extra_description += span_warning("The meter on \the [src] indicates you are almost out of nitrogen!")
 	..(user, extra_description)

@@ -257,7 +257,7 @@
 			enough_LRS = LRS
 
 	if(!enough_LRS)
-		nav_control.visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it fails to find any sensors with enough power to pulse"))
+		nav_control.visible_message(span_danger("The [src] buzzes an insistent warning as it fails to find any sensors with enough power to pulse"))
 		playsound(nav_control.loc, 'sound/machines/buzz-two.ogg', 100, 1, 5)
 
 	if(enough_LRS.consume_energy_scan())

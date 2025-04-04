@@ -120,18 +120,18 @@
 		if(QUALITY_EXCAVATION)
 			var/excavation_amount = input("How deep are you going to dig?", "Excavation depth", 0)
 			if(excavation_amount)
-				to_chat(user, SPAN_NOTICE("You start exacavating [src]."))
+				to_chat(user, span_notice("You start exacavating [src]."))
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_COG))
-					to_chat(user, SPAN_NOTICE("You finish excavating [src]."))
+					to_chat(user, span_notice("You finish excavating [src]."))
 					excavation_level += excavation_amount
 					GetDrilled(0)
 				return
 			return
 
 		if(QUALITY_DIGGING)
-			to_chat(user, SPAN_NOTICE("You start digging the [src]."))
+			to_chat(user, span_notice("You start digging the [src]."))
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-				to_chat(user, SPAN_NOTICE("You finish digging the [src]."))
+				to_chat(user, span_notice("You finish digging the [src]."))
 				GetDrilled(0)
 			return
 		if(ABORT_CHECK)
@@ -226,10 +226,10 @@
 
 	if(QUALITY_DIGGING in I.tool_qualities)
 		if (dug)
-			to_chat(user, SPAN_WARNING("This area has already been dug"))
+			to_chat(user, span_warning("This area has already been dug"))
 			return
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_DIGGING, FAILCHANCE_EASY, required_stat = STAT_ROB))
-			to_chat(user, SPAN_NOTICE("You dug a hole."))
+			to_chat(user, span_notice("You dug a hole."))
 			gets_dug()
 
 	else

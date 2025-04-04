@@ -147,5 +147,5 @@
 		log_admin("[key_name(src)] called [procname]() with [arguments.len ? "the arguments [list2params(arguments)]" : "no arguments"].")
 		returnval = call(procname)(arglist(arguments))
 
-	to_chat(usr, "<span class='info'>[procname]() returned: [isnull(returnval) ? "null" : returnval]</span>")
+	to_chat(usr, span_info("[procname]() returned: [isnull(returnval) ? "null" : returnval]"))
 

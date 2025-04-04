@@ -44,7 +44,7 @@
 		I.forceMove(src)
 		I.add_fingerprint(user)
 		src.beaker = I
-		to_chat(user, SPAN_NOTICE("You add [I] to [src]."))
+		to_chat(user, span_notice("You add [I] to [src]."))
 		updateUsrDialog()
 		icon_state = "mixer1"
 		return
@@ -108,7 +108,7 @@
 				var/amount = CLAMP(text2num(href_list["amount"]), 0, reagents.get_free_space())
 				R.trans_id_to(src, id, amount)
 				if(reagents.get_free_space() < 1)
-					to_chat(usr, SPAN_WARNING("The [name] is full!"))
+					to_chat(usr, span_warning("The [name] is full!"))
 
 		else if (href_list["addcustom"])
 			useramount = input("Select the amount to transfer.", 30, useramount) as num
@@ -121,7 +121,7 @@
 				if(mode)
 					reagents.trans_id_to(beaker, id, amount)
 					if(beaker.reagents.get_free_space() < 1)
-						to_chat(usr, SPAN_WARNING("The [name] is full!"))
+						to_chat(usr, span_warning("The [name] is full!"))
 				else
 					reagents.remove_reagent(id, amount)
 

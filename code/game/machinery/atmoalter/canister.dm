@@ -261,7 +261,7 @@ update_flag
 	else if(QUALITY_PULSING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 			if(valve_open == 1)
-				to_chat(user, SPAN_WARNING("You can't seal the gasket while the valve is open!"))
+				to_chat(user, span_warning("You can't seal the gasket while the valve is open!"))
 				return
 			else if(sealed == FALSE)
 				to_chat(user, "You seal the gasket with a pulse of electricity.")
@@ -274,7 +274,7 @@ update_flag
 				return
 
 	else
-		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
+		visible_message(span_warning("\The [user] hits \the [src] with \a [I]!"))
 		src.health -= I.force
 		src.add_fingerprint(user)
 		healthcheck()
@@ -333,7 +333,7 @@ update_flag
 
 	if(href_list["toggle"])
 		if (sealed == TRUE)
-			to_chat(usr, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
+			to_chat(usr, span_warning("You can't turn the valve while the gasket is sealed!"))
 			return
 		else if (sealed == FALSE)
 			if (valve_open)

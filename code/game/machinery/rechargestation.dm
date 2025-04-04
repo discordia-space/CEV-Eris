@@ -121,7 +121,7 @@
 
 /obj/machinery/recharge_station/attackby(var/obj/item/I, var/mob/user as mob)
 	if(occupant)
-		to_chat(user, SPAN_NOTICE("You cant do anything with [src] while someone inside of it."))
+		to_chat(user, span_notice("You cant do anything with [src] while someone inside of it."))
 		return
 
 	if(default_deconstruction(I, user))
@@ -250,9 +250,9 @@
 	if(!istype(target,/mob/living/silicon))
 		return
 	if(target.buckled)
-		to_chat(user, "<span class='warning'>Unbuckle the robot before attempting to move it.</span>")
+		to_chat(user, span_warning("Unbuckle the robot before attempting to move it."))
 		return
-	user.visible_message("<span class='notice'>\The [user] started hauling \the [target] into \the [src].</span>",
-							"<span class='notice'>You started hauling \the [target] into \the [src].</span>")
+	user.visible_message(span_notice("\The [user] started hauling \the [target] into \the [src]."),
+							span_notice("You started hauling \the [target] into \the [src]."))
 	if(user.stat != DEAD && do_after(user,rand(150,200),src))
 		go_in(target, user)

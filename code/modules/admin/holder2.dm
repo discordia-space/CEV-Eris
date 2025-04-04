@@ -94,7 +94,7 @@ NOTE: It checks usr by default. Supply the "�" argument if you wish to check f
 		return FALSE
 	if(!C.holder)
 		if(show_msg)
-			C << "<span class='warning'>Error: You are not an admin.</span>"
+			C << span_warning("Error: You are not an admin.")
 		return FALSE
 
 	if(rights_required)
@@ -102,7 +102,7 @@ NOTE: It checks usr by default. Supply the "�" argument if you wish to check f
 			return TRUE
 		else
 			if(show_msg)
-				C << "<span class='warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>"
+				C << span_warning("Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].")
 			return FALSE
 	else
 		return TRUE

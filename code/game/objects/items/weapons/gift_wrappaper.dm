@@ -92,22 +92,22 @@
 		user.put_in_active_hand(gift)
 		src.gift.add_fingerprint(user)
 	else
-		to_chat(user, SPAN_WARNING("The gift was empty!"))
+		to_chat(user, span_warning("The gift was empty!"))
 	qdel(src)
 
 /obj/effect/spresent/relaymove(mob/user as mob)
 	if (user.stat)
 		return
-	to_chat(user, SPAN_WARNING("You can't move."))
+	to_chat(user, span_warning("You can't move."))
 
 /obj/effect/spresent/attackby(obj/item/W, mob/user)
 	..()
 
 	if (!istype(W, /obj/item/tool/wirecutters))
-		to_chat(user, SPAN_WARNING("I need wirecutters for that."))
+		to_chat(user, span_warning("I need wirecutters for that."))
 		return
 
-	to_chat(user, SPAN_NOTICE("You cut open the present."))
+	to_chat(user, span_notice("You cut open the present."))
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.forceMove(loc)
@@ -143,12 +143,12 @@
 /obj/item/wrapping_paper/attackby(obj/item/W, mob/user)
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
-		to_chat(user, SPAN_WARNING("You MUST put the paper on a table!"))
+		to_chat(user, span_warning("You MUST put the paper on a table!"))
 	if (W.w_class < ITEM_SIZE_BULKY)
 		if ((istype(user.l_hand, /obj/item/tool/wirecutters) || istype(user.r_hand, /obj/item/tool/wirecutters)))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
-				to_chat(user, SPAN_WARNING("You need more paper!"))
+				to_chat(user, span_warning("You need more paper!"))
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/gift)) //No gift wrapping gifts!
@@ -170,9 +170,9 @@
 				qdel(src)
 				return
 		else
-			to_chat(user, SPAN_WARNING("You need scissors!"))
+			to_chat(user, span_warning("You need scissors!"))
 	else
-		to_chat(user, SPAN_WARNING("The object is FAR too large!"))
+		to_chat(user, span_warning("The object is FAR too large!"))
 	return
 
 
@@ -202,6 +202,6 @@
 			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")
 
 		else
-			to_chat(user, SPAN_WARNING("You need more paper."))
+			to_chat(user, span_warning("You need more paper."))
 	else
 		to_chat(user, "They are moving around too much. A straightjacket would help.")

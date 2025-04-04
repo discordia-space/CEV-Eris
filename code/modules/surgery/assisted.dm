@@ -12,8 +12,8 @@
 
 /datum/surgery_step/assisted/attach_organ/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts to reattach [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start to reattach [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts to reattach [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start to reattach [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	var/obj/item/organ/external/limb = organ.get_limb()
@@ -22,8 +22,8 @@
 
 /datum/surgery_step/assisted/attach_organ/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] reattaches [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You reattach [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] reattaches [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You reattach [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.status &= ~ORGAN_CUT_AWAY
@@ -31,8 +31,8 @@
 
 /datum/surgery_step/assisted/attach_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(16, BRUTE)
 
@@ -46,8 +46,8 @@
 
 /datum/surgery_step/assisted/detach_organ/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts to separate [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start to separate [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts to separate [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start to separate [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	var/obj/item/organ/external/limb = organ.get_limb()
@@ -56,16 +56,16 @@
 
 /datum/surgery_step/assisted/detach_organ/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] separates [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You separate [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] separates [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You separate [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.status |= ORGAN_CUT_AWAY
 	organ.handle_organ_eff() //detach of organ. Refreshing eff. list
 
 /datum/surgery_step/assisted/detach_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(16, BRUTE)
 
@@ -79,23 +79,23 @@
 
 /datum/surgery_step/assisted/break_bone/begin_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts breaking [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start breaking [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts breaking [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start breaking [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/assisted/break_bone/end_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] breaks [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You break [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] breaks [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You break [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.fracture()
 
 /datum/surgery_step/assisted/break_bone/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(8, BRUTE, sharp = TRUE)
 
@@ -109,30 +109,30 @@
 
 	// Otherwise, it will just immediately fracture again
 	if(. && organ.parent.should_fracture())
-		to_chat(user, SPAN_WARNING("[organ.parent.get_surgery_name()] is too damaged!"))
+		to_chat(user, span_warning("[organ.parent.get_surgery_name()] is too damaged!"))
 		return FALSE
 
 	return .
 
 /datum/surgery_step/assisted/mend_bone/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts mending [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start mending [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts mending [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start mending [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/assisted/mend_bone/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] mends [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You mend [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] mends [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You mend [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.mend()
 
 /datum/surgery_step/assisted/mend_bone/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(8, BRUTE)
 
@@ -147,16 +147,16 @@
 
 /datum/surgery_step/assisted/replace_bone/begin_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts replacing [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start replacing [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts replacing [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start replacing [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/assisted/replace_bone/end_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] replaces [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You replace [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] replaces [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You replace [organ.get_surgery_name()] with \the [tool].")
 	)
 	if(istype(tool, /obj/item/organ/internal/bone))
 		var/obj/item/organ/internal/replacement = tool
@@ -169,7 +169,7 @@
 
 /datum/surgery_step/assisted/replace_bone/fail_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, breaking [organ.get_surgery_name()]!"),
-		SPAN_WARNING("Your hand slips, breaking [organ.get_surgery_name()]!")
+		span_warning("[user]'s hand slips, breaking [organ.get_surgery_name()]!"),
+		span_warning("Your hand slips, breaking [organ.get_surgery_name()]!")
 	)
 	organ.fracture()

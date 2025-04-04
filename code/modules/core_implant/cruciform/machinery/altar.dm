@@ -27,7 +27,7 @@
 		slot = null
 
 	if(!slot)
-		to_chat(user, "<span class='notice'>There is no free space on \the [src] to place \the [I]!</span>")
+		to_chat(user, span_notice("There is no free space on \the [src] to place \the [I]!"))
 		return
 
 	if (user.unEquip(I, src.loc))

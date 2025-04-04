@@ -60,7 +60,7 @@
 	if(istype(L))
 		if(prob(15))
 			L.Stun(1)
-			L.visible_message(SPAN_DANGER("\the [src] scares \the [L]!"))
+			L.visible_message(span_danger("\the [src] scares \the [L]!"))
 
 /mob/living/simple_animal/hostile/scarybat/cult
 	faction = "cult"

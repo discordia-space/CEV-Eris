@@ -29,7 +29,7 @@
 	..(user, extra_description)
 
 /obj/item/computer_hardware/gps_sensor/proc/get_position_text()
-	var/error_text = "<span class='average'>ERROR: Unable to reach positioning system relays.</span>"
+	var/error_text = span_average("ERROR: Unable to reach positioning system relays.")
 	return gps.get_coordinates_text(default=error_text)
 
 

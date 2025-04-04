@@ -20,7 +20,7 @@
 /datum/perk/Destroy()
 	if(holder)
 		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
-		to_chat(holder, SPAN_NOTICE("[lose_text]"))
+		to_chat(holder, span_notice("[lose_text]"))
 	holder = null
 	return ..()
 
@@ -40,7 +40,7 @@
 		SHOULD_CALL_PARENT(TRUE)
 		holder = H
 		RegisterSignal(holder, COMSIG_MOB_LIFE, PROC_REF(on_process))
-		to_chat(holder, SPAN_NOTICE("[gain_text]"))
+		to_chat(holder, span_notice("[gain_text]"))
 		return TRUE
 
 /// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.

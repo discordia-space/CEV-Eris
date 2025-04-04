@@ -4,7 +4,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+		to_chat(usr, span_warning("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)	return
@@ -16,18 +16,18 @@
 	if(!msg)	return
 
 	if(src.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_WARNING("You have OOC muted."))
+		to_chat(src, span_warning("You have OOC muted."))
 		return
 
 	if(!holder)
 		if(!config.ooc_allowed)
-			to_chat(src, SPAN_DANGER("OOC is globally muted."))
+			to_chat(src, span_danger("OOC is globally muted."))
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, SPAN_DANGER("OOC for dead mobs has been turned off."))
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
@@ -56,9 +56,9 @@
 					else
 						display_name = holder.fakekey
 			if(holder && !holder.fakekey && (holder.rights & R_ADMIN) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				to_chat(target, "<span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <font color='[src.prefs.ooccolor]'><EM>[display_name]:</EM></font> <span class='[ooc_style]'><span class='message linkify'>[msg]</span></span></span>")
+				to_chat(target, span_ooc("" + create_text_tag("ooc", "OOC:", target) + " <font color='[src.prefs.ooccolor]'><EM>[display_name]:</EM></font> <span class='[ooc_style]'><span class='message linkify'>[msg]</span></span>"))
 			else
-				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message linkify'>[msg]</span></span></span>")
+				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message linkify'>[msg]</span></span>"))
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
@@ -66,7 +66,7 @@
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)
@@ -81,18 +81,18 @@
 		return
 
 	if(src.get_preference_value(/datum/client_preference/show_looc) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_DANGER("You have LOOC muted."))
+		to_chat(src, span_danger("You have LOOC muted."))
 		return
 
 	if(!holder)
 		if(!config.looc_allowed)
-			to_chat(src, SPAN_DANGER("LOOC is globally muted."))
+			to_chat(src, span_danger("LOOC is globally muted."))
 			return
 		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, SPAN_DANGER("OOC for dead mobs has been turned off."))
+			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use OOC (muted)."))
+			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
 		if(handle_spam_prevention(msg, MUTE_OOC))
 			return
@@ -157,7 +157,7 @@
 				prefix = "(Eye) "
 			else
 				prefix = "(Core) "
-		to_chat(t, "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", t) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>")
+		to_chat(t, span_ooc(span_looc("" + create_text_tag("looc", "LOOC:", t) + " [span_prefix("[prefix]")]<EM>[display_name][admin_stuff]:</EM> [span_message("[msg]")]")))
 
 
 	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
@@ -165,7 +165,7 @@
 			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
 			var/prefix = "(R)"
 
-			to_chat(adm, "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", adm) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>")
+			to_chat(adm, span_ooc(span_looc("" + create_text_tag("looc", "LOOC:", adm) + " [span_prefix("[prefix]")]<EM>[display_name][admin_stuff]:</EM> [span_message("[msg]")]")))
 
 /mob/proc/get_looc_source()
 	return src

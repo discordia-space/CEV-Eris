@@ -414,13 +414,13 @@
 	if(first_warning)
 		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
 			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
-				to_chat(M, SPAN_WARNING("WARNING: Cave collapse protocol has been engaged. \
+				to_chat(M, span_warning("WARNING: Cave collapse protocol has been engaged. \
 										The cave will collapse in T-[minutes_remaining] minutes. \
 										Miners, evacuate as many precious minerals as possible!"))
 	else
 		for(var/mob/living/M in SSmobs.mob_living_by_zlevel[z])
 			if(ishuman(M) && (M.x > x) && (M.x < x + CAVE_SIZE) && (M.y > y) && (M.y < y + CAVE_SIZE))
-				to_chat(M, SPAN_WARNING("WARNING: Cave collapse in T-[minutes_remaining] minutes. Remember, the Guild is counting on this haul!"))
+				to_chat(M, span_warning("WARNING: Cave collapse in T-[minutes_remaining] minutes. Remember, the Guild is counting on this haul!"))
 
 	// Call again in 30 seconds
 	if(cave_collapse_time - world.time > 45 SECONDS)
@@ -735,13 +735,13 @@
 
 /obj/structure/multiz/ladder/cave_hole/attackby(obj/item/I, mob/user)
 	if(!cave_gen || !((cave_gen.status == CAVE_OPENED) || (cave_gen.status == CAVE_COLLAPSING)))
-		to_chat(user, SPAN_NOTICE("The cave system is not opened yet."))
+		to_chat(user, span_notice("The cave system is not opened yet."))
 		return
 	. = ..()
 
 /obj/structure/multiz/ladder/cave_hole/attack_hand(var/mob/M)
 	if(!cave_gen || !((cave_gen.status == CAVE_OPENED) || (cave_gen.status == CAVE_COLLAPSING)))
-		to_chat(M, SPAN_NOTICE("The cave system is not opened yet."))
+		to_chat(M, span_notice("The cave system is not opened yet."))
 		return
 	. = ..()
 

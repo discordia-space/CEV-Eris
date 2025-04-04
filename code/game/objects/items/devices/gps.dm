@@ -94,7 +94,7 @@
 			attack_self(usr)
 
 /obj/item/device/gps/examine(mob/user, extra_description = "")
-	extra_description += "<span class='notice'>\The [src]'s screen shows: <i>[gps.get_coordinates_text(default="ERROR")]</i>.</span>"
+	extra_description += span_notice("\The [src]'s screen shows: <i>[gps.get_coordinates_text(default="ERROR")]</i>.")
 	..(user, extra_description)
 
 /obj/item/device/gps/science

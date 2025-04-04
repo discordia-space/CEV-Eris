@@ -13,12 +13,12 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 	if(active)
 		active = FALSE
 		GLOB.active_mindboil_spiders -= src
-		to_chat(owner_mob, SPAN_NOTICE("\The [src] is deactivated."))
+		to_chat(owner_mob, span_notice("\The [src] is deactivated."))
 
 	else
 		active = TRUE
 		GLOB.active_mindboil_spiders += src
-		to_chat(owner_mob, SPAN_NOTICE("\The [src] is active."))
+		to_chat(owner_mob, span_notice("\The [src] is active."))
 	..()
 
 
@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 
 	victims |= victim
 	if(!(src in view(5, victim))) //Anti-cheese as these things stack, may be removed if it doesn't become problematic
-		to_chat(victim, SPAN_DANGER("SOMETHING IS WATCHING YOU"))
+		to_chat(victim, span_danger("SOMETHING IS WATCHING YOU"))
 
 	if(contract && victims.len >= contract.count)
 		if(owner_mob.mind)

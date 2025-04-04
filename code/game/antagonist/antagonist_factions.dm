@@ -34,7 +34,7 @@
 	members.Add(member)
 	member.faction = src
 	if(announce)
-		to_chat(member.owner.current, SPAN_NOTICE("You became a member of the [name]."))
+		to_chat(member.owner.current, span_notice("You became a member of the [name]."))
 
 	if(objectives.len)
 		member.set_objectives(objectives)
@@ -54,7 +54,7 @@
 	leaders.Add(member)
 	add_verb(member.owner.current, leader_verbs)
 	if(announce)
-		to_chat(member.owner.current, SPAN_NOTICE("You became a <b>leader</b> of the [name]."))
+		to_chat(member.owner.current, span_notice("You became a <b>leader</b> of the [name]."))
 	update_members()
 	update_icons(member)
 	return TRUE
@@ -81,7 +81,7 @@
 
 	leaders.Remove(member)
 	if(announce)
-		to_chat(member.owner.current, SPAN_WARNING("You are no longer the <b>leader</b> of the [name]."))
+		to_chat(member.owner.current, span_warning("You are no longer the <b>leader</b> of the [name]."))
 	member.owner.current.verbs.Remove(leader_verbs)
 
 	update_members()
@@ -99,7 +99,7 @@
 		remove_leader(member, FALSE)
 
 	if(announce)
-		to_chat(member.owner.current, SPAN_WARNING("You are no longer a member of the [name]."))
+		to_chat(member.owner.current, span_warning("You are no longer a member of the [name]."))
 
 	if(member.owner && member.owner.current)
 		member.owner.current.verbs.Remove(faction_datum_verbs)
@@ -143,7 +143,7 @@
 		return
 
 	message = capitalize(sanitize(message))
-	var/text = "<span class='revolution'>[name] member, [user.real_name]: \"[message]\"</span>"
+	var/text = span_revolution("[name] member, [user.real_name]: \"[message]\"")
 	for(var/i in SShumans.mob_list)
 		if(is_excelsior(i))
 			to_chat(i, text)

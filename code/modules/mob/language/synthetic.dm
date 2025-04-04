@@ -17,8 +17,8 @@
 	if (!message)
 		return
 
-	var/message_start = "<i><span class='game say'>[name], <span class='name'>[speaker.name]</span>"
-	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
+	var/message_start = "<i><span class='game say'>[name], [span_name("[speaker.name]")]"
+	var/message_body = "[span_message("[speaker.say_quote(message)], \"[message]\"")]</span></i>"
 
 	for (var/mob/M in GLOB.dead_mob_list)
 		if (isangel(M))
@@ -31,7 +31,7 @@
 		if(drone_only && !isdrone(S))
 			continue
 		else if(istype(S , /mob/living/silicon/ai))
-			message_start = "<i><span class='game say'>[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[speaker];trackname=[html_encode(speaker.name)]'><span class='name'>[speaker.name]</span></a></span></i>"
+			message_start = "<i><span class='game say'>[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[speaker];trackname=[html_encode(speaker.name)]'>[span_name("[speaker.name]")]</a></span></i>"
 		else if (!S.binarycheck())
 			continue
 
@@ -43,7 +43,7 @@
 	for (var/mob/living/M in listening)
 		if(issilicon(M) || M.binarycheck())
 			continue
-		M.show_message("<i><span class='game say'><span class='name'>synthesised voice</span> <span class='message'>beeps, \"beep beep beep\"</span></span></i>",2)
+		M.show_message("<i><span class='game say'>[span_name("synthesised voice")] [span_message("beeps, \"beep beep beep\"")]</span></i>",2)
 
 	//robot binary xmitter component power usage
 	if (isrobot(speaker))

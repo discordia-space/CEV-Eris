@@ -118,10 +118,10 @@
 			people_around.Add(H)
 
 	if(people_around.len > 0)
-		to_chat(user, SPAN_NOTICE("You feel the air thrum with an inaudible vibration."))
+		to_chat(user, span_notice("You feel the air thrum with an inaudible vibration."))
 		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
 		for(var/mob/living/carbon/human/participant in people_around)
-			to_chat(participant, SPAN_NOTICE("You hear a silent signal..."))
+			to_chat(participant, span_notice("You hear a silent signal..."))
 			give_boost(participant)
 		set_global_cooldown()
 		return TRUE
@@ -136,13 +136,13 @@
 		participant.stats.addTempStat(stat, amount, effect_time, src.name)
 		addtimer(CALLBACK(src, PROC_REF(take_boost), participant, stat, amount), effect_time)
 	spawn(30)
-		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
+		to_chat(participant, span_notice("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
 
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	// take_boost is automatically triggered by a callback function when the boost ends but the participant
 	if (participant) // check if participant still exists otherwise we cannot read null.stats
-		to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
+		to_chat(participant, span_warning("Your knowledge of [get_stats_to_text()] feels lessened."))
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/proc/get_stats_to_text()
 	if(stats_to_boost.len == 1)
@@ -192,7 +192,7 @@
 
 	var/mob/living/M = CI.wearer
 	log_and_message_admins("inflicted pain on [C] with atonement litany")
-	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
+	to_chat(M, span_danger("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
 
 
 	var/datum/effect/effect/system/spark_spread/s = new
@@ -480,7 +480,7 @@
 	CI.security_clearance = CLEARANCE_NONE
 	set_personal_cooldown(user)
 	log_and_message_admins(" excommunicated [CI.wearer]")
-	to_chat(M, SPAN_DANGER("You have been spiritually separated from the Church and the community of the faithful."))
+	to_chat(M, span_danger("You have been spiritually separated from the Church and the community of the faithful."))
 
 	return TRUE
 

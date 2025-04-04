@@ -15,7 +15,7 @@
 		return
 
 	if(istype(usr, /mob/living/carbon/human/bst))
-		to_chat(usr, SPAN_NOTICE("You need to despawn your BST first before spawning another.")) //so if we accidentally double-click the button it won't spawn us twice
+		to_chat(usr, span_notice("You need to despawn your BST first before spawning another.")) //so if we accidentally double-click the button it won't spawn us twice
 		return
 
 	var/T = get_turf(usr)
@@ -136,10 +136,10 @@
 
 	if (fall_override)
 		fall_override = FALSE
-		to_chat(src, SPAN_NOTICE("You will now fall normally."))
+		to_chat(src, span_notice("You will now fall normally."))
 	else
 		fall_override = TRUE
-		to_chat(src, SPAN_NOTICE("You will no longer fall."))
+		to_chat(src, span_notice("You will no longer fall."))
 
 /mob/living/carbon/human/bst/verb/bstwalk()
 	set name = "Ruin Everything"
@@ -148,11 +148,11 @@
 	set popup_menu = 0
 
 	if(!HasMovementHandler(/datum/movement_handler/mob/incorporeal))
-		to_chat(src, SPAN_NOTICE("You will now phase through solid matter."))
+		to_chat(src, span_notice("You will now phase through solid matter."))
 		incorporeal_move = TRUE
 		ReplaceMovementHandler(/datum/movement_handler/mob/incorporeal)
 	else
-		to_chat(src, SPAN_NOTICE("You will no-longer phase through solid matter."))
+		to_chat(src, span_notice("You will no-longer phase through solid matter."))
 		incorporeal_move = FALSE
 		RemoveMovementHandler(/datum/movement_handler/mob/incorporeal)
 
@@ -185,7 +185,7 @@
 	set category = "BST"
 
 	status_flags ^= GODMODE
-	to_chat(src, SPAN_NOTICE("God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]"))
+	to_chat(src, span_notice("God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]"))
 
 	to_chat(src, span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]"))
 
@@ -280,7 +280,7 @@
 			vision_flags = FALSE
 			see_invisible = -1
 
-	to_chat(usr, "<span class='notice'>\The [src]'s vision mode is now <b>[mode]</b>.</span>")
+	to_chat(usr, span_notice("\The [src]'s vision mode is now <b>[mode]</b>."))
 
 /obj/item/clothing/glasses/sunglasses/bst/attack_hand()
 	if(!usr)

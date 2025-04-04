@@ -10,7 +10,7 @@
 	if(!deploy_path)
 		return
 	playsound(loc, 'sound/items/zip.ogg', 75, 1)
-	to_chat(user, SPAN_NOTICE("You inflate \the [src]."))
+	to_chat(user, span_notice("You inflate \the [src]."))
 	var/obj/structure/inflatable/R = new deploy_path(user.loc)
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
@@ -86,7 +86,7 @@
 	if(!istype(W) || istype(W, /obj/item/inflatable_dispenser)) return
 
 	if (can_puncture(W))
-		visible_message(SPAN_DANGER("[user] pierces [src] with [W]!"))
+		visible_message(span_danger("[user] pierces [src] with [W]!"))
 		deflate(TRUE)
 	if(W.damtype == BRUTE || W.damtype == BURN)
 		take_damage(W.force)
@@ -130,9 +130,9 @@
 	attack_animation(user)
 	take_damage(damage)
 	if(health <= 0)
-		user.visible_message(SPAN_DANGER("[user] [attack_verb] open the [src]!"))
+		user.visible_message(span_danger("[user] [attack_verb] open the [src]!"))
 	else
-		user.visible_message(SPAN_DANGER("[user] [attack_verb] at [src]!"))
+		user.visible_message(span_danger("[user] [attack_verb] at [src]!"))
 	return TRUE
 
 /obj/structure/inflatable/door //Based on mineral door code
@@ -230,7 +230,7 @@
 	icon_state = "folded_wall_torn"
 
 /obj/item/inflatable/torn/attack_self(mob/user)
-	to_chat(user, SPAN_NOTICE("The inflatable wall is too torn to be inflated!"))
+	to_chat(user, span_notice("The inflatable wall is too torn to be inflated!"))
 	add_fingerprint(user)
 
 /obj/item/inflatable/door/torn
@@ -240,7 +240,7 @@
 	icon_state = "folded_door_torn"
 
 /obj/item/inflatable/door/torn/attack_self(mob/user)
-	to_chat(user, SPAN_NOTICE("The inflatable door is too torn to be inflated!"))
+	to_chat(user, span_notice("The inflatable door is too torn to be inflated!"))
 	add_fingerprint(user)
 
 /obj/item/storage/briefcase/inflatable

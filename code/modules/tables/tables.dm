@@ -79,7 +79,7 @@ var/list/custom_table_appearance = list(
 	. *= explosion_coverage
 	health -= amount
 	if(health <= 0)
-		visible_message(SPAN_WARNING("\The [src] breaks down!"))
+		visible_message(span_warning("\The [src] breaks down!"))
 		break_to_parts()
 		qdel(src)
 	return
@@ -115,11 +115,11 @@ var/list/custom_table_appearance = list(
 	if(health < maxHealth)
 		switch(health / maxHealth)
 			if(0 to 0.5)
-				extra_description += SPAN_WARNING("\nIt looks severely damaged!")
+				extra_description += span_warning("\nIt looks severely damaged!")
 			if(0.25 to 0.5)
-				extra_description += SPAN_WARNING("\nIt looks damaged!")
+				extra_description += span_warning("\nIt looks damaged!")
 			if(0.5 to 1)
-				extra_description += SPAN_NOTICE("\nIt has a few scrapes and dents.")
+				extra_description += span_notice("\nIt has a few scrapes and dents.")
 	..(user, extra_description)
 
 /obj/structure/table/attackby(obj/item/I, mob/user)
@@ -150,12 +150,12 @@ var/list/custom_table_appearance = list(
 		if(QUALITY_PRYING)
 			if(custom_appearance)
 				if(custom_appearance[5] && !reinforced)
-					to_chat(user, SPAN_WARNING("This type of design can't be applied to simple tables. Reinforce it first."))
+					to_chat(user, span_warning("This type of design can't be applied to simple tables. Reinforce it first."))
 					return
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
 					user.visible_message(
-						SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
-						SPAN_NOTICE("You remove the carpet from \the [src].")
+						span_notice("\The [user] removes the carpet from \the [src]."),
+						span_notice("You remove the carpet from \the [src].")
 					)
 					new /obj/item/stack/tile/carpet(loc)
 					custom_appearance = null
@@ -167,7 +167,7 @@ var/list/custom_table_appearance = list(
 		if(QUALITY_WELDING)
 			if(health < maxHealth)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-					user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."),SPAN_NOTICE("You repair some damage to \the [src]."))
+					user.visible_message(span_notice("\The [user] repairs some damage to \the [src]."),span_notice("You repair some damage to \the [src]."))
 					health = min(health+(maxHealth/5), maxHealth)//max(health+(maxHealth/5), maxHealth) // 20% repair per application
 			return
 
@@ -186,7 +186,7 @@ var/list/custom_table_appearance = list(
 							return
 				if(!material)
 					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-						user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
+						user.visible_message(span_notice("\The [user] dismantles \the [src]."),span_notice("You dismantle \the [src]."))
 						drop_materials(drop_location())
 						qdel(src)
 			return
@@ -197,14 +197,14 @@ var/list/custom_table_appearance = list(
 		if(choosen_style)
 			if(C.use(1))
 				user.visible_message(
-					SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
-					SPAN_NOTICE("You add \the [C] to \the [src].")
+					span_notice("\The [user] adds \the [C] to \the [src]."),
+					span_notice("You add \the [C] to \the [src].")
 				)
 				custom_appearance = custom_table_appearance[choosen_style]
 				update_icon()
 				return 1
 			else
-				to_chat(user, SPAN_WARNING("You don't have enough carpet!"))
+				to_chat(user, span_warning("You don't have enough carpet!"))
 
 	if(!material && can_plate && istype(I, /obj/item/stack/material))
 		material = common_material_add(I, user, "plat")
@@ -225,19 +225,19 @@ var/list/custom_table_appearance = list(
 
 /obj/structure/table/proc/reinforce_table(obj/item/stack/material/S, mob/user)
 	if(reinforced)
-		to_chat(user, SPAN_WARNING("\The [src] is already reinforced!"))
+		to_chat(user, span_warning("\The [src] is already reinforced!"))
 		return
 
 	if(!can_reinforce)
-		to_chat(user, SPAN_WARNING("\The [src] cannot be reinforced!"))
+		to_chat(user, span_warning("\The [src] cannot be reinforced!"))
 		return
 
 	if(!material)
-		to_chat(user, SPAN_WARNING("Plate \the [src] before reinforcing it!"))
+		to_chat(user, span_warning("Plate \the [src] before reinforcing it!"))
 		return
 
 	if(flipped)
-		to_chat(user, SPAN_WARNING("Put \the [src] back in place before reinforcing it!"))
+		to_chat(user, span_warning("Put \the [src] back in place before reinforcing it!"))
 		return
 
 	reinforced = common_material_add(S, user, "reinforce")
@@ -250,7 +250,7 @@ var/list/custom_table_appearance = list(
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage)
 	else
@@ -276,28 +276,28 @@ var/list/custom_table_appearance = list(
 /obj/structure/table/proc/common_material_add(obj/item/stack/material/S, mob/user, verb) // Verb is actually verb without 'e' or 'ing', which is added. Works for 'plate'/'plating' and 'reinforce'/'reinforcing'.
 	var/material/M = S.get_material()
 	if(!istype(M))
-		to_chat(user, SPAN_WARNING("You cannot [verb]e \the [src] with \the [S]."))
+		to_chat(user, span_warning("You cannot [verb]e \the [src] with \the [S]."))
 		return null
 	if (src.flipped && istype(M, /material/glass))
-		to_chat(user, SPAN_WARNING("You cannot [verb]e \the [src] with \the [S] when [src] flipped!"))
+		to_chat(user, span_warning("You cannot [verb]e \the [src] with \the [S] when [src] flipped!"))
 		return null
 	if(manipulating) return M
 	manipulating = 1
-	to_chat(user, SPAN_NOTICE("You begin [verb]ing \the [src] with [M.display_name]."))
+	to_chat(user, span_notice("You begin [verb]ing \the [src] with [M.display_name]."))
 	if(!do_after(user, 20, src) || !S.use(1))
 		manipulating = 0
 		return null
-	user.visible_message(SPAN_NOTICE("\The [user] [verb]es \the [src] with [M.display_name]."), SPAN_NOTICE("You finish [verb]ing \the [src]."))
+	user.visible_message(span_notice("\The [user] [verb]es \the [src] with [M.display_name]."), span_notice("You finish [verb]ing \the [src]."))
 	manipulating = 0
 	return M
 
 // Returns the material to set the table to.
 /obj/structure/table/proc/common_material_remove(mob/user, material/M, delay, what, type_holding, sound)
 	if(!M.stack_type)
-		to_chat(user, SPAN_WARNING("You are unable to remove the [what] from this table!"))
+		to_chat(user, span_warning("You are unable to remove the [what] from this table!"))
 		return M
-	user.visible_message(SPAN_NOTICE("\The [user] removes the [M.display_name] [what] from \the [src]."),
-	                              SPAN_NOTICE("You remove the [M.display_name] [what] from \the [src]."))
+	user.visible_message(span_notice("\The [user] removes the [M.display_name] [what] from \the [src]."),
+	                              span_notice("You remove the [M.display_name] [what] from \the [src]."))
 	new M.stack_type(src.loc)
 	return null
 

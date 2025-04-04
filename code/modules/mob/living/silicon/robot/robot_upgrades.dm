@@ -19,7 +19,7 @@
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/R)
 	if(R.stat == DEAD)
-		to_chat(usr, SPAN_WARNING("The [src] will not function on a deceased robot."))
+		to_chat(usr, span_warning("The [src] will not function on a deceased robot."))
 		return TRUE
 	if(robot_traits)
 		R.AddTrait(robot_traits)

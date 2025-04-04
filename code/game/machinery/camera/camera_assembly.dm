@@ -46,19 +46,19 @@
 					state = !state
 					update_icon()
 					auto_turn()
-					to_chat(user, SPAN_NOTICE("You [anchored? "wrench" : "unattach"] the assembly."))
+					to_chat(user, span_notice("You [anchored? "wrench" : "unattach"] the assembly."))
 					return
 			return
 
 		if(QUALITY_WELDING)
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
+					to_chat(user, span_notice("You weld the assembly securely into place."))
 					state = 2
 					return
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You unweld the assembly from its place."))
+					to_chat(user, span_notice("You unweld the assembly from its place."))
 					state = 1
 					return
 			return
@@ -67,7 +67,7 @@
 			if(state == 3)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					new/obj/item/stack/cable_coil(get_turf(src), 2)
-					to_chat(user, SPAN_NOTICE("You remove the wires from the circuits."))
+					to_chat(user, span_notice("You remove the wires from the circuits."))
 					state = 2
 					return
 			return
@@ -116,7 +116,7 @@
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					var/obj/U = locate(/obj) in upgrades
 					if(U)
-						to_chat(user, SPAN_NOTICE("You unattach an upgrade from the assembly."))
+						to_chat(user, span_notice("You unattach an upgrade from the assembly."))
 						playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 						U.loc = get_turf(src)
 						upgrades -= U
@@ -130,10 +130,10 @@
 		if(istype(I, /obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/C = I
 			if(C.use(2))
-				to_chat(user, SPAN_NOTICE("You add wires to the assembly."))
+				to_chat(user, span_notice("You add wires to the assembly."))
 				state = 3
 			else
-				to_chat(user, SPAN_WARNING("You need 2 coils of wire to wire the assembly."))
+				to_chat(user, span_warning("You need 2 coils of wire to wire the assembly."))
 			return
 
 

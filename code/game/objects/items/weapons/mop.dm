@@ -30,16 +30,16 @@
 	.=..()
 	if(mopmode == MOPMODE_TILE)
 		mopmode = MOPMODE_SWEEP
-		to_chat(user, SPAN_NOTICE("You will now clean with broad sweeping motions"))
+		to_chat(user, span_notice("You will now clean with broad sweeping motions"))
 	else if(mopmode == MOPMODE_SWEEP)
 		mopmode = MOPMODE_TILE
-		to_chat(user, SPAN_NOTICE("You will now thoroughly clean a single tile at a time"))
+		to_chat(user, span_notice("You will now thoroughly clean a single tile at a time"))
 
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
 		if(reagents.total_volume < 1)
-			to_chat(user, SPAN_NOTICE("Your mop is dry!"))
+			to_chat(user, span_notice("Your mop is dry!"))
 			return
 		var/turf/T = get_turf(A)
 		if(!T)
@@ -47,12 +47,12 @@
 		spawn()
 			user.do_attack_animation(T)
 		if(mopmode == MOPMODE_TILE)
-			//user.visible_message(SPAN_WARNING("[user] begins to clean \the [T]."))
+			//user.visible_message(span_warning("[user] begins to clean \the [T]."))
 			user.setClickCooldown(3)
 			if(do_after(user, 30, T))
 				if(T)
 					T.clean(src, user)
-				to_chat(user, SPAN_NOTICE("You have finished mopping!"))
+				to_chat(user, span_notice("You have finished mopping!"))
 
 		//Sweep mopmode. Light and fast aoe cleaning
 		else if(mopmode == MOPMODE_SWEEP)
@@ -95,7 +95,7 @@
 	QDEL_IN(mopimage, sweep_time+1)
 
 	if(!do_after(user, sweep_time,target))
-		to_chat(user, SPAN_DANGER("Mopping cancelled"))
+		to_chat(user, span_danger("Mopping cancelled"))
 		return
 
 
@@ -104,7 +104,7 @@
 			//You hit a wall!
 			shake_camera(user, 1, 1)
 			playsound(T,"thud", 20, 1, -3)
-			to_chat(user, SPAN_DANGER("There's not enough space for broad sweeps here!"))
+			to_chat(user, span_danger("There's not enough space for broad sweeps here!"))
 			break
 		for(var/atom/i in T)
 			if(istype(i, /mob/living))
@@ -117,13 +117,13 @@
 	if(A.is_open_container())
 		if(A.reagents)
 			if(A.reagents.total_volume < 1)
-				to_chat(user, SPAN_WARNING("\The [A] is out of water!"))
+				to_chat(user, span_warning("\The [A] is out of water!"))
 				return
 			A.reagents.trans_to_obj(src, reagents.maximum_volume)
 		else
 			reagents.add_reagent("water", reagents.maximum_volume)
 
-		to_chat(user, SPAN_NOTICE("You wet \the [src] with \the [A]."))
+		to_chat(user, span_notice("You wet \the [src] with \the [A]."))
 		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 
 

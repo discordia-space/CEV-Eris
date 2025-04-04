@@ -717,7 +717,7 @@ var/list/rank_prefix = list(\
 	if(species.has_fine_manipulation)
 		return 1
 	if(!silent)
-		to_chat(src, SPAN_WARNING("You don't have the dexterity to use that!"))
+		to_chat(src, span_warning("You don't have the dexterity to use that!"))
 	return 0
 
 /mob/living/carbon/human/abiotic(full_body = 0)
@@ -760,12 +760,12 @@ var/list/rank_prefix = list(\
 	if(!lastpuke)
 		lastpuke = 1
 		if(!forced)
-			to_chat(src, SPAN_WARNING("You feel nauseous..."))
+			to_chat(src, span_warning("You feel nauseous..."))
 			sleep(150)	//15 seconds until second warning
-			to_chat(src, SPAN_WARNING("You feel like you are about to throw up!"))
+			to_chat(src, span_warning("You feel like you are about to throw up!"))
 			sleep(100)	//and you have 10 more for mad dash to the bucket
 
-		src.visible_message(SPAN_WARNING("[src] throws up!"),SPAN_WARNING("You throw up!"))
+		src.visible_message(span_warning("[src] throws up!"),span_warning("You throw up!"))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
 
 		var/turf/location = loc
@@ -783,7 +783,7 @@ var/list/rank_prefix = list(\
 		ability_last = world.time
 		return TRUE
 	else
-		to_chat(src, SPAN_NOTICE("You can't use that yet! [cooldown / 10] seconds should pass after last ability activation. Only [time_passed / 10] seconds have passed."))
+		to_chat(src, span_notice("You can't use that yet! [cooldown / 10] seconds should pass after last ability activation. Only [time_passed / 10] seconds have passed."))
 
 
 /mob/living/carbon/human/proc/get_visible_gender()
@@ -879,11 +879,11 @@ var/list/rank_prefix = list(\
 			// Shrapnel hurts when you move, and implanting knives is a bad idea
 			if(prob(5) && is_sharp(O) && !MOVING_DELIBERATELY(H))
 				if(!organ.can_feel_pain())
-					to_chat(src, SPAN_WARNING("You feel [O] moving inside your [organ.name]."))
+					to_chat(src, span_warning("You feel [O] moving inside your [organ.name]."))
 				else
 					var/msg = pick( \
-						SPAN_WARNING("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
-						SPAN_WARNING("Your hasty movement jostles [O] in your [organ.name] painfully."))
+						span_warning("A spike of pain jolts your [organ.name] as you bump [O] inside."), \
+						span_warning("Your hasty movement jostles [O] in your [organ.name] painfully."))
 					to_chat(src, msg)
 				organ.take_damage(3, BRUTE, organ.max_damage, 6.7, TRUE, TRUE)	// When the limb is at 60% of max health, internal organs start taking damage.
 				if(organ.setBleeding())
@@ -908,23 +908,23 @@ var/list/rank_prefix = list(\
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message(SPAN_NOTICE("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
+		usr.visible_message(span_notice("[usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse."),\
 		"You begin counting [src]'s pulse")
 	else
-		usr.visible_message(SPAN_NOTICE("[usr] begins counting their pulse."),\
+		usr.visible_message(span_notice("[usr] begins counting their pulse."),\
 		"You begin counting your pulse.")
 
 	if(pulse())
-		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+		to_chat(usr, span_notice("[self ? "You have a" : "[src] has a"] pulse! Counting..."))
 	else
-		to_chat(usr, SPAN_DANGER("[src] has no pulse!")	) //it is REALLY UNLIKELY that a dead person would check his own pulse
+		to_chat(usr, span_danger("[src] has no pulse!")	) //it is REALLY UNLIKELY that a dead person would check his own pulse
 		return
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
 	if(do_mob(usr, src, 60))
-		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
+		to_chat(usr, span_notice("[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)]."))
 	else
-		to_chat(usr, SPAN_WARNING("You failed to check the pulse. Try again."))
+		to_chat(usr, span_warning("You failed to check the pulse. Try again."))
 
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
 	// No more invisible screaming wheelchairs because of set_species() typos.
@@ -1135,26 +1135,26 @@ var/list/rank_prefix = list(\
 		remove_verb(src, /mob/living/carbon/human/proc/bloody_doodle)
 
 	if(src.gloves)
-		to_chat(src, SPAN_WARNING("Your [src.gloves] are getting in the way."))
+		to_chat(src, span_warning("Your [src.gloves] are getting in the way."))
 		return
 
 	var/turf/T = src.loc
 	if(!istype(T)) //to prevent doodling out of mechs and lockers
-		to_chat(src, SPAN_WARNING("You cannot reach the floor."))
+		to_chat(src, span_warning("You cannot reach the floor."))
 		return
 
 	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
 	if(direction != "Here")
 		T = get_step(T,text2dir(direction))
 	if(!istype(T))
-		to_chat(src, SPAN_WARNING("You cannot doodle there."))
+		to_chat(src, span_warning("You cannot doodle there."))
 		return
 
 	var/num_doodles = 0
 	for(var/obj/effect/decal/cleanable/blood/writing/W in T)
 		num_doodles++
 	if(num_doodles > 4)
-		to_chat(src, SPAN_WARNING("There is no space to write on!"))
+		to_chat(src, span_warning("There is no space to write on!"))
 		return
 
 	var/max_length = bloody_hands * 30 //tweeter style
@@ -1167,7 +1167,7 @@ var/list/rank_prefix = list(\
 
 		if(length(message) > max_length)
 			message += "-"
-			to_chat(src, SPAN_WARNING("You ran out of blood to write with!"))
+			to_chat(src, span_warning("You ran out of blood to write with!"))
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
 		W.basecolor = (hand_blood_color) ? hand_blood_color : "#A10808"
@@ -1209,7 +1209,7 @@ var/list/rank_prefix = list(\
 			fail_msg = "Skin is tough and inelastic."
 		else if(!fail_msg)
 			fail_msg = "There is no exposed flesh or thin material [target_zone == BP_HEAD ? "on their head" : "on their body"] to inject into."
-		to_chat(user, SPAN_WARNING(fail_msg))
+		to_chat(user, span_warning(fail_msg))
 
 /mob/living/carbon/human/print_flavor_text(shrink = 1)
 	var/list/equipment = list(src.head,src.wear_mask,src.glasses,src.w_uniform,src.wear_suit,src.gloves,src.shoes)
@@ -1280,7 +1280,7 @@ var/list/rank_prefix = list(\
 
 	if(stat) return
 	holding_back = !holding_back
-	to_chat(src, SPAN_NOTICE("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
+	to_chat(src, span_notice("You are now [holding_back ? "holding back your attacks" : "not holding back your attacks"]."))
 	return
 
 /mob/living/carbon/human/verb/access_holster()
@@ -1310,7 +1310,7 @@ var/list/rank_prefix = list(\
 					return
 	//nothing at all!
 	if(!holster_found)
-		to_chat(src, SPAN_NOTICE("You don\'t have any holsters."))
+		to_chat(src, span_notice("You don\'t have any holsters."))
 
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/human/proc/get_pulse(method)	//method 0 is for hands, 1 is for machines, more accurate
@@ -1352,13 +1352,13 @@ var/list/rank_prefix = list(\
 				reset_view(0)
 				return
 			if(above.is_hole)
-				to_chat(src, SPAN_NOTICE("You look up."))
+				to_chat(src, span_notice("You look up."))
 				if(client)
 					reset_view(shadow)
 				return
-		to_chat(src, SPAN_NOTICE("You can see [above]."))
+		to_chat(src, span_notice("You can see [above]."))
 	else
-		to_chat(src, SPAN_NOTICE("You can't do it right now."))
+		to_chat(src, span_notice("You can't do it right now."))
 	return
 
 /mob/living/carbon/human/should_have_process(organ_check)
@@ -1377,7 +1377,7 @@ var/list/rank_prefix = list(\
 	if(stat)
 		return
 
-	to_chat(src, SPAN_NOTICE("You check yourself for injuries."))
+	to_chat(src, span_notice("You check yourself for injuries."))
 
 	for(var/obj/item/organ/external/org in organs)
 		var/list/status = list()
@@ -1417,9 +1417,9 @@ var/list/rank_prefix = list(\
 		if(!org.is_usable())
 			status += "dangling uselessly"
 
-		var/status_text = SPAN_NOTICE("OK")
+		var/status_text = span_notice("OK")
 		if(status.len)
-			status_text = SPAN_WARNING(english_list(status))
+			status_text = span_warning(english_list(status))
 
 		src.show_message("My [org.name] is [status_text].",1)
 
@@ -1463,7 +1463,7 @@ var/list/rank_prefix = list(\
 		timeofdeath = 0
 		return 0
 
-	visible_message(SPAN_NOTICE("\The [src] twitches a bit as their heart restarts!"))
+	visible_message(span_notice("\The [src] twitches a bit as their heart restarts!"))
 	pulse = PULSE_NORM
 	handle_pulse()
 	timeofdeath = 0
@@ -1487,7 +1487,7 @@ var/list/rank_prefix = list(\
 	return 1
 
 /mob/living/carbon/human/proc/resuscitate_notify(type)
-	visible_message(SPAN_WARNING("\The [src] twitches and twists intensely!"))
+	visible_message(span_warning("\The [src] twitches and twists intensely!"))
 	for(var/mob/O in viewers(world.view, src.loc))
 		if(O == src)
 			continue
@@ -1544,7 +1544,7 @@ var/list/rank_prefix = list(\
 	if(blocking)//already blocking with an item somehow?
 		return
 	blocking = TRUE
-	visible_message(SPAN_WARNING("[src] tenses up, ready to block!"))
+	visible_message(span_warning("[src] tenses up, ready to block!"))
 	if(HUDneed.Find("block"))
 		var/obj/screen/block/HUD = HUDneed["block"]
 		HUD.update_icon()
@@ -1555,7 +1555,7 @@ var/list/rank_prefix = list(\
 	if(!blocking)//already blockingn't with an item somehow?
 		return
 	blocking = FALSE
-	visible_message(SPAN_NOTICE("[src] lowers \his guard."))
+	visible_message(span_notice("[src] lowers \his guard."))
 	if(HUDneed.Find("block"))
 		var/obj/screen/block/HUD = HUDneed["block"]
 		HUD.update_icon()

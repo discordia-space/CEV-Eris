@@ -163,7 +163,7 @@
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)
-		var/rendered = "<span class='game say'><span class='name'>[M.name]: </span> <span class='message'>[text]</span></span>"
+		var/rendered = "<span class='game say'>[span_name("[M.name]: ")] [span_message("[text]")]</span>"
 		mo.show_message(rendered, 2)
 		*/
 	return
@@ -189,7 +189,7 @@
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	user.visible_message(
 		"[user] removes [I] from [src].",
-		SPAN_NOTICE("You remove [I] from [src].")
+		span_notice("You remove [I] from [src].")
 	)
 	return TRUE
 
@@ -198,7 +198,7 @@
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
+	to_chat(user, span_notice("You insert [I] into [src]."))
 	return TRUE
 
 /obj/proc/replace_item(obj/item/I_old, obj/item/I_new, mob/living/user)
@@ -211,7 +211,7 @@
 		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	user.visible_message(
 		"[user] replaces [I_old] with [I_new] in [src].",
-		SPAN_NOTICE("You replace [I_old] with [I_new] in [src]."))
+		span_notice("You replace [I_old] with [I_new] in [src]."))
 	return TRUE
 
 //Returns the list of matter in this object

@@ -2,12 +2,12 @@
 	owner.custom_emote(message = level < 20 ? pick_emote_20() : pick_emote_40())
 
 /datum/sanity/proc/effect_quote()
-	to_chat(owner, SPAN_DANGER(level < 20 ? "\icon['icons/effects/fabric_symbols_20.dmi'][pick_quote_20()]" : "\icon['icons/effects/fabric_symbols_40.dmi'][pick_quote_40()]"))
+	to_chat(owner, span_danger(level < 20 ? "\icon['icons/effects/fabric_symbols_20.dmi'][pick_quote_20()]" : "\icon['icons/effects/fabric_symbols_40.dmi'][pick_quote_40()]"))
 
 /datum/sanity/proc/effect_sound()
 	var/sound/S = pick_sound()
 	if(islist(S))
-		to_chat(owner,SPAN_DANGER(S[2]))
+		to_chat(owner,span_danger(S[2]))
 		S = S[1]
 	owner.playsound_local(owner, S, 50, 0, 8, null, 8)
 

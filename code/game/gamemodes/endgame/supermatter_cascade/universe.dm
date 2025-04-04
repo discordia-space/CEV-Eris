@@ -9,7 +9,7 @@ var/global/universe_has_ended = 0
 
 /datum/universal_state/supermatter_cascade/OnShuttleCall(var/mob/user)
 	if(user)
-		to_chat(user, "<span class='sinister'>The only thing you hear from the console is static. You are alone.</span>")
+		to_chat(user, span_sinister("The only thing you hear from the console is static. You are alone."))
 	return 0
 
 /datum/universal_state/supermatter_cascade/OnTurfChange(var/turf/T)

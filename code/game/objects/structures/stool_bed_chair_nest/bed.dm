@@ -84,15 +84,15 @@
 		return ..()
 
 /obj/structure/bed/affect_grab(var/mob/user, var/mob/target)
-	user.visible_message(SPAN_NOTICE("[user] attempts to buckle [target] into \the [src]!"))
+	user.visible_message(span_notice("[user] attempts to buckle [target] into \the [src]!"))
 	if(do_after(user, 20, src) && Adjacent(target))
 		target.forceMove(loc)
 		spawn(0)
 			if(buckle_mob(target))
 				target.visible_message(
-					SPAN_DANGER("[target] is buckled to [src] by [user]!"),
-					SPAN_DANGER("You are buckled to [src] by [user]!"),
-					SPAN_NOTICE("You hear metal clanking.")
+					span_danger("[target] is buckled to [src] by [user]!"),
+					span_danger("You are buckled to [src] by [user]!"),
+					span_notice("You hear metal clanking.")
 				)
 		return TRUE
 
@@ -287,20 +287,20 @@
 	held.Add(new /obj/item/roller(src))
 
 /obj/item/roller_holder/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("It contains [LAZYLEN(held)] stored beds")
+	extra_description += span_notice("It contains [LAZYLEN(held)] stored beds")
 	..(user, extra_description)
 
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
 	if(!held.len)
-		to_chat(user, SPAN_NOTICE("The rack is empty."))
+		to_chat(user, span_notice("The rack is empty."))
 		return
 
 	if (!isturf(user.loc) || (locate(/obj/structure/bed/roller) in user.loc))
-		to_chat(user, SPAN_WARNING("You can't deploy that here!"))
+		to_chat(user, span_warning("You can't deploy that here!"))
 		return
 
-	to_chat(user, SPAN_NOTICE("You deploy the roller bed."))
+	to_chat(user, span_notice("You deploy the roller bed."))
 	var/obj/item/roller/r = pick_n_take(held)
 	r.forceMove(user.loc)
 	r.deploy(user)
@@ -310,9 +310,9 @@
 	.=..()
 	if (istype(target,/obj/item/roller))
 		if (held.len >= max_stored)
-			to_chat(user, SPAN_WARNING("You can't fit anymore rollerbeds in \the [src]!"))
+			to_chat(user, span_warning("You can't fit anymore rollerbeds in \the [src]!"))
 			return
 
-		to_chat(user, SPAN_NOTICE("You scoop up \the [target] and store it in \the [src]!"))
+		to_chat(user, span_notice("You scoop up \the [target] and store it in \the [src]!"))
 		target.forceMove(src)
 		held.Add(target)

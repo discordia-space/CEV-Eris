@@ -397,7 +397,7 @@
 //shows a neat message and adds a 10 second timer, afterwich the proc overheat is activated
 	if(rapid == FALSE)
 		rapid = TRUE
-		visible_message(SPAN_DANGER("<b>[name]</b> begins to shake violenty, sparks spurting out from its chassis!"), 1)
+		visible_message(span_danger("<b>[name]</b> begins to shake violenty, sparks spurting out from its chassis!"), 1)
 		addtimer(CALLBACK(src, PROC_REF(overheat)), 10 SECONDS)
 		return
 
@@ -407,7 +407,7 @@
 //shows a cool (pun intended) message, malfunctions, and starts the cooldown
 	if(rapid == TRUE)
 		rapid = FALSE
-		visible_message(SPAN_NOTICE("<b>[name]</b> freezes for a moment, smoke billowing out of its exhaust!"), 1)
+		visible_message(span_notice("<b>[name]</b> freezes for a moment, smoke billowing out of its exhaust!"), 1)
 		mulfunction()
 		special_ability_cooldown = world.time + ability_cooldown
 		return
@@ -485,7 +485,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/hiborg/proc/splash_slash()
-	src.visible_message(SPAN_DANGER("[src] spins around and slashes in a circle!"))
+	src.visible_message(span_danger("[src] spins around and slashes in a circle!"))
 	for(var/atom/target in range(1, src))
 		if(target != src)
 			target.attack_generic(src, rand(melee_damage_lower, melee_damage_upper*2)) //this can be extremely strong, maybe nerf it in the future if the players complain
@@ -497,7 +497,7 @@
 	if(isliving(target_mob))
 		var/mob/living/victim = target_mob
 		victim.Weaken(5) //decent-length stun
-		src.visible_message(SPAN_WARNING("[src] pins [victim] to the floor with its claw!"))
+		src.visible_message(span_warning("[src] pins [victim] to the floor with its claw!"))
 		if(!client && prob(speak_chance))
 			say(pick("Hold still, child! It is time to dream!",
 					"Your brainstem is intact, good.",
@@ -616,7 +616,7 @@
 				continue
 
 		victim.Weaken(4)
-		to_chat(victim, SPAN_WARNING("You hear loud and terrible scream!"))
+		to_chat(victim, span_warning("You hear loud and terrible scream!"))
 	special_ability_cooldown = world.time + ability_cooldown
 
 
@@ -732,7 +732,7 @@
 	//I'd like to tidy this up so the damage type is linked to specific speech arrays.
 	if(passenger && prob(25))
 		passenger.damage_through_armor(rand(5,20), pick(BRUTE, BURN, TOX), attack_flag = ARMOR_MELEE)
-		to_chat(passenger, SPAN_DANGER(pick(
+		to_chat(passenger, span_danger(pick(
 								"A woman's arm grabs your neck!", "Lips whisper, \" This is the womb of your rebirth... \"", "Hot breath flows over your ear, \" You will enjoy bliss when this is over... \"",
 								"A whirring drill bit bores through your chest!", "Something is crushing your ribs!", "Some blood-hot liquid covers you!",
 								"The stench of some chemical overwhelms you!", "A dozen needles lance through your skin!",
@@ -809,7 +809,7 @@
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
-	to_chat(target, SPAN_DANGER("Wires snare your limbs and pull you inside the maneater! You feel yourself bound with a thousand steel tendrils!"))
+	to_chat(target, span_danger("Wires snare your limbs and pull you inside the maneater! You feel yourself bound with a thousand steel tendrils!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 	addtimer(CALLBACK(src, PROC_REF(release_passenger)), 40 SECONDS)
 
@@ -836,7 +836,7 @@
 			dead_body_restoration(passenger)
 
 		if(passenger) //if passenger still here, then just release him
-			to_chat(passenger, SPAN_DANGER("[src] releases you from its snares!"))
+			to_chat(passenger, span_danger("[src] releases you from its snares!"))
 			passenger.canmove = TRUE
 			passenger.loc = get_turf(src)
 			passenger = null

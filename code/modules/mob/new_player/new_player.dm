@@ -35,9 +35,9 @@
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
 		if(ready)
-			output += "<p>\[ <span class='linkOn'><b>Ready</b></span> | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
+			output += "<p>\[ [span_linkOn("<b>Ready</b>")] | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
-			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | <span class='linkOn'><b>Not Ready</b></span> \]</p>"
+			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | [span_linkOn("<b>Not Ready</b>")] \]</p>"
 
 	else
 		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
@@ -124,10 +124,10 @@
 			close_spawn_windows()
 			var/turf/T = pick_spawn_location("Observer")
 			if(istype(T))
-				to_chat(src, SPAN_NOTICE("You are now observing."))
+				to_chat(src, span_notice("You are now observing."))
 				observer.forceMove(T)
 			else
-				to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
+				to_chat(src, span_danger("Could not locate an observer spawn point. Use the Teleport verb to jump to the station map."))
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
@@ -186,10 +186,10 @@
 	if(href_list["SelectedJob"])
 
 		if(!config.enter_allowed)
-			to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
+			to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
 			return
 		else if(SSticker.nuke_in_progress)
-			to_chat(usr, "<span class='danger'>The station is currently exploding. Joining would go poorly.</span>")
+			to_chat(usr, span_danger("The station is currently exploding. Joining would go poorly."))
 			return
 
 		var/datum/species/S = all_species[client.prefs.species]
@@ -252,7 +252,7 @@
 		to_chat(usr, "\red The round is either not ready, or has already finished...")
 		return 0
 	if(!config.enter_allowed)
-		to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
+		to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
 		return 0
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")

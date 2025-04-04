@@ -89,7 +89,7 @@
 		return
 
 	if(!F)
-		to_chat(target, SPAN_WARNING("You feel nothing."))
+		to_chat(target, span_warning("You feel nothing."))
 
 	for(var/datum/antagonist/A in target.mind.antagonist)
 		if(A.id == antag_id && A.faction && A.faction.id == faction_id)
@@ -105,18 +105,18 @@
 	for(var/datum/antagonist/A in wearer.mind.antagonist)
 		if(A.id == antag_id)
 			A.remove_antagonist()
-	wearer.visible_message(SPAN_DANGER("As \the [src] is removed from \the [wearer]..."))
+	wearer.visible_message(span_danger("As \the [src] is removed from \the [wearer]..."))
 	if(prob(66) && !get_active_mutation(wearer, MUTATION_GODBLOOD))
-		wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
+		wearer.visible_message(span_danger("\The [wearer]'s [part.name] violently explodes from within!"))
 		wearer.adjustBrainLoss(200)
 		part.droplimb(FALSE, DROPLIMB_BLUNT)
 	else
-		wearer.visible_message(SPAN_NOTICE("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
+		wearer.visible_message(span_notice("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
 		wearer.verbs.Remove(/datum/faction/excelsior/proc/communicate_verb)
 
 /// Remote execution from failure to defend
 /obj/item/implant/excelsior/proc/execute()
-	wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
+	wearer.visible_message(span_danger("\The [wearer]'s [part.name] violently explodes from within!"))
 	wearer.adjustBrainLoss(200)
 	wearer.stat = DEAD
 	part.droplimb(FALSE, DROPLIMB_BLUNT)

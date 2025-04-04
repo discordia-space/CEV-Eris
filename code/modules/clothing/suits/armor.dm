@@ -394,7 +394,7 @@
 		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
-			visible_message(SPAN_DANGER("\The [user]'s [src.name] reflects [attack_text]!"))
+			visible_message(span_danger("\The [user]'s [src.name] reflects [attack_text]!"))
 
 			// Find a turf near or on the original location to bounce to
 			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
@@ -661,7 +661,7 @@
 
 /obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(prob(50))
-		user.visible_message(SPAN_DANGER("The reactive teleport system flings [user] clear of the attack!"))
+		user.visible_message(span_danger("The reactive teleport system flings [user] clear of the attack!"))
 		var/turf/TLoc = get_turf(user)
 		var/turf/picked = get_random_secure_turf_in_range(src, 7, 1)
 		if(!picked) return
@@ -760,9 +760,9 @@
 	if(!speed_boost_ready)
 		if(user.head && istype(user.head, matching_helmet))
 			if(speed_boost_active)
-				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol active.'"))
+				to_chat(usr, span_warning("[user.head] beeps: 'Acceleration protocol active.'"))
 			else
-				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol failture. Insufficient capacitor charge.'"))
+				to_chat(usr, span_warning("[user.head] beeps: 'Acceleration protocol failture. Insufficient capacitor charge.'"))
 		return
 
 	speed_boost_ready = FALSE
@@ -770,7 +770,7 @@
 	slowdown = speed_boost_power
 
 	if(user.head && istype(user.head, matching_helmet))
-		to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol initiated.'"))
+		to_chat(usr, span_warning("[user.head] beeps: 'Acceleration protocol initiated.'"))
 
 	spawn(speed_boost_length)
 		if(QDELETED(src))
@@ -778,11 +778,11 @@
 		slowdown = initial(slowdown)
 		speed_boost_active = FALSE
 		if(user.head && istype(user.head, matching_helmet))
-			to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors discharged. Acceleration protocol aborted.'"))
+			to_chat(usr, span_warning("[user.head] beeps: 'Capacitors discharged. Acceleration protocol aborted.'"))
 
 		spawn(speed_boost_cooldown)
 			if(QDELETED(src))
 				return
 			speed_boost_ready = TRUE
 			if(user.head && istype(user.head, matching_helmet))
-				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors have been recharged.'"))
+				to_chat(usr, span_warning("[user.head] beeps: 'Capacitors have been recharged.'"))

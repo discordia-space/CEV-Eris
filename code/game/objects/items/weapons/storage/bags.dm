@@ -177,7 +177,7 @@
 		current += S.amount
 	if(capacity == current)//If it's full, you're done
 		if(!stop_messages)
-			to_chat(usr, SPAN_WARNING("The snatcher is full."))
+			to_chat(usr, span_warning("The snatcher is full."))
 		return 0
 	return 1
 

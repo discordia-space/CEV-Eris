@@ -18,7 +18,7 @@
 /obj/machinery/antigrav/proc/start()
 	area = get_area(src)
 	if(area.gravity_blocker && area.gravity_blocker != src)
-		src.visible_message(SPAN_NOTICE("\The [src] failed to start. There may be interference from another generator."))
+		src.visible_message(span_notice("\The [src] failed to start. There may be interference from another generator."))
 		return
 
 	turfcount = 0
@@ -39,7 +39,7 @@
 
 /obj/machinery/antigrav/examine(mob/user, extra_description = "")
 	if(on)
-		extra_description += SPAN_NOTICE("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power")
+		extra_description += span_notice("The display on the side indicates that it is currently providing null-gravity over an area of [turfcount] m<sup>2</sup> and consuming [active_power_usage * 0.001] kW of power")
 	..(user, extra_description)
 
 /obj/machinery/antigrav/proc/stop()
@@ -67,7 +67,7 @@
 		if(anchored)
 			start()
 		else
-			to_chat(user, SPAN_WARNING("Fasten \the [src] to the floor first."))
+			to_chat(user, span_warning("Fasten \the [src] to the floor first."))
 	else
 		stop()
 
@@ -76,21 +76,21 @@
 	if (I.has_quality(QUALITY_BOLT_TURNING))
 		if (anchored)
 			if(!on)
-				to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src] from the floor..."))
+				to_chat(user, span_notice("You begin to unfasten \the [src] from the floor..."))
 				if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 					user.visible_message( \
-						SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-						SPAN_NOTICE("You have unfastened \the [src]. Now it can be pulled somewhere else."), \
+						span_notice("\The [user] unfastens \the [src]."), \
+						span_notice("You have unfastened \the [src]. Now it can be pulled somewhere else."), \
 						"You hear ratchet.")
 					src.anchored = FALSE
 			else
-				to_chat(user, SPAN_WARNING("Turn off \the [src] first."))
+				to_chat(user, span_warning("Turn off \the [src] first."))
 		else
-			to_chat(user, SPAN_NOTICE("You begin to fasten \the [src] to the floor..."))
+			to_chat(user, span_notice("You begin to fasten \the [src] to the floor..."))
 			if (I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
 				user.visible_message( \
-					SPAN_NOTICE("\The [user] fastens \the [src]."), \
-					SPAN_NOTICE("You have fastened \the [src]. Now it can counteract gravity."), \
+					span_notice("\The [user] fastens \the [src]."), \
+					span_notice("You have fastened \the [src]. Now it can counteract gravity."), \
 					"You hear ratchet.")
 				src.anchored = TRUE
 		update_icon()

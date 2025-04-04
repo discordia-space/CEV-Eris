@@ -23,7 +23,7 @@
 	if(!implant)
 		return ..()
 	user.put_in_hands(implant)
-	to_chat(user, SPAN_NOTICE("You remove \the [implant] from \the [src]."))
+	to_chat(user, span_notice("You remove \the [implant] from \the [src]."))
 	name = "implanter"
 	implant = null
 	update_icon()
@@ -40,7 +40,7 @@
 		return
 	if(!implant.is_external())
 		if(M.body_part_covered(user.targeted_organ))
-			to_chat(user, SPAN_WARNING("You can't implant through clothes."))
+			to_chat(user, span_warning("You can't implant through clothes."))
 			return
 
 	var/obj/item/organ/external/affected = null
@@ -48,7 +48,7 @@
 		var/mob/living/carbon/human/H = M
 		affected = H.get_organ(user.targeted_organ)
 
-	M.visible_message(SPAN_WARNING("[user] is attemping to implant [M]."))
+	M.visible_message(span_warning("[user] is attemping to implant [M]."))
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.do_attack_animation(M)
@@ -58,8 +58,8 @@
 
 		if(implant.install(M, user.targeted_organ, user))
 			M.visible_message(
-			SPAN_WARNING("[user] has implanted [M] in [affected]."),
-			SPAN_NOTICE("You implanted \the [implant] into [M]'s [affected].")
+			span_warning("[user] has implanted [M] in [affected]."),
+			span_notice("You implanted \the [implant] into [M]'s [affected].")
 			)
 
 			admin_attack_log(user, M,
@@ -90,7 +90,7 @@
 	if(!mod)
 		return ..()
 	user.put_in_hands(mod)
-	to_chat(user, SPAN_NOTICE("You remove \the [mod] from \the [src]."))
+	to_chat(user, span_notice("You remove \the [mod] from \the [src]."))
 	mod = null
 	update_icon()
 	return
@@ -112,20 +112,20 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		affected = H.get_organ(user.targeted_organ)
-	
+
 		if(!affected)
-			to_chat(user, SPAN_WARNING("[M] is missing that body part."))
+			to_chat(user, span_warning("[M] is missing that body part."))
 			return
 
 		if(!(affected.organ_tag in mod.allowed_organs))
-			to_chat(user, SPAN_NOTICE("You cannot install the [mod] into the [affected]."))
-			return
-	
-		if(affected.module != null) //Probably not the most effective way to do this, but it works.
-			to_chat(user, SPAN_WARNING("[mod] cannot be installed into this [affected], as it's already occupied."))
+			to_chat(user, span_notice("You cannot install the [mod] into the [affected]."))
 			return
 
-	M.visible_message(SPAN_WARNING("[user] is attemping to install something into [M]."))
+		if(affected.module != null) //Probably not the most effective way to do this, but it works.
+			to_chat(user, span_warning("[mod] cannot be installed into this [affected], as it's already occupied."))
+			return
+
+	M.visible_message(span_warning("[user] is attemping to install something into [M]."))
 
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	user.do_attack_animation(M)
@@ -134,8 +134,8 @@
 
 		if(mod.install(affected))
 			M.visible_message(
-			SPAN_WARNING("[user] has installed something into [M]'s' [affected]."),
-			SPAN_NOTICE("You installed \the [mod] into [M]'s [affected].")
+			span_warning("[user] has installed something into [M]'s' [affected]."),
+			span_notice("You installed \the [mod] into [M]'s [affected].")
 			)
 
 			admin_attack_log(user, M,

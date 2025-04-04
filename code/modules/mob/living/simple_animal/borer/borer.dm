@@ -119,7 +119,7 @@
 	if(confirmation == "No" || QDELETED(src))
 		return TRUE
 	if(key)
-		to_chat(user, SPAN_WARNING("Someone is already occupying this body."))
+		to_chat(user, span_warning("Someone is already occupying this body."))
 		return TRUE
 	key = user.key
 	return TRUE
@@ -164,7 +164,7 @@
 			chemicals = 0
 
 /mob/living/simple_animal/borer/proc/host_death()
-	to_chat(host, SPAN_DANGER("You feel your control over your host suddenly stop."))
+	to_chat(host, span_danger("You feel your control over your host suddenly stop."))
 	update_abilities()
 	spawn(1)
 		detach()
@@ -177,11 +177,11 @@
 
 		if(host.reagents.has_reagent("sugar"))
 			if(!docile)
-				to_chat(get_borer_control(), SPAN_DANGER("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
+				to_chat(get_borer_control(), span_danger("You feel the soporific flow of sugar in your host's blood, lulling you into docility."))
 				docile = TRUE
 		else
 			if(docile)
-				to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the sugar leaves your host's blood."))
+				to_chat(get_borer_control(), span_danger("You shake off your lethargy as the sugar leaves your host's blood."))
 				docile = FALSE
 
 		if(chemicals < max_chemicals_inhost)
@@ -189,7 +189,7 @@
 
 		if(controlling)
 			if(docile)
-				to_chat(host, SPAN_DANGER("You are feeling far too docile to continue controlling your host..."))
+				to_chat(host, span_danger("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
 				return FALSE
 			if(prob(5))
@@ -343,7 +343,7 @@
 
 	update_abilities()
 
-	to_chat(get_borer_control(), SPAN_NOTICE("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
+	to_chat(get_borer_control(), span_notice("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
 	max_chemicals += (borer_level * 10)
 	max_chemicals_inhost = max_chemicals * 5
 

@@ -36,7 +36,7 @@
 
 	for(var/mob/M in T)
 		if(istype(M,/mob/living/simple_animal/lizard) || ismouse(M))
-			src.loc.visible_message(SPAN_DANGER("[src.loc] sucks [M] into its decompiler. There's a horrible crunching noise."),SPAN_DANGER("It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises."))
+			src.loc.visible_message(span_danger("[src.loc] sucks [M] into its decompiler. There's a horrible crunching noise."),span_danger("It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises."))
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)
 			if(wood)
@@ -52,15 +52,15 @@
 			if(!istype(D))
 				return
 
-			to_chat(D, SPAN_DANGER("You begin decompiling [M]."))
+			to_chat(D, span_danger("You begin decompiling [M]."))
 
 			if(!do_after(D,50,M))
-				to_chat(D, SPAN_DANGER("You need to remain still while decompiling such a large object."))
+				to_chat(D, span_danger("You need to remain still while decompiling such a large object."))
 				return
 
 			if(!M || !D) return
 
-			to_chat(D, SPAN_DANGER("You carefully and thoroughly decompile [M], storing as much of its resources as you can within yourself."))
+			to_chat(D, span_danger("You carefully and thoroughly decompile [M], storing as much of its resources as you can within yourself."))
 			qdel(M)
 			new/obj/effect/decal/cleanable/blood/oil(get_turf(src))
 
@@ -130,16 +130,16 @@
 		grabbed_something = 1
 
 	if(grabbed_something)
-		to_chat(user, SPAN_NOTICE("You deploy your decompiler and clear out the contents of \the [T]."))
+		to_chat(user, span_notice("You deploy your decompiler and clear out the contents of \the [T]."))
 	else
-		to_chat(user, SPAN_DANGER("Nothing on \the [T] is useful to you."))
+		to_chat(user, span_danger("Nothing on \the [T] is useful to you."))
 	return
 
 //PRETTIER TOOL LIST.
 /mob/living/silicon/robot/drone/installed_modules()
 
 	if(weapon_lock)
-		to_chat(src, SPAN_DANGER("Weapon lock active, unable to use modules! Count:[weaponlock_time]"))
+		to_chat(src, span_danger("Weapon lock active, unable to use modules! Count:[weaponlock_time]"))
 		return
 
 	if(!module)

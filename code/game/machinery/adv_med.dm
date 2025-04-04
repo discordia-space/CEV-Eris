@@ -40,10 +40,10 @@
 	if(usr.stat)
 		return
 	if(src.occupant)
-		to_chat(usr, SPAN_WARNING("The scanner is already occupied!"))
+		to_chat(usr, span_warning("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, SPAN_WARNING("The subject cannot have abiotic items on."))
+		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
 	set_occupant(usr)
 	src.add_fingerprint(usr)
@@ -74,13 +74,13 @@
 
 /obj/machinery/bodyscanner/affect_grab(var/mob/user, var/mob/target)
 	if (src.occupant)
-		to_chat(user, SPAN_NOTICE("The scanner is already occupied!"))
+		to_chat(user, span_notice("The scanner is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	if(target.abiotic())
-		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return
 	set_occupant(target)
 	src.add_fingerprint(user)
@@ -90,17 +90,17 @@
 	if(!ismob(target))
 		return
 	if (src.occupant)
-		to_chat(user, SPAN_WARNING("The scanner is already occupied!"))
+		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 	if (target.abiotic())
-		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, span_notice("Unbuckle the subject before attempting to move them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+		span_notice("\The [user] begins placing \the [target] into \the [src]."),
+		span_notice("You start placing \the [target] into \the [src].")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
@@ -151,10 +151,10 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
-		to_chat(user, SPAN_WARNING("This console is not connected to a functioning body scanner."))
+		to_chat(user, span_warning("This console is not connected to a functioning body scanner."))
 		return
 	if(!ishuman(connected.occupant))
-		to_chat(user, SPAN_WARNING("This device can only scan compatible lifeforms."))
+		to_chat(user, span_warning("This device can only scan compatible lifeforms."))
 		return
 
 	var/dat
@@ -167,7 +167,7 @@
 			dat = format_occupant_data(src.connected.get_occupant_data())
 			dat += "<HR><A href='byond://?src=\ref[src];print=1'>Print</A><BR>"
 		else
-			dat = SPAN_WARNING("Error: No Body Scanner connected.")
+			dat = span_warning("Error: No Body Scanner connected.")
 
 	dat += text("<BR><A href='byond://?src=\ref[];mach_close=scanconsole'>Close</A>", user)
 	user << browse(HTML_SKELETON_TITLE("Body Scanner Console", dat), "window=scanconsole;size=430x600")
@@ -180,14 +180,14 @@
 
 	if (href_list["print"])
 		if (!src.connected)
-			to_chat(usr, "\icon[src]<span class='warning'>Error: No body scanner connected.</span>")
+			to_chat(usr, "\icon[src][span_warning("Error: No body scanner connected.")]")
 			return
 		var/mob/living/carbon/human/occupant = src.connected.occupant
 		if (!src.connected.occupant)
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner is empty.</span>")
+			to_chat(usr, "\icon[src][span_warning("The body scanner is empty.")]")
 			return
 		if (!ishuman(occupant))
-			to_chat(usr, "\icon[src]<span class='warning'>The body scanner cannot scan that lifeform.</span>")
+			to_chat(usr, "\icon[src][span_warning("The body scanner cannot scan that lifeform.")]")
 			return
 		var/obj/item/paper/R = new(src.loc)
 		R.name = "[occupant.get_visible_name()] scan report"

@@ -63,9 +63,9 @@
 		camera.set_status(!camera.status)
 		if(camera.status)
 			camera.c_tag = FindNameFromID(usr)
-			to_chat(usr, SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated."))
+			to_chat(usr, span_notice("User scanned as [camera.c_tag]. Camera activated."))
 		else
-			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
+			to_chat(usr, span_notice("Camera deactivated."))
 
 /obj/item/clothing/head/space/examine(mob/user, extra_description = "")
 	if((get_dist(user, src) < 2) && camera_networks && LAZYLEN(camera_networks))

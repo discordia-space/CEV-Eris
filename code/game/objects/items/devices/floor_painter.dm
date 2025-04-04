@@ -48,11 +48,11 @@
 
 	var/turf/floor/F = A
 	if(!istype(F))
-		to_chat(user, SPAN_WARNING("\The [src] can only be used on ship flooring."))
+		to_chat(user, span_warning("\The [src] can only be used on ship flooring."))
 		return
 
 	if(!F.flooring || !F.flooring.can_paint || F.broken || F.burnt)
-		to_chat(user, SPAN_WARNING("\The [src] cannot paint broken or missing tiles."))
+		to_chat(user, span_warning("\The [src] cannot paint broken or missing tiles."))
 		return
 
 	var/list/decal_data = decals[decal]
@@ -66,11 +66,11 @@
 			config_error = 1
 
 	if(config_error)
-		to_chat(user, SPAN_WARNING("\The [src] flashes an error light. You might need to reconfigure it."))
+		to_chat(user, span_warning("\The [src] flashes an error light. You might need to reconfigure it."))
 		return
 
 	if(F.decals && F.decals.len > 5 && painting_decal != /obj/effect/floor_decal/reset)
-		to_chat(user, SPAN_WARNING("\The [F] has been painted too much; you need to clear it off."))
+		to_chat(user, span_warning("\The [F] has been painted too much; you need to clear it off."))
 		return
 
 	var/painting_dir = 0
@@ -127,7 +127,7 @@
 	var/new_colour = input(usr, "Choose a colour.", "Floor painter", paint_colour) as color|null
 	if(new_colour && new_colour != paint_colour)
 		paint_colour = new_colour
-		to_chat(usr, SPAN_NOTICE("You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>."))
+		to_chat(usr, span_notice("You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>."))
 
 /obj/item/device/floor_painter/verb/choose_decal()
 	set name = "Choose Decal"
@@ -141,7 +141,7 @@
 	var/new_decal = input("Select a decal.") as null|anything in decals
 	if(new_decal && !isnull(decals[new_decal]))
 		decal = new_decal
-		to_chat(usr, SPAN_NOTICE("You set \the [src] decal to '[decal]'."))
+		to_chat(usr, span_notice("You set \the [src] decal to '[decal]'."))
 
 /obj/item/device/floor_painter/verb/choose_direction()
 	set name = "Choose Direction"
@@ -155,7 +155,7 @@
 	var/new_dir = input("Select a direction.") as null|anything in paint_dirs
 	if(new_dir && !isnull(paint_dirs[new_dir]))
 		paint_dir = new_dir
-		to_chat(usr, SPAN_NOTICE("You set \the [src] direction to '[paint_dir]'."))
+		to_chat(usr, span_notice("You set \the [src] direction to '[paint_dir]'."))
 
 /obj/item/device/floor_painter/mech_painter
 	name = "mech painter"
@@ -168,7 +168,7 @@
 
 	var/mob/living/exosuit/ES = A
 	if(istype(ES))
-		to_chat(user, SPAN_WARNING("You can't paint an active exosuit. Dismantle it first."))
+		to_chat(user, span_warning("You can't paint an active exosuit. Dismantle it first."))
 		return
 
 	var/obj/structure/heavy_vehicle_frame/EF = A

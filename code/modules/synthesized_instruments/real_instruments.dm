@@ -229,7 +229,7 @@
 		anchored = !anchored
 		user.visible_message( \
 					"[user] [anchored ? "tightens" : "loosens"] \the [src]'s casters.", \
-					SPAN_NOTICE("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
+					span_notice("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
 					"You hear ratchet.")
 	else
 		..()

@@ -36,9 +36,9 @@
 	stunmode = !stunmode
 
 	if(stunmode)
-		to_chat(usr, SPAN_NOTICE("You toggle on [src]'s stun mode."))
+		to_chat(usr, span_notice("You toggle on [src]'s stun mode."))
 	else
-		to_chat(usr, SPAN_NOTICE("You toggle off [src]'s stun mode."))
+		to_chat(usr, span_notice("You toggle off [src]'s stun mode."))
 
 
 //Special variant that allows excelsior people to walk though

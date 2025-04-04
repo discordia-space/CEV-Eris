@@ -52,7 +52,7 @@
 	else
 		icon_state = "pen_[colour]"
 
-	to_chat(user, SPAN_NOTICE("Changed color to '[colour].'"))
+	to_chat(user, span_notice("Changed color to '[colour].'"))
 
 /obj/item/pen/invisible
 	desc = "An invisble pen marker."
@@ -63,7 +63,7 @@
 /obj/item/pen/attack(mob/M, mob/user)
 	if(!ismob(M))
 		return
-	to_chat(user, SPAN_WARNING("You stab [M] with the pen."))
+	to_chat(user, span_warning("You stab [M] with the pen."))
 //	M << "\red You feel a tiny prick!" //That's a whole lot of meta!
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stabbed with [name]  by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to stab [M.name] ([M.ckey])</font>")
@@ -175,7 +175,7 @@
 				colour = COLOR_WHITE
 			else
 				colour = COLOR_BLACK
-		to_chat(usr, "<span class='info'>You select the [lowertext(selected_type)] ink container.</span>")
+		to_chat(usr, span_info("You select the [lowertext(selected_type)] ink container."))
 
 
 /*

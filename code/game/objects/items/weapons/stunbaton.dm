@@ -72,27 +72,27 @@
 /obj/item/melee/baton/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		if(cell)
-			extra_description += SPAN_NOTICE("The baton is [round(cell.percent())]% charged.")
+			extra_description += span_notice("The baton is [round(cell.percent())]% charged.")
 		else
-			extra_description += SPAN_WARNING("The baton does not have a power source installed.")
+			extra_description += span_warning("The baton does not have a power source installed.")
 	..(user, extra_description)
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))
 		set_status(!status)
-		to_chat(user, SPAN_NOTICE("[src] is now [status ? "on" : "off"]."))
+		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
 		playsound(loc, "sparks", 75, 1, -1)
 	else
 		set_status(FALSE)
 		if(!cell)
-			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
+			to_chat(user, span_warning("[src] does not have a power source!"))
 		else
-			to_chat(user, SPAN_WARNING("[src] is out of charge."))
+			to_chat(user, span_warning("[src] is out of charge."))
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/user)
 /*	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the [src]!"))
+		to_chat(user, span_danger("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
 		deductcharge(hitcost)
 		return
@@ -124,14 +124,14 @@
 		//we can't really extract the actual hit zone from ..(), unfortunately. Just act like they attacked the area they intended to.
 	else if(!status)
 		if(affecting)
-			target.visible_message(SPAN_WARNING("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
+			target.visible_message(span_warning("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
 		else
-			target.visible_message(SPAN_WARNING("[target] has been prodded with [src] by [user]. Luckily it was off."))
+			target.visible_message(span_warning("[target] has been prodded with [src] by [user]. Luckily it was off."))
 	else
 		if(affecting)
-			target.visible_message(SPAN_DANGER("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
+			target.visible_message(span_danger("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
 		else
-			target.visible_message(SPAN_DANGER("[target] has been prodded with [src] by [user]!"))
+			target.visible_message(span_danger("[target] has been prodded with [src] by [user]!"))
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	//stun effects

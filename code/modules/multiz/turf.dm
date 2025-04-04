@@ -173,9 +173,9 @@ see multiz/movement.dm for some info.
 							var/mob/living/carbon/human/H = mover
 							if(H.a_intent == I_HURT && !(m == H))
 								M.visible_message(
-									SPAN_DANGER("\The [mover] falls from the deck above and slams elbow-first into [m]!"),
-									SPAN_DANGER("You slam elbow-first into [m]!"),
-									SPAN_NOTICE("You hear a soft whoosh and a crunch.")
+									span_danger("\The [mover] falls from the deck above and slams elbow-first into [m]!"),
+									span_danger("You slam elbow-first into [m]!"),
+									span_notice("You hear a soft whoosh and a crunch.")
 									)
 					else
 						M.visible_message(
@@ -226,7 +226,7 @@ see multiz/movement.dm for some info.
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			to_chat(user, SPAN_NOTICE("Constructing support lattice ..."))
+			to_chat(user, span_notice("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -239,7 +239,7 @@ see multiz/movement.dm for some info.
 
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
+			to_chat(user, span_notice("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
@@ -247,7 +247,7 @@ see multiz/movement.dm for some info.
 				ChangeTurf(/turf/floor/plating/under)
 			return
 		else
-			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
+			to_chat(user, span_warning("The plating is going to need some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C
@@ -281,12 +281,12 @@ see multiz/movement.dm for some info.
 		return
 
 	if(!user.Adjacent(src))
-		to_chat(user, SPAN_DANGER("You can't descend there, the way is blocked."))
+		to_chat(user, span_danger("You can't descend there, the way is blocked."))
 		return
 
 	var/obj/occupied = structure.turf_is_crowded()
 	if(occupied)
-		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		to_chat(user, span_danger("There's \a [occupied] in the way."))
 		return
 
 	return 1
@@ -295,8 +295,8 @@ see multiz/movement.dm for some info.
 	if(!can_descend(user, structure))
 		return
 
-	user.visible_message(SPAN_WARNING("[user] starts descending onto [structure]!"))
-	structure.visible_message(SPAN_WARNING("Someone starts descending onto [structure]!"))
+	user.visible_message(span_warning("[user] starts descending onto [structure]!"))
+	structure.visible_message(span_warning("Someone starts descending onto [structure]!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 32 : 60) * (user.stats.getPerk(PERK_PARKOUR) ? 0.5 : 1)
@@ -308,5 +308,5 @@ see multiz/movement.dm for some info.
 	user.forceMove(GetBelow(src))
 
 	if(get_turf(user) == GetBelow(src))
-		user.visible_message(SPAN_WARNING("[user] descends onto [structure]!"))
+		user.visible_message(span_warning("[user] descends onto [structure]!"))
 	climbers -= user

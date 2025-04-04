@@ -87,7 +87,7 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "room temperature"
 			else
 				descriptive = "cold"
-		extra_description += SPAN_NOTICE("\The [src] feels [descriptive].")
+		extra_description += span_notice("\The [src] feels [descriptive].")
 	..(user, extra_description)
 
 /obj/item/tank/attackby(obj/item/W, mob/living/user)
@@ -190,7 +190,7 @@ var/list/global/tank_gauge_cache = list()
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)
 			location.internal = null
-			to_chat(usr, SPAN_NOTICE("You close the tank release valve."))
+			to_chat(usr, span_notice("You close the tank release valve."))
 		else
 			var/can_open_valve
 			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
@@ -201,10 +201,10 @@ var/list/global/tank_gauge_cache = list()
 					can_open_valve = 1
 			if(can_open_valve)
 				location.internal = src
-				to_chat(usr, SPAN_NOTICE("You open \the [src] valve."))
+				to_chat(usr, span_notice("You open \the [src] valve."))
 				playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
 			else
-				to_chat(usr, SPAN_WARNING("You need something to connect to \the [src]."))
+				to_chat(usr, span_warning("You need something to connect to \the [src]."))
 			if(location.HUDneed.Find("internal"))
 				var/obj/screen/HUDelm = location.HUDneed["internal"]
 				HUDelm.update_icon()
@@ -291,7 +291,7 @@ var/list/global/tank_gauge_cache = list()
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		#ifdef FIREDBG
-		log_debug(SPAN_WARNING("[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
+		log_debug(span_warning("[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
 		#endif
 
 		if(integrity <= 0)
@@ -306,7 +306,7 @@ var/list/global/tank_gauge_cache = list()
 
 	else if(pressure > TANK_LEAK_PRESSURE)
 		#ifdef FIREDBG
-		log_debug(SPAN_WARNING("[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"))
+		log_debug(span_warning("[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"))
 		#endif
 
 		if(integrity <= 0)

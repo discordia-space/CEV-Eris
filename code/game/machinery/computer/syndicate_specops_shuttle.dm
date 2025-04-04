@@ -60,7 +60,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if (syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
 	if (!syndicate_elite_can_move())
-		usr << SPAN_WARNING("The Syndicate Elite shuttle is unable to leave.")
+		usr << span_warning("The Syndicate Elite shuttle is unable to leave.")
 		return
 
 		sleep(600)
@@ -174,7 +174,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 	for(var/turf/T in get_area_turfs(end_location) )
 		var/mob/M = locate(/mob) in T
-		M << SPAN_WARNING("You have arrived to [station_name]. Commence operation!")
+		M << span_warning("You have arrived to [station_name]. Commence operation!")
 
 /proc/syndicate_elite_can_move()
 	if(syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return 0
@@ -187,15 +187,15 @@ var/syndicate_elite_shuttle_timeleft = 0
 	return attack_hand(user)
 
 /obj/machinery/computer/syndicate_elite_shuttle/emag_act(var/remaining_charges, var/mob/user)
-	user << SPAN_NOTICE("The electronic systems in this console are far too advanced for your primitive hacking peripherals.")
+	user << span_notice("The electronic systems in this console are far too advanced for your primitive hacking peripherals.")
 
 /obj/machinery/computer/syndicate_elite_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		user << SPAN_WARNING("Access Denied.")
+		user << span_warning("Access Denied.")
 		return
 
 //	if (sent_syndicate_strike_team == 0)
-//		usr << SPAN_WARNING("The strike team has not yet deployed.")
+//		usr << span_warning("The strike team has not yet deployed.")
 //		return
 
 	if(..())
@@ -225,13 +225,13 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if (href_list["sendtodock"])
 		if(!syndicate_elite_shuttle_at_station|| syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
-		usr << SPAN_NOTICE("The Syndicate will not allow the Elite Squad shuttle to return.")
+		usr << span_notice("The Syndicate will not allow the Elite Squad shuttle to return.")
 		return
 
 	else if (href_list["sendtostation"])
 		if(syndicate_elite_shuttle_at_station || syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return
 
-		usr << SPAN_NOTICE("The Syndicate Elite shuttle will arrive on [station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds.")
+		usr << span_notice("The Syndicate Elite shuttle will arrive on [station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds.")
 
 		temp  = "Shuttle departing.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()

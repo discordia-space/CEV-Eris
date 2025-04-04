@@ -245,13 +245,14 @@
 	can_revote = TRUE
 	can_unvote = TRUE
 
+
 /datum/vote_choice/yes_chaos_level
 	text = "Increase the chaos level!"
 
 /datum/vote_choice/yes_chaos_level/on_win()
 	GLOB.chaos_level += 1
 	for(var/mob/M in SSmobs.mob_list | SShumans.mob_list)
-		to_chat(M, "<br><center><span class='danger'><b><font size=4>Chaos Level Increased</font></b><br></span></center><br>")
+		to_chat(M, "<br><center>[span_danger("<b><font size=4>Chaos Level Increased</font></b><br>")]</center><br>")
 
 /datum/vote_choice/no_chaos_level
 	text = "We have enough chaos already!"

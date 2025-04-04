@@ -16,13 +16,13 @@
 
 	for(var/obj/item/device/propaganda_chip/C in get_area(src))
 		if (C.active)
-			to_chat(usr, SPAN_WARNING("Another chip in the area prevents activation."))
+			to_chat(usr, span_warning("Another chip in the area prevents activation."))
 			return
 
 	active = TRUE
 	anchored = TRUE
 	START_PROCESSING(SSobj, src)
-	to_chat(usr, SPAN_NOTICE("Chip activated and anchored to the ground, shouldn't be disturbed"))
+	to_chat(usr, span_notice("Chip activated and anchored to the ground, shouldn't be disturbed"))
 	verbs -= .verb/activate
 	verbs -= .verb/verb_pickup
 
@@ -36,10 +36,10 @@
 			if("Yes")
 				if(!Adjacent(user))
 					return
-				visible_message(SPAN_WARNING("[user] destroys [src]!") )
+				visible_message(span_warning("[user] destroys [src]!") )
 				playsound(src.loc, 'sound/effects/basscannon.ogg', 100, 1, 15, 15)
 				for (var/mob/M in range(20, src))
-					to_chat(M,SPAN_WARNING("You hear a loud electronic noise"))
+					to_chat(M,span_warning("You hear a loud electronic noise"))
 
 				Destroy()
 			if("No")

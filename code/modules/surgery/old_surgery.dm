@@ -132,7 +132,7 @@
 			tool.handle_failure(user, M, required_stat = selectedStep.required_stat, required_quality = selectedStep.required_tool_quality)
 			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
 		else
-			to_chat(user, SPAN_WARNING("You must remain close to your patient to conduct surgery."))
+			to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))
 
 		if (ishuman(M))
 			var/mob/living/carbon/human/H = M

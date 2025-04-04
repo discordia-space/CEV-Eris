@@ -20,7 +20,7 @@
 
 	// Transfer over the AI.
 	to_chat(transfer, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
-	to_chat(user, "<span class='notice'>Transfer successful:</span> [transfer.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+	to_chat(user, "[span_notice("Transfer successful:")] [transfer.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
 
 	transfer.loc = src
 	transfer.cancel_camera()
@@ -46,7 +46,7 @@
 
 		if(istype(comp_ai))
 			if(active)
-				to_chat(user, "<span class='danger'>ERROR:</span> Reconstruction in progress.")
+				to_chat(user, "[span_danger("ERROR:")] Reconstruction in progress.")
 				return
 			card.grab_ai(comp_ai, user)
 			if(!(locate(/mob/living/silicon/ai) in src)) occupant = null

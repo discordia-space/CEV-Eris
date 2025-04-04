@@ -49,14 +49,14 @@
 	if(istype(W,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
-			to_chat(user, SPAN_NOTICE("There already is a string attached to this coin."))
+			to_chat(user, span_notice("There already is a string attached to this coin."))
 			return
 		if (CC.use(1))
 			overlays += image('icons/obj/items.dmi',"coin_string_overlay")
 			string_attached = 1
-			to_chat(user, SPAN_NOTICE("You attach a string to the coin."))
+			to_chat(user, span_notice("You attach a string to the coin."))
 		else
-			to_chat(user, SPAN_NOTICE("This cable coil appears to be empty."))
+			to_chat(user, span_notice("This cable coil appears to be empty."))
 		return
 	else if(istype(W,/obj/item/tool/wirecutters))
 		if(!string_attached)
@@ -76,5 +76,5 @@
 		comment = "tails"
 	else if(result == 2)
 		comment = "heads"
-	user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on [comment]! "), \
-						 SPAN_NOTICE("You throw \the [src]. It lands on [comment]! "))
+	user.visible_message(span_notice("[user] has thrown \the [src]. It lands on [comment]! "), \
+						 span_notice("You throw \the [src]. It lands on [comment]! "))

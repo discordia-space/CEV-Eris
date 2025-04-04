@@ -7,7 +7,7 @@
 	density = TRUE
 
 /obj/structure/largecrate/attack_hand(mob/user)
-	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))
+	to_chat(user, span_notice("You need a crowbar to pry this open!"))
 	return
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user)
@@ -17,9 +17,9 @@
 			var/turf/T = get_turf(src)
 			for(var/atom/movable/AM in contents)
 				if(AM.simulated) AM.forceMove(T)
-			user.visible_message(SPAN_NOTICE("[user] pries \the [src] open."), \
-								 SPAN_NOTICE("You pry open \the [src]."), \
-								 SPAN_NOTICE("You hear splitting wood."))
+			user.visible_message(span_notice("[user] pries \the [src] open."), \
+								 span_notice("You pry open \the [src]."), \
+								 span_notice("You hear splitting wood."))
 			qdel(src)
 	else
 		return attack_hand(user)

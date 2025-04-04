@@ -5,7 +5,7 @@
 	blood_level = 1
 
 /datum/surgery_step/attach_mod/require_tool_message(mob/living/user)
-	to_chat(user, SPAN_WARNING("You need an organ modification or an organoid to complete this step."))
+	to_chat(user, span_warning("You need an organ modification or an organoid to complete this step."))
 
 /datum/surgery_step/attach_mod/can_use(mob/living/user, obj/item/organ/internal/organ, obj/item/mod)
 	var/datum/component/modification/organ/C
@@ -20,7 +20,7 @@
 		var/organ_size_delta = ((organ.specific_organ_size + C.modifications[ORGAN_SPECIFIC_SIZE_BASE]) * (1 + C.modifications[ORGAN_SPECIFIC_SIZE_MULT])\
 								+ C.modifications[ORGAN_SPECIFIC_SIZE_MOD]) - organ.specific_organ_size
 		if(limb.get_total_occupied_volume() + organ_size_delta > limb.max_volume)
-			to_chat(user, SPAN_WARNING("There isn't enough space in \the [limb] to apply \the [mod]."))
+			to_chat(user, span_warning("There isn't enough space in \the [limb] to apply \the [mod]."))
 			return FALSE
 
 	return organ.is_open()
@@ -35,8 +35,8 @@
 
 /datum/surgery_step/attach_mod/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/mod)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [mod]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [mod]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [mod]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [mod]!")
 	)
 	organ.take_damage(rand(24, 32), BRUTE, edge = TRUE)
 
@@ -59,8 +59,8 @@
 
 /datum/surgery_step/remove_mod/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(rand(24, 32), BRUTE, sharp = TRUE)
 
@@ -83,4 +83,4 @@
 	organ.examine(user)
 
 /datum/surgery_step/examine/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/tool)
-	to_chat(user, SPAN_WARNING("You couldn't get a good look at \the [organ.get_surgery_name()]."))
+	to_chat(user, span_warning("You couldn't get a good look at \the [organ.get_surgery_name()]."))

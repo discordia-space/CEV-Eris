@@ -205,7 +205,7 @@
 	if(!user.unEquip(W))
 		return FALSE
 
-	to_chat(user, SPAN_NOTICE("You insert \the [W] in the product receptor."))
+	to_chat(user, span_notice("You insert \the [W] in the product receptor."))
 	if(R)
 		R.add_product(W)
 	else
@@ -215,13 +215,13 @@
 
 /obj/machinery/vending/proc/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
 	if(!earnings_account)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
+		to_chat(user, span_warning("[src] flashes a message: Vendomat not registered to an account."))
 		return
 	if(vendor_department)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [GLOB.all_departments[vendor_department]]."))
+		to_chat(user, span_warning("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [GLOB.all_departments[vendor_department]]."))
 		return
 	if(buying_percentage <= 0)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales."))
+		to_chat(user, span_warning("[src] flashes a message: Vendomat not accepting sales."))
 		return
 
 	if(!user.unEquip(W))
@@ -229,7 +229,7 @@
 
 	var/buying_price = round(R.price * buying_percentage/100,5)
 	if(earnings_account.money < buying_price)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase."))
+		to_chat(user, span_warning("[src] flashes a message: Account is unable to make this purchase."))
 		return
 	var/datum/transaction/T = new(-buying_price, "[user.name]", "Sale of [R.product_name]", src)
 	T.apply_to(earnings_account)
@@ -238,7 +238,7 @@
 
 	spawn_money(buying_price,loc,usr)
 
-	to_chat(user, SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits."))
+	to_chat(user, span_notice("[src] accepts the sale of [W] and dispenses [buying_price] credits."))
 
 /**
  *  Build src.produdct_records from the products lists
@@ -317,14 +317,14 @@
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
+				to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
 			return
 		if(QUALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance panel."))
 				overlays.Cut()
 				if(panel_open)
 					overlays += image(icon, "[icon_type]-panel")
@@ -332,10 +332,10 @@
 		if(QUALITY_WELDING)
 			if(custom_vendor)
 				if(!panel_open)
-					to_chat(usr, SPAN_WARNING("The maintenance panel on \the [src] needs to be open before deconstructing it."))
+					to_chat(usr, span_warning("The maintenance panel on \the [src] needs to be open before deconstructing it."))
 					return
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					visible_message(SPAN_WARNING("\The [src] has been dismantled by [user]!"),"You hear welding.")
+					visible_message(span_warning("\The [src] has been dismantled by [user]!"),"You hear welding.")
 					new /obj/item/stack/material/steel(loc, 8)
 					for(var/datum/data/vending_product/R in product_records)
 						for(var/obj/O in R.instances)
@@ -356,7 +356,7 @@
 				paid = pay_with_item(I, user)
 			else
 				var/atom/movable/AM = alt_currency_path
-				to_chat(user, SPAN_WARNING("This vending machine only accepts [initial(AM.name)] as currency."))
+				to_chat(user, span_warning("This vending machine only accepts [initial(AM.name)] as currency."))
 			handled = TRUE
 		else
 			if(ID) //for IDs and PDAs and wallets with IDs
@@ -383,11 +383,11 @@
 	if(custom_vendor && ID)
 		var/datum/money_account/user_account = get_account(ID.associated_account_number)
 		if(!user_account)
-			to_chat(user, SPAN_WARNING("Unable to access account! Please contact technical support if problem persists."))
+			to_chat(user, span_warning("Unable to access account! Please contact technical support if problem persists."))
 			return
 
 		if(user_account.suspended)
-			to_chat(user, SPAN_WARNING("Unable to access account! Account is suspended."))
+			to_chat(user, span_warning("Unable to access account! Account is suspended."))
 			return
 
 		if(machine_vendor_account == user_account || !machine_vendor_account || vendor_department)
@@ -396,9 +396,9 @@
 				var/datum/job/userjob = SSjob.GetJob(CR.get_job())
 				if(userjob.department == vendor_department)
 					locked = !locked
-					to_chat(user, SPAN_NOTICE("\The [src] has been [locked ? "" : "un"]locked."))
+					to_chat(user, span_notice("\The [src] has been [locked ? "" : "un"]locked."))
 				else
-					to_chat(user, SPAN_NOTICE("You are not authorized to manage \the [src]."))
+					to_chat(user, span_notice("You are not authorized to manage \the [src]."))
 				return
 
 			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
@@ -406,7 +406,7 @@
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num | null
 				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
 				if(!user_account)
-					to_chat(user, SPAN_WARNING("Unable to access account! Credentials are incorrect."))
+					to_chat(user, span_warning("Unable to access account! Credentials are incorrect."))
 					return
 
 			if(!machine_vendor_account)
@@ -414,8 +414,8 @@
 				earnings_account = user_account
 			locked = !locked
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 60, 1)
-			to_chat(user, SPAN_NOTICE("You [locked ? "" : "un"]lock \the [src]."))
-			visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it.</span>")
+			to_chat(user, span_notice("You [locked ? "" : "un"]lock \the [src]."))
+			visible_message(span_info("\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it."))
 			return
 
 	if(I && istype(I, /obj/item/spacecash))
@@ -430,7 +430,7 @@
 		I.loc = src
 		coin = I
 		categories |= CAT_COIN
-		to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
+		to_chat(user, span_notice("You insert \the [I] into \the [src]."))
 		return
 	else if(istype(I, /obj/item/device/spy_bug))
 		user.drop_item()
@@ -459,10 +459,10 @@
 	if(currently_vending.price > cashmoney.worth)
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
-		to_chat(usr, "\icon[cashmoney] <span class='warning'>That is not enough money.</span>")
+		to_chat(usr, "\icon[cashmoney] [span_warning("That is not enough money.")]")
 		return 0
 
-	visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
+	visible_message(span_info("\The [usr] inserts some cash into \the [src]."))
 	cashmoney.worth -= currently_vending.price
 
 	if(cashmoney.worth <= 0)
@@ -482,7 +482,7 @@
  * successful, 0 if failed.
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
-	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
+	visible_message(span_info("\The [usr] swipes \the [wallet] through \the [src]."))
 	if(currently_vending.price > wallet.worth)
 		purchase_message = "Insufficient funds on chargecard."
 		purchase_error = TRUE
@@ -500,9 +500,9 @@
  */
 /obj/machinery/vending/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
-		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [I] through \the [src]."))
 	else
-		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
+		visible_message(span_info("\The [usr] swipes \the [ID_container] through \the [src]."))
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
 		purchase_message = "Error: Unable to access account. Please contact technical support if problem persists."
@@ -554,12 +554,12 @@
 			if(S.amount)
 				should_qdel = FALSE		// Don't qdel a stack with remaining charges
 		else
-			to_chat(user, SPAN_WARNING("\icon[I] That is not enough money."))
+			to_chat(user, span_warning("\icon[I] That is not enough money."))
 			return FALSE
 	else
 		return FALSE
 
-	visible_message(SPAN_NOTICE("\The [user] inserts ["[amount_to_spend]"] [I.name] into \the [src]."))
+	visible_message(span_notice("\The [user] inserts ["[amount_to_spend]"] [I.name] into \the [src]."))
 
 	if(should_qdel)
 		user.drop_from_inventory(I)
@@ -670,7 +670,7 @@
 				return TRUE
 
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-				to_chat(usr, SPAN_WARNING("Access denied!"))	//Unless emagged of course
+				to_chat(usr, span_warning("Access denied!"))	//Unless emagged of course
 				flick(icon_deny, src)
 				return TRUE
 
@@ -684,7 +684,7 @@
 			if(R.price <= 0 || !locked)
 				vend(R, usr)
 			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
-				to_chat(usr, SPAN_DANGER("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled."))
+				to_chat(usr, span_danger("Artificial unit recognized.  Artificial units cannot complete this transaction.  Purchase canceled."))
 				return TRUE
 
 			else
@@ -770,7 +770,7 @@
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
-		to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
+		to_chat(usr, span_warning("Access denied."))	//Unless emagged of course
 		flick(icon_deny,src)
 		return
 	vend_ready = 0 //One thing at a time!!
@@ -779,13 +779,13 @@
 
 	if(R.category & CAT_COIN)
 		if(!coin)
-			to_chat(user, SPAN_NOTICE("You need to insert a coin to get this item."))
+			to_chat(user, span_notice("You need to insert a coin to get this item."))
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, SPAN_NOTICE("You successfully pull the coin out before \the [src] could swallow it."))
+				to_chat(user, span_notice("You successfully pull the coin out before \the [src] could swallow it."))
 			else
-				to_chat(user, SPAN_NOTICE("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
+				to_chat(user, span_notice("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
 				qdel(coin)
 				categories &= ~CAT_COIN
 		else
@@ -844,7 +844,7 @@
 		return
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='game say'><span class='name'>\The [src]</span> beeps, \"[message]\"</span>",2)
+		O.show_message("<span class='game say'>[span_name("\The [src]")] beeps, \"[message]\"</span>",2)
 	return
 
 /obj/machinery/vending/power_change()
@@ -882,7 +882,7 @@
 		'sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/batrifle_fire.ogg'),\
 		60, 1)
 	P.launch(target)
-	visible_message(SPAN_WARNING("\The [src] launches \a [P] at \the [target]!"))
+	visible_message(span_warning("\The [src] launches \a [P] at \the [target]!"))
 	return 1
 
 /obj/machinery/vending/proc/set_department()
@@ -1532,7 +1532,7 @@
 
 	if(bingo)
 		return TRUE
-	to_chat(user, SPAN_WARNING("[src] flashes a message: The unfaithful shall not be served."))
+	to_chat(user, span_warning("[src] flashes a message: The unfaithful shall not be served."))
 	return FALSE
 
 /obj/machinery/vending/theomat/attackby(obj/item/I, mob/user)
@@ -2006,7 +2006,7 @@
 	set src in oview(1)
 
 	if(locked)
-		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to remodel it."))
+		to_chat(usr, span_warning("[src] needs to be unlocked to remodel it."))
 		return
 	var/choice = input(usr, "How do you want your Vendomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in CUSTOM_VENDOMAT_MODELS
 	if(!choice)
@@ -2020,7 +2020,7 @@
 	set src in oview(1)
 
 	if(locked)
-		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to rename it."))
+		to_chat(usr, span_warning("[src] needs to be unlocked to rename it."))
 		return
 
 	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", name) as text|null, MAX_NAME_LEN)

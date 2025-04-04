@@ -53,9 +53,9 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 /obj/structure/scrap_spawner/examine(mob/user, extra_description = "")
 	if(isliving(user))
 		try_make_loot() //Make the loot when examined so the big item check below will work
-	extra_description += SPAN_NOTICE("\nYou could sift through it with a shoveling tool to uncover more contents")
+	extra_description += span_notice("\nYou could sift through it with a shoveling tool to uncover more contents")
 	if(big_item && big_item.loc == src)
-		extra_description += SPAN_DANGER("\nYou can make out the corners of something large buried in here. Keep digging and removing things to uncover it")
+		extra_description += span_danger("\nYou can make out the corners of something large buried in here. Keep digging and removing things to uncover it")
 	..(user, extra_description)
 
 /obj/effect/scrapshot
@@ -190,7 +190,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 			if(H.shoes)
 				return
 
-			to_chat(M, SPAN_DANGER("You step on \the [src]!"))
+			to_chat(M, span_danger("You step on \the [src]!"))
 
 			var/list/check = list(BP_L_LEG, BP_R_LEG)
 			while(check.len)
@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 		var/obj/item/organ/external/BP = victim.get_organ(victim.hand ? BP_L_ARM : BP_R_ARM)
 		if(!BP)
 			return FALSE
-		to_chat(user, SPAN_DANGER("Ouch! You cut yourself while picking through \the [src]."))
+		to_chat(user, span_danger("Ouch! You cut yourself while picking through \the [src]."))
 		BP.take_damage(5, null, TRUE, TRUE, "Sharp debris")
 		if(!BP_IS_ROBOTIC(BP))
 			victim.reagents.add_reagent("toxin", pick(prob(50);0,prob(50);5,prob(10);10,prob(1);25))
@@ -328,21 +328,21 @@ GLOBAL_LIST_EMPTY(scrap_base_cache)
 	return FALSE
 
 /obj/structure/scrap_spawner/proc/clear()
-	visible_message(SPAN_NOTICE("\The [src] is cleared out!"))
+	visible_message(span_notice("\The [src] is cleared out!"))
 	if(big_item)
-		visible_message(SPAN_NOTICE("\A hidden [big_item] is uncovered from beneath the [src]!"))
+		visible_message(span_notice("\A hidden [big_item] is uncovered from beneath the [src]!"))
 		big_item.forceMove(get_turf(src))
 		big_item = null
 	else if(rare_item && prob(rare_item_chance))
 		var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
 		O = new O(get_turf(src))
-		visible_message(SPAN_NOTICE("\A hidden [O] is uncovered from beneath the [src]!"))
+		visible_message(span_notice("\A hidden [O] is uncovered from beneath the [src]!"))
 	qdel(src)
 
 /obj/structure/scrap_spawner/attackby(obj/item/W, mob/living/carbon/human/user)
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 	if((W.has_quality(QUALITY_SHOVELING)) && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SHOVELING, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB, forced_sound = "rummage"))
-		user.visible_message(SPAN_NOTICE("[user] [pick(ways)] \the [src]."))
+		user.visible_message(span_notice("[user] [pick(ways)] \the [src]."))
 		user.do_attack_animation(src)
 		if(user.stats.getPerk(PERK_JUNKBORN))
 			rare_item = TRUE

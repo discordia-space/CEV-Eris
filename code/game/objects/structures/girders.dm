@@ -16,35 +16,35 @@
 
 /obj/structure/girder/examine(mob/user, extra_description)
 	if(health == maxHealth)
-		extra_description += SPAN_NOTICE("It is undamaged.")
+		extra_description += span_notice("It is undamaged.")
 	else
 		var/health_ratio = health / maxHealth
 		if(health_ratio <= 0.3)
-			extra_description += SPAN_WARNING("It looks heavily damaged.")
+			extra_description += span_warning("It looks heavily damaged.")
 		else if(health_ratio <= 0.6)
-			extra_description += SPAN_WARNING("It looks damaged.")
+			extra_description += span_warning("It looks damaged.")
 		else
-			extra_description += SPAN_WARNING("It looks slightly damaged.")
+			extra_description += span_warning("It looks slightly damaged.")
 
 	if(is_low)
 		extra_description += "\nThis girder will become a low wall if [metal_amount_to_complete] sheets of steel are added."
-		extra_description += SPAN_NOTICE("\nIf you want to build reinforced or regular wall instead, adjust the girder height by prying it.")
+		extra_description += span_notice("\nIf you want to build reinforced or regular wall instead, adjust the girder height by prying it.")
 	else if(is_reinforced)
 		extra_description += "\nThis girder will become a reinforced wall if [metal_amount_to_complete] sheets of plasteel are added."
-		extra_description += SPAN_NOTICE("\nIf you want to build low or regular wall instead, cut the support beams.")
+		extra_description += span_notice("\nIf you want to build low or regular wall instead, cut the support beams.")
 	else
 		extra_description += "\nThis girder will become a regular wall if [metal_amount_to_complete] sheets of steel are added."
-		extra_description += SPAN_NOTICE("\nIf you want to build low or reinforced wall, adjust the height by prying or reinforce it with [rods_amount_to_reinforce] metal rods.")
+		extra_description += span_notice("\nIf you want to build low or reinforced wall, adjust the height by prying or reinforce it with [rods_amount_to_reinforce] metal rods.")
 
 	if(anchored)
 		if(is_reinforced)
-			extra_description += SPAN_NOTICE("\nIt is firmly secured in place and reinforced, ready to become a wall. Armature cutters and a bolt turning tool can change that.")
+			extra_description += span_notice("\nIt is firmly secured in place and reinforced, ready to become a wall. Armature cutters and a bolt turning tool can change that.")
 		else
-			extra_description += SPAN_NOTICE("\nIt is firmly secured in place, ready to become a wall or to be reinforced. A bolt turning tool can change that.")
+			extra_description += span_notice("\nIt is firmly secured in place, ready to become a wall or to be reinforced. A bolt turning tool can change that.")
 	else
-		extra_description += SPAN_NOTICE("\nIt moves freely, but must be bolted down to finish construction.")
+		extra_description += span_notice("\nIt moves freely, but must be bolted down to finish construction.")
 
-	extra_description += SPAN_NOTICE("\nCould be repaired or disassembled by welding.")
+	extra_description += span_notice("\nCould be repaired or disassembled by welding.")
 
 	extra_description += "\nThere is a [is_low ? 25 : 50]% chance to intercept an incoming projectile!"
 	..(user, extra_description)
@@ -70,7 +70,7 @@
 	if(damage)
 		M.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/metalhit2.ogg', 50, 1)
 		take_damage(damage)
 	else
@@ -96,87 +96,87 @@
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
-			to_chat(user, SPAN_NOTICE("You start [anchored ? "securing" : "unsecuring"] the girder..."))
+			to_chat(user, span_notice("You start [anchored ? "securing" : "unsecuring"] the girder..."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				anchored = !anchored
-				to_chat(user, SPAN_NOTICE("You've [anchored ? "secured" : "unsecured"] the girder!"))
+				to_chat(user, span_notice("You've [anchored ? "secured" : "unsecured"] the girder!"))
 				update_icon()
 			return
 		if(QUALITY_PRYING)
-			to_chat(user, SPAN_NOTICE("You start adjusting the girder height..."))
+			to_chat(user, span_notice("You start adjusting the girder height..."))
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				is_low = !is_low
-				to_chat(user, SPAN_NOTICE("You've changed the girder size. It will create a [is_low ? "low" : "regular"] wall when finished!"))
+				to_chat(user, span_notice("You've changed the girder size. It will create a [is_low ? "low" : "regular"] wall when finished!"))
 				update_icon()
 			return
 		if(QUALITY_WIRE_CUTTING)
-			to_chat(user, SPAN_NOTICE("You start cutting the support beams..."))
+			to_chat(user, span_notice("You start cutting the support beams..."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				is_reinforced = FALSE
 				new /obj/item/stack/rods(drop_location(), rods_amount_to_reinforce)
-				to_chat(user, SPAN_NOTICE("You've removed metal rods from the girder. It will create a regular wall when finished!"))
+				to_chat(user, span_notice("You've removed metal rods from the girder. It will create a regular wall when finished!"))
 				update_icon()
 			return
 		if(QUALITY_WELDING)
 			var/is_repairing = (health < maxHealth) ? TRUE : FALSE // Repair always comes before deconstruction with walls
-			to_chat(user, SPAN_NOTICE("You start [is_repairing ? "repairing" : "dismantling"] the girder..."))
+			to_chat(user, span_notice("You start [is_repairing ? "repairing" : "dismantling"] the girder..."))
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 				if(is_repairing)
 					health = maxHealth
-					to_chat(user, SPAN_NOTICE("You've repaired the girder!"))
+					to_chat(user, span_notice("You've repaired the girder!"))
 				else
 					dismantle(user)
-					to_chat(user, SPAN_NOTICE("You've dismantled the girder!"))
+					to_chat(user, span_notice("You've dismantled the girder!"))
 			return
 		if(ABORT_CHECK)
 			return
 
 	if(istype(I, /obj/item/stack/rods))
 		if(is_low)
-			to_chat(user, SPAN_NOTICE("Girder is too low to be reinforced!\
+			to_chat(user, span_notice("Girder is too low to be reinforced!\
 			\nAdjust the girder height with prying tool first, if you want to make regular or reinforced wall.\
 			\nAlternatively, you can add [metal_amount_to_complete] steel sheets to create a low wall."))
 			return
 		if(is_reinforced)
-			to_chat(user, SPAN_NOTICE("The girder is already reinforced!\
+			to_chat(user, span_notice("The girder is already reinforced!\
 			\nAdd [metal_amount_to_complete] plasteel to make a reinforced wall, or remove the support beams with wire cutting tool."))
 			return
 		if(!anchored)
-			to_chat(user, SPAN_NOTICE("The girder must be anchored first! Use a bolt turning tool for this."))
+			to_chat(user, span_notice("The girder must be anchored first! Use a bolt turning tool for this."))
 			return
 
 		var/obj/item/stack/rods/rods = I
 		if(rods.get_amount() < rods_amount_to_reinforce)
-			to_chat(user, SPAN_NOTICE("There isn't enough rods to reinforce the girder, you need at least [rods_amount_to_reinforce]."))
+			to_chat(user, span_notice("There isn't enough rods to reinforce the girder, you need at least [rods_amount_to_reinforce]."))
 			return
-		to_chat(user, SPAN_NOTICE("You start reinforcing the girder..."))
+		to_chat(user, span_notice("You start reinforcing the girder..."))
 		if(do_after(user, 40, src) && rods.use(rods_amount_to_reinforce))
 			is_reinforced = TRUE
 			update_icon()
-			to_chat(user, SPAN_NOTICE("You've reinforced the girder!\
+			to_chat(user, span_notice("You've reinforced the girder!\
 			\nAdd [metal_amount_to_complete] plasteel to complete a reinforced wall, or use wire cutting tool to get the metal rods back."))
 		else
-			to_chat(user, SPAN_NOTICE("You've failed to reinforce the girder!"))
+			to_chat(user, span_notice("You've failed to reinforce the girder!"))
 
 	else if(istype(I, /obj/item/stack/material))
 		if(!anchored)
-			to_chat(user, SPAN_NOTICE("The girder must be anchored first! Use a bolt turning tool for this."))
+			to_chat(user, span_notice("The girder must be anchored first! Use a bolt turning tool for this."))
 		else if(is_reinforced)
 			if(istype(I, /obj/item/stack/material/plasteel))
 				var/obj/item/stack/material/plasteel/plasteel = I
 				if(do_after(user, 40, src) && plasteel.use(metal_amount_to_complete))
 					construct_wall(user)
-					to_chat(user, SPAN_NOTICE("You've built a reinforced wall!"))
+					to_chat(user, span_notice("You've built a reinforced wall!"))
 			else
-				to_chat(user, SPAN_NOTICE("You need plasteel to finish the reinforced wall!"))
+				to_chat(user, span_notice("You need plasteel to finish the reinforced wall!"))
 		else
 			if(istype(I, /obj/item/stack/material/steel))
 				var/obj/item/stack/material/steel/steel = I
 				if(do_after(user, 40, src) && steel.use(metal_amount_to_complete))
 					construct_wall(user)
-					to_chat(user, SPAN_NOTICE("You've built a [is_low ? "low " : ""]wall!"))
+					to_chat(user, span_notice("You've built a [is_low ? "low " : ""]wall!"))
 			else
-				to_chat(user, SPAN_NOTICE("You need steel to finish the [is_low ? "low " : ""]wall!"))
+				to_chat(user, span_notice("You need steel to finish the [is_low ? "low " : ""]wall!"))
 	else
 		take_damage(I.force * I.structure_damage_factor)
 		. = ..() // Calls /atom/movable/attackby(), which plays the sound, animation, sets a cooldown, but doesn't do damage

@@ -13,22 +13,22 @@
 			if(!clean)
 				var/gore_sound = "[BP_IS_ROBOTIC(src) ? "tortured metal" : "ripping tendons and flesh"]"
 				owner.visible_message(
-					SPAN_DANGER("\The [owner]'s [src.name] flies off in an arc!"),\
-					"<span class='moderate'><b>Your [src.name] goes flying off!</b></span>",\
-					SPAN_DANGER("You hear a terrible sound of [gore_sound]."))
+					span_danger("\The [owner]'s [src.name] flies off in an arc!"),\
+					span_moderate("<b>Your [src.name] goes flying off!</b>"),\
+					span_danger("You hear a terrible sound of [gore_sound]."))
 		if(DROPLIMB_BURN)
 			var/gore = "[BP_IS_ROBOTIC(src) ? " of melting metal": " of burning flesh"]"
 			owner.visible_message(
-				SPAN_DANGER("\The [owner]'s [src.name] flashes away into ashes!"),\
-				"<span class='moderate'><b>Your [src.name] flashes away into ashes!</b></span>",\
-				SPAN_DANGER("You hear a crackling sound[gore]."))
+				span_danger("\The [owner]'s [src.name] flashes away into ashes!"),\
+				span_moderate("<b>Your [src.name] flashes away into ashes!</b>"),\
+				span_danger("You hear a crackling sound[gore]."))
 		if(DROPLIMB_BLUNT)
 			var/gore = BP_IS_ROBOTIC(src) ? " in shower of sparks": " in shower of gore"
 			var/gore_sound = BP_IS_ROBOTIC(src) ? "rending sound of tortured metal" : "sickening splatter of gore"
 			owner.visible_message(
-				SPAN_DANGER("\The [owner]'s [src.name] explodes[gore]!"),\
-				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
-				SPAN_DANGER("You hear the [gore_sound]."))
+				span_danger("\The [owner]'s [src.name] explodes[gore]!"),\
+				span_moderate("<b>Your [src.name] explodes[gore]!</b>"),\
+				span_danger("You hear the [gore_sound]."))
 
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent

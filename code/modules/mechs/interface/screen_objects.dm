@@ -24,7 +24,7 @@
 /obj/screen/movable/exosuit/radio/Click()
 	if(..())
 		if(owner.radio) owner.radio.attack_self(usr)
-		else to_chat(usr, SPAN_WARNING("There is no radio installed."))
+		else to_chat(usr, span_warning("There is no radio installed."))
 
 /obj/screen/movable/exosuit/hardpoint
 	name = "hardpoint"
@@ -127,11 +127,11 @@
 	if(..() && owner && holding)
 		var/modifiers = params2list(params)
 		if(modifiers["ctrl"])
-			if(owner.hardpoints_locked) to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
+			if(owner.hardpoints_locked) to_chat(usr, span_warning("Hardpoint ejection system is locked."))
 			else if(owner.remove_system(hardpoint_tag))
 				update_system_info()
-				to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
-			else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
+				to_chat(usr, span_notice("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
+			else to_chat(usr, span_danger("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
 		else if(modifiers["shift"] && holding) holding.attack_self(usr)
 		else if(owner.selected_hardpoint == hardpoint_tag)
 			icon_state = "hardpoint"
@@ -221,7 +221,7 @@
 
 /obj/screen/movable/exosuit/toggle/air/toggled()
 	owner.use_air = ..()
-	to_chat(usr, SPAN_NOTICE("Auxiliary atmospheric system [owner.use_air ? "enabled" : "disabled"]."))
+	to_chat(usr, span_notice("Auxiliary atmospheric system [owner.use_air ? "enabled" : "disabled"]."))
 	playsound(src, 'sound/machines/airlock.ogg', 50, 1)
 
 /obj/screen/movable/exosuit/toggle/maint
@@ -234,7 +234,7 @@
 
 /obj/screen/movable/exosuit/toggle/maint/toggled()
 	owner.maintenance_protocols = ..()
-	to_chat(usr, SPAN_NOTICE("Maintenance protocols [owner.maintenance_protocols ? "enabled" : "disabled"]."))
+	to_chat(usr, span_notice("Maintenance protocols [owner.maintenance_protocols ? "enabled" : "disabled"]."))
 	playsound(src, 'sound/machines/Custom_boltsup.ogg', 50, 1)
 
 /obj/screen/movable/exosuit/toggle/hardpoint
@@ -246,7 +246,7 @@
 
 /obj/screen/movable/exosuit/toggle/hardpoint/toggled()
 	owner.hardpoints_locked = ..()
-	to_chat(usr, SPAN_NOTICE("Hardpoint system access is now [owner.hardpoints_locked ? "disabled" : "enabled"]."))
+	to_chat(usr, span_notice("Hardpoint system access is now [owner.hardpoints_locked ? "disabled" : "enabled"]."))
 	playsound(src, 'sound/mechs/UI_SCI-FI_Tone_10_stereo.ogg', 50, 1)
 
 /obj/screen/movable/exosuit/toggle/hatch
@@ -258,14 +258,14 @@
 
 /obj/screen/movable/exosuit/toggle/hatch/toggled()
 	if(!owner.hatch_locked && !owner.hatch_closed)
-		to_chat(usr, SPAN_WARNING("You cannot lock the hatch while it is open."))
+		to_chat(usr, span_warning("You cannot lock the hatch while it is open."))
 		return
 	if(owner.body && owner.body.total_damage >= owner.body.max_damage)
-		to_chat(usr, SPAN_WARNING("\The body of [owner] is far too damaged to close its hatch!"))
+		to_chat(usr, span_warning("\The body of [owner] is far too damaged to close its hatch!"))
 		return
 	owner.hatch_locked = owner.toggle_hatch_lock()
 	playsound(src, 'sound/machines/door_lock_off.ogg', 30, 1)
-	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is [owner.hatch_locked ? "now" : "no longer" ] locked."))
+	to_chat(usr, span_notice("The [owner.body.hatch_descriptor] is [owner.hatch_locked ? "now" : "no longer" ] locked."))
 	update_icon()
 
 /obj/screen/movable/exosuit/toggle/hatch/update_icon()
@@ -286,10 +286,10 @@
 
 /obj/screen/movable/exosuit/toggle/hatch_open/toggled()
 	if(owner.hatch_locked && owner.hatch_closed)
-		to_chat(usr, SPAN_WARNING("You cannot open the hatch while it is locked."))
+		to_chat(usr, span_warning("You cannot open the hatch while it is locked."))
 		return
 	owner.hatch_closed = owner.toggle_hatch()
-	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
+	to_chat(usr, span_notice("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
 	playsound(src, 'sound/machines/Custom_closetopen.ogg', 70, 1)
 	owner.update_icon()
 	update_icon()
@@ -319,7 +319,7 @@
 		if(owner && owner.body && owner.body.diagnostics?.is_functional())
 			usr.setClickCooldown(1 SECONDS)
 			playsound(owner.loc,'sound/effects/scanbeep.ogg',30,0)
-			to_chat(usr, SPAN_NOTICE("The diagnostics panel blinks several times as it updates:"))
+			to_chat(usr, span_notice("The diagnostics panel blinks several times as it updates:"))
 			for(var/obj/item/mech_component/MC in list(owner.arms, owner.legs, owner.body, owner.head))
 				if(MC)
 					MC.return_diagnostics(usr)
@@ -365,14 +365,14 @@
 
 /obj/screen/movable/exosuit/toggle/camera/toggled()
 	if(!owner.head)
-		to_chat(usr, SPAN_WARNING("I/O Error: Camera systems not found."))
+		to_chat(usr, span_warning("I/O Error: Camera systems not found."))
 		return
 	if(!owner.head.vision_flags)
-		to_chat(usr,  SPAN_WARNING("Alternative sensor configurations not found. Contact manufacturer for more details."))
+		to_chat(usr,  span_warning("Alternative sensor configurations not found. Contact manufacturer for more details."))
 		return
 	owner.head.active_sensors = owner.toggle_sensors()
 	playsound(src, 'sound/mechs/sensors.ogg', 75, 1)
-	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
+	to_chat(usr, span_notice("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
 	update_icon()
 
 /obj/screen/movable/exosuit/toggle/camera/update_icon()
@@ -406,25 +406,25 @@
 		var/modifiers = params2list(params)
 		if(modifiers["shift"])
 			if(owner && owner.material)
-				usr.show_message(SPAN_NOTICE("Your suit's safe operating limit ceiling is [(celsius ? "[owner.material.melting_point - T0C] °C" : "[owner.material.melting_point] K" )]."))
+				usr.show_message(span_notice("Your suit's safe operating limit ceiling is [(celsius ? "[owner.material.melting_point - T0C] °C" : "[owner.material.melting_point] K" )]."))
 			return
 		if(modifiers["ctrl"])
 			celsius = !celsius
-			usr.show_message(SPAN_NOTICE("You switch the chassis probe display to use [celsius ? "celsius" : "kelvin"]."))
+			usr.show_message(span_notice("You switch the chassis probe display to use [celsius ? "celsius" : "kelvin"]."))
 			return
 		if(owner && owner.body && owner.body.diagnostics?.is_functional() && owner.loc)
-			usr.show_message(SPAN_NOTICE("The life support panel blinks several times as it updates:"))
+			usr.show_message(span_notice("The life support panel blinks several times as it updates:"))
 
-			usr.show_message(SPAN_NOTICE("Chassis heat probe reports temperature of [(celsius ? "[owner.bodytemperature - T0C] °C" : "[owner.bodytemperature] K" )]."))
+			usr.show_message(span_notice("Chassis heat probe reports temperature of [(celsius ? "[owner.bodytemperature - T0C] °C" : "[owner.bodytemperature] K" )]."))
 			if(owner.material.melting_point < owner.bodytemperature)
-				usr.show_message(SPAN_WARNING("Warning: Current chassis temperature exceeds operating parameters."))
+				usr.show_message(span_warning("Warning: Current chassis temperature exceeds operating parameters."))
 			var/air_contents = owner.loc.return_air()
 			if(!air_contents)
-				usr.show_message(SPAN_WARNING("The external air probe isn't reporting any data!"))
+				usr.show_message(span_warning("The external air probe isn't reporting any data!"))
 			else
-				usr.show_message(SPAN_NOTICE("External probes report: [jointext(atmosanalyzer_scan(owner.loc, air_contents), "<br>")]"))
+				usr.show_message(span_notice("External probes report: [jointext(atmosanalyzer_scan(owner.loc, air_contents), "<br>")]"))
 		else
-			usr.show_message(SPAN_WARNING("The life support panel isn't responding."))
+			usr.show_message(span_warning("The life support panel isn't responding."))
 
 /obj/screen/movable/exosuit/heat/proc/Update()
 	//Relative value of heat
@@ -441,13 +441,13 @@
 
 /obj/screen/movable/exosuit/toggle/strafe/toggled() // Prevents exosuits from strafing when EMP'd enough
 	if(owner.legs.can_strafe == MECH_STRAFING_NONE)
-		to_chat(usr, SPAN_WARNING("Error: This propulsion system doesn't support synchronization!"))
+		to_chat(usr, span_warning("Error: This propulsion system doesn't support synchronization!"))
 		return
 	if(owner.emp_damage >= EMP_STRAFE_DISABLE)
-		to_chat(usr, SPAN_WARNING("Error: Coordination systems are unable to synchronize. Contact an authorised exo-electrician immediately."))
+		to_chat(usr, span_warning("Error: Coordination systems are unable to synchronize. Contact an authorised exo-electrician immediately."))
 		return
 	owner.strafing = ..()
-	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
+	to_chat(usr, span_notice("Strafing [owner.strafing ? "enabled" : "disabled"]."))
 	playsound(src,'sound/mechs/lever.ogg', 40, 1)
 
 

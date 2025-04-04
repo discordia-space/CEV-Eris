@@ -428,7 +428,7 @@
 	for (var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
-		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
+		L.visible_message(span_danger("The blob attacks \the [L]!"), span_danger("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		L.take_organ_damage(burn = RAND_DECIMAL(0.4, 2.3))
 
@@ -499,7 +499,7 @@
 /obj/effect/blob/attack_generic(mob/M, damage, attack_message)
 	if(damage)
 		M.do_attack_animation(src)
-		M.visible_message(SPAN_DANGER("\The [M] [attack_message] \the [src]!"))
+		M.visible_message(span_danger("\The [M] [attack_message] \the [src]!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		take_damage(damage/brute_resist)
 	else

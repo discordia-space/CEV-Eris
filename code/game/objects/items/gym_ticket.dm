@@ -24,5 +24,5 @@
 		used = TRUE
 		return TRUE
 	else
-		to_chat(src, SPAN_WARNING("The holographic ticket is spent and cannot be used."))
+		to_chat(src, span_warning("The holographic ticket is spent and cannot be used."))
 		return FALSE

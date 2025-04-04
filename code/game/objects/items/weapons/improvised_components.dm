@@ -39,7 +39,7 @@
 	var/obj/item/finished
 	if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))
 		finished = new /obj/item/melee/baton/cattleprod(get_turf(user))
-		to_chat(user, SPAN_NOTICE("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
+		to_chat(user, span_notice("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
 	if(finished)
 		user.drop_from_inventory(src)
 		user.drop_from_inventory(I)

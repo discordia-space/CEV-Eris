@@ -160,14 +160,14 @@
 */
 /datum/vertical_travel_method/proc/can_perform(var/dir)
 	if(M.used_now)
-		to_chat(M, SPAN_NOTICE("You are busy at the moment."))
+		to_chat(M, span_notice("You are busy at the moment."))
 		return FALSE
 
 	if (dir != direction)
 		direction = dir
 
 	if (!get_destination())
-		to_chat(M, SPAN_NOTICE("There is nothing in that direction."))
+		to_chat(M, span_notice("There is nothing in that direction."))
 		return FALSE
 
 	if(ismob(M))
@@ -237,14 +237,14 @@
 
 	var/personal = format_message(start_verb_personal)
 
-	mob.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
+	mob.visible_message(span_notice(visible), span_notice(personal))
 
 /datum/vertical_travel_method/proc/announce_end()
 	var/visible = format_message(end_verb_visible)
 
 	var/personal = format_message(end_verb_personal)
 
-	mob.visible_message(SPAN_NOTICE(visible), SPAN_NOTICE(personal))
+	mob.visible_message(span_notice(visible), span_notice(personal))
 
 /datum/vertical_travel_method/proc/format_message(var/string)
 	string = replacetext(string, "%m", M.name)
@@ -308,4 +308,4 @@
 	M.Move(target)
 	if (ismob(M))
 		mob.Weaken(2)
-	to_chat(mob, SPAN_DANGER("You lose control and slip into freefall"))
+	to_chat(mob, span_danger("You lose control and slip into freefall"))

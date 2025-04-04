@@ -10,8 +10,8 @@
 // This is why the default failure is a harmless message.
 /datum/surgery_step/robotic/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, \the [tool] hitting [organ.get_surgery_name()] harmlessly."),
-		SPAN_WARNING("Your hand slips, \the [tool] hitting [organ.get_surgery_name()] harmlessly.")
+		span_warning("[user]'s hand slips, \the [tool] hitting [organ.get_surgery_name()] harmlessly."),
+		span_warning("Your hand slips, \the [tool] hitting [organ.get_surgery_name()] harmlessly.")
 	)
 
 
@@ -25,16 +25,16 @@
 	var/action = organ.open ? "close" : "open"
 
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to [action] the hatches on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You begin to [action] the hatches on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] begins to [action] the hatches on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You begin to [action] the hatches on [organ.get_surgery_name()] with \the [tool].")
 	)
 
 /datum/surgery_step/robotic/open/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	var/action = organ.open ? "close" : "open"
 
 	user.visible_message(
-		SPAN_NOTICE("[user] [action]s the hatches on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You [action] the hatches on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] [action]s the hatches on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You [action] the hatches on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.open = !organ.open
 	organ.diagnosed = FALSE
@@ -54,16 +54,16 @@
 	var/action = (organ.status & ORGAN_CUT_AWAY) ? "connect" : "disconnect"
 
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to [action] [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You begin to [action] [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] begins to [action] [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You begin to [action] [organ.get_surgery_name()] with \the [tool].")
 	)
 
 /datum/surgery_step/robotic/connect_organ/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	var/action = (organ.status & ORGAN_CUT_AWAY) ? "connect" : "disconnect"
 
 	user.visible_message(
-		SPAN_NOTICE("[user] [action]s [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You [action] [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] [action]s [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You [action] [organ.get_surgery_name()] with \the [tool].")
 	)
 	if(organ.status & ORGAN_CUT_AWAY)
 		organ.status &= ~ORGAN_CUT_AWAY
@@ -74,8 +74,8 @@
 
 /datum/surgery_step/robotic/connect_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(5, 0)
 
@@ -91,8 +91,8 @@
 
 /datum/surgery_step/robotic/remove_item/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to extract something out of [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You begin to extract [target] out of [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] begins to extract something out of [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You begin to extract [target] out of [organ.get_surgery_name()] with \the [tool].")
 	)
 
 /datum/surgery_step/robotic/remove_item/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
@@ -101,15 +101,15 @@
 		B.detach()
 		B.leave_host()
 	user.visible_message(
-		SPAN_NOTICE("[user] extracts something out of [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You extract [target] out of [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] extracts something out of [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You extract [target] out of [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.remove_item(target, user)
 
 /datum/surgery_step/robotic/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
 	user.visible_message(
-		SPAN_WARNING("[user] scrapes something inside [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("You scrape something inside [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user] scrapes something inside [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("You scrape something inside [organ.get_surgery_name()] with \the [tool]!")
 	)
 	if(istype(target, /obj/item/implant) && prob(25))
 		var/obj/item/implant/imp = target
@@ -127,14 +127,14 @@
 
 /datum/surgery_step/robotic/amputate/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts to undo the connections in [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start to undo the connections in [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts to undo the connections in [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start to undo the connections in [organ.get_surgery_name()] with \the [tool].")
 	)
 
 /datum/surgery_step/robotic/amputate/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] disconnects [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You disconnect [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] disconnects [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You disconnect [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.droplimb(TRUE, DROPLIMB_EDGE)
 
@@ -152,29 +152,29 @@
 
 	// Otherwise, it will just immediately fracture again
 	if(. && organ.parent.should_fracture())
-		to_chat(user, SPAN_WARNING("[organ.parent.get_surgery_name()] is too damaged!"))
+		to_chat(user, span_warning("[organ.parent.get_surgery_name()] is too damaged!"))
 		return FALSE
 
 	return .
 
 /datum/surgery_step/robotic/fix_bone/begin_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts mending [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start mending [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts mending [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start mending [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/robotic/fix_bone/end_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] mends [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You mend [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] mends [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You mend [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.mend()
 
 /datum/surgery_step/robotic/fix_bone/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(5, 0)

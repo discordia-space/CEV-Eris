@@ -53,8 +53,8 @@
 		return
 	var/mob/living/contractor_mob = owner.current
 	to_chat(contractor_mob, "<u><b>Your employers provided you with the following information on how to identify possible allies:</b></u>")
-	to_chat(contractor_mob, "<b>Code Phrase</b>: <span class='danger'>[syndicate_code_phrase]</span>")
-	to_chat(contractor_mob, "<b>Code Response</b>: <span class='danger'>[syndicate_code_response]</span>")
+	to_chat(contractor_mob, "<b>Code Phrase</b>: [span_danger("[syndicate_code_phrase]")]")
+	to_chat(contractor_mob, "<b>Code Response</b>: [span_danger("[syndicate_code_response]")]")
 	contractor_mob.mind.store_memory("<b>Code Phrase</b>: [syndicate_code_phrase]")
 	contractor_mob.mind.store_memory("<b>Code Response</b>: [syndicate_code_response]")
 	to_chat(contractor_mob, "Use the code words, preferably in the order provided, during regular conversation, to identify other agents. Proceed with caution, however, as everyone is a potential foe.")

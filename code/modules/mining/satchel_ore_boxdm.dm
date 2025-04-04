@@ -23,9 +23,9 @@
 			for(var/obj/item/ore/O in S.contents)
 				S.remove_from_storage(O, src) //This will move the item to this item's contents
 			playsound(loc, S.use_sound, 50, 1, -5)
-			user.visible_message(SPAN_NOTICE("[user.name] empties the [S] into the box"), SPAN_NOTICE("You empty the [S] into the box."), SPAN_NOTICE("You hear a rustling sound"))
+			user.visible_message(span_notice("[user.name] empties the [S] into the box"), span_notice("You empty the [S] into the box."), span_notice("You hear a rustling sound"))
 		else
-			to_chat(user, SPAN_WARNING("There's no ore inside the [S] to empty into here"))
+			to_chat(user, span_warning("There's no ore inside the [S] to empty into here"))
 	update_ore_count()
 
 	return

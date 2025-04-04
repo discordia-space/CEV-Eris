@@ -54,7 +54,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if((w_class >= ITEM_SIZE_HUGE || (w_class == ITEM_SIZE_BULKY && !wielded)) && !abstract && !istype(src, /obj/item/gun) && !no_double_tact)//grabs have colossal w_class. You can't raise something that does not exist.
 		if(!adjacent || istype(atom_target, /turf) || istype(atom_target, /mob) || user.a_intent == I_HURT)//guns have the point blank privilege
 			if(!ready)
-				user.visible_message(SPAN_DANGER("[user] raises [src]!"))
+				user.visible_message(span_danger("[user] raises [src]!"))
 				ready = TRUE
 				var/obj/effect/effect/melee/alert/A = new()
 				user.vis_contents += A
@@ -69,7 +69,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 						ready = FALSE
 						user.vis_contents -= A
 						return FALSE
-				user.visible_message(SPAN_NOTICE("[user] lowers \his [src]."))
+				user.visible_message(span_notice("[user] lowers \his [src]."))
 				ready = FALSE
 				user.vis_contents -= A
 				return FALSE
@@ -126,7 +126,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 			L = get_step(C, EAST)
 	var/obj/effect/effect/melee/swing/S = new(get_turf(user))
 	S.dir = _dir
-	user.visible_message(SPAN_DANGER("[user] swings \his [src]"))
+	user.visible_message(span_danger("[user] swings \his [src]"))
 	playsound(loc, 'sound/effects/swoosh.ogg', 50, 1, -1)
 	switch(holdinghand)
 		if(slot_l_hand)
@@ -156,7 +156,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		user.do_attack_animation(src)
 		if (I.hitsound)
 			playsound(loc, I.hitsound, 50, 1, -1)
-		visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+		visible_message(span_danger("[src] has been hit by [user] with [I]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 // meant for handling stuff when destroyed
@@ -169,7 +169,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return FALSE
 	var/obj/item/tool/sword/nt_sword/NT = I
 	if(user.a_intent != I_HURT)
-		to_chat(user, SPAN_NOTICE("You need to be in a harming stance."))
+		to_chat(user, span_notice("You need to be in a harming stance."))
 		return FALSE
 	if(NT.isBroken)
 		return FALSE
@@ -179,7 +179,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		user.do_attack_animation(src)
 		if (NT.hitsound)
 			playsound(loc, I.hitsound, 50, 1, -1)
-		visible_message(SPAN_DANGER("[src] has been hit by [user] with [NT]."))
+		visible_message(span_danger("[src] has been hit by [user] with [NT]."))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		for(var/mob/living/carbon/human/H in viewers(user))
 			SEND_SIGNAL_OLD(H, SWORD_OF_TRUTH_OF_DESTRUCTION, src)

@@ -16,7 +16,7 @@
 	set category = "IC"
 
 	if(zMove(UP))
-		to_chat(usr, SPAN_NOTICE("You move upwards."))
+		to_chat(usr, span_notice("You move upwards."))
 
 /**
  * Verb for the mob to move down a z-level if possible.
@@ -26,7 +26,7 @@
 	set category = "IC"
 
 	if(zMove(DOWN))
-		to_chat(usr, SPAN_NOTICE("You move down."))
+		to_chat(usr, span_notice("You move down."))
 
 /**
  * Used to check if a mob can move up or down a Z-level and to then actually do the move.
@@ -57,7 +57,7 @@
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	var/turf/start = get_turf(src)
 	if(!destination)
-		to_chat(src, SPAN_NOTICE("There is nothing of interest in this direction"))
+		to_chat(src, span_notice("There is nothing of interest in this direction"))
 		return FALSE
 
 	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
@@ -65,9 +65,9 @@
 	if(istype(mover, /mob/living/exosuit))
 		var/mob/living/mech = mover
 		if(mech.current_vertical_travel_method)
-			to_chat(src, SPAN_NOTICE("You can't do this yet!"))
+			to_chat(src, span_notice("You can't do this yet!"))
 	else if(src.current_vertical_travel_method)
-		to_chat(src, SPAN_NOTICE("You can't do this yet!"))
+		to_chat(src, span_notice("You can't do this yet!"))
 		return
 
 	var/datum/vertical_travel_method/VTM = new Z_MOVE_PHASE(src)
@@ -90,23 +90,23 @@
 	)
 
 	if(!start.CanZPass(mover, direction))
-		to_chat(src, SPAN_WARNING("You can't leave this place in this direction."))
+		to_chat(src, span_warning("You can't leave this place in this direction."))
 		return FALSE
 	if(!destination.CanZPass(mover, (direction == UP ? DOWN : UP) ))
-		to_chat(src, SPAN_WARNING("\The [destination] blocks you."))
+		to_chat(src, span_warning("\The [destination] blocks you."))
 		return FALSE
 
 	// Prevent people from going directly inside or outside a shuttle through the ceiling
 	// Would be possible if the shuttle is not on the highest z-level
 	// Also prevent the bug where people could get in from under the shuttle
 	if(istype(start, /turf/shuttle) || istype(destination, /turf/shuttle))
-		to_chat(src, SPAN_WARNING("An invisible energy shield around the shuttle blocks you."))
+		to_chat(src, span_warning("An invisible energy shield around the shuttle blocks you."))
 		return FALSE
 
 	// Check for blocking atoms at the destination.
 	for (var/atom/A in destination)
 		if (!A.CanPass(mover, start, 1.5, 0))
-			to_chat(src, SPAN_WARNING("\The [A] blocks you."))
+			to_chat(src, span_warning("\The [A] blocks you."))
 			return FALSE
 
 	for (var/a in possible_methods)
@@ -121,7 +121,7 @@
 			VTM.attempt(direction)
 			return TRUE
 
-	to_chat(src, SPAN_NOTICE("You lack a means of z-travel in that direction."))
+	to_chat(src, span_notice("You lack a means of z-travel in that direction."))
 	return FALSE
 
 /mob/proc/zMoveUp()

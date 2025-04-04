@@ -23,24 +23,24 @@
 	switch(sanity_value)
 		if(4.9 to 6.1)
 			price_tag += 1500//there's a market for art so bad it's good
-			qualitydesc = " \ <br><br>How <span class='danger'>awful</span>. It's like a car crash- hard to look away."
+			qualitydesc = " \ <br><br>How [span_danger("awful")]. It's like a car crash- hard to look away."
 		if(1 to 4.8)
 			price_tag -= 500
-			qualitydesc = " \ <br><br>This artwork is quite <span class='warning'>unpleasant</span> to look at."
+			qualitydesc = " \ <br><br>This artwork is quite [span_warning("unpleasant")] to look at."
 		if(0)
 			price_tag -= 1000//far worse than bad art is uninteresting art
 			qualitydesc = " \ <br><br>A very mediocre piece of art."
 		if(-4.8 to -1)
 			price_tag += 1000
-			qualitydesc = " \ <br><br>A <span class='green'>beautiful</span> piece of artwork."
+			qualitydesc = " \ <br><br>A [span_green("beautiful")] piece of artwork."
 		if(-6.1 to -4.9 )
 			price_tag += 2500
-			qualitydesc = " \ <br><br>A stunning artwork. Looking at it fills you with <span class='blue'>awe</span>."
+			qualitydesc = " \ <br><br>A stunning artwork. Looking at it fills you with [span_blue("awe")]."
 
 /obj/structure/artwork_statue/attackby(obj/item/I, mob/living/user)
 	if(I.has_quality(QUALITY_BOLT_TURNING))
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, STAT_MEC))
-			user.visible_message(SPAN_WARNING("[user] has [anchored ? "un" : ""]secured \the [src]."), SPAN_NOTICE("You [anchored ? "un" : ""]secure \the [src]."))
+			user.visible_message(span_warning("[user] has [anchored ? "un" : ""]secured \the [src]."), span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 			set_anchored(!anchored)
 		return
 	. = ..()

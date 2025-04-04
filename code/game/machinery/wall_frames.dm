@@ -38,14 +38,14 @@
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/floor))
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed on this spot."))
+		to_chat(usr, span_danger("\The [src] Alarm cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed in this area."))
+		to_chat(usr, span_danger("\The [src] Alarm cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, SPAN_DANGER("There's already an item on this wall!"))
+		to_chat(usr, span_danger("There's already an item on this wall!"))
 		return
 
 	var/obj/machinery/M = new build_machine_type(loc, ndir, 1)
@@ -73,14 +73,14 @@
 	var/turf/loc = get_turf(on_floor)
 	//var/area/A = loc.loc
 	/*if (!istype(loc, /turf/floor)) //TODO rework this
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed on this spot."))
+		to_chat(usr, span_danger("\The [src] Alarm cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed in this area."))
+		to_chat(usr, span_danger("\The [src] Alarm cannot be placed in this area."))
 		return*/
 
 	if(gotflooritem(loc, ndir))
-		to_chat(usr, SPAN_DANGER("There's already an item on this floor!"))
+		to_chat(usr, span_danger("There's already an item on this floor!"))
 		return
 
 	var/obj/machinery/M = new build_floormachine_type(loc, ndir, 1)

@@ -36,7 +36,7 @@
 	if(locked && !emagged)
 		locked = 0
 		emagged = 1
-		to_chat(user, SPAN_WARNING("You short out [src]'s maintenance hatch lock."))
+		to_chat(user, span_warning("You short out [src]'s maintenance hatch lock."))
 		log_and_message_admins("emagged [src]'s maintenance hatch lock")
 		return 1
 
@@ -48,26 +48,26 @@
 /obj/machinery/bot/examine(mob/user, extra_description = "")
 	if(health < maxHealth)
 		if(health > maxHealth / 3)
-			extra_description += SPAN_WARNING("[src]'s parts look loose.")
+			extra_description += span_warning("[src]'s parts look loose.")
 		else
-			extra_description += SPAN_DANGER("[src]'s parts look very loose!")
+			extra_description += span_danger("[src]'s parts look very loose!")
 	..(user, extra_description)
 
 /obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/screwdriver))
 		if(!locked)
 			open = !open
-			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
+			to_chat(user, span_notice("Maintenance panel is now [src.open ? "opened" : "closed"]."))
 	else if(istype(W, /obj/item/tool/weldingtool))
 		if(health < maxHealth)
 			if(open)
 				health = min(maxHealth, health+10)
-				user.visible_message(SPAN_WARNING("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
+				user.visible_message(span_warning("[user] repairs [src]!"),span_notice("You repair [src]!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
-				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
+				to_chat(user, span_notice("Unable to repair with the maintenance panel closed."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
+			to_chat(user, span_notice("[src] does not need a repair."))
 	else
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)
@@ -117,7 +117,7 @@
 
 	if(user.species.can_shred(user))
 		src.health -= rand(15,30)*brute_dam_coeff
-		src.visible_message(SPAN_DANGER("[user] has slashed [src]!"))
+		src.visible_message(span_danger("[user] has slashed [src]!"))
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)

@@ -69,9 +69,9 @@ Another builds like baystation12 also have a duplication.
 	else if (result == 20 && sides == 20)
 		comment = "Nat 20!"
 	icon_state = "[name][result]"
-	user.visible_message(SPAN_NOTICE("[user] has thrown [src]. It lands on [result]. [comment]"), \
-						 SPAN_NOTICE("You throw [src]. It lands on a [result]. [comment]"), \
-						 SPAN_NOTICE("You hear [src] landing on a [result]. [comment]"))
+	user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
+						 span_notice("You throw [src]. It lands on a [result]. [comment]"), \
+						 span_notice("You hear [src] landing on a [result]. [comment]"))
 
 /obj/item/dice/throw_impact(atom/hit_atom, var/speed)
 	..()
@@ -82,4 +82,4 @@ Another builds like baystation12 also have a duplication.
 	else if (result == 20 && sides == 20)
 		comment = "Nat 20!"
 	icon_state = "[name][result]"
-	src.visible_message(SPAN_NOTICE("\The [src] lands on [result]. [comment]"))
+	src.visible_message(span_notice("\The [src] lands on [result]. [comment]"))

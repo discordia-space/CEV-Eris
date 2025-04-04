@@ -36,7 +36,7 @@
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			overlays.Cut()
-			to_chat(user, SPAN_NOTICE("You slice off [src]'s uneven chunks of aluminum and scorch marks."))
+			to_chat(user, span_notice("You slice off [src]'s uneven chunks of aluminum and scorch marks."))
 			return
 
 
@@ -96,7 +96,7 @@
 		if(hp <= 0)
 			for(var/mob/O in oviewers())
 				if ((O.client && !( O.blinded )))
-					to_chat(O, SPAN_WARNING("\The [src] breaks into tiny pieces and collapses!"))
+					to_chat(O, span_warning("\The [src] breaks into tiny pieces and collapses!"))
 			qdel(src)
 
 		// Create a temporary object to represent the damage

@@ -32,7 +32,7 @@
 		if(!src.registered_name && has_access(access_occupy, list(), I.GetAccess()))
 			src.registered_name = I.registered_name
 			name = "[initial(name)] ([registered_name])"
-			to_chat(user, SPAN_NOTICE("You occupied [src]."))
+			to_chat(user, span_notice("You occupied [src]."))
 			return
 
 	return ..()
@@ -43,7 +43,7 @@
 		locked = FALSE
 		desc = "It appears to be broken."
 		if(visual_feedback)
-			visible_message(SPAN_WARNING("[visual_feedback]"), SPAN_WARNING("[audible_feedback]"))
+			visible_message(span_warning("[visual_feedback]"), span_warning("[audible_feedback]"))
 		update_icon()
 		return 1
 
@@ -57,9 +57,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			to_chat(usr, SPAN_WARNING("You need to unlock it first."))
+			to_chat(usr, span_warning("You need to unlock it first."))
 		else if (src.broken)
-			to_chat(usr, SPAN_WARNING("It appears to be broken."))
+			to_chat(usr, span_warning("It appears to be broken."))
 		else
 			if (src.opened)
 				if(!src.close())

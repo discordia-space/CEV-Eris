@@ -768,7 +768,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 						O.show_message("[user.name] forcefully slams the [src.name] with the [I.name]!" )
 					playsound(src.loc, 'sound/effects/Glasshit.ogg', 100, 1)
 		else
-			to_chat(user, SPAN_NOTICE("This does nothing."))
+			to_chat(user, span_notice("This does nothing."))
 	src.update_icon()
 
 /datum/news_photo
@@ -994,7 +994,7 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 	if(channel)
 		if(update_alert)
 			for(var/mob/O in hearers(world.view-1, T))
-				O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Breaking news from [channel]!\"</span>",2)
+				O.show_message(span_newscaster("<EM>[src.name]</EM> beeps, \"Breaking news from [channel]!\""),2)
 			playsound(loc, 'sound/machines/twobeep.ogg', 75, TRUE)
 		alert = TRUE
 		update_icon()
@@ -1002,5 +1002,5 @@ var/datum/feed_network/news_network = new /datum/feed_network     //The global n
 
 	else if(!channel && update_alert)
 		for(var/mob/O in hearers(world.view-1, T))
-			O.show_message("<span class='newscaster'><EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>",2)
+			O.show_message(span_newscaster("<EM>[src.name]</EM> beeps, \"Attention! Wanted issue distributed!\""),2)
 		playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, TRUE)

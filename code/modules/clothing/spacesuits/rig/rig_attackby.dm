@@ -13,20 +13,20 @@
 	if(I.GetIdCard())
 		if(subverted)
 			locked = 0
-			to_chat(user, SPAN_DANGER("It looks like the locking system has been shorted out."))
+			to_chat(user, span_danger("It looks like the locking system has been shorted out."))
 			return
 
 		if(locked == -1)
-			to_chat(user, SPAN_DANGER("The lock clicks uselessly."))
+			to_chat(user, span_danger("The lock clicks uselessly."))
 			return
 
 		if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
 			locked = 0
-			to_chat(user, SPAN_DANGER("\The [src] doesn't seem to have a locking mechanism."))
+			to_chat(user, span_danger("\The [src] doesn't seem to have a locking mechanism."))
 			return
 
 		if(security_check_enabled && !src.allowed(user))
-			to_chat(user, SPAN_DANGER("Access denied."))
+			to_chat(user, span_danger("Access denied."))
 			return
 
 		locked = !locked
@@ -113,10 +113,10 @@
 			if(locked != 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					open = !open
-					to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] the access panel."))
+					to_chat(user, span_notice("You [open ? "open" : "close"] the access panel."))
 					return
 			else
-				to_chat(user, SPAN_DANGER("\The [src] access panel is locked."))
+				to_chat(user, span_danger("\The [src] access panel is locked."))
 				return
 
 		if(QUALITY_BOLT_TURNING)
@@ -142,10 +142,10 @@
 			//Cutting through the cover lock. This allows access to the wires inside so you can disable access requirements
 			//Ridiculously difficult to do, hijacking a rig will take a long time if you don't have good mechanical training
 			if(locked == 1 && user.a_intent == I_HURT)
-				to_chat(user, SPAN_NOTICE("You start cutting through the access panel's cover lock. This is a delicate task."))
+				to_chat(user, span_notice("You start cutting through the access panel's cover lock. This is a delicate task."))
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
 					locked = -1 //Broken, it can never be locked again
-					to_chat(user, SPAN_NOTICE("Success! The tension in the panel loosens with a dull click"))
+					to_chat(user, span_notice("Success! The tension in the panel loosens with a dull click"))
 					playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 				return
 			else if (user.a_intent == I_HURT)
@@ -153,11 +153,11 @@
 				//No return here, incase they're trying to repair
 
 			if (ablative_max <= ablative_armor)
-				to_chat(user, SPAN_WARNING("There is no damage on \the [src]'s armor layers to repair."))
+				to_chat(user, span_warning("There is no damage on \the [src]'s armor layers to repair."))
 
 			else if(I.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_ZERO, required_stat = STAT_MEC, instant_finish_tier = INFINITY)) // no instant repairs
 				ablative_armor = min(ablative_armor + 2, ablative_max)
-				to_chat(user, SPAN_NOTICE("You repair the damage on the [src]'s armor layers."))
+				to_chat(user, span_notice("You repair the damage on the [src]'s armor layers."))
 				return
 
 		if(ABORT_CHECK)
@@ -238,7 +238,7 @@
 		if (locked != -1)
 			locked = 0
 		subverted = 1
-		to_chat(user, SPAN_DANGER("You short out the access protocol for the suit."))
+		to_chat(user, span_danger("You short out the access protocol for the suit."))
 		return 1
 
 /obj/item/rig/proc/block_explosion(mob/user, power) // Returns damage to block

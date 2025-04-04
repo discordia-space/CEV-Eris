@@ -464,15 +464,15 @@ steam.start() -- spawns the effect
 		s.start()
 
 		for(var/mob/M in viewers(5, location))
-			to_chat(M, SPAN_WARNING("The solution violently explodes."))
+			to_chat(M, span_warning("The solution violently explodes."))
 		for(var/mob/M in viewers(1, location))
 			if (prob (50 * amount))
-				to_chat(M, SPAN_WARNING("The explosion knocks you down."))
+				to_chat(M, span_warning("The explosion knocks you down."))
 				M.Weaken(rand(1,5))
 		return
 	else
 		var/explosion_power = amount
 		for(var/mob/M in viewers(8, location))
-			to_chat(M, SPAN_WARNING("The solution violently explodes."))
+			to_chat(M, span_warning("The solution violently explodes."))
 
 		explosion(get_turf(location), explosion_power, explosion_power / 10)

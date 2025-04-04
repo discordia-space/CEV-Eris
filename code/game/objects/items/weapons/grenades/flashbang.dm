@@ -49,7 +49,7 @@
 	M.update_icons()
 
 /obj/item/proc/flashbang_bang(var/turf/T, var/mob/living/carbon/M, var/explosion_text = "BANG", var/stat_reduction = TRUE, var/intensity = FALSE) //Bang made into an item proc so lot's of stuff can use it wtihout copy - paste
-	to_chat(M, SPAN_DANGER(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
+	to_chat(M, span_danger(explosion_text))								// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(loc, 'sound/effects/bang.ogg', 50, 1, 5)		// people in normal view.  Could theroetically be called during other explosions.
 																// -- Polymorph
 
@@ -123,12 +123,12 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/eyes/E = H.random_organ_by_process(OP_EYES)
 		if (E && E.damage >= E.min_bruised_damage)
-			to_chat(M, SPAN_DANGER("Your eyes start to burn badly!"))
+			to_chat(M, span_danger("Your eyes start to burn badly!"))
 	if (M.ear_damage >= 15)
-		to_chat(M, SPAN_DANGER("Your ears start to ring badly!"))
+		to_chat(M, span_danger("Your ears start to ring badly!"))
 	else
 		if (M.ear_damage >= 5)
-			to_chat(M, SPAN_DANGER("Your ears start to ring!"))
+			to_chat(M, span_danger("Your ears start to ring!"))
 	if(stat_reduction)
 		M.stats.addTempStat(STAT_VIG, stat_def, 10 SECONDS, "flashbang")
 		M.stats.addTempStat(STAT_COG, stat_def, 10 SECONDS, "flashbang")

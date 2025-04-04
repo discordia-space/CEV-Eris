@@ -14,7 +14,7 @@
 	if(..(user))
 		return
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return 1
 
 	nano_ui_interact(user)
@@ -58,7 +58,7 @@
 
 	if(href_list["move"])
 		if(!shuttle.next_location.is_valid(shuttle))
-			to_chat(user, "<span class='warning'>Destination zone is invalid or obstructed.</span>")
+			to_chat(user, span_warning("Destination zone is invalid or obstructed."))
 			return TOPIC_HANDLED
 		shuttle.launch(src)
 		return TOPIC_REFRESH
@@ -74,7 +74,7 @@
 /obj/machinery/computer/shuttle_control/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/datum/shuttle/autodock/shuttle = SSshuttle.shuttles[shuttle_tag]
 	if (!istype(shuttle))
-		to_chat(user, "<span class='warning'>Unable to establish link with the shuttle.</span>")
+		to_chat(user, span_warning("Unable to establish link with the shuttle."))
 		return
 
 	var/list/data = get_ui_data(shuttle)

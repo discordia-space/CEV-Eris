@@ -25,9 +25,9 @@
 	. += "Use HTML5 if it works for you. If neither HTML5 nor WMP work, you'll have to fall back to using VLC, "
 	. += "but this requires you have the VLC client installed on your computer."
 	. += "Try the others if you want but you'll probably just get no music.<br>"
-	. += (pref.media_player == 2) ? "<span class='linkOn'><b>HTML5</b></span> " : "<a href='byond://?src=\ref[src];set_media_player=2'>HTML5</a> "
-	. += (pref.media_player == 1) ? "<span class='linkOn'><b>WMP</b></span> " : "<a href='byond://?src=\ref[src];set_media_player=1'>WMP</a> "
-	. += (pref.media_player == 0) ? "<span class='linkOn'><b>VLC</b></span> " : "<a href='byond://?src=\ref[src];set_media_player=0'>VLC</a> "
+	. += (pref.media_player == 2) ? "[span_linkOn("<b>HTML5</b>")] " : "<a href='byond://?src=\ref[src];set_media_player=2'>HTML5</a> "
+	. += (pref.media_player == 1) ? "[span_linkOn("<b>WMP</b>")] " : "<a href='byond://?src=\ref[src];set_media_player=1'>WMP</a> "
+	. += (pref.media_player == 0) ? "[span_linkOn("<b>VLC</b>")] " : "<a href='byond://?src=\ref[src];set_media_player=0'>VLC</a> "
 	. += "<br>"
 
 /datum/category_item/player_setup_item/player_global/media/OnTopic(var/href, var/list/href_list, var/mob/user)

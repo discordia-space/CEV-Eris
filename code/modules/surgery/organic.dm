@@ -11,8 +11,8 @@
 
 /datum/surgery_step/cut_open/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts [incision_name] on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start [incision_name] on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts [incision_name] on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start [incision_name] on [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	if(required_tool_quality == QUALITY_LASER_CUTTING)
@@ -22,8 +22,8 @@
 
 /datum/surgery_step/cut_open/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] has made [incision_name] on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You have made [incision_name] on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] has made [incision_name] on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You have made [incision_name] on [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.open = 1
@@ -38,8 +38,8 @@
 
 /datum/surgery_step/cut_open/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, slicing open [organ.get_surgery_name()] in the wrong place with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, slicing open [organ.get_surgery_name()] in the wrong place with \the [tool]!")
+		span_warning("[user]'s hand slips, slicing open [organ.get_surgery_name()] in the wrong place with \the [tool]!"),
+		span_warning("Your hand slips, slicing open [organ.get_surgery_name()] in the wrong place with \the [tool]!")
 	)
 	organ.take_damage(10, BRUTE, sharp=TRUE, edge=TRUE)
 
@@ -63,23 +63,23 @@
 
 /datum/surgery_step/retract_skin/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts to pry open the incision on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start to pry open the incision on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts to pry open the incision on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start to pry open the incision on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.owner_custom_pain("It feels like the skin on your [organ.name] is on fire!", 1)
 
 /datum/surgery_step/retract_skin/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] keeps the incision open on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You keep the incision open on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] keeps the incision open on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You keep the incision open on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.open = 2
 	organ.nano_ui_interact(user)
 
 /datum/surgery_step/retract_skin/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, tearing the edges of the incision on [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, tearing the edges of the incision on [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, tearing the edges of the incision on [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, tearing the edges of the incision on [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(12, 0, sharp=TRUE)
 
@@ -94,23 +94,23 @@
 
 /datum/surgery_step/cauterize/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to cauterize the incision on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You begin to cauterize the incision on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] begins to cauterize the incision on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You begin to cauterize the incision on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.owner_custom_pain("Your [organ.name] is being burned!", 1)
 
 /datum/surgery_step/cauterize/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] cauterizes the incision on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You cauterize the incision on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] cauterizes the incision on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You cauterize the incision on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.open = 0
 	organ.diagnosed = FALSE
 
 /datum/surgery_step/cauterize/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, leaving a small burn on [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, leaving a small burn on [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, leaving a small burn on [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, leaving a small burn on [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(5, BURN)
 
@@ -127,8 +127,8 @@
 
 /datum/surgery_step/attach_organ/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts to reattach [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start to reattach [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts to reattach [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start to reattach [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	var/obj/item/organ/external/limb = organ.get_limb()
@@ -137,8 +137,8 @@
 
 /datum/surgery_step/attach_organ/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] reattaches [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You reattach [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] reattaches [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You reattach [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.status &= ~ORGAN_CUT_AWAY
@@ -146,8 +146,8 @@
 
 /datum/surgery_step/attach_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(16, BRUTE)
 
@@ -164,8 +164,8 @@
 
 /datum/surgery_step/detach_organ/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts to separate [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start to separate [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts to separate [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start to separate [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	var/obj/item/organ/external/limb = organ.get_limb()
@@ -174,16 +174,16 @@
 
 /datum/surgery_step/detach_organ/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] separates [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You separate [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] separates [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You separate [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.status |= ORGAN_CUT_AWAY
 	organ.handle_organ_eff() //detach of organ. Refreshing eff. list
 
 /datum/surgery_step/detach_organ/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, damaging [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, damaging [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(16, BRUTE)
 
@@ -199,23 +199,23 @@
 
 /datum/surgery_step/break_bone/begin_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts breaking [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start breaking [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts breaking [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start breaking [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/break_bone/end_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] breaks [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You break [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] breaks [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You break [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.fracture()
 
 /datum/surgery_step/break_bone/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(8, BRUTE, sharp = TRUE)
 
@@ -230,7 +230,7 @@
 
 	// Otherwise, it will just immediately fracture again
 	if(. && organ.parent.should_fracture())
-		to_chat(user, SPAN_WARNING("[organ.parent.get_surgery_name()] is too damaged!"))
+		to_chat(user, span_warning("[organ.parent.get_surgery_name()] is too damaged!"))
 		return FALSE
 
 	return .
@@ -238,23 +238,23 @@
 
 /datum/surgery_step/mend_bone/begin_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts mending [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start mending [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts mending [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start mending [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/mend_bone/end_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] mends [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You mend [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] mends [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You mend [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.mend()
 
 /datum/surgery_step/mend_bone/fail_step(mob/living/user, obj/item/organ/internal/organ, obj/item/stack/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, scraping [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, scraping [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(8, BRUTE)
 
@@ -270,16 +270,16 @@
 
 /datum/surgery_step/replace_bone/begin_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] starts replacing [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You start replacing [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] starts replacing [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You start replacing [organ.get_surgery_name()] with \the [tool].")
 	)
 
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
 /datum/surgery_step/replace_bone/end_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] replaces [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You replace [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] replaces [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You replace [organ.get_surgery_name()] with \the [tool].")
 	)
 	if(istype(tool, /obj/item/organ/internal/bone))
 		var/obj/item/organ/internal/bone/replacement = tool
@@ -292,8 +292,8 @@
 
 /datum/surgery_step/replace_bone/fail_step(mob/living/user, obj/item/organ/internal/bone/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, breaking [organ.get_surgery_name()]!"),
-		SPAN_WARNING("Your hand slips, breaking [organ.get_surgery_name()]!")
+		span_warning("[user]'s hand slips, breaking [organ.get_surgery_name()]!"),
+		span_warning("Your hand slips, breaking [organ.get_surgery_name()]!")
 	)
 	organ.fracture()
 
@@ -306,8 +306,8 @@
 
 /datum/surgery_step/remove_item/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
 	user.visible_message(
-		SPAN_NOTICE("[user] begins to extract something out of [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You begin to extract [target] out of [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] begins to extract something out of [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You begin to extract [target] out of [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
 
@@ -317,15 +317,15 @@
 		B.detach()
 		B.leave_host()
 	user.visible_message(
-		SPAN_NOTICE("[user] extracts something out of [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You extract [target] out of [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] extracts something out of [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You extract [target] out of [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.remove_item(target, user)
 
 /datum/surgery_step/remove_item/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool, atom/movable/target)
 	user.visible_message(
-		SPAN_WARNING("[user] scrapes something inside [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("You scrape something inside [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user] scrapes something inside [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("You scrape something inside [organ.get_surgery_name()] with \the [tool]!")
 	)
 	if(istype(target, /obj/item/implant) && prob(25))
 		var/obj/item/implant/imp = target
@@ -344,22 +344,22 @@
 
 /datum/surgery_step/amputate/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] is beginning to amputate [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You are beginning to cut through [organ.owner]'s [organ.amputation_point] with \the [tool].")
+		span_notice("[user] is beginning to amputate [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You are beginning to cut through [organ.owner]'s [organ.amputation_point] with \the [tool].")
 	)
 	organ.owner_custom_pain("Your [organ.amputation_point] is being ripped apart!", 1)
 
 /datum/surgery_step/amputate/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] amputates [organ.get_surgery_name()] at the [organ.amputation_point] with \the [tool]."),
-		SPAN_NOTICE("You amputate [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] amputates [organ.get_surgery_name()] at the [organ.amputation_point] with \the [tool]."),
+		span_notice("You amputate [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.droplimb(TRUE, DROPLIMB_EDGE)
 
 /datum/surgery_step/amputate/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, sawing through the bone in [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, sawing through the bone in [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, sawing through the bone in [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, sawing through the bone in [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(128, BRUTE, sharp=TRUE, edge=TRUE)
 	organ.fracture()
@@ -377,15 +377,15 @@
 
 /datum/surgery_step/remove_shrapnel/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] is beginning to attempt to remove shrapnel from [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You are beginning to remove shrapnel from [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] is beginning to attempt to remove shrapnel from [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You are beginning to remove shrapnel from [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.owner_custom_pain("Your [organ.name] is being torn apart!", 1)
 
 /datum/surgery_step/remove_shrapnel/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] removes shrapnel from [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You remove shrapnel from [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] removes shrapnel from [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You remove shrapnel from [organ.get_surgery_name()] with \the [tool].")
 	)
 	var/obj/item/shrapnel = locate(/obj/item/material/shard/shrapnel) in organ.implants
 	organ.remove_item(shrapnel, user, FALSE)
@@ -393,8 +393,8 @@
 
 /datum/surgery_step/remove_shrapnel/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips as he extracts the shrapnel, tearing [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips and the shrapnel tears through the flesh in [organ.get_surgery_name()]!")
+		span_warning("[user]'s hand slips as he extracts the shrapnel, tearing [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips and the shrapnel tears through the flesh in [organ.get_surgery_name()]!")
 	)
 	var/obj/item/shrapnel = locate(/obj/item/material/shard/shrapnel) in organ.implants //will succeed regardless
 	organ.remove_item(shrapnel, user, FALSE)
@@ -412,23 +412,23 @@
 
 /datum/surgery_step/close_wounds/begin_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] is beginning to close the wounds on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You are beginning to close the wounds on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] is beginning to close the wounds on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You are beginning to close the wounds on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.owner_custom_pain("It burns!", 1)
 
 /datum/surgery_step/close_wounds/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_NOTICE("[user] closes the wounds on [organ.get_surgery_name()] with \the [tool]."),
-		SPAN_NOTICE("You close the wounds on [organ.get_surgery_name()] with \the [tool].")
+		span_notice("[user] closes the wounds on [organ.get_surgery_name()] with \the [tool]."),
+		span_notice("You close the wounds on [organ.get_surgery_name()] with \the [tool].")
 	)
 	organ.stopBleeding()
 	organ.take_damage(0, tool.force * 0.3)
 
 /datum/surgery_step/close_wounds/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user]'s hand slips, burning across [organ.get_surgery_name()] with \the [tool]!"),
-		SPAN_WARNING("Your hand slips, char-grilling the flesh in [organ.get_surgery_name()] with \the [tool]!")
+		span_warning("[user]'s hand slips, burning across [organ.get_surgery_name()] with \the [tool]!"),
+		span_warning("Your hand slips, char-grilling the flesh in [organ.get_surgery_name()] with \the [tool]!")
 	)
 	organ.take_damage(0, tool.force*1.5)
 

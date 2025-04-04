@@ -18,8 +18,8 @@
 	var/air_contents = A.return_air()
 	flick("atmos2", src)
 	if(!air_contents)
-		to_chat(user, SPAN_WARNING("Your [src] flashes a red light as it fails to analyze \the [A]."))
+		to_chat(user, span_warning("Your [src] flashes a red light as it fails to analyze \the [A]."))
 		return
 	scan_data = analyze_gases(A, user)
 	scan_data = jointext(scan_data, "<br>")
-	user.show_message(SPAN_NOTICE(scan_data))
+	user.show_message(span_notice(scan_data))

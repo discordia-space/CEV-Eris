@@ -267,7 +267,7 @@
 			command = "CMD_DOOR_CLOSE"
 		if("Open")
 			command = "CMD_DOOR_OPEN"
-	to_chat(user, SPAN_NOTICE("You change the signalling mode of \the [src]to [option]."))
+	to_chat(user, span_notice("You change the signalling mode of \the [src]to [option]."))
 
 /obj/item/device/assembly/signaler/door_controller/CtrlClick(mob/living/carbon/human/user)
 	if(!istype(user))
@@ -284,7 +284,7 @@
 	if(!Adjacent(user,2))
 		return
 	code = clamp(option, 0, 1000)
-	to_chat(user, SPAN_NOTICE("You change the code of \the [src] to [option]."))
+	to_chat(user, span_notice("You change the code of \the [src] to [option]."))
 
 
 /obj/item/device/assembly/signaler/door_controller/attack_self(mob/user)

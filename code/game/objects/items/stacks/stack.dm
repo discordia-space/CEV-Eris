@@ -153,21 +153,21 @@
 
 	if (!can_use(required))
 		if (produced>1)
-			to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
+			to_chat(user, span_warning("You haven't got enough [src] to build \the [produced] [recipe.title]\s!"))
 		else
-			to_chat(user, SPAN_WARNING("You haven't got enough [src] to build \the [recipe.title]!"))
+			to_chat(user, span_warning("You haven't got enough [src] to build \the [recipe.title]!"))
 		return
 
 	if (recipe.one_per_turf && (locate(recipe.result_type) in user.loc))
-		to_chat(user, SPAN_WARNING("There is another [recipe.title] here!"))
+		to_chat(user, span_warning("There is another [recipe.title] here!"))
 		return
 
 	if (recipe.on_floor && !isfloor(user.loc))
-		to_chat(user, SPAN_WARNING("\The [recipe.title] must be constructed on the floor!"))
+		to_chat(user, span_warning("\The [recipe.title] must be constructed on the floor!"))
 		return
 
 	if (recipe.time)
-		to_chat(user, SPAN_NOTICE("Building [recipe.title] ..."))
+		to_chat(user, span_notice("Building [recipe.title] ..."))
 		if (!do_after(user, recipe.time, user))
 			return
 
@@ -353,7 +353,7 @@
 			continue
 		var/transfer = src.transfer_to(item)
 		if (transfer)
-			to_chat(user, SPAN_NOTICE("You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s."))
+			to_chat(user, span_notice("You add a new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s."))
 		if(!amount)
 			break
 
@@ -406,7 +406,7 @@
 	The new stack will be put into your hands if possible", "Split Stack", round(amount * 0.5)) as null|num
 
 	if (!Adjacent(usr))
-		to_chat(usr, SPAN_WARNING("You need to be in arm's reach for that!"))
+		to_chat(usr, span_warning("You need to be in arm's reach for that!"))
 		return
 
 	if (usr.incapacitated())

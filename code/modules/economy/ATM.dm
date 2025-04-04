@@ -90,7 +90,7 @@ log transactions
 
 	//display a message to the user
 	var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.","PIN Code accepted! Emptying account balance.", "Jackpot!")
-	to_chat(user, "<span class='warning'>\icon[src] The [src] beeps: \"[response]\"</span>")
+	to_chat(user, span_warning("\icon[src] The [src] beeps: \"[response]\""))
 	return 1
 
 /obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
@@ -126,7 +126,7 @@ log transactions
 			var/datum/transaction/T = new(cash.worth, authenticated_account.owner_name, "Credit deposit", machine_id)
 			T.apply_to(authenticated_account)
 
-			to_chat(user, "<span class='info'>You insert [I] into [src].</span>")
+			to_chat(user, span_info("You insert [I] into [src]."))
 			src.attack_hand(user)
 			qdel(I)
 	else
@@ -151,7 +151,7 @@ log transactions
 			dat += "Card: <a href='byond://?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 
 			if(ticks_left_locked_down > 0)
-				dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
+				dat += span_alert("Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.")
 			else if(authenticated_account)
 				if(authenticated_account.suspended)
 					dat += "\red<b>Access to this account has been suspended, and the funds within frozen.</b>"
@@ -256,12 +256,12 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(transfer_funds(authenticated_account.account_number, target_account_number, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, "\icon[src]<span class='info'>Funds transfer successful.</span>")
+							to_chat(usr, "\icon[src][span_info("Funds transfer successful.")]")
 						else
-							to_chat(usr, "\icon[src]<span class='warning'>Funds transfer failed.</span>")
+							to_chat(usr, "\icon[src][span_warning("Funds transfer failed.")]")
 
 					else
-						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
+						to_chat(usr, span_warning("You don't have enough funds to do that!"))
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -306,7 +306,7 @@ log transactions
 						var/datum/transaction/T = new(0, authenticated_account.owner_name, "Remote terminal access", machine_id)
 						T.apply_to(authenticated_account)
 
-						to_chat(usr, SPAN_NOTICE("Access granted. Welcome, '[authenticated_account.owner_name].'"))
+						to_chat(usr, span_notice("Access granted. Welcome, '[authenticated_account.owner_name].'"))
 
 					previous_account_number = tried_account_num
 			if("e_withdrawal")
@@ -326,7 +326,7 @@ log transactions
 							//	spawn_money(amount,src.loc)
 							spawn_ewallet(amount,src.loc,usr)
 					else
-						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
+						to_chat(usr, span_warning("You don't have enough funds to do that!"))
 			if("withdrawal")
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
@@ -343,7 +343,7 @@ log transactions
 							spawn_money(amount,src.loc,usr)
 
 					else
-						to_chat(usr, SPAN_WARNING("You don't have enough funds to do that!"))
+						to_chat(usr, span_warning("You don't have enough funds to do that!"))
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)

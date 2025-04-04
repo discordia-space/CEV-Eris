@@ -100,7 +100,7 @@
 /obj/machinery/pipedispenser/attackby(var/obj/item/I, var/mob/user)
 	src.add_fingerprint(usr)
 	if (istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
-		to_chat(usr, SPAN_NOTICE("You put [I] back to [src]."))
+		to_chat(usr, span_notice("You put [I] back to [src]."))
 		user.drop_item()
 		qdel(I)
 		return
@@ -117,8 +117,8 @@
 		if (usr.machine==src)
 			usr << browse(null, "window=pipedispenser")
 	user.visible_message( \
-		SPAN_NOTICE("\The [user] [anchored ? "":"un"]fastens \the [src]."), \
-		SPAN_NOTICE("You have [anchored ? "":"un"]fastened \the [src]."), \
+		span_notice("\The [user] [anchored ? "":"un"]fastens \the [src]."), \
+		span_notice("You have [anchored ? "":"un"]fastened \the [src]."), \
 		"You hear ratchet.")
 
 

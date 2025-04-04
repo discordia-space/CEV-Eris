@@ -66,7 +66,7 @@
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(check_parry_arc(user, bad_arc, damage_source, attacker))
 		if(prob(get_block_chance(user)))
-			user.visible_message(SPAN_DANGER("\The [user] blocks [attack_text] with \the [src]!"))
+			user.visible_message(span_danger("\The [user] blocks [attack_text] with \the [src]!"))
 			return 1
 	return 0
 
@@ -78,7 +78,7 @@
 	else protected_area = get_protected_area(user)
 	if(protected_area.Find(def_zone) && check_shield_arc(user, bad_arc, damage_source))
 		if(!damage_source.check_penetrate(src))
-			visible_message(SPAN_DANGER("\The [user] blocks [damage_source] with \his [src]!"))
+			visible_message(span_danger("\The [user] blocks [damage_source] with \his [src]!"))
 			playsound(user.loc, 'sound/weapons/shield/shieldblock.ogg', 50, 1)
 			return 1
 	return 0
@@ -182,7 +182,7 @@
 
 /obj/item/shield/buckler/proc/on_bash(var/obj/item/W, var/mob/user)
 	if(cooldown < world.time - 25)
-		user.visible_message(SPAN_WARNING("[user] bashes [src] with \his [W]!"))
+		user.visible_message(span_warning("[user] bashes [src] with \his [W]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 		cooldown = world.time
 
@@ -286,7 +286,7 @@
 
 /obj/item/shield/riot/proc/on_bash(var/obj/item/W, var/mob/user)
 	if(cooldown < world.time - 25)
-		user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
+		user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 		cooldown = world.time
 
@@ -366,7 +366,7 @@
 
 /obj/item/shield/hardsuit/proc/on_bash(var/obj/item/W, var/mob/user)
 	if(cooldown < world.time - 25)
-		user.visible_message(SPAN_WARNING("[user] bashes [src] with \his [W]!"))
+		user.visible_message(span_warning("[user] bashes [src] with \his [W]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 		cooldown = world.time
 
@@ -483,7 +483,7 @@
 
 /obj/item/shield/buckler/energy/attack_self(mob/living/user as mob)
 /*	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, SPAN_WARNING("You beat yourself in the head with [src]."))
+		to_chat(user, span_warning("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)
 	active = !active
 */
@@ -492,14 +492,14 @@
 		update_icon()
 		w_class = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		to_chat(user, SPAN_NOTICE("\The [src] is now active."))
+		to_chat(user, span_notice("\The [src] is now active."))
 
 	else
 		force = 3
 		update_icon()
 		w_class = ITEM_SIZE_TINY
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		to_chat(user, SPAN_NOTICE("\The [src] can now be concealed."))
+		to_chat(user, span_notice("\The [src] can now be concealed."))
 
 	add_fingerprint(user)
 	return

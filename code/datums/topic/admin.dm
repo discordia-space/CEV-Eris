@@ -406,7 +406,7 @@
 
 /datum/admin_topic/jobban3/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
-		to_chat(usr, SPAN_WARNING("Mod jobbanning is disabled!"))
+		to_chat(usr, span_warning("Mod jobbanning is disabled!"))
 		return
 
 	var/mob/M = locate(input["jobban4"])
@@ -485,7 +485,7 @@
 				if(!mins)
 					return
 				if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_job_tempban_max)
-					to_chat(usr, SPAN_WARNING("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!"))
+					to_chat(usr, span_warning("Moderators can only job tempban up to [config.mod_job_tempban_max] minutes!"))
 					return
 				var/reason = sanitize(input(usr,"Reason?","Please State Reason","") as text|null)
 				if(!reason)
@@ -605,7 +605,7 @@
 
 /datum/admin_topic/newban/Run(list/input)
 	if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && !config.mods_can_job_tempban) // If mod and tempban disabled
-		to_chat(usr, SPAN_WARNING("Mod jobbanning is disabled!"))
+		to_chat(usr, span_warning("Mod jobbanning is disabled!"))
 		return
 
 	var/mob/M = locate(input["newban"])
@@ -624,7 +624,7 @@
 				return
 
 			if(check_rights(R_MOD, FALSE) && !check_rights(R_ADMIN, FALSE) && mins > config.mod_tempban_max)
-				to_chat(usr, SPAN_WARNING("Moderators can only job tempban up to [config.mod_tempban_max] minutes!"))
+				to_chat(usr, span_warning("Moderators can only job tempban up to [config.mod_tempban_max] minutes!"))
 				return
 			if(mins >= 525600) mins = 525599
 			var/reason = sanitize(input(usr,"Reason?","reason","Griefer") as text|null)
@@ -684,11 +684,11 @@
 	var/mob/M = locate(input["sendbacktolobby"])
 
 	if(!isobserver(M))
-		to_chat(usr, "<span class='notice'>You can only send ghost players back to the Lobby.</span>")
+		to_chat(usr, span_notice("You can only send ghost players back to the Lobby."))
 		return
 
 	if(!M.client)
-		to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
+		to_chat(usr, span_warning("[M] doesn't seem to have an active client."))
 		return
 
 	if(alert(usr, "Send [key_name(M)] back to Lobby?", "Message", "Yes", "No") != "Yes")
@@ -792,7 +792,7 @@
 		return
 	if(B.occur())
 		H.sanity.breakdowns += B
-		to_chat(usr, SPAN_NOTICE("[B] has occurred for [key_name(H)]."))
+		to_chat(usr, span_notice("[B] has occurred for [key_name(H)]."))
 		return
 
 
@@ -1344,7 +1344,7 @@
 /datum/admin_topic/viewruntime/Run(list/input)
 	var/datum/ErrorViewer/error_viewer = locate(input["viewruntime"])
 	if(!istype(error_viewer))
-		to_chat(usr, "<span class='warning'>That runtime viewer no longer exists.</span>")
+		to_chat(usr, span_warning("That runtime viewer no longer exists."))
 		return
 	if(input["viewruntime_backto"])
 		error_viewer.showTo(usr, locate(input["viewruntime_backto"]), input["viewruntime_linear"])

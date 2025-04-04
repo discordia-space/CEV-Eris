@@ -58,13 +58,13 @@
 
 /obj/item/mech_component/examine(mob/user, extra_description = "")
 	if(ready_to_install())
-		extra_description += SPAN_NOTICE("\nIt is ready for installation.")
+		extra_description += span_notice("\nIt is ready for installation.")
 	else
 		show_missing_parts(user)
 	if(emp_shielded)
-		extra_description += SPAN_NOTICE("\nThis component is fitted with a Faraday cage, making it resistant against electromagnetic pulses.")
+		extra_description += span_notice("\nThis component is fitted with a Faraday cage, making it resistant against electromagnetic pulses.")
 	if(front_mult != 1 || side_mult != 1 || rear_mult != 1)
-		extra_description += SPAN_NOTICE("\nThis component has uneven armor distribution. Frontal armor is multiplied by [front_mult], side armor by [side_mult] and the rear plates by [rear_mult]")
+		extra_description += span_notice("\nThis component has uneven armor distribution. Frontal armor is multiplied by [front_mult], side armor by [side_mult] and the rear plates by [rear_mult]")
 	var/damage_string = get_damage_string()
 	extra_description += "\nThe [name] [gender == PLURAL ? "are" : "is"] [damage_string]."
 	..(user, extra_description)
@@ -158,12 +158,12 @@
 		QDEL_NULL(RC)
 
 /obj/item/mech_component/proc/return_diagnostics(var/mob/user)
-	to_chat(user, SPAN_NOTICE("[capitalize(name)]:"))
-	to_chat(user, SPAN_NOTICE(" - Hull Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
+	to_chat(user, span_notice("[capitalize(name)]:"))
+	to_chat(user, span_notice(" - Hull Integrity: <b>[round((((max_damage - total_damage) / max_damage)) * 100)]%</b>" ))
 //	if(cur_armor > 0)
-//		to_chat(user, SPAN_NOTICE(" - Armor Integrity: <b>[round((((max_armor - cur_armor) / max_armor)) * 100)]%</b>"))
+//		to_chat(user, span_notice(" - Armor Integrity: <b>[round((((max_armor - cur_armor) / max_armor)) * 100)]%</b>"))
 //	else
-//		to_chat(user, SPAN_WARNING(" - Armor integrity failure!"))
+//		to_chat(user, span_warning(" - Armor integrity failure!"))
 
 /obj/item/mech_component/attackby(obj/item/I, mob/living/user)
 	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING, QUALITY_PRYING, QUALITY_SCREW_DRIVING)
@@ -185,7 +185,7 @@
 				if(eject_item(removed, user))
 					update_components()
 			else
-				to_chat(user, SPAN_WARNING("There is nothing to remove."))
+				to_chat(user, span_warning("There is nothing to remove."))
 
 		if(QUALITY_WELDING)
 			repair_brute_generic(I, user)
@@ -196,7 +196,7 @@
 		return
 
 	if(istype(I, /obj/item/device/robotanalyzer))
-		to_chat(user, SPAN_NOTICE("Diagnostic Report for \the [src]:"))
+		to_chat(user, span_notice("Diagnostic Report for \the [src]:"))
 		return_diagnostics(user)
 	return ..()
 
@@ -208,16 +208,16 @@
 	var/weld_amt = round(max(0, 10, 5 + user.stats.getStat(STAT_MEC) / 3))
 
 	if(brute_damage <= 0)
-		to_chat(user, SPAN_NOTICE("You inspect \the [src] but find nothing to weld."))
+		to_chat(user, span_notice("You inspect \the [src] but find nothing to weld."))
 		return
 
 	if(total_damage >= max_damage)
-		to_chat(user, SPAN_WARNING("This component is completely destroyed, you can't repair it!"))
+		to_chat(user, span_warning("This component is completely destroyed, you can't repair it!"))
 		return
 
 	if(QUALITY_WELDING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			user.visible_message(SPAN_NOTICE("The [src] has been repaired by [user]."), SPAN_NOTICE("You weld a damaged section of \the [src]."), SPAN_NOTICE("You hear welding."))
+			user.visible_message(span_notice("The [src] has been repaired by [user]."), span_notice("You weld a damaged section of \the [src]."), span_notice("You hear welding."))
 			repair_brute_damage(weld_amt)
 			return
 
@@ -225,21 +225,21 @@
 	var/wire_amt = round(max(10, 5 + user.stats.getStat(STAT_MEC) / 3))
 
 	if(burn_damage <= 0)
-		to_chat(user, SPAN_NOTICE("You inspect /the [src]'s wiring, but can't find anything to fix."))
+		to_chat(user, span_notice("You inspect /the [src]'s wiring, but can't find anything to fix."))
 		return
 
 	if(CC.amount < 5)
-		to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
+		to_chat(user, span_warning("You need at least 5 cable coil pieces in order to replace wiring."))
 		return
 
 	if(total_damage >= max_damage)
-		to_chat(user, SPAN_WARNING("This part is too damaged to be re-wired!"))
+		to_chat(user, span_warning("This part is too damaged to be re-wired!"))
 		return
 
-	to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
+	to_chat(user, span_notice("You start replacing wiring in \the [src]."))
 
 	if(do_mob(user, src, 30) && CC.use(5))
-		user.visible_message(SPAN_NOTICE("\The [src] has been re-wired by [user]."), SPAN_NOTICE("You replace frayed wiring in \the [src]."), SPAN_NOTICE("You hear rustling metal."))
+		user.visible_message(span_notice("\The [src] has been re-wired by [user]."), span_notice("You replace frayed wiring in \the [src]."), span_notice("You hear rustling metal."))
 		repair_burn_damage(wire_amt)
 		return
 

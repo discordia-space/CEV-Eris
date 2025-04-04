@@ -79,7 +79,7 @@
 		layer = BELOW_MOB_LAYER // Below stunned roaches
 
 		if(prob(3))
-			visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
+			visible_message(span_danger("\the [src] hacks up a tape!"))
 			new /obj/item/music_tape(get_turf(src))
 	if(!blattedin_revives_left)
 		leaveOvermind()

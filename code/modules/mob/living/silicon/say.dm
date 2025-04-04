@@ -8,7 +8,7 @@
 	..()
 	if(message_mode)
 		if(!is_component_functioning("radio"))
-			to_chat(src, SPAN_WARNING("Your radio isn't functional at this time."))
+			to_chat(src, span_warning("Your radio isn't functional at this time."))
 			return 0
 		if(message_mode == "general")
 			message_mode = null
@@ -20,7 +20,7 @@
 		return holopad_talk(message, verb, speaking)
 	else if(message_mode)
 		if (aiRadio.disabledAi || aiRestorePowerRoutine || stat)
-			to_chat(src, SPAN_DANGER("System Error - Transceiver Disabled."))
+			to_chat(src, span_danger("System Error - Transceiver Disabled."))
 			return 0
 		if(message_mode == "general")
 			message_mode = null
@@ -74,9 +74,9 @@
 
 	// AI can hear their own message, this formats it for them.
 	if(speaking)
-		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [speaking.format_message(message, verb)]</span></i>")
+		to_chat(src, "<i><span class='game say'>Holopad transmitted, [span_name("[real_name]")] [speaking.format_message(message, verb)]</span></i>")
 	else
-		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'><span class='body'>\"[message]\"</span></span></span></i>")
+		to_chat(src, "<i><span class='game say'>Holopad transmitted, [span_name("[real_name]")] [verb], [span_message("<span class='body'>\"[message]\"")]</span></span></i>")
 
 	//This is so pAI's and people inside lockers/boxes,etc can hear the AI Holopad, the alternative being recursion through contents.
 	//This is much faster.
@@ -118,8 +118,8 @@
 
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])
-		var/rendered = "<span class='game say'><span class='name'>[name]</span> <span class='message'>[message]</span></span>"
-		to_chat(src, "<i><span class='game say'>Holopad action relayed, <span class='name'>[real_name]</span> <span class='message'>[message]</span></span></i>")
+		var/rendered = "<span class='game say'>[span_name("[name]")] [span_message("[message]")]</span>"
+		to_chat(src, "<i><span class='game say'>Holopad action relayed, [span_name("[real_name]")] [span_message("[message]")]</span></i>")
 
 		for(var/mob/M in viewers(T.loc))
 			M.show_message(rendered, 2)

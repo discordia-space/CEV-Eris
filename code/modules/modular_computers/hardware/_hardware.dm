@@ -81,11 +81,11 @@
 
 /obj/item/computer_hardware/examine(mob/user, extra_description = "")
 	if(damage > damage_failure)
-		extra_description += SPAN_WARNING("It seems to be severely damaged!")
+		extra_description += span_warning("It seems to be severely damaged!")
 	else if(damage > damage_malfunction)
-		extra_description += SPAN_WARNING("It seems to be damaged!")
+		extra_description += span_warning("It seems to be damaged!")
 	else if(damage)
-		extra_description += SPAN_NOTICE("It seems to be slightly damaged.")
+		extra_description += span_notice("It seems to be slightly damaged.")
 	..(user, extra_description)
 
 /obj/item/computer_hardware/drop_location()

@@ -51,9 +51,9 @@
 	extra_description += "\n\The [src] appears to be producing [power_gen*power_output] W."
 	extra_description += "\nThere [sheets == 1 ? "is" : "are"] [sheets] sheet\s left in the hopper."
 	if(IsBroken())
-		extra_description += SPAN_WARNING("\n\The [src] seems to have broken down.")
+		extra_description += span_warning("\n\The [src] seems to have broken down.")
 	if(overheating)
-		extra_description += SPAN_DANGER("\n\The [src] is overheating!")
+		extra_description += span_danger("\n\The [src] is overheating!")
 	..(user, extra_description)
 
 /obj/machinery/power/port_gen/pacman/HasFuel()
@@ -179,7 +179,7 @@
 		return
 
 	if(active)
-		user << SPAN_NOTICE("You can't work with [src] while its running!")
+		user << span_notice("You can't work with [src] while its running!")
 
 	else
 
@@ -208,17 +208,17 @@
 				var/used_sound = open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_PRD, instant_finish_tier = 30, forced_sound = used_sound))
 					open = !open
-					user << SPAN_NOTICE("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
+					user << span_notice("You [open ? "open" : "close"] the maintenance hatch of \the [src] with [I].")
 					update_icon()
 					return
 				return
 
 			if(QUALITY_BOLT_TURNING)
 				if(istype(get_turf(src), /turf/space) && !anchored)
-					user << SPAN_NOTICE("You can't anchor something to empty space. Idiot.")
+					user << span_notice("You can't anchor something to empty space. Idiot.")
 					return
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_PRD))
-					user << SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I].")
+					user << span_notice("You [anchored ? "un" : ""]anchor the brace with [I].")
 					anchored = !anchored
 					if(anchored)
 						connect_to_network()
@@ -295,7 +295,7 @@
 	dat += text("Power current: [(powernet == null ? "Unconnected" : "[avail()]")]<br>")
 
 	var/tempstr = "Temperature: [temperature]&deg;C<br>"
-	dat += (overheating)? SPAN_DANGER("[tempstr]") : tempstr
+	dat += (overheating)? span_danger("[tempstr]") : tempstr
 	dat += "<br><A href='byond://?src=\ref[src];action=close'>Close</A>"
 	user << browse("[dat]", "window=port_gen")
 	onclose(user, "port_gen")

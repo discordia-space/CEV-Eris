@@ -232,21 +232,21 @@
 /datum/movement_handler/mob/physically_restrained/MayMove(var/mob/mover)
 	if(mob.anchored)
 		if(mover == mob)
-//			to_chat(mob, "<span class='notice'>You're anchored down!</span>")
+//			to_chat(mob, span_notice("You're anchored down!"))
 			if(isliving(mob))
 				mob:resist()
 		return MOVEMENT_STOP
 
 	if(istype(mob.buckled) && !mob.buckled.buckle_movable)
 		if(mover == mob)
-//			to_chat(mob, "<span class='notice'>You're buckled to \the [mob.buckled]!</span>")
+//			to_chat(mob, span_notice("You're buckled to \the [mob.buckled]!"))
 			if(isliving(mob))
 				mob:resist()
 		return MOVEMENT_STOP
 
 	if(LAZYLEN(mob.pinned))
 		if(mover == mob)
-			to_chat(mob, "<span class='notice'>You're pinned down by \a [mob.pinned[1]]!</span>")
+			to_chat(mob, span_notice("You're pinned down by \a [mob.pinned[1]]!"))
 		return MOVEMENT_STOP
 
 	if(length(mob.grabbed_by))
@@ -254,7 +254,7 @@
 		/* TODO: Bay grab system
 		if(G.stop_move())
 			if(mover == mob)
-				to_chat(mob, "<span class='notice'>You're stuck in a grab!</span>")
+				to_chat(mob, span_notice("You're stuck in a grab!"))
 			mob.ProcessGrabs()
 			return MOVEMENT_STOP
 		*/
@@ -263,7 +263,7 @@
 			if(M.pulling == mob)
 				if(!M.incapacitated() && mob.Adjacent(M))
 					if(mover == mob)
-						to_chat(mob, "<span class='notice'>You're restrained! You can't move!</span>")
+						to_chat(mob, span_notice("You're restrained! You can't move!"))
 					return MOVEMENT_STOP
 				else
 					M.stop_pulling()

@@ -306,7 +306,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, span_warning("Access denied."))
 		return
 	..()
 
@@ -348,19 +348,19 @@
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/tvalve/digital))
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it's too complicated."))
+		to_chat(user, span_warning("You cannot unwrench \the [src], it's too complicated."))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		to_chat(user, "<span class='warnng'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
+		to_chat(user, span_warning("You cannot unwrench \the [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
-	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			span_notice("\The [user] unfastens \the [src]."), \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
@@ -445,7 +445,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		to_chat(user, SPAN_WARNING("Access denied."))
+		to_chat(user, span_warning("Access denied."))
 		return
 	..()
 

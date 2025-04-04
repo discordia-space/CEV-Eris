@@ -117,12 +117,12 @@
 	if(world.time > last_use + CHECKER_COOLDOWN)
 		var/cumulated_amount = check_loot_value()
 		if(cumulated_amount)
-			audible_message(SPAN_WARNING("[src] beeps: 'LOOT VALUE: [cumulated_amount] credits.'"))
+			audible_message(span_warning("[src] beeps: 'LOOT VALUE: [cumulated_amount] credits.'"))
 		else
-			audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Unable to compute loot value.'"))
+			audible_message(span_warning("[src] beeps: 'ERROR: Unable to compute loot value.'"))
 		last_use = world.time
 	else
-		to_chat(user, SPAN_NOTICE("The loot value checker has [round((last_use + CHECKER_COOLDOWN - world.time) / (1 SECOND))] seconds of cooldown remaining."))
+		to_chat(user, span_notice("The loot value checker has [round((last_use + CHECKER_COOLDOWN - world.time) / (1 SECOND))] seconds of cooldown remaining."))
 
 /obj/item/device/loot_checker/proc/check_loot_value()
 	var/cumulated_amount = 0

@@ -228,7 +228,7 @@ var/global/const/base_law_type = /datum/ai_laws/eris
 		if(law == zeroth_law_borg)
 			continue
 		if(law == zeroth_law)
-			to_chat(who, SPAN_DANGER("[law.get_index()]. [law.law]"))
+			to_chat(who, span_danger("[law.get_index()]. [law.law]"))
 		else
 			to_chat(who, "[law.get_index()]. [law.law]")
 

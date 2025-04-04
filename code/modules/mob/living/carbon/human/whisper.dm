@@ -41,7 +41,7 @@
 /mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
 
 	if (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/grenade))
-		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
+		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
 
 	var/message_range = 1
@@ -164,6 +164,6 @@
 	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	if (watching.len)
-		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> [not_heard].</span>"
+		var/rendered = "<span class='game say'>[span_name("[src.name]")] [not_heard].</span>"
 		for (var/mob/M in watching)
 			M.show_message(rendered, 2)

@@ -132,10 +132,10 @@
 /obj/machinery/shipsensors/attackby(obj/item/W, mob/user)
 	var/damage = maxHealth - health
 	if(damage && (QUALITY_WELDING in W.tool_qualities))
-		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
+		to_chat(user, span_notice("You start repairing the damage to [src]."))
 		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
+			to_chat(user, span_notice("You finish repairing the damage to [src]."))
 			take_damage(-damage)
 		return
 	..()
@@ -159,9 +159,9 @@
 	if(health <= 0)
 		extra_description += "\n\The [src] is wrecked."
 	else if(health < maxHealth * 0.25)
-		extra_description += SPAN_DANGER("\n\The [src] looks like it's about to break!")
+		extra_description += span_danger("\n\The [src] looks like it's about to break!")
 	else if(health < maxHealth * 0.5)
-		extra_description += SPAN_DANGER("\n\The [src] looks seriously damaged!")
+		extra_description += span_danger("\n\The [src] looks seriously damaged!")
 	else if(health < maxHealth * 0.75)
 		extra_description += "\nThe [src] shows signs of damage!"
 	..(user, extra_description)
@@ -184,7 +184,7 @@
 		if(!in_vacuum())
 			toggle()
 		if(current_heat > critical_heat)
-			src.visible_message("<span class='danger'>\The [src] violently spews out sparks!</span>")
+			src.visible_message(span_danger("\The [src] violently spews out sparks!"))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()

@@ -186,11 +186,11 @@
 							damage_eyes = FALSE
 							break
 				if(damage_eyes)
-					holder.owner.visible_message(SPAN_DANGER("[holder.owner] scratches at [G.his] eyes!"))
+					holder.owner.visible_message(span_danger("[holder.owner] scratches at [G.his] eyes!"))
 					var/obj/item/organ/internal/eyes/eyes = holder.owner.random_organ_by_process(OP_EYES)
 					eyes.take_damage(rand(1,10), TRUE, BRUTE, TRUE, TRUE)
 				else
-					holder.owner.visible_message(SPAN_DANGER(pick(list(
+					holder.owner.visible_message(span_danger(pick(list(
 						"[holder.owner] tries to end [G.his] misery!",
 						"[holder.owner] tries to peel [G.his] own skin off!",
 						"[holder.owner] bites [G.his] own limbs uncontrollably!"
@@ -377,7 +377,7 @@
 		return FALSE
 	if(world.time >= message_time)
 		message_time = world.time + BREAKDOWN_ALERT_COOLDOWN
-		to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
+		to_chat(holder.owner, span_notice(pick(messages)))
 
 /datum/breakdown/common/power_hungry/conclude()
 	UnregisterSignal(holder.owner, COMSIG_CARBON_ELECTROCTE)
@@ -423,12 +423,12 @@
 		target = pick(targets)
 		holder.owner.remoteviewer = TRUE
 		holder.owner.set_remoteview(target)
-		to_chat(holder.owner, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
+		to_chat(holder.owner, span_warning("It seems as if you are looking through someone else's eyes."))
 		active_view = ACTVIEW_ONE
 		if(target.sanity.level < 50)
 			target.remoteviewer = TRUE
 			target.set_remoteview(holder.owner)
-			to_chat(target, SPAN_WARNING("It seems as if you are looking through someone else's eyes."))
+			to_chat(target, span_warning("It seems as if you are looking through someone else's eyes."))
 			active_view = ACTVIEW_BOTH
 		target.sanity.changeLevel(-rand(5,10)) //This phenomena will prove taxing on the viewed regardless
 		addtimer(CALLBACK(src, PROC_REF(reset_views), TRUE), time_view)
@@ -514,7 +514,7 @@
 					"When you are in [target] you feel like home... You want to feel like home.",
 					"[target] reminds you of the hunt.")
 
-	to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
+	to_chat(holder.owner, span_notice(pick(messages)))
 	return ..()
 
 /datum/breakdown/common/false_nostalgy/update()
@@ -527,7 +527,7 @@
 		return FALSE
 	if(world.time >= message_time)
 		message_time = world.time + BREAKDOWN_ALERT_COOLDOWN
-		to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
+		to_chat(holder.owner, span_notice(pick(messages)))
 
 /datum/breakdown/common/new_heights
 	name = "New Heights"
@@ -552,7 +552,7 @@
 		return FALSE
 	if(world.time >= message_time)
 		message_time = world.time + BREAKDOWN_ALERT_COOLDOWN
-		to_chat(holder.owner, SPAN_NOTICE(pick(messages)))
+		to_chat(holder.owner, span_notice(pick(messages)))
 
 /datum/breakdown/common/obsession
 	name = "Obsession"
@@ -582,7 +582,7 @@
 	if(!.)
 		return FALSE
 	if(QDELETED(target))
-		to_chat(holder.owner, SPAN_WARNING("[target.name] is lost!"))
+		to_chat(holder.owner, span_warning("[target.name] is lost!"))
 		finished = TRUE
 		conclude()
 		return FALSE
@@ -605,7 +605,7 @@
 									"you want to be close to [target.name].",
 									"Seeing [target.name] makes you happy."
 									))
-			to_chat(holder.owner, SPAN_NOTICE(message))
+			to_chat(holder.owner, span_notice(message))
 
 /datum/breakdown/common/obsession/occur()
 	for(var/stat in ALL_STATS)

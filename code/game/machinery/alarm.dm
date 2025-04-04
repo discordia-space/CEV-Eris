@@ -600,7 +600,7 @@
 		return STATUS_CLOSE
 
 	if(aidisabled && isAI(user))
-		to_chat(user, SPAN_WARNING("AI control for \the [src] interface has been disabled."))
+		to_chat(user, span_warning("AI control for \the [src] interface has been disabled."))
 		return STATUS_CLOSE
 
 	. = shorted ? STATUS_DISABLED : STATUS_INTERACTIVE
@@ -805,7 +805,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_WARNING("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
+					user.visible_message(span_warning("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
 					buildstage = 1
 					update_icon()
@@ -844,13 +844,13 @@
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if (C.use(5))
-					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
+					to_chat(user, span_notice("You wire \the [src]."))
 					buildstage = 2
 					update_icon()
 					first_run()
 					return
 				else
-					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
+					to_chat(user, span_warning("You need 5 pieces of cable to do wire \the [src]."))
 					return
 
 		if(0)
@@ -882,9 +882,9 @@
 	else
 		if(allowed(user) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
 			locked = !locked
-			to_chat(user, SPAN_NOTICE("You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
+			to_chat(user, span_notice("You [ locked ? "lock" : "unlock"] the Air Alarm interface."))
 		else
-			to_chat(user, SPAN_WARNING("Access denied."))
+			to_chat(user, span_warning("Access denied."))
 
 /obj/machinery/alarm/AltClick(mob/user)
 	..()
@@ -1010,7 +1010,7 @@ FIRE ALARM
 		if(QUALITY_WIRE_CUTTING)
 			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_WARNING("[user] has removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
+					user.visible_message(span_warning("[user] has removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
 					buildstage = 1
 					update_icon()
@@ -1022,8 +1022,8 @@ FIRE ALARM
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					detecting = !detecting
 					user.visible_message(
-					SPAN_NOTICE("\The [user] has [detecting ? "disconnected" : "reconnected"] [src]'s detecting unit!"),
-					SPAN_NOTICE("You have [detecting ? "disconnected" : "reconnected"] [src]'s detecting unit."))
+					span_notice("\The [user] has [detecting ? "disconnected" : "reconnected"] [src]'s detecting unit!"),
+					span_notice("You have [detecting ? "disconnected" : "reconnected"] [src]'s detecting unit."))
 					return
 			return
 
@@ -1055,12 +1055,12 @@ FIRE ALARM
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if (C.use(5))
-					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
+					to_chat(user, span_notice("You wire \the [src]."))
 					buildstage = 2
 					update_icon()
 					return
 				else
-					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
+					to_chat(user, span_warning("You need 5 pieces of cable to do wire \the [src]."))
 					return
 
 		if(0)
@@ -1166,7 +1166,7 @@ FIRE ALARM
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.triggerAlarm(loc, FA, duration)
 	if(iscarbon(usr))
-		visible_message(SPAN_WARNING("[usr] pulled \the [src]'s pull station!"), SPAN_WARNING("You have pulled \the [src]'s pull station!"))
+		visible_message(span_warning("[usr] pulled \the [src]'s pull station!"), span_warning("You have pulled \the [src]'s pull station!"))
 	else
 		to_chat(usr, "Fire Alarm activated.")
 	update_icon()

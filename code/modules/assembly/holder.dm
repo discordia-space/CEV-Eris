@@ -64,9 +64,9 @@
 /obj/item/device/assembly_holder/examine(mob/user, extra_description = "")
 	if(get_dist(user, src) < 2)
 		if(secured)
-			extra_description += SPAN_NOTICE("\The [src] is ready!")
+			extra_description += span_notice("\The [src] is ready!")
 		else
-			extra_description += SPAN_NOTICE("\The [src] can be attached!")
+			extra_description += span_notice("\The [src] can be attached!")
 	..(user, extra_description)
 
 
@@ -108,15 +108,15 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			if(!left_assembly || !right_assembly)
-				to_chat(user, SPAN_WARNING("Assembly part missing!"))
+				to_chat(user, span_warning("Assembly part missing!"))
 				return
 			left_assembly.toggle_secure()
 			right_assembly.toggle_secure()
 			secured = !secured
 			if(secured)
-				to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+				to_chat(user, span_notice("\The [src] is ready!"))
 			else
-				to_chat(user, SPAN_NOTICE("\The [src] can now be taken apart!"))
+				to_chat(user, span_notice("\The [src] can now be taken apart!"))
 			update_icon()
 			return
 	..()
@@ -126,7 +126,7 @@
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!left_assembly || !right_assembly)
-			to_chat(user, SPAN_WARNING("Assembly part missing!"))
+			to_chat(user, span_warning("Assembly part missing!"))
 			return
 		if(istype(left_assembly,right_assembly.type))//If they are the same type it causes issues due to window code
 			switch(alert("Which side would you like to use?",,"Left","Right"))
@@ -214,18 +214,18 @@
 		if(!istype(tmr,/obj/item/device/assembly/timer))
 			tmr = holder.right_assembly
 		if(!istype(tmr,/obj/item/device/assembly/timer))
-			to_chat(usr, SPAN_NOTICE("This detonator has no timer."))
+			to_chat(usr, span_notice("This detonator has no timer."))
 			return
 
 		if(tmr.timing)
-			to_chat(usr, SPAN_NOTICE("Clock is ticking already."))
+			to_chat(usr, span_notice("Clock is ticking already."))
 		else
 			var/ntime = input("Enter desired time in seconds", "Time", "5") as num
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"
-				to_chat(usr, SPAN_NOTICE("Timer set to [tmr.time] seconds."))
+				to_chat(usr, span_notice("Timer set to [tmr.time] seconds."))
 			else
-				to_chat(usr, "<span class='notice'>Timer can't be [ntime<=0?"negative":"more than 1000 seconds"].</span>")
+				to_chat(usr, span_notice("Timer can't be [ntime<=0?"negative":"more than 1000 seconds"]."))
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this while [usr.stat?"unconscious/dead":"restrained"].</span>")
+		to_chat(usr, span_notice("You cannot do this while [usr.stat?"unconscious/dead":"restrained"]."))

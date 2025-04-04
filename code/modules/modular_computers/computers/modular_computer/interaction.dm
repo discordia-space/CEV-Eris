@@ -16,11 +16,11 @@
 
 /obj/item/modular_computer/can_interact(mob/user)
 	if(usr.incapacitated())
-		to_chat(user, "<span class='warning'>You can't do that.</span>")
+		to_chat(user, span_warning("You can't do that."))
 		return FALSE
 
 	if(!Adjacent(usr))
-		to_chat(user, "<span class='warning'>You can't reach it.</span>")
+		to_chat(user, span_warning("You can't reach it."))
 		return FALSE
 
 	return TRUE
@@ -87,7 +87,7 @@
 		return
 
 	if(istype(stored_pen))
-		to_chat(usr, SPAN_NOTICE("You remove [stored_pen] from [src]."))
+		to_chat(usr, span_notice("You remove [stored_pen] from [src]."))
 		stored_pen.forceMove(get_turf(src))
 		if(!issilicon(usr))
 			usr.put_in_hands(stored_pen)
@@ -108,7 +108,7 @@
 	card_slot.stored_card.forceMove(get_turf(src))
 	if(!issilicon(user))
 		user.put_in_hands(card_slot.stored_card)
-	to_chat(user, SPAN_NOTICE("You remove [card_slot.stored_card] from [src]."))
+	to_chat(user, span_notice("You remove [card_slot.stored_card] from [src]."))
 	card_slot.stored_card = null
 	update_uis()
 	update_verbs()
@@ -189,7 +189,7 @@
 		return
 	if(istype(W, /obj/item/pen) && stores_pen)
 		if(istype(stored_pen))
-			to_chat(user, "<span class='notice'>There is already a pen in [src].</span>")
+			to_chat(user, span_notice("There is already a pen in [src]."))
 			return
 		if(!insert_item(W, user))
 			return

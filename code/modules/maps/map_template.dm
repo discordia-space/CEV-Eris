@@ -57,13 +57,13 @@
 				atmos_machines += A
 	atoms |= areas
 
-	admin_notice("<span class='danger'>Initializing newly created atom(s) in submap.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing newly created atom(s) in submap."), R_DEBUG)
 	SSatoms.InitializeAtoms(atoms)
 
-	admin_notice("<span class='danger'>Initializing atmos pipenets and machinery in submap.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing atmos pipenets and machinery in submap."), R_DEBUG)
 	SSmachines.setup_atmos_machinery(atmos_machines)
 
-	admin_notice("<span class='danger'>Rebuilding powernets due to submap creation.</span>", R_DEBUG)
+	admin_notice(span_danger("Rebuilding powernets due to submap creation."), R_DEBUG)
 	SSmachines.setup_powernets_for_cables(cables)
 
 	// Ensure all machines in loaded areas get notified of power status
@@ -71,7 +71,7 @@
 		var/area/A = I
 		A.power_change()
 
-	admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
+	admin_notice(span_danger("Submap initializations finished."), R_DEBUG)
 
 /datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = 0)
 	var/x = 1
@@ -130,14 +130,14 @@
 
 /datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = 0)
 	var/deleted_atoms = 0
-	admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
+	admin_notice(span_danger("Annihilating objects in submap loading locatation."), R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
 	if(turfs_to_clean.len)
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
 				++deleted_atoms
 				qdel(AM)
-	admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
+	admin_notice(span_danger("Annihilated [deleted_atoms] objects."), R_DEBUG)
 
 
 //for your ever biggening badminnery kevinz000

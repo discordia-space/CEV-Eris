@@ -32,24 +32,24 @@
 
 /obj/structure/window/examine(mob/user, extra_description = "")
 	if(health == maxHealth)
-		extra_description += SPAN_NOTICE("\nIt looks fully intact.")
+		extra_description += span_notice("\nIt looks fully intact.")
 	else
 		var/perc = health / maxHealth
 		if(perc > 0.75)
-			extra_description += SPAN_NOTICE("\nIt has a few cracks.")
+			extra_description += span_notice("\nIt has a few cracks.")
 		else if(perc > 0.5)
-			extra_description += SPAN_WARNING("\nIt looks slightly damaged.")
+			extra_description += span_warning("\nIt looks slightly damaged.")
 		else if(perc > 0.25)
-			extra_description += SPAN_WARNING("\nIt looks moderately damaged.")
+			extra_description += span_warning("\nIt looks moderately damaged.")
 		else
-			extra_description += SPAN_DANGER("\nIt looks heavily damaged.")
+			extra_description += span_danger("\nIt looks heavily damaged.")
 	if(silicate)
 		if(silicate < 30)
-			extra_description += SPAN_NOTICE("\nIt has a thin layer of silicate.")
+			extra_description += span_notice("\nIt has a thin layer of silicate.")
 		else if(silicate < 70)
-			extra_description += SPAN_NOTICE("\nIt is covered in silicate.")
+			extra_description += span_notice("\nIt is covered in silicate.")
 		else
-			extra_description += SPAN_NOTICE("\nThere is a thick layer of silicate covering it.")
+			extra_description += span_notice("\nThere is a thick layer of silicate covering it.")
 	..(user, extra_description)
 
 //Subtracts resistance from damage then applies it
@@ -190,7 +190,7 @@
 	if(isliving(AM))
 		hit_by_living(AM)
 		return
-	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
+	visible_message(span_danger("[src] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -204,7 +204,7 @@
 	mount_check()
 
 /obj/structure/window/attack_tk(mob/user as mob)
-	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
+	user.visible_message(span_notice("Something knocks on [src]."))
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
 
 /obj/structure/window/attack_hand(mob/user as mob)
@@ -218,8 +218,8 @@
 				return
 		playsound(get_turf(src), 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 		user.do_attack_animation(src)
-		user.visible_message(SPAN_DANGER("\The [user] bangs against \the [src]!"),
-							SPAN_DANGER("You bang against \the [src]!"),
+		user.visible_message(span_danger("\The [user] bangs against \the [src]!"),
+							span_danger("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
 		playsound(get_turf(src), 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
@@ -233,10 +233,10 @@
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
 	if(damage >= resistance)
-		visible_message(SPAN_DANGER("[user] smashes into [src]!"))
+		visible_message(span_danger("[user] smashes into [src]!"))
 		hit(damage)
 	else
-		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
+		visible_message(span_notice("\The [user] bonks \the [src] harmlessly."))
 		playsound(get_turf(src), 'sound/effects/glasshit.ogg', 40, 1)
 		return
 	return 1
@@ -265,7 +265,7 @@
 	var/toughTarget = target.stats.getPerk(PERK_ASS_OF_CONCRETE) ? TRUE : FALSE
 	switch(state)
 		if(GRAB_PASSIVE)
-			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
+			visible_message(span_warning("[user] slams [target] against \the [src]!"))
 			// having ass of concrete divides damage by 3
 			// max damage can be 30 without armor, and gets mitigated by having 15 melee armor
 			target.damage_through_armor(round(10 * skillRatio * (health/maxHealth) / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.5)
@@ -273,17 +273,17 @@
 				target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, 8 SECONDS, "window_smash")
 			hit(round(target.mob_size * skillRatio * (toughTarget ? 2 : 1 ) / windowResistance))
 		if(GRAB_AGGRESSIVE)
-			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
+			visible_message(span_danger("[user] bashes [target] against \the [src]!"))
 			// attacker has double the victim's toughness (altough cap it at 1 second max after they chain it)
 			if(skillRatio > 2 && !(target.weakened || toughTarget))
-				visible_message(SPAN_DANGER("<big>[target] gets staggered by [user]'s smash against \the [src]!</big>"))
+				visible_message(span_danger("<big>[target] gets staggered by [user]'s smash against \the [src]!</big>"))
 				target.Weaken(1)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 1.5, toughTarget ? 6 SECONDS : 12 SECONDS, "window_smash")
 			// at most 60 without armor , 23 with 15 melee armor
 			target.damage_through_armor(round(20 * skillRatio * health/maxHealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.4)
 			hit(round(target.mob_size * skillRatio * 1.5 * (toughTarget ? 2 : 1) / windowResistance))
 		if(GRAB_NECK)
-			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
+			visible_message(span_danger("<big>[user] crushes [target] against \the [src]!</big>"))
 			// at most 90 damage without armor, 40 with 15 melee armor
 			target.damage_through_armor(round(30 * skillRatio * health/maxHealth / (toughTarget ? 3 : 1)), BRUTE, BP_HEAD, ARMOR_MELEE, sharp = FALSE, armor_divisor = 0.3)
 			target.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT * 2, toughTarget ? 10 SECONDS : 20 SECONDS, "window_smash")
@@ -306,7 +306,7 @@
 	var/body_part = pick(BP_HEAD, BP_CHEST, BP_GROIN)
 	var/direction = get_dir(M, src)
 	var/tforce = M.mob_size
-	visible_message(SPAN_DANGER("[M] slams against \the [src]!"))
+	visible_message(span_danger("[M] slams against \the [src]!"))
 	// being super tough has its perks!
 	if(!M.stats.getPerk(PERK_ASS_OF_CONCRETE))
 		var/victimToughness = M.stats.getStat(STAT_TGH, FALSE)
@@ -356,15 +356,15 @@
 			if(QUALITY_SEALING)
 				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
 				if (I.use_tool(user, src, 60 + ((maxHealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
-					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
+					to_chat(user, span_notice("The [src] looks pretty solid now!"))
 					health = maxHealth
 			if(QUALITY_BOLT_TURNING)
 				if(!anchored && (!state || !reinf))
 					if(!glasstype)
-						to_chat(user, SPAN_NOTICE("You're not sure how to dismantle \the [src] properly."))
+						to_chat(user, span_notice("You're not sure how to dismantle \the [src] properly."))
 						return
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
+						visible_message(span_notice("[user] dismantles \the [src]."))
 						var/obj/glass = new glasstype(loc, 1)
 						glass.add_fingerprint(user)
 
@@ -376,7 +376,7 @@
 				if(reinf && state <= 1)
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 1 - state
-						to_chat(user, (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame.")))
+						to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 				return 1 //No whacking the window with tools unless harm intent
 
 
@@ -385,17 +385,17 @@
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						state = 3 - state
 						update_nearby_icons()
-						to_chat(user, (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame.")))
+						to_chat(user, (state == 1 ? span_notice("You have unfastened the window from the frame.") : span_notice("You have fastened the window to the frame.")))
 						return
 				if(reinf && state == 0)
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
 						set_anchored(!anchored)
-						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor.")))
+						to_chat(user, (anchored ? span_notice("You have fastened the frame to the floor.") : span_notice("You have unfastened the frame from the floor.")))
 						return
 				if(!reinf)
 					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY))
 						set_anchored(!anchored)
-						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the window to the floor.") : SPAN_NOTICE("You have unfastened the window.")))
+						to_chat(user, (anchored ? span_notice("You have fastened the window to the floor.") : span_notice("You have unfastened the window.")))
 						return
 				return 1 //No whacking the window with tools unless harm intent
 

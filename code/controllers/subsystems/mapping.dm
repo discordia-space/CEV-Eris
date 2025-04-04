@@ -17,11 +17,11 @@ SUBSYSTEM_DEF(mapping)
 			for(var/z_level in GLOB.maps_data.asteroid_levels)
 				if(!isnum(z_level))
 					// If it's still not a number, we probably got fed some nonsense string.
-					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
+					admin_notice(span_danger("Error: ASTEROID_Z_LEVELS config wasn't given a number."))
 				// Now for the actual map generating.  This occurs for every z-level defined in the config.
 				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
 		else
-			admin_notice("<span class='danger'>Error: No asteroid z-levels defined in config!</span>")
+			admin_notice(span_danger("Error: No asteroid z-levels defined in config!"))
 
 	if(config.use_overmap)
 		if(!GLOB.maps_data.overmap_z)

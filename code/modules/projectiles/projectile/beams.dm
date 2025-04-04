@@ -24,7 +24,7 @@
 		var/obj/item/shield/S = A
 		var/loss = round(S.shield_integrity / 8)
 		block_damage(loss, A)
-		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
+		A.visible_message(span_warning("\The [src] is weakened by the \the [A]!"))
 		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
 		return 1
 	return 0

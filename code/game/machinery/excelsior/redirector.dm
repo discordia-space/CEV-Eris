@@ -19,31 +19,31 @@
 
 /obj/machinery/excelsior_redirector/examine(mob/user, extra_description = "")
 	if(is_excelsior(user))
-		extra_description += SPAN_DANGER("Do not build any walls around this as it will interfere with the mechanism and cause it to instantly fail.")
+		extra_description += span_danger("Do not build any walls around this as it will interfere with the mechanism and cause it to instantly fail.")
 	..(user, extra_description)
 
 /obj/machinery/excelsior_redirector/attackby(obj/item/I, mob/living/user)
 	if(istool(I))
 		if(redirectTimer)
-			to_chat(user, SPAN_NOTICE("You can't unanchor \the [src] whilst it's running!"))
+			to_chat(user, span_notice("You can't unanchor \the [src] whilst it's running!"))
 			return
 		if(I.get_tool_quality(QUALITY_BOLT_TURNING))
 			if(!anchored)
 				var/area/ar = get_area(src)
 				if(!(ar.type == /area/eris/command/bridge))
-					to_chat(user, SPAN_DANGER("\The [src] can only be anchored on the Bridge of the CEV Eris near the helm console."))
+					to_chat(user, span_danger("\The [src] can only be anchored on the Bridge of the CEV Eris near the helm console."))
 					return
 				var/obj/machinery/computer/helm/consol = null
 				for(var/turf/thing in RANGE_TURFS(1, src))
 					if(!consol)
 						consol = locate() in thing
 					if(iswall(thing))
-						to_chat(user, SPAN_DANGER("\The [src] needs to be kept away from walls in order to work properly!"))
+						to_chat(user, span_danger("\The [src] needs to be kept away from walls in order to work properly!"))
 						return
 				if(!consol)
-					to_chat(user, SPAN_NOTICE("\The [src] must be installed near a helm navigation console."))
+					to_chat(user, span_notice("\The [src] must be installed near a helm navigation console."))
 					return
-			to_chat(user, SPAN_NOTICE("You [anchored ? "unanchor" : "anchor"] \the [src] to the floor."))
+			to_chat(user, span_notice("You [anchored ? "unanchor" : "anchor"] \the [src] to the floor."))
 			anchored = !anchored
 			icon_state = "[anchored ? "redirector_anchored" : "redirector_unanchored"]"
 	else ..()
@@ -51,17 +51,17 @@
 /obj/machinery/excelsior_redirector/attack_hand(mob/user)
 	if(is_excelsior(user))
 		if(!anchored)
-			to_chat(user, SPAN_NOTICE("\The [src] needs to be first anchored to begin its procedure."))
+			to_chat(user, span_notice("\The [src] needs to be first anchored to begin its procedure."))
 			return
 		if(redirectTimer)
 			if(rebootTimer)
 				doReboot(user)
 				return
 			else
-				to_chat(user, SPAN_DANGER("You can't cancel \the [src]'s mechanism!"))
+				to_chat(user, span_danger("You can't cancel \the [src]'s mechanism!"))
 				return
 		else if(antennaBent)
-			to_chat(user, SPAN_NOTICE("You bend back \the [src]'s antenna, it snaps right back into place!"))
+			to_chat(user, span_notice("You bend back \the [src]'s antenna, it snaps right back into place!"))
 			icon_state = "redirector_anchored"
 			return
 		else
@@ -92,7 +92,7 @@
 	SSticker.excelsior_hijacking = 1
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 	for (var/datum/antagonist/A in commies.members)
-		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src] has been booted in the Bridge by [starter]. Failure to defend it until it completes its mission will result in implant detonation! Ever upwards comrades."))
+		to_chat(A.owner.current, span_revolution_alert("\The [src] has been booted in the Bridge by [starter]. Failure to defend it until it completes its mission will result in implant detonation! Ever upwards comrades."))
 	redirectTimer = addtimer(CALLBACK(src, PROC_REF(finishRedirecting)), 15 MINUTES, TIMER_STOPPABLE)
 	addtimer(CALLBACK(src, PROC_REF(requestReboot)), 3 MINUTES)
 	icon_state = "redirector_running"
@@ -102,37 +102,37 @@
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 	icon_state = "redirector_reboot"
 	for (var/datum/antagonist/A in commies.members)
-		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src] needs to be rebooted with new information! Head over to it and place your hands on it."))
+		to_chat(A.owner.current, span_revolution_alert("\The [src] needs to be rebooted with new information! Head over to it and place your hands on it."))
 
 /obj/machinery/excelsior_redirector/proc/doReboot(mob/living/carbon/human/user)
 	if(user.stat || user.incapacitated() || !user.Adjacent(src))
 		return
-	to_chat(user, SPAN_NOTICE("You start rebooting \the [src] with new information. Your hands start moving by themselves like they're remotely guided to input new information."))
+	to_chat(user, span_notice("You start rebooting \the [src] with new information. Your hands start moving by themselves like they're remotely guided to input new information."))
 	if(do_after(user, 15 SECONDS, src))
 		if(!rebootTimer)
-			to_chat(user, SPAN_NOTICE("\The [src] was already rebooted!"))
+			to_chat(user, span_notice("\The [src] was already rebooted!"))
 			return
-		to_chat(user, SPAN_NOTICE("You succesfully reboot \the [src]. Your hands are no longer moving on their own."))
+		to_chat(user, span_notice("You succesfully reboot \the [src]. Your hands are no longer moving on their own."))
 		deltimer(rebootTimer)
 		rebootTimer = null
 		var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 		for (var/datum/antagonist/A in commies.members)
-			to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src] has been rebooted by [user]. It will need another reboot in 3 minutes."))
+			to_chat(A.owner.current, span_revolution_alert("\The [src] has been rebooted by [user]. It will need another reboot in 3 minutes."))
 		addtimer(CALLBACK(src, PROC_REF(requestReboot)),3 MINUTES)
 		icon_state = "redirector_running"
 	else
-		to_chat(user, SPAN_DANGER("Your hands suddenly stop moving. \the [src] wasn't rebooted."))
+		to_chat(user, span_danger("Your hands suddenly stop moving. \the [src] wasn't rebooted."))
 
 /obj/machinery/excelsior_redirector/proc/tryRuin(mob/living/carbon/human/user)
 	if(user.stat || user.incapacitated() || !user.Adjacent(src))
 		return
-	to_chat(user, SPAN_WARNING("You start bending \the [src]'s antenna! It's quite tough..."))
+	to_chat(user, span_warning("You start bending \the [src]'s antenna! It's quite tough..."))
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 	for (var/datum/antagonist/A in commies.members)
-		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("The [src]'s antenna is being bent by someone! Stop them."))
+		to_chat(A.owner.current, span_revolution_alert("The [src]'s antenna is being bent by someone! Stop them."))
 	if(do_after(user, 1 MINUTE, src))
 		if(antennaBent)
-			to_chat(user, SPAN_NOTICE("\The [src]'s antenna is already bent!"))
+			to_chat(user, span_notice("\The [src]'s antenna is already bent!"))
 			return
 		stopRedirecting()
 		antennaBent = TRUE
@@ -140,10 +140,10 @@
 		/*
 		var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 		for (var/datum/antagonist/A in commies.members)
-			to_chat(A.owner.current, SPAN_NOTICE("The [src]'s antenna has been bent! Progress has been reset and it needs to be fixed!"))
+			to_chat(A.owner.current, span_notice("The [src]'s antenna has been bent! Progress has been reset and it needs to be fixed!"))
 		*/
 	else
-		to_chat(user, SPAN_NOTICE("You stop bending the antenna, it snaps back to its original form."))
+		to_chat(user, span_notice("You stop bending the antenna, it snaps back to its original form."))
 
 /obj/machinery/excelsior_redirector/proc/finishRedirecting()
 	icon_state = "redirector_finished"
@@ -162,7 +162,7 @@
 	security_state.set_security_level(oldSecurityLevel, force_change = TRUE)
 	var/datum/faction/excelsior/commies = get_faction_by_id(FACTION_EXCELSIOR)
 	for (var/datum/antagonist/A in commies.members)
-		to_chat(A.owner.current, SPAN_EXCEL_NOTIF("\The [src]'s redirect has been stopped! You have failed the commune!"))
+		to_chat(A.owner.current, span_revolution_alert("\The [src]'s redirect has been stopped! You have failed the commune!"))
 		var/mob/living/carbon/human/unworthy = A.owner.current
 		var/obj/item/implant/excelsior/implnt = locate(/obj/item/implant/excelsior/) in unworthy
 		if(implnt)

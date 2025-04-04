@@ -1,6 +1,6 @@
 /mob/living/silicon/ai/examine(mob/user, extra_description = "")
 	if(stat == DEAD)
-		extra_description += "<span class='deadsay'>It appears to be powered-down.</span>\n"
+		extra_description += "[span_deadsay("It appears to be powered-down.")]\n"
 	else
 		extra_description += "<span class='warning'>"
 		if(getBruteLoss())

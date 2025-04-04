@@ -749,7 +749,7 @@
 					continue
 				crewmembers_recently_reported += entry["name"]
 				schedule_memory_cleanup(entry["name"])
-				to_chat(user, SPAN_WARNING("[src] beeps: '[entry["name"]]'s on-suit sensors broadcast an emergency signal. Access monitoring software for details.'"))
+				to_chat(user, span_warning("[src] beeps: '[entry["name"]]'s on-suit sensors broadcast an emergency signal. Access monitoring software for details.'"))
 
 	schedule_scan()
 
@@ -764,10 +764,10 @@
 	set src in usr
 
 	if(speaker_enabled)
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications disabled.'"))
+		to_chat(usr, span_warning("[src] beeps: 'Notifications disabled.'"))
 		speaker_enabled = FALSE
 	else
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications enabled.'"))
+		to_chat(usr, span_warning("[src] beeps: 'Notifications enabled.'"))
 		speaker_enabled = TRUE
 		report_health_alerts()
 		schedule_scan()

@@ -46,11 +46,11 @@
 		if(can_generate_power)
 			extra_description += "\n\The [src] appears to be producing [power_gen*power_output] W."
 		else
-			extra_description += SPAN_NOTICE("\n\The [src] wasn\'t built correctly. One or more of its components are incompatible with the circuitry.")
+			extra_description += span_notice("\n\The [src] wasn\'t built correctly. One or more of its components are incompatible with the circuitry.")
 		if(IsBroken())
-			extra_description += SPAN_WARNING("\n\The [src] seems to have broken down.")
+			extra_description += span_warning("\n\The [src] seems to have broken down.")
 	else
-		extra_description += SPAN_WARNING("\nYou lack the knowledge or skill to comprehend \the [src]\'s functions.")
+		extra_description += span_warning("\nYou lack the knowledge or skill to comprehend \the [src]\'s functions.")
 	..(user, extra_description)
 
 /obj/machinery/power/port_gen/os_generator/handleInactive()
@@ -76,11 +76,11 @@
 /obj/machinery/power/port_gen/os_generator/attackby(obj/item/I, mob/user)
 	var/mec_or_cog = max(user.stats.getStat(STAT_MEC), user.stats.getStat(STAT_COG))
 	if(mec_or_cog < STAT_LEVEL_EXPERT)
-		to_chat(user, SPAN_WARNING("You lack the knowledge or skill to perform work on \the [src]."))
+		to_chat(user, span_warning("You lack the knowledge or skill to perform work on \the [src]."))
 		return
 
 	if(active)
-		to_chat(user, SPAN_NOTICE("You can't work with [src] while its running!"))
+		to_chat(user, span_notice("You can't work with [src] while its running!"))
 		return
 
 	if(default_deconstruction(I,user))
@@ -95,10 +95,10 @@
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
 			if(istype(get_turf(src), /turf/space) && !anchored)
-				to_chat(user, SPAN_NOTICE("You can't anchor something to empty space. Idiot."))
+				to_chat(user, span_notice("You can't anchor something to empty space. Idiot."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I]."))
+				to_chat(user, span_notice("You [anchored ? "un" : ""]anchor the brace with [I]."))
 				anchored = !anchored
 				if(anchored)
 					connect_to_network()
@@ -110,13 +110,13 @@
 /obj/machinery/power/port_gen/os_generator/attack_hand(mob/user)
 	..()
 	if(!anchored)
-		to_chat(user, SPAN_NOTICE("\The [src] needs to be anchored to the floor before you can use it."))
+		to_chat(user, span_notice("\The [src] needs to be anchored to the floor before you can use it."))
 		return
 	nano_ui_interact(user)
 
 /obj/machinery/power/port_gen/os_generator/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(IsBroken() || is_circuit_fried)
-		to_chat(user, SPAN_WARNING("You can\'t operate \the [src] while it is broken."))
+		to_chat(user, span_warning("You can\'t operate \the [src] while it is broken."))
 		return
 
 	var/data[0]

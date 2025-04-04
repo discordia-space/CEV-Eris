@@ -122,7 +122,7 @@ var/global/list/image/splatter_cache=list()
 			return FALSE
 		var/taken = rand(1,amount)
 		amount -= taken
-		to_chat(user, SPAN_NOTICE("You get some of \the [src] on your hands."))
+		to_chat(user, span_notice("You get some of \the [src] on your hands."))
 		if (!user.blood_DNA)
 			user.blood_DNA = list()
 		user.blood_DNA |= blood_DNA.Copy()

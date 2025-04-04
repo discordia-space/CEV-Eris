@@ -168,7 +168,7 @@
 
 /obj/structure/closet/body_bag/cryobag/examine(mob/user, extra_description = "")
 	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
-		extra_description += "<span class='info'>You peer into \the [src].</span>"
+		extra_description += span_info("You peer into \the [src].")
 		..(user, extra_description)
 		for(var/mob/living/L in contents)
 			L.examine(user)

@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	if(M)
 		M.contracts_completed++
 		if(M.current)
-			to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
+			to_chat(M.current, span_notice("Contract completed: [name] ([reward] TC)"))
 
 	for(var/obj/item/device/uplink/U in world_uplinks)
 		if(U.uplink_owner != M)
@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	completed = TRUE
 
 	if(user)
-		to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
+		to_chat(user, span_notice("Mandate completed: [name] ([reward] energy)"))
 
 	excelsior_energy += reward
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)

@@ -5,7 +5,7 @@
 
 /proc/atmosanalyzer_scan(var/obj/target, var/datum/gas_mixture/mixture, var/mob/user)
 	. = list()
-	. += SPAN_NOTICE("Results of the analysis of \the [target]:")
+	. += span_notice("Results of the analysis of \the [target]:")
 	if(!mixture)
 		mixture = target.return_air()
 
@@ -14,12 +14,12 @@
 		var/total_moles = mixture.total_moles
 
 		if (total_moles>0)
-			. += SPAN_NOTICE("Pressure: [round(pressure, 0.1)] kPa")
+			. += span_notice("Pressure: [round(pressure, 0.1)] kPa")
 			for(var/mix in mixture.gas)
-				. += SPAN_NOTICE("[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]%")
-			. += SPAN_NOTICE("Temperature: [round(mixture.temperature-T0C)]&deg;C")
+				. += span_notice("[gas_data.name[mix]]: [round((mixture.gas[mix] / total_moles) * 100)]%")
+			. += span_notice("Temperature: [round(mixture.temperature-T0C)]&deg;C")
 			return
-	. += SPAN_NOTICE("\The [target] is empty!")
+	. += span_notice("\The [target] is empty!")
 
 /obj/proc/atmosanalyze(var/mob/user)
 	return

@@ -24,7 +24,7 @@
 	. = list()
 	. += "<br/><b>Records</b>:<br/>"
 	if(jobban_isbanned(user, "Records"))
-		. += "<span class='danger'>You are banned from using character records.</span><br>"
+		. += "[span_danger("You are banned from using character records.")]<br>"
 	else
 		. += "Medical Records: "
 		. += "<a href='byond://?src=\ref[src];set_medical_records=1'>[TextPreview(pref.med_record,40)]</a><br>"

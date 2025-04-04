@@ -203,7 +203,7 @@
 								   "brushes against [friend].",
 								   "rubs against [friend].",
 								   "purrs."))
-				src.visible_message("<span class='name'>[src]</span> [msg5].")
+				src.visible_message("[span_name("[src]")] [msg5].")
 	else if (friend.health <= 50)
 		if (prob(10))
 			var/verb = pick("meows", "mews", "mrowls")
@@ -227,7 +227,7 @@
 			say("Meow!")
 			return
 
-	to_chat(usr, SPAN_NOTICE("[src] ignores you."))
+	to_chat(usr, span_notice("[src] ignores you."))
 	return
 
 
@@ -315,7 +315,7 @@ var/cat_number = 0
 	return ..()
 
 /mob/living/simple_animal/cat/runtime/attackby(var/obj/item/O, var/mob/user)
-	visible_message(SPAN_DANGER("[user]'s [O.name] harmlessly passes through \the [src]."))
+	visible_message(span_danger("[user]'s [O.name] harmlessly passes through \the [src]."))
 	strike_back(user)
 
 /mob/living/simple_animal/cat/runtime/attack_hand(mob/living/carbon/human/M as mob)
@@ -323,10 +323,10 @@ var/cat_number = 0
 	switch(M.a_intent)
 
 		if(I_HELP)  // Pet the cat
-			M.visible_message(SPAN_NOTICE("[M] pets \the [src]."))
+			M.visible_message(span_notice("[M] pets \the [src]."))
 
 		if(I_DISARM)
-			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
+			M.visible_message(span_notice("[M]'s hand passes through \the [src]."))
 			M.do_attack_animation(src)
 
 		if(I_GRAB)
@@ -335,14 +335,14 @@ var/cat_number = 0
 			if (!(status_flags & CANPUSH))
 				return
 
-			M.visible_message(SPAN_NOTICE("[M]'s hand passes through \the [src]."))
+			M.visible_message(span_notice("[M]'s hand passes through \the [src]."))
 			M.do_attack_animation(src)
 
 		if(I_HURT)
 			var/datum/gender/G = gender_datums[M.gender]
-			M.visible_message(SPAN_WARNING("[M] tries to kick \the [src] but [G.his] foot passes through."))
+			M.visible_message(span_warning("[M] tries to kick \the [src] but [G.his] foot passes through."))
 			M.do_attack_animation(src)
-			visible_message(SPAN_WARNING("\The [src] hisses."))
+			visible_message(span_warning("\The [src] hisses."))
 			strike_back(M)
 
 	return

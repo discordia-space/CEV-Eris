@@ -52,7 +52,7 @@
 /mob/living/carbon/human/proc/leap(mob/living/carbon/human/T)
 	if(last_special > world.time)
 		return
-	if(!T || !src || src.stat) 
+	if(!T || !src || src.stat)
 		return
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
 		to_chat(src, "You cannot lunge in your current state.")
@@ -67,10 +67,10 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		to_chat(src, SPAN_WARNING("You miss!"))
+		to_chat(src, span_warning("You miss!"))
 		return
 
-	src.visible_message(SPAN_WARNING("<b>\The [src]</b> lunges at [T]!"))
+	src.visible_message(span_warning("<b>\The [src]</b> lunges at [T]!"))
 
 	var/obj/item/grab/G = new(src,T)
 	src.put_in_hands(G)
@@ -101,7 +101,7 @@
 
 	last_special = world.time + 50
 
-	visible_message(SPAN_WARNING("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
+	visible_message(span_warning("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
 
 	if(ishuman(G.affecting))
 		var/mob/living/carbon/human/H = G.affecting
@@ -149,7 +149,7 @@
 		if(H.species.name == src.species.name)
 			return
 
-		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
+		to_chat(H, span_warning("Your nose begins to bleed..."))
 		H.drip_blood(1)
 
 
@@ -256,7 +256,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	// TODO: Here and in other psionic abilities - add checks for NT obelisks,
@@ -276,7 +276,7 @@
 				break
 
 	if(bingo)
-		to_chat(src, SPAN_NOTICE("You begin to phaze trough \the [bingo]"))
+		to_chat(src, span_notice("You begin to phaze trough \the [bingo]"))
 		var/target_y = 0
 		var/target_x = 0
 		switch(dir)
@@ -302,7 +302,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	var/list/mobs_in_view = list()
@@ -312,7 +312,7 @@
 			mobs_in_view += H
 
 	if(!mobs_in_view.len)
-		to_chat(src, SPAN_NOTICE("There is no valid targets around."))
+		to_chat(src, span_notice("There is no valid targets around."))
 		return
 
 	var/mob/living/carbon/human/H = input("", "Who do you want to speak as?") as null|mob in mobs_in_view
@@ -322,7 +322,7 @@
 			log_admin("[key_name(usr)] forced [key_name(H)] to say: [message]")
 			H.say(message)
 			if(prob(70))
-				to_chat(H, SPAN_WARNING("You see [src]\'s image in your head, commanding you to speak."))
+				to_chat(H, span_warning("You see [src]\'s image in your head, commanding you to speak."))
 
 
 /mob/living/carbon/human/proc/remotesay()
@@ -381,7 +381,7 @@
 	if(target)
 		remoteview_target = target
 		reset_view(target)
-		to_chat(target, SPAN_NOTICE("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
+		to_chat(target, span_notice("You feel an odd presence in the back of your mind. A lingering sense that someone is watching you..."))
 	else
 		remoteview_target = null
 		reset_view(0)
@@ -392,7 +392,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	if(check_ability_cooldown(2 MINUTES))
@@ -415,7 +415,7 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	if(check_ability_cooldown(2 MINUTES))
@@ -438,14 +438,14 @@
 	set category = "Abilities"
 
 	if(stat)
-		to_chat(src, SPAN_WARNING("You can't do that right now!"))
+		to_chat(src, span_warning("You can't do that right now!"))
 		return
 
 	if(check_ability_cooldown(2 MINUTES))
 		playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 		spawn(2)
 			playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-		visible_message(SPAN_DANGER("[src] emits a frightening screech as you feel the ground tramble!"))
+		visible_message(span_danger("[src] emits a frightening screech as you feel the ground tramble!"))
 		for(var/obj/structure/burrow/B in find_nearby_burrows(src))
 			B.distress(TRUE, src)
 

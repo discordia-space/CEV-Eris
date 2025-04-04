@@ -26,19 +26,19 @@
 		user.stats.changeStat(stat, stat_increase)
 		user.sanity.onPsyDamage(apply_sanity_damage)
 
-	to_chat(user, SPAN_DANGER("[src] plunges into your eye, imprinting your mind with new information!"))
+	to_chat(user, span_danger("[src] plunges into your eye, imprinting your mind with new information!"))
 	spent = TRUE
 
 /obj/item/device/mental_imprinter/attack(mob/M, mob/living/carbon/human/user, target_zone)
 	if(!istype(user) || M != user || target_zone != BP_EYES || user.incapacitated() || spent)
 		return ..()
 	if(length(user.get_covering_equipped_items(EYES)))
-		to_chat(user, SPAN_WARNING("You need to remove the eye covering first."))
+		to_chat(user, span_warning("You need to remove the eye covering first."))
 		return ..()
 
 	INVOKE_ASYNC(src, PROC_REF(imprint), user)
 
 /obj/item/device/mental_imprinter/examine(mob/user, extra_description = "")
 	if(spent)
-		extra_description += SPAN_WARNING("It is spent.")
+		extra_description += span_warning("It is spent.")
 	..(user, extra_description)

@@ -163,7 +163,7 @@
 					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)")
-				message_admins(SPAN_NOTICE("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)"))
+				message_admins(span_notice("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted)"))
 			if("Type and subtypes")
 				var/i = 0
 				for(var/atom/movable/Obj in world)
@@ -174,7 +174,7 @@
 					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)")
-				message_admins(SPAN_NOTICE("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)"))
+				message_admins(span_notice("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted)"))
 
 	else if(href_list["explode"])
 		if(!check_rights(R_DEBUG|R_FUN))	return
@@ -470,7 +470,7 @@
 
 		if(amount != 0)
 			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L]")
-			message_admins(SPAN_NOTICE("[key_name(usr)] dealt [amount] amount of [Text] damage to [L]"))
+			message_admins(span_notice("[key_name(usr)] dealt [amount] amount of [Text] damage to [L]"))
 			href_list["datumrefresh"] = href_list["mobToDamage"]
 
 	else if(href_list["call_proc"])
@@ -531,7 +531,7 @@
 							if(ID == chosen_id)
 								valid_id = 1
 						if(!valid_id)
-							to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
+							to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 				if("Choose ID")
 					chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in reagent_options
 			if(chosen_id)
@@ -539,6 +539,6 @@
 				if(amount)
 					A.reagents.add_reagent(chosen_id, amount)
 					log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
-					message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
+					message_admins(span_notice("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]"))
 
 	return

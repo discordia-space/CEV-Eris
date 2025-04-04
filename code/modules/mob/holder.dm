@@ -167,11 +167,11 @@ var/list/holder_mob_icon_cache = list()
 			var/mob/living/carbon/human/H = M
 			switch(H.a_intent)
 				if(I_HELP)
-					H.visible_message("<span class='notice'>[H] pets [contained].</span>")
+					H.visible_message(span_notice("[H] pets [contained]."))
 
 				if(I_HURT)
 					contained.adjustBruteLoss(3)
-					H.visible_message("<span class='alert'>[H] crushes [contained].</span>")
+					H.visible_message(span_alert("[H] crushes [contained]."))
 	else
 		to_chat(M, "[contained] is dead.")
 
@@ -212,10 +212,10 @@ var/list/holder_mob_icon_cache = list()
 
 	if (user == src)
 		if (grabber.r_hand && grabber.l_hand)
-			to_chat(user, "<span class='warning'>They have no free hands!</span>")
+			to_chat(user, span_warning("They have no free hands!"))
 			return
 	else if ((grabber.hand == 0 && grabber.r_hand) || (grabber.hand == 1 && grabber.l_hand))//Checking if the hand is full
-		to_chat(grabber, "<span class='warning'>Your hand is full!</span>")
+		to_chat(grabber, span_warning("Your hand is full!"))
 		return
 
 	//This has to be before we move the mob into the holder
@@ -245,11 +245,11 @@ var/list/holder_mob_icon_cache = list()
 			if (isturf(old_loc))
 				src.do_pickup_animation(grabber,old_loc)
 			if (user == src)
-				to_chat(grabber, "<span class='notice'>[src.name] climbs up onto you.</span>")
-				to_chat(src, "<span class='notice'>You climb up onto [grabber].</span>")
+				to_chat(grabber, span_notice("[src.name] climbs up onto you."))
+				to_chat(src, span_notice("You climb up onto [grabber]."))
 			else
-				to_chat(grabber, "<span class='notice'>You scoop up [src].</span>")
-				to_chat(src, "<span class='notice'>[grabber] scoops you up.</span>")
+				to_chat(grabber, span_notice("You scoop up [src]."))
+				to_chat(src, span_notice("[grabber] scoops you up."))
 
 			H.sync(src)
 
@@ -433,9 +433,9 @@ var/list/holder_mob_icon_cache = list()
 			preposition = "inside"
 
 	if (justmoved)
-		reportto.visible_message("<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "")
+		reportto.visible_message(span_notice("[H] [action3] [reportto] [preposition] their [newlocation]"), span_notice("You are [action] [preposition] [H]'s [newlocation]"), "")
 	else
-		to_chat(reportto, "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>")
+		to_chat(reportto, span_notice("You are [action] [preposition] [H]'s [newlocation]"))
 
 
 

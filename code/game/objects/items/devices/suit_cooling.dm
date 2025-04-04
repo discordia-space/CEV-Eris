@@ -92,7 +92,7 @@
 /obj/item/device/suit_cooling_unit/proc/turn_on(mob/user)
 	if(!cell || cell.is_empty())
 		if(user)
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, span_warning("[src] battery is dead or missing."))
 		return FALSE
 
 	on = TRUE

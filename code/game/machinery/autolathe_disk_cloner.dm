@@ -57,12 +57,12 @@
 	if(istype(I, /obj/item/computer_hardware/hard_drive/portable))
 		if(!original)
 			original = put_disk(I, user)
-			to_chat(user, SPAN_NOTICE("You put \the [I] into the first slot of [src]."))
+			to_chat(user, span_notice("You put \the [I] into the first slot of [src]."))
 		else if(!copy)
 			copy = put_disk(I, user)
-			to_chat(user, SPAN_NOTICE("You put \the [I] into the second slot of [src]."))
+			to_chat(user, span_notice("You put \the [I] into the second slot of [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("[src]'s slots is full."))
+			to_chat(user, span_notice("[src]'s slots is full."))
 
 	user.set_machine(src)
 	nano_ui_interact(user)

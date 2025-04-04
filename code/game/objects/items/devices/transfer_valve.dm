@@ -18,19 +18,19 @@
 	var/turf/location = get_turf(src) // For admin logs
 	if(istype(item, /obj/item/tank))
 		if(tank_one && tank_two)
-			to_chat(user, SPAN_WARNING("There are already two tanks attached, remove one first."))
+			to_chat(user, span_warning("There are already two tanks attached, remove one first."))
 			return
 
 		if(!tank_one)
 			tank_one = item
 			user.drop_item()
 			item.loc = src
-			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
+			to_chat(user, span_notice("You attach the tank to the transfer valve."))
 		else if(!tank_two)
 			tank_two = item
 			user.drop_item()
 			item.loc = src
-			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
+			to_chat(user, span_notice("You attach the tank to the transfer valve."))
 			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
@@ -39,15 +39,15 @@
 	else if(isassembly(item))
 		var/obj/item/device/assembly/A = item
 		if(A.secured)
-			to_chat(user, SPAN_NOTICE("The device is secured."))
+			to_chat(user, span_notice("The device is secured."))
 			return
 		if(attached_device)
-			to_chat(user, SPAN_WARNING("There is already an device attached to the valve, remove it first."))
+			to_chat(user, span_warning("There is already an device attached to the valve, remove it first."))
 			return
 		user.remove_from_mob(item)
 		attached_device = A
 		A.loc = src
-		to_chat(user, SPAN_NOTICE("You attach the [item] to the valve controls and secure it."))
+		to_chat(user, span_notice("You attach the [item] to the valve controls and secure it."))
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 

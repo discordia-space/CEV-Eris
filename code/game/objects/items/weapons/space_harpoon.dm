@@ -57,25 +57,25 @@
 		if(MODE_RECEIVE)
 			dense_check = UserTurf.contains_dense_objects(TRUE)
 	if(dense_check)
-		to_chat(user, SPAN_WARNING("Dense content detected on receiving terrain. Do not \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
+		to_chat(user, span_warning("Dense content detected on receiving terrain. Do not \"Telefrag\" any living beings caught in the harpoon. Please disengage."))
 		return //No actual telefragging, wasn't allowed to do that at the time
 	if(!Using)
 		Using = TRUE
 		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
 			Using = FALSE
 			if(!cell || !cell.checked_use(100))
-				to_chat(user, SPAN_WARNING("\The [src]'s battery is dead or missing."))
+				to_chat(user, span_warning("\The [src]'s battery is dead or missing."))
 				return
 			if(!user || !A || user.machine)
 				return
 			if(transforming)
-				to_chat(user, SPAN_WARNING("You can't fire \the [src] while it is transforming!"))
+				to_chat(user, span_warning("You can't fire \the [src] while it is transforming!"))
 				return
 
 			playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
-			user.visible_message(SPAN_WARNING("\The [user] fires \the [src]!"))
-			to_chat(user,SPAN_WARNING("You fire \the [src]"))
+			user.visible_message(span_warning("\The [user] fires \the [src]!"))
+			to_chat(user,span_warning("You fire \the [src]"))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(4, 1, A)
 			s.start()
@@ -86,10 +86,10 @@
 				if(MODE_RECEIVE)
 					teleport(AtomTurf, UserTurf)
 		else
-			to_chat(user, SPAN_WARNING("Error, do not move!"))
+			to_chat(user, span_warning("Error, do not move!"))
 			Using = FALSE
 	else
-		to_chat(user, SPAN_WARNING("Error, single destination only!"))
+		to_chat(user, span_warning("Error, single destination only!"))
 
 
 /obj/item/bluespace_harpoon/proc/teleport(turf/source, turf/target)
@@ -113,7 +113,7 @@
 		return
 	mode = !mode
 	transforming = TRUE
-	to_chat(user, SPAN_NOTICE("You change [src] mode to [mode ? "transmiting" : "receiving"]."))
+	to_chat(user, span_notice("You change [src] mode to [mode ? "transmiting" : "receiving"]."))
 	update_icon()
 	flick("harpoon-[mode]-change", src)
 	spawn(13)	//Average length of transforming animation
@@ -123,7 +123,7 @@
 	icon_state = "harpoon-[mode]"
 
 /obj/item/bluespace_harpoon/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"].")
+	extra_description += span_notice("Mode set to [mode ? "transmiting" : "receiving"].")
 	..(user, extra_description)
 
 /obj/item/bluespace_harpoon/MouseDrop(over_object)

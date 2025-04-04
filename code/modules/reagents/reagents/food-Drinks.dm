@@ -275,7 +275,7 @@
 	color = "#B31008"
 	var/agony_dose = 5
 	var/agony_amount = 2
-	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+	var/discomfort_message = span_danger("Your insides feel uncomfortably hot!")
 	var/slime_temp_adj = 10
 	taste_tag = list(TASTE_SPICY)
 
@@ -295,7 +295,7 @@
 		M.adjustHalLoss(agony_amount)
 		if(prob(5))
 			M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
-			to_chat(M, SPAN_DANGER("You feel like your insides are burning!"))
+			to_chat(M, span_danger("You feel like your insides are burning!"))
 	if(isslime(M))
 		M.bodytemperature += rand(0, 15) + slime_temp_adj
 	holder.remove_reagent("frostoil", 5)
@@ -311,7 +311,7 @@
 	color = "#B31008"
 	agony_dose = 0.5
 	agony_amount = 4
-	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
+	discomfort_message = span_danger("You feel like your insides are burning!")
 	slime_temp_adj = 15
 	taste_tag = list(TASTE_SPICY)
 
@@ -343,9 +343,9 @@
 	var/message
 	if(eyes_covered)
 		if(!mouth_covered)
-			message = SPAN_WARNING("Your [eye_protection] protects your eyes from the pepperspray!")
+			message = span_warning("Your [eye_protection] protects your eyes from the pepperspray!")
 	else
-		message = SPAN_WARNING("The pepperspray gets in your eyes!")
+		message = span_warning("The pepperspray gets in your eyes!")
 		if(mouth_covered)
 			M.eye_blurry = max(M.eye_blurry, 15)
 			M.eye_blind = max(M.eye_blind, 5)
@@ -355,9 +355,9 @@
 
 	if(mouth_covered)
 		if(!message)
-			message = SPAN_WARNING("Your [face_protection] protects you from the pepperspray!")
+			message = span_warning("Your [face_protection] protects you from the pepperspray!")
 	else if(!no_pain)
-		message = SPAN_DANGER("Your face and throat burn!")
+		message = span_danger("Your face and throat burn!")
 		if(prob(25))
 			M.custom_emote(2, "[pick("coughs!","coughs hysterically!","splutters!")]")
 		M.Stun(5)
@@ -369,11 +369,11 @@
 		if(H.species && (H.species.flags & NO_PAIN))
 			return
 	if(dose == metabolism)
-		to_chat(M, SPAN_DANGER("You feel like your insides are burning!"))
+		to_chat(M, span_danger("You feel like your insides are burning!"))
 	else
 		M.adjustHalLoss(4)
 		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", SPAN_DANGER("You feel like your insides are burning!"))
+			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), span_danger("You feel like your insides are burning!"))
 	if(isslime(M))
 		M.bodytemperature += rand(15, 30)
 	holder.remove_reagent("frostoil", 5)
@@ -1210,7 +1210,7 @@
 			return
 		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
-		to_chat(usr, "<span class='notice'>The solution dissolves the ink on the book.</span>")
+		to_chat(usr, span_notice("The solution dissolves the ink on the book."))
 	return
 
 // Basic
@@ -2672,8 +2672,8 @@
 	addicte.sanity.changeLevel(-sanity_gain_ingest * 3)
 	if(prob(5))
 		to_chat(addicte , pick(
-			SPAN_DANGER("You feel wilted."),
-			SPAN_DANGER("You feel a terrible hangover.")))
+			span_danger("You feel wilted."),
+			span_danger("You feel a terrible hangover.")))
 
 /datum/reagent/alcohol/kaiserbeer
 	name = "Monarchenblut"
@@ -2724,6 +2724,6 @@
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_EXPERT * effect_multiplier, STIM_TIME, "Monarchenblut_w")
 	if(prob(5))
 		to_chat(addicte , pick(
-			SPAN_DANGER("You feel wilted."),
-			SPAN_DANGER("You crave roach blood."),
-			SPAN_DANGER("You feel a terrible hangover.")))
+			span_danger("You feel wilted."),
+			span_danger("You crave roach blood."),
+			span_danger("You feel a terrible hangover.")))

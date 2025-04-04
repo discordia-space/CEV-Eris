@@ -29,32 +29,32 @@ SUBSYSTEM_DEF(statverbs)
 	if(!istype(user))
 		return
 	if(!(target in view(user)))
-		to_chat(user, SPAN_WARNING("You're too far from [saved_name]"))
+		to_chat(user, span_warning("You're too far from [saved_name]"))
 		return FALSE
 
 	if(base_range == RANGE_ADJACENT)
 		if(!target.Adjacent(user))
-			to_chat(user, SPAN_WARNING("You should be adjacent to [target]"))
+			to_chat(user, span_warning("You should be adjacent to [target]"))
 			return FALSE
 	else
 		if(get_dist(user, target) > base_range)
-			to_chat(user, SPAN_WARNING("You're too far from [target]"))
+			to_chat(user, span_warning("You're too far from [target]"))
 			return FALSE
 
 	if(user.stats.getStat(required_stat) < minimal_stat)
 		switch(required_stat)
 			if(STAT_MEC)
-				to_chat(user, SPAN_WARNING("You don't know enough about engineering to do that!"))
+				to_chat(user, span_warning("You don't know enough about engineering to do that!"))
 			if(STAT_BIO)
-				to_chat(user, SPAN_WARNING("You don't know enough about medicine to do that!"))
+				to_chat(user, span_warning("You don't know enough about medicine to do that!"))
 			if(STAT_TGH)
-				to_chat(user, SPAN_WARNING("You're not tough enough to do that!"))
+				to_chat(user, span_warning("You're not tough enough to do that!"))
 			if(STAT_ROB)
-				to_chat(user, SPAN_WARNING("You're not strong enough to do that!"))
+				to_chat(user, span_warning("You're not strong enough to do that!"))
 			if(STAT_COG)
-				to_chat(user, SPAN_WARNING("You're not smart enough to do that!"))
+				to_chat(user, span_warning("You're not smart enough to do that!"))
 			if(STAT_VIG)
-				to_chat(user, SPAN_WARNING("You're not perceptive enough to do that!"))
+				to_chat(user, span_warning("You're not perceptive enough to do that!"))
 		return FALSE
 
 	action(user, target)
@@ -91,19 +91,19 @@ SUBSYSTEM_DEF(statverbs)
 /datum/statverb/remove_plating/action(mob/user, turf/floor/target)
 	if(target.flooring && target.flooring.flags & TURF_REMOVE_CROWBAR)
 		user.visible_message(
-			SPAN_DANGER("[user] grabbed the edges of [target] with their hands!"),
+			span_danger("[user] grabbed the edges of [target] with their hands!"),
 			"You grab the edges of [target] with your hands"
 		)
 		if(do_mob(user, target, target.flooring.removal_time * 3) && target.flooring.flags & TURF_REMOVE_CROWBAR)
 			user.visible_message(
-				SPAN_DANGER("[user] roughly tore plating off from [target]!"),
+				span_danger("[user] roughly tore plating off from [target]!"),
 				"You tore the plating off from [target]"
 			)
 			target.make_plating(TRUE, null, TRUE)
 		else
 			var/target_name = target ? "[target]" : "the floor"
 			user.visible_message(
-				SPAN_DANGER("[user] stopped tearing the plating off from [target_name]!"),
+				span_danger("[user] stopped tearing the plating off from [target_name]!"),
 				"You stop tearing plating off from [target_name]"
 			)
 
@@ -115,14 +115,14 @@ SUBSYSTEM_DEF(statverbs)
 /datum/statverb/hack_console/action(mob/user, obj/machinery/target)
 	if(target.hacked)
 		user.visible_message(
-			SPAN_WARNING("[target] is already hacked!")
+			span_warning("[target] is already hacked!")
 		)
 		return
 	if(!target.hacked)
 		var/timer = 220 - (user.stats.getStat(STAT_COG) * 2)
 		var/datum/repeating_sound/keyboardsound = new(30, timer, 0.15, target, "keyboard", 80, 1)
 		user.visible_message(
-			SPAN_DANGER("[user] begins hacking into [target]!"),
+			span_danger("[user] begins hacking into [target]!"),
 			"You start hacking the access requirement on [target]"
 		)
 		if(do_mob(user, target, timer))
@@ -131,7 +131,7 @@ SUBSYSTEM_DEF(statverbs)
 			target.req_access.Cut()
 			target.hacked = TRUE
 			user.visible_message(
-				SPAN_DANGER("[user] breaks the access encryption on [target]!"),
+				span_danger("[user] breaks the access encryption on [target]!"),
 				"You break the access encryption on [target]"
 			)
 			if(istype(target, /obj/machinery/dna))
@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(statverbs)
 			keyboardsound = null
 			var/target_name = target ? "[target]" : "the research console"
 			user.visible_message(
-				SPAN_DANGER("[user] stopped hacking into [target_name]!"),
+				span_danger("[user] stopped hacking into [target_name]!"),
 				"You stop hacking into [target_name]."
 			)
 
@@ -155,14 +155,14 @@ SUBSYSTEM_DEF(statverbs)
 /datum/statverb/fix_computer/action(mob/user, obj/item/modular_computer/target)
 	if(target.hard_drive.damage < 100)
 		user.visible_message(
-			SPAN_WARNING("[target] doesn't need repairs!")
+			span_warning("[target] doesn't need repairs!")
 		)
 		return
 	var/timer = 160 - (user.stats.getStat(STAT_COG) * 2)
 	if(target.hard_drive.damage == 100)
 		var/datum/repeating_sound/keyboardsound = new(30, timer, 0.15, target, "keyboard", 80, 1)
 		user.visible_message(
-			SPAN_NOTICE("You begin repairing [target]."),
+			span_notice("You begin repairing [target]."),
 		)
 		if(do_mob(user, target, timer))
 			keyboardsound.stop()
@@ -171,14 +171,14 @@ SUBSYSTEM_DEF(statverbs)
 			target.hard_drive.install_default_files()
 			target.update_icon()
 			user.visible_message(
-				SPAN_NOTICE("You manage to repair [target], but the harddrive was corrupted! Only default programs were restored."),
+				span_notice("You manage to repair [target], but the harddrive was corrupted! Only default programs were restored."),
 			)
 		else
 			keyboardsound.stop()
 			keyboardsound = null
 			var/target_name = target ? "[target]" : "the computer"
 			user.visible_message(
-				SPAN_NOTICE("You stop repairing [target_name]."),
+				span_notice("You stop repairing [target_name]."),
 			)
 
 /datum/statverb/connect_conduit //Connects or disconnects conduits of a shield generator or long range scanner
@@ -192,7 +192,7 @@ SUBSYSTEM_DEF(statverbs)
 		var/turf/T = get_step(conduit, conduit.dir)
 		var/obj/machinery/power/shipside/target = locate(/obj/machinery/power/shipside/) in T
 		if(!target)
-			user.visible_message(self_message = SPAN_NOTICE("There is nothing to [conduit] to."))
+			user.visible_message(self_message = span_notice("There is nothing to [conduit] to."))
 			return FALSE
 		else
 			if(!target.tendrils_deployed && target.tendrils.len > 0)
@@ -201,32 +201,32 @@ SUBSYSTEM_DEF(statverbs)
 			if(target.tendrils.len < 1) //no conduits?
 				target.tendrils_deployed = TRUE
 			var/datum/repeating_sound/wrenchsound = new(30, timer, 0.15, conduit, 'sound/items/Ratchet.ogg', 80, 1)
-			user.visible_message(SPAN_NOTICE("[user] starts to connect various pipes and wires between [conduit] and [target]."),
+			user.visible_message(span_notice("[user] starts to connect various pipes and wires between [conduit] and [target]."),
 			"You start to connect various pipes and wires between [conduit] and [target].")
 			if(do_mob(user, conduit, timer))
 				wrenchsound.stop()
 				qdel(wrenchsound)
 				conduit.connect(target)
-				user.visible_message(SPAN_NOTICE("[user] successfully connected [conduit] to the [target]!"),
+				user.visible_message(span_notice("[user] successfully connected [conduit] to the [target]!"),
 				"You successfully conneced [conduit] to the [target]!")
 			else
 				wrenchsound.stop()
 				qdel(wrenchsound)
-				user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [target]."),
+				user.visible_message(span_notice("[user] stopped connecting [conduit] and [target]."),
 				"You stopped connecting [conduit] and [target].")
 	else //disconnection
 		var/datum/repeating_sound/wrenchsound = new(30, timer, 0.15, conduit, 'sound/items/Ratchet.ogg', 80, 1)
-		user.visible_message(SPAN_NOTICE("[user] attempts to disconnect [conduit] from the [conduit.base]."),
+		user.visible_message(span_notice("[user] attempts to disconnect [conduit] from the [conduit.base]."),
 		"You attempt to disconnect [conduit] from the [conduit.base].")
 		if(do_mob(user, conduit, timer))
 			wrenchsound.stop()
 			qdel(wrenchsound)
-			user.visible_message(SPAN_NOTICE("[user] successfully disconnected [conduit] from the [conduit.base]!"),
+			user.visible_message(span_notice("[user] successfully disconnected [conduit] from the [conduit.base]!"),
 			"You successfully disconneced [conduit] from the [conduit.base]!")
 			if(conduit.base.tendrils_deployed == TRUE)
 				conduit.disconnect()
 		else
 			wrenchsound.stop()
 			qdel(wrenchsound)
-			user.visible_message(SPAN_NOTICE("[user] stopped connecting [conduit] and [conduit.base]."),
+			user.visible_message(span_notice("[user] stopped connecting [conduit] and [conduit.base]."),
 			"You stopped connecting [conduit] and [conduit.base].")

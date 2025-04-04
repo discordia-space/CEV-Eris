@@ -29,13 +29,13 @@
 
 /turf/floor/exoplanet/attackby(obj/item/C, mob/user)
 	/*if(diggable && istype(C,/obj/item/shovel))
-		visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
+		visible_message(span_notice("\The [user] starts digging \the [src]"))
 		if(do_after(user, 50))
-			to_chat(user,"<span class='notice'>You dig a deep pit.</span>")
+			to_chat(user,span_notice("You dig a deep pit."))
 			new /obj/structure/pit(src)
 			diggable = 0
 		else
-			to_chat(user,"<span class='notice'>You stop shoveling.</span>")
+			to_chat(user,span_notice("You stop shoveling."))
 	else if(istype(C, /obj/item/stack/tile))
 		var/obj/item/stack/tile/T = C
 		if(T.use(1))
@@ -63,7 +63,7 @@
 	var/obj/item/reagent_containers/RG = O
 	if (reagent_type && istype(RG) && RG.is_open_container() && RG.reagents)
 		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("<span class='notice'>[user] fills \the [RG] from \the [src].</span>","<span class='notice'>You fill \the [RG] from \the [src].</span>")
+		user.visible_message(span_notice("[user] fills \the [RG] from \the [src]."),span_notice("You fill \the [RG] from \the [src]."))
 	else
 		return ..()
 /*
@@ -174,7 +174,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			to_chat(user, SPAN_NOTICE("Constructing support lattice ..."))
+			to_chat(user, span_notice("Constructing support lattice ..."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			ReplaceWithLattice()
 		return
@@ -187,7 +187,7 @@
 
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			to_chat(user, SPAN_NOTICE("You start constructing underplating on the lattice."))
+			to_chat(user, span_notice("You start constructing underplating on the lattice."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			if(do_after(user, (40 * user.stats.getMult(STAT_MEC, STAT_LEVEL_EXPERT, src))))
 				qdel(L)
@@ -195,7 +195,7 @@
 				ChangeTurf(/turf/floor/plating/under)
 			return
 		else
-			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
+			to_chat(user, span_warning("The plating is going to need some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C

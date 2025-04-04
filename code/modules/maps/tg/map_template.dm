@@ -99,7 +99,7 @@
 		var/area/A = I
 		A.power_change()
 
-	//admin_notice("<span class='danger'>Submap initializations finished.</span>", R_DEBUG)
+	//admin_notice(span_danger("Submap initializations finished."), R_DEBUG)
 
 /datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = SOUTH)
 	var/x = 1
@@ -159,14 +159,14 @@
 
 /datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = SOUTH)
 	//var/deleted_atoms = 0
-	//admin_notice("<span class='danger'>Annihilating objects in submap loading locatation.</span>", R_DEBUG)
+	//admin_notice(span_danger("Annihilating objects in submap loading locatation."), R_DEBUG)
 	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
 	if(turfs_to_clean.len)
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
 			//	++deleted_atoms
 				qdel(AM)
-	//admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
+	//admin_notice(span_danger("Annihilated [deleted_atoms] objects."), R_DEBUG)
 
 
 //for your ever biggening badminnery kevinz000

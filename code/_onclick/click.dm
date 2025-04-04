@@ -154,7 +154,7 @@
 		return
 
 	if(W && !W.can_use_lying && src.lying)
-		to_chat(src, SPAN_WARNING("You cannot use \the [W] while lying down!"))
+		to_chat(src, span_warning("You cannot use \the [W] while lying down!"))
 		return 1
 
 	//Atoms on turfs (not on your person)
@@ -350,7 +350,7 @@
 		nutrition = max(nutrition - rand(1, 5), 0)
 		handle_regular_hud_updates()
 	else
-		to_chat(src, SPAN_WARNING("You're out of energy!  You need food!"))
+		to_chat(src, span_warning("You're out of energy!  You need food!"))
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /atom/movable/proc/face_atom(atom/A)

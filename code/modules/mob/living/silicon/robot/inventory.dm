@@ -238,7 +238,7 @@
 	if(!(locate(O) in src.module.modules) && O != src.module.emag)
 		return
 	if(activated(O))
-		to_chat(src, SPAN_NOTICE("Already activated"))
+		to_chat(src, span_notice("Already activated"))
 		return
 	if(!module_state_1)
 		if (O.pre_equip(src, slot_robot_equip_1))
@@ -277,7 +277,7 @@
 			sight_mode |= module_state_3:sight_mode
 		O.equipped(src, slot_robot_equip_3)
 	else
-		to_chat(src, SPAN_NOTICE("You need to disable a module first!"))
+		to_chat(src, span_notice("You need to disable a module first!"))
 
 
 //Attempt to grip the item in a gripper.

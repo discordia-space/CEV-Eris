@@ -46,8 +46,8 @@ LINEN BINS
 		playsound(get_turf(loc), "rustle", 15, 1, -5)
 		if(!no_message)
 			user.visible_message(
-				SPAN_NOTICE("\The [user] [rolled ? "unrolled" : "rolled"] \the [src]."),
-				SPAN_NOTICE("You [rolled ? "unrolled" : "rolled"] \the [src].")
+				span_notice("\The [user] [rolled ? "unrolled" : "rolled"] \the [src]."),
+				span_notice("You [rolled ? "unrolled" : "rolled"] \the [src].")
 			)
 		if(!rolled)
 			rolled = TRUE
@@ -75,8 +75,8 @@ LINEN BINS
 		playsound(get_turf(loc), "rustle", 15, 1, -5)
 		if(!no_message)
 			user.visible_message(
-				SPAN_NOTICE("\The [user] [folded ? "unfolded" : "folded"] \the [src]."),
-				SPAN_NOTICE("You [folded ? "unfolded" : "folded"] \the [src].")
+				span_notice("\The [user] [folded ? "unfolded" : "folded"] \the [src]."),
+				span_notice("You [folded ? "unfolded" : "folded"] \the [src].")
 			)
 		if(!folded)
 			folded = TRUE
@@ -116,11 +116,11 @@ LINEN BINS
 /obj/item/bedsheet/attackby(obj/item/I, mob/user)
 	if(is_sharp(I))
 		user.visible_message(
-			SPAN_NOTICE("\The [user] begins cutting up \the [src] with \a [I]."),
-			SPAN_NOTICE("You begin cutting up \the [src] with \the [I].")
+			span_notice("\The [user] begins cutting up \the [src] with \a [I]."),
+			span_notice("You begin cutting up \the [src] with \the [I].")
 		)
 		if(do_after(user, 50, src))
-			to_chat(user, SPAN_NOTICE("You cut \the [src] into pieces!"))
+			to_chat(user, span_notice("You cut \the [src] into pieces!"))
 			for(var/i in 1 to rand(2,5))
 				new /obj/item/reagent_containers/glass/rag(get_turf(src))
 			qdel(src)
@@ -238,13 +238,13 @@ LINEN BINS
 		I.loc = src
 		sheets.Add(I)
 		amount++
-		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
+		to_chat(user, span_notice("You put [I] in [src]."))
 	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
 	else if(amount && !hidden && I.w_class < ITEM_SIZE_BULKY)
 		user.drop_item()
 		I.loc = src
 		hidden = I
-		to_chat(user, SPAN_NOTICE("You hide [I] among the sheets."))
+		to_chat(user, span_notice("You hide [I] among the sheets."))
 
 /obj/structure/bedsheetbin/attack_hand(mob/user)
 	if(amount >= 1)
@@ -260,11 +260,11 @@ LINEN BINS
 		B.loc = user.loc
 
 		user.put_in_hands(B)
-		to_chat(user, SPAN_NOTICE("You take [B] out of [src]."))
+		to_chat(user, span_notice("You take [B] out of [src]."))
 
 		if(hidden)
 			hidden.loc = user.loc
-			to_chat(user, SPAN_NOTICE("[hidden] falls out of [B]!"))
+			to_chat(user, span_notice("[hidden] falls out of [B]!"))
 			hidden = null
 
 
@@ -283,7 +283,7 @@ LINEN BINS
 			B = new /obj/item/bedsheet(loc, TRUE)
 
 		B.loc = loc
-		to_chat(user, SPAN_NOTICE("You telekinetically remove [B] from [src]."))
+		to_chat(user, span_notice("You telekinetically remove [B] from [src]."))
 		update_icon()
 
 		if(hidden)

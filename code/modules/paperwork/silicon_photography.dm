@@ -26,10 +26,10 @@
 	var/mob/living/silicon/robot/C = usr
 	if(C.connected_ai)
 		C.connected_ai.aiCamera.injectaialbum(p.copy(1), " (synced from [C.name])")
-		to_chat(C.connected_ai, "<span class='unconscious'>Image uploaded by [C.name]</span>")
-		to_chat(usr, "<span class='unconscious'>Image synced to remote database</span>"	) //feedback to the Cyborg player that the picture was taken
+		to_chat(C.connected_ai, span_unconscious("Image uploaded by [C.name]"))
+		to_chat(usr, span_unconscious("Image synced to remote database")	) //feedback to the Cyborg player that the picture was taken
 	else
-		to_chat(usr, "<span class='unconscious'>Image recorded</span>")
+		to_chat(usr, span_unconscious("Image recorded"))
 	// Always save locally
 	injectaialbum(p)
 
@@ -40,7 +40,7 @@
 	var/list/nametemp = list()
 	var/find
 	if(cam.aipictures.len == 0)
-		to_chat(usr, "<span class='userdanger'>No images saved</span>")
+		to_chat(usr, span_userdanger("No images saved"))
 		return
 	for(var/obj/item/photo/t in cam.aipictures)
 		nametemp += t.name
@@ -68,7 +68,7 @@
 		return
 
 	aipictures -= selection
-	to_chat(usr, "<span class='unconscious'>Local image deleted</span>")
+	to_chat(usr, span_unconscious("Local image deleted"))
 
 //Capture Proc for AI / Robot
 /mob/living/silicon/ai/can_capture_turf(turf/T)
@@ -91,7 +91,7 @@
 
 /obj/item/device/camera/siliconcam/ai_camera/printpicture(mob/user, obj/item/photo/p)
 	injectaialbum(p)
-	to_chat(usr, "<span class='unconscious'>Image recorded</span>")
+	to_chat(usr, span_unconscious("Image recorded"))
 
 /obj/item/device/camera/siliconcam/robot_camera/printpicture(mob/user, obj/item/photo/p)
 	injectmasteralbum(p)

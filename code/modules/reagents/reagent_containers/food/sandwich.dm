@@ -26,12 +26,12 @@
 		to_chat(user, "\red If you put anything else on \the [src] it's going to collapse.")
 		return
 	else if(istype(W,/obj/item/material/shard))
-		to_chat(user, SPAN_NOTICE("You hide [W] in \the [src]."))
+		to_chat(user, span_notice("You hide [W] in \the [src]."))
 		user.drop_from_inventory(W, src)
 		update()
 		return
 	else if(istype(W,/obj/item/reagent_containers/food/snacks))
-		to_chat(user, SPAN_NOTICE("You layer [W] over \the [src]."))
+		to_chat(user, span_notice("You layer [W] over \the [src]."))
 		var/obj/item/reagent_containers/F = W
 		F.reagents.trans_to_obj(src, F.reagents.total_volume)
 		user.drop_from_inventory(W, src)
@@ -79,7 +79,7 @@
 /obj/item/reagent_containers/food/snacks/csandwich/examine(mob/user, extra_description = "")
 	if(LAZYLEN(contents) && get_dist(user, src) < 2)
 		var/obj/item/O = pick(contents)
-		extra_description += SPAN_NOTICE("You think you can see [O.name] in there.")
+		extra_description += span_notice("You think you can see [O.name] in there.")
 	..(user, extra_description)
 
 /obj/item/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
@@ -94,6 +94,6 @@
 		H = M
 
 	if(H && shard && M == user) //This needs a check for feeding the food to other people, but that could be abusable.
-		to_chat(H, SPAN_WARNING("You lacerate your mouth on a [shard.name] in the sandwich!"))
+		to_chat(H, span_warning("You lacerate your mouth on a [shard.name] in the sandwich!"))
 		H.adjustBruteLoss(5) //TODO: Target head if human.
 	..()

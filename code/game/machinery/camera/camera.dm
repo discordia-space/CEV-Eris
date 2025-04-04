@@ -112,7 +112,7 @@
 	if (isobj(AM))
 		var/obj/O = AM
 		if (O.throwforce >= src.toughness)
-			visible_message(SPAN_WARNING("<B>[src] was hit by [O].</B>"))
+			visible_message(span_warning("<B>[src] was hit by [O].</B>"))
 		take_damage(O.throwforce)
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
@@ -132,7 +132,7 @@
 	if(user.species.can_shred(user))
 		set_status(0)
 		user.do_attack_animation(src)
-		visible_message(SPAN_WARNING("\The [user] slashes at [src]!"))
+		visible_message(span_warning("\The [user] slashes at [src]!"))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
 		destroy()
@@ -154,7 +154,7 @@
 		if(QUALITY_WELDING)
 			if((wires.CanDeconstruct() || (stat & BROKEN)))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
+					to_chat(user, span_notice("You weld the assembly securely into place."))
 					if(assembly)
 						assembly.loc = src.loc
 						assembly.anchored = TRUE
@@ -164,10 +164,10 @@
 						assembly.dir = src.dir
 						if(stat & BROKEN)
 							assembly.state = 2
-							to_chat(user, SPAN_NOTICE("You repaired \the [src] frame."))
+							to_chat(user, span_notice("You repaired \the [src] frame."))
 						else
 							assembly.state = 1
-							to_chat(user, SPAN_NOTICE("You cut \the [src] free from the wall."))
+							to_chat(user, span_notice("You cut \the [src] free from the wall."))
 							assembly.update_plane()
 							new /obj/item/stack/cable_coil(src.loc, length=2)
 						assembly = null //so qdel doesn't eat it.
@@ -179,8 +179,8 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				panel_open = !panel_open
-				user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
-				"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
+				user.visible_message(span_warning("[user] screws the camera's panel [panel_open ? "open" : "closed"]!"),
+				span_notice("You screw the camera's panel [panel_open ? "open" : "closed"]."))
 				return
 			return
 
@@ -258,20 +258,20 @@
 
 	else if (istype(I, /obj/item/camera_bug))
 		if (!src.can_use())
-			to_chat(user, SPAN_WARNING("Camera non-functional."))
+			to_chat(user, span_warning("Camera non-functional."))
 			return
 		if (src.bugged)
-			to_chat(user, SPAN_NOTICE("Camera bug removed."))
+			to_chat(user, span_notice("Camera bug removed."))
 			src.bugged = 0
 		else
-			to_chat(user, SPAN_NOTICE("Camera bugged."))
+			to_chat(user, span_notice("Camera bugged."))
 			src.bugged = 1
 
 	else if(I.damtype == BRUTE || I.damtype == BURN) //bashing cameras
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		if (I.force >= src.toughness)
 			user.do_attack_animation(src)
-			visible_message(SPAN_WARNING("<b>[src] has been [pick(I.attack_verb)] with [I] by [user]!</b>"))
+			visible_message(span_warning("<b>[src] has been [pick(I.attack_verb)] with [I] by [user]!</b>"))
 			if (I.hitsound)
 				playsound(loc, I.hitsound, 50, 1, -1)
 		take_damage(I.force)
@@ -290,18 +290,18 @@
 	set_status(!status)
 	if (!status)
 		if(user)
-			visible_message(SPAN_NOTICE("[user] has deactivated [src]!"))
+			visible_message(span_notice("[user] has deactivated [src]!"))
 			add_hiddenprint(user)
 		else
-			visible_message(SPAN_NOTICE("[src] clicks and shuts down. "))
+			visible_message(span_notice("[src] clicks and shuts down. "))
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 	else
 		if(user)
-			visible_message(SPAN_NOTICE("[user] has reactivated [src]!"))
+			visible_message(span_notice("[user] has reactivated [src]!"))
 			add_hiddenprint(user)
 		else
-			visible_message(SPAN_NOTICE("[src] clicks and reactivates itself. "))
+			visible_message(span_notice("[src] clicks and reactivates itself. "))
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
 
@@ -413,7 +413,7 @@
 		return
 
 	if(stat & BROKEN)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
 	user.set_machine(src)

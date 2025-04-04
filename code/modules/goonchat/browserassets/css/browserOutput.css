@@ -390,6 +390,7 @@ em						{font-style: normal;	font-weight: bold;}
 .assimilator			{color: #059223;	font-size: 16px ; font-weight: bold;}
 .alertsyndie			{color: #FF0000;	font-size: 24px ; font-weight: bold;}
 
+.sinister				{color: #800080;	font-weight: bold;	font-style: italic;} /* /vg/ */
 .spider					{color: #8800ff;}
 
 .interface				{color: #750e75;}

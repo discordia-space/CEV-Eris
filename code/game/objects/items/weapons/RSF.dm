@@ -29,7 +29,7 @@ RSF
 		if(M.use(amount) && stored_matter < max_stored_matter)
 			stored_matter += amount
 			playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
-			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+			to_chat(user, "[span_notice("You load [amount] Compressed Matter into \the [src]")].")
 	else
 		..()
 /obj/item/rsf/attack_self(mob/user as mob)

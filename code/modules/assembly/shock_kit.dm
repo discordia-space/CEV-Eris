@@ -23,7 +23,7 @@
 		if(QUALITY_SCREW_DRIVING)
 			if(tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				status = !status
-				to_chat(user, SPAN_NOTICE("[src] is now [status ? "secured" : "unsecured"]!"))
+				to_chat(user, span_notice("[src] is now [status ? "secured" : "unsecured"]!"))
 		if(QUALITY_BOLT_TURNING)
 			if(!status)
 				if(tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))

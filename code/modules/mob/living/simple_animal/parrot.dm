@@ -364,7 +364,7 @@
 				if(istype(AM, /obj/item) || isliving(AM))	//If stealable item
 					parrot_interest = AM
 					var/msg2 = ("turns and flies towards [parrot_interest]")
-					src.visible_message("<span class='name'>[src]</span> [msg2].")
+					src.visible_message("[span_name("[src]")] [msg2].")
 					parrot_state = PARROT_SWOOP | PARROT_STEAL
 					return
 				else	//Else it's a perch
@@ -478,11 +478,11 @@
 				var/obj/item/organ/external/affecting = H.get_organ(ran_zone(pick(parrot_dam_zone)))
 				H.damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, null, null, sharp = TRUE)
 				var/msg3 = (pick("pecks [H]'s [affecting].", "cuts [H]'s [affecting] with its talons."))
-				src.visible_message("<span class='name'>[src]</span> [msg3].")
+				src.visible_message("[span_name("[src]")] [msg3].")
 			else
 				L.adjustBruteLoss(damage)
 				var/msg3 = (pick("pecks at [L].", "claws [L]."))
-				src.visible_message("<span class='name'>[src]</span> [msg3].")
+				src.visible_message("[span_name("[src]")] [msg3].")
 			return
 
 		//Otherwise, fly towards the mob!
@@ -612,7 +612,7 @@
 			stolen_item.loc = src
 			visible_message(
 				"[src] grabs the [held_item] out of [C]'s hand!",
-				SPAN_NOTICE("You snag the [held_item] out of [C]'s hand!"),
+				span_notice("You snag the [held_item] out of [C]'s hand!"),
 				"You hear the sounds of wings flapping furiously."
 			)
 			return held_item

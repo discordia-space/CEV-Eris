@@ -241,7 +241,7 @@
 			calculate_dir()
 		if(!cell_use_check(tick_cost))
 			if(ismob(src.loc))
-				to_chat(src.loc, SPAN_WARNING("Your flashlight dies. You are alone now."))
+				to_chat(src.loc, span_warning("Your flashlight dies. You are alone now."))
 			turn_off()
 		else if(cell.percent() <= 25)
 			apply_power_deficiency()
@@ -257,39 +257,39 @@
 		if(istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES) && C.flash_protection > 0)
-					to_chat(user, SPAN_WARNING("You're going to need to remove [C.name] first."))
+					to_chat(user, span_warning("You're going to need to remove [C.name] first."))
 					return
 
 			var/obj/item/organ/vision
 			if(H.species.vision_organ)
 				vision = H.random_organ_by_process(H.species.vision_organ)
 			if(!vision)
-				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : BP_EYES] on [H]!</span>")
+				to_chat(user, span_warning("You can't find any [H.species.vision_organ ? H.species.vision_organ : BP_EYES] on [H]!"))
 				return
 
-			user.visible_message(SPAN_NOTICE("\The [user] directs [src] to [M]'s eyes."), \
-							 	 SPAN_NOTICE("You direct [src] to [M]'s eyes."))
+			user.visible_message(span_notice("\The [user] directs [src] to [M]'s eyes."), \
+							 	 span_notice("You direct [src] to [M]'s eyes."))
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
-					to_chat(user, SPAN_WARNING("\The [M]'s pupils do not react to the light!"))
+					to_chat(user, span_warning("\The [M]'s pupils do not react to the light!"))
 					return
 				if(get_active_mutation(M, MUTATION_XRAY))
-					to_chat(user, SPAN_NOTICE("\The [M] pupils give an eerie glow!"))
+					to_chat(user, span_notice("\The [M] pupils give an eerie glow!"))
 				if(vision.damage)
-					to_chat(user, SPAN_WARNING("There's visible damage to [M]'s [vision.name]!"))
+					to_chat(user, span_warning("There's visible damage to [M]'s [vision.name]!"))
 				else if(M.eye_blurry)
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils react slower than normally."))
+					to_chat(user, span_notice("\The [M]'s pupils react slower than normally."))
 				if(M.getBrainLoss() > 15)
-					to_chat(user, SPAN_NOTICE("There's visible lag between left and right pupils' reactions."))
+					to_chat(user, span_notice("There's visible lag between left and right pupils' reactions."))
 
 				var/list/pinpoint = list("oxycodone"=1,"tramadol"=5)
 				var/list/dilating = list("space_drugs"=5,"mindbreaker"=1)
 				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils are already pinpoint and cannot narrow any more."))
+					to_chat(user, span_notice("\The [M]'s pupils are already pinpoint and cannot narrow any more."))
 				else if(M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils narrow slightly, but are still very dilated."))
+					to_chat(user, span_notice("\The [M]'s pupils narrow slightly, but are still very dilated."))
 				else
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils narrow."))
+					to_chat(user, span_notice("\The [M]'s pupils narrow."))
 
 				if(user.a_intent == I_HURT)
 					user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively

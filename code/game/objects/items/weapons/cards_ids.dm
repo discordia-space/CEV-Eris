@@ -84,7 +84,7 @@ var/const/NO_EMAG_ACT = -50
 		log_and_message_admins("emagged \an [A].")
 
 	if(uses<1)
-		user.visible_message(SPAN_WARNING("\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent."))
+		user.visible_message(span_warning("\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent."))
 		user.drop_item()
 		var/obj/item/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
@@ -130,7 +130,7 @@ var/const/NO_EMAG_ACT = -50
 		extra_description += "\nThe DNA hash on the card is [dna_hash]."
 		extra_description += "\nThe fingerprint hash on the card is [fingerprint_hash]."
 	else
-		extra_description += SPAN_WARNING("It is too far away.")
+		extra_description += span_warning("It is too far away.")
 
 /obj/item/card/id/proc/prevent_tracking()
 	return 0

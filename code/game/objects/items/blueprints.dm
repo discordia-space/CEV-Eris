@@ -95,20 +95,20 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				to_chat(usr, SPAN_WARNING("The new area must be completely airtight!"))
+				to_chat(usr, span_warning("The new area must be completely airtight!"))
 				return
 			if(ROOM_ERR_TOOLARGE)
-				to_chat(usr, SPAN_WARNING("The new area too large!"))
+				to_chat(usr, span_warning("The new area too large!"))
 				return
 			else
-				to_chat(usr, SPAN_WARNING("Error! Please notify administration!"))
+				to_chat(usr, span_warning("Error! Please notify administration!"))
 				return
 	var/list/turf/turfs = res
 	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", ""), MAX_NAME_LEN)
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, SPAN_WARNING("Name too long."))
+		to_chat(usr, span_warning("Name too long."))
 		return
 	var/area/A = new
 	A.name = str
@@ -133,11 +133,11 @@ move an amendment</a> to the drawing.</p>
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, SPAN_WARNING("Text too long."))
+		to_chat(usr, span_warning("Text too long."))
 		return
 	set_area_machinery_title(A,str,prevname)
 	A.name = str
-	to_chat(usr, SPAN_NOTICE("You set the area '[prevname]' title to '[str]'."))
+	to_chat(usr, span_notice("You set the area '[prevname]' title to '[str]'."))
 	interact()
 	return
 

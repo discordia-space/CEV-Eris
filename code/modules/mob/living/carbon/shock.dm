@@ -101,7 +101,7 @@
 	sanity.onShock(shock_stage)
 
 	if(shock_stage == 30)
-		to_chat(src, "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>")
+		to_chat(src, span_danger("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!"))
 
 	if(shock_stage >= 60)
 		if(shock_stage == 60)
@@ -109,18 +109,18 @@
 		stuttering = max(stuttering, 5)
 
 	if(shock_stage == 80)
-		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
+		to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
 
 	if (shock_stage >= 100)
 		if(shock_stage == 100)
 			emote("me",1,"'s body becomes limp.")
 		if(prob(2))
-			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
+			to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
 			Weaken(10)
 
 	if(shock_stage >= 120)
 		if(prob(5))
-			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
+			to_chat(src, span_danger("[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!"))
 			Weaken(10)
 
 	if(shock_stage >= hard_crit_threshold)
@@ -128,8 +128,8 @@
 
 /mob/living/carbon/human/proc/enter_hard_crit()
 	var/knockout_time = 90 SECONDS
-	to_chat(src, SPAN_DANGER("[pick("You are knocked out", "You can't feel anything anymore", "You just can't keep going anymore")]!"))
-	visible_message(SPAN_DANGER("[src] [species.knockout_message]"))
+	to_chat(src, span_danger("[pick("You are knocked out", "You can't feel anything anymore", "You just can't keep going anymore")]!"))
+	visible_message(span_danger("[src] [species.knockout_message]"))
 	Weaken(knockout_time)
 	Paralyse(knockout_time)
 	status_flags |= HARDCRIT

@@ -105,7 +105,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		update_icon()
 		return
@@ -127,7 +127,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		update_icon()
 		return
@@ -230,7 +230,7 @@
 	if(!Adjacent(user) || !C.Adjacent(user))
 		return ..()
 	if(istype(C, suitable_cell) && !cell)
-		to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+		to_chat(user, span_notice("You add [C] to [src]."))
 		C.forceMove(src)
 		src.cell = C
 		SSnano.update_uis(src)
@@ -244,7 +244,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		return
 
@@ -269,7 +269,7 @@
 /obj/item/device/makeshift_electrolyser/Process()
 	if(on)
 		if(!cell_use_check(tick_cost))
-			visible_message(SPAN_NOTICE("[src]'s electrodes stopped bubbling."), range = 4)
+			visible_message(span_notice("[src]'s electrodes stopped bubbling."), range = 4)
 			turn_off()
 		if(beaker && beaker.reagents.total_volume)
 			var/state = electrolysis(beaker, separation_beaker, 2)
@@ -285,7 +285,7 @@
 
 /obj/item/device/makeshift_electrolyser/attackby(obj/item/C, mob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
-		to_chat(user, SPAN_NOTICE("You add [C] to [src]."))
+		to_chat(user, span_notice("You add [C] to [src]."))
 		src.cell = C
 		SSnano.update_uis(src)
 		return
@@ -298,7 +298,7 @@
 			beaker = B
 		else if(!separation_beaker)
 			separation_beaker = B
-		to_chat(user, SPAN_NOTICE("You add [B] to [src]."))
+		to_chat(user, span_notice("You add [B] to [src]."))
 		SSnano.update_uis(src)
 		return
 	return ..()

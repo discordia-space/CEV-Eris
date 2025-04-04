@@ -137,10 +137,10 @@
 							useful = TRUE
 
 				if(!useful)
-					to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+					to_chat(user, span_warning("The [W] is not suitable for [src]!"))
 					return
 			else
-				to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+				to_chat(user, span_warning("The [W] is not suitable for [src]!"))
 				return
 
 
@@ -179,21 +179,21 @@
 			oddity_stats[STAT_VIG] += 2
 
 		else
-			to_chat(user, SPAN_WARNING("The [W] is not suitable for [src]!"))
+			to_chat(user, span_warning("The [W] is not suitable for [src]!"))
 			return
 
 		if(oddity_stats[STAT_ROB] + oddity_stats[STAT_VIG] + oddity_stats[STAT_TGH] > combat_cap)
-			to_chat(user, SPAN_WARNING("The [W] goes beyond the Tribalism's capability for combat, perhaps it could be upgraded with combat relics from other factions."))
+			to_chat(user, span_warning("The [W] goes beyond the Tribalism's capability for combat, perhaps it could be upgraded with combat relics from other factions."))
 			for(var/stat in starting_sum)
 				oddity_stats[stat] = starting_sum[stat]
 			return
-		to_chat(user, SPAN_NOTICE("You feed [W] to [src]."))
+		to_chat(user, span_notice("You feed [W] to [src]."))
 		SEND_SIGNAL_OLD(user, COMSIG_OBJ_TECHNO_TRIBALISM, W)
 		items_count += 1
 		qdel(W)
 
 	else
-		to_chat(user, SPAN_WARNING("The [src] is full!"))
+		to_chat(user, span_warning("The [src] is full!"))
 		return
 
 /obj/item/device/techno_tribalism/attack_self()
@@ -211,7 +211,7 @@
 				last_produce = world.time
 				user.put_in_hands(T)
 			else
-				to_chat(src.loc, SPAN_WARNING("The [src] is too complicated to use!"))
+				to_chat(src.loc, span_warning("The [src] is too complicated to use!"))
 		else
 			visible_message("\icon The [src] beeps, \"The [src] is not full enough to produce.\".")
 	else
@@ -228,8 +228,8 @@
 		radio_broadcasting = FALSE
 
 /obj/item/device/techno_tribalism/examine(mob/user, extra_description = "")
-	extra_description += SPAN_NOTICE("The [src] is fed by [items_count]/[max_count].")
-	extra_description += SPAN_NOTICE("The remaining delay is [world.time > last_produce + cooldown ? "0" : round(abs(world.time - (last_produce + cooldown)) / 600)] Minutes")
-	extra_description += SPAN_NOTICE("Its internal radio is currently [internal_radio.broadcasting ? "working normally" : "not functioning"]")
-	extra_description += SPAN_NOTICE("The current limit for all combat-oriented skill points on oddities is [combat_cap].")
+	extra_description += span_notice("The [src] is fed by [items_count]/[max_count].")
+	extra_description += span_notice("The remaining delay is [world.time > last_produce + cooldown ? "0" : round(abs(world.time - (last_produce + cooldown)) / 600)] Minutes")
+	extra_description += span_notice("Its internal radio is currently [internal_radio.broadcasting ? "working normally" : "not functioning"]")
+	extra_description += span_notice("The current limit for all combat-oriented skill points on oddities is [combat_cap].")
 	..(user, extra_description)

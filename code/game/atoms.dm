@@ -356,7 +356,7 @@ its easier to just keep the beam vertical.
 		else
 			full_name = "a "
 		if(blood_color != "#030303")
-			full_name += "<span class='danger'>blood-stained</span> [name]!"
+			full_name += "[span_danger("blood-stained")] [name]!"
 		else
 			full_name += "oil-stained [name]."
 
@@ -371,15 +371,15 @@ its easier to just keep the beam vertical.
 		if(reagent_flags & TRANSPARENT)
 			if(LAZYLEN(reagents.reagent_list) > 1)
 				if(user.can_see_reagents())
-					output += SPAN_NOTICE("\nIt contains:")
+					output += span_notice("\nIt contains:")
 					for(var/datum/reagent/R in reagents.reagent_list)
-						output += SPAN_NOTICE("\n[R.volume] units of [R.name]")
+						output += span_notice("\n[R.volume] units of [R.name]")
 				else
-					output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of various reagents.")
+					output += span_notice("\nIt contains [reagents.total_volume] units of various reagents.")
 			else
-				output += SPAN_NOTICE("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
+				output += span_notice("\nIt contains [reagents.total_volume] units of [user.can_see_reagents() ? reagents.reagent_list[1].name : "something"]")
 		else if(reagent_flags & AMOUNT_VISIBLE)
-			output += SPAN_NOTICE("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
+			output += span_notice("[reagents.total_volume ? "\nIt has [reagents.total_volume] units left." : "\nIt's empty."]")
 
 	var/desc_info = get_description_info()
 	if(desc_info)
@@ -833,7 +833,7 @@ its easier to just keep the beam vertical.
 /atom/proc/additional_see_invisible()
 	return 0
 /atom/proc/lava_act()
-	visible_message("<span class='danger'>\The [src] sizzles and melts away, consumed by the lava!</span>")
+	visible_message(span_danger("\The [src] sizzles and melts away, consumed by the lava!"))
 	playsound(src, 'sound/effects/flare.ogg', 100, 3)
 	if(ismob(src))
 		var/mob/M = src

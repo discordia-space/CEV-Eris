@@ -81,7 +81,7 @@
 
 	if(accepted)
 		accepted = copytext(accepted, 1, length(accepted) - 1)
-		extra_description += SPAN_NOTICE("\n<i>Accepts [accepted].</i>")
+		extra_description += span_notice("\n<i>Accepts [accepted].</i>")
 
 /obj/machinery/reagentgrinder/industrial/disgorger/proc/check_reagents(obj/item/I, mob/user)
 	if(!I.reagents || !I.reagents.total_volume)
@@ -194,7 +194,7 @@
 
 	var/message = pickweight(list(
 		"When you study and object from a distance, only its principle may be seen." = 1,									// Children of Dune
-		"Knowledge is an unending adventure at the edge of uncertainty." = 1,												// 
+		"Knowledge is an unending adventure at the edge of uncertainty." = 1,												//
 		"To know a thing well, know its limits; Only when pushed beyond its tolerance will its true nature be seen." = 1,	//
 		"You do not take from this universe. It grants what it will." = 1,							// Dune Messiah
 		"Belief can be manipulated. Only knowledge is dangerous." = 1,								//
@@ -220,7 +220,7 @@
 	switch(tool_type)
 		if(QUALITY_CLAMPING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_BIO))
-				to_chat(user, SPAN_NOTICE("You remove the guts of \the [src] with [I]."))
+				to_chat(user, span_notice("You remove the guts of \the [src] with [I]."))
 				dismantle()
 			return TRUE
 
@@ -229,7 +229,7 @@
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_BIO, instant_finish_tier = 30, forced_sound = used_sound))
 				updateUsrDialog()
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maw of \the [src] with [I]."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maw of \the [src] with [I]."))
 				update_icon()
 			return TRUE
 
@@ -331,8 +331,8 @@
 
 	throughput_mult = (heart_eff > 79) ? round((heart_eff + blood_vessel_eff) / 650, 0.05) : 0.05
 
-	capacity_mod = round((stomach_eff / 15) + carrion_chem_eff) 
-	tick_reduction = round((muscle_eff / 20) + carrion_maw_eff) 
+	capacity_mod = round((stomach_eff / 15) + carrion_chem_eff)
+	tick_reduction = round((muscle_eff / 20) + carrion_maw_eff)
 	production_mod = round(throughput_mult * ((stomach_eff / 2) + (liver_eff / 4) + (kidney_eff / 4) + (carrion_maw_eff)) / 100, 0.01)
 	research_mod = round(throughput_mult * (brain_eff / 65), 0.01)
 
@@ -411,9 +411,9 @@
 
 /obj/item/fleshcube/attack_self(mob/user)
 	squelch()
-	user.visible_message(SPAN_NOTICE("<b>\The [user]</b> squeezes \the [src]. It squelches."), SPAN_NOTICE("You squeeze \the [src]. It squelches."))
+	user.visible_message(span_notice("<b>\The [user]</b> squeezes \the [src]. It squelches."), span_notice("You squeeze \the [src]. It squelches."))
 
 /obj/item/fleshcube/throw_impact(atom/impact_atom)
 	..()
 	squelch()
-	visible_message(SPAN_NOTICE("\The [src] squelches as it impacts with surface."))
+	visible_message(span_notice("\The [src] squelches as it impacts with surface."))

@@ -259,7 +259,7 @@
 
 /mob/proc/run_examinate(atom/examinify)
 	if((is_blind(src) || stat) && !isobserver(src))
-		to_chat(src, SPAN_NOTICE("Something is there but you can't see it."))
+		to_chat(src, span_notice("Something is there but you can't see it."))
 		return
 	if(!istype(examinify, /obj/screen))
 		face_atom(examinify)
@@ -602,11 +602,11 @@
 		return
 
 	if (AM.anchored)
-		to_chat(src, "<span class='warning'>It won't budge!</span>")
+		to_chat(src, span_warning("It won't budge!"))
 		return
 
 	if(SEND_SIGNAL(AM, COMSIG_ATTEMPT_PULLING) == COMSIG_PULL_CANCEL)
-		to_chat(src, SPAN_WARNING("It won't budge!"))
+		to_chat(src, span_warning("It won't budge!"))
 		return
 
 
@@ -614,19 +614,19 @@
 	if(ismob(AM))
 
 		if(M.mob_size >=  MOB_GIGANTIC)
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, SPAN_WARNING("It won't budge!"))
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some
@@ -641,7 +641,7 @@
 	else if(isobj(AM))
 		var/obj/I = AM
 		if(!can_pull_size || can_pull_size < I.w_class)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, span_warning("It won't budge!"))
 			return
 
 	if(pulling)
@@ -958,9 +958,9 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
-		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
+		to_chat(src, span_warning("You attempt to get a good grip on [selection] in your body."))
 	else
-		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
+		to_chat(U, span_warning("You attempt to get a good grip on [selection] in [S]'s body."))
 
 	if(!do_mob(U, S, 30))
 		return
@@ -968,9 +968,9 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		return
 
 	if(self)
-		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>")
+		visible_message(span_warning("<b>[src] rips [selection] out of their body.</b>"),span_warning("<b>You rip [selection] out of your body.</b>"))
 	else
-		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
+		visible_message(span_warning("<b>[usr] rips [selection] out of [src]'s body.</b>"),span_warning("<b>[usr] rips [selection] out of your body.</b>"))
 	valid_objects = get_visible_implants()
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		remove_verb(src, /mob/proc/yank_out_object)
@@ -1207,14 +1207,14 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 /mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
 	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
 		src.client.CH = new CH_type(client, second_arg)
-		to_chat(src, SPAN_WARNING("You prepare [CH_name]."))
+		to_chat(src, span_warning("You prepare [CH_name]."))
 	else
 		kill_CH()
 	return
 
 /mob/proc/kill_CH()
 	if (src.client.CH)
-		to_chat(src, SPAN_NOTICE ("You unprepare [src.client.CH.handler_name]."))
+		to_chat(src, span_notice ("You unprepare [src.client.CH.handler_name]."))
 		qdel(src.client.CH)
 
 

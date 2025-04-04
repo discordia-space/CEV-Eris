@@ -41,7 +41,7 @@
 			L.apply_effect(10, IRRADIATE)
 			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
-			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
+			L.visible_message(span_danger("\the [src] globs up some glowing bile all over \the [L]!"))
 
 /obj/item/projectile/roach_spit
 	name = "Glowing bile"

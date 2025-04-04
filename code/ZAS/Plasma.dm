@@ -41,7 +41,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	if(vsc.plc.SKIN_BURNS)
 		if(!pl_head_protected() || !pl_suit_protected())
 			burn_skin(0.75)
-			if(prob(20)) to_chat(src, SPAN_DANGER("Your skin burns!"))
+			if(prob(20)) to_chat(src, span_danger("Your skin burns!"))
 			updatehealth()
 
 	//Burn eyes if exposed.
@@ -67,11 +67,11 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 	var/obj/item/organ/internal/eyes/E = random_organ_by_process(OP_EYES)
 	if(E)
-		if(prob(20)) to_chat(src, SPAN_DANGER("Your eyes burn!"))
+		if(prob(20)) to_chat(src, span_danger("Your eyes burn!"))
 		E.damage += 2.5
 		eye_blurry = min(eye_blurry+1.5,50)
 		if (prob(max(0,E.damage - 15) + 1) &&!eye_blind)
-			to_chat(src, SPAN_DANGER("You are blinded!"))
+			to_chat(src, span_danger("You are blinded!"))
 			eye_blind += 20
 
 /mob/living/carbon/human/proc/pl_head_protected()

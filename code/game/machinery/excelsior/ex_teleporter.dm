@@ -289,7 +289,7 @@ var/global/excelsior_last_draft = 0
 
 /obj/machinery/complant_teleporter/proc/send_order(order_path, order_cost, amount)
 	if(order_cost > excelsior_energy)
-		to_chat(usr, SPAN_WARNING("Not enough energy."))
+		to_chat(usr, span_warning("Not enough energy."))
 		return
 
 	processing_order = TRUE
@@ -332,7 +332,7 @@ var/global/excelsior_last_draft = 0
 	if(!ismob(affecting) || !Adjacent(affecting) || !Adjacent(user))
 		return
 
-	visible_message(SPAN_DANGER("[user] starts stuffing [affecting] into \the [src]."))
+	visible_message(span_danger("[user] starts stuffing [affecting] into \the [src]."))
 	add_fingerprint(user)
 
 	if(!do_after(user, 20, src))
@@ -342,7 +342,7 @@ var/global/excelsior_last_draft = 0
 	if(!affecting || !Adjacent(affecting))
 		return
 	if(affecting.stat == DEAD)
-		to_chat(user, SPAN_WARNING("[affecting] is dead, and can't be teleported"))
+		to_chat(user, span_warning("[affecting] is dead, and can't be teleported"))
 		return
 	for(var/datum/antag_contract/excel/targeted/M in GLOB.excel_antag_contracts) // All targeted objectives can be completed by stuffing the target in the teleporter
 		if(M.completed)
@@ -362,7 +362,7 @@ var/global/excelsior_last_draft = 0
 
 /obj/machinery/complant_teleporter/proc/teleport_out(mob/living/affecting, mob/living/user)
 	flick("teleporting", src)
-	to_chat(affecting, SPAN_NOTICE("You have been teleported to haven, your crew respawn time is reduced by [(COLLECTIVISED_RESPAWN_BONUS)/600] minutes."))
+	to_chat(affecting, span_notice("You have been teleported to haven, your crew respawn time is reduced by [(COLLECTIVISED_RESPAWN_BONUS)/600] minutes."))
 	visible_message("\The [src] teleporter closes and [affecting] disapears.")
 	affecting.set_respawn_bonus("TELEPORTED_TO_EXCEL", COLLECTIVISED_RESPAWN_BONUS)
 	affecting << 'sound/effects/magic/blind.ogg'  //Play this sound to a player whenever their respawn time gets reduced
@@ -370,13 +370,13 @@ var/global/excelsior_last_draft = 0
 
 /obj/machinery/complant_teleporter/proc/request_reinforcements(mob/living/user)
 	if(excelsior_energy < reinforcements_cost)
-		to_chat(user, SPAN_WARNING("Not enough energy."))
+		to_chat(user, span_warning("Not enough energy."))
 		return
 	if(world.time < (excelsior_last_draft + reinforcements_delay))
-		to_chat(user, SPAN_WARNING("You can call only one conscript for [reinforcements_delay / 600] minutes."))
+		to_chat(user, span_warning("You can call only one conscript for [reinforcements_delay / 600] minutes."))
 		return
 	if(excelsior_conscripts <= 0)
-		to_chat(user, SPAN_WARNING("They have nobody to send to you."))
+		to_chat(user, span_warning("They have nobody to send to you."))
 		return
 	processing_order = TRUE
 	use_power(active_power_usage * 10)
@@ -384,7 +384,7 @@ var/global/excelsior_last_draft = 0
 	var/mob/observer/ghost/candidate = draft_ghost("Excelsior Conscript", ROLE_BANTYPE_EXCELSIOR, ROLE_EXCELSIOR_REV)
 	if(!candidate)
 		processing_order = FALSE
-		to_chat(user, SPAN_WARNING("Reinforcements were postponed"))
+		to_chat(user, span_warning("Reinforcements were postponed"))
 		return
 
 	processing_order = FALSE

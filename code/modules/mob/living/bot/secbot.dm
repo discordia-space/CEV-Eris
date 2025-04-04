@@ -276,10 +276,10 @@
 			spawn(2)
 				is_attacking = 0
 				update_icons()
-			visible_message(SPAN_WARNING("[C] was prodded by [src] with a stun baton!"))
+			visible_message(span_warning("[C] was prodded by [src] with a stun baton!"))
 		else
 			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
-			visible_message(SPAN_WARNING("[src] is trying to put handcuffs on [C]!"))
+			visible_message(span_warning("[src] is trying to put handcuffs on [C]!"))
 			if(do_mob(src, C, 60))
 				if(!C.handcuffed)
 					C.handcuffed = new /obj/item/handcuffs(C)
@@ -297,10 +297,10 @@
 		spawn(2)
 			is_attacking = 0
 			update_icons()
-		visible_message(SPAN_WARNING("[M] was beaten by [src] with a stun baton!"))
+		visible_message(span_warning("[M] was beaten by [src] with a stun baton!"))
 
 /mob/living/bot/secbot/explode()
-	visible_message(SPAN_WARNING("[src] blows apart!"))
+	visible_message(span_warning("[src] blows apart!"))
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/secbot_assembly/Sa = new /obj/item/secbot_assembly(Tsec)
@@ -331,7 +331,7 @@
 		if(threat >= 4)
 			target = M
 			say("Level [threat] infraction alert!")
-			visible_message(SPAN_DANGER("[src] points at [M.name]!"))
+			visible_message(span_danger("[src] points at [M.name]!"))
 			mode = SECBOT_HUNT
 			break
 	return

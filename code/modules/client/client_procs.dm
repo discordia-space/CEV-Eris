@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	if(href_list["irc_msg"])
 		if(!holder && received_irc_pm < world.time - 6000) //Worse they can do is spam IRC for 10 minutes
-			to_chat(usr, SPAN_WARNING("You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you"))
+			to_chat(usr, span_warning("You are no longer able to use this, it's been more then 10 minutes since an admin on IRC has responded to you"))
 			return
 		if(mute_irc)
 			to_chat(usr, "<span class='warning'You cannot use this as your client has been muted from sending messages to the admins on IRC</span>")
@@ -301,7 +301,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
+		to_chat(src, span_alert("[custom_event_msg]"))
 		to_chat(src, "<br>")
 
 	log_client_to_db()
@@ -483,8 +483,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		//Panic bunker - player not in DB, so they get kicked
 		else if(config.panic_bunker && !holder && !deadmin_holder && !(ckey in GLOB.PB_bypass))
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
-			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
-			to_chat(src, "<span class='warning'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
+			message_admins(span_adminnotice("Failed Login: [key] - New account attempting to connect during panic bunker"))
+			to_chat(src, span_warning("Sorry but the server is currently not accepting connections from never before seen players."))
 			del(src) // Hard del the client. This terminates the connection.
 			return 0
 		query = dbcon.NewQuery("SELECT ip_related_ids, cid_related_ids FROM players WHERE id = '[src.id]'")

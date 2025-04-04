@@ -12,7 +12,7 @@
 	if(istype(I, /obj/item/clothing/accessory))
 
 		if(!valid_accessory_slots || !valid_accessory_slots.len)
-			to_chat(usr, SPAN_WARNING("You cannot attach accessories of any kind to \the [src]."))
+			to_chat(usr, span_warning("You cannot attach accessories of any kind to \the [src]."))
 			return
 
 		var/obj/item/clothing/accessory/A = I
@@ -22,7 +22,7 @@
 			src.verbs |= /obj/item/clothing/proc/removetie_verb
 			src.update_wear_icon()
 		else
-			to_chat(user, SPAN_WARNING("You cannot attach more accessories of this type to [src]."))
+			to_chat(user, span_warning("You cannot attach more accessories of this type to [src]."))
 		return
 
 	if(accessories.len)
@@ -63,7 +63,7 @@
 		return
 
 	if(!(A.isRemovable))
-		to_chat(user, SPAN_WARNING("Removing this accessory would ruin it."))
+		to_chat(user, span_warning("Removing this accessory would ruin it."))
 	else
 		A.on_removed(user)
 		accessories -= A

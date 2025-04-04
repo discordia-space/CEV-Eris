@@ -212,16 +212,16 @@
 	if(user.lying || user.stat)
 		return 1
 	if(!user.IsAdvancedToolUser())
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
 		return 1
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
-			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
+			visible_message(span_warning("[H] stares cluelessly at [src]."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, SPAN_WARNING("You momentarily forget how to use \the [src]."))
+			to_chat(user, span_warning("You momentarily forget how to use \the [src]."))
 			return 1
 
 	src.add_fingerprint(user)
@@ -308,7 +308,7 @@
 /obj/machinery/proc/default_deconstruction(obj/item/I, mob/user)
 
 	if(panel_open == -1)
-		to_chat(user, SPAN_NOTICE("There are no panels to open on \the [src]."))
+		to_chat(user, span_notice("There are no panels to open on \the [src]."))
 		return FALSE
 
 	var/qualities = list(QUALITY_SCREW_DRIVING)
@@ -320,7 +320,7 @@
 	switch(tool_type)
 		if(QUALITY_PRYING)
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
+				to_chat(user, span_notice("You remove the components of \the [src] with [I]."))
 				dismantle()
 			return TRUE
 
@@ -329,7 +329,7 @@
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				updateUsrDialog()
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
 				update_icon()
 			return TRUE
 
@@ -358,14 +358,14 @@
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						to_chat(user, SPAN_NOTICE("[A.name] replaced with [B.name]."))
+						to_chat(user, span_notice("[A.name] replaced with [B.name]."))
 						break
 			update_icon()
 			RefreshParts()
 	else
-		to_chat(user, SPAN_NOTICE("Following parts detected in the machine:"))
+		to_chat(user, span_notice("Following parts detected in the machine:"))
 		for(var/obj/item/C in component_parts)
-			to_chat(user, SPAN_NOTICE("    [C.name]"))
+			to_chat(user, span_notice("    [C.name]"))
 	return 1
 
 /obj/machinery/proc/create_frame(type)

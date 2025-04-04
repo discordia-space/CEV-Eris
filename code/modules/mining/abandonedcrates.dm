@@ -124,28 +124,28 @@
 	if(!locked)
 		return
 
-	to_chat(user, SPAN_NOTICE("The crate is locked with a Deca-code lock."))
+	to_chat(user, span_notice("The crate is locked with a Deca-code lock."))
 	var/input = input(user, "Enter [codelen] digits.", "Deca-Code Lock", "") as text
 	if(!Adjacent(user))
 		return
 
 	if(input == null || length(input) != codelen)
-		to_chat(user, SPAN_NOTICE("You leave the crate alone."))
+		to_chat(user, span_notice("You leave the crate alone."))
 	else if(check_input(input))
-		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
+		to_chat(user, span_notice("The crate unlocks!"))
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
-		visible_message(SPAN_WARNING("A red light on \the [src]'s control panel flashes briefly."))
+		visible_message(span_warning("A red light on \the [src]'s control panel flashes briefly."))
 		attempts--
 		if (attempts == 0)
-			to_chat(user, SPAN_DANGER("The crate's anti-tamper system activates!"))
+			to_chat(user, span_danger("The crate's anti-tamper system activates!"))
 			explosion(get_turf(src), 300, 50)
 			qdel(src)
 
 /obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
 	if (locked)
-		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
+		to_chat(user, span_notice("The crate unlocks!"))
 		locked = 0
 
 /obj/structure/closet/crate/secure/loot/proc/check_input(var/input)
@@ -163,11 +163,11 @@
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
-			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:"))
+			to_chat(user, span_notice("DECA-CODE LOCK ANALYSIS:"))
 			if (attempts == 1)
-				to_chat(user, SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt."))
+				to_chat(user, span_warning("* Anti-Tamper system will activate on the next failed access attempt."))
 			else
-				to_chat(user, SPAN_NOTICE("* Anti-Tamper system will activate after [src.attempts] failed access attempts."))
+				to_chat(user, span_notice("* Anti-Tamper system will activate after [src.attempts] failed access attempts."))
 			if(lastattempt.len)
 				var/bulls = 0
 				var/cows = 0
@@ -179,6 +179,6 @@
 					else if(lastattempt[i] in code_contents)
 						++cows
 					code_contents -= lastattempt[i]
-				to_chat(user, SPAN_NOTICE("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
+				to_chat(user, span_notice("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
 			return
 	..()

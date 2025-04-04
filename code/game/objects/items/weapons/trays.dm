@@ -32,7 +32,7 @@
 
 
 /*	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		to_chat(M, SPAN_WARNING("You accidentally slam yourself with the [src]!"))
+		to_chat(M, span_warning("You accidentally slam yourself with the [src]!"))
 		M.Weaken(1)
 		user.take_organ_damage(2)
 		if(prob(50))
@@ -64,12 +64,12 @@
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_DANGER("[user] slams [M] with the tray!"), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 			return
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
 			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_DANGER("[user] slams [M] with the tray!"), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 			return
 
 
@@ -81,7 +81,7 @@
 			break
 
 	if(protected)
-		to_chat(M, SPAN_WARNING("You get slammed in the face with the tray, against your mask!"))
+		to_chat(M, span_warning("You get slammed in the face with the tray, against your mask!"))
 		if(prob(33))
 			src.add_blood(H)
 			if (H.wear_mask)
@@ -97,11 +97,11 @@
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_DANGER("[user] slams [M] with the tray!"), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin'
 			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_DANGER("[user] slams [M] with the tray!"), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 		if(prob(10))
 			M.Stun(rand(1,3))
 			M.take_organ_damage(3)
@@ -111,7 +111,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		to_chat(M, SPAN_WARNING("You get slammed in the face with the tray!"))
+		to_chat(M, span_warning("You get slammed in the face with the tray!"))
 		if(prob(33))
 			src.add_blood(M)
 			var/turf/location = H.loc
@@ -121,11 +121,11 @@
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_DANGER("[user] slams [M] in the face with the tray!"), 1)
+				O.show_message(span_danger("[user] slams [M] in the face with the tray!"), 1)
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin' again
 			for(var/mob/O in viewers(M, null))
-				O.show_message(SPAN_DANGER("[user] slams [M] in the face with the tray!"), 1)
+				O.show_message(span_danger("[user] slams [M] in the face with the tray!"), 1)
 		if(prob(30))
 			M.Stun(rand(2,4))
 			M.take_organ_damage(4)
@@ -142,7 +142,7 @@
 /obj/item/tray/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/material/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
-			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
+			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else

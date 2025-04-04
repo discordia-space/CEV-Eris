@@ -60,7 +60,7 @@
 	if(do_after(user, time_to_put, src) && Adjacent(target))
 		user.face_atom(src)
 		target.forceMove(src)
-		visible_message(SPAN_NOTICE("[target] has been placed in the [src] by [user]."))
+		visible_message(span_notice("[target] has been placed in the [src] by [user]."))
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target] ([target.ckey]) in disposals.</font>")
 		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
 		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
@@ -213,7 +213,7 @@
 			return ..()
 		if(istype(I, /obj/item/storage/bag/trash))
 			var/obj/item/storage/bag/trash/T = I
-			to_chat(user, SPAN_NOTICE("You empty the bag."))
+			to_chat(user, span_notice("You empty the bag."))
 			for(var/obj/item/O in T.contents)
 				T.remove_from_storage(O,src)
 			T.update_icon()
@@ -1133,7 +1133,7 @@
 		if(O.currTag)// Tag set
 			sort_tag = O.currTag
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 100, 1)
-			to_chat(user, SPAN_NOTICE("Changed tag to '[sort_tag]'."))
+			to_chat(user, span_notice("Changed tag to '[sort_tag]'."))
 			updatename()
 			updatedesc()
 

@@ -57,7 +57,7 @@
 			if(!ispath(placeholder))
 				continue
 			listed_components += list("[req_components[placeholder]] [initial(placeholder.name)]")
-		extra_description += SPAN_NOTICE("Required components: [english_list(listed_components)].")
+		extra_description += span_notice("Required components: [english_list(listed_components)].")
 	..(user, extra_description)
 
 /obj/item/electronics/circuitboard/get_item_cost(export)
