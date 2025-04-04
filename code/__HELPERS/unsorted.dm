@@ -177,7 +177,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return 1
 	return 0
 
-/proc/sign(x)
+/proc/_sign(x)
 	return x!=0?x/abs(x):0
 
 /proc/getline(atom/M, atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
@@ -188,8 +188,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/dy=N.y-py
 	var/dxabs=abs(dx)//Absolute value of x distance
 	var/dyabs=abs(dy)
-	var/sdx=sign(dx)	//Sign of x distance (+ or -)
-	var/sdy=sign(dy)
+	var/sdx=_sign(dx)	//Sign of x distance (+ or -)
+	var/sdy=_sign(dy)
 	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
 	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
 	var/j			//Generic integer for counting
