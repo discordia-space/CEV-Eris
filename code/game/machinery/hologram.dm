@@ -71,7 +71,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	if(incoming_connection && caller_id)
 		visible_message("The pad hums quietly as it establishes a connection.")
 		if(caller_id.loc!=sourcepad.loc)
-			visible_message("The pad flashes an error message. The caller has left their holopad.")
+			visible_message("The pad flashes an error message. The requester has left their holopad.")
 			return
 		take_call(user)
 		return
@@ -118,7 +118,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 /obj/machinery/hologram/holopad/proc/make_call(var/obj/machinery/hologram/holopad/targetpad, var/mob/living/carbon/user)
 	targetpad.last_request = world.time
 	targetpad.sourcepad = src //This marks the holopad you are making the call from
-	targetpad.caller_id = user //This marks you as the caller
+	targetpad.caller_id = user //This marks you as the requester
 	targetpad.incoming_connection = 1
 	playsound(targetpad.loc, 'sound/machines/chime.ogg', 25, 5)
 	targetpad.icon_state = "holopad1"
@@ -138,7 +138,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 	if(!caller_id)
 		return
 	caller_id.unset_machine()
-	caller_id.reset_view() //Send the caller back to his body
+	caller_id.reset_view() //Send the requester back to his body
 	clear_holo(0, caller_id) // destroy the hologram
 	caller_id = null
 
@@ -271,7 +271,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		masters -= user //Discard AI from the list of those who use holopad
 	if(caller_id)
 		qdel(masters[caller_id])//Get rid of user's hologram
-		masters -= caller_id //Discard the caller from the list of those who use holopad
+		masters -= caller_id //Discard the requester from the list of those who use holopad
 	if (!masters.len)//If no users left
 		set_light(0)			//pad lighting (hologram lighting will be handled automatically since its owner was deleted)
 		icon_state = "holopad0"
@@ -303,7 +303,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		if(caller_id.loc!=sourcepad.loc)
 			to_chat(sourcepad.caller_id, "Severing connection to distant holopad.")
 			end_call()
-			audible_message("The connection has been terminated by the caller.")
+			audible_message("The connection has been terminated by the requester.")
 	return 1
 
 /obj/machinery/hologram/holopad/proc/move_hologram(mob/living/silicon/ai/user)

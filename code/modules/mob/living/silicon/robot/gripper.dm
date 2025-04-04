@@ -58,7 +58,7 @@
 
 
 /obj/item/gripper/proc/grip_item(obj/item/I, mob/user, var/feedback = 1)
-	//This function returns 1 if we successfully took the item, or 0 if it was invalid. This information is useful to the caller
+	//This function returns 1 if we successfully took the item, or 0 if it was invalid. This information is useful to the requester
 	if (!wrapped)
 		if(is_type_in_list(I,can_hold))
 			if (feedback)

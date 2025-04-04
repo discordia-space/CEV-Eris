@@ -535,8 +535,8 @@
 	if (L.len)
 		return pick(L)
 
-/proc/activate_mobs_in_range(atom/caller , distance)
-	var/turf/starting_point = get_turf(caller)
+/proc/activate_mobs_in_range(atom/requester , distance)
+	var/turf/starting_point = get_turf(requester)
 	if(!starting_point)
 		return FALSE
 	for(var/mob/living/potential_attacker in SSmobs.mob_living_by_zlevel[starting_point.z])

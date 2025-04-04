@@ -88,7 +88,7 @@
 
 		//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
 		if(config.popup_admin_pm)
-			spawn(0)	//so we don't hold the caller proc up
+			spawn(0)	//so we don't hold the requester proc up
 				var/sender = src
 				var/sendername = key
 				var/reply = sanitize(input(C, msg,"[recieve_pm_type] PM from [sendername]", "") as text|null)		//show message and await a reply

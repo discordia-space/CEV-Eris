@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI input list window and returns the user's response.
  *
- * This proc should be used to create alerts that the caller will wait for a response from.
+ * This proc should be used to create alerts that the requester will wait for a response from.
  * Arguments:
  * * user - The user to show the input box to.
  * * message - The content of the input box, shown in the body of the TGUI window.

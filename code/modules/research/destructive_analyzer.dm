@@ -105,7 +105,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(linked_console)
 		SSnano.update_uis(linked_console)
 
-// If this returns true, the rdconsole caller will set its screen to SCREEN_WORKING
+// If this returns true, the rdconsole requester will set its screen to SCREEN_WORKING
 /obj/machinery/r_n_d/destructive_analyzer/proc/deconstruct_item()
 	if(busy)
 		to_chat(usr, span_warning("The destructive analyzer is busy at the moment."))

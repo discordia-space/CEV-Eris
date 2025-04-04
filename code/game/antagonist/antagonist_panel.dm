@@ -155,7 +155,7 @@
 	return
 
 /* !TODO: This should be implemented in storyteller_print.dm (GLOB.storyteller.antagonist_report())
-/datum/antagonist/proc/get_check_antag_output(var/datum/admins/caller)
+/datum/antagonist/proc/get_check_antag_output(var/datum/admins/requester)
 
 	if(!current_antagonists || !current_antagonists.len)
 		return ""
@@ -169,7 +169,7 @@
 			if(!M.client)      dat += " <i>(logged out)</i>"
 			if(M.stat == DEAD) dat += " <b><font color=red>(DEAD)</font></b>"
 			dat += "</td>"
-			dat += "<td>\[<A href='byond://?src=\ref[caller];priv_msg=\ref[M]'>PM</A>\]\[<A href='byond://?src=\ref[caller];contractor=\ref[M]'>TP</A>\]</td>"
+			dat += "<td>\[<A href='byond://?src=\ref[requester];priv_msg=\ref[M]'>PM</A>\]\[<A href='byond://?src=\ref[requester];contractor=\ref[M]'>TP</A>\]</td>"
 		else
 			dat += "<td><i>Mob not found/([player.key])!</i></td>"
 		dat += "</tr>"
@@ -183,17 +183,17 @@
 			while(!istype(disk_loc, /turf))
 				if(ismob(disk_loc))
 					var/mob/M = disk_loc
-					dat += "carried by <a href='byond://?src=\ref[caller];adminplayeropts=\ref[M]'>[M.real_name]</a> "
+					dat += "carried by <a href='byond://?src=\ref[requester];adminplayeropts=\ref[M]'>[M.real_name]</a> "
 				if(isobj(disk_loc))
 					var/obj/O = disk_loc
 					dat += "in \a [O.name] "
 				disk_loc = disk_loc.loc
 			dat += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td></tr>"
 		dat += "</table>"
-	dat += get_additional_check_antag_output(caller)
+	dat += get_additional_check_antag_output(requester)
 	dat += "<hr>"
 	return dat
 */
 //Overridden elsewhere.
-/datum/antagonist/proc/get_additional_check_antag_output(var/datum/admins/caller)
+/datum/antagonist/proc/get_additional_check_antag_output(var/datum/admins/requester)
 	return ""

@@ -39,7 +39,7 @@
 	src << browse({"<script>window.location.href="?asset_cache_confirm_arrival=[job]"</script>"}, "window=asset_cache_browser&file=asset_cache_send_verify.htm")
 
 	while(!completed_asset_jobs["[job]"] && t < timeout_time) // Reception is handled in Topic()
-		stoplag(1) // Lock up the caller until this is received.
+		stoplag(1) // Lock up the requester until this is received.
 		t++
 	if (t < timeout_time)
 		return TRUE

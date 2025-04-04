@@ -104,7 +104,7 @@
 						else if(overseer && !comrade.overseer)
 							comrade.joinOvermind(overseer)
 						else if(!overseer && !comrade.overseer)
-							var/datum/overmind/roachmind/newmind = new() // team up to make a two fuhrer overmind, with the caller being the leader
+							var/datum/overmind/roachmind/newmind = new() // team up to make a two fuhrer overmind, with the requester being the leader
 							newmind.leader = comrade
 							comrade.joinOvermind(newmind)
 							joinOvermind(newmind)

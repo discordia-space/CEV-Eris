@@ -172,7 +172,7 @@ time, is how long, in deciseconds, we will wait before putting them into the tar
 percentage is a value in the range 0..1 that determines what portion of this mob's population to send.
 	It is possible for percentage to be zero, this is used by the infestation event.
 	Passing a percentage of zero is a special case, this burrow will not suck up any mobs.
-	The mobs it is to send should be placed inside it by the caller
+	The mobs it is to send should be placed inside it by the requester
 */
 /obj/structure/burrow/proc/migrate_to(obj/structure/burrow/_target, time = 1, percentage = 1)
 	if (!_target)
@@ -433,7 +433,7 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 		migrate_to(btarget, 10 SECONDS, 1)
 
 
-/obj/structure/burrow/proc/distress(immediate = FALSE, atom/caller)
+/obj/structure/burrow/proc/distress(immediate = FALSE, atom/requester)
 	//This burrow requests reinforcements from elsewhere
 	if (reinforcements <= 0)
 		return
@@ -441,8 +441,8 @@ percentage is a value in the range 0..1 that determines what portion of this mob
 	distressed_burrows |= src //Add ourselves to a global list.
 	//The migration subsystem will look at it and send things.
 	//It may take up to 30 seconds to tick and notice our request
-	if(ismob(caller))
-		lastleader = WEAKREF(caller)
+	if(ismob(requester))
+		lastleader = WEAKREF(requester)
 
 	if (immediate)
 		//Alternatively, we can demand things be sent right now

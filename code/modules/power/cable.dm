@@ -441,7 +441,7 @@ var/list/possible_cable_coil_colours = list(
 			if(!powernetless_only || !P.powernet)
 				. += P
 
-	// if the caller asked for powernetless cables only, dump the ones with powernets
+	// if the requester asked for powernetless cables only, dump the ones with powernets
 	if(powernetless_only)
 		for(var/obj/structure/cable/C in .)
 			if(C.powernet)

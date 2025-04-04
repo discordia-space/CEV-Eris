@@ -551,7 +551,7 @@ var/global/list/items_blood_overlay_by_type = list()
 			return
 		I.hand_spin(src)
 
-/obj/item/proc/hand_spin(mob/living/carbon/caller) // used for custom behaviour on the above proc
+/obj/item/proc/hand_spin(mob/living/carbon/requester) // used for custom behaviour on the above proc
 	return
 
 /*

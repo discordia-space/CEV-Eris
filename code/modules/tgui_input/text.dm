@@ -1,7 +1,7 @@
 /**
  * Creates a TGUI window with a text input. Returns the user's response.
  *
- * This proc should be used to create windows for text entry that the caller will wait for a response from.
+ * This proc should be used to create windows for text entry that the requester will wait for a response from.
  * If tgui fancy chat is turned off: Will return a normal input. If max_length is specified, will return
  * stripped_multiline_input.
  *
