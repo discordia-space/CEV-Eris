@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(modulo_angle_to_dir, list(NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,
 	for(var/atom_type in atom_types)
 		var/atom/A = atom_type
 		.[initial(A.name)] = atom_type
-	. = sortAssoc(.)
+	sortAssoc(.)
 /proc/atomtype2nameassoclist(var/atom_type)
 	return atomtypes2nameassoclist(typesof(atom_type))
 

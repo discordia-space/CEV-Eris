@@ -84,7 +84,7 @@
 
 /obj/machinery/chemical_dispenser/Initialize()
 	. = ..()
-	dispensable_reagents = sortList(dispensable_reagents)
+	sortList(dispensable_reagents)
 
 /obj/machinery/chemical_dispenser/nano_ui_data()
 	var/list/data = list()

@@ -118,7 +118,7 @@ var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "
 		if(x in view_variables_hide_vars)
 			continue
 		variables += x
-	variables = sortList(variables)
+	sortList(variables)
 	for(var/x in variables)
 		. += make_view_variables_var_entry(D, x, D.vars[x])
 

@@ -40,6 +40,7 @@ SUBSYSTEM_DEF(mapping)
 	for(var/area/A in world)
 		GLOB.map_areas += A
 
+	sortList(GLOB.map_areas)
 	// Do the same for teleport locs
 	for(var/area/AR in world)
 		if(istype(AR, /area/shuttle) ||  istype(AR, /area/wizard_station)) continue
@@ -49,7 +50,7 @@ SUBSYSTEM_DEF(mapping)
 			teleportlocs += AR.name
 			teleportlocs[AR.name] = AR
 
-	teleportlocs = sortAssoc(teleportlocs)
+	sortAssoc(teleportlocs)
 
 	// And the same for ghost teleport locs
 
@@ -64,7 +65,7 @@ SUBSYSTEM_DEF(mapping)
 			ghostteleportlocs += AR.name
 			ghostteleportlocs[AR.name] = AR
 
-	ghostteleportlocs = sortAssoc(ghostteleportlocs)
+	sortAssoc(ghostteleportlocs)
 
 	return ..()
 

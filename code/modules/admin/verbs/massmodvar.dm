@@ -39,7 +39,7 @@
 	for (var/V in O.vars)
 		names += V
 
-	names = sortList(names)
+	sortList(names)
 
 	var/variable = ""
 

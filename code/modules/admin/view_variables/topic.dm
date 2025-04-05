@@ -519,7 +519,6 @@
 
 		if(A.reagents)
 			var/chosen_id
-			var/list/reagent_options = sortList(GLOB.chemical_reagents_list)
 			switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
 				if("Enter ID")
 					var/valid_id
@@ -527,13 +526,13 @@
 						chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
 						if(!chosen_id) //Get me out of here!
 							break
-						for(var/ID in reagent_options)
+						for(var/ID in GLOB.chemical_reagents_list)
 							if(ID == chosen_id)
 								valid_id = 1
 						if(!valid_id)
 							to_chat(usr, span_warning("A reagent with that ID doesn't exist!"))
 				if("Choose ID")
-					chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in reagent_options
+					chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in GLOB.chemical_reagents_list
 			if(chosen_id)
 				var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", A.reagents.get_free_space()) as num
 				if(amount)

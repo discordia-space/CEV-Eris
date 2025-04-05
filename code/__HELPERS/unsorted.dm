@@ -648,10 +648,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(A.vars.Find(lowertext(varname))) return 1
 	else return 0
 
-//Returns: all the areas in the world, sorted.
-/proc/return_sorted_areas()
-	return sortNames(GLOB.map_areas)
-
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
 /proc/get_areas(var/areatype)

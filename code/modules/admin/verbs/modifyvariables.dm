@@ -423,7 +423,7 @@ var/list/VVckey_edit = list("key", "ckey")
 		for (var/V in O.vars)
 			names += V
 
-		names = sortList(names)
+		sortList(names)
 
 		variable = input("Which var?","Var") as null|anything in names
 		if(!variable)	return

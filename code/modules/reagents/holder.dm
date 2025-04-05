@@ -24,6 +24,7 @@
 			if(!D.name)
 				continue
 			GLOB.chemical_reagents_list[D.id] = D
+		sortList(GLOB.chemical_reagents_list)
 
 /datum/reagents/proc/get_price()
 	var/price = 0

@@ -40,16 +40,16 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
 	C.associated_template = "catalog_list_reagents.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
+	sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_CHEMISTRY]
 	C.associated_template = "catalog_list_reagents.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_chem)
+	sortTim(C.entry_list, /proc/cmp_catalog_entry_chem)
 	C = GLOB.catalogs[CATALOG_DRINKS]
 	C.associated_template = "catalog_list_drinks.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
+	sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	C = GLOB.catalogs[CATALOG_ALL]
 	C.associated_template = "catalog_list_general.tmpl"
-	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
+	sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	createCookingCatalogs()
 	return TRUE
 
