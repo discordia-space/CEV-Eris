@@ -53,7 +53,7 @@
 /turf/Initialize(mapload, ...)
 	if(opacity)
 		has_opaque_atom = TRUE
-	turfs += src
+	GLOB.turfs += src
 
 	// TODO: Check which areas are on the ship, but marked improperly, and remove this code
 	var/area/A = loc
@@ -63,7 +63,7 @@
 	. = ..() // Calls /atom/proc/Initialize()
 
 /turf/Destroy()
-	turfs -= src
+	GLOB.turfs -= src
 	updateVisibility(src)
 	..()
 	return QDEL_HINT_IWILLGC

@@ -10,14 +10,14 @@ var/global/floorIsLava = 0
 /proc/message_admins(msg)
 	msg = "<span class=\"log_message\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_adminwarn(msg)
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_ADMIN & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/msg_admin_attack(text) //Toggleable Attack Messages
 	log_attack(text)
 	var/rendered = "<span class=\"log_message\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_ADMIN & C.holder.rights)
 			if(C.get_preference_value(/datum/client_preference/staff/show_attack_logs) == GLOB.PREF_SHOW)
 				var/msg = rendered
@@ -31,7 +31,7 @@ var/global/floorIsLava = 0
                send a sound and flash the window. Defaults to FALSE
  */
 /proc/message_adminTicket(msg, important = FALSE)
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_ADMIN & C.holder.rights)
 			to_chat(C, msg)
 			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
@@ -45,7 +45,7 @@ var/global/floorIsLava = 0
                send a sound and flash the window. Defaults to FALSE
  */
 /proc/message_mentorTicket(msg, important = FALSE)
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(check_rights(R_ADMIN | R_MENTOR | R_MOD, 0, C.mob))
 			to_chat(C, msg)
 			if(important || (C.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR))
@@ -1156,7 +1156,7 @@ var/global/floorIsLava = 0
 // result[3] is the number of staff that match the rank mask and are inactive
 /proc/staff_countup(rank_mask = R_ADMIN)
 	var/list/result = list(0, 0, 0)
-	for(var/client/X in admins)
+	for(var/client/X in GLOB.admins)
 		if(rank_mask && !check_rights_for(X, rank_mask))
 			result[2]++
 			continue

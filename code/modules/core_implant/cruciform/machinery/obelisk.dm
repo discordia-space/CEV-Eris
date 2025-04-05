@@ -54,7 +54,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 			affected.Add(H)
 	var/list/currently_copied = currently_affected.Copy()
 	for(var/mob/living/carbon/human/H in affected)
-		if(H in krabin_linked)
+		if(H in GLOB.krabin_linked)
 			var/obj/item/device/von_krabin/von_crabbin = locate(/obj/item/device/von_krabin) in GLOB.all_faction_items
 			if(von_crabbin)
 				currently_affected.Add(H)
@@ -62,7 +62,7 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 				von_crabbin.notify(H)
 	currently_copied -= affected
 	for(var/mob/living/carbon/human/H in currently_copied)
-		if(H in krabin_linked)
+		if(H in GLOB.krabin_linked)
 			var/obj/item/device/von_krabin/von_crabbin = locate(/obj/item/device/von_krabin) in GLOB.all_faction_items
 			if(von_crabbin)
 				currently_affected.Remove(H)

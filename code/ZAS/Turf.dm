@@ -87,7 +87,7 @@
 			open_directions |= d
 
 			if(neighbour_turf.is_simulated)
-				neighbour_turf.open_directions |= reverse_dir[d]
+				neighbour_turf.open_directions |= GLOB.reverse_dir[d]
 				if(TURF_HAS_VALID_ZONE(neighbour_turf))
 					//Might have assigned a zone, since this happens for each direction.
 					if(!zone)
@@ -195,7 +195,7 @@
 /turf/proc/get_zone_neighbours(turf/T)
 	. = 0
 	if(istype(T) && T.zone)
-		for(var/dir in cardinal)
+		for(var/dir in GLOB.cardinal)
 			var/turf/other = get_step(T, dir)
 			if(istype(other) && other.zone == T.zone && !(other.c_airblock(T) & AIR_BLOCKED) && get_dist(src, other) <= 1)
 				. |= dir
@@ -304,9 +304,9 @@
 /turf/proc/GetAtmosAdjacentTurfs(alldir = FALSE)
 	var/check_dirs
 	if(alldir)
-		check_dirs = alldirs
+		check_dirs = GLOB.alldirs
 	else
-		check_dirs = cardinal
+		check_dirs = GLOB.cardinal
 
 	var/list/adjacent_turfs = list()
 

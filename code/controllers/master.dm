@@ -187,7 +187,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				msg = "The [lastSS.name] subsystem seems to be destabilizing the MC and will be offlined."
 				lastSS.flags |= SS_NO_FIRE
 		if(msg)
-			to_chat(admins, span_boldannounce("[msg]"))
+			to_chat(GLOB.admins, span_boldannounce("[msg]"))
 			log_world(msg)
 
 	if (istype(Master.subsystems))

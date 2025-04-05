@@ -230,7 +230,7 @@
 	. = ..()
 	if(autoattach)
 		auto_turn_destructive()
-		dir = reverse_dir[dir]
+		dir = GLOB.reverse_dir[dir]
 
 	if(!src)
 		return 0

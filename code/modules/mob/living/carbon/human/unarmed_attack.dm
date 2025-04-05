@@ -80,7 +80,7 @@ var/global/list/sparring_attack_cache = list()
 					else
 						target.visible_message(span_danger("[target] slams into [T]!"))
 					if(prob(50))
-						target.set_dir(reverse_dir[target.dir])
+						target.set_dir(GLOB.reverse_dir[target.dir])
 					target.apply_effect(attack_damage * 0.4, WEAKEN)
 			if(BP_GROIN)
 				target.visible_message(

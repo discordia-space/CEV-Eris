@@ -30,7 +30,7 @@
 		if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 			M.dir = user.dir
 		if(CRAFT_TOWARD_USER)  // spawn the result towards the user
-			M.dir = reverse_dir[user.dir]
+			M.dir = GLOB.reverse_dir[user.dir]
 		else  // spawn the result in its default direction
 			M.dir = C.recipe.dir_default
 	var/slot = user.get_inventory_slot(C)
@@ -122,7 +122,7 @@
 			if(CRAFT_WITH_USER_DIR)  // spawn the result in the user's direction
 				CR.dir = user.dir
 			if(CRAFT_TOWARD_USER)  // spawn the result towards the user
-				CR.dir = reverse_dir[user.dir]
+				CR.dir = GLOB.reverse_dir[user.dir]
 			else  // spawn the result in its default direction
 				CR.dir = dir_default
 		CR.Created(user)

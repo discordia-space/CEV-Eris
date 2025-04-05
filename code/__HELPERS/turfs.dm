@@ -149,7 +149,7 @@
 /proc/cardinal_turfs(var/atom/A)
 	var/list/turf/turfs = list()
 	var/turf/origin = get_turf(A)
-	for (var/a in cardinal)
+	for (var/a in GLOB.cardinal)
 		var/turf/T = get_step(origin, a)
 		if (T)
 			turfs.Add(T)

@@ -146,7 +146,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
@@ -162,7 +162,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -186,7 +186,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 			else
@@ -201,7 +201,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -233,7 +233,7 @@
 								A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if ( istype(A , O.type) )
 							if(variable=="light_range")
 								A.set_light(new_value)
@@ -258,7 +258,7 @@
 								A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if (A.type == O.type)
 							if(variable=="light_range")
 								A.set_light(new_value)
@@ -282,7 +282,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 			else
@@ -297,7 +297,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -318,7 +318,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 			else
@@ -333,7 +333,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 
@@ -353,7 +353,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if ( istype(A , O.type) )
 							A.vars[variable] = O.vars[variable]
 
@@ -369,7 +369,7 @@
 							A.vars[variable] = O.vars[variable]
 
 				else if(istype(O, /turf))
-					for(var/turf/A in turfs)
+					for(var/turf/A in GLOB.turfs)
 						if (A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 

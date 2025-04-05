@@ -38,7 +38,7 @@
 	. = ..()
 
 /obj/structure/catwalk/proc/redraw_nearby_catwalks()
-	for(var/direction in alldirs)
+	for(var/direction in GLOB.alldirs)
 		if(locate(/obj/structure/catwalk, get_step(src, direction)))
 			var/obj/structure/catwalk/L = locate(/obj/structure/catwalk, get_step(src, direction))
 			L.update_icon() //so siding get updated properly
@@ -55,7 +55,7 @@
 
 /obj/structure/catwalk/update_icon()
 	var/connectdir = 0
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		if(test_connect(get_step(src, direction)))
 			connectdir |= direction
 

@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		if(M.current)
 			to_chat(M.current, span_notice("Contract completed: [name] ([reward] TC)"))
 
-	for(var/obj/item/device/uplink/U in world_uplinks)
+	for(var/obj/item/device/uplink/U in GLOB.world_uplinks)
 		if(U.uplink_owner != M)
 			continue
 		U.uses += reward
@@ -172,7 +172,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/list/area/targets = list()
 
 /datum/antag_contract/recon/New()
-	var/list/candidates = ship_areas.Copy()
+	var/list/candidates = GLOB.ship_areas.Copy()
 	for(var/datum/antag_contract/recon/C in GLOB.various_antag_contracts)
 		if(C.completed)
 			continue
@@ -431,7 +431,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/list/area/targets = list()
 
 /datum/antag_contract/excel/propaganda/New()
-	var/list/candidates = ship_areas.Copy()
+	var/list/candidates = GLOB.ship_areas.Copy()
 	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)
 		if(M.completed)
 			continue

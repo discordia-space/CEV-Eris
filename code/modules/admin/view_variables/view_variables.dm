@@ -2,11 +2,11 @@
 // Variables to not even show in the list.
 // step_* and bound_* are here because they literally break the game and do nothing else.
 // parent_type is here because it's pointless to show in VV.
-/var/list/view_variables_hide_vars = list("bound_x", "bound_y", "bound_height", "bound_width", "bounds", "parent_type", "step_x", "step_y", "step_size", "queued_priority", "gc_destroyed", "is_processing")
+var/list/view_variables_hide_vars = list("bound_x", "bound_y", "bound_height", "bound_width", "bounds", "parent_type", "step_x", "step_y", "step_size", "queued_priority", "gc_destroyed", "is_processing")
 // Variables not to expand the lists of. Vars is pointless to expand, and overlays/underlays cannot be expanded.
-/var/list/view_variables_dont_expand = list("overlays", "underlays", "vars")
+var/list/view_variables_dont_expand = list("overlays", "underlays", "vars")
 // Variables that runtime if you try to test associativity of the lists they contain by indexing
-/var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "vis_contents", "vis_locs")
+var/list/view_variables_no_assoc = list("verbs", "contents","screen","images", "vis_contents", "vis_locs")
 
 // Acceptable 'in world', as VV would be incredibly hampered otherwise
 //allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify

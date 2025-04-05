@@ -398,7 +398,7 @@
 	else if(attack_tool(I, user))
 		return
 	// we use BP_CHEST cause we dont need to convert targeted organ to mech format def zoning
-	else if(user.a_intent != I_HELP && (!hatch_closed || (body && !body.has_hatch) )&& get_dir(user, src) == reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
+	else if(user.a_intent != I_HELP && (!hatch_closed || (body && !body.has_hatch) )&& get_dir(user, src) == GLOB.reverse_dir[dir] && get_mob() && !(user in pilots) && user.targeted_organ == BP_CHEST)
 		var/mob/living/target = get_mob()
 		target.attackby(I, user)
 		return

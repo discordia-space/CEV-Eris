@@ -1097,7 +1097,7 @@ non_blocking var, if true, will allow sleeping to prevent server freeze, at the 
 	if (!target)
 		return
 	if (target == world)
-		target = clients
+		target = GLOB.clients
 
 	var/list/targets
 	if (!islist(target))

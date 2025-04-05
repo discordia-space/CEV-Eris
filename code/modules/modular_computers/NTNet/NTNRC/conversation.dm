@@ -41,7 +41,7 @@ var/global/ntnrc_uid = 0
 		changeop(C)
 
 /datum/ntnet_conversation/proc/remove_client(var/datum/computer_file/program/chatclient/C)
-	if(!istype(C) || !(C in clients))
+	if(!istype(C) || !(C in GLOB.clients))
 		return
 	clients.Remove(C)
 	add_status_message("[C.username] has left the channel.")
@@ -49,8 +49,8 @@ var/global/ntnrc_uid = 0
 	// Channel operator left, pick new operator
 	if(C == operator)
 		operator = null
-		if(clients.len)
-			var/datum/computer_file/program/chatclient/newop = pick(clients)
+		if(GLOB.clients.len)
+			var/datum/computer_file/program/chatclient/newop = pick(GLOB.clients)
 			changeop(newop)
 
 

@@ -65,7 +65,7 @@
 
 /proc/get_admin_counts(requiredflags = R_ADMIN)
 	. = list("total" = list(), "noflags" = list(), "afk" = list(), "stealth" = list(), "present" = list())
-	for(var/client/X in admins)
+	for(var/client/X in GLOB.admins)
 		.["total"] += X
 		if(requiredflags != 0 && !check_rights(R_ADMIN, 0, X))
 			.["noflags"] += X

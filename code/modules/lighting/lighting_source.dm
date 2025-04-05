@@ -252,6 +252,7 @@
 			T.generate_missing_corners()
 		corners |= T.get_corners()
 		turfs   += T
+	END_FOR_DVIEW
 
 	var/list/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
 	affecting_turfs += L

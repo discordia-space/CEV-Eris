@@ -360,7 +360,7 @@ var/global/ManifestJSON
 	else
 		return "Unassigned"
 */
-/var/list/acting_rank_prefixes = list("acting", "temporary", "interim", "provisional")
+var/list/acting_rank_prefixes = list("acting", "temporary", "interim", "provisional")
 
 /proc/make_list_rank(rank)
 	for(var/prefix in acting_rank_prefixes)

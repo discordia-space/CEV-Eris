@@ -52,12 +52,12 @@ meteor_act
 	if(!dir) // Same turf as the source
 		return
 
-	var/r_dir = reverse_dir[dir]
-	var/hit_dirs = (r_dir in cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
+	var/r_dir = GLOB.reverse_dir[dir]
+	var/hit_dirs = (r_dir in GLOB.cardinal) ? r_dir : list(r_dir & NORTH|SOUTH, r_dir & EAST|WEST)
 
 	if(hit_zone == BP_R_LEG || hit_zone == BP_L_LEG)
 		if(prob(60 - stats.getStat(STAT_TGH)))
-			step(src, pick(cardinal - hit_dirs))
+			step(src, pick(GLOB.cardinal - hit_dirs))
 			visible_message(span_warning("[src] stumbles around."))
 
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
@@ -312,7 +312,7 @@ meteor_act
 	else if(!..())
 		return FALSE
 	if(effective_force > 10 || effective_force >= 5 && prob(33))
-		forcesay(hit_appends)	//forcesay checks stat already
+		forcesay(GLOB.hit_appends)	//forcesay checks stat already
 
 		//Apply screenshake
 		if(I.screen_shake && prob(70))

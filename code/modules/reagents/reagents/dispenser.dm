@@ -247,7 +247,7 @@
 
 /datum/reagent/metal/lithium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-		step(M, pick(cardinal))
+		step(M, pick(GLOB.cardinal))
 	if(prob(5))
 		M.emote(pick("twitch", "drool", "moan"))
 
@@ -261,7 +261,7 @@
 
 /datum/reagent/metal/mercury/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
-		step(M, pick(cardinal))
+		step(M, pick(GLOB.cardinal))
 	if(prob(5))
 		M.emote(pick("twitch", "drool", "moan"))
 	M.adjustBrainLoss(0.1)

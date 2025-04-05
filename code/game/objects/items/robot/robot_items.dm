@@ -30,7 +30,7 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.forcesay(hit_appends)
+		H.forcesay(GLOB.hit_appends)
 
 /obj/item/borg/overdrive
 	name = "overdrive"

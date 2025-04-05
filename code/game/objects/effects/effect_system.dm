@@ -92,9 +92,9 @@ steam.start() -- spawns the effect
 			var/obj/effect/effect/steam/steam = new(location)
 			var/direction
 			if(src.cardinals)
-				direction = pick(cardinal)
+				direction = pick(GLOB.cardinal)
 			else
-				direction = pick(alldirs)
+				direction = pick(GLOB.alldirs)
 			for(var/j=0, j<pick(1,2,3), j++)
 				sleep(5)
 				step(steam,direction)
@@ -109,7 +109,7 @@ steam.start() -- spawns the effect
 
 /proc/do_sparks(n, c, source)
 	// n - number of sparks
-	// c - cardinals, bool, do the sparks only move in cardinal directions?
+	// c - cardinals, bool, do the sparks only move in GLOB.cardinal directions?
 	// source - source of the sparks.
 
 	var/datum/effect/effect/system/spark_spread/sparks = new
@@ -171,9 +171,9 @@ steam.start() -- spawns the effect
 		src.total_sparks++
 		var/direction
 		if(src.cardinals)
-			direction = pick(cardinal)
+			direction = pick(GLOB.cardinal)
 		else
-			direction = pick(alldirs)
+			direction = pick(GLOB.alldirs)
 		for(var/j=0, j<pick(1,2,3), j++)
 			addtimer(CALLBACK(src, PROC_REF(do_spark_movement), sparks, direction), rand(1,5) SECONDS)
 			//sleep(rand(1,5))
@@ -411,9 +411,9 @@ steam.start() -- spawns the effect
 		var/obj/effect/effect/smoke/smoke = new smoke_type(location)
 		var/direction
 		if(cardinals)
-			direction = pick(cardinal)
+			direction = pick(GLOB.cardinal)
 		else
-			direction = pick(alldirs)
+			direction = pick(GLOB.alldirs)
 		var/added_time = 1 SECOND
 		for(var/j=0, j<pick(0,1,1,1,2,2,2,3), j++)
 			addtimer(CALLBACK(src, PROC_REF(move_smoke), smoke, direction), added_time)

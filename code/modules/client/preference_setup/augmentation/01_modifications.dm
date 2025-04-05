@@ -57,7 +57,7 @@
 
 	for(var/organ in pref.r_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
-		var/organ_name = capitalize(organ_tag_to_name[organ])
+		var/organ_name = capitalize(GLOB.organ_tag_to_name[organ])
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(!pref.modifications_allowed())
 			dat += "<a class='linkOff'><b>[organ_name]</b></a>"
@@ -75,7 +75,7 @@
 
 	for(var/organ in pref.l_organs)
 		var/datum/body_modification/mod = pref.get_modification(organ)
-		var/organ_name = capitalize(organ_tag_to_name[organ])
+		var/organ_name = capitalize(GLOB.organ_tag_to_name[organ])
 		var/disp_name = mod ? mod.short_name : "Nothing"
 		if(mod.hascolor)
 			dat += "<a href='byond://?src=\ref[src];color=[organ]'><span class='color_holder_box' style='background-color:[pref.modifications_colors[organ]]'></span></a>"
@@ -96,7 +96,7 @@
 		if(!(organ in body_modifications)) continue
 
 		var/datum/body_modification/mod = pref.get_modification(organ)
-		var/organ_name = capitalize(organ_tag_to_name[organ])
+		var/organ_name = capitalize(GLOB.organ_tag_to_name[organ])
 		var/disp_name = mod.short_name
 		if(organ == pref.current_organ)
 			dat += "<td width='33%'><b><span style='background-color:pink'>[organ_name]</span></b>"
@@ -129,7 +129,7 @@
 	return modifications_data[organ]
 
 /datum/preferences/proc/check_child_modifications(var/organ = BP_CHEST)
-	var/list/organ_data = organ_structure[organ]
+	var/list/organ_data = GLOB.organ_structure[organ]
 	if(!organ_data)
 		return
 	var/datum/body_modification/mod = get_modification(organ)
@@ -152,7 +152,7 @@
 		var/organ = href_list["color"]
 		if(!pref.modifications_colors[organ])
 			pref.modifications_colors[organ] = "#FFFFFF"
-		var/new_color = input(user, "Choose color for [organ_tag_to_name[organ]]: ", "Character Preference", pref.modifications_colors[organ]) as color|null
+		var/new_color = input(user, "Choose color for [GLOB.organ_tag_to_name[organ]]: ", "Character Preference", pref.modifications_colors[organ]) as color|null
 		if(new_color && pref.modifications_colors[organ]!=new_color)
 			pref.modifications_colors[organ] = new_color
 		return TOPIC_REFRESH_UPDATE_PREVIEW

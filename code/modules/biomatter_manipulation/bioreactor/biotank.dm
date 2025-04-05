@@ -76,9 +76,9 @@
 			pipes_cleanness = initial(pipes_cleanness)
 
 			if(dirtiness_lvl == DIRT_LVL_MEDIUM)
-				spill_biomass(get_turf(user), cardinal)
+				spill_biomass(get_turf(user), GLOB.cardinal)
 			else if(dirtiness_lvl >= DIRT_LVL_HIGH)
-				spill_biomass(get_turf(user), alldirs)
+				spill_biomass(get_turf(user), GLOB.alldirs)
 			toxin_attack(user, rand(5, 5*dirtiness_lvl))
 		else
 			to_chat(user, span_warning("You need to stand still to clean it properly."))

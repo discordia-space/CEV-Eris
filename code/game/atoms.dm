@@ -631,12 +631,12 @@ its easier to just keep the beam vertical.
 		return TRUE
 
 /atom/proc/get_global_map_pos()
-	if(!islist(global_map) || isemptylist(global_map)) return
+	if(!islist(GLOB.global_map) || isemptylist(GLOB.global_map)) return
 	var/cur_x
 	var/cur_y
 	var/list/y_arr
-	for(cur_x=1, cur_x<=global_map.len, cur_x++)
-		y_arr = global_map[cur_x]
+	for(cur_x=1, cur_x<=GLOB.global_map.len, cur_x++)
+		y_arr = GLOB.global_map[cur_x]
 		cur_y = y_arr.Find(src.z)
 		if(cur_y)
 			break

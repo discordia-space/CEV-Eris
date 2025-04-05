@@ -76,7 +76,7 @@
 	var/expandType = /obj/effect/blob
 
 	//We will periodically update and track neighbors in two lists:
-	//One which contains all blobs in cardinal directions, and one which contains all cardinal turfs that dont have blobs
+	//One which contains all blobs in GLOB.cardinal directions, and one which contains all cardinal turfs that dont have blobs
 	var/list/blob_neighbors = list()
 	var/list/non_blob_neighbors = list()
 	var/obj/effect/blob/core/core

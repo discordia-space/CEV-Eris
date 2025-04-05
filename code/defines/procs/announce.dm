@@ -1,5 +1,5 @@
-/var/datum/announcement/priority/priority_announcement = new(do_log = 0)
-/var/datum/announcement/priority/command/command_announcement = new(do_log = 0, do_newscast = 1)
+var/datum/announcement/priority/priority_announcement = new(do_log = 0)
+var/datum/announcement/priority/command/command_announcement = new(do_log = 0, do_newscast = 1)
 
 /datum/announcement
 	var/title = "Attention"
@@ -50,19 +50,19 @@
 	Log(message, message_title)
 
 /datum/announcement/proc/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay("[span_warning("[title]:")] [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	GLOB.announcer.autosay("[span_warning("[title]:")] [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/minor/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay(message, ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	GLOB.announcer.autosay(message, ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/priority/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay("[span_alert("[message_title]:")] [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	GLOB.announcer.autosay("[span_alert("[message_title]:")] [message]", announcer ? announcer : ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/priority/command/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay("[span_warning("[message_title]:")] [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	GLOB.announcer.autosay("[span_warning("[message_title]:")] [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/priority/security/Message(message as text, message_title as text, use_text_to_speech)
-	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
+	GLOB.announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNCER_NAME, use_text_to_speech = use_text_to_speech)
 
 /datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if(!newscast)
@@ -117,6 +117,6 @@
 /proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
 	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
 		if(issilicon(character))
-			global_announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
+			GLOB.announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
 		else
-			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)
+			GLOB.announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME, use_text_to_speech = TRUE)

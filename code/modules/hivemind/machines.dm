@@ -596,7 +596,7 @@
 		msg += pick(".", "!")
 		if(i != msg_cycles)
 			msg += " "
-	global_announcer.autosay(msg, "unknown")
+	GLOB.announcer.autosay(msg, "unknown")
 
 
 //SHRIEKER

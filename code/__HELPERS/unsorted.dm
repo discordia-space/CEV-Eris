@@ -1228,39 +1228,6 @@ var/list/FLOORITEMS = list(
 			colour += temp_col
 	return "#[colour]"
 
-//Version of view() which ignores darkness, because BYOND doesn't have it.
-/proc/dview(range = world.view, center, invis_flags = 0)
-	if(!center)
-		return
-
-	dview_mob.loc = center
-	dview_mob.see_invisible = invis_flags
-	. = view(range, dview_mob)
-	dview_mob.loc = null
-
-/var/mob/dview/dview_mob = new
-
-/mob/dview
-	invisibility = 101
-	density = FALSE
-
-	anchored = TRUE
-	simulated = FALSE
-
-	see_in_dark = 1e6
-
-/mob/dview/Destroy()
-	. = QDEL_HINT_LETMELIVE // Prevents destruction
-	CRASH("Prevented attempt to delete dview mob: [log_info_line(src)]")
-
-
-/atom/proc/get_light_and_color(atom/origin)
-	if(origin)
-		color = origin.color
-		set_light(origin.light_range, origin.light_power, origin.light_color)
-
-/mob/dview/Initialize() // Properly prevents this mob from gaining huds or joining any global lists
-	return INITIALIZE_HINT_NORMAL
 
 
 

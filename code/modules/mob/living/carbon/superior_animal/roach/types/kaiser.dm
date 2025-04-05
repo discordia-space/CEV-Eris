@@ -175,7 +175,7 @@ Has ability of every roach.
 		visible_message("[src] bucks around wildly, trying to shake [user] off!") //YEEEHAW
 		if(prob(60))
 			visible_message("[src] thrashes around and, throws [user] clean off!")
-			user.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
+			user.throw_at(get_edge_target_turf(src,pick(GLOB.alldirs)),rand(1,3),30)
 			unbuckle_mob()
 			can_buckle = FALSE
 			return FALSE

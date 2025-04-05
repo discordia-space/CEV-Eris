@@ -128,7 +128,7 @@
 
 /obj/machinery/multistructure/bioreactor_part/platform/update_icon()
 	var/corner_dir = 0		//used at sprite determination, direction point to center of whole bioreactor chamber
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		if(locate(type) in get_step(src, direction))
 			corner_dir += direction
 	if(corner_dir in list(9, 6, 5, 10))
@@ -138,7 +138,7 @@
 //There we going for open directions (dirs without neighbor platform and glass) and return list with them. It can be empty if everything okay
 /obj/machinery/multistructure/bioreactor_part/platform/proc/get_opened_dirs()
 	var/list/open_dirs = list()
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		if(!locate(type) in get_step(src, direction))
 			open_dirs += direction
 		for(var/obj/structure/window/reinforced/bioreactor/exist_glass in loc)
@@ -244,7 +244,7 @@
 			toxin_attack(user, 5*contamination_level)
 			apply_dirt(-contamination_level)
 			if(contamination_level >= 4)
-				spill_biomass(user.loc, cardinal)
+				spill_biomass(user.loc, GLOB.cardinal)
 		else
 			to_chat(user, span_warning("You need to stand still to clean it properly."))
 	else

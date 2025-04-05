@@ -51,8 +51,8 @@ var/global/list/modifications_types = list(
 		//usr << "[name] isn't useable for [organ]"
 		return FALSE
 	var/parent_organ
-	for(var/organ_parent in organ_structure)
-		var/list/organ_data = organ_structure[organ_parent]
+	for(var/organ_parent in GLOB.organ_structure)
+		var/list/organ_data = GLOB.organ_structure[organ_parent]
 		if(organ in organ_data["children"])
 			parent_organ = organ_parent
 

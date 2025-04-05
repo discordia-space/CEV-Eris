@@ -46,7 +46,7 @@
 #define GEAR_EVA 15
 
 
-/var/list/economic_species_modifier = list(/datum/species/human	= 10)
+var/list/economic_species_modifier = list(/datum/species/human	= 10)
 
 //---- Descriptions of destination types
 //Space stations can be purpose built for a number of different things, but generally require regular shipments of essential supplies.

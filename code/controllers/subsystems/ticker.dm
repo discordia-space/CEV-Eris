@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(ticker)
 			if(Master.initializations_finished_with_no_players_logged_in || first_start_trying)
 				start_at = world.time + (5 MINUTES)
 			pregame_timeleft = initial(pregame_timeleft)
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				window_flash(C) //let them know lobby has opened up.
 			if(!start_immediately)
 				to_chat(world, "Please, setup your character and select ready. Game will start in [DisplayTimeText(SSticker.GetTimeLeft())].")
@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(ticker)
 		return TRUE
 	switch(current_state)
 		if(GAME_STATE_PLAYING)
-			if(clients.len)
+			if(GLOB.clients.len)
 				// Resets countdown if any player connects on empty server
 				if(last_player_left_timestamp)
 					last_player_left_timestamp = 0
@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(ticker)
 					world.Reboot()
 					return FALSE
 		if(GAME_STATE_PREGAME)
-			if(!clients.len)
+			if(!GLOB.clients.len)
 				// if pregame and no player we break fire() execution so no countdown will be done
 				if(pregame_timeleft == initial(pregame_timeleft))
 					return FALSE
@@ -617,7 +617,7 @@ SUBSYSTEM_DEF(ticker)
 
 	to_chat(world, span_boldannounce("Rebooting World in [DisplayTimeText(delay)]. [reason]"))
 
-	var/start_wait = world.time
+	// var/start_wait = world.time
 	// UNTIL((world.time - start_wait) > (delay * 2)) //don't wait forever
 	reboot_timer = addtimer(CALLBACK(src, PROC_REF(reboot_callback), reason, end_string), delay, TIMER_STOPPABLE)
 

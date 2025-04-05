@@ -92,7 +92,7 @@
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = L.brightness_on / 4
 		L.update_icon()
-	for(var/area/area as anything in ship_areas)
+	for(var/area/area as anything in GLOB.ship_areas)
 		for(var/obj/structure/cyberplant/c in area)
 			c.brightness_on = c.brightness_on / 2
 			c.doInterference()
@@ -110,7 +110,7 @@
 	for(var/obj/item/device/lighting/L in world)
 		L.brightness_on = initial(L.brightness_on)
 		L.update_icon()
-	for(var/area/area as anything in ship_areas)
+	for(var/area/area as anything in GLOB.ship_areas)
 		for(var/obj/structure/cyberplant/c in area)
 			c.brightness_on = initial(c.brightness_on)
 			c.doInterference()
@@ -187,7 +187,7 @@
 /datum/event/micro_debris/tick()
 	if(!(activeFor % 3))	// Every 3rd tick
 		for(var/i in 0 to rand(1,3))
-			spawn_debris(pickweight(debris_types), pick(cardinal), pick(GLOB.maps_data.station_levels))
+			spawn_debris(pickweight(debris_types), pick(GLOB.cardinal), pick(GLOB.maps_data.station_levels))
 
 /datum/event/micro_debris/proc/spawn_debris(debris, start_side, zlevel)
 	var/turf/start_turf = spaceDebrisStartLoc(start_side, zlevel)
@@ -230,7 +230,7 @@
 				message += pick("going to die... ", "about to turn into those spider mutants... ", "being forcefully converted... ")
 				message += pick("Run while you still can.", "Help!", "Angels bless our souls...", "It's... too late.")
 
-				global_announcer.autosay(message, "Emergency Broadcast")
+				GLOB.announcer.autosay(message, "Emergency Broadcast")
 			if(2) //predetermined broadcasts
 				var/message_list = list(
 					"Blessed Angels, guide us to safety!",
@@ -243,10 +243,10 @@
 					"Security is... All gone. With medical bay soon to follow. These abominations know nothing but hunger, consumed most of our crew, and yet they remain unsatiated... Do not try to help in any way. This station is a lost cause."
 				)
 
-				global_announcer.autosay(pick(message_list), "Emergency Broadcast")
+				GLOB.announcer.autosay(pick(message_list), "Emergency Broadcast")
 			if(3) //sekrit stuf
 				if(prob(2))
-					global_announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it dies.", "Emergency Broadcast")
+					GLOB.announcer.autosay("Man, all those people really suck. Just don't get hit and beat everything until it dies.", "Emergency Broadcast")
 
 /datum/event/graveyard/end()
 	command_announcement.Announce("The station wrecks have moved away from the ship.", "Space Graveyard")
@@ -316,7 +316,7 @@
 		if(LAZYLEN(servers))
 			var/obj/machinery/telecomms/server/chosen_server = pick(servers)
 			var/datum/comm_log_entry/C = pick(chosen_server.log_entries)
-			global_announcer.autosay(C.parameters["message"], C.parameters["name"])
+			GLOB.announcer.autosay(C.parameters["message"], C.parameters["name"])
 	if(!(activeFor % 20) && LAZYLEN(GLOB.human_mob_list)) //spooky bluspess ghost
 		var/area/location = random_ship_area()
 		var/mob/living/carbon/human/to_copy = pick(GLOB.human_mob_list)

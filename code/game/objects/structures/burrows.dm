@@ -77,7 +77,7 @@
 	life_scan()
 
 	// apparently burrows should face walls
-	for (var/d in cardinal)
+	for (var/d in GLOB.cardinal)
 		var/turf/T = get_step(F, d)
 		if (T.is_wall)
 			dir = d

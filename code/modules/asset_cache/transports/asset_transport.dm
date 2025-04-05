@@ -13,7 +13,7 @@
 /// Called when the transport is loaded by the config controller, not called on the default transport unless it gets loaded by a config change.
 /datum/asset_transport/proc/Load()
 	// if (CONFIG_GET(flag/asset_simple_preload))
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		addtimer(CALLBACK(src, PROC_REF(send_assets_slow), C, preload), 1 SECONDS)
 
 /// Initialize - Called when SSassets initializes.

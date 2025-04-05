@@ -24,4 +24,4 @@
 		var/robustness = user.stats.getStat(STAT_ROB)
 		if(robustness < STAT_LEVEL_GODLIKE)
 			if(!prob(robustness))
-				step(user, pick(cardinal - user.dir))
+				step(user, pick(GLOB.cardinal - user.dir))

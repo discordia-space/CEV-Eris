@@ -43,7 +43,7 @@
 /obj/machinery/surveillance_pod/Initialize(mapload)
 	..()
 	big_brother = new(src)
-	big_brother.visualnet = cameranet
+	big_brother.visualnet = GLOB.cameranet
 	fake_liquid = new/datum/gas_mixture // Pod filled with liqid
 	fake_liquid.adjust_gas_temp("carbon_dioxide", 100, 300, 1) // But alas, there is no liquids in the code!
 	update_icon()

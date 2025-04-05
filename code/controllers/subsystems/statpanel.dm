@@ -19,20 +19,20 @@ SUBSYSTEM_DEF(statpanels)
 		var/list/private_ready_data = list()
 		var/list/global_ready_data = list()
 		var/list/global_data = list(
-			list("Storyteller: [master_storyteller ? master_storyteller : "being democratically elected"]"),
+			list("Storyteller: [master_storyteller ? master_storyteller : "Being democratically elected"]"),
 			list("Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]"),
 			list("Round Time: [gameTimestamp()]"),
 			list("Ship Time: [stationtime2text()]"),
 			list("Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"),
 		)
 
-		global_data += list(list("Players: [LAZYLEN(clients)]"))
+		global_data += list(list("Players: [LAZYLEN(GLOB.clients)]"))
 		if (!SSticker.HasRoundStarted())
 			global_ready_data += list(list("Players Ready: [SSticker.totalPlayersReady]"))
-			global_ready_data += list(list("Time To Start: [DisplayTimeText(SSticker.GetTimeLeft())][round_progressing ? "" : " (DELAYED)"]"))
+			global_ready_data += list(list("Time To Start: [DisplayTimeText(SSticker.GetTimeLeft())]"))
 			private_ready_data += list(
 				list("-------------------"),
-				list("Admins Ready: [SSticker.total_admins_ready] / [length(admins)]"),
+				list("Admins Ready: [SSticker.total_admins_ready] / [length(GLOB.admins)]"),
 			)
 			var/separator = FALSE
 			for(var/mob/new_player/player in GLOB.player_list)
@@ -50,7 +50,7 @@ SUBSYSTEM_DEF(statpanels)
 						job_of_choice = player.client.prefs.job_high
 					global_ready_data += list(list("[player.client.prefs.real_name] : [job_of_choice]"))
 
-		var/eta_status = evacuation_controller.get_status_panel_eta()
+		var/eta_status = evacuation_controller?.get_status_panel_eta()
 		if(eta_status)
 			global_data += list(list(eta_status))
 
@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(statpanels)
 			var/datum/controller/subsystem/sub_system = ss
 			mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
 		mc_data_encoded = url_encode(json_encode(mc_data))
-		src.currentrun = clients.Copy()
+		src.currentrun = GLOB.clients.Copy()
 
 	var/list/currentrun = src.currentrun
 	while(LAZYLEN(currentrun))

@@ -1,6 +1,6 @@
 
 
-/var/all_ui_styles = list(
+var/all_ui_styles = list(
 	"ErisStyle",
 	"LibertyStyle"
 	)

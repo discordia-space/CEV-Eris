@@ -18,7 +18,7 @@
 		if(direction & dir)
 			// behind
 			return body.pilot_coverage * body.coverage_multipliers[3]
-		else if(direction & reverse_dir[dir])
+		else if(direction & GLOB.reverse_dir[dir])
 			// front
 			return body.pilot_coverage * body.coverage_multipliers[1]
 		else
@@ -35,7 +35,7 @@
 		var/mob/living/L = user
 		penetration = L.armor_divisor
 	var/list/damages = list(BRUTE = damage)
-	if(user.dir & reverse_dir[dir])
+	if(user.dir & GLOB.reverse_dir[dir])
 		var/obj/item/mech_equipment/shield_generator/gen = getShield()
 		if(gen)
 			damages[BRUTE] = gen.absorbDamages(damages[BRUTE])
@@ -96,7 +96,7 @@
 		visible_message("\The [src]'s shields block the blow!", 1, 2 ,5)
 		return
 
-	if(LAZYLEN(pilots) && ((!hatch_closed * body.has_hatch) && (get_dir(user,src) & reverse_dir[dir])) || roll)
+	if(LAZYLEN(pilots) && ((!hatch_closed * body.has_hatch) && (get_dir(user,src) & GLOB.reverse_dir[dir])) || roll)
 		var/mob/living/pilot = pick(pilots)
 		var/turf/location = get_turf(src)
 		location.visible_message(span_danger("\The [user] attacks the pilot inside of \the [src]."),1,5)
@@ -253,13 +253,13 @@
 		IgniteMob()
 	var/obj/item/mech_equipment/shield_generator/gen = getShield()
 	var/list/damages = P.damage_types
-	if(gen && hit_dir & reverse_dir[dir])
+	if(gen && hit_dir & GLOB.reverse_dir[dir])
 		for(var/damage in damages)	//Loop once just to get the key from the list
 			damages[damage] = gen.absorbDamages(damages[damage])
 	var/coverage = getPilotCoverage(hit_dir)
 	if(def_zone == body)
 		// enforce frontal attacks for first case. Second case just enforce a prob check on coverage.
-		if((body.has_hatch && !hatch_closed && hit_dir & reverse_dir[dir]) || (!body.has_hatch && !prob(coverage)))
+		if((body.has_hatch && !hatch_closed && hit_dir & GLOB.reverse_dir[dir]) || (!body.has_hatch && !prob(coverage)))
 			var/mob/living/pilot = get_mob()
 			if(pilot)
 				var/result = pilot.bullet_act(P, ran_zone())

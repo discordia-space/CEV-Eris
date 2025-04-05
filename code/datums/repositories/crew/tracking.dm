@@ -5,7 +5,7 @@
 // divide the new ratio to the ratio of the new mapsize / old mapsize (only if you modified the CSS Sizes in layout_default)
 
 /* Tracking */
-/crew_sensor_modifier/tracking/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/crew_sensor_modifier/tracking/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
 	if(pos)
 		var/area/A = get_area(pos)
 		crew_data["area"] = sanitize(A.name)
@@ -17,25 +17,25 @@
 	return ..()
 
 /* Random */
-/crew_sensor_modifier/tracking/jamming
+/datum/crew_sensor_modifier/tracking/jamming
 	priority = 5
 
-/crew_sensor_modifier/tracking/jamming/localize/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/crew_sensor_modifier/tracking/jamming/localize/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
 	return ..(H, C, get_turf(holder), crew_data)
 
-/crew_sensor_modifier/tracking/jamming/random
+/datum/crew_sensor_modifier/tracking/jamming/random
 	var/shift_range = 7
 	var/x_shift
 	var/y_shift
 	var/next_shift_change
 
-/crew_sensor_modifier/tracking/jamming/random/moderate
+/datum/crew_sensor_modifier/tracking/jamming/random/moderate
 	shift_range = 14
 
-/crew_sensor_modifier/tracking/jamming/random/major
+/datum/crew_sensor_modifier/tracking/jamming/random/major
 	shift_range = 21
 
-/crew_sensor_modifier/tracking/jamming/random/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
+/datum/crew_sensor_modifier/tracking/jamming/random/process_crew_data(var/mob/living/carbon/human/H, var/obj/item/clothing/under/C, var/turf/pos, var/list/crew_data)
 	if(world.time > next_shift_change)
 		next_shift_change = world.time + rand(30 SECONDS, 2 MINUTES)
 		x_shift = rand(-shift_range, shift_range)

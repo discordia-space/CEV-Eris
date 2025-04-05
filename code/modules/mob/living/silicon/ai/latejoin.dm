@@ -24,7 +24,7 @@ var/global/list/empty_playable_ai_cores = list()
 
 	// We warned you.
 	empty_playable_ai_cores += new /obj/structure/AIcore/deactivated(loc)
-	global_announcer.autosay("[src] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
+	GLOB.announcer.autosay("[src] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 
 
 	//Handle respawn bonus for entering storage.

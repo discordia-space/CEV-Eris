@@ -32,7 +32,7 @@
 	if(amount < 15) return //lets suppose welder fuel is fairly thick and sticky. For something like water, 5 or less would be more appropriate.
 	var/turf/S = loc
 	if(!istype(S)) return
-	for(var/d in cardinal)
+	for(var/d in GLOB.cardinal)
 		var/turf/target = get_step(src,d)
 		var/turf/origin = get_turf(src)
 		if(origin.CanPass(null, target, 0, 0) && target.CanPass(null, origin, 0, 0))

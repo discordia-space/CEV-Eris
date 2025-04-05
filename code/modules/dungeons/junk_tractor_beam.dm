@@ -406,7 +406,7 @@
 
 		var/Tx = T.x  // We do that for cleanup because T is going to be replaced during chunk load
 		var/Ty = T.y
-		var/ori = pick(cardinal)
+		var/ori = pick(GLOB.cardinal)
 
 		if(preloaded_25_25[affinity_ID][i_chunk] == 0)
 			ori = SOUTH
@@ -443,7 +443,7 @@
 			else if(intypes(O))  // Fix obj directions
 				if(ori == NORTH)
 					if(O.dir == NORTH || O.dir == SOUTH)
-						O.dir = reverse_dir[O.dir]
+						O.dir = GLOB.reverse_dir[O.dir]
 				else if(ori == EAST)
 					if(O.dir == EAST || O.dir == WEST)
 						O.dir = GLOB.ccw_dir[O.dir]
@@ -496,7 +496,7 @@
 
 		var/Tx = T.x  // We do that for cleanup because T is going to be replaced during chunk load
 		var/Ty = T.y
-		var/ori = pick(cardinal)
+		var/ori = pick(GLOB.cardinal)
 
 		if(preloaded_5_5[i_chunk] == 0)
 			ori = SOUTH

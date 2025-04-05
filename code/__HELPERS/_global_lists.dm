@@ -1,12 +1,24 @@
-var/list/clients = list()							//list of all clients
-var/list/admins = list()							//list of all clients whom are admins
-var/list/directory = list()							//list of all ckeys with associated client
+GLOBAL_LIST_EMPTY(clients)	//list of all clients
+GLOBAL_LIST_EMPTY(admins)	//list of all clients whom are admins
+GLOBAL_LIST_EMPTY(directory)	//list of all ckeys with associated client
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
 GLOBAL_LIST_EMPTY(ships) // List of ships in the game.
+GLOBAL_LIST_EMPTY(all_areas)
+GLOBAL_LIST_EMPTY(ship_areas)
 
+GLOBAL_LIST_EMPTY(global_map)
+
+//GLOBAL_LIST_EMPTY(machines)			//Removed
+//GLOBAL_LIST_EMPTY(processing_objects)			//Removed
+//GLOBAL_LIST_EMPTY(processing_power_items)			//Removed
+GLOBAL_LIST_EMPTY(active_diseases)
+GLOBAL_LIST_EMPTY(med_hud_users)	 // List of all entities using a medical HUD.
+GLOBAL_LIST_EMPTY(sec_hud_users)	 // List of all entities using a security HUD.
+GLOBAL_LIST_EMPTY(excel_hud_users)	 // List of all entities using an excelsior HUD.
+GLOBAL_LIST_EMPTY(hud_icon_reference)
 
 GLOBAL_LIST_EMPTY(mob_list)					//EVERY single mob, dead or alive
 GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with clients attached**. Excludes /mob/new_player
@@ -52,31 +64,47 @@ GLOBAL_LIST_EMPTY(hearing_objects)			//list of all objects, that can hear mob sa
 //Jobs and economy
 GLOBAL_LIST_EMPTY(joblist)					//list of all jobstypes, minus borg and AI
 GLOBAL_LIST_EMPTY(all_departments)			//List of all department datums
-var/global/list/department_IDs = list(DEPARTMENT_COMMAND, DEPARTMENT_MEDICAL, DEPARTMENT_ENGINEERING,
- DEPARTMENT_SCIENCE, DEPARTMENT_SECURITY, DEPARTMENT_GUILD, DEPARTMENT_CHURCH, DEPARTMENT_CIVILIAN, DEPARTMENT_OFFSHIP)
+GLOBAL_LIST_INIT(department_IDs, list(
+	DEPARTMENT_COMMAND,		DEPARTMENT_MEDICAL,
+	DEPARTMENT_ENGINEERING,	DEPARTMENT_SCIENCE,
+	DEPARTMENT_SECURITY,	DEPARTMENT_GUILD,
+	DEPARTMENT_CHURCH,		DEPARTMENT_CIVILIAN,
+	DEPARTMENT_OFFSHIP
+	))
 
 
 GLOBAL_LIST_EMPTY(HUDdatums)
 
-#define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
+// #define all_genders_define_list list(MALE, FEMALE, PLURAL, NEUTER)
 
-var/global/list/turfs = list()						//list of all turfs
+GLOBAL_LIST_EMPTY(turfs)			//list of all turfs
 
-var/list/mannequins_
+GLOBAL_LIST_EMPTY(mannequins_)
 
 //Languages/species/whitelist.
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					// Table of say codes for all languages
-var/global/list/whitelisted_species = list(SPECIES_HUMAN) // Species that require a whitelist check.
-var/global/list/playable_species = list(SPECIES_HUMAN)    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+GLOBAL_LIST_INIT(whitelisted_species, list(SPECIES_HUMAN)) // Species that require a whitelist check.
+GLOBAL_LIST_INIT(playable_species, list(SPECIES_HUMAN))    // A list of ALL playable species, whitelisted, latejoin or otherwise.
+
+// Noises made when hit while typing.
+GLOBAL_LIST_INIT(hit_appends, list("-OOF", "-ACK", "-UGH", "-HRNK", "-HURGH", "-GLORF"))
 
 // Posters
 GLOBAL_LIST_EMPTY(poster_designs)
 GLOBAL_LIST_EMPTY(poster_designs_asters)
 
 // Uplinks
-var/list/obj/item/device/uplink/world_uplinks = list()
+GLOBAL_LIST_EMPTY_TYPED(world_uplinks, /obj/item/device/uplink)
+
+GLOBAL_LIST_EMPTY_TYPED(krabin_linked, /mob/living/carbon/human)
+
+// Announcer intercom, because too much stuff creates an intercom for one message then hard del()s it.
+GLOBAL_DATUM(announcer, /obj/item/device/radio/intercom)
+
+GLOBAL_LIST_EMPTY(lastsignalers) // Keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
+GLOBAL_LIST_EMPTY(lawchanges) // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
 
 // Loot stash datums
 GLOBAL_LIST_EMPTY(stash_categories) //An associative list in the format category_type = weight
@@ -128,9 +156,9 @@ GLOBAL_LIST_EMPTY(cwj_step_dictionary_ordered)
 
 GLOBAL_DATUM_INIT(underwear, /datum/category_collection/underwear, new())
 
-var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
+GLOBAL_LIST_INIT(exclude_jobs, list(/datum/job/ai,/datum/job/cyborg))
 
-var/global/list/organ_structure = list(
+GLOBAL_LIST_INIT(organ_structure, list(
 	BP_CHEST = list(name= "Chest", children=list(BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, OP_HEART, OP_LUNGS, OP_STOMACH)),
 	BP_GROIN = list(name= "Groin",     parent=BP_CHEST, children=list(BP_R_LEG, BP_L_LEG, OP_KIDNEY_LEFT, OP_KIDNEY_RIGHT, OP_LIVER)),
 	BP_HEAD  = list(name= "Head",      parent=BP_CHEST, children=list(BP_BRAIN, BP_EYES)),
@@ -138,9 +166,9 @@ var/global/list/organ_structure = list(
 	BP_L_ARM = list(name= "Left arm",  parent=BP_CHEST, children=list()),
 	BP_R_LEG = list(name= "Right leg", parent=BP_GROIN, children=list()),
 	BP_L_LEG = list(name= "Left leg",  parent=BP_GROIN, children=list()),
-	)
+	))
 
-var/global/list/organ_tag_to_name = list(
+GLOBAL_LIST_INIT(organ_tag_to_name, list(
 	head  = "head", r_arm = "right arm",
 	chest = "body", r_leg = "right leg",
 	eyes  = "eyes", l_arm = "left arm",
@@ -150,19 +178,44 @@ var/global/list/organ_tag_to_name = list(
 	"left kidney" = "left kidney",
 	"right kidney" = "right kidney",
 	stomach = "stomach", brain = "brain"
-	)
+	))
 
 // Visual nets
-var/list/datum/visualnet/visual_nets = list()
-var/datum/visualnet/camera/cameranet = new()
+GLOBAL_LIST_EMPTY_TYPED(visual_nets, /datum/visualnet)
 
-var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+GLOBAL_DATUM_INIT(cameranet, /datum/visualnet/camera, new)
+
+GLOBAL_LIST_INIT(syndicate_access, list(access_maint_tunnels, access_syndicate, access_external_airlocks))
 
 //A list of slots where an item doesn't count as "worn" if it's in one of them
-var/global/list/unworn_slots = list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3)
+GLOBAL_LIST_INIT(unworn_slots, list(slot_l_hand,slot_r_hand, slot_l_store, slot_r_store,slot_robot_equip_1,slot_robot_equip_2,slot_robot_equip_3))
+
+// Added for Xenoarchaeology, might be useful for other stuff.
+GLOBAL_LIST_INIT(alphabet_uppercase, list("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"))
 
 //Names that shouldn't trigger notifications about low health
 GLOBAL_LIST_EMPTY(ignore_health_alerts_from)
+
+// Some scary sounds.
+GLOBAL_LIST_INIT(scary_sounds, list(
+	'sound/weapons/thudswoosh.ogg',
+	'sound/weapons/Taser.ogg',
+	'sound/weapons/armbomb.ogg',
+	'sound/voice/hiss1.ogg',
+	'sound/voice/hiss2.ogg',
+	'sound/voice/hiss3.ogg',
+	'sound/voice/hiss4.ogg',
+	'sound/voice/hiss5.ogg',
+	'sound/voice/hiss6.ogg',
+	'sound/effects/Glassbr1.ogg',
+	'sound/effects/Glassbr2.ogg',
+	'sound/effects/Glassbr3.ogg',
+	'sound/items/Welder.ogg',
+	'sound/items/Welder2.ogg',
+	'sound/machines/airlock.ogg',
+	'sound/effects/clownstep1.ogg',
+	'sound/effects/clownstep2.ogg'
+))
 
 //////////////////////////
 /////Initial Building/////
@@ -211,7 +264,7 @@ GLOBAL_LIST_EMPTY(ignore_health_alerts_from)
 
 	//List of job datums
 	paths = subtypesof(/datum/job)
-	paths -= exclude_jobs
+	paths -= GLOB.exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
 		GLOB.joblist[J.title] = J
@@ -259,9 +312,9 @@ GLOBAL_LIST_EMPTY(ignore_health_alerts_from)
 		all_species[S.name] = S
 
 		if(!(S.spawn_flags & IS_RESTRICTED))
-			playable_species += S.name
+			GLOB.playable_species += S.name
 		if(S.spawn_flags & IS_WHITELISTED)
-			whitelisted_species += S.name
+			GLOB.whitelisted_species += S.name
 
 	//Posters
 	paths = subtypesof(/datum/poster) - /datum/poster/wanted - /datum/poster/asters
@@ -303,12 +356,12 @@ var/global/list/admin_permissions = list(
 	)
 
 /proc/get_mannequin(var/ckey)
-	if(!mannequins_)
-		mannequins_ = new()
-	. = mannequins_[ckey]
+	if(!GLOB.mannequins_)
+		GLOB.mannequins_ = new()
+	. = GLOB.mannequins_[ckey]
 	if(!.)
 		. = new/mob/living/carbon/human/dummy/mannequin()
-		mannequins_[ckey] = .
+		GLOB.mannequins_[ckey] = .
 
 var/global/list/severity_to_string = list("[EVENT_LEVEL_MUNDANE]" = "Mundane", "[EVENT_LEVEL_MODERATE]" = "Moderate", "[EVENT_LEVEL_MAJOR]" = "Major", "[EVENT_LEVEL_ROLESET]" = "Roleset","[EVENT_LEVEL_ECONOMY]" = "Economy")
 

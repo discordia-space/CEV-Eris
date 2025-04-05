@@ -64,6 +64,7 @@
 
 	START_PROCESSING(SSinternal_wounds, src)
 
+	// TODO: @Mycah142 fix this, make this a macro
 	var/obj/item/organ/O = parent
 	var/obj/item/organ/external/E = O.parent
 	var/mob/living/carbon/human/H = O.owner
@@ -143,6 +144,7 @@
 /datum/component/internal_wound/proc/progress()
 	if(!((characteristic_flag & IWOUND_PROGRESS) || (characteristic_flag & IWOUND_AGGRAVATION)))
 		return
+	// TODO: @Mycah142 fix this, make this a macro
 	var/obj/item/organ/O = parent
 	var/obj/item/organ/external/E = parent ? O.parent : null
 	var/mob/living/carbon/human/H = parent ? O.owner : null

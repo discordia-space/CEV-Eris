@@ -61,7 +61,7 @@
 				if(MECH_STRAFING_NONE)
 					if(moveDir != ownerMech.dir) return FALSE
 				if(MECH_STRAFING_BACK)
-					if(!(moveDir == ownerMech.dir || moveDir == reverse_dir[ownerMech.dir])) return FALSE
+					if(!(moveDir == ownerMech.dir || moveDir == GLOB.reverse_dir[ownerMech.dir])) return FALSE
 				//if(MECH_STRAFING_OMNI)
 	return TRUE
 

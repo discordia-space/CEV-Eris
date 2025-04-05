@@ -124,7 +124,7 @@
 		return FALSE
 
 	if (ismob(loc))
-		return !(equip_slot in unworn_slots)
+		return !(equip_slot in GLOB.unworn_slots)
 
 
 /obj/item/proc/is_held()

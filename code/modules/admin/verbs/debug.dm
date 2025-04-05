@@ -332,7 +332,7 @@
 		if("Players")
 			to_chat(usr, jointext(GLOB.player_list,","))
 		if("Admins")
-			to_chat(usr, jointext(admins,","))
+			to_chat(usr, jointext(GLOB.admins,","))
 		if("Mobs")
 			to_chat(usr, jointext(SSmobs.mob_list | SShumans.mob_list,","))
 		if("Living Mobs")
@@ -340,7 +340,7 @@
 		if("Dead Mobs")
 			to_chat(usr, jointext(GLOB.dead_mob_list,","))
 		if("Clients")
-			to_chat(usr, jointext(clients,","))
+			to_chat(usr, jointext(GLOB.clients,","))
 
 /client/proc/view_runtimes()
 	set category = "Debug"

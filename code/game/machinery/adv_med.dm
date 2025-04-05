@@ -140,7 +140,7 @@
 /obj/machinery/body_scanconsole/New()
 	..()
 	spawn(5)
-		for(var/dir in cardinal)
+		for(var/dir in GLOB.cardinal)
 			connected = locate(/obj/machinery/bodyscanner) in get_step(src, dir)
 			if(connected)
 				return

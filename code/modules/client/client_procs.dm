@@ -71,7 +71,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			C = M.client
 		// its a fucking ckey
 		if(istext(C))
-			C = directory[C]
+			C = GLOB.directory[C]
 
 		cmd_admin_pm(C,null)
 		return
@@ -194,8 +194,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		del(src)
 		return
 
-	clients += src
-	directory[ckey] = src
+	GLOB.clients += src
+	GLOB.directory[ckey] = src
 
 	if(byond_version >= 516)
 		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
@@ -336,12 +336,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	return ..()
 
 /client/Destroy()
-	clients -= src
-	directory -= ckey
+	GLOB.clients -= src
+	GLOB.directory -= ckey
 	log_access("Logout: [key_name(src)]")
 	if(holder)
 		holder.owner = null
-		admins -= src
+		GLOB.admins -= src
 	QDEL_NULL(tooltips)
 	if(dbcon.IsConnected())
 		var/DBQuery/query = dbcon.NewQuery("UPDATE players SET last_seen = Now() WHERE id = [src.id]")

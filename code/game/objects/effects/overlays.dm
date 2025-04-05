@@ -23,7 +23,7 @@
 
 /obj/effect/overlay/pulse/New(loc, var/lifetime = 10)
 	..(loc)
-	set_dir(pick(cardinal))
+	set_dir(pick(GLOB.cardinal))
 	QDEL_IN(src, lifetime)
 
 /obj/effect/overlay/pulse/heatwave

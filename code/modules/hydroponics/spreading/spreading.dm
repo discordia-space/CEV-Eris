@@ -250,7 +250,7 @@ var/list/global/cutoff_plant_icons = list()
 
 	var/direction = UP
 
-	for(var/wallDir in cardinal)
+	for(var/wallDir in GLOB.cardinal)
 		var/turf/newTurf = get_step(T,wallDir)
 		if(newTurf.is_wall)
 			direction |= wallDir

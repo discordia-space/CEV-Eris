@@ -262,7 +262,7 @@
 	stabilize_done = TRUE
 
 	//A little rebound animation
-	user.do_attack_animation(get_step(user, reverse_dir[user.last_move]), FALSE, 3)
+	user.do_attack_animation(get_step(user, GLOB.reverse_dir[user.last_move]), FALSE, 3)
 	return TRUE
 
 /*****************************

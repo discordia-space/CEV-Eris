@@ -55,7 +55,7 @@
 	A.all_doors.Add(src)
 	areas_added = list(A)
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
 			A.all_doors.Add(src)
@@ -74,7 +74,7 @@
 		return FALSE
 
 	extra_description += "<b> EMERGENCY SENSOR READINGS </b>"
-	for(var/possible_cardinal in cardinal)
+	for(var/possible_cardinal in GLOB.cardinal)
 		var/turf/turf_sim = get_step(src, possible_cardinal)
 		var/text_to_say = "&nbsp;&nbsp" // Magic bullshit im not even gonna question from the old proc
 		text_to_say += "[uppertext(dir2text(possible_cardinal))] : "

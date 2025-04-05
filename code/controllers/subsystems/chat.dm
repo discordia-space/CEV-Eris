@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(chat)
 		CRASH("to_chat called with invalid input type")
 
 	if(target == world)
-		target = clients
+		target = GLOB.clients
 
 	//Some macros remain in the string even after parsing and fuck up the eventual output
 	var/original_message = message

@@ -36,7 +36,7 @@
 		var/turf/wall/W = null
 
 		//Lets examine the walls around us
-		for (var/d in cardinal)
+		for (var/d in GLOB.cardinal)
 			var/turf/wall/WA = get_step(origin, d)
 			if (istype(WA))
 				//We've found a wall, now lets look at the destination floor

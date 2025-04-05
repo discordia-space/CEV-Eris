@@ -1044,7 +1044,7 @@
 	//if our target is near, we move precisely to it
 	if(distance_to_target <= 3)
 		if(nearby)
-			for(var/d in alldirs)
+			for(var/d in GLOB.alldirs)
 				var/turf/nearby_turf = get_step(new_place, d)
 				if(is_can_jump_on(nearby_turf))
 					new_place = nearby_turf
@@ -1088,7 +1088,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/phaser/special_ability()
 	my_copies = list() //let's clean it up
-	var/possible_directions = alldirs - cardinal
+	var/possible_directions = GLOB.alldirs - GLOB.cardinal
 	var/turf/spawn_point = get_turf(src)
 	//we gives to copies our appearence and pick random direction for them
 	//with animation it's hard to say, who's real. And i hope it looks great

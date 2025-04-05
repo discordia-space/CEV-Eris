@@ -938,7 +938,7 @@
 	if(isturf(loc) && rand(1,1000) == 1)
 		var/turf/T = loc
 		if(T.get_lumcount() == 0)
-			playsound_local(src,pick(scarySounds),50, 1, -1)
+			playsound_local(src,pick(GLOB.scary_sounds),50, 1, -1)
 
 /*
 	Called by life(), instead of having the individual hud items update icons each tick and check for status changes
@@ -1061,8 +1061,8 @@
 		holder.icon_state = "hudblank"
 		if(mind && mind.antagonist.len != 0)
 			var/datum/antagonist/antag = mind.antagonist[1]	//only display the first antagonist role
-			if(hud_icon_reference[antag.role_text])
-				holder.icon_state = hud_icon_reference[antag.role_text]
+			if(GLOB.hud_icon_reference[antag.role_text])
+				holder.icon_state = GLOB.hud_icon_reference[antag.role_text]
 			else
 				holder.icon_state = "hudsyndicate"
 			hud_list[SPECIALROLE_HUD] = holder

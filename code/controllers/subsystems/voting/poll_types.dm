@@ -108,7 +108,6 @@
 
 	set_storyteller(config.pick_storyteller(master_storyteller), announce = !(pregame)) //This does the actual work //Even if master storyteller is null, this will pick the default
 	if (pregame)
-		round_progressing = TRUE
 		to_chat(world, "<b>The game will start in [DisplayTimeText(SSticker.GetTimeLeft())].</b>")
 		spawn(10 SECONDS)
 			var/tipsAndTricks/T = SStips.getRandomTip()

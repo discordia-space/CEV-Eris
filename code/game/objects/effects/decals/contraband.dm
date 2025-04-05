@@ -53,7 +53,7 @@
 				return ..(loc, new_design)
 	..()
 	if(iswall(loc) && !pixel_x && !pixel_y)
-		for(var/dir in cardinal)
+		for(var/dir in GLOB.cardinal)
 			if(isfloor(get_step(src, dir)))
 				switch(dir)
 					if(NORTH) pixel_y = -32
@@ -116,11 +116,11 @@
 	var/turf/new_loc = null
 
 	var/placement_dir = get_dir(user, W)
-	if (placement_dir in cardinal)
+	if (placement_dir in GLOB.cardinal)
 		new_loc = user.loc
 	else
-		placement_dir = reverse_dir[placement_dir]
-		for(var/t_dir in cardinal)
+		placement_dir = GLOB.reverse_dir[placement_dir]
+		for(var/t_dir in GLOB.cardinal)
 			if(!(t_dir & placement_dir)) continue
 			if(iswall(get_step(W, t_dir)))
 				if(iswall(get_step(W, placement_dir-t_dir)))

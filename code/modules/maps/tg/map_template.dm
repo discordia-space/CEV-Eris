@@ -245,7 +245,7 @@
 		var/specific_sanity = 100 // A hundred chances to place the chosen submap.
 		while(specific_sanity > 0)
 			specific_sanity--
-			var/orientation = pick(cardinal)
+			var/orientation = pick(GLOB.cardinal)
 			chosen_template.preload_size(chosen_template.mappath, orientation)
 			var/width_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.width : chosen_template.height) / 2)
 			var/height_border = TRANSITIONEDGE + SUBMAP_MAP_EDGE_PAD + round(((orientation & NORTH|SOUTH) ? chosen_template.height : chosen_template.width) / 2)

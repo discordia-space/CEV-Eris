@@ -46,7 +46,7 @@
 		if(holder.rights & R_ADMIN)
 			ooc_style = "admin"
 
-	for(var/client/target in clients)
+	for(var/client/target in GLOB.clients)
 		if(target.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_SHOW)
 			var/display_name = src.key
 			if(holder)
@@ -148,7 +148,7 @@
 	for(var/client/t in listening)
 		var/admin_stuff = ""
 		var/prefix = ""
-		if(t in admins)
+		if(t in GLOB.admins)
 			admin_stuff += "/([key])"
 			if(t != src)
 				admin_stuff += "([admin_jump_link(mob, t.holder)])"
@@ -160,7 +160,7 @@
 		to_chat(t, span_ooc(span_looc("" + create_text_tag("looc", "LOOC:", t) + " [span_prefix("[prefix]")]<EM>[display_name][admin_stuff]:</EM> [span_message("[msg]")]")))
 
 
-	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
+	for(var/client/adm in GLOB.admins)	//Now send to all admins that weren't in range.
 		if(!(adm in listening) && adm.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
 			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
 			var/prefix = "(R)"

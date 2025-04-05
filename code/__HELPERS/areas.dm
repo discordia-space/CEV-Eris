@@ -53,7 +53,7 @@
 	//Since eris maintenance is a labyrinth and people dont hang around there, this defaults true
 /proc/random_ship_area(var/filter_players = FALSE, var/filter_maintenance = TRUE, var/filter_critical = FALSE, need_apc = FALSE)
 	var/list/possible = list()
-	for(var/Y in ship_areas)
+	for(var/Y in GLOB.ship_areas)
 		var/area/A = Y
 		if (istype(A, /area/shuttle))
 			continue

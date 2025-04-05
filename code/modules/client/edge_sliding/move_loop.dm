@@ -22,7 +22,7 @@
 	if(!move_dir)
 		. = 1
 	//get the opposite direction
-	var/opposite = reverse_dir[Dir]
+	var/opposite = GLOB.reverse_dir[Dir]
 	if(State)
 		//turn on the bitflags
 		move_dir |= Dir

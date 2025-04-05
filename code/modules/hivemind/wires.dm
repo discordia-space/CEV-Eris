@@ -153,7 +153,7 @@
 			overlays += I
 
 	//wallhug
-	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
+	for(var/direction in GLOB.cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
 		//corners
 		if(direction == NORTHEAST || direction == NORTHWEST)
 			if(!is_wall(get_step(loc, NORTH)) || !is_wall(get_step(loc, direction-NORTH)))

@@ -52,7 +52,7 @@
 /obj/item/ammo_casing/proc/expend()
 	. = BB
 	BB = null
-	set_dir(pick(cardinal)) //spin spent casings
+	set_dir(pick(GLOB.cardinal)) //spin spent casings
 	update_icon()
 
 /// special case where is the location is specified as a ammo_Casing , it will clone all relevant vars
@@ -374,7 +374,7 @@
 
 		var/obj/item/ammo_casing/stack = removeCasing()
 		stack.forceMove(target)
-		stack.set_dir(pick(cardinal))
+		stack.set_dir(pick(GLOB.cardinal))
 
 		if(LAZYLEN(stored_ammo))
 			// We end on -1 since we already removed one

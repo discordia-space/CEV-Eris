@@ -219,7 +219,7 @@
 			clients.Add(list(list(
 				"name" = cl.username
 			)))
-		data["clients"] = clients
+		data["clients"] = GLOB.clients
 		C.operator_mode = (C.channel.operator == C) ? 1 : 0
 		data["is_operator"] = C.operator_mode || C.netadmin_mode
 

@@ -128,7 +128,7 @@
 	var/TC_uses = 0
 	var/list/purchases = list()
 
-	for(var/obj/item/device/uplink/H in world_uplinks)
+	for(var/obj/item/device/uplink/H in GLOB.world_uplinks)
 		if(H.uplink_owner && H.uplink_owner == owner)
 			TC_uses += H.used_TC
 

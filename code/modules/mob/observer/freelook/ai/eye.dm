@@ -9,7 +9,7 @@
 
 /mob/observer/eye/aiEye/New()
 	..()
-	visualnet = cameranet
+	visualnet = GLOB.cameranet
 
 /mob/observer/eye/aiEye/setLoc(var/T, var/cancel_tracking = 1)
 	if(..())

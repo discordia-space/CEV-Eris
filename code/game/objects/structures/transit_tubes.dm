@@ -13,9 +13,9 @@
 	var/exit_delay = 2
 	var/enter_delay = 1
 
-	// alldirs in global.dm is the same list of directions, but since
+	// GLOB.alldirs in global.dm is the same list of directions, but since
 	//  the specific order matters to get a usable icon_state, it is
-	//  copied here so that, in the unlikely case that alldirs is changed,
+	//  copied here so that, in the unlikely case that GLOB.alldirs is changed,
 	//  this continues to work.
 	var/global/list/tube_dir_list = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 

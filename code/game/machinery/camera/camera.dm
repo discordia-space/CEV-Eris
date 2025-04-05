@@ -46,7 +46,7 @@
 	assembly.state = 4
 
 	/* // Use this to look for cameras that have the same c_tag.
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		var/list/tempnetwork = C.network&src.network
 		if(C != src && C.c_tag == src.c_tag && tempnetwork.len)
 			log_world("[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]")
@@ -117,7 +117,7 @@
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
 	src.view_range = num
-	cameranet.updateVisibility(src, 0)
+	GLOB.cameranet.updateVisibility(src, 0)
 
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 	if (taped == 1)
@@ -479,12 +479,12 @@
 		var/list/open_networks = difflist(network, restricted_camera_networks)
 		// Add or remove camera from the camera net as necessary
 		if(on_open_network && !open_networks.len)
-			cameranet.removeCamera(src)
+			GLOB.cameranet.removeCamera(src)
 		else if(!on_open_network && open_networks.len)
 			on_open_network = 1
-			cameranet.addCamera(src)
+			GLOB.cameranet.addCamera(src)
 	else
-		cameranet.updateVisibility(src, 0)
+		GLOB.cameranet.updateVisibility(src, 0)
 
 	invalidateCameraCache()
 

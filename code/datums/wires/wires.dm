@@ -7,7 +7,7 @@
 
 var/list/same_wires = list()
 // 14 colours, if you're adding more than 14 wires then add more colours here
-var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown", "gold", "gray", "cyan", "navy", "purple", "pink", "black", "yellow")
+GLOBAL_LIST_INIT(wire_colours, list("red", "blue", "green", "darkred", "orange", "brown", "gold", "gray", "cyan", "navy", "purple", "pink", "black", "yellow"))
 
 /datum/wires
 
@@ -54,7 +54,9 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 	return ..()
 
 /datum/wires/proc/GenerateWires()
-	var/list/colours_to_pick = wireColours.Copy() // Get a copy, not a reference.
+	var/list/colours_to_pick = GLOB?.wire_colours?.Copy() // Get a copy, not a reference.
+	if (!colours_to_pick)
+		return
 	var/list/indexes_to_pick = list()
 	//Generate our indexes
 	for(var/i = 1; i < MAX_FLAG && i < (1 << wire_count); i += i)

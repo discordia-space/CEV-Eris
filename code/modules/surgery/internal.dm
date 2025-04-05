@@ -155,12 +155,12 @@
 		var/o_a =  (limb.gender == PLURAL) ? "" : "a "
 
 		if(isnull(owner.species.has_limbs[limb.organ_tag]))
-			to_chat(user, span_warning("You're pretty sure [owner.species.name_plural] don't normally have [o_a][organ_tag_to_name[limb.organ_tag]]."))
+			to_chat(user, span_warning("You're pretty sure [owner.species.name_plural] don't normally have [o_a][GLOB.organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
 		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
 		if(existing_limb && !existing_limb.is_stump())
-			to_chat(user, span_warning("\The [owner] already has [o_a][organ_tag_to_name[limb.organ_tag]]."))
+			to_chat(user, span_warning("\The [owner] already has [o_a][GLOB.organ_tag_to_name[limb.organ_tag]]."))
 			return FALSE
 
 		// You can only attach a limb to either a parent organ or a stump of the same organ

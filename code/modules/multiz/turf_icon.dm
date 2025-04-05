@@ -54,7 +54,7 @@
 	update_openspace()
 
 /hook/roundstart/proc/init_openspace()
-	for (var/turf/T in turfs)
+	for (var/turf/T in GLOB.turfs)
 		if (T.is_transparent)
 			T.update_icon(null, TRUE)
 

@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(tickets)
 	else
 		newTicket(C, text, text)
 		// Play adminhelp sound to all admins who have not disabled it in preferences
-		for(var/client/X in admins)
+		for(var/client/X in GLOB.admins)
 			if(X.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR)
 				sound_to(X, 'sound/effects/adminhelp.ogg')
 

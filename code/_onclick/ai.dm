@@ -191,7 +191,7 @@
 //
 
 /mob/living/silicon/ai/TurfAdjacent(var/turf/T)
-	return (cameranet && cameranet.checkTurfVis(T))
+	return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(T))
 
 //
 //	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon

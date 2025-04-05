@@ -580,7 +580,7 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"})
 
 	if(cloud_emote)
 		var/image/emote_bubble = image('icons/mob/emote.dmi', src, cloud_emote, ABOVE_MOB_LAYER)
-		flick_overlay(emote_bubble, clients, 30)
+		flick_overlay(emote_bubble, GLOB.clients, 30)
 		QDEL_IN(emote_bubble, 3 SECONDS)
 
 

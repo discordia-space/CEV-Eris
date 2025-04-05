@@ -884,9 +884,9 @@
 /datum/reagent/toxin/biomatter/touch_turf(turf/T)
 	if(volume >= 5)
 		if(volume >= 45)
-			spill_biomass(T, alldirs)
+			spill_biomass(T, GLOB.alldirs)
 		else if(volume >= 25)
-			spill_biomass(T, cardinal)
+			spill_biomass(T, GLOB.cardinal)
 		else
 			spill_biomass(T)
 		remove_self(volume)

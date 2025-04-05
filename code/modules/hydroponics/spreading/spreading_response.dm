@@ -217,5 +217,5 @@
 	//entangling people
 	if(victim.loc == src.loc)
 		buckle_mob(victim)
-		victim.set_dir(pick(cardinal))
+		victim.set_dir(pick(GLOB.cardinal))
 		to_chat(victim, span_danger("Tendrils [pick("wind", "tangle", "tighten")] around you!"))

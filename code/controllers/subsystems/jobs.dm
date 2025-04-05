@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(job)
 
 	if(!holder)	return
 
-	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in clients
+	var/client/the_chosen_one = input(usr, "Select player to whitelist for jobs", "THE CHOSEN ONE!", null) in GLOB.clients
 	if(!the_chosen_one)
 		to_chat(usr, span_danger("No client selected to whitelist"))
 		return
@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(job)
 
 	if(!holder)	return
 
-	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in clients
+	var/client/the_disavowed_one = input(usr, "Select player to unwhitelist from jobs", "THE DISAVOWED ONE!", null) in GLOB.clients
 	if(!the_disavowed_one)
 		to_chat(usr, span_danger("No client selected to unwhitelist"))
 		return

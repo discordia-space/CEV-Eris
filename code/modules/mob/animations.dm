@@ -298,7 +298,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.pixel_x += old_loc.pixel_x
 		I.pixel_y += old_loc.pixel_y
 
-	flick_overlay(I, clients, 7)
+	flick_overlay(I, GLOB.clients, 7)
 
 	var/matrix/M = new
 	M.Turn(pick(30, -30))
@@ -336,7 +336,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		I.pixel_y = 0
 		if (ismob(target))
 			I.dir = target.dir
-		flick_overlay(I, clients, 4)
+		flick_overlay(I, GLOB.clients, 4)
 
 		var/to_x = (target.x - old_turf.x) * 32 + pixel_x
 		var/to_y = (target.y - old_turf.y) * 32 + pixel_y
@@ -364,7 +364,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	I.layer = ABOVE_MOB_LAYER
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 
-	flick_overlay(I, clients, 4)
+	flick_overlay(I, GLOB.clients, 4)
 
 	var/to_x = (target.x - old_turf.x) * 32 + pixel_x
 	var/to_y = (target.y - old_turf.y) * 32 + pixel_y

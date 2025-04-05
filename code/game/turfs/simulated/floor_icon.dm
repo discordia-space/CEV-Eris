@@ -41,7 +41,7 @@ var/list/flooring_cache = list()
 			if (isnull(set_update_icon))
 
 				//Check the cardinal turfs
-				for(var/step_dir in cardinal)
+				for(var/step_dir in GLOB.cardinal)
 					var/turf/floor/T = get_step(src, step_dir)
 
 					//Test link is a flooring proc but its defined farther down in this file

@@ -47,7 +47,7 @@
 	the_broken = null
 	for(var/mob/living/carbon/human/hive_minded in the_hiveminded)
 		to_chat(hive_minded, span_danger("Your connection with the [src] is cut off. The knowledge is painfully removed from you!"))
-		krabin_linked -= hive_minded
+		GLOB.krabin_linked -= hive_minded
 		hive_minded.adjustBrainLoss(25)
 		hive_minded.Weaken(5, TRUE)
 		for(var/stat in stats_buff)
@@ -134,7 +134,7 @@
 		return FALSE
 	to_chat(target, span_notice("You link yourself with the [src], you feel the knowledge of countless minds flood you!"))
 	LAZYADD(the_hiveminded, target)
-	LAZYADD(krabin_linked, target)
+	LAZYADD(GLOB.krabin_linked, target)
 	recalculate_buffs(FALSE)
 
 /obj/item/device/von_krabin/proc/remove_from_the_hivemind(mob/living/carbon/human/target)
@@ -142,7 +142,7 @@
 		return FALSE
 	to_chat(target,  span_notice("You unlink yourself from the [src], you feel the valuable knowledge seep away"))
 	the_hiveminded -= target
-	krabin_linked -= target
+	GLOB.krabin_linked -= target
 	for(var/stat in stats_buff)
 		target.stats.removeTempStat(stat, "von-crabbin")
 	recalculate_buffs(TRUE)

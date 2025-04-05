@@ -26,7 +26,7 @@
 		alert("Admin jump failed due to missing [A] area turfs.")
 
 //allows us to jump to a specific turf
-/client/proc/jumptoturf(var/turf/T in turfs)
+/client/proc/jumptoturf(var/turf/T in GLOB.turfs)
 	set name = "Jump to Turf"
 	set category = "Admin"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG))

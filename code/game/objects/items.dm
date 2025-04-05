@@ -263,7 +263,7 @@
 		unwield(user)
 	if(zoom)
 		zoom(user)
-	if(get_equip_slot() in unworn_slots)
+	if(get_equip_slot() in GLOB.unworn_slots)
 		SEND_SIGNAL_OLD(src, COMSIG_CLOTH_DROPPED, user)
 		if(user)
 			SEND_SIGNAL_OLD(user, COMSIG_CLOTH_DROPPED, src)

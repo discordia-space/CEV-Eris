@@ -77,9 +77,9 @@
  */
 /area/New()
 	uid = ++global_uid
-	all_areas += src
+	GLOB.all_areas += src
 	if(ship_area)
-		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
+		GLOB.ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
 
 	// Some atoms would like to use power in Initialize()
 	if(!requires_power)
@@ -461,7 +461,7 @@ var/list/mob/living/forced_ambiance_list = new
 /area/proc/set_ship_area()
 	if (!ship_area)
 		ship_area = TRUE
-		ship_areas[src] = TRUE
+		GLOB.ship_areas[src] = TRUE
 
 /area/AllowDrop()
 	CRASH("Bad op: area/AllowDrop() called")

@@ -161,7 +161,7 @@
 		if(winners.len)
 			winner = pick(winners)
 
-	var/non_voters = clients.len - all_voters.len
+	var/non_voters = GLOB.clients.len - all_voters.len
 
 
 

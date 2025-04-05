@@ -450,3 +450,37 @@ Proc for attack log creation, because really why not
 	else
 		. = invoked_callback.Invoke()
 	usr = temp
+
+//Version of view() which ignores darkness, because BYOND doesn't have it.
+/proc/dview(range = world.view, center, invis_flags = 0)
+	if(!center)
+		return
+
+	GLOB.dview_mob.loc = center
+	GLOB.dview_mob.see_invisible = invis_flags
+	. = view(range, GLOB.dview_mob)
+	GLOB.dview_mob.loc = null
+
+GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
+
+/mob/dview
+	invisibility = 101
+	density = FALSE
+
+	anchored = TRUE
+	simulated = FALSE
+
+	see_in_dark = 1e6
+
+/mob/dview/Destroy()
+	. = QDEL_HINT_LETMELIVE // Prevents destruction
+	CRASH("Prevented attempt to delete dview mob: [log_info_line(src)]")
+
+
+/atom/proc/get_light_and_color(atom/origin)
+	if(origin)
+		color = origin.color
+		set_light(origin.light_range, origin.light_power, origin.light_color)
+
+/mob/dview/Initialize() // Properly prevents this mob from gaining huds or joining any global lists
+	return INITIALIZE_HINT_NORMAL

@@ -21,7 +21,7 @@
 	if(cached_icon)
 		icon = cached_icon
 
-	set_dir(pick(cardinal))
+	set_dir(pick(GLOB.cardinal))
 	pixel_x = -32 + rand(-8, 8)
 	pixel_y = -32 + rand(-8, 8)
 
@@ -169,7 +169,7 @@
 						var/internals = H.get_breath_from_internal()
 						var/gasmask = FALSE
 						if(H.wear_mask)
-							gasmask = H.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT			
+							gasmask = H.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT
 						if(!internals && !gasmask)
 							chemholder.reagents.trans_to_mob(H, 5, CHEM_INGEST, copy = TRUE)
 							chemholder.reagents.trans_to_mob(H, 5, CHEM_BLOOD, copy = TRUE)
@@ -247,7 +247,7 @@
 /datum/effect/effect/system/smoke_spread/chem/roach/spawnSmoke(turf/T, icon/I, smoke_duration, dist)
 	var/obj/effect/effect/smoke/chem/roach/roachy = new(location, smoke_duration + rand(0, 20), T, I)
 	..(T, I, smoke_duration, dist, roachy)
-	
+
 
 /datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill method based on zones to quickly check what turfs the smoke (airflow) can actually reach.
 
@@ -258,7 +258,7 @@
 
 	while(pending.len)
 		for(var/turf/current in pending)
-			for(var/D in cardinal)
+			for(var/D in GLOB.cardinal)
 				var/turf/target = get_step(current, D)
 				if(wallList)
 					if(istype(target, /turf/wall))

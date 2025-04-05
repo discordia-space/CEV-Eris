@@ -7,7 +7,7 @@ the HUD updates properly! */
 	if(!can_process_hud(M))
 		return
 
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, med_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOB.med_hud_users)
 	for(var/mob/living/carbon/human/patient in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < patient.invisibility)
 			continue
@@ -26,7 +26,7 @@ the HUD updates properly! */
 /proc/process_sec_hud(var/mob/M, var/advanced_mode, var/mob/Alt)
 	if(!can_process_hud(M))
 		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, sec_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOB.sec_hud_users)
 	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
@@ -40,7 +40,7 @@ the HUD updates properly! */
 /proc/process_broken_hud(mob/M, advanced_mode, mob/Alt)
 	if(!can_process_hud(M))
 		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, sec_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOB.sec_hud_users)
 	for(var/mob/living/carbon/human/perp in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < perp.invisibility)
 			continue
@@ -50,7 +50,7 @@ the HUD updates properly! */
 /proc/process_excel_hud(mob/M, mob/Alt)
 	if(!can_process_hud(M))
 		return
-	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, excel_hud_users)
+	var/datum/arranged_hud_process/P = arrange_hud_process(M, Alt, GLOB.excel_hud_users)
 	for(var/mob/living/carbon/human/comrade in P.Mob.in_view(P.Turf))
 		if(P.Mob.see_invisible < comrade.invisibility)
 			continue
@@ -85,8 +85,8 @@ the HUD updates properly! */
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state, 1, 4) == "hud")
 				client.images -= hud
-	med_hud_users -= src
-	sec_hud_users -= src
+	GLOB.med_hud_users -= src
+	GLOB.sec_hud_users -= src
 
 /mob/proc/in_view(var/turf/T)
 	return view(T)

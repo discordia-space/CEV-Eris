@@ -31,7 +31,7 @@
 	spawn(1)
 		waste.forceMove(get_step(src, dir_output))
 		if((MS_bioreactor.biotank_platform.pipes_cleanness <= 20) && prob(15))
-			spill_biomass(get_step(src, dir_output), cardinal)
+			spill_biomass(get_step(src, dir_output), GLOB.cardinal)
 
 
 #undef CLEANING_TIME

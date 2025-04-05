@@ -160,7 +160,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.supply_profit = ending_balance - guild_var.account_initial_balance
 
 	//Check station's power levels
-	for(var/area/A in ship_areas)
+	for(var/area/A in GLOB.ship_areas)
 		if(A.fire || A.atmosalm)
 			GLOB.area_fireloss++
 		if(!A.apc)
@@ -205,7 +205,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		if(!isStationLevel(M.z)) continue
 		var/area/A = get_area(M)
 		if(A in dirt_areas) continue
-		if(!(A in ship_areas)) continue
+		if(!(A in GLOB.ship_areas)) continue
 		if(A.is_maintenance) continue
 		dirt_areas += A
 	GLOB.dirt_areas = dirt_areas.len

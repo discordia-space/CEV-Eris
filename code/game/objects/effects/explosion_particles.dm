@@ -27,7 +27,7 @@
 	for(i=0, i<src.number, i++)
 		spawn(0)
 			var/obj/effect/expl_particles/expl = new /obj/effect/expl_particles(src.location)
-			var/direct = pick(alldirs)
+			var/direct = pick(GLOB.alldirs)
 			for(var/j=0, j<pick(1;25,2;50,3,4;200), j++)
 				sleep(1)
 				step(expl,direct)

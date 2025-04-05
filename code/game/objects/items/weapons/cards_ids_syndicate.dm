@@ -8,7 +8,7 @@
 
 /obj/item/card/id/syndicate/New(mob/user as mob)
 	..()
-	access = syndicate_access.Copy()
+	access = GLOB.syndicate_access.Copy()
 
 /obj/item/card/id/syndicate/Destroy()
 	unset_registered_user(registered_user)
@@ -163,7 +163,7 @@
 			if("Factory Reset")
 				if(alert("This will factory reset the card, including access and owner. Continue?", "Factory Reset", "No", "Yes") == "Yes" && CanUseTopic(user, state))
 					age = initial(age)
-					access = syndicate_access.Copy()
+					access = GLOB.syndicate_access.Copy()
 					assignment = initial(assignment)
 					blood_type = initial(blood_type)
 					dna_hash = initial(dna_hash)
@@ -180,7 +180,7 @@
 	// Always update the UI, or buttons will spin indefinitely
 	SSnano.update_uis(src)
 
-/var/global/list/id_card_states
+var/global/list/id_card_states
 /proc/id_card_states()
 	if(!id_card_states)
 		id_card_states = list()

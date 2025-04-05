@@ -125,7 +125,7 @@
 			if(!do_after(user,equip_delay,src))
 				return TRUE //A nonzero return value will cause the equipping operation to fail
 
-		else if (is_held() && !(slot in unworn_slots))
+		else if (is_held() && !(slot in GLOB.unworn_slots))
 			user.visible_message(
 				span_notice("[user] starts putting on \the [src]..."),
 				span_notice("You start putting on \the [src]...")

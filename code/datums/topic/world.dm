@@ -26,7 +26,7 @@
 
 /datum/world_topic/ping/Run(list/input)
 	var/x = 0
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		x++
 	return x
 
@@ -58,7 +58,7 @@
 		var/list/players = list()
 		var/list/admins = list()
 
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			if(C.holder)
 				if(C.holder.fakekey)
 					continue
@@ -68,12 +68,12 @@
 		s["players"] = players.len
 		s["playerlist"] = list2params(players)
 		s["admins"] = admins.len
-		s["adminlist"] = list2params(admins)
+		s["adminlist"] = list2params(GLOB.admins)
 	else
 		var/n = 0
 		var/admins = 0
 
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			if(C.holder)
 				if(C.holder.fakekey)
 					continue	//so stealthmins aren't revealed by the hub
@@ -219,7 +219,7 @@
 	var/client/C
 	var/req_ckey = ckey(input["adminmsg"])
 
-	for(var/client/K in clients)
+	for(var/client/K in GLOB.clients)
 		if(K.ckey == req_ckey)
 			C = K
 			break
@@ -240,7 +240,7 @@
 	to_chat(C, message)
 
 
-	for(var/client/A in admins)
+	for(var/client/A in GLOB.admins)
 		if(A != C)
 			to_chat(A, amessage)
 

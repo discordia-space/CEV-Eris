@@ -527,7 +527,7 @@ var/list/name_to_material
 	// Get the closest available dir to the user's current facing.
 	var/build_dir = SOUTHWEST //Default to southwest for fulltile windows.
 	// Get data for building windows here.
-	var/list/possible_directions = cardinal.Copy()
+	var/list/possible_directions = GLOB.cardinal.Copy()
 	var/window_count = 0
 	for(var/obj/structure/window/check_window in user.loc)
 		window_count++

@@ -15,7 +15,7 @@ world/IsBanned(key, address, computer_id, real_bans_only=FALSE)
 	var/admin = FALSE
 	var/mentor = FALSE
 
-	var/client/C = directory[ckey]
+	var/client/C = GLOB.directory[ckey]
 	if (C && ckey == C.ckey && computer_id == C.computer_id && address == C.address)
 		return //don't recheck connected clients.
 

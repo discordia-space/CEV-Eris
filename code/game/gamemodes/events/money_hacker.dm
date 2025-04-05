@@ -1,6 +1,6 @@
 //Temporarily disabled, due to computer stuff
 
-/var/global/account_hack_attempted = 0
+var/global/account_hack_attempted = 0
 
 /datum/event/money_hacker
 	var/datum/money_account/affected_account

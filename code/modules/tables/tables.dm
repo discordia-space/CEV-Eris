@@ -451,7 +451,7 @@ var/list/custom_table_appearance = list(
 	for(var/D in list(NORTH, SOUTH, EAST, WEST) - blocked_dirs)
 		var/turf/T = get_step(src, D)
 		for(var/obj/structure/window/W in T)
-			if(W.dir == reverse_dir[D])
+			if(W.dir == GLOB.reverse_dir[D])
 				blocked_dirs |= D
 				break
 			else
@@ -462,7 +462,7 @@ var/list/custom_table_appearance = list(
 		var/turf/T = get_step(src, D)
 
 		for(var/obj/structure/window/W in T)
-			if(W.dir & reverse_dir[D])
+			if(W.dir & GLOB.reverse_dir[D])
 				blocked_dirs |= D
 				break
 

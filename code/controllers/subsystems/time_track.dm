@@ -124,7 +124,7 @@ SUBSYSTEM_DEF(time_track)
 	log_debug(
 		list(
 			world.time,
-			length(clients),
+			length(GLOB.clients),
 			time_dilation_current,
 			time_dilation_avg_fast,
 			time_dilation_avg,

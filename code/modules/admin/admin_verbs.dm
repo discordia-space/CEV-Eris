@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 		return
 
 	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
+	var/client/C = GLOB.directory[warned_ckey]
 
 	D = C ? C.prefs : SScharacter_setup.preferences_datums[warned_ckey]
 	if(!D)

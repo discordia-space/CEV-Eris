@@ -177,7 +177,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 
 		var/cache_name = state
 
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinal)
 			var/image/I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
 			underlays[cache_name + "[D]"] = I
 			for(var/pipe_color in pipe_colors)
@@ -209,7 +209,7 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 		if(state == "")
 			continue
 
-		for(var/D in cardinal)
+		for(var/D in GLOB.cardinal)
 			var/image/I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
 			switch(state)
 				if("intact")

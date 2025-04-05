@@ -182,7 +182,7 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 				//TODO: add a new evasion ban for the CURRENT client details, using the matched row details
 				message_admins("[key_name(src.owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
 				//log_admin_private("[key_name(owner)] has a cookie from a banned account! (Matched: [found["ckey"]], [found["ip"]], [found["compid"]])")
-				for(var/client/A in admins)
+				for(var/client/A in GLOB.admins)
 					if(A.get_preference_value(/datum/client_preference/staff/play_adminhelp_ping) == GLOB.PREF_HEAR)
 						sound_to(A, 'sound/effects/adminhelp.ogg')
 
@@ -202,7 +202,7 @@ GLOBAL_VAR_INIT(goonchatbasehtml, file2text('code/modules/goonchat/browserassets
 		return
 
 	if(target == world)
-		target = clients
+		target = GLOB.clients
 
 	var/original_message = message
 	if(handle_whitespace)
