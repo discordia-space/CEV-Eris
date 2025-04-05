@@ -88,7 +88,7 @@ var/global/floorIsLava = 0
 
 
 //shows an interface for individual players, with various links (links require additional flags
-/datum/admins/proc/show_player_panel(mob/M in SSmobs.mob_list | SShumans.mob_list)
+/datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 	set desc = "Edit player (respawn, ban, heal, etc)"
@@ -124,6 +124,9 @@ var/global/floorIsLava = 0
 		body += " <B>Hasn't Entered Game</B> "
 	else
 		body += " \[<A href='byond://?src=\ref[src];revive=\ref[M]'>Heal</A>\] "
+
+	if(M.ckey)
+		body += "<br>\[<A href='byond://?_src_=holder;ppbyckey=[M.ckey];ppbyckeyorigmob=\ref[M]'>Find Updated Panel</A>\]"
 
 	body += {"
 		<br><br>\[

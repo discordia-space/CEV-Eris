@@ -795,6 +795,24 @@
 		to_chat(usr, span_notice("[B] has occurred for [key_name(H)]."))
 		return
 
+/datum/admin_topic/ppbyckey
+	keyword = "ppbyckey"
+	require_perms = list(R_ADMIN)
+
+/datum/admin_topic/ppbyckey/Run(list/input)
+	var/target_ckey = input["ppbyckey"]
+	var/mob/original_mob = locate(input["ppbyckeyorigmob"]) in GLOB.mob_list
+	var/mob/target_mob = get_mob_by_ckey(target_ckey)
+	if(!target_mob)
+		to_chat(usr, span_warning("No mob found with that ckey."))
+		return
+
+	if(original_mob == target_mob)
+		to_chat(usr, span_warning("[target_ckey] is still in their original mob: [original_mob]."))
+		return
+
+	to_chat(usr, span_notice("Jumping to [target_ckey]'s new mob: [target_mob]!"))
+	usr.client.holder.show_player_panel(target_mob)
 
 /datum/admin_topic/revive
 	keyword = "revive"

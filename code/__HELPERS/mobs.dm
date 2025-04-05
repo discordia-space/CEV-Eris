@@ -441,6 +441,14 @@ Proc for attack log creation, because really why not
 /// You only need to use this if you know you're going to be mocking clients somewhere else.
 #define GET_CLIENT(mob) (##mob.client) //  || ##mob.mock_client
 
+///returns a mob type controlled by a specified ckey
+/proc/get_mob_by_ckey(key)
+	if(!key)
+		return
+	for(var/mob/mob in GLOB.mob_list)
+		if(mob.ckey == key)
+			return mob
+
 ///Makes a call in the context of a different usr. Use sparingly
 /world/proc/push_usr(mob/user_mob, datum/callback/invoked_callback, ...)
 	var/temp = usr
