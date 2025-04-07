@@ -515,24 +515,26 @@ function init_verbs(c, v) {
 	}
 }
 
-function update(...dataArrays) {
+function update() {
 	status_tab_parts = [];
-	let failedParsing = false
-	for (const dataArray of dataArrays) {
+	var failedParsing = false;
+	for (var i = 0; i < arguments.length; i++) {
+		var dataArray = arguments[i];
 		try {
-			const parsed = JSON.parse(dataArray);
-			for (const item of parsed) {
+			var parsed = JSON.parse(dataArray);
+			for (var j = 0; j < parsed.length; j++) {
+				var item = parsed[j];
 				if (item != null) {
-					status_tab_parts.push(item)
-				};
+					status_tab_parts.push(item);
+				}
 			}
 		} catch (e) {
 			failedParsing = true;
-			console.error(`failed to parse incoming update. Likely invalid data`, e)
+			console.error("failed to parse incoming update. Likely invalid data", e);
 		}
 	}
 	if (failedParsing) {
-		status_tab_parts.push([`\n\nFailed to parse some incoming data from the server.`])
+		status_tab_parts.push(["\n\nFailed to parse some incoming data from the server."]);
 	}
 	if (current_tab === "Status") {
 		draw_status();
