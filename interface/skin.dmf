@@ -688,7 +688,16 @@ menu "menu"
 		command = "Hotkeys-Help"
 		category = "&Help"
 		saved-params = "is-checked"
-
+	elem
+		name = "Refresh TGUI"
+		command = "refresh-tgui"
+		category = "&Help"
+		saved-params = "is-checked"
+	elem
+		name = "Fix Chat"
+		command = "fix-chat"
+		category = "&Help"
+		saved-params = "is-checked"
 
 window "mainwindow"
 	elem "mainwindow"

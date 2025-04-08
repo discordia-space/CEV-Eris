@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/admin_memo,
 	/client/proc/admin_ghost,
 	/client/proc/invisimin,
-	/client/proc/player_panel_new,
+	/datum/verbs/menu/Admin/verb/playerpanel, /* It isn't /datum/admin but it fits no less */
 	/client/proc/storyteller_panel,
 	/client/proc/unban_panel,
 	/client/proc/game_panel,
@@ -228,6 +228,10 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 	/client/proc/debug_variables,
 	/client/proc/view_chemical_reaction_logs,
 	/client/proc/discord_msg))
+
+/datum/verbs/menu/Admin/Generate_list(client/C)
+	if (C.holder)
+		. = ..()
 
 /client/proc/add_admin_verbs()
 	if(holder)
@@ -325,12 +329,14 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
 			to_chat(mob, "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>")
 			mob.alpha = max(mob.alpha - 100, 0)
 
-//shows an interface for all players, with links to various panels
-/client/proc/player_panel_new()
+/datum/verbs/menu/Admin/verb/playerpanel()
 	set name = "Player Panel"
+	set desc = "Player Panel"
 	set category = "Admin"
-	if(holder)
-		holder.player_panel_new()
+
+	if(usr.client.holder)
+		usr.client.holder.player_panel_new()
+		// SSblackbox.record_feedback("tally", "admin_verb", 1, "Player Panel New") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/storyteller_panel()
 	set name = "Storyteller Panel"

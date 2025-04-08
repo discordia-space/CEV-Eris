@@ -308,6 +308,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 
 	send_resources()
 
+	initialize_menus()
+
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
 			to_chat(src, message)
@@ -609,13 +611,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
 	return FALSE
 
-
-/client/verb/character_setup()
-	set name = "Character Setup"
+/datum/verbs/menu/Preferences/verb/character_setup()
 	set category = "OOC"
-	if(prefs)
-		prefs.ShowChoices(usr)
+	set name = "Character Setup"
+	set desc = "Character Setup"
 
+	if(usr.client.prefs)
+		usr.client.prefs.ShowChoices(usr)
 
 /client/proc/create_UI(mob_type)
 	destroy_UI()
@@ -768,6 +770,26 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		verb_tabs |= verb_to_init.category
 		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
 	src << output("[url_encode(json_encode(verb_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
+
+/**
+ * Initializes dropdown menus on client
+ */
+/client/proc/initialize_menus()
+	var/list/topmenus = GLOB.menulist[/datum/verbs/menu]
+	for (var/thing in topmenus)
+		var/datum/verbs/menu/topmenu = thing
+		var/topmenuname = "[topmenu]"
+		if (topmenuname == "[topmenu.type]")
+			var/list/tree = splittext(topmenuname, "/")
+			topmenuname = tree[tree.len]
+		winset(src, "[topmenu.type]", "parent=menu;name=[url_encode(topmenuname)]")
+		var/list/entries = topmenu.Generate_list(src)
+		for (var/child in entries)
+			winset(src, "[child]", "[entries[child]]")
+			if (!ispath(child, /datum/verbs/menu))
+				var/procpath/verbpath = child
+				if (verbpath.name[1] != "@")
+					new child(src)
 
 /client/verb/fix_stat_panel()
 	set name = "Fix Stat Panel"
