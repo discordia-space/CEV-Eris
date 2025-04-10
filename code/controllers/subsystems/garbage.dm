@@ -207,7 +207,9 @@ SUBSYSTEM_DEF(garbage)
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
 
-				log_world("## TESTING: GC: -- \ref[D] | [type] was unable to be GC'd --")
+				var/message = "## TESTING: GC: -- [text_ref(D)] | [type] was unable to be GC'd --"
+				message = "[message] (ref count of [refcount(D)])"
+				log_world(message)
 				#ifdef TESTING
 				for(var/c in GLOB.admins) //Using testing() here would fill the logs with ADMIN_VV garbage
 					var/client/admin = c
@@ -224,7 +226,8 @@ SUBSYSTEM_DEF(garbage)
 					#endif
 					continue
 			if (GC_QUEUE_HARDDELETE)
-				HardDelete(D)
+				if(!HardDelete(D))
+					D = null
 				if (MC_TICK_CHECK)
 					return
 				continue
@@ -319,45 +322,51 @@ SUBSYSTEM_DEF(garbage)
 /// Should be treated as a replacement for the 'del' keyword.
 ///
 /// Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
-/proc/qdel(datum/D, force=FALSE, ...)
-	if(!istype(D))
-		del(D)
+/proc/qdel(datum/to_delete, force=FALSE, ...)
+	if(!istype(to_delete))
+		if(isnull(to_delete))
+			return
+		else if(islist(to_delete))
+			stack_trace("Lists should not be directly passed to qdel! You likely want either list.Cut(), QDEL_LIST(list), QDEL_LIST_ASSOC(list), or QDEL_LIST_ASSOC_VAL(list)")
+		else if(to_delete != world)
+			stack_trace("Tried to qdel possibly invalid value: [to_delete]")
+		del(to_delete)
 		return
 
-	var/datum/qdel_item/I = SSgarbage.items[D.type]
+	var/datum/qdel_item/I = SSgarbage.items[to_delete.type]
 	if (!I)
-		I = SSgarbage.items[D.type] = new /datum/qdel_item(D.type)
+		I = SSgarbage.items[to_delete.type] = new /datum/qdel_item(to_delete.type)
 	I.qdels++
 
-	if(isnull(D.gc_destroyed))
-		if (SEND_SIGNAL(D, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
+	if(isnull(to_delete.gc_destroyed))
+		if (SEND_SIGNAL(to_delete, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
 			return
-		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
+		to_delete.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
-		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
-		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
+		SEND_SIGNAL(to_delete, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
+		var/hint = to_delete.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
 		if(world.time != start_time)
 			I.slept_destroy++
 		else
 			I.destroy_time += TICK_USAGE_TO_MS(start_tick)
-		if(!D)
+		if(!to_delete)
 			return
 		switch(hint)
 			if (QDEL_HINT_QUEUE) //qdel should queue the object for deletion.
-				SSgarbage.Queue(D)
+				SSgarbage.Queue(to_delete)
 			if (QDEL_HINT_IWILLGC)
-				D.gc_destroyed = world.time
+				to_delete.gc_destroyed = world.time
 				return
 			if (QDEL_HINT_LETMELIVE) //qdel should let the object live after calling destory.
 				if(!force)
-					D.gc_destroyed = null //clear the gc variable (important!)
+					to_delete.gc_destroyed = null //clear the gc variable (important!)
 					return
 				// Returning LETMELIVE after being told to force destroy
 				// indicates the objects Destroy() does not respect force
 				#ifdef TESTING
 				if(!I.no_respect_force)
-					testing("WARNING: [D.type] has been force deleted, but is \
+					testing("WARNING: [to_delete.type] has been force deleted, but is \
 						returning an immortal QDEL_HINT, indicating it does \
 						not respect the force flag for qdel(). It has been \
 						placed in the queue, further instances of this type \
@@ -365,28 +374,28 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				I.no_respect_force++
 
-				SSgarbage.Queue(D)
+				SSgarbage.Queue(to_delete)
 			if (QDEL_HINT_HARDDEL) //qdel should assume this object won't gc, and queue a hard delete
-				SSgarbage.Queue(D, GC_QUEUE_HARDDELETE)
+				SSgarbage.Queue(to_delete, GC_QUEUE_HARDDELETE)
 			if (QDEL_HINT_HARDDEL_NOW) //qdel should assume this object won't gc, and hard del it post haste.
-				SSgarbage.HardDelete(D)
+				SSgarbage.HardDelete(to_delete)
 			#ifdef REFERENCE_TRACKING
 			if (QDEL_HINT_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled, display all references to this object, then queue the object for deletion.
-				SSgarbage.Queue(D)
-				D.find_references() //This breaks ci. Consider it insurance against somehow pring reftracking on accident
+				SSgarbage.Queue(to_delete)
+				to_delete.find_references() //This breaks ci. Consider it insurance against somehow pring reftracking on accident
 			if (QDEL_HINT_IFFAIL_FINDREFERENCE) //qdel will, if REFERENCE_TRACKING is enabled and the object fails to collect, display all references to this object.
-				SSgarbage.Queue(D)
-				SSgarbage.reference_find_on_fail["\ref[D]"] = TRUE
+				SSgarbage.Queue(to_delete)
+				SSgarbage.reference_find_on_fail["\ref[to_delete]"] = TRUE
 			#endif
 			else
 				#ifdef TESTING
 				if(!I.no_hint)
-					testing("WARNING: [D.type] is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.")
+					testing("WARNING: [to_delete.type] is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.")
 				#endif
 				I.no_hint++
-				SSgarbage.Queue(D)
-	else if(D.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
-		CRASH("[D.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
+				SSgarbage.Queue(to_delete)
+	else if(to_delete.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
+		CRASH("[to_delete.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
 
 
 #ifdef REFERENCE_TRACKING
