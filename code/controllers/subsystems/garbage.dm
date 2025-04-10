@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(garbage)
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
 
-				var/message = "## TESTING: GC: -- [ref(D)] | [type] was unable to be GC'd --"
+				var/message = "## TESTING: GC: -- \ref[D] | [type] was unable to be GC'd --"
 				message = "[message] (ref count of [refcount(D)])"
 				log_world(message)
 				#ifdef TESTING
