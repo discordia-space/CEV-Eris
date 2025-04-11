@@ -6,4 +6,4 @@ GLOBAL_DATUM_INIT(self_state, /datum/nano_topic_state/self_state, new)
 /datum/nano_topic_state/self_state/can_use_topic(var/src_object, var/mob/user)
 	if(src_object != user)
 		return UI_CLOSE
-	return user.shared_nano_interaction()
+	return user.shared_ui_interaction()

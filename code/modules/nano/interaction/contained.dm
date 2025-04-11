@@ -7,7 +7,7 @@ GLOBAL_DATUM_INIT(contained_state, /datum/nano_topic_state/contained_state, new)
 	if(!src_object.contains(user))
 		return UI_CLOSE
 
-	return user.shared_nano_interaction()
+	return user.shared_ui_interaction()
 
 /atom/proc/contains(var/atom/location)
 	if(!location)

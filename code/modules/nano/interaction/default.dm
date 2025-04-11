@@ -23,7 +23,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/nano_topic_state/default, new)
 		return ..()
 
 /mob/living/silicon/robot/default_can_use_topic(var/src_object)
-	. = shared_nano_interaction()
+	. = shared_ui_interaction()
 	if(. <= UI_DISABLED)
 		return
 
@@ -33,7 +33,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/nano_topic_state/default, new)
 	return UI_DISABLED			// no updates, completely disabled (red visibility)
 
 /mob/living/silicon/ai/default_can_use_topic(var/src_object)
-	. = shared_nano_interaction()
+	. = shared_ui_interaction()
 	if(. != UI_INTERACTIVE)
 		return
 
@@ -78,7 +78,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/nano_topic_state/default, new)
 	return UI_CLOSE
 
 /mob/living/default_can_use_topic(var/src_object)
-	. = shared_nano_interaction(src_object)
+	. = shared_ui_interaction(src_object)
 	if(. != UI_CLOSE)
 		if(loc)
 			. = min(., loc.contents_nano_distance(src_object, src))
@@ -86,7 +86,7 @@ GLOBAL_DATUM_INIT(default_state, /datum/nano_topic_state/default, new)
 		return UI_UPDATE
 
 /mob/living/carbon/human/default_can_use_topic(var/src_object)
-	. = shared_nano_interaction(src_object)
+	. = shared_ui_interaction(src_object)
 	if(. != UI_CLOSE)
 		if(loc)
 			. = min(., loc.contents_nano_distance(src_object, src))

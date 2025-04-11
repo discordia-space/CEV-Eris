@@ -7,4 +7,4 @@ GLOBAL_DATUM_INIT(deep_inventory_state, /datum/nano_topic_state/deep_inventory_s
 	if(!user.contains(src_object))
 		return UI_CLOSE
 
-	return user.shared_nano_interaction()
+	return user.shared_ui_interaction()
