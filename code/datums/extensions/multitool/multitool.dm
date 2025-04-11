@@ -3,7 +3,7 @@
 	var/window_y = 470
 
 /datum/extension/multitool/proc/interact(var/obj/item/tool/multitool/M, var/mob/user)
-	if(extension_status(user) != STATUS_INTERACTIVE)
+	if(extension_status(user) != UI_INTERACTIVE)
 		return
 
 	var/html = get_interact_window(M, user)
@@ -30,7 +30,7 @@
 
 /datum/extension/multitool/extension_status(var/mob/user)
 	if(!user.get_multitool())
-		return STATUS_CLOSE
+		return UI_CLOSE
 	. = ..()
 
 /datum/extension/multitool/extension_act(href, href_list, var/mob/user)

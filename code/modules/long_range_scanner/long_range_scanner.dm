@@ -210,7 +210,7 @@ var/list/ship_scanners = list()
 
 /obj/machinery/power/shipside/long_range_scanner/CanUseTopic(var/mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
-		return STATUS_UPDATE
+		return UI_UPDATE
 	return ..()
 
 
@@ -344,7 +344,7 @@ var/list/ship_scanners = list()
 	anchored = FALSE //Will be set true just after deploying
 	circuit = /obj/item/electronics/circuitboard/scanner_conduit
 	var/rating //average rating of all capacitors
-	
+
 /obj/machinery/power/conduit/scanner_conduit/no_light()
 	set_light(0)
 

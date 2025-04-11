@@ -45,7 +45,7 @@ var/global/list/default_pai_software = list()
 
 /mob/living/silicon/pai/nano_ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS)
 	if(user != src)
-		if(ui) ui.set_status(STATUS_CLOSE, 0)
+		if(ui) ui.set_status(UI_CLOSE, 0)
 		return
 
 	if(ui_key != "main")
@@ -53,7 +53,7 @@ var/global/list/default_pai_software = list()
 		if(S && !S.toggle)
 			S.on_ui_interact(src, ui, force_open)
 		else
-			if(ui) ui.set_status(STATUS_CLOSE, 0)
+			if(ui) ui.set_status(UI_CLOSE, 0)
 		return
 
 	var/data[0]

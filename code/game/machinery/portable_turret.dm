@@ -234,14 +234,14 @@ var/list/turret_icons
 /obj/machinery/porta_turret/CanUseTopic(var/mob/user)
 	if(HasController())
 		to_chat(user, SPAN_NOTICE("Turrets can only be controlled using the assigned turret controller."))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	if(isLocked(user))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	if(!anchored)
 		to_chat(usr, SPAN_NOTICE("\The [src] has to be secured first!"))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	return ..()
 

@@ -65,7 +65,7 @@
 
 /obj/structure/undies_wardrobe/CanUseTopic(var/user)
 	if(!human_who_can_use_underwear(user))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	return ..()
 

@@ -597,19 +597,19 @@
 
 /obj/machinery/alarm/CanUseTopic(var/mob/user, var/datum/nano_topic_state/state, var/href_list = list())
 	if(buildstage != 2)
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	if(aidisabled && isAI(user))
 		to_chat(user, SPAN_WARNING("AI control for \the [src] interface has been disabled."))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
-	. = shorted ? STATUS_DISABLED : STATUS_INTERACTIVE
+	. = shorted ? UI_DISABLED : UI_INTERACTIVE
 
-	if(. == STATUS_INTERACTIVE)
+	if(. == UI_INTERACTIVE)
 		var/extra_href = state.href_list(usr)
 		// Prevent remote users from altering RCON settings unless they already have access
 		if(href_list["rcon"] && extra_href["remote_connection"] && !extra_href["remote_access"])
-			. = STATUS_UPDATE
+			. = UI_UPDATE
 
 	return min(..(), .)
 
@@ -1118,10 +1118,10 @@ FIRE ALARM
 
 /obj/machinery/firealarm/CanUseTopic(user)
 	if(wiresexposed)
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	if (buildstage != 2)
-		return STATUS_CLOSE
+		return UI_CLOSE
 	return ..()
 
 /obj/machinery/firealarm/Topic(href, href_list)

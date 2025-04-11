@@ -69,7 +69,7 @@
 
 /obj/machinery/turretid/CanUseTopic(mob/user)
 	if(isLocked(user))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	return ..()
 

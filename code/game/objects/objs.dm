@@ -33,7 +33,7 @@
 
 	// In the far future no checks are made in an overriding Topic() beyond if(..()) return
 	// Instead any such checks are made in CanUseTopic()
-	if(CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
+	if(CanUseTopic(usr, state, href_list) == UI_INTERACTIVE)
 		CouldUseTopic(usr)
 		return OnTopic(usr, href_list, state)
 
@@ -46,7 +46,7 @@
 /obj/CanUseTopic(mob/user, datum/nano_topic_state/state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	return STATUS_CLOSE
+	return UI_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(obj/O)
 	var/id = src.GetIdCard()

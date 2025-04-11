@@ -21,18 +21,18 @@
 
 /datum/extension/proc/extension_status(var/mob/user)
 	if(!holder || !user)
-		return STATUS_CLOSE
+		return UI_CLOSE
 	if(!all_predicates_true(list(holder), host_predicates))
-		return STATUS_CLOSE
+		return UI_CLOSE
 	if(!all_predicates_true(list(user), user_predicates))
-		return STATUS_CLOSE
-	if(holder.CanUseTopic(usr,GLOB.default_state) != STATUS_INTERACTIVE)
-		return STATUS_CLOSE
+		return UI_CLOSE
+	if(holder.CanUseTopic(usr,GLOB.default_state) != UI_INTERACTIVE)
+		return UI_CLOSE
 
-	return STATUS_INTERACTIVE
+	return UI_INTERACTIVE
 
 /datum/extension/proc/extension_act(var/href, var/list/href_list, var/mob/user)
-	return extension_status(user) == STATUS_CLOSE
+	return extension_status(user) == UI_CLOSE
 
 /datum/extension/Topic(var/href, var/list/href_list)
 	if(..())

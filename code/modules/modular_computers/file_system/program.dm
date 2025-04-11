@@ -203,7 +203,7 @@
 // This prevents program UI from opening when the program itself is closed.
 /datum/computer_file/program/CanUseTopic(mob/user, datum/nano_topic_state/state = GLOB.default_state)
 	if(!computer || program_state != PROGRAM_STATE_ACTIVE)
-		return STATUS_CLOSE
+		return UI_CLOSE
 	return computer.CanUseTopic(user, state)
 
 // A lot of MPC apps use nano_host() as a way to get the MPC object

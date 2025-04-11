@@ -4,5 +4,5 @@ GLOBAL_DATUM_INIT(mech_state, /datum/nano_topic_state/default/mech, new)
 	if(istype(src_object))
 		if(user in src_object.pilots)
 			return ..()
-	else return STATUS_CLOSE
+	else return UI_CLOSE
 	return ..()

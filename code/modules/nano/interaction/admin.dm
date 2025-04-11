@@ -4,4 +4,4 @@
 GLOBAL_DATUM_INIT(admin_state, /datum/nano_topic_state/admin_state, new)
 
 /datum/nano_topic_state/admin_state/can_use_topic(var/src_object, var/mob/user)
-	return check_rights(R_ADMIN, 0, user) ? STATUS_INTERACTIVE : STATUS_CLOSE
+	return check_rights(R_ADMIN, 0, user) ? UI_INTERACTIVE : UI_CLOSE

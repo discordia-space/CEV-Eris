@@ -1,6 +1,6 @@
 /obj/item/organ/external/CanUseTopic(mob/user)
 	if(!is_open())
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	if(owner)
 		return owner.CanUseTopic(user)

@@ -862,7 +862,7 @@ There are 9 wires.
 /obj/machinery/door/airlock/CanUseTopic(var/mob/user)
 	if(operating < 0) //emagged
 		to_chat(user, SPAN_WARNING("Unable to interface: Internal error."))
-		return STATUS_CLOSE
+		return UI_CLOSE
 	if(issilicon(user) && !canAIControl())
 		if(canAIHack(user))
 			hack(user)
@@ -871,7 +871,7 @@ There are 9 wires.
 				to_chat(user, SPAN_WARNING("Unable to interface: Connection timed out."))
 			else
 				to_chat(user, SPAN_WARNING("Unable to interface: Connection refused."))
-		return STATUS_CLOSE
+		return UI_CLOSE
 
 	return ..()
 

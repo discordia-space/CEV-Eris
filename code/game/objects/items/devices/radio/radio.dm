@@ -193,7 +193,7 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/CanUseTopic()
 	if(!on)
-		return STATUS_CLOSE
+		return UI_CLOSE
 	return ..()
 
 /obj/item/device/radio/Topic(href, href_list)

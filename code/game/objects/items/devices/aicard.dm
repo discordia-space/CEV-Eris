@@ -57,7 +57,7 @@
 	var/user = usr
 	if (href_list["wipe"])
 		var/confirm = alert("Are you sure you want to wipe this card's memory? This cannot be undone once started.", "Confirm Wipe", "Yes", "No")
-		if(confirm == "Yes" && (CanUseTopic(user, state) == STATUS_INTERACTIVE))
+		if(confirm == "Yes" && (CanUseTopic(user, state) == UI_INTERACTIVE))
 			admin_attack_log(user, carded_ai, "Wiped using \the [src.name]", "Was wiped with \the [src.name]", "used \the [src.name] to wipe")
 			flush = 1
 			to_chat(carded_ai, "Your core files are being wiped!")
